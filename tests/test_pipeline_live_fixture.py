@@ -36,5 +36,5 @@ def test_paid_end_to_end_no_persist():
         assert isinstance(out, dict) and "facts" in out and "unknowns" in out, name
     # report renders and contains the mandatory header fields
     md = r["report_md"]
-    for key in ("TOKEN:", "TICKER:", "CHAIN:", "CONTRACT:", "TOKEN AGE:", "IDENTITY CONFIDENCE:", "TIMESTAMP:", "## Opportunity score", "## Current status", "## Bottom line"):
+    for key in ("TOKEN:", "TICKER:", "CHAIN:", "CONTRACT/MINT:", "TOKEN STANDARD:", "PRIMARY POOL:", "TOKEN AGE:", "IDENTITY CONFIDENCE:", "TIMESTAMP:", "## Opportunity score", "## Current status", "## Bottom line"):
         assert key in md
