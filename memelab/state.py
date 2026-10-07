@@ -43,6 +43,10 @@ def export(path: Path | str | None = None, keep_theses_per_mint: int = 12) -> Pa
     return out
 
 
+def _cols(con, table: str) -> set:
+    return {r[1] for r in con.execute(f"PRAGMA table_info({table})")}
+
+
 def _load(src: str) -> dict:
     if src.startswith("http"):
         with urllib.request.urlopen(src, timeout=60) as r:
@@ -52,7 +56,8 @@ def _load(src: str) -> dict:
 
 def import_(src: str | None = None) -> dict[str, int]:
     data = _load(str(src or DEFAULT))
-    tables = data.get("_tables") or {}
+    # two layouts exist: this module's {"_tables": {...}} and an older flat {"tokens": [...], "watchlist": [...], ...}
+    tables = data.get("_tables") or {k: v for k, v in data.items() if not k.startswith("_") and isinstance(v, list)}
     added = {}
     with db.connect() as con:
         thesis_id_map: dict[int, int] = {}
@@ -76,6 +81,8 @@ def import_(src: str | None = None) -> dict[str, int]:
                         con.execute("UPDATE watchlist SET status=?, last_status_change=?, notes=? WHERE mint=?",
                                     (row.get("status"), row.get("last_status_change"), row.get("notes"), row["mint"]))
                     continue
+                known = _cols(con, t)
+                row = {k: v for k, v in row.items() if k in known}
                 cols = list(row)
                 cur = con.execute(f"INSERT INTO {t} ({','.join(cols)}) VALUES ({','.join('?' * len(cols))})", [row[c] for c in cols])
                 if t == "theses" and old_id is not None:
