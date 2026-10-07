@@ -70,10 +70,9 @@ def build_bundle(mint: str, bodies: dict[str, Any], observed_at: float | None = 
         if k.startswith("jup_tok") and isinstance(v, list):
             for t in v:
                 if isinstance(t, dict) and t.get("id") == mint:
-                    jt = t
-                    break
-        if jt:
-            break
+                    # several search bodies may carry this mint (term searches are slimmed); keep the richest record
+                    if jt is None or len(t) > len(jt):
+                        jt = t
     if jt:
         ident.update({
             "name": jt.get("name"), "symbol": jt.get("symbol"), "decimals": jt.get("decimals"),
@@ -123,9 +122,12 @@ def build_bundle(mint: str, bodies: dict[str, Any], observed_at: float | None = 
 
     # ---------------- DEX Screener pairs ----------------
     pairs = []
+    seen_pairs = set()
     for k, v in bodies.items():
         if k.startswith("ds") and isinstance(v, list):
-            pairs += [p for p in v if isinstance(p, dict) and (p.get("baseToken") or {}).get("address") == mint]
+            for p in v:
+                if isinstance(p, dict) and (p.get("baseToken") or {}).get("address") == mint and p.get("pairAddress") not in seen_pairs:
+                    pairs.append(p); seen_pairs.add(p.get("pairAddress"))  # the same pair can arrive in several bodies (batch + single)
     if pairs:
         main = max(pairs, key=lambda p: _f((p.get("liquidity") or {}).get("usd")) or 0)
         bt = main.get("baseToken") or {}
@@ -174,8 +176,9 @@ def build_bundle(mint: str, bodies: dict[str, Any], observed_at: float | None = 
     # ---------------- GeckoTerminal pools for token ----------------
     gtp = None
     for k, v in bodies.items():
-        if k.startswith("gt_pools:token") and isinstance(v, dict):
-            gtp = v.get("pools") or []
+        # several tokens' pool lists can share one result file: take this mint's body, never the last one seen
+        if k.startswith("gt_pools:token") and isinstance(v, dict) and (k.endswith(f":{mint}") or any(p.get("base") == mint for p in v.get("pools") or [])):
+            gtp = (gtp or []) + [p for p in v.get("pools") or [] if p.get("base") == mint]
     if gtp:
         known = {p["pool"]: p for p in b["pools"]}
         for p in gtp:
