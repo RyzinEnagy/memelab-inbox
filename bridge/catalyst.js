@@ -61,9 +61,9 @@
       try { body = fn(); } catch (e) { err = String(e); body = null; }
       const out = { _cat: sourceId || kind, _kind: kind, _url: location.href, _at: new Date().toISOString(), s: err ? 0 : 200, err, body };
       const txt = JSON.stringify(out);
-      document.documentElement.innerHTML = '<head><meta charset="utf-8"></head><body><pre id="ml"></pre></body>';
-      document.getElementById("ml").textContent = txt;
       window.__CAT_LAST = txt;
+      // render for get_page_text when the document is HTML; XML documents (RSS) cannot take HTML, so they are shipped from __CAT_LAST instead
+      try { document.documentElement.innerHTML = '<head><meta charset="utf-8"></head><body><pre id="ml"></pre></body>'; document.getElementById("ml").textContent = txt; } catch (e) { /* XML doc: leave as is */ }
       return `${sourceId || kind}: ${err ? "ERR " + err.slice(0, 80) : (Array.isArray(body) ? body.length + " items" : "ok")} len=${txt.length}`;
     },
     // plan for fetch-mode sources: [{key, url, proj}]
