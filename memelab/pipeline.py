@@ -27,12 +27,21 @@ def run_modules(bundle: dict[str, Any], benchmarks: dict | None = None, account:
                 social_obs: list | None = None) -> dict[str, dict]:
     account = account or {}
     m: dict[str, dict] = {}
-    m["identity"] = _safe(m02.analyze, bundle)
+    evm = (bundle.get("chain") or "solana") != "solana" and bundle.get("chain") in _EVM_CHAINS()
+    if evm:
+        from .chains import evm as evm_engine
+        m["identity"] = _safe(evm_engine.identity, bundle)
+    else:
+        m["identity"] = _safe(m02.analyze, bundle)
     m["market"] = _safe(m03.analyze, bundle)
     m["pools"] = _safe(m05.analyze, bundle)
     m["depth"] = _safe(m06.analyze, bundle)
     m["lp"] = _safe(m07.analyze, bundle)
-    m["mechanics"] = _safe(m08.analyze, bundle, depth=m["depth"])
+    if evm:
+        m["mechanics"] = _safe(evm_engine.mechanics, bundle, depth=m["depth"])
+        m["execution"] = _safe(evm_engine.execution_profile, bundle, m["depth"], m["mechanics"])
+    else:
+        m["mechanics"] = _safe(m08.analyze, bundle, depth=m["depth"])
     m["holders"] = _safe(m09.analyze, bundle)
     m["supply"] = _safe(m04.analyze, bundle, holders_out=m["holders"])
     m["clusters"] = _safe(m10.analyze, bundle, holders_out=m["holders"], wallet_txs=wallet_txs)
@@ -49,6 +58,11 @@ def run_modules(bundle: dict[str, Any], benchmarks: dict | None = None, account:
     m["lifecycle"] = _safe(m21.analyze, _lifecycle_view(bundle), structure=m["structure"], flows=m["early"], attention=m["attention"])
     m["rs"] = _safe(m22.analyze, bundle, benchmarks or {})
     return m
+
+
+def _EVM_CHAINS() -> set[str]:
+    from .chains import registry
+    return {c for c, v in registry.CHAINS.items() if v["family"] == "evm"}
 
 
 def _lifecycle_view(bundle: dict[str, Any]) -> dict[str, Any]:
@@ -101,8 +115,15 @@ def ranker_inputs(m: dict[str, dict]) -> dict[str, dict]:
 
 def analyze_token(mint: str, bodies: dict[str, Any], observed_at: float | None = None, sol_price: float | None = None, benchmarks: dict | None = None,
                   account: dict | None = None, discovery_signals: dict | None = None, wallet_txs: dict | None = None, social_obs: list | None = None,
-                  persist: bool = True, report_dir: Path | None = None) -> dict[str, Any]:
-    bundle = build_bundle(mint, bodies, observed_at=observed_at, sol_price=sol_price)
+                  persist: bool = True, report_dir: Path | None = None, chain: str = "solana", native_price: float | None = None) -> dict[str, Any]:
+    """chain: registry id. For EVM chains the bundle comes from the EVM engine (same shape); sol_price is ignored and native_price (ETH/BNB) is used."""
+    if chain != "solana" and chain in _EVM_CHAINS():
+        from .chains import evm as evm_engine, registry
+        mint = registry.norm_address(chain, mint)
+        bundle = evm_engine.build_bundle(chain, mint, bodies, observed_at=observed_at, native_price=native_price)
+    else:
+        bundle = build_bundle(mint, bodies, observed_at=observed_at, sol_price=sol_price)
+        bundle["chain"] = "solana"
     forensics_out = None
     if wallet_txs is None and any(k.startswith("helius_tx:") for k in bodies):
         from . import forensics
@@ -162,7 +183,8 @@ def persist_result(r: dict[str, Any], report_dir: Path | None = None) -> Path:
     path = report_dir / f"{time.strftime('%Y%m%d_%H%M', time.gmtime(t))}_{sym}_{mint[:6]}.md"
     path.write_text(r["report_md"])
     with db.connect() as con:
-        db.upsert_token(con, mint, name=ident.get("name"), symbol=ident.get("symbol"), decimals=ident.get("decimals"), token_program=ident.get("token_program"),
+        db.upsert_token(con, mint, chain=b.get("chain") or "solana", token_standard=ident.get("token_standard"), primary_pool=ident.get("primary_pool"),
+                        name=ident.get("name"), symbol=ident.get("symbol"), decimals=ident.get("decimals"), token_program=ident.get("token_program"),
                         creator=ident.get("creator"), dev_wallet=ident.get("dev"), launchpad=ident.get("launchpad"), graduated_pool=ident.get("graduated_pool"),
                         graduated_at=ident.get("graduated_at"), first_pool_at=ident.get("first_pool_at"), website=(b.get("social") or {}).get("website"),
                         twitter=(b.get("social") or {}).get("twitter"), identity_confidence=mods["identity"].get("confidence"))
