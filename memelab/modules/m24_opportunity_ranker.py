@@ -514,6 +514,17 @@ def fatal_flags(**modules: Any) -> list[dict]:
             add("TRANSFER_HOOK_UNKNOWN", f"transfer hook program {mech.get('transfer_hook_program') or 'unknown'}", "mechanics")
         if _truthy(mech.get("non_transferable")):
             add("NON_TRANSFERABLE", "non-transferable extension present", "mechanics")
+        # EVM contract-risk flags (chains/evm.py). Fatal: honeypot, cannot buy, hidden owner, extreme tax, failed sell simulation, proxy with live owner.
+        evm_flags = set(mech.get("flags") or []) if mech.get("contract_risk") else set()
+        for f, ev in (("HONEYPOT", "honeypot flagged by GoPlus or honeypot.is simulation"), ("CANNOT_BUY", "buying disabled"), ("HIDDEN_OWNER", "hidden owner: renounce is not real"),
+                      ("EXTREME_TAX", f"round-trip tax {mech.get('transfer_fee_pct')}%"), ("SIMULATION_FAILED", "a sell could not be simulated"), ("AIRDROP_SCAM", "GoPlus airdrop-scam flag"),
+                      ("SELFDESTRUCT", "selfdestruct present"), ("CREATOR_PRIOR_HONEYPOT", "creator deployed honeypots before")):
+            if f in evm_flags:
+                add(f, ev, "mechanics")
+        if "UPGRADEABLE_PROXY" in evm_flags and mech.get("owner_state") == "ACTIVE":
+            add("PROXY_WITH_LIVE_OWNER", "upgradeable proxy and a live owner: the contract can be replaced", "mechanics")
+        if "TAX_MODIFIABLE" in evm_flags and mech.get("owner_state") == "ACTIVE":
+            add("TAX_MODIFIABLE_BY_OWNER", "owner can change the tax at any time (sell tax can become 100%)", "mechanics")
 
     lp = _d(modules.get("lp"))
     if str(_first(lp, "lp_risk", "risk") or "").upper() == "CRITICAL":
