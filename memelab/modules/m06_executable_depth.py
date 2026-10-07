@@ -33,7 +33,8 @@ def _interp_capacity(curve: list[tuple[float, float]], max_impact_pct: float) ->
 def analyze(bundle: dict[str, Any], decimals: int | None = None, max_entry_impact_pct: float = 1.5, max_exit_impact_pct: float = 3.0) -> dict[str, Any]:
     q = bundle.get("quotes") or {}
     mk = bundle.get("market") or {}
-    sol_px = mk.get("sol_price")
+    sol_px = mk.get("native_price") or mk.get("sol_price")  # native-coin price: SOL on Solana, ETH/BNB on EVM chains
+    nscale = 10 ** int(mk.get("native_decimals") or 9)
     dec = decimals if decimals is not None else (bundle.get("identity") or {}).get("decimals") or (bundle.get("authorities") or {}).get("decimals") or 6
     mid = mk.get("price_usd")
     facts, inferences, unknowns = [], [], []
@@ -51,13 +52,13 @@ def analyze(bundle: dict[str, Any], decimals: int | None = None, max_entry_impac
             inn, out = r.get("in"), r.get("out")
             eff = None; usd_val = None
             if side == "BUY" and out and sol_px and inn:
-                usd_in = inn / 1e9 * sol_px
+                usd_in = inn / nscale * sol_px
                 tokens = out / (10 ** dec)
                 eff = usd_in / tokens if tokens else None
                 usd_val = usd_in
             elif side == "SELL" and inn and out and sol_px:
                 tokens = inn / (10 ** dec)
-                usd_out = out / 1e9 * sol_px
+                usd_out = out / nscale * sol_px
                 eff = usd_out / tokens if tokens else None
                 usd_val = usd_out
             imp_pct = (r.get("impact") or 0) * 100
