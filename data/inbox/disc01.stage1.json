@@ -1,0 +1,1359 @@
+{
+ "universe_size": 362,
+ "survivors": [
+  {
+   "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+   "symbol": "PAID",
+   "name": null,
+   "why": [
+    "surfaced on gt:trending, gt:trending24, jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:1h, jup:trending:24h, jup:trending:6h",
+    "6h volume pace 2.05x the 24h average",
+    "net buyers 24h 1665 of 3795 traders",
+    "holder change 24h +1.25%",
+    "organic volume share 13%"
+   ],
+   "feeds": [
+    "gt:trending",
+    "gt:trending24",
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h",
+    "jup:trending:1h",
+    "jup:trending:24h",
+    "jup:trending:6h"
+   ],
+   "signals": {
+    "gt_reserve": 523930,
+    "vol_24h": 3893700,
+    "vol_6h": 2432900,
+    "vol_1h": 85457,
+    "chg": {
+     "h1": 7.157,
+     "h6": 25.986,
+     "h24": 33.024
+    },
+    "mcap": 4994700,
+    "jup_liq": 458430,
+    "holders": 39533,
+    "organic_score": 85.15,
+    "launchpad": "pump.fun",
+    "first_pool_at": "2026-09-15T19:20:20Z",
+    "dev": "6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+    "mint_disabled": true,
+    "freeze_disabled": true,
+    "top_holders_pct": 15.25,
+    "dev_pct": 0.06563,
+    "j_vol_1h": 104020,
+    "j_vol_6h": 1991100,
+    "j_vol_24h": 3446700,
+    "j_org_24h": 465100,
+    "j_netbuyers_24h": 1665,
+    "j_traders_24h": 3795,
+    "j_holderchg_24h": 1.247,
+    "j_liqchg_24h": 21,
+    "j_chg_1h": 4.99,
+    "j_chg_6h": 26.25,
+    "j_chg_24h": 32.32
+   },
+   "pre_score": 83.3,
+   "reject": [],
+   "age_hours": 507.9,
+   "liquidity_est": 523930,
+   "vol_24h_est": 3893700
+  },
+  {
+   "mint": "ondohH8Vssxiqcy5u6Efi4AYN17KZrzQtv2a91dnrgW",
+   "symbol": "ONDO",
+   "name": null,
+   "why": [
+    "surfaced on jup:traded:24h",
+    "6h volume pace 3.68x the 24h average",
+    "net buyers 24h 1888 of 3499 traders",
+    "holder change 24h +39.7%",
+    "organic volume share 5%"
+   ],
+   "feeds": [
+    "jup:traded:24h"
+   ],
+   "signals": {
+    "jup_liq": 413440,
+    "mcap": 354100,
+    "holders": 3380,
+    "organic_score": 53.74,
+    "first_pool_at": "2026-10-01T18:27:35Z",
+    "dev": "6mRm2bMk2LvLQbUCWbwFkGkwxnUMBUwSJDzhFGu5kUJy",
+    "freeze_disabled": true,
+    "top_holders_pct": 11.13,
+    "j_vol_1h": 2370200,
+    "j_vol_6h": 2438000,
+    "j_vol_24h": 2649900,
+    "j_org_24h": 134590,
+    "j_netbuyers_24h": 1888,
+    "j_traders_24h": 3499,
+    "j_holderchg_24h": 39.67,
+    "j_liqchg_24h": 54.14,
+    "j_chg_1h": -1.025,
+    "j_chg_6h": -1.415,
+    "j_chg_24h": -2.117
+   },
+   "pre_score": 79.7,
+   "reject": [],
+   "age_hours": 124.7,
+   "liquidity_est": 413440,
+   "vol_24h_est": 2649900
+  },
+  {
+   "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+   "symbol": "DARK",
+   "name": null,
+   "why": [
+    "surfaced on jup:organic:1h, jup:traded:24h, jup:trending:1h, jup:trending:24h, jup:trending:6h",
+    "6h volume pace 1.90x the 24h average",
+    "net buyers 24h 678 of 1722 traders",
+    "holder change 24h +17.7%",
+    "organic volume share 1%",
+    "24h volume is 16x liquidity (possible wash/circular volume)"
+   ],
+   "feeds": [
+    "jup:organic:1h",
+    "jup:traded:24h",
+    "jup:trending:1h",
+    "jup:trending:24h",
+    "jup:trending:6h"
+   ],
+   "signals": {
+    "jup_liq": 167310,
+    "mcap": 2496400,
+    "holders": 3355,
+    "organic_score": 63.96,
+    "launchpad": "stonkfun",
+    "first_pool_at": "2026-10-01T17:36:20Z",
+    "dev": "BTb67gk2JvVENDWyMQxy79GXYvZjxCdhL8BNL8GGiUKS",
+    "mint_disabled": true,
+    "freeze_disabled": true,
+    "top_holders_pct": 12.4,
+    "dev_pct": 0.0003493,
+    "j_vol_1h": 870930,
+    "j_vol_6h": 1276000,
+    "j_vol_24h": 2685800,
+    "j_org_24h": 29744,
+    "j_netbuyers_24h": 678,
+    "j_traders_24h": 1722,
+    "j_holderchg_24h": 17.68,
+    "j_liqchg_24h": 79.46,
+    "j_chg_1h": 58.97,
+    "j_chg_6h": 68.52,
+    "j_chg_24h": 90.37
+   },
+   "pre_score": 78.4,
+   "reject": [],
+   "age_hours": 125.6,
+   "liquidity_est": 167310,
+   "vol_24h_est": 2685800
+  },
+  {
+   "mint": "CARDSccUMFKoPRZxt5vt3ksUbxEFEcnZ3H2pd3dKxYjp",
+   "symbol": "CARDS",
+   "name": null,
+   "why": [
+    "surfaced on gt:trending, gt:trending24, jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:24h, jup:trending:6h",
+    "6h volume pace 1.28x the 24h average",
+    "net buyers 24h 6849 of 11310 traders",
+    "holder change 24h +3.90%",
+    "organic volume share 16%"
+   ],
+   "feeds": [
+    "gt:trending",
+    "gt:trending24",
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h",
+    "jup:trending:24h",
+    "jup:trending:6h"
+   ],
+   "signals": {
+    "gt_reserve": 4180200,
+    "vol_24h": 11613000,
+    "vol_6h": 4095800,
+    "chg": {
+     "h1": -0.155,
+     "h6": 6.228,
+     "h24": 8.25
+    },
+    "fdv": 604410000,
+    "mcap": 273890000,
+    "jup_liq": 4204300,
+    "holders": 43180,
+    "organic_score": 95.53,
+    "first_pool_at": "2025-08-29T18:54:39Z",
+    "dev": "redFWCNFJDg86S3CAbuGGjAr9hQCimcr7xz7v3oEpuj",
+    "mint_disabled": true,
+    "freeze_disabled": true,
+    "top_holders_pct": 73.02,
+    "j_vol_1h": 644600,
+    "j_vol_6h": 4004800,
+    "j_vol_24h": 12484000,
+    "j_org_24h": 1941600,
+    "j_netbuyers_24h": 6849,
+    "j_traders_24h": 11310,
+    "j_holderchg_24h": 3.9,
+    "j_liqchg_24h": 10.95,
+    "j_chg_1h": -0.5221,
+    "j_chg_6h": 7.843,
+    "j_chg_24h": 8.099
+   },
+   "pre_score": 78,
+   "reject": [],
+   "age_hours": 9676.3,
+   "liquidity_est": 4204300,
+   "vol_24h_est": 12484000
+  },
+  {
+   "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+   "symbol": "GOMO",
+   "name": null,
+   "why": [
+    "surfaced on ds:boost, jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:1h, jup:trending:24h",
+    "6h volume pace 2.21x the 24h average",
+    "net buyers 24h 1494 of 3562 traders",
+    "holder change 24h +74.3%",
+    "organic volume share 7%",
+    "24h volume is 16x liquidity (possible wash/circular volume)",
+    "up 202% in 24h (chase risk)"
+   ],
+   "feeds": [
+    "ds:boost",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h",
+    "jup:trending:1h",
+    "jup:trending:24h"
+   ],
+   "signals": {
+    "jup_liq": 133300,
+    "mcap": 1302500,
+    "holders": 2672,
+    "organic_score": 78.67,
+    "launchpad": "pump.fun",
+    "first_pool_at": "2026-10-04T21:47:51Z",
+    "dev": "6nm7Vsepvzv9jsYiJS8HfrQRGSCCiZ9L5DgwhdDgsi8z",
+    "mint_disabled": true,
+    "freeze_disabled": true,
+    "top_holders_pct": 23.55,
+    "j_vol_1h": 80201,
+    "j_vol_6h": 1215000,
+    "j_vol_24h": 2198600,
+    "j_org_24h": 157250,
+    "j_netbuyers_24h": 1494,
+    "j_traders_24h": 3562,
+    "j_holderchg_24h": 74.3,
+    "j_liqchg_24h": 203.4,
+    "j_chg_1h": 13.77,
+    "j_chg_6h": -7.848,
+    "j_chg_24h": 202,
+    "ds_boost_amount": 100
+   },
+   "pre_score": 76.9,
+   "reject": [],
+   "age_hours": 49.4,
+   "liquidity_est": 133300,
+   "vol_24h_est": 2198600
+  },
+  {
+   "mint": "Pren1FvFX6J3E4kXhJuCiAD5aDmGEb7qJRncwA8Lkhw",
+   "symbol": "ANTHROPIC",
+   "name": null,
+   "why": [
+    "surfaced on jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:6h",
+    "6h volume pace 1.83x the 24h average",
+    "net buyers 24h 6259 of 7608 traders",
+    "holder change 24h +1.33%",
+    "organic volume share 4%"
+   ],
+   "feeds": [
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h",
+    "jup:trending:6h"
+   ],
+   "signals": {
+    "jup_liq": 1071200,
+    "mcap": 8266900,
+    "holders": 55652,
+    "organic_score": 82.43,
+    "first_pool_at": "2025-09-16T06:48:43Z",
+    "dev": "4wa8FTHDBLNf1DCAWhNbqJ5ZRGkV8TQX1TaF2VMpNttM",
+    "top_holders_pct": 51.83,
+    "j_vol_1h": 262080,
+    "j_vol_6h": 2403500,
+    "j_vol_24h": 5244600,
+    "j_org_24h": 219350,
+    "j_netbuyers_24h": 6259,
+    "j_traders_24h": 7608,
+    "j_holderchg_24h": 1.329,
+    "j_liqchg_24h": 8.46,
+    "j_chg_1h": 1.922,
+    "j_chg_6h": 3.709,
+    "j_chg_24h": 0.647
+   },
+   "pre_score": 75.1,
+   "reject": [],
+   "age_hours": 9256.4,
+   "liquidity_est": 1071200,
+   "vol_24h_est": 5244600
+  },
+  {
+   "mint": "9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump",
+   "symbol": "ANSEM",
+   "name": null,
+   "why": [
+    "surfaced on gt:trending, gt:trending24, jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h",
+    "6h volume pace 2.31x the 24h average",
+    "net buyers 24h 4235 of 6551 traders",
+    "holder change 24h +1.24%",
+    "organic volume share 9%"
+   ],
+   "feeds": [
+    "gt:trending",
+    "gt:trending24",
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h"
+   ],
+   "signals": {
+    "gt_reserve": 2508700,
+    "vol_24h": 3760100,
+    "vol_6h": 2477900,
+    "chg": {
+     "h1": -0.765,
+     "h6": 0.39,
+     "h24": -7.506
+    },
+    "mcap": 145710000,
+    "jup_liq": 1928600,
+    "holders": 148060,
+    "organic_score": 90.74,
+    "launchpad": "pump.fun",
+    "first_pool_at": "2026-06-16T21:05:48Z",
+    "dev": "yHCxHBEaJW5tbndqC8JciSThr7U1cqLpdcsvHcx6PRe",
+    "mint_disabled": true,
+    "freeze_disabled": true,
+    "top_holders_pct": 64.82,
+    "dev_pct": 9.879e-09,
+    "j_vol_1h": 66104,
+    "j_vol_6h": 3131600,
+    "j_vol_24h": 5430300,
+    "j_org_24h": 467200,
+    "j_netbuyers_24h": 4235,
+    "j_traders_24h": 6551,
+    "j_holderchg_24h": 1.243,
+    "j_liqchg_24h": -6.64,
+    "j_chg_1h": -1.229,
+    "j_chg_6h": -0.2234,
+    "j_chg_24h": -7.574
+   },
+   "pre_score": 73.8,
+   "reject": [],
+   "age_hours": 2690.1,
+   "liquidity_est": 2508700,
+   "vol_24h_est": 5430300
+  },
+  {
+   "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+   "symbol": "STONK",
+   "name": null,
+   "why": [
+    "surfaced on gt:trending, gt:trending24, jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:24h, jup:trending:6h",
+    "6h volume pace 1.17x the 24h average",
+    "net buyers 24h 3394 of 13782 traders",
+    "holder change 24h +0.482%",
+    "organic volume share 10%"
+   ],
+   "feeds": [
+    "gt:trending",
+    "gt:trending24",
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h",
+    "jup:trending:24h",
+    "jup:trending:6h"
+   ],
+   "signals": {
+    "gt_reserve": 2754500,
+    "vol_24h": 12395000,
+    "vol_6h": 3303300,
+    "chg": {
+     "h1": -1.926,
+     "h6": 2.364,
+     "h24": 13.845
+    },
+    "mcap": 168830000,
+    "jup_liq": 5335000,
+    "holders": 96318,
+    "organic_score": 96.48,
+    "first_pool_at": "2026-07-23T19:06:57Z",
+    "dev": "5CEbueQnq1Ym2uSSx2xXds3jQAqT1BDnkA59RZobSPAG",
+    "mint_disabled": true,
+    "freeze_disabled": true,
+    "top_holders_pct": 17.76,
+    "dev_pct": 0.001513,
+    "j_vol_1h": 1079000,
+    "j_vol_6h": 6394800,
+    "j_vol_24h": 21812000,
+    "j_org_24h": 2279600,
+    "j_netbuyers_24h": 3394,
+    "j_traders_24h": 13782,
+    "j_holderchg_24h": 0.482,
+    "j_liqchg_24h": 24.89,
+    "j_chg_1h": -2.161,
+    "j_chg_6h": 2.125,
+    "j_chg_24h": 13.28
+   },
+   "pre_score": 73.1,
+   "reject": [],
+   "age_hours": 1804.1,
+   "liquidity_est": 5335000,
+   "vol_24h_est": 21812000
+  },
+  {
+   "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+   "symbol": "ZCAT",
+   "name": null,
+   "why": [
+    "surfaced on gt:trending24, jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:24h",
+    "6h volume pace 0.74x the 24h average",
+    "net buyers 24h 2086 of 3419 traders",
+    "holder change 24h +2.70%",
+    "organic volume share 15%"
+   ],
+   "feeds": [
+    "gt:trending24",
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h",
+    "jup:trending:24h"
+   ],
+   "signals": {
+    "gt_reserve": 817840,
+    "vol_24h": 1364700,
+    "vol_6h": 300210,
+    "chg": {
+     "h1": -1.401,
+     "h6": -4.55,
+     "h24": 41.548
+    },
+    "mcap": 61391000,
+    "jup_liq": 864140,
+    "holders": 29700,
+    "organic_score": 91.93,
+    "launchpad": "stonkfun",
+    "first_pool_at": "2026-08-30T23:29:55Z",
+    "dev": "5CEbueQnq1Ym2uSSx2xXds3jQAqT1BDnkA59RZobSPAG",
+    "mint_disabled": true,
+    "freeze_disabled": true,
+    "top_holders_pct": 16.7,
+    "dev_pct": 4.147e-05,
+    "j_vol_1h": 73511,
+    "j_vol_6h": 719650,
+    "j_vol_24h": 3911800,
+    "j_org_24h": 603420,
+    "j_netbuyers_24h": 2086,
+    "j_traders_24h": 3419,
+    "j_holderchg_24h": 2.704,
+    "j_liqchg_24h": 9.94,
+    "j_chg_1h": -8.857,
+    "j_chg_6h": -8.215,
+    "j_chg_24h": 35.23
+   },
+   "pre_score": 72.2,
+   "reject": [],
+   "age_hours": 887.7,
+   "liquidity_est": 864140,
+   "vol_24h_est": 3911800
+  },
+  {
+   "mint": "HuAXPyDWDaMYFKuwQHpqL1oPnj93zdzWmtvFGzCeCUa7",
+   "symbol": "MASK",
+   "name": null,
+   "why": [
+    "surfaced on jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h",
+    "6h volume pace 2.05x the 24h average",
+    "net buyers 24h 1070 of 1714 traders",
+    "holder change 24h +1.66%",
+    "organic volume share 7%"
+   ],
+   "feeds": [
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h"
+   ],
+   "signals": {
+    "jup_liq": 486670,
+    "mcap": 22216000,
+    "holders": 11275,
+    "organic_score": 76.01,
+    "launchpad": "stonkfun",
+    "first_pool_at": "2026-09-23T08:50:39Z",
+    "dev": "FrXTvkebakR2oNctgsHz1yeijmu9wTZifL3FmffJP5xJ",
+    "mint_disabled": true,
+    "freeze_disabled": true,
+    "top_holders_pct": 55.03,
+    "dev_pct": 39.06,
+    "j_vol_1h": 390410,
+    "j_vol_6h": 1438400,
+    "j_vol_24h": 2808600,
+    "j_org_24h": 194900,
+    "j_netbuyers_24h": 1070,
+    "j_traders_24h": 1714,
+    "j_holderchg_24h": 1.659,
+    "j_liqchg_24h": -25.23,
+    "j_chg_1h": -12.46,
+    "j_chg_6h": -19.05,
+    "j_chg_24h": -40
+   },
+   "pre_score": 72.1,
+   "reject": [],
+   "age_hours": 326.4,
+   "liquidity_est": 486670,
+   "vol_24h_est": 2808600
+  },
+  {
+   "mint": "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
+   "symbol": "HIGGS",
+   "name": null,
+   "why": [
+    "surfaced on gt:trending, gt:trending24, jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h",
+    "6h volume pace 0.38x the 24h average",
+    "net buyers 24h 3184 of 8454 traders",
+    "holder change 24h +13.9%",
+    "organic volume share 7%",
+    "24h volume is 37x liquidity (possible wash/circular volume)"
+   ],
+   "feeds": [
+    "gt:trending",
+    "gt:trending24",
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h"
+   ],
+   "signals": {
+    "gt_reserve": 239000,
+    "vol_24h": 13896000,
+    "vol_6h": 1612900,
+    "chg": {
+     "h1": -0.123,
+     "h6": -45.034,
+     "h24": 8.788
+    },
+    "mcap": 2152700,
+    "jup_liq": 370730,
+    "holders": 11020,
+    "organic_score": 75,
+    "launchpad": "pump.fun",
+    "first_pool_at": "2026-10-04T12:26:34Z",
+    "dev": "DAR7byxGpLWWdWUkRYM7Lqycvk5KGXMwoHkUJcD4se4r",
+    "mint_disabled": true,
+    "freeze_disabled": true,
+    "top_holders_pct": 14.9,
+    "dev_pct": 0.9575,
+    "j_vol_1h": 233680,
+    "j_vol_6h": 1307600,
+    "j_vol_24h": 9363500,
+    "j_org_24h": 669580,
+    "j_netbuyers_24h": 3184,
+    "j_traders_24h": 8454,
+    "j_holderchg_24h": 13.93,
+    "j_liqchg_24h": 29.9,
+    "j_chg_1h": 1.581,
+    "j_chg_6h": -44.77,
+    "j_chg_24h": 6.238
+   },
+   "pre_score": 71.5,
+   "reject": [],
+   "age_hours": 58.8,
+   "liquidity_est": 370730,
+   "vol_24h_est": 13896000
+  },
+  {
+   "mint": "55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
+   "symbol": "slopcannon",
+   "name": null,
+   "why": [
+    "surfaced on gt:trending, gt:trending24, jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h",
+    "6h volume pace 2.60x the 24h average",
+    "net buyers 24h 2130 of 6110 traders",
+    "holder change 24h +1011%",
+    "organic volume share 3%",
+    "24h volume is 91x liquidity (possible wash/circular volume)",
+    "up 7939% in 24h (chase risk)"
+   ],
+   "feeds": [
+    "gt:trending",
+    "gt:trending24",
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h"
+   ],
+   "signals": {
+    "gt_reserve": 120830,
+    "vol_24h": 12821000,
+    "vol_6h": 12797000,
+    "chg": {
+     "h1": -16.869,
+     "h6": 5119.3,
+     "h24": 7987.4
+    },
+    "mcap": 1181000,
+    "jup_liq": 140830,
+    "holders": 2878,
+    "organic_score": 75,
+    "launchpad": "pump.fun",
+    "first_pool_at": "2026-09-26T07:43:08Z",
+    "dev": "HBYzRFKRHGdd6N7UkY4QkGU5Vmt26qZu9pTV8mopump",
+    "mint_disabled": true,
+    "freeze_disabled": true,
+    "top_holders_pct": 18.26,
+    "j_vol_1h": 472670,
+    "j_vol_6h": 8331400,
+    "j_vol_24h": 8343600,
+    "j_org_24h": 284830,
+    "j_netbuyers_24h": 2130,
+    "j_traders_24h": 6110,
+    "j_holderchg_24h": 1011,
+    "j_liqchg_24h": 3413,
+    "j_chg_1h": -17.88,
+    "j_chg_6h": 4695,
+    "j_chg_24h": 7939
+   },
+   "pre_score": 70.7,
+   "reject": [],
+   "age_hours": 255.5,
+   "liquidity_est": 140830,
+   "vol_24h_est": 12821000
+  },
+  {
+   "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+   "symbol": "baton",
+   "name": null,
+   "why": [
+    "surfaced on jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:24h",
+    "6h volume pace 1.15x the 24h average",
+    "net buyers 24h 1079 of 2798 traders",
+    "holder change 24h +2.15%",
+    "organic volume share 9%"
+   ],
+   "feeds": [
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h",
+    "jup:trending:24h"
+   ],
+   "signals": {
+    "jup_liq": 745160,
+    "mcap": 9576800,
+    "holders": 13712,
+    "organic_score": 80.31,
+    "launchpad": "pump.fun",
+    "first_pool_at": "2026-09-09T20:32:11Z",
+    "dev": "Fzz2amRoCCpEvxtwdurs8qLVLSdrd3dcraJVpNjE4rp4",
+    "mint_disabled": true,
+    "freeze_disabled": true,
+    "top_holders_pct": 17.63,
+    "j_vol_1h": 126930,
+    "j_vol_6h": 832690,
+    "j_vol_24h": 2896900,
+    "j_org_24h": 262540,
+    "j_netbuyers_24h": 1079,
+    "j_traders_24h": 2798,
+    "j_holderchg_24h": 2.145,
+    "j_liqchg_24h": -0.7494,
+    "j_chg_1h": -10.07,
+    "j_chg_6h": -2.714,
+    "j_chg_24h": 19.98
+   },
+   "pre_score": 69.4,
+   "reject": [],
+   "age_hours": 650.7,
+   "liquidity_est": 745160,
+   "vol_24h_est": 2896900
+  },
+  {
+   "mint": "KENJSUYLASHUMfHyy5o4Hp2FdNqZg1AsUPhfH2kYvEP",
+   "symbol": "GRIFFAIN",
+   "name": null,
+   "why": [
+    "surfaced on gt:trending, gt:trending24, jup:traded:24h, jup:trending:24h, jup:trending:6h",
+    "6h volume pace 1.32x the 24h average",
+    "net buyers 24h 280 of 857 traders",
+    "holder change 24h +0.244%",
+    "organic volume share 2%"
+   ],
+   "feeds": [
+    "gt:trending",
+    "gt:trending24",
+    "jup:traded:24h",
+    "jup:trending:24h",
+    "jup:trending:6h"
+   ],
+   "signals": {
+    "gt_reserve": 2696500,
+    "vol_24h": 7237300,
+    "vol_6h": 4625600,
+    "chg": {
+     "h1": -0.214,
+     "h6": 8.574,
+     "h24": 30.654
+    },
+    "mcap": 25340000,
+    "jup_liq": 1353600,
+    "holders": 50901,
+    "organic_score": 73.78,
+    "launchpad": "pump.fun",
+    "first_pool_at": "2024-11-02T23:37:45Z",
+    "dev": "KEN7s6mHAFpqmvppk7L9VaJW3htu3jz6z3dDjiaWdYT",
+    "mint_disabled": true,
+    "freeze_disabled": true,
+    "top_holders_pct": 31.85,
+    "dev_pct": 1.1,
+    "j_vol_1h": 85957,
+    "j_vol_6h": 2393600,
+    "j_vol_24h": 3729800,
+    "j_org_24h": 77672,
+    "j_netbuyers_24h": 280,
+    "j_traders_24h": 857,
+    "j_holderchg_24h": 0.2442,
+    "j_liqchg_24h": 14.34,
+    "j_chg_1h": -0.3817,
+    "j_chg_6h": 8.076,
+    "j_chg_24h": 30.21
+   },
+   "pre_score": 68.7,
+   "reject": [],
+   "age_hours": 16871.6,
+   "liquidity_est": 2696500,
+   "vol_24h_est": 7237300
+  },
+  {
+   "mint": "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
+   "symbol": "swordcat",
+   "name": null,
+   "why": [
+    "surfaced on gt:trending, gt:trending24, jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:1h",
+    "6h volume pace 0.65x the 24h average",
+    "net buyers 24h 3050 of 6131 traders",
+    "holder change 24h +5.84%",
+    "organic volume share 10%"
+   ],
+   "feeds": [
+    "gt:trending",
+    "gt:trending24",
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h",
+    "jup:trending:1h"
+   ],
+   "signals": {
+    "gt_reserve": 204280,
+    "vol_24h": 4302600,
+    "vol_6h": 754660,
+    "chg": {
+     "h1": 2.806,
+     "h6": -34.383,
+     "h24": -30.191
+    },
+    "mcap": 2380600,
+    "jup_liq": 374120,
+    "holders": 7770,
+    "organic_score": 86.03,
+    "launchpad": "pump.fun",
+    "first_pool_at": "2026-09-28T08:40:28Z",
+    "dev": "GT5au36AvFTxc4yfRHh1dMWkLtsxDRHz2VW5MmvcKjM7",
+    "mint_disabled": true,
+    "freeze_disabled": true,
+    "top_holders_pct": 19.48,
+    "dev_pct": 0.00013,
+    "j_vol_1h": 83687,
+    "j_vol_6h": 695700,
+    "j_vol_24h": 3482400,
+    "j_org_24h": 361930,
+    "j_netbuyers_24h": 3050,
+    "j_traders_24h": 6131,
+    "j_holderchg_24h": 5.844,
+    "j_liqchg_24h": -10.22,
+    "j_chg_1h": 5.008,
+    "j_chg_6h": -33.24,
+    "j_chg_24h": -29.98
+   },
+   "pre_score": 67,
+   "reject": [],
+   "age_hours": 206.5,
+   "liquidity_est": 374120,
+   "vol_24h_est": 4302600
+  },
+  {
+   "mint": "SPCXxcqXj6e5dJDVNovHN8744zkbhM2bYudU45BimGb",
+   "symbol": "SPCX",
+   "name": null,
+   "why": [
+    "surfaced on jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h",
+    "6h volume pace 0.85x the 24h average",
+    "net buyers 24h 8091 of 11214 traders",
+    "holder change 24h +5.03%",
+    "organic volume share 3%"
+   ],
+   "feeds": [
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h"
+   ],
+   "signals": {
+    "jup_liq": 1272500,
+    "mcap": 6962700,
+    "holders": 50018,
+    "organic_score": 87.55,
+    "first_pool_at": "2026-06-11T17:17:20Z",
+    "dev": "FWAQuQAehvGMUdTBPHfSegx2nGJbT8ZWcakDBNL1BxGX",
+    "top_holders_pct": 23.62,
+    "j_vol_1h": 1261800,
+    "j_vol_6h": 3448400,
+    "j_vol_24h": 16240000,
+    "j_org_24h": 475740,
+    "j_netbuyers_24h": 8091,
+    "j_traders_24h": 11214,
+    "j_holderchg_24h": 5.029,
+    "j_liqchg_24h": -4.839,
+    "j_chg_1h": -2.895,
+    "j_chg_6h": -2.292,
+    "j_chg_24h": -1.23
+   },
+   "pre_score": 66.6,
+   "reject": [],
+   "age_hours": 2813.9,
+   "liquidity_est": 1272500,
+   "vol_24h_est": 16240000
+  },
+  {
+   "mint": "HbPDWSqu8hpVMX6gMjwMDGe5rVgicWo3Qh3Jaojypump",
+   "symbol": "Frank",
+   "name": null,
+   "why": [
+    "surfaced on gt:trending, gt:trending24, jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:trending:1h, jup:trending:24h",
+    "holder change 24h +119%",
+    "24h volume is 46x liquidity (possible wash/circular volume)",
+    "up 328% in 24h (chase risk)"
+   ],
+   "feeds": [
+    "gt:trending",
+    "gt:trending24",
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:trending:1h",
+    "jup:trending:24h"
+   ],
+   "signals": {
+    "gt_reserve": 46335,
+    "vol_24h": 2121000,
+    "mcap": 217580,
+    "jup_liq": 21893,
+    "holders": 886,
+    "organic_score": 71.91,
+    "launchpad": "pump.fun",
+    "first_pool_at": "2026-10-04T22:14:58Z",
+    "dev": "9Ajt5ueYEorWtexvTGUJuGAbAyVWJq19zhudfySkdWqb",
+    "mint_disabled": true,
+    "freeze_disabled": true,
+    "top_holders_pct": 20.96,
+    "dev_pct": 0.5361,
+    "j_vol_6h": 408280,
+    "j_vol_24h": 1066800,
+    "j_org_24h": 83479,
+    "j_netbuyers_24h": 1842,
+    "j_traders_24h": 3544,
+    "j_holderchg_24h": 118.8,
+    "j_liqchg_24h": 142.3,
+    "j_chg_1h": 11.11,
+    "j_chg_6h": -24.93,
+    "j_chg_24h": 327.9
+   },
+   "pre_score": 66.5,
+   "reject": [],
+   "age_hours": 49,
+   "liquidity_est": 46335,
+   "vol_24h_est": 2121000
+  },
+  {
+   "mint": "FeAWY9L9hr82TvTuEyi328V9FP7GxVuGLx7xNg6kzWVa",
+   "symbol": "CHONK",
+   "name": null,
+   "why": [
+    "surfaced on jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:24h",
+    "24h volume is 71x liquidity (possible wash/circular volume)",
+    "up 3716% in 24h (chase risk)"
+   ],
+   "feeds": [
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h",
+    "jup:trending:24h"
+   ],
+   "signals": {
+    "jup_liq": 62334,
+    "mcap": 295880,
+    "holders": 2668,
+    "organic_score": 75,
+    "launchpad": "stonkfun",
+    "first_pool_at": "2026-10-06T13:03:29Z",
+    "dev": "5FqUo9aBjsp7QeeyN6Vi2ZmF2fjS4H5EU7wnAQwPy17z",
+    "mint_disabled": true,
+    "freeze_disabled": true,
+    "top_holders_pct": 19.55,
+    "j_vol_6h": 1310100,
+    "j_vol_24h": 4402700,
+    "j_org_24h": 203080,
+    "j_netbuyers_24h": 6173,
+    "j_traders_24h": 7537,
+    "j_holderchg_24h": 3114,
+    "j_liqchg_24h": 182.1,
+    "j_chg_1h": -22.32,
+    "j_chg_6h": -59.99,
+    "j_chg_24h": 3716
+   },
+   "pre_score": 65.7,
+   "reject": [],
+   "age_hours": 10.1,
+   "liquidity_est": 62334,
+   "vol_24h_est": 4402700
+  }
+ ],
+ "rejected_stage1": [
+  {
+   "mint": "XsCPL9dNWBMvFtTmwcCA5v3xWPSMEBCszbQdiLLq6aN",
+   "symbol": "GOOGLx",
+   "name": null,
+   "why": [
+    "surfaced on jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:24h",
+    "6h volume pace 2.92x the 24h average",
+    "net buyers 24h 4877 of 9789 traders",
+    "holder change 24h +5.18%",
+    "organic volume share 5%"
+   ],
+   "feeds": [
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h",
+    "jup:trending:24h"
+   ],
+   "signals": {
+    "jup_liq": 917250,
+    "mcap": 55851000,
+    "holders": 48624,
+    "organic_score": 86.08,
+    "first_pool_at": "2025-06-29T14:34:29Z",
+    "dev": "S7vYFFWH6BjJyEsdrPQpqpYTqLTrPRK6KW3VwsJuRaS",
+    "top_holders_pct": 78.33,
+    "dev_pct": 48.15,
+    "j_vol_6h": 4971400,
+    "j_vol_24h": 6808200,
+    "j_org_24h": 369970,
+    "j_netbuyers_24h": 4877,
+    "j_traders_24h": 9789,
+    "j_holderchg_24h": 5.178,
+    "j_liqchg_24h": 27.63,
+    "j_chg_1h": -0.5093,
+    "j_chg_6h": 0.07073,
+    "j_chg_24h": 0.5666
+   },
+   "pre_score": 85.8,
+   "reject": [
+    "not a memecoin: xStocks tokenized equity issuer"
+   ],
+   "age_hours": 11144.6,
+   "liquidity_est": 917250,
+   "vol_24h_est": 6808200
+  },
+  {
+   "mint": "BPxxfRCXkUVhig4HS1Lh7kZqV6SPJhzfEk4x6fVBjPCy",
+   "symbol": "BP",
+   "name": null,
+   "why": [
+    "surfaced on gt:trending, jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h",
+    "6h volume pace 2.56x the 24h average",
+    "net buyers 24h 1582 of 3409 traders",
+    "holder change 24h +0.603%",
+    "organic volume share 19%"
+   ],
+   "feeds": [
+    "gt:trending",
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h"
+   ],
+   "signals": {
+    "gt_reserve": 5765300,
+    "fdv": 1171900000,
+    "mcap": 292970000,
+    "jup_liq": 3850600,
+    "holders": 28012,
+    "organic_score": 92.54,
+    "first_pool_at": "2026-03-18T09:13:21Z",
+    "dev": "9WuLtetAsaXeS7qYnv45yzMLCZwqMpaAJSF3KYp5J8tn",
+    "top_holders_pct": 95.05,
+    "j_vol_6h": 5351600,
+    "j_vol_24h": 8346300,
+    "j_org_24h": 1599700,
+    "j_netbuyers_24h": 1582,
+    "j_traders_24h": 3409,
+    "j_holderchg_24h": 0.6034,
+    "j_liqchg_24h": -5.583,
+    "j_chg_1h": -0.8379,
+    "j_chg_6h": -4.572,
+    "j_chg_24h": -4.944
+   },
+   "pre_score": 77.4,
+   "reject": [
+    "not a memecoin: exchange/project token"
+   ],
+   "age_hours": 4862,
+   "liquidity_est": 5765300,
+   "vol_24h_est": 8346300
+  },
+  {
+   "mint": "sUSDai6Y3GxysDEtA9BVcEFTaog6UZpYUVxJiMhAKYE",
+   "symbol": "sUSDai",
+   "name": null,
+   "why": [
+    "surfaced on jup:traded:24h",
+    "6h volume pace 2.66x the 24h average",
+    "net buyers 24h 33 of 56 traders"
+   ],
+   "feeds": [
+    "jup:traded:24h"
+   ],
+   "signals": {
+    "jup_liq": 6891400,
+    "mcap": 63268000,
+    "holders": 249,
+    "organic_score": 66.04,
+    "first_pool_at": "2026-09-27T00:54:01Z",
+    "dev": "HPB8qoTU7yzcwgwRim4XYrTFSE4Nayg3DynSyGao3rQ3",
+    "top_holders_pct": 99.99,
+    "j_vol_6h": 5806000,
+    "j_vol_24h": 8732300,
+    "j_org_24h": 1236300,
+    "j_netbuyers_24h": 33,
+    "j_traders_24h": 56,
+    "j_holderchg_24h": 5.957,
+    "j_chg_24h": -0.002437,
+    "j_chg_6h": -0.006656
+   },
+   "pre_score": 71.9,
+   "reject": [
+    "not a memecoin: yield-bearing stable"
+   ],
+   "age_hours": 238.3,
+   "liquidity_est": 6891400,
+   "vol_24h_est": 8732300
+  },
+  {
+   "mint": "CASHx9KJUStyftLFWGvEVf59SGeG9sh5FfcnZMVPCASH",
+   "symbol": "CASH",
+   "name": null,
+   "why": [
+    "surfaced on jup:organic:1h, jup:organic:24h, jup:organic:6h",
+    "6h volume pace 1.15x the 24h average"
+   ],
+   "feeds": [
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h"
+   ],
+   "signals": {
+    "jup_liq": 7698100,
+    "mcap": 127560000,
+    "holders": 672510,
+    "organic_score": 97.09,
+    "first_pool_at": "2025-09-12T04:46:41Z",
+    "dev": "3etmwgxP4Lt2LLEyYpN2f9oKKi1onGy5XHRSP4BRq2vb",
+    "top_holders_pct": 80.59,
+    "j_vol_6h": 3267700,
+    "j_vol_24h": 11320000,
+    "j_org_24h": 2067200,
+    "j_netbuyers_24h": 14611,
+    "j_traders_24h": 30276,
+    "j_holderchg_24h": 0.3781,
+    "j_chg_24h": 0.0006055,
+    "j_chg_6h": -0.01677
+   },
+   "pre_score": 71.5,
+   "reject": [
+    "not a memecoin: stablecoin"
+   ],
+   "age_hours": 9354.4,
+   "liquidity_est": 7698100,
+   "vol_24h_est": 11320000
+  },
+  {
+   "mint": "A7bdiYdS5GjqGFtxf17ppRHtDKPkkRqbKtR27dxvQXaS",
+   "symbol": "ZEC",
+   "name": null,
+   "why": [
+    "surfaced on gt:trending, jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:1h, jup:trending:24h",
+    "6h volume pace 0.67x the 24h average",
+    "net buyers 24h 13837 of 24103 traders"
+   ],
+   "feeds": [
+    "gt:trending",
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h",
+    "jup:trending:1h",
+    "jup:trending:24h"
+   ],
+   "signals": {
+    "gt_reserve": 3521700,
+    "mcap": 136240000,
+    "jup_liq": 5204500,
+    "holders": 129850,
+    "organic_score": 97.06,
+    "first_pool_at": "2025-10-15T17:11:38Z",
+    "dev": "DuSs7rCr7oTLHjM29QQ8NwDViaahTU58qqxaJVyAkgbn",
+    "top_holders_pct": 33.99,
+    "j_vol_6h": 8997600,
+    "j_vol_24h": 53537000,
+    "j_org_24h": 2717800,
+    "j_netbuyers_24h": 13837,
+    "j_traders_24h": 24103,
+    "j_holderchg_24h": 3.745,
+    "j_liqchg_24h": 17.69,
+    "j_chg_1h": 0.593,
+    "j_chg_6h": 1.786,
+    "j_chg_24h": 1.612
+   },
+   "pre_score": 71,
+   "reject": [
+    "not a memecoin: wrapped/bridged asset"
+   ],
+   "age_hours": 8550,
+   "liquidity_est": 5204500,
+   "vol_24h_est": 53537000
+  },
+  {
+   "mint": "oPAiAikWTaFj9RYoRFD35ccfwhnMcB3ThgBZRHSkjTZ",
+   "symbol": "tOpenAI",
+   "name": null,
+   "why": [
+    "surfaced on gt:trending, jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:1h",
+    "6h volume pace 1.90x the 24h average",
+    "net buyers 24h 3011 of 3745 traders",
+    "organic volume share 3%"
+   ],
+   "feeds": [
+    "gt:trending",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h",
+    "jup:trending:1h"
+   ],
+   "signals": {
+    "gt_reserve": 187040,
+    "mcap": 1223800,
+    "jup_liq": 1058800,
+    "holders": 17143,
+    "organic_score": 66.69,
+    "first_pool_at": "2026-06-25T06:22:02Z",
+    "dev": "758KhUiSRGN6bvywLPdzgmP3G1uvfsQuifskGnSFHMDE",
+    "top_holders_pct": 23.73,
+    "j_vol_6h": 958930,
+    "j_vol_24h": 2019800,
+    "j_org_24h": 58741,
+    "j_netbuyers_24h": 3011,
+    "j_traders_24h": 3745,
+    "j_holderchg_24h": -0.4876,
+    "j_chg_1h": 0.364,
+    "j_chg_6h": 0.7855,
+    "j_chg_24h": -0.04551
+   },
+   "pre_score": 70,
+   "reject": [
+    "not a memecoin: tokenized pre-IPO claim"
+   ],
+   "age_hours": 2488.8,
+   "liquidity_est": 1058800,
+   "vol_24h_est": 2019800
+  },
+  {
+   "mint": "Xs8S1uUs1zvS2p7iwtsG3b6fkhpvmwz4GYU3gWAmWHZ",
+   "symbol": "QQQx",
+   "name": null,
+   "why": [
+    "surfaced on jup:traded:24h, jup:trending:24h"
+   ],
+   "feeds": [
+    "jup:traded:24h",
+    "jup:trending:24h"
+   ],
+   "signals": {
+    "jup_liq": 2179600,
+    "mcap": 64303000,
+    "dev": "S7vYFFWH6BjJyEsdrPQpqpYTqLTrPRK6KW3VwsJuRaS",
+    "top_holders_pct": 84.26,
+    "dev_pct": 61.26,
+    "j_vol_24h": 2454700,
+    "j_chg_24h": 0.5301
+   },
+   "pre_score": 69.4,
+   "reject": [
+    "not a memecoin: xStocks tokenized equity issuer"
+   ],
+   "age_hours": 11144.4,
+   "liquidity_est": 2179600,
+   "vol_24h_est": 2454700
+  },
+  {
+   "mint": "METvsvVRapdj9cFLzq4Tr43xK4tAjQfwX76z3n6mWQL",
+   "symbol": "MET",
+   "name": null,
+   "why": [
+    "surfaced on jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:24h",
+    "6h volume pace 1.19x the 24h average"
+   ],
+   "feeds": [
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h",
+    "jup:trending:24h"
+   ],
+   "signals": {
+    "jup_liq": 3949400,
+    "mcap": 182840000,
+    "fdv": 327120000,
+    "holders": 43871,
+    "organic_score": 90.65,
+    "launchpad": "met-dbc",
+    "first_pool_at": "2025-10-21T11:28:31Z",
+    "dev": "6tjvxv1hm73gqrhTQDjKu3KmViUKnzpKD1z55HTVqUvq",
+    "mint_disabled": true,
+    "freeze_disabled": true,
+    "top_holders_pct": 25.45,
+    "j_vol_6h": 2803900,
+    "j_vol_24h": 9459200,
+    "j_org_24h": 478830,
+    "j_netbuyers_24h": 672,
+    "j_traders_24h": 3162,
+    "j_holderchg_24h": -0.02051,
+    "j_liqchg_24h": 20.94,
+    "j_chg_1h": -0.4058,
+    "j_chg_6h": -3.653,
+    "j_chg_24h": 10.09
+   },
+   "pre_score": 69,
+   "reject": [
+    "not a memecoin: protocol governance token"
+   ],
+   "age_hours": 8411.7,
+   "liquidity_est": 3949400,
+   "vol_24h_est": 9459200
+  },
+  {
+   "mint": "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W",
+   "symbol": "SPYx",
+   "name": null,
+   "why": [
+    "surfaced on jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:24h"
+   ],
+   "feeds": [
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h",
+    "jup:trending:24h"
+   ],
+   "signals": {
+    "jup_liq": 5019600,
+    "mcap": 74700000,
+    "dev": "S7vYFFWH6BjJyEsdrPQpqpYTqLTrPRK6KW3VwsJuRaS",
+    "top_holders_pct": 68.23,
+    "dev_pct": 30.8,
+    "j_vol_24h": 6537800,
+    "j_chg_24h": 0.6296
+   },
+   "pre_score": 68.3,
+   "reject": [
+    "not a memecoin: xStocks tokenized equity issuer"
+   ],
+   "age_hours": 11194.2,
+   "liquidity_est": 5019600,
+   "vol_24h_est": 6537800
+  },
+  {
+   "mint": "WXMRyRZhsa19ety5erZhHg4N3xj3EVN92u94422teJp",
+   "symbol": "XMR",
+   "name": null,
+   "why": [
+    "surfaced on jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:1h",
+    "6h volume pace 1.12x the 24h average"
+   ],
+   "feeds": [
+    "jup:organic:1h",
+    "jup:organic:24h",
+    "jup:organic:6h",
+    "jup:traded:24h",
+    "jup:trending:1h"
+   ],
+   "signals": {
+    "jup_liq": 840660,
+    "mcap": 1275600,
+    "holders": 32710,
+    "organic_score": 74.59,
+    "first_pool_at": "2026-01-25T01:55:42Z",
+    "dev": "Ds4prSZNwyxTz4PZmHXoHDXFzLZ1c8MkfhUwGtqvAvpK",
+    "top_holders_pct": 11.29,
+    "j_vol_6h": 967270,
+    "j_vol_24h": 3461200,
+    "j_org_24h": 122900,
+    "j_netbuyers_24h": 1634,
+    "j_traders_24h": 5111,
+    "j_holderchg_24h": 2.952,
+    "j_chg_1h": 0.04248,
+    "j_chg_6h": -0.5786,
+    "j_chg_24h": 0.3422
+   },
+   "pre_score": 66.9,
+   "reject": [
+    "not a memecoin: wrapped/bridged asset"
+   ],
+   "age_hours": 6117.3,
+   "liquidity_est": 840660,
+   "vol_24h_est": 3461200
+  }
+ ],
+ "facts": [
+  "28 distinct Solana mints surfaced across discovery feeds",
+  "18 passed stage-1 cheap screen"
+ ],
+ "inferences": [],
+ "heuristics": [
+  "pre_score is a screening aid only; it averages volume acceleration, net buyers, holder growth, liquidity growth, organic share, turnover sanity and multi-feed presence"
+ ],
+ "unknowns": [],
+ "previously_rejected": [],
+ "sol_price": 120.8,
+ "observed_at": 1791328333.411
+}
