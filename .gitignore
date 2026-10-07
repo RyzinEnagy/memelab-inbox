@@ -2,3 +2,4 @@ data/config.json
 *.sqlite*
 __pycache__/
 data/wallet/
+gh_token.txt
