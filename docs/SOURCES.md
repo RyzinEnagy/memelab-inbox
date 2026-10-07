@@ -54,3 +54,30 @@ page text does not (31 KB+ read intact).
 6. Social/community claims
 
 When sources disagree the discrepancy is recorded in the snapshot, not resolved by picking the favorable number.
+
+## Catalyst Intelligence sources (verified 2026-10-07)
+
+Access modes from the browser bridge. Nothing below is reachable from the sandbox.
+
+| Source | Mode | Tier | Notes |
+|---|---|---|---|
+| CoinGecko /search/trending | fetch | aggregator | trending coins and categories; cross-chain, so matches need a Solana mint check |
+| DEX Screener token-profiles, token-boosts | fetch | aggregator | PAID placements; recorded as promotion signal, never as organic attention |
+| Polymarket gamma /events | fetch | aggregator | scheduled and political/cultural events with market-implied odds; sports fixtures and price-threshold markets filtered out |
+| Coinbase /currencies, Kraken /Assets | fetch | official | asset lists; consecutive snapshots are diffed to detect ACCESS changes |
+| Binance CMS announcements | navigate | official | CORS-blocked; read by navigating the tab and parsing the JSON document |
+| Cointelegraph, CoinDesk, Decrypt, The Block RSS | navigate | reputable | CORS-blocked; XML documents parsed in place |
+| Google News RSS (query feeds) | navigate | aggregator | 100 items per query with publisher names; CSP forbids eval on this origin, so parse inline |
+| Bybit, OKX announcement APIs | navigate | official | Bybit returned a non-JSON challenge page on 2026-10-07; OKX untested |
+| X profile pages | fetch | social | identity verification only (title, bio); timelines need a logged-in Chrome profile |
+| X timelines, Reddit, TikTok, Instagram | blocked / manual | social | coverage gaps recorded per source in catalyst_sources.coverage_gap |
+
+Trader research list (identity checked from public profile pages on 2026-10-07): @rasmr_eth, @Rewkang, @thedefivillain, @0xSisyphus, @blknoiz06 VERIFIED; @redphonecrypto NOT FOUND (404) and disabled pending a replacement handle. These are research sources, not certified profitable traders.
+
+## Multi-chain sources (verified from the browser bridge 2026-10-07)
+
+Working with plain fetch (CORS open): DefiLlama `api.llama.fi/overview/dexs/{chain}` (daily DEX volume chart), `/v2/chains` (TVL), `stablecoins.llama.fi/stablecoinchains`; CoinGecko `/coins/categories`, `/coins/markets?category=...` (existing meme categories: meme-token, solana-meme-coins, base-meme-coins, four-meme-ecosystem (BNB), sui-meme, ai-meme-coins, tiktok-meme, chinese-meme ...; there is NO ethereum or avalanche meme category), `/global`, `/coins/{id}/market_chart`; GoPlus `api.gopluslabs.io/api/v1/token_security/{chainId}?contract_addresses=` (ONE address per call: the comma list answers only the first on the free tier; rate limit answers HTTP 200 with code 4029, paced at 2.3s); honeypot.is `v2/IsHoneypot?address=&chainID=` (404 for pools on PancakeSwap Infinity / V3 and Uniswap V4: simulation UNKNOWN there); KyberSwap `aggregator-api.kyberswap.com/{base|bsc|ethereum|...}/api/v1/routes` (quotes with amountInUsd/amountOutUsd/gasUsd); Hyperliquid `api.hyperliquid.xyz/info` POST metaAndAssetCtxs (funding/OI); GeckoTerminal per-network `trending_pools`, `new_pools`, `pools?sort=`, `tokens/{addr}/info|pools`, `pools/{pool}/ohlcv|trades`, cross-network `/networks/trending_pools?include=network`, `/networks`; PublicNode EVM RPCs (base, bsc, ethereum, arbitrum, avalanche, polygon); DEX Screener `tokens/v1/{chain}/{addrs}` (does not index every PancakeSwap Infinity / Uniswap V4 pool: liquidity can read near zero where GeckoTerminal shows millions; the system keeps the larger figure and records the discrepancy), `token-boosts`, `token-profiles`.
+
+Blocked or failed: Odos (CORS), Sui fullnode (CORS), OpenOcean (403), Binance futures API (CORS), bsc-dataseed.binance.org, four.meme, clanker.world, basescan free V1 API (deprecated). HyperEVM and Sui therefore have market-level data only: contract risk and executable depth stay UNKNOWN for tokens there.
+
+Google News catalyst feeds now include Base, BNB and chain-rotation queries so chain attention stops skewing to Solana after a week of runs.
