@@ -18,7 +18,7 @@ from typing import Any
 from .bridge.github_inbox import load_config
 from .bridge.plan import HELIUS_TX, Plan, rpc_url
 
-TOKEN = "TokenkegQfeZyiNvSKfyoYekpg9MVy4JPJDPnC9GRRS6"
+TOKEN = "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
 TOKEN22 = "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
 SOL = "So11111111111111111111111111111111111111112"
 STABLES = {"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": "USDC", "Es9vMFrzaCERmJfrF6H2gcBWJCqE2VBChY9jY1PEEfj5": "USDT"}
