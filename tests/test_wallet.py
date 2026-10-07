@@ -1,6 +1,6 @@
 from memelab import wallet as W
 
-A = "EGqWiy5bCjtvFgC8kU9AAr9P6FVE7aC6hDboCbRwoS8R"
+A = "TestWaLLetAddress111111111111111111111111111"
 M = "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump"
 
 def test_positions_from_wallet_synthetic():
