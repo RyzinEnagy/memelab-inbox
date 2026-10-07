@@ -32,6 +32,7 @@ memelab/modules/m20_manipulation_detection.py
 memelab/cli.py
 memelab/wallet.py
 memelab/report.py
+memelab/state.py
 memelab/normalize.py
 memelab/__init__.py
 memelab/forensics.py
