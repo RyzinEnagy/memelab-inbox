@@ -82,3 +82,4 @@ tests/test_m21_28.py
 tests/test_pipeline_live_fixture.py
 tests/test_wallet.py
 tools_bundle.py
+commit_file.py
