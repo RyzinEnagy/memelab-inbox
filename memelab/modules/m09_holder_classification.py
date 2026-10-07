@@ -64,8 +64,16 @@ def analyze(bundle: dict[str, Any], extra_labels: dict[str, tuple[str, str]] | N
             cls, basis = labels[owner]
         elif acct in labels:
             cls, basis = labels[acct]
-        elif owner in pools or acct in pools:
-            cls, basis = "POOL", "owner/account is a known pool address"
+        elif owner in pools or acct in pools or x.get("is_pool"):
+            cls, basis = "POOL", "owner/account is a known pool address" if not x.get("is_pool") else "GoPlus dex pair / pool contract"
+        elif x.get("is_locked"):
+            cls, basis = "LOCKER", "GoPlus marks the balance as locked"
+        elif x.get("tag") and any(k in str(x["tag"]).lower() for k in ("uniswap", "pancake", "aerodrome", "sushi", "curve", "balancer", "pool", "vault")):
+            cls, basis = "POOL", f"GoPlus tag {x['tag']}"
+        elif x.get("tag") and any(k in str(x["tag"]).lower() for k in ("binance", "coinbase", "okx", "bybit", "kraken", "gate", "kucoin", "htx", "mexc", "bitget", "cex")):
+            cls, basis = "CEX", f"GoPlus tag {x['tag']}"
+        elif x.get("tag"):
+            cls, basis = "UNKNOWN", f"GoPlus tag {x['tag']} (unclassified)"
         elif owner in dev_set:
             cls, basis = "DEV", "owner equals creator/dev wallet"
         elif x.get("insider"):
