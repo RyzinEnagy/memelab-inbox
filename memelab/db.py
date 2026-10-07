@@ -269,8 +269,15 @@ def connect(path: Path | str | None = None):
 
 
 def init_db(path: Path | str | None = None) -> None:
+    from .catalyst.schema import CATALYST_SCHEMA
+    from .chains.schema import CHAINS_SCHEMA, migrate
+    from .chains import registry
     with connect(path) as con:
         con.executescript(SCHEMA)
+        con.executescript(CATALYST_SCHEMA)
+        con.executescript(CHAINS_SCHEMA)
+        migrate(con)
+        registry.sync(con)
 
 
 def upsert_token(con: sqlite3.Connection, mint: str, **fields: Any) -> None:
