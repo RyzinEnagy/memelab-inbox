@@ -12,8 +12,9 @@
     const t = (w) => tx[w] ? [tx[w].buys, tx[w].sells, tx[w].buyers, tx[w].sellers] : null;
     return {
       pool: a.address, name: a.name, dex: rel.dex?.data?.id, created: a.pool_created_at,
-      base: (rel.base_token?.data?.id || "").replace("solana_", ""),
-      quote: (rel.quote_token?.data?.id || "").replace("solana_", ""),
+      base: (rel.base_token?.data?.id || "").replace(/^[a-z0-9-]+_/, ""),
+      quote: (rel.quote_token?.data?.id || "").replace(/^[a-z0-9-]+_/, ""),
+      net: rel.network?.data?.id || (rel.base_token?.data?.id || "").split("_")[0] || undefined,
       price: N(a.base_token_price_usd), price_native: N(a.base_token_price_native_currency),
       fdv: N(a.fdv_usd), mcap: N(a.market_cap_usd), reserve: N(a.reserve_in_usd),
       chg: { m5: N(c.m5, 5), h1: N(c.h1, 5), h6: N(c.h6, 5), h24: N(c.h24, 5) },
@@ -64,14 +65,14 @@
       let j; try { j = JSON.parse(txt); } catch { j = { _text: txt.slice(0, 2000) }; }
       const projName = r.proj || Object.keys(PROJ).find(k => r.key.startsWith(k)) || "raw";
       let body; try { body = resp.ok ? (PROJ[projName] || PROJ.raw)(j) : j; } catch (e) { body = { _projError: String(e), _raw: txt.slice(0, 1500) }; }
-      return [r.key, { s: resp.status, len: txt.length, ms: Math.round(performance.now() - t0), body }];
+      return [r.key, { s: (body && body._rateLimited) ? 429 : resp.status, len: txt.length, ms: Math.round(performance.now() - t0), body }];  // a projection may flag a 200 that is really a rate limit
     } catch (e) {
       return [r.key, { s: 0, err: String(e) }];
     }
   }
 
   // Per-host pacing: GeckoTerminal free tier allows ~30 calls/min and answers 429 without CORS headers (seen as "Failed to fetch").
-  const PACE = { "api.geckoterminal.com": 2600, "api.rugcheck.xyz": 400, "solana-rpc.publicnode.com": 600 };
+  const PACE = { "api.geckoterminal.com": 2600, "api.rugcheck.xyz": 400, "solana-rpc.publicnode.com": 600, "api.coingecko.com": 2400, "api.gopluslabs.io": 2300, "aggregator-api.kyberswap.com": 350, "api.honeypot.is": 500 };
   const sleep = (ms) => new Promise(res => setTimeout(res, ms));
   async function paced(reqs, out, host, gap) {
     for (const r of reqs) { let [k, v] = await one(r); if (v.s === 0 || v.s === 429) { await sleep(Math.max(gap * 4, 8000)); [k, v] = await one(r); } out[k] = v; await sleep(gap); }
@@ -105,7 +106,7 @@
     for (const [mint, pool, dec, price, liq] of tokens) {
       let sizes = sizesAll; if (liq && liq < 100000) sizes = sizes.filter(s => s <= 25000); else if (liq && liq < 400000) sizes = sizes.filter(s => s <= 50000);
       reqs.push({ key: `gt_info:${mint}`, url: `${GT}/tokens/${mint}/info` }, { key: `gt_pools:token:${mint}`, url: `${GT}/tokens/${mint}/pools?page=1` });
-      if (pool) { for (const [tf, agg, lim] of tfs) reqs.push({ key: `gt_ohlcv:${pool}:${tf}${agg}`, url: `${GT}/pools/${pool}/ohlcv/${tf}?aggregate=${agg}&limit=${lim}&currency=usd` });
+      if (pool) { for (const [tf, agg, lim] of tfs) reqs.push({ key: `gt_ohlcv:${pool}:${tf}${agg}`, url: `${GT}/pools/${pool}/ohlcv/${tf}?aggregate=${agg}&limit=${lim}&currency=usd&token=${mint}` });
         reqs.push({ key: `gt_trades:${pool}:all`, url: `${GT}/pools/${pool}/trades` }, { key: `gt_trades:${pool}:big`, url: `${GT}/pools/${pool}/trades?trade_volume_in_usd_greater_than=2000` }); }
       for (const usd of sizes) { const lam = Math.round(usd / solPrice * 1e9), base = Math.round(usd / price * 10 ** dec);
         reqs.push({ key: `jq:BUY:${usd}:${mint}`, url: `${JUP}/swap/v1/quote?inputMint=${SOL}&outputMint=${mint}&amount=${lam}&slippageBps=300` }, { key: `jq:SELL:${usd}:${mint}`, url: `${JUP}/swap/v1/quote?inputMint=${mint}&outputMint=${SOL}&amount=${base}&slippageBps=300` }); }
