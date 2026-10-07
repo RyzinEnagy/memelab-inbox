@@ -1,7 +1,5 @@
 README.md
 bootstrap.sh
-dist/art/memelab_bundle.txt
-dist/memelab_bundle.txt
 docs/ARCHITECTURE.md
 docs/SOURCES.md
 memelab/__init__.py
