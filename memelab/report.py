@@ -33,7 +33,15 @@ def render_token_report(r: dict[str, Any]) -> str:
     ts = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime(b["observed_at"]))
     L = []
     L.append(f"# {ident.get('name') or 'UNKNOWN'} — {ident.get('symbol') or '?'}\n")
-    L.append(f"TOKEN: {ident.get('name')}  \nTICKER: {ident.get('symbol')}  \nCHAIN: solana  \nCONTRACT: `{r['mint']}`  \n"
+    chain = b.get("chain") or "solana"
+    std = ident.get("token_standard") or idm.get("token_program") or ("SPL / Token-2022" if chain == "solana" else "UNKNOWN")
+    pools_sorted = sorted([p for p in b.get("pools") or [] if p.get("pool")], key=lambda p: -(p.get("reserve_usd") or 0))
+    primary = ident.get("primary_pool") or (pools_sorted[0]["pool"] if pools_sorted else None)
+    pdex = next((p.get("dex") or p.get("market_type") for p in pools_sorted if p.get("pool") == primary), None)
+    links = {k: v for k, v in (b.get("social") or {}).items() if k in ("website", "twitter", "telegram", "discord_url") and isinstance(v, str) and v}
+    L.append(f"TOKEN: {ident.get('name')}  \nTICKER: {ident.get('symbol')}  \nCHAIN: {chain}  \nCONTRACT/MINT: `{r['mint']}`  \nTOKEN STANDARD: {std}  \n"
+             f"PRIMARY POOL: {('`' + primary + '`' + (' (' + str(pdex) + ')' if pdex else '')) if primary else 'UNKNOWN'}  \n"
+             f"OFFICIAL LINKS: {', '.join(f'{k} {v}' for k, v in links.items()) if links else 'none found on screeners'}  \n"
              f"TOKEN AGE: {('%.1f days' % (mk['age_hours']/24)) if mk.get('age_hours') else 'UNKNOWN'}  \nIDENTITY CONFIDENCE: {idm.get('confidence')}  \nTIMESTAMP: {ts}\n")
     if idm.get("status") == "IDENTITY NOT VERIFIED":
         L.append("\n## Status\n\nIDENTITY NOT VERIFIED. Analysis stopped.\n")
@@ -73,7 +81,17 @@ def render_token_report(r: dict[str, Any]) -> str:
         L.append("")
     L.append(_ev(dp))
     L.append("## LP structure\n" + f"LP RISK: {lp.get('lp_risk')} — {lp.get('reason')}\n\n" + _ev(lp))
-    L.append("## Token mechanics\n" + _ev(m.get("mechanics")))
+    mech = m.get("mechanics") or {}
+    if mech.get("contract_risk"):
+        ex = m.get("execution") or {}
+        L.append(f"## Contract risk ({chain})\n\nCONTRACT RISK: {mech.get('contract_risk')}; owner {mech.get('owner_state')}" + (f" `{mech.get('owner')}`" if mech.get('owner') else "") +
+                 f"; proxy {mech.get('proxy')}; source verified {mech.get('source_verified')}; taxes buy {mech.get('buy_tax_pct')}% / sell {mech.get('sell_tax_pct')}%" +
+                 (f"; flags {', '.join(mech.get('flags'))}" if mech.get("flags") else "; no risk flags") + "\n\n" + _ev(mech))
+        if ex:
+            L.append(f"## Execution profile\n\nRouter {ex.get('router')}; gas round trip ~${(ex.get('gas_round_trip_usd') or 0):.2f}; taxes {ex.get('tax_round_trip_pct')}%; friction on $1,000 about {ex.get('friction_pct_on_1000'):.2f}%; "
+                     f"route legs up to {ex.get('max_route_legs')}; block time {ex.get('block_time_s')}s. {ex.get('note')}\n")
+    else:
+        L.append("## Token mechanics\n" + _ev(mech))
     L.append("## Ownership\n" + _ev(hold))
     cls = hold.get("classified") or []
     if cls:
