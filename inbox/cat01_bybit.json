@@ -1,0 +1,1 @@
+{"_cat":"exch:bybit:new","_kind":"bybit_ann","_url":"https://api.bybit.com/v5/announcements/index?locale=en-US&type=new_crypto&limit=20","_at":"2026-10-07T14:15:53.763Z","s":0,"err":"SyntaxError: Expected property name or '}' in JSON at position 6 (line 2 column 5)","body":null}
