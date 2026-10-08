@@ -14,9 +14,17 @@ Research system only. Never execute trades, never ask for seed phrases or privat
 - Config: `data/config.json` holds `gh_owner`, `gh_repo`, `gh_branch`, `helius_api_key`. Never print the key, never commit it.
 - Docs: `docs/ARCHITECTURE.md` (module contract), `docs/SOURCES.md` (what each source gives and its tier).
 
-## Why the browser bridge exists
+## Collection: API pulls first, Chrome only as fallback
 
-The cloud sandbox cannot reach any crypto API (egress 403). The user's Chrome can, and raw.githubusercontent.com is reachable from the sandbox. So: Chrome fetches, commits JSON to the repo, the sandbox pulls and analyzes. Use Claude in Chrome (the user's Chrome), work in a tab on `https://example.com/` (no CSP, so fetch and eval work). GitHub pages have a strict CSP: never fetch APIs from a github.com tab.
+Since 2026-10-08 the sandbox reaches the crypto APIs directly (Jupiter, GeckoTerminal, RugCheck, DEX Screener, CoinGecko, GoPlus, honeypot.is, DefiLlama, Raydium LaunchLab, pump.fun, Clanker, Zora, Virtuals). Default path for every step:
+- saved plans: `python -m memelab fetch <plan id> [<more plan ids>] [--as <result id>] [--dedupe]` runs them with Node and the same collector + projections the browser uses, retries rate-limited requests twice, writes `data/inbox/<id>.result.json` and lists anything that still failed;
+- in-browser JS steps run the same way: `python -m memelab fetch --as <id> --pre <previous result id> --js 'await __ML.screen({...})'` (also `__ML.stage2([...])`, `__ML.deepPlan(...)`, `__ML.evmDeepPlan(...)`; a returned plan is executed);
+- plan groups meant for different browser tabs (launch `_ex`, `_pump`, `_clanker`) are fetched together in one call.
+Results fetched this way need no GitHub hand-off: they are already in the inbox. The Chrome bridge below is the fallback only for requests that fail from the sandbox (and for navigate-mode catalyst pages that need a DOM). If a host fails from both, record the source gap and continue.
+
+## Chrome bridge (fallback)
+
+Use Claude in Chrome, work in a tab on `https://example.com/` (no CSP, so fetch and eval work); same-origin-only hosts get a tab on their own origin. GitHub pages have a strict CSP: never fetch APIs from a github.com tab. Ship results with `__ML.ship`, commit, pull with `memelab.bridge.github_inbox.pull`.
 
 ## Standard run: "Find memecoin opportunities"
 
