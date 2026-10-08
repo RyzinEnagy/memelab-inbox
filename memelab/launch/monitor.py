@@ -25,8 +25,8 @@ def _ts(s):
         return None
 
 
-def candles(bodies: dict, pool: str | None) -> list[list[float]]:
-    v = bodies.get(f"gt_ohlcv:{pool}:minute1") if pool else None
+def candles(bodies: dict, pool: str | None, tf: str = "minute1") -> list[list[float]]:
+    v = bodies.get(f"gt_ohlcv:{pool}:{tf}") if pool else None
     rows = (v or {}).get("ohlcv") or []
     return sorted([r for r in rows if len(r) >= 6], key=lambda r: r[0])   # [ts, o, h, l, c, vol_usd]
 
@@ -67,8 +67,14 @@ def windows(c: dict, bodies: dict, hold: dict, snip: dict, t: float) -> dict[str
 def price_discovery(c: dict, bodies: dict, t: float) -> dict[str, Any]:
     pool = c.get("pool") or c.get("curve_pool")
     cs = candles(bodies, pool)
+    start = c.get("first_trade_at") or c.get("created_at")
+    if cs and start and cs[0][0] - start > 1800:
+        c5 = candles(bodies, pool, "minute5")
+        if c5 and c5[0][0] < cs[0][0]:
+            cs = c5
     if len(cs) < 10:
-        return {"pattern": "UNKNOWN", "why": "fewer than 10 minute candles for the token's pool"}
+        return {"pattern": "UNKNOWN", "why": "fewer than 10 candles for the token's pool"}
+    covered = bool(start) and cs[0][0] - start <= 1800
     o = cs[0][1]
     hi_i = max(range(len(cs)), key=lambda i: cs[i][2]); hi = cs[hi_i][2]
     last = cs[-1][4]
@@ -82,9 +88,9 @@ def price_discovery(c: dict, bodies: dict, t: float) -> dict[str, Any]:
     dd = (lo_after / hi - 1) * 100
     d = {"open": o, "high": hi, "low_after_high": lo_after, "last": last, "minutes_to_high": round(mins_to_high, 1), "drawdown_from_high_pct": round(dd, 1),
          "last_vs_open": round(last / o, 2) if o else None, "span_minutes": round(span)}
-    if o and last < 0.3 * o:
+    if o and last < 0.3 * o and covered:
         p = "FAILED LAUNCH"
-    elif o and hi >= 3 * o and last <= 1.2 * o:
+    elif o and ((hi >= 3 * o and last <= 1.2 * o) or (not covered and dd <= -85)):
         p = "PUMP AND DUMP"
     elif o and hi >= 3 * o and mins_to_high <= 15 and last >= 0.6 * hi:
         p = "PARABOLIC OPEN"
@@ -99,7 +105,9 @@ def price_discovery(c: dict, bodies: dict, t: float) -> dict[str, Any]:
     else:
         p = "UNRESOLVED"
     d["pattern"] = p
-    d["why"] = "heuristic from minute candles of the token's own pool (rules in launch/monitor.py)"
+    d["covers_open"] = covered
+    d["why"] = "heuristic from candles of the token's own pool (rules in launch/monitor.py)" + ("" if covered else f"; PARTIAL: candles start {(cs[0][0] - start) / 3600:.1f}h after launch, the open is not observed" if start else "; launch time unknown")
+    d["why_short"] = f"{dd:.0f}% from the high" + ("" if covered else " (partial history)")
     return d
 
 
