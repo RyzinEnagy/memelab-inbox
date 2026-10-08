@@ -39,7 +39,9 @@ def analyze(con, c: dict, t: float) -> dict[str, Any]:
     org = o.get("organic_score")
     if org is not None:
         facts.append(f"Jupiter organic score {org:.0f}")
-        organic_pts += 2 if org >= 60 else 1 if org >= 30 else 0
+        organic_pts += 2 if org >= 60 else 1 if org >= 30 else (-1 if org < 10 else 0)
+        if org < 10:
+            inferences.append("Jupiter scores almost none of the trading as organic: activity is likely bots or wash trading")
     # catalyst/news mentions of the symbol or name (last 7 days)
     sym, name = (c.get("symbol") or "").strip(), (c.get("project") or "").strip()
     mentions = 0
@@ -66,7 +68,7 @@ def analyze(con, c: dict, t: float) -> dict[str, Any]:
         inferences.append("visible promotion is paid while organic signals are thin")
     elif organic_pts >= 3 and paid_pts == 0:
         cls = "ORGANIC-LEANING"
-    elif organic_pts == 0 and paid_pts == 0:
+    elif organic_pts <= 0 and paid_pts == 0:
         cls = "UNKNOWN"
     else:
         cls = "MIXED"
