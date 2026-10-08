@@ -81,3 +81,9 @@ Working with plain fetch (CORS open): DefiLlama `api.llama.fi/overview/dexs/{cha
 Blocked or failed: Odos (CORS), Sui fullnode (CORS), OpenOcean (403), Binance futures API (CORS), bsc-dataseed.binance.org, four.meme, clanker.world, basescan free V1 API (deprecated). HyperEVM and Sui therefore have market-level data only: contract risk and executable depth stay UNKNOWN for tokens there.
 
 Google News catalyst feeds now include Base, BNB and chain-rotation queries so chain attention stops skewing to Solana after a week of runs.
+
+## Launch sources (verified from the browser bridge 2026-10-08)
+
+Plain fetch: Jupiter `tokens/v2/recent` (first pool just created, launchpad, dev, audit, stats), RugCheck `stats/new_tokens` and `/tokens/{mint}/report`, Raydium LaunchLab `launch-mint-v1.raydium.io/get/list?sort=new|marketCap` and `get/by/user?wallet=` (supply, curve progress, locked/vesting amounts, cliff/unlock, platform such as Bonk.fun), Zora `api-sdk.zora.engineering/explore?listType=NEW`, Virtuals `api.virtuals.io/api/geneses` (scheduled starts; on 2026-10-08 every recent Genesis was CANCELLED or FINALIZED), GeckoTerminal `new_pools` per network and `/networks/solana/dexes/pumpswap/pools`, DEX Screener token-profiles/boosts (paid).
+Same-origin only (run from a tab opened on that host): pump.fun `frontend-api-v3.pump.fun/coins?sort=created_timestamp|market_cap|last_trade_timestamp&complete=`, `/coins/currently-live`, `/coins?creator=`, `/coins-v2/{mint}`; Clanker `www.clanker.world/api/tokens?sort=desc&page=` and `/api/tokens/fetch-deployed-by-address?address=`.
+Not available: four.meme (access restricted from the user's location; not circumvented; BNB launches appear only once they reach PancakeSwap), Moonshot, Meteora DBC, Believe, CryptoRank / CoinMarketCap / CoinMarketCal calendars, CoinGecko new-coins list (401), X / Telegram / Discord.
