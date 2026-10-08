@@ -19,6 +19,7 @@ Research system only. Never execute trades, never ask for seed phrases or privat
 Since 2026-10-08 the sandbox reaches the crypto APIs directly (Jupiter, GeckoTerminal, RugCheck, DEX Screener, CoinGecko, GoPlus, honeypot.is, DefiLlama, Raydium LaunchLab, pump.fun, Clanker, Zora, Virtuals). Default path for every step:
 - saved plans: `python -m memelab fetch <plan id> [<more plan ids>] [--as <result id>] [--dedupe]` runs them with Node and the same collector + projections the browser uses, retries rate-limited requests twice, writes `data/inbox/<id>.result.json` and lists anything that still failed;
 - in-browser JS steps run the same way: `python -m memelab fetch --as <id> --pre <previous result id> --js 'await __ML.screen({...})'` (also `__ML.stage2([...])`, `__ML.deepPlan(...)`, `__ML.evmDeepPlan(...)`; a returned plan is executed);
+- navigate-mode catalyst pages (news RSS, Google News, Binance/OKX announcements): `python -m memelab catalyst pull-pages <cat id>` pulls and parses them directly; Bybit answers 403 and stays on the Chrome page route;
 - plan groups meant for different browser tabs (launch `_ex`, `_pump`, `_clanker`) are fetched together in one call.
 Results fetched this way need no GitHub hand-off: they are already in the inbox. The Chrome bridge below is the fallback only for requests that fail from the sandbox (and for navigate-mode catalyst pages that need a DOM). If a host fails from both, record the source gap and continue.
 
