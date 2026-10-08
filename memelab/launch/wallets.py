@@ -95,7 +95,10 @@ def snipers(c: dict, bodies: dict, hold: dict, total_supply: float | None) -> di
         start = first
     covered = first is not None and start is not None and first - start < 120
     if not covered:
-        res["unknowns"].append("the pool's first minutes (trade history window starts later; GeckoTerminal returns the latest 300 trades)")
+        res["unknowns"].append("first-minute buyers and sniper inventory: the trade history starts "
+                               + (f"{(first - start) / 60:.0f} min after the pool opened" if first and start else "after the open")
+                               + " (GeckoTerminal returns only the latest 300 trades); on pump.fun the earliest buying also happens on the curve, before this pool existed")
+        return res
     holding = {r["owner"]: r["pct"] for r in hold.get("top") or []}
     early = defaultdict(lambda: {"bought": 0.0, "sold": 0.0, "usd": 0.0, "first": None})
     for t in tt:
