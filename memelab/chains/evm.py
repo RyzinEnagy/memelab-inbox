@@ -74,6 +74,23 @@ def build_bundle(chain: str, addr: str, bodies: dict[str, Any], observed_at: flo
     mk["native_symbol"] = cfg["native_symbol"]; mk["native_decimals"] = 18
     if native_price:
         mk["native_price"] = native_price; src["native_price"] = "coingecko"
+    # price change / volume / txn windows come from the best DEX Screener pair (the Solana path gets them from Jupiter; EVM had none)
+    _best = None
+    for _k, _v in bodies.items():
+        if _k.startswith("ds") and isinstance(_v, list):
+            for _p in _v:
+                if isinstance(_p, dict) and ((_p.get("baseToken") or {}).get("address") or "").lower() == addr.lower():
+                    if _best is None or ((_p.get("liquidity") or {}).get("usd") or 0) > ((_best.get("liquidity") or {}).get("usd") or 0):
+                        _best = _p
+    if _best:
+        _pc = _best.get("priceChange") or {}; _vo = _best.get("volume") or {}; _tx = _best.get("txns") or {}
+        for _w, _dk in (("5m", "m5"), ("1h", "h1"), ("6h", "h6"), ("24h", "h24")):
+            if _pc.get(_dk) is not None: mk["chg"][_w] = _f(_pc.get(_dk))
+            if _vo.get(_dk) is not None: mk["vol"].setdefault(_w, _f(_vo.get(_dk)))
+            _t = _tx.get(_dk) or {}
+            if _t: mk["txns"][_w] = [_t.get("buys"), _t.get("sells"), None, None]
+            if _t and _t.get("buys") is not None and _t.get("sells") is not None: mk["net_buyers"][_w] = None
+        src["chg"] = "dexscreener.priceChange"
     # restrict DS/GT pools to this chain (DS batches can carry other chains only if mis-planned; GT is per network)
     b["pools"] = [p for p in b["pools"] if p.get("pool")]
 
