@@ -318,6 +318,7 @@ def main(argv=None):
     p = sp.add_parser("wallet"); p.add_argument("action", choices=["plan", "report"]); p.add_argument("--addresses", nargs="*"); p.add_argument("--id"); p.add_argument("--results", nargs="*", default=[]); p.add_argument("--tx-limit", type=int, default=100); p.add_argument("--account-size", type=float); p.set_defaults(fn=cmd_wallet)
     from .catalyst.cli import add_subparser as _cat; _cat(sp)
     from .chains.cli import add_subparser as _chains; _chains(sp)
+    from .launch.cli import add_subparser as _launch; _launch(sp)
     sp.add_parser("watchlist").set_defaults(fn=cmd_watchlist)
     p = sp.add_parser("rejections"); p.add_argument("--limit", type=int, default=50); p.set_defaults(fn=cmd_rejections)
     p = sp.add_parser("social-note"); p.add_argument("mint"); p.add_argument("metric"); p.add_argument("--value", type=float); p.add_argument("--text"); p.add_argument("--source", default="browser"); p.add_argument("--note"); p.set_defaults(fn=cmd_social_note)
