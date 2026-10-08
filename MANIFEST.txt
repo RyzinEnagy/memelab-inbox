@@ -13,6 +13,7 @@ memelab/bridge/github_inbox.py
 memelab/bridge/ingest.py
 memelab/bridge/launch.js
 memelab/bridge/plan.py
+memelab/bridge/run_plan.js
 memelab/bridge/screen.js
 memelab/bridge/stage2.js
 memelab/catalyst/__init__.py
