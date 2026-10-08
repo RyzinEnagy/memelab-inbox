@@ -54,6 +54,16 @@ Never analyze from a ticker. Require the mint. Run stage2 for that mint alone (i
 - Jupiter `priceImpactPct` is a fraction (0.0186 = 1.86%).
 - Holder counts differ across providers (RugCheck counts all accounts, Jupiter/GeckoTerminal filter); the report records the discrepancy rather than choosing.
 
+## Dev wallet-farm check (added 2026-10-08)
+
+Some launches split almost all supply across hundreds or thousands of dev-built wallets with identical balances (DOTF, DAWS, GOIF Goh59... on 2026-10-08: 73% to 99.6% of supply, every sampled token account created with fees paid by the dev wallet). Holder concentration then reads 0.05% per wallet and the market cap is manufactured against a pool holding under 1% of supply. `memelab/farm.py` checks this on every Solana analysis:
+- `Plan.structural` now also fetches the first page of the Helius holder list (`helius_holders:<mint>:1`); the largest identical-balance group (>= 50 wallets) holding >= 25% of supply is DEV_WALLET_FARM DETECTED (fatal);
+- without the holder list, RugCheck "High holder correlation" + "High market cap per holder" with liquidity under 1% of market cap and >= 5 sampled wallets whose token accounts the dev paid for is SUSPECTED (fatal);
+- the result appears under Ownership as "wallet farm check" lines.
+Shared funders that are hubs (exchange payout wallets, pump.fun / PumpSwap program accounts, trading-platform fee wallets: 50+ recipients within minutes) are not linkage; check a funder's own history before calling wallets a group.
+
+Rejecting a tracked launch after full analysis or manual forensics: `python -m memelab launch reject <contract> --reason "..."` sets phase REJECTED, logs the rejection and transition, and discovery skips it from then on.
+
 ## Evidence discipline
 
 Every report keeps FACT / INFERENCE / HEURISTIC / UNKNOWN separate. Never promote an inference. Never fabricate missing data; write UNABLE TO DETERMINE. A fatal flag overrides the score. Write "what would make this token unacceptable" before deep research.
