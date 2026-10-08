@@ -46,7 +46,8 @@ def cmd_plan(a):
     if a.verify_traders:
         for s in traders:
             plan.add(f"xprof:{s['source_id']}", s["url"], proj="x_profile", delay_ms=800)
-    print("# 1) fetch-mode sources (run in the example.com tab after loading collector.js AND bridge/catalyst.js):")
+    print(f"# plan {plan.id} -> {plan.save()}  (preferred: python -m memelab fetch {plan.id})")
+    print("# 1) fetch-mode sources (Chrome fallback: run in the example.com tab after loading collector.js AND bridge/catalyst.js):")
     print(plan.js_call() if hasattr(plan, "js_call") else json.dumps(plan.to_dict()))
     print(f"# then: __ML.ship(\"inbox/{plan.id}.json\") ; land ; commit ; pull as {plan.id}")
     print("\n# 2) navigate-mode sources (CORS-blocked). For each: navigate the tab to the URL, then run")
@@ -71,6 +72,82 @@ def cmd_save_page(a):
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(json.dumps(data, separators=(",", ":")))
     print(f"saved {sid} -> {p} ({'ok' if page.get('s') == 200 else 'ERR ' + str(page.get('err'))})")
+
+
+def _S(x, n=600):
+    import re as _re
+    return None if x is None else _re.sub(r"\s+", " ", str(x)).strip()[:n]
+
+
+def _parse_feed(xml_text: str) -> list[dict]:
+    import xml.etree.ElementTree as ET
+    root = ET.fromstring(xml_text)
+    loc = lambda t: t.split("}")[-1]
+
+    def g(el, *names):
+        for c in el.iter():
+            if c is not el and loc(c.tag) in names:
+                return _S("".join(c.itertext()), 1200)
+        return None
+    items = [e for e in root.iter() if loc(e.tag) == "item"]
+    if items:
+        return [{"title": g(it, "title"), "link": g(it, "link"), "pub": g(it, "pubDate"), "guid": g(it, "guid"), "desc": g(it, "description"),
+                 "author": g(it, "creator", "author"), "src": g(it, "source")} for it in items]
+    out = []
+    for it in (e for e in root.iter() if loc(e.tag) == "entry"):
+        link = next((c.get("href") for c in it if loc(c.tag) == "link"), None)
+        out.append({"title": g(it, "title"), "link": link, "pub": g(it, "published", "updated"), "guid": g(it, "id"), "desc": g(it, "summary", "content"), "author": g(it, "name")})
+    return out
+
+
+def _parse_page(kind: str, text: str):
+    if kind == "rss":
+        return _parse_feed(text)
+    j = json.loads(text)
+    if kind == "binance_cms":
+        d = j.get("data") or {}
+        arts = [a for c in d.get("catalogs") or [] for a in c.get("articles") or []] + list(d.get("articles") or [])
+        return [{"id": a.get("id"), "code": a.get("code"), "title": _S(a.get("title"), 240), "pub": a.get("releaseDate"),
+                 "link": "https://www.binance.com/en/support/announcement/" + a["code"] if a.get("code") else None} for a in arts]
+    if kind == "bybit_ann":
+        return [{"title": _S(a.get("title"), 240), "desc": _S(a.get("description"), 400), "link": a.get("url"), "pub": a.get("dateTimestamp"),
+                 "type": (a.get("type") or {}).get("title"), "tags": a.get("tags")} for a in ((j.get("result") or {}).get("list") or [])]
+    if kind == "okx_ann":
+        det = ((j.get("data") or [{}])[0] or {}).get("details") or []
+        return [{"title": _S(a.get("title"), 240), "link": a.get("url"), "pub": float(a["pTime"]) if a.get("pTime") else None, "type": a.get("annType")} for a in det]
+    return j
+
+
+def cmd_pull_pages(a):
+    """Navigate-mode sources as direct API pulls (no browser): fetch, parse like catalyst.js, append into inbox/<id>.result.json.
+    Sources that still fail are listed; only those need the Chrome page route."""
+    import urllib.request
+    from datetime import datetime, timezone
+    db.init_db()
+    with db.connect() as con:
+        sync_registry(con)
+        nav = active_sources(con, modes=("navigate",))
+    p = INBOX / f"{a.id}.result.json"
+    data = json.loads(p.read_text()) if p.exists() else {"_plan": a.id, "_at": datetime.now(timezone.utc).isoformat(), "_n": 0}
+    failed = []
+    for s in nav:
+        sid, kind = s["source_id"], s["parser"] or "rss"
+        try:
+            req = urllib.request.Request(s["url"], headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/140.0", "Accept": "*/*"})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                text = r.read().decode("utf-8", "replace")
+            body = _parse_page(kind, text)
+            data[f"cat:{sid}"] = {"s": 200, "len": len(text), "ms": 0, "body": body, "err": None, "_cat": sid}
+            print(f"  ok   {sid}: {len(body) if isinstance(body, list) else 1} items")
+        except Exception as e:
+            failed.append(sid)
+            data.setdefault(f"cat:{sid}", {"s": 0, "len": 0, "ms": 0, "body": None, "err": str(e)[:200], "_cat": sid})
+            print(f"  FAIL {sid}: {str(e)[:120]}")
+        time.sleep(0.5)
+    data["_n"] = len([k for k in data if not k.startswith("_")])
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(data, separators=(",", ":")))
+    print(f"{len(nav) - len(failed)}/{len(nav)} navigate-mode sources pulled -> {p}" + (f"; Chrome fallback only for: {', '.join(failed)}" if failed else ""))
 
 
 def cmd_ingest(a):
@@ -198,6 +275,7 @@ def add_subparser(sp):
     ssp = p.add_subparsers(dest="ccmd", required=True)
     q = ssp.add_parser("plan"); q.add_argument("--id"); q.add_argument("--verify-traders", action="store_true"); q.set_defaults(fn=cmd_plan)
     q = ssp.add_parser("save-page"); q.add_argument("id"); q.add_argument("--file", required=True); q.set_defaults(fn=cmd_save_page)
+    q = ssp.add_parser("pull-pages", help="navigate-mode sources as direct API pulls (preferred over Chrome)"); q.add_argument("id"); q.set_defaults(fn=cmd_pull_pages)
     q = ssp.add_parser("ingest"); q.add_argument("--results", nargs="+", required=True); q.set_defaults(fn=cmd_ingest)
     q = ssp.add_parser("match-plan"); q.add_argument("--id"); q.add_argument("--limit", type=int, default=40); q.set_defaults(fn=cmd_match_plan)
     q = ssp.add_parser("match"); q.add_argument("--results", nargs="+", required=True); q.add_argument("--min-liq", type=float, default=5000); q.set_defaults(fn=cmd_match)
