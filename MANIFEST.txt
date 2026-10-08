@@ -40,6 +40,7 @@ memelab/chains/rotation.py
 memelab/chains/schema.py
 memelab/cli.py
 memelab/db.py
+memelab/farm.py
 memelab/forensics.py
 memelab/launch/__init__.py
 memelab/launch/cli.py
@@ -94,6 +95,7 @@ skills/memecoin-scout/SKILL.md
 tests/test_catalyst.py
 tests/test_ecosystem.py
 tests/test_evm.py
+tests/test_farm.py
 tests/test_launch.py
 tests/test_m13_18.py
 tests/test_m21_28.py
