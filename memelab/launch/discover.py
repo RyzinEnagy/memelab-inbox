@@ -97,7 +97,12 @@ def from_bodies(bodies: dict[str, Any], t: float, sol_price: float | None, eth_p
             progress = None
             if rtok is not None:
                 progress = max(0.0, min(100.0, (1 - (rtok / 10 ** dec) / PUMP_CURVE_TOKENS) * 100))
-            migrated = bool(r.get("complete")) or (rtok == 0 and _f(r.get("real_sol_reserves")) == 0)
+            mc_sol = _f(r.get("market_cap"))
+            # the list's "complete" flag and curve reserves go stale after migration: a curve cannot price above its graduation cap,
+            # so a SOL market cap well above it means the token trades on its AMM pool. pool_address is pre-allocated at creation and proves nothing.
+            migrated = bool(r.get("complete")) or (rtok == 0 and _f(r.get("real_sol_reserves")) == 0) or (mc_sol is not None and mc_sol > 1.2 * PUMP_GRAD_MCAP_SOL)
+            if migrated:
+                progress = 100.0
             state = "E" if migrated else ("D" if progress is not None and progress >= 99.9 else "C")
             mc = _f(r.get("usd_market_cap"))
             c = _cand("solana", r["mint"], project=r.get("name"), symbol=r.get("symbol"), launchpad="pump.fun", state=state, creator=r.get("creator"),
