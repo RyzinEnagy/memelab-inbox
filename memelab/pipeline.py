@@ -138,6 +138,17 @@ def analyze_token(mint: str, bodies: dict[str, Any], observed_at: float | None =
         from . import forensics
         dev_set = {x for x in ((bundle.get("identity") or {}).get("creator"), (bundle.get("identity") or {}).get("dev")) if x}
         mods["forensics"] = {**forensics.summarize_profiles(forensics_out, mods.get("holders"), dev_set), "heuristics": ["address is not person; shared funding is economic linkage only"], "unknowns": []}
+    if bundle.get("chain", chain) == "solana":
+        from . import farm
+        try:
+            fr = farm.detect(mint, bodies, bundle)
+        except Exception as e:  # never let the detector break an analysis
+            fr = {"status": "UNKNOWN", "fatal": False, "facts": [], "inferences": [], "unknowns": [f"farm detector error {e}"]}
+        h = mods.get("holders") if isinstance(mods.get("holders"), dict) else {}
+        h["farm"] = fr
+        for k in ("facts", "inferences", "unknowns"):
+            h[k] = list(h.get(k) or []) + [f"wallet farm check: {x}" for x in fr.get(k) or []]
+        mods["holders"] = h
     ident = mods["identity"]
     prev = None
     if persist:
