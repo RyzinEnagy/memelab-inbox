@@ -277,6 +277,9 @@ def init_db(path: Path | str | None = None) -> None:
         con.executescript(CATALYST_SCHEMA)
         con.executescript(CHAINS_SCHEMA)
         migrate(con)
+        from .launch.schema import LAUNCH_SCHEMA, migrate as launch_migrate
+        con.executescript(LAUNCH_SCHEMA)
+        launch_migrate(con)
         registry.sync(con)
 
 
