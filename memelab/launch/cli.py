@@ -133,6 +133,23 @@ def cmd_status(a):
         print(f"\nphases {n}; cohort {c['n']} launches ({c['nn']} in the unbiased newest-launch sample)")
 
 
+def cmd_reject(a):
+    """Reject a tracked launch after full analysis or manual forensics (phase REJECTED; discovery skips it from then on)."""
+    db.init_db()
+    t = time.time()
+    with db.connect() as con:
+        rows = con.execute("SELECT * FROM upcoming_launches WHERE contract=?", (a.contract,)).fetchall()
+        if not rows:
+            print(f"{a.contract}: not tracked by the launch monitor"); return
+        for u in rows:
+            con.execute("UPDATE upcoming_launches SET phase='REJECTED', status=?, status_reason=?, updated_at=?, transitioned_at=? WHERE launch_id=?",
+                        ("REJECTED", a.reason[:500], t, t, u["launch_id"]))
+            db.insert(con, "launch_rejections", {"launch_id": u["launch_id"], "rejected_at": t, "symbol": u["symbol"], "chain": u["chain"], "contract": u["contract"],
+                      "creator": u["creator"], "reasons_json": json.dumps([a.reason]), "evidence_json": json.dumps({"source": a.source, "previous_phase": u["phase"], "previous_status": u["status"]})})
+            db.insert(con, "launch_transitions", {"launch_id": u["launch_id"], "at": t, "from_phase": u["phase"], "to_phase": "REJECTED", "reason": a.reason[:500]})
+            print(f"{u['symbol']} {u['contract']}: {u['phase']} -> REJECTED ({a.reason})")
+
+
 def cmd_note(a):
     """Record a launch you heard about. Details are CLAIMED; the contract stays NOT VERIFIED until a chain index reports it."""
     db.init_db()
@@ -168,6 +185,7 @@ def add_subparser(sp):
     q = s.add_parser("cohort-plan"); q.add_argument("--id"); q.add_argument("--limit", type=int, default=150); q.add_argument("--js", action="store_true"); q.set_defaults(fn=cmd_cohort_plan)
     q = s.add_parser("cohort"); q.add_argument("--results", nargs="+", required=True); q.set_defaults(fn=cmd_cohort)
     q = s.add_parser("status"); q.add_argument("--limit", type=int, default=30); q.set_defaults(fn=cmd_status)
+    q = s.add_parser("reject", help="reject a tracked launch after full analysis or manual forensics"); q.add_argument("contract"); q.add_argument("--reason", required=True); q.add_argument("--source", default="manual"); q.set_defaults(fn=cmd_reject)
     q = s.add_parser("note"); q.add_argument("--project"); q.add_argument("--symbol"); q.add_argument("--chain"); q.add_argument("--launchpad"); q.add_argument("--when", help="ISO time")
     q.add_argument("--url"); q.add_argument("--team-pct", type=float); q.add_argument("--fdv", type=float); q.add_argument("--liquidity", type=float); q.add_argument("--float-pct", type=float); q.add_argument("--note")
     q.set_defaults(fn=cmd_note)
