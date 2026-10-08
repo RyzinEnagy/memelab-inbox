@@ -77,13 +77,15 @@ class Plan:
         return self
 
     # ---- per token structural pass (stage 2) ----
-    def structural(self, mints: list[str]):
+    def structural(self, mints: list[str], holders: bool = True):
         for i in range(0, len(mints), 30):
             chunk = mints[i:i + 30]
             self.add(f"ds:batch:{i}", f"{DS}/tokens/v1/solana/{','.join(chunk)}")
         for m in mints:
             self.add(f"jup_tok:{m}", f"{JUP}/tokens/v2/search?query={m}")
             self.add(f"rug:{m}", f"{RUG}/tokens/{m}/report", delay_ms=250)
+            if holders:
+                self.holders_full(m, pages=1)  # first 1,000 token accounts: enough for the wallet-farm check
         return self
 
     # ---- deep pass (stage 3-5) ----
