@@ -110,3 +110,7 @@ Modules:
 - engine.py: orchestration, shortlist (cheap ordering only), contract checks (Solana authorities / fee / hook, EVM via chains.evm, LP control by launch mechanism), SUSPICIOUS WALLET ACTIVITY alerts. report.py: the "Find upcoming memecoins" report. cli.py: `python -m memelab launch plan|discover|deep-plan|assess|cohort-plan|cohort|status|note`.
 
 Tables: upcoming_launches, launch_observations, launch_scores, deployer_history, launch_wallet_flags, launchpad_stats, launch_cohort, launch_monitor, launch_alerts, launch_rejections, launch_transitions.
+
+## Collection path
+
+`python -m memelab fetch` (memelab/bridge/run_plan.js) executes plans and the in-browser JS steps under Node with the same collector.js / chains.js / launch.js / catalyst.js / screen.js / stage2.js, so result files match shipped browser results byte for byte in shape. It honours the sandbox proxy (NODE_USE_ENV_PROXY), sends a browser User-Agent, paces per host as the collector does, and retries 429 / network failures twice. API pulls are the default; the Chrome bridge is the fallback for requests that fail from the sandbox.
