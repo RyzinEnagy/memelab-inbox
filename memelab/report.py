@@ -75,7 +75,7 @@ def render_token_report(r: dict[str, Any]) -> str:
         L.append("| Side | Size (USD) | Status | Impact | Effective price | Proceeds / value | Route legs | Pools |\n|---|---|---|---|---|---|---|---|")
         for t in tbl:
             if t.get("status") == "OK":
-                L.append(f"| {t['side']} | {_usd(t['usd'])} | OK | {t['impact_pct']:.2f}% | {t['effective_price']:.6g} | {_usd(t.get('usd_value'))} | {t['n_route_legs']} | {', '.join(t.get('pools') or [])} |")
+                L.append(f"| {t['side']} | {_usd(t['usd'])} | OK | {('%.2f%%' % t['impact_pct']) if t.get('impact_pct') is not None else 'UNKNOWN'} | {('%.6g' % t['effective_price']) if t.get('effective_price') is not None else 'UNKNOWN'} | {_usd(t.get('usd_value'))} | {t['n_route_legs']} | {', '.join(t.get('pools') or [])} |")
             else:
                 L.append(f"| {t['side']} | {_usd(t['usd'])} | {t.get('status')} | | | | | {t.get('error', '')} |")
         L.append("")
