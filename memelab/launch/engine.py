@@ -37,7 +37,10 @@ def prescore(c: dict, t: float) -> float:
     if "NSFW" in (c.get("flags") or []) or (s.get("creator_launches_in_sample") or 0) >= 3:
         return -1
     age_h = (t - (c.get("created_at") or t)) / 3600
-    if age_h > D.NEW_LAUNCH_HOURS and c["state"] == "E":
+    trade_h = (t - (c.get("first_trade_at") or c.get("created_at") or t)) / 3600
+    if c["state"] in "BCD" and age_h > D.NEW_LAUNCH_HOURS:
+        return -1   # a curve or undeployed token older than the launch window is a stale launch, not an upcoming one
+    if c["state"] == "E" and min(age_h, trade_h) > D.NEW_LAUNCH_HOURS:
         return -1
     p = 0.0
     p += min((o.get("curve_progress_pct") or 0) / 100, 1) * 3
@@ -193,6 +196,11 @@ def assess_one(con, c: dict, bodies: dict, t: float, pads: dict, sol: float | No
         pd = MON.price_discovery(c, bodies, t)
         conv = MON.convert(con, c, tk, hold, snip, clus)
         out.update({"windows": wins, "price_discovery": pd, "conversion": conv})
+        bad = pd.get("pattern") in ("FAILED LAUNCH", "PUMP AND DUMP")
+        if bad and res["status"] not in ("SEVERE RISK", "AVOID"):
+            res["avoid"].append(f"price discovery {pd['pattern']}: {pd.get('why_short') or ''}".strip(": "))
+            res["status"], res["status_reason"] = "AVOID", "; ".join(res["avoid"])
+            res["entry_view"] = ranker.entry_view(c, "AVOID", res["verify_at_launch"])
     if not persist:
         return out
     con.execute("UPDATE upcoming_launches SET pool=COALESCE(?, pool), curve_pool=COALESCE(?, curve_pool), state=CASE WHEN phase IN ('PRE_LAUNCH','NEW_LAUNCH_MONITOR') THEN ? ELSE state END, "
