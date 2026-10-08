@@ -11,8 +11,13 @@ a = ap.parse_args()
 os.chdir(ROOT); sys.path.insert(0, str(ROOT))
 W = Path(tempfile.mkdtemp(prefix="mldirect_")); JS = W / "js"; JS.mkdir()
 INBOX = ROOT / "data" / "inbox"; INBOX.mkdir(parents=True, exist_ok=True)
-def get(u, t=30):
-    return json.load(urllib.request.urlopen(urllib.request.Request(u, headers={"user-agent": "memelab"}), timeout=t))
+def get(u, t=30, tries=5):
+    for i in range(tries):  # CoinGecko's free tier answers 429 under bursts; back off and retry
+        try:
+            return json.load(urllib.request.urlopen(urllib.request.Request(u, headers={"user-agent": "memelab"}), timeout=t))
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or i == tries - 1: raise
+            time.sleep(15 * (i + 1))
 for f in ("collector", "chains", "catalyst"):
     (JS / f"{f}.js").write_text(urllib.request.urlopen(f"{RAW}/bridge/{f}.js?x={time.time()}", timeout=30).read().decode())
 env = {**os.environ, "MLJS": str(JS)}
@@ -49,9 +54,19 @@ cfgs = {ch: cplan.js_cfg(ch) for ch in tok if ch != "solana"}
 for n, o in (("in.json", {"tokens": tok, "native": native}), ("cfgs.json", cfgs), ("syms.json", sym)): (W / n).write_text(json.dumps(o))
 r = subprocess.run(["node", str(HERE / "mkplans.js"), str(W / "in.json"), str(W / "cfgs.json"), str(W / "syms.json"), a.date, str(W / "plans.json")], env=env, capture_output=True, text=True); print(r.stdout, r.stderr[-300:])
 plans = json.load(open(W / "plans.json")); summary = []
+# peer set for relative strength: CoinGecko meme category per EVM chain (one call per category, shared by that chain's tokens)
+CG = "https://api.coingecko.com/api/v3"; peer_bodies = {}
+from memelab.chains import registry as _R
+for ch in sorted({p["chain"] for p in plans if p["chain"] != "solana"}):
+    cat = _R.CHAINS[ch].get("cg_meme_category"); key = f"cg_mkts:{cat}:1"
+    node_run({"id": "peers", "reqs": [{"key": key, "url": f"{CG}/coins/markets?vs_currency=usd&category={cat}&order=market_cap_desc&per_page=100&page=1&price_change_percentage=1h,24h,7d,30d", "proj": "cg_mkts"}]}, W / f"peers_{ch}.json")
+    v = json.load(open(W / f"peers_{ch}.json")).get(key)
+    if v and v.get("s") == 200: peer_bodies[ch] = (key, v)
 for p in plans:  # sequential: GeckoTerminal free tier rate-limits parallel runs from one IP
     i = p["plan"]["id"]; res = INBOX / f"{i}.result.json"
     node_run(p["plan"], res); retry_failed(p["plan"], res); add_prices(res, price)
+    if p["chain"] in peer_bodies:
+        k, v = peer_bodies[p["chain"]]; d = json.load(open(res)); d[k] = v; json.dump(d, open(res, "w"), separators=(",", ":"))
     cmd = [sys.executable, "-m", "memelab", "analyze", p["addr"], "--results", i] if p["chain"] == "solana" else [sys.executable, "-m", "memelab", "chains", "analyze", p["chain"], p["addr"], "--results", i]
     o = subprocess.run(cmd, capture_output=True, text=True); line = (o.stdout.strip().splitlines() or ["(no output) " + o.stderr[-200:]])[0]; print(line); summary.append(line)
 if a.catalyst:
