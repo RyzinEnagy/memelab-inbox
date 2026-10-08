@@ -233,7 +233,7 @@ def ingest_bodies(bodies: dict[str, Any], retrieved_at: float | None = None) -> 
                     con.execute("UPDATE catalyst_items SET retrieved_at=? WHERE id=?", (t, hit["id"]))
                     continue
                 item_id = db.insert(con, "catalyst_items", {"source_id": sid, "item_key": it["key"], "url": it["url"], "title": it["title"], "body": it["body"], "author": it["author"], "platform": it["platform"],
-                                                             "published_at": it["published_at"], "retrieved_at": t, "first_seen_at": t, "raw_json": json.dumps(it["raw"], default=str)[:6000]})
+                                                             "published_at": it["published_at"], "retrieved_at": t, "first_seen_at": t, "raw_json": json.dumps(it["raw"], default=str) if src.get("parser") in ("cb_currencies", "kraken_assets") else json.dumps(it["raw"], default=str)[:6000]})
                 stats["items_new"] += 1
                 if src.get("parser") in ("cb_currencies", "kraken_assets"):
                     continue  # asset-list snapshots feed the access-change detector, they are not events themselves
@@ -324,7 +324,10 @@ def detect_access_changes(con, t: float) -> list[dict]:
         rows = con.execute("SELECT raw_json, retrieved_at FROM catalyst_items WHERE source_id=? ORDER BY first_seen_at DESC LIMIT 2", (sid,)).fetchall()
         if len(rows) < 2:
             continue
-        new_ids = set(json.loads(rows[0]["raw_json"]).get("ids") or []); old_ids = set(json.loads(rows[1]["raw_json"]).get("ids") or [])
+        try:
+            new_ids = set(json.loads(rows[0]["raw_json"]).get("ids") or []); old_ids = set(json.loads(rows[1]["raw_json"]).get("ids") or [])
+        except ValueError:
+            continue  # snapshots stored before 2026-10-08 were truncated; the next two full snapshots restore the diff
         for a in sorted(new_ids - old_ids)[:20]:
             title = f"{sid.split(':')[1].title()} asset list now includes {a}"
             ekey = hashlib.sha1(f"{sid}|{a}".encode()).hexdigest()[:24]
