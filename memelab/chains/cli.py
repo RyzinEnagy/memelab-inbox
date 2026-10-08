@@ -220,6 +220,8 @@ def _bench(bodies: dict, chain: str) -> dict:
         for cid, name in ((cfg["cg_native"], cfg["native_symbol"]), ("bitcoin", "BTC")):
             if isinstance(cg.get(cid), dict):
                 bm[name] = {"chg_24h": cg[cid].get("usd_24h_change"), "chg_1h": None, "chg_6h": None}
+        nat = bm.get(cfg["native_symbol"])
+        if nat: bm["SOL"] = nat  # the relative-strength module reads the native-coin slot under the "SOL" key
     cat = cfg.get("cg_meme_category")
     peers = bodies.get(f"cg_mkts:{cat}:1") if cat and isinstance(bodies.get(f"cg_mkts:{cat}:1"), list) else bodies.get("cg_mkts:meme-token:1") or []
     bm["peers"] = [{"symbol": (m.get("symbol") or "").upper(), "mint": m.get("id"), "chg_24h": m.get("price_change_percentage_24h"), "chg_1h": m.get("p1h"), "chg_6h": None, "vol_24h": m.get("total_volume")} for m in peers if isinstance(m, dict)]
