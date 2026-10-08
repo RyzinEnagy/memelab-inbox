@@ -538,6 +538,11 @@ def fatal_flags(**modules: Any) -> list[dict]:
     if top10 is not None and top10 > 50:
         add("TOP10_GT_50PCT", f"adjusted top-10 {top10:.1f}%", "ownership")
 
+    farm = _d(holders.get("farm"))
+    if farm.get("fatal"):
+        ev = f"dev wallet farm {farm.get('status')}: " + ("; ".join(farm.get("facts") or []) or "see ownership section")
+        add("DEV_WALLET_FARM", ev[:400], "ownership")
+
     clusters = _d(modules.get("clusters"))
     cl = _num(_first(clusters, "cluster_adjusted_ownership_pct", "cluster_adjusted_pct", "combined_pct"))
     if cl is not None and cl > 25 and str(clusters.get("confidence") or "").upper() == "HIGH":
