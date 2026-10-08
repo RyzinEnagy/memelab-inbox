@@ -303,6 +303,44 @@ def cmd_wallet(a):
             print("- no open token positions; portfolio and post-trade review modules have nothing to evaluate yet")
 
 
+def cmd_fetch(a):
+    """Run saved plan(s), or an in-browser JS step, directly from this machine via API pulls (Node + the same collector the
+    browser uses). This is the default collection path; the Chrome bridge is the fallback for requests that fail here."""
+    import os, shutil, subprocess, tempfile
+    reqs, ids = [], []
+    for pid in a.plans:
+        pp = Path(pid) if pid.endswith(".json") else INBOX / f"{pid}.plan.json"
+        if not pp.exists():
+            print(f"skip {pid}: no plan file (empty group)"); continue
+        d = json.loads(pp.read_text()); reqs += d["reqs"]; ids.append(d["id"])
+    rid = a.as_id or (ids[0] if ids else None)
+    if not rid:
+        raise SystemExit("give --as <result id> when no plan file is used")
+    node = shutil.which("node")
+    if not node:
+        raise SystemExit("node not found: install Node 18+, or fall back to the Chrome bridge")
+    args = [node, str(Path(__file__).parent / "bridge" / "run_plan.js")]
+    if reqs:
+        tmp = Path(tempfile.mkdtemp()) / "plan.json"
+        tmp.write_text(json.dumps({"id": rid, "reqs": reqs, **({"dedupe": True} if a.dedupe else {})}))
+        args.append(str(tmp))
+    else:
+        args.append("-")
+    out = INBOX / f"{rid}.result.json"
+    args += [str(out), "--conc", str(a.concurrency)]
+    if a.pre:
+        args += ["--pre", str(INBOX / f"{a.pre}.result.json") if not a.pre.endswith(".json") else a.pre]
+    if a.js:
+        args += ["--js", a.js]
+    env = dict(os.environ)
+    if env.get("HTTPS_PROXY") or env.get("https_proxy"):
+        env.setdefault("NODE_USE_ENV_PROXY", "1")   # Node's fetch ignores proxy variables unless told to use them
+        env.setdefault("NODE_NO_WARNINGS", "1")
+    r = subprocess.run(args, env=env)
+    if r.returncode:
+        raise SystemExit(r.returncode)
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="memelab")
     sp = ap.add_subparsers(dest="cmd", required=True)
@@ -310,6 +348,7 @@ def main(argv=None):
     p = sp.add_parser("plan"); p.add_argument("kind", choices=["discovery", "structural", "deep", "wallets"]); p.add_argument("--id"); p.add_argument("--pages", type=int, default=3)
     p.add_argument("--source"); p.add_argument("--limit", type=int, default=40); p.add_argument("--mint"); p.add_argument("--mints", nargs="*"); p.add_argument("--results", nargs="*", default=[]); p.add_argument("--sizes", nargs="*", type=float); p.add_argument("--wallets", nargs="*", default=[])
     p.set_defaults(fn=cmd_plan)
+    p = sp.add_parser("fetch", help="run saved plan(s) directly via API pulls (preferred over Chrome)"); p.add_argument("plans", nargs="*"); p.add_argument("--as", dest="as_id"); p.add_argument("--concurrency", type=int, default=6); p.add_argument("--dedupe", action="store_true"); p.add_argument("--pre", help="previous result id to preload (what the browser tab would show)"); p.add_argument("--js", help="in-browser step to run, e.g. 'await __ML.screen({minLiq:20000,minVol:50000})'"); p.set_defaults(fn=cmd_fetch)
     p = sp.add_parser("save"); p.add_argument("id"); p.add_argument("--file"); p.set_defaults(fn=cmd_save)
     p = sp.add_parser("discover"); p.add_argument("id"); p.add_argument("--min-liq", type=float, default=20_000); p.add_argument("--min-vol", type=float, default=50_000); p.add_argument("--limit", type=int, default=60); p.add_argument("--show", type=int, default=40); p.add_argument("--rejection-ttl-hours", type=float, default=72); p.set_defaults(fn=cmd_discover)
     p = sp.add_parser("stage2"); p.add_argument("source"); p.add_argument("--results", nargs="+", required=True); p.add_argument("--limit", type=int, default=8); p.add_argument("--max-single-holder", type=float, default=15); p.add_argument("--max-top10", type=float, default=50); p.add_argument("--min-liq", type=float, default=30_000); p.add_argument("--min-age-hours", type=float, default=6); p.set_defaults(fn=cmd_stage2)
