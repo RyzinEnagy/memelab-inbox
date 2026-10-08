@@ -44,6 +44,7 @@ SOURCES = [
 ]
 GAPS = ["four.meme (BNB launchpad): access restricted from your location; BNB launches are seen only after they reach PancakeSwap",
         "Moonshot, Meteora DBC, Believe: no browser-readable API",
+        "Clanker (Base): clanker.world reset the connection from your browser's network on 2026-10-08; Base launches come from Zora and GeckoTerminal new pools until it answers again",
         "launch calendars (CryptoRank, CoinMarketCap, CoinMarketCal): not reachable; scheduled launches come from Virtuals Genesis, news, and manual notes",
         "X, Telegram, Discord: not readable without accounts; follower growth, group growth and post velocity stay UNKNOWN"]
 
@@ -106,6 +107,7 @@ def deep(plan_id: str, cands: list[dict], helius: bool = False) -> dict[str, Pla
             net = {"solana": "solana", "base": "base", "bsc": "bsc"}.get(chain, chain)
             ex.add(f"gt_trades:{pool}:all", f"{GT}/networks/{net}/pools/{pool}/trades", proj="gt_trades")
             ex.add(f"gt_ohlcv:{pool}:minute1", f"{GT}/networks/{net}/pools/{pool}/ohlcv/minute?aggregate=1&limit=1000&currency=usd&token={mint}", proj="gt_ohlcv")
+            ex.add(f"gt_ohlcv:{pool}:minute5", f"{GT}/networks/{net}/pools/{pool}/ohlcv/minute?aggregate=5&limit=1000&currency=usd&token={mint}", proj="gt_ohlcv")
     return {"example": ex, "pump": pu, "clanker": cl}
 
 
