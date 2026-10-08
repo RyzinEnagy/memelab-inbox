@@ -14,7 +14,7 @@ from typing import Any
 from .. import db
 from ..chains._util import Component, lin, loglin
 
-HIGH_QUALITY_SCORE, HIGH_QUALITY_COMPLETENESS = 65, 55
+HIGH_QUALITY_SCORE, HIGH_QUALITY_COMPLETENESS = 70, 60
 
 
 def _chain_ctx(con, chain: str | None) -> dict:
@@ -57,7 +57,10 @@ def score(con, c: dict, tk: dict, dep: dict, hold: dict, snip: dict, clus: dict,
     dmap = {"STRONG POSITIVE HISTORY": 1.0, "MIXED HISTORY": 0.6, "NO HISTORY": 0.5, "CONCERNING HISTORY": 0.1, "SEVERE RISK": 0.0}
     x.add(4, dmap.get(dep.get("classification")), "deployer track record")
     ins = tk.get("initial_insider_pct")
-    x.add(3, lin(ins, 30, 2) if ins is not None else None, "insider share (30%..2%)")
+    ins_v = lin(ins, 30, 2) if ins is not None else None
+    if ins_v is not None and tk.get("insider_basis") in ("MECHANISM", "CLAIMED"):
+        ins_v *= 0.5   # a launch rule or a claim says nothing about what the creator bought on the curve
+    x.add(3, ins_v, f"insider share (30%..2%; {tk.get('insider_basis') or 'UNKNOWN'})")
     t10 = hold.get("top10_ex_pool_pct")
     x.add(3, lin(t10, 60, 15) if t10 is not None else None, "top-10 excl. pools (60%..15%)")
     sh = snip.get("sniper_still_holding_pct") if snip.get("sniper_wallets") is not None else None
@@ -137,11 +140,11 @@ def score(con, c: dict, tk: dict, dep: dict, hold: dict, snip: dict, clus: dict,
         status, reason = "AVOID", "; ".join(avoid)
     elif completeness < 40:
         status, reason = "RESEARCH INCOMPLETE", f"data completeness {completeness:.0f}%"
-    elif total >= 62 and completeness >= 50 and (state in "ABCD" or age_h <= 24):
+    elif total >= 68 and completeness >= 55 and (state in "ABCD" or age_h <= 24):
         status, reason = "LAUNCH MONITOR", "strong structure with enough data: observe price discovery intensively"
-    elif total >= 52:
+    elif total >= 60:
         status, reason = "HIGH-INTEREST WATCH", "above-average launch on the evidence available"
-    elif total >= 40:
+    elif total >= 48:
         status, reason = "WATCH", "ordinary launch; nothing disqualifying"
     else:
         status, reason = "IGNORE", "weak structure or attention relative to other launches"
