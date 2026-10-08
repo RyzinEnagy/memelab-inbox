@@ -18,11 +18,18 @@ from pathlib import Path
 
 from . import db
 
-TABLES = ["tokens", "theses", "entries", "watchlist", "rejections", "chains", "chain_snapshots", "chain_scores", "regime_snapshots", "narratives", "narrative_snapshots", "benchmark_baskets", "ecosystem_alerts"]
+TABLES = ["tokens", "theses", "entries", "watchlist", "rejections", "chains", "chain_snapshots", "chain_scores", "regime_snapshots", "narratives", "narrative_snapshots", "benchmark_baskets", "ecosystem_alerts",
+          "upcoming_launches", "launch_cohort", "launch_alerts", "launch_monitor", "launch_transitions", "launch_rejections"]
+# launch tables are trimmed on export: tracked launches only, cohort for 45 days (outcome base), alerts for 7 days
+EXPORT_WHERE = {"upcoming_launches": "status IS NOT NULL OR state='A'", "launch_cohort": "created_at > strftime('%s','now') - 45*86400",
+                "launch_alerts": "alerted_at > strftime('%s','now') - 7*86400", "launch_rejections": "rejected_at > strftime('%s','now') - 30*86400"}
+NEWER = {"upcoming_launches": "updated_at", "launch_cohort": "last_checked"}
 KEYS = {"tokens": ("mint",), "theses": ("mint", "created_at"), "entries": ("thesis_id", "style", "zone_low"),
         "watchlist": ("mint",), "rejections": ("mint", "rejected_at", "stage"),
         "chains": ("chain_id",), "chain_snapshots": ("chain_id", "observed_at"), "chain_scores": ("chain_id", "observed_at"), "regime_snapshots": ("observed_at",),
-        "narratives": ("narrative_id",), "narrative_snapshots": ("narrative_id", "observed_at"), "benchmark_baskets": ("observed_at", "bucket"), "ecosystem_alerts": ("alerted_at", "kind", "subject")}
+        "narratives": ("narrative_id",), "narrative_snapshots": ("narrative_id", "observed_at"), "benchmark_baskets": ("observed_at", "bucket"), "ecosystem_alerts": ("alerted_at", "kind", "subject"),
+        "upcoming_launches": ("launch_id",), "launch_cohort": ("mint",), "launch_alerts": ("alerted_at", "kind", "launch_id"), "launch_monitor": ("launch_id", "window"),
+        "launch_transitions": ("launch_id", "at"), "launch_rejections": ("launch_id", "rejected_at")}
 DEFAULT = db.DATA_DIR / "state" / "latest.json"
 
 
@@ -32,7 +39,7 @@ def export(path: Path | str | None = None, keep_theses_per_mint: int = 12) -> Pa
     data = {"_exported_at": time.time(), "_tables": {}}
     with db.connect() as con:
         for t in TABLES:
-            rows = [dict(r) for r in con.execute(f"SELECT * FROM {t}")]
+            rows = [dict(r) for r in con.execute(f"SELECT * FROM {t}" + (f" WHERE {EXPORT_WHERE[t]}" if t in EXPORT_WHERE else ""))]
             if t == "theses":
                 by: dict[str, list] = {}
                 for r in sorted(rows, key=lambda r: -(r["created_at"] or 0)):
@@ -77,6 +84,10 @@ def import_(src: str | None = None) -> dict[str, int]:
                     if t == "chains" and row.get("research_allocation"):  # the export is the continuity record; a fresh init only knows registry defaults
                         con.execute("UPDATE chains SET status=?, status_reason=?, research_allocation=?, updated_at=? WHERE chain_id=?",
                                     (row.get("status"), row.get("status_reason"), row.get("research_allocation"), row.get("updated_at"), row["chain_id"]))
+                    if t in NEWER and (row.get(NEWER[t]) or 0) > (hit[NEWER[t]] or 0):
+                        known = _cols(con, t)
+                        upd = {k: v for k, v in row.items() if k in known and k not in keys}
+                        con.execute(f"UPDATE {t} SET {','.join(k + '=?' for k in upd)} WHERE {where}", list(upd.values()) + [row.get(k) for k in keys])
                     if t == "watchlist" and (row.get("last_status_change") or 0) > (hit["last_status_change"] or 0):
                         con.execute("UPDATE watchlist SET status=?, last_status_change=?, notes=? WHERE mint=?",
                                     (row.get("status"), row.get("last_status_change"), row.get("notes"), row["mint"]))
