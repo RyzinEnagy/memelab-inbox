@@ -85,7 +85,7 @@ def _candles(shape):
     ([1.0 + i * 0.05 for i in range(60)], "ORDERLY TREND"),
 ])
 def test_price_discovery(shape, expected):
-    c = {"pool": "P"}
+    c = {"pool": "P", "first_trade_at": T - 3 * 3600}
     pd = MON.price_discovery(c, {"gt_ohlcv:P:minute1": {"ohlcv": _candles(shape)}}, T)
     assert pd["pattern"] == expected
 
