@@ -1,5 +1,6 @@
 README.md
 bootstrap.sh
+commit_file.py
 docs/ARCHITECTURE.md
 docs/SOURCES.md
 memelab/__init__.py
@@ -10,6 +11,7 @@ memelab/bridge/chains.js
 memelab/bridge/collector.js
 memelab/bridge/github_inbox.py
 memelab/bridge/ingest.py
+memelab/bridge/launch.js
 memelab/bridge/plan.py
 memelab/bridge/screen.js
 memelab/bridge/stage2.js
@@ -38,6 +40,20 @@ memelab/chains/schema.py
 memelab/cli.py
 memelab/db.py
 memelab/forensics.py
+memelab/launch/__init__.py
+memelab/launch/cli.py
+memelab/launch/cohort.py
+memelab/launch/deployer.py
+memelab/launch/discover.py
+memelab/launch/engine.py
+memelab/launch/monitor.py
+memelab/launch/ranker.py
+memelab/launch/report.py
+memelab/launch/schema.py
+memelab/launch/social.py
+memelab/launch/sources.py
+memelab/launch/tokenomics.py
+memelab/launch/wallets.py
 memelab/modules/__init__.py
 memelab/modules/_common.py
 memelab/modules/m01_token_discovery.py
@@ -77,9 +93,9 @@ skills/memecoin-scout/SKILL.md
 tests/test_catalyst.py
 tests/test_ecosystem.py
 tests/test_evm.py
+tests/test_launch.py
 tests/test_m13_18.py
 tests/test_m21_28.py
 tests/test_pipeline_live_fixture.py
 tests/test_wallet.py
 tools_bundle.py
-commit_file.py
