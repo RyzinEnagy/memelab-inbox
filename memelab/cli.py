@@ -282,6 +282,8 @@ def cmd_wallet(a):
         print("no addresses: pass them or add tracked_wallets to data/config.json"); return
     if a.action == "plan":
         plan = W.wallet_plan(a.id or f"wallet_{int(time.time())}", addrs, tx_limit=a.tx_limit)
+        if hasattr(plan, "save"):
+            print(f"# plan {plan.id} -> {plan.save()}  (fetch it with: python -m memelab fetch {plan.id})")
         print(plan.js_call() if hasattr(plan, "js_call") else json.dumps(plan.to_dict()))
         return
     res = [ingest.load_result(DATA_DIR / "inbox" / f"{i}.result.json") for i in a.results]
