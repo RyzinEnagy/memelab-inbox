@@ -5,8 +5,3 @@ data/wallet/
 gh_token.txt
 # private social store and DB backups (exact third-party wording never goes to the public repo)
 data/private/
-data/config.json
-*.sqlite*
-__pycache__/
-data/wallet/
-gh_token.txt
