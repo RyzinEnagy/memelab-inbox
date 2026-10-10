@@ -24,7 +24,7 @@ Social and trader outputs use the existing FACT / INFERENCE / HEURISTIC / UNKNOW
 
 Reason: these rules already govern every module in the code (m19, catalyst/attention.py, launch/social.py) and the reports depend on them.
 
-## D-004 No raw third-party social content in the public repo (PROPOSED, Phase 00)
+## D-004 No raw third-party social content in the public repo (SUPERSEDED by D-010)
 
 Proposal: the public repo may hold derived, non-expressive data only: account handle, public profile URL, timestamps, numeric counts, contract addresses found, evidence status, a hash of the source text. Raw post text, bios, images, member lists and anything behind a login stay in a private, gitignored local store, or are not stored at all.
 
@@ -38,7 +38,7 @@ API pulls through `python -m memelab fetch` (Node runner `memelab/bridge/run_pla
 
 Reason: this is Elving's stated rule and what SKILL.md and the code implement. On 2026-10-10 the cloud sandbox reached Jupiter, GeckoTerminal, DEX Screener and RugCheck directly (HTTP 200), which contradicts the older README and docs/SOURCES.md text saying the sandbox cannot reach crypto APIs.
 
-## D-006 No logged-in social scraping (PROPOSED, Phase 00)
+## D-006 No logged-in social scraping (SUPERSEDED by D-009)
 
 Proposal: social collectors read only what is public without signing in (X profile pages, `t.me/s/` previews, RSS). No reading of X timelines through a signed-in browser profile, no automation of a personal account.
 
@@ -57,3 +57,23 @@ Reason: the standing approval on record covers public market data in `inbox/` an
 Elving approved pushing `feature/social-intelligence`. The branch was created from `main` at `48fe290` on github.com and the five Phase 00 docs were added through the web editor in his signed-in Chrome, one commit per file. No personal access token was created.
 
 Reason: the cloud session has no working GitHub credential, and minting a token would put a live secret in the chat and session logs. The local commit `d72e550` has the same content but a different hash; the remote branch is the record.
+
+## D-009 Social reading through Elving's signed-in Chrome (ADOPTED, 2026-10-10)
+
+Decided by Elving. Social collectors may read X, Telegram and other platforms through Claude in Chrome while his accounts are signed in. This is the preferred route for social data because paid social APIs cost money. D-005 still applies to market data (direct API pulls first); for social data the order is reversed: signed-in Chrome first, paid APIs only if Elving approves the cost.
+
+Rules that come with it:
+- Read only. Never post, reply, like, repost, follow, join, DM, vote or change any account setting.
+- Public content only: what any signed-in user can see. No DMs, closed or private groups, protected accounts or paid-subscriber content.
+- Human pace: paced page reads, no bulk scrolling loops, stop on any rate-limit, captcha or login challenge and report it (CAPTCHAs are never solved by the agent).
+- If Chrome or the sign-in is unavailable, stop and report (same as D-005).
+
+Known risk, accepted by Elving: platform terms (X in particular) restrict automated collection even when signed in, so the account could be rate-limited or suspended.
+
+## D-010 Summaries of public social content may be stored (ADOPTED, 2026-10-10)
+
+Decided by Elving. The repo may store short, general summaries of publicly posted social content, written in the system's own words, alongside the derived fields from D-004 (handle, public URL, timestamps, numeric counts, contract addresses found, evidence status, hash of the source text).
+
+Not stored in the repo: verbatim post text in bulk, images or video, DMs, content from private or closed spaces, and personal details about private individuals beyond their public handle. Short quotes are kept out of tracked files; if a phase needs exact wording for evidence, it stays in the gitignored private store.
+
+Summaries are INFERENCE-level descriptions of what was posted, not FACT about the token, and never count as attention on their own.
