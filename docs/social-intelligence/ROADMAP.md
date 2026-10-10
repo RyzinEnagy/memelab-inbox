@@ -16,8 +16,8 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 03 | Social schema and migrations | 02 | PLANNED |
 | 04 | Observation contract and manual capture CLI | 03 | PLANNED |
 | 05 | Source registry for social and trader sources | 02, 03 | PLANNED |
-| 06 | Collector: X public profile pages | 04, 05 | PLANNED |
-| 07 | Collector: Telegram public channel previews | 04, 05 | PLANNED |
+| 06 | Collector: X via signed-in Chrome | 04, 05 | PLANNED |
+| 07 | Collector: Telegram public channels | 04, 05 | PLANNED |
 | 08 | Collector: other readable sources (YouTube RSS, token-listed links) | 04, 05 | PLANNED |
 | 09 | Entity resolution: accounts, projects, tokens by address | 06 | PLANNED |
 | 10 | Mention extraction by contract address | 09 | PLANNED |
@@ -39,7 +39,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 
 01. `test_catalyst.py::test_dedup_corroboration_resurface_denial` passes on any date (fixed clock in the test, not in production code unless a real bug is found); the EVM test no longer leaves `data/reports/*_BRETT_*.md` behind; pytest is documented as the test dependency. Full suite green. No behaviour change outside tests unless the root cause is a production bug, in which case the fix and its proof are recorded.
 
-02. Written content policy approved by Elving: which social content classes may be stored, where (public repo, private local store, nowhere) and for how long. A gitignored private store path exists. A guard (test or check script) fails if a tracked file contains a raw post text field or other blocked class. Existing `social_snapshots` rows reviewed (99 rows at Phase 00, all numeric Jupiter holder-change metrics).
+02. Content policy from D-010 written into code: allowed fields (derived data plus short own-words summaries of public posts) and blocked classes (bulk verbatim text, media, DMs, private-space content). A gitignored private store path exists for exact wording needed as evidence. A guard (test or check script) fails if a tracked file contains a raw post text field or other blocked class. Existing `social_snapshots` rows reviewed (99 rows at Phase 00, all numeric Jupiter holder-change metrics).
 
 03. New tables created through `db.py` with `CREATE TABLE IF NOT EXISTS`, idempotent on an existing database; append-only observation tables; every row carries source, observed_at, retrieved_at, access mode and evidence status. Existing `social_snapshots` keeps working. Migration tested on a copy of the current DB.
 
@@ -47,9 +47,9 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 
 05. Social and trader sources registered with access mode (fetch, navigate, manual, blocked), tier, terms constraint and coverage gap, reusing the catalyst source registry pattern. Blocked sources stay disabled with the reason recorded. No collector code yet.
 
-06. X public profile reads (identity fields and public counts only) through the existing collection route (`memelab fetch` first, Chrome bridge fallback). No logged-in scraping unless D-006 is changed by Elving. Fixtures recorded from real responses; parser tests pass offline.
+06. X reads through Elving's signed-in Chrome (D-009): profiles, public timelines and search results, read only, human-paced, stopping on any challenge. Output is derived fields plus own-words summaries (D-010). Fixtures recorded from real pages; parser tests pass offline.
 
-07. Telegram `t.me/s/<channel>` previews parsed to channel-level metrics. Same fixture and policy rules as 06.
+07. Telegram public channels (`t.me/s/<channel>` previews, or Telegram Web while signed in) parsed to channel-level metrics and summaries. Same fixture and policy rules as 06; no private groups.
 
 08. Additional readable sources wired in the same way, each with fixtures and coverage notes. Sources that fail from both routes are recorded as gaps, not worked around.
 
@@ -65,7 +65,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 
 14. A wallet is linked to a trader only when the trader publicly claims it or chain evidence meets a documented bar; linkage level is recorded. Shared funding is linkage, not proof of control (existing rule).
 
-15. Calls captured with timestamp, account, contract address, stated direction, and source URL. Raw text follows the D-004 policy.
+15. Calls captured with timestamp, account, contract address, stated direction, source URL and an own-words summary (D-010).
 
 16. Forward returns of calls measured from market data already collected by the lab, with survivorship and selection bias controls written next to every score. Below a minimum sample the score is INSUFFICIENT HISTORY.
 
