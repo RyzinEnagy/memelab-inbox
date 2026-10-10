@@ -23,8 +23,7 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 
 ## Blockers and open decisions
 
-- D-004 (what social content may be stored, and where) needs Elving's approval before Phase 02.
-- D-006 (no signed-in social scraping) needs Elving's decision before Phase 06.
+- Resolved 2026-10-10: Elving allowed signed-in social reading through Chrome (D-009, replaces D-006) and storing own-words summaries of public posts (D-010, replaces D-004).
 - The cloud session still has no working GitHub credential. Pushes so far go through the GitHub web UI in Elving's signed-in Chrome (D-008). Each later push of non-data files needs Elving's approval in that session.
 - Phase prompts 01 to 21 were not supplied; ROADMAP.md entries for them are proposals.
 
