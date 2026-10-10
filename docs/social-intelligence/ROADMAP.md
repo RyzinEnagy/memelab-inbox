@@ -4,16 +4,18 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Only Phase 00 came with a written phase prompt. Phases 01 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md.
+Phases 00 and 01 came with written phase prompts. Phases 02 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011).
+
+Status values also include SUPERSEDED (folded into another phase).
 
 Every gate also includes the standing gate: full test suite run and recorded, no new failures, no stray files, no raw third-party social content in the public repo, HANDOFF.md rewritten, commit made.
 
 | Phase | Title | Depends on | Status |
 |---|---|---|---|
 | 00 | Repo audit and execution contract | none | DONE |
-| 01 | Baseline hygiene: test isolation and clock | 00 | NEXT |
-| 02 | Content policy and public/private storage split | 00 | PLANNED |
-| 03 | Social schema and migrations | 02 | PLANNED |
+| 01 | Durable schemas, evidence provenance and migration safety (Prompt 01) | 00 | DONE |
+| 02 | Content policy and public/private storage split | 01 | NEXT |
+| 03 | Social schema and migrations | 02 | SUPERSEDED by 01 |
 | 04 | Observation contract and manual capture CLI | 03 | PLANNED |
 | 05 | Source registry for social and trader sources | 02, 03 | PLANNED |
 | 06 | Collector: X via signed-in Chrome | 04, 05 | PLANNED |
@@ -32,16 +34,19 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 19 | Reporting sections and watchlist alerts | 16, 17, 18 | PLANNED |
 | 20 | Scheduled-run integration and state export rules | 19 | PLANNED |
 | 21 | End-to-end validation, docs, merge request | 20 | PLANNED |
+| C-1 | Carry-over: test isolation and clock (old Phase 01) | 00 | PLANNED, unscheduled |
 
 ## Phase gates
 
 00. Baseline test results recorded; architecture and source-access constraints mapped; working branch established; EXECUTION, ROADMAP, DECISIONS, HANDOFF exist, are accurate and linked; no existing functionality changed.
 
-01. `test_catalyst.py::test_dedup_corroboration_resurface_denial` passes on any date (fixed clock in the test, not in production code unless a real bug is found); the EVM test no longer leaves `data/reports/*_BRETT_*.md` behind; pytest is documented as the test dependency. Full suite green. No behaviour change outside tests unless the root cause is a production bug, in which case the fix and its proof are recorded.
+01. (Prompt 01, DONE 2026-10-10) Exact schema and migrations documented in SCHEMA_01.md; tests prove insert/read/update/idempotency, empty-DB init, migration from a copy of the tracked DB, repeated ingestion, missing timestamps, duplicate provider ids, conflicting claims, rollback and recovery, and that watchlist, theses, entries, rejections and snapshot tables are unchanged; a fixture round trip runs through real SQLite. Full suite: only the known pre-existing clock failure remains. Performance and outcome tables are left to their own phases.
 
-02. Content policy from D-010 written into code: allowed fields (derived data plus short own-words summaries of public posts) and blocked classes (bulk verbatim text, media, DMs, private-space content). A gitignored private store path exists for exact wording needed as evidence. A guard (test or check script) fails if a tracked file contains a raw post text field or other blocked class. Existing `social_snapshots` rows reviewed (99 rows at Phase 00, all numeric Jupiter holder-change metrics).
+C-1. (old Phase 01 gate, carried over) `test_catalyst.py::test_dedup_corroboration_resurface_denial` passes on any date (fixed clock in the test); the EVM test no longer leaves `data/reports/*_BRETT_*.md` behind; pytest documented as the test dependency. Full suite green.
 
-03. New tables created through `db.py` with `CREATE TABLE IF NOT EXISTS`, idempotent on an existing database; append-only observation tables; every row carries source, observed_at, retrieved_at, access mode and evidence status. Existing `social_snapshots` keeps working. Migration tested on a copy of the current DB.
+02. Content policy from D-010 written into code (Phase 01 already added the storage defaults: text hashed not stored, own-words summary guard, numeric-only metrics, gitignored private store with retention; Phase 02 adds the repo-wide guard): allowed fields (derived data plus short own-words summaries of public posts) and blocked classes (bulk verbatim text, media, DMs, private-space content). A gitignored private store path exists for exact wording needed as evidence. A guard (test or check script) fails if a tracked file contains a raw post text field or other blocked class. Existing `social_snapshots` rows reviewed (99 rows at Phase 00, all numeric Jupiter holder-change metrics).
+
+03. SUPERSEDED by Phase 01 (D-011).
 
 04. One normalized observation format for every social source. `social-note` either extended or wrapped without breaking its current arguments. Manual captures are labelled as manual. Tests cover validation and rejection of malformed input.
 
