@@ -77,3 +77,21 @@ Decided by Elving. The repo may store short, general summaries of publicly poste
 Not stored in the repo: verbatim post text in bulk, images or video, DMs, content from private or closed spaces, and personal details about private individuals beyond their public handle. Short quotes are kept out of tracked files; if a phase needs exact wording for evidence, it stays in the gitignored private store.
 
 Summaries are INFERENCE-level descriptions of what was posted, not FACT about the token, and never count as attention on their own.
+
+## D-011 Prompt 01 replaces the proposed Phase 01 (ADOPTED, Phase 01, 2026-10-10)
+
+Elving supplied Prompt 01 ("Implement durable schemas, evidence provenance, and migration safety"). It replaces the proposed Phase 01 (baseline hygiene) and absorbs the proposed Phase 03 (social schema and migrations), which is now SUPERSEDED. The hygiene work (clock-dependent catalyst test, stray BRETT report from the EVM test) is kept as carry-over item C-1 in ROADMAP.md and was not done in Phase 01, so the known failure stays isolated rather than fixed.
+
+## D-012 Social tables live in the main lab database, under a migration ledger (ADOPTED, Phase 01)
+
+New tables use the `social_` prefix in `data/memelab.sqlite`, defined in `memelab/social/schema.py` and applied by `db.init_db()` after the existing schemas. No parallel data store. Unlike the earlier modules (bare `CREATE TABLE IF NOT EXISTS` plus column guards), social tables are versioned: `social_schema_migrations` records each version with a checksum, each version applies in one transaction, and each has a down script. Existing narratives (`narratives`, chains schema) and the source registry (`catalyst_sources`) are reused through soft links; `social_snapshots` is unchanged.
+
+Reason: the prompt asks for schema versions and a rollback plan, and the repo convention gives neither. Keeping one database keeps `state.py`, tests and scheduled runs working as they are. No foreign key points at a legacy table, so applying or rolling back the social schema cannot touch legacy rows (proved in tests on a copy of the tracked DB).
+
+## D-013 The public database never holds source text; exact wording goes to a gitignored private store (ADOPTED, Phase 01)
+
+`data/memelab.sqlite` is tracked in git (force-added despite `*.sqlite*` in .gitignore), so anything in it is public. The store hashes source text and keeps only the hash, numeric metrics and own-words summaries (max 400 characters, refused if they repeat 8+ consecutive source words). Exact wording, when a caller gives a reason, goes to `data/private/social_private.sqlite` (gitignored, `MEMELAB_PRIVATE_DB` override) with a 30-day default retention and `purge_expired()`. This implements D-010 at the storage layer; the repo-wide leak guard is still Phase 02.
+
+## D-014 References are checked in code because foreign keys are off (ADOPTED, Phase 01)
+
+`db.connect()` does not enable `PRAGMA foreign_keys`, so FK clauses in every schema, old and new, are declarative only. Phase 01 does not change that repo-wide (it could break existing writers that rely on it being off). The social store checks the references that matter in code: analysis version registered, wallet-attribution subject exists, addresses valid for the chain.
