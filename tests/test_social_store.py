@@ -56,10 +56,10 @@ def _legacy_fp(con, tables):
 def test_empty_db_init_and_repeat(dbpath):
     with db.connect(dbpath) as con:
         assert set(schema.SOCIAL_TABLES) <= _tables(con)
-        assert schema.current_version(con) == 1
+        assert schema.current_version(con) == schema.LATEST
     db.init_db(dbpath)  # second run is a no-op
     with db.connect(dbpath) as con:
-        assert con.execute("SELECT COUNT(*) FROM social_schema_migrations").fetchone()[0] == 1
+        assert con.execute("SELECT COUNT(*) FROM social_schema_migrations").fetchone()[0] == len(schema.MIGRATIONS)
         assert schema.migrate(con) == []
 
 
@@ -82,15 +82,15 @@ def _migration_preserves_legacy(path):
     before_tables = _tables(con)
     fp = _legacy_fp(con, before_tables)
     schema_sql = dict(con.execute("SELECT name, sql FROM sqlite_master"))
-    assert schema.migrate(con) == [1]
+    assert schema.migrate(con) == schema.ALL_VERSIONS
     assert _legacy_fp(con, before_tables) == fp, "social migration changed a legacy table"
     assert all(dict(con.execute("SELECT name, sql FROM sqlite_master")).get(k) == v for k, v in schema_sql.items())
     assert set(schema.SOCIAL_TABLES) <= _tables(con)
     assert schema.migrate(con) == []  # idempotent
-    assert schema.rollback(con, 0) == [1]
+    assert schema.rollback(con, 0) == schema.ALL_VERSIONS[::-1]
     assert not (set(schema.SOCIAL_TABLES) & _tables(con))
     assert _legacy_fp(con, before_tables) == fp, "rollback changed a legacy table"
-    assert schema.migrate(con) == [1]  # re-applies cleanly after rollback
+    assert schema.migrate(con) == schema.ALL_VERSIONS  # re-applies cleanly after rollback
     con.close()
     return fp
 
@@ -120,7 +120,7 @@ def test_migration_on_copy_of_tracked_db(tmp_path, priv):
     con = sqlite3.connect(copy)
     assert _legacy_fp(con, have) == before
     assert _fingerprint(con, "tokens", token_cols) == tok
-    assert schema.current_version(con) == 1
+    assert schema.current_version(con) == schema.LATEST
     con.close()
 
 
@@ -128,10 +128,10 @@ def test_failed_migration_leaves_db_unchanged(tmp_path):
     p = tmp_path / "f.sqlite"
     con = sqlite3.connect(p)
     schema.migrate(con)
-    bad = schema.MIGRATIONS + [(2, "broken", "CREATE TABLE social_half(x INTEGER);\nINSERT INTO no_such_table VALUES (1);", "DROP TABLE IF EXISTS social_half;")]
+    bad = schema.MIGRATIONS + [(schema.LATEST + 1, "broken", "CREATE TABLE social_half(x INTEGER);\nINSERT INTO no_such_table VALUES (1);", "DROP TABLE IF EXISTS social_half;")]
     with pytest.raises(sqlite3.OperationalError):
         schema.migrate(con, migrations=bad)
-    assert schema.current_version(con) == 1
+    assert schema.current_version(con) == schema.LATEST
     assert "social_half" not in _tables(con)
     con.close()
 
@@ -157,7 +157,7 @@ def test_backup_rollback_and_recovery(dbpath, tmp_path):
         Path(str(dbpath) + suffix).unlink(missing_ok=True)
     with db.connect(dbpath) as con:
         assert store.get_account(con, acc)["handle"] == "someone"
-        assert schema.current_version(con) == 1
+        assert schema.current_version(con) == schema.LATEST
 
 
 # ---------- fixture round trip through real persistence ----------

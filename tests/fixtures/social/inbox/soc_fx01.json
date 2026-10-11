@@ -1,0 +1,170 @@
+{
+ "_plan": "soc_fx01",
+ "_at": "2026-10-09T15:00:05.000Z",
+ "_n": 5,
+ "_note": "Shaped like a bridge result file (inbox/<id>.json pulled to data/inbox/<id>.result.json). Accounts, posts and hashes are invented; no real third-party content. The 'text' value is a placeholder that the ingester must quarantine.",
+ "gt_pools:trending:1": {
+  "s": 200,
+  "len": 20,
+  "ms": 5,
+  "body": {
+   "pools": []
+  }
+ },
+ "soc:x:example_trader_a": {
+  "s": 200,
+  "len": 0,
+  "ms": 0,
+  "err": null,
+  "body": {
+   "schema": "memelab.social.inbound/1",
+   "source": {
+    "platform": "x",
+    "source_id": "example_trader_a",
+    "access_mode": "fixture",
+    "collector": "fixture-bridge",
+    "rights_basis": "fixture_invented_content",
+    "visibility": "PUBLIC",
+    "terms_note": "invented test data; real X reads follow D-009",
+    "url": "https://x.com/Example_Trader_A"
+   },
+   "fetched_at": "2026-10-09T15:00:00Z",
+   "items": [
+    {
+     "event_id": "fx-x-0001",
+     "provider_item_id": "1845000000000000101",
+     "url": "https://x.com/Example_Trader_A/status/1845000000000000101",
+     "account": {
+      "handle": "Example_Trader_A",
+      "provider_user_id": "1000000001",
+      "profile_url": "https://x.com/Example_Trader_A"
+     },
+     "published_at": "2026-10-09T14:40:00Z",
+     "published_at_basis": "PROVIDER",
+     "content_hash": "78c1d185486becc8c544f1cab6bc168d7baeddaa578029fc12405ad7799e301d",
+     "summary": "Account says it is watching a Base token and names its contract.",
+     "metrics": {
+      "replies": 3,
+      "reposts": 1,
+      "likes": 20,
+      "views": 900
+     }
+    },
+    {
+     "provider_item_id": "1845000000000000102",
+     "url": "https://x.com/Example_Trader_A/status/1845000000000000102",
+     "account": {
+      "handle": "Example_Trader_A",
+      "provider_user_id": "1000000001",
+      "profile_url": "https://x.com/Example_Trader_A"
+     },
+     "published_at": "2026-10-09T13:00:00Z",
+     "published_at_basis": "PARSED_RELATIVE",
+     "content_hash": "92d5f25a12474374067d4716e5b70af296fe9215da23c684dabee00f76d78793",
+     "summary": "General market mood note, no token named.",
+     "metrics": {
+      "replies": 0,
+      "likes": 4
+     },
+     "lang": "en"
+    },
+    {
+     "event_id": "fx-x-0003",
+     "provider_item_id": "1845000000000000103",
+     "account": {
+      "handle": "Example_Trader_A",
+      "provider_user_id": "1000000001",
+      "profile_url": "https://x.com/Example_Trader_A"
+     },
+     "published_at": "yesterday",
+     "metrics": {
+      "views": "5.4K"
+     }
+    },
+    {
+     "event_id": "fx-x-0004",
+     "provider_item_id": "1845000000000000104",
+     "account": {
+      "handle": "Example_Trader_A",
+      "provider_user_id": "1000000001",
+      "profile_url": "https://x.com/Example_Trader_A"
+     },
+     "text": "[invented placeholder standing in for raw post text]"
+    },
+    {
+     "event_id": "fx-x-0005",
+     "provider_item_id": "1845000000000000105",
+     "account": {
+      "handle": "Example_Trader_A",
+      "provider_user_id": "1000000001",
+      "profile_url": "https://x.com/Example_Trader_A"
+     },
+     "visibility": "PROTECTED",
+     "content_hash": "7e357e818130e7e465458f8ed290816ab06c03d595fa194b4c1c15b6e469f8fc"
+    },
+    {
+     "event_id": "fx-x-0006",
+     "provider_item_id": "1845000000000000106",
+     "url": "https://x.com/Example_Trader_A/status/1845000000000000106",
+     "account": {
+      "handle": "Example_Trader_A",
+      "provider_user_id": "1000000001",
+      "profile_url": "https://x.com/Example_Trader_A"
+     },
+     "published_at": 1791557400,
+     "content_hash": "21f81e56c3ce38613bb51ddc94316bb043c88e8d77e2255594e911ab1099929c",
+     "metrics": {
+      "likes": 7
+     }
+    }
+   ]
+  }
+ },
+ "soc:telegram:example_alpha_channel": {
+  "s": 200,
+  "len": 0,
+  "ms": 0,
+  "err": null,
+  "body": {
+   "schema": "memelab.social.inbound/1",
+   "source": {
+    "platform": "telegram",
+    "source_id": "example_alpha_channel",
+    "access_mode": "fixture",
+    "collector": "fixture-bridge",
+    "rights_basis": "fixture_invented_content",
+    "visibility": "PUBLIC",
+    "url": "https://t.me/s/example_alpha_channel"
+   },
+   "fetched_at": "2026-10-09T15:00:00Z",
+   "items": [
+    {
+     "event_id": "fx-tg-0001",
+     "provider_item_id": "example_alpha_channel/4321",
+     "url": "https://t.me/example_alpha_channel/4321",
+     "account": {
+      "handle": "example_alpha_channel",
+      "profile_url": "https://t.me/s/example_alpha_channel"
+     },
+     "published_at": "2026-10-09T14:10:00+00:00",
+     "content_hash": "8ecfd8d84b51a601486eed77c2bdda69e2c2be0ae084484c1dc2ae8b2331e39c",
+     "summary": "Channel post listing three tokens it is tracking, contracts not given.",
+     "metrics": {
+      "views": 1500
+     }
+    }
+   ]
+  }
+ },
+ "soc:x:example_down_account": {
+  "s": 0,
+  "err": "TypeError: Failed to fetch",
+  "body": null
+ },
+ "soc:x:example_login_wall": {
+  "s": 0,
+  "err": "challenge: login",
+  "challenge": "login",
+  "body": null
+ }
+}

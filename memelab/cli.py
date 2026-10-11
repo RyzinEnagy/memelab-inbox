@@ -360,6 +360,7 @@ def main(argv=None):
     from .catalyst.cli import add_subparser as _cat; _cat(sp)
     from .chains.cli import add_subparser as _chains; _chains(sp)
     from .launch.cli import add_subparser as _launch; _launch(sp)
+    from .social.cli import add_subparser as _social; _social(sp)
     sp.add_parser("watchlist").set_defaults(fn=cmd_watchlist)
     p = sp.add_parser("rejections"); p.add_argument("--limit", type=int, default=50); p.set_defaults(fn=cmd_rejections)
     p = sp.add_parser("social-note"); p.add_argument("mint"); p.add_argument("metric"); p.add_argument("--value", type=float); p.add_argument("--text"); p.add_argument("--source", default="browser"); p.add_argument("--note"); p.set_defaults(fn=cmd_social_note)

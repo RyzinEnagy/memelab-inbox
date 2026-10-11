@@ -251,16 +251,89 @@ DROP TABLE IF EXISTS social_accounts;
 DROP TABLE IF EXISTS social_analysis_versions;
 """
 
+
+V2_UP = """
+CREATE TABLE social_ingest_runs (         -- one row per ingestion run (any adapter)
+  run_id TEXT PRIMARY KEY,
+  adapter TEXT NOT NULL,                  -- e.g. 'bridge_inbox'
+  started_at REAL NOT NULL,
+  finished_at REAL,
+  status TEXT NOT NULL CHECK (status IN ('RUNNING','OK','PARTIAL','FAILED')),
+  counts_json TEXT,                       -- numbers only: units, items, created, duplicates, quarantined ...
+  params_json TEXT                        -- batch size, budget, stale threshold; never secrets
+);
+
+CREATE TABLE social_ingest_checkpoints (  -- replay safety: where each inbound unit got to
+  connector TEXT NOT NULL,
+  source_ref TEXT NOT NULL,               -- '<result file name>#<key>'
+  unit_sha TEXT NOT NULL,                 -- sha256 of the canonical JSON of the unit; a changed unit is a new checkpoint
+  status TEXT NOT NULL CHECK (status IN ('IN_PROGRESS','COMPLETE','REJECTED')),
+  next_index INTEGER NOT NULL DEFAULT 0,  -- first item not yet committed
+  item_count INTEGER,
+  first_run_id TEXT NOT NULL,
+  last_run_id TEXT NOT NULL,
+  updated_at REAL NOT NULL,
+  PRIMARY KEY (connector, source_ref, unit_sha)
+);
+
+CREATE TABLE social_ingest_quarantine (   -- malformed or policy-blocked inbound items; no payload content here
+  id INTEGER PRIMARY KEY,
+  quarantine_key TEXT NOT NULL UNIQUE,    -- sha256(connector | source_ref | unit_sha | item_index)
+  run_id TEXT NOT NULL,
+  connector TEXT NOT NULL,
+  source_ref TEXT NOT NULL,
+  item_index INTEGER,                     -- NULL = the whole unit was rejected
+  reason_code TEXT NOT NULL CHECK (reason_code IN ('INVALID','BLOCKED_CONTENT','NOT_PUBLIC','SCHEMA','STORE_ERROR')),
+  errors_json TEXT NOT NULL,              -- field names and rule names only, never values
+  payload_sha256 TEXT NOT NULL,
+  private_payload_ref TEXT,               -- file in the gitignored private quarantine folder, if kept
+  quarantined_at REAL NOT NULL
+);
+CREATE INDEX ix_siq_run ON social_ingest_quarantine(run_id);
+
+CREATE TABLE social_observation_provenance (  -- one row per inbound event; ties an observation to where it came from
+  event_id TEXT PRIMARY KEY,              -- collector event id, or 'derived:<sha256>' when the collector gave none
+  observation_id INTEGER NOT NULL REFERENCES social_observations(id),
+  run_id TEXT NOT NULL,
+  connector TEXT NOT NULL,
+  source_ref TEXT NOT NULL,
+  unit_sha TEXT NOT NULL,
+  item_index INTEGER NOT NULL,
+  inbound_schema TEXT NOT NULL,
+  plan_id TEXT,
+  fetched_at REAL NOT NULL,               -- collector time (also social_observations.observed_at)
+  provider_published_at REAL,             -- provider time as given (also social_items.published_at); NULL = UNKNOWN
+  freshness TEXT NOT NULL CHECK (freshness IN ('FRESH','STALE')),
+  visibility TEXT NOT NULL CHECK (visibility IN ('PUBLIC')),   -- only public content is ever ingested (D-009)
+  rights_basis TEXT NOT NULL,             -- how it was read, e.g. 'signed_in_browser_public_view'
+  terms_note TEXT,
+  ignored_fields TEXT,                    -- JSON list of unknown field names that were dropped
+  recorded_at REAL NOT NULL
+);
+CREATE INDEX ix_sop_obs ON social_observation_provenance(observation_id);
+"""
+
+V2_DOWN = """
+DROP TABLE IF EXISTS social_observation_provenance;
+DROP TABLE IF EXISTS social_ingest_quarantine;
+DROP TABLE IF EXISTS social_ingest_checkpoints;
+DROP TABLE IF EXISTS social_ingest_runs;
+"""
+
 # (version, name, up, down). Append only; never edit an applied entry (the checksum guard refuses it).
 MIGRATIONS: list[tuple[int, str, str, str]] = [
     (1, "social intelligence core tables", V1_UP, V1_DOWN),
+    (2, "ingestion runs, checkpoints, quarantine, provenance", V2_UP, V2_DOWN),
 ]
+LATEST = max(m[0] for m in MIGRATIONS)
+ALL_VERSIONS = sorted(m[0] for m in MIGRATIONS)
 
 SOCIAL_TABLES = [
     "social_analysis_versions", "social_accounts", "social_account_handles", "social_traders",
     "social_trader_accounts", "social_items", "social_observations", "social_token_refs", "social_claims",
     "social_claim_relations", "social_evidence_links", "social_wallet_attributions", "social_connector_health",
-    "social_coverage",
+    "social_coverage", "social_ingest_runs", "social_ingest_checkpoints", "social_ingest_quarantine",
+    "social_observation_provenance",
 ]
 
 

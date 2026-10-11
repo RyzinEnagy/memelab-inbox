@@ -95,3 +95,29 @@ Reason: the prompt asks for schema versions and a rollback plan, and the repo co
 ## D-014 References are checked in code because foreign keys are off (ADOPTED, Phase 01)
 
 `db.connect()` does not enable `PRAGMA foreign_keys`, so FK clauses in every schema, old and new, are declarative only. Phase 01 does not change that repo-wide (it could break existing writers that rely on it being off). The social store checks the references that matter in code: analysis version registered, wallet-attribution subject exists, addresses valid for the chain.
+
+## D-015 Prompt 02 replaces the proposed Phase 02 (ADOPTED, Phase 02, 2026-10-10)
+
+Elving supplied Prompt 02 ("Build one operational ingestion contract and the existing browser bridge adapter"). It replaces the proposed Phase 02 (content policy and public/private storage split). The storage-side policy is already in code from Phase 01 (D-013) and the inbound side is now enforced by the ingester (D-016); the repo-wide guard that scans tracked files for raw post text was not built and is kept as carry-over C-2. Prompt 02 also delivers the observation contract of proposed Phase 04; what is left of Phase 04 is the manual-capture path onto the same schema.
+
+## D-016 The public inbox carries hashes and own-words summaries, never post text (ADOPTED, Phase 02)
+
+Inbox files are committed to the public hand-off repo before the cloud side sees them, so the storage guard of D-013 comes too late for them. Inbound schema `memelab.social.inbound/1` therefore has no text field: the browser computes `content_hash` (`__SOC.hash`, same normalization as `store.text_hash`), and the ingester quarantines any item carrying text, bios, media, DMs, member lists, quotes, transcripts or a visibility other than PUBLIC. Errors and logs name fields, never values.
+
+## D-017 Ingestion state is versioned with the social schema (ADOPTED, Phase 02)
+
+Migration 2 adds `social_ingest_runs`, `social_ingest_checkpoints`, `social_ingest_quarantine` and `social_observation_provenance`. Dedupe is two-layered: a unit checkpoint (connector, source_ref, sha of the unit) skips a file already processed, and the event id (collector id or derived hash) is the primary key of provenance, so a renamed or re-shipped file adds nothing. Items commit in batches with the checkpoint's next index in the same transaction. Quarantined payloads go to `<private folder>/quarantine/` (gitignored), never to the public database.
+
+## D-018 Connector health is per connector per run (ADOPTED, Phase 02)
+
+Each connector gets one `social_connector_health` row per run, worst status wins (OK < DEGRADED < RATE_LIMITED < LOGIN_REQUIRED/CAPTCHA/BLOCKED < DOWN). A down connector, unreadable file or unexpected error in one unit is recorded and the run continues. A run is PARTIAL when anything was degraded or down and FAILED only when no unit was usable; the CLI exits 0 for OK and PARTIAL and 1 for FAILED, so one bad connector does not fail a scheduled run.
+
+## D-019 Stale sightings are stored and flagged, not dropped (ADOPTED, Phase 02)
+
+A `fetched_at` older than the stale threshold (default 12 hours, `--max-age-hours`) is still a true historical sighting, so it is stored with `freshness='STALE'`, its connector is DEGRADED for that run and coverage is PARTIAL with the age. Timestamps in the future (beyond 5 minutes of clock skew), naive timestamps and provider times after the fetch time are invalid and quarantined.
+
+## D-020 Repo-wide content guard (ADOPTED, carry-over C-2, 2026-10-10)
+
+Built at Elving's request after Phase 02. `memelab/social/content_guard.py` (CLI `python -m memelab social guard`, test `tests/test_content_guard.py::test_tracked_repo_is_clean`) scans every tracked file and fails on: private, wallet or quarantine files being tracked; a SQLite file other than `data/memelab.sqlite`; blocked content classes or non-public items inside `soc:*` inbox units; social-only keys (`bio`, `full_text`, `members` ...) anywhere in tracked JSON; content columns in social tables, a `private_content` table, over-long summaries, prose in `social_snapshots.text_value` or copied profile text in `catalyst_sources.identity_notes` in the tracked database. It reports location and rule, never the value. Generic keys (`text`, `title`, `description`, `quote`) are not flagged outside social units because in this repo they hold lab alerts, news headlines, issuer metadata or a pool's quote token. Invented fixture content is allowed only by exact location, each entry with a reason.
+
+Known conflict: the existing catalyst trader check (`catalyst plan --verify-traders`) ships an X profile `bio` into the inbox (`x_profile` projection in `memelab/bridge/catalyst.js`) and copies title and bio into `catalyst_sources.identity_notes`. Neither is in any tracked file today (feature branch and `origin/main` at `6b0a054` both scan clean), but the next run that uses it would fail the guard. Changing that projection is left for Elving to decide.

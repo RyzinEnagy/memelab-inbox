@@ -4,7 +4,7 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Phases 00 and 01 came with written phase prompts. Phases 02 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011).
+Phases 00, 01 and 02 came with written phase prompts. Phases 03 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015).
 
 Status values also include SUPERSEDED (folded into another phase).
 
@@ -14,9 +14,9 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 |---|---|---|---|
 | 00 | Repo audit and execution contract | none | DONE |
 | 01 | Durable schemas, evidence provenance and migration safety (Prompt 01) | 00 | DONE |
-| 02 | Content policy and public/private storage split | 01 | NEXT |
+| 02 | Ingestion contract and bridge/inbox adapter (Prompt 02) | 01 | DONE |
 | 03 | Social schema and migrations | 02 | SUPERSEDED by 01 |
-| 04 | Observation contract and manual capture CLI | 03 | PLANNED |
+| 04 | Manual capture onto the inbound schema (contract done in 02) | 02 | NEXT (proposed) |
 | 05 | Source registry for social and trader sources | 02, 03 | PLANNED |
 | 06 | Collector: X via signed-in Chrome | 04, 05 | PLANNED |
 | 07 | Collector: Telegram public channels | 04, 05 | PLANNED |
@@ -35,6 +35,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 20 | Scheduled-run integration and state export rules | 19 | PLANNED |
 | 21 | End-to-end validation, docs, merge request | 20 | PLANNED |
 | C-1 | Carry-over: test isolation and clock (old Phase 01) | 00 | PLANNED, unscheduled |
+| C-2 | Carry-over: repo-wide guard against raw social text in tracked files (old Phase 02) | 02 | DONE |
 
 ## Phase gates
 
@@ -44,11 +45,13 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 
 C-1. (old Phase 01 gate, carried over) `test_catalyst.py::test_dedup_corroboration_resurface_denial` passes on any date (fixed clock in the test); the EVM test no longer leaves `data/reports/*_BRETT_*.md` behind; pytest documented as the test dependency. Full suite green.
 
-02. Content policy from D-010 written into code (Phase 01 already added the storage defaults: text hashed not stored, own-words summary guard, numeric-only metrics, gitignored private store with retention; Phase 02 adds the repo-wide guard): allowed fields (derived data plus short own-words summaries of public posts) and blocked classes (bulk verbatim text, media, DMs, private-space content). A gitignored private store path exists for exact wording needed as evidence. A guard (test or check script) fails if a tracked file contains a raw post text field or other blocked class. Existing `social_snapshots` rows reviewed (99 rows at Phase 00, all numeric Jupiter holder-change metrics).
+02. (Prompt 02, DONE 2026-10-10) Runnable import CLI (`python -m memelab social ingest`) on the existing bridge route (ship, `github_inbox.pull`, result file); versioned inbound schema; an observation persisted with provenance and verifiable by `social status --event`; repeated ingestion adds nothing (same file and renamed file); malformed, blocked, non-public, future and stale data handled; one unavailable connector recorded without ending the run or marking others healthy; tests pass and existing tests still pass. Details: CONNECTORS_02.md.
+
+C-2. (old Phase 02 guard, DONE 2026-10-10, D-020) A check script or test fails if a tracked file holds a raw post text field or another blocked class; existing `social_snapshots` rows reviewed (99 rows, all numeric Jupiter holder-change metrics, `text_value` NULL in every row).
 
 03. SUPERSEDED by Phase 01 (D-011).
 
-04. One normalized observation format for every social source. `social-note` either extended or wrapped without breaking its current arguments. Manual captures are labelled as manual. Tests cover validation and rejection of malformed input.
+04. Manual captures (and `social-note`, without breaking its arguments) produce items in `memelab.social.inbound/1` with `access_mode='manual'` and go through the same ingester. Tests cover validation and rejection.
 
 05. Social and trader sources registered with access mode (fetch, navigate, manual, blocked), tier, terms constraint and coverage gap, reusing the catalyst source registry pattern. Blocked sources stay disabled with the reason recorded. No collector code yet.
 

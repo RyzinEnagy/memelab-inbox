@@ -1,53 +1,62 @@
 # Social & Trader Intelligence: handoff
 
-Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Baseline: [AUDIT_00.md](AUDIT_00.md). Schema: [SCHEMA_01.md](SCHEMA_01.md).
+Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Baseline: [AUDIT_00.md](AUDIT_00.md). Schema: [SCHEMA_01.md](SCHEMA_01.md), [CONNECTORS_02.md](CONNECTORS_02.md).
 
 ## Position
 
-- Current phase completed: 01 (Prompt 01: durable schemas, evidence provenance and migration safety), 2026-10-10. Prompt 01 replaced the proposed Phase 01 and absorbed proposed Phase 03 (D-011).
-- Next phase: 02. ROADMAP.md has a proposal ("Content policy and public/private storage split"); if Elving supplies Prompt 02, it replaces that entry.
+- Current phase completed: 02 (Prompt 02: one ingestion contract and the existing browser bridge adapter), 2026-10-10. Prompt 02 replaced the proposed Phase 02 (D-015). Carry-over C-2 (repo-wide content guard) was then built in the same session at Elving's request (D-020).
+- Next phase: 03 is SUPERSEDED, so the next proposed entry is 04 (manual capture onto the inbound schema). If Elving supplies Prompt 03, it replaces whatever ROADMAP.md proposes.
 - Active branch: `feature/social-intelligence`.
-- Phase 01 started from `d0a0c19` (head of `origin/feature/social-intelligence`, "social-intel phase 00: ROADMAP gates follow D-009 and D-010"). Branch, HEAD and clean tree matched the Phase 00 handoff.
-- Latest commit: the head of `origin/feature/social-intelligence`. Phase 01 was pushed on 2026-10-10 through the GitHub web editor in Elving's signed-in Chrome (Browser 1), same route as D-008 and approved by Elving: 14 commits whose messages start `social-intel phase 01:`, one per file plus two fix-ups (the editor appended instead of replacing on the first edits of `.gitignore` and `memelab/db.py`). The final remote tree was checked with `git diff` against the session's local commit and matched for every file. Confirm with `git log -14 origin/feature/social-intelligence`.
+- Phase 02 started from `34830fe` (head of `origin/feature/social-intelligence`, "social-intel phase 01: HANDOFF rewritten for Phase 01"). Branch, HEAD and clean tree matched the Phase 01 handoff; baseline `python -m pytest tests -q` gave `1 failed, 78 passed`, same as recorded.
+- Local commits in the session clone: `82f7263` (Phase 02 code, tests, docs), `e0006b9` (HANDOFF), `c31ab6e` (C-2 guard, D-020), then this HANDOFF update. Elving approved the push. The session's in-browser upload was blocked by the tool permission check, so the 16 changed files were written to `~/Downloads/memelab-push/` on his Mac (folder names use `__` for `/`) for upload through the GitHub upload page, one commit per folder. Remote hashes will differ from the local ones; the next session should compare the remote files with this handoff's list before starting. Confirm with `git log origin/feature/social-intelligence`.
 
-## What Phase 01 added
+## What Phase 02 added
 
-- `memelab/social/schema.py`: 14 `social_*` tables (version 1), migration ledger `social_schema_migrations` with checksums, `migrate()`, `rollback()`, `backup_db()`, CLI `python -m memelab.social.schema status|migrate|rollback [target]`.
-- `memelab/social/store.py`: idempotent CRUD for accounts (with handle history), traders, trader-account links, items, append-only observations, token refs, claims and claim relations, evidence links, append-only wallet attributions, connector health, coverage, analysis versions. Timestamp normalization to UTC epoch; unknowns stay NULL with a basis column.
-- `memelab/social/private.py`: gitignored private store for exact wording with retention and purge.
-- `memelab/db.py`: `init_db()` calls the social migration last (2 lines). No other existing code changed.
-- `.gitignore`: `data/private/` added.
-- `tests/test_social_store.py` (15 tests) and `tests/fixtures/social/roundtrip_01.json` (invented accounts and text; the BRETT Base contract is the only real identifier).
-- `docs/social-intelligence/SCHEMA_01.md`: exact DDL (copied from code by script), conventions, content, retention and reprocessing policy, migration and rollback plan.
+- `memelab/social/ingest.py`: inbound schema `memelab.social.inbound/1`, `SourceUnit`, `SourceAdapter` (members `name`, `units(budget)`), validation, `ingest()` pipeline (event-id dedupe, batch commits with checkpoint, quarantine, per-connector health, coverage, run record), `Budget`, `with_retries`, redacting JSON logger, `event_record()` for read-back.
+- `memelab/social/bridge_adapter.py`: `BridgeInboxAdapter` over bridge result files (`soc:<platform>:<source_id>` keys; other keys ignored; `challenge` login/captcha/blocked and 429 mapped to connector states; unreadable files become a DOWN unit for that file).
+- `memelab/social/cli.py`, wired in `memelab/cli.py` (1 line): `python -m memelab social ingest --results|--file|--pull ... [--ref] [--db] [--batch-size] [--max-items] [--max-units] [--max-age-hours] [--now] [-v]` and `python -m memelab social status [--event <id>]`.
+- `memelab/bridge/social.js`: `__SOC.hash` (same normalization as `store.text_hash`) and `__SOC.put` to shape units into `window.__ML.last` for `__ML.ship`.
+- `memelab/social/schema.py`: migration 2 (`social_ingest_runs`, `social_ingest_checkpoints`, `social_ingest_quarantine`, `social_observation_provenance`), `LATEST`, `ALL_VERSIONS`.
+- `memelab/social/store.py`: `record_observation(content_hash=...)` for collector-computed hashes (backward compatible).
+- `tests/test_social_ingest.py` (18 tests), `tests/fixtures/social/inbox/soc_fx01.json` (invented accounts, hashes and summaries; one placeholder `text` value that must be quarantined).
+- `tests/test_social_store.py`: version assertions now use `schema.LATEST` / `schema.ALL_VERSIONS` instead of the literal 1 (needed once migration 2 exists; no test was removed).
+- `docs/social-intelligence/CONNECTORS_02.md`: route, inbound schema, guarantees, how X and Telegram plug in, limits, exact migration 2 DDL.
 
 ## Gate, item by item
 
-- Exact schema and migrations documented: SCHEMA_01.md.
-- Insert/read/update/idempotency: `test_fixture_round_trip_and_idempotency` (same batch loaded twice, row counts identical, same ids returned), `test_account_handle_change_and_late_provider_id`, `test_connector_health_and_coverage`.
-- Empty DB: `test_empty_db_init_and_repeat`. Migration from an existing DB: `test_migration_on_copy_of_tracked_db` (sqlite backup of `data/memelab.sqlite` into a temp dir, read-only source) and `test_migration_on_synthetic_legacy_db`.
-- Missing timestamps: `test_missing_timestamps_and_naive_times`. Duplicate provider ids: `test_duplicate_provider_ids`. Conflicting claims: `test_conflicting_claims_are_both_kept`. Rollback and recovery: `test_backup_rollback_and_recovery`, `test_failed_migration_leaves_db_unchanged`, `test_changed_applied_migration_is_refused`.
-- Current-state compatibility: row fingerprints of watchlist, theses, entries, rejections, market_snapshots, pool_snapshots, social_snapshots, holders, liquidity_quotes, price_levels, wallet_clusters and the original token columns are identical before and after migration, after full `init_db()`, and after rollback.
-- Identity rules: `test_ticker_is_not_a_token_id`, `test_social_id_is_not_a_wallet_and_retractions_append`. Public-repo safety: fixture round trip asserts no source text in any social table; `test_private_store_and_summary_guard`.
-- Fixture round trip runs through real SQLite, no mocks.
+- Runnable import CLI on the established route: `test_cli_ingest_persists_verifiable_observation` (CLI `--file`), `test_pull_route_then_ingest` (CLI `--pull` through `github_inbox.pull` with the raw fetch replaced, file lands as `<id>.result.json`, then ingested).
+- Persisted verifiable observation: same test reads `event_record('x:fx-x-0001')` and checks content hash, provider vs fetched time, URL, account, source_ref, plan id, schema, visibility, rights basis, metrics, summary; `social status --event` prints it.
+- Repeated ingestion idempotent: `test_rerun_is_idempotent` (counts identical, 2 units replayed), `test_replay_from_renamed_file_creates_no_duplicates` (4 duplicates, 0 created), `test_crash_between_batches_resumes_without_duplicates` and `test_budget_stops_cleanly_and_resumes` (end state equals a clean single run).
+- Malformed and stale: `test_bad_items_quarantined_good_items_kept` (INVALID, BLOCKED_CONTENT, NOT_PUBLIC quarantined, the item after them stored, payloads only in the private folder, no values in errors), `test_malformed_and_future_units_and_items`, `test_stale_data_is_flagged_not_dropped`.
+- One unavailable connector: `test_unavailable_connectors_do_not_mark_all_healthy` (DOWN, LOGIN_REQUIRED, OK, DEGRADED side by side; run PARTIAL), `test_unreadable_files_do_not_end_the_run`, `test_unexpected_error_in_one_connector_is_contained`, `test_all_connectors_down_is_failed_and_exits_1`.
+- Retries, logs, hashing: `test_bounded_retries`, `test_logs_never_carry_secrets_or_content`, `test_browser_hash_matches_python` (runs social.js in Node 22; skipped without node), `test_schema_v2_rolls_back_to_v1_only`.
+
+## Carry-over C-2 (repo-wide content guard)
+
+- `memelab/social/content_guard.py`, CLI `python -m memelab social guard [--root <repo>]` (exit 0 clean, 1 violations), `tests/test_content_guard.py` (7 tests, one of which scans this checkout's tracked files).
+- Rules: tracked private, wallet or quarantine files; tracked SQLite other than `data/memelab.sqlite`; blocked classes or non-public items inside `soc:*` units; social-only JSON keys (`bio`, `full_text`, `members` ...) anywhere; in the tracked DB, content columns in social tables, `private_content`, summaries over 400 characters, prose in `social_snapshots.text_value`, copied profile text in `catalyst_sources.identity_notes`. Reports location and rule, never the value. Invented fixture content allowed by exact location only.
+- Results: feature branch 214 tracked files, 57 JSON, 1 DB, 0 violations. `origin/main` at `6b0a054` (scanned in a temporary worktree): 195 files, 55 JSON, 1 DB, 0 violations. `social_snapshots`: 99 rows, all Jupiter holder-change numbers, `text_value` NULL in every row.
+- Open conflict for Elving (D-020): `catalyst plan --verify-traders` ships an X profile `bio` into the inbox and copies title and bio into `catalyst_sources.identity_notes`. Not present in any tracked file today, but the next run that uses it would fail the guard.
 
 ## Tests
 
-- Command: `python -m pytest tests -q` (needs `pip install pytest`; numpy required).
-- Outcome after the last code change: exit 1, `1 failed, 78 passed in 1.69s`. The only failure is the known pre-existing, clock-dependent `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (same as Phase 00, untouched; carry-over C-1).
-- New tests alone: `python -m pytest tests/test_social_store.py -q` -> `15 passed in 0.84s`.
-- Side effect still present: the EVM test writes `data/reports/<stamp>_BRETT_0x532f.md`; deleted by hand after each run (carry-over C-1). The tracked `data/memelab.sqlite` is not modified by the suite.
-- Smoke: `python -m memelab --help` exit 0; `python -m memelab social-note --help` exit 0; `MEMELAB_DB=<tmp> python -m memelab.social.schema status` -> `social schema version 1 latest 1`, exit 0.
+- Command: `python -m pytest tests -q` (needs `pip install pytest`; numpy required; node optional).
+- Outcome after the last code change: exit 1, `1 failed, 103 passed in 3.08s`. The only failure is the known clock-dependent `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (carry-over C-1, untouched).
+- Social tests: `python -m pytest tests/test_social_store.py tests/test_social_ingest.py tests/test_content_guard.py -q` -> `40 passed`.
+- Side effect still present: the EVM test writes `data/reports/<stamp>_BRETT_0x532f.md`; deleted by hand after each run (C-1). The tracked `data/memelab.sqlite` is not modified (`git status` clean after the run apart from that file).
+- Smoke: `python -m memelab --help` exit 0; `python -m memelab social-note --help` exit 0; `python -m memelab social ingest --file tests/fixtures/social/inbox/soc_fx01.json --db <tmp> --now 1791561600` exit 0, status PARTIAL, 4 created, 3 quarantined, health DOWN / LOGIN_REQUIRED / DEGRADED / OK; second run 0 created, 2 units replayed; `MEMELAB_DB=<tmp> python -m memelab.social.schema status` -> `social schema version 2 latest 2`.
 
 ## Things the next phase should know
 
-- When this branch reaches `main`, the next scheduled `init_db()` on the tracked database will create the empty social tables in it. That is intended, and the tables hold no source text by design, but it changes the binary committed by scheduled runs.
-- Social tables are not in the `state.py` export (decided in the scheduled-run integration phase).
-- Foreign keys are off repo-wide (D-014); new writers should go through `memelab/social/store.py`.
+- No live social read has gone through this route yet; everything is proved on the fixture. The first real X or Telegram collector phase should ship one small unit and check `social status` before scaling.
+- Summaries are written by the session in its own words; the verbatim guard cannot run on the cloud side because the text never ships (CONNECTORS_02.md, limits).
+- When this branch reaches `main`, `init_db()` on the tracked database will create the migration 2 tables (empty, no source text). Quarantine payloads live under `data/private/quarantine/` (gitignored).
+- Social tables are still not in the `state.py` export (scheduled-run phase).
 
 ## Blockers and open decisions
 
-- The cloud session still has no GitHub credential; pushes go through the web editor in Elving's signed-in Chrome (Browser 1) with his approval each phase.
-- Phase prompts 02 to 21 not yet supplied; ROADMAP.md entries for them are proposals.
+- Decide what to do about the catalyst X-profile `bio` (D-020).
+- Phase prompts 03 onward not supplied; ROADMAP.md entries are proposals.
 
 ## Exact next command
 
@@ -55,4 +64,4 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 git clone https://github.com/RyzinEnagy/memelab-inbox.git && cd memelab-inbox && git checkout feature/social-intelligence && pip install pytest numpy && python -m pytest tests -q
 ```
 
-Expect `1 failed, 78 passed`. Then start Phase 02.
+Expect `1 failed, 103 passed`, and `python -m memelab social guard` exit 0. Then start the next phase.

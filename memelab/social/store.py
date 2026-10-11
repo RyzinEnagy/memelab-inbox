@@ -254,8 +254,10 @@ def record_observation(con: sqlite3.Connection, *, platform: str, access_mode: s
                        retrieval_status: str = "OK", text: str | None = None, summary: str | None = None,
                        metrics: dict | None = None, analysis_version: str | None = None,
                        keep_exact_reason: str | None = None, error: str | None = None,
-                       now: float | None = None, private_path=None) -> dict:
-    """Append one sighting. Returns {"id", "item_key", "created", "conflicts"}. Same inputs twice -> created False."""
+                       now: float | None = None, private_path=None, content_hash: str | None = None) -> dict:
+    """Append one sighting. Returns {"id", "item_key", "created", "conflicts"}. Same inputs twice -> created False.
+    content_hash: a sha256 the collector already computed with text_hash() (used when the text itself never
+    reached this process, as on the public inbox route). If text is also given, the two must agree."""
     obs = to_utc(observed_at)
     if metrics is not None:
         bad = [k for k, v in metrics.items() if v is not None and (isinstance(v, bool) or not isinstance(v, (int, float)))]
@@ -263,7 +265,11 @@ def record_observation(con: sqlite3.Connection, *, platform: str, access_mode: s
             raise ValueError(f"metrics must be numeric counts; non-numeric keys: {bad}")
     check_summary(summary, text)
     _require_version(con, analysis_version)
-    chash = text_hash(text) if text else None
+    if content_hash is not None and not re.fullmatch(r"[0-9a-f]{64}", content_hash):
+        raise ValueError("content_hash must be a lower-case sha256 hex digest")
+    chash = text_hash(text) if text else content_hash
+    if text and content_hash is not None and content_hash != chash:
+        raise ValueError("content_hash does not match the text")
     key, conflicts = upsert_item(con, platform, provider_item_id, original_url, account_id, published_at,
                                  observed_at=obs, now=now)
     private_ref = None
