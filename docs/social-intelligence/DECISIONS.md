@@ -125,3 +125,23 @@ Known conflict: the existing catalyst trader check (`catalyst plan --verify-trad
 ## D-021 The catalyst trader check no longer collects X profile bios (ADOPTED, 2026-10-10)
 
 Decided by Elving, resolving the conflict noted in D-020. The `x_profile` projection (`bridge/catalyst.js` and `memelab/bridge/catalyst.js`) returns only the page title and whether the profile exists. `catalyst._verify_trader` marks the source VERIFIED when the title names the handle and appends a fixed note ("profile page found, title names the handle") once, with no copied text; a bio in an older result file is ignored. Test: `tests/test_catalyst_xprofile.py`. The change reaches the scheduled runs only when this branch is merged into `main`, because the browser loads `bridge/catalyst.js` from `main`.
+
+## D-022 Prompt 03 is the X API phase (ADOPTED, Phase 03, 2026-10-10)
+
+Elving supplied Prompt 03 ("X/Twitter monitoring as a real, permitted source"). The Phase 03 slot in ROADMAP.md was SUPERSEDED (D-011), so Prompt 03 takes it over as a new phase: an adapter on the official X API v2. Proposed Phase 06 (X through signed-in Chrome, D-009) is unchanged and still PLANNED; the two routes feed the same ingester.
+
+## D-023 Live X ingest is marked UNAVAILABLE; fixtures carry the proof (ADOPTED, Phase 03)
+
+There is no X developer app, Bearer token or budget consent, so no live call was made and none is claimed. The adapter, the request/response contract (from docs.x.com, read 2026-10-10), the billing guard and the health command are real; the proof runs on recorded synthetic HTTP exchanges in `tests/fixtures/social/x_api/`. Fixture rows are labelled `access_mode='fixture'`, `rights_basis='synthetic_fixture'` and spend `mode='fixture'`, and `social x-health` counts only `mode='live'` rows as live evidence.
+
+The billing guard is off by default (`allow_billable` false, caps 0). A request is made only when its worst-case cost fits both the per-run and per-month caps. Enabling it is Elving's cost decision (D-009: paid APIs only with his approval). X integration is not commercially impractical at the lab's scale (roughly $30 to $180 a month for 20 followed accounts, see X_API_03.md), so no source-alternative decision is recorded.
+
+## D-024 Inbound schema /2 and migration 3 (ADOPTED, Phase 03)
+
+`memelab.social.inbound/2` adds an optional per-item `context` (reference type, conversation id, reply-to user id, edit history ids, referenced post ids with original author ids; ids and enums only). `/1` is unchanged and still what the browser bridge ships. Migration 3 adds `social_item_context`, `social_item_refs`, `social_source_cursors`, `social_api_spend` and `social_api_billed_resources`. The X adapter stores ids, hashes, counts and context, never post text (D-013, D-016), although X's own terms would allow storing API content: the database is public.
+
+`ingest.redact()` now strips `Bearer <token>` before the generic `key: value` rule, so "Authorization: Bearer <t>" loses the token (it kept it before).
+
+## D-025 X's Developer Guidelines prohibit browser automation (PROPOSED, needs Elving, Phase 03)
+
+While verifying the API terms, the official Developer Guidelines (docs.x.com/developer-guidelines, read 2026-10-10) say: "Non-API automation (scraping, browser automation) results in permanent suspension." D-009 already accepted the risk that X restricts automated collection; this is the current, explicit wording, and it names the exact route D-009 prefers. Nothing in Phase 03 changes D-009. Elving should reconfirm D-009 for X specifically (keep Chrome reads for X, pay for the API for X, or drop X) before proposed Phase 06 is built. Telegram and other platforms are not affected by this entry.

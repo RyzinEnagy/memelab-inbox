@@ -382,9 +382,10 @@ def test_browser_hash_matches_python():
 
 def test_schema_v2_rolls_back_to_v1_only(dbp):
     con = sqlite3.connect(dbp)
-    assert schema.current_version(con) == 2
-    assert schema.rollback(con, 1) == [2]
+    above_v1 = [v for v in schema.ALL_VERSIONS if v > 1]   # version 2 and anything added after it (Phase 03: 3)
+    assert schema.current_version(con) == schema.LATEST
+    assert schema.rollback(con, 1) == above_v1[::-1]
     names = {r[0] for r in con.execute("SELECT name FROM sqlite_master WHERE type='table'")}
     assert "social_observations" in names and "social_ingest_runs" not in names
-    assert schema.migrate(con) == [2]
+    assert schema.migrate(con) == above_v1
     con.close()

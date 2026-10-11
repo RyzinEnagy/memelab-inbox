@@ -5,6 +5,8 @@
   social ingest --pull inbox/<id>.json        pull from the hand-off repo first (github_inbox.pull), then ingest
   social status [--event <event_id>]          last runs, connector health, checkpoints, quarantine; or one event
   social guard [--root <repo>]                fail if a tracked file holds raw social content (content_guard.py)
+  social x-health [--config <path>]           X API connection health; no network call (x_api.py)
+  social x-ingest [--config <path>] [--fixture <file>]   X API v2 ingest; live needs X_BEARER_TOKEN and a consented budget
 
 Exit code 0 for OK or PARTIAL runs (a down connector is recorded, not fatal), 1 for FAILED, 2 for usage errors.
 Output is a JSON summary on stdout; structured logs go to stderr as JSON lines.
@@ -85,6 +87,51 @@ def cmd_guard(a):
     raise SystemExit(1 if out["violations"] else 0)
 
 
+X_CONFIG = db.DATA_DIR / "private" / "x_api.json"
+
+
+def cmd_x_health(a):
+    from .x_api import health
+    out = health(Path(a.config) if a.config else X_CONFIG, Path(a.db) if a.db else db.DB_PATH)
+    print(json.dumps(out, indent=1, sort_keys=True, default=str))
+    raise SystemExit(0 if out["status"] == "ready" else 1)
+
+
+def cmd_x_ingest(a):
+    """Live: refuses before any network call unless the token is set and the config consents to a budget.
+    --fixture: replays recorded synthetic HTTP exchanges; rows are labelled fixture, never live."""
+    import time
+    import uuid
+    from . import ingest as I
+    from . import x_api as X
+    _setup_logging(a.verbose)
+    dbp = Path(a.db) if a.db else db.DB_PATH
+    cfg_path = Path(a.config) if a.config else X_CONFIG
+    db.init_db(dbp)
+    if a.fixture:
+        cfg, transport, token, mode = X.load_config(cfg_path), X.FixtureTransport(a.fixture), "fixture-token-not-a-secret", "fixture"
+    else:
+        h = X.health(cfg_path, dbp)
+        if h["status"] != "ready":
+            print(json.dumps({"status": "NOT_RUN", "reason": h["status"], "next_step": h["next_step"],
+                              "network_calls_made": 0}, indent=1, sort_keys=True))
+            raise SystemExit(1)
+        cfg = X.load_config(cfg_path)
+        transport, token, mode = X.UrllibTransport(timeout=cfg.timeout_seconds), X.get_token(), "live"
+    t = a.now if a.now is not None else time.time()
+    run_id = a.run_id or f"x_{mode}_{time.strftime('%Y%m%d_%H%M%S', time.gmtime(t))}_{uuid.uuid4().hex[:6]}"
+    clock = (lambda: t) if a.now is not None else time.time
+    # fixture replays do not wait out backoff delays; live runs do
+    adapter = X.XApiAdapter(cfg, transport, token, dbp, run_id=run_id, mode=mode, clock=clock,
+                            **({"sleep": lambda s: None} if mode == "fixture" else {}))
+    out = I.ingest(adapter, dbp, now=t, run_id=run_id, batch_size=a.batch_size,
+                   budget=I.Budget(max_items=a.max_items), max_age_hours=a.max_age_hours)
+    out["mode"] = mode
+    out["requests_made"] = adapter.requests
+    print(json.dumps(out, indent=1, sort_keys=True))
+    raise SystemExit(1 if out["status"] == "FAILED" else 0)
+
+
 def add_subparser(sp) -> None:
     p = sp.add_parser("social", help="Social intelligence: ingest bridge inbox observations, status")
     ssp = p.add_subparsers(dest="social_cmd", required=True)
@@ -111,3 +158,18 @@ def add_subparser(sp) -> None:
     q = ssp.add_parser("guard", help="fail if a tracked file holds raw third-party social content")
     q.add_argument("--root", help="repo root (default: this checkout)")
     q.set_defaults(fn=cmd_guard)
+    q = ssp.add_parser("x-health", help="X API adapter health (credentials, consent, cursors, live evidence); no network")
+    q.add_argument("--config", help=f"scope config (default {X_CONFIG})")
+    q.add_argument("--db")
+    q.set_defaults(fn=cmd_x_health)
+    q = ssp.add_parser("x-ingest", help="ingest configured X scopes through the official X API v2")
+    q.add_argument("--config", help=f"scope config (default {X_CONFIG})")
+    q.add_argument("--fixture", help="recorded synthetic HTTP exchanges (no network, rows labelled fixture)")
+    q.add_argument("--db")
+    q.add_argument("--batch-size", type=int, default=50)
+    q.add_argument("--max-items", type=int)
+    q.add_argument("--max-age-hours", type=float, default=12.0)
+    q.add_argument("--run-id")
+    q.add_argument("--now", type=float, help="fixed clock (epoch seconds), for replays and tests")
+    q.add_argument("-v", "--verbose", action="store_true")
+    q.set_defaults(fn=cmd_x_ingest)

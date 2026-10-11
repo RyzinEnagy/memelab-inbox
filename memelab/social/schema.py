@@ -320,10 +320,79 @@ DROP TABLE IF EXISTS social_ingest_checkpoints;
 DROP TABLE IF EXISTS social_ingest_runs;
 """
 
+V3_UP = """
+CREATE TABLE social_item_context (        -- provider-reported reference and thread context; ids only, never text
+  item_key TEXT PRIMARY KEY,              -- social_items.item_key
+  reference_type TEXT NOT NULL
+    CHECK (reference_type IN ('ORIGINAL','REPLY','REPOST','QUOTE','UNKNOWN')),
+  conversation_id TEXT,                   -- NULL = UNKNOWN (not requested or not returned)
+  in_reply_to_user_id TEXT,
+  edit_history_json TEXT,                 -- JSON list of provider ids for every version, oldest first
+  context_basis TEXT NOT NULL CHECK (context_basis IN ('PROVIDER','NOT_REQUESTED')),
+  first_recorded_at REAL NOT NULL,
+  updated_at REAL NOT NULL
+);
+
+CREATE TABLE social_item_refs (           -- what an item replies to, quotes or reposts
+  item_key TEXT NOT NULL,
+  ref_type TEXT NOT NULL CHECK (ref_type IN ('replied_to','quoted','retweeted')),
+  referenced_item_key TEXT NOT NULL,
+  referenced_author_id TEXT,              -- original author of the referenced item; NULL = UNKNOWN
+  recorded_at REAL NOT NULL,
+  PRIMARY KEY (item_key, ref_type, referenced_item_key)
+);
+CREATE INDEX ix_sir_ref ON social_item_refs(referenced_item_key);
+
+CREATE TABLE social_source_cursors (      -- incremental position per API connector and scope
+  connector TEXT NOT NULL,                -- e.g. 'x_api:user:example_a'
+  scope TEXT NOT NULL,                    -- the configured scope as text (handle, list id, search name)
+  provider_scope_id TEXT,                 -- resolved provider id (user id for a handle scope)
+  newest_id TEXT,                         -- highest provider id fully ingested; next run asks only for newer
+  last_success_at REAL,
+  last_attempt_at REAL NOT NULL,
+  last_status TEXT NOT NULL,
+  rate_limit_reset_at REAL,               -- do not call this scope again before this time
+  updated_at REAL NOT NULL,
+  PRIMARY KEY (connector, scope)
+);
+
+CREATE TABLE social_api_spend (           -- one row per paid-API request; estimates, the provider console is the bill
+  id INTEGER PRIMARY KEY,
+  connector TEXT NOT NULL,
+  run_id TEXT,
+  endpoint TEXT NOT NULL,                 -- path template, never the query string
+  http_status INTEGER,
+  billing_day TEXT NOT NULL,              -- UTC date (YYYY-MM-DD); providers dedupe per UTC day
+  resources_json TEXT,                    -- counts by resource type returned, numbers only
+  est_cost_usd REAL NOT NULL,
+  mode TEXT NOT NULL CHECK (mode IN ('live','fixture')),   -- fixture rows never count as live spend or live evidence
+  requested_at REAL NOT NULL
+);
+CREATE INDEX ix_sas_day ON social_api_spend(mode, billing_day);
+
+CREATE TABLE social_api_billed_resources (   -- resources already charged on a UTC day (24 h billing dedupe)
+  connector TEXT NOT NULL,
+  billing_day TEXT NOT NULL,
+  resource_type TEXT NOT NULL,            -- post | user
+  resource_id TEXT NOT NULL,
+  mode TEXT NOT NULL CHECK (mode IN ('live','fixture')),
+  PRIMARY KEY (billing_day, resource_type, resource_id, mode)
+);
+"""
+
+V3_DOWN = """
+DROP TABLE IF EXISTS social_api_billed_resources;
+DROP TABLE IF EXISTS social_api_spend;
+DROP TABLE IF EXISTS social_source_cursors;
+DROP TABLE IF EXISTS social_item_refs;
+DROP TABLE IF EXISTS social_item_context;
+"""
+
 # (version, name, up, down). Append only; never edit an applied entry (the checksum guard refuses it).
 MIGRATIONS: list[tuple[int, str, str, str]] = [
     (1, "social intelligence core tables", V1_UP, V1_DOWN),
     (2, "ingestion runs, checkpoints, quarantine, provenance", V2_UP, V2_DOWN),
+    (3, "item context, source cursors, paid-API spend ledger", V3_UP, V3_DOWN),
 ]
 LATEST = max(m[0] for m in MIGRATIONS)
 ALL_VERSIONS = sorted(m[0] for m in MIGRATIONS)
@@ -333,7 +402,8 @@ SOCIAL_TABLES = [
     "social_trader_accounts", "social_items", "social_observations", "social_token_refs", "social_claims",
     "social_claim_relations", "social_evidence_links", "social_wallet_attributions", "social_connector_health",
     "social_coverage", "social_ingest_runs", "social_ingest_checkpoints", "social_ingest_quarantine",
-    "social_observation_provenance",
+    "social_observation_provenance", "social_item_context", "social_item_refs", "social_source_cursors",
+    "social_api_spend", "social_api_billed_resources",
 ]
 
 

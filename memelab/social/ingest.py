@@ -35,6 +35,14 @@ from . import private, store
 from .schema import migrate
 
 INBOUND_SCHEMA = "memelab.social.inbound/1"
+# /2 = /1 plus an optional per-item "context" object (reference type, thread and edit ids; ids only, never text).
+# Added in Phase 03 for API adapters. /1 units are read exactly as before; a "context" key in a /1 item is ignored.
+INBOUND_SCHEMA_V2 = "memelab.social.inbound/2"
+INBOUND_SCHEMAS = (INBOUND_SCHEMA, INBOUND_SCHEMA_V2)
+REFERENCE_TYPES = ("ORIGINAL", "REPLY", "REPOST", "QUOTE", "UNKNOWN")
+REF_TYPES = ("replied_to", "quoted", "retweeted")
+CONTEXT_BASIS = ("PROVIDER", "NOT_REQUESTED")
+PROVIDER_ID = re.compile(r"^[A-Za-z0-9_\-]{1,64}$")
 ANALYSIS_VERSION = "social-ingest-v1"
 PLATFORMS = ("x", "telegram", "youtube", "discord", "farcaster", "other")
 ACCESS_MODES = ("fetch", "navigate", "signed_in_browser", "manual", "fixture")
@@ -61,8 +69,8 @@ _TOKEN_RE = re.compile(r"\b(gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{2
 
 
 def redact(s: str) -> str:
+    s = _BEARER_RE.sub("Bearer [REDACTED]", s)      # first, so "Authorization: Bearer <t>" loses <t> (Phase 03 fix)
     s = _SECRET_RE.sub(lambda m: m.group(1) + "[REDACTED]", s)
-    s = _BEARER_RE.sub("Bearer [REDACTED]", s)
     return _TOKEN_RE.sub("[REDACTED]", s)
 
 
@@ -182,8 +190,8 @@ def validate_envelope(body: Any, unit: SourceUnit, now: float) -> tuple[dict | N
     errors: list[str] = []
     if not isinstance(body, dict):
         return None, ["body: not an object"]
-    if body.get("schema") != INBOUND_SCHEMA:
-        errors.append(f"schema: expected {INBOUND_SCHEMA}")
+    if body.get("schema") not in INBOUND_SCHEMAS:
+        errors.append(f"schema: expected one of {', '.join(INBOUND_SCHEMAS)}")
     src = body.get("source")
     if not isinstance(src, dict):
         errors.append("source: not an object")
@@ -205,7 +213,45 @@ def validate_envelope(body: Any, unit: SourceUnit, now: float) -> tuple[dict | N
         errors.append("items: not a list")
     if errors:
         return None, errors
-    return {"source": src, "fetched_at": fetched, "items": body["items"]}, []
+    return {"source": src, "fetched_at": fetched, "items": body["items"], "schema": body["schema"]}, []
+
+
+def _validate_context(ctx: Any, errors: list[str]) -> dict | None:
+    """inbound/2 item context. Ids only; anything else is an error (never echoed)."""
+    if not isinstance(ctx, dict):
+        errors.append("context: not an object")
+        return None
+    extra = sorted(set(ctx) - {"reference_type", "conversation_id", "in_reply_to_user_id", "edit_history_ids", "referenced", "basis"})
+    if extra:
+        errors.append("context: unknown keys " + ",".join(str(x)[:30] for x in extra))
+    rt = ctx.get("reference_type", "UNKNOWN")
+    if rt not in REFERENCE_TYPES:
+        errors.append("context.reference_type: not an allowed reference type")
+    basis = ctx.get("basis", "PROVIDER")
+    if basis not in CONTEXT_BASIS:
+        errors.append("context.basis: not PROVIDER or NOT_REQUESTED")
+    for k in ("conversation_id", "in_reply_to_user_id"):
+        v = ctx.get(k)
+        if v is not None and (not isinstance(v, str) or not PROVIDER_ID.match(v)):
+            errors.append(f"context.{k}: not a provider id")
+    hist = ctx.get("edit_history_ids")
+    if hist is not None and (not isinstance(hist, list) or len(hist) > 50
+                             or not all(isinstance(h, str) and PROVIDER_ID.match(h) for h in hist)):
+        errors.append("context.edit_history_ids: not a list of at most 50 provider ids")
+    refs = ctx.get("referenced") or []
+    if not isinstance(refs, list) or len(refs) > 10:
+        errors.append("context.referenced: not a list of at most 10 references")
+        refs = []
+    clean_refs = []
+    for r in refs:
+        if (not isinstance(r, dict) or r.get("type") not in REF_TYPES or not isinstance(r.get("provider_item_id"), str)
+                or not PROVIDER_ID.match(r["provider_item_id"])
+                or (r.get("author_id") is not None and (not isinstance(r["author_id"], str) or not PROVIDER_ID.match(r["author_id"])))):
+            errors.append("context.referenced: each entry needs type, provider_item_id and an optional author_id")
+            continue
+        clean_refs.append({"type": r["type"], "provider_item_id": r["provider_item_id"], "author_id": r.get("author_id")})
+    return {"reference_type": rt, "conversation_id": ctx.get("conversation_id"), "in_reply_to_user_id": ctx.get("in_reply_to_user_id"),
+            "edit_history_ids": hist, "referenced": clean_refs, "basis": basis}
 
 
 def validate_item(item: Any, env: dict, now: float) -> tuple[dict | None, str | None, list[str], list[str]]:
@@ -220,7 +266,8 @@ def validate_item(item: Any, env: dict, now: float) -> tuple[dict | None, str | 
     if vis != "PUBLIC":
         return None, "NOT_PUBLIC", ["visibility: only PUBLIC content is ingested (D-009)"], []
     errors: list[str] = []
-    ignored = sorted(set(item) - ITEM_KEYS)
+    v2 = env.get("schema") == INBOUND_SCHEMA_V2
+    ignored = sorted(set(item) - ITEM_KEYS - ({"context"} if v2 else set()))
     plat = item.get("platform", src["platform"])
     if plat != src["platform"]:
         errors.append("platform: differs from source.platform")
@@ -275,9 +322,10 @@ def validate_item(item: Any, env: dict, now: float) -> tuple[dict | None, str | 
     eid = item.get("event_id")
     if eid is not None and (not isinstance(eid, str) or not re.fullmatch(r"[A-Za-z0-9:_\-.]{1,128}", eid)):
         errors.append("event_id: must be 1-128 characters of [A-Za-z0-9:_-.]")
+    context = _validate_context(item["context"], errors) if v2 and "context" in item else None
     if errors:
         return None, "INVALID", errors, ignored
-    return {"platform": plat, "provider_item_id": pid, "url": url, "account": acct, "published_at": published,
+    return {"context": context, "platform": plat, "provider_item_id": pid, "url": url, "account": acct, "published_at": published,
             "published_at_basis": basis, "fetched_at": fetched, "retrieval_status": status, "content_hash": ch,
             "summary": summ, "metrics": metrics or None, "event_id": eid}, None, [], ignored
 
@@ -338,14 +386,42 @@ def _persist_item(con, *, clean: dict, env: dict, unit: SourceUnit, run_id: str,
     if clean["published_at"] is not None and clean["published_at_basis"] == "PARSED_RELATIVE":
         con.execute("UPDATE social_items SET published_at_basis='PARSED_RELATIVE' WHERE item_key=? AND published_at=?",
                     (res["item_key"], clean["published_at"]))
+    if clean.get("context"):
+        _persist_context(con, plat, res["item_key"], clean["context"], now)
     con.execute("INSERT INTO social_observation_provenance(event_id,observation_id,run_id,connector,source_ref,unit_sha,item_index,"
                 "inbound_schema,plan_id,fetched_at,provider_published_at,freshness,visibility,rights_basis,terms_note,"
                 "ignored_fields,recorded_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                (event_id, res["id"], run_id, unit.connector, unit.source_ref, unit.unit_sha, index, INBOUND_SCHEMA,
+                (event_id, res["id"], run_id, unit.connector, unit.source_ref, unit.unit_sha, index, env.get("schema", INBOUND_SCHEMA),
                  unit.plan_id, clean["fetched_at"], clean["published_at"],
                  "STALE" if clean["fetched_at"] < stale_before else "FRESH", "PUBLIC", src["rights_basis"],
                  src.get("terms_note"), json.dumps(ignored) if ignored else None, now))
     return "created" if res["created"] else "duplicate"
+
+
+def _persist_context(con, platform: str, item_key: str, ctx: dict, now: float) -> None:
+    """Upsert item context (inbound/2). A known reference type is never overwritten by UNKNOWN; the longest edit
+    history wins (a later sighting knows about more versions); references are add-only."""
+    hist = json.dumps(ctx["edit_history_ids"]) if ctx.get("edit_history_ids") else None
+    row = con.execute("SELECT * FROM social_item_context WHERE item_key=?", (item_key,)).fetchone()
+    if row is None:
+        con.execute("INSERT INTO social_item_context(item_key,reference_type,conversation_id,in_reply_to_user_id,edit_history_json,"
+                    "context_basis,first_recorded_at,updated_at) VALUES (?,?,?,?,?,?,?,?)",
+                    (item_key, ctx["reference_type"], ctx.get("conversation_id"), ctx.get("in_reply_to_user_id"), hist,
+                     ctx["basis"], now, now))
+    else:
+        rt = row["reference_type"] if ctx["reference_type"] == "UNKNOWN" else ctx["reference_type"]
+        old = json.loads(row["edit_history_json"]) if row["edit_history_json"] else []
+        new_hist = hist if ctx.get("edit_history_ids") and len(ctx["edit_history_ids"]) > len(old) else row["edit_history_json"]
+        basis = "PROVIDER" if "PROVIDER" in (row["context_basis"], ctx["basis"]) else ctx["basis"]
+        con.execute("UPDATE social_item_context SET reference_type=?, conversation_id=COALESCE(conversation_id,?),"
+                    " in_reply_to_user_id=COALESCE(in_reply_to_user_id,?), edit_history_json=?, context_basis=?, updated_at=?"
+                    " WHERE item_key=?", (rt, ctx.get("conversation_id"), ctx.get("in_reply_to_user_id"), new_hist, basis, now, item_key))
+    for r in ctx.get("referenced") or []:
+        ref_key = store.item_key_for(platform, r["provider_item_id"], None)
+        con.execute("INSERT INTO social_item_refs(item_key,ref_type,referenced_item_key,referenced_author_id,recorded_at)"
+                    " VALUES (?,?,?,?,?) ON CONFLICT(item_key,ref_type,referenced_item_key) DO UPDATE SET"
+                    " referenced_author_id=COALESCE(referenced_author_id,excluded.referenced_author_id)",
+                    (item_key, r["type"], ref_key, r.get("author_id"), now))
 
 
 def _worse(a: str | None, b: str) -> str:

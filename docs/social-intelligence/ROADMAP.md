@@ -4,7 +4,7 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Phases 00, 01 and 02 came with written phase prompts. Phases 03 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015).
+Phases 00, 01, 02 and 03 came with written phase prompts. Phases 04 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022).
 
 Status values also include SUPERSEDED (folded into another phase).
 
@@ -15,10 +15,10 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 00 | Repo audit and execution contract | none | DONE |
 | 01 | Durable schemas, evidence provenance and migration safety (Prompt 01) | 00 | DONE |
 | 02 | Ingestion contract and bridge/inbox adapter (Prompt 02) | 01 | DONE |
-| 03 | Social schema and migrations | 02 | SUPERSEDED by 01 |
+| 03 | X monitoring through the official X API v2 (Prompt 03; old slot "social schema" was SUPERSEDED by 01) | 02 | DONE (live UNAVAILABLE, D-023) |
 | 04 | Manual capture onto the inbound schema (contract done in 02) | 02 | NEXT (proposed) |
 | 05 | Source registry for social and trader sources | 02, 03 | PLANNED |
-| 06 | Collector: X via signed-in Chrome | 04, 05 | PLANNED |
+| 06 | Collector: X via signed-in Chrome (needs D-025 decision) | 04, 05 | PLANNED |
 | 07 | Collector: Telegram public channels | 04, 05 | PLANNED |
 | 08 | Collector: other readable sources (YouTube RSS, token-listed links) | 04, 05 | PLANNED |
 | 09 | Entity resolution: accounts, projects, tokens by address | 06 | PLANNED |
@@ -36,6 +36,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 21 | End-to-end validation, docs, merge request | 20 | PLANNED |
 | C-1 | Carry-over: test isolation and clock (old Phase 01) | 00 | PLANNED, unscheduled |
 | C-2 | Carry-over: repo-wide guard against raw social text in tracked files (old Phase 02) | 02 | DONE |
+| C-3 | Carry-over: purge stored X observations of posts NOT_FOUND for 24 h (X deletion rule), needed before live X data is kept | 03 | PLANNED, unscheduled |
 
 ## Phase gates
 
@@ -49,7 +50,9 @@ C-1. (old Phase 01 gate, carried over) `test_catalyst.py::test_dedup_corroborati
 
 C-2. (old Phase 02 guard, DONE 2026-10-10, D-020) A check script or test fails if a tracked file holds a raw post text field or another blocked class; existing `social_snapshots` rows reviewed (99 rows, all numeric Jupiter holder-change metrics, `text_value` NULL in every row).
 
-03. SUPERSEDED by Phase 01 (D-011).
+03. (Prompt 03, DONE 2026-10-10) Real adapter on the official X API v2 with the contract confirmed from docs.x.com (X_API_03.md); configured user, list, recent-search and recheck scopes; stable ids, author, provider time, link, text hash (no text kept), reference type, conversation and edit context, provenance and freshness through ingest(); pagination, rate limits, 429/403 handling, incremental cursor, billing guard, re-ingest dedupe; health command reports `credentials_missing`; live ingest explicitly marked UNAVAILABLE (D-023); fixture tests for originals, replies, reposts, quotes, duplicate ids, author changes, edits, deletions via recheck, pagination, 429, 403, billing guard, timestamps, freshness and secret redaction.
+
+C-3. Posts that `recheck` finds NOT_FOUND have their earlier X observations (hash, metrics) purged or nulled within 24 hours; test proves it. Only needed once live X data is stored.
 
 04. Manual captures (and `social-note`, without breaking its arguments) produce items in `memelab.social.inbound/1` with `access_mode='manual'` and go through the same ingester. Tests cover validation and rejection.
 
