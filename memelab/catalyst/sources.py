@@ -55,7 +55,7 @@ SCHEDULED_FEEDS = [
 
 SOCIAL_SOURCES = [
     # platform, access_mode, coverage gap text
-    ("social:x:timelines", "x.com", "manual", "X timelines require a logged-in session; the bridge tab is not logged in. Profile pages (bio, join date, follower count, verification badge) are readable and are used for identity verification only. Closing the gap: sign into X in the Chrome profile the bridge uses, after which navigate-and-read of public timelines works."),
+    ("social:x:timelines", "x.com", "manual", "X timelines require a logged-in session; the bridge tab is not logged in. Profile pages are readable and are used for identity verification only (page exists and its title names the handle); the bio is not collected (D-020). Closing the gap: sign into X in the Chrome profile the bridge uses, after which navigate-and-read of public timelines works."),
     ("social:reddit", "reddit.com", "blocked", "Blocked by the browser safety policy for this session (navigation refused) and CORS-blocked for fetch. No alternative in place."),
     ("social:youtube:feeds", "youtube.com/feeds", "navigate", "Channel RSS feeds are readable by navigation, but no channels are configured yet; add rows with a channel_id feed URL when a tracked narrative has an originating channel."),
     ("social:tiktok", "tiktok.com", "blocked", "No public read API; app-first platform. Not covered."),

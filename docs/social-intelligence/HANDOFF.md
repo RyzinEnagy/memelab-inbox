@@ -8,7 +8,7 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 - Next phase: 03 is SUPERSEDED, so the next proposed entry is 04 (manual capture onto the inbound schema). If Elving supplies Prompt 03, it replaces whatever ROADMAP.md proposes.
 - Active branch: `feature/social-intelligence`.
 - Phase 02 started from `34830fe` (head of `origin/feature/social-intelligence`, "social-intel phase 01: HANDOFF rewritten for Phase 01"). Branch, HEAD and clean tree matched the Phase 01 handoff; baseline `python -m pytest tests -q` gave `1 failed, 78 passed`, same as recorded.
-- Pushed: `b21a854` "Add files via upload" on `origin/feature/social-intelligence` (2026-10-10). The session could not push (git proxy 403: repo not in the session's authorized set; Chrome upload blocked by the tool permission check), so Elving uploaded the 16 changed files by hand through the GitHub upload page in one commit. The session's six local commits (`82f7263` to `98f8b0c`) were replaced by that commit; the session then reset its branch to `b21a854`, confirmed every file matched its local copy (only this HANDOFF line differed), and reran the suite on the pushed tree: `1 failed, 103 passed`, `social guard` exit 0. This HANDOFF correction is a separate, later upload.
+- Pushed: `b21a854` "Add files via upload" on `origin/feature/social-intelligence` (2026-10-10). The session could not push (git proxy 403: repo not in the session's authorized set; Chrome upload blocked by the tool permission check), so Elving uploaded the 16 changed files by hand through the GitHub upload page in one commit. The session's six local commits (`82f7263` to `98f8b0c`) were replaced by that commit; the session then reset its branch to `b21a854`, confirmed every file matched its local copy (only this HANDOFF line differed), and reran the suite on the pushed tree: `1 failed, 103 passed`, `social guard` exit 0. This HANDOFF correction went up as `94046c7`. The D-021 change (bio removal) followed as a further manual upload.
 
 ## What Phase 02 added
 
@@ -36,12 +36,12 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 - `memelab/social/content_guard.py`, CLI `python -m memelab social guard [--root <repo>]` (exit 0 clean, 1 violations), `tests/test_content_guard.py` (7 tests, one of which scans this checkout's tracked files).
 - Rules: tracked private, wallet or quarantine files; tracked SQLite other than `data/memelab.sqlite`; blocked classes or non-public items inside `soc:*` units; social-only JSON keys (`bio`, `full_text`, `members` ...) anywhere; in the tracked DB, content columns in social tables, `private_content`, summaries over 400 characters, prose in `social_snapshots.text_value`, copied profile text in `catalyst_sources.identity_notes`. Reports location and rule, never the value. Invented fixture content allowed by exact location only.
 - Results: feature branch 214 tracked files, 57 JSON, 1 DB, 0 violations. `origin/main` at `6b0a054` (scanned in a temporary worktree): 195 files, 55 JSON, 1 DB, 0 violations. `social_snapshots`: 99 rows, all Jupiter holder-change numbers, `text_value` NULL in every row.
-- Open conflict for Elving (D-020): `catalyst plan --verify-traders` ships an X profile `bio` into the inbox and copies title and bio into `catalyst_sources.identity_notes`. Not present in any tracked file today, but the next run that uses it would fail the guard.
+- The catalyst X-profile conflict noted in D-020 is resolved by D-021: the trader check no longer collects or stores bios (`tests/test_catalyst_xprofile.py`). It takes effect on scheduled runs only after merge into `main`.
 
 ## Tests
 
 - Command: `python -m pytest tests -q` (needs `pip install pytest`; numpy required; node optional).
-- Outcome after the last code change: exit 1, `1 failed, 103 passed in 3.08s`. The only failure is the known clock-dependent `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (carry-over C-1, untouched).
+- Outcome after the last code change (D-021): exit 1, `1 failed, 106 passed in 3.73s`. The only failure is the known clock-dependent `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (carry-over C-1, untouched).
 - Social tests: `python -m pytest tests/test_social_store.py tests/test_social_ingest.py tests/test_content_guard.py -q` -> `40 passed`.
 - Side effect still present: the EVM test writes `data/reports/<stamp>_BRETT_0x532f.md`; deleted by hand after each run (C-1). The tracked `data/memelab.sqlite` is not modified (`git status` clean after the run apart from that file).
 - Smoke: `python -m memelab --help` exit 0; `python -m memelab social-note --help` exit 0; `python -m memelab social ingest --file tests/fixtures/social/inbox/soc_fx01.json --db <tmp> --now 1791561600` exit 0, status PARTIAL, 4 created, 3 quarantined, health DOWN / LOGIN_REQUIRED / DEGRADED / OK; second run 0 created, 2 units replayed; `MEMELAB_DB=<tmp> python -m memelab.social.schema status` -> `social schema version 2 latest 2`.
@@ -55,7 +55,6 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 
 ## Blockers and open decisions
 
-- Decide what to do about the catalyst X-profile `bio` (D-020).
 - Cowork cloud sessions cannot push to `memelab-inbox` (repo not attached to the session). Each phase ends with a manual upload unless the phase runs in a Claude Code cloud session with the repo attached.
 - Phase prompts 03 onward not supplied; ROADMAP.md entries are proposals.
 
@@ -65,4 +64,4 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 git clone https://github.com/RyzinEnagy/memelab-inbox.git && cd memelab-inbox && git checkout feature/social-intelligence && pip install pytest numpy && python -m pytest tests -q
 ```
 
-Expect `1 failed, 103 passed`, and `python -m memelab social guard` exit 0. Then start the next phase.
+Expect `1 failed, 106 passed`, and `python -m memelab social guard` exit 0. Then start the next phase.

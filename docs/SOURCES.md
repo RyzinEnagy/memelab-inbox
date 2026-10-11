@@ -69,7 +69,7 @@ Access modes from the browser bridge. Nothing below is reachable from the sandbo
 | Cointelegraph, CoinDesk, Decrypt, The Block RSS | navigate | reputable | CORS-blocked; XML documents parsed in place |
 | Google News RSS (query feeds) | navigate | aggregator | 100 items per query with publisher names; CSP forbids eval on this origin, so parse inline |
 | Bybit, OKX announcement APIs | navigate | official | Bybit returned a non-JSON challenge page on 2026-10-07; OKX untested |
-| X profile pages | fetch | social | identity verification only (title, bio); timelines need a logged-in Chrome profile |
+| X profile pages | fetch | social | identity verification only (page title; bio not collected, D-020); timelines need a logged-in Chrome profile |
 | X timelines, Reddit, TikTok, Instagram | blocked / manual | social | coverage gaps recorded per source in catalyst_sources.coverage_gap |
 
 Trader research list (identity checked from public profile pages on 2026-10-07): @rasmr_eth, @Rewkang, @thedefivillain, @0xSisyphus, @blknoiz06 VERIFIED; @redphonecrypto NOT FOUND (404) and disabled pending a replacement handle. These are research sources, not certified profitable traders.

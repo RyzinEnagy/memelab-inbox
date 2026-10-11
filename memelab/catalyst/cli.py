@@ -173,7 +173,11 @@ def _verify_trader(source_id: str, v: dict):
     handle = source_id.split(":")[-1]
     with db.connect() as con:
         if v.get("s") == 200 and body.get("exists") and handle.lower() in (body.get("title") or "").lower():
-            con.execute("UPDATE catalyst_sources SET identity_verified='VERIFIED', identity_notes=COALESCE(identity_notes,'') || ' | profile: ' || ? WHERE source_id=?", ((body.get("title") or "")[:80] + " / " + (body.get("bio") or "")[:120], source_id))
+            # no profile text is copied (D-020): the public database records only that the page exists and its
+            # title names the handle. A bio in an older result file is ignored.
+            note = " | profile page found, title names the handle"
+            con.execute("UPDATE catalyst_sources SET identity_verified='VERIFIED', identity_notes=CASE WHEN instr(COALESCE(identity_notes,''), ?) > 0 "
+                        "THEN identity_notes ELSE COALESCE(identity_notes,'') || ? END WHERE source_id=?", (note, note, source_id))
         else:
             con.execute("UPDATE catalyst_sources SET identity_verified='NOT_FOUND', last_error=? WHERE source_id=?", (f"profile fetch status {v.get('s')}", source_id))
 
