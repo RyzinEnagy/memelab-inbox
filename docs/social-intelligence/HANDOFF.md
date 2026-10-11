@@ -9,7 +9,7 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 - Next phase: 04 (manual capture onto the inbound schema) as proposed in ROADMAP.md, unless Elving supplies Prompt 04.
 - Active branch: `feature/social-intelligence`.
 - Phase 03 started from `71fddc4` ("Add files via upload", the D-021 upload). The Phase 02 handoff named `94046c7` plus "a further manual upload"; `71fddc4` is that upload. Tree clean; baseline `python -m pytest tests -q` gave `1 failed, 106 passed`, same as recorded.
-- Local commits: `42aa49c` "social-intel phase 03: X API v2 adapter, billing guard, fixtures (live unavailable)" and the commit that adds this HANDOFF on top of it. Not pushed: the git proxy refused the push (403, `RyzinEnagy/memelab-inbox` is not in this session's authorized repository set), `GH_TOKEN` is invalid, and no GitHub connector is installed for the account. The commits were delivered to Elving as a git bundle and a patch.
+- Pushed: `21ba391` "Add files via upload" on `origin/feature/social-intelligence` (2026-10-11). The session could not push (git proxy 403, repo not in the session's authorized set; `GH_TOKEN` invalid; no GitHub connector installed), so Elving uploaded the 14 changed files through the GitHub upload page in one commit. It replaces the session's local commits `42aa49c` and `02f32fd`. Checked after the upload: `git diff 02f32fd origin/feature/social-intelligence` is empty, `python -m pytest tests -q` on the pushed tree gives `1 failed, 142 passed`, `social guard` 224 tracked files, 61 JSON, 0 violations. This HANDOFF correction is a further upload.
 
 ## What Phase 03 added
 
@@ -66,7 +66,7 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 
 ## Blockers and open decisions
 
-- Push: this session could not push (see Position). Elving applies the bundle or patch, or uploads the 14 files through the GitHub web page as before.
+- Push: Cowork cloud sessions cannot push to `memelab-inbox` (repo not in the session's authorized set). Each phase ends with a manual upload unless the repo is added to the session's sources.
 - D-025 (X browser automation vs X guidelines) and the X API budget (D-023) are Elving's decisions.
 - Phase prompts 04 onward not supplied; ROADMAP.md entries are proposals.
 
@@ -76,4 +76,4 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 git clone https://github.com/RyzinEnagy/memelab-inbox.git && cd memelab-inbox && git checkout feature/social-intelligence && pip install pytest numpy && python -m pytest tests -q
 ```
 
-Expect `1 failed, 142 passed` once the Phase 03 commits are on the remote branch (`1 failed, 106 passed` if they are not yet), and `python -m memelab social guard` exit 0. Then start the next phase.
+Expect `1 failed, 142 passed` and `python -m memelab social guard` exit 0. Then start the next phase.
