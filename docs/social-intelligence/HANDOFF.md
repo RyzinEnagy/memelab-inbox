@@ -8,7 +8,7 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 - Next phase: 03 is SUPERSEDED, so the next proposed entry is 04 (manual capture onto the inbound schema). If Elving supplies Prompt 03, it replaces whatever ROADMAP.md proposes.
 - Active branch: `feature/social-intelligence`.
 - Phase 02 started from `34830fe` (head of `origin/feature/social-intelligence`, "social-intel phase 01: HANDOFF rewritten for Phase 01"). Branch, HEAD and clean tree matched the Phase 01 handoff; baseline `python -m pytest tests -q` gave `1 failed, 78 passed`, same as recorded.
-- Local commits in the session clone: `82f7263` (Phase 02 code, tests, docs), `e0006b9` (HANDOFF), `c31ab6e` (C-2 guard, D-020), then this HANDOFF update. Elving approved the push. The session's in-browser upload was blocked by the tool permission check, so the 16 changed files were written to `~/Downloads/memelab-push/` on his Mac (folder names use `__` for `/`) for upload through the GitHub upload page, one commit per folder. Remote hashes will differ from the local ones; the next session should compare the remote files with this handoff's list before starting. Confirm with `git log origin/feature/social-intelligence`.
+- Pushed: `b21a854` "Add files via upload" on `origin/feature/social-intelligence` (2026-10-10). The session could not push (git proxy 403: repo not in the session's authorized set; Chrome upload blocked by the tool permission check), so Elving uploaded the 16 changed files by hand through the GitHub upload page in one commit. The session's six local commits (`82f7263` to `98f8b0c`) were replaced by that commit; the session then reset its branch to `b21a854`, confirmed every file matched its local copy (only this HANDOFF line differed), and reran the suite on the pushed tree: `1 failed, 103 passed`, `social guard` exit 0. This HANDOFF correction is a separate, later upload.
 
 ## What Phase 02 added
 
@@ -56,6 +56,7 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 ## Blockers and open decisions
 
 - Decide what to do about the catalyst X-profile `bio` (D-020).
+- Cowork cloud sessions cannot push to `memelab-inbox` (repo not attached to the session). Each phase ends with a manual upload unless the phase runs in a Claude Code cloud session with the repo attached.
 - Phase prompts 03 onward not supplied; ROADMAP.md entries are proposals.
 
 ## Exact next command
