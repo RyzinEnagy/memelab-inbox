@@ -123,6 +123,17 @@ class Plan:
             self.add(f"helius_tx:{w}", HELIUS_TX.format(addr=w, key=key, limit=limit), proj="helius_tx", delay_ms=250)
         return self
 
+    def wallet_activity(self, wallets: list[str], limit: int = 50):
+        """Helius Enhanced Transactions per tracked wallet, full signatures, slot and failure flag (projection helius_wallet_tx, Phase 09).
+        The older wallet_forensics projection cuts signatures to 12 characters and is not used for activity."""
+        from .github_inbox import load_config
+        key = load_config().get("helius_api_key")
+        if not key:
+            raise RuntimeError("helius_api_key missing in data/config.json")
+        for w in wallets:
+            self.add(f"helius_wallet_tx:{w}", HELIUS_TX.format(addr=w, key=key, limit=limit), proj="helius_wallet_tx", delay_ms=400)
+        return self
+
     def holders_full(self, mint: str, pages: int = 3):
         """Helius DAS getTokenAccounts: complete holder list, 1000 per page."""
         for pg in range(1, pages + 1):

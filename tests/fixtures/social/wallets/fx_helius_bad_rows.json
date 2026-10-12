@@ -1,0 +1,157 @@
+{
+ "chain": "solana",
+ "fetched_at": 1791844200,
+ "fixture_label": "INVENTED FIXTURE: not from any chain, provider or person; missing, truncated and duplicate signatures, a missing and a future block time, a non-object row",
+ "provider": "helius",
+ "results": {
+  "helius_wallet_tx:GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc": {
+   "body": [
+    {
+     "err": false,
+     "fee": 5000,
+     "nk": 1,
+     "nn": 1,
+     "nt": [
+      [
+       "FijRXZUdJFJ2YgATvbL5BYwEWPqwUZvHpCK3oE3EzW3M",
+       "GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc",
+       0.9
+      ]
+     ],
+     "payer": "GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc",
+     "sig": "2XTVy6xdWbhjRudMw3MW3EA5ZCWsRWuZmpXzWStxko5o47s9kbqV5QF7V3NQtoybcEv8cRXnt6jBNyX7ToPZXLPT",
+     "slot": 300000002,
+     "src": "FIXTURE_DEX",
+     "ts": 1791825000,
+     "tt": [
+      [
+       "GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc",
+       "FijRXZUdJFJ2YgATvbL5BYwEWPqwUZvHpCK3oE3EzW3M",
+       "A3KWhir18wv8cEuU4TDyXHk1LDnSvqEhUHdWN1w6EVGK",
+       100000
+      ]
+     ],
+     "type": "SWAP"
+    },
+    {
+     "err": false,
+     "fee": 5000,
+     "nk": 1,
+     "nn": 1,
+     "nt": [
+      [
+       "GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc",
+       "FijRXZUdJFJ2YgATvbL5BYwEWPqwUZvHpCK3oE3EzW3M",
+       1
+      ]
+     ],
+     "payer": "GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc",
+     "slot": 300000041,
+     "src": "FIXTURE_DEX",
+     "ts": 1791824500,
+     "tt": [
+      [
+       "FijRXZUdJFJ2YgATvbL5BYwEWPqwUZvHpCK3oE3EzW3M",
+       "GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc",
+       "A3KWhir18wv8cEuU4TDyXHk1LDnSvqEhUHdWN1w6EVGK",
+       5
+      ]
+     ],
+     "type": "SWAP"
+    },
+    {
+     "err": false,
+     "fee": 5000,
+     "nk": 1,
+     "nn": 0,
+     "nt": [],
+     "payer": "GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc",
+     "sig": "4rJEQsVQzQks",
+     "slot": 300000042,
+     "src": "FIXTURE_DEX",
+     "ts": 1791824510,
+     "tt": [
+      [
+       "GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc",
+       "CXhKxiasjsYNRC4Y1cn9NmhiVbu7CSNo6w4e2DthfYuk",
+       "A3KWhir18wv8cEuU4TDyXHk1LDnSvqEhUHdWN1w6EVGK",
+       5
+      ]
+     ],
+     "type": "TRANSFER"
+    },
+    {
+     "err": false,
+     "fee": 5000,
+     "nk": 1,
+     "nn": 0,
+     "nt": [],
+     "payer": "GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc",
+     "sig": "4KY7bDkWCE8hysYgECMi2feSvGrBKPcnPx1Gsr6siurrYmCgfCTtLwsNeasf9UBnwBJdFQaCabw7sBGwUHgLBo9C",
+     "slot": 300000043,
+     "src": "FIXTURE_DEX",
+     "tt": [
+      [
+       "GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc",
+       "CXhKxiasjsYNRC4Y1cn9NmhiVbu7CSNo6w4e2DthfYuk",
+       "A3KWhir18wv8cEuU4TDyXHk1LDnSvqEhUHdWN1w6EVGK",
+       6
+      ]
+     ],
+     "type": "TRANSFER"
+    },
+    {
+     "err": false,
+     "fee": 5000,
+     "nk": 1,
+     "nn": 0,
+     "nt": [],
+     "payer": "GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc",
+     "sig": "2D468qYWLrj8KM2EMyBTtMDckUbamu1p1fampaUn9jVNBMskybevwupr1Vyf1EqjCTR6DLDzeJkrvkCX5LQ4Dia8",
+     "slot": 300000044,
+     "src": "FIXTURE_DEX",
+     "ts": 1791849600,
+     "tt": [
+      [
+       "GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc",
+       "CXhKxiasjsYNRC4Y1cn9NmhiVbu7CSNo6w4e2DthfYuk",
+       "A3KWhir18wv8cEuU4TDyXHk1LDnSvqEhUHdWN1w6EVGK",
+       7
+      ]
+     ],
+     "type": "TRANSFER"
+    },
+    {
+     "err": false,
+     "fee": 5000,
+     "nk": 1,
+     "nn": 1,
+     "nt": [
+      [
+       "FijRXZUdJFJ2YgATvbL5BYwEWPqwUZvHpCK3oE3EzW3M",
+       "GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc",
+       0.9
+      ]
+     ],
+     "payer": "GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc",
+     "sig": "2XTVy6xdWbhjRudMw3MW3EA5ZCWsRWuZmpXzWStxko5o47s9kbqV5QF7V3NQtoybcEv8cRXnt6jBNyX7ToPZXLPT",
+     "slot": 300000002,
+     "src": "FIXTURE_DEX",
+     "ts": 1791825000,
+     "tt": [
+      [
+       "GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc",
+       "FijRXZUdJFJ2YgATvbL5BYwEWPqwUZvHpCK3oE3EzW3M",
+       "A3KWhir18wv8cEuU4TDyXHk1LDnSvqEhUHdWN1w6EVGK",
+       100000
+      ]
+     ],
+     "type": "SWAP"
+    },
+    17
+   ],
+   "s": 200
+  }
+ },
+ "schema": "memelab.wallet.fetch/1"
+}

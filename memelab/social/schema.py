@@ -886,6 +886,167 @@ DROP TABLE IF EXISTS social_registry_captures;
 DROP TABLE IF EXISTS social_registry_sources;
 """
 
+V9_UP = """
+CREATE TABLE social_wallet_assertions (   -- one claim that a social account controls one exact wallet; content never changes, only review and status
+  assertion_id INTEGER PRIMARY KEY,
+  assertion_key TEXT NOT NULL UNIQUE,     -- sha256(account | chain | wallet | evidence type | asserter | evidence ref | message hash | validity)
+  account_entity TEXT NOT NULL,           -- registry entity 'acct:...' (the asserted trader or account; a trader is reached through its accounts)
+  chain TEXT NOT NULL,
+  wallet_address TEXT NOT NULL,           -- exact, canonical for the chain; never a social id or handle
+  evidence_type TEXT NOT NULL CHECK (evidence_type IN
+    ('OFFICIAL_SELF_DISCLOSURE','SIGNED_MESSAGE','INDEPENDENT_LINKED_SOURCE','THIRD_PARTY_CLAIM','TRANSACTION_PATTERN')),
+  asserter_entity TEXT,                   -- who made the statement (the account itself for a self-disclosure); NULL for a transaction pattern
+  evidence_ref TEXT NOT NULL,             -- https URL, observation:<id>, tx:<signature> or repo:<path>; the record must be re-checkable from it
+  evidence_sha256 TEXT,                   -- sha256 of the signed message when there is one (the text itself is not stored)
+  signature_check TEXT NOT NULL DEFAULT 'NOT_APPLICABLE'
+    CHECK (signature_check IN ('NOT_APPLICABLE','VALID_BOUND','VALID_UNBOUND','INVALID','MALFORMED','UNSUPPORTED')),
+  signature_detail TEXT,
+  signature_verifier TEXT,
+  observed_at REAL NOT NULL,              -- when the lab saw the evidence
+  valid_from REAL, valid_to REAL,         -- period the claim is said to hold; NULL = not stated
+  confidence TEXT NOT NULL DEFAULT 'UNKNOWN' CHECK (confidence IN ('HIGH','MODERATE','LOW','UNKNOWN')),
+  control_hypothesis TEXT NOT NULL CHECK (control_hypothesis IN ('ACCOUNT_CLAIMS_WALLET','ACCOUNT_CONTROLS_KEY','RELATED_BY_ACTIVITY')),
+  real_world_identity TEXT NOT NULL DEFAULT 'UNKNOWN' CHECK (real_world_identity IN ('UNKNOWN','SUBJECT_DISCLOSED')),
+  review_state TEXT NOT NULL DEFAULT 'UNREVIEWED' CHECK (review_state IN ('UNREVIEWED','APPROVED','REJECTED')),
+  reviewed_by TEXT, reviewed_at REAL, review_reason TEXT,
+  status TEXT NOT NULL DEFAULT 'ACTIVE' CHECK (status IN ('ACTIVE','REVOKED','SUPERSEDED')),
+  status_reason TEXT, status_at REAL, status_by TEXT,
+  superseded_by INTEGER REFERENCES social_wallet_assertions(assertion_id),
+  registry_link_id INTEGER UNIQUE,        -- set when the row was adopted from a Phase 08 registry link
+  recorded_by TEXT NOT NULL, recorded_at REAL NOT NULL,
+  note TEXT CHECK (note IS NULL OR length(note) <= 300),
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1))
+);
+CREATE INDEX ix_swas_wallet ON social_wallet_assertions(chain, wallet_address);
+CREATE INDEX ix_swas_account ON social_wallet_assertions(account_entity);
+
+CREATE TABLE social_wallet_labels (       -- what a wallet is (custody, protocol, pool ...), append-only; the newest ACTIVE row wins
+  label_id INTEGER PRIMARY KEY,
+  chain TEXT NOT NULL, wallet_address TEXT NOT NULL,
+  label_kind TEXT NOT NULL CHECK (label_kind IN ('CUSTODY_EXCHANGE','CUSTODY_OTHER','PROTOCOL','POOL','NO_SPECIAL_LABEL')),
+  label_text TEXT CHECK (label_text IS NULL OR length(label_text) <= 120),
+  source_ref TEXT NOT NULL,
+  set_by TEXT NOT NULL, set_at REAL NOT NULL,
+  status TEXT NOT NULL DEFAULT 'ACTIVE' CHECK (status IN ('ACTIVE','SUPERSEDED')),
+  supersedes_label_id INTEGER REFERENCES social_wallet_labels(label_id),
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1))
+);
+CREATE INDEX ix_swl_wallet ON social_wallet_labels(chain, wallet_address, status);
+
+CREATE TABLE social_tracked_wallets (     -- wallet-level monitoring; says nothing about who owns the wallet
+  tracked_id INTEGER PRIMARY KEY,
+  chain TEXT NOT NULL, wallet_address TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'ACTIVE' CHECK (status IN ('ACTIVE','PAUSED','REMOVED')),
+  reason TEXT NOT NULL CHECK (length(reason) <= 300),
+  selection_basis TEXT NOT NULL CHECK (selection_basis IN ('MANUAL','REGISTRY_ENTITY','DISCOVERED')),
+  added_by TEXT NOT NULL, added_at REAL NOT NULL,
+  watch_since REAL NOT NULL,              -- transactions before this are BACKFILL, not live observation
+  max_tx_per_fetch INTEGER NOT NULL DEFAULT 50 CHECK (max_tx_per_fetch BETWEEN 1 AND 100),
+  custody_override INTEGER NOT NULL DEFAULT 0 CHECK (custody_override IN (0,1)),
+  status_by TEXT, status_at REAL, status_reason TEXT,
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1)),
+  UNIQUE (chain, wallet_address)
+);
+
+CREATE TABLE social_wallet_fetches (      -- one provider response for one wallet: the first link in an event's provenance chain
+  fetch_id INTEGER PRIMARY KEY,
+  fetch_key TEXT NOT NULL UNIQUE,         -- sha256(provider | chain | wallet | fetched_at | payload sha)
+  provider TEXT NOT NULL, chain TEXT NOT NULL, wallet_address TEXT NOT NULL,
+  fetched_at REAL NOT NULL,
+  http_status INTEGER,
+  status TEXT NOT NULL CHECK (status IN ('OK','PARTIAL','STALE','RATE_LIMITED','ERROR','UNAVAILABLE','SKIPPED')),
+  rows_seen INTEGER NOT NULL DEFAULT 0, rows_stored INTEGER NOT NULL DEFAULT 0, rows_rejected INTEGER NOT NULL DEFAULT 0,
+  payload_sha256 TEXT,                    -- sha256 of the source file (or of the canonical JSON when ingested from memory)
+  source_ref TEXT,                        -- file name or inbox path; never a credential
+  retry_after_s REAL,
+  detail TEXT,
+  rejects_json TEXT NOT NULL DEFAULT '[]',
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1))
+);
+CREATE INDEX ix_swf_wallet ON social_wallet_fetches(chain, wallet_address, fetched_at);
+
+CREATE TABLE social_wallet_events (       -- one row per (chain, transaction, monitored wallet); append-only; no prices, no profit, no loss
+  event_id INTEGER PRIMARY KEY,
+  event_key TEXT NOT NULL UNIQUE,         -- sha256(chain | signature | wallet)
+  chain TEXT NOT NULL, wallet_address TEXT NOT NULL,
+  signature TEXT NOT NULL,                -- full transaction signature / hash, as the chain gives it
+  slot INTEGER,
+  block_time REAL NOT NULL,
+  event_type TEXT NOT NULL CHECK (event_type IN
+    ('SWAP','LP_ADD','LP_REMOVE','TOKEN_TRANSFER_IN','TOKEN_TRANSFER_OUT','NATIVE_TRANSFER_IN','NATIVE_TRANSFER_OUT','FAILED','UNCLASSIFIED')),
+  swap_side TEXT CHECK (swap_side IS NULL OR swap_side IN ('BUY','SELL','TOKEN_TO_TOKEN')),
+  classification_rule TEXT NOT NULL,      -- rule id that fired, e.g. 'swap.two_sides.v1'
+  classification_version TEXT NOT NULL,
+  classification_confidence TEXT NOT NULL CHECK (classification_confidence IN ('HIGH','MODERATE','LOW')),
+  classification_basis_json TEXT NOT NULL,-- inputs the rule used: provider type, leg counts, truncation
+  provider_type TEXT,                     -- the provider's own label, kept verbatim
+  protocol_source TEXT,                   -- provider's source / program name
+  fee_native REAL, fee_unit TEXT, fee_payer TEXT, fee_paid_by_wallet INTEGER CHECK (fee_paid_by_wallet IN (0,1)),
+  counterparties_json TEXT NOT NULL DEFAULT '[]',
+  custody_touch TEXT,                     -- CUSTODY_EXCHANGE / CUSTODY_OTHER when a counterparty carries that label
+  legs_truncated INTEGER NOT NULL DEFAULT 0 CHECK (legs_truncated IN (0,1)),
+  observed_scope TEXT NOT NULL CHECK (observed_scope IN ('LIVE','BACKFILL')),
+  freshness TEXT NOT NULL CHECK (freshness IN ('FRESH','STALE')),
+  provider TEXT NOT NULL,
+  fetch_id INTEGER NOT NULL REFERENCES social_wallet_fetches(fetch_id),
+  row_sha256 TEXT NOT NULL,               -- sha256 of the canonical provider row this event was built from
+  ingested_at REAL NOT NULL,
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1))
+);
+CREATE INDEX ix_swe_wallet ON social_wallet_events(chain, wallet_address, block_time);
+CREATE INDEX ix_swe_sig ON social_wallet_events(chain, signature);
+
+CREATE TABLE social_wallet_event_legs (   -- what moved, from the monitored wallet's point of view
+  event_id INTEGER NOT NULL REFERENCES social_wallet_events(event_id),
+  leg_index INTEGER NOT NULL,
+  asset_kind TEXT NOT NULL CHECK (asset_kind IN ('NATIVE','TOKEN')),
+  contract TEXT,                          -- token contract / mint; NULL for the native asset
+  direction TEXT NOT NULL CHECK (direction IN ('IN','OUT')),
+  amount REAL NOT NULL,                   -- provider units (already decimal-adjusted); not converted to money
+  counterparty TEXT,
+  counterparty_label TEXT,
+  PRIMARY KEY (event_id, leg_index)
+);
+
+CREATE TABLE social_wallet_funding_hypotheses ( -- who first funded a wallet; a hypothesis about relatedness, never about control
+  hypothesis_id INTEGER PRIMARY KEY,
+  hypothesis_key TEXT NOT NULL UNIQUE,    -- sha256(chain | funder); derived data, so members and evidence are refreshed in place
+  chain TEXT NOT NULL,
+  funder_address TEXT NOT NULL,
+  members_json TEXT NOT NULL,             -- sorted wallets this funder first funded
+  evidence_json TEXT NOT NULL,            -- per member: transaction signature, block time, amount
+  funder_label TEXT,                      -- label kind of the funder at derivation time
+  informative INTEGER NOT NULL CHECK (informative IN (0,1)),  -- 0 when the funder is an exchange, custody, protocol or pool
+  status TEXT NOT NULL DEFAULT 'HYPOTHESIS' CHECK (status = 'HYPOTHESIS'),
+  derived_version TEXT NOT NULL,
+  derived_at REAL NOT NULL,
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1))
+);
+
+CREATE TABLE social_wallet_audit (        -- append-only: every decision on an assertion, label or tracked wallet, with who and why
+  audit_id INTEGER PRIMARY KEY,
+  target_type TEXT NOT NULL CHECK (target_type IN ('ASSERTION','LABEL','TRACKED_WALLET','FETCH')),
+  target_id TEXT NOT NULL,
+  action TEXT NOT NULL,
+  from_state TEXT, to_state TEXT,
+  actor TEXT NOT NULL,
+  reason TEXT,
+  at REAL NOT NULL
+);
+CREATE INDEX ix_swa_audit ON social_wallet_audit(target_type, target_id, audit_id);
+"""
+
+V9_DOWN = """
+DROP TABLE IF EXISTS social_wallet_audit;
+DROP TABLE IF EXISTS social_wallet_funding_hypotheses;
+DROP TABLE IF EXISTS social_wallet_event_legs;
+DROP TABLE IF EXISTS social_wallet_events;
+DROP TABLE IF EXISTS social_wallet_fetches;
+DROP TABLE IF EXISTS social_tracked_wallets;
+DROP TABLE IF EXISTS social_wallet_labels;
+DROP TABLE IF EXISTS social_wallet_assertions;
+"""
+
 # (version, name, up, down). Append only; never edit an applied entry (the checksum guard refuses it).
 MIGRATIONS: list[tuple[int, str, str, str]] = [
     (1, "social intelligence core tables", V1_UP, V1_DOWN),
@@ -896,6 +1057,7 @@ MIGRATIONS: list[tuple[int, str, str, str]] = [
     (6, "structured claim extraction, attributes and anchored evidence spans", V6_UP, V6_DOWN),
     (7, "narrative snapshots: clusters, independence, provenance and change summaries", V7_UP, V7_DOWN),
     (8, "source and trader registry: entities, captures, listings, links, records, categories, evidence, reviews", V8_UP, V8_DOWN),
+    (9, "wallet attribution assertions, tracked wallets, fetches, classified activity events, funding hypotheses, audit", V9_UP, V9_DOWN),
 ]
 LATEST = max(m[0] for m in MIGRATIONS)
 ALL_VERSIONS = sorted(m[0] for m in MIGRATIONS)
@@ -912,7 +1074,9 @@ SOCIAL_TABLES = [
     "social_narrative_runs", "social_narrative_clusters", "social_narrative_members", "social_narrative_edges",
     "social_narrative_changes", "social_registry_sources", "social_registry_captures", "social_registry_entities",
     "social_registry_listings", "social_registry_links", "social_registry_records", "social_registry_categories",
-    "social_registry_evidence", "social_registry_reviews",
+    "social_registry_evidence", "social_registry_reviews", "social_wallet_assertions", "social_wallet_labels",
+    "social_tracked_wallets", "social_wallet_fetches", "social_wallet_events", "social_wallet_event_legs",
+    "social_wallet_funding_hypotheses", "social_wallet_audit",
 ]
 
 

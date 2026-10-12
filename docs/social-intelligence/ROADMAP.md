@@ -21,12 +21,12 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 06 | Evidence-grounded structured claim extraction (Prompt 06; old slot "X via signed-in Chrome" moved to C-6) | 05 | DONE (no model configured, D-036) |
 | 07 | Narrative clustering, originators, amplifiers and independent corroboration (Prompt 07; old slot "Telegram via Chrome" moved to C-7) | 04, 05, 06 | DONE (fixtures only, D-041) |
 | 08 | Source and trader registry (Prompt 08; old slot "other readable sources" moved to C-8) | 01, 05, 07 | DONE (fixtures only, D-047) |
-| 09 | Entity resolution: accounts, projects, tokens by address | C-6 | PLANNED |
+| 09 | Wallet attribution assertions and wallet activity (Prompt 09; old slot "entity resolution" moved to C-9) | 05, 08 | DONE (fixtures only, D-056) |
 | 10 | Mention extraction by contract address | 09 | PLANNED |
 | 11 | Attention metrics with sampling notes | 10 | PLANNED |
 | 12 | Paid, bot and coordination signals | 11 | PLANNED |
 | 13 | Trader identity verification on top of the Phase 08 registry (live lists, status checks) | 08 | PLANNED |
-| 14 | Trader claimed-wallet linking (evidence levels) | 13 | PLANNED |
+| 14 | Trader claimed-wallet linking: live evidence collection (assertion model delivered by Phase 09) | 13, 09 | PLANNED |
 | 15 | Trader call capture | 10, 13 | PLANNED |
 | 16 | Call outcome tracking and trader scoring | 15 | PLANNED |
 | 17 | Integration: m19 attention and launch social | 11, 12 | PLANNED |
@@ -40,6 +40,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | C-4 | Carry-over: manual capture onto the inbound schema (old proposed Phase 04) | 02 | PLANNED, unscheduled |
 | C-5 | Carry-over: source registry for social and trader sources (old proposed Phase 05) | 02, 03, 04 | PLANNED, unscheduled |
 | C-6 | Carry-over: X collector via signed-in Chrome (old proposed Phase 06, needs D-025) | 04, C-5 | PLANNED, unscheduled |
+| C-9 | Carry-over: entity resolution for accounts, projects and tokens by address (old proposed Phase 09) | C-6 | PLANNED, unscheduled |
 | C-8 | Carry-over: collector for other readable sources (YouTube RSS, token-listed links) (old proposed Phase 08) | 04 | PLANNED, unscheduled |
 | C-7 | Carry-over: Telegram public channels via Chrome (old proposed Phase 07, needs D-028) | 04, C-5 | PLANNED, unscheduled |
 
@@ -77,7 +78,9 @@ C-7. (old proposed Phase 07) Telegram public channels (`t.me/s/<channel>` previe
 
 C-8. Additional readable sources wired in the same way, each with fixtures and coverage notes. Sources that fail from both routes are recorded as gaps, not worked around.
 
-09. (token side delivered by Phase 05: tokens by address, ticker collisions and spoofed symbols) Accounts linked to projects and tokens only through evidence (official link on the token profile, link from the account to the contract address). Impersonation and name collisions flagged. Ticker-only matches never create a link.
+09. (Prompt 09, DONE 2026-10-12, WALLETS_09.md) Assertions as auditable records (account, exact chain and wallet, evidence type, reference, observed and validity times, confidence, review state, revoked or superseded) with identity kept UNKNOWN and control as a hypothesis; signatures verified in code; custody and protocol wallets refused; tracked-wallet add, pause and remove with safe defaults; Helius activity ingested through a full-signature projection and classified as transfers, swaps and LP events with fee, counterparties, provider and a hash chain to the source file; tests for fake claims, transfers vs sells, funding hypotheses, custody, relabelling, multiple chains, 429, missing signatures and stale data; no P&L. Full suite with only the known clock failure.
+
+C-9. (old proposed Phase 09, token side delivered by Phase 05: tokens by address, ticker collisions and spoofed symbols) Accounts linked to projects and tokens only through evidence (official link on the token profile, link from the account to the contract address). Impersonation and name collisions flagged. Ticker-only matches never create a link.
 
 10. Mentions counted only when they contain a contract address or a verified official link. Uses `identity.resolve_post` before the text is hashed (Phase 05 left the ingest wiring to this phase). Cashtag-only mentions are THEMATIC and never score.
 

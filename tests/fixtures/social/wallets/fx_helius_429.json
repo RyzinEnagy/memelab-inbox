@@ -1,0 +1,68 @@
+{
+ "chain": "solana",
+ "fetched_at": 1791844200,
+ "fixture_label": "INVENTED FIXTURE: not from any chain, provider or person; T1 rate limited, T2 fine",
+ "provider": "helius",
+ "results": {
+  "helius_wallet_tx:5rXq7LtW6VnvMo16bB67FBstaaCr5RFeA7MCgECdkcpD": {
+   "body": [
+    {
+     "err": false,
+     "fee": 5000,
+     "nk": 0,
+     "nn": 1,
+     "nt": [
+      [
+       "77mnaWe2zXCgnKTtGGKGQ9Rv5SiYeqPjuTajPEZxEMjS",
+       "5rXq7LtW6VnvMo16bB67FBstaaCr5RFeA7MCgECdkcpD",
+       2.0
+      ]
+     ],
+     "payer": "77mnaWe2zXCgnKTtGGKGQ9Rv5SiYeqPjuTajPEZxEMjS",
+     "sig": "2DDkDvVgsgeJzVP5BAymPqXnYKnBMvYzeVhhneN4wMYRTuYv12RFAPEDAzTrZNn5URiMrRvZ3hKVcUWz5YpNKmLR",
+     "slot": 300000021,
+     "src": "SYSTEM_PROGRAM",
+     "ts": 1791824460,
+     "tt": [],
+     "type": "TRANSFER"
+    },
+    {
+     "err": false,
+     "fee": 5000,
+     "nk": 1,
+     "nn": 1,
+     "nt": [
+      [
+       "5rXq7LtW6VnvMo16bB67FBstaaCr5RFeA7MCgECdkcpD",
+       "FijRXZUdJFJ2YgATvbL5BYwEWPqwUZvHpCK3oE3EzW3M",
+       1.0
+      ]
+     ],
+     "payer": "5rXq7LtW6VnvMo16bB67FBstaaCr5RFeA7MCgECdkcpD",
+     "sig": "28nk1FzVxi86aSLU2Wa3ym5fJQycYseCJrK2ViAGzyncBpExSsJck1bJhK2mcuDJSS8q4BTuY1z1E8NWm8Cujr6s",
+     "slot": 300000022,
+     "src": "FIXTURE_DEX",
+     "ts": 1791825100,
+     "tt": [
+      [
+       "FijRXZUdJFJ2YgATvbL5BYwEWPqwUZvHpCK3oE3EzW3M",
+       "5rXq7LtW6VnvMo16bB67FBstaaCr5RFeA7MCgECdkcpD",
+       "EMEUa1qbVr1UqhMqgN52eV45RKwMjtadesSbgXvqEVCJ",
+       90000
+      ]
+     ],
+     "type": "SWAP"
+    }
+   ],
+   "s": 200
+  },
+  "helius_wallet_tx:GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc": {
+   "body": {
+    "error": "rate limited"
+   },
+   "retry_after": 30,
+   "s": 429
+  }
+ },
+ "schema": "memelab.wallet.fetch/1"
+}

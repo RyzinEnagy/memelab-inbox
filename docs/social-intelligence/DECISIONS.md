@@ -272,3 +272,40 @@ Each link change recomputes the level and writes it (or RETRACTED for NONE) to t
 ## D-055 Catalyst research list imports as undated candidates (ADOPTED, Phase 08)
 
 `import-catalyst` adds the repo's trader research list as unreviewed candidates with undated REPO_LIST evidence. It is refused against the tracked database until a person decides to commit those rows.
+
+## D-056 Prompt 09 is the wallet attribution and activity phase (ADOPTED, Phase 09, 2026-10-12)
+
+Elving supplied Prompt 09 ("Verify wallet links and observe activity without identity overreach"). It takes the Phase 09 slot. The proposed Phase 09 (entity resolution for accounts and projects) moves to carry-over C-9, unscheduled. Phase 09 delivers most of what proposed Phase 14 (claimed-wallet linking) described; what is left of 14 is collecting live evidence. No live provider call was made.
+
+## D-057 Assertions are the record; identity and control are kept apart (ADOPTED, Phase 09)
+
+`social_wallet_assertions` (migration 9) holds one claim per row with evidence type, evidence reference, observed and validity times, confidence, review state and status. The claim never changes; review and status changes go to `social_wallet_audit`. `real_world_identity` is UNKNOWN on every row and no name column exists. The level a reader sees comes from `wallet_assertions.explain()`, which recomputes it from active, reviewed rows at a given time and lists why any row does not count.
+
+## D-058 What each evidence type can prove (ADOPTED, Phase 09)
+
+Self-disclosure reaches SELF_CLAIMED. A signed message reaches SIGNATURE_VERIFIED only if the signature verifies in code, the message names the account, and a person approves. An independent source corroborates a self claim only after review and only if it neither is nor operates the account. A third-party claim stays THIRD_PARTY_CLAIMED. A transaction pattern never counts. Confidence cannot be set above the evidence type's maximum. Reason: the prompt's rule that matching names and suggestive transfers never create a link, and D-003.
+
+## D-059 Signature verification is built in, pure Python, verify-only (ADOPTED, Phase 09)
+
+`sigverify.py` checks ed25519 (Solana) and EIP-191 personal_sign (EVM) with no new dependency, tested against public vectors (RFC 8032 test 2 and the published eth-account "Some data" vector). There is no signing code and no key handling in the lab (hard rule). Other chain families return UNSUPPORTED rather than a guess. The message text is hashed, not stored (D-013).
+
+## D-060 Custody, protocol and pool addresses are not controlled by a person (ADOPTED, Phase 09)
+
+A wallet labelled CUSTODY_EXCHANGE, CUSTODY_OTHER, PROTOCOL or POOL cannot be approved as controlled and shows UNSUPPORTED_CUSTODY; it is not tracked unless `--allow-custody` is given. Labels come from sourced, append-only rows, with the existing m09 list as the fallback; a sourced NO_SPECIAL_LABEL row corrects a built-in label.
+
+## D-061 Wallet-level monitoring claims no owner; safe defaults (ADOPTED, Phase 09)
+
+Tracking needs a reason and a name, caps at 25 active wallets and 50 transactions per fetch by default, starts at the time of adding, and keeps history on pause and remove. Fixture wallets are refused against the tracked database. Reason: the prompt asks for add, remove and pause with safe defaults and for monitoring that does not claim who the wallet belongs to.
+
+## D-062 Activity is observation, classified by provider type and by shape, never P&L (ADOPTED, Phase 09)
+
+One event per (chain, transaction, wallet). The classifier uses the provider's type and the shape of what moved; disagreement is UNCLASSIFIED with a rule id. A token transfer is never a sell. No price, cost basis, profit or loss column exists, and a test scans every column name. The existing `wallet.positions_from_wallet` is untouched. Reason: the gate says activity must not become P&L until the next phase.
+
+## D-063 New Helius projection with full signatures; the old one is not used for activity (ADOPTED, Phase 09)
+
+`helius_tx` truncates signatures to 12 characters, drops slot and failure state, and caps transfers at 12. Activity needs verifiable signatures, so `helius_wallet_tx` was added next to it in both collector copies (`bridge/collector.js`, `memelab/bridge/collector.js`) and in `Plan.wallet_activity`. The browser loads the collector from `main`, so the new projection reaches scheduled runs only when this branch is merged (same as D-021). Rows with truncated signatures are rejected, not stored.
+
+## D-064 Funding relations are hypotheses and never attribute (ADOPTED, Phase 09)
+
+Shared first funding is stored in its own table with `status` constrained to HYPOTHESIS, marked uninformative when the funder is custody, protocol or a pool, and shown in `why` as related by funding only. It never creates an assertion or changes a level.
+

@@ -552,3 +552,5 @@ def add_subparser(sp) -> None:
     q.set_defaults(fn=cmd_narrative_changes)
     from . import registry_cli
     registry_cli.add_parser(ssp)
+    from . import wallet_cli
+    wallet_cli.add_parser(ssp)
