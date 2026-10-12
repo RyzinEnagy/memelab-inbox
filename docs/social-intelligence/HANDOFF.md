@@ -65,4 +65,6 @@ Expect `1 failed, 330 passed` and `python -m memelab social guard` exit 0.
 
 ## Commit and push
 
-Filled in after the push (see the final commit on the branch).
+Phase 08 commit adcd2f51f57b05215e634e1c3fab0cbf098415f8 (tree dd0f0842bc7902595cef12a1eb765748e826cafe, parent a689d1be55eee1d50c52f5bec7f15fca7fd5ca83) is on feature/social-intelligence.
+
+Route: the session's own git push returns 403, so the push went through Elving's GitHub connection in Composio using the Git Data API (20 blobs, one tree, one commit, fast-forward ref update, no force). Every blob sha and the tree sha matched the locally built values. This handoff note was filled in by a small follow-up commit on the same route.
