@@ -9,7 +9,7 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 - Next phase: 07 as proposed in ROADMAP.md (needs D-028), or C-5 / C-6, unless Elving supplies Prompt 07.
 - Active branch: `feature/social-intelligence`.
 - Phase 06 started from `76c105b` ("social-intel phase 05: move uploaded files to their real paths"), the commit the Phase 05 fix left on the remote branch. No drift. Tree clean; baseline `python -m pytest tests -q` gave `1 failed, 212 passed`, as recorded in the Phase 05 handoff.
-- Local commits: `6dcf3b3` (code, tests, fixtures, docs) and the handoff commit on top of it. Not pushed; see Blockers.
+- Pushed: `8f02444` (code, tests, fixtures, docs) and `e3c19e5` (handoff) on `feature/social-intelligence`, 2026-10-12, through Elving's GitHub connection in Composio (Git Data API: blobs, trees, commits, fast-forward of the branch ref, no force). The trees are byte-identical to the session's local commits `6dcf3b3` and `e32e735` (tree shas `0d32760` and `461f8cf` matched before the ref moved). This handoff correction is the commit on top.
 
 ## What Phase 06 added
 
@@ -69,7 +69,7 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 
 ## Blockers and open decisions
 
-- Push: not done by the session. Its own `git push` got 403 (repo not in its sources), and the Composio GitHub route would mean re-sending about 280 KB of file content through tool arguments, which risks corrupting files. Phase 06 was delivered to Elving as `phase06_upload.zip` (the 17 changed files at their real repo paths, no wrapper folder), `phase06.patch` (`git format-patch 76c105b..HEAD`) and `phase06.bundle`. Upload target: `feature/social-intelligence` only, never `main` (D-001). If the upload lands with wrong paths, the next session fixes it as in Phase 05. After upload, the remote commit hashes will differ from the local ones; the remote branch is the record (D-008).
+- Push: the session's own `git push` still gets 403 (repo not in its sources). Working route: Elving's GitHub connection in Composio. Files went over as a checksummed xz tarball in base64 chunks to the Composio workbench, then Git Data API calls; tree hashes were compared with the local commits before the branch ref moved. Feature work only on `feature/social-intelligence`, never `main` (D-001).
 - D-025 (X browser automation), D-028 (Telegram bot terms), the X budget (D-023) and now the model choice and budget (D-036) are open.
 - Phase prompts 07 onward not supplied; ROADMAP.md entries are proposals.
 
