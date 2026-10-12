@@ -52,10 +52,23 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 - The signed message text is not stored, only its sha256. The reviewer checks that the account posted it from `evidence_ref`.
 - Nothing is scheduled; scheduling belongs to a later phase.
 
+## Helius key
+
+The key is not in the repo and must never be committed. Code reads it through `memelab/secrets.py`, in this order:
+
+1. The `HELIUS_API_KEY` environment variable. Use this for a scheduled run, CI or a cloud session (set it as a secret there).
+2. `helius_api_key` in `data/config.json`. That file is gitignored. On a machine, create it with `python -m memelab.secrets set` (prompts without echo).
+
+Check with `python -m memelab.secrets status` (prints "set" or "missing" and the source, never the value). `Plan.wallet_activity`, `Plan.wallet_forensics`, `wallet_plan` and `rpc_url` all use it. If it is missing, plan building raises "helius_api_key missing" and the public RPC is used for plain RPC calls.
+
+Saved plan files under `data/inbox` are tracked, so `Plan.save` rewrites `api-key=...` to `api-key=REDACTED`. The pasted browser call (`Plan.js_call`) keeps the real key because the collector needs it. `tests/test_secrets.py` fails if any tracked file holds a real `api-key=` value.
+
+A new session that needs the key should ask Elving to supply it (it is not stored in memory or project docs) and write it to `data/config.json` or export `HELIUS_API_KEY`. The key was pasted into a chat once; rotate it if that chat is shared.
+
 ## Blockers and open decisions
 
 - Push: the session's own `git push` gets 403. Working route: Elving's GitHub connection in Composio, Git Data API, fast-forward of the feature branch ref, no force (D-001).
-- No permitted live wallet list and no Helius key in session; live wallet status is UNAVAILABLE.
+- No permitted live wallet list in session, so live wallet status is UNAVAILABLE. A Helius key now exists (see "Helius key" above) but no live fetch has been run.
 - D-025, D-028, D-023 and D-036 remain open.
 - Phase prompts 10 onward not supplied; ROADMAP.md entries are proposals.
 
@@ -65,7 +78,7 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 git clone https://github.com/RyzinEnagy/memelab-inbox.git && cd memelab-inbox && git checkout feature/social-intelligence && pip install pytest numpy && python -m pytest tests -q
 ```
 
-Expect `1 failed, 373 passed` and `python -m memelab social guard` exit 0.
+Expect `1 failed, 377 passed` and `python -m memelab social guard` exit 0.
 
 ## Commit and push
 
