@@ -1,0 +1,12 @@
+{
+ "platform": "x",
+ "provider_item_id": "1900000000000000001",
+ "url": "https://x.com/example_poster/status/1900000000000000001",
+ "account": {
+  "handle": "example_poster",
+  "provider_user_id": "4242"
+ },
+ "published_at": "2026-10-10T02:30:00Z",
+ "observed_at": "2026-10-10T02:31:00Z",
+ "text": "Invented fixture post: watching $LABDOG https://pump.fun/coin/8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ"
+}

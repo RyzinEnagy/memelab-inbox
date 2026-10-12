@@ -12,6 +12,10 @@
   social tg-webhook-ingest [--config <path>] [--spool <dir>]   ingest updates spooled by telegram_bot.webhook_receive()
   social resolve --post <json> --bodies <json> [--context]   token identity for one post (identity.py), optional market context
   social identity [--item <item_key>] [--resolution <id>]    what is stored: status, identity, candidates, evidence, context
+  social extract --post <json> [--bodies <json>] [--mock <file>]   record one observation (fixture) and extract claims (extraction.py)
+  social extract --observation <id> [--text-file <f>] [--mock <file>]   extract claims for a stored observation
+  social claims (--item <item_key> | --claim <id>) [--json] [--show-private]   plain-English claim report with provenance
+  social llm-health [--llm-config <path>]                    model status: model_not_configured / credentials_missing / ...
 
 Exit code 0 for OK or PARTIAL runs (a down connector is recorded, not fatal), 1 for FAILED, 2 for usage errors.
 Output is a JSON summary on stdout; structured logs go to stderr as JSON lines.
@@ -265,6 +269,83 @@ def cmd_identity(a):
     raise SystemExit(0 if out else 1)
 
 
+def _provider(a, con):
+    from . import llm
+    if getattr(a, "mock", None):
+        cfg = llm.load_config(a.llm_config) or {}
+        return llm.MockProvider.from_file(a.mock), None, llm.Budget.from_config({**llm.DEFAULTS, **cfg})
+    cfg = llm.load_config(a.llm_config)
+    prov, reason = llm.provider_from_config(cfg)
+    return prov, reason, llm.Budget.from_config(cfg)
+
+
+def cmd_extract(a):
+    from . import extraction as EX, store
+    import sqlite3
+    dbp = Path(a.db) if a.db else db.DB_PATH
+    db.init_db(dbp)
+    con = sqlite3.connect(str(dbp)); con.row_factory = sqlite3.Row
+    try:
+        text = Path(a.text_file).read_text() if a.text_file else None
+        if a.post:
+            post = json.loads(Path(a.post).read_text())
+            text = post.get("text")
+            acct = None
+            if post.get("account"):
+                acct = store.upsert_account(con, post["platform"], handle=post["account"].get("handle"),
+                                            provider_user_id=post["account"].get("provider_user_id"), now=a.now)
+            obs = store.record_observation(con, platform=post["platform"], access_mode="fixture", collector="claims_cli",
+                                           provider_item_id=post.get("provider_item_id"), original_url=post.get("url"),
+                                           account_id=acct, published_at=post.get("published_at"), observed_at=post.get("observed_at"),
+                                           text=text, now=a.now)
+            oid = obs["id"]
+        elif a.observation is not None:
+            oid = a.observation
+        else:
+            print("give --post or --observation", file=sys.stderr)
+            raise SystemExit(2)
+        bodies = _load_bodies(a.bodies)[0] if a.bodies else None
+        prov, reason, budget = _provider(a, con)
+        res = EX.extract_observation(con, oid, text, provider=prov, provider_reason=reason, budget=budget, bodies=bodies, now=a.now)
+        con.commit()
+        out = {"result": res, "report": EX.report(con, item_key=res["item_key"]).splitlines()}
+    finally:
+        con.close()
+    print(json.dumps(out, indent=1, sort_keys=True, default=str))
+    raise SystemExit(0)
+
+
+def cmd_claims(a):
+    from . import extraction as EX
+    import sqlite3
+    dbp = Path(a.db) if a.db else db.DB_PATH
+    con = sqlite3.connect(str(dbp)); con.row_factory = sqlite3.Row
+    try:
+        rows = EX.claims_for(con, item_key=a.item, claim_id=a.claim)
+        if a.json:
+            print(json.dumps({"claims": rows, "extractions": EX.extraction_status(con, a.item) if a.item else []},
+                             indent=1, sort_keys=True, default=str))
+        else:
+            print(EX.report(con, item_key=a.item, claim_id=a.claim, show_private=a.show_private) or "no claims stored")
+    finally:
+        con.close()
+    raise SystemExit(0 if rows else 1)
+
+
+def cmd_llm_health(a):
+    from . import llm
+    import sqlite3
+    dbp = Path(a.db) if a.db else db.DB_PATH
+    con = sqlite3.connect(str(dbp)) if dbp.exists() else None
+    try:
+        out = llm.llm_status(con, a.llm_config)
+    finally:
+        if con is not None:
+            con.close()
+    print(json.dumps(out, indent=1, sort_keys=True))
+    raise SystemExit(0)
+
+
 def add_subparser(sp) -> None:
     p = sp.add_parser("social", help="Social intelligence: ingest bridge inbox observations, status")
     ssp = p.add_subparsers(dest="social_cmd", required=True)
@@ -345,3 +426,24 @@ def add_subparser(sp) -> None:
     q.add_argument("--resolution", type=int, help="resolution id")
     q.add_argument("--db")
     q.set_defaults(fn=cmd_identity)
+    q = ssp.add_parser("extract", help="structured claim extraction for one observation (deterministic + model if configured)")
+    q.add_argument("--post", help="JSON: {platform, provider_item_id, url, account:{handle}, published_at, observed_at, text}; text is hashed, never stored")
+    q.add_argument("--observation", type=int, help="an observation already stored; text from --text-file or the private store")
+    q.add_argument("--text-file", help="exact post text for --observation (must match its content hash)")
+    q.add_argument("--bodies", help="collector bodies for token identity (Phase 05); without it stored or offline resolution is used")
+    q.add_argument("--mock", help="mock provider responses (offline, rows labelled fixture)")
+    q.add_argument("--llm-config", help="model config (default data/private/llm.json)")
+    q.add_argument("--db")
+    q.add_argument("--now", type=float, help="fixed clock (epoch seconds), for replays and tests")
+    q.set_defaults(fn=cmd_extract)
+    q = ssp.add_parser("claims", help="stored claims with provenance, in plain English")
+    q.add_argument("--item", help="item_key")
+    q.add_argument("--claim", type=int, help="claim id")
+    q.add_argument("--json", action="store_true")
+    q.add_argument("--show-private", action="store_true", help="print exact span wording from the private store (screen only)")
+    q.add_argument("--db")
+    q.set_defaults(fn=cmd_claims)
+    q = ssp.add_parser("llm-health", help="model status for claim extraction; no network call")
+    q.add_argument("--llm-config")
+    q.add_argument("--db")
+    q.set_defaults(fn=cmd_llm_health)

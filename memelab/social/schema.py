@@ -536,6 +536,82 @@ DROP TABLE IF EXISTS social_token_candidates;
 DROP TABLE IF EXISTS social_token_resolutions;
 """
 
+V6_UP = """
+CREATE TABLE social_claim_extractions (   -- one row per (observation, extractor, model, prompt, extractor version); append-only
+  extraction_id INTEGER PRIMARY KEY,
+  extraction_key TEXT NOT NULL UNIQUE,    -- sha256(observation_id | extractor | provider | model | prompt_version | extractor_version)
+  observation_id INTEGER NOT NULL REFERENCES social_observations(id),
+  item_key TEXT NOT NULL,
+  content_hash TEXT NOT NULL,             -- the observation's text hash; offsets in spans refer to that normalized text
+  context_sha TEXT NOT NULL,              -- sha256 of the provenance context given to the extractor (reference type, refs)
+  extractor TEXT NOT NULL CHECK (extractor IN ('deterministic','model')),
+  provider TEXT,                          -- NULL for deterministic
+  model TEXT,
+  prompt_version TEXT,
+  extractor_version TEXT NOT NULL,
+  analysis_version TEXT NOT NULL REFERENCES social_analysis_versions(version),
+  status TEXT NOT NULL CHECK (status IN ('ok','partial','analysis_unavailable','invalid_model_output')),
+  unavailable_reason TEXT,                -- model_not_configured | credentials_missing | billing_not_consented | budget_exhausted
+                                          -- | input_too_long | provider_error | text_unavailable
+  cache_key TEXT,                         -- sha256(content_hash | context_sha | provider | model | prompt_version | output schema)
+  cache_hit INTEGER NOT NULL DEFAULT 0 CHECK (cache_hit IN (0,1)),
+  model_calls INTEGER NOT NULL DEFAULT 0,
+  input_tokens INTEGER, output_tokens INTEGER,
+  est_cost_usd REAL,
+  mode TEXT NOT NULL CHECK (mode IN ('live','fixture','none')),
+  output_json TEXT,                       -- validated structure: enums, ids, offsets, span hashes, own-words summaries; never quotes
+  output_sha TEXT,
+  errors_json TEXT NOT NULL DEFAULT '[]', -- validation and provider error codes only, never values
+  flags_json TEXT NOT NULL DEFAULT '[]',  -- e.g. injection_suspected
+  superseded_by INTEGER REFERENCES social_claim_extractions(extraction_id),
+  extracted_at REAL NOT NULL
+);
+CREATE INDEX ix_sce_obs ON social_claim_extractions(observation_id);
+CREATE INDEX ix_sce_cache ON social_claim_extractions(cache_key, extractor_version);
+CREATE INDEX ix_sce_item ON social_claim_extractions(item_key);
+
+CREATE TABLE social_claim_attributes (    -- the structured classification behind one social_claims row
+  claim_id INTEGER PRIMARY KEY REFERENCES social_claims(id),
+  extraction_id INTEGER NOT NULL REFERENCES social_claim_extractions(extraction_id),
+  claim_index INTEGER NOT NULL,
+  category TEXT NOT NULL CHECK (category IN ('bullish','bearish','launch','catalyst','wallet','volume','liquidity','risk',
+                                             'commentary','education','promotion','token_reference')),
+  assertion_type TEXT NOT NULL CHECK (assertion_type IN ('claimed_fact','opinion','prediction','question','reference')),
+  stance TEXT NOT NULL CHECK (stance IN ('positive','negative','neutral','mixed')),
+  negated INTEGER NOT NULL CHECK (negated IN (0,1)),
+  conditional INTEGER NOT NULL CHECK (conditional IN (0,1)),
+  sarcasm_suspected INTEGER NOT NULL CHECK (sarcasm_suspected IN (0,1)),
+  time_horizon TEXT NOT NULL CHECK (time_horizon IN ('intraday','days','weeks','months','long_term','unspecified')),
+  author_position TEXT NOT NULL CHECK (author_position IN ('holds','no_position','sold','not_disclosed','not_applicable')),
+  attribution TEXT NOT NULL CHECK (attribution IN ('author','quoted','reposted','unclear')),
+  referenced_item_key TEXT,               -- the quoted or reposted item, from provider ids (social_item_refs / forwards)
+  referenced_author_id TEXT,
+  uncertainty TEXT NOT NULL CHECK (uncertainty IN ('low','medium','high')),
+  uncertainty_reasons_json TEXT NOT NULL,
+  verification TEXT NOT NULL CHECK (verification IN ('present_in_text','unverified_text_claim')),
+  narrative_tags_json TEXT NOT NULL,
+  tokens_json TEXT NOT NULL,              -- [{mention_id, mention_key, status, resolution_id, chain, contract}]
+  UNIQUE (extraction_id, claim_index)
+);
+
+CREATE TABLE social_claim_spans (         -- anchored evidence: character offsets into the normalized post text, plus a hash
+  claim_id INTEGER NOT NULL REFERENCES social_claims(id),
+  span_index INTEGER NOT NULL,
+  role TEXT NOT NULL CHECK (role IN ('claim','condition','position','attribution','token')),
+  char_start INTEGER NOT NULL,
+  char_end INTEGER NOT NULL,
+  span_sha TEXT NOT NULL,                 -- sha256 of the span text; the wording itself is never stored here
+  PRIMARY KEY (claim_id, span_index),
+  CHECK (char_end > char_start AND char_start >= 0)
+);
+"""
+
+V6_DOWN = """
+DROP TABLE IF EXISTS social_claim_spans;
+DROP TABLE IF EXISTS social_claim_attributes;
+DROP TABLE IF EXISTS social_claim_extractions;
+"""
+
 # (version, name, up, down). Append only; never edit an applied entry (the checksum guard refuses it).
 MIGRATIONS: list[tuple[int, str, str, str]] = [
     (1, "social intelligence core tables", V1_UP, V1_DOWN),
@@ -543,6 +619,7 @@ MIGRATIONS: list[tuple[int, str, str, str]] = [
     (3, "item context, source cursors, paid-API spend ledger", V3_UP, V3_DOWN),
     (4, "item forwards and in-place versions", V4_UP, V4_DOWN),
     (5, "token identity resolution and timestamped market facts", V5_UP, V5_DOWN),
+    (6, "structured claim extraction, attributes and anchored evidence spans", V6_UP, V6_DOWN),
 ]
 LATEST = max(m[0] for m in MIGRATIONS)
 ALL_VERSIONS = sorted(m[0] for m in MIGRATIONS)
@@ -555,7 +632,7 @@ SOCIAL_TABLES = [
     "social_observation_provenance", "social_item_context", "social_item_refs", "social_source_cursors",
     "social_api_spend", "social_api_billed_resources", "social_item_forwards", "social_item_versions",
     "social_token_resolutions", "social_token_candidates", "social_token_relations", "social_market_facts",
-    "social_market_context",
+    "social_market_context", "social_claim_extractions", "social_claim_attributes", "social_claim_spans",
 ]
 
 

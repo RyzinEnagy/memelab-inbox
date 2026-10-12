@@ -353,12 +353,13 @@ def test_no_text_reaches_the_database_and_guard_passes(con, tmp_path):
 
 
 def test_migration_5_rolls_back_cleanly(con):
-    assert schema.current_version(con) == 5
-    assert schema.rollback(con, 4) == [5]
+    above_4 = [v for v in schema.ALL_VERSIONS if v > 4]
+    assert schema.current_version(con) == schema.LATEST
+    assert schema.rollback(con, 4) == above_4[::-1]
     names = {r[0] for r in con.execute("SELECT name FROM sqlite_master WHERE type='table'")}
     assert not names & {"social_token_resolutions", "social_market_facts", "social_market_context", "social_token_candidates", "social_token_relations"}
     assert "social_item_versions" in names
-    assert schema.migrate(con) == [5]
+    assert schema.migrate(con) == above_4
 
 
 def test_resolution_plan_reuses_existing_builders():

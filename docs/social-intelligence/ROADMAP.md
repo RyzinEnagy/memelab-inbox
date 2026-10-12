@@ -4,7 +4,7 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Phases 00 to 05 came with written phase prompts. Phases 06 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
+Phases 00 to 06 came with written phase prompts. Phases 07 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
 
 Status values also include SUPERSEDED (folded into another phase).
 
@@ -18,14 +18,14 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 03 | X monitoring through the official X API v2 (Prompt 03; old slot "social schema" was SUPERSEDED by 01) | 02 | DONE (live UNAVAILABLE, D-023) |
 | 04 | Telegram channel monitoring through the official Bot API (Prompt 04; old slot "manual capture" moved to C-4) | 02, 03 | DONE (live UNAVAILABLE, D-027) |
 | 05 | Exact token identity and timestamped market context (Prompt 05; old slot "source registry" moved to C-5) | 01, 02 | DONE (fixtures only, D-030) |
-| 06 | Collector: X via signed-in Chrome (needs D-025 decision) | 04, C-5 | NEXT (proposed) |
-| 07 | Collector: Telegram public channels via Chrome (needs D-028 decision) | 04, C-5 | PLANNED |
+| 06 | Evidence-grounded structured claim extraction (Prompt 06; old slot "X via signed-in Chrome" moved to C-6) | 05 | DONE (no model configured, D-036) |
+| 07 | Collector: Telegram public channels via Chrome (needs D-028 decision) | 04, C-5 | NEXT (proposed) |
 | 08 | Collector: other readable sources (YouTube RSS, token-listed links) | 04, C-5 | PLANNED |
-| 09 | Entity resolution: accounts, projects, tokens by address | 06 | PLANNED |
+| 09 | Entity resolution: accounts, projects, tokens by address | C-6 | PLANNED |
 | 10 | Mention extraction by contract address | 09 | PLANNED |
 | 11 | Attention metrics with sampling notes | 10 | PLANNED |
 | 12 | Paid, bot and coordination signals | 11 | PLANNED |
-| 13 | Trader registry and identity verification | C-5, 06 | PLANNED |
+| 13 | Trader registry and identity verification | C-5, C-6 | PLANNED |
 | 14 | Trader claimed-wallet linking (evidence levels) | 13 | PLANNED |
 | 15 | Trader call capture | 10, 13 | PLANNED |
 | 16 | Call outcome tracking and trader scoring | 15 | PLANNED |
@@ -39,6 +39,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | C-3 | Carry-over: purge stored X observations of posts NOT_FOUND for 24 h (X deletion rule), needed before live X data is kept | 03 | PLANNED, unscheduled |
 | C-4 | Carry-over: manual capture onto the inbound schema (old proposed Phase 04) | 02 | PLANNED, unscheduled |
 | C-5 | Carry-over: source registry for social and trader sources (old proposed Phase 05) | 02, 03, 04 | PLANNED, unscheduled |
+| C-6 | Carry-over: X collector via signed-in Chrome (old proposed Phase 06, needs D-025) | 04, C-5 | PLANNED, unscheduled |
 
 ## Phase gates
 
@@ -64,7 +65,9 @@ C-4. (old Phase 04) Manual captures (and `social-note`, without breaking its arg
 
 C-5. (old proposed Phase 05) Social and trader sources registered with access mode (fetch, navigate, manual, blocked), tier, terms constraint and coverage gap, reusing the catalyst source registry pattern. Blocked sources stay disabled with the reason recorded. No collector code yet.
 
-06. X reads through Elving's signed-in Chrome (D-009): profiles, public timelines and search results, read only, human-paced, stopping on any challenge. Output is derived fields plus own-words summaries (D-010). Fixtures recorded from real pages; parser tests pass offline.
+06. (Prompt 06, DONE 2026-10-12, CLAIMS_06.md) Observable, schema-validated pipeline from an ingested observation to a cited claim: text checked against the observation hash; Phase 05 identity per mention (unresolved allowed); deterministic token-reference claims without a model; model output validated against `memelab.social.claims.model/1` and grounded in exact quotes stored as offsets and hashes; `analysis_unavailable` with the reason when no model or budget; budget, cache, dedupe and replay; prompt-injection handling; truthful `llm-health` (`model_not_configured`); tests for the prompt's list; demo of one claim without a model and one mock-provider analysis; full suite with only the known clock failure.
+
+C-6. (old proposed Phase 06) X reads through Elving's signed-in Chrome (D-009): profiles, public timelines and search results, read only, human-paced, stopping on any challenge. Output is derived fields plus own-words summaries (D-010). Fixtures recorded from real pages; parser tests pass offline. Needs D-025.
 
 07. Telegram public channels (`t.me/s/<channel>` previews, or Telegram Web while signed in) parsed to channel-level metrics and summaries. Same fixture and policy rules as 06; no private groups. Needs D-028 first.
 
@@ -82,7 +85,7 @@ C-5. (old proposed Phase 05) Social and trader sources registered with access mo
 
 14. A wallet is linked to a trader only when the trader publicly claims it or chain evidence meets a documented bar; linkage level is recorded. Shared funding is linkage, not proof of control (existing rule).
 
-15. Calls captured with timestamp, account, contract address, stated direction, source URL and an own-words summary (D-010).
+15. Calls captured with timestamp, account, contract address, stated direction, source URL and an own-words summary (D-010). Phase 06 already extracts and stores the claim structure; what is left is wiring collectors to it and the trader link.
 
 16. Forward returns of calls measured from market data already collected by the lab, with survivorship and selection bias controls written next to every score. Below a minimum sample the score is INSUFFICIENT HISTORY.
 

@@ -187,3 +187,27 @@ These four have provider coverage in the existing code (DEX Screener, GeckoTermi
 ## D-034 Market context reuses the bundle builders, not analyze_token (ADOPTED, Phase 05)
 
 `market_context` calls `normalize.build_bundle` and `chains/evm.build_bundle` and stores its facts in new `social_` tables. It does not call `pipeline.analyze_token`, which writes reports, theses and the legacy `tokens` table, whose primary key is the mint alone (one EVM address on two chains would collide there). The catalyst matcher (`catalyst/match.py`), which picks the most liquid Solana token for a term, is unchanged; social code uses the new resolver.
+
+## D-035 Prompt 06 is the claim extraction phase (ADOPTED, Phase 06, 2026-10-12)
+
+Elving supplied Prompt 06 ("Evidence-grounded structured claim extraction"). It takes the Phase 06 slot. The proposed Phase 06 (X reads through signed-in Chrome) moves to carry-over C-6, unscheduled, and still needs D-025. Phases 07, 08, 09 and 13 that depended on the old 06 now depend on C-6 or C-5 as noted in ROADMAP.md. Phase 06 also delivers the claim side of proposed Phase 15 (call capture) except the collector wiring. No live model call was made (D-036).
+
+## D-036 No model is configured; model status is reported, never assumed (ADOPTED, Phase 06)
+
+The repo had no LLM configuration. Phase 06 adds one in a gitignored file (`data/private/llm.json`, example in `docs/social-intelligence/llm.example.json`) with the key read only from `ANTHROPIC_API_KEY`; a config holding a key is refused. `social llm-health` reports `model_not_configured`, `credentials_missing`, `billing_not_consented`, `configured_unverified` or `live_ok` (only after a live 200 in `social_api_spend`). With no usable provider the model part of every extraction is stored as `analysis_unavailable` with the reason, and no category, stance or opinion is guessed. All model proofs use an offline mock provider (`mode='fixture'`) or a fake HTTP transport. Turning a live model on is Elving's cost decision (same rule as D-009 and D-023): model id, prices and caps must be set and `allow_billable` true.
+
+## D-037 Deterministic extraction is limited to token references (ADOPTED, Phase 06)
+
+Without a model the lab extracts only what text matching can prove: each address, address-bearing link and cashtag, anchored by character offset and resolved through Phase 05. It is stored as a `token_reference` claim, evidence FACT (the post contains it), verification `present_in_text`. Keyword rules for bullish, risk or wallet claims were not built, because they would be the false classification the prompt rules out.
+
+## D-038 Evidence is stored as offsets and hashes; quotes and raw model replies stay private (ADOPTED, Phase 06)
+
+The model must quote the post for every claim; the validator finds each quote in the normalized text (the text the content hash is computed on) and stores only `char_start`, `char_end` and the span's sha256 in `social_claim_spans`. Quotes are never stored in the public database (content guard rule added for `social_claim_extractions.output_json`). The raw model reply can quote the post, so it goes to the private store (`private_model_responses`, 30-day retention), where it doubles as the replay cache. Summaries from the model are kept only if they pass `store.check_summary` (own words, D-010).
+
+## D-039 Model output is schema-validated and grounded; the lab's rules override the model (ADOPTED, Phase 06)
+
+Model output must match `memelab.social.claims.model/1` exactly. A field outside the schema drops that claim; a top-level field outside it, or non-JSON after one retry, rejects the whole reply (`invalid_model_output`). Quotes not in the text, unknown mention ids and contracts the post does not contain are removed. Provider ids decide attribution (repost, forward, quote) over the model's reading. Wallet statements stay text claims (no `social_wallet_attributions` row). Contradictions, sarcasm, unanchored conditions, unresolved tokens and injection-like text raise uncertainty. All rules are listed in CLAIMS_06.md. Reason: the gate asks for validated output and the lab's evidence rules (D-003) cannot depend on a model following instructions.
+
+## D-040 Extraction versions, cache and replay (ADOPTED, Phase 06)
+
+`PROMPT_VERSION` (what the model is asked) and `EXTRACTOR_VERSION` (validation and post-processing) are separate. One extraction row per observation x provider x model x prompt version x extractor version; repeats add nothing. The cache key is text hash + provenance context + provider + model + prompt version + output schema + mention identities, so the same text seen twice is analysed once. An extractor change replays from the private raw reply with no call; a prompt change makes a new call. A successful new extraction sets `superseded_by` on the older ones; nothing is deleted. The `social_claims.claim_type` projection (CALL/LONG for bullish and so on) is coarse; the classification lives in `social_claim_attributes`.

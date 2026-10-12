@@ -31,6 +31,14 @@ CREATE TABLE IF NOT EXISTS private_content (
   retain_until REAL NOT NULL
 );
 CREATE INDEX IF NOT EXISTS ix_pc_retain ON private_content(retain_until);
+CREATE TABLE IF NOT EXISTS private_model_responses (   -- raw model output (may quote the post), Phase 06
+  cache_key TEXT PRIMARY KEY,
+  provider TEXT NOT NULL, model TEXT NOT NULL, prompt_version TEXT NOT NULL,
+  response_text TEXT NOT NULL,
+  stored_at REAL NOT NULL,
+  retain_until REAL NOT NULL
+);
+CREATE INDEX IF NOT EXISTS ix_pmr_retain ON private_model_responses(retain_until);
 """
 
 
@@ -73,7 +81,33 @@ def get(private_ref: str, path: Path | str | None = None) -> sqlite3.Row | None:
         return con.execute("SELECT * FROM private_content WHERE private_ref=?", (private_ref,)).fetchone()
 
 
+def put_model_response(cache_key: str, provider: str, model: str, prompt_version: str, response_text: str,
+                       retention_days: float = DEFAULT_RETENTION_DAYS, now: float | None = None,
+                       path: Path | str | None = None) -> None:
+    """Keep the raw model response privately: it may quote the post, so it never goes to the public database.
+    Kept so a change of validation logic can be replayed without paying for the model call again."""
+    t = time.time() if now is None else now
+    with connect(path) as con:
+        con.execute("INSERT OR REPLACE INTO private_model_responses(cache_key,provider,model,prompt_version,response_text,stored_at,retain_until)"
+                    " VALUES (?,?,?,?,?,?,?)", (cache_key, provider, model, prompt_version, response_text, t, t + retention_days * 86400))
+
+
+def get_model_response(cache_key: str, now: float | None = None, path: Path | str | None = None) -> str | None:
+    t = time.time() if now is None else now
+    with connect(path) as con:
+        r = con.execute("SELECT response_text FROM private_model_responses WHERE cache_key=? AND retain_until >= ?",
+                        (cache_key, t)).fetchone()
+        return r[0] if r else None
+
+
+def get_text(content_hash: str, path: Path | str | None = None) -> str | None:
+    """Exact normalized wording for a content hash, if a phase kept it (record_observation keep_exact_reason)."""
+    r = get(f"sha256:{content_hash}", path)
+    return r["exact_text"] if r else None
+
+
 def purge_expired(now: float | None = None, path: Path | str | None = None) -> int:
     t = time.time() if now is None else now
     with connect(path) as con:
-        return con.execute("DELETE FROM private_content WHERE retain_until < ?", (t,)).rowcount
+        n = con.execute("DELETE FROM private_content WHERE retain_until < ?", (t,)).rowcount
+        return n + con.execute("DELETE FROM private_model_responses WHERE retain_until < ?", (t,)).rowcount

@@ -11,6 +11,7 @@ Rules
             anywhere in any JSON file: no key that only ever holds social content (SOCIAL_ONLY_KEYS), e.g. "bio"
             from an X profile projection, "full_text", "members"
   SQLITE    in data/memelab.sqlite: no social_* column named like a content field; no private_content table;
+            no "quote" or "exact_text" key in social_claim_extractions.output_json (Phase 06);
             summaries at most 400 characters; social_snapshots.text_value short labels only (no prose);
             catalyst_sources.identity_notes without copied profile text
   ALLOW     explicit entries for invented test fixtures, each with a reason
@@ -158,6 +159,10 @@ def check_sqlite(path: str, file: Path) -> list[Violation]:
                 n = con.execute(f"SELECT COUNT(*) FROM {t} WHERE length(summary) > ?", (SUMMARY_MAX,)).fetchone()[0]
                 if n:
                     out.append(Violation(path, f"{t}.summary", f"SQLITE: {n} summaries longer than {SUMMARY_MAX} characters"))
+        if "social_claim_extractions" in tables:
+            for eid, in con.execute("SELECT extraction_id FROM social_claim_extractions WHERE output_json LIKE '%\"quote\"%' "
+                                    "OR output_json LIKE '%\"exact_text\"%'"):
+                out.append(Violation(path, f"social_claim_extractions[{eid}].output_json", "SQLITE: quoted wording in a stored extraction"))
         if "social_snapshots" in tables:
             for rid, tv in con.execute("SELECT rowid, text_value FROM social_snapshots WHERE text_value IS NOT NULL"):
                 if len(re.findall(r"\w+", str(tv))) > PROSE_WORDS:

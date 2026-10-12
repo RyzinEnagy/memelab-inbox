@@ -1,0 +1,12 @@
+{
+ "provider": "anthropic",
+ "model": "<model id chosen by Elving>",
+ "allow_billable": false,
+ "price_usd_per_mtok": {"input": null, "output": null},
+ "max_calls_per_run": 20,
+ "max_calls_per_month": 500,
+ "max_usd_per_month": 0,
+ "max_input_chars": 4000,
+ "max_output_tokens": 1500,
+ "timeout_s": 60
+}
