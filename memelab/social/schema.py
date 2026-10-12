@@ -419,12 +419,130 @@ DROP TABLE IF EXISTS social_item_versions;
 DROP TABLE IF EXISTS social_item_forwards;
 """
 
+V5_UP = """
+CREATE TABLE social_token_resolutions (   -- one row per (mention, evidence set, resolver version); append-only
+  resolution_id INTEGER PRIMARY KEY,
+  resolution_key TEXT NOT NULL UNIQUE,    -- sha256(item_key | mention_key | chain_hint | resolver_version | evidence_sha)
+  item_key TEXT,                          -- soft link to social_items.item_key; NULL when resolved outside an ingested item
+  mention_key TEXT NOT NULL,              -- 'ca:<value>' | 'link:<host>/<path>' | 'ticker:<SYMBOL>'
+  mention_kind TEXT NOT NULL CHECK (mention_kind IN ('CONTRACT','LINK','TICKER')),
+  mention_value TEXT NOT NULL,            -- the address, public link or ticker as found; never post text
+  chain_hint TEXT,                        -- chain implied by a link or given by the caller; NULL = none
+  chain_hint_basis TEXT CHECK (chain_hint_basis IS NULL OR chain_hint_basis IN ('LINK','CALLER')),
+  status TEXT NOT NULL CHECK (status IN ('resolved','ambiguous','unresolved','conflicted')),
+  reasons_json TEXT NOT NULL,             -- reason codes, e.g. ["symbol_only","multiple_candidates"]
+  resolved_ref_id INTEGER REFERENCES social_token_refs(ref_id),
+  resolved_chain TEXT,
+  resolved_contract TEXT,
+  asset_class TEXT,                       -- TOKEN | WRAPPED_NATIVE | STABLECOIN | UNKNOWN
+  evidence_json TEXT NOT NULL,            -- list of {kind, provider, source_key, url, bucket}; ids and numbers only
+  evidence_sha TEXT NOT NULL,
+  resolver_version TEXT NOT NULL REFERENCES social_analysis_versions(version),
+  resolved_at REAL NOT NULL,
+  CHECK ((status = 'resolved') = (resolved_chain IS NOT NULL AND resolved_contract IS NOT NULL))
+);
+CREATE INDEX ix_str_item ON social_token_resolutions(item_key);
+CREATE INDEX ix_str_resolved ON social_token_resolutions(resolved_chain, resolved_contract);
+
+CREATE TABLE social_token_candidates (    -- every identity considered for a resolution, kept or rejected
+  resolution_id INTEGER NOT NULL REFERENCES social_token_resolutions(resolution_id),
+  rank INTEGER NOT NULL,
+  chain TEXT,                             -- registry id; NULL when the provider named a chain the lab does not know
+  provider_chain TEXT,                    -- chain id exactly as the provider gave it
+  contract TEXT NOT NULL,
+  symbol_seen TEXT,                       -- provider-reported; informational, never identity
+  name_seen TEXT,
+  support TEXT NOT NULL CHECK (support IN ('supported','unsupported')),
+  verdict TEXT NOT NULL CHECK (verdict IN ('chosen','viable','rejected','near_match','successor','predecessor')),
+  why TEXT NOT NULL,                      -- short reason code
+  providers_json TEXT NOT NULL,           -- providers that reported this identity
+  liquidity_usd_seen REAL,                -- largest provider-reported pool liquidity, for context only
+  ref_id INTEGER REFERENCES social_token_refs(ref_id),
+  PRIMARY KEY (resolution_id, rank)
+);
+
+CREATE TABLE social_token_relations (     -- trusted links between identities (migration, wrapping, bridging)
+  from_chain TEXT NOT NULL,
+  from_contract TEXT NOT NULL,
+  relation TEXT NOT NULL CHECK (relation IN ('MIGRATED_TO','WRAPS_NATIVE','BRIDGED_FROM')),
+  to_chain TEXT NOT NULL,
+  to_contract TEXT NOT NULL,
+  basis TEXT NOT NULL CHECK (basis IN ('REGISTRY','OFFICIAL_SOURCE','PROVIDER')),
+  source_url TEXT,
+  effective_at REAL,                      -- NULL = UNKNOWN
+  recorded_at REAL NOT NULL,
+  PRIMARY KEY (from_chain, from_contract, relation, to_chain, to_contract)
+);
+
+CREATE TABLE social_market_facts (        -- append-only, versioned per series; one provider value per row
+  fact_id INTEGER PRIMARY KEY,
+  fact_key TEXT NOT NULL UNIQUE,          -- sha256(series_key | as_of | fetched_at | value)
+  series_key TEXT NOT NULL,               -- sha256(chain | contract | provider | field | pair_id | size)
+  fact_version INTEGER NOT NULL,          -- 1, 2, ... within the series
+  supersedes_fact_id INTEGER REFERENCES social_market_facts(fact_id),
+  chain TEXT NOT NULL,
+  contract TEXT NOT NULL,
+  ref_id INTEGER REFERENCES social_token_refs(ref_id),
+  field TEXT NOT NULL,                    -- price | market_cap | fdv | circulating_supply | total_supply | liquidity_reported
+                                          -- | volume_24h | pair | sell_quote_out | buy_quote_out | price_candle_open ...
+  value_num REAL,
+  value_str TEXT,                         -- ids only (pair address, NO_ROUTE status)
+  unit TEXT NOT NULL,                     -- USD | token | SOL | <native symbol> | id | status
+  quote_currency TEXT,                    -- currency the value is denominated in (USD for prices; SOL/WETH for raw quotes)
+  supply_basis TEXT,                      -- valuation fields: circulating | total | NULL
+  supply_basis_source TEXT,               -- where the denominator meaning comes from
+  pair_id TEXT,
+  size_usd REAL,                          -- executable quotes: notional asked
+  provider TEXT NOT NULL,
+  source_key TEXT,                        -- collector body key
+  source_url TEXT,
+  as_of REAL,                             -- the time the value describes; NULL = UNKNOWN
+  as_of_kind TEXT NOT NULL CHECK (as_of_kind IN ('OBSERVED_AT_FETCH','HISTORICAL_CANDLE')),
+  fetched_at REAL NOT NULL,
+  valid_from REAL NOT NULL,
+  valid_until REAL NOT NULL,
+  bucket TEXT NOT NULL CHECK (bucket IN ('FACT','INFERENCE','HEURISTIC','UNKNOWN')),
+  recorded_at REAL NOT NULL
+);
+CREATE INDEX ix_smf_token ON social_market_facts(chain, contract, field, as_of);
+CREATE INDEX ix_smf_series ON social_market_facts(series_key, fact_version);
+
+CREATE TABLE social_market_context (      -- what one post's market context is, at posting time and at fetch time
+  context_id INTEGER PRIMARY KEY,
+  context_key TEXT NOT NULL UNIQUE,       -- sha256(resolution_id | fetched_at)
+  resolution_id INTEGER NOT NULL REFERENCES social_token_resolutions(resolution_id),
+  item_key TEXT,
+  chain TEXT NOT NULL,
+  contract TEXT NOT NULL,
+  published_at REAL,                      -- NULL = UNKNOWN
+  fetched_at REAL NOT NULL,
+  observed_lag_seconds REAL,              -- fetched_at - published_at; how stale the observed facts are for the post
+  posting_time_status TEXT NOT NULL
+    CHECK (posting_time_status IN ('HISTORICAL_CANDLE','NO_HISTORY','PUBLISHED_AT_UNKNOWN','FETCHED_AT_POSTING')),
+  posting_price_fact_id INTEGER REFERENCES social_market_facts(fact_id),
+  observed_price_fact_id INTEGER REFERENCES social_market_facts(fact_id),
+  market_status TEXT NOT NULL CHECK (market_status IN ('POOLS_FOUND','NO_POOL','NO_DATA')),
+  notes_json TEXT NOT NULL,               -- reason codes and numeric spreads only
+  recorded_at REAL NOT NULL
+);
+CREATE INDEX ix_smc_item ON social_market_context(item_key);
+"""
+
+V5_DOWN = """
+DROP TABLE IF EXISTS social_market_context;
+DROP TABLE IF EXISTS social_market_facts;
+DROP TABLE IF EXISTS social_token_relations;
+DROP TABLE IF EXISTS social_token_candidates;
+DROP TABLE IF EXISTS social_token_resolutions;
+"""
+
 # (version, name, up, down). Append only; never edit an applied entry (the checksum guard refuses it).
 MIGRATIONS: list[tuple[int, str, str, str]] = [
     (1, "social intelligence core tables", V1_UP, V1_DOWN),
     (2, "ingestion runs, checkpoints, quarantine, provenance", V2_UP, V2_DOWN),
     (3, "item context, source cursors, paid-API spend ledger", V3_UP, V3_DOWN),
     (4, "item forwards and in-place versions", V4_UP, V4_DOWN),
+    (5, "token identity resolution and timestamped market facts", V5_UP, V5_DOWN),
 ]
 LATEST = max(m[0] for m in MIGRATIONS)
 ALL_VERSIONS = sorted(m[0] for m in MIGRATIONS)
@@ -436,6 +554,8 @@ SOCIAL_TABLES = [
     "social_coverage", "social_ingest_runs", "social_ingest_checkpoints", "social_ingest_quarantine",
     "social_observation_provenance", "social_item_context", "social_item_refs", "social_source_cursors",
     "social_api_spend", "social_api_billed_resources", "social_item_forwards", "social_item_versions",
+    "social_token_resolutions", "social_token_candidates", "social_token_relations", "social_market_facts",
+    "social_market_context",
 ]
 
 

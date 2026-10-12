@@ -167,3 +167,23 @@ What the code already does about it: reads only listed, admin-approved channels;
 ## D-029 Forwards and reposts are never independent originals (ADOPTED, Phase 04)
 
 A forwarded Telegram post is stored as its own item with `reference_type='REPOST'` and a `social_item_forwards` row pointing at the origin. `store.is_independent_original()` returns False for any item with a forward row or a REPOST reference type (X reposts included). Replies and quotes stay independent because they are the poster's own words. Later counting phases (10, 11, 15) must call it, so one claim forwarded to ten channels counts once with ten sightings.
+
+## D-030 Prompt 05 is the token identity phase (ADOPTED, Phase 05, 2026-10-12)
+
+Elving supplied Prompt 05 ("Resolve exact token identity and snapshot market conditions"). It takes the Phase 05 slot. The proposed Phase 05 (source registry) moves to carry-over C-5, unscheduled; phases 06, 07, 08 and 13 now depend on C-5 instead. Phase 05 also delivers the token side of proposed Phase 09. No live provider call was made; every proof runs on synthetic bodies in `tests/fixtures/social/resolve/`.
+
+## D-031 Four resolution outcomes; a ticker alone never resolves (ADOPTED, Phase 05)
+
+Each reference in a post gets `resolved`, `ambiguous`, `unresolved` or `conflicted` (lower-case, as the prompt names them), with every candidate and its evidence stored (`social_token_resolutions`, `social_token_candidates`). A ticker resolves only when a contract in the same post resolves to a token whose providers report that ticker, or when it names a registry asset (wrapped native or stablecoin) on a chain the caller states. One search hit is still `ambiguous`. A contract that copies another token's symbol resolves to itself and is flagged. A ticker that disagrees with the posted contract makes both `conflicted`. Typos are never corrected; near matches are listed. A migration keeps the old contract as the identity and lists the successor. Reason: the prompt's gate ("no silent symbol-only matches") and D-003 (identity by contract, never ticker).
+
+## D-032 Supported chains for identity: Solana, Ethereum, Base, BNB Chain (ADOPTED, Phase 05)
+
+These four have provider coverage in the existing code (DEX Screener, GeckoTerminal, Jupiter for Solana, GoPlus for EVM, Jupiter or KyberSwap quotes). Other registry chains and chains the registry does not know are stored as `support='unsupported'` candidates and never resolve. Adding a chain later means adding it to `identity.SUPPORTED` once its sources are confirmed.
+
+## D-033 Market facts are per provider, versioned, and split by time meaning (ADOPTED, Phase 05)
+
+`social_market_facts` keeps one row per provider value with unit, quote currency, supply basis for valuation fields, collector key, source URL, as_of, as_of_kind, fetched_at and a validity window, versioned per series with `supersedes_fact_id`. Providers that disagree are never merged. The price at posting time comes only from a GeckoTerminal candle that contains the publication time, or from an observation fetched within 120 seconds of it; otherwise it is NULL with `NO_HISTORY`, and the current price stays an observed-at-fetch fact with its lag. Reported liquidity and executable sell proceeds are separate facts. The validity windows and the supply-basis reading of provider fields are lab conventions, not checked against provider documentation in this phase.
+
+## D-034 Market context reuses the bundle builders, not analyze_token (ADOPTED, Phase 05)
+
+`market_context` calls `normalize.build_bundle` and `chains/evm.build_bundle` and stores its facts in new `social_` tables. It does not call `pipeline.analyze_token`, which writes reports, theses and the legacy `tokens` table, whose primary key is the mint alone (one EVM address on two chains would collide there). The catalyst matcher (`catalyst/match.py`), which picks the most liquid Solana token for a term, is unchanged; social code uses the new resolver.

@@ -10,6 +10,8 @@
   social tg-health [--config <path>] [--check-access [--fixture <file>]]   Telegram Bot API health (telegram_bot.py)
   social tg-ingest [--config <path>] [--fixture <file>]   poll approved channels through getUpdates; live needs TELEGRAM_BOT_TOKEN
   social tg-webhook-ingest [--config <path>] [--spool <dir>]   ingest updates spooled by telegram_bot.webhook_receive()
+  social resolve --post <json> --bodies <json> [--context]   token identity for one post (identity.py), optional market context
+  social identity [--item <item_key>] [--resolution <id>]    what is stored: status, identity, candidates, evidence, context
 
 Exit code 0 for OK or PARTIAL runs (a down connector is recorded, not fatal), 1 for FAILED, 2 for usage errors.
 Output is a JSON summary on stdout; structured logs go to stderr as JSON lines.
@@ -210,6 +212,59 @@ def cmd_tg_webhook_ingest(a):
     raise SystemExit(1 if out["status"] == "FAILED" else 0)
 
 
+def _load_bodies(path: str) -> tuple[dict, float | None]:
+    """A resolver fixture ({bodies, fetched_at}) or a bridge result file ({key: {s, body}}, _at)."""
+    data = json.loads(Path(path).read_text())
+    if isinstance(data, dict) and isinstance(data.get("bodies"), dict):
+        return data["bodies"], data.get("fetched_at")
+    from .store import to_utc
+    at = to_utc(data.get("_at")) if isinstance(data, dict) and data.get("_at") else None
+    return {k: v for k, v in data.items() if not k.startswith("_")}, at
+
+
+def cmd_resolve(a):
+    from . import identity as ID, market_context as MC
+    from .store import to_utc
+    post = json.loads(Path(a.post).read_text())
+    bodies, fetched = _load_bodies(a.bodies)
+    fetched = a.fetched_at if a.fetched_at is not None else fetched
+    dbp = Path(a.db) if a.db else db.DB_PATH
+    db.init_db(dbp)
+    import sqlite3
+    con = sqlite3.connect(str(dbp)); con.row_factory = sqlite3.Row
+    try:
+        res = ID.resolve_post(bodies, text=post.get("text"), urls=post.get("urls") or [], cashtags=post.get("cashtags") or [],
+                              chain_hint=post.get("chain_hint"), con=con)
+        ids = ID.persist(con, res, item_key=post.get("item_key"), now=a.now)
+        if a.context:
+            if fetched is None:
+                print("--context needs fetched_at (in the bodies file or --fetched-at)", file=sys.stderr)
+                raise SystemExit(2)
+            for rid, m in zip(ids, res["mentions"]):
+                if m["status"] == "resolved":
+                    MC.attach(con, rid, bodies, fetched_at=fetched, published_at=to_utc(post.get("published_at")),
+                              native_price=post.get("native_price"), now=a.now)
+        con.commit()
+        out = {"status": res["status"], "resolutions": [ID.token_identity(con, resolution_id=i)[0] for i in ids]}
+    finally:
+        con.close()
+    print(json.dumps(out, indent=1, sort_keys=True, default=str))
+    raise SystemExit(0)
+
+
+def cmd_identity(a):
+    from . import identity as ID
+    import sqlite3
+    dbp = Path(a.db) if a.db else db.DB_PATH
+    con = sqlite3.connect(str(dbp)); con.row_factory = sqlite3.Row
+    try:
+        out = ID.token_identity(con, item_key=a.item, resolution_id=a.resolution)
+    finally:
+        con.close()
+    print(json.dumps(out, indent=1, sort_keys=True, default=str))
+    raise SystemExit(0 if out else 1)
+
+
 def add_subparser(sp) -> None:
     p = sp.add_parser("social", help="Social intelligence: ingest bridge inbox observations, status")
     ssp = p.add_subparsers(dest="social_cmd", required=True)
@@ -277,3 +332,16 @@ def add_subparser(sp) -> None:
     q.add_argument("--now", type=float)
     q.add_argument("-v", "--verbose", action="store_true")
     q.set_defaults(fn=cmd_tg_webhook_ingest)
+    q = ssp.add_parser("resolve", help="resolve a post's token references to (chain, contract); store candidates and evidence")
+    q.add_argument("--post", required=True, help="JSON: {item_key?, published_at?, text?, urls?, cashtags?, chain_hint?, native_price?}; text is read, never stored")
+    q.add_argument("--bodies", required=True, help="collector bodies: resolver fixture or bridge result file")
+    q.add_argument("--context", action="store_true", help="also store timestamped market context for resolved mentions")
+    q.add_argument("--fetched-at", type=float, help="when the bodies were fetched (epoch seconds), if the file does not say")
+    q.add_argument("--db")
+    q.add_argument("--now", type=float, help="fixed clock (epoch seconds), for replays and tests")
+    q.set_defaults(fn=cmd_resolve)
+    q = ssp.add_parser("identity", help="stored token identity, candidates, evidence and market context for an item")
+    q.add_argument("--item", help="item_key")
+    q.add_argument("--resolution", type=int, help="resolution id")
+    q.add_argument("--db")
+    q.set_defaults(fn=cmd_identity)

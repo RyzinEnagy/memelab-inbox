@@ -4,7 +4,7 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Phases 00 to 04 came with written phase prompts. Phases 05 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
+Phases 00 to 05 came with written phase prompts. Phases 06 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
 
 Status values also include SUPERSEDED (folded into another phase).
 
@@ -17,15 +17,15 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 02 | Ingestion contract and bridge/inbox adapter (Prompt 02) | 01 | DONE |
 | 03 | X monitoring through the official X API v2 (Prompt 03; old slot "social schema" was SUPERSEDED by 01) | 02 | DONE (live UNAVAILABLE, D-023) |
 | 04 | Telegram channel monitoring through the official Bot API (Prompt 04; old slot "manual capture" moved to C-4) | 02, 03 | DONE (live UNAVAILABLE, D-027) |
-| 05 | Source registry for social and trader sources | 02, 03, 04 | NEXT (proposed) |
-| 06 | Collector: X via signed-in Chrome (needs D-025 decision) | 04, 05 | PLANNED |
-| 07 | Collector: Telegram public channels via Chrome (needs D-028 decision) | 04, 05 | PLANNED |
-| 08 | Collector: other readable sources (YouTube RSS, token-listed links) | 04, 05 | PLANNED |
+| 05 | Exact token identity and timestamped market context (Prompt 05; old slot "source registry" moved to C-5) | 01, 02 | DONE (fixtures only, D-030) |
+| 06 | Collector: X via signed-in Chrome (needs D-025 decision) | 04, C-5 | NEXT (proposed) |
+| 07 | Collector: Telegram public channels via Chrome (needs D-028 decision) | 04, C-5 | PLANNED |
+| 08 | Collector: other readable sources (YouTube RSS, token-listed links) | 04, C-5 | PLANNED |
 | 09 | Entity resolution: accounts, projects, tokens by address | 06 | PLANNED |
 | 10 | Mention extraction by contract address | 09 | PLANNED |
 | 11 | Attention metrics with sampling notes | 10 | PLANNED |
 | 12 | Paid, bot and coordination signals | 11 | PLANNED |
-| 13 | Trader registry and identity verification | 05, 06 | PLANNED |
+| 13 | Trader registry and identity verification | C-5, 06 | PLANNED |
 | 14 | Trader claimed-wallet linking (evidence levels) | 13 | PLANNED |
 | 15 | Trader call capture | 10, 13 | PLANNED |
 | 16 | Call outcome tracking and trader scoring | 15 | PLANNED |
@@ -38,6 +38,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | C-2 | Carry-over: repo-wide guard against raw social text in tracked files (old Phase 02) | 02 | DONE |
 | C-3 | Carry-over: purge stored X observations of posts NOT_FOUND for 24 h (X deletion rule), needed before live X data is kept | 03 | PLANNED, unscheduled |
 | C-4 | Carry-over: manual capture onto the inbound schema (old proposed Phase 04) | 02 | PLANNED, unscheduled |
+| C-5 | Carry-over: source registry for social and trader sources (old proposed Phase 05) | 02, 03, 04 | PLANNED, unscheduled |
 
 ## Phase gates
 
@@ -59,7 +60,9 @@ C-3. Posts that `recheck` finds NOT_FOUND have their earlier X observations (has
 
 C-4. (old Phase 04) Manual captures (and `social-note`, without breaking its arguments) produce items in `memelab.social.inbound/1` with `access_mode='manual'` and go through the same ingester. Tests cover validation and rejection.
 
-05. Social and trader sources registered with access mode (fetch, navigate, manual, blocked), tier, terms constraint and coverage gap, reusing the catalyst source registry pattern. Blocked sources stay disabled with the reason recorded. No collector code yet.
+05. (Prompt 05, DONE 2026-10-12, IDENTITY_05.md) Downstream can request exact token identity plus timestamped evidence (`identity.token_identity`); no silent symbol-only match (a ticker resolves only through a same-post contract or a registry asset on a stated chain); resolved, ambiguous, unresolved and conflicted stored with candidates and evidence; market facts versioned with provider, units, quote currency, supply basis, source key and URL, fetched_at and validity window; posting-time price only from a covering candle; tests cover the prompt's list; demo of one ambiguous message and one resolved address; full suite with only the known clock failure.
+
+C-5. (old proposed Phase 05) Social and trader sources registered with access mode (fetch, navigate, manual, blocked), tier, terms constraint and coverage gap, reusing the catalyst source registry pattern. Blocked sources stay disabled with the reason recorded. No collector code yet.
 
 06. X reads through Elving's signed-in Chrome (D-009): profiles, public timelines and search results, read only, human-paced, stopping on any challenge. Output is derived fields plus own-words summaries (D-010). Fixtures recorded from real pages; parser tests pass offline.
 
@@ -67,9 +70,9 @@ C-4. (old Phase 04) Manual captures (and `social-note`, without breaking its arg
 
 08. Additional readable sources wired in the same way, each with fixtures and coverage notes. Sources that fail from both routes are recorded as gaps, not worked around.
 
-09. Accounts linked to projects and tokens only through evidence (official link on the token profile, link from the account to the contract address). Impersonation and name collisions flagged. Ticker-only matches never create a link.
+09. (token side delivered by Phase 05: tokens by address, ticker collisions and spoofed symbols) Accounts linked to projects and tokens only through evidence (official link on the token profile, link from the account to the contract address). Impersonation and name collisions flagged. Ticker-only matches never create a link.
 
-10. Mentions counted only when they contain a contract address or a verified official link. Cashtag-only mentions are THEMATIC and never score.
+10. Mentions counted only when they contain a contract address or a verified official link. Uses `identity.resolve_post` before the text is hashed (Phase 05 left the ingest wiring to this phase). Cashtag-only mentions are THEMATIC and never score.
 
 11. Attention metrics (counts, velocity, unique accounts) with window, sample size and sampling note on every value. Missing data stays UNKNOWN.
 

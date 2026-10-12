@@ -550,10 +550,11 @@ def test_migration_4_rolls_back_cleanly(tmp_path):
     p = tmp_path / "m.sqlite"
     db.init_db(p)
     con = sqlite3.connect(p)
-    assert schema.rollback(con, target=3) == [4]
+    above_3 = [v for v in schema.ALL_VERSIONS if v > 3]      # 4 and anything added after it (Phase 05: 5)
+    assert schema.rollback(con, target=3) == above_3[::-1]
     names = {r[0] for r in con.execute("SELECT name FROM sqlite_master WHERE type='table'")}
     assert "social_item_forwards" not in names and "social_item_versions" not in names and "social_item_context" in names
-    assert schema.migrate(con) == [4]
+    assert schema.migrate(con) == above_3
     con.close()
 
 

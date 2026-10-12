@@ -51,6 +51,7 @@ Related: [EXECUTION.md](EXECUTION.md), [ROADMAP.md](ROADMAP.md), [DECISIONS.md](
   - `python -m memelab.social.schema migrate`
   - `python -m memelab.social.schema rollback [target]` (writes a backup to `data/private/backups/` before rolling back)
 - Recovery: with nothing holding the database open, copy the backup file over the database and delete any `-wal` / `-shm` files next to it. `schema.backup_db()` uses the sqlite backup API, so it is safe on a live WAL database.
+- Later versions: 2 (ingestion, CONNECTORS_02.md), 3 (X API, X_API_03.md), 4 (Telegram forwards and versions, TELEGRAM_04.md), 5 (token resolutions, candidates, relations, market facts and market context, IDENTITY_05.md). The DDL is in `memelab/social/schema.py`.
 
 ## Version 1 DDL
 
