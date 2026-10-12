@@ -1194,6 +1194,60 @@ DROP TABLE IF EXISTS social_alpha_candles;
 DROP TABLE IF EXISTS social_alpha_series;
 """
 
+V12_UP = """
+-- Phase 12: chronology of social claims against on-chain activity. One stored run per (token, source, input), with its exact input, and the
+-- normalized corroboration, risk and data-quality flags a later discovery pipeline reads by token. Earlier phases' tables are only read.
+CREATE TABLE social_chrono_runs (           -- one deterministic chronology; input_json is the whole input, result_json the whole result
+  run_id INTEGER PRIMARY KEY,
+  engine_version TEXT NOT NULL,
+  rules_version TEXT NOT NULL,
+  chain TEXT NOT NULL,
+  contract TEXT NOT NULL,
+  source_id TEXT NOT NULL,
+  as_of REAL NOT NULL,
+  order_status TEXT NOT NULL CHECK (order_status IN ('CONFIDENT','INDETERMINATE','MIXED','NOT_APPLICABLE')),
+  policy_sha256 TEXT NOT NULL,
+  input_sha256 TEXT NOT NULL UNIQUE,        -- the same input twice adds nothing
+  result_sha256 TEXT NOT NULL,
+  n_timeline INTEGER NOT NULL,
+  n_patterns INTEGER NOT NULL,
+  input_json TEXT NOT NULL,
+  result_json TEXT NOT NULL,
+  created_at REAL NOT NULL,
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1))
+);
+CREATE INDEX ix_scr_token ON social_chrono_runs(chain, contract, source_id, run_id);
+
+CREATE TABLE social_chrono_flags (          -- per run; a risk flag is never FACT and always rests on a linked or self-claimed wallet
+  run_id INTEGER NOT NULL REFERENCES social_chrono_runs(run_id),
+  flag_key TEXT NOT NULL,
+  chain TEXT NOT NULL,
+  contract TEXT NOT NULL,
+  source_id TEXT NOT NULL,
+  flag TEXT NOT NULL,
+  category TEXT NOT NULL CHECK (category IN ('CORROBORATION','RISK','CONTEXT','DATA_QUALITY')),
+  bucket TEXT NOT NULL CHECK (bucket IN ('FACT','INFERENCE','HEURISTIC','UNKNOWN')),
+  rule TEXT NOT NULL,                       -- the rule id that fired, e.g. chrono.sale_during_promotion.v1
+  order_status TEXT NOT NULL CHECK (order_status IN ('CONFIDENT','INDETERMINATE','NOT_APPLICABLE')),
+  attribution TEXT,                         -- LINKED, CLAIMED, or the class of a wallet that was not attributed
+  at REAL,
+  evidence_json TEXT NOT NULL,              -- references to the original evidence (post URL, observation, tx, assertion)
+  note TEXT CHECK (note IS NULL OR length(note) <= 400),
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1)),
+  PRIMARY KEY (run_id, flag_key),
+  CHECK (category <> 'RISK' OR bucket IN ('INFERENCE','HEURISTIC')),
+  CHECK (category <> 'RISK' OR attribution IN ('LINKED','CLAIMED')),
+  CHECK (bucket <> 'FACT' OR category = 'DATA_QUALITY'),
+  CHECK (category = 'DATA_QUALITY' OR evidence_json <> '[]')
+);
+CREATE INDEX ix_scf_token ON social_chrono_flags(chain, contract, category, flag);
+"""
+
+V12_DOWN = """
+DROP TABLE IF EXISTS social_chrono_flags;
+DROP TABLE IF EXISTS social_chrono_runs;
+"""
+
 # (version, name, up, down). Append only; never edit an applied entry (the checksum guard refuses it).
 MIGRATIONS: list[tuple[int, str, str, str]] = [
     (1, "social intelligence core tables", V1_UP, V1_DOWN),
@@ -1207,6 +1261,7 @@ MIGRATIONS: list[tuple[int, str, str, str]] = [
     (9, "wallet attribution assertions, tracked wallets, fetches, classified activity events, funding hypotheses, audit", V9_UP, V9_DOWN),
     (10, "wallet performance accounting: token metadata, supplied prices, runs, positions, reconciliation checks", V10_UP, V10_DOWN),
     (11, "information alpha: supplied historical candles, evaluation runs, per-source scores with a declined state", V11_UP, V11_DOWN),
+    (12, "chronology: social claims against on-chain activity, stored runs and normalized corroboration and risk flags", V12_UP, V12_DOWN),
 ]
 LATEST = max(m[0] for m in MIGRATIONS)
 ALL_VERSIONS = sorted(m[0] for m in MIGRATIONS)
@@ -1228,6 +1283,7 @@ SOCIAL_TABLES = [
     "social_wallet_funding_hypotheses", "social_wallet_audit",
     "social_perf_token_meta", "social_perf_prices", "social_perf_runs", "social_perf_positions", "social_perf_checks",
     "social_alpha_series", "social_alpha_candles", "social_alpha_runs", "social_alpha_scores",
+    "social_chrono_runs", "social_chrono_flags",
 ]
 
 

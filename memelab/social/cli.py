@@ -558,3 +558,5 @@ def add_subparser(sp) -> None:
     perf_cli.add_parser(ssp)
     from . import alpha_cli
     alpha_cli.add_parser(ssp)
+    from . import chrono_cli
+    chrono_cli.add_parser(ssp)

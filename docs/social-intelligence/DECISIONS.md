@@ -368,3 +368,24 @@ One primary horizon (24 h) fixed by policy. Score = 50 + 50 * tanh(w * edge / 0.
 ## D-079 Phase 11 slot taken by Prompt 11; attention metrics move to C-11 (ADOPTED, Phase 11)
 
 Prompt 11 replaced the proposed "attention metrics" phase. That entry is carried over as C-11 in ROADMAP.md unchanged. Migration 11 adds `social_alpha_series`, `social_alpha_candles`, `social_alpha_runs`, `social_alpha_scores` and touches no earlier table. The prompt asked for `delisted tokens`, `price gaps` and `temporal leakage` tests; they are `test_delisted_tokens_are_total_losses_for_longs_and_get_no_extra_credit_for_shorts`, `test_price_gaps_are_not_filled`, `test_nothing_after_as_of_is_used` and `test_entry_and_matching_do_not_depend_on_later_candles`.
+
+## D-080 Phase 12 slot taken by Prompt 12; paid, bot and coordination signals move to C-12 (ADOPTED, Phase 12)
+
+Prompt 12 replaced the proposed "paid, bot and coordination signals" phase. That entry is carried over as C-12 in ROADMAP.md unchanged, and Phases 17 and 18 now also depend on it. Migration 12 adds `social_chrono_runs` and `social_chrono_flags` and touches no earlier table.
+
+## D-081 Order is decided by intervals, never by point times (ADOPTED, Phase 12)
+
+Every entry gets an interval from its clock and precision: a platform timestamp [t - 1, t + precision + 1), with precision 1 s unless the input says otherwise (60 s for a minute display); a relative "x ago" time +/- 3600 s by default; a block time [t - 2, t + 3); a collector sighting +/- 5 s. A publication time is capped by the first sighting, and a missing one is "no later than the first sighting". A slot without a block time is bounded by the block times of neighbouring slots in the input, or left unplaced. Two entries are ordered only when one interval ends before the other starts; otherwise the pair is INDETERMINATE and the summary lists it under not established. Reason: a minute-precision post and a swap in the same minute have no knowable order, and inventing one is the error the prompt warns about.
+
+## D-082 Only LINKED and uncontested SELF_CLAIMED wallets feed patterns (ADOPTED, Phase 12)
+
+The Phase 09 level decides. SIGNATURE_VERIFIED and CORROBORATED are LINKED (patterns are INFERENCE). An uncontested SELF_CLAIMED wallet is CLAIMED (patterns are HEURISTIC). A self-claim that another account also makes is CONTESTED; DISPUTED, THIRD_PARTY_CLAIMED, HYPOTHESIS_ONLY and NONE are not attributed; their events stay on the timeline as "unverified association" with a data-quality flag and no pattern. A wallet labelled exchange custody, protocol or pool, or at UNSUPPORTED_CUSTODY, is left off the timeline. Reason: an uncertain attribution must never become an accusation, and a shared custodian mixes different people.
+
+## D-083 Risk flags are never FACT and never name intent (ADOPTED, Phase 12)
+
+Flag categories are CORROBORATION, RISK, CONTEXT and DATA_QUALITY. A RISK flag is INFERENCE or HEURISTIC, needs a LINKED or CLAIMED wallet and cites evidence; the schema refuses anything else, and only DATA_QUALITY flags may be FACT. A buy before a bullish post is RISK only when the post did not say the author holds; with a stated holding it is DISCLOSED_POSITION_CONSISTENT (CORROBORATION). A sale after a bullish post and within 24 h is POTENTIAL_DISTRIBUTION_DURING_PROMOTION, INFERENCE when the order is certain, HEURISTIC when it is not. Generated text is checked against a list of accusatory words (whole words) and a hit refuses the result. Reason: the gate forbids unsupported ownership or manipulation claims, and wording drifts unless something checks it.
+
+## D-084 Absence and transfers are never read as trades (ADOPTED, Phase 12)
+
+TALK_WITHOUT_OBSERVED_TRADE and TRADE_WITHOUT_OBSERVED_TALK are UNKNOWN and carry the coverage behind them (no associated wallet, provider unavailable, not monitored, partial, full) or whether the source's posts were enumerated. A token transfer out is not a sale, a move to a custody-labelled address is "moved to exchange custody", a transfer between two associated wallets is internal, and a leg in another token or the native coin is UNRELATED_ASSET. Monitoring coverage for stored wallets runs from `watch_since` to the last good fetch, which overstates coverage when a fetch hit its transaction cap; that limit is written in CHRONOLOGY_12.md. Reason: absence of a monitored trade is not evidence that none occurred.
+

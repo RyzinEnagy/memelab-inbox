@@ -585,13 +585,13 @@ def _con(tmp_path, name="a.sqlite"):
 
 def test_migration_11_rolls_back_cleanly_and_leaves_phase_10_alone(tmp_path):
     con, _ = _con(tmp_path)
-    assert schema.current_version(con) == schema.LATEST == 11
+    assert schema.current_version(con) == schema.LATEST and 11 in schema.ALL_VERSIONS
     before = {r[0]: r[1] for r in con.execute("SELECT name, sql FROM sqlite_master WHERE name LIKE 'social_perf_%'")}
     assert len(before) >= 5
-    assert schema.rollback(con, 10) == [11]
+    assert schema.rollback(con, 10)[-1] == 11
     assert not con.execute("SELECT 1 FROM sqlite_master WHERE name LIKE 'social_alpha_%'").fetchall()
     assert {r[0]: r[1] for r in con.execute("SELECT name, sql FROM sqlite_master WHERE name LIKE 'social_perf_%'")} == before
-    assert schema.migrate(con) == [11]
+    assert 11 in schema.migrate(con)
     cols = {r[1] for t in ("social_alpha_series", "social_alpha_candles", "social_alpha_runs", "social_alpha_scores")
             for r in con.execute(f"PRAGMA table_info({t})")}
     assert not any(w in c for c in cols for w in ("follower", "engagement", "profit", "pnl", "views"))

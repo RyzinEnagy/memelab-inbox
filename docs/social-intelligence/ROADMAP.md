@@ -4,7 +4,7 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065, Phase 11: D-079). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
+Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065, Phase 11: D-079, Phase 12: D-080). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
 
 Status values also include SUPERSEDED (folded into another phase).
 
@@ -24,13 +24,13 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 09 | Wallet attribution assertions and wallet activity (Prompt 09; old slot "entity resolution" moved to C-9) | 05, 08 | DONE (fixtures only, D-056) |
 | 10 | Wallet-level performance accounting with reconciliation and a score gate (Prompt 10; old slot "mention extraction" moved to C-10) | 09 | DONE (fixtures only, D-065) |
 | 11 | Information Alpha Score: timestamped event study of public posts against matched tokens (Prompt 11; old slot "attention metrics" moved to C-11) | 05, 06, 10 | DONE (fixtures only, D-079) |
-| 12 | Paid, bot and coordination signals | 11 | PLANNED |
+| 12 | Chronology: social claims reconciled with on-chain order, corroboration and risk flags (Prompt 12; old slot "paid, bot and coordination signals" moved to C-12) | 05, 06, 09, 11 | DONE (fixtures only, D-080) |
 | 13 | Trader identity verification on top of the Phase 08 registry (live lists, status checks) | 08 | PLANNED |
 | 14 | Trader claimed-wallet linking: live evidence collection (assertion model delivered by Phase 09) | 13, 09 | PLANNED |
 | 15 | Trader call capture | 10, 13 | PLANNED |
 | 16 | Call outcome tracking and trader scoring | 15 | PLANNED |
-| 17 | Integration: m19 attention and launch social | 11, 12 | PLANNED |
-| 18 | Integration: catalyst attention and assessment | 11, 12 | PLANNED |
+| 17 | Integration: m19 attention and launch social | 11, 12, C-12 | PLANNED |
+| 18 | Integration: catalyst attention and assessment | 11, 12, C-12 | PLANNED |
 | 19 | Reporting sections and watchlist alerts | 16, 17, 18 | PLANNED |
 | 20 | Scheduled-run integration and state export rules | 19 | PLANNED |
 | 21 | End-to-end validation, docs, merge request | 20 | PLANNED |
@@ -45,6 +45,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | C-7 | Carry-over: Telegram public channels via Chrome (old proposed Phase 07, needs D-028) | 04, C-5 | PLANNED, unscheduled |
 | C-10 | Carry-over: mention extraction by contract address (old proposed Phase 10) | 09 | PLANNED, unscheduled |
 | C-11 | Carry-over: attention metrics with sampling notes (old proposed Phase 11) | 10 | PLANNED, unscheduled |
+| C-12 | Carry-over: paid placement, bot-like and coordination signals (old proposed Phase 12) | 07, 12 | PLANNED, unscheduled |
 
 ## Phase gates
 
@@ -92,7 +93,9 @@ C-10. (old Phase 10) Mentions counted only when they contain a contract address 
 
 C-11. (old Phase 11) Attention metrics (counts, velocity, unique accounts) with window, sample size and sampling note on every value. Missing data stays UNKNOWN.
 
-12. Paid placement, bot-like and coordinated patterns recorded as INFERENCE or HEURISTIC with the rule that fired. Nothing is labelled as fact without direct evidence.
+12. (Prompt 12, DONE 2026-10-12, CHRONOLOGY_12.md) For one resolved token and one social source, one ordered timeline of published post, first-seen post, removal observed, associated-wallet buy, sell and transfer, pool liquidity changes and market moves, each with its clock (SOURCE_PUBLICATION, CHAIN_BLOCK, COLLECTION, CANDLE), precision and an interval; order only where intervals do not overlap, otherwise INDETERMINATE; observed patterns trade before talk, talk before trade, talk without observed trade, trade without observed talk and potential distribution during promotion; absence of a monitored trade never evidence, with coverage stated; uncertain, contested, disputed and custody wallets never attributed; evidence summary in fact, inference and not established with links to original evidence; normalized flags (CORROBORATION, RISK, CONTEXT, DATA_QUALITY) where a risk flag is never FACT and always rests on a linked or self-claimed wallet; identity checked on every join; time-window configuration, dedupe, provider fallbacks, stale-evidence warnings, plain-English report; tests for delayed delivery, missing block time, symbol collision, conflicting wallets, same-minute ambiguity, unrelated transfer, one custodian for two people, promotional repost, missing price and source deletion; confident and indeterminate fixtures. Gate: ordering accurate or explicitly uncertain, links trace to evidence, no unsupported ownership or manipulation claims, tests pass.
+
+C-12. (old Phase 12) Paid placement, bot-like and coordinated patterns recorded as INFERENCE or HEURISTIC with the rule that fired. Nothing is labelled as fact without direct evidence. Can read Phase 12 chronology flags.
 
 13. The Phase 08 registry (DONE) is extended with live verification checks. It already imports the catalyst trader list (handles in `memelab/catalyst/sources.py`). Identity status VERIFIED / NOT_FOUND / UNVERIFIED with date. Research sources, not certified profitable traders.
 

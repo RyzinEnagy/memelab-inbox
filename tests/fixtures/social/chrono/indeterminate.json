@@ -1,0 +1,155 @@
+{
+ "as_of": 1791792000,
+ "coverage": {
+  "posts_enumerated": true,
+  "providers": {
+   "market": "UNAVAILABLE",
+   "social": "OK",
+   "wallet": "OK"
+  },
+  "wallet_monitoring": [
+   {
+    "chain": "solana",
+    "from": 1791417600,
+    "last_ok_fetch": 1791788400,
+    "to": 1791788400,
+    "wallet": "ut3Tma4pzF3EJQD7AYnX1ysV9SLQp361ut3Tma4pzF3E"
+   }
+  ]
+ },
+ "is_fixture": true,
+ "label": "FIXTURE: indeterminate order",
+ "market": [],
+ "pool_events": [],
+ "posts": [
+  {
+   "author_position": "not_disclosed",
+   "claim_id": 201,
+   "direction": "LONG",
+   "item_key": "x:1900000000000000201",
+   "observations": [
+    {
+     "observation_id": "fx-obs-1900000000000000201-1",
+     "observed_at": 1791684090,
+     "status": "OK"
+    }
+   ],
+   "platform": "x",
+   "published_at": 1791684000,
+   "published_basis": "PROVIDER",
+   "published_precision_s": 60,
+   "repost_of": null,
+   "talk_kind": "ORIGINAL",
+   "token": {
+    "chain": "solana",
+    "contract": "S5vznK6GJNtHJWH66MPdNBLHGx35G7HyS5vznK6GJNtH",
+    "status": "resolved",
+    "symbol": "LABCAT"
+   },
+   "url": "https://example.invalid/fixture/status/1900000000000000201"
+  },
+  {
+   "author_position": "not_disclosed",
+   "claim_id": 202,
+   "direction": "LONG",
+   "item_key": "x:1900000000000000202",
+   "observations": [
+    {
+     "observation_id": "fx-obs-1900000000000000202-1",
+     "observed_at": 1791687600,
+     "status": "OK"
+    }
+   ],
+   "platform": "x",
+   "published_at": null,
+   "published_basis": "UNKNOWN",
+   "repost_of": null,
+   "talk_kind": "ORIGINAL",
+   "token": {
+    "chain": "solana",
+    "contract": "S5vznK6GJNtHJWH66MPdNBLHGx35G7HyS5vznK6GJNtH",
+    "status": "resolved",
+    "symbol": "LABCAT"
+   },
+   "url": "https://example.invalid/fixture/status/1900000000000000202"
+  }
+ ],
+ "schema": "memelab.social.chrono.input/1",
+ "source": {
+  "accounts": [
+   "x:id:fx1"
+  ],
+  "label": "FIXTURE source A (invented)",
+  "source_id": "fx_source_a"
+ },
+ "token": {
+  "chain": "solana",
+  "contract": "S5vznK6GJNtHJWH66MPdNBLHGx35G7HyS5vznK6GJNtH",
+  "symbol": "LABCAT"
+ },
+ "wallet_events": [
+  {
+   "block_time": 1791684025,
+   "chain": "solana",
+   "custody_touch": null,
+   "event_id": "i-buy-w1",
+   "event_type": "SWAP",
+   "legs": [
+    {
+     "amount": 800000.0,
+     "asset_kind": "TOKEN",
+     "contract": "S5vznK6GJNtHJWH66MPdNBLHGx35G7HyS5vznK6GJNtH",
+     "counterparty": null,
+     "counterparty_label": null,
+     "direction": "IN"
+    }
+   ],
+   "provider": "fixture",
+   "signature": "m9WBmKVprAL6T1onT6LAaDzf8AQdy4sWm9WBmKVprAL6T1onT6LAaDzf8AQdy4sWm9WBmKVprAL6T1onT6LAaDzf",
+   "slot": 300018010,
+   "swap_side": "BUY",
+   "url": "https://solscan.io/tx/m9WBmKVprAL6T1onT6LAaDzf8AQdy4sWm9WBmKVprAL6T1onT6LAaDzf8AQdy4sWm9WBmKVprAL6T1onT6LAaDzf",
+   "wallet": "ut3Tma4pzF3EJQD7AYnX1ysV9SLQp361ut3Tma4pzF3E"
+  },
+  {
+   "block_time": 1791684050,
+   "chain": "solana",
+   "custody_touch": null,
+   "event_id": "i-sell-w1",
+   "event_type": "SWAP",
+   "legs": [
+    {
+     "amount": 300000.0,
+     "asset_kind": "TOKEN",
+     "contract": "S5vznK6GJNtHJWH66MPdNBLHGx35G7HyS5vznK6GJNtH",
+     "counterparty": null,
+     "counterparty_label": null,
+     "direction": "OUT"
+    }
+   ],
+   "provider": "fixture",
+   "signature": "fk1o2BvXTH39KFDCTPPbABsAQPxtrWMufk1o2BvXTH39KFDCTPPbABsAQPxtrWMufk1o2BvXTH39KFDCTPPbABsA",
+   "slot": 300018070,
+   "swap_side": "SELL",
+   "url": "https://solscan.io/tx/fk1o2BvXTH39KFDCTPPbABsAQPxtrWMufk1o2BvXTH39KFDCTPPbABsAQPxtrWMufk1o2BvXTH39KFDCTPPbABsA",
+   "wallet": "ut3Tma4pzF3EJQD7AYnX1ysV9SLQp361ut3Tma4pzF3E"
+  }
+ ],
+ "wallets": [
+  {
+   "account_entity": "acct:x:id:fx1",
+   "assertion_ids": [
+    1
+   ],
+   "chain": "solana",
+   "confidence": "HIGH",
+   "evidence_refs": [
+    "https://example.invalid/fixture/proof/1"
+   ],
+   "label_kind": null,
+   "level": "SIGNATURE_VERIFIED",
+   "other_claimants": [],
+   "wallet": "ut3Tma4pzF3EJQD7AYnX1ysV9SLQp361ut3Tma4pzF3E"
+  }
+ ]
+}
