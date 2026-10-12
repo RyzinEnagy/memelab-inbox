@@ -4,7 +4,7 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065, Phase 11: D-079, Phase 12: D-080). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
+Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065, Phase 11: D-079, Phase 12: D-080, Phase 13: D-085). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
 
 Status values also include SUPERSEDED (folded into another phase).
 
@@ -25,13 +25,13 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 10 | Wallet-level performance accounting with reconciliation and a score gate (Prompt 10; old slot "mention extraction" moved to C-10) | 09 | DONE (fixtures only, D-065) |
 | 11 | Information Alpha Score: timestamped event study of public posts against matched tokens (Prompt 11; old slot "attention metrics" moved to C-11) | 05, 06, 10 | DONE (fixtures only, D-079) |
 | 12 | Chronology: social claims reconciled with on-chain order, corroboration and risk flags (Prompt 12; old slot "paid, bot and coordination signals" moved to C-12) | 05, 06, 09, 11 | DONE (fixtures only, D-080) |
-| 13 | Trader identity verification on top of the Phase 08 registry (live lists, status checks) | 08 | PLANNED |
-| 14 | Trader claimed-wallet linking: live evidence collection (assertion model delivered by Phase 09) | 13, 09 | PLANNED |
-| 15 | Trader call capture | 10, 13 | PLANNED |
+| 13 | Social signals integrated into the scout and catalyst workflows as research candidates (Prompt 13; old slot "trader identity verification" moved to C-13) | 07, 12 | DONE (fixtures only, D-085) |
+| 14 | Trader claimed-wallet linking: live evidence collection (assertion model delivered by Phase 09) | C-13, 09 | PLANNED |
+| 15 | Trader call capture | 10, C-13 | PLANNED |
 | 16 | Call outcome tracking and trader scoring | 15 | PLANNED |
 | 17 | Integration: m19 attention and launch social | 11, 12, C-12 | PLANNED |
 | 18 | Integration: catalyst attention and assessment | 11, 12, C-12 | PLANNED |
-| 19 | Reporting sections and watchlist alerts | 16, 17, 18 | PLANNED |
+| 19 | Reporting sections and watchlist alerts (scout section delivered by 13) | 13, 16, 17, 18 | PLANNED |
 | 20 | Scheduled-run integration and state export rules | 19 | PLANNED |
 | 21 | End-to-end validation, docs, merge request | 20 | PLANNED |
 | C-1 | Carry-over: test isolation and clock (old Phase 01) | 00 | PLANNED, unscheduled |
@@ -46,6 +46,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | C-10 | Carry-over: mention extraction by contract address (old proposed Phase 10) | 09 | PLANNED, unscheduled |
 | C-11 | Carry-over: attention metrics with sampling notes (old proposed Phase 11) | 10 | PLANNED, unscheduled |
 | C-12 | Carry-over: paid placement, bot-like and coordination signals (old proposed Phase 12) | 07, 12 | PLANNED, unscheduled |
+| C-13 | Carry-over: trader identity verification on top of the Phase 08 registry (old proposed Phase 13) | 08 | PLANNED, unscheduled |
 
 ## Phase gates
 
@@ -97,7 +98,9 @@ C-11. (old Phase 11) Attention metrics (counts, velocity, unique accounts) with 
 
 C-12. (old Phase 12) Paid placement, bot-like and coordinated patterns recorded as INFERENCE or HEURISTIC with the rule that fired. Nothing is labelled as fact without direct evidence. Can read Phase 12 chronology flags.
 
-13. The Phase 08 registry (DONE) is extended with live verification checks. It already imports the catalyst trader list (handles in `memelab/catalyst/sources.py`). Identity status VERIFIED / NOT_FOUND / UNVERIFIED with date. Research sources, not certified profitable traders.
+13. (Prompt 13, DONE 2026-10-12, INTEGRATION_13.md) Opt-in adapter that turns Phase 07 narrative findings and Phase 12 flags into research candidates beside the scout and catalyst: originators, independent corroboration, freshness, exact contract and chain, confidence, promotional risks and timeline evidence; narrative attention, token structure and executable entry kept as separate lanes copied from the existing checks; high hype never overrides a fatal flag; ticker-only mentions unresolved and never ranked; no duplicate scoring and no second watchlist; versioned policy with provenance and zero execution impact; scout output unchanged when off and an explicit no-op when the source is unavailable; tests for fatal-flag override, spoof contract, top pick with no liquidity, credible early discussion, no data, stale sources, conflicting narratives, repeated ingest, rejected thesis with later changed evidence; side-by-side before/after fixture report. Gate: integrated path executes, old pipeline still works, explicit no-op, full suite with only the known clock failure.
+
+C-13. (old proposed Phase 13) The Phase 08 registry (DONE) is extended with live verification checks. It already imports the catalyst trader list (handles in `memelab/catalyst/sources.py`). Identity status VERIFIED / NOT_FOUND / UNVERIFIED with date. Research sources, not certified profitable traders.
 
 14. A wallet is linked to a trader only when the trader publicly claims it or chain evidence meets a documented bar; linkage level is recorded. Shared funding is linkage, not proof of control (existing rule).
 

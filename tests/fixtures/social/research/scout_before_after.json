@@ -1,0 +1,658 @@
+{
+ "as_of": 1791806400,
+ "findings": [
+  {
+   "amplifier_count": 9,
+   "chain": "solana",
+   "chrono_flags": [],
+   "confidence": "MODERATE",
+   "conflicted": 0,
+   "contract": "XqnDJ6wKKd4bjhFtNnHnbnKDBtQRPaBmXqnDJ6wKKd4b",
+   "earliest_published_at": 1791734340,
+   "first_observed_at": 1791734400,
+   "flags": [],
+   "freshness": "FRESH",
+   "independent_source_count": 3,
+   "is_fixture": true,
+   "item_count": 12,
+   "kind": "CONTRACT",
+   "last_observed_at": 1791799200,
+   "originators": [
+    {
+     "basis": "PROVIDER",
+     "event_time": 1791734400,
+     "item_key": "x:fx-goodcat-0",
+     "source_id": "fx_source_a"
+    },
+    {
+     "basis": "PROVIDER",
+     "event_time": 1791735000,
+     "item_key": "x:fx-goodcat-1",
+     "source_id": "fx_source_b"
+    },
+    {
+     "basis": "PROVIDER",
+     "event_time": 1791735600,
+     "item_key": "x:fx-goodcat-2",
+     "source_id": "fx_source_c"
+    }
+   ],
+   "reasons": [],
+   "source": {
+    "cluster_key": "ca:solana:XqnDJ6wKKd4bjhFtNnHnbnKDBtQRPaBmXqnDJ6wKKd4b",
+    "cutoff": 1791806400,
+    "engine_version": "narr-v1",
+    "run_id": 1,
+    "window": "fixture"
+   },
+   "stance": {
+    "positive": 3
+   },
+   "status": "ok",
+   "symbol": "GOODCAT"
+  },
+  {
+   "amplifier_count": 24,
+   "chain": "solana",
+   "chrono_flags": [],
+   "confidence": "HIGH",
+   "conflicted": 0,
+   "contract": "ud7KPUQpjkB1QSrBS4N8p1oHerDnEPshud7KPUQpjkB1",
+   "earliest_published_at": 1791784740,
+   "first_observed_at": 1791784800,
+   "flags": [
+    {
+     "evidence": "HEURISTIC",
+     "flag": "burst_amplification",
+     "note": "invented: 40 amplifying sources inside 15 minutes",
+     "proven": false
+    }
+   ],
+   "freshness": "FRESH",
+   "independent_source_count": 8,
+   "is_fixture": true,
+   "item_count": 32,
+   "kind": "CONTRACT",
+   "last_observed_at": 1791802800,
+   "originators": [
+    {
+     "basis": "PROVIDER",
+     "event_time": 1791784800,
+     "item_key": "x:fx-hypedog-0",
+     "source_id": "fx_source_d"
+    },
+    {
+     "basis": "PROVIDER",
+     "event_time": 1791785400,
+     "item_key": "x:fx-hypedog-1",
+     "source_id": "fx_source_e"
+    }
+   ],
+   "reasons": [],
+   "source": {
+    "cluster_key": "ca:solana:ud7KPUQpjkB1QSrBS4N8p1oHerDnEPshud7KPUQpjkB1",
+    "cutoff": 1791806400,
+    "engine_version": "narr-v1",
+    "run_id": 1,
+    "window": "fixture"
+   },
+   "stance": {
+    "positive": 8
+   },
+   "status": "ok",
+   "symbol": "HYPEDOG"
+  },
+  {
+   "amplifier_count": 15,
+   "chain": "solana",
+   "chrono_flags": [],
+   "confidence": "HIGH",
+   "conflicted": 0,
+   "contract": "HYgZd4ttK4uQaCnL1KfXfCbGzYeLaXQYHYgZd4ttK4uQ",
+   "earliest_published_at": 1791795540,
+   "first_observed_at": 1791795600,
+   "flags": [],
+   "freshness": "FRESH",
+   "independent_source_count": 5,
+   "is_fixture": true,
+   "item_count": 20,
+   "kind": "CONTRACT",
+   "last_observed_at": 1791802800,
+   "originators": [
+    {
+     "basis": "PROVIDER",
+     "event_time": 1791795600,
+     "item_key": "x:fx-toppick-0",
+     "source_id": "fx_source_f"
+    }
+   ],
+   "reasons": [],
+   "source": {
+    "cluster_key": "ca:solana:HYgZd4ttK4uQaCnL1KfXfCbGzYeLaXQYHYgZd4ttK4uQ",
+    "cutoff": 1791806400,
+    "engine_version": "narr-v1",
+    "run_id": 1,
+    "window": "fixture"
+   },
+   "stance": {
+    "positive": 5
+   },
+   "status": "ok",
+   "symbol": "TOPPICK"
+  },
+  {
+   "amplifier_count": 3,
+   "chain": "solana",
+   "chrono_flags": [],
+   "confidence": "LOW",
+   "conflicted": 0,
+   "contract": "e6sE6SXuhKoMShW9ts1aPdaJkeAGeFKee6sE6SXuhKoM",
+   "earliest_published_at": 1791791940,
+   "first_observed_at": 1791792000,
+   "flags": [],
+   "freshness": "FRESH",
+   "independent_source_count": 1,
+   "is_fixture": true,
+   "item_count": 4,
+   "kind": "CONTRACT",
+   "last_observed_at": 1791795600,
+   "originators": [
+    {
+     "basis": "PROVIDER",
+     "event_time": 1791792000,
+     "item_key": "x:fx-goodcat2-0",
+     "source_id": "fx_source_g"
+    }
+   ],
+   "reasons": [],
+   "source": {
+    "cluster_key": "ca:solana:e6sE6SXuhKoMShW9ts1aPdaJkeAGeFKee6sE6SXuhKoM",
+    "cutoff": 1791806400,
+    "engine_version": "narr-v1",
+    "run_id": 1,
+    "window": "fixture"
+   },
+   "stance": {
+    "positive": 1
+   },
+   "status": "ok",
+   "symbol": "GOODCAT"
+  },
+  {
+   "amplifier_count": 6,
+   "chain": "solana",
+   "chrono_flags": [],
+   "confidence": "MODERATE",
+   "conflicted": 0,
+   "contract": "H9ayi4b7b1bDVagsTS5TpCfVMFr6iWvqH9ayi4b7b1bD",
+   "earliest_published_at": 1791482340,
+   "first_observed_at": 1791482400,
+   "flags": [],
+   "freshness": "STALE",
+   "independent_source_count": 2,
+   "is_fixture": true,
+   "item_count": 8,
+   "kind": "CONTRACT",
+   "last_observed_at": 1791547200,
+   "originators": [
+    {
+     "basis": "PROVIDER",
+     "event_time": 1791482400,
+     "item_key": "x:fx-slowfrog-0",
+     "source_id": "fx_source_h"
+    },
+    {
+     "basis": "PROVIDER",
+     "event_time": 1791483000,
+     "item_key": "x:fx-slowfrog-1",
+     "source_id": "fx_source_i"
+    }
+   ],
+   "reasons": [],
+   "source": {
+    "cluster_key": "ca:solana:H9ayi4b7b1bDVagsTS5TpCfVMFr6iWvqH9ayi4b7b1bD",
+    "cutoff": 1791806400,
+    "engine_version": "narr-v1",
+    "run_id": 1,
+    "window": "fixture"
+   },
+   "stance": {
+    "positive": 2
+   },
+   "status": "ok",
+   "symbol": "SLOWFROG"
+  },
+  {
+   "is_fixture": true,
+   "kind": "TICKER_ONLY",
+   "mentions": 14,
+   "source": {
+    "engine_version": "narr-v1",
+    "run_id": 1,
+    "window": "fixture"
+   },
+   "symbol": "MOONX"
+  }
+ ],
+ "is_fixture": true,
+ "min_score": 55,
+ "mints": {
+  "GOODCAT": "XqnDJ6wKKd4bjhFtNnHnbnKDBtQRPaBmXqnDJ6wKKd4b",
+  "GOODCAT2": "e6sE6SXuhKoMShW9ts1aPdaJkeAGeFKee6sE6SXuhKoM",
+  "HYPEDOG": "ud7KPUQpjkB1QSrBS4N8p1oHerDnEPshud7KPUQpjkB1",
+  "OLDRUG": "hEfghVNqp2Am87K17PXtgXoV5yaNCSXJhEfghVNqp2Am",
+  "SLOWFROG": "H9ayi4b7b1bDVagsTS5TpCfVMFr6iWvqH9ayi4b7b1bD",
+  "TOPPICK": "HYgZd4ttK4uQaCnL1KfXfCbGzYeLaXQYHYgZd4ttK4uQ"
+ },
+ "prior": {
+  "hEfghVNqp2Am87K17PXtgXoV5yaNCSXJhEfghVNqp2Am": {
+   "fatal_flags": [
+    "LP_UNLOCKED_DEV_CONTROLLED"
+   ],
+   "reconsider_if": "LP locked/burned or migrated to protocol-custodied pool",
+   "rejected_at": 1791698400,
+   "stage": "deep",
+   "why_failed": "fatal structural flag"
+  }
+ },
+ "rejected_stage2": [],
+ "results": [
+  {
+   "bundle": {
+    "chain": "solana",
+    "identity": {
+     "name": "Goodcat (invented)",
+     "symbol": "GOODCAT"
+    },
+    "market": {
+     "liquidity_usd_total": 180000,
+     "market_cap": 1200000
+    }
+   },
+   "mint": "XqnDJ6wKKd4bjhFtNnHnbnKDBtQRPaBmXqnDJ6wKKd4b",
+   "modules": {
+    "attention": {
+     "trend": "RISING"
+    },
+    "breakout": {
+     "classification": "BASE"
+    },
+    "depth": {
+     "exit_capacity_usd_10pct": 27000,
+     "exit_capacity_usd_3pct": 9000
+    },
+    "early": {
+     "absorption": "ABSORBING",
+     "large_holder_net_direction": "ACCUMULATING"
+    },
+    "entries": {
+     "entries": [
+      {
+       "condition": "reclaim of the invented 4h level",
+       "invalidation_text": "4h close below the invented base"
+      }
+     ]
+    },
+    "holders": {
+     "adjusted_top10_pct": 21.0,
+     "largest_unexplained_pct": 3.1
+    },
+    "lifecycle": {
+     "confidence": "MODERATE",
+     "stage": "EARLY_DISCOVERY"
+    },
+    "manipulation": {
+     "label": "ORGANIC"
+    },
+    "structure": {
+     "structure": "HIGHER_LOWS"
+    }
+   },
+   "ranker_inputs": {
+    "depth": {
+     "exit_capacity_usd_3pct": 9000
+    }
+   },
+   "report_path": "fixture://reports/GOODCAT.md",
+   "score": {
+    "breakdown": {},
+    "fatal_flags": [],
+    "total": 68,
+    "unknown_buckets": [],
+    "unknown_count": 0,
+    "untradeable": false
+   },
+   "status": {
+    "reasoning": "structure building; no entry yet",
+    "status": "WATCH"
+   },
+   "thesis": {
+    "questions": {
+     "WHY IS IT RECEIVING ATTENTION?": "invented discovery signal"
+    }
+   }
+  },
+  {
+   "bundle": {
+    "chain": "solana",
+    "identity": {
+     "name": "Hypedog (invented)",
+     "symbol": "HYPEDOG"
+    },
+    "market": {
+     "liquidity_usd_total": 180000,
+     "market_cap": 1200000
+    }
+   },
+   "mint": "ud7KPUQpjkB1QSrBS4N8p1oHerDnEPshud7KPUQpjkB1",
+   "modules": {
+    "attention": {
+     "trend": "RISING"
+    },
+    "breakout": {
+     "classification": "BASE"
+    },
+    "depth": {
+     "exit_capacity_usd_10pct": 27000,
+     "exit_capacity_usd_3pct": 9000
+    },
+    "early": {
+     "absorption": "ABSORBING",
+     "large_holder_net_direction": "ACCUMULATING"
+    },
+    "entries": {
+     "entries": [
+      {
+       "condition": "reclaim of the invented 4h level",
+       "invalidation_text": "4h close below the invented base"
+      }
+     ]
+    },
+    "holders": {
+     "adjusted_top10_pct": 21.0,
+     "largest_unexplained_pct": 3.1
+    },
+    "lifecycle": {
+     "confidence": "MODERATE",
+     "stage": "EARLY_DISCOVERY"
+    },
+    "manipulation": {
+     "label": "ORGANIC"
+    },
+    "structure": {
+     "structure": "HIGHER_LOWS"
+    }
+   },
+   "ranker_inputs": {
+    "depth": {
+     "exit_capacity_usd_3pct": 9000
+    }
+   },
+   "report_path": "fixture://reports/HYPEDOG.md",
+   "score": {
+    "breakdown": {},
+    "fatal_flags": [
+     {
+      "category": "fixture",
+      "evidence": "invented fixture evidence",
+      "flag": "MINT_AUTHORITY_ACTIVE",
+      "severity": "FATAL"
+     }
+    ],
+    "total": 0,
+    "unknown_buckets": [],
+    "unknown_count": 0,
+    "untradeable": true
+   },
+   "status": {
+    "reasoning": "fatal structural flag",
+    "status": "REJECTED"
+   },
+   "thesis": {
+    "questions": {
+     "WHY IS IT RECEIVING ATTENTION?": "invented discovery signal"
+    }
+   }
+  },
+  {
+   "bundle": {
+    "chain": "solana",
+    "identity": {
+     "name": "Toppick (invented)",
+     "symbol": "TOPPICK"
+    },
+    "market": {
+     "liquidity_usd_total": 900,
+     "market_cap": 1200000
+    }
+   },
+   "mint": "HYgZd4ttK4uQaCnL1KfXfCbGzYeLaXQYHYgZd4ttK4uQ",
+   "modules": {
+    "attention": {
+     "trend": "RISING"
+    },
+    "breakout": {
+     "classification": "BASE"
+    },
+    "depth": {
+     "exit_capacity_usd_10pct": 0,
+     "exit_capacity_usd_3pct": 0
+    },
+    "early": {
+     "absorption": "ABSORBING",
+     "large_holder_net_direction": "ACCUMULATING"
+    },
+    "entries": {
+     "entries": [
+      {
+       "condition": "reclaim of the invented 4h level",
+       "invalidation_text": "4h close below the invented base"
+      }
+     ]
+    },
+    "holders": {
+     "adjusted_top10_pct": 21.0,
+     "largest_unexplained_pct": 3.1
+    },
+    "lifecycle": {
+     "confidence": "MODERATE",
+     "stage": "EARLY_DISCOVERY"
+    },
+    "manipulation": {
+     "label": "ORGANIC"
+    },
+    "structure": {
+     "structure": "HIGHER_LOWS"
+    }
+   },
+   "ranker_inputs": {
+    "depth": {
+     "exit_capacity_usd_3pct": 0
+    }
+   },
+   "report_path": "fixture://reports/TOPPICK.md",
+   "score": {
+    "breakdown": {},
+    "fatal_flags": [
+     {
+      "category": "fixture",
+      "evidence": "invented fixture evidence",
+      "flag": "NO_SELL_ROUTE",
+      "severity": "FATAL"
+     }
+    ],
+    "total": 0,
+    "unknown_buckets": [],
+    "unknown_count": 0,
+    "untradeable": true
+   },
+   "status": {
+    "reasoning": "no executable exit",
+    "status": "REJECTED"
+   },
+   "thesis": {
+    "questions": {
+     "WHY IS IT RECEIVING ATTENTION?": "invented discovery signal"
+    }
+   }
+  },
+  {
+   "bundle": {
+    "chain": "solana",
+    "identity": {
+     "name": "Oldrug (invented)",
+     "symbol": "OLDRUG"
+    },
+    "market": {
+     "liquidity_usd_total": 180000,
+     "market_cap": 1200000
+    }
+   },
+   "mint": "hEfghVNqp2Am87K17PXtgXoV5yaNCSXJhEfghVNqp2Am",
+   "modules": {
+    "attention": {
+     "trend": "RISING"
+    },
+    "breakout": {
+     "classification": "BASE"
+    },
+    "depth": {
+     "exit_capacity_usd_10pct": 27000,
+     "exit_capacity_usd_3pct": 9000
+    },
+    "early": {
+     "absorption": "ABSORBING",
+     "large_holder_net_direction": "ACCUMULATING"
+    },
+    "entries": {
+     "entries": [
+      {
+       "condition": "reclaim of the invented 4h level",
+       "invalidation_text": "4h close below the invented base"
+      }
+     ]
+    },
+    "holders": {
+     "adjusted_top10_pct": 21.0,
+     "largest_unexplained_pct": 3.1
+    },
+    "lifecycle": {
+     "confidence": "MODERATE",
+     "stage": "EARLY_DISCOVERY"
+    },
+    "manipulation": {
+     "label": "ORGANIC"
+    },
+    "structure": {
+     "structure": "HIGHER_LOWS"
+    }
+   },
+   "ranker_inputs": {
+    "depth": {
+     "exit_capacity_usd_3pct": 9000
+    }
+   },
+   "report_path": "fixture://reports/OLDRUG.md",
+   "score": {
+    "breakdown": {},
+    "fatal_flags": [
+     {
+      "category": "fixture",
+      "evidence": "invented fixture evidence",
+      "flag": "LP_UNLOCKED_DEV_CONTROLLED",
+      "severity": "FATAL"
+     }
+    ],
+    "total": 0,
+    "unknown_buckets": [],
+    "unknown_count": 0,
+    "untradeable": true
+   },
+   "status": {
+    "reasoning": "LP not locked",
+    "status": "REJECTED"
+   },
+   "thesis": {
+    "questions": {
+     "WHY IS IT RECEIVING ATTENTION?": "invented discovery signal"
+    }
+   }
+  },
+  {
+   "bundle": {
+    "chain": "solana",
+    "identity": {
+     "name": "Slowfrog (invented)",
+     "symbol": "SLOWFROG"
+    },
+    "market": {
+     "liquidity_usd_total": 180000,
+     "market_cap": 1200000
+    }
+   },
+   "mint": "H9ayi4b7b1bDVagsTS5TpCfVMFr6iWvqH9ayi4b7b1bD",
+   "modules": {
+    "attention": {
+     "trend": "RISING"
+    },
+    "breakout": {
+     "classification": "BASE"
+    },
+    "depth": {
+     "exit_capacity_usd_10pct": 27000,
+     "exit_capacity_usd_3pct": 9000
+    },
+    "early": {
+     "absorption": "ABSORBING",
+     "large_holder_net_direction": "ACCUMULATING"
+    },
+    "entries": {
+     "entries": [
+      {
+       "condition": "reclaim of the invented 4h level",
+       "invalidation_text": "4h close below the invented base"
+      }
+     ]
+    },
+    "holders": {
+     "adjusted_top10_pct": 21.0,
+     "largest_unexplained_pct": 3.1
+    },
+    "lifecycle": {
+     "confidence": "MODERATE",
+     "stage": "EARLY_DISCOVERY"
+    },
+    "manipulation": {
+     "label": "ORGANIC"
+    },
+    "structure": {
+     "structure": "HIGHER_LOWS"
+    }
+   },
+   "ranker_inputs": {
+    "depth": {
+     "exit_capacity_usd_3pct": 9000
+    }
+   },
+   "report_path": "fixture://reports/SLOWFROG.md",
+   "score": {
+    "breakdown": {},
+    "fatal_flags": [],
+    "total": 48,
+    "unknown_buckets": [],
+    "unknown_count": 0,
+    "untradeable": false
+   },
+   "status": {
+    "reasoning": "too many unknowns",
+    "status": "RESEARCH REQUIRED"
+   },
+   "thesis": {
+    "questions": {
+     "WHY IS IT RECEIVING ATTENTION?": "invented discovery signal"
+    }
+   }
+  }
+ ],
+ "schema": "memelab.social.research.fixture/1"
+}

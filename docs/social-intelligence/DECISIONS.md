@@ -389,3 +389,27 @@ Flag categories are CORROBORATION, RISK, CONTEXT and DATA_QUALITY. A RISK flag i
 
 TALK_WITHOUT_OBSERVED_TRADE and TRADE_WITHOUT_OBSERVED_TALK are UNKNOWN and carry the coverage behind them (no associated wallet, provider unavailable, not monitored, partial, full) or whether the source's posts were enumerated. A token transfer out is not a sale, a move to a custody-labelled address is "moved to exchange custody", a transfer between two associated wallets is internal, and a leg in another token or the native coin is UNRELATED_ASSET. Monitoring coverage for stored wallets runs from `watch_since` to the last good fetch, which overstates coverage when a fetch hit its transaction cap; that limit is written in CHRONOLOGY_12.md. Reason: absence of a monitored trade is not evidence that none occurred.
 
+
+## D-085 Phase 13 slot taken by Prompt 13; trader identity verification moves to C-13 (ADOPTED, Phase 13)
+
+Prompt 13 replaced the proposed "trader identity verification" phase. That entry is carried over as C-13 in ROADMAP.md unchanged, and Phases 14 and 15 now depend on C-13 instead of 13. Prompt 13 delivers part of the old Phase 19 (a social section in scout reports); Phase 19 keeps token and launch reports and watchlist alerts. No migration: the schema stays at 12.
+
+## D-086 Social findings travel inside the existing reports; no table and no second watchlist (ADOPTED, Phase 13)
+
+The research section is built at report time from stored Phase 07 and Phase 12 results and the tokens the scout or catalyst evaluated, and is appended to the report. It writes nothing: no table, no watchlist row, no rejection, no thesis. Reason: the prompt forbids duplicate scoring and parallel watchlists, and the inputs are already stored with provenance (snapshot run id, cluster key, chronology run and flag key, policy sha are printed in the section).
+
+## D-087 Three lanes, copied not recomputed (ADOPTED, Phase 13)
+
+Narrative attention comes from social findings only. Token structure is the existing fatal checks, copied. Executable entry is the existing status, copied. No lane reads another, so high attention cannot clear a fatal flag and a missing signal costs nothing. Research state follows the lanes: RESEARCH_CANDIDATE, REJECTED_STRUCTURE, NEEDS_STRUCTURAL_ANALYSIS, NO_SOCIAL_SIGNAL. A ticker-only mention is UNRESOLVED and listed apart. A finding whose symbol matches an analyzed token on another contract is SYMBOL_COLLISION and inherits nothing.
+
+## D-088 Opt-in, versioned policy with provenance and a fixed zero execution impact (ADOPTED, Phase 13)
+
+Off unless `--social` is given or `data/config.json` sets `social_research.enabled`. Policy schema `memelab.social.research.policy/1`; a policy file merges over the config. The attention weight is HEURISTIC and orders the social section only. Keys that would reach the score, status, rank, watchlist, fatal checks, sizing or orders are refused, and `trade_execution_impact` must be `none`. Every section prints the policy version, source, path and sha256. With the feature off the scout does not open the social store and the report is the pre-Phase-13 report; with it on and no data the section is a one-line no-op naming the reason.
+
+## D-089 social-note is left as it is (ADOPTED, Phase 13)
+
+`social-note` writes manual metrics into `social_snapshots` with no observation, account or time basis. The adapter does not read those rows, and the command keeps its arguments. Manual capture onto the inbound schema stays C-4. Reason: the prompt asks for sourced findings, and a manual metric is not one.
+
+## D-090 Earlier rejections are reviewed, never reopened by attention (ADOPTED, Phase 13)
+
+The latest verdict per mint before as_of (theses, then rejections; a later non-rejected thesis supersedes) is the prior rejection. It STANDS when the structure still fails or the token was not re-analyzed, and is REOPEN_FOR_REVIEW only when the existing checks ran again and no longer fired. The review is a label in the social section; the pipeline status is what the pipeline computed. Reason: changed social evidence is not a changed token.

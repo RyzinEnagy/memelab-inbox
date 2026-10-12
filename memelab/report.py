@@ -232,7 +232,8 @@ def _bottom_line(r):
     return text + "\n"
 
 
-def render_scout_report(env: dict[str, Any], candidates: list[dict], near_misses: list[dict], rejected: list[dict], when: float | None = None) -> str:
+def render_scout_report(env: dict[str, Any], candidates: list[dict], near_misses: list[dict], rejected: list[dict], when: float | None = None,
+                        social: dict | None = None) -> str:
     ts = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime(when or time.time()))
     L = [f"# Opportunity Scout report — {ts}\n", "## Market environment\n"]
     L += [f"- {k}: {v}" for k, v in env.items()]
@@ -254,7 +255,11 @@ def render_scout_report(env: dict[str, Any], candidates: list[dict], near_misses
     L.append("\n## Rejected after due diligence\n")
     L += [f"- {x['symbol']} `{x['mint']}`: {x['why']}" for x in rejected] or ["- none"]
     L.append("")
-    return "\n".join(L)
+    out = "\n".join(L)
+    if social is not None:          # Phase 13, opt-in; appended after the unchanged scout body
+        from .social import research_core
+        out += "\n" + research_core.render(social)
+    return out
 
 
 def _primary_risk(c):

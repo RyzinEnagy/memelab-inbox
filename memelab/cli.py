@@ -209,34 +209,76 @@ def cmd_analyze(a):
         print(r["report_md"])
 
 
-def cmd_scout(a):
-    bodies, t = _bodies(a.results)
-    s1 = json.loads((INBOX / f"{a.stage1}.stage1.json").read_text()) if a.stage1 else {}
-    s2 = json.loads((INBOX / f"{a.stage1}.stage2.json").read_text()) if a.stage1 and (INBOX / f"{a.stage1}.stage2.json").exists() else {}
-    sol = s1.get("sol_price") or _sol_price(bodies)
-    bm = _benchmarks(bodies, s1.get("survivors"))
-    results = []
-    for mint in a.mints:
-        disc = next((c for c in s1.get("survivors", []) if c["mint"] == mint), None)
-        r = pipeline.analyze_token(mint, bodies, observed_at=t, sol_price=sol, benchmarks=bm, discovery_signals=disc, persist=True)
-        results.append(r)
+def scout_lists(results: list[dict], s2: dict, min_score: int) -> tuple[dict, list, list, list]:
+    """The ranked table, serious candidates, near misses and rejections, exactly as the scout has always built them."""
     from .modules import m24_opportunity_ranker as m24
     ranked = m24.rank([{"symbol": r["bundle"]["identity"].get("symbol"), "mint": r["mint"], "score_result": r["score"], "modules": r["ranker_inputs"], "status": r["status"]} for r in results])
-    serious = [r for r in results if not r["score"]["untradeable"] and r["status"]["status"] in ("WATCH", "SETUP DEVELOPING", "NEAR ENTRY", "ENTRY CONDITIONS MET") and (r["score"]["total"] or 0) >= a.min_score]
+    serious = [r for r in results if not r["score"]["untradeable"] and r["status"]["status"] in ("WATCH", "SETUP DEVELOPING", "NEAR ENTRY", "ENTRY CONDITIONS MET") and (r["score"]["total"] or 0) >= min_score]
     serious.sort(key=lambda r: r["score"]["total"], reverse=True)
     serious = serious[:5]
     near = [{"symbol": r["bundle"]["identity"].get("symbol"), "mint": r["mint"], "score": r["score"]["total"], "status": r["status"]["status"], "why": r["status"].get("reasoning")} for r in results if r not in serious and not r["score"]["untradeable"] and r["status"]["status"] not in ("REJECTED",)]
     rejected = [{"symbol": r["bundle"]["identity"].get("symbol"), "mint": r["mint"], "why": r["status"].get("reasoning") + ("; fatal: " + ", ".join(f["flag"] for f in r["score"]["fatal_flags"]) if r["score"].get("fatal_flags") else "")} for r in results if r["score"]["untradeable"] or r["status"]["status"] == "REJECTED"]
     for x in s2.get("rejected_stage2", []):
         rejected.append({"symbol": x.get("symbol"), "mint": x["mint"], "why": "stage-2 structural: " + x.get("why", "")})
+    return ranked, serious, near, rejected
+
+
+def social_section(a, results: list[dict], serious: list[dict], t: float, prior: dict | None) -> dict | None:
+    """Phase 13, opt-in. None when off (the report is then byte-identical to the pre-Phase-13 scout)."""
+    from .social import research_core as RC, research_store as RS
+    try:
+        policy = RS.load_policy(getattr(a, "social_policy", None))
+    except (RC.PolicyError, OSError, ValueError) as e:
+        sys.exit(f"social research policy refused: {e}")
+    if getattr(a, "social_include_fixtures", False):
+        policy = RC.make_policy({**{k: v for k, v in policy.items() if k not in ("provenance",)}, "include_fixtures": True},
+                                source=policy["provenance"]["source"] + "+cli", path=policy["provenance"]["path"])
+    if not (getattr(a, "social", False) or policy["enabled"]):
+        return None
+    ev = RS.evaluated_from_scout(results, [r["mint"] for r in serious], prior)
+    return RS.section(db.connect, as_of=t, policy=policy, evaluated=ev)
+
+
+def _social_wanted(a) -> bool:
+    if getattr(a, "social", False):
+        return True
+    try:
+        from .social import research_store as RS
+        return bool(RS.load_policy(getattr(a, "social_policy", None))["enabled"])
+    except Exception:
+        return bool(getattr(a, "social_policy", None))
+
+
+def cmd_scout(a):
+    bodies, t = _bodies(a.results)
+    s1 = json.loads((INBOX / f"{a.stage1}.stage1.json").read_text()) if a.stage1 else {}
+    s2 = json.loads((INBOX / f"{a.stage1}.stage2.json").read_text()) if a.stage1 and (INBOX / f"{a.stage1}.stage2.json").exists() else {}
+    sol = s1.get("sol_price") or _sol_price(bodies)
+    bm = _benchmarks(bodies, s1.get("survivors"))
+    report_dir = Path(a.report_dir) if getattr(a, "report_dir", None) else None
+    prior = None
+    if _social_wanted(a):
+        from .social import research_store as RS
+        try:
+            with db.connect() as con:
+                prior = RS.prior_rejections(con, a.mints, before=t)
+        except Exception:
+            prior = None
+    results = []
+    for mint in a.mints:
+        disc = next((c for c in s1.get("survivors", []) if c["mint"] == mint), None)
+        r = pipeline.analyze_token(mint, bodies, observed_at=t, sol_price=sol, benchmarks=bm, discovery_signals=disc, persist=True, report_dir=report_dir)
+        results.append(r)
+    ranked, serious, near, rejected = scout_lists(results, s2, a.min_score)
     cg = bodies.get("raw:cg_sol") or {}
     env = {"SOL": f"${sol:,.2f}" + (f" ({cg['solana'].get('usd_24h_change', 0):+.1f}% 24h)" if cg.get("solana") else ""),
            "BTC": f"${cg['bitcoin'].get('usd'):,.0f} ({cg['bitcoin'].get('usd_24h_change', 0):+.1f}% 24h)" if cg.get("bitcoin") else "n/a",
            "Discovery universe": f"{s1.get('universe_size', 'n/a')} mints, {len(s1.get('survivors', []))} stage-1 survivors, {len(s2.get('deep_candidates', []))} deep candidates",
            "Peer median 24h change": _median([p.get("chg_24h") for p in bm.get("peers", []) if p.get("chg_24h") is not None]),
            "Best token vs best trade": ranked.get("best_token_vs_best_trade")}
-    md = report.render_scout_report(env, serious, near, rejected, when=t)
-    path = db.DATA_DIR / "reports" / f"{time.strftime('%Y%m%d_%H%M', time.gmtime(t))}_SCOUT.md"
+    social = social_section(a, results, serious, t, prior)
+    md = report.render_scout_report(env, serious, near, rejected, when=t, social=social)
+    path = (report_dir or (db.DATA_DIR / "reports")) / f"{time.strftime('%Y%m%d_%H%M', time.gmtime(t))}_SCOUT.md"
     path.write_text(md)
     print(md)
     print(f"\n-> {path}")
@@ -355,7 +397,11 @@ def main(argv=None):
     p = sp.add_parser("discover"); p.add_argument("id"); p.add_argument("--min-liq", type=float, default=20_000); p.add_argument("--min-vol", type=float, default=50_000); p.add_argument("--limit", type=int, default=60); p.add_argument("--show", type=int, default=40); p.add_argument("--rejection-ttl-hours", type=float, default=72); p.set_defaults(fn=cmd_discover)
     p = sp.add_parser("stage2"); p.add_argument("source"); p.add_argument("--results", nargs="+", required=True); p.add_argument("--limit", type=int, default=8); p.add_argument("--max-single-holder", type=float, default=15); p.add_argument("--max-top10", type=float, default=50); p.add_argument("--min-liq", type=float, default=30_000); p.add_argument("--min-age-hours", type=float, default=6); p.set_defaults(fn=cmd_stage2)
     p = sp.add_parser("analyze"); p.add_argument("mint"); p.add_argument("--results", nargs="+", required=True); p.add_argument("--stage1"); p.add_argument("--account-size", type=float); p.add_argument("--max-loss-usd", type=float); p.add_argument("--max-loss-pct", type=float); p.add_argument("--position-usd", type=float); p.add_argument("--no-persist", action="store_true"); p.add_argument("--print", action="store_true"); p.set_defaults(fn=cmd_analyze)
-    p = sp.add_parser("scout"); p.add_argument("--mints", nargs="+", required=True); p.add_argument("--results", nargs="+", required=True); p.add_argument("--stage1"); p.add_argument("--min-score", type=int, default=55); p.set_defaults(fn=cmd_scout)
+    p = sp.add_parser("scout"); p.add_argument("--mints", nargs="+", required=True); p.add_argument("--results", nargs="+", required=True); p.add_argument("--stage1"); p.add_argument("--min-score", type=int, default=55)
+    p.add_argument("--social", action="store_true", help="opt-in: attach social research candidates (no effect on score, status, ranking or execution)")
+    p.add_argument("--social-policy", help="JSON policy file for the social research section (merged over data/config.json social_research)")
+    p.add_argument("--social-include-fixtures", action="store_true", help="read fixture narrative snapshots too (demos and tests)")
+    p.add_argument("--report-dir", help="write reports here instead of data/reports"); p.set_defaults(fn=cmd_scout)
     p = sp.add_parser("wallet"); p.add_argument("action", choices=["plan", "report"]); p.add_argument("--addresses", nargs="*"); p.add_argument("--id"); p.add_argument("--results", nargs="*", default=[]); p.add_argument("--tx-limit", type=int, default=100); p.add_argument("--account-size", type=float); p.set_defaults(fn=cmd_wallet)
     from .catalyst.cli import add_subparser as _cat; _cat(sp)
     from .chains.cli import add_subparser as _chains; _chains(sp)
