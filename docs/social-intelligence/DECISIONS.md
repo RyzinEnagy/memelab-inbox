@@ -413,3 +413,27 @@ Off unless `--social` is given or `data/config.json` sets `social_research.enabl
 ## D-090 Earlier rejections are reviewed, never reopened by attention (ADOPTED, Phase 13)
 
 The latest verdict per mint before as_of (theses, then rejections; a later non-rejected thesis supersedes) is the prior rejection. It STANDS when the structure still fails or the token was not re-analyzed, and is REOPEN_FOR_REVIEW only when the existing checks ran again and no longer fired. The review is a label in the social section; the pipeline status is what the pipeline computed. Reason: changed social evidence is not a changed token.
+
+## D-091 Phase 14 slot taken by Prompt 14; trader claimed-wallet linking moves to C-14 (ADOPTED, Phase 14)
+
+Prompt 14 (readable, cited intelligence feed and digest) replaced the proposed Phase 14 "trader claimed-wallet linking: live evidence collection". That entry is carried over as C-14 in ROADMAP.md unchanged, and Phase 15 keeps its dependency on C-13. Prompt 14 delivers part of the old Phase 19 (a readable social report); Phase 19 keeps token and launch report sections and watchlist alerts. No migration: schema stays at 12.
+
+## D-092 The feed is a read-only renderer with one stable JSON form (ADOPTED, Phase 14)
+
+`feed_store` opens the database read only and builds an input document; `feed_core.build` turns it into `memelab.social.feed/1` (sorted keys, no clock, `feed_sha256`); the three markdown views render from that one document. Nothing is stored for the feed: an old brief is audited from its JSON, the narrative run id, the claim ids and the chronology runs it names. Reason: later alerts and the scheduler need a stable machine-readable source, and a second store of derived social data would drift.
+
+## D-093 Group by identity or theme; repeats are counts, not people (ADOPTED, Phase 14)
+
+Blocks are Phase 07 clusters (exact contract or structured theme), never authors or time slices. Each source appears once per role with its latest claim; reposts, forwards and repeating quotes are counted once with their original and only the first two are linked. Ticker-only mentions are a separate unresolved list. Reason: the prompt asks for discussion grouped by token or theme rather than reverse-chronological influencer output.
+
+## D-094 Priority is HEURISTIC and orders the report only; the no-signal line is literal (ADOPTED, Phase 14)
+
+HIGH: in window, fresh (24 h), coverage ok, and two or more independent sources or a Phase 12 RISK flag. MEDIUM: one source or not estimable. LOW: out of window, insufficient coverage or stale. Priority reaches no score, status, watchlist, rejection or trade. With no HIGH item the brief opens with "No supported high-priority observations." and the reason, and lists lower items below it.
+
+## D-095 No post wording, summaries or display names in a report; provider strings reduced to safe forms (ADOPTED, Phase 14)
+
+Reports are lab-written but may be shared, and post text can carry instructions to automated readers. So the feed renders only structure: counts, enums, times, ids, handles and symbols that match a safe character set (else a neutral label), and links that pass `safe_url` (http(s), no credentials, no query or fragment, ASCII host, no Telegram invite or private-chat link). Own-words summaries (D-010) stay in `social claims` and are not rendered here. Any remaining provider string is markdown-escaped with control and bidi characters removed. A post the extractor marked injection-suspected is named as a reason to doubt.
+
+## D-096 Fixture demos run the real read path and are watermarked (ADOPTED, Phase 14)
+
+`social feed-demo` and `--fixture` build a throwaway SQLite store from an invented spec through the real store functions and the real narrative engine, then read it with `feed_store`. Every view carries the watermark at top and bottom, the JSON says `fixture: true`, and `--report-dir` names end in `_FIXTURE`. The live commands skip fixture snapshots unless `--include-fixtures` is given. Reason: the prompt forbids fake live output, and a demo that bypassed the store would not prove the read path.

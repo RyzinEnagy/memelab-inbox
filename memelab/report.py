@@ -268,3 +268,10 @@ def _primary_risk(c):
         return "n/a"
     worst = min(bd.items(), key=lambda kv: (kv[1].get("score") or 0))
     return f"{worst[0]} ({worst[1].get('points'):.1f}/{worst[1].get('max')})"
+
+
+def render_social_feed(doc: dict, view: str = "brief") -> str:
+    """Phase 14: one view (brief, trader-digest, feed) of a social feed document built by social.feed_core.build.
+    Read only; the document is the stable JSON a later alert or scheduler would consume."""
+    from .social import feed_core
+    return feed_core.render(doc, view)

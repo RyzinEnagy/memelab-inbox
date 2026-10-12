@@ -4,7 +4,7 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065, Phase 11: D-079, Phase 12: D-080, Phase 13: D-085). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
+Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065, Phase 11: D-079, Phase 12: D-080, Phase 13: D-085, Phase 14: D-091). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
 
 Status values also include SUPERSEDED (folded into another phase).
 
@@ -26,12 +26,12 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 11 | Information Alpha Score: timestamped event study of public posts against matched tokens (Prompt 11; old slot "attention metrics" moved to C-11) | 05, 06, 10 | DONE (fixtures only, D-079) |
 | 12 | Chronology: social claims reconciled with on-chain order, corroboration and risk flags (Prompt 12; old slot "paid, bot and coordination signals" moved to C-12) | 05, 06, 09, 11 | DONE (fixtures only, D-080) |
 | 13 | Social signals integrated into the scout and catalyst workflows as research candidates (Prompt 13; old slot "trader identity verification" moved to C-13) | 07, 12 | DONE (fixtures only, D-085) |
-| 14 | Trader claimed-wallet linking: live evidence collection (assertion model delivered by Phase 09) | C-13, 09 | PLANNED |
+| 14 | Readable, cited intelligence feed: morning brief, trader digest, filterable feed (Prompt 14; old slot "trader claimed-wallet linking" moved to C-14) | 07, 08, 12, 13 | DONE (fixtures only, D-091) |
 | 15 | Trader call capture | 10, C-13 | PLANNED |
 | 16 | Call outcome tracking and trader scoring | 15 | PLANNED |
 | 17 | Integration: m19 attention and launch social | 11, 12, C-12 | PLANNED |
 | 18 | Integration: catalyst attention and assessment | 11, 12, C-12 | PLANNED |
-| 19 | Reporting sections and watchlist alerts (scout section delivered by 13) | 13, 16, 17, 18 | PLANNED |
+| 19 | Reporting sections and watchlist alerts (scout section delivered by 13, standalone feed and JSON by 14) | 13, 16, 17, 18 | PLANNED |
 | 20 | Scheduled-run integration and state export rules | 19 | PLANNED |
 | 21 | End-to-end validation, docs, merge request | 20 | PLANNED |
 | C-1 | Carry-over: test isolation and clock (old Phase 01) | 00 | PLANNED, unscheduled |
@@ -47,6 +47,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | C-11 | Carry-over: attention metrics with sampling notes (old proposed Phase 11) | 10 | PLANNED, unscheduled |
 | C-12 | Carry-over: paid placement, bot-like and coordination signals (old proposed Phase 12) | 07, 12 | PLANNED, unscheduled |
 | C-13 | Carry-over: trader identity verification on top of the Phase 08 registry (old proposed Phase 13) | 08 | PLANNED, unscheduled |
+| C-14 | Carry-over: trader claimed-wallet linking, live evidence collection (old proposed Phase 14; assertion model delivered by Phase 09) | C-13, 09 | PLANNED, unscheduled |
 
 ## Phase gates
 
@@ -102,7 +103,9 @@ C-12. (old Phase 12) Paid placement, bot-like and coordinated patterns recorded 
 
 C-13. (old proposed Phase 13) The Phase 08 registry (DONE) is extended with live verification checks. It already imports the catalyst trader list (handles in `memelab/catalyst/sources.py`). Identity status VERIFIED / NOT_FOUND / UNVERIFIED with date. Research sources, not certified profitable traders.
 
-14. A wallet is linked to a trader only when the trader publicly claims it or chain evidence meets a documented bar; linkage level is recorded. Shared funding is linkage, not proof of control (existing rule).
+14. (Prompt 14, DONE 2026-10-12, REPORTS_14.md) Read-only feed over stored observations, claims, narratives, chronology flags and market facts with no paid dashboard and no model: `social brief` (last 24 h, narrative first), `social trader-digest` (stances, disclosed positions, changed positions, disagreements), `social feed` (filters by chain, token, source, time, risk); every item gives what happened, first observed and published time, who said it, original links, independence vs repetition, why it matters, what is corroborated, what is speculation, reasons to doubt, liquidity and exit caveat, next step and freshness and coverage; grouped by token or theme; ticker-only mentions unresolved; safe markdown and link sanitation, no post wording; stable JSON `memelab.social.feed/1`; "No supported high-priority observations" when nothing qualifies; fixture demos watermarked; tests for 0/1/many narratives, conflicting opinions, repeated forwards, unresolved ticker, link sanitation, stale data, time zones, missing model, prompt injection and identical rerun; sample report reproduced by one CLI command. No notifications or scheduling.
+
+C-14. (old proposed Phase 14) A wallet is linked to a trader only when the trader publicly claims it or chain evidence meets a documented bar; linkage level is recorded. Shared funding is linkage, not proof of control (existing rule).
 
 15. Calls captured with timestamp, account, contract address, stated direction, source URL and an own-words summary (D-010). Phase 06 already extracts and stores the claim structure; what is left is wiring collectors to it and the trader link.
 

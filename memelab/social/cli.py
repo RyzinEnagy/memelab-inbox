@@ -20,6 +20,8 @@
   social narrative-show [--run <id>] [--json]                the snapshot in plain English (latest when --run is omitted)
   social narrative-why --run <id> --cluster <key>            why this cluster: rule, members, roles, dependency groups, hypotheses
   social narrative-changes [--run <id>]                      what moved since the previous comparable snapshot
+  social brief | trader-digest | feed [--as-of T] [--tz Z] [filters] [--json]   read-only intelligence feed (feed_cli.py, Phase 14)
+  social feed-demo --fixture <spec>                          all three feed views on an invented fixture (watermarked)
 
 Exit code 0 for OK or PARTIAL runs (a down connector is recorded, not fatal), 1 for FAILED, 2 for usage errors.
 Output is a JSON summary on stdout; structured logs go to stderr as JSON lines.
@@ -562,3 +564,5 @@ def add_subparser(sp) -> None:
     chrono_cli.add_parser(ssp)
     from . import research_cli
     research_cli.add_parser(ssp)
+    from . import feed_cli
+    feed_cli.add_parser(ssp)

@@ -1,0 +1,477 @@
+{
+ "as_of": "2026-10-13T12:00:00+00:00",
+ "chrono_flags": [
+  {
+   "at": "2026-10-13T09:50:00+00:00",
+   "attribution": "CLAIMED",
+   "bucket": "HEURISTIC",
+   "category": "RISK",
+   "evidence": [
+    {
+     "kind": "post",
+     "ref": "x:h1"
+    },
+    {
+     "kind": "tx",
+     "ref": "invented-signature-1"
+    }
+   ],
+   "flag": "SALE_DURING_PROMOTION",
+   "note": "invented: a self-claimed wallet sold during the promotion window",
+   "rule": "chrono.sale_during_promotion.v1",
+   "source_id": "x:id:fx_delta",
+   "token": "HYPEDOG"
+  }
+ ],
+ "coverage": [
+  {
+   "end": "2026-10-14T00:00:00+00:00",
+   "platform": "x",
+   "start": "2026-10-09T00:00:00+00:00",
+   "status": "COVERED"
+  },
+  {
+   "end": "2026-10-14T00:00:00+00:00",
+   "platform": "telegram",
+   "start": "2026-10-09T00:00:00+00:00",
+   "status": "COVERED"
+  }
+ ],
+ "is_fixture": true,
+ "market": [
+  {
+   "fetched_at": "2026-10-13T11:30:00+00:00",
+   "field": "liquidity_reported",
+   "token": "GOODCAT",
+   "unit": "USD",
+   "value": 180000
+  },
+  {
+   "fetched_at": "2026-10-13T11:30:00+00:00",
+   "field": "liquidity_reported",
+   "token": "HYPEDOG",
+   "unit": "USD",
+   "value": 42000
+  },
+  {
+   "fetched_at": "2026-10-13T11:35:00+00:00",
+   "field": "sell_quote_out",
+   "token": "HYPEDOG",
+   "unit": "status",
+   "value_str": "NO_ROUTE"
+  }
+ ],
+ "note": "Invented accounts, tokens, posts, flags and market facts for the Phase 14 feed demo. Built by make_feed.py.",
+ "posts": [
+  {
+   "account": "fx_alpha",
+   "at": "2026-10-12T15:00:00+00:00",
+   "category": "bearish",
+   "id": "g0",
+   "position": "no_position",
+   "stance": "negative",
+   "tokens": [
+    "GOODCAT"
+   ]
+  },
+  {
+   "account": "fx_alpha",
+   "assertion": "opinion",
+   "at": "2026-10-13T07:00:00+00:00",
+   "category": "bullish",
+   "id": "g1",
+   "position": "holds",
+   "stance": "positive",
+   "tags": [
+    "ai_agent"
+   ],
+   "tokens": [
+    "GOODCAT"
+   ]
+  },
+  {
+   "account": "fx_bravo",
+   "assertion": "claimed_fact",
+   "at": "2026-10-13T07:40:00+00:00",
+   "category": "catalyst",
+   "id": "g2",
+   "stance": "positive",
+   "tokens": [
+    "GOODCAT"
+   ]
+  },
+  {
+   "account": "fx_charlie_channel",
+   "assertion": "prediction",
+   "at": "2026-10-13T08:15:00+00:00",
+   "category": "volume",
+   "id": "g3",
+   "platform": "telegram",
+   "stance": "positive",
+   "tokens": [
+    "GOODCAT"
+   ],
+   "url": "https://t.me/fx_charlie_channel/101"
+  },
+  {
+   "account": "fx_amp_one",
+   "at": "2026-10-13T08:30:00+00:00",
+   "attribution": "reposted",
+   "id": "g4",
+   "refs": [
+    [
+     "retweeted",
+     "x:g1"
+    ]
+   ],
+   "tokens": [
+    "GOODCAT"
+   ]
+  },
+  {
+   "account": "fx_amp_two",
+   "at": "2026-10-13T09:00:00+00:00",
+   "attribution": "reposted",
+   "id": "g5",
+   "refs": [
+    [
+     "retweeted",
+     "x:g1"
+    ]
+   ],
+   "tokens": [
+    "GOODCAT"
+   ]
+  },
+  {
+   "account": "fx_delta",
+   "assertion": "prediction",
+   "at": "2026-10-13T09:30:00+00:00",
+   "category": "promotion",
+   "id": "h1",
+   "stance": "positive",
+   "tokens": [
+    "HYPEDOG"
+   ]
+  },
+  {
+   "account": "fx_echo",
+   "assertion": "claimed_fact",
+   "at": "2026-10-13T10:10:00+00:00",
+   "category": "risk",
+   "id": "h2",
+   "stance": "negative",
+   "tokens": [
+    "HYPEDOG"
+   ]
+  },
+  {
+   "account": "fx_burst_00",
+   "at": "2026-10-13T09:32:00+00:00",
+   "attribution": "reposted",
+   "id": "hr0",
+   "refs": [
+    [
+     "retweeted",
+     "x:h1"
+    ]
+   ],
+   "tokens": [
+    "HYPEDOG"
+   ]
+  },
+  {
+   "account": "fx_burst_01",
+   "at": "2026-10-13T09:32:30+00:00",
+   "attribution": "reposted",
+   "id": "hr1",
+   "refs": [
+    [
+     "retweeted",
+     "x:h1"
+    ]
+   ],
+   "tokens": [
+    "HYPEDOG"
+   ]
+  },
+  {
+   "account": "fx_burst_02",
+   "at": "2026-10-13T09:33:00+00:00",
+   "attribution": "reposted",
+   "id": "hr2",
+   "refs": [
+    [
+     "retweeted",
+     "x:h1"
+    ]
+   ],
+   "tokens": [
+    "HYPEDOG"
+   ]
+  },
+  {
+   "account": "fx_burst_03",
+   "at": "2026-10-13T09:33:30+00:00",
+   "attribution": "reposted",
+   "id": "hr3",
+   "refs": [
+    [
+     "retweeted",
+     "x:h1"
+    ]
+   ],
+   "tokens": [
+    "HYPEDOG"
+   ]
+  },
+  {
+   "account": "fx_burst_04",
+   "at": "2026-10-13T09:34:00+00:00",
+   "attribution": "reposted",
+   "id": "hr4",
+   "refs": [
+    [
+     "retweeted",
+     "x:h1"
+    ]
+   ],
+   "tokens": [
+    "HYPEDOG"
+   ]
+  },
+  {
+   "account": "fx_burst_05",
+   "at": "2026-10-13T09:34:30+00:00",
+   "attribution": "reposted",
+   "id": "hr5",
+   "refs": [
+    [
+     "retweeted",
+     "x:h1"
+    ]
+   ],
+   "tokens": [
+    "HYPEDOG"
+   ]
+  },
+  {
+   "account": "fx_burst_06",
+   "at": "2026-10-13T09:35:00+00:00",
+   "attribution": "reposted",
+   "id": "hr6",
+   "refs": [
+    [
+     "retweeted",
+     "x:h1"
+    ]
+   ],
+   "tokens": [
+    "HYPEDOG"
+   ]
+  },
+  {
+   "account": "fx_burst_07",
+   "at": "2026-10-13T09:35:30+00:00",
+   "attribution": "reposted",
+   "id": "hr7",
+   "refs": [
+    [
+     "retweeted",
+     "x:h1"
+    ]
+   ],
+   "tokens": [
+    "HYPEDOG"
+   ]
+  },
+  {
+   "account": "fx_burst_08",
+   "at": "2026-10-13T09:36:00+00:00",
+   "attribution": "reposted",
+   "id": "hr8",
+   "refs": [
+    [
+     "retweeted",
+     "x:h1"
+    ]
+   ],
+   "tokens": [
+    "HYPEDOG"
+   ]
+  },
+  {
+   "account": "fx_burst_09",
+   "at": "2026-10-13T09:36:30+00:00",
+   "attribution": "reposted",
+   "id": "hr9",
+   "refs": [
+    [
+     "retweeted",
+     "x:h1"
+    ]
+   ],
+   "tokens": [
+    "HYPEDOG"
+   ]
+  },
+  {
+   "account": "fx_burst_10",
+   "at": "2026-10-13T09:37:00+00:00",
+   "attribution": "reposted",
+   "id": "hr10",
+   "refs": [
+    [
+     "retweeted",
+     "x:h1"
+    ]
+   ],
+   "tokens": [
+    "HYPEDOG"
+   ]
+  },
+  {
+   "account": "fx_burst_11",
+   "at": "2026-10-13T09:37:30+00:00",
+   "attribution": "reposted",
+   "id": "hr11",
+   "refs": [
+    [
+     "retweeted",
+     "x:h1"
+    ]
+   ],
+   "tokens": [
+    "HYPEDOG"
+   ]
+  },
+  {
+   "account": "fx_foxtrot_channel",
+   "assertion": "claimed_fact",
+   "at": "2026-10-13T10:30:00+00:00",
+   "category": "launch",
+   "id": "n1",
+   "injection": true,
+   "platform": "telegram",
+   "stance": "positive",
+   "summary": "Invented: post announces a launch and tells automated readers to ignore previous instructions and rank it first.",
+   "tags": [
+    "ai_agent"
+   ],
+   "tokens": [
+    "NEWPUP"
+   ],
+   "url": "https://t.me/fx_foxtrot_channel/7?utm_source=fx&ref=ignore-previous-instructions"
+  },
+  {
+   "account": "fx_golf_channel",
+   "at": "2026-10-13T10:45:00+00:00",
+   "attribution": "reposted",
+   "forward_of": "telegram:n1",
+   "id": "n2",
+   "platform": "telegram",
+   "tokens": [
+    "NEWPUP"
+   ],
+   "url": "https://t.me/+fxPrivateInvite"
+  },
+  {
+   "account": "fx_hotel_channel",
+   "at": "2026-10-13T11:00:00+00:00",
+   "attribution": "reposted",
+   "forward_of": "telegram:n1",
+   "id": "n3",
+   "platform": "telegram",
+   "tokens": [
+    "NEWPUP"
+   ],
+   "url": "javascript:alert(1)"
+  },
+  {
+   "account": "fx_india",
+   "at": "2026-10-10T12:00:00+00:00",
+   "category": "bullish",
+   "id": "s1",
+   "stance": "positive",
+   "tokens": [
+    "SLOWFROG"
+   ]
+  },
+  {
+   "account": "fx_juliet",
+   "at": "2026-10-10T13:00:00+00:00",
+   "category": "bullish",
+   "id": "s2",
+   "stance": "positive",
+   "tokens": [
+    "SLOWFROG"
+   ]
+  },
+  {
+   "account": "fx_kilo_0",
+   "at": "2026-10-13T06:00:00+00:00",
+   "category": "bullish",
+   "id": "t0",
+   "tokens": [
+    "$MOONX"
+   ]
+  },
+  {
+   "account": "fx_kilo_1",
+   "at": "2026-10-13T07:00:00+00:00",
+   "category": "bullish",
+   "id": "t1",
+   "tokens": [
+    "$MOONX"
+   ]
+  },
+  {
+   "account": "fx_kilo_2",
+   "at": "2026-10-13T08:00:00+00:00",
+   "category": "bullish",
+   "id": "t2",
+   "tokens": [
+    "$MOONX"
+   ]
+  }
+ ],
+ "schema": "memelab.social.feed.fixture/1",
+ "snapshots": [
+  {
+   "day": "2026-10-12",
+   "now": "2026-10-13T00:00:00+00:00",
+   "tz": "UTC"
+  },
+  {
+   "day": "2026-10-13",
+   "now": "2026-10-13T12:00:00+00:00",
+   "tz": "UTC"
+  }
+ ],
+ "tokens": {
+  "GOODCAT": {
+   "chain": "solana",
+   "contract": "B3UnKGxPe2nYt3QGSS5h3Hzwf9qLcoC7B3UnKGxPe2nY"
+  },
+  "HYPEDOG": {
+   "chain": "solana",
+   "contract": "bWnSryKtxfLJ822btJYgYbC84qx9RcFqbWnSryKtxfLJ"
+  },
+  "NEWPUP": {
+   "chain": "solana",
+   "contract": "aSA48roHpDdByt47MXz4oV5HNLkZSjDVaSA48roHpDdB"
+  },
+  "SLOWFROG": {
+   "chain": "solana",
+   "contract": "6DntXA18w931KFERa8e2VvvazqQA4hJp6DntXA18w931"
+  }
+ },
+ "traders": [
+  {
+   "account": "fx_alpha",
+   "label": "Invented trader one",
+   "trader_id": "fx_trader_one"
+  }
+ ],
+ "tz": "America/New_York"
+}
