@@ -1,0 +1,138 @@
+{
+ "schema": "memelab.telegram_bot.fixture/1",
+ "note": "access check: alpha admin, beta bot not a member, private channel",
+ "exchanges": [
+  {
+   "recorded_at": "2026-10-09T15:00:00Z",
+   "request": {
+    "method": "getMe",
+    "params": {}
+   },
+   "response": {
+    "status": 200,
+    "body": {
+     "ok": true,
+     "result": {
+      "id": 9000001,
+      "is_bot": true,
+      "first_name": "Example Lab Bot",
+      "username": "example_lab_bot"
+     }
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-09T15:00:00Z",
+   "request": {
+    "method": "getChat",
+    "params": {
+     "chat_id": "-1001000000001"
+    }
+   },
+   "response": {
+    "status": 200,
+    "body": {
+     "ok": true,
+     "result": {
+      "id": -1001000000001,
+      "type": "channel",
+      "title": "Example Alpha Calls",
+      "username": "example_alpha_calls"
+     }
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-09T15:00:00Z",
+   "request": {
+    "method": "getChatMember",
+    "params": {
+     "chat_id": "-1001000000001",
+     "user_id": 9000001
+    }
+   },
+   "response": {
+    "status": 200,
+    "body": {
+     "ok": true,
+     "result": {
+      "user": {
+       "id": 9000001,
+       "is_bot": true,
+       "first_name": "Example Lab Bot",
+       "username": "example_lab_bot"
+      },
+      "status": "administrator",
+      "can_post_messages": false
+     }
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-09T15:00:00Z",
+   "request": {
+    "method": "getChat",
+    "params": {
+     "chat_id": "-1001000000002"
+    }
+   },
+   "response": {
+    "status": 200,
+    "body": {
+     "ok": true,
+     "result": {
+      "id": -1001000000002,
+      "type": "channel",
+      "title": "Example Beta News",
+      "username": "example_beta_news"
+     }
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-09T15:00:00Z",
+   "request": {
+    "method": "getChatMember",
+    "params": {
+     "chat_id": "-1001000000002",
+     "user_id": 9000001
+    }
+   },
+   "response": {
+    "status": 200,
+    "body": {
+     "ok": true,
+     "result": {
+      "user": {
+       "id": 9000001,
+       "is_bot": true,
+       "first_name": "Example Lab Bot",
+       "username": "example_lab_bot"
+      },
+      "status": "left"
+     }
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-09T15:00:00Z",
+   "request": {
+    "method": "getChat",
+    "params": {
+     "chat_id": "-1001000000003"
+    }
+   },
+   "response": {
+    "status": 200,
+    "body": {
+     "ok": true,
+     "result": {
+      "id": -1001000000003,
+      "type": "channel",
+      "title": "Example Private Channel"
+     }
+    }
+   }
+  }
+ ]
+}

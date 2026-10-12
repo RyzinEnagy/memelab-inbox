@@ -1,0 +1,15 @@
+# Social source coverage
+
+What each social source route can and cannot see, and whether it is running. Updated at the end of every phase that touches a source. Status values: LIVE (proved by a live read), BUILT (code and fixture tests done, not live), PLANNED, BLOCKED (waiting on a decision or credential).
+
+Related: [CONNECTORS_02.md](CONNECTORS_02.md), [X_API_03.md](X_API_03.md), [TELEGRAM_04.md](TELEGRAM_04.md), [DECISIONS.md](DECISIONS.md), [ROADMAP.md](ROADMAP.md).
+
+| Source route | Phase | Status | Live evidence | Health command | Can see | Cannot see | Waiting on |
+|---|---|---|---|---|---|---|---|
+| Browser bridge inbox (`soc:*` units, any platform) | 02 | BUILT | none for social units | `social status` | whatever a collector ships in inbound/1: ids, hashes, counts, own-words summaries | text (never shipped), anything not PUBLIC | a collector phase (06, 07, 08) |
+| X API v2 (user, list, recent search, recheck) | 03 | BUILT, live UNAVAILABLE | none | `social x-health` (`credentials_missing`) | configured accounts' posts, list posts, last 7 days of search, ids, metrics, reference and edit context | protected accounts, older than 7 days in search, deletions except via recheck | X developer app, token and budget (D-023) |
+| X via signed-in Chrome | 06 | PLANNED, BLOCKED | none | none | what the signed-in page shows | anything off-screen; X guidelines say browser automation leads to suspension | D-025 |
+| Telegram Bot API (getUpdates, webhook spool) | 04 | BUILT, live UNAVAILABLE | none | `social tg-health` (`credentials_missing`; per channel `access_denied` / `not_public` once a token exists) | posts in public channels whose admins added the bot as administrator, from that moment: ids, link, times, edits, forward origin ids, reply ids, text hash | other channels, history before the bot joined, deletions, view counts, unconfirmed updates older than 24 h, private channels | bot token, cooperating channel admins, D-028 |
+| Telegram `t.me/s/` previews or Telegram Web in Chrome | 07 | PLANNED, BLOCKED | none | none | what the public preview shows | private groups and channels | D-028 |
+| Telegram MTProto user client | none | not planned | none | none | history of public channels | | would automate Elving's personal account; not proposed |
+| Other readable sources (YouTube RSS, token-listed links) | 08 | PLANNED | none | none | | | Phase 08 |

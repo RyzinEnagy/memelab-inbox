@@ -7,6 +7,9 @@
   social guard [--root <repo>]                fail if a tracked file holds raw social content (content_guard.py)
   social x-health [--config <path>]           X API connection health; no network call (x_api.py)
   social x-ingest [--config <path>] [--fixture <file>]   X API v2 ingest; live needs X_BEARER_TOKEN and a consented budget
+  social tg-health [--config <path>] [--check-access [--fixture <file>]]   Telegram Bot API health (telegram_bot.py)
+  social tg-ingest [--config <path>] [--fixture <file>]   poll approved channels through getUpdates; live needs TELEGRAM_BOT_TOKEN
+  social tg-webhook-ingest [--config <path>] [--spool <dir>]   ingest updates spooled by telegram_bot.webhook_receive()
 
 Exit code 0 for OK or PARTIAL runs (a down connector is recorded, not fatal), 1 for FAILED, 2 for usage errors.
 Output is a JSON summary on stdout; structured logs go to stderr as JSON lines.
@@ -132,6 +135,81 @@ def cmd_x_ingest(a):
     raise SystemExit(1 if out["status"] == "FAILED" else 0)
 
 
+TG_CONFIG = db.DATA_DIR / "private" / "telegram_bot.json"
+FIXTURE_TOKEN = "000000:fixture-token-not-a-secret"
+
+
+def cmd_tg_health(a):
+    """No network call unless --check-access (read-only getMe/getChat/getChatMember; free)."""
+    from . import telegram_bot as T
+    dbp = Path(a.db) if a.db else db.DB_PATH
+    cfg_path = Path(a.config) if a.config else TG_CONFIG
+    db.init_db(dbp)
+    access = None
+    if a.check_access:
+        if a.fixture:
+            access = T.check_access(T.load_config(cfg_path), T.FixtureTransport(a.fixture), FIXTURE_TOKEN, dbp, mode="fixture",
+                                    sleep=lambda s: None)
+        elif T.get_token() and cfg_path.exists():
+            cfg = T.load_config(cfg_path)
+            access = T.check_access(cfg, T.UrllibTransport(timeout=cfg.timeout_seconds), T.get_token(), dbp)
+    out = T.health(cfg_path, dbp, access=access)
+    if a.fixture:
+        out["mode"] = "fixture: access states come from recorded synthetic exchanges, not from Telegram"
+    print(json.dumps(out, indent=1, sort_keys=True, default=str))
+    raise SystemExit(0 if out["status"] == "ready" else 1)
+
+
+def cmd_tg_ingest(a):
+    """Live: refuses before any network call without TELEGRAM_BOT_TOKEN and a channel config.
+    --fixture: replays recorded synthetic getUpdates exchanges; rows are labelled fixture, never live."""
+    import time
+    import uuid
+    from . import ingest as I
+    from . import telegram_bot as T
+    _setup_logging(a.verbose)
+    dbp = Path(a.db) if a.db else db.DB_PATH
+    cfg_path = Path(a.config) if a.config else TG_CONFIG
+    db.init_db(dbp)
+    if a.fixture:
+        cfg, transport, token, mode = T.load_config(cfg_path), T.FixtureTransport(a.fixture), FIXTURE_TOKEN, "fixture"
+    else:
+        h = T.health(cfg_path, dbp)
+        if h["status"] in ("credentials_missing", "not_configured"):
+            print(json.dumps({"status": "NOT_RUN", "reason": h["status"], "next_step": h["next_step"],
+                              "network_calls_made": 0}, indent=1, sort_keys=True))
+            raise SystemExit(1)
+        cfg = T.load_config(cfg_path)
+        transport, token, mode = T.UrllibTransport(timeout=cfg.timeout_seconds + cfg.long_poll_timeout), T.get_token(), "live"
+    t = a.now if a.now is not None else time.time()
+    run_id = a.run_id or f"tg_{mode}_{time.strftime('%Y%m%d_%H%M%S', time.gmtime(t))}_{uuid.uuid4().hex[:6]}"
+    clock = (lambda: t) if a.now is not None else time.time
+    adapter = T.TelegramBotAdapter(cfg, transport, token, dbp, run_id=run_id, mode=mode, clock=clock,
+                                   **({"sleep": lambda s: None} if mode == "fixture" else {}))
+    out = I.ingest(adapter, dbp, now=t, run_id=run_id, batch_size=a.batch_size,
+                   budget=I.Budget(max_items=a.max_items), max_age_hours=a.max_age_hours)
+    out.update({"mode": mode, "requests_made": adapter.requests, "dropped_updates": adapter.dropped})
+    print(json.dumps(out, indent=1, sort_keys=True))
+    raise SystemExit(1 if out["status"] == "FAILED" else 0)
+
+
+def cmd_tg_webhook_ingest(a):
+    import time
+    from . import ingest as I
+    from . import telegram_bot as T
+    _setup_logging(a.verbose)
+    dbp = Path(a.db) if a.db else db.DB_PATH
+    db.init_db(dbp)
+    cfg = T.load_config(Path(a.config) if a.config else TG_CONFIG)
+    spool = Path(a.spool) if a.spool else T.spool_dir()
+    t = a.now if a.now is not None else time.time()
+    adapter = T.WebhookSpoolAdapter(cfg, spool, dbp, run_id=a.run_id, clock=(lambda: t) if a.now is not None else time.time)
+    out = I.ingest(adapter, dbp, now=t, run_id=a.run_id, max_age_hours=a.max_age_hours)
+    out["spool_files_done"] = adapter.files_done
+    print(json.dumps(out, indent=1, sort_keys=True))
+    raise SystemExit(1 if out["status"] == "FAILED" else 0)
+
+
 def add_subparser(sp) -> None:
     p = sp.add_parser("social", help="Social intelligence: ingest bridge inbox observations, status")
     ssp = p.add_subparsers(dest="social_cmd", required=True)
@@ -173,3 +251,29 @@ def add_subparser(sp) -> None:
     q.add_argument("--now", type=float, help="fixed clock (epoch seconds), for replays and tests")
     q.add_argument("-v", "--verbose", action="store_true")
     q.set_defaults(fn=cmd_x_ingest)
+    q = ssp.add_parser("tg-health", help="Telegram Bot API health (credentials, channel access, update cursor, live evidence)")
+    q.add_argument("--config", help=f"channel config (default {TG_CONFIG})")
+    q.add_argument("--db")
+    q.add_argument("--check-access", action="store_true", help="read-only getMe/getChat/getChatMember calls (live needs the token)")
+    q.add_argument("--fixture", help="recorded synthetic exchanges for --check-access (no network)")
+    q.set_defaults(fn=cmd_tg_health)
+    q = ssp.add_parser("tg-ingest", help="poll approved Telegram channels through the Bot API (getUpdates)")
+    q.add_argument("--config", help=f"channel config (default {TG_CONFIG})")
+    q.add_argument("--fixture", help="recorded synthetic exchanges (no network, rows labelled fixture)")
+    q.add_argument("--db")
+    q.add_argument("--batch-size", type=int, default=50)
+    q.add_argument("--max-items", type=int)
+    q.add_argument("--max-age-hours", type=float, default=12.0)
+    q.add_argument("--run-id")
+    q.add_argument("--now", type=float, help="fixed clock (epoch seconds), for replays and tests")
+    q.add_argument("-v", "--verbose", action="store_true")
+    q.set_defaults(fn=cmd_tg_ingest)
+    q = ssp.add_parser("tg-webhook-ingest", help="ingest Telegram webhook updates spooled in the private folder")
+    q.add_argument("--config", help=f"channel config (default {TG_CONFIG})")
+    q.add_argument("--spool", help="spool folder (default <private folder>/telegram_spool)")
+    q.add_argument("--db")
+    q.add_argument("--max-age-hours", type=float, default=12.0)
+    q.add_argument("--run-id")
+    q.add_argument("--now", type=float)
+    q.add_argument("-v", "--verbose", action="store_true")
+    q.set_defaults(fn=cmd_tg_webhook_ingest)

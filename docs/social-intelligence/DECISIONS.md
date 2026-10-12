@@ -145,3 +145,25 @@ The billing guard is off by default (`allow_billable` false, caps 0). A request 
 ## D-025 X's Developer Guidelines prohibit browser automation (PROPOSED, needs Elving, Phase 03)
 
 While verifying the API terms, the official Developer Guidelines (docs.x.com/developer-guidelines, read 2026-10-10) say: "Non-API automation (scraping, browser automation) results in permanent suspension." D-009 already accepted the risk that X restricts automated collection; this is the current, explicit wording, and it names the exact route D-009 prefers. Nothing in Phase 03 changes D-009. Elving should reconfirm D-009 for X specifically (keep Chrome reads for X, pay for the API for X, or drop X) before proposed Phase 06 is built. Telegram and other platforms are not affected by this entry.
+
+## D-026 Prompt 04 is the Telegram Bot API phase (ADOPTED, Phase 04, 2026-10-11)
+
+Elving supplied Prompt 04 ("Telegram public-channel monitoring"). It takes the Phase 04 slot. The proposed Phase 04 (manual capture onto the inbound schema) moves to carry-over C-4, unscheduled. Proposed Phase 07 (Telegram through `t.me/s/` or Telegram Web in Chrome) stays PLANNED and now also waits on D-028. Both Telegram routes feed the same ingester.
+
+## D-027 Telegram live ingest is UNAVAILABLE; the bot reads only channels whose admins added it (ADOPTED, Phase 04)
+
+No bot, token or cooperating channel exists, so no live call was made and none is claimed. `social tg-health` reports `credentials_missing`; live `tg-ingest` exits 1 with `NOT_RUN credentials_missing` before any network call. Proof runs on recorded synthetic exchanges in `tests/fixtures/social/telegram_bot/`, labelled `access_mode='fixture'`, `rights_basis='synthetic_fixture'`, ledger `mode='fixture'`.
+
+Scope rules in code: only channels listed in `data/private/telegram_bot.json` with a public username and an `approval` basis (`own_channel` or `admin_invited_bot`) are converted; every other update is dropped in memory. Text, captions, author signatures and forward sender names are hashed or dropped, never stored; a forward from a user keeps only the origin type (no user id). The Bot API was chosen over an MTProto user client because the latter automates Elving's personal account. Polling is the operational route; the webhook receiver and spool exist but no HTTP server is shipped (no public HTTPS endpoint).
+
+Schema: inbound `memelab.social.inbound/3` = `/2` plus optional item `forward` and `version`; `/1` and `/2` are unchanged and ignore those keys. Migration 4 adds `social_item_forwards` and `social_item_versions`. `ingest.redact()` now strips Telegram bot tokens.
+
+## D-028 Telegram's bot developer terms restrict channel data collection (PROPOSED, needs Elving, Phase 04)
+
+The Bot Platform Developer Terms (telegram.org/tos/bot-developers, read 2026-10-11), section 4.3: bots may not "collect, store, aggregate or process data beyond what is essential for the operation of your services", and "Always prohibited uses include any form of data collection aimed at creating large datasets, machine learning models and AI products, such as scraping public group or channel contents." Section 4.2 requires deleting user data once it is no longer needed.
+
+What the code already does about it: reads only listed, admin-approved channels; keeps ids, times and hashes; no text; spool retention purge. Whether a research lab that scores memecoin attention from channel posts is "essential for the operation" of the bot, or "data collection aimed at creating large datasets", is a judgment for Elving (this is not legal advice). The same clause names "scraping public group or channel contents", which is what proposed Phase 07 would do through a browser; the developer terms bind bots and Mini Apps, and whether Telegram's general terms of service restrict automated browser reads was not checked. Elving should decide: (a) use the bot only for channels he runs or has written consent from, (b) also go ahead with Phase 07, or (c) drop Telegram collection.
+
+## D-029 Forwards and reposts are never independent originals (ADOPTED, Phase 04)
+
+A forwarded Telegram post is stored as its own item with `reference_type='REPOST'` and a `social_item_forwards` row pointing at the origin. `store.is_independent_original()` returns False for any item with a forward row or a REPOST reference type (X reposts included). Replies and quotes stay independent because they are the poster's own words. Later counting phases (10, 11, 15) must call it, so one claim forwarded to ten channels counts once with ten sightings.

@@ -1,0 +1,403 @@
+{
+ "schema": "memelab.telegram_bot.fixture/1",
+ "note": "invented channels, ids and sentences; shaped like Bot API getUpdates",
+ "exchanges": [
+  {
+   "recorded_at": "2026-10-09T15:00:00Z",
+   "request": {
+    "method": "getUpdates",
+    "params": {
+     "limit": 100,
+     "timeout": 0,
+     "allowed_updates": [
+      "channel_post",
+      "edited_channel_post",
+      "my_chat_member"
+     ]
+    }
+   },
+   "response": {
+    "status": 200,
+    "body": {
+     "ok": true,
+     "result": [
+      {
+       "update_id": 1001,
+       "channel_post": {
+        "message_id": 10,
+        "sender_chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "date": 1791554400,
+        "text": "Invented sentence one about a made-up token.",
+        "author_signature": "Example Admin"
+       }
+      },
+      {
+       "update_id": 1002,
+       "channel_post": {
+        "message_id": 5,
+        "sender_chat": {
+         "id": -1001000000002,
+         "type": "channel",
+         "title": "Example Beta News",
+         "username": "example_beta_news"
+        },
+        "chat": {
+         "id": -1001000000002,
+         "type": "channel",
+         "title": "Example Beta News",
+         "username": "example_beta_news"
+        },
+        "date": 1791554500,
+        "text": "Invented original announcement."
+       }
+      },
+      {
+       "update_id": 1003,
+       "channel_post": {
+        "message_id": 11,
+        "sender_chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "date": 1791554600,
+        "text": "Invented original announcement.",
+        "forward_origin": {
+         "type": "channel",
+         "chat": {
+          "id": -1001000000002,
+          "type": "channel",
+          "title": "Example Beta News",
+          "username": "example_beta_news"
+         },
+         "message_id": 5,
+         "date": 1791554500
+        }
+       }
+      },
+      {
+       "update_id": 1004,
+       "channel_post": {
+        "message_id": 12,
+        "sender_chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "date": 1791554700,
+        "text": "Invented follow-up.",
+        "reply_to_message": {
+         "message_id": 10,
+         "sender_chat": {
+          "id": -1001000000001,
+          "type": "channel",
+          "title": "Example Alpha Calls",
+          "username": "example_alpha_calls"
+         },
+         "chat": {
+          "id": -1001000000001,
+          "type": "channel",
+          "title": "Example Alpha Calls",
+          "username": "example_alpha_calls"
+         },
+         "date": 1791554400,
+         "text": "Invented sentence one about a made-up token."
+        }
+       }
+      },
+      {
+       "update_id": 1005,
+       "edited_channel_post": {
+        "message_id": 10,
+        "sender_chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "date": 1791554400,
+        "edit_date": 1791556200,
+        "text": "Invented sentence one, corrected.",
+        "author_signature": "Example Admin"
+       }
+      },
+      {
+       "update_id": 1006,
+       "channel_post": {
+        "message_id": 10,
+        "sender_chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "date": 1791554400,
+        "text": "Invented sentence one about a made-up token.",
+        "author_signature": "Example Admin"
+       }
+      },
+      {
+       "update_id": 1007,
+       "channel_post": {
+        "message_id": 1,
+        "sender_chat": {
+         "id": -1001000000099,
+         "type": "channel",
+         "title": "Example Unlisted",
+         "username": "example_unlisted"
+        },
+        "chat": {
+         "id": -1001000000099,
+         "type": "channel",
+         "title": "Example Unlisted",
+         "username": "example_unlisted"
+        },
+        "date": 1791555000,
+        "text": "Invented unlisted post."
+       }
+      },
+      {
+       "update_id": 1008,
+       "message": {
+        "message_id": 1,
+        "from": {
+         "id": 7000002,
+         "is_bot": false,
+         "first_name": "Invented"
+        },
+        "chat": {
+         "id": 7000002,
+         "type": "private",
+         "first_name": "Invented"
+        },
+        "date": 1791555100,
+        "text": "/start"
+       }
+      },
+      {
+       "update_id": 1009,
+       "channel_post": {
+        "message_id": 3,
+        "sender_chat": {
+         "id": -1001000000003,
+         "type": "channel",
+         "title": "Example Private Channel"
+        },
+        "chat": {
+         "id": -1001000000003,
+         "type": "channel",
+         "title": "Example Private Channel"
+        },
+        "date": 1791555200,
+        "text": "Invented post in a channel without a username."
+       }
+      },
+      {
+       "update_id": 1010,
+       "channel_post": {
+        "message_id": 6,
+        "sender_chat": {
+         "id": -1001000000002,
+         "type": "channel",
+         "title": "Example Beta News",
+         "username": "example_beta_news"
+        },
+        "chat": {
+         "id": -1001000000002,
+         "type": "channel",
+         "title": "Example Beta News",
+         "username": "example_beta_news"
+        },
+        "date": 1791555300,
+        "text": "Invented forwarded remark.",
+        "forward_origin": {
+         "type": "hidden_user",
+         "sender_user_name": "Invented Person",
+         "date": 1791550800
+        }
+       }
+      },
+      {
+       "update_id": 1011,
+       "channel_post": {
+        "message_id": 13,
+        "sender_chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "date": 1791555400,
+        "text": "Invented comment on another channel.",
+        "external_reply": {
+         "origin": {
+          "type": "channel",
+          "chat": {
+           "id": -1001000000002,
+           "type": "channel",
+           "title": "Example Beta News",
+           "username": "example_beta_news"
+          },
+          "message_id": 5,
+          "date": 1791554500
+         },
+         "chat": {
+          "id": -1001000000002,
+          "type": "channel",
+          "title": "Example Beta News",
+          "username": "example_beta_news"
+         },
+         "message_id": 5
+        }
+       }
+      },
+      {
+       "update_id": 1012,
+       "channel_post": {
+        "message_id": 14,
+        "sender_chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "date": 1791555500,
+        "pinned_message": {
+         "chat": {
+          "id": -1001000000001,
+          "type": "channel",
+          "title": "Example Alpha Calls",
+          "username": "example_alpha_calls"
+         },
+         "message_id": 9,
+         "date": 0
+        }
+       }
+      },
+      {
+       "update_id": 1013,
+       "channel_post": {
+        "message_id": 15,
+        "sender_chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "date": 1791555600,
+        "caption": "Invented caption.",
+        "photo": [
+         {
+          "file_id": "invented-file-id",
+          "file_unique_id": "inv1",
+          "width": 90,
+          "height": 90
+         }
+        ],
+        "forward_origin": {
+         "type": "user",
+         "date": 1791549000,
+         "sender_user": {
+          "id": 7000001,
+          "is_bot": false,
+          "first_name": "Invented"
+         }
+        }
+       }
+      },
+      {
+       "update_id": 1014,
+       "my_chat_member": {
+        "chat": {
+         "id": -1001000000002,
+         "type": "channel",
+         "title": "Example Beta News",
+         "username": "example_beta_news"
+        },
+        "from": {
+         "id": 7000009,
+         "is_bot": false,
+         "first_name": "Invented"
+        },
+        "date": 1791557400,
+        "old_chat_member": {
+         "user": {
+          "id": 9000001,
+          "is_bot": true,
+          "first_name": "Example Lab Bot",
+          "username": "example_lab_bot"
+         },
+         "status": "administrator"
+        },
+        "new_chat_member": {
+         "user": {
+          "id": 9000001,
+          "is_bot": true,
+          "first_name": "Example Lab Bot",
+          "username": "example_lab_bot"
+         },
+         "status": "left"
+        }
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

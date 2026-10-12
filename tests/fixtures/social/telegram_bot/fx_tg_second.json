@@ -1,0 +1,106 @@
+{
+ "schema": "memelab.telegram_bot.fixture/1",
+ "note": "second poll: out-of-order edit, bot re-added to beta",
+ "exchanges": [
+  {
+   "recorded_at": "2026-10-09T17:00:00Z",
+   "request": {
+    "method": "getUpdates",
+    "params": {
+     "limit": 100,
+     "timeout": 0,
+     "allowed_updates": [
+      "channel_post",
+      "edited_channel_post",
+      "my_chat_member"
+     ],
+     "offset": 1015
+    }
+   },
+   "response": {
+    "status": 200,
+    "body": {
+     "ok": true,
+     "result": [
+      {
+       "update_id": 1015,
+       "edited_channel_post": {
+        "message_id": 20,
+        "sender_chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "date": 1791561000,
+        "edit_date": 1791564000,
+        "text": "Invented later text, second version."
+       }
+      },
+      {
+       "update_id": 1016,
+       "channel_post": {
+        "message_id": 20,
+        "sender_chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "chat": {
+         "id": -1001000000001,
+         "type": "channel",
+         "title": "Example Alpha Calls",
+         "username": "example_alpha_calls"
+        },
+        "date": 1791561000,
+        "text": "Invented later text, first version."
+       }
+      },
+      {
+       "update_id": 1017,
+       "my_chat_member": {
+        "chat": {
+         "id": -1001000000002,
+         "type": "channel",
+         "title": "Example Beta News",
+         "username": "example_beta_news"
+        },
+        "from": {
+         "id": 7000009,
+         "is_bot": false,
+         "first_name": "Invented"
+        },
+        "date": 1791564500,
+        "old_chat_member": {
+         "user": {
+          "id": 9000001,
+          "is_bot": true,
+          "first_name": "Example Lab Bot",
+          "username": "example_lab_bot"
+         },
+         "status": "left"
+        },
+        "new_chat_member": {
+         "user": {
+          "id": 9000001,
+          "is_bot": true,
+          "first_name": "Example Lab Bot",
+          "username": "example_lab_bot"
+         },
+         "status": "administrator"
+        }
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

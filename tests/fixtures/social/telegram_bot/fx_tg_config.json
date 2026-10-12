@@ -1,0 +1,24 @@
+{
+ "schema": "memelab.telegram_bot.config/1",
+ "bot_label": "example_lab_bot",
+ "note": "test config; invented channels",
+ "channels": [
+  {
+   "chat_id": "-1001000000001",
+   "username": "example_alpha_calls",
+   "approval": "own_channel"
+  },
+  {
+   "chat_id": "-1001000000002",
+   "username": "example_beta_news",
+   "approval": "admin_invited_bot"
+  },
+  {
+   "chat_id": "-1001000000003",
+   "approval": "admin_invited_bot"
+  }
+ ],
+ "poll_limit": 100,
+ "max_polls_per_run": 5,
+ "long_poll_timeout": 0
+}

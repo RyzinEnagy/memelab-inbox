@@ -388,11 +388,43 @@ DROP TABLE IF EXISTS social_item_refs;
 DROP TABLE IF EXISTS social_item_context;
 """
 
+V4_UP = """
+CREATE TABLE social_item_forwards (       -- where a forwarded item came from; ids only (Phase 04, Telegram forward_origin)
+  item_key TEXT PRIMARY KEY,              -- social_items.item_key of the forward
+  origin_type TEXT NOT NULL
+    CHECK (origin_type IN ('channel','chat','user','hidden_user','unknown')),
+  origin_chat_id TEXT,                    -- channel and chat origins only; user origins are private individuals, not recorded
+  origin_message_id TEXT,                 -- channel origins only
+  origin_item_key TEXT,                   -- item key of the original when its chat and message ids are known
+  origin_published_at REAL,               -- provider time of the original; NULL = UNKNOWN
+  is_automatic_forward INTEGER NOT NULL DEFAULT 0 CHECK (is_automatic_forward IN (0,1)),
+  recorded_at REAL NOT NULL
+);
+CREATE INDEX ix_sif_origin ON social_item_forwards(origin_item_key);
+
+CREATE TABLE social_item_versions (       -- provider versions of an item that is edited in place (Telegram edit_date)
+  item_key TEXT NOT NULL,
+  provider_version_at REAL NOT NULL,      -- send time for the original, edit time for an edit (provider clock)
+  version_kind TEXT NOT NULL CHECK (version_kind IN ('ORIGINAL','EDIT')),
+  content_hash TEXT,                      -- sha256 of the normalized text of that version; NULL when it had no text
+  poster_hash TEXT,                       -- sha256 of the provider's author signature; the name itself is never stored
+  first_event_id TEXT NOT NULL,
+  first_recorded_at REAL NOT NULL,
+  PRIMARY KEY (item_key, provider_version_at)
+);
+"""
+
+V4_DOWN = """
+DROP TABLE IF EXISTS social_item_versions;
+DROP TABLE IF EXISTS social_item_forwards;
+"""
+
 # (version, name, up, down). Append only; never edit an applied entry (the checksum guard refuses it).
 MIGRATIONS: list[tuple[int, str, str, str]] = [
     (1, "social intelligence core tables", V1_UP, V1_DOWN),
     (2, "ingestion runs, checkpoints, quarantine, provenance", V2_UP, V2_DOWN),
     (3, "item context, source cursors, paid-API spend ledger", V3_UP, V3_DOWN),
+    (4, "item forwards and in-place versions", V4_UP, V4_DOWN),
 ]
 LATEST = max(m[0] for m in MIGRATIONS)
 ALL_VERSIONS = sorted(m[0] for m in MIGRATIONS)
@@ -403,7 +435,7 @@ SOCIAL_TABLES = [
     "social_claim_relations", "social_evidence_links", "social_wallet_attributions", "social_connector_health",
     "social_coverage", "social_ingest_runs", "social_ingest_checkpoints", "social_ingest_quarantine",
     "social_observation_provenance", "social_item_context", "social_item_refs", "social_source_cursors",
-    "social_api_spend", "social_api_billed_resources",
+    "social_api_spend", "social_api_billed_resources", "social_item_forwards", "social_item_versions",
 ]
 
 

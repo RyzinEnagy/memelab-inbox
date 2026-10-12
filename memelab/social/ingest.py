@@ -38,7 +38,12 @@ INBOUND_SCHEMA = "memelab.social.inbound/1"
 # /2 = /1 plus an optional per-item "context" object (reference type, thread and edit ids; ids only, never text).
 # Added in Phase 03 for API adapters. /1 units are read exactly as before; a "context" key in a /1 item is ignored.
 INBOUND_SCHEMA_V2 = "memelab.social.inbound/2"
-INBOUND_SCHEMAS = (INBOUND_SCHEMA, INBOUND_SCHEMA_V2)
+# /3 = /2 plus optional per-item "forward" (origin ids of a forwarded item) and "version" (provider version time of
+# an item edited in place, with a hash of the poster signature). Added in Phase 04 for the Telegram Bot API adapter.
+INBOUND_SCHEMA_V3 = "memelab.social.inbound/3"
+INBOUND_SCHEMAS = (INBOUND_SCHEMA, INBOUND_SCHEMA_V2, INBOUND_SCHEMA_V3)
+FORWARD_ORIGINS = ("channel", "chat", "user", "hidden_user", "unknown")
+VERSION_KINDS = ("ORIGINAL", "EDIT")
 REFERENCE_TYPES = ("ORIGINAL", "REPLY", "REPOST", "QUOTE", "UNKNOWN")
 REF_TYPES = ("replied_to", "quoted", "retweeted")
 CONTEXT_BASIS = ("PROVIDER", "NOT_REQUESTED")
@@ -65,7 +70,9 @@ log = logging.getLogger("memelab.social.ingest")
 _CONTENT_FIELDS = {"text", "summary", "body", "payload", "raw", "html", "bio", "item", "entry"}
 _SECRET_RE = re.compile(r"(?i)((?:api[-_]?key|apikey|token|secret|password|passwd|authorization|auth|key)\s*[=:]\s*)([^&\s\"',;]+)")
 _BEARER_RE = re.compile(r"(?i)\bbearer\s+[A-Za-z0-9._\-]+")
-_TOKEN_RE = re.compile(r"\b(gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9]{20,})\b")
+# Telegram bot tokens are "<bot id>:<35 characters>" and travel inside the request URL path (/bot<token>/method)
+_TOKEN_RE = re.compile(r"\b(gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9]{20,})\b"
+                       r"|(?<![A-Za-z0-9])(?:bot)?\d{5,16}:[A-Za-z0-9_\-]{30,}")
 
 
 def redact(s: str) -> str:
@@ -254,6 +261,50 @@ def _validate_context(ctx: Any, errors: list[str]) -> dict | None:
             "edit_history_ids": hist, "referenced": clean_refs, "basis": basis}
 
 
+def _validate_forward(fw: Any, errors: list[str]) -> dict | None:
+    """inbound/3 item forward. Origin ids only; a user origin carries no id (a private individual, D-010)."""
+    if not isinstance(fw, dict):
+        errors.append("forward: not an object")
+        return None
+    extra = sorted(set(fw) - {"origin_type", "origin_chat_id", "origin_message_id", "origin_provider_item_id",
+                              "origin_published_at", "is_automatic_forward"})
+    if extra:
+        errors.append("forward: unknown keys " + ",".join(str(x)[:30] for x in extra))
+    ot = fw.get("origin_type", "unknown")
+    if ot not in FORWARD_ORIGINS:
+        errors.append("forward.origin_type: not an allowed origin type")
+    for k in ("origin_chat_id", "origin_message_id", "origin_provider_item_id"):
+        v = fw.get(k)
+        if v is not None and (not isinstance(v, str) or not PROVIDER_ID.match(v)):
+            errors.append(f"forward.{k}: not a provider id")
+    if ot in ("user", "hidden_user") and (fw.get("origin_chat_id") or fw.get("origin_message_id")):
+        errors.append("forward: a user origin carries no ids")
+    pub = _ts(fw.get("origin_published_at"), "forward.origin_published_at", errors)
+    auto = fw.get("is_automatic_forward", False)
+    if not isinstance(auto, bool):
+        errors.append("forward.is_automatic_forward: not a boolean")
+    return {"origin_type": ot, "origin_chat_id": fw.get("origin_chat_id"), "origin_message_id": fw.get("origin_message_id"),
+            "origin_provider_item_id": fw.get("origin_provider_item_id"), "origin_published_at": pub,
+            "is_automatic_forward": auto is True}
+
+
+def _validate_version(ver: Any, errors: list[str]) -> dict | None:
+    if not isinstance(ver, dict):
+        errors.append("version: not an object")
+        return None
+    extra = sorted(set(ver) - {"kind", "provider_version_at", "poster_hash"})
+    if extra:
+        errors.append("version: unknown keys " + ",".join(str(x)[:30] for x in extra))
+    kind = ver.get("kind")
+    if kind not in VERSION_KINDS:
+        errors.append("version.kind: not ORIGINAL or EDIT")
+    at = _ts(ver.get("provider_version_at"), "version.provider_version_at", errors, required=True)
+    ph = ver.get("poster_hash")
+    if ph is not None and (not isinstance(ph, str) or not HEX64.match(ph)):
+        errors.append("version.poster_hash: not a lower-case sha256 hex digest")
+    return {"kind": kind, "provider_version_at": at, "poster_hash": ph}
+
+
 def validate_item(item: Any, env: dict, now: float) -> tuple[dict | None, str | None, list[str], list[str]]:
     """Returns (clean, reason_code, errors, ignored_fields). clean is None when the item must be quarantined."""
     if not isinstance(item, dict):
@@ -266,8 +317,9 @@ def validate_item(item: Any, env: dict, now: float) -> tuple[dict | None, str | 
     if vis != "PUBLIC":
         return None, "NOT_PUBLIC", ["visibility: only PUBLIC content is ingested (D-009)"], []
     errors: list[str] = []
-    v2 = env.get("schema") == INBOUND_SCHEMA_V2
-    ignored = sorted(set(item) - ITEM_KEYS - ({"context"} if v2 else set()))
+    v2 = env.get("schema") in (INBOUND_SCHEMA_V2, INBOUND_SCHEMA_V3)
+    v3 = env.get("schema") == INBOUND_SCHEMA_V3
+    ignored = sorted(set(item) - ITEM_KEYS - ({"context"} if v2 else set()) - ({"forward", "version"} if v3 else set()))
     plat = item.get("platform", src["platform"])
     if plat != src["platform"]:
         errors.append("platform: differs from source.platform")
@@ -323,9 +375,14 @@ def validate_item(item: Any, env: dict, now: float) -> tuple[dict | None, str | 
     if eid is not None and (not isinstance(eid, str) or not re.fullmatch(r"[A-Za-z0-9:_\-.]{1,128}", eid)):
         errors.append("event_id: must be 1-128 characters of [A-Za-z0-9:_-.]")
     context = _validate_context(item["context"], errors) if v2 and "context" in item else None
+    forward = _validate_forward(item["forward"], errors) if v3 and item.get("forward") is not None else None
+    version = _validate_version(item["version"], errors) if v3 and item.get("version") is not None else None
+    if version and version["provider_version_at"] is not None and fetched is not None \
+            and version["provider_version_at"] > fetched + FUTURE_SKEW:
+        errors.append("version.provider_version_at: after fetched_at")
     if errors:
         return None, "INVALID", errors, ignored
-    return {"context": context, "platform": plat, "provider_item_id": pid, "url": url, "account": acct, "published_at": published,
+    return {"context": context, "forward": forward, "version": version, "platform": plat, "provider_item_id": pid, "url": url, "account": acct, "published_at": published,
             "published_at_basis": basis, "fetched_at": fetched, "retrieval_status": status, "content_hash": ch,
             "summary": summ, "metrics": metrics or None, "event_id": eid}, None, [], ignored
 
@@ -388,6 +445,13 @@ def _persist_item(con, *, clean: dict, env: dict, unit: SourceUnit, run_id: str,
                     (res["item_key"], clean["published_at"]))
     if clean.get("context"):
         _persist_context(con, plat, res["item_key"], clean["context"], now)
+    if clean.get("forward"):
+        _persist_forward(con, plat, res["item_key"], clean["forward"], now)
+    if clean.get("version"):
+        v = clean["version"]
+        con.execute("INSERT OR IGNORE INTO social_item_versions(item_key,provider_version_at,version_kind,content_hash,poster_hash,"
+                    "first_event_id,first_recorded_at) VALUES (?,?,?,?,?,?,?)",
+                    (res["item_key"], v["provider_version_at"], v["kind"], clean["content_hash"], v["poster_hash"], event_id, now))
     con.execute("INSERT INTO social_observation_provenance(event_id,observation_id,run_id,connector,source_ref,unit_sha,item_index,"
                 "inbound_schema,plan_id,fetched_at,provider_published_at,freshness,visibility,rights_basis,terms_note,"
                 "ignored_fields,recorded_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
@@ -422,6 +486,15 @@ def _persist_context(con, platform: str, item_key: str, ctx: dict, now: float) -
                     " VALUES (?,?,?,?,?) ON CONFLICT(item_key,ref_type,referenced_item_key) DO UPDATE SET"
                     " referenced_author_id=COALESCE(referenced_author_id,excluded.referenced_author_id)",
                     (item_key, r["type"], ref_key, r.get("author_id"), now))
+
+
+def _persist_forward(con, platform: str, item_key: str, fw: dict, now: float) -> None:
+    """First sighting wins: a forward's origin never changes, so a later identical record adds nothing."""
+    okey = store.item_key_for(platform, fw["origin_provider_item_id"], None) if fw.get("origin_provider_item_id") else None
+    con.execute("INSERT OR IGNORE INTO social_item_forwards(item_key,origin_type,origin_chat_id,origin_message_id,origin_item_key,"
+                "origin_published_at,is_automatic_forward,recorded_at) VALUES (?,?,?,?,?,?,?,?)",
+                (item_key, fw["origin_type"], fw.get("origin_chat_id"), fw.get("origin_message_id"), okey,
+                 fw.get("origin_published_at"), 1 if fw.get("is_automatic_forward") else 0, now))
 
 
 def _worse(a: str | None, b: str) -> str:

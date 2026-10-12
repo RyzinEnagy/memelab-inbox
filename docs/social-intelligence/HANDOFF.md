@@ -1,74 +1,72 @@
 # Social & Trader Intelligence: handoff
 
-Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Baseline: [AUDIT_00.md](AUDIT_00.md). Schema and connectors: [SCHEMA_01.md](SCHEMA_01.md), [CONNECTORS_02.md](CONNECTORS_02.md), [X_API_03.md](X_API_03.md).
+Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Baseline: [AUDIT_00.md](AUDIT_00.md). Schema and connectors: [SCHEMA_01.md](SCHEMA_01.md), [CONNECTORS_02.md](CONNECTORS_02.md), [X_API_03.md](X_API_03.md), [TELEGRAM_04.md](TELEGRAM_04.md). Source status: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
 
 ## Position
 
-- Current phase completed: 03 (Prompt 03: X monitoring through the official X API v2), 2026-10-10. Prompt 03 took the Phase 03 slot that was SUPERSEDED (D-022).
-- Live X ingest: UNAVAILABLE (D-023). No X developer app, token or budget consent exists; no live X API call has been made. `social x-health` reports `credentials_missing`, `live_evidence: none`.
-- Next phase: 04 (manual capture onto the inbound schema) as proposed in ROADMAP.md, unless Elving supplies Prompt 04.
+- Current phase completed: 04 (Prompt 04: Telegram public-channel monitoring through the official Bot API), 2026-10-11. Prompt 04 took the Phase 04 slot; the old proposed Phase 04 (manual capture) is now carry-over C-4 (D-026).
+- Live Telegram ingest: UNAVAILABLE (D-027). No bot, `TELEGRAM_BOT_TOKEN` or cooperating channel exists; no live Telegram call has been made. `social tg-health` reports `credentials_missing`, `live_evidence: none`.
+- Live X ingest: still UNAVAILABLE (D-023).
+- Next phase: 05 (source registry) as proposed in ROADMAP.md, unless Elving supplies Prompt 05.
 - Active branch: `feature/social-intelligence`.
-- Phase 03 started from `71fddc4` ("Add files via upload", the D-021 upload). The Phase 02 handoff named `94046c7` plus "a further manual upload"; `71fddc4` is that upload. Tree clean; baseline `python -m pytest tests -q` gave `1 failed, 106 passed`, same as recorded.
-- Pushed: `21ba391` "Add files via upload" on `origin/feature/social-intelligence` (2026-10-11). The session could not push (git proxy 403, repo not in the session's authorized set; `GH_TOKEN` invalid; no GitHub connector installed), so Elving uploaded the 14 changed files through the GitHub upload page in one commit. It replaces the session's local commits `42aa49c` and `02f32fd`. Checked after the upload: `git diff 02f32fd origin/feature/social-intelligence` is empty, `python -m pytest tests -q` on the pushed tree gives `1 failed, 142 passed`, `social guard` 224 tracked files, 61 JSON, 0 violations. This HANDOFF correction is a further upload.
+- Phase 04 started from `054fb8a` ("Update HANDOFF.md"). Drift since the Phase 03 handoff: `e739182` and `0672cb3` (a root-level HANDOFF.md added then deleted) and `054fb8a` (HANDOFF correction), all by Elving through the GitHub UI, docs only. Tree clean; baseline `python -m pytest tests -q` gave `1 failed, 142 passed`, as recorded.
+- Phase 04 commit: `b147108` "social-intel phase 04: Telegram channel monitoring through the official Bot API" (local). This HANDOFF is the next commit on top of it. Not pushed: the session cannot push to this repo (same blocker as Phases 00 to 03); the changed files go to Elving for upload.
 
-## What Phase 03 added
+## What Phase 04 added
 
-- `memelab/social/x_api.py`: config loader (`memelab.x_api.config/1`, refuses credentials), `UrllibTransport` (only network code; token in one header), `FixtureTransport` (recorded synthetic exchanges, `memelab.x_api.fixture/1`), `BillingGuard`, `post_item()` (post to inbound/2 item; text hashed and dropped), `classify_error()`, `XApiAdapter` (scopes user, list, search, recheck), `health()`.
-- `memelab/social/cli.py`: `python -m memelab social x-health [--config] [--db]` and `python -m memelab social x-ingest [--config] [--fixture] [--db] [--now] [--run-id] [--max-items] [--max-age-hours] [-v]`. Default config path `data/private/x_api.json` (gitignored).
-- `memelab/social/ingest.py`: inbound schema `memelab.social.inbound/2` (optional item `context`), `_persist_context()`, provenance records the unit's schema, `redact()` now strips `Bearer <token>` first.
-- `memelab/social/schema.py`: migration 3 (`social_item_context`, `social_item_refs`, `social_source_cursors`, `social_api_spend`, `social_api_billed_resources`), added to `SOCIAL_TABLES`.
-- `tests/test_social_x_api.py` (36 tests), `tests/fixtures/social/x_api/fx_x_main.json`, `fx_x_second.json`, `fx_x_config.json` (invented accounts, ids and sentences).
-- `tests/test_social_ingest.py::test_schema_v2_rolls_back_to_v1_only`: now uses `schema.ALL_VERSIONS` instead of the literal version 2 (needed once migration 3 exists; same change Phase 02 made to the store tests).
-- Docs: `X_API_03.md` (verified contract with sources, what is stored, what is not visible, safety rails, authorization steps, rough cost, limits), `x_api.example.json`, DECISIONS D-022 to D-025, ROADMAP (row 03 DONE, C-3 added, row 06 flagged).
+- `memelab/social/telegram_bot.py`: config loader (`memelab.telegram_bot.config/1`, refuses credentials, needs `approval` per channel), `UrllibTransport` (only network code; token in the URL path, never in an error), `FixtureTransport` (`memelab.telegram_bot.fixture/1`), `classify_error()`, `message_item()` and `normalize_update()` (text, caption, signature and forward sender name hashed or dropped), `TelegramBotAdapter` (getUpdates polling, offset cursor, gap warning, 429 window), `webhook_receive()` (secret header, size, JSON checks; hashed spool), `WebhookSpoolAdapter`, `purge_spool()`, `check_access()` (getMe, getChat, getChatMember), `health()`.
+- `memelab/social/ingest.py`: inbound schema `memelab.social.inbound/3` (item `forward`, `version`), `_validate_forward`, `_validate_version`, `_persist_forward`, version rows; `redact()` strips Telegram bot tokens.
+- `memelab/social/schema.py`: migration 4 (`social_item_forwards`, `social_item_versions`), added to `SOCIAL_TABLES`.
+- `memelab/social/store.py`: `is_independent_original()` (False for forwards and reposts, D-029), `current_version()`.
+- `memelab/social/cli.py`: `social tg-health [--check-access [--fixture]]`, `social tg-ingest [--fixture]`, `social tg-webhook-ingest`. Default config `data/private/telegram_bot.json` (gitignored).
+- Tests: `tests/test_social_telegram.py` (41). Fixtures: `tests/fixtures/social/telegram_bot/fx_tg_main.json`, `fx_tg_second.json`, `fx_tg_access.json`, `fx_tg_config.json` (invented channels, ids and sentences).
+- Docs: `TELEGRAM_04.md` (integration choice, verified contract with quotes and sources, what a bot cannot see, safety rails, setup steps), `SOURCE_COVERAGE.md` (new source-coverage table), `telegram_bot.example.json`, DECISIONS D-026 to D-029, ROADMAP (row 04 DONE, 05 NEXT, 07 flagged, C-4 added).
 
 ## Gate, item by item
 
-- Real adapter with confirmed API contract: `memelab/social/x_api.py`; contract and sources in X_API_03.md (docs.x.com pages read 2026-10-10: pricing, usage and billing, user posts, list posts, recent search and its quickstart, rate limits, response codes, developer guidelines). Open contract points (field parameter spelling, whether expansions are billed, credits-exhausted status) are listed there as UNKNOWN.
-- Live authorized ingest or explicitly marked unavailable: marked unavailable (D-023, X_API_03.md "Status", `social x-health` output below). `test_cli_fixture_flow_and_no_false_live_claim` proves fixture rows are not reported as live evidence and live `x-ingest` exits 1 with `NOT_RUN credentials_missing` and no network call (urlopen patched to fail).
-- Reproducible fixture tests, by prompt item:
-  - originals, replies, reposts, quotes, original author: `test_main_fixture_originals_replies_reposts_quotes_edits`
-  - duplicate ids and re-ingest: `test_duplicate_ids_and_rerun_add_nothing`, `test_billing_dedupe_within_utc_day`, `test_list_cursor_applied_client_side`
-  - author changes: `test_author_handle_change_keeps_one_account_and_history`
-  - edited and deleted access limits: `test_edit_creates_new_id_and_longer_history_wins`, `test_recheck_marks_missing_and_protected_posts`, `test_protected_post_in_includes_is_quarantined_not_stored`, `test_protected_or_missing_user_scope`
-  - pagination: main test (token on page 2), `test_page_cap_records_gap_and_advances_cursor`, `test_remaining_zero_stops_before_next_page`
-  - 429: `test_429_records_reset_and_stops_scope`, `test_rate_limited_scope_is_not_called_before_reset`, `test_429_short_wait_is_waited_once_when_configured`
-  - 403 and other errors: `test_http_errors_map_to_connector_status` (401, 403 x2, 404, 400), `test_5xx_bounded_retries_then_down`
-  - billing guard and budget: `test_no_consent_means_no_request`, `test_run_cap_blocks_before_the_request_that_could_exceed_it`, `test_monthly_cap_counts_spend_of_the_same_mode_only`, `test_ingest_cost_budget_also_stops_requests`, `test_example_config_loads_and_is_off_by_default`
-  - timestamps: `test_timestamps_provider_vs_fetch_and_future_post_quarantined`, `test_provenance_and_freshness`
-  - cache freshness: `test_stale_response_is_flagged_and_health_reports_cursor_age`, `test_cursor_since_id_and_rate_limit_window`
-  - secret redaction: `test_token_never_leaks`, `test_config_refuses_credentials_and_bad_scopes`, `test_health_states_without_network`, `test_credentials_missing_no_request`
-  - text never stored: `test_text_is_hashed_never_stored_and_long_form_wins`
-  - `/1` unchanged: `test_inbound_v1_units_unchanged_by_v2_support`
-- CLI flow through stored observations (smoke, temp DB, no token in the environment):
-  - `social x-health --config tests/fixtures/social/x_api/fx_x_config.json` exit 1: `credentials_missing missing 0 none: no live X API read has been made`
-  - `social x-ingest --config <same>` (live) exit 1: `{"network_calls_made": 0, "reason": "credentials_missing", "status": "NOT_RUN", ...}`
-  - `social x-ingest --config <same> --fixture tests/fixtures/social/x_api/fx_x_main.json --now 1791561600` exit 0: `PARTIAL fixture`, 7 requests, 7 created, 1 duplicate; health user OK, list RATE_LIMITED, search BLOCKED
-  - same with `fx_x_second.json --now 1791568800` exit 0: 3 requests, 1 created, 1 duplicate; list OK after its window, user asked `since_id`
-  - `social status --event x:api.1840000000000000103.9ce02d4ff96e18ed`: schema inbound/2, rights_basis synthetic_fixture, fetched 1791558000, provider 1791556200, FRESH, access_mode fixture, URL `https://x.com/example_alpha/status/1840000000000000103`, account handle `example_alpha_new`
-  - `social x-health` after both runs: still `credentials_missing`, live_evidence requests 0; cursors list `...202` OK, search BLOCKED, user `...105` OK
-- Migration on a copy of the tracked DB: `init_db` on a copy of `data/memelab.sqlite` applied versions `[1, 2, 3]`; `content_guard.check_sqlite` on the migrated copy: no violations. The tracked file itself is unchanged.
+- Official integration verified: Bot API pages read 2026-10-11 (Bot API 10.3): getUpdates, setWebhook secret_token, Update, Message, MessageOrigin, InaccessibleMessage, FAQ and features pages, Bot Platform Developer Terms 4.2 and 4.3. Quotes and links in TELEGRAM_04.md. UNKNOWN items listed there (ResponseParameters, getChatMember status list: the fetch tool could not read that part of the page).
+- Membership and limits explained: TELEGRAM_04.md "What a bot cannot see" (admin-added channels only, no history, no deletions, 24-hour retention, no views). No code path claims an arbitrary public channel can be read.
+- Adapter operational under documented permissions, or truthfully blocked: truthfully blocked (`credentials_missing`), all fixture paths work. `test_cli_fixture_demo_and_no_false_live_claim` proves live `tg-ingest` exits 1 with `NOT_RUN credentials_missing` and makes no network call (`urlopen` patched to fail), and fixture rows are not live evidence.
+- Fields: channel id, message id, poster (signature hash), sent and edited time, forward origin, text hash (no text: the repo's public database rule, D-013, D-016), link, reply-to: `test_main_fixture_channel_posts_into_observations`, `test_provenance_of_one_event`, `test_text_signature_and_forward_sender_never_stored`, `test_reply_context_same_chat_and_external`.
+- Prompt test list:
+  - message edits: `test_edit_is_a_new_version_and_sighting`
+  - duplicate updates: `test_duplicate_updates_and_redelivery_add_nothing`, `test_redelivery_with_a_new_fetch_time_is_deduped_by_event_id`, main test (1 duplicate in the batch), webhook redelivery in `test_webhook_secret_validation_and_spool_without_text`
+  - forwards, not counted as independent originals: `test_forwards_keep_origin_and_are_not_independent_originals`
+  - deleted or inaccessible: `test_inaccessible_message_dropped`, service pin with an inaccessible message in the main fixture, membership removal (`test_webhook_membership_removal_blocks_channel`, main test BLOCKED). Deletions themselves are not observable through the Bot API; documented.
+  - authorization denial: `test_access_check_reports_denied_and_not_public`, `test_access_check_chat_not_found_and_bad_token`, `test_http_errors_map_to_status_and_hold_cursor` (401, 404, 403, 409, 400)
+  - out-of-order updates: `test_out_of_order_edit_before_original_and_readded_bot`, `test_out_of_order_update_ids_never_move_the_cursor_back`, `test_webhook_spool_ingest_out_of_order_and_idempotent`
+  - restart and resume: `test_crash_between_batches_holds_offset_then_resumes`, `test_process_killed_mid_ingest_resumes_without_duplicates`, `test_item_budget_stop_holds_offset`
+  - also: `test_429_retry_after_stops_and_skips_until_reset`, `test_5xx_bounded_retries_then_down`, `test_5xx_then_success`, `test_paging_until_short_batch_and_poll_cap`, `test_gap_warning_after_24_hours`, `test_token_never_leaks`, `test_config_refuses_credentials_and_bad_channels`, `test_health_states_without_network`, `test_private_channel_quarantined_unapproved_and_dm_dropped`, `test_migration_4_rolls_back_cleanly`, `test_inbound_v2_ignores_forward_and_version_keys`
+- CLI fixture demo (temp DB and private folder, no token in the environment):
+  - `social tg-health --config tests/fixtures/social/telegram_bot/fx_tg_config.json` exit 1: `credentials_missing`, network_calls_made 0, `none: no live Telegram Bot API read has been made`
+  - `social tg-ingest --config <same>` (live) exit 1: `{"network_calls_made": 0, "reason": "credentials_missing", "status": "NOT_RUN", ...}`
+  - `social tg-ingest --config <same> --fixture .../fx_tg_main.json --now 1791561600` exit 0: `PARTIAL fixture`, 1 request, 8 created, 1 duplicate, 1 quarantined; dropped service_message 1, unapproved_channel 1, update_type_not_used 1; alpha OK, beta BLOCKED (bot removed), private channel DEGRADED
+  - same with `fx_tg_second.json --now 1791568800` exit 0: `OK`, 1 request, 2 created
+  - `social status --event telegram:bot.-1001000000001_11.v1791554600.9cf3a3b17e6a`: inbound/3, rights_basis synthetic_fixture, connector `telegram_bot:channel:-1001000000001`, fetched 1791558000, provider 1791554600, FRESH, access_mode fixture, URL `https://t.me/example_alpha_calls/11`, handle `example_alpha_calls`; its forward row: origin channel, origin item `telegram:-1001000000002_5`
+  - `social tg-health --check-access --fixture .../fx_tg_access.json` exit 1: still `credentials_missing` (no token), channels alpha OK, beta access_denied, private not_public, live requests 0
+- Migration on a copy of the tracked DB: `schema.migrate()` on a copy of `data/memelab.sqlite` applied `[1, 2, 3, 4]` (the tracked DB has no social tables yet); `content_guard.check_sqlite` on the copy: no violations. The tracked file is unchanged.
 
 ## Tests
 
-- Command: `python -m pytest tests -q` (needs `pip install pytest`; numpy required; node optional).
-- Outcome after the last code change: exit 1, `1 failed, 142 passed in 10.22s`. The only failure is the known clock-dependent `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (carry-over C-1, untouched).
-- `python -m pytest tests/test_social_x_api.py -q` -> `36 passed`.
-- `python -m memelab social guard` exit 0 (217 tracked files, 57 JSON, 0 violations, before this HANDOFF commit).
+- Command: `python -m pytest tests -q` (needs `pip install pytest numpy`; node optional).
+- Outcome after the last code change: exit 1, `1 failed, 183 passed in 9.65s`. The only failure is the known clock-dependent `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (C-1, untouched).
+- `python -m pytest tests/test_social_telegram.py -q` -> `41 passed`.
+- `python -m memelab social guard` exit 0 (233 files, 66 JSON, 0 violations, with the Phase 04 files staged).
 - Side effect still present: the EVM test writes `data/reports/<stamp>_BRETT_0x532f.md`; deleted by hand after each run (C-1). `git status` clean after that.
 
 ## Things the next phase should know
 
-- Live X needs Elving's steps in X_API_03.md ("How to authorize it"). Start with one scope and `max_pages_per_scope` 1, then check `x-health` live_evidence and the console bill.
-- D-025: X's Developer Guidelines say browser automation leads to permanent suspension. Proposed Phase 06 (X via signed-in Chrome) should wait for Elving's answer.
-- C-3: before keeping live X data, purge earlier observations of posts that `recheck` finds NOT_FOUND (24-hour rule).
-- When a test run uses the Phase 02 CLI logging setup and a later test logs inside an exception handler, Python prints "Logging error" tracebacks to stderr (stale handler on a closed stream). Harmless, pre-existing; it is why transport errors are now re-raised with the token scrubbed and no exception chain.
+- Telegram goes live only after Elving's steps in TELEGRAM_04.md ("How to authorize it"), and D-028 should be decided first. Realistic coverage is his own channels and channels whose admins agree.
+- Later counting phases must call `store.is_independent_original()` (D-029); a forward shares its original's content hash.
+- `social_api_spend` is now also the free request ledger for Telegram (cost 0); queries on X spend filter by `connector LIKE 'x_api:%'`, Telegram by `'telegram_bot:%'`.
+- Event ids now come in three shapes: `x:api.<id>.<h>`, `telegram:bot.<chat>_<msg>.v<time>.<h>`, and the bridge's own or derived ids.
 - Social tables are still not in the `state.py` export (scheduled-run phase).
 
 ## Blockers and open decisions
 
-- Push: Cowork cloud sessions cannot push to `memelab-inbox` (repo not in the session's authorized set). Each phase ends with a manual upload unless the repo is added to the session's sources.
-- D-025 (X browser automation vs X guidelines) and the X API budget (D-023) are Elving's decisions.
-- Phase prompts 04 onward not supplied; ROADMAP.md entries are proposals.
+- Push: the session cannot push to `memelab-inbox`; each phase ends with a manual upload unless the repo is added to the session's sources.
+- D-028 (Telegram bot developer terms vs channel data collection, and Phase 07) is Elving's decision. D-025 (X browser automation) and the X budget (D-023) are still open.
+- Phase prompts 05 onward not supplied; ROADMAP.md entries are proposals.
 
 ## Exact next command
 
@@ -76,4 +74,4 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 git clone https://github.com/RyzinEnagy/memelab-inbox.git && cd memelab-inbox && git checkout feature/social-intelligence && pip install pytest numpy && python -m pytest tests -q
 ```
 
-Expect `1 failed, 142 passed` and `python -m memelab social guard` exit 0. Then start the next phase.
+Expect `1 failed, 183 passed` and `python -m memelab social guard` exit 0. Then start the next phase.

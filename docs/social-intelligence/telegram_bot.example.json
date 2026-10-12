@@ -1,0 +1,11 @@
+{
+ "schema": "memelab.telegram_bot.config/1",
+ "note": "Copy to data/private/telegram_bot.json (gitignored) and edit. No credentials here: the bot token goes in TELEGRAM_BOT_TOKEN and the webhook secret in TELEGRAM_WEBHOOK_SECRET. List only public channels whose admins added the bot as an administrator; approval records how that happened (own_channel or admin_invited_bot).",
+ "bot_label": "memelab_bot",
+ "channels": [
+  {"chat_id": "-1001234567890", "username": "example_channel", "approval": "own_channel"}
+ ],
+ "poll_limit": 100,
+ "max_polls_per_run": 5,
+ "long_poll_timeout": 0
+}

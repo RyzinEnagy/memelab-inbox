@@ -455,3 +455,19 @@ def record_coverage(con: sqlite3.Connection, *, run_id: str, connector: str, pla
         (key, run_id, connector, platform, scope, to_utc(window_start), to_utc(window_end),
          to_utc(checked_at) or _now(now), status, items_seen, gap_reason, sampling_note))
     return cur.rowcount == 1
+
+
+def is_independent_original(con: sqlite3.Connection, item_key: str) -> bool:
+    """False for an item that repeats someone else's post: a forward (social_item_forwards, Phase 04) or a
+    repost (social_item_context.reference_type REPOST). Attention and claim counting must not treat those as
+    separate original claims. Replies and quotes are the poster's own words and stay independent."""
+    if con.execute("SELECT 1 FROM social_item_forwards WHERE item_key=?", (item_key,)).fetchone():
+        return False
+    row = con.execute("SELECT reference_type FROM social_item_context WHERE item_key=?", (item_key,)).fetchone()
+    return not (row is not None and row[0] == "REPOST")
+
+
+def current_version(con: sqlite3.Connection, item_key: str) -> sqlite3.Row | None:
+    """The newest provider version of an item edited in place, by provider time, whatever order it arrived in."""
+    return con.execute("SELECT * FROM social_item_versions WHERE item_key=? ORDER BY provider_version_at DESC LIMIT 1",
+                       (item_key,)).fetchone()

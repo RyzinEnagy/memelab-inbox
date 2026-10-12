@@ -4,7 +4,7 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Phases 00, 01, 02 and 03 came with written phase prompts. Phases 04 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022).
+Phases 00 to 04 came with written phase prompts. Phases 05 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
 
 Status values also include SUPERSEDED (folded into another phase).
 
@@ -16,10 +16,10 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 01 | Durable schemas, evidence provenance and migration safety (Prompt 01) | 00 | DONE |
 | 02 | Ingestion contract and bridge/inbox adapter (Prompt 02) | 01 | DONE |
 | 03 | X monitoring through the official X API v2 (Prompt 03; old slot "social schema" was SUPERSEDED by 01) | 02 | DONE (live UNAVAILABLE, D-023) |
-| 04 | Manual capture onto the inbound schema (contract done in 02) | 02 | NEXT (proposed) |
-| 05 | Source registry for social and trader sources | 02, 03 | PLANNED |
+| 04 | Telegram channel monitoring through the official Bot API (Prompt 04; old slot "manual capture" moved to C-4) | 02, 03 | DONE (live UNAVAILABLE, D-027) |
+| 05 | Source registry for social and trader sources | 02, 03, 04 | NEXT (proposed) |
 | 06 | Collector: X via signed-in Chrome (needs D-025 decision) | 04, 05 | PLANNED |
-| 07 | Collector: Telegram public channels | 04, 05 | PLANNED |
+| 07 | Collector: Telegram public channels via Chrome (needs D-028 decision) | 04, 05 | PLANNED |
 | 08 | Collector: other readable sources (YouTube RSS, token-listed links) | 04, 05 | PLANNED |
 | 09 | Entity resolution: accounts, projects, tokens by address | 06 | PLANNED |
 | 10 | Mention extraction by contract address | 09 | PLANNED |
@@ -37,6 +37,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | C-1 | Carry-over: test isolation and clock (old Phase 01) | 00 | PLANNED, unscheduled |
 | C-2 | Carry-over: repo-wide guard against raw social text in tracked files (old Phase 02) | 02 | DONE |
 | C-3 | Carry-over: purge stored X observations of posts NOT_FOUND for 24 h (X deletion rule), needed before live X data is kept | 03 | PLANNED, unscheduled |
+| C-4 | Carry-over: manual capture onto the inbound schema (old proposed Phase 04) | 02 | PLANNED, unscheduled |
 
 ## Phase gates
 
@@ -54,13 +55,15 @@ C-2. (old Phase 02 guard, DONE 2026-10-10, D-020) A check script or test fails i
 
 C-3. Posts that `recheck` finds NOT_FOUND have their earlier X observations (hash, metrics) purged or nulled within 24 hours; test proves it. Only needed once live X data is stored.
 
-04. Manual captures (and `social-note`, without breaking its arguments) produce items in `memelab.social.inbound/1` with `access_mode='manual'` and go through the same ingester. Tests cover validation and rejection.
+04. (Prompt 04, DONE 2026-10-11) Telegram Bot API adapter with the contract read from core.telegram.org (TELEGRAM_04.md): approved public channels only, getUpdates polling with a committed-only offset and webhook receiver with secret validation and a hashed spool; channel id, message id, poster (signature hash), send and edit time, forward origin ids, reply ids, text hash (no text kept), link, provenance; per-channel health with `credentials_missing` / `access_denied` / `not_public`; live ingest marked UNAVAILABLE (D-027); fixture tests for edits, duplicate and redelivered updates, forwards (never independent originals, D-029), deleted or inaccessible messages, authorization denial, out-of-order updates, 429/409/401/403/5xx, crash and kill resume; CLI fixture demo persisting an observation with provenance.
+
+C-4. (old Phase 04) Manual captures (and `social-note`, without breaking its arguments) produce items in `memelab.social.inbound/1` with `access_mode='manual'` and go through the same ingester. Tests cover validation and rejection.
 
 05. Social and trader sources registered with access mode (fetch, navigate, manual, blocked), tier, terms constraint and coverage gap, reusing the catalyst source registry pattern. Blocked sources stay disabled with the reason recorded. No collector code yet.
 
 06. X reads through Elving's signed-in Chrome (D-009): profiles, public timelines and search results, read only, human-paced, stopping on any challenge. Output is derived fields plus own-words summaries (D-010). Fixtures recorded from real pages; parser tests pass offline.
 
-07. Telegram public channels (`t.me/s/<channel>` previews, or Telegram Web while signed in) parsed to channel-level metrics and summaries. Same fixture and policy rules as 06; no private groups.
+07. Telegram public channels (`t.me/s/<channel>` previews, or Telegram Web while signed in) parsed to channel-level metrics and summaries. Same fixture and policy rules as 06; no private groups. Needs D-028 first.
 
 08. Additional readable sources wired in the same way, each with fixtures and coverage notes. Sources that fail from both routes are recorded as gaps, not worked around.
 
