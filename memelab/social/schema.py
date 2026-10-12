@@ -1047,6 +1047,90 @@ DROP TABLE IF EXISTS social_wallet_labels;
 DROP TABLE IF EXISTS social_wallet_assertions;
 """
 
+V10_UP = """
+-- Phase 10: wallet-level performance accounting. Inputs (prices, token metadata) and results (runs, positions, checks) live in their own tables;
+-- the Phase 09 activity tables are read, never altered. A run stores the exact input snapshot, so it can be recomputed and compared by hash.
+CREATE TABLE social_perf_token_meta (       -- what is known about an asset's role and decimals; one row per (chain, asset), newest wins
+  meta_id INTEGER PRIMARY KEY,
+  chain TEXT NOT NULL,
+  asset TEXT NOT NULL,                      -- contract or mint, canonical for the chain; NATIVE for the chain's native coin
+  kind TEXT NOT NULL CHECK (kind IN ('NATIVE','STABLE','TOKEN','LP_RECEIPT')),
+  alias_of TEXT,                            -- e.g. the wrapped-native mint is an alias of NATIVE
+  symbol TEXT CHECK (symbol IS NULL OR length(symbol) <= 24),
+  decimals INTEGER CHECK (decimals IS NULL OR decimals BETWEEN 0 AND 36),
+  transfer_fee_bps INTEGER CHECK (transfer_fee_bps IS NULL OR transfer_fee_bps BETWEEN 0 AND 10000),
+  source TEXT NOT NULL,                     -- where this was learned: a URL, 'chain_registry' or 'analyst'
+  recorded_at REAL NOT NULL,
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1)),
+  UNIQUE (chain, asset, recorded_at)
+);
+
+CREATE TABLE social_perf_prices (           -- observed prices and sell quotes, as supplied; the accounting never fetches them
+  price_id INTEGER PRIMARY KEY,
+  chain TEXT NOT NULL,
+  asset TEXT NOT NULL,
+  observed_at REAL NOT NULL,
+  kind TEXT NOT NULL CHECK (kind IN ('MID','EXEC_QUOTE','NO_ROUTE','IMPACT_CURVE')),
+  usd REAL,                                 -- MID: dollars per unit
+  amount_in REAL, usd_out REAL,             -- EXEC_QUOTE: sold amount_in units, received usd_out dollars
+  detail_json TEXT,                         -- IMPACT_CURVE: the SELL quotes dict in the existing bundle shape; NO_ROUTE: the reason
+  source TEXT NOT NULL,
+  is_estimate INTEGER NOT NULL DEFAULT 1 CHECK (is_estimate IN (0,1)),   -- provider values are estimates, never a substitute for the ledger
+  recorded_at REAL NOT NULL,
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1)),
+  UNIQUE (chain, asset, observed_at, kind, source)
+);
+CREATE INDEX ix_spp_asset ON social_perf_prices(chain, asset, observed_at);
+
+CREATE TABLE social_perf_runs (             -- one deterministic calculation; input_json is the whole input, result_json the whole result
+  run_id INTEGER PRIMARY KEY,
+  scope TEXT NOT NULL,                      -- 'solana:<wallet>' or a declared group
+  chain TEXT NOT NULL,
+  engine_version TEXT NOT NULL,
+  convention TEXT NOT NULL CHECK (convention IN ('FIFO','AVCO')),
+  as_of REAL NOT NULL,
+  input_sha256 TEXT NOT NULL,
+  result_sha256 TEXT NOT NULL,
+  reconstruction_status TEXT NOT NULL CHECK (reconstruction_status IN ('COMPLETE','PARTIAL','NOT_POSSIBLE')),
+  reconciled INTEGER NOT NULL CHECK (reconciled IN (0,1)),
+  score_status TEXT NOT NULL CHECK (score_status IN ('SCORED','INSUFFICIENT_DATA')),
+  n_entries INTEGER NOT NULL,
+  input_json TEXT NOT NULL,
+  result_json TEXT NOT NULL,
+  created_at REAL NOT NULL,
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1)),
+  UNIQUE (scope, convention, as_of, input_sha256)   -- the same input twice adds nothing
+);
+
+CREATE TABLE social_perf_positions (        -- one row per token position (first buy to flat), for queries; the run's result_json is the record
+  run_id INTEGER NOT NULL REFERENCES social_perf_runs(run_id),
+  position_no INTEGER NOT NULL,
+  asset TEXT NOT NULL,
+  status TEXT NOT NULL,
+  in_sample INTEGER NOT NULL CHECK (in_sample IN (0,1)),
+  exclusion_reasons_json TEXT NOT NULL,
+  opened_at REAL, closed_at REAL,
+  cost_usd TEXT, proceeds_usd TEXT, net_usd TEXT,   -- decimal strings, rounded to 12 places; NULL when unknown
+  PRIMARY KEY (run_id, position_no)
+);
+
+CREATE TABLE social_perf_checks (           -- reconciliation checks of a run
+  run_id INTEGER NOT NULL REFERENCES social_perf_runs(run_id),
+  check_name TEXT NOT NULL,
+  status TEXT NOT NULL CHECK (status IN ('PASS','WARN','FAIL')),
+  detail_json TEXT NOT NULL,
+  PRIMARY KEY (run_id, check_name)
+);
+"""
+
+V10_DOWN = """
+DROP TABLE IF EXISTS social_perf_checks;
+DROP TABLE IF EXISTS social_perf_positions;
+DROP TABLE IF EXISTS social_perf_runs;
+DROP TABLE IF EXISTS social_perf_prices;
+DROP TABLE IF EXISTS social_perf_token_meta;
+"""
+
 # (version, name, up, down). Append only; never edit an applied entry (the checksum guard refuses it).
 MIGRATIONS: list[tuple[int, str, str, str]] = [
     (1, "social intelligence core tables", V1_UP, V1_DOWN),
@@ -1058,6 +1142,7 @@ MIGRATIONS: list[tuple[int, str, str, str]] = [
     (7, "narrative snapshots: clusters, independence, provenance and change summaries", V7_UP, V7_DOWN),
     (8, "source and trader registry: entities, captures, listings, links, records, categories, evidence, reviews", V8_UP, V8_DOWN),
     (9, "wallet attribution assertions, tracked wallets, fetches, classified activity events, funding hypotheses, audit", V9_UP, V9_DOWN),
+    (10, "wallet performance accounting: token metadata, supplied prices, runs, positions, reconciliation checks", V10_UP, V10_DOWN),
 ]
 LATEST = max(m[0] for m in MIGRATIONS)
 ALL_VERSIONS = sorted(m[0] for m in MIGRATIONS)
@@ -1077,6 +1162,7 @@ SOCIAL_TABLES = [
     "social_registry_evidence", "social_registry_reviews", "social_wallet_assertions", "social_wallet_labels",
     "social_tracked_wallets", "social_wallet_fetches", "social_wallet_events", "social_wallet_event_legs",
     "social_wallet_funding_hypotheses", "social_wallet_audit",
+    "social_perf_token_meta", "social_perf_prices", "social_perf_runs", "social_perf_positions", "social_perf_checks",
 ]
 
 

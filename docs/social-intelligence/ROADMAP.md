@@ -4,7 +4,7 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
+Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
 
 Status values also include SUPERSEDED (folded into another phase).
 
@@ -22,7 +22,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 07 | Narrative clustering, originators, amplifiers and independent corroboration (Prompt 07; old slot "Telegram via Chrome" moved to C-7) | 04, 05, 06 | DONE (fixtures only, D-041) |
 | 08 | Source and trader registry (Prompt 08; old slot "other readable sources" moved to C-8) | 01, 05, 07 | DONE (fixtures only, D-047) |
 | 09 | Wallet attribution assertions and wallet activity (Prompt 09; old slot "entity resolution" moved to C-9) | 05, 08 | DONE (fixtures only, D-056) |
-| 10 | Mention extraction by contract address | 09 | PLANNED |
+| 10 | Wallet-level performance accounting with reconciliation and a score gate (Prompt 10; old slot "mention extraction" moved to C-10) | 09 | DONE (fixtures only, D-065) |
 | 11 | Attention metrics with sampling notes | 10 | PLANNED |
 | 12 | Paid, bot and coordination signals | 11 | PLANNED |
 | 13 | Trader identity verification on top of the Phase 08 registry (live lists, status checks) | 08 | PLANNED |
@@ -43,6 +43,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | C-9 | Carry-over: entity resolution for accounts, projects and tokens by address (old proposed Phase 09) | C-6 | PLANNED, unscheduled |
 | C-8 | Carry-over: collector for other readable sources (YouTube RSS, token-listed links) (old proposed Phase 08) | 04 | PLANNED, unscheduled |
 | C-7 | Carry-over: Telegram public channels via Chrome (old proposed Phase 07, needs D-028) | 04, C-5 | PLANNED, unscheduled |
+| C-10 | Carry-over: mention extraction by contract address (old proposed Phase 10) | 09 | PLANNED, unscheduled |
 
 ## Phase gates
 
@@ -82,7 +83,9 @@ C-8. Additional readable sources wired in the same way, each with fixtures and c
 
 C-9. (old proposed Phase 09, token side delivered by Phase 05: tokens by address, ticker collisions and spoofed symbols) Accounts linked to projects and tokens only through evidence (official link on the token profile, link from the account to the contract address). Impersonation and name collisions flagged. Ticker-only matches never create a link.
 
-10. Mentions counted only when they contain a contract address or a verified official link. Uses `identity.resolve_post` before the text is hashed (Phase 05 left the ingest wiring to this phase). Cashtag-only mentions are THEMATIC and never score.
+10. (Prompt 10, DONE 2026-10-12, PERFORMANCE_10.md) Wallet-level P&L reconstruction from Phase 09 events that never trusts a leaderboard field or claims person-level profit: buys, sells, decimals, swaps, fees, transfers, airdrops, liquidity, open inventory, cost basis and missing-history intervals; FIFO with AVCO sensitivity; realized, unrealized mark and estimated liquidation proceeds kept apart; incoming transfers never free buys; trade count, win rate with its definition, median return, profit share and return excluding the biggest winner, drawdown only with enough equity points, sample size and confidence; history coverage and unknown fees reported; a score gate that refuses sparse or incomplete wallets and a ranking that lists only scored ones; provider comparison labelled an estimate; deterministic reconciliation checks and repeat runs with equal hashes; tests for missing history, multiple lots, wash-like transfers, fee-on-transfer, decimal errors, rug with no route, wallet to wallet, outlier, stablecoin peg change and no price, and a hand-checked fixture ledger. Full suite with only the known clock failure.
+
+C-10. (old Phase 10) Mentions counted only when they contain a contract address or a verified official link. Uses `identity.resolve_post` before the text is hashed (Phase 05 left the ingest wiring to this phase). Cashtag-only mentions are THEMATIC and never score.
 
 11. Attention metrics (counts, velocity, unique accounts) with window, sample size and sampling note on every value. Missing data stays UNKNOWN.
 

@@ -1,0 +1,110 @@
+{
+ "label": "Hand-checked expected results for ledger_main.json. Every number below was worked out on paper from the ledger entries (arithmetic in docs/social-intelligence/PERFORMANCE_10.md), not copied from the program.",
+ "positions": {
+  "TOKA": {
+   "cost": "3000",
+   "proceeds": "5000",
+   "realized_gross": "2000",
+   "fees": "0.04",
+   "net": "1999.96",
+   "return": "0.666653333333",
+   "native_cost": "30",
+   "native_proceeds": "50"
+  },
+  "TOKB": {
+   "cost": "500",
+   "proceeds": "100",
+   "realized_gross": "-400",
+   "fees": "0.02",
+   "net": "-400.02",
+   "return": "-0.80004",
+   "native_cost": "5",
+   "native_proceeds": "1"
+  },
+  "TOKC": {
+   "cost": "880",
+   "proceeds": "1000",
+   "realized_gross": "120",
+   "fees": "0.02",
+   "net": "119.98",
+   "return": "0.136340909091"
+  }
+ },
+ "realized": {
+  "trading_known_before_fees": "1720",
+  "known_fees_usd": "0.178",
+  "fees_attached_to_positions": "0.1",
+  "fees_unattributed": "0.078",
+  "after_known_fees": "1719.822",
+  "unknown_basis_proceeds": "600",
+  "airdrop_proceeds": "120",
+  "native_unit_pnl": "16",
+  "native_unit_cost": "35",
+  "native_unit_proceeds": "51",
+  "fees_native_known": "0.00165"
+ },
+ "metrics": {
+  "sample_size": 3,
+  "wins": 2,
+  "losses": 1,
+  "win_rate": "0.666666666667",
+  "median_return": "0.136340909091",
+  "aggregate_return": "0.392675799087",
+  "total_net": "1719.92",
+  "total_cost": "4380",
+  "profit_share_from_biggest_winner": "0.943404058605",
+  "return_excluding_biggest_winner": "-0.202927536232",
+  "biggest_winner": "TOKA"
+ },
+ "open_inventory": {
+  "TOKR": {
+   "qty": "5000000",
+   "basis": "1000",
+   "mark": "0.0002",
+   "mtm_value": "1000",
+   "unrealized_mtm": "0",
+   "liquidation_status": "UNEXITABLE",
+   "liquidation_value": "0",
+   "unrealized_executable": "-1000",
+   "gap": "1000"
+  },
+  "TOKE": {
+   "qty": "200000",
+   "basis": "1000",
+   "mark": "0.01",
+   "mtm_value": "2000",
+   "unrealized_mtm": "1000",
+   "liquidation_status": "QUOTED_PRORATA",
+   "liquidation_value": "1700",
+   "unrealized_executable": "700",
+   "gap": "300"
+  },
+  "total": {
+   "unrealized_mtm": "1000",
+   "unrealized_executable": "-300",
+   "gap": "1300"
+  }
+ },
+ "sensitivity": {
+  "convention_AVCO": "0",
+  "stablecoins_at_1.00": "-120",
+  "no_return_matching": "0"
+ },
+ "counts": {
+  "entries_input": 19,
+  "entries_accounted": 19,
+  "buys": 6,
+  "sells": 7,
+  "transfers_in": 3,
+  "transfers_out": 1,
+  "airdrops": 1,
+  "failed": 1,
+  "unclassified": 1,
+  "returns_matched": 1,
+  "closed": 3,
+  "open": 2
+ },
+ "score": {
+  "status": "INSUFFICIENT_DATA"
+ }
+}

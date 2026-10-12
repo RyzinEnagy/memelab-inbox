@@ -309,3 +309,35 @@ One event per (chain, transaction, wallet). The classifier uses the provider's t
 
 Shared first funding is stored in its own table with `status` constrained to HYPOTHESIS, marked uninformative when the funder is custody, protocol or a pool, and shown in `why` as related by funding only. It never creates an assertion or changes a level.
 
+## D-065 Phase 10 takes the slot of "mention extraction"; that work becomes carry-over C-10 (ADOPTED, Phase 10)
+
+Prompt 10 asked for wallet performance accounting. The old proposed Phase 10 (mentions by contract address) moves to C-10 with its text unchanged. Phases 11 onward keep their numbers.
+
+## D-066 FIFO is the primary lot convention; AVCO is always a sensitivity (ADOPTED, Phase 10)
+
+FIFO is what most tax and exchange tools show and is easy to audit by hand. AVCO (pro rata across open lots) is computed on every run. A position that closes with only trading lots has the same total under both, so the choice matters only for partly closed positions. A delta is material above 5% of the primary realized figure or on a sign flip. Stablecoins at 1.00 and no return matching are the other sensitivities.
+
+## D-067 Wallet-level only; a transfer is never a trade (ADOPTED, Phase 10)
+
+Results carry `person_level_claim: false`. A transfer in is an unknown-basis lot, never a buy. An analyst-marked airdrop has zero basis and is reported apart from trading. A transfer out keeps its basis off-book and gets it back only from the same counterparty. Reason: the gate forbids treating external flows as free profitable buys or gains.
+
+## D-068 Wallet groups are declared, with a reason, and matched by signature (ADOPTED, Phase 10)
+
+Moves between wallets of a group move basis and make no profit, but only when both sides carry the same transaction signature. A group without a declared reason is an error. A fee-on-transfer shortfall is a TRANSFER_TAX slice. The group is the analyst's choice, never an ownership claim (consistent with D-064).
+
+## D-069 The score gate refuses sparse or incomplete wallets (ADOPTED, Phase 10)
+
+No score below 20 closed fully known positions (the m28 floor), a 7-day span, 0.8 basis coverage, 0.9 price coverage, 0.2 unknown fee share, 0.1 unclassified share, or on a failed reconciliation. LOW_CONFIDENCE below 50 positions, with unestablished history, or when one position makes over half the profit. The score is the return excluding the biggest winner. Rankings include only scored wallets.
+
+## D-070 Prices are supplied observations and are never fetched by the accounting (ADOPTED, Phase 10)
+
+Prices and sell quotes are stored in `social_perf_prices` with a source, labelled estimates, and are inputs to the input hash. Mark-to-market goes stale after 24 h and quotes after 1 h. A missing quote is UNKNOWN, not zero. Liquidity estimates reuse the lab's own quote readers. A provider's P&L can be compared but is labelled an estimate and never changes a result.
+
+## D-071 Performance gets its own tables; Phase 09 tables are read only (ADOPTED, Phase 10)
+
+Migration 10 adds `social_perf_token_meta`, `social_perf_prices`, `social_perf_runs`, `social_perf_positions`, `social_perf_checks`. Phase 09 forbids price, USD and P&L columns in its wallet tables (D-062) and a test enforces it. A run is stored with its full input and result and can be verified by recomputation.
+
+## D-072 The secrets test checks the shape of a key (ADOPTED, Phase 10)
+
+The old check flagged any value after `api-key=` in a tracked file, including prose such as `api-key=...` in the handoff and the regex in `secrets.py`, so it failed on the Phase 09 branch. It now flags only a UUID or a token of 24 or more characters, with a test that the shape check still catches a UUID. This is why the Phase 10 baseline showed two failures, not the one the Phase 09 handoff expected.
+

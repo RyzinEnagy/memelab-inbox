@@ -39,6 +39,11 @@ def test_redact_handles_rpc_and_tx_urls():
     assert "abc-123" not in r and "zzz" not in r and "limit=5" in r
 
 
+# A Helius key is a UUID. The check flags a value after "api-key=" only when it is shaped like a key (a UUID or a 24+ character token), so prose such as
+# "api-key=..." in a handoff, a regex in secrets.py and the short invented strings in this file are not reported as leaks.
+KEY_SHAPED = re.compile(r"^(?:[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[A-Za-z0-9_-]{24,})$")
+
+
 def test_no_tracked_file_holds_a_key_value():
     files = subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True).stdout.split()
     bad = []
@@ -48,6 +53,11 @@ def test_no_tracked_file_holds_a_key_value():
             continue
         txt = p.read_text(errors="ignore")
         for m in re.finditer(r"api-key=([^&\"'`\s\\<>{}]+)", txt):
-            if m.group(1) not in ("REDACTED", "KEY", "key", "SECRET123") and not m.group(1).startswith("{"):
+            if m.group(1) not in ("REDACTED", "KEY", "key", "SECRET123") and not m.group(1).startswith("{") and KEY_SHAPED.match(m.group(1)):
                 bad.append(f)
     assert not bad, sorted(set(bad))
+
+
+def test_the_key_shape_check_still_catches_a_uuid_key_and_ignores_prose():
+    assert KEY_SHAPED.match(FAKE) and KEY_SHAPED.match("a" * 24)
+    assert not KEY_SHAPED.match("...") and not KEY_SHAPED.match("abc-123") and not KEY_SHAPED.match("zzz") and not KEY_SHAPED.match("[^&")

@@ -554,3 +554,5 @@ def add_subparser(sp) -> None:
     registry_cli.add_parser(ssp)
     from . import wallet_cli
     wallet_cli.add_parser(ssp)
+    from . import perf_cli
+    perf_cli.add_parser(ssp)
