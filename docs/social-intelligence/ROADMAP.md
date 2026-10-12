@@ -4,7 +4,7 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
+Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065, Phase 11: D-079). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
 
 Status values also include SUPERSEDED (folded into another phase).
 
@@ -23,7 +23,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 08 | Source and trader registry (Prompt 08; old slot "other readable sources" moved to C-8) | 01, 05, 07 | DONE (fixtures only, D-047) |
 | 09 | Wallet attribution assertions and wallet activity (Prompt 09; old slot "entity resolution" moved to C-9) | 05, 08 | DONE (fixtures only, D-056) |
 | 10 | Wallet-level performance accounting with reconciliation and a score gate (Prompt 10; old slot "mention extraction" moved to C-10) | 09 | DONE (fixtures only, D-065) |
-| 11 | Attention metrics with sampling notes | 10 | PLANNED |
+| 11 | Information Alpha Score: timestamped event study of public posts against matched tokens (Prompt 11; old slot "attention metrics" moved to C-11) | 05, 06, 10 | DONE (fixtures only, D-079) |
 | 12 | Paid, bot and coordination signals | 11 | PLANNED |
 | 13 | Trader identity verification on top of the Phase 08 registry (live lists, status checks) | 08 | PLANNED |
 | 14 | Trader claimed-wallet linking: live evidence collection (assertion model delivered by Phase 09) | 13, 09 | PLANNED |
@@ -44,6 +44,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | C-8 | Carry-over: collector for other readable sources (YouTube RSS, token-listed links) (old proposed Phase 08) | 04 | PLANNED, unscheduled |
 | C-7 | Carry-over: Telegram public channels via Chrome (old proposed Phase 07, needs D-028) | 04, C-5 | PLANNED, unscheduled |
 | C-10 | Carry-over: mention extraction by contract address (old proposed Phase 10) | 09 | PLANNED, unscheduled |
+| C-11 | Carry-over: attention metrics with sampling notes (old proposed Phase 11) | 10 | PLANNED, unscheduled |
 
 ## Phase gates
 
@@ -87,7 +88,9 @@ C-9. (old proposed Phase 09, token side delivered by Phase 05: tokens by address
 
 C-10. (old Phase 10) Mentions counted only when they contain a contract address or a verified official link. Uses `identity.resolve_post` before the text is hashed (Phase 05 left the ingest wiring to this phase). Cashtag-only mentions are THEMATIC and never score.
 
-11. Attention metrics (counts, velocity, unique accounts) with window, sample size and sampling note on every value. Missing data stays UNKNOWN.
+11. (Prompt 11, DONE 2026-10-12, ALPHA_11.md) Information Alpha Score, separate from wallet profit: a timestamped event study of each public call (original timestamp, first observed time, token identity, disclosed position and attributed author trades as context, publication-to-move lag, pre and post liquidity, matched comparison tokens) with 1h, 6h, 24h, 72h and 7d returns only where candle history exists, excursions where the path is covered, a realistic delay and fees, impact and slippage; no historic price from a live quote; selection rules fixed in advance with all eligible losing and flat calls included; coverage, independent call count, median relative return against matched tokens, lead-time distribution, false positives, failures to beat controls, confidence intervals; shrinkage and abstention, tiers UNVERIFIED, PRELIMINARY and VALIDATED, versioned rules, popularity excluded; tests for late promotion after a pump, hindsight selection, repeated reposts, delisted tokens, price gaps, illiquid execution, null baseline, temporal leakage, zero eligible calls, conflicting statements and a noisy sample; an end-to-end fixture with every observation sourced. Gate: the engine can decline to rank, wallet profits stay separate, tests pass.
+
+C-11. (old Phase 11) Attention metrics (counts, velocity, unique accounts) with window, sample size and sampling note on every value. Missing data stays UNKNOWN.
 
 12. Paid placement, bot-like and coordinated patterns recorded as INFERENCE or HEURISTIC with the rule that fired. Nothing is labelled as fact without direct evidence.
 

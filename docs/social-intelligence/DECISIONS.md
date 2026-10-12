@@ -341,3 +341,30 @@ Migration 10 adds `social_perf_token_meta`, `social_perf_prices`, `social_perf_r
 
 The old check flagged any value after `api-key=` in a tracked file, including prose such as `api-key=...` in the handoff and the regex in `secrets.py`, so it failed on the Phase 09 branch. It now flags only a UUID or a token of 24 or more characters, with a test that the shape check still catches a UUID. This is why the Phase 10 baseline showed two failures, not the one the Phase 09 handoff expected.
 
+## D-073 Information alpha is its own measurement; wallet profit and popularity are not inputs (ADOPTED, Phase 11)
+
+The score judges public commentary against matched tokens. Phase 10 wallet performance stays separate, in separate tables, and `alpha_core` imports nothing from it. Attributed author trades appear as context flags only. Follower counts, views and engagement are never read; a source's `context` is echoed and ignored. Tests change both and show the score does not move. Reason: the gate keeps wallet profits apart, and popularity is not evidence of predictive value.
+
+## D-074 Selection rules are fixed before outcomes and every exclusion is listed (ADOPTED, Phase 11)
+
+Eligibility depends only on what was known at or near publication (source, resolved token, original, direction, conditional, sarcasm, extraction uncertainty, capture lag, conflicts, repeats, as_of). Excluded calls stay in the output with a reason. Calls first seen more than an hour after publication, or never timestamped, are HINDSIGHT_CAPTURE_RISK. A source whose supplied posts are under 80% of the posts the collector enumerated for it is declined, and an unknown universe caps the tier at PRELIMINARY. Opposite statements within 24 h exclude all of them; the later one never wins. Reason: the usual way to fake a track record is to pick the winners afterwards.
+
+## D-075 Historical candles only, nothing after as_of, a delay and costs (ADOPTED, Phase 11)
+
+Prices are supplied candles marked HISTORICAL_CANDLE; the schema refuses anything else, and a live quote replayed as a past price is rejected. No candle starting after `as_of` is read, a horizon not yet elapsed is not evaluable, and a gap is never filled beyond a 15 minute order wait. Entry is at max(published, first observed) + 300 s. Costs per side are 1.0% fee, 0.5% slippage and constant-product impact; participation over 5% at entry is not tradable at that size. Reason: Phase 05 already forbids today's price as the posting-time price, and a result that ignores delay and costs flatters every source.
+
+## D-076 The comparison pool excludes everything anyone called, and includes the dead (ADOPTED, Phase 11)
+
+Controls are matched on liquidity and trailing volume from candles completed before entry, require a candle at entry, and follow the same entry, exit and cost rules. Tokens called by any source in the run are excluded, since promotion selects pumpers; delisted tokens are included. Fewer than 5 controls means no relative return. Reason: a control group chosen with hindsight, or one that drops rugs, inflates every score.
+
+## D-077 Delisting is a total loss for a long and gets no extra credit for a short (ADOPTED, Phase 11)
+
+Both treatments are conservative toward the source. A series that ends with no delisting is not evaluable and is not treated as a loss; coverage reports it and gates the tier. Reason: neither choice may depend on whether the token later went up.
+
+## D-078 The score is conservative, shrunk, tiered and may be absent (ADOPTED, Phase 11)
+
+One primary horizon (24 h) fixed by policy. Score = 50 + 50 * tanh(w * edge / 0.5) with w = n / (n + 20) and the edge taken at the end of the 95% interval nearest zero (zero if it spans zero). The point estimate is shown as `score_point`. Tiers: UNVERIFIED (no score), PRELIMINARY, VALIDATED (30 calls, 20 tokens, coverage 0.7, known completeness 0.9, interval excludes zero, same sign in both halves, no token over 20%). Below 10 independent calls with a baseline there is no score. Ranking lists only scored sources and says so when nobody is. Fixture runs are never evidence. Reason: 3 good calls must not look like skill, and a noisy sample must read as no edge.
+
+## D-079 Phase 11 slot taken by Prompt 11; attention metrics move to C-11 (ADOPTED, Phase 11)
+
+Prompt 11 replaced the proposed "attention metrics" phase. That entry is carried over as C-11 in ROADMAP.md unchanged. Migration 11 adds `social_alpha_series`, `social_alpha_candles`, `social_alpha_runs`, `social_alpha_scores` and touches no earlier table. The prompt asked for `delisted tokens`, `price gaps` and `temporal leakage` tests; they are `test_delisted_tokens_are_total_losses_for_longs_and_get_no_extra_credit_for_shorts`, `test_price_gaps_are_not_filled`, `test_nothing_after_as_of_is_used` and `test_entry_and_matching_do_not_depend_on_later_candles`.

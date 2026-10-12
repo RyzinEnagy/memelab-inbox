@@ -1,53 +1,53 @@
 # Social & Trader Intelligence: handoff
 
-Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Baseline: [AUDIT_00.md](AUDIT_00.md). Schema and connectors: [SCHEMA_01.md](SCHEMA_01.md), [CONNECTORS_02.md](CONNECTORS_02.md), [X_API_03.md](X_API_03.md), [TELEGRAM_04.md](TELEGRAM_04.md), [IDENTITY_05.md](IDENTITY_05.md), [CLAIMS_06.md](CLAIMS_06.md), [NARRATIVES_07.md](NARRATIVES_07.md), [REGISTRY_08.md](REGISTRY_08.md), [WALLETS_09.md](WALLETS_09.md), [PERFORMANCE_10.md](PERFORMANCE_10.md). Source status: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
+Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Baseline: [AUDIT_00.md](AUDIT_00.md). Schema and connectors: [SCHEMA_01.md](SCHEMA_01.md), [CONNECTORS_02.md](CONNECTORS_02.md), [X_API_03.md](X_API_03.md), [TELEGRAM_04.md](TELEGRAM_04.md), [IDENTITY_05.md](IDENTITY_05.md), [CLAIMS_06.md](CLAIMS_06.md), [NARRATIVES_07.md](NARRATIVES_07.md), [REGISTRY_08.md](REGISTRY_08.md), [WALLETS_09.md](WALLETS_09.md), [PERFORMANCE_10.md](PERFORMANCE_10.md), [ALPHA_11.md](ALPHA_11.md). Source status: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
 
 ## Position
 
-- Current phase completed: 10 (Prompt 10: wallet performance accounting), 2026-10-12. Prompt 10 took the Phase 10 slot; the old proposed Phase 10 (mentions by contract address) is now carry-over C-10 (D-065).
-- Model status: unchanged, none configured (D-036). Phase 10 makes no model call.
-- Data status: no live provider call was made, no price source was fetched and no real wallet was used. Every proof ran on invented, labelled fixtures. The tracked database holds no wallet or performance rows; fixture runs into it are refused.
-- Next phase: 11 as proposed in ROADMAP.md, or a carry-over, unless Elving supplies Prompt 11. Not started.
+- Current phase completed: 11 (Prompt 11: Information Alpha Score), 2026-10-12. Prompt 11 took the Phase 11 slot; the old proposed Phase 11 (attention metrics) is now carry-over C-11 (D-079).
+- Model status: unchanged, none configured (D-036). Phase 11 makes no model call.
+- Data status: no live provider call, no candle source and no live claim was used. Every proof ran on invented, labelled fixtures. The tracked database holds no alpha rows; fixture runs into it are refused.
+- Next phase: 12 as proposed in ROADMAP.md, or a carry-over, unless Elving supplies Prompt 12. Not started.
 - Active branch: `feature/social-intelligence`.
-- Baseline at start: two failures, not the one the Phase 09 handoff expected: the clock test (C-1) and `tests/test_secrets.py`, which flagged prose such as `api-key=...` in this file. The secrets check now looks at key shape (D-072). The Phase 09 handoff said 377 passed; the real count at the start was 376.
+- Phase 11 started from `980a417` ("social-intel phase 10: record push in handoff"), the commit on the remote branch. No drift (remote ref checked before work and again before the push). Baseline `python -m pytest tests -q` at the start: `1 failed, 435 passed` as the Phase 10 handoff said.
 - Commit and push: see the end of this file.
 
-## What Phase 10 added
+## What Phase 11 added
 
-- `memelab/social/perf_core.py`: the accounting engine, no I/O and no network. Ledger parsing and validation, price book, lots, FIFO and AVCO, swaps, transfers, airdrops, group transfers, liquidity, dust, contamination. Version `wallet-performance-v1`.
-- `memelab/social/perf_analysis.py`: positions, metrics, realized / unrealized / liquidation lines, coverage, reconstruction status, reconciliation checks, equity and drawdown, sensitivities, score gate, ranking, provider comparison, plain-English report.
-- `memelab/social/perf_store.py`: builds a ledger from Phase 09 events (reads them, changes nothing), stores supplied prices and asset roles, stores and verifies runs.
-- `memelab/social/perf_cli.py` and `cli.py`: `python -m memelab social perf <run|prices|meta|show|verify|rank|compare|status>`.
-- `memelab/social/schema.py`: migration 10 (five `social_perf_*` tables).
-- `tests/test_secrets.py`: key-shape check (D-072).
-- Tests: `tests/test_social_performance.py` (57). Fixtures: `tests/fixtures/social/perf/` (`ledger_main.json`, `expected_main.json`, `ledger_scored_outlier.json`, `ledger_scored_clean.json`, `make_scored.py`), all invented and labelled.
-- Docs: `PERFORMANCE_10.md` (rules, definitions, thresholds, hand-check tables, demo, limits), DECISIONS D-065 to D-072, ROADMAP (10 DONE, C-10 added), SOURCE_COVERAGE, SCHEMA_01.
+- `memelab/social/alpha_core.py`: the engine, no I/O and no clock. Candle validation (`prep_series`), eligibility rules, entry and exit with delay and costs, matched baseline, per-horizon returns, excursions, lead time and move lag, author-trade context, per-source metrics, conservative shrunk score with tiers, `rank`, `analyze` (evaluates twice and compares hashes), `report`. Versions `information-alpha-v1` and `alpha-rules-v1`.
+- `memelab/social/alpha_store.py`: stores supplied candles, builds an input document from current Phase 06 claims (newest extraction only, Phase 05 resolved tokens only, trader link or account as the source), stores runs with their exact input, verifies a run by recomputation.
+- `memelab/social/alpha_cli.py` and `cli.py`: `python -m memelab social alpha <run|series import|show|verify|rank|status>`.
+- `memelab/social/schema.py`: migration 11 (`social_alpha_series`, `social_alpha_candles`, `social_alpha_runs`, `social_alpha_scores`). The schema refuses any candle kind other than HISTORICAL_CANDLE and a scored row without a score or a declined row with one.
+- Tests: `tests/test_social_alpha.py` (39). `tests/test_social_performance.py::test_migration_10_rolls_back_cleanly_and_leaves_phase_09_tables_alone` changed to stop assuming 10 is the newest migration (same fix Phase 06 made for 5).
+- Fixture: `tests/fixtures/social/alpha/alpha_main.json`, built by `make_alpha.py` (a test checks the file matches the script). Invented sources, tokens, posts and prices.
+- Docs: `ALPHA_11.md` (rules, formulas, hand check, fixture walkthrough, limits), DECISIONS D-073 to D-079, ROADMAP (11 DONE, C-11 added), SCHEMA_01, SOURCE_COVERAGE.
 
 ## Gate, item by item
 
-- Repeatable P&L with deterministic reconciliation checks: every result runs 10 checks (plus 4 warnings), analyses twice and compares hashes; a stored run is verified by recomputation; the same ledger gives the same hash (`test_the_same_ledger_gives_the_same_result_hash_and_a_changed_ledger_does_not`, `test_stored_run_repeats_verifies_and_detects_tampering`, `test_a_broken_engine_fails_reconciliation_and_the_score_is_refused`).
-- Gaps explicit: history coverage (UNKNOWN, TRUNCATED, PLAUSIBLY_COMPLETE), opening lots from missing history, contaminated tokens, rejects with reasons, unknown fees, unpriced swaps, and a reconstruction status with the sentence "Comprehensive reconstruction cannot be achieved: ..." (tests on the main fixture, truncated and 429 cases).
-- Mark-to-market vs executable proceeds explicit and separate, with the gap (`test_main_fixture_metrics_and_unrealized_lines_are_separate`, `test_rug_position_marks_at_cost_but_sells_for_nothing`, `test_missing_stale_and_curve_quotes`).
-- Prompt test list, each a named test: partially missing history, multiple lots, wash-like transfers, fee-on-transfer, decimal errors, rug with no route, wallet to wallet, profitable outlier, stablecoin peg change, no price. Hand-checked fixture ledger with an expected file. Score refusal demonstrated (`test_wallet_score_refuses_a_sparse_wallet_and_says_why`, CLI demo in PERFORMANCE_10.md).
-- Full existing suite: see Tests.
+- The engine can decline to rank: `test_zero_eligible_calls_decline_and_rank_nothing`, `test_three_great_calls_never_make_a_great_score`, `test_hindsight_selected_calls_are_ineligible_and_the_source_is_declined`, CLI `alpha run` on an empty input exits 0 and prints "Declining is the correct output", `alpha rank --input` returns an empty ranking. In the end-to-end fixture, source B (3 calls) and source C (late-found winners, 6 of 40 posts supplied) are declined; only source A is ranked, preliminary, score 50 (point estimate 53).
+- Wallet profits remain separate: `alpha_core` imports nothing from Phase 10 (asserted in `test_popularity_and_wallet_profit_stay_out_of_the_formula`); author trades are context only and changing them does not move the score (`test_author_trades_are_context_only`); migration 11 touches no `social_perf_*` table (`test_migration_11_rolls_back_cleanly_and_leaves_phase_10_alone`); no alpha table has a profit, follower or engagement column.
+- Prompt test list, each a named test: late promotion after pump (`test_late_promotion_after_pump_is_kept_flagged_and_negative`), hindsight-selected call, repeated reposts (`test_repeated_reposts_and_repeat_posts_do_not_inflate_the_sample`), delisted tokens, price gaps (`test_price_gaps_are_not_filled`), illiquid execution (`test_illiquid_execution_is_refused_or_charged`), null baseline (`test_null_baseline_gives_no_edge_and_no_validation`), temporal leakage (`test_nothing_after_as_of_is_used`, `test_entry_and_matching_do_not_depend_on_later_candles`, `test_a_live_quote_replayed_as_history_is_rejected`), zero eligible calls, conflicting bullish and bearish statements (`test_conflicting_bullish_and_bearish_statements_exclude_both`), statistically noisy sample (`test_noisy_sample_stays_preliminary_with_an_interval_that_spans_zero`).
+- End-to-end fixture with transparent calculations and a source for every observation: `test_end_to_end_fixture_evaluation`, `test_hand_checked_single_call` (arithmetic in ALPHA_11.md), `test_fixture_calls_recompute_independently_from_raw_candles` (a second implementation reproduces six calls and their control medians), `test_rules_are_written_down_and_versioned` (every call has a reference, every series a source). The printed report is in ALPHA_11.md.
+- Explainable metrics and tiers: coverage, independent calls, median relative return against matched tokens, lead-time distribution, false positives, failures to beat controls, 95% intervals from 8 values, shrinkage, abstention, UNVERIFIED, PRELIMINARY and VALIDATED (`test_score_grows_with_evidence_and_validated_needs_every_gate`, `test_ranking_orders_validated_above_preliminary_and_lists_declines`). Source popularity is not read (`test_popularity_and_wallet_profit_stay_out_of_the_formula`).
 
 ## Tests
 
 - Command: `python -m pytest tests -q` (needs `pip install pytest numpy`).
-- Outcome after the last code change: exit 1, `1 failed, 435 passed`. The only failure is the known clock-dependent `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (C-1, untouched).
+- Outcome after the last code change: exit 1, `1 failed, 474 passed`. The only failure is the known clock-dependent `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (C-1, untouched).
+- `python -m pytest tests/test_social_alpha.py -q` -> `39 passed`.
 - `python -m memelab social guard` exit 0 (0 violations).
-- Migration 10 applies, rolls back to 9 (Phase 09 table definitions byte-identical) and reapplies in `test_migration_10_rolls_back_cleanly_and_leaves_phase_09_tables_alone`.
+- Migration 11 applies, rolls back to 10 (Phase 10 table definitions byte-identical) and reapplies.
 - The EVM test still writes `data/reports/<stamp>_BRETT_*.md`; deleted by hand after each run (C-1).
-- `MEMELAB_DB` can leak from other test modules into subprocesses; the Phase 10 CLI helper unsets it.
 
 ## Things the next phase should know
 
-- No price source is wired in. Real wallets need prices imported with `social perf prices import` before any USD figure exists. Native-unit figures need none. A first real run will mostly show INSUFFICIENT_DATA, which is correct.
-- Phase 09 stores decimal amounts only, so decimals cannot be re-verified from stored events. A ledger built by hand can carry raw amounts and decimals and is checked.
-- Only the newest transactions up to the fetch limit are read, so history is rarely shown complete. PLAUSIBLY_COMPLETE is not proof, because the limit actually requested from the provider is not stored.
-- Wallet groups are declared by an analyst with a reason and matched by signature. Nothing links wallets automatically.
-- Liquidity fees and impermanent loss are not computed; LP tokens are not valued.
-- Thresholds are in `perf_core.DEFAULT_POLICY` and are part of the input hash; change one and the run is a new run.
+- No candle provider is wired in. Real runs need `alpha series import` of historical candles with pool liquidity per candle (taken as liquidity at the candle start). Until then every real source is declined, which is correct.
+- The number of posts the collector enumerated for a source is not stored by earlier phases. `alpha run --as-of` leaves `universe_count` unknown unless `--annotations` supplies `{"universe": {"<source>": {"count": N, "basis": "..."}}}`; unknown caps the tier at PRELIMINARY. Phase 15 (call capture) should record it.
+- Attributed author trades also come from the annotations file (`author_trades`). Wiring Phase 09 wallet events in as attributed trades is not done.
+- The comparison pool is every supplied series not called by any source in the run. If supplied candles are only for tokens someone already cared about, the pool is thin and relative returns will be missing (fewer than 5 controls).
+- Thresholds are in `alpha_core.DEFAULT_POLICY` and are part of the input hash; change one and the run is a new run.
+- Count claims only from current extractions and resolved tokens (D-029); `build_input` does both.
+- Ingestion still does not call extraction or the resolver (Phase 06 note).
 - Nothing is scheduled; scheduling belongs to a later phase.
 
 ## Helius key
@@ -65,10 +65,10 @@ A new session that needs the key should ask Elving to supply it (it is not store
 
 ## Blockers and open decisions
 
-- Push: the session's own `git push` gets 403. Working route: Elving's GitHub connection in Composio, Git Data API, fast-forward of the feature branch ref, no force (D-001).
-- No permitted live wallet list in session and no price source, so live performance status is UNAVAILABLE.
+- Push: the session's own `git push` is not used. Working route: Elving's GitHub connection in Composio, Git Data API (blobs, trees, commits, fast-forward of the feature branch ref, no force, D-001).
+- No candle provider and no permitted live claims in session, so live alpha status is UNAVAILABLE.
 - D-025, D-028, D-023 and D-036 remain open.
-- Phase prompts 11 onward not supplied; ROADMAP.md entries are proposals.
+- Phase prompts 12 onward not supplied; ROADMAP.md entries are proposals.
 
 ## Exact next command
 
@@ -76,12 +76,8 @@ A new session that needs the key should ask Elving to supply it (it is not store
 git clone https://github.com/RyzinEnagy/memelab-inbox.git && cd memelab-inbox && git checkout feature/social-intelligence && pip install pytest numpy && python -m pytest tests -q
 ```
 
-Expect `1 failed, 435 passed` and `python -m memelab social guard` exit 0.
+Expect `1 failed, 474 passed` and `python -m memelab social guard` exit 0.
 
 ## Commit and push
 
-Phase 10 commit on `feature/social-intelligence`: bcab354b0dfaf505a6c870943d0187e9bda002b7 (tree 5865115ac6967ef92e9106acddb06c933fa176fe, parent 27b8aba1ab55cf44df9a1c98a2d426b8f5e87b6c).
-
-The sandbox `git push` was refused with 403, so the push went through Composio and the GitHub Git Data API: each blob sha was checked against the local file, the tree sha matched the local tree, the commit was created on that tree, and the branch ref was moved forward without force. `main` was not touched (it stays at f69a0447). The local commit 5bc5ea9 has the same tree but a different author and date, so its hash differs from the pushed one.
-
-Phase 11 is not started.
+Recorded in the commit that follows the Phase 11 code commit (see `git log`). Phase 12 is not started.

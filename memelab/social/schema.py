@@ -1131,6 +1131,69 @@ DROP TABLE IF EXISTS social_perf_prices;
 DROP TABLE IF EXISTS social_perf_token_meta;
 """
 
+V11_UP = """
+-- Phase 11: Information Alpha. Supplied historical candles, stored runs and the per-source result of each run. Wallet performance (Phase 10)
+-- tables are not touched, and nothing here holds a wallet profit figure or a follower count.
+CREATE TABLE social_alpha_series (          -- one supplied candle series per token and source; never fetched by the engine
+  series_id INTEGER PRIMARY KEY,
+  chain TEXT NOT NULL,
+  contract TEXT NOT NULL,
+  source TEXT NOT NULL,                     -- where the candles came from (provider and URL); required
+  candle_seconds INTEGER NOT NULL CHECK (candle_seconds > 0),
+  as_of_kind TEXT NOT NULL CHECK (as_of_kind = 'HISTORICAL_CANDLE'),   -- a live quote can never be stored as a past price
+  delisted_at REAL,
+  recorded_at REAL NOT NULL,
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1)),
+  UNIQUE (chain, contract, source)
+);
+
+CREATE TABLE social_alpha_candles (
+  series_id INTEGER NOT NULL REFERENCES social_alpha_series(series_id),
+  t REAL NOT NULL,                          -- candle start
+  o REAL NOT NULL, h REAL NOT NULL, l REAL NOT NULL, c REAL NOT NULL,
+  v REAL,                                   -- volume in USD, if the provider gave it
+  liq REAL,                                 -- pool liquidity in USD at the candle start, if the provider gave it
+  PRIMARY KEY (series_id, t)
+);
+
+CREATE TABLE social_alpha_runs (            -- one deterministic evaluation; input_json is the whole input, result_json the whole result
+  run_id INTEGER PRIMARY KEY,
+  engine_version TEXT NOT NULL,
+  rules_version TEXT NOT NULL,
+  as_of REAL NOT NULL,
+  policy_sha256 TEXT NOT NULL,
+  input_sha256 TEXT NOT NULL,
+  result_sha256 TEXT NOT NULL,
+  n_calls INTEGER NOT NULL,
+  n_sources_scored INTEGER NOT NULL,
+  input_json TEXT NOT NULL,
+  result_json TEXT NOT NULL,
+  created_at REAL NOT NULL,
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1)),
+  UNIQUE (input_sha256)                     -- the same input twice adds nothing
+);
+
+CREATE TABLE social_alpha_scores (          -- per source and run; a declined source has status DECLINED and a NULL score
+  run_id INTEGER NOT NULL REFERENCES social_alpha_runs(run_id),
+  source_id TEXT NOT NULL,
+  status TEXT NOT NULL CHECK (status IN ('SCORED','DECLINED')),
+  tier TEXT NOT NULL CHECK (tier IN ('UNVERIFIED','PRELIMINARY','VALIDATED')),
+  score INTEGER CHECK (score IS NULL OR score BETWEEN 0 AND 100),
+  score_point INTEGER CHECK (score_point IS NULL OR score_point BETWEEN 0 AND 100),   -- unshrunk-by-interval point estimate; score is the conservative one
+  n_independent INTEGER NOT NULL,
+  reasons_json TEXT NOT NULL,
+  PRIMARY KEY (run_id, source_id),
+  CHECK ((status = 'SCORED' AND score IS NOT NULL AND tier <> 'UNVERIFIED') OR (status = 'DECLINED' AND score IS NULL AND tier = 'UNVERIFIED'))
+);
+"""
+
+V11_DOWN = """
+DROP TABLE IF EXISTS social_alpha_scores;
+DROP TABLE IF EXISTS social_alpha_runs;
+DROP TABLE IF EXISTS social_alpha_candles;
+DROP TABLE IF EXISTS social_alpha_series;
+"""
+
 # (version, name, up, down). Append only; never edit an applied entry (the checksum guard refuses it).
 MIGRATIONS: list[tuple[int, str, str, str]] = [
     (1, "social intelligence core tables", V1_UP, V1_DOWN),
@@ -1143,6 +1206,7 @@ MIGRATIONS: list[tuple[int, str, str, str]] = [
     (8, "source and trader registry: entities, captures, listings, links, records, categories, evidence, reviews", V8_UP, V8_DOWN),
     (9, "wallet attribution assertions, tracked wallets, fetches, classified activity events, funding hypotheses, audit", V9_UP, V9_DOWN),
     (10, "wallet performance accounting: token metadata, supplied prices, runs, positions, reconciliation checks", V10_UP, V10_DOWN),
+    (11, "information alpha: supplied historical candles, evaluation runs, per-source scores with a declined state", V11_UP, V11_DOWN),
 ]
 LATEST = max(m[0] for m in MIGRATIONS)
 ALL_VERSIONS = sorted(m[0] for m in MIGRATIONS)
@@ -1163,6 +1227,7 @@ SOCIAL_TABLES = [
     "social_tracked_wallets", "social_wallet_fetches", "social_wallet_events", "social_wallet_event_legs",
     "social_wallet_funding_hypotheses", "social_wallet_audit",
     "social_perf_token_meta", "social_perf_prices", "social_perf_runs", "social_perf_positions", "social_perf_checks",
+    "social_alpha_series", "social_alpha_candles", "social_alpha_runs", "social_alpha_scores",
 ]
 
 

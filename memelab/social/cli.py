@@ -556,3 +556,5 @@ def add_subparser(sp) -> None:
     wallet_cli.add_parser(ssp)
     from . import perf_cli
     perf_cli.add_parser(ssp)
+    from . import alpha_cli
+    alpha_cli.add_parser(ssp)

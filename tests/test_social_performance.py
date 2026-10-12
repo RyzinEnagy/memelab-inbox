@@ -581,11 +581,12 @@ def test_migration_10_rolls_back_cleanly_and_leaves_phase_09_tables_alone(con):
     before = {r[0]: r[1] for r in con.execute("SELECT name, sql FROM sqlite_master WHERE name LIKE 'social_wallet_%' OR name LIKE 'social_tracked_%'")}
     perf = {n for n in schema.SOCIAL_TABLES if n.startswith("social_perf_")}
     assert len(perf) == 5 and perf <= {r[0] for r in con.execute("SELECT name FROM sqlite_master")}
-    assert schema.rollback(con, 9) == [10]
+    newer = [v for v in schema.ALL_VERSIONS if v > 10]          # later phases add migrations on top; roll those back too and reapply them after
+    assert schema.rollback(con, 9) == sorted(newer + [10], reverse=True)
     names = {r[0] for r in con.execute("SELECT name FROM sqlite_master WHERE type='table'")}
     assert not names & perf
     assert before == {r[0]: r[1] for r in con.execute("SELECT name, sql FROM sqlite_master WHERE name LIKE 'social_wallet_%' OR name LIKE 'social_tracked_%'")}
-    assert schema.migrate(con) == [10]
+    assert schema.migrate(con) == sorted(newer + [10])
 
 
 def test_phase_09_events_become_a_ledger_and_the_hand_numbers_hold(con):
