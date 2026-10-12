@@ -550,3 +550,5 @@ def add_subparser(sp) -> None:
     q.add_argument("--run", type=int)
     q.add_argument("--db")
     q.set_defaults(fn=cmd_narrative_changes)
+    from . import registry_cli
+    registry_cli.add_parser(ssp)

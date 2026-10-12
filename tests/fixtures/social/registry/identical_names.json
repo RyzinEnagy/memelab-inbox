@@ -1,0 +1,50 @@
+{
+ "schema": "memelab.social.registry.import/1",
+ "source": {
+  "source_key": "fixture:name-clash",
+  "kind": "LEADERBOARD",
+  "organization": "Example Name Clash Desk (fixture)",
+  "url": "https://example.invalid/name-clash",
+  "access_mode": "fixture",
+  "permitted_basis": "invented test data written for this repository",
+  "is_fixture": true,
+  "fixture_label": "invented demonstration list for identical screen names"
+ },
+ "capture": {
+  "captured_at": "2026-10-12T13:00:00Z",
+  "url": "https://example.invalid/name-clash/2026-10-12"
+ },
+ "rows": [
+  {
+   "rank": 1,
+   "wallet": {
+    "chain": "solana",
+    "address": "Cm4g3mSSqzDK5juk8nrec9WwZgTUqmKoaZ5Ctt9kvdVG"
+   },
+   "handle": {
+    "platform": "x",
+    "handle": "demo_alpha",
+    "provider_user_id": "7001"
+   },
+   "display_name": "Demo Alpha"
+  },
+  {
+   "rank": 2,
+   "handle": {
+    "platform": "telegram",
+    "handle": "demo_alpha",
+    "provider_user_id": "7002"
+   },
+   "display_name": "Demo Alpha"
+  },
+  {
+   "rank": 3,
+   "handle": {
+    "platform": "x",
+    "handle": "demo_alpha",
+    "provider_user_id": "7003"
+   },
+   "display_name": "Demo Alpha"
+  }
+ ]
+}

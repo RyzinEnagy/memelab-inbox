@@ -721,6 +721,171 @@ DROP TABLE IF EXISTS social_narrative_clusters;
 DROP TABLE IF EXISTS social_narrative_runs;
 """
 
+V8_UP = """
+CREATE TABLE social_registry_sources (    -- where candidates come from: a file, an API export or a derived stage we can actually read
+  source_key TEXT PRIMARY KEY,            -- slug, e.g. 'lb:example-board' or 'derived:narratives'
+  source_kind TEXT NOT NULL CHECK (source_kind IN ('LEADERBOARD','ANALYST_LIST','REPO_LIST','NARRATIVE_DERIVED','MANUAL')),
+  organization_entity_id TEXT,            -- soft link to the SOURCE_ORGANIZATION entity that publishes it
+  access_mode TEXT NOT NULL CHECK (access_mode IN ('file','api','repo','derived','manual','fixture')),
+  permitted_basis TEXT NOT NULL,          -- why the lab may read it (own export, public page, licence); never blank
+  url TEXT,
+  max_age_seconds INTEGER NOT NULL DEFAULT 604800,   -- a capture older than this is STALE
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1)),
+  created_at REAL NOT NULL
+);
+
+CREATE TABLE social_registry_captures (   -- one import of one list at one time; immutable
+  capture_id INTEGER PRIMARY KEY,
+  capture_key TEXT NOT NULL UNIQUE,       -- sha256(source_key | captured_at | file_sha256); the same file twice adds nothing
+  source_key TEXT NOT NULL REFERENCES social_registry_sources(source_key),
+  captured_at REAL,                       -- when the list was read; NULL = UNKNOWN (then freshness is UNKNOWN, never FRESH)
+  captured_at_basis TEXT NOT NULL CHECK (captured_at_basis IN ('STATED_BY_FILE','UNKNOWN')),
+  period_start REAL, period_end REAL,     -- the timespan the list's own figures cover; NULL = UNKNOWN
+  stated_period TEXT,
+  url TEXT,                               -- direct URL of the list as captured
+  file_sha256 TEXT,
+  rows_total INTEGER NOT NULL,
+  rows_accepted INTEGER NOT NULL,
+  rows_rejected INTEGER NOT NULL,
+  rejects_json TEXT NOT NULL DEFAULT '[]',
+  imported_at REAL NOT NULL,
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1))
+);
+
+CREATE TABLE social_registry_entities (   -- identities that are never merged by name; links between them carry the evidence
+  entity_id TEXT PRIMARY KEY,             -- 'acct:<social account id>' | 'wallet:<chain>:<address>' | 'cand:<source>:<ident>' | 'org:<slug>' | 'net:<slug>'
+  entity_kind TEXT NOT NULL CHECK (entity_kind IN ('SOCIAL_ACCOUNT','OBSERVED_WALLET','LEADERBOARD_CANDIDATE','SOURCE_ORGANIZATION','SOCIAL_NETWORK')),
+  label TEXT NOT NULL CHECK (length(label) <= 120),
+  platform TEXT,
+  account_id TEXT,                        -- soft link to social_accounts for SOCIAL_ACCOUNT
+  chain TEXT,
+  wallet_address TEXT,
+  source_key TEXT,                        -- for a candidate: the list that named it
+  first_seen_at REAL NOT NULL,
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1)),
+  fixture_label TEXT,
+  CHECK (entity_kind <> 'SOCIAL_ACCOUNT' OR account_id IS NOT NULL),
+  CHECK (entity_kind <> 'OBSERVED_WALLET' OR (chain IS NOT NULL AND wallet_address IS NOT NULL)),
+  CHECK (entity_kind <> 'LEADERBOARD_CANDIDATE' OR source_key IS NOT NULL),
+  CHECK (is_fixture = 0 OR fixture_label IS NOT NULL)
+);
+CREATE UNIQUE INDEX ux_sre_account ON social_registry_entities(account_id) WHERE entity_kind='SOCIAL_ACCOUNT';
+CREATE UNIQUE INDEX ux_sre_wallet ON social_registry_entities(chain, wallet_address) WHERE entity_kind='OBSERVED_WALLET';
+
+CREATE TABLE social_registry_listings (   -- what a list stated about a line, as stated, with its capture; claims about a list are reviewed here
+  listing_id INTEGER PRIMARY KEY,
+  capture_id INTEGER NOT NULL REFERENCES social_registry_captures(capture_id),
+  row_index INTEGER NOT NULL,
+  candidate_entity_id TEXT NOT NULL,
+  rank_claimed INTEGER,                   -- the list's own rank, never ours; ties and repeats are flagged, not resolved
+  metrics_json TEXT,                      -- numeric figures the list states (names are plain identifiers)
+  display_name_seen TEXT CHECK (display_name_seen IS NULL OR length(display_name_seen) <= 80),
+  wallet_chain TEXT, wallet_address TEXT,
+  platform_seen TEXT, handle_seen TEXT, profile_url TEXT, row_url TEXT,
+  flags_json TEXT NOT NULL DEFAULT '[]',  -- duplicate_rank, duplicate_identifier, platform_link_missing, no_wallet
+  claim_review TEXT NOT NULL DEFAULT 'UNREVIEWED'
+    CHECK (claim_review IN ('UNREVIEWED','CORROBORATED','CONTRADICTED','NOT_CHECKABLE')),
+  claim_review_ref TEXT, claim_reviewed_by TEXT, claim_reviewed_at REAL,
+  UNIQUE (capture_id, row_index)
+);
+CREATE INDEX ix_srl_candidate ON social_registry_listings(candidate_entity_id);
+
+CREATE TABLE social_registry_links (      -- assertions between entities; append-only content, only the review columns change
+  link_id INTEGER PRIMARY KEY,
+  link_key TEXT NOT NULL UNIQUE,
+  link_type TEXT NOT NULL CHECK (link_type IN ('WALLET_SELF_DISCLOSED','WALLET_THIRD_PARTY_LABEL','WALLET_ON_CHAIN_PROOF',
+      'WALLET_DISPUTED','SAME_OPERATOR','OPERATED_BY_ORG','MEMBER_OF_NETWORK','LISTED_BY','OBSERVED_AS')),
+  from_entity TEXT NOT NULL REFERENCES social_registry_entities(entity_id),
+  to_entity TEXT NOT NULL REFERENCES social_registry_entities(entity_id),
+  asserted_by_entity TEXT REFERENCES social_registry_entities(entity_id),   -- who makes the statement (the account itself, a list publisher, the lab)
+  state TEXT NOT NULL DEFAULT 'ASSERTED' CHECK (state IN ('ASSERTED','RETRACTED')),
+  retracts_link_id INTEGER REFERENCES social_registry_links(link_id),
+  basis TEXT NOT NULL CHECK (basis IN ('SELF_STATEMENT','ON_CHAIN_PROOF','THIRD_PARTY_STATEMENT','LEADERBOARD_LISTING',
+      'PLATFORM_LINK','REVIEWER_JUDGMENT')),
+  evidence_status TEXT NOT NULL CHECK (evidence_status IN ('FACT','INFERENCE','HEURISTIC','UNKNOWN')),
+  confidence TEXT NOT NULL DEFAULT 'UNKNOWN' CHECK (confidence IN ('HIGH','MODERATE','LOW','UNKNOWN')),
+  evidence_ref TEXT,                      -- direct URL, transaction id or 'listing:<id>'
+  source_key TEXT, capture_id INTEGER, observation_id INTEGER,
+  valid_from REAL, valid_to REAL,         -- timespan the statement covers; NULL = open or UNKNOWN
+  asserted_at REAL NOT NULL,              -- when the statement was seen or made
+  recorded_at REAL NOT NULL,
+  recorded_by TEXT NOT NULL,
+  note TEXT CHECK (note IS NULL OR length(note) <= 300),
+  review_state TEXT NOT NULL DEFAULT 'UNREVIEWED' CHECK (review_state IN ('UNREVIEWED','APPROVED','REJECTED')),
+  reviewed_by TEXT, reviewed_at REAL, review_reason TEXT,
+  is_fixture INTEGER NOT NULL DEFAULT 0 CHECK (is_fixture IN (0,1)),
+  CHECK (from_entity <> to_entity)
+);
+CREATE INDEX ix_srk_from ON social_registry_links(from_entity, link_type);
+CREATE INDEX ix_srk_to ON social_registry_links(to_entity, link_type);
+
+CREATE TABLE social_registry_records (    -- the reviewed registry record: one per entity, created as CANDIDATE
+  entity_id TEXT PRIMARY KEY REFERENCES social_registry_entities(entity_id),
+  review_state TEXT NOT NULL DEFAULT 'CANDIDATE' CHECK (review_state IN ('CANDIDATE','APPROVED','REJECTED')),
+  watch_status TEXT NOT NULL DEFAULT 'NONE' CHECK (watch_status IN ('NONE','WATCH','PAUSED','DROPPED')),
+  specialty TEXT CHECK (specialty IS NULL OR length(specialty) <= 120),
+  topical_focus TEXT CHECK (topical_focus IS NULL OR length(topical_focus) <= 200),
+  follow_reason TEXT CHECK (follow_reason IS NULL OR length(follow_reason) <= 300),
+  reject_reason TEXT CHECK (reject_reason IS NULL OR length(reject_reason) <= 300),
+  stale_override_reason TEXT,
+  created_at REAL NOT NULL,
+  updated_at REAL NOT NULL,
+  last_reviewed_at REAL,
+  reviewed_by TEXT
+);
+
+CREATE TABLE social_registry_categories ( -- append-only; the latest row per (entity, category) is the current state
+  id INTEGER PRIMARY KEY,
+  entity_id TEXT NOT NULL REFERENCES social_registry_entities(entity_id),
+  category TEXT NOT NULL CHECK (category IN ('PROFITABLE_TRADING_CLAIMANT','VERIFIED_WALLET_CANDIDATE','INFORMATION_ORIGINATOR',
+      'ANALYTICAL_SOURCE','AMPLIFIER','PROMOTER_HIGH_CONFLICT')),
+  status TEXT NOT NULL CHECK (status IN ('PROPOSED','CONFIRMED','RETRACTED')),
+  basis TEXT NOT NULL,
+  evidence_ref TEXT,
+  set_by TEXT NOT NULL,
+  set_at REAL NOT NULL
+);
+CREATE INDEX ix_src_entity ON social_registry_categories(entity_id, category, id);
+
+CREATE TABLE social_registry_evidence (   -- why an entity is in the registry: direct URL, listing, observation or derived stage
+  evidence_id INTEGER PRIMARY KEY,
+  entity_id TEXT NOT NULL REFERENCES social_registry_entities(entity_id),
+  evidence_kind TEXT NOT NULL CHECK (evidence_kind IN ('LEADERBOARD_LISTING','OBSERVATION','NARRATIVE_MEMBER','REPO_LIST','MANUAL_NOTE')),
+  ref TEXT NOT NULL,                      -- 'listing:<id>' | 'observation:<id>' | 'narrative:<run>:<cluster>:<claim>' | 'repo:<path>' | URL
+  url TEXT,
+  source_key TEXT,
+  capture_id INTEGER,
+  captured_at REAL,                       -- when the evidence was captured; NULL = UNKNOWN
+  note TEXT CHECK (note IS NULL OR length(note) <= 300),
+  recorded_at REAL NOT NULL,
+  UNIQUE (entity_id, evidence_kind, ref)
+);
+
+CREATE TABLE social_registry_reviews (    -- append-only audit trail of every manual decision
+  review_id INTEGER PRIMARY KEY,
+  target_type TEXT NOT NULL CHECK (target_type IN ('ENTITY','LINK','LISTING','CATEGORY','ACCOUNT_STATUS','IMPORT')),
+  target_id TEXT NOT NULL,
+  action TEXT NOT NULL,
+  from_state TEXT, to_state TEXT,
+  reviewer TEXT NOT NULL,
+  reason TEXT,
+  reviewed_at REAL NOT NULL
+);
+CREATE INDEX ix_srr_target ON social_registry_reviews(target_type, target_id, review_id);
+"""
+
+V8_DOWN = """
+DROP TABLE IF EXISTS social_registry_reviews;
+DROP TABLE IF EXISTS social_registry_evidence;
+DROP TABLE IF EXISTS social_registry_categories;
+DROP TABLE IF EXISTS social_registry_records;
+DROP TABLE IF EXISTS social_registry_links;
+DROP TABLE IF EXISTS social_registry_listings;
+DROP TABLE IF EXISTS social_registry_entities;
+DROP TABLE IF EXISTS social_registry_captures;
+DROP TABLE IF EXISTS social_registry_sources;
+"""
+
 # (version, name, up, down). Append only; never edit an applied entry (the checksum guard refuses it).
 MIGRATIONS: list[tuple[int, str, str, str]] = [
     (1, "social intelligence core tables", V1_UP, V1_DOWN),
@@ -730,6 +895,7 @@ MIGRATIONS: list[tuple[int, str, str, str]] = [
     (5, "token identity resolution and timestamped market facts", V5_UP, V5_DOWN),
     (6, "structured claim extraction, attributes and anchored evidence spans", V6_UP, V6_DOWN),
     (7, "narrative snapshots: clusters, independence, provenance and change summaries", V7_UP, V7_DOWN),
+    (8, "source and trader registry: entities, captures, listings, links, records, categories, evidence, reviews", V8_UP, V8_DOWN),
 ]
 LATEST = max(m[0] for m in MIGRATIONS)
 ALL_VERSIONS = sorted(m[0] for m in MIGRATIONS)
@@ -744,7 +910,9 @@ SOCIAL_TABLES = [
     "social_token_resolutions", "social_token_candidates", "social_token_relations", "social_market_facts",
     "social_market_context", "social_claim_extractions", "social_claim_attributes", "social_claim_spans",
     "social_narrative_runs", "social_narrative_clusters", "social_narrative_members", "social_narrative_edges",
-    "social_narrative_changes",
+    "social_narrative_changes", "social_registry_sources", "social_registry_captures", "social_registry_entities",
+    "social_registry_listings", "social_registry_links", "social_registry_records", "social_registry_categories",
+    "social_registry_evidence", "social_registry_reviews",
 ]
 
 

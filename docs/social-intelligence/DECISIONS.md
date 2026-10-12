@@ -236,3 +236,39 @@ A run is keyed by engine version, window, knowledge cutoff, zone, parameters and
 
 Many sources repeating one original within a short time (default 10 sources in 900 s) and byte-identical text from several sources (default 3, when no repost or forward explains the copying) raise `burst_amplification` and `identical_text_multi_source`. Both carry evidence HEURISTIC and `proven: false`. They lower confidence; they do not merge or discard sources, because reposts and copies are already collapsed into their group. No account is called a bot or an owner on this basis.
 
+
+## D-047 Prompt 08 is the registry phase (ADOPTED, Phase 08, 2026-10-12)
+
+Elving supplied Prompt 08 ("Source and trader registry"). It takes the Phase 08 slot. The proposed Phase 08 (YouTube RSS and token-listed links collector) moves to carry-over C-8, unscheduled. C-5 (source registry) is met by the registry for trader and list sources; access-mode metadata for collectors stays in the Phase 02 to 04 configs. No live list was supplied, so everything is proved on invented, labelled fixtures.
+
+## D-048 Five entity kinds plus link types, no merging (ADOPTED, Phase 08)
+
+Accounts, wallets, source organizations, social networks and leaderboard candidates are entities. Relations (self-disclosed wallet, third-party label, on-chain proof, dispute, same operator, operated by organization, network membership, listed by, observed as) are links with basis, window, evidence reference and review state. Entities are never merged; a person's cluster is the set joined by reviewed SAME_OPERATOR links.
+
+## D-049 Names are not identity evidence (ADOPTED, Phase 08)
+
+A link with a name-based basis is refused. Identical screen names are flagged on both entities. A handle change keeps one entity only when a provider id ties them.
+
+## D-050 Attribution is computed from reviewed links (ADOPTED, Phase 08)
+
+Levels NONE, THIRD_PARTY_LABELED, SELF_CLAIMED, CORROBORATED, DISPUTED. A self claim becomes CORROBORATED only through an independent reviewed label (not from an organization that operates the claimant) or a reviewed on-chain proof. A dispute overrides. Unreviewed links never count. Confidence stays LOW or MODERATE except for proof (HIGH). Levels respect time windows.
+
+## D-051 No ranking and no superlatives (ADOPTED, Phase 08)
+
+The registry stores the rank a list claimed, as stated, and never its own rank, score or grade. Search orders by label. Superlative phrasing is refused in every free-text field by a regex (a guard, not a proof). A profit claim is its own category and does not imply other categories.
+
+## D-052 Fixture controls (ADOPTED, Phase 08)
+
+Fixture entities carry a label, cannot be watched, cannot be linked to real entities, and fixture imports are refused against the tracked database before it is opened. The content guard checks stored labels.
+
+## D-053 Stale evidence needs a written reason (ADOPTED, Phase 08)
+
+Evidence older than the source's max age, or undated, is stale. Approval needs fresh evidence or `accept_stale_reason`, stored and shown. Undated evidence is never fresh.
+
+## D-054 Mirror to social_wallet_attributions by recomputed state (ADOPTED, Phase 08)
+
+Each link change recomputes the level and writes it (or RETRACTED for NONE) to the Phase 01 append-only table, with `[sync N]` in the basis. Retracting a dispute restores the earlier level instead of leaving a stale row on top.
+
+## D-055 Catalyst research list imports as undated candidates (ADOPTED, Phase 08)
+
+`import-catalyst` adds the repo's trader research list as unreviewed candidates with undated REPO_LIST evidence. It is refused against the tracked database until a person decides to commit those rows.

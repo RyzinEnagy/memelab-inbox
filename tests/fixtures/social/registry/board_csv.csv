@@ -1,0 +1,3 @@
+rank,wallet_chain,wallet_address,platform,handle,provider_user_id,display_name,metric_pnl_usd
+1,solana,HmHgUGDLdG3VbwD3Et18f4VQdDqRpgcqtxCzL5rzZR6p,x,demo_csv_one,9003001,Demo Csv One,410.0
+2,,,x,demo_csv_two,,Demo Csv Two,300.5

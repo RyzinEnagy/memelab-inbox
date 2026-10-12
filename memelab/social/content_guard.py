@@ -11,6 +11,7 @@ Rules
             anywhere in any JSON file: no key that only ever holds social content (SOCIAL_ONLY_KEYS), e.g. "bio"
             from an X profile projection, "full_text", "members"
   SQLITE    in data/memelab.sqlite: no social_* column named like a content field; no private_content table;
+            registry rows (Phase 08): every fixture entity or source labelled, no "best trader" style text in labels, reasons or notes;
             no "quote" or "exact_text" key in social_claim_extractions.output_json (Phase 06);
             summaries at most 400 characters; social_snapshots.text_value short labels only (no prose);
             catalyst_sources.identity_notes without copied profile text
@@ -47,6 +48,8 @@ ALLOW = [
      "invented placeholder the ingester must quarantine (test_bad_items_quarantined_good_items_kept)"),
     ("tests/fixtures/social/inbox/soc_fx01.json", "soc:x:example_trader_a.body.items[4].visibility",
      "invented PROTECTED item (hash of an invented sentence) the ingester must quarantine as NOT_PUBLIC"),
+    ("tests/fixtures/social/registry/leaderboard_fresh.json", "rows[6].bio",
+     "invented placeholder the registry importer must reject as BLOCKED_CONTENT_KEY (Phase 08)"),
     ("tests/fixtures/social/roundtrip_01.json", "observations[*].text",
      "invented sentences used to prove the store hashes text and never writes it (Phase 01)"),
 ]
@@ -163,6 +166,18 @@ def check_sqlite(path: str, file: Path) -> list[Violation]:
             for eid, in con.execute("SELECT extraction_id FROM social_claim_extractions WHERE output_json LIKE '%\"quote\"%' "
                                     "OR output_json LIKE '%\"exact_text\"%'"):
                 out.append(Violation(path, f"social_claim_extractions[{eid}].output_json", "SQLITE: quoted wording in a stored extraction"))
+        if "social_registry_entities" in tables:
+            from .registry import _SUPERLATIVE
+            for eid, in con.execute("SELECT entity_id FROM social_registry_entities WHERE is_fixture=1 AND (fixture_label IS NULL OR fixture_label='')"):
+                out.append(Violation(path, f"social_registry_entities[{eid}]", "SQLITE: fixture entity without a fixture label"))
+            for tbl, cols, idc in (("social_registry_entities", ("label",), "entity_id"),
+                                   ("social_registry_records", ("specialty", "topical_focus", "follow_reason", "reject_reason"), "entity_id"),
+                                   ("social_registry_categories", ("basis",), "id"), ("social_registry_links", ("note",), "link_id"),
+                                   ("social_registry_evidence", ("note",), "evidence_id")):
+                for row in con.execute(f"SELECT {idc}, {', '.join(cols)} FROM {tbl}"):
+                    for c, v in zip(cols, row[1:]):
+                        if isinstance(v, str) and _SUPERLATIVE.search(v):
+                            out.append(Violation(path, f"{tbl}[{row[0]}].{c}", "SQLITE: unsupported 'best trader' style assertion in a registry field"))
         if "social_snapshots" in tables:
             for rid, tv in con.execute("SELECT rowid, text_value FROM social_snapshots WHERE text_value IS NOT NULL"):
                 if len(re.findall(r"\w+", str(tv))) > PROSE_WORDS:

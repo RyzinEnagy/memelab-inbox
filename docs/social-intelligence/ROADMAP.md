@@ -4,7 +4,7 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Phases 00 to 07 came with written phase prompts. Phases 08 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
+Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
 
 Status values also include SUPERSEDED (folded into another phase).
 
@@ -20,12 +20,12 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 05 | Exact token identity and timestamped market context (Prompt 05; old slot "source registry" moved to C-5) | 01, 02 | DONE (fixtures only, D-030) |
 | 06 | Evidence-grounded structured claim extraction (Prompt 06; old slot "X via signed-in Chrome" moved to C-6) | 05 | DONE (no model configured, D-036) |
 | 07 | Narrative clustering, originators, amplifiers and independent corroboration (Prompt 07; old slot "Telegram via Chrome" moved to C-7) | 04, 05, 06 | DONE (fixtures only, D-041) |
-| 08 | Collector: other readable sources (YouTube RSS, token-listed links) | 04, C-5 | NEXT (proposed) |
+| 08 | Source and trader registry (Prompt 08; old slot "other readable sources" moved to C-8) | 01, 05, 07 | DONE (fixtures only, D-047) |
 | 09 | Entity resolution: accounts, projects, tokens by address | C-6 | PLANNED |
 | 10 | Mention extraction by contract address | 09 | PLANNED |
 | 11 | Attention metrics with sampling notes | 10 | PLANNED |
 | 12 | Paid, bot and coordination signals | 11 | PLANNED |
-| 13 | Trader registry and identity verification | C-5, C-6 | PLANNED |
+| 13 | Trader identity verification on top of the Phase 08 registry (live lists, status checks) | 08 | PLANNED |
 | 14 | Trader claimed-wallet linking (evidence levels) | 13 | PLANNED |
 | 15 | Trader call capture | 10, 13 | PLANNED |
 | 16 | Call outcome tracking and trader scoring | 15 | PLANNED |
@@ -40,6 +40,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | C-4 | Carry-over: manual capture onto the inbound schema (old proposed Phase 04) | 02 | PLANNED, unscheduled |
 | C-5 | Carry-over: source registry for social and trader sources (old proposed Phase 05) | 02, 03, 04 | PLANNED, unscheduled |
 | C-6 | Carry-over: X collector via signed-in Chrome (old proposed Phase 06, needs D-025) | 04, C-5 | PLANNED, unscheduled |
+| C-8 | Carry-over: collector for other readable sources (YouTube RSS, token-listed links) (old proposed Phase 08) | 04 | PLANNED, unscheduled |
 | C-7 | Carry-over: Telegram public channels via Chrome (old proposed Phase 07, needs D-028) | 04, C-5 | PLANNED, unscheduled |
 
 ## Phase gates
@@ -74,7 +75,7 @@ C-6. (old proposed Phase 06) X reads through Elving's signed-in Chrome (D-009): 
 
 C-7. (old proposed Phase 07) Telegram public channels (`t.me/s/<channel>` previews, or Telegram Web while signed in) parsed to channel-level metrics and summaries. Same fixture and policy rules as 06; no private groups. Needs D-028 first.
 
-08. Additional readable sources wired in the same way, each with fixtures and coverage notes. Sources that fail from both routes are recorded as gaps, not worked around.
+C-8. Additional readable sources wired in the same way, each with fixtures and coverage notes. Sources that fail from both routes are recorded as gaps, not worked around.
 
 09. (token side delivered by Phase 05: tokens by address, ticker collisions and spoofed symbols) Accounts linked to projects and tokens only through evidence (official link on the token profile, link from the account to the contract address). Impersonation and name collisions flagged. Ticker-only matches never create a link.
 
@@ -84,7 +85,7 @@ C-7. (old proposed Phase 07) Telegram public channels (`t.me/s/<channel>` previe
 
 12. Paid placement, bot-like and coordinated patterns recorded as INFERENCE or HEURISTIC with the rule that fired. Nothing is labelled as fact without direct evidence.
 
-13. Trader registry extends the existing catalyst trader list (handles in `memelab/catalyst/sources.py`). Identity status VERIFIED / NOT_FOUND / UNVERIFIED with date. Research sources, not certified profitable traders.
+13. The Phase 08 registry (DONE) is extended with live verification checks. It already imports the catalyst trader list (handles in `memelab/catalyst/sources.py`). Identity status VERIFIED / NOT_FOUND / UNVERIFIED with date. Research sources, not certified profitable traders.
 
 14. A wallet is linked to a trader only when the trader publicly claims it or chain evidence meets a documented bar; linkage level is recorded. Shared funding is linkage, not proof of control (existing rule).
 

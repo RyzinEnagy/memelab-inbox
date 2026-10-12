@@ -1,0 +1,51 @@
+{
+ "schema": "memelab.social.registry.import/1",
+ "source": {
+  "source_key": "fixture:board-gamma",
+  "kind": "LEADERBOARD",
+  "organization": "Example Board Gamma (fixture)",
+  "url": "https://example.invalid/board-gamma",
+  "access_mode": "fixture",
+  "permitted_basis": "invented test data written for this repository",
+  "is_fixture": true,
+  "fixture_label": "invented demonstration list; no real people, wallets or figures"
+ },
+ "capture": {
+  "captured_at": "2026-08-01T12:00:00Z",
+  "url": "https://example.invalid/board-gamma/2026-08-01",
+  "period": {
+   "start": "2026-07-01T00:00:00Z",
+   "end": "2026-08-01T00:00:00Z",
+   "stated": "30d"
+  }
+ },
+ "rows": [
+  {
+   "rank": 1,
+   "wallet": {
+    "chain": "solana",
+    "address": "5c4wwU4aaDbwmU6nxyYPoWDevkQyehvPG95Qyg3bNZ6K"
+   },
+   "handle": {
+    "platform": "x",
+    "handle": "demo_stale_d",
+    "provider_user_id": "9001004"
+   },
+   "display_name": "Demo Stale D",
+   "metrics": {
+    "pnl_usd": 5000.0
+   }
+  },
+  {
+   "rank": 2,
+   "wallet": {
+    "chain": "solana",
+    "address": "6HeVYmTKTTiFF9DFcqoDmKzwSgPpHtByMHL9vPb7besA"
+   },
+   "display_name": "Demo Stale E",
+   "metrics": {
+    "pnl_usd": 4000.0
+   }
+  }
+ ]
+}
