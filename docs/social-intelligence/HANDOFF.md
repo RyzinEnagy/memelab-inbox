@@ -80,4 +80,8 @@ Expect `1 failed, 474 passed` and `python -m memelab social guard` exit 0.
 
 ## Commit and push
 
-Recorded in the commit that follows the Phase 11 code commit (see `git log`). Phase 12 is not started.
+Phase 11 code commit on `feature/social-intelligence`: tree d0443caf750f91c96a713f7ede631bc42db51719, parent 980a4173d82c9c46a791809b0329bdf2974877f6 (local hash 2a8bd7f). This handoff correction is the commit on top of it.
+
+The sandbox `git push` is not used. The push went through Composio and the GitHub Git Data API: every blob sha was checked against the local file, the tree sha was compared with the local tree before the commit was created, the commits were created on those trees in order, and the branch ref was moved forward once, without force. `main` was not touched. The pushed commits have the same trees as the local ones but different author and date, so their hashes differ from the local ones; `git log` on the branch shows the pushed hashes.
+
+Phase 12 is not started.
