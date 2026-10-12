@@ -439,12 +439,14 @@ def test_no_post_text_reaches_the_public_database_and_guard_passes(con, tmp_path
 
 
 def test_migration_6_rolls_back_cleanly(con):
-    assert schema.current_version(con) == schema.LATEST == 6
-    assert schema.rollback(con, 5) == [6]
+    assert schema.current_version(con) == schema.LATEST
+    above_5 = [v for v in schema.ALL_VERSIONS if v > 5]     # 6 and anything added after it (Phase 07: 7)
+    assert above_5[0] == 6
+    assert schema.rollback(con, 5) == above_5[::-1]
     names = {r[0] for r in con.execute("SELECT name FROM sqlite_master WHERE type='table'")}
     assert not names & {"social_claim_extractions", "social_claim_attributes", "social_claim_spans"}
     assert "social_market_context" in names
-    assert schema.migrate(con) == [6]
+    assert schema.migrate(con) == above_5
 
 
 def test_cli_demo_without_model_and_with_mock_provider(tmp_path):

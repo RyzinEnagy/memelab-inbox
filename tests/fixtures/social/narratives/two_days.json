@@ -1,0 +1,541 @@
+{
+ "note": "Invented posts. Day 1 = 2026-10-12 UTC, day 2 = 2026-10-13 UTC. Offsets are seconds from midnight UTC of the day. Hashes only; no real text.",
+ "d1_start": 1791763200,
+ "tokens": {
+  "M1": [
+   "solana",
+   "8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ",
+   "LABDOG"
+  ],
+  "M2": [
+   "solana",
+   "6Trmu4md5ZR2o3sdDf8fdY8NRjekSkGL9WqP51EcV9Hg",
+   "MIDCAT"
+  ],
+  "M3": [
+   "solana",
+   "bD5n1wT9bwrxubchfVxEASQW1udE4A8RNdm5DG5L3X8",
+   "NEWPUP"
+  ]
+ },
+ "posts": [
+  {
+   "id": "a1",
+   "acct": "orig_a1",
+   "at": 1791766800,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [
+    "animal"
+   ],
+   "stance": "positive",
+   "text": "invented post a1"
+  },
+  {
+   "id": "a2",
+   "acct": "orig_a2",
+   "at": 1791774000,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a2"
+  },
+  {
+   "id": "r1_1",
+   "acct": "rp_1",
+   "at": 1791777610,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r1_2",
+   "acct": "rp_2",
+   "at": 1791777620,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r1_3",
+   "acct": "rp_3",
+   "at": 1791777630,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "b1",
+   "acct": "orig_b1",
+   "at": 1791781200,
+   "tokens": [
+    "M2"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post b1"
+  },
+  {
+   "id": "a3",
+   "acct": "orig_a3",
+   "at": 1791856800,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "negative",
+   "text": "invented post a3"
+  },
+  {
+   "id": "r2_01",
+   "acct": "burst_01",
+   "at": 1791860403,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_02",
+   "acct": "burst_02",
+   "at": 1791860406,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_03",
+   "acct": "burst_03",
+   "at": 1791860409,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_04",
+   "acct": "burst_04",
+   "at": 1791860412,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_05",
+   "acct": "burst_05",
+   "at": 1791860415,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_06",
+   "acct": "burst_06",
+   "at": 1791860418,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_07",
+   "acct": "burst_07",
+   "at": 1791860421,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_08",
+   "acct": "burst_08",
+   "at": 1791860424,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_09",
+   "acct": "burst_09",
+   "at": 1791860427,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_10",
+   "acct": "burst_10",
+   "at": 1791860430,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_11",
+   "acct": "burst_11",
+   "at": 1791860433,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_12",
+   "acct": "burst_12",
+   "at": 1791860436,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_13",
+   "acct": "burst_13",
+   "at": 1791860439,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_14",
+   "acct": "burst_14",
+   "at": 1791860442,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_15",
+   "acct": "burst_15",
+   "at": 1791860445,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_16",
+   "acct": "burst_16",
+   "at": 1791860448,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_17",
+   "acct": "burst_17",
+   "at": 1791860451,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_18",
+   "acct": "burst_18",
+   "at": 1791860454,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_19",
+   "acct": "burst_19",
+   "at": 1791860457,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "r2_20",
+   "acct": "burst_20",
+   "at": 1791860460,
+   "tokens": [
+    "M1"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post a1",
+   "refs": [
+    [
+     "retweeted",
+     "x:a1"
+    ]
+   ],
+   "attribution": "reposted"
+  },
+  {
+   "id": "c1",
+   "acct": "orig_c1",
+   "at": 1791871200,
+   "tokens": [
+    "M3"
+   ],
+   "tags": [],
+   "stance": "positive",
+   "text": "invented post c1"
+  }
+ ],
+ "expected": {
+  "day1": {
+   "clusters": [
+    "ca:solana:8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ",
+    "ca:solana:6Trmu4md5ZR2o3sdDf8fdY8NRjekSkGL9WqP51EcV9Hg",
+    "tag:animal"
+   ],
+   "M1": {
+    "item_count": 5,
+    "window_mentions": 5,
+    "independent_source_count": 2,
+    "amplifier_count": 3,
+    "conflicted": 0
+   },
+   "M2": {
+    "item_count": 1,
+    "window_mentions": 1,
+    "independent_source_count": 1
+   },
+   "changes": {
+    "NEW": 3
+   }
+  },
+  "day2": {
+   "M1": {
+    "item_count": 26,
+    "window_mentions": 21,
+    "independent_source_count": 3,
+    "amplifier_count": 23,
+    "conflicted": 1
+   },
+   "changes": {
+    "NEW": 1,
+    "ACTIVITY_UP": 1,
+    "INDEPENDENCE_CHANGED": 1,
+    "CONFLICT_CHANGED": 1,
+    "DORMANT": 2
+   },
+   "dormant": [
+    "ca:solana:6Trmu4md5ZR2o3sdDf8fdY8NRjekSkGL9WqP51EcV9Hg",
+    "tag:animal"
+   ],
+   "new": [
+    "ca:solana:bD5n1wT9bwrxubchfVxEASQW1udE4A8RNdm5DG5L3X8"
+   ]
+  }
+ }
+}

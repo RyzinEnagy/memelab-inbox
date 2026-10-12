@@ -16,6 +16,10 @@
   social extract --observation <id> [--text-file <f>] [--mock <file>]   extract claims for a stored observation
   social claims (--item <item_key> | --claim <id>) [--json] [--show-private]   plain-English claim report with provenance
   social llm-health [--llm-config <path>]                    model status: model_not_configured / credentials_missing / ...
+  social narrative-snapshot (--day <YYYY-MM-DD> [--tz <zone>] | --window-start <t> --window-end <t>)   store a narrative snapshot (narratives.py)
+  social narrative-show [--run <id>] [--json]                the snapshot in plain English (latest when --run is omitted)
+  social narrative-why --run <id> --cluster <key>            why this cluster: rule, members, roles, dependency groups, hypotheses
+  social narrative-changes [--run <id>]                      what moved since the previous comparable snapshot
 
 Exit code 0 for OK or PARTIAL runs (a down connector is recorded, not fatal), 1 for FAILED, 2 for usage errors.
 Output is a JSON summary on stdout; structured logs go to stderr as JSON lines.
@@ -332,6 +336,82 @@ def cmd_claims(a):
     raise SystemExit(0 if rows else 1)
 
 
+def _narr_con(a, create=False):
+    import sqlite3
+    dbp = Path(a.db) if a.db else db.DB_PATH
+    if create:
+        db.init_db(dbp)
+    con = sqlite3.connect(str(dbp)); con.row_factory = sqlite3.Row
+    return con
+
+
+def cmd_narrative_snapshot(a):
+    from . import narratives as NR
+    con = _narr_con(a, create=True)
+    try:
+        if not a.day and not (a.window_start and a.window_end):
+            print("give --day, or --window-start and --window-end", file=sys.stderr)
+            raise SystemExit(2)
+        params = {"require_coverage": False} if a.no_require_coverage else None
+        def _t(v):
+            try:
+                return float(v)
+            except (TypeError, ValueError):
+                return v
+        res = NR.snapshot(con, day=a.day, tz=a.tz, window_start=_t(a.window_start), window_end=_t(a.window_end), params=params, now=a.now)
+        con.commit()
+        out = {"run_id": res["run_id"], "created": res["created"], "summary": res["summary"], "unassigned": res["unassigned"],
+               "report": NR.report(con, res["run_id"]).splitlines()}
+    finally:
+        con.close()
+    print(json.dumps(out, indent=1, sort_keys=True, default=str))
+    raise SystemExit(0)
+
+
+def cmd_narrative_show(a):
+    from . import narratives as NR
+    con = _narr_con(a)
+    try:
+        run = a.run if a.run is not None else NR.latest_run(con)
+        if run is None:
+            print("no narrative snapshot stored", file=sys.stderr)
+            raise SystemExit(1)
+        print(json.dumps(NR.run_view(con, run), indent=1, sort_keys=True, default=str) if a.json else NR.report(con, run))
+    finally:
+        con.close()
+    raise SystemExit(0)
+
+
+def cmd_narrative_why(a):
+    from . import narratives as NR
+    con = _narr_con(a)
+    try:
+        try:
+            out = NR.explain(con, a.run, a.cluster)
+        except KeyError as e:
+            print(str(e), file=sys.stderr)
+            raise SystemExit(1)
+    finally:
+        con.close()
+    print(json.dumps(out, indent=1, sort_keys=True, default=str))
+    raise SystemExit(0)
+
+
+def cmd_narrative_changes(a):
+    from . import narratives as NR
+    con = _narr_con(a)
+    try:
+        run = a.run if a.run is not None else NR.latest_run(con)
+        if run is None:
+            print("no narrative snapshot stored", file=sys.stderr)
+            raise SystemExit(1)
+        out = {"run_id": run, "changes": NR.changes_for(con, run), "summary": NR.run_view(con, run)["summary"]}
+    finally:
+        con.close()
+    print(json.dumps(out, indent=1, sort_keys=True, default=str))
+    raise SystemExit(0)
+
+
 def cmd_llm_health(a):
     from . import llm
     import sqlite3
@@ -447,3 +527,26 @@ def add_subparser(sp) -> None:
     q.add_argument("--llm-config")
     q.add_argument("--db")
     q.set_defaults(fn=cmd_llm_health)
+    q = ssp.add_parser("narrative-snapshot", help="cluster claims into narratives for one window and store an immutable snapshot with changes")
+    q.add_argument("--day", help="calendar day YYYY-MM-DD in --tz")
+    q.add_argument("--tz", default="UTC", help="IANA zone the day is cut in (default UTC); stored times stay UTC")
+    q.add_argument("--window-start", help="explicit window start: epoch seconds or ISO with offset")
+    q.add_argument("--window-end", help="explicit window end (exclusive)")
+    q.add_argument("--no-require-coverage", action="store_true", help="do not treat a missing coverage record as insufficient_coverage")
+    q.add_argument("--db")
+    q.add_argument("--now", type=float, help="fixed clock (epoch seconds); the knowledge cutoff is min(window end, now)")
+    q.set_defaults(fn=cmd_narrative_snapshot)
+    q = ssp.add_parser("narrative-show", help="a stored narrative snapshot in plain English")
+    q.add_argument("--run", type=int)
+    q.add_argument("--json", action="store_true")
+    q.add_argument("--db")
+    q.set_defaults(fn=cmd_narrative_show)
+    q = ssp.add_parser("narrative-why", help="why this cluster: rule, members with roles and reasons, dependency groups, hypotheses")
+    q.add_argument("--run", type=int, required=True)
+    q.add_argument("--cluster", required=True)
+    q.add_argument("--db")
+    q.set_defaults(fn=cmd_narrative_why)
+    q = ssp.add_parser("narrative-changes", help="what moved since the previous comparable narrative snapshot")
+    q.add_argument("--run", type=int)
+    q.add_argument("--db")
+    q.set_defaults(fn=cmd_narrative_changes)

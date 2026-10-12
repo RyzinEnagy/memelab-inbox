@@ -211,3 +211,28 @@ Model output must match `memelab.social.claims.model/1` exactly. A field outside
 ## D-040 Extraction versions, cache and replay (ADOPTED, Phase 06)
 
 `PROMPT_VERSION` (what the model is asked) and `EXTRACTOR_VERSION` (validation and post-processing) are separate. One extraction row per observation x provider x model x prompt version x extractor version; repeats add nothing. The cache key is text hash + provenance context + provider + model + prompt version + output schema + mention identities, so the same text seen twice is analysed once. An extractor change replays from the private raw reply with no call; a prompt change makes a new call. A successful new extraction sets `superseded_by` on the older ones; nothing is deleted. The `social_claims.claim_type` projection (CALL/LONG for bullish and so on) is coarse; the classification lives in `social_claim_attributes`.
+
+## D-041 Prompt 07 is the narrative phase (ADOPTED, Phase 07, 2026-10-12)
+
+Elving supplied Prompt 07 ("Narrative clustering, originators, amplifiers and independent corroboration"). It takes the Phase 07 slot. The proposed Phase 07 (Telegram public channels through Chrome, needs D-028) moves to carry-over C-7, unscheduled. Phase 07 is built on Phase 06 claims, Phase 05 identity and the Phase 03 and 04 provider references. No live data and no live model call; every proof runs on invented fixtures (`tests/fixtures/social/narratives/`, builders in `tests/test_social_narratives.py`).
+
+## D-042 Independence is counted per dependency group, from observed origins only (ADOPTED, Phase 07)
+
+Items that reach one original through reposts, forwards, quotes or replies, or that share a content hash, form one dependency group with one origin. `independent_source_count` is the number of distinct sources among observed independent origins, so 100 reposts or 6 commenters under one post are one source. Reposts, forwards and quotes that repeat a claim are AMPLIFIER; replies, own-words quotes and identical copies are DEPENDENT; neither adds independence. A bot, an aggregator or an unknown author is never counted as independent. Accounts the lab linked to one trader count as one source. An unobserved original is counted separately as `unobserved_origin_count` and never as an independent source; with no observed independent origin the cluster is `insufficient_coverage`. A reply to an observed item that makes no claim about the token is its own origin. This is stricter than `store.is_independent_original()` (D-029), which decides attention counting and stays unchanged; corroboration needs the stricter test because an own-words reply still depends on the post it answers.
+
+## D-043 Clustering is deterministic; no semantic clustering in Phase 07 (ADOPTED, Phase 07)
+
+Clusters are keyed by resolved `(chain, contract)` or by a structured tag from the closed list. Tickers and names never key a cluster. Vector or LLM clustering was not built: no model is configured (D-036), there is no labelled fixture set to evaluate it against, and an unevaluated semantic cluster would be a fabricated topic. The snapshot records `semantic_clustering: not_enabled`. A later semantic step must run first on fixtures with a stored evaluation, fall back to the deterministic keys when the model or the embedding is unavailable, and label its clusters as semantic.
+
+## D-044 Snapshots are immutable and replayable (ADOPTED, Phase 07)
+
+A run is keyed by engine version, window, knowledge cutoff, zone, parameters and a hash of the input rows. The cutoff is `min(window_end, clock)`, so replaying a past window reproduces it and new information makes a new run. Windows are calendar days in an IANA zone with times stored as UTC epoch seconds, half open, 23 or 25 hours on clock-change days; naive datetimes are refused. Event time is provider publication time when known, else collector time, else unknown. Changes compare a run with the latest earlier run that has the same parameters and zone. Narrative tables are `social_narrative_*` (migration 7); the legacy `narratives` table and `social_claims.narrative_id` are not written.
+
+## D-045 Insufficient coverage and confidence caps (ADOPTED, Phase 07)
+
+`insufficient_coverage` is emitted when volume or independence cannot be estimated: no coverage record for a contributing platform (switchable with `require_coverage`), only GAP, BLOCKED or SKIPPED coverage, most items without a usable time, or no independent origin. Counts stay as lower bounds; independent count is NULL; confidence is UNKNOWN. Partial coverage, an unobserved original, an inaccessible source, a coordination hypothesis or disagreement cap confidence at MODERATE; nothing observed in 48 hours caps it at LOW. HIGH needs 5 independent sources. Deleted or not-found items stay as origins (they were observed) but do not vote on stance. These thresholds are heuristics, not calibrated.
+
+## D-046 Coordination is a hypothesis, never ownership (ADOPTED, Phase 07)
+
+Many sources repeating one original within a short time (default 10 sources in 900 s) and byte-identical text from several sources (default 3, when no repost or forward explains the copying) raise `burst_amplification` and `identical_text_multi_source`. Both carry evidence HEURISTIC and `proven: false`. They lower confidence; they do not merge or discard sources, because reposts and copies are already collapsed into their group. No account is called a bot or an owner on this basis.
+

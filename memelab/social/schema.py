@@ -612,6 +612,115 @@ DROP TABLE IF EXISTS social_claim_attributes;
 DROP TABLE IF EXISTS social_claim_extractions;
 """
 
+V7_UP = """
+CREATE TABLE social_narrative_runs (      -- one immutable snapshot of the narrative engine; a new run is a new row, never an edit
+  run_id INTEGER PRIMARY KEY,
+  snapshot_key TEXT NOT NULL UNIQUE,      -- sha256(engine_version | window_start | window_end | cutoff | tz | params_sha | input_sha); same inputs -> same run
+  engine_version TEXT NOT NULL REFERENCES social_analysis_versions(version),
+  window_label TEXT NOT NULL,             -- e.g. '2026-10-12 America/New_York' or 'custom'
+  tz TEXT NOT NULL,                       -- IANA zone the window was cut in; all stored times stay UTC epoch seconds
+  window_start REAL NOT NULL,             -- inclusive
+  window_end REAL NOT NULL,               -- exclusive
+  cutoff REAL NOT NULL,                   -- knowledge cutoff: min(window_end, clock). Nothing observed after it is used.
+  window_complete INTEGER NOT NULL CHECK (window_complete IN (0,1)),
+  params_json TEXT NOT NULL,
+  params_sha TEXT NOT NULL,               -- sha256 of the parameters other than the window (runs are compared only when equal)
+  input_sha TEXT NOT NULL,                -- sha256 of the canonical input rows (claims, items, references, accounts, coverage)
+  input_claims INTEGER NOT NULL,
+  cluster_count INTEGER NOT NULL,
+  unassigned_json TEXT NOT NULL,          -- claims that joined no cluster, by reason code; ticker-only mentions listed by symbol
+  contains_fixture INTEGER NOT NULL CHECK (contains_fixture IN (0,1)),
+  prev_run_id INTEGER REFERENCES social_narrative_runs(run_id),
+  summary_json TEXT NOT NULL,             -- change summary against prev_run_id (numbers, keys and change codes)
+  created_at REAL NOT NULL
+);
+CREATE INDEX ix_snr_window ON social_narrative_runs(params_sha, tz, window_end);
+
+CREATE TABLE social_narrative_clusters (
+  run_id INTEGER NOT NULL REFERENCES social_narrative_runs(run_id),
+  cluster_key TEXT NOT NULL,              -- 'ca:<chain>:<contract>' (identity) or 'tag:<tag>' (structured theme tag); never a ticker
+  cluster_kind TEXT NOT NULL CHECK (cluster_kind IN ('CONTRACT','THEME')),
+  label TEXT NOT NULL,
+  status TEXT NOT NULL CHECK (status IN ('ok','insufficient_coverage')),
+  reasons_json TEXT NOT NULL,             -- why the status is insufficient_coverage (empty for ok)
+  confidence TEXT NOT NULL CHECK (confidence IN ('HIGH','MODERATE','LOW','UNKNOWN')),
+  freshness TEXT NOT NULL CHECK (freshness IN ('FRESH','STALE')),
+  first_observed_at REAL,                 -- first time the collector saw an item in this cluster (not the first-ever mention)
+  last_observed_at REAL,
+  earliest_published_at REAL,             -- earliest provider publication time among observed items; NULL = UNKNOWN
+  item_count INTEGER NOT NULL,            -- distinct items up to the cutoff
+  window_mentions INTEGER NOT NULL,       -- distinct items whose event time is inside the window
+  source_count INTEGER NOT NULL,          -- distinct attributable sources of any role
+  independent_source_count INTEGER,       -- NULL when status is insufficient_coverage (not estimable)
+  independent_group_count INTEGER,
+  amplifier_count INTEGER NOT NULL,       -- reposts, forwards, quotes that repeat a claim
+  dependent_count INTEGER NOT NULL,       -- replies, quote commentary and copies that depend on another item
+  unobserved_origin_count INTEGER NOT NULL,
+  edge_count INTEGER NOT NULL,
+  conflicted INTEGER NOT NULL CHECK (conflicted IN (0,1)),
+  stance_json TEXT NOT NULL,
+  opinion_changes_json TEXT NOT NULL,
+  windows_json TEXT NOT NULL,             -- trailing windows: current, previous, delta, pct change; plus peak sliding counts
+  flags_json TEXT NOT NULL,               -- hypotheses (HEURISTIC) and data-quality flags
+  dependencies_json TEXT NOT NULL,        -- shared originals and copy groups
+  originators_json TEXT NOT NULL,
+  linked_tokens_json TEXT NOT NULL,
+  chains_json TEXT NOT NULL,
+  coverage_json TEXT NOT NULL,
+  explanation_json TEXT NOT NULL,
+  PRIMARY KEY (run_id, cluster_key)
+);
+
+CREATE TABLE social_narrative_members (   -- provenance: every claim and observation behind a cluster
+  run_id INTEGER NOT NULL REFERENCES social_narrative_runs(run_id),
+  cluster_key TEXT NOT NULL,
+  claim_id INTEGER NOT NULL REFERENCES social_claims(id),
+  item_key TEXT NOT NULL,
+  observation_id INTEGER REFERENCES social_observations(id),
+  account_id TEXT,
+  source_id TEXT,                         -- trader id when the account is linked to one, else the account id; NULL = unknown author
+  role TEXT NOT NULL CHECK (role IN ('INDEPENDENT_ORIGINAL','UNVERIFIED_ORIGINAL','AMPLIFIER','DEPENDENT')),
+  group_id TEXT NOT NULL,                 -- dependency group (shared original or copy set)
+  event_time REAL,                        -- provider publication time when known, else collector time; NULL = UNKNOWN
+  event_time_basis TEXT NOT NULL CHECK (event_time_basis IN ('PROVIDER','COLLECTOR','UNKNOWN')),
+  in_window INTEGER NOT NULL CHECK (in_window IN (0,1)),
+  source_state TEXT NOT NULL,             -- accessible | inaccessible:<retrieval status>
+  stance TEXT,
+  why TEXT NOT NULL,                      -- reason code for the role
+  PRIMARY KEY (run_id, cluster_key, claim_id)
+);
+CREATE INDEX ix_snm_item ON social_narrative_members(item_key);
+
+CREATE TABLE social_narrative_edges (     -- who repeats or depends on whom, inside a cluster
+  run_id INTEGER NOT NULL REFERENCES social_narrative_runs(run_id),
+  cluster_key TEXT NOT NULL,
+  from_item_key TEXT NOT NULL,
+  to_item_key TEXT NOT NULL,              -- 'unknown:<item_key>' when the provider gave no origin
+  edge_type TEXT NOT NULL CHECK (edge_type IN ('repost','quote','reply','forward','identical_text')),
+  to_observed INTEGER NOT NULL CHECK (to_observed IN (0,1)),
+  PRIMARY KEY (run_id, cluster_key, from_item_key, to_item_key, edge_type)
+);
+
+CREATE TABLE social_narrative_changes (   -- what moved since the previous comparable run
+  run_id INTEGER NOT NULL REFERENCES social_narrative_runs(run_id),
+  prev_run_id INTEGER,
+  cluster_key TEXT NOT NULL,
+  change_type TEXT NOT NULL CHECK (change_type IN ('NEW','ACTIVITY_UP','ACTIVITY_DOWN','DORMANT','REVIVED',
+                                                   'INDEPENDENCE_CHANGED','STANCE_SHIFT','CONFLICT_CHANGED','STATUS_CHANGED')),
+  before_json TEXT NOT NULL,
+  after_json TEXT NOT NULL,
+  PRIMARY KEY (run_id, cluster_key, change_type)
+);
+"""
+
+V7_DOWN = """
+DROP TABLE IF EXISTS social_narrative_changes;
+DROP TABLE IF EXISTS social_narrative_edges;
+DROP TABLE IF EXISTS social_narrative_members;
+DROP TABLE IF EXISTS social_narrative_clusters;
+DROP TABLE IF EXISTS social_narrative_runs;
+"""
+
 # (version, name, up, down). Append only; never edit an applied entry (the checksum guard refuses it).
 MIGRATIONS: list[tuple[int, str, str, str]] = [
     (1, "social intelligence core tables", V1_UP, V1_DOWN),
@@ -620,6 +729,7 @@ MIGRATIONS: list[tuple[int, str, str, str]] = [
     (4, "item forwards and in-place versions", V4_UP, V4_DOWN),
     (5, "token identity resolution and timestamped market facts", V5_UP, V5_DOWN),
     (6, "structured claim extraction, attributes and anchored evidence spans", V6_UP, V6_DOWN),
+    (7, "narrative snapshots: clusters, independence, provenance and change summaries", V7_UP, V7_DOWN),
 ]
 LATEST = max(m[0] for m in MIGRATIONS)
 ALL_VERSIONS = sorted(m[0] for m in MIGRATIONS)
@@ -633,6 +743,8 @@ SOCIAL_TABLES = [
     "social_api_spend", "social_api_billed_resources", "social_item_forwards", "social_item_versions",
     "social_token_resolutions", "social_token_candidates", "social_token_relations", "social_market_facts",
     "social_market_context", "social_claim_extractions", "social_claim_attributes", "social_claim_spans",
+    "social_narrative_runs", "social_narrative_clusters", "social_narrative_members", "social_narrative_edges",
+    "social_narrative_changes",
 ]
 
 

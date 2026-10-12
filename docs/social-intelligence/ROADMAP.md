@@ -4,7 +4,7 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Phases 00 to 06 came with written phase prompts. Phases 07 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
+Phases 00 to 07 came with written phase prompts. Phases 08 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
 
 Status values also include SUPERSEDED (folded into another phase).
 
@@ -19,8 +19,8 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 04 | Telegram channel monitoring through the official Bot API (Prompt 04; old slot "manual capture" moved to C-4) | 02, 03 | DONE (live UNAVAILABLE, D-027) |
 | 05 | Exact token identity and timestamped market context (Prompt 05; old slot "source registry" moved to C-5) | 01, 02 | DONE (fixtures only, D-030) |
 | 06 | Evidence-grounded structured claim extraction (Prompt 06; old slot "X via signed-in Chrome" moved to C-6) | 05 | DONE (no model configured, D-036) |
-| 07 | Collector: Telegram public channels via Chrome (needs D-028 decision) | 04, C-5 | NEXT (proposed) |
-| 08 | Collector: other readable sources (YouTube RSS, token-listed links) | 04, C-5 | PLANNED |
+| 07 | Narrative clustering, originators, amplifiers and independent corroboration (Prompt 07; old slot "Telegram via Chrome" moved to C-7) | 04, 05, 06 | DONE (fixtures only, D-041) |
+| 08 | Collector: other readable sources (YouTube RSS, token-listed links) | 04, C-5 | NEXT (proposed) |
 | 09 | Entity resolution: accounts, projects, tokens by address | C-6 | PLANNED |
 | 10 | Mention extraction by contract address | 09 | PLANNED |
 | 11 | Attention metrics with sampling notes | 10 | PLANNED |
@@ -40,6 +40,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | C-4 | Carry-over: manual capture onto the inbound schema (old proposed Phase 04) | 02 | PLANNED, unscheduled |
 | C-5 | Carry-over: source registry for social and trader sources (old proposed Phase 05) | 02, 03, 04 | PLANNED, unscheduled |
 | C-6 | Carry-over: X collector via signed-in Chrome (old proposed Phase 06, needs D-025) | 04, C-5 | PLANNED, unscheduled |
+| C-7 | Carry-over: Telegram public channels via Chrome (old proposed Phase 07, needs D-028) | 04, C-5 | PLANNED, unscheduled |
 
 ## Phase gates
 
@@ -69,7 +70,9 @@ C-5. (old proposed Phase 05) Social and trader sources registered with access mo
 
 C-6. (old proposed Phase 06) X reads through Elving's signed-in Chrome (D-009): profiles, public timelines and search results, read only, human-paced, stopping on any challenge. Output is derived fields plus own-words summaries (D-010). Fixtures recorded from real pages; parser tests pass offline. Needs D-025.
 
-07. Telegram public channels (`t.me/s/<channel>` previews, or Telegram Web while signed in) parsed to channel-level metrics and summaries. Same fixture and policy rules as 06; no private groups. Needs D-028 first.
+07. (Prompt 07, DONE 2026-10-12, NARRATIVES_07.md) Deterministic narrative clusters by resolved contract or structured tag; first-observed time, source count, independent source count, reposts and shared-original dependencies, mentions per sliding window, rate of change, confidence, coverage limits, chain and linked-token context; reposts and quotes never count as independent; inferred coordination is a hypothesis; `insufficient_coverage` when volume or independence is not estimable; immutable snapshots with change summaries and provenance; explain output; tests for 100-handle reposts, two early originals, same ticker on different contracts, multi-token themes, conflicts, changed opinion, deleted sources, time zones, stale data and two controlled daily windows.
+
+C-7. (old proposed Phase 07) Telegram public channels (`t.me/s/<channel>` previews, or Telegram Web while signed in) parsed to channel-level metrics and summaries. Same fixture and policy rules as 06; no private groups. Needs D-028 first.
 
 08. Additional readable sources wired in the same way, each with fixtures and coverage notes. Sources that fail from both routes are recorded as gaps, not worked around.
 
