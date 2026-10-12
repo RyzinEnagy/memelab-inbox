@@ -23,8 +23,8 @@ HELIUS_TX = "https://api.helius.xyz/v0/addresses/{addr}/transactions?api-key={ke
 def rpc_url() -> str:
     """Helius RPC when a key is configured (data/config.json), otherwise the public endpoint."""
     try:
-        from .github_inbox import load_config
-        key = load_config().get("helius_api_key")
+        from ..secrets import helius_key
+        key = helius_key()
         return HELIUS_RPC.format(key=key) if key else RPC
     except Exception:
         return RPC
@@ -115,10 +115,10 @@ class Plan:
 
     def wallet_forensics(self, wallets: list[str], limit: int = 100):
         """Helius Enhanced Transactions per wallet (parsed swaps/transfers). Requires helius_api_key in config."""
-        from .github_inbox import load_config
-        key = load_config().get("helius_api_key")
+        from ..secrets import helius_key
+        key = helius_key()
         if not key:
-            raise RuntimeError("helius_api_key missing in data/config.json")
+            raise RuntimeError("helius_api_key missing (set HELIUS_API_KEY or data/config.json)")
         for w in wallets:
             self.add(f"helius_tx:{w}", HELIUS_TX.format(addr=w, key=key, limit=limit), proj="helius_tx", delay_ms=250)
         return self
@@ -126,10 +126,10 @@ class Plan:
     def wallet_activity(self, wallets: list[str], limit: int = 50):
         """Helius Enhanced Transactions per tracked wallet, full signatures, slot and failure flag (projection helius_wallet_tx, Phase 09).
         The older wallet_forensics projection cuts signatures to 12 characters and is not used for activity."""
-        from .github_inbox import load_config
-        key = load_config().get("helius_api_key")
+        from ..secrets import helius_key
+        key = helius_key()
         if not key:
-            raise RuntimeError("helius_api_key missing in data/config.json")
+            raise RuntimeError("helius_api_key missing (set HELIUS_API_KEY or data/config.json)")
         for w in wallets:
             self.add(f"helius_wallet_tx:{w}", HELIUS_TX.format(addr=w, key=key, limit=limit), proj="helius_wallet_tx", delay_ms=400)
         return self
@@ -154,7 +154,8 @@ class Plan:
     def save(self, path: Path | None = None) -> Path:
         path = path or DATA_DIR / "inbox" / f"{self.id}.plan.json"
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps(self.to_dict(), separators=(",", ":")))
+        from ..secrets import redact
+        path.write_text(redact(json.dumps(self.to_dict(), separators=(",", ":"))))   # saved plans are committed; the key is not
         return path
 
     def js_call(self) -> str:
