@@ -69,4 +69,6 @@ Expect `1 failed, 373 passed` and `python -m memelab social guard` exit 0.
 
 ## Commit and push
 
-Phase 09 is committed on feature/social-intelligence; the commit hash and push result are recorded in a follow-up note below.
+Phase 09 is on feature/social-intelligence at 164cbe9cc3010deb3eecbefcbf2cbfd1c3326913 (tree cb99b574fbffdebb1bcf54e7ae06e4082046e898, parent 49d7e4106c2a0d7246d883b747ce9a3e54ee2568).
+
+Route: the session git push returns 403, so the push went through the GitHub connection in Composio using the Git Data API. 23 blobs were created and each returned sha matched the local blob sha, one tree was created on top of the Phase 08 tree and matched the local tree sha, one commit was created, and the branch ref was fast-forwarded with force false. Main was not touched. Phase 10 has not been started.
