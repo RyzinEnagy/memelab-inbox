@@ -1,0 +1,741 @@
+{
+ "addresses": {
+  "M1": "8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ",
+  "M2": "6Trmu4md5ZR2o3sdDf8fdY8NRjekSkGL9WqP51EcV9Hg",
+  "M3": "bD5n1wT9bwrxubchfVxEASQW1udE4A8RNdm5DG5L3X8",
+  "M4": "G6DwSgeKXGghuu9NN3PqYBpc1shm1zBNzAr6adTYQvbi",
+  "M5": "urqBccf819k8ttGdxBnfxDfRR7yH62RJxww3QnxJA5v",
+  "P1": "7iHzKJYX4Lj27MGdEv4SsX8xMuBtsEZ2ZpzoAHFm261M",
+  "P2": "3hBvAioZSQLSZEDRrQHt85YqrZfthjuHn9km7Uyeuwgd",
+  "P3": "3EuJ8eh469ni9926hwe6Edrsos22tfCmVUQoxeJne3Px",
+  "P4": "AuVvnqJzxgDNYnf5WrsVFG9PrsVYG9C4Enn4FQ8ZNAHE",
+  "PEPE_ARB": "0x3e4795879d293c7c43339d2a6f059feed579cefd",
+  "PEPE_BSC": "0xfb17066c9e5b0583bb4d3e7983429e13a8924b0f",
+  "PEPE_ETH": "0x7059d8e5faab71a5e2628cad88bcc1df0b68c305",
+  "PEPE_SOL1": "4JFBJ56AUWfSGaJwqhqfsKHMJNJX22Xg3WM3K9fTdLZW",
+  "PEPE_SOL2": "49ANFMw6QCmiYXNVfUiRpXMb8ozQNRV9k2aS7FyURPaX",
+  "PPA": "0x20a6d88c7a2d22b1895b09151b078f939673025a",
+  "PPB": "0xaca4fc92bed44f01fa6a5f4f727a280c5bd838fc",
+  "PPE": "0x097e39e0a03ce69b39bcfad58594fbadb31ba09e",
+  "PX1B": "0xdb950eb62ab92ab0cd52c5e872f4ef942b24ecae",
+  "PX1N": "0xbc350cee03970a5b5db588f0a28981f250ae7bb8",
+  "PX2": "0x6445299f56553a0532734f6f03a76db859934758",
+  "PX3": "0x5e266c1d9f46b78e1e822279538f4573250c76dc",
+  "PX4": "0x89af717fd660537f9b3ace51bb3fedcddd53e513",
+  "X1": "0x425dfb1caca39dc757bcf4912f70d6b074587ab4",
+  "X2": "0xa4a1524f45feb96403d745079735fd456aaa3fd2",
+  "X3": "0x4daa9d81f1ec9c13cfbec85dfbb56967df50c4bc",
+  "X4": "0x915438312ec4dd21f54b72c331c79f4d1156fd1a"
+ },
+ "bodies": {
+  "ds:arbitrum:one:0x4daa9d81f1ec9c13cfbec85dfbb56967df50c4bc": [
+   {
+    "baseToken": {
+     "address": "0x4dAA9d81f1eC9c13cFbEc85dfbb56967dF50C4bC",
+     "name": "Arb Dog Fixture",
+     "symbol": "ARBDOG"
+    },
+    "chainId": "arbitrum",
+    "dexId": "fixturedex",
+    "fdv": null,
+    "liquidity": {
+     "base": 1,
+     "quote": 1,
+     "usd": 90000
+    },
+    "marketCap": null,
+    "pairAddress": "0x5e266c1d9f46b78e1e822279538f4573250c76dc",
+    "pairCreatedAt": 1788998400000,
+    "priceUsd": "0.1",
+    "quoteToken": {
+     "address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+     "symbol": "WETH"
+    },
+    "txns": {
+     "h1": {
+      "buys": 5,
+      "sells": 4
+     },
+     "h24": {
+      "buys": 100,
+      "sells": 90
+     }
+    },
+    "volume": {
+     "h1": 375.0,
+     "h24": 9000
+    }
+   }
+  ],
+  "ds:base:one:0x425dfb1caca39dc757bcf4912f70d6b074587ab4": [
+   {
+    "baseToken": {
+     "address": "0x425DFB1caCA39dc757bcF4912f70D6b074587aB4",
+     "name": "Twins Fixture",
+     "symbol": "TWINS"
+    },
+    "chainId": "base",
+    "dexId": "fixturedex",
+    "fdv": null,
+    "liquidity": {
+     "base": 1,
+     "quote": 1,
+     "usd": 50000
+    },
+    "marketCap": null,
+    "pairAddress": "0xdb950eb62ab92ab0cd52c5e872f4ef942b24ecae",
+    "pairCreatedAt": 1788998400000,
+    "priceUsd": "0.2",
+    "quoteToken": {
+     "address": "0x4200000000000000000000000000000000000006",
+     "symbol": "WETH"
+    },
+    "txns": {
+     "h1": {
+      "buys": 5,
+      "sells": 4
+     },
+     "h24": {
+      "buys": 100,
+      "sells": 90
+     }
+    },
+    "volume": {
+     "h1": 208.33333333333334,
+     "h24": 5000
+    }
+   }
+  ],
+  "ds:base:one:0x915438312ec4dd21f54b72c331c79f4d1156fd1a": [
+   {
+    "baseToken": {
+     "address": "0x915438312Ec4Dd21f54B72C331c79F4d1156FD1a",
+     "name": "Twin Fixture",
+     "symbol": "TWIN"
+    },
+    "chainId": "base",
+    "dexId": "fixturedex",
+    "fdv": null,
+    "liquidity": {
+     "base": 1,
+     "quote": 1,
+     "usd": 70000
+    },
+    "marketCap": null,
+    "pairAddress": "0x89af717fd660537f9b3ace51bb3fedcddd53e513",
+    "pairCreatedAt": 1788998400000,
+    "priceUsd": "1.0",
+    "quoteToken": {
+     "address": "0x4200000000000000000000000000000000000006",
+     "symbol": "WETH"
+    },
+    "txns": {
+     "h1": {
+      "buys": 5,
+      "sells": 4
+     },
+     "h24": {
+      "buys": 100,
+      "sells": 90
+     }
+    },
+    "volume": {
+     "h1": 291.6666666666667,
+     "h24": 7000
+    }
+   }
+  ],
+  "ds:base:one:0xa4a1524f45feb96403d745079735fd456aaa3fd2": [
+   {
+    "baseToken": {
+     "address": "0xA4a1524F45feb96403D745079735fD456aaA3Fd2",
+     "name": "Based Dog Fixture",
+     "symbol": "BASEDOG"
+    },
+    "chainId": "base",
+    "dexId": "fixturedex",
+    "fdv": 50000000,
+    "liquidity": {
+     "base": 1,
+     "quote": 1,
+     "usd": 500000
+    },
+    "marketCap": 45000000,
+    "pairAddress": "0x6445299f56553a0532734f6f03a76db859934758",
+    "pairCreatedAt": 1788998400000,
+    "priceUsd": "0.05",
+    "quoteToken": {
+     "address": "0x4200000000000000000000000000000000000006",
+     "symbol": "WETH"
+    },
+    "txns": {
+     "h1": {
+      "buys": 5,
+      "sells": 4
+     },
+     "h24": {
+      "buys": 100,
+      "sells": 90
+     }
+    },
+    "volume": {
+     "h1": 5000.0,
+     "h24": 120000
+    }
+   }
+  ],
+  "ds:bsc:one:0x425dfb1caca39dc757bcf4912f70d6b074587ab4": [
+   {
+    "baseToken": {
+     "address": "0x425DFB1caCA39dc757bcF4912f70D6b074587aB4",
+     "name": "Twins Fixture",
+     "symbol": "TWINS"
+    },
+    "chainId": "bsc",
+    "dexId": "fixturedex",
+    "fdv": null,
+    "liquidity": {
+     "base": 1,
+     "quote": 1,
+     "usd": 40000
+    },
+    "marketCap": null,
+    "pairAddress": "0xbc350cee03970a5b5db588f0a28981f250ae7bb8",
+    "pairCreatedAt": 1788998400000,
+    "priceUsd": "0.21",
+    "quoteToken": {
+     "address": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+     "symbol": "WBNB"
+    },
+    "txns": {
+     "h1": {
+      "buys": 5,
+      "sells": 4
+     },
+     "h24": {
+      "buys": 100,
+      "sells": 90
+     }
+    },
+    "volume": {
+     "h1": 166.66666666666666,
+     "h24": 4000
+    }
+   }
+  ],
+  "ds:solana:one:6Trmu4md5ZR2o3sdDf8fdY8NRjekSkGL9WqP51EcV9Hg": [
+   {
+    "baseToken": {
+     "address": "6Trmu4md5ZR2o3sdDf8fdY8NRjekSkGL9WqP51EcV9Hg",
+     "name": "Lab Dog Fixture",
+     "symbol": "LABDOG"
+    },
+    "chainId": "solana",
+    "dexId": "fixturedex",
+    "fdv": null,
+    "liquidity": {
+     "base": 1,
+     "quote": 1,
+     "usd": 3000
+    },
+    "marketCap": null,
+    "pairAddress": "AuVvnqJzxgDNYnf5WrsVFG9PrsVYG9C4Enn4FQ8ZNAHE",
+    "pairCreatedAt": 1788998400000,
+    "priceUsd": "0.0003",
+    "quoteToken": {
+     "address": "So11111111111111111111111111111111111111112",
+     "symbol": "SOL"
+    },
+    "txns": {
+     "h1": {
+      "buys": 5,
+      "sells": 4
+     },
+     "h24": {
+      "buys": 100,
+      "sells": 90
+     }
+    },
+    "volume": {
+     "h1": 41.666666666666664,
+     "h24": 1000
+    }
+   }
+  ],
+  "ds:solana:one:8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ": [
+   {
+    "baseToken": {
+     "address": "8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ",
+     "name": "Lab Dog Fixture",
+     "symbol": "LABDOG"
+    },
+    "chainId": "solana",
+    "dexId": "fixturedex",
+    "fdv": 11000000,
+    "liquidity": {
+     "base": 1,
+     "quote": 1,
+     "usd": 200000
+    },
+    "marketCap": 9900000,
+    "pairAddress": "7iHzKJYX4Lj27MGdEv4SsX8xMuBtsEZ2ZpzoAHFm261M",
+    "pairCreatedAt": 1788998400000,
+    "priceUsd": "0.011",
+    "quoteToken": {
+     "address": "So11111111111111111111111111111111111111112",
+     "symbol": "SOL"
+    },
+    "txns": {
+     "h1": {
+      "buys": 5,
+      "sells": 4
+     },
+     "h24": {
+      "buys": 100,
+      "sells": 90
+     }
+    },
+    "volume": {
+     "h1": 25000.0,
+     "h24": 600000
+    }
+   },
+   {
+    "baseToken": {
+     "address": "8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ",
+     "name": "Lab Dog Fixture",
+     "symbol": "LABDOG"
+    },
+    "chainId": "solana",
+    "dexId": "fixturedex",
+    "fdv": 10800000,
+    "liquidity": {
+     "base": 1,
+     "quote": 1,
+     "usd": 20000
+    },
+    "marketCap": 9720000,
+    "pairAddress": "3hBvAioZSQLSZEDRrQHt85YqrZfthjuHn9km7Uyeuwgd",
+    "pairCreatedAt": 1788998400000,
+    "priceUsd": "0.0108",
+    "quoteToken": {
+     "address": "So11111111111111111111111111111111111111112",
+     "symbol": "SOL"
+    },
+    "txns": {
+     "h1": {
+      "buys": 5,
+      "sells": 4
+     },
+     "h24": {
+      "buys": 100,
+      "sells": 90
+     }
+    },
+    "volume": {
+     "h1": 2083.3333333333335,
+     "h24": 50000
+    }
+   }
+  ],
+  "ds_search:PEPE": {
+   "pairs": [
+    {
+     "baseToken": {
+      "address": "0x7059d8e5faab71a5e2628cad88bcc1df0b68c305",
+      "name": "Pepe Fixture Eth",
+      "symbol": "PEPE"
+     },
+     "chainId": "ethereum",
+     "dexId": "fixturedex",
+     "fdv": null,
+     "liquidity": {
+      "base": 1,
+      "quote": 1,
+      "usd": 9000000
+     },
+     "marketCap": null,
+     "pairAddress": "0x097e39e0a03ce69b39bcfad58594fbadb31ba09e",
+     "pairCreatedAt": 1788998400000,
+     "priceUsd": "1e-05",
+     "quoteToken": {
+      "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "symbol": "WETH"
+     },
+     "txns": {
+      "h1": {
+       "buys": 5,
+       "sells": 4
+      },
+      "h24": {
+       "buys": 100,
+       "sells": 90
+      }
+     },
+     "volume": {
+      "h1": 83333.33333333333,
+      "h24": 2000000
+     }
+    },
+    {
+     "baseToken": {
+      "address": "4JFBJ56AUWfSGaJwqhqfsKHMJNJX22Xg3WM3K9fTdLZW",
+      "name": "Pepe Fixture Sol",
+      "symbol": "PEPE"
+     },
+     "chainId": "solana",
+     "dexId": "fixturedex",
+     "fdv": null,
+     "liquidity": {
+      "base": 1,
+      "quote": 1,
+      "usd": 300000
+     },
+     "marketCap": null,
+     "pairAddress": "3EuJ8eh469ni9926hwe6Edrsos22tfCmVUQoxeJne3Px",
+     "pairCreatedAt": 1788998400000,
+     "priceUsd": "2e-06",
+     "quoteToken": {
+      "address": "So11111111111111111111111111111111111111112",
+      "symbol": "SOL"
+     },
+     "txns": {
+      "h1": {
+       "buys": 5,
+       "sells": 4
+      },
+      "h24": {
+       "buys": 100,
+       "sells": 90
+      }
+     },
+     "volume": {
+      "h1": 3750.0,
+      "h24": 90000
+     }
+    },
+    {
+     "baseToken": {
+      "address": "0xfb17066c9e5b0583bb4d3e7983429e13a8924b0f",
+      "name": "Pepe Fixture Bnb",
+      "symbol": "PEPE"
+     },
+     "chainId": "bsc",
+     "dexId": "fixturedex",
+     "fdv": null,
+     "liquidity": {
+      "base": 1,
+      "quote": 1,
+      "usd": 120000
+     },
+     "marketCap": null,
+     "pairAddress": "0xaca4fc92bed44f01fa6a5f4f727a280c5bd838fc",
+     "pairCreatedAt": 1788998400000,
+     "priceUsd": "1.1e-06",
+     "quoteToken": {
+      "address": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+      "symbol": "WBNB"
+     },
+     "txns": {
+      "h1": {
+       "buys": 5,
+       "sells": 4
+      },
+      "h24": {
+       "buys": 100,
+       "sells": 90
+      }
+     },
+     "volume": {
+      "h1": 1666.6666666666667,
+      "h24": 40000
+     }
+    },
+    {
+     "baseToken": {
+      "address": "0x3e4795879d293c7c43339d2a6f059feed579cefd",
+      "name": "Pepe Fixture Arb",
+      "symbol": "PEPE"
+     },
+     "chainId": "arbitrum",
+     "dexId": "fixturedex",
+     "fdv": null,
+     "liquidity": {
+      "base": 1,
+      "quote": 1,
+      "usd": 80000
+     },
+     "marketCap": null,
+     "pairAddress": "0x20a6d88c7a2d22b1895b09151b078f939673025a",
+     "pairCreatedAt": 1788998400000,
+     "priceUsd": "9e-07",
+     "quoteToken": {
+      "address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+      "symbol": "WETH"
+     },
+     "txns": {
+      "h1": {
+       "buys": 5,
+       "sells": 4
+      },
+      "h24": {
+       "buys": 100,
+       "sells": 90
+      }
+     },
+     "volume": {
+      "h1": 416.6666666666667,
+      "h24": 10000
+     }
+    }
+   ]
+  },
+  "goplus:base:0x915438312ec4dd21f54b72c331c79f4d1156fd1a": {
+   "0x915438312ec4dd21f54b72c331c79f4d1156fd1a": {
+    "token_name": "Twin Fixture",
+    "token_symbol": "TW1N"
+   }
+  },
+  "goplus:base:0xa4a1524f45feb96403d745079735fd456aaa3fd2": {
+   "0xa4a1524f45feb96403d745079735fd456aaa3fd2": {
+    "holder_count": "1200",
+    "token_name": "Based Dog Fixture",
+    "token_symbol": "BASEDOG"
+   }
+  },
+  "gt_info:8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ": {
+   "address": "8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ",
+   "decimals": 6,
+   "name": "Lab Dog Fixture",
+   "symbol": "LABDOG"
+  },
+  "gt_ohlcv:7iHzKJYX4Lj27MGdEv4SsX8xMuBtsEZ2ZpzoAHFm261M:hour1": {
+   "meta": {
+    "base": {
+     "address": "8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ"
+    },
+    "quote": {
+     "address": "So11111111111111111111111111111111111111112"
+    }
+   },
+   "ohlcv": [
+    [
+     1791608400,
+     0.006500000000000001,
+     0.006999999999999999,
+     0.0063,
+     0.0066,
+     10000
+    ],
+    [
+     1791604800,
+     0.0064,
+     0.0069,
+     0.0062,
+     0.006500000000000001,
+     10000
+    ],
+    [
+     1791601200,
+     0.0063,
+     0.0068,
+     0.0060999999999999995,
+     0.0064,
+     10000
+    ],
+    [
+     1791597600,
+     0.0062,
+     0.006699999999999999,
+     0.005999999999999999,
+     0.0063,
+     10000
+    ],
+    [
+     1791594000,
+     0.0061,
+     0.0066,
+     0.0059,
+     0.006200000000000001,
+     10000
+    ],
+    [
+     1791590400,
+     0.006,
+     0.0065,
+     0.0058,
+     0.0061,
+     10000
+    ]
+   ]
+  },
+  "gt_ohlcv:7iHzKJYX4Lj27MGdEv4SsX8xMuBtsEZ2ZpzoAHFm261M:minute15": {
+   "meta": {
+    "base": {
+     "address": "8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ"
+    }
+   },
+   "ohlcv": [
+    [
+     1791675900,
+     0.01,
+     0.0101,
+     0.0099,
+     0.01,
+     500
+    ],
+    [
+     1791675000,
+     0.01,
+     0.0101,
+     0.0099,
+     0.01,
+     500
+    ],
+    [
+     1791674100,
+     0.01,
+     0.0101,
+     0.0099,
+     0.01,
+     500
+    ],
+    [
+     1791673200,
+     0.01,
+     0.0101,
+     0.0099,
+     0.01,
+     500
+    ]
+   ]
+  },
+  "jq:BUY:1000.0:8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ": {
+   "impact": 0.01,
+   "inAmount": "6670000000",
+   "outAmount": "99000000000",
+   "route": [
+    [
+     "7iHzKJYX4Lj27MGdEv4SsX8xMuBtsEZ2ZpzoAHFm261M",
+     "fixturedex",
+     100
+    ]
+   ],
+   "usd": 1000
+  },
+  "jq:SELL:1000.0:8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ": {
+   "impact": 0.01,
+   "inAmount": "100000000000",
+   "outAmount": "6500000000",
+   "route": [
+    [
+     "7iHzKJYX4Lj27MGdEv4SsX8xMuBtsEZ2ZpzoAHFm261M",
+     "fixturedex",
+     100
+    ]
+   ],
+   "usd": 1000
+  },
+  "jq:SELL:10000.0:8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ": {
+   "impact": 0.4,
+   "inAmount": "1000000000000",
+   "outAmount": "40000000000",
+   "route": [
+    [
+     "7iHzKJYX4Lj27MGdEv4SsX8xMuBtsEZ2ZpzoAHFm261M",
+     "fixturedex",
+     100
+    ]
+   ],
+   "usd": 10000
+  },
+  "jq:SELL:50000.0:8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ": {
+   "error": "Could not find any route",
+   "errorCode": "COULD_NOT_FIND_ANY_ROUTE"
+  },
+  "jup_tok:8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ": [
+   {
+    "circSupply": 900000000,
+    "decimals": 6,
+    "fdv": 10000000,
+    "firstPool": {
+     "createdAt": "2026-09-10T00:00:00Z"
+    },
+    "holderCount": 4000,
+    "id": "8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ",
+    "liquidity": 230000,
+    "mcap": 9000000,
+    "name": "Lab Dog Fixture",
+    "stats24h": {
+     "buyVolume": 400000,
+     "priceChange": 5.0,
+     "sellVolume": 380000
+    },
+    "symbol": "LABDOG",
+    "tokenProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "totalSupply": 1000000000,
+    "usdPrice": 0.01
+   }
+  ],
+  "jup_tok:G6DwSgeKXGghuu9NN3PqYBpc1shm1zBNzAr6adTYQvbi": [
+   {
+    "id": "G6DwSgeKXGghuu9NN3PqYBpc1shm1zBNzAr6adTYQvbi",
+    "liquidity": 150000,
+    "name": "Migrating Fixture",
+    "symbol": "MIGR"
+   }
+  ],
+  "jup_tok:MIGR": [
+   {
+    "id": "G6DwSgeKXGghuu9NN3PqYBpc1shm1zBNzAr6adTYQvbi",
+    "liquidity": 150000,
+    "name": "Migrating Fixture",
+    "symbol": "MIGR"
+   }
+  ],
+  "jup_tok:PEPE": [
+   {
+    "id": "4JFBJ56AUWfSGaJwqhqfsKHMJNJX22Xg3WM3K9fTdLZW",
+    "liquidity": 300000,
+    "name": "Pepe Fixture Sol",
+    "symbol": "PEPE"
+   },
+   {
+    "id": "49ANFMw6QCmiYXNVfUiRpXMb8ozQNRV9k2aS7FyURPaX",
+    "liquidity": 15000,
+    "name": "Pepe Fixture Two",
+    "symbol": "PEPE"
+   }
+  ],
+  "jup_tok:bD5n1wT9bwrxubchfVxEASQW1udE4A8RNdm5DG5L3X8": [
+   {
+    "id": "bD5n1wT9bwrxubchfVxEASQW1udE4A8RNdm5DG5L3X8",
+    "liquidity": 0,
+    "name": "Migrating Fixture (old)",
+    "symbol": "MIGR"
+   }
+  ],
+  "jup_tok:urqBccf819k8ttGdxBnfxDfRR7yH62RJxww3QnxJA5v": [
+   {
+    "id": "urqBccf819k8ttGdxBnfxDfRR7yH62RJxww3QnxJA5v",
+    "liquidity": null,
+    "name": "No Pool Fixture",
+    "symbol": "NOPOOL",
+    "usdPrice": 0.5
+   }
+  ],
+  "kq:base:SELL:1000.0:0xa4a1524f45feb96403d745079735fd456aaa3fd2": {
+   "amountIn": "20000000000000000000000",
+   "amountInUsd": 1000,
+   "amountOut": "320000000000000000",
+   "amountOutUsd": 985,
+   "gasUsd": 0.02,
+   "route": []
+  }
+ },
+ "fetched_at": 1791676800,
+ "note": "Invented tokens, addresses, pairs and prices for Phase 05 tests. Shapes follow the collector projections (collector.js). Not market data.",
+ "schema": "memelab.resolve.fixture/1",
+ "synthetic": true,
+ "t0": 1791590400
+}
