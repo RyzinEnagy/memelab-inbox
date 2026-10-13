@@ -48,3 +48,8 @@ A phase is done only when all of these are true and written down in HANDOFF.md:
 3. Rewrite HANDOFF.md completely: active branch, latest commit, verified modules, test command and outcome, current phase, next phase, blockers, exact next command.
 4. Add any durable choice made during the phase to DECISIONS.md.
 5. Stop. Report changed files, commands run with exit codes, the commit hash and blockers. Do not start the next phase.
+
+
+## Audit remediation-specific addendum — 2026-10-13 (M00)
+
+The historical `feature/social-intelligence` instruction above applies to implementation phases 00–21, not to the independent **M00–M06 remediation roadmap**. For audit remediation, branch from the latest reviewed audit publication ref, keep the pinned application baseline immutable, submit a dedicated reviewable PR, and stop after one remediation package. M00 is evidence-only: no code fixes, migrations, live providers, paid model calls or trades. A partial checksum/inventory success is not source acceptance; M00 must remain **BLOCKED** until missing reports, probe lineage and ID-to-requirement mappings have an independent reviewer approval. An interrupted/OOM regression suite is INCOMPLETE, not PASS. Preserve earlier findings and historical state; do not overwrite earlier audit reports to make the roadmap appear accepted.
