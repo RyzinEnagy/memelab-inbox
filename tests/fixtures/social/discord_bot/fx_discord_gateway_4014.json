@@ -1,0 +1,18 @@
+{
+ "connections": [
+  {
+   "close": 4014,
+   "frames": [
+    {
+     "d": {
+      "heartbeat_interval": 41250
+     },
+     "op": 10
+    }
+   ]
+  }
+ ],
+ "note": "the gateway closes with 4014 when the app asks for an intent it is not allowed",
+ "recorded_at": "2026-10-12T23:30:00Z",
+ "schema": "memelab.discord_gateway.fixture/1"
+}

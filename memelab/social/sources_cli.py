@@ -1,4 +1,4 @@
-"""CLI for the optional Reddit and Farcaster adapters (Phase 19), wired into `python -m memelab social ...`.
+"""CLI for the optional Reddit and Farcaster adapters (Phase 19) and the Discord bot adapter (Phase 20), wired into `python -m memelab social ...`.
 
   social reddit-health [--config <path>]                     Reddit Data API status; no network call
   social reddit-ingest [--config <path>] [--fixture <file>] [--extract [--bodies <json>]]
@@ -7,6 +7,13 @@
   social fc-health [--config <path>]                         Farcaster hub status; no network call
   social fc-ingest [--config <path>] [--fixture <file>] [--extract [--bodies <json>]]
                                                              configured fids and channels through a Snapchain node
+  social discord-health [--config <path>]                    Discord bot status (consent, token, message-content intent); no network
+  social discord-ingest [--config <path>] [--fixture <file>] [--extract [--bodies <json>]]
+                                                             consented channels over the bot REST API, then purge deleted messages
+  social discord-gateway --fixture <file> [--config <path>] [--extract]
+                                                             one gateway pass from recorded frames (live websocket not shipped)
+  social discord-purge [--user <id>]                         erase what was derived from deleted messages, and named users
+  social discord-reset --channel <id>                        forget one channel's message cursor (dedupe absorbs re-reads)
   social sources                                             one table: every social connector, its status, cost and next step
 
 --extract hands the post text to claim extraction in memory (api_common.TextSink); the text is never written.
@@ -25,6 +32,7 @@ from .. import db
 
 REDDIT_CONFIG = db.DATA_DIR / "private" / "reddit_api.json"
 FC_CONFIG = db.DATA_DIR / "private" / "farcaster_hub.json"
+DISCORD_CONFIG = db.DATA_DIR / "private" / "discord_bot.json"
 
 
 def _dbp(a) -> Path:
@@ -131,13 +139,85 @@ def cmd_fc_ingest(a):
     raise SystemExit(1 if out["status"] == "FAILED" else 0)
 
 
+def cmd_discord_health(a):
+    from . import discord_bot as D
+    out = D.health(Path(a.config) if a.config else DISCORD_CONFIG, _dbp(a))
+    _print(out)
+    raise SystemExit(0 if out["status"] == "ready" else 1)
+
+
+def _discord_finish(ad, dbp, t, run_id, a, sink, mode):
+    from . import discord_bot as D
+    out = _run(ad, dbp, t, run_id, a, sink, mode, "discord")
+    out["dropped"] = dict(ad.dropped)
+    out["deletion_purge"] = D.purge_deleted(dbp, now=t)
+    _print(out)
+    raise SystemExit(1 if out["status"] == "FAILED" else 0)
+
+
+def cmd_discord_ingest(a):
+    from . import discord_bot as D
+    from .api_common import TextSink
+    from .cli import _setup_logging
+    _setup_logging(a.verbose)
+    dbp = _dbp(a)
+    cfg_path = Path(a.config) if a.config else DISCORD_CONFIG
+    if a.fixture:
+        cfg, tr, tok, mode = D.load_config(cfg_path), D.FixtureTransport(a.fixture), "fixture-bot-token-not-real", "fixture"
+    else:
+        h = D.health(cfg_path, dbp)
+        if h["status"] != "ready":
+            _print({"status": "NOT_RUN", "reason": h["status"], "next_step": h["next_step"], "network_calls_made": 0})
+            raise SystemExit(1)
+        cfg, tok = D.load_config(cfg_path), D.get_token()
+        tr, mode = D.UrllibTransport(timeout=cfg.timeout_seconds), "live"
+    t = a.now if a.now is not None else time.time()
+    run_id = a.run_id or f"discord_{mode}_{time.strftime('%Y%m%d_%H%M%S', time.gmtime(t))}_{uuid.uuid4().hex[:6]}"
+    sink = TextSink() if a.extract else None
+    ad = D.DiscordBotAdapter(cfg, tr, tok, dbp, run_id=run_id, mode=mode, clock=(lambda: t) if a.now is not None else time.time,
+                             text_sink=sink, **({"sleep": lambda s: None} if mode == "fixture" else {}))
+    _discord_finish(ad, dbp, t, run_id, a, sink, mode)
+
+
+def cmd_discord_gateway(a):
+    from . import discord_bot as D
+    from .api_common import TextSink
+    from .cli import _setup_logging
+    _setup_logging(a.verbose)
+    dbp = _dbp(a)
+    if not a.fixture:
+        _print({"status": "NOT_RUN", "reason": "gateway_transport_not_shipped",
+                "next_step": "the live gateway needs a websocket client that this repo does not ship; use `social discord-ingest` "
+                             "(REST) for live reads", "network_calls_made": 0})
+        raise SystemExit(1)
+    cfg = D.load_config(Path(a.config) if a.config else DISCORD_CONFIG)
+    tr = D.GatewayFixtureTransport(a.fixture)
+    t = a.now if a.now is not None else time.time()
+    run_id = a.run_id or f"discord_gw_fixture_{time.strftime('%Y%m%d_%H%M%S', time.gmtime(t))}_{uuid.uuid4().hex[:6]}"
+    sink = TextSink() if a.extract else None
+    ad = D.DiscordGatewayAdapter(cfg, tr, "fixture-bot-token-not-real", dbp, run_id=run_id, mode="fixture",
+                                 clock=(lambda: t) if a.now is not None else time.time, text_sink=sink)
+    _discord_finish(ad, dbp, t, run_id, a, sink, "fixture")
+
+
+def cmd_discord_purge(a):
+    from . import discord_bot as D
+    _print(D.purge_deleted(_dbp(a), now=a.now if a.now is not None else time.time(), users=a.user or []))
+
+
+def cmd_discord_reset(a):
+    from . import discord_bot as D
+    _print(D.reset_checkpoint(_dbp(a), a.channel, now=a.now if a.now is not None else time.time()))
+
+
 def sources_table(dbp, env=None) -> list[dict]:
     """One row per social connector: status, credentials, cost, live evidence. No network call."""
-    from . import farcaster_hub as F, reddit_api as R, telegram_bot as T, x_api as X
+    from . import discord_bot as D, farcaster_hub as F, reddit_api as R, telegram_bot as T, x_api as X
     from .cli import TG_CONFIG, X_CONFIG
     rows = []
     for name, fn, cfg in (("x_api", X.health, X_CONFIG), ("telegram_bot", T.health, TG_CONFIG),
-                          ("reddit_api", R.health, REDDIT_CONFIG), ("farcaster_hub", F.health, FC_CONFIG)):
+                          ("reddit_api", R.health, REDDIT_CONFIG), ("farcaster_hub", F.health, FC_CONFIG),
+                          ("discord_bot", D.health, DISCORD_CONFIG)):
         h = fn(cfg, dbp, env=env)
         le = h.get("live_evidence") or {}
         rows.append({"connector": name, "status": h.get("status"), "credentials": h.get("credentials"),
@@ -185,6 +265,28 @@ def add_parser(ssp) -> None:
     q.add_argument("--config", help=f"hub config (default {FC_CONFIG})")
     _ingest_args(q)
     q.set_defaults(fn=cmd_fc_ingest)
+    q = ssp.add_parser("discord-health", help="Discord bot adapter status (consent, token, message-content intent, cursors); no network")
+    q.add_argument("--config", help=f"server and channel config (default {DISCORD_CONFIG})")
+    q.add_argument("--db")
+    q.set_defaults(fn=cmd_discord_health)
+    q = ssp.add_parser("discord-ingest", help="ingest consented Discord channels through the bot REST API, then purge deleted messages")
+    q.add_argument("--config", help=f"server and channel config (default {DISCORD_CONFIG})")
+    _ingest_args(q)
+    q.set_defaults(fn=cmd_discord_ingest)
+    q = ssp.add_parser("discord-gateway", help="one Discord gateway pass from recorded frames (fixture only)")
+    q.add_argument("--config", help=f"server and channel config (default {DISCORD_CONFIG})")
+    _ingest_args(q)
+    q.set_defaults(fn=cmd_discord_gateway)
+    q = ssp.add_parser("discord-purge", help="erase what the lab derived from deleted Discord messages, and named users on request")
+    q.add_argument("--user", action="append", help="a Discord user id whose data must be erased (repeatable)")
+    q.add_argument("--db")
+    q.add_argument("--now", type=float)
+    q.set_defaults(fn=cmd_discord_purge)
+    q = ssp.add_parser("discord-reset", help="forget one Discord channel's message cursor")
+    q.add_argument("--channel", required=True, help="channel id")
+    q.add_argument("--db")
+    q.add_argument("--now", type=float)
+    q.set_defaults(fn=cmd_discord_reset)
     q = ssp.add_parser("sources", help="every social connector with status, cost and next step; no network")
     q.add_argument("--db")
     q.set_defaults(fn=cmd_sources)

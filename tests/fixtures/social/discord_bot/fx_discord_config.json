@@ -1,0 +1,39 @@
+{
+ "backfill_max_pages": 1,
+ "bot_label": "memelab-research",
+ "guilds": [
+  {
+   "channels": [
+    {
+     "channel_id": "1080278479011840006",
+     "label": "alpha-chat"
+    },
+    {
+     "channel_id": "1080278730670080007",
+     "label": "holders"
+    },
+    {
+     "channel_id": "1080278982328320008",
+     "label": "announcements"
+    }
+   ],
+   "consent": {
+    "basis": "server_admin_installed_bot",
+    "granted_at": "2026-10-01",
+    "reference": "fixture: invented written consent from the server admin"
+   },
+   "guild_id": "1080278227353600001",
+   "label": "examplecommunity",
+   "server_visibility": "open_invite"
+  }
+ ],
+ "max_pages_per_channel": 3,
+ "max_requests_per_run": 40,
+ "page_size": 100,
+ "recheck": {
+  "enabled": true,
+  "max_items": 25
+ },
+ "require_message_content": true,
+ "schema": "memelab.discord_bot.config/1"
+}

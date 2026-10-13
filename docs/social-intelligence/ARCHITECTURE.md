@@ -8,6 +8,7 @@ How the layer is built, as implemented on `feature/social-intelligence` at Phase
  collectors (all optional, all off by default)
    browser bridge inbox (soc:* units)     X API v2         Telegram Bot API      registry list files      Helius wallet docs
    (Phase 19, optional: Reddit Data API and Farcaster Snapchain HTTP, same inbound contract, reddit_api.py / farcaster_hub.py)
+   (Phase 20, optional: Discord bot REST and gateway frames, same inbound contract, discord_bot.py)
           |                                  |                    |                       |                         |
           v                                  v                    v                       v                         v
    ingest.py: one inbound contract (memelab.social.inbound/1, /2, /3), quarantine, dedupe, checkpoints, connector health
@@ -44,7 +45,7 @@ Every arrow reads stored data. No stage calls a later stage, and no stage writes
 | Quarantine | `data/private/quarantine/` | no | inbound items refused by the ingester |
 | Alert state | `data/private/alerts.sqlite` (`MEMELAB_ALERT_DB`) | no | runs, alerts, suppressions, delivery ledger, schedule slots |
 | Signal ledger | `data/private/signal_ledger.sqlite` (`MEMELAB_SIGNAL_LEDGER`) | no | append-only hash-chained signals and outcomes |
-| Private configs | `data/private/*.json`, `data/config.json` | no | X, Telegram, Reddit, Farcaster, model and alert settings; the Helius key in `data/config.json` |
+| Private configs | `data/private/*.json`, `data/config.json` | no | X, Telegram, Reddit, Farcaster, Discord, model and alert settings; the Helius key in `data/config.json` |
 
 The tracked lab database on `main` has no social tables today. Migrating it is a separate decision (it would publish whatever social rows are stored).
 
@@ -67,7 +68,7 @@ Every engine takes a fixed clock (`--now`, `--as-of`) and an input hash. Narrati
 
 ## Money paths
 
-Paid calls exist in three adapters only, all behind a budget guard that is off with zero caps by default: `x_api.py` (X API), `llm.py` (model), and the alert transports (free today, ceilings per provider per day). The optional Phase 19 adapters are free at the lab's scale and gated the same way: `reddit_api.py` refuses before any request without Reddit's approval flag and credentials, and `farcaster_hub.py` needs a configured node, plus a key, consent and a run cap when the hub is metered; both write every request to `social_api_spend`. `social alerts preflight` reads live spend rows. Nothing in the layer can move funds: there is no signing code, no swap or order endpoint and no wallet connection (release audit, section "Trade-execution and signing code").
+Paid calls exist in three adapters only, all behind a budget guard that is off with zero caps by default: `x_api.py` (X API), `llm.py` (model), and the alert transports (free today, ceilings per provider per day). The optional Phase 19 adapters are free at the lab's scale and gated the same way: `reddit_api.py` refuses before any request without Reddit's approval flag and credentials, and `farcaster_hub.py` needs a configured node, plus a key, consent and a run cap when the hub is metered; both write every request to `social_api_spend`. The optional Phase 20 Discord adapter (`discord_bot.py`) is free and refuses before any request without a bot token and a server's recorded consent, and stops on a missing message-content intent; it writes every request to `social_api_spend` as well. `social alerts preflight` reads live spend rows. Nothing in the layer can move funds: there is no signing code, no swap or order endpoint and no wallet connection (release audit, section "Trade-execution and signing code").
 
 ## Phase notes
 

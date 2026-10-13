@@ -93,3 +93,9 @@ def test_e2e_never_passes_credentials_to_children():
     for v in ("HELIUS_API_KEY", "X_BEARER_TOKEN", "TELEGRAM_BOT_TOKEN", "ANTHROPIC_API_KEY", "MEMELAB_ALERT_SMTP_PASSWORD"):
         assert v in E2E.SECRET_VARS
     assert "socket.connect" in E2E.NETGUARD and "raise PermissionError" in E2E.NETGUARD
+
+
+def test_audit_knows_the_discord_bot_token_shape():
+    shape = b"M" + b"T" * 25 + b".GaBcDe." + b"x1" * 16          # built at run time so no literal token sits in the tree
+    assert AUD.CRED["discord_bot_token"].search(shape)
+    assert not AUD.CRED["discord_bot_token"].search(b"fixtureDiscordTokenNotReal01.GfIxTr.fixtureTokenNotRealDoNotLeak0123456789")

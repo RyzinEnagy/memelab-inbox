@@ -30,6 +30,7 @@ CRED = {
     "github_token": re.compile(rb"\b(gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,})"),
     "telegram_bot_token": re.compile(rb"\b\d{8,10}:AA[A-Za-z0-9_\-]{33}\b"),
     "aws_key": re.compile(rb"\bAKIA[0-9A-Z]{16}\b"),
+    "discord_bot_token": re.compile(rb"(?<![A-Za-z0-9_\-])[MNO][A-Za-z0-9_\-]{23,27}\.[A-Za-z0-9_\-]{6}\.[A-Za-z0-9_\-]{27,40}(?![A-Za-z0-9_\-])"),
     "x_bearer": re.compile(rb"AAAAAAAAAAAAAAAAAAAAA[A-Za-z0-9%]{20,}"),
     "pem_private_key": re.compile(rb"-----BEGIN [A-Z ]*PRIVATE KEY-----"),
     "api_key_param": re.compile(rb"api[-_]?key=([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[A-Za-z0-9_\-]{24,})"),
@@ -56,7 +57,7 @@ EXPLAINED = [
     (r"^memelab/social/(content_guard|ingest|registry_import|alerts_core|outcomes_core|replay_core|research_core)\.py$", r"exec:.*", "refusal lists: keys or words the lab rejects"),
 ]
 
-SOCIAL_LOGIN_HOSTS = re.compile(r"(api\.x\.com|api\.twitter\.com|api\.telegram\.org|api\.anthropic\.com|smtp\.|oauth\.reddit\.com|www\.reddit\.com)")
+SOCIAL_LOGIN_HOSTS = re.compile(r"(api\.x\.com|api\.twitter\.com|api\.telegram\.org|api\.anthropic\.com|smtp\.|oauth\.reddit\.com|www\.reddit\.com|discord\.com/api)")
 
 
 def run(cmd, cwd=ROOT, check=False):

@@ -4,7 +4,7 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065, Phase 11: D-079, Phase 12: D-080, Phase 13: D-085, Phase 14: D-091, Phase 15: D-097, Phase 16: D-105, Phase 17: D-112, Phase 18: D-119, Phase 19: D-125). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
+Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065, Phase 11: D-079, Phase 12: D-080, Phase 13: D-085, Phase 14: D-091, Phase 15: D-097, Phase 16: D-105, Phase 17: D-112, Phase 18: D-119, Phase 19: D-125, Phase 20: D-132). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
 
 Status values also include SUPERSEDED (folded into another phase).
 
@@ -32,8 +32,8 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 17 | Causal historical replay, matched baselines and statistical honesty (Prompt 17; old slot "m19 attention and launch social" moved to C-17) | 11, 16 | DONE (real history: INSUFFICIENT_DATA for all four strategies, D-112) |
 | 18 | End-to-end release engineering, operational audit and delivery (Prompt 18; old slot "catalyst attention" moved to C-18) | 17 | DONE (fixtures end to end, real data insufficient, live routes blocked on credentials and decisions, D-119) |
 | 19 | Optional Reddit and Farcaster sources (optional Prompt 19; old slot "reporting sections and watchlist alerts" moved to C-19) | 18 | DONE (fixtures only; Reddit BLOCKED on approval and credentials, Farcaster BLOCKED on a node or hub, D-131) |
-| 20 | Scheduled-run integration and state export rules (alert job templates delivered by 15, not enabled) | C-19 | PLANNED |
-| 21 | End-to-end validation, docs, merge request (fixture validation, docs and the pull request delivered by 18; supervised live run, rebase and merge remain) | 20 | PLANNED |
+| 20 | Optional Discord community monitoring (optional Prompt 20; old slot "scheduled-run integration and state export" moved to C-20) | 18 | DONE (fixtures only; live BLOCKED on a bot token, a consenting server and the message content intent, D-140) |
+| 21 | End-to-end validation, docs, merge request (fixture validation, docs and the pull request delivered by 18; supervised live run, rebase and merge remain) | C-20 | PLANNED |
 | C-1 | Carry-over: test isolation and clock (old Phase 01) | 00 | PLANNED, unscheduled |
 | C-2 | Carry-over: repo-wide guard against raw social text in tracked files (old Phase 02) | 02 | DONE |
 | C-3 | Carry-over: purge stored X observations of posts NOT_FOUND for 24 h (X deletion rule), needed before live X data is kept | 03 | PLANNED, unscheduled |
@@ -53,6 +53,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | C-17 | Carry-over: m19 attention and launch social read the new metrics (old proposed Phase 17) | 11, 12, C-12 | PLANNED, unscheduled |
 | C-18 | Carry-over: catalyst attention and assessment read the new metrics (old proposed Phase 18) | 11, 12, C-12 | PLANNED, unscheduled |
 | C-19 | Carry-over: reporting sections and watchlist alerts (old Phase 19; scout section delivered by 13, standalone feed and JSON by 14, social alerts by 15) | 13, 16, C-17, C-18 | PLANNED, unscheduled |
+| C-20 | Carry-over: scheduled-run integration and state export rules (old Phase 20; alert job templates delivered by 15, not enabled; repo-relative paths in the state export, D-123) | C-19 | PLANNED, unscheduled |
 
 ## Phase gates
 
@@ -132,6 +133,8 @@ C-18. (old proposed Phase 18) Catalyst attention (`memelab/catalyst/attention.py
 
 C-19. (old Phase 19) Social and trader sections in token, scout and launch reports with FACT / INFERENCE / HEURISTIC / UNKNOWN kept apart. Watchlist alerts for social changes with thresholds documented.
 
-20. Scheduled runs (daily discovery, watchlist refresh) run the social pass without breaking timing; state export includes only public-safe derived tables; SKILL.md updated.
+20. (optional Prompt 20, DONE 2026-10-12, DISCORD_20.md) Discord bot adapter on the official API: official gateway and API docs and the privileged message-content rules read; bot installation, consent and permissions checked per server and channel; no invite treated as rights, no DMs, no user tokens; channel and message ids, author, reply thread, edits and deletions where observable, UTC publication and ingestion times, forward and message-link provenance, content hashed only; rate-limit and permission-denied handling; missing privileged intent reported by name; existing ingestion, resolver, claim extraction and narrative feed with no second schema; tests for permission revocation, intent missing, duplicate gateway events, edits, quote and link duplication, out-of-order events, checkpoint reset, no text and a no-source day; full fixture flow; live BLOCKED.
+
+C-20. (old Phase 20) Scheduled runs (daily discovery, watchlist refresh) run the social pass without breaking timing; state export includes only public-safe derived tables with repo-relative paths (D-123); SKILL.md updated.
 
 21. Full run on fixtures and one supervised live run; docs (README, ARCHITECTURE, SOURCES, SKILL) match the code; feature branch rebased or merged with current `main`; merge left for Elving to approve.

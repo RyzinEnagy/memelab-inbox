@@ -578,3 +578,39 @@ Farcaster data is public protocol data. The adapter reads `castsByFid`, `castsBy
 ## D-131 Neither new adapter is operational; no live call was made (ADOPTED, Phase 19)
 
 Reddit: BLOCKED on Reddit's approval and app credentials (D-127). Farcaster: BLOCKED on a choice of node or hosted hub (D-129). Proof runs on invented fixtures labelled `access_mode='fixture'`, `rights_basis='synthetic_fixture'`, spend `mode='fixture'`; `reddit-health` and `fc-health` count only `mode='live'` rows as live evidence and report `none` today. The shapes of Reddit's Listing objects were not re-read from Reddit's API reference in this phase; the first live run must confirm them (SOURCES_19.md).
+
+## D-132 Phase 20 slot taken by optional Prompt 20; scheduled-run integration and state export move to C-20 (ADOPTED, Phase 20, 2026-10-12)
+
+Elving supplied optional Prompt 20 ("Add compliant Discord community monitoring") after Phase 19. It takes the Phase 20 slot, the same way Prompt 19 took 19 (D-125). The old Phase 20 entry (scheduled runs run the social pass, public-safe state export, SKILL.md, and the repo-relative paths of D-123) is carried over as C-20 with its gate unchanged, and Phase 21 now depends on C-20. One adapter, `discord_bot.py`, with a REST route and a gateway route. No migration: the public schema stays at 12.
+
+## D-133 Discord is read only by a bot that the server installed with recorded consent; never a user account, never DMs (ADOPTED, Phase 20)
+
+Discord forbids automating user accounts ("self-bots") and its Developer Policy forbids mining or scraping. The adapter therefore needs a bot token (`DISCORD_BOT_TOKEN`), stops when `/users/@me` is not a bot, refuses config keys for user tokens or self-bots, and reads only servers whose config records `consent.basis` (`own_server` or `server_admin_installed_bot`) and a reference. An invite link in the config is refused: an invite lets a person join, it grants no collection rights. No DM endpoint exists in the code, the gateway session refuses DIRECT_MESSAGES intents, and gateway message events without a `guild_id` are dropped unread. Reading Discord through signed-in Chrome (D-009's preferred social route) is not proposed: it would be the self-bot route Discord forbids.
+
+## D-134 A Discord channel is public only when the server is open and @everyone can see the channel (ADOPTED, Phase 20)
+
+D-009 allows public content only. A Discord server is joined, so "public" is defined as: the config attests the server is `discoverable` or `open_invite`, and the documented permission computation gives @everyone VIEW_CHANNEL in that channel. Role-gated channels (holders-only, paid tiers) are refused even when the bot can read them. Elving can tighten this (for example, Discoverable servers only) by narrowing `SERVER_VISIBILITY`.
+
+## D-135 The message content intent is checked before any read and reported by name (ADOPTED, Phase 20)
+
+`GET /applications/@me` runs first; without GATEWAY_MESSAGE_CONTENT or GATEWAY_MESSAGE_CONTENT_LIMITED the run stops with `message_content_intent_missing` and the fix, and health reports `intent_missing`. `require_message_content: false` allows a metadata-only run (ids, times, authors, references), with a DEGRADED unit per channel saying text is unavailable. Gateway close 4014 is `privileged_intent_missing`. Reason: the prompt asks connectors to report a missing privileged intent clearly, and without the intent Discord returns empty content that would otherwise look like silent channels.
+
+## D-136 Discord maps onto inbound/3 with the existing reference names (ADOPTED, Phase 20)
+
+Provider id `<channel>_<message>` (channel needed for recheck, same form as Telegram). Reply = REPLY with `replied_to`. Forward = REPOST plus a `social_item_forwards` row, hashed on the forwarded words so the identical-text heuristic (D-046) sees the copy. A message that is only a message link = REPOST with `retweeted`; own words plus a link = QUOTE with `quoted`. DM links are ignored. Bots and webhooks get no author, so they never count as independent (D-042). System messages are dropped. The event id covers message, version, content hash and reference ids only, so reactions, embed unfurls and a referenced message that disappears make no new version, and REST and gateway sightings of one version dedupe.
+
+## D-137 Deleted Discord messages are purged at the next run; users can ask to be erased (ADOPTED; PROPOSED for server removal, Phase 20)
+
+Discord's Developer Terms 5(b) require deleting API data that is no longer necessary and giving users a way to ask for deletion. A deleted message is no longer needed, so every Discord ingest ends with the same purge Reddit uses (D-128), now shared as `api_common.purge_gone_items` and `erase_accounts`; Reddit's behaviour is unchanged except that `items_purged` now counts an item only when something was erased (a repeat purge reports 0 even when claim rows exist). `discord-purge --user <id>` erases a user. PROPOSED for Elving: when the bot is removed from a server, reads stop and stored data from that server is kept; the terms read do not require deleting it, but Elving may prefer to.
+
+## D-138 Discord rate limits and access errors (ADOPTED, Phase 20)
+
+Exhausted bucket: wait `Reset-After` if at most `max_wait_seconds` (5). 429: record `retry_after` on the channel; the next run waits. Global 429: stop the run. 401: stop the run. Stop after `max_invalid_requests_per_run` (10) 401/403/429 responses, far below Discord's 10,000 per 10 minutes. 403 (50001, 50013) and 404 (10003, 10004) mark the channel BLOCKED `access_denied`; absence is never read as deletion, and recheck runs only in channels currently readable.
+
+## D-139 REST polling is the live route; the gateway is proved on frames and has no live transport (ADOPTED, Phase 20)
+
+The REST route reads forward from a per-channel cursor (newest message id, moved only after commit) and rechecks stored messages for edits and deletions. The gateway route is a full protocol state machine (identify, resume, heartbeat, reconnect, invalid session, close codes, sequence dedupe) and an adapter that keeps permission state from GUILD_CREATE, CHANNEL_UPDATE, GUILD_ROLE_UPDATE and GUILD_DELETE; it is proved on recorded frames. No websocket client is shipped: the standard library has none, and a gateway client is a long-running process that a scheduled run does not host. Adding one is a later decision. The docs read do not say whether `after=` returns the messages right after the id; the first live run must confirm (DISCORD_20.md).
+
+## D-140 The Discord adapter is not operational; no live call was made (ADOPTED, Phase 20)
+
+BLOCKED on: a bot application and token, a server whose admin consents, and the Message Content Intent toggle. Proof runs on invented fixtures labelled `access_mode='fixture'`, `rights_basis='synthetic_fixture'`, spend `mode='fixture'`; `discord-health` counts only `mode='live'` rows and reports `none` today.

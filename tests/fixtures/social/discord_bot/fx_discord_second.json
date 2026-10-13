@@ -1,0 +1,603 @@
+{
+ "exchanges": [
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {},
+    "path": "/applications/@me"
+   },
+   "response": {
+    "body": {
+     "flags": 524288,
+     "id": "1191168914227200050",
+     "name": "memelab-research"
+    },
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {},
+    "path": "/users/@me"
+   },
+   "response": {
+    "body": {
+     "bot": true,
+     "id": "1191168914227200002",
+     "username": "memelab_research"
+    },
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {},
+    "path": "/guilds/1080278227353600001"
+   },
+   "response": {
+    "body": {
+     "features": [
+      "COMMUNITY"
+     ],
+     "id": "1080278227353600001",
+     "name": "Invented Example Community",
+     "owner_id": "926625772339200003",
+     "roles": [
+      {
+       "id": "1080278227353600001",
+       "name": "@everyone",
+       "permissions": "68608"
+      },
+      {
+       "id": "1191531302092800004",
+       "name": "memelab",
+       "permissions": "68608"
+      },
+      {
+       "id": "1091512251187200005",
+       "name": "holders",
+       "permissions": "0"
+      }
+     ]
+    },
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {},
+    "path": "/guilds/1080278227353600001/members/1191168914227200002"
+   },
+   "response": {
+    "body": {
+     "roles": [
+      "1191531302092800004"
+     ],
+     "user": {
+      "id": "1191168914227200002"
+     }
+    },
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {},
+    "path": "/channels/1080278479011840006"
+   },
+   "response": {
+    "body": {
+     "guild_id": "1080278227353600001",
+     "id": "1080278479011840006",
+     "name": "invented-alpha-chat",
+     "permission_overwrites": [],
+     "topic": "Invented channel topic",
+     "type": 0
+    },
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {
+     "after": "1558602527539200110",
+     "limit": 100
+    },
+    "path": "/channels/1080278479011840006/messages"
+   },
+   "response": {
+    "body": [
+     {
+      "attachments": [],
+      "author": {
+       "avatar": null,
+       "global_name": "Invented Display B",
+       "id": "805588225228800011",
+       "username": "example_poster_b"
+      },
+      "channel_id": "1080278479011840006",
+      "content": "Invented second-day text without an address",
+      "edited_timestamp": null,
+      "embeds": [],
+      "id": "1558856702361600211",
+      "mentions": [],
+      "pinned": false,
+      "timestamp": "2026-10-11T15:00:00+00:00",
+      "tts": false,
+      "type": 0
+     }
+    ],
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {},
+    "path": "/channels/1080278730670080007"
+   },
+   "response": {
+    "body": {
+     "guild_id": "1080278227353600001",
+     "id": "1080278730670080007",
+     "name": "invented-holders",
+     "permission_overwrites": [
+      {
+       "allow": "0",
+       "deny": "1024",
+       "id": "1080278227353600001",
+       "type": 0
+      },
+      {
+       "allow": "1024",
+       "deny": "0",
+       "id": "1091512251187200005",
+       "type": 0
+      },
+      {
+       "allow": "1024",
+       "deny": "0",
+       "id": "1191531302092800004",
+       "type": 0
+      }
+     ],
+     "type": 0
+    },
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {},
+    "path": "/channels/1080278982328320008"
+   },
+   "response": {
+    "body": {
+     "guild_id": "1080278227353600001",
+     "id": "1080278982328320008",
+     "name": "invented-announcements",
+     "permission_overwrites": [
+      {
+       "allow": "0",
+       "deny": "65536",
+       "id": "1191168914227200002",
+       "type": 1
+      }
+     ],
+     "type": 5
+    },
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {},
+    "path": "/channels/1080278479011840006/messages/1558571573575680101"
+   },
+   "response": {
+    "body": {
+     "code": 10008,
+     "message": "Unknown Message"
+    },
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 404
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {},
+    "path": "/channels/1080278479011840006/messages/1558573335183360102"
+   },
+   "response": {
+    "body": {
+     "attachments": [],
+     "author": {
+      "avatar": null,
+      "global_name": "Invented Display B",
+      "id": "805588225228800011",
+      "username": "example_poster_b"
+     },
+     "channel_id": "1080278479011840006",
+     "content": "Invented reply: agree, 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ is the one",
+     "edited_timestamp": null,
+     "embeds": [],
+     "id": "1558573335183360102",
+     "mentions": [],
+     "message_reference": {
+      "channel_id": "1080278479011840006",
+      "guild_id": "1080278227353600001",
+      "message_id": "1558571573575680101",
+      "type": 0
+     },
+     "pinned": false,
+     "referenced_message": null,
+     "timestamp": "2026-10-10T20:14:00+00:00",
+     "tts": false,
+     "type": 19
+    },
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {},
+    "path": "/channels/1080278479011840006/messages/1558575096791040103"
+   },
+   "response": {
+    "body": {
+     "attachments": [],
+     "author": {
+      "avatar": null,
+      "global_name": "Invented Display C",
+      "id": "815735085465600012",
+      "username": "example_poster_c"
+     },
+     "channel_id": "1080278479011840006",
+     "content": "Invented separate take, edited again: 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ still on watch",
+     "edited_timestamp": "2026-10-11T10:00:00+00:00",
+     "embeds": [],
+     "id": "1558575096791040103",
+     "mentions": [],
+     "pinned": false,
+     "timestamp": "2026-10-10T20:21:00+00:00",
+     "tts": false,
+     "type": 0
+    },
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {},
+    "path": "/channels/1080278479011840006/messages/1558576858398720104"
+   },
+   "response": {
+    "body": {
+     "attachments": [],
+     "author": {
+      "avatar": null,
+      "global_name": "Invented Display D",
+      "id": "826969109299200013",
+      "username": "example_poster_d"
+     },
+     "channel_id": "1080278479011840006",
+     "content": "",
+     "edited_timestamp": null,
+     "embeds": [],
+     "id": "1558576858398720104",
+     "mentions": [],
+     "message_reference": {
+      "channel_id": "1080278479011840006",
+      "guild_id": "1080278227353600001",
+      "message_id": "1558571573575680101",
+      "type": 1
+     },
+     "message_snapshots": [
+      {
+       "message": {
+        "attachments": [],
+        "content": "Invented fixture text: LABDOG contract 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ looks early to me",
+        "edited_timestamp": null,
+        "embeds": [],
+        "timestamp": "2026-10-10T20:07:00+00:00",
+        "type": 0
+       }
+      }
+     ],
+     "pinned": false,
+     "timestamp": "2026-10-10T20:28:00+00:00",
+     "tts": false,
+     "type": 0
+    },
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {},
+    "path": "/channels/1080278479011840006/messages/1558578620006400105"
+   },
+   "response": {
+    "body": {
+     "attachments": [],
+     "author": {
+      "avatar": null,
+      "global_name": "Invented Display E",
+      "id": "837840745267200014",
+      "username": "example_poster_e"
+     },
+     "channel_id": "1080278479011840006",
+     "content": "https://discord.com/channels/1080278227353600001/1080278479011840006/1558571573575680101",
+     "edited_timestamp": null,
+     "embeds": [
+      {
+       "description": "Invented embed preview",
+       "type": "rich"
+      }
+     ],
+     "id": "1558578620006400105",
+     "mentions": [],
+     "pinned": false,
+     "timestamp": "2026-10-10T20:35:00+00:00",
+     "tts": false,
+     "type": 0
+    },
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {},
+    "path": "/channels/1080278479011840006/messages/1558595481108480106"
+   },
+   "response": {
+    "body": {
+     "attachments": [],
+     "author": {
+      "avatar": null,
+      "global_name": "Invented Display F",
+      "id": "849074769100800015",
+      "username": "example_poster_f"
+     },
+     "channel_id": "1080278479011840006",
+     "content": "Invented own words about this one https://discord.com/channels/1080278227353600001/1080278479011840006/1558575096791040103 and a DM link https://discord.com/channels/@me/1080278479011840006/1558571573575680101",
+     "edited_timestamp": null,
+     "embeds": [],
+     "id": "1558595481108480106",
+     "mentions": [],
+     "pinned": false,
+     "timestamp": "2026-10-10T21:42:00+00:00",
+     "tts": false,
+     "type": 0
+    },
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {},
+    "path": "/channels/1080278479011840006/messages/1558597242716160107"
+   },
+   "response": {
+    "body": {
+     "attachments": [
+      {
+       "filename": "invented.png",
+       "id": "1558597242716160900",
+       "url": "https://cdn.discordapp.com/attachments/invented.png"
+      }
+     ],
+     "author": {
+      "avatar": null,
+      "global_name": "Invented Display A",
+      "id": "794354201395200010",
+      "username": "example_poster_a"
+     },
+     "channel_id": "1080278479011840006",
+     "content": "",
+     "edited_timestamp": null,
+     "embeds": [],
+     "id": "1558597242716160107",
+     "mentions": [],
+     "pinned": false,
+     "timestamp": "2026-10-10T21:49:00+00:00",
+     "tts": false,
+     "type": 0
+    },
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {},
+    "path": "/channels/1080278479011840006/messages/1558599004323840108"
+   },
+   "response": {
+    "body": {
+     "attachments": [],
+     "author": {
+      "bot": true,
+      "global_name": null,
+      "id": "1235017845964800030",
+      "username": "example_price_bot"
+     },
+     "channel_id": "1080278479011840006",
+     "content": "Invented bot price alert for 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ",
+     "edited_timestamp": null,
+     "embeds": [],
+     "id": "1558599004323840108",
+     "mentions": [],
+     "pinned": false,
+     "timestamp": "2026-10-10T21:56:00+00:00",
+     "tts": false,
+     "type": 0
+    },
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {},
+    "path": "/channels/1080278479011840006/messages/1558602527539200110"
+   },
+   "response": {
+    "body": {
+     "attachments": [],
+     "author": {
+      "avatar": null,
+      "global_name": "Invented Display C",
+      "id": "815735085465600012",
+      "username": "example_poster_c"
+     },
+     "channel_id": "1080278479011840006",
+     "content": "Invented webhook relay 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ",
+     "edited_timestamp": null,
+     "embeds": [],
+     "id": "1558602527539200110",
+     "mentions": [],
+     "pinned": false,
+     "timestamp": "2026-10-10T22:10:00+00:00",
+     "tts": false,
+     "type": 0,
+     "webhook_id": "1323802873036800040"
+    },
+    "headers": {
+     "X-RateLimit-Bucket": "fixturebucket01",
+     "X-RateLimit-Limit": "5",
+     "X-RateLimit-Remaining": "4",
+     "X-RateLimit-Reset-After": "1.0"
+    },
+    "status": 200
+   }
+  }
+ ],
+ "note": "invented server, users, ids and sentences shaped like the documented responses",
+ "schema": "memelab.discord_bot.fixture/1"
+}

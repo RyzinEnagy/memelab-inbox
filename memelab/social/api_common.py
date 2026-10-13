@@ -217,5 +217,65 @@ def extract_after_ingest(db_path: Path | str, sink: TextSink, *, now: float, bod
     return out
 
 
+# ---------- deletion compliance shared by the Reddit and Discord adapters ----------
+
+def purge_gone_items(con, platform: str, *, private_path=None) -> dict:
+    """Erase what the lab derived from items of one platform that have a DELETED or NOT_FOUND sighting. Ids and the
+    gone sighting stay (they say that something existed and is gone, nothing more). Per gone item: content hashes,
+    summaries, metrics and private refs on every observation; versions; claim spans, claim summaries, extraction outputs
+    and their hashes; private copies of the text; the link to its author. Narrative snapshots keep their dated counts.
+    Idempotent. The caller commits. Moved here from reddit_api.purge_deleted in Phase 20 (behaviour unchanged)."""
+    from . import private
+    out = {"items_purged": 0, "observations_cleared": 0, "claims_cleared": 0, "private_rows_deleted": 0}
+    gone = [r[0] for r in con.execute(
+        "SELECT DISTINCT i.item_key FROM social_items i JOIN social_observations o ON o.item_key=i.item_key "
+        "WHERE i.platform=? AND o.retrieval_status IN ('DELETED','NOT_FOUND')", (platform,))]
+    hashes = set()
+    for key in gone:
+        rows = con.execute("SELECT id, content_hash FROM social_observations WHERE item_key=? AND (content_hash IS NOT NULL "
+                           "OR summary IS NOT NULL OR metrics_json IS NOT NULL OR private_ref IS NOT NULL)", (key,)).fetchall()
+        hashes.update(r[1] for r in rows if r[1])
+        for ext in con.execute("SELECT content_hash FROM social_claim_extractions WHERE item_key=?", (key,)):
+            if ext[0] and len(ext[0]) == 64 and ext[0] != "0" * 64:
+                hashes.add(ext[0])
+        if rows:
+            out["observations_cleared"] += con.execute(
+                "UPDATE social_observations SET content_hash=NULL, summary=NULL, metrics_json=NULL, private_ref=NULL, "
+                "retained_content='NONE' WHERE item_key=?", (key,)).rowcount
+        con.execute("DELETE FROM social_item_versions WHERE item_key=?", (key,))
+        claim_ids = [r[0] for r in con.execute("SELECT id FROM social_claims WHERE item_key=?", (key,))]
+        spans = 0
+        for cid in claim_ids:
+            spans += con.execute("DELETE FROM social_claim_spans WHERE claim_id=?", (cid,)).rowcount
+        n = con.execute("UPDATE social_claims SET summary=NULL WHERE item_key=? AND summary IS NOT NULL", (key,)).rowcount
+        e = con.execute("UPDATE social_claim_extractions SET content_hash=?, output_json=NULL, output_sha=NULL, cache_key=NULL "
+                        "WHERE item_key=? AND (content_hash<>? OR output_json IS NOT NULL)", ("0" * 64, key, "0" * 64)).rowcount
+        out["claims_cleared"] += n + e
+        for tbl in ("social_items", "social_observations", "social_claims"):
+            con.execute(f"UPDATE {tbl} SET account_id=NULL WHERE item_key=? AND account_id IS NOT NULL", (key,))
+        if rows or e or n or spans:          # counted only when something was erased, so a repeat run reports 0
+            out["items_purged"] += 1
+    if hashes:
+        with private.connect(private_path) as pcon:
+            for h in hashes:
+                out["private_rows_deleted"] += pcon.execute("DELETE FROM private_content WHERE content_hash=?", (h,)).rowcount
+    return out
+
+
+def erase_accounts(con, targets: dict) -> int:
+    """targets: {account_id: provider_user_id}. Deletes each account row and its handle history and unlinks it from
+    items, observations, claims and reference author ids. The caller commits."""
+    n = 0
+    for aid, puid in sorted(targets.items()):
+        for tbl in ("social_items", "social_observations", "social_claims"):
+            con.execute(f"UPDATE {tbl} SET account_id=NULL WHERE account_id=?", (aid,))
+        con.execute("DELETE FROM social_account_handles WHERE account_id=?", (aid,))
+        con.execute("DELETE FROM social_accounts WHERE account_id=?", (aid,))
+        if puid:
+            con.execute("UPDATE social_item_refs SET referenced_author_id=NULL WHERE referenced_author_id=?", (puid,))
+        n += 1
+    return n
+
+
 def now_clock(now: float | None) -> Callable[[], float]:
     return (lambda: now) if now is not None else time.time

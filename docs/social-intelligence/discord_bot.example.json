@@ -1,0 +1,23 @@
+{
+ "schema": "memelab.discord_bot.config/1",
+ "note": "Example only. Copy to data/private/discord_bot.json (gitignored). The bot token never goes here: export DISCORD_BOT_TOKEN. Fill consent only after the server's admin installed the bot and agreed in writing; an invite link is never consent. Replace the placeholder ids with the real server and channel ids.",
+ "bot_label": "memelab-research",
+ "require_message_content": true,
+ "guilds": [
+  {
+   "guild_id": "100000000000000001",
+   "label": "examplecommunity",
+   "server_visibility": null,
+   "consent": {"basis": null, "reference": null, "granted_at": null},
+   "channels": [{"channel_id": "100000000000000002", "label": "general"}]
+  }
+ ],
+ "page_size": 100,
+ "backfill_max_pages": 1,
+ "max_pages_per_channel": 3,
+ "max_requests_per_run": 20,
+ "max_invalid_requests_per_run": 10,
+ "max_wait_seconds": 5,
+ "recheck": {"enabled": true, "max_items": 25},
+ "gateway_max_events": 500
+}

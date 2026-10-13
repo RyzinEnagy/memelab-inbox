@@ -43,9 +43,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable, Iterator
 
-from . import private, store
-from .api_common import (FixtureMiss, FixtureTransport as _FT, HttpResponse, RequestGuard, TextSink, connect, get_cursor, iso,
-                         save_cursor, scrub, units_committed)
+from . import store
+from .api_common import (FixtureMiss, FixtureTransport as _FT, HttpResponse, RequestGuard, TextSink, connect, erase_accounts,
+                         get_cursor, iso, purge_gone_items, save_cursor, scrub, units_committed)
 from .ingest import INBOUND_SCHEMA_V3, Budget, SourceUnit, TransientError, canonical_sha, log_event, redact, with_retries
 
 PLATFORM = "reddit"
@@ -639,39 +639,8 @@ def purge_deleted(db_path: Path | str, *, now: float, deleted_accounts: list[str
     account is named by its t2_ id, or by an item whose author now shows as [deleted] while the content stays (Reddit
     drops author_fullname then, so the account is the one the lab stored for that item). Idempotent."""
     con = connect(db_path)
-    out = {"items_purged": 0, "observations_cleared": 0, "claims_cleared": 0, "private_rows_deleted": 0, "accounts_erased": 0}
     try:
-        gone = [r[0] for r in con.execute(
-            "SELECT DISTINCT i.item_key FROM social_items i JOIN social_observations o ON o.item_key=i.item_key "
-            "WHERE i.platform='reddit' AND o.retrieval_status IN ('DELETED','NOT_FOUND')")]
-        hashes = set()
-        for key in gone:
-            rows = con.execute("SELECT id, content_hash FROM social_observations WHERE item_key=? AND (content_hash IS NOT NULL "
-                               "OR summary IS NOT NULL OR metrics_json IS NOT NULL OR private_ref IS NOT NULL)", (key,)).fetchall()
-            hashes.update(r["content_hash"] for r in rows if r["content_hash"])
-            for ext in con.execute("SELECT content_hash FROM social_claim_extractions WHERE item_key=?", (key,)):
-                if ext[0] and len(ext[0]) == 64 and ext[0] != "0" * 64:
-                    hashes.add(ext[0])
-            if rows:
-                out["observations_cleared"] += con.execute(
-                    "UPDATE social_observations SET content_hash=NULL, summary=NULL, metrics_json=NULL, private_ref=NULL, "
-                    "retained_content='NONE' WHERE item_key=?", (key,)).rowcount
-            con.execute("DELETE FROM social_item_versions WHERE item_key=?", (key,))
-            claim_ids = [r[0] for r in con.execute("SELECT id FROM social_claims WHERE item_key=?", (key,))]
-            for cid in claim_ids:
-                con.execute("DELETE FROM social_claim_spans WHERE claim_id=?", (cid,))
-            n = con.execute("UPDATE social_claims SET summary=NULL WHERE item_key=? AND summary IS NOT NULL", (key,)).rowcount
-            e = con.execute("UPDATE social_claim_extractions SET content_hash=?, output_json=NULL, output_sha=NULL, cache_key=NULL "
-                            "WHERE item_key=? AND (content_hash<>? OR output_json IS NOT NULL)", ("0" * 64, key, "0" * 64)).rowcount
-            out["claims_cleared"] += n + e
-            for tbl in ("social_items", "social_observations", "social_claims"):
-                con.execute(f"UPDATE {tbl} SET account_id=NULL WHERE item_key=? AND account_id IS NOT NULL", (key,))
-            if rows or e or claim_ids:
-                out["items_purged"] += 1
-        if hashes:
-            with private.connect(private_path) as pcon:
-                for h in hashes:
-                    out["private_rows_deleted"] += pcon.execute("DELETE FROM private_content WHERE content_hash=?", (h,)).rowcount
+        out = purge_gone_items(con, PLATFORM, private_path=private_path)
         targets = {}
         for t2 in set(deleted_accounts):
             acct = con.execute("SELECT account_id FROM social_accounts WHERE platform='reddit' AND provider_user_id=?", (t2,)).fetchone()
@@ -682,14 +651,7 @@ def purge_deleted(db_path: Path | str, *, now: float, deleted_accounts: list[str
                               "WHERE i.item_key=?", (store.item_key_for(PLATFORM, name, None),)).fetchone()
             if row is not None:
                 targets[row[0]] = row[1]
-        for aid, t2 in sorted(targets.items()):
-            for tbl in ("social_items", "social_observations", "social_claims"):
-                con.execute(f"UPDATE {tbl} SET account_id=NULL WHERE account_id=?", (aid,))
-            con.execute("DELETE FROM social_account_handles WHERE account_id=?", (aid,))
-            con.execute("DELETE FROM social_accounts WHERE account_id=?", (aid,))
-            if t2:
-                con.execute("UPDATE social_item_refs SET referenced_author_id=NULL WHERE referenced_author_id=?", (t2,))
-            out["accounts_erased"] += 1
+        out["accounts_erased"] = erase_accounts(con, targets)
         con.commit()
     finally:
         con.close()

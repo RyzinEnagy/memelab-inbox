@@ -93,6 +93,8 @@ To remove one source's rows without dropping the schema there is no command yet;
 
 Reddit: Reddit's terms require removing deleted posts, comments and accounts. Every `social reddit-ingest` ends with a purge (`deletion_purge` in its output). To run it on its own: `python -m memelab social reddit-purge`, and for an account you know was deleted: `python -m memelab social reddit-purge --account t2_ID`. `social reddit-health` shows `deletion_purge_pending_items`; it should be 0 after every run. Details in SOURCES_19.md and D-128.
 
+Discord: deleted messages are purged at the end of every `social discord-ingest` and `social discord-gateway` (`deletion_purge` in the output); `python -m memelab social discord-purge` runs it on its own. When someone asks to have their data removed: `python -m memelab social discord-purge --user USER_ID`. To make one channel read its newest page again (for example after a long pause): `python -m memelab social discord-reset --channel CHANNEL_ID`; already stored messages are not duplicated. Details in DISCORD_20.md and D-137.
+
 If a credential is ever pasted into a chat or a file, rotate it at the provider. The Helius key was pasted into a chat once (see HANDOFF.md); rotate it if that chat is shared.
 
 ## Troubleshooting
@@ -108,6 +110,10 @@ If a credential is ever pasted into a chat or a file, rotate it at the provider.
 | `x-ingest` or `tg-ingest` exits 1 with `NOT_RUN credentials_missing` | no token in the environment | expected; no network call was made |
 | `reddit-ingest` exits 1 with `NOT_RUN approval_missing` or `credentials_missing` | Reddit has not approved access, or the client id and secret are not exported | expected; see SOURCES_19.md "Setup" |
 | `fc-ingest` exits 1 with `NOT_RUN not_configured` | no `hub.base_url` in `data/private/farcaster_hub.json` | expected until a node or hub is chosen |
+| `discord-ingest` exits 1 with `NOT_RUN not_configured`, `consent_missing` or `credentials_missing` | no `data/private/discord_bot.json`, no recorded server consent, or `DISCORD_BOT_TOKEN` not exported | expected; see DISCORD_20.md "Setup" |
+| Discord unit `message_content_intent_missing` or `discord-health` says `intent_missing` | Message Content Intent is off on the Bot page | turn it on in the Developer Portal; nothing was read |
+| Discord channel BLOCKED `access_denied` or `not_public` | the bot lost View Channel or Read Message History, was removed, or the channel is hidden from @everyone | expected; role-gated channels are never read (D-134) |
+| `discord-gateway` exits 1 with `gateway_transport_not_shipped` | no live gateway client in the repo (D-139) | use `discord-ingest` |
 | Reddit or Farcaster connector `RATE_LIMITED` | 429 or Reddit's remaining count fell below `min_remaining` | the next run waits for the recorded reset time on its own |
 | replay verdict `INSUFFICIENT_DATA` | no stored posts or wallet events, too little price history | collect first; the replay cannot invent history |
 | `social guard` fails | a tracked file holds a blocked class or a private file is tracked | the output names the file and rule (never the value); remove it before committing |
@@ -118,6 +124,7 @@ If a credential is ever pasted into a chat or a file, rotate it at the provider.
 - Live X reads through the API (needs app, token, budget) or through signed-in Chrome (D-025 open; X's guidelines say browser automation leads to suspension).
 - Telegram channels whose admins have not added the bot, Telegram through Chrome, private groups (D-028 open).
 - Live Reddit reads (needs Reddit's approval and credentials) and live Farcaster reads (needs a node or a hosted hub); comment trees and Farcaster replies under channel casts are not walked.
+- Live Discord reads (needs a bot, a consenting server and Message Content Intent), a live Discord gateway connection, Discord threads and forums, Discord DMs (never).
 - Model-based claim analysis (no model configured).
 - Purging X observations of deleted posts (C-3).
 - Manual capture onto the inbound schema (C-4), YouTube RSS and other sources (C-8).

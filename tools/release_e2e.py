@@ -33,7 +33,7 @@ import time
 from pathlib import Path
 
 SECRET_VARS = ("HELIUS_API_KEY", "X_BEARER_TOKEN", "TELEGRAM_BOT_TOKEN", "TELEGRAM_WEBHOOK_SECRET", "ANTHROPIC_API_KEY",
-               "REDDIT_CLIENT_ID", "REDDIT_CLIENT_SECRET", "FARCASTER_HUB_API_KEY",
+               "REDDIT_CLIENT_ID", "REDDIT_CLIENT_SECRET", "FARCASTER_HUB_API_KEY", "DISCORD_BOT_TOKEN",
                "MEMELAB_ALERT_TELEGRAM_TOKEN", "MEMELAB_ALERT_TELEGRAM_CHAT_ID", "MEMELAB_ALERT_SMTP_PASSWORD",
                "GH_TOKEN", "GITHUB_TOKEN")
 
@@ -118,6 +118,15 @@ STAGES: list[tuple[str, str, str, tuple[int, ...]]] = [
     ("19", "not configured: Farcaster health", "{py} -m memelab social fc-health --db {db}", (1,)),
     ("19", "not configured: live Farcaster ingest refuses before any call", "{py} -m memelab social fc-ingest --db {db}", (1,)),
     ("19", "every social connector: status, cost, next step", "{py} -m memelab social sources --db {db}", (0,)),
+    ("20", "Discord fixture: consented channel over REST, role-gated and history-less channels refused, extract claims in memory", "{py} -m memelab social discord-ingest --config " + FIX + "/discord_bot/fx_discord_config.json --fixture " + FIX + "/discord_bot/fx_discord_main.json --extract --bodies " + FIX + "/resolve/fx_providers.json --db {tmp}/discord.sqlite --now 1791676800", (0,)),
+    ("20", "Discord fixture: narrative snapshot and brief", "{py} -m memelab social narrative-snapshot --day 2026-10-10 --tz UTC --db {tmp}/discord.sqlite --now 1791680400 && {py} -m memelab social brief --db {tmp}/discord.sqlite --as-of 2026-10-11T01:00:00+00:00 --tz UTC --include-fixtures", (0,)),
+    ("20", "Discord fixture: second run (cursor, recheck, edit, deletion, purge)", "{py} -m memelab social discord-ingest --config " + FIX + "/discord_bot/fx_discord_config.json --fixture " + FIX + "/discord_bot/fx_discord_second.json --db {tmp}/discord.sqlite --now 1791763200", (0,)),
+    ("20", "Discord fixture: gateway pass (duplicates, resume, out-of-order, delete, permission revocation)", "{py} -m memelab social discord-gateway --config " + FIX + "/discord_bot/fx_discord_config.json --fixture " + FIX + "/discord_bot/fx_discord_gateway.json --extract --bodies " + FIX + "/resolve/fx_providers.json --db {tmp}/discord.sqlite --now 1791849600", (0,)),
+    ("20", "Discord fixture: gateway closes 4014, privileged intent missing is reported", "{py} -m memelab social discord-gateway --config " + FIX + "/discord_bot/fx_discord_config.json --fixture " + FIX + "/discord_bot/fx_discord_gateway_4014.json --db {tmp}/discord_4014.sqlite --now 1791849600", (1,)),
+    ("20", "Discord fixture: reset one channel checkpoint", "{py} -m memelab social discord-reset --channel 1080278479011840006 --db {tmp}/discord.sqlite", (0,)),
+    ("20", "not configured: Discord health", "{py} -m memelab social discord-health --db {db}", (1,)),
+    ("20", "not configured: live Discord ingest refuses before any call", "{py} -m memelab social discord-ingest --db {db}", (1,)),
+    ("20", "no live gateway transport: Discord gateway refuses before any call", "{py} -m memelab social discord-gateway --db {db}", (1,)),
 ]
 
 

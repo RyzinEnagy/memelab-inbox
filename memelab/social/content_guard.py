@@ -50,6 +50,8 @@ ALLOW = [
      "invented PROTECTED item (hash of an invented sentence) the ingester must quarantine as NOT_PUBLIC"),
     ("tests/fixtures/social/registry/leaderboard_fresh.json", "rows[6].bio",
      "invented placeholder the registry importer must reject as BLOCKED_CONTENT_KEY (Phase 08)"),
+    ("tests/fixtures/social/discord_bot/fx_discord_gateway.json", "connections[0].frames[2].d.members",
+     "invented GUILD_CREATE member entry for the bot itself (its role ids), needed to compute its channel permissions (Phase 20)"),
     ("tests/fixtures/social/roundtrip_01.json", "observations[*].text",
      "invented sentences used to prove the store hashes text and never writes it (Phase 01)"),
 ]

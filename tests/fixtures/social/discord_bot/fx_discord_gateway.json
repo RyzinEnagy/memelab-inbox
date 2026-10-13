@@ -1,0 +1,434 @@
+{
+ "connections": [
+  {
+   "close": 4000,
+   "frames": [
+    {
+     "d": {
+      "heartbeat_interval": 41250
+     },
+     "op": 10
+    },
+    {
+     "d": {
+      "guilds": [
+       {
+        "id": "1080278227353600001",
+        "unavailable": true
+       }
+      ],
+      "resume_gateway_url": "wss://gateway.invalid",
+      "session_id": "fixture-session-not-secret",
+      "user": {
+       "bot": true,
+       "id": "1191168914227200002",
+       "username": "memelab_research"
+      },
+      "v": 10
+     },
+     "op": 0,
+     "s": 1,
+     "t": "READY"
+    },
+    {
+     "d": {
+      "channels": [
+       {
+        "guild_id": "1080278227353600001",
+        "id": "1080278479011840006",
+        "name": "invented-alpha-chat",
+        "permission_overwrites": [],
+        "topic": "Invented channel topic",
+        "type": 0
+       },
+       {
+        "guild_id": "1080278227353600001",
+        "id": "1080278730670080007",
+        "name": "invented-holders",
+        "permission_overwrites": [
+         {
+          "allow": "0",
+          "deny": "1024",
+          "id": "1080278227353600001",
+          "type": 0
+         },
+         {
+          "allow": "1024",
+          "deny": "0",
+          "id": "1091512251187200005",
+          "type": 0
+         },
+         {
+          "allow": "1024",
+          "deny": "0",
+          "id": "1191531302092800004",
+          "type": 0
+         }
+        ],
+        "type": 0
+       },
+       {
+        "guild_id": "1080278227353600001",
+        "id": "1080278982328320008",
+        "name": "invented-announcements",
+        "permission_overwrites": [
+         {
+          "allow": "0",
+          "deny": "65536",
+          "id": "1191168914227200002",
+          "type": 1
+         }
+        ],
+        "type": 5
+       }
+      ],
+      "id": "1080278227353600001",
+      "members": [
+       {
+        "roles": [
+         "1191531302092800004"
+        ],
+        "user": {
+         "id": "1191168914227200002"
+        }
+       }
+      ],
+      "owner_id": "926625772339200003",
+      "roles": [
+       {
+        "id": "1080278227353600001",
+        "name": "@everyone",
+        "permissions": "68608"
+       },
+       {
+        "id": "1191531302092800004",
+        "name": "memelab",
+        "permissions": "68608"
+       },
+       {
+        "id": "1091512251187200005",
+        "name": "holders",
+        "permissions": "0"
+       }
+      ],
+      "unavailable": false
+     },
+     "op": 0,
+     "s": 2,
+     "t": "GUILD_CREATE"
+    },
+    {
+     "d": {
+      "attachments": [],
+      "author": {
+       "avatar": null,
+       "global_name": "Invented Display A",
+       "id": "794354201395200010",
+       "username": "example_poster_a"
+      },
+      "channel_id": "1080278479011840006",
+      "content": "Invented gateway text: 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ is moving",
+      "edited_timestamp": null,
+      "embeds": [],
+      "guild_id": "1080278227353600001",
+      "id": "1559309687193600301",
+      "member": {
+       "roles": []
+      },
+      "mentions": [],
+      "pinned": false,
+      "timestamp": "2026-10-12T21:00:00+00:00",
+      "tts": false,
+      "type": 0
+     },
+     "op": 0,
+     "s": 3,
+     "t": "MESSAGE_CREATE"
+    },
+    {
+     "d": {
+      "attachments": [],
+      "author": {
+       "avatar": null,
+       "global_name": "Invented Display A",
+       "id": "794354201395200010",
+       "username": "example_poster_a"
+      },
+      "channel_id": "1080278479011840006",
+      "content": "Invented gateway text: 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ is moving",
+      "edited_timestamp": null,
+      "embeds": [],
+      "guild_id": "1080278227353600001",
+      "id": "1559309687193600301",
+      "member": {
+       "roles": []
+      },
+      "mentions": [],
+      "pinned": false,
+      "timestamp": "2026-10-12T21:00:00+00:00",
+      "tts": false,
+      "type": 0
+     },
+     "op": 0,
+     "s": 3,
+     "t": "MESSAGE_CREATE"
+    },
+    {
+     "d": {
+      "attachments": [],
+      "author": {
+       "avatar": null,
+       "global_name": "Invented Display B",
+       "id": "805588225228800011",
+       "username": "example_poster_b"
+      },
+      "channel_id": "1080278730670080007",
+      "content": "Invented holders-only text 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ",
+      "edited_timestamp": null,
+      "embeds": [],
+      "guild_id": "1080278227353600001",
+      "id": "1559329819852800399",
+      "member": {
+       "roles": []
+      },
+      "mentions": [],
+      "pinned": false,
+      "timestamp": "2026-10-12T22:20:00+00:00",
+      "tts": false,
+      "type": 0
+     },
+     "op": 0,
+     "s": 5,
+     "t": "MESSAGE_CREATE"
+    },
+    {
+     "d": {
+      "attachments": [],
+      "author": {
+       "avatar": null,
+       "global_name": "Invented Display C",
+       "id": "815735085465600012",
+       "username": "example_poster_c"
+      },
+      "channel_id": "1080278479011840006",
+      "content": "Invented gateway take on 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ, edited",
+      "edited_timestamp": "2026-10-12T22:10:00+00:00",
+      "embeds": [],
+      "guild_id": "1080278227353600001",
+      "id": "1559324786688000302",
+      "member": {
+       "roles": []
+      },
+      "mentions": [],
+      "pinned": false,
+      "timestamp": "2026-10-12T22:00:00+00:00",
+      "tts": false,
+      "type": 0
+     },
+     "op": 0,
+     "s": 4,
+     "t": "MESSAGE_UPDATE"
+    },
+    {
+     "d": null,
+     "op": 1
+    },
+    {
+     "d": {
+      "author": {
+       "avatar": null,
+       "global_name": "Invented Display D",
+       "id": "826969109299200013",
+       "username": "example_poster_d"
+      },
+      "channel_id": "1335036896870400060",
+      "content": "Invented direct message",
+      "id": "1559331078144000398",
+      "timestamp": "2026-10-12T22:25:00+00:00",
+      "type": 0
+     },
+     "op": 0,
+     "s": 6,
+     "t": "MESSAGE_CREATE"
+    }
+   ]
+  },
+  {
+   "close": 1000,
+   "frames": [
+    {
+     "d": {
+      "heartbeat_interval": 41250
+     },
+     "op": 10
+    },
+    {
+     "d": {},
+     "op": 0,
+     "s": 7,
+     "t": "RESUMED"
+    },
+    {
+     "d": {
+      "attachments": [],
+      "author": {
+       "avatar": null,
+       "global_name": "Invented Display C",
+       "id": "815735085465600012",
+       "username": "example_poster_c"
+      },
+      "channel_id": "1080278479011840006",
+      "content": "Invented gateway take on 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ, edited",
+      "edited_timestamp": "2026-10-12T22:10:00+00:00",
+      "embeds": [],
+      "guild_id": "1080278227353600001",
+      "id": "1559324786688000302",
+      "member": {
+       "roles": []
+      },
+      "mentions": [],
+      "pinned": false,
+      "timestamp": "2026-10-12T22:00:00+00:00",
+      "tts": false,
+      "type": 0
+     },
+     "op": 0,
+     "s": 4,
+     "t": "MESSAGE_UPDATE"
+    },
+    {
+     "d": {
+      "attachments": [],
+      "author": {
+       "avatar": null,
+       "global_name": "Invented Display C",
+       "id": "815735085465600012",
+       "username": "example_poster_c"
+      },
+      "channel_id": "1080278479011840006",
+      "content": "Invented gateway take on 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ",
+      "edited_timestamp": null,
+      "embeds": [],
+      "guild_id": "1080278227353600001",
+      "id": "1559324786688000302",
+      "member": {
+       "roles": []
+      },
+      "mentions": [],
+      "pinned": false,
+      "timestamp": "2026-10-12T22:00:00+00:00",
+      "tts": false,
+      "type": 0
+     },
+     "op": 0,
+     "s": 8,
+     "t": "MESSAGE_CREATE"
+    },
+    {
+     "d": {
+      "channel_id": "1080278479011840006",
+      "guild_id": "1080278227353600001",
+      "id": "1559339886182400303"
+     },
+     "op": 0,
+     "s": 9,
+     "t": "MESSAGE_DELETE"
+    },
+    {
+     "d": {
+      "attachments": [],
+      "author": {
+       "avatar": null,
+       "global_name": "Invented Display F",
+       "id": "849074769100800015",
+       "username": "example_poster_f"
+      },
+      "channel_id": "1080278479011840006",
+      "content": "Invented message that is deleted later 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ",
+      "edited_timestamp": null,
+      "embeds": [],
+      "guild_id": "1080278227353600001",
+      "id": "1559339886182400303",
+      "member": {
+       "roles": []
+      },
+      "mentions": [],
+      "pinned": false,
+      "timestamp": "2026-10-12T23:00:00+00:00",
+      "tts": false,
+      "type": 0
+     },
+     "op": 0,
+     "s": 10,
+     "t": "MESSAGE_CREATE"
+    },
+    {
+     "d": {
+      "channel_id": "1080278479011840006",
+      "embeds": [
+       {
+        "type": "link"
+       }
+      ],
+      "guild_id": "1080278227353600001",
+      "id": "1559309687193600301"
+     },
+     "op": 0,
+     "s": 11,
+     "t": "MESSAGE_UPDATE"
+    },
+    {
+     "d": {
+      "guild_id": "1080278227353600001",
+      "id": "1080278479011840006",
+      "name": "invented-alpha-chat",
+      "permission_overwrites": [
+       {
+        "allow": "0",
+        "deny": "1024",
+        "id": "1191531302092800004",
+        "type": 0
+       }
+      ],
+      "topic": "Invented channel topic",
+      "type": 0
+     },
+     "op": 0,
+     "s": 12,
+     "t": "CHANNEL_UPDATE"
+    },
+    {
+     "d": {
+      "attachments": [],
+      "author": {
+       "avatar": null,
+       "global_name": "Invented Display A",
+       "id": "794354201395200010",
+       "username": "example_poster_a"
+      },
+      "channel_id": "1080278479011840006",
+      "content": "Invented after revocation 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ",
+      "edited_timestamp": null,
+      "embeds": [],
+      "guild_id": "1080278227353600001",
+      "id": "1559344919347200397",
+      "member": {
+       "roles": []
+      },
+      "mentions": [],
+      "pinned": false,
+      "timestamp": "2026-10-12T23:20:00+00:00",
+      "tts": false,
+      "type": 0
+     },
+     "op": 0,
+     "s": 13,
+     "t": "MESSAGE_CREATE"
+    }
+   ]
+  }
+ ],
+ "note": "invented frames shaped like the documented gateway payloads",
+ "recorded_at": "2026-10-12T23:30:00Z",
+ "schema": "memelab.discord_gateway.fixture/1"
+}
