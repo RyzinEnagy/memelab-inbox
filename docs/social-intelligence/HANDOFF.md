@@ -1,3 +1,5 @@
+> **M00 evidence correction, 2026-10-13:** original architecture and quantitative-validity audit reports and their two historical findings snapshots recovered and SHA-256 verified. `audits/social-intelligence/FINDINGS.md` now enumerates AUD-001–033; crosswalk 67 AUD/ARCH/ADV/OPS IDs. Required audit sources 8/8, but **M00 BLOCKED until independent review, source/probe reconciliation and acceptance**. M01 not authorized; this supersedes the earlier 6/8 recovery status below. See `audits/social-intelligence/M00_RECOVERY_REPORT.md`.
+
 # CURRENT REMEDIATION HANDOFF — M00 (2026-10-13)
 
 **Authoritative current package:** M00 / R-00 **PARTIAL RECOVERY — BLOCKED; INDEPENDENT VERIFICATION PENDING**. The historical Phase 18 implementation handoff appears below for provenance only. **No new application implementation package is authorized.**
