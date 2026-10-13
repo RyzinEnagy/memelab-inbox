@@ -568,3 +568,8 @@ Implement a no-network SHA-256 audit input check and negative tests. `tools/chec
 ## D-M00-004 Preserve non-deterministic QA failures as an open investigation (ADOPTED, 2026-10-13)
 
 A one-process full pytest run was terminated with exit 137 around 70%. A bounded combined run stopped after two failures: the known catalyst assertion and social ingestion log-content test (2 failed, 295 passed); the latter passes alone. No tests were skipped, assertions weakened or implementation modified. This creates a new **potential test-order/environment reliability risk** requiring independent reproduction; M00 cannot certify the full suite.
+
+
+## D-M00-005 Earlier project conversations locate missing originals but do not supply report bytes (ADOPTED, 2026-10-13)
+
+Prior project conversation output explicitly linked `02_ARCHITECTURE_AUDIT.md` and `03_RESEARCH_VALIDITY.md` and sequential versions of `FINDINGS.md`. Phase 02 added AUD-018–023 and Phase 03 added AUD-024–033, which are missing from the published consolidated finding register. Locators are cataloged in `audits/social-intelligence/M00_PRIOR_CHAT_LOCATORS.md`. Original titles/link strings are valid recovery leads, not proof of report contents. Add these IDs to an **unverified** crosswalk partition; do not create synthetic report files, assign invented severities, or advance M01 until the originals are recovered and independently reviewed. The next reviewer should retrieve the original chat attachments or their original archives.
