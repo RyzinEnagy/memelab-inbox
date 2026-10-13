@@ -2,6 +2,8 @@
 
 **Recorded:** 2026-10-13. **Authority:** metadata and historical assistant-output summaries retrieved from conversations in the **Memecoin Investing Lab** project. **Evidence level:** secondary conversation evidence, **NOT** the original report bytes or test logs. Do not upload these notes as substitutes for missing primary reports.
 
+> **Recovery update (2026-10-13):** The Phase 02 and Phase 03 reports and both phase-specific FINDINGS.md snapshots described below **have now been recovered as original user-upload bytes and SHA-256 verified**. See `recovered/02_ARCHITECTURE_AUDIT.md`, `recovered/03_RESEARCH_VALIDITY.md`, `recovered/phase02_FINDINGS.md`, `recovered/phase03_FINDINGS.md` and the manifest. The original 'not recovered' cells in this document record the earlier investigation state, not the current status. Missing probe/log archives and independent reviewer remain pending.
+
 ## Audit artifacts generated in other project chats
 
 | Original phase | Approximate prior message time | Expected original deliverables | Historical outcome | Current retrieval status |

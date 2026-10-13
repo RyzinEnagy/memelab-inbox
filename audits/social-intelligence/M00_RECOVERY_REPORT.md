@@ -1,42 +1,45 @@
-# Remediation M00 — recovery record
+# Remediation M00 — evidence recovery and finding reconciliation
 
-**Package:** M00 / R-00 Restore audit authority. **Status:** PARTIAL RECOVERY — BLOCKED (verification pending). **Date:** 2026-10-13. **Pinned application ref:** `698f73b854567ce60b56ce275b5ab6822a9d5f60`. **Audit base:** `b4c4216b9391227be5fdfe7cfe20b60e32d9e8f6`.
+**Scope:** M00 / R-00 Restore audit authority; evidence-only. **Current state:** **8/8 PRIMARY AUDIT INPUTS RECOVERED, NOT ACCEPTED (INDEPENDENT VERIFICATION PENDING)**. **Pinned application baseline:** `698f73b854567ce60b56ce275b5ab6822a9d5f60`. **Audit publication ancestor:** `b4c4216b9391227be5fdfe7cfe20b60e32d9e8f6`. **Date:** 2026-10-13.
 
-## Original defect and impact
+## What changed in this update
 
-Seven of the eight audit input records cited by the roadmap were not included in the published audit branch. That broke reproducibility and prevented an independent engineer from tracing findings back to the underlying reports, tests and requirements. No patch to the memecoin engine can satisfy this documentation/evidence defect. The roadmap makes recovery the prerequisite for implementation package M01.
+- Original Phase 02 and Phase 03 audit Markdown recovered from user's prior chat attachments and committed byte-for-byte as `recovered/02_ARCHITECTURE_AUDIT.md` and `recovered/03_RESEARCH_VALIDITY.md` (SHA-256 in `EVIDENCE_MANIFEST.json`). Both match the uploaded original hashes exactly.
+- Original sequential finding registers, `recovered/phase02_FINDINGS.md` and `recovered/phase03_FINDINGS.md`, also restored byte-for-byte and individually SHA-256 tracked. These historical snapshots have *not* been edited or silently overwritten. The Phase 03 note that the Phase 02 report was missing describes the author's **earlier session**, not the current recovered archive.
+- Full eight-source manifest integrity now clean: **8/8**; previous **6/8** was a truthful earlier snapshot, preserved in `recovered/M00_RECOVERY_REPORT_PRE_ATTACHMENTS.md` and commit history.
+- Canonical `FINDINGS.md` reconciled conservatively to **AUD-001–033**: six new Phase 02 findings and ten new Phase 03 findings, with detailed source-authored text appended and preserved original Phase 06 strategic entries. **AUD-032 confirms AUD-002**; these are cross-references, not two independently established incidents.
+- Rebuilt `EVIDENCE_CROSSWALK.md` with **67 distinct ID anchors: 33 AUD + 15 ARCH + 9 ADV + 10 OPS**. Distinguishes primary source headings from indexed Phase 04/05 reports and secondary-only OPS numbering. Source line anchors and document-scope evidence level are explicit. No source-authored severity was upgraded, no finding was closed.
+- Extended `tools/check_audit_evidence.py` to check the two immutable historical snapshots and complete canonical finding inventory. Existing/new negative tests exercise tampering, missing files, duplicate-ID coverage and still-pending review.
 
-## What was recovered
+## Remediation priorities updated by original quantitative audit
 
-Five original-source titles were located in the user's ChatGPT Library and copied into `recovered/`: `00_BASELINE.md`, `REQUIREMENTS_MATRIX.md`, `01_FUNCTIONAL_AUDIT.md`, `04_ADVERSARIAL_AUDIT.md`, and `05_OPERATIONS_AND_UX.md`. Together with the already tracked `06_STRATEGIC_IMPROVEMENTS.md`, this accounts for **six of eight required inputs**. The first three were accessible as raw backing files and **their byte-for-byte SHA-256 was verified against the original Library backing** after preserving the final newline. Phase 04 and 05 were accessible as indexed text extracts and their exact original byte identity remains unconfirmed. The committed copies are checksum-pinned in `EVIDENCE_MANIFEST.json`.
+**P0 historical causal integrity (R-01):** In addition to AUD-001/002/015/017, original Phase 03 adds **AUD-024 (reproduced intrabar alpha fill timing)** and **AUD-025 (reproduced future wallet USD mark)**, plus AUD-032 (reconfirms 002) and AUD-033 (code-confirmed possible post-generation market-context leakage). The original report proves mechanics with invented candles/marks, not live P&L loss.
 
-`02_ARCHITECTURE_AUDIT.md` and `03_RESEARCH_VALIDITY.md` remain unavailable in the checked Git refs and accessible Library search. The recovered Phase 05 report says an earlier reviewer read Phase 02, but that statement does not reproduce the missing artifact. The Phase 06 report explicitly notes Phase 03's unavailability. Original probe scripts/logs are also not fully present.
+**P0/P1 provenance and publication (R-01/02/R-10):** AUD-020 missing full publication lineage, AUD-026 in-sample `VALIDATED` terminology, AUD-029 caveated exit quote/unknown aggregate, and AUD-031 absent on-chain proof call for explicit eligibility/abstention gates.
 
-## Discovery in previous project chats (additional missing provenance)
+**P2 methodology and real value (R-12/13):** AUD-027 selection/control confounding, AUD-028 source coordination, AUD-030 unproven incremental editorial ordering; demand independent forward, size-specific, cohort-matched evaluation before any skill or trade claim. ARCH-002–015 are now grounded in original report text, not an inferred index.
 
-A project-conversation review located the original Phase 02 and Phase 03 completion messages and their original attachments, *not their file contents*. Phase 02 reportedly added **AUD-018–023**, and Phase 03 added **AUD-024–033**, including two serious leakage claims in the model-alpha and wallet valuation paths. The audit branch's consolidated register only included AUD-001–017; therefore **16 finding IDs were omitted from that AUD register**. The current crosswalk tracks 46 identifiers from available consolidated sources plus these **16 conversation-confirmed IDs (62 in total)**. No severity or detailed conclusion was guessed for omitted IDs. See `M00_PRIOR_CHAT_LOCATORS.md`.
+The tracked roadmap receives an explicit addendum; no second implementation package has started. Original reports describe evidence grades and unmeasured outcomes. We have **not independently reexecuted** the Phase 02 static review or Phase 03 tests in M00.
 
-The blocked status means **unavailable to this session**, not that these original reports never existed. Their earlier sandbox links are temporary session artifacts and cannot be trusted as source bytes until retrieved from the original conversations and hashed.
+## Verification: integrity is not research acceptance
 
-## Reconciliation
+Commands on a clean checkout after these changes:
 
-`EVIDENCE_CROSSWALK.md` enumerates **46 distinct AUD/ARCH/ADV/OPS identifiers** mentioned in currently accessible sources: 23 with a found primary report ID reference, 13 mentioned only in secondary material, and 10 architecture IDs with no primary report. The first 46 are automatically located reference positions and the other 16 are prior-chat IDs; neither is independently reviewed code/test proof. The OPS source does not use the OPS-nnn labels, so its fine-grained mapping remains unverified. The register's severity labels were not modified. There is no resolution of missing-source contradictions and no finding is closed.
+```sh
+python -m pytest tests/test_audit_evidence.py -q
+python tools/check_audit_evidence.py
+python tools/check_audit_evidence.py --require-complete
+```
 
-## Verification evidence
+Expected: focused tests green, integrity JSON `recovered=8`, `required=8`, `missing=[]`, `integrity_errors=[]`; strict M00 returns **exit 2** while `independent_review=PENDING`. Changing the last field without an actual external reviewer and underlying proof is prohibited.
 
-- Focused M00 evidence tests: `python -m pytest tests/test_audit_evidence.py -q` — **4 passed**, exit 0.
-- Partial integrity: `python tools/check_audit_evidence.py` — **BLOCKED** (6/8), integrity errors 0, exit 0; this does not meet the gate.
-- Strict gate: `python tools/check_audit_evidence.py --require-complete` — **BLOCKED**, exit 2 as expected.
-- Existing full suite: attempted, but the isolated execution environment terminated the process with **exit 137**, near 70% progress, so no complete pass/fail count exists. Early failure markers were observed; the known clock-dependent catalyst failure remains uncorrected. The run produced an untracked `data/reports/*BRETT*.md` report, consistent with earlier AUD-011. A separate focused `python -m pytest tests/test_catalyst.py -q` reproduced the known `test_dedup_corroboration_resurface_denial` failure (**1 failed, 4 passed**, exit 1); `python -m memelab social guard` returned exit 0 with no violations. Neither problem was changed here.
-- An additional bounded diagnostic (`python -m pytest tests -q --maxfail=2`) exited 1 at **2 failed, 295 passed in 16.19s**. Besides the known catalyst test, `tests/test_social_ingest.py::test_logs_never_carry_secrets_or_content` failed in the combined run but passed when run individually (**1 passed**). This is an unresolved ordering/environment or test-isolation failure, not proof that ingestion is defective; do not suppress it.
-- No live sources, model charges, alerts or trades were invoked by M00 work.
+The earlier recovery run attempted the complete suite but exited **137** at about 70%; a bounded run had **2 failures, 295 passes** (known `test_catalyst` and combined-order `test_social_ingest` failure). That is *historical result*, not rerun here. Last earlier project guard had 0 violations. M00 has not touched application code, data, migrations, sources, paid models, alerts or trades.
 
-## Remaining limitations, risks and owners
+## Remaining blockers and owners
 
-- **Audit archive custodian/repository owner:** recover byte-complete `02_ARCHITECTURE_AUDIT.md` and `03_RESEARCH_VALIDITY.md` from original prior-session archives; find underlying probes/logs, then have an independent engineer verify crosswalk evidence and severity reconciliation.
-- **Reviewers:** compare original report bytes with the indexed Phase 04 and Phase 05 copies. Examine the recovered Markdown for unexpected rights/private material prior to merging; initial pattern scans found no credential-shaped tokens or email addresses, but that is not an exhaustive privacy certification.
-- **QA owner:** complete the regression suite in a sufficiently resourced clean checkout, preserving AUD-011's existing failures and documenting any newly encountered failures.
-- **New risk:** placing generated audit materials into a public repository increases their visibility. They contain operational evaluation details; publication is not an authorization to expose third-party content or secrets.
-- **Next action (still M00):** restore missing primary files, extend hash manifest and crosswalk, then run `M00_VERIFICATION.md` in a separate reviewer session. **Next conditional package:** M01 (causal time and provenance), **not yet authorized**.
+1. **Independent QA reviewer:** review each 67-row source link, its attached claimed severity and exact code/test reproduction at pinned application ref, resolve duplicate/overlapping IDs, reconcile requirement-to-defect test coverage, and document sign-off. OPS 001–010 need manual matching against the Phase 05 original paragraphs.
+2. **Audit archive custodian:** retrieve missing original Phase 00/01/03/04 probe scripts, raw execution logs/archives and original-byte Phase 04/05 reports. The current Phase 04/05 documents are readable indexed extracts, not verified original-byte attachments.
+3. **QA operator:** rerun full suite in sufficiently resourced disposable environment, document baseline failures and test output pollution; do not treat previous run exit 137 as passing.
+4. **Repository reviewer:** check publication rights, source/report redaction, and ensure no private social text or credentials were added.
 
-**Stop:** M00 remains BLOCKED. Do not start M01, change application code, deploy sources, or declare any engine defect resolved.
+**Status:** M00 **BLOCKED on evidence and reviewer sign-off**, although required source-file recovery is complete. The [M00 verification checklist](M00_VERIFICATION.md) is the gate. **M01 is not authorized; no engine defect was claimed fixed.**

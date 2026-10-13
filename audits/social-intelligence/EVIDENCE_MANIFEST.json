@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "remediation_phase": "M00",
-  "state": "BLOCKED",
+  "state": "REVIEW_PENDING",
   "updated_utc": "2026-10-13",
   "audited_application_baseline": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
   "audit_publication_branch_base": "b4c4216b9391227be5fdfe7cfe20b60e32d9e8f6",
@@ -39,19 +39,19 @@
       "id": "02",
       "name": "02_ARCHITECTURE_AUDIT.md",
       "path": "recovered/02_ARCHITECTURE_AUDIT.md",
-      "status": "MISSING",
-      "bytes": null,
-      "sha256": null,
-      "origin_note": "Original report generated in previous project Phase 02 chat (2026-10-13 16:28 UTC); file link known, bytes NOT recovered in this session. Reportedly contains AUD-018–023; retrieve original chat attachment."
+      "status": "RECOVERED",
+      "bytes": 28404,
+      "sha256": "0584201710ce79b47e00c9e05547df2eefda4c9756e5211e92de4e4d2fbb24de",
+      "origin_note": "Original user-supplied Phase 02 audit Markdown; byte-for-byte verified to uploaded SHA-256; report-authored findings, original probes/logs still pending"
     },
     {
       "id": "03",
       "name": "03_RESEARCH_VALIDITY.md",
       "path": "recovered/03_RESEARCH_VALIDITY.md",
-      "status": "MISSING",
-      "bytes": null,
-      "sha256": null,
-      "origin_note": "Original report generated in previous project Phase 03 chat (2026-10-13 16:42 UTC); file link known, bytes NOT recovered in this session. Reportedly contains AUD-024–033; retrieve original chat attachment."
+      "status": "RECOVERED",
+      "bytes": 36857,
+      "sha256": "06cd96136950a1bcebe03a6fcd8cf92ca68d1d82b6a72385b54d93112d203322",
+      "origin_note": "Original user-supplied Phase 03 audit Markdown; byte-for-byte verified to uploaded SHA-256; report-authored findings, original probes/logs still pending"
     },
     {
       "id": "04",
@@ -79,6 +79,24 @@
       "bytes": 42401,
       "sha256": "a4563bed9a62055aa99098c04eb4b7cdb68406b55635511cb551f76afce46fd0",
       "origin_note": "Existing immutable audit branch record"
+    }
+  ],
+  "supporting_sources": [
+    {
+      "name": "phase02_FINDINGS.md",
+      "path": "recovered/phase02_FINDINGS.md",
+      "status": "RECOVERED",
+      "bytes": 29711,
+      "sha256": "694dd5e52acc6ac4074c010363acc9a283f9f2c06a5106247de89c149d78fc8d",
+      "origin_note": "Original user-uploaded phase-specific finding register; preserved without editing"
+    },
+    {
+      "name": "phase03_FINDINGS.md",
+      "path": "recovered/phase03_FINDINGS.md",
+      "status": "RECOVERED",
+      "bytes": 41187,
+      "sha256": "4a4a18c1462c8047eb03f86f6a67a49984ebd6b9ef5c6963f3f47b1493192964",
+      "origin_note": "Original user-uploaded phase-specific finding register; preserved without editing"
     }
   ]
 }

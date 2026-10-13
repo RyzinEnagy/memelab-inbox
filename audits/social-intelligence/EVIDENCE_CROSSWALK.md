@@ -1,99 +1,97 @@
 # M00 finding-to-evidence crosswalk
 
-**Status: PARTIAL — NOT INDEPENDENTLY VERIFIED.** Auto-located ID references are *starting pointers*, not proof of the original defect or acceptance. The missing Phase 02 and Phase 03 reports and their original probes cannot be reconstructed from secondary summaries. All references are to paths relative to `audits/social-intelligence/`.
+**Status: PRIMARY REPORTS RECOVERED; INDEPENDENT EVIDENCE REVIEW PENDING.** A source-file heading or line anchor proves that the finding was documented, **not** that its underlying reproduction, timestamps, code paths or severity have been independently reconfirmed. The original offline probes/logs remain missing. **No findings are closed.**
 
-**Referenced IDs found in currently archived reports:** 46. **Additional IDs known only from prior project-chat output:** 16 (AUD-018–033). **Total now tracked: 62, not all independently evidenced.** Categories are `PRIMARY ID ANCHOR`, `SECONDARY ONLY` and `PRIMARY REPORT MISSING`. Findings retained at the original severity; no severity upgrades or closure decisions are made here.
+Source fidelity: the Phase 02 and 03 audit reports and their separate findings snapshots have exact user-upload SHA-256 matches. Phase 04/05 were recovered from indexed Library text, not original bytes. The Phase 03 statement that Phase 02 was unavailable reflects that historical audit session; **both are now in this branch**.
 
-| Finding ID | Evidence class | First source-report ID mention | Secondary index / roadmap | Qualification |
-|---|---|---|---|---|
-| ADV-001 | PRIMARY ID ANCHOR | `recovered/04_ADVERSARIAL_AUDIT.md:35` | `FINDINGS.md:219` | Text mention only; verify original probe/log and baseline independently |
-| ADV-002 | PRIMARY ID ANCHOR | `recovered/04_ADVERSARIAL_AUDIT.md:45` | — | Text mention only; verify original probe/log and baseline independently |
-| ADV-003 | PRIMARY ID ANCHOR | `recovered/04_ADVERSARIAL_AUDIT.md:55` | `REMEDIATION_ROADMAP.md:25` | Text mention only; verify original probe/log and baseline independently |
-| ADV-004 | PRIMARY ID ANCHOR | `recovered/04_ADVERSARIAL_AUDIT.md:65` | — | Text mention only; verify original probe/log and baseline independently |
-| ADV-005 | PRIMARY ID ANCHOR | `recovered/04_ADVERSARIAL_AUDIT.md:75` | — | Text mention only; verify original probe/log and baseline independently |
-| ADV-006 | PRIMARY ID ANCHOR | `recovered/04_ADVERSARIAL_AUDIT.md:85` | — | Text mention only; verify original probe/log and baseline independently |
-| ADV-007 | PRIMARY ID ANCHOR | `recovered/04_ADVERSARIAL_AUDIT.md:95` | — | Text mention only; verify original probe/log and baseline independently |
-| ADV-008 | PRIMARY ID ANCHOR | `recovered/04_ADVERSARIAL_AUDIT.md:105` | — | Text mention only; verify original probe/log and baseline independently |
-| ADV-009 | PRIMARY ID ANCHOR | `recovered/04_ADVERSARIAL_AUDIT.md:115` | — | Text mention only; verify original probe/log and baseline independently |
-| ARCH-001 | PRIMARY REPORT MISSING | — | `FINDINGS.md:217` | Phase 02 absent; indexed mention does not substantiate the original proof |
-| ARCH-002 | PRIMARY REPORT MISSING | — | — | Phase 02 absent; indexed mention does not substantiate the original proof |
-| ARCH-003 | PRIMARY REPORT MISSING | — | `REMEDIATION_ROADMAP.md:22` | Phase 02 absent; indexed mention does not substantiate the original proof |
-| ARCH-004 | PRIMARY REPORT MISSING | — | `REMEDIATION_ROADMAP.md:23` | Phase 02 absent; indexed mention does not substantiate the original proof |
-| ARCH-005 | PRIMARY REPORT MISSING | — | `FINDINGS.md:251` | Phase 02 absent; indexed mention does not substantiate the original proof |
-| ARCH-006 | PRIMARY REPORT MISSING | — | `REMEDIATION_ROADMAP.md:28` | Phase 02 absent; indexed mention does not substantiate the original proof |
-| ARCH-008 | PRIMARY REPORT MISSING | — | — | Phase 02 absent; indexed mention does not substantiate the original proof |
-| ARCH-009 | PRIMARY REPORT MISSING | — | `REMEDIATION_ROADMAP.md:21` | Phase 02 absent; indexed mention does not substantiate the original proof |
-| ARCH-012 | PRIMARY REPORT MISSING | — | — | Phase 02 absent; indexed mention does not substantiate the original proof |
-| ARCH-015 | PRIMARY REPORT MISSING | — | `REMEDIATION_ROADMAP.md:131` | Phase 02 absent; indexed mention does not substantiate the original proof |
-| AUD-001 | PRIMARY ID ANCHOR | `recovered/00_BASELINE.md:46` | `FINDINGS.md:9` | Text mention only; verify original probe/log and baseline independently |
-| AUD-002 | PRIMARY ID ANCHOR | `recovered/00_BASELINE.md:83` | `FINDINGS.md:10` | Text mention only; verify original probe/log and baseline independently |
-| AUD-003 | PRIMARY ID ANCHOR | `recovered/00_BASELINE.md:82` | `FINDINGS.md:11` | Text mention only; verify original probe/log and baseline independently |
-| AUD-004 | PRIMARY ID ANCHOR | `recovered/00_BASELINE.md:84` | `FINDINGS.md:12` | Text mention only; verify original probe/log and baseline independently |
-| AUD-005 | SECONDARY ONLY | — | `FINDINGS.md:13` | No ID-specific reference found in the recovered family report; manual reconciliation needed |
-| AUD-006 | SECONDARY ONLY | — | `FINDINGS.md:14` | No ID-specific reference found in the recovered family report; manual reconciliation needed |
-| AUD-007 | PRIMARY ID ANCHOR | `recovered/00_BASELINE.md:85` | `FINDINGS.md:15` | Text mention only; verify original probe/log and baseline independently |
-| AUD-008 | PRIMARY ID ANCHOR | `recovered/00_BASELINE.md:85` | `FINDINGS.md:16` | Text mention only; verify original probe/log and baseline independently |
-| AUD-009 | SECONDARY ONLY | — | `FINDINGS.md:17` | No ID-specific reference found in the recovered family report; manual reconciliation needed |
-| AUD-010 | PRIMARY ID ANCHOR | `recovered/00_BASELINE.md:86` | `FINDINGS.md:18` | Text mention only; verify original probe/log and baseline independently |
-| AUD-011 | PRIMARY ID ANCHOR | `recovered/01_FUNCTIONAL_AUDIT.md:11` | `FINDINGS.md:19` | Text mention only; verify original probe/log and baseline independently |
-| AUD-012 | PRIMARY ID ANCHOR | `recovered/00_BASELINE.md:85` | `FINDINGS.md:20` | Text mention only; verify original probe/log and baseline independently |
-| AUD-013 | PRIMARY ID ANCHOR | `recovered/00_BASELINE.md:86` | `FINDINGS.md:21` | Text mention only; verify original probe/log and baseline independently |
-| AUD-014 | PRIMARY ID ANCHOR | `recovered/00_BASELINE.md:82` | `FINDINGS.md:22` | Text mention only; verify original probe/log and baseline independently |
-| AUD-015 | PRIMARY ID ANCHOR | `recovered/01_FUNCTIONAL_AUDIT.md:17` | `FINDINGS.md:23` | Text mention only; verify original probe/log and baseline independently |
-| AUD-016 | PRIMARY ID ANCHOR | `recovered/01_FUNCTIONAL_AUDIT.md:17` | `FINDINGS.md:24` | Text mention only; verify original probe/log and baseline independently |
-| AUD-017 | PRIMARY ID ANCHOR | `recovered/01_FUNCTIONAL_AUDIT.md:17` | `FINDINGS.md:25` | Text mention only; verify original probe/log and baseline independently |
-| OPS-001 | SECONDARY ONLY | — | `FINDINGS.md:225` | No ID-specific reference found in the recovered family report; manual reconciliation needed |
-| OPS-002 | SECONDARY ONLY | — | `FINDINGS.md:226` | No ID-specific reference found in the recovered family report; manual reconciliation needed |
-| OPS-003 | SECONDARY ONLY | — | `FINDINGS.md:227` | No ID-specific reference found in the recovered family report; manual reconciliation needed |
-| OPS-004 | SECONDARY ONLY | — | `FINDINGS.md:228` | No ID-specific reference found in the recovered family report; manual reconciliation needed |
-| OPS-005 | SECONDARY ONLY | — | `FINDINGS.md:229` | No ID-specific reference found in the recovered family report; manual reconciliation needed |
-| OPS-006 | SECONDARY ONLY | — | `FINDINGS.md:230` | No ID-specific reference found in the recovered family report; manual reconciliation needed |
-| OPS-007 | SECONDARY ONLY | — | `FINDINGS.md:231` | No ID-specific reference found in the recovered family report; manual reconciliation needed |
-| OPS-008 | SECONDARY ONLY | — | `FINDINGS.md:232` | No ID-specific reference found in the recovered family report; manual reconciliation needed |
-| OPS-009 | SECONDARY ONLY | — | `FINDINGS.md:233` | No ID-specific reference found in the recovered family report; manual reconciliation needed |
-| OPS-010 | SECONDARY ONLY | — | `FINDINGS.md:234` | No ID-specific reference found in the recovered family report; manual reconciliation needed |
+**Inventory:** 33 AUD, 15 ARCH, 9 ADV, 10 OPS = **67 distinct registered audit IDs**, not 67 independent reproduced defects. AUD-032 is a research-validity reconfirmation of AUD-002. ARCH items overlap AUD issues by design. OPS numbering is a Phase 06 consolidated indexing convention rather than labelled paragraphs in the Phase 05 source report.
 
-## Finding IDs recovered from earlier chat history (not source-file content)
-
-These sixteen identifiers were explicitly reported as written in the missing Phase 02 and 03 audit documents. **No exact description, severity, code reference or original probe is available**; do not fill these fields from speculation. The original audit-generated updated `FINDINGS.md` documents are needed.
-
-| ID | Prior source | Evidence / current state | Original severity |
+| Finding ID | Evidence class | Source path:line | Current qualification |
 |---|---|---|---|
-| AUD-018 | Prior-chat Phase 02 architecture assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
-| AUD-019 | Prior-chat Phase 02 architecture assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
-| AUD-020 | Prior-chat Phase 02 architecture assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
-| AUD-021 | Prior-chat Phase 02 architecture assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
-| AUD-022 | Prior-chat Phase 02 architecture assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
-| AUD-023 | Prior-chat Phase 02 architecture assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
-| AUD-024 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
-| AUD-025 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
-| AUD-026 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
-| AUD-027 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
-| AUD-028 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
-| AUD-029 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
-| AUD-030 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
-| AUD-031 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
-| AUD-032 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
-| AUD-033 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+| ADV-001 | INDEXED ADVERSARIAL REPORT | `recovered/04_ADVERSARIAL_AUDIT.md:35` | Phase 04 indexed-text copy; original probes/logs absent |
+| ADV-002 | INDEXED ADVERSARIAL REPORT | `recovered/04_ADVERSARIAL_AUDIT.md:45` | Phase 04 indexed-text copy; original probes/logs absent |
+| ADV-003 | INDEXED ADVERSARIAL REPORT | `recovered/04_ADVERSARIAL_AUDIT.md:55` | Phase 04 indexed-text copy; original probes/logs absent |
+| ADV-004 | INDEXED ADVERSARIAL REPORT | `recovered/04_ADVERSARIAL_AUDIT.md:65` | Phase 04 indexed-text copy; original probes/logs absent |
+| ADV-005 | INDEXED ADVERSARIAL REPORT | `recovered/04_ADVERSARIAL_AUDIT.md:75` | Phase 04 indexed-text copy; original probes/logs absent |
+| ADV-006 | INDEXED ADVERSARIAL REPORT | `recovered/04_ADVERSARIAL_AUDIT.md:85` | Phase 04 indexed-text copy; original probes/logs absent |
+| ADV-007 | INDEXED ADVERSARIAL REPORT | `recovered/04_ADVERSARIAL_AUDIT.md:95` | Phase 04 indexed-text copy; original probes/logs absent |
+| ADV-008 | INDEXED ADVERSARIAL REPORT | `recovered/04_ADVERSARIAL_AUDIT.md:105` | Phase 04 indexed-text copy; original probes/logs absent |
+| ADV-009 | INDEXED ADVERSARIAL REPORT | `recovered/04_ADVERSARIAL_AUDIT.md:115` | Phase 04 indexed-text copy; original probes/logs absent |
+| ARCH-001 | ORIGINAL ARCHITECTURE AUDIT | `recovered/02_ARCHITECTURE_AUDIT.md:24` | Static/code/prior-phase architecture assessment; new stress tests not executed |
+| ARCH-002 | ORIGINAL ARCHITECTURE AUDIT | `recovered/02_ARCHITECTURE_AUDIT.md:25` | Static/code/prior-phase architecture assessment; new stress tests not executed |
+| ARCH-003 | ORIGINAL ARCHITECTURE AUDIT | `recovered/02_ARCHITECTURE_AUDIT.md:26` | Static/code/prior-phase architecture assessment; new stress tests not executed |
+| ARCH-004 | ORIGINAL ARCHITECTURE AUDIT | `recovered/02_ARCHITECTURE_AUDIT.md:27` | Static/code/prior-phase architecture assessment; new stress tests not executed |
+| ARCH-005 | ORIGINAL ARCHITECTURE AUDIT | `recovered/02_ARCHITECTURE_AUDIT.md:28` | Static/code/prior-phase architecture assessment; new stress tests not executed |
+| ARCH-006 | ORIGINAL ARCHITECTURE AUDIT | `recovered/02_ARCHITECTURE_AUDIT.md:29` | Static/code/prior-phase architecture assessment; new stress tests not executed |
+| ARCH-007 | ORIGINAL ARCHITECTURE AUDIT | `recovered/02_ARCHITECTURE_AUDIT.md:30` | Static/code/prior-phase architecture assessment; new stress tests not executed |
+| ARCH-008 | ORIGINAL ARCHITECTURE AUDIT | `recovered/02_ARCHITECTURE_AUDIT.md:31` | Static/code/prior-phase architecture assessment; new stress tests not executed |
+| ARCH-009 | ORIGINAL ARCHITECTURE AUDIT | `recovered/02_ARCHITECTURE_AUDIT.md:32` | Static/code/prior-phase architecture assessment; new stress tests not executed |
+| ARCH-010 | ORIGINAL ARCHITECTURE AUDIT | `recovered/02_ARCHITECTURE_AUDIT.md:33` | Static/code/prior-phase architecture assessment; new stress tests not executed |
+| ARCH-011 | ORIGINAL ARCHITECTURE AUDIT | `recovered/02_ARCHITECTURE_AUDIT.md:34` | Static/code/prior-phase architecture assessment; new stress tests not executed |
+| ARCH-012 | ORIGINAL ARCHITECTURE AUDIT | `recovered/02_ARCHITECTURE_AUDIT.md:35` | Static/code/prior-phase architecture assessment; new stress tests not executed |
+| ARCH-013 | ORIGINAL ARCHITECTURE AUDIT | `recovered/02_ARCHITECTURE_AUDIT.md:36` | Static/code/prior-phase architecture assessment; new stress tests not executed |
+| ARCH-014 | ORIGINAL ARCHITECTURE AUDIT | `recovered/02_ARCHITECTURE_AUDIT.md:37` | Static/code/prior-phase architecture assessment; new stress tests not executed |
+| ARCH-015 | ORIGINAL ARCHITECTURE AUDIT | `recovered/02_ARCHITECTURE_AUDIT.md:38` | Static/code/prior-phase architecture assessment; new stress tests not executed |
+| AUD-001 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:27` | Original Phase 02 findings register; audit reported |
+| AUD-002 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:37` | Original Phase 02 findings register; audit reported |
+| AUD-003 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:47` | Original Phase 02 findings register; audit reported |
+| AUD-004 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:57` | Original Phase 02 findings register; audit reported |
+| AUD-005 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:67` | Original Phase 02 findings register; audit reported |
+| AUD-006 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:77` | Original Phase 02 findings register; audit reported |
+| AUD-007 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:87` | Original Phase 02 findings register; audit reported |
+| AUD-008 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:97` | Original Phase 02 findings register; audit reported |
+| AUD-009 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:107` | Original Phase 02 findings register; audit reported |
+| AUD-010 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:117` | Original Phase 02 findings register; audit reported |
+| AUD-011 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:127` | Original Phase 02 findings register; audit reported |
+| AUD-012 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:137` | Original Phase 02 findings register; audit reported |
+| AUD-013 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:147` | Original Phase 02 findings register; audit reported |
+| AUD-014 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:157` | Original Phase 02 findings register; audit reported |
+| AUD-015 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:182` | Original Phase 02 findings register; audit reported |
+| AUD-016 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:192` | Original Phase 02 findings register; audit reported |
+| AUD-017 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:202` | Original Phase 02 findings register; audit reported |
+| AUD-018 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:218` | Original Phase 02 findings register; audit reported |
+| AUD-019 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:224` | Original Phase 02 findings register; audit reported |
+| AUD-020 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:230` | Original Phase 02 findings register; audit reported |
+| AUD-021 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:236` | Original Phase 02 findings register; audit reported |
+| AUD-022 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:242` | Original Phase 02 findings register; audit reported |
+| AUD-023 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase02_FINDINGS.md:248` | Original Phase 02 findings register; audit reported |
+| AUD-024 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase03_FINDINGS.md:245` | Original Phase 03 findings register; method or synthetic evidence as described |
+| AUD-025 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase03_FINDINGS.md:254` | Original Phase 03 findings register; method or synthetic evidence as described |
+| AUD-026 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase03_FINDINGS.md:263` | Original Phase 03 findings register; method or synthetic evidence as described |
+| AUD-027 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase03_FINDINGS.md:272` | Original Phase 03 findings register; method or synthetic evidence as described |
+| AUD-028 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase03_FINDINGS.md:280` | Original Phase 03 findings register; method or synthetic evidence as described |
+| AUD-029 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase03_FINDINGS.md:288` | Original Phase 03 findings register; method or synthetic evidence as described |
+| AUD-030 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase03_FINDINGS.md:297` | Original Phase 03 findings register; method or synthetic evidence as described |
+| AUD-031 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase03_FINDINGS.md:305` | Original Phase 03 findings register; method or synthetic evidence as described |
+| AUD-032 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase03_FINDINGS.md:313` | Original Phase 03 findings register; method or synthetic evidence as described; reconfirms AUD-002, not separate reproduced outcome |
+| AUD-033 | ORIGINAL FINDINGS SNAPSHOT | `recovered/phase03_FINDINGS.md:322` | Original Phase 03 findings register; method or synthetic evidence as described |
+| OPS-001 | SECONDARY OPS INDEX | `FINDINGS.md:395` | OPS numbering from Phase 06 consolidated register; primary Phase 05 unlabeled |
+| OPS-002 | SECONDARY OPS INDEX | `FINDINGS.md:396` | OPS numbering from Phase 06 consolidated register; primary Phase 05 unlabeled |
+| OPS-003 | SECONDARY OPS INDEX | `FINDINGS.md:397` | OPS numbering from Phase 06 consolidated register; primary Phase 05 unlabeled |
+| OPS-004 | SECONDARY OPS INDEX | `FINDINGS.md:398` | OPS numbering from Phase 06 consolidated register; primary Phase 05 unlabeled |
+| OPS-005 | SECONDARY OPS INDEX | `FINDINGS.md:399` | OPS numbering from Phase 06 consolidated register; primary Phase 05 unlabeled |
+| OPS-006 | SECONDARY OPS INDEX | `FINDINGS.md:400` | OPS numbering from Phase 06 consolidated register; primary Phase 05 unlabeled |
+| OPS-007 | SECONDARY OPS INDEX | `FINDINGS.md:401` | OPS numbering from Phase 06 consolidated register; primary Phase 05 unlabeled |
+| OPS-008 | SECONDARY OPS INDEX | `FINDINGS.md:402` | OPS numbering from Phase 06 consolidated register; primary Phase 05 unlabeled |
+| OPS-009 | SECONDARY OPS INDEX | `FINDINGS.md:403` | OPS numbering from Phase 06 consolidated register; primary Phase 05 unlabeled |
+| OPS-010 | SECONDARY OPS INDEX | `FINDINGS.md:404` | OPS numbering from Phase 06 consolidated register; primary Phase 05 unlabeled |
 
-Source locators and original attachment locations: [`M00_PRIOR_CHAT_LOCATORS.md`](M00_PRIOR_CHAT_LOCATORS.md). These 16 IDs are additional to the published 46-row crosswalk and must be reconciled before declaring the audit register complete.
+## Important duplicate / hierarchy relationships
 
-## Unreconciled evidence and discrepancy register
+- `AUD-002` and `AUD-032` describe the same replay-export backdating family; AUD-032 is code-level confirmation and elaboration, not a new independently observed financial incident.
+- `AUD-001`, `AUD-002`, `AUD-015`, `AUD-017`, `AUD-024`, `AUD-025`, `AUD-032` and `AUD-033` each implicate point-in-time causality, but distinct implementation paths and evidence standards remain documented separately.
+- `ARCH-001` overlaps the historical cutoff AUD family; `ARCH-002` aligns with `AUD-018`; `ARCH-006` aligns with `AUD-019`; `ARCH-007` with `AUD-020`; `ARCH-009` with `AUD-021`; `ARCH-005/011` with `AUD-022`; `ARCH-008` with `AUD-023`. **Do not sum these as independent incidents.**
+- AUD-024/025 are reproduced calculation mechanics from the original Phase 03 synthetic tests, not proof of realized monetary loss or predictive edge.
+- The original Phase 03 report states its Phase 02 report was inaccessible. The original Phase 02 report is now recovered, and its original findings register is retained without changes. The apparent contradiction is **session chronology**, not evidence that the audit never occurred.
 
-1. **02 architecture report:** source absent from current storage, though an original report and AUD-018–023 findings were generated in an earlier project chat; archived report cited by the Phase 05 assessment but not retrievable in this repository/Library search. All ARCH findings remain unverified against their original report.
-2. **03 research-validity report:** original report and AUD-024–033 findings generated in an earlier project chat, but unavailable as byte-complete source here; exact original conclusions/probes unknown.
-3. **Phase 04 microprobes:** `evidence/04_microprobes.py` and `evidence/04_microprobes_output.txt` are named in the recovered Phase 04 text but are not in the checked-out Git tree or recovered Library documents. Do not treat the reported 10/10 as newly rerun evidence.
-4. **Phase 01 probe logs and Phase 00 raw test transcript:** the source narratives describe them, but executable audit artifacts are not included in this branch. Their results remain historically *reported*.
-5. **Library text fidelity:** three raw-file-backed sources were byte-matched to their original Library SHA-256; the two index-text-only sources still require comparison to original backing bytes.
-6. **OPS-IDs:** the Phase 05 report discusses operational dimensions, but does not use the OPS-### ID convention; the precise ID-to-passage mapping remains unreviewed.
-7. **Duplicate and contradicted IDs:** generated table lists each discovered ID exactly once; this is *not* a semantic contradiction assessment. A reviewer must reconcile original severity and normalized severity when full sources become available.
+## Remaining independent verification gaps
 
-## Source-to-requirement boundary
+1. Original Phase 00, 01, 03 and 04 probe scripts, input archives and raw test logs are incompletely archived. Reviewer must reproduce important reported failures on the **pinned application baseline** and attach outputs; citation anchors are not substitutes for executable test proof.
+2. Original unmodified bytes of Phase 04 and 05 documents remain unverified (indexed text copies are available). Phase 05 uses operational topics but no `OPS-###` section identifiers: manually map OPS-001–010 from the Phase 06 index to specific Phase 05 paragraphs and confirm each interpretation.
+3. Reconcile with `REQUIREMENTS_MATRIX.md` at the requirement/negative-path level; check duplicate IDs, evidence confidence and severity. This crosswalk records documented original audit classifications, not independent risk acceptance.
+4. Protect public repository from private source text, credentials and prohibited third-party content; confirm user-uploaded reports and reproduced fixtures are publication-safe.
+5. Independent reviewer must inspect `M00_VERIFICATION.md`, record sign-off explicitly, and only then change `EVIDENCE_MANIFEST.json.independent_review` to `ACCEPTED` if every gate passes.
 
-`recovered/REQUIREMENTS_MATRIX.md` contains historical requirement-to-module mappings. This phase does not certify each mapped test. Future review must sample at least one positive and one negative assertion per core requirement group against pinned code/test files, not just link names.
+## Recovery ownership / next action
 
-## Recovery ownership and next action
-
-- **Owner:** repository owner/audit archive custodian must provide original `02_ARCHITECTURE_AUDIT.md` and `03_RESEARCH_VALIDITY.md`, if they exist, plus prior test probes/logs; the original prior-session workspace archive is not accessible from this checkout.
-- **Next action:** recover unmodified source bytes into `audits/social-intelligence/recovered/`, update the manifest hashes, extend this crosswalk with original line/probe references, run `python tools/check_audit_evidence.py --require-complete`, and submit independent crosswalk review.
-- **Gate:** M00 remains BLOCKED until source accounting *and* human crosswalk sign-off. M01 is NOT authorized to start.
+All **8/8** required source documents are present and checksum-pinned; 2/2 original Phase 02/03 finding snapshots are also preserved. M00 cannot pass without source-ID-proof reconciliation, missing underlying probes/logs where required, and independent acceptance. Run `python tools/check_audit_evidence.py --require-complete`; expected **exit 2 while `independent_review=PENDING`**. M01 implementation remains unauthorized.
