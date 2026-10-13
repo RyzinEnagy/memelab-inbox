@@ -67,7 +67,7 @@ Status values: PASS (done and proved), BLOCKED (built, waiting on something outs
 | 22 | Exact commands and outputs captured | PASS | release/E2E_RUN.md (1,217 lines, every command and exit code) | none |
 | 23 | Full test suite | PASS | `1 failed, 651 passed`; the failure is C-1 and is not new | C-1 stays a carry-over |
 | 24 | Full suite fully green | NOT IMPLEMENTED | C-1 not fixed | carry-over C-1 |
-| 25 | Lint and static checks already used in the repo | PASS | the repo configures none; AUDIT runs Python syntax (176 files, 0 errors), `node --check` (16 files, 0 errors) and pyflakes (unused imports and variables only, 0 undefined names) | pyflakes findings reported, not fixed (D-122) |
+| 25 | Lint and static checks already used in the repo | PASS | the repo configures none; AUDIT runs Python syntax (176 files, 0 errors), `node --check` (16 files, 0 errors) and pyflakes (75 messages: unused imports and variables, f-strings without placeholders, one harmless redefinition in `tools/release_audit.py`; 0 undefined names) | pyflakes findings reported, not fixed (D-122) |
 | 26 | Type checking | NOT IMPLEMENTED | no type checker in the repo | not added in a release phase |
 | 27 | Credential leakage | PASS | AUDIT: tree and public history clean; one test placeholder reviewed; HANDOFF names variables only | D-122 |
 | 28 | Restricted social content | PASS | content guard exit 0 on this branch, 0 violations on `main` | none |
@@ -97,8 +97,8 @@ Status values: PASS (done and proved), BLOCKED (built, waiting on something outs
 | 52 | No-signal behaviour | PASS | real brief "No supported high-priority observations" with the reason; alerts "No alerts today" | none |
 | 53 | No-credentials behaviour | PASS | E2E stage 17: health commands report `credentials_missing` with no call; live ingest refuses before any call | none |
 | 54 | Release checklist with status and proof | PASS | this table | none |
-| 55 | Commit on the feature branch | PASS | `e8b6688` (tools and docs) and the release-record commit on top; see HANDOFF.md for remote hashes | none |
-| 56 | Pull request | see HANDOFF.md | the pull request URL is recorded there after it is opened | D-124: review only, no merge |
+| 55 | Commit on the feature branch | PASS | local `e8b6688`, `3710d34`; remote `8f08d28`, `683f21b` and the handoff update (HANDOFF.md) | none |
+| 56 | Pull request | PASS | https://github.com/RyzinEnagy/memelab-inbox/pull/1, open, not merged | D-124: review only, no merge |
 | 57 | Never force-push `main` | PASS | branch ref fast-forwarded only; `main` untouched | D-001 |
 | 58 | Live X collection | BLOCKED | `x-health`: `credentials_missing` | X app, token and budget; D-025 for the Chrome route |
 | 59 | Live Telegram collection | BLOCKED | `tg-health`: `credentials_missing` | bot token, channel admins, D-028 |

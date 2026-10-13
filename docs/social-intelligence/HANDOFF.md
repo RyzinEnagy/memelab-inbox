@@ -37,7 +37,7 @@ See RELEASE_18.md "Release checklist". Summary: every requirement of Prompt 18 i
 - The release tools are the regression check for any later phase: run both before a commit. `release_e2e.py` tests the committed HEAD, so commit first, then run it.
 - A re-ingest of an already processed file whose other units are down exits 1 (D-121). It is recorded, not changed.
 - The scheduled runs on `main` write session paths into public state files (D-123); fix belongs in Phase 20.
-- pyflakes reports 73 unused-import and unused-variable messages and no undefined names; not fixed in a release phase.
+- pyflakes reports 75 messages (unused imports and variables, f-strings without placeholders, and one harmless redefinition in `tools/release_audit.py` where a local name shadows the pyflakes import); no undefined names. Not fixed in a release phase.
 
 ## Helius key
 
@@ -61,4 +61,10 @@ Expect `1 failed, 651 passed` and `Result: PASS`.
 
 ## Commit, push and pull request
 
-Phase 18 code and docs commit on `feature/social-intelligence`: `e8b6688` locally. This handoff and the release record are the commit on top of it. Push and pull request: recorded below after they are done.
+Local commits on `feature/social-intelligence`: `e8b6688` (tools and docs, tree `b11eb00`), `3710d34` (release record and handoff, tree `1f8bcee`), and this handoff update on top. Remote hashes differ from the local ones (local commits are signed in the session; the Git Data API commits are not); the trees are checked equal.
+
+Pushed 2026-10-13T02:03Z through Composio and the GitHub Git Data API: 16 blobs created, each checked against the local blob sha before upload; both trees equal to the local trees; branch ref fast-forwarded once from `6efbc73`, no force. Remote commits: tools and docs `8f08d282491b5c87ceaba25d8baf303e513cfe8d`, release record `683f21ba1a68a5004c93a7a9ab0cafb15c22e668`; this handoff update is pushed on top of them the same way (its remote hash is on the branch head). `main` untouched (`f69a044`).
+
+Pull request: https://github.com/RyzinEnagy/memelab-inbox/pull/1 (`feature/social-intelligence` into `main`, open, not merged, review only per D-124).
+
+Phase 18 is complete. Stop here; no further phase is started.
