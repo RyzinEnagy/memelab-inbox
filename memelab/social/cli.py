@@ -22,6 +22,7 @@
   social narrative-changes [--run <id>]                      what moved since the previous comparable snapshot
   social brief | trader-digest | feed [--as-of T] [--tz Z] [filters] [--json]   read-only intelligence feed (feed_cli.py, Phase 14)
   social alerts run|status|reset-cooldown|schedule|preflight|demo   research-only alerts, dry run by default (alerts_cli.py, Phase 15)
+  social evaluate record|observe|run|annotate|show|report|verify|demo   immutable signal ledger, forward outcomes (outcomes_cli.py, Phase 16)
   social feed-demo --fixture <spec>                          all three feed views on an invented fixture (watermarked)
 
 Exit code 0 for OK or PARTIAL runs (a down connector is recorded, not fatal), 1 for FAILED, 2 for usage errors.
@@ -569,3 +570,5 @@ def add_subparser(sp) -> None:
     feed_cli.add_parser(ssp)
     from . import alerts_cli
     alerts_cli.add_parser(ssp)
+    from . import outcomes_cli
+    outcomes_cli.add_parser(ssp)

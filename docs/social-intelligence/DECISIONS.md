@@ -469,3 +469,32 @@ Ceilings per provider per day cover transports (file, telegram, email: 0 USD per
 ## D-104 Schedule templates are data, disabled, DST-safe and idempotent; no GitHub Actions (ADOPTED, Phase 15)
 
 Daily (07:47 New York) and weekly (Monday 08:13) templates carry `enabled: false` and the consent keys they need. Gap times run once at the first valid minute; repeated fall-back times run once at the first occurrence. A slot key per local date or ISO week makes a repeated trigger or a restart a no-op; a slot started under 2 h ago is skipped, an older unfinished one is taken over. Templates may not run more often than hourly. No Actions workflow was added: a public repo's Actions would need the delivery secrets as repository secrets and would hold state outside the private file. Enabling a job is a scheduled task Elving approves.
+
+## D-105 Phase 16 slot taken by Prompt 16; call outcome tracking and trader scoring move to C-16 (ADOPTED, Phase 16, 2026-10-12)
+
+Prompt 16 (immutable signal ledger and forward evaluation) replaced the proposed Phase 16 "call outcome tracking and trader scoring". The ledger delivers the forward-return measurement part for any lab signal. Scoring traders on top of it is carried over as C-16 (depends on C-15 and Phase 16). Phase 19 now also depends on 16 for an outcome section. No migration: the public schema stays at 12.
+
+## D-106 The signal ledger is private, append-only and hash-chained (ADOPTED, Phase 16)
+
+`data/private/signal_ledger.sqlite` (gitignored; `MEMELAB_SIGNAL_LEDGER`), never the tracked database, which `connect()` refuses. Signals hold claim and source references that are private research state, and outcomes would otherwise be committed by the scheduled runs on `main`. One journal table holds SIGNAL, OBSERVATION, ANNOTATION and OUTCOME entries in recorded order. SQLite triggers refuse UPDATE and DELETE; each entry stores its body hash and the previous entry hash, and `social evaluate verify` recomputes both. Revisions, maturity, deletions and invalidations are new entries that point at what they supersede.
+
+## D-107 What a signal record holds and when it is captured (ADOPTED, Phase 16)
+
+Signal id = hash of emitter, emitter ref, chain, contract and generated time. The record keeps disposition (EMITTED, REJECTED, SUPPRESSED, NEEDS_REVIEW), classifier, scoring and policy versions, references, exact chain and contract, event, generated and captured times, the market facts dated at or before generation (price, liquidity, sell route), the evaluation assumptions and every missing field with a reason. Facts dated after generation are dropped and counted. Capture more than 1 h after generation is flagged LATE_CAPTURE; capture before generation is refused. Same id with a different context is refused. Rejected and suppressed signals are recorded and evaluated like emitted ones.
+
+## D-108 Outcome timing and look-ahead rules (ADOPTED, Phase 16)
+
+Entry = generated time + 300 s execution lag, never the event time. Exit = entry + horizon (1h, 6h, 24h, 72h, 7d). Prices are the first dated midpoint at or after the target within 900 s; a candle gives its open at its start and its close at its end. Only observations with `available_at <= as_of` count; future-dated observations and unfinished candles are refused. An evaluation time may not go backwards and may not be later than the clock; replay of an earlier time is read-only. A missing exit stays PENDING while its window is open, then becomes MISSING.
+
+## D-109 Returns: displayed, modeled and quoted kept apart; no invented exits (ADOPTED, Phase 16)
+
+`return_mid_gross` is the displayed price move and is never called proceeds. `return_net_modeled` uses 100 bps fee and 50 bps slippage per side plus constant-product impact at a hypothetical 500 USD size (same convention as Phase 11). `return_net_quoted` uses an actual sell route quote within 120 s of the exit. A route quote never replaces a midpoint. A delisted token has no exit price and no return; the last observed price is shown. Max excursion needs a path with no gap over horizon / 12.
+
+## D-110 Outcome statuses and executability thresholds (ADOPTED, Phase 16)
+
+PENDING, MEASURED, MISSING, NON_EXECUTABLE, INVALIDATED, each with reason codes. NON_EXECUTABLE when entry participation or exit participation exceeds 5% of reported liquidity, liquidity is zero, a route is missing, the quote returns less than 75% of the displayed value (PRICE_QUOTE_MISMATCH), the token was delisted, or the signal is a short on spot. A quote above the displayed price by more than 2% is flagged and ignored. INVALIDATED only through an INVALIDATED or IDENTITY_REVISED annotation or an event time later than the signal. A deleted source does not invalidate.
+
+## D-111 Coverage report, not a score (ADOPTED, Phase 16)
+
+`social evaluate report` gives per horizon the count per status, coverage = measured / matured, exclusion reasons and the split by disposition. A median net modeled return is shown only with 5 or more MEASURED outcomes and is descriptive. No trader or source score is produced in this phase (C-16).
+

@@ -4,7 +4,7 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065, Phase 11: D-079, Phase 12: D-080, Phase 13: D-085, Phase 14: D-091, Phase 15: D-097). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
+Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065, Phase 11: D-079, Phase 12: D-080, Phase 13: D-085, Phase 14: D-091, Phase 15: D-097, Phase 16: D-105). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
 
 Status values also include SUPERSEDED (folded into another phase).
 
@@ -28,7 +28,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 13 | Social signals integrated into the scout and catalyst workflows as research candidates (Prompt 13; old slot "trader identity verification" moved to C-13) | 07, 12 | DONE (fixtures only, D-085) |
 | 14 | Readable, cited intelligence feed: morning brief, trader digest, filterable feed (Prompt 14; old slot "trader claimed-wallet linking" moved to C-14) | 07, 08, 12, 13 | DONE (fixtures only, D-091) |
 | 15 | Controlled research alerts and scheduling over the feed (Prompt 15; old slot "trader call capture" moved to C-15) | 14 | DONE (fixtures only, no transport live, no job enabled, D-097) |
-| 16 | Call outcome tracking and trader scoring | 10, C-15 | PLANNED |
+| 16 | Immutable signal ledger and forward outcome evaluation (Prompt 16; old slot "call outcome tracking and trader scoring" moved to C-16) | 05, 13, 14, 15 | DONE (fixtures only, no live prices, D-105) |
 | 17 | Integration: m19 attention and launch social | 11, 12, C-12 | PLANNED |
 | 18 | Integration: catalyst attention and assessment | 11, 12, C-12 | PLANNED |
 | 19 | Reporting sections and watchlist alerts (scout section delivered by 13, standalone feed and JSON by 14, social alerts by 15) | 13, 16, 17, 18 | PLANNED |
@@ -49,6 +49,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | C-13 | Carry-over: trader identity verification on top of the Phase 08 registry (old proposed Phase 13) | 08 | PLANNED, unscheduled |
 | C-14 | Carry-over: trader claimed-wallet linking, live evidence collection (old proposed Phase 14; assertion model delivered by Phase 09) | C-13, 09 | PLANNED, unscheduled |
 | C-15 | Carry-over: trader call capture (old proposed Phase 15; claim structure delivered by Phase 06) | 10, C-13 | PLANNED, unscheduled |
+| C-16 | Carry-over: trader scoring from ledger outcomes (old proposed Phase 16; forward returns delivered by Phase 16) | C-15, 16 | PLANNED, unscheduled |
 
 ## Phase gates
 
@@ -112,7 +113,9 @@ C-14. (old proposed Phase 14) A wallet is linked to a trader only when the trade
 
 C-15. (old proposed Phase 15) Calls captured with timestamp, account, contract address, stated direction, source URL and an own-words summary (D-010). Phase 06 already extracts and stores the claim structure; what is left is wiring collectors to it and the trader link.
 
-16. Forward returns of calls measured from market data already collected by the lab, with survivorship and selection bias controls written next to every score. Below a minimum sample the score is INSUFFICIENT HISTORY.
+16. (Prompt 16, DONE 2026-10-12, OUTCOMES_16.md) Forward-looking signal ledger: every emitted, rejected or suppressed research signal recorded once with what was known at emission (ids, versions, references, exact chain and contract, event, generated and captured times, observed price, liquidity and route, horizons, hypothetical size, lag and fees, missing data); append-only and hash-chained; `social evaluate` appends 1h/6h/24h/72h/7d outcomes as PENDING, MEASURED, MISSING, NON_EXECUTABLE or INVALIDATED with reasons; returns only from dated prices, excursion only with a granular path, route quotes kept apart from modeled impact, no invented exits; coverage report with exclusion reasons; tests for look-ahead, provider revisions, delayed publication, delisting, lost liquidity, missing midpoints, duplicate evaluation, source deletion, postponed windows, price-quote mismatch and no matured outcomes; fixture snapshot before and after two evaluations with zero mutation. Gate: auditable chronological ledger, deterministic resumption, transparent missing outcomes, full suite with only the known clock failure.
+
+C-16. (old proposed Phase 16) Trader and source scores from ledger outcomes of their calls, with survivorship and selection bias controls written next to every score. Below a minimum sample the score is INSUFFICIENT HISTORY. Needs C-15 so calls become signals.
 
 17. m19 and `memelab/launch/social.py` read the new metrics. Where data is absent the output is identical to Phase 00 behaviour (regression test proves it).
 
