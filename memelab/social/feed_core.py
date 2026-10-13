@@ -399,11 +399,13 @@ def _digest(c: dict, tz: str) -> dict:
         if prev and (prev.get("stance") != st or (prev.get("author_position") or "not_disclosed") != pos):
             changes.append({"who": w["display"], "trader": w["trader"], "before": {"stance": prev.get("stance"), "position": prev.get("author_position")},
                             "after": {"stance": st, "position": pos}, "basis": f"previous snapshot run {prev.get('run_id')}",
-                            "before_time": fmt_time(prev.get("event_time"), tz), "after_time": fmt_time(m.get("event_time"), tz)})
+                            "before_time": fmt_time(prev.get("event_time"), tz), "after_time": fmt_time(m.get("event_time"), tz),
+                            "source_id": w["source_id"], "before_at": prev.get("event_time"), "after_at": m.get("event_time")})
         elif len(within.get(sid, [])) > 1:
             changes.append({"who": w["display"], "trader": w["trader"], "before": {"stance": within[sid][-2], "position": None},
                             "after": {"stance": st, "position": pos}, "basis": "inside this snapshot", "before_time": None,
-                            "after_time": fmt_time(m.get("event_time"), tz)})
+                            "after_time": fmt_time(m.get("event_time"), tz), "source_id": w["source_id"], "before_at": None,
+                            "after_at": m.get("event_time")})
     sides: dict[str, list[str]] = {}
     for p in people:
         if p["stance"] in ("positive", "negative", "mixed"):
@@ -474,6 +476,12 @@ def _item(c: dict, *, as_of: float, win_start: float, tz: str, run_id: Any, opts
                       "coverage": {"platforms": platforms, "counts_are_lower_bounds": bool(cov.get("counts_are_lower_bounds"))},
                       "confidence": c.get("confidence"),
                       "mentions_last_24h": (ws.get("86400") or {}).get("current")},
+        "activity": {"window_mentions": c.get("window_mentions"), "items": c.get("item_count")},
+        "chronology": [{"flag": safe_token(f.get("flag"), r"[A-Za-z0-9_]{1,60}"), "category": f.get("category"), "bucket": f.get("bucket"),
+                        "attribution": f.get("attribution"), "order_status": f.get("order_status"), "at": f.get("at"),
+                        "source_id": safe_token(f.get("source_id"), r"[A-Za-z0-9_.:\-]{1,90}"), "flag_key": safe_token(f.get("flag_key"), r"[A-Za-z0-9_.:\-]{1,90}"),
+                        "rule": safe_token(f.get("rule"), r"[A-Za-z0-9_.\-]{1,80}"), "run_id": f.get("run_id"), "is_fixture": bool(f.get("is_fixture"))}
+                       for f in sorted(c.get("chrono_flags") or [], key=lambda f: (str(f.get("category")), str(f.get("flag")), f.get("at") or 0, str(f.get("flag_key"))))],
         "risk": {"has_risk": has_risk or bool(promo), "chronology_risk_flags": sorted({str(f.get("flag")) for f in risk_flags}),
                  "promotion_hypotheses": sorted(set(promo))},
         "conflicted": bool(c.get("conflicted")), "stance": c.get("stance") or {},

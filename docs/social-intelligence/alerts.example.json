@@ -1,0 +1,13 @@
+{
+ "schema": "memelab.social.alerts.config/1",
+ "notifications_opt_in": false,
+ "send_enabled": false,
+ "outbox": null,
+ "policy": {
+  "reputable_sources": [],
+  "daily_cap": 8,
+  "quiet_hours": {"start": "22:00", "end": "07:00"}
+ },
+ "telegram": {"enabled": false, "chat_id": null},
+ "email": {"enabled": false, "host": null, "port": 587, "user": null, "sender": null, "to": null}
+}

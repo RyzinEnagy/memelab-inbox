@@ -111,7 +111,7 @@ Never joined to a token and never ranked.
 
 ---
 Research notes only. Nothing here is a trade instruction, a score or a watchlist change; social attention says nothing about whether a token can be bought or sold.
-Feed feed-v1, schema memelab.social.feed/1, sha256 95e6f20937fc93d3.
+Feed feed-v1, schema memelab.social.feed/1, sha256 3d95007460266592.
 FIXTURE DEMO: invented accounts, tokens, posts and times. This is not live data and not a current conversation.
 
 ## View 2: trader conversation digest
@@ -188,7 +188,7 @@ Never joined to a token and never ranked.
 
 ---
 Research notes only. Nothing here is a trade instruction, a score or a watchlist change; social attention says nothing about whether a token can be bought or sold.
-Feed feed-v1, schema memelab.social.feed/1, sha256 95e6f20937fc93d3.
+Feed feed-v1, schema memelab.social.feed/1, sha256 3d95007460266592.
 FIXTURE DEMO: invented accounts, tokens, posts and times. This is not live data and not a current conversation.
 
 ## View 3: feed filtered to --risk any
@@ -224,5 +224,5 @@ Filters: risk any.
 
 ---
 Research notes only. Nothing here is a trade instruction, a score or a watchlist change; social attention says nothing about whether a token can be bought or sold.
-Feed feed-v1, schema memelab.social.feed/1, sha256 f2ad540864132872.
+Feed feed-v1, schema memelab.social.feed/1, sha256 fd0b36e44faf52bd.
 FIXTURE DEMO: invented accounts, tokens, posts and times. This is not live data and not a current conversation.

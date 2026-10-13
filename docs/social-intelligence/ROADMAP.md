@@ -4,7 +4,7 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065, Phase 11: D-079, Phase 12: D-080, Phase 13: D-085, Phase 14: D-091). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
+Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065, Phase 11: D-079, Phase 12: D-080, Phase 13: D-085, Phase 14: D-091, Phase 15: D-097). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
 
 Status values also include SUPERSEDED (folded into another phase).
 
@@ -27,12 +27,12 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 12 | Chronology: social claims reconciled with on-chain order, corroboration and risk flags (Prompt 12; old slot "paid, bot and coordination signals" moved to C-12) | 05, 06, 09, 11 | DONE (fixtures only, D-080) |
 | 13 | Social signals integrated into the scout and catalyst workflows as research candidates (Prompt 13; old slot "trader identity verification" moved to C-13) | 07, 12 | DONE (fixtures only, D-085) |
 | 14 | Readable, cited intelligence feed: morning brief, trader digest, filterable feed (Prompt 14; old slot "trader claimed-wallet linking" moved to C-14) | 07, 08, 12, 13 | DONE (fixtures only, D-091) |
-| 15 | Trader call capture | 10, C-13 | PLANNED |
-| 16 | Call outcome tracking and trader scoring | 15 | PLANNED |
+| 15 | Controlled research alerts and scheduling over the feed (Prompt 15; old slot "trader call capture" moved to C-15) | 14 | DONE (fixtures only, no transport live, no job enabled, D-097) |
+| 16 | Call outcome tracking and trader scoring | 10, C-15 | PLANNED |
 | 17 | Integration: m19 attention and launch social | 11, 12, C-12 | PLANNED |
 | 18 | Integration: catalyst attention and assessment | 11, 12, C-12 | PLANNED |
-| 19 | Reporting sections and watchlist alerts (scout section delivered by 13, standalone feed and JSON by 14) | 13, 16, 17, 18 | PLANNED |
-| 20 | Scheduled-run integration and state export rules | 19 | PLANNED |
+| 19 | Reporting sections and watchlist alerts (scout section delivered by 13, standalone feed and JSON by 14, social alerts by 15) | 13, 16, 17, 18 | PLANNED |
+| 20 | Scheduled-run integration and state export rules (alert job templates delivered by 15, not enabled) | 19 | PLANNED |
 | 21 | End-to-end validation, docs, merge request | 20 | PLANNED |
 | C-1 | Carry-over: test isolation and clock (old Phase 01) | 00 | PLANNED, unscheduled |
 | C-2 | Carry-over: repo-wide guard against raw social text in tracked files (old Phase 02) | 02 | DONE |
@@ -48,6 +48,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | C-12 | Carry-over: paid placement, bot-like and coordination signals (old proposed Phase 12) | 07, 12 | PLANNED, unscheduled |
 | C-13 | Carry-over: trader identity verification on top of the Phase 08 registry (old proposed Phase 13) | 08 | PLANNED, unscheduled |
 | C-14 | Carry-over: trader claimed-wallet linking, live evidence collection (old proposed Phase 14; assertion model delivered by Phase 09) | C-13, 09 | PLANNED, unscheduled |
+| C-15 | Carry-over: trader call capture (old proposed Phase 15; claim structure delivered by Phase 06) | 10, C-13 | PLANNED, unscheduled |
 
 ## Phase gates
 
@@ -107,7 +108,9 @@ C-13. (old proposed Phase 13) The Phase 08 registry (DONE) is extended with live
 
 C-14. (old proposed Phase 14) A wallet is linked to a trader only when the trader publicly claims it or chain evidence meets a documented bar; linkage level is recorded. Shared funding is linkage, not proof of control (existing rule).
 
-15. Calls captured with timestamp, account, contract address, stated direction, source URL and an own-words summary (D-010). Phase 06 already extracts and stores the claim structure; what is left is wiring collectors to it and the trader link.
+15. (Prompt 15, DONE 2026-10-12, ALERTS_15.md) Research-only alerts over the Phase 14 feed, not another detector: policies for independent reputable convergence, LINKED-wallet corroboration, new risk evidence, a positive source switching stance and growth against the item's own baseline; chain and contract plus freshness for token-specific alerts; severity, reason, confidence, provenance, cooldown, dedupe key, daily cap, per-provider cost ceilings, quiet hours and America/New_York schedule; never more often than the upstream refresh; file sink first, optional Telegram or email only with consent and credentials, dry run by default, explicit send, redacted secrets, retries and a ledger (attempted, succeeded, failed, outcome unknown) that never calls a preview a delivery; disabled daily and weekly templates with DST tests and idempotent slots; tests for duplicates across retries, cooldown reset, 100 reposts, stale wallet event, repeated schedule after restart, missing token, transport failure, DST and a no-alert day; fixture alert, deduped second run and readable delivery state. Gate: no alert spam, explicit configured delivery, dry run under missing credentials, full suite with only the known clock failure.
+
+C-15. (old proposed Phase 15) Calls captured with timestamp, account, contract address, stated direction, source URL and an own-words summary (D-010). Phase 06 already extracts and stores the claim structure; what is left is wiring collectors to it and the trader link.
 
 16. Forward returns of calls measured from market data already collected by the lab, with survivorship and selection bias controls written next to every score. Below a minimum sample the score is INSUFFICIENT HISTORY.
 

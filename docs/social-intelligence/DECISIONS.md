@@ -437,3 +437,35 @@ Reports are lab-written but may be shared, and post text can carry instructions 
 ## D-096 Fixture demos run the real read path and are watermarked (ADOPTED, Phase 14)
 
 `social feed-demo` and `--fixture` build a throwaway SQLite store from an invented spec through the real store functions and the real narrative engine, then read it with `feed_store`. Every view carries the watermark at top and bottom, the JSON says `fixture: true`, and `--report-dir` names end in `_FIXTURE`. The live commands skip fixture snapshots unless `--include-fixtures` is given. Reason: the prompt forbids fake live output, and a demo that bypassed the store would not prove the read path.
+
+## D-097 Phase 15 slot taken by Prompt 15; trader call capture moves to C-15 (ADOPTED, Phase 15, 2026-10-12)
+
+Prompt 15 (controlled research alerts and scheduling) replaced the proposed Phase 15 "trader call capture". That entry is carried over as C-15 in ROADMAP.md unchanged, and Phase 16 now depends on C-15. Prompt 15 delivers the watchlist-alert part of the old Phase 19 for social changes and the scheduling templates part of Phase 20; neither job is enabled. No migration: the public schema stays at 12.
+
+## D-098 Alerts read the feed document only; the feed gains three fields under the same schema name (ADOPTED, Phase 15)
+
+Alerts consume `memelab.social.feed/1` and nothing else, so there is no second detector. Feed items gained `activity.window_mentions`, `chronology` (Phase 12 flags with category, bucket, attribution, time, rule, run) and, on each stance change, `source_id`, `before_at` and `after_at`. The schema name is kept because no field changed meaning (Phase 14 handoff rule); the Phase 14 sample report changed only in its printed `feed_sha256`.
+
+## D-099 Five alert policies; reputation is registry link or allowlist; repetition never qualifies (ADOPTED, Phase 15)
+
+convergence, wallet_corroboration, risk, stance_switch and conversation_growth, with thresholds in ALERTS_15.md (HEURISTIC). A reputable source is an independent original linked to a registry trader or named on Elving's allowlist; follower counts and engagement are never read (same rule as D-073), bots and aggregators never count. Wallet corroboration needs a LINKED wallet (D-082); CLAIMED is suppressed as unverified. Growth is measured against the item's own earlier snapshots and needs two independent sources, so 100 reposts of one post raise nothing. Token-specific policies need a readable chain and contract and fresh data.
+
+## D-100 Spam control: dedupe, cooldown, daily cap, quiet hours, interval (ADOPTED, Phase 15)
+
+A dedupe key alerts once per mode within 30 days. Cooldowns per policy and item (risk per flag, stance per source). Daily cap 8 per America/New_York day. Quiet hours 22:00 to 07:00 New York wall time: alerts are held, released after 07:00 and expire unsent after 14 h; no severity bypasses by default. Evaluation at most every 60 minutes and never twice on the same snapshot. Suppressions are stored with a reason code and printed.
+
+## D-101 Alert state is private and split by mode (ADOPTED, Phase 15)
+
+State (runs, alerts, suppressions, baselines, ledger, cooldown resets, schedule slots) is in `data/private/alerts.sqlite` (gitignored; `MEMELAB_ALERT_DB`), never in the tracked database, which `connect()` refuses. Destinations are personal and the public schema stays at 12. Dry run and send keep separate state so a dry run never uses up a real alert's dedupe key or cooldown.
+
+## D-102 Delivery: file sink first, remote only with consent and credentials, at most once (ADOPTED, Phase 15)
+
+The file sink always runs and is never reported as a delivery to a device. Telegram (one bot, one chat, plain text) and email (SMTP STARTTLS) exist only when the private config enables them and their secrets are in the environment. Sending needs `--send` plus `notifications_opt_in` and `send_enabled` true; otherwise it is a dry run, and `--send` without consent exits 2. A config holding a secret is refused. Fixture alerts never go remote. The ledger records `attempted` before every call; a crash leaves `outcome_unknown`, which is never resent. Retryable failures retry after 5 min, 30 min, 2 h, up to 4 attempts; 4xx other than 429 do not retry. Destinations are hashed in the ledger; errors are redacted.
+
+## D-103 Per-provider daily cost ceilings (ADOPTED, Phase 15)
+
+Ceilings per provider per day cover transports (file, telegram, email: 0 USD per message today) and upstream paid APIs (x_api and llm at 0 USD, so no paid refresh; telegram_bot free). A transport over its ceiling is not called and the attempt is logged as failed with the reason. `social alerts preflight` reads live `social_api_spend` rows for the UTC billing day and tells a scheduled run which refresh step may run. Raising a ceiling is Elving's cost decision (D-009, D-023, D-036).
+
+## D-104 Schedule templates are data, disabled, DST-safe and idempotent; no GitHub Actions (ADOPTED, Phase 15)
+
+Daily (07:47 New York) and weekly (Monday 08:13) templates carry `enabled: false` and the consent keys they need. Gap times run once at the first valid minute; repeated fall-back times run once at the first occurrence. A slot key per local date or ISO week makes a repeated trigger or a restart a no-op; a slot started under 2 h ago is skipped, an older unfinished one is taken over. Templates may not run more often than hourly. No Actions workflow was added: a public repo's Actions would need the delivery secrets as repository secrets and would hold state outside the private file. Enabling a job is a scheduled task Elving approves.
