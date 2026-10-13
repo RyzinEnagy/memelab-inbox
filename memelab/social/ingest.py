@@ -49,7 +49,7 @@ REF_TYPES = ("replied_to", "quoted", "retweeted")
 CONTEXT_BASIS = ("PROVIDER", "NOT_REQUESTED")
 PROVIDER_ID = re.compile(r"^[A-Za-z0-9_\-]{1,64}$")
 ANALYSIS_VERSION = "social-ingest-v1"
-PLATFORMS = ("x", "telegram", "youtube", "discord", "farcaster", "other")
+PLATFORMS = ("x", "telegram", "youtube", "discord", "farcaster", "reddit", "other")
 ACCESS_MODES = ("fetch", "navigate", "signed_in_browser", "manual", "fixture")
 RETRIEVAL = ("OK", "PARTIAL", "NOT_FOUND", "DELETED", "PROTECTED", "BLOCKED", "RATE_LIMITED", "LOGIN_REQUIRED", "CAPTCHA", "ERROR")
 # content classes that never travel through the public inbox (D-010): quarantined on sight

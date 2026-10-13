@@ -1,0 +1,255 @@
+{
+ "exchanges": [
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {
+     "fid": 9001,
+     "pageSize": 100,
+     "reverse": 1
+    },
+    "path": "/v1/castsByFid"
+   },
+   "response": {
+    "body": {
+     "messages": [
+      {
+       "data": {
+        "castAddBody": {
+         "embeds": [
+          {
+           "url": "https://pump.fun/coin/8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ"
+          }
+         ],
+         "embedsDeprecated": [],
+         "mentions": [],
+         "mentionsPositions": [],
+         "text": "Invented cast: LABDOG on Solana 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ"
+        },
+        "fid": 9001,
+        "network": "FARCASTER_NETWORK_MAINNET",
+        "timestamp": 182139000,
+        "type": "MESSAGE_TYPE_CAST_ADD"
+       },
+       "hash": "0xa1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
+       "hashScheme": "HASH_SCHEME_BLAKE3",
+       "signature": "aW52ZW50ZWQ=",
+       "signatureScheme": "SIGNATURE_SCHEME_ED25519",
+       "signer": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+      }
+     ],
+     "nextPageToken": ""
+    },
+    "headers": {},
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {
+     "pageSize": 100,
+     "reverse": 1,
+     "url": "https://example.invalid/channels/examplememes"
+    },
+    "path": "/v1/castsByParent"
+   },
+   "response": {
+    "body": {
+     "messages": [
+      {
+       "data": {
+        "castAddBody": {
+         "embeds": [
+          {
+           "castId": {
+            "fid": 9001,
+            "hash": "0xa1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1"
+           }
+          }
+         ],
+         "embedsDeprecated": [],
+         "mentions": [],
+         "mentionsPositions": [],
+         "parentUrl": "https://example.invalid/channels/examplememes",
+         "text": "Invented quote cast: interesting"
+        },
+        "fid": 9003,
+        "network": "FARCASTER_NETWORK_MAINNET",
+        "timestamp": 182149200,
+        "type": "MESSAGE_TYPE_CAST_ADD"
+       },
+       "hash": "0xc1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1",
+       "hashScheme": "HASH_SCHEME_BLAKE3",
+       "signature": "aW52ZW50ZWQ=",
+       "signatureScheme": "SIGNATURE_SCHEME_ED25519",
+       "signer": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+      },
+      {
+       "data": {
+        "castAddBody": {
+         "embeds": [],
+         "embedsDeprecated": [],
+         "mentions": [],
+         "mentionsPositions": [],
+         "parentUrl": "https://example.invalid/channels/examplememes",
+         "text": "Invented channel cast about 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ"
+        },
+        "fid": 9002,
+        "network": "FARCASTER_NETWORK_MAINNET",
+        "timestamp": 182142000,
+        "type": "MESSAGE_TYPE_CAST_ADD"
+       },
+       "hash": "0xb1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1",
+       "hashScheme": "HASH_SCHEME_BLAKE3",
+       "signature": "aW52ZW50ZWQ=",
+       "signatureScheme": "SIGNATURE_SCHEME_ED25519",
+       "signer": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+      }
+     ],
+     "nextPageToken": ""
+    },
+    "headers": {},
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {
+     "fid": 9003,
+     "user_data_type": 6
+    },
+    "path": "/v1/userDataByFid"
+   },
+   "response": {
+    "body": {
+     "messages": [],
+     "nextPageToken": ""
+    },
+    "headers": {},
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {
+     "pageSize": 100,
+     "reaction_type": "Recast",
+     "target_fid": 9003,
+     "target_hash": "0xc1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1"
+    },
+    "path": "/v1/reactionsByCast"
+   },
+   "response": {
+    "body": {
+     "messages": [],
+     "nextPageToken": ""
+    },
+    "headers": {},
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {
+     "fid": 9001,
+     "hash": "0xa1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1"
+    },
+    "path": "/v1/castById"
+   },
+   "response": {
+    "body": {
+     "data": {
+      "castAddBody": {
+       "embeds": [
+        {
+         "url": "https://pump.fun/coin/8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ"
+        }
+       ],
+       "embedsDeprecated": [],
+       "mentions": [],
+       "mentionsPositions": [],
+       "text": "Invented cast: LABDOG on Solana 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ"
+      },
+      "fid": 9001,
+      "network": "FARCASTER_NETWORK_MAINNET",
+      "timestamp": 182139000,
+      "type": "MESSAGE_TYPE_CAST_ADD"
+     },
+     "hash": "0xa1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
+     "hashScheme": "HASH_SCHEME_BLAKE3",
+     "signature": "aW52ZW50ZWQ=",
+     "signatureScheme": "SIGNATURE_SCHEME_ED25519",
+     "signer": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+    },
+    "headers": {},
+    "status": 200
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {
+     "fid": 9001,
+     "hash": "0xa2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2"
+    },
+    "path": "/v1/castById"
+   },
+   "response": {
+    "body": {
+     "details": "invented",
+     "errCode": "not_found"
+    },
+    "headers": {},
+    "status": 404
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T23:00:00Z",
+   "request": {
+    "method": "GET",
+    "params": {
+     "fid": 9002,
+     "hash": "0xb1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1"
+    },
+    "path": "/v1/castById"
+   },
+   "response": {
+    "body": {
+     "data": {
+      "castAddBody": {
+       "embeds": [],
+       "embedsDeprecated": [],
+       "mentions": [],
+       "mentionsPositions": [],
+       "parentUrl": "https://example.invalid/channels/examplememes",
+       "text": "Invented channel cast about 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ"
+      },
+      "fid": 9002,
+      "network": "FARCASTER_NETWORK_MAINNET",
+      "timestamp": 182142000,
+      "type": "MESSAGE_TYPE_CAST_ADD"
+     },
+     "hash": "0xb1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1",
+     "hashScheme": "HASH_SCHEME_BLAKE3",
+     "signature": "aW52ZW50ZWQ=",
+     "signatureScheme": "SIGNATURE_SCHEME_ED25519",
+     "signer": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+    },
+    "headers": {},
+    "status": 200
+   }
+  }
+ ],
+ "note": "INVENTED FIXTURE: synthetic Snapchain HTTP API exchanges shaped like the documented responses; channel, users, ids and sentences are made up.",
+ "schema": "memelab.farcaster_hub.fixture/1"
+}

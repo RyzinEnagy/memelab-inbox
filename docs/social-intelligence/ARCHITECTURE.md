@@ -7,6 +7,7 @@ How the layer is built, as implemented on `feature/social-intelligence` at Phase
 ```
  collectors (all optional, all off by default)
    browser bridge inbox (soc:* units)     X API v2         Telegram Bot API      registry list files      Helius wallet docs
+   (Phase 19, optional: Reddit Data API and Farcaster Snapchain HTTP, same inbound contract, reddit_api.py / farcaster_hub.py)
           |                                  |                    |                       |                         |
           v                                  v                    v                       v                         v
    ingest.py: one inbound contract (memelab.social.inbound/1, /2, /3), quarantine, dedupe, checkpoints, connector health
@@ -43,7 +44,7 @@ Every arrow reads stored data. No stage calls a later stage, and no stage writes
 | Quarantine | `data/private/quarantine/` | no | inbound items refused by the ingester |
 | Alert state | `data/private/alerts.sqlite` (`MEMELAB_ALERT_DB`) | no | runs, alerts, suppressions, delivery ledger, schedule slots |
 | Signal ledger | `data/private/signal_ledger.sqlite` (`MEMELAB_SIGNAL_LEDGER`) | no | append-only hash-chained signals and outcomes |
-| Private configs | `data/private/*.json`, `data/config.json` | no | X, Telegram, model and alert settings; the Helius key in `data/config.json` |
+| Private configs | `data/private/*.json`, `data/config.json` | no | X, Telegram, Reddit, Farcaster, model and alert settings; the Helius key in `data/config.json` |
 
 The tracked lab database on `main` has no social tables today. Migrating it is a separate decision (it would publish whatever social rows are stored).
 
@@ -66,8 +67,8 @@ Every engine takes a fixed clock (`--now`, `--as-of`) and an input hash. Narrati
 
 ## Money paths
 
-Paid calls exist in three adapters only, all behind a budget guard that is off with zero caps by default: `x_api.py` (X API), `llm.py` (model), and the alert transports (free today, ceilings per provider per day). `social alerts preflight` reads live spend rows. Nothing in the layer can move funds: there is no signing code, no swap or order endpoint and no wallet connection (release audit, section "Trade-execution and signing code").
+Paid calls exist in three adapters only, all behind a budget guard that is off with zero caps by default: `x_api.py` (X API), `llm.py` (model), and the alert transports (free today, ceilings per provider per day). The optional Phase 19 adapters are free at the lab's scale and gated the same way: `reddit_api.py` refuses before any request without Reddit's approval flag and credentials, and `farcaster_hub.py` needs a configured node, plus a key, consent and a run cap when the hub is metered; both write every request to `social_api_spend`. `social alerts preflight` reads live spend rows. Nothing in the layer can move funds: there is no signing code, no swap or order endpoint and no wallet connection (release audit, section "Trade-execution and signing code").
 
 ## Phase notes
 
-[SCHEMA_01](SCHEMA_01.md), [CONNECTORS_02](CONNECTORS_02.md), [X_API_03](X_API_03.md), [TELEGRAM_04](TELEGRAM_04.md), [IDENTITY_05](IDENTITY_05.md), [CLAIMS_06](CLAIMS_06.md), [NARRATIVES_07](NARRATIVES_07.md), [REGISTRY_08](REGISTRY_08.md), [WALLETS_09](WALLETS_09.md), [PERFORMANCE_10](PERFORMANCE_10.md), [ALPHA_11](ALPHA_11.md), [CHRONOLOGY_12](CHRONOLOGY_12.md), [INTEGRATION_13](INTEGRATION_13.md), [REPORTS_14](REPORTS_14.md), [ALERTS_15](ALERTS_15.md), [OUTCOMES_16](OUTCOMES_16.md), [REPLAY_17](REPLAY_17.md), [RELEASE_18](RELEASE_18.md). Source status: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
+[SCHEMA_01](SCHEMA_01.md), [CONNECTORS_02](CONNECTORS_02.md), [X_API_03](X_API_03.md), [TELEGRAM_04](TELEGRAM_04.md), [IDENTITY_05](IDENTITY_05.md), [CLAIMS_06](CLAIMS_06.md), [NARRATIVES_07](NARRATIVES_07.md), [REGISTRY_08](REGISTRY_08.md), [WALLETS_09](WALLETS_09.md), [PERFORMANCE_10](PERFORMANCE_10.md), [ALPHA_11](ALPHA_11.md), [CHRONOLOGY_12](CHRONOLOGY_12.md), [INTEGRATION_13](INTEGRATION_13.md), [REPORTS_14](REPORTS_14.md), [ALERTS_15](ALERTS_15.md), [OUTCOMES_16](OUTCOMES_16.md), [REPLAY_17](REPLAY_17.md), [RELEASE_18](RELEASE_18.md), [SOURCES_19](SOURCES_19.md). Source status: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).

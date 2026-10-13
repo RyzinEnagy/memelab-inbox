@@ -10,6 +10,9 @@
   social tg-health [--config <path>] [--check-access [--fixture <file>]]   Telegram Bot API health (telegram_bot.py)
   social tg-ingest [--config <path>] [--fixture <file>]   poll approved channels through getUpdates; live needs TELEGRAM_BOT_TOKEN
   social tg-webhook-ingest [--config <path>] [--spool <dir>]   ingest updates spooled by telegram_bot.webhook_receive()
+  social reddit-health | reddit-ingest | reddit-purge      optional Reddit Data API adapter (sources_cli.py, Phase 19)
+  social fc-health | fc-ingest                             optional Farcaster Snapchain HTTP adapter (sources_cli.py, Phase 19)
+  social sources                                           every social connector: status, cost, next step; no network
   social resolve --post <json> --bodies <json> [--context]   token identity for one post (identity.py), optional market context
   social identity [--item <item_key>] [--resolution <id>]    what is stored: status, identity, candidates, evidence, context
   social extract --post <json> [--bodies <json>] [--mock <file>]   record one observation (fixture) and extract claims (extraction.py)
@@ -575,3 +578,5 @@ def add_subparser(sp) -> None:
     outcomes_cli.add_parser(ssp)
     from . import replay_cli
     replay_cli.add_parser(ssp)
+    from . import sources_cli
+    sources_cli.add_parser(ssp)

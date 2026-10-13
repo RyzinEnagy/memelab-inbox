@@ -1,0 +1,15 @@
+{
+ "schema": "memelab.farcaster_hub.config/1",
+ "note": "Example only. Copy to data/private/farcaster_hub.json (gitignored). base_url null keeps the adapter off. A self-hosted Snapchain node is http://127.0.0.1:3381 with billing self_hosted. A hosted hub is https with billing metered: put its API key in the environment variable named by api_key_env, never here, and set budget.allow_billable only after deciding the cost.",
+ "hub": {"base_url": null, "billing": "self_hosted", "api_key_env": "FARCASTER_HUB_API_KEY", "api_key_header": "x-api-key", "usd_per_request": 0},
+ "budget": {"allow_billable": false, "max_usd_per_run": 0},
+ "scopes": [
+  {"kind": "fid", "fid": 1},
+  {"kind": "channel", "name": "examplechannel", "parent_url": "https://example.invalid/channels/examplechannel"}
+ ],
+ "recasts": {"enabled": true, "max_casts_per_run": 10},
+ "recheck": {"enabled": true, "max_items": 50},
+ "page_size": 100,
+ "max_pages_per_scope": 1,
+ "max_requests_per_run": 40
+}

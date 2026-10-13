@@ -1,0 +1,30 @@
+{
+ "hub": {
+  "base_url": "http://127.0.0.1:3381",
+  "billing": "self_hosted"
+ },
+ "max_pages_per_scope": 3,
+ "max_requests_per_run": 60,
+ "note": "INVENTED FIXTURE config",
+ "page_size": 100,
+ "recasts": {
+  "enabled": true,
+  "max_casts_per_run": 20
+ },
+ "recheck": {
+  "enabled": true,
+  "max_items": 50
+ },
+ "schema": "memelab.farcaster_hub.config/1",
+ "scopes": [
+  {
+   "fid": 9001,
+   "kind": "fid"
+  },
+  {
+   "kind": "channel",
+   "name": "examplememes",
+   "parent_url": "https://example.invalid/channels/examplememes"
+  }
+ ]
+}

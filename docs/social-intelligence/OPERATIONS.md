@@ -91,6 +91,8 @@ It prints the versions it undid (12 down to 1). Checked on a copy of the tracked
 
 To remove one source's rows without dropping the schema there is no command yet; ask for it as a change. Posts that the X API reports as deleted must be purged within 24 hours once live X data is stored (carry-over C-3, not built yet). That is why live X storage should wait for C-3.
 
+Reddit: Reddit's terms require removing deleted posts, comments and accounts. Every `social reddit-ingest` ends with a purge (`deletion_purge` in its output). To run it on its own: `python -m memelab social reddit-purge`, and for an account you know was deleted: `python -m memelab social reddit-purge --account t2_ID`. `social reddit-health` shows `deletion_purge_pending_items`; it should be 0 after every run. Details in SOURCES_19.md and D-128.
+
 If a credential is ever pasted into a chat or a file, rotate it at the provider. The Helius key was pasted into a chat once (see HANDOFF.md); rotate it if that chat is shared.
 
 ## Troubleshooting
@@ -104,6 +106,9 @@ If a credential is ever pasted into a chat or a file, rotate it at the provider.
 | `fixtures are never written to the tracked database` | a `--fixture` command without `--db` | add `--db /path/to/scratch.sqlite` |
 | `alerts run --send` exits 2 | no opt-in or send consent in the private config | expected safety stop |
 | `x-ingest` or `tg-ingest` exits 1 with `NOT_RUN credentials_missing` | no token in the environment | expected; no network call was made |
+| `reddit-ingest` exits 1 with `NOT_RUN approval_missing` or `credentials_missing` | Reddit has not approved access, or the client id and secret are not exported | expected; see SOURCES_19.md "Setup" |
+| `fc-ingest` exits 1 with `NOT_RUN not_configured` | no `hub.base_url` in `data/private/farcaster_hub.json` | expected until a node or hub is chosen |
+| Reddit or Farcaster connector `RATE_LIMITED` | 429 or Reddit's remaining count fell below `min_remaining` | the next run waits for the recorded reset time on its own |
 | replay verdict `INSUFFICIENT_DATA` | no stored posts or wallet events, too little price history | collect first; the replay cannot invent history |
 | `social guard` fails | a tracked file holds a blocked class or a private file is tracked | the output names the file and rule (never the value); remove it before committing |
 | full test suite shows `test_dedup_corroboration_resurface_denial` failing | known clock-dependent test (carry-over C-1) | ignore until C-1 is done; any other failure is new |
@@ -112,6 +117,7 @@ If a credential is ever pasted into a chat or a file, rotate it at the provider.
 
 - Live X reads through the API (needs app, token, budget) or through signed-in Chrome (D-025 open; X's guidelines say browser automation leads to suspension).
 - Telegram channels whose admins have not added the bot, Telegram through Chrome, private groups (D-028 open).
+- Live Reddit reads (needs Reddit's approval and credentials) and live Farcaster reads (needs a node or a hosted hub); comment trees and Farcaster replies under channel casts are not walked.
 - Model-based claim analysis (no model configured).
 - Purging X observations of deleted posts (C-3).
 - Manual capture onto the inbound schema (C-4), YouTube RSS and other sources (C-8).

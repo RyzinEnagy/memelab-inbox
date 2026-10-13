@@ -33,6 +33,7 @@ import time
 from pathlib import Path
 
 SECRET_VARS = ("HELIUS_API_KEY", "X_BEARER_TOKEN", "TELEGRAM_BOT_TOKEN", "TELEGRAM_WEBHOOK_SECRET", "ANTHROPIC_API_KEY",
+               "REDDIT_CLIENT_ID", "REDDIT_CLIENT_SECRET", "FARCASTER_HUB_API_KEY",
                "MEMELAB_ALERT_TELEGRAM_TOKEN", "MEMELAB_ALERT_TELEGRAM_CHAT_ID", "MEMELAB_ALERT_SMTP_PASSWORD",
                "GH_TOKEN", "GITHUB_TOKEN")
 
@@ -107,6 +108,16 @@ STAGES: list[tuple[str, str, str, tuple[int, ...]]] = [
     ("17", "no credentials: Helius key status", "{py} -m memelab.secrets status", (1,)),
     ("17", "no credentials: alert spend preflight", "{py} -m memelab social alerts preflight --db {db}", (0,)),
     ("18", "content guard over every tracked file", "{py} -m memelab social guard", (0,)),
+    ("19", "Reddit fixture: ingest approved community, extract claims in memory, purge deleted items", "{py} -m memelab social reddit-ingest --config " + FIX + "/reddit_api/fx_reddit_config.json --fixture " + FIX + "/reddit_api/fx_reddit_main.json --extract --bodies " + FIX + "/resolve/fx_providers.json --db {tmp}/reddit.sqlite --now 1791676800", (0,)),
+    ("19", "Reddit fixture: second run (cursor, recheck, deletion and account deletion, purge)", "{py} -m memelab social reddit-ingest --config " + FIX + "/reddit_api/fx_reddit_config.json --fixture " + FIX + "/reddit_api/fx_reddit_second.json --db {tmp}/reddit.sqlite --now 1791763200", (0,)),
+    ("19", "Reddit fixture: narrative snapshot and brief", "{py} -m memelab social narrative-snapshot --day 2026-10-10 --tz UTC --db {tmp}/reddit.sqlite --now 1791680400 && {py} -m memelab social brief --db {tmp}/reddit.sqlite --as-of 2026-10-11T01:00:00+00:00 --tz UTC --include-fixtures", (0,)),
+    ("19", "Farcaster fixture: ingest fid and channel, recasts, extract claims in memory", "{py} -m memelab social fc-ingest --config " + FIX + "/farcaster_hub/fx_fc_config.json --fixture " + FIX + "/farcaster_hub/fx_fc_main.json --extract --bodies " + FIX + "/resolve/fx_providers.json --db {tmp}/farcaster.sqlite --now 1791676800", (0,)),
+    ("19", "Farcaster fixture: narrative snapshot and brief", "{py} -m memelab social narrative-snapshot --day 2026-10-10 --tz UTC --db {tmp}/farcaster.sqlite --now 1791680400 && {py} -m memelab social brief --db {tmp}/farcaster.sqlite --as-of 2026-10-11T01:00:00+00:00 --tz UTC --include-fixtures", (0,)),
+    ("19", "no credentials: Reddit health", "{py} -m memelab social reddit-health --db {db}", (1,)),
+    ("19", "no credentials: live Reddit ingest refuses before any call", "{py} -m memelab social reddit-ingest --db {db}", (1,)),
+    ("19", "not configured: Farcaster health", "{py} -m memelab social fc-health --db {db}", (1,)),
+    ("19", "not configured: live Farcaster ingest refuses before any call", "{py} -m memelab social fc-ingest --db {db}", (1,)),
+    ("19", "every social connector: status, cost, next step", "{py} -m memelab social sources --db {db}", (0,)),
 ]
 
 

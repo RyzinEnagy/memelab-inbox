@@ -23,6 +23,8 @@ It reads public posts about tokens (X, Telegram, files you supply), works out ex
 | Bridge inbox import | working, no live social data yet | Imports social units from collector files; no collector ships social units yet. |
 | X API | built, not live | Needs an X developer app, a token and a budget you approve. |
 | Telegram bot | built, not live | Needs a bot token and channels whose admins add the bot. Telegram's bot terms limit channel data collection (decision D-028, yours). |
+| Reddit (optional) | built, not live | Needs Reddit's written approval for Data API access and app credentials. Deleted posts and accounts are purged at the next run. See [SOURCES_19.md](SOURCES_19.md). |
+| Farcaster (optional) | built, not live | Needs your own Snapchain node (free) or a hosted hub with a key and a cost cap. See [SOURCES_19.md](SOURCES_19.md). |
 | Token identity, claims, narratives, registry, wallets, P&L, information alpha, chronology | built, proved on invented fixtures | No real posts or wallet fetches are stored yet, so there are no real results. |
 | Scout and catalyst integration | built, off by default | Adds a research section to reports only when you turn it on. |
 | Brief, trader digest, feed | working | On today's lab database they say "No supported high-priority observations" with the reason (no social data). |
@@ -41,6 +43,8 @@ The honest summary: the machinery is built and tested end to end on invented dat
 | Helius (wallet history) | your Helius plan; the lab reads the key from `HELIUS_API_KEY` | key not in the repo |
 | X API v2 | pay per use: about $0.005 per post read, up to about $0.03 with author and referenced-post details. Following 20 accounts at 10 posts a day each is roughly $30 to $180 a month (estimate from X's published prices, read 2026-10-10) | off, caps 0 |
 | Telegram Bot API | free | off |
+| Reddit Data API | free for non-commercial use, 100 requests a minute; needs Reddit's approval | off (approval flag false) |
+| Farcaster | own Snapchain node: no per-request cost (your server); hosted hub such as Neynar: a free tier and plans from about $9 a month (pricing page read 2026-10-12) | off (no hub address) |
 | Language model (Anthropic) | per token at the model's list price, which you enter in the private config | off, cap 0 |
 | Alert delivery (file, Telegram bot, email) | free | file only |
 
@@ -52,6 +56,8 @@ Credentials, read from the environment only:
 - `X_BEARER_TOKEN`
 - `TELEGRAM_BOT_TOKEN`, `TELEGRAM_WEBHOOK_SECRET`
 - `ANTHROPIC_API_KEY`
+- `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`
+- the Farcaster hub key, in the variable named by `hub.api_key_env` (default `FARCASTER_HUB_API_KEY`), only for a metered hub
 - `MEMELAB_ALERT_TELEGRAM_TOKEN`, `MEMELAB_ALERT_TELEGRAM_CHAT_ID`, `MEMELAB_ALERT_SMTP_PASSWORD`
 
 File locations (optional overrides; defaults are under `data/` and `data/private/`, both safe):
@@ -62,7 +68,7 @@ File locations (optional overrides; defaults are under `data/` and `data/private
 - `MEMELAB_SIGNAL_LEDGER` (default `data/private/signal_ledger.sqlite`)
 - `MEMELAB_LLM_CONFIG` (default `data/private/llm.json`)
 
-Private config files, each with an example in this folder: `data/private/x_api.json` ([x_api.example.json](x_api.example.json)), `data/private/telegram_bot.json` ([telegram_bot.example.json](telegram_bot.example.json)), `data/private/llm.json` ([llm.example.json](llm.example.json)), `data/private/alerts.json` ([alerts.example.json](alerts.example.json)). A config file that contains a token, key or password is refused; credentials go in the environment.
+Private config files, each with an example in this folder: `data/private/x_api.json` ([x_api.example.json](x_api.example.json)), `data/private/telegram_bot.json` ([telegram_bot.example.json](telegram_bot.example.json)), `data/private/llm.json` ([llm.example.json](llm.example.json)), `data/private/alerts.json` ([alerts.example.json](alerts.example.json)), `data/private/reddit_api.json` ([reddit_api.example.json](reddit_api.example.json)), `data/private/farcaster_hub.json` ([farcaster_hub.example.json](farcaster_hub.example.json)). `python -m memelab social sources` shows every social connector with its status, cost and next step, without any network call. A config file that contains a token, key or password is refused; credentials go in the environment.
 
 ## Quick start
 

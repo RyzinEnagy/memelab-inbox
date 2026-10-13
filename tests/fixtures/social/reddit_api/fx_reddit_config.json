@@ -1,0 +1,29 @@
+{
+ "access_approval": {
+  "approved": true,
+  "reference": "fixture: no real approval"
+ },
+ "commercial_use": false,
+ "communities": [
+  {
+   "comments": true,
+   "name": "examplememes",
+   "submissions": true
+  }
+ ],
+ "max_pages_per_listing": 3,
+ "max_requests_per_run": 30,
+ "min_remaining": 5,
+ "note": "INVENTED FIXTURE config",
+ "page_size": 100,
+ "recheck": {
+  "enabled": true,
+  "max_items": 100
+ },
+ "schema": "memelab.reddit_api.config/1",
+ "user_agent": {
+  "app_id": "memelab-research",
+  "reddit_username": "example_operator",
+  "version": "0.19"
+ }
+}

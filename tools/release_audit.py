@@ -56,7 +56,7 @@ EXPLAINED = [
     (r"^memelab/social/(content_guard|ingest|registry_import|alerts_core|outcomes_core|replay_core|research_core)\.py$", r"exec:.*", "refusal lists: keys or words the lab rejects"),
 ]
 
-SOCIAL_LOGIN_HOSTS = re.compile(r"(api\.x\.com|api\.twitter\.com|api\.telegram\.org|api\.anthropic\.com|smtp\.)")
+SOCIAL_LOGIN_HOSTS = re.compile(r"(api\.x\.com|api\.twitter\.com|api\.telegram\.org|api\.anthropic\.com|smtp\.|oauth\.reddit\.com|www\.reddit\.com)")
 
 
 def run(cmd, cwd=ROOT, check=False):

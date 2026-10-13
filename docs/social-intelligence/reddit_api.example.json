@@ -1,0 +1,15 @@
+{
+ "schema": "memelab.reddit_api.config/1",
+ "note": "Example only. Copy to data/private/reddit_api.json (gitignored). Credentials never go here: export REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET. Leave access_approval.approved false until Reddit has approved Data API access in writing.",
+ "user_agent": {"app_id": "memelab-research", "version": "0.19", "reddit_username": null},
+ "access_approval": {"approved": false, "reference": null},
+ "commercial_use": false,
+ "communities": [
+  {"name": "examplecommunity", "submissions": true, "comments": true}
+ ],
+ "recheck": {"enabled": true, "max_items": 100},
+ "page_size": 100,
+ "max_pages_per_listing": 1,
+ "max_requests_per_run": 20,
+ "min_remaining": 5
+}
