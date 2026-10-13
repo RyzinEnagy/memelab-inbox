@@ -1,3 +1,22 @@
+# CURRENT REMEDIATION HANDOFF — M00 (2026-10-13)
+
+**Authoritative current package:** M00 / R-00 **PARTIAL RECOVERY — BLOCKED; INDEPENDENT VERIFICATION PENDING**. The historical Phase 18 implementation handoff appears below for provenance only. **No new application implementation package is authorized.**
+
+- **Branch:** `remediation/social-intelligence-m00`, branching from `audit/social-intelligence-phase06` at `b4c4216b9391227be5fdfe7cfe20b60e32d9e8f6`.
+- **Pinned audited application:** `main` @ `698f73b854567ce60b56ce275b5ab6822a9d5f60`; separately reviewed optional feature @ `3f27fc788f9ab88286b8041355e5445fdfdf012c`.
+- **Findings addressed:** R-00 evidence availability only, *partial*; no AUD/ARCH/ADV/OPS application finding is resolved. The previously missing document count fell from seven to two; no original defect was patched.
+- **Files recovered:** `audits/social-intelligence/recovered/{00_BASELINE.md,REQUIREMENTS_MATRIX.md,01_FUNCTIONAL_AUDIT.md,04_ADVERSARIAL_AUDIT.md,05_OPERATIONS_AND_UX.md}`. See `audits/social-intelligence/EVIDENCE_MANIFEST.json` (SHA-256); `EVIDENCE_CROSSWALK.md` (46 indexed IDs); `M00_RECOVERY_REPORT.md`; `M00_VERIFICATION.md`.
+- **Verification tooling:** `tools/check_audit_evidence.py` and `tests/test_audit_evidence.py` only; main engine code and schemas unchanged, migrations **none**.
+- **Tests:** focused M00 4 passed; integrity `BLOCKED` / 6 of 8 with no checksum mismatches; strict gate exits 2 as designed. Full legacy suite was attempted but the test process exited 137 around 70%; **no complete suite result**. It created an untracked BRETT report (test-created only; removed after final checks); targeted catalyst suite **1 failed / 4 passed**, combined `--maxfail=2` diagnostic **2 failed / 295 passed** (additional ingest logger test passes alone); `social guard` found zero violations; existing AUD-011 remains open. No live/paid/trading tests.
+- **What remains:** missing `02_ARCHITECTURE_AUDIT.md`, `03_RESEARCH_VALIDITY.md` and original audit probe/log artifacts; 04/05 source-byte equivalence unverified; 13 secondary-only and 10 architecture crosswalk IDs; an independent reviewer must inspect all ID mappings. OPS IDs not explicitly labeled in the Phase 05 report.
+- **Commit sequence:** source recovery `61f7f06181f567311ed0da54436500989719014c`; subsequent verification/documentation commit(s) on the same branch. The GitHub branch tip and PR history, not this in-file statement, are authoritative for final tip SHA.
+- **Next exact command:** `python -m pytest tests/test_audit_evidence.py -q && python tools/check_audit_evidence.py --require-complete` on a fresh M00 checkout. Expect the second command to exit **2** until missing evidence is supplied; consult `M00_VERIFICATION.md` for complete independent checklist.
+- **Next conditional package:** M01 / R-01 and R-02 historical causality and provenance. **DO NOT START until M00 independently accepted.**
+
+---
+
+## Historical implementation handoff (pre-remediation; not a current approval)
+
 # Social & Trader Intelligence: handoff
 
 Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Release record and checklist: [RELEASE_18.md](RELEASE_18.md). Operator docs: [README.md](README.md), [OPERATIONS.md](OPERATIONS.md), [ARCHITECTURE.md](ARCHITECTURE.md). Phase notes: [AUDIT_00](AUDIT_00.md), [SCHEMA_01](SCHEMA_01.md), [CONNECTORS_02](CONNECTORS_02.md), [X_API_03](X_API_03.md), [TELEGRAM_04](TELEGRAM_04.md), [IDENTITY_05](IDENTITY_05.md), [CLAIMS_06](CLAIMS_06.md), [NARRATIVES_07](NARRATIVES_07.md), [REGISTRY_08](REGISTRY_08.md), [WALLETS_09](WALLETS_09.md), [PERFORMANCE_10](PERFORMANCE_10.md), [ALPHA_11](ALPHA_11.md), [CHRONOLOGY_12](CHRONOLOGY_12.md), [INTEGRATION_13](INTEGRATION_13.md), [REPORTS_14](REPORTS_14.md), [ALERTS_15](ALERTS_15.md), [OUTCOMES_16](OUTCOMES_16.md), [REPLAY_17](REPLAY_17.md). Source status: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
