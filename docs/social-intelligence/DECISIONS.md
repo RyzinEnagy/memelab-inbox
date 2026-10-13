@@ -550,3 +550,21 @@ The scheduled runs on `main` write absolute session paths (for example `report_p
 ## D-124 Pull request opened for review, not merged (ADOPTED, Phase 18)
 
 The prompt asks for a pull request where repo access permits. The branch is pushed by fast-forward through the GitHub Git Data API (no force, D-001) and a pull request from `feature/social-intelligence` into `main` is opened for Elving to review. Nobody merges it in this phase: merging changes what the scheduled runs load from `main` (for example the collector projections of D-021 and D-063) and is Phase 21 work.
+
+
+## D-M00-001 Preserve immutable audit chronology and pin remediation branch (ADOPTED for M00, 2026-10-13)
+
+Base the evidence remediation branch `remediation/social-intelligence-m00` on `audit/social-intelligence-phase06` at `b4c4216b9391227be5fdfe7cfe20b60e32d9e8f6`, with application baseline `698f73b854567ce60b56ce275b5ab6822a9d5f60`. Open a PR against the audit publication branch for review; do not merge to `main` or rewrite the 06 report. Preserve the old Phase 18 handoff as labeled history, while publishing the current M00 blocker above it.
+
+## D-M00-002 Do not infer missing primary evidence from summaries (ADOPTED, 2026-10-13)
+
+The Library search recovered five source titles; with Phase 06 tracked, 6/8 expected inputs can now be inspected. The separate Phase 05 statement that an earlier reviewer read Phase 02 is not a source copy. `02_ARCHITECTURE_AUDIT.md`, `03_RESEARCH_VALIDITY.md` and original probe scripts/logs remain unavailable. The crosswalk is indexed text only, with missing primary support visibly labeled. M00 cannot pass from metadata, hashes, test fixtures or prose alone.
+
+## D-M00-003 Separate artifact integrity from independent finding resolution (ADOPTED, 2026-10-13)
+
+Implement a no-network SHA-256 audit input check and negative tests. `tools/check_audit_evidence.py` can exit 0 when **partial integrity** is sound while loudly returning `BLOCKED`; acceptance requires `--require-complete` and independent source/probe reconciliation. Do not change module implementations in an evidence-recovery phase, do not conceal a killed full regression suite (exit 137), and do not mark an AUD/ARCH/ADV/OPS finding resolved on these checks.
+
+
+## D-M00-004 Preserve non-deterministic QA failures as an open investigation (ADOPTED, 2026-10-13)
+
+A one-process full pytest run was terminated with exit 137 around 70%. A bounded combined run stopped after two failures: the known catalyst assertion and social ingestion log-content test (2 failed, 295 passed); the latter passes alone. No tests were skipped, assertions weakened or implementation modified. This creates a new **potential test-order/environment reliability risk** requiring independent reproduction; M00 cannot certify the full suite.
