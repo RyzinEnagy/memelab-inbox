@@ -1,66 +1,65 @@
 # Social & Trader Intelligence: handoff
 
-Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). This phase: [SOURCES_19.md](SOURCES_19.md). Release record: [RELEASE_18.md](RELEASE_18.md). Operator docs: [README.md](README.md), [OPERATIONS.md](OPERATIONS.md), [ARCHITECTURE.md](ARCHITECTURE.md). Source status: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md). Earlier phase notes are linked from ROADMAP.md.
+Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). This phase: [DISCORD_20.md](DISCORD_20.md). Previous phase: [SOURCES_19.md](SOURCES_19.md). Release record: [RELEASE_18.md](RELEASE_18.md). Operator docs: [README.md](README.md), [OPERATIONS.md](OPERATIONS.md), [ARCHITECTURE.md](ARCHITECTURE.md). Source status: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md). Earlier phase notes are linked from ROADMAP.md.
 
 ## Position
 
-- Current phase completed: 19 (optional Prompt 19: Reddit and Farcaster sources), 2026-10-12. Prompt 19 took the Phase 19 slot; the old Phase 19 (report sections and watchlist alerts) is carry-over C-19 and Phase 20 now depends on it (D-125).
-- Precondition: Elving confirmed Phase 18 was accepted; pull request #1 was merged into `main` as `f084b60`.
-- Prompt 19 says stop after this phase. No further phase is started.
-- Active branch: `feature/social-intelligence`. Phase 19 started by fast-forwarding the branch from `629d402` to `f084b60` (the merge commit on `main`; the only file difference was `data/state/latest.json` from the scheduled runs, not edited by this phase).
-- Baseline before any change: `python -m pytest tests -q --deselect tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` gave `651 passed, 1 deselected`; the deselected test is the known clock failure C-1. Matches the Phase 18 handoff (`1 failed, 651 passed`).
+- Current phase completed: 20 (optional Prompt 20: Discord community monitoring), 2026-10-12. Prompt 20 took the Phase 20 slot; the old Phase 20 (scheduled-run integration and state export) is carry-over C-20 and Phase 21 now depends on it (D-132).
+- Prompt 20 says stop after this phase. No further phase is started.
+- Active branch: `feature/social-intelligence`. Start state matched the Phase 19 handoff: HEAD `f028ece`, `git status` clean.
+- Baseline before any change: `python -m pytest tests -q --deselect tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` gave `688 passed, 1 deselected` (matches Phase 19's `1 failed, 688 passed`).
 - No migration. Public schema stays at 12. No change under `inbox/`, `state/` or `data/`.
-- Live status: neither new adapter is operational and no live call was made (D-131).
+- Live status: not operational and no live call was made (D-140).
 
-## What Phase 19 added
+## What Phase 20 added
 
-- `memelab/social/reddit_api.py`: Reddit Data API adapter. Approved communities only; submissions (`/new`), comments (`/comments`), recheck (`/api/info`); canonical fullnames, parent and thread ids, edit versions, deleted and removed states, account deletion, cross-post parent id and author id as a REPOST reference; rate limits from X-Ratelimit headers and 429; approval flag, non-commercial and credential gates before any request; `purge_deleted` (D-128); `health`.
-- `memelab/social/farcaster_hub.py`: Snapchain node HTTP adapter. Fids (`castsByFid`), channels (`castsByParent`), recasts (`reactionsByCast`), recheck (`castById`), username only (`userDataByFid` type 6); replies, quotes and recasts as references; self-hosted or metered hub with key, consent and cost cap; `health`.
-- `memelab/social/api_common.py`: fixture transport, request guard with `social_api_spend` rows, cursor helpers, `TextSink` and `extract_after_ingest` (text to claim extraction in memory only, D-130).
-- `memelab/social/sources_cli.py`: `social reddit-health`, `reddit-ingest`, `reddit-purge`, `fc-health`, `fc-ingest`, `social sources`. Registered in `memelab/social/cli.py`.
-- `reddit` added to `PLATFORMS` in `ingest.py` and `registry.py`.
-- Fixtures: `tests/fixtures/social/reddit_api/` and `tests/fixtures/social/farcaster_hub/` (invented). Tests: `tests/test_social_reddit.py` (23), `tests/test_social_farcaster.py` (14).
-- `tools/release_e2e.py`: 10 new stages (19): both fixture flows source to brief, Reddit second run with purge, no-credential and not-configured refusals, `social sources`; Reddit and Farcaster variables added to the removed credential list. `tools/release_audit.py`: Reddit hosts added to the credentialed-host list.
-- Docs: SOURCES_19.md (contract read, field mapping, gates, deletion purge, proof, cost and health, setup steps, first-live-run checks, gaps), examples `reddit_api.example.json` and `farcaster_hub.example.json` (both off), DECISIONS D-125 to D-131, ROADMAP (19 DONE, C-19 added, 20 depends on C-19), SOURCE_COVERAGE (two rows), README, OPERATIONS, ARCHITECTURE.
+- `memelab/social/discord_bot.py`: config (servers with recorded consent and visibility, channels; refuses tokens, invites, user-token and self-bot keys), the documented permission computation and an @everyone visibility check, REST transport and fixture transport, message to inbound/3 mapping (ids, author id and username only, versions, reply, forward, message-link REPOST or QUOTE, counts, bots and webhooks without author, system messages dropped), `DiscordBotAdapter` (application flags for the message content intent, bot identity check, per-server and per-channel access, cursor reads with `after=`, recheck for edits and deletions, 429, global 429, bucket wait, invalid-request cap, 5xx retries), `GatewaySession` (identify, resume, heartbeat, reconnect, invalid session, close codes, sequence dedupe; DM intents refused), `DiscordGatewayAdapter` (permission state from GUILD_CREATE, CHANNEL_UPDATE, GUILD_ROLE_UPDATE, GUILD_DELETE; events sorted by connection and sequence), `purge_deleted` (with `users` for deletion requests), `reset_checkpoint`, `health`.
+- `memelab/social/api_common.py`: `purge_gone_items` and `erase_accounts`, moved out of `reddit_api.purge_deleted` (Reddit behaviour unchanged; `items_purged` now counts only items where something was erased).
+- `memelab/social/sources_cli.py`: `social discord-health`, `discord-ingest`, `discord-gateway` (fixture only), `discord-purge`, `discord-reset`; Discord added to `social sources`. `memelab/social/cli.py` docstring.
+- `memelab/social/ingest.py`: `redact()` strips `Bot <token>` and the Discord token shape. `tools/release_audit.py`: `discord_bot_token` credential shape, `discord.com/api` in the credentialed-host list. `memelab/social/content_guard.py`: one ALLOW entry (the bot's own member entry in the gateway fixture, needed for its role ids).
+- Fixtures: `tests/fixtures/social/discord_bot/` (config, two REST runs, a gateway pass, a 4014 close; invented). Tests: `tests/test_social_discord.py` (38), one test added to `tests/test_release_tools.py`, the connector set in `tests/test_social_farcaster.py` now includes `discord_bot`.
+- `tools/release_e2e.py`: 9 stages (20) and `DISCORD_BOT_TOKEN` in the removed credential list.
+- Docs: DISCORD_20.md (contract read, rights and scope, intent, field mapping, both routes, deletions, proof table, cost and health, setup, first-live-run checks, gaps), `discord_bot.example.json` (off), DECISIONS D-132 to D-140, ROADMAP (20 DONE, C-20 added, 21 depends on C-20), SOURCE_COVERAGE (two rows), README, OPERATIONS, ARCHITECTURE.
 
-## Gate, item by item (Prompt 19)
+## Gate, item by item (Prompt 20)
 
-- Two distinct adapters, neither a stub: PASS (both fully built and tested; neither blocked from being built, both blocked from going live).
-- Reddit: selected approved communities, submissions and comments, canonical ids, parent relations, edited and deleted states, rate limits, cross-post provenance and independence: PASS on fixtures (`test_main_fixture_submissions_comments_crosspost_deleted_edited`, `test_crosspost_is_amplification_not_an_independent_thread`, `test_second_run_cursor_recheck_and_purge`, rate-limit tests).
-- Farcaster: casts, channels, recasts, replies, stable ids, identity and provenance: PASS on fixtures (`test_main_fixture_casts_replies_quotes_recasts`, `test_recasts_are_amplification_quotes_and_replies_are_own_words`).
-- Phase 02 schema and data minimization, no private messages, no terms bypass: PASS (inbound/3 through `ingest()`; text, titles, bios and slugs never stored, tests scan every social table; no DM endpoint exists; Reddit gated on approval, D-127).
-- Adapter fixtures and tests: PASS (37 tests).
-- One source to storage to claim to narrative report flow per functioning adapter: PASS on fixtures (CLI tests and e2e stages 19: Reddit 3 claims, 1 cluster with 2 independent sources, brief HIGH; Farcaster 2 claims, 1 cluster with 2 independent sources). No adapter functions live yet, so no live flow.
-- Connector cost and health status, precise setup: PASS (`reddit-health`, `fc-health`, `social sources`; SOURCES_19.md "Setup").
-- Permission unavailable marked blocked without claiming operation: PASS (Reddit BLOCKED on approval and credentials; Farcaster BLOCKED on node or hub; D-131; health reports `none` live evidence).
+- Official gateway/API docs and privileged message-content rules inspected: PASS (DISCORD_20.md "What was read", nine pages listed with what each says).
+- Bot installation and permissions confirmed for selected servers and channels: PASS on fixtures (consent gate before any request; `/users/@me` must be a bot; per channel guild match, type, @everyone visibility, VIEW_CHANNEL and READ_MESSAGE_HISTORY by the documented algorithm; `test_role_gated_and_history_less_channels_are_not_read`, `test_permission_algorithm_matches_the_documented_order`).
+- Never assume a public invite grants rights; no DMs; no self-bot: PASS (invite strings and self-bot keys refused, `test_config_refuses_tokens_invites_self_bots_and_weak_consent`, `test_user_token_is_refused_after_the_identity_check`; no DM endpoint; DM intents refused and DM events dropped, `test_gateway_4014_...`, gateway test `direct_message` drop).
+- Observations with channel ids, message ids, author, reply thread, edits and deletions when observable, UTC publication and ingestion times, forwarding and link provenance, allowed retention: PASS (`test_main_fixture_ids_authors_replies_forwards_links_edits`, `test_text_embeds_names_and_topics_are_never_stored`, `test_second_run_cursor_recheck_edit_and_deletion_purge`).
+- Rate-limit and permission-denied handling correct; missing privileged intent reported clearly: PASS (429, global 429, bucket wait, invalid cap, 5xx, 401, 403 tests; `test_intent_missing_blocks_with_a_clear_reason_and_reads_nothing`, `test_intent_missing_metadata_only_when_allowed`, 4014 test; health `intent_missing`).
+- Integrated into the existing normalized ingestion, token resolver, claim extraction and narrative feed, no second social schema: PASS (inbound/3 through `ingest()`, `extract_after_ingest`, narrative snapshot and brief in `test_cli_fixture_flow_extract_narrative_brief_gateway_and_live_refusal`; no migration).
+- Tests for permission revocation, intent missing, duplicate gateway events, message edits, quote/link duplication, out-of-order events, reset checkpoint, no available text, no-source day: PASS (mapping table in DISCORD_20.md "Proof").
+- Full fixture flow: PASS (CLI test and e2e stages 20: 9 messages stored, 8 texts extracted in memory, 6 claims, one cluster with 2 independent sources, brief HIGH; second run with recheck, edit and purge; gateway pass).
+- Live demonstration only with an authorized guild and configured bot: NOT RUN, BLOCKED (no bot, token or consenting server; D-140). Not claimed.
 
 ## Tests
 
 - Command: `python -m pytest tests -q` (needs `pip install pytest numpy`).
-- Outcome after the last code change (commit `9927e45`, run before the handoff commit): exit 1, `1 failed, 688 passed in 147.41s`. The only failure is the known clock-dependent `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (C-1).
-- `python -m pytest tests/test_social_reddit.py tests/test_social_farcaster.py tests/test_release_tools.py -q`: `45 passed`.
-- `python tools/release_e2e.py --out e2e.md` on `9927e45`: exit 0, `Result: PASS. Stages with the expected exit code: 55 of 55. Network attempts: 0. Tracked files changed in the clone: 0. Tracked database byte-identical: yes.`
+- Outcome after the last code change (on commit `82e37e2`): exit 1, `1 failed, 727 passed in 133.51s`. The only failure is the known clock-dependent `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (C-1).
+- `python tools/release_e2e.py --out e2e.md` on `82e37e2`: exit 0, `Result: PASS. Stages with the expected exit code: 64 of 64. Network attempts: 0. Tracked files changed in the clone: 0. Tracked database byte-identical: yes.`
 - `python tools/release_audit.py --history`: exit 0, `Needs action: no.`
 - `python -m memelab social guard`: exit 0, `violations: []`.
-- `python -m pyflakes` on the four new modules and two new test files: no messages.
-- The EVM test still writes `data/reports/<stamp>_BRETT_*.md`; deleted by hand after each run (C-1). `git status` clean before each commit.
+- `python -m pyflakes` on `discord_bot.py`, `sources_cli.py`, `api_common.py`, `reddit_api.py`, `tests/test_social_discord.py`: no messages.
+- The EVM test still writes `data/reports/<stamp>_BRETT_*.md`; deleted by hand after each run (C-1). One such file was caught in the first local commit and removed by amending that local, unpushed commit before anything else was built on it. `git status` clean before each commit.
 
 ## Things the next session should know
 
-- Reddit's Listing field shapes were not re-read from Reddit's API reference; the first live run must confirm them (SOURCES_19.md "First live run").
-- D-128 is partly PROPOSED: derived claim rows of deleted Reddit posts and narrative snapshot counts are kept. Elving decides whether to drop them.
-- `--extract` exists only on the two new ingest commands; X and Telegram extraction still needs `--text-file`.
-- Neither adapter is in any scheduled run (Phase 20).
+- Whether `after=` returns the messages right after the cursor is not stated in the docs read; the first live run must confirm (DISCORD_20.md "First live run").
+- D-137 is partly PROPOSED: when the bot is removed from a server, stored data from that server is kept. Elving decides.
+- D-134 defines a public Discord channel as an open server plus @everyone visibility; Elving can tighten it.
+- No live gateway transport (D-139). `discord-gateway` runs on recorded frames only.
+- No scheduled job runs the Reddit, Farcaster or Discord adapters (C-20).
 
 ## Helius key
 
-Unchanged from Phase 18: never in the repo; read through `memelab/secrets.py` (`HELIUS_API_KEY`, else gitignored `data/config.json`); `python -m memelab.secrets status` prints set or missing only. It was pasted into a chat once; rotate it if that chat is shared.
+Unchanged: never in the repo; read through `memelab/secrets.py` (`HELIUS_API_KEY`, else gitignored `data/config.json`); `python -m memelab.secrets status` prints set or missing only. It was pasted into a chat once; rotate it if that chat is shared.
 
 ## Blockers and open decisions
 
-- Reddit live: Reddit's written approval (Responsible Builder Policy) and app credentials (`REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`), Elving's.
-- Farcaster live: a self-hosted Snapchain node, or a hosted hub with a key and a cost decision, Elving's.
-- D-128 (derived rows of deleted Reddit posts), D-025, D-028, D-023 and D-036 remain open.
+- Discord live: a bot application with Message Content Intent on, `DISCORD_BOT_TOKEN`, and a server whose admin installs the bot and agrees in writing (Elving's).
+- Reddit live: Reddit's written approval and app credentials. Farcaster live: a node or a hosted hub with a cost decision.
+- D-137 (server removal), D-128 (derived rows of deleted Reddit posts), D-025, D-028, D-023 and D-036 remain open.
 - C-1 keeps the full suite from being fully green.
 - Push: the session's own `git push` is refused by the git proxy; the working route is Elving's GitHub connection in Composio with the Git Data API (blobs, trees, commits, fast-forward of the feature branch ref, no force, D-001).
 
@@ -70,14 +69,10 @@ Unchanged from Phase 18: never in the repo; read through `memelab/secrets.py` (`
 git clone https://github.com/RyzinEnagy/memelab-inbox.git && cd memelab-inbox && git checkout feature/social-intelligence && pip install pytest numpy && python -m pytest tests -q && python tools/release_e2e.py --out e2e.md
 ```
 
-Expect `1 failed, 688 passed` and `Result: PASS` with 55 of 55 stages.
+Expect `1 failed, 727 passed` and `Result: PASS` with 64 of 64 stages.
 
 ## Commit and push
 
-Local commits on `feature/social-intelligence`: `9927e45` (code, tests, fixtures, docs, tree `10c3d42`) and `13718df` (handoff, tree `f49a8ea`), on top of `f084b60`.
+Local commits on `feature/social-intelligence`: `82e37e2` (code, tests, fixtures, docs) and the handoff commit on top of it, both on `f028ece`. Push status is recorded in the commit that follows this file, or in the chat if the push could not be made.
 
-Pushed 2026-10-13 through Composio and the GitHub Git Data API: the diff was rebuilt in Composio's workbench from the files at `f084b60` plus the patch and the fixture generator; all 27 blob shas were checked equal to the local blobs before upload; both trees came back equal to the local trees (`10c3d42`, `f49a8ea`). Remote commits: `76eac304a17e8d665f0d85774b1875212a536dbe` (code and docs) and `6a6762f0d7ce496c45628fb8a8a3add32f99944d` (handoff), then this record on top. Branch ref fast-forwarded from `629d402` (no force, D-001). `main` untouched (`f084b60`).
-
-Pull request #1 is already merged, so these commits are not in any open pull request. Opening a new one (feature into `main`) is Elving's call; merging changes nothing the scheduled runs load except new modules and commands, but it is still his decision.
-
-Phase 19 is complete. Stop here; no further phase is started.
+Phase 20 is complete. Stop here; no further phase is started.
