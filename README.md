@@ -41,6 +41,16 @@ python -m memelab watchlist ; python -m memelab rejections
 
 Account inputs for personal sizing: `--account-size`, `--max-loss-usd` or `--max-loss-pct`, `--position-usd` on `analyze`.
 
+## Social and trader intelligence
+
+Research-only layer over public posts, trader lists and wallet activity: exact token identity, narratives with independent corroboration, wallet attribution and P&L, information alpha, chronology, a morning brief, dry-run alerts, a signal ledger and a causal replay. Every live route is off until its credential and cost are approved. Start with `docs/social-intelligence/README.md` (plain-language guide), then `OPERATIONS.md` (runbook) and `ARCHITECTURE.md` in the same folder. Release record and checklist: `docs/social-intelligence/RELEASE_18.md`.
+
+```
+python -m memelab social --help
+python tools/release_e2e.py --out e2e.md     # every stage on invented data, network blocked, clean clone
+python tools/release_audit.py --history      # credentials, key material, trade code, content guard, migrations
+```
+
 ## Tests
 
-`python -m pytest tests -q`
+`pip install pytest numpy`, then `python -m pytest tests -q`.

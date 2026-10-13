@@ -526,3 +526,27 @@ Conservative (headline): a long whose token was delisted before the exit is -100
 ## D-118 Honest verdicts (ADOPTED, Phase 17)
 
 Medians, not means, are the headline. Intervals are Bonferroni-adjusted for 4 strategies x 4 horizons. Nothing is estimated below 10 values. Verdicts: INSUFFICIENT_DATA, INSUFFICIENT_SAMPLE (fewer than 30 test values with controls), CANNOT_VALIDATE_YET (survivorship risk, interval includes zero, one outcome dominates, validation disagrees or is too small), else BETTER_ or WORSE_THAN_CONTROLS_IN_REPLAY, always labelled a historical replay and never a forward test. A universe not declared to include delisted tokens is a survivorship risk.
+
+## D-119 Phase 18 slot taken by Prompt 18; catalyst attention integration moves to C-18 (ADOPTED, Phase 18, 2026-10-12)
+
+Prompt 18 (end-to-end release engineering, operational audit and delivery) replaced the proposed Phase 18 "Integration: catalyst attention and assessment". That entry is carried over as C-18 with its old gate. Phase 19 now depends on C-18 instead of 18. Prompt 18 also delivers part of the old Phase 21 (docs and an end-to-end validation on fixtures, a pull request for review); the supervised live run, the rebase on `main` and the merge stay in 21. No migration: the public schema stays at 12. No new provider integration and no refactor: the only code added is two read-only release tools and their tests.
+
+## D-120 Release proof is a clean clone with the network blocked (ADOPTED, Phase 18)
+
+`tools/release_e2e.py` clones the committed HEAD into a temp folder, removes every credential variable, points every database and private file at the temp folder, and installs a Python audit hook that refuses and logs any socket connect or DNS lookup (HTTP proxies point at a closed port for non-Python children). A run passes only when every stage returns its expected exit code, the hook logged nothing, `git status --porcelain` in the clone is empty and the tracked database is byte-identical. Reason: "no live billable request" and "no stray files" must be shown by the run itself, not asserted.
+
+## D-121 Expected non-zero exits are part of the contract (ADOPTED, Phase 18)
+
+Health commands exit 1 while a route is not ready (`x-health`, `tg-health`, `memelab.secrets status`); live ingest without a token exits 1 before any call; `alerts run --send` without consent exits 2; tracking a custody wallet exits 1. A pure re-ingest of an already processed file whose other units are down exits 1, because D-018 counts only usable units and a replayed unit is skipped, not usable. This is recorded as intended behaviour, not changed in a release phase; a scheduled run that re-ships an old file will report FAILED for that run, and `social status` still shows the earlier results. Changing it would be a small ingest change for a later phase if Elving wants replays to count as OK.
+
+## D-122 Release audit scope and what it does not prove (ADOPTED, Phase 18)
+
+`tools/release_audit.py` scans the tracked tree and every blob reachable from any ref for credential shapes (Anthropic, GitHub, Telegram bot, AWS, X bearer, PEM keys, `api-key=` values, bearer headers, 64-byte keypair arrays, key-material fields) and the code for signing, sending or order placement; it prints locations and rule names, never values. Placeholder shapes with fewer than 8 distinct characters are listed as reviewed. It also runs the content guard on this branch and on `main`, migrates copies of both lab databases, checks example configs are off by default, lists network paths, and runs syntax checks (Python `ast`, `node --check`) and pyflakes as information. It cannot prove a credential was never typed somewhere outside git, and pattern scans miss formats they do not know. pyflakes findings (unused imports and variables) are reported, not fixed, in a release phase.
+
+## D-123 Session paths in public data on `main` are reported, not edited (ADOPTED, Phase 18)
+
+The scheduled runs on `main` write absolute session paths (for example `report_path` values under `/tmp/claude-0/...`) into `data/state/latest.json`, `state/latest.json`, `data/memelab.sqlite` and two scout reports. They expose session folder names, not credentials. The feature branch never edits those files (D-001), so the audit lists them as information and the fix (write repo-relative paths in the state export) is left for Phase 20, where state export rules belong.
+
+## D-124 Pull request opened for review, not merged (ADOPTED, Phase 18)
+
+The prompt asks for a pull request where repo access permits. The branch is pushed by fast-forward through the GitHub Git Data API (no force, D-001) and a pull request from `feature/social-intelligence` into `main` is opened for Elving to review. Nobody merges it in this phase: merging changes what the scheduled runs load from `main` (for example the collector projections of D-021 and D-063) and is Phase 21 work.
