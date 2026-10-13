@@ -73,6 +73,10 @@ Expect `1 failed, 727 passed` and `Result: PASS` with 64 of 64 stages.
 
 ## Commit and push
 
-Local commits on `feature/social-intelligence`: `82e37e2` (code, tests, fixtures, docs) and the handoff commit on top of it, both on `f028ece`. Push status is recorded in the commit that follows this file, or in the chat if the push could not be made.
+Local commits on `feature/social-intelligence`: `82e37e2` (code, tests, fixtures, docs, tree `82cf872`) and `c8dddbd` (handoff, tree `32bdac8`), on top of `f028ece`.
+
+Pushed 2026-10-13 through Composio and the GitHub Git Data API: a git bundle of the two commits was rebuilt in Composio's workbench and verified (`git bundle verify`, same commit ids and trees); every blob sha was checked equal to the local blob before upload, and both trees came back equal to the local trees (`82cf872`, `32bdac8`). Remote commits: `f34d6e2dbef8e24bb86b184857b1672831429c0b` (code and docs) and `144677fe513c3429ae5f12c9156bc180044107c8` (handoff), then this record on top. The remote ids differ from the local ones because the API re-serializes the commit header; the trees are identical. Branch ref fast-forwarded from `f028ece` (no force, D-001). `main` untouched (`f084b60`).
+
+These commits are not in any open pull request (#1 was merged before Phase 19). Opening one (feature into `main`) is Elving's call.
 
 Phase 20 is complete. Stop here; no further phase is started.
