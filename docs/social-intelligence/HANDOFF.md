@@ -76,7 +76,9 @@ Expect `1 failed, 748 passed` and `Result: PASS` with 71 of 71 stages.
 
 ## Commit and push
 
-Local commits on `feature/social-intelligence`: `7d166ab` (code, tests, fixtures, docs) and the handoff commit on top of it, on top of `2fc3266`. Push status is recorded in the commit that follows this one, or in the session report if the push did not happen.
+Local commits on `feature/social-intelligence`: `7d166ab` (code, tests, fixtures, docs, tree `116f170`) and `d72b9e5` (handoff, tree `cdb6ceb`), on top of `2fc3266`.
+
+Pushed 2026-10-13 through Composio and the GitHub Git Data API: a git bundle of the two commits was rebuilt in Composio's workbench and verified (sha256 equal to the local bundle, `git bundle verify`, same commit ids and trees); every blob sha came back equal to the local blob, and both trees came back equal to the local trees (`116f170`, `cdb6ceb`). Remote commits: `8f7609f9b205b7abf9bb15e6b0ebf196365efb6d` (code and docs) and `eda318cffd6976249bde4aaafe1fea700e337b63` (handoff), then this record on top. The remote ids differ from the local ones because the API re-serializes the commit header; the trees are identical. Branch ref fast-forwarded from `2fc3266` (no force, D-001). `main` untouched by this session (it is at `698f73b`, moved by the scheduled runs).
 
 These commits are not in any open pull request. Opening one (feature into `main`) is Elving's call.
 
