@@ -1,0 +1,38 @@
+{
+ "schema": "memelab.social.registry.import/1",
+ "source": {
+  "source_key": "fixture:analyst-list",
+  "kind": "ANALYST_LIST",
+  "organization": "Example Analyst Desk (fixture)",
+  "url": "https://example.invalid/analyst-desk",
+  "access_mode": "fixture",
+  "permitted_basis": "invented test data written for this repository",
+  "is_fixture": true,
+  "fixture_label": "invented demonstration list; no real people or accounts"
+ },
+ "capture": {
+  "captured_at": "2026-10-12T12:30:00Z",
+  "url": "https://example.invalid/analyst-desk/2026-10-12"
+ },
+ "rows": [
+  {
+   "handle": {
+    "platform": "x",
+    "handle": "demo_analyst1",
+    "provider_user_id": "9002001"
+   },
+   "display_name": "Demo Analyst One",
+   "row_url": "https://example.invalid/analyst-desk/1"
+  },
+  {
+   "handle": {
+    "platform": "youtube",
+    "handle": "demo_analyst_two"
+   },
+   "display_name": "Demo Analyst Two"
+  },
+  {
+   "display_name": "Demo Analyst Three"
+  }
+ ]
+}

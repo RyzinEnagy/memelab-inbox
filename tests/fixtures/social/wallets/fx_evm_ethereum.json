@@ -1,0 +1,60 @@
+{
+ "chain": "ethereum",
+ "fetched_at": 1791844200,
+ "fixture_label": "INVENTED FIXTURE: not from any chain, provider or person; ethereum",
+ "provider": "fixture-explorer",
+ "schema": "memelab.wallet.tx/1",
+ "wallets": {
+  "0x0f823478fcebaba599777de13b39c45eada37d15": {
+   "http_status": 200,
+   "txs": [
+    {
+     "block_time": 1791824460,
+     "fee": 4e-05,
+     "fee_payer": "0x0f823478fcebaba599777de13b39c45eada37d15",
+     "fee_unit": "ETH",
+     "kind": "SWAP",
+     "native": [
+      [
+       "0x0f823478fcebaba599777de13b39c45eada37d15",
+       "0x10f48972a85a76f7bcd756ac3555045f40d51815",
+       0.5
+      ]
+     ],
+     "signature": "0x66d52e778a31301416dcba08ebcc68e67b5144aeb8ee616d693ca96a9c3c5d93",
+     "slot": 20000060,
+     "source": "fixture_amm",
+     "status": "success",
+     "tokens": [
+      [
+       "0x10f48972a85a76f7bcd756ac3555045f40d51815",
+       "0x0f823478fcebaba599777de13b39c45eada37d15",
+       "0x98759ab6c5214fda38f3c87426e26c865cab6fc7",
+       1000
+      ]
+     ]
+    },
+    {
+     "block_time": 1791824520,
+     "fee": 4e-05,
+     "fee_payer": "0x0f823478fcebaba599777de13b39c45eada37d15",
+     "fee_unit": "ETH",
+     "kind": "TRANSFER",
+     "native": [],
+     "signature": "0xc2359c0fa1ce435c0a4d52d3f440144e481585e2f324483750a8e6d62844f60e",
+     "slot": 20000061,
+     "source": "fixture_amm",
+     "status": "success",
+     "tokens": [
+      [
+       "0x0f823478fcebaba599777de13b39c45eada37d15",
+       "0xca9cc4875995f74b6c93ca313ccc60d3bdee04ae",
+       "0x98759ab6c5214fda38f3c87426e26c865cab6fc7",
+       100
+      ]
+     ]
+    }
+   ]
+  }
+ }
+}

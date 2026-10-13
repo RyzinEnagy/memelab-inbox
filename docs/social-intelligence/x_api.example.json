@@ -1,0 +1,14 @@
+{
+ "schema": "memelab.x_api.config/1",
+ "note": "Copy to data/private/x_api.json (gitignored) and edit. No credentials here: the token goes in the X_BEARER_TOKEN environment variable. Budget is off until Elving sets it.",
+ "scopes": [
+  {"kind": "user", "username": "example_handle", "exclude": ["retweets"]},
+  {"kind": "list", "list_id": "1500000000000000001"},
+  {"kind": "search", "name": "example_contract", "query": "\"ExampleContractAddressGoesHere\" -is:retweet"},
+  {"kind": "recheck", "max_items": 100}
+ ],
+ "max_results": 20,
+ "max_pages_per_scope": 1,
+ "max_rate_wait_seconds": 0,
+ "budget": {"allow_billable": false, "max_usd_per_run": 0, "max_usd_per_month": 0}
+}

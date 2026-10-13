@@ -1,0 +1,30 @@
+{
+ "cases": {
+  "evm_bound": {
+   "address": "0xd9839ad2e269fbb7b76e815da2b15fb8bf106695",
+   "chain": "base",
+   "message": "I am @fx_trader_one and this base wallet is mine. Phase 09 fixture.",
+   "signature": "0x47e964955bb89a674dc618bab17f77bc5231654750b614a4bcf039f171dd9acf7c9af7e968a8fe286077676ee07fb9be331e4dbf02541744fe3d740e12b16de11c"
+  },
+  "solana_bound": {
+   "address": "FEurejjPCmzZ9E8bptQvuKBMGkF24K78NiRUBGhJhXvt",
+   "chain": "solana",
+   "message": "I am @fx_trader_one and this solana wallet is mine. Posted for the Phase 09 fixture, not a real statement.",
+   "signature": "4jntN5ppnE7K6DezSkGN5NKZiTGZ7hBZRUqkkJPCRZxik5unUtcDxKN3TrBP78ZRfFNrfmzXdYwuMzwAntox9Rm1"
+  },
+  "solana_tampered": {
+   "address": "FEurejjPCmzZ9E8bptQvuKBMGkF24K78NiRUBGhJhXvt",
+   "chain": "solana",
+   "message": "I am @fx_trader_one and this solana wallet is mine. Posted for the Phase 09 fixture, not a real statement. ",
+   "signature": "4jntN5ppnE7K6DezSkGN5NKZiTGZ7hBZRUqkkJPCRZxik5unUtcDxKN3TrBP78ZRfFNrfmzXdYwuMzwAntox9Rm1"
+  },
+  "solana_unbound": {
+   "address": "E4HYcR9GSERjvq7LcpRGs1wQFysFRYKqbDL8axpXgRy6",
+   "chain": "solana",
+   "message": "gm. this is a wallet. nothing else to say.",
+   "signature": "5NYNyEX9RxHSdm2xyyisE947khucKLFEWACdgfrg97To6sgZYcFGxzFkfPQn4EDPqh1zeTWdWhL8xr2KQZtwwrku"
+  }
+ },
+ "fixture_label": "INVENTED FIXTURE: not from any chain, provider or person; throwaway keys made in memory and discarded",
+ "handle": "fx_trader_one"
+}

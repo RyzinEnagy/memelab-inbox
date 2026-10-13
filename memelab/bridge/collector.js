@@ -52,6 +52,10 @@
     helius_tx: (j) => (Array.isArray(j) ? j : []).map(t => ({ sig: (t.signature || "").slice(0, 12), ts: t.timestamp, type: t.type, src: t.source, fee: t.fee, payer: t.feePayer,
       nt: (t.nativeTransfers || []).filter(x => x.amount >= 1e7).slice(0, 12).map(x => [x.fromUserAccount, x.toUserAccount, N(x.amount / 1e9, 6)]),
       tt: (t.tokenTransfers || []).slice(0, 12).map(x => [x.fromUserAccount, x.toUserAccount, x.mint, N(x.tokenAmount, 8)]) })),
+    helius_wallet_tx: (j) => (Array.isArray(j) ? j : []).map(t => ({ sig: t.signature, slot: t.slot, ts: t.timestamp, type: t.type, src: t.source, fee: t.fee, payer: t.feePayer, err: !!t.transactionError,
+      nn: (t.nativeTransfers || []).length, nk: (t.tokenTransfers || []).length,
+      nt: (t.nativeTransfers || []).slice(0, 24).map(x => [x.fromUserAccount, x.toUserAccount, N(x.amount / 1e9, 9)]),
+      tt: (t.tokenTransfers || []).slice(0, 24).map(x => [x.fromUserAccount, x.toUserAccount, x.mint, N(x.tokenAmount, 9)]) })),
     raw: (j) => j,
   };
 

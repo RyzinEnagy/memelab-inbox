@@ -173,7 +173,11 @@ def _verify_trader(source_id: str, v: dict):
     handle = source_id.split(":")[-1]
     with db.connect() as con:
         if v.get("s") == 200 and body.get("exists") and handle.lower() in (body.get("title") or "").lower():
-            con.execute("UPDATE catalyst_sources SET identity_verified='VERIFIED', identity_notes=COALESCE(identity_notes,'') || ' | profile: ' || ? WHERE source_id=?", ((body.get("title") or "")[:80] + " / " + (body.get("bio") or "")[:120], source_id))
+            # no profile text is copied (D-020): the public database records only that the page exists and its
+            # title names the handle. A bio in an older result file is ignored.
+            note = " | profile page found, title names the handle"
+            con.execute("UPDATE catalyst_sources SET identity_verified='VERIFIED', identity_notes=CASE WHEN instr(COALESCE(identity_notes,''), ?) > 0 "
+                        "THEN identity_notes ELSE COALESCE(identity_notes,'') || ? END WHERE source_id=?", (note, note, source_id))
         else:
             con.execute("UPDATE catalyst_sources SET identity_verified='NOT_FOUND', last_error=? WHERE source_id=?", (f"profile fetch status {v.get('s')}", source_id))
 
@@ -250,6 +254,18 @@ def cmd_monitor(a):
 def cmd_report(a):
     md = R.render()
     t = time.time()
+    if getattr(a, "social", False) or getattr(a, "social_policy", None):
+        # Phase 13, opt-in: social research candidates beside the catalyst assessments; nothing in the catalyst tables changes
+        from ..social import research_core as RC, research_store as RS
+        try:
+            policy = RS.load_policy(a.social_policy)
+        except (RC.PolicyError, OSError, ValueError) as e:
+            raise SystemExit(f"social research policy refused: {e}")
+        if a.social or policy["enabled"]:
+            with db.connect() as con:
+                ev = RS.evaluated_from_catalyst(con, as_of=t)
+                ev = RS.evaluated_from_catalyst(con, as_of=t, prior=RS.prior_rejections(con, [e["contract"] for e in ev], before=t))
+            md += "\n" + RC.render(RS.section(db.connect, as_of=t, policy=policy, evaluated=ev))
     p = db.DATA_DIR / "reports" / f"{time.strftime('%Y%m%d_%H%M', time.gmtime(t))}_CATALYST.md"
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(md)
@@ -281,6 +297,8 @@ def add_subparser(sp):
     q = ssp.add_parser("match"); q.add_argument("--results", nargs="+", required=True); q.add_argument("--min-liq", type=float, default=5000); q.set_defaults(fn=cmd_match)
     q = ssp.add_parser("assess"); q.add_argument("--results", nargs="*", default=[]); q.add_argument("--persist", action="store_true"); q.add_argument("--limit-unlinked", type=int, default=60); q.set_defaults(fn=cmd_assess)
     q = ssp.add_parser("monitor"); q.set_defaults(fn=cmd_monitor)
-    q = ssp.add_parser("report"); q.add_argument("--print", action="store_true"); q.set_defaults(fn=cmd_report)
+    q = ssp.add_parser("report"); q.add_argument("--print", action="store_true")
+    q.add_argument("--social", action="store_true", help="opt-in: append social research candidates (no effect on assessments, verdicts or execution)")
+    q.add_argument("--social-policy"); q.set_defaults(fn=cmd_report)
     q = ssp.add_parser("note"); q.add_argument("event_id", type=int); q.add_argument("text"); q.add_argument("--kind", default="REVISED"); q.set_defaults(fn=cmd_note)
     q = ssp.add_parser("sources"); q.set_defaults(fn=cmd_sources)

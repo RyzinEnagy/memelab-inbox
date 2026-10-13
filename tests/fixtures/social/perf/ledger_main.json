@@ -1,0 +1,664 @@
+{
+ "schema": "memelab.perf.ledger/1",
+ "label": "FIXTURE: invented wallet, invented prices; hand-checked in PERFORMANCE_10.md",
+ "chain": "solana",
+ "wallets": [
+  "W1"
+ ],
+ "as_of": 1790864000,
+ "assets": {
+  "NATIVE": {
+   "kind": "NATIVE",
+   "symbol": "SOL"
+  },
+  "WSOL": {
+   "kind": "NATIVE",
+   "alias_of": "NATIVE"
+  },
+  "USDC": {
+   "kind": "STABLE",
+   "symbol": "USDC",
+   "decimals": 6
+  },
+  "TOKA": {
+   "kind": "TOKEN",
+   "decimals": 6
+  },
+  "TOKB": {
+   "kind": "TOKEN",
+   "decimals": 6
+  },
+  "TOKC": {
+   "kind": "TOKEN",
+   "decimals": 6
+  },
+  "TOKR": {
+   "kind": "TOKEN",
+   "decimals": 6
+  },
+  "TOKE": {
+   "kind": "TOKEN",
+   "decimals": 6
+  },
+  "TOKX": {
+   "kind": "TOKEN",
+   "decimals": 6
+  },
+  "TOKY": {
+   "kind": "TOKEN",
+   "decimals": 6
+  },
+  "TOKZ": {
+   "kind": "TOKEN",
+   "decimals": 6
+  },
+  "TOKQ": {
+   "kind": "TOKEN",
+   "decimals": 6
+  }
+ },
+ "annotations": [
+  {
+   "signature": "sigairdrop",
+   "origin": "AIRDROP",
+   "reason": "invented: the fixture says this transfer was a protocol airdrop"
+  }
+ ],
+ "coverage": {
+  "history": "UNKNOWN",
+  "evidence": "fixture: nothing says the first transaction is the wallet's first"
+ },
+ "entries": [
+  {
+   "id": "e01",
+   "wallet": "W1",
+   "time": 1790000000,
+   "type": "SWAP",
+   "legs": [
+    {
+     "asset": "NATIVE",
+     "dir": "OUT",
+     "amount": "10"
+    },
+    {
+     "asset": "TOKA",
+     "dir": "IN",
+     "amount": "1000"
+    }
+   ],
+   "signature": "sig01",
+   "fee": {
+    "amount": "0.0001",
+    "unit": "SOL"
+   }
+  },
+  {
+   "id": "e02",
+   "wallet": "W1",
+   "time": 1790003600,
+   "type": "SWAP",
+   "legs": [
+    {
+     "asset": "NATIVE",
+     "dir": "OUT",
+     "amount": "20"
+    },
+    {
+     "asset": "TOKA",
+     "dir": "IN",
+     "amount": "1000"
+    }
+   ],
+   "signature": "sig02",
+   "fee": {
+    "amount": "0.0001",
+    "unit": "SOL"
+   }
+  },
+  {
+   "id": "e03",
+   "wallet": "W1",
+   "time": 1790007200,
+   "type": "SWAP",
+   "legs": [
+    {
+     "asset": "TOKA",
+     "dir": "OUT",
+     "amount": "1500"
+    },
+    {
+     "asset": "NATIVE",
+     "dir": "IN",
+     "amount": "45"
+    }
+   ],
+   "signature": "sig03",
+   "fee": {
+    "amount": "0.0001",
+    "unit": "SOL"
+   }
+  },
+  {
+   "id": "e04",
+   "wallet": "W1",
+   "time": 1790010800,
+   "type": "SWAP",
+   "legs": [
+    {
+     "asset": "TOKA",
+     "dir": "OUT",
+     "amount": "500"
+    },
+    {
+     "asset": "NATIVE",
+     "dir": "IN",
+     "amount": "5"
+    }
+   ],
+   "signature": "sig04",
+   "fee": {
+    "amount": "0.0001",
+    "unit": "SOL"
+   }
+  },
+  {
+   "id": "e05",
+   "wallet": "W1",
+   "time": 1790086400,
+   "type": "SWAP",
+   "legs": [
+    {
+     "asset": "NATIVE",
+     "dir": "OUT",
+     "amount": "5"
+    },
+    {
+     "asset": "TOKB",
+     "dir": "IN",
+     "amount": "50000"
+    }
+   ],
+   "signature": "sig05",
+   "fee": {
+    "amount": "0.0001",
+    "unit": "SOL"
+   }
+  },
+  {
+   "id": "e06",
+   "wallet": "W1",
+   "time": 1790090000,
+   "type": "SWAP",
+   "legs": [
+    {
+     "asset": "TOKB",
+     "dir": "OUT",
+     "amount": "50000"
+    },
+    {
+     "asset": "NATIVE",
+     "dir": "IN",
+     "amount": "1"
+    }
+   ],
+   "signature": "sig06",
+   "fee": {
+    "amount": "0.0001",
+    "unit": "SOL"
+   }
+  },
+  {
+   "id": "e07",
+   "wallet": "W1",
+   "time": 1790172800,
+   "type": "SWAP",
+   "legs": [
+    {
+     "asset": "USDC",
+     "dir": "OUT",
+     "amount": "1000"
+    },
+    {
+     "asset": "TOKC",
+     "dir": "IN",
+     "amount": "400"
+    }
+   ],
+   "signature": "sig07",
+   "fee": {
+    "amount": "0.0001",
+    "unit": "SOL"
+   }
+  },
+  {
+   "id": "e08",
+   "wallet": "W1",
+   "time": 1790176400,
+   "type": "SWAP",
+   "legs": [
+    {
+     "asset": "TOKC",
+     "dir": "OUT",
+     "amount": "400"
+    },
+    {
+     "asset": "USDC",
+     "dir": "IN",
+     "amount": "1000"
+    }
+   ],
+   "signature": "sig08",
+   "fee": {
+    "amount": "0.0001",
+    "unit": "SOL"
+   }
+  },
+  {
+   "id": "e09",
+   "wallet": "W1",
+   "time": 1790259200,
+   "type": "SWAP",
+   "legs": [
+    {
+     "asset": "NATIVE",
+     "dir": "OUT",
+     "amount": "10"
+    },
+    {
+     "asset": "TOKR",
+     "dir": "IN",
+     "amount": "5000000"
+    }
+   ],
+   "signature": "sig09",
+   "fee": {
+    "amount": "0.0001",
+    "unit": "SOL"
+   }
+  },
+  {
+   "id": "e10",
+   "wallet": "W1",
+   "time": 1790262800,
+   "type": "SWAP",
+   "legs": [
+    {
+     "asset": "WSOL",
+     "dir": "OUT",
+     "amount": "10"
+    },
+    {
+     "asset": "TOKE",
+     "dir": "IN",
+     "amount": "200000"
+    }
+   ],
+   "signature": "sig10",
+   "fee": {
+    "amount": "0.0001",
+    "unit": "SOL"
+   }
+  },
+  {
+   "id": "e11",
+   "wallet": "W1",
+   "time": 1790345600,
+   "type": "TRANSFER_IN",
+   "legs": [
+    {
+     "asset": "TOKX",
+     "dir": "IN",
+     "amount": "1000",
+     "counterparty": "EXT1"
+    }
+   ],
+   "signature": "sig11",
+   "fee": {
+    "amount": "0.0001",
+    "unit": "SOL"
+   },
+   "fee_paid_by_wallet": false
+  },
+  {
+   "id": "e12",
+   "wallet": "W1",
+   "time": 1790349200,
+   "type": "SWAP",
+   "legs": [
+    {
+     "asset": "TOKX",
+     "dir": "OUT",
+     "amount": "1000"
+    },
+    {
+     "asset": "NATIVE",
+     "dir": "IN",
+     "amount": "2"
+    }
+   ],
+   "signature": "sig12",
+   "fee": {
+    "amount": "0.0001",
+    "unit": "SOL"
+   }
+  },
+  {
+   "id": "e13",
+   "wallet": "W1",
+   "time": 1790352800,
+   "type": "TRANSFER_IN",
+   "legs": [
+    {
+     "asset": "TOKY",
+     "dir": "IN",
+     "amount": "500",
+     "counterparty": "AIRDROPPER"
+    }
+   ],
+   "signature": "sigairdrop",
+   "fee": {
+    "amount": "0.0001",
+    "unit": "SOL"
+   },
+   "fee_paid_by_wallet": false
+  },
+  {
+   "id": "e14",
+   "wallet": "W1",
+   "time": 1790356400,
+   "type": "SWAP",
+   "legs": [
+    {
+     "asset": "TOKY",
+     "dir": "OUT",
+     "amount": "500"
+    },
+    {
+     "asset": "NATIVE",
+     "dir": "IN",
+     "amount": "1"
+    }
+   ],
+   "signature": "sig14",
+   "fee": {
+    "amount": "0.0001",
+    "unit": "SOL"
+   }
+  },
+  {
+   "id": "e15",
+   "wallet": "W1",
+   "time": 1790360000,
+   "type": "SWAP",
+   "legs": [
+    {
+     "asset": "TOKZ",
+     "dir": "OUT",
+     "amount": "300"
+    },
+    {
+     "asset": "NATIVE",
+     "dir": "IN",
+     "amount": "3"
+    }
+   ],
+   "signature": "sig15",
+   "fee": {
+    "amount": "0.0001",
+    "unit": "SOL"
+   }
+  },
+  {
+   "id": "e16",
+   "wallet": "W1",
+   "time": 1790363600,
+   "type": "TRANSFER_OUT",
+   "legs": [
+    {
+     "asset": "TOKE",
+     "dir": "OUT",
+     "amount": "50000",
+     "counterparty": "W2x"
+    }
+   ],
+   "signature": "sig16",
+   "fee": {
+    "amount": "0.00005",
+    "unit": "SOL"
+   }
+  },
+  {
+   "id": "e17",
+   "wallet": "W1",
+   "time": 1790367200,
+   "type": "TRANSFER_IN",
+   "legs": [
+    {
+     "asset": "TOKE",
+     "dir": "IN",
+     "amount": "50000",
+     "counterparty": "W2x"
+    }
+   ],
+   "signature": "sig17",
+   "fee": {
+    "amount": "0.00005",
+    "unit": "SOL"
+   },
+   "fee_paid_by_wallet": false
+  },
+  {
+   "id": "e18",
+   "wallet": "W1",
+   "time": 1790369600,
+   "type": "FAILED",
+   "legs": [],
+   "signature": "sig18",
+   "fee": {
+    "amount": "0.0002",
+    "unit": "SOL"
+   }
+  },
+  {
+   "id": "e19",
+   "wallet": "W1",
+   "time": 1790372600,
+   "type": "UNCLASSIFIED",
+   "legs": [
+    {
+     "asset": "TOKQ",
+     "dir": "OUT",
+     "amount": "10"
+    },
+    {
+     "asset": "NATIVE",
+     "dir": "IN",
+     "amount": "1"
+    }
+   ],
+   "signature": "sig19",
+   "fee": {
+    "amount": "0.0001",
+    "unit": "SOL"
+   }
+  }
+ ],
+ "prices": [
+  {
+   "asset": "NATIVE",
+   "t": 1790000000,
+   "kind": "MID",
+   "usd": "100",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790003600,
+   "kind": "MID",
+   "usd": "100",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790007200,
+   "kind": "MID",
+   "usd": "100",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790010800,
+   "kind": "MID",
+   "usd": "100",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790086400,
+   "kind": "MID",
+   "usd": "100",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790090000,
+   "kind": "MID",
+   "usd": "100",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790172800,
+   "kind": "MID",
+   "usd": "100",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "USDC",
+   "t": 1790172800,
+   "kind": "MID",
+   "usd": "0.88",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790176400,
+   "kind": "MID",
+   "usd": "100",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "USDC",
+   "t": 1790176400,
+   "kind": "MID",
+   "usd": "1.00",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790259200,
+   "kind": "MID",
+   "usd": "100",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790262800,
+   "kind": "MID",
+   "usd": "100",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790345600,
+   "kind": "MID",
+   "usd": "120",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790349200,
+   "kind": "MID",
+   "usd": "120",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790352800,
+   "kind": "MID",
+   "usd": "120",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790356400,
+   "kind": "MID",
+   "usd": "120",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790360000,
+   "kind": "MID",
+   "usd": "120",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790363600,
+   "kind": "MID",
+   "usd": "120",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790367200,
+   "kind": "MID",
+   "usd": "120",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790369600,
+   "kind": "MID",
+   "usd": "120",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "NATIVE",
+   "t": 1790372600,
+   "kind": "MID",
+   "usd": "120",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "TOKE",
+   "t": 1790860400,
+   "kind": "MID",
+   "usd": "0.01",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "TOKR",
+   "t": 1790860400,
+   "kind": "MID",
+   "usd": "0.0002",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "TOKE",
+   "t": 1790862200,
+   "kind": "EXEC_QUOTE",
+   "amount_in": "200000",
+   "usd_out": "1700",
+   "source": "fixture:invented"
+  },
+  {
+   "asset": "TOKR",
+   "t": 1790862200,
+   "kind": "NO_ROUTE",
+   "source": "fixture:invented",
+   "detail": "fixture: no sell route observed"
+  }
+ ]
+}

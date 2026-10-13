@@ -1,0 +1,41 @@
+{
+ "schema": "memelab.social.registry.import/1",
+ "source": {
+  "source_key": "fixture:board-beta",
+  "kind": "LEADERBOARD",
+  "organization": "Example Board Beta (fixture)",
+  "url": "https://example.invalid/board-beta",
+  "access_mode": "fixture",
+  "permitted_basis": "invented test data written for this repository",
+  "is_fixture": true,
+  "fixture_label": "invented demonstration list; no real people, wallets or figures"
+ },
+ "capture": {
+  "captured_at": "2026-10-11T09:00:00Z",
+  "url": "https://example.invalid/board-beta/2026-10-11",
+  "period": {
+   "start": "2026-09-11T00:00:00Z",
+   "end": "2026-10-11T00:00:00Z",
+   "stated": "30d"
+  }
+ },
+ "rows": [
+  {
+   "rank": 3,
+   "wallet": {
+    "chain": "solana",
+    "address": "FCvXhRhDH5vGMLzMazYz72J7oFsW4v5VNNod91CMhPod"
+   },
+   "handle": {
+    "platform": "x",
+    "handle": "demo_trader_a",
+    "provider_user_id": "9001001"
+   },
+   "display_name": "Demo Trader A",
+   "metrics": {
+    "pnl_usd": 1100.0
+   },
+   "row_url": "https://example.invalid/board-beta/w/1"
+  }
+ ]
+}

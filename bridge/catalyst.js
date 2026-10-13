@@ -33,8 +33,8 @@
   PROJ.x_profile = (html) => {
     const t = typeof html === "string" ? html : (html && html._text) || "";
     const title = (t.match(/<title>([^<]*)<\/title>/) || [])[1];
-    const desc = (t.match(/<meta[^>]+(?:name|property)="(?:description|og:description)"[^>]+content="([^"]{0,400})"/) || [])[1];
-    return { title: S(title, 120), bio: S(desc, 400), exists: !!title && !/^X$/.test(S(title, 10) || "") };
+    // the profile bio is third-party text and is never shipped to the public inbox (DECISIONS D-010, D-020)
+    return { title: S(title, 120), exists: !!title && !/^X$/.test(S(title, 10) || "") };
   };
 
   // Generic RSS/Atom to compact items (used both from fetch and from navigate mode).

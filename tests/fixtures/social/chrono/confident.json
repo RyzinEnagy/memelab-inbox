@@ -1,0 +1,505 @@
+{
+ "as_of": 1791792000,
+ "coverage": {
+  "posts_enumerated": true,
+  "providers": {
+   "market": "OK",
+   "social": "OK",
+   "wallet": "OK"
+  },
+  "wallet_monitoring": [
+   {
+    "chain": "solana",
+    "from": 1791417600,
+    "last_ok_fetch": 1791788400,
+    "to": 1791788400,
+    "wallet": "ut3Tma4pzF3EJQD7AYnX1ysV9SLQp361ut3Tma4pzF3E"
+   },
+   {
+    "chain": "solana",
+    "from": 1791417600,
+    "last_ok_fetch": 1791788400,
+    "to": 1791788400,
+    "wallet": "5xX8F43ZipwAWZT38x2LGQ2RMvPULHgJ5xX8F43ZipwA"
+   }
+  ]
+ },
+ "is_fixture": true,
+ "label": "FIXTURE: confident order",
+ "market": [
+  {
+   "as_of_kind": "HISTORICAL_CANDLE",
+   "candle_seconds": 3600,
+   "chain": "solana",
+   "contract": "S5vznK6GJNtHJWH66MPdNBLHGx35G7HyS5vznK6GJNtH",
+   "rows": [
+    {
+     "c": 1.0,
+     "h": 1.0,
+     "l": 1.0,
+     "liq": 50000.0,
+     "o": 1.0,
+     "t": 1791655200
+    },
+    {
+     "c": 1.0,
+     "h": 1.0,
+     "l": 1.0,
+     "liq": 50000.0,
+     "o": 1.0,
+     "t": 1791658800
+    },
+    {
+     "c": 1.0,
+     "h": 1.0,
+     "l": 1.0,
+     "liq": 50000.0,
+     "o": 1.0,
+     "t": 1791662400
+    },
+    {
+     "c": 1.0,
+     "h": 1.0,
+     "l": 1.0,
+     "liq": 50000.0,
+     "o": 1.0,
+     "t": 1791666000
+    },
+    {
+     "c": 1.0,
+     "h": 1.0,
+     "l": 1.0,
+     "liq": 50000.0,
+     "o": 1.0,
+     "t": 1791669600
+    },
+    {
+     "c": 1.0,
+     "h": 1.0,
+     "l": 1.0,
+     "liq": 50000.0,
+     "o": 1.0,
+     "t": 1791673200
+    },
+    {
+     "c": 1.0,
+     "h": 1.0,
+     "l": 1.0,
+     "liq": 50000.0,
+     "o": 1.0,
+     "t": 1791676800
+    },
+    {
+     "c": 1.0,
+     "h": 1.0,
+     "l": 1.0,
+     "liq": 50000.0,
+     "o": 1.0,
+     "t": 1791680400
+    },
+    {
+     "c": 1.2,
+     "h": 1.2,
+     "l": 1.2,
+     "liq": 50000.0,
+     "o": 1.2,
+     "t": 1791684000
+    },
+    {
+     "c": 1.4,
+     "h": 1.4,
+     "l": 1.4,
+     "liq": 50000.0,
+     "o": 1.4,
+     "t": 1791687600
+    },
+    {
+     "c": 1.6,
+     "h": 1.6,
+     "l": 1.6,
+     "liq": 50000.0,
+     "o": 1.6,
+     "t": 1791691200
+    },
+    {
+     "c": 1.5,
+     "h": 1.5,
+     "l": 1.5,
+     "liq": 50000.0,
+     "o": 1.5,
+     "t": 1791694800
+    },
+    {
+     "c": 1.3,
+     "h": 1.3,
+     "l": 1.3,
+     "liq": 30000.0,
+     "o": 1.3,
+     "t": 1791698400
+    },
+    {
+     "c": 1.2,
+     "h": 1.2,
+     "l": 1.2,
+     "liq": 30000.0,
+     "o": 1.2,
+     "t": 1791702000
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791705600
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791709200
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791712800
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791716400
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791720000
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791723600
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791727200
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791730800
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791734400
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791738000
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791741600
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791745200
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791748800
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791752400
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791756000
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791759600
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791763200
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791766800
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791770400
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791774000
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791777600
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791781200
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791784800
+    },
+    {
+     "c": 1.1,
+     "h": 1.1,
+     "l": 1.1,
+     "liq": 30000.0,
+     "o": 1.1,
+     "t": 1791788400
+    }
+   ],
+   "source": "fixture-candles (INVENTED)"
+  }
+ ],
+ "pool_events": [
+  {
+   "chain": "solana",
+   "contract": "S5vznK6GJNtHJWH66MPdNBLHGx35G7HyS5vznK6GJNtH",
+   "kind": "LP_REMOVE",
+   "liquidity_usd": 30000.0,
+   "pool": "5Au11fbN1a49VL63Uy1ciVci366KrvZh5Au11fbN1a49",
+   "ref": "tx:BPrYT3iqfJSgFt5Xxw4CARuRKMQDQc54BPrYT3iqfJSgFt5Xxw4CARuRKMQDQc54BPrYT3iqfJSgFt5Xxw4CARuR",
+   "source": "fixture pool log (INVENTED)",
+   "time": 1791698400,
+   "time_basis": "CHAIN_BLOCK"
+  }
+ ],
+ "posts": [
+  {
+   "author_position": "not_disclosed",
+   "claim_id": 101,
+   "direction": "LONG",
+   "item_key": "x:1900000000000000101",
+   "observations": [
+    {
+     "observation_id": "fx-obs-1900000000000000101-1",
+     "observed_at": 1791684030,
+     "status": "OK"
+    },
+    {
+     "observation_id": "fx-obs-101-2",
+     "observed_at": 1791748800,
+     "status": "OK"
+    }
+   ],
+   "platform": "x",
+   "published_at": 1791684000,
+   "published_basis": "PROVIDER",
+   "repost_of": null,
+   "talk_kind": "ORIGINAL",
+   "token": {
+    "chain": "solana",
+    "contract": "S5vznK6GJNtHJWH66MPdNBLHGx35G7HyS5vznK6GJNtH",
+    "status": "resolved",
+    "symbol": "LABCAT"
+   },
+   "url": "https://example.invalid/fixture/status/1900000000000000101"
+  }
+ ],
+ "schema": "memelab.social.chrono.input/1",
+ "source": {
+  "accounts": [
+   "x:id:fx1"
+  ],
+  "label": "FIXTURE source A (invented)",
+  "source_id": "fx_source_a"
+ },
+ "token": {
+  "chain": "solana",
+  "contract": "S5vznK6GJNtHJWH66MPdNBLHGx35G7HyS5vznK6GJNtH",
+  "symbol": "LABCAT"
+ },
+ "wallet_events": [
+  {
+   "block_time": 1791676800,
+   "chain": "solana",
+   "custody_touch": null,
+   "event_id": "c-buy-w1",
+   "event_type": "SWAP",
+   "legs": [
+    {
+     "amount": 1000000.0,
+     "asset_kind": "TOKEN",
+     "contract": "S5vznK6GJNtHJWH66MPdNBLHGx35G7HyS5vznK6GJNtH",
+     "counterparty": null,
+     "counterparty_label": null,
+     "direction": "IN"
+    }
+   ],
+   "provider": "fixture",
+   "signature": "fyYNUQ7eDxWdBkgBuFQMi8MnKqbz45BAfyYNUQ7eDxWdBkgBuFQMi8MnKqbz45BAfyYNUQ7eDxWdBkgBuFQMi8Mn",
+   "slot": 300000100,
+   "swap_side": "BUY",
+   "url": "https://solscan.io/tx/fyYNUQ7eDxWdBkgBuFQMi8MnKqbz45BAfyYNUQ7eDxWdBkgBuFQMi8MnKqbz45BAfyYNUQ7eDxWdBkgBuFQMi8Mn",
+   "wallet": "ut3Tma4pzF3EJQD7AYnX1ysV9SLQp361ut3Tma4pzF3E"
+  },
+  {
+   "block_time": 1791684600,
+   "chain": "solana",
+   "custody_touch": null,
+   "event_id": "c-buy-w2",
+   "event_type": "SWAP",
+   "legs": [
+    {
+     "amount": 50000.0,
+     "asset_kind": "TOKEN",
+     "contract": "S5vznK6GJNtHJWH66MPdNBLHGx35G7HyS5vznK6GJNtH",
+     "counterparty": null,
+     "counterparty_label": null,
+     "direction": "IN"
+    }
+   ],
+   "provider": "fixture",
+   "signature": "pMRRu2uZLi6DxSJqGVPCkp2CRG7ib63BpMRRu2uZLi6DxSJqGVPCkp2CRG7ib63BpMRRu2uZLi6DxSJqGVPCkp2C",
+   "slot": 300018000,
+   "swap_side": "BUY",
+   "url": "https://solscan.io/tx/pMRRu2uZLi6DxSJqGVPCkp2CRG7ib63BpMRRu2uZLi6DxSJqGVPCkp2CRG7ib63BpMRRu2uZLi6DxSJqGVPCkp2C",
+   "wallet": "5xX8F43ZipwAWZT38x2LGQ2RMvPULHgJ5xX8F43ZipwA"
+  },
+  {
+   "block_time": 1791694800,
+   "chain": "solana",
+   "custody_touch": null,
+   "event_id": "c-sell-w1",
+   "event_type": "SWAP",
+   "legs": [
+    {
+     "amount": 400000.0,
+     "asset_kind": "TOKEN",
+     "contract": "S5vznK6GJNtHJWH66MPdNBLHGx35G7HyS5vznK6GJNtH",
+     "counterparty": null,
+     "counterparty_label": null,
+     "direction": "OUT"
+    }
+   ],
+   "provider": "fixture",
+   "signature": "oWNTxWsqcXHCcMx5kdErPGwKfAa2SPUEoWNTxWsqcXHCcMx5kdErPGwKfAa2SPUEoWNTxWsqcXHCcMx5kdErPGwK",
+   "slot": 300045000,
+   "swap_side": "SELL",
+   "url": "https://solscan.io/tx/oWNTxWsqcXHCcMx5kdErPGwKfAa2SPUEoWNTxWsqcXHCcMx5kdErPGwKfAa2SPUEoWNTxWsqcXHCcMx5kdErPGwK",
+   "wallet": "ut3Tma4pzF3EJQD7AYnX1ysV9SLQp361ut3Tma4pzF3E"
+  }
+ ],
+ "wallets": [
+  {
+   "account_entity": "acct:x:id:fx1",
+   "assertion_ids": [
+    1
+   ],
+   "chain": "solana",
+   "confidence": "HIGH",
+   "evidence_refs": [
+    "https://example.invalid/fixture/proof/1"
+   ],
+   "label_kind": null,
+   "level": "SIGNATURE_VERIFIED",
+   "other_claimants": [],
+   "wallet": "ut3Tma4pzF3EJQD7AYnX1ysV9SLQp361ut3Tma4pzF3E"
+  },
+  {
+   "account_entity": "acct:x:id:fx1",
+   "assertion_ids": [
+    2
+   ],
+   "chain": "solana",
+   "confidence": "UNKNOWN",
+   "evidence_refs": [
+    "https://example.invalid/fixture/proof/2"
+   ],
+   "label_kind": null,
+   "level": "THIRD_PARTY_CLAIMED",
+   "other_claimants": [],
+   "wallet": "5xX8F43ZipwAWZT38x2LGQ2RMvPULHgJ5xX8F43ZipwA"
+  }
+ ]
+}

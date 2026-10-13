@@ -1,0 +1,17 @@
+{
+ "schema": "memelab.social.registry.import/1",
+ "source": {
+  "source_key": "fixture:board-csv",
+  "kind": "LEADERBOARD",
+  "organization": "Example CSV Board (fixture)",
+  "url": "https://example.invalid/board-csv",
+  "access_mode": "fixture",
+  "permitted_basis": "invented test data written for this repository",
+  "is_fixture": true,
+  "fixture_label": "invented demonstration list; no real people, wallets or figures"
+ },
+ "capture": {
+  "captured_at": "2026-10-12T14:00:00Z",
+  "url": "https://example.invalid/board-csv/2026-10-12"
+ }
+}

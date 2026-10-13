@@ -1,0 +1,127 @@
+{
+ "schema": "memelab.x_api.fixture/1",
+ "note": "Synthetic second run: user scope asks since_id (nothing new), list scope resumes after its rate-limit window.",
+ "exchanges": [
+  {
+   "recorded_at": "2026-10-09T17:00:00Z",
+   "request": {
+    "path": "/2/users/2000000000000000001/tweets",
+    "params": {
+     "tweet.fields": "id,text,note_tweet,author_id,created_at,conversation_id,in_reply_to_user_id,referenced_tweets,edit_history_tweet_ids,public_metrics",
+     "user.fields": "id,username,protected",
+     "max_results": "10",
+     "expansions": "author_id,referenced_tweets.id,referenced_tweets.id.author_id",
+     "since_id": "1840000000000000105"
+    }
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-rate-limit-limit": "900",
+     "x-rate-limit-remaining": "899",
+     "x-rate-limit-reset": "1791558900",
+     "content-type": "application/json"
+    },
+    "body": {
+     "meta": {
+      "result_count": 0
+     }
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-09T17:00:00Z",
+   "request": {
+    "path": "/2/lists/1500000000000000001/tweets",
+    "params": {
+     "tweet.fields": "id,text,note_tweet,author_id,created_at,conversation_id,in_reply_to_user_id,referenced_tweets,edit_history_tweet_ids,public_metrics",
+     "user.fields": "id,username,protected",
+     "max_results": "10",
+     "expansions": "author_id,referenced_tweets.id,referenced_tweets.id.author_id"
+    }
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-rate-limit-limit": "900",
+     "x-rate-limit-remaining": "899",
+     "x-rate-limit-reset": "1791558900",
+     "content-type": "application/json"
+    },
+    "body": {
+     "data": [
+      {
+       "id": "1840000000000000202",
+       "author_id": "2000000000000000011",
+       "created_at": "2026-10-09T16:30:00.000Z",
+       "text": "Invented newer list post.",
+       "conversation_id": "1840000000000000202",
+       "edit_history_tweet_ids": [
+        "1840000000000000202"
+       ],
+       "public_metrics": {
+        "retweet_count": 1,
+        "reply_count": 0,
+        "like_count": 3,
+        "quote_count": 0,
+        "bookmark_count": 0,
+        "impression_count": 120
+       }
+      },
+      {
+       "id": "1840000000000000201",
+       "author_id": "2000000000000000011",
+       "created_at": "2026-10-09T14:55:00.000Z",
+       "text": "Invented list member post.",
+       "conversation_id": "1840000000000000201",
+       "edit_history_tweet_ids": [
+        "1840000000000000201"
+       ],
+       "public_metrics": {
+        "retweet_count": 1,
+        "reply_count": 0,
+        "like_count": 3,
+        "quote_count": 0,
+        "bookmark_count": 0,
+        "impression_count": 120
+       }
+      }
+     ],
+     "includes": {
+      "users": [
+       {
+        "id": "2000000000000000011",
+        "username": "example_member",
+        "protected": false
+       }
+      ]
+     },
+     "meta": {
+      "result_count": 2
+     }
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-09T17:00:00Z",
+   "request": {
+    "path": "/2/tweets/search/recent",
+    "params": {
+     "tweet.fields": "id,text,note_tweet,author_id,created_at,conversation_id,in_reply_to_user_id,referenced_tweets,edit_history_tweet_ids,public_metrics",
+     "user.fields": "id,username,protected",
+     "max_results": "10",
+     "expansions": "author_id,referenced_tweets.id,referenced_tweets.id.author_id",
+     "query": "(\"example token\" OR $EXMPL) -is:retweet"
+    }
+   },
+   "response": {
+    "status": 403,
+    "headers": {},
+    "body": {
+     "title": "Client Forbidden",
+     "type": "https://api.x.com/2/problems/client-forbidden"
+    }
+   }
+  }
+ ]
+}

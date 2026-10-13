@@ -232,7 +232,8 @@ def _bottom_line(r):
     return text + "\n"
 
 
-def render_scout_report(env: dict[str, Any], candidates: list[dict], near_misses: list[dict], rejected: list[dict], when: float | None = None) -> str:
+def render_scout_report(env: dict[str, Any], candidates: list[dict], near_misses: list[dict], rejected: list[dict], when: float | None = None,
+                        social: dict | None = None) -> str:
     ts = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime(when or time.time()))
     L = [f"# Opportunity Scout report — {ts}\n", "## Market environment\n"]
     L += [f"- {k}: {v}" for k, v in env.items()]
@@ -254,7 +255,11 @@ def render_scout_report(env: dict[str, Any], candidates: list[dict], near_misses
     L.append("\n## Rejected after due diligence\n")
     L += [f"- {x['symbol']} `{x['mint']}`: {x['why']}" for x in rejected] or ["- none"]
     L.append("")
-    return "\n".join(L)
+    out = "\n".join(L)
+    if social is not None:          # Phase 13, opt-in; appended after the unchanged scout body
+        from .social import research_core
+        out += "\n" + research_core.render(social)
+    return out
 
 
 def _primary_risk(c):
@@ -263,3 +268,10 @@ def _primary_risk(c):
         return "n/a"
     worst = min(bd.items(), key=lambda kv: (kv[1].get("score") or 0))
     return f"{worst[0]} ({worst[1].get('points'):.1f}/{worst[1].get('max')})"
+
+
+def render_social_feed(doc: dict, view: str = "brief") -> str:
+    """Phase 14: one view (brief, trader-digest, feed) of a social feed document built by social.feed_core.build.
+    Read only; the document is the stable JSON a later alert or scheduler would consume."""
+    from .social import feed_core
+    return feed_core.render(doc, view)

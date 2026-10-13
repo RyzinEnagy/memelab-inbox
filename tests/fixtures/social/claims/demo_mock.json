@@ -1,0 +1,51 @@
+{
+ "model": "mock-claims-1",
+ "note": "invented fixture; offline mock provider output keyed by the post's content hash",
+ "responses": [
+  {
+   "content_sha256": "ef78ded8b166a8c36d183c048ddc9c6d5d2c2b6b82f13f12df4420969de6c2f2",
+   "outputs": [
+    {
+     "schema": "memelab.social.claims.model/1",
+     "injection_attempt_seen": false,
+     "claims": [
+      {
+       "category": "bullish",
+       "assertion_type": "prediction",
+       "stance": "positive",
+       "negated": false,
+       "conditional": false,
+       "sarcasm_suspected": false,
+       "time_horizon": "weeks",
+       "author_position": "holds",
+       "attribution": "author",
+       "tokens": [
+        {
+         "mention_id": "m1"
+        }
+       ],
+       "narrative_tags": [
+        "animal"
+       ],
+       "evidence": [
+        {
+         "role": "claim",
+         "quote": "I think it doubles this week"
+        },
+        {
+         "role": "position",
+         "quote": "added more $LABDOG today"
+        }
+       ],
+       "uncertainty": "medium",
+       "uncertainty_reasons": [
+        "hedged_language"
+       ],
+       "summary": "Author says they increased their holding and expects the price to roughly double within the week."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

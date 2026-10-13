@@ -1,0 +1,26 @@
+{
+  "_note": "Invented accounts and text for tests. No real third-party posts. The BRETT contract on Base is a real public address used only as an identity example.",
+  "analysis_version": {"version": "fixture-extract-v1", "component": "extractor", "description": "hand-labelled fixture"},
+  "accounts": [
+    {"platform": "x", "handle": "@Example_Trader_A", "provider_user_id": "1000000001", "profile_url": "https://x.com/Example_Trader_A", "account_kind": "PERSON", "seen_at": "2026-10-09T14:00:00Z"},
+    {"platform": "telegram", "handle": "example_alpha_channel", "account_kind": "AGGREGATOR", "seen_at": "2026-10-09T14:05:00Z"}
+  ],
+  "trader": {"trader_id": "example-trader-a", "label": "Example Trader A", "added_reason": "fixture"},
+  "observations": [
+    {"platform": "x", "provider_item_id": "1845000000000000001", "original_url": "https://x.com/Example_Trader_A/status/1845000000000000001",
+     "account": "x:id:1000000001", "published_at": "2026-10-09T13:58:00Z", "observed_at": "2026-10-09T14:00:00Z",
+     "access_mode": "fixture", "collector": "fixture", "retrieval_status": "OK",
+     "text": "Loading more of this one here, contract 0x532f27101965dd16442E59d40670FaF5eBB142E4 on base, not advice",
+     "summary": "Account says it is adding to a position in the Base token at the quoted contract.",
+     "metrics": {"replies": 12, "reposts": 4, "likes": 80, "views": 5400},
+     "claim": {"claim_type": "CALL", "direction": "LONG", "chain": "base", "contract": "0x532f27101965dd16442E59d40670FaF5eBB142E4", "symbol": "BRETT"}},
+    {"platform": "telegram", "provider_item_id": "example_alpha_channel/4411", "original_url": "https://t.me/s/example_alpha_channel/4411",
+     "account": "telegram:handle:example_alpha_channel", "published_at": null, "observed_at": "2026-10-09T14:05:00Z",
+     "access_mode": "fixture", "collector": "fixture", "retrieval_status": "OK",
+     "text": "taking profits on $BRETT, chart looks heavy",
+     "summary": "Channel reports closing a position on a ticker with no contract given.",
+     "metrics": {"views": 900},
+     "claim": {"claim_type": "CALL", "direction": "EXIT", "symbol": "$BRETT"}}
+  ],
+  "wallet_claim": {"chain": "solana", "wallet_address": "FixtureWa11et11111111111111111111111111111", "assertion": "SELF_CLAIMED", "evidence_status": "FACT", "confidence": "LOW", "basis": "account pinned this address as its public wallet (fixture)"}
+}

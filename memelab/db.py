@@ -281,6 +281,8 @@ def init_db(path: Path | str | None = None) -> None:
         con.executescript(LAUNCH_SCHEMA)
         launch_migrate(con)
         registry.sync(con)
+        from .social.schema import migrate as social_migrate
+        social_migrate(con)
 
 
 def upsert_token(con: sqlite3.Connection, mint: str, **fields: Any) -> None:

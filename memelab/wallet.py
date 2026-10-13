@@ -36,7 +36,8 @@ def tracked_wallets() -> list[dict]:
 
 def wallet_plan(plan_id: str, addresses: list[str], tx_limit: int = 100) -> Plan:
     p = Plan(plan_id)
-    key = load_config().get("helius_api_key")
+    from .secrets import helius_key
+    key = helius_key()
     for a in addresses:
         p.add(f"rpc:bal:{a}", rpc_url(), "POST", {"jsonrpc": "2.0", "id": 1, "method": "getBalance", "params": [a]}, proj="raw", delay_ms=300)
         p.add(f"rpc:toks:{a}", rpc_url(), "POST", {"jsonrpc": "2.0", "id": 1, "method": "getTokenAccountsByOwner", "params": [a, {"programId": TOKEN}, {"encoding": "jsonParsed"}]}, proj="raw", delay_ms=300)

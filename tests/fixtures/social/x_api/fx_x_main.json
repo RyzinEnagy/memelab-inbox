@@ -1,0 +1,421 @@
+{
+ "schema": "memelab.x_api.fixture/1",
+ "note": "Synthetic: invented accounts, ids and sentences shaped like the X API v2 responses documented on docs.x.com (read 2026-10-10). Not recorded from a live call.",
+ "exchanges": [
+  {
+   "recorded_at": "2026-10-09T15:00:00Z",
+   "request": {
+    "path": "/2/users/by/username/example_alpha",
+    "params": {
+     "user.fields": "id,username,protected"
+    }
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-rate-limit-limit": "900",
+     "x-rate-limit-remaining": "299",
+     "x-rate-limit-reset": "1791558900",
+     "content-type": "application/json"
+    },
+    "body": {
+     "data": {
+      "id": "2000000000000000001",
+      "username": "example_alpha",
+      "protected": false
+     }
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-09T15:00:00Z",
+   "request": {
+    "path": "/2/users/2000000000000000001/tweets",
+    "params": {
+     "tweet.fields": "id,text,note_tweet,author_id,created_at,conversation_id,in_reply_to_user_id,referenced_tweets,edit_history_tweet_ids,public_metrics",
+     "user.fields": "id,username,protected",
+     "max_results": "10",
+     "expansions": "author_id,referenced_tweets.id,referenced_tweets.id.author_id"
+    }
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-rate-limit-limit": "900",
+     "x-rate-limit-remaining": "899",
+     "x-rate-limit-reset": "1791558900",
+     "content-type": "application/json"
+    },
+    "body": {
+     "data": [
+      {
+       "id": "1840000000000000105",
+       "author_id": "2000000000000000001",
+       "created_at": "2026-10-09T14:50:00.000Z",
+       "text": "Invented post, second version after an edit.",
+       "conversation_id": "1840000000000000105",
+       "edit_history_tweet_ids": [
+        "1840000000000000100",
+        "1840000000000000105"
+       ],
+       "public_metrics": {
+        "retweet_count": 1,
+        "reply_count": 0,
+        "like_count": 3,
+        "quote_count": 0,
+        "bookmark_count": 0,
+        "impression_count": 120
+       }
+      },
+      {
+       "id": "1840000000000000104",
+       "author_id": "2000000000000000001",
+       "created_at": "2026-10-09T14:40:00.000Z",
+       "text": "Invented quote comment.",
+       "conversation_id": "1840000000000000104",
+       "edit_history_tweet_ids": [
+        "1840000000000000104"
+       ],
+       "public_metrics": {
+        "retweet_count": 1,
+        "reply_count": 0,
+        "like_count": 3,
+        "quote_count": 0,
+        "bookmark_count": 0,
+        "impression_count": 120
+       },
+       "referenced_tweets": [
+        {
+         "type": "quoted",
+         "id": "1840000000000000070"
+        }
+       ]
+      },
+      {
+       "id": "1840000000000000103",
+       "author_id": "2000000000000000001",
+       "created_at": "2026-10-09T14:30:00.000Z",
+       "text": "RT @example_orig: Invented original post that gets reposted.",
+       "conversation_id": "1840000000000000103",
+       "edit_history_tweet_ids": [
+        "1840000000000000103"
+       ],
+       "public_metrics": {
+        "retweet_count": 1,
+        "reply_count": 0,
+        "like_count": 3,
+        "quote_count": 0,
+        "bookmark_count": 0,
+        "impression_count": 120
+       },
+       "referenced_tweets": [
+        {
+         "type": "retweeted",
+         "id": "1840000000000000080"
+        }
+       ]
+      },
+      {
+       "id": "1840000000000000102",
+       "author_id": "2000000000000000001",
+       "created_at": "2026-10-09T14:20:00.000Z",
+       "text": "@example_other invented reply text.",
+       "conversation_id": "1840000000000000090",
+       "edit_history_tweet_ids": [
+        "1840000000000000102"
+       ],
+       "public_metrics": {
+        "retweet_count": 1,
+        "reply_count": 0,
+        "like_count": 3,
+        "quote_count": 0,
+        "bookmark_count": 0,
+        "impression_count": 120
+       },
+       "in_reply_to_user_id": "2000000000000000009",
+       "referenced_tweets": [
+        {
+         "type": "replied_to",
+         "id": "1840000000000000090"
+        }
+       ]
+      },
+      {
+       "id": "1840000000000000101",
+       "author_id": "2000000000000000001",
+       "created_at": "2026-10-09T14:10:00.000Z",
+       "text": "Invented original post about a made-up token.",
+       "conversation_id": "1840000000000000101",
+       "edit_history_tweet_ids": [
+        "1840000000000000101"
+       ],
+       "public_metrics": {
+        "retweet_count": 1,
+        "reply_count": 0,
+        "like_count": 3,
+        "quote_count": 0,
+        "bookmark_count": 0,
+        "impression_count": 120
+       },
+       "note_tweet": {
+        "text": "Invented original post about a made-up token, long form version."
+       }
+      }
+     ],
+     "includes": {
+      "users": [
+       {
+        "id": "2000000000000000001",
+        "username": "example_alpha",
+        "protected": false
+       },
+       {
+        "id": "2000000000000000007",
+        "username": "example_orig",
+        "protected": false
+       },
+       {
+        "id": "2000000000000000009",
+        "username": "example_other",
+        "protected": false
+       }
+      ],
+      "tweets": [
+       {
+        "id": "1840000000000000090",
+        "author_id": "2000000000000000009",
+        "text": "Invented earlier post being replied to."
+       },
+       {
+        "id": "1840000000000000080",
+        "author_id": "2000000000000000007",
+        "text": "Invented original post that gets reposted."
+       },
+       {
+        "id": "1840000000000000070",
+        "author_id": "2000000000000000007",
+        "text": "Invented post that gets quoted."
+       }
+      ]
+     },
+     "meta": {
+      "result_count": 5,
+      "newest_id": "1840000000000000105",
+      "oldest_id": "1840000000000000101",
+      "next_token": "7140dibdnow9c7btw3w29grvxfcgvpb9n9coehpk7xz5i"
+     }
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-09T15:00:00Z",
+   "request": {
+    "path": "/2/users/2000000000000000001/tweets",
+    "params": {
+     "tweet.fields": "id,text,note_tweet,author_id,created_at,conversation_id,in_reply_to_user_id,referenced_tweets,edit_history_tweet_ids,public_metrics",
+     "user.fields": "id,username,protected",
+     "max_results": "10",
+     "expansions": "author_id,referenced_tweets.id,referenced_tweets.id.author_id",
+     "pagination_token": "7140dibdnow9c7btw3w29grvxfcgvpb9n9coehpk7xz5i"
+    }
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-rate-limit-limit": "900",
+     "x-rate-limit-remaining": "898",
+     "x-rate-limit-reset": "1791558900",
+     "content-type": "application/json"
+    },
+    "body": {
+     "data": [
+      {
+       "id": "1840000000000000099",
+       "author_id": "2000000000000000001",
+       "created_at": "2026-10-09T13:00:00.000Z",
+       "text": "Invented older post seen after the handle changed.",
+       "conversation_id": "1840000000000000099",
+       "edit_history_tweet_ids": [
+        "1840000000000000099"
+       ],
+       "public_metrics": {
+        "retweet_count": 1,
+        "reply_count": 0,
+        "like_count": 3,
+        "quote_count": 0,
+        "bookmark_count": 0,
+        "impression_count": 120
+       }
+      }
+     ],
+     "includes": {
+      "users": [
+       {
+        "id": "2000000000000000001",
+        "username": "example_alpha_new",
+        "protected": false
+       }
+      ]
+     },
+     "meta": {
+      "result_count": 1,
+      "newest_id": "1840000000000000099",
+      "oldest_id": "1840000000000000099"
+     }
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-09T15:00:00Z",
+   "request": {
+    "path": "/2/lists/1500000000000000001/tweets",
+    "params": {
+     "tweet.fields": "id,text,note_tweet,author_id,created_at,conversation_id,in_reply_to_user_id,referenced_tweets,edit_history_tweet_ids,public_metrics",
+     "user.fields": "id,username,protected",
+     "max_results": "10",
+     "expansions": "author_id,referenced_tweets.id,referenced_tweets.id.author_id"
+    }
+   },
+   "response": {
+    "status": 503,
+    "headers": {},
+    "body": {
+     "title": "Service Unavailable",
+     "type": "about:blank"
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-09T15:00:00Z",
+   "request": {
+    "path": "/2/lists/1500000000000000001/tweets",
+    "params": {
+     "tweet.fields": "id,text,note_tweet,author_id,created_at,conversation_id,in_reply_to_user_id,referenced_tweets,edit_history_tweet_ids,public_metrics",
+     "user.fields": "id,username,protected",
+     "max_results": "10",
+     "expansions": "author_id,referenced_tweets.id,referenced_tweets.id.author_id"
+    }
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-rate-limit-limit": "900",
+     "x-rate-limit-remaining": "899",
+     "x-rate-limit-reset": "1791558900",
+     "content-type": "application/json"
+    },
+    "body": {
+     "data": [
+      {
+       "id": "1840000000000000101",
+       "author_id": "2000000000000000001",
+       "created_at": "2026-10-09T14:10:00.000Z",
+       "text": "Invented original post about a made-up token.",
+       "conversation_id": "1840000000000000101",
+       "edit_history_tweet_ids": [
+        "1840000000000000101"
+       ],
+       "public_metrics": {
+        "retweet_count": 1,
+        "reply_count": 0,
+        "like_count": 3,
+        "quote_count": 0,
+        "bookmark_count": 0,
+        "impression_count": 120
+       },
+       "note_tweet": {
+        "text": "Invented original post about a made-up token, long form version."
+       }
+      },
+      {
+       "id": "1840000000000000201",
+       "author_id": "2000000000000000011",
+       "created_at": "2026-10-09T14:55:00.000Z",
+       "text": "Invented list member post.",
+       "conversation_id": "1840000000000000201",
+       "edit_history_tweet_ids": [
+        "1840000000000000201"
+       ],
+       "public_metrics": {
+        "retweet_count": 1,
+        "reply_count": 0,
+        "like_count": 3,
+        "quote_count": 0,
+        "bookmark_count": 0,
+        "impression_count": 120
+       }
+      }
+     ],
+     "includes": {
+      "users": [
+       {
+        "id": "2000000000000000001",
+        "username": "example_alpha",
+        "protected": false
+       },
+       {
+        "id": "2000000000000000011",
+        "username": "example_member",
+        "protected": false
+       }
+      ]
+     },
+     "meta": {
+      "result_count": 2,
+      "next_token": "8kd0uq3m2a0l"
+     }
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-09T15:00:00Z",
+   "request": {
+    "path": "/2/lists/1500000000000000001/tweets",
+    "params": {
+     "tweet.fields": "id,text,note_tweet,author_id,created_at,conversation_id,in_reply_to_user_id,referenced_tweets,edit_history_tweet_ids,public_metrics",
+     "user.fields": "id,username,protected",
+     "max_results": "10",
+     "expansions": "author_id,referenced_tweets.id,referenced_tweets.id.author_id",
+     "pagination_token": "8kd0uq3m2a0l"
+    }
+   },
+   "response": {
+    "status": 429,
+    "headers": {
+     "x-rate-limit-limit": "900",
+     "x-rate-limit-remaining": "0",
+     "x-rate-limit-reset": "1791558900",
+     "content-type": "application/json"
+    },
+    "body": {
+     "title": "Too Many Requests",
+     "detail": "Too Many Requests",
+     "type": "https://api.x.com/2/problems/rate-limit-exceeded"
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-09T15:00:00Z",
+   "request": {
+    "path": "/2/tweets/search/recent",
+    "params": {
+     "tweet.fields": "id,text,note_tweet,author_id,created_at,conversation_id,in_reply_to_user_id,referenced_tweets,edit_history_tweet_ids,public_metrics",
+     "user.fields": "id,username,protected",
+     "max_results": "10",
+     "expansions": "author_id,referenced_tweets.id,referenced_tweets.id.author_id",
+     "query": "(\"example token\" OR $EXMPL) -is:retweet"
+    }
+   },
+   "response": {
+    "status": 403,
+    "headers": {},
+    "body": {
+     "title": "Client Forbidden",
+     "detail": "This request must be made using an approved developer account (invented detail).",
+     "type": "https://api.x.com/2/problems/client-forbidden",
+     "reason": "client-not-enrolled"
+    }
+   }
+  }
+ ]
+}

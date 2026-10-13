@@ -1,0 +1,26 @@
+{
+ "schema": "memelab.x_api.config/1",
+ "note": "Fixture config: invented scopes. A real config lives in data/private/x_api.json (gitignored).",
+ "scopes": [
+  {
+   "kind": "user",
+   "username": "example_alpha"
+  },
+  {
+   "kind": "list",
+   "list_id": "1500000000000000001"
+  },
+  {
+   "kind": "search",
+   "name": "example_token",
+   "query": "(\"example token\" OR $EXMPL) -is:retweet"
+  }
+ ],
+ "max_results": 10,
+ "max_pages_per_scope": 3,
+ "budget": {
+  "allow_billable": true,
+  "max_usd_per_run": 1.0,
+  "max_usd_per_month": 5.0
+ }
+}

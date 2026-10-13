@@ -1,0 +1,114 @@
+{
+ "schema": "memelab.social.registry.import/1",
+ "source": {
+  "source_key": "fixture:board-alpha",
+  "kind": "LEADERBOARD",
+  "organization": "Example Board Alpha (fixture)",
+  "url": "https://example.invalid/board-alpha",
+  "access_mode": "fixture",
+  "permitted_basis": "invented test data written for this repository",
+  "is_fixture": true,
+  "fixture_label": "invented demonstration list; no real people, wallets or figures"
+ },
+ "capture": {
+  "captured_at": "2026-10-12T12:00:00Z",
+  "url": "https://example.invalid/board-alpha/2026-10-12",
+  "period": {
+   "start": "2026-09-12T00:00:00Z",
+   "end": "2026-10-12T00:00:00Z",
+   "stated": "30d"
+  }
+ },
+ "rows": [
+  {
+   "rank": 1,
+   "wallet": {
+    "chain": "solana",
+    "address": "FCvXhRhDH5vGMLzMazYz72J7oFsW4v5VNNod91CMhPod"
+   },
+   "handle": {
+    "platform": "x",
+    "handle": "demo_trader_a",
+    "provider_user_id": "9001001"
+   },
+   "display_name": "Demo Trader A",
+   "metrics": {
+    "pnl_usd": 1200.5,
+    "win_rate_pct": 61.0,
+    "trades": 88
+   },
+   "row_url": "https://example.invalid/board-alpha/w/1"
+  },
+  {
+   "rank": 2,
+   "wallet": {
+    "chain": "base",
+    "address": "0xf02bf5f7ac24df128b23e69f8e856e7f29f91971"
+   },
+   "handle": {
+    "platform": "x",
+    "handle": "demo_trader_b"
+   },
+   "display_name": "Demo Trader B",
+   "metrics": {
+    "pnl_usd": 900.0,
+    "trades": 40
+   }
+  },
+  {
+   "rank": 2,
+   "wallet": {
+    "chain": "solana",
+    "address": "HmHgUGDLdG3VbwD3Et18f4VQdDqRpgcqtxCzL5rzZR6p"
+   },
+   "display_name": "Demo Wallet C",
+   "metrics": {
+    "pnl_usd": 850.0
+   }
+  },
+  {
+   "rank": 4,
+   "wallet": {
+    "chain": "solana",
+    "address": "FCvXhRhDH5vGMLzMazYz72J7oFsW4v5VNNod91CMhPod"
+   },
+   "handle": {
+    "platform": "x",
+    "handle": "demo_trader_a",
+    "provider_user_id": "9001001"
+   },
+   "display_name": "Demo Trader A",
+   "metrics": {
+    "pnl_usd": 300.0
+   }
+  },
+  {
+   "rank": 5,
+   "display_name": "Demo Trader A",
+   "metrics": {
+    "pnl_usd": 120.0
+   }
+  },
+  {
+   "rank": 6,
+   "wallet": {
+    "chain": "solana",
+    "address": "not-a-wallet"
+   },
+   "display_name": "Demo Broken"
+  },
+  {
+   "rank": 7,
+   "display_name": "Demo Bio Row",
+   "bio": "invented placeholder"
+  },
+  {
+   "rank": 8,
+   "handle": {
+    "platform": "telegram",
+    "handle": "demo_signals"
+   },
+   "display_name": "Demo Signals"
+  }
+ ]
+}
