@@ -62,3 +62,12 @@ def test_unreviewed_manifest_cannot_claim_m00_complete(tmp_path):
     result=inspect(tmp_path)
     assert result['status'] == 'INVALID'
     assert len(result['integrity_errors']) >= 2
+
+
+def test_previous_chat_findings_not_silently_lost():
+    crosswalk = (ROOT / 'audits/social-intelligence/EVIDENCE_CROSSWALK.md').read_text()
+    for number in range(18, 34):
+        marker = f'| AUD-{number:03d} |'
+        assert crosswalk.count(marker) == 1, marker
+    assert crosswalk.count('**PENDING PRIMARY REPORT**') == 16
+    assert 'original details/probes unavailable' in crosswalk

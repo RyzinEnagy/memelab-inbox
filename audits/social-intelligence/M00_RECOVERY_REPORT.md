@@ -12,9 +12,15 @@ Five original-source titles were located in the user's ChatGPT Library and copie
 
 `02_ARCHITECTURE_AUDIT.md` and `03_RESEARCH_VALIDITY.md` remain unavailable in the checked Git refs and accessible Library search. The recovered Phase 05 report says an earlier reviewer read Phase 02, but that statement does not reproduce the missing artifact. The Phase 06 report explicitly notes Phase 03's unavailability. Original probe scripts/logs are also not fully present.
 
+## Discovery in previous project chats (additional missing provenance)
+
+A project-conversation review located the original Phase 02 and Phase 03 completion messages and their original attachments, *not their file contents*. Phase 02 reportedly added **AUD-018–023**, and Phase 03 added **AUD-024–033**, including two serious leakage claims in the model-alpha and wallet valuation paths. The audit branch's consolidated register only included AUD-001–017; therefore **16 finding IDs were omitted from that AUD register**. The current crosswalk tracks 46 identifiers from available consolidated sources plus these **16 conversation-confirmed IDs (62 in total)**. No severity or detailed conclusion was guessed for omitted IDs. See `M00_PRIOR_CHAT_LOCATORS.md`.
+
+The blocked status means **unavailable to this session**, not that these original reports never existed. Their earlier sandbox links are temporary session artifacts and cannot be trusted as source bytes until retrieved from the original conversations and hashed.
+
 ## Reconciliation
 
-`EVIDENCE_CROSSWALK.md` enumerates **46 distinct AUD/ARCH/ADV/OPS identifiers** mentioned in currently accessible sources: 23 with a found primary report ID reference, 13 mentioned only in secondary material, and 10 architecture IDs with no primary report. These are automatically located reference positions, not independently reviewed code/test proofs. The OPS source does not use the OPS-nnn labels, so its fine-grained mapping remains unverified. The register's severity labels were not modified. There is no resolution of missing-source contradictions and no finding is closed.
+`EVIDENCE_CROSSWALK.md` enumerates **46 distinct AUD/ARCH/ADV/OPS identifiers** mentioned in currently accessible sources: 23 with a found primary report ID reference, 13 mentioned only in secondary material, and 10 architecture IDs with no primary report. The first 46 are automatically located reference positions and the other 16 are prior-chat IDs; neither is independently reviewed code/test proof. The OPS source does not use the OPS-nnn labels, so its fine-grained mapping remains unverified. The register's severity labels were not modified. There is no resolution of missing-source contradictions and no finding is closed.
 
 ## Verification evidence
 

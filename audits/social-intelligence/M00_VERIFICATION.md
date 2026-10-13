@@ -9,6 +9,8 @@
 3. Read the current `EVIDENCE_MANIFEST.json` and every recovered file directly. Independently compute SHA-256 (e.g., `sha256sum audits/social-intelligence/recovered/*.md audits/social-intelligence/06_STRATEGIC_IMPROVEMENTS.md`); compare with the manifest. Do not assume an index-text copy is byte-identical to the original Library file.
 4. Check `02_ARCHITECTURE_AUDIT.md` and `03_RESEARCH_VALIDITY.md` against original archive/library paths, not substitute summaries. If unavailable, retain **BLOCKED**.
 
+Verify the original Phase 02 and Phase 03 report *attachment bytes* against prior-chat locators listed in `M00_PRIOR_CHAT_LOCATORS.md`. Account for AUD-018–023 and AUD-024–033 separately from the 46 IDs in the provisional consolidated register. If original AUD findings change R-00/M01 scope or severity, refresh and review the remediation roadmap before implementation.
+
 ## 2. Acceptance and falsification commands
 
 From the feature branch repository root:

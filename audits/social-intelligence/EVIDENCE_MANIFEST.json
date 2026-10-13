@@ -42,7 +42,7 @@
       "status": "MISSING",
       "bytes": null,
       "sha256": null,
-      "origin_note": "Not found in visible Library or git refs; previous Phase 05 report says earlier session read it"
+      "origin_note": "Original report generated in previous project Phase 02 chat (2026-10-13 16:28 UTC); file link known, bytes NOT recovered in this session. Reportedly contains AUD-018–023; retrieve original chat attachment."
     },
     {
       "id": "03",
@@ -51,7 +51,7 @@
       "status": "MISSING",
       "bytes": null,
       "sha256": null,
-      "origin_note": "Not found; preceding audit explicitly describes Phase 03 as unavailable"
+      "origin_note": "Original report generated in previous project Phase 03 chat (2026-10-13 16:42 UTC); file link known, bytes NOT recovered in this session. Reportedly contains AUD-024–033; retrieve original chat attachment."
     },
     {
       "id": "04",

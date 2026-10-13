@@ -2,7 +2,7 @@
 
 **Status: PARTIAL — NOT INDEPENDENTLY VERIFIED.** Auto-located ID references are *starting pointers*, not proof of the original defect or acceptance. The missing Phase 02 and Phase 03 reports and their original probes cannot be reconstructed from secondary summaries. All references are to paths relative to `audits/social-intelligence/`.
 
-**Referenced IDs found:** 46. Categories are `PRIMARY ID ANCHOR`, `SECONDARY ONLY` and `PRIMARY REPORT MISSING`. Findings retained at the original severity; no severity upgrades or closure decisions are made here.
+**Referenced IDs found in currently archived reports:** 46. **Additional IDs known only from prior project-chat output:** 16 (AUD-018–033). **Total now tracked: 62, not all independently evidenced.** Categories are `PRIMARY ID ANCHOR`, `SECONDARY ONLY` and `PRIMARY REPORT MISSING`. Findings retained at the original severity; no severity upgrades or closure decisions are made here.
 
 | Finding ID | Evidence class | First source-report ID mention | Secondary index / roadmap | Qualification |
 |---|---|---|---|---|
@@ -53,10 +53,35 @@
 | OPS-009 | SECONDARY ONLY | — | `FINDINGS.md:233` | No ID-specific reference found in the recovered family report; manual reconciliation needed |
 | OPS-010 | SECONDARY ONLY | — | `FINDINGS.md:234` | No ID-specific reference found in the recovered family report; manual reconciliation needed |
 
+## Finding IDs recovered from earlier chat history (not source-file content)
+
+These sixteen identifiers were explicitly reported as written in the missing Phase 02 and 03 audit documents. **No exact description, severity, code reference or original probe is available**; do not fill these fields from speculation. The original audit-generated updated `FINDINGS.md` documents are needed.
+
+| ID | Prior source | Evidence / current state | Original severity |
+|---|---|---|---|
+| AUD-018 | Prior-chat Phase 02 architecture assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+| AUD-019 | Prior-chat Phase 02 architecture assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+| AUD-020 | Prior-chat Phase 02 architecture assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+| AUD-021 | Prior-chat Phase 02 architecture assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+| AUD-022 | Prior-chat Phase 02 architecture assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+| AUD-023 | Prior-chat Phase 02 architecture assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+| AUD-024 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+| AUD-025 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+| AUD-026 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+| AUD-027 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+| AUD-028 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+| AUD-029 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+| AUD-030 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+| AUD-031 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+| AUD-032 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+| AUD-033 | Prior-chat Phase 03 research validity assistant completion summary | **PENDING PRIMARY REPORT**; original details/probes unavailable | UNKNOWN |
+
+Source locators and original attachment locations: [`M00_PRIOR_CHAT_LOCATORS.md`](M00_PRIOR_CHAT_LOCATORS.md). These 16 IDs are additional to the published 46-row crosswalk and must be reconciled before declaring the audit register complete.
+
 ## Unreconciled evidence and discrepancy register
 
-1. **02 architecture report:** source absent; archived report cited by the Phase 05 assessment but not retrievable in this repository/Library search. All ARCH findings remain unverified against their original report.
-2. **03 research-validity report:** source absent even from the previously reviewed audit; exact original conclusions/probes unknown.
+1. **02 architecture report:** source absent from current storage, though an original report and AUD-018–023 findings were generated in an earlier project chat; archived report cited by the Phase 05 assessment but not retrievable in this repository/Library search. All ARCH findings remain unverified against their original report.
+2. **03 research-validity report:** original report and AUD-024–033 findings generated in an earlier project chat, but unavailable as byte-complete source here; exact original conclusions/probes unknown.
 3. **Phase 04 microprobes:** `evidence/04_microprobes.py` and `evidence/04_microprobes_output.txt` are named in the recovered Phase 04 text but are not in the checked-out Git tree or recovered Library documents. Do not treat the reported 10/10 as newly rerun evidence.
 4. **Phase 01 probe logs and Phase 00 raw test transcript:** the source narratives describe them, but executable audit artifacts are not included in this branch. Their results remain historically *reported*.
 5. **Library text fidelity:** three raw-file-backed sources were byte-matched to their original Library SHA-256; the two index-text-only sources still require comparison to original backing bytes.
