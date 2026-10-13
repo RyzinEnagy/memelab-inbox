@@ -58,6 +58,21 @@ def inspect(root: Path, manifest_path: Path | None = None) -> dict:
                 errors.append(f'{name}: missing row contains a purported checksum')
         else:
             errors.append(f'{name}: invalid status {state}')
+    # Preserve original intermediate findings registers as immutable source bytes.
+    supporting = manifest.get('supporting_sources', [])
+    if not isinstance(supporting, list):
+        errors.append('invalid supporting-source inventory')
+        supporting = []
+    support_names = [item.get('name') for item in supporting]
+    if len(supporting) != 2 or set(support_names) != {'phase02_FINDINGS.md', 'phase03_FINDINGS.md'}:
+        errors.append('missing or duplicated historical Phase 02/03 findings snapshots')
+    for entry in supporting:
+        rel = entry.get('path', '')
+        path = audit / rel
+        if not rel or not path.resolve().is_relative_to(audit.resolve()) or not path.is_file():
+            errors.append(f'{entry.get("name")}: missing or unsafe supporting-source path')
+        elif entry.get('status') != 'RECOVERED' or entry.get('bytes') != path.stat().st_size or entry.get('sha256') != hashlib.sha256(path.read_bytes()).hexdigest():
+            errors.append(f'{entry.get("name")}: supporting-source integrity mismatch')
     review = manifest.get('independent_review')
     if review not in ('PENDING', 'ACCEPTED', 'REJECTED'):
         errors.append('missing or invalid independent review status')
@@ -66,6 +81,23 @@ def inspect(root: Path, manifest_path: Path | None = None) -> dict:
         errors.append('crosswalk missing')
     elif '# M00 finding-to-evidence crosswalk' not in crosswalk.read_text(encoding='utf-8'):
         errors.append('crosswalk marker missing')
+    else:
+        rows = crosswalk.read_text(encoding='utf-8').splitlines()
+        import re
+        recorded = [re.match(r'^\| ((?:AUD|ARCH|ADV|OPS)-\d{3}) \|', line) for line in rows]
+        recorded = [m.group(1) for m in recorded if m]
+        expected = {*(f'AUD-{n:03d}' for n in range(1,34)), *(f'ARCH-{n:03d}' for n in range(1,16)), *(f'ADV-{n:03d}' for n in range(1,10)), *(f'OPS-{n:03d}' for n in range(1,11))}
+        if set(recorded) != expected or len(recorded) != len(expected):
+            errors.append('crosswalk IDs incomplete or duplicated')
+        canonical = audit / 'FINDINGS.md'
+        if canonical.is_file():
+            tab = canonical.read_text(encoding='utf-8').split('## AUD-001',1)[0]
+            got = re.findall(r'^\| (AUD-\d{3}) \|', tab, re.MULTILINE)
+            expected_aud={f'AUD-{n:03d}' for n in range(1,34)}
+            if set(got) != expected_aud or len(got)!=33:
+                errors.append('canonical AUD register is not a unique full 33-ID inventory')
+        else:
+            errors.append('canonical FINDINGS.md missing')
     status = 'INVALID' if errors else ('BLOCKED' if missing or review != 'ACCEPTED' else 'READY_FOR_REVIEW')
     return dict(status=status, recovered=len(recovered),required=len(EXPECTED),missing=missing,
                 independent_review=review,integrity_errors=errors)
