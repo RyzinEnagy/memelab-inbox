@@ -72,6 +72,8 @@ _SECRET_RE = re.compile(r"(?i)((?:api[-_]?key|apikey|token|secret|password|passw
 _BEARER_RE = re.compile(r"(?i)\bbearer\s+[A-Za-z0-9._\-]+")
 # Discord bot tokens travel as "Authorization: Bot <token>"; the token has three dot-separated base64url parts (Phase 20)
 _DISCORD_RE = re.compile(r"\bBot\s+[A-Za-z0-9._\-]{20,}|(?<![A-Za-z0-9_\-])[A-Za-z0-9_\-]{23,30}\.[A-Za-z0-9_\-]{6,7}\.[A-Za-z0-9_\-]{27,40}")
+# Google API keys ("AIza" + 35) travel as the key= query parameter, OAuth access tokens ("ya29.") in a Bearer header (Phase 21)
+_GOOGLE_RE = re.compile(r"(?<![A-Za-z0-9_\-])AIza[0-9A-Za-z_\-]{35}(?![A-Za-z0-9_\-])|\bya29\.[0-9A-Za-z_\-.]{20,}")
 # Telegram bot tokens are "<bot id>:<35 characters>" and travel inside the request URL path (/bot<token>/method)
 _TOKEN_RE = re.compile(r"\b(gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9]{20,})\b"
                        r"|(?<![A-Za-z0-9])(?:bot)?\d{5,16}:[A-Za-z0-9_\-]{30,}")
@@ -80,6 +82,7 @@ _TOKEN_RE = re.compile(r"\b(gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{2
 def redact(s: str) -> str:
     s = _BEARER_RE.sub("Bearer [REDACTED]", s)      # first, so "Authorization: Bearer <t>" loses <t> (Phase 03 fix)
     s = _DISCORD_RE.sub("[REDACTED]", s)
+    s = _GOOGLE_RE.sub("[REDACTED]", s)
     s = _SECRET_RE.sub(lambda m: m.group(1) + "[REDACTED]", s)
     return _TOKEN_RE.sub("[REDACTED]", s)
 

@@ -274,7 +274,7 @@ def test_cli_fixture_flow_extract_narrative_brief_and_live_refusal(dbp, capsys, 
     monkeypatch.setattr(urllib.request, "urlopen", lambda *a, **k: (_ for _ in ()).throw(AssertionError("network used")))
     call(["social", "sources", "--db", str(dbp)])
     rows = {r["connector"]: r for r in json.loads(capsys.readouterr().out)["connectors"]}
-    assert set(rows) == {"x_api", "telegram_bot", "reddit_api", "farcaster_hub", "discord_bot"} and rows["farcaster_hub"]["live_requests"] == 0
+    assert set(rows) == {"x_api", "telegram_bot", "reddit_api", "farcaster_hub", "discord_bot", "youtube_data"} and rows["farcaster_hub"]["live_requests"] == 0
     assert call(["social", "fc-ingest", "--config", str(ROOT / "docs" / "social-intelligence" / "farcaster_hub.example.json"),
                  "--db", str(dbp)]) == 1
     r = json.loads(capsys.readouterr().out)

@@ -614,3 +614,35 @@ The REST route reads forward from a per-channel cursor (newest message id, moved
 ## D-140 The Discord adapter is not operational; no live call was made (ADOPTED, Phase 20)
 
 BLOCKED on: a bot application and token, a server whose admin consents, and the Message Content Intent toggle. Proof runs on invented fixtures labelled `access_mode='fixture'`, `rights_basis='synthetic_fixture'`, spend `mode='fixture'`; `discord-health` counts only `mode='live'` rows and reports `none` today.
+
+## D-141 Phase 21 slot taken by optional Prompt 21; the old Phase 21 moves to C-21 (ADOPTED, Phase 21, 2026-10-13)
+
+Elving supplied optional Prompt 21 ("Add YouTube metadata and public captions when permitted"). The prompt says to run after Phase 18 unless a verified high-value analyst relies on long-form content; Phase 18 is done (D-119), so it ran now. It takes the Phase 21 slot the same way Prompts 19 and 20 took theirs (D-125, D-132). The old Phase 21 entry (full run on fixtures and one supervised live run, docs matching the code, rebase on `main`, merge for Elving to approve) is carried over as C-21 with its gate unchanged and still depends on C-20. YouTube is no longer part of C-8 (token-listed links stay there). One adapter, `youtube_data.py`. No migration: the public schema stays at 12.
+
+## D-142 YouTube is read only through the Data API; transcripts only on an authorized route (ADOPTED, Phase 21)
+
+Metadata of public videos of configured channels and videos, with an API key. `captions.download` "requires the user to have permission to edit the video" and the Developer Policies forbid downloading or storing audiovisual content without YouTube's written approval and obtaining scraped data (III.E.1, III.E.6). So transcripts come only from (a) `captions.list` / `captions.download` with an owner OAuth token for channels listed as owned, or (b) a transcript file the operator supplies with a recorded permission (`own_channel` or `creator_written_permission`) and a reference. Machine translation (`tlang`), the timedtext endpoint, downloaders and page scraping are never used and their config keys are refused. A track whose language differs from the video's audio language is a translation and is not used unless `allow_language_mismatch` is set. Reading YouTube through signed-in Chrome (D-009's preferred social route) is not proposed: it is the scraping route the policies forbid, and the API is free.
+
+## D-143 YouTube maps onto inbound/3: one item per video, one per transcript snippet (ADOPTED, Phase 21)
+
+A video is an ORIGINAL item (provider id = video id, account = channel id plus handle, hash of title and description, `published_at` = `publishedAt`). A transcript snippet is its own ORIGINAL item with provider id `<video>_t<start ms>_<end ms>`, the timepoint in the URL and the hash of the snippet words; same account and conversation id as its video, so a channel counts once in narratives however often it repeats a contract. Only cue windows around a token candidate are kept (one cue of context on each side within 15 s, merged when they share a cue). Offsets live in the provider id, not in `metrics`, because metrics are engagement numbers elsewhere in the lab. No statistics are requested. `feed_core.safe_url` keeps `v=` and `t=` on `www.youtube.com/watch` only, so reports can link to the moment.
+
+## D-144 A snippet is dated by when its words became public, never by a guessed spoken time (ADOPTED, Phase 21)
+
+Uploaded or premiered video: the snippet's `published_at` is the video's `publishedAt` (PROVIDER). Archived livestream: `actualStartTime` + cue offset (PARSED_RELATIVE, clamped to `actualEndTime` and the fetch time), so downstream engines treat it as approximate and use collection time where they need a provider time. Upcoming and live broadcasts get no transcript (`PENDING_BROADCAST`), even with a licensed file, so a transcript can never be dated before its broadcast nor used to evaluate a prediction before it was public. Cues past the media length plus 30 s are dropped as drift. Captions not ready after a livestream are `PENDING_ARCHIVE` and rechecked for up to 7 days.
+
+## D-145 30-day refresh-or-erase for YouTube data (ADOPTED for derived data, Phase 21)
+
+The Developer Policies allow non-authorized data to be stored at most 30 days before it is refreshed or deleted (III.E.4). Each run refreshes stored videos older than `refresh_after_days` (7) through `videos.list`; a refresh is a new dated sighting. A video missing from the refresh, or no longer public, is NOT_FOUND with every snippet of it. After every ingest, gone items lose their derived data (shared purge), and videos not seen OK in `retention_days` (30, capped there) lose it too (`api_common.clear_item_keys`, the erasure half of `purge_gone_items`, Reddit and Discord behaviour unchanged). Ids, times and the gone sighting stay; see D-146.
+
+## D-146 YouTube policy questions for Elving (PROPOSED, needs Elving, Phase 21)
+
+Three readings of the Developer Policies that the code cannot settle (not legal advice): (1) III.E.2 forbids aggregating API data across content owners; the narrative engine counts channels together per contract. Is a per-contract count of channel mentions "aggregation" in the policy's sense? (2) III.E.4.h forbids creating new or derived metrics from API data; the lab derives token mentions from titles and descriptions and counts them. (3) After 30 days the code erases hashes, claims and links but keeps video ids, channel ids and times; the policy may require deleting those too. Live reads are gated on `terms_review.accepted` with a reference, so nothing runs until Elving decides. Options: accept with the current behaviour; accept and also delete ids and times after 30 days; limit YouTube to channels he owns or has permission from (authorized data); or drop YouTube.
+
+## D-147 YouTube quota guard (ADOPTED, Phase 21)
+
+Quota units (channels, playlistItems, videos 1; captions.list 50; captions.download 200) are checked before every call against a per-run cap (200 by default) and the Pacific Time daily cap (10,000, the default allocation and the ceiling the config accepts), counted from `social_api_spend` rows of the same mode. Every request is charged, invalid ones included (the docs say so). 403 quotaExceeded stops the run and stores the next Pacific midnight; no call is made before it. `search.list` is not used.
+
+## D-148 The YouTube adapter is not operational; no live call was made (ADOPTED, Phase 21)
+
+BLOCKED on: Elving's terms review (D-146) and an API key; transcripts additionally on an owner OAuth token or a written permission. Proof runs on invented fixtures labelled `access_mode='fixture'`, `rights_basis='synthetic_fixture'`, spend `mode='fixture'`; `youtube-health` counts only `mode='live'` rows and reports `none` today. The authenticated public-data smoke test the prompt allows "only when permitted" was not run.

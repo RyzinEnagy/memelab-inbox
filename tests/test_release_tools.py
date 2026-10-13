@@ -99,3 +99,9 @@ def test_audit_knows_the_discord_bot_token_shape():
     shape = b"M" + b"T" * 25 + b".GaBcDe." + b"x1" * 16          # built at run time so no literal token sits in the tree
     assert AUD.CRED["discord_bot_token"].search(shape)
     assert not AUD.CRED["discord_bot_token"].search(b"fixtureDiscordTokenNotReal01.GfIxTr.fixtureTokenNotRealDoNotLeak0123456789")
+
+
+def test_audit_knows_google_api_key_and_oauth_token_shapes():
+    assert AUD.CRED["google_api_key"].search(b"key=AIza" + b"Q" * 35 + b"&part=id")
+    assert not AUD.CRED["google_api_key"].search(b"fixtureYoutubeKeyNotReal_0123456789")
+    assert AUD.CRED["google_oauth_token"].search(b"Authorization: Bearer ya29." + b"a1" * 20)

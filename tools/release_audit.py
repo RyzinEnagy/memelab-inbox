@@ -31,6 +31,8 @@ CRED = {
     "telegram_bot_token": re.compile(rb"\b\d{8,10}:AA[A-Za-z0-9_\-]{33}\b"),
     "aws_key": re.compile(rb"\bAKIA[0-9A-Z]{16}\b"),
     "discord_bot_token": re.compile(rb"(?<![A-Za-z0-9_\-])[MNO][A-Za-z0-9_\-]{23,27}\.[A-Za-z0-9_\-]{6}\.[A-Za-z0-9_\-]{27,40}(?![A-Za-z0-9_\-])"),
+    "google_api_key": re.compile(rb"(?<![A-Za-z0-9_\-])AIza[0-9A-Za-z_\-]{35}(?![A-Za-z0-9_\-])"),
+    "google_oauth_token": re.compile(rb"\bya29\.[0-9A-Za-z_\-]{30,}"),
     "x_bearer": re.compile(rb"AAAAAAAAAAAAAAAAAAAAA[A-Za-z0-9%]{20,}"),
     "pem_private_key": re.compile(rb"-----BEGIN [A-Z ]*PRIVATE KEY-----"),
     "api_key_param": re.compile(rb"api[-_]?key=([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[A-Za-z0-9_\-]{24,})"),
@@ -57,7 +59,7 @@ EXPLAINED = [
     (r"^memelab/social/(content_guard|ingest|registry_import|alerts_core|outcomes_core|replay_core|research_core)\.py$", r"exec:.*", "refusal lists: keys or words the lab rejects"),
 ]
 
-SOCIAL_LOGIN_HOSTS = re.compile(r"(api\.x\.com|api\.twitter\.com|api\.telegram\.org|api\.anthropic\.com|smtp\.|oauth\.reddit\.com|www\.reddit\.com|discord\.com/api)")
+SOCIAL_LOGIN_HOSTS = re.compile(r"(api\.x\.com|api\.twitter\.com|api\.telegram\.org|api\.anthropic\.com|smtp\.|oauth\.reddit\.com|www\.reddit\.com|discord\.com/api|www\.googleapis\.com/youtube)")
 
 
 def run(cmd, cwd=ROOT, check=False):

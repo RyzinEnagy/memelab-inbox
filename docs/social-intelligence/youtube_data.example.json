@@ -1,0 +1,20 @@
+{
+ "schema": "memelab.youtube_data.config/1",
+ "_note": "Copy to data/private/youtube_data.json (gitignored). Off until Elving records the terms review. The API key goes in YOUTUBE_API_KEY, an owner OAuth token (captions of channels you can edit) in YOUTUBE_OAUTH_TOKEN; never in this file.",
+ "terms_review": {"accepted": false, "reference": null},
+ "channels": [],
+ "videos": [],
+ "transcripts": {
+  "captions_api": {"enabled": false, "owned_channels": []},
+  "licensed": [],
+  "allow_language_mismatch": false,
+  "context_cues": 1,
+  "drift_tolerance_seconds": 30,
+  "pending_max_days": 7
+ },
+ "quota": {"max_units_per_run": 200, "daily_units": 10000},
+ "page_size": 50,
+ "max_pages_per_channel": 1,
+ "refresh_after_days": 7,
+ "retention_days": 30
+}

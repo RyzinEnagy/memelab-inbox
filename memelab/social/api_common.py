@@ -225,13 +225,19 @@ def purge_gone_items(con, platform: str, *, private_path=None) -> dict:
     summaries, metrics and private refs on every observation; versions; claim spans, claim summaries, extraction outputs
     and their hashes; private copies of the text; the link to its author. Narrative snapshots keep their dated counts.
     Idempotent. The caller commits. Moved here from reddit_api.purge_deleted in Phase 20 (behaviour unchanged)."""
-    from . import private
-    out = {"items_purged": 0, "observations_cleared": 0, "claims_cleared": 0, "private_rows_deleted": 0}
     gone = [r[0] for r in con.execute(
         "SELECT DISTINCT i.item_key FROM social_items i JOIN social_observations o ON o.item_key=i.item_key "
         "WHERE i.platform=? AND o.retrieval_status IN ('DELETED','NOT_FOUND')", (platform,))]
+    return clear_item_keys(con, gone, private_path=private_path)
+
+
+def clear_item_keys(con, keys, *, private_path=None) -> dict:
+    """The erasure step of purge_gone_items for an explicit list of item keys (Phase 21: the YouTube 30-day expiry
+    uses it too). Same per-item erasure and counting. The caller commits."""
+    from . import private
+    out = {"items_purged": 0, "observations_cleared": 0, "claims_cleared": 0, "private_rows_deleted": 0}
     hashes = set()
-    for key in gone:
+    for key in keys:
         rows = con.execute("SELECT id, content_hash FROM social_observations WHERE item_key=? AND (content_hash IS NOT NULL "
                            "OR summary IS NOT NULL OR metrics_json IS NOT NULL OR private_ref IS NOT NULL)", (key,)).fetchall()
         hashes.update(r[1] for r in rows if r[1])

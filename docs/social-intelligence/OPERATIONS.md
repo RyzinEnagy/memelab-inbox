@@ -95,6 +95,8 @@ Reddit: Reddit's terms require removing deleted posts, comments and accounts. Ev
 
 Discord: deleted messages are purged at the end of every `social discord-ingest` and `social discord-gateway` (`deletion_purge` in the output); `python -m memelab social discord-purge` runs it on its own. When someone asks to have their data removed: `python -m memelab social discord-purge --user USER_ID`. To make one channel read its newest page again (for example after a long pause): `python -m memelab social discord-reset --channel CHANNEL_ID`; already stored messages are not duplicated. Details in DISCORD_20.md and D-137.
 
+YouTube: every `social youtube-ingest` ends with a purge (`purge` in its output): videos that were removed or are no longer public, and their transcript snippets, lose their derived data; videos not refreshed within 30 days (the YouTube Developer Policies limit) lose it too. Each run refreshes stored videos older than `refresh_after_days` (default 7) for 1 quota unit per 50 videos, so a video you still follow never reaches 30 days. To run the purge on its own: `python -m memelab social youtube-purge`. Details in YOUTUBE_21.md and D-145.
+
 If a credential is ever pasted into a chat or a file, rotate it at the provider. The Helius key was pasted into a chat once (see HANDOFF.md); rotate it if that chat is shared.
 
 ## Troubleshooting
@@ -114,6 +116,10 @@ If a credential is ever pasted into a chat or a file, rotate it at the provider.
 | Discord unit `message_content_intent_missing` or `discord-health` says `intent_missing` | Message Content Intent is off on the Bot page | turn it on in the Developer Portal; nothing was read |
 | Discord channel BLOCKED `access_denied` or `not_public` | the bot lost View Channel or Read Message History, was removed, or the channel is hidden from @everyone | expected; role-gated channels are never read (D-134) |
 | `discord-gateway` exits 1 with `gateway_transport_not_shipped` | no live gateway client in the repo (D-139) | use `discord-ingest` |
+| `youtube-ingest` exits 1 with `NOT_RUN not_configured`, `terms_review_missing` or `credentials_missing` | no `data/private/youtube_data.json`, no recorded terms review, or `YOUTUBE_API_KEY` not exported | expected; see YOUTUBE_21.md "Setup" |
+| YouTube units `RATE_LIMITED` `quota_exceeded`, or `youtube-health` says `quota_exhausted` | the daily quota (10,000 units, Pacific Time day) is used up | the next run after midnight Pacific Time resumes on its own; lower `max_units_per_run` |
+| a video's transcript status is `UNAVAILABLE_NO_AUTHORIZED_ROUTE` | the video belongs to a channel you do not own and no licensed transcript is configured | expected; YouTube does not allow downloading other people's captions (D-142); the title and description are still read |
+| transcript status `PENDING_BROADCAST` or `PENDING_ARCHIVE` | the stream has not finished, or its captions are not ready yet | expected; later runs check again (up to `pending_max_days`) |
 | Reddit or Farcaster connector `RATE_LIMITED` | 429 or Reddit's remaining count fell below `min_remaining` | the next run waits for the recorded reset time on its own |
 | replay verdict `INSUFFICIENT_DATA` | no stored posts or wallet events, too little price history | collect first; the replay cannot invent history |
 | `social guard` fails | a tracked file holds a blocked class or a private file is tracked | the output names the file and rule (never the value); remove it before committing |
@@ -127,7 +133,8 @@ If a credential is ever pasted into a chat or a file, rotate it at the provider.
 - Live Discord reads (needs a bot, a consenting server and Message Content Intent), a live Discord gateway connection, Discord threads and forums, Discord DMs (never).
 - Model-based claim analysis (no model configured).
 - Purging X observations of deleted posts (C-3).
-- Manual capture onto the inbound schema (C-4), YouTube RSS and other sources (C-8).
+- Live YouTube reads (needs the terms review and an API key); transcripts of videos on channels you do not own without written permission (never downloaded); YouTube comments, search, statistics.
+- Manual capture onto the inbound schema (C-4), token-listed links and other sources (C-8).
 - Entity resolution for accounts and projects (C-9), mention-only counting (C-10), attention metrics (C-11), paid placement and bot signals (C-12).
 - Live trader identity checks, claimed-wallet evidence collection and call capture (C-13, C-14, C-15), trader scoring from outcomes (C-16).
 - m19 and launch-social reading the new metrics (C-17), catalyst attention reading them (C-18).

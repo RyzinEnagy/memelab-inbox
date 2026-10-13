@@ -1,0 +1,83 @@
+{
+ "schema": "memelab.youtube_data.config/1",
+ "_note": "Invented fixture configuration. Channel 2 repeats channel 1 by handle (dedupe test).",
+ "terms_review": {
+  "accepted": true,
+  "reference": "fixture: invented review record"
+ },
+ "channels": [
+  {
+   "id": "UCfxLongAnalyst00000001A"
+  },
+  {
+   "handle": "@fx_long_analyst"
+  },
+  {
+   "handle": "@fx_second_show"
+  }
+ ],
+ "videos": [
+  "fxVideo07gG"
+ ],
+ "transcripts": {
+  "captions_api": {
+   "enabled": true,
+   "owned_channels": [
+    "UCfxSecondShow000000002B"
+   ]
+  },
+  "licensed": [
+   {
+    "video_id": "fxVideo01aA",
+    "file": "fx_transcript_v1.vtt",
+    "format": "vtt",
+    "language": "en",
+    "permission": {
+     "basis": "creator_written_permission",
+     "reference": "fixture: invented permission"
+    }
+   },
+   {
+    "video_id": "fxVideo02bB",
+    "file": "fx_transcript_v2.srt",
+    "format": "srt",
+    "language": "en",
+    "permission": {
+     "basis": "creator_written_permission",
+     "reference": "fixture: invented permission"
+    }
+   },
+   {
+    "video_id": "fxVideo03cC",
+    "file": "fx_transcript_v3.vtt",
+    "format": "vtt",
+    "language": "en",
+    "permission": {
+     "basis": "creator_written_permission",
+     "reference": "fixture: invented permission"
+    }
+   },
+   {
+    "video_id": "fxVideo07gG",
+    "file": "fx_transcript_v7_es.vtt",
+    "format": "vtt",
+    "language": "es",
+    "permission": {
+     "basis": "creator_written_permission",
+     "reference": "fixture: invented permission"
+    }
+   }
+  ],
+  "context_cues": 1,
+  "drift_tolerance_seconds": 30,
+  "pending_max_days": 7
+ },
+ "quota": {
+  "max_units_per_run": 1000,
+  "daily_units": 10000
+ },
+ "page_size": 50,
+ "max_pages_per_channel": 2,
+ "refresh_after_days": 0.5,
+ "retention_days": 30
+}

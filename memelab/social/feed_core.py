@@ -94,6 +94,9 @@ def safe_chain(s: Any) -> str | None:
 
 
 PRIVATE_LINK = re.compile(r"^(t\.me|telegram\.me)/(\+|joinchat/|c/)", re.I)
+# Phase 21: a YouTube watch link needs its video id (v=) and, for a transcript snippet, its timepoint (t=<seconds>s);
+# only those two parameters, in exactly this shape, survive on this one host and path
+_YT_QUERY = re.compile(r"^v=[A-Za-z0-9_\-]{11}(&t=\d{1,6}s)?$")
 
 
 def safe_url(u: Any) -> str | None:
@@ -117,7 +120,8 @@ def safe_url(u: Any) -> str | None:
     if PRIVATE_LINK.match(host + (p.path or "/")):
         return None
     path = quote(p.path or "/", safe="/-._~%")
-    out = f"{p.scheme.lower()}://{host}{':' + str(port) if port else ''}{path}"
+    keep = f"?{p.query}" if host == "www.youtube.com" and p.path == "/watch" and not port and _YT_QUERY.match(p.query or "") else ""
+    out = f"{p.scheme.lower()}://{host}{':' + str(port) if port else ''}{path}{keep}"
     return out if len(out) <= 300 else None
 
 

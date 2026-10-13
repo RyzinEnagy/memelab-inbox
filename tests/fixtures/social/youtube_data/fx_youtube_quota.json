@@ -1,0 +1,38 @@
+{
+ "schema": "memelab.youtube_data.fixture/1",
+ "synthetic": true,
+ "note": "Invented channels, videos, captions and sentences shaped like the documented YouTube Data API v3 responses. Not real data.",
+ "exchanges": [
+  {
+   "recorded_at": "2026-10-11T00:00:00Z",
+   "request": {
+    "method": "GET",
+    "path": "/channels",
+    "params": {
+     "part": "snippet,contentDetails,status",
+     "id": "UCfxLongAnalyst00000001A",
+     "maxResults": 50
+    }
+   },
+   "response": {
+    "status": 403,
+    "headers": {
+     "content-type": "application/json"
+    },
+    "body": {
+     "error": {
+      "code": 403,
+      "message": "The request cannot be completed because you have exceeded your quota.",
+      "errors": [
+       {
+        "reason": "quotaExceeded",
+        "domain": "youtube.quota",
+        "message": "The request cannot be completed because you have exceeded your quota."
+       }
+      ]
+     }
+    }
+   }
+  }
+ ]
+}

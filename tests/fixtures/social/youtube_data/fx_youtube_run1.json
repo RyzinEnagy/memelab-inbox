@@ -1,0 +1,583 @@
+{
+ "schema": "memelab.youtube_data.fixture/1",
+ "synthetic": true,
+ "note": "Invented channels, videos, captions and sentences shaped like the documented YouTube Data API v3 responses. Not real data.",
+ "exchanges": [
+  {
+   "recorded_at": "2026-10-11T00:00:00Z",
+   "request": {
+    "method": "GET",
+    "path": "/channels",
+    "params": {
+     "part": "snippet,contentDetails,status",
+     "id": "UCfxLongAnalyst00000001A",
+     "maxResults": 50
+    }
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "content-type": "application/json"
+    },
+    "body": {
+     "items": [
+      {
+       "kind": "youtube#channel",
+       "id": "UCfxLongAnalyst00000001A",
+       "snippet": {
+        "title": "Invented fixture channel",
+        "customUrl": "@fx_long_analyst"
+       },
+       "contentDetails": {
+        "relatedPlaylists": {
+         "uploads": "UUfxLongAnalyst00000001A"
+        }
+       },
+       "status": {
+        "privacyStatus": "public"
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T00:00:00Z",
+   "request": {
+    "method": "GET",
+    "path": "/channels",
+    "params": {
+     "part": "snippet,contentDetails,status",
+     "forHandle": "@fx_long_analyst"
+    }
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "content-type": "application/json"
+    },
+    "body": {
+     "items": [
+      {
+       "kind": "youtube#channel",
+       "id": "UCfxLongAnalyst00000001A",
+       "snippet": {
+        "title": "Invented fixture channel",
+        "customUrl": "@fx_long_analyst"
+       },
+       "contentDetails": {
+        "relatedPlaylists": {
+         "uploads": "UUfxLongAnalyst00000001A"
+        }
+       },
+       "status": {
+        "privacyStatus": "public"
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T00:00:00Z",
+   "request": {
+    "method": "GET",
+    "path": "/channels",
+    "params": {
+     "part": "snippet,contentDetails,status",
+     "forHandle": "@fx_second_show"
+    }
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "content-type": "application/json"
+    },
+    "body": {
+     "items": [
+      {
+       "kind": "youtube#channel",
+       "id": "UCfxSecondShow000000002B",
+       "snippet": {
+        "title": "Invented fixture channel",
+        "customUrl": "@fx_second_show"
+       },
+       "contentDetails": {
+        "relatedPlaylists": {
+         "uploads": "UUfxSecondShow000000002B"
+        }
+       },
+       "status": {
+        "privacyStatus": "public"
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T00:00:00Z",
+   "request": {
+    "method": "GET",
+    "path": "/playlistItems",
+    "params": {
+     "part": "contentDetails",
+     "playlistId": "UUfxLongAnalyst00000001A",
+     "maxResults": 50
+    }
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "content-type": "application/json"
+    },
+    "body": {
+     "kind": "youtube#playlistItemListResponse",
+     "items": [
+      {
+       "contentDetails": {
+        "videoId": "fxVideo01aA",
+        "videoPublishedAt": "2026-10-10T14:00:00Z"
+       }
+      },
+      {
+       "contentDetails": {
+        "videoId": "fxVideo02bB",
+        "videoPublishedAt": "2026-10-10T16:00:00Z"
+       }
+      },
+      {
+       "contentDetails": {
+        "videoId": "fxVideo03cC",
+        "videoPublishedAt": "2026-10-10T18:00:00Z"
+       }
+      },
+      {
+       "contentDetails": {
+        "videoId": "fxVideo06fF",
+        "videoPublishedAt": "2026-10-10T19:00:00Z"
+       }
+      },
+      {
+       "contentDetails": {
+        "videoId": "fxVideo09iI",
+        "videoPublishedAt": "2026-10-10T20:00:00Z"
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T00:00:00Z",
+   "request": {
+    "method": "GET",
+    "path": "/videos",
+    "params": {
+     "part": "snippet,contentDetails,status,liveStreamingDetails",
+     "id": "fxVideo01aA,fxVideo02bB,fxVideo03cC,fxVideo06fF,fxVideo09iI",
+     "maxResults": 50
+    }
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "content-type": "application/json"
+    },
+    "body": {
+     "items": [
+      {
+       "kind": "youtube#video",
+       "id": "fxVideo01aA",
+       "snippet": {
+        "publishedAt": "2026-10-10T14:00:00Z",
+        "channelId": "UCfxLongAnalyst00000001A",
+        "title": "Invented fixture video one",
+        "description": "Invented fixture notes. Contract 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ is the one discussed.",
+        "liveBroadcastContent": "none",
+        "defaultAudioLanguage": "en"
+       },
+       "contentDetails": {
+        "duration": "PT20M",
+        "caption": "false"
+       },
+       "status": {
+        "privacyStatus": "public"
+       }
+      },
+      {
+       "kind": "youtube#video",
+       "id": "fxVideo02bB",
+       "snippet": {
+        "publishedAt": "2026-10-10T16:00:00Z",
+        "channelId": "UCfxLongAnalyst00000001A",
+        "title": "Invented fixture livestream",
+        "description": "Invented fixture livestream notes without any token.",
+        "liveBroadcastContent": "none",
+        "defaultAudioLanguage": "en"
+       },
+       "contentDetails": {
+        "duration": "PT1H",
+        "caption": "false"
+       },
+       "status": {
+        "privacyStatus": "public"
+       },
+       "liveStreamingDetails": {
+        "actualStartTime": "2026-10-10T16:00:00Z",
+        "actualEndTime": "2026-10-10T17:00:00Z",
+        "scheduledStartTime": "2026-10-10T16:00:00Z"
+       }
+      },
+      {
+       "kind": "youtube#video",
+       "id": "fxVideo03cC",
+       "snippet": {
+        "publishedAt": "2026-10-10T18:00:00Z",
+        "channelId": "UCfxLongAnalyst00000001A",
+        "title": "Invented fixture upcoming stream",
+        "description": "Invented notes for a stream that has not started.",
+        "liveBroadcastContent": "upcoming",
+        "defaultAudioLanguage": "en"
+       },
+       "contentDetails": {
+        "duration": "P0D",
+        "caption": "false"
+       },
+       "status": {
+        "privacyStatus": "public"
+       },
+       "liveStreamingDetails": {
+        "scheduledStartTime": "2026-10-11T20:00:00Z"
+       }
+      },
+      {
+       "kind": "youtube#video",
+       "id": "fxVideo06fF",
+       "snippet": {
+        "publishedAt": "2026-10-10T19:00:00Z",
+        "channelId": "UCfxLongAnalyst00000001A",
+        "title": "Invented unlisted video",
+        "description": "Invented.",
+        "liveBroadcastContent": "none",
+        "defaultAudioLanguage": "en"
+       },
+       "contentDetails": {
+        "duration": "PT20M",
+        "caption": "false"
+       },
+       "status": {
+        "privacyStatus": "unlisted"
+       }
+      },
+      {
+       "kind": "youtube#video",
+       "id": "fxVideo09iI",
+       "snippet": {
+        "publishedAt": "2026-10-10T20:00:00Z",
+        "channelId": "UCfxLongAnalyst00000001A",
+        "title": "Invented fixture video nine",
+        "description": "Invented fixture notes naming urqBccf819k8ttGdxBnfxDfRR7yH62RJxww3QnxJA5v only in the description.",
+        "liveBroadcastContent": "none",
+        "defaultAudioLanguage": "en"
+       },
+       "contentDetails": {
+        "duration": "PT20M",
+        "caption": "false"
+       },
+       "status": {
+        "privacyStatus": "public"
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T00:00:00Z",
+   "request": {
+    "method": "GET",
+    "path": "/playlistItems",
+    "params": {
+     "part": "contentDetails",
+     "playlistId": "UUfxSecondShow000000002B",
+     "maxResults": 50
+    }
+   },
+   "response": {
+    "status": 503,
+    "headers": {
+     "content-type": "application/json"
+    },
+    "body": {
+     "error": {
+      "code": 503,
+      "message": "Invented transient error",
+      "errors": [
+       {
+        "reason": "backendError",
+        "domain": "global",
+        "message": "Invented transient error"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T00:00:00Z",
+   "request": {
+    "method": "GET",
+    "path": "/playlistItems",
+    "params": {
+     "part": "contentDetails",
+     "playlistId": "UUfxSecondShow000000002B",
+     "maxResults": 50
+    }
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "content-type": "application/json"
+    },
+    "body": {
+     "kind": "youtube#playlistItemListResponse",
+     "items": [
+      {
+       "contentDetails": {
+        "videoId": "fxVideo04dD",
+        "videoPublishedAt": "2026-10-10T15:00:00Z"
+       }
+      },
+      {
+       "contentDetails": {
+        "videoId": "fxVideo05eE",
+        "videoPublishedAt": "2026-10-10T21:00:00Z"
+       }
+      },
+      {
+       "contentDetails": {
+        "videoId": "fxVideo08hH",
+        "videoPublishedAt": "2026-10-10T22:30:00Z"
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T00:00:00Z",
+   "request": {
+    "method": "GET",
+    "path": "/videos",
+    "params": {
+     "part": "snippet,contentDetails,status,liveStreamingDetails",
+     "id": "fxVideo04dD,fxVideo05eE,fxVideo08hH",
+     "maxResults": 50
+    }
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "content-type": "application/json"
+    },
+    "body": {
+     "items": [
+      {
+       "kind": "youtube#video",
+       "id": "fxVideo04dD",
+       "snippet": {
+        "publishedAt": "2026-10-10T15:00:00Z",
+        "channelId": "UCfxSecondShow000000002B",
+        "title": "Invented fixture owned show",
+        "description": "Invented notes of an owned channel.",
+        "liveBroadcastContent": "none",
+        "defaultAudioLanguage": "en"
+       },
+       "contentDetails": {
+        "duration": "PT20M",
+        "caption": "true"
+       },
+       "status": {
+        "privacyStatus": "public"
+       }
+      },
+      {
+       "kind": "youtube#video",
+       "id": "fxVideo05eE",
+       "snippet": {
+        "publishedAt": "2026-10-10T21:00:00Z",
+        "channelId": "UCfxSecondShow000000002B",
+        "title": "Invented fixture owned livestream",
+        "description": "Invented.",
+        "liveBroadcastContent": "none",
+        "defaultAudioLanguage": "en"
+       },
+       "contentDetails": {
+        "duration": "PT1H",
+        "caption": "false"
+       },
+       "status": {
+        "privacyStatus": "public"
+       },
+       "liveStreamingDetails": {
+        "actualStartTime": "2026-10-10T21:00:00Z",
+        "actualEndTime": "2026-10-10T22:00:00Z"
+       }
+      },
+      {
+       "kind": "youtube#video",
+       "id": "fxVideo08hH",
+       "snippet": {
+        "publishedAt": "2026-10-10T22:30:00Z",
+        "channelId": "UCfxSecondShow000000002B",
+        "title": "Invented fixture guest video",
+        "description": "Invented.",
+        "liveBroadcastContent": "none",
+        "defaultAudioLanguage": "en"
+       },
+       "contentDetails": {
+        "duration": "PT20M",
+        "caption": "true"
+       },
+       "status": {
+        "privacyStatus": "public"
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T00:00:00Z",
+   "request": {
+    "method": "GET",
+    "path": "/videos",
+    "params": {
+     "part": "snippet,contentDetails,status,liveStreamingDetails",
+     "id": "fxVideo07gG",
+     "maxResults": 50
+    }
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "content-type": "application/json"
+    },
+    "body": {
+     "items": [
+      {
+       "kind": "youtube#video",
+       "id": "fxVideo07gG",
+       "snippet": {
+        "publishedAt": "2026-10-10T12:00:00Z",
+        "channelId": "UCfxOtherCreator0000003D",
+        "title": "Invented fixture listed video",
+        "description": "Invented. 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ",
+        "liveBroadcastContent": "none",
+        "defaultAudioLanguage": "en"
+       },
+       "contentDetails": {
+        "duration": "PT20M",
+        "caption": "false"
+       },
+       "status": {
+        "privacyStatus": "public"
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T00:00:00Z",
+   "request": {
+    "method": "GET",
+    "path": "/captions",
+    "params": {
+     "part": "snippet",
+     "videoId": "fxVideo04dD"
+    }
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "content-type": "application/json"
+    },
+    "body": {
+     "items": [
+      {
+       "id": "fxCapTrack4en",
+       "snippet": {
+        "videoId": "fxVideo04dD",
+        "language": "en",
+        "trackKind": "ASR",
+        "status": "serving",
+        "isDraft": false,
+        "audioTrackType": "unknown"
+       }
+      },
+      {
+       "id": "fxCapTrack4es",
+       "snippet": {
+        "videoId": "fxVideo04dD",
+        "language": "es",
+        "trackKind": "standard",
+        "status": "serving",
+        "isDraft": false,
+        "audioTrackType": "unknown"
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T00:00:00Z",
+   "request": {
+    "method": "GET",
+    "path": "/captions/fxCapTrack4en",
+    "params": {
+     "tfmt": "vtt"
+    }
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "content-type": "text/vtt"
+    },
+    "body": "WEBVTT\n\n00:00:01.000 --> 00:00:04.000\nInvented fixture intro words\n\n00:02:00.000 --> 00:02:05.000\ninvented words before the address\n\n00:02:05.000 --> 00:02:09.000\nthe contract is urqBccf819k8ttGdxBnfxDfRR7yH62RJxww3QnxJA5v\n\n00:02:09.000 --> 00:02:12.000\ninvented words after the address\n\n00:05:00.000 --> 00:05:03.000\nInvented closing words\n"
+   }
+  },
+  {
+   "recorded_at": "2026-10-11T00:00:00Z",
+   "request": {
+    "method": "GET",
+    "path": "/captions",
+    "params": {
+     "part": "snippet",
+     "videoId": "fxVideo08hH"
+    }
+   },
+   "response": {
+    "status": 403,
+    "headers": {
+     "content-type": "application/json"
+    },
+    "body": {
+     "error": {
+      "code": 403,
+      "message": "The permissions associated with the request are not sufficient to download the caption track.",
+      "errors": [
+       {
+        "reason": "forbidden",
+        "domain": "global",
+        "message": "The permissions associated with the request are not sufficient to download the caption track."
+       }
+      ]
+     }
+    }
+   }
+  }
+ ]
+}

@@ -14,6 +14,7 @@
   social fc-health | fc-ingest                             optional Farcaster Snapchain HTTP adapter (sources_cli.py, Phase 19)
   social discord-health | discord-ingest | discord-gateway | discord-purge | discord-reset
                                                            optional Discord bot adapter (sources_cli.py, Phase 20)
+  social youtube-health | youtube-ingest | youtube-purge   optional YouTube Data API adapter (sources_cli.py, Phase 21)
   social sources                                           every social connector: status, cost, next step; no network
   social resolve --post <json> --bodies <json> [--context]   token identity for one post (identity.py), optional market context
   social identity [--item <item_key>] [--resolution <id>]    what is stored: status, identity, candidates, evidence, context

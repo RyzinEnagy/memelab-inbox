@@ -34,6 +34,7 @@ from pathlib import Path
 
 SECRET_VARS = ("HELIUS_API_KEY", "X_BEARER_TOKEN", "TELEGRAM_BOT_TOKEN", "TELEGRAM_WEBHOOK_SECRET", "ANTHROPIC_API_KEY",
                "REDDIT_CLIENT_ID", "REDDIT_CLIENT_SECRET", "FARCASTER_HUB_API_KEY", "DISCORD_BOT_TOKEN",
+               "YOUTUBE_API_KEY", "YOUTUBE_OAUTH_TOKEN",
                "MEMELAB_ALERT_TELEGRAM_TOKEN", "MEMELAB_ALERT_TELEGRAM_CHAT_ID", "MEMELAB_ALERT_SMTP_PASSWORD",
                "GH_TOKEN", "GITHUB_TOKEN")
 
@@ -127,6 +128,13 @@ STAGES: list[tuple[str, str, str, tuple[int, ...]]] = [
     ("20", "not configured: Discord health", "{py} -m memelab social discord-health --db {db}", (1,)),
     ("20", "not configured: live Discord ingest refuses before any call", "{py} -m memelab social discord-ingest --db {db}", (1,)),
     ("20", "no live gateway transport: Discord gateway refuses before any call", "{py} -m memelab social discord-gateway --db {db}", (1,)),
+    ("21", "YouTube fixture: channels and videos (metadata), licensed and owner-caption transcript snippets, extract claims in memory", "{py} -m memelab social youtube-ingest --config " + FIX + "/youtube_data/fx_youtube_config.json --fixture " + FIX + "/youtube_data/fx_youtube_run1.json --extract --bodies " + FIX + "/resolve/fx_providers.json --db {tmp}/youtube.sqlite --now 1791676800", (0,)),
+    ("21", "YouTube fixture: narrative snapshot and brief", "{py} -m memelab social narrative-snapshot --day 2026-10-10 --tz UTC --db {tmp}/youtube.sqlite --now 1791680400 && {py} -m memelab social brief --db {tmp}/youtube.sqlite --as-of 2026-10-11T01:00:00+00:00 --tz UTC --include-fixtures", (0,)),
+    ("21", "YouTube fixture: second run (archived livestream transcript, delayed captions, refresh, removed video purged)", "{py} -m memelab social youtube-ingest --config " + FIX + "/youtube_data/fx_youtube_config.json --fixture " + FIX + "/youtube_data/fx_youtube_run2.json --extract --bodies " + FIX + "/resolve/fx_providers.json --db {tmp}/youtube.sqlite --now 1791763200", (0,)),
+    ("21", "YouTube fixture: daily quota exceeded stops the run until midnight Pacific Time", "{py} -m memelab social youtube-ingest --config " + FIX + "/youtube_data/fx_youtube_config.json --fixture " + FIX + "/youtube_data/fx_youtube_quota.json --db {tmp}/youtube_quota.sqlite --now 1791676800", (1,)),
+    ("21", "YouTube fixture: 30-day expiry purge", "{py} -m memelab social youtube-purge --db {tmp}/youtube.sqlite --now 1794441600", (0,)),
+    ("21", "not configured: YouTube health", "{py} -m memelab social youtube-health --db {db}", (1,)),
+    ("21", "not configured: live YouTube ingest refuses before any call", "{py} -m memelab social youtube-ingest --db {db}", (1,)),
 ]
 
 

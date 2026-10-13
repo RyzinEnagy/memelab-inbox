@@ -14,6 +14,11 @@
                                                              one gateway pass from recorded frames (live websocket not shipped)
   social discord-purge [--user <id>]                         erase what was derived from deleted messages, and named users
   social discord-reset --channel <id>                        forget one channel's message cursor (dedupe absorbs re-reads)
+  social youtube-health [--config <path>]                    YouTube Data API status (terms review, key, quota, transcripts); no network
+  social youtube-ingest [--config <path>] [--fixture <file>] [--extract [--bodies <json>]]
+                                                             configured channels and videos; transcript snippets only on an
+                                                             authorized route; then purge gone and expired (30-day) items
+  social youtube-purge [--retention-days N]                  erase what was derived from gone videos and videos past retention
   social sources                                             one table: every social connector, its status, cost and next step
 
 --extract hands the post text to claim extraction in memory (api_common.TextSink); the text is never written.
@@ -33,6 +38,7 @@ from .. import db
 REDDIT_CONFIG = db.DATA_DIR / "private" / "reddit_api.json"
 FC_CONFIG = db.DATA_DIR / "private" / "farcaster_hub.json"
 DISCORD_CONFIG = db.DATA_DIR / "private" / "discord_bot.json"
+YOUTUBE_CONFIG = db.DATA_DIR / "private" / "youtube_data.json"
 
 
 def _dbp(a) -> Path:
@@ -210,14 +216,59 @@ def cmd_discord_reset(a):
     _print(D.reset_checkpoint(_dbp(a), a.channel, now=a.now if a.now is not None else time.time()))
 
 
+def cmd_youtube_health(a):
+    from . import youtube_data as Y
+    out = Y.health(Path(a.config) if a.config else YOUTUBE_CONFIG, _dbp(a), now=a.now)
+    _print(out)
+    raise SystemExit(0 if out["status"] == "ready" else 1)
+
+
+def cmd_youtube_ingest(a):
+    from . import youtube_data as Y
+    from .api_common import TextSink
+    from .cli import _setup_logging
+    _setup_logging(a.verbose)
+    dbp = _dbp(a)
+    cfg_path = Path(a.config) if a.config else YOUTUBE_CONFIG
+    if a.fixture:
+        cfg, tr, key, oauth, mode = (Y.load_config(cfg_path), Y.FixtureTransport(a.fixture), "fixture-api-key-not-real",
+                                     "fixture-oauth-not-real", "fixture")
+    else:
+        h = Y.health(cfg_path, dbp)
+        if h["status"] != "ready":
+            _print({"status": "NOT_RUN", "reason": h["status"], "next_step": h["next_step"], "network_calls_made": 0})
+            raise SystemExit(1)
+        cfg = Y.load_config(cfg_path)
+        key, oauth = Y.get_credentials()
+        tr, mode = Y.UrllibTransport(timeout=cfg.timeout_seconds), "live"
+    t = a.now if a.now is not None else time.time()
+    run_id = a.run_id or f"youtube_{mode}_{time.strftime('%Y%m%d_%H%M%S', time.gmtime(t))}_{uuid.uuid4().hex[:6]}"
+    sink = TextSink() if a.extract else None
+    ad = Y.YouTubeDataAdapter(cfg, tr, key, dbp, oauth_token=oauth, run_id=run_id, mode=mode,
+                              clock=(lambda: t) if a.now is not None else time.time, text_sink=sink,
+                              **({"sleep": lambda s: None} if mode == "fixture" else {}))
+    out = _run(ad, dbp, t, run_id, a, sink, mode, "youtube")
+    out["quota_units"] = ad.quota_units
+    out["transcripts"] = dict(sorted(ad.transcripts.items()))
+    out["dropped"] = dict(ad.dropped)
+    out["purge"] = Y.purge(dbp, now=t, retention_days=cfg.retention_days)
+    _print(out)
+    raise SystemExit(1 if out["status"] == "FAILED" else 0)
+
+
+def cmd_youtube_purge(a):
+    from . import youtube_data as Y
+    _print(Y.purge(_dbp(a), now=a.now if a.now is not None else time.time(), retention_days=a.retention_days))
+
+
 def sources_table(dbp, env=None) -> list[dict]:
     """One row per social connector: status, credentials, cost, live evidence. No network call."""
-    from . import discord_bot as D, farcaster_hub as F, reddit_api as R, telegram_bot as T, x_api as X
+    from . import discord_bot as D, farcaster_hub as F, reddit_api as R, telegram_bot as T, x_api as X, youtube_data as Y
     from .cli import TG_CONFIG, X_CONFIG
     rows = []
     for name, fn, cfg in (("x_api", X.health, X_CONFIG), ("telegram_bot", T.health, TG_CONFIG),
                           ("reddit_api", R.health, REDDIT_CONFIG), ("farcaster_hub", F.health, FC_CONFIG),
-                          ("discord_bot", D.health, DISCORD_CONFIG)):
+                          ("discord_bot", D.health, DISCORD_CONFIG), ("youtube_data", Y.health, YOUTUBE_CONFIG)):
         h = fn(cfg, dbp, env=env)
         le = h.get("live_evidence") or {}
         rows.append({"connector": name, "status": h.get("status"), "credentials": h.get("credentials"),
@@ -287,6 +338,21 @@ def add_parser(ssp) -> None:
     q.add_argument("--db")
     q.add_argument("--now", type=float)
     q.set_defaults(fn=cmd_discord_reset)
+    q = ssp.add_parser("youtube-health", help="YouTube Data API adapter status (terms review, key, quota, transcripts); no network")
+    q.add_argument("--config", help=f"channel config (default {YOUTUBE_CONFIG})")
+    q.add_argument("--db")
+    q.add_argument("--now", type=float)
+    q.set_defaults(fn=cmd_youtube_health)
+    q = ssp.add_parser("youtube-ingest", help="ingest configured YouTube channels and videos (metadata; transcript snippets only "
+                                              "on an authorized route), then purge gone and expired items")
+    q.add_argument("--config", help=f"channel config (default {YOUTUBE_CONFIG})")
+    _ingest_args(q)
+    q.set_defaults(fn=cmd_youtube_ingest)
+    q = ssp.add_parser("youtube-purge", help="erase what the lab derived from removed YouTube videos and videos past retention")
+    q.add_argument("--retention-days", type=float, default=30.0)
+    q.add_argument("--db")
+    q.add_argument("--now", type=float)
+    q.set_defaults(fn=cmd_youtube_purge)
     q = ssp.add_parser("sources", help="every social connector with status, cost and next step; no network")
     q.add_argument("--db")
     q.set_defaults(fn=cmd_sources)

@@ -1,0 +1,15 @@
+1
+00:00:02,000 --> 00:00:05,000
+Invented live opening
+
+2
+00:30:00,000 --> 00:30:04,000
+live mention of 8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ now
+
+3
+00:30:04,000 --> 00:30:08,000
+invented live words
+
+4
+01:20:00,000 --> 01:20:04,000
+drifted cue naming urqBccf819k8ttGdxBnfxDfRR7yH62RJxww3QnxJA5v far past the end
