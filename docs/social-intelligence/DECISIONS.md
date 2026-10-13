@@ -498,3 +498,31 @@ PENDING, MEASURED, MISSING, NON_EXECUTABLE, INVALIDATED, each with reason codes.
 
 `social evaluate report` gives per horizon the count per status, coverage = measured / matured, exclusion reasons and the split by disposition. A median net modeled return is shown only with 5 or more MEASURED outcomes and is descriptive. No trader or source score is produced in this phase (C-16).
 
+
+## D-112 Phase 17 slot taken by Prompt 17; m19 and launch integration move to C-17 (ADOPTED, Phase 17, 2026-10-12)
+
+Prompt 17 (historical replay, baselines and statistical honesty) replaced the proposed Phase 17 "Integration: m19 attention and launch social". That integration is carried over as C-17 with its old gate. Phase 19 now depends on C-17 instead of 17. No migration: the public schema stays at 12. The replay reads stored data only and writes nothing unless `--out` is given.
+
+## D-113 Availability, not publication, places a record on the replay clock (ADOPTED, Phase 17)
+
+Every replay record carries the earliest time it was demonstrably available: a post's first observation, a wallet event's or trending list's arrival, a candle's close plus a documented provider lag, or the lab's capture time. Records without such a time are excluded and counted. Strategies read only through `CutoffView`, whose accessors are audited; a record from after the cutoff raises `LeakageError`. Real collector files use the capture time by default (demonstrable); provider lag is a labelled reconstruction (`--candle-availability provider`).
+
+## D-114 Four strategies, one signal per configuration and token in 72 h (ADOPTED, Phase 17)
+
+INDIVIDUAL (one original LONG post), CONVERGENCE (independence groups, not accounts; reposts and content duplicates never count), SOCIAL_WALLET (posts plus a linked-wallet BUY with accepted linkage SELF_CLAIMED, SIGNED_MESSAGE or CHAIN_EVIDENCE; a SELL by a posting source's wallet suppresses), TRENDING as the raw baseline (raw mentions including reposts, or a provider trending list). An opposite original post inside 24 h suppresses (a)-(c). Suppressions are counted in the report.
+
+## D-115 Chronological splits with embargo and train-only tuning (ADOPTED, Phase 17)
+
+50 / 25 / 25 by decision time. Labels are computed with the clock of their split (train boundary, validation boundary, data end). A sample whose outcome window crosses its boundary is purged. Thresholds are chosen on train only; `LabelGate` refuses validation labels during tuning and test labels before the configuration is frozen with a hash. Truncation invariance (signals and train metrics unchanged when all later data are removed) is the leakage proof printed with every run.
+
+## D-116 Matched controls from what was visible at the decision time (ADOPTED, Phase 17)
+
+Same chain, price at most 2 h old, no delisting known, no visible post mention in 7 days or trending listing in 24 h, liquidity within a factor 3, market cap within a factor 4 when known; up to 8, at least 3 measured. Unlike Phase 11 (which bans every token any source ever called), only mentions visible at the decision time exclude a control, because later mentions are future information. Calendar regime is matched by sharing the decision time.
+
+## D-117 Two lenses; missing prices stay missing (ADOPTED, Phase 17)
+
+Conservative (headline): a long whose token was delisted before the exit is -100%, for signals and controls alike. Measured-only is shown beside it. A missing price without delisting evidence is never filled in. Non-executable outcomes (Phase 16 rules) are counted in executability and never contribute a return.
+
+## D-118 Honest verdicts (ADOPTED, Phase 17)
+
+Medians, not means, are the headline. Intervals are Bonferroni-adjusted for 4 strategies x 4 horizons. Nothing is estimated below 10 values. Verdicts: INSUFFICIENT_DATA, INSUFFICIENT_SAMPLE (fewer than 30 test values with controls), CANNOT_VALIDATE_YET (survivorship risk, interval includes zero, one outcome dominates, validation disagrees or is too small), else BETTER_ or WORSE_THAN_CONTROLS_IN_REPLAY, always labelled a historical replay and never a forward test. A universe not declared to include delisted tokens is a survivorship risk.

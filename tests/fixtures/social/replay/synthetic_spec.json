@@ -1,0 +1,31 @@
+{
+ "seed": 17,
+ "start": 1785542400.0,
+ "days": 30,
+ "period_s": 900,
+ "publication_lag_s": 120,
+ "social_tokens": {
+  "solana": 22,
+  "base": 5
+ },
+ "quiet_tokens": {
+  "solana": 40,
+  "base": 12
+ },
+ "illiquid_tokens": 4,
+ "delisted_tokens": 4,
+ "late_listed_tokens": 6,
+ "sources": 14,
+ "pumps": 150,
+ "informative_share": 0.8,
+ "noise_posts": 420,
+ "short_share": 0.15,
+ "repost_rate": 1.2,
+ "wallet_confirm_share": 0.45,
+ "noise_buys": 60,
+ "canaries": 10,
+ "sell_after_post": 3,
+ "huge_winner_gain": 40.0,
+ "revised_candles": 6,
+ "trending_every_s": 21600
+}

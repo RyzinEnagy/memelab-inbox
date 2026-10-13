@@ -4,7 +4,7 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: DONE, NEXT, PLANNED, BLOCKED.
 
-Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065, Phase 11: D-079, Phase 12: D-080, Phase 13: D-085, Phase 14: D-091, Phase 15: D-097, Phase 16: D-105). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
+Phases 00 to 08 came with written phase prompts. Phases 09 to 21 below are a proposed sequence built from the Phase 00 audit. When the prompt for a phase is supplied, that prompt replaces the entry here and the change is logged in DECISIONS.md (Phase 01: D-011, Phase 02: D-015, Phase 03: D-022, Phase 04: D-026, Phase 05: D-030, Phase 06: D-035, Phase 07: D-041, Phase 08: D-047, Phase 09: D-056, Phase 10: D-065, Phase 11: D-079, Phase 12: D-080, Phase 13: D-085, Phase 14: D-091, Phase 15: D-097, Phase 16: D-105, Phase 17: D-112). Source status per route: [SOURCE_COVERAGE.md](SOURCE_COVERAGE.md).
 
 Status values also include SUPERSEDED (folded into another phase).
 
@@ -29,9 +29,9 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | 14 | Readable, cited intelligence feed: morning brief, trader digest, filterable feed (Prompt 14; old slot "trader claimed-wallet linking" moved to C-14) | 07, 08, 12, 13 | DONE (fixtures only, D-091) |
 | 15 | Controlled research alerts and scheduling over the feed (Prompt 15; old slot "trader call capture" moved to C-15) | 14 | DONE (fixtures only, no transport live, no job enabled, D-097) |
 | 16 | Immutable signal ledger and forward outcome evaluation (Prompt 16; old slot "call outcome tracking and trader scoring" moved to C-16) | 05, 13, 14, 15 | DONE (fixtures only, no live prices, D-105) |
-| 17 | Integration: m19 attention and launch social | 11, 12, C-12 | PLANNED |
+| 17 | Causal historical replay, matched baselines and statistical honesty (Prompt 17; old slot "m19 attention and launch social" moved to C-17) | 11, 16 | DONE (real history: INSUFFICIENT_DATA for all four strategies, D-112) |
 | 18 | Integration: catalyst attention and assessment | 11, 12, C-12 | PLANNED |
-| 19 | Reporting sections and watchlist alerts (scout section delivered by 13, standalone feed and JSON by 14, social alerts by 15) | 13, 16, 17, 18 | PLANNED |
+| 19 | Reporting sections and watchlist alerts (scout section delivered by 13, standalone feed and JSON by 14, social alerts by 15) | 13, 16, C-17, 18 | PLANNED |
 | 20 | Scheduled-run integration and state export rules (alert job templates delivered by 15, not enabled) | 19 | PLANNED |
 | 21 | End-to-end validation, docs, merge request | 20 | PLANNED |
 | C-1 | Carry-over: test isolation and clock (old Phase 01) | 00 | PLANNED, unscheduled |
@@ -50,6 +50,7 @@ Every gate also includes the standing gate: full test suite run and recorded, no
 | C-14 | Carry-over: trader claimed-wallet linking, live evidence collection (old proposed Phase 14; assertion model delivered by Phase 09) | C-13, 09 | PLANNED, unscheduled |
 | C-15 | Carry-over: trader call capture (old proposed Phase 15; claim structure delivered by Phase 06) | 10, C-13 | PLANNED, unscheduled |
 | C-16 | Carry-over: trader scoring from ledger outcomes (old proposed Phase 16; forward returns delivered by Phase 16) | C-15, 16 | PLANNED, unscheduled |
+| C-17 | Carry-over: m19 attention and launch social read the new metrics (old proposed Phase 17) | 11, 12, C-12 | PLANNED, unscheduled |
 
 ## Phase gates
 
@@ -117,7 +118,9 @@ C-15. (old proposed Phase 15) Calls captured with timestamp, account, contract a
 
 C-16. (old proposed Phase 16) Trader and source scores from ledger outcomes of their calls, with survivorship and selection bias controls written next to every score. Below a minimum sample the score is INSUFFICIENT HISTORY. Needs C-15 so calls become signals.
 
-17. m19 and `memelab/launch/social.py` read the new metrics. Where data is absent the output is identical to Phase 00 behaviour (regression test proves it).
+17. (Prompt 17, DONE 2026-10-12, REPLAY_17.md) Causal chronological replay with a cutoff clock (only records demonstrably available at or before the cutoff, audited, LeakageError otherwise); versioned source coverage and rules; four strategies (individual analyst, independent convergence, social plus linked-wallet confirmation, raw mention or trending baseline) against matched controls by chain, liquidity and market-cap band and shared decision time (calendar regime); eligible count, coverage, precision, median relative return, MAE and executability with adjusted intervals and multiple-testing notes; chronological train / validation / test splits with embargo and train-only tuning behind a label gate; synthetic fixture replay with a truncation-invariance leakage check; real results labelled insufficient when coverage is poor; tests for future injection, reposts, delisted prices, huge win, survivorship, publication lag, no controls, contradictions, no depth, insufficient sample and a leaky harness. Gate: trustworthy tooling, honest result ("cannot validate yet" or insufficient where needed), full suite with only the known clock failure.
+
+C-17. (old proposed Phase 17) m19 and `memelab/launch/social.py` read the new metrics. Where data is absent the output is identical to Phase 00 behaviour (regression test proves it).
 
 18. Catalyst attention (`memelab/catalyst/attention.py`) and assessment read the new metrics under the same rule. UNKNOWN never improves a score.
 
