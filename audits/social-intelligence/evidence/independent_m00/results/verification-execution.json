@@ -1,0 +1,36 @@
+{
+  "checks": [
+    {
+      "check": "m00-tests",
+      "exit_code": 0,
+      "expected_exit": 0
+    },
+    {
+      "check": "integrity",
+      "exit_code": 0,
+      "expected_exit": 0
+    },
+    {
+      "check": "strict-gate",
+      "exit_code": 2,
+      "expected_exit": 2
+    },
+    {
+      "check": "references",
+      "exit_code": 0,
+      "expected_exit": 0
+    },
+    {
+      "check": "content-guard",
+      "exit_code": 0,
+      "expected_exit": 0
+    },
+    {
+      "check": "release-audit",
+      "exit_code": 1,
+      "expected_exit": 0
+    }
+  ],
+  "release_audit_disposition": "REVIEW REQUIRED: 110 execution-keyword matches in two captured release Markdown reports; no credentials or executable-code hit; scanner unchanged",
+  "network_events": 0
+}

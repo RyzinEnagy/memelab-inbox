@@ -1,0 +1,601 @@
+{
+ "commit": "3b434e1dcc59290d993a638ca615f61b929189bc",
+ "credentials_history": null,
+ "credentials_history_reviewed": null,
+ "credentials_tracked": [],
+ "credentials_tracked_reviewed": [
+  {
+   "line": 239,
+   "path": "tests/test_social_alerts.py",
+   "rule": "telegram_bot_token",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  }
+ ],
+ "example_config_defaults": {
+  "alerts.example.json": {
+   "allow_billable_true": false,
+   "holds_secret_key": false,
+   "send_enabled_true": false
+  },
+  "llm.example.json": {
+   "allow_billable_true": false,
+   "holds_secret_key": false,
+   "send_enabled_true": false
+  },
+  "telegram_bot.example.json": {
+   "allow_billable_true": false,
+   "holds_secret_key": false,
+   "send_enabled_true": false
+  },
+  "x_api.example.json": {
+   "allow_billable_true": false,
+   "holds_secret_key": false,
+   "send_enabled_true": false
+  }
+ },
+ "guard_head": {
+  "exit": 0,
+  "tail": [
+   " \"sqlite_files\": 1,",
+   " \"violations\": []",
+   "}"
+  ]
+ },
+ "guard_main": {
+  "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+  "error": "",
+  "exit": 0,
+  "ref": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+  "violations": "0"
+ },
+ "history_blobs_scanned": 0,
+ "local_paths_head": [
+  {
+   "count": 33,
+   "path": "data/memelab.sqlite"
+  },
+  {
+   "count": 3,
+   "path": "data/reports/20261007_0007_SCOUT.md"
+  },
+  {
+   "count": 2,
+   "path": "data/reports/20261007_0016_SCOUT.md"
+  },
+  {
+   "count": 491,
+   "path": "data/state/latest.json"
+  },
+  {
+   "count": 41,
+   "path": "state/latest.json"
+  }
+ ],
+ "local_paths_main": [
+  {
+   "count": 33,
+   "path": "data/memelab.sqlite"
+  },
+  {
+   "count": 3,
+   "path": "data/reports/20261007_0007_SCOUT.md"
+  },
+  {
+   "count": 2,
+   "path": "data/reports/20261007_0016_SCOUT.md"
+  },
+  {
+   "count": 491,
+   "path": "data/state/latest.json"
+  },
+  {
+   "count": 41,
+   "path": "state/latest.json"
+  }
+ ],
+ "migrate_main_db": {
+  "database_existed": true,
+  "exit": 0,
+  "latest": 12,
+  "legacy_rows_after": {
+   "entries": 43,
+   "rejections": 20,
+   "social_snapshots": 99,
+   "theses": 33,
+   "tokens": 13,
+   "watchlist": 5
+  },
+  "legacy_rows_before": {
+   "entries": 43,
+   "rejections": 20,
+   "social_snapshots": 99,
+   "theses": 33,
+   "tokens": 13,
+   "watchlist": 5
+  },
+  "legacy_unchanged": true,
+  "migration_rows": 12,
+  "social_version_after": 12,
+  "social_version_before": 0
+ },
+ "migrate_tracked_db": {
+  "database_existed": true,
+  "exit": 0,
+  "latest": 12,
+  "legacy_rows_after": {
+   "entries": 43,
+   "rejections": 20,
+   "social_snapshots": 99,
+   "theses": 33,
+   "tokens": 13,
+   "watchlist": 5
+  },
+  "legacy_rows_before": {
+   "entries": 43,
+   "rejections": 20,
+   "social_snapshots": 99,
+   "theses": 33,
+   "tokens": 13,
+   "watchlist": 5
+  },
+  "legacy_unchanged": true,
+  "migration_rows": 12,
+  "social_version_after": 12,
+  "social_version_before": 0
+ },
+ "needs_action": false,
+ "network_paths": [
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "bridge/catalyst.js",
+   "uses": [
+    "fetch("
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "bridge/collector.js",
+   "uses": [
+    "fetch("
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "commit_file.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "memelab/bridge/catalyst.js",
+   "uses": [
+    "fetch("
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "memelab/bridge/collector.js",
+   "uses": [
+    "fetch("
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "memelab/catalyst/cli.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "memelab/catalyst/sources.py",
+   "uses": [
+    "fetch("
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [
+    "api.telegram.org"
+   ],
+   "path": "memelab/social/alerts_transport.py",
+   "uses": [
+    "smtplib",
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [
+    "api.anthropic.com"
+   ],
+   "path": "memelab/social/llm.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "memelab/social/perf_store.py",
+   "uses": [
+    "fetch("
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [
+    "api.telegram.org"
+   ],
+   "path": "memelab/social/telegram_bot.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [
+    "api.x.com"
+   ],
+   "path": "memelab/social/x_api.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "memelab/state.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "tools/direct/direct_refresh.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "tools/release_audit.py",
+   "uses": [
+    "XMLHttpRequest",
+    "import requests",
+    "import socket",
+    "smtplib"
+   ]
+  }
+ ],
+ "schema": "memelab.release.audit/1",
+ "static": {
+  "js_files": 16,
+  "js_syntax_errors": [],
+  "pyflakes": "not installed (pip install pyflakes)",
+  "python_files": 178,
+  "python_syntax_errors": []
+ },
+ "trade_execution": [],
+ "trade_execution_reviewed": [
+  {
+   "line": 544,
+   "path": "docs/social-intelligence/DECISIONS.md",
+   "rule": "exec:keypair",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 30,
+   "path": "docs/social-intelligence/EXECUTION.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 11,
+   "path": "docs/social-intelligence/README.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 74,
+   "path": "docs/social-intelligence/RELEASE_18.md",
+   "rule": "exec:keypair",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 27,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:keypair",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 28,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 29,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 30,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 30,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 31,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 32,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:mnemonic",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 33,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:mnemonic",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 34,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:sendtransaction",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 35,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:sendrawtransaction",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 36,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:signtransaction",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 37,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:signalltransactions",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 38,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:eth_sendrawtransaction",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 39,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:signandsendtransaction",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 40,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:keypair",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 41,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:from_secret_key",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 42,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:fromsecretkey",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 43,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:/swap-instructions",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 44,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:/v6/swap",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 45,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:/swap/v1/swap",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 46,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:executeswap",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 47,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:execute_swap",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 48,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:mnemonic",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 49,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 50,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:mnemonic",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 51,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 52,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 8,
+   "path": "skills/memecoin-scout/SKILL.md",
+   "rule": "exec:seed phrase",
+   "why": "the hard rules text (never handle a seed phrase, never place an order)"
+  },
+  {
+   "line": 725,
+   "path": "tests/test_social_wallets.py",
+   "rule": "exec:seed phrase",
+   "why": "tests that signing material is refused"
+  },
+  {
+   "line": 725,
+   "path": "tests/test_social_wallets.py",
+   "rule": "exec:mnemonic",
+   "why": "tests that signing material is refused"
+  },
+  {
+   "line": 38,
+   "path": "tools/release_audit.py",
+   "rule": "exec:mnemonic",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 42,
+   "path": "tools/release_audit.py",
+   "rule": "exec:sendtransaction",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 42,
+   "path": "tools/release_audit.py",
+   "rule": "exec:sendrawtransaction",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 42,
+   "path": "tools/release_audit.py",
+   "rule": "exec:signtransaction",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 42,
+   "path": "tools/release_audit.py",
+   "rule": "exec:signalltransactions",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 42,
+   "path": "tools/release_audit.py",
+   "rule": "exec:eth_sendrawtransaction",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 43,
+   "path": "tools/release_audit.py",
+   "rule": "exec:signandsendtransaction",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 43,
+   "path": "tools/release_audit.py",
+   "rule": "exec:keypair",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 43,
+   "path": "tools/release_audit.py",
+   "rule": "exec:from_secret_key",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 43,
+   "path": "tools/release_audit.py",
+   "rule": "exec:fromsecretkey",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 44,
+   "path": "tools/release_audit.py",
+   "rule": "exec:/swap-instructions",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 44,
+   "path": "tools/release_audit.py",
+   "rule": "exec:/v6/swap",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 44,
+   "path": "tools/release_audit.py",
+   "rule": "exec:/swap/v1/swap",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 45,
+   "path": "tools/release_audit.py",
+   "rule": "exec:executeswap",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 45,
+   "path": "tools/release_audit.py",
+   "rule": "exec:execute_swap",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 45,
+   "path": "tools/release_audit.py",
+   "rule": "exec:mnemonic",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 45,
+   "path": "tools/release_audit.py",
+   "rule": "exec:seed phrase",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 53,
+   "path": "tools/release_audit.py",
+   "rule": "exec:mnemonic",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 53,
+   "path": "tools/release_audit.py",
+   "rule": "exec:seed phrase",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 53,
+   "path": "tools/release_audit.py",
+   "rule": "exec:seed phrase",
+   "why": "this file holds the patterns"
+  }
+ ]
+}

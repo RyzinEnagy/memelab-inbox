@@ -1,0 +1,10 @@
+{
+  "scanner_exit": 1,
+  "execution_keyword_hits": 110,
+  "paths": [
+    "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+    "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md"
+  ],
+  "credential_hits": 0,
+  "disposition": "Reviewed as scanner rule-name echoes in archived Markdown reports. They do not introduce executable signing/trading code. Exit 1 retained; no scanner exemptions or rules modified. M00 remains BLOCKED."
+}

@@ -1,0 +1,112 @@
+{
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+    "platform": "macOS-15.7.3-arm64-arm-64bit",
+    "pytest": "9.1.1",
+    "numpy": "2.4.2",
+    "suite_timeout_s": 900,
+    "memory_limit": "No additional address-space limit; host/sandbox limits apply",
+    "network_guard": "Python audit hooks inherited by child Python; not OS packet capture"
+  },
+  "checks": [
+    {
+      "checkout": "baseline",
+      "sha": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+      "check": "full-suite",
+      "command": "python -m pytest tests -q",
+      "exit_code": 1,
+      "shell_equivalent_exit": 1,
+      "timeout": false,
+      "seconds": 53.287,
+      "log": "baseline-full-suite.log"
+    },
+    {
+      "checkout": "baseline",
+      "sha": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+      "check": "content-guard",
+      "command": "python -m memelab social guard",
+      "exit_code": 0,
+      "shell_equivalent_exit": 0,
+      "timeout": false,
+      "seconds": 0.291,
+      "log": "baseline-content-guard.log"
+    },
+    {
+      "checkout": "baseline",
+      "sha": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+      "check": "release-audit",
+      "command": "python tools/release_audit.py --main-ref 698f73b854567ce60b56ce275b5ab6822a9d5f60 --out <REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/results/baseline-release.md --json <REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/results/baseline-release.json",
+      "exit_code": 0,
+      "shell_equivalent_exit": 0,
+      "timeout": false,
+      "seconds": 5.81,
+      "log": "baseline-release-audit.log"
+    },
+    {
+      "checkout": "recovery",
+      "sha": "3b434e1dcc59290d993a638ca615f61b929189bc",
+      "check": "m00-tests",
+      "command": "python -m pytest tests/test_audit_evidence.py -q",
+      "exit_code": 0,
+      "shell_equivalent_exit": 0,
+      "timeout": false,
+      "seconds": 0.187,
+      "log": "recovery-m00-tests.log"
+    },
+    {
+      "checkout": "recovery",
+      "sha": "3b434e1dcc59290d993a638ca615f61b929189bc",
+      "check": "integrity",
+      "command": "python tools/check_audit_evidence.py",
+      "exit_code": 0,
+      "shell_equivalent_exit": 0,
+      "timeout": false,
+      "seconds": 0.041,
+      "log": "recovery-integrity.log"
+    },
+    {
+      "checkout": "recovery",
+      "sha": "3b434e1dcc59290d993a638ca615f61b929189bc",
+      "check": "strict-gate",
+      "command": "python tools/check_audit_evidence.py --require-complete",
+      "exit_code": 2,
+      "shell_equivalent_exit": 2,
+      "timeout": false,
+      "seconds": 0.038,
+      "log": "recovery-strict-gate.log"
+    },
+    {
+      "checkout": "recovery",
+      "sha": "3b434e1dcc59290d993a638ca615f61b929189bc",
+      "check": "full-suite",
+      "command": "python -m pytest tests -q",
+      "exit_code": 1,
+      "shell_equivalent_exit": 1,
+      "timeout": false,
+      "seconds": 51.584,
+      "log": "recovery-full-suite.log"
+    },
+    {
+      "checkout": "recovery",
+      "sha": "3b434e1dcc59290d993a638ca615f61b929189bc",
+      "check": "content-guard",
+      "command": "python -m memelab social guard",
+      "exit_code": 0,
+      "shell_equivalent_exit": 0,
+      "timeout": false,
+      "seconds": 0.291,
+      "log": "recovery-content-guard.log"
+    },
+    {
+      "checkout": "recovery",
+      "sha": "3b434e1dcc59290d993a638ca615f61b929189bc",
+      "check": "release-audit",
+      "command": "python tools/release_audit.py --main-ref 698f73b854567ce60b56ce275b5ab6822a9d5f60 --out <REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/results/recovery-release.md --json <REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/results/recovery-release.json",
+      "exit_code": 1,
+      "shell_equivalent_exit": 1,
+      "timeout": false,
+      "seconds": 5.133,
+      "log": "recovery-release-audit.log"
+    }
+  ]
+}

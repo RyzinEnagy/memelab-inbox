@@ -1,0 +1,322 @@
+{
+  "baseline": [
+    {
+      "case": "AUD-001",
+      "clusters": 1,
+      "cutoff": 1791849600,
+      "extraction_at": 1791936000
+    },
+    {
+      "as_of": 1791770400,
+      "case": "AUD-015",
+      "default_clusters": 0,
+      "explicit_clusters": 1,
+      "snapshot_cutoff": 1791849600.0
+    },
+    {
+      "case": "AUD-024-entry",
+      "error": null,
+      "output": {
+        "candle_t": 0,
+        "cost": 0.025,
+        "decision_t": 1800,
+        "fee_slip": 0.015,
+        "fill_t": 1800,
+        "liq": 100000,
+        "participation": 0.005,
+        "price": 10,
+        "rule": "OPEN",
+        "source": "invented M00 hourly prices",
+        "wait_s": 0
+      }
+    },
+    {
+      "as_of": 1800,
+      "candle_end": 3600,
+      "case": "AUD-024-extrema",
+      "error": null,
+      "output": {
+        "candle_t": 0,
+        "cost": 0.025,
+        "decision_t": 1800,
+        "fee_slip": 0.015,
+        "fill_t": 1800,
+        "liq": 100000,
+        "participation": 0.005,
+        "price": 100,
+        "rule": "CANDLE_ADVERSE",
+        "source": "invented M00 hourly prices",
+        "wait_s": 0
+      }
+    },
+    {
+      "case": "AUD-024-exit",
+      "error": null,
+      "output": {
+        "candle_t": 0,
+        "cost": 0.025,
+        "kind": "CANDLE",
+        "liq": 100000,
+        "participation": 0.005,
+        "price": 10,
+        "source": "invented M00 hourly prices",
+        "t": 3000,
+        "wait_s": 0
+      }
+    },
+    {
+      "basis": "OBSERVED",
+      "case": "AUD-025",
+      "selected_mark": {
+        "asset": "NATIVE",
+        "idx": 0,
+        "kind": "MID",
+        "source": "invented future mark",
+        "t": 1100,
+        "usd": "100"
+      },
+      "transaction_at": 1000,
+      "unit_usd": "100"
+    },
+    {
+      "calls": 1,
+      "case": "AUD-004",
+      "exported_is_fixture": false,
+      "observation_access_mode": "fixture",
+      "series": 1,
+      "stored_series_fixture": 1
+    },
+    {
+      "case": "AUD-002/AUD-032",
+      "exported": [
+        {
+          "available_at": 1791766830.0,
+          "captured_at": 1791766830.0,
+          "chain": "solana",
+          "contract": "8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ",
+          "direction": "LONG",
+          "post_id": "claim1",
+          "provider": "lab-social",
+          "published_at": 1791766800.0,
+          "repost_of": null,
+          "source_id": "x:id:m00-invented-source"
+        }
+      ],
+      "extracted_at": 1791936000
+    },
+    {
+      "case": "AUD-033",
+      "context": {
+        "facts_after_generation_excluded": 0,
+        "liquidity": null,
+        "observed_price": {
+          "age_s": 100.0,
+          "as_of": 900.0,
+          "basis": "observed midpoint or provider price at fetch, not proceeds",
+          "fact_id": "synthetic",
+          "provider": "invented",
+          "stale": false,
+          "unit": "USD",
+          "value": 10
+        },
+        "sell_route": null
+      },
+      "fact": {
+        "as_of": 900,
+        "fact_id": "synthetic",
+        "fetched_at": 1100,
+        "field": "price",
+        "provider": "invented",
+        "value_num": 10
+      },
+      "generated_at": 1000,
+      "missing": [
+        {
+          "field": "liquidity",
+          "reason": "no liquidity fact dated at or before generation"
+        },
+        {
+          "field": "sell_route",
+          "reason": "no sell route quote dated at or before generation; exit depth unknown"
+        }
+      ]
+    },
+    {
+      "candle_boundary_fill": {
+        "candle_t": 0,
+        "cost": 0.025,
+        "decision_t": 0,
+        "fee_slip": 0.015,
+        "fill_t": 0,
+        "liq": 100000,
+        "participation": 0.005,
+        "price": 10,
+        "rule": "OPEN",
+        "source": "invented M00 hourly prices",
+        "wait_s": 0
+      },
+      "case": "positive-controls",
+      "prior_wallet_mark": "7 OBSERVED"
+    }
+  ],
+  "recovery": [
+    {
+      "case": "AUD-001",
+      "clusters": 1,
+      "cutoff": 1791849600,
+      "extraction_at": 1791936000
+    },
+    {
+      "as_of": 1791770400,
+      "case": "AUD-015",
+      "default_clusters": 0,
+      "explicit_clusters": 1,
+      "snapshot_cutoff": 1791849600.0
+    },
+    {
+      "case": "AUD-024-entry",
+      "error": null,
+      "output": {
+        "candle_t": 0,
+        "cost": 0.025,
+        "decision_t": 1800,
+        "fee_slip": 0.015,
+        "fill_t": 1800,
+        "liq": 100000,
+        "participation": 0.005,
+        "price": 10,
+        "rule": "OPEN",
+        "source": "invented M00 hourly prices",
+        "wait_s": 0
+      }
+    },
+    {
+      "as_of": 1800,
+      "candle_end": 3600,
+      "case": "AUD-024-extrema",
+      "error": null,
+      "output": {
+        "candle_t": 0,
+        "cost": 0.025,
+        "decision_t": 1800,
+        "fee_slip": 0.015,
+        "fill_t": 1800,
+        "liq": 100000,
+        "participation": 0.005,
+        "price": 100,
+        "rule": "CANDLE_ADVERSE",
+        "source": "invented M00 hourly prices",
+        "wait_s": 0
+      }
+    },
+    {
+      "case": "AUD-024-exit",
+      "error": null,
+      "output": {
+        "candle_t": 0,
+        "cost": 0.025,
+        "kind": "CANDLE",
+        "liq": 100000,
+        "participation": 0.005,
+        "price": 10,
+        "source": "invented M00 hourly prices",
+        "t": 3000,
+        "wait_s": 0
+      }
+    },
+    {
+      "basis": "OBSERVED",
+      "case": "AUD-025",
+      "selected_mark": {
+        "asset": "NATIVE",
+        "idx": 0,
+        "kind": "MID",
+        "source": "invented future mark",
+        "t": 1100,
+        "usd": "100"
+      },
+      "transaction_at": 1000,
+      "unit_usd": "100"
+    },
+    {
+      "calls": 1,
+      "case": "AUD-004",
+      "exported_is_fixture": false,
+      "observation_access_mode": "fixture",
+      "series": 1,
+      "stored_series_fixture": 1
+    },
+    {
+      "case": "AUD-002/AUD-032",
+      "exported": [
+        {
+          "available_at": 1791766830.0,
+          "captured_at": 1791766830.0,
+          "chain": "solana",
+          "contract": "8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ",
+          "direction": "LONG",
+          "post_id": "claim1",
+          "provider": "lab-social",
+          "published_at": 1791766800.0,
+          "repost_of": null,
+          "source_id": "x:id:m00-invented-source"
+        }
+      ],
+      "extracted_at": 1791936000
+    },
+    {
+      "case": "AUD-033",
+      "context": {
+        "facts_after_generation_excluded": 0,
+        "liquidity": null,
+        "observed_price": {
+          "age_s": 100.0,
+          "as_of": 900.0,
+          "basis": "observed midpoint or provider price at fetch, not proceeds",
+          "fact_id": "synthetic",
+          "provider": "invented",
+          "stale": false,
+          "unit": "USD",
+          "value": 10
+        },
+        "sell_route": null
+      },
+      "fact": {
+        "as_of": 900,
+        "fact_id": "synthetic",
+        "fetched_at": 1100,
+        "field": "price",
+        "provider": "invented",
+        "value_num": 10
+      },
+      "generated_at": 1000,
+      "missing": [
+        {
+          "field": "liquidity",
+          "reason": "no liquidity fact dated at or before generation"
+        },
+        {
+          "field": "sell_route",
+          "reason": "no sell route quote dated at or before generation; exit depth unknown"
+        }
+      ]
+    },
+    {
+      "candle_boundary_fill": {
+        "candle_t": 0,
+        "cost": 0.025,
+        "decision_t": 0,
+        "fee_slip": 0.015,
+        "fill_t": 0,
+        "liq": 100000,
+        "participation": 0.005,
+        "price": 10,
+        "rule": "OPEN",
+        "source": "invented M00 hourly prices",
+        "wait_s": 0
+      },
+      "case": "positive-controls",
+      "prior_wallet_mark": "7 OBSERVED"
+    }
+  ]
+}

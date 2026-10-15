@@ -1,0 +1,28 @@
+{
+ "allowlist": [
+  {
+   "path": "tests/fixtures/social/inbox/soc_fx01.json",
+   "reason": "invented placeholder the ingester must quarantine (test_bad_items_quarantined_good_items_kept)",
+   "where": "soc:x:example_trader_a.body.items[3].text"
+  },
+  {
+   "path": "tests/fixtures/social/inbox/soc_fx01.json",
+   "reason": "invented PROTECTED item (hash of an invented sentence) the ingester must quarantine as NOT_PUBLIC",
+   "where": "soc:x:example_trader_a.body.items[4].visibility"
+  },
+  {
+   "path": "tests/fixtures/social/registry/leaderboard_fresh.json",
+   "reason": "invented placeholder the registry importer must reject as BLOCKED_CONTENT_KEY (Phase 08)",
+   "where": "rows[6].bio"
+  },
+  {
+   "path": "tests/fixtures/social/roundtrip_01.json",
+   "reason": "invented sentences used to prove the store hashes text and never writes it (Phase 01)",
+   "where": "observations[*].text"
+  }
+ ],
+ "files_scanned": 430,
+ "json_files": 114,
+ "sqlite_files": 1,
+ "violations": []
+}

@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "<CLEAN_RECOVERY>/tools/release_audit.py", line 327, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "<CLEAN_RECOVERY>/tools/release_audit.py", line 262, in main
+    res["migrate_main_db"] = migrate_on(tmp / "wt" / "data" / "memelab.sqlite")
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<CLEAN_RECOVERY>/tools/release_audit.py", line 191, in migrate_on
+    shutil.copy(dbfile, tmp / "copy.sqlite")
+  File "<PYTHON_RUNTIME_PATH>", line 435, in copy
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+  File "<PYTHON_RUNTIME_PATH>", line 260, in copyfile
+    with open(src, 'rb') as fsrc:
+         ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '<TEMP_PATH>'

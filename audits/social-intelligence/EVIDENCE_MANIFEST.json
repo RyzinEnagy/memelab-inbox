@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "remediation_phase": "M00",
-  "state": "REVIEW_PENDING",
-  "updated_utc": "2026-10-13",
+  "state": "REVIEW_BLOCKED",
+  "updated_utc": "2026-10-15",
   "audited_application_baseline": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
   "audit_publication_branch_base": "b4c4216b9391227be5fdfe7cfe20b60e32d9e8f6",
   "accepted_required_count": 8,
-  "independent_review": "PENDING",
+  "independent_review": "REJECTED",
   "required_sources": [
     {
       "id": "00",
@@ -98,5 +98,7 @@
       "sha256": "4a4a18c1462c8047eb03f86f6a67a49984ebd6b9ef5c6963f3f47b1493192964",
       "origin_note": "Original user-uploaded phase-specific finding register; preserved without editing"
     }
-  ]
+  ],
+  "independent_review_record": "M00_INDEPENDENT_VERIFICATION.md",
+  "independent_reviewed_recovery_sha": "3b434e1dcc59290d993a638ca615f61b929189bc"
 }

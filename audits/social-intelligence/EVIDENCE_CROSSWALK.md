@@ -1,5 +1,7 @@
 # M00 finding-to-evidence crosswalk
 
+> **Independent review executed 2026-10-14 ET: BLOCKED.** The original inventory below is preserved. See [independent detailed crosswalk](M00_INDEPENDENT_CROSSWALK.md) for all 67 report-to-code/probe/requirement mappings and [review decision](M00_INDEPENDENT_VERIFICATION.md). No finding is closed; original-source/probe gaps remain.
+
 **Status: PRIMARY REPORTS RECOVERED; INDEPENDENT EVIDENCE REVIEW PENDING.** A source-file heading or line anchor proves that the finding was documented, **not** that its underlying reproduction, timestamps, code paths or severity have been independently reconfirmed. The original offline probes/logs remain missing. **No findings are closed.**
 
 Source fidelity: the Phase 02 and 03 audit reports and their separate findings snapshots have exact user-upload SHA-256 matches. Phase 04/05 were recovered from indexed Library text, not original bytes. The Phase 03 statement that Phase 02 was unavailable reflects that historical audit session; **both are now in this branch**.

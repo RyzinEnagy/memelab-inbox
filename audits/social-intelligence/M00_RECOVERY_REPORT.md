@@ -1,5 +1,7 @@
 # Remediation M00 — evidence recovery and finding reconciliation
 
+> **Superseding acceptance record, 2026-10-14 ET:** independent verification completed and acceptance withheld: **BLOCKED**, with original bytes/probe archive gaps. The recovery history below is retained. See `M00_INDEPENDENT_VERIFICATION.md`; no M01 authorization.
+
 **Scope:** M00 / R-00 Restore audit authority; evidence-only. **Current state:** **8/8 PRIMARY AUDIT INPUTS RECOVERED, NOT ACCEPTED (INDEPENDENT VERIFICATION PENDING)**. **Pinned application baseline:** `698f73b854567ce60b56ce275b5ab6822a9d5f60`. **Audit publication ancestor:** `b4c4216b9391227be5fdfe7cfe20b60e32d9e8f6`. **Date:** 2026-10-13.
 
 ## What changed in this update
