@@ -1,3 +1,11 @@
+> **M00 evidence correction, 2026-10-13:** original architecture and quantitative-validity audit reports and their two historical findings snapshots recovered and SHA-256 verified. `audits/social-intelligence/FINDINGS.md` now enumerates AUD-001–033; crosswalk 67 AUD/ARCH/ADV/OPS IDs. Required audit sources 8/8, but **M00 BLOCKED until independent review, source/probe reconciliation and acceptance**. M01 not authorized; this supersedes the earlier 6/8 recovery status below. See `audits/social-intelligence/M00_RECOVERY_REPORT.md`.
+
+# Current audit remediation checkpoint (separate from implementation phases 00–21)
+
+The application implementation phases below describe historical work, NOT the audit remediation approval order. The authoritative remediation sequence is `audits/social-intelligence/REMEDIATION_ROADMAP.md`. As of 2026-10-13, **M00 (R-00 evidence restoration) is PARTIAL / BLOCKED**, 6/8 source records are present, two required source reports (02 and 03) and some original probes remain unavailable, and independent crosswalk review has not occurred. **M01 and later are not authorized.** Current M00 proof: `audits/social-intelligence/M00_RECOVERY_REPORT.md` and `M00_VERIFICATION.md`. This amendment does not change any historical phase status shown below. **Updated M00 evidence discovery:** earlier project chats produced missing Phase 02/03 reports and AUD-018–033; these are known to exist historically but their source bytes remain unmounted/unavailable. No M01 work is authorized.
+
+---
+
 # Social & Trader Intelligence: roadmap
 
 Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). Current position: [HANDOFF.md](HANDOFF.md). Baseline: [AUDIT_00.md](AUDIT_00.md).

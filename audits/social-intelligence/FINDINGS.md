@@ -23,6 +23,22 @@ Severity describes impact on research/operational reliability: High can invalida
 | AUD-015 | Explicit feed snapshot ID bypasses historical cutoff | High | Phase 01 independently reproduced |
 | AUD-016 | Adapter iterator exception escapes ingestion and leaves RUNNING status | Medium | Phase 01 custom-adapter reproduction |
 | AUD-017 | Historical feed loads chronology flags created after its cutoff | High | Phase 01 independently reproduced |
+| AUD-018 | SQLite foreign keys not uniformly enabled on each connection | High | Phase 02 inspected connection implementation; no orphan incident claimed |
+| AUD-019 | Legacy mint-only tokens may collide with chain-qualified social identity | High | Phase 02 design exposure; real collision not demonstrated |
+| AUD-020 | Published conclusions lack end-to-end provenance/supersession lineage | High | Phase 02 architecture finding |
+| AUD-021 | Unexpected chronology failures can be rendered as zero flags | Medium | Phase 02 inspected code; incident not reproduced |
+| AUD-022 | Public/private/alert/outcome persistence lacks tested consistent restore | High | Phase 02 design and test gap; crash impact unproven |
+| AUD-023 | Append-only derivatives lack complete capacity/retention checks | Medium | Phase 02 architecture risk; performance failure unmeasured |
+| AUD-024 | Intrabar Information Alpha uses earlier candle open or future high/low | High | Phase 03 independently reproduced on synthetic data |
+| AUD-025 | Historical wallet valuation accepts later price marks | High | Phase 03 independently reproduced on synthetic data |
+| AUD-026 | Information Alpha `VALIDATED` lacks independent forward validation | High | Phase 03 methodology review, no live efficacy claim |
+| AUD-027 | Controls and source universe insufficiently adjust selection bias | Medium | Phase 03 code / methodology review |
+| AUD-028 | Distinct social sources can overstate independent organic origins | Medium | Phase 03 code / methodology review |
+| AUD-029 | Quoted liquidation lower bound and partial-zero aggregation mislead | Medium | Phase 03 reproduced/model-qualified |
+| AUD-030 | Social editorial ordering lacks demonstrated incremental utility | Medium | Phase 03 code / methodology review |
+| AUD-031 | Missing inherited flags do not verify token authority and exit depth | Medium | Phase 03 code / scope review |
+| AUD-032 | Replay exporter backdates derived claims/attribution | High | Phase 03 reconfirms AUD-002; code-confirmed |
+| AUD-033 | Signal market context may use fact before it was fetched | Medium | Phase 03 code-confirmed, live contamination unverified |
 
 ## AUD-001 — Historical narrative cutoff includes later extractions
 
@@ -210,11 +226,165 @@ Evidence: `01_FUNCTIONAL_AUDIT.md`, `evidence/test_functional_audit.py`, `eviden
 - **Recommended fix:** Carry and enforce derived availability clocks; select latest eligible chronology run under creation/availability and evidence cutoffs, preserving historical revisions. Test late computation, future run IDs and later replacement of old flags together.
 ---
 
+## M00 evidence reconciliation — original Phase 02 / Phase 03 findings
+
+The paragraphs below preserve the **original auditor wording** from the separately archived historical `recovered/phase02_FINDINGS.md` and `recovered/phase03_FINDINGS.md`. M00 has **not** independently reexecuted the audit's offline experiments and has not closed any finding. The original Phase 03 text says the Phase 02 report was inaccessible *at the time Phase 03 was written*. It was subsequently restored in M00: that historical note is preserved as written but is no longer the current archive status. The original source snapshots remain byte-identical and may be consulted independently. AUD-032 explicitly reaffirms AUD-002 rather than adding an independently demonstrated new incident.
+
+## Phase 02 architecture audit additions — 2026-10-13
+
+**Scope:** Pinned main `698f73b854567ce60b56ce275b5ab6822a9d5f60`; independent static design/code review backed by Phase 00/01 findings. No new production edits, no new stress-test claims. Full trade-offs, impact, complexity and acceptance gates: `02_ARCHITECTURE_AUDIT.md`. Existing AUD-001–AUD-017 remain open unless explicitly resolved elsewhere; Phase 02 does not close any.
+
+## AUD-018 — SQLite foreign keys are not uniformly enabled per connection
+- **Severity / confidence:** High / High (connection implementation directly inspected; no orphan occurrence claimed).
+- **Evidence:** `memelab/db.py` enables foreign keys in schema initialization script, while `social/store.py:98` states db connections do not automatically enable them. Social `ingest._connect` opens its own `sqlite3.connect(..., isolation_level=None)` without setting `PRAGMA foreign_keys=ON`. Social schema declares many `REFERENCES`.
+- **Impact:** Unchecked writes can create orphan claim, observation, account or provenance links; report joins can silently discard evidence.
+- **Action:** Centralize per-connection FK enforcement and verify it; audit `PRAGMA foreign_key_check` on restored production copy before enabling and test all writer paths. Complexity medium, essential.
+
+## AUD-019 — Legacy mint-only keys conflict with chain-qualified social identity
+- **Severity / confidence:** High / High design exposure; real collision impact unproven.
+- **Evidence:** `memelab/db.py` primary `tokens(mint)`, `state.TABLES/KEYS` and legacy watchlist/thesis access are mint-keyed, while `social_token_refs` and social normalization use `(chain,contract)`.
+- **Impact:** Ambiguous chain projection may conflate or misjoin otherwise distinct assets.
+- **Action:** Canonical asset identity map, chain-aware joins and ambiguity abstention; retain backwards-compatible legacy keys until measured safe migration. High complexity, essential for multi-chain joins.
+
+## AUD-020 — No comprehensive publication provenance and correction lineage
+- **Severity / confidence:** High / High that single publication-manifest contract is absent; impacts inferred from AUD-001/002/015/017 and code paths.
+- **Evidence:** Run-level input/result hashes in alpha/performance/chrono coexist with historical readers that can select future/current derived state; no complete frozen publication→all dependency versions→source availability ledger demonstrated.
+- **Impact:** Cannot reliably reconstruct *what was known when* or how a previously published conclusion changed after wallet/source/scoring revision.
+- **Action:** Versioned `research_publications` manifest with commit, model/config/score versions, dependency IDs, event and knowledge cutoffs and supersession chain; central temporal filtering. High complexity, essential.
+
+## AUD-021 — Unexpected chronology errors are suppressed as zero risk flags
+- **Severity / confidence:** Medium / High for inspected behavior; incident not reproduced.
+- **Evidence:** `feed_store.py::_flags` catches all `Exception` from `chrono_store.current_flags` and returns an empty list; malformed JSON flags/reasons are also mapped to `[]` in feed formatting.
+- **Impact:** A failed risk lookup can be visually indistinguishable from a successful lookup returning no risk.
+- **Action:** Distinguish `NO_FLAGS`, `UNAVAILABLE`, `FAILED` with typed status and logged errors; catch only anticipated unsupported cases. Low–medium complexity, essential.
+
+## AUD-022 — Private/public/multi-ledger continuity has no proven consistent recovery unit
+- **Severity / confidence:** High / High for architectural separation, medium for crash consequences (not experimentally proven).
+- **Evidence:** `state.py` exports only legacy tables; social public SQLite, `private.py`, alert SQLite and `outcomes_ledger.py` operate with separate persistence and transactions. Phase 00 AUD-007 confirms restart continuity not wired.
+- **Impact:** Recovery can preserve a watchlist but not original text, social evidence, alert delivery history or outcome scoring; cross-store partial writes may leave inconsistent references.
+- **Action:** Reproducible public/private state manifests and consistent encrypted backups, transactional outbox, crash/restart integration tests; never export exact private content to public GitHub. Medium–high complexity, essential.
+
+## AUD-023 — Append-only analytical stores lack system-wide capacity and retention gates
+- **Severity / confidence:** Medium / High for absence of uniform lifecycle; no measured performance failure.
+- **Evidence:** Many observation, provenance, market, registry, narrative, wallet, score and chronology tables append indefinitely. `private.purge_expired` and alert dedupe `purge` cover only select stores.
+- **Impact:** Potential growth, progressively slow historical scans and large backups; blanket deletion would undermine audit history.
+- **Action:** Separate legal erasure from archival/rollups; row-count monitoring, retention tiers, indexes guided by EXPLAIN, backup/capacity tests. Medium complexity; essential before scaling, optional at current low-volume offline use.
+
+**Traceability:** AUD-001/002/015/017 are concrete temporal instances under ARCH-001; AUD-003 links ARCH-003; AUD-005 links ARCH-010; AUD-006 links ARCH-013; AUD-007 links ARCH-005/011; AUD-009 links ARCH-014; AUD-016 links ARCH-004. Do not double count cross-references as newly reproduced failures.
+
+## Phase 03 quantitative research validity — 2026-10-13
+
+Pinned baseline: `698f73b854567ce60b56ce275b5ab6822a9d5f60`; methodology and source reviewed without modifying production. Full report: [`03_RESEARCH_VALIDITY.md`](03_RESEARCH_VALIDITY.md). Independent offline, synthetic reproduction exercised alpha intrabar entry/exit, performance future-mark matching, and liquidation quote behavior. Real historic predictive results remain unavailable; no live-market performance assertion is made.
+
+**Continuity restriction:** This register copy was recovered from the Phase 00/01 personal Library artifact (AUD-001–017). The Phase 02 report and latest FINDINGS.md are absent from GitHub and unavailable as raw files in this execution. Prior conversation confirms AUD-018–023 were created, but their exact descriptions/severities cannot be retrieved. **AUD-018–023 remain explicitly reserved; no Phase 02 item has been renumbered, closed, fabricated, or deliberately replaced.** This is an incomplete consolidation until the original Phase 02 file is recovered. Phase 03 starts at AUD-024 to avoid collisions.
+
+| ID | Description | Severity | Evidence | Status |
+|---|---|---|---|---|
+| AUD-024 | Intrabar historical alpha fill uses past candle open or not-yet-known high/low | High | Reproduced offline | Open |
+| AUD-025 | Future midpoint accepted for historical wallet USD valuation | High | Reproduced offline | Open |
+| AUD-026 | `VALIDATED` alpha tier lacks truly prospective independent predictive validation | High | Code-confirmed + methodological | Open |
+| AUD-027 | Alpha control matching and call-universe sampling do not isolate information advantage | Medium | Code-confirmed + methodological | Open |
+| AUD-028 | Narrative independence/emergence and raw mention counts vulnerable to sophisticated coordinated sources | Medium | Code-confirmed + methodological | Open |
+| AUD-029 | Executable quote pro-rata “lower bound” overstated; missing quote aggregated as zero | Medium | Reproduced / code-confirmed | Open |
+| AUD-030 | Editorial research priority is not proven to improve candidate selection; depth not universal gate | Medium | Code-confirmed + methodological | Open |
+| AUD-031 | No fatal flag in inherited structure is not evidence of authority/depth checks for every token | Medium | Code-confirmed + scope qualification | Open |
+| AUD-032 | Replay DB exporter backdates extracted CALLs/current wallet assertions; pre-existing AUD-002 | High | Code-confirmed; reconfirms earlier finding | Open; cross-reference |
+| AUD-033 | Signal-generation market context can use `as_of` without checking later `fetched_at` | Medium | Code-confirmed; live exposure not established | Open |
+
+### AUD-024 — Intrabar alpha execution timing invalidates claimed historical fills
+
+- **Component / source:** `memelab/social/alpha_core.py::_candle_at`, `entry_for`, `exit_for` (lines 182–253).
+- **Severity / confidence:** **High / High; independently reproduced** in-memory with synthetic candle data on the pinned source.
+- **Expected:** Entries after publication, capture and delay execute on quotes/prices at or after the resulting decision time, never from earlier opens or uncompleted candle extremes; horizon exits must likewise use prices executable at the horizon.
+- **Actual:** A 3600-second candle `t=0`, `o=10`, `h=100`, and a decision `t=1800` returned `fill_t=1800`, `candle_t=0`, `price=10` in OPEN mode. CANDLE_ADVERSE mode returned `price=100` even though the high is only known for the completed candle. Exit targeted `t=3000` returned the same earlier open `price=10`.
+- **Research impact:** The code's nominal delay does not imply a real delayed fill, so absolute/relative returns and Information Alpha may be directionally wrong. No magnitude or sign of actual financial bias is claimed.
+- **Remediation and test:** Reject intrabar exact fills from OHLC unless there is a precisely timestamped executable quote/tick; use only prior **completed** candles for features, separate timestamp of observation from execution, compare to strict later-onset price, and regression-test after publication and horizon boundaries.
+
+### AUD-025 — Future midpoint enters wallet USD history
+
+- **Component / source:** `memelab/social/perf_core.py::Book.near`, `Book.unit_usd` (lines 342–369).
+- **Severity / confidence:** **High / High; independently reproduced** with supplied synthetic mark, native asset and `price_tolerance_s=200`.
+- **Expected:** For point-in-time P&L or trader-ranking features available to a historical decision, the price mark must have been observed by that time.
+- **Actual:** For a `t=1000` historical transaction, the nearest price at `t=1100`, `$100`, was returned as `OBSERVED`; default price tolerance is **900 seconds**. Nearest lookup uses absolute temporal distance.
+- **Research impact:** Historical USD wallet results, fees and capital normalization can use later information; this does not mean on-chain native quantities were altered. Retrospective accounting based on ex-post marks must be distinguished from contemporaneous tradable evidence.
+- **Remediation and test:** Store distinct market-effective, published and available-at times; use last-known-before lookup for ex-ante comparisons, flag stale marks. Permit later restatements only in an explicitly retrospective column and test both modes independently.
+
+### AUD-026 — `VALIDATED` Information Alpha is an internally qualified historical association
+
+- **Component / source:** `memelab/social/alpha_core.py::_score` (lines 565–632), `DEFAULT_POLICY` (27–63).
+- **Severity / confidence:** **High / High for the methodological gap; no realized future performance examined**.
+- **Actual:** A `VALIDATED` tier can result from at least 30 eligible calls, 20 distinct contracts, fixed in-sample median-relative confidence interval, completeness checks and same-sample chronological-half sign consistency. It does not require a prospective untouched test period, multiple-comparison correction across sources/parameter choices, or robust dependence-aware confidence intervals.
+- **Impact:** “Validated” can be incorrectly read as proof the source's public posts predict future net investable edge; the function estimates historical signed returns under caller-supplied data/assumptions, not causal or calibrated predictive value.
+- **Remediation:** Rename current tier to a historical evidence status, lock the full universe/policy before outcomes, use prospective independent test and forward observation, bootstrap by token/trader/cohort, adjust selection multiplicity and benchmark net executable returns.
+- **Relationship:** Extends the unresolved no-real-efficacy baseline AUD-008 rather than asserting a new observed profitable result.
+
+### AUD-027 — Matched baseline and coverage denominators do not control selection/confounding
+
+- **Component / source:** `alpha_core.py::_baseline` (358–376), `_summarise` (557–561), `_score` (565–585).
+- **Severity / confidence:** **Medium / High for observed matching and completeness logic; uncertain size of resulting bias**.
+- **Actual:** Controls are selected based primarily on same-chain pool liquidity and trailing volume; other economically important factors (token age, launch cohort, valuation, pretrend, volatility, promotional regime, market listing survivorship) are not matched. A source's enumerated universe is supplied, and absent completeness can still permit a PRELIMINARY score.
+- **Impact:** Correlated pumps, post-induced buying or cherry-picked called tokens can masquerade as unique informational value.
+- **Remediation:** Pre-register a complete public post sampling frame; match launch age/valuation/volatility/momentum plus liquidity/executable depth; include inactive and delisted contracts; show covariate balance and unmatched fraction; use placebo and permutation controls.
+
+### AUD-028 — Social origin count does not prove independent operators or true emergence
+
+- **Component / source:** `narratives.py::_build` (213–429), `_sliding` (192–205), `research_core.py::attention_lane` (112–133).
+- **Severity / confidence:** **Medium / High for counting behavior, low for external synthetic-network prevalence**.
+- **Actual:** Explicit reposts/forwards/identical texts collapse as intended, but different accounts using different original text remain independently counted even if they may be controlled together. Raw mention windows count repeat content. `EMERGING` is a heuristic threshold relative to an incomplete collected corpus, not objective global novelty.
+- **Impact:** Coordinated artificial activity can drive perceived corroboration and analyst attention; a lone useful contrarian can receive less editorial weight.
+- **Remediation:** Show one-per-verified-owner only where ownership is established, otherwise give hypotheses and uncertainty; independently assess novelty against prior broad corpus; separate original per-source counts from total post rates; test unique-text coordinated networks and platform coverage gaps.
+
+### AUD-029 — Liquidity liquidation bounds and missing-estimate headline are overconfident
+
+- **Component / source:** `perf_analysis.py::liquidation` (196–222), `inventory_block` (225–261), `_sum` helper.
+- **Severity / confidence:** **Medium / High; synthetic quote behavior reproduced**.
+- **Actual:** Synthetic `EXEC_QUOTE` for 100 token units returning $100, with a 50-unit holding, is prorated to $50 and labeled a lower bound. Lower-bound guarantee ignores time drift, router changes, MEV and token-tax distinctions. Per-asset no-quote is correctly `None`, while the aggregate sum of known values is zero even when all lots lack valid quote values; the count of unavailable estimates is separately reported.
+- **Impact:** Presenting the aggregate as zero without conspicuous “partial/unknown” can mislead about realizable P&L. Prorated quote is an illustrative estimate, not guaranteed minimum dollars receivable.
+- **Remediation:** Require a fresh exact-size route quote, or label bounds explicitly model-conditional; add missing-coverage state to headline (`null/partial`) and tests for stale/no-route/partial/taxed-asset cases.
+- **Relationship:** Supplements AUD-012 (supplied data/historical coverage limitations).
+
+### AUD-030 — Social-based research priority lacks incremental outcome evidence
+
+- **Component / source:** `research_core.py::_weight` (156–165), `build` (257–329), `DEFAULT_POLICY` (29–44).
+- **Severity / confidence:** **Medium / High for scope; no verified market uplift**.
+- **Actual:** Risk/attention weights only sort the social research section; this positive separation does not demonstrate that order is economically useful. Attention from nominal independent sources may dominate the editorial queue; contrarian observations are disadvantaged if not corroborated. A `RESEARCH_CANDIDATE` state need not include a fresh exact-size exit quote.
+- **Impact:** Potential analyst-time waste and exposure to promotion or unexitability if editorial candidates are confused with investable recommendations. The engine itself does not change trade execution or core trading rank.
+- **Remediation:** Prospective controlled comparison against the prior engine on the same universe/time budget with blinded adjudication; require depth/authority evidence before investable priority labels; label missing route as abstention.
+
+### AUD-031 — Social structural nonfatal status is not verified token safety
+
+- **Component / source:** `research_core.py::structure_lane`, `entry_lane` (136–154).
+- **Severity / confidence:** **Medium / High; scope/design limitation**.
+- **Actual:** The social system calls structure ACCEPTABLE when the upstream candidate has no supplied `fatal_flags` and is not explicitly `untradeable`. It does not independently verify token mint/freeze/fee authorities, LP withdrawal control, holder clustering, transfer restrictions or exact-size exit quotes.
+- **Impact:** A consumer may mistake absence of observed fatal evidence for evidence that all relevant hazards were checked. This is particularly consequential for Token-2022 tokens and small concentrated pools.
+- **Remediation:** Carry per-hazard coverage and dated evidence status (`PASS/FAIL/UNKNOWN`), require explicit acceptance criteria before implying tradeability, expose missing required checks prominently.
+
+### AUD-032 — Replay export backdates derived claims and wallet linkage
+
+- **Component / source:** `replay_sources.py::from_db` (68–109).
+- **Severity / confidence:** **High / High, code-confirmed; existing AUD-002 previously independently reproduced late extraction**.
+- **Actual:** Exports all current CALL rows using `social_items.first_observed_at` as availability for extracted assertions, and evaluates currently active wallet assertions without their approval/recorded time as historical availability. The isolated replay core cannot detect this leakage once the exported document backdates inputs.
+- **Impact:** Apparent historical trader/source corroboration and backtest causality may be false even when inner replay leakage checks pass.
+- **Remediation:** Enforce derived availability at extraction and wallet-assertion verification, supersession/identity changes as of each cutoff, and add *database-export→replay* adversarial tests.
+- **Relationship:** Reconfirms AUD-002 rather than replacing or closing it.
+
+### AUD-033 — Signal generation market context can predate its own retrieval
+
+- **Component / source:** `outcomes_core.py::_fact_time`, `market_at_generation`, `make_signal` (115–223); later observation adapter `outcomes_cli.py` (85–109).
+- **Severity / confidence:** **Medium / High code certainty; actual live contamination unverified**.
+- **Actual:** `_fact_time` prefers `as_of` over `fetched_at`; market context is eligible if that time is no later than `generated_at`. A backfilled price or route fact that reflects an earlier market moment but was obtained later may appear as known at generation. `make_signal` flags late signal capture, but this does not itself prove each fact was already acquired.
+- **Impact:** The immutable emission-time research context may inherit unavailable market evidence; prospective measurement becomes contaminated if upstream fact provenance is not enforced.
+- **Remediation:** Check both market time and available-at/fetched-at, refuse unknown retrieval time for point-in-time source facts, and add a late-price-backfill-to-early-signal mutation test. Do not apply this defect to observations already correctly indexed by availability.
+
+### Phase 03 retention and test limits
+
+AUD-001, AUD-002, AUD-008, AUD-012, AUD-015 and AUD-017 remain open or evidence-limited from prior phases. Other existing IDs are preserved as originally recovered. Phase 02 AUD-018–023 **cannot be reconstituted faithfully without the Phase 02 file**. No test suite was rerun in this phase; the earlier reported 651 pass/1 fail is prior Phase 01 evidence, not a new result. All Phase 03 reproductions use invented prices, times, wallets or route quotes; they demonstrate implementation mechanics, not live alpha. No production code, external service, credential, trades or tracked database modified. STOP after this audit.
+
 ## Cumulative audit continuity: later independent phases, 2026-10-13
 
-The register above is the complete recovered Phase 00/01 findings as in the available \`FINDINGS.md\`. Subsequent Phase 02/04/05 audit reports were archived separately in the project Library, rather than Git. Their original documents remain unchanged. The following is an **index** to those additional findings, not a fabricated claim that the repository ran those tests again. No prior issue has been independently closed.
+The register above is the complete recovered Phase 00/01 findings as in the available \`FINDINGS.md\`. The original Phase 02/03/04/05 reports were produced separately from the consolidated publication. M00 has restored report copies (original upload bytes for Phase 02/03, index-derived for Phase 04/05), and preserved the Phase 02/03 findings snapshots unchanged. The following is an **index** to those additional findings, not a fabricated claim that the repository ran those tests again. No prior issue has been independently closed.
 
-**Architecture audit ARCH-001–015:** historical knowledge-time selection; per-connection SQLite foreign keys; primary-source to extractor handoff; iterator lifecycle; public/private/outcome state recovery; cross-chain legacy identity; publication lineage; append-only growth; unknown-as-none in reporting; cursor contiguousness; cross-store atomicity; provider lifecycle; LLM billing/cost; deletion/retention; modularization. \`02_ARCHITECTURE_AUDIT.md\` is the full source.
+**Architecture audit ARCH-001–015 (now source-anchored):** historical knowledge-time selection; per-connection SQLite foreign keys; primary-source to extractor handoff; iterator lifecycle; public/private/outcome state recovery; cross-chain legacy identity; publication lineage; append-only growth; unknown-as-none in reporting; cursor contiguousness; cross-store atomicity; provider lifecycle; LLM billing/cost; deletion/retention; modularization. \`02_ARCHITECTURE_AUDIT.md\` is the full source.
 
 **Adversarial ADV-001–009:** overly permissive private DB files; expired private text availability before purge; model credential config gaps; conditional Helius redaction; malformed model response; Telegram retry/error handling; non-atomic LLM reservations; content guard doesn't inspect arbitrary Markdown/CSV; live X deletion not complete. \`04_ADVERSARIAL_AUDIT.md\` is the full source. These are graded code/theoretical risks; none is evidence of a live exploited attack.
 
@@ -233,7 +403,7 @@ The register above is the complete recovered Phase 00/01 findings as in the avai
 | OPS-009 | Append-only growth and retention/sizing automation unverified | Medium | Source/architecture |
 | OPS-010 | Branch/deployment ref and rollback not a verified service lifecycle | Medium | Source/prior |
 
-**The Phase 03 primary audit could not be recovered.** Do not cite its inferred outcomes as reproduced facts.
+**M00 2026-10-13 correction:** the original Phase 03 report and its findings snapshot have now been recovered byte-for-byte from user-supplied originals. The detailed AUD-024–033 entries appear above. Original offline probes/logs remain unarchived; evidence remains report-authored, not independently rerun during M00.
 
 ## Phase 06 — new strategic research findings (recommendations, not newly observed code failures)
 

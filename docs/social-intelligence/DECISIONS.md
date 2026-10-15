@@ -550,3 +550,31 @@ The scheduled runs on `main` write absolute session paths (for example `report_p
 ## D-124 Pull request opened for review, not merged (ADOPTED, Phase 18)
 
 The prompt asks for a pull request where repo access permits. The branch is pushed by fast-forward through the GitHub Git Data API (no force, D-001) and a pull request from `feature/social-intelligence` into `main` is opened for Elving to review. Nobody merges it in this phase: merging changes what the scheduled runs load from `main` (for example the collector projections of D-021 and D-063) and is Phase 21 work.
+
+
+## D-M00-001 Preserve immutable audit chronology and pin remediation branch (ADOPTED for M00, 2026-10-13)
+
+Base the evidence remediation branch `remediation/social-intelligence-m00` on `audit/social-intelligence-phase06` at `b4c4216b9391227be5fdfe7cfe20b60e32d9e8f6`, with application baseline `698f73b854567ce60b56ce275b5ab6822a9d5f60`. Open a PR against the audit publication branch for review; do not merge to `main` or rewrite the 06 report. Preserve the old Phase 18 handoff as labeled history, while publishing the current M00 blocker above it.
+
+## D-M00-002 Do not infer missing primary evidence from summaries (ADOPTED, 2026-10-13)
+
+The Library search recovered five source titles; with Phase 06 tracked, 6/8 expected inputs can now be inspected. The separate Phase 05 statement that an earlier reviewer read Phase 02 is not a source copy. `02_ARCHITECTURE_AUDIT.md`, `03_RESEARCH_VALIDITY.md` and original probe scripts/logs remain unavailable. The crosswalk is indexed text only, with missing primary support visibly labeled. M00 cannot pass from metadata, hashes, test fixtures or prose alone.
+
+## D-M00-003 Separate artifact integrity from independent finding resolution (ADOPTED, 2026-10-13)
+
+Implement a no-network SHA-256 audit input check and negative tests. `tools/check_audit_evidence.py` can exit 0 when **partial integrity** is sound while loudly returning `BLOCKED`; acceptance requires `--require-complete` and independent source/probe reconciliation. Do not change module implementations in an evidence-recovery phase, do not conceal a killed full regression suite (exit 137), and do not mark an AUD/ARCH/ADV/OPS finding resolved on these checks.
+
+
+## D-M00-004 Preserve non-deterministic QA failures as an open investigation (ADOPTED, 2026-10-13)
+
+A one-process full pytest run was terminated with exit 137 around 70%. A bounded combined run stopped after two failures: the known catalyst assertion and social ingestion log-content test (2 failed, 295 passed); the latter passes alone. No tests were skipped, assertions weakened or implementation modified. This creates a new **potential test-order/environment reliability risk** requiring independent reproduction; M00 cannot certify the full suite.
+
+
+## D-M00-005 Earlier project conversations locate missing originals but do not supply report bytes (ADOPTED, 2026-10-13)
+
+Prior project conversation output explicitly linked `02_ARCHITECTURE_AUDIT.md` and `03_RESEARCH_VALIDITY.md` and sequential versions of `FINDINGS.md`. Phase 02 added AUD-018–023 and Phase 03 added AUD-024–033, which are missing from the published consolidated finding register. Locators are cataloged in `audits/social-intelligence/M00_PRIOR_CHAT_LOCATORS.md`. Original titles/link strings are valid recovery leads, not proof of report contents. Add these IDs to an **unverified** crosswalk partition; do not create synthetic report files, assign invented severities, or advance M01 until the originals are recovered and independently reviewed. The next reviewer should retrieve the original chat attachments or their original archives.
+
+
+## D-M00-006 Restore original Phase 02 and 03 reports and preserve both findings snapshots (ADOPTED, 2026-10-13)
+
+The owner supplied the original Phase 02 Architecture report, Phase 03 Research Validity report and their respective `FINDINGS.md` snapshots. Exact SHA-256 and byte count were matched before archiving (`audits/social-intelligence/recovered/`); the source snapshots remain unmodified. Canonical findings gain source-authored AUD-018–033 with original severity/evidence qualifications and retain all Phase 06 strategic entries. Crosswalk now tracks 33 AUD + 15 ARCH + 9 ADV + 10 OPS IDs; source line anchors do not constitute independently reproduced defects. Phase 03's historical lack of Phase 02 file is reconciled by retaining that original note but documenting its now-recovered state. AUD-032 explicitly reconfirms AUD-002, not a separate observed event. R-01/R-10/R-12 acceptance scope now explicitly includes intrabar fills, wallet future marks, predictive-validation qualifications and no-route exits. M00 is still blocked pending independent review and archive/probe/requirements acceptance. M01 is not authorized. No application changes, paid calls or live operations.
