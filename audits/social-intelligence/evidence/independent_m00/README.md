@@ -1,3 +1,7 @@
+# Historical first independent review evidence
+
+**2026-10-15:** source-absence and OPS-provenance statements below describe the first review. Use `../m00_archive_recovery/README.md` and `../../M00_ARCHIVE_RECOVERY_VERIFICATION.md` for current checks; do not overwrite these historical result files by rerunning `verify_review_artifacts.py`. The current verifier checks all source/code links and the recovered archives in a separate output directory.
+
 # Independent M00 verification evidence
 
 Decision and checklist: [`../../M00_INDEPENDENT_VERIFICATION.md`](../../M00_INDEPENDENT_VERIFICATION.md). Original missing material: [`../../M00_MISSING_EVIDENCE.md`](../../M00_MISSING_EVIDENCE.md). Detailed map: [`../../M00_INDEPENDENT_CROSSWALK.json`](../../M00_INDEPENDENT_CROSSWALK.json).

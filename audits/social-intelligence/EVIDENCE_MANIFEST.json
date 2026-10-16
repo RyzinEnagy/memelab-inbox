@@ -15,7 +15,7 @@
       "status": "RECOVERED",
       "bytes": 12558,
       "sha256": "16a3db8d5cc542dd1195a224cf7f712c7f88fb832042854db74ff8a7b5eb316f",
-      "origin_note": "Library raw-file backed; recovered text copy"
+      "origin_note": "Byte-identical to user-supplied original archive member; archive and internal SHA-256 verified 2026-10-15."
     },
     {
       "id": "RM",
@@ -24,7 +24,7 @@
       "status": "RECOVERED",
       "bytes": 101229,
       "sha256": "37bee78f56e1023a1901fecfcf57a77cb39ed9ab3ff8f8a7239c86beffd1035d",
-      "origin_note": "Library raw-file backed; recovered text copy"
+      "origin_note": "Byte-identical to user-supplied original archive member; archive and internal SHA-256 verified 2026-10-15."
     },
     {
       "id": "01",
@@ -33,7 +33,7 @@
       "status": "RECOVERED",
       "bytes": 20597,
       "sha256": "42ca9384f142ec1a09157ba6e0a1d97000af3f35e6f55690735d1351290e1889",
-      "origin_note": "Library raw-file backed; recovered text copy"
+      "origin_note": "Byte-identical to user-supplied original archive member; archive and internal SHA-256 verified 2026-10-15."
     },
     {
       "id": "02",
@@ -56,20 +56,20 @@
     {
       "id": "04",
       "name": "04_ADVERSARIAL_AUDIT.md",
-      "path": "recovered/04_ADVERSARIAL_AUDIT.md",
+      "path": "originals/phase04/04_ADVERSARIAL_AUDIT.md",
       "status": "RECOVERED",
-      "bytes": 30831,
-      "sha256": "fbb7c1d4becd3a86f1364999b00a1f204981dfe9b9b6be73c49dc971c041890f",
-      "origin_note": "Library indexed text copy; original raw bytes unavailable"
+      "bytes": 30832,
+      "sha256": "d2199f688bd3687509c0ca0178422b82b979e3af5b52e476f883cde0fb522fc4",
+      "origin_note": "Original user-supplied ZIP member, preserved byte-for-byte. Prior indexed copy retained unchanged; differs only by final newline. No embedded SHA manifest; received archive and member SHA-256 recorded."
     },
     {
       "id": "05",
       "name": "05_OPERATIONS_AND_UX.md",
-      "path": "recovered/05_OPERATIONS_AND_UX.md",
+      "path": "originals/phase05/05_OPERATIONS_AND_UX.md",
       "status": "RECOVERED",
-      "bytes": 29340,
-      "sha256": "132131efbb2793de2a86019e76962372d11ec8c197f09ec4e03e190f6c9c5c64",
-      "origin_note": "Library indexed text copy; original raw bytes unavailable"
+      "bytes": 29341,
+      "sha256": "a9da21745e894474388d52b38694d1bdef2c44ebc4a0d3ba3253ad44a7b0ec06",
+      "origin_note": "Original user-supplied ZIP member, preserved byte-for-byte. Prior indexed copy retained unchanged; differs only by final newline. Five embedded SHA/byte records independently matched."
     },
     {
       "id": "06",
@@ -100,5 +100,11 @@
     }
   ],
   "independent_review_record": "M00_INDEPENDENT_VERIFICATION.md",
-  "independent_reviewed_recovery_sha": "3b434e1dcc59290d993a638ca615f61b929189bc"
+  "independent_reviewed_recovery_sha": "3b434e1dcc59290d993a638ca615f61b929189bc",
+  "original_archive_record": "originals/ARCHIVES.json",
+  "archive_verification_record": "M00_ARCHIVE_RECOVERY_VERIFICATION.md",
+  "remaining_evidence_gaps": [
+    "Original Phase 03 synthetic probe A\u2013E executable inputs/scripts/raw outputs absent; reuploaded report and findings are duplicate known bytes.",
+    "Historical Phase 04 terminated-suite output not included in the supplied ZIP; no successful full-suite run inferred from that phase."
+  ]
 }

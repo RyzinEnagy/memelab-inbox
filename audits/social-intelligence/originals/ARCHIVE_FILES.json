@@ -1,0 +1,402 @@
+[
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/REQUIREMENTS_MATRIX.md",
+    "path": "originals/phase00/REQUIREMENTS_MATRIX.md",
+    "bytes": 101229,
+    "sha256": "37bee78f56e1023a1901fecfcf57a77cb39ed9ab3ff8f8a7239c86beffd1035d"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/FINDINGS.md",
+    "path": "originals/phase00/FINDINGS.md",
+    "bytes": 18139,
+    "sha256": "c307640ab14ec2259ca7c7e178b3133fd171188c3f0283c2babdec6b16302a02"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/00_BASELINE.md",
+    "path": "originals/phase00/00_BASELINE.md",
+    "bytes": 12558,
+    "sha256": "16a3db8d5cc542dd1195a224cf7f712c7f88fb832042854db74ff8a7b5eb316f"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/feature-test-inventory.json",
+    "path": "originals/phase00/evidence/feature-test-inventory.json",
+    "bytes": 42220,
+    "sha256": "c8e59898734d15a2d7a920d306481f7eb853f30bb3d149bc0a55c2cca6c2b691"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/main-release-audit.md",
+    "path": "originals/phase00/evidence/main-release-audit.md",
+    "bytes": 8918,
+    "sha256": "7ac7e4bb539172b0b6a03191c1e6696e0d2191696cc7c6906c971ab470e56d09"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/main-source-symbols.json",
+    "path": "originals/phase00/evidence/main-source-symbols.json",
+    "bytes": 54728,
+    "sha256": "0d3489fe0d4d74e299beb33cac2aca90718278ddc1d3d55f4cad145026b9d01d"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/optional-file-changes.txt",
+    "path": "originals/phase00/evidence/optional-file-changes.txt",
+    "bytes": 2286,
+    "sha256": "75b2b51d41d0354e7c17e8e65b13c950a22b9e3c7cbb0fe6bbcbbd54b4cf27e6"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/main-e2e.json",
+    "path": "originals/phase00/evidence/main-e2e.json",
+    "bytes": 60963,
+    "sha256": "294cabc0586888ea9db8ec45a52a255735a5866f05573f956a35f82f8081868e"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/SHA256SUMS.json",
+    "path": "originals/phase00/evidence/SHA256SUMS.json",
+    "bytes": 2413,
+    "sha256": "08360b20aa16608f21a1ae6120eb5feaa475c09459a04e8ade6f917990ac50de"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/feature-e2e.json",
+    "path": "originals/phase00/evidence/feature-e2e.json",
+    "bytes": 92441,
+    "sha256": "4586d261080a669728e655117bbc703d564b0cb64d2b7daefe9c17e5db6cf70b"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/main-tests.exit",
+    "path": "originals/phase00/evidence/main-tests.exit",
+    "bytes": 2,
+    "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/feature-tests.log",
+    "path": "originals/phase00/evidence/feature-tests.log",
+    "bytes": 3606,
+    "sha256": "364565035573f78dafedc3eb120ab3c67ec72909e78c6048a634cbb8d993d995"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/main-tests.log",
+    "path": "originals/phase00/evidence/main-tests.log",
+    "bytes": 3523,
+    "sha256": "144c679a0f6329a38a49860a5536ad3f73399fb5702f09e66a60f343d0e7832f"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/main-test-inventory.json",
+    "path": "originals/phase00/evidence/main-test-inventory.json",
+    "bytes": 36654,
+    "sha256": "c95f7eebdad5edb007a728872c2f8ef912e53d6f24c980f5a0531435d454d6f9"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/commit-history.txt",
+    "path": "originals/phase00/evidence/commit-history.txt",
+    "bytes": 15249,
+    "sha256": "0433d83a1331adc409fa1571d0bbad2a4f4437ae30cf7fd6ac07e525bac75103"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/probes-main.json",
+    "path": "originals/phase00/evidence/probes-main.json",
+    "bytes": 636,
+    "sha256": "7ee34931de149cd16a80ec1da51c2459c4b1b069d7bf270216681b5e51429a50"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/feature-source-symbols.json",
+    "path": "originals/phase00/evidence/feature-source-symbols.json",
+    "bytes": 63296,
+    "sha256": "fa66f47caa5b3b1e1d0030acb3ec8b0703d215af31448325276b501ea05c3d25"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/audit-environment.json",
+    "path": "originals/phase00/evidence/audit-environment.json",
+    "bytes": 438,
+    "sha256": "089d8986efdf72877bcfe584276ef4ae7ac2548cc0b3ceb84fbbccb32915f550"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/original-staged-prompts.md",
+    "path": "originals/phase00/evidence/original-staged-prompts.md",
+    "bytes": 47440,
+    "sha256": "9fa80398d70fe794e02709e099bc9c8a03727c1cfad7293dc0245d423ced64ed"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/merged-file-changes.txt",
+    "path": "originals/phase00/evidence/merged-file-changes.txt",
+    "bytes": 6829,
+    "sha256": "182883c4ff1ad35cd5f1f7c86beb68d47c533ecaf54779a9317c4303d890050a"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/feature-tests.exit",
+    "path": "originals/phase00/evidence/feature-tests.exit",
+    "bytes": 2,
+    "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/main-e2e.md",
+    "path": "originals/phase00/evidence/main-e2e.md",
+    "bytes": 53293,
+    "sha256": "2a323d3a94200207bd0b4c51beecefb9b048be79969814bbf051fff14ef16d84"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/probes.py",
+    "path": "originals/phase00/evidence/probes.py",
+    "bytes": 3424,
+    "sha256": "ee5258aacea8ca9bebba36e1c5f81024dec9b7ae86e9eb9e93525a676336921b"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/probes-feature.json",
+    "path": "originals/phase00/evidence/probes-feature.json",
+    "bytes": 636,
+    "sha256": "7ee34931de149cd16a80ec1da51c2459c4b1b069d7bf270216681b5e51429a50"
+  },
+  {
+    "phase": "phase00",
+    "archive": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/feature-e2e.md",
+    "path": "originals/phase00/evidence/feature-e2e.md",
+    "bytes": 79782,
+    "sha256": "9e9cc83ec30641c3e950dba7642a52c237b7532de4a4306648532b8b75d610b5"
+  },
+  {
+    "phase": "phase01",
+    "archive": "Social_Intelligence_Phase_01_Functional_Audit.zip",
+    "archive_member": "audits/social-intelligence/00_BASELINE.md",
+    "path": "originals/phase01/00_BASELINE.md",
+    "bytes": 12558,
+    "sha256": "16a3db8d5cc542dd1195a224cf7f712c7f88fb832042854db74ff8a7b5eb316f"
+  },
+  {
+    "phase": "phase01",
+    "archive": "Social_Intelligence_Phase_01_Functional_Audit.zip",
+    "archive_member": "audits/social-intelligence/01_FUNCTIONAL_AUDIT.md",
+    "path": "originals/phase01/01_FUNCTIONAL_AUDIT.md",
+    "bytes": 20597,
+    "sha256": "42ca9384f142ec1a09157ba6e0a1d97000af3f35e6f55690735d1351290e1889"
+  },
+  {
+    "phase": "phase01",
+    "archive": "Social_Intelligence_Phase_01_Functional_Audit.zip",
+    "archive_member": "audits/social-intelligence/FINDINGS.md",
+    "path": "originals/phase01/FINDINGS.md",
+    "bytes": 24221,
+    "sha256": "cfc53fefd4e60384ab740ede9b59407d4b42a9ec0857e9864da8e7fb65c0282b"
+  },
+  {
+    "phase": "phase01",
+    "archive": "Social_Intelligence_Phase_01_Functional_Audit.zip",
+    "archive_member": "audits/social-intelligence/REQUIREMENTS_MATRIX.md",
+    "path": "originals/phase01/REQUIREMENTS_MATRIX.md",
+    "bytes": 101229,
+    "sha256": "37bee78f56e1023a1901fecfcf57a77cb39ed9ab3ff8f8a7239c86beffd1035d"
+  },
+  {
+    "phase": "phase01",
+    "archive": "Social_Intelligence_Phase_01_Functional_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/SHA256SUMS.json",
+    "path": "originals/phase01/evidence/SHA256SUMS.json",
+    "bytes": 1407,
+    "sha256": "4cb7089df35c9b95da8af7626f4b9864c3b03b82343b763165ff48df3fd82107"
+  },
+  {
+    "phase": "phase01",
+    "archive": "Social_Intelligence_Phase_01_Functional_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/execution-metadata.json",
+    "path": "originals/phase01/evidence/execution-metadata.json",
+    "bytes": 994,
+    "sha256": "514f5f967e72c33a42dcf4291e2f312caa41f93b1e6501e37ae99fc365d165c6"
+  },
+  {
+    "phase": "phase01",
+    "archive": "Social_Intelligence_Phase_01_Functional_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/existing-suite.log",
+    "path": "originals/phase01/evidence/existing-suite.log",
+    "bytes": 3523,
+    "sha256": "cdd70b3609d8ae69e9b33432376b5a58766363ad2b967147e04e60b2acaa093e"
+  },
+  {
+    "phase": "phase01",
+    "archive": "Social_Intelligence_Phase_01_Functional_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/independent-tests-initial-harness.log",
+    "path": "originals/phase01/evidence/independent-tests-initial-harness.log",
+    "bytes": 13298,
+    "sha256": "170a1a69711c4adf2657312b8a07f395304864a6541c5cd850658b734757cd4e"
+  },
+  {
+    "phase": "phase01",
+    "archive": "Social_Intelligence_Phase_01_Functional_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/independent-tests.log",
+    "path": "originals/phase01/evidence/independent-tests.log",
+    "bytes": 13549,
+    "sha256": "2fcbcd3487672ff278fb90abc7b68861a4223bb32a3ff9b5861f74c9656fc7a3"
+  },
+  {
+    "phase": "phase01",
+    "archive": "Social_Intelligence_Phase_01_Functional_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/network-guard/sitecustomize.py",
+    "path": "originals/phase01/evidence/network-guard/sitecustomize.py",
+    "bytes": 362,
+    "sha256": "c26eabfc74dc0d1a47cf04343b9856c8a38da599c4f63a7daca4495c58be1fa6"
+  },
+  {
+    "phase": "phase01",
+    "archive": "Social_Intelligence_Phase_01_Functional_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/network.log",
+    "path": "originals/phase01/evidence/network.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "phase": "phase01",
+    "archive": "Social_Intelligence_Phase_01_Functional_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/release-e2e.json",
+    "path": "originals/phase01/evidence/release-e2e.json",
+    "bytes": 60963,
+    "sha256": "cecf39e314ea95c7906dbbf17114b98efec88ca158dcfcc9602296a76010ddc3"
+  },
+  {
+    "phase": "phase01",
+    "archive": "Social_Intelligence_Phase_01_Functional_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/release-e2e.log",
+    "path": "originals/phase01/evidence/release-e2e.log",
+    "bytes": 2958,
+    "sha256": "8b5eb189225ce968769844273edaff2a5c5c306f4d928516bcd475209bef8449"
+  },
+  {
+    "phase": "phase01",
+    "archive": "Social_Intelligence_Phase_01_Functional_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/release-e2e.md",
+    "path": "originals/phase01/evidence/release-e2e.md",
+    "bytes": 53293,
+    "sha256": "e4a5a23903e711b855fa097325201e4e6b24a211d27ad350a5bd8fc982b3b6bf"
+  },
+  {
+    "phase": "phase01",
+    "archive": "Social_Intelligence_Phase_01_Functional_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/test_functional_audit.py",
+    "path": "originals/phase01/evidence/test_functional_audit.py",
+    "bytes": 15276,
+    "sha256": "a71b80aeadc9c6587e1c6e32ac9277dc677a8dc674a694208ebcbdc2b71400c1"
+  },
+  {
+    "phase": "phase04",
+    "archive": "Social_Intelligence_Adversarial_Audit_Phase_04.zip",
+    "archive_member": "audits/social-intelligence/FINDINGS.md",
+    "path": "originals/phase04/FINDINGS.md",
+    "bytes": 4813,
+    "sha256": "ff1af7b978a399c170e8b8cd253c1bd809ad6abb25dc33f90c2a5b72cf460066"
+  },
+  {
+    "phase": "phase04",
+    "archive": "Social_Intelligence_Adversarial_Audit_Phase_04.zip",
+    "archive_member": "audits/social-intelligence/04_ADVERSARIAL_AUDIT.md",
+    "path": "originals/phase04/04_ADVERSARIAL_AUDIT.md",
+    "bytes": 30832,
+    "sha256": "d2199f688bd3687509c0ca0178422b82b979e3af5b52e476f883cde0fb522fc4"
+  },
+  {
+    "phase": "phase04",
+    "archive": "Social_Intelligence_Adversarial_Audit_Phase_04.zip",
+    "archive_member": "audits/social-intelligence/evidence/04_microprobes_output.txt",
+    "path": "originals/phase04/evidence/04_microprobes_output.txt",
+    "bytes": 632,
+    "sha256": "935ce6e8d632e092758be96b2932df67d75a98b289dd4dea6d14b265c8805c13"
+  },
+  {
+    "phase": "phase04",
+    "archive": "Social_Intelligence_Adversarial_Audit_Phase_04.zip",
+    "archive_member": "audits/social-intelligence/evidence/04_microprobes.py",
+    "path": "originals/phase04/evidence/04_microprobes.py",
+    "bytes": 4467,
+    "sha256": "f35c247414a4d41e2f93e9c51a494ade77838ca940a89e5bd5e566e90fc26006"
+  },
+  {
+    "phase": "phase05",
+    "archive": "Social_Intelligence_Phase_05_Operations_UX_Audit.zip",
+    "archive_member": "audits/social-intelligence/05_OPERATIONS_AND_UX.md",
+    "path": "originals/phase05/05_OPERATIONS_AND_UX.md",
+    "bytes": 29341,
+    "sha256": "a9da21745e894474388d52b38694d1bdef2c44ebc4a0d3ba3253ad44a7b0ec06"
+  },
+  {
+    "phase": "phase05",
+    "archive": "Social_Intelligence_Phase_05_Operations_UX_Audit.zip",
+    "archive_member": "audits/social-intelligence/FINDINGS.md",
+    "path": "originals/phase05/FINDINGS.md",
+    "bytes": 34720,
+    "sha256": "eb070aa6b82023e2410f4c49287d98e6b9621759104b70de051925d02ab3b492"
+  },
+  {
+    "phase": "phase05",
+    "archive": "Social_Intelligence_Phase_05_Operations_UX_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/phase05_cost_model.py",
+    "path": "originals/phase05/evidence/phase05_cost_model.py",
+    "bytes": 1436,
+    "sha256": "eaa7b9092e7b6a0183addc03d37ecddc043d2d91baf4af032c6096dfb2c4e501"
+  },
+  {
+    "phase": "phase05",
+    "archive": "Social_Intelligence_Phase_05_Operations_UX_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/phase05_cost_model.json",
+    "path": "originals/phase05/evidence/phase05_cost_model.json",
+    "bytes": 794,
+    "sha256": "fded0fa0491ab97a6f3c5d28f3d63e11352b9740435b9608f098ff7a71fe44ad"
+  },
+  {
+    "phase": "phase05",
+    "archive": "Social_Intelligence_Phase_05_Operations_UX_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/phase05_scenario_assessment.json",
+    "path": "originals/phase05/evidence/phase05_scenario_assessment.json",
+    "bytes": 1514,
+    "sha256": "87cf8fb75512def0f9126598a1dd2d9f89c52dffe13dceb3c1087de6aac74c9c"
+  },
+  {
+    "phase": "phase05",
+    "archive": "Social_Intelligence_Phase_05_Operations_UX_Audit.zip",
+    "archive_member": "audits/social-intelligence/evidence/phase05_manifest.json",
+    "path": "originals/phase05/evidence/phase05_manifest.json",
+    "bytes": 706,
+    "sha256": "adc4643bdd8116c6c97452cb3b15b4f7e80128608be6d0620ac34088f17488f4"
+  }
+]

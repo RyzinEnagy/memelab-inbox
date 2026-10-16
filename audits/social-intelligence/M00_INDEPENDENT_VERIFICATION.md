@@ -1,5 +1,8 @@
 # Independent M00 verification — BLOCKED
 
+> **Current archive follow-up, 2026-10-15:** four original ZIPs and 50 member files recovered; 43 embedded hashes and all 105 original requirement texts verified. Original Phase 04/05 bytes are now available. OPS-001–010 are primary labels in the recovered Phase 05 findings, correcting the earlier secondary-only attribution. Phase 03 A–E executable inputs/scripts/raw outputs remain absent; **M00 BLOCKED, M01 unauthorized**. See [current checklist and next steps](M00_ARCHIVE_RECOVERY_VERIFICATION.md). Earlier dated statements below describe their historical review state.
+
+
 **Review date:** 2026-10-14 America/New_York; executions on 2026-10-15 UTC. **Package:** M00/R-00 evidence recovery only. **Decision:** **BLOCKED — acceptance withheld. M01 must not start.** No application defect is resolved by this review.
 
 This review was conducted in a fresh Codex chat separate from the recovery implementation. Source passages and code were read directly, crosswalk mappings were selected independently, new counterexamples were designed against the pinned implementation, and existing suites ran in disposable clean checkouts. This is an AI-session review record, not human approval or a cryptographically authenticated reviewer signature. Supporting evidence is incomplete, so no independent approval is certified.

@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "description": "synthetic arithmetic, no API or engine runtime",
+  "scenarios": [
+    {
+      "posts_day": 100,
+      "posts_month": 3000,
+      "charged_x_reads": 1500,
+      "llm_calls": 900,
+      "x_usd": "7.50",
+      "llm_usd": "0.27",
+      "helius_usd": "0.00",
+      "total_usd": "7.77"
+    },
+    {
+      "posts_day": 1000,
+      "posts_month": 30000,
+      "charged_x_reads": 15000,
+      "llm_calls": 9000,
+      "x_usd": "75.00",
+      "llm_usd": "2.75",
+      "helius_usd": "0.00",
+      "total_usd": "77.75"
+    },
+    {
+      "posts_day": 10000,
+      "posts_month": 300000,
+      "charged_x_reads": 150000,
+      "llm_calls": 90000,
+      "x_usd": "750.00",
+      "llm_usd": "27.45",
+      "helius_usd": "49.00",
+      "total_usd": "826.45"
+    }
+  ]
+}

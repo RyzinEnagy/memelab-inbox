@@ -1,5 +1,8 @@
 # Remediation M00 — evidence recovery and finding reconciliation
 
+> **Current archive follow-up, 2026-10-15:** four original ZIPs and 50 member files recovered; 43 embedded hashes and all 105 original requirement texts verified. Original Phase 04/05 bytes are now available. OPS-001–010 are primary labels in the recovered Phase 05 findings, correcting the earlier secondary-only attribution. Phase 03 A–E executable inputs/scripts/raw outputs remain absent; **M00 BLOCKED, M01 unauthorized**. See [current checklist and next steps](M00_ARCHIVE_RECOVERY_VERIFICATION.md). Earlier dated statements below describe their historical review state.
+
+
 > **Superseding acceptance record, 2026-10-14 ET:** independent verification completed and acceptance withheld: **BLOCKED**, with original bytes/probe archive gaps. The recovery history below is retained. See `M00_INDEPENDENT_VERIFICATION.md`; no M01 authorization.
 
 **Scope:** M00 / R-00 Restore audit authority; evidence-only. **Current state:** **8/8 PRIMARY AUDIT INPUTS RECOVERED, NOT ACCEPTED (INDEPENDENT VERIFICATION PENDING)**. **Pinned application baseline:** `698f73b854567ce60b56ce275b5ab6822a9d5f60`. **Audit publication ancestor:** `b4c4216b9391227be5fdfe7cfe20b60e32d9e8f6`. **Date:** 2026-10-13.

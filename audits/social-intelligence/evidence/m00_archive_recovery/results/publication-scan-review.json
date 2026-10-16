@@ -1,0 +1,18 @@
+{
+  "scan_scope": "Existing tracked publication tree and staged originals; archive verifier separately inspected all 50 decompressed members.",
+  "credential_findings": 0,
+  "content_guard_violations": 0,
+  "execution_keyword_matches": 331,
+  "new_matches": 56,
+  "matches_by_path": {
+    "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md": 55,
+    "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md": 55,
+    "audits/social-intelligence/evidence/independent_m00/results/verification-release.md": 165,
+    "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md": 55,
+    "audits/social-intelligence/originals/phase00/evidence/original-staged-prompts.md": 1
+  },
+  "disposition": "Manually reviewed: 330 matches echo scanner rule names in saved scan Markdown reports, including 55 in the newly recovered original Phase 00 release report; one original prompt line forbids exposing signing secrets. No executable signing/trading function or credential value found. Pattern rules unchanged; matches retained, not silently suppressed.",
+  "limits": "Pattern and structured-content scans do not prove all natural-language text private-content-free. Reviewed members are historical prompts/docs/inventories, invented probes, modeled scenarios and execution logs, not a private social corpus. Machine-specific paths in original archives retained for byte fidelity. No full release CLI or full suite rerun in this archive-only follow-up; prior complete runs remain separate evidence.",
+  "baseline_review_note": "Previous first-review scan recorded 110 matches before its own 165-match report was added. Current 331 includes that saved report plus 56 newly recovered prose matches.",
+  "whitespace_review": "Staged diff whitespace check reports trailing spaces in immutable original Markdown/logs and verbatim new pytest log. Preserved intentionally for byte/output fidelity. Authored documents/scripts checked separately; no whitespace normalization of originals."
+}

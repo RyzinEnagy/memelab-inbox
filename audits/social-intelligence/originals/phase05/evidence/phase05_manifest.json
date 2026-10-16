@@ -1,0 +1,22 @@
+{
+  "05_OPERATIONS_AND_UX.md": {
+    "bytes": 29341,
+    "sha256": "a9da21745e894474388d52b38694d1bdef2c44ebc4a0d3ba3253ad44a7b0ec06"
+  },
+  "FINDINGS.md": {
+    "bytes": 34720,
+    "sha256": "eb070aa6b82023e2410f4c49287d98e6b9621759104b70de051925d02ab3b492"
+  },
+  "evidence/phase05_cost_model.py": {
+    "bytes": 1436,
+    "sha256": "eaa7b9092e7b6a0183addc03d37ecddc043d2d91baf4af032c6096dfb2c4e501"
+  },
+  "evidence/phase05_cost_model.json": {
+    "bytes": 794,
+    "sha256": "fded0fa0491ab97a6f3c5d28f3d63e11352b9740435b9608f098ff7a71fe44ad"
+  },
+  "evidence/phase05_scenario_assessment.json": {
+    "bytes": 1514,
+    "sha256": "87cf8fb75512def0f9126598a1dd2d9f89c52dffe13dceb3c1087de6aac74c9c"
+  }
+}

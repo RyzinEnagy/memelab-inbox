@@ -1,0 +1,100 @@
+3f27fc788f9ab88286b8041355e5445fdfdf012c 2026-10-13T11:51:48Z social-intel phase 21: record push in handoff
+eda318cffd6976249bde4aaafe1fea700e337b63 2026-10-13T11:36:35Z social-intel phase 21: handoff
+8f7609f9b205b7abf9bb15e6b0ebf196365efb6d 2026-10-13T11:31:03Z social-intel phase 21: optional YouTube metadata and authorized transcript snippets: YouTube Data API v3 adapter (channels by id or handle, uploads playlist, videos.list; no statistics, no search), transcript snippets only through owner captions.download or a licensed file with recorded permission (no downloads, scraping or machine translation), snippet items with caption offsets and timepoint links, publication time never taken as spoken time and no transcript before a broadcast ends, drift, delayed-archive and language checks, quota units per run and per Pacific Time day with quotaExceeded stop, 30-day refresh-or-erase, inbound/3 with no text stored and in-memory hand-off to claim extraction; fixtures, tests, release e2e stages; decisions D-141 to D-148
+698f73b854567ce60b56ce275b5ab6822a9d5f60 2026-10-13T06:20:23-04:00 state: daily scan 2026-10-13
+2fc3266922498219fe6666e8931dfb6943134c4c 2026-10-12T23:45:48-04:00 social-intel phase 20: record push in handoff
+144677fe513c3429ae5f12c9156bc180044107c8 2026-10-12T23:30:25-04:00 social-intel phase 20: handoff
+f34d6e2dbef8e24bb86b184857b1672831429c0b 2026-10-12T23:25:07-04:00 social-intel phase 20: optional Discord community monitoring: bot adapter on the official API (REST polling with per-channel cursor and recheck; gateway protocol state machine and adapter proved on recorded frames), consent per server, no invite rights, no user tokens or DMs, @everyone-visible channels only, documented permission computation, message content intent checked and reported by name, edits, deletions and forwards, message-link provenance, rate-limit and access-error handling, deletion purge and user erasure shared with Reddit, inbound/3 with no text stored, in-memory text hand-off to claim extraction; fixtures, tests, release e2e stages; decisions D-132 to D-140
+f028ece727a11a0cb3ed582a51bb2f295001298d 2026-10-12T23:00:45-04:00 social-intel phase 19: record push in handoff
+6a6762f0d7ce496c45628fb8a8a3add32f99944d 2026-10-12T23:00:01-04:00 social-intel phase 19: handoff
+76eac304a17e8d665f0d85774b1875212a536dbe 2026-10-12T23:00:00-04:00 social-intel phase 19: optional Reddit and Farcaster sources: Reddit Data API adapter (approved communities, submissions and comments, canonical ids, parent and thread relations, edits, deleted and removed states, rate limits, cross-post provenance, deletion purge, approval and non-commercial gates) and Farcaster Snapchain HTTP adapter (fids, channels, replies, quotes, recasts, username-only identity, metered-hub key and cost gates), both on inbound/3 with no text stored; in-memory text hand-off to claim extraction; health, cost and sources commands; fixtures, tests and release e2e stages; decisions D-125 to D-131
+f084b6033051910face9376b767ed426c3ba0f79 2026-10-12T22:10:02-04:00 Merge social and trader intelligence, phases 00 to 18 (#1)
+629d4026c72fe6cd5d19f7b09580b437198b221d 2026-10-12T22:03:40-04:00 social-intel phase 18: record push and pull request in handoff and checklist
+683f21ba1a68a5004c93a7a9ab0cafb15c22e668 2026-10-12T21:48:22-04:00 social-intel phase 18: release record and checklist (PASS, BLOCKED or NOT IMPLEMENTED per requirement with proof), generated end-to-end run and audit on e8b6688, handoff, source coverage row
+8f08d282491b5c87ceaba25d8baf303e513cfe8d 2026-10-12T21:42:12-04:00 social-intel phase 18: release tooling and operator docs: clean-clone end-to-end run of every stage with the network blocked (tools/release_e2e.py), read-only release audit for credentials, key material, trade execution, content guard on this branch and main, migrations and static checks (tools/release_audit.py), tests, plain-language README, architecture and operations runbook, fixture and real-data example reports, decisions D-119 to D-124
+6efbc73243d35ca0426f8fbb0913483830ea1cc9 2026-10-12T21:18:19-04:00 social-intel phase 17: handoff, commit and push route
+a03e9e732ab36780c83022d70de2d1f96acd0721 2026-10-12T21:18:19-04:00 social-intel phase 17: causal historical replay with audited cutoff clock, four strategies (individual, independent convergence, social plus linked wallet, raw mention or trending baseline) against matched controls, chronological train/validation/test splits with embargo and train-only tuning behind a label gate, adjusted intervals and honest verdicts, truncation-invariance leakage check, synthetic fixture replay and read-only real-history adapters (real result: insufficient data)
+b605f8b4bffaa16d97a5ad70039c6731f05479b6 2026-10-12T20:32:11-04:00 social-intel phase 16: record commit and push route in handoff
+8c31e53497052065e898749d712abb4107aebabe 2026-10-12T20:30:29-04:00 social-intel phase 16: immutable signal ledger and forward evaluation with append-only hash-chained private ledger, look-ahead-safe 1h/6h/24h/72h/7d outcomes (pending, measured, missing, non-executable, invalidated), displayed vs modeled vs quoted returns, coverage report and social evaluate CLI
+283fe897b31cb0d4e766148b93eeba82063d4206 2026-10-12T20:04:14-04:00 social-intel phase 15: record commit and push route in handoff
+098d2be4c3bd00d48d95a0390b2db807ff894142 2026-10-12T20:02:36-04:00 social-intel phase 15: research-only alerts over the feed with dedupe, cooldown, daily cap, quiet hours, cost ceilings, dry run by default, file sink, optional Telegram or email, delivery ledger and disabled DST-safe schedule templates
+67b5f8113b7ac9932432121de8ef602272b99b0f 2026-10-12T19:36:01-04:00 social-intel phase 14: record commit and push route in handoff
+e78aa85801eadac0aacf2f1f8d8694d6075ce763 2026-10-12T19:34:39-04:00 social-intel phase 14: readable, cited intelligence feed (morning brief, trader digest, filterable feed) with stable JSON, safe rendering and a watermarked fixture demo
+fb23c391cff62b326cd61d684aca1bb899459260 2026-10-12T19:08:41-04:00 social-intel phase 13: record commit and push route in handoff
+a489825b5081b81e990509fb72b14c82f187778e 2026-10-12T19:08:17-04:00 social-intel phase 13: social findings as research candidates beside the scout and catalyst (three lanes, opt-in policy, explicit no-op)
+4c8d69f34fef5f5b4442010cd82e0e26f43c6a07 2026-10-12T18:34:30-04:00 social-intel phase 12: record commit and push route in handoff
+821a66daebe524a0e0a440bf569742c400072d4f 2026-10-12T18:34:06-04:00 social-intel phase 12: chronology of social claims against on-chain activity (intervals per clock, observed patterns, normalized flags)
+9dea0106f18007b1ec621f6b01568fa0c8772615 2026-10-12T17:51:24-04:00 social-intel phase 11: record commit and push route in handoff
+5aa2198cd0fe2a28ab376fddac8607c582c775a3 2026-10-12T17:51:22-04:00 social-intel phase 11: information alpha score (event study against matched tokens, shrinkage, abstention, tiers)
+980a4173d82c9c46a791809b0329bdf2974877f6 2026-10-12T17:11:51-04:00 social-intel phase 10: record push in handoff
+bcab354b0dfaf505a6c870943d0187e9bda002b7 2026-10-12T17:10:48-04:00 social-intel phase 10: wallet-level performance accounting with reconciliation and a score gate
+27b8aba1ab55cf44df9a1c98a2d426b8f5e87b6c 2026-10-12T16:26:24-04:00 social-intel phase 09: handoff explains how to get the Helius key
+00f87259e2b41102f517ce2494a9cf51861e4145 2026-10-12T16:23:54-04:00 social-intel phase 09: Helius key from env or gitignored config, redacted in saved plans
+5dca8b0a581d9be5f3945e05dd5a654f4209f6f9 2026-10-12T16:17:45-04:00 social-intel phase 09: record commit and push route in handoff
+164cbe9cc3010deb3eecbefcbf2cbfd1c3326913 2026-10-12T16:17:23-04:00 social-intel phase 09: wallet attribution assertions and wallet activity
+49d7e4106c2a0d7246d883b747ce9a3e54ee2568 2026-10-12T15:08:52-04:00 social-intel phase 08: record commit and push route in handoff
+adcd2f51f57b05215e634e1c3fab0cbf098415f8 2026-10-12T15:07:39-04:00 social-intel phase 08: source and trader registry
+a689d1be55eee1d50c52f5bec7f15fca7fd5ca83 2026-10-12T14:32:06-04:00 social-intel phase 07: handoff records the push
+1271ce8bab1ac1260ecc29059c1940298aa08595 2026-10-12T14:31:45-04:00 social-intel phase 07: handoff records the push
+8319baf69b296cedfabb9e028025cf079ff4ffd1 2026-10-12T14:31:45-04:00 social-intel phase 07: narrative clustering, originators, amplifiers and independent corroboration
+1eaca1b9aad9bf3e02499c69dec987fdf82e166d 2026-10-12T13:45:04-04:00 social-intel phase 06: handoff records the push
+e3c19e58ea39084faa8a87547b5ad6c09e95b157 2026-10-12T13:44:00-04:00 social-intel phase 06: handoff
+8f024443dff6a2fa678b405d86488f992b194fdd 2026-10-12T13:44:00-04:00 social-intel phase 06: evidence-grounded structured claim extraction
+76c105be6dca8c96aeb48e43073cc221d87cacad 2026-10-12T10:58:17-04:00 social-intel phase 05: move uploaded files to their real paths
+f10b40636f84d0e55b10d406ddc3b2fbce2d816b 2026-10-12T10:40:33-04:00 Add files via upload
+1576dda44505b1fbfa37d1084691f4fbb158688f 2026-10-12T09:58:44-04:00 Add files via upload
+f69a04478ab2d887259a8b9a6689d26a8f1ae1aa 2026-10-12T06:18:37-04:00 state export 2026-10-12 daily scan
+054fb8a9a708b2f42e4f7616c1944b4f6b68cb90 2026-10-11T08:38:28-04:00 Update HANDOFF.md
+0672cb33ea3dbd02dad8a931530a35d4c0a2ac82 2026-10-11T08:34:38-04:00 Delete HANDOFF.md
+e739182a071bec2492a039f6a77b9c2c898512ce 2026-10-11T08:33:40-04:00 Add files via upload
+21ba391a212b9bb6e07dfaa0e0e5b04af2616853 2026-10-11T08:30:50-04:00 Add files via upload
+729fbf4bda63203ad47a871f84deebb5f66b59ca 2026-10-11T06:17:59-04:00 state export 2026-10-11 daily multichain scan
+71fddc4b394aa6d5255283644844eec02b0fefb9 2026-10-10T20:24:32-04:00 Add files via upload
+94046c7ea1e2e2985e2bad1524cbb90fb5163d98 2026-10-10T20:20:41-04:00 Add files via upload
+b21a854ac26a3b3cae2972dc3662876e2db82b15 2026-10-10T20:16:42-04:00 Add files via upload
+787fe33925bacdf83d72eba785740908028296ee 2026-10-10T20:04:32-04:00 state refresh 2026-10-10 evening watchlist run
+6b0a054a9b38844aec08e7acde9340ddbe014731 2026-10-10T18:59:20-04:00 watchlist refresh 2026-10-10 18:59 ET
+a3afb5a97a4099a8a8556c1033b8029c182302c7 2026-10-10T18:13:09-04:00 state export 2026-10-10 18:12 ET watchlist refresh
+a7674a15f2470639db4ec3b7bdbb69420013d3a1 2026-10-10T16:04:03-04:00 state refresh 2026-10-10 20:03 UTC (watchlist multi-chain)
+030621f2c5ebc6932f21a0b458aa54a4f0184f4f 2026-10-10T15:35:47-04:00 state export 2026-10-10 1926 UTC watchlist refresh
+34830fe94a443025c0c712edf9f25976405169e8 2026-10-10T15:09:16-04:00 social-intel phase 01: HANDOFF rewritten for Phase 01
+766da1e488db8aca7aacafc3a22190909cf4198a 2026-10-10T15:08:33-04:00 social-intel phase 01: add SCHEMA_01.md
+73a64112208dfff27305c854a7b8317a731a27fe 2026-10-10T15:07:33-04:00 social-intel phase 01: ROADMAP records Prompt 01 and carry-over C-1
+829c1b411b7c405157f3e6738c0ba3f467c1270f 2026-10-10T15:06:53-04:00 social-intel phase 01: DECISIONS adds D-011 to D-014
+371857b4b597a1c9f43be30db2af777cc358a005 2026-10-10T15:05:01-04:00 social-intel phase 01: fix duplicated db.py content
+5ba9cd60e72062d27db8bab5f8eed016ea21bebe 2026-10-10T15:04:01-04:00 social-intel phase 01: init_db applies the social migration
+5a311a11fc9fb7c1c5dd12c16a15b92911e11966 2026-10-10T15:03:26-04:00 social-intel phase 01: fix duplicated .gitignore lines
+04830899f7bf0368e46a618b5e2728ea061ab23e 2026-10-10T15:02:45-04:00 social-intel phase 01: gitignore data/private/
+c797b6dc447dfc4a945a51f910879c04049805f6 2026-10-10T15:01:48-04:00 social-intel phase 01: add tests/fixtures/social/roundtrip_01.json
+71330ac7c412c102dc0e7dda6ac12585289958dd 2026-10-10T15:01:19-04:00 social-intel phase 01: add tests/test_social_store.py
+22b7ad22e1dca0d0d04875b57c3572ba747c7949 2026-10-10T14:59:56-04:00 social-intel phase 01: add memelab/social/store.py
+c471d4f36375efdea8ef39c399a77e535df37ca3 2026-10-10T14:58:29-04:00 social-intel phase 01: add memelab/social/schema.py
+4d664ab8c71aa9e49a7d2e5611b2bdf1c543d51b 2026-10-10T14:56:15-04:00 social-intel phase 01: add memelab/social/private.py
+52be4cb9361c32454ed618e247965c279df1f662 2026-10-10T14:55:13-04:00 social-intel phase 01: add memelab/social/__init__.py
+d0d5c7e4b2027892611243832c5c0994dca4aee7 2026-10-10T14:15:04-04:00 state: watchlist refresh 1010 1815
+d0a0c19d1b74f8649b42999be1bf4bc30b091b75 2026-10-10T14:00:33-04:00 social-intel phase 00: ROADMAP gates follow D-009 and D-010
+bf4421862be64e5b0bb7ab5b2a02def15349a5ef 2026-10-10T13:55:54-04:00 social-intel phase 00: DECISIONS adds D-009 and D-010
+e20105e2d41a8f7465b6a2f2d6167eab8275c211 2026-10-10T13:52:03-04:00 social-intel phase 00: HANDOFF records D-009 and D-010
+5d74382cedb507dfd207585263b4fee19ee8d833 2026-10-10T13:47:35-04:00 social-intel phase 00: add AUDIT_00.md
+600daaa12b832af221df4c0fb664858f02173266 2026-10-10T13:45:33-04:00 social-intel phase 00: add ROADMAP.md
+4e4298445d25d39382423835eec519e4cdbc75a3 2026-10-10T13:40:33-04:00 social-intel phase 00: add DECISIONS.md
+c964cbbfa0aeac6f1c7def88034a47e810754a10 2026-10-10T13:39:29-04:00 social-intel phase 00: add EXECUTION.md
+e5dc3e2d4c4f3ba666503a5be1b94904381524ad 2026-10-10T13:38:23-04:00 social-intel phase 00: add HANDOFF.md
+48fe2900fa2e8643e592365a558fa0d469551e41 2026-10-10T13:10:28-04:00 state: watchlist refresh 2026-10-10 pm
+02038f6fe13c36d82766f1dc65a0b6b3a140a43e 2026-10-10T12:05:07-04:00 state refresh 2026-10-10 midday watchlist run
+b9ae8545809ddc82ffed67bd7ac01986e79381c5 2026-10-10T11:12:35-04:00 watchlist refresh state 2026-10-10 11:15 ET
+73929941d771e8558c7d0cf608a872d224ec0bb6 2026-10-10T09:05:19-04:00 watchlist refresh state 2026-10-10 09:04 ET
+87101f866183bb773665e2f08fc1b60455ac771f 2026-10-10T08:07:16-04:00 state export 2026-10-10 12:10 UTC watchlist refresh
+0ac1857fb8a7dd9235846f95eb29a789efa0f37d 2026-10-10T07:07:51-04:00 state export 2026-10-10 am watchlist refresh
+9e8aa761ed5e036d3a816292eac9ac1baefe4462 2026-10-10T06:31:45-04:00 state export 2026-10-10 10:31 UTC daily multichain scan
+d079c7b1f67c7c926ce101c7a4742f998359a533 2026-10-10T06:21:28-04:00 watchlist refresh 2026-10-10 am (multi-chain)
+c5474a3d375723f41ece7a8bf60bda25b0a15633 2026-10-10T05:15:55-04:00 watchlist refresh 2026-10-10 am
+3728c2ff4c5bb9612d916705cac4240e8bc87e85 2026-10-10T03:08:49-04:00 state refresh 2026-10-10 07:10 UTC (watchlist run)
+805226bfa9b79b2de03d71a9720bfefc7662194d 2026-10-10T02:29:41-04:00 state refresh 2026-10-10 06:29 UTC
+f2b36786ad66e91ceb7d0ac87d2ea98db6ab069c 2026-10-10T01:23:26-04:00 state export 2026-10-10 05:25 watchlist refresh
+34d196177bacc8990c59e3fef4e71d96c9187870 2026-10-10T00:06:14-04:00 state export 2026-10-10 04:05 UTC (watchlist refresh)
+13744a9124f3f52a702f23eaa89fa54f51279325 2026-10-09T22:04:34-04:00 state refresh 2026-10-10 am (multi-chain watchlist + catalyst)
+45cf3fb83a8552cba58b17c8453704d2966b22d8 2026-10-09T21:34:29-04:00 state refresh 2026-10-09 21:36 ET
+034c6e546eca31e72d2b59178b59fdd9b27da6a3 2026-10-09T20:32:45-04:00 state export 2026-10-10 00:32 UTC (watchlist refresh)
+a762ef7ae87e0f4fd5862526395081e618d7f1f4 2026-10-09T19:15:42-04:00 watchlist refresh state 2026-10-09 23:15 UTC
+9df442d84450a87be073bb1e6f9357f9aac2ecd7 2026-10-09T18:00:08-04:00 watchlist refresh state 2026-10-09 21:59 UTC

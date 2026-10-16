@@ -1,0 +1,3469 @@
+{
+  "memelab/social/__init__.py": [],
+  "memelab/social/_keccak.py": [
+    {
+      "function": "_rol",
+      "line": 19
+    },
+    {
+      "function": "_f",
+      "line": 24
+    },
+    {
+      "function": "keccak256",
+      "line": 41
+    },
+    {
+      "function": "eip55",
+      "line": 58
+    }
+  ],
+  "memelab/social/alerts_cli.py": [
+    {
+      "function": "_policy",
+      "line": 27
+    },
+    {
+      "function": "_feed_from_fixture",
+      "line": 31
+    },
+    {
+      "function": "_feed",
+      "line": 37
+    },
+    {
+      "function": "_mode",
+      "line": 51
+    },
+    {
+      "function": "cmd_run",
+      "line": 61
+    },
+    {
+      "function": "AC_time",
+      "line": 92
+    },
+    {
+      "function": "cmd_status",
+      "line": 97
+    },
+    {
+      "function": "cmd_reset",
+      "line": 107
+    },
+    {
+      "function": "cmd_schedule",
+      "line": 113
+    },
+    {
+      "function": "preflight",
+      "line": 126
+    },
+    {
+      "function": "cmd_preflight",
+      "line": 149
+    },
+    {
+      "function": "demo_markdown",
+      "line": 160
+    },
+    {
+      "function": "cmd_demo",
+      "line": 194
+    },
+    {
+      "function": "add_parser",
+      "line": 205
+    }
+  ],
+  "memelab/social/alerts_core.py": [
+    {
+      "function": "AlertError",
+      "line": 74
+    },
+    {
+      "function": "_sha",
+      "line": 78
+    },
+    {
+      "function": "_merge",
+      "line": 82
+    },
+    {
+      "function": "_hhmm",
+      "line": 94
+    },
+    {
+      "function": "zone",
+      "line": 102
+    },
+    {
+      "function": "make_policy",
+      "line": 109
+    },
+    {
+      "function": "local_day",
+      "line": 142
+    },
+    {
+      "function": "local_text",
+      "line": 146
+    },
+    {
+      "function": "in_quiet_hours",
+      "line": 154
+    },
+    {
+      "function": "_label",
+      "line": 165
+    },
+    {
+      "function": "_reputable",
+      "line": 171
+    },
+    {
+      "function": "_base",
+      "line": 185
+    },
+    {
+      "function": "_cand",
+      "line": 200
+    },
+    {
+      "function": "_median",
+      "line": 207
+    },
+    {
+      "function": "candidates",
+      "line": 213
+    },
+    {
+      "function": "render_text",
+      "line": 369
+    }
+  ],
+  "memelab/social/alerts_engine.py": [
+    {
+      "function": "default_state_path",
+      "line": 73
+    },
+    {
+      "function": "default_outbox",
+      "line": 81
+    },
+    {
+      "function": "_tracked_paths",
+      "line": 86
+    },
+    {
+      "function": "connect",
+      "line": 91
+    },
+    {
+      "function": "claim_slot",
+      "line": 106
+    },
+    {
+      "function": "finish_slot",
+      "line": 121
+    },
+    {
+      "function": "_baselines",
+      "line": 128
+    },
+    {
+      "function": "_record_baselines",
+      "line": 137
+    },
+    {
+      "function": "_in_cooldown",
+      "line": 148
+    },
+    {
+      "function": "reset_cooldown",
+      "line": 156
+    },
+    {
+      "function": "_evaluate",
+      "line": 163
+    },
+    {
+      "function": "_spent_today",
+      "line": 209
+    },
+    {
+      "function": "_ledger",
+      "line": 218
+    },
+    {
+      "function": "_deliver_one",
+      "line": 222
+    },
+    {
+      "function": "AC_dest",
+      "line": 289
+    },
+    {
+      "function": "deliver",
+      "line": 294
+    },
+    {
+      "function": "purge",
+      "line": 316
+    },
+    {
+      "function": "run",
+      "line": 328
+    },
+    {
+      "function": "state_view",
+      "line": 379
+    },
+    {
+      "function": "_fmt_ts",
+      "line": 398
+    },
+    {
+      "function": "render_state",
+      "line": 402
+    },
+    {
+      "function": "render_run",
+      "line": 427
+    }
+  ],
+  "memelab/social/alerts_schedule.py": [
+    {
+      "function": "_wall",
+      "line": 38
+    },
+    {
+      "function": "validate",
+      "line": 55
+    },
+    {
+      "function": "slot_key",
+      "line": 67
+    },
+    {
+      "function": "next_runs",
+      "line": 77
+    },
+    {
+      "function": "due_slot",
+      "line": 97
+    }
+  ],
+  "memelab/social/alerts_transport.py": [
+    {
+      "function": "ConfigError",
+      "line": 47
+    },
+    {
+      "function": "redact",
+      "line": 51
+    },
+    {
+      "function": "dest_ref",
+      "line": 63
+    },
+    {
+      "function": "_scan_secrets",
+      "line": 68
+    },
+    {
+      "function": "default_config_path",
+      "line": 80
+    },
+    {
+      "function": "load_config",
+      "line": 88
+    },
+    {
+      "function": "Result",
+      "line": 115
+    },
+    {
+      "function": "FileSink",
+      "line": 122
+    },
+    {
+      "function": "_urllib_post",
+      "line": 142
+    },
+    {
+      "function": "TelegramTransport",
+      "line": 156
+    },
+    {
+      "function": "EmailTransport",
+      "line": 185
+    },
+    {
+      "function": "build_transports",
+      "line": 222
+    }
+  ],
+  "memelab/social/alpha_cli.py": [
+    {
+      "function": "_out",
+      "line": 24
+    },
+    {
+      "function": "_policy",
+      "line": 28
+    },
+    {
+      "function": "_tracked",
+      "line": 35
+    },
+    {
+      "function": "_is_fixture_file",
+      "line": 39
+    },
+    {
+      "function": "cmd_alpha",
+      "line": 46
+    },
+    {
+      "function": "_dispatch",
+      "line": 85
+    },
+    {
+      "function": "add_parser",
+      "line": 121
+    }
+  ],
+  "memelab/social/alpha_core.py": [
+    {
+      "function": "_num",
+      "line": 85
+    },
+    {
+      "function": "r10",
+      "line": 89
+    },
+    {
+      "function": "canon",
+      "line": 93
+    },
+    {
+      "function": "sha",
+      "line": 97
+    },
+    {
+      "function": "quantile",
+      "line": 101
+    },
+    {
+      "function": "median_ci",
+      "line": 110
+    },
+    {
+      "function": "wilson",
+      "line": 125
+    },
+    {
+      "function": "prep_series",
+      "line": 137
+    },
+    {
+      "function": "_candle_at",
+      "line": 182
+    },
+    {
+      "function": "_cost",
+      "line": 196
+    },
+    {
+      "function": "entry_for",
+      "line": 205
+    },
+    {
+      "function": "exit_for",
+      "line": 230
+    },
+    {
+      "function": "net_return",
+      "line": 256
+    },
+    {
+      "function": "path_stats",
+      "line": 264
+    },
+    {
+      "function": "trailing_volume",
+      "line": 281
+    },
+    {
+      "function": "_eligibility",
+      "line": 287
+    },
+    {
+      "function": "_tkey",
+      "line": 354
+    },
+    {
+      "function": "_baseline",
+      "line": 358
+    },
+    {
+      "function": "_author_context",
+      "line": 379
+    },
+    {
+      "function": "_evaluate_call",
+      "line": 398
+    },
+    {
+      "function": "_count",
+      "line": 504
+    },
+    {
+      "function": "_summarise",
+      "line": 511
+    },
+    {
+      "function": "_score",
+      "line": 565
+    },
+    {
+      "function": "rank",
+      "line": 635
+    },
+    {
+      "function": "evaluate",
+      "line": 650
+    },
+    {
+      "function": "analyze",
+      "line": 685
+    },
+    {
+      "function": "_pct",
+      "line": 697
+    },
+    {
+      "function": "report",
+      "line": 701
+    }
+  ],
+  "memelab/social/alpha_store.py": [
+    {
+      "function": "_now",
+      "line": 16
+    },
+    {
+      "function": "put_series",
+      "line": 20
+    },
+    {
+      "function": "load_series",
+      "line": 40
+    },
+    {
+      "function": "build_input",
+      "line": 55
+    },
+    {
+      "function": "save_run",
+      "line": 98
+    },
+    {
+      "function": "load_run",
+      "line": 116
+    },
+    {
+      "function": "verify_run",
+      "line": 123
+    },
+    {
+      "function": "latest_result",
+      "line": 131
+    },
+    {
+      "function": "status",
+      "line": 136
+    }
+  ],
+  "memelab/social/bridge_adapter.py": [
+    {
+      "function": "_status",
+      "line": 29
+    },
+    {
+      "function": "BridgeInboxAdapter",
+      "line": 47
+    }
+  ],
+  "memelab/social/chrono_cli.py": [
+    {
+      "function": "_out",
+      "line": 24
+    },
+    {
+      "function": "_load",
+      "line": 28
+    },
+    {
+      "function": "_tracked",
+      "line": 35
+    },
+    {
+      "function": "_token",
+      "line": 39
+    },
+    {
+      "function": "cmd_chrono",
+      "line": 46
+    },
+    {
+      "function": "_dispatch",
+      "line": 90
+    },
+    {
+      "function": "add_parser",
+      "line": 121
+    }
+  ],
+  "memelab/social/chrono_core.py": [
+    {
+      "function": "iso",
+      "line": 71
+    },
+    {
+      "function": "_num",
+      "line": 77
+    },
+    {
+      "function": "ident",
+      "line": 86
+    },
+    {
+      "function": "short",
+      "line": 96
+    },
+    {
+      "function": "_amt",
+      "line": 100
+    },
+    {
+      "function": "iv",
+      "line": 104
+    },
+    {
+      "function": "before",
+      "line": 108
+    },
+    {
+      "function": "relation",
+      "line": 113
+    },
+    {
+      "function": "gap",
+      "line": 121
+    },
+    {
+      "function": "_dist_min",
+      "line": 128
+    },
+    {
+      "function": "_ref",
+      "line": 137
+    },
+    {
+      "function": "policy_of",
+      "line": 141
+    },
+    {
+      "function": "_merge_posts",
+      "line": 152
+    },
+    {
+      "function": "_post_entries",
+      "line": 194
+    },
+    {
+      "function": "_wallet_class",
+      "line": 269
+    },
+    {
+      "function": "_slot_bounds",
+      "line": 285
+    },
+    {
+      "function": "_action",
+      "line": 302
+    },
+    {
+      "function": "_zigzag",
+      "line": 328
+    },
+    {
+      "function": "evaluate",
+      "line": 364
+    },
+    {
+      "function": "_public",
+      "line": 784
+    },
+    {
+      "function": "_flag",
+      "line": 790
+    },
+    {
+      "function": "_flags",
+      "line": 801
+    },
+    {
+      "function": "_line",
+      "line": 864
+    },
+    {
+      "function": "_summary",
+      "line": 868
+    },
+    {
+      "function": "_texts",
+      "line": 924
+    },
+    {
+      "function": "guard_text",
+      "line": 937
+    },
+    {
+      "function": "analyze",
+      "line": 945
+    },
+    {
+      "function": "report",
+      "line": 957
+    }
+  ],
+  "memelab/social/chrono_store.py": [
+    {
+      "function": "_now",
+      "line": 17
+    },
+    {
+      "function": "source_accounts",
+      "line": 21
+    },
+    {
+      "function": "_posts",
+      "line": 29
+    },
+    {
+      "function": "_wallets",
+      "line": 74
+    },
+    {
+      "function": "_events",
+      "line": 89
+    },
+    {
+      "function": "_monitoring",
+      "line": 101
+    },
+    {
+      "function": "_market",
+      "line": 113
+    },
+    {
+      "function": "_pool",
+      "line": 125
+    },
+    {
+      "function": "build_input",
+      "line": 135
+    },
+    {
+      "function": "save_run",
+      "line": 164
+    },
+    {
+      "function": "load_run",
+      "line": 183
+    },
+    {
+      "function": "verify_run",
+      "line": 190
+    },
+    {
+      "function": "current_flags",
+      "line": 199
+    },
+    {
+      "function": "status",
+      "line": 220
+    }
+  ],
+  "memelab/social/cli.py": [
+    {
+      "function": "_setup_logging",
+      "line": 44
+    },
+    {
+      "function": "cmd_ingest",
+      "line": 54
+    },
+    {
+      "function": "cmd_status",
+      "line": 75
+    },
+    {
+      "function": "cmd_guard",
+      "line": 100
+    },
+    {
+      "function": "cmd_x_health",
+      "line": 111
+    },
+    {
+      "function": "cmd_x_ingest",
+      "line": 118
+    },
+    {
+      "function": "cmd_tg_health",
+      "line": 157
+    },
+    {
+      "function": "cmd_tg_ingest",
+      "line": 178
+    },
+    {
+      "function": "cmd_tg_webhook_ingest",
+      "line": 211
+    },
+    {
+      "function": "_load_bodies",
+      "line": 228
+    },
+    {
+      "function": "cmd_resolve",
+      "line": 238
+    },
+    {
+      "function": "cmd_identity",
+      "line": 268
+    },
+    {
+      "function": "_provider",
+      "line": 281
+    },
+    {
+      "function": "cmd_extract",
+      "line": 291
+    },
+    {
+      "function": "cmd_claims",
+      "line": 327
+    },
+    {
+      "function": "_narr_con",
+      "line": 344
+    },
+    {
+      "function": "cmd_narrative_snapshot",
+      "line": 353
+    },
+    {
+      "function": "cmd_narrative_show",
+      "line": 376
+    },
+    {
+      "function": "cmd_narrative_why",
+      "line": 390
+    },
+    {
+      "function": "cmd_narrative_changes",
+      "line": 405
+    },
+    {
+      "function": "cmd_llm_health",
+      "line": 420
+    },
+    {
+      "function": "add_subparser",
+      "line": 434
+    }
+  ],
+  "memelab/social/content_guard.py": [
+    {
+      "function": "Violation",
+      "line": 59
+    },
+    {
+      "function": "_glob",
+      "line": 65
+    },
+    {
+      "function": "_allowed",
+      "line": 70
+    },
+    {
+      "function": "tracked_files",
+      "line": 74
+    },
+    {
+      "function": "check_paths",
+      "line": 79
+    },
+    {
+      "function": "_walk",
+      "line": 90
+    },
+    {
+      "function": "_check_unit",
+      "line": 102
+    },
+    {
+      "function": "check_json",
+      "line": 134
+    },
+    {
+      "function": "check_sqlite",
+      "line": 149
+    },
+    {
+      "function": "scan",
+      "line": 195
+    }
+  ],
+  "memelab/social/extraction.py": [
+    {
+      "function": "_sha",
+      "line": 83
+    },
+    {
+      "function": "_rank",
+      "line": 87
+    },
+    {
+      "function": "_raise",
+      "line": 91
+    },
+    {
+      "function": "injection_flags",
+      "line": 98
+    },
+    {
+      "function": "item_context",
+      "line": 105
+    },
+    {
+      "function": "_context_sha",
+      "line": 116
+    },
+    {
+      "function": "_find",
+      "line": 120
+    },
+    {
+      "function": "_span",
+      "line": 128
+    },
+    {
+      "function": "anchored_mentions",
+      "line": 132
+    },
+    {
+      "function": "_token_entry",
+      "line": 170
+    },
+    {
+      "function": "deterministic_claims",
+      "line": 177
+    },
+    {
+      "function": "_repost_origin",
+      "line": 199
+    },
+    {
+      "function": "_quote_origin",
+      "line": 208
+    },
+    {
+      "function": "build_user_prompt",
+      "line": 246
+    },
+    {
+      "function": "parse_json",
+      "line": 265
+    },
+    {
+      "function": "_check_claim_shape",
+      "line": 289
+    },
+    {
+      "function": "validate_model_output",
+      "line": 310
+    },
+    {
+      "function": "_apply_rules",
+      "line": 419
+    },
+    {
+      "function": "_mark_contradictions",
+      "line": 451
+    },
+    {
+      "function": "ensure_versions",
+      "line": 465
+    },
+    {
+      "function": "_public_output",
+      "line": 479
+    },
+    {
+      "function": "_store_extraction",
+      "line": 491
+    },
+    {
+      "function": "_store_claims",
+      "line": 508
+    },
+    {
+      "function": "_supersede",
+      "line": 545
+    },
+    {
+      "function": "extract_observation",
+      "line": 552
+    },
+    {
+      "function": "replay",
+      "line": 694
+    },
+    {
+      "function": "claims_for",
+      "line": 713
+    },
+    {
+      "function": "extraction_status",
+      "line": 738
+    },
+    {
+      "function": "_utc",
+      "line": 762
+    },
+    {
+      "function": "report",
+      "line": 766
+    }
+  ],
+  "memelab/social/feed_cli.py": [
+    {
+      "function": "_filters",
+      "line": 28
+    },
+    {
+      "function": "_fixture_input",
+      "line": 32
+    },
+    {
+      "function": "_input",
+      "line": 45
+    },
+    {
+      "function": "_emit",
+      "line": 57
+    },
+    {
+      "function": "cmd_view",
+      "line": 71
+    },
+    {
+      "function": "demo_markdown",
+      "line": 81
+    },
+    {
+      "function": "cmd_demo",
+      "line": 97
+    },
+    {
+      "function": "add_parser",
+      "line": 110
+    }
+  ],
+  "memelab/social/feed_core.py": [
+    {
+      "function": "FeedError",
+      "line": 54
+    },
+    {
+      "function": "md",
+      "line": 64
+    },
+    {
+      "function": "safe_token",
+      "line": 76
+    },
+    {
+      "function": "safe_symbol",
+      "line": 84
+    },
+    {
+      "function": "safe_contract",
+      "line": 88
+    },
+    {
+      "function": "safe_chain",
+      "line": 92
+    },
+    {
+      "function": "safe_url",
+      "line": 99
+    },
+    {
+      "function": "link",
+      "line": 124
+    },
+    {
+      "function": "zone",
+      "line": 130
+    },
+    {
+      "function": "fmt_time",
+      "line": 137
+    },
+    {
+      "function": "_hours",
+      "line": 149
+    },
+    {
+      "function": "parse_time",
+      "line": 153
+    },
+    {
+      "function": "_sha",
+      "line": 171
+    },
+    {
+      "function": "_who",
+      "line": 177
+    },
+    {
+      "function": "_stance",
+      "line": 193
+    },
+    {
+      "function": "_what",
+      "line": 201
+    },
+    {
+      "function": "_corroborated",
+      "line": 215
+    },
+    {
+      "function": "_speculation",
+      "line": 231
+    },
+    {
+      "function": "_doubts",
+      "line": 249
+    },
+    {
+      "function": "_liquidity",
+      "line": 286
+    },
+    {
+      "function": "_next_step",
+      "line": 316
+    },
+    {
+      "function": "_priority",
+      "line": 329
+    },
+    {
+      "function": "_people",
+      "line": 344
+    },
+    {
+      "function": "_digest",
+      "line": 376
+    },
+    {
+      "function": "_item",
+      "line": 417
+    },
+    {
+      "function": "make_filters",
+      "line": 506
+    },
+    {
+      "function": "_token_match",
+      "line": 519
+    },
+    {
+      "function": "_keep",
+      "line": 532
+    },
+    {
+      "function": "build",
+      "line": 557
+    },
+    {
+      "function": "_no_signal_reason",
+      "line": 630
+    },
+    {
+      "function": "_head",
+      "line": 643
+    },
+    {
+      "function": "_block",
+      "line": 667
+    },
+    {
+      "function": "_unresolved",
+      "line": 700
+    },
+    {
+      "function": "_foot",
+      "line": 709
+    },
+    {
+      "function": "render_brief",
+      "line": 716
+    },
+    {
+      "function": "render_digest",
+      "line": 731
+    },
+    {
+      "function": "render_feed",
+      "line": 762
+    },
+    {
+      "function": "render",
+      "line": 776
+    },
+    {
+      "function": "to_json",
+      "line": 786
+    }
+  ],
+  "memelab/social/feed_demo.py": [
+    {
+      "function": "_t",
+      "line": 27
+    },
+    {
+      "function": "_tok",
+      "line": 31
+    },
+    {
+      "function": "_post",
+      "line": 39
+    },
+    {
+      "function": "_flag",
+      "line": 79
+    },
+    {
+      "function": "build_db",
+      "line": 92
+    }
+  ],
+  "memelab/social/feed_store.py": [
+    {
+      "function": "_has",
+      "line": 24
+    },
+    {
+      "function": "_empty",
+      "line": 28
+    },
+    {
+      "function": "model_status",
+      "line": 33
+    },
+    {
+      "function": "_members",
+      "line": 43
+    },
+    {
+      "function": "_prev_stances",
+      "line": 82
+    },
+    {
+      "function": "_market",
+      "line": 98
+    },
+    {
+      "function": "_flags",
+      "line": 111
+    },
+    {
+      "function": "load_input",
+      "line": 122
+    },
+    {
+      "function": "load_from_path",
+      "line": 178
+    },
+    {
+      "function": "_jsonable",
+      "line": 191
+    }
+  ],
+  "memelab/social/identity.py": [
+    {
+      "function": "b58decode",
+      "line": 62
+    },
+    {
+      "function": "address_shape",
+      "line": 73
+    },
+    {
+      "function": "canon",
+      "line": 93
+    },
+    {
+      "function": "_family_ok",
+      "line": 97
+    },
+    {
+      "function": "_link_mention",
+      "line": 104
+    },
+    {
+      "function": "extract_mentions",
+      "line": 141
+    },
+    {
+      "function": "_unwrap",
+      "line": 171
+    },
+    {
+      "function": "provider_records",
+      "line": 175
+    },
+    {
+      "function": "_num",
+      "line": 226
+    },
+    {
+      "function": "_same",
+      "line": 234
+    },
+    {
+      "function": "_registry_assets",
+      "line": 242
+    },
+    {
+      "function": "_group",
+      "line": 254
+    },
+    {
+      "function": "_cand",
+      "line": 273
+    },
+    {
+      "function": "_relations",
+      "line": 283
+    },
+    {
+      "function": "_lev",
+      "line": 291
+    },
+    {
+      "function": "near_matches",
+      "line": 305
+    },
+    {
+      "function": "_result",
+      "line": 328
+    },
+    {
+      "function": "_mention_key",
+      "line": 345
+    },
+    {
+      "function": "resolve_address",
+      "line": 353
+    },
+    {
+      "function": "resolve_ticker",
+      "line": 456
+    },
+    {
+      "function": "resolve_post",
+      "line": 499
+    },
+    {
+      "function": "_sha",
+      "line": 536
+    },
+    {
+      "function": "ensure_version",
+      "line": 540
+    },
+    {
+      "function": "persist",
+      "line": 546
+    },
+    {
+      "function": "record_relation",
+      "line": 586
+    },
+    {
+      "function": "token_identity",
+      "line": 600
+    },
+    {
+      "function": "resolution_plan",
+      "line": 628
+    }
+  ],
+  "memelab/social/ingest.py": [
+    {
+      "function": "redact",
+      "line": 78
+    },
+    {
+      "function": "_safe",
+      "line": 84
+    },
+    {
+      "function": "log_event",
+      "line": 94
+    },
+    {
+      "function": "TransientError",
+      "line": 102
+    },
+    {
+      "function": "with_retries",
+      "line": 106
+    },
+    {
+      "function": "BudgetExceeded",
+      "line": 122
+    },
+    {
+      "function": "Budget",
+      "line": 127
+    },
+    {
+      "function": "SourceUnit",
+      "line": 156
+    },
+    {
+      "function": "SourceAdapter",
+      "line": 171
+    },
+    {
+      "function": "canonical_sha",
+      "line": 178
+    },
+    {
+      "function": "_ts",
+      "line": 184
+    },
+    {
+      "function": "validate_envelope",
+      "line": 196
+    },
+    {
+      "function": "_validate_context",
+      "line": 226
+    },
+    {
+      "function": "_validate_forward",
+      "line": 264
+    },
+    {
+      "function": "_validate_version",
+      "line": 291
+    },
+    {
+      "function": "validate_item",
+      "line": 308
+    },
+    {
+      "function": "_connect",
+      "line": 392
+    },
+    {
+      "function": "quarantine_dir",
+      "line": 398
+    },
+    {
+      "function": "_quarantine",
+      "line": 402
+    },
+    {
+      "function": "_persist_item",
+      "line": 421
+    },
+    {
+      "function": "_persist_context",
+      "line": 465
+    },
+    {
+      "function": "_persist_forward",
+      "line": 491
+    },
+    {
+      "function": "_worse",
+      "line": 500
+    },
+    {
+      "function": "ingest",
+      "line": 504
+    },
+    {
+      "function": "_coverage",
+      "line": 590
+    },
+    {
+      "function": "_process_unit",
+      "line": 599
+    },
+    {
+      "function": "event_record",
+      "line": 710
+    }
+  ],
+  "memelab/social/llm.py": [
+    {
+      "function": "config_path",
+      "line": 43
+    },
+    {
+      "function": "load_config",
+      "line": 48
+    },
+    {
+      "function": "Completion",
+      "line": 61
+    },
+    {
+      "function": "ProviderError",
+      "line": 68
+    },
+    {
+      "function": "MockProvider",
+      "line": 74
+    },
+    {
+      "function": "AnthropicProvider",
+      "line": 102
+    },
+    {
+      "function": "Budget",
+      "line": 146
+    },
+    {
+      "function": "provider_from_config",
+      "line": 208
+    },
+    {
+      "function": "llm_status",
+      "line": 223
+    }
+  ],
+  "memelab/social/market_context.py": [
+    {
+      "function": "_sha",
+      "line": 48
+    },
+    {
+      "function": "_bodies",
+      "line": 52
+    },
+    {
+      "function": "build_bundle",
+      "line": 56
+    },
+    {
+      "function": "_key_for",
+      "line": 70
+    },
+    {
+      "function": "observed_facts",
+      "line": 77
+    },
+    {
+      "function": "_ohlcv_series",
+      "line": 149
+    },
+    {
+      "function": "posting_time_facts",
+      "line": 171
+    },
+    {
+      "function": "store_fact",
+      "line": 190
+    },
+    {
+      "function": "attach",
+      "line": 208
+    },
+    {
+      "function": "context_plan",
+      "line": 275
+    }
+  ],
+  "memelab/social/narratives.py": [
+    {
+      "function": "_j",
+      "line": 56
+    },
+    {
+      "function": "_sha",
+      "line": 60
+    },
+    {
+      "function": "day_window",
+      "line": 64
+    },
+    {
+      "function": "_label",
+      "line": 73
+    },
+    {
+      "function": "_load_claims",
+      "line": 80
+    },
+    {
+      "function": "_load_items",
+      "line": 99
+    },
+    {
+      "function": "_load_structure",
+      "line": 120
+    },
+    {
+      "function": "_load_accounts",
+      "line": 136
+    },
+    {
+      "function": "_load_symbols",
+      "line": 146
+    },
+    {
+      "function": "_load_coverage",
+      "line": 150
+    },
+    {
+      "function": "_contradictions",
+      "line": 161
+    },
+    {
+      "function": "_UF",
+      "line": 168
+    },
+    {
+      "function": "_stance_of",
+      "line": 185
+    },
+    {
+      "function": "_sliding",
+      "line": 192
+    },
+    {
+      "function": "_cap",
+      "line": 208
+    },
+    {
+      "function": "_build",
+      "line": 213
+    },
+    {
+      "function": "_plain",
+      "line": 484
+    },
+    {
+      "function": "snapshot",
+      "line": 508
+    },
+    {
+      "function": "_changes",
+      "line": 647
+    },
+    {
+      "function": "run_view",
+      "line": 683
+    },
+    {
+      "function": "members",
+      "line": 698
+    },
+    {
+      "function": "edges_for",
+      "line": 702
+    },
+    {
+      "function": "changes_for",
+      "line": 707
+    },
+    {
+      "function": "latest_run",
+      "line": 716
+    },
+    {
+      "function": "explain",
+      "line": 721
+    },
+    {
+      "function": "report",
+      "line": 738
+    }
+  ],
+  "memelab/social/outcomes_cli.py": [
+    {
+      "function": "_t",
+      "line": 31
+    },
+    {
+      "function": "_iso",
+      "line": 38
+    },
+    {
+      "function": "_con",
+      "line": 45
+    },
+    {
+      "function": "_pol",
+      "line": 49
+    },
+    {
+      "function": "_fail",
+      "line": 53
+    },
+    {
+      "function": "cmd_record",
+      "line": 58
+    },
+    {
+      "function": "facts_to_observations",
+      "line": 85
+    },
+    {
+      "function": "cmd_observe",
+      "line": 112
+    },
+    {
+      "function": "render_run",
+      "line": 131
+    },
+    {
+      "function": "cmd_run",
+      "line": 140
+    },
+    {
+      "function": "cmd_annotate",
+      "line": 153
+    },
+    {
+      "function": "render_signal",
+      "line": 162
+    },
+    {
+      "function": "cmd_show",
+      "line": 166
+    },
+    {
+      "function": "cmd_report",
+      "line": 184
+    },
+    {
+      "function": "cmd_verify",
+      "line": 194
+    },
+    {
+      "function": "_outcome_table",
+      "line": 200
+    },
+    {
+      "function": "demo_markdown",
+      "line": 212
+    },
+    {
+      "function": "cmd_demo",
+      "line": 266
+    },
+    {
+      "function": "add_parser",
+      "line": 276
+    }
+  ],
+  "memelab/social/outcomes_core.py": [
+    {
+      "function": "OutcomeError",
+      "line": 65
+    },
+    {
+      "function": "canon",
+      "line": 69
+    },
+    {
+      "function": "sha",
+      "line": 73
+    },
+    {
+      "function": "r10",
+      "line": 77
+    },
+    {
+      "function": "_num",
+      "line": 81
+    },
+    {
+      "function": "hname",
+      "line": 85
+    },
+    {
+      "function": "make_policy",
+      "line": 89
+    },
+    {
+      "function": "signal_id_for",
+      "line": 111
+    },
+    {
+      "function": "_fact_time",
+      "line": 115
+    },
+    {
+      "function": "market_at_generation",
+      "line": 120
+    },
+    {
+      "function": "make_signal",
+      "line": 169
+    },
+    {
+      "function": "signals_from_feed",
+      "line": 226
+    },
+    {
+      "function": "signals_from_research",
+      "line": 255
+    },
+    {
+      "function": "normalize_observation",
+      "line": 274
+    },
+    {
+      "function": "visible",
+      "line": 335
+    },
+    {
+      "function": "_prices",
+      "line": 348
+    },
+    {
+      "function": "_price_at",
+      "line": 361
+    },
+    {
+      "function": "_near",
+      "line": 371
+    },
+    {
+      "function": "evaluate",
+      "line": 378
+    },
+    {
+      "function": "content_sha",
+      "line": 538
+    },
+    {
+      "function": "coverage",
+      "line": 544
+    },
+    {
+      "function": "_pct",
+      "line": 584
+    },
+    {
+      "function": "render_outcome",
+      "line": 588
+    },
+    {
+      "function": "render_report",
+      "line": 602
+    }
+  ],
+  "memelab/social/outcomes_ledger.py": [
+    {
+      "function": "default_path",
+      "line": 45
+    },
+    {
+      "function": "connect",
+      "line": 53
+    },
+    {
+      "function": "_entry_sha",
+      "line": 66
+    },
+    {
+      "function": "_append",
+      "line": 70
+    },
+    {
+      "function": "_identity_view",
+      "line": 93
+    },
+    {
+      "function": "record_signal",
+      "line": 104
+    },
+    {
+      "function": "record_signals",
+      "line": 120
+    },
+    {
+      "function": "add_observations",
+      "line": 133
+    },
+    {
+      "function": "annotate",
+      "line": 147
+    },
+    {
+      "function": "signals",
+      "line": 162
+    },
+    {
+      "function": "observations",
+      "line": 167
+    },
+    {
+      "function": "annotations",
+      "line": 172
+    },
+    {
+      "function": "latest_outcomes",
+      "line": 177
+    },
+    {
+      "function": "outcome_history",
+      "line": 184
+    },
+    {
+      "function": "last_evaluated_as_of",
+      "line": 189
+    },
+    {
+      "function": "_strip",
+      "line": 194
+    },
+    {
+      "function": "_revision_reason",
+      "line": 200
+    },
+    {
+      "function": "compute",
+      "line": 212
+    },
+    {
+      "function": "evaluate_all",
+      "line": 225
+    },
+    {
+      "function": "report",
+      "line": 263
+    },
+    {
+      "function": "verify",
+      "line": 272
+    },
+    {
+      "function": "dump",
+      "line": 292
+    }
+  ],
+  "memelab/social/perf_analysis.py": [
+    {
+      "function": "_sum",
+      "line": 26
+    },
+    {
+      "function": "position_rows",
+      "line": 33
+    },
+    {
+      "function": "metrics",
+      "line": 89
+    },
+    {
+      "function": "trade_counts",
+      "line": 121
+    },
+    {
+      "function": "realized_block",
+      "line": 133
+    },
+    {
+      "function": "costs_block",
+      "line": 182
+    },
+    {
+      "function": "liquidation",
+      "line": 196
+    },
+    {
+      "function": "inventory_block",
+      "line": 225
+    },
+    {
+      "function": "coverage_block",
+      "line": 266
+    },
+    {
+      "function": "reconstruction",
+      "line": 298
+    },
+    {
+      "function": "run_checks",
+      "line": 340
+    },
+    {
+      "function": "equity_block",
+      "line": 406
+    },
+    {
+      "function": "_headline",
+      "line": 440
+    },
+    {
+      "function": "sensitivity_block",
+      "line": 448
+    },
+    {
+      "function": "_analyze_once",
+      "line": 473
+    },
+    {
+      "function": "score",
+      "line": 512
+    },
+    {
+      "function": "analyze",
+      "line": 567
+    },
+    {
+      "function": "_jsonable",
+      "line": 586
+    },
+    {
+      "function": "rank_wallets",
+      "line": 600
+    },
+    {
+      "function": "compare_provider_estimates",
+      "line": 610
+    },
+    {
+      "function": "render_report",
+      "line": 630
+    }
+  ],
+  "memelab/social/perf_cli.py": [
+    {
+      "function": "_out",
+      "line": 27
+    },
+    {
+      "function": "_tracked",
+      "line": 31
+    },
+    {
+      "function": "_policy",
+      "line": 35
+    },
+    {
+      "function": "_con",
+      "line": 42
+    },
+    {
+      "function": "cmd_perf",
+      "line": 58
+    },
+    {
+      "function": "_is_fixture_input",
+      "line": 88
+    },
+    {
+      "function": "_dispatch",
+      "line": 99
+    },
+    {
+      "function": "add_parser",
+      "line": 144
+    }
+  ],
+  "memelab/social/perf_core.py": [
+    {
+      "function": "dec",
+      "line": 80
+    },
+    {
+      "function": "_q",
+      "line": 101
+    },
+    {
+      "function": "canonical_json",
+      "line": 112
+    },
+    {
+      "function": "sha",
+      "line": 116
+    },
+    {
+      "function": "_median",
+      "line": 120
+    },
+    {
+      "function": "wilson",
+      "line": 128
+    },
+    {
+      "function": "merge_policy",
+      "line": 141
+    },
+    {
+      "function": "_num_policy",
+      "line": 152
+    },
+    {
+      "function": "Ledger",
+      "line": 156
+    },
+    {
+      "function": "parse_ledger",
+      "line": 180
+    },
+    {
+      "function": "_parse_leg",
+      "line": 283
+    },
+    {
+      "function": "_parse_price",
+      "line": 312
+    },
+    {
+      "function": "Book",
+      "line": 334
+    },
+    {
+      "function": "Lot",
+      "line": 392
+    },
+    {
+      "function": "Run",
+      "line": 400
+    },
+    {
+      "function": "run_engine",
+      "line": 890
+    }
+  ],
+  "memelab/social/perf_store.py": [
+    {
+      "function": "_now",
+      "line": 24
+    },
+    {
+      "function": "put_token_meta",
+      "line": 31
+    },
+    {
+      "function": "put_prices",
+      "line": 46
+    },
+    {
+      "function": "_chain_assets",
+      "line": 79
+    },
+    {
+      "function": "ledger_from_events",
+      "line": 97
+    },
+    {
+      "function": "save_run",
+      "line": 167
+    },
+    {
+      "function": "run_wallet",
+      "line": 188
+    },
+    {
+      "function": "load_run",
+      "line": 200
+    },
+    {
+      "function": "verify_run",
+      "line": 207
+    },
+    {
+      "function": "list_runs",
+      "line": 220
+    },
+    {
+      "function": "latest_results",
+      "line": 224
+    }
+  ],
+  "memelab/social/private.py": [
+    {
+      "function": "private_path",
+      "line": 45
+    },
+    {
+      "function": "connect",
+      "line": 51
+    },
+    {
+      "function": "put",
+      "line": 64
+    },
+    {
+      "function": "get",
+      "line": 79
+    },
+    {
+      "function": "put_model_response",
+      "line": 84
+    },
+    {
+      "function": "get_model_response",
+      "line": 95
+    },
+    {
+      "function": "get_text",
+      "line": 103
+    },
+    {
+      "function": "purge_expired",
+      "line": 109
+    }
+  ],
+  "memelab/social/registry.py": [
+    {
+      "function": "savepoint",
+      "line": 80
+    },
+    {
+      "function": "_now",
+      "line": 92
+    },
+    {
+      "function": "_sha",
+      "line": 96
+    },
+    {
+      "function": "clean_text",
+      "line": 100
+    },
+    {
+      "function": "check_ref",
+      "line": 116
+    },
+    {
+      "function": "_log",
+      "line": 126
+    },
+    {
+      "function": "_reviewer",
+      "line": 132
+    },
+    {
+      "function": "register_source",
+      "line": 141
+    },
+    {
+      "function": "capture_freshness",
+      "line": 161
+    },
+    {
+      "function": "get_entity",
+      "line": 175
+    },
+    {
+      "function": "_slug",
+      "line": 182
+    },
+    {
+      "function": "_insert_entity",
+      "line": 186
+    },
+    {
+      "function": "ensure_account",
+      "line": 204
+    },
+    {
+      "function": "ensure_wallet",
+      "line": 226
+    },
+    {
+      "function": "ensure_org",
+      "line": 235
+    },
+    {
+      "function": "ensure_network",
+      "line": 243
+    },
+    {
+      "function": "ensure_candidate",
+      "line": 250
+    },
+    {
+      "function": "add_evidence",
+      "line": 255
+    },
+    {
+      "function": "_active_clause",
+      "line": 269
+    },
+    {
+      "function": "_fixture_pair",
+      "line": 274
+    },
+    {
+      "function": "add_link",
+      "line": 281
+    },
+    {
+      "function": "sync_attribution",
+      "line": 341
+    },
+    {
+      "function": "_sync_links",
+      "line": 371
+    },
+    {
+      "function": "get_link",
+      "line": 382
+    },
+    {
+      "function": "retract_link",
+      "line": 389
+    },
+    {
+      "function": "review_link",
+      "line": 415
+    },
+    {
+      "function": "active_links",
+      "line": 436
+    },
+    {
+      "function": "identity_cluster",
+      "line": 449
+    },
+    {
+      "function": "_in_window",
+      "line": 464
+    },
+    {
+      "function": "_independent",
+      "line": 470
+    },
+    {
+      "function": "wallet_attribution",
+      "line": 483
+    },
+    {
+      "function": "wallets_of",
+      "line": 533
+    },
+    {
+      "function": "owners_of",
+      "line": 540
+    },
+    {
+      "function": "get_record",
+      "line": 555
+    },
+    {
+      "function": "_account_row",
+      "line": 561
+    },
+    {
+      "function": "evidence_summary",
+      "line": 565
+    },
+    {
+      "function": "approve",
+      "line": 588
+    },
+    {
+      "function": "reject",
+      "line": 618
+    },
+    {
+      "function": "_check_watchable",
+      "line": 631
+    },
+    {
+      "function": "update_record",
+      "line": 640
+    },
+    {
+      "function": "set_account_status",
+      "line": 669
+    },
+    {
+      "function": "category_state",
+      "line": 697
+    },
+    {
+      "function": "set_category",
+      "line": 708
+    },
+    {
+      "function": "_kinds_of_evidence",
+      "line": 730
+    },
+    {
+      "function": "_check_category",
+      "line": 734
+    },
+    {
+      "function": "review_listing_claim",
+      "line": 759
+    },
+    {
+      "function": "_handles",
+      "line": 777
+    },
+    {
+      "function": "_display_label",
+      "line": 784
+    },
+    {
+      "function": "shared_handle_entities",
+      "line": 791
+    },
+    {
+      "function": "same_label_entities",
+      "line": 803
+    },
+    {
+      "function": "search",
+      "line": 815
+    },
+    {
+      "function": "show",
+      "line": 890
+    },
+    {
+      "function": "report",
+      "line": 945
+    },
+    {
+      "function": "counts",
+      "line": 981
+    },
+    {
+      "function": "import_catalyst_list",
+      "line": 996
+    },
+    {
+      "function": "discover_from_narratives",
+      "line": 1016
+    }
+  ],
+  "memelab/social/registry_cli.py": [
+    {
+      "function": "_out",
+      "line": 33
+    },
+    {
+      "function": "_con",
+      "line": 37
+    },
+    {
+      "function": "_tracked",
+      "line": 53
+    },
+    {
+      "function": "_precheck",
+      "line": 57
+    },
+    {
+      "function": "cmd_registry",
+      "line": 74
+    },
+    {
+      "function": "_dispatch",
+      "line": 101
+    },
+    {
+      "function": "add_parser",
+      "line": 174
+    }
+  ],
+  "memelab/social/registry_import.py": [
+    {
+      "function": "ImportRefused",
+      "line": 50
+    },
+    {
+      "function": "_host",
+      "line": 56
+    },
+    {
+      "function": "_https",
+      "line": 60
+    },
+    {
+      "function": "_is_fixture_url",
+      "line": 71
+    },
+    {
+      "function": "read_file",
+      "line": 76
+    },
+    {
+      "function": "_json",
+      "line": 94
+    },
+    {
+      "function": "_csv_rows",
+      "line": 103
+    },
+    {
+      "function": "validate_header",
+      "line": 140
+    },
+    {
+      "function": "validate_row",
+      "line": 206
+    },
+    {
+      "function": "_ident",
+      "line": 280
+    },
+    {
+      "function": "_ident_text",
+      "line": 288
+    },
+    {
+      "function": "import_file",
+      "line": 296
+    },
+    {
+      "function": "_store_row",
+      "line": 370
+    }
+  ],
+  "memelab/social/replay_cli.py": [
+    {
+      "function": "_fail",
+      "line": 28
+    },
+    {
+      "function": "_assemble",
+      "line": 33
+    },
+    {
+      "function": "_policy",
+      "line": 55
+    },
+    {
+      "function": "report",
+      "line": 64
+    },
+    {
+      "function": "cmd_inventory",
+      "line": 71
+    },
+    {
+      "function": "cmd_run",
+      "line": 77
+    },
+    {
+      "function": "demo_markdown",
+      "line": 92
+    },
+    {
+      "function": "cmd_demo",
+      "line": 102
+    },
+    {
+      "function": "cmd_export",
+      "line": 111
+    },
+    {
+      "function": "add_parser",
+      "line": 118
+    }
+  ],
+  "memelab/social/replay_core.py": [
+    {
+      "function": "ReplayError",
+      "line": 100
+    },
+    {
+      "function": "LeakageError",
+      "line": 104
+    },
+    {
+      "function": "canon",
+      "line": 108
+    },
+    {
+      "function": "sha",
+      "line": 112
+    },
+    {
+      "function": "r10",
+      "line": 116
+    },
+    {
+      "function": "_num",
+      "line": 120
+    },
+    {
+      "function": "tkey",
+      "line": 124
+    },
+    {
+      "function": "iso",
+      "line": 129
+    },
+    {
+      "function": "make_policy",
+      "line": 133
+    },
+    {
+      "function": "_excl",
+      "line": 157
+    },
+    {
+      "function": "Data",
+      "line": 162
+    },
+    {
+      "function": "_avail_list",
+      "line": 181
+    },
+    {
+      "function": "prepare",
+      "line": 185
+    },
+    {
+      "function": "_refusal_code",
+      "line": 396
+    },
+    {
+      "function": "_price_index",
+      "line": 407
+    },
+    {
+      "function": "_lookup",
+      "line": 433
+    },
+    {
+      "function": "Audit",
+      "line": 441
+    },
+    {
+      "function": "CutoffView",
+      "line": 457
+    },
+    {
+      "function": "_orig_long",
+      "line": 535
+    },
+    {
+      "function": "_conflict",
+      "line": 539
+    },
+    {
+      "function": "_decide",
+      "line": 545
+    },
+    {
+      "function": "config_id",
+      "line": 595
+    },
+    {
+      "function": "generate",
+      "line": 599
+    },
+    {
+      "function": "_token_obs",
+      "line": 637
+    },
+    {
+      "function": "outcome",
+      "line": 644
+    },
+    {
+      "function": "controls_for",
+      "line": 667
+    },
+    {
+      "function": "split_bounds",
+      "line": 700
+    },
+    {
+      "function": "split_of",
+      "line": 709
+    },
+    {
+      "function": "label_clock",
+      "line": 715
+    },
+    {
+      "function": "LabelGate",
+      "line": 719
+    },
+    {
+      "function": "samples",
+      "line": 741
+    },
+    {
+      "function": "_z",
+      "line": 783
+    },
+    {
+      "function": "summarize",
+      "line": 787
+    },
+    {
+      "function": "verdict",
+      "line": 852
+    },
+    {
+      "function": "survivorship",
+      "line": 883
+    },
+    {
+      "function": "tune",
+      "line": 897
+    },
+    {
+      "function": "run",
+      "line": 918
+    },
+    {
+      "function": "_count",
+      "line": 974
+    },
+    {
+      "function": "truncate",
+      "line": 983
+    },
+    {
+      "function": "leakage_check",
+      "line": 1013
+    },
+    {
+      "function": "_pct",
+      "line": 1051
+    },
+    {
+      "function": "_ci",
+      "line": 1055
+    },
+    {
+      "function": "render",
+      "line": 1059
+    },
+    {
+      "function": "pol_h",
+      "line": 1175
+    },
+    {
+      "function": "_vs_baseline",
+      "line": 1179
+    },
+    {
+      "function": "_leak_lines",
+      "line": 1188
+    }
+  ],
+  "memelab/social/replay_sources.py": [
+    {
+      "function": "_ts",
+      "line": 31
+    },
+    {
+      "function": "_tables",
+      "line": 42
+    },
+    {
+      "function": "empty_doc",
+      "line": 46
+    },
+    {
+      "function": "from_db",
+      "line": 52
+    },
+    {
+      "function": "from_inbox",
+      "line": 130
+    },
+    {
+      "function": "merge",
+      "line": 202
+    },
+    {
+      "function": "inventory",
+      "line": 238
+    },
+    {
+      "function": "render_inventory",
+      "line": 268
+    }
+  ],
+  "memelab/social/replay_synth.py": [
+    {
+      "function": "_addr",
+      "line": 47
+    },
+    {
+      "function": "build",
+      "line": 54
+    }
+  ],
+  "memelab/social/research_cli.py": [
+    {
+      "function": "before_after",
+      "line": 22
+    },
+    {
+      "function": "side_by_side",
+      "line": 41
+    },
+    {
+      "function": "cmd",
+      "line": 65
+    },
+    {
+      "function": "add_parser",
+      "line": 98
+    }
+  ],
+  "memelab/social/research_core.py": [
+    {
+      "function": "PolicyError",
+      "line": 56
+    },
+    {
+      "function": "_sha",
+      "line": 60
+    },
+    {
+      "function": "_merge",
+      "line": 64
+    },
+    {
+      "function": "make_policy",
+      "line": 78
+    },
+    {
+      "function": "_key",
+      "line": 104
+    },
+    {
+      "function": "attention_lane",
+      "line": 112
+    },
+    {
+      "function": "structure_lane",
+      "line": 136
+    },
+    {
+      "function": "entry_lane",
+      "line": 145
+    },
+    {
+      "function": "_weight",
+      "line": 156
+    },
+    {
+      "function": "_rejection_review",
+      "line": 168
+    },
+    {
+      "function": "_risks",
+      "line": 184
+    },
+    {
+      "function": "_timeline",
+      "line": 196
+    },
+    {
+      "function": "dedupe_findings",
+      "line": 207
+    },
+    {
+      "function": "build",
+      "line": 220
+    },
+    {
+      "function": "_t",
+      "line": 334
+    },
+    {
+      "function": "_line",
+      "line": 341
+    },
+    {
+      "function": "render",
+      "line": 365
+    }
+  ],
+  "memelab/social/research_store.py": [
+    {
+      "function": "load_policy",
+      "line": 24
+    },
+    {
+      "function": "_has",
+      "line": 56
+    },
+    {
+      "function": "findings_from_db",
+      "line": 60
+    },
+    {
+      "function": "prior_rejections",
+      "line": 107
+    },
+    {
+      "function": "evaluated_from_scout",
+      "line": 128
+    },
+    {
+      "function": "evaluated_from_catalyst",
+      "line": 142
+    },
+    {
+      "function": "section",
+      "line": 161
+    }
+  ],
+  "memelab/social/schema.py": [
+    {
+      "function": "_checksum",
+      "line": 1290
+    },
+    {
+      "function": "current_version",
+      "line": 1294
+    },
+    {
+      "function": "_run",
+      "line": 1300
+    },
+    {
+      "function": "migrate",
+      "line": 1310
+    },
+    {
+      "function": "rollback",
+      "line": 1329
+    },
+    {
+      "function": "backup_db",
+      "line": 1347
+    }
+  ],
+  "memelab/social/sigverify.py": [
+    {
+      "function": "b58decode",
+      "line": 25
+    },
+    {
+      "function": "b58encode",
+      "line": 36
+    },
+    {
+      "function": "decode_signature",
+      "line": 44
+    },
+    {
+      "function": "_recover_x",
+      "line": 74
+    },
+    {
+      "function": "_add",
+      "line": 93
+    },
+    {
+      "function": "_mul",
+      "line": 102
+    },
+    {
+      "function": "_eq",
+      "line": 112
+    },
+    {
+      "function": "_decompress",
+      "line": 116
+    },
+    {
+      "function": "ed25519_verify",
+      "line": 124
+    },
+    {
+      "function": "_sadd",
+      "line": 144
+    },
+    {
+      "function": "_smul",
+      "line": 159
+    },
+    {
+      "function": "eth_recover",
+      "line": 169
+    },
+    {
+      "function": "eip191_digest",
+      "line": 187
+    },
+    {
+      "function": "verify",
+      "line": 191
+    }
+  ],
+  "memelab/social/store.py": [
+    {
+      "function": "_now",
+      "line": 37
+    },
+    {
+      "function": "_sha",
+      "line": 41
+    },
+    {
+      "function": "to_utc",
+      "line": 45
+    },
+    {
+      "function": "normalize_text",
+      "line": 67
+    },
+    {
+      "function": "text_hash",
+      "line": 71
+    },
+    {
+      "function": "normalize_contract",
+      "line": 75
+    },
+    {
+      "function": "_handle",
+      "line": 90
+    },
+    {
+      "function": "_require_version",
+      "line": 97
+    },
+    {
+      "function": "_check_evidence",
+      "line": 103
+    },
+    {
+      "function": "check_summary",
+      "line": 108
+    },
+    {
+      "function": "register_analysis_version",
+      "line": 125
+    },
+    {
+      "function": "upsert_account",
+      "line": 134
+    },
+    {
+      "function": "get_account",
+      "line": 177
+    },
+    {
+      "function": "upsert_trader",
+      "line": 181
+    },
+    {
+      "function": "link_trader_account",
+      "line": 193
+    },
+    {
+      "function": "item_key_for",
+      "line": 208
+    },
+    {
+      "function": "upsert_item",
+      "line": 217
+    },
+    {
+      "function": "record_observation",
+      "line": 251
+    },
+    {
+      "function": "observations_for",
+      "line": 297
+    },
+    {
+      "function": "upsert_token_ref",
+      "line": 304
+    },
+    {
+      "function": "add_claim",
+      "line": 332
+    },
+    {
+      "function": "relate_claims",
+      "line": 356
+    },
+    {
+      "function": "set_claim_status",
+      "line": 362
+    },
+    {
+      "function": "link_evidence",
+      "line": 366
+    },
+    {
+      "function": "conflicting_claims",
+      "line": 372
+    },
+    {
+      "function": "assert_wallet",
+      "line": 389
+    },
+    {
+      "function": "current_wallet_view",
+      "line": 418
+    },
+    {
+      "function": "record_connector_health",
+      "line": 431
+    },
+    {
+      "function": "latest_connector_health",
+      "line": 440
+    },
+    {
+      "function": "record_coverage",
+      "line": 445
+    },
+    {
+      "function": "is_independent_original",
+      "line": 460
+    },
+    {
+      "function": "current_version",
+      "line": 470
+    }
+  ],
+  "memelab/social/telegram_bot.py": [
+    {
+      "function": "Channel",
+      "line": 86
+    },
+    {
+      "function": "TgConfig",
+      "line": 97
+    },
+    {
+      "function": "load_config",
+      "line": 114
+    },
+    {
+      "function": "get_token",
+      "line": 156
+    },
+    {
+      "function": "get_secret",
+      "line": 161
+    },
+    {
+      "function": "TgResponse",
+      "line": 169
+    },
+    {
+      "function": "UrllibTransport",
+      "line": 175
+    },
+    {
+      "function": "FixtureMiss",
+      "line": 200
+    },
+    {
+      "function": "FixtureTransport",
+      "line": 204
+    },
+    {
+      "function": "_description",
+      "line": 234
+    },
+    {
+      "function": "classify_error",
+      "line": 240
+    },
+    {
+      "function": "retry_after",
+      "line": 257
+    },
+    {
+      "function": "_iso",
+      "line": 266
+    },
+    {
+      "function": "_pid",
+      "line": 270
+    },
+    {
+      "function": "_int",
+      "line": 274
+    },
+    {
+      "function": "message_item",
+      "line": 278
+    },
+    {
+      "function": "normalize_update",
+      "line": 350
+    },
+    {
+      "function": "_cursor",
+      "line": 378
+    },
+    {
+      "function": "_save_cursor",
+      "line": 382
+    },
+    {
+      "function": "membership_state",
+      "line": 397
+    },
+    {
+      "function": "_UnitBuilder",
+      "line": 401
+    },
+    {
+      "function": "_committed",
+      "line": 460
+    },
+    {
+      "function": "store_connect",
+      "line": 471
+    },
+    {
+      "function": "_log_request",
+      "line": 480
+    },
+    {
+      "function": "TelegramBotAdapter",
+      "line": 491
+    },
+    {
+      "function": "spool_dir",
+      "line": 620
+    },
+    {
+      "function": "webhook_receive",
+      "line": 624
+    },
+    {
+      "function": "WebhookSpoolAdapter",
+      "line": 657
+    },
+    {
+      "function": "purge_spool",
+      "line": 700
+    },
+    {
+      "function": "check_access",
+      "line": 712
+    },
+    {
+      "function": "health",
+      "line": 756
+    }
+  ],
+  "memelab/social/wallet_activity.py": [
+    {
+      "function": "_now",
+      "line": 48
+    },
+    {
+      "function": "_sha",
+      "line": 49
+    },
+    {
+      "function": "canonical_json",
+      "line": 50
+    },
+    {
+      "function": "row_sha",
+      "line": 51
+    },
+    {
+      "function": "_tracked_row",
+      "line": 56
+    },
+    {
+      "function": "add_wallet",
+      "line": 60
+    },
+    {
+      "function": "set_status",
+      "line": 98
+    },
+    {
+      "function": "list_wallets",
+      "line": 119
+    },
+    {
+      "function": "valid_signature",
+      "line": 135
+    },
+    {
+      "function": "normalize_helius",
+      "line": 147
+    },
+    {
+      "function": "normalize_generic",
+      "line": 161
+    },
+    {
+      "function": "_quote_assets",
+      "line": 170
+    },
+    {
+      "function": "_legs",
+      "line": 180
+    },
+    {
+      "function": "classify",
+      "line": 197
+    },
+    {
+      "function": "_units",
+      "line": 268
+    },
+    {
+      "function": "ingest",
+      "line": 289
+    },
+    {
+      "function": "_Reject",
+      "line": 421
+    },
+    {
+      "function": "ingest_file",
+      "line": 425
+    },
+    {
+      "function": "tx_url",
+      "line": 439
+    },
+    {
+      "function": "events",
+      "line": 444
+    },
+    {
+      "function": "provenance",
+      "line": 465
+    },
+    {
+      "function": "derive_funding_hypotheses",
+      "line": 496
+    },
+    {
+      "function": "summary",
+      "line": 531
+    },
+    {
+      "function": "report",
+      "line": 545
+    }
+  ],
+  "memelab/social/wallet_assertions.py": [
+    {
+      "function": "_now",
+      "line": 56
+    },
+    {
+      "function": "_sha",
+      "line": 57
+    },
+    {
+      "function": "audit",
+      "line": 60
+    },
+    {
+      "function": "canon",
+      "line": 66
+    },
+    {
+      "function": "effective_label",
+      "line": 73
+    },
+    {
+      "function": "set_label",
+      "line": 90
+    },
+    {
+      "function": "bound",
+      "line": 112
+    },
+    {
+      "function": "record",
+      "line": 122
+    },
+    {
+      "function": "get",
+      "line": 213
+    },
+    {
+      "function": "review",
+      "line": 220
+    },
+    {
+      "function": "revoke",
+      "line": 243
+    },
+    {
+      "function": "_in_window",
+      "line": 263
+    },
+    {
+      "function": "_view",
+      "line": 269
+    },
+    {
+      "function": "adopt_registry_links",
+      "line": 316
+    },
+    {
+      "function": "explain",
+      "line": 349
+    },
+    {
+      "function": "_level_conf",
+      "line": 409
+    },
+    {
+      "function": "funding_for",
+      "line": 413
+    },
+    {
+      "function": "report",
+      "line": 425
+    }
+  ],
+  "memelab/social/wallet_cli.py": [
+    {
+      "function": "_out",
+      "line": 33
+    },
+    {
+      "function": "_tracked",
+      "line": 37
+    },
+    {
+      "function": "_con",
+      "line": 41
+    },
+    {
+      "function": "cmd_wallet",
+      "line": 60
+    },
+    {
+      "function": "_dispatch",
+      "line": 87
+    },
+    {
+      "function": "add_parser",
+      "line": 142
+    }
+  ],
+  "memelab/social/x_api.py": [
+    {
+      "function": "Scope",
+      "line": 83
+    },
+    {
+      "function": "XConfig",
+      "line": 99
+    },
+    {
+      "function": "_id",
+      "line": 113
+    },
+    {
+      "function": "load_config",
+      "line": 120
+    },
+    {
+      "function": "get_token",
+      "line": 182
+    },
+    {
+      "function": "HttpResponse",
+      "line": 191
+    },
+    {
+      "function": "UrllibTransport",
+      "line": 198
+    },
+    {
+      "function": "FixtureMiss",
+      "line": 222
+    },
+    {
+      "function": "FixtureTransport",
+      "line": 226
+    },
+    {
+      "function": "billing_day",
+      "line": 262
+    },
+    {
+      "function": "BillingGuard",
+      "line": 266
+    },
+    {
+      "function": "_iso",
+      "line": 315
+    },
+    {
+      "function": "_refs",
+      "line": 319
+    },
+    {
+      "function": "reference_type",
+      "line": 323
+    },
+    {
+      "function": "post_item",
+      "line": 336
+    },
+    {
+      "function": "_problem",
+      "line": 375
+    },
+    {
+      "function": "classify_error",
+      "line": 390
+    },
+    {
+      "function": "XApiAdapter",
+      "line": 413
+    },
+    {
+      "function": "store_connect",
+      "line": 745
+    },
+    {
+      "function": "health",
+      "line": 756
+    }
+  ]
+}

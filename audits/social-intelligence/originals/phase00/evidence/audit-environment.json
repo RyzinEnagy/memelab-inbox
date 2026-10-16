@@ -1,0 +1,14 @@
+{
+  "python": "3.12.14",
+  "main": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+  "feature": "3f27fc788f9ab88286b8041355e5445fdfdf012c",
+  "test_network_attempts": {
+    "main": 0,
+    "feature": 0
+  },
+  "application_edits": false,
+  "paid_requests": 0,
+  "trading_requests": 0,
+  "test_isolation": "disposable clone/worktree with socket/DNS audit hook",
+  "original_requirement_source": "Memecoin_Social_Intelligence_Staged_Prompts.md"
+}

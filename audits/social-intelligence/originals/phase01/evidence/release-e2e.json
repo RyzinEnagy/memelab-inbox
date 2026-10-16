@@ -1,0 +1,601 @@
+{
+ "checks": {
+  "git_status_porcelain": [],
+  "network_attempt_lines": [],
+  "network_attempts": 0,
+  "stages_ok": 45,
+  "stages_total": 45,
+  "tracked_db_unchanged": true
+ },
+ "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+ "ok": true,
+ "python": "3.12.14",
+ "schema": "memelab.release.e2e/1",
+ "stages": [
+  {
+   "command": "python -c \"import sys, numpy, pytest; print(sys.version.split()[0], 'numpy', numpy.__version__, 'pytest', pytest.__version__)\"",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.3,
+   "stage": "00",
+   "stderr": "",
+   "stdout": "3.12.14 numpy 2.3.5 pytest 9.1.1",
+   "title": "setup: interpreter and test tooling"
+  },
+  {
+   "command": "python -m memelab social --help",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.8,
+   "stage": "00",
+   "stderr": "",
+   "stdout": "usage: memelab social [-h]\n                      {ingest,status,guard,x-health,x-ingest,tg-health,tg-ingest,tg-webhook-ingest,resolve,identity,extract,claims,llm-health,narrative-snapshot,narrative-show,narrative-why,narrative-changes,registry,wallet,perf,alpha,chrono,research,brief,trader-digest,feed,feed-demo,alerts,evaluate,replay}\n                      ...\n\npositional arguments:\n  {ingest,status,guard,x-health,x-ingest,tg-health,tg-ingest,tg-webhook-ingest,resolve,identity,extract,claims,llm-health,narrative-snapshot,narrative-show,narrative-why,narrative-changes,registry,wallet,perf,alpha,chrono,research,brief,trader-digest,feed,feed-demo,alerts,evaluate,replay}\n    ingest              ingest social units from bridge result files\n    status              runs, connector health, checkpoints, quarantine counts\n    guard               fail if a tracked file holds raw third-party social\n                        content\n    x-health            X API adapter health (credentials, consent, cursors,\n                        live evidence); no network\n    x-ingest            ingest configured X scopes through the official X API\n                        v2\n    tg-health           Telegram Bot API health (credentials, channel access,\n                        update cursor, live evidence)\n    tg-ingest           poll approved Telegram channels through the Bot API\n                        (getUpdates)\n    tg-webhook-ingest   ingest Telegram webhook updates spooled in the private\n                        folder\n    resolve             resolve a post's token references to (chain,\n                        contract); store candidates and evidence\n    identity            stored token identity, candidates, evidence and market\n                        context for an item\n    extract             structured claim extraction for one observation\n... (38 more lines)",
+   "title": "setup: CLI loads"
+  },
+  {
+   "command": "python tools/release_e2e.py --migrate-check $TMP/e2e.sqlite",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.1,
+   "stage": "01",
+   "stderr": "",
+   "stdout": "{\n \"database_existed\": false,\n \"latest\": 12,\n \"legacy_rows_after\": {\n  \"entries\": 0,\n  \"rejections\": 0,\n  \"social_snapshots\": 0,\n  \"theses\": 0,\n  \"tokens\": 0,\n  \"watchlist\": 0\n },\n \"legacy_rows_before\": {},\n \"legacy_unchanged\": true,\n \"migration_rows\": 12,\n \"social_version_after\": 12,\n \"social_version_before\": 0\n}",
+   "title": "migrations: empty database to latest"
+  },
+  {
+   "command": "python tools/release_e2e.py --migrate-check $TMP/e2e.sqlite",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.1,
+   "stage": "01",
+   "stderr": "",
+   "stdout": "{\n \"database_existed\": true,\n \"latest\": 12,\n \"legacy_rows_after\": {\n  \"entries\": 0,\n  \"rejections\": 0,\n  \"social_snapshots\": 0,\n  \"theses\": 0,\n  \"tokens\": 0,\n  \"watchlist\": 0\n },\n \"legacy_rows_before\": {\n  \"entries\": 0,\n  \"rejections\": 0,\n  \"social_snapshots\": 0,\n  \"theses\": 0,\n  \"tokens\": 0,\n  \"watchlist\": 0\n },\n \"legacy_unchanged\": true,\n \"migration_rows\": 12,\n \"social_version_after\": 12,\n \"social_version_before\": 12\n}",
+   "title": "migrations: idempotent second init"
+  },
+  {
+   "command": "cp data/memelab.sqlite $TMP/tracked_copy.sqlite && python tools/release_e2e.py --migrate-check $TMP/tracked_copy.sqlite",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.1,
+   "stage": "01",
+   "stderr": "",
+   "stdout": "{\n \"database_existed\": true,\n \"latest\": 12,\n \"legacy_rows_after\": {\n  \"entries\": 43,\n  \"rejections\": 20,\n  \"social_snapshots\": 99,\n  \"theses\": 33,\n  \"tokens\": 13,\n  \"watchlist\": 5\n },\n \"legacy_rows_before\": {\n  \"entries\": 43,\n  \"rejections\": 20,\n  \"social_snapshots\": 99,\n  \"theses\": 33,\n  \"tokens\": 13,\n  \"watchlist\": 5\n },\n \"legacy_unchanged\": true,\n \"migration_rows\": 12,\n \"social_version_after\": 12,\n \"social_version_before\": 0\n}",
+   "title": "migrations: copy of the tracked database (legacy rows unchanged)"
+  },
+  {
+   "command": "python -m memelab social ingest --file tests/fixtures/social/inbox/soc_fx01.json --db $TMP/e2e.sqlite --now 1791566000",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.7,
+   "stage": "02",
+   "stderr": "{\"connector\": \"bridge_inbox:x:example_down_account\", \"error\": \"TypeError: Failed to fetch\", \"event\": \"unit_unavailable\", \"run_id\": \"ingest_20261009_171320_967c6b\", \"source_ref\": \"soc_fx01.json#soc:x:example_down_account\", \"status\": \"DOWN\"}\n{\"connector\": \"bridge_inbox:x:example_login_wall\", \"error\": \"page asked for login\", \"event\": \"unit_unavailable\", \"run_id\": \"ingest_20261009_171320_967c6b\", \"source_ref\": \"soc_fx01.json#soc:x:example_login_wall\", \"status\": \"LOGIN_REQUIRED\"}\n{\"connector\": \"bridge_inbox:x:example_trader_a\", \"errors\": [\"published_at: unparseable or naive timestamp\", \"metrics: non-numeric values for views\"], \"event\": \"quarantined\", \"item_index\": 2, \"payload_sha256\": \"a34fd4ae04cb356ca6e023f6fdd160f09d9c6ac1809bdfa459d811a075647485\", \"reason\": \"INVALID\", \"run_id\": \"ingest_20261009_171320_967c6b\", \"source_ref\": \"soc_fx01.json#soc:x:example_trader_a\"}\n{\"connector\": \"bridge_inbox:x:example_trader_a\", \"errors\": [\"text: content class not allowed in the inbox (D-010)\"], \"event\": \"quarantined\", \"item_index\": 3, \"payload_sha256\": \"e6506b0f024d99ecaaeffcda2e5e07c314d5d04a3d57d3d66ed78736590180ca\", \"reason\": \"BLOCKED_CONTENT\", \"run_id\": \"ingest_20261009_171320_967c6b\", \"source_ref\": \"soc_fx01.json#soc:x:example_trader_a\"}\n{\"connector\": \"bridge_inbox:x:example_trader_a\", \"errors\": [\"visibility: only PUBLIC content is ingested (D-009)\"], \"event\": \"quarantined\", \"item_index\": 4, \"payload_sha256\": \"f8cb71db70a628118f8e86316df7abc8b846ed9210e03685ccdb1cb5e4cffb19\", \"reason\": \"NOT_PUBLIC\", \"run_id\": \"ingest_20261009_171320_967c6b\", \"source_ref\": \"soc_fx01.json#soc:x:example_trader_a\"}",
+   "stdout": "{\n \"budget\": {\n  \"max_cost\": null,\n  \"max_items\": null,\n  \"max_units\": null,\n  \"pace_seconds\": 0.0,\n  \"used\": {\n   \"cost\": 0.0,\n   \"items\": 7,\n   \"units\": 4\n  }\n },\n \"counts\": {\n  \"budget_stopped\": 0,\n  \"created\": 4,\n  \"duplicates\": 0,\n  \"items_seen\": 7,\n  \"quarantined\": 3,\n  \"stale_items\": 0,\n  \"units\": 4,\n  \"units_failed\": 0,\n  \"units_ok\": 2,\n  \"units_rejected\": 0,\n  \"units_replayed\": 0,\n  \"units_unavailable\": 2\n... (32 more lines)",
+   "title": "fixture inbox load (bridge result file)"
+  },
+  {
+   "command": "python -m memelab social ingest --file tests/fixtures/social/inbox/soc_fx01.json --db $TMP/e2e.sqlite --now 1791566100",
+   "exit": 1,
+   "expected": [
+    1
+   ],
+   "ok": true,
+   "seconds": 0.7,
+   "stage": "03",
+   "stderr": "{\"connector\": \"bridge_inbox:x:example_down_account\", \"error\": \"TypeError: Failed to fetch\", \"event\": \"unit_unavailable\", \"run_id\": \"ingest_20261009_171500_f78ef3\", \"source_ref\": \"soc_fx01.json#soc:x:example_down_account\", \"status\": \"DOWN\"}\n{\"connector\": \"bridge_inbox:x:example_login_wall\", \"error\": \"page asked for login\", \"event\": \"unit_unavailable\", \"run_id\": \"ingest_20261009_171500_f78ef3\", \"source_ref\": \"soc_fx01.json#soc:x:example_login_wall\", \"status\": \"LOGIN_REQUIRED\"}",
+   "stdout": "{\n \"budget\": {\n  \"max_cost\": null,\n  \"max_items\": null,\n  \"max_units\": null,\n  \"pace_seconds\": 0.0,\n  \"used\": {\n   \"cost\": 0.0,\n   \"items\": 0,\n   \"units\": 4\n  }\n },\n \"counts\": {\n  \"budget_stopped\": 0,\n  \"created\": 0,\n  \"duplicates\": 0,\n  \"items_seen\": 0,\n  \"quarantined\": 0,\n  \"stale_items\": 0,\n  \"units\": 4,\n  \"units_failed\": 0,\n  \"units_ok\": 0,\n  \"units_rejected\": 0,\n  \"units_replayed\": 2,\n  \"units_unavailable\": 2\n... (20 more lines)",
+   "title": "duplicate replay: same file again adds nothing"
+  },
+  {
+   "command": "cp tests/fixtures/social/inbox/soc_fx01.json $TMP/renamed_copy.json && python -m memelab social ingest --file $TMP/renamed_copy.json --db $TMP/e2e.sqlite --now 1791566200",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.6,
+   "stage": "03",
+   "stderr": "{\"connector\": \"bridge_inbox:x:example_down_account\", \"error\": \"TypeError: Failed to fetch\", \"event\": \"unit_unavailable\", \"run_id\": \"ingest_20261009_171640_e691f3\", \"source_ref\": \"renamed_copy.json#soc:x:example_down_account\", \"status\": \"DOWN\"}\n{\"connector\": \"bridge_inbox:x:example_login_wall\", \"error\": \"page asked for login\", \"event\": \"unit_unavailable\", \"run_id\": \"ingest_20261009_171640_e691f3\", \"source_ref\": \"renamed_copy.json#soc:x:example_login_wall\", \"status\": \"LOGIN_REQUIRED\"}\n{\"connector\": \"bridge_inbox:x:example_trader_a\", \"errors\": [\"published_at: unparseable or naive timestamp\", \"metrics: non-numeric values for views\"], \"event\": \"quarantined\", \"item_index\": 2, \"payload_sha256\": \"a34fd4ae04cb356ca6e023f6fdd160f09d9c6ac1809bdfa459d811a075647485\", \"reason\": \"INVALID\", \"run_id\": \"ingest_20261009_171640_e691f3\", \"source_ref\": \"renamed_copy.json#soc:x:example_trader_a\"}\n{\"connector\": \"bridge_inbox:x:example_trader_a\", \"errors\": [\"text: content class not allowed in the inbox (D-010)\"], \"event\": \"quarantined\", \"item_index\": 3, \"payload_sha256\": \"e6506b0f024d99ecaaeffcda2e5e07c314d5d04a3d57d3d66ed78736590180ca\", \"reason\": \"BLOCKED_CONTENT\", \"run_id\": \"ingest_20261009_171640_e691f3\", \"source_ref\": \"renamed_copy.json#soc:x:example_trader_a\"}\n{\"connector\": \"bridge_inbox:x:example_trader_a\", \"errors\": [\"visibility: only PUBLIC content is ingested (D-009)\"], \"event\": \"quarantined\", \"item_index\": 4, \"payload_sha256\": \"f8cb71db70a628118f8e86316df7abc8b846ed9210e03685ccdb1cb5e4cffb19\", \"reason\": \"NOT_PUBLIC\", \"run_id\": \"ingest_20261009_171640_e691f3\", \"source_ref\": \"renamed_copy.json#soc:x:example_trader_a\"}",
+   "stdout": "{\n \"budget\": {\n  \"max_cost\": null,\n  \"max_items\": null,\n  \"max_units\": null,\n  \"pace_seconds\": 0.0,\n  \"used\": {\n   \"cost\": 0.0,\n   \"items\": 7,\n   \"units\": 4\n  }\n },\n \"counts\": {\n  \"budget_stopped\": 0,\n  \"created\": 0,\n  \"duplicates\": 4,\n  \"items_seen\": 7,\n  \"quarantined\": 3,\n  \"stale_items\": 0,\n  \"units\": 4,\n  \"units_failed\": 0,\n  \"units_ok\": 2,\n  \"units_rejected\": 0,\n  \"units_replayed\": 0,\n  \"units_unavailable\": 2\n... (32 more lines)",
+   "title": "duplicate replay: renamed copy adds nothing"
+  },
+  {
+   "command": "python -m memelab social status --db $TMP/e2e.sqlite",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.6,
+   "stage": "03",
+   "stderr": "",
+   "stdout": "{\n \"checkpoints\": [\n  {\n   \"connector\": \"bridge_inbox:telegram:example_alpha_channel\",\n   \"item_count\": 1,\n   \"last_run_id\": \"ingest_20261009_171640_e691f3\",\n   \"next_index\": 1,\n   \"source_ref\": \"renamed_copy.json#soc:telegram:example_alpha_channel\",\n   \"status\": \"COMPLETE\"\n  },\n  {\n   \"connector\": \"bridge_inbox:x:example_trader_a\",\n   \"item_count\": 6,\n   \"last_run_id\": \"ingest_20261009_171640_e691f3\",\n   \"next_index\": 6,\n   \"source_ref\": \"renamed_copy.json#soc:x:example_trader_a\",\n   \"status\": \"COMPLETE\"\n  },\n  {\n   \"connector\": \"bridge_inbox:telegram:example_alpha_channel\",\n   \"item_count\": 1,\n   \"last_run_id\": \"ingest_20261009_171320_967c6b\",\n   \"next_index\": 1,\n   \"source_ref\": \"soc_fx01.json#soc:telegram:example_alpha_channel\",\n   \"status\": \"COMPLETE\"\n... (70 more lines)",
+   "title": "ingest status"
+  },
+  {
+   "command": "python -m memelab social resolve --post tests/fixtures/social/resolve/post_ambiguous.json --bodies tests/fixtures/social/resolve/fx_providers.json --context --db $TMP/e2e.sqlite --now 1791676800",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.6,
+   "stage": "04",
+   "stderr": "",
+   "stdout": "{\n \"resolutions\": [\n  {\n   \"candidates\": [\n    {\n     \"chain\": \"ethereum\",\n     \"contract\": \"0x7059d8e5faab71a5e2628cad88bcc1df0b68c305\",\n     \"liquidity_usd_seen\": 9000000.0,\n     \"name_seen\": \"Pepe Fixture Eth\",\n     \"provider_chain\": \"ethereum\",\n     \"providers\": [\n      \"dexscreener\"\n     ],\n     \"rank\": 0,\n     \"ref_id\": 2,\n     \"resolution_id\": 1,\n     \"support\": \"supported\",\n     \"symbol_seen\": \"PEPE\",\n     \"verdict\": \"viable\",\n     \"why\": \"symbol_match_only\"\n    },\n    {\n     \"chain\": \"solana\",\n     \"contract\": \"4JFBJ56AUWfSGaJwqhqfsKHMJNJX22Xg3WM3K9fTdLZW\",\n     \"liquidity_usd_seen\": 300000.0,\n... (136 more lines)",
+   "title": "token resolution: ambiguous ticker"
+  },
+  {
+   "command": "python -m memelab social resolve --post tests/fixtures/social/resolve/post_resolved.json --bodies tests/fixtures/social/resolve/fx_providers.json --context --db $TMP/e2e.sqlite --now 1791676800",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.6,
+   "stage": "04",
+   "stderr": "",
+   "stdout": "{\n \"resolutions\": [\n  {\n   \"candidates\": [\n    {\n     \"chain\": \"solana\",\n     \"contract\": \"8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ\",\n     \"liquidity_usd_seen\": 230000.0,\n     \"name_seen\": \"Lab Dog Fixture\",\n     \"provider_chain\": \"solana\",\n     \"providers\": [\n      \"dexscreener\",\n      \"geckoterminal\",\n      \"jupiter\"\n     ],\n     \"rank\": 0,\n     \"ref_id\": 6,\n     \"resolution_id\": 2,\n     \"support\": \"supported\",\n     \"symbol_seen\": \"LABDOG\",\n     \"verdict\": \"chosen\",\n     \"why\": \"contract_found_on_chain\"\n    },\n    {\n     \"chain\": \"solana\",\n... (395 more lines)",
+   "title": "token resolution: exact contract"
+  },
+  {
+   "command": "python -m memelab social extract --post tests/fixtures/social/claims/demo_post_nollm.json --db $TMP/e2e.sqlite --now 1791676800",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.7,
+   "stage": "05",
+   "stderr": "",
+   "stdout": "{\n \"report\": [\n  \"Observation 5, deterministic rules: done\",\n  \"Observation 5, model analysis (no provider): not available (model_not_configured)\",\n  \"Claim 1 from post x:1900000000000000001\",\n  \"  Source: https://x.com/example_poster/status/1900000000000000001; posted 2026-10-10 02:30 UTC; seen 2026-10-10 02:31 UTC (fixture); observation 5\",\n  \"  What it is: a token reference, a reference found in the text; stance neutral; time frame: no time frame given\",\n  \"  In the lab's words: The post contains a link reference (identity unresolved).\",\n  \"  Token: link:https://pump.fun/coin/8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ -> no exact identity (unresolved); not counted as this token\",\n  \"  Author position: the author does not say whether they hold it\",\n  \"  Whose words: the poster's own words\",\n  \"  Uncertainty: low\",\n  \"  Evidence (token): characters 62-106 of the post text (sha256 e7df620ffcc3)\",\n  \"  Evidence bucket: FACT (the post contains this); verification: present in text\",\n  \"  Extracted by: deterministic rules (claims-extract-v1), no model used\",\n  \"Claim 2 from post x:1900000000000000001\",\n  \"  Source: https://x.com/example_poster/status/1900000000000000001; posted 2026-10-10 02:30 UTC; seen 2026-10-10 02:31 UTC (fixture); observation 5\",\n  \"  What it is: a token reference, a reference found in the text; stance neutral; time frame: no time frame given\",\n  \"  In the lab's words: The post contains a ticker reference (identity unresolved).\",\n  \"  Token: ticker:LABDOG -> no exact identity (unresolved); not counted as this token\",\n  \"  Author position: the author does not say whether they hold it\",\n  \"  Whose words: the poster's own words\",\n  \"  Uncertainty: low\",\n  \"  Evidence (token): characters 32-39 of the post text (sha256 b109bcb1de25)\",\n  \"  Evidence bucket: FACT (the post contains this); verification: present in text\",\n... (41 more lines)",
+   "title": "structured extraction without a model"
+  },
+  {
+   "command": "python -m memelab social extract --post tests/fixtures/social/claims/demo_post_model.json --mock tests/fixtures/social/claims/demo_mock.json --db $TMP/e2e.sqlite --now 1791676800",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.7,
+   "stage": "05",
+   "stderr": "",
+   "stdout": "{\n \"report\": [\n  \"Observation 6, deterministic rules: done\",\n  \"Observation 6, model analysis (mock): done\",\n  \"Claim 3 from post x:1900000000000000002\",\n  \"  Source: https://x.com/example_poster/status/1900000000000000002; posted 2026-10-10 03:00 UTC; seen 2026-10-10 03:01 UTC (fixture); observation 6\",\n  \"  What it is: a token reference, a reference found in the text; stance neutral; time frame: no time frame given\",\n  \"  In the lab's words: The post contains a link reference (identity unresolved).\",\n  \"  Token: link:https://pump.fun/coin/8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ -> no exact identity (unresolved); not counted as this token\",\n  \"  Author position: the author does not say whether they hold it\",\n  \"  Whose words: the poster's own words\",\n  \"  Uncertainty: low\",\n  \"  Evidence (token): characters 100-144 of the post text (sha256 e7df620ffcc3)\",\n  \"  Evidence bucket: FACT (the post contains this); verification: present in text\",\n  \"  Extracted by: deterministic rules (claims-extract-v1), no model used\",\n  \"Claim 4 from post x:1900000000000000002\",\n  \"  Source: https://x.com/example_poster/status/1900000000000000002; posted 2026-10-10 03:00 UTC; seen 2026-10-10 03:01 UTC (fixture); observation 6\",\n  \"  What it is: a token reference, a reference found in the text; stance neutral; time frame: no time frame given\",\n  \"  In the lab's words: The post contains a ticker reference (identity unresolved).\",\n  \"  Token: ticker:LABDOG -> no exact identity (unresolved); not counted as this token\",\n  \"  Author position: the author does not say whether they hold it\",\n  \"  Whose words: the poster's own words\",\n  \"  Uncertainty: low\",\n  \"  Evidence (token): characters 34-41 of the post text (sha256 b109bcb1de25)\",\n  \"  Evidence bucket: FACT (the post contains this); verification: present in text\",\n... (59 more lines)",
+   "title": "structured extraction with the offline mock provider"
+  },
+  {
+   "command": "python -m memelab social llm-health",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.6,
+   "stage": "05",
+   "stderr": "",
+   "stdout": "{\n \"config_file\": \"$TMP/private/llm.json\",\n \"fixture_calls\": 1,\n \"live_calls_ok\": 0,\n \"model\": null,\n \"provider\": null,\n \"status\": \"model_not_configured\"\n}",
+   "title": "model status (none configured)"
+  },
+  {
+   "command": "python -m memelab social narrative-snapshot --day 2026-10-09 --tz UTC --db $TMP/e2e.sqlite --now 1791849600",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.7,
+   "stage": "06",
+   "stderr": "",
+   "stdout": "{\n \"created\": true,\n \"report\": [\n  \"Narrative snapshot 1: window 2026-10-09 UTC (1791504000 to 1791590400 UTC epoch), cutoff 1791590400, complete, engine narr-v1.\",\n  \"0 cluster(s) from 0 claim(s). Compared with: none (first comparable snapshot).\",\n  \"Changes since the previous snapshot: none.\",\n  \"Not clustered: 5 not observed by cutoff.\"\n ],\n \"run_id\": 1,\n \"summary\": {\n  \"changes\": {},\n  \"clusters\": 0,\n  \"compared_to\": \"none (first comparable snapshot)\",\n  \"highlights\": [],\n  \"insufficient_coverage\": [],\n  \"new\": [],\n  \"prev_run_id\": null\n },\n \"unassigned\": {\n  \"claims_by_reason\": {\n   \"not_observed_by_cutoff\": 5\n  },\n  \"claims_clustered\": 0,\n  \"claims_considered\": 0,\n  \"ticker_only_mentions\": {}\n... (2 more lines)",
+   "title": "narrative snapshot, day before"
+  },
+  {
+   "command": "python -m memelab social narrative-snapshot --day 2026-10-10 --tz UTC --db $TMP/e2e.sqlite --now 1791849600",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.7,
+   "stage": "06",
+   "stderr": "",
+   "stdout": "{\n \"created\": true,\n \"report\": [\n  \"Narrative snapshot 2: window 2026-10-10 UTC (1791590400 to 1791676800 UTC epoch), cutoff 1791676800, complete, engine narr-v1.\",\n  \"1 cluster(s) from 5 claim(s). Compared with: run 1.\",\n  \"Contains fixture data (not live provider data).\",\n  \"- theme: animal [tag:animal]: insufficient_coverage, confidence UNKNOWN, 1 mention(s) in window, independent sources not estimable, amplifiers 0, dependent 0, fresh.\",\n  \"Changes since the previous snapshot: 1 NEW.\",\n  \"Not clustered: 4 token not resolved to a contract.\"\n ],\n \"run_id\": 2,\n \"summary\": {\n  \"changes\": {\n   \"NEW\": 1\n  },\n  \"clusters\": 1,\n  \"compared_to\": \"run 1\",\n  \"highlights\": [],\n  \"insufficient_coverage\": [\n   \"tag:animal\"\n  ],\n  \"new\": [\n   \"tag:animal\"\n  ],\n  \"prev_run_id\": 1\n... (12 more lines)",
+   "title": "narrative snapshot, claim day"
+  },
+  {
+   "command": "python -m memelab social narrative-changes --db $TMP/e2e.sqlite",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.7,
+   "stage": "06",
+   "stderr": "",
+   "stdout": "{\n \"changes\": [\n  {\n   \"after\": {\n    \"confidence\": \"UNKNOWN\",\n    \"conflicted\": 0,\n    \"independent_source_count\": null,\n    \"item_count\": 1,\n    \"stance\": {\n     \"positive\": 1\n    },\n    \"status\": \"insufficient_coverage\",\n    \"window_mentions\": 1\n   },\n   \"before\": null,\n   \"change_type\": \"NEW\",\n   \"cluster_key\": \"tag:animal\",\n   \"prev_run_id\": 1,\n   \"run_id\": 2\n  }\n ],\n \"run_id\": 2,\n \"summary\": {\n  \"changes\": {\n   \"NEW\": 1\n... (13 more lines)",
+   "title": "narrative change since the previous snapshot"
+  },
+  {
+   "command": "python -m memelab social registry import tests/fixtures/social/registry/leaderboard_fresh.json --db $TMP/e2e.sqlite --now 1791849600",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.7,
+   "stage": "07",
+   "stderr": "",
+   "stdout": "{\n \"capture_id\": 1,\n \"captured_at\": 1791806400.0,\n \"entities_new\": 11,\n \"fixture_label\": \"invented demonstration list; no real people, wallets or figures\",\n \"freshness\": \"FRESH\",\n \"is_fixture\": true,\n \"links_new\": 12,\n \"listings\": 6,\n \"never_done\": [\n  \"approve\",\n  \"assign category\",\n  \"mark wallet as owned\",\n  \"rank\"\n ],\n \"rejects\": [\n  {\n   \"code\": \"INVALID_WALLET\",\n   \"row\": 5\n  },\n  {\n   \"code\": \"BLOCKED_CONTENT_KEY\",\n   \"row\": 6\n  }\n ],\n... (13 more lines)",
+   "title": "trader registry: import a permitted list (fixture)"
+  },
+  {
+   "command": "python -m memelab social registry add account --platform x --handle example_poster --provider-id 4242 --fixture-label 'INVENTED FIXTURE: release e2e' --db $TMP/e2e.sqlite --now 1791849600",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.6,
+   "stage": "07",
+   "stderr": "",
+   "stdout": "{\n \"entity_id\": \"acct:x:id:4242\",\n \"note\": \"added as a candidate with no evidence; add evidence before approving\",\n \"review_state\": \"CANDIDATE\"\n}",
+   "title": "trader registry: add an account (fixture)"
+  },
+  {
+   "command": "python -m memelab social registry status --db $TMP/e2e.sqlite",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.6,
+   "stage": "07",
+   "stderr": "",
+   "stdout": "{\n \"captures\": 1,\n \"entities\": {\n  \"LEADERBOARD_CANDIDATE\": 5,\n  \"OBSERVED_WALLET\": 3,\n  \"SOCIAL_ACCOUNT\": 4,\n  \"SOURCE_ORGANIZATION\": 1\n },\n \"fixture_entities\": 13,\n \"links\": 12,\n \"live_captures\": 0,\n \"live_data\": \"none: no permitted live list has been supplied; every capture here is a fixture\",\n \"records\": {\n  \"CANDIDATE\": 13\n }\n}",
+   "title": "trader registry: status"
+  },
+  {
+   "command": "python -m memelab social wallet track add solana 5rXq7LtW6VnvMo16bB67FBstaaCr5RFeA7MCgECdkcpD --reason 'fixture e2e wallet' --by release --fixture --db $TMP/e2e.sqlite --now 1791849600",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.6,
+   "stage": "08",
+   "stderr": "",
+   "stdout": "{\n \"created\": true,\n \"status\": \"ACTIVE\",\n \"tracked_id\": 1\n}",
+   "title": "wallet attribution: track a fixture wallet"
+  },
+  {
+   "command": "python -m memelab social wallet ingest tests/fixtures/social/wallets/fx_helius_ok.json --fixture --db $TMP/e2e.sqlite --now 1791849600",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.7,
+   "stage": "08",
+   "stderr": "",
+   "stdout": "{\n \"chain\": \"solana\",\n \"fetched_at\": 1791844200.0,\n \"payload_sha256\": \"175c349ac120f34b2bf798825b5ad16496c3e1e069fd14a52b8e9431f4f6d4c9\",\n \"provider\": \"helius\",\n \"results\": [\n  {\n   \"already_stored\": 0,\n   \"beyond_limit\": 0,\n   \"reject_codes\": [],\n   \"rejected\": 0,\n   \"seen\": 2,\n   \"status\": \"OK\",\n   \"stored\": 2,\n   \"wallet\": \"5rXq7LtW6VnvMo16bB67FBstaaCr5RFeA7MCgECdkcpD\"\n  },\n  {\n   \"detail\": \"not a tracked wallet; ignored\",\n   \"status\": \"UNTRACKED\",\n   \"wallet\": \"5zeWRRxzaTBVKhLo8edrqsPe2rnAguMio78DiVJ5Mkjj\"\n  },\n  {\n   \"detail\": \"not a tracked wallet; ignored\",\n   \"status\": \"UNTRACKED\",\n   \"wallet\": \"GKSw5BerNKY1fb14QzgWXcxMweiKdmtu6oJ3NjxAzRZc\"\n... (5 more lines)",
+   "title": "wallet attribution: ingest fixture activity"
+  },
+  {
+   "command": "ACCT=$(python -c \"import sqlite3; c=sqlite3.connect('$TMP/e2e.sqlite'); print(c.execute(\\\"SELECT entity_id FROM social_registry_entities WHERE entity_kind='SOCIAL_ACCOUNT' ORDER BY rowid DESC LIMIT 1\\\").fetchone()[0])\") && python -m memelab social wallet assert \"$ACCT\" solana 5rXq7LtW6VnvMo16bB67FBstaaCr5RFeA7MCgECdkcpD --type OFFICIAL_SELF_DISCLOSURE --ref https://example.invalid/post/1 --by release --db $TMP/e2e.sqlite --now 1791849600 && python -m memelab social wallet why \"$ACCT\" solana 5rXq7LtW6VnvMo16bB67FBstaaCr5RFeA7MCgECdkcpD --db $TMP/e2e.sqlite --now 1791849600",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 1.3,
+   "stage": "08",
+   "stderr": "",
+   "stdout": "{\n \"assertion_id\": 1,\n \"confidence\": \"LOW\",\n \"control_hypothesis\": \"ACCOUNT_CLAIMS_WALLET\",\n \"created\": true,\n \"signature_check\": \"NOT_APPLICABLE\"\n}\nAccount acct:x:id:4242  wallet solana:5rXq7LtW6VnvMo16bB67FBstaaCr5RFeA7MCgECdkcpD\nLevel: SELF_CLAIMED (CLAIMED), confidence LOW\nReal-world identity: UNKNOWN. This says nothing about who the person is.\nWhy: the account says so; nothing independent confirms it\nAwaiting review: assertions 1\n  #1 OFFICIAL_SELF_DISCLOSURE by acct:x:id:4242 ref https://example.invalid/post/1 seen 1791849600.0 [UNREVIEWED/ACTIVE] counts as SELF_CLAIM",
+   "title": "wallet attribution: self-disclosure assertion"
+  },
+  {
+   "command": "python -m memelab social wallet track add solana 5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9 --reason 'custody check' --by release --fixture --db $TMP/e2e.sqlite --now 1791849600",
+   "exit": 1,
+   "expected": [
+    1
+   ],
+   "ok": true,
+   "seconds": 0.6,
+   "stage": "08",
+   "stderr": "{\"error\": \"custody_wallet_not_monitored_by_default: this address is labelled CUSTODY_EXCHANGE (Binance hot); its activity is many people's, not one trader's. Pass allow_custody to watch it anyway.\"}",
+   "stdout": "",
+   "title": "wallet attribution: custody wallet refused"
+  },
+  {
+   "command": "python -m memelab social perf run --ledger tests/fixtures/social/perf/ledger_main.json",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.6,
+   "stage": "09",
+   "stderr": "",
+   "stdout": "Wallet performance (wallet-level, not person-level)   scope: W1   chain: solana   as of 1790864000   convention: FIFO\nLabel: FIXTURE: invented wallet, invented prices; hand-checked in PERFORMANCE_10.md\nReconstruction: PARTIAL. Comprehensive reconstruction cannot be achieved: history coverage is UNKNOWN: earlier transactions may exist that are not in the ledger; 1 disposal(s) exceeded the inventory the ledger can explain; an opening lot of unknown basis was added (missing earlier history or a unit error); 1 lot(s) of unknown basis (transfers in, unpriced buys or liquidity excess): sales from them show proceeds but no gain or loss; 1 entry(ies) were unclassified, unsupported or rejected and are not in the P&L; tokens touched by unclassified, unsupported or suspect entries: TOKQ, TOKZ\nReconciled: True (13 pass, 1 warn, 0 fail)\nHistory coverage: UNKNOWN; first entry 1790000000.0, last 1790372600.0; 1 disposal(s) needed an opening lot from missing history\n\nRealized (trading lots, known basis and proceeds, before fees): 1720 USD\nKnown fees: 0.178 USD (0 fee(s) unknown, 0 unpriced)\nRealized after known fees: 1719.822 USD\nProceeds from lots of unknown basis (no gain or loss computed): 600 USD\nUnrealized, marked at last supplied price: 1000 USD on 2 of 2 open positions of known basis\nIf sold now per supplied quotes (lower bound): -300 USD on 2 of 2; the mark overstates the executable value by 1300 USD where both are known\n\nTrades (closed, fully known positions): 3 of 5 positions; swaps accounted for: 13\nWin rate: 0.666666666667 (95% interval ['0.207659598808', '0.938508055979']); median return 0.136340909091; aggregate return 0.392675799087\nProfit share from biggest winner: 0.943404058605; return excluding biggest winner: -0.202927536232\nDrawdown: INSUFFICIENT_DATA (3 fully valued points of 19 (need at least 20 and 0.8 of all points))\nSensitivity: convention_AVCO 0 USD; stablecoins_at_1.00 -120 USD (MATERIAL); no_return_matching 0 USD\n\nScore: INSUFFICIENT_DATA\n  refused because: sample of 3 closed, fully known position(s) is below the minimum of 20\n  refused because: the sample spans 2.0 days, below the minimum of 7\nLimits: Wallet-level only. A wallet is not a person; other wallets, exchange flows and off-chain activity are not in the data. Amounts are the provider's legs. Decimals cannot be re-verified from stored events; a ledger with raw amounts and decimals is checked.\nresult sha256 d733edf5529c98f0..",
+   "title": "P&L reconstruction (FIFO, AVCO sensitivity, reconciliation)"
+  },
+  {
+   "command": "python -m memelab social alpha run --input tests/fixtures/social/alpha/alpha_main.json --policy '{\"horizons_s\":[3600,21600,86400]}'",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.9,
+   "stage": "10",
+   "stderr": "",
+   "stdout": "Information Alpha (information-alpha-v1, alpha-rules-v1)  label: FIXTURE: invented sources, tokens, posts and prices\nINVENTED FIXTURE DATA: this is a demonstration of the calculation, not evidence about any real source.\nas of 1790204400; delay 300s; size $500; primary horizon 24h; policy 82e8fe741984\n\nSource src_a: 23 calls supplied, 16 eligible and independent, 14 evaluated, 14 with a matched baseline at the primary horizon.\n  ineligible: CONDITIONAL_CLAIM 1, CONFLICTING_STATEMENTS 2, HINDSIGHT_CAPTURE_RISK 1, NOT_ORIGINAL 1, NO_DIRECTION 1, REPEAT_POST 1\n  no usable price data: ILLIQUID_ENTRY 1, NO_PRICE_HISTORY 1\n    1h  n=14  median net    -4.3%  baseline    -4.8%  relative     0.5%  ci95 ['-1.3%', '1.5%']  beat 0.57  false positives 14\n    6h  n=14  median net    -1.3%  baseline    -5.3%  relative     4.0%  ci95 ['-6.7%', '9.9%']  beat 0.64  false positives 9\n   24h  n=14  median net    -0.1%  baseline    -6.8%  relative     6.5%  ci95 ['-36.3%', '39.9%']  beat 0.57  false positives 7\n  lead time: 6 with an onset, 8 none, 1 posted after the move; quantiles {'p25': 27900.0, 'median': 41400.0, 'p75': 57600.0}\n  SCORE 50 (PRELIMINARY), point estimate 53, shrinkage weight 0.41. 50 means no demonstrated edge over matched tokens. Above 50: the low end of the 95% interval of the median relative return beat them, after shrinkage for sample size. Below 50: it did worse. The point estimate is shown as score_point. Not a probability and not a ranking of skill.\n    not validated: 14 independent calls, validation needs 30\n    not validated: 14 distinct tokens, validation needs 20\n    not validated: the 95% interval of the median relative return includes zero: the result cannot be told apart from no edge\n    not validated: chronological halves have 7 and 7 calls, the split-sample check needs 10 each\n\nSource src_b: 3 calls supplied, 3 eligible and independent, 3 evaluated, 3 with a matched baseline at the primary horizon.\n    1h  n=3   median net    -1.3%  baseline    -4.8%  relative     3.5%  ci95 none  beat 1.0  false positives 3\n    6h  n=3   median net    16.5%  baseline    -5.3%  relative    21.8%  ci95 none  beat 1.0  false positives 0\n   24h  n=3   median net    80.7%  baseline    -6.9%  relative    87.6%  ci95 none  beat 1.0  false positives 0\n  lead time: 3 with an onset, 0 none, 0 posted after the move; quantiles {'p25': 19800.0, 'median': 21600.0, 'p75': 23400.0}\n  NO SCORE (declined): 3 independent calls with a matched baseline at the primary horizon; at least 10 are needed to publish a score\n\nSource src_c: 6 calls supplied, 0 eligible and independent, 0 evaluated, 0 with a matched baseline at the primary horizon.\n... (9 more lines)",
+   "title": "information-alpha evaluation"
+  },
+  {
+   "command": "python -m memelab social chrono run --input tests/fixtures/social/chrono/confident.json",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.6,
+   "stage": "11",
+   "stderr": "",
+   "stdout": "INVENTED FIXTURE DATA: no real post, wallet, token or person.\nChronology for solana:S5vznK6GJNtHJWH66MPdNBLHGx35G7HyS5vznK6GJNtH (LABCAT, symbol shown for reading only)\nSource: FIXTURE source A (invented)   evaluated as of 2026-10-12 08:00:00Z   window 2026-10-08 01:59:59Z to 2026-10-12 08:00:00Z\nOrder between posts and trades: CONFIDENT\n\nClocks: SOURCE_PUBLICATION is the platform's time for a post; CHAIN_BLOCK is the block time of a transaction; COLLECTION is when the lab saw the post. Entries in the same group overlap in time and their order is not established.\n\nTimeline\n   1 g1    2026-10-11 00:00:00Z       CHAIN_BLOCK         ut3Tma..zF3E (a wallet linked to the source) bought 1,000,000 of the token in tx fyYNUQ..i8Mn.\n   2 g2    2026-10-11 02:00:00Z       SOURCE_PUBLICATION  The source posted about the token in x:1900000000000000101, stance LONG (platform timestamp, 1 s precision).\n   3 g3    2026-10-11 02:00:30Z       COLLECTION          The lab first saw post x:1900000000000000101 (collector clock).\n   4 g4    2026-10-11 02:10:00Z       CHAIN_BLOCK         5xX8F4..ipwA (a wallet with an unverified association) bought 50,000 of the token in tx pMRRu2..kp2C.\n   5 g5  ~ 2026-10-11 05:00:00Z       CANDLE              Price rose 60% between 2026-10-11 02:00:00Z and 2026-10-11 05:00:00Z (candle closes, fixture-candles (INVENTED)).\n   6 g5  ~ 2026-10-11 05:00:00Z       CHAIN_BLOCK         ut3Tma..zF3E (a wallet linked to the source) sold 400,000 of the token in tx oWNTxW..PGwK.\n   7 g6  ~ 2026-10-11 06:00:00Z       CHAIN_BLOCK         Liquidity was removed from pool 5Au11f..1a49 (liquidity 30,000 USD as reported).\n   8 g6  ~ 2026-10-11 07:00:00Z       CANDLE              Pool liquidity fell 40% to 30,000 USD between 2026-10-11 06:00:00Z and 2026-10-11 07:00:00Z (fixture-candles (INVENTED)).\n   9 g7    2026-10-11 09:00:00Z       CANDLE              Price fell 31% between 2026-10-11 05:00:00Z and 2026-10-11 09:00:00Z (candle closes, fixture-candles (INVENTED)).\n\nObserved patterns\n  TRADE_BEFORE_TALK [INFERENCE, order CONFIDENT] post x:1900000000000000101 trade fyYNUQ..i8Mn\n  TALK_BEFORE_TRADE [INFERENCE, order CONFIDENT] post x:1900000000000000101 trade oWNTxW..PGwK\n  POTENTIAL_DISTRIBUTION_DURING_PROMOTION [INFERENCE, order CONFIDENT] post x:1900000000000000101 trade oWNTxW..PGwK: A wallet associated with the source sold after its bullish post and while the post was recent. This is an observed sequence. Intent, the source's total holding and any coordination are not established.\n\nFact\n  - The source posted about the token in x:1900000000000000101, stance LONG (platform timestamp, 1 s precision) at 2026-10-11 02:00:00Z.  [https://example.invalid/fixture/status/1900000000000000101; x:1900000000000000101; fx-obs-1900000000000000101-1]\n... (20 more lines)",
+   "title": "social and on-chain chronology: confident order"
+  },
+  {
+   "command": "python -m memelab social chrono run --input tests/fixtures/social/chrono/indeterminate.json",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.6,
+   "stage": "11",
+   "stderr": "",
+   "stdout": "INVENTED FIXTURE DATA: no real post, wallet, token or person.\nChronology for solana:S5vznK6GJNtHJWH66MPdNBLHGx35G7HyS5vznK6GJNtH (LABCAT, symbol shown for reading only)\nSource: FIXTURE source A (invented)   evaluated as of 2026-10-12 08:00:00Z   window 2026-10-08 01:59:59Z to 2026-10-12 08:00:00Z\nOrder between posts and trades: INDETERMINATE\n\nClocks: SOURCE_PUBLICATION is the platform's time for a post; CHAIN_BLOCK is the block time of a transaction; COLLECTION is when the lab saw the post. Entries in the same group overlap in time and their order is not established.\n\nTimeline\n   1 g1  ~ no later than 2026-10-11 03:00:05Z SOURCE_PUBLICATION  The source posted about the token in x:1900000000000000202, stance LONG (publication time unknown; published no later than the lab's first sighting).\n   2 g1  ~ 2026-10-11 02:00:00Z       SOURCE_PUBLICATION  The source posted about the token in x:1900000000000000201, stance LONG (platform timestamp, 60 s precision).\n   3 g1  ~ 2026-10-11 02:00:25Z       CHAIN_BLOCK         ut3Tma..zF3E (a wallet linked to the source) bought 800,000 of the token in tx m9WBmK..aDzf.\n   4 g1  ~ 2026-10-11 02:00:50Z       CHAIN_BLOCK         ut3Tma..zF3E (a wallet linked to the source) sold 300,000 of the token in tx fk1o2B..ABsA.\n   5 g1  ~ 2026-10-11 02:01:30Z       COLLECTION          The lab first saw post x:1900000000000000201 (collector clock).\n   6 g1  ~ 2026-10-11 03:00:00Z       COLLECTION          The lab first saw post x:1900000000000000202 (collector clock).\n\nObserved patterns\n  ORDER_INDETERMINATE [UNKNOWN, order INDETERMINATE] post x:1900000000000000201 trade m9WBmK..aDzf\n  ORDER_INDETERMINATE [UNKNOWN, order INDETERMINATE] post x:1900000000000000201 trade fk1o2B..ABsA\n  ORDER_INDETERMINATE [UNKNOWN, order INDETERMINATE] post x:1900000000000000202 trade m9WBmK..aDzf\n  ORDER_INDETERMINATE [UNKNOWN, order INDETERMINATE] post x:1900000000000000202 trade fk1o2B..ABsA\n  POTENTIAL_DISTRIBUTION_DURING_PROMOTION [HEURISTIC, order INDETERMINATE] post x:1900000000000000201 trade fk1o2B..ABsA: A wallet associated with the source sold close to its bullish post; whether the sale came after the post is not established. This is an observed sequence. Intent, the source's total holding and any coordination are not established.\n\nFact\n  - The source posted about the token in x:1900000000000000201, stance LONG (platform timestamp, 60 s precision) at 2026-10-11 02:00:00Z.  [https://example.invalid/fixture/status/1900000000000000201; x:1900000000000000201; fx-obs-1900000000000000201-1]\n  - The lab first saw x:1900000000000000201 90 s after its publication time.  [https://example.invalid/fixture/status/1900000000000000201; x:1900000000000000201; fx-obs-1900000000000000201-1]\n... (23 more lines)",
+   "title": "social and on-chain chronology: indeterminate order"
+  },
+  {
+   "command": "python -m memelab social research demo --fixture tests/fixtures/social/research/scout_before_after.json",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.6,
+   "stage": "12",
+   "stderr": "",
+   "stdout": "# Phase 13 fixture: scout report before and after social research candidates\n\nInvented tokens and findings. The scout lists and the report body come from the real scout code; the social section is appended.\nReport body unchanged by the social layer: yes.\n\n| Token | Score | Status | Scout list | Score after | Status after | Narrative attention | Research state |\n|---|---|---|---|---|---|---|---|\n| GOODCAT | 68 | WATCH | serious | same | same | CORROBORATED | RESEARCH_CANDIDATE |\n| HYPEDOG | 0 | REJECTED | rejected | same | same | CORROBORATED | REJECTED_STRUCTURE |\n| TOPPICK | 0 | REJECTED | rejected | same | same | CORROBORATED | REJECTED_STRUCTURE |\n| OLDRUG | 0 | REJECTED | rejected | same | same | NONE | NO_SOCIAL_SIGNAL |\n| SLOWFROG | 48 | RESEARCH REQUIRED | near miss | same | same | STALE | RESEARCH_CANDIDATE |\n| GOODCAT (other contract) | not analyzed | not analyzed | not listed | n/a | n/a | EMERGING | NEEDS_STRUCTURAL_ANALYSIS |\n| $MOONX (ticker only) | n/a | n/a | not listed | n/a | n/a | UNRESOLVED | never ranked |\n\n## Before: social off\n\n# Opportunity Scout report \u2014 2026-10-12 12:00 UTC\n\n## Market environment\n\n- Fixture: invented tokens and findings (tests/fixtures/social/research)\n- Best token vs best trade: Best token by score is GOODCAT (68), but no candidate qualifies as a trade: none combine a defined invalidation, exit capacity and an EV estimate.\n\n## #1 GOODCAT \u2014 Goodcat (invented)\n... (132 more lines)",
+   "title": "main discovery integration: scout before/after (opt-in)"
+  },
+  {
+   "command": "python -m memelab social research policy",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.6,
+   "stage": "12",
+   "stderr": "",
+   "stdout": "{\n \"corroborated_min_independent\": 2,\n \"enabled\": false,\n \"include_fixtures\": false,\n \"max_age_hours\": 48.0,\n \"policy_version\": \"default-1\",\n \"provenance\": {\n  \"override_keys\": [],\n  \"path\": null,\n  \"sha256\": \"d12f1a160fc4b631cb8cdabb309a034d68fb3523e244911de3d92162eee1597e\",\n  \"source\": \"default\"\n },\n \"schema\": \"memelab.social.research.policy/1\",\n \"signals\": {\n  \"chronology_flags\": true,\n  \"narratives\": true\n },\n \"trade_execution_impact\": \"none\",\n \"weights\": {\n  \"confidence\": {\n   \"HIGH\": 3.0,\n   \"LOW\": 1.0,\n   \"MODERATE\": 2.0,\n   \"UNKNOWN\": 0.0\n  },\n... (6 more lines)",
+   "title": "integration policy (off by default, zero execution impact)"
+  },
+  {
+   "command": "python -m memelab social feed-demo --fixture tests/fixtures/social/feed/demo_day.json",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 1.0,
+   "stage": "13",
+   "stderr": "",
+   "stdout": "# Phase 14 sample: social intelligence feed on an invented fixture\n\nFIXTURE DEMO: invented accounts, tokens, posts and times. This is not live data and not a current conversation.\n\nReproduce: `python -m memelab social feed-demo --fixture tests/fixtures/social/feed/demo_day.json`\n\nThe fixture is written into a throwaway SQLite store through the real store functions, snapshotted by the real narrative engine and read back by the same read path the lab database uses. Section headings below are shifted one level down.\n\n## View 1: morning brief\n\n## Morning brief: social narratives, last 24 hours\n\nFIXTURE DEMO: invented accounts, tokens, posts and times. This is not live data and not a current conversation.\n\nAs of 2026-10-13 08:00 EDT (12:00 UTC). Window: 2026-10-12 08:00 EDT (12:00 UTC) to 2026-10-13 08:00 EDT (12:00 UTC) (24 h).\nData: narrative snapshot run 2 (2026-10-13 UTC), cutoff 2026-10-13 08:00 EDT (12:00 UTC), 0.0 h old, FRESH.\nCoverage: telegram COVERED 1; x COVERED 1.\nNot clustered: 3 token not resolved to a contract.\nModel: not used (status on this machine: not checked in the fixture demo). The feed is built from stored structure only.\n\n### High priority\n\n#### GOODCAT on solana (B3UnKGxPe2nYt3QGSS5h3Hzwf9qLcoC7B3UnKGxPe2nY)\n\n- Priority: HIGH (HEURISTIC, orders this report only): 3 independent sources, fresh.\n... (203 more lines)",
+   "title": "report generation: brief, digest, feed on the fixture store"
+  },
+  {
+   "command": "python -m memelab social brief --db $TMP/e2e.sqlite --as-of 2026-10-13T00:00:00+00:00 --tz America/New_York --include-fixtures",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.7,
+   "stage": "13",
+   "stderr": "",
+   "stdout": "# Morning brief: social narratives, last 24 hours\n\nFIXTURE DEMO: invented accounts, tokens, posts and times. This is not live data and not a current conversation.\n\nAs of 2026-10-12 20:00 EDT (2026-10-13 00:00 UTC). Window: 2026-10-11 20:00 EDT (2026-10-12 00:00 UTC) to 2026-10-12 20:00 EDT (2026-10-13 00:00 UTC) (24 h).\nData: narrative snapshot run 2 (2026-10-10 UTC), cutoff 2026-10-10 20:00 EDT (2026-10-11 00:00 UTC), 48.0 h old, STALE (older than 24 h).\nCoverage: no coverage record (volumes not estimable).\nNot clustered: 4 token not resolved to a contract.\nModel: not used (status on this machine: model\\_not\\_configured). The feed is built from stored structure only.\n\nNo supported high-priority observations. Reason: no fresh, adequately covered narrative with two or more independent sources or a chronology risk flag in the window.\n\n## Older or weakly covered\n\n### theme animal\n\n- Priority: LOW (HEURISTIC, orders this report only): no activity inside the window.\n- What happened: 1 post(s) about the theme animal from 1 account(s): independence not estimable, 0 repeat(s) (reposts, forwards, quotes that repeat) and 0 reply or copy item(s). Claim types among originals: bullish 1.\n- First observed 2026-10-09 23:01 EDT (2026-10-10 03:01 UTC); first published 2026-10-09 23:00 EDT (2026-10-10 03:00 UTC); last observed 2026-10-09 23:01 EDT (2026-10-10 03:01 UTC).\n- Who said it: [example\\_poster (x)](<https://x.com/example_poster/status/1900000000000000002>) (independent original, 2026-10-09 23:00 EDT (2026-10-10 03:00 UTC), stance positive).\n- Independence vs repetition: not estimable; 0 reply or copy item(s); 0 repeat(s) of an unseen original.\n- Why it matters (HEURISTIC): new in this snapshot.\n- Corroborated: Nothing: independence could not be estimated.\n- Speculation: 1 of 1 original claim(s) are opinion, prediction or question.\n- Reasons to doubt: Coverage is insufficient: no\\_coverage\\_record:x. Counts are lower bounds (partial coverage). Narrative confidence UNKNOWN. Stale: newest observation 69.0 h before as of.\n... (14 more lines)",
+   "title": "report generation: brief on the e2e store (real read path)"
+  },
+  {
+   "command": "python -m memelab social alerts demo --fixture tests/fixtures/social/alerts/alerts_day.json",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.8,
+   "stage": "14",
+   "stderr": "",
+   "stdout": "# Phase 15 sample: research alerts on an invented fixture\n\nFIXTURE DEMO: invented accounts, tokens, posts and times. This is not live data and not a current conversation.\n\nReproduce: `python -m memelab social alerts demo --fixture tests/fixtures/social/alerts/alerts_day.json`\n\nDry run with the local file sink only, in a throwaway state file. Run 2 reads a later snapshot that carries the same evidence.\n\n## Run 1\n\n```\nAlert run 1 (dry_run), 2026-10-13 08:00 EDT (2026-10-13 12:00 UTC), policy alerts-policy-v1 6d5d61ff4a80\nFIXTURE DEMO: invented data, not live alerts.\nOutcome: evaluated\nCandidates 4, new alerts 4, deduped 0, suppressed 5\n  suppressed wallet_corroboration GOODCAT on solana (B3UnKGxPe2nYt3QGSS5h3Hzwf9qLcoC7B3UnKGxPe2nY): stale_event (wallet event behind DISCLOSED_POSITION_CONSISTENT_OLD is older than 24.0 h or undated)\n  suppressed convergence HYPEDOG on solana (bWnSryKtxfLJ822btJYgYbC84qx9RcFqbWnSryKtxfLJ): below_threshold (2 independent source(s), policy needs 3)\n  suppressed conversation_growth HYPEDOG on solana (bWnSryKtxfLJ822btJYgYbC84qx9RcFqbWnSryKtxfLJ): no_baseline (0 earlier snapshot(s) recorded, policy needs 3)\n  suppressed convergence theme ai_agent: below_threshold (2 independent source(s), policy needs 3)\n  suppressed convergence SLOWFROG on solana (6DntXA18w931KFERa8e2VvvazqQA4hJp6DntXA18w931): stale_source (the newest observation for this item is older than the freshness limit)\nDry run: previews only. Nothing was sent.\n```\n\n### Alert text\n\n... (120 more lines)",
+   "title": "alert dry run on the fixture day, deduped second run"
+  },
+  {
+   "command": "python -m memelab social alerts run --db $TMP/e2e.sqlite --as-of 2026-10-13T12:00:00+00:00 --state $TMP/alerts_dry.sqlite --outbox $TMP/outbox",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.6,
+   "stage": "14",
+   "stderr": "",
+   "stdout": "Alert run 1 (dry_run), 2026-10-13 08:00 EDT (2026-10-13 12:00 UTC), policy alerts-policy-v1 56edda8e78d1\nOutcome: evaluated\nCandidates 0, new alerts 0, deduped 0, suppressed 0\nNo alerts today.\nDry run: previews only. Nothing was sent.",
+   "title": "alert dry run on the e2e store"
+  },
+  {
+   "command": "python -m memelab social alerts run --db $TMP/e2e.sqlite --as-of 2026-10-13T13:30:00+00:00 --send --state $TMP/alerts_send.sqlite --outbox $TMP/outbox",
+   "exit": 2,
+   "expected": [
+    2
+   ],
+   "ok": true,
+   "seconds": 0.7,
+   "stage": "14",
+   "stderr": "alerts: --send refused: the private alert config does not set notifications_opt_in and send_enabled to true. Run without --send for a dry run.",
+   "stdout": "",
+   "title": "alert send without consent is refused"
+  },
+  {
+   "command": "python -m memelab social evaluate demo --fixture tests/fixtures/social/outcomes/outcomes_fixture.json",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.7,
+   "stage": "15",
+   "stderr": "",
+   "stdout": "# Phase 16 sample: signal ledger and forward evaluation on an invented fixture\n\nFIXTURE DEMO: invented signals, tokens, references, prices and times. This is not live data and not a trade record.\n\nReproduce: `python -m memelab social evaluate demo --fixture tests/fixtures/social/outcomes/outcomes_fixture.json`\n\nThrowaway ledger. Five signals are recorded at emission (emitted, rejected and suppressed alike), then evaluated twice: at 2026-10-13T19:00:00Z and at 2026-10-14T14:00:00Z, with new and revised price observations arriving in between. Positions are hypothetical (500 USD evaluation size, not a recommendation).\n\nRecorded: 5 signal(s), refused 0.\n\n## Signal snapshot before evaluation (sig_9f7fd7b580400fddd0c87400)\n\ncontext body sha256 0777c37f26a6e4b6272118c21238ebcc2446af2dc35d8efb7839707beb25bb9b\n\n```json\n{\n \"assumptions\": {\n  \"direction\": \"LONG\",\n  \"execution_lag_s\": 300,\n  \"fee_bps_per_side\": 100.0,\n  \"horizons_s\": [\n   3600,\n   21600,\n   86400,\n   259200,\n... (228 more lines)",
+   "title": "forward outcome evaluation (ledger before and after two runs)"
+  },
+  {
+   "command": "python -m memelab social replay demo",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 38.6,
+   "stage": "16",
+   "stderr": "",
+   "stdout": "# Historical replay of research signals against matched controls\n\nFIXTURE DEMO: a synthetic, seeded world. Tokens, sources, posts, wallets, trending lists and prices are invented. Nothing here is evidence about any real token or source, and nothing is a trade record.\n\nReproduce: `python -m memelab social replay demo`\n\nSynthetic world with planted pumps, informative and noise posts, reposts, ingest duplicates, leakage canaries (posts published before a pump but first available after it), a huge winner, delisted and illiquid tokens, revised candles and a source that sells right after posting.\n\nWhat kind of evidence this is: a historical replay (backtest) on stored data, run with a causal cutoff clock. It is not a forward test. Signals whose inputs the lab actually captured at decision time are counted separately (test split, primary horizon: 30); outcome prices are provider history in every case. Positions are hypothetical (Phase 16 evaluation size); nothing here is a trade instruction.\n\n## Data and coverage\n\nlabel synthetic world seed 17; fixture: yes; coverage version synthetic-17-v1; engine replay-v1, rules replay-rules-v1\n\ndata clock ends 2026-08-31T00:00:00Z; input sha256 2cea0be1c2ec5a2a; policy sha256 b204fc4086786dc0\n\n```\nposts 1289 (reposts 573, content duplicates 0), wallet events 119, trending entries 2300\nmarket observations 220632 on 79 tokens; tokens known 79\nexcluded candles: AFTER_DATA_END x75\nexcluded posts: AFTER_DATA_END x2, DUPLICATE_POST_ID x10\nuniverse: every invented token, delisted ones included; includes delisted tokens: True\nprovider synth-candles: kind PRICE, publication lag 120 s, window 2026-08-01T00:00:00Z to 2026-08-31T00:00:00Z\nprovider synth-social: kind SOCIAL, publication lag None s, window 2026-08-01T00:00:00Z to 2026-08-31T00:00:00Z\nprovider synth-trending: kind TRENDING, publication lag 60 s, window 2026-08-02T00:00:00Z to 2026-08-31T00:00:00Z\n... (126 more lines)",
+   "title": "causal replay on the synthetic world"
+  },
+  {
+   "command": "python -m memelab social replay run --db $TMP/tracked_copy.sqlite",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 5.2,
+   "stage": "16",
+   "stderr": "",
+   "stdout": "# Historical replay of research signals against matched controls\n\nReal stored history. Where coverage is poor the verdict is 'insufficient sample/data' or 'cannot validate yet'; nothing is extrapolated beyond the data.\n\nWhat kind of evidence this is: a historical replay (backtest) on stored data, run with a causal cutoff clock. It is not a forward test. Signals whose inputs the lab actually captured at decision time are counted separately (test split, primary horizon: 0); outcome prices are provider history in every case. Positions are hypothetical (Phase 16 evaluation size); nothing here is a trade instruction.\n\n## Data and coverage\n\nlabel lab database tracked_copy.sqlite; fixture: no; coverage version real-cd007e51702a; engine replay-v1, rules replay-rules-v1\n\ndata clock ends 2026-10-07T00:16:35Z; input sha256 87de06437513bda3; policy sha256 b204fc4086786dc0\n\n```\nposts 0 (reposts 0, content duplicates 0), wallet events 0, trending entries 0\nmarket observations 33 on 8 tokens; tokens known 8\nuniverse: only tokens the lab's runs happened to fetch; delisted tokens are not tracked; includes delisted tokens: False\nprovider lab-snapshot:merged: kind PRICE, publication lag None s, window 2026-10-06T23:48:23Z to 2026-10-07T00:16:35Z\n```\n\n## Result\n\nINSUFFICIENT_DATA for all four strategies: no social, wallet or trending evidence with a usable availability time. Nothing was estimated and nothing is extrapolated.\n\n## Leakage check (truncation invariance)\n\n... (12 more lines)",
+   "title": "causal replay on real stored history (copy of the tracked database)"
+  },
+  {
+   "command": "python -m memelab social x-health --db $TMP/e2e.sqlite",
+   "exit": 1,
+   "expected": [
+    1
+   ],
+   "ok": true,
+   "seconds": 1.9,
+   "stage": "17",
+   "stderr": "",
+   "stdout": "{\n \"adapter\": \"x_api\",\n \"config\": null,\n \"connector_health\": [],\n \"contract_verified\": \"2026-10-10\",\n \"credentials\": \"missing\",\n \"cursors\": [],\n \"live_evidence\": {\n  \"last_request_at\": null,\n  \"requests\": 0,\n  \"successful\": 0,\n  \"verdict\": \"none: no live X API read has been made\"\n },\n \"network_calls_made\": 0,\n \"next_step\": \"authorize: see docs/social-intelligence/X_API_03.md, then export X_BEARER_TOKEN in the shell that runs memelab\",\n \"spend_this_month_usd\": {\n  \"live\": 0\n },\n \"status\": \"credentials_missing\",\n \"token_env\": \"X_BEARER_TOKEN\"\n}",
+   "title": "no credentials: X API health"
+  },
+  {
+   "command": "python -m memelab social x-ingest --db $TMP/e2e.sqlite",
+   "exit": 1,
+   "expected": [
+    1
+   ],
+   "ok": true,
+   "seconds": 1.1,
+   "stage": "17",
+   "stderr": "",
+   "stdout": "{\n \"network_calls_made\": 0,\n \"next_step\": \"authorize: see docs/social-intelligence/X_API_03.md, then export X_BEARER_TOKEN in the shell that runs memelab\",\n \"reason\": \"credentials_missing\",\n \"status\": \"NOT_RUN\"\n}",
+   "title": "no credentials: live X ingest refuses before any call"
+  },
+  {
+   "command": "python -m memelab social tg-health --db $TMP/e2e.sqlite",
+   "exit": 1,
+   "expected": [
+    1
+   ],
+   "ok": true,
+   "seconds": 0.7,
+   "stage": "17",
+   "stderr": "",
+   "stdout": "{\n \"adapter\": \"telegram_bot\",\n \"bot_api_version_seen\": \"10.3\",\n \"channels\": [],\n \"connector_health\": [],\n \"contract_verified\": \"2026-10-11\",\n \"credentials\": \"missing\",\n \"live_evidence\": {\n  \"last_request_at\": null,\n  \"requests\": 0,\n  \"successful_polls\": 0,\n  \"verdict\": \"none: no live Telegram Bot API read has been made\"\n },\n \"network_calls_made\": 0,\n \"next_step\": \"create a bot with @BotFather and export TELEGRAM_BOT_TOKEN in the shell that runs memelab (docs/social-intelligence/TELEGRAM_04.md, 'How to authorize it')\",\n \"status\": \"credentials_missing\",\n \"token_env\": \"TELEGRAM_BOT_TOKEN\",\n \"update_cursor\": null,\n \"webhook_secret\": \"missing\"\n}",
+   "title": "no credentials: Telegram health"
+  },
+  {
+   "command": "python -m memelab social tg-ingest --db $TMP/e2e.sqlite",
+   "exit": 1,
+   "expected": [
+    1
+   ],
+   "ok": true,
+   "seconds": 0.7,
+   "stage": "17",
+   "stderr": "",
+   "stdout": "{\n \"network_calls_made\": 0,\n \"next_step\": \"create a bot with @BotFather and export TELEGRAM_BOT_TOKEN in the shell that runs memelab (docs/social-intelligence/TELEGRAM_04.md, 'How to authorize it')\",\n \"reason\": \"credentials_missing\",\n \"status\": \"NOT_RUN\"\n}",
+   "title": "no credentials: live Telegram ingest refuses before any call"
+  },
+  {
+   "command": "python -m memelab.secrets status",
+   "exit": 1,
+   "expected": [
+    1
+   ],
+   "ok": true,
+   "seconds": 0.1,
+   "stage": "17",
+   "stderr": "",
+   "stdout": "{\"helius_key\": \"missing\", \"source\": \"none\"}",
+   "title": "no credentials: Helius key status"
+  },
+  {
+   "command": "python -m memelab social alerts preflight --db $TMP/e2e.sqlite",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 0.9,
+   "stage": "17",
+   "stderr": "",
+   "stdout": "Paid-API spend for UTC day 2026-10-13 against per-provider daily ceilings:\n  x_api: spent 0 USD, ceiling 0.0 USD, refresh SKIPPED (spend ledger present)\n  llm: spent 0 USD, ceiling 0.0 USD, refresh SKIPPED (spend ledger present)\n  telegram_bot: spent 0 USD, ceiling 0.0 USD, refresh allowed (spend ledger present)",
+   "title": "no credentials: alert spend preflight"
+  },
+  {
+   "command": "python -m memelab social guard",
+   "exit": 0,
+   "expected": [
+    0
+   ],
+   "ok": true,
+   "seconds": 1.0,
+   "stage": "18",
+   "stderr": "",
+   "stdout": "{\n \"allowlist\": [\n  {\n   \"path\": \"tests/fixtures/social/inbox/soc_fx01.json\",\n   \"reason\": \"invented placeholder the ingester must quarantine (test_bad_items_quarantined_good_items_kept)\",\n   \"where\": \"soc:x:example_trader_a.body.items[3].text\"\n  },\n  {\n   \"path\": \"tests/fixtures/social/inbox/soc_fx01.json\",\n   \"reason\": \"invented PROTECTED item (hash of an invented sentence) the ingester must quarantine as NOT_PUBLIC\",\n   \"where\": \"soc:x:example_trader_a.body.items[4].visibility\"\n  },\n  {\n   \"path\": \"tests/fixtures/social/registry/leaderboard_fresh.json\",\n   \"reason\": \"invented placeholder the registry importer must reject as BLOCKED_CONTENT_KEY (Phase 08)\",\n   \"where\": \"rows[6].bio\"\n  },\n  {\n   \"path\": \"tests/fixtures/social/roundtrip_01.json\",\n   \"reason\": \"invented sentences used to prove the store hashes text and never writes it (Phase 01)\",\n   \"where\": \"observations[*].text\"\n  }\n ],\n \"files_scanned\": 360,\n \"json_files\": 100,\n... (3 more lines)",
+   "title": "content guard over every tracked file"
+  }
+ ]
+}
