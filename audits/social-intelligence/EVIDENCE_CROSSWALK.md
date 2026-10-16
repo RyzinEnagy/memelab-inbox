@@ -1,5 +1,8 @@
 # M00 finding-to-evidence crosswalk
 
+> **Current Phase 03 substitute review, 2026-10-15:** recovery package hashes and report/later-test continuity verified; newly reconstructed A–E runs now include D/E. Historical original full inputs/executions remain unrecovered. **M00 BLOCKED pending explicit reviewed acceptance of the substitute evidence; M01 unauthorized.** See [current decision and concrete reviewer action](M00_PHASE03_REPLICATION_REVIEW.md). Earlier dated statements retain their historical scope.
+
+
 > **Independent review executed 2026-10-14 ET: BLOCKED.** The original inventory below is preserved. See [independent detailed crosswalk](M00_INDEPENDENT_CROSSWALK.md) for all 67 report-to-code/probe/requirement mappings and [review decision](M00_INDEPENDENT_VERIFICATION.md). No finding is closed; original-source/probe gaps remain.
 
 **Status: ORIGINAL REPORTS RECOVERED; INDEPENDENT ACCEPTANCE BLOCKED (2026-10-15).** A source-file heading or line anchor proves that the finding was documented, **not** that its underlying reproduction, timestamps, code paths or severity have been independently reconfirmed. Original Phase 00/01/04/05 scripts and available logs are now recovered and rerun; original Phase 03 A–E executable inputs/scripts/raw outputs remain absent. **No findings are closed.**

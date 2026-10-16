@@ -1204,9 +1204,19 @@
         "REQ-11-02",
         "REQ-11-04"
       ],
-      "independent_verification": "REPRODUCED: test_intrabar_open_is_not_a_fill_at_the_later_decision; test_uncompleted_high_is_not_known_at_decision; test_intrabar_exit_cannot_use_the_earlier_open (acceptance fails on both pinned/recovery code)",
+      "independent_verification": "REPRODUCED: test_intrabar_open_is_not_a_fill_at_the_later_decision; test_uncompleted_high_is_not_known_at_decision; test_intrabar_exit_cannot_use_the_earlier_open (acceptance fails on both pinned/recovery code); NEW A\u2013E supplement reproduces A_OPEN, A_ADVERSE, B_EXIT. Original execution lineage remains incomplete; no fix or live-market claim.",
       "overlaps": [],
-      "status": "OPEN"
+      "status": "OPEN",
+      "new_independent_replication": {
+        "record": "M00_PHASE03_REPLICATION_REVIEW.md",
+        "observations": "evidence/phase03_replication/results/observations.json",
+        "cases": [
+          "A_OPEN",
+          "A_ADVERSE",
+          "B_EXIT"
+        ],
+        "grade": "NEW independently executed invented inputs; NOT recovered original Phase03 execution"
+      }
     },
     {
       "id": "AUD-025",
@@ -1249,9 +1259,17 @@
         "REQ-10-02",
         "REQ-10-04"
       ],
-      "independent_verification": "REPRODUCED: test_future_wallet_mark_is_unavailable_at_transaction (acceptance fails on both pinned/recovery code)",
+      "independent_verification": "REPRODUCED: test_future_wallet_mark_is_unavailable_at_transaction (acceptance fails on both pinned/recovery code); NEW A\u2013E supplement reproduces C_FUTURE_MARK. Original execution lineage remains incomplete; no fix or live-market claim.",
       "overlaps": [],
-      "status": "OPEN"
+      "status": "OPEN",
+      "new_independent_replication": {
+        "record": "M00_PHASE03_REPLICATION_REVIEW.md",
+        "observations": "evidence/phase03_replication/results/observations.json",
+        "cases": [
+          "C_FUTURE_MARK"
+        ],
+        "grade": "NEW independently executed invented inputs; NOT recovered original Phase03 execution"
+      }
     },
     {
       "id": "AUD-026",
@@ -1440,11 +1458,21 @@
         "REQ-10-04",
         "REQ-16-02"
       ],
-      "independent_verification": "STATIC: inspected linked source; see archive-recovery supplement for any newly rerun original probe",
+      "independent_verification": "STATIC: inspected linked source; see archive-recovery supplement for any newly rerun original probe; NEW A\u2013E supplement reproduces D_QUOTE_SCALING, E_MISSING_QUOTE, E_NEW_INVENTORY_EXTENSION. Original execution lineage remains incomplete; no fix or live-market claim.",
       "overlaps": [
         "AUD-012"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "new_independent_replication": {
+        "record": "M00_PHASE03_REPLICATION_REVIEW.md",
+        "observations": "evidence/phase03_replication/results/observations.json",
+        "cases": [
+          "D_QUOTE_SCALING",
+          "E_MISSING_QUOTE",
+          "E_NEW_INVENTORY_EXTENSION"
+        ],
+        "grade": "NEW independently executed invented inputs; NOT recovered original Phase03 execution"
+      }
     },
     {
       "id": "AUD-030",

@@ -1,0 +1,17 @@
+{
+  "integrity": "PASS",
+  "m00_acceptance": "BLOCKED",
+  "original_archives": 4,
+  "extracted_members": 50,
+  "embedded_hashes_matched": 43,
+  "primary_inputs": 8,
+  "supporting_snapshots": 2,
+  "requirements_exact_text_matched": 105,
+  "crosswalk_ids": 67,
+  "pinned_code_spans": 83,
+  "primary_ops_rows": 10,
+  "credential_findings": [],
+  "credential_placeholders": [],
+  "application_path_changes": [],
+  "remaining": "Original Phase 03 A\u2013E scripts/inputs/raw logs absent; Phase 04 terminated-suite log not supplied."
+}

@@ -1,5 +1,8 @@
 # M00 original-archive follow-up — 2026-10-15
 
+> **Current Phase 03 substitute review, 2026-10-15:** recovery package hashes and report/later-test continuity verified; newly reconstructed A–E runs now include D/E. Historical original full inputs/executions remain unrecovered. **M00 BLOCKED pending explicit reviewed acceptance of the substitute evidence; M01 unauthorized.** See [current decision and concrete reviewer action](M00_PHASE03_REPLICATION_REVIEW.md). Earlier dated statements retain their historical scope.
+
+
 **Decision: BLOCKED; independent acceptance withheld. M01 is not authorized.** This evidence-only supplement supersedes the source-absence and OPS-provenance statements in the first independent review. It does not erase its historical executions or resolve application findings. Review parent: `0ad3838b1e6023d42c499e97a156c5963f65a98c`, draft [PR #3](https://github.com/RyzinEnagy/memelab-inbox/pull/3) into `remediation/social-intelligence-m00`; PR #2 remains draft and unmerged. Application stays pinned to `698f73b854567ce60b56ce275b5ab6822a9d5f60`.
 
 ## Received originals and integrity

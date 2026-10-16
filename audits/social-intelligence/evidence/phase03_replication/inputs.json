@@ -1,0 +1,137 @@
+{
+  "classification": "NEW_INDEPENDENT_REPLICATION_NOT_ORIGINAL_PHASE03_INPUTS",
+  "series": {
+    "chain": "solana",
+    "contract": "M00_SYNTHETIC_TOKEN",
+    "source": "new invented hourly candles",
+    "candle_seconds": 3600,
+    "as_of_kind": "HISTORICAL_CANDLE",
+    "rows": [
+      {
+        "t": 0,
+        "o": 10,
+        "h": 100,
+        "l": 5,
+        "c": 20,
+        "liq": 100000,
+        "v": 1000
+      }
+    ]
+  },
+  "alpha": {
+    "entry_t": 1800,
+    "exit_t": 3000,
+    "direction": 1,
+    "as_of_open": 3600,
+    "as_of_adverse": 1800
+  },
+  "wallet_mark": {
+    "asset": "NATIVE",
+    "t": 1100,
+    "kind": "MID",
+    "usd": "100",
+    "source": "new invented future mark"
+  },
+  "wallet_mark_transaction_t": 1000,
+  "wallet_mark_tolerance_s": 200,
+  "holding_qty": "50",
+  "holding_mark_usd": "1",
+  "liquidation_as_of": 1000,
+  "larger_quote": {
+    "kind": "EXEC_QUOTE",
+    "t": 1000,
+    "amount_in": "100",
+    "usd_out": "100",
+    "source": "new invented larger-size route"
+  },
+  "inventory_ledger_without_quote": {
+    "schema": "memelab.perf.ledger/1",
+    "label": "NEW M00 synthetic Phase03 replication; NOT original Phase03 inputs",
+    "chain": "solana",
+    "wallets": [
+      "M00_SYNTHETIC_WALLET"
+    ],
+    "as_of": 1000,
+    "assets": {
+      "NATIVE": {
+        "kind": "NATIVE"
+      },
+      "USDC": {
+        "kind": "STABLE"
+      },
+      "M00_SYNTHETIC_TOKEN": {
+        "kind": "TOKEN",
+        "decimals": 6
+      }
+    },
+    "entries": [
+      {
+        "id": "new-m00-buy",
+        "wallet": "M00_SYNTHETIC_WALLET",
+        "time": 900,
+        "type": "SWAP",
+        "signature": "new-invented-signature",
+        "legs": [
+          {
+            "asset": "USDC",
+            "dir": "OUT",
+            "amount": "25"
+          },
+          {
+            "asset": "M00_SYNTHETIC_TOKEN",
+            "dir": "IN",
+            "amount": "50"
+          }
+        ],
+        "fee": {
+          "amount": "0",
+          "unit": "NATIVE"
+        }
+      }
+    ],
+    "prices": [
+      {
+        "asset": "USDC",
+        "t": 900,
+        "kind": "MID",
+        "usd": "1",
+        "source": "new invented peg observation"
+      },
+      {
+        "asset": "NATIVE",
+        "t": 900,
+        "kind": "MID",
+        "usd": "100",
+        "source": "new invented native mark"
+      },
+      {
+        "asset": "M00_SYNTHETIC_TOKEN",
+        "t": 1000,
+        "kind": "MID",
+        "usd": "1",
+        "source": "new invented token mark"
+      }
+    ],
+    "coverage": {
+      "history": "DECLARED_COMPLETE",
+      "evidence": "Only for this invented ledger; no assertion about real wallets"
+    }
+  },
+  "invented_completion_fields": [
+    "asset and wallet labels",
+    "candle low/close/volume/source",
+    "complete policy objects resolved from pinned defaults plus recorded overrides",
+    "alpha direction and as-of values",
+    "quote timestamp/source/mark",
+    "ledger purchase/cost/fee/history/price objects",
+    "all complete inventory integration inputs"
+  ],
+  "matching_documented_values": [
+    "hourly candle t=0/open=10/high=100/liquidity=100000",
+    "entry decision 1800/trade size default500",
+    "exit target3000",
+    "future native mark100@1100/transaction1000/tolerance200",
+    "holding50/larger quote100 units ->100USD",
+    "no quote gives unknown per asset; empty sum0"
+  ]
+}

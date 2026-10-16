@@ -104,7 +104,17 @@
   "original_archive_record": "originals/ARCHIVES.json",
   "archive_verification_record": "M00_ARCHIVE_RECOVERY_VERIFICATION.md",
   "remaining_evidence_gaps": [
-    "Original Phase 03 synthetic probe A\u2013E executable inputs/scripts/raw outputs absent; reuploaded report and findings are duplicate known bytes.",
+    "Original Phase 03 A\u2013E full executable inputs/cells/raw outputs remain unrecovered after scoped retrieval. New A\u2013E replication including D/E is complete as separately labeled substitute evidence, awaiting explicit reviewed acceptance.",
     "Historical Phase 04 terminated-suite output not included in the supplied ZIP; no successful full-suite run inferred from that phase."
-  ]
+  ],
+  "phase03_substitute_review": {
+    "state": "READY_FOR_EXPLICIT_REVIEW_NOT_ACCEPTED",
+    "record": "M00_PHASE03_REPLICATION_REVIEW.md",
+    "received_package_review": "evidence/phase03_replication/received-package-review.json",
+    "new_replication": "evidence/phase03_replication/results/execution.json",
+    "original_execution_recovered": false,
+    "complete_original_inputs_known": false,
+    "all_documented_A_E_mechanics_newly_replicated": true,
+    "next_decision": "Explicit reviewed acceptance or rejection of substitute replication with historical provenance/input limits disclosed; no M01 authorization."
+  }
 }

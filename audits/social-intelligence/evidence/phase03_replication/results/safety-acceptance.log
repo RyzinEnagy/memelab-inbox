@@ -1,0 +1,77 @@
+FFFFFF.                                                                  [100%]
+=================================== FAILURES ===================================
+_____________________ test_A_prior_open_is_not_later_fill ______________________
+
+o = {'classification': 'NEW_INDEPENDENT_REPLICATION_NOT_ORIGINAL_PHASE03_INPUTS', 'application_sha': '698f73b854567ce60b56...ventory': {'convention': 'FIFO', 'price_tolerance_s': 900, 'mtm_max_age_s': 86400, 'quote_max_age_s': 3600, ...}}, ...}
+
+    def test_A_prior_open_is_not_later_fill(o):
+        got=o['A']['open']
+>       assert got is None or got['candle_t']>=1800, 'elapsed candle open is not a decision-time executable fill'
+E       AssertionError: elapsed candle open is not a decision-time executable fill
+E       assert ({'decision_t': 1800, 'fill_t': 1800, 'candle_t': 0, 'wait_s': 0, ...} is None or 0 >= 1800)
+
+<NEW_PROBE_DIR>/test_safety_acceptance.py:16: AssertionError
+_____________________ test_A_uncompleted_high_is_not_known _____________________
+
+o = {'classification': 'NEW_INDEPENDENT_REPLICATION_NOT_ORIGINAL_PHASE03_INPUTS', 'application_sha': '698f73b854567ce60b56...ventory': {'convention': 'FIFO', 'price_tolerance_s': 900, 'mtm_max_age_s': 86400, 'quote_max_age_s': 3600, ...}}, ...}
+
+    def test_A_uncompleted_high_is_not_known(o):
+>       assert o['A']['adverse'] is None, 'full-candle high cannot be known at t=1800 before candle end=3600'
+E       AssertionError: full-candle high cannot be known at t=1800 before candle end=3600
+E       assert {'decision_t': 1800, 'fill_t': 1800, 'candle_t': 0, 'wait_s': 0, ...} is None
+
+<NEW_PROBE_DIR>/test_safety_acceptance.py:20: AssertionError
+_____________________ test_B_exit_cannot_use_elapsed_open ______________________
+
+o = {'classification': 'NEW_INDEPENDENT_REPLICATION_NOT_ORIGINAL_PHASE03_INPUTS', 'application_sha': '698f73b854567ce60b56...ventory': {'convention': 'FIFO', 'price_tolerance_s': 900, 'mtm_max_age_s': 86400, 'quote_max_age_s': 3600, ...}}, ...}
+
+    def test_B_exit_cannot_use_elapsed_open(o):
+        got=o['B']['exit']
+>       assert got is None or got['candle_t']>=3000, 'elapsed candle open is not a timed horizon exit'
+E       AssertionError: elapsed candle open is not a timed horizon exit
+E       assert ({'t': 3000, 'candle_t': 0, 'wait_s': 0, 'price': 10, ...} is None or 0 >= 3000)
+
+<NEW_PROBE_DIR>/test_safety_acceptance.py:25: AssertionError
+______________ test_C_future_mark_is_not_observed_at_transaction _______________
+
+o = {'classification': 'NEW_INDEPENDENT_REPLICATION_NOT_ORIGINAL_PHASE03_INPUTS', 'application_sha': '698f73b854567ce60b56...ventory': {'convention': 'FIFO', 'price_tolerance_s': 900, 'mtm_max_age_s': 86400, 'quote_max_age_s': 3600, ...}}, ...}
+
+    def test_C_future_mark_is_not_observed_at_transaction(o):
+>       assert o['C']['near'] is None and o['C']['unit_usd'] is None, 'mark timestamp 1100 is later than transaction1000'
+E       AssertionError: mark timestamp 1100 is later than transaction1000
+E       assert ({'asset': 'NATIVE', 't': 1100, 'kind': 'MID', 'usd': Decimal('100'), ...} is None)
+
+<NEW_PROBE_DIR>/test_safety_acceptance.py:29: AssertionError
+_____________ test_D_other_size_quote_cannot_guarantee_lower_bound _____________
+
+o = {'classification': 'NEW_INDEPENDENT_REPLICATION_NOT_ORIGINAL_PHASE03_INPUTS', 'application_sha': '698f73b854567ce60b56...ventory': {'convention': 'FIFO', 'price_tolerance_s': 900, 'mtm_max_age_s': 86400, 'quote_max_age_s': 3600, ...}}, ...}
+
+    def test_D_other_size_quote_cannot_guarantee_lower_bound(o):
+        x=o['D']
+>       assert x['quote']['amount_in']==x['input_qty'] or 'lower bound' not in x['liquidation']['detail'], 'other-size arithmetic alone does not establish an executable lower bound'
+E       AssertionError: other-size arithmetic alone does not establish an executable lower bound
+E       assert (Decimal('100') == Decimal('50') or 'lower bound' not in 'scaled down... lower bound'
+E         
+E         'lower bound' is contained here:
+E            this is a lower bound)
+
+<NEW_PROBE_DIR>/test_safety_acceptance.py:34: AssertionError
+__________ test_E_all_unknown_open_positions_do_not_total_known_zero ___________
+
+o = {'classification': 'NEW_INDEPENDENT_REPLICATION_NOT_ORIGINAL_PHASE03_INPUTS', 'application_sha': '698f73b854567ce60b56...ventory': {'convention': 'FIFO', 'price_tolerance_s': 900, 'mtm_max_age_s': 86400, 'quote_max_age_s': 3600, ...}}, ...}
+
+    def test_E_all_unknown_open_positions_do_not_total_known_zero(o):
+        inv=o['E']['inventory_integration_EXTENSION_NOT_ORIGINAL_PROBE']
+>       assert inv['unrealized_executable_usd'] is None, 'one known-basis open position has no quote; total must retain unknown'
+E       AssertionError: one known-basis open position has no quote; total must retain unknown
+E       assert Decimal('0') is None
+
+<NEW_PROBE_DIR>/test_safety_acceptance.py:39: AssertionError
+=========================== short test summary info ============================
+FAILED ../../../../../../../..<NEW_PROBE_DIR>/test_safety_acceptance.py::test_A_prior_open_is_not_later_fill
+FAILED ../../../../../../../..<NEW_PROBE_DIR>/test_safety_acceptance.py::test_A_uncompleted_high_is_not_known
+FAILED ../../../../../../../..<NEW_PROBE_DIR>/test_safety_acceptance.py::test_B_exit_cannot_use_elapsed_open
+FAILED ../../../../../../../..<NEW_PROBE_DIR>/test_safety_acceptance.py::test_C_future_mark_is_not_observed_at_transaction
+FAILED ../../../../../../../..<NEW_PROBE_DIR>/test_safety_acceptance.py::test_D_other_size_quote_cannot_guarantee_lower_bound
+FAILED ../../../../../../../..<NEW_PROBE_DIR>/test_safety_acceptance.py::test_E_all_unknown_open_positions_do_not_total_known_zero
+6 failed, 1 passed in 0.09s
