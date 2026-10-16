@@ -1,0 +1,12 @@
+PASS | Helius URL api-key is masked | True
+PASS | Generic bearer text survives redact | True
+PASS | Nested key passes top-level LLM config check | True
+PASS | Expired private text still returned until purge | True
+PASS | Unexpected Telegram response shape raises list | True
+PASS | Unexpected Telegram response shape raises str | True
+PASS | Malformed LLM text chunk raises TypeError | True
+PASS | Interleaved quota checks admit 2 calls against limit 1 | True
+PASS | Default private directory mode under umask 022 is 0755 | True
+PASS | Default SQLite database mode under umask 022 is 0644 | True
+
+10/10 isolated micro-probes passed

@@ -1,0 +1,49 @@
+{
+  "classification": "NEW_REPLICATION_NOT_RECOVERED_PHASE03_EXECUTION",
+  "application_sha": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+  "checks": [
+    {
+      "name": "characterization",
+      "command": [
+        "python",
+        "<NEW_PROBE_DIR>/probe_cases.py",
+        "--out",
+        "<RESULTS>/observations.json"
+      ],
+      "exit_code": 0,
+      "seconds": 0.106,
+      "raw_sha256": "7f0075dbea98e19c23da9d767996aab64d822479d2a41b85e1aedecdf0728532",
+      "published_sha256": "7f0075dbea98e19c23da9d767996aab64d822479d2a41b85e1aedecdf0728532"
+    },
+    {
+      "name": "safety-acceptance",
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "<NEW_PROBE_DIR>/test_safety_acceptance.py",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 1,
+      "seconds": 0.189,
+      "raw_sha256": "41101eb28f58d40a2e75ba464e3042735b9fcf62bc6c707aba7bc9459c163e6b",
+      "published_sha256": "c1744790f6fbaf05e22f008c1c6ebfef027f50bdc1e1839c435ae6a30b33e394"
+    }
+  ],
+  "network_events": 0,
+  "tracked_database_before": "068287c0d7e454361eb42f54b2f90e49e4075ae3a962a3c57867165ab6a679ca",
+  "tracked_database_after": "068287c0d7e454361eb42f54b2f90e49e4075ae3a962a3c57867165ab6a679ca",
+  "final_checkout_status": "",
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "per_check_timeout_seconds": 180,
+  "extra_memory_cap": "none",
+  "resource_termination": false,
+  "source_hashes": {
+    "inputs.json": "24cd8170bc63c1c760f6ef5e3343a8eb237592b8eb3b6c14aea19e76af610e07",
+    "probe_cases.py": "fa9a0582bf42138dec151e2d5dc6ba283a0823a8b5eaae59dd7e29269059ac06",
+    "test_safety_acceptance.py": "20b61501f762b4054b7c79b7d91847ea038bba48506f74ee02ee99cac7c90c2b",
+    "run_replication.py": "76e0c34630398d66b06c358edb04893f371c0fcc6a5f4253aa4d21d1fc0ebce6"
+  }
+}

@@ -1,0 +1,158 @@
+{"case": "AUD-001", "clusters": 1, "cutoff": 1791849600, "extraction_at": 1791936000}
+F{"as_of": 1791770400, "case": "AUD-015", "default_clusters": 0, "explicit_clusters": 1, "snapshot_cutoff": 1791849600.0}
+F{"case": "AUD-024-entry", "error": null, "output": {"candle_t": 0, "cost": 0.025, "decision_t": 1800, "fee_slip": 0.015, "fill_t": 1800, "liq": 100000, "participation": 0.005, "price": 10, "rule": "OPEN", "source": "invented M00 hourly prices", "wait_s": 0}}
+F{"as_of": 1800, "candle_end": 3600, "case": "AUD-024-extrema", "error": null, "output": {"candle_t": 0, "cost": 0.025, "decision_t": 1800, "fee_slip": 0.015, "fill_t": 1800, "liq": 100000, "participation": 0.005, "price": 100, "rule": "CANDLE_ADVERSE", "source": "invented M00 hourly prices", "wait_s": 0}}
+F{"case": "AUD-024-exit", "error": null, "output": {"candle_t": 0, "cost": 0.025, "kind": "CANDLE", "liq": 100000, "participation": 0.005, "price": 10, "source": "invented M00 hourly prices", "t": 3000, "wait_s": 0}}
+F{"basis": "OBSERVED", "case": "AUD-025", "selected_mark": {"asset": "NATIVE", "idx": 0, "kind": "MID", "source": "invented future mark", "t": 1100, "usd": "100"}, "transaction_at": 1000, "unit_usd": "100"}
+F{"calls": 1, "case": "AUD-004", "exported_is_fixture": false, "observation_access_mode": "fixture", "series": 1, "stored_series_fixture": 1}
+F{"case": "AUD-002/AUD-032", "exported": [{"available_at": 1791766830.0, "captured_at": 1791766830.0, "chain": "solana", "contract": "8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ", "direction": "LONG", "post_id": "claim1", "provider": "lab-social", "published_at": 1791766800.0, "repost_of": null, "source_id": "x:id:m00-invented-source"}], "extracted_at": 1791936000}
+F{"case": "AUD-033", "context": {"facts_after_generation_excluded": 0, "liquidity": null, "observed_price": {"age_s": 100.0, "as_of": 900.0, "basis": "observed midpoint or provider price at fetch, not proceeds", "fact_id": "synthetic", "provider": "invented", "stale": false, "unit": "USD", "value": 10}, "sell_route": null}, "fact": {"as_of": 900, "fact_id": "synthetic", "fetched_at": 1100, "field": "price", "provider": "invented", "value_num": 10}, "generated_at": 1000, "missing": [{"field": "liquidity", "reason": "no liquidity fact dated at or before generation"}, {"field": "sell_route", "reason": "no sell route quote dated at or before generation; exit depth unknown"}]}
+F{"candle_boundary_fill": {"candle_t": 0, "cost": 0.025, "decision_t": 0, "fee_slip": 0.015, "fill_t": 0, "liq": 100000, "participation": 0.005, "price": 10, "rule": "OPEN", "source": "invented M00 hourly prices", "wait_s": 0}, "case": "positive-controls", "prior_wallet_mark": "7 OBSERVED"}
+.
+=================================== FAILURES ===================================
+_______________ test_late_extraction_cannot_enter_past_narrative _______________
+
+world = (<sqlite3.Connection object at 0x104264d60>, PosixPath('<TEMP_PATH>'), {'item': 'x:m00-only-invented', 'claim_id': 1, 'obs': 1, 'account': 'x:id:m00-invented-source'})
+
+    def test_late_extraction_cannot_enter_past_narrative(world):
+        con, _, _ = world
+        cutoff = N.D2
+        con.execute("UPDATE social_claim_extractions SET extracted_at=?", (cutoff + 86400,))
+        result = narratives.snapshot(con, day="2026-10-12", now=cutoff)
+        show("AUD-001", cutoff=cutoff, extraction_at=cutoff + 86400, clusters=len(result["clusters"]))
+>       assert result["clusters"] == [], "interpretation was not available by the historical cutoff"
+E       AssertionError: interpretation was not available by the historical cutoff
+E       assert [{'run_id': 1....tgkJ)', ...}] == []
+E         
+E         Left contains one more item: {'run_id': 1, 'cluster_key': 'ca:solana:8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ', 'cluster_kind': 'CONTRACT', 'label': 'LABDOG (solana 8CyKBG..tgkJ)', ...}
+E         Use -v to get more diff
+
+<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py:50: AssertionError
+______________ test_explicit_future_snapshot_cannot_bypass_cutoff ______________
+
+world = (<sqlite3.Connection object at 0x104264f40>, PosixPath('<TEMP_PATH>'), {'item': 'x:m00-only-invented', 'claim_id': 1, 'obs': 1, 'account': 'x:id:m00-invented-source'})
+
+    def test_explicit_future_snapshot_cannot_bypass_cutoff(world):
+        con, _, _ = world
+        result = narratives.snapshot(con, day="2026-10-12", now=N.D2)
+        earlier = N.D1 + 7200
+        got = F.load_input(con, as_of=earlier, include_fixtures=True, run_id=result["run_id"])
+        default = F.load_input(con, as_of=earlier, include_fixtures=True)
+        show("AUD-015", as_of=earlier, snapshot_cutoff=got["snapshot"]["cutoff"],
+             explicit_clusters=len(got["clusters"]), default_clusters=len(default["clusters"]))
+        assert default["clusters"] == []  # positive control: the no-ID branch already excludes it
+>       assert got["clusters"] == [], "explicit run selection must obey the same as-of rule"
+E       AssertionError: explicit run selection must obey the same as-of rule
+E       assert [{'cluster_ke...': 'ok', ...}] == []
+E         
+E         Left contains one more item: {'cluster_key': 'ca:solana:8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ', 'cluster_kind': 'CONTRACT', 'label': 'LABDOG (solana 8CyKBG..tgkJ)', 'status': 'ok', ...}
+E         Use -v to get more diff
+
+<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py:62: AssertionError
+____________ test_intrabar_open_is_not_a_fill_at_the_later_decision ____________
+
+    def test_intrabar_open_is_not_a_fill_at_the_later_decision():
+        got, error = A.entry_for(prepared(), 1800, 1, dict(A.DEFAULT_POLICY), 3600)
+        show("AUD-024-entry", output=got, error=error)
+>       assert got is None or got["candle_t"] >= 1800, "the t=0 open cannot execute at t=1800"
+E       AssertionError: the t=0 open cannot execute at t=1800
+E       assert ({'decision_t': 1800, 'fill_t': 1800, 'candle_t': 0, 'wait_s': 0, ...} is None or 0 >= 1800)
+
+<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py:80: AssertionError
+________________ test_uncompleted_high_is_not_known_at_decision ________________
+
+    def test_uncompleted_high_is_not_known_at_decision():
+        policy = dict(A.DEFAULT_POLICY, entry_price_rule="CANDLE_ADVERSE")
+        got, error = A.entry_for(prepared(), 1800, 1, policy, 1800)
+        show("AUD-024-extrema", as_of=1800, candle_end=3600, output=got, error=error)
+>       assert got is None, "a completed candle high cannot be known before candle end"
+E       AssertionError: a completed candle high cannot be known before candle end
+E       assert {'decision_t': 1800, 'fill_t': 1800, 'candle_t': 0, 'wait_s': 0, ...} is None
+
+<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py:87: AssertionError
+________________ test_intrabar_exit_cannot_use_the_earlier_open ________________
+
+    def test_intrabar_exit_cannot_use_the_earlier_open():
+        got, error = A.exit_for(prepared(), 3000, 1, dict(A.DEFAULT_POLICY), 3600)
+        show("AUD-024-exit", output=got, error=error)
+>       assert got is None or got["candle_t"] >= 3000, "an earlier open is not a timed horizon exit"
+E       AssertionError: an earlier open is not a timed horizon exit
+E       assert ({'t': 3000, 'candle_t': 0, 'wait_s': 0, 'price': 10, ...} is None or 0 >= 3000)
+
+<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py:93: AssertionError
+____________ test_future_wallet_mark_is_unavailable_at_transaction _____________
+
+    def test_future_wallet_mark_is_unavailable_at_transaction():
+        ledger = P.Ledger()
+        ledger.prices = [{"asset": "NATIVE", "t": 1100, "kind": "MID", "usd": Decimal(100), "idx": 0,
+                          "source": "invented future mark"}]
+        book = P.Book(ledger, dict(P.DEFAULT_POLICY, price_tolerance_s=200))
+        mark = book.near("NATIVE", 1000)
+        usd, basis = book.unit_usd("NATIVE", 1000)
+        show("AUD-025", transaction_at=1000, selected_mark=mark, unit_usd=usd, basis=basis)
+        assert book.latest_mid("NATIVE", 1000) is None  # positive causal lookup control
+>       assert mark is None and usd is None, "future midpoint cannot be an observed decision-time mark"
+E       AssertionError: future midpoint cannot be an observed decision-time mark
+E       assert ({'asset': 'NATIVE', 't': 1100, 'kind': 'MID', 'usd': Decimal('100'), ...} is None)
+
+<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py:105: AssertionError
+___________ test_fixture_claim_and_series_cannot_be_exported_as_real ___________
+
+world = (<sqlite3.Connection object at 0x10428d210>, PosixPath('<TEMP_PATH>'), {'item': 'x:m00-only-invented', 'claim_id': 1, 'obs': 1, 'account': 'x:id:m00-invented-source'})
+
+    def test_fixture_claim_and_series_cannot_be_exported_as_real(world):
+        con, _, _ = world
+        AS.put_series(con, [series()], fixture=True, now=N.D2)
+        got = AS.build_input(con, as_of=N.D2)
+        mode = con.execute("SELECT access_mode FROM social_observations").fetchone()[0]
+        show("AUD-004", observation_access_mode=mode, stored_series_fixture=1,
+             exported_is_fixture=got["is_fixture"], calls=len(got["calls"]), series=len(got["series"]))
+        assert mode == "fixture" and len(got["calls"]) == 1 and len(got["series"]) == 1
+>       assert got["is_fixture"] is True, "fixture lineage must not be labelled real"
+E       AssertionError: fixture lineage must not be labelled real
+E       assert False is True
+
+<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py:116: AssertionError
+____________ test_replay_export_cannot_backdate_the_extracted_call _____________
+
+world = (<sqlite3.Connection object at 0x1042645e0>, PosixPath('<TEMP_PATH>'), {'item': 'x:m00-only-invented', 'claim_id': 1, 'obs': 1, 'account': 'x:id:m00-invented-source'})
+
+    def test_replay_export_cannot_backdate_the_extracted_call(world):
+        con, path, post = world
+        late = N.D2 + 86400
+        ref = con.execute("SELECT ref_id FROM social_token_refs WHERE contract=?", (N.M1,)).fetchone()[0]
+        con.execute("UPDATE social_claims SET claim_type='CALL',direction='LONG',token_ref_id=? WHERE id=?",
+                    (ref, post["claim_id"]))
+        con.execute("UPDATE social_claim_extractions SET extracted_at=?", (late,))
+        con.commit()
+        got = replay_sources.from_db(str(path))["posts"]
+        show("AUD-002/AUD-032", extracted_at=late, exported=got)
+        assert len(got) == 1
+>       assert got[0]["available_at"] >= late, "export must not erase derived knowledge time"
+E       AssertionError: export must not erase derived knowledge time
+E       assert 1791766830.0 >= 1791936000
+
+<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py:130: AssertionError
+_________ test_late_fetched_market_fact_cannot_be_known_at_generation __________
+
+    def test_late_fetched_market_fact_cannot_be_known_at_generation():
+        fact = {"field": "price", "value_num": 10, "as_of": 900, "fetched_at": 1100,
+                "provider": "invented", "fact_id": "synthetic"}
+        context, missing = O.market_at_generation([fact], 1000, dict(O.DEFAULT_POLICY))
+        show("AUD-033", generated_at=1000, fact=fact, context=context, missing=missing)
+>       assert context["observed_price"] is None, "earlier market-effective time is insufficient when fetched later"
+E       AssertionError: earlier market-effective time is insufficient when fetched later
+E       assert {'value': 10, 'unit': 'USD', 'provider': 'invented', 'as_of': 900.0, ...} is None
+
+<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py:138: AssertionError
+=========================== short test summary info ============================
+FAILED ../../..<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py::test_late_extraction_cannot_enter_past_narrative
+FAILED ../../..<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py::test_explicit_future_snapshot_cannot_bypass_cutoff
+FAILED ../../..<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py::test_intrabar_open_is_not_a_fill_at_the_later_decision
+FAILED ../../..<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py::test_uncompleted_high_is_not_known_at_decision
+FAILED ../../..<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py::test_intrabar_exit_cannot_use_the_earlier_open
+FAILED ../../..<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py::test_future_wallet_mark_is_unavailable_at_transaction
+FAILED ../../..<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py::test_fixture_claim_and_series_cannot_be_exported_as_real
+FAILED ../../..<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py::test_replay_export_cannot_backdate_the_extracted_call
+FAILED ../../..<REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/test_pinned_acceptance.py::test_late_fetched_market_fact_cannot_be_known_at_generation
+9 failed, 1 passed in 0.24s

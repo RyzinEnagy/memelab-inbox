@@ -1,0 +1,8 @@
+{
+  "manifest_matches": 10,
+  "original_upload_digests_matched": 4,
+  "crosswalk_ids": 67,
+  "checked_code_spans": 83,
+  "requirements": 105,
+  "decision": "BLOCKED"
+}

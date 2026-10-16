@@ -1,0 +1,2025 @@
+{
+  "credential_findings": [],
+  "credential_reviewed_placeholders": [
+    {
+      "path": "tests/test_social_alerts.py",
+      "line": 239,
+      "rule": "telegram_bot_token",
+      "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+    }
+  ],
+  "execution_keyword_findings": [
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 21,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 22,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 23,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 24,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 25,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 26,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 27,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 28,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 29,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 30,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 31,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 32,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 33,
+      "rule": "exec:sendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 34,
+      "rule": "exec:sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 35,
+      "rule": "exec:signtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 36,
+      "rule": "exec:signalltransactions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 37,
+      "rule": "exec:eth_sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 38,
+      "rule": "exec:signandsendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 39,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 40,
+      "rule": "exec:from_secret_key"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 41,
+      "rule": "exec:fromsecretkey"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 42,
+      "rule": "exec:/swap-instructions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 43,
+      "rule": "exec:/v6/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 44,
+      "rule": "exec:/swap/v1/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 45,
+      "rule": "exec:executeswap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 46,
+      "rule": "exec:execute_swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 47,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 48,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 49,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 50,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 51,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 52,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 52,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 53,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 54,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 55,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 56,
+      "rule": "exec:sendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 57,
+      "rule": "exec:sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 58,
+      "rule": "exec:signtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 59,
+      "rule": "exec:signalltransactions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 60,
+      "rule": "exec:eth_sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 61,
+      "rule": "exec:signandsendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 62,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 63,
+      "rule": "exec:from_secret_key"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 64,
+      "rule": "exec:fromsecretkey"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 65,
+      "rule": "exec:/swap-instructions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 66,
+      "rule": "exec:/v6/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 67,
+      "rule": "exec:/swap/v1/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 68,
+      "rule": "exec:executeswap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 69,
+      "rule": "exec:execute_swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 70,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 71,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 72,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 73,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/baseline-release.md",
+      "line": 74,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 21,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 22,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 23,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 24,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 25,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 26,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 27,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 28,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 29,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 30,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 31,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 32,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 33,
+      "rule": "exec:sendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 34,
+      "rule": "exec:sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 35,
+      "rule": "exec:signtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 36,
+      "rule": "exec:signalltransactions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 37,
+      "rule": "exec:eth_sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 38,
+      "rule": "exec:signandsendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 39,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 40,
+      "rule": "exec:from_secret_key"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 41,
+      "rule": "exec:fromsecretkey"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 42,
+      "rule": "exec:/swap-instructions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 43,
+      "rule": "exec:/v6/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 44,
+      "rule": "exec:/swap/v1/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 45,
+      "rule": "exec:executeswap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 46,
+      "rule": "exec:execute_swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 47,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 48,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 49,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 50,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 51,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 52,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 52,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 53,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 54,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 55,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 56,
+      "rule": "exec:sendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 57,
+      "rule": "exec:sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 58,
+      "rule": "exec:signtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 59,
+      "rule": "exec:signalltransactions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 60,
+      "rule": "exec:eth_sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 61,
+      "rule": "exec:signandsendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 62,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 63,
+      "rule": "exec:from_secret_key"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 64,
+      "rule": "exec:fromsecretkey"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 65,
+      "rule": "exec:/swap-instructions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 66,
+      "rule": "exec:/v6/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 67,
+      "rule": "exec:/swap/v1/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 68,
+      "rule": "exec:executeswap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 69,
+      "rule": "exec:execute_swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 70,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 71,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 72,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 73,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md",
+      "line": 74,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 17,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 18,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 19,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 20,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 21,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 22,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 23,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 24,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 25,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 26,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 27,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 28,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 29,
+      "rule": "exec:sendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 30,
+      "rule": "exec:sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 31,
+      "rule": "exec:signtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 32,
+      "rule": "exec:signalltransactions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 33,
+      "rule": "exec:eth_sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 34,
+      "rule": "exec:signandsendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 35,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 36,
+      "rule": "exec:from_secret_key"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 37,
+      "rule": "exec:fromsecretkey"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 38,
+      "rule": "exec:/swap-instructions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 39,
+      "rule": "exec:/v6/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 40,
+      "rule": "exec:/swap/v1/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 41,
+      "rule": "exec:executeswap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 42,
+      "rule": "exec:execute_swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 43,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 44,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 45,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 46,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 47,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 48,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 49,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 50,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 51,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 52,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 53,
+      "rule": "exec:sendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 54,
+      "rule": "exec:sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 55,
+      "rule": "exec:signtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 56,
+      "rule": "exec:signalltransactions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 57,
+      "rule": "exec:eth_sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 58,
+      "rule": "exec:signandsendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 59,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 60,
+      "rule": "exec:from_secret_key"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 61,
+      "rule": "exec:fromsecretkey"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 62,
+      "rule": "exec:/swap-instructions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 63,
+      "rule": "exec:/v6/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 64,
+      "rule": "exec:/swap/v1/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 65,
+      "rule": "exec:executeswap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 66,
+      "rule": "exec:execute_swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 67,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 68,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 69,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 70,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 71,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 72,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 73,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 74,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 75,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 76,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 77,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 78,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 79,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 80,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 81,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 82,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 83,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 84,
+      "rule": "exec:sendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 85,
+      "rule": "exec:sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 86,
+      "rule": "exec:signtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 87,
+      "rule": "exec:signalltransactions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 88,
+      "rule": "exec:eth_sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 89,
+      "rule": "exec:signandsendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 90,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 91,
+      "rule": "exec:from_secret_key"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 92,
+      "rule": "exec:fromsecretkey"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 93,
+      "rule": "exec:/swap-instructions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 94,
+      "rule": "exec:/v6/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 95,
+      "rule": "exec:/swap/v1/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 96,
+      "rule": "exec:executeswap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 97,
+      "rule": "exec:execute_swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 98,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 99,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 100,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 101,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 102,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 103,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 104,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 105,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 106,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 107,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 108,
+      "rule": "exec:sendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 109,
+      "rule": "exec:sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 110,
+      "rule": "exec:signtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 111,
+      "rule": "exec:signalltransactions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 112,
+      "rule": "exec:eth_sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 113,
+      "rule": "exec:signandsendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 114,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 115,
+      "rule": "exec:from_secret_key"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 116,
+      "rule": "exec:fromsecretkey"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 117,
+      "rule": "exec:/swap-instructions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 118,
+      "rule": "exec:/v6/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 119,
+      "rule": "exec:/swap/v1/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 120,
+      "rule": "exec:executeswap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 121,
+      "rule": "exec:execute_swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 122,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 123,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 124,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 125,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 126,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 130,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 131,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 132,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 133,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 134,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 135,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 136,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 137,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 138,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 139,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 140,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 141,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 142,
+      "rule": "exec:sendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 143,
+      "rule": "exec:sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 144,
+      "rule": "exec:signtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 145,
+      "rule": "exec:signalltransactions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 146,
+      "rule": "exec:eth_sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 147,
+      "rule": "exec:signandsendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 148,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 149,
+      "rule": "exec:from_secret_key"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 150,
+      "rule": "exec:fromsecretkey"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 151,
+      "rule": "exec:/swap-instructions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 152,
+      "rule": "exec:/v6/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 153,
+      "rule": "exec:/swap/v1/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 154,
+      "rule": "exec:executeswap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 155,
+      "rule": "exec:execute_swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 156,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 157,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 158,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 159,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 160,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 161,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 161,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 162,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 163,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 164,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 165,
+      "rule": "exec:sendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 166,
+      "rule": "exec:sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 167,
+      "rule": "exec:signtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 168,
+      "rule": "exec:signalltransactions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 169,
+      "rule": "exec:eth_sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 170,
+      "rule": "exec:signandsendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 171,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 172,
+      "rule": "exec:from_secret_key"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 173,
+      "rule": "exec:fromsecretkey"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 174,
+      "rule": "exec:/swap-instructions"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 175,
+      "rule": "exec:/v6/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 176,
+      "rule": "exec:/swap/v1/swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 177,
+      "rule": "exec:executeswap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 178,
+      "rule": "exec:execute_swap"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 179,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 180,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 181,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 182,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/evidence/independent_m00/results/verification-release.md",
+      "line": 183,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 27,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 28,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 29,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 30,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 31,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 32,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 33,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 34,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 35,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 36,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 37,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 38,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 39,
+      "rule": "exec:sendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 40,
+      "rule": "exec:sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 41,
+      "rule": "exec:signtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 42,
+      "rule": "exec:signalltransactions"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 43,
+      "rule": "exec:eth_sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 44,
+      "rule": "exec:signandsendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 45,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 46,
+      "rule": "exec:from_secret_key"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 47,
+      "rule": "exec:fromsecretkey"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 48,
+      "rule": "exec:/swap-instructions"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 49,
+      "rule": "exec:/v6/swap"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 50,
+      "rule": "exec:/swap/v1/swap"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 51,
+      "rule": "exec:executeswap"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 52,
+      "rule": "exec:execute_swap"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 53,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 54,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 55,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 56,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 57,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 58,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 58,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 59,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 60,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 61,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 62,
+      "rule": "exec:sendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 63,
+      "rule": "exec:sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 64,
+      "rule": "exec:signtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 65,
+      "rule": "exec:signalltransactions"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 66,
+      "rule": "exec:eth_sendrawtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 67,
+      "rule": "exec:signandsendtransaction"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 68,
+      "rule": "exec:keypair"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 69,
+      "rule": "exec:from_secret_key"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 70,
+      "rule": "exec:fromsecretkey"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 71,
+      "rule": "exec:/swap-instructions"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 72,
+      "rule": "exec:/v6/swap"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 73,
+      "rule": "exec:/swap/v1/swap"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 74,
+      "rule": "exec:executeswap"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 75,
+      "rule": "exec:execute_swap"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 76,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 77,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 78,
+      "rule": "exec:mnemonic"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 79,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/main-release-audit.md",
+      "line": 80,
+      "rule": "exec:seed phrase"
+    },
+    {
+      "path": "audits/social-intelligence/originals/phase00/evidence/original-staged-prompts.md",
+      "line": 18,
+      "rule": "exec:seed phrase"
+    }
+  ],
+  "execution_keyword_reviewed": [
+    {
+      "path": "docs/social-intelligence/DECISIONS.md",
+      "line": 544,
+      "rule": "exec:keypair",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/EXECUTION.md",
+      "line": 30,
+      "rule": "exec:seed phrase",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/README.md",
+      "line": 11,
+      "rule": "exec:seed phrase",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/RELEASE_18.md",
+      "line": 74,
+      "rule": "exec:keypair",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 27,
+      "rule": "exec:keypair",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 28,
+      "rule": "exec:seed phrase",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 29,
+      "rule": "exec:seed phrase",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 30,
+      "rule": "exec:seed phrase",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 30,
+      "rule": "exec:seed phrase",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 31,
+      "rule": "exec:seed phrase",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 32,
+      "rule": "exec:mnemonic",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 33,
+      "rule": "exec:mnemonic",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 34,
+      "rule": "exec:sendtransaction",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 35,
+      "rule": "exec:sendrawtransaction",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 36,
+      "rule": "exec:signtransaction",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 37,
+      "rule": "exec:signalltransactions",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 38,
+      "rule": "exec:eth_sendrawtransaction",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 39,
+      "rule": "exec:signandsendtransaction",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 40,
+      "rule": "exec:keypair",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 41,
+      "rule": "exec:from_secret_key",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 42,
+      "rule": "exec:fromsecretkey",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 43,
+      "rule": "exec:/swap-instructions",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 44,
+      "rule": "exec:/v6/swap",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 45,
+      "rule": "exec:/swap/v1/swap",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 46,
+      "rule": "exec:executeswap",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 47,
+      "rule": "exec:execute_swap",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 48,
+      "rule": "exec:mnemonic",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 49,
+      "rule": "exec:seed phrase",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 50,
+      "rule": "exec:mnemonic",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 51,
+      "rule": "exec:seed phrase",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "line": 52,
+      "rule": "exec:seed phrase",
+      "why": "documentation of the no-trading rule"
+    },
+    {
+      "path": "skills/memecoin-scout/SKILL.md",
+      "line": 8,
+      "rule": "exec:seed phrase",
+      "why": "the hard rules text (never handle a seed phrase, never place an order)"
+    },
+    {
+      "path": "tests/test_social_wallets.py",
+      "line": 725,
+      "rule": "exec:seed phrase",
+      "why": "tests that signing material is refused"
+    },
+    {
+      "path": "tests/test_social_wallets.py",
+      "line": 725,
+      "rule": "exec:mnemonic",
+      "why": "tests that signing material is refused"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 38,
+      "rule": "exec:mnemonic",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 42,
+      "rule": "exec:sendtransaction",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 42,
+      "rule": "exec:sendrawtransaction",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 42,
+      "rule": "exec:signtransaction",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 42,
+      "rule": "exec:signalltransactions",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 42,
+      "rule": "exec:eth_sendrawtransaction",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 43,
+      "rule": "exec:signandsendtransaction",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 43,
+      "rule": "exec:keypair",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 43,
+      "rule": "exec:from_secret_key",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 43,
+      "rule": "exec:fromsecretkey",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 44,
+      "rule": "exec:/swap-instructions",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 44,
+      "rule": "exec:/v6/swap",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 44,
+      "rule": "exec:/swap/v1/swap",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 45,
+      "rule": "exec:executeswap",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 45,
+      "rule": "exec:execute_swap",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 45,
+      "rule": "exec:mnemonic",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 45,
+      "rule": "exec:seed phrase",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 53,
+      "rule": "exec:mnemonic",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 53,
+      "rule": "exec:seed phrase",
+      "why": "this file holds the patterns"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "line": 53,
+      "rule": "exec:seed phrase",
+      "why": "this file holds the patterns"
+    }
+  ],
+  "content_guard": {
+    "files_scanned": 518,
+    "json_files": 141,
+    "sqlite_files": 1,
+    "violations": [],
+    "allowlist": [
+      {
+        "path": "tests/fixtures/social/inbox/soc_fx01.json",
+        "where": "soc:x:example_trader_a.body.items[3].text",
+        "reason": "invented placeholder the ingester must quarantine (test_bad_items_quarantined_good_items_kept)"
+      },
+      {
+        "path": "tests/fixtures/social/inbox/soc_fx01.json",
+        "where": "soc:x:example_trader_a.body.items[4].visibility",
+        "reason": "invented PROTECTED item (hash of an invented sentence) the ingester must quarantine as NOT_PUBLIC"
+      },
+      {
+        "path": "tests/fixtures/social/registry/leaderboard_fresh.json",
+        "where": "rows[6].bio",
+        "reason": "invented placeholder the registry importer must reject as BLOCKED_CONTENT_KEY (Phase 08)"
+      },
+      {
+        "path": "tests/fixtures/social/roundtrip_01.json",
+        "where": "observations[*].text",
+        "reason": "invented sentences used to prove the store hashes text and never writes it (Phase 01)"
+      }
+    ]
+  },
+  "changed_files": 91,
+  "changed_execution_keyword_hits": 56,
+  "scope": "Tracked publication tree plus all 50 extracted ZIP members checked by verify_archives.py; broad execution matches require manual classification, not an automatic clean result."
+}

@@ -1,0 +1,33 @@
+{
+  "alpha_fixture_label": {
+    "calls": 1,
+    "input_is_fixture": false,
+    "observation_access_mode": "fixture"
+  },
+  "narrative_availability": {
+    "clusters": 1,
+    "cutoff": 1791849600,
+    "extracted_at": 1791936000
+  },
+  "replay_availability": {
+    "exported_available_at": 120.0,
+    "extracted_at": 10000
+  },
+  "x_ingest": {
+    "claims": 0,
+    "created": 1,
+    "cursor": {
+      "last_status": "OK",
+      "newest_id": "1840000000000000005"
+    },
+    "health": "DEGRADED",
+    "resolutions": 0
+  },
+  "zero_price_budget": {
+    "allow_reason": null,
+    "cap": 0,
+    "input_price": 0,
+    "output_price": 0
+  }
+}
+{"connector": "x_api:user:example_alpha", "error": "page cap 1 reached; older posts before this window were not read", "event": "unit_unavailable", "run_id": "r1791561600.0", "source_ref": "x_api:user:example_alpha#since=none&gap", "status": "DEGRADED"}

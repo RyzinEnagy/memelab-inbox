@@ -1,5 +1,13 @@
 # Independent verification — remediation M00
 
+> **Current Phase 03 substitute review, 2026-10-15:** recovery package hashes and report/later-test continuity verified; newly reconstructed A–E runs now include D/E. Historical original full inputs/executions remain unrecovered. **M00 BLOCKED pending explicit reviewed acceptance of the substitute evidence; M01 unauthorized.** See [current decision and concrete reviewer action](M00_PHASE03_REPLICATION_REVIEW.md). Earlier dated statements retain their historical scope.
+
+
+> **Current archive follow-up, 2026-10-15:** four original ZIPs and 50 member files recovered; 43 embedded hashes and all 105 original requirement texts verified. Original Phase 04/05 bytes are now available. OPS-001–010 are primary labels in the recovered Phase 05 findings, correcting the earlier secondary-only attribution. Phase 03 A–E executable inputs/scripts/raw outputs remain absent; **M00 BLOCKED, M01 unauthorized**. See [current checklist and next steps](M00_ARCHIVE_RECOVERY_VERIFICATION.md). Earlier dated statements below describe their historical review state.
+
+
+> **Executed in a fresh review session on 2026-10-14 ET. Decision: BLOCKED.** See `M00_INDEPENDENT_VERIFICATION.md`, `M00_INDEPENDENT_CROSSWALK.md/json` and `M00_MISSING_EVIDENCE.md`. At reviewed recovery commit `3b434e1`, review was PENDING; this verification branch records REJECTED (acceptance withheld), so the strict gate still exits 2. No M01 authorization.
+
 **Use a fresh session and a clean checkout.** Do not rely on the implementing engineer's test counts or consider a PASS from the integrity script to be proof of historical correctness. No application fix has been made in M00.
 
 ## 1. Starting state and original deficiency
@@ -23,7 +31,7 @@ python tools/check_audit_evidence.py --require-complete
 
 - Focused tests should pass and demonstrate that a tampered document and an originally empty evidence archive are rejected.
 - The non-strict command verifies integrity of the **8/8 primary sources plus two preserved original findings snapshots** and prints `BLOCKED` while independent review is pending; exit zero is **not** acceptance.
-- The strict command **must currently exit 2** with `missing=[]` but `independent_review=PENDING`. If it exits zero without an independently accepted crosswalk, treat that as a verifier defect.
+- The strict command **must exit 2** with `missing=[]`: `independent_review=PENDING` on the reviewed recovery commit, `REJECTED` on this verification branch. If it exits zero without an independently accepted crosswalk, treat that as a verifier defect.
 - Negative mutation: in a disposable checkout, append one byte to `recovered/00_BASELINE.md`; expect an integrity error and exit 1. Never mutate the live branch for the test.
 - Also remove a recovered report in a disposable checkout; integrity validation must reject the false RECOVERED claim.
 

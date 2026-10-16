@@ -1,0 +1,14 @@
+{
+  "baseline_commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+  "assessment_date": "2026-10-13",
+  "method": "Static source examination + prior audit reproductions + modeled scenarios; NO LIVE SOAK OR ENGINE FAULT INJECTION",
+  "scenarios": [
+    {"name":"normal_daily", "assessment":"not operational unattended", "evidence":"disabled scheduler templates, source-to-claim path missing", "run":"not executed"},
+    {"name":"seven_days_no_intervention", "assessment":"would not start unless separately scheduled", "evidence":"runbook requires external task and manual routines", "run":"modeled only"},
+    {"name":"one_failed_provider", "assessment":"partial only if normalized DOWN; exception may leave RUNNING", "evidence":"AUD-016 prior reproduction", "run":"prior offline probe only"},
+    {"name":"tenfold_posts", "assessment":"potential cursor gap and paid resource exposure", "evidence":"AUD-005, AUD-006, ADV-007", "run":"modeled only"},
+    {"name":"db_temporarily_unavailable", "assessment":"read-path UNAVAILABLE; full cross-store recovery unproved", "evidence":"feed_store.py and ARCH-011", "run":"modeled only"},
+    {"name":"missing_llm_credentials", "assessment":"configured refusal and model-free output, no guaranteed claims", "evidence":"llm.py and AUD-003", "run":"static only"},
+    {"name":"no_meaningful_intelligence", "assessment":"not distinguishable from no completed collection without coverage metrics", "evidence":"feed_store.py and source coverage gap", "run":"modeled only"}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "00_BASELINE.md": "16a3db8d5cc542dd1195a224cf7f712c7f88fb832042854db74ff8a7b5eb316f",
+  "01_FUNCTIONAL_AUDIT.md": "42ca9384f142ec1a09157ba6e0a1d97000af3f35e6f55690735d1351290e1889",
+  "FINDINGS.md": "cfc53fefd4e60384ab740ede9b59407d4b42a9ec0857e9864da8e7fb65c0282b",
+  "REQUIREMENTS_MATRIX.md": "37bee78f56e1023a1901fecfcf57a77cb39ed9ab3ff8f8a7239c86beffd1035d",
+  "evidence/execution-metadata.json": "514f5f967e72c33a42dcf4291e2f312caa41f93b1e6501e37ae99fc365d165c6",
+  "evidence/existing-suite.log": "cdd70b3609d8ae69e9b33432376b5a58766363ad2b967147e04e60b2acaa093e",
+  "evidence/independent-tests-initial-harness.log": "170a1a69711c4adf2657312b8a07f395304864a6541c5cd850658b734757cd4e",
+  "evidence/independent-tests.log": "2fcbcd3487672ff278fb90abc7b68861a4223bb32a3ff9b5861f74c9656fc7a3",
+  "evidence/network-guard/sitecustomize.py": "c26eabfc74dc0d1a47cf04343b9856c8a38da599c4f63a7daca4495c58be1fa6",
+  "evidence/network.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "evidence/release-e2e.json": "cecf39e314ea95c7906dbbf17114b98efec88ca158dcfcc9602296a76010ddc3",
+  "evidence/release-e2e.log": "8b5eb189225ce968769844273edaff2a5c5c306f4d928516bcd475209bef8449",
+  "evidence/release-e2e.md": "e4a5a23903e711b855fa097325201e4e6b24a211d27ad350a5bd8fc982b3b6bf",
+  "evidence/test_functional_audit.py": "a71b80aeadc9c6587e1c6e32ac9277dc677a8dc674a694208ebcbdc2b71400c1"
+}

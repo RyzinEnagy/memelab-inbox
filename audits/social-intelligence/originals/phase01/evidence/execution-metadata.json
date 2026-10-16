@@ -1,0 +1,26 @@
+{
+  "baseline": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "tracked_db_sha256": "068287c0d7e454361eb42f54b2f90e49e4075ae3a962a3c57867165ab6a679ca",
+  "production_diff": "",
+  "network_attempts": 0,
+  "existing_test_file_counts": {
+    "tests/test_social_alerts.py": 28,
+    "tests/test_social_alpha.py": 39,
+    "tests/test_social_chronology.py": 31,
+    "tests/test_social_extraction.py": 25,
+    "tests/test_social_feed.py": 21,
+    "tests/test_social_identity.py": 29,
+    "tests/test_social_ingest.py": 18,
+    "tests/test_social_narratives.py": 39,
+    "tests/test_social_outcomes.py": 28,
+    "tests/test_social_performance.py": 57,
+    "tests/test_social_registry.py": 40,
+    "tests/test_social_replay.py": 22,
+    "tests/test_social_research.py": 23,
+    "tests/test_social_store.py": 15,
+    "tests/test_social_telegram.py": 37,
+    "tests/test_social_wallets.py": 43,
+    "tests/test_social_x_api.py": 32
+  }
+}

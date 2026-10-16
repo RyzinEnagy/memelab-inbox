@@ -1,0 +1,26 @@
+{
+  "checks": [
+    {
+      "label": "baseline-independent-acceptance",
+      "exit_code": 1,
+      "log": "baseline-independent-acceptance.log"
+    },
+    {
+      "label": "recovery-independent-acceptance",
+      "exit_code": 1,
+      "log": "recovery-independent-acceptance.log"
+    },
+    {
+      "label": "byte-tamper",
+      "exit_code": 1,
+      "log": "byte-tamper.log"
+    },
+    {
+      "label": "missing-report",
+      "exit_code": 1,
+      "log": "missing-report.log"
+    }
+  ],
+  "network_events": 0,
+  "meaning": "Nine failing acceptance assertions reproduce open defects; positive control must pass. Mutation exit 1 is expected rejection."
+}

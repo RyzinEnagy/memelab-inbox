@@ -1,5 +1,11 @@
 # Findings register
 
+> **Current Phase 03 substitute review, 2026-10-15:** recovery package hashes and report/later-test continuity verified; newly reconstructed A–E runs now include D/E. Historical original full inputs/executions remain unrecovered. **M00 BLOCKED pending explicit reviewed acceptance of the substitute evidence; M01 unauthorized.** See [current decision and concrete reviewer action](M00_PHASE03_REPLICATION_REVIEW.md). Earlier dated statements retain their historical scope.
+
+
+> **Current archive follow-up, 2026-10-15:** four original ZIPs and 50 member files recovered; 43 embedded hashes and all 105 original requirement texts verified. Original Phase 04/05 bytes are now available. OPS-001–010 are primary labels in the recovered Phase 05 findings, correcting the earlier secondary-only attribution. Phase 03 A–E executable inputs/scripts/raw outputs remain absent; **M00 BLOCKED, M01 unauthorized**. See [current checklist and next steps](M00_ARCHIVE_RECOVERY_VERIFICATION.md). Earlier dated statements below describe their historical review state.
+
+
 Audit date: 2026-10-13. Primary baseline `698f73b854567ce60b56ce275b5ab6822a9d5f60`; additional reviewed feature tip `3f27fc788f9ab88286b8041355e5445fdfdf012c`. No application fixes were made.
 
 Severity describes impact on research/operational reliability: High can invalidate core intelligence or readiness; Medium affects coverage, provenance, lifecycle or release confidence. None is a demonstrated financial loss or exploited vulnerability. Confidence is High unless noted; live-service behavior remains unverified. Findings include defects, delivery gaps and documented limitations; a documented limitation is not concealment.
@@ -382,13 +388,13 @@ AUD-001, AUD-002, AUD-008, AUD-012, AUD-015 and AUD-017 remain open or evidence-
 
 ## Cumulative audit continuity: later independent phases, 2026-10-13
 
-The register above is the complete recovered Phase 00/01 findings as in the available \`FINDINGS.md\`. The original Phase 02/03/04/05 reports were produced separately from the consolidated publication. M00 has restored report copies (original upload bytes for Phase 02/03, index-derived for Phase 04/05), and preserved the Phase 02/03 findings snapshots unchanged. The following is an **index** to those additional findings, not a fabricated claim that the repository ran those tests again. No prior issue has been independently closed.
+The register above is the complete recovered Phase 00/01 findings as in the available \`FINDINGS.md\`. The original Phase 02/03/04/05 reports were produced separately from the consolidated publication. M00 has restored original report bytes (Phase 02/03 uploads and newly supplied Phase 00/01/04/05 archive members), and preserved the Phase 02/03 findings snapshots unchanged. The following is an **index** to those additional findings, not a fabricated claim that the repository ran those tests again. No prior issue has been independently closed.
 
 **Architecture audit ARCH-001–015 (now source-anchored):** historical knowledge-time selection; per-connection SQLite foreign keys; primary-source to extractor handoff; iterator lifecycle; public/private/outcome state recovery; cross-chain legacy identity; publication lineage; append-only growth; unknown-as-none in reporting; cursor contiguousness; cross-store atomicity; provider lifecycle; LLM billing/cost; deletion/retention; modularization. \`02_ARCHITECTURE_AUDIT.md\` is the full source.
 
 **Adversarial ADV-001–009:** overly permissive private DB files; expired private text availability before purge; model credential config gaps; conditional Helius redaction; malformed model response; Telegram retry/error handling; non-atomic LLM reservations; content guard doesn't inspect arbitrary Markdown/CSV; live X deletion not complete. \`04_ADVERSARIAL_AUDIT.md\` is the full source. These are graded code/theoretical risks; none is evidence of a live exploited attack.
 
-**Operational audit index (full evidence in \`05_OPERATIONS_AND_UX.md\`):**
+**Operational audit index (primary OPS IDs/severity/evidence in `originals/phase05/FINDINGS.md:226–235`; report in `originals/phase05/05_OPERATIONS_AND_UX.md`):**
 
 | ID | Finding | Rating | Evidence |
 |---|---|---|---|

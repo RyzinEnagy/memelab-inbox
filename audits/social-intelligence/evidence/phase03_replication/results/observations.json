@@ -1,0 +1,296 @@
+{
+  "classification": "NEW_INDEPENDENT_REPLICATION_NOT_ORIGINAL_PHASE03_INPUTS",
+  "application_sha": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+  "inputs_sha256": "24cd8170bc63c1c760f6ef5e3343a8eb237592b8eb3b6c14aea19e76af610e07",
+  "resolved_policies": {
+    "alpha_open": {
+      "horizons_s": [
+        3600,
+        21600,
+        86400,
+        259200,
+        604800
+      ],
+      "primary_horizon_s": 86400,
+      "delay_s": 300,
+      "max_capture_lag_s": 3600,
+      "max_entry_wait_s": 900,
+      "max_exit_wait_s": 900,
+      "entry_price_rule": "OPEN",
+      "trade_size_usd": 500.0,
+      "fee_bps_per_side": 100.0,
+      "slippage_bps_per_side": 50.0,
+      "max_participation": 0.05,
+      "unknown_exit_cost": 0.5,
+      "dedupe_window_s": 604800,
+      "conflict_window_s": 86400,
+      "min_path_coverage": 0.8,
+      "onset_threshold": 0.2,
+      "pre_window_s": 21600,
+      "late_promotion_threshold": 1.0,
+      "trade_window_s": 86400,
+      "baseline_k": 8,
+      "min_baseline": 5,
+      "baseline_max_liq_ratio": 4.0,
+      "ci_min_n": 8,
+      "min_calls_preliminary": 10,
+      "min_calls_validated": 30,
+      "min_distinct_tokens_validated": 20,
+      "min_coverage_preliminary": 0.5,
+      "min_coverage_validated": 0.7,
+      "min_completeness_validated": 0.9,
+      "min_completeness_preliminary": 0.8,
+      "max_top_token_share_validated": 0.2,
+      "min_half_n": 10,
+      "shrink_k": 20.0,
+      "edge_scale": 0.5,
+      "max_uncertainty": "medium"
+    },
+    "alpha_adverse": {
+      "horizons_s": [
+        3600,
+        21600,
+        86400,
+        259200,
+        604800
+      ],
+      "primary_horizon_s": 86400,
+      "delay_s": 300,
+      "max_capture_lag_s": 3600,
+      "max_entry_wait_s": 900,
+      "max_exit_wait_s": 900,
+      "entry_price_rule": "CANDLE_ADVERSE",
+      "trade_size_usd": 500.0,
+      "fee_bps_per_side": 100.0,
+      "slippage_bps_per_side": 50.0,
+      "max_participation": 0.05,
+      "unknown_exit_cost": 0.5,
+      "dedupe_window_s": 604800,
+      "conflict_window_s": 86400,
+      "min_path_coverage": 0.8,
+      "onset_threshold": 0.2,
+      "pre_window_s": 21600,
+      "late_promotion_threshold": 1.0,
+      "trade_window_s": 86400,
+      "baseline_k": 8,
+      "min_baseline": 5,
+      "baseline_max_liq_ratio": 4.0,
+      "ci_min_n": 8,
+      "min_calls_preliminary": 10,
+      "min_calls_validated": 30,
+      "min_distinct_tokens_validated": 20,
+      "min_coverage_preliminary": 0.5,
+      "min_coverage_validated": 0.7,
+      "min_completeness_validated": 0.9,
+      "min_completeness_preliminary": 0.8,
+      "max_top_token_share_validated": 0.2,
+      "min_half_n": 10,
+      "shrink_k": 20.0,
+      "edge_scale": 0.5,
+      "max_uncertainty": "medium"
+    },
+    "wallet": {
+      "convention": "FIFO",
+      "price_tolerance_s": 200,
+      "mtm_max_age_s": 86400,
+      "quote_max_age_s": 3600,
+      "assume_stable_peg": true,
+      "force_stable_par": false,
+      "return_matching": true,
+      "dust_ratio": "0.0001",
+      "large_shortfall_ratio": 100,
+      "price_mismatch_factor": 50,
+      "min_closed_positions": 20,
+      "low_confidence_below": 50,
+      "min_span_days": 7,
+      "min_basis_coverage": "0.8",
+      "min_price_coverage": "0.9",
+      "max_unknown_fee_share": "0.2",
+      "max_unclassified_share": "0.1",
+      "min_equity_points": 20,
+      "min_equity_completeness": "0.8",
+      "material_sensitivity_share": "0.05"
+    },
+    "inventory": {
+      "convention": "FIFO",
+      "price_tolerance_s": 900,
+      "mtm_max_age_s": 86400,
+      "quote_max_age_s": 3600,
+      "assume_stable_peg": true,
+      "force_stable_par": false,
+      "return_matching": true,
+      "dust_ratio": "0.0001",
+      "large_shortfall_ratio": 100,
+      "price_mismatch_factor": 50,
+      "min_closed_positions": 20,
+      "low_confidence_below": 50,
+      "min_span_days": 7,
+      "min_basis_coverage": "0.8",
+      "min_price_coverage": "0.9",
+      "max_unknown_fee_share": "0.2",
+      "max_unclassified_share": "0.1",
+      "min_equity_points": 20,
+      "min_equity_completeness": "0.8",
+      "material_sensitivity_share": "0.05"
+    }
+  },
+  "A": {
+    "open": {
+      "decision_t": 1800,
+      "fill_t": 1800,
+      "candle_t": 0,
+      "wait_s": 0,
+      "price": 10,
+      "liq": 100000,
+      "participation": 0.005,
+      "cost": 0.025,
+      "fee_slip": 0.015,
+      "rule": "OPEN",
+      "source": "new invented hourly candles"
+    },
+    "open_error": null,
+    "adverse": {
+      "decision_t": 1800,
+      "fill_t": 1800,
+      "candle_t": 0,
+      "wait_s": 0,
+      "price": 100,
+      "liq": 100000,
+      "participation": 0.005,
+      "cost": 0.025,
+      "fee_slip": 0.015,
+      "rule": "CANDLE_ADVERSE",
+      "source": "new invented hourly candles"
+    },
+    "adverse_error": null
+  },
+  "B": {
+    "exit": {
+      "t": 3000,
+      "candle_t": 0,
+      "wait_s": 0,
+      "price": 10,
+      "cost": 0.025,
+      "liq": 100000,
+      "participation": 0.005,
+      "kind": "CANDLE",
+      "source": "new invented hourly candles"
+    },
+    "error": null
+  },
+  "C": {
+    "near": {
+      "asset": "NATIVE",
+      "t": 1100,
+      "kind": "MID",
+      "usd": "100",
+      "source": "new invented future mark",
+      "idx": 0
+    },
+    "unit_usd": "100",
+    "basis": "OBSERVED",
+    "causal_latest_mid_control": null
+  },
+  "D": {
+    "input_qty": "50",
+    "quote": {
+      "kind": "EXEC_QUOTE",
+      "t": 1000,
+      "amount_in": "100",
+      "usd_out": "100",
+      "source": "new invented larger-size route"
+    },
+    "liquidation": {
+      "status": "QUOTED_PRORATA",
+      "value": "50",
+      "age_s": 0,
+      "source": "new invented larger-size route",
+      "detail": "scaled down from a larger quoted sale; a smaller sale usually does at least as well, so this is a lower bound"
+    }
+  },
+  "E": {
+    "per_asset": {
+      "status": "NO_QUOTE",
+      "value": null,
+      "age_s": null,
+      "detail": "no sell quote was supplied"
+    },
+    "empty_sum": "0",
+    "inventory_integration_EXTENSION_NOT_ORIGINAL_PROBE": {
+      "as_of": 1000.0,
+      "assets": [
+        {
+          "asset": "M00_SYNTHETIC_TOKEN",
+          "qty_open": "50",
+          "qty_known_basis": "50",
+          "basis_known_usd": "25",
+          "qty_other": "0",
+          "other_buckets": [],
+          "mark": {
+            "status": "FRESH",
+            "price_usd": "1",
+            "age_s": 0.0,
+            "source": "new invented token mark"
+          },
+          "mtm_value_usd": "50",
+          "liquidation": {
+            "status": "NO_QUOTE",
+            "value": null,
+            "age_s": null,
+            "detail": "no sell quote was supplied"
+          },
+          "known_basis_mtm_value_usd": "50",
+          "known_basis_liquidation_value_usd": null,
+          "unrealized_mtm_usd": "25",
+          "unrealized_executable_usd": null,
+          "mtm_minus_executable_usd": null
+        }
+      ],
+      "unrealized_mtm_usd": "25",
+      "unrealized_executable_usd": "0",
+      "mtm_minus_executable_usd": "0",
+      "assets_with_known_basis": 1,
+      "assets_without_mark": 0,
+      "assets_without_executable_estimate": 1,
+      "basis_without_mark_usd": "0",
+      "basis_without_executable_estimate_usd": "25",
+      "open_qty_of_unknown_basis_assets": 0,
+      "off_book_not_valued": [],
+      "notes": [
+        "unrealized P&L covers only open lots of known basis; open inventory of unknown basis is shown but has no gain or loss",
+        "mark-to-market uses the last supplied price; executable value uses a supplied sell quote and is a lower bound; the gap between them is shown, never hidden",
+        "a missing quote is UNKNOWN. Only an observed no-route or failed quote is valued at zero"
+      ]
+    }
+  },
+  "controls": {
+    "boundary": {
+      "decision_t": 0,
+      "fill_t": 0,
+      "candle_t": 0,
+      "wait_s": 0,
+      "price": 10,
+      "liq": 100000,
+      "participation": 0.005,
+      "cost": 0.025,
+      "fee_slip": 0.015,
+      "rule": "OPEN",
+      "source": "new invented hourly candles"
+    },
+    "boundary_error": null,
+    "prior_unit_usd": "7",
+    "prior_basis": "OBSERVED",
+    "exact_size_quote": {
+      "status": "QUOTED_PRORATA",
+      "value": "100",
+      "age_s": 0,
+      "source": "new invented larger-size route",
+      "detail": "scaled down from a larger quoted sale; a smaller sale usually does at least as well, so this is a lower bound"
+    }
+  },
+  "code_files": {
+    "memelab/social/alpha_core.py": "b129c15357bcc5d8e8d3ff5a750b7bea7dd5fc8bfa846446c82f79496b1ee729",
+    "memelab/social/perf_core.py": "71b98e7c97e9f65bbc2b5e8a98180123b89e004e708cc594a47578260fea0831",
+    "memelab/social/perf_analysis.py": "a4f296badfbb226d7372bd8c550739cc3c0607b448085ab872f6e7708e10b8dc"
+  }
+}

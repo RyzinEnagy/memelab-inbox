@@ -1,0 +1,126 @@
+FA: three observations, exact Solana identity, two independent sources, one repost; citations and fixed-input feed deterministic
+...Imported candidate entities: 12 ; no automatic human identity proof
+.B: premention +400%; entry 5; postmention relative return 0, not +400%
+.C: raw module fatal flags ['CANNOT_EXIT_5K', 'LARGEST_HOLDER_GT_15PCT', 'TOP10_GT_50PCT'] ; social attention cannot clear rejection
+.D normalized-unavailable path: survives, gap stored, other connector OK, duplicate-free retry
+.FMissing credentials health: {'adapter': 'x_api', 'contract_verified': '2026-10-10', 'token_env': 'X_BEARER_TOKEN', 'credentials': 'missing', 'network_calls_made': 0, 'config': {'scopes': ['x_api:user:example_alpha', 'x_api:list:1500000000000000001', 'x_api:search:example_token'], 'allow_billable': True, 'max_usd_per_run': 1.0, 'max_usd_per_month': 5.0, 'max_pages_per_scope': 3, 'prices_usd': {'post': 0.005, 'user': 0.01}}, 'live_evidence': {'requests': 0, 'successful': 0, 'last_request_at': None, 'verdict': 'none: no live X API read has been made'}, 'spend_this_month_usd': {'live': 0}, 'cursors': [], 'connector_health': [], 'status': 'credentials_missing', 'next_step': 'authorize: see docs/social-intelligence/X_API_03.md, then export X_BEARER_TOKEN in the shell that runs memelab'}
+.Migration: copied public database, all 20 legacy table counts preserved, version 12 after reopen
+.FFWallet classified events: 13 ; duplicate-free; owner remains unknown
+.Self disclosure level: SELF_CLAIMED
+...Mock invented-token output status: partial ; no fabricated resolved token persisted
+.Wallet performance score gate: {'status': 'INSUFFICIENT_DATA', 'reasons': ['sample of 3 closed, fully known position(s) is below the minimum of 20', 'the sample spans 2.0 days, below the minimum of 7'], 'sample_size': 3, 'minimum_sample': 20, 'value': None, 'rankable': False, 'note': "no score and no ranking: the data is too sparse or too incomplete to say anything about this wallet's skill"}
+.FD report: GAP disclosed; counts lower bounds; no complete-coverage claim
+..
+=================================== FAILURES ===================================
+________ test_A_primary_ingestion_reaches_claims_without_manual_handoff ________
+
+env = (PosixPath('<TEMP_PATH>'))
+
+    def test_A_primary_ingestion_reaches_claims_without_manual_handoff(env):
+     collect(env); _,c,_=env
+     assert count(c,'social_observations')==3
+>    assert count(c,'social_claims')>0, 'ACTUAL: three observations, zero automatic claims (AUD-003)'
+E    AssertionError: ACTUAL: three observations, zero automatic claims (AUD-003)
+E    assert 0 > 0
+E     +  where 0 = count(<sqlite3.Connection object at 0x1034e85e0>, 'social_claims')
+
+<REVIEW_ROOT>/audits/social-intelligence/originals/phase01/evidence/test_functional_audit.py:60: AssertionError
+________________ test_D_adapter_iterator_exception_is_contained ________________
+
+env = (PosixPath('<TEMP_PATH>'))
+
+    def test_D_adapter_iterator_exception_is_contained(env):
+     p,c,_=env
+     class Crash:
+      name='crash'
+      def units(self,budget):
+       yield unit('1020','2020','Partial '+CA)
+       raise TimeoutError('synthetic API outage while fetching next page')
+>    try: r=I.ingest(Crash(),p,now=NOW,qdir=False)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+<REVIEW_ROOT>/audits/social-intelligence/originals/phase01/evidence/test_functional_audit.py:137: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+memelab/social/ingest.py:540: in ingest
+    for unit in adapter.units(budget):
+                ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_functional_audit.test_D_adapter_iterator_exception_is_contained.<locals>.Crash object at 0x1033d5bb0>
+budget = Budget(max_items=None, max_units=None, max_cost=None, pace_seconds=0.0, sleep=<built-in function sleep>, used={'items': 1, 'units': 1, 'cost': 0.0})
+
+    def units(self,budget):
+     yield unit('1020','2020','Partial '+CA)
+>    raise TimeoutError('synthetic API outage while fetching next page')
+E    TimeoutError: synthetic API outage while fetching next page
+
+<REVIEW_ROOT>/audits/social-intelligence/originals/phase01/evidence/test_functional_audit.py:136: TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+env = (PosixPath('<TEMP_PATH>'))
+
+    def test_D_adapter_iterator_exception_is_contained(env):
+     p,c,_=env
+     class Crash:
+      name='crash'
+      def units(self,budget):
+       yield unit('1020','2020','Partial '+CA)
+       raise TimeoutError('synthetic API outage while fetching next page')
+     try: r=I.ingest(Crash(),p,now=NOW,qdir=False)
+     except TimeoutError:
+      status=c.execute('SELECT status FROM social_ingest_runs ORDER BY started_at DESC LIMIT 1').fetchone()[0]
+>     assert False, 'ACTUAL: exception escapes; persisted observation count='+str(count(c,'social_observations'))+'; run remains '+status+'; no final DOWN health'
+E     AssertionError: ACTUAL: exception escapes; persisted observation count=1; run remains RUNNING; no final DOWN health
+E     assert False
+
+<REVIEW_ROOT>/audits/social-intelligence/originals/phase01/evidence/test_functional_audit.py:140: AssertionError
+___________________ test_historical_late_extraction_excluded ___________________
+
+env = (PosixPath('<TEMP_PATH>'))
+
+    def test_historical_late_extraction_excluded(env):
+     bridge_extract(env);_,c,_=env
+     c.execute('UPDATE social_claim_extractions SET extracted_at=?',(NOW+86400,))
+     r=snap(c)
+>    assert not r['clusters'], 'ACTUAL: later extractions populate past snapshot (AUD-001)'
+E    AssertionError: ACTUAL: later extractions populate past snapshot (AUD-001)
+E    assert not [{'run_id': 1, 'cluster_key': 'ca:solana:8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ', 'cluster_kind': 'CONTRACT', 'label': 'LABDOG (solana 8CyKBG..tgkJ)', ...}]
+
+<REVIEW_ROOT>/audits/social-intelligence/originals/phase01/evidence/test_functional_audit.py:166: AssertionError
+_________________ test_historical_explicit_future_run_rejected _________________
+
+env = (PosixPath('<TEMP_PATH>'))
+
+    def test_historical_explicit_future_run_rejected(env):
+     bridge_extract(env);_,c,_=env
+     r=snap(c,now=NOW+86400);c.commit()
+     inp=FS.load_input(c,as_of=NOW,include_fixtures=True,run_id=r['run_id'])
+>    assert not inp['clusters'], 'ACTUAL: explicit run_id bypasses cutoff; future snapshot is returned'
+E    AssertionError: ACTUAL: explicit run_id bypasses cutoff; future snapshot is returned
+E    assert not [{'cluster_key': 'ca:solana:8CyKBGPYjSHmrGsiJg8W5uN9BSzS3gA3E7YLGmQ3tgkJ', 'cluster_kind': 'CONTRACT', 'label': 'LABDOG (solana 8CyKBG..tgkJ)', 'status': 'ok', ...}]
+
+<REVIEW_ROOT>/audits/social-intelligence/originals/phase01/evidence/test_functional_audit.py:172: AssertionError
+_________ test_historical_feed_ignores_chronology_created_after_cutoff _________
+
+env = (PosixPath('<TEMP_PATH>'))
+
+    def test_historical_feed_ignores_chronology_created_after_cutoff(env):
+     from memelab.social import chrono_core as CC,chrono_store as CS
+     _,c,_=env
+     doc=json.loads((FX/'chrono/confident.json').read_text());r=CC.analyze(doc)
+     assert r['flags']
+     CS.save_run(c,doc,r,now=doc['as_of']+86400);c.commit()
+     tok=r['token'];flags=FS._flags(c,tok['chain'],tok['contract'],doc['as_of'],True)
+>    assert not flags, 'ACTUAL: '+str(len(flags))+' chronology flags created a day later appear in historical feed'
+E    AssertionError: ACTUAL: 4 chronology flags created a day later appear in historical feed
+E    assert not [{'run_id': 1, 'flag_key': '0f5df246d1262fe687bb5540f64bc6f8351a0eee7a5fc7b03cd0db0a53a058aa', 'chain': 'solana', 'con...518f8e43e08ae99c1f5660d51787ca8b', 'chain': 'solana', 'contract': 'S5vznK6GJNtHJWH66MPdNBLHGx35G7HyS5vznK6GJNtH', ...}]
+
+<REVIEW_ROOT>/audits/social-intelligence/originals/phase01/evidence/test_functional_audit.py:241: AssertionError
+=========================== short test summary info ============================
+FAILED ../../..<REVIEW_ROOT>/audits/social-intelligence/originals/phase01/evidence/test_functional_audit.py::test_A_primary_ingestion_reaches_claims_without_manual_handoff
+FAILED ../../..<REVIEW_ROOT>/audits/social-intelligence/originals/phase01/evidence/test_functional_audit.py::test_D_adapter_iterator_exception_is_contained
+FAILED ../../..<REVIEW_ROOT>/audits/social-intelligence/originals/phase01/evidence/test_functional_audit.py::test_historical_late_extraction_excluded
+FAILED ../../..<REVIEW_ROOT>/audits/social-intelligence/originals/phase01/evidence/test_functional_audit.py::test_historical_explicit_future_run_rejected
+FAILED ../../..<REVIEW_ROOT>/audits/social-intelligence/originals/phase01/evidence/test_functional_audit.py::test_historical_feed_ignores_chronology_created_after_cutoff
+5 failed, 17 passed in 0.75s

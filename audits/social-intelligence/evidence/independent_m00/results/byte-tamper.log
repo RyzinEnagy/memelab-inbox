@@ -1,0 +1,10 @@
+{
+  "status": "INVALID",
+  "recovered": 8,
+  "required": 8,
+  "missing": [],
+  "independent_review": "PENDING",
+  "integrity_errors": [
+    "00_BASELINE.md: checksum or byte count differs from manifest"
+  ]
+}

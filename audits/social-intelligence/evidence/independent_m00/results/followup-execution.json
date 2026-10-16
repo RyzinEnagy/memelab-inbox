@@ -1,0 +1,27 @@
+[
+  {
+    "check": "logging-isolated",
+    "exit_code": 0,
+    "command": "python -m pytest tests/test_social_ingest.py::test_logs_never_carry_secrets_or_content -q"
+  },
+  {
+    "check": "logging-order",
+    "exit_code": 0,
+    "command": "python -m pytest tests/test_social_ingest.py::test_cli_ingest_persists_verifiable_observation tests/test_social_ingest.py::test_logs_never_carry_secrets_or_content -q"
+  },
+  {
+    "check": "release-audit-with-baseline",
+    "exit_code": 0,
+    "command": "python tools/release_audit.py --main-ref 698f73b854567ce60b56ce275b5ab6822a9d5f60 --out <REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.md --json <REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/results/recovery-release-retry.json"
+  },
+  {
+    "check": "release-e2e",
+    "exit_code": 0,
+    "command": "python tools/release_e2e.py --out <REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/results/recovery-e2e.md --json <REVIEW_ROOT>/audits/social-intelligence/evidence/independent_m00/results/recovery-e2e.json"
+  },
+  {
+    "check": "logging-after-cli-setup",
+    "exit_code": 0,
+    "command": "python -c from memelab.social.cli import _setup_logging; _setup_logging(False); import pytest; raise SystemExit(pytest.main(['tests/test_social_ingest.py::test_logs_never_carry_secrets_or_content', '-q']))"
+  }
+]

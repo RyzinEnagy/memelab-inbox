@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "remediation_phase": "M00",
-  "state": "REVIEW_PENDING",
-  "updated_utc": "2026-10-13",
+  "state": "REVIEW_BLOCKED",
+  "updated_utc": "2026-10-15",
   "audited_application_baseline": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
   "audit_publication_branch_base": "b4c4216b9391227be5fdfe7cfe20b60e32d9e8f6",
   "accepted_required_count": 8,
-  "independent_review": "PENDING",
+  "independent_review": "REJECTED",
   "required_sources": [
     {
       "id": "00",
@@ -15,7 +15,7 @@
       "status": "RECOVERED",
       "bytes": 12558,
       "sha256": "16a3db8d5cc542dd1195a224cf7f712c7f88fb832042854db74ff8a7b5eb316f",
-      "origin_note": "Library raw-file backed; recovered text copy"
+      "origin_note": "Byte-identical to user-supplied original archive member; archive and internal SHA-256 verified 2026-10-15."
     },
     {
       "id": "RM",
@@ -24,7 +24,7 @@
       "status": "RECOVERED",
       "bytes": 101229,
       "sha256": "37bee78f56e1023a1901fecfcf57a77cb39ed9ab3ff8f8a7239c86beffd1035d",
-      "origin_note": "Library raw-file backed; recovered text copy"
+      "origin_note": "Byte-identical to user-supplied original archive member; archive and internal SHA-256 verified 2026-10-15."
     },
     {
       "id": "01",
@@ -33,7 +33,7 @@
       "status": "RECOVERED",
       "bytes": 20597,
       "sha256": "42ca9384f142ec1a09157ba6e0a1d97000af3f35e6f55690735d1351290e1889",
-      "origin_note": "Library raw-file backed; recovered text copy"
+      "origin_note": "Byte-identical to user-supplied original archive member; archive and internal SHA-256 verified 2026-10-15."
     },
     {
       "id": "02",
@@ -56,20 +56,20 @@
     {
       "id": "04",
       "name": "04_ADVERSARIAL_AUDIT.md",
-      "path": "recovered/04_ADVERSARIAL_AUDIT.md",
+      "path": "originals/phase04/04_ADVERSARIAL_AUDIT.md",
       "status": "RECOVERED",
-      "bytes": 30831,
-      "sha256": "fbb7c1d4becd3a86f1364999b00a1f204981dfe9b9b6be73c49dc971c041890f",
-      "origin_note": "Library indexed text copy; original raw bytes unavailable"
+      "bytes": 30832,
+      "sha256": "d2199f688bd3687509c0ca0178422b82b979e3af5b52e476f883cde0fb522fc4",
+      "origin_note": "Original user-supplied ZIP member, preserved byte-for-byte. Prior indexed copy retained unchanged; differs only by final newline. No embedded SHA manifest; received archive and member SHA-256 recorded."
     },
     {
       "id": "05",
       "name": "05_OPERATIONS_AND_UX.md",
-      "path": "recovered/05_OPERATIONS_AND_UX.md",
+      "path": "originals/phase05/05_OPERATIONS_AND_UX.md",
       "status": "RECOVERED",
-      "bytes": 29340,
-      "sha256": "132131efbb2793de2a86019e76962372d11ec8c197f09ec4e03e190f6c9c5c64",
-      "origin_note": "Library indexed text copy; original raw bytes unavailable"
+      "bytes": 29341,
+      "sha256": "a9da21745e894474388d52b38694d1bdef2c44ebc4a0d3ba3253ad44a7b0ec06",
+      "origin_note": "Original user-supplied ZIP member, preserved byte-for-byte. Prior indexed copy retained unchanged; differs only by final newline. Five embedded SHA/byte records independently matched."
     },
     {
       "id": "06",
@@ -98,5 +98,23 @@
       "sha256": "4a4a18c1462c8047eb03f86f6a67a49984ebd6b9ef5c6963f3f47b1493192964",
       "origin_note": "Original user-uploaded phase-specific finding register; preserved without editing"
     }
-  ]
+  ],
+  "independent_review_record": "M00_INDEPENDENT_VERIFICATION.md",
+  "independent_reviewed_recovery_sha": "3b434e1dcc59290d993a638ca615f61b929189bc",
+  "original_archive_record": "originals/ARCHIVES.json",
+  "archive_verification_record": "M00_ARCHIVE_RECOVERY_VERIFICATION.md",
+  "remaining_evidence_gaps": [
+    "Original Phase 03 A\u2013E full executable inputs/cells/raw outputs remain unrecovered after scoped retrieval. New A\u2013E replication including D/E is complete as separately labeled substitute evidence, awaiting explicit reviewed acceptance.",
+    "Historical Phase 04 terminated-suite output not included in the supplied ZIP; no successful full-suite run inferred from that phase."
+  ],
+  "phase03_substitute_review": {
+    "state": "READY_FOR_EXPLICIT_REVIEW_NOT_ACCEPTED",
+    "record": "M00_PHASE03_REPLICATION_REVIEW.md",
+    "received_package_review": "evidence/phase03_replication/received-package-review.json",
+    "new_replication": "evidence/phase03_replication/results/execution.json",
+    "original_execution_recovered": false,
+    "complete_original_inputs_known": false,
+    "all_documented_A_E_mechanics_newly_replicated": true,
+    "next_decision": "Explicit reviewed acceptance or rejection of substitute replication with historical provenance/input limits disclosed; no M01 authorization."
+  }
 }

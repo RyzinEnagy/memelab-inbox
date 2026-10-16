@@ -1,20 +1,28 @@
-> **M00 evidence correction, 2026-10-13:** original architecture and quantitative-validity audit reports and their two historical findings snapshots recovered and SHA-256 verified. `audits/social-intelligence/FINDINGS.md` now enumerates AUD-001–033; crosswalk 67 AUD/ARCH/ADV/OPS IDs. Required audit sources 8/8, but **M00 BLOCKED until independent review, source/probe reconciliation and acceptance**. M01 not authorized; this supersedes the earlier 6/8 recovery status below. See `audits/social-intelligence/M00_RECOVERY_REPORT.md`.
+# Current remediation handoff — Phase 03 substitute-evidence review
 
-# CURRENT REMEDIATION HANDOFF — M00 (2026-10-13)
+**2026-10-15. M00/R-00 BLOCKED; acceptance withheld. M01 is not authorized.** Current decision/checklist and concrete reviewer action: `audits/social-intelligence/M00_PHASE03_REPLICATION_REVIEW.md`. This supersedes older archive-absence and OPS-provenance claims; historical records remain preserved.
 
-**Authoritative current package:** M00 / R-00 **PARTIAL RECOVERY — BLOCKED; INDEPENDENT VERIFICATION PENDING**. The historical Phase 18 implementation handoff appears below for provenance only. **No new application implementation package is authorized.**
+- Review parent `0ad3838b1e6023d42c499e97a156c5963f65a98c`; local continuation `verification/social-intelligence-m00-phase03-replication` based on published receipt parent `3359aafddb563795ecc0a1a5b20c033f7c089b80`; publish to existing draft [PR #3](https://github.com/RyzinEnagy/memelab-inbox/pull/3), remote `verification/social-intelligence-m00-independent` into `remediation/social-intelligence-m00`. Exact resulting commit is in Git/PR history, avoiding an in-file self-hash. PR #2 stays draft/unmerged into `audit/social-intelligence-phase06`.
+- Pinned application `698f73b854567ce60b56ce275b5ab6822a9d5f60`. No application, existing test, schema, state, market-data or synced project source changes. No paid calls, alerts, live providers or trades.
+- Preserved four original ZIPs and 50 members. All 43 embedded checksums match; 8 primary inputs + 2 Phase 02/03 snapshots intact. All 105 requirement texts match original staged prompts. Original Phase 04/05 report differences are final newline only; active manifest now uses originals.
+- Corrected OPS provenance: original Phase 05 findings explicitly define all ten IDs/grades/severities/statuses. Current crosswalk reverified 67 IDs and 83 pinned code spans. No finding closed; no claim of 67 distinct incidents.
+- Recovered original scripts: Phase 00 baseline/optional exit 0, outputs match; Phase 01 exit 1, **5 failed/17 passed**, same five IDs as archive; Phase 04 exit 0, 10/10 equivalent-pattern outputs match (C grade); Phase 05 exit 0, historical arithmetic matches (MODEL). Zero Python network events, no timeout/resource kill, detached checkouts clean, DB hashes unchanged. Per-check bound 180 seconds, no extra memory cap.
+- New checks: archive integrity exit 0; focused M00/tamper/OPS-grade tests **10 passed**, exit 0; non-strict inventory exit 0/BLOCKED; strict exit 2. See `evidence/m00_archive_recovery/results/validation-execution.json` and publication scan review for exact statuses/limits.
+- Prior full suites unchanged: baseline 651/1 and recovery 658/1, exit 1 for same catalyst assertion. Not rerun for archive-only changes. Original earlier logger failure remains historical uncertainty; no unsupported root-cause/closure assertion.
+- New owner-supplied Phase03 recovery: 25/25 manifest entries, 26/26 checksum entries, report/findings continuity, three later scripts and five historical raw-digest matches verified. Scoped search did not recover original Phase03 complete inputs/cells/raw outputs; original preservation status elsewhere UNKNOWN. Browser/session transcripts and unredacted local logs stay local, not published.
+- New A–E replication uses complete newly chosen, disclosed synthetic inputs and actual pinned modules. Characterization exit0; safety **6 failed/1 passed**, exit1; controls pass, network0, DB unchanged, clean detached checkout, 180-second bound/no extra memory cap/no resource kill. D/E now independently reproduced; E full inventory integration is explicitly new. Existing unknown-count flags are retained, not claimed absent. Historical original execution remains unrecovered.
+- Current M00 tests10 pass; strict gate2, source/archive integrity0, no application/state changes. Full suites not repeated for evidence-only additions; prior counts above remain original recorded executions. Exact new checks in `evidence/phase03_replication/results/verification-checks.json`.
+- Next action: explicitly review and accept/reject the substitute-evidence package and disclosed original-input/lineage limits. No further blind original-file search is required before this decision. Phase04 historical terminated log remains a historical limitation. Manifest remains REVIEW_BLOCKED/REJECTED; no self-certified reviewer acceptance and no M01 authorization. A later accepted M00 gate must separately authorize M01 scope.
 
-- **Branch:** `remediation/social-intelligence-m00`, branching from `audit/social-intelligence-phase06` at `b4c4216b9391227be5fdfe7cfe20b60e32d9e8f6`.
-- **Pinned audited application:** `main` @ `698f73b854567ce60b56ce275b5ab6822a9d5f60`; separately reviewed optional feature @ `3f27fc788f9ab88286b8041355e5445fdfdf012c`.
-- **Findings addressed:** R-00 evidence availability only, *partial*; no AUD/ARCH/ADV/OPS application finding is resolved. The previously missing document count fell from seven to two; no original defect was patched.
-- **Files recovered:** `audits/social-intelligence/recovered/{00_BASELINE.md,REQUIREMENTS_MATRIX.md,01_FUNCTIONAL_AUDIT.md,04_ADVERSARIAL_AUDIT.md,05_OPERATIONS_AND_UX.md}`. See `audits/social-intelligence/EVIDENCE_MANIFEST.json` (SHA-256); `EVIDENCE_CROSSWALK.md` (46 indexed IDs); `M00_RECOVERY_REPORT.md`; `M00_VERIFICATION.md`.
-- **Verification tooling:** `tools/check_audit_evidence.py` and `tests/test_audit_evidence.py` only; main engine code and schemas unchanged, migrations **none**.
-- **Tests:** focused M00 4 passed; integrity `BLOCKED` / 6 of 8 with no checksum mismatches; strict gate exits 2 as designed. Full legacy suite was attempted but the test process exited 137 around 70%; **no complete suite result**. It created an untracked BRETT report (test-created only; removed after final checks); targeted catalyst suite **1 failed / 4 passed**, combined `--maxfail=2` diagnostic **2 failed / 295 passed** (additional ingest logger test passes alone); `social guard` found zero violations; existing AUD-011 remains open. No live/paid/trading tests.
-- **Prior-chat recovery result:** earlier chats show Phase 02 actually generated an architecture report and AUD-018–023; Phase 03 generated a research validity report and AUD-024–033. Both previous-chat sandbox artifacts are unmounted here, so original report bytes remain pending. Published `FINDINGS.md` omitted those 16 IDs; see `audits/social-intelligence/M00_PRIOR_CHAT_LOCATORS.md`.
-- **What remains:** missing `02_ARCHITECTURE_AUDIT.md`, `03_RESEARCH_VALIDITY.md` and original audit probe/log artifacts; 04/05 source-byte equivalence unverified; 13 secondary-only and 10 architecture crosswalk IDs; an independent reviewer must inspect all ID mappings. OPS IDs not explicitly labeled in the Phase 05 report.
-- **Commit sequence:** source recovery `61f7f06181f567311ed0da54436500989719014c`; subsequent verification/documentation commit(s) on the same branch. The GitHub branch tip and PR history, not this in-file statement, are authoritative for final tip SHA.
-- **Next exact command:** `python -m pytest tests/test_audit_evidence.py -q && python tools/check_audit_evidence.py --require-complete` on a fresh M00 checkout. Expect the second command to exit **2** until missing evidence is supplied; consult `M00_VERIFICATION.md` for complete independent checklist.
-- **Next conditional package:** M01 / R-01 and R-02 historical causality and provenance. **DO NOT START until M00 independently accepted.**
+Reproduce current integrity from repository root:
+
+```sh
+python audits/social-intelligence/evidence/m00_archive_recovery/verify_archives.py --out /tmp/new-m00-archive-results
+python -m pytest tests/test_audit_evidence.py audits/social-intelligence/evidence/m00_archive_recovery/test_archive_integrity.py -q -p no:cacheprovider
+python tools/check_audit_evidence.py --require-complete
+```
+
+Expected exits 0, 0, 2. Stop at M00. Historical handoff follows for provenance only.
 
 ---
 

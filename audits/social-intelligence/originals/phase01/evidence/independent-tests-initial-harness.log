@@ -1,0 +1,182 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0 -- /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3
+cachedir: .pytest_cache
+rootdir: /workspace/scratch/122055c1bdba
+collecting ... collected 17 items
+
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_A_primary_ingestion_reaches_claims_without_manual_handoff FAILED
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_A_explicit_handoff_resolves_groups_cites_and_repeats FAILED
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_token_ticker_collision_abstains PASSED
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_extraction_wrong_text_fails_closed PASSED
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_source_registration_discovery_idempotent Imported candidate entities: 12 ; no automatic human identity proof
+PASSED
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_B_400_percent_premention_move_not_credited B: premention +400%; entry 5; postmention relative return 0, not +400%
+PASSED
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_C_core_risk_checks_survive_social_enrichment C: raw module fatal flags ['CANNOT_EXIT_5K', 'LARGEST_HOLDER_GT_15PCT', 'TOP10_GT_50PCT'] ; social attention cannot clear rejection
+PASSED
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_D_unavailable_unit_preserves_pages_other_connector_retry FAILED
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_D_adapter_iterator_exception_is_contained FAILED
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_empty_and_missing_credentials Missing credentials health: {'adapter': 'x_api', 'contract_verified': '2026-10-10', 'token_env': 'X_BEARER_TOKEN', 'credentials': 'missing', 'network_calls_made': 0, 'config': {'scopes': ['x_api:user:example_alpha', 'x_api:list:1500000000000000001', 'x_api:search:example_token'], 'allow_billable': True, 'max_usd_per_run': 1.0, 'max_usd_per_month': 5.0, 'max_pages_per_scope': 3, 'prices_usd': {'post': 0.005, 'user': 0.01}}, 'live_evidence': {'requests': 0, 'successful': 0, 'last_request_at': None, 'verdict': 'none: no live X API read has been made'}, 'spend_this_month_usd': {'live': 0}, 'cursors': [], 'connector_health': [], 'status': 'credentials_missing', 'next_step': 'authorize: see docs/social-intelligence/X_API_03.md, then export X_BEARER_TOKEN in the shell that runs memelab'}
+PASSED
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_schema_migration_preserves_legacy_rows_and_reopen Migration: copied public database, all 20 legacy table counts preserved, version 12 after reopen
+PASSED
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_historical_late_extraction_excluded FAILED
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_historical_explicit_future_run_rejected FAILED
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_wallet_activity_idempotence_no_identity_upgrade Wallet classified events: 13 ; duplicate-free; owner remains unknown
+PASSED
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_wallet_disclosure_is_not_control_proof Self disclosure level: SELF_CLAIMED
+PASSED
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_alert_repeat_dry_run_no_remote_delivery PASSED
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_outcome_ledger_append_idempotence_and_integrity PASSED
+
+=================================== FAILURES ===================================
+________ test_A_primary_ingestion_reaches_claims_without_manual_handoff ________
+
+env = (PosixPath('/tmp/pytest-of-root/pytest-3/test_A_primary_ingestion_reach0/main.sqlite'), <sqlite3.Connection object at 0x7fc7923a2020>, PosixPath('/tmp/pytest-of-root/pytest-3/test_A_primary_ingestion_reach0'))
+
+    def test_A_primary_ingestion_reaches_claims_without_manual_handoff(env):
+     collect(env); _,c,_=env
+     assert count(c,'social_observations')==3
+>    assert count(c,'social_claims')>0, 'ACTUAL: three observations, zero automatic claims (AUD-003)'
+E    AssertionError: ACTUAL: three observations, zero automatic claims (AUD-003)
+E    assert 0 > 0
+E     +  where 0 = count(<sqlite3.Connection object at 0x7fc7923a2020>, 'social_claims')
+
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py:60: AssertionError
+__________ test_A_explicit_handoff_resolves_groups_cites_and_repeats ___________
+
+env = (PosixPath('/tmp/pytest-of-root/pytest-3/test_A_explicit_handoff_resolv0/main.sqlite'), <sqlite3.Connection object at 0x7fc7923a2200>, PosixPath('/tmp/pytest-of-root/pytest-3/test_A_explicit_handoff_resolv0'))
+
+    def test_A_explicit_handoff_resolves_groups_cites_and_repeats(env):
+     units,texts=bridge_extract(env);p,c,_=env
+>    r=snap(c); c.commit()
+       ^^^^^^^
+
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+c = <sqlite3.Connection object at 0x7fc7923a2200>, now = 1791835200.0
+
+>   def snap(c,now=NOW): return N.snapshot(c,window_start=T,window_end=T+86400,cutoff=now,now=now,options={'require_coverage':False})
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: snapshot() got an unexpected keyword argument 'cutoff'
+
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py:55: TypeError
+________ test_D_unavailable_unit_preserves_pages_other_connector_retry _________
+
+env = (PosixPath('/tmp/pytest-of-root/pytest-3/test_D_unavailable_unit_preser0/main.sqlite'), <sqlite3.Connection object at 0x7fc7923a2b60>, PosixPath('/tmp/pytest-of-root/pytest-3/test_D_unavailable_unit_preser0'))
+
+    def test_D_unavailable_unit_preserves_pages_other_connector_retry(env):
+     p,c,_=env; a=unit('1010','2010','First '+CA); b=unit('1011','2011','Other '+CA,connector='audit:other')
+     down=I.SourceUnit('audit:x','x','page2','DOWN','d'*64,error='synthetic outage')
+     r=I.ingest(Adapter([a,down,b]),p,now=NOW,qdir=False)
+>    assert r['status']=='PARTIAL' and r['health']['audit:x']['status']=='DOWN' and r['health']['audit:other']['status']=='OK'
+E    AssertionError: assert ('PARTIAL' == 'PARTIAL'
+E      
+E        PARTIAL and 'DOWN' == 'DOWN'
+E      
+E        DOWN and 'DEGRADED' == 'OK'
+E      
+E      - OK
+E      + DEGRADED)
+
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py:124: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  memelab.social.ingest:ingest.py:97 {"connector": "audit:x", "error": "synthetic outage", "event": "unit_unavailable", "run_id": "ingest_20261012_200000_e4c6c6", "source_ref": "page2", "status": "DOWN"}
+________________ test_D_adapter_iterator_exception_is_contained ________________
+
+env = (PosixPath('/tmp/pytest-of-root/pytest-3/test_D_adapter_iterator_except0/main.sqlite'), <sqlite3.Connection object at 0x7fc7923a3010>, PosixPath('/tmp/pytest-of-root/pytest-3/test_D_adapter_iterator_except0'))
+
+    def test_D_adapter_iterator_exception_is_contained(env):
+     p,c,_=env
+     class Crash:
+      name='crash'
+      def units(self,budget):
+       yield unit('1020','2020','Partial '+CA)
+       raise TimeoutError('synthetic API outage while fetching next page')
+>    try: r=I.ingest(Crash(),p,now=NOW,qdir=False)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py:137: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+memelab/social/ingest.py:540: in ingest
+    for unit in adapter.units(budget):
+                ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_functional_audit.test_D_adapter_iterator_exception_is_contained.<locals>.Crash object at 0x7fc7923824e0>
+budget = Budget(max_items=None, max_units=None, max_cost=None, pace_seconds=0.0, sleep=<built-in function sleep>, used={'items': 1, 'units': 1, 'cost': 0.0})
+
+    def units(self,budget):
+     yield unit('1020','2020','Partial '+CA)
+>    raise TimeoutError('synthetic API outage while fetching next page')
+E    TimeoutError: synthetic API outage while fetching next page
+
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py:136: TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+env = (PosixPath('/tmp/pytest-of-root/pytest-3/test_D_adapter_iterator_except0/main.sqlite'), <sqlite3.Connection object at 0x7fc7923a3010>, PosixPath('/tmp/pytest-of-root/pytest-3/test_D_adapter_iterator_except0'))
+
+    def test_D_adapter_iterator_exception_is_contained(env):
+     p,c,_=env
+     class Crash:
+      name='crash'
+      def units(self,budget):
+       yield unit('1020','2020','Partial '+CA)
+       raise TimeoutError('synthetic API outage while fetching next page')
+     try: r=I.ingest(Crash(),p,now=NOW,qdir=False)
+     except TimeoutError:
+      status=c.execute('SELECT status FROM social_ingest_runs ORDER BY started_at DESC LIMIT 1').fetchone()[0]
+>     assert False, 'ACTUAL: exception escapes; persisted observation count='+str(count(c,'social_observations'))+'; run remains '+status+'; no final DOWN health'
+E     AssertionError: ACTUAL: exception escapes; persisted observation count=1; run remains RUNNING; no final DOWN health
+E     assert False
+
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py:140: AssertionError
+___________________ test_historical_late_extraction_excluded ___________________
+
+env = (PosixPath('/tmp/pytest-of-root/pytest-3/test_historical_late_extractio0/main.sqlite'), <sqlite3.Connection object at 0x7fc7923a3b50>, PosixPath('/tmp/pytest-of-root/pytest-3/test_historical_late_extractio0'))
+
+    def test_historical_late_extraction_excluded(env):
+     bridge_extract(env);_,c,_=env
+     c.execute('UPDATE social_claim_extractions SET extracted_at=?',(NOW+86400,))
+>    r=snap(c)
+       ^^^^^^^
+
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py:165: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+c = <sqlite3.Connection object at 0x7fc7923a3b50>, now = 1791835200.0
+
+>   def snap(c,now=NOW): return N.snapshot(c,window_start=T,window_end=T+86400,cutoff=now,now=now,options={'require_coverage':False})
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: snapshot() got an unexpected keyword argument 'cutoff'
+
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py:55: TypeError
+_________________ test_historical_explicit_future_run_rejected _________________
+
+env = (PosixPath('/tmp/pytest-of-root/pytest-3/test_historical_explicit_futur0/main.sqlite'), <sqlite3.Connection object at 0x7fc7923a3d30>, PosixPath('/tmp/pytest-of-root/pytest-3/test_historical_explicit_futur0'))
+
+    def test_historical_explicit_future_run_rejected(env):
+     bridge_extract(env);_,c,_=env
+>    r=snap(c,now=NOW+86400);c.commit()
+       ^^^^^^^^^^^^^^^^^^^^^
+
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py:170: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+c = <sqlite3.Connection object at 0x7fc7923a3d30>, now = 1791921600.0
+
+>   def snap(c,now=NOW): return N.snapshot(c,window_start=T,window_end=T+86400,cutoff=now,now=now,options={'require_coverage':False})
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: snapshot() got an unexpected keyword argument 'cutoff'
+
+../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py:55: TypeError
+=========================== short test summary info ============================
+FAILED ../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_A_primary_ingestion_reaches_claims_without_manual_handoff
+FAILED ../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_A_explicit_handoff_resolves_groups_cites_and_repeats
+FAILED ../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_D_unavailable_unit_preserves_pages_other_connector_retry
+FAILED ../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_D_adapter_iterator_exception_is_contained
+FAILED ../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_historical_late_extraction_excluded
+FAILED ../memelab-inbox/audits/social-intelligence/evidence/test_functional_audit.py::test_historical_explicit_future_run_rejected
+========================= 6 failed, 11 passed in 0.58s =========================

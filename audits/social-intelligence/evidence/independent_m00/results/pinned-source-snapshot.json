@@ -1,0 +1,1809 @@
+{
+  "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+  "git_tree": "7f7a408e116db0827722e5c23a749f842dde6702",
+  "git_archive_tar_sha256": "2066f6f2dbef5a50f55d6333fbce44fc9554b1ea1a79103bc44c3c11de27b9a8",
+  "git_archive_tar_bytes": 32040960,
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 176,
+      "sha256": "24147bc0932fb203fca74ba2bc812330aa3c365879613b7ca1d5e5335187f268"
+    },
+    {
+      "path": "MANIFEST.txt",
+      "bytes": 2935,
+      "sha256": "5940a4e1ccec440d9f242f39e9f5c7603db8117553cc35c9963be1ccc8a9eec6"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3578,
+      "sha256": "6f7bb0341eddbfd26f1c8a1e7576385fc6f5987468ca0596e326b74ecd27bbaa"
+    },
+    {
+      "path": "bootstrap.sh",
+      "bytes": 882,
+      "sha256": "8a267f4060cc1afdf5207246ac271712e74753d886aada96667a89c5a79b0c47"
+    },
+    {
+      "path": "bridge/catalyst.js",
+      "bytes": 5898,
+      "sha256": "4b2656ee5bf837971c699b5eae190d0e48f5be2a9e9e91493a7912b459c02316"
+    },
+    {
+      "path": "bridge/chains.js",
+      "bytes": 9904,
+      "sha256": "9aa012bfd6bfd467b204234411b0d73b6b23b35c02cdc6283827517a9881d443"
+    },
+    {
+      "path": "bridge/collector.js",
+      "bytes": 12890,
+      "sha256": "e221f02b25f66e23f5d9d6b2417c88674ba5214c7d0cc704b2c1e48bb80b3ef8"
+    },
+    {
+      "path": "bridge/launch.js",
+      "bytes": 3372,
+      "sha256": "e1edec2ce853a72e547a0a9d8f189d76c42ba04eb716aa6f20e5ab47383697e5"
+    },
+    {
+      "path": "bridge/screen.js",
+      "bytes": 5848,
+      "sha256": "6b4feaaf6835872dea6de42143d6c371f4eaf51a743b841c0c0cfc46f9033f53"
+    },
+    {
+      "path": "bridge/stage2.js",
+      "bytes": 6354,
+      "sha256": "a4a19e98739a32f8e63eca33612e33ddc886b94348806e7be5edd6121f5630a6"
+    },
+    {
+      "path": "commit_file.py",
+      "bytes": 2619,
+      "sha256": "1377762eb8c225b7961e8c1c341a0b2fc2e455de68e577d459f42c70e68734ed"
+    },
+    {
+      "path": "data/inbox/deep01.plan.json",
+      "bytes": 19988,
+      "sha256": "648ac37efdaebd1b9c17facc30e624678adc5246bc0b78256ec93424a885693d"
+    },
+    {
+      "path": "data/inbox/deep01a.result.json",
+      "bytes": 336523,
+      "sha256": "dea2740b0554a4de5e32f14084b98cd95a6370d52a43dbf66c8c3a92a2e5dadb"
+    },
+    {
+      "path": "data/inbox/deep02.plan.json",
+      "bytes": 20529,
+      "sha256": "68df0991272173d0b8bd4813c29fbf2d88472c24f8f4af82f589c617c57d4b29"
+    },
+    {
+      "path": "data/inbox/deep02.result.json",
+      "bytes": 398038,
+      "sha256": "40ada561af19fd5a9a25a746939d693c87f750f91115a3a19ef6530dec9f2778"
+    },
+    {
+      "path": "data/inbox/deep03.plan.json",
+      "bytes": 13508,
+      "sha256": "3b605deffd467f72eb3187e3444111ca047228ebc1f1b124f60919df378fbbc2"
+    },
+    {
+      "path": "data/inbox/deep03.result.json",
+      "bytes": 347659,
+      "sha256": "0733a36e082fc704f64eeb32b2fe7b314b2867d5a352851cf63f99c3b33987e5"
+    },
+    {
+      "path": "data/inbox/deep04.result.json",
+      "bytes": 63071,
+      "sha256": "4e116ead437106f49b1329be0d1c1350c09d917d735fda0acfaeb1f62371f805"
+    },
+    {
+      "path": "data/inbox/disc01.plan.json",
+      "bytes": 2270,
+      "sha256": "34bd0f592cfddcc4b6ccb70b5846efe1a01e5c40894744b0bc46b5b773400005"
+    },
+    {
+      "path": "data/inbox/disc01.result.json",
+      "bytes": 31455,
+      "sha256": "a2387f61cffe0642d085e501f992cb72a8c7c3b372dfa6c3e1b21f4e18848cd5"
+    },
+    {
+      "path": "data/inbox/disc01.stage1.json",
+      "bytes": 35143,
+      "sha256": "c6158a679f8f0de4f649f67fe89b070ee5e1495430cbc2b14d380efe1102ca76"
+    },
+    {
+      "path": "data/inbox/disc01.stage2.json",
+      "bytes": 14710,
+      "sha256": "d1b1bd66054a04eeb207fe5ac144ec1243c38e8f00e01e12e312f745e07ef631"
+    },
+    {
+      "path": "data/inbox/forensics01.result.json",
+      "bytes": 848354,
+      "sha256": "01a724dbb32b1b7f948bbe19223efd02fa210455bf222c21fdb0ab4c884e6f2f"
+    },
+    {
+      "path": "data/inbox/s2_01.result.json",
+      "bytes": 70588,
+      "sha256": "38e1cac0457e3bd5f50f0815336eaacb27662e1c821148910d81857d4d7de2f3"
+    },
+    {
+      "path": "data/memelab.sqlite",
+      "bytes": 2863104,
+      "sha256": "068287c0d7e454361eb42f54b2f90e49e4075ae3a962a3c57867165ab6a679ca"
+    },
+    {
+      "path": "data/reports/20261006_2348_PAID_98kfF7.md",
+      "bytes": 41969,
+      "sha256": "281b1ab86606a00d81e1b3ad1005b5060fd7a7b7dde26428fa1ecf7ac5c85973"
+    },
+    {
+      "path": "data/reports/20261006_2359_DARK_7KEPAp.md",
+      "bytes": 28818,
+      "sha256": "f0e176abc4d7aad7123151281a266c1ce456aa6b341dbddb36f547a1e96b994d"
+    },
+    {
+      "path": "data/reports/20261006_2359_GOMO_9XKzy4.md",
+      "bytes": 37441,
+      "sha256": "6b34f1197dc933638068e09d4324f6047977b40b32d953ac451b0b114163cf51"
+    },
+    {
+      "path": "data/reports/20261006_2359_HIGGS_DoVAVz.md",
+      "bytes": 39498,
+      "sha256": "ea016b89621dab1193cc4f1e562d30388fe3a098c12125a77876a159f8c2cb48"
+    },
+    {
+      "path": "data/reports/20261006_2359_STONK_6GmAFS.md",
+      "bytes": 43658,
+      "sha256": "b10ee1a28fa86cd8855e9e01c6d43fe2f610948f06c59e573a64d9ef79a43c71"
+    },
+    {
+      "path": "data/reports/20261006_2359_ZCAT_HcRLc9.md",
+      "bytes": 29402,
+      "sha256": "93ea155e32707a32a63f719c802612f01d18fc4f3b38c5ff1aa8882e03c9150e"
+    },
+    {
+      "path": "data/reports/20261007_0007_DARK_7KEPAp.md",
+      "bytes": 33285,
+      "sha256": "9302f52c56e4767457a4a39e3e7c80646efe2417dfcc96e3b10bda9ab11be425"
+    },
+    {
+      "path": "data/reports/20261007_0007_GOMO_9XKzy4.md",
+      "bytes": 41467,
+      "sha256": "9818e19b6cf1317ca0ff45fbe790ce58e437eeaaeca6c130f45575a79011d368"
+    },
+    {
+      "path": "data/reports/20261007_0007_HIGGS_DoVAVz.md",
+      "bytes": 42491,
+      "sha256": "2ecf45ed8ec95be6789faad5c0c9eb83777c5e2b5a89b8f5ff2d11b8602ca1cf"
+    },
+    {
+      "path": "data/reports/20261007_0007_PAID_98kfF7.md",
+      "bytes": 45261,
+      "sha256": "04066f5d9b42cc9f62617fd7de9517284943edcf08f1a7e30a13443b8d163b36"
+    },
+    {
+      "path": "data/reports/20261007_0007_SCOUT.md",
+      "bytes": 5712,
+      "sha256": "087fd44bf3f4648dcf95090d029ea5ba95fb6e6cfbe6d93fd7c7369beb83e2b7"
+    },
+    {
+      "path": "data/reports/20261007_0007_STONK_6GmAFS.md",
+      "bytes": 47113,
+      "sha256": "24a2365e385978e9312bd3b249fb59202e5927d3a1f8efce60b378b0da747b25"
+    },
+    {
+      "path": "data/reports/20261007_0007_ZCAT_HcRLc9.md",
+      "bytes": 33338,
+      "sha256": "acd456e4d248965a6a8352f35de1707c978354b22103c223ecf887ee0ea3b306"
+    },
+    {
+      "path": "data/reports/20261007_0007_baton_Hg5Ja5.md",
+      "bytes": 47943,
+      "sha256": "6c2b8d01339165240e161e4cb0b9819739a65f6f1df1cdcc4d6a317cbfdf770f"
+    },
+    {
+      "path": "data/reports/20261007_0007_slopcannon_55Vr2V.md",
+      "bytes": 44782,
+      "sha256": "38aae13aaaa1b634fefa2c239f26543323b384fbb1a06781700201a75542fe3a"
+    },
+    {
+      "path": "data/reports/20261007_0016_DARK_7KEPAp.md",
+      "bytes": 46275,
+      "sha256": "62bff498f087ae986df3b4c773acf1692a529fdd28befee9134b758e2f65c586"
+    },
+    {
+      "path": "data/reports/20261007_0016_GOMO_9XKzy4.md",
+      "bytes": 41311,
+      "sha256": "e14cef33bc9aa00a0501e03bf76b2729f3e35ae19ed50c3b99963100e5aae802"
+    },
+    {
+      "path": "data/reports/20261007_0016_HIGGS_DoVAVz.md",
+      "bytes": 42491,
+      "sha256": "e1e3edcc6d6d2c549a5a1d0bd6cdab667c8848df703592b2760d3b1cd6028b51"
+    },
+    {
+      "path": "data/reports/20261007_0016_PAID_98kfF7.md",
+      "bytes": 45158,
+      "sha256": "cc94e25e3a196ea772feaa13d144cfedba394dfd17af5646a46040da0a029493"
+    },
+    {
+      "path": "data/reports/20261007_0016_SCOUT.md",
+      "bytes": 4910,
+      "sha256": "caa67f7948cdff162a0c739c2caef7b12962ea10f55579061cf0c8d1e8d7d1d6"
+    },
+    {
+      "path": "data/reports/20261007_0016_STONK_6GmAFS.md",
+      "bytes": 47062,
+      "sha256": "85e92bdf3402e41c64bbf8a77c7bd00e447667f35ae4d043b59bfb3d209eef4d"
+    },
+    {
+      "path": "data/reports/20261007_0016_ZCAT_HcRLc9.md",
+      "bytes": 33338,
+      "sha256": "e3ca389635a92310c7964b04603be9d49c6bf1bcad94c96f5a6b7d70d06328cf"
+    },
+    {
+      "path": "data/reports/20261007_0016_baton_Hg5Ja5.md",
+      "bytes": 48241,
+      "sha256": "f47f74eaa50ab3ef86c4f8686afb4ba668252e6f3c87b14962662f210299b2cf"
+    },
+    {
+      "path": "data/reports/20261007_0016_slopcannon_55Vr2V.md",
+      "bytes": 45078,
+      "sha256": "591aa7d84ca16a89459bbdf0afe1a5bcf320ca51e4f723f6fd5718924c69f649"
+    },
+    {
+      "path": "data/state/latest.json",
+      "bytes": 10972620,
+      "sha256": "40f32e7becb7a257935b02b2a15dcf20677dffed7c7e8af030b6d93b1e00e0c0"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "bytes": 16306,
+      "sha256": "38b5e6e2875f40623ebd146f9cc1d0987a70418bd5eac48867cd09f08d56012c"
+    },
+    {
+      "path": "docs/SOURCES.md",
+      "bytes": 10629,
+      "sha256": "4d387a8e031f3976a0a01a861625c239962a1090c0515ded8bd6f286f87470ad"
+    },
+    {
+      "path": "docs/social-intelligence/ALERTS_15.md",
+      "bytes": 10792,
+      "sha256": "d2170613d5060dfb9a46ebcac2d3d086a86ec17b99e8ab97c71e9e058864fa69"
+    },
+    {
+      "path": "docs/social-intelligence/ALPHA_11.md",
+      "bytes": 19448,
+      "sha256": "6178b7914ca806bd76fae7dc44990b7a6c3a89311b9e846ff53c94add8c9e8e5"
+    },
+    {
+      "path": "docs/social-intelligence/ARCHITECTURE.md",
+      "bytes": 6643,
+      "sha256": "16b8d394428d28c9ee7a96adb901a105cef480a8ac7476e14930e247bdb88fd6"
+    },
+    {
+      "path": "docs/social-intelligence/AUDIT_00.md",
+      "bytes": 7113,
+      "sha256": "e9671469f8326d547fdffd3529a38f1f199d528029a88776e346077c76770507"
+    },
+    {
+      "path": "docs/social-intelligence/CHRONOLOGY_12.md",
+      "bytes": 14071,
+      "sha256": "00032e8f942fad6aa102f79b493fdf8f454fd3774d0f6ad4030037636afd7bed"
+    },
+    {
+      "path": "docs/social-intelligence/CLAIMS_06.md",
+      "bytes": 14026,
+      "sha256": "2b0850bf85b24a4e3b318db0ba911294b0b5de6b05fff445d4b3ce0e12163c25"
+    },
+    {
+      "path": "docs/social-intelligence/CONNECTORS_02.md",
+      "bytes": 11363,
+      "sha256": "f435304ef735f4d639c187249199975d1fc34a1e420b68f5aac163b6bc22047b"
+    },
+    {
+      "path": "docs/social-intelligence/DECISIONS.md",
+      "bytes": 76869,
+      "sha256": "a241323d518805c5f4b0e7981bf9a1950f884f5e809f9d1277795c49519cc45f"
+    },
+    {
+      "path": "docs/social-intelligence/EXECUTION.md",
+      "bytes": 4208,
+      "sha256": "5a275e0b83dee46f658d4cf402b5e6b2cd5f40aac870ff57d9279debc1d137b7"
+    },
+    {
+      "path": "docs/social-intelligence/HANDOFF.md",
+      "bytes": 7263,
+      "sha256": "3c244cdcf1e8007406af50700462a8134ce2df856618b2b23f6ba9f9562ec0eb"
+    },
+    {
+      "path": "docs/social-intelligence/IDENTITY_05.md",
+      "bytes": 9984,
+      "sha256": "43c75bacf7af1ff97641171e1674dc9931f3878fbb2856e89cf72ff5f0a76f3f"
+    },
+    {
+      "path": "docs/social-intelligence/INTEGRATION_13.md",
+      "bytes": 15645,
+      "sha256": "d7089aeda76e7ea3dedc449dc25f746f2b6715409cc8fa722fac70b161744929"
+    },
+    {
+      "path": "docs/social-intelligence/NARRATIVES_07.md",
+      "bytes": 12342,
+      "sha256": "aa63e3f5953f91f8aeba31fd6989bf5654655b73566942b6cc543de47e4febe9"
+    },
+    {
+      "path": "docs/social-intelligence/OPERATIONS.md",
+      "bytes": 8789,
+      "sha256": "5569960cc09ed209dfe1c548f89056e45cfff359549787dfb0d0bb54adad51bb"
+    },
+    {
+      "path": "docs/social-intelligence/OUTCOMES_16.md",
+      "bytes": 9377,
+      "sha256": "c88d2887a0849fc7c6f1fcdedd9c13d603e66274e1f63218679a4b0c2ec7fe6d"
+    },
+    {
+      "path": "docs/social-intelligence/PERFORMANCE_10.md",
+      "bytes": 14494,
+      "sha256": "58e90a981ff9093e05d1e2b824ac728c013dbc2caa7f1b007ecbfaf06a4e3ddc"
+    },
+    {
+      "path": "docs/social-intelligence/README.md",
+      "bytes": 11130,
+      "sha256": "4d0ba7f8f9008ac4e2e396035f79f8c21fab63b16a567e689dbc0d60d83b2f8f"
+    },
+    {
+      "path": "docs/social-intelligence/REGISTRY_08.md",
+      "bytes": 8344,
+      "sha256": "bf3b520a1a8e69e769515dd4a6573295cfe020f604df61544f666910ec33b366"
+    },
+    {
+      "path": "docs/social-intelligence/RELEASE_18.md",
+      "bytes": 14547,
+      "sha256": "136cdecc32f38e1660eef7a765c621a270a160397aaa1f096165c5d126bad00a"
+    },
+    {
+      "path": "docs/social-intelligence/REPLAY_17.md",
+      "bytes": 11583,
+      "sha256": "25a8e3ca9fdd21953ba537ad45e4e10e775fda3aa7285173c3191efe3fb33eb8"
+    },
+    {
+      "path": "docs/social-intelligence/REPORTS_14.md",
+      "bytes": 9619,
+      "sha256": "c19891224b258528ef9fee5c16cec454c447e5c8e62289cb63d02d91f4249c18"
+    },
+    {
+      "path": "docs/social-intelligence/ROADMAP.md",
+      "bytes": 28433,
+      "sha256": "3e459a3812310f391ae99896dd344f49a52d583c2db9b0e795adbeaec02c3ebb"
+    },
+    {
+      "path": "docs/social-intelligence/SCHEMA_01.md",
+      "bytes": 18610,
+      "sha256": "0fd511a446da091877555073c4571481e2d9564c53d61e040f4058d22084d560"
+    },
+    {
+      "path": "docs/social-intelligence/SOURCE_COVERAGE.md",
+      "bytes": 8377,
+      "sha256": "a57520d4d55f9a36af8e37062a289bfc381a0c738a2090b2a0888aa8e01abcd6"
+    },
+    {
+      "path": "docs/social-intelligence/TELEGRAM_04.md",
+      "bytes": 14657,
+      "sha256": "df66dd37272f9cbaab864921d4273561b28fdfa34b2417d94daa447a75ef165c"
+    },
+    {
+      "path": "docs/social-intelligence/WALLETS_09.md",
+      "bytes": 18211,
+      "sha256": "c9178e474f593a61dbcd7d30bc9e1ca3d9bf3d7d7bdf7146bd8fbf88c3ab743e"
+    },
+    {
+      "path": "docs/social-intelligence/X_API_03.md",
+      "bytes": 12435,
+      "sha256": "fe192977b666c102f693ac2050cc664d8bd6c553cd83b9afee65541c01a1b9f6"
+    },
+    {
+      "path": "docs/social-intelligence/alerts.example.json",
+      "bytes": 384,
+      "sha256": "3bd738f5aaacac16b0c786cad4a74f67e871aaa27f3f07b2970d52acf2fad6b3"
+    },
+    {
+      "path": "docs/social-intelligence/examples/FIXTURE_example_report.md",
+      "bytes": 25799,
+      "sha256": "2f581a424d1f9ba368e4ad77d8ee18db9eb7568d6eb3256a42720d58c11a0569"
+    },
+    {
+      "path": "docs/social-intelligence/examples/REAL_DATA_example_report.md",
+      "bytes": 12656,
+      "sha256": "a0681accd6c5a4dc613569d7ac91cd9f8dd36fa315474baaf6ce416628b25196"
+    },
+    {
+      "path": "docs/social-intelligence/llm.example.json",
+      "bytes": 304,
+      "sha256": "143803ea3f12e097981442aaac54d14ac6495d4ea53e0f17e618268e3d8f4864"
+    },
+    {
+      "path": "docs/social-intelligence/release/AUDIT.md",
+      "bytes": 5763,
+      "sha256": "89cc68ccb815c24a9a670e36c0ee094f0bf5cc48754b1b6001b0c18edc24d46a"
+    },
+    {
+      "path": "docs/social-intelligence/release/E2E_RUN.md",
+      "bytes": 53333,
+      "sha256": "e6ac88321aedd136cec143ffb22a0c7ba3a224896f69fe55d6247257164c7c02"
+    },
+    {
+      "path": "docs/social-intelligence/telegram_bot.example.json",
+      "bytes": 587,
+      "sha256": "274270da6e5fa52009d74f59d76f2a8f95d6629693026fde4c5aa3fb363e3914"
+    },
+    {
+      "path": "docs/social-intelligence/x_api.example.json",
+      "bytes": 678,
+      "sha256": "2bb8977fd870de0e6af6d44593d179a7a5c366b2fdad4c9e282d38cc1c321b54"
+    },
+    {
+      "path": "inbox/an_20261007_batch3.json",
+      "bytes": 240020,
+      "sha256": "bf3b5ac79788cbd9d239f5f06b36c0b1f87fd526b6ded3ceee813357e21f308d"
+    },
+    {
+      "path": "inbox/an_20261007_ton618.json",
+      "bytes": 84120,
+      "sha256": "9d2588017ffba52958ca8eca7d1fe90e01ea4be5276a7a17fd542bdc25d37c2a"
+    },
+    {
+      "path": "inbox/an_20261007_ton618_r2.json",
+      "bytes": 86127,
+      "sha256": "2fff1230ab96f1ebed0262d86ce1a104d8e4bd743090284823fd006762634e2d"
+    },
+    {
+      "path": "inbox/cat01.json",
+      "bytes": 226527,
+      "sha256": "493fb9bb228c44159a4269c57ae381d2de5b19979070bcbc62d07a78a7a5e5c0"
+    },
+    {
+      "path": "inbox/cat01_binance.json",
+      "bytes": 5687,
+      "sha256": "cceb1b6d5f256183e745b726a19340f99a59437af440ae5a2f38d0227ce3204d"
+    },
+    {
+      "path": "inbox/cat01_bybit.json",
+      "bytes": 280,
+      "sha256": "2924a1efdb56403097bae8e6c86d4e0e232dd47d5290c33d8afbfaeb4099a3ac"
+    },
+    {
+      "path": "inbox/cat01_coindesk.json",
+      "bytes": 12612,
+      "sha256": "062663c67271e57d0bd894fef15a8e37e4f78d1c97ef955d917b1dc6d727d578"
+    },
+    {
+      "path": "inbox/cat01_cointelegraph.json",
+      "bytes": 27455,
+      "sha256": "0cffe20125412393f0a04723d9dd9277eebec1a1e2984c000c9be6df6d3bcc27"
+    },
+    {
+      "path": "inbox/cat01_decrypt.json",
+      "bytes": 16399,
+      "sha256": "25a4e2c1b0b1ea11dc4976d699afae152f48caaca6193c9144e3e9dc004d8343"
+    },
+    {
+      "path": "inbox/cat01_gnews1.json",
+      "bytes": 106897,
+      "sha256": "b65fe8a7269dae9bf9600fd5d028727e4bfba356ff117bbdcdbb510f58173491"
+    },
+    {
+      "path": "inbox/cat01_gnews2.json",
+      "bytes": 119081,
+      "sha256": "b933afd5fd0bbfceeab0352fa5841e9cbde0402803fc0605f063661b4f306f7f"
+    },
+    {
+      "path": "inbox/catm01.json",
+      "bytes": 672002,
+      "sha256": "92e73042a419c5f8397c5f59bbcea46392ef3b179a1ee70e7633b9fd2a4ff41f"
+    },
+    {
+      "path": "inbox/deep01a.json",
+      "bytes": 336611,
+      "sha256": "a4584ce73f65ff848b0d8452a1a51480b085b95dd934b109fb8ef9ddfa636a42"
+    },
+    {
+      "path": "inbox/deep02.json",
+      "bytes": 398074,
+      "sha256": "21e14a38451dc921ba217525a45075126d55711a49320c243a2aee0862d48ee9"
+    },
+    {
+      "path": "inbox/deep03.json",
+      "bytes": 350204,
+      "sha256": "683e8313345bee91573270e938528c7e201f1ebd8e2477258a5a8c0d12fdb1cf"
+    },
+    {
+      "path": "inbox/deep04.json",
+      "bytes": 63080,
+      "sha256": "be11030c875a49d5b0ccc74d5c751bafca6debda20dfbb83276113d477025d3f"
+    },
+    {
+      "path": "inbox/deep05.json",
+      "bytes": 351483,
+      "sha256": "9a2326483a53e18c9afe6a8b43ce64dbc1d983ee5c0700036615a54c0bf82e7f"
+    },
+    {
+      "path": "inbox/deep05b.json",
+      "bytes": 572830,
+      "sha256": "d0db79f153ab5b67854525a3d88833d813302b8fddecbaaaa7de12c46f24b5ba"
+    },
+    {
+      "path": "inbox/deep_20261007_a1.json",
+      "bytes": 32274,
+      "sha256": "81c41686fabfbea92e423e0b837833be5841f2ed8082f728dcde9d82122d4bbe"
+    },
+    {
+      "path": "inbox/deep_20261007_a2.json",
+      "bytes": 30937,
+      "sha256": "beb1f221a11502490da6faf7e369cf9e493f3b45c855fd348129806708a2e66b"
+    },
+    {
+      "path": "inbox/deep_20261007_a3.json",
+      "bytes": 31101,
+      "sha256": "e79d527a13ec34303e94e7b4f45631df2b6c78b011baf21ba3244cbd90ad88ad"
+    },
+    {
+      "path": "inbox/deep_mc01.json",
+      "bytes": 1136128,
+      "sha256": "9270e450659c3c234af1cd36bf7f15bf2eceeeae1e8002b270752e8de4be8da1"
+    },
+    {
+      "path": "inbox/disc_20261007.json",
+      "bytes": 41566,
+      "sha256": "689dac3ff3174a2a4380f160317782572b8ccbb95f2316666dbdff6c17aea909"
+    },
+    {
+      "path": "inbox/disc_20261007_r2.json",
+      "bytes": 20128,
+      "sha256": "ec1c70189c4b16db70327e296ce0d78dddb04cd5e97f147f276d6f1b50be74db"
+    },
+    {
+      "path": "inbox/eco01.json",
+      "bytes": 734289,
+      "sha256": "803ed088442f5e2ec4d0ae9a34b30a2d78f9cc4459961535c69c8b6629583db3"
+    },
+    {
+      "path": "inbox/forensics01.json",
+      "bytes": 848719,
+      "sha256": "84397e151e8a683a85122a298c396cf47310bdb04d7633f9070ec04ebcfe7a3d"
+    },
+    {
+      "path": "inbox/ld_t1_pump.json",
+      "bytes": 645560,
+      "sha256": "f1f44cd295a8c7847ea002d64e4482b64bff5c51a97a44fe5c9b94cacd4d1729"
+    },
+    {
+      "path": "inbox/ld_t2_pump.json",
+      "bytes": 1120098,
+      "sha256": "3eb8ee1495bdf989eb455e401da7cc16f794d2ecf2a5d30facaf9ba7f7e4cd72"
+    },
+    {
+      "path": "inbox/lp_t1_pump.json",
+      "bytes": 490017,
+      "sha256": "ed0c7318c31fbe76009cedb19aeacaebf379abeaa6b6a787d484082c94a90f96"
+    },
+    {
+      "path": "inbox/plans/ld_t1_pump.plan.json",
+      "bytes": 15950,
+      "sha256": "d02328a16502ba6f7dac222a0c6fe6d036200ff321b60e3152419c7fc812f6e3"
+    },
+    {
+      "path": "inbox/plans/ld_t2_pump.plan.json",
+      "bytes": 21000,
+      "sha256": "7fc6d7fc845707635116f32e6b25d3671fb0ca34adbbaa2c00d42e645b58e86b"
+    },
+    {
+      "path": "inbox/s2_01.json",
+      "bytes": 70590,
+      "sha256": "69070d39b5e5ca5d5c56f6500a6347dcf262cabe143e30d92e27234488cad1df"
+    },
+    {
+      "path": "inbox/s2_20261007_r2.json",
+      "bytes": 42468,
+      "sha256": "6008963db5b4348bb0f1edc1cf358d34103b7f46054f5e61dad0e607f3b867a2"
+    },
+    {
+      "path": "inbox/s2_mc01.json",
+      "bytes": 77728,
+      "sha256": "b9f1fa85768bd18d01d537770a1e70c8b6750bd1250baac523aa68f150008437"
+    },
+    {
+      "path": "inbox/s2_mc01b.json",
+      "bytes": 70171,
+      "sha256": "fd754b89bf3b6bb4b83c510e9779b2c77027811f7d66711a0ba2f87528f29698"
+    },
+    {
+      "path": "inbox/s2_mc01c.json",
+      "bytes": 158812,
+      "sha256": "26650c5c94997230b004928873bd28756b1d269ddc1c9bf50e442e304d6fc4d7"
+    },
+    {
+      "path": "inbox/wl_20261007_1619_a.json",
+      "bytes": 420751,
+      "sha256": "a1a308ad8b4e154abc4378ead0b93f3fa16ef620dfe6a3920528c018ef2b1432"
+    },
+    {
+      "path": "inbox/wl_20261007_1619_b.json",
+      "bytes": 432379,
+      "sha256": "45770268acd3a53a1184da7ec862ed069cc721f5812425a077905248484b6c7e"
+    },
+    {
+      "path": "inbox/wl_20261007_1619_c.json",
+      "bytes": 108770,
+      "sha256": "06a6283280e50924987a3836d05b4fdd514c7200310abfa33159b43330028784"
+    },
+    {
+      "path": "inbox/wl_20261007_1619_s.json",
+      "bytes": 221199,
+      "sha256": "e9ebbc71658ad6a358f103ccca6b80879f4284f989eb6439faf74b847a742adb"
+    },
+    {
+      "path": "memelab/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "memelab/__main__.py",
+      "bytes": 29,
+      "sha256": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3"
+    },
+    {
+      "path": "memelab/bridge/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "memelab/bridge/catalyst.js",
+      "bytes": 5898,
+      "sha256": "4b2656ee5bf837971c699b5eae190d0e48f5be2a9e9e91493a7912b459c02316"
+    },
+    {
+      "path": "memelab/bridge/chains.js",
+      "bytes": 9904,
+      "sha256": "9aa012bfd6bfd467b204234411b0d73b6b23b35c02cdc6283827517a9881d443"
+    },
+    {
+      "path": "memelab/bridge/collector.js",
+      "bytes": 12890,
+      "sha256": "e221f02b25f66e23f5d9d6b2417c88674ba5214c7d0cc704b2c1e48bb80b3ef8"
+    },
+    {
+      "path": "memelab/bridge/github_inbox.py",
+      "bytes": 2557,
+      "sha256": "b2176b4f55ce167f9296fbb00f822ae671197122c14713c419ac0f5d9ed2fdbf"
+    },
+    {
+      "path": "memelab/bridge/ingest.py",
+      "bytes": 3457,
+      "sha256": "c38727b0dbac0aab4d24489e362f1413256aa01ffa044f01a959284e3526e848"
+    },
+    {
+      "path": "memelab/bridge/launch.js",
+      "bytes": 3372,
+      "sha256": "e1edec2ce853a72e547a0a9d8f189d76c42ba04eb716aa6f20e5ab47383697e5"
+    },
+    {
+      "path": "memelab/bridge/plan.py",
+      "bytes": 8387,
+      "sha256": "84760d26eaef9d4bda9ffce257d249488789c76b6017b2aee4147d0799dd2544"
+    },
+    {
+      "path": "memelab/bridge/run_plan.js",
+      "bytes": 4563,
+      "sha256": "4b1bbabda435e9382d65895c0198fd28d2d4b6e44c44578a93aff824bef0cadd"
+    },
+    {
+      "path": "memelab/bridge/screen.js",
+      "bytes": 5848,
+      "sha256": "6b4feaaf6835872dea6de42143d6c371f4eaf51a743b841c0c0cfc46f9033f53"
+    },
+    {
+      "path": "memelab/bridge/social.js",
+      "bytes": 2248,
+      "sha256": "9211638beeb23cb8d78d3ea82d01502832c3bd4bba91ae12d97e9f3999c232c8"
+    },
+    {
+      "path": "memelab/bridge/stage2.js",
+      "bytes": 6354,
+      "sha256": "a4a19e98739a32f8e63eca33612e33ddc886b94348806e7be5edd6121f5630a6"
+    },
+    {
+      "path": "memelab/catalyst/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "memelab/catalyst/assess.py",
+      "bytes": 14297,
+      "sha256": "abf9c55f0f04a18f18d332bf6e73ff2909e32603182e5f6bb3e2e04cb9b2384f"
+    },
+    {
+      "path": "memelab/catalyst/attention.py",
+      "bytes": 6605,
+      "sha256": "a25635a4ac16f608dc57a22c60cfc50a00498b15935bb332db85a67d3cee3bf6"
+    },
+    {
+      "path": "memelab/catalyst/cli.py",
+      "bytes": 17314,
+      "sha256": "329bf954fd8a04dbfcac30ec4e465d36f4157c80ee4b2076850751f57a4a4cba"
+    },
+    {
+      "path": "memelab/catalyst/ingest.py",
+      "bytes": 22303,
+      "sha256": "f2d7fb5195955a7f4f1d538cb1f3b7e59a9036e4ddb576cb481d43fac2a81659"
+    },
+    {
+      "path": "memelab/catalyst/match.py",
+      "bytes": 13245,
+      "sha256": "3490ccacf1828a46dc1b6a0149abbb3e47d79f5682265db974d6cc274c745083"
+    },
+    {
+      "path": "memelab/catalyst/monitor.py",
+      "bytes": 6654,
+      "sha256": "983157f6b4ffdc60f850ee7661cabfef64bca3d46faae1449885a58bab24aa52"
+    },
+    {
+      "path": "memelab/catalyst/report.py",
+      "bytes": 10932,
+      "sha256": "10c27068d27b5b9fbee45f20b76cdb447e8d6dca364cb94ebaf8488afe244f01"
+    },
+    {
+      "path": "memelab/catalyst/schema.py",
+      "bytes": 7467,
+      "sha256": "c85746dae4c5508636aaac718ea0ad04beb489d7484851a1296e52eb8641792c"
+    },
+    {
+      "path": "memelab/catalyst/sources.py",
+      "bytes": 7990,
+      "sha256": "3ba1803eda507f2592eadf96730b3851cf33ce009723e6a336396a0ef6fd8e66"
+    },
+    {
+      "path": "memelab/chains/__init__.py",
+      "bytes": 510,
+      "sha256": "31ba7815cdbb08320392108d75e9b172b5a5364914e7c82c9dd09c6e76466592"
+    },
+    {
+      "path": "memelab/chains/_util.py",
+      "bytes": 3280,
+      "sha256": "661abdb571144a56bdc59b53880037837fa90527c0b071d7bd039c7cc06859de"
+    },
+    {
+      "path": "memelab/chains/cli.py",
+      "bytes": 25542,
+      "sha256": "649d5545224af52efef2b3f653bf0af4f4452fca72527b5c6d61ce79280de7d6"
+    },
+    {
+      "path": "memelab/chains/emerging.py",
+      "bytes": 12232,
+      "sha256": "e545316bec04c3fbcf917d27977f713b185cff1693af9d52a5fa9d4080703bf3"
+    },
+    {
+      "path": "memelab/chains/evm.py",
+      "bytes": 29165,
+      "sha256": "07c110879237b38457faa62aea33861d59bc727473bf9c3188c71c1c62ae139e"
+    },
+    {
+      "path": "memelab/chains/narrative.py",
+      "bytes": 10736,
+      "sha256": "cc1cb9118e2d2c9866bfea966dbb44997d15dda4ce473eacdbba2197670d88d1"
+    },
+    {
+      "path": "memelab/chains/plan.py",
+      "bytes": 8734,
+      "sha256": "3147b37904d15bb47220e0ba6120db8686e0498fa89270dd5563f356fb05c534"
+    },
+    {
+      "path": "memelab/chains/regime.py",
+      "bytes": 8962,
+      "sha256": "98a4715c7273a5884946040bdcc3ce3cc6a435c169489573679475f7c45f3e48"
+    },
+    {
+      "path": "memelab/chains/registry.py",
+      "bytes": 10579,
+      "sha256": "86ce6f326bcebfe991e8d8914eb38ae7d2657ebafc5d44e3cd14e1e35653c6c1"
+    },
+    {
+      "path": "memelab/chains/report.py",
+      "bytes": 7740,
+      "sha256": "6056f5beed10ed8147d88aa2f2a08f19356a50683e3ffe447abfa68c123ecab8"
+    },
+    {
+      "path": "memelab/chains/rotation.py",
+      "bytes": 22612,
+      "sha256": "b210b3f2ee2da8094b60c9cac045e95de785ba0210a785686c5952a4bec5c0d6"
+    },
+    {
+      "path": "memelab/chains/schema.py",
+      "bytes": 6875,
+      "sha256": "e1b20eb6134f42b6fa3169283f98a5f12fce00b18fa6e9f27601d53c5483fb20"
+    },
+    {
+      "path": "memelab/cli.py",
+      "bytes": 25758,
+      "sha256": "12f95f3af9bdb8f00b6974c27ee6ab2cb0341e6f2806d87ec9d565ef676b4348"
+    },
+    {
+      "path": "memelab/db.py",
+      "bytes": 10992,
+      "sha256": "b7a2b10429d755caf0aba5f8ea9b720d721ce5554784e742fd39402e67cbf663"
+    },
+    {
+      "path": "memelab/farm.py",
+      "bytes": 6337,
+      "sha256": "5aace2481767dce50a0f2fe2f988329bc34d3bf73627a59f91293974f0e336fb"
+    },
+    {
+      "path": "memelab/forensics.py",
+      "bytes": 6842,
+      "sha256": "89d0aeba5f2f7c00dcb4e8e3c5a63083dd3aee3db5db4b60cc824ad16737c192"
+    },
+    {
+      "path": "memelab/launch/__init__.py",
+      "bytes": 790,
+      "sha256": "fbf8fca6aa22a1cd25090ddb014087306b197a8eb5e59960af7e3be9223be666"
+    },
+    {
+      "path": "memelab/launch/cli.py",
+      "bytes": 11516,
+      "sha256": "2dd826731aabe4584ed837f4848f7c673e4ddaa76a65741518b1e24b4b540b37"
+    },
+    {
+      "path": "memelab/launch/cohort.py",
+      "bytes": 7257,
+      "sha256": "2b9e513234d1e68d540bbda770778864723f654af44d5bdc2a13cca883c5a127"
+    },
+    {
+      "path": "memelab/launch/deployer.py",
+      "bytes": 6741,
+      "sha256": "ec076b4f8180c3e4eb3d010b12af8fbfaf8044e0922e9e5502f5e4178eddcf8a"
+    },
+    {
+      "path": "memelab/launch/discover.py",
+      "bytes": 27695,
+      "sha256": "83a61f5ff47a6387fcab260be16027cc8f8a9c4143e5b7027298560edf1784ec"
+    },
+    {
+      "path": "memelab/launch/engine.py",
+      "bytes": 15598,
+      "sha256": "761c726ca97e7afa5b5df0b5d9d72094540059a6f43ea6ee5e5d32d1d98682b9"
+    },
+    {
+      "path": "memelab/launch/monitor.py",
+      "bytes": 11543,
+      "sha256": "b44e75505b2c994500f9279dc71a14ff88d2627c43593a9e336fd4d5704acdc3"
+    },
+    {
+      "path": "memelab/launch/ranker.py",
+      "bytes": 14705,
+      "sha256": "8de635324386942837881aa58d77fea6d81eafdfae4f393a7dbbd730929fcf80"
+    },
+    {
+      "path": "memelab/launch/report.py",
+      "bytes": 10164,
+      "sha256": "8f234437d0ed795341468f1bb8f8ce47fb34125d6d7abe33679912cc1c8d5572"
+    },
+    {
+      "path": "memelab/launch/schema.py",
+      "bytes": 5248,
+      "sha256": "a71c6222394492d7856728c5b06644f184f6aed1f9243dfff3215e268e6be0f6"
+    },
+    {
+      "path": "memelab/launch/social.py",
+      "bytes": 4369,
+      "sha256": "8fd29f9885d5e19db67a1ae2034c29671adf3a4eab5733e990319efcd0d8cf0b"
+    },
+    {
+      "path": "memelab/launch/sources.py",
+      "bytes": 8927,
+      "sha256": "239985c6d08443c5338fa879e24eedad3eed5dcf32d5d3193d1cbcf399d334ea"
+    },
+    {
+      "path": "memelab/launch/tokenomics.py",
+      "bytes": 5448,
+      "sha256": "3853c8181a9d1b14fa0eff1bd9d9fb326541255510fd0d4ca55e70fa59c99dcc"
+    },
+    {
+      "path": "memelab/launch/wallets.py",
+      "bytes": 10722,
+      "sha256": "04ba975561e8a671f8bbc357d8b23aa78e67543c302c562ac6b2c7775247a571"
+    },
+    {
+      "path": "memelab/modules/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "memelab/modules/_common.py",
+      "bytes": 12914,
+      "sha256": "21711ef76d152212f9ff77b2293eef62c8e63087958e5ca4bb5bf79c59aed49c"
+    },
+    {
+      "path": "memelab/modules/m01_token_discovery.py",
+      "bytes": 15501,
+      "sha256": "eeef86b1a5427e3626addb8efbafb82d09bd28f6a51d7252c84b07df35717cc3"
+    },
+    {
+      "path": "memelab/modules/m02_identity_verification.py",
+      "bytes": 4299,
+      "sha256": "fe4b1f10c6c1885123ed08f38c5a6011a2ce85e78059da9930295aec688c5d41"
+    },
+    {
+      "path": "memelab/modules/m03_market_data.py",
+      "bytes": 2461,
+      "sha256": "48809bca9d09ed1dfc0ae80e17ae869a29255b7b4bb4863ba93665a87f5b6dfc"
+    },
+    {
+      "path": "memelab/modules/m04_supply_reconciliation.py",
+      "bytes": 5891,
+      "sha256": "a03f6ddba473941021d109be295c25ce0ebdfc5ab06a7a2a1dc1f772673f4012"
+    },
+    {
+      "path": "memelab/modules/m05_pool_discovery.py",
+      "bytes": 3480,
+      "sha256": "48227dc852c24423f42050cc235cc634b0d4cc419f5a8ae3862f0098e30c6544"
+    },
+    {
+      "path": "memelab/modules/m06_executable_depth.py",
+      "bytes": 7864,
+      "sha256": "5cbea8eb0ac0f0ee79d4033617eb71179600e33690cb34f5763b917afc5ebe8b"
+    },
+    {
+      "path": "memelab/modules/m07_lp_analysis.py",
+      "bytes": 7617,
+      "sha256": "6fe3870c717fa9982a95f0f2db0c948d82062c0fb1a99d18b5754d5e2202ff04"
+    },
+    {
+      "path": "memelab/modules/m08_token_mechanics.py",
+      "bytes": 8845,
+      "sha256": "8ce308cc5cf0843681fbcd990f2b3a50e71df80a543399dba90b6d69962cda7f"
+    },
+    {
+      "path": "memelab/modules/m09_holder_classification.py",
+      "bytes": 9277,
+      "sha256": "acd890965250751f689c9a48b4dfb50aa83b92998fd17aa87a062321fa733ecb"
+    },
+    {
+      "path": "memelab/modules/m10_wallet_clustering.py",
+      "bytes": 7457,
+      "sha256": "fad6ac04db65428dcedad0e4b98c35a24ee237ebc8f6e1c22c7e044268fc0667"
+    },
+    {
+      "path": "memelab/modules/m11_early_wallet_analysis.py",
+      "bytes": 7137,
+      "sha256": "94b877d030645506472023bf6ff7b95db1f1b425c2665d850f1ba1799c068f6f"
+    },
+    {
+      "path": "memelab/modules/m12_order_flow.py",
+      "bytes": 5888,
+      "sha256": "956d0a013704ee41337346caaa877a680ad12ad1957c6e0361fe47149063272c"
+    },
+    {
+      "path": "memelab/modules/m13_price_structure.py",
+      "bytes": 20552,
+      "sha256": "3192401d4b7653f937c744fba4b9c8264688f9ea600daaee57c2e7366d507162"
+    },
+    {
+      "path": "memelab/modules/m14_breakout_classifier.py",
+      "bytes": 18006,
+      "sha256": "63d8498ba4ab2aaf9f07aa5fd9f721c1ea05a445406555664cced59482052fe8"
+    },
+    {
+      "path": "memelab/modules/m15_entry_invalidation.py",
+      "bytes": 19845,
+      "sha256": "9fc7eae8bf70e5aa3fe3c99fc7816802d2671625d9286ba98951ed4846f223fc"
+    },
+    {
+      "path": "memelab/modules/m16_risk_reward.py",
+      "bytes": 12377,
+      "sha256": "fbcce155ac5e2498775d9e6cfb7cb74bfe59ca746f37e8aa343dfec28c01e3ce"
+    },
+    {
+      "path": "memelab/modules/m17_position_sizing.py",
+      "bytes": 14105,
+      "sha256": "1f3f05317adb4489cfa1f02227bc5f8d76035927bebc0326f3ef2332d4a1fa66"
+    },
+    {
+      "path": "memelab/modules/m18_exit_planning.py",
+      "bytes": 15576,
+      "sha256": "7ec3b5d037131c0ecf74f646231de7998a549cf3d4b611fb28962a11e7e4a550"
+    },
+    {
+      "path": "memelab/modules/m19_attention_analysis.py",
+      "bytes": 4600,
+      "sha256": "9109b27dbf4de679bac5402b83bb9b1a23dff1096c0b6cc25eb79a7270ceb3c3"
+    },
+    {
+      "path": "memelab/modules/m20_manipulation_detection.py",
+      "bytes": 5931,
+      "sha256": "1ab79bb117303647d85e672c748e12e67348a004d31e012242c993b25a572f89"
+    },
+    {
+      "path": "memelab/modules/m21_lifecycle_classifier.py",
+      "bytes": 24416,
+      "sha256": "dc54150ccd77c6f33f8a20c64fa26a6f7d11aad2512a8349a3db524c8921b9a4"
+    },
+    {
+      "path": "memelab/modules/m22_relative_strength.py",
+      "bytes": 9758,
+      "sha256": "8f4d20c019b5fd1be320079a09ffd5c62117775394e3c4e3f0028aa2d2725e64"
+    },
+    {
+      "path": "memelab/modules/m23_trade_thesis.py",
+      "bytes": 7794,
+      "sha256": "b4fd0b2125ddd07e8ca294a1cc16073e9e1697a2044ee800b1342b0ce1c3bb35"
+    },
+    {
+      "path": "memelab/modules/m24_opportunity_ranker.py",
+      "bytes": 40629,
+      "sha256": "47d6984b4f0de6ff5065d16d209197d3606512e28b67e5c568731685740182be"
+    },
+    {
+      "path": "memelab/modules/m25_watchlist_monitor.py",
+      "bytes": 5717,
+      "sha256": "21591598816d548c783c4687b3611c0f5bc26dbe44f381c18a36fc44b295fe90"
+    },
+    {
+      "path": "memelab/modules/m26_portfolio_risk.py",
+      "bytes": 15572,
+      "sha256": "04ced35cc4a213a3913bee54c21fb7dada6aa6c68826d1bd1205121aa3f92ada"
+    },
+    {
+      "path": "memelab/modules/m27_post_trade_review.py",
+      "bytes": 21345,
+      "sha256": "2cbf0f8a7701f46300f842df8f657fa09a0c2c907937fff1e4bdd6165d5941da"
+    },
+    {
+      "path": "memelab/modules/m28_statistical_analysis.py",
+      "bytes": 15412,
+      "sha256": "8c882b07e03c61ec91f076af8209f740a893cbbf64491d2db915a1d062abce85"
+    },
+    {
+      "path": "memelab/normalize.py",
+      "bytes": 23199,
+      "sha256": "e87944b380a7326143a6280db186cbe7c3a8873e454b41dee2a2f9350db37023"
+    },
+    {
+      "path": "memelab/pipeline.py",
+      "bytes": 21910,
+      "sha256": "4783d36f5705b6b4ebb9df2e33f164b577b0f5c4db6751fcda0c3e922f9b2f6f"
+    },
+    {
+      "path": "memelab/report.py",
+      "bytes": 20979,
+      "sha256": "ae57f4825069831e9b8a4a891ee8ec32971dcca5435b950fb6cba6cbd8bb2b26"
+    },
+    {
+      "path": "memelab/secrets.py",
+      "bytes": 1950,
+      "sha256": "5df08073e12bc6d0bf4e54a108be9a49b1ece5e7db4665cb61b7529c83350b90"
+    },
+    {
+      "path": "memelab/social/__init__.py",
+      "bytes": 120,
+      "sha256": "e181ef4d1f041237836e2526f05e8f1b38bb6547a5ff4bc93cfd4e4e4b6bed50"
+    },
+    {
+      "path": "memelab/social/_keccak.py",
+      "bytes": 2463,
+      "sha256": "644a2bdc747b788a6ed1eefb6cdafc0b9cade1926af51600dd2d08761420f32b"
+    },
+    {
+      "path": "memelab/social/alerts_cli.py",
+      "bytes": 11340,
+      "sha256": "085023890cd4b5fa00c5fd55ed337b85be8135f19851420b2bbd8321fa0a3405"
+    },
+    {
+      "path": "memelab/social/alerts_core.py",
+      "bytes": 23778,
+      "sha256": "bda1e83d7609a818cd733dccbef5ad20debb2ee3fa92f41a0230db0d3a8347cf"
+    },
+    {
+      "path": "memelab/social/alerts_engine.py",
+      "bytes": 27247,
+      "sha256": "d767229cd522ee2ffbe3f706f94721f3d5adad6ffce1c690b6410284ed93145c"
+    },
+    {
+      "path": "memelab/social/alerts_schedule.py",
+      "bytes": 5316,
+      "sha256": "917b1c81a0406f8e295da292f1e003c5a60bf754a86699234d92684d14feadb9"
+    },
+    {
+      "path": "memelab/social/alerts_transport.py",
+      "bytes": 10941,
+      "sha256": "dda18e1ee94f3ceba703b0a92701a4d72fc50fc05d1ed360305b02827d7e38f1"
+    },
+    {
+      "path": "memelab/social/alpha_cli.py",
+      "bytes": 6421,
+      "sha256": "bf8001dda3ac20d8defae002bba44fc3bc314d70eb900f5a8d11a9a0250133ca"
+    },
+    {
+      "path": "memelab/social/alpha_core.py",
+      "bytes": 42528,
+      "sha256": "b129c15357bcc5d8e8d3ff5a750b7bea7dd5fc8bfa846446c82f79496b1ee729"
+    },
+    {
+      "path": "memelab/social/alpha_store.py",
+      "bytes": 9094,
+      "sha256": "5c7dad267db3bcddb0d53c99d92a40ae91f3808e988543c9d2eb10c4c4b257d8"
+    },
+    {
+      "path": "memelab/social/bridge_adapter.py",
+      "bytes": 4969,
+      "sha256": "cd172428de0d3b7308a865e765132938adcbdb78a742e8cb9fa3cefe01778f9c"
+    },
+    {
+      "path": "memelab/social/chrono_cli.py",
+      "bytes": 6439,
+      "sha256": "c863723c11e63e06869d48710fe934f98ae02a5d3302c02b6814db496e5f76f5"
+    },
+    {
+      "path": "memelab/social/chrono_core.py",
+      "bytes": 58772,
+      "sha256": "c03bcaffddc0aa12176ccc6470a2a2cfc541933346681580d8bccc72fbdccdd7"
+    },
+    {
+      "path": "memelab/social/chrono_store.py",
+      "bytes": 14804,
+      "sha256": "d3b13519afc2bfa6661964e81cd16e2907ad08fdd9cd459893b87eaa9600e0e3"
+    },
+    {
+      "path": "memelab/social/cli.py",
+      "bytes": 30466,
+      "sha256": "4af61fba85b791989c59f19172ec56fae495992598aab68730e66b4fc9b7985b"
+    },
+    {
+      "path": "memelab/social/content_guard.py",
+      "bytes": 11929,
+      "sha256": "58f10f005a21ffa8c9005bc652aba387de1c2a43e4e274c8c6b5d50984f57a9a"
+    },
+    {
+      "path": "memelab/social/extraction.py",
+      "bytes": 52565,
+      "sha256": "e25111deeee24108b2ad89b1676fe17ecf112b048cd8aa3ce80fa755028b016a"
+    },
+    {
+      "path": "memelab/social/feed_cli.py",
+      "bytes": 6768,
+      "sha256": "290ef50d8917bd12085afe93f931cffc7f5a9b528cd737811ce0692fe7347655"
+    },
+    {
+      "path": "memelab/social/feed_core.py",
+      "bytes": 45772,
+      "sha256": "3435d981679db801ba9b788fa4d9f33269fc116f7dee42831e965d55ff7a1825"
+    },
+    {
+      "path": "memelab/social/feed_demo.py",
+      "bytes": 8975,
+      "sha256": "707612e0a44e2a9c7aff8629d41733688bc9c55d472908ec89318c28a71a5222"
+    },
+    {
+      "path": "memelab/social/feed_store.py",
+      "bytes": 10870,
+      "sha256": "8368d3a8ed131b97405bbeb146bd9aa9e35675da12ae9e8f42a9a711810fb9eb"
+    },
+    {
+      "path": "memelab/social/identity.py",
+      "bytes": 38862,
+      "sha256": "07a075ad42e5223a069f6d433db6940eb2f901d36352f991ed58af2f6b085041"
+    },
+    {
+      "path": "memelab/social/ingest.py",
+      "bytes": 41200,
+      "sha256": "881ddbf4b74fbe6c4d247bd813d3b9abd013fb671189fc118d24e7de635039e3"
+    },
+    {
+      "path": "memelab/social/llm.py",
+      "bytes": 12111,
+      "sha256": "40b394ead2e3f31d55c3d5b070769db72720f061ba5267524d5a9cbe50a04d5d"
+    },
+    {
+      "path": "memelab/social/market_context.py",
+      "bytes": 18369,
+      "sha256": "2b3ee15013796b0d1a1feeadcdb28bf67ddb234f9231964fa3709df8b0b39907"
+    },
+    {
+      "path": "memelab/social/narratives.py",
+      "bytes": 45552,
+      "sha256": "9594bc9fdd5a19496a7c9ec4f7eb6ad1759a183dc84d34d0af020441611571bf"
+    },
+    {
+      "path": "memelab/social/outcomes_cli.py",
+      "bytes": 16173,
+      "sha256": "b634e3784ec36fded44127b02a799c12ce61ccb9f51f28879617f3afb6a7c76f"
+    },
+    {
+      "path": "memelab/social/outcomes_core.py",
+      "bytes": 38314,
+      "sha256": "063a3d8b29b9ca08f323e5b225d09ec7fbc3d4ce6676866e30e8cf2584cf8967"
+    },
+    {
+      "path": "memelab/social/outcomes_ledger.py",
+      "bytes": 14515,
+      "sha256": "dcf97ea721526e7d7a6667873e2c6f3474b2f805060e003a344c2d57b4fcc6df"
+    },
+    {
+      "path": "memelab/social/perf_analysis.py",
+      "bytes": 49561,
+      "sha256": "a4f296badfbb226d7372bd8c550739cc3c0607b448085ab872f6e7708e10b8dc"
+    },
+    {
+      "path": "memelab/social/perf_cli.py",
+      "bytes": 9081,
+      "sha256": "5187ed3f55ced4d11ba054fb8327d3654840b4dd014f54a50aa29d1012523862"
+    },
+    {
+      "path": "memelab/social/perf_core.py",
+      "bytes": 48482,
+      "sha256": "71b98e7c97e9f65bbc2b5e8a98180123b89e004e708cc594a47578260fea0831"
+    },
+    {
+      "path": "memelab/social/perf_store.py",
+      "bytes": 15065,
+      "sha256": "3fe236ff5b0ad91d0ae087f2c7f56969e603b09261ed3c9825dcf2ab11eda78a"
+    },
+    {
+      "path": "memelab/social/private.py",
+      "bytes": 4995,
+      "sha256": "13db4f6cb9e46bc2aa574c6b79f8ac4f5e4b882eb46293d4e72856b5b46371f9"
+    },
+    {
+      "path": "memelab/social/registry.py",
+      "bytes": 62050,
+      "sha256": "5a74d14f19850aaf1469252a2a3a9807702198e87df77a9d64737cdc1e68a4ed"
+    },
+    {
+      "path": "memelab/social/registry_cli.py",
+      "bytes": 16118,
+      "sha256": "4db7e79f62754aebd9f991bd9113788adf9c3cc222190074c94c0054003c9f8d"
+    },
+    {
+      "path": "memelab/social/registry_import.py",
+      "bytes": 21525,
+      "sha256": "84d2454b25dfdf03794512e18ec7d8eae3f2c188f48a8590e6fcf8e6d942a0cb"
+    },
+    {
+      "path": "memelab/social/replay_cli.py",
+      "bytes": 6661,
+      "sha256": "fd017c27f8819ae8c6625ad48cd504621bf055a55f58e74aea8ea7adedd6979c"
+    },
+    {
+      "path": "memelab/social/replay_core.py",
+      "bytes": 64082,
+      "sha256": "493939a266f90eb460c66da5508008cc5cc3867f80cc11cbddc6fa040b4788e6"
+    },
+    {
+      "path": "memelab/social/replay_sources.py",
+      "bytes": 17615,
+      "sha256": "3f7ab4ff3e388dc298bd023464d876abfe150190244387f737f74ac0097c60a6"
+    },
+    {
+      "path": "memelab/social/replay_synth.py",
+      "bytes": 13517,
+      "sha256": "395118d327ca5c22c141b50fc525b75b081ca6fd48d731c11d04d5656805e4b2"
+    },
+    {
+      "path": "memelab/social/research_cli.py",
+      "bytes": 6046,
+      "sha256": "c99428ee152d50ee878c3a40fdbe88ce7b2d48d6e698b363b562b4b4725439f3"
+    },
+    {
+      "path": "memelab/social/research_core.py",
+      "bytes": 22682,
+      "sha256": "defafcb01e2e5943e3f3ae2f78c3c095d4285fddc5034b2cad40a596942e86a6"
+    },
+    {
+      "path": "memelab/social/research_store.py",
+      "bytes": 10718,
+      "sha256": "ffbcb3df091a1d587c9d85b7d1be7a86cece151c5b13327c911e18cd370e9c78"
+    },
+    {
+      "path": "memelab/social/schema.py",
+      "bytes": 77264,
+      "sha256": "714363ddf3c319619fa4dd3035b9349690bc49f14584de1515562998182fabe7"
+    },
+    {
+      "path": "memelab/social/sigverify.py",
+      "bytes": 7433,
+      "sha256": "5030a8a10e482c6b2be20040d61b944bd24f38faf49434fdb62bd4637605d8ff"
+    },
+    {
+      "path": "memelab/social/store.py",
+      "bytes": 27263,
+      "sha256": "4b45046746c4402c239ea822cbab52318c5349caced7324ecbc190fd4797fb4f"
+    },
+    {
+      "path": "memelab/social/telegram_bot.py",
+      "bytes": 44151,
+      "sha256": "d462e48cd072b521277620329b9e7cb91eab0d284bd162014bd503f64a9c3907"
+    },
+    {
+      "path": "memelab/social/wallet_activity.py",
+      "bytes": 35218,
+      "sha256": "e927f707d0822d64d07491d7af4f2d75226c1556a7e7545f262a4044fad534fe"
+    },
+    {
+      "path": "memelab/social/wallet_assertions.py",
+      "bytes": 28827,
+      "sha256": "6e0e8e4d9c3f3368216bb3ae354dd5208725d142302bd927ba6e4364278cd9b2"
+    },
+    {
+      "path": "memelab/social/wallet_cli.py",
+      "bytes": 12271,
+      "sha256": "28f00a4bd34859e09d813752fed3434af435a381345f2d4bb0ca104f302d668a"
+    },
+    {
+      "path": "memelab/social/x_api.py",
+      "bytes": 44114,
+      "sha256": "2998f3f886c2fc19f8024d25a2785550ec124d7eda51f25784287867c6f58503"
+    },
+    {
+      "path": "memelab/state.py",
+      "bytes": 6722,
+      "sha256": "b184f9078c4c94d298213ad7f5d6189899ff1e7fda688b9c9ac3be7cfe2e4d3d"
+    },
+    {
+      "path": "memelab/wallet.py",
+      "bytes": 8358,
+      "sha256": "b5c6989f6b80186d66874c10faf985678747d652e5ca0f955a77feeed99dffe4"
+    },
+    {
+      "path": "skills/memecoin-scout/SKILL.md",
+      "bytes": 16402,
+      "sha256": "5ba8d343cf914c76671eee95c4f7ce16d1354adfa6f9b0625665d58eda44ec38"
+    },
+    {
+      "path": "state/latest.json",
+      "bytes": 265102,
+      "sha256": "29cd25895b01e8f96db9634bf7adea201df9474db5bee8b4374a1fd135f7fd19"
+    },
+    {
+      "path": "tests/fixtures/social/alerts/alerts_day.json",
+      "bytes": 9582,
+      "sha256": "83288555c84201972b7fa3871ed1b6f2d2477908c796b7c154119621e7a6c002"
+    },
+    {
+      "path": "tests/fixtures/social/alerts/make_alerts.py",
+      "bytes": 2028,
+      "sha256": "93f73946a00b37bb7a197b1e66841365bde9408ce7fd91c57960e9261f84e9ad"
+    },
+    {
+      "path": "tests/fixtures/social/alerts/sample_run.md",
+      "bytes": 8277,
+      "sha256": "3f3eb6ab8911b85cdba5d65b20d7fb6fe1874d6fb6565d2bee26da748e852fb1"
+    },
+    {
+      "path": "tests/fixtures/social/alpha/alpha_main.json",
+      "bytes": 175180,
+      "sha256": "0acd4444b2d2021876fdbe49fe07de6db5bbeab5c2685baee012ccde26ff7eb9"
+    },
+    {
+      "path": "tests/fixtures/social/alpha/make_alpha.py",
+      "bytes": 6116,
+      "sha256": "c1437d0a71d9a6dfd9397bfa98c02e08f4974e1dba40403b5abc1cb0e6a8fa87"
+    },
+    {
+      "path": "tests/fixtures/social/chrono/confident.json",
+      "bytes": 9602,
+      "sha256": "8f2b4a265fc8ea3274c3fe720b5f9fd729c591af9f42de80c3ee5025cda8b55b"
+    },
+    {
+      "path": "tests/fixtures/social/chrono/indeterminate.json",
+      "bytes": 3920,
+      "sha256": "f0ca8e5376262847696befbf46d314e67d2ff58e36f0392d7b6630501d539ec2"
+    },
+    {
+      "path": "tests/fixtures/social/chrono/make_chrono.py",
+      "bytes": 6816,
+      "sha256": "366f9e0e4330b92783c8e2f13cb491e2344ee28531dd16104584d352e18cd409"
+    },
+    {
+      "path": "tests/fixtures/social/claims/demo_mock.json",
+      "bytes": 1253,
+      "sha256": "ab138b8ee29bdd94d9100b3cc6e8b47e81628e9f3d55080b342ec1ed993346f7"
+    },
+    {
+      "path": "tests/fixtures/social/claims/demo_post_model.json",
+      "bytes": 446,
+      "sha256": "20947ea539a5a0a2bcb6ea988931522dc7902af78202cba03aa9748cc8faac84"
+    },
+    {
+      "path": "tests/fixtures/social/claims/demo_post_nollm.json",
+      "bytes": 408,
+      "sha256": "7893d3488f3b8fa75f6dae4905a01de0d7470b72ad07b4a5d8452404cc0fe2e3"
+    },
+    {
+      "path": "tests/fixtures/social/feed/demo_day.json",
+      "bytes": 8497,
+      "sha256": "b6fefaa8892a0f68e4430e439f776cb92520f9fe6ea385688db60a62e299d120"
+    },
+    {
+      "path": "tests/fixtures/social/feed/make_feed.py",
+      "bytes": 7151,
+      "sha256": "f50070820120a57a640a3c5364fcbcf83f7ed41cb21e1a7db485a4be714192e4"
+    },
+    {
+      "path": "tests/fixtures/social/feed/sample_report.md",
+      "bytes": 25799,
+      "sha256": "2f581a424d1f9ba368e4ad77d8ee18db9eb7568d6eb3256a42720d58c11a0569"
+    },
+    {
+      "path": "tests/fixtures/social/inbox/soc_fx01.json",
+      "bytes": 4987,
+      "sha256": "681722ac2c26142e14aae2586f09f9d39a0e54e91db3b734350ada72685f7382"
+    },
+    {
+      "path": "tests/fixtures/social/narratives/two_days.json",
+      "bytes": 8298,
+      "sha256": "4341a9511f1acb3e1b045de77834d3536ba5f4995df49dcfd9de2e1b3598b24d"
+    },
+    {
+      "path": "tests/fixtures/social/outcomes/make_outcomes.py",
+      "bytes": 8781,
+      "sha256": "677c17a74cad468905e8295b95288e75789b061547b7817d7dc08863da733fac"
+    },
+    {
+      "path": "tests/fixtures/social/outcomes/outcomes_fixture.json",
+      "bytes": 87245,
+      "sha256": "a408ab91ed6eba30be4006164977f349be5bc50196ff486dd7ad1f5e35954b64"
+    },
+    {
+      "path": "tests/fixtures/social/outcomes/sample_run.md",
+      "bytes": 11777,
+      "sha256": "d1e6e2b5bc18300509e3fe6cf533345bcf3dfd3d91db324f99a0212ba8260b48"
+    },
+    {
+      "path": "tests/fixtures/social/perf/expected_main.json",
+      "bytes": 2575,
+      "sha256": "d46d31a8c2798c1569840c34db41c3be5b1502180b42afad0ccf91b6d715b10c"
+    },
+    {
+      "path": "tests/fixtures/social/perf/ledger_main.json",
+      "bytes": 10471,
+      "sha256": "1458e7025c573594daed44358522e95d574204f61b64b14f0d23fbc16e0b66dc"
+    },
+    {
+      "path": "tests/fixtures/social/perf/ledger_scored_clean.json",
+      "bytes": 51442,
+      "sha256": "93c70f17f714a92b34b2fbd384490eac3b9d741f7ce74c895ae589d86ca7a5cd"
+    },
+    {
+      "path": "tests/fixtures/social/perf/ledger_scored_outlier.json",
+      "bytes": 22089,
+      "sha256": "a1f8ea8b2127bd439b3d4f49f39f27ed2cd4ec6eb9339c12c808297e809f2f7b"
+    },
+    {
+      "path": "tests/fixtures/social/perf/make_scored.py",
+      "bytes": 2556,
+      "sha256": "e9818de15af5d4613cd5d51e7f826b8a870fbe097ec05ca0bb910f63be4ea7e1"
+    },
+    {
+      "path": "tests/fixtures/social/registry/analyst_list.json",
+      "bytes": 951,
+      "sha256": "dbbbb5469eb8bbefbb2248f40da640cd4fba620ba7c716922c6d1751b52e6113"
+    },
+    {
+      "path": "tests/fixtures/social/registry/board_csv.csv",
+      "bytes": 229,
+      "sha256": "e2ed14f5c5df51c98c53bc3a9d2d7051dd4c24f4ec068cd0fcbd6de60418803b"
+    },
+    {
+      "path": "tests/fixtures/social/registry/board_csv_meta.json",
+      "bytes": 545,
+      "sha256": "4222e15413c21eb9a8c6d7c39116c6836f9956bf9a5f7aa16f0d6d1e17e925ad"
+    },
+    {
+      "path": "tests/fixtures/social/registry/identical_names.json",
+      "bytes": 1140,
+      "sha256": "6517e06d05b650e280d45d12c19f73b24c237aa10f29485b1fb5b985913d0b97"
+    },
+    {
+      "path": "tests/fixtures/social/registry/leaderboard_fresh.json",
+      "bytes": 2362,
+      "sha256": "5f711d1be218e9bc328954e7e5f0a6bc91ef04b2132b5e21645bb756eea34c49"
+    },
+    {
+      "path": "tests/fixtures/social/registry/leaderboard_second.json",
+      "bytes": 1042,
+      "sha256": "c0300ba0a42bcac5eb7f5ae4ae6a89aecee927f91fa74d038ff7e5b215a95926"
+    },
+    {
+      "path": "tests/fixtures/social/registry/leaderboard_stale.json",
+      "bytes": 1195,
+      "sha256": "a33d2d23b91810238a16ac2d4443c04d21ab629946fbe3b9adb08b28dacc056a"
+    },
+    {
+      "path": "tests/fixtures/social/replay/sample_report.md",
+      "bytes": 11603,
+      "sha256": "3690c4db72a6d9031860f929cdc9e9d4ed3e7af5e76dde8d52dcbcc93955d864"
+    },
+    {
+      "path": "tests/fixtures/social/replay/synthetic_spec.json",
+      "bytes": 564,
+      "sha256": "e73b54adfd4e2e0fb4c2c434ab50b8f0cba97105f9aa89e54c0a5441d6c6dc38"
+    },
+    {
+      "path": "tests/fixtures/social/research/make_research.py",
+      "bytes": 6787,
+      "sha256": "d9f3e1a93beb1cda4c066642afadad85cee5bd35a10a1cd497f394215daaf0e4"
+    },
+    {
+      "path": "tests/fixtures/social/research/scout_before_after.json",
+      "bytes": 14615,
+      "sha256": "91ee60bbb2fd49ead288033dbd29d045cb86569da669fb156e1881869b3edc91"
+    },
+    {
+      "path": "tests/fixtures/social/resolve/fx_providers.json",
+      "bytes": 16653,
+      "sha256": "c4eb34e54461dc8ef36b777573681b8f3e22b9cdd182d30a1e6a9b14611a6271"
+    },
+    {
+      "path": "tests/fixtures/social/resolve/post_ambiguous.json",
+      "bytes": 158,
+      "sha256": "ff4e5c8ddc70f6e9f9620b1eed0ed03b6ce1694d6adaa3dc03e0cdf2611b9174"
+    },
+    {
+      "path": "tests/fixtures/social/resolve/post_resolved.json",
+      "bytes": 237,
+      "sha256": "3ea4fed456bc355f922af41d768834f11d39adbb9e8fac0dec31fccee1c7ed17"
+    },
+    {
+      "path": "tests/fixtures/social/roundtrip_01.json",
+      "bytes": 2404,
+      "sha256": "865078a2528393826b2957279db3037441c8070afc81e498bd2ba30bc88ad8d6"
+    },
+    {
+      "path": "tests/fixtures/social/telegram_bot/fx_tg_access.json",
+      "bytes": 2549,
+      "sha256": "9dc86573ddfbee7c25ff3e5132c615e6379ca56432e4e3b6843f3ea0bab8cc86"
+    },
+    {
+      "path": "tests/fixtures/social/telegram_bot/fx_tg_config.json",
+      "bytes": 506,
+      "sha256": "40b76f23fd6d64c65a5c88c25894d354aedb6e562bbffe5cb5ba22a2f97c6f34"
+    },
+    {
+      "path": "tests/fixtures/social/telegram_bot/fx_tg_main.json",
+      "bytes": 10316,
+      "sha256": "b9619881b89eeb9db1bd349c0200a628415fcdc5ccc0eb3711e0c1a77d3404db"
+    },
+    {
+      "path": "tests/fixtures/social/telegram_bot/fx_tg_second.json",
+      "bytes": 2492,
+      "sha256": "53600a91c307fd51fe85fbc4a2c5d2c3a4550265e25e7a241e1467b061e6ae6a"
+    },
+    {
+      "path": "tests/fixtures/social/wallets/fx_evm_base.json",
+      "bytes": 1590,
+      "sha256": "224764cda2d917e261d3784fb0b750bc03018165860c629dd5bbb3573a747a4f"
+    },
+    {
+      "path": "tests/fixtures/social/wallets/fx_evm_ethereum.json",
+      "bytes": 1598,
+      "sha256": "7c1ca5c7f41a0a1cbf77cefe32d5fa634d8903e57b0e71ac1d1ac1e6b8badf60"
+    },
+    {
+      "path": "tests/fixtures/social/wallets/fx_helius_429.json",
+      "bytes": 1719,
+      "sha256": "882ca24798660e562f16b426f398b459df1031d358d352d8c25c45b48471281f"
+    },
+    {
+      "path": "tests/fixtures/social/wallets/fx_helius_bad_rows.json",
+      "bytes": 4045,
+      "sha256": "59d4ea63c255ce823207ef88a27934aec05a0daffc6945444a61949d15949a7e"
+    },
+    {
+      "path": "tests/fixtures/social/wallets/fx_helius_ok.json",
+      "bytes": 10802,
+      "sha256": "175c349ac120f34b2bf798825b5ad16496c3e1e069fd14a52b8e9431f4f6d4c9"
+    },
+    {
+      "path": "tests/fixtures/social/wallets/fx_signed.json",
+      "bytes": 1469,
+      "sha256": "81d09e10406dcbbcf6899967fa15b09c6b246273005abe130ae6327b409393a9"
+    },
+    {
+      "path": "tests/fixtures/social/wallets/index.json",
+      "bytes": 3015,
+      "sha256": "d772dbbde8c919e935c6d39b1bb43c1484cddd3af7302d9f28a09e94ad86aa86"
+    },
+    {
+      "path": "tests/fixtures/social/x_api/fx_x_config.json",
+      "bytes": 542,
+      "sha256": "1839f56b15fce6fc86f3ff6f88bcf41c9c348a8432e354bfaab7e73c89b29d7e"
+    },
+    {
+      "path": "tests/fixtures/social/x_api/fx_x_main.json",
+      "bytes": 12005,
+      "sha256": "451d9d8edbf451bc4eb0a52b9bcf26716e95ec3b47c28c3737eea316e674c4e2"
+    },
+    {
+      "path": "tests/fixtures/social/x_api/fx_x_second.json",
+      "bytes": 3605,
+      "sha256": "7213491c4752bb401d065031cb48119283eec01cac90848b8f2b9112ef70c203"
+    },
+    {
+      "path": "tests/test_catalyst.py",
+      "bytes": 8137,
+      "sha256": "c2884f210f4c82c738927db3bb4d4b09ce6a1a2252fcf9b254d3c299a1a15ab5"
+    },
+    {
+      "path": "tests/test_catalyst_xprofile.py",
+      "bytes": 2608,
+      "sha256": "9954ab9b5ae040a468fb1bcda77360c52c3f2a9cdbb247535a606cfeaf6d885a"
+    },
+    {
+      "path": "tests/test_content_guard.py",
+      "bytes": 7439,
+      "sha256": "d00443e4c761e53c8d9518796bee595b93541ad9dde7c21c4c3a071034db68c2"
+    },
+    {
+      "path": "tests/test_ecosystem.py",
+      "bytes": 6960,
+      "sha256": "45bb25ff4aa78b6c986390e066444ef8e82ca71168df1cdbe350bae41cc1eb0a"
+    },
+    {
+      "path": "tests/test_evm.py",
+      "bytes": 6341,
+      "sha256": "bc80504b9967c782165067c2b3827a3e261508f3314861b1d5023a1466d8e303"
+    },
+    {
+      "path": "tests/test_farm.py",
+      "bytes": 1850,
+      "sha256": "65f140b24dc50347705183bb4749834cf2b2e81d5acdf342c6557d336e3d2f1b"
+    },
+    {
+      "path": "tests/test_launch.py",
+      "bytes": 7281,
+      "sha256": "c20e96d80f9dfdf80553bd21a04c3759fe8c079ae0e88f666c95cd1bace1a1aa"
+    },
+    {
+      "path": "tests/test_m13_18.py",
+      "bytes": 18068,
+      "sha256": "613f8a86de6bf12bbc7e3e1426b4f050b1cf2eb711452a4d277a42b521eea32f"
+    },
+    {
+      "path": "tests/test_m21_28.py",
+      "bytes": 19597,
+      "sha256": "8bc627441cafadeae9081c029dbc35b4a5dc99d4b9ea4ed18acb4142075e20bc"
+    },
+    {
+      "path": "tests/test_pipeline_live_fixture.py",
+      "bytes": 2016,
+      "sha256": "ec7983325ffbfdb4afaab07c881bcd8e45812bb5e232b785d443b5bfc9182f1e"
+    },
+    {
+      "path": "tests/test_release_tools.py",
+      "bytes": 4084,
+      "sha256": "ca36f4709812f3e9f9c2caccaa845564ae1f4de50497e96aaf59f118a8808242"
+    },
+    {
+      "path": "tests/test_secrets.py",
+      "bytes": 2877,
+      "sha256": "9b8e57fc607de32b96435124862e1f10b347ddcf338323886cb558b60917ec33"
+    },
+    {
+      "path": "tests/test_social_alerts.py",
+      "bytes": 29612,
+      "sha256": "1bd39b51eface6526179662f6b7322501bafd6e35b9e4cfaaaf84103fd303194"
+    },
+    {
+      "path": "tests/test_social_alpha.py",
+      "bytes": 41665,
+      "sha256": "219c44c7f4617a87bbcd35122ba2e77a6d0b151e0eeab3c3effd1f583e195749"
+    },
+    {
+      "path": "tests/test_social_chronology.py",
+      "bytes": 32794,
+      "sha256": "870b4e4607c46655da955bd94ab4bf81abcff55b36583f706f7f8724e1c2f31a"
+    },
+    {
+      "path": "tests/test_social_extraction.py",
+      "bytes": 30187,
+      "sha256": "e53f0334f3bf64b9823dac3ab876dfc250009ab273f5893e708dc00e2262f770"
+    },
+    {
+      "path": "tests/test_social_feed.py",
+      "bytes": 24009,
+      "sha256": "05d96c998ae132d13f1e28bd5be067cb50fbd1b684e32187e9c41230da239aca"
+    },
+    {
+      "path": "tests/test_social_identity.py",
+      "bytes": 23242,
+      "sha256": "b67257c4424ce9a9ab9900de6ad2f87564babda31a1e5663c0c3f3768d4436fc"
+    },
+    {
+      "path": "tests/test_social_ingest.py",
+      "bytes": 19083,
+      "sha256": "1b61279d037ded5e7697abf069b7ad5efdcdd5ac040e342d199c80ff39a9bb66"
+    },
+    {
+      "path": "tests/test_social_narratives.py",
+      "bytes": 38630,
+      "sha256": "cf041a29ecff3cbbfa361f71ea545b37e57d974659d9b009ddaf6e1c36b37da3"
+    },
+    {
+      "path": "tests/test_social_outcomes.py",
+      "bytes": 28908,
+      "sha256": "c31643732f742ff38978213efc7b3d0ecbc11097589e32169f8b853ff3e5cedd"
+    },
+    {
+      "path": "tests/test_social_performance.py",
+      "bytes": 41773,
+      "sha256": "7ce69a32477906fae36108f019e56bba94c1068662642d0fc4e67600341f6545"
+    },
+    {
+      "path": "tests/test_social_registry.py",
+      "bytes": 57661,
+      "sha256": "06b4d7eef9c80b9b3c4acf1bbaa3a0b8d62d71ac68233ac0dc687e32f1a6578a"
+    },
+    {
+      "path": "tests/test_social_replay.py",
+      "bytes": 22670,
+      "sha256": "078c50eb725173e3d2bfb783a865219d6b1ac6f61549b7770ce2d3d11e7aebd2"
+    },
+    {
+      "path": "tests/test_social_research.py",
+      "bytes": 24874,
+      "sha256": "92b8260e66364c8d1de1eab6165a520b1c421e13e66b6663e2ea999587f2f938"
+    },
+    {
+      "path": "tests/test_social_store.py",
+      "bytes": 22961,
+      "sha256": "4c05c84712afef5d0225d4c618579a498cc9d4937d39d1ded8c57a999a534b6b"
+    },
+    {
+      "path": "tests/test_social_telegram.py",
+      "bytes": 31148,
+      "sha256": "dcb1f61f34287580adc3dca978f130dc93493fcdd3fd8cbb0064f9f77c6ad2ae"
+    },
+    {
+      "path": "tests/test_social_wallets.py",
+      "bytes": 48060,
+      "sha256": "e3466173e294c29bc9185e6950180855a367f5cd8487a4f7fbf48a75bf629634"
+    },
+    {
+      "path": "tests/test_social_x_api.py",
+      "bytes": 29194,
+      "sha256": "851553f695c86a063aa0a840674a64be4f0156464a4c09d4573a4eb496f46529"
+    },
+    {
+      "path": "tests/test_wallet.py",
+      "bytes": 1420,
+      "sha256": "177dbd2cfd1ca5a0f1138cf2021a7658d5bdda8d85fea5f45a40a593828f8593"
+    },
+    {
+      "path": "tools/direct/direct_refresh.py",
+      "bytes": 7009,
+      "sha256": "30c1c7e4a38fb54a60a9cfe2d37f14bec58fdd1b5e00eed6bbb1e610fb2c193d"
+    },
+    {
+      "path": "tools/direct/mkplans.js",
+      "bytes": 1658,
+      "sha256": "657a2532b13a68f382c38c55f9c959c93bd1b69e09af8c2cd3c47eac87c3157c"
+    },
+    {
+      "path": "tools/direct/runner.js",
+      "bytes": 777,
+      "sha256": "0496abfca8242d406a3bc9c52982e9c28cbb05f0ae008ea068f22f3bba7fcde3"
+    },
+    {
+      "path": "tools/release_audit.py",
+      "bytes": 17190,
+      "sha256": "c2caa4a5f30eb28720166e8b91a99dffea1eab9237570b452fc5724dcf5ec067"
+    },
+    {
+      "path": "tools/release_e2e.py",
+      "bytes": 17548,
+      "sha256": "c0ca90fb7ed4c530e0681925cf8fcb11493a911e4868fbc3c93df6219693a017"
+    },
+    {
+      "path": "tools_bundle.py",
+      "bytes": 1368,
+      "sha256": "3e9c615c9a16e41ef645c89fde49b446f32559c1bc3f284cc23c2296ba7cd7d1"
+    }
+  ],
+  "note": "Fresh deterministic snapshot digest; does not recover the original audit ZIP or raw test logs."
+}

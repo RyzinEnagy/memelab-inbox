@@ -1,0 +1,47 @@
+[
+  {
+    "name": "m00-focused",
+    "command": [
+      "-m",
+      "pytest",
+      "tests/test_audit_evidence.py",
+      "audits/social-intelligence/evidence/m00_archive_recovery/test_archive_integrity.py",
+      "-q",
+      "-p",
+      "no:cacheprovider"
+    ],
+    "exit_code": 0,
+    "seconds": 1.489,
+    "output": "..........                                                               [100%]\n10 passed in 1.39s"
+  },
+  {
+    "name": "archive-integrity",
+    "command": [
+      "audits/social-intelligence/evidence/m00_archive_recovery/verify_archives.py",
+      "--out",
+      "audits/social-intelligence/evidence/m00_archive_recovery/results"
+    ],
+    "exit_code": 0,
+    "seconds": 1.284,
+    "output": "{\n  \"integrity\": \"PASS\",\n  \"m00_acceptance\": \"BLOCKED\",\n  \"original_archives\": 4,\n  \"extracted_members\": 50,\n  \"embedded_hashes_matched\": 43,\n  \"primary_inputs\": 8,\n  \"supporting_snapshots\": 2,\n  \"requirements_exact_text_matched\": 105,\n  \"crosswalk_ids\": 67,\n  \"pinned_code_spans\": 83,\n  \"primary_ops_rows\": 10,\n  \"credential_findings\": [],\n  \"credential_placeholders\": [],\n  \"application_path_changes\": [],\n  \"remaining\": \"Original Phase 03 A\\u2013E scripts/inputs/raw logs absent; Phase 04 terminated-suite log not supplied.\"\n}"
+  },
+  {
+    "name": "inventory",
+    "command": [
+      "tools/check_audit_evidence.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.025,
+    "output": "{\n  \"status\": \"BLOCKED\",\n  \"recovered\": 8,\n  \"required\": 8,\n  \"missing\": [],\n  \"independent_review\": \"REJECTED\",\n  \"integrity_errors\": []\n}"
+  },
+  {
+    "name": "strict-gate",
+    "command": [
+      "tools/check_audit_evidence.py",
+      "--require-complete"
+    ],
+    "exit_code": 2,
+    "seconds": 0.025,
+    "output": "{\n  \"status\": \"BLOCKED\",\n  \"recovered\": 8,\n  \"required\": 8,\n  \"missing\": [],\n  \"independent_review\": \"REJECTED\",\n  \"integrity_errors\": []\n}"
+  }
+]

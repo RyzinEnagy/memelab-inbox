@@ -1,0 +1,131 @@
+{
+  "source_documents": [
+    {
+      "name": "00_BASELINE.md",
+      "bytes": 12558,
+      "sha256": "16a3db8d5cc542dd1195a224cf7f712c7f88fb832042854db74ff8a7b5eb316f",
+      "manifest_match": true,
+      "independent_original_upload_digest": null,
+      "origin_note": "Library raw-file backed; recovered text copy"
+    },
+    {
+      "name": "REQUIREMENTS_MATRIX.md",
+      "bytes": 101229,
+      "sha256": "37bee78f56e1023a1901fecfcf57a77cb39ed9ab3ff8f8a7239c86beffd1035d",
+      "manifest_match": true,
+      "independent_original_upload_digest": null,
+      "origin_note": "Library raw-file backed; recovered text copy"
+    },
+    {
+      "name": "01_FUNCTIONAL_AUDIT.md",
+      "bytes": 20597,
+      "sha256": "42ca9384f142ec1a09157ba6e0a1d97000af3f35e6f55690735d1351290e1889",
+      "manifest_match": true,
+      "independent_original_upload_digest": null,
+      "origin_note": "Library raw-file backed; recovered text copy"
+    },
+    {
+      "name": "02_ARCHITECTURE_AUDIT.md",
+      "bytes": 28404,
+      "sha256": "0584201710ce79b47e00c9e05547df2eefda4c9756e5211e92de4e4d2fbb24de",
+      "manifest_match": true,
+      "independent_original_upload_digest": "0584201710ce79b47e00c9e05547df2eefda4c9756e5211e92de4e4d2fbb24de",
+      "origin_note": "Original user-supplied Phase 02 audit Markdown; byte-for-byte verified to uploaded SHA-256; report-authored findings, original probes/logs still pending"
+    },
+    {
+      "name": "03_RESEARCH_VALIDITY.md",
+      "bytes": 36857,
+      "sha256": "06cd96136950a1bcebe03a6fcd8cf92ca68d1d82b6a72385b54d93112d203322",
+      "manifest_match": true,
+      "independent_original_upload_digest": "06cd96136950a1bcebe03a6fcd8cf92ca68d1d82b6a72385b54d93112d203322",
+      "origin_note": "Original user-supplied Phase 03 audit Markdown; byte-for-byte verified to uploaded SHA-256; report-authored findings, original probes/logs still pending"
+    },
+    {
+      "name": "04_ADVERSARIAL_AUDIT.md",
+      "bytes": 30831,
+      "sha256": "fbb7c1d4becd3a86f1364999b00a1f204981dfe9b9b6be73c49dc971c041890f",
+      "manifest_match": true,
+      "independent_original_upload_digest": null,
+      "origin_note": "Library indexed text copy; original raw bytes unavailable"
+    },
+    {
+      "name": "05_OPERATIONS_AND_UX.md",
+      "bytes": 29340,
+      "sha256": "132131efbb2793de2a86019e76962372d11ec8c197f09ec4e03e190f6c9c5c64",
+      "manifest_match": true,
+      "independent_original_upload_digest": null,
+      "origin_note": "Library indexed text copy; original raw bytes unavailable"
+    },
+    {
+      "name": "06_STRATEGIC_IMPROVEMENTS.md",
+      "bytes": 42401,
+      "sha256": "a4563bed9a62055aa99098c04eb4b7cdb68406b55635511cb551f76afce46fd0",
+      "manifest_match": true,
+      "independent_original_upload_digest": null,
+      "origin_note": "Existing immutable audit branch record"
+    },
+    {
+      "name": "phase02_FINDINGS.md",
+      "bytes": 29711,
+      "sha256": "694dd5e52acc6ac4074c010363acc9a283f9f2c06a5106247de89c149d78fc8d",
+      "manifest_match": true,
+      "independent_original_upload_digest": "694dd5e52acc6ac4074c010363acc9a283f9f2c06a5106247de89c149d78fc8d",
+      "origin_note": "Original user-uploaded phase-specific finding register; preserved without editing"
+    },
+    {
+      "name": "phase03_FINDINGS.md",
+      "bytes": 41187,
+      "sha256": "4a4a18c1462c8047eb03f86f6a67a49984ebd6b9ef5c6963f3f47b1493192964",
+      "manifest_match": true,
+      "independent_original_upload_digest": "4a4a18c1462c8047eb03f86f6a67a49984ebd6b9ef5c6963f3f47b1493192964",
+      "origin_note": "Original user-uploaded phase-specific finding register; preserved without editing"
+    }
+  ],
+  "manifest_matches": 10,
+  "original_upload_digests_matched": 4,
+  "crosswalk_ids": 67,
+  "checked_code_spans": 83,
+  "requirements": 105,
+  "m00_changed_files": [
+    "audits/social-intelligence/EVIDENCE_CROSSWALK.md",
+    "audits/social-intelligence/EVIDENCE_MANIFEST.json",
+    "audits/social-intelligence/FINDINGS.md",
+    "audits/social-intelligence/M00_PRIOR_CHAT_LOCATORS.md",
+    "audits/social-intelligence/M00_RECOVERY_REPORT.md",
+    "audits/social-intelligence/M00_VERIFICATION.md",
+    "audits/social-intelligence/REMEDIATION_ROADMAP.md",
+    "audits/social-intelligence/recovered/00_BASELINE.md",
+    "audits/social-intelligence/recovered/01_FUNCTIONAL_AUDIT.md",
+    "audits/social-intelligence/recovered/02_ARCHITECTURE_AUDIT.md",
+    "audits/social-intelligence/recovered/03_RESEARCH_VALIDITY.md",
+    "audits/social-intelligence/recovered/04_ADVERSARIAL_AUDIT.md",
+    "audits/social-intelligence/recovered/05_OPERATIONS_AND_UX.md",
+    "audits/social-intelligence/recovered/M00_RECOVERY_REPORT_PRE_ATTACHMENTS.md",
+    "audits/social-intelligence/recovered/REQUIREMENTS_MATRIX.md",
+    "audits/social-intelligence/recovered/phase02_FINDINGS.md",
+    "audits/social-intelligence/recovered/phase03_FINDINGS.md",
+    "docs/social-intelligence/DECISIONS.md",
+    "docs/social-intelligence/EXECUTION.md",
+    "docs/social-intelligence/HANDOFF.md",
+    "docs/social-intelligence/ROADMAP.md",
+    "tests/test_audit_evidence.py",
+    "tools/check_audit_evidence.py"
+  ],
+  "forbidden_path_changes": [],
+  "pinned_application_path_changes": [],
+  "original_publication_missing_inputs": [
+    "00_BASELINE.md",
+    "REQUIREMENTS_MATRIX.md",
+    "01_FUNCTIONAL_AUDIT.md",
+    "02_ARCHITECTURE_AUDIT.md",
+    "03_RESEARCH_VALIDITY.md",
+    "04_ADVERSARIAL_AUDIT.md",
+    "05_OPERATIONS_AND_UX.md"
+  ],
+  "decision": "BLOCKED",
+  "limits": [
+    "04/05 original bytes unavailable",
+    "00/RM/01 independent original Library bytes unavailable",
+    "Original staged prompt, probe and raw-log archives absent; fresh probes are new evidence"
+  ]
+}

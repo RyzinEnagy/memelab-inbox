@@ -1,0 +1,50 @@
+{
+  "schema": "memelab.m00.original-archives/1",
+  "received_utc": "2026-10-15",
+  "archives": [
+    {
+      "phase": "phase00",
+      "name": "Memecoin_Social_Intelligence_Baseline_Audit.zip",
+      "path": "originals/phase00/Memecoin_Social_Intelligence_Baseline_Audit.zip",
+      "bytes": 183795,
+      "sha256": "4eca152678db816a5dd88334739a76d5f9ecf0d021d5c101ec4947724cbe7d70"
+    },
+    {
+      "phase": "phase01",
+      "name": "Social_Intelligence_Phase_01_Functional_Audit.zip",
+      "path": "originals/phase01/Social_Intelligence_Phase_01_Functional_Audit.zip",
+      "bytes": 97917,
+      "sha256": "d6cc98d575252fe3c6ca7c41307f4969598510a3651d3afe88208d883eb16663"
+    },
+    {
+      "phase": "phase04",
+      "name": "Social_Intelligence_Adversarial_Audit_Phase_04.zip",
+      "path": "originals/phase04/Social_Intelligence_Adversarial_Audit_Phase_04.zip",
+      "bytes": 18021,
+      "sha256": "d6432a3610fa4cd3be9221bd37222150ebec7bf7051ef99a8be88f17d020c77a"
+    },
+    {
+      "phase": "phase05",
+      "name": "Social_Intelligence_Phase_05_Operations_UX_Audit.zip",
+      "path": "originals/phase05/Social_Intelligence_Phase_05_Operations_UX_Audit.zip",
+      "bytes": 28256,
+      "sha256": "83099e983fa3cfa93b4043265257b8d289deadf4e73667738b25f5a889655901"
+    }
+  ],
+  "loose_uploads": [
+    {
+      "received_name": "FINDINGS.md",
+      "preserved_path": "recovered/phase03_FINDINGS.md",
+      "bytes": 41187,
+      "sha256": "4a4a18c1462c8047eb03f86f6a67a49984ebd6b9ef5c6963f3f47b1493192964",
+      "disposition": "Byte-identical to prior preserved Phase 03 upload; no new executable evidence."
+    },
+    {
+      "received_name": "03_RESEARCH_VALIDITY.md",
+      "preserved_path": "recovered/03_RESEARCH_VALIDITY.md",
+      "bytes": 36857,
+      "sha256": "06cd96136950a1bcebe03a6fcd8cf92ca68d1d82b6a72385b54d93112d203322",
+      "disposition": "Byte-identical to prior preserved Phase 03 upload; no new executable evidence."
+    }
+  ]
+}
