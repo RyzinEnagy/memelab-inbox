@@ -57,6 +57,10 @@ New execution evidence is under `evidence/m00_archive_recovery/results/`; origin
 
 The tracked-tree scanner functions found zero credential or content-guard violations and 331 broad execution-keyword matches (56 in newly recovered prose). Manual review classified 330 as scanner-rule echoes in saved reports and one as an original prompt safety prohibition; no executable trade/signing code was identified. Scanner limits and match dispositions are retained in `publication-scan-review.json`; historical machine paths inside immutable archives identify audit environments, not credentials. No original file was redacted or rewritten to make checks pass. No copy was written to synced project `sources/`.
 
+## Published-tree confirmation
+
+Published archive commit `d9ab738af1a483c51a43d1b6e2e0ae47ceab23d6` has Git tree `666b853b3002fd94813a04e6593e9945711a95dd`, equal to the local verified tree. A fresh detached checkout repeated **10 passed in 1.50s** (exit 0), archive integrity exit 0 and strict acceptance exit 2; final status clean, guarded network events zero. Initial disposable setup had exit 128 for an unreferenced publication SHA, then exit 1 (9 passed/1 failed) because pinned Git objects were absent. Exact local fetches fixed setup; no code/assertion changes. The initial focused failure log and raw/public digests are retained in `results/published-clean-check.json` and `published-check-before-git-fetch.log`; reproduction instructions now explicitly require both application/optional objects. This confirms publication integrity, not M00 acceptance.
+
 ## How to clear the remaining gap
 
 1. Ask the original **Phase 03 research-validity audit** owner/session for the exact synthetic A–E probe scripts or notebook/cell export, input files and raw output/log files used on the pinned SHA. The report does not name a ZIP or standalone script; do not invent a filename. Locator: [Research validity audit](chatgpt-conversation://6ace5ce5-da80-83ea-ab3c-cbee238872ad). Upload the originals as files; another copy of the report alone will not add execution lineage.
