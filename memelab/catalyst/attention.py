@@ -10,6 +10,7 @@ Nothing here equates attention with buying. Holder-count growth is not independe
 from __future__ import annotations
 
 import json
+import sqlite3
 import time
 from collections import Counter
 from typing import Any
@@ -61,6 +62,21 @@ def sample_event(event_id: int, bundle: dict | None = None, t: float | None = No
             out["flags"].append("RESURFACED STORY: a matching story exists in the store from more than 7 days ago (event %s)" % ev["resurfaced_of"])
         if ev["future_dated"]:
             out["flags"].append("PUBLICATION TIME AHEAD OF RETRIEVAL: source clock or timezone error; event time unreliable")
+        # citation check from pages read through Firecrawl (catalyst enrich): an article that links another publisher in
+        # this event is derivative coverage. Counted only when every original and independent source was read.
+        try:
+            from .firecrawl import citation_check
+            cit = citation_check(con, event_id)
+        except sqlite3.OperationalError:
+            cit = None
+        if cit and cit["read"]:
+            m["sources_read"] = cit["read"]
+            m["citing_publishers"] = len(cit["citing"])
+            m["uncited_publishers"] = cit["uncited_publishers"]
+            if cit["citing"]:
+                out["flags"].append("CITES OTHER COVERAGE: %s link(s) to another publisher in this event; derivative reporting, not independent confirmation" % ", ".join(cit["citing"][:5]))
+            if not cit["complete"]:
+                out["notes"].append("citation check partial: %d of %d original/independent sources read; uncited count unknown" % (cit["read"], cit["sources"]))
         # paid placement signal (DEX Screener) for linked tokens
         links = [dict(r) for r in con.execute("SELECT mint FROM catalyst_token_links WHERE event_id=?", (event_id,))]
         for l in links:

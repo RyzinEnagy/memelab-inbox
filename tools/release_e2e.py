@@ -34,7 +34,7 @@ from pathlib import Path
 
 SECRET_VARS = ("HELIUS_API_KEY", "X_BEARER_TOKEN", "TELEGRAM_BOT_TOKEN", "TELEGRAM_WEBHOOK_SECRET", "ANTHROPIC_API_KEY",
                "REDDIT_CLIENT_ID", "REDDIT_CLIENT_SECRET", "FARCASTER_HUB_API_KEY", "DISCORD_BOT_TOKEN",
-               "YOUTUBE_API_KEY", "YOUTUBE_OAUTH_TOKEN",
+               "YOUTUBE_API_KEY", "YOUTUBE_OAUTH_TOKEN", "FIRECRAWL_API_KEY",
                "MEMELAB_ALERT_TELEGRAM_TOKEN", "MEMELAB_ALERT_TELEGRAM_CHAT_ID", "MEMELAB_ALERT_SMTP_PASSWORD",
                "GH_TOKEN", "GITHUB_TOKEN")
 
@@ -60,6 +60,7 @@ sys.addaudithook(_hook)
 
 # stage id, title, command (format keys: {db} {tmp} {py}), expected exit codes
 FIX = "tests/fixtures/social"
+FCX = "tests/fixtures/catalyst/firecrawl"
 NOW = "1791849600"  # 2026-10-13T00:00:00Z, fixed clock
 T1 = "5rXq7LtW6VnvMo16bB67FBstaaCr5RFeA7MCgECdkcpD"  # invented fixture wallet in fx_helius_ok.json
 
@@ -135,6 +136,13 @@ STAGES: list[tuple[str, str, str, tuple[int, ...]]] = [
     ("21", "YouTube fixture: 30-day expiry purge", "{py} -m memelab social youtube-purge --db {tmp}/youtube.sqlite --now 1794441600", (0,)),
     ("21", "not configured: YouTube health", "{py} -m memelab social youtube-health --db {db}", (1,)),
     ("21", "not configured: live YouTube ingest refuses before any call", "{py} -m memelab social youtube-ingest --db {db}", (1,)),
+    ("FC", "catalyst feed fixture: ingest a result file kept outside the inbox", "{py} -m memelab catalyst ingest --file " + FCX + "/feed_fx01.json", (0,)),
+    ("FC", "catalyst Firecrawl fixture: news search for other publishers of stored stories, ingested as corroboration", "{py} -m memelab catalyst fc-search --config " + FCX + "/config.json --fixture " + FCX + "/fx_search.json --events 5", (0,)),
+    ("FC", "catalyst Firecrawl fixture: read article pages (robots.txt, refused hosts, hashes and identifiers only)", "{py} -m memelab catalyst enrich --config " + FCX + "/config.json --fixture " + FCX + "/fx_enrich.json", (0,)),
+    ("FC", "catalyst Firecrawl fixture: second read adds nothing and makes no request", "{py} -m memelab catalyst enrich --config " + FCX + "/config.json --fixture " + FCX + "/fx_enrich.json", (0,)),
+    ("FC", "not configured: Firecrawl health", "{py} -m memelab catalyst fc-health", (1,)),
+    ("FC", "not configured: live Firecrawl enrich refuses before any call", "{py} -m memelab catalyst enrich", (1,)),
+    ("FC", "not configured: live Firecrawl search refuses before any call", "{py} -m memelab catalyst fc-search --events 3", (1,)),
 ]
 
 

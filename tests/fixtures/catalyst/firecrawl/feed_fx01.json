@@ -1,0 +1,49 @@
+{
+ "_plan": "fxcat01",
+ "_note": "Invented for tests: no real article, token, publisher statement or listing. Domains are used only so tier rules apply.",
+ "cat:news:cointelegraph": {
+  "s": 200,
+  "body": [
+   {
+    "title": "Binance will list Moonfrog (MFROG) on spot trading",
+    "link": "https://cointelegraph.com/news/fixture-moonfrog-binance-listing",
+    "pub": "Tue, 20 Oct 2026 14:00:00 +0000",
+    "desc": "Invented fixture item: an exchange says it will add a frog-themed token to spot trading."
+   }
+  ]
+ },
+ "cat:news:decrypt": {
+  "s": 200,
+  "body": [
+   {
+    "title": "Binance to list Moonfrog MFROG spot pair this week",
+    "link": "https://decrypt.co/fixture-moonfrog-binance",
+    "pub": "Tue, 20 Oct 2026 14:30:00 +0000",
+    "desc": "Invented fixture item written as a follow-up to the first report."
+   }
+  ]
+ },
+ "cat:news:gnews:memecoin": {
+  "s": 200,
+  "body": [
+   {
+    "title": "Senate shutdown vote scheduled for Friday - Example Wire",
+    "link": "https://news.google.com/rss/articles/FIXTURE-ARTICLE-1",
+    "pub": "Tue, 20 Oct 2026 12:00:00 +0000",
+    "desc": "Invented fixture item from an aggregator feed.",
+    "src": "Example Wire"
+   }
+  ]
+ },
+ "cat:news:theblock": {
+  "s": 200,
+  "body": [
+   {
+    "title": "Hyperframe validators approve fee switch upgrade",
+    "link": "https://www.theblock.co/post/fixture-fee-switch",
+    "pub": "Tue, 20 Oct 2026 09:00:00 +0000",
+    "desc": "Invented fixture item on a host whose robots.txt cannot be read."
+   }
+  ]
+ }
+}

@@ -14,7 +14,10 @@ Rules
             registry rows (Phase 08): every fixture entity or source labelled, no "best trader" style text in labels, reasons or notes;
             no "quote" or "exact_text" key in social_claim_extractions.output_json (Phase 06);
             summaries at most 400 characters; social_snapshots.text_value short labels only (no prose);
-            catalyst_sources.identity_notes without copied profile text
+            catalyst_sources.identity_notes without copied profile text;
+            catalyst_page_* tables (Firecrawl page reads): no content column, and every catalyst_page_facts value has the
+            shape of an address, a ticker or a domain (never page wording)
+  PAGE      anywhere in any JSON file: no "markdown" or "rawHtml" key with a value (scraped page text, catalyst/firecrawl.py)
   ALLOW     explicit entries for invented test fixtures, each with a reason
 
 Scope: generic keys such as "text", "title", "description" or "quote" are not flagged outside social units,
@@ -39,6 +42,14 @@ SOCIAL_ONLY_KEYS = {"bio", "full_text", "raw_text", "post_text", "tweet_text", "
                     "members", "member_list", "transcript", "screenshot", "exact_text"}
 CONTENT_COLUMNS = {"text", "raw_text", "full_text", "exact_text", "post_text", "bio", "body", "html", "content",
                    "message", "quote", "transcript"}
+PAGE_CONTENT_KEYS = {"markdown", "rawhtml", "raw_html"}          # scraped page text (catalyst/firecrawl.py)
+PAGE_COLUMNS = CONTENT_COLUMNS | PAGE_CONTENT_KEYS | {"title", "description", "snippet"}
+PAGE_FACT_SHAPES = {
+    "CONTRACT": re.compile(r"0x[0-9a-f]{40}|[1-9A-HJ-NP-Za-km-z]{32,44}"),
+    "ADDRESS_LINK": re.compile(r"0x[0-9a-f]{40}|[1-9A-HJ-NP-Za-km-z]{32,44}"),
+    "TICKER": re.compile(r"[A-Z][A-Z0-9]{0,9}"),
+    "CITED_DOMAIN": re.compile(r"[a-z0-9.\-]{1,253}"),
+}
 TRACKED_DB = "data/memelab.sqlite"
 PROSE_WORDS = 12          # social_snapshots.text_value longer than this many words reads as copied prose
 
@@ -54,6 +65,10 @@ ALLOW = [
      "invented GUILD_CREATE member entry for the bot itself (its role ids), needed to compute its channel permissions (Phase 20)"),
     ("tests/fixtures/social/roundtrip_01.json", "observations[*].text",
      "invented sentences used to prove the store hashes text and never writes it (Phase 01)"),
+    ("tests/fixtures/catalyst/firecrawl/fx_enrich.json", "exchanges[*].response.body.data.markdown",
+     "invented page text used to prove catalyst enrich keeps hashes and identifiers only (Firecrawl)"),
+    ("tests/fixtures/catalyst/firecrawl/fx_pull.json", "exchanges[*].response.body.data.rawHtml",
+     "invented rendered JSON document used to prove the navigate-mode fallback parser (Firecrawl)"),
 ]
 
 
@@ -95,6 +110,8 @@ def _walk(o, where: str, path: str, out: list[Violation]) -> None:
             loc = f"{where}.{k}" if where else str(k)
             if isinstance(k, str) and k.lower() in SOCIAL_ONLY_KEYS and x not in (None, "", [], {}) and not _allowed(path, loc):
                 out.append(Violation(path, loc, f"JSON: social-only content key '{k}'"))
+            elif isinstance(k, str) and k.lower() in PAGE_CONTENT_KEYS and x not in (None, "", [], {}) and not _allowed(path, loc):
+                out.append(Violation(path, loc, f"JSON: scraped page text key '{k}'"))
             _walk(x, loc, path, out)
     elif isinstance(o, list):
         for i, x in enumerate(o):
@@ -184,6 +201,15 @@ def check_sqlite(path: str, file: Path) -> list[Violation]:
             for rid, tv in con.execute("SELECT rowid, text_value FROM social_snapshots WHERE text_value IS NOT NULL"):
                 if len(re.findall(r"\w+", str(tv))) > PROSE_WORDS:
                     out.append(Violation(path, f"social_snapshots[rowid={rid}].text_value", "SQLITE: prose in social_snapshots.text_value"))
+        for t in sorted(x for x in tables if x.startswith("catalyst_page_")):
+            for col in (r[1] for r in con.execute(f"PRAGMA table_info({t})")):
+                if col.lower() in PAGE_COLUMNS:
+                    out.append(Violation(path, f"{t}.{col}", "SQLITE: page content column in a catalyst page table"))
+        if "catalyst_page_facts" in tables:
+            for fid, kind, value in con.execute("SELECT id, kind, value FROM catalyst_page_facts"):
+                rx = PAGE_FACT_SHAPES.get(kind)
+                if rx is None or not isinstance(value, str) or not rx.fullmatch(value):
+                    out.append(Violation(path, f"catalyst_page_facts[{fid}].value", "SQLITE: page fact that is not an address, ticker or domain"))
         if "catalyst_sources" in tables:
             cols = {r[1] for r in con.execute("PRAGMA table_info(catalyst_sources)")}
             if "identity_notes" in cols:

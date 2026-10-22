@@ -76,7 +76,8 @@ _DISCORD_RE = re.compile(r"\bBot\s+[A-Za-z0-9._\-]{20,}|(?<![A-Za-z0-9_\-])[A-Za
 _GOOGLE_RE = re.compile(r"(?<![A-Za-z0-9_\-])AIza[0-9A-Za-z_\-]{35}(?![A-Za-z0-9_\-])|\bya29\.[0-9A-Za-z_\-.]{20,}")
 # Telegram bot tokens are "<bot id>:<35 characters>" and travel inside the request URL path (/bot<token>/method)
 _TOKEN_RE = re.compile(r"\b(gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9]{20,})\b"
-                       r"|(?<![A-Za-z0-9])(?:bot)?\d{5,16}:[A-Za-z0-9_\-]{30,}")
+                       r"|(?<![A-Za-z0-9])(?:bot)?\d{5,16}:[A-Za-z0-9_\-]{30,}"
+                       r"|\bfc-[0-9a-fA-F]{32}\b")      # Firecrawl API keys: "fc-" + a UUID without dashes (catalyst/firecrawl.py)
 
 
 def redact(s: str) -> str:

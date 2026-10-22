@@ -71,6 +71,8 @@ Access modes from the browser bridge. Nothing below is reachable from the sandbo
 | Bybit, OKX announcement APIs | navigate | official | Bybit returned a non-JSON challenge page on 2026-10-07; OKX untested |
 | X profile pages | fetch | social | identity verification only (page title; bio not collected, D-020); timelines need a logged-in Chrome profile |
 | X timelines, Reddit, TikTok, Instagram | blocked / manual | social | coverage gaps recorded per source in catalyst_sources.coverage_gap |
+| Firecrawl news search (`web:firecrawl:search`) | api | aggregator | optional, needs FIRECRAWL_API_KEY and the config (docs/catalyst/FIRECRAWL.md); 2 credits per 10 results; other publishers of stored stories |
+| Article pages behind events (Firecrawl scrape) | api | per publisher | optional; hashes and identifiers only, never page text; robots.txt on 2026-10-22 allows cointelegraph, coindesk, decrypt, theblock, okx announcements and binance support pages, disallows news.google.com article links, binance /bapi/ and reuters |
 
 Trader research list (identity checked from public profile pages on 2026-10-07): @rasmr_eth, @Rewkang, @thedefivillain, @0xSisyphus, @blknoiz06 VERIFIED; @redphonecrypto NOT FOUND (404) and disabled pending a replacement handle. These are research sources, not certified profitable traders.
 

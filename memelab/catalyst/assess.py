@@ -63,12 +63,14 @@ def assess(event: dict, link: dict | None, attention: dict | None, core: dict | 
         comp["attention_quality"] = {"grade": "UNKNOWN"}; missing.append("attention sample")
     else:
         pts = 0
-        pts += 1 if (am.get("independent_sources") or 0) >= 2 else 0
+        # when every source was read and some only cite another publisher in the event, only uncited publishers count
+        indep = am.get("uncited_publishers") if am.get("uncited_publishers") is not None else am.get("independent_sources")
+        pts += 1 if (indep or 0) >= 2 else 0
         pts += 1 if len(am.get("platform_groups") or []) >= 2 else 0
         pts += 1 if (am.get("mention_acceleration_x") or 0) >= 2 else 0
         pts -= 1 if any(f.startswith(("MORE COPIES", "ATTENTION CONCENTRATED", "PAID PLACEMENT")) for f in flags) else 0
         grade = "STRONG" if pts >= 3 else "MODERATE" if pts == 2 else "WEAK"
-        comp["attention_quality"] = {"grade": grade, **{k: am.get(k) for k in ("unique_publishers", "independent_sources", "platform_groups", "mention_acceleration_x", "persistence_days", "top_publisher_share")}, "flags": flags, "coverage": "publisher-level only; social platforms unknown"}
+        comp["attention_quality"] = {"grade": grade, **{k: am.get(k) for k in ("unique_publishers", "independent_sources", "uncited_publishers", "platform_groups", "mention_acceleration_x", "persistence_days", "top_publisher_share")}, "flags": flags, "coverage": "publisher-level only; social platforms unknown"}
 
     # 4. timing / how widely known
     pub = event.get("published_at"); disc = event.get("discovered_at"); ev_at = event.get("event_at")

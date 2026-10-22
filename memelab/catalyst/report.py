@@ -4,6 +4,7 @@ UTC stored; America/New_York displayed."""
 from __future__ import annotations
 
 import json
+import sqlite3
 import time
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
@@ -35,6 +36,7 @@ def render(t: float | None = None, max_events: int = 25) -> str:
             L.append("- Sources that failed: " + ", ".join(f"{s['source_id']} ({(s['last_error'] or '')[:60]})" for s in failed))
         for s in gaps:
             L.append(f"- GAP {s['source_id']}: {s['coverage_gap']}")
+        L.append(_page_coverage_line(con, t))
         traders = [s for s in srcs if s["source_group"] == "trader"]
         L.append("- Trader research list: " + "; ".join(f"@{s['source_id'].split(':')[-1]} ({s['identity_verified']})" for s in traders) + ". Research sources, not certified profitable traders. Posts are not readable until an X login exists in the bridge profile; identity is checked from public profile pages.")
         L.append("")
@@ -93,6 +95,40 @@ def render(t: float | None = None, max_events: int = 25) -> str:
     return "\n".join(L)
 
 
+def _page_coverage_line(con, t: float) -> str:
+    """One coverage line for pages read through Firecrawl in the last 36 h (catalyst enrich / pull-pages --firecrawl)."""
+    try:
+        rows = con.execute("SELECT status, access_mode, credits_used FROM catalyst_page_fetches WHERE fetched_at > ?", (t - 36 * 3600,)).fetchall()
+    except sqlite3.OperationalError:
+        rows = []
+    live = [r for r in rows if r["access_mode"] == "live"]
+    if not live:
+        return "- Article pages (Firecrawl): none read in the last 36h; event descriptions are feed snippets only"
+    ok = sum(1 for r in live if r["status"] == "OK")
+    blocked = sum(1 for r in live if r["status"].startswith("ROBOTS"))
+    return (f"- Article pages (Firecrawl): {ok} of {len(live)} read in the last 36h ({blocked} skipped by robots.txt, "
+            f"{sum(r['credits_used'] or 0 for r in live)} credits); page text is not stored, only hashes and identifiers")
+
+
+def _page_line(con, e: dict) -> str | None:
+    try:
+        from .firecrawl import event_page_summary
+        s = event_page_summary(con, e["id"])
+    except sqlite3.OperationalError:
+        return None
+    if not s["attempts"]:
+        return None
+    parts = [f"- Pages read: {s['read']} of {s['attempts']} attempt(s)" + (f" ({', '.join(x for x in s['statuses'] if x != 'OK')})" if set(s["statuses"]) - {"OK"} else "")]
+    if s["contracts"]:
+        parts.append("contracts named (FACT about the page): " + ", ".join(f"{c} `{a}`" for c, a in s["contracts"][:5]))
+    if s["tickers"]:
+        parts.append("cashtags: " + ", ".join("$" + x for x in s["tickers"][:8]))
+    for dom, pt in s["page_times"][:2]:
+        gap = (pt - e["published_at"]) / 3600 if e.get("published_at") else None
+        parts.append(f"{dom} page time {ny(pt)}" + (f" ({gap:+.1f} h vs feed time)" if gap is not None and abs(gap) >= 1 else ""))
+    return "; ".join(parts)
+
+
 def _event_block(con, e: dict, a: dict | None, links: list[dict], t: float) -> list[str]:
     L = [f"### {e['title'][:160]}", ""]
     L.append(f"- Category {e['category']}; evidence {e['evidence_status']}; status {e['status']}" + (f" ({e['status_reason']})" if e.get("status_reason") else ""))
@@ -105,6 +141,9 @@ def _event_block(con, e: dict, a: dict | None, links: list[dict], t: float) -> l
         L.append("- Supporting: " + "; ".join(f"{o['platform'] or ''} [{o['role']}] {o['url'] or ''}"[:120] for o in others[:6]))
     if e.get("access_limits"):
         L.append(f"- Not checkable: {e['access_limits']}")
+    pages = _page_line(con, e)
+    if pages:
+        L.append(pages)
     for l in links:
         comp = json.loads(l.get("competing_json") or "[]")
         L.append(f"- Token: {l.get('symbol')} ({l.get('name')}), mint `{l['mint']}`, link {l['link_type']} / {l['link_strength']}, mint verified {bool(l['verified_mint'])}" + (f"; competing matches: " + ", ".join(f"{c.get('symbol')} {str(c.get('mint'))[:6]}.. (${(c.get('liquidity') or 0):,.0f} liq)" for c in comp[:4]) if comp else ""))

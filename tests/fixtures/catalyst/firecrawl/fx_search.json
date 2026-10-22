@@ -1,0 +1,68 @@
+{
+ "schema": "memelab.catalyst.firecrawl.fixture/1",
+ "note": "Invented for tests: no real article, token, publisher statement or listing. Domains are used only so tier rules apply.",
+ "exchanges": [
+  {
+   "recorded_at": "2026-10-20T16:00:00Z",
+   "request": {
+    "method": "POST",
+    "path": "/v2/search",
+    "match": {
+     "query": "Binance will list Moonfrog (MFROG) on spot trading"
+    }
+   },
+   "response": {
+    "status": 200,
+    "body": {
+     "success": true,
+     "creditsUsed": 2,
+     "data": {
+      "news": [
+       {
+        "title": "Moonfrog MFROG gets Binance spot listing",
+        "url": "https://www.coindesk.com/markets/fixture-moonfrog-listing",
+        "snippet": "Invented search snippet.",
+        "date": "2026-10-20T15:10:00Z",
+        "position": 1
+       },
+       {
+        "title": "Binance will list Moonfrog (MFROG) on spot trading",
+        "url": "https://cointelegraph.com/news/fixture-moonfrog-binance-listing",
+        "snippet": "Already stored.",
+        "date": "2026-10-20T14:00:00Z",
+        "position": 2
+       },
+       {
+        "title": "Moonfrog listing thread",
+        "url": "https://x.com/example/status/1",
+        "snippet": "Refused host.",
+        "date": "1 hour ago",
+        "position": 3
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-20T16:00:00Z",
+   "request": {
+    "method": "POST",
+    "path": "/v2/search",
+    "match": {
+     "query": "Senate shutdown vote scheduled for Friday"
+    }
+   },
+   "response": {
+    "status": 200,
+    "body": {
+     "success": true,
+     "creditsUsed": 2,
+     "data": {
+      "news": []
+     }
+    }
+   }
+  }
+ ]
+}

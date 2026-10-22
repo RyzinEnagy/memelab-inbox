@@ -34,6 +34,7 @@ CRED = {
     "google_api_key": re.compile(rb"(?<![A-Za-z0-9_\-])AIza[0-9A-Za-z_\-]{35}(?![A-Za-z0-9_\-])"),
     "google_oauth_token": re.compile(rb"\bya29\.[0-9A-Za-z_\-]{30,}"),
     "x_bearer": re.compile(rb"AAAAAAAAAAAAAAAAAAAAA[A-Za-z0-9%]{20,}"),
+    "firecrawl_key": re.compile(rb"(?<![A-Za-z0-9_\-])fc-[0-9a-fA-F]{32}(?![A-Za-z0-9_\-])"),
     "pem_private_key": re.compile(rb"-----BEGIN [A-Z ]*PRIVATE KEY-----"),
     "api_key_param": re.compile(rb"api[-_]?key=([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[A-Za-z0-9_\-]{24,})"),
     "bearer_header": re.compile(rb"Bearer [A-Za-z0-9%._\-]{30,}"),
@@ -59,7 +60,7 @@ EXPLAINED = [
     (r"^memelab/social/(content_guard|ingest|registry_import|alerts_core|outcomes_core|replay_core|research_core)\.py$", r"exec:.*", "refusal lists: keys or words the lab rejects"),
 ]
 
-SOCIAL_LOGIN_HOSTS = re.compile(r"(api\.x\.com|api\.twitter\.com|api\.telegram\.org|api\.anthropic\.com|smtp\.|oauth\.reddit\.com|www\.reddit\.com|discord\.com/api|www\.googleapis\.com/youtube)")
+SOCIAL_LOGIN_HOSTS = re.compile(r"(api\.x\.com|api\.twitter\.com|api\.telegram\.org|api\.anthropic\.com|smtp\.|oauth\.reddit\.com|www\.reddit\.com|discord\.com/api|www\.googleapis\.com/youtube|api\.firecrawl\.dev)")
 
 
 def run(cmd, cwd=ROOT, check=False):
@@ -174,10 +175,10 @@ def local_paths(tree: Path = ROOT) -> list[dict]:
 
 def billing_defaults() -> dict:
     out = {}
-    for f in sorted((ROOT / "docs" / "social-intelligence").glob("*.example.json")):
+    for f in sorted([*(ROOT / "docs" / "social-intelligence").glob("*.example.json"), *(ROOT / "docs" / "catalyst").glob("*.example.json")]):
         d = json.loads(f.read_text())
         flat = json.dumps(d)
-        out[f.name] = {"allow_billable_true": bool(re.search(r'"allow_billable":\s*true', flat)),
+        out[f.name] = {"allow_billable_true": bool(re.search(r'"allow_billable":\s*true', flat)) or bool(re.search(r'"enabled":\s*true', flat) and "firecrawl" in f.name),
                        "send_enabled_true": bool(re.search(r'"(send_enabled|notifications_opt_in)":\s*true', flat)),
                        "holds_secret_key": bool(re.search(r'"(token|api_key|password|secret|bearer)"\s*:', flat, re.I))}
     return out

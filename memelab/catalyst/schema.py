@@ -143,8 +143,47 @@ CREATE TABLE IF NOT EXISTS catalyst_outcomes (
   note TEXT
 );
 
+-- Page reads through Firecrawl (catalyst/firecrawl.py). This database is published, so these two tables hold
+-- derived facts only: hashes, counts, times, statuses and identifiers found on the page. The page text itself is
+-- never stored here; an optional short-lived private copy lives in the gitignored private store (private_ref).
+CREATE TABLE IF NOT EXISTS catalyst_page_fetches (
+  id INTEGER PRIMARY KEY,
+  run_id TEXT NOT NULL,
+  purpose TEXT NOT NULL,                 -- ENRICH | PULL_FALLBACK
+  provider TEXT NOT NULL,                -- firecrawl
+  access_mode TEXT NOT NULL CHECK (access_mode IN ('live','fixture')),
+  item_id INTEGER, event_id INTEGER, source_id TEXT,   -- context at read time; session-local, cleared on state import
+  requested_url TEXT NOT NULL,
+  url_key TEXT NOT NULL,                 -- canonical_url(requested_url): the durable key pages are looked up by
+  final_url TEXT,                        -- scheme://host/path after redirects; query and fragment dropped
+  final_domain TEXT,
+  status TEXT NOT NULL,                  -- OK | EMPTY | TARGET_HTTP_ERROR | ROBOTS_DISALLOWED | ROBOTS_UNREACHABLE | PROVIDER_* | ...
+  target_status INTEGER,                 -- HTTP status of the page itself (metadata.statusCode)
+  api_status INTEGER,                    -- HTTP status of the Firecrawl API call
+  content_sha256 TEXT, word_count INTEGER, language TEXT,
+  page_published_at REAL, page_modified_at REAL,   -- what the page's own metadata claims (UTC epoch)
+  cache_state TEXT, proxy_used TEXT,
+  credits_used INTEGER NOT NULL DEFAULT 0,
+  private_ref TEXT,                      -- 'sha256:<hash>' in data/private/ when a private copy was kept
+  error TEXT,                            -- redacted, at most 200 characters
+  fetched_at REAL NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS catalyst_page_facts (
+  id INTEGER PRIMARY KEY,
+  fetch_id INTEGER NOT NULL REFERENCES catalyst_page_fetches(id),
+  kind TEXT NOT NULL,                    -- CONTRACT | ADDRESS_LINK | TICKER | CITED_DOMAIN
+  value TEXT NOT NULL,                   -- an address, a ticker or a domain; never page wording
+  chain_hint TEXT,                       -- solana | evm | chain named by an explorer link host | NULL
+  UNIQUE(fetch_id, kind, value)
+);
+
 CREATE INDEX IF NOT EXISTS idx_citems_event ON catalyst_items(event_id);
 CREATE INDEX IF NOT EXISTS idx_cevents_status ON catalyst_events(status, updated_at);
 CREATE INDEX IF NOT EXISTS idx_clinks_mint ON catalyst_token_links(mint);
 CREATE INDEX IF NOT EXISTS idx_cassess_event ON catalyst_assessments(event_id, assessed_at);
+CREATE INDEX IF NOT EXISTS idx_cpf_item ON catalyst_page_fetches(item_id, fetched_at);
+CREATE INDEX IF NOT EXISTS idx_cpf_urlkey ON catalyst_page_fetches(url_key, status, fetched_at);
+CREATE INDEX IF NOT EXISTS idx_cpf_event ON catalyst_page_fetches(event_id);
+CREATE INDEX IF NOT EXISTS idx_cpfacts_fetch ON catalyst_page_facts(fetch_id, kind);
 """

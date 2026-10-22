@@ -19,17 +19,26 @@ from pathlib import Path
 from . import db
 
 TABLES = ["tokens", "theses", "entries", "watchlist", "rejections", "chains", "chain_snapshots", "chain_scores", "regime_snapshots", "narratives", "narrative_snapshots", "benchmark_baskets", "ecosystem_alerts",
-          "upcoming_launches", "launch_cohort", "launch_alerts", "launch_monitor", "launch_transitions", "launch_rejections"]
-# launch tables are trimmed on export: tracked launches only, cohort for 45 days (outcome base), alerts for 7 days
+          "upcoming_launches", "launch_cohort", "launch_alerts", "launch_monitor", "launch_transitions", "launch_rejections",
+          "catalyst_page_fetches", "catalyst_page_facts", "social_api_spend"]
+# launch tables are trimmed on export: tracked launches only, cohort for 45 days (outcome base), alerts for 7 days.
+# Firecrawl page reads (live only, 10 days) carry hashes and identifiers, never page text; they let a scheduled session
+# skip pages an earlier session already paid for. Firecrawl spend rows (live, 40 days) keep the monthly credit cap honest.
+_PAGES = "access_mode='live' AND fetched_at > strftime('%s','now') - 10*86400"
 EXPORT_WHERE = {"upcoming_launches": "status IS NOT NULL OR state='A'", "launch_cohort": "created_at > strftime('%s','now') - 45*86400",
-                "launch_alerts": "alerted_at > strftime('%s','now') - 7*86400", "launch_rejections": "rejected_at > strftime('%s','now') - 30*86400"}
+                "launch_alerts": "alerted_at > strftime('%s','now') - 7*86400", "launch_rejections": "rejected_at > strftime('%s','now') - 30*86400",
+                "catalyst_page_fetches": _PAGES,
+                "catalyst_page_facts": f"fetch_id IN (SELECT id FROM catalyst_page_fetches WHERE {_PAGES})",
+                "social_api_spend": "connector='firecrawl' AND mode='live' AND requested_at > strftime('%s','now') - 40*86400"}
 NEWER = {"upcoming_launches": "updated_at", "launch_cohort": "last_checked"}
 KEYS = {"tokens": ("mint",), "theses": ("mint", "created_at"), "entries": ("thesis_id", "style", "zone_low"),
         "watchlist": ("mint",), "rejections": ("mint", "rejected_at", "stage"),
         "chains": ("chain_id",), "chain_snapshots": ("chain_id", "observed_at"), "chain_scores": ("chain_id", "observed_at"), "regime_snapshots": ("observed_at",),
         "narratives": ("narrative_id",), "narrative_snapshots": ("narrative_id", "observed_at"), "benchmark_baskets": ("observed_at", "bucket"), "ecosystem_alerts": ("alerted_at", "kind", "subject"),
         "upcoming_launches": ("launch_id",), "launch_cohort": ("mint",), "launch_alerts": ("alerted_at", "kind", "launch_id"), "launch_monitor": ("launch_id", "window"),
-        "launch_transitions": ("launch_id", "at"), "launch_rejections": ("launch_id", "rejected_at")}
+        "launch_transitions": ("launch_id", "at"), "launch_rejections": ("launch_id", "rejected_at"),
+        "catalyst_page_fetches": ("url_key", "fetched_at", "purpose"), "catalyst_page_facts": ("fetch_id", "kind", "value"),
+        "social_api_spend": ("connector", "run_id", "endpoint", "requested_at", "resources_json")}
 DEFAULT = db.DATA_DIR / "state" / "latest.json"
 
 
@@ -38,7 +47,11 @@ def export(path: Path | str | None = None, keep_theses_per_mint: int = 12) -> Pa
     out.parent.mkdir(parents=True, exist_ok=True)
     data = {"_exported_at": time.time(), "_tables": {}}
     with db.connect() as con:
+        present = {r[0] for r in con.execute("SELECT name FROM sqlite_master WHERE type='table'")}
         for t in TABLES:
+            if t not in present:          # a database initialised before a table existed exports it as empty
+                data["_tables"][t] = []
+                continue
             rows = [dict(r) for r in con.execute(f"SELECT * FROM {t}" + (f" WHERE {EXPORT_WHERE[t]}" if t in EXPORT_WHERE else ""))]
             if t == "theses":
                 by: dict[str, list] = {}
@@ -68,6 +81,7 @@ def import_(src: str | None = None) -> dict[str, int]:
     added = {}
     with db.connect() as con:
         thesis_id_map: dict[int, int] = {}
+        fetch_id_map: dict[int, int] = {}
         for t in TABLES:
             n = 0
             for row in tables.get(t) or []:
@@ -75,12 +89,20 @@ def import_(src: str | None = None) -> dict[str, int]:
                 old_id = row.pop("id", None)
                 if t == "entries" and row.get("thesis_id") in thesis_id_map:
                     row["thesis_id"] = thesis_id_map[row["thesis_id"]]
+                if t == "catalyst_page_fetches":
+                    row["event_id"] = row["item_id"] = None      # ids of another database; pages are found by url_key
+                if t == "catalyst_page_facts":
+                    if row.get("fetch_id") not in fetch_id_map:
+                        continue
+                    row["fetch_id"] = fetch_id_map[row["fetch_id"]]
                 keys = KEYS[t]
                 where = " AND ".join(f"{k} IS ?" for k in keys)
                 hit = con.execute(f"SELECT rowid, * FROM {t} WHERE {where}", [row.get(k) for k in keys]).fetchone()
                 if hit:
                     if t == "theses" and old_id is not None:
                         thesis_id_map[old_id] = hit["id"]
+                    if t == "catalyst_page_fetches" and old_id is not None:
+                        fetch_id_map[old_id] = hit["id"]
                     if t == "chains" and row.get("research_allocation"):  # the export is the continuity record; a fresh init only knows registry defaults
                         con.execute("UPDATE chains SET status=?, status_reason=?, research_allocation=?, updated_at=? WHERE chain_id=?",
                                     (row.get("status"), row.get("status_reason"), row.get("research_allocation"), row.get("updated_at"), row["chain_id"]))
@@ -98,6 +120,8 @@ def import_(src: str | None = None) -> dict[str, int]:
                 cur = con.execute(f"INSERT INTO {t} ({','.join(cols)}) VALUES ({','.join('?' * len(cols))})", [row[c] for c in cols])
                 if t == "theses" and old_id is not None:
                     thesis_id_map[old_id] = cur.lastrowid
+                if t == "catalyst_page_fetches" and old_id is not None:
+                    fetch_id_map[old_id] = cur.lastrowid
                 n += 1
             added[t] = n
     return added

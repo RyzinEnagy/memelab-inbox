@@ -1,0 +1,54 @@
+{
+ "schema": "memelab.catalyst.firecrawl.config/1",
+ "enabled": false,
+ "billing": "cloud",
+ "base_url": "https://api.firecrawl.dev",
+ "budget": {
+  "max_credits_per_run": 0,
+  "max_credits_per_month": 0,
+  "max_requests_per_run": 40,
+  "usd_per_credit": 0.0,
+  "allow_billable": false,
+  "min_interval_seconds": 6.5,
+  "check_remote_balance": true,
+  "min_remaining_credits": 0
+ },
+ "scrape": {
+  "proxy": "basic",
+  "max_age_ms": 3600000,
+  "timeout_ms": 45000,
+  "only_main_content": true,
+  "store_in_cache": true,
+  "zero_data_retention": false
+ },
+ "enrich": {
+  "tiers": [
+   "official",
+   "reputable",
+   "aggregator"
+  ],
+  "source_groups": [
+   "news"
+  ],
+  "roles": [
+   "ORIGINAL",
+   "INDEPENDENT"
+  ],
+  "max_pages_per_run": 15,
+  "event_window_hours": 72,
+  "retry_failed_after_hours": 24
+ },
+ "search": {
+  "enabled": false,
+  "max_queries_per_run": 3,
+  "limit": 10,
+  "tbs_query": "qdr:d",
+  "tbs_events": "qdr:w",
+  "lang": "en",
+  "max_event_sources": 2
+ },
+ "pull_fallback": {
+  "sources": []
+ },
+ "private_copy_days": 7
+}

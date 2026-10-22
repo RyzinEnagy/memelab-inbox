@@ -5,7 +5,11 @@ Run order for a full catalyst pass:
   [browser] run the fetch plan, ship as inbox/cat_<stamp>.json; for each navigate URL: navigate, run
             __CAT.parsePage(kind, source_id), get_page_text, then here: catalyst save-page cat_<stamp> --file page.txt
   catalyst ingest --results cat_<stamp>    items -> events (dedup, corroboration, revisions)
+  [optional, Firecrawl configured]
+  catalyst fc-search --events 5            other publishers of the newest stories -> more items -> corroboration
+  catalyst enrich                          read the article behind each event: hashes, page times, contracts named
   catalyst match-plan --id catm_<stamp>    prints the Jupiter/DEX Screener search plan for NEW events' terms
+                                           (contracts named on a page are searched by exact address)
   [browser] run, ship, pull as catm_<stamp>
   catalyst match --results catm_<stamp>    verified token links with competing matches
   catalyst assess --results <deep ids>     eight assessments per linked mint that has deep data
@@ -144,17 +148,110 @@ def cmd_pull_pages(a):
             data.setdefault(f"cat:{sid}", {"s": 0, "len": 0, "ms": 0, "body": None, "err": str(e)[:200], "_cat": sid})
             print(f"  FAIL {sid}: {str(e)[:120]}")
         time.sleep(0.5)
+    if failed and getattr(a, "firecrawl", False):
+        # second API route before Chrome: only sources listed in pull_fallback.sources (geo-blocked ones are not routed around).
+        # When Firecrawl is not ready the direct-pull results are still written below.
+        try:
+            FC, cfg, tr, mode, key = _fc_setup(a)
+        except SystemExit:
+            print("  firecrawl fallback not run (see the NOT_RUN line above)")
+        else:
+            with db.connect() as con:
+                got, st = FC.pull_fallback(con, cfg, tr, [s for s in nav if s["source_id"] in failed], mode=mode,
+                                           run_id=FC.new_run_id("fcp"), parse=_parse_page, secret=key)
+            data.update(got)
+            failed = [sid for sid in failed if f"cat:{sid}" not in got]
+            print(f"  firecrawl fallback: {json.dumps(st, sort_keys=True)}")
     data["_n"] = len([k for k in data if not k.startswith("_")])
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(json.dumps(data, separators=(",", ":")))
     print(f"{len(nav) - len(failed)}/{len(nav)} navigate-mode sources pulled -> {p}" + (f"; Chrome fallback only for: {', '.join(failed)}" if failed else ""))
 
 
+# ---------------------------------------------------------------- Firecrawl (catalyst/firecrawl.py)
+
+def _tracked_db() -> bool:
+    try:
+        return Path(db.DB_PATH).resolve() == (db.ROOT / "data" / "memelab.sqlite").resolve()
+    except OSError:
+        return False
+
+
+def _fc_setup(a):
+    """(module, config, transport, mode, key). A live run needs readiness 'ready'; otherwise it prints NOT_RUN and exits 1
+    before any network call. A fixture run never touches the network and is refused against the tracked database."""
+    from . import firecrawl as FC
+    cfg, path, err = FC.load_config(getattr(a, "config", None))
+    key = FC.api_key()
+    if getattr(a, "fixture", None):
+        if _tracked_db():
+            raise SystemExit("fixture runs are refused against the tracked database data/memelab.sqlite; point MEMELAB_DB at a scratch file")
+        if cfg is None:
+            raise SystemExit(f"firecrawl config refused ({path}): {err or 'missing'}")
+        return FC, cfg, FC.FixtureTransport(a.fixture, secret=key), "fixture", key
+    status, why = FC.readiness(cfg, key, err)
+    if status != "ready":
+        print(json.dumps({"result": "NOT_RUN", "reason": status, "detail": why}))
+        raise SystemExit(1)
+    timeout = cfg["scrape"]["timeout_ms"] / 1000 + (90 if cfg["scrape"]["proxy"] == "auto" else 15)
+    return FC, cfg, FC.RestTransport(cfg["base_url"], key, timeout), "live", key
+
+
+def _fc_exit(st: dict) -> None:
+    stop = st.get("stopped") or ""
+    raise SystemExit(1 if stop.startswith(("UNAUTHORIZED", "PAYMENT_REQUIRED", "BAD_REQUEST")) else 0)
+
+
+def cmd_fc_health(a):
+    from . import firecrawl as FC
+    cfg, path, err = FC.load_config(a.config)
+    key = FC.api_key()
+    db.init_db()
+    tr = None
+    if a.remote and FC.readiness(cfg, key, err)[0] == "ready":
+        tr = FC.RestTransport(cfg["base_url"], key, 30)
+    with db.connect() as con:
+        out = FC.health(con, cfg, key=key, error=err, path=path, transport=tr, remote=a.remote)
+    print(json.dumps(out, indent=1, sort_keys=True))
+    raise SystemExit(0 if out["status"] in ("live_ok", "configured_unverified") else 1)
+
+
+def cmd_enrich(a):
+    FC, cfg, tr, mode, key = _fc_setup(a)
+    db.init_db()
+    with db.connect() as con:
+        st = FC.enrich(con, cfg, tr, mode=mode, run_id=a.run_id or FC.new_run_id("fce"), now=a.now, limit=a.limit,
+                       event_ids=a.event or None, secret=key)
+    print(json.dumps(st, indent=1, sort_keys=True))
+    print("# next: python -m memelab catalyst match-plan --id catm_<stamp>  (contracts named on pages are searched by address)")
+    _fc_exit(st)
+
+
+def cmd_fc_search(a):
+    FC, cfg, tr, mode, key = _fc_setup(a)
+    if not cfg["search"]["enabled"]:
+        print(json.dumps({"result": "NOT_RUN", "reason": "search_disabled", "detail": "config has search.enabled: false"}))
+        raise SystemExit(1)
+    if not a.query and not a.events:
+        raise SystemExit("give --query <text> or --events <n>")
+    db.init_db()
+    with db.connect() as con:
+        bodies, st = FC.search(con, cfg, tr, mode=mode, run_id=a.run_id or FC.new_run_id("fcs"), now=a.now, query=a.query,
+                               events=a.events or 0, secret=key)
+    print(json.dumps(st, indent=1, sort_keys=True))
+    if bodies and not a.no_ingest:
+        stats = I.ingest_bodies(bodies, retrieved_at=a.now)
+        print(json.dumps({k: v for k, v in stats.items() if k not in ("touched_events", "access_changes")}, indent=1))
+    _fc_exit(st)
+
+
 def cmd_ingest(a):
     db.init_db()
     bodies = {}
-    for rid in a.results:
-        p = INBOX / f"{rid}.result.json"
+    paths = [INBOX / f"{rid}.result.json" for rid in (a.results or [])] + [Path(f) for f in (a.file or [])]
+    if not paths:
+        raise SystemExit("give --results <id> (a file in data/inbox) or --file <path>")
+    for p in paths:
         if not p.exists():
             print("missing", p); continue
         data = json.loads(p.read_text())
@@ -291,8 +388,22 @@ def add_subparser(sp):
     ssp = p.add_subparsers(dest="ccmd", required=True)
     q = ssp.add_parser("plan"); q.add_argument("--id"); q.add_argument("--verify-traders", action="store_true"); q.set_defaults(fn=cmd_plan)
     q = ssp.add_parser("save-page"); q.add_argument("id"); q.add_argument("--file", required=True); q.set_defaults(fn=cmd_save_page)
-    q = ssp.add_parser("pull-pages", help="navigate-mode sources as direct API pulls (preferred over Chrome)"); q.add_argument("id"); q.set_defaults(fn=cmd_pull_pages)
-    q = ssp.add_parser("ingest"); q.add_argument("--results", nargs="+", required=True); q.set_defaults(fn=cmd_ingest)
+    q = ssp.add_parser("pull-pages", help="navigate-mode sources as direct API pulls (preferred over Chrome)"); q.add_argument("id")
+    q.add_argument("--firecrawl", action="store_true", help="retry failed sources listed in the Firecrawl config's pull_fallback.sources through Firecrawl")
+    q.add_argument("--config"); q.set_defaults(fn=cmd_pull_pages)
+    q = ssp.add_parser("ingest"); q.add_argument("--results", nargs="+"); q.add_argument("--file", nargs="+", help="result JSON file(s) outside data/inbox")
+    q.set_defaults(fn=cmd_ingest)
+    q = ssp.add_parser("fc-health", help="Firecrawl readiness, caps and credits used (exit 0 only when a live run can happen)")
+    q.add_argument("--config"); q.add_argument("--remote", action="store_true", help="also ask Firecrawl for the remaining plan credits (no credit cost)")
+    q.set_defaults(fn=cmd_fc_health)
+    q = ssp.add_parser("enrich", help="read the article behind recent catalyst events through Firecrawl; store hashes and identifiers only")
+    q.add_argument("--config"); q.add_argument("--fixture", help="recorded synthetic exchanges (no network; refused on the tracked database)")
+    q.add_argument("--limit", type=int); q.add_argument("--event", type=int, nargs="+"); q.add_argument("--now", type=float); q.add_argument("--run-id")
+    q.set_defaults(fn=cmd_enrich)
+    q = ssp.add_parser("fc-search", help="Firecrawl news search: other publishers of stored stories (--events) or a topic (--query)")
+    q.add_argument("--config"); q.add_argument("--fixture"); q.add_argument("--query"); q.add_argument("--events", type=int)
+    q.add_argument("--now", type=float); q.add_argument("--run-id"); q.add_argument("--no-ingest", action="store_true")
+    q.set_defaults(fn=cmd_fc_search)
     q = ssp.add_parser("match-plan"); q.add_argument("--id"); q.add_argument("--limit", type=int, default=40); q.set_defaults(fn=cmd_match_plan)
     q = ssp.add_parser("match"); q.add_argument("--results", nargs="+", required=True); q.add_argument("--min-liq", type=float, default=5000); q.set_defaults(fn=cmd_match)
     q = ssp.add_parser("assess"); q.add_argument("--results", nargs="*", default=[]); q.add_argument("--persist", action="store_true"); q.add_argument("--limit-unlinked", type=int, default=60); q.set_defaults(fn=cmd_assess)

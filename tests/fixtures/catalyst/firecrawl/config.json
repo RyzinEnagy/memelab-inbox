@@ -1,0 +1,56 @@
+{
+ "schema": "memelab.catalyst.firecrawl.config/1",
+ "enabled": true,
+ "billing": "cloud",
+ "base_url": "https://api.firecrawl.dev",
+ "budget": {
+  "max_credits_per_run": 8,
+  "max_credits_per_month": 50,
+  "max_requests_per_run": 20,
+  "usd_per_credit": 0.0,
+  "allow_billable": false,
+  "min_interval_seconds": 0,
+  "check_remote_balance": false,
+  "min_remaining_credits": 0
+ },
+ "scrape": {
+  "proxy": "basic",
+  "max_age_ms": 3600000,
+  "timeout_ms": 45000,
+  "only_main_content": true,
+  "store_in_cache": true,
+  "zero_data_retention": false
+ },
+ "enrich": {
+  "tiers": [
+   "official",
+   "reputable",
+   "aggregator"
+  ],
+  "source_groups": [
+   "news"
+  ],
+  "roles": [
+   "ORIGINAL",
+   "INDEPENDENT"
+  ],
+  "max_pages_per_run": 10,
+  "event_window_hours": 72,
+  "retry_failed_after_hours": 24
+ },
+ "search": {
+  "enabled": true,
+  "max_queries_per_run": 2,
+  "limit": 10,
+  "tbs_query": "qdr:d",
+  "tbs_events": "qdr:w",
+  "lang": "en",
+  "max_event_sources": 2
+ },
+ "pull_fallback": {
+  "sources": [
+   "exch:binance:listings"
+  ]
+ },
+ "private_copy_days": 7
+}

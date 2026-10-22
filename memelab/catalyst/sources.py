@@ -53,6 +53,13 @@ SCHEDULED_FEEDS = [
     ("sched:polymarket:top", "https://gamma-api.polymarket.com/events?limit=60&active=true&closed=false&order=volume24hr&ascending=false", "aggregator", "fetch", "poly_events"),
 ]
 
+API_SOURCES = [
+    # source_id, group, kind, parser, tier, reason. Filled by a command, not by a plan URL (access_mode 'api').
+    ("web:firecrawl:search", "news", "api", "fc_search", "aggregator",
+     "Firecrawl news search (catalyst fc-search): other publishers of a stored story, or a topic query; aggregator tier, so "
+     "a new event from it starts as RUMOR and a known reputable or official domain is recognized by its domain"),
+]
+
 SOCIAL_SOURCES = [
     # platform, access_mode, coverage gap text
     ("social:x:timelines", "x.com", "manual", "X timelines require a logged-in session; the bridge tab is not logged in. Profile pages are readable and are used for identity verification only (page exists and its title names the handle); the bio is not collected (D-020). Closing the gap: sign into X in the Chrome profile the bridge uses, after which navigate-and-read of public timelines works."),
@@ -75,6 +82,9 @@ def registry_rows(now: float | None = None) -> list[dict]:
         rows.append(dict(source_id=sid, source_group="market", kind="json", access_mode=mode, url=url, parser=parser, tier=tier, cadence_minutes=240, added_at=t, added_reason="initial registry"))
     for sid, url, tier, mode, parser in SCHEDULED_FEEDS:
         rows.append(dict(source_id=sid, source_group="scheduled", kind="json", access_mode=mode, url=url, parser=parser, tier=tier, cadence_minutes=240, added_at=t, added_reason="initial registry (scheduled/anticipated events with market-implied odds)"))
+    for sid, group, kind, parser, tier, reason in API_SOURCES:
+        rows.append(dict(source_id=sid, source_group=group, kind=kind, access_mode="api", url=None, parser=parser, tier=tier,
+                         cadence_minutes=None, enabled=1, added_at=t, added_reason=reason))
     for sid, url, mode, gap in SOCIAL_SOURCES:
         rows.append(dict(source_id=sid, source_group="social", kind="html", access_mode=mode, url=url, parser=None, tier="social", cadence_minutes=None, enabled=0 if (mode in ("blocked", "manual") or gap) else 1, coverage_gap=gap, added_at=t, added_reason="initial registry"))
     for handle, display, reason in TRADER_RESEARCH_LIST:

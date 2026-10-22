@@ -1,0 +1,82 @@
+{
+ "schema": "memelab.catalyst.firecrawl.fixture/1",
+ "note": "Invented for tests: no real article, token, publisher statement or listing. Domains are used only so tier rules apply.",
+ "robots": {
+  "cointelegraph.com": "User-agent: *\nDisallow: /admin/\n",
+  "decrypt.co": {
+   "status": 404
+  },
+  "news.google.com": "User-agent: *\nAllow: /\n\nUser-agent: FirecrawlAgent\nDisallow: /\n"
+ },
+ "exchanges": [
+  {
+   "recorded_at": "2026-10-20T15:00:00Z",
+   "request": {
+    "method": "POST",
+    "path": "/v2/scrape",
+    "match": {
+     "url": "https://cointelegraph.com/news/fixture-moonfrog-binance-listing"
+    }
+   },
+   "response": {
+    "status": 200,
+    "body": {
+     "success": true,
+     "data": {
+      "markdown": "# Binance will list Moonfrog (MFROG)\n\nFIXTURE-SENTENCE-ALPHA: this paragraph is invented test wording that must never reach the public database.\n\nThe exchange notice names the Solana contract FrT7HpiiRiepDhLfokujd49yHAnhzMeTceY4PKyoxfjH for $MFROG. A bridged copy is said to sit at 0x55b4468d3105afbff8696e1af523ebad70554b4b on an EVM chain.\n\nSee the [exchange notice](https://www.binance.com/en/support/announcement/fixture-moonfrog) and the [chart](https://dexscreener.com/solana/FrT7HpiiRiepDhLfokujd49yHAnhzMeTceY4PKyoxfjH).\n",
+      "links": [
+       "https://www.binance.com/en/support/announcement/fixture-moonfrog",
+       "https://dexscreener.com/solana/FrT7HpiiRiepDhLfokujd49yHAnhzMeTceY4PKyoxfjH",
+       "https://cointelegraph.com/tags/altcoin"
+      ],
+      "metadata": {
+       "title": "invented",
+       "language": "en",
+       "sourceURL": "https://cointelegraph.com/news/fixture-moonfrog-binance-listing",
+       "url": "https://cointelegraph.com/news/fixture-moonfrog-binance-listing?utm_source=fixture&session=abc",
+       "statusCode": 200,
+       "publishedTime": "2026-10-20T13:55:00Z",
+       "cacheState": "miss",
+       "proxyUsed": "basic",
+       "creditsUsed": 1
+      }
+     }
+    }
+   }
+  },
+  {
+   "recorded_at": "2026-10-20T15:00:00Z",
+   "request": {
+    "method": "POST",
+    "path": "/v2/scrape",
+    "match": {
+     "url": "https://decrypt.co/fixture-moonfrog-binance"
+    }
+   },
+   "response": {
+    "status": 200,
+    "body": {
+     "success": true,
+     "data": {
+      "markdown": "# Binance to list Moonfrog\n\nFIXTURE-SENTENCE-BRAVO: invented follow-up wording, also never stored publicly.\n\nAs [first reported](https://cointelegraph.com/news/fixture-moonfrog-binance-listing), the listing is set for this week. $MFROG\n",
+      "links": [
+       "https://cointelegraph.com/news/fixture-moonfrog-binance-listing",
+       "https://decrypt.co/about"
+      ],
+      "metadata": {
+       "title": "invented",
+       "language": "en",
+       "sourceURL": "https://decrypt.co/fixture-moonfrog-binance",
+       "url": "https://decrypt.co/fixture-moonfrog-binance?utm_source=fixture&session=abc",
+       "statusCode": 200,
+       "publishedTime": "2026-10-20T14:28:00Z",
+       "cacheState": "miss",
+       "proxyUsed": "basic",
+       "creditsUsed": 1
+      }
+     }
+    }
+   }
+  }
+ ]
+}

@@ -13,16 +13,33 @@ Rules:
   - Celebrity / brand / politician names map to unofficial tokens: link_type NAME_MATCH, strength <= MODERATE,
     with the explicit note that the subject has not endorsed any token unless a CONFIRMED source says so.
   - Several liquid tokens for one term -> AMBIGUOUS, all recorded in competing_json.
+  - A Solana contract named on a page read for the event (catalyst enrich, Firecrawl) is searched by its exact
+    address and, when found with enough liquidity, linked as NAMED_IN_SOURCE / STRONG to that mint only. A ticker or
+    name match that lands on a different mint with the same symbol as a named contract is AMBIGUOUS.
 """
 from __future__ import annotations
 
 import json
 import re
+import sqlite3
 import time
 from typing import Any
 
 from .. import db
 from ..bridge.plan import Plan, JUP, DS
+from ..modules.m01_token_discovery import MAJOR_IGNORE
+from .firecrawl import event_contracts, is_solana_pubkey
+
+MAX_ADDRESS_TERMS = 3
+
+
+def page_contracts(con, event_id: int) -> list[str]:
+    """Solana contracts named on pages read for the event, without SOL, stablecoins and other majors. A database
+    created before the page tables existed simply has none."""
+    try:
+        return [a for a in event_contracts(con, event_id, "solana") if a not in MAJOR_IGNORE]
+    except sqlite3.OperationalError:
+        return []
 
 GENERIC = set("""binance coinbase kraken bybit okx solana sol bitcoin btc ethereum eth usdc usdt crypto token tokens coin coins market markets price
 trading spot futures perpetual contract pair pairs listing listings adds add launch launches new update news today week month year
@@ -73,7 +90,7 @@ def terms_for_events(statuses=("NEW", "RESEARCH"), limit_events: int = 40) -> tu
         # freshest stories first; backfilled search-feed items (already_known set) only if room remains
         rows = con.execute(f"SELECT id, title, description, category FROM catalyst_events WHERE status IN ({','.join('?' * len(statuses))}) ORDER BY (already_known IS NOT NULL), COALESCE(published_at, discovered_at) DESC LIMIT ?", (*statuses, limit_events)).fetchall()
         for r in rows:
-            terms = extract_terms(r["title"], r["description"])
+            terms = page_contracts(con, r["id"])[:MAX_ADDRESS_TERMS] + extract_terms(r["title"], r["description"])
             per_event[r["id"]] = terms
             for t in terms:
                 k = t.lower()
@@ -96,15 +113,21 @@ def link_events(bodies: dict[str, Any], per_event: dict[int, list[str]] | None =
     with db.connect() as con:
         if per_event is None:
             rows = con.execute("SELECT id, title, description FROM catalyst_events WHERE status IN ('NEW','RESEARCH')").fetchall()
-            per_event = {r["id"]: extract_terms(r["title"], r["description"]) for r in rows}
+            per_event = {r["id"]: page_contracts(con, r["id"])[:MAX_ADDRESS_TERMS] + extract_terms(r["title"], r["description"]) for r in rows}
         for ev_id, terms in per_event.items():
             ev = con.execute("SELECT * FROM catalyst_events WHERE id=?", (ev_id,)).fetchone()
             if not ev:
                 continue
             stats["events"] += 1
             any_link = False
-            for term in terms:
+            named = set(page_contracts(con, ev_id))
+            named_symbols: dict[str, str] = {}          # lower symbol -> mint, for contracts the event's pages name
+            # contracts first, so a later ticker match can be checked against what the page itself named
+            for term in sorted(terms, key=lambda x: not is_solana_pubkey(x)):
+                is_addr = is_solana_pubkey(term)
                 cands = _candidates(bodies, term, min_liq_usd)
+                if is_addr:
+                    cands = [c for c in cands if c["mint"] == term]    # an address search answers for that mint only
                 if not cands:
                     continue
                 # exact-symbol or exact-name matches first
@@ -119,10 +142,19 @@ def link_events(bodies: dict[str, Any], per_event: dict[int, list[str]] | None =
                     link_type, strength = "THEMATIC", "WEAK"
                 if EXCHANGE_PRODUCT_RX.search(ev["title"] or ""):
                     link_type, strength = "THEMATIC", "WEAK"
-                mint_in_source = top["mint"] in (ev["description"] or "") or top["mint"] in (ev["original_url"] or "")
+                mint_in_source = (top["mint"] in (ev["description"] or "") or top["mint"] in (ev["original_url"] or "")
+                                  or top["mint"] in named)
                 if mint_in_source:
                     link_type, strength = "NAMED_IN_SOURCE", "STRONG"
+                    if top.get("symbol"):
+                        named_symbols.setdefault(top["symbol"].lower(), top["mint"])
                 rationale = _rationale(ev["category"], ev["title"], top, term)
+                if top["mint"] in named:
+                    rationale += " The contract itself is named on a page read for this event (catalyst enrich); that is FACT about the page, not evidence of buying."
+                other = named_symbols.get((top.get("symbol") or "").lower())
+                if link_type != "NAMED_IN_SOURCE" and other and other != top["mint"]:
+                    strength = "AMBIGUOUS"
+                    rationale += f" The event's page names a different contract with this symbol ({other[:6]}..); this match is a symbol collision, not that token."
                 competing = [{k: c[k] for k in ("mint", "symbol", "name", "liquidity", "mcap", "age_hours")} for c in pool[1:6]]
                 if con.execute("SELECT id FROM catalyst_token_links WHERE event_id=? AND mint=?", (ev_id, top["mint"])).fetchone():
                     continue

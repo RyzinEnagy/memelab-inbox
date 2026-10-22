@@ -178,6 +178,16 @@ def items_from_body(source: dict, body: Any, retrieved_at: float) -> list[dict]:
                 continue
             out.append(dict(key=f"ds:{p.get('tokenAddress')}:{datetime.utcfromtimestamp(retrieved_at).strftime('%Y%m%d')}", url=f"https://dexscreener.com/solana/{p.get('tokenAddress')}", title=f"DEX Screener paid profile/boost: {p.get('tokenAddress')}", body=(p.get("description") or "")[:400],
                             author="token team (paid placement)", platform="dexscreener.com", published_at=retrieved_at, event_at=None, raw=p))
+    elif parser == "fc_search":
+        # Firecrawl news search results (catalyst/firecrawl.py search): title, snippet and URL as the search engine
+        # returned them, the same fields an RSS item carries. The query is kept as a hash only.
+        for r in body or []:
+            link = r.get("url")
+            if not link or not r.get("title"):
+                continue
+            out.append(dict(key=canonical_url(link), url=link, title=r.get("title"), body=(r.get("snippet") or "")[:400], author=None,
+                            platform=domain_of(link), published_at=r.get("published_at"), event_at=None,
+                            raw={"kind": r.get("kind"), "position": r.get("position"), "query_sha": r.get("query_sha"), "for_event": r.get("for_event")}))
     elif parser in ("cb_currencies", "kraken_assets"):
         # asset lists are diffed by the access-change detector, not turned into items one by one
         out.append(dict(key=f"{sid}:snapshot:{int(retrieved_at)}", url=source.get("url"), title=f"{sid} asset list snapshot ({len(body or [])} assets)", body=None, author=sid, platform=domain_of(source.get("url")), published_at=retrieved_at, event_at=None, raw={"n": len(body or []), "ids": [x.get("id") for x in (body or [])][:3000]}))
