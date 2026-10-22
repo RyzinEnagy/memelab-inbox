@@ -46,7 +46,8 @@
   "tbs_query": "qdr:d",
   "tbs_events": "qdr:w",
   "lang": "en",
-  "max_event_sources": 2
+  "max_event_sources": 2,
+  "min_hours_between_runs": 10
  },
  "pull_fallback": {
   "sources": []

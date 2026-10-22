@@ -108,7 +108,7 @@ DEFAULTS: dict[str, Any] = {
                "roles": ["ORIGINAL", "INDEPENDENT"], "max_pages_per_run": 15, "event_window_hours": 72,
                "retry_failed_after_hours": 24, "relevance": "memecoin"},
     "search": {"enabled": False, "max_queries_per_run": 3, "limit": 10, "tbs_query": "qdr:d", "tbs_events": "qdr:w",
-               "lang": "en", "max_event_sources": 2},
+               "lang": "en", "max_event_sources": 2, "min_hours_between_runs": 10},
     "pull_fallback": {"sources": []},
     "private_copy_days": 7,
 }
@@ -226,6 +226,7 @@ def validate_config(raw: Any) -> dict:
     _int(q["max_queries_per_run"], "search.max_queries_per_run", 0, 20)
     _int(q["limit"], "search.limit", 1, 20)
     _int(q["max_event_sources"], "search.max_event_sources", 1, 20)
+    _int(q["min_hours_between_runs"], "search.min_hours_between_runs", 0, 168)
     for k in ("tbs_query", "tbs_events"):
         if q[k] not in ("qdr:h", "qdr:d", "qdr:w", "qdr:m"):
             raise ConfigError(f"search.{k} must be qdr:h, qdr:d, qdr:w or qdr:m")
@@ -249,9 +250,39 @@ def load_config(path: Path | str | None = None) -> tuple[dict | None, Path, str 
         return None, p, str(e)
 
 
-def api_key() -> str | None:
+TOKEN_FILE = "firecrawl_token.txt"
+TOKEN_FILE_ENV = "MEMELAB_FIRECRAWL_TOKEN_FILE"
+
+
+def token_file_candidates() -> list[Path]:
+    """Where a key file is looked for, same order as commit_file.py looks for gh_token.txt: an explicit path, the
+    gitignored data/private/ folder, the repo root, a Cowork connected folder, and C:\\Users\\<user>\\memelab."""
+    import glob
+    out = [os.environ.get(TOKEN_FILE_ENV), db.DATA_DIR / "private" / TOKEN_FILE, db.ROOT / TOKEN_FILE,
+           os.path.expanduser(f"~/mnt/memelab/{TOKEN_FILE}")]
+    out += glob.glob(os.path.expanduser(f"~/mnt/*/{TOKEN_FILE}")) + glob.glob(rf"C:\Users\*\memelab\{TOKEN_FILE}")
+    return [Path(p) for p in out if p]
+
+
+def api_key_source() -> tuple[str | None, str | None]:
+    """(key, where it came from). FIRECRAWL_API_KEY wins; otherwise the first readable firecrawl_token.txt holding a
+    key shaped fc- + 32 hex characters (anything else in the file, such as 'FIRECRAWL_API_KEY=', is ignored).
+    The key itself is never printed or stored."""
     v = os.environ.get(KEY_ENV, "").strip()
-    return v or None
+    if v:
+        return v, "environment"
+    for p in token_file_candidates():
+        try:
+            m = KEY_RX.search(p.read_text(encoding="utf-8", errors="replace"))
+        except OSError:
+            continue
+        if m:
+            return m.group(0), f"token file {p.name}"
+    return None, None
+
+
+def api_key() -> str | None:
+    return api_key_source()[0]
 
 
 def readiness(cfg: dict | None, key: str | None, error: str | None = None) -> tuple[str, str]:
@@ -265,7 +296,8 @@ def readiness(cfg: dict | None, key: str | None, error: str | None = None) -> tu
     b = cfg["budget"]
     if cfg["billing"] == "cloud":
         if not key:
-            return "credentials_missing", f"set {KEY_ENV} in the environment (never in a file that is committed)"
+            return "credentials_missing", (f"set {KEY_ENV}, or put the key in {TOKEN_FILE} in the memelab folder or data/private/ "
+                                           "(both are kept out of git)")
         if b["max_credits_per_run"] <= 0 or b["max_credits_per_month"] <= 0:
             return "caps_zero", "budget.max_credits_per_run and budget.max_credits_per_month must both be above 0"
         if b["usd_per_credit"] > 0 and not b["allow_billable"]:
@@ -1076,6 +1108,14 @@ def search(con, cfg: dict, transport, *, mode: str, run_id: str, now: float | No
     known = {canonical_url(r[0]) for r in con.execute("SELECT url FROM catalyst_items WHERE url IS NOT NULL")}
     results: list[dict] = []
     st = {"queries": 0, "results": 0, "kept": 0, "already_stored": 0, "refused_host": 0, "credits": 0, "stopped": None}
+    # several catalyst passes a day may call search; it runs at most once per min_hours_between_runs (ledger rows travel
+    # between scheduled sessions through the state export)
+    last = con.execute("SELECT MAX(requested_at) FROM social_api_spend WHERE connector=? AND mode=? AND endpoint=?",
+                       (PROVIDER, mode, ENDPOINTS["search"])).fetchone()[0]
+    gap = qc["min_hours_between_runs"] * 3600
+    if gap and last is not None and t0 - last < gap:
+        st["stopped"] = f"SEARCH_TOO_SOON: last search {(t0 - last) / 3600:.1f} h ago, minimum {qc['min_hours_between_runs']} h"
+        return {}, st
     for text, tbs, ev_id in search_queries(con, cfg, t0, query=query, events=events)[: qc["max_queries_per_run"]]:
         body = {"query": text, "limit": qc["limit"], "sources": ["news"], "tbs": tbs, "lang": qc["lang"], "timeout": 30000}
         est = search_credit_estimate(cfg, qc["limit"])
@@ -1126,11 +1166,12 @@ def search(con, cfg: dict, transport, *, mode: str, run_id: str, now: float | No
 # ---------- health ----------
 
 def health(con, cfg: dict | None, *, key: str | None, error: str | None = None, path: Path | None = None,
-           transport=None, remote: bool = False, now: float | None = None) -> dict:
+           transport=None, remote: bool = False, now: float | None = None, key_source: str | None = None) -> dict:
     t = time.time() if now is None else now
     status, why = readiness(cfg, key, error)
     out = {"provider": PROVIDER, "contract_verified": CONTRACT_VERIFIED, "config": str(path) if path else None,
-           "status": status, "detail": why, "key": ("set" if key else "missing") if (cfg or {}).get("billing", "cloud") == "cloud" else "not needed"}
+           "status": status, "detail": why, "key": ("set" if key else "missing") if (cfg or {}).get("billing", "cloud") == "cloud" else "not needed",
+           "key_source": key_source if key else None}
     if cfg:
         b = cfg["budget"]
         out.update({"enabled": cfg["enabled"], "billing": cfg["billing"], "base_url": cfg["base_url"], "proxy": cfg["scrape"]["proxy"],

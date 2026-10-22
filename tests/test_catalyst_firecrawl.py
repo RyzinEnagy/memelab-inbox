@@ -118,6 +118,32 @@ def test_readiness_states():
     assert FC.readiness(cfg(billing="self_hosted", base_url="http://127.0.0.1:3002"), None)[0] == "ready"
 
 
+def test_key_comes_from_the_environment_or_a_token_file_never_from_config(tmp_path, monkeypatch):
+    from memelab.catalyst import firecrawl as FC
+    monkeypatch.delenv("FIRECRAWL_API_KEY", raising=False)
+    tok = tmp_path / "firecrawl_token.txt"
+    monkeypatch.setenv("MEMELAB_FIRECRAWL_TOKEN_FILE", str(tok))
+    assert FC.api_key_source() == (None, None)
+    tok.write_text("not a key\n")
+    assert FC.api_key() is None
+    tok.write_text(f"FIRECRAWL_API_KEY={FAKE_KEY}\r\n")                    # a pasted 'NAME=value' line still works
+    assert FC.api_key_source() == (FAKE_KEY, "token file firecrawl_token.txt")
+    other = "fc-" + "cd" * 16
+    monkeypatch.setenv("FIRECRAWL_API_KEY", other)
+    assert FC.api_key_source() == (other, "environment")
+    assert "firecrawl_token.txt" in (ROOT / ".gitignore").read_text().splitlines()
+
+
+def test_scheduled_config_is_valid_capped_and_holds_no_secret():
+    from memelab.catalyst import firecrawl as FC
+    raw = json.loads((ROOT / "docs" / "catalyst" / "firecrawl.scheduled.json").read_text())
+    c = FC.validate_config(raw)
+    assert c["enabled"] and c["search"]["enabled"] and c["scrape"]["proxy"] == "basic" and c["enrich"]["relevance"] == "memecoin"
+    assert (c["budget"]["max_credits_per_run"], c["budget"]["max_credits_per_month"], c["budget"]["min_remaining_credits"]) == (10, 900, 50)
+    assert c["budget"]["usd_per_credit"] == 0 and c["budget"]["allow_billable"] is False and c["search"]["min_hours_between_runs"] >= 8
+    assert not FC.KEY_RX.search(json.dumps(raw))
+
+
 def test_load_config_missing_and_invalid(tmp_path):
     from memelab.catalyst import firecrawl as FC
     assert FC.load_config(tmp_path / "none.json")[0] is None and FC.load_config(tmp_path / "none.json")[2] is None
@@ -551,6 +577,23 @@ def test_search_finds_other_publishers_and_drops_known_and_refused_urls(tmpdb):
         src = con.execute("SELECT tier, access_mode FROM catalyst_sources WHERE source_id='web:firecrawl:search'").fetchone()
         raw = json.loads(con.execute("SELECT raw_json FROM catalyst_items WHERE source_id='web:firecrawl:search'").fetchone()[0])
     assert ev == 3 and tuple(src) == ("aggregator", "api") and "query" not in raw and len(raw["query_sha"]) == 16
+
+
+def test_search_runs_at_most_once_per_spacing_window(tmpdb):
+    from memelab.catalyst import firecrawl as FC
+    seed(tmpdb)
+    with tmpdb.connect() as con:
+        FC.search(con, cfg(), FC.FixtureTransport(fixture("fx_search.json")), mode="fixture", run_id="s1", now=T + 60, events=5)
+        tr = FC.FixtureTransport(fixture("fx_search.json"))
+        bodies, st = FC.search(con, cfg(), tr, mode="fixture", run_id="s2", now=T + 4 * 3600, events=5)
+        assert bodies == {} and tr.calls == [] and st["stopped"].startswith("SEARCH_TOO_SOON")
+        tr2 = FC.FixtureTransport(fixture("fx_search.json"))
+        _, st2 = FC.search(con, cfg(), tr2, mode="fixture", run_id="s3", now=T + 11 * 3600, events=5)
+        assert st2["stopped"] is None and len(tr2.calls) == 2
+    from memelab.catalyst import cli
+    with pytest.raises(SystemExit) as e:
+        cli._fc_exit(st)
+    assert e.value.code == 0                                                    # too soon is a normal skip, not a failure
 
 
 def test_search_times_keep_only_hour_precision_relative_dates():

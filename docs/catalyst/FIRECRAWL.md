@@ -1,6 +1,6 @@
 # Firecrawl in Catalyst Intelligence
 
-Module: `memelab/catalyst/firecrawl.py`. Commands: `catalyst fc-health`, `catalyst enrich`, `catalyst fc-search`, `catalyst pull-pages --firecrawl`. Example config: `firecrawl.example.json` (off). Tests: `tests/test_catalyst_firecrawl.py` (34). Fixtures: `tests/fixtures/catalyst/firecrawl/` (invented).
+Module: `memelab/catalyst/firecrawl.py`. Commands: `catalyst fc-health`, `catalyst enrich`, `catalyst fc-search`, `catalyst pull-pages --firecrawl`. Example config: `firecrawl.example.json` (off). Tests: `tests/test_catalyst_firecrawl.py` (37). Fixtures: `tests/fixtures/catalyst/firecrawl/` (invented).
 
 Status on 2026-10-22: built, proved on fixtures, and one supervised live run (Free plan key, 12 credits, scratch database; see "First live run"). Not wired into the scheduled runs yet.
 
@@ -72,7 +72,7 @@ FC-2 Platforms with their own decisions are refused before any request (ADOPTED)
 
 FC-3 The lab checks robots.txt itself (ADOPTED). RFC 9309 for user agent FirecrawlAgent: 2xx rules apply (the most specific group wins), 4xx means no rules, 429, 5xx or no answer means disallow everything. One refusal row per site per run; the site is not tried again for `retry_failed_after_hours` (24).
 
-FC-4 Proxies: basic by default (PROPOSED for "auto", needs Elving). `auto` lets Firecrawl retry through its enhanced anti-bot proxies (no extra credits today). Getting past bot protection is a choice about a site's wishes, so it is off until Elving says otherwise. `stealth` and `enhanced` are not accepted in the config.
+FC-4 Proxies: basic (ADOPTED, Elving 2026-10-22). `auto` would let Firecrawl retry through its enhanced anti-bot proxies (no extra credits today); getting past bot protection is a choice about a site's wishes, and nothing in the first live run needed it. `stealth` and `enhanced` are not accepted in the config.
 
 FC-5 No circumvention of location blocks (ADOPTED). Same rule as four.meme in docs/SOURCES.md. No `location` override is configurable. `pull_fallback.sources` is empty by default; Bybit (403 from US addresses) should not be listed. Binance's CMS API is disallowed by robots.txt, so it cannot be a fallback either.
 
@@ -92,6 +92,10 @@ FC-12 Live use is supervised so far (ADOPTED). One live run on 2026-10-22 in a s
 
 FC-13 Credits go to memecoin stories first (ADOPTED, HEURISTIC). With `enrich.relevance` "memecoin" (default) an event is read or searched only when its title or snippet names a ticker ("$X" or "(XYZ)") or uses memecoin, launch, listing or venue words (`RELEVANCE_RX`). The category alone does not qualify: the catalyst classifier files spot ETF flow stories as ACCESS. An explicit `--event` is read regardless. "all" turns the filter off. It decides only which pages are read, never a grade or a score.
 
+FC-15 Search is on in the scheduled runs, at most once per `search.min_hours_between_runs` (ADOPTED, Elving 2026-10-22). Default 10 h, counted from the ledger, which travels between sessions in the state export. A pass that comes too soon skips search and says SEARCH_TOO_SOON; enrichment still runs.
+
+FC-16 The key lives in the environment or in a token file, never in a config, a prompt or the repo (ADOPTED, Elving 2026-10-22). Order: `FIRECRAWL_API_KEY`, then the first `firecrawl_token.txt` found at `MEMELAB_FIRECRAWL_TOKEN_FILE`, `data/private/`, the repo root, a Cowork connected folder (`~/mnt/memelab/`, `~/mnt/*/`) or `C:\Users\<user>\memelab\`, the same places `commit_file.py` looks for `gh_token.txt`. `firecrawl_token.txt` is in .gitignore. `catalyst fc-health` names the source, never the value.
+
 FC-14 A page time without a zone is UNKNOWN (ADOPTED). Decrypt and CoinDesk publish `article:published_time` without an offset; read in the machine's zone it was 4 hours off on the first live run. Same rule as D-019 for social timestamps.
 
 ## Cost
@@ -104,10 +108,14 @@ Starting point for the Free plan (1,000 credits a month): `max_credits_per_run` 
 
 ## Setup (Elving)
 
-1. Firecrawl account and API key: done 2026-10-22 (Free plan). On a paid plan, set the pay-as-you-go monthly limit to 0 in Firecrawl's billing settings unless you want auto-recharge.
-2. Put the key in the environment as `FIRECRAWL_API_KEY` on the machine or environment that runs the catalyst pass (never in a file in the repo; a config holding a key is refused). The key was pasted into a chat once; rotate it in the Firecrawl dashboard if that chat is shared.
-3. Copy `docs/catalyst/firecrawl.example.json` to `data/private/firecrawl.json` (or point `MEMELAB_FIRECRAWL_CONFIG` at another path), set `enabled` true and the two credit caps.
-4. `python -m memelab catalyst fc-health --remote` should print `configured_unverified` with the remaining credits; after the first live read it prints `live_ok`.
+1. Firecrawl account and API key: done 2026-10-22 (Free plan). On a paid plan, set the pay-as-you-go monthly limit to 0 in Firecrawl's billing settings unless you want auto-recharge. The key was pasted into a chat once; rotate it in the Firecrawl dashboard if that chat is shared.
+2. Key file: in the memelab folder on the computer the scheduled tasks use (`C:\Users\<you>\memelab\`, next to `gh_token.txt`), create `firecrawl_token.txt` holding only the key on one line (FC-16). For a one-off run in a terminal, `FIRECRAWL_API_KEY` in the environment works too.
+3. Config: scheduled runs copy `docs/catalyst/firecrawl.scheduled.json` (enabled, 10 credits a run, 900 a month, 50 in reserve, search on, basic proxy, memecoin relevance) to `data/private/firecrawl.json`. For a local run, copy that file or `firecrawl.example.json` there yourself, or point `MEMELAB_FIRECRAWL_CONFIG` at it.
+4. `python -m memelab catalyst fc-health --remote` should print `live_ok` (or `configured_unverified` before the first live call) with the key source and the remaining credits.
+
+## Scheduled runs
+
+Both memelab scheduled tasks carry a guarded Firecrawl step (added 2026-10-22): copy the scheduled config and the key file into the session's `data/private/`, run `catalyst fc-health`, and only when it exits 0 run `catalyst fc-search --events 5` and `catalyst enrich` between `catalyst ingest` and `catalyst match-plan`. The tasks rebuild the project from `main`, so the step is a no-op (the command does not exist there and the health check fails) until this branch is merged. The state export already carries the page reads and the spend ledger between sessions.
 
 ## First live run (2026-10-22)
 
@@ -124,7 +132,7 @@ Still to check: a JSON or XML document through `pull_fallback` (only the `<pre>`
 
 ## Gaps and open items
 
-- Scheduled runs: the daily and refresh tasks do not run these commands yet, and `data/private/firecrawl.json` does not exist in a scheduled session. Options: the task writes the config at the start of each run, or a non-secret config is committed under another path and `MEMELAB_FIRECRAWL_CONFIG` points at it. Elving's choice. Related: C-20.
+- Scheduled runs: wired with a guard (see "Scheduled runs"), active once the branch is on `main`. Related: C-20.
 - The catalyst tables themselves (events, items, links) are not in the state export, so each scheduled session's catalyst pass starts empty; corroboration and resurfacing across sessions do not work in scheduled runs. This predates Firecrawl. The page history added here survives; the events do not.
 - EVM contracts named on pages are stored but the catalyst matcher is Solana-only. The social resolver (`social resolve`, D-031) handles Base, BNB and Ethereum and is the place to connect them.
 - Dates named inside articles (listing dates, unlocks) are not extracted; `event_at` still comes from feeds.

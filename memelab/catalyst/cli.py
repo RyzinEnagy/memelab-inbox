@@ -205,13 +205,13 @@ def _fc_exit(st: dict) -> None:
 def cmd_fc_health(a):
     from . import firecrawl as FC
     cfg, path, err = FC.load_config(a.config)
-    key = FC.api_key()
+    key, source = FC.api_key_source()
     db.init_db()
     tr = None
     if a.remote and FC.readiness(cfg, key, err)[0] == "ready":
         tr = FC.RestTransport(cfg["base_url"], key, 30)
     with db.connect() as con:
-        out = FC.health(con, cfg, key=key, error=err, path=path, transport=tr, remote=a.remote)
+        out = FC.health(con, cfg, key=key, error=err, path=path, transport=tr, remote=a.remote, key_source=source)
     print(json.dumps(out, indent=1, sort_keys=True))
     raise SystemExit(0 if out["status"] in ("live_ok", "configured_unverified") else 1)
 
