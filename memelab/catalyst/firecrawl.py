@@ -106,7 +106,7 @@ DEFAULTS: dict[str, Any] = {
                "store_in_cache": True, "zero_data_retention": False},
     "enrich": {"tiers": ["official", "reputable", "aggregator"], "source_groups": ["news"],
                "roles": ["ORIGINAL", "INDEPENDENT"], "max_pages_per_run": 15, "event_window_hours": 72,
-               "retry_failed_after_hours": 24},
+               "retry_failed_after_hours": 24, "relevance": "memecoin"},
     "search": {"enabled": False, "max_queries_per_run": 3, "limit": 10, "tbs_query": "qdr:d", "tbs_events": "qdr:w",
                "lang": "en", "max_event_sources": 2},
     "pull_fallback": {"sources": []},
@@ -218,6 +218,8 @@ def validate_config(raw: Any) -> dict:
     _int(e["max_pages_per_run"], "enrich.max_pages_per_run", 0, 200)
     _int(e["event_window_hours"], "enrich.event_window_hours", 1, 24 * 30)
     _int(e["retry_failed_after_hours"], "enrich.retry_failed_after_hours", 1, 24 * 30)
+    if e["relevance"] not in ("memecoin", "all"):
+        raise ConfigError("enrich.relevance must be memecoin or all")
     q = cfg["search"]
     if not isinstance(q["enabled"], bool):
         raise ConfigError("search.enabled must be true or false")
@@ -643,6 +645,15 @@ def _norm_text(s: str) -> str:
 
 
 def _page_time(v: Any, now: float) -> float | None:
+    """A page's own published or modified time. A date-time without a zone (Decrypt publishes "2026-10-22T16:31:07",
+    first live run) is ambiguous and stays UNKNOWN rather than being read in this machine's zone (same rule as D-019)."""
+    if isinstance(v, str):
+        s = v.strip().replace("Z", "+00:00")
+        try:
+            if datetime.fromisoformat(s).tzinfo is None:
+                return None
+        except ValueError:
+            pass                                   # not ISO 8601: an RFC 2822 date carries its own offset
     t = to_epoch(v) if v else None
     if t is None or t < 1_230_768_000 or t > now + 86_400:     # before 2009 or more than a day ahead: not believable
         return None
@@ -658,6 +669,21 @@ def url_key(url: str | None) -> str:
 def _origin(url: str | None) -> str:
     u = urllib.parse.urlparse(url or "")
     return f"{u.scheme}://{(u.netloc or '').lower()}"
+
+
+# Which events are worth credits. On the first live run (2026-10-22) about 9 of 109 readable publisher articles were
+# about memecoins, listings or launches; the rest were macro, AI and regulation stories that cannot produce a token link.
+# HEURISTIC: it only decides which pages are read (and searched), never a grade or a score. enrich.relevance "all" turns it off.
+RELEVANCE_RX = re.compile(
+    r"\$[A-Za-z][A-Za-z0-9]{1,9}\b|\([A-Z][A-Z0-9]{1,9}\)|\b(meme ?coins?|memes?|pump\.?fun|launchpads?|letsbonk|bonk|pepe|doge\w*|"
+    r"shib\w*|dogwifhat|wif|airdrops?|lists|listing|listed|delist\w*|token launch|new token|solana|four\.meme|zora|clanker|"
+    r"virtuals|raydium|jupiter|dex ?screener|presale|rug ?pull|honeypot)\b", re.I)
+
+
+def relevant(category: str | None, title: str | None, description: str | None) -> bool:
+    """Category alone is not enough: the catalyst classifier files spot ETF flow stories as ACCESS. A real listing names
+    the asset "(TICKER)" or says list/listing, which the pattern catches."""
+    return bool(RELEVANCE_RX.search(f"{title or ''} {description or ''}"))
 
 
 def _prior_fetches(con, mode: str, purpose: str) -> tuple[dict[str, dict], dict[str, float]]:
@@ -680,7 +706,7 @@ def select_targets(con, cfg: dict, now: float, *, mode: str, limit: int | None =
     """Items of live events worth reading, newest events first, official and reputable before aggregators, the original
     before independent coverage. Copies (SYNDICATED, CIRCULAR) are skipped by default: they repeat what is read."""
     e = cfg["enrich"]
-    q = ("SELECT i.id AS item_id, i.url, i.source_id, s.tier, es.role, ev.id AS event_id, "
+    q = ("SELECT i.id AS item_id, i.url, i.source_id, s.tier, es.role, ev.id AS event_id, ev.category, ev.title, ev.description, "
          "COALESCE(ev.published_at, ev.discovered_at) AS ref FROM catalyst_events ev "
          "JOIN catalyst_event_sources es ON es.event_id=ev.id JOIN catalyst_items i ON i.id=es.item_id "
          "JOIN catalyst_sources s ON s.source_id=i.source_id "
@@ -699,11 +725,14 @@ def select_targets(con, cfg: dict, now: float, *, mode: str, limit: int | None =
     rows.sort(key=lambda r: (-(r["ref"] or 0), r["event_id"], tier_rank.get(r["tier"], 3), r["role"] != "ORIGINAL", r["item_id"]))
     prior, robots_refused = _prior_fetches(con, mode, "ENRICH")
     wait = e["retry_failed_after_hours"] * 3600
-    skip = {"already_read": 0, "recent_failure": 0, "duplicate_url": 0, "site_refused_robots": 0}
+    skip = {"already_read": 0, "recent_failure": 0, "duplicate_url": 0, "site_refused_robots": 0, "not_relevant": 0}
     seen: set[str] = set()
     out = []
     cap = e["max_pages_per_run"] if limit is None else min(limit, e["max_pages_per_run"])
     for r in rows:
+        if e["relevance"] == "memecoin" and not event_ids and not relevant(r["category"], r["title"], r["description"]):
+            skip["not_relevant"] += 1
+            continue
         cu = url_key(r["url"])
         if cu in seen:
             skip["duplicate_url"] += 1
@@ -1022,12 +1051,14 @@ def search_queries(con, cfg: dict, now: float, *, query: str | None = None, even
     q = cfg["search"]
     if query:
         return [(query.strip()[:200], q["tbs_query"], None)]
-    rows = con.execute("SELECT id, title FROM catalyst_events WHERE status IN ('NEW','RESEARCH','TRACKED') AND "
+    rows = con.execute("SELECT id, title, description, category FROM catalyst_events WHERE status IN ('NEW','RESEARCH','TRACKED') AND "
                        "(expires_at IS NULL OR expires_at > ?) AND discovered_at >= ? AND independent_sources <= ? "
-                       "ORDER BY COALESCE(published_at, discovered_at) DESC LIMIT ?",
-                       (now, now - cfg["enrich"]["event_window_hours"] * 3600, q["max_event_sources"], max(0, events))).fetchall()
+                       "ORDER BY COALESCE(published_at, discovered_at) DESC",
+                       (now, now - cfg["enrich"]["event_window_hours"] * 3600, q["max_event_sources"])).fetchall()
+    if cfg["enrich"]["relevance"] == "memecoin":
+        rows = [r for r in rows if relevant(r["category"], r["title"], r["description"])]
     out = []
-    for r in rows:
+    for r in rows[: max(0, events)]:
         t = re.sub(r"\s+", " ", strip_publisher(r["title"]) or "").strip()
         if len(t) >= 12:
             out.append((t[:200], q["tbs_events"], r["id"]))

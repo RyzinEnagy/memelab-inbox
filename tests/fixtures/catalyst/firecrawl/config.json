@@ -36,7 +36,8 @@
   ],
   "max_pages_per_run": 10,
   "event_window_hours": 72,
-  "retry_failed_after_hours": 24
+  "retry_failed_after_hours": 24,
+  "relevance": "all"
  },
  "search": {
   "enabled": true,

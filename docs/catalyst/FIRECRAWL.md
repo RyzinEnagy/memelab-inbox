@@ -1,8 +1,8 @@
 # Firecrawl in Catalyst Intelligence
 
-Module: `memelab/catalyst/firecrawl.py`. Commands: `catalyst fc-health`, `catalyst enrich`, `catalyst fc-search`, `catalyst pull-pages --firecrawl`. Example config: `firecrawl.example.json` (off). Tests: `tests/test_catalyst_firecrawl.py` (32). Fixtures: `tests/fixtures/catalyst/firecrawl/` (invented).
+Module: `memelab/catalyst/firecrawl.py`. Commands: `catalyst fc-health`, `catalyst enrich`, `catalyst fc-search`, `catalyst pull-pages --firecrawl`. Example config: `firecrawl.example.json` (off). Tests: `tests/test_catalyst_firecrawl.py` (34). Fixtures: `tests/fixtures/catalyst/firecrawl/` (invented).
 
-Status on 2026-10-22: built and proved on fixtures. Not operational: no API key, no config, no live call made.
+Status on 2026-10-22: built, proved on fixtures, and one supervised live run (Free plan key, 12 credits, scratch database; see "First live run"). Not wired into the scheduled runs yet.
 
 ## What Firecrawl is
 
@@ -88,28 +88,39 @@ FC-10 Search results are aggregator items (ADOPTED). A new story from search sta
 
 FC-11 Fixture runs never touch the tracked database (ADOPTED). `--fixture` is refused when `MEMELAB_DB` is `data/memelab.sqlite`. Fixture rows carry `access_mode='fixture'`, never count as live coverage, and are never exported.
 
-FC-12 Not operational (ADOPTED). No key, no config, no live call. Proof is on invented fixtures and in `tools/release_e2e.py` with the network blocked.
+FC-12 Live use is supervised so far (ADOPTED). One live run on 2026-10-22 in a scratch database; the tracked database and the inbox were not touched. Fixture proof stays in `tools/release_e2e.py` with the network blocked.
+
+FC-13 Credits go to memecoin stories first (ADOPTED, HEURISTIC). With `enrich.relevance` "memecoin" (default) an event is read or searched only when its title or snippet names a ticker ("$X" or "(XYZ)") or uses memecoin, launch, listing or venue words (`RELEVANCE_RX`). The category alone does not qualify: the catalyst classifier files spot ETF flow stories as ACCESS. An explicit `--event` is read regardless. "all" turns the filter off. It decides only which pages are read, never a grade or a score.
+
+FC-14 A page time without a zone is UNKNOWN (ADOPTED). Decrypt and CoinDesk publish `article:published_time` without an offset; read in the machine's zone it was 4 hours off on the first live run. Same rule as D-019 for social timestamps.
 
 ## Cost
 
-The pipeline reads a page once. A run picks new events' original and independent sources only (copies are skipped), newest events first, official and reputable before aggregators. What one run can spend is capped by `max_pages_per_run` and `max_credits_per_run`.
+The pipeline reads a page once. A run picks new events' original and independent sources only (copies are skipped), memecoin-relevant events first (FC-13), newest first, official and reputable before aggregators. What one run can spend is capped by `max_pages_per_run` and `max_credits_per_run`.
 
-Starting point for the Free plan (1,000 credits a month): `max_credits_per_run` 10, `max_credits_per_month` 900, `min_remaining_credits` 50, `search.enabled` false. That allows about 30 article reads a day across all runs. Turning search on costs 2 credits per query (limit 10); 3 queries in each of 5 daily passes is about 900 a month on its own, so search needs Hobby ($19, 5,000 credits) or fewer passes. These are estimates; `catalyst fc-health --remote` shows what was used and what is left, and a week of runs will show the real volume (the catalyst tables are not kept between scheduled sessions today, so there is no history to size it from).
+Measured on 2026-10-22 from one pull of the registry's news feeds (553 items, 470 events, about three days of feed history): 179 article URLs were eligible, 67 of them Google News links that robots.txt refuses (no credit). Of the 112 publisher articles, 14 passed the relevance filter; about 3 to 5 relevant new articles a day. Without the filter the backlog was 112 and about 59 new a day.
+
+Starting point for the Free plan (1,000 credits a month): `max_credits_per_run` 10, `max_credits_per_month` 900, `min_remaining_credits` 50, relevance "memecoin". Enrichment then needs roughly 100 to 150 credits a month. Search costs 2 credits per query and is where most memecoin stories become readable (they reach the lab through Google News, whose article links cannot be read): 3 queries in 2 passes a day is about 360 credits a month, plus about 1 credit for each new publisher article it surfaces. Both together fit the Free plan under a 900 cap. Five passes a day with search needs Hobby ($19, 5,000 credits). `catalyst fc-health --remote` shows what was used and what is left.
 
 ## Setup (Elving)
 
-1. Create a Firecrawl account and an API key. On the Free plan nothing can be charged. On a paid plan, set the pay-as-you-go monthly limit to 0 in Firecrawl's billing settings unless you want auto-recharge.
-2. Put the key in the environment as `FIRECRAWL_API_KEY` on the machine or environment that runs the catalyst pass (never in a file in the repo; a config holding a key is refused).
+1. Firecrawl account and API key: done 2026-10-22 (Free plan). On a paid plan, set the pay-as-you-go monthly limit to 0 in Firecrawl's billing settings unless you want auto-recharge.
+2. Put the key in the environment as `FIRECRAWL_API_KEY` on the machine or environment that runs the catalyst pass (never in a file in the repo; a config holding a key is refused). The key was pasted into a chat once; rotate it in the Firecrawl dashboard if that chat is shared.
 3. Copy `docs/catalyst/firecrawl.example.json` to `data/private/firecrawl.json` (or point `MEMELAB_FIRECRAWL_CONFIG` at another path), set `enabled` true and the two credit caps.
 4. `python -m memelab catalyst fc-health --remote` should print `configured_unverified` with the remaining credits; after the first live read it prints `live_ok`.
 
-## First live run: check these
+## First live run (2026-10-22)
 
-- Scrape response: `data.metadata.creditsUsed`, `publishedTime` and `statusCode` are where the source says.
-- A typical reputable article returns more than a few hundred words with `onlyMainContent` and names contracts as plain text or as explorer links.
-- The credit-usage answer has `remainingCredits` as a number.
-- Rate limits on the Free plan: the 6.5 s pacing keeps a run under 10 requests a minute.
-- If `pull_fallback.sources` gets an entry: whether a JSON or XML document comes back as raw text or wrapped in `<pre>` (both are handled; only the wrapped form was tested).
+Free plan, 1,000 plan credits, billing period 2026-10-22 to 2026-11-22. Scratch database, news feeds pulled directly (10 of 12 navigate-mode sources; Google News base-memecoin answered 503, Bybit 403). Two enrich passes, 12 credits in all, 0 failures.
+
+Confirmed:
+- `/v2/team/credit-usage` answers `remainingCredits`, `planCredits`, `billingPeriodStart`, `billingPeriodEnd` and costs nothing.
+- Scrape metadata has `statusCode`, `creditsUsed` (1 per page), `cacheState` (all "hit": popular articles come from Firecrawl's cache, still 1 credit), `proxyUsed` ("basic"), `language` ("en", "en-US"), `publishedTime` and `modifiedTime` (Cointelegraph and The Block with an offset; Decrypt and CoinDesk without, see FC-14).
+- Articles came back at 1,155 to 7,267 words with `onlyMainContent`; related-article lists and newsletter prompts are still included. Linked domains include share buttons (flipboard, google). Neither affects a score; a contract in a sidebar list could, so watch NAMED_IN_SOURCE links on pages with long related lists.
+- Pacing: 4 requests in 22 s.
+- End to end: Decrypt's article on the "Dacity" meme coin links a pump.fun Solana contract that the RSS snippet did not contain. Enrich stored it as an address link, match searched it by address on Jupiter and DEX Screener, and the event got a NAMED_IN_SOURCE / STRONG link to that mint (Jupiter reported about $1.0M liquidity). Before this change the same event could only reach a ticker or name match.
+
+Still to check: a JSON or XML document through `pull_fallback` (only the `<pre>`-wrapped form is tested; Binance's API is disallowed by robots.txt, OKX is reachable directly, so no fallback source is listed yet).
 
 ## Gaps and open items
 

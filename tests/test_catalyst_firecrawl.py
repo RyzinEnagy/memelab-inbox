@@ -212,6 +212,37 @@ def test_copies_and_refused_platforms_are_never_requested(tmpdb):
     assert FC.refused_reason("https://www.coindesk.com/markets/x") is None
 
 
+def test_relevance_filter_spends_credits_on_memecoin_stories_only(tmpdb):
+    """First live run: about 9 of 109 readable articles were memecoin, listing or launch stories."""
+    from memelab.catalyst import firecrawl as FC
+    seed(tmpdb, feed_of([("Bitcoin ETFs draw $528 million as ether funds snap outflow streak", "https://cointelegraph.com/news/fx-etf", T - 600),
+                         ("Game trailer features a frog meme coin, traders react", "https://cointelegraph.com/news/fx-meme", T - 1200),
+                         ("Exchange adds Pondfrog (PFROG) to its spot market", "https://cointelegraph.com/news/fx-pfrog", T - 1800),
+                         ("Central bank fines exchange over safeguarding failures", "https://cointelegraph.com/news/fx-fine", T - 2400)]))
+    c = cfg(enrich={"relevance": "memecoin"})
+    with tmpdb.connect() as con:
+        tg, skip = FC.select_targets(con, c, T + 60, mode="fixture")
+        assert [t["url"].rsplit("/", 1)[1] for t in tg] == ["fx-meme", "fx-pfrog"] and skip["not_relevant"] == 2
+        eid = con.execute("SELECT event_id FROM catalyst_items WHERE url LIKE '%fx-fine'").fetchone()[0]
+        assert len(FC.select_targets(con, c, T + 60, mode="fixture", event_ids=[eid])[0]) == 1    # an explicit --event is read anyway
+        assert [q[2] for q in FC.search_queries(con, c, T + 60, events=5)] == [
+            con.execute("SELECT event_id FROM catalyst_items WHERE url LIKE '%fx-meme'").fetchone()[0],
+            con.execute("SELECT event_id FROM catalyst_items WHERE url LIKE '%fx-pfrog'").fetchone()[0]]
+        assert len(FC.select_targets(con, cfg(enrich={"relevance": "all"}), T + 60, mode="fixture")[0]) == 4
+    with pytest.raises(FC.ConfigError):
+        cfg(enrich={"relevance": "some"})
+
+
+def test_page_time_without_a_zone_stays_unknown():
+    """Decrypt publishes article:published_time without a zone; read in this machine's zone it was 4 hours off."""
+    from memelab.catalyst import firecrawl as FC
+    now = T + 86400
+    assert FC._page_time("2026-10-20T16:31:07", now) is None and FC._page_time("2026-10-20", now) is None
+    assert FC._page_time("2026-10-20T16:31:07Z", now) == FC._page_time("2026-10-20T12:31:07-04:00", now) == T + 31 * 60 + 7
+    assert FC._page_time("Tue, 20 Oct 2026 16:31:07 +0000", now) == T + 31 * 60 + 7
+    assert FC._page_time("2031-01-01T00:00:00Z", now) is None
+
+
 def test_one_robots_refusal_covers_the_whole_site_until_the_wait_passes(tmpdb):
     from memelab.catalyst import firecrawl as FC
     titles = ("Lighthouse keepers union wins pension case", "Orchard harvest festival draws record crowds", "Submarine cable repair finishes early")
