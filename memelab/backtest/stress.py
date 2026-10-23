@@ -275,9 +275,13 @@ def empirical_cohort(con, status: str | None, horizon_h: int = 24, min_n: int = 
     from . import outcomes as O
     cut = asof if asof is not None else 1e12
     rev = [con.execute(f"SELECT COALESCE(MAX(id), 0) FROM {t}").fetchone()[0] for t in ("bt_market_bars", "bt_universe_members", "bt_pool_versions")]
-    key = (str(con.execute("PRAGMA database_list").fetchone()[2]), universe_id, status, horizon_h, min_n, cut, tuple(rev))
+    import copy
+    import os
+    path = str(con.execute("PRAGMA database_list").fetchone()[2] or "")
+    ident = (path, os.stat(path).st_ino) if path and os.path.exists(path) else ("memory", id(con))   # a replaced file or another in-memory db is another key
+    key = (ident, universe_id, status, horizon_h, min_n, cut, tuple(rev))
     if key in _COHORT_CACHE:
-        return dict(_COHORT_CACHE[key])
+        return copy.deepcopy(_COHORT_CACHE[key])
     rows = con.execute("SELECT chain, mint, MIN(available_at) t FROM bt_universe_members WHERE universe_id=? AND basis='THESIS' AND status_at_entry IS ? "
                        "AND available_at<=? GROUP BY chain, mint", (universe_id, status, cut)).fetchall()
     rets, rets_complete, worst, states, reasons = [], [], [], {}, {}
@@ -298,7 +302,9 @@ def empirical_cohort(con, status: str | None, horizon_h: int = 24, min_n: int = 
     unmeasured = measurable - len(rets)
     base = {"status": status, "n": len(rets), "n_complete": len(rets_complete), "min_n": min_n, "asof": asof, "point_in_time": asof is not None,
             "known_tokens": len(rows), "window_states": states, "missing_reasons": reasons,
-            "selection_bias_risk": bool(measurable) and unmeasured / measurable > 0.2, "unmeasured_share": round(unmeasured / measurable, 4) if measurable else None}
+            "pool_disagreement_removed": reasons.get("POOL_DISAGREEMENT", 0),
+            "selection_bias_risk": bool(measurable) and (unmeasured / measurable > 0.2 or reasons.get("POOL_DISAGREEMENT", 0) / measurable > 0.05),
+            "unmeasured_share": round(unmeasured / measurable, 4) if measurable else None}
     if len(rets) < min_n:
         out = {"tier": "INSUFFICIENT_HISTORY", **base}
     else:
@@ -311,5 +317,5 @@ def empirical_cohort(con, status: str | None, horizon_h: int = 24, min_n: int = 
                         "windows where pools disagreed are not measured")}
     if len(_COHORT_CACHE) > 256:
         _COHORT_CACHE.clear()
-    _COHORT_CACHE[key] = out
-    return dict(out)
+    _COHORT_CACHE[key] = copy.deepcopy(out)
+    return out

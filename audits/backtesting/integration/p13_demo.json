@@ -9,7 +9,7 @@
   "state": "PARTIAL_WITH_LIMITATIONS",
   "tier": "SCENARIO_ONLY",
   "cache": "MISS",
-  "request_key": "b1c1a38c6cef06902901710d7c2b23429638fda193ccb12f067c896cfc423c55",
+  "request_key": "b77f916cc9ece2640b02f5f3f5c7b5b2d7607a38a447cbe013be885315ff5d34",
   "deep_stage": "QUEUED",
   "flags": null,
   "reason": null,
@@ -37,6 +37,7 @@
    "known_tokens": 0,
    "window_states": {},
    "missing_reasons": {},
+   "pool_disagreement_removed": 0,
    "selection_bias_risk": false,
    "unmeasured_share": null
   },
@@ -81,7 +82,7 @@
     "rets": []
    }
   },
-  "wall_s": 0.13
+  "wall_s": 0.14
  },
  "catalyst": {
   "manual_observation": "REFRESH_REQUESTED",
@@ -92,14 +93,14 @@
  },
  "benchmark_fast_ms": {
   "n": 20,
-  "median": 8.3,
-  "max": 10.1
+  "median": 8.2,
+  "max": 12.5
  },
  "stats": {
   "events": {
    "CACHE_HIT": {
     "n": 1,
-    "avg_ms": 2.0203590393066406
+    "avg_ms": 1.9729137420654297
    },
    "CATALYST_REFRESH": {
     "n": 1,
@@ -107,11 +108,11 @@
    },
    "COMPLETED": {
     "n": 21,
-    "avg_ms": 8.62900416056315
+    "avg_ms": 9.463911964779808
    },
    "DEEP_INSUFFICIENT_HISTORY": {
     "n": 1,
-    "avg_ms": 127.30932235717773
+    "avg_ms": 139.80555534362793
    },
    "QUEUED_DEEP": {
     "n": 21,
@@ -123,7 +124,7 @@
    },
    "STALE_ON_HIT": {
     "n": 1,
-    "avg_ms": 1.4009475708007812
+    "avg_ms": 1.352071762084961
    }
   },
   "states": {

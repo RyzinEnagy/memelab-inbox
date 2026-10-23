@@ -35,7 +35,7 @@ Notes:
 Corrected twice in Phase 16. Repair pass 1 (defects D2 and D11): the first version mixed bars from every pool of a mint and counted windows cut short by a dead feed as full 24 h returns. Repair pass 2 (N1, N2, N3):
 - windows whose feed stopped early (the usual end of a rug) stay in the return percentiles at their last traded price, an upper bound for a token nobody could sell;
 - the pool is chosen with nothing later than the as-of;
-- a window where two pools with real volume disagree by more than 30% is not measured;
+- a window where two pools of the mint close more than 30% apart for 2 or more consecutive hours is not measured (repair pass 3 replaced a 5% volume floor with this persistence rule);
 - a selection-bias flag is raised when more than 20% of known tokens cannot be measured.
 
 The cohort uses one pool per token and the outcome tracker's rules. Figures for the whole corpus (no as-of):

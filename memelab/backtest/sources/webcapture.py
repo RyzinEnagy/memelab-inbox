@@ -135,16 +135,33 @@ SENSITIVE_NAMES = r"(?:api[_-]?key|apikey|access[_-]?token|refresh[_-]?token|id[
 KEY_PREFIXES = ("fc-", "sk-", "sk_", "pk_", "rk_", "ghp_", "gho_", "ghs_", "ghu_", "github_pat_", "xoxb-", "xoxp-", "xoxa-", "AKIA", "ASIA", "AIza", "eyJ", "hf_", "glpat-")
 
 
+def _public_address(seg: str) -> bool:
+    from .. import quality
+    return 32 <= len(seg) <= 44 and quality.b58_len(seg) == 32          # a Solana public key (mint, pool, wallet)
+
+
+def _hash_or_signature(seg: str) -> bool:
+    """Public identifiers that look random: hex digests (40/64) and base58 transaction signatures (64 bytes)."""
+    from .. import quality
+    return bool(re.fullmatch(r"[0-9a-f]{40}|[0-9a-f]{64}", seg)) or (len(seg) >= 80 and quality.b58_len(seg) == 64)
+
+
 def looks_like_secret(seg: str) -> bool:
-    """A credential-shaped token: a known key prefix, or a long run of letters and digits with no word structure."""
+    """A credential-shaped token: a known key prefix, a UUID, a bot token, or a long run of letters and digits that is
+    not a public address, digest or signature."""
     seg = seg.strip("'\"")
     if len(seg) >= 12 and seg.startswith(KEY_PREFIXES):
         return True
     if re.fullmatch(r"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}", seg):
         return True                                   # UUID-shaped API keys
-    if 32 <= len(seg) <= 44 and re.fullmatch(r"[1-9A-HJ-NP-Za-km-z]+", seg):
-        return False                                  # a public Solana address (mint, pool, wallet) is not a secret
+    if re.fullmatch(r"\d{6,12}:[A-Za-z0-9_\-]{30,}", seg):
+        return True                                   # bot tokens (id:secret)
+    if _public_address(seg) or _hash_or_signature(seg):
+        return False
     return len(seg) >= 40 and re.fullmatch(r"[A-Za-z0-9_\-.+/=]+", seg) is not None and re.search(r"\d", seg) is not None and seg.count("-") <= 1
+
+
+CREDENTIAL_WORDS = r"(?:api[ _-]?key|apikey|key|token|secret|password|passwd|credentials?|bearer|authorization|auth|signing key|private key)"
 
 
 def redact_url(url) -> str | None:
@@ -170,7 +187,13 @@ def redact_text(text, url=None) -> str | None:
     t = str(text)
     if url:
         t = t.replace(str(url), redact_url(url) or "")
-    t = re.sub(r"(?i)\b(bearer|basic|token)\s+[A-Za-z0-9._~+/=\-]{8,}", r"\1 [removed]", t)
+    # Authorization schemes: the value only when it looks like a credential (a digit or base64 padding, or 20+ characters)
+    t = re.sub(r"(?i)\b(bearer|basic|token)(\s+)([A-Za-z0-9._~+/=\-:]{8,})",
+               lambda m: m.group(1) + m.group(2) + ("[removed]" if (re.search(r"[\d=+/]", m.group(3)) or len(m.group(3)) >= 20)
+                                                     and not _public_address(m.group(3)) and not _hash_or_signature(m.group(3)) else m.group(3)), t)
+    # a 16+ character value right after a credential word ("key abc...", "credential: abc...")
+    t = re.sub(r"(?i)\b(" + CREDENTIAL_WORDS + r")\b(\s*(?:is\s+|[:=]\s*)?[\"']?)([A-Za-z0-9._~+/=\-:]{16,})",
+               lambda m: m.group(1) + m.group(2) + ("[removed]" if not (_public_address(m.group(3)) or _hash_or_signature(m.group(3))) else m.group(3)), t)
     t = re.sub(r"//[^/@\s'\"]+@", "//REDACTED@", t)
     t = re.sub(r"(?i)([\"']?" + SENSITIVE_NAMES + r"[\"']?\s*[:=]\s*[\"']?)([^\"'&\s,;}]+)", r"\1[removed]", t)
     t = re.sub(r"https?://[^\s'\"<>]+", lambda m: redact_url(m.group(0)) or "", t)

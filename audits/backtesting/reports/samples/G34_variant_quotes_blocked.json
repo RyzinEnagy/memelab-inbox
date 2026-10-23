@@ -11,7 +11,7 @@
  },
  "trace": {
   "evidence_class": "FACT",
-  "request_key": "e8ca9b1cda54dd6c259b3f3e932bd0e391c0a7513d290b354f9f6f656c514385",
+  "request_key": "9537128abd0c918ac9bb23ac59c88342c6f9659e1f07ab9a3f1b5b34e5ba7003",
   "assessment_state": "PARTIAL_WITH_LIMITATIONS",
   "assessment_tier": "SCENARIO_ONLY",
   "cache": "MISS",
@@ -62,6 +62,7 @@
    "known_tokens": 0,
    "window_states": {},
    "missing_reasons": {},
+   "pool_disagreement_removed": 0,
    "selection_bias_risk": false,
    "unmeasured_share": null
   },

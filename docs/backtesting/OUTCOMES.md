@@ -20,8 +20,9 @@ Nothing is dropped.
 Pool basis. Each window uses one pool:
 - it is chosen with bars available at the decision, or at the first later try (6, 12, 24 or 48 h) that has any, never later than the outcome's own as-of;
 - when the corpus has no pool record for the mint, bars alone decide;
-- when another pool of the same mint traded in the same hours with at least 5% of the basis pool's volume and more than 30% away in price, the window is NOT_OBSERVABLE (POOL_DISAGREEMENT). Without historical depth, the bars cannot say which pool is the real market;
-- a lone thin print off the market is ignored.
+- when another pool of the same mint closes more than 30% away from the basis pool for at least 2 consecutive shared hours, the window is NOT_OBSERVABLE (POOL_DISAGREEMENT). Arbitrage keeps real markets together, so a lasting gap means one pool is not a real market, and hourly bars cannot say which: volume does not settle it, because wash trading can inflate either side;
+- a single-hour gap is ignored. That covers a lone thin print, and a side pool whose last trade came before a crash inside the crash hour;
+- every cohort reports how many windows the guard removed, and raises the selection-bias flag when that is more than 5% of measurable tokens.
 
 The same rules drive the cohort evidence that assessments and reports show (`stress.empirical_cohort`):
 - it only reads what the lab had recorded and published by the assessment time, floored to the start of that hour;

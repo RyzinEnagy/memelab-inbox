@@ -1,6 +1,6 @@
 # Backtest and stress: PAID `solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump`
 
-As of 2026-10-06 23:48:23 UTC. Assessment PARTIAL_WITH_LIMITATIONS, evidence SCENARIO_ONLY, request b1c1a38c6cef0690, engine bt-0.2.0.
+As of 2026-10-06 23:48:23 UTC. Assessment PARTIAL_WITH_LIMITATIONS, evidence SCENARIO_ONLY, request b77f916cc9ece264, engine bt-0.2.0.
 
 Research only. Backtests describe the past over the lab's discovery universe, stress scenarios are hypothetical with no probabilities, and nothing here is an instruction to buy, sell or size a position.
 

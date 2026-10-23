@@ -266,7 +266,7 @@ def current_version(con: sqlite3.Connection) -> int:
 
 def _run(con: sqlite3.Connection, script: str) -> None:
     try:
-        con.executescript("BEGIN;\n" + script + "\nCOMMIT;")
+        con.executescript("BEGIN IMMEDIATE;\n" + script + "\nCOMMIT;")   # take the write lock first: a deferred read-then-write upgrade fails at once under WAL
     except Exception:
         if con.in_transaction:
             con.execute("ROLLBACK")

@@ -495,3 +495,130 @@ Changes from the first pass:
 Counts: PASS 35, PARTIAL 6 (G02, G06, G16, G27, G32, G39), FAILED 0, NOT_TESTABLE 0.
 
 Next step before Phase 17: fix N1 (and N2 to N6, all small), and decide G16 and G27 explicitly. Then re-run this section's commands with `tests/test_backtest_e2e_audit.py` and `test_p16r1_repair_attacks.py` unchanged.
+
+## Re-run after repair pass 2
+
+Re-run by the same independent reviewer against commit `0e63563` (repair pass 2), 2026-10-23, 21:50 to 22:08 UTC.
+
+Unchanged since I left them:
+- `tests/test_backtest_e2e_audit.py`, `p16_mutations.json` and the first-pass scripts (`git diff 47a7845 HEAD` empty);
+- `test_p16r1_repair_attacks.py` (committed by the coordinator as written).
+
+New in this pass, all uncommitted:
+- `test_p16r2_repair_attacks.py`, attacks on pass 2;
+- `p16r2_cohort_check.py`, an independent recomputation of the pass-2 cohort definition;
+- `p16r2_guard_scan.py`, the real-corpus effect of the pool-disagreement guard;
+- logs `logs/p16r2_*`.
+
+Protected hashes are unchanged. The BRETT report was deleted again.
+
+### Verdict after repair pass 2
+
+PHASE 16: FAILED (third pass, strict reading of the gate), on low-severity residuals only.
+
+- No High or Medium defect remains.
+- Every defect from the first two passes is fixed, or (N3) resolved by a fail-closed rule I accept.
+- What keeps three scenarios PARTIAL:
+  - the disagreement guard can hide a real rug below the bias-flag threshold (N7) and can be evaded by very large wash volume (N3b);
+  - redaction misses bare short keys and over-redacts public text (N4b, N4c);
+  - two cache weaknesses (C1, C2).
+- G16 and G27 cannot be fixed by code and need the user's explicit acceptance as disclosed limitations.
+
+If the user accepts those, plus these low residuals as documented limitations, I would treat the package as fit for the release below.
+
+Release classification: scenario-only research mode, clearly labeled. It is not an empirically validated engine:
+- every sealed test is INSUFFICIENT_SAMPLE;
+- the sealed window was seen before pre-registration, so a new sealed test needs data after 2026-10-23 16:00 UTC;
+- historical fills are LIQ_SNAPSHOT_APPROX.
+
+Historical price paths remain single-provider, and the independent confirmations recorded in the first pass still stand.
+
+### Commands and exits
+
+| Command | Exit | Result | Log |
+|---|---|---|---|
+| `pytest tests -q -p no:cacheprovider` | 1 | 1019 passed, 1 failed (C-1 only, pre-existing) | `logs/p16r2_full_pytest.log` |
+| `pytest tests/test_backtest_e2e_audit.py audits/backtesting/testing/test_p16r1_repair_attacks.py -v` | 1 | 26 passed, 1 failed: `test_r1_cohort_basis_not_steered_by_wash_volume_on_a_thin_pool` (KeyError: the cohort is INSUFFICIENT_HISTORY, by the fail-closed rule) | `logs/p16r2_my_tests.log` |
+| `pytest audits/backtesting/testing/test_p16r2_repair_attacks.py -v` | 1 | 3 passed, 6 failed (residual reproductions) | `logs/p16r2_repair_attacks.log` |
+| `mutate.py` p05 to p16, repair, repair2 (`PYTHONDONTWRITEBYTECODE=1`) | 0 each | 200 of 200 caught (167 + 13 + 10 + 10) | `logs/p16r2_mutations_all.log` |
+| `p16_mutate_strict.py` p16, repair, repair2 | 0 | all caught. R16-7 is caught by the OperationalError it re-introduces. R16-9 is flagged "crash" only because pytest's "DID NOT RAISE ValueError" names an exception; both are proper detections. | `logs/p16r2_mut_strict.log` |
+| `p16r2_cohort_check.py <copy>` | 0 | the package matches my recomputation at 6 real decision points: known tokens, n, n_complete, bias flag, p10 and median | `logs/p16r2_cohort_check.log` |
+| `p16r2_guard_scan.py <copy>` | 0 | 1,023 opportunities; the guard removes 0 / 0 / 1 / 2 windows at 1 / 6 / 24 / 72 h | `logs/p16r2_guard_scan.log` |
+| `p16_concurrency.py <scratch>` | 0 | A 8/8 OK; B 12/12 OK, no duplicates; C 1 RAN + 2 SKIPPED_MIN_INTERVAL; D 1 MISS + 2 HIT_AFTER_CONCURRENT_RUN, one result row; blocked providers explicit | `logs/p16r2_concurrency.log` |
+| `p16_real_cases.py <copy>` | 0 | all four cases identical to the first pass except the cohort, which is checked point-in-time separately | `logs/p16r2_real_cases.log` |
+| `p16_sealed_rerun.py <copy>` | 0 | cutoff hash matches; both sealed-test ledger hashes reproduce (BREAKOUT_CLOSE `88ae4054`, LAB_STATUS `e4781814`) | `logs/p16r2_sealed_rerun.log` |
+| `p16_golden.py` | 0 | 45 of 45 agree | `logs/p16r2_golden.log` |
+| `p16_regression.sh` | 0 | policy off identical to base; on: additive only, same as before | `logs/p16r2_regression.log` |
+| `tools/release_e2e.py` at 0e63563 | 0 | PASS 78 of 78, network 0, tracked DB byte-identical | `logs/p16r2_release_e2e_head*` |
+| clean local clone, `env -i`: `pytest tests/test_backtest_*.py` and the pass-1 attack file | 1 | 241 passed, 1 failed (the same accepted N3 test); `tests/test_backtest_*.py` alone all pass | `logs/p16r2_clean_clone.log` |
+| clean clone `tools/release_audit.py` | 0 | Needs action: no | same |
+
+### Status of the pass-1 findings
+
+| Finding | Status | Evidence |
+|---|---|---|
+| N1 survivorship in cohort returns | FIXED | `test_r1_cohort_returns_keep_dead_tokens_or_flag_the_bias` passes. Real REJECTED cohort at the corpus end: 136 measured (105 complete), p10 -77.6%, `selection_bias_risk` true (26.9% unmeasured), complete-only p10 -59.4% shown beside it. Recomputed independently. |
+| N2 pool choice after the as-of | FIXED | `test_r1_cohort_pool_choice_never_reads_after_the_assessment_time` passes; the pool tries are capped at the outcome's as-of |
+| N3 basis steered by wash volume | RESOLVED BY FAIL-CLOSED (accepted) | My pass-1 test still fails, because it expected the main pool to be measured. The builder instead marks the window NOT_OBSERVABLE (POOL_DISAGREEMENT); the cohort comes out INSUFFICIENT_HISTORY with the bias flag (`test_r2_guard_refuses_the_pass1_wash_world` passes). I accept this: no wrong number is published, and choosing the lower-volume pool without depth data is also a guess. My failing pass-1 test is therefore an accepted divergence, not an open defect. Residuals N3b and N7 below. |
+| N4 redaction gaps | FIXED for the pass-1 cases | `test_r1_redaction_covers_bare_keys_headers_and_path_tokens` passes, and `test_r2_redaction_pass2_claims_hold` passes. Covered: Bearer/Basic, name=value, JSON pairs, user:password, key prefixes, UUIDs, 40+ character runs, path tokens refused by `allowed()`, public base58 addresses kept. Residuals N4b, N4c below. |
+| N5 engine version and ledger hashes | FIXED | `bt-0.2.0`; both stored sealed-test hashes reproduce |
+| N6 duplicate run results | FIXED | burst D: one result row, two HIT_AFTER_CONCURRENT_RUN |
+
+DEFECT_TESTS in `tests/test_backtest_e2e_audit.py`: all 9 pass.
+
+RESIDUAL_TESTS in `test_p16r1_repair_attacks.py`: 3 of 4 pass. The fourth (N3) fails by the accepted fail-closed rule.
+
+### Remaining defects, ranked (all Low)
+
+| # | Severity | Location | Reproduction (`test_p16r2_repair_attacks.py`) | Breaks |
+|---|---|---|---|---|
+| N7 | Low | `outcomes.pool_disagreement` (any single hour over 30% apart, other pool at least 5% of the volume) and the 20% flag in `stress.empirical_cohort` | `test_r2_guard_does_not_hide_a_rug_below_the_bias_flag` (details below the table). Real corpus: the one 24 h window the guard removes (Bm67Lrew..., 2026-10-18) had its basis pool fall 99.5% inside the window. | G06 |
+| N3b | Low | `outcomes.pool_disagreement` `min_volume_share=0.05` | `test_r2_guard_is_evaded_when_wash_volume_exceeds_twenty_times_the_real_pool`: with 25x wash volume the real pool falls under the 5% floor and is ignored, and the cohort is measured on the wash pool (median -95% for tokens whose main pool never moved) | G02 |
+| N4b | Low | `webcapture.looks_like_secret` / `redact_text` (bare runs under 40 characters are kept unless prefixed or UUID-shaped) | `test_r2_redaction_catches_bare_short_keys`: a 32-hex key after "key", a Telegram bot token's secret part, and a 34-character alphanumeric key are all echoed in error text | G39 |
+| N4c | Low (false positives) | same | `test_r2_redaction_keeps_useful_public_text`: a 64-hex content hash, an 88-character transaction signature and the word after "Basic" are removed from error text (the mint address is kept) | diagnostics |
+| C1 | Low (latent) | `stress.empirical_cohort` returns `dict(out)`, a shallow copy of the cached result | `test_r2_cached_cohort_cannot_be_poisoned_by_a_caller`: editing a nested list in one answer changes the next answer (median 9.99). No production caller mutates it today. | integrity |
+| C2 | Low | `assess.data_revision` covers `bt_market_bars` and `bt_universe_members` but not `bt_pool_versions`, which the cohort now reads | `test_r2_assessment_cache_never_serves_a_stale_cohort_after_new_pool_records`: after a pool-list refresh with no bars yet, a direct cohort says 0 measured but the FAST assessment cache HIT still says 30. The window is the same snapshot within its 2 h staleness limit. | cache consistency |
+
+N7 in detail:
+- In a rug's crash hour, a side pool's last trade came before the crash, so its hourly close differs from the main pool's close. The window is marked NOT_OBSERVABLE.
+- With 6 rugs among 36 tokens (16.7% unmeasured), no bias flag is raised, and the returns and worst drops silently lose every rug.
+
+Answers to the questions asked:
+- **Disagreement guard thresholds.** The fail-closed principle is right, but one hour over 30% apart is too eager (N7) and the 5% volume floor is evadable (N3b). Rule I would argue for:
+  1. Compare closes over the hours both pools traded and require the gap to persist for at least 2 consecutive hours (or use the median gap). That ignores the crash-hour close-timing artifact and lone prints.
+  2. Drop the volume floor for a pool that trades in most of those hours.
+  3. When a window is refused, still contribute its worst drop across pools as a lower bound to the drawdown statistics.
+  4. Always report the count of guard-removed windows, not only above the 20% flag.
+  - Real-corpus impact today is small (1 window at 24 h, 2 at 72 h), so this is Low.
+- **Redaction.** False negatives remain for bare keys under 40 characters (N4b), the most common API-key lengths (32 to 39). False positives remove hashes, transaction signatures and ordinary words after "Basic", "token" or "key:" (N4c). Suggested rule: redact a bare run of 20 or more characters only when it is next to a credential word or follows a known prefix; keep 64-hex hashes and base58 runs over 80 characters.
+- **Cache key.**
+  - `empirical_cohort` itself follows new bars, universe rows, pool records and backfilled bars (`test_r2_cohort_cache_follows_new_bars_universe_rows_and_pool_records` passes).
+  - Two ways a stale or wrong cohort can still be served:
+    - the FAST assessment cache, whose key omits pool records (C2);
+    - a caller mutating a shared cached object (C1).
+  - Not reproduced, by reasoning only:
+    - two distinct in-memory databases in one process share the key `''`;
+    - a database file replaced at the same path with equal row ids is not detected.
+
+Observations:
+- `assess` floors the cohort as-of to the start of the hour (conservative; at the PAID demo time no cohort token is known).
+- Each REJECTED-status FAST assessment still computes about 190 cohort outcomes once per hour, which the cache now amortizes.
+
+### G01 to G41 after repair pass 2
+
+| G | After pass 1 | Now | Reason |
+|---|---|---|---|
+| G02 | PARTIAL | PARTIAL | splicing fixed and N2 fixed; residual N3b (guard evadable with 20x or more wash volume) |
+| G06 | PARTIAL | PARTIAL | N1 fixed; residual N7 (guard can hide a rug below the bias flag) |
+| G32 | PARTIAL | PASS | N2 fixed; assessment and cohort point-in-time verified independently at 6 real decision points; daily replay byte-identical |
+| G39 | PARTIAL | PARTIAL | N4 fixed for its cases; residual N4b (bare short keys) |
+| G16 | PARTIAL | PARTIAL | multi-hop routes not modeled. Needs user acceptance as a disclosed limitation; the builder will state it in the release report. |
+| G27 | PARTIAL | PARTIAL | sealed hashes reproduce again (N5 fixed). Needs user acceptance: the window was seen before pre-registration, and any new sealed test needs data after 2026-10-23 16:00 UTC. |
+
+Counts: PASS 36, PARTIAL 5 (G02, G06, G16, G27, G39), FAILED 0, NOT_TESTABLE 0.
+
+Next step:
+1. Either fix N7, N3b, N4b, C1 and C2 (each small; the rules are proposed above) and re-run these commands with all three attack files unchanged, or have the user accept them as documented limitations.
+2. Then have the user accept G16 and G27 explicitly.
+
+After both, Phase 16 can be closed for scenario-only research mode.

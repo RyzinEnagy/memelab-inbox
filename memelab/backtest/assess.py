@@ -136,7 +136,7 @@ def precheck(snap: S.Snapshot, now: float, max_age_s: float = 2 * 3600) -> tuple
 
 def data_revision(con) -> list[int]:
     """Append-only tables, so the highest row id is a cheap, exact revision marker for the evidence the FAST stage reads."""
-    return [con.execute(f"SELECT COALESCE(MAX(id), 0) FROM {t}").fetchone()[0] for t in ("bt_market_bars", "bt_universe_members")]
+    return [con.execute(f"SELECT COALESCE(MAX(id), 0) FROM {t}").fetchone()[0] for t in ("bt_market_bars", "bt_universe_members", "bt_pool_versions")]
 
 
 class _Abstain(Exception):

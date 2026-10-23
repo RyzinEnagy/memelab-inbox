@@ -372,17 +372,32 @@ def _two_pools(con, mint, side_vol, side_step, main_step=0.0, main_vol=2000.0):
 
 
 def test_pools_that_disagree_are_not_measured_and_thin_prints_are_ignored(con):
-    _two_pools(con, M1, side_vol=1500.0, side_step=-0.08)                 # a second real-volume pool drifting 90% away: ambiguous
-    _two_pools(con, M2, side_vol=20.0, side_step=-0.08)                   # a thin pool (1% of volume) printing off-market: ignored
-    _two_pools(con, M3, side_vol=20.0, side_step=0.0, main_step=-0.15)    # a rug on the main pool, a thin side pool still flat
+    _two_pools(con, M1, side_vol=1500.0, side_step=-0.08)                 # a second pool drifting 90% away hour after hour: ambiguous
+    _two_pools(con, M2, side_vol=20.0, side_step=-0.08)                   # same with 1% of the volume: volume does not settle it (wash can be either side)
+    _two_pools(con, M3, side_vol=20.0, side_step=0.0, main_step=-0.15)    # main pool falls hour after hour while a side pool keeps printing flat
     asof = T0 + 40 * H
     st = {m: O.outcome_for(con, opp(con, m), 24 * 3600, asof) for m in (M1, M2, M3)}
-    assert st[M1]["state"] == "NOT_OBSERVABLE" and st[M1]["missing_reason"].startswith("POOL_DISAGREEMENT")
-    assert st[M2]["state"] == "COMPLETE" and abs(st[M2]["realized"]["ret_close"]) < 1e-9
-    assert st[M3]["state"] == "COMPLETE" and st[M3]["realized"]["down_50"]
+    assert all(st[m]["state"] == "NOT_OBSERVABLE" and st[m]["missing_reason"].startswith("POOL_DISAGREEMENT") for m in (M1, M2, M3))
+    # a lone print off the market (one hour) and a side pool that last traded before a crash inside the crash hour (N7): measured
+    pm, ps = "M" + M4[1:], "S" + M4[1:]
+    for p_ in (pm, ps):
+        store.record_pool_version(con, chain="solana", pool_address=p_, mint=M4, pool_type="CPMM", observed_at=T0 - 3 * 86400, source="test",
+                                  dex="pumpswap", pool_created_at=T0 - 3 * 86400 - 60, available_at=T0 - 3 * 86400)
+    for i in range(-24, 30):
+        o, c = (1.0, 1.0) if i < 3 else ((1.0, 0.01) if i == 3 else (0.01, 0.01))
+        store.record_bar(con, chain="solana", mint=M4, pool_address=pm, tf=3600, start=T0 + i * H, o=o, h=max(o, c), l=min(o, c), c=c,
+                         volume_usd=(20000.0 if i == 3 else 1000.0), observed_at=T0 + (i + 1) * H + 600, provider="test")
+        if i <= 3 or i == 10:
+            sc = 0.98 if i == 3 else (0.5 if i == 10 else 1.0)          # crash-hour close before the crash, then one lone print
+            store.record_bar(con, chain="solana", mint=M4, pool_address=ps, tf=3600, start=T0 + i * H, o=1.0, h=1.0, l=sc, c=sc, volume_usd=50.0,
+                             observed_at=T0 + (i + 1) * H + 600, provider="test")
+    con.commit()
+    thesis(con, M4)
+    rug = O.outcome_for(con, opp(con, M4), 24 * 3600, asof)
+    assert rug["state"] == "COMPLETE" and rug["realized"]["down_50"] and rug["realized"]["pool"] == pm
     from memelab.backtest import stress as S
     c = S.empirical_cohort(con, "WATCH", min_n=1, asof=asof)
-    assert c["missing_reasons"].get("POOL_DISAGREEMENT") == 1 and c["n"] == 2
+    assert c["pool_disagreement_removed"] == 3 and c["n"] == 1 and c["selection_bias_risk"] is True
 
 
 def test_cohort_keeps_feeds_that_died_and_flags_unmeasured_tokens(con):
@@ -398,3 +413,14 @@ def test_cohort_keeps_feeds_that_died_and_flags_unmeasured_tokens(con):
     assert c["n"] == 4 and c["n_complete"] == 2 and c["ret_p10_p50_p90"][0] < -0.9          # rugs stay in the return percentiles
     assert c["selection_bias_risk"] is True and c["unmeasured_share"] == pytest.approx(3 / 7, abs=1e-4)
     assert c["ret_complete_only_p10_p50_p90"][0] > -0.1 and c["point_in_time"] is True
+
+
+def test_a_few_guard_removals_raise_the_bias_flag_even_under_twenty_percent(con):
+    from memelab.backtest import stress as S
+    for k in range(9):
+        m = f"Fg{k}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapump"
+        p = pool(con, m); bars(con, m, p, T0 - 24 * H, 24); bars(con, m, p, T0, 30)
+        thesis(con, m)
+    _two_pools(con, M1, side_vol=1500.0, side_step=-0.08)                 # 1 of 10 refused by the guard
+    c = S.empirical_cohort(con, "WATCH", min_n=1, asof=T0 + 40 * H)
+    assert c["pool_disagreement_removed"] == 1 and c["unmeasured_share"] == pytest.approx(0.1) and c["selection_bias_risk"] is True

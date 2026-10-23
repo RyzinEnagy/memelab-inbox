@@ -8,12 +8,12 @@
    "lab_score": 67,
    "lab_status": "SETUP DEVELOPING",
    "label": "UNTESTED",
-   "why": "assessment STALE_DATA: analysis snapshot is 405.9 h old",
+   "why": "assessment STALE_DATA: analysis snapshot is 406.7 h old",
    "state": "STALE_DATA",
    "tier": "UNAVAILABLE",
    "stress_decision": null,
    "max_size_usd_under_caps": null,
-   "request_key": "6b320d665ae50040acaedc416dd7cd93024bf606e7584c68ac744cc9c9e852d8",
+   "request_key": "573119667f4e7e15a42aaed8f76f1b6532f283cd1a6b445d32d45590bb908eba",
    "mismatch": null,
    "report": "20261006_2348_PAID_98kfF7rm.backtest.md"
   }

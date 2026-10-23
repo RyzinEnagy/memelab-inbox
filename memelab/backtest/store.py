@@ -32,8 +32,18 @@ def connect(path: Path | str | None = None) -> sqlite3.Connection:
     p.parent.mkdir(parents=True, exist_ok=True)
     con = sqlite3.connect(p, timeout=BUSY_TIMEOUT_S)
     con.row_factory = sqlite3.Row
-    con.execute("PRAGMA journal_mode=WAL")
-    schema.migrate(con)
+    for attempt in range(8):                  # first use by several processes at once: setup statements can meet SQLITE_BUSY without waiting
+        try:
+            con.execute("PRAGMA journal_mode=WAL")
+            schema.migrate(con)
+            return con
+        except sqlite3.OperationalError as e:
+            if "locked" not in str(e) and "busy" not in str(e) or attempt == 7:
+                con.close()
+                raise
+            if con.in_transaction:
+                con.rollback()
+            time.sleep(0.05 * (2 ** attempt))
     return con
 
 

@@ -96,34 +96,34 @@ def _basis(con, opp: dict, latest: float | None = None) -> tuple[dict | None, fl
 
 
 def pool_disagreement(con, opp: dict, basis_pool: str, start: float, end: float, observed_asof: float, tol: float = 0.30,
-                      min_volume_share: float = 0.05) -> dict | None:
-    """Another pool of the same mint that traded in the same hours at a materially different price, with enough
-    volume to matter (at least `min_volume_share` of the basis pool's volume in those hours) (G02). Arbitrage keeps real
-    markets of one token together, so a lasting gap means one pool is not a real market; the hourly bars cannot say
-    which (there is no historical depth), so the window is not measured rather than trusting the pool with more
-    volume, which wash trading can inflate (Phase 16, N3). A lone thin print far off the market is ignored."""
-    rows = con.execute("SELECT pool_address, start, c, volume_usd FROM bt_market_bars WHERE chain=? AND mint=? AND timeframe_s=? AND start>=? AND start<? "
+                      min_run_hours: int = 2) -> dict | None:
+    """Another pool of the same mint whose hourly closes stay more than `tol` away from the basis pool's for at least
+    `min_run_hours` consecutive shared hours (G02). Arbitrage keeps real markets of one token together, so a lasting
+    gap means one pool is not a real market, and hourly bars cannot say which: volume does not settle it, because
+    wash trading can inflate either side (Phase 16, N3 and N3b). Such a window is not measured.
+    A single-hour gap is ignored: an hourly close is the last trade of the hour, so a pool that last traded before a
+    crash inside that hour legitimately closes apart from one that traded after it (N7), and a lone thin print is noise."""
+    rows = con.execute("SELECT pool_address, start, c FROM bt_market_bars WHERE chain=? AND mint=? AND timeframe_s=? AND start>=? AND start<? "
                        "AND available_at<=? ORDER BY start, available_at, id", (opp["chain"], opp["mint"], TF, start, end, observed_asof)).fetchall()
     by = defaultdict(dict)
     for r in rows:
-        by[r["pool_address"]].setdefault(r["start"], (r["c"], r["volume_usd"] or 0.0))
+        by[r["pool_address"]].setdefault(r["start"], r["c"])
     base = by.get(basis_pool) or {}
     worst = None
     for pool, series in by.items():
         if pool == basis_pool:
             continue
-        common = [st for st in series if st in base]
-        v_other = sum(series[st][1] for st in common)
-        v_base = sum(base[st][1] for st in common)
-        if not common or v_base <= 0 or v_other < min_volume_share * v_base:
-            continue
-        for st in common:
-            b, c = base[st][0], series[st][0]
-            if b and c and b > 0 and c > 0:
-                gap = abs(math.log(c / b))
-                if gap > math.log(1 + tol) and (worst is None or gap > worst["log_gap"]):
-                    worst = {"pool": pool, "hour_start": st, "basis_close": b, "other_close": c, "log_gap": gap,
-                             "other_volume_share": round(v_other / v_base, 4)}
+        run, best_run, prev, peak = 0, 0, None, 0.0
+        for st in sorted(x for x in series if x in base):
+            b, c = base[st], series[st]
+            apart = bool(b and c and b > 0 and c > 0 and abs(math.log(c / b)) > math.log(1 + tol))
+            run = (run + 1 if (prev is not None and st - prev == TF and run) else 1) if apart else 0
+            prev = st
+            if apart:
+                peak = max(peak, abs(math.log(c / b)))
+            best_run = max(best_run, run)
+        if best_run >= min_run_hours and (worst is None or peak > worst["log_gap"]):
+            worst = {"pool": pool, "consecutive_hours_apart": best_run, "log_gap": peak}
     return worst
 
 
@@ -140,7 +140,8 @@ def outcome_for(con, opp: dict, horizon_s: int, observed_asof: float) -> dict:
     dis = pool_disagreement(con, opp, basis["pool_address"], t, end, observed_asof)
     if dis:
         return {"state": "NOT_OBSERVABLE", "censored": 1, "realized": {"pool": basis["pool_address"], "disagreement": dis, "flags": ["POOL_DISAGREEMENT"]},
-                "missing_reason": f"POOL_DISAGREEMENT: pools of this mint traded {math.exp(dis['log_gap']) - 1:.0%} apart in the same hour; no basis is trustworthy"}
+                "missing_reason": (f"POOL_DISAGREEMENT: pools of this mint traded up to {math.exp(dis['log_gap']) - 1:.0%} apart for "
+                                   f"{dis['consecutive_hours_apart']} consecutive hours; no basis is trustworthy")}
     bars = [b for b in store.bars_asof(con, chain=opp["chain"], mint=opp["mint"], pool_address=basis["pool_address"], tf=TF, cutoff=observed_asof)
             if b["start"] >= t and b["start"] < end]
     flags = ([f"POOL_BASIS_DELAYED_{delay_h}H"] if delay_h else []) + (["POOL_BASIS_FROM_BARS_ONLY"] if basis.get("from_bars_only") else [])

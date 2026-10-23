@@ -11,18 +11,18 @@
  },
  "trace": {
   "evidence_class": "FACT",
-  "request_key": "b1c1a38c6cef06902901710d7c2b23429638fda193ccb12f067c896cfc423c55",
+  "request_key": "b77f916cc9ece2640b02f5f3f5c7b5b2d7607a38a447cbe013be885315ff5d34",
   "assessment_state": "STALE_DATA",
   "assessment_tier": "UNAVAILABLE",
   "cache": "HIT_STALE",
-  "reason": "analysis snapshot is 405.9 h old",
+  "reason": "analysis snapshot is 406.7 h old",
   "retriable": true,
   "deep_request_key": null
  },
  "headline": {
   "evidence_class": "HEURISTIC",
   "label": "UNTESTED",
-  "why": "assessment STALE_DATA: analysis snapshot is 405.9 h old",
+  "why": "assessment STALE_DATA: analysis snapshot is 406.7 h old",
   "good_project": {
    "source": "lab score and status (unchanged)",
    "score": 64,

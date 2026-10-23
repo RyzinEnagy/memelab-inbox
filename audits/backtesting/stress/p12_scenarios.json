@@ -1266,6 +1266,7 @@
    "known_tokens": 0,
    "window_states": {},
    "missing_reasons": {},
+   "pool_disagreement_removed": 0,
    "selection_bias_risk": false,
    "unmeasured_share": null
   },
@@ -1282,6 +1283,7 @@
     "COMPLETE": 8
    },
    "missing_reasons": {},
+   "pool_disagreement_removed": 0,
    "selection_bias_risk": false,
    "unmeasured_share": 0.0
   },
@@ -1301,6 +1303,7 @@
    "missing_reasons": {
     "BARS_END_EARLY": 1
    },
+   "pool_disagreement_removed": 0,
    "selection_bias_risk": false,
    "unmeasured_share": 0.0
   },
@@ -1317,6 +1320,7 @@
     "COMPLETE": 7
    },
    "missing_reasons": {},
+   "pool_disagreement_removed": 0,
    "selection_bias_risk": false,
    "unmeasured_share": 0.0
   },
@@ -1340,6 +1344,7 @@
     "NO_BARS_IN_WINDOW": 20,
     "NO_POOL_BASIS": 1
    },
+   "pool_disagreement_removed": 0,
    "selection_bias_risk": true,
    "unmeasured_share": 0.2812,
    "horizon_h": 24,

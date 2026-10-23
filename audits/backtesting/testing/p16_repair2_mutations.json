@@ -11,7 +11,7 @@
  {
   "id": "R16b-2 cohort selection bias never flagged",
   "file": "memelab/backtest/stress.py",
-  "old": "\"selection_bias_risk\": bool(measurable) and unmeasured / measurable > 0.2,",
+  "old": "\"selection_bias_risk\": bool(measurable) and (unmeasured / measurable > 0.2 or reasons.get(\"POOL_DISAGREEMENT\", 0) / measurable > 0.05),",
   "new": "\"selection_bias_risk\": False,",
   "tests": [
    "tests/test_backtest_outcomes.py"
@@ -39,16 +39,13 @@
   ]
  },
  {
-  "id": "R16b-5 a thin off-market print voids the window",
+  "id": "R16b-5 a single-hour gap voids the window",
   "file": "memelab/backtest/outcomes.py",
-  "old": "        if not common or v_base <= 0 or v_other < min_volume_share * v_base:",
-  "new": "        if not common or v_base <= 0:",
+  "old": "                      min_run_hours: int = 2) -> dict | None:",
+  "new": "                      min_run_hours: int = 1) -> dict | None:",
   "tests": [
    "tests/test_backtest_outcomes.py",
-   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_returns_keep_dead_tokens_or_flag_the_bias",
-   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_pool_choice_never_reads_after_the_assessment_time",
-   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_bare_keys_headers_and_path_tokens",
-   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_query_userinfo_and_common_names"
+   "audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_guard_does_not_hide_a_rug_below_the_bias_flag"
   ]
  },
  {
@@ -68,14 +65,11 @@
  {
   "id": "R16b-7 Authorization values echoed",
   "file": "memelab/backtest/sources/webcapture.py",
-  "old": "    t = re.sub(r\"(?i)\\b(bearer|basic|token)\\s+[A-Za-z0-9._~+/=\\-]{8,}\", r\"\\1 [removed]\", t)\n",
-  "new": "",
+  "old": "               lambda m: m.group(1) + m.group(2) + (\"[removed]\" if (re.search(r\"[\\d=+/]\", m.group(3)) or len(m.group(3)) >= 20)",
+  "new": "               lambda m: m.group(1) + m.group(2) + (\"[removed]\" if False",
   "tests": [
-   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_returns_keep_dead_tokens_or_flag_the_bias",
-   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_pool_choice_never_reads_after_the_assessment_time",
-   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_bare_keys_headers_and_path_tokens",
-   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_query_userinfo_and_common_names",
-   "tests/test_backtest_webcapture.py"
+   "tests/test_backtest_webcapture.py",
+   "audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_redaction_pass2_claims_hold"
   ]
  },
  {
@@ -99,11 +93,56 @@
  {
   "id": "R16b-10 public Solana addresses treated as secrets",
   "file": "memelab/backtest/sources/webcapture.py",
-  "old": "        return False                                  # a public Solana address",
-  "new": "        return True                                  # a public Solana address",
+  "old": "    return 32 <= len(seg) <= 44 and quality.b58_len(seg) == 32",
+  "new": "    return False",
   "tests": [
    "tests/test_backtest_webcapture.py",
    "tests/test_backtest_e2e_audit.py"
+  ]
+ },
+ {
+  "id": "R16c-1 cached cohort handed out by reference",
+  "file": "memelab/backtest/stress.py",
+  "old": "    _COHORT_CACHE[key] = copy.deepcopy(out)\n    return out",
+  "new": "    _COHORT_CACHE[key] = out\n    return out",
+  "tests": [
+   "audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_cached_cohort_cannot_be_poisoned_by_a_caller"
+  ]
+ },
+ {
+  "id": "R16c-2 request key ignores pool records",
+  "file": "memelab/backtest/assess.py",
+  "old": "for t in (\"bt_market_bars\", \"bt_universe_members\", \"bt_pool_versions\")]",
+  "new": "for t in (\"bt_market_bars\", \"bt_universe_members\")]",
+  "tests": [
+   "audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_assessment_cache_never_serves_a_stale_cohort_after_new_pool_records"
+  ]
+ },
+ {
+  "id": "R16c-3 short keys after a credential word echoed",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "               lambda m: m.group(1) + m.group(2) + (\"[removed]\" if not (_public_address(m.group(3)) or _hash_or_signature(m.group(3))) else m.group(3)), t)",
+  "new": "               lambda m: m.group(0), t)",
+  "tests": [
+   "audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_redaction_catches_bare_short_keys"
+  ]
+ },
+ {
+  "id": "R16c-4 digests and signatures redacted",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "    return bool(re.fullmatch(r\"[0-9a-f]{40}|[0-9a-f]{64}\", seg)) or (len(seg) >= 80 and quality.b58_len(seg) == 64)",
+  "new": "    return False",
+  "tests": [
+   "audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_redaction_keeps_useful_public_text"
+  ]
+ },
+ {
+  "id": "R16c-5 guard removals never raise the bias flag",
+  "file": "memelab/backtest/stress.py",
+  "old": "(unmeasured / measurable > 0.2 or reasons.get(\"POOL_DISAGREEMENT\", 0) / measurable > 0.05)",
+  "new": "(unmeasured / measurable > 0.2)",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
   ]
  }
 ]
