@@ -32,16 +32,22 @@ Notes:
 
 `stress.empirical_cohort`, 24 h after the first bar that opened after each lab thesis, mid prices before costs, minimum 30 complete cases.
 
-Corrected in Phase 16 (defects D2 and D11). The first version mixed bars from every pool of a mint and counted windows cut short by a dead feed as full 24 h returns. The cohort now uses one pool per token, chosen at its decision time, and the outcome tracker's rules: returns from complete windows only, and worst drops that include cut-short windows as lower bounds. The original figures are kept below for the record.
+Corrected twice in Phase 16. Repair pass 1 (defects D2 and D11): the first version mixed bars from every pool of a mint and counted windows cut short by a dead feed as full 24 h returns. Repair pass 2 (N1, N2, N3):
+- windows whose feed stopped early (the usual end of a rug) stay in the return percentiles at their last traded price, an upper bound for a token nobody could sell;
+- the pool is chosen with nothing later than the as-of;
+- a window where two pools with real volume disagree by more than 30% is not measured;
+- a selection-bias flag is raised when more than 20% of known tokens cannot be measured.
 
-| Lab status at thesis | Complete cases now (first version) | Result now |
+The cohort uses one pool per token and the outcome tracker's rules. Figures for the whole corpus (no as-of):
+
+| Lab status at thesis | Measured (complete) of known | Result now |
 |---|---|---|
-| ENTRY CONDITIONS MET | 0 (0) | INSUFFICIENT_HISTORY |
-| NEAR ENTRY | 8 (8) | INSUFFICIENT_HISTORY |
-| SETUP DEVELOPING | 26, 1 censored (27) | INSUFFICIENT_HISTORY |
-| WATCH | 7 (7) | INSUFFICIENT_HISTORY |
-| REJECTED | 105, plus 53 censored and 34 not observable (136) | 24 h return p10 -59.4%, median -7.6%, p90 +45.3%; worst drop p10 -87.8%, median -21.4% |
+| ENTRY CONDITIONS MET | 0 (0) of 0 | INSUFFICIENT_HISTORY |
+| NEAR ENTRY | 8 (8) of 8 | INSUFFICIENT_HISTORY |
+| SETUP DEVELOPING | 27 (26) of 27 | INSUFFICIENT_HISTORY |
+| WATCH | 7 (7) of 7 | INSUFFICIENT_HISTORY |
+| REJECTED | 138 (105) of 192; 34 not observable (33 never fetched, 1 without a pool basis); selection-bias risk flagged (28% unmeasured) | 24 h return p10 -77.6%, median -3.3%, p90 +29.5%; complete windows only: p10 -59.4%, median -7.6%, p90 +45.3%; worst drop p10 -87.8%, median -21.4% |
 
-First version, superseded: REJECTED 136 cases, 24 h return p10 -77.6%, median -4.5%, p90 +29.5%; worst drop p10 -93.0%, median -23.5%.
+First version, superseded: REJECTED 136 cases, 24 h return p10 -77.6%, median -4.5%, p90 +29.5%; worst drop p10 -93.0%, median -23.5%. After repair pass 1, superseded: 105 complete cases, p10 -59.4% (dead feeds dropped, N1).
 
 Only the REJECTED cohort is large enough to report. These are frequencies for past tokens the lab rejected, not probabilities for any token.

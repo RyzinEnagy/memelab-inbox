@@ -11,8 +11,8 @@
  {
   "id": "R16-2 cohort mixes every pool of a mint",
   "file": "memelab/backtest/outcomes.py",
-  "old": "        b = gecko.pool_basis_at(con, opp[\"chain\"], opp[\"mint\"], t) if has_records else _bars_basis(con, opp[\"chain\"], opp[\"mint\"], t)\n        if b:\n            return b, h",
-  "new": "        b = gecko.pool_basis_at(con, opp[\"chain\"], opp[\"mint\"], t) if has_records else _bars_basis(con, opp[\"chain\"], opp[\"mint\"], t)\n        if b:\n            return b | {\"pool_address\": con.execute(\"SELECT pool_address FROM bt_market_bars WHERE mint=? ORDER BY volume_usd LIMIT 1\", (opp[\"mint\"],)).fetchone()[0]}, h",
+  "old": "        b = gecko.pool_basis_at(con, opp[\"chain\"], opp[\"mint\"], t) if has_records else _bars_basis(con, opp[\"chain\"], opp[\"mint\"], t)\n        if b:\n            return b, round(",
+  "new": "        b = gecko.pool_basis_at(con, opp[\"chain\"], opp[\"mint\"], t) if has_records else _bars_basis(con, opp[\"chain\"], opp[\"mint\"], t)\n        if b:\n            b = b | {\"pool_address\": con.execute(\"SELECT pool_address FROM bt_market_bars WHERE mint=? ORDER BY volume_usd LIMIT 1\", (opp[\"mint\"],)).fetchone()[0]}\n            return b, round(",
   "tests": [
    "tests/test_backtest_e2e_audit.py"
   ]
@@ -67,7 +67,7 @@
  {
   "id": "R16-8 batch status echoes credentials",
   "file": "memelab/backtest/sources/webcapture.py",
-  "old": "        return urlunsplit((u.scheme, host, u.path, \"\", \"\")) + (\" [query removed]\" if u.query else \"\")",
+  "old": "        return urlunsplit((u.scheme, host, path, \"\", \"\")) + (\" [query removed]\" if u.query else \"\")",
   "new": "        return str(url)",
   "tests": [
    "tests/test_backtest_e2e_audit.py"
@@ -85,7 +85,7 @@
  {
   "id": "R16-10 assessment cohort read without its as-of",
   "file": "memelab/backtest/assess.py",
-  "old": "horizon_h=24, min_n=policy[\"min_cohort_trades\"], asof=snap.as_of)",
+  "old": "horizon_h=24, min_n=policy[\"min_cohort_trades\"], asof=float(int(snap.as_of // 3600) * 3600))",
   "new": "horizon_h=24, min_n=policy[\"min_cohort_trades\"])",
   "tests": [
    "tests/test_backtest_e2e_audit.py"

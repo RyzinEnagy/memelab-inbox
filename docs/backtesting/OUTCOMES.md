@@ -17,6 +17,18 @@ Outcomes are measured at fixed windows of 1 h, 6 h, 24 h and 72 h (protocol `out
 
 Nothing is dropped.
 
+Pool basis. Each window uses one pool:
+- it is chosen with bars available at the decision, or at the first later try (6, 12, 24 or 48 h) that has any, never later than the outcome's own as-of;
+- when the corpus has no pool record for the mint, bars alone decide;
+- when another pool of the same mint traded in the same hours with at least 5% of the basis pool's volume and more than 30% away in price, the window is NOT_OBSERVABLE (POOL_DISAGREEMENT). Without historical depth, the bars cannot say which pool is the real market;
+- a lone thin print off the market is ignored.
+
+The same rules drive the cohort evidence that assessments and reports show (`stress.empirical_cohort`):
+- it only reads what the lab had recorded and published by the assessment time, floored to the start of that hour;
+- windows whose feed stopped early count at their last traded price;
+- complete-only percentiles are reported beside them;
+- selection-bias risk is flagged when more than 20% of known tokens could not be measured.
+
 Rows are append-only:
 - recomputing with the same data adds nothing;
 - a late backfill or a provider revision adds a new row that points at the one it supersedes;

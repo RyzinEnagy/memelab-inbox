@@ -61,6 +61,9 @@ def assert_schedule_allowed(policy: dict) -> None:
 def allowed(use_case: str, url: str) -> str:
     uc = USE_CASES[use_case]
     canon = captures.canonical_url(url).replace("%40", "@")
+    from urllib.parse import urlsplit as _us
+    if any(looks_like_secret(seg) for seg in _us(canon).path.split("/")):
+        raise OffAllowlist("credential-shaped path segment; refused and never stored")
     m = next((m for m in (re.match(p, canon) for p in uc["allow"]) if m), None)
     if not m:
         raise OffAllowlist(f"{canon} is outside the {use_case} allowlist")
@@ -128,27 +131,53 @@ def record_page(con, *, use_case: str, collector: str, url: str, view: dict, cap
     return {"recorded": r["new"], "duplicate": not r["new"], "fields": f, **r}
 
 
+SENSITIVE_NAMES = r"(?:api[_-]?key|apikey|access[_-]?token|refresh[_-]?token|id[_-]?token|token|client[_-]?secret|secret|password|passwd|pwd|auth|authorization|key|signature|sig)"
+KEY_PREFIXES = ("fc-", "sk-", "sk_", "pk_", "rk_", "ghp_", "gho_", "ghs_", "ghu_", "github_pat_", "xoxb-", "xoxp-", "xoxa-", "AKIA", "ASIA", "AIza", "eyJ", "hf_", "glpat-")
+
+
+def looks_like_secret(seg: str) -> bool:
+    """A credential-shaped token: a known key prefix, or a long run of letters and digits with no word structure."""
+    seg = seg.strip("'\"")
+    if len(seg) >= 12 and seg.startswith(KEY_PREFIXES):
+        return True
+    if re.fullmatch(r"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}", seg):
+        return True                                   # UUID-shaped API keys
+    if 32 <= len(seg) <= 44 and re.fullmatch(r"[1-9A-HJ-NP-Za-km-z]+", seg):
+        return False                                  # a public Solana address (mint, pool, wallet) is not a secret
+    return len(seg) >= 40 and re.fullmatch(r"[A-Za-z0-9_\-.+/=]+", seg) is not None and re.search(r"\d", seg) is not None and seg.count("-") <= 1
+
+
 def redact_url(url) -> str | None:
-    """Scheme, host and path only: query strings, fragments and user:password parts can carry credentials and never
-    leave this module (Phase 16, D8)."""
+    """Scheme, host and path only: query strings, fragments, user:password parts and credential-shaped path segments
+    never leave this module (Phase 16, D8 and N4)."""
     if not url:
         return url
     from urllib.parse import urlsplit, urlunsplit
     try:
         u = urlsplit(str(url))
         host = (u.hostname or "") + (f":{u.port}" if u.port else "")
-        return urlunsplit((u.scheme, host, u.path, "", "")) + (" [query removed]" if u.query else "")
+        path = "/".join("[removed]" if looks_like_secret(x) else x for x in u.path.split("/"))
+        return urlunsplit((u.scheme, host, path, "", "")) + (" [query removed]" if u.query else "")
     except ValueError:
         return "[unparseable url removed]"
 
 
-def _redact_text(text, url) -> str | None:
+def redact_text(text, url=None) -> str | None:
+    """Error and status text with credentials removed: the request URL, Authorization values, name=value and
+    "name": "value" pairs with a sensitive name, user:password in URLs, and bare key-shaped tokens."""
     if text is None:
         return None
     t = str(text)
     if url:
         t = t.replace(str(url), redact_url(url) or "")
-    return re.sub(r"(?i)((?:api[_-]?key|token|key|secret|password|auth)=)[^&\s]+", r"\1[removed]", re.sub(r"//[^/@\s]+@", "//[credentials removed]@", t))
+    t = re.sub(r"(?i)\b(bearer|basic|token)\s+[A-Za-z0-9._~+/=\-]{8,}", r"\1 [removed]", t)
+    t = re.sub(r"//[^/@\s'\"]+@", "//REDACTED@", t)
+    t = re.sub(r"(?i)([\"']?" + SENSITIVE_NAMES + r"[\"']?\s*[:=]\s*[\"']?)([^\"'&\s,;}]+)", r"\1[removed]", t)
+    t = re.sub(r"https?://[^\s'\"<>]+", lambda m: redact_url(m.group(0)) or "", t)
+    return re.sub(r"[A-Za-z0-9_\-.+/=]{12,}", lambda m: "[removed]" if looks_like_secret(m.group(0)) else m.group(0), t)
+
+
+_redact_text = redact_text
 
 
 def ingest_batch(con, use_case: str, collector: str, results: list[dict], captured_at: float, run_id: str | None = None,

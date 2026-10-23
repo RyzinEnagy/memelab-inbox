@@ -16,14 +16,14 @@
   "opportunities": 1023,
   "states": {
    "COMPLETE": 1571,
-   "NOT_OBSERVABLE": 1886,
-   "CENSORED": 480,
+   "NOT_OBSERVABLE": 1889,
+   "CENSORED": 477,
    "PENDING": 155
   },
   "new_rows": 4092,
   "fetched": 0,
   "deferred_fetches": 0,
-  "wall_s": 21.2
+  "wall_s": 21.4
  },
  "track_rate_limited": "SKIPPED_MIN_INTERVAL",
  "track_2_new_rows": 0,
@@ -981,16 +981,16 @@
    "overall": {
     "n": 1023,
     "complete": 385,
-    "censored": 133,
-    "not_observable": 463,
+    "censored": 132,
+    "not_observable": 464,
     "pending": 42,
     "median_ret_close_complete": -0.052781331881071925,
-    "share_down_50_observed": 0.19956616052060738,
+    "share_down_50_observed": 0.19782608695652174,
     "share_down_50_ci95": [
-     0.1656,
-     0.2385
+     0.164,
+     0.2367
     ],
-    "n_observed": 461,
+    "n_observed": 460,
     "verdict": "REPORTABLE",
     "not_tracked": 0
    },
@@ -999,16 +999,16 @@
      "LAB_REJECTION:REJECTED_AT_SCREEN": {
       "n": 641,
       "complete": 155,
-      "censored": 67,
-      "not_observable": 390,
+      "censored": 66,
+      "not_observable": 391,
       "pending": 29,
       "median_ret_close_complete": -0.060903706967304294,
-      "share_down_50_observed": 0.24615384615384617,
+      "share_down_50_observed": 0.2422680412371134,
       "share_down_50_ci95": [
-       0.191,
-       0.3111
+       0.1874,
+       0.3072
       ],
-      "n_observed": 195,
+      "n_observed": 194,
       "verdict": "REPORTABLE"
      },
      "LAB_THESIS:DISTRIBUTION RISK": {
@@ -1181,16 +1181,16 @@
      "<6h": {
       "n": 40,
       "complete": 13,
-      "censored": 26,
-      "not_observable": 0,
+      "censored": 25,
+      "not_observable": 1,
       "pending": 1,
       "median_ret_close_complete": -0.6759028916200486,
-      "share_down_50_observed": 0.5483870967741935,
+      "share_down_50_observed": 0.5333333333333333,
       "share_down_50_ci95": [
-       0.3777,
-       0.7084
+       0.3614,
+       0.6977
       ],
-      "n_observed": 31,
+      "n_observed": 30,
       "verdict": "INSUFFICIENT_SAMPLE"
      },
      ">=7d": {
@@ -1288,16 +1288,16 @@
      "UNKNOWN": {
       "n": 681,
       "complete": 177,
-      "censored": 71,
-      "not_observable": 403,
+      "censored": 70,
+      "not_observable": 404,
       "pending": 30,
       "median_ret_close_complete": -0.05627369873009114,
-      "share_down_50_observed": 0.22272727272727272,
+      "share_down_50_observed": 0.2191780821917808,
       "share_down_50_ci95": [
-       0.1728,
-       0.2822
+       0.1695,
+       0.2786
       ],
-      "n_observed": 220,
+      "n_observed": 219,
       "verdict": "REPORTABLE"
      }
     },
@@ -1320,16 +1320,16 @@
      "SOL_FLAT": {
       "n": 723,
       "complete": 255,
-      "censored": 70,
-      "not_observable": 356,
+      "censored": 69,
+      "not_observable": 357,
       "pending": 42,
       "median_ret_close_complete": -0.052781331881071925,
-      "share_down_50_observed": 0.18771331058020477,
+      "share_down_50_observed": 0.18493150684931506,
       "share_down_50_ci95": [
-       0.1471,
-       0.2364
+       0.1446,
+       0.2335
       ],
-      "n_observed": 293,
+      "n_observed": 292,
       "verdict": "REPORTABLE"
      },
      "SOL_UP": {
@@ -1397,16 +1397,16 @@
      "NONE": {
       "n": 970,
       "complete": 362,
-      "censored": 105,
-      "not_observable": 461,
+      "censored": 104,
+      "not_observable": 462,
       "pending": 42,
       "median_ret_close_complete": -0.052835678459284385,
-      "share_down_50_observed": 0.1529126213592233,
+      "share_down_50_observed": 0.15085158150851583,
       "share_down_50_ci95": [
-       0.1214,
-       0.1909
+       0.1195,
+       0.1887
       ],
-      "n_observed": 412,
+      "n_observed": 411,
       "verdict": "REPORTABLE"
      }
     },
@@ -1414,16 +1414,16 @@
      "NO_CATALYST": {
       "n": 970,
       "complete": 362,
-      "censored": 105,
-      "not_observable": 461,
+      "censored": 104,
+      "not_observable": 462,
       "pending": 42,
       "median_ret_close_complete": -0.052835678459284385,
-      "share_down_50_observed": 0.1529126213592233,
+      "share_down_50_observed": 0.15085158150851583,
       "share_down_50_ci95": [
-       0.1214,
-       0.1909
+       0.1195,
+       0.1887
       ],
-      "n_observed": 412,
+      "n_observed": 411,
       "verdict": "REPORTABLE"
      },
      "VERIFIED_CONTEMPORANEOUS": {
@@ -1444,7 +1444,7 @@
     }
    },
    "selection_bias_risk": true,
-   "not_observable_share": 0.4526,
+   "not_observable_share": 0.4536,
    "note": "segments are historical correlations among the lab's own records, not causes; a segment with fewer than 30 complete outcomes is INSUFFICIENT_SAMPLE; censored outcomes count in drawdown shares as observed lower bounds"
   },
   "72h": {
@@ -1454,16 +1454,16 @@
    "overall": {
     "n": 1023,
     "complete": 348,
-    "censored": 129,
-    "not_observable": 433,
+    "censored": 127,
+    "not_observable": 435,
     "pending": 113,
     "median_ret_close_complete": -0.1000487298396559,
-    "share_down_50_observed": 0.2764976958525346,
+    "share_down_50_observed": 0.27546296296296297,
     "share_down_50_ci95": [
-     0.2365,
-     0.3204
+     0.2355,
+     0.3194
     ],
-    "n_observed": 434,
+    "n_observed": 432,
     "verdict": "REPORTABLE",
     "not_tracked": 0
    },
@@ -1472,16 +1472,16 @@
      "LAB_REJECTION:REJECTED_AT_SCREEN": {
       "n": 641,
       "complete": 139,
-      "censored": 63,
-      "not_observable": 362,
+      "censored": 61,
+      "not_observable": 364,
       "pending": 77,
       "median_ret_close_complete": -0.14233898092153552,
-      "share_down_50_observed": 0.3076923076923077,
+      "share_down_50_observed": 0.3055555555555556,
       "share_down_50_ci95": [
-       0.2452,
-       0.3781
+       0.2429,
+       0.3763
       ],
-      "n_observed": 182,
+      "n_observed": 180,
       "verdict": "REPORTABLE"
      },
      "LAB_THESIS:DISTRIBUTION RISK": {
@@ -1654,31 +1654,31 @@
      "<6h": {
       "n": 40,
       "complete": 12,
-      "censored": 20,
-      "not_observable": 0,
+      "censored": 19,
+      "not_observable": 1,
       "pending": 8,
       "median_ret_close_complete": -0.7864831034255975,
-      "share_down_50_observed": 0.48,
+      "share_down_50_observed": 0.4583333333333333,
       "share_down_50_ci95": [
-       0.3003,
-       0.665
+       0.2789,
+       0.6493
       ],
-      "n_observed": 25,
+      "n_observed": 24,
       "verdict": "INSUFFICIENT_SAMPLE"
      },
      ">=7d": {
       "n": 342,
       "complete": 234,
-      "censored": 74,
-      "not_observable": 0,
+      "censored": 73,
+      "not_observable": 1,
       "pending": 34,
       "median_ret_close_complete": -0.0779452664960435,
-      "share_down_50_observed": 0.10600706713780919,
+      "share_down_50_observed": 0.10638297872340426,
       "share_down_50_ci95": [
-       0.0753,
-       0.1473
+       0.0755,
+       0.1478
       ],
-      "n_observed": 283,
+      "n_observed": 282,
       "verdict": "REPORTABLE"
      },
      "UNKNOWN": {
@@ -1761,16 +1761,16 @@
      "UNKNOWN": {
       "n": 681,
       "complete": 159,
-      "censored": 65,
-      "not_observable": 375,
+      "censored": 63,
+      "not_observable": 377,
       "pending": 82,
       "median_ret_close_complete": -0.10406770831600076,
-      "share_down_50_observed": 0.27941176470588236,
+      "share_down_50_observed": 0.27722772277227725,
       "share_down_50_ci95": [
-       0.2223,
-       0.3446
+       0.2201,
+       0.3427
       ],
-      "n_observed": 204,
+      "n_observed": 202,
       "verdict": "REPORTABLE"
      }
     },
@@ -1778,31 +1778,31 @@
      "SOL_DOWN": {
       "n": 247,
       "complete": 119,
-      "censored": 50,
-      "not_observable": 78,
+      "censored": 49,
+      "not_observable": 79,
       "pending": 0,
       "median_ret_close_complete": -0.041425183309676705,
-      "share_down_50_observed": 0.3375796178343949,
+      "share_down_50_observed": 0.33974358974358976,
       "share_down_50_ci95": [
-       0.2683,
-       0.4146
+       0.2701,
+       0.4171
       ],
-      "n_observed": 157,
+      "n_observed": 156,
       "verdict": "REPORTABLE"
      },
      "SOL_FLAT": {
       "n": 723,
       "complete": 217,
-      "censored": 67,
-      "not_observable": 326,
+      "censored": 66,
+      "not_observable": 327,
       "pending": 113,
       "median_ret_close_complete": -0.13494977784335382,
-      "share_down_50_observed": 0.25096525096525096,
+      "share_down_50_observed": 0.24806201550387597,
       "share_down_50_ci95": [
-       0.2021,
-       0.3071
+       0.1993,
+       0.3042
       ],
-      "n_observed": 259,
+      "n_observed": 258,
       "verdict": "REPORTABLE"
      },
      "SOL_UP": {
@@ -1870,16 +1870,16 @@
      "NONE": {
       "n": 970,
       "complete": 326,
-      "censored": 100,
-      "not_observable": 431,
+      "censored": 98,
+      "not_observable": 433,
       "pending": 113,
       "median_ret_close_complete": -0.08963639375810872,
-      "share_down_50_observed": 0.21558441558441557,
+      "share_down_50_observed": 0.21409921671018275,
       "share_down_50_ci95": [
-       0.1774,
-       0.2594
+       0.176,
+       0.2579
       ],
-      "n_observed": 385,
+      "n_observed": 383,
       "verdict": "REPORTABLE"
      }
     },
@@ -1887,16 +1887,16 @@
      "NO_CATALYST": {
       "n": 970,
       "complete": 326,
-      "censored": 100,
-      "not_observable": 431,
+      "censored": 98,
+      "not_observable": 433,
       "pending": 113,
       "median_ret_close_complete": -0.08963639375810872,
-      "share_down_50_observed": 0.21558441558441557,
+      "share_down_50_observed": 0.21409921671018275,
       "share_down_50_ci95": [
-       0.1774,
-       0.2594
+       0.176,
+       0.2579
       ],
-      "n_observed": 385,
+      "n_observed": 383,
       "verdict": "REPORTABLE"
      },
      "VERIFIED_CONTEMPORANEOUS": {
@@ -1917,7 +1917,7 @@
     }
    },
    "selection_bias_risk": true,
-   "not_observable_share": 0.4233,
+   "not_observable_share": 0.4252,
    "note": "segments are historical correlations among the lab's own records, not causes; a segment with fewer than 30 complete outcomes is INSUFFICIENT_SAMPLE; censored outcomes count in drawdown shares as observed lower bounds"
   }
  },
@@ -2005,7 +2005,7 @@
    },
    "2026-10-18": {
     "n": 32,
-    "observable_share": 0.375
+    "observable_share": 0.34375
    },
    "2026-10-19": {
     "n": 52,
@@ -2027,9 +2027,9 @@
   "calibration_halves": {
    "LAB_REJECTION:REJECTED_AT_SCREEN": {
     "n_first": 103,
-    "n_second": 92,
+    "n_second": 91,
     "share_first": 0.27184466019417475,
-    "share_second": 0.21739130434782608
+    "share_second": 0.2087912087912088
    },
    "LAB_THESIS:DISTRIBUTION RISK": {
     "n_first": 17,
@@ -2115,5 +2115,5 @@
   "ledger_hash": "57bb234876ca600b89a8d6005c15d02135e6368f44e69aaf5d394d0d35fabcc1"
  },
  "prior_runs_unchanged": true,
- "wall_s": 55.7
+ "wall_s": 56.0
 }

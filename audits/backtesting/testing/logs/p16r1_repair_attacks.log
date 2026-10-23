@@ -1,0 +1,50 @@
+2026-10-23T21:16:03Z
+47a78459d41b5261515f280eeb88f3e9176fcf81
+============================= test session starts ==============================
+platform linux -- Python 3.13.17, pytest-9.1.1, pluggy-1.7.0 -- /usr/bin/python3
+rootdir: /home/claude/work/memelab-inbox
+plugins: platformdirs-4.12.4, anyio-4.15.1
+collecting ... collected 8 items
+
+audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_returns_keep_dead_tokens_or_flag_the_bias FAILED [ 12%]
+audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_pool_choice_never_reads_after_the_assessment_time FAILED [ 25%]
+audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_basis_not_steered_by_wash_volume_on_a_thin_pool FAILED [ 37%]
+audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_sixteen_processes_open_a_new_database_at_once PASSED [ 50%]
+audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_concurrent_trackers_with_the_same_now_run_once PASSED [ 62%]
+audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_concurrent_trackers_with_different_now_never_fork_a_window PASSED [ 75%]
+audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_bare_keys_headers_and_path_tokens FAILED [ 87%]
+audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_query_userinfo_and_common_names PASSED [100%]
+
+=================================== FAILURES ===================================
+___________ test_r1_cohort_returns_keep_dead_tokens_or_flag_the_bias ___________
+audits/backtesting/testing/test_p16r1_repair_attacks.py:75: in test_r1_cohort_returns_keep_dead_tokens_or_flag_the_bias
+    assert flagged or included, c
+E   AssertionError: {'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'min_n': 30, ...}
+E   assert (False or False)
+_______ test_r1_cohort_pool_choice_never_reads_after_the_assessment_time _______
+audits/backtesting/testing/test_p16r1_repair_attacks.py:101: in test_r1_cohort_pool_choice_never_reads_after_the_assessment_time
+    assert c["ret_p10_p50_p90"][1] > -0.05, c
+E   AssertionError: {'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'min_n': 30, ...}
+E   assert -0.99 > -0.05
+________ test_r1_cohort_basis_not_steered_by_wash_volume_on_a_thin_pool ________
+audits/backtesting/testing/test_p16r1_repair_attacks.py:121: in test_r1_cohort_basis_not_steered_by_wash_volume_on_a_thin_pool
+    assert c["ret_p10_p50_p90"][1] > -0.5, c
+E   AssertionError: {'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'min_n': 30, ...}
+E   assert -0.95 > -0.5
+__________ test_r1_redaction_covers_bare_keys_headers_and_path_tokens __________
+audits/backtesting/testing/test_p16r1_repair_attacks.py:227: in test_r1_redaction_covers_bare_keys_headers_and_path_tokens
+    assert SECRET not in dump, f"rows still carrying the credential: {leaks}"
+E   AssertionError: rows still carrying the credential: [0, 1, 2, 3]
+E   assert 'fc-abababab...abababababab' not in '{"recorded"...us": "DOWN"}'
+E     
+E     'fc-abababababababababababababababab' is contained here:
+E       {"recorded": 0, "duplicates": 0, "refused_off_allowlist": 0, "failed": 4, "empty": 0, "partial": 0, "over_cap": 0, "rows": [{"url": "https://solana.com/news/a", "state": "FETCH_FAILED", "status": 401, "error": "401 Unauthorized: invalid key fc-abababababababababababababababab"}, {"url": "https://solana.com/news/b", "state": "FETCH_FAILED", "status": 401, "error": "request failed with headers {'Authorization': 'Bearer fc-abababababababababababababababab'}"}, {"url": "https://solana.com/news/c/fc-ababababababababab...
+E     
+E     ...Full output truncated (2 lines hidden), use '-vv' to show
+=========================== short test summary info ============================
+FAILED audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_returns_keep_dead_tokens_or_flag_the_bias
+FAILED audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_pool_choice_never_reads_after_the_assessment_time
+FAILED audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_basis_not_steered_by_wash_volume_on_a_thin_pool
+FAILED audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_bare_keys_headers_and_path_tokens
+========================= 4 failed, 4 passed in 8.44s ==========================
+EXIT=1

@@ -64,6 +64,7 @@ def test_g25_gap_through_stop():
     tr = r["trades"][0]
     assert tr["exit_reason"] == "STOP_GAP_FILL_AT_OPEN" and tr["exit_ref_price"] == 0.6
     assert tr["ret"] == pytest.approx(-0.40, abs=1e-9) and tr["ret"] < -0.10
+    assert "unsold_tokens" not in tr                    # fully sold trades keep their bt-0.1.0 record shape (ledger hashes reproduce)
 
 
 def test_stop_before_target_in_same_bar_and_target_alone():

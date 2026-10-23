@@ -5,4 +5,4 @@ outputs and public read-only market data, and it never changes how the scout sco
 Contract and evidence: docs/backtesting/ and audits/backtesting/.
 """
 
-ENGINE_VERSION = "bt-0.1.0"
+ENGINE_VERSION = "bt-0.2.0"   # 0.2.0: partial-exit accounting, network fee in the cash check, unsold remainders reported (Phase 16)

@@ -1,6 +1,6 @@
 # Backtest and stress: PAID `solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump`
 
-As of 2026-10-06 23:48:23 UTC. Assessment SOURCE_BLOCKED, evidence UNAVAILABLE, request df32114f56f37fbd, engine bt-0.1.0.
+As of 2026-10-06 23:48:23 UTC. Assessment SOURCE_BLOCKED, evidence UNAVAILABLE, request 763e0026a008f551, engine bt-0.2.0.
 
 Research only. Backtests describe the past over the lab's discovery universe, stress scenarios are hypothetical with no probabilities, and nothing here is an instruction to buy, sell or size a position.
 

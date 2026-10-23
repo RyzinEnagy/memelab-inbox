@@ -119,7 +119,8 @@ def token_signal_states(r: dict, policy: dict) -> dict:
 def cohort_evidence(con, snap: S.Snapshot, policy: dict) -> dict:
     """Empirical outcomes of past tokens the lab gave the same status (stress.empirical_cohort). Historical, separate
     from the hypothetical shocks, and only reported with at least `min_cohort_trades` cases."""
-    return S.empirical_cohort(con, snap.status, horizon_h=24, min_n=policy["min_cohort_trades"], asof=snap.as_of)   # only what was known then
+    # only what was known then; floored to the start of the hour (never later data, and one computation per hour)
+    return S.empirical_cohort(con, snap.status, horizon_h=24, min_n=policy["min_cohort_trades"], asof=float(int(snap.as_of // 3600) * 3600))
 
 
 def precheck(snap: S.Snapshot, now: float, max_age_s: float = 2 * 3600) -> tuple[str, str, bool] | None:

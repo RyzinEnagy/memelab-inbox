@@ -1,6 +1,6 @@
 {
  "schema": "memelab.backtest.report/1",
- "engine_version": "bt-0.1.0",
+ "engine_version": "bt-0.2.0",
  "token": {
   "evidence_class": "FACT",
   "chain": "solana",
@@ -11,18 +11,18 @@
  },
  "trace": {
   "evidence_class": "FACT",
-  "request_key": "35cf517401dca8dde337cce4e3840b898dc3f7e4eb55fe5142bce8bbd9630174",
+  "request_key": "b1c1a38c6cef06902901710d7c2b23429638fda193ccb12f067c896cfc423c55",
   "assessment_state": "STALE_DATA",
   "assessment_tier": "UNAVAILABLE",
   "cache": "HIT_STALE",
-  "reason": "analysis snapshot is 405.3 h old",
+  "reason": "analysis snapshot is 405.9 h old",
   "retriable": true,
   "deep_request_key": null
  },
  "headline": {
   "evidence_class": "HEURISTIC",
   "label": "UNTESTED",
-  "why": "assessment STALE_DATA: analysis snapshot is 405.3 h old",
+  "why": "assessment STALE_DATA: analysis snapshot is 405.9 h old",
   "good_project": {
    "source": "lab score and status (unchanged)",
    "score": 64,

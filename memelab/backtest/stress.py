@@ -257,33 +257,59 @@ def _deteriorates(s: Snapshot) -> list[str]:
             "price closes below the invalidation level"]
 
 
+_COHORT_CACHE: dict = {}
+
+
 def empirical_cohort(con, status: str | None, horizon_h: int = 24, min_n: int = 30, universe_id: str = "lab_state_history",
                      asof: float | None = None) -> dict:
     """HISTORICAL percentiles for tokens the lab gave the same status, measured exactly like the outcome tracker
-    (outcomes.outcome_for): one pool per token chosen at its decision time, first open after the decision, only bars
-    available at `asof`. Only tokens the lab had recorded by `asof` and whose window had closed and been published by
-    then count (Phase 16, D1/D2/D11). Returns come from complete windows only; worst drops also include windows cut
-    short by a dead feed, as lower bounds. Reported beside the hypothetical shocks, never blended into them.
-    Below `min_n` complete cases: INSUFFICIENT_HISTORY, no percentiles."""
+    (outcomes.outcome_for): one pool per token chosen with what was known then, first open after the decision, only
+    bars available at `asof`. Only tokens the lab had recorded by `asof` and whose window had closed and been
+    published by then count (Phase 16, D1/D2/D11/N2). `asof=None` reads everything stored today and is labeled
+    `point_in_time: false`; assessments always pass their own time.
+    Windows whose feed stopped early (the usual end of a rug) stay in: their return is the last traded price, an upper
+    bound for a token nobody could sell (N1). Complete-window-only percentiles are reported beside them, and a
+    selection-bias flag is raised when many known tokens could not be measured at all.
+    Reported beside the hypothetical shocks, never blended into them. Below `min_n` measured cases: INSUFFICIENT_HISTORY."""
     import statistics
     from . import outcomes as O
     cut = asof if asof is not None else 1e12
+    rev = [con.execute(f"SELECT COALESCE(MAX(id), 0) FROM {t}").fetchone()[0] for t in ("bt_market_bars", "bt_universe_members", "bt_pool_versions")]
+    key = (str(con.execute("PRAGMA database_list").fetchone()[2]), universe_id, status, horizon_h, min_n, cut, tuple(rev))
+    if key in _COHORT_CACHE:
+        return dict(_COHORT_CACHE[key])
     rows = con.execute("SELECT chain, mint, MIN(available_at) t FROM bt_universe_members WHERE universe_id=? AND basis='THESIS' AND status_at_entry IS ? "
                        "AND available_at<=? GROUP BY chain, mint", (universe_id, status, cut)).fetchall()
-    rets, worst, states = [], [], {}
+    rets, rets_complete, worst, states, reasons = [], [], [], {}, {}
     for r in rows:
         out = O.outcome_for(con, {"chain": r["chain"], "mint": r["mint"], "decision_time": r["t"]}, int(horizon_h * 3600), cut)
         states[out["state"]] = states.get(out["state"], 0) + 1
+        if out["missing_reason"]:
+            k = str(out["missing_reason"]).split(":")[0]
+            reasons[k] = reasons.get(k, 0) + 1
         rz = out["realized"] or {}
-        if out["state"] == "COMPLETE":
+        if rz.get("ret_close") is not None and out["state"] in ("COMPLETE", "CENSORED"):
             rets.append(rz["ret_close"])
+            if out["state"] == "COMPLETE":
+                rets_complete.append(rz["ret_close"])
         if rz.get("max_drawdown") is not None:
             worst.append(rz["max_drawdown"])
-    base = {"status": status, "n": len(rets), "min_n": min_n, "asof": asof, "known_tokens": len(rows), "window_states": states}
+    measurable = len(rows) - states.get("PENDING", 0)
+    unmeasured = measurable - len(rets)
+    base = {"status": status, "n": len(rets), "n_complete": len(rets_complete), "min_n": min_n, "asof": asof, "point_in_time": asof is not None,
+            "known_tokens": len(rows), "window_states": states, "missing_reasons": reasons,
+            "selection_bias_risk": bool(measurable) and unmeasured / measurable > 0.2, "unmeasured_share": round(unmeasured / measurable, 4) if measurable else None}
     if len(rets) < min_n:
-        return {"tier": "INSUFFICIENT_HISTORY", **base}
-    q = lambda v, p: sorted(v)[max(0, min(len(v) - 1, int(p * len(v))))]
-    return {"tier": "HISTORICAL_COHORT", **base, "horizon_h": horizon_h,
-            "ret_p10_p50_p90": [q(rets, 0.1), statistics.median(rets), q(rets, 0.9)], "worst_drop_p10_p50": [q(worst, 0.1), statistics.median(worst)],
-            "note": ("empirical frequencies for past tokens with the same lab status, known and measurable at the assessment time; not this token's "
-                     "probabilities; mid prices before costs; worst drops include windows cut short by a dead feed as lower bounds")}
+        out = {"tier": "INSUFFICIENT_HISTORY", **base}
+    else:
+        q = lambda v, p: sorted(v)[max(0, min(len(v) - 1, int(p * len(v))))]
+        out = {"tier": "HISTORICAL_COHORT", **base, "horizon_h": horizon_h,
+               "ret_p10_p50_p90": [q(rets, 0.1), statistics.median(rets), q(rets, 0.9)], "worst_drop_p10_p50": [q(worst, 0.1), statistics.median(worst)],
+               "ret_complete_only_p10_p50_p90": ([q(rets_complete, 0.1), statistics.median(rets_complete), q(rets_complete, 0.9)] if rets_complete else None),
+               "note": ("empirical frequencies for past tokens with the same lab status, known and measurable at the assessment time; not this token's "
+                        "probabilities; mid prices before costs; windows whose feed stopped count at their last traded price (an upper bound); "
+                        "windows where pools disagreed are not measured")}
+    if len(_COHORT_CACHE) > 256:
+        _COHORT_CACHE.clear()
+    _COHORT_CACHE[key] = out
+    return dict(out)

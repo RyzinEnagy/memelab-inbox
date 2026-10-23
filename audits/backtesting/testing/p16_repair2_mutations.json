@@ -1,0 +1,109 @@
+[
+ {
+  "id": "R16b-1 cut-short windows dropped from cohort returns",
+  "file": "memelab/backtest/stress.py",
+  "old": "        if rz.get(\"ret_close\") is not None and out[\"state\"] in (\"COMPLETE\", \"CENSORED\"):",
+  "new": "        if rz.get(\"ret_close\") is not None and out[\"state\"] == \"COMPLETE\":",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "R16b-2 cohort selection bias never flagged",
+  "file": "memelab/backtest/stress.py",
+  "old": "\"selection_bias_risk\": bool(measurable) and unmeasured / measurable > 0.2,",
+  "new": "\"selection_bias_risk\": False,",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "R16b-3 pool chosen with data after the as-of",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "    basis, delay_h = _basis(con, opp, latest=observed_asof)",
+  "new": "    basis, delay_h = _basis(con, opp, latest=None)",
+  "tests": [
+   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_returns_keep_dead_tokens_or_flag_the_bias",
+   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_pool_choice_never_reads_after_the_assessment_time",
+   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_bare_keys_headers_and_path_tokens",
+   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_query_userinfo_and_common_names"
+  ]
+ },
+ {
+  "id": "R16b-4 pools that disagree measured anyway",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "    dis = pool_disagreement(con, opp, basis[\"pool_address\"], t, end, observed_asof)\n    if dis:",
+  "new": "    dis = pool_disagreement(con, opp, basis[\"pool_address\"], t, end, observed_asof)\n    if False:",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "R16b-5 a thin off-market print voids the window",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "        if not common or v_base <= 0 or v_other < min_volume_share * v_base:",
+  "new": "        if not common or v_base <= 0:",
+  "tests": [
+   "tests/test_backtest_outcomes.py",
+   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_returns_keep_dead_tokens_or_flag_the_bias",
+   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_pool_choice_never_reads_after_the_assessment_time",
+   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_bare_keys_headers_and_path_tokens",
+   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_query_userinfo_and_common_names"
+  ]
+ },
+ {
+  "id": "R16b-6 key-prefixed secrets echoed",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "    if len(seg) >= 12 and seg.startswith(KEY_PREFIXES):\n        return True",
+  "new": "    if False:\n        return True",
+  "tests": [
+   "tests/test_backtest_e2e_audit.py",
+   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_returns_keep_dead_tokens_or_flag_the_bias",
+   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_pool_choice_never_reads_after_the_assessment_time",
+   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_bare_keys_headers_and_path_tokens",
+   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_query_userinfo_and_common_names",
+   "tests/test_backtest_webcapture.py"
+  ]
+ },
+ {
+  "id": "R16b-7 Authorization values echoed",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "    t = re.sub(r\"(?i)\\b(bearer|basic|token)\\s+[A-Za-z0-9._~+/=\\-]{8,}\", r\"\\1 [removed]\", t)\n",
+  "new": "",
+  "tests": [
+   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_returns_keep_dead_tokens_or_flag_the_bias",
+   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_pool_choice_never_reads_after_the_assessment_time",
+   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_bare_keys_headers_and_path_tokens",
+   "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_query_userinfo_and_common_names",
+   "tests/test_backtest_webcapture.py"
+  ]
+ },
+ {
+  "id": "R16b-8 concurrent identical runs store duplicate results",
+  "file": "memelab/backtest/runner.py",
+  "old": "        if prev:\n            con.rollback()",
+  "new": "        if False:\n            con.rollback()",
+  "tests": [
+   "tests/test_backtest_runner.py"
+  ]
+ },
+ {
+  "id": "R16b-9 fully sold trades change record shape",
+  "file": "memelab/backtest/engine.py",
+  "old": "        if unsold:                                     # only then",
+  "new": "        if True:                                     # only then",
+  "tests": [
+   "tests/test_backtest_engine.py"
+  ]
+ },
+ {
+  "id": "R16b-10 public Solana addresses treated as secrets",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "        return False                                  # a public Solana address",
+  "new": "        return True                                  # a public Solana address",
+  "tests": [
+   "tests/test_backtest_webcapture.py",
+   "tests/test_backtest_e2e_audit.py"
+  ]
+ }
+]

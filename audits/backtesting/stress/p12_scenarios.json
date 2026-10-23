@@ -1259,68 +1259,105 @@
    "tier": "INSUFFICIENT_HISTORY",
    "status": "ENTRY CONDITIONS MET",
    "n": 0,
+   "n_complete": 0,
    "min_n": 30,
    "asof": null,
+   "point_in_time": false,
    "known_tokens": 0,
-   "window_states": {}
+   "window_states": {},
+   "missing_reasons": {},
+   "selection_bias_risk": false,
+   "unmeasured_share": null
   },
   "NEAR ENTRY": {
    "tier": "INSUFFICIENT_HISTORY",
    "status": "NEAR ENTRY",
    "n": 8,
+   "n_complete": 8,
    "min_n": 30,
    "asof": null,
+   "point_in_time": false,
    "known_tokens": 8,
    "window_states": {
     "COMPLETE": 8
-   }
+   },
+   "missing_reasons": {},
+   "selection_bias_risk": false,
+   "unmeasured_share": 0.0
   },
   "SETUP DEVELOPING": {
    "tier": "INSUFFICIENT_HISTORY",
    "status": "SETUP DEVELOPING",
-   "n": 26,
+   "n": 27,
+   "n_complete": 26,
    "min_n": 30,
    "asof": null,
+   "point_in_time": false,
    "known_tokens": 27,
    "window_states": {
     "COMPLETE": 26,
     "CENSORED": 1
-   }
+   },
+   "missing_reasons": {
+    "BARS_END_EARLY": 1
+   },
+   "selection_bias_risk": false,
+   "unmeasured_share": 0.0
   },
   "WATCH": {
    "tier": "INSUFFICIENT_HISTORY",
    "status": "WATCH",
    "n": 7,
+   "n_complete": 7,
    "min_n": 30,
    "asof": null,
+   "point_in_time": false,
    "known_tokens": 7,
    "window_states": {
     "COMPLETE": 7
-   }
+   },
+   "missing_reasons": {},
+   "selection_bias_risk": false,
+   "unmeasured_share": 0.0
   },
   "REJECTED": {
    "tier": "HISTORICAL_COHORT",
    "status": "REJECTED",
-   "n": 105,
+   "n": 138,
+   "n_complete": 105,
    "min_n": 30,
    "asof": null,
+   "point_in_time": false,
    "known_tokens": 192,
    "window_states": {
     "NOT_OBSERVABLE": 34,
     "COMPLETE": 105,
     "CENSORED": 53
    },
+   "missing_reasons": {
+    "NO_BARS_STORED": 33,
+    "BARS_END_EARLY": 33,
+    "NO_BARS_IN_WINDOW": 20,
+    "NO_POOL_BASIS": 1
+   },
+   "selection_bias_risk": true,
+   "unmeasured_share": 0.2812,
    "horizon_h": 24,
    "ret_p10_p50_p90": [
-    -0.5942135635786895,
-    -0.07613617446675292,
-    0.4526491532757204
+    -0.7757117393563163,
+    -0.03281732100722262,
+    0.29541454014892476
    ],
    "worst_drop_p10_p50": [
     -0.8779186945656077,
     -0.21445238468566669
    ],
-   "note": "empirical frequencies for past tokens with the same lab status, known and measurable at the assessment time; not this token's probabilities; mid prices before costs; worst drops include windows cut short by a dead feed as lower bounds"
+   "ret_complete_only_p10_p50_p90": [
+    -0.5942135635786895,
+    -0.07613617446675292,
+    0.4526491532757204
+   ],
+   "note": "empirical frequencies for past tokens with the same lab status, known and measurable at the assessment time; not this token's probabilities; mid prices before costs; windows whose feed stopped count at their last traded price (an upper bound); windows where pools disagreed are not measured"
   }
  }
 }

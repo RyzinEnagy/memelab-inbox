@@ -10,6 +10,7 @@ import pytest
 
 from memelab.backtest import store
 from memelab.backtest.sources import captures, pagefields, webcapture
+from memelab.backtest.sources import webcapture as W
 
 ROOT = Path(__file__).resolve().parents[1]
 BAKE = ROOT / "audits" / "backtesting" / "bakeoff"
@@ -207,3 +208,13 @@ def test_g38_redirect_off_the_allowlist_is_refused(con):
     v = dict(view("PLAIN_HTTP", "https://solana.com/news/samsung-wallet"), final_url="https://solana-news.example/samsung-wallet")
     with pytest.raises(webcapture.OffAllowlist):
         rec(con, "FIXTURE", "https://solana.com/news/samsung-wallet", v=v)
+
+
+def test_redaction_of_error_text_beyond_key_prefixes():
+    """Phase 16 N4: credentials without a known prefix are still removed from status text; public addresses stay."""
+    tok = "Zq7Lm2Pw9Rt4Kx8Vb3"                                      # 18 characters, no known prefix
+    for text in (f"headers {{'Authorization': 'Bearer {tok}'}}", f"Authorization: Basic {tok}", f'{{"access_token": "{tok}"}}', f"client_secret={tok}&a=1"):
+        assert tok not in W.redact_text(text), text
+    mint = "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump"
+    assert mint in W.redact_text(f"no pool for {mint}")
+    assert W.redact_text("429 rate limited, retry in 30 s") == "429 rate limited, retry in 30 s"

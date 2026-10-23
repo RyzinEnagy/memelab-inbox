@@ -377,3 +377,121 @@ Test gaps (survived mutations), to fix together with the defects:
 - `audits/backtesting/testing/logs/p16_*.log` and `p16_release_e2e_{head,base}_report.md`
 
 Next eligible phase: none until D1 to D7 and TG1 are fixed and the failing tests in `tests/test_backtest_e2e_audit.py` pass without changing their assertions. Phase 17 must not claim an empirically validated engine.
+
+## Re-run after repair pass 1
+
+Re-run by the same independent reviewer against commit `47a7845` (repair pass 1), 2026-10-23, 21:10 to 21:30 UTC.
+
+Unchanged and checked:
+- `tests/test_backtest_e2e_audit.py` (19 tests, same DEFECT_TESTS text);
+- `p16_mutations.json`;
+- the scripts above.
+
+New in this pass, all uncommitted:
+- `audits/backtesting/testing/test_p16r1_repair_attacks.py`, attacks on the repairs;
+- `audits/backtesting/testing/p16r1_cohort_check.py`, an independent point-in-time cohort recomputation;
+- logs `logs/p16r1_*`.
+
+Hashes, unchanged: `data/backtest/bt.sqlite` `5f4ce723...`, `data/memelab.sqlite` `068287c0...`. The BRETT report the suite writes was deleted again.
+
+### Verdict after repair pass 1
+
+PHASE 16: FAILED (second pass).
+
+All 9 original defect reproductions now pass, along with all 190 mutations. But the repairs left or introduced:
+- one medium defect: N1, survivorship in the cohort return percentiles, which breaks G06;
+- five low ones: N2 to N6.
+
+G16 and G27 need an explicit acceptance decision.
+
+Release classification is unchanged: scenario-only research mode, clearly labeled. It is not an empirically validated engine:
+- every sealed test is INSUFFICIENT_SAMPLE;
+- the sealed window was seen before pre-registration, so any new sealed test needs data after 2026-10-23 16:00 UTC, as the builder proposes and I agree;
+- historical execution stays LIQ_SNAPSHOT_APPROX.
+
+Historical price paths remain single-provider. The independent confirmations recorded above still stand, and the real-case outputs are unchanged apart from the cohort.
+
+### Commands and exits
+
+| Command | Exit | Result | Log |
+|---|---|---|---|
+| `pytest tests/test_backtest_e2e_audit.py -v` | 0 | 19 passed (was 10 passed, 9 failed) | `logs/p16r1_e2e_audit_tests.log` |
+| `pytest tests -q -p no:cacheprovider` | 1 | 1014 passed, 1 failed (C-1 only, pre-existing at base) | `logs/p16r1_full_pytest.log` |
+| `mutate.py` p05 to p15 (`PYTHONDONTWRITEBYTECODE=1`) | 0 each | 167 of 167 caught | `logs/p16r1_mutations_all.log` |
+| `mutate.py p16_mutations.json` | 0 | 13 of 13 caught (M16-5, M16-9, M16-13 now caught) | same |
+| `mutate.py p16_repair_mutations.json` | 0 | 10 of 10 caught | same |
+| `p16_mutate_strict.py` p16 + repair sets | 0 | 22 caught by assertion; R16-7 caught by the OperationalError it re-introduces (the intended failure) | `logs/p16r1_mut_strict.log` |
+| `pytest audits/backtesting/testing/test_p16r1_repair_attacks.py -v` | 1 | 4 passed, 4 failed (N1 to N4 reproductions) | `logs/p16r1_repair_attacks.log` |
+| `p16r1_cohort_check.py <copy>` | 0 | point-in-time cohort matches an independent recomputation at 5 real decision times | `logs/p16r1_cohort_check.log` |
+| `p16_golden.py` | 0 | 45 of 45 agree | `logs/p16r1_golden.log` |
+| `p16_sealed_rerun.py <copy>` | 0 | cutoff hash matches; configs, verdicts and metrics reproduce; BREAKOUT_CLOSE sealed-test ledger hash no longer matches the stored record (N5) | `logs/p16r1_sealed_rerun.log` |
+| `p16_concurrency.py <scratch>` | 0 | A 8/8 OK; B 12/12 OK, no duplicates; C 1 RAN + 2 SKIPPED_MIN_INTERVAL, no duplicates; D 3 MISS and 3 result rows for one run (N6); blocked providers degrade explicitly | `logs/p16r1_concurrency.log` |
+| `p16_real_cases.py <copy>` | 0 | all four cases identical to the first pass except cohort evidence | `logs/p16r1_real_cases.log` |
+| `p16_regression.sh` (base vs HEAD, policy off/on) | 0 | off identical to base; on additive only (same intentional differences as before) | `logs/p16r1_regression.log` |
+| `tools/release_e2e.py` at 47a7845 | 0 | PASS 78 of 78, network 0, tracked DB byte-identical | `logs/p16r1_release_e2e_head*.` |
+| clean local clone, `env -i`, `pytest tests/test_backtest_*.py` | 0 | 229 passed | `logs/p16r1_clean_clone.log` |
+| clean clone `tools/release_audit.py` | 0 | Needs action: no (the placeholder in my logs is reviewed as a placeholder) | same |
+
+### Status of the original defects
+
+| Defect | Status | Evidence |
+|---|---|---|
+| D1 cohort reads the future | FIXED | my test passes. Independent recomputation (`p16r1_cohort_check.py`) matches the package at 5 real decision times: known tokens, complete windows and median. No bar available after the as-of is used. At the RUG thesis (2026-10-09 12:18) the cohort is 29 complete of 71 known, INSUFFICIENT_HISTORY, where the first pass reported 136 cases and HISTORICAL_COHORT. At the PAID demo time it is 0 of 1 known. Residual N2 below. |
+| D2 pools spliced | FIXED | my test passes; one pool per token. Residual N3 below. |
+| D3 unsold remainder dropped | FIXED | my test and the builder's engine test pass (PARTIAL_UNSOLD_AT_END, remainder valued at 0) |
+| D4 impossible return after partial exits | FIXED | my test passes (ret = all proceeds / original cost - 1) |
+| D5 cash below zero by the fee | FIXED | my test passes |
+| D6 fresh-database race | FIXED | my test passes; a new 16-process burst passes; burst A 8/8 |
+| D7 lock crashes | FIXED for the tracker and assessments | my test passes; burst B 12/12 OK; burst C 1 RAN and 2 SKIPPED; two trackers with the same `now` run once. New regression N6 in the runner. |
+| D8 credential echo | FIXED for query strings and user:password | my test passes. Residual N4 below. |
+| D9 contradictory archive proof | FIXED | my test passes |
+| D10 current status as historical denial | FIXED (no leak) | denials are no longer carried at all; a denial that was known at the time is now lost (information loss, conservative) |
+| D11 censored windows counted as full | REPLACED by N1 | cut-short windows are now left out of returns, which creates a survivorship bias |
+| TG1 to TG3 (M16-13, M16-5, M16-9) | FIXED | all three mutations caught by the builder's new tests |
+
+DEFECT_TESTS in `tests/test_backtest_e2e_audit.py` that now pass: all 9.
+
+### Remaining and new defects, ranked
+
+| # | Severity | Location | Reproduction | Breaks |
+|---|---|---|---|---|
+| N1 | Medium | `memelab/backtest/stress.py` `empirical_cohort` (returns only from COMPLETE windows; no selection-bias flag) | `test_p16r1_repair_attacks.py::test_r1_cohort_returns_keep_dead_tokens_or_flag_the_bias`: 30 flat tokens and 30 rugs whose feed stops give return percentiles from the 30 survivors only. Real REJECTED cohort at the corpus end: 105 complete of 192 known, 31 cut-short windows excluded. With them kept as lower bounds the p10 is -77.6% instead of -59.4%, and the median -3.3% instead of -7.6%. | G06 (rugged tokens leave the statistic without a selection-bias mark) |
+| N2 | Low | `memelab/backtest/outcomes.py` `_basis` (tries up to decision + 48 h) used by `empirical_cohort` with `observed_asof` = assessment time | `::test_r1_cohort_pool_choice_never_reads_after_the_assessment_time`: a cohort token's pool is chosen with volume printed after the assessment time (median -99% instead of 0%). Replay-only edge case: no pool had bars within 24 h of that token's decision. | G32, G02 time validity |
+| N3 | Low (design) | `memelab/backtest/sources/gecko.py` `pool_basis_at` (most trailing volume), now also used by the cohort | `::test_r1_cohort_basis_not_steered_by_wash_volume_on_a_thin_pool`: wash volume on a thin pool of the same mint makes it the basis (median -95% for tokens whose main pool never moved). There is no cross-pool price consistency check. | G02 |
+| N4 | Low | `memelab/backtest/sources/webcapture.py` `redact_url` / `_redact_text` | `::test_r1_redaction_covers_bare_keys_headers_and_path_tokens`: a bare key in an error message, an `Authorization: Bearer` header value, a JSON `"api_key"` value and a path-embedded token are all echoed. Query names (api_key, apikey, api-key, token, access_token, key, secret, client_secret, password, auth) and user:password are redacted (passing test). | G39 |
+| N5 | Low | `memelab/backtest/__init__.py` `ENGINE_VERSION` still `bt-0.1.0` although trade records gained `unsold_tokens`, a new status and a new exposure rule | `p16_sealed_rerun.py`: the BREAKOUT_CLOSE sealed-test ledger hash changes (`88ae4054...` stored, `182fcdb9...` now) while metrics, verdict and frozen config are identical. `p11_results.json` and the report's validation hashes no longer reproduce. | reproducibility record (G27, G32 trace) |
+| N6 | Low (regression from the D7 fix) | `memelab/backtest/runner.py` `run` (commits right after `register_run`, before checking for a stored result) | burst D: three identical concurrent runs all MISS and store three result rows for one run id (identical ledger hash). The first pass gave 1 MISS + 2 HIT and one row. Contradicts the runner docstring ("instead of recomputing or duplicating rows"). | operations |
+
+Answers to the three questions asked:
+- Can the per-pool cohort still be fooled? Yes, two ways: wash volume on a thin pool steers the basis (N3); in a replay the pool choice can use bars printed after the assessment time (N2). Splicing two pools is fixed.
+- Can the tracker's interval check be bypassed by two concurrent passes?
+  - Not with the same `now`: four concurrent passes give 1 RAN and 3 skipped, with no duplicate windows.
+  - Passes whose `now` values differ by more than the interval both run concurrently, because the interval is judged on the caller's `now`. Tested: both RAN, 750 rows over 600 windows, no forked supersede chain, no crash.
+  - This is an observation, not a defect, since the CLI defaults `now` to the wall clock.
+- Does the redaction miss credential shapes? Yes (N4): bare keys, Authorization header values, JSON-style key fields and tokens in URL paths.
+
+Observations (not defects):
+- Each FAST assessment now computes an outcome for every known cohort token. That takes 1.3 s for the 192-token REJECTED cohort on the current corpus and grows with the universe. The regenerated Phase 13 benchmark (median 9.8 ms) measures PAID at 2026-10-06, when one cohort token was known, so it does not represent present-day cost.
+- `empirical_cohort(asof=None)` still means "everything known today". The only production caller passes `asof`; a replay script that omits it, as my own real-case script does, gets the old leaking behavior. A required argument would be safer.
+- The G22 no-edge control arm added by the builder is meaningful: random-walk prices, more than 25 trades per arm, real and placebo means within 3% of zero and of each other.
+
+### G01 to G41 after repair pass 1
+
+Changes from the first pass:
+
+| G | First pass | Now | Reason |
+|---|---|---|---|
+| G02 | FAILED | PARTIAL | splicing fixed; residual N2 (pool choice can read past the as-of) and N3 (basis steerable by wash volume) |
+| G06 | PASS | PARTIAL | N1: the cohort return percentiles drop tokens whose feed died, with no selection-bias flag |
+| G17 | FAILED | PASS | D3, D4 fixed and tested |
+| G22 | PARTIAL | PASS | no-edge control arm tested |
+| G24 | PARTIAL | PASS | D5 fixed |
+| G32 | FAILED | PARTIAL | D1 fixed and verified independently on real data; residual N2 |
+| G36 | PARTIAL | PASS | D9 fixed |
+| G39 | PARTIAL | PARTIAL | D8 fixed for query and userinfo; residual N4 |
+| G16 | PARTIAL | PARTIAL | multi-hop paths still not modeled and not labeled unsupported. This needs an explicit decision to accept it as a disclosed limitation of scenario-only mode. |
+| G27 | PARTIAL | PARTIAL | cannot be fixed retroactively. I agree with the builder: disclose that Phase 10 whole-period runs saw the sealed window before pre-registration, and require data after 2026-10-23 16:00 UTC for any new sealed test. The `TestSeal` is still per-object. M16-13 is now covered. N5 must be resolved so the stored sealed-test hashes reproduce. |
+
+Counts: PASS 35, PARTIAL 6 (G02, G06, G16, G27, G32, G39), FAILED 0, NOT_TESTABLE 0.
+
+Next step before Phase 17: fix N1 (and N2 to N6, all small), and decide G16 and G27 explicitly. Then re-run this section's commands with `tests/test_backtest_e2e_audit.py` and `test_p16r1_repair_attacks.py` unchanged.

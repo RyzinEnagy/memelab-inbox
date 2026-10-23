@@ -1,0 +1,12 @@
+baseline (unmutated): exit 0 :: 87 passed in 17.08s
+[R16b-1 cut-short windows dropped from cohort returns] CAUGHT :: 1 failed, 15 passed in 0.60s
+[R16b-2 cohort selection bias never flagged] CAUGHT :: 1 failed, 15 passed in 0.59s
+[R16b-3 pool chosen with data after the as-of] CAUGHT :: 1 failed, 1 passed in 0.21s
+[R16b-4 pools that disagree measured anyway] CAUGHT :: 1 failed, 14 passed in 0.57s
+[R16b-5 a thin off-market print voids the window] CAUGHT :: 1 failed, 14 passed in 0.56s
+[R16b-6 key-prefixed secrets echoed] CAUGHT :: 1 failed, 21 passed in 14.22s
+[R16b-7 Authorization values echoed] CAUGHT :: 1 failed, 24 passed in 0.43s
+[R16b-8 concurrent identical runs store duplicate results] CAUGHT :: 1 failed, 6 passed in 1.75s
+[R16b-9 fully sold trades change record shape] CAUGHT :: 1 failed, 1 passed in 0.06s
+[R16b-10 public Solana addresses treated as secrets] CAUGHT :: 1 failed, 20 passed in 0.35s
+RESULT: all mutations caught

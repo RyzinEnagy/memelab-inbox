@@ -1,6 +1,6 @@
 # Backtest and stress: PAID `solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump`
 
-As of 2026-10-06 23:48:23 UTC. Assessment PARTIAL_WITH_LIMITATIONS, evidence SCENARIO_ONLY, request 35cf517401dca8dd, engine bt-0.1.0.
+As of 2026-10-06 23:48:23 UTC. Assessment PARTIAL_WITH_LIMITATIONS, evidence SCENARIO_ONLY, request b1c1a38c6cef0690, engine bt-0.2.0.
 
 Research only. Backtests describe the past over the lab's discovery universe, stress scenarios are hypothetical with no probabilities, and nothing here is an instruction to buy, sell or size a position.
 
@@ -13,7 +13,7 @@ Entry (execution view): INCONCLUSIVE, stress RESEARCHABLE, size under caps $599.
 ## Historical evidence
 
 Token-specific: NOT_RUN (no token-specific backtest; nothing here claims token-specific validation).
-Cohort of past tokens with lab status SETUP DEVELOPING: 0 complete cases of 1 token the lab had recorded by then, tier INSUFFICIENT_HISTORY (minimum 30).
+Cohort of past tokens with lab status SETUP DEVELOPING: 0 complete cases of 0 tokens the lab had recorded by then, tier INSUFFICIENT_HISTORY (minimum 30).
 
 Strategies over the lab's whole discovery universe (net of modeled costs, ranked by net; paper is mid to mid before costs; under 30 trades is listed, not ranked):
 

@@ -94,3 +94,62 @@ def test_pool_basis_is_chosen_with_bars_known_at_the_decision(con):
     con.commit()
     toks, _ = runner.build_tokens(con, "u")
     assert toks and all(b.o != 99.0 for b in toks[0].bars)
+
+
+def _run_in_child(db, runs_dir, raw_dir, start_at, q):
+    import time as _t
+    store.RAW_DIR = raw_dir
+    runner.RUNS_DIR = runs_dir
+    while _t.time() < start_at:
+        _t.sleep(0.001)
+    try:
+        c = store.connect(db)
+        r = runner.run(c, "LAB_STATUS", universe_id="u", cfg=EngineConfig(sol_usd_default=None))
+        c.close()
+        q.put(r["cache"])
+    except Exception as e:  # noqa: BLE001
+        q.put(f"{type(e).__name__}: {e}")
+
+
+def test_concurrent_identical_runs_store_one_result(con, tmp_path):
+    """Phase 16 N6: three identical runs at once store one result row; the others return it."""
+    import multiprocessing as mp
+    import sys
+    import time as _t
+    if sys.platform == "win32":
+        pytest.skip("fork start method")
+    db = con.execute("PRAGMA database_list").fetchone()[2]
+    con.commit()
+    ctx = mp.get_context("fork")
+    q = ctx.Queue()
+    start_at = _t.time() + 1.5
+    ps = [ctx.Process(target=_run_in_child, args=(db, tmp_path / "runs", tmp_path / "raw", start_at, q)) for _ in range(3)]
+    for p in ps:
+        p.start()
+    got = [q.get(timeout=120) for _ in ps]
+    for p in ps:
+        p.join(timeout=30)
+    assert all(g in ("MISS", "HIT", "HIT_AFTER_CONCURRENT_RUN") for g in got), got
+    rows = con.execute("SELECT run_id, COUNT(*) n FROM bt_run_results GROUP BY run_id").fetchall()
+    assert rows and all(r["n"] == 1 for r in rows)
+
+
+def test_a_run_finished_meanwhile_by_another_process_is_not_stored_twice(con, monkeypatch):
+    """Deterministic form of N6: another writer stores the same run while this one is computing."""
+    import sqlite3
+    from memelab.backtest import engine as E
+    db = con.execute("PRAGMA database_list").fetchone()[2]
+    real_run = E.Engine.run
+
+    def slow_run(self, *a, **k):
+        res = real_run(self, *a, **k)
+        rid = con.execute("SELECT run_id FROM bt_experiment_runs ORDER BY id DESC LIMIT 1").fetchone()[0]
+        other = sqlite3.connect(db)
+        other.execute("INSERT INTO bt_run_results(run_id, status, result_json, result_hash, created_at) VALUES (?,?,?,?,?)",
+                      (rid, "COMPLETE", json.dumps({"n_trades": -1, "from": "other process"}), "h", 1.0))
+        other.commit(); other.close()
+        return res
+    monkeypatch.setattr(runner.Engine, "run", slow_run)
+    out = runner.run(con, "LAB_STATUS", universe_id="u", cfg=EngineConfig(sol_usd_default=None))
+    assert out["cache"] == "HIT_AFTER_CONCURRENT_RUN" and out["from"] == "other process"
+    assert con.execute("SELECT COUNT(*) FROM bt_run_results").fetchone()[0] == 1

@@ -289,7 +289,9 @@ class Engine:
         self.trades.append({"pid": p.pid, "mint": p.mint, "strategy": p.signal["strategy_id"], "decision_time": p.signal["decision_time"], "entry_time": p.entry_time,
                             "entry_mid": p.entry_price_mid, "cost_usd": p.cost_usd, "exit_time": t, "exit_ref_price": px, "exit_reason": reason,
                             "proceeds_usd": total, "pnl_usd": total - p.cost_usd, "ret": (total / p.cost_usd - 1) if p.cost_usd else None, "status": status,
-                            "unsold_tokens": unsold, "paper_ret_mid": px / p.entry_price_mid - 1})
+                            "paper_ret_mid": px / p.entry_price_mid - 1})
+        if unsold:                                     # only then: trade records of fully sold positions keep their bt-0.1.0 shape and ledger hashes
+            self.trades[-1]["unsold_tokens"] = unsold
         del self.positions[p.mint]
         self._last_exit[p.mint] = t
         self.journal.append({"t": t, "event": "EXIT", "mint": p.mint, "reason": reason, "status": status})

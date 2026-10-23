@@ -1,6 +1,6 @@
 {
  "schema": "memelab.backtest.report/1",
- "engine_version": "bt-0.1.0",
+ "engine_version": "bt-0.2.0",
  "token": {
   "evidence_class": "FACT",
   "chain": "solana",
@@ -11,7 +11,7 @@
  },
  "trace": {
   "evidence_class": "FACT",
-  "request_key": "df32114f56f37fbd28350ff0b34b644e66ebe3487a4b89887bd18728baddf01c",
+  "request_key": "763e0026a008f55123adc956a12e972a048c25c2817fd88b8280166c70450f51",
   "assessment_state": "SOURCE_BLOCKED",
   "assessment_tier": "UNAVAILABLE",
   "cache": "MISS",

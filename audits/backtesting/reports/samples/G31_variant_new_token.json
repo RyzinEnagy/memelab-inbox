@@ -1,6 +1,6 @@
 {
  "schema": "memelab.backtest.report/1",
- "engine_version": "bt-0.1.0",
+ "engine_version": "bt-0.2.0",
  "token": {
   "evidence_class": "FACT",
   "chain": "solana",
@@ -11,7 +11,7 @@
  },
  "trace": {
   "evidence_class": "FACT",
-  "request_key": "e8bf63cc4b0ed62e59dc53b161ba3a3e032821cb8fb9383e483a976dd78b2571",
+  "request_key": "50951e706e314410b6dab31c49daa69eafe8fb4312c7ffceedcd7a0586793fbd",
   "assessment_state": "INSUFFICIENT_HISTORY",
   "assessment_tier": "SCENARIO_ONLY",
   "cache": "MISS",
@@ -55,12 +55,15 @@
    "tier": "INSUFFICIENT_HISTORY",
    "status": "SETUP DEVELOPING",
    "n": 0,
+   "n_complete": 0,
    "min_n": 30,
-   "asof": 1791330503.698,
-   "known_tokens": 1,
-   "window_states": {
-    "PENDING": 1
-   }
+   "asof": 1791327600.0,
+   "point_in_time": true,
+   "known_tokens": 0,
+   "window_states": {},
+   "missing_reasons": {},
+   "selection_bias_risk": false,
+   "unmeasured_share": null
   },
   "strategies": {
    "evidence_class": "FACT (stored runs) / INFERENCE (cost model)",

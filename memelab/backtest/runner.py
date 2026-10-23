@@ -122,6 +122,15 @@ def run(con, strategy_id: str, params: dict | None = None, cfg: EngineConfig | N
     res.update(run_id=run_id, dataset_hash=dhash, tokens=len(tokens), skipped=skipped, wall_s=round(time.time() - t0, 2),
                engine_version=ENGINE_VERSION, created_at=time.time())
     if save:
+        if con.in_transaction:
+            con.commit()
+        con.execute("BEGIN IMMEDIATE")                    # re-check under the write lock: a concurrent identical run may have finished first
+        prev = con.execute("SELECT result_json FROM bt_run_results WHERE run_id=? ORDER BY created_at LIMIT 1", (run_id,)).fetchone()
+        if prev:
+            con.rollback()
+            out = json.loads(prev[0])
+            out["cache"] = "HIT_AFTER_CONCURRENT_RUN"
+            return out
         store.record_result(con, run_id, "COMPLETE", res)
         con.commit()
         d = RUNS_DIR / run_id

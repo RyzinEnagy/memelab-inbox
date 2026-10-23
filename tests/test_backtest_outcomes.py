@@ -351,3 +351,50 @@ def test_shadow_saves_nothing_and_collector_health(con):
     con.commit()
     h = O.collector_health(con)["collectors"]["FIRECRAWL"]
     assert h["captures"] >= 2 and h["late_arrival_share"] > 0 and "MAXUN" not in O.collector_health(con)["collectors"]
+
+
+# ---------------------------------------------------------------- G02: pools that disagree (Phase 16, N3)
+
+def _two_pools(con, mint, side_vol, side_step, main_step=0.0, main_vol=2000.0):
+    pm, ps = "M" + mint[1:], "S" + mint[1:]
+    for p_ in (pm, ps):
+        store.record_pool_version(con, chain="solana", pool_address=p_, mint=mint, pool_type="CPMM", observed_at=T0 - 3 * 86400, source="test",
+                                  dex="pumpswap", pool_created_at=T0 - 3 * 86400 - 60, available_at=T0 - 3 * 86400)
+    for i in range(-24, 30):
+        k = max(0, i)
+        for p_, v, step in ((pm, main_vol, main_step), (ps, side_vol, side_step)):
+            o, c = (1 + step) ** k, (1 + step) ** (k + 1) if i >= 0 else 1.0
+            store.record_bar(con, chain="solana", mint=mint, pool_address=p_, tf=3600, start=T0 + i * H, o=o, h=max(o, c), l=min(o, c), c=c, volume_usd=v,
+                             observed_at=T0 + (i + 1) * H + 600, provider="test")
+    con.commit()
+    thesis(con, mint)
+    return pm, ps
+
+
+def test_pools_that_disagree_are_not_measured_and_thin_prints_are_ignored(con):
+    _two_pools(con, M1, side_vol=1500.0, side_step=-0.08)                 # a second real-volume pool drifting 90% away: ambiguous
+    _two_pools(con, M2, side_vol=20.0, side_step=-0.08)                   # a thin pool (1% of volume) printing off-market: ignored
+    _two_pools(con, M3, side_vol=20.0, side_step=0.0, main_step=-0.15)    # a rug on the main pool, a thin side pool still flat
+    asof = T0 + 40 * H
+    st = {m: O.outcome_for(con, opp(con, m), 24 * 3600, asof) for m in (M1, M2, M3)}
+    assert st[M1]["state"] == "NOT_OBSERVABLE" and st[M1]["missing_reason"].startswith("POOL_DISAGREEMENT")
+    assert st[M2]["state"] == "COMPLETE" and abs(st[M2]["realized"]["ret_close"]) < 1e-9
+    assert st[M3]["state"] == "COMPLETE" and st[M3]["realized"]["down_50"]
+    from memelab.backtest import stress as S
+    c = S.empirical_cohort(con, "WATCH", min_n=1, asof=asof)
+    assert c["missing_reasons"].get("POOL_DISAGREEMENT") == 1 and c["n"] == 2
+
+
+def test_cohort_keeps_feeds_that_died_and_flags_unmeasured_tokens(con):
+    from memelab.backtest import stress as S
+    for k in range(4):
+        m = f"Fk{k}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapump"
+        p = pool(con, m); bars(con, m, p, T0 - 24 * H, 24)
+        bars(con, m, p, T0, 24 if k < 2 else 3, step=(0.0 if k < 2 else -0.8))   # two survive, two rug and stop trading
+        thesis(con, m)
+    for k in range(3):
+        thesis(con, f"Fn{k}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapump")         # never fetched
+    c = S.empirical_cohort(con, "WATCH", min_n=4, asof=T0 + 40 * H)
+    assert c["n"] == 4 and c["n_complete"] == 2 and c["ret_p10_p50_p90"][0] < -0.9          # rugs stay in the return percentiles
+    assert c["selection_bias_risk"] is True and c["unmeasured_share"] == pytest.approx(3 / 7, abs=1e-4)
+    assert c["ret_complete_only_p10_p50_p90"][0] > -0.1 and c["point_in_time"] is True
