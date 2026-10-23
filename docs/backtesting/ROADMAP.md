@@ -15,7 +15,7 @@ Order is fixed by the package: 00, 01, 02, 03, 04, 05, 06, 06A, 07, 08, 09, 10, 
 | 07 | Execution-aware AMM simulation | PASS | audits/backtesting/PHASE_07.md |
 | 08 | Point-in-time TA strategy library | PASS | audits/backtesting/PHASE_08.md, docs/backtesting/STRATEGY_LIBRARY.md |
 | 09 | Catalyst, wallet and social strategies | PASS | audits/backtesting/PHASE_09.md |
-| 10 | Deterministic event and portfolio core | pending | |
+| 10 | Deterministic event and portfolio core | PASS | audits/backtesting/PHASE_10.md |
 | 11 | Statistical validation | pending | |
 | 12 | Stress engine | pending | |
 | 13 | Per-opportunity integration | pending | |

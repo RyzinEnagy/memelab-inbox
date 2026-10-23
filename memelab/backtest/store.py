@@ -175,10 +175,21 @@ def code_sha(root: Path | None = None) -> str | None:
         return None
 
 
+def package_hash(root: Path | None = None) -> str:
+    """Content hash of the backtest package sources, so an uncommitted code change can never reuse an old run_id."""
+    root = root or Path(__file__).resolve().parent
+    h = hashlib.sha256()
+    for f in sorted(root.rglob("*.py")):
+        h.update(str(f.relative_to(root)).encode())
+        h.update(f.read_bytes())
+    return h.hexdigest()
+
+
 def register_run(con, config: dict, *, dataset_hash: str, seed: int | None = None) -> str:
     """Store the full experiment definition; run_id = sha256 of it. Same config + data + code -> same run_id."""
     cfg = dict(config)
-    cfg.update(dataset_hash=dataset_hash, seed=seed, engine_version=ENGINE_VERSION, code_sha=cfg.get("code_sha") or code_sha())
+    cfg.update(dataset_hash=dataset_hash, seed=seed, engine_version=ENGINE_VERSION, code_sha=cfg.get("code_sha") or code_sha(),
+               package_hash=cfg.get("package_hash") or package_hash())
     run_id = sha256(cfg)
     trials = con.execute("SELECT COUNT(*) FROM bt_experiment_runs WHERE strategy_id=?", (cfg.get("strategy_id"),)).fetchone()[0]
     _insert(con, "bt_experiment_runs", dict(

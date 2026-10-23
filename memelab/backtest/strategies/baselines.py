@@ -18,15 +18,16 @@ class NoTrade(Strategy):
 class EnterAtDiscovery(Strategy):
     """ENTER_AT_DISCOVERY (buy and hold from discovery): enters at the first decision opportunity for each eligible
     token (the next open after the lab first observed it) and holds for `hold_bars` with a wide `stop_frac` stop.
-    Shows what the discovery universe itself did."""
-    id, version, kind = "ENTER_AT_DISCOVERY", "1", "BASELINE"
+    One attempt only: if that order cannot fill (no pool basis, no liquidity, impact cap), the token is not retried
+    later, so the baseline never drifts into "enter whenever it became tradable". Shows what the discovery universe did."""
+    id, version, kind = "ENTER_AT_DISCOVERY", "2", "BASELINE"
     default_params = {"hold_bars": 24, "stop_frac": 0.9}
 
     def evaluate(self, chain, mint, bars, decision_time, ctx=None):
         self._check(bars, decision_time)
         if not bars:
             return Abstain("INSUFFICIENT_HISTORY", "no closed bar at discovery")
-        if (ctx or {}).get("entries_so_far", 0) > 0:
+        if (ctx or {}).get("attempts_so_far", (ctx or {}).get("entries_so_far", 0)) > 0:
             return None
         tf = bars[-1].end - bars[-1].start
         last = bars[-1]

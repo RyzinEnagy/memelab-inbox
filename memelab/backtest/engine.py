@@ -40,6 +40,10 @@ class EngineConfig:
     liquidity_haircut: float = 0.8
     sol_usd_default: float | None = None    # only used when no as-of SOL price exists; None = network fee from series or refuse
     liquidity_max_age_s: float = 3 * 86400  # a liquidity snapshot older than this cannot price a fill (INSUFFICIENT_EXECUTION_DATA)
+    max_positions_per_group: int | None = None   # correlated tokens (same creator wallet or holder cluster) share this cap
+    max_drawdown_frac: float | None = None       # stop opening positions once marked equity is this far below its peak
+    stop_overshoot_limit: float = 0.5            # a bar whose low is more than this far below the stop is a crash: the stop
+                                                 # is assumed filled at that bar's close, not at the stop price
 
 
 @dataclass
@@ -57,6 +61,7 @@ class TokenData:
     wallet_events: list[dict] = field(default_factory=list)   # wallet observations with kind and available_at
     swap_fee: float | None = None                             # this pool's fee (execution.assumed_swap_fee); None = config default
     fee_basis: str | None = None
+    group: str | None = None                                  # correlation group (creator wallet, holder cluster) known at entry
 
     def __post_init__(self):
         self.bars.sort(key=lambda b: b.start)
@@ -114,8 +119,11 @@ class Engine:
         self.equity: list[dict] = []
         self.counts = {"signals": 0, "abstain": {}, "submitted": 0, "filled": 0, "expired": 0, "canceled": 0, "rejected_limits": 0}
         self._entries: dict[str, int] = {}
+        self._attempts: dict[str, int] = {}
         self._last_exit: dict[str, float] = {}
         self._seq = 0
+        self._peak_equity = cfg.account_usd
+        self._halted_at: float | None = None
 
     # ---------- execution helpers ----------
     def _net_fee_usd(self, t: float) -> float:
@@ -151,8 +159,26 @@ class Engine:
     def _try_enter(self, td: TokenData, sig: Signal, tds: dict[str, TokenData]) -> None:
         c = self.cfg
         self.counts["submitted"] += 1
+        self._attempts[td.mint] = self._attempts.get(td.mint, 0) + 1
         oid = f"o{self._seq}"; self._seq += 1
         d = sig.decision_time
+        self.journal.append({"t": d, "event": "SUBMITTED", "mint": td.mint, "order": oid, "signal_id": sig.signal_id})
+        if c.max_drawdown_frac is not None:
+            eq_now = self._equity_marked(tds, d)
+            self._peak_equity = max(self._peak_equity, eq_now)
+            if self._halted_at is not None or eq_now < self._peak_equity * (1 - c.max_drawdown_frac):
+                if self._halted_at is None:
+                    self._halted_at = d
+                    self.journal.append({"t": d, "event": "HALT_NEW_ENTRIES", "reason": f"marked equity {eq_now:.2f} below {1 - c.max_drawdown_frac:.0%} of peak {self._peak_equity:.2f}"})
+                self.counts["rejected_limits"] += 1
+                self.journal.append({"t": d, "event": "REJECTED_LIMIT", "mint": td.mint, "order": oid, "reason": "max account drawdown"})
+                return
+        if c.max_positions_per_group is not None and td.group is not None:
+            same = sum(1 for m in self.positions if tds[m].group == td.group)
+            if same >= c.max_positions_per_group:
+                self.counts["rejected_limits"] += 1
+                self.journal.append({"t": d, "event": "REJECTED_LIMIT", "mint": td.mint, "order": oid, "reason": f"correlated group {td.group} at cap"})
+                return
         if td.mint in self.positions or self._entries.get(td.mint, 0) >= c.max_entries_per_token or d - self._last_exit.get(td.mint, -1e18) < c.cooldown_s:
             self.counts["rejected_limits"] += 1
             self.journal.append({"t": d, "event": "REJECTED_LIMIT", "mint": td.mint, "order": oid, "reason": "per-token limit or cooldown"})
@@ -275,7 +301,11 @@ class Engine:
             return
         hit_stop = p.stop is not None and bar.l <= p.stop
         hit_tp = p.target is not None and bar.h >= p.target
-        if hit_stop:                                   # stop wins when both are inside one bar (conservative)
+        if hit_stop and bar.l < p.stop * (1 - self.cfg.stop_overshoot_limit) and bar.c < p.stop:
+            # crash through the stop inside one bar (rug, liquidity pull): nothing guarantees a fill near the stop;
+            # assume the exit happened at the price the bar settled at
+            self._exit(td, p, bar.end - 1e-6, bar.c, "STOP_INTRABAR_CRASH_FILL_AT_CLOSE")
+        elif hit_stop:                                 # stop wins when both are inside one bar (conservative)
             self._exit(td, p, bar.end - 1e-6, p.stop, "STOP_INTRABAR" + ("_BOTH_IN_BAR" if hit_tp else ""))
         elif hit_tp:
             self._exit(td, p, bar.end - 1e-6, p.target, "TAKE_PROFIT_INTRABAR")
@@ -305,7 +335,7 @@ class Engine:
             if kind == "MANAGE":
                 self._manage(td, td.bars[idx])
                 continue
-            ctx = {"entries_so_far": self._entries.get(mint, 0)}
+            ctx = {"entries_so_far": self._entries.get(mint, 0), "attempts_so_far": self._attempts.get(mint, 0)}
             if kind == "THESIS":
                 if strategy.kind != "LAB":
                     continue
@@ -345,7 +375,7 @@ class Engine:
             "config": {k: (v.__dict__ if hasattr(v, "__dict__") else v) for k, v in self.cfg.__dict__.items()},
             "counts": self.counts, "n_trades": len(self.trades), "final_cash": self.cash, "pnl_usd": self.cash - self.cfg.account_usd,
             "mean_ret": sum(rets) / len(rets) if rets else None, "mean_paper_ret_mid": sum(paper) / len(paper) if paper else None,
-            "trades": self.trades, "fills": self.fills,
+            "trades": self.trades, "fills": self.fills, "journal": self.journal,
         }
         out["ledger_hash"] = _h({"trades": self.trades, "fills": self.fills, "cash": round(self.cash, 9)})
         if self.cash < -1e-9:
