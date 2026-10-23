@@ -4,8 +4,8 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 
 ## Position
 
-- Phase completed: 04 (adoption bake-off), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_04.md. Phases 00-03 PASS.
-- Baseline SHA f99c6c7; Phase 00 commit 912fc96. Branch `feature/backtesting`. Docs only; no change under `memelab/` or `tests/`.
+- Phase completed: 05 (point-in-time schema), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_05.md. Phases 00-04 PASS.
+- Baseline SHA f99c6c7. Phase 05 code commit 724ac07. Branch `feature/backtesting`. First code under `memelab/backtest/`.
 
 ## Commands and exits
 
@@ -17,6 +17,9 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 | 30 GitHub API repo searches (research/raw/p02_github_search.txt) | n/a | 273 hits, 268 unique; longlist 73, shortlist 25 |
 | 25 pinned-commit reviews + blind rescore | n/a | none >= 70; top: slotfish 65.10; largest blind gap 7.1 |
 | `python3 audits/backtesting/bakeoff/compare.py` | 0 | 16/16 |
+| `python -m pytest tests -q` after Phase 05 | 1 | 1 failed (C-1 only), 800 passed |
+| `python tools/release_audit.py` / `release_e2e.py` after Phase 05 | 0 / 0 | Needs action: no / PASS 78 of 78 |
+| `python audits/backtesting/testing/mutate.py audits/backtesting/testing/p05_mutations.json` | 0 | 7/7 caught |
 
 ## Proven
 
@@ -28,7 +31,7 @@ Universe spans 17 days. Catalyst history thin. Helius key absent in this workspa
 
 ## Next eligible phase
 
-05. First action: write `memelab/backtest/schema.py` (additive bt_* tables, append-only triggers) and `timeguard.py`, then G01-G08 tests.
+06. First action: `memelab/backtest/sources/labstate.py` (universe from git history of data/state/latest.json) and `sources/gecko.py` (bounded historical OHLCV fetch with provenance).
 
 ## Roadmap changes
 
