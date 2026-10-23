@@ -11,12 +11,40 @@ import sqlite3
 import subprocess
 import time
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 from . import ENGINE_VERSION, schema
 from .timeguard import ClockError, Series, utc_ts
 
 INGEST_VERSION = "bt-ingest-1"
+
+ROOT = Path(__file__).resolve().parents[2]
+import os as _os
+BT_DB_PATH = Path(_os.environ.get("MEMELAB_BT_DB", ROOT / "data" / "backtest" / "bt.sqlite"))
+RAW_DIR = Path(_os.environ.get("MEMELAB_BT_RAW", ROOT / "data" / "backtest" / "raw"))
+
+
+def connect(path: Path | str | None = None) -> sqlite3.Connection:
+    """Separate SQLite file for bt tables (default data/backtest/bt.sqlite, gitignored): the tracked lab database is
+    never written by the backtesting package."""
+    p = Path(path) if path else BT_DB_PATH
+    p.parent.mkdir(parents=True, exist_ok=True)
+    con = sqlite3.connect(p)
+    con.row_factory = sqlite3.Row
+    con.execute("PRAGMA journal_mode=WAL")
+    schema.migrate(con)
+    return con
+
+
+def save_raw(provider: str, payload: bytes) -> str:
+    """Immutable raw shard keyed by its sha256; returns the raw_ref."""
+    h = hashlib.sha256(payload).hexdigest()
+    d = RAW_DIR / provider
+    d.mkdir(parents=True, exist_ok=True)
+    f = d / f"{h}.json"
+    if not f.exists():
+        f.write_bytes(payload)
+    return f"raw/{provider}/{h}.json"
 
 
 def canonical(obj: Any) -> str:

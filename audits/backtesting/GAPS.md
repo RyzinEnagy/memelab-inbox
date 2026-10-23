@@ -26,6 +26,8 @@ Full row-by-row status: [REQUIREMENTS_MATRIX.md](REQUIREMENTS_MATRIX.md). Data s
 
 C1 transfer-fee key never written (m06/m17), C2 unfinished bar read by m13, C3 result `_at` earlier than contained rows, m14/m22 window-key mismatch, m26 percent-vs-fraction impact, catalyst assess pre-publication price up to one hour after publication, alpha_core OPEN rule entry from a bar that started before t0. The engine re-derives what it needs instead of reusing these outputs for historical decisions. Fixing them in place would change scoring, which is outside this project (D-BT-006).
 
+C4 (found in Phase 06): the lab's exported history holds corrupted copies of real mint strings. `6GmAFSYS4gk3...` is a case-flipped copy of `6GmAFSYs4gk3...` (a different, non-existent key) and `MukLDtJ8...LRWPSpos...` drops one letter of `MukLDtJ8...LRSWPSpos...` (31 bytes, not a key). Each appears in one or two records next to dozens of correct ones. The engine reports them with `quality.mint_integrity` and never merges them by similarity. Where they enter the lab's pipeline is for the lab owner to trace (likely a step that retypes addresses instead of copying them).
+
 ## External blockers
 
 Historical reserves/ticks/bins and historical swaps (need Helius key or archival source): exact historical fills BLOCKED; LIQ_SNAPSHOT_APPROX and QUOTE_OBSERVED tiers only. Social credentials: not needed for the first engine. Universe span only 17 days: statistics will be wide or abstain.

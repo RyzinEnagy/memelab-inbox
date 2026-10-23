@@ -9,7 +9,13 @@ muts = json.load(open(sys.argv[1]))
 ok = True
 with tempfile.TemporaryDirectory() as td:
     base = Path(td) / "repo"
-    shutil.copytree(ROOT, base, ignore=shutil.ignore_patterns(".git", "__pycache__", "*.sqlite-shm", "*.sqlite-wal", "audits", "workplans"))
+    pat = shutil.ignore_patterns(".git", "__pycache__", "*.sqlite-shm", "*.sqlite-wal", "audits", "workplans")
+    def _ign(d, names):
+        out = set(pat(d, names))
+        if Path(d).resolve() == (ROOT / "data").resolve():
+            out.add("backtest")      # local research DB and raw shards (may be in use by a running fetch)
+        return out
+    shutil.copytree(ROOT, base, ignore=_ign)
     tests = sorted({t for m in muts for t in m["tests"]})
     r = subprocess.run([sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider", *tests], cwd=base, capture_output=True, text=True)
     print(f"baseline (unmutated): exit {r.returncode} :: {r.stdout.strip().splitlines()[-1] if r.stdout.strip() else r.stderr[-200:]}")

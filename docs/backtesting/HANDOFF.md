@@ -4,8 +4,8 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 
 ## Position
 
-- Phase completed: 05 (point-in-time schema), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_05.md. Phases 00-04 PASS.
-- Baseline SHA f99c6c7. Phase 05 code commit 724ac07. Branch `feature/backtesting`. First code under `memelab/backtest/`.
+- Phase completed: 06 (historical data and quality defenses), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_06.md. Phases 00-05 PASS.
+- Baseline SHA f99c6c7. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
 
 ## Commands and exits
 
@@ -20,6 +20,9 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 | `python -m pytest tests -q` after Phase 05 | 1 | 1 failed (C-1 only), 800 passed |
 | `python tools/release_audit.py` / `release_e2e.py` after Phase 05 | 0 / 0 | Needs action: no / PASS 78 of 78 |
 | `python audits/backtesting/testing/mutate.py audits/backtesting/testing/p05_mutations.json` | 0 | 7/7 caught |
+| Phase 06 tests (sources, real fixture) | 0 | 17 passed |
+| `python audits/backtesting/testing/mutate.py audits/backtesting/testing/p06_mutations.json` | 0 | 12/12 caught |
+| `python -m pytest tests -q` after Phase 06 | 1 | 1 failed (C-1 only), 870 passed |
 
 ## Proven
 
@@ -27,11 +30,11 @@ Seam verified; data feasibility mapped; rubric locked; exact historical executio
 
 ## Limitations
 
-Universe spans 17 days. Catalyst history thin. Helius key absent in this workspace.
+Universe spans 17 days. Catalyst history thin. Helius key absent in this workspace. Historical swaps, reserves, ticks, bins, holders and wallet flows are SOURCE_BLOCKED. Two corrupted mint strings in the lab's exports (GAPS C4).
 
 ## Next eligible phase
 
-06. First action: `memelab/backtest/sources/labstate.py` (universe from git history of data/state/latest.json) and `sources/gecko.py` (bounded historical OHLCV fetch with provenance).
+06A (Maxun bake-off and decision). Pre-registration written before any bake-off fetch: audits/backtesting/research/MAXUN_BAKEOFF_PREREG.md (sha256 in testing/logs/p06a_prereg.sha256).
 
 ## Roadmap changes
 

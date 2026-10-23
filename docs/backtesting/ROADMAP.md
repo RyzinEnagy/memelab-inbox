@@ -10,7 +10,7 @@ Order is fixed by the package: 00, 01, 02, 03, 04, 05, 06, 06A, 07, 08, 09, 10, 
 | 03 | Source review (>=20), top 10 | PASS | audits/backtesting/PHASE_03.md |
 | 04 | Adoption bake-off | PASS | audits/backtesting/PHASE_04.md |
 | 05 | Point-in-time schema | PASS | audits/backtesting/PHASE_05.md |
-| 06 | Historical data and quality defenses | pending | |
+| 06 | Historical data and quality defenses | PASS | audits/backtesting/PHASE_06.md |
 | 06A | Maxun robot bake-off and decision | pending | |
 | 07 | Execution-aware AMM simulation | pending | |
 | 08 | Point-in-time TA strategy library | pending | |
