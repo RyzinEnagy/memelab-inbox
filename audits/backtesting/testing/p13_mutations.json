@@ -29,8 +29,8 @@
  {
   "id": "M13-4 cache key ignores the snapshot",
   "file": "memelab/backtest/assess.py",
-  "old": "key = store.sha256([snap.chain, snap.mint, snap_hash, ENGINE_VERSION, pol_hash, rev])",
-  "new": "key = store.sha256([snap.chain, snap.mint, ENGINE_VERSION, pol_hash, rev])",
+  "old": "key = store.sha256([snap.chain, snap.mint, snap_hash, bars_hash, ENGINE_VERSION, pol_hash, rev])",
+  "new": "key = store.sha256([snap.chain, snap.mint, bars_hash, ENGINE_VERSION, pol_hash, rev])",
   "tests": [
    "tests/test_backtest_assess.py"
   ]
@@ -137,8 +137,8 @@
  {
   "id": "M13-16 cache key ignores new evidence rows",
   "file": "memelab/backtest/assess.py",
-  "old": "key = store.sha256([snap.chain, snap.mint, snap_hash, ENGINE_VERSION, pol_hash, rev])",
-  "new": "key = store.sha256([snap.chain, snap.mint, snap_hash, ENGINE_VERSION, pol_hash])",
+  "old": "key = store.sha256([snap.chain, snap.mint, snap_hash, bars_hash, ENGINE_VERSION, pol_hash, rev])",
+  "new": "key = store.sha256([snap.chain, snap.mint, snap_hash, bars_hash, ENGINE_VERSION, pol_hash])",
   "tests": [
    "tests/test_backtest_assess.py"
   ]
@@ -202,6 +202,15 @@
   "file": "memelab/backtest/assess.py",
   "old": "                out[\"flags\"] = [\"BT_STRUCTURALLY_UNTRADEABLE\"]",
   "new": "                out[\"flags\"] = [\"BT_STRUCTURALLY_UNTRADEABLE\"]; r[\"score\"][\"total\"] = 0",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-24 cache key ignores the token's bars",
+  "file": "memelab/backtest/assess.py",
+  "old": "key = store.sha256([snap.chain, snap.mint, snap_hash, bars_hash, ENGINE_VERSION, pol_hash, rev])",
+  "new": "key = store.sha256([snap.chain, snap.mint, snap_hash, ENGINE_VERSION, pol_hash, rev])",
   "tests": [
    "tests/test_backtest_assess.py"
   ]

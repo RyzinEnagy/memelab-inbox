@@ -131,7 +131,11 @@ def test_catalyst_refresh_rules(con):
     assert assess.on_catalyst(con, dict(base, available_at=a["as_of"] - 1), a)["action"] == "IGNORED"    # already reflected
     assert assess.on_catalyst(con, dict(base, mint="So11111111111111111111111111111111111111112"), a)["action"] == "IGNORED"
     assert assess.on_catalyst(con, base, a)["action"] == "REFRESH_REQUESTED"
-    assert assess.on_catalyst(con, base, a)["action"] == "IGNORED"                                       # same origin+content again
+    again = assess.on_catalyst(con, base, a)                                                              # same origin+content again
+    assert again["action"] == "IGNORED" and again["reason"].startswith("duplicate")
+    other = assess.on_catalyst(con, dict(base, origin_group="solana.com/news/y", content_hash="h2"), a, now=time.time() + 60)
+    assert other["action"] == "IGNORED" and other["reason"].startswith("rate limited")                     # a robot burst is rate limited
+    assert assess.on_catalyst(con, dict(base, origin_group="solana.com/news/y", content_hash="h2"), a, now=time.time() + 3700)["action"] == "REFRESH_REQUESTED"
 
 
 def test_deep_stage_and_observability(con):
@@ -153,7 +157,7 @@ def test_fast_stage_benchmark(con):
     assert time.time() - t0 < 2.0                                    # the scout is not held up
 
 
-def test_scout_command_report_identical_with_hook_off_and_on(tmp_path, monkeypatch):
+def test_scout_report_body_unchanged_and_backtest_section_only_when_on(tmp_path, monkeypatch):
     from memelab import cli, db
     r = real()
 
@@ -175,12 +179,14 @@ def test_scout_command_report_identical_with_hook_off_and_on(tmp_path, monkeypat
         rd = tmp_path / sub / "reports"
         rd.mkdir(parents=True, exist_ok=True)
         cli.cmd_scout(A(rd))
-        return next(rd.glob("*_SCOUT.md")).read_text(), seen
-    off, s_off = run("off", False)
-    on, s_on = run("on", True)
-    assert off == on                                                   # Phase 13 attaches; it renders nothing (Phase 14 does)
+        return next(rd.glob("*_SCOUT.md")).read_text(), seen, sorted(p.name for p in rd.iterdir())
+    off, s_off, f_off = run("off", False)
+    on, s_on, f_on = run("on", True)
+    assert on.startswith(off) and on[len(off):].startswith("\n## Backtest and stress (research only)")   # scout body unchanged
+    assert "backtest" not in off.lower() and not any("backtest" in f for f in f_off)
     assert "backtest_assessment" not in s_off[0] and not (tmp_path / "off" / "bt.sqlite").exists()
     assert s_on[0]["backtest_assessment"]["state"] in ("PARTIAL_WITH_LIMITATIONS", "COMPLETE", "INSUFFICIENT_HISTORY", "STALE_DATA")
+    assert any(f.endswith("_SCOUT.backtest.json") for f in f_on) and any(f.endswith(".backtest.md") and "PAID" in f for f in f_on)
 
 
 def test_token_signals_use_only_closed_and_published_bars():
@@ -306,3 +312,12 @@ def test_severe_stress_is_a_flag_beside_the_score_never_a_score_change(con):
     assert out["stress"]["decision"] == "STRUCTURALLY_UNTRADEABLE" and out["flags"] == ["BT_STRUCTURALLY_UNTRADEABLE"]
     assert (out["lab"]["score"], out["lab"]["status"]) == (score, status) == (r["score"]["total"], r["status"]["status"])
     assert "flags" not in r["score"] or "BT_STRUCTURALLY_UNTRADEABLE" not in json.dumps(r["score"])
+
+
+def test_changed_bar_history_is_a_new_request(con):
+    r = real()
+    t = r["bundle"]["observed_at"] + 60
+    a = assess.attach(r, ON, con=con, now=t)
+    r["bundle"]["ohlcv"]["hour1"] = r["bundle"]["ohlcv"]["hour1"][-5:]        # same snapshot, far less history
+    b = assess.attach(r, ON, con=con, now=t)
+    assert b["request_key"] != a["request_key"] and b["cache"] == "MISS" and b["state"] == "INSUFFICIENT_HISTORY"

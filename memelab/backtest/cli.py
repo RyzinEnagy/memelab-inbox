@@ -36,8 +36,10 @@ def cmd_run(a):
     cfg = EngineConfig(account_usd=a.account_usd, size_usd=a.size_usd, max_positions=a.max_positions, max_exposure_frac=a.max_exposure,
                        entry_impact_cap=a.entry_impact_cap, max_drawdown_frac=a.max_drawdown)
     con = _con(a)
+    if a.as_of and a.until and _ts(a.as_of) != _ts(a.until):
+        sys.exit("--as-of and --until disagree; give one")
     res = runner.run(con, a.strategy, params=json.loads(a.params) if a.params else None, cfg=cfg, universe_id=a.universe,
-                     until=_ts(a.until), decide_from=_ts(a.decide_from), decide_until=_ts(a.decide_until), thesis_known_at=a.thesis_known_at,
+                     until=_ts(a.as_of or a.until), decide_from=_ts(a.decide_from), decide_until=_ts(a.decide_until), thesis_known_at=a.thesis_known_at,
                      mints=a.mints, label=a.label)
     summary = {k: res.get(k) for k in ("run_id", "cache", "dataset_hash", "tokens", "n_trades", "pnl_usd", "mean_ret", "mean_paper_ret_mid", "ledger_hash")}
     summary["counts"] = res.get("counts")
@@ -58,6 +60,96 @@ def cmd_assess_stats(a):
     print(json.dumps(assess.stats(_con(a)), indent=1))
 
 
+def _emit(doc: dict, as_json: bool):
+    from . import report
+    print(json.dumps(doc, indent=1, default=str) if as_json else report.render_md(doc))
+
+
+def cmd_stress(a):
+    """Explicit request: analyze the mint from saved results (no lab persistence), assess it now and print the report.
+    Runs even when the scout policy is off, because the user asked for it by name."""
+    from .. import cli as lab_cli, db, pipeline
+    from . import assess, report
+    bodies, t = lab_cli._bodies(a.results)
+    s1 = json.loads((lab_cli.INBOX / f"{a.stage1}.stage1.json").read_text()) if a.stage1 else {}
+    sol = s1.get("sol_price") or lab_cli._sol_price(bodies)
+    r = pipeline.analyze_token(a.mint, bodies, observed_at=t, sol_price=sol, persist=False)
+    pol = dict(assess.load_policy(), enabled=True)
+    if a.position_usd:
+        pol["sizes_usd"] = sorted(set(a.position_usd))
+    if a.max_loss_usd is not None:
+        pol["max_loss_usd"] = a.max_loss_usd
+    con = _con(a)
+    asmt = assess.attach(r, pol, con=con, now=_ts(a.now) if a.now else None)
+    doc = report.build(asmt, con=con, lab_db=db.DB_PATH)
+    _emit(doc, a.json)
+
+
+def cmd_assess(a):
+    from .. import db
+    from . import hook, report
+    con = _con(a)
+    asmt = hook.latest_assessment(a.chain, a.mint, con)
+    deep = None
+    if asmt:
+        row = con.execute("SELECT result_json FROM bt_assessments WHERE request_key=? AND stage='DEEP'", (asmt["request_key"],)).fetchone()
+        deep = json.loads(row[0]) if row else None
+    doc = report.build(asmt, con=con, deep=deep, lab={"chain": a.chain, "mint": a.mint}, lab_db=db.DB_PATH)
+    _emit(doc, a.json)
+
+
+def cmd_inspect(a):
+    con = _con(a)
+    rows = con.execute("SELECT e.*, r.result_json, r.result_hash, r.status FROM bt_experiment_runs e JOIN bt_run_results r ON r.run_id=e.run_id "
+                       "WHERE e.run_id LIKE ? ORDER BY r.created_at", (a.run_id + "%",)).fetchall()
+    ids = sorted({x["run_id"] for x in rows})
+    if len(ids) != 1:
+        sys.exit(f"{len(ids)} runs match {a.run_id!r}; give more of the id")
+    x = rows[0]
+    cfg, res = json.loads(x["config_json"]), json.loads(x["result_json"])
+    args = ["python -m memelab backtest run", f"--strategy {cfg['strategy_id']}"]
+    if cfg.get("params"):
+        args.append("--params '" + json.dumps(cfg["params"], sort_keys=True) + "'")
+    if cfg.get("until"):
+        args.append("--as-of " + datetime.fromtimestamp(cfg["until"], timezone.utc).isoformat().replace("+00:00", "Z"))
+    for k, flag in (("decide_from", "--decide-from"), ("decide_until", "--decide-until")):
+        if cfg.get(k):
+            args.append(f"{flag} " + datetime.fromtimestamp(cfg[k], timezone.utc).isoformat().replace("+00:00", "Z"))
+    if cfg.get("mints"):
+        args.append("--mints " + " ".join(cfg["mints"]))
+    if cfg.get("thesis_known_at") and cfg["thesis_known_at"] != "created":
+        args.append(f"--thesis-known-at {cfg['thesis_known_at']}")
+    if cfg.get("label"):
+        args.append(f"--label {cfg['label']}")
+    out = {"run_id": x["run_id"], "status": x["status"], "strategy": cfg["strategy_id"], "strategy_version": x["strategy_version"],
+           "engine_version": x["engine_version"], "cost_model_version": x["cost_model_version"], "code_sha": x["code_sha"], "dataset_hash": x["dataset_hash"],
+           "result_hash": x["result_hash"], "ledger_hash": res.get("ledger_hash"), "config": cfg,
+           "summary": {k: res.get(k) for k in ("tokens", "n_trades", "pnl_usd", "mean_ret", "mean_paper_ret_mid", "counts", "wall_s")},
+           "files": [str(p.relative_to(store.ROOT)) for p in sorted((store.ROOT / "data" / "backtest" / "runs" / x["run_id"]).glob("*"))],
+           "reproduce": " ".join(args) + "  (same code and data give the same run id and a cache HIT; changed code or data give a new id)",
+           "disclosure": "research backtest on historical data; not a forecast and not an instruction to trade"}
+    if a.json:
+        print(json.dumps(out, indent=1, default=str))
+    else:
+        s = out["summary"]
+        print(f"run {out['run_id']} ({out['status']}): {out['strategy']} v{out['strategy_version']}, engine {out['engine_version']}, cost model {out['cost_model_version']}")
+        print(f"code {out['code_sha']}, dataset {out['dataset_hash']}, result {out['result_hash']}, ledger {out['ledger_hash']}")
+        print(f"{s['tokens']} tokens, {s['n_trades']} trades, mean net {s['mean_ret']}, mean paper {s['mean_paper_ret_mid']}, counts {s['counts']}")
+        print("files: " + (", ".join(out["files"]) or "none on this machine"))
+        print("reproduce: " + out["reproduce"])
+        print(out["disclosure"])
+
+
+def cmd_data(a):
+    from . import report
+    print(json.dumps(report.coverage(_con(a)), indent=1))
+
+
+def cmd_schema(a):
+    from . import report
+    print(json.dumps(report.json_schema(), indent=1))
+
+
 def add_subparser(sp):
     p = sp.add_parser("backtest", help="research backtests and stress tests (no trading; separate data/backtest/bt.sqlite)")
     ssp = p.add_subparsers(dest="bcmd", required=True)
@@ -66,7 +158,7 @@ def add_subparser(sp):
     q = ssp.add_parser("run", help="replay one strategy over the frozen discovery universe and save the run")
     q.add_argument("--strategy", required=True); q.add_argument("--params", help="JSON object of strategy parameters")
     q.add_argument("--universe", default="lab_state_history"); q.add_argument("--mints", nargs="*")
-    q.add_argument("--until"); q.add_argument("--decide-from"); q.add_argument("--decide-until")
+    q.add_argument("--until"); q.add_argument("--as-of", help="same as --until: nothing after this UTC time is read"); q.add_argument("--decide-from"); q.add_argument("--decide-until")
     q.add_argument("--thesis-known-at", choices=["created", "committed"], default="created")
     q.add_argument("--account-usd", type=float, default=10_000.0); q.add_argument("--size-usd", type=float, default=500.0)
     q.add_argument("--max-positions", type=int, default=5); q.add_argument("--max-exposure", type=float, default=0.5)
@@ -76,6 +168,19 @@ def add_subparser(sp):
     q.add_argument("--limit", type=int, default=20); q.add_argument("--db"); q.set_defaults(fn=cmd_deep)
     q = ssp.add_parser("assess-stats", help="assessment counts, states and average wall time")
     q.add_argument("--db"); q.set_defaults(fn=cmd_assess_stats)
+    q = ssp.add_parser("stress", help="analyze one mint from saved results, assess it now and print the report (no lab persistence)")
+    q.add_argument("mint"); q.add_argument("--results", nargs="+", required=True); q.add_argument("--stage1")
+    q.add_argument("--position-usd", type=float, nargs="+", help="sizes to stress (default: policy sizes)"); q.add_argument("--max-loss-usd", type=float)
+    q.add_argument("--now", help="UTC time to judge freshness against (default: now)"); q.add_argument("--json", action="store_true"); q.add_argument("--db")
+    q.set_defaults(fn=cmd_stress)
+    q = ssp.add_parser("assess", help="report for the newest stored assessment of a mint")
+    q.add_argument("mint"); q.add_argument("--chain", default="solana"); q.add_argument("--json", action="store_true"); q.add_argument("--db"); q.set_defaults(fn=cmd_assess)
+    q = ssp.add_parser("inspect", help="one stored run: config, hashes, summary, files and the command that reproduces it")
+    q.add_argument("run_id", help="run id or a unique prefix"); q.add_argument("--json", action="store_true"); q.add_argument("--db"); q.set_defaults(fn=cmd_inspect)
+    q = ssp.add_parser("data", help="coverage of the research database (bars, universe, blocked sources)")
+    q.add_argument("--db"); q.set_defaults(fn=cmd_data)
+    q = ssp.add_parser("schema", help="JSON Schema of the report document")
+    q.set_defaults(fn=cmd_schema)
 
 
 def main(argv=None):

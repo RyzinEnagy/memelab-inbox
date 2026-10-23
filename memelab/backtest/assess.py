@@ -5,7 +5,7 @@ It never changes the lab's score, fatal flags, status or report when disabled, a
 - FAST stage (synchronous, no network): present-tense execution and stress from the analyze result, token-specific
   signal states from the bundle's own closed bars, and any stored historical cohort evidence that matches.
 - DEEP stage (deferred): queued as an event; `python -m memelab backtest deep` runs it with bounded fetches.
-Idempotent: request_key = sha256(chain, mint, snapshot hash, engine version, policy hash, data revision).
+Idempotent: request_key = sha256(chain, mint, snapshot hash, bar history hash, engine version, policy hash, data revision).
 """
 from __future__ import annotations
 
@@ -84,7 +84,10 @@ def snapshot_from_result(r: dict) -> tuple[S.Snapshot, dict]:
                       concentrated_pct=conc, circulating_tokens=mk.get("circ_supply"), invalidation_price=inv, sell_quotes=sells, quote_at=b["observed_at"],
                       fatal_flags=[f["flag"] for f in r["score"].get("fatal_flags") or []],
                       has_sell_route=not (m.get("depth") or {}).get("no_route", False), score=r["score"].get("total"), status=r["status"].get("status"))
-    prov = {"price": (b.get("sources") or {}).get("price_usd"), "liquidity": "main pool reserve_usd (fallback: market.liquidity_usd_total)", "main_pool": (main or {}).get("pool"),
+    e0 = next((e for e in entries if e.get("condition")), {}) if entries else {}
+    prov = {"symbol": (b.get("identity") or {}).get("symbol"), "lab_entry": {"style": e0.get("style"), "condition": e0.get("condition"),
+            "invalidation": e0.get("invalidation_text"), "invalidation_level": e0.get("invalidation_level")},
+            "price": (b.get("sources") or {}).get("price_usd"), "liquidity": "main pool reserve_usd (fallback: market.liquidity_usd_total)", "main_pool": (main or {}).get("pool"),
             "main_pool_label": (main or {}).get("dex") or (main or {}).get("market_type"), "transfer_fee": "mechanics.transfer_fee_bps (not authorities: C1)",
             "quotes": "Jupiter /swap/v1/quote at observed_at (present tense, never historical)"}
     return snap, prov
@@ -151,7 +154,8 @@ def attach(r: dict, policy: dict | None = None, con=None, now: float | None = No
         snap_hash = store.sha256(snap.__dict__)
         pol_hash = store.sha256({k: policy[k] for k in sorted(policy) if k != "enabled"})
         rev = data_revision(con)                                   # new bars or universe rows change cohort evidence
-        key = store.sha256([snap.chain, snap.mint, snap_hash, ENGINE_VERSION, pol_hash, rev])
+        bars_hash = store.sha256(((r.get("bundle") or {}).get("ohlcv") or {}).get("hour1") or [])   # the token's own bars feed its signal states
+        key = store.sha256([snap.chain, snap.mint, snap_hash, bars_hash, ENGINE_VERSION, pol_hash, rev])
         cached = con.execute("SELECT result_json FROM bt_assessments WHERE request_key=? AND stage='FAST'", (key,)).fetchone()
         now = now if now is not None else time.time()
         if cached:
@@ -161,7 +165,7 @@ def attach(r: dict, policy: dict | None = None, con=None, now: float | None = No
                 store._insert(con, "bt_assessment_events", dict(request_key=key, event="STALE_ON_HIT", detail=prior.get("state"),
                               wall_ms=(time.time() - t0) * 1000, created_at=time.time()))
                 con.commit()
-                return {k: prior[k] for k in ("request_key", "chain", "mint", "as_of", "lab") if k in prior} | {
+                return {k: prior[k] for k in ("request_key", "chain", "mint", "as_of", "lab") if k in prior} | {"symbol": prov.get("symbol"),
                     "tier": "UNAVAILABLE", "state": "STALE_DATA", "reason": pre[1], "retriable": True, "stored_state": prior.get("state"), "cache": "HIT_STALE"}
             store._insert(con, "bt_assessment_events", dict(request_key=key, event="CACHE_HIT", detail=None, wall_ms=(time.time() - t0) * 1000, created_at=time.time()))
             con.commit()
@@ -195,11 +199,11 @@ def attach(r: dict, policy: dict | None = None, con=None, now: float | None = No
                 out["flags"] = ["BT_STRUCTURALLY_UNTRADEABLE"]      # a flag beside the score, never a change to the score
             event = "COMPLETED"
         except _Abstain as e:
-            out = {"request_key": key, "chain": snap.chain, "mint": snap.mint, "as_of": snap.as_of, "tier": "UNAVAILABLE", "state": e.state,
+            out = {"request_key": key, "chain": snap.chain, "mint": snap.mint, "symbol": prov.get("symbol"), "as_of": snap.as_of, "tier": "UNAVAILABLE", "state": e.state,
                    "reason": e.reason, "retriable": e.retriable, "lab": {"score": snap.score, "status": snap.status, "fatal_flags": snap.fatal_flags}}
             event = "ABSTAINED"
         except Exception as e:  # never break the scout
-            out = {"request_key": key, "chain": snap.chain, "mint": snap.mint, "as_of": snap.as_of, "tier": "UNAVAILABLE", "state": "ERROR",
+            out = {"request_key": key, "chain": snap.chain, "mint": snap.mint, "symbol": prov.get("symbol"), "as_of": snap.as_of, "tier": "UNAVAILABLE", "state": "ERROR",
                    "error": f"{type(e).__name__}: {e}", "retriable": True, "lab": {"score": snap.score, "status": snap.status, "fatal_flags": snap.fatal_flags}}
             event = "ERROR"
         store._insert(con, "bt_assessments", dict(request_key=key, chain=snap.chain, mint=snap.mint, snapshot_hash=snap_hash, engine_version=ENGINE_VERSION,
@@ -214,7 +218,11 @@ def attach(r: dict, policy: dict | None = None, con=None, now: float | None = No
             con.close()
 
 
-def on_catalyst(con, record: dict, latest_assessment: dict | None) -> dict:
+REFRESH_MIN_INTERVAL_S = 3600.0      # at most one catalyst-triggered refresh per {chain, mint} per hour
+
+
+def on_catalyst(con, record: dict, latest_assessment: dict | None, now: float | None = None,
+                min_interval_s: float = REFRESH_MIN_INTERVAL_S) -> dict:
     """Catalyst-triggered refresh (robot or any collector). Only a mint-verified, not-yet-seen origin for a token that
     already has an assessment triggers a refresh request; it never creates a positive verdict by itself."""
     if record.get("source_status") not in (None, "OK"):
@@ -230,8 +238,13 @@ def on_catalyst(con, record: dict, latest_assessment: dict | None) -> dict:
     seen = con.execute("SELECT 1 FROM bt_assessment_events WHERE event='CATALYST_REFRESH' AND detail=?", (f"{record['mint']}|{record.get('origin_group')}|{record.get('content_hash')}",)).fetchone()
     if seen:
         return {"action": "IGNORED", "reason": "duplicate origin/content already triggered a refresh"}
+    now = now if now is not None else time.time()
+    recent = con.execute("SELECT MAX(created_at) FROM bt_assessment_events WHERE event='CATALYST_REFRESH' AND detail LIKE ?",
+                         (record["mint"] + "|%",)).fetchone()[0]
+    if recent is not None and now - recent < min_interval_s:
+        return {"action": "IGNORED", "reason": f"rate limited: a refresh for this mint was requested {(now - recent) / 60:.0f} min ago"}
     store._insert(con, "bt_assessment_events", dict(request_key=latest_assessment["request_key"], event="CATALYST_REFRESH",
-                  detail=f"{record['mint']}|{record.get('origin_group')}|{record.get('content_hash')}", wall_ms=0.0, created_at=time.time()))
+                  detail=f"{record['mint']}|{record.get('origin_group')}|{record.get('content_hash')}", wall_ms=0.0, created_at=now))
     con.commit()
     return {"action": "REFRESH_REQUESTED", "mint": record["mint"], "claim_kind": record.get("kind") or record.get("claim_type"), "note": "re-run the scout/analyze for this mint; catalyst evidence is attached as a claim, not a signal"}
 

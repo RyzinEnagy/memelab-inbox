@@ -4,8 +4,8 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 
 ## Position
 
-- Phase completed: 13 (per-opportunity integration), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_13.md. Phases 00-12 PASS (06A EXISTING_TOOL_WINS; 11 all INSUFFICIENT_SAMPLE).
-- Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f, Phase 08 976e747, Phase 09 58abf7d, Phase 10 941e4ed, Phase 11 38d2fcc, Phase 12 999d1eb. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
+- Phase completed: 14 (reports, CLI, alerts), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_14.md. Phases 00-13 PASS (06A EXISTING_TOOL_WINS; 11 all INSUFFICIENT_SAMPLE).
+- Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f, Phase 08 976e747, Phase 09 58abf7d, Phase 10 941e4ed, Phase 11 38d2fcc, Phase 12 999d1eb, Phase 13 4338810. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
 - Spend so far: Firecrawl about 29 of ~100 calls; Maxun 5 of 5 trial credits (0 left, 0 schedules); Crawl4AI local only; Solana public RPC and Jupiter quotes read-only (about 20 calls).
 
 ## Commands and exits
@@ -35,6 +35,8 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 | Phase 12: stress tests / `mutate.py p12_mutations.json` / `p12_scenarios.py` | 0 / 0 / 0 | 13 passed / 12 of 12 / 2 real pools RESEARCHABLE |
 | Phase 13: assess tests / `mutate.py p13_mutations.json` / `integration/p13_demo.py` | 0 / 0 / 0 | 26 passed / 23 of 23 / real PAID: PARTIAL_WITH_LIMITATIONS, SCENARIO_ONLY, cache HIT, STALE_DATA after 3 h |
 | full suite after Phase 13 / release audit / release e2e | 1 / 0 / 0 | C-1 only, 952 passed / Needs action: no / PASS 78 of 78 |
+| Phase 14: report and assess tests / `mutate.py p14_mutations.json` / `p13_mutations.json` rerun / `reports/p14_samples.py` | 0 / 0 / 0 / 0 | 49 passed / 20 of 20 / 24 of 24 / 6 schema-valid reports |
+| full suite after Phase 14 / release audit / release e2e | 1 / 0 / 0 | C-1 only, 976 passed / Needs action: no / PASS 78 of 78 |
 
 ## Proven
 
@@ -46,7 +48,7 @@ Universe spans 17 days. Catalyst history thin. Helius key absent in this workspa
 
 ## Next eligible phase
 
-14 (reports, CLI, alerts). Inputs ready: `r["backtest_assessment"]` on scout results and the `bt_assessments` rows. To do: report sections in Markdown and JSON, the full `backtest` CLI, alert labeling, byte-identical reports when the policy is off.
+15 (outcomes, calibration, drift). Inputs ready: `bt_assessments` (FAST and DEEP rows with as-of times), `bt_outcomes` table (empty), the stored corpus bars. To do: record realized outcomes after each assessment from bars available later, calibrate labels and cohort stats against them, and detect drift.
 
 ## Roadmap changes
 

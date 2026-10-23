@@ -19,7 +19,7 @@ Order is fixed by the package: 00, 01, 02, 03, 04, 05, 06, 06A, 07, 08, 09, 10, 
 | 11 | Statistical validation | PASS (all INSUFFICIENT_SAMPLE) | audits/backtesting/PHASE_11.md |
 | 12 | Stress engine | PASS | audits/backtesting/PHASE_12.md |
 | 13 | Per-opportunity integration | PASS | audits/backtesting/PHASE_13.md |
-| 14 | Reports, CLI, alerts | pending | |
+| 14 | Reports, CLI, alerts | PASS | audits/backtesting/PHASE_14.md |
 | 15 | Outcomes, calibration, drift | pending | |
 | 16 | Independent adversarial E2E audit | pending | |
 | 17 | Release memo and runbook | pending | |

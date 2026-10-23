@@ -1,0 +1,100 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "memelab.backtest.report/1",
+ "type": "object",
+ "required": [
+  "schema",
+  "engine_version",
+  "token",
+  "trace",
+  "headline",
+  "lab",
+  "historical_evidence",
+  "execution_quote",
+  "catalysts",
+  "alternate_explanations",
+  "uncertainty",
+  "disclosure"
+ ],
+ "properties": {
+  "schema": {
+   "type": "string",
+   "const": "memelab.backtest.report/1"
+  },
+  "engine_version": {
+   "type": "string"
+  },
+  "token": {
+   "type": "object",
+   "required": [
+    "chain",
+    "mint",
+    "as_of_utc"
+   ]
+  },
+  "trace": {
+   "type": "object",
+   "required": [
+    "request_key",
+    "assessment_state",
+    "assessment_tier"
+   ]
+  },
+  "headline": {
+   "type": "object",
+   "required": [
+    "label",
+    "why",
+    "good_project",
+    "good_entry",
+    "mismatch"
+   ],
+   "properties": {
+    "label": {
+     "enum": [
+      "FATAL FLAW",
+      "UNTESTED",
+      "BAD EXECUTION",
+      "INCONCLUSIVE",
+      "TESTED"
+     ]
+    }
+   }
+  },
+  "lab": {
+   "type": "object",
+   "required": [
+    "score",
+    "status",
+    "fatal_flags",
+    "fatal_override_detected"
+   ]
+  },
+  "historical_evidence": {
+   "type": "object",
+   "required": [
+    "token_specific",
+    "cohort",
+    "strategies"
+   ]
+  },
+  "execution_quote": {
+   "type": "object"
+  },
+  "catalysts": {
+   "type": [
+    "object",
+    "null"
+   ]
+  },
+  "alternate_explanations": {
+   "type": "object"
+  },
+  "uncertainty": {
+   "type": "object"
+  },
+  "disclosure": {
+   "type": "string"
+  }
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "schema": "memelab.backtest.scout_section/1",
+ "rows": [
+  {
+   "symbol": "PAID",
+   "chain": "solana",
+   "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+   "lab_score": 67,
+   "lab_status": "SETUP DEVELOPING",
+   "label": "UNTESTED",
+   "why": "assessment STALE_DATA: analysis snapshot is 403.9 h old",
+   "state": "STALE_DATA",
+   "tier": "UNAVAILABLE",
+   "stress_decision": null,
+   "max_size_usd_under_caps": null,
+   "request_key": "192c7517a8a577c12f3d81865ff893f7ed74f5bd76141645a35bee25d3d6953a",
+   "mismatch": null,
+   "report": "20261006_2348_PAID_98kfF7rm.backtest.md"
+  }
+ ],
+ "counts": {
+  "FATAL FLAW": 0,
+  "UNTESTED": 1,
+  "BAD EXECUTION": 0,
+  "INCONCLUSIVE": 0,
+  "TESTED": 0
+ },
+ "disclosure": "Research only. Backtests describe the past over the lab's discovery universe, stress scenarios are hypothetical with no probabilities, and nothing here is an instruction to buy, sell or size a position."
+}

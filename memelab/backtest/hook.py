@@ -33,3 +33,44 @@ def one_line(a: dict | None) -> str | None:
     return (f"backtest: {a.get('state')} | evidence {a.get('tier')} | stress {st.get('decision', 'n/a')}"
             + (f" | max size ${ms:,.0f} under caps" if ms else "") + (f" | flags {','.join(a['flags'])}" if a.get("flags") else "")
             + " | research only")
+
+
+def enabled(policy: dict | None = None) -> bool:
+    from . import assess
+    return bool((policy or assess.load_policy()).get("enabled"))
+
+
+def latest_assessment(chain: str, mint: str, con=None) -> dict | None:
+    """Newest stored FAST assessment for {chain, mint}; None when there is none (or no backtest database yet)."""
+    import json
+    from . import store
+    own = con is None
+    if own:
+        if not store.BT_DB_PATH.exists():
+            return None
+        con = store.connect()
+    try:
+        row = con.execute("SELECT result_json FROM bt_assessments WHERE chain=? AND mint=? AND stage='FAST' ORDER BY created_at DESC, id DESC LIMIT 1",
+                          (chain, mint)).fetchone()
+        return json.loads(row[0]) if row else None
+    finally:
+        if own:
+            con.close()
+
+
+def alert_context(chain: str | None, mint: str | None, policy: dict | None = None, con=None, now: float | None = None) -> dict | None:
+    """What a token-specific research alert shows about backtesting. None when the policy is off (alerts unchanged).
+    A missing or failed lookup is labeled UNTESTED, never left out and never read as positive."""
+    if not enabled(policy):
+        return None
+    from . import report
+    if not chain or not mint:
+        return {"label": "UNTESTED", "why": "no chain and contract on this alert"}
+    try:
+        a = latest_assessment(chain, mint, con)
+    except Exception as e:
+        return {"label": "UNTESTED", "why": f"backtest lookup failed ({type(e).__name__})"}
+    out = report.alert_label(a) | {"request_key": (a or {}).get("request_key"), "state": (a or {}).get("state"), "as_of": (a or {}).get("as_of")}
+    if a and now is not None and a.get("as_of") and now - a["as_of"] > 24 * 3600:
+        out["why"] += f"; assessment is {(now - a['as_of']) / 3600:.0f} h old"
+    return out

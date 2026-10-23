@@ -9,7 +9,7 @@
   "state": "PARTIAL_WITH_LIMITATIONS",
   "tier": "SCENARIO_ONLY",
   "cache": "MISS",
-  "request_key": "544ee2f11b6562361b8ca4361a71a93f34460d3ec995efd0f403366e3fab42d4",
+  "request_key": "35cf517401dca8dde337cce4e3840b898dc3f7e4eb55fe5142bce8bbd9630174",
   "deep_stage": "QUEUED",
   "flags": null,
   "reason": null,
@@ -73,7 +73,7 @@
     "rets": []
    }
   },
-  "wall_s": 0.14
+  "wall_s": 0.15
  },
  "catalyst": {
   "manual_observation": "REFRESH_REQUESTED",
@@ -84,14 +84,14 @@
  },
  "benchmark_fast_ms": {
   "n": 20,
-  "median": 487.3,
-  "max": 570.9
+  "median": 500.0,
+  "max": 590.0
  },
  "stats": {
   "events": {
    "CACHE_HIT": {
     "n": 1,
-    "avg_ms": 0.6740093231201172
+    "avg_ms": 1.630544662475586
    },
    "CATALYST_REFRESH": {
     "n": 1,
@@ -99,11 +99,11 @@
    },
    "COMPLETED": {
     "n": 21,
-    "avg_ms": 499.1237322489421
+    "avg_ms": 505.6976363772438
    },
    "DEEP_INSUFFICIENT_HISTORY": {
     "n": 1,
-    "avg_ms": 137.84027099609375
+    "avg_ms": 145.21360397338867
    },
    "QUEUED_DEEP": {
     "n": 21,
@@ -115,7 +115,7 @@
    },
    "STALE_ON_HIT": {
     "n": 1,
-    "avg_ms": 0.4734992980957031
+    "avg_ms": 1.5747547149658203
    }
   },
   "states": {

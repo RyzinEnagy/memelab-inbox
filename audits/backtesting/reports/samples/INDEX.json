@@ -1,0 +1,44 @@
+{
+ "PAID_real": {
+  "label": "INCONCLUSIVE",
+  "state": "PARTIAL_WITH_LIMITATIONS",
+  "tier": "SCENARIO_ONLY",
+  "request_key": "35cf517401dca8dde337cce4e3840b898dc3f7e4eb55fe5142bce8bbd9630174",
+  "mismatch": null
+ },
+ "PAID_judged_today_stale": {
+  "label": "UNTESTED",
+  "state": "STALE_DATA",
+  "tier": "UNAVAILABLE",
+  "request_key": "35cf517401dca8dde337cce4e3840b898dc3f7e4eb55fe5142bce8bbd9630174",
+  "mismatch": null
+ },
+ "G31_variant_new_token": {
+  "label": "INCONCLUSIVE",
+  "state": "INSUFFICIENT_HISTORY",
+  "tier": "SCENARIO_ONLY",
+  "request_key": "e8bf63cc4b0ed62e59dc53b161ba3a3e032821cb8fb9383e483a976dd78b2571",
+  "mismatch": null
+ },
+ "G34_variant_quotes_blocked": {
+  "label": "INCONCLUSIVE",
+  "state": "PARTIAL_WITH_LIMITATIONS",
+  "tier": "SCENARIO_ONLY",
+  "request_key": "9a5c3c1a9253e58cd40a43ca1071a4dc6230b60961c4517fcf9a9ccb2a2b47a5",
+  "mismatch": null
+ },
+ "G34_variant_price_blocked": {
+  "label": "UNTESTED",
+  "state": "SOURCE_BLOCKED",
+  "tier": "UNAVAILABLE",
+  "request_key": "df32114f56f37fbd28350ff0b34b644e66ebe3487a4b89887bd18728baddf01c",
+  "mismatch": null
+ },
+ "variant_high_status_no_route": {
+  "label": "BAD EXECUTION",
+  "state": "PARTIAL_WITH_LIMITATIONS",
+  "tier": "SCENARIO_ONLY",
+  "request_key": "c8f2c4fc04b5561c381742592d044a09dfa1deb4c2b591a465c8280110939b91",
+  "mismatch": "HIGH_STATUS_MISMATCH: the lab status is ENTRY CONDITIONS MET but the entry reads BAD EXECUTION; a good project is not a good entry"
+ }
+}
