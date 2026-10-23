@@ -110,6 +110,8 @@ def run(con, strategy_id: str, params: dict | None = None, cfg: EngineConfig | N
               "mints": sorted(mints) if mints else None, "label": label}
     run_id = store.register_run(con, config, dataset_hash=dhash, seed=strat.params.get("seed")) if save else None
     if save:
+        con.commit()                                      # never hold the write lock while the engine runs
+    if save:
         prev = con.execute("SELECT result_json FROM bt_run_results WHERE run_id=? ORDER BY created_at LIMIT 1", (run_id,)).fetchone()
         if prev:
             out = json.loads(prev[0])

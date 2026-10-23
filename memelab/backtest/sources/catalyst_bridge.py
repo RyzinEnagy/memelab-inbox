@@ -6,6 +6,8 @@ No second collector: this only reshapes what memelab/catalyst already stored. Ti
 - one record per (event, linked mint) per corroboration step: each new independent item adds a record whose
   available_at is that item's first_seen_at, so corroboration grows over time exactly as the lab saw it.
 - origin_group = the item's source_id; ORIGINAL/INDEPENDENT roles count as origins; SYNDICATED/CIRCULAR/COMMENTARY do not.
+- event status (denied, cancelled) is stored in place by the lab, so it is carried as `current_status` for reports and
+  never used as a historical denial.
 """
 from __future__ import annotations
 
@@ -33,8 +35,11 @@ def records_from_lab_db(db_path: Path | str) -> list[dict]:
                         "origin_group": r["source_id"],
                         "counts_as_origin": r["role"] in ORIGIN_ROLES, "claim_type": r["category"],
                         "published_at": r["published_at"], "first_seen_at": r["first_seen_at"], "event_time": r["published_at"],
-                        "available_at": max(r["first_seen_at"], r["linked_at"]), "verified": r["status"] not in ("DENIED", "CANCELLED"),
-                        "denied": r["status"] in ("DENIED", "CANCELLED"), "mint_verified": bool(r["verified_mint"]) and r["link_strength"] in ("STRONG", "MODERATE"),
+                        "available_at": max(r["first_seen_at"], r["linked_at"]),
+                        # the lab updates event status and link strength in place, so they are TODAY's values, not what
+                        # was known at available_at (Phase 16, D10): a later denial must never help an earlier decision
+                        "verified": None, "denied": False, "current_status": r["status"], "status_is_current": True,
+                        "mint_verified": bool(r["verified_mint"]) and r["link_strength"] in ("STRONG", "MODERATE"), "link_status_is_current": True,
                         "sentiment": 1 if r["category"] in POSITIVE else -1, "historical_asof_proof": "CONTEMPORANEOUS_CAPTURE"})
         # syndicated / circular / commentary copies never count as confirmation (G20): only origin roles are records
         return [x for x in out if x["counts_as_origin"]]

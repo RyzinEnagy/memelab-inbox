@@ -101,6 +101,7 @@ class Position:
     target: float | None
     deadline: float | None
     status: str = "OPEN"
+    realized_usd: float = 0.0        # net proceeds of partial exits so far (cost_usd stays the original cost)
 
 
 def _h(obj) -> str:
@@ -204,7 +205,7 @@ class Engine:
         if c.risk_per_trade_frac and sig.exits.stop_price and sig.exits.stop_price < bar.o:
             eq = self._equity_marked(tds, d)
             size = min(size, eq * c.risk_per_trade_frac / (1 - sig.exits.stop_price / bar.o))
-        exposure = sum(p.cost_usd for p in self.positions.values())
+        exposure = sum(max(0.0, p.cost_usd - p.realized_usd) for p in self.positions.values())   # capital still at risk
         eq = self._equity_marked(tds, d)
         if exposure + size > c.max_exposure_frac * eq or size > self.cash:
             self.counts["rejected_limits"] += 1
@@ -216,6 +217,10 @@ class Engine:
         except ValueError as e:
             pool, st = None, f"INSUFFICIENT_EXECUTION_DATA: {e}"
             nfee = 0.0
+        if pool is not None and size + nfee > self.cash:      # the network fee is paid from cash too; never fill without it
+            self.counts["rejected_limits"] += 1
+            self.journal.append({"t": d, "event": "REJECTED_LIMIT", "mint": td.mint, "order": oid, "reason": "cash does not cover size plus network fee"})
+            return
         if pool is None:
             self.counts["canceled"] += 1
             self.journal.append({"t": d, "event": "CANCELED", "mint": td.mint, "order": oid, "reason": st})
@@ -248,7 +253,9 @@ class Engine:
         self.journal.append({"t": t_fill, "event": "FILLED_BUY", "mint": td.mint, "order": oid, "tokens": f.out, "avg_price": f.avg_price, "mid": bar.o})
 
     # ---------- exits ----------
-    def _exit(self, td: TokenData, p: Position, t: float, px: float, reason: str) -> None:
+    def _exit(self, td: TokenData, p: Position, t: float, px: float, reason: str, final: bool = False) -> None:
+        """Sell the position (or what the impact cap allows). Partial exits keep the original cost; the trade is
+        reported when the position is gone, or at the end of the run (`final`) with any unsold remainder disclosed."""
         pool, st = self._pool(td, t, px)
         try:
             nfee = self._net_fee_usd(t)
@@ -268,17 +275,21 @@ class Engine:
                           requested=p.tokens, filled=filled, price=(proceeds / filled) if filled else None, impact=imp, fees={**(fees or {}), "network_usd": nfee if pool else 0.0},
                           basis=basis, status=status, reason=reason)
         remaining = p.tokens - filled
-        realized = proceeds - (nfee if pool is not None else 0.0)
-        if remaining > 1e-12 and status != "FAILED":
+        realized = (proceeds - (nfee if pool is not None else 0.0)) if status != "FAILED" else 0.0
+        if remaining > 1e-12 and status != "FAILED" and not final:
             p.tokens = remaining
-            p.cost_usd -= realized   # remaining cost basis
+            p.realized_usd += realized
             self.journal.append({"t": t, "event": "PARTIAL_EXIT", "mint": p.mint, "sold": filled, "left": remaining})
             return
+        total = p.realized_usd + realized
+        unsold = remaining if remaining > 1e-12 else 0.0
+        if unsold and status != "FAILED":
+            status = "PARTIAL_UNSOLD_AT_END"
+            reason = f"{reason}; {unsold:.6g} tokens could not be sold inside the exit impact cap (valued at 0)"
         self.trades.append({"pid": p.pid, "mint": p.mint, "strategy": p.signal["strategy_id"], "decision_time": p.signal["decision_time"], "entry_time": p.entry_time,
                             "entry_mid": p.entry_price_mid, "cost_usd": p.cost_usd, "exit_time": t, "exit_ref_price": px, "exit_reason": reason,
-                            "proceeds_usd": realized if status != "FAILED" else 0.0, "pnl_usd": (realized if status != "FAILED" else 0.0) - p.cost_usd,
-                            "ret": ((realized if status != "FAILED" else 0.0) / p.cost_usd - 1) if p.cost_usd else None, "status": status,
-                            "paper_ret_mid": px / p.entry_price_mid - 1})
+                            "proceeds_usd": total, "pnl_usd": total - p.cost_usd, "ret": (total / p.cost_usd - 1) if p.cost_usd else None, "status": status,
+                            "unsold_tokens": unsold, "paper_ret_mid": px / p.entry_price_mid - 1})
         del self.positions[p.mint]
         self._last_exit[p.mint] = t
         self.journal.append({"t": t, "event": "EXIT", "mint": p.mint, "reason": reason, "status": status})
@@ -364,7 +375,7 @@ class Engine:
             cb = td.closed_until(end_t)                 # never read past the run's end
             px = cb[-1].c if cb else self.positions[mint].entry_price_mid
             self._exit(td, self.positions[mint], cb[-1].end if cb else end_t, px,
-                       "END_OF_DATA_MARK_TO_REALIZABLE" if until is None else "TRUNCATED_AT_CUTOFF_MARK_TO_REALIZABLE")
+                       "END_OF_DATA_MARK_TO_REALIZABLE" if until is None else "TRUNCATED_AT_CUTOFF_MARK_TO_REALIZABLE", final=True)
         return self.result(strategy)
 
     def result(self, strategy: Strategy) -> dict:

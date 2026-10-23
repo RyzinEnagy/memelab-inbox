@@ -30,14 +30,18 @@ Notes:
 
 ## Historical cohorts (empirical, separate from the shocks)
 
-`stress.empirical_cohort`, 24 h after the first bar that opened after each lab thesis, mid prices before costs, minimum 30 cases:
+`stress.empirical_cohort`, 24 h after the first bar that opened after each lab thesis, mid prices before costs, minimum 30 complete cases.
 
-| Lab status at thesis | Cases | Result |
+Corrected in Phase 16 (defects D2 and D11). The first version mixed bars from every pool of a mint and counted windows cut short by a dead feed as full 24 h returns. The cohort now uses one pool per token, chosen at its decision time, and the outcome tracker's rules: returns from complete windows only, and worst drops that include cut-short windows as lower bounds. The original figures are kept below for the record.
+
+| Lab status at thesis | Complete cases now (first version) | Result now |
 |---|---|---|
-| ENTRY CONDITIONS MET | 0 | INSUFFICIENT_HISTORY |
-| NEAR ENTRY | 8 | INSUFFICIENT_HISTORY |
-| SETUP DEVELOPING | 27 | INSUFFICIENT_HISTORY |
-| WATCH | 7 | INSUFFICIENT_HISTORY |
-| REJECTED | 136 | 24 h return p10 -77.6%, median -4.5%, p90 +29.5%; worst drop p10 -93.0%, median -23.5% |
+| ENTRY CONDITIONS MET | 0 (0) | INSUFFICIENT_HISTORY |
+| NEAR ENTRY | 8 (8) | INSUFFICIENT_HISTORY |
+| SETUP DEVELOPING | 26, 1 censored (27) | INSUFFICIENT_HISTORY |
+| WATCH | 7 (7) | INSUFFICIENT_HISTORY |
+| REJECTED | 105, plus 53 censored and 34 not observable (136) | 24 h return p10 -59.4%, median -7.6%, p90 +45.3%; worst drop p10 -87.8%, median -21.4% |
+
+First version, superseded: REJECTED 136 cases, 24 h return p10 -77.6%, median -4.5%, p90 +29.5%; worst drop p10 -93.0%, median -23.5%.
 
 Only the REJECTED cohort is large enough to report. These are frequencies for past tokens the lab rejected, not probabilities for any token.

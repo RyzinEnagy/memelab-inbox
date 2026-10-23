@@ -1259,41 +1259,68 @@
    "tier": "INSUFFICIENT_HISTORY",
    "status": "ENTRY CONDITIONS MET",
    "n": 0,
-   "min_n": 30
+   "min_n": 30,
+   "asof": null,
+   "known_tokens": 0,
+   "window_states": {}
   },
   "NEAR ENTRY": {
    "tier": "INSUFFICIENT_HISTORY",
    "status": "NEAR ENTRY",
    "n": 8,
-   "min_n": 30
+   "min_n": 30,
+   "asof": null,
+   "known_tokens": 8,
+   "window_states": {
+    "COMPLETE": 8
+   }
   },
   "SETUP DEVELOPING": {
    "tier": "INSUFFICIENT_HISTORY",
    "status": "SETUP DEVELOPING",
-   "n": 27,
-   "min_n": 30
+   "n": 26,
+   "min_n": 30,
+   "asof": null,
+   "known_tokens": 27,
+   "window_states": {
+    "COMPLETE": 26,
+    "CENSORED": 1
+   }
   },
   "WATCH": {
    "tier": "INSUFFICIENT_HISTORY",
    "status": "WATCH",
    "n": 7,
-   "min_n": 30
+   "min_n": 30,
+   "asof": null,
+   "known_tokens": 7,
+   "window_states": {
+    "COMPLETE": 7
+   }
   },
   "REJECTED": {
    "tier": "HISTORICAL_COHORT",
    "status": "REJECTED",
-   "n": 136,
+   "n": 105,
+   "min_n": 30,
+   "asof": null,
+   "known_tokens": 192,
+   "window_states": {
+    "NOT_OBSERVABLE": 34,
+    "COMPLETE": 105,
+    "CENSORED": 53
+   },
    "horizon_h": 24,
    "ret_p10_p50_p90": [
-    -0.7761109817885132,
-    -0.045137743869803015,
-    0.29541454014892476
+    -0.5942135635786895,
+    -0.07613617446675292,
+    0.4526491532757204
    ],
    "worst_drop_p10_p50": [
-    -0.9300007976019077,
-    -0.2348901999583642
+    -0.8779186945656077,
+    -0.21445238468566669
    ],
-   "note": "empirical frequencies for past tokens with the same lab status; not this token's probabilities; mid prices before costs"
+   "note": "empirical frequencies for past tokens with the same lab status, known and measurable at the assessment time; not this token's probabilities; mid prices before costs; worst drops include windows cut short by a dead feed as lower bounds"
   }
  }
 }

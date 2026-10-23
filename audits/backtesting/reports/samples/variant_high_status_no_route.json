@@ -55,7 +55,10 @@
    "tier": "INSUFFICIENT_HISTORY",
    "status": "ENTRY CONDITIONS MET",
    "n": 0,
-   "min_n": 30
+   "min_n": 30,
+   "asof": 1791330503.698,
+   "known_tokens": 0,
+   "window_states": {}
   },
   "strategies": {
    "evidence_class": "FACT (stored runs) / INFERENCE (cost model)",

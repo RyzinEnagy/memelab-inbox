@@ -177,3 +177,28 @@ def test_tuning_reads_only_the_training_window_and_the_test_once(monkeypatch):
     own = [n for sid, n in calls if sid == "BREAKOUT_CLOSE"]
     assert own == ["train", "train", "validation", "test"]                  # grid on train only, then one look at each later window
     assert all(n == "test" for sid, n in calls if sid != "BREAKOUT_CLOSE")  # baselines only on the sealed test
+
+
+def test_a_window_never_reads_past_its_end():
+    """Phase 16 M16-13: a position open at the window end is truncated there, never carried on later bars."""
+    from memelab.backtest.strategies.base import Exits, Signal, Strategy
+
+    class HoldForever(Strategy):
+        id, version = "HOLD_FOREVER", "1"
+        default_params = {}
+
+        def evaluate(self, chain, mint, bars, d, ctx=None):
+            if len(bars) != 12:
+                return None
+            last = bars[-1]
+            return Signal(self.id, self.version, chain, mint, last.end, d, "BUY", Exits(None, max_hold_s=10_000 * H), {}, self.phash, "test",
+                          latest_input_available_at=last.avail)
+    toks = universe(3, seed=77)
+    for name in ("train", "validation", "test"):
+        a, b = PLAN.window(name)
+        r = V.run_window(HoldForever(), toks, CFG, PLAN, name)
+        assert all(f["fill_time"] is None or f["fill_time"] <= b for f in r["fills"])
+        assert all(t["exit_time"] <= b for t in r["trades"])
+        assert all(j["t"] <= b for j in r["journal"])
+    tr = V.run_window(HoldForever(), toks, CFG, PLAN, "train")["trades"]
+    assert tr and all(t["exit_reason"].startswith("TRUNCATED_AT_CUTOFF") for t in tr)

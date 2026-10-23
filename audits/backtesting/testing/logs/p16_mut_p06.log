@@ -1,0 +1,18 @@
+2026-10-23T20:15:42Z
+41488adeb52bb77342ae7a75947568d31c7c3e38
+baseline (unmutated): exit 0 :: 17 passed in 0.32s
+[M06-1 forming bar stored] CAUGHT :: 1 failed, 3 passed in 0.12s
+[M06-2 pool availability = today (pool list from the present)] CAUGHT :: 1 failed in 0.08s
+[M06-3 unknown dex assumed constant product] CAUGHT :: 1 failed, 2 passed in 0.11s
+[M06-4 pool basis by all-time volume (future leaks)] CAUGHT :: 1 failed, 4 passed in 0.12s
+[M06-5 page date backdates first_seen] CAUGHT :: 1 failed, 6 passed in 0.21s
+[M06-6 second tool counted as new capture] CAUGHT :: 1 failed, 7 passed in 0.20s
+[M06-7 only latest export used for the universe] CAUGHT :: 1 failed, 5 passed in 0.15s
+[M06-8 no retry on 429] CAUGHT :: 1 failed in 0.08s
+[M06-9 backfilled bar knowable at its close (no provider lag)] CAUGHT :: 1 failed, 1 passed in 0.08s
+[M06-10 unchanged bar seen again later stored as a revision] CAUGHT :: 1 failed, 1 passed in 0.09s
+[M06-11 pools fetched counts as done (resume skips missing bars)] CAUGHT :: 1 failed, 7 passed in 0.20s
+[M06-12 corrupted mint copies merged by similarity] CAUGHT :: 1 failed, 7 passed in 0.20s
+RESULT: all mutations caught
+EXIT=0
+2026-10-23T20:15:49Z

@@ -128,6 +128,29 @@ def record_page(con, *, use_case: str, collector: str, url: str, view: dict, cap
     return {"recorded": r["new"], "duplicate": not r["new"], "fields": f, **r}
 
 
+def redact_url(url) -> str | None:
+    """Scheme, host and path only: query strings, fragments and user:password parts can carry credentials and never
+    leave this module (Phase 16, D8)."""
+    if not url:
+        return url
+    from urllib.parse import urlsplit, urlunsplit
+    try:
+        u = urlsplit(str(url))
+        host = (u.hostname or "") + (f":{u.port}" if u.port else "")
+        return urlunsplit((u.scheme, host, u.path, "", "")) + (" [query removed]" if u.query else "")
+    except ValueError:
+        return "[unparseable url removed]"
+
+
+def _redact_text(text, url) -> str | None:
+    if text is None:
+        return None
+    t = str(text)
+    if url:
+        t = t.replace(str(url), redact_url(url) or "")
+    return re.sub(r"(?i)((?:api[_-]?key|token|key|secret|password|auth)=)[^&\s]+", r"\1[removed]", re.sub(r"//[^/@\s]+@", "//[credentials removed]@", t))
+
+
 def ingest_batch(con, use_case: str, collector: str, results: list[dict], captured_at: float, run_id: str | None = None,
                  evidence_only: bool = False, policy: dict | None = None) -> dict:
     """results: [{"url", "status" (HTTP or tool status), "view" (or None), "error", "partial": bool}]. Bounded by the
@@ -142,14 +165,14 @@ def ingest_batch(con, use_case: str, collector: str, results: list[dict], captur
             out["partial"] += 1
         if res.get("status") != 200 or res.get("error") or not res.get("view"):
             out["failed"] += 1
-            out["rows"].append({"url": res.get("url"), "state": "FETCH_FAILED", "status": res.get("status"), "error": res.get("error")})
+            out["rows"].append({"url": redact_url(res.get("url")), "state": "FETCH_FAILED", "status": res.get("status"), "error": _redact_text(res.get("error"), res.get("url"))})
             continue
         try:
             r = record_page(con, use_case=use_case, collector=collector, url=res["url"], view=res["view"], captured_at=captured_at,
                             run_id=run_id, raw_ref=res.get("raw_ref"), evidence_only=evidence_only, policy=policy)
         except OffAllowlist as e:
             out["refused_off_allowlist"] += 1
-            out["rows"].append({"url": res.get("url"), "state": "OFF_ALLOWLIST", "error": str(e)})
+            out["rows"].append({"url": redact_url(res.get("url")), "state": "OFF_ALLOWLIST", "error": _redact_text(str(e), res.get("url"))})
             continue
         if not r.get("recorded") and r.get("reason") == "EMPTY_EXTRACTION":
             out["empty"] += 1
@@ -157,7 +180,7 @@ def ingest_batch(con, use_case: str, collector: str, results: list[dict], captur
             out["duplicates"] += 1
         else:
             out["recorded"] += 1
-        out["rows"].append({"url": res["url"], "state": "RECORDED" if r.get("recorded") else (r.get("reason") or "DUPLICATE"), "id": r.get("id"),
+        out["rows"].append({"url": redact_url(res["url"]), "state": "RECORDED" if r.get("recorded") else (r.get("reason") or "DUPLICATE"), "id": r.get("id"),
                             "version": r.get("version"), "first_seen_at": r.get("first_seen_at")})
     con.commit()
     n = len(results)

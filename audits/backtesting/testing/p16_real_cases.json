@@ -1,0 +1,859 @@
+{
+ "corpus_asof": "2026-10-23 17:34:16 UTC",
+ "cases": {
+  "RUG": {
+   "mint": "3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump",
+   "launch_records": [
+    {
+     "claim_type": "GRADUATION",
+     "origin_group": "lab:launch_monitor:pump:grad",
+     "mint_verified": true,
+     "source_commit": "2bd890dfb4cb1f800799d0ded5afabdc5ab35130",
+     "lab_status": "IGNORE",
+     "first_seen_utc": "2026-10-09 11:57:32 UTC",
+     "claimed_event_utc": "2026-10-08 06:45:02 UTC",
+     "committed_utc": "2026-10-09 12:13:06 UTC"
+    }
+   ],
+   "lab_records": [
+    {
+     "basis": "THESIS",
+     "symbol": "D\u200aO\u200aT\u200aF",
+     "status": "REJECTED",
+     "score": 48.0,
+     "entered_utc": "2026-10-09 12:18:19 UTC",
+     "committed_utc": "2026-10-09 12:21:15 UTC",
+     "commit": "a52efb9b3380",
+     "fatal_flags": [
+      "DEV_WALLET_FARM"
+     ],
+     "price": 0.011445078103133093,
+     "liquidity": 147952.60357753406
+    },
+    {
+     "basis": "REJECTION",
+     "symbol": "D\u200aO\u200aT\u200aF",
+     "status": "REJECTED",
+     "score": null,
+     "entered_utc": "2026-10-09 12:18:19 UTC",
+     "committed_utc": "2026-10-09 12:21:15 UTC",
+     "commit": "a52efb9b3380",
+     "fatal_flags": [],
+     "price": null,
+     "liquidity": null
+    }
+   ],
+   "pools": [
+    {
+     "pool": "7AvDaHLbHW6qaMGuHQGpebbbGaV7fRTdFq5T5Vd4vdoH",
+     "dex": "pumpswap",
+     "type": "CPMM",
+     "created_utc": "2026-10-08 06:45:02 UTC",
+     "observed_utc": "2026-10-23 16:53:37 UTC"
+    },
+    {
+     "pool": "67x6K3GhvAXcHPpESQcvYXhuELe39EzKsNMjNKY39KbN",
+     "dex": "pump-fun",
+     "type": "BONDING_CURVE",
+     "created_utc": "2026-10-08 06:45:02 UTC",
+     "observed_utc": "2026-10-23 16:53:37 UTC"
+    }
+   ],
+   "bars": {
+    "n": 38,
+    "from": "2026-10-08 06:00:00 UTC",
+    "to": "2026-10-11 16:00:00 UTC",
+    "min_low": 1.9262957540720505e-06,
+    "max_high": 0.03969459360049176
+   },
+   "outcomes": {
+    "launch_record": {
+     "decision_utc": "2026-10-09 11:57:32 UTC",
+     "1h": {
+      "state": "COMPLETE",
+      "ret_close": 0.03418703964029546,
+      "max_drawdown": -0.005261304282787149,
+      "max_runup": 0.0345033786398774,
+      "reason": null
+     },
+     "6h": {
+      "state": "CENSORED",
+      "ret_close": -0.9998185886789079,
+      "max_drawdown": -0.9998297636920771,
+      "max_runup": 0.13389765174057944,
+      "reason": "BARS_END_EARLY: last bar ends 2.0 h before the window; drawdown is a lower bound"
+     },
+     "24h": {
+      "state": "CENSORED",
+      "ret_close": -0.9997852990231417,
+      "max_drawdown": -0.9998297636920771,
+      "max_runup": 0.13389765174057944,
+      "reason": "BARS_END_EARLY: last bar ends 14.0 h before the window; drawdown is a lower bound"
+     },
+     "72h": {
+      "state": "CENSORED",
+      "ret_close": -0.9997967192880145,
+      "max_drawdown": -0.9998297636920771,
+      "max_runup": 0.13389765174057944,
+      "reason": "BARS_END_EARLY: last bar ends 20.0 h before the window; drawdown is a lower bound"
+     }
+    },
+    "lab_thesis": {
+     "decision_utc": "2026-10-09 12:18:19 UTC",
+     "1h": {
+      "state": "COMPLETE",
+      "ret_close": 0.03274373543648923,
+      "max_drawdown": -0.0049177976151872915,
+      "max_runup": 0.038477331657409186,
+      "reason": null
+     },
+     "6h": {
+      "state": "CENSORED",
+      "ret_close": -0.9998245855786829,
+      "max_drawdown": -0.9998353911803206,
+      "max_runup": 0.09641448623738769,
+      "reason": "BARS_END_EARLY: last bar ends 2.3 h before the window; drawdown is a lower bound"
+     },
+     "24h": {
+      "state": "CENSORED",
+      "ret_close": -0.9997923963764496,
+      "max_drawdown": -0.9998353911803206,
+      "max_runup": 0.09641448623738769,
+      "reason": "BARS_END_EARLY: last bar ends 14.3 h before the window; drawdown is a lower bound"
+     },
+     "72h": {
+      "state": "CENSORED",
+      "ret_close": -0.9998034391225245,
+      "max_drawdown": -0.9998353911803206,
+      "max_runup": 0.09641448623738769,
+      "reason": "BARS_END_EARLY: last bar ends 20.3 h before the window; drawdown is a lower bound"
+     }
+    }
+   },
+   "lab_price_vs_bar": {
+    "lab_price": 0.011445078103133093,
+    "bar_low": 0.01125588864884887,
+    "bar_high": 0.011705842837885,
+    "inside_bar_range": true
+   },
+   "stress_at_thesis": {
+    "decision": "RISK_FATAL_FLAW",
+    "reasons": [
+     "fatal flag(s): DEV_WALLET_FARM; stress results cannot override them"
+    ],
+    "max_size_usd": 591.042970467531,
+    "base": [
+     [
+      250.0,
+      "FILLED",
+      -0.03136087847854818
+     ],
+     [
+      1000.0,
+      "FILLED",
+      -0.050069575369176667
+     ],
+     [
+      5000.0,
+      "FILLED",
+      -0.13905658867182047
+     ]
+    ],
+    "sol_usd_asof": 111.036230443097
+   },
+   "cohort_evidence": {
+    "package_n": 136,
+    "package_tier": "HISTORICAL_COHORT",
+    "cohort_tokens_known_at_decision": 71
+   },
+   "token_signals_at_thesis": {
+    "closed_bars": 30,
+    "signals": {
+     "BREAKOUT_CLOSE": "NoneType",
+     "BREAKOUT_RETEST": "NoneType",
+     "TREND_HHHL": "NoneType",
+     "ABSORPTION_BREAK": "NoneType"
+    }
+   },
+   "deep_stage_replay_trades": {
+    "per_strategy": {
+     "BREAKOUT_CLOSE": 0,
+     "BREAKOUT_RETEST": 0,
+     "TREND_HHHL": 0,
+     "ABSORPTION_BREAK": 0
+    },
+    "skipped": [],
+    "state": "INSUFFICIENT_HISTORY"
+   },
+   "replay": {
+    "LAB_STATUS": {
+     "trades": [],
+     "journal": []
+    },
+    "CATALYST_VERIFIED": {
+     "trades": [],
+     "journal": [
+      {
+       "t": 1791547052.132,
+       "event": "SUBMITTED",
+       "reason": null
+      },
+      {
+       "t": 1791547052.132,
+       "event": "CANCELED",
+       "reason": "INSUFFICIENT_EXECUTION_DATA"
+      }
+     ]
+    }
+   },
+   "report_today": {
+    "label": "UNTESTED",
+    "why": "no backtest or stress assessment exists for this mint",
+    "assessment_state": "NOT_ASSESSED",
+    "errors": []
+   }
+  },
+  "FAILED_CATALYST": {
+   "mint": "FgnSJwFoote99diZUhtRV9Ajcfwzjj6hDx82TDhVpump",
+   "launch_records": [
+    {
+     "claim_type": "GRADUATION",
+     "origin_group": "lab:launch_monitor:pump:grad",
+     "mint_verified": true,
+     "source_commit": "001b3828544ee0eaf580c4e0c83e2def83fe8d6a",
+     "lab_status": "WATCH",
+     "first_seen_utc": "2026-10-08 18:40:12 UTC",
+     "claimed_event_utc": "2026-10-08 18:28:13 UTC",
+     "committed_utc": "2026-10-08 18:51:20 UTC"
+    }
+   ],
+   "lab_records": [
+    {
+     "basis": "THESIS",
+     "symbol": "puter",
+     "status": "REJECTED",
+     "score": 51.0,
+     "entered_utc": "2026-10-08 19:10:08 UTC",
+     "committed_utc": "2026-10-08 19:28:51 UTC",
+     "commit": "d33ced39c701",
+     "fatal_flags": [
+      "CANNOT_EXIT_5K"
+     ],
+     "price": 0.00021743045050284275,
+     "liquidity": 18963.278356878713
+    },
+    {
+     "basis": "REJECTION",
+     "symbol": "puter",
+     "status": "REJECTED",
+     "score": null,
+     "entered_utc": "2026-10-08 19:10:08 UTC",
+     "committed_utc": "2026-10-08 19:28:51 UTC",
+     "commit": "d33ced39c701",
+     "fatal_flags": [],
+     "price": null,
+     "liquidity": null
+    }
+   ],
+   "pools": [
+    {
+     "pool": "687HWjAWqxVNRgy7XFeYRpxUNvVSarECu7aQB5EeaJBp",
+     "dex": "pumpswap",
+     "type": "CPMM",
+     "created_utc": "2026-10-08 18:28:13 UTC",
+     "observed_utc": "2026-10-23 17:12:10 UTC"
+    }
+   ],
+   "bars": {
+    "n": 319,
+    "from": "2026-10-08 18:00:00 UTC",
+    "to": "2026-10-23 17:00:00 UTC",
+    "min_low": 2.3286505585664417e-06,
+    "max_high": 0.0009619806965605501
+   },
+   "outcomes": {
+    "launch_record": {
+     "decision_utc": "2026-10-08 18:40:12 UTC",
+     "1h": {
+      "state": "COMPLETE",
+      "ret_close": 0.6089750160139662,
+      "max_drawdown": -0.5392823442109211,
+      "max_runup": 1.5887756882775697,
+      "reason": null
+     },
+     "6h": {
+      "state": "COMPLETE",
+      "ret_close": -0.9908813771910668,
+      "max_drawdown": -0.9909674452567394,
+      "max_runup": 2.7138046618417424,
+      "reason": null
+     },
+     "24h": {
+      "state": "COMPLETE",
+      "ret_close": -0.9907177682626152,
+      "max_drawdown": -0.9910100552629332,
+      "max_runup": 2.7138046618417424,
+      "reason": null
+     },
+     "72h": {
+      "state": "COMPLETE",
+      "ret_close": -0.9892147371955822,
+      "max_drawdown": -0.9910100552629332,
+      "max_runup": 2.7138046618417424,
+      "reason": null
+     }
+    },
+    "lab_thesis": {
+     "decision_utc": "2026-10-08 19:10:08 UTC",
+     "1h": {
+      "state": "COMPLETE",
+      "ret_close": -0.7456578390363939,
+      "max_drawdown": -0.8585170217293164,
+      "max_runup": 1.1274795823584678,
+      "reason": null
+     },
+     "6h": {
+      "state": "COMPLETE",
+      "ret_close": -0.9943095289771852,
+      "max_drawdown": -0.9944126262697737,
+      "max_runup": 1.3081804408885276,
+      "reason": null
+     },
+     "24h": {
+      "state": "COMPLETE",
+      "ret_close": -0.994272859136211,
+      "max_drawdown": -0.9944126262697737,
+      "max_runup": 1.3081804408885276,
+      "reason": null
+     },
+     "72h": {
+      "state": "COMPLETE",
+      "ret_close": -0.9932714137397057,
+      "max_drawdown": -0.9944126262697737,
+      "max_runup": 1.3081804408885276,
+      "reason": null
+     }
+    }
+   },
+   "lab_price_vs_bar": {
+    "lab_price": 0.00021743045050284275,
+    "bar_low": 0.00011933893453995782,
+    "bar_high": 0.0006705662969934621,
+    "inside_bar_range": true
+   },
+   "stress_at_thesis": {
+    "decision": "RISK_FATAL_FLAW",
+    "reasons": [
+     "fatal flag(s): CANNOT_EXIT_5K; stress results cannot override them"
+    ],
+    "max_size_usd": 399.79153063984194,
+    "base": [
+     [
+      250.0,
+      "FILLED",
+      -0.072911466933539
+     ],
+     [
+      1000.0,
+      "FILLED",
+      -0.19210010503021546
+     ],
+     [
+      5000.0,
+      "FILLED",
+      -0.5208057474311623
+     ]
+    ],
+    "sol_usd_asof": 108.00196429298374
+   },
+   "cohort_evidence": {
+    "package_n": 136,
+    "package_tier": "HISTORICAL_COHORT",
+    "cohort_tokens_known_at_decision": 52
+   },
+   "token_signals_at_thesis": {
+    "closed_bars": 1,
+    "signals": {
+     "BREAKOUT_CLOSE": "Abstain",
+     "BREAKOUT_RETEST": "Abstain",
+     "TREND_HHHL": "Abstain",
+     "ABSORPTION_BREAK": "Abstain"
+    }
+   },
+   "deep_stage_replay_trades": {
+    "per_strategy": {
+     "BREAKOUT_CLOSE": 0,
+     "BREAKOUT_RETEST": 0,
+     "TREND_HHHL": 0,
+     "ABSORPTION_BREAK": 0
+    },
+    "skipped": [],
+    "state": "INSUFFICIENT_HISTORY"
+   },
+   "replay": {
+    "LAB_STATUS": {
+     "trades": [],
+     "journal": []
+    },
+    "CATALYST_VERIFIED": {
+     "trades": [],
+     "journal": []
+    }
+   },
+   "report_today": {
+    "label": "UNTESTED",
+    "why": "no backtest or stress assessment exists for this mint",
+    "assessment_state": "NOT_ASSESSED",
+    "errors": []
+   }
+  },
+  "POSITIVE_CATALYST": {
+   "mint": "7K52aYQW9rWGjwZmQ7o2d1P6E7bji6hSMsqaLy5EcxLh",
+   "launch_records": [
+    {
+     "claim_type": "GRADUATION",
+     "origin_group": "lab:launch_monitor:pump:grad",
+     "mint_verified": true,
+     "source_commit": "c45bd6e644177c0a511e8804695325a559e03d0b",
+     "lab_status": "WATCH",
+     "first_seen_utc": "2026-10-08 17:15:20 UTC",
+     "claimed_event_utc": "2026-10-08 02:44:04 UTC",
+     "committed_utc": "2026-10-08 17:25:38 UTC"
+    }
+   ],
+   "lab_records": [
+    {
+     "basis": "THESIS",
+     "symbol": "PQC",
+     "status": "REJECTED",
+     "score": 55.0,
+     "entered_utc": "2026-10-08 19:10:08 UTC",
+     "committed_utc": "2026-10-08 19:28:51 UTC",
+     "commit": "d33ced39c701",
+     "fatal_flags": [
+      "CANNOT_EXIT_5K",
+      "WASH_TRADING_HIGH"
+     ],
+     "price": 0.00026214934419398016,
+     "liquidity": 32031.745711449275
+    },
+    {
+     "basis": "REJECTION",
+     "symbol": "PQC",
+     "status": "REJECTED",
+     "score": null,
+     "entered_utc": "2026-10-08 19:10:08 UTC",
+     "committed_utc": "2026-10-08 19:28:51 UTC",
+     "commit": "d33ced39c701",
+     "fatal_flags": [],
+     "price": null,
+     "liquidity": null
+    },
+    {
+     "basis": "REJECTION",
+     "symbol": "PQC",
+     "status": "REJECTED",
+     "score": null,
+     "entered_utc": "2026-10-15 09:50:16 UTC",
+     "committed_utc": "2026-10-15 10:13:48 UTC",
+     "commit": "d54eb539e954",
+     "fatal_flags": [],
+     "price": null,
+     "liquidity": null
+    }
+   ],
+   "pools": [
+    {
+     "pool": "6qUUCwD9fyRafora8XVmdApQBxCkbUiZTMkcYD47rWsS",
+     "dex": "pumpswap",
+     "type": "CPMM",
+     "created_utc": "2026-10-08 02:44:04 UTC",
+     "observed_utc": "2026-10-23 17:04:12 UTC"
+    },
+    {
+     "pool": "AwrrWN6ybRCvWbuGgq7x2VapYd4ivAno8mzLHjW3rdZf",
+     "dex": "meteora",
+     "type": "DLMM",
+     "created_utc": "2026-10-08 03:16:34 UTC",
+     "observed_utc": "2026-10-23 17:04:12 UTC"
+    },
+    {
+     "pool": "9Tv4Lc7eDZaKs5WxcBZaqq9fL2ecEX6LgKMaqHVVByiQ",
+     "dex": "pumpswap",
+     "type": "CPMM",
+     "created_utc": "2026-10-08 17:51:22 UTC",
+     "observed_utc": "2026-10-23 17:04:12 UTC"
+    },
+    {
+     "pool": "C2KAmNDoxjHx3xALuuXZsk8CVX1F6ydmnTxufAWLPoEW",
+     "dex": "pumpswap",
+     "type": "CPMM",
+     "created_utc": "2026-10-11 14:43:56 UTC",
+     "observed_utc": "2026-10-23 17:04:12 UTC"
+    }
+   ],
+   "bars": {
+    "n": 375,
+    "from": "2026-10-08 02:00:00 UTC",
+    "to": "2026-10-23 17:00:00 UTC",
+    "min_low": 2.5176860997796714e-05,
+    "max_high": 0.002365296978391573
+   },
+   "outcomes": {
+    "launch_record": {
+     "decision_utc": "2026-10-08 17:15:20 UTC",
+     "1h": {
+      "state": "COMPLETE",
+      "ret_close": -0.40969494622494007,
+      "max_drawdown": -0.4301782161378018,
+      "max_runup": 0.3052607845209825,
+      "reason": null
+     },
+     "6h": {
+      "state": "COMPLETE",
+      "ret_close": -0.3529241263623383,
+      "max_drawdown": -0.635080043848149,
+      "max_runup": 0.3052607845209825,
+      "reason": null
+     },
+     "24h": {
+      "state": "COMPLETE",
+      "ret_close": 1.9033673479142394,
+      "max_drawdown": -0.635080043848149,
+      "max_runup": 3.487387263896381,
+      "reason": null
+     },
+     "72h": {
+      "state": "COMPLETE",
+      "ret_close": -0.18190332240040508,
+      "max_drawdown": -0.635080043848149,
+      "max_runup": 3.573550968737944,
+      "reason": null
+     }
+    },
+    "lab_thesis": {
+     "decision_utc": "2026-10-08 19:10:08 UTC",
+     "1h": {
+      "state": "COMPLETE",
+      "ret_close": 0.5610337135154775,
+      "max_drawdown": -0.08001517586877793,
+      "max_runup": 0.6760267459548706,
+      "reason": null
+     },
+     "6h": {
+      "state": "COMPLETE",
+      "ret_close": 0.579704788916932,
+      "max_drawdown": -0.08001517586877793,
+      "max_runup": 1.3136581827843203,
+      "reason": null
+     },
+     "24h": {
+      "state": "COMPLETE",
+      "ret_close": 7.752588186182583,
+      "max_drawdown": -0.08001517586877793,
+      "max_runup": 10.530192889420073,
+      "reason": null
+     },
+     "72h": {
+      "state": "COMPLETE",
+      "ret_close": 0.7246903223518681,
+      "max_drawdown": -0.08001517586877793,
+      "max_runup": 10.530192889420073,
+      "reason": null
+     }
+    }
+   },
+   "lab_price_vs_bar": {
+    "lab_price": 0.00026214934419398016,
+    "bar_low": 0.00020513941102944886,
+    "bar_high": 0.00030528724170066784,
+    "inside_bar_range": true
+   },
+   "stress_at_thesis": {
+    "decision": "RISK_FATAL_FLAW",
+    "reasons": [
+     "fatal flag(s): CANNOT_EXIT_5K, WASH_TRADING_HIGH; stress results cannot override them"
+    ],
+    "max_size_usd": 557.5206305091396,
+    "base": [
+     [
+      250.0,
+      "FILLED",
+      -0.053918973834121364
+     ],
+     [
+      1000.0,
+      "FILLED",
+      -0.13131950697306483
+     ],
+     [
+      5000.0,
+      "FILLED",
+      -0.39533890862455756
+     ]
+    ],
+    "sol_usd_asof": 108.00196429298374
+   },
+   "cohort_evidence": {
+    "package_n": 136,
+    "package_tier": "HISTORICAL_COHORT",
+    "cohort_tokens_known_at_decision": 52
+   },
+   "token_signals_at_thesis": {
+    "closed_bars": 17,
+    "signals": {
+     "BREAKOUT_CLOSE": "Abstain",
+     "BREAKOUT_RETEST": "Abstain",
+     "TREND_HHHL": "Abstain",
+     "ABSORPTION_BREAK": "NoneType"
+    }
+   },
+   "deep_stage_replay_trades": {
+    "per_strategy": {
+     "BREAKOUT_CLOSE": 0,
+     "BREAKOUT_RETEST": 0,
+     "TREND_HHHL": 0,
+     "ABSORPTION_BREAK": 0
+    },
+    "skipped": [],
+    "state": "INSUFFICIENT_HISTORY"
+   },
+   "replay": {
+    "LAB_STATUS": {
+     "trades": [],
+     "journal": []
+    },
+    "CATALYST_VERIFIED": {
+     "trades": [],
+     "journal": [
+      {
+       "t": 1791479720.268,
+       "event": "SUBMITTED",
+       "reason": null
+      },
+      {
+       "t": 1791479720.268,
+       "event": "CANCELED",
+       "reason": "INSUFFICIENT_EXECUTION_DATA"
+      }
+     ]
+    }
+   },
+   "report_today": {
+    "label": "UNTESTED",
+    "why": "no backtest or stress assessment exists for this mint",
+    "assessment_state": "NOT_ASSESSED",
+    "errors": []
+   }
+  },
+  "FRESH": {
+   "mint": "G9wFzt1XqToHN64yrVae5JxFfY9v4K9w7quJ6zXpump",
+   "launch_records": [],
+   "lab_records": [
+    {
+     "basis": "THESIS",
+     "symbol": "QTC",
+     "status": "RESEARCH REQUIRED",
+     "score": 54.0,
+     "entered_utc": "2026-10-20 10:19:24 UTC",
+     "committed_utc": "2026-10-20 10:24:02 UTC",
+     "commit": "c3a43befb004",
+     "fatal_flags": [],
+     "price": 0.005121111594920789,
+     "liquidity": 95192.67466324837
+    },
+    {
+     "basis": "THESIS",
+     "symbol": "QTC",
+     "status": "RESEARCH REQUIRED",
+     "score": 51.0,
+     "entered_utc": "2026-10-20 10:22:56 UTC",
+     "committed_utc": "2026-10-20 10:24:02 UTC",
+     "commit": "c3a43befb004",
+     "fatal_flags": [],
+     "price": 0.005121111594920789,
+     "liquidity": 95192.67466324837
+    }
+   ],
+   "pools": [
+    {
+     "pool": "YoRW8Npjndef7En6baV94VemoT4TkuKmx6LTb5PRw1o",
+     "dex": "pumpswap",
+     "type": "CPMM",
+     "created_utc": "2026-10-20 07:57:56 UTC",
+     "observed_utc": "2026-10-23 17:13:50 UTC"
+    },
+    {
+     "pool": "3FCwvdz7t2G2LZm5RAp7kqkWsw1ZbwZQw8caKCn637BL",
+     "dex": "pump-fun",
+     "type": "BONDING_CURVE",
+     "created_utc": "2026-10-20 07:57:56 UTC",
+     "observed_utc": "2026-10-23 17:13:50 UTC"
+    }
+   ],
+   "bars": {
+    "n": 82,
+    "from": "2026-10-20 07:00:00 UTC",
+    "to": "2026-10-23 17:00:00 UTC",
+    "min_low": 4.328883206094708e-05,
+    "max_high": 0.010164417286566151
+   },
+   "outcomes": {
+    "lab_thesis": {
+     "decision_utc": "2026-10-20 10:19:24 UTC",
+     "1h": {
+      "state": "COMPLETE",
+      "ret_close": 0.02365298176773889,
+      "max_drawdown": -0.006890246672900502,
+      "max_runup": 0.02365298176773889,
+      "reason": null
+     },
+     "6h": {
+      "state": "COMPLETE",
+      "ret_close": 0.10568305507128484,
+      "max_drawdown": -0.006890246672900502,
+      "max_runup": 0.10657136314276627,
+      "reason": null
+     },
+     "24h": {
+      "state": "COMPLETE",
+      "ret_close": 0.29672296282098554,
+      "max_drawdown": -0.006890246672900502,
+      "max_runup": 0.29672296282098554,
+      "reason": null
+     },
+     "72h": {
+      "state": "COMPLETE",
+      "ret_close": 0.8402850763654932,
+      "max_drawdown": -0.006890246672900502,
+      "max_runup": 0.8436892601210786,
+      "reason": null
+     }
+    }
+   },
+   "lab_price_vs_bar": {
+    "lab_price": 0.005121111594920789,
+    "bar_low": 0.005128426233678008,
+    "bar_high": 0.005248626256916693,
+    "inside_bar_range": false
+   },
+   "stress_at_thesis": {
+    "decision": "INCONCLUSIVE",
+    "reasons": [
+     "no structural invalidation defined"
+    ],
+    "max_size_usd": 585.1815316483185,
+    "base": [
+     [
+      250.0,
+      "FILLED",
+      -0.03487980500440746
+     ],
+     [
+      1000.0,
+      "FILLED",
+      -0.06348345799506117
+     ],
+     [
+      5000.0,
+      "FILLED",
+      -0.1915354933486617
+     ]
+    ],
+    "sol_usd_asof": 104.051558713992
+   },
+   "cohort_evidence": {
+    "package_n": 25,
+    "package_tier": "INSUFFICIENT_HISTORY",
+    "cohort_tokens_known_at_decision": 48
+   },
+   "token_signals_at_thesis": {
+    "closed_bars": 3,
+    "signals": {
+     "BREAKOUT_CLOSE": "Abstain",
+     "BREAKOUT_RETEST": "Abstain",
+     "TREND_HHHL": "Abstain",
+     "ABSORPTION_BREAK": "Abstain"
+    }
+   },
+   "deep_stage_replay_trades": {
+    "per_strategy": {
+     "BREAKOUT_CLOSE": 0,
+     "BREAKOUT_RETEST": 0,
+     "TREND_HHHL": 0,
+     "ABSORPTION_BREAK": 0
+    },
+    "skipped": [],
+    "state": "INSUFFICIENT_HISTORY"
+   },
+   "replay": {
+    "LAB_STATUS": {
+     "trades": [],
+     "journal": []
+    },
+    "CATALYST_VERIFIED": {
+     "trades": [],
+     "journal": []
+    }
+   },
+   "report_today": {
+    "label": "UNTESTED",
+    "why": "no backtest or stress assessment exists for this mint",
+    "assessment_state": "NOT_ASSESSED",
+    "errors": []
+   }
+  }
+ },
+ "same_ticker_two_mints": {
+  "rows": [
+   {
+    "mint": "46hMQPKT2sPwMSkVenXnpiKVQhrkFvJLSYMWtdkipump",
+    "symbol": "D\u200aO\u200aT\u200aF"
+   },
+   {
+    "mint": "3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump",
+    "symbol": "D\u200aO\u200aT\u200aF"
+   },
+   {
+    "mint": "3q2U15sSP4gy6PEYgmcVtEyurEHBhXgLre21NeHNpump",
+    "symbol": "DOPEBAT"
+   }
+  ],
+  "bars_per_mint": {
+   "46hMQPKT2sPwMSkVenXnpiKVQhrkFvJLSYMWtdkipump": [
+    120,
+    1
+   ],
+   "3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump": [
+    38,
+    1
+   ],
+   "3q2U15sSP4gy6PEYgmcVtEyurEHBhXgLre21NeHNpump": [
+    3,
+    2
+   ]
+  },
+  "launch_records": [
+   {
+    "mint": "46hMQPKT2sPwMSkVenXnpiKVQhrkFvJLSYMWtdkipump",
+    "symbol": "D\u200aO\u200aT\u200a",
+    "first_seen": "2026-10-08 16:26:19 UTC"
+   },
+   {
+    "mint": "3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump",
+    "symbol": "D\u200aO\u200aT\u200a",
+    "first_seen": "2026-10-09 11:57:32 UTC"
+   }
+  ]
+ },
+ "reconcile_lab_vs_bars": {
+  "theses_with_price": 1019,
+  "checked": 913,
+  "no_bar_at_that_time": 106,
+  "inside_bar_range": 811,
+  "within_tolerance": 98,
+  "outside_tolerance": 4,
+  "median_rel_diff": 0.0,
+  "tolerance": 0.1
+ }
+}

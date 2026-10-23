@@ -1,0 +1,94 @@
+[
+ {
+  "id": "R16-1 cohort ignores the assessment time",
+  "file": "memelab/backtest/stress.py",
+  "old": "    cut = asof if asof is not None else 1e12",
+  "new": "    cut = 1e12",
+  "tests": [
+   "tests/test_backtest_e2e_audit.py"
+  ]
+ },
+ {
+  "id": "R16-2 cohort mixes every pool of a mint",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "        b = gecko.pool_basis_at(con, opp[\"chain\"], opp[\"mint\"], t) if has_records else _bars_basis(con, opp[\"chain\"], opp[\"mint\"], t)\n        if b:\n            return b, h",
+  "new": "        b = gecko.pool_basis_at(con, opp[\"chain\"], opp[\"mint\"], t) if has_records else _bars_basis(con, opp[\"chain\"], opp[\"mint\"], t)\n        if b:\n            return b | {\"pool_address\": con.execute(\"SELECT pool_address FROM bt_market_bars WHERE mint=? ORDER BY volume_usd LIMIT 1\", (opp[\"mint\"],)).fetchone()[0]}, h",
+  "tests": [
+   "tests/test_backtest_e2e_audit.py"
+  ]
+ },
+ {
+  "id": "R16-3 partial exit shrinks the cost basis",
+  "file": "memelab/backtest/engine.py",
+  "old": "            p.realized_usd += realized",
+  "new": "            p.cost_usd -= realized",
+  "tests": [
+   "tests/test_backtest_e2e_audit.py",
+   "tests/test_backtest_engine.py"
+  ]
+ },
+ {
+  "id": "R16-4 unsold remainder dropped at the end",
+  "file": "memelab/backtest/engine.py",
+  "old": "        if remaining > 1e-12 and status != \"FAILED\" and not final:",
+  "new": "        if remaining > 1e-12 and status != \"FAILED\":",
+  "tests": [
+   "tests/test_backtest_e2e_audit.py",
+   "tests/test_backtest_engine.py"
+  ]
+ },
+ {
+  "id": "R16-5 entry ignores the network fee in the cash check",
+  "file": "memelab/backtest/engine.py",
+  "old": "        if pool is not None and size + nfee > self.cash:",
+  "new": "        if False:",
+  "tests": [
+   "tests/test_backtest_e2e_audit.py"
+  ]
+ },
+ {
+  "id": "R16-6 concurrent first migration crashes",
+  "file": "memelab/backtest/schema.py",
+  "old": "        except sqlite3.IntegrityError:",
+  "new": "        except ZeroDivisionError:",
+  "tests": [
+   "tests/test_backtest_e2e_audit.py"
+  ]
+ },
+ {
+  "id": "R16-7 busy tracker crashes instead of skipping",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "        if \"locked\" in str(e) or \"busy\" in str(e):",
+  "new": "        if False:",
+  "tests": [
+   "tests/test_backtest_e2e_audit.py"
+  ]
+ },
+ {
+  "id": "R16-8 batch status echoes credentials",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "        return urlunsplit((u.scheme, host, u.path, \"\", \"\")) + (\" [query removed]\" if u.query else \"\")",
+  "new": "        return str(url)",
+  "tests": [
+   "tests/test_backtest_e2e_audit.py"
+  ]
+ },
+ {
+  "id": "R16-9 archive proof older than the page accepted",
+  "file": "memelab/backtest/sources/captures.py",
+  "old": "    if proof_observed_at is not None and source_published_at is not None and utc_ts(proof_observed_at) < source_published_at:",
+  "new": "    if False:",
+  "tests": [
+   "tests/test_backtest_e2e_audit.py"
+  ]
+ },
+ {
+  "id": "R16-10 assessment cohort read without its as-of",
+  "file": "memelab/backtest/assess.py",
+  "old": "horizon_h=24, min_n=policy[\"min_cohort_trades\"], asof=snap.as_of)",
+  "new": "horizon_h=24, min_n=policy[\"min_cohort_trades\"])",
+  "tests": [
+   "tests/test_backtest_e2e_audit.py"
+  ]
+ }
+]

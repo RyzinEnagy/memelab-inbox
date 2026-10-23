@@ -119,7 +119,7 @@ def token_signal_states(r: dict, policy: dict) -> dict:
 def cohort_evidence(con, snap: S.Snapshot, policy: dict) -> dict:
     """Empirical outcomes of past tokens the lab gave the same status (stress.empirical_cohort). Historical, separate
     from the hypothetical shocks, and only reported with at least `min_cohort_trades` cases."""
-    return S.empirical_cohort(con, snap.status, horizon_h=24, min_n=policy["min_cohort_trades"])
+    return S.empirical_cohort(con, snap.status, horizon_h=24, min_n=policy["min_cohort_trades"], asof=snap.as_of)   # only what was known then
 
 
 def precheck(snap: S.Snapshot, now: float, max_age_s: float = 2 * 3600) -> tuple[str, str, bool] | None:
@@ -170,7 +170,7 @@ def attach(r: dict, policy: dict | None = None, con=None, now: float | None = No
             store._insert(con, "bt_assessment_events", dict(request_key=key, event="CACHE_HIT", detail=None, wall_ms=(time.time() - t0) * 1000, created_at=time.time()))
             con.commit()
             return prior | {"cache": "HIT"}
-        store._insert(con, "bt_assessment_events", dict(request_key=key, event="REQUESTED", detail=snap.mint, wall_ms=0.0, created_at=time.time()))
+        t_req = time.time()                                       # all writes happen in one short transaction at the end
         pre = precheck(snap, now)
         try:
             if pre:
@@ -206,6 +206,7 @@ def attach(r: dict, policy: dict | None = None, con=None, now: float | None = No
             out = {"request_key": key, "chain": snap.chain, "mint": snap.mint, "symbol": prov.get("symbol"), "as_of": snap.as_of, "tier": "UNAVAILABLE", "state": "ERROR",
                    "error": f"{type(e).__name__}: {e}", "retriable": True, "lab": {"score": snap.score, "status": snap.status, "fatal_flags": snap.fatal_flags}}
             event = "ERROR"
+        store._insert(con, "bt_assessment_events", dict(request_key=key, event="REQUESTED", detail=snap.mint, wall_ms=0.0, created_at=t_req))
         store._insert(con, "bt_assessments", dict(request_key=key, chain=snap.chain, mint=snap.mint, snapshot_hash=snap_hash, engine_version=ENGINE_VERSION,
                       as_of=snap.as_of, stage="FAST", tier=out["tier"], state=out["state"], result_json=out, result_hash=store.sha256(out), created_at=time.time()))
         store._insert(con, "bt_assessment_events", dict(request_key=key, event=event, detail=out["state"], wall_ms=(time.time() - t0) * 1000, created_at=time.time()))

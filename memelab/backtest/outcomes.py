@@ -19,6 +19,7 @@ from __future__ import annotations
 import bisect
 import json
 import math
+import sqlite3
 import statistics
 import time
 from collections import defaultdict
@@ -74,9 +75,20 @@ def opportunities(con, universe_id: str = "lab_state_history", include_assessmen
 
 # ---------------------------------------------------------------- one outcome
 
+def _bars_basis(con, chain: str, mint: str, cutoff: float, lookback_s: float = 86400.0) -> dict | None:
+    """Fallback when no pool record exists: the pool with the most volume in bars closed and available at cutoff."""
+    r = con.execute("SELECT pool_address, SUM(COALESCE(volume_usd, 0)) v, COUNT(*) n FROM bt_market_bars WHERE chain=? AND mint=? AND timeframe_s=? "
+                    "AND available_at<=? AND end>? GROUP BY pool_address ORDER BY v DESC, pool_address LIMIT 1", (chain, mint, TF, cutoff, cutoff - lookback_s)).fetchone()
+    return {"pool_address": r["pool_address"], "pool_type": "UNKNOWN", "dex": None, "trailing_volume_usd": r["v"], "n_bars": r["n"], "from_bars_only": True} if r else None
+
+
 def _basis(con, opp: dict) -> tuple[dict | None, float | None]:
+    """One pool per token, chosen with information available at the decision (or the first try that has any):
+    pool records first, bars alone when the corpus holds no pool record for the mint."""
+    has_records = con.execute("SELECT 1 FROM bt_pool_versions WHERE chain=? AND mint=? LIMIT 1", (opp["chain"], opp["mint"])).fetchone() is not None
     for h in BASIS_TRIES_H:
-        b = gecko.pool_basis_at(con, opp["chain"], opp["mint"], opp["decision_time"] + h * 3600)
+        t = opp["decision_time"] + h * 3600
+        b = gecko.pool_basis_at(con, opp["chain"], opp["mint"], t) if has_records else _bars_basis(con, opp["chain"], opp["mint"], t)
         if b:
             return b, h
     return None, None
@@ -94,7 +106,7 @@ def outcome_for(con, opp: dict, horizon_s: int, observed_asof: float) -> dict:
         return {"state": "NOT_OBSERVABLE", "missing_reason": "NO_POOL_BASIS: no pool had bars within 48 h of the decision", "censored": 1, "realized": None}
     bars = [b for b in store.bars_asof(con, chain=opp["chain"], mint=opp["mint"], pool_address=basis["pool_address"], tf=TF, cutoff=observed_asof)
             if b["start"] >= t and b["start"] < end]
-    flags = [f"POOL_BASIS_DELAYED_{delay_h}H"] if delay_h else []
+    flags = ([f"POOL_BASIS_DELAYED_{delay_h}H"] if delay_h else []) + (["POOL_BASIS_FROM_BARS_ONLY"] if basis.get("from_bars_only") else [])
     if not bars:
         last = con.execute("SELECT MAX(end) FROM bt_market_bars WHERE mint=? AND pool_address=? AND available_at<=?",
                            (opp["mint"], basis["pool_address"], observed_asof)).fetchone()[0]
@@ -145,12 +157,27 @@ def latest(con, asof: float | None = None) -> dict[tuple[str, int], dict]:
 # ---------------------------------------------------------------- scheduled tracker
 
 def track(con, now: float, observed_asof: float | None = None, horizons=HORIZONS_S, min_interval_s: float = 3600.0, fetch=None,
-          max_fetches: int = 20, retry_base_s: float = 600.0, retry_cap_s: float = 86400.0, opps: list[dict] | None = None) -> dict:
+          max_fetches: int = 20, retry_base_s: float = 600.0, retry_cap_s: float = 86400.0, opps: list[dict] | None = None,
+          claim_wait_s: float = 2.0) -> dict:
     """One scheduled pass. Rate limited (one pass per min_interval_s), idempotent (unchanged results add no rows),
     optional bounded fetch for windows still missing bars with exponential retry per mint."""
-    last = con.execute("SELECT MAX(created_at) FROM bt_assessment_events WHERE event='OUTCOME_TRACK_RUN'").fetchone()[0]
+    if con.in_transaction:
+        con.commit()
+    con.execute(f"PRAGMA busy_timeout = {int(claim_wait_s * 1000)}")
+    try:
+        con.execute("BEGIN IMMEDIATE")                              # claim the pass; another tracker writing now means skip, not crash
+    except sqlite3.OperationalError as e:
+        con.execute(f"PRAGMA busy_timeout = {int(store.BUSY_TIMEOUT_S * 1000)}")
+        if "locked" in str(e) or "busy" in str(e):
+            return {"status": "SKIPPED_BUSY", "reason": "another writer holds the research database; retry at the next scheduled pass"}
+        raise
+    con.execute(f"PRAGMA busy_timeout = {int(store.BUSY_TIMEOUT_S * 1000)}")
+    last = con.execute("SELECT MAX(created_at) FROM bt_assessment_events WHERE event IN ('OUTCOME_TRACK_RUN','OUTCOME_TRACK_STARTED')").fetchone()[0]
     if last is not None and now - last < min_interval_s:
+        con.rollback()
         return {"status": "SKIPPED_MIN_INTERVAL", "last_run_min_ago": round((now - last) / 60, 1)}
+    store._insert(con, "bt_assessment_events", dict(request_key="outcomes", event="OUTCOME_TRACK_STARTED", detail=None, wall_ms=0.0, created_at=now))
+    con.commit()
     asof = observed_asof if observed_asof is not None else now
     opps = opps if opps is not None else opportunities(con)
     counts, new_rows, fetched, deferred = defaultdict(int), 0, 0, 0
@@ -163,6 +190,7 @@ def track(con, now: float, observed_asof: float | None = None, horizons=HORIZONS
             counts[out["state"]] += 1
             if out["state"] == "CENSORED" and str(out["missing_reason"]).startswith("NO_BARS_IN_WINDOW") and (out["realized"] or {}).get("pool"):
                 want_fetch.add((o["chain"], o["mint"], out["realized"]["pool"]))
+        con.commit()                                                # short write transactions: other writers wait milliseconds
     if fetch:
         for chain, mint, pool in sorted(want_fetch):
             if fetched >= max_fetches:

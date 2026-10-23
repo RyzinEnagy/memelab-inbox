@@ -114,6 +114,30 @@ def test_g19_positive_posts_do_not_turn_selling_into_a_buy():
     assert isinstance(r, Abstain) and r.reason == "VERIFIED_SELLING"
 
 
+def test_g22_no_edge_control_arm_finds_no_edge():
+    """Control arm (Phase 16): catalysts that carry no information about prices. Real and placebo times must look
+    alike and neither may show an edge, so the placebo comparison stays meaningful when there is nothing to find."""
+    import random
+    rng = random.Random(22)
+    toks_real, toks_plac = [], []
+    for k in range(30):
+        out, p = [], 1.0
+        for i in range(120):
+            o = p
+            p = max(1e-6, p * (1 + rng.gauss(0, 0.02)))
+            out.append(B(T + i * H, T + (i + 1) * H, o, max(o, p) * 1.005, min(o, p) * 0.995, p, 100.0, T + (i + 1) * H + 60))
+        at = T + rng.randint(30, 90) * H
+        recs = [rec("a", at + 60, mint=f"N{k}"), rec("b", at + 120, mint=f"N{k}")]
+        liq = [(T + d * 86400, 5e6) for d in range(6)]
+        toks_real.append(TokenData("solana", f"N{k}", out, liquidity=liq, catalysts=recs))
+        toks_plac.append(TokenData("solana", f"N{k}", out, liquidity=liq, catalysts=C.placebo_shift(recs, seed=k, shift_s=20 * H)))
+    cfg = EngineConfig(account_usd=1e7, max_positions=1000, max_exposure_frac=1.0, sol_usd_default=150, latency_s=5, max_entries_per_token=1)
+    s = registry.make("CATALYST_VERIFIED", hold_bars=6, max_prerun=10.0)
+    real, plac = Engine(cfg).run(s, toks_real), Engine(cfg).run(s, toks_plac)
+    assert real["n_trades"] >= 25 and plac["n_trades"] >= 25
+    assert abs(real["mean_ret"]) < 0.03 and abs(real["mean_ret"] - plac["mean_ret"]) < 0.03
+
+
 def test_bridge_reads_lab_catalyst_tables_with_known_at(tmp_path):
     from memelab.catalyst.schema import CATALYST_SCHEMA
     p = tmp_path / "lab.sqlite"
@@ -129,6 +153,9 @@ def test_bridge_reads_lab_catalyst_tables_with_known_at(tmp_path):
     assert len(recs) == 2                                         # the syndicated copy is not a record
     assert sorted(r["available_at"] for r in recs) == [T + 300, T + 500]   # never earlier than the token link
     assert C.independent_origins(recs) == 2
+    con = sqlite3.connect(p); con.execute("UPDATE catalyst_events SET status='DENIED' WHERE id=1"); con.commit(); con.close()
+    later = catalyst_bridge.records_from_lab_db(p)                # a denial written today, with no record of when it was known
+    assert all(r["denied"] is False and r["current_status"] == "DENIED" and r["status_is_current"] for r in later)
 
 
 def test_g41_convincing_catalyst_cannot_defeat_a_fatal_flag():

@@ -257,25 +257,33 @@ def _deteriorates(s: Snapshot) -> list[str]:
             "price closes below the invalidation level"]
 
 
-def empirical_cohort(con, status: str | None, horizon_h: int = 24, min_n: int = 30, universe_id: str = "lab_state_history") -> dict:
-    """HISTORICAL percentiles for tokens the lab gave the same status: return and worst drop over `horizon_h` hours
-    from the first bar that opened after each thesis existed, on the bars the corpus holds. Reported beside the
-    hypothetical shocks, never blended into them. Below `min_n` cases: INSUFFICIENT_HISTORY, no percentiles."""
+def empirical_cohort(con, status: str | None, horizon_h: int = 24, min_n: int = 30, universe_id: str = "lab_state_history",
+                     asof: float | None = None) -> dict:
+    """HISTORICAL percentiles for tokens the lab gave the same status, measured exactly like the outcome tracker
+    (outcomes.outcome_for): one pool per token chosen at its decision time, first open after the decision, only bars
+    available at `asof`. Only tokens the lab had recorded by `asof` and whose window had closed and been published by
+    then count (Phase 16, D1/D2/D11). Returns come from complete windows only; worst drops also include windows cut
+    short by a dead feed, as lower bounds. Reported beside the hypothetical shocks, never blended into them.
+    Below `min_n` complete cases: INSUFFICIENT_HISTORY, no percentiles."""
     import statistics
-    rows = con.execute("SELECT mint, MIN(available_at) t FROM bt_universe_members WHERE universe_id=? AND basis='THESIS' AND status_at_entry IS ? "
-                       "GROUP BY mint", (universe_id, status)).fetchall()
-    rets, worst = [], []
+    from . import outcomes as O
+    cut = asof if asof is not None else 1e12
+    rows = con.execute("SELECT chain, mint, MIN(available_at) t FROM bt_universe_members WHERE universe_id=? AND basis='THESIS' AND status_at_entry IS ? "
+                       "AND available_at<=? GROUP BY chain, mint", (universe_id, status, cut)).fetchall()
+    rets, worst, states = [], [], {}
     for r in rows:
-        bars = con.execute("SELECT start, o, l, c FROM bt_market_bars WHERE mint=? AND timeframe_s=3600 AND start>=? AND start<? ORDER BY start",
-                           (r["mint"], r["t"], r["t"] + horizon_h * 3600)).fetchall()
-        if len(bars) < 2:
-            continue
-        e = bars[0]["o"]
-        rets.append(bars[-1]["c"] / e - 1)
-        worst.append(min(b["l"] for b in bars) / e - 1)
+        out = O.outcome_for(con, {"chain": r["chain"], "mint": r["mint"], "decision_time": r["t"]}, int(horizon_h * 3600), cut)
+        states[out["state"]] = states.get(out["state"], 0) + 1
+        rz = out["realized"] or {}
+        if out["state"] == "COMPLETE":
+            rets.append(rz["ret_close"])
+        if rz.get("max_drawdown") is not None:
+            worst.append(rz["max_drawdown"])
+    base = {"status": status, "n": len(rets), "min_n": min_n, "asof": asof, "known_tokens": len(rows), "window_states": states}
     if len(rets) < min_n:
-        return {"tier": "INSUFFICIENT_HISTORY", "status": status, "n": len(rets), "min_n": min_n}
+        return {"tier": "INSUFFICIENT_HISTORY", **base}
     q = lambda v, p: sorted(v)[max(0, min(len(v) - 1, int(p * len(v))))]
-    return {"tier": "HISTORICAL_COHORT", "status": status, "n": len(rets), "horizon_h": horizon_h,
+    return {"tier": "HISTORICAL_COHORT", **base, "horizon_h": horizon_h,
             "ret_p10_p50_p90": [q(rets, 0.1), statistics.median(rets), q(rets, 0.9)], "worst_drop_p10_p50": [q(worst, 0.1), statistics.median(worst)],
-            "note": "empirical frequencies for past tokens with the same lab status; not this token's probabilities; mid prices before costs"}
+            "note": ("empirical frequencies for past tokens with the same lab status, known and measurable at the assessment time; not this token's "
+                     "probabilities; mid prices before costs; worst drops include windows cut short by a dead feed as lower bounds")}

@@ -66,6 +66,10 @@ def record_capture(con, *, collector: str, source_url: str, text: str, captured_
                 "first_seen_at": prior["first_seen_at"], "independent_confirmation": False}
     if (historical_asof_proof == "NONE") != (proof_observed_at is None):
         raise ClockError("historical_asof_proof and proof_observed_at must be given together")
+    if proof_observed_at is not None and source_published_at is not None and utc_ts(proof_observed_at) < source_published_at:
+        # an archive cannot have seen a page before the page itself says it was published: the proof is about
+        # another version or is wrong, so it never moves availability earlier (Phase 16, D9)
+        raise ClockError("archive proof predates the page's own publication claim; refused")
     first_seen = captured_at if proof_observed_at is None else min(captured_at, utc_ts(proof_observed_at))
     rid, _ = store._insert(con, "bt_capture_provenance", dict(
         collector=collector, robot_id=robot_id, run_id=run_id, robot_version=robot_version, edition=edition, extractor_version=extractor_version,

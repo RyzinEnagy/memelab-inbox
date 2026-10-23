@@ -79,3 +79,18 @@ def test_package_hash_changes_with_any_source_change(tmp_path):
     h1 = store.package_hash(tmp_path)
     (tmp_path / "a.py").write_text("x = 2\n")
     assert store.package_hash(tmp_path) != h1
+
+
+def test_pool_basis_is_chosen_with_bars_known_at_the_decision(con):
+    """Phase 16 M16-5: a pool that only traded later (and was listed earlier) must not become the basis in hindsight."""
+    late = "LATEPooLaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    store.record_pool_version(con, chain="solana", pool_address=late, mint=MINT, pool_type="CPMM", observed_at=1791400060.0, source="test",
+                              dex="pumpswap", pool_created_at=1791400000.0, available_at=1791400060.0)
+    t_lab = 1791547052.132
+    for i in range(5):
+        s = (int(t_lab // 3600) + 72 + i) * 3600.0
+        store.record_bar(con, chain="solana", mint=MINT, pool_address=late, tf=3600, start=s, o=99.0, h=99.0, l=99.0, c=99.0, volume_usd=1e9,
+                         observed_at=s + 4000, provider="test")
+    con.commit()
+    toks, _ = runner.build_tokens(con, "u")
+    assert toks and all(b.o != 99.0 for b in toks[0].bars)

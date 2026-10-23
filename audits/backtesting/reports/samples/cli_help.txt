@@ -1,8 +1,8 @@
 usage: memelab backtest [-h]
-                        {status,run,deep,assess-stats,stress,assess,inspect,data,schema} ...
+                        {status,run,deep,assess-stats,stress,assess,inspect,data,outcomes,schema} ...
 
 positional arguments:
-  {status,run,deep,assess-stats,stress,assess,inspect,data,schema}
+  {status,run,deep,assess-stats,stress,assess,inspect,data,outcomes,schema}
     status              what the backtest database holds
     run                 replay one strategy over the frozen discovery universe
                         and save the run
@@ -15,6 +15,8 @@ positional arguments:
                         command that reproduces it
     data                coverage of the research database (bars, universe,
                         blocked sources)
+    outcomes            shadow outcome tracking: track, calibrate, drift,
+                        reconcile, daily, shadow (no trading)
     schema              JSON Schema of the report document
 
 options:

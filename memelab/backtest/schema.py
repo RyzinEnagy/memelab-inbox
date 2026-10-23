@@ -287,7 +287,15 @@ def migrate(con: sqlite3.Connection, target: int | None = None, migrations=None)
             continue
         ledger = (f"INSERT INTO bt_schema_migrations(version,name,checksum,applied_at) "
                   f"VALUES ({int(v)}, '{name.replace(chr(39), '')}', '{_checksum(up)}', {time.time()!r});")
-        _run(con, up + "\n" + ledger)
+        try:
+            _run(con, up + "\n" + ledger)
+        except sqlite3.IntegrityError:
+            # another connection applied the same version first (fresh database, concurrent first use); its whole
+            # transaction won, ours rolled back. Accept only if the applied script is the same one.
+            row = con.execute("SELECT checksum FROM bt_schema_migrations WHERE version=?", (int(v),)).fetchone()
+            if row and row[0] == _checksum(up):
+                continue
+            raise
         done.append(v)
     return done
 

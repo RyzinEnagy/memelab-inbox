@@ -258,3 +258,31 @@ def test_canceled_entry_after_submission_still_pays_the_network_fee():
     res = Engine(cfg).run(SignalAt(at=20), [tok])
     assert res["counts"]["canceled"] == 1 and res["n_trades"] == 0
     assert res["final_cash"] == pytest.approx(cfg.account_usd - cfg.fees.network_fee_sol * 150)
+
+
+# G06: a delisted token is never filled after its delisting, and a held position is exited at the delisting (Phase 16 M16-9)
+def test_delisted_token_is_never_filled_and_a_held_position_is_exited():
+    rows = [(1.0, 1.01, 0.99, 1.0, 100)] * 30
+    cfg = EngineConfig(fill_model="FLAT", fees=X.Fees(0.0, 0, None, 0.0), sol_usd_default=150, latency_s=0)
+    gone = Engine(cfg).run(SignalAt(at=20), [TokenData("solana", "GONE", mk(rows), delisted_at=T + 21 * H)])
+    assert gone["n_trades"] == 0 and gone["counts"]["filled"] == 0
+    assert any(j["event"] == "EXPIRED" and j.get("reason") == "delisted" for j in gone["journal"])
+    later = Engine(cfg).run(SignalAt(at=20), [TokenData("solana", "LATER", mk(rows), delisted_at=T + 25 * H)])
+    tr = later["trades"][0]
+    assert tr["exit_reason"] == "DELISTED" and tr["exit_time"] == T + 25 * H
+
+
+# G17: partial exits keep the original cost; a remainder that cannot be sold by the end is reported, not dropped (Phase 16 D3/D4)
+def test_partial_exits_report_original_cost_and_unsold_remainder():
+    rows = [(1.0, 1.01, 0.99, 1.0, 100)] * 22 + [(2.0, 2.02, 1.98, 2.0, 100)] * 4
+    td = TokenData("solana", "PART", mk(rows), liquidity=[(T, 20_000.0)])
+    cfg = EngineConfig(account_usd=10_000, size_usd=1_000, latency_s=0, sol_usd_default=150, entry_impact_cap=1.0, exit_impact_cap=0.05,
+                       max_exposure_frac=1.0, liquidity_max_age_s=1e9)
+    r = Engine(cfg).run(SignalAt(at=20, hold=2), [td])
+    assert r["counts"]["filled"] == 1 and r["n_trades"] == 1
+    tr = r["trades"][0]
+    buy = next(f for f in r["fills"] if f["action"] == "BUY" and f["status"] == "FILLED")
+    assert tr["cost_usd"] == pytest.approx(buy["requested"] + buy["fees"]["network_usd"])
+    assert tr["status"] == "PARTIAL_UNSOLD_AT_END" and tr["unsold_tokens"] > 0
+    assert tr["ret"] == pytest.approx(tr["proceeds_usd"] / tr["cost_usd"] - 1)
+    assert r["final_cash"] == pytest.approx(10_000 - tr["cost_usd"] + tr["proceeds_usd"])

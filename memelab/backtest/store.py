@@ -22,6 +22,7 @@ ROOT = Path(__file__).resolve().parents[2]
 import os as _os
 BT_DB_PATH = Path(_os.environ.get("MEMELAB_BT_DB", ROOT / "data" / "backtest" / "bt.sqlite"))
 RAW_DIR = Path(_os.environ.get("MEMELAB_BT_RAW", ROOT / "data" / "backtest" / "raw"))
+BUSY_TIMEOUT_S = 10.0     # wait this long for another writer; writers keep their transactions short (Phase 16, D7)
 
 
 def connect(path: Path | str | None = None) -> sqlite3.Connection:
@@ -29,7 +30,7 @@ def connect(path: Path | str | None = None) -> sqlite3.Connection:
     never written by the backtesting package."""
     p = Path(path) if path else BT_DB_PATH
     p.parent.mkdir(parents=True, exist_ok=True)
-    con = sqlite3.connect(p)
+    con = sqlite3.connect(p, timeout=BUSY_TIMEOUT_S)
     con.row_factory = sqlite3.Row
     con.execute("PRAGMA journal_mode=WAL")
     schema.migrate(con)

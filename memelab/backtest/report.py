@@ -64,7 +64,9 @@ def alert_label(a: dict | None, lab_fatal: list | None = None) -> dict:
         why = "; ".join((a.get("stress") or {}).get("decision_reasons") or []) or st
         return {"label": "BAD EXECUTION", "why": f"{dec or st}: {why}"}
     if st == "COMPLETE" and a.get("tier") in ("HISTORICAL_COHORT", "TOKEN_SPECIFIC") and dec == "RESEARCHABLE":
-        return {"label": "TESTED", "why": f"{a.get('tier')} evidence and a feasible exit under base conditions; still research only"}
+        kind = ("HISTORICAL_COHORT evidence from past tokens with the same lab status (analog, not this token's own history)"
+                if a.get("tier") == "HISTORICAL_COHORT" else f"{a.get('tier')} evidence")
+        return {"label": "TESTED", "why": f"{kind} and a feasible exit under base conditions; still research only"}
     return {"label": "INCONCLUSIVE", "why": f"state {st}, evidence {a.get('tier')}, stress {dec or 'n/a'}"}
 
 
@@ -359,7 +361,9 @@ def render_md(doc: dict) -> str:
     L += ["", "## Historical evidence", "", f"Token-specific: {he['token_specific'].get('state')} ({he['token_specific'].get('note') or 'no note'})."]
     if he.get("cohort"):
         c = he["cohort"]
-        L.append(f"Cohort of past tokens with lab status {c.get('status')}: {c.get('n')} cases, tier {c.get('tier')} (minimum {c.get('min_n')})."
+        kt = c.get("known_tokens")
+        known = f" of {kt} token{'' if kt == 1 else 's'} the lab had recorded by then" if kt is not None else ""
+        L.append(f"Cohort of past tokens with lab status {c.get('status')}: {c.get('n')} complete cases{known}, tier {c.get('tier')} (minimum {c.get('min_n')})."
                  + (" Returns over {h} h, p10 / p50 / p90: {r}; worst drop p10 / p50: {w}. Mid prices before costs.".format(
                      h=c.get("horizon_h"), r=" / ".join(_pct(x) for x in c.get("ret_p10_p50_p90") or []), w=" / ".join(_pct(x) for x in c.get("worst_drop_p10_p50") or []))
                     if c.get("tier") == "HISTORICAL_COHORT" else ""))
