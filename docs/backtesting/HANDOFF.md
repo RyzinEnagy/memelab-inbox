@@ -4,7 +4,7 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 
 ## Position
 
-- Phase completed: 03 (source-code due diligence and ranked top 10), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_03.md. Phases 00-02 PASS.
+- Phase completed: 04 (adoption bake-off), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_04.md. Phases 00-03 PASS.
 - Baseline SHA f99c6c7; Phase 00 commit 912fc96. Branch `feature/backtesting`. Docs only; no change under `memelab/` or `tests/`.
 
 ## Commands and exits
@@ -16,6 +16,7 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 | git-history union of theses (testing/logs/p01_negative_review.log) | 0 | 1,801 distinct theses vs 701 in latest export |
 | 30 GitHub API repo searches (research/raw/p02_github_search.txt) | n/a | 273 hits, 268 unique; longlist 73, shortlist 25 |
 | 25 pinned-commit reviews + blind rescore | n/a | none >= 70; top: slotfish 65.10; largest blind gap 7.1 |
+| `python3 audits/backtesting/bakeoff/compare.py` | 0 | 16/16 |
 
 ## Proven
 
@@ -27,7 +28,7 @@ Universe spans 17 days. Catalyst history thin. Helius key absent in this workspa
 
 ## Next eligible phase
 
-04. First action: build the isolated bake-off POCs (custom engine prototype vs backtesting.py oracle vs vectorbt) on one canonical dataset with the scenarios listed in PHASE_04.
+05. First action: write `memelab/backtest/schema.py` (additive bt_* tables, append-only triggers) and `timeguard.py`, then G01-G08 tests.
 
 ## Roadmap changes
 
