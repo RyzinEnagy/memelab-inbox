@@ -4,8 +4,8 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 
 ## Position
 
-- Phase completed: 10 (deterministic event and portfolio core), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_10.md. Phases 00-09 PASS (06A decision EXISTING_TOOL_WINS).
-- Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f, Phase 08 976e747, Phase 09 58abf7d. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
+- Phase completed: 11 (statistical validation), 2026-10-23. State: PASS; every strategy INSUFFICIENT_SAMPLE. Note: audits/backtesting/PHASE_11.md. Phases 00-10 PASS (06A decision EXISTING_TOOL_WINS).
+- Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f, Phase 08 976e747, Phase 09 58abf7d, Phase 10 941e4ed. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
 - Spend so far: Firecrawl about 29 of ~100 calls; Maxun 5 of 5 trial credits (0 left, 0 schedules); Crawl4AI local only; Solana public RPC and Jupiter quotes read-only (about 20 calls).
 
 ## Commands and exits
@@ -30,6 +30,8 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 | Phase 08: `pytest tests/test_backtest_strategies.py` / `mutate.py p08_mutations.json` | 0 / 0 | 16 passed / 11 of 11 caught |
 | Phase 09: `pytest tests/test_backtest_catalyst.py` / `mutate.py p09_mutations.json` | 0 / 0 | 11 passed / 11 of 11 caught |
 | Phase 10: engine and runner tests / `mutate.py p10_mutations.json` | 0 / 0 | 22 passed / 14 of 14 caught |
+| full suite after Phase 10 / release audit / release e2e | 1 / 0 / 0 | C-1 only, 915 passed / Needs action: no / PASS 78 of 78 |
+| Phase 11: validation tests / `mutate.py p11_mutations.json` / `p11_validate.py` | 0 / 0 / 0 | 13 passed / 11 of 11 / all INSUFFICIENT_SAMPLE |
 
 ## Proven
 
@@ -41,7 +43,7 @@ Universe spans 17 days. Catalyst history thin. Helius key absent in this workspa
 
 ## Next eligible phase
 
-11 (statistical validation). Drafted ahead of its gate: `memelab/backtest/validation.py`, `tests/test_backtest_validation.py`. First real-data action: pre-register the split plan and trial grid, then run LAB_STATUS, the TA strategies and baselines through `validation.validate` on the corpus.
+12 (stress engine). Drafted ahead of its gate: `memelab/backtest/stress.py`, `tests/test_backtest_stress.py`.
 
 ## Roadmap changes
 

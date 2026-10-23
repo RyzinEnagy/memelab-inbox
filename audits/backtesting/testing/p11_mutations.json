@@ -1,0 +1,101 @@
+[
+ {
+  "id": "M11-1 two or three day blocks give an interval",
+  "old": "MIN_DAY_BLOCKS = 5 ",
+  "new": "MIN_DAY_BLOCKS = 2 ",
+  "file": "memelab/backtest/validation.py",
+  "tests": [
+   "tests/test_backtest_validation.py"
+  ]
+ },
+ {
+  "id": "M11-2 tiny samples enter the Holm comparison",
+  "old": "    eligible = [r for r in reports if r.test and (r.test.get(\"n\") or 0) >= min_n_test and r.test.get(\"p_mean_le_0\") is not None]",
+  "new": "    eligible = [r for r in reports if r.test and r.test.get(\"p_mean_le_0\") is not None]",
+  "file": "memelab/backtest/validation.py",
+  "tests": [
+   "tests/test_backtest_validation.py"
+  ]
+ },
+ {
+  "id": "M11-3 sealed test readable twice",
+  "old": "        if self.used:\n            raise LeakageError",
+  "new": "        if False:\n            raise LeakageError",
+  "file": "memelab/backtest/validation.py",
+  "tests": [
+   "tests/test_backtest_validation.py"
+  ]
+ },
+ {
+  "id": "M11-4 tuning on the validation window",
+  "old": "        r = run_window(registry.make(strategy_id, **params), tokens, cfg, plan, \"train\", sol_usd)",
+  "new": "        r = run_window(registry.make(strategy_id, **params), tokens, cfg, plan, \"validation\", sol_usd)",
+  "file": "memelab/backtest/validation.py",
+  "tests": [
+   "tests/test_backtest_validation.py"
+  ]
+ },
+ {
+  "id": "M11-5 no embargo before window end",
+  "old": "    return Engine(cfg, sol_usd).run(strategy, tokens, until=b, decide_from=a, decide_until=max(a, b - plan.embargo_s))",
+  "new": "    return Engine(cfg, sol_usd).run(strategy, tokens, until=b, decide_from=a, decide_until=b)",
+  "file": "memelab/backtest/validation.py",
+  "tests": [
+   "tests/test_backtest_validation.py"
+  ]
+ },
+ {
+  "id": "M11-6 verdict ignores the minimum sample",
+  "old": "    if tm.get(\"n\", 0) < min_n_test:\n",
+  "new": "    if tm.get(\"n\", 0) < 0:\n",
+  "file": "memelab/backtest/validation.py",
+  "tests": [
+   "tests/test_backtest_validation.py"
+  ]
+ },
+ {
+  "id": "M11-7 overfit flag never fires",
+  "old": "                         \"overfit_flag\": bool(train_m.get(\"mean_ret\") is not None",
+  "new": "                         \"overfit_flag\": False and bool(train_m.get(\"mean_ret\") is not None",
+  "file": "memelab/backtest/validation.py",
+  "tests": [
+   "tests/test_backtest_validation.py"
+  ]
+ },
+ {
+  "id": "M11-8 walk-forward tunes on its out-of-sample block",
+  "old": "        tune_until = cut - embargo_s ",
+  "new": "        tune_until = cut + step ",
+  "file": "memelab/backtest/validation.py",
+  "tests": [
+   "tests/test_backtest_validation.py"
+  ]
+ },
+ {
+  "id": "M11-9 regime labeled with the price after entry",
+  "old": "        a, b = sol_usd(t[\"entry_time\"] - lookback_s), sol_usd(t[\"entry_time\"])",
+  "new": "        a, b = sol_usd(t[\"entry_time\"] - lookback_s), sol_usd(t[\"entry_time\"] + 7200)",
+  "file": "memelab/backtest/validation.py",
+  "tests": [
+   "tests/test_backtest_validation.py"
+  ]
+ },
+ {
+  "id": "M11-10 deflated Sharpe on small samples",
+  "old": "    if n < 100 or len(trial_srs) < 2:",
+  "new": "    if len(trial_srs) < 2:",
+  "file": "memelab/backtest/validation.py",
+  "tests": [
+   "tests/test_backtest_validation.py"
+  ]
+ },
+ {
+  "id": "M11-11 frozen config can be changed after the test",
+  "old": "        if self.frozen:\n            raise LeakageError",
+  "new": "        if False:\n            raise LeakageError",
+  "file": "memelab/backtest/validation.py",
+  "tests": [
+   "tests/test_backtest_validation.py"
+  ]
+ }
+]
