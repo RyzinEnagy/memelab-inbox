@@ -205,6 +205,10 @@ def cmd_analyze(a):
     r = pipeline.analyze_token(a.mint, bodies, observed_at=t, sol_price=sol, benchmarks=_benchmarks(bodies, (s1 or {}).get("survivors")), account=account,
                                discovery_signals=disc, persist=not a.no_persist)
     print(f"{r['bundle']['identity'].get('symbol')} score {r['score']['total']} status {r['status']['status']} -> {r.get('report_path')}")
+    from .backtest import hook as _bt
+    line = _bt.one_line(_bt.maybe_assess(r))          # None (prints nothing) unless the backtest policy is enabled
+    if line:
+        print(line)
     if a.print:
         print(r["report_md"])
 
@@ -269,6 +273,10 @@ def cmd_scout(a):
         disc = next((c for c in s1.get("survivors", []) if c["mint"] == mint), None)
         r = pipeline.analyze_token(mint, bodies, observed_at=t, sol_price=sol, benchmarks=bm, discovery_signals=disc, persist=True, report_dir=report_dir)
         results.append(r)
+        from .backtest import hook as _bt
+        bt = _bt.maybe_assess(r)                       # None unless the backtest policy is enabled; never alters r
+        if bt is not None:
+            r["backtest_assessment"] = bt
     ranked, serious, near, rejected = scout_lists(results, s2, a.min_score)
     cg = bodies.get("raw:cg_sol") or {}
     env = {"SOL": f"${sol:,.2f}" + (f" ({cg['solana'].get('usd_24h_change', 0):+.1f}% 24h)" if cg.get("solana") else ""),

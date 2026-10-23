@@ -1,0 +1,126 @@
+{
+ "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+ "observed_at": 1791330503.698,
+ "lab": {
+  "score": 64,
+  "status": "SETUP DEVELOPING"
+ },
+ "fast": {
+  "state": "PARTIAL_WITH_LIMITATIONS",
+  "tier": "SCENARIO_ONLY",
+  "cache": "MISS",
+  "request_key": "544ee2f11b6562361b8ca4361a71a93f34460d3ec995efd0f403366e3fab42d4",
+  "deep_stage": "QUEUED",
+  "flags": null,
+  "reason": null,
+  "stress_decision": "RESEARCHABLE",
+  "max_size": {
+   "max_size_usd": 599.1106541011145,
+   "constraints": {
+    "max_loss_usd": 250.0,
+    "max_exit_impact": 0.05,
+    "shocks": [
+     "BASE",
+     "LIQ_50",
+     "STOP_GAP"
+    ]
+   }
+  },
+  "historical_evidence": {
+   "tier": "INSUFFICIENT_HISTORY",
+   "status": "SETUP DEVELOPING",
+   "n": 27,
+   "min_n": 30
+  },
+  "token_signals": {
+   "closed_bars": 299,
+   "dropped_unclosed": 1,
+   "signals": {
+    "BREAKOUT_CLOSE": "NONE",
+    "BREAKOUT_RETEST": "NONE",
+    "TREND_HHHL": "NONE",
+    "ABSORPTION_BREAK": "NONE"
+   }
+  },
+  "one_line": "backtest: PARTIAL_WITH_LIMITATIONS | evidence SCENARIO_ONLY | stress RESEARCHABLE | max size $599 under caps | research only"
+ },
+ "second_call_cache": "HIT",
+ "lab_result_unchanged": true,
+ "stale_rerun": "STALE_DATA",
+ "deep": {
+  "state": "INSUFFICIENT_HISTORY",
+  "tier": "UNAVAILABLE",
+  "reason": null,
+  "per_strategy": {
+   "BREAKOUT_CLOSE": {
+    "trades": 0,
+    "mean_ret": null,
+    "rets": []
+   },
+   "BREAKOUT_RETEST": {
+    "trades": 0,
+    "mean_ret": null,
+    "rets": []
+   },
+   "TREND_HHHL": {
+    "trades": 0,
+    "mean_ret": null,
+    "rets": []
+   },
+   "ABSORPTION_BREAK": {
+    "trades": 0,
+    "mean_ret": null,
+    "rets": []
+   }
+  },
+  "wall_s": 0.14
+ },
+ "catalyst": {
+  "manual_observation": "REFRESH_REQUESTED",
+  "same_again": "IGNORED",
+  "ticker_only": "IGNORED",
+  "robot_outage": "IGNORED",
+  "stale": "IGNORED"
+ },
+ "benchmark_fast_ms": {
+  "n": 20,
+  "median": 487.3,
+  "max": 570.9
+ },
+ "stats": {
+  "events": {
+   "CACHE_HIT": {
+    "n": 1,
+    "avg_ms": 0.6740093231201172
+   },
+   "CATALYST_REFRESH": {
+    "n": 1,
+    "avg_ms": 0.0
+   },
+   "COMPLETED": {
+    "n": 21,
+    "avg_ms": 499.1237322489421
+   },
+   "DEEP_INSUFFICIENT_HISTORY": {
+    "n": 1,
+    "avg_ms": 137.84027099609375
+   },
+   "QUEUED_DEEP": {
+    "n": 21,
+    "avg_ms": 0.0
+   },
+   "REQUESTED": {
+    "n": 21,
+    "avg_ms": 0.0
+   },
+   "STALE_ON_HIT": {
+    "n": 1,
+    "avg_ms": 0.4734992980957031
+   }
+  },
+  "states": {
+   "INSUFFICIENT_HISTORY": 1,
+   "PARTIAL_WITH_LIMITATIONS": 21
+  }
+ }
+}

@@ -4,8 +4,8 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 
 ## Position
 
-- Phase completed: 12 (stress engine), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_12.md. Phases 00-11 PASS (06A EXISTING_TOOL_WINS; 11 all INSUFFICIENT_SAMPLE).
-- Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f, Phase 08 976e747, Phase 09 58abf7d, Phase 10 941e4ed, Phase 11 38d2fcc. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
+- Phase completed: 13 (per-opportunity integration), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_13.md. Phases 00-12 PASS (06A EXISTING_TOOL_WINS; 11 all INSUFFICIENT_SAMPLE).
+- Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f, Phase 08 976e747, Phase 09 58abf7d, Phase 10 941e4ed, Phase 11 38d2fcc, Phase 12 999d1eb. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
 - Spend so far: Firecrawl about 29 of ~100 calls; Maxun 5 of 5 trial credits (0 left, 0 schedules); Crawl4AI local only; Solana public RPC and Jupiter quotes read-only (about 20 calls).
 
 ## Commands and exits
@@ -33,6 +33,8 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 | full suite after Phase 10 / release audit / release e2e | 1 / 0 / 0 | C-1 only, 915 passed / Needs action: no / PASS 78 of 78 |
 | Phase 11: validation tests / `mutate.py p11_mutations.json` / `p11_validate.py` | 0 / 0 / 0 | 13 passed / 11 of 11 / all INSUFFICIENT_SAMPLE |
 | Phase 12: stress tests / `mutate.py p12_mutations.json` / `p12_scenarios.py` | 0 / 0 / 0 | 13 passed / 12 of 12 / 2 real pools RESEARCHABLE |
+| Phase 13: assess tests / `mutate.py p13_mutations.json` / `integration/p13_demo.py` | 0 / 0 / 0 | 26 passed / 23 of 23 / real PAID: PARTIAL_WITH_LIMITATIONS, SCENARIO_ONLY, cache HIT, STALE_DATA after 3 h |
+| full suite after Phase 13 / release audit / release e2e | 1 / 0 / 0 | C-1 only, 952 passed / Needs action: no / PASS 78 of 78 |
 
 ## Proven
 
@@ -44,7 +46,7 @@ Universe spans 17 days. Catalyst history thin. Helius key absent in this workspa
 
 ## Next eligible phase
 
-13 (per-opportunity integration). Drafted ahead of its gate: `memelab/backtest/assess.py` (FAST stage, idempotent request key, off by default). To do: hook in `cli.cmd_scout`/`cmd_analyze` behind the policy, tests that reports are byte-identical when off.
+14 (reports, CLI, alerts). Inputs ready: `r["backtest_assessment"]` on scout results and the `bt_assessments` rows. To do: report sections in Markdown and JSON, the full `backtest` CLI, alert labeling, byte-identical reports when the policy is off.
 
 ## Roadmap changes
 

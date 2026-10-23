@@ -1,0 +1,209 @@
+[
+ {
+  "id": "M13-1 assessment enabled by default",
+  "file": "memelab/backtest/assess.py",
+  "old": "DEFAULT_POLICY = {\"enabled\": False,",
+  "new": "DEFAULT_POLICY = {\"enabled\": True,",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-2 hook ignores the policy switch",
+  "file": "memelab/backtest/hook.py",
+  "old": "    if not policy.get(\"enabled\"):\n        return None",
+  "new": "    if False:\n        return None",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-3 all-zero authority key read as active",
+  "file": "memelab/backtest/assess.py",
+  "old": "NULL_KEYS = (None, \"\", \"11111111111111111111111111111111\")",
+  "new": "NULL_KEYS = (None, \"\")",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-4 cache key ignores the snapshot",
+  "file": "memelab/backtest/assess.py",
+  "old": "key = store.sha256([snap.chain, snap.mint, snap_hash, ENGINE_VERSION, pol_hash, rev])",
+  "new": "key = store.sha256([snap.chain, snap.mint, ENGINE_VERSION, pol_hash, rev])",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-5 precheck skipped (invalid, stale, no price)",
+  "file": "memelab/backtest/assess.py",
+  "old": "        pre = precheck(snap, now)\n        try:",
+  "new": "        pre = None\n        try:",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-6 lab fatal flag not an abstain state",
+  "file": "memelab/backtest/assess.py",
+  "old": "            if snap.fatal_flags:\n                state = \"RISK_FATAL_FLAW\"",
+  "new": "            if False:\n                state = \"RISK_FATAL_FLAW\"",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-7 unverified catalyst triggers refresh",
+  "file": "memelab/backtest/assess.py",
+  "old": "    if not record.get(\"mint_verified\") or not record.get(\"mint\"):",
+  "new": "    if not record.get(\"mint\"):",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-8 stale catalyst triggers refresh",
+  "file": "memelab/backtest/assess.py",
+  "old": "    if record.get(\"available_at\", 0) <= latest_assessment.get(\"as_of\", 0):",
+  "new": "    if False:",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-9 duplicate catalyst triggers refresh again",
+  "file": "memelab/backtest/assess.py",
+  "old": "    if seen:\n        return {\"action\": \"IGNORED\", \"reason\": \"duplicate",
+  "new": "    if False:\n        return {\"action\": \"IGNORED\", \"reason\": \"duplicate",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-10 hook lets an exception through",
+  "file": "memelab/backtest/hook.py",
+  "old": "    except Exception as e:                      # the lab",
+  "new": "    except ZeroDivisionError as e:                      # the lab",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-11 assessment changes the lab status",
+  "file": "memelab/backtest/assess.py",
+  "old": "        snap, prov = snapshot_from_result(r)\n",
+  "new": "        snap, prov = snapshot_from_result(r)\n        r[\"status\"][\"status\"] = \"WATCH\"\n",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-12 unclosed bars used for token signals",
+  "file": "memelab/backtest/assess.py",
+  "old": "    vis = [z for z in rows if z.avail <= t]",
+  "new": "    vis = rows",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-13 DEEP stage reads past the assessment time",
+  "file": "memelab/backtest/assess.py",
+  "old": "tokens, until=row[\"as_of\"])",
+  "new": "tokens, until=None)",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-14 scout attaches a record when the policy is off",
+  "file": "memelab/cli.py",
+  "old": "        if bt is not None:\n            r[\"backtest_assessment\"] = bt",
+  "new": "        if True:\n            r[\"backtest_assessment\"] = bt",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-15 abstain records dropped instead of stored",
+  "file": "memelab/backtest/assess.py",
+  "old": "            event = \"ABSTAINED\"\n",
+  "new": "            event = \"ABSTAINED\"\n            return out\n",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-16 cache key ignores new evidence rows",
+  "file": "memelab/backtest/assess.py",
+  "old": "key = store.sha256([snap.chain, snap.mint, snap_hash, ENGINE_VERSION, pol_hash, rev])",
+  "new": "key = store.sha256([snap.chain, snap.mint, snap_hash, ENGINE_VERSION, pol_hash])",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-17 robot outage triggers a refresh",
+  "file": "memelab/backtest/assess.py",
+  "old": "    if record.get(\"source_status\") not in (None, \"OK\"):",
+  "new": "    if False:",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-18 wallet transfer relabeled as a sale",
+  "file": "memelab/backtest/assess.py",
+  "old": "\"claim_kind\": record.get(\"kind\") or record.get(\"claim_type\")",
+  "new": "\"claim_kind\": \"SWAP_SELL\" if record.get(\"kind\") else record.get(\"claim_type\")",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-19 liquidity summed across pools",
+  "file": "memelab/backtest/assess.py",
+  "old": "liquidity_usd=(main or {}).get(\"reserve_usd\") or mk.get(\"liquidity_usd_total\")",
+  "new": "liquidity_usd=sum(p.get(\"reserve_usd\") or 0 for p in b.get(\"pools\") or [])",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-20 published time used as availability",
+  "file": "memelab/backtest/assess.py",
+  "old": "    if record.get(\"available_at\", 0) <= latest_assessment.get(\"as_of\", 0):",
+  "new": "    if (record.get(\"published_at\") or record.get(\"available_at\", 0)) <= latest_assessment.get(\"as_of\", 0):",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-21 cached answer served after it aged out",
+  "file": "memelab/backtest/assess.py",
+  "old": "            if pre and pre[0] == \"STALE_DATA\":",
+  "new": "            if False:",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-22 severe stress silently dropped",
+  "file": "memelab/backtest/assess.py",
+  "old": "                out[\"flags\"] = [\"BT_STRUCTURALLY_UNTRADEABLE\"]",
+  "new": "                pass",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M13-23 severe stress rewrites the lab score",
+  "file": "memelab/backtest/assess.py",
+  "old": "                out[\"flags\"] = [\"BT_STRUCTURALLY_UNTRADEABLE\"]",
+  "new": "                out[\"flags\"] = [\"BT_STRUCTURALLY_UNTRADEABLE\"]; r[\"score\"][\"total\"] = 0",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ }
+]

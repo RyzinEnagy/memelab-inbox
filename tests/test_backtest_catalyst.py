@@ -1,6 +1,8 @@
 """Phase 09: catalyst, wallet and social event-driven strategies (G03, G04, G19-G23, G36-G38). Synthetic records."""
 import sqlite3
 
+import pytest
+
 
 from memelab.backtest.engine import Engine, EngineConfig, TokenData
 from memelab.backtest.sources import catalyst_bridge

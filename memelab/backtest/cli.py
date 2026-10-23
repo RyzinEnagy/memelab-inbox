@@ -45,6 +45,19 @@ def cmd_run(a):
     print(json.dumps(summary, indent=1, default=str))
 
 
+def cmd_deep(a):
+    from . import assess
+    con = _con(a)
+    keys = assess.pending_deep(con)[: a.limit]
+    out = [assess.run_deep(con, k) for k in keys]
+    print(json.dumps({"processed": len(out), "results": [{k: r.get(k) for k in ("mint", "state", "tier", "wall_s", "cache")} for r in out]}, indent=1))
+
+
+def cmd_assess_stats(a):
+    from . import assess
+    print(json.dumps(assess.stats(_con(a)), indent=1))
+
+
 def add_subparser(sp):
     p = sp.add_parser("backtest", help="research backtests and stress tests (no trading; separate data/backtest/bt.sqlite)")
     ssp = p.add_subparsers(dest="bcmd", required=True)
@@ -59,6 +72,10 @@ def add_subparser(sp):
     q.add_argument("--max-positions", type=int, default=5); q.add_argument("--max-exposure", type=float, default=0.5)
     q.add_argument("--entry-impact-cap", type=float, default=0.03); q.add_argument("--max-drawdown", type=float)
     q.add_argument("--label"); q.add_argument("--db"); q.set_defaults(fn=cmd_run)
+    q = ssp.add_parser("deep", help="run queued DEEP assessments (offline, bounded)")
+    q.add_argument("--limit", type=int, default=20); q.add_argument("--db"); q.set_defaults(fn=cmd_deep)
+    q = ssp.add_parser("assess-stats", help="assessment counts, states and average wall time")
+    q.add_argument("--db"); q.set_defaults(fn=cmd_assess_stats)
 
 
 def main(argv=None):
