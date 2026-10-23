@@ -82,7 +82,7 @@
     "rets": []
    }
   },
-  "wall_s": 0.14
+  "wall_s": 0.13
  },
  "catalyst": {
   "manual_observation": "REFRESH_REQUESTED",
@@ -93,14 +93,14 @@
  },
  "benchmark_fast_ms": {
   "n": 20,
-  "median": 8.2,
-  "max": 12.5
+  "median": 7.9,
+  "max": 8.4
  },
  "stats": {
   "events": {
    "CACHE_HIT": {
     "n": 1,
-    "avg_ms": 1.9729137420654297
+    "avg_ms": 2.040863037109375
    },
    "CATALYST_REFRESH": {
     "n": 1,
@@ -108,11 +108,11 @@
    },
    "COMPLETED": {
     "n": 21,
-    "avg_ms": 9.463911964779808
+    "avg_ms": 8.496681849161783
    },
    "DEEP_INSUFFICIENT_HISTORY": {
     "n": 1,
-    "avg_ms": 139.80555534362793
+    "avg_ms": 129.53996658325195
    },
    "QUEUED_DEEP": {
     "n": 21,
@@ -124,7 +124,7 @@
    },
    "STALE_ON_HIT": {
     "n": 1,
-    "avg_ms": 1.352071762084961
+    "avg_ms": 1.744985580444336
    }
   },
   "states": {

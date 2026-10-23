@@ -387,8 +387,8 @@ def test_pools_that_disagree_are_not_measured_and_thin_prints_are_ignored(con):
         o, c = (1.0, 1.0) if i < 3 else ((1.0, 0.01) if i == 3 else (0.01, 0.01))
         store.record_bar(con, chain="solana", mint=M4, pool_address=pm, tf=3600, start=T0 + i * H, o=o, h=max(o, c), l=min(o, c), c=c,
                          volume_usd=(20000.0 if i == 3 else 1000.0), observed_at=T0 + (i + 1) * H + 600, provider="test")
-        if i <= 3 or i == 10:
-            sc = 0.98 if i == 3 else (0.5 if i == 10 else 1.0)          # crash-hour close before the crash, then one lone print
+        if i <= 3:
+            sc = 0.98 if i == 3 else 1.0                                   # crash-hour close from a trade before the crash
             store.record_bar(con, chain="solana", mint=M4, pool_address=ps, tf=3600, start=T0 + i * H, o=1.0, h=1.0, l=sc, c=sc, volume_usd=50.0,
                              observed_at=T0 + (i + 1) * H + 600, provider="test")
     con.commit()
@@ -398,6 +398,19 @@ def test_pools_that_disagree_are_not_measured_and_thin_prints_are_ignored(con):
     from memelab.backtest import stress as S
     c = S.empirical_cohort(con, "WATCH", min_n=1, asof=asof)
     assert c["pool_disagreement_removed"] == 3 and c["n"] == 1 and c["selection_bias_risk"] is True
+    # one lone off-market print among 24 shared hours does not void a window
+    m5 = "Fq5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapump"
+    pm5, ps5 = "M" + m5[1:], "S" + m5[1:]
+    for p_ in (pm5, ps5):
+        store.record_pool_version(con, chain="solana", pool_address=p_, mint=m5, pool_type="CPMM", observed_at=T0 - 3 * 86400, source="test",
+                                  dex="pumpswap", pool_created_at=T0 - 3 * 86400 - 60, available_at=T0 - 3 * 86400)
+    for i in range(-24, 30):
+        for p_, v, c_ in ((pm5, 2000.0, 1.0), (ps5, 100.0, 0.4 if i == 10 else 1.0)):
+            store.record_bar(con, chain="solana", mint=m5, pool_address=p_, tf=3600, start=T0 + i * H, o=1.0, h=1.0, l=c_, c=c_, volume_usd=v,
+                             observed_at=T0 + (i + 1) * H + 600, provider="test")
+    con.commit()
+    thesis(con, m5)
+    assert O.outcome_for(con, opp(con, m5), 24 * 3600, asof)["state"] == "COMPLETE"
 
 
 def test_cohort_keeps_feeds_that_died_and_flags_unmeasured_tokens(con):
@@ -424,3 +437,46 @@ def test_a_few_guard_removals_raise_the_bias_flag_even_under_twenty_percent(con)
     _two_pools(con, M1, side_vol=1500.0, side_step=-0.08)                 # 1 of 10 refused by the guard
     c = S.empirical_cohort(con, "WATCH", min_n=1, asof=T0 + 40 * H)
     assert c["pool_disagreement_removed"] == 1 and c["unmeasured_share"] == pytest.approx(0.1) and c["selection_bias_risk"] is True
+
+
+def test_in_memory_cohorts_are_never_cached():
+    """Phase 16 C3: an in-memory database has no stable identity (a reused id() could alias another one)."""
+    from memelab.backtest import stress as S
+    S._COHORT_CACHE.clear()
+    c = store.connect(":memory:")
+    thesis(c, M1)
+    S.empirical_cohort(c, "WATCH", asof=T0 + 40 * H)
+    assert S._COHORT_CACHE == {}
+    c.close()
+
+
+def test_one_off_market_hour_out_of_two_shared_is_not_enough_to_refuse(con):
+    """A side pool sharing only two hours, one of them the crash hour it closed before the crash: measured (N7 edge)."""
+    pm, ps = "M" + M1[1:], "S" + M1[1:]
+    for p_ in (pm, ps):
+        store.record_pool_version(con, chain="solana", pool_address=p_, mint=M1, pool_type="CPMM", observed_at=T0 - 3 * 86400, source="test",
+                                  dex="pumpswap", pool_created_at=T0 - 3 * 86400 - 60, available_at=T0 - 3 * 86400)
+    for i in range(-24, 30):
+        o, c = (1.0, 1.0) if i < 3 else ((1.0, 0.01) if i == 3 else (0.01, 0.01))
+        store.record_bar(con, chain="solana", mint=M1, pool_address=pm, tf=3600, start=T0 + i * H, o=o, h=max(o, c), l=min(o, c), c=c, volume_usd=1000.0,
+                         observed_at=T0 + (i + 1) * H + 600, provider="test")
+        if i in (2, 3):
+            store.record_bar(con, chain="solana", mint=M1, pool_address=ps, tf=3600, start=T0 + i * H, o=1.0, h=1.0, l=0.98, c=0.98 if i == 3 else 1.0,
+                             volume_usd=50.0, observed_at=T0 + (i + 1) * H + 600, provider="test")
+    con.commit()
+    thesis(con, M1)
+    out = O.outcome_for(con, opp(con, M1), 24 * 3600, T0 + 40 * H)
+    assert out["state"] == "COMPLETE" and out["realized"]["down_50"]
+
+
+def test_report_cohort_line_states_the_bias_flag_and_the_split():
+    from memelab.backtest import report
+    coh = {"tier": "HISTORICAL_COHORT", "status": "WATCH", "n": 45, "n_complete": 30, "min_n": 30, "known_tokens": 60, "horizon_h": 24,
+           "ret_p10_p50_p90": [-0.8, 0.0, 0.0], "worst_drop_p10_p50": [-0.8, -0.01], "ret_complete_only_p10_p50_p90": [0.0, 0.0, 0.0],
+           "selection_bias_risk": True, "unmeasured_share": 0.25, "pool_disagreement_removed": 0, "point_in_time": True}
+    a = {"chain": "solana", "mint": "X", "as_of": T0, "state": "PARTIAL_WITH_LIMITATIONS", "tier": "HISTORICAL_COHORT",
+         "stress": {"historical_evidence": coh, "decision": "INCONCLUSIVE"}}
+    md = report.render_md(report.build(a, lab={"score": 60, "status": "WATCH", "fatal_flags": []}, shared={}))
+    line = next(x for x in md.splitlines() if x.startswith("Cohort of past tokens"))
+    assert "45 measured windows (30 complete, 15 cut short" in line and "Selection-bias risk: YES (25% of measurable tokens could not be measured" in line
+    assert "Complete windows only" in line

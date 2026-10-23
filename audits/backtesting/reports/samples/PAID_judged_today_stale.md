@@ -6,10 +6,10 @@ Research only. Backtests describe the past over the lab's discovery universe, st
 
 ## Headline (HEURISTIC)
 
-Label: UNTESTED. Why: assessment STALE_DATA: analysis snapshot is 406.7 h old.
+Label: UNTESTED. Why: assessment STALE_DATA: analysis snapshot is 407.7 h old.
 Project (lab view, unchanged): score 64, status SETUP DEVELOPING, good project by the lab's rubric.
 Entry (execution view): UNTESTED, stress n/a, size under caps n/a.
-Not assessed because: analysis snapshot is 406.7 h old (retriable: True).
+Not assessed because: analysis snapshot is 407.7 h old (retriable: True).
 
 ## Historical evidence
 

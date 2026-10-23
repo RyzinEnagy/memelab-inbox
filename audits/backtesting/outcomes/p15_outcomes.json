@@ -23,7 +23,7 @@
   "new_rows": 4092,
   "fetched": 0,
   "deferred_fetches": 0,
-  "wall_s": 21.6
+  "wall_s": 21.1
  },
  "track_rate_limited": "SKIPPED_MIN_INTERVAL",
  "track_2_new_rows": 0,
@@ -2115,5 +2115,5 @@
   "ledger_hash": "57bb234876ca600b89a8d6005c15d02135e6368f44e69aaf5d394d0d35fabcc1"
  },
  "prior_runs_unchanged": true,
- "wall_s": 56.8
+ "wall_s": 56.0
 }

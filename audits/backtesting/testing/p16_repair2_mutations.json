@@ -39,10 +39,10 @@
   ]
  },
  {
-  "id": "R16b-5 a single-hour gap voids the window",
+  "id": "R16b-5 a single off-market hour voids the window",
   "file": "memelab/backtest/outcomes.py",
-  "old": "                      min_run_hours: int = 2) -> dict | None:",
-  "new": "                      min_run_hours: int = 1) -> dict | None:",
+  "old": "                      min_apart: int = 2, min_share: float = 1 / 3) -> dict | None:",
+  "new": "                      min_apart: int = 1, min_share: float = 1 / 3) -> dict | None:",
   "tests": [
    "tests/test_backtest_outcomes.py",
    "audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_guard_does_not_hide_a_rug_below_the_bias_flag"
@@ -60,16 +60,6 @@
    "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_bare_keys_headers_and_path_tokens",
    "audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_query_userinfo_and_common_names",
    "tests/test_backtest_webcapture.py"
-  ]
- },
- {
-  "id": "R16b-7 Authorization values echoed",
-  "file": "memelab/backtest/sources/webcapture.py",
-  "old": "               lambda m: m.group(1) + m.group(2) + (\"[removed]\" if (re.search(r\"[\\d=+/]\", m.group(3)) or len(m.group(3)) >= 20)",
-  "new": "               lambda m: m.group(1) + m.group(2) + (\"[removed]\" if False",
-  "tests": [
-   "tests/test_backtest_webcapture.py",
-   "audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_redaction_pass2_claims_hold"
   ]
  },
  {
@@ -121,7 +111,7 @@
  {
   "id": "R16c-3 short keys after a credential word echoed",
   "file": "memelab/backtest/sources/webcapture.py",
-  "old": "               lambda m: m.group(1) + m.group(2) + (\"[removed]\" if not (_public_address(m.group(3)) or _hash_or_signature(m.group(3))) else m.group(3)), t)",
+  "old": "               lambda m: m.group(1) + m.group(2) + (\"[removed]\" if credential_like(m.group(3)) else m.group(3)), t)",
   "new": "               lambda m: m.group(0), t)",
   "tests": [
    "audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_redaction_catches_bare_short_keys"
@@ -143,6 +133,81 @@
   "new": "(unmeasured / measurable > 0.2)",
   "tests": [
    "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "R16d-1 side pools compared one at a time",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "    gaps = {st: abs(math.log(statistics.median(others[st]) / base[st])) for st in shared}",
+  "new": "    gaps = {st: abs(math.log(others[st][0] / base[st])) for st in shared}",
+  "tests": [
+   "audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_three_pools_one_off_market_side_pool_is_refused_and_disclosed"
+  ]
+ },
+ {
+  "id": "R16d-2 only hour-after-hour divergence refused",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "                      min_apart: int = 2, min_share: float = 1 / 3) -> dict | None:",
+  "new": "                      min_apart: int = 2, min_share: float = 1.0) -> dict | None:",
+  "tests": [
+   "audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_alternating_divergence",
+   "audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_sparse_real_market"
+  ]
+ },
+ {
+  "id": "R16d-3 report hides the cohort bias flag",
+  "file": "memelab/backtest/report.py",
+  "old": "        if c.get(\"selection_bias_risk\") is not None:\n            us = c.get(\"unmeasured_share\")",
+  "new": "        if False:\n            us = c.get(\"unmeasured_share\")",
+  "tests": [
+   "audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_report_markdown_discloses_cohort_bias_and_censored_windows",
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "R16d-4 report calls every measured window complete",
+  "file": "memelab/backtest/report.py",
+  "old": "        line = (f\"Cohort of past tokens with lab status {c.get('status')}: {n} measured windows\"\n                + (f\" ({nc} complete, {stopped} cut short when trading stopped, counted at the last traded price, an upper bound)\" if nc is not None else \"\")",
+  "new": "        line = (f\"Cohort of past tokens with lab status {c.get('status')}: {n} complete cases\"",
+  "tests": [
+   "audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_report_markdown_discloses_cohort_bias_and_censored_windows",
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "R16d-5 in-memory cohorts cached",
+  "file": "memelab/backtest/stress.py",
+  "old": "cut, tuple(rev)) if path and os.path.exists(path) else None",
+  "new": "cut, tuple(rev)) if path and os.path.exists(path) else (\"memory\", universe_id, status, horizon_h, min_n, cut, tuple(rev))",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "R16d-6 timestamps and identifiers redacted after credential words",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "    if len(v) < 16 or _public_address(v) or re.search(r\"\\d{4}-\\d{2}-\\d{2}\", v) or v.count(\"_\") >= 2:",
+  "new": "    if len(v) < 16 or _public_address(v):",
+  "tests": [
+   "audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_false_positives_after_credential_words"
+  ]
+ },
+ {
+  "id": "R16d-7 credential word must touch the value",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "((?:[\\s:=\\\"']+[A-Za-z]{1,12}){0,2}?[\\s:=\\\"']+)",
+  "new": "((?:[\\s:=\\\"']+[A-Za-z]{1,12}){0,0}?[\\s:=\\\"']+)",
+  "tests": [
+   "audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_context_word_without_separator"
+  ]
+ },
+ {
+  "id": "R16d-8 digests exempt after credential words again",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "    if len(v) < 16 or _public_address(v) or re.search",
+  "new": "    if len(v) < 16 or _public_address(v) or _hash_or_signature(v) or re.search",
+  "tests": [
+   "audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_hex_and_secret_key_shaped_values"
   ]
  }
 ]

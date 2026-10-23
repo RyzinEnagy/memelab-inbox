@@ -213,7 +213,10 @@ def _alternates(a: dict) -> list[str]:
         out.append("no tested setup is active on this token now; a move from here is outside what the strategies were tested on")
     he = (a.get("stress") or {}).get("historical_evidence") or {}
     if he.get("tier") != "HISTORICAL_COHORT":
-        out.append(f"the cohort of past tokens with this lab status is {he.get('n', 0)} cases (minimum {he.get('min_n', 30)}); past outcomes cannot separate skill from luck")
+        out.append(f"the cohort of past tokens with this lab status is {he.get('n', 0)} measured windows (minimum {he.get('min_n', 30)}); past outcomes cannot separate skill from luck")
+    if he.get("selection_bias_risk"):
+        out.append(f"the cohort may be selection-biased: {he.get('unmeasured_share') or 0:.0%} of the tokens it should cover could not be measured "
+                   f"(never fetched, no pool basis, or pools that disagreed)")
     snap = a.get("snapshot") or {}
     if (snap.get("concentrated_pct") or 0) >= 20:
         out.append(f"{snap['concentrated_pct']:.0f}% of supply sits in concentrated holders; they can move price regardless of the setup")
@@ -361,12 +364,26 @@ def render_md(doc: dict) -> str:
     L += ["", "## Historical evidence", "", f"Token-specific: {he['token_specific'].get('state')} ({he['token_specific'].get('note') or 'no note'})."]
     if he.get("cohort"):
         c = he["cohort"]
-        kt = c.get("known_tokens")
-        known = f" of {kt} token{'' if kt == 1 else 's'} the lab had recorded by then" if kt is not None else ""
-        L.append(f"Cohort of past tokens with lab status {c.get('status')}: {c.get('n')} complete cases{known}, tier {c.get('tier')} (minimum {c.get('min_n')})."
-                 + (" Returns over {h} h, p10 / p50 / p90: {r}; worst drop p10 / p50: {w}. Mid prices before costs.".format(
-                     h=c.get("horizon_h"), r=" / ".join(_pct(x) for x in c.get("ret_p10_p50_p90") or []), w=" / ".join(_pct(x) for x in c.get("worst_drop_p10_p50") or []))
-                    if c.get("tier") == "HISTORICAL_COHORT" else ""))
+        kt, n, nc = c.get("known_tokens"), c.get("n") or 0, c.get("n_complete")
+        stopped = (n - nc) if nc is not None else None
+        line = (f"Cohort of past tokens with lab status {c.get('status')}: {n} measured windows"
+                + (f" ({nc} complete, {stopped} cut short when trading stopped, counted at the last traded price, an upper bound)" if nc is not None else "")
+                + (f" of {kt} token{'' if kt == 1 else 's'} the lab had recorded by then" if kt is not None else "")
+                + f", tier {c.get('tier')} (minimum {c.get('min_n')}).")
+        if c.get("tier") == "HISTORICAL_COHORT":
+            line += " Returns over {h} h, p10 / p50 / p90: {r}; worst drop p10 / p50: {w}.".format(
+                h=c.get("horizon_h"), r=" / ".join(_pct(x) for x in c.get("ret_p10_p50_p90") or []), w=" / ".join(_pct(x) for x in c.get("worst_drop_p10_p50") or []))
+            if c.get("ret_complete_only_p10_p50_p90"):
+                line += " Complete windows only: " + " / ".join(_pct(x) for x in c["ret_complete_only_p10_p50_p90"]) + "."
+            line += " Mid prices before costs."
+        if c.get("selection_bias_risk") is not None:
+            us = c.get("unmeasured_share")
+            parts = ([f"{us:.0%} of measurable tokens could not be measured"] if us is not None else []) + \
+                [f"{c.get('pool_disagreement_removed', 0)} removed for pool disagreement"]
+            line += f" Selection-bias risk: {'YES' if c['selection_bias_risk'] else 'no'} ({', '.join(parts)})."
+        if c.get("point_in_time") is False:
+            line += " NOT point-in-time: computed on everything stored today."
+        L.append(line)
     s = he.get("strategies")
     if s:
         L += ["", f"Strategies over the lab's whole discovery universe (net of modeled costs, ranked by net; paper is mid to mid before costs; "

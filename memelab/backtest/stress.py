@@ -278,9 +278,9 @@ def empirical_cohort(con, status: str | None, horizon_h: int = 24, min_n: int = 
     import copy
     import os
     path = str(con.execute("PRAGMA database_list").fetchone()[2] or "")
-    ident = (path, os.stat(path).st_ino) if path and os.path.exists(path) else ("memory", id(con))   # a replaced file or another in-memory db is another key
-    key = (ident, universe_id, status, horizon_h, min_n, cut, tuple(rev))
-    if key in _COHORT_CACHE:
+    # a replaced file is another key (inode); an in-memory database is never cached (a reused id() could alias another one, C3)
+    key = ((path, os.stat(path).st_ino), universe_id, status, horizon_h, min_n, cut, tuple(rev)) if path and os.path.exists(path) else None
+    if key is not None and key in _COHORT_CACHE:
         return copy.deepcopy(_COHORT_CACHE[key])
     rows = con.execute("SELECT chain, mint, MIN(available_at) t FROM bt_universe_members WHERE universe_id=? AND basis='THESIS' AND status_at_entry IS ? "
                        "AND available_at<=? GROUP BY chain, mint", (universe_id, status, cut)).fetchall()
@@ -315,7 +315,8 @@ def empirical_cohort(con, status: str | None, horizon_h: int = 24, min_n: int = 
                "note": ("empirical frequencies for past tokens with the same lab status, known and measurable at the assessment time; not this token's "
                         "probabilities; mid prices before costs; windows whose feed stopped count at their last traded price (an upper bound); "
                         "windows where pools disagreed are not measured")}
-    if len(_COHORT_CACHE) > 256:
-        _COHORT_CACHE.clear()
-    _COHORT_CACHE[key] = copy.deepcopy(out)
+    if key is not None:
+        if len(_COHORT_CACHE) > 256:
+            _COHORT_CACHE.clear()
+        _COHORT_CACHE[key] = copy.deepcopy(out)
     return out

@@ -164,6 +164,16 @@ def looks_like_secret(seg: str) -> bool:
 CREDENTIAL_WORDS = r"(?:api[ _-]?key|apikey|key|token|secret|password|passwd|credentials?|bearer|authorization|auth|signing key|private key)"
 
 
+def credential_like(v: str) -> bool:
+    """A value placed next to a credential word that should be treated as one: 16+ characters with letters and digits
+    (or 40+ of any kind), unless it is a public Solana address, a timestamp, or an underscore_joined identifier.
+    Credential context wins over the digest and signature exemption (Phase 16, N4d)."""
+    v = v.strip("'\"")
+    if len(v) < 16 or _public_address(v) or re.search(r"\d{4}-\d{2}-\d{2}", v) or v.count("_") >= 2:
+        return False
+    return len(v) >= 40 or (re.search(r"\d", v) is not None and re.search(r"[A-Za-z]", v) is not None)
+
+
 def redact_url(url) -> str | None:
     """Scheme, host and path only: query strings, fragments, user:password parts and credential-shaped path segments
     never leave this module (Phase 16, D8 and N4)."""
@@ -188,12 +198,12 @@ def redact_text(text, url=None) -> str | None:
     if url:
         t = t.replace(str(url), redact_url(url) or "")
     # Authorization schemes: the value only when it looks like a credential (a digit or base64 padding, or 20+ characters)
-    t = re.sub(r"(?i)\b(bearer|basic|token)(\s+)([A-Za-z0-9._~+/=\-:]{8,})",
+    t = re.sub(r"(?i)\b(bearer|basic)(\s+)([A-Za-z0-9._~+/=\-:]{8,})",
                lambda m: m.group(1) + m.group(2) + ("[removed]" if (re.search(r"[\d=+/]", m.group(3)) or len(m.group(3)) >= 20)
-                                                     and not _public_address(m.group(3)) and not _hash_or_signature(m.group(3)) else m.group(3)), t)
-    # a 16+ character value right after a credential word ("key abc...", "credential: abc...")
-    t = re.sub(r"(?i)\b(" + CREDENTIAL_WORDS + r")\b(\s*(?:is\s+|[:=]\s*)?[\"']?)([A-Za-z0-9._~+/=\-:]{16,})",
-               lambda m: m.group(1) + m.group(2) + ("[removed]" if not (_public_address(m.group(3)) or _hash_or_signature(m.group(3))) else m.group(3)), t)
+                                                     and not _public_address(m.group(3)) else m.group(3)), t)
+    # a credential-like value after a credential word, directly or after up to two short words ("X-API-KEY header value abc...")
+    t = re.sub(r"(?i)\b(" + CREDENTIAL_WORDS + r")\b((?:[\s:=\"']+[A-Za-z]{1,12}){0,2}?[\s:=\"']+)([A-Za-z0-9._~+/=\-:]{16,})",
+               lambda m: m.group(1) + m.group(2) + ("[removed]" if credential_like(m.group(3)) else m.group(3)), t)
     t = re.sub(r"//[^/@\s'\"]+@", "//REDACTED@", t)
     t = re.sub(r"(?i)([\"']?" + SENSITIVE_NAMES + r"[\"']?\s*[:=]\s*[\"']?)([^\"'&\s,;}]+)", r"\1[removed]", t)
     t = re.sub(r"https?://[^\s'\"<>]+", lambda m: redact_url(m.group(0)) or "", t)

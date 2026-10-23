@@ -622,3 +622,187 @@ Next step:
 2. Then have the user accept G16 and G27 explicitly.
 
 After both, Phase 16 can be closed for scenario-only research mode.
+
+## Re-run after repair pass 3
+
+Re-run by the same independent reviewer against commit `c42045b` (repair pass 3), 2026-10-23, 22:39 to 23:18 UTC.
+
+Unchanged since I left them:
+- `tests/test_backtest_e2e_audit.py`, `p16_mutations.json` and the first-pass scripts (`git diff 47a7845 HEAD` empty for them);
+- `test_p16r1_repair_attacks.py` and `test_p16r2_repair_attacks.py` (committed by the coordinator as written, no change since).
+
+New in this pass, all uncommitted:
+- `test_p16r3_repair_attacks.py`, 20 attacks on pass 3: 8 residual reproductions listed in `RESIDUAL_TESTS` and 12 checks that pass;
+- `p16r3_cohort_check.py`, an independent recomputation with the pass-3 guard;
+- `p16r3_guard_scan.py`, the real-corpus effect of the pass-3 guard (the pass-2 scan reads a field that pass 3 removed);
+- `p16r3_n3c_scan.py`, the real-corpus size of N3c, with a control run on a synthetic world;
+- logs `logs/p16r3_*`.
+
+Housekeeping:
+- Protected hashes are unchanged (`bt.sqlite` `5f4ce7239eb4f0b0...`, `memelab.sqlite` `068287c0d7e45436...`).
+- No BRETT report was written this time.
+- No Firecrawl call this pass (2 of 8 used in total).
+- The release audit's own credential and no-trading scanners find nothing in my new files, also with them tracked in a throwaway clone.
+
+### Verdict after repair pass 3
+
+PHASE 16: FAILED (fourth pass of five, strict reading of the gate), with G16 and G27 taken as disclosed limitations.
+
+- Pass 3 fixes everything it claims:
+  - all six pass-2 residuals (N7, N3b, N4b, N4c, C1, C2) and the migration flake are fixed;
+  - my unchanged pass-2 attacks pass;
+  - a 16-process burst on a fresh database succeeded 5 times out of 5;
+  - the concurrency script ran clean 3 times.
+- No High defect.
+- One Medium, N8. It is not new code:
+  - since pass 1, the Markdown report has called every measured cohort window a "complete case" and has never shown the selection-bias flag;
+  - I missed it in passes 1 and 2, so my pass-2 statement that no Medium defect remained was wrong.
+- Low residuals:
+  - N3c: the persistence rule can be evaded;
+  - N4d and N4e: secrets echoed;
+  - N4f: over-redaction;
+  - C3: a latent cache key.
+- Three scenarios stay PARTIAL: G02 (N3c), G06 (N8) and G39 (N4d, N4e).
+
+What would close it in the fifth and last pass. Each fix is small:
+1. N8 (must). The cohort line in `report.render_md` should say:
+   - how many windows were measured, how many were complete, and how many stopped trading early (counted at their last price, an upper bound);
+   - the selection-bias flag with the unmeasured share;
+   - the guard removals and the complete-only percentiles.
+2. N4d (must). A credential word directly before a value wins over the digest and signature exemption.
+3. N3c (must, unless the user accepts it as a documented limitation). Three changes:
+   - count a run over consecutive shared observations instead of clock-adjacent hours;
+   - also refuse when more than a third of the shared hours (at least 2) are apart;
+   - compare the union of side pools with the basis, as well as each side pool alone.
+   My scan shows that neither rule changes a single real window today.
+4. C3 (should). Do not cache in-memory databases, or key them on a token stored with the connection.
+5. N4e and N4f can be documented as limits of text redaction instead of fixed.
+
+Then re-run these commands with all four attack files unchanged. If they pass and nothing new of Medium severity or higher appears, I would expect:
+- G02, G06 and G39 to move to PASS;
+- the phase to close for scenario-only research mode, with G16, G27, N4e and N4f as disclosed limitations.
+
+Release classification, unchanged: scenario-only research mode, clearly labeled. It is not an empirically validated engine:
+- every sealed test is INSUFFICIENT_SAMPLE;
+- the sealed window was seen before pre-registration, so a new sealed test needs data after 2026-10-23 16:00 UTC;
+- historical fills are LIQ_SNAPSHOT_APPROX;
+- historical price paths come from one provider. The independent confirmations from the first pass still stand.
+
+### Commands and exits
+
+| Command | Exit | Result | Log |
+|---|---|---|---|
+| `pytest tests -q -p no:cacheprovider` | 1 | 1020 passed, 1 failed (C-1 only, pre-existing: `test_catalyst.py::test_dedup_corroboration_resurface_denial`) | `logs/p16r3_full_pytest.log` |
+| `pytest tests/test_backtest_e2e_audit.py` and the pass-1 and pass-2 attack files, `-v` | 1 | 35 passed, 1 failed: the accepted N3 test (KeyError: the cohort is INSUFFICIENT_HISTORY by the fail-closed rule). DEFECT_TESTS 9 of 9 pass; pass-2 attacks 9 of 9 pass. | `logs/p16r3_my_tests.log` |
+| `pytest audits/backtesting/testing/test_p16r3_repair_attacks.py -v` | 1 | 12 passed, 8 failed: exactly the 8 residual reproductions in `RESIDUAL_TESTS` | `logs/p16r3_repair_attacks.log` |
+| `mutate.py` p05 to p16, repair, repair2 (`PYTHONDONTWRITEBYTECODE=1`) | 0 each | 205 of 205 caught (167 + 13 + 10 + 15) | `logs/p16r3_mutations_all.log` |
+| `p16_mutate_strict.py` p16, repair, repair2 | 0 | all caught except one survival of R16-6 (concurrent first migration) in this shared-copy run; `mutate.py` on R16-6 alone catches it 8 of 8 | `logs/p16r3_mut_strict.log`, `logs/p16r3_r166_repeat.log` |
+| `p16r3_cohort_check.py <copy>` | 0 | the package matches my recomputation at 6 real decision points: known tokens, n, n_complete, guard removals, bias flag, p10 and median | `logs/p16r3_cohort_check.log` |
+| `p16r3_guard_scan.py <copy>` | 0 | 1,023 opportunities; the guard removes 0 / 0 / 1 / 1 windows at 1 / 6 / 24 / 72 h (pass 2: 0 / 0 / 1 / 2) | `logs/p16r3_guard_scan.log` |
+| `p16r3_n3c_scan.py <copy>`, then on the synthetic alternating world | 0 | real corpus: 0 measured windows with two or more shared hours apart, out of 74 / 83 / 83 / 88 multi-pool windows at 1 / 6 / 24 / 72 h. Control: all 30 synthetic windows found at 24 h. | `logs/p16r3_n3c_scan.log` |
+| `p16_concurrency.py <scratch>`, 3 runs on fresh copies | 0 each | every run: A 8/8 OK, one migration row; B 12/12 OK, no duplicates; C 1 RAN + 2 SKIPPED_MIN_INTERVAL, no duplicate windows; D 1 MISS + 2 HIT_AFTER_CONCURRENT_RUN, one result row; blocked providers explicit | `logs/p16r3_concurrency.log` |
+| `p16_real_cases.py <copy>` | 0 | all four cases identical to the first pass except the cohort, which is identical to pass 2 (138 REJECTED, 27 FRESH; no as-of, labeled) | `logs/p16r3_real_cases.log` |
+| `p16_sealed_rerun.py <copy>` | 0 | cutoff hash matches; configs, verdicts, metrics and both sealed-test ledger hashes reproduce (`88ae4054`, `e4781814`) | `logs/p16r3_sealed_rerun.log` |
+| `p16_golden.py` | 0 | 45 of 45 agree | `logs/p16r3_golden.log` |
+| `p16_regression.sh` | 0 | policy off identical to base; on: additive only. Versus pass 2, only the snapshot age (406.1 h to 407.0 h, wall clock), the request ids and the report hash that follows from them differ. | `logs/p16r3_regression.log` |
+| `tools/release_e2e.py` at c42045b | 0 | PASS 78 of 78, network 0, tracked DB byte-identical | `logs/p16r3_release_e2e_head*` |
+| clean local clone, `env -i`: `pytest tests/test_backtest_*.py` and the pass-1 and pass-2 attack files | 1 | 251 passed, 1 failed (the same accepted N3 test) | `logs/p16r3_clean_clone.log` |
+| same clone, pass-3 attack file copied in | 1 | 12 passed, 8 failed, identical to the working copy | same |
+| clean clone `tools/release_audit.py`, before and after tracking my pass-3 files (index only, no commit) | 0 | Needs action: no | same |
+
+### Status of the pass-2 findings
+
+| Finding | Status | Evidence |
+|---|---|---|
+| N7 guard hides a rug below the bias flag | FIXED | `test_r2_guard_does_not_hide_a_rug_below_the_bias_flag` passes. A single-hour gap from crash timing no longer voids a window, and removals are counted in `pool_disagreement_removed` and raise the flag above 5%. `test_r3_rug_with_a_two_hour_stale_side_pool_is_disclosed` passes: a side pool stale for 2 hours refuses the rug window, and the count discloses it below the flag. |
+| N3b guard evaded by 20x wash volume | FIXED | `test_r2_guard_is_evaded_when_wash_volume_exceeds_twenty_times_the_real_pool` passes; the volume floor is gone. Residual N3c below. |
+| N4b bare short keys | FIXED | `test_r2_redaction_catches_bare_short_keys` passes. Residuals N4d and N4e below. |
+| N4c over-redaction of hashes and signatures | FIXED | `test_r2_redaction_keeps_useful_public_text` and `test_r3_redaction_keeps_public_identifiers_and_removes_prefixed_keys` pass. Residual N4f below. |
+| C1 shared cached object | FIXED | `test_r2_cached_cohort_cannot_be_poisoned_by_a_caller` passes (deep copies on store and on return) |
+| C2 request key without pool records | FIXED | `test_r2_assessment_cache_never_serves_a_stale_cohort_after_new_pool_records` passes (`bt_pool_versions` is in `data_revision`). The file key is now (path, inode), so a replaced file gets a new key. Residual C3 for in-memory databases. |
+| Migration flake (claimed by the builder) | FIXED | `BEGIN IMMEDIATE` plus a bounded retry on lock errors only. 5 bursts of 16 processes on a fresh database: all OK in under 15 s, one migration row each. Connecting to an existing database while another connection holds a write lock returns in under 2 s. A non-lock error (a file that is not a database) is raised at once. |
+| N3 basis steered by wash volume | RESOLVED BY FAIL-CLOSED (accepted in pass 2) | unchanged |
+
+Real REJECTED cohort at 2026-10-23 17:00, the last full hour of the corpus, identical to my recomputation:
+- 136 measured, of which 105 complete;
+- 26.9% of measurable tokens unmeasured, so selection bias is flagged;
+- 0 guard removals;
+- p10 -77.6%, complete-only p10 -59.4%.
+
+With no as-of it is 138 measured, the builder's number.
+
+### Remaining defects, ranked
+
+| # | Severity | Location | Reproduction (`test_p16r3_repair_attacks.py` unless named) | Breaks |
+|---|---|---|---|---|
+| N8 | Medium (report disclosure) | `memelab/backtest/report.py` `render_md`, the cohort line (unchanged since `47a7845`) | `test_r3_report_markdown_discloses_cohort_bias_and_censored_windows` and the real REJECTED cohort; details below the table | G06; also the evidence wording G31 relies on |
+| N4d | Low | `memelab/backtest/sources/webcapture.py`: the digest and signature exemption (`_hash_or_signature`) applies even right after a credential word | `test_r3_redaction_hex_and_secret_key_shaped_values`; details below the table | G39 |
+| N3c | Low | `memelab/backtest/outcomes.py` `pool_disagreement`: a run counts clock-adjacent hours, and each side pool is checked against the basis alone | `test_r3_guard_alternating_divergence`, `test_r3_guard_sparse_real_market`, `test_r3_guard_three_pools_real_market_split_across_two_pools`; details below the table. Real corpus: 0 windows of this shape (`p16r3_n3c_scan.py`). | G02 |
+| N4e | Low | `webcapture`: credential context counts only directly before the value | `test_r3_redaction_context_word_without_separator`: "provider rejected the X-API-KEY header value <32-hex>" is echoed ("X-API-KEY: <32-hex>" is removed) | G39 |
+| N4f | Low (false positives) | `webcapture`: the rule for values of 16 or more characters after a credential word | `test_r3_redaction_false_positives_after_credential_words`: "missing key published_time_field_value; token expired_at_2026-10-23T12:00:00Z; auth required_for_this_endpoint" becomes "missing key [removed]; token [removed]; auth [removed]" | diagnostics |
+| C3 | Low (latent) | `memelab/backtest/stress.py` `empirical_cohort`, cache key `("memory", id(con))` | `test_r3_cohort_cache_in_memory_id_reuse`: CPython reuses a closed connection's id for the next in-memory connection. A database whose true median is -0.5 is served 0.0 from the previous one (6 of 6 alternations in a manual loop). Production opens files, so this is not reachable today. | integrity |
+
+N8 in detail:
+- Synthetic: 45 measured windows, of which 30 complete and 15 stopped early, with the bias flag true in the JSON document. The Markdown says "45 complete cases" and has no word about bias, censoring or the upper bound.
+- Real corpus: the REJECTED cohort at 2026-10-23 17:00, rendered with `report.build` and `render_md`, reads "136 complete cases of 192 tokens ... p10 / p50 / p90: -77.6% / -3.3% / +29.5%". In fact 105 are complete, 31 are censored, and 26.9% of measurable tokens are unmeasured (flag true).
+
+N4d in detail:
+- Echoed in error text: "Authorization: Bearer <64-hex>", "HMAC secret <64-hex>", "token <40-hex>", and "private key" followed by a fake Solana secret-key shape (base58 of 64 bytes). "password <40-hex>" is echoed too (manual check).
+- Removed: the same values after "=", ":" or in JSON quoting, and URL query values.
+
+N3c in detail. Each test makes 30 tokens whose real market never moves, with a wash basis pool that falls:
+- `test_r3_guard_alternating_divergence`: the wash basis is at the market in even hours and falls in odd hours, so 10 of 24 shared hours are more than 30% apart but never two adjacent;
+- `test_r3_guard_sparse_real_market`: the real pool trades every other hour, so no two shared hours are adjacent;
+- `test_r3_guard_three_pools_real_market_split_across_two_pools`: the real market is split over two pools trading in alternate hours.
+In all three, the cohort is HISTORICAL_COHORT with a median of -95%.
+
+Checks that pass (no defect):
+- three pools where a real basis and a real side pool agree and a third pool sits 60% below all day: every window is refused, `pool_disagreement_removed` is 30 and the flag is raised (`test_r3_guard_three_pools_one_off_market_side_pool_is_refused_and_disclosed`);
+- steady divergence is refused (`test_r3_guard_steady_divergence_is_refused`);
+- a gap is still refused when the real pool misses every third hour (`test_r3_guard_gap_across_a_missing_hour_still_refused`);
+- the connect retry, as described in the migration flake row above.
+
+Observations:
+- R16-6 timing: in the strict run on a shared copy, the mutation that re-creates the concurrent first-migration crash survived once. Alone it is caught 8 of 8, and the official run caught it. Detection depends on process timing, so a single strict run can miss it.
+- While another process holds the research database's write lock, the scout hook waits about 10 s (the busy timeout) per assessment, then degrades explicitly as G34 requires. This is the same at pass 2 (10.2 s at both commits), so it is not a regression.
+- The one 24 h window the guard still removes in the real corpus (Bm67Lrew..., LAB_REJECTION, 2026-10-18 09:51) is a dust token. Its two meteora-damm-v2 pools have no recorded volume and closed 344% apart for 2 consecutive hours. Refusing it is reasonable.
+- `p16r2_guard_scan.py` no longer runs at pass 3 (KeyError `other_volume_share`, a field pass 3 removed); `p16r3_guard_scan.py` replaces it.
+
+Answers to the questions asked:
+- **Persistence rule edge cases.**
+  - Gaps that span missing bars are still refused while two adjacent shared hours remain apart.
+  - Alternating hours evade the rule, and a sparse real market evades it the same way (N3c).
+  - With three pools, an off-market third pool refuses the window (fail-closed and disclosed), but a real market split over two pools evades the rule (N3c).
+  - The fix is the one listed under the verdict. My real-corpus scan shows neither new rule would change a window today, so this is Low.
+- **Redaction.**
+  - False negatives remain in two forms. A credential word followed by a space and a hex or base58 value of digest or signature length is echoed (N4d); the realistic case is Bearer followed by a 64-hex token. A credential word that is not directly before the value is missed (N4e).
+  - False positives remain for ordinary long words and timestamps after key, token or auth (N4f).
+  - N4d is partly my own doing. In pass 2 I proposed keeping 64-hex hashes and long base58 runs without saying that a credential word must take precedence, and the builder implemented the exemption as I wrote it.
+- **The new retry in connect.** Sound:
+  - it retries only on "locked" or "busy", rolls back an open transaction, backs off from 0.05 s and gives up after 8 attempts;
+  - a non-lock error is raised at once;
+  - a 16-process burst on a fresh database succeeded 5 times out of 5, with one migration row each time;
+  - a connection to an existing database is not blocked by another connection's write lock;
+  - all three concurrency runs were clean.
+
+### G01 to G41 after repair pass 3
+
+| G | After pass 2 | Now | Reason |
+|---|---|---|---|
+| G02 | PARTIAL | PARTIAL | N3b fixed. Residual N3c: the persistence rule is evaded by alternating, sparse or split divergence (synthetic only, 0 real windows). |
+| G06 | PARTIAL | PARTIAL | N7 fixed (removals are counted and flagged). New N8: the human-readable report hides the selection-bias flag and calls censored windows complete. The JSON report is correct. |
+| G39 | PARTIAL | PARTIAL | N4b and N4c fixed; residuals N4d and N4e |
+| G16 | PARTIAL | PARTIAL, disclosed limitation | multi-hop routes are not modeled. Recorded by the builder as a disclosed limitation of scenario-only research mode; the user may still reject it. |
+| G27 | PARTIAL | PARTIAL, disclosed limitation | the sealed hashes reproduce, but the window was seen before pre-registration, and any new sealed test needs data after 2026-10-23 16:00 UTC. Recorded as a disclosed limitation; the user may still reject it. |
+| G31 | PASS | PASS | unchanged: no token-specific claim. The cohort wording is covered by N8 under G06. |
+| G32 | PASS | PASS | point-in-time cohort recomputed independently at 6 real decision points; daily replay and sealed rerun reproduce |
+
+Counts: PASS 36, PARTIAL 5 (G02, G06, G16, G27, G39), FAILED 0, NOT_TESTABLE 0.
+
+With G16 and G27 taken as disclosed limitations: PASS 36, disclosed limitations 2, PARTIAL 3 (G02, G06, G39).
+
+Next step:
+1. Run the fifth and last repair pass on N8, N4d and N3c (and C3), as listed under the verdict.
+2. Re-run these checks with all four attack files unchanged.
+
+If the user accepts N3c as a documented limitation (it has no real window today), only N8 and N4d remain.

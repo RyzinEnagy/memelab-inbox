@@ -14,7 +14,7 @@ HIGH_STATUS_MISMATCH: the lab status is ENTRY CONDITIONS MET but the entry reads
 ## Historical evidence
 
 Token-specific: NOT_RUN (no token-specific backtest; nothing here claims token-specific validation).
-Cohort of past tokens with lab status ENTRY CONDITIONS MET: 0 complete cases of 0 tokens the lab had recorded by then, tier INSUFFICIENT_HISTORY (minimum 30).
+Cohort of past tokens with lab status ENTRY CONDITIONS MET: 0 measured windows (0 complete, 0 cut short when trading stopped, counted at the last traded price, an upper bound) of 0 tokens the lab had recorded by then, tier INSUFFICIENT_HISTORY (minimum 30). Selection-bias risk: no (0 removed for pool disagreement).
 
 Strategies over the lab's whole discovery universe (net of modeled costs, ranked by net; paper is mid to mid before costs; under 30 trades is listed, not ranked):
 
@@ -106,7 +106,7 @@ Collector status: MAXUN: NOT_ADOPTED (Phase 06A, D-BT-020). No Maxun robot runs;
 
 - a high lab score can reflect attention that is already in the price (price first, attention later)
 - no tested setup is active on this token now; a move from here is outside what the strategies were tested on
-- the cohort of past tokens with this lab status is 0 cases (minimum 30); past outcomes cannot separate skill from luck
+- the cohort of past tokens with this lab status is 0 measured windows (minimum 30); past outcomes cannot separate skill from luck
 - the pool fee is assumed at the highest observed tier; if the real tier is lower, costs here are overstated
 
 ## Uncertainty (UNKNOWN)
