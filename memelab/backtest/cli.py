@@ -145,6 +145,41 @@ def cmd_data(a):
     print(json.dumps(report.coverage(_con(a)), indent=1))
 
 
+def cmd_outcomes(a):
+    """Shadow outcome tracking and calibration. Nothing here can trade or change a stored run, assessment or strategy."""
+    import time as _t
+    from . import outcomes as O
+    con = _con(a)
+    now = _ts(a.now) if a.now else _t.time()
+    asof = _ts(a.asof) if a.asof else None
+    if a.action == "track":
+        out = O.track(con, now=now, observed_asof=asof, min_interval_s=a.min_interval)
+    elif a.action == "calibrate":
+        cats = None
+        if a.with_launches:
+            from .sources import lab_events
+            cats = lab_events.launch_catalysts(store.ROOT)
+        out = O.calibrate(con, asof=asof, horizon_s=int(a.horizon_h * 3600), catalysts=cats)
+        if not a.json:
+            print(O.render_calibration(out))
+            return
+    elif a.action == "drift":
+        out = O.drift(con, now=now)
+    elif a.action == "reconcile":
+        out = O.exit_reconciliation(con, horizon_s=int(a.horizon_h * 3600))
+        out.pop("rows", None)
+    elif a.action == "daily":
+        if not a.day:
+            sys.exit("--day YYYY-MM-DD is required")
+        print(O.daily_report(con, a.day, asof if asof is not None else now, horizon_s=int(a.horizon_h * 3600)), end="")
+        return
+    elif a.action == "shadow":
+        if not (a.strategy and a.since):
+            sys.exit("--strategy and --since are required")
+        out = O.shadow(con, a.strategy, since=_ts(a.since), until=asof)
+    print(json.dumps(out, indent=1, default=str))
+
+
 def cmd_schema(a):
     from . import report
     print(json.dumps(report.json_schema(), indent=1))
@@ -179,6 +214,13 @@ def add_subparser(sp):
     q.add_argument("run_id", help="run id or a unique prefix"); q.add_argument("--json", action="store_true"); q.add_argument("--db"); q.set_defaults(fn=cmd_inspect)
     q = ssp.add_parser("data", help="coverage of the research database (bars, universe, blocked sources)")
     q.add_argument("--db"); q.set_defaults(fn=cmd_data)
+    q = ssp.add_parser("outcomes", help="shadow outcome tracking: track, calibrate, drift, reconcile, daily, shadow (no trading)")
+    q.add_argument("action", choices=["track", "calibrate", "drift", "reconcile", "daily", "shadow"])
+    q.add_argument("--now", help="UTC time of this run (default: now)"); q.add_argument("--asof", help="only data available at this UTC time")
+    q.add_argument("--horizon-h", type=float, default=24.0); q.add_argument("--min-interval", type=float, default=3600.0)
+    q.add_argument("--day", help="YYYY-MM-DD for the daily report"); q.add_argument("--strategy"); q.add_argument("--since")
+    q.add_argument("--with-launches", action="store_true", help="segment by the lab's launch-monitor records (reads git history)")
+    q.add_argument("--json", action="store_true"); q.add_argument("--db"); q.set_defaults(fn=cmd_outcomes)
     q = ssp.add_parser("schema", help="JSON Schema of the report document")
     q.set_defaults(fn=cmd_schema)
 

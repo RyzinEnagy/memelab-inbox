@@ -4,8 +4,8 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 
 ## Position
 
-- Phase completed: 14 (reports, CLI, alerts), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_14.md. Phases 00-13 PASS (06A EXISTING_TOOL_WINS; 11 all INSUFFICIENT_SAMPLE).
-- Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f, Phase 08 976e747, Phase 09 58abf7d, Phase 10 941e4ed, Phase 11 38d2fcc, Phase 12 999d1eb, Phase 13 4338810. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
+- Phase completed: 15 (outcomes, calibration, drift), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_15.md. Phases 00-14 PASS (06A EXISTING_TOOL_WINS; 11 all INSUFFICIENT_SAMPLE).
+- Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f, Phase 08 976e747, Phase 09 58abf7d, Phase 10 941e4ed, Phase 11 38d2fcc, Phase 12 999d1eb, Phase 13 4338810, Phase 14 30863a6. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
 - Spend so far: Firecrawl about 29 of ~100 calls; Maxun 5 of 5 trial credits (0 left, 0 schedules); Crawl4AI local only; Solana public RPC and Jupiter quotes read-only (about 20 calls).
 
 ## Commands and exits
@@ -37,6 +37,8 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 | full suite after Phase 13 / release audit / release e2e | 1 / 0 / 0 | C-1 only, 952 passed / Needs action: no / PASS 78 of 78 |
 | Phase 14: report and assess tests / `mutate.py p14_mutations.json` / `p13_mutations.json` rerun / `reports/p14_samples.py` | 0 / 0 / 0 / 0 | 49 passed / 20 of 20 / 24 of 24 / 6 schema-valid reports |
 | full suite after Phase 14 / release audit / release e2e | 1 / 0 / 0 | C-1 only, 976 passed / Needs action: no / PASS 78 of 78 |
+| Phase 15: outcome tests / `mutate.py p15_mutations.json` / `outcomes/p15_outcomes.py` | 0 / 0 / 0 | 14 passed / 22 of 22 / 1,023 opportunities, 24 h: 385 complete, 133 censored, 463 not observable |
+| full suite after Phase 15 / release audit / release e2e | 1 / 0 / 0 | C-1 only, 990 passed / Needs action: no / PASS 78 of 78 |
 
 ## Proven
 
@@ -48,7 +50,7 @@ Universe spans 17 days. Catalyst history thin. Helius key absent in this workspa
 
 ## Next eligible phase
 
-15 (outcomes, calibration, drift). Inputs ready: `bt_assessments` (FAST and DEEP rows with as-of times), `bt_outcomes` table (empty), the stored corpus bars. To do: record realized outcomes after each assessment from bars available later, calibrate labels and cohort stats against them, and detect drift.
+16 (independent adversarial E2E audit). Run by a separate reviewer that has not seen the build: G01-G41, full suite, every mutation set, three real dated cases (collapsed 3GVSN8, a failed launch catalyst, a fresh token without history) and a clean-clone run.
 
 ## Roadmap changes
 
