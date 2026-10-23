@@ -1,0 +1,26 @@
+rank,repo,family,pinned_sha,license_from_file,A,B,C,D,E,F,G,H,I,J,total_primary,total_blind,total_mean,hard_gate,disposition,adoptable_ge70
+1,lblommesteyn/slotfish,CRY,4f760c8076bbebc15106cc03ddc3ea527e79dcd4,MIT,4.0,3.5,4.0,2.5,1.5,3.5,2.5,3.0,4.0,3.0,65.1,59.3,62.2,none,REIMPLEMENT_IDEA,no
+2,nautechsystems/nautilus_trader,EVT,7b3ed05d980a344c1f698661d542ebcbae2c8972,LGPL-3.0-only,1.5,3.0,3.5,2.5,4.0,1.0,2.5,5.0,3.0,3.5,55.0,,,none,REFERENCE,no
+3,etcherfx/sol-trade,CRY,c8f37ad221b415132e766f104559ed80d65072db,GPL-3.0,2.5,2.0,3.5,2.5,3.0,3.5,1.5,3.0,1.5,3.0,52.4,54.5,53.45,none,REIMPLEMENT_IDEA,no
+4,gbeced/basana,EVT,0c65f58ba8562f4507b3055b3583b66e4934dff3,Apache-2.0,1.5,2.5,2.5,2.5,3.0,0.5,4.0,4.0,4.5,5.0,51.0,58.1,54.55,none,REIMPLEMENT_IDEA,no
+5,QuantConnect/Lean,EVT,f3d841e60dfd010ee5fc293ea893e56952484108,Apache-2.0,1.0,2.5,3.0,2.5,4.0,2.0,0.5,5.0,5.0,1.0,49.9,55.7,52.8,none,REFERENCE,no
+6,nikkisora/PolarBT,VEC,18f9363a0d131bb5f3a7fb266f7a071b07b0a727,MIT,2.5,1.5,2.0,1.0,4.0,2.5,3.5,2.5,4.0,4.0,48.4,,,none,REIMPLEMENT_IDEA,no
+7,polakowo/vectorbt,VEC,8e30b8ce102f302bec0c0226e05b59714453bebd,Apache-2.0 + Commons Clause,2.0,1.5,2.0,1.0,4.0,3.0,3.5,4.0,2.5,3.0,47.9,,,none,REIMPLEMENT_IDEA,no
+8,nkaz001/hftbacktest,EVT,5f3ec40b2afb764e0fea112f941ed85523ef4e88,MIT,1.5,3.0,3.5,1.0,2.5,1.0,2.5,3.0,4.0,3.0,47.4,,,none,REIMPLEMENT_IDEA,no
+9,eslazarev/purged-cross-validation,VAL,07692dd862d37a988233e190706afb18c5101948,MIT,2.0,0.0,3.5,0.5,0.0,4.5,4.5,4.0,4.5,5.0,46.9,40.3,43.6,none,PIP,no
+10,kernc/backtesting.py,VEC,ca2e2611621e472542ba90f7243a1fa06a7d7108,AGPL-3.0,1.5,1.5,3.0,1.5,4.0,1.5,3.0,4.0,1.5,4.5,45.9,50.9,48.4,none,REFERENCE,no
+11,pmorissette/bt,VEC,3adebef0316c5165ee0fb1fb27b2ec9866c30e3c,MIT,1.5,2.0,2.0,1.5,2.5,2.0,3.0,4.0,4.0,4.0,45.3,,,none,REIMPLEMENT_IDEA,no
+12,sohan-shingade/flint,CRY,5ce552c881097f37f38c6ee53146f1b64cb3db95,MIT,1.5,2.5,3.0,0.5,3.5,3.0,1.5,2.0,3.0,1.5,44.7,,,none,REIMPLEMENT_IDEA,no
+13,cudam321/signal-backtest-harness,CAT,84643ded87e90c266b9defb72b5aad862ce38528,MIT,3.0,1.5,1.5,2.0,1.5,2.0,2.5,1.0,4.0,4.0,41.4,,,none,REIMPLEMENT_IDEA,no
+14,freqtrade/freqtrade,EVT,c051e9065c5b677f03817dd1f83cb980af1ed684,GPL-3.0,1.0,1.0,3.0,1.0,4.0,2.0,1.5,5.0,2.0,3.0,41.1,,,none,REFERENCE,no
+15,jesse-ai/jesse,EVT,9a3ebe075d9d0af5f012f921f46c2286f234af68,MIT,1.0,1.5,3.0,0.5,3.5,3.0,0.5,4.0,3.5,1.5,40.9,,,none,REIMPLEMENT_IDEA,no
+16,MeteoraAg/dlmm-sdk,AMM,af36dd53ab180783ccecda306926189a4700953c,NONE (package.json ISC),3.5,4.0,2.0,1.0,0.0,0.0,1.5,3.5,1.0,1.5,40.8,,,none,REIMPLEMENT_IDEA,no
+17,orca-so/whirlpools,AMM,cc683ec92acb5e7606caa3d8e514d9383e9c7c11,"Orca License (proprietary, non-commercial)",3.0,4.0,2.0,1.0,0.0,0.0,2.0,4.0,0.5,2.5,40.7,,,none,REFERENCE,no
+18,tradingstrategy-ai/trade-executor,CRY,34fc7eb0b6594d21acc2fc88ab230a95794779f7,AGPL-3.0-or-later,2.5,1.5,2.5,1.0,4.0,1.5,0.5,4.0,1.0,0.5,39.7,,,none,REFERENCE,no
+19,stefan-jansen/alphalens-reloaded,VAL,1bc181de4aafbe33437ed0e362ff96aa7ce20acd,Apache-2.0,2.0,0.0,1.5,2.5,1.0,2.5,3.5,3.5,4.0,4.0,39.4,,,none,REIMPLEMENT_IDEA,no
+20,raydium-io/raydium-sdk-V2,AMM,e2e8bcd865189c994682a9477ec8eaf1e2da8aaf,GPL-3.0,3.5,3.0,1.5,1.0,0.0,0.0,1.5,1.5,2.0,2.0,34.7,,,none,REIMPLEMENT_IDEA,no
+21,defipy-devs/uniswappy,AMM,8c729b5423bad37b3a95eca4ca68ab8fa998ad73,Apache-2.0,2.0,2.5,1.0,0.5,0.5,0.0,3.5,2.5,4.0,4.0,34.4,,,none,REFERENCE,no
+22,ranaroussi/quantstats,VAL,9ef4c6d0a4ffe7831f6ebba6a5824fd33a90c05a,Apache-2.0,1.5,0.0,1.0,0.0,0.0,2.0,3.5,3.5,3.5,4.0,27.5,,,none,REIMPLEMENT_IDEA,no
+23,esvhd/pypbo,VAL,4d723f06498267a2a6280cb9d7d5649348e961d1,AGPL-3.0,1.0,0.0,1.0,0.0,0.5,3.0,2.0,1.5,1.5,1.5,21.0,,,none,REIMPLEMENT_IDEA,no
+24,charllysb/pumpfun-momentum-bot,CRY,0dccad2fa55937ba8d0bea2b31c650de8480db9d,MIT,2.0,1.0,0.5,1.0,1.0,0.5,0.5,0.5,2.0,1.0,19.9,,,"HARD: live seed-phrase wallet, blind signing",REJECT,no
+25,prisyy/pumpsim-api,CRY,fd92630fec3e61b6faa4708122ea15001cb37d63,"MIT (README only, no code)",1.0,1.0,0.5,0.0,0.0,0.0,1.0,0.0,0.5,0.5,10.4,,,HARD: no verifiable source,REJECT,no

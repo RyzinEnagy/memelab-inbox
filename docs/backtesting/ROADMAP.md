@@ -7,7 +7,7 @@ Order is fixed by the package: 00, 01, 02, 03, 04, 05, 06, 06A, 07, 08, 09, 10, 
 | 00 | Current-repo baseline | PASS | audits/backtesting/00_BASELINE.md |
 | 01 | Gaps, requirements, architecture | PASS | audits/backtesting/PHASE_01.md |
 | 02 | GitHub discovery (>=40) | PASS | audits/backtesting/PHASE_02.md |
-| 03 | Source review (>=20), top 10 | pending | |
+| 03 | Source review (>=20), top 10 | PASS | audits/backtesting/PHASE_03.md |
 | 04 | Adoption bake-off | pending | |
 | 05 | Point-in-time schema | pending | |
 | 06 | Historical data and quality defenses | pending | |

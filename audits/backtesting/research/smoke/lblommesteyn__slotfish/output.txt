@@ -1,0 +1,13 @@
+# smoke test: NOT RUN (by design)
+# repo: lblommesteyn/slotfish @ 4f760c8076bbebc15106cc03ddc3ea527e79dcd4
+# reason: engine, execution model and tests are Rust (src/*.rs, tests/*.rs). The brief forbids building
+#   niche Rust/TS repos; we read the math files and tests instead (src/amm.rs, src/exec.rs, src/engine.rs,
+#   src/features.rs, src/decode.rs, tests/engine.rs, tests/decode.rs). The Python parts
+#   (python/slotfish/research.py, survival.py) only consume a dataset that the Rust binary produces,
+#   and the fetch/paper subcommands call a public Solana RPC, so there is no safe offline Python entry point.
+# analytic check done instead (no code executed):
+#   amm.rs:30-32 buy: net = budget*1e4/(1e4+fee_bps); out = floor(net*tok/(sol+net))  == x*y=k with fee added on top (curve semantics)
+#   amm.rs:38-41 sell: gross = floor(tokens*sol/(tok+tokens)); fee = ceil(gross*fee_bps/1e4)  == x*y=k with fee taken from proceeds
+#   PumpSwap quote reserves are taken raw from BuyEvent/SellEvent (decode.rs:241-273); the appended signed
+#   virtual_quote_reserves field is not decoded, so effective quote reserves (vault + virtual) are not used.
+EXIT_CODE=n/a (not run)

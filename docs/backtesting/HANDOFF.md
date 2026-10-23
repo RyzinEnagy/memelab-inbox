@@ -4,7 +4,7 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 
 ## Position
 
-- Phase completed: 02 (broad GitHub discovery), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_02.md. Phase 01 PASS (PHASE_01.md).
+- Phase completed: 03 (source-code due diligence and ranked top 10), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_03.md. Phases 00-02 PASS.
 - Baseline SHA f99c6c7; Phase 00 commit 912fc96. Branch `feature/backtesting`. Docs only; no change under `memelab/` or `tests/`.
 
 ## Commands and exits
@@ -15,6 +15,7 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 | GeckoTerminal probe (12 seeded mints, saved in data/p01_gt_probe.json) | n/a | 7 of 12 answered, 5 hit 429 at 2.2 s pacing |
 | git-history union of theses (testing/logs/p01_negative_review.log) | 0 | 1,801 distinct theses vs 701 in latest export |
 | 30 GitHub API repo searches (research/raw/p02_github_search.txt) | n/a | 273 hits, 268 unique; longlist 73, shortlist 25 |
+| 25 pinned-commit reviews + blind rescore | n/a | none >= 70; top: slotfish 65.10; largest blind gap 7.1 |
 
 ## Proven
 
@@ -26,7 +27,7 @@ Universe spans 17 days. Catalyst history thin. Helius key absent in this workspa
 
 ## Next eligible phase
 
-03. First action: clone the 25 shortlisted repos at the HEAD shas in research/LONGLIST.csv and fill research/REPO_REVIEWS/<slug>.md from _TEMPLATE.md.
+04. First action: build the isolated bake-off POCs (custom engine prototype vs backtesting.py oracle vs vectorbt) on one canonical dataset with the scenarios listed in PHASE_04.
 
 ## Roadmap changes
 
