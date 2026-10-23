@@ -13,7 +13,7 @@ Order is fixed by the package: 00, 01, 02, 03, 04, 05, 06, 06A, 07, 08, 09, 10, 
 | 06 | Historical data and quality defenses | PASS | audits/backtesting/PHASE_06.md |
 | 06A | Maxun robot bake-off and decision | PASS (EXISTING_TOOL_WINS) | audits/backtesting/PHASE_06A.md |
 | 07 | Execution-aware AMM simulation | PASS | audits/backtesting/PHASE_07.md |
-| 08 | Point-in-time TA strategy library | pending | |
+| 08 | Point-in-time TA strategy library | PASS | audits/backtesting/PHASE_08.md, docs/backtesting/STRATEGY_LIBRARY.md |
 | 09 | Catalyst, wallet and social strategies | pending | |
 | 10 | Deterministic event and portfolio core | pending | |
 | 11 | Statistical validation | pending | |

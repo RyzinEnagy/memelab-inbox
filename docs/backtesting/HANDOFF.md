@@ -4,8 +4,8 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 
 ## Position
 
-- Phase completed: 07 (execution-aware AMM simulation), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_07.md. Phases 00-06A PASS (06A decision EXISTING_TOOL_WINS).
-- Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
+- Phase completed: 08 (point-in-time TA strategy library), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_08.md. Phases 00-07 PASS (06A decision EXISTING_TOOL_WINS).
+- Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
 - Spend so far: Firecrawl about 29 of ~100 calls; Maxun 5 of 5 trial credits (0 left, 0 schedules); Crawl4AI local only; Solana public RPC and Jupiter quotes read-only (about 20 calls).
 
 ## Commands and exits
@@ -27,6 +27,7 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 | Phase 06A: `pytest tests/test_backtest_webcapture.py` / `mutate.py p06a_mutations.json` | 0 / 0 | 20 passed / 9 of 9 caught |
 | full suite on the clean 06A commit / `release_e2e.py` | 1 / 0 | 1 failed (C-1), 837 passed / PASS 78 of 78 |
 | Phase 07: `pytest tests/test_backtest_execution.py` / `mutate.py p07_mutations.json` | 0 / 0 | 15 passed / 14 of 14 caught |
+| Phase 08: `pytest tests/test_backtest_strategies.py` / `mutate.py p08_mutations.json` | 0 / 0 | 16 passed / 11 of 11 caught |
 
 ## Proven
 
@@ -38,7 +39,7 @@ Universe spans 17 days. Catalyst history thin. Helius key absent in this workspa
 
 ## Next eligible phase
 
-08 (point-in-time TA strategy library). Code drafted ahead of its gate: `memelab/backtest/strategies/` and `tests/test_backtest_strategies.py`, not yet committed or gated.
+09 (catalyst, wallet and social strategies). Drafted ahead of its gate: `strategies/catalyst.py`, `sources/catalyst_bridge.py`, `tests/test_backtest_catalyst.py`; the registry gains CATALYST_VERIFIED in that commit.
 
 ## Roadmap changes
 
