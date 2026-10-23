@@ -1,0 +1,1299 @@
+{
+ "sol_usd": 104.20737,
+ "pools": [
+  {
+   "pool": "5wNu5QhdpRGrL37ffcd6TMMqZugQgxwafgz477rShtHy",
+   "mint": "Ce2gx9KGXJ6C9Mp5b5x1sn9Mg87JwEbrQby4Zqo3pump",
+   "price_usd": 0.028981276043988067,
+   "liquidity_usd": 1751616.9782034045,
+   "fee": 0.003,
+   "decision": "RESEARCHABLE",
+   "decision_reasons": [
+    "execution is feasible at the smaller sizes under base conditions; scenarios show the downside, not a forecast"
+   ],
+   "max_size": {
+    "max_size_usd": 2459.730713474656,
+    "constraints": {
+     "max_loss_usd": 1000,
+     "max_exit_impact": 0.05,
+     "shocks": [
+      "BASE",
+      "LIQ_50",
+      "STOP_GAP"
+     ]
+    }
+   },
+   "table": [
+    {
+     "scenario": "BASE",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.007163186896774643,
+     "proceeds_usd": 496.4292699474916,
+     "exit_impact": 0.003565135982632306,
+     "realizable_vs_marked": 0.9964129021281394,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_25",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.007350747638182886,
+     "proceeds_usd": 496.33548752454027,
+     "exit_impact": 0.003753372297206292,
+     "realizable_vs_marked": 0.9962246658135654,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_50",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.007725656608913667,
+     "proceeds_usd": 496.1480289370057,
+     "exit_impact": 0.004129631648823406,
+     "realizable_vs_marked": 0.9958484064619483,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_75",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.008848686310542253,
+     "proceeds_usd": 495.5865017982544,
+     "exit_impact": 0.005256706379944687,
+     "realizable_vs_marked": 0.9947213317308269,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "INSIDER_DUMP",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.007163186896774643,
+     "proceeds_usd": 496.4292699474916,
+     "exit_impact": 0.003565135982632306,
+     "realizable_vs_marked": 0.9964129021281394,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "STOP_GAP",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.40423054299275407,
+     "proceeds_usd": 297.8912472782883,
+     "exit_impact": 0.0034378083872067533,
+     "realizable_vs_marked": 0.9965255884640793,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "DELAYED_EXIT",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.20585995946877989,
+     "proceeds_usd": 397.0787095663388,
+     "exit_impact": 0.0037219906000435232,
+     "realizable_vs_marked": 0.996250557038421,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "FAILED_BREAKOUT",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.20568739115289614,
+     "proceeds_usd": 397.1649956124841,
+     "exit_impact": 0.0035055032400669317,
+     "realizable_vs_marked": 0.9964670443983976,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "ATTENTION_COLLAPSE",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.5038084862226306,
+     "proceeds_usd": 248.1011861040147,
+     "exit_impact": 0.003998594127536448,
+     "realizable_vs_marked": 0.9959574820940068,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "VOLUME_GONE",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.01220257517866885,
+     "proceeds_usd": 493.9095206666976,
+     "exit_impact": 0.008622675586968831,
+     "realizable_vs_marked": 0.9913553625238029,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "SOL_DOWN_30",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.3050207957483885,
+     "proceeds_usd": 347.4972064310891,
+     "exit_impact": 0.003565135982632306,
+     "realizable_vs_marked": 0.697482442922929,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "CONGESTION",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.028876739157561837,
+     "proceeds_usd": 487.6867926413416,
+     "exit_impact": 0.003565135982632306,
+     "realizable_vs_marked": 0.9788653526346702,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "HONEYPOT",
+     "size_usd": 500,
+     "status": "FAILED",
+     "ret": -1.0,
+     "proceeds_usd": 0.0,
+     "exit_impact": null,
+     "realizable_vs_marked": null,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "COMBINED_WORST",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.3752772177524182,
+     "proceeds_usd": 312.3682266991932,
+     "exit_impact": 0.10423021331403848,
+     "realizable_vs_marked": 0.8956756643035544,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "QUOTE_DEPLETION",
+     "size_usd": 500,
+     "status": "FAILED",
+     "ret": -1.0,
+     "proceeds_usd": 0.0,
+     "exit_impact": null,
+     "realizable_vs_marked": null,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "BASE",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.017166948656934133,
+     "proceeds_usd": 4914.17601065231,
+     "exit_impact": 0.008594196051461167,
+     "realizable_vs_marked": 0.9914035965156093,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_25",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.019001755994001113,
+     "proceeds_usd": 4905.001953890928,
+     "exit_impact": 0.010445003358353855,
+     "realizable_vs_marked": 0.9895527892087166,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_50",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.02265089524148589,
+     "proceeds_usd": 4886.756217725448,
+     "exit_impact": 0.014125963994749857,
+     "realizable_vs_marked": 0.9858718285723207,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_75",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.03343722124211612,
+     "proceeds_usd": 4832.824469700757,
+     "exit_impact": 0.025006349402629136,
+     "realizable_vs_marked": 0.9749914431644413,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "INSIDER_DUMP",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.017166948656934133,
+     "proceeds_usd": 4914.17601065231,
+     "exit_impact": 0.008594196051461167,
+     "realizable_vs_marked": 0.9914035965156093,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "STOP_GAP",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.4095542786952474,
+     "proceeds_usd": 2952.2350670473165,
+     "exit_impact": 0.0073387330179476296,
+     "realizable_vs_marked": 0.9926575879271697,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "DELAYED_EXIT",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.21495747379341335,
+     "proceeds_usd": 3925.2212207907182,
+     "exit_impact": 0.010136878825210971,
+     "realizable_vs_marked": 0.9898603618836272,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "FAILED_BREAKOUT",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.21326795718092628,
+     "proceeds_usd": 3933.668822339462,
+     "exit_impact": 0.00800656681074463,
+     "realizable_vs_marked": 0.9919906738980936,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "ATTENTION_COLLAPSE",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.5106924964270103,
+     "proceeds_usd": 2446.5428717569957,
+     "exit_impact": 0.012846815195170502,
+     "realizable_vs_marked": 0.9871487699389706,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "VOLUME_GONE",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.06441348780385592,
+     "proceeds_usd": 4677.9427979567545,
+     "exit_impact": 0.056252736603353726,
+     "realizable_vs_marked": 0.9437450559637168,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "SOL_DOWN_30",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.3120175205648482,
+     "proceeds_usd": 3439.919924924462,
+     "exit_impact": 0.008594196051461167,
+     "realizable_vs_marked": 0.6939818553310477,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "CONGESTION",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.019342498634937644,
+     "proceeds_usd": 4905.43353334616,
+     "exit_impact": 0.008594196051461167,
+     "realizable_vs_marked": 0.9896398576049589,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "HONEYPOT",
+     "size_usd": 5000,
+     "status": "FAILED",
+     "ret": -1.0,
+     "proceeds_usd": 0.0,
+     "exit_impact": null,
+     "realizable_vs_marked": null,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "COMBINED_WORST",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.3877324832008263,
+     "proceeds_usd": 3061.344283288573,
+     "exit_impact": 0.11769534006235227,
+     "realizable_vs_marked": 0.8822951995108073,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "QUOTE_DEPLETION",
+     "size_usd": 5000,
+     "status": "FAILED",
+     "ret": -1.0,
+     "proceeds_usd": 0.0,
+     "exit_impact": null,
+     "realizable_vs_marked": null,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "BASE",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.05944678902638567,
+     "proceeds_usd": 23513.840565660885,
+     "exit_impact": 0.029767621283230072,
+     "realizable_vs_marked": 0.9702319272355114,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_25",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.0677895068970108,
+     "proceeds_usd": 23305.272527611127,
+     "exit_impact": 0.03837358971070459,
+     "realizable_vs_marked": 0.9616259588080369,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_50",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.08403868208891097,
+     "proceeds_usd": 22899.04297001882,
+     "exit_impact": 0.055135500018899886,
+     "realizable_vs_marked": 0.9448640484998417,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_75",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.1295562764555005,
+     "proceeds_usd": 21761.10261281086,
+     "exit_impact": 0.10208938076713037,
+     "realizable_vs_marked": 0.8979101677516111,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "INSIDER_DUMP",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.05944678902638567,
+     "proceeds_usd": 23513.840565660885,
+     "exit_impact": 0.029767621283230072,
+     "realizable_vs_marked": 0.9702319272355114,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "STOP_GAP",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.4322323053868239,
+     "proceeds_usd": 14194.198577715115,
+     "exit_impact": 0.02386035016115262,
+     "realizable_vs_marked": 0.9761388973700833,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "DELAYED_EXIT",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.25312707447805505,
+     "proceeds_usd": 18671.83131016327,
+     "exit_impact": 0.03694924684110035,
+     "realizable_vs_marked": 0.9630501888073266,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "FAILED_BREAKOUT",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.2454187049172626,
+     "proceeds_usd": 18864.540633526318,
+     "exit_impact": 0.027009742398989345,
+     "realizable_vs_marked": 0.9729896932494376,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "ATTENTION_COLLAPSE",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.5392217072628399,
+     "proceeds_usd": 11519.462360160876,
+     "exit_impact": 0.04936322492581979,
+     "realizable_vs_marked": 0.9506358721116632,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "VOLUME_GONE",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.24248732717122123,
+     "proceeds_usd": 18937.825109251822,
+     "exit_impact": 0.21858391792066845,
+     "realizable_vs_marked": 0.7814156305980733,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "SOL_DOWN_30",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.34161288361969877,
+     "proceeds_usd": 16459.685113430463,
+     "exit_impact": 0.029767621283230072,
+     "realizable_vs_marked": 0.6791622136204805,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "CONGESTION",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.05987836925201184,
+     "proceeds_usd": 23505.098088354735,
+     "exit_impact": 0.029767621283230072,
+     "realizable_vs_marked": 0.9698711937100003,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "HONEYPOT",
+     "size_usd": 25000,
+     "status": "FAILED",
+     "ret": -1.0,
+     "proceeds_usd": 0.0,
+     "exit_impact": null,
+     "realizable_vs_marked": null,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "COMBINED_WORST",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.437820332242269,
+     "proceeds_usd": 14054.497845186062,
+     "exit_impact": 0.17154237365866498,
+     "realizable_vs_marked": 0.8284556914216558,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "QUOTE_DEPLETION",
+     "size_usd": 25000,
+     "status": "FAILED",
+     "ret": -1.0,
+     "proceeds_usd": 0.0,
+     "exit_impact": null,
+     "realizable_vs_marked": null,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "BASE",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.19010726262051292,
+     "proceeds_usd": 80989.28259961189,
+     "exit_impact": 0.09519632678324608,
+     "realizable_vs_marked": 0.9048035509764336,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_25",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.2143253589233951,
+     "proceeds_usd": 78567.47270433474,
+     "exit_impact": 0.12225252635312767,
+     "realizable_vs_marked": 0.877747351406552,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_50",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.25866161203082694,
+     "proceeds_usd": 74133.8469084743,
+     "exit_impact": 0.171784516698409,
+     "realizable_vs_marked": 0.8282153610612707,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_75",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.3659940205498047,
+     "proceeds_usd": 63400.60488216958,
+     "exit_impact": 0.2916951417486493,
+     "realizable_vs_marked": 0.7083047360110305,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "INSIDER_DUMP",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.19010726262051292,
+     "proceeds_usd": 80989.28259961189,
+     "exit_impact": 0.09519632678324608,
+     "realizable_vs_marked": 0.9048035509764336,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "STOP_GAP",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.5037199927754012,
+     "proceeds_usd": 49628.00615264348,
+     "exit_impact": 0.07593522143461306,
+     "realizable_vs_marked": 0.9240645748315202,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "DELAYED_EXIT",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.3683106943543981,
+     "proceeds_usd": 63168.93747636172,
+     "exit_impact": 0.11785413134944023,
+     "realizable_vs_marked": 0.8821457158501596,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "FAILED_BREAKOUT",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.3456980687201494,
+     "proceeds_usd": 65430.20028720882,
+     "exit_impact": 0.08627590032811738,
+     "realizable_vs_marked": 0.9137239468714825,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "ATTENTION_COLLAPSE",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.6218982692659012,
+     "proceeds_usd": 37810.17721051352,
+     "exit_impact": 0.15517729247201317,
+     "realizable_vs_marked": 0.8448224630473464,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "VOLUME_GONE",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.5579824934250424,
+     "proceeds_usd": 44201.75549395136,
+     "exit_impact": 0.5061826213698706,
+     "realizable_vs_marked": 0.49381725638980933,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "SOL_DOWN_30",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.4330751166596769,
+     "proceeds_usd": 56692.49453719617,
+     "exit_impact": 0.09519632678324608,
+     "realizable_vs_marked": 0.6333624490114075,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "CONGESTION",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.190212319804269,
+     "proceeds_usd": 80980.54012230574,
+     "exit_impact": 0.09519632678324608,
+     "realizable_vs_marked": 0.9047058809606361,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "HONEYPOT",
+     "size_usd": 100000,
+     "status": "FAILED",
+     "ret": -1.0,
+     "proceeds_usd": 0.0,
+     "exit_impact": null,
+     "realizable_vs_marked": null,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "COMBINED_WORST",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.5698073724666786,
+     "proceeds_usd": 43019.26746040258,
+     "exit_impact": 0.31341857995363187,
+     "realizable_vs_marked": 0.6865808961592818,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "QUOTE_DEPLETION",
+     "size_usd": 100000,
+     "status": "FAILED",
+     "ret": -1.0,
+     "proceeds_usd": 0.0,
+     "exit_impact": null,
+     "realizable_vs_marked": null,
+     "capped_by_observed_quote": null
+    }
+   ],
+   "probabilities": "NOT_ASSIGNED (shocks are hypothetical; see historical_evidence for empirical frequencies when available)"
+  },
+  {
+   "pool": "3KFCgJ5R3zshW8hTDbzjSrrKSRYmKvsMfhc4Vo4iddxD",
+   "mint": "J8PSdNP3QewKq2Z1JJJFDMaqF7KcaiJhR7gbr5KZpump",
+   "price_usd": 0.005455373860771601,
+   "liquidity_usd": 531357.3205866269,
+   "fee": 0.0055,
+   "decision": "RESEARCHABLE",
+   "decision_reasons": [
+    "execution is feasible at the smaller sizes under base conditions; scenarios show the downside, not a forecast"
+   ],
+   "max_size": {
+    "max_size_usd": 2404.4356368917424,
+    "constraints": {
+     "max_loss_usd": 1000,
+     "max_exit_impact": 0.05,
+     "shocks": [
+      "BASE",
+      "LIQ_50",
+      "STOP_GAP"
+     ]
+    }
+   },
+   "table": [
+    {
+     "scenario": "BASE",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.014691465158339523,
+     "proceeds_usd": 492.66504844399094,
+     "exit_impact": 0.00734420634962063,
+     "realizable_vs_marked": 0.9926337478932883,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_25",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.015300156313389657,
+     "proceeds_usd": 492.3606962063049,
+     "exit_impact": 0.007957422779988677,
+     "realizable_vs_marked": 0.9920205314629201,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_50",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.01651528528155044,
+     "proceeds_usd": 491.75311842655816,
+     "exit_impact": 0.009181585546459647,
+     "realizable_vs_marked": 0.9907963686964493,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_75",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.02014274518232484,
+     "proceeds_usd": 489.9393487853251,
+     "exit_impact": 0.012836013565006077,
+     "realizable_vs_marked": 0.9871419406779028,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "INSIDER_DUMP",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.014691465158339523,
+     "proceeds_usd": 492.66504844399094,
+     "exit_impact": 0.00734420634962063,
+     "realizable_vs_marked": 0.9926337478932883,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "STOP_GAP",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.40857641450760873,
+     "proceeds_usd": 295.71826396931766,
+     "exit_impact": 0.006929113449789526,
+     "realizable_vs_marked": 0.9930341436217252,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "DELAYED_EXIT",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.21216334863612307,
+     "proceeds_usd": 393.92694601240845,
+     "exit_impact": 0.007855227335823112,
+     "realizable_vs_marked": 0.992117215467813,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "FAILED_BREAKOUT",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.21160319622486234,
+     "proceeds_usd": 394.20702834709977,
+     "exit_impact": 0.007149831300318321,
+     "realizable_vs_marked": 0.9928226115033179,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "ATTENTION_COLLAPSE",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.5080571096101498,
+     "proceeds_usd": 245.97682792277882,
+     "exit_impact": 0.008755492028231227,
+     "realizable_vs_marked": 0.9912004164575864,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "VOLUME_GONE",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.03086633231196756,
+     "proceeds_usd": 484.5774378854385,
+     "exit_impact": 0.023639324514776905,
+     "realizable_vs_marked": 0.976338629728132,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "SOL_DOWN_30",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.310290590531484,
+     "proceeds_usd": 344.86225137863863,
+     "exit_impact": 0.00734420634962063,
+     "realizable_vs_marked": 0.6948370097981744,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "CONGESTION",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.036372375939551005,
+     "proceeds_usd": 483.9225711378409,
+     "exit_impact": 0.00734420634962063,
+     "realizable_vs_marked": 0.97501918797741,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "HONEYPOT",
+     "size_usd": 500,
+     "status": "FAILED",
+     "ret": -1.0,
+     "proceeds_usd": 0.0,
+     "exit_impact": null,
+     "realizable_vs_marked": null,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "COMBINED_WORST",
+     "size_usd": 500,
+     "status": "FILLED",
+     "ret": -0.3816149377103072,
+     "proceeds_usd": 309.1992973743502,
+     "exit_impact": 0.10993065198556962,
+     "realizable_vs_marked": 0.8899748661983253,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "QUOTE_DEPLETION",
+     "size_usd": 500,
+     "status": "FAILED",
+     "ret": -1.0,
+     "proceeds_usd": 0.0,
+     "exit_impact": null,
+     "realizable_vs_marked": null,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "BASE",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.0465654194832017,
+     "proceeds_usd": 4767.183334849553,
+     "exit_impact": 0.02334477045641503,
+     "realizable_vs_marked": 0.9766529879020592,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_25",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.05223416519099533,
+     "proceeds_usd": 4738.839544284451,
+     "exit_impact": 0.029151563650524515,
+     "realizable_vs_marked": 0.9708461947079498,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_50",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.06337180875062742,
+     "proceeds_usd": 4683.1512046207135,
+     "exit_impact": 0.040560435410563644,
+     "realizable_vs_marked": 0.9594373229479106,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_75",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.09526762350619311,
+     "proceeds_usd": 4523.671781846093,
+     "exit_impact": 0.07323298937405509,
+     "realizable_vs_marked": 0.9267647689844192,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "INSIDER_DUMP",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.0465654194832017,
+     "proceeds_usd": 4767.183334849553,
+     "exit_impact": 0.02334477045641503,
+     "realizable_vs_marked": 0.9766529879020592,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "STOP_GAP",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.425617017283652,
+     "proceeds_usd": 2871.9211983504406,
+     "exit_impact": 0.01937863210203028,
+     "realizable_vs_marked": 0.9806176318287605,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "DELAYED_EXIT",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.24103535166973167,
+     "proceeds_usd": 3794.831546070884,
+     "exit_impact": 0.028188136987129186,
+     "realizable_vs_marked": 0.9718090609609638,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "FAILED_BREAKOUT",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.2358051231021585,
+     "proceeds_usd": 3820.982746136728,
+     "exit_impact": 0.021491140593362212,
+     "realizable_vs_marked": 0.9785060573547308,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "ATTENTION_COLLAPSE",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.529762018343803,
+     "proceeds_usd": 2351.195053518636,
+     "exit_impact": 0.03661671927366272,
+     "realizable_vs_marked": 0.963378797443286,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "VOLUME_GONE",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.17912914003550318,
+     "proceeds_usd": 4104.363281605794,
+     "exit_impact": 0.1591367339644324,
+     "realizable_vs_marked": 0.840861024394042,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "SOL_DOWN_30",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.33259645014323547,
+     "proceeds_usd": 3337.025051862532,
+     "exit_impact": 0.02334477045641503,
+     "realizable_vs_marked": 0.6836564190389839,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "CONGESTION",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.04872817253955719,
+     "proceeds_usd": 4758.440857543404,
+     "exit_impact": 0.02334477045641503,
+     "realizable_vs_marked": 0.9748619163231044,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "HONEYPOT",
+     "size_usd": 5000,
+     "status": "FAILED",
+     "ret": -1.0,
+     "proceeds_usd": 0.0,
+     "exit_impact": null,
+     "realizable_vs_marked": null,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "COMBINED_WORST",
+     "size_usd": 5000,
+     "status": "FILLED",
+     "ret": -0.42027090810097867,
+     "proceeds_usd": 2898.651802759725,
+     "exit_impact": 0.15163770896932727,
+     "realizable_vs_marked": 0.8483526839955631,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "QUOTE_DEPLETION",
+     "size_usd": 5000,
+     "status": "FAILED",
+     "ret": -1.0,
+     "proceeds_usd": 0.0,
+     "exit_impact": null,
+     "realizable_vs_marked": null,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "BASE",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.16653487875208983,
+     "proceeds_usd": 20836.637150784623,
+     "exit_impact": 0.08349665394718542,
+     "realizable_vs_marked": 0.9165028647771171,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_25",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.1877687823371429,
+     "proceeds_usd": 20305.789328821724,
+     "exit_impact": 0.10684608149967167,
+     "realizable_vs_marked": 0.8931534372246307,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_50",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.22714814457126553,
+     "proceeds_usd": 19321.304842088583,
+     "exit_impact": 0.15014879133188563,
+     "realizable_vs_marked": 0.8498507273924168,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_75",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.32528471015916527,
+     "proceeds_usd": 16867.88962860298,
+     "exit_impact": 0.25806265744068047,
+     "realizable_vs_marked": 0.7419368612836219,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "INSIDER_DUMP",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.16653487875208983,
+     "proceeds_usd": 20836.637150784623,
+     "exit_impact": 0.08349665394718542,
+     "realizable_vs_marked": 0.9165028647771171,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "STOP_GAP",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.4909216408332353,
+     "proceeds_usd": 12726.964549389395,
+     "exit_impact": 0.0670031978456721,
+     "realizable_vs_marked": 0.9329960000281654,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "DELAYED_EXIT",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.3474430556406566,
+     "proceeds_usd": 16313.930749114093,
+     "exit_impact": 0.10303578575882255,
+     "realizable_vs_marked": 0.8969636126465554,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "FAILED_BREAKOUT",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.32766111160929534,
+     "proceeds_usd": 16808.479566347683,
+     "exit_impact": 0.07584477333160533,
+     "realizable_vs_marked": 0.9241546250737727,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "ATTENTION_COLLAPSE",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.6069358211203278,
+     "proceeds_usd": 9826.608772811158,
+     "exit_impact": 0.13554907595505905,
+     "realizable_vs_marked": 0.8644499614935458,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "VOLUME_GONE",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.5114085060266171,
+     "proceeds_usd": 12214.792695392203,
+     "exit_impact": 0.46272988077967847,
+     "realizable_vs_marked": 0.537269637944624,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "SOL_DOWN_30",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.41657454642769165,
+     "proceeds_usd": 14585.642723017081,
+     "exit_impact": 0.08349665394718542,
+     "realizable_vs_marked": 0.6415518609612727,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "CONGESTION",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.1669571327941437,
+     "proceeds_usd": 20827.894673478473,
+     "exit_impact": 0.08349665394718542,
+     "realizable_vs_marked": 0.9161183254947773,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "HONEYPOT",
+     "size_usd": 25000,
+     "status": "FAILED",
+     "ret": -1.0,
+     "proceeds_usd": 0.0,
+     "exit_impact": null,
+     "realizable_vs_marked": null,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "COMBINED_WORST",
+     "size_usd": 25000,
+     "status": "FILLED",
+     "ret": -0.5464813234124477,
+     "proceeds_usd": 11337.971876987604,
+     "exit_impact": 0.28756574878004726,
+     "realizable_vs_marked": 0.7124321886098204,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "QUOTE_DEPLETION",
+     "size_usd": 25000,
+     "status": "FAILED",
+     "ret": -1.0,
+     "proceeds_usd": 0.0,
+     "exit_impact": null,
+     "realizable_vs_marked": null,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "BASE",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.4337366162418169,
+     "proceeds_usd": 56626.344571744194,
+     "exit_impact": 0.21746625463264968,
+     "realizable_vs_marked": 0.7825335941602455,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_25",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.47129881913151606,
+     "proceeds_usd": 52870.123871777156,
+     "exit_impact": 0.26937440634249943,
+     "realizable_vs_marked": 0.7306254424503958,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_50",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.5332244811719847,
+     "proceeds_usd": 46677.556990153695,
+     "exit_impact": 0.354951034246052,
+     "realizable_vs_marked": 0.6450488145468433,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "LIQ_75",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.6545943985982039,
+     "proceeds_usd": 34540.56391952959,
+     "exit_impact": 0.522675171865782,
+     "realizable_vs_marked": 0.47732467692711317,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "INSIDER_DUMP",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.4337366162418169,
+     "proceeds_usd": 56626.344571744194,
+     "exit_impact": 0.21746625463264968,
+     "realizable_vs_marked": 0.7825335941602455,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "STOP_GAP",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.6430955581163311,
+     "proceeds_usd": 35690.448093534585,
+     "exit_impact": 0.17797439226826117,
+     "realizable_vs_marked": 0.8220253557198975,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "DELAYED_EXIT",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.5723086049283441,
+     "proceeds_usd": 42769.14418686812,
+     "exit_impact": 0.2612029582889246,
+     "realizable_vs_marked": 0.7387968527021944,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "FAILED_BREAKOUT",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.5365611827454332,
+     "proceeds_usd": 46343.88679629942,
+     "exit_impact": 0.19945263245754707,
+     "realizable_vs_marked": 0.8005471785335719,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "ATTENTION_COLLAPSE",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.7566846733794704,
+     "proceeds_usd": 24331.535324354234,
+     "exit_impact": 0.32751257404630885,
+     "realizable_vs_marked": 0.6724871235394816,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "VOLUME_GONE",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.8059577403418691,
+     "proceeds_usd": 19404.228088979617,
+     "exit_impact": 0.7318479759638788,
+     "realizable_vs_marked": 0.26815187282901637,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "SOL_DOWN_30",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.6036156641945898,
+     "proceeds_usd": 39638.43791768878,
+     "exit_impact": 0.21746625463264968,
+     "realizable_vs_marked": 0.5477734705500404,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "CONGESTION",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.4338363687244505,
+     "proceeds_usd": 56617.60209443804,
+     "exit_impact": 0.21746625463264968,
+     "realizable_vs_marked": 0.7824127796835212,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "HONEYPOT",
+     "size_usd": 100000,
+     "status": "FAILED",
+     "ret": -1.0,
+     "proceeds_usd": 0.0,
+     "exit_impact": null,
+     "realizable_vs_marked": null,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "COMBINED_WORST",
+     "size_usd": 100000,
+     "status": "FILLED",
+     "ret": -0.7503232494356329,
+     "proceeds_usd": 24967.677788343248,
+     "exit_impact": 0.5070928186662617,
+     "realizable_vs_marked": 0.49290653330328926,
+     "capped_by_observed_quote": null
+    },
+    {
+     "scenario": "QUOTE_DEPLETION",
+     "size_usd": 100000,
+     "status": "FAILED",
+     "ret": -1.0,
+     "proceeds_usd": 0.0,
+     "exit_impact": null,
+     "realizable_vs_marked": null,
+     "capped_by_observed_quote": null
+    }
+   ],
+   "probabilities": "NOT_ASSIGNED (shocks are hypothetical; see historical_evidence for empirical frequencies when available)"
+  }
+ ],
+ "cohorts": {
+  "ENTRY CONDITIONS MET": {
+   "tier": "INSUFFICIENT_HISTORY",
+   "status": "ENTRY CONDITIONS MET",
+   "n": 0,
+   "min_n": 30
+  },
+  "NEAR ENTRY": {
+   "tier": "INSUFFICIENT_HISTORY",
+   "status": "NEAR ENTRY",
+   "n": 8,
+   "min_n": 30
+  },
+  "SETUP DEVELOPING": {
+   "tier": "INSUFFICIENT_HISTORY",
+   "status": "SETUP DEVELOPING",
+   "n": 27,
+   "min_n": 30
+  },
+  "WATCH": {
+   "tier": "INSUFFICIENT_HISTORY",
+   "status": "WATCH",
+   "n": 7,
+   "min_n": 30
+  },
+  "REJECTED": {
+   "tier": "HISTORICAL_COHORT",
+   "status": "REJECTED",
+   "n": 136,
+   "horizon_h": 24,
+   "ret_p10_p50_p90": [
+    -0.7761109817885132,
+    -0.045137743869803015,
+    0.29541454014892476
+   ],
+   "worst_drop_p10_p50": [
+    -0.9300007976019077,
+    -0.2348901999583642
+   ],
+   "note": "empirical frequencies for past tokens with the same lab status; not this token's probabilities; mid prices before costs"
+  }
+ }
+}
