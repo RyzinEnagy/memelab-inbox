@@ -1,0 +1,458 @@
+{
+ "events": 19,
+ "failed_72h": 15,
+ "event": {
+  "ret_6h": {
+   "n": 19,
+   "median": 0.0017555416403176594,
+   "mean": -0.27426701018171973,
+   "share_positive": 0.5263157894736842
+  },
+  "ret_24h": {
+   "n": 19,
+   "median": -0.9174068549790342,
+   "mean": -0.35920626541570255,
+   "share_positive": 0.2631578947368421
+  },
+  "ret_72h": {
+   "n": 19,
+   "median": -0.9696529638715763,
+   "mean": -0.32611809780826395,
+   "share_positive": 0.21052631578947367
+  },
+  "worst_72h": {
+   "n": 19,
+   "median": -0.9762520894065017,
+   "mean": -0.768687561845826,
+   "share_positive": 0.0
+  }
+ },
+ "placebo": {
+  "ret_6h": {
+   "n": 18,
+   "median": -0.014841347560134555,
+   "mean": -0.05957465859709688,
+   "share_positive": 0.3333333333333333
+  },
+  "ret_24h": {
+   "n": 18,
+   "median": -0.018156866941131056,
+   "mean": 0.26787519792185804,
+   "share_positive": 0.3333333333333333
+  },
+  "ret_72h": {
+   "n": 18,
+   "median": -0.06380888978163918,
+   "mean": 0.7014953231074873,
+   "share_positive": 0.2777777777777778
+  },
+  "worst_72h": {
+   "n": 18,
+   "median": -0.1339690150328185,
+   "mean": -0.3128460355718722,
+   "share_positive": 0.0
+  }
+ },
+ "rows": [
+  {
+   "symbol": "swordinu",
+   "mint": "2BVfJ4AHMvHdKtEZNHaBr48dQzTfZvYkjaaxbM6bpump",
+   "kind": "GRADUATION",
+   "pool": "69fyvgoTXQxBdv7Tazd99m1vycwoS3Pyjkj8RRFFzSzJ",
+   "available_at": 1791467101.849,
+   "event_time_claim": 1791311637.0,
+   "committed_by": 1791468326.0,
+   "lab_status_then": "AVOID",
+   "outcome": {
+    "entry_bar": 1791468000.0,
+    "entry": 0.00022030466448043842,
+    "wait_h": 0.25,
+    "ret_6h": -0.9599984605039286,
+    "ret_24h": -0.9569446683708425,
+    "ret_72h": -0.9696529638715763,
+    "worst_72h": -0.98383716017872,
+    "last_bar_age_h": 14.4
+   },
+   "failed_72h": true
+  },
+  {
+   "symbol": "PANDA",
+   "mint": "2bN9YoTKiejNonS4Q1EjhypvRfndZLEiYJZUHLwYpump",
+   "kind": "GRADUATION",
+   "pool": "89QZ1Y8EAswxM39uMh35UJ1eRJdjNkUnNcWYx5bk7adh",
+   "available_at": 1791474088.431,
+   "event_time_claim": 1791472766.0,
+   "committed_by": 1791475160.0,
+   "lab_status_then": "WATCH",
+   "outcome": {
+    "entry_bar": 1791475200.0,
+    "entry": 0.0001455886101880354,
+    "wait_h": 0.31,
+    "ret_6h": -0.4098420041669484,
+    "ret_24h": -0.04136145132636937,
+    "ret_72h": -0.7123618373933949,
+    "worst_72h": -0.8808652602831462,
+    "last_bar_age_h": 2.4
+   },
+   "failed_72h": true
+  },
+  {
+   "symbol": "LLMAO",
+   "mint": "8rDFg4MDov1a59dyWFDkshZ633zvZKRaKdpBQBrd4bJK",
+   "kind": "LAUNCHLAB_NEW",
+   "pool": "8joibXNa8yh7jma7XQGwqHWjZH2AdWN9b55KUJrttfiX",
+   "available_at": 1791474088.431,
+   "event_time_claim": 1791472713.0,
+   "committed_by": 1791475160.0,
+   "lab_status_then": "IGNORE",
+   "outcome": {
+    "entry_bar": 1791475200.0,
+    "entry": 3.6910562762985e-05,
+    "wait_h": 0.31,
+    "ret_6h": 0.0821480019716978,
+    "ret_24h": -0.09757443134955468,
+    "ret_72h": -0.043000708181081815,
+    "worst_72h": -0.3398324889670916,
+    "last_bar_age_h": 1.4
+   },
+   "failed_72h": false
+  },
+  {
+   "symbol": "D\u200aO\u200aT\u200a",
+   "mint": "46hMQPKT2sPwMSkVenXnpiKVQhrkFvJLSYMWtdkipump",
+   "kind": "GRADUATION",
+   "pool": "C9bagG6C6skabdt1R5TyEqHWaWAsr47DDWorCckyChsF",
+   "available_at": 1791476779.58,
+   "event_time_claim": 1791357962.0,
+   "committed_by": 1791477312.0,
+   "lab_status_then": "WATCH",
+   "outcome": {
+    "entry_bar": 1791478800.0,
+    "entry": 0.43985190904110755,
+    "wait_h": 0.56,
+    "ret_6h": 0.14372738195537327,
+    "ret_24h": 0.5211063114964658,
+    "ret_72h": -0.9999861963991138,
+    "worst_72h": -0.999995124171793,
+    "last_bar_age_h": 19.4
+   },
+   "failed_72h": true
+  },
+  {
+   "symbol": "HNET",
+   "mint": "Aov3BtQvrGXM5V9oiHu8PKJWeV8a2rFnr24fwWcNpump",
+   "kind": "CURVE_LIVE",
+   "pool": "HGLSAK3nVLzAZPBMiqrkV52cmZhNVrwVQuzpSnCSYAkw",
+   "available_at": 1791476779.58,
+   "event_time_claim": 1791419584.0,
+   "committed_by": 1791477312.0,
+   "lab_status_then": "WATCH",
+   "outcome": {
+    "entry_bar": 1791478800.0,
+    "entry": 3.575696150533786e-05,
+    "wait_h": 0.56,
+    "ret_6h": 0.09691753689608862,
+    "ret_24h": -0.0466948969316372,
+    "ret_72h": 0.10456824998641157,
+    "worst_72h": -0.22179056909422357,
+    "last_bar_age_h": 1.4
+   },
+   "failed_72h": false
+  },
+  {
+   "symbol": "DAWS",
+   "mint": "C3AEVqFnCYh2q4VAE1jeUVxHQNQLGVFDGrjqfboEpump",
+   "kind": "GRADUATION",
+   "pool": "J3dQ5vPhZzheVgcKsyRgYMLHivRXFKe88mVfY3KfdTbq",
+   "available_at": 1791476779.58,
+   "event_time_claim": 1791430822.0,
+   "committed_by": 1791477312.0,
+   "lab_status_then": "WATCH",
+   "outcome": {
+    "entry_bar": 1791478800.0,
+    "entry": 0.07004133167958748,
+    "wait_h": 0.56,
+    "ret_6h": 0.10537533623760464,
+    "ret_24h": -0.9999720490492922,
+    "ret_72h": -0.9999723919896277,
+    "worst_72h": -0.9999724145236447,
+    "last_bar_age_h": 5.4
+   },
+   "failed_72h": true
+  },
+  {
+   "symbol": "UDR",
+   "mint": "5YLCp1XSRpGevfKBoSJvs7fSv6fSgbTDe3XB3dLfpump",
+   "kind": "GRADUATION",
+   "pool": "3TXrbeYcuPNYt98xJ4W74fuwmPrFb9boANt9oM1trkzZ",
+   "available_at": 1791479720.268,
+   "event_time_claim": 1791355019.0,
+   "committed_by": 1791480338.0,
+   "lab_status_then": "WATCH",
+   "outcome": {
+    "entry_bar": 1791482400.0,
+    "entry": 0.019498586561361265,
+    "wait_h": 0.74,
+    "ret_6h": 0.15257536809575534,
+    "ret_24h": -0.9998982891491575,
+    "ret_72h": -0.999891858806452,
+    "worst_72h": -0.9999150205011194,
+    "last_bar_age_h": 24.4
+   },
+   "failed_72h": true
+  },
+  {
+   "symbol": "PQC",
+   "mint": "7K52aYQW9rWGjwZmQ7o2d1P6E7bji6hSMsqaLy5EcxLh",
+   "kind": "GRADUATION",
+   "pool": "6qUUCwD9fyRafora8XVmdApQBxCkbUiZTMkcYD47rWsS",
+   "available_at": 1791479720.268,
+   "event_time_claim": 1791427444.0,
+   "committed_by": 1791480338.0,
+   "lab_status_then": "WATCH",
+   "outcome": {
+    "entry_bar": 1791482400.0,
+    "entry": 0.0005171686058730573,
+    "wait_h": 0.74,
+    "ret_6h": -0.3529241263623383,
+    "ret_24h": 1.9033673479142394,
+    "ret_72h": -0.18190332240040508,
+    "worst_72h": -0.635080043848149,
+    "last_bar_age_h": 1.4
+   },
+   "failed_72h": true
+  },
+  {
+   "symbol": "GOIF",
+   "mint": "AQ7A9nsCcrfbftRq2kfFjCkaG6NicixZ1Vy4RZ4Hpump",
+   "kind": "GRADUATION",
+   "pool": "CVmSV32SWJFNtsRWsquQDHEtmTS7ribq1VNruu3EWFgh",
+   "available_at": 1791479720.268,
+   "event_time_claim": 1791388785.0,
+   "committed_by": 1791480338.0,
+   "lab_status_then": "IGNORE",
+   "outcome": {
+    "entry_bar": 1791482400.0,
+    "entry": 0.0925235760281695,
+    "wait_h": 0.74,
+    "ret_6h": 0.11509160786644612,
+    "ret_24h": -0.9999688294247233,
+    "ret_72h": -0.9999715707708764,
+    "worst_72h": -0.9999762766212991,
+    "last_bar_age_h": 83.4
+   },
+   "failed_72h": true
+  },
+  {
+   "symbol": "GOIF",
+   "mint": "Goh59QCfoX53RgJa615vzXx4swR3mv51VgvAN6ZCpump",
+   "kind": "GRADUATION",
+   "pool": "D2pVedgHQkD2kWnrSFyZX19Tg9X2KJrEiAauMKRchGuz",
+   "available_at": 1791479720.268,
+   "event_time_claim": 1791421067.0,
+   "committed_by": 1791480338.0,
+   "lab_status_then": "IGNORE",
+   "outcome": {
+    "entry_bar": 1791482400.0,
+    "entry": 0.22370767011299436,
+    "wait_h": 0.74,
+    "ret_6h": 0.1609890661210922,
+    "ret_24h": -0.9999833087465487,
+    "ret_72h": -0.9999808118233072,
+    "worst_72h": -0.9999904378347454,
+    "last_bar_age_h": 9.4
+   },
+   "failed_72h": true
+  },
+  {
+   "symbol": "$BITFOOTS",
+   "mint": "agYKZgcBE2XUzTypkkdJqvwPbu7k5CUZjA6Cm3jpump",
+   "kind": "GRADUATION",
+   "pool": "KoQr2pvCYFiWvidqtBxaKcMGQqJWaNw4oed9CLjfLnA",
+   "available_at": 1791479720.268,
+   "event_time_claim": 1791439252.0,
+   "committed_by": 1791480338.0,
+   "lab_status_then": "WATCH",
+   "outcome": {
+    "entry_bar": 1791482400.0,
+    "entry": 4.477054450843866e-05,
+    "wait_h": 0.74,
+    "ret_6h": -0.10873612677884448,
+    "ret_24h": -0.9407773024938262,
+    "ret_72h": -0.9407572429063007,
+    "worst_72h": -0.941373065318287,
+    "last_bar_age_h": 91.4
+   },
+   "failed_72h": true
+  },
+  {
+   "symbol": "ConConAI",
+   "mint": "pmGXrmpvbWJJebWxE3RBAkdUbY1VPuwRZuU27Nepump",
+   "kind": "GRADUATION",
+   "pool": "C8Vr7AFWJMZZAbnyxc5Em7VtMJgCVFXpC3G7GxLwM312",
+   "available_at": 1791479720.268,
+   "event_time_claim": 1791378966.0,
+   "committed_by": 1791480338.0,
+   "lab_status_then": "WATCH",
+   "outcome": {
+    "entry_bar": 1791482400.0,
+    "entry": 0.003407034624183187,
+    "wait_h": 0.74,
+    "ret_6h": 0.10248822154232529,
+    "ret_24h": 0.29541454014892476,
+    "ret_72h": -0.998634424887131,
+    "worst_72h": -0.9987331397738909,
+    "last_bar_age_h": 26.4
+   },
+   "failed_72h": true
+  },
+  {
+   "symbol": "FEEBIE",
+   "mint": "2LMiWGyNjGKyUkH2oFYmMxzwLzUY84dHZf6DUUZFpump",
+   "kind": "CURVE_LIVE",
+   "pool": "GZwUWL7SyUXV8z8HNbJW3EPLQ8gGD2A4mYhja1NzMwAd",
+   "available_at": 1791484812.496,
+   "event_time_claim": 1791426982.0,
+   "committed_by": 1791485480.0,
+   "lab_status_then": "WATCH",
+   "outcome": {
+    "entry_bar": 1791486000.0,
+    "entry": 3.2021356109606325e-05,
+    "wait_h": 0.33,
+    "ret_6h": 0.0643561321070314,
+    "ret_24h": 1.064572128000116,
+    "ret_72h": 0.0688557270737653,
+    "worst_72h": -0.05590380423032304,
+    "last_bar_age_h": 45.4
+   },
+   "failed_72h": false
+  },
+  {
+   "symbol": "PVE2",
+   "mint": "61cfz6tcpHqV2dAKuMLJ6LN5FeLKPxXT6aNgj53Ppump",
+   "kind": "GRADUATION",
+   "pool": "3dkX33EifYXai5gViaD2ARP7Bh8PYzR3RSsSk5JqLXeH",
+   "available_at": 1791484812.496,
+   "event_time_claim": 1791484751.0,
+   "committed_by": 1791485480.0,
+   "lab_status_then": "WATCH",
+   "outcome": {
+    "entry_bar": 1791486000.0,
+    "entry": 2.0179716923969813e-06,
+    "wait_h": 0.33,
+    "ret_6h": 0.0017555416403176594,
+    "ret_24h": 0.013228347572439514,
+    "ret_72h": 0.018192074784070922,
+    "worst_72h": 0.0,
+    "last_bar_age_h": 238.4
+   },
+   "failed_72h": false
+  },
+  {
+   "symbol": "GUNNER",
+   "mint": "9JtPfLbN32CszHmstoXYdWaazFLaoxhfqf9mKgQMpump",
+   "kind": "GRADUATION",
+   "pool": "5Tg9D6FeZXY3fACm1jDUNnHeWLvGiuucM8qAN9UznPA",
+   "available_at": 1791484812.496,
+   "event_time_claim": 1791476540.0,
+   "committed_by": 1791485480.0,
+   "lab_status_then": "WATCH",
+   "outcome": {
+    "entry_bar": 1791486000.0,
+    "entry": 9.355261430933276e-05,
+    "wait_h": 0.33,
+    "ret_6h": -0.9760553358483749,
+    "ret_24h": -0.9752583853679634,
+    "ret_72h": -0.9755657450380086,
+    "worst_72h": -0.9762520894065017,
+    "last_bar_age_h": 83.4
+   },
+   "failed_72h": true
+  },
+  {
+   "symbol": "puter",
+   "mint": "FgnSJwFoote99diZUhtRV9Ajcfwzjj6hDx82TDhVpump",
+   "kind": "GRADUATION",
+   "pool": "687HWjAWqxVNRgy7XFeYRpxUNvVSarECu7aQB5EeaJBp",
+   "available_at": 1791484812.496,
+   "event_time_claim": 1791484093.0,
+   "committed_by": 1791485480.0,
+   "lab_status_then": "WATCH",
+   "outcome": {
+    "entry_bar": 1791486000.0,
+    "entry": 0.0002590283507489289,
+    "wait_h": 0.33,
+    "ret_6h": -0.9908813771910668,
+    "ret_24h": -0.9907177682626152,
+    "ret_72h": -0.9892147371955822,
+    "worst_72h": -0.9910100552629332,
+    "last_bar_age_h": 1.4
+   },
+   "failed_72h": true
+  },
+  {
+   "symbol": "D\u200aO\u200aT\u200a",
+   "mint": "3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump",
+   "kind": "GRADUATION",
+   "pool": "7AvDaHLbHW6qaMGuHQGpebbbGaV7fRTdFq5T5Vd4vdoH",
+   "available_at": 1791547052.132,
+   "event_time_claim": 1791441902.0,
+   "committed_by": 1791547986.0,
+   "lab_status_then": "IGNORE",
+   "outcome": {
+    "entry_bar": 1791547200.0,
+    "entry": 0.011315422529866805,
+    "wait_h": 0.04,
+    "ret_6h": -0.9998185886789079,
+    "ret_24h": -0.9997852990231417,
+    "ret_72h": -0.9997967192880145,
+    "worst_72h": -0.9998297636920771,
+    "last_bar_age_h": 290.4
+   },
+   "failed_72h": true
+  },
+  {
+   "symbol": "ALEJO",
+   "mint": "4CBJ86svL6cuzA5CvGoVfrFVwRyMvBeGYBsSQqKx1MnV",
+   "kind": "GRADUATION",
+   "pool": "G58fCy4SMCVjShWgPh4nbfASLsdf4RRph6a72ucq2y8W",
+   "available_at": 1791547052.132,
+   "event_time_claim": 1791546907.0,
+   "committed_by": 1791547986.0,
+   "lab_status_then": "WATCH",
+   "outcome": {
+    "entry_bar": 1791547200.0,
+    "entry": 3.204489370015907e-05,
+    "wait_h": 0.04,
+    "ret_6h": -0.9128888421204915,
+    "ret_24h": -0.9174068549790342,
+    "ret_72h": -0.9240176085254769,
+    "worst_72h": -0.9244427778069215,
+    "last_bar_age_h": 3.4
+   },
+   "failed_72h": true
+  },
+  {
+   "symbol": "REA",
+   "mint": "8uZieiVy2AanCpYkfxR1quKSbzPKuMUaNYwQ61mrT3iu",
+   "kind": "GRADUATION",
+   "pool": "54q8E1sqsfVBgytXso1xUGS3WRovFAJTfou5XKLFpnp1",
+   "available_at": 1791547052.132,
+   "event_time_claim": 1791519730.0,
+   "committed_by": 1791547986.0,
+   "lab_status_then": "AVOID",
+   "outcome": {
+    "entry_bar": 1791547200.0,
+    "entry": 5.5415384998710264e-05,
+    "wait_h": 0.04,
+    "ret_6h": -0.5253525262355062,
+    "ret_24h": -0.6562641835558284,
+    "ret_72h": 6.3468482292750865,
+    "worst_72h": -0.6562641835558284,
+    "last_bar_age_h": 1.4
+   },
+   "failed_72h": true
+  }
+ ],
+ "note": "small sample (one week of lab launch records); descriptive only, not a validated edge"
+}

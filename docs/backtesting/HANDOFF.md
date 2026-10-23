@@ -4,8 +4,8 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 
 ## Position
 
-- Phase completed: 08 (point-in-time TA strategy library), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_08.md. Phases 00-07 PASS (06A decision EXISTING_TOOL_WINS).
-- Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
+- Phase completed: 09 (catalyst, wallet and social strategies), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_09.md. Phases 00-08 PASS (06A decision EXISTING_TOOL_WINS).
+- Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f, Phase 08 976e747. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
 - Spend so far: Firecrawl about 29 of ~100 calls; Maxun 5 of 5 trial credits (0 left, 0 schedules); Crawl4AI local only; Solana public RPC and Jupiter quotes read-only (about 20 calls).
 
 ## Commands and exits
@@ -28,6 +28,7 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 | full suite on the clean 06A commit / `release_e2e.py` | 1 / 0 | 1 failed (C-1), 837 passed / PASS 78 of 78 |
 | Phase 07: `pytest tests/test_backtest_execution.py` / `mutate.py p07_mutations.json` | 0 / 0 | 15 passed / 14 of 14 caught |
 | Phase 08: `pytest tests/test_backtest_strategies.py` / `mutate.py p08_mutations.json` | 0 / 0 | 16 passed / 11 of 11 caught |
+| Phase 09: `pytest tests/test_backtest_catalyst.py` / `mutate.py p09_mutations.json` | 0 / 0 | 11 passed / 11 of 11 caught |
 
 ## Proven
 
@@ -39,7 +40,7 @@ Universe spans 17 days. Catalyst history thin. Helius key absent in this workspa
 
 ## Next eligible phase
 
-09 (catalyst, wallet and social strategies). Drafted ahead of its gate: `strategies/catalyst.py`, `sources/catalyst_bridge.py`, `tests/test_backtest_catalyst.py`; the registry gains CATALYST_VERIFIED in that commit.
+10 (deterministic event and portfolio core). `memelab/backtest/engine.py` is already committed with Phase 09 (its tests use it); Phase 10 gates it with `tests/test_backtest_engine.py`.
 
 ## Roadmap changes
 

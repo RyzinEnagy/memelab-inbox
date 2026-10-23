@@ -2,10 +2,11 @@
 from __future__ import annotations
 
 from .baselines import EnterAtDiscovery, MACross, NoTrade, RandomEntry
+from .catalyst import CatalystVerified
 from .labstatus import LabStatus
 from .ta import AbsorptionBreak, BreakoutClose, BreakoutRetest, FailedBreakoutReclaim, MomentumExhaustion, TrendHHHL
 
-REGISTRY = {c.id: c for c in (BreakoutClose, BreakoutRetest, FailedBreakoutReclaim, TrendHHHL, AbsorptionBreak, MomentumExhaustion, LabStatus,
+REGISTRY = {c.id: c for c in (CatalystVerified, BreakoutClose, BreakoutRetest, FailedBreakoutReclaim, TrendHHHL, AbsorptionBreak, MomentumExhaustion, LabStatus,
                               NoTrade, EnterAtDiscovery, RandomEntry, MACross)}
 BASELINES = ("NO_TRADE", "ENTER_AT_DISCOVERY", "RANDOM_ENTRY", "MA_CROSS")
 
