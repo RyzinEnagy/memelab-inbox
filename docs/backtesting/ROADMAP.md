@@ -5,7 +5,7 @@ Order is fixed by the package: 00, 01, 02, 03, 04, 05, 06, 06A, 07, 08, 09, 10, 
 | Phase | Outcome | Status | Evidence |
 |---|---|---|---|
 | 00 | Current-repo baseline | PASS | audits/backtesting/00_BASELINE.md |
-| 01 | Gaps, requirements, architecture | pending | |
+| 01 | Gaps, requirements, architecture | PASS | audits/backtesting/PHASE_01.md |
 | 02 | GitHub discovery (>=40) | pending | |
 | 03 | Source review (>=20), top 10 | pending | |
 | 04 | Adoption bake-off | pending | |
