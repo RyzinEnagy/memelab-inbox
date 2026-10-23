@@ -1,0 +1,21 @@
+# Phase file index
+
+- `PHASE_00_repository_baseline_and_architectural_truth.md`
+- `PHASE_01_gap_to_requirements_and_integration_placement.md`
+- `PHASE_02_broad_independent_github_discovery.md`
+- `PHASE_03_source_code_due_diligence_and_ranked_top_10.md`
+- `PHASE_04_adoption_bake_off_install_extract_or_fresh_implementation.md`
+- `PHASE_05_chronology_safe_immutable_data_and_experiment_schema.md`
+- `PHASE_06_historical_data_adapters_and_data_quality_defenses.md`
+- `PHASE_06A_maxun_persistent_robots_and_ingestion_bakeoff.md`
+- `PHASE_07_execution_aware_dex_amm_simulation_and_capacity.md`
+- `PHASE_08_point_in_time_technical_analysis_strategy_library.md`
+- `PHASE_09_catalyst_wallet_and_social_event_driven_strategies.md`
+- `PHASE_10_deterministic_event_and_portfolio_backtesting_core.md`
+- `PHASE_11_statistical_validation_and_strategy_selection_discipline.md`
+- `PHASE_12_adversarial_position_and_opportunity_stress_engine.md`
+- `PHASE_13_integrate_per_opportunity_automated_evaluation.md`
+- `PHASE_14_decision_oriented_reports_cli_alerts_and_apis.md`
+- `PHASE_15_post_discovery_outcomes_calibration_and_drift_checks.md`
+- `PHASE_16_adversarial_cross_component_and_independent_e2e_audit.md`
+- `PHASE_17_release_hardening_documentation_and_decision_memo.md`
