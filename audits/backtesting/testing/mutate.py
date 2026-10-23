@@ -9,7 +9,7 @@ muts = json.load(open(sys.argv[1]))
 ok = True
 with tempfile.TemporaryDirectory() as td:
     base = Path(td) / "repo"
-    pat = shutil.ignore_patterns(".git", "__pycache__", "*.sqlite-shm", "*.sqlite-wal", "audits", "workplans")
+    pat = shutil.ignore_patterns(".git", "__pycache__", "*.sqlite-shm", "*.sqlite-wal", "workplans")   # audits are copied: some tests read committed evidence
     def _ign(d, names):
         out = set(pat(d, names))
         if Path(d).resolve() == (ROOT / "data").resolve():

@@ -1,0 +1,18 @@
+{
+ "t": 1792776393.8846514,
+ "usage_status": 200,
+ "usage": {
+  "scope": {
+   "type": "personal"
+  },
+  "plan": "TRIAL",
+  "credits": 5,
+  "billingCycle": "MONTHLY",
+  "expiresAt": "2126-10-23T14:02:36.059Z",
+  "robots": 0,
+  "agents": 0,
+  "runs": 0
+ },
+ "schedules_status": 200,
+ "schedules": []
+}

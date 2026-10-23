@@ -1,0 +1,43 @@
+{
+ "status": 201,
+ "resp": {
+  "success": true,
+  "data": {
+   "id": "ef435421-7926-43d2-89ea-0ad337cf05db",
+   "name": "memelab-p06a-solana-news-crawl",
+   "type": "crawl",
+   "status": "ready",
+   "error": null,
+   "url": "https://solana.com/news",
+   "description": null,
+   "formats": null,
+   "teamId": null,
+   "createdAt": "2026-10-23T17:26:34.973Z",
+   "updatedAt": "2026-10-23T17:26:34.973Z",
+   "schedule": null,
+   "monitoring": {
+    "compareRuns": false,
+    "monitoringPrompt": null,
+    "alertsEnabled": false,
+    "alertEmail": null
+   },
+   "webhooks": []
+  }
+ },
+ "t": 1792776394.3573034,
+ "request": {
+  "url": "https://solana.com/news",
+  "name": "memelab-p06a-solana-news-crawl",
+  "crawlConfig": {
+   "mode": "path",
+   "limit": 12,
+   "maxDepth": 1,
+   "useSitemap": true,
+   "followLinks": true,
+   "respectRobots": true,
+   "includePaths": [
+    "/news/.*"
+   ]
+  }
+ }
+}

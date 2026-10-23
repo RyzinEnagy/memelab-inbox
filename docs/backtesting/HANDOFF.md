@@ -4,8 +4,9 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 
 ## Position
 
-- Phase completed: 06 (historical data and quality defenses), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_06.md. Phases 00-05 PASS.
-- Baseline SHA f99c6c7. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
+- Phase completed: 06A (Maxun bake-off and decision), 2026-10-23. State: PASS, decision EXISTING_TOOL_WINS, Maxun NOT_ADOPTED. Note: audits/backtesting/PHASE_06A.md. Phases 00-06 PASS.
+- Baseline SHA f99c6c7. Phase 06 commit f6641ce. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
+- Spend so far: Firecrawl about 29 of ~100 calls; Maxun 5 of 5 trial credits (0 left, 0 schedules); Crawl4AI local only.
 
 ## Commands and exits
 
@@ -23,6 +24,7 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 | Phase 06 tests (sources, real fixture) | 0 | 17 passed |
 | `python audits/backtesting/testing/mutate.py audits/backtesting/testing/p06_mutations.json` | 0 | 12/12 caught |
 | `python -m pytest tests -q` after Phase 06 | 1 | 1 failed (C-1 only), 870 passed |
+| Phase 06A: `pytest tests/test_backtest_webcapture.py` / `mutate.py p06a_mutations.json` | 0 / 0 | 20 passed / 9 of 9 caught |
 
 ## Proven
 
@@ -34,7 +36,7 @@ Universe spans 17 days. Catalyst history thin. Helius key absent in this workspa
 
 ## Next eligible phase
 
-06A (Maxun bake-off and decision). Pre-registration written before any bake-off fetch: audits/backtesting/research/MAXUN_BAKEOFF_PREREG.md (sha256 in testing/logs/p06a_prereg.sha256).
+07 (execution-aware AMM simulation and capacity). Code drafted ahead of its gate: `memelab/backtest/execution.py` and `tests/test_backtest_execution.py`, not yet committed or gated.
 
 ## Roadmap changes
 

@@ -1,0 +1,183 @@
+{
+ "CRAWL4AI|A": {
+  "attempts": 10,
+  "credits": 0,
+  "date_acc": 1.0,
+  "date_sources": {
+   "article:published_time": 10
+  },
+  "denominator": 10,
+  "duplicates": 0,
+  "mean_secs_per_page": 1.67,
+  "misses": [],
+  "sample_pages_returned": 10,
+  "sample_size": 10,
+  "scored": 10,
+  "sufficient_sample": true,
+  "tag_acc": null,
+  "title_acc": 1.0,
+  "usable": 10
+ },
+ "CRAWL4AI|B": {
+  "attempts": 10,
+  "credits": 0,
+  "date_acc": 1.0,
+  "date_sources": {
+   "relative-time": 10
+  },
+  "denominator": 10,
+  "duplicates": 0,
+  "mean_secs_per_page": 1.35,
+  "misses": [],
+  "sample_pages_returned": 10,
+  "sample_size": 10,
+  "scored": 10,
+  "sufficient_sample": true,
+  "tag_acc": 1.0,
+  "title_acc": 1.0,
+  "usable": 10
+ },
+ "FIRECRAWL|A": {
+  "attempts": 10,
+  "credits": 10,
+  "date_acc": 1.0,
+  "date_sources": {
+   "article:published_time": 10
+  },
+  "denominator": 10,
+  "duplicates": 0,
+  "mean_secs_per_page": null,
+  "misses": [],
+  "sample_pages_returned": 10,
+  "sample_size": 10,
+  "scored": 10,
+  "sufficient_sample": true,
+  "tag_acc": null,
+  "title_acc": 1.0,
+  "usable": 10
+ },
+ "FIRECRAWL|B": {
+  "attempts": 10,
+  "credits": 10,
+  "date_acc": 0.8,
+  "date_sources": {
+   "none": 1,
+   "text": 9
+  },
+  "denominator": 10,
+  "duplicates": 0,
+  "mean_secs_per_page": null,
+  "misses": [
+   {
+    "date": {
+     "from": "text",
+     "got": "2026-10-15",
+     "want": "2026-10-16"
+    },
+    "url": "https://github.com/jito-foundation/jito-solana/releases/tag/v4.3.2-jito"
+   },
+   {
+    "date": {
+     "from": "none",
+     "got": null,
+     "want": "2026-10-23"
+    },
+    "url": "https://github.com/solana-program/token-2022/releases/tag/rust-legacy%40v0.20.1"
+   }
+  ],
+  "sample_pages_returned": 10,
+  "sample_size": 10,
+  "scored": 10,
+  "sufficient_sample": true,
+  "tag_acc": 1.0,
+  "title_acc": 1.0,
+  "usable": 10
+ },
+ "MAXUN|A_EXTRA": {
+  "attempts": 5,
+  "credits": 5,
+  "date_acc": 1.0,
+  "date_sources": {
+   "article:published_time": 4,
+   "none": 1
+  },
+  "denominator": 5,
+  "duplicates": 0,
+  "mean_secs_per_page": 1.67,
+  "misses": [],
+  "sample_pages_returned": null,
+  "sample_size": null,
+  "scored": 5,
+  "sufficient_sample": false,
+  "tag_acc": null,
+  "title_acc": 1.0,
+  "usable": 5
+ },
+ "PLAIN_HTTP|A": {
+  "attempts": 10,
+  "credits": 0,
+  "date_acc": 1.0,
+  "date_sources": {
+   "article:published_time": 10
+  },
+  "denominator": 10,
+  "duplicates": 0,
+  "mean_secs_per_page": 0.57,
+  "misses": [],
+  "sample_pages_returned": 10,
+  "sample_size": 10,
+  "scored": 10,
+  "sufficient_sample": true,
+  "tag_acc": null,
+  "title_acc": 1.0,
+  "usable": 10
+ },
+ "PLAIN_HTTP|A_EXTRA": {
+  "attempts": 5,
+  "credits": 0,
+  "date_acc": 0.8,
+  "date_sources": {
+   "article:published_time": 4,
+   "jsonld": 1
+  },
+  "denominator": 5,
+  "duplicates": 0,
+  "mean_secs_per_page": null,
+  "misses": [
+   {
+    "date": {
+     "from": "jsonld",
+     "got": "2026-10-07",
+     "want": null
+    },
+    "url": "https://solana.com/news"
+   }
+  ],
+  "sample_pages_returned": null,
+  "sample_size": null,
+  "scored": 5,
+  "sufficient_sample": false,
+  "tag_acc": null,
+  "title_acc": 1.0,
+  "usable": 5
+ },
+ "PLAIN_HTTP|B": {
+  "attempts": 10,
+  "credits": 0,
+  "date_acc": 1.0,
+  "date_sources": {
+   "relative-time": 10
+  },
+  "denominator": 10,
+  "duplicates": 0,
+  "mean_secs_per_page": 0.61,
+  "misses": [],
+  "sample_pages_returned": 10,
+  "sample_size": 10,
+  "scored": 10,
+  "sufficient_sample": true,
+  "tag_acc": 1.0,
+  "title_acc": 1.0,
+  "usable": 10
+ }
+}

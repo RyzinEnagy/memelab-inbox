@@ -9,12 +9,12 @@ This is an audit note, not a claim that any Maxun feature is live in the lab.
 | Installed (self-hosted OSS) | NO | no Maxun checkout, server or container on Elving's work computer; Docker not installed (`docker --version` returned nothing) |
 | Configured | YES, Cloud | `D:\memelab\maxun-mcp.cmd` points `mcp-remote` at `https://app.maxun.dev/api/mcp`; key in `D:\memelab\maxun-token.txt` (32 bytes, never printed) |
 | Authenticated | YES | `GET /api/v1/usage` HTTP 200 |
-| Functional (a real run) | NOT YET | 0 robots, 0 runs on the account |
+| Functional (a real run) | YES, once (Phase 06A) | robot ef435421..., run 005f58a3..., aborted at the credit limit after 5 pages; credits now 0 |
 | Authorized | one-shot runs only, capped (Elving, 2026-10-23) | AskUserQuestion answer in session |
 | Approved for persistent scheduling | NO | 0 schedules; must stay 0 |
 | Claude MCP tools in this session | NO | Maxun MCP launcher exists but is not running in the desktop app's local MCP list |
 
-Account: plan TRIAL, 5 credits, monthly cycle, rate limit 30 requests/min. Each run costs at least 1 credit (Cloud API docs). That caps a fair Maxun sample at about 5 runs unless a crawl robot covers several pages in one run.
+Account: plan TRIAL, 5 credits, monthly cycle, rate limit 30 requests/min. Each run costs at least 1 credit (Cloud API docs). Observed in Phase 06A: one crawl run spent all 5 credits for 5 returned pages, and a run at 0 credits was refused with HTTP 403 ("Each data point requires 1/4 credits") where the docs list 402. Crawl URL filters are documented as "not fully enforced".
 
 ## Editions and endpoints (verified from docs, retrieved 2026-10-23 with Firecrawl, scrapeId 01a16960-5594-7619-ab9d-8a49c2a7f420; and with Crawl4AI, sha256 45a02ace...)
 
