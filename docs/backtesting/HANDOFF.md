@@ -4,7 +4,7 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 
 ## Position
 
-- Phase completed: 01 (gap-to-requirements and integration placement), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_01.md.
+- Phase completed: 02 (broad GitHub discovery), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_02.md. Phase 01 PASS (PHASE_01.md).
 - Baseline SHA f99c6c7; Phase 00 commit 912fc96. Branch `feature/backtesting`. Docs only; no change under `memelab/` or `tests/`.
 
 ## Commands and exits
@@ -14,6 +14,7 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 | `python audits/backtesting/testing/p00_counterexamples.py` (entry gate) | 0 | 3 of 3 |
 | GeckoTerminal probe (12 seeded mints, saved in data/p01_gt_probe.json) | n/a | 7 of 12 answered, 5 hit 429 at 2.2 s pacing |
 | git-history union of theses (testing/logs/p01_negative_review.log) | 0 | 1,801 distinct theses vs 701 in latest export |
+| 30 GitHub API repo searches (research/raw/p02_github_search.txt) | n/a | 273 hits, 268 unique; longlist 73, shortlist 25 |
 
 ## Proven
 
@@ -25,7 +26,7 @@ Universe spans 17 days. Catalyst history thin. Helius key absent in this workspa
 
 ## Next eligible phase
 
-02. First action: run the six query families from RESEARCH_PROTOCOL and build research/LONGLIST.csv (>=40 unique repos).
+03. First action: clone the 25 shortlisted repos at the HEAD shas in research/LONGLIST.csv and fill research/REPO_REVIEWS/<slug>.md from _TEMPLATE.md.
 
 ## Roadmap changes
 
