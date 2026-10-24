@@ -3,14 +3,14 @@
 Linux 6.18.44-fc-v153 x86_64
 Python 3.13.17
 sqlite 3.45.1
-clone HEAD 52c605dc0da03da6e36ec311b93bb12acf7dfc62
+clone HEAD bc7ce30a049adc6492afc139354af5912291e5eb
 secrets in clone: 0 files under data/private; .env present: no
 venv: pytest 9.1.1 numpy 2.5.3
 
 ## 1 migration from an empty research database
 {
  "engine_version": "bt-0.2.0",
- "db": "/tmp/tmp.Ke0RLshCpa/bt/bt.sqlite",
+ "db": "/tmp/tmp.jvnjorUUaS/bt/bt.sqlite",
  "bars": 0,
  "mints_with_bars": 0,
  "pools": 0,
@@ -51,13 +51,13 @@ exit 0
 exit 0
 
 ## 4 deterministic backtest, run twice
-{'run_id': '9d97bcae17e4334513bb808266e27a285f5463cbf3dad1cc6d14f4e1e2dae396', 'cache': 'MISS', 'dataset_hash': '1641985565d533f50973fd903ba802bd82f468422d798b9d283f34bf2737e59a', 'n_trades': 1, 'ledger_hash': 'f9d7dd89c462f6000c2ffd5f75e17bda83fd41860b531a2017afafa2639bf0ca'}
-{'run_id': '9d97bcae17e4334513bb808266e27a285f5463cbf3dad1cc6d14f4e1e2dae396', 'cache': 'HIT', 'dataset_hash': '1641985565d533f50973fd903ba802bd82f468422d798b9d283f34bf2737e59a', 'n_trades': 1, 'ledger_hash': 'f9d7dd89c462f6000c2ffd5f75e17bda83fd41860b531a2017afafa2639bf0ca'}
+{'run_id': 'afa0d2f664678cb807dd2fa7d749ad9bc38cf3c3ebe5681447d46e6e8ce48f7a', 'cache': 'MISS', 'dataset_hash': '1641985565d533f50973fd903ba802bd82f468422d798b9d283f34bf2737e59a', 'n_trades': 1, 'ledger_hash': 'f9d7dd89c462f6000c2ffd5f75e17bda83fd41860b531a2017afafa2639bf0ca'}
+{'run_id': 'afa0d2f664678cb807dd2fa7d749ad9bc38cf3c3ebe5681447d46e6e8ce48f7a', 'cache': 'HIT', 'dataset_hash': '1641985565d533f50973fd903ba802bd82f468422d798b9d283f34bf2737e59a', 'n_trades': 1, 'ledger_hash': 'f9d7dd89c462f6000c2ffd5f75e17bda83fd41860b531a2017afafa2639bf0ca'}
 exit 0
-run 9d97bcae17e4334513bb808266e27a285f5463cbf3dad1cc6d14f4e1e2dae396 (COMPLETE): BREAKOUT_CLOSE v1, engine bt-0.2.0, cost model cost-1
-code 52c605dc0da03da6e36ec311b93bb12acf7dfc62, dataset 1641985565d533f50973fd903ba802bd82f468422d798b9d283f34bf2737e59a, result ba4821a5919f1fa671402bd770a4507cb1febc923bbfc12be143747f7f48478a, ledger f9d7dd89c462f6000c2ffd5f75e17bda83fd41860b531a2017afafa2639bf0ca
+run afa0d2f664678cb807dd2fa7d749ad9bc38cf3c3ebe5681447d46e6e8ce48f7a (COMPLETE): BREAKOUT_CLOSE v1, engine bt-0.2.0, cost model cost-1
+code bc7ce30a049adc6492afc139354af5912291e5eb, dataset 1641985565d533f50973fd903ba802bd82f468422d798b9d283f34bf2737e59a, result 4c1e0e0ac819f5ea3acd2e923b4041df08b4cfe57c33b679d40e541b38f7c408, ledger f9d7dd89c462f6000c2ffd5f75e17bda83fd41860b531a2017afafa2639bf0ca
 1 tokens, 1 trades, mean net -0.9998618442854267, mean paper -0.9998245855786829, counts {'abstain': {}, 'canceled': 0, 'expired': 0, 'filled': 1, 'rejected_limits': 3, 'signals': 4, 'submitted': 4}
-files: /tmp/tmp.Ke0RLshCpa/bt/runs/9d97bcae17e4334513bb808266e27a285f5463cbf3dad1cc6d14f4e1e2dae396/journal.json, /tmp/tmp.Ke0RLshCpa/bt/runs/9d97bcae17e4334513bb808266e27a285f5463cbf3dad1cc6d14f4e1e2dae396/result.json
+files: /tmp/tmp.jvnjorUUaS/bt/runs/afa0d2f664678cb807dd2fa7d749ad9bc38cf3c3ebe5681447d46e6e8ce48f7a/journal.json, /tmp/tmp.jvnjorUUaS/bt/runs/afa0d2f664678cb807dd2fa7d749ad9bc38cf3c3ebe5681447d46e6e8ce48f7a/result.json
 reproduce: python -m memelab backtest run --strategy BREAKOUT_CLOSE --params '{"buffer": 0.0, "lookback": 6, "max_hold_bars": 48, "max_staleness_bars": 1, "stop_buffer": 0.03, "tp_r": 2.0, "vol_mult": 0.0}' --label p17  (same code and data give the same run id and a cache HIT; changed code or data give a new id)
 
 ## 5 opportunity report with adversarial scenarios (real PAID captures, judged at their own time)
@@ -70,7 +70,7 @@ Decision RESEARCHABLE: execution is feasible at the smaller sizes under base con
 - INSIDER_DUMP: -63.7% at $5,000
 - HONEYPOT: -100.0% at $250
 - COMBINED_WORST: -92.7% at $5,000
-report sha256 507a29748e63617b
+report sha256 0768968a6c632b03
 
 ## 6 disabled-feature rollback: analyze output with the policy off vs on (no persistence)
 exit 0
@@ -82,16 +82,14 @@ lab database unchanged: yes
 
 ## 7 backtest tests in the clean clone
 exit 0
-244 passed in 36.74s
+244 passed in 36.69s
 
 ## 8 release audit in the clean clone
 exit 0
 Needs action: no.
 
 ## 9 release documents checked against code and evidence (reviewer's checker; runs in the source checkout, which holds the gitignored corpus)
-exit 1
-PASS report: 429 of 686 universe mints have no stored bars  (429 of 686)
-PASS runbook: storage sentence
-68 of 71 checks pass
+exit 0
+72 of 72 checks pass
 
-RESULT: FAIL
+RESULT: PASS
