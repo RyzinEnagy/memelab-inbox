@@ -1,0 +1,9 @@
+# python -m pytest tests -q at commit 4a19d7135db809ed30f8bb5ce2390a800d1f92c3
+# started 2026-10-24T09:04:41Z, finished 2026-10-24T09:07:15Z
+
+tests/test_catalyst.py:44: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+1 failed, 904 passed in 153.99s (0:02:33)
+EXIT=1
+# stray data/reports/20261024_0904_BRETT_0x532f.md removed by hand, with data/memelab.sqlite-shm and -wal; data/memelab.sqlite sha256 068287c0d7e45436... unchanged

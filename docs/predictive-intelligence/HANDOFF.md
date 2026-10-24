@@ -5,7 +5,7 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 ## Position
 
 - Phase 04 (adoption, install, adapter or build bake-off): NEEDS_REVIEW, 2026-10-24, first pass complete. The orchestrator runs the independent skeptic (PI-D-013); a repair pass folds the review in before any PASS.
-- Branch `feature/predictive-intelligence`, two Phase 04 commits on top of `a146a29`: the deliverables commit and the records commit on top of it (read both with `git log -3 --oneline`; this file is part of the records commit). Not pushed. Spend 0 credits.
+- Branch `feature/predictive-intelligence`, two Phase 04 commits on top of `a146a29`: the deliverables commit `4a19d71` and the records commit on top of it (read its hash with `git log -1`; this file is part of it). Not pushed. Spend 0 credits.
 - Code added: `memelab/predictive/runtime.py` (standard library only, flag OFF, imported by no existing module), `tests/test_predictive_runtime.py`, `tests/fixtures/predictive/copyleft_fingerprints.json` (hashes only), `docs/predictive-intelligence/locks/` (two hash locks). No existing file under `memelab/` or `tests/` changed; nothing under `inbox/`, `state/` or `data/` changed.
 
 ## What Phase 04 found
@@ -35,7 +35,8 @@ From the repository root: `python -m pytest tests/test_predictive_runtime.py tes
 ## Tests
 
 - Entry gate at `a146a29`: `python -m pytest tests -q` exit 1, `1 failed, 858 passed in 145.42s (0:02:25)`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (known).
-- After the deliverables commit (post-commit, on the committed tree): recorded in `audits/predictive-intelligence/phase_04/postcommit/` and PHASE_04_EVIDENCE.md "Post-commit results".
+- Before the commit, staged tree: `1 failed, 904 passed in 142.75s (0:02:22)`.
+- After the deliverables commit `4a19d71`, on the committed tree: exit 1, `1 failed, 904 passed in 153.99s (0:02:33)`, only the known failure; `python -m memelab social guard` exit 0 with no violations; `python tools/release_audit.py --history` exit 0, "Needs action: no" (`audits/predictive-intelligence/phase_04/postcommit/`).
 - Strays after each run: `data/reports/<stamp>_BRETT_0x532f.md`, `data/memelab.sqlite-shm`, `-wal`; remove by hand; tracked DB sha256 `068287c0...` unchanged.
 
 ## Blockers and open items

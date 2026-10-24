@@ -2,7 +2,7 @@
  "phase": "04",
  "status": "NEEDS_REVIEW",
  "head_before": "a146a29d17c47a0bdfdef85df2e7a9e2f884d50f",
- "head_after": null,
+ "head_after": "4a19d7135db809ed30f8bb5ce2390a800d1f92c3",
  "head_after_note": "deliverables commit; the records commit that carries this file is its child (git log)",
  "checks": [
   {
@@ -108,6 +108,41 @@
    "exit_code": 0,
    "result": "112 passed",
    "pass": true
+  },
+  {
+   "name": "B17 post-commit full suite",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 904 passed in 153.99s (0:02:33); only test_dedup_corroboration_resurface_denial (known)",
+   "pass": true
+  },
+  {
+   "name": "B17 post-commit content guard",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "violations []",
+   "pass": true
+  },
+  {
+   "name": "B17 post-commit release audit",
+   "command": "python tools/release_audit.py --history",
+   "exit_code": 0,
+   "result": "Needs action: no",
+   "pass": true
+  },
+  {
+   "name": "B16 paths and data",
+   "command": "git diff --name-only a146a29..HEAD; sha256sum data/memelab.sqlite",
+   "exit_code": 0,
+   "result": "only audits/predictive-intelligence/, docs/predictive-intelligence/, memelab/predictive/runtime.py, tests/test_predictive_runtime.py, tests/fixtures/predictive/copyleft_fingerprints.json; tracked DB 068287c0... unchanged; strays removed",
+   "pass": true
+  },
+  {
+   "name": "B11 system interpreter",
+   "command": "pip freeze | sha256sum (start and end)",
+   "exit_code": 0,
+   "result": "4bbf5c51... both times",
+   "pass": true
   }
  ],
  "artifacts": [
@@ -117,7 +152,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_04/PHASE_04_EVIDENCE.md",
-   "sha256": "8a99566c63782e7062d0ddb39057cf382c45e95a781508face7237015b6cdda4"
+   "sha256": "2862f1ec1cb0614ac8e2cb1664ee09c2e60b0c108ded82ce86f7a433ca4d6517"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/SKEPTIC_PACKET.md",
@@ -790,6 +825,22 @@
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/write_results.py",
    "sha256": "643e9e8b8623c5e68463e9fa162eb1a0bb0be3c29bc88c3d62681056b660b60e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/postcommit/pytest_summary.txt",
+   "sha256": "179c97b15db2ecf4526e506f576a747b99b916a9742a2de16e7755246617416e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/postcommit/release_audit_history.summary.txt",
+   "sha256": "4f366fab10faa850c737b3f6ce36c13f9dea86fc69bf52d64b0ed6213dc9eafa"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/postcommit/social_guard.out.txt",
+   "sha256": "2c4415d1ac7839097cf4d60c1142f495343c05cc861ae6fb9346eb823b8a5d7b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/postcommit/summary.json",
+   "sha256": "6719b6b8ca0b59a49e92dacc49ee29acb07f82c4c8e453b485984de347577b98"
   },
   {
    "path": "memelab/predictive/runtime.py",

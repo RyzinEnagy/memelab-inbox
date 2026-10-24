@@ -1,0 +1,40 @@
+{
+ "commit": "4a19d7135db809ed30f8bb5ce2390a800d1f92c3",
+ "checks": [
+  {
+   "name": "B17 post-commit full suite",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 904 passed in 153.99s (0:02:33); only test_dedup_corroboration_resurface_denial (known)",
+   "pass": true
+  },
+  {
+   "name": "B17 post-commit content guard",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "violations []",
+   "pass": true
+  },
+  {
+   "name": "B17 post-commit release audit",
+   "command": "python tools/release_audit.py --history",
+   "exit_code": 0,
+   "result": "Needs action: no",
+   "pass": true
+  },
+  {
+   "name": "B16 paths and data",
+   "command": "git diff --name-only a146a29..HEAD; sha256sum data/memelab.sqlite",
+   "exit_code": 0,
+   "result": "only audits/predictive-intelligence/, docs/predictive-intelligence/, memelab/predictive/runtime.py, tests/test_predictive_runtime.py, tests/fixtures/predictive/copyleft_fingerprints.json; tracked DB 068287c0... unchanged; strays removed",
+   "pass": true
+  },
+  {
+   "name": "B11 system interpreter",
+   "command": "pip freeze | sha256sum (start and end)",
+   "exit_code": 0,
+   "result": "4bbf5c51... both times",
+   "pass": true
+  }
+ ]
+}

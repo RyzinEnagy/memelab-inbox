@@ -8,7 +8,7 @@ Status: **NEEDS_REVIEW** (first pass complete; the orchestrator runs the indepen
 | HEAD before | `a146a29d17c47a0bdfdef85df2e7a9e2f884d50f` (Phase 03 records commit) |
 | Phase start (UTC) | 2026-10-24T07:55:08Z (entry gate) |
 | Acceptance checklist written | 2026-10-24T07:59Z, before any change (`ACCEPTANCE_CHECKLIST.md`, B1 to B22, one dated amendment at 08:20Z widening B16 to the P31 fixture and the lock folder) |
-| Commits | first commit (deliverables, code, tests) and a records commit with the post-commit results; hashes in HANDOFF.md and `git log` |
+| Commits | deliverables commit `4a19d7135db809ed30f8bb5ce2390a800d1f92c3` (2026-10-24T09:04Z) and the records commit on top of it, which adds `postcommit/` and these results (its hash: `git log -1`) |
 | Spend | 0 Firecrawl credits; free calls only (below) |
 
 ## Entry gate and standing checks
@@ -48,7 +48,7 @@ Status: **NEEDS_REVIEW** (first pass complete; the orchestrator runs the indepen
 | Runtime tests | `python -m pytest tests/test_predictive_runtime.py tests/test_predictive_contract.py -q` (root) | 0 | `112 passed` |
 | Runtime mutations | `python -B mutation_runtime.py ../evidence/mutation_runtime.json` | 0 | 17 of 17 mutations make the tests fail; baseline 46 passed |
 
-Full suite before the commit, content guard and release audit after it: see "Post-commit results" (added by the records commit).
+Before the commit, on the staged tree: `python -m pytest tests -q` exit 1, `1 failed, 904 passed in 142.75s (0:02:22)` (known failure only); content guard 0 violations; release audit exit 0. The results that count are the post-commit ones below (PI-D-030).
 
 ## Acceptance checklist results
 
@@ -69,13 +69,24 @@ Full suite before the commit, content guard and release audit after it: see "Pos
 | B13 | OK: `runtime.py` standard library only, 46 tests, key guard on `os.environ`, 17 of 17 mutations caught, no existing module imports the package (existing AST test passes) |
 | B14 | OK: 0 findings in the lab; injected header and copied block flagged (test) |
 | B15 | OK: hostile setup demo; `check_lock` refusals (13 parametrized cases) |
-| B16 | to be confirmed on the committed tree (records commit) |
-| B17 | to be confirmed after the commit (records commit) |
+| B16 | OK: `git diff --name-only a146a29..4a19d71` lists only `audits/predictive-intelligence/`, `docs/predictive-intelligence/`, `memelab/predictive/runtime.py`, `tests/test_predictive_runtime.py` and `tests/fixtures/predictive/copyleft_fingerprints.json`; no existing test changed; no new test needs a third-party package; post-commit suite shows only the known failure; strays removed; `data/memelab.sqlite` sha256 unchanged |
+| B17 | OK: after the commit, on the committed tree: suite `1 failed, 904 passed`, content guard 0 violations, release audit exit 0 (below) |
 | B18 | OK: no wheel, venv, pickle, weights, raw API body, token, file over 1 MB or social content in the phase folder (largest file under 500 KB); labels marked BAKEOFF_ONLY |
 | B19 | OK: COST_LEDGER row, 0 credits |
 | B20 | OK: records written; status NEEDS_REVIEW |
-| B21 | checked before the commit (style scan below) |
+| B21 | OK: 180 new or changed files scanned before the commit for en and em dashes, curly quotes and 20 marketing words: 0 hits |
 | B22 | two commits, no push |
+
+## Post-commit results (deliverables commit `4a19d7135db809ed30f8bb5ce2390a800d1f92c3`)
+
+| Check | Command | Exit | Result |
+|---|---|---|---|
+| Full suite | `python -m pytest tests -q` (09:04:41Z to 09:07:15Z) | 1 | `1 failed, 904 passed in 153.99s (0:02:33)`; only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (known); 46 new tests pass; stray `data/reports/20261024_0904_BRETT_0x532f.md` and the sqlite `-shm` and `-wal` removed by hand; `data/memelab.sqlite` sha256 `068287c0...` unchanged |
+| Content guard | `python -m memelab social guard` | 0 | `"violations": []` (1,175 files scanned) |
+| Release audit | `python tools/release_audit.py --history` | 0 | "Needs action: no"; this phase adds two network-path rows without credentialed or paid hosts (`build_dev_sample.py`, `measure.py`) and no trade-execution or signing hit |
+| System interpreter | `pip freeze \| sha256sum` | 0 | `4bbf5c51...`, unchanged since the start |
+
+Files: `postcommit/pytest_summary.txt`, `postcommit/social_guard.out.txt`, `postcommit/release_audit_history.summary.txt` (summary only, PI-D-030), `postcommit/summary.json`.
 
 ## Sources
 
