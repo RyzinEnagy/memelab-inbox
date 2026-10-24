@@ -40,7 +40,7 @@ Entry gate: Phase 16 PASS for scenario-only research mode at f50b24d, reproduced
 | `python -m pytest tests -q` | 1 | 1030 passed, 1 failed (C-1, pre-existing) |
 | every mutation set p05 to p16, p16_repair, p16_repair2, p17_builder | 0 | all caught (7+12+9+14+11+11+14+11+12+24+20+22+13+10+24+8 = 222) |
 | reviewer's p16r4 and p17 sets | 1 / 1 | p16r4 8 of 9 caught, the ninth (R4-9) not applicable because its line was replaced by the C4 fix; p17 1 of 2, the second's killer test skipped in the harness copy. Both are covered by builder mutations R16d-9, R16d-10 and P17-7, all caught. Log: testing/logs/p17_reviewer_sets.log |
-| `bash audits/backtesting/release/p17_clean_install.sh <repo> <out>` | 0 | RESULT PASS at bc7ce30, 9 steps (below), document checker 72 of 72 |
+| `bash audits/backtesting/release/p17_clean_install.sh <repo> <out>` | 0 | RESULT PASS at d18a07a, 9 steps (below), document checker 72 of 72 |
 | `python tools/release_audit.py` / `python tools/release_e2e.py` | 0 / 0 | Needs action: no / PASS 78 of 78 |
 
 Clean install steps:
@@ -72,7 +72,7 @@ The reviewer's own wrong-but-plausible outputs (a misspelled flag, a wrong hash 
 
 One checker item was circular: "the clean-install log was made at the release commit". The log is made from a commit and then committed, so HEAD always moves one step past it. The check now passes when the log was made at HEAD, or at a commit after which only prose (.md) and the log itself changed (bc7ce30). The release report names the run id with the commit it was made at.
 
-Clean-install run at bc7ce30: RESULT PASS. Run id afa0d2f66467 (MISS, then HIT), ledger f9d7dd89c462, 244 backtest tests passed, "Needs action: no", and the document checker passed 72 of 72.
+Final clean-install run at d18a07a: RESULT PASS. Run id d994779ccf96 (MISS, then HIT, now checked by the script), ledger f9d7dd89c462, 245 backtest tests passed, "Needs action: no", and the document checker passed 72 of 72.
 
 ## Not proven
 

@@ -88,7 +88,7 @@ Every other finding from the independent audit (D1 to D11, N1 to N8, C1 to C4, T
 4. a deterministic run twice: the same run id both times (the id includes the commit, so it is listed with its commit in the hash table), cache HIT the second time, and ledger f9d7dd89c462 at every commit;
 5. an opportunity report with adversarial scenarios on the real PAID captures;
 6. analyze with the policy off and on: only the one backtest line differs, and the lab database is byte-identical;
-7. 244 backtest tests passed;
+7. 245 backtest tests passed;
 8. the release audit reports "Needs action: no";
 9. the reviewer's document checker passes every check of the hash table, paths, policy defaults, runbook commands and corpus counts against the code, the evidence and a corpus copy.
 
@@ -105,7 +105,7 @@ Full suite after the Phase 17 code changes: 1030 passed, 1 failed (C-1). Every b
 | sealed-test ledgers (reproduced under engine bt-0.2.0) | BREAKOUT_CLOSE 88ae40542f4b, LAB_STATUS e478181404b2 |
 | Phase 10 whole-universe runs (run id / ledger) | BREAKOUT_CLOSE b201e999d6e2 / b88184fbaef6; LAB_STATUS 19ff1209a8c5 / b0819ce00d23; MOMENTUM 328b428953a1 / fb0a81672fd9; BREAKOUT_RETEST e3b5638df4f4 / 34524dcda018; RECLAIM fd6c48dc7e07 / d5b3f56215df; MA_CROSS 824ef58f3261 / 4c9485d3f331; RANDOM_ENTRY 852635cfcc7f / e0eef32c342b; ENTER_AT_DISCOVERY 6826f91100fa / 31820d430857 |
 | Phase 15 replayed daily report (2026-10-14) | 9e8b48b3299a |
-| Phase 17 clean-install run | run id afa0d2f66467 at commit bc7ce30, ledger f9d7dd89c462 (the run id includes the commit; the ledger does not) |
+| Phase 17 clean-install run | run id d994779ccf96 at commit d18a07a, ledger f9d7dd89c462 (the run id includes the commit; the ledger does not) |
 
 Phase 10 runs were made with engine bt-0.1.0. Under bt-0.2.0 the run ids change (the engine version is part of the config). Ledgers of fully sold trades keep their shape, so the sealed-test ledgers above reproduce.
 
