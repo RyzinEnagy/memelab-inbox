@@ -19,3 +19,9 @@ Written 2026-10-24T01:31Z, after the entry gate and the read-only universe probe
 | C13 | Records and status | evidence, results JSON (parses), skeptic packet, ROADMAP row, DECISIONS ids, HANDOFF rewritten; status NEEDS_REVIEW until the orchestrator's skeptic is folded in (PI-D-013) | any missing |
 | C14 | Writing style | grep for em and en dashes in every file this phase writes | a hit |
 | C15 | Spend | COST_LEDGER.md; free calls listed in evidence | a billable call not logged |
+
+## Corrections (repair pass 2, appended; the rows above are kept as written)
+
+- C10 named `contract/FORECAST_EXAMPLE_FORMAT_ONLY.json`; the delivered file is `tests/fixtures/predictive/forecast_examples_format_only.json` (skeptic M8). The empty `contract/` folder was removed.
+- C5 and C7 are now checked against the CC-02 fingerprint, which covers every acceptance rule (skeptic F2); `tests/test_predictive_contract.py` pins it and checks the document's frozen block.
+- Added for repair pass 2: C16, decision records are point-in-time (`tests/test_predictive_decisions.py`, built from skeptic counterexample CX-S1); C17, eligibility gaps are classified and counted (`contract.eligibility`, F3); C18, holdout decisions already contacted are listed and excluded (M7).

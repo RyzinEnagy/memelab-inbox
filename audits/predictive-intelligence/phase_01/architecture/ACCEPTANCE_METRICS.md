@@ -1,10 +1,12 @@
 # Acceptance metrics (pre-registered before any modeling)
 
-Fixed in Phase 01 before any label, feature or model exists. The numeric constants are in `memelab/predictive/contract.py` `ACCEPTANCE` and are covered by the registry fingerprint (pre-registered `dd3b4576...` in commit `b6f2621`; `9f8c9deb...` after change control CC-01, which changed only the reference-price and thinning rules, PI-D-019). A later change is allowed only as a recorded change-control decision that names its reason, and never because a metric looked better (package EXECUTION_RULES "Preserve the original scope ... log change-control if metrics evolve").
+Fixed in Phase 01 before any label, feature or model exists. Every rule below that a later phase could loosen is in `memelab/predictive/contract.py` `ACCEPTANCE` and inside the registry fingerprint, and the block at the end of this file is that dictionary verbatim (a test checks both). Where the prose and the frozen block differ, the block governs.
+
+What was frozen when (skeptic F2): the pre-registration commit `b6f2621` (fingerprint `dd3b4576...`, 2026-10-24T01:35:23Z) froze the targets and nine constants (training and holdout minimums, bin minimum, display range, holdout window, prospective start, model age) before any price data was read. The calibration tolerance, promotion bounds, Holm and BSS rules, bins, minimum days, walk-forward fold, baselines and API limits were first written in `e64c6ca` (01:56:38Z), after the coverage probe had read ten price bodies (two of them holdout decisions, see "Holdout contact"); no outcome was computed from those bodies. Change control CC-02 (PI-D-021, repair pass 2) moved all of them into the fingerprint before any label exists. A later change is allowed only as a recorded change-control decision that names its reason, and never because a metric looked better (package EXECUTION_RULES "Preserve the original scope ... log change-control if metrics evolve").
 
 ## What the data can and cannot support
 
-- Real history is 17 days (2026-10-07 to 10-23) of decisions from one lab, one market regime and one universe filter (stage 1: liquidity at least $20k, 24 h volume at least $50k). Counts before eligibility: T1 24 h 177 development and 58 holdout events; T1b 6 h 280 and 79; T2 161 and 49 (TARGET_REGISTRY.md). Eligibility will remove a further share.
+- Real history is 17 days (2026-10-07 to 10-23) of decisions from one lab and one market regime. The universe is not one clean filter (skeptic M6): of 881 Solana priced decision events, 125 sit below the stage-1 thresholds (liquidity $20k, 24 h volume $50k) because watchlist re-analyses and other paths also write theses, and 77 report 24 h volume under $1,000 (30 report none; `probes/split_counts.json`). These are the decisions most likely to be MARKET_INACTIVE or VENDOR_OR_ROUTE_GAP. Counts before eligibility: T1 24 h 177 development and 58 holdout events; T1b 6 h 280 and 79; T2 161 and 49 (TARGET_REGISTRY.md). Eligibility will remove a further share.
 - Design arithmetic (`probes/power_simulation.py`, synthetic, seeded, independent events, a perfectly calibrated model): with 50 holdout events, a true Brier skill score (BSS) of 0.10 over the prevalence baseline is detected about 24% of the time and 0.20 about 45%; with 150 events, 53% and 86%. Real events cluster by day and mint, so real detectability is lower.
 - Therefore the data can support: honest base rates with wide intervals; checks that a model is not worse than base rate; calibration checks in at most 2 or 3 bins; leakage and provenance tests. They cannot support: claims of small or moderate skill, per-cohort or per-regime probabilities, any statement about another market regime, any executable or profit statement (no historical depth), and any 7-day claim.
 - The expected and acceptable outcome of the retrospective evaluation is "not distinguishable from the prevalence baseline" or INSUFFICIENT_HISTORY. The engine then ships baseline-or-abstain (NO_GO_DECISION_TREE "complex model underperforms").
@@ -15,9 +17,9 @@ Fixed in Phase 01 before any label, feature or model exists. The numeric constan
 |---|---|
 | Development | decisions before 2026-10-17T00:00Z whose label matures before that time (`label_matures_at` <= holdout start); others in that span are purged, never moved |
 | Walk-forward inside development | expanding window by UTC decision day; the first fold trains on decision days up to 2026-10-11 (at least 100 eligible labeled events, else the first fold starts later); each fold validates on the next day whose decisions start after the last training label matured (embargo = horizon + confirmation + 900 s); every fit sees only labels matured by its training cutoff; a model artifact carries its training cutoff |
-| Retrospective holdout | decisions in [2026-10-17T00:00Z, 2026-10-24T00:00Z), sealed: Phase 06 builds its labels but stores them with a hash and prints counts and censoring only, no class prevalence; Phase 12 opens it once for the frozen champion and baselines; reuse after opening is logged and voids it as a holdout |
+| Retrospective holdout | decisions in [2026-10-17T00:00Z, 2026-10-24T00:00Z), sealed: Phase 06 builds its labels but stores them with a hash and prints counts and censoring only, no class prevalence; Phase 12 opens it once for the frozen champion and baselines; reuse after opening is logged and voids it as a holdout. The two decisions listed under "Holdout contact" are excluded from it for every target and reported as a sensitivity |
 | Prospective holdout | decisions from 2026-10-24T00:00Z on, from the scheduled runs' daily exports (no new job needed); evaluated in Phase 19 once at least 50 eligible matured events exist per target; at about 12 thinned 24 h decisions a day before eligibility, expect one to two weeks or more |
-| Group sensitivity | every holdout result is repeated on the subset of mints never seen in development, and with mints grouped by creator wallet where known (P14) |
+| Group sensitivity | every holdout result is repeated on the subset of mints never seen in development, and with mints grouped by creator wallet where known (P14); every result is also repeated without KEY_CONFLICT decisions (memelab/predictive/decisions.py) |
 | Regime | no regime claim; results are reported by week and by thesis status group (REJECTED versus other) as description |
 
 ## Minimum counts and abstention by count
@@ -77,7 +79,7 @@ No level ever implies a trading edge. All three primary targets are price-path t
 | OUT_OF_SCOPE_CHAIN | not Solana |
 | OUT_OF_SCOPE_OPPORTUNITY_TYPE | launch-pass or catalyst-only opportunities in v1 |
 | TARGET_NOT_FEASIBLE | a BLOCKED or DEFERRED target was asked for |
-| NO_RECENT_PRICE | no trade in the hour before entry |
+| NO_RECENT_PRICE | MARKET_INACTIVE at capture: no trade on the route in the hour before the decision, with the evidence the registry requires |
 | INSUFFICIENT_HISTORY | count gates above not met, or no model passed |
 | MODEL_NOT_SELECTED | no champion yet |
 | UNCALIBRATED | calibration tolerance failed |
@@ -85,7 +87,7 @@ No level ever implies a trading edge. All three primary targets are price-path t
 | FEATURE_SCHEMA_MISMATCH | the request's feature-set fingerprint differs from the model's (P46) |
 | MODEL_STALE | the model's training cutoff is more than 14 days before the decision |
 | DRIFT_ALERT | Phase 19 drift rule fired |
-| SOURCE_STALE | an input needed at decision time is older than its allowed age or the source is down (P47) |
+| SOURCE_STALE | an input needed at decision time is older than its allowed age, the source is down (P47), or the capture read is a VENDOR_OR_ROUTE_GAP |
 | NOT_YET_MATURED | used on outcome displays, never on a forecast |
 
 Abstentions are always shown, with reasons, and never serialized as a score.
@@ -107,3 +109,172 @@ Abstentions are always shown, with reasons, and never serialized as a score.
 | Firecrawl | 0 credits planned for phases 05 to 13; the 150-credit initiative cap is unchanged |
 | LLM, Zep, MiroFish, paid APIs | 0; not approved (PI-D-005) |
 | Scheduled jobs | none added; forward depth collection needs Elving's approval |
+
+## Holdout contact (skeptic M7)
+
+`probes/holdout_contact.py` (output `probes/holdout_contact.json`) lists every retrospective-holdout decision whose price data was fetched before the seal: any response for the mint's pool that covers part of [decision - 3600 s, maturity of the longest target] counts, including stretches without candles (they say no trade happened). Exactly two decisions, both sampled by the Phase 01 coverage probe, whose coverage numbers (candle counts, path count, largest gap) were printed by the probe and by the skeptic's check; no price, barrier or class was printed for them or for any other decision:
+
+| Mint | Decision (UTC) | Pool | What was seen |
+|---|---|---|---|
+| `CnPL1xnAVHYGH92FpmiNoNhgh3gctkH5y988hMg4bonk` | 2026-10-17T10:20:42Z | `AiUCeZYWNAnZcpWPQPGcpeP3zusPiGUZYorLZkXhMoww` | 1 candle, no reference candle, 0 path candles |
+| `Tm2iqbxYjKpW8xCMe6q1xUraNMNzcG5xMztAir3pump` | 2026-10-19T10:34:05Z | `8BRDx1ky8xuRBYq1kmVJ4TrSNaDybSiLU2mxmLVB4WaW` | reference candle present, 155 path candles, largest gap 0.92 h |
+
+Rule (frozen as `ACCEPTANCE["holdout_contacted"]`): both are excluded from the primary retrospective holdout for every target and reported as a sensitivity. The skeptic's two live re-reads were development decisions (2026-10-07 and 10-08).
+
+## Frozen acceptance block
+
+Generated from `contract.ACCEPTANCE`; `tests/test_predictive_contract.py::test_acceptance_document_carries_the_frozen_block_verbatim` checks it equals the code, and the pinned fingerprint catches any edit to the code.
+
+<!-- frozen-acceptance:start -->
+```json
+{
+ "api_limits": {
+  "breaker_consecutive_failures": 5,
+  "calls_per_run": 1200,
+  "geckoterminal_calls_per_min": 6,
+  "inference_reads_per_request": 1,
+  "inference_timeout_s": 10,
+  "revision_reread_min_gap_s": 172800,
+  "revision_reread_share": 0.1
+ },
+ "baselines": [
+  "B0",
+  "B1",
+  "B2",
+  "B3",
+  "B4",
+  "NC1",
+  "NC2",
+  "NC3"
+ ],
+ "bootstrap": {
+  "conf": 0.95,
+  "governing_interval": "wider",
+  "min_replicates": 2000,
+  "resample_units": [
+   "decision_day",
+   "mint"
+  ]
+ },
+ "calibration": {
+  "bins": "quantile",
+  "checks": [
+   "in_the_large",
+   "every_bin"
+  ],
+  "conf": 0.95,
+  "descriptive_only": [
+   "ece",
+   "slope"
+  ],
+  "in_the_large_only_below_events": 40,
+  "interval": "wilson",
+  "max_bins": 5,
+  "min_bin_events": 20,
+  "slope_min_events": 100
+ },
+ "decision_identity": "memelab/predictive/decisions.py: (mint, created_at, row_sha256), first export holding the exact row",
+ "development_rule": "decision before the holdout start and label_matures_at at or before it; others in that span are purged, never moved",
+ "display_probability_range": [
+  0.01,
+  0.99
+ ],
+ "eligibility": {
+  "market_inactive_vol_24h_usd": 1000,
+  "quiet_route_lookback_s": 86400,
+  "reference_max_age_s": 3600,
+  "vendor_or_route_gap": "censored and counted; conservative lens counts it T1 negative and T2 positive"
+ },
+ "group_sensitivity": [
+  "new_mints_only",
+  "creator_wallet_groups"
+ ],
+ "holdout_contacted": {
+  "decisions": [
+   [
+    "CnPL1xnAVHYGH92FpmiNoNhgh3gctkH5y988hMg4bonk",
+    "2026-10-17T10:20:42Z"
+   ],
+   [
+    "Tm2iqbxYjKpW8xCMe6q1xUraNMNzcG5xMztAir3pump",
+    "2026-10-19T10:34:05Z"
+   ]
+  ],
+  "rule": "excluded from the primary retrospective holdout for every target; reported as a sensitivity"
+ },
+ "holdout_seal": "Phase 06 prints counts and censoring only; Phase 12 opens it once for the frozen champion and baselines; reuse voids it",
+ "holdout_window_utc": [
+  "2026-10-17T00:00:00Z",
+  "2026-10-24T00:00:00Z"
+ ],
+ "key_conflict_sensitivity": "every result repeated without KEY_CONFLICT events",
+ "label_sensitivities": {
+  "ambiguous_bar_share_trigger": 0.1,
+  "sparse_path_gap_s": 7200,
+  "wick_volume_usd": 500
+ },
+ "max_model_age_s": 1209600,
+ "min_bin_events": 20,
+ "min_effective_days": 5,
+ "min_holdout_events": 50,
+ "min_holdout_per_class": 10,
+ "min_train_events": 100,
+ "min_train_per_class": 20,
+ "multiple_testing": {
+  "family": [
+   "price_path_target_before_invalidation_24h",
+   "price_path_target_before_invalidation_6h",
+   "price_path_severe_drawdown_or_halt_24h"
+  ],
+  "method": "holm"
+ },
+ "primary_score": "brier",
+ "promotion": {
+  "SHADOW": {
+   "bss_point_min": 0.0,
+   "requires": [
+    "leakage_tests",
+    "provenance_tests",
+    "contract_tests",
+    "count_gates",
+    "calibration"
+   ]
+  },
+  "VALIDATED_EXPERIMENTAL": {
+   "adjustment": "holm",
+   "brier_point_not_worse_than": "B2",
+   "bss_lower_bound_gt": 0.0,
+   "holdouts": [
+    "retrospective",
+    "prospective"
+   ],
+   "prospective_min_events": 50,
+   "requires": [
+    "SHADOW"
+   ]
+  },
+  "champion_over_B2": "lower 95% bound of the Brier difference to B2 above 0"
+ },
+ "prospective_from_utc": "2026-10-24T00:00:00Z",
+ "secondary_scores": {
+  "auc_and_average_precision_min_per_class": 10,
+  "log_loss_clip": 1e-06
+ },
+ "skill_reference": "B0_training_prevalence",
+ "spend": {
+  "firecrawl_credits_phases_05_to_13": 0,
+  "llm_zep_mirofish_paid_apis": 0,
+  "scheduled_jobs_added": 0
+ },
+ "walk_forward": {
+  "embargo": "validation decisions start after the last training label matured (horizon + confirmation + 900 s)",
+  "expanding": true,
+  "first_fold_if_short": "extend by whole days until the minimum is met",
+  "first_fold_last_train_day_utc": "2026-10-11",
+  "first_fold_min_events": 100,
+  "training_labels": "matured by the fold's training cutoff only",
+  "unit": "utc_decision_day"
+ }
+}
+```
+<!-- frozen-acceptance:end -->

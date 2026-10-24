@@ -31,7 +31,7 @@ flowchart TD
 
 ## Hard ordering rules
 
-1. Data provenance before labels: no label is built for a decision whose decision time is not the first export commit time or a recorded capture time (PI-D-011, PI-D-015).
+1. Data provenance before labels: no label is built for a decision whose decision time is not the commit time of the first export holding its exact row (`memelab/predictive/decisions.py`, identity `(mint, created_at, row_sha256)`) or a recorded capture time (PI-D-011, PI-D-015, PI-D-021). Phase 05 builds its decision records with that module or a tested equivalent, never by keying on `(mint, created_at)` through `state.import_` (skeptic counterexample CX-S1).
 2. Matured labels before training: a training example needs `label_observed_at` >= `label_matures_at` <= the fold's training cutoff; PENDING labels are never trained on or scored (P05, `contract.assert_scorable`).
 3. Leakage proof before any metric: the truncation-invariance test of the feature view passes before a single score is computed (P36, P43).
 4. Baselines before complex models: B0 to B4 and the negative controls run and are recorded in Phase 07 before any model in Phase 08 is fitted; a complex model is compared with B2, never only with B0.
@@ -47,7 +47,7 @@ flowchart TD
 | Gate | Where | Stops if |
 |---|---|---|
 | Eligible event counts | 06, 07 | fewer than 100 eligible labeled development events with 20 per class for a target: that target is INSUFFICIENT_HISTORY; if all three primary targets fail, Phase 07 reports base rates only and later modeling phases record NO_GO for lack of data |
-| Price source | 06 | GeckoTerminal no longer serves 5-minute candles for the decision window (retention unknown): labels for those decisions are censored, and the coverage report says so |
+| Price source | 06 | GeckoTerminal no longer serves 5-minute candles for a decision window (retention unknown), or the route is not where the mint traded: the decision is VENDOR_OR_ROUTE_GAP (no reference candle without MARKET_INACTIVE evidence) or UNVERIFIABLE_NO_VENDOR_HISTORY (reference found, label window unreadable), censored and counted by route and status with the conservative lens; never dropped silently and never called a quiet market without evidence (`contract.eligibility`) |
 | Forward collection | 09 | no approval for a scheduled depth collector: liquidity targets stay DEFERRED |
 | Paid simulation | 14 | no approval: BLOCKED, core unaffected |
 | Merge to main | 17 to 21 | the scheduled runs execute `main`; anything prospective that needs the engine inside a scheduled run waits for Elving's merge (PI-D-005) |

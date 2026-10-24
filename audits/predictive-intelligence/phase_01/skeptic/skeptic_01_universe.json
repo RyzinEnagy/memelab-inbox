@@ -1,0 +1,65 @@
+{
+ "export_versions": 89,
+ "F_commit_times_monotonic_first_parent": true,
+ "theses": 1801,
+ "mints": 248,
+ "D_theses_without_token_row_in_first_export": 0,
+ "D_chain_disagreement_default_vs_any": 0,
+ "mints_by_chain": {
+  "solana": 201,
+  "base": 6,
+  "bsc": 28,
+  "ethereum": 13
+ },
+ "B_keys_with_changed_content_across_exports": 63,
+ "C_same_mint_same_snapshot_multiple_created_at": {
+  "groups": 0,
+  "extra_rows": 0,
+  "examples": []
+ },
+ "E_keys_that_vanish_and_reappear": 278,
+ "E_theses_first_exported_in_unconfirmed_commits": {
+  "996190ce": 26,
+  "2c6cbf54": 5,
+  "53a616e1": 10,
+  "fe8fc3bb": 41,
+  "6e09bfae": 17,
+  "1aa6fcd1": 43,
+  "98338a8b": 17
+ },
+ "solana_priced_mints": 190,
+ "splits": {
+  "6h": {
+   "thinned": 366,
+   "matured_by_data_end_no_margin": 359,
+   "development": 280,
+   "holdout": 79,
+   "not_matured": 7,
+   "holdout_on_unconfirmed_commit": 28
+  },
+  "24h": {
+   "thinned": 278,
+   "matured_by_data_end_no_margin": 252,
+   "development": 177,
+   "not_matured": 26,
+   "purged": 17,
+   "holdout": 58,
+   "holdout_on_unconfirmed_commit": 9
+  },
+  "7d": {
+   "thinned": 213,
+   "matured_by_data_end_no_margin": 136,
+   "development": 75,
+   "not_matured": 77,
+   "purged": 61,
+   "holdout_on_unconfirmed_commit": 0
+  },
+  "T2": {
+   "development": 161,
+   "not_matured": 35,
+   "purged": 33,
+   "holdout": 49
+  }
+ },
+ "data_end": "2026-10-23T10:20:26+00:00"
+}

@@ -1,0 +1,146 @@
+{
+ "changed_vs_first_rule": 0,
+ "counts": {
+  "HTTP_429": 1,
+  "INELIGIBLE_NO_RECENT_TRADE": 4,
+  "OK": 5
+ },
+ "f3_counts": {
+  "ELIGIBLE": 5,
+  "MARKET_INACTIVE": 3,
+  "NOT_READ_RATE_LIMITED": 1,
+  "VENDOR_OR_ROUTE_GAP": 1
+ },
+ "rows": [
+  {
+   "cc01": "OK",
+   "cc01_reference_candle_end_min_before_decision": 8.0,
+   "coverage": "OK",
+   "decision_found": true,
+   "decision_utc": "2026-10-11T10:17:59Z",
+   "f3_class": "ELIGIBLE",
+   "mint": "6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
+   "path_candles_24h": 284,
+   "pool": "F6veTYFBPSYZiQSbNUDQCeMpDuSyR3pxghhfbEU2spfR",
+   "pool_route": "PIT_RECORDED",
+   "snapshot_vol_24h": 699254.0731277869
+  },
+  {
+   "cc01": "OK",
+   "cc01_reference_candle_end_min_before_decision": 9.3,
+   "coverage": "OK",
+   "decision_found": true,
+   "decision_utc": "2026-10-08T15:59:20Z",
+   "f3_class": "ELIGIBLE",
+   "mint": "68AGsjomsgTtiTaDhF6XGCeVJDnFeh415ngYYgVxGzns",
+   "path_candles_24h": 286,
+   "pool": "AVaw6h3zE2eU57zDTMqPwdmxJnrFbuBcKoJ3FsdKdL49",
+   "pool_route": "PIT_RECORDED",
+   "snapshot_vol_24h": 1077489.4649901341
+  },
+  {
+   "cc01": "OK",
+   "cc01_reference_candle_end_min_before_decision": 8.9,
+   "coverage": "OK",
+   "decision_found": true,
+   "decision_utc": "2026-10-07T21:53:55Z",
+   "f3_class": "ELIGIBLE",
+   "mint": "EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR",
+   "path_candles_24h": 284,
+   "pool": "ioaDGkQUh6h5nNTmcv8k3NvAgSTiS3xMFNaN3j11KzV",
+   "pool_route": "PIT_RECORDED",
+   "snapshot_vol_24h": 12315362.0435
+  },
+  {
+   "cc01": "INELIGIBLE_NO_RECENT_TRADE",
+   "cc01_reference_candle_end_min_before_decision": null,
+   "coverage": "INELIGIBLE_NO_RECENT_TRADE",
+   "decision_found": true,
+   "decision_utc": "2026-10-17T10:20:42Z",
+   "f3_class": "MARKET_INACTIVE",
+   "mint": "CnPL1xnAVHYGH92FpmiNoNhgh3gctkH5y988hMg4bonk",
+   "path_candles_24h": 0,
+   "pool": "AiUCeZYWNAnZcpWPQPGcpeP3zusPiGUZYorLZkXhMoww",
+   "pool_route": "PIT_RECORDED",
+   "snapshot_vol_24h": 0.33845498902843896
+  },
+  {
+   "cc01": "OK",
+   "cc01_reference_candle_end_min_before_decision": 14.1,
+   "coverage": "OK",
+   "decision_found": true,
+   "decision_utc": "2026-10-19T10:34:05Z",
+   "f3_class": "ELIGIBLE",
+   "mint": "Tm2iqbxYjKpW8xCMe6q1xUraNMNzcG5xMztAir3pump",
+   "path_candles_24h": 155,
+   "pool": "8BRDx1ky8xuRBYq1kmVJ4TrSNaDybSiLU2mxmLVB4WaW",
+   "pool_route": "PIT_RECORDED",
+   "snapshot_vol_24h": 30707.47
+  },
+  {
+   "cc01": "HTTP_429",
+   "coverage": "HTTP_429",
+   "decision_found": true,
+   "decision_utc": "2026-10-15T10:13:48Z",
+   "f3_class": "NOT_READ_RATE_LIMITED",
+   "mint": "6zzzG49KX5nksnqfogs31dwoMYSHaJXkropKbv1QZVga",
+   "pool": "6wXTJaLNN3GCUJajJ9Vj2te51zsNgPVXV37EbFGRAjLz",
+   "pool_route": "PIT_RECORDED",
+   "snapshot_vol_24h": 548453.2799258142
+  },
+  {
+   "cc01": "OK",
+   "cc01_reference_candle_end_min_before_decision": 26.5,
+   "coverage": "OK",
+   "decision_found": true,
+   "decision_utc": "2026-10-08T10:21:31Z",
+   "f3_class": "ELIGIBLE",
+   "mint": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+   "path_candles_24h": 199,
+   "pool": "C8Gr6AUuq9hEdSYJzoEpNcdjpojPZwqG5MtQbeouNNwg",
+   "pool_route": "CURRENT_VENDOR_LIST",
+   "snapshot_vol_24h": 26702646.66681826
+  },
+  {
+   "cc01": "INELIGIBLE_NO_RECENT_TRADE",
+   "cc01_reference_candle_end_min_before_decision": null,
+   "coverage": "INELIGIBLE_NO_RECENT_TRADE",
+   "decision_found": true,
+   "decision_utc": "2026-10-10T10:31:45Z",
+   "f3_class": "VENDOR_OR_ROUTE_GAP",
+   "mint": "CqjaL6XvobYG8D4Ty3cjtxw3ZyYfmAf3ggWnyyv2S4FB",
+   "path_candles_24h": 4,
+   "pool": "GbJom7FRTUHwvrrKrSBmkKjtyH1e9ZxZvXNjCpvAnkAN",
+   "pool_route": "CURRENT_VENDOR_LIST",
+   "snapshot_vol_24h": 94115.03912852665
+  },
+  {
+   "cc01": "INELIGIBLE_NO_RECENT_TRADE",
+   "cc01_reference_candle_end_min_before_decision": null,
+   "coverage": "INELIGIBLE_NO_RECENT_TRADE",
+   "decision_found": true,
+   "decision_utc": "2026-10-15T10:13:48Z",
+   "f3_class": "MARKET_INACTIVE",
+   "mint": "BRf5k38aEcYPb14tE5yBTSuRk3EVDra2zqct2eCApump",
+   "path_candles_24h": 0,
+   "pool": "3DW93h3Nqin3jpMd9C4ACgLjY96yPaKAgArWqnVMuCPU",
+   "pool_route": "CURRENT_VENDOR_LIST",
+   "snapshot_vol_24h": 0
+  },
+  {
+   "cc01": "INELIGIBLE_NO_RECENT_TRADE",
+   "cc01_reference_candle_end_min_before_decision": null,
+   "coverage": "INELIGIBLE_NO_RECENT_TRADE",
+   "decision_found": true,
+   "decision_utc": "2026-10-15T10:13:48Z",
+   "f3_class": "MARKET_INACTIVE",
+   "mint": "EiLTVJLsFXvPxdzqp7ZtvXVeCB1T2UdgB9WrpxoZceXH",
+   "path_candles_24h": 1,
+   "pool": "EVhp44NCuqii3Up66v6fvdL1QqCp1oR1LjvqR6Q1FDYJ",
+   "pool_route": "CURRENT_VENDOR_LIST",
+   "snapshot_vol_24h": 3.2206163727881547
+  }
+ ],
+ "rule": "CC-01 and CC-02 F3",
+ "source_sample_sha256_note": "gt_coverage_sample.json"
+}

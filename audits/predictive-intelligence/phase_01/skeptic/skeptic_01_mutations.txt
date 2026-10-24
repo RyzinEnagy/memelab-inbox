@@ -1,0 +1,13 @@
+baseline: exit 0, 21 passed in 0.15s
+SURVIVED  range [0,1] check dropped, finiteness and type kept  (21 passed in 0.16s)
+SURVIVED  bool accepted as a probability  (21 passed in 0.15s)
+SURVIVED  FORECAST no longer needs training_cutoff_utc  (21 passed in 0.14s)
+SURVIVED  FORECAST no longer needs model_sha / feature_set_sha / data_snapshot_sha  (21 passed in 0.14s)
+SURVIVED  ABSTAIN may carry an uncertainty interval  (21 passed in 0.15s)
+SURVIVED  generated_at before decision allowed  (21 passed in 0.15s)
+SURVIVED  base_rate range check removed  (21 passed in 0.15s)
+caught    forbidden-key check removed  (1 failed, 20 passed in 0.15s)
+caught    calibration passed flag ignored  (1 failed, 20 passed in 0.15s)
+SURVIVED  ABSTAIN with NaN probability: None check replaced by numeric-zero check  (21 passed in 0.16s)
+SURVIVED  an existing module imports the package via 'from memelab import predictive'  (21 passed in 0.14s)
+SURVIVED  an existing module imports the package via importlib  (21 passed in 0.14s)

@@ -1,0 +1,156 @@
+{
+ "_note": "Real rows of one mint from two state exports on main (lab-written research fields only, trimmed to status, score, fatal flags and three snapshot numbers). Source of skeptic counterexample CX-S1 (Phase 01 repair pass 2): the REJECTED, fatal-flagged row for created_at 1791331150.554 first appears in 996190ce, 26.7 min after the key's first export 15c2087e.",
+ "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+ "exports": [
+  {
+   "commit": "15c2087ededa8958ad7bc433be204ca7b830a2d9",
+   "commit_time": 1791410035,
+   "theses": [
+    {
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+     "created_at": 1791391795.507,
+     "status": "DISTRIBUTION RISK",
+     "score": 60,
+     "fatal_flags_json": "[]",
+     "snapshot_json": "{\"liquidity\": 3919403.7571501397, \"price\": 0.18836926862862433, \"vol_24h\": 17831351.771924295}"
+    },
+    {
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+     "created_at": 1791332195.007,
+     "status": "SETUP DEVELOPING",
+     "score": 68,
+     "fatal_flags_json": "[]",
+     "snapshot_json": "{\"liquidity\": 5331790.5, \"price\": 0.21059795, \"vol_24h\": 21636400.0}"
+    },
+    {
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+     "created_at": 1791331653.849,
+     "status": "SETUP DEVELOPING",
+     "score": 68,
+     "fatal_flags_json": "[]",
+     "snapshot_json": "{\"liquidity\": 5331790.5, \"price\": 0.21059795, \"vol_24h\": 21636400.0}"
+    },
+    {
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+     "created_at": 1791331150.554,
+     "status": "SETUP DEVELOPING",
+     "score": 69,
+     "fatal_flags_json": "[]",
+     "snapshot_json": "{\"liquidity\": 5331790.5, \"price\": 0.21059795, \"vol_24h\": 21636400.0}"
+    }
+   ],
+   "tokens": [
+    {
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+     "chain": "solana",
+     "primary_pool": null,
+     "graduated_pool": null
+    }
+   ]
+  },
+  {
+   "commit": "996190ce180995f2c17d0217e5e6d55fb4e128c4",
+   "commit_time": 1791411637,
+   "theses": [
+    {
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+     "created_at": 1791394883.462,
+     "status": "REJECTED",
+     "score": 0,
+     "fatal_flags_json": "[{\"flag\": \"IDENTITY_NOT_VERIFIED\", \"evidence\": \"token program not reported; first pool time unknown\", \"severity\": \"FATAL\", \"category\": \"identity\"}]",
+     "snapshot_json": "{\"liquidity\": null, \"price\": null, \"vol_24h\": null}",
+     "id": 66
+    },
+    {
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+     "created_at": 1791394883.462,
+     "status": "WATCH",
+     "score": 56,
+     "fatal_flags_json": "[]",
+     "snapshot_json": "{\"liquidity\": 5331790.5, \"price\": 0.21059795, \"vol_24h\": 21636400.0}",
+     "id": 75
+    },
+    {
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+     "created_at": 1791391795.507,
+     "status": "DISTRIBUTION RISK",
+     "score": 60,
+     "fatal_flags_json": "[]",
+     "snapshot_json": "{\"liquidity\": 3919403.7571501397, \"price\": 0.18836926862862433, \"vol_24h\": 17831351.771924295}",
+     "id": 105
+    },
+    {
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+     "created_at": 1791332195.007,
+     "status": "SETUP DEVELOPING",
+     "score": 68,
+     "fatal_flags_json": "[]",
+     "snapshot_json": "{\"liquidity\": 5331790.5, \"price\": 0.21059795, \"vol_24h\": 21636400.0}",
+     "id": 21
+    },
+    {
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+     "created_at": 1791332195.007,
+     "status": "SETUP DEVELOPING",
+     "score": 68,
+     "fatal_flags_json": "[]",
+     "snapshot_json": "{\"liquidity\": 5331790.5, \"price\": 0.21059795, \"vol_24h\": 21636400.0}",
+     "id": 29
+    },
+    {
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+     "created_at": 1791331653.849,
+     "status": "SETUP DEVELOPING",
+     "score": 68,
+     "fatal_flags_json": "[]",
+     "snapshot_json": "{\"liquidity\": 5331790.5, \"price\": 0.21059795, \"vol_24h\": 21636400.0}",
+     "id": 13
+    },
+    {
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+     "created_at": 1791331150.554,
+     "status": "REJECTED",
+     "score": 60,
+     "fatal_flags_json": "[{\"flag\": \"CLUSTER_OWNERSHIP_GT_25PCT\", \"evidence\": \"cluster-adjusted ownership 60.7% (HIGH confidence)\", \"severity\": \"FATAL\", \"category\": \"ownership\"}]",
+     "snapshot_json": "{\"liquidity\": 5331790.5, \"price\": 0.21059795, \"vol_24h\": 21636400.0}",
+     "id": 4
+    },
+    {
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+     "created_at": 1791331150.554,
+     "status": "SETUP DEVELOPING",
+     "score": 69,
+     "fatal_flags_json": "[]",
+     "snapshot_json": "{\"liquidity\": 5331790.5, \"price\": 0.21059795, \"vol_24h\": 21636400.0}",
+     "id": 9
+    },
+    {
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+     "created_at": 1791331150.554,
+     "status": "SETUP DEVELOPING",
+     "score": 71,
+     "fatal_flags_json": "[]",
+     "snapshot_json": "{\"liquidity\": 5331790.5, \"price\": 0.21059795, \"vol_24h\": 21636400.0}",
+     "id": 84
+    },
+    {
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+     "created_at": 1791331150.554,
+     "status": "SETUP DEVELOPING",
+     "score": 71,
+     "fatal_flags_json": "[]",
+     "snapshot_json": "{\"liquidity\": 5331790.5, \"price\": 0.21059795, \"vol_24h\": 21636400.0}",
+     "id": 93
+    }
+   ],
+   "tokens": [
+    {
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+     "chain": "solana",
+     "primary_pool": null,
+     "graduated_pool": null
+    }
+   ]
+  }
+ ]
+}

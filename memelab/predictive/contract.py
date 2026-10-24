@@ -3,19 +3,24 @@ optional config file for the flag, no network, no clock.
 
 FORMAT ONLY. A document that passes `validate` is well formed; that says nothing about predictive accuracy. Phase 01 fitted
 no model and computed no outcome. Human-readable registry: audits/predictive-intelligence/phase_01/architecture/TARGET_REGISTRY.md.
+Decision records: memelab/predictive/decisions.py.
 
-Rules enforced here (package FORECAST_OUTPUT_SCHEMA.md, ADVERSARIAL_SCENARIOS.md, DECISIONS PI-D-006, PI-D-011, PI-D-014 to PI-D-019):
+Rules enforced here (package FORECAST_OUTPUT_SCHEMA.md, ADVERSARIAL_SCENARIOS.md, DECISIONS PI-D-006, PI-D-011, PI-D-014 to PI-D-021):
   - one result per (chain, mint, snapshot_hash, target, target_version, horizon, model_sha); the forecast_id is derived from them;
+  - exactly the contract's fields, no others (no score, rank, signal or confidence field can ride along);
   - a probability only with prediction_status FORECAST, finite in [0, 1], inside its interval, with base rate, calibration
     reference and model, feature-set and data fingerprints; ABSTAIN carries named reasons and no number (P38);
   - only PRIMARY targets can be forecast; the exit-adjusted target is BLOCKED (no historical executable depth, P08);
     price-path targets carry no position size and the PRICE_PATH_NOT_PROCEEDS caveat;
-  - the model's feature set and target must match the forecast (P46); a model trained after the decision is refused (P13);
+  - the model card's feature set, target, version and training cutoff must match the forecast (P46, P13); a model trained after
+    the decision, or more than max_model_age_s before it (MODEL_STALE), is refused;
+  - identity is the exact address: a Solana mint is base58 with nothing around it, an EVM contract is 0x plus 40 hex (P01);
   - a label is PENDING until it matures and can never be scored before that (P05);
   - backtesting is BACKTEST_NOT_AVAILABLE unless a verified engine exists; a prompt-package ZIP is not one (P34);
   - decision time never comes from theses.created_at (PI-D-011);
   - behavioral scenarios never carry a probability (P27);
-  - the reference price uses only candles available at the decision, and the path never uses the candle holding the entry (CC-01, P06).
+  - the reference price uses only candles available at the decision, and the path never uses the candle holding the entry (CC-01, P06);
+  - eligibility separates a quiet market from a vendor or route gap; a gap is censored and counted, never dropped (CC-02 F3).
 """
 from __future__ import annotations
 
@@ -42,10 +47,13 @@ DECISION_TIME_BASES = ("EXPORT_COMMIT", "CAPTURE_TIME")     # never theses.creat
 BACKTEST_NOT_AVAILABLE = "BACKTEST_NOT_AVAILABLE"
 BACKTEST_STATUSES = (BACKTEST_NOT_AVAILABLE, "UNVERIFIED", "VERIFIED")
 BACKTEST_MODULES = ("memelab.backtest", "memelab.backtesting", "memelab.stress")
-FORBIDDEN_KEYS = ("score", "rank", "signal", "bullish", "bearish", "buy", "sell", "order", "wallet", "private_key")
+FORBIDDEN_KEYS = ("score", "rank", "signal", "bullish", "bearish", "buy", "sell", "order", "wallet", "private_key", "confidence")
 PRICE_PATH_CAVEAT = "PRICE_PATH_NOT_PROCEEDS"
+EVM_CHAINS = ("ethereum", "bsc", "base")
+ELIGIBILITY_CLASSES = ("ELIGIBLE", "MARKET_INACTIVE", "VENDOR_OR_ROUTE_GAP")
 
-# Acceptance constants frozen in Phase 01 (ACCEPTANCE_METRICS.md). Changing one is a recorded change-control decision.
+# Acceptance plan frozen in Phase 01 (ACCEPTANCE_METRICS.md). Every rule a later phase could loosen is here and inside the
+# fingerprint (CC-02, PI-D-021). Changing one is a recorded change-control decision; tests/test_predictive_contract.py pins the hash.
 ACCEPTANCE = {
     "min_train_events": 100, "min_train_per_class": 20,
     "min_holdout_events": 50, "min_holdout_per_class": 10,
@@ -53,29 +61,78 @@ ACCEPTANCE = {
     "holdout_window_utc": ["2026-10-17T00:00:00Z", "2026-10-24T00:00:00Z"],
     "prospective_from_utc": "2026-10-24T00:00:00Z",
     "max_model_age_s": 14 * 86400,
+    "development_rule": "decision before the holdout start and label_matures_at at or before it; others in that span are purged, never moved",
+    "walk_forward": {"unit": "utc_decision_day", "expanding": True, "first_fold_last_train_day_utc": "2026-10-11",
+                     "first_fold_min_events": 100, "first_fold_if_short": "extend by whole days until the minimum is met",
+                     "embargo": "validation decisions start after the last training label matured (horizon + confirmation + 900 s)",
+                     "training_labels": "matured by the fold's training cutoff only"},
+    "min_effective_days": 5,
+    "primary_score": "brier",
+    "skill_reference": "B0_training_prevalence",
+    "bootstrap": {"resample_units": ["decision_day", "mint"], "conf": 0.95, "governing_interval": "wider", "min_replicates": 2000},
+    "secondary_scores": {"log_loss_clip": 1e-6, "auc_and_average_precision_min_per_class": 10},
+    "multiple_testing": {"method": "holm", "family": ["price_path_target_before_invalidation_24h", "price_path_target_before_invalidation_6h",
+                                                       "price_path_severe_drawdown_or_halt_24h"]},
+    "calibration": {"interval": "wilson", "conf": 0.95, "bins": "quantile", "min_bin_events": 20, "max_bins": 5,
+                    "in_the_large_only_below_events": 40, "checks": ["in_the_large", "every_bin"],
+                    "descriptive_only": ["ece", "slope"], "slope_min_events": 100},
+    "promotion": {"SHADOW": {"requires": ["leakage_tests", "provenance_tests", "contract_tests", "count_gates", "calibration"],
+                             "bss_point_min": 0.0},
+                  "VALIDATED_EXPERIMENTAL": {"requires": ["SHADOW"], "bss_lower_bound_gt": 0.0, "adjustment": "holm",
+                                             "holdouts": ["retrospective", "prospective"], "prospective_min_events": 50,
+                                             "brier_point_not_worse_than": "B2"},
+                  "champion_over_B2": "lower 95% bound of the Brier difference to B2 above 0"},
+    "baselines": ["B0", "B1", "B2", "B3", "B4", "NC1", "NC2", "NC3"],
+    "group_sensitivity": ["new_mints_only", "creator_wallet_groups"],
+    "holdout_seal": "Phase 06 prints counts and censoring only; Phase 12 opens it once for the frozen champion and baselines; reuse voids it",
+    "holdout_contacted": {"rule": "excluded from the primary retrospective holdout for every target; reported as a sensitivity",
+                          "decisions": [["CnPL1xnAVHYGH92FpmiNoNhgh3gctkH5y988hMg4bonk", "2026-10-17T10:20:42Z"],
+                                        ["Tm2iqbxYjKpW8xCMe6q1xUraNMNzcG5xMztAir3pump", "2026-10-19T10:34:05Z"]]},
+    "decision_identity": "memelab/predictive/decisions.py: (mint, created_at, row_sha256), first export holding the exact row",
+    "key_conflict_sensitivity": "every result repeated without KEY_CONFLICT events",
+    "eligibility": {"market_inactive_vol_24h_usd": 1000, "reference_max_age_s": 3600, "quiet_route_lookback_s": 86400,
+                    "vendor_or_route_gap": "censored and counted; conservative lens counts it T1 negative and T2 positive"},
+    "label_sensitivities": {"ambiguous_bar_share_trigger": 0.10, "sparse_path_gap_s": 7200, "wick_volume_usd": 500},
+    "api_limits": {"geckoterminal_calls_per_min": 6, "calls_per_run": 1200, "breaker_consecutive_failures": 5,
+                   "revision_reread_share": 0.10, "revision_reread_min_gap_s": 172800,
+                   "inference_reads_per_request": 1, "inference_timeout_s": 10},
+    "spend": {"firecrawl_credits_phases_05_to_13": 0, "llm_zep_mirofish_paid_apis": 0, "scheduled_jobs_added": 0},
 }
 
 _COMMON = {
     "scope_chain": "solana",
-    "unit": "decision event: one deep-analysis thesis of an exact Solana mint, thinned per mint to non-overlapping label windows",
-    "decision_time_historical": "commit time of the first data/state/latest.json commit on main that contains the thesis row (mint, created_at)",
+    "unit": "decision event of memelab/predictive/decisions.py: the newest visible thesis row of an exact Solana mint at an export "
+            "commit, identity (mint, created_at, row_sha256), thinned per mint to non-overlapping label windows",
+    "decision_time_historical": "commit time of the first data/state/latest.json commit on main that contains the exact decision row "
+                                "(row_sha256); a row first exported later gets that later time, never its key's earlier one (CC-02)",
     "decision_time_prospective": "capture time recorded when the forecast request is created",
     "decision_time_never": "theses.created_at or any t-stamped column (PI-D-011)",
+    "same_time_rule": "rows of one mint first visible at the same commit: newest created_at, then earliest first-visible, then position "
+                      "in that export; KEY_CONFLICT when rows sharing that created_at differ in status, score, fatal flags or price",
     "execution_lag_s": 300,
     "price_source": "GeckoTerminal public OHLCV of the reference pool, minute timeframe aggregate 5, currency usd, empty intervals omitted",
-    "pool_route": "primary_pool or graduated_pool of the token row in the first export holding the thesis (PIT_RECORDED); otherwise the "
-                  "vendor's current top pool for the mint at label time (CURRENT_VENDOR_LIST, flagged and stratified)",
+    "pool_route": "primary_pool or graduated_pool of the token row in the export where the decision row first appears (PIT_RECORDED); "
+                  "otherwise the vendor's current top pool for the mint at label time (CURRENT_VENDOR_LIST, flagged and stratified)",
     "reference_price": "close of the newest 5-minute candle available at the decision: candle end + provider lag (300 s, "
-                       "replay_sources.PROVIDER_LAG, HEURISTIC) <= decision time and candle end >= decision time - 3600 s; none: "
-                       "INELIGIBLE_NO_RECENT_TRADE. Only data available at the decision decide eligibility (CC-01, PI-D-019)",
+                       "replay_sources.PROVIDER_LAG, HEURISTIC) <= decision time and candle end >= decision time - 3600 s "
+                       "(CC-01, PI-D-019)",
+    "eligibility_classes": {
+        "ELIGIBLE": "a reference candle exists",
+        "MARKET_INACTIVE": "no reference candle, and either the thesis snapshot's own 24 h volume is below $1,000, or the route is "
+                           "PIT_RECORDED and the vendor shows a candle on that pool in the 24 h before the decision (a quiet hour on the "
+                           "lab's own pool); not labeled, counted; at forecast time NO_RECENT_PRICE",
+        "VENDOR_OR_ROUTE_GAP": "no pool resolved, the vendor read failed after retries, or no reference candle without the evidence of "
+                               "MARKET_INACTIVE; censored, counted, conservative lens; at forecast time SOURCE_STALE",
+    },
     "gap_rule": "candles between the reference candle and t_entry are neither reference nor path",
     "path": "5-minute candles that start at or after t_entry and end at or before t_entry + horizon; the candle holding t_entry is never used",
     "thinning": "eligibility first, then per mint the first eligible decision and each next eligible decision at least one horizon "
-                "after the previous kept one; theses of one mint that share a decision time count once, as the newest created_at",
+                "after the previous kept one",
     "statuses_included": "all thesis statuses, REJECTED and fatal-flagged included",
     "label_observed_at": "retrieval time of the candles; a backfill read is never a historical availability claim",
     "fetch_margin_s": 900,
-    "censored": ["UNVERIFIABLE_NO_VENDOR_HISTORY"],
+    "censored": ["VENDOR_OR_ROUTE_GAP", "UNVERIFIABLE_NO_VENDOR_HISTORY"],
+    "unverifiable_rule": "a reference candle was found but a later read needed for the label window fails after retries",
     "position_usd": None,
     "caveats": [PRICE_PATH_CAVEAT, "NO_HISTORICAL_EXECUTABLE_DEPTH"],
 }
@@ -97,8 +154,8 @@ TARGETS: dict[str, dict[str, Any]] = {
     "exit_adjusted_target_before_invalidation_24h": {"status": "BLOCKED_NO_HISTORICAL_DEPTH", "version": "0", "horizon_s": 86400,
         "why": "needs sell quotes at a stated size at entry and at the barrier times; none kept after 2026-10-08, theses hold exit_cap_3pct at decision only (P08)"},
     "liquidity_degradation_24h": {"status": "DEFERRED_FORWARD_COLLECTION", "version": "0", "horizon_s": 86400,
-        "why": "needs pool reserves or quotes at decision and decision + 24 h for every decision; snapshots give 53 of 351, a watchlist-selected subset; "
-               "a scheduled collector needs Elving's approval"},
+        "why": "needs pool reserves or quotes at decision and decision + 24 h for every decision; existing snapshots give 29 of 278 thinned "
+               "24 h events, all from tokens the scheduled runs kept analysing; a scheduled collector needs Elving's approval"},
     "failed_breakout_6h": {"status": "DEFERRED_PHASE_08", "version": "0", "horizon_s": 21600,
         "why": "eligibility needs the m14 breakout class as of the decision; it is not exported and must be recomputed from backfilled candles"},
     "catalyst_followthrough_24h_7d": {"status": "BLOCKED_NO_DATA", "version": "0", "horizon_s": 86400,
@@ -112,8 +169,9 @@ TARGETS: dict[str, dict[str, Any]] = {
 }
 PRIMARY = tuple(k for k, v in TARGETS.items() if v["status"] == "PRIMARY")
 
-_B58 = re.compile(r"^[1-9A-HJ-NP-Za-km-z]{32,44}$")
-_HEX64 = re.compile(r"^(sha256:)?[0-9a-f]{64}$")
+_B58 = re.compile(r"[1-9A-HJ-NP-Za-km-z]{32,44}")
+_EVM = re.compile(r"0x[0-9a-fA-F]{40}")
+_HEX64 = re.compile(r"(sha256:)?[0-9a-f]{64}")
 REQUIRED = ("forecast_id", "contract_version", "chain", "mint_address", "snapshot_hash", "decision_time_utc", "decision_time_basis",
             "target", "target_version", "horizon_seconds", "position_usd", "probability", "prediction_status", "abstain_reasons",
             "uncertainty_interval", "base_rate", "calibration_reference", "training_cutoff_utc", "model_id", "model_sha",
@@ -133,13 +191,18 @@ def sha(o: Any) -> str:
     return hashlib.sha256(canon(o).encode()).hexdigest()
 
 
+def fingerprint(targets: dict, acceptance: dict) -> str:
+    return sha({"registry_version": REGISTRY_VERSION, "targets": targets, "acceptance": acceptance})
+
+
 def registry_sha256() -> str:
-    """Fingerprint of the frozen registry and acceptance constants (recorded in DECISIONS.md at pre-registration)."""
-    return sha({"registry_version": REGISTRY_VERSION, "targets": TARGETS, "acceptance": ACCEPTANCE})
+    """Fingerprint of the frozen registry and acceptance plan (recorded in DECISIONS.md; pinned by the tests)."""
+    return fingerprint(TARGETS, ACCEPTANCE)
 
 
 def enabled(config_path: str | Path | None = None) -> bool:
-    """Feature flag. OFF unless data/config.json (gitignored, per machine) says {"predictive": {"enabled": true}}."""
+    """Feature flag. OFF unless data/config.json (gitignored, per machine) says {"predictive": {"enabled": true}}.
+    Nothing reads it yet: Phase 17 wires it. Today the package is unreachable because no existing module imports it."""
     if config_path is None:
         from ..db import DATA_DIR
         config_path = DATA_DIR / "config.json"
@@ -180,20 +243,45 @@ def forecast_id(chain: str, mint: str, snapshot_hash: str, target: str, target_v
     return "fc_" + sha([chain, mint, snapshot_hash, target, target_version, int(horizon_s), model_sha or "none"])[:32]
 
 
+def _lag(provider_lag_s: float | None) -> float:
+    if provider_lag_s is not None:
+        return provider_lag_s
+    from ..social.replay_sources import PROVIDER_LAG
+    return PROVIDER_LAG["geckoterminal-ohlcv"]
+
+
 def reference_candle(candles: list, decision_time: float, *, period_s: int = 300, max_age_s: int = 3600,
                      provider_lag_s: float | None = None) -> list | None:
     """Registry reference price P0 (CC-01): the newest candle whose end plus the provider lag is at or before the decision time
     and whose end is within max_age_s of it. A candle that closed after the decision, or too recently to have been served,
     never decides eligibility. Rows are GeckoTerminal ohlcv_list rows [start, open, high, low, close, volume]."""
-    if provider_lag_s is None:
-        from ..social.replay_sources import PROVIDER_LAG
-        provider_lag_s = PROVIDER_LAG["geckoterminal-ohlcv"]
+    lag = _lag(provider_lag_s)
     best = None
     for c in candles:
         end = float(c[0]) + period_s
-        if end + provider_lag_s <= decision_time and end >= decision_time - max_age_s and (best is None or c[0] > best[0]):
+        if end + lag <= decision_time and end >= decision_time - max_age_s and (best is None or c[0] > best[0]):
             best = c
     return best
+
+
+def eligibility(candles: list | None, decision_time: float, *, read_ok: bool, pool: str | None, route: str,
+                snapshot_vol_24h: Any, period_s: int = 300, provider_lag_s: float | None = None) -> str:
+    """Eligibility class of one decision (CC-02 F3): ELIGIBLE, MARKET_INACTIVE or VENDOR_OR_ROUTE_GAP. A missing reference candle is
+    called a quiet market only with evidence available at the decision (the thesis snapshot's own 24 h volume) or a vendor that
+    demonstrably served the lab's own pool that day; anything else is a gap, censored and counted, never silently dropped."""
+    e = ACCEPTANCE["eligibility"]
+    if not pool or not read_ok or candles is None:
+        return "VENDOR_OR_ROUTE_GAP"
+    lag = _lag(provider_lag_s)
+    if reference_candle(candles, decision_time, period_s=period_s, max_age_s=e["reference_max_age_s"], provider_lag_s=lag) is not None:
+        return "ELIGIBLE"
+    v = snapshot_vol_24h
+    if isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and 0 <= v < e["market_inactive_vol_24h_usd"]:
+        return "MARKET_INACTIVE"
+    if route == "PIT_RECORDED" and any(float(c[0]) + period_s >= decision_time - e["quiet_route_lookback_s"]
+                                       and float(c[0]) + period_s + lag <= decision_time for c in candles):
+        return "MARKET_INACTIVE"
+    return "VENDOR_OR_ROUTE_GAP"
 
 
 def path_candles(candles: list, decision_time: float, horizon_s: int, *, period_s: int = 300, lag_s: int = 300) -> list:
@@ -227,6 +315,16 @@ def _num01(x: Any) -> bool:
     return isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x) and 0.0 <= x <= 1.0
 
 
+def _address_ok(chain: Any, addr: Any) -> bool:
+    if not isinstance(addr, str):
+        return False
+    if chain == "solana":
+        return _B58.fullmatch(addr) is not None
+    if chain in EVM_CHAINS:
+        return _EVM.fullmatch(addr) is not None
+    return False
+
+
 def validate(doc: dict, *, model_card: dict | None = None, backtest: str | None = None) -> list[str]:
     """Return the list of contract violations (empty: well formed). Format only; accuracy is never checked here."""
     errs: list[str] = []
@@ -236,8 +334,10 @@ def validate(doc: dict, *, model_card: dict | None = None, backtest: str | None 
         if k not in doc:
             errs.append(f"missing field {k}")
     for k in doc:
-        if k.lower() in FORBIDDEN_KEYS:
-            errs.append(f"forbidden field {k}: a forecast is not a score, rank, signal or order")
+        if any(f in str(k).lower() for f in FORBIDDEN_KEYS):
+            errs.append(f"forbidden field {k}: a forecast is not a score, rank, signal, confidence or order")
+        elif k not in REQUIRED:
+            errs.append(f"unknown field {k}: the contract has exactly its listed fields")
     if errs:
         return errs
     if doc["contract_version"] != CONTRACT_VERSION:
@@ -251,6 +351,8 @@ def validate(doc: dict, *, model_card: dict | None = None, backtest: str | None 
         errs.append(f"horizon_seconds {doc['horizon_seconds']} is not the registered {tgt['horizon_s']}")
     if doc["decision_time_basis"] not in DECISION_TIME_BASES:
         errs.append(f"decision_time_basis {doc['decision_time_basis']!r}: decision time must be an export commit or a capture time (PI-D-011)")
+    if not _address_ok(doc["chain"], doc["mint_address"]):
+        errs.append(f"mint_address is not an exact {doc['chain']} address: identity is the exact mint, never a ticker (P01)")
     try:
         dt_ = parse_utc(doc["decision_time_utc"])
         gen = parse_utc(doc["generated_at_utc"])
@@ -259,7 +361,7 @@ def validate(doc: dict, *, model_card: dict | None = None, backtest: str | None 
     except ContractError as e:
         errs.append(str(e))
         dt_ = None
-    if not _HEX64.match(str(doc["snapshot_hash"])):
+    if not isinstance(doc["snapshot_hash"], str) or not _HEX64.fullmatch(doc["snapshot_hash"]):
         errs.append("snapshot_hash must be a sha256 hex digest")
     expect = forecast_id(doc["chain"], doc["mint_address"], doc["snapshot_hash"], doc["target"], doc["target_version"],
                          doc["horizon_seconds"], doc["model_sha"])
@@ -277,6 +379,8 @@ def validate(doc: dict, *, model_card: dict | None = None, backtest: str | None 
     for s in doc["behavioral_scenarios"] or []:
         if not isinstance(s, dict) or any(k in s for k in ("probability", "likelihood", "confidence_pct")):
             errs.append("a behavioral scenario carries a probability: simulated agreement is not a likelihood (P27)")
+    if doc["base_rate"] is not None and not _num01(doc["base_rate"]):
+        errs.append("base_rate must be a finite number in [0, 1]")
     st = doc["prediction_status"]
     if st not in PREDICTION_STATUSES:
         return errs + [f"prediction_status {st!r} is not one of {PREDICTION_STATUSES}"]
@@ -295,8 +399,6 @@ def validate(doc: dict, *, model_card: dict | None = None, backtest: str | None 
         errs.append("FORECAST with abstain_reasons")
     if doc["chain"] != tgt.get("scope_chain"):
         errs.append(f"chain {doc['chain']!r} is outside the target's scope {tgt.get('scope_chain')!r}")
-    if doc["chain"] == "solana" and not _B58.match(str(doc["mint_address"])):
-        errs.append("mint_address is not a Solana address: identity is the exact mint, never a ticker (P01)")
     p = doc["probability"]
     if not _num01(p):
         errs.append(f"probability {p!r} must be a finite number in [0, 1] (P38)")
@@ -305,8 +407,8 @@ def validate(doc: dict, *, model_card: dict | None = None, backtest: str | None 
         errs.append("uncertainty_interval must be [low, high] inside [0, 1]")
     elif _num01(p) and not (iv[0] <= p <= iv[1]):
         errs.append("probability lies outside its uncertainty_interval")
-    if not _num01(doc["base_rate"]):
-        errs.append("base_rate must be a finite number in [0, 1]")
+    if doc["base_rate"] is None:
+        errs.append("FORECAST needs base_rate")
     cal = doc["calibration_reference"]
     if not isinstance(cal, dict) or not isinstance(cal.get("holdout_n"), int) or cal["holdout_n"] < ACCEPTANCE["min_holdout_events"]:
         errs.append(f"calibration_reference needs holdout_n >= {ACCEPTANCE['min_holdout_events']} out-of-sample events (else INSUFFICIENT_HISTORY)")
@@ -317,8 +419,11 @@ def validate(doc: dict, *, model_card: dict | None = None, backtest: str | None 
             errs.append(f"FORECAST needs {k}")
     if doc["training_cutoff_utc"] and dt_ is not None:
         try:
-            if parse_utc(doc["training_cutoff_utc"]) > dt_:
+            cut = parse_utc(doc["training_cutoff_utc"])
+            if cut > dt_:
                 errs.append("model trained after the decision time: not an as-of forecast (P13)")
+            elif dt_ - cut > ACCEPTANCE["max_model_age_s"]:
+                errs.append(f"MODEL_STALE: training cutoff more than {ACCEPTANCE['max_model_age_s']} s before the decision")
         except ContractError as e:
             errs.append(str(e))
     if tgt.get("position_usd", "x") is None:
@@ -335,4 +440,6 @@ def validate(doc: dict, *, model_card: dict | None = None, backtest: str | None 
             errs.append("FEATURE_SCHEMA_MISMATCH: feature_set_sha differs from the one the model was trained on (P46)")
         if doc["target"] not in (model_card.get("targets") or []) or model_card.get("target_version", {}).get(doc["target"]) != doc["target_version"]:
             errs.append("model card does not cover this target and version (P46)")
+        if model_card.get("training_cutoff_utc") != doc["training_cutoff_utc"]:
+            errs.append("training_cutoff_utc differs from the model card: the cutoff is the card's, not the forecast's claim (P13)")
     return errs

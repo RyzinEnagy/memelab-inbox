@@ -1,5 +1,7 @@
 # Skeptic packet for the Phase 01 independent review
 
+Status: USED. The orchestrator gave this packet to an independent skeptic on 2026-10-24; its review and scripts are in `skeptic/` next to this file and were folded in by repair pass 2 (PI-D-021). Kept unchanged below as the record of what the skeptic received.
+
 For the orchestrator's independent skeptic (PI-D-013). It lists what to attack and where things are; it does not state the phase's conclusions. The phase agent's own adversarial pass is not independent.
 
 ## Task for the reviewer

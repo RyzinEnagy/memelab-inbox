@@ -1,40 +1,116 @@
 {
- "ref": "98338a8ba3c5e65c5850933a35c06885b6ef991a",
  "data_end": "2026-10-23T10:20Z",
+ "decision_events": {
+  "all": 1501,
+  "chain_none": 0,
+  "solana_priced": 881,
+  "with_key_conflict": 4
+ },
+ "export_versions": 89,
  "holdout_window_utc": [
   "2026-10-17T00:00:00Z",
   "2026-10-24T00:00:00Z"
  ],
- "price_path_target_before_invalidation_24h": {
-  "development": 177,
-  "purged_crosses_holdout": 17,
-  "holdout": 58,
-  "after_holdout_window": 0,
-  "not_matured_at_data_end": 26,
-  "all_thinned": 278
- },
- "price_path_target_before_invalidation_6h": {
-  "development": 280,
-  "purged_crosses_holdout": 0,
-  "holdout": 79,
-  "after_holdout_window": 0,
-  "not_matured_at_data_end": 7,
-  "all_thinned": 366
+ "liquidity_followup_24h_events": {
+  "events": 278,
+  "with_exit_cap_at_decision_and_row_20_to_28h_later": 29
  },
  "price_path_severe_drawdown_or_halt_24h": {
-  "development": 161,
-  "purged_crosses_holdout": 33,
-  "holdout": 49,
   "after_holdout_window": 0,
+  "all_thinned": 278,
+  "development": 161,
+  "holdout": 49,
   "not_matured_at_data_end": 35,
-  "all_thinned": 278
+  "purged_crosses_holdout": 33,
+  "with_key_conflict": 4,
+  "with_pit_pool": 186
+ },
+ "price_path_target_before_invalidation_24h": {
+  "after_holdout_window": 0,
+  "all_thinned": 278,
+  "development": 177,
+  "holdout": 58,
+  "not_matured_at_data_end": 26,
+  "purged_crosses_holdout": 17,
+  "with_key_conflict": 4,
+  "with_pit_pool": 186
+ },
+ "price_path_target_before_invalidation_6h": {
+  "after_holdout_window": 0,
+  "all_thinned": 366,
+  "development": 280,
+  "holdout": 79,
+  "not_matured_at_data_end": 7,
+  "purged_crosses_holdout": 0,
+  "with_key_conflict": 4,
+  "with_pit_pool": 239
  },
  "price_path_target_before_invalidation_7d": {
-  "development": 75,
-  "purged_crosses_holdout": 61,
-  "holdout": 0,
   "after_holdout_window": 0,
+  "all_thinned": 213,
+  "development": 75,
+  "holdout": 0,
   "not_matured_at_data_end": 77,
-  "all_thinned": 213
+  "purged_crosses_holdout": 61,
+  "with_key_conflict": 4,
+  "with_pit_pool": 148
+ },
+ "ref": "98338a8ba3c5e65c5850933a35c06885b6ef991a",
+ "rows": {
+  "distinct_rows": 1882,
+  "keys": 1801,
+  "keys_with_several_rows_in_first_export": 60,
+  "late_rows_examples": [
+   {
+    "created_at": 1791331150.554,
+    "key_first": "2026-10-07T21:53Z",
+    "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+    "row_first": "2026-10-07T22:20Z",
+    "status": "REJECTED"
+   },
+   {
+    "created_at": 1791331150.554,
+    "key_first": "2026-10-07T21:53Z",
+    "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+    "row_first": "2026-10-07T22:20Z",
+    "status": "SETUP DEVELOPING"
+   },
+   {
+    "created_at": 1791330503.698,
+    "key_first": "2026-10-07T21:53Z",
+    "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+    "row_first": "2026-10-07T22:20Z",
+    "status": "SETUP DEVELOPING"
+   },
+   {
+    "created_at": 1791330503.698,
+    "key_first": "2026-10-07T21:53Z",
+    "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+    "row_first": "2026-10-07T22:20Z",
+    "status": "DISTRIBUTION RISK"
+   },
+   {
+    "created_at": 1791330503.698,
+    "key_first": "2026-10-07T21:53Z",
+    "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+    "row_first": "2026-10-07T22:20Z",
+    "status": "SETUP DEVELOPING"
+   },
+   {
+    "created_at": 1791332195.007,
+    "key_first": "2026-10-07T21:53Z",
+    "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+    "row_first": "2026-10-07T22:20Z",
+    "status": "OVEREXTENDED"
+   }
+  ],
+  "rows_first_visible_after_their_key": 6
+ },
+ "rule": "memelab/predictive/decisions.py (CC-02, PI-D-021)",
+ "universe_filter": {
+  "below_stage1_liq20k_or_vol50k": 125,
+  "solana_priced_events": 881,
+  "vol_24h_missing": 30,
+  "vol_24h_under_1000": 77
  }
 }

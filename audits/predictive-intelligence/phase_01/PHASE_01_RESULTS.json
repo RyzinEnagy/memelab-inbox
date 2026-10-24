@@ -1,16 +1,17 @@
 {
  "phase": "01",
  "title": "Freeze the measurable prediction objectives and determine the minimally invasive architecture",
- "status": "NEEDS_REVIEW",
- "status_reason": "All gate items hold on the phase agent's own checks; the independent skeptic is run by the orchestrator (PI-D-013) and must be folded in by a repair pass before PASS.",
+ "status": "PASS",
+ "status_reason": "All gate items reproduced. Was NEEDS_REVIEW at 0decbbe; the orchestrator's independent skeptic (PI-D-013) found 3 MATERIAL (F1 thesis key not a point-in-time identity, F2 acceptance plan only partly frozen, F3 vendor gaps dropped as quiet markets) and 8 MINOR findings; all verified and fixed or answered in repair pass 2 by change control CC-02 (PI-D-021) and PI-D-022, before any label existed.",
  "branch": "feature/predictive-intelligence",
  "head_before": "94be1bf",
  "pre_registration_commit": "b6f26218002a009e6d96bf17bde9188d5e809758",
- "head_after": "HEAD of feature/predictive-intelligence after Phase 01 (git log -1); content commit e64c6ca, pre-registration b6f2621, later commits are hash bookkeeping only",
+ "head_after": "repair pass 2 commit on top of 0decbbe (git log -1; this file is part of it)",
  "generated_at_utc": "2026-10-24",
  "registry_sha256": {
   "pre_registered": "dd3b4576aa1e408052dd227e361aa2cbf4b38450994c3b5e6a2be5dc199fbccd",
-  "after_cc01": "9f8c9debdb66b28ab5d758c29d67f46f287965aa0d0bf2c1a64a94f9733d9912"
+  "after_cc01": "9f8c9debdb66b28ab5d758c29d67f46f287965aa0d0bf2c1a64a94f9733d9912",
+  "after_cc02": "91d03c769dde1d8cbba0f6a40257e7e3c060544ddb2f2b6b8a17556554b5a81a"
  },
  "primary_targets": [
   "price_path_target_before_invalidation_24h",
@@ -115,13 +116,6 @@
    "pass": true
   },
   {
-   "name": "final full suite",
-   "command": "python -m pytest tests -q",
-   "exit_code": 1,
-   "result": "1 failed, 806 passed in 136.72s; same single known failure",
-   "pass": true
-  },
-  {
    "name": "content guard and release tools with new files staged",
    "command": "python -m pytest tests/test_content_guard.py tests/test_release_tools.py tests/test_predictive_contract.py -q -p no:cacheprovider",
    "exit_code": 0,
@@ -142,48 +136,104 @@
    "pass": true
   },
   {
-   "name": "independent skeptic",
-   "input": "SKEPTIC_PACKET.md",
-   "result": "pending: run by the orchestrator (PI-D-013)",
-   "pass": false
+   "name": "final full suite (repair pass 2)",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 858 passed in 136.08s; only tests/test_catalyst.py::test_dedup_corroboration_resurface_denial (known); 858 = 785 + 73 predictive",
+   "pass": true
+  },
+  {
+   "name": "independent skeptic folded in",
+   "input": "audits/predictive-intelligence/phase_01/skeptic/PHASE_01_SKEPTIC.md",
+   "result": "3 MATERIAL and 8 MINOR verified; fixed or answered; disagreements on M1 (pushes are upper bounds, not creating pushes) and M6 (BAT decision had $94,115 volume) recorded",
+   "pass": true
+  },
+  {
+   "name": "CX-S1 reproduced and now caught",
+   "command": "python skeptic_01_counterexample.py (skeptic clone); python -m pytest tests/test_predictive_decisions.py",
+   "exit_code": 0,
+   "result": "LOOK-AHEAD REPRODUCED through state.import_; decisions.py tests on the real rows pass and fail under the old key rule (mutation)",
+   "pass": true
+  },
+  {
+   "name": "acceptance plan frozen",
+   "command": "python -m pytest tests/test_predictive_contract.py -k 'loosening or frozen_block or registry_is_frozen'",
+   "exit_code": 0,
+   "result": "fingerprint 91d03c76... pinned; 19 loosening edits change it; document block equals code",
+   "pass": true
+  },
+  {
+   "name": "eligibility classes on the coverage sample",
+   "command": "python audits/predictive-intelligence/phase_01/probes/gt_coverage_recompute.py ... --eligibility origin/main",
+   "exit_code": 0,
+   "result": "ELIGIBLE 5, MARKET_INACTIVE 3, VENDOR_OR_ROUTE_GAP 1, not read (429) 1",
+   "pass": true
+  },
+  {
+   "name": "holdout contact listed",
+   "command": "python audits/predictive-intelligence/phase_01/probes/holdout_contact.py ...",
+   "exit_code": 0,
+   "result": "exactly 2 holdout decisions (CnPL1x 10-17, Tm2iq 10-19), excluded from the primary holdout",
+   "pass": true
+  },
+  {
+   "name": "mutation check (repair pass 2)",
+   "command": "python audits/predictive-intelligence/phase_01/probes/mutation_check.py",
+   "exit_code": 0,
+   "result": "36 of 36 caught, including the skeptic's twelve",
+   "pass": true
+  },
+  {
+   "name": "anchors after repair",
+   "command": "check_gap_anchors.py; check_doc_anchors.py",
+   "exit_code": 0,
+   "result": "88 cells 0 problems (14 VERIFIED_PRESENT, 25 PARTIAL, 46 MISSING, 3 CONFLICT); 34 anchors 0 problems",
+   "pass": true
+  },
+  {
+   "name": "content guard with all new files staged",
+   "command": "python -m pytest tests/test_content_guard.py tests/test_release_tools.py tests/test_predictive_contract.py tests/test_predictive_decisions.py -q -p no:cacheprovider",
+   "exit_code": 0,
+   "result": "90 passed",
+   "pass": true
   }
  ],
  "artifacts": [
   {
    "path": "audits/predictive-intelligence/phase_01/ACCEPTANCE_CHECKLIST.md",
-   "sha256": "08b1b6869292e4c11c8a9971de01dc16b7aa9684328e686a7ae4965476cb34ae"
+   "sha256": "67962d361cbb3b853e3934e5c45a57ee42a8a346221cf59ad447b359bd10ca88"
   },
   {
    "path": "audits/predictive-intelligence/phase_01/PHASE_01_EVIDENCE.md",
-   "sha256": "2297912625058582704f5f5ee66c49dc018fb8864dd25adec60b6683bc1b06a1"
+   "sha256": "24ce7456fb55a3158b1c64e06ff88d2a8a8874616d3bf610a07c3ee27bb6d877"
   },
   {
    "path": "audits/predictive-intelligence/phase_01/SKEPTIC_PACKET.md",
-   "sha256": "42f4367bdace49a30243e32feb1271e4e733cb36bfb2435f1eabc2cacc4cc90e"
+   "sha256": "f5dced84ff8fb1351092287827e8bf13d45487f5c0ecf5027d794fa962b8391f"
   },
   {
    "path": "audits/predictive-intelligence/phase_01/architecture/ACCEPTANCE_METRICS.md",
-   "sha256": "0cfe89ceef6def96e4778d4e94fa1d6cf2cc269538a933c0caf4e66c810032e5"
+   "sha256": "84251f451c6a7479d15cb06ceb4f53d4365921ccd78556607523bf54426860c0"
   },
   {
    "path": "audits/predictive-intelligence/phase_01/architecture/DEPENDENCY_GRAPH.md",
-   "sha256": "3e64fc19d3a1bd48b124704d697062b4bde7e504417292b0ecd6681271203102"
+   "sha256": "afa283aac7e12f7b38af6a38566de91642786e2211fec6e39369d7f19109c64e"
   },
   {
    "path": "audits/predictive-intelligence/phase_01/architecture/GAP_MATRIX.csv",
-   "sha256": "880d629ed4b6b237ff0029313ac38c05a5c84f13d79dcb235a32f860723fca27"
+   "sha256": "4d95d8635da41411369055da1d7d22939bae92848278c7e9726e91ab36e3d750"
   },
   {
    "path": "audits/predictive-intelligence/phase_01/architecture/PLANNED_SEAMS.md",
-   "sha256": "94189cd435b3a476cadc9989fc457ca431b7569b16a2c275f0bce92d1594e634"
+   "sha256": "a915808bacc2270739dc839c7ddb0c13e6c6efce613e9351dfbdf8105adddb14"
   },
   {
    "path": "audits/predictive-intelligence/phase_01/architecture/TARGET_REGISTRY.md",
-   "sha256": "b90810fe359a6589f5809cbb5392d935696762e204054432f13da5c58da6b7b2"
+   "sha256": "3ad3715312391d8b791a609e673862c0c0f0c5f5a2e4abf5f19b4e6acb2b5c73"
   },
   {
    "path": "audits/predictive-intelligence/phase_01/probes/build_gap_matrix.py",
-   "sha256": "c7572f387e678ddf089611abc8220fee9c32f3365c409b638d8ff9dc98d9c748"
+   "sha256": "0dc0235c5f0f24d8bacc386ff1ae1bb83bfa26b05cedc0ec00068d49e089a3b3"
   },
   {
    "path": "audits/predictive-intelligence/phase_01/probes/check_doc_anchors.py",
@@ -195,7 +245,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_01/probes/decision_universe_probe.py",
-   "sha256": "81eba01cff6ae981b686a87dcc6836c71a3e5e439b85652a19766bd4378e59e6"
+   "sha256": "ca7bff5fe38ba1f8f7ab650a96db6c3afae3352add13c059f9008cb3c4bb2001"
   },
   {
    "path": "audits/predictive-intelligence/phase_01/probes/decision_universe_summary.json",
@@ -206,20 +256,32 @@
    "sha256": "03837ced6e09b92dd2fe7fad957fd173b8629e1c5cb58735b12835e7a902fe35"
   },
   {
+   "path": "audits/predictive-intelligence/phase_01/probes/gt_coverage_f3.json",
+   "sha256": "5342aac2d488cdea108ccbefa92970aca20bb16065582c6a09696adb6c40208c"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_01/probes/gt_coverage_probe.py",
    "sha256": "45a64a85cc7301e796b28aafe72f40370567b800a0990072cb45b01db7115075"
   },
   {
    "path": "audits/predictive-intelligence/phase_01/probes/gt_coverage_recompute.py",
-   "sha256": "92ca1816feccd7b2ba043bb2f6b120255528b69b6d470da94afbae1fa5354798"
+   "sha256": "fe84d7a2736f8b93c6a08365116bffa089214b6acb88c61a1fdb4c4cd5443990"
   },
   {
    "path": "audits/predictive-intelligence/phase_01/probes/gt_coverage_sample.json",
    "sha256": "b4c96925f1633184f6fc65353d6e7cceeda672be0117a4de65776be784332098"
   },
   {
+   "path": "audits/predictive-intelligence/phase_01/probes/holdout_contact.json",
+   "sha256": "9a2649eea055eacb681b48b813d8491fafeff7d9ded9cb150363fa223c0b801c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/probes/holdout_contact.py",
+   "sha256": "da9281d3a8900be03a9f499de1f95e59b2b521105392e206e957b3b5d9ffd622"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_01/probes/mutation_check.py",
-   "sha256": "ef563e74f7ffc82f4f019390df0a82d101d5ef46cd23515311a8a36813c97f6d"
+   "sha256": "fd88fd7f65388743608908f7038b6f4de2cfe87fb2e9b86c736aab39b2cec491"
   },
   {
    "path": "audits/predictive-intelligence/phase_01/probes/power_simulation.py",
@@ -227,11 +289,51 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_01/probes/split_counts.json",
-   "sha256": "d35755bc28e23dfb3334ca8dce846a979c08bcc7c790e6e90efc0e5bc29266f2"
+   "sha256": "0a6074e32156b89b85345054eb4d7760db24f43eb052a21a480a757a0974297e"
   },
   {
    "path": "audits/predictive-intelligence/phase_01/probes/split_counts.py",
-   "sha256": "6413d5487c195b3061c9008b4a866fbe24a9f32cd6dd8505aaf330b25ee2684d"
+   "sha256": "bc2edd7b3821aa2d4caa189f02b73e7ea6ffd5bb1020a06d9869bd4d053ded99"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/skeptic/PHASE_01_SKEPTIC.md",
+   "sha256": "a90e75911044852722d13c939a97e33ab564d456758a82f366aacf997d09c1d1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/skeptic/skeptic_01_counterexample.py",
+   "sha256": "5e9f5085fb1af5fa5cbb923e7c5f78809bddaf6c630011d1b776cc62e1031250"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/skeptic/skeptic_01_gt_check.json",
+   "sha256": "6f1f8a76cdbf23fe10063151f111b31eccb774157fd27f54a1f402f25bf646c0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/skeptic/skeptic_01_gt_check.py",
+   "sha256": "6c56c91c88dc20bfa555022f3da94041bf82696b17081b7cac1db6d9cf343648"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/skeptic/skeptic_01_mutations.py",
+   "sha256": "efba9c022f6acb9ee2d3f5e5fae78c9c9dae0e6cea98b4421532e2f6b38b8b8b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/skeptic/skeptic_01_mutations.txt",
+   "sha256": "a6a5b8bb74b1ef5c5265f7034a2422456ecaedf6477a65aeecdbb3ed9d96d47f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/skeptic/skeptic_01_revisions.json",
+   "sha256": "bc618f4b1cfbb499c8b0ba9c119a7239ccea1c12158d7fe63f04fe58fd2728fd"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/skeptic/skeptic_01_revisions.py",
+   "sha256": "85c11291042c7fb1149e331ac0958188b50da7ff20f84de358f25e0bf290dcf4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/skeptic/skeptic_01_universe.json",
+   "sha256": "ab3e8ab657f0a2a63ca6b00472cd05572750d5c5e9a2d602e537a881eb24b71d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/skeptic/skeptic_01_universe.py",
+   "sha256": "bda9e7e4bb76f68d6de576ff2080e6aa8b2ee9ccd9a6dd5e533c7c2a16870be5"
   },
   {
    "path": "memelab/predictive/__init__.py",
@@ -239,27 +341,39 @@
   },
   {
    "path": "memelab/predictive/contract.py",
-   "sha256": "aa7a7fe1f6598c8836bbe71fd4d0c057addf05bf111e8ec135dd1d5b81d451bb"
+   "sha256": "ea423e505fd9353f0fd28f77239899a14989d252d559b3a21bc554a8039b6475"
+  },
+  {
+   "path": "memelab/predictive/decisions.py",
+   "sha256": "e2920caecf3e4be9fd16543dd5d73770e94e445bb9d818590b425d03852b46cf"
   },
   {
    "path": "tests/test_predictive_contract.py",
-   "sha256": "8004d4ee976e704329d46d61789e23cd7d1cd153fe4034015b793879bdd3a0e9"
+   "sha256": "9f41daed8285f6c37657df7902f98fae1de61104505a11d35317cef64f4a655b"
+  },
+  {
+   "path": "tests/test_predictive_decisions.py",
+   "sha256": "41cf3849b5df6416984c82ee1a7ac7d9e1305ee22199b3eb6aee494b8eb7ad10"
   },
   {
    "path": "tests/fixtures/predictive/forecast_examples_format_only.json",
-   "sha256": "f97c5f3b2b19b4138fd075d75d45ee34dc0b23fc3aea0a69f7f1525abd601011"
+   "sha256": "2936717221d9cfba8a82544a8dd18757f08738d5052842612095bd96cb3a38e5"
+  },
+  {
+   "path": "tests/fixtures/predictive/cx_s1_exports.json",
+   "sha256": "850174f8483dd527170f3c5c7732a3625d99b7af5ebe5dc166d4f120c17dbca8"
   },
   {
    "path": "docs/predictive-intelligence/DECISIONS.md",
-   "sha256": "07c73cbd0339132cce6fe2d48805d86872edb3fa374600fab04a2f2291da24f2"
+   "sha256": "f98ecf8ada8009ae5563a0b9e515925e015d59e240513f20893825e4c7547e8d"
   },
   {
    "path": "docs/predictive-intelligence/ROADMAP.md",
-   "sha256": "ac668f4c35bed0cc645e16b398e58e269f8c54a41f402d08e29140c69016ca5c"
+   "sha256": "dd174aeab869ff519cdfd23f7b3868872f933d438de8b5e05665f688507c4f04"
   },
   {
    "path": "docs/predictive-intelligence/HANDOFF.md",
-   "sha256": "f40c1367c8863e4b3622ab18eeadec86c82e11c9bd636f6856ece98c167f8371"
+   "sha256": "b35a6e8864e0851465423fe42a65e20676f3cfb326f4175066073862247ac36b"
   },
   {
    "path": "audits/predictive-intelligence/COST_LEDGER.md",
@@ -267,17 +381,20 @@
   }
  ],
  "limitations": [
-  "Coverage sample of 10 decisions; rates are signs only (Wilson 95% for 5 of 9: 27% to 81%).",
-  "Event counts are before eligibility; the retrospective holdout may fall below the 50-event minimum.",
+  "Coverage sample of 10 decisions; rates are signs only.",
+  "Event counts are before eligibility; the retrospective holdout may fall below the 50-event minimum, and two contacted decisions are excluded from it.",
+  "The share of VENDOR_OR_ROUTE_GAP in the population is unknown until Phase 06; a high rate weakens results through censoring.",
   "GeckoTerminal 5-minute retention beyond 17 days is UNKNOWN.",
   "Provider lag 300 s is HEURISTIC.",
-  "7 of 89 export commit times have no push event to confirm them.",
+  "Export commit times bound when a row existed; as public availability they are confirmed within 5 s for 85 of 89 exports and only bounded (886 s to 6,269 s) for 4.",
+  "Acceptance rules beyond the first nine constants were first written after the coverage probe read ten price bodies (no outcome computed); frozen by CC-02 before any label.",
   "Power arithmetic assumes independent events; real detectability is lower.",
-  "All primary targets are price-path only; no executable or profit statement is possible."
+  "All primary targets are price-path only; no executable or profit statement is possible.",
+  "Contract checks still owed by later phases: PI-D-022."
  ],
  "blockers": [],
  "approvals_needed": [
   "PI-D-020 PROPOSED: forward depth and quote collector (scheduled job) for exit-adjusted and liquidity targets; not needed for Phase 02"
  ],
- "next_eligible_phase": "02 after the orchestrator's independent skeptic is folded in and the status is PASS"
+ "next_eligible_phase": "02"
 }

@@ -1,0 +1,167 @@
+{
+ "bodies": [
+  {
+   "candles": 1000,
+   "from": "2026-10-08T23:25:00Z",
+   "mint": "6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
+   "pool": "F6veTYFBPSYZiQSbNUDQCeMpDuSyR3pxghhfbEU2spfR",
+   "source": "phase01 2026-10-24T01:36:23Z",
+   "to": "2026-10-13T10:37:59Z"
+  },
+  {
+   "candles": 1000,
+   "from": "2026-10-07T03:35:00Z",
+   "mint": "68AGsjomsgTtiTaDhF6XGCeVJDnFeh415ngYYgVxGzns",
+   "pool": "AVaw6h3zE2eU57zDTMqPwdmxJnrFbuBcKoJ3FsdKdL49",
+   "source": "phase01 2026-10-24T01:36:30Z",
+   "to": "2026-10-10T16:19:20Z"
+  },
+  {
+   "candles": 870,
+   "from": "1970-01-01T00:00:00Z",
+   "mint": "EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR",
+   "pool": "ioaDGkQUh6h5nNTmcv8k3NvAgSTiS3xMFNaN3j11KzV",
+   "source": "phase01 2026-10-24T01:36:38Z",
+   "to": "2026-10-09T22:13:55Z"
+  },
+  {
+   "candles": 1,
+   "from": "1970-01-01T00:00:00Z",
+   "mint": "CnPL1xnAVHYGH92FpmiNoNhgh3gctkH5y988hMg4bonk",
+   "pool": "AiUCeZYWNAnZcpWPQPGcpeP3zusPiGUZYorLZkXhMoww",
+   "source": "phase01 2026-10-24T01:36:45Z",
+   "to": "2026-10-19T10:40:42Z"
+  },
+  {
+   "candles": 1000,
+   "from": "2026-10-15T08:50:00Z",
+   "mint": "Tm2iqbxYjKpW8xCMe6q1xUraNMNzcG5xMztAir3pump",
+   "pool": "8BRDx1ky8xuRBYq1kmVJ4TrSNaDybSiLU2mxmLVB4WaW",
+   "source": "phase01 2026-10-24T01:36:52Z",
+   "to": "2026-10-21T10:54:05Z"
+  },
+  {
+   "candles": 1000,
+   "from": "2026-10-04T11:10:00Z",
+   "mint": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+   "pool": "C8Gr6AUuq9hEdSYJzoEpNcdjpojPZwqG5MtQbeouNNwg",
+   "source": "phase01 2026-10-24T01:37:13Z",
+   "to": "2026-10-10T10:41:31Z"
+  },
+  {
+   "candles": 57,
+   "from": "1970-01-01T00:00:00Z",
+   "mint": "CqjaL6XvobYG8D4Ty3cjtxw3ZyYfmAf3ggWnyyv2S4FB",
+   "pool": "GbJom7FRTUHwvrrKrSBmkKjtyH1e9ZxZvXNjCpvAnkAN",
+   "source": "phase01 2026-10-24T01:37:28Z",
+   "to": "2026-10-12T10:51:45Z"
+  },
+  {
+   "candles": 4,
+   "from": "1970-01-01T00:00:00Z",
+   "mint": "BRf5k38aEcYPb14tE5yBTSuRk3EVDra2zqct2eCApump",
+   "pool": "3DW93h3Nqin3jpMd9C4ACgLjY96yPaKAgArWqnVMuCPU",
+   "source": "phase01 2026-10-24T01:37:43Z",
+   "to": "2026-10-17T10:33:48Z"
+  },
+  {
+   "candles": 15,
+   "from": "1970-01-01T00:00:00Z",
+   "mint": "EiLTVJLsFXvPxdzqp7ZtvXVeCB1T2UdgB9WrpxoZceXH",
+   "pool": "EVhp44NCuqii3Up66v6fvdL1QqCp1oR1LjvqR6Q1FDYJ",
+   "source": "phase01 2026-10-24T01:37:57Z",
+   "to": "2026-10-17T10:33:48Z"
+  },
+  {
+   "candles": 1000,
+   "from": "2026-10-08T23:25:00Z",
+   "mint": "6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
+   "pool": "F6veTYFBPSYZiQSbNUDQCeMpDuSyR3pxghhfbEU2spfR",
+   "source": "phase01 2026-10-24T01:38:04Z",
+   "to": "2026-10-13T10:37:59Z"
+  },
+  {
+   "candles": 870,
+   "from": "1970-01-01T00:00:00Z",
+   "mint": "EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR",
+   "pool": "ioaDGkQUh6h5nNTmcv8k3NvAgSTiS3xMFNaN3j11KzV",
+   "source": "skeptic re-read (same URL)",
+   "to": "2026-10-09T22:13:55Z"
+  },
+  {
+   "candles": 1000,
+   "from": "2026-10-07T03:35:00Z",
+   "mint": "68AGsjomsgTtiTaDhF6XGCeVJDnFeh415ngYYgVxGzns",
+   "pool": "AVaw6h3zE2eU57zDTMqPwdmxJnrFbuBcKoJ3FsdKdL49",
+   "source": "skeptic re-read (same URL)",
+   "to": "2026-10-10T16:19:20Z"
+  }
+ ],
+ "distinct_holdout_decisions_contacted": [
+  [
+   "CnPL1xnAVHYGH92FpmiNoNhgh3gctkH5y988hMg4bonk",
+   "2026-10-17T10:20:42Z"
+  ],
+  [
+   "Tm2iqbxYjKpW8xCMe6q1xUraNMNzcG5xMztAir3pump",
+   "2026-10-19T10:34:05Z"
+  ]
+ ],
+ "holdout_events_contacted": [
+  {
+   "bodies": [
+    "AiUCeZYWNAnZcpWPQPGcpeP3zusPiGUZYorLZkXhMoww (phase01 2026-10-24T01:36:45Z)"
+   ],
+   "decision_utc": "2026-10-17T10:20:42Z",
+   "mint": "CnPL1xnAVHYGH92FpmiNoNhgh3gctkH5y988hMg4bonk",
+   "summarized": true,
+   "target": "price_path_target_before_invalidation_24h"
+  },
+  {
+   "bodies": [
+    "8BRDx1ky8xuRBYq1kmVJ4TrSNaDybSiLU2mxmLVB4WaW (phase01 2026-10-24T01:36:52Z)"
+   ],
+   "decision_utc": "2026-10-19T10:34:05Z",
+   "mint": "Tm2iqbxYjKpW8xCMe6q1xUraNMNzcG5xMztAir3pump",
+   "summarized": true,
+   "target": "price_path_target_before_invalidation_24h"
+  },
+  {
+   "bodies": [
+    "AiUCeZYWNAnZcpWPQPGcpeP3zusPiGUZYorLZkXhMoww (phase01 2026-10-24T01:36:45Z)"
+   ],
+   "decision_utc": "2026-10-17T10:20:42Z",
+   "mint": "CnPL1xnAVHYGH92FpmiNoNhgh3gctkH5y988hMg4bonk",
+   "summarized": true,
+   "target": "price_path_target_before_invalidation_6h"
+  },
+  {
+   "bodies": [
+    "8BRDx1ky8xuRBYq1kmVJ4TrSNaDybSiLU2mxmLVB4WaW (phase01 2026-10-24T01:36:52Z)"
+   ],
+   "decision_utc": "2026-10-19T10:34:05Z",
+   "mint": "Tm2iqbxYjKpW8xCMe6q1xUraNMNzcG5xMztAir3pump",
+   "summarized": true,
+   "target": "price_path_target_before_invalidation_6h"
+  },
+  {
+   "bodies": [
+    "AiUCeZYWNAnZcpWPQPGcpeP3zusPiGUZYorLZkXhMoww (phase01 2026-10-24T01:36:45Z)"
+   ],
+   "decision_utc": "2026-10-17T10:20:42Z",
+   "mint": "CnPL1xnAVHYGH92FpmiNoNhgh3gctkH5y988hMg4bonk",
+   "summarized": true,
+   "target": "price_path_severe_drawdown_or_halt_24h"
+  },
+  {
+   "bodies": [
+    "8BRDx1ky8xuRBYq1kmVJ4TrSNaDybSiLU2mxmLVB4WaW (phase01 2026-10-24T01:36:52Z)"
+   ],
+   "decision_utc": "2026-10-19T10:34:05Z",
+   "mint": "Tm2iqbxYjKpW8xCMe6q1xUraNMNzcG5xMztAir3pump",
+   "summarized": true,
+   "target": "price_path_severe_drawdown_or_halt_24h"
+  }
+ ],
+ "note": "no price, barrier or class was printed for any of these; summarized = coverage numbers printed for that decision"
+}

@@ -93,6 +93,7 @@
   "target_version": {
    "price_path_target_before_invalidation_24h": "1"
   },
-  "is_fixture": true
+  "is_fixture": true,
+  "training_cutoff_utc": "2026-10-16T00:00:00Z"
  }
 }

@@ -2,8 +2,9 @@
 
 Read-only. No network. Walks every version of data/state/latest.json on a ref OLDEST FIRST (so the first export that
 contains a thesis is known), and reports:
-  - the gap between theses.created_at and the commit time of the first export holding the thesis (the provable
-    public availability time, PI-D-008), next to the write-lag lower bound from tokens.first_seen_at (PI-D-011);
+  - the gap between theses.created_at and the commit time of the first export holding the thesis (a time by which the row
+    existed, on the committer clock; public availability can be later, see PI-D-021), next to the write-lag lower bound from
+    tokens.first_seen_at (PI-D-011);
   - optional cross-check of export commit times against GitHub push events (server clock), from a JSON file;
   - per chain, how many thesis mints carry a point-in-time pool address (tokens.graduated_pool / primary_pool as of
     the first export holding the thesis);
@@ -18,6 +19,10 @@ Usage (repo root):
 
 Writes only OUT.json (keep it outside the repo or under the phase folder). This is a planning probe, NOT a label builder:
 it computes no outcome and reads no price after a decision.
+
+Repair pass 2: its decision events key on (mint, created_at), which is not a point-in-time identity (skeptic F1, CX-S1). The
+decision rule is now memelab/predictive/decisions.py, used by split_counts.py; the event counts of both agree. Its output
+(decision_universe_summary.json) is kept unchanged as the pass-1 record.
 """
 from __future__ import annotations
 
@@ -93,7 +98,7 @@ def main(ref: str, out: str, push_path: str | None = None) -> None:
             tk = toks.get(th["mint"]) or {}
             theses[key] = {"mint": th["mint"], "created_at": float(th["created_at"]), "commit": sha, "commit_t": ct,
                            "exported_at": doc.get("_exported_at"), "status": th.get("status"), "score": th.get("score"),
-                           "chain": tk.get("chain") or "solana", "pool_pit": tk.get("primary_pool") or tk.get("graduated_pool"),
+                           "chain": tk.get("chain"), "pool_pit": tk.get("primary_pool") or tk.get("graduated_pool"),
                            "price": s.get("price"), "liquidity": s.get("liquidity"), "exit_cap_3pct": s.get("exit_cap_3pct")}
         for c in tables.get("launch_cohort") or []:
             cohort[c["mint"]] = c                    # newest row wins (oldest-first walk), skeptic F2 of Phase 00
@@ -128,7 +133,7 @@ def main(ref: str, out: str, push_path: str | None = None) -> None:
         res["clocks"]["push_minus_commit_s"] = pct(diffs) if diffs else None
         res["clocks"]["export_commits_with_push_event"] = len(diffs)
     # universe by chain and pool address
-    chain_mints = collections.Counter(r["chain"] for r in first_by_mint.values())
+    chain_mints = collections.Counter(str(r["chain"]) for r in first_by_mint.values())
     pool_pit = collections.Counter((r["chain"], bool(r["pool_pit"])) for r in first_by_mint.values())
     priced = collections.Counter(r["chain"] for r in first_by_mint.values()
                                  if any(x["price"] for x in rows if x["mint"] == r["mint"]))

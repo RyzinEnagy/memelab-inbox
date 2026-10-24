@@ -6,7 +6,7 @@ Where the predictive engine attaches to the existing lab, what it reuses, and wh
 
 | Boundary | Kind | Lives in | Notes |
 |---|---|---|---|
-| Decision records | pure adapter, read-only | `memelab/predictive/history.py` (Phase 05) | historical: every version of `data/state/latest.json` read from git objects, oldest first, decision time = first export commit time (PI-D-015); prospective: the scout result plus a capture time |
+| Decision records | pure functions plus a read-only git reader | `memelab/predictive/decisions.py` (identity and time rule, built in Phase 01 repair pass 2 with tests) and a git reader in Phase 05 | historical: every version of `data/state/latest.json` read from git objects along the first-parent history, oldest first; identity `(mint, created_at, row_sha256)`; decision time = first export holding the exact row (PI-D-015 as amended by PI-D-021); prospective: the scout result plus a capture time |
 | Point-in-time features | pure functions over an as-of view | `memelab/predictive/features.py` (Phase 05) | every value carries `feature_available_at`; the view refuses anything later than the decision (LeakageError) |
 | Labels | pure evaluator plus the existing ledger | `memelab/predictive/labels.py` (Phase 06) | barrier first-touch per TARGET_REGISTRY.md; PENDING until matured |
 | Candle backfill | bounded batch fetch, offline | `memelab/predictive/backfill.py` (Phase 06) | GeckoTerminal only, paced, cached, retrieval time kept |
@@ -22,7 +22,7 @@ Where the predictive engine attaches to the existing lab, what it reuses, and wh
 
 | Need | Reuse (existing code) | New code and why it is not a duplicate | Failure mode and degradation |
 |---|---|---|---|
-| Decision time and identity | state export format (`memelab/state.py:45` export, `:77` import handles both layouts); exact mint keys | a read-only reader of historical export versions; state.py imports one file into a DB and cannot read history | an export version that does not parse is skipped and counted; a thesis seen only in a later export gets that later commit time (never earlier) |
+| Decision time and identity | state export format (`memelab/state.py:45` export, `memelab/state.py:77` import handles both layouts; `decisions.export_from_doc` reads both the same way); exact mint keys | `decisions.py`: state.py imports one file into a DB keyed on `(mint, created_at)` and keeps whichever row comes first, so it cannot be the decision seam (skeptic CX-S1: a later REJECTED row would inherit an earlier decision time) | an export version that does not parse is skipped and counted; a row seen only in a later export gets that later commit time (never earlier); KEY_CONFLICT flagged and every result repeated without it |
 | Leakage control | `replay_core.LeakageError` (`memelab/social/replay_core.py:104`), the audited cutoff view pattern (`:441` Audit, `:457` CutoffView), truncation invariance (`:983` truncate, `:1013` leakage_check) | a cutoff view over decision snapshots and candles; it raises the same LeakageError class and repeats the truncation proof on its own data | a feature that would read past the decision raises and the forecast abstains; the test suite fails if any feature changes when data after the decision are removed |
 | Candle availability | `replay_sources.PROVIDER_LAG` (`memelab/social/replay_sources.py:28`, 300 s, HEURISTIC) | none | features use close + 300 s; Phase 05 records that this is HEURISTIC and that a backfill read is not historical availability (P04, P07) |
 | Observation validation | `outcomes_core.normalize_observation` (`memelab/social/outcomes_core.py:274`: future-dated candles refused, high and low must contain open and close) and `visible` (`:335`: revisions by availability) | none | a malformed candle is refused with a reason, never repaired |
@@ -97,7 +97,7 @@ flowchart LR
 
 - A forecast never feeds the 100-point score, the fatal-flag veto, the status, the watchlist or the order of the scout lists. Fatal flags always win: a fatal-flagged token still gets its forecast or abstention shown, under the unchanged REJECTED line.
 - No alert is driven by a probability until a target reaches VALIDATED_EXPERIMENTAL (ACCEPTANCE_METRICS.md); Phase 18 decides alert rules within that limit.
-- Flag default OFF (`contract.enabled()` reads `data/config.json` `predictive.enabled`, which must be the JSON value true). With the flag off nothing in the lab changes; `tests/test_predictive_contract.py` checks that no existing module imports the package.
+- Flag default OFF (`contract.enabled()` reads `data/config.json` `predictive.enabled`, which must be the JSON value true). The flag gates nothing yet; Phase 17 wires it. Today the package is unreachable because no existing module imports it, which `tests/test_predictive_contract.py` checks on the syntax tree (plain, `from memelab import predictive`, relative and `import_module` or `__import__` string forms).
 
 ## Degradation
 
