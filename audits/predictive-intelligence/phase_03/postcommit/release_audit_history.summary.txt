@@ -1,0 +1,13 @@
+Release audit summary (python tools/release_audit.py --history), commit e1b2c5e6a8aef22172261b17a5ff590df7e432d1, exit 0.
+
+The full report quotes the matched rule names line by line; storing it in a tracked file trips the repository's own
+test (tests/test_release_tools.py, no trade-execution or signing words in tracked files outside the documented
+paths), so only this summary is kept. Rerun the command for the full report.
+
+- Needs action: no
+- Credential and key-material shapes in tracked files: none (1 reviewed placeholder in tests/test_social_alerts.py)
+- The same shapes in public history: none in 1,602 blobs from every ref (1 reviewed hit, same reason)
+- Trade-execution and signing code: none; 55 reviewed hits in 9 files (the hard rules text under docs/ and skills/, the wallet refusal test and the audit tool's own patterns), none under audits/
+- Content guard on this branch: exit 0, violations 0; applied to origin/main at 98338a8: violations 0
+- Migrations: migrate_tracked_db exit 0 and migrate_main_db exit 0, social schema 0 to 12, legacy rows unchanged
+- Static checks: 352 Python files, 0 syntax errors; 16 JavaScript files, 0 node --check errors

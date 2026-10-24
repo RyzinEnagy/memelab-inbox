@@ -1,13 +1,13 @@
 {
   "phase": "03",
   "title": "Pinned source audit, rubric and ranked top ten",
-  "status": "NEEDS_REVIEW",
-  "status_reason": "Repair pass applied in this commit; the post-commit full suite, content guard and release audit run on this commit and are recorded by the records commit that follows.",
+  "status": "PASS",
+  "status_reason": "Every gate item holds after the repair pass: the skeptic's 3 MATERIAL and 9 MINOR findings and the blind rescore are folded in, and the post-commit suite on the repair commit e1b2c5e shows only the known failure, the content guard is clean and the release audit with history exits 0.",
   "branch": "feature/predictive-intelligence",
   "head_before": "77e78ce58788ef935af496a5753d53d1bed57b97",
-  "head_after": "repair commit on top of 77e78ce (git log -2)",
+  "head_after": "records commit on top of the repair commit e1b2c5e (amended from 1f9713c before any push; git log -1; this file is part of it)",
   "first_pass_commit": "c9e894d (rewritten, never pushed; PI-D-030)",
-  "generated_at_utc": "2026-10-24T07:45Z",
+  "generated_at_utc": "2026-10-24T07:46:53Z",
   "rubric_items_sha256": "cb4b0a2112d152587424cefad98bbd8b71ae7f9ff2f1be517e47890a94c937f8",
   "counts": {
     "reviews": 30,
@@ -312,6 +312,34 @@
       "exit_code": 0,
       "result": "no secrets, binaries, weights or files over 1 MB; no social-only JSON keys; 0 en or em dashes, 0 curly quotes in lead-written files",
       "pass": true
+    },
+    {
+      "name": "full suite after the repair commit",
+      "command": "python -m pytest tests -q (temp MEMELAB_DB) at e1b2c5e6a8aef22172261b17a5ff590df7e432d1",
+      "exit_code": 1,
+      "result": "1 failed, 858 passed in 144.44s (0:02:24); only tests/test_catalyst.py::test_dedup_corroboration_resurface_denial (known); strays removed; tracked DB unchanged",
+      "pass": true
+    },
+    {
+      "name": "content guard after the repair commit",
+      "command": "python -m memelab social guard",
+      "exit_code": 0,
+      "result": "996 files, 220 JSON, violations []",
+      "pass": true
+    },
+    {
+      "name": "release audit with history after the repair commit",
+      "command": "python tools/release_audit.py --history",
+      "exit_code": 0,
+      "result": "Needs action: no; no credential shapes in tracked files or 1,602 history blobs; guard 0 on branch and origin/main; migrations exit 0; 0 syntax errors",
+      "pass": true
+    },
+    {
+      "name": "first version of the records commit (1f9713c, amended before any push)",
+      "command": "python -m pytest tests -q (temp MEMELAB_DB)",
+      "exit_code": 1,
+      "result": "2 failed, 857 passed in 144.97s: the known failure plus test_no_trade_execution_or_signing_code_in_tracked_files on the stored full release-audit report; replaced by a summary, scan_exec() returns no finding",
+      "pass": false
     }
   ],
   "artifacts": [
@@ -321,7 +349,7 @@
     },
     {
       "path": "audits/predictive-intelligence/phase_03/PHASE_03_EVIDENCE.md",
-      "sha256": "45c1e1a7094c7b3f63271139d9457e963f9f40426c7612816544d642924aef7c"
+      "sha256": "8bfb39d7e3c1c53e6cc5fcb3c02381f69a1dc47c893e5331d0aa8cac06818f69"
     },
     {
       "path": "audits/predictive-intelligence/phase_03/SKEPTIC_PACKET.md",
@@ -613,19 +641,31 @@
     },
     {
       "path": "docs/predictive-intelligence/DECISIONS.md",
-      "sha256": "3a34d3bce0f134c041bb665cd6f9c71f039740f5175ade353cd052de8fed77f7"
+      "sha256": "2f860e7e23156b0c216603d9c6542a3b567e0a1b13ec643f1be034e2cc6692d5"
     },
     {
       "path": "docs/predictive-intelligence/ROADMAP.md",
-      "sha256": "06480d5b6c9eae6cfd63aafed3935e2a1d3e8b400f3bce2b512bf672520ab97b"
+      "sha256": "a2de6b76c5536aecb0b4f99c4c9087d5642e6f1fd5e86757bea2d3b78052538f"
     },
     {
       "path": "docs/predictive-intelligence/HANDOFF.md",
-      "sha256": "d4db52e19986ed39d753c9cd31ed8c3bf2cf648617f314f7da04bd1522c23909"
+      "sha256": "428af7ab39e1758f9af1eef430bb32ea7585db62dd63c1e003d4cab30dc1ebdb"
     },
     {
       "path": "audits/predictive-intelligence/COST_LEDGER.md",
       "sha256": "397a38b15124ef2f786c29b3304fee3052013cc54e92deec7e0c27b2d79ba4ab"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/postcommit/pytest_summary.txt",
+      "sha256": "b55720f62e4e65cb255529262a7069bc400807f9be206a2316f59cc7f0cea9ca"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/postcommit/release_audit_history.summary.txt",
+      "sha256": "3c61c4c757f251e9419d3c020bffb5dd2c99ec3855d598fd3678636948e96ed5"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/postcommit/social_guard.out.txt",
+      "sha256": "972338d97ce337902a3f2a659b57a50491ba8a52693c050b58c6e5107f5d47eb"
     }
   ],
   "limitations": [
@@ -638,9 +678,7 @@
     "The 50 items were written after the lead read every review, so they were not blind to the evidence; the blind rescore and sensitivity readings are the controls.",
     "The fold audit covers the splitters that points rest on, on the shared challenge only."
   ],
-  "blockers": [
-    "post-commit suite, guard and release audit (recorded by the records commit)"
-  ],
+  "blockers": [],
   "approvals_needed": [],
   "approvals_note": "None for Phase 04 to start. Paid LLM, Zep or MiroFish use, non-commercial weight terms (TabPFN), AGPL or GPL copying, scheduled collectors (PI-D-020 PROPOSED) and merges into main stay with Elving (PI-D-005).",
   "spend": {
@@ -649,5 +687,5 @@
     "llm_calls": 0,
     "paid_calls": 0
   },
-  "next_eligible_phase": "none until the records commit records the post-commit checks"
+  "next_eligible_phase": "04 (adoption, install, adapter or build bake-off), after the orchestrator verifies Phase 03"
 }

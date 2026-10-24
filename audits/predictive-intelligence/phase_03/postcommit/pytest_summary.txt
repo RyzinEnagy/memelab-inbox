@@ -1,0 +1,9 @@
+# python -m pytest tests -q with MEMELAB_DB in a scratch file, at commit e1b2c5e6a8aef22172261b17a5ff590df7e432d1
+# started 2026-10-24T07:38:22Z, finished 2026-10-24T07:40:47Z
+
+tests/test_catalyst.py:44: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+1 failed, 858 passed in 144.44s (0:02:24)
+EXIT=1
+# stray data/reports/20261024_0738_BRETT_0x532f.md removed by hand; data/memelab.sqlite sha256 068287c0d7e45436... unchanged
