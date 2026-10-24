@@ -1,0 +1,44 @@
+usage: memelab backtest [-h]
+                        {status,run,deep,assess-stats,stress,assess,inspect,data,outcomes,schema} ...
+
+positional arguments:
+  {status,run,deep,assess-stats,stress,assess,inspect,data,outcomes,schema}
+    status              what the backtest database holds
+    run                 replay one strategy over the frozen discovery universe
+                        and save the run
+    deep                run queued DEEP assessments (offline, bounded)
+    assess-stats        assessment counts, states and average wall time
+    stress              analyze one mint from saved results, assess it now and
+                        print the report (no lab persistence)
+    assess              report for the newest stored assessment of a mint
+    inspect             one stored run: config, hashes, summary, files and the
+                        command that reproduces it
+    data                coverage of the research database (bars, universe,
+                        blocked sources)
+    outcomes            shadow outcome tracking: track, calibrate, drift,
+                        reconcile, daily, shadow (no trading)
+    schema              JSON Schema of the report document
+
+options:
+  -h, --help            show this help message and exit
+
+usage: memelab backtest stress [-h] --results RESULTS [RESULTS ...]
+                               [--stage1 STAGE1]
+                               [--position-usd POSITION_USD [POSITION_USD ...]]
+                               [--max-loss-usd MAX_LOSS_USD] [--now NOW]
+                               [--json] [--db DB]
+                               mint
+
+positional arguments:
+  mint
+
+options:
+  -h, --help            show this help message and exit
+  --results RESULTS [RESULTS ...]
+  --stage1 STAGE1
+  --position-usd POSITION_USD [POSITION_USD ...]
+                        sizes to stress (default: policy sizes)
+  --max-loss-usd MAX_LOSS_USD
+  --now NOW             UTC time to judge freshness against (default: now)
+  --json
+  --db DB

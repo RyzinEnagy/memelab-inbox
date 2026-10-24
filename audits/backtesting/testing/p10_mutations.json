@@ -1,0 +1,128 @@
+[
+ {
+  "id": "M10-1 bar applied at its start (before it completed)",
+  "file": "memelab/backtest/engine.py",
+  "old": "                events.append((b.end, 0, td.mint, \"MANAGE\", i))",
+  "new": "                events.append((b.start, 0, td.mint, \"MANAGE\", i))",
+  "tests": [
+   "tests/test_backtest_engine.py"
+  ]
+ },
+ {
+  "id": "M10-2 gap-through stop filled at the stop price",
+  "file": "memelab/backtest/engine.py",
+  "old": "            self._exit(td, p, bar.start, bar.o, \"STOP_GAP_FILL_AT_OPEN\")",
+  "new": "            self._exit(td, p, bar.start, p.stop, \"STOP_GAP_FILL_AT_OPEN\")",
+  "tests": [
+   "tests/test_backtest_engine.py"
+  ]
+ },
+ {
+  "id": "M10-3 target checked before stop inside one bar",
+  "file": "memelab/backtest/engine.py",
+  "old": "        elif hit_stop:                                 # stop wins",
+  "new": "        elif hit_stop and not hit_tp:                  # stop wins",
+  "tests": [
+   "tests/test_backtest_engine.py"
+  ]
+ },
+ {
+  "id": "M10-4 entry without enough cash",
+  "file": "memelab/backtest/engine.py",
+  "old": "        if exposure + size > c.max_exposure_frac * eq or size > self.cash:",
+  "new": "        if exposure + size > c.max_exposure_frac * eq * 100:",
+  "tests": [
+   "tests/test_backtest_engine.py"
+  ]
+ },
+ {
+  "id": "M10-5 correlated group cap ignored",
+  "file": "memelab/backtest/engine.py",
+  "old": "            if same >= c.max_positions_per_group:",
+  "new": "            if False:",
+  "tests": [
+   "tests/test_backtest_engine.py"
+  ]
+ },
+ {
+  "id": "M10-6 drawdown halt ignored",
+  "file": "memelab/backtest/engine.py",
+  "old": "            if self._halted_at is not None or eq_now < self._peak_equity * (1 - c.max_drawdown_frac):",
+  "new": "            if False:",
+  "tests": [
+   "tests/test_backtest_engine.py"
+  ]
+ },
+ {
+  "id": "M10-7 crash through stop filled at the stop",
+  "file": "memelab/backtest/engine.py",
+  "old": "        if hit_stop and bar.l < p.stop * (1 - self.cfg.stop_overshoot_limit) and bar.c < p.stop:",
+  "new": "        if False:",
+  "tests": [
+   "tests/test_backtest_engine.py"
+  ]
+ },
+ {
+  "id": "M10-8 fill on the bar that was open at decision time",
+  "file": "memelab/backtest/engine.py",
+  "old": "        i = bisect.bisect_left(self._starts, t)\n",
+  "new": "        i = max(0, bisect.bisect_left(self._starts, t) - 1)\n",
+  "tests": [
+   "tests/test_backtest_engine.py"
+  ]
+ },
+ {
+  "id": "M10-9 end-of-run marking reads past the cutoff",
+  "file": "memelab/backtest/engine.py",
+  "old": "            cb = td.closed_until(end_t)                 # never read past the run's end",
+  "new": "            cb = td.closed_until(end_t + 1e9)",
+  "tests": [
+   "tests/test_backtest_engine.py"
+  ]
+ },
+ {
+  "id": "M10-10 network fee not charged on canceled entries",
+  "file": "memelab/backtest/engine.py",
+  "old": "            self.counts[\"canceled\"] += 1\n            self.cash -= nfee\n",
+  "new": "            self.counts[\"canceled\"] += 1\n",
+  "tests": [
+   "tests/test_backtest_engine.py"
+  ]
+ },
+ {
+  "id": "M10-11 runner applies later bar revisions",
+  "file": "memelab/backtest/runner.py",
+  "old": "        if r[\"start\"] in seen:\n            continue\n",
+  "new": "        if r[\"start\"] in seen:\n            out = [x for x in out if x.start != r[\"start\"]]\n",
+  "tests": [
+   "tests/test_backtest_runner.py"
+  ]
+ },
+ {
+  "id": "M10-12 run id blind to code changes",
+  "file": "memelab/backtest/store.py",
+  "old": "        h.update(f.read_bytes())\n",
+  "new": "        pass\n",
+  "tests": [
+   "tests/test_backtest_runner.py"
+  ]
+ },
+ {
+  "id": "M10-13 discovery baseline retried until tradable",
+  "file": "memelab/backtest/strategies/baselines.py",
+  "old": "        if (ctx or {}).get(\"attempts_so_far\", (ctx or {}).get(\"entries_so_far\", 0)) > 0:",
+  "new": "        if (ctx or {}).get(\"entries_so_far\", 0) > 0:",
+  "tests": [
+   "tests/test_backtest_engine.py"
+  ]
+ },
+ {
+  "id": "M10-14 thesis known at its creation even under the commit rule",
+  "file": "memelab/backtest/runner.py",
+  "old": "            known = r[\"available_at\"] if thesis_known_at == \"created\" else max(r[\"available_at\"], r[\"committed_by\"] or r[\"available_at\"])",
+  "new": "            known = r[\"available_at\"]",
+  "tests": [
+   "tests/test_backtest_runner.py"
+  ]
+ }
+]

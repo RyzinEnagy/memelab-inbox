@@ -1,0 +1,62 @@
+2026-10-23T20:20:56Z
+{
+ "stored_dataset_hash": "35f836f372c48dfb6cb5ed7cffb3cac6477571dae6836fb2913f9b44db420b76",
+ "dataset_hash_at_T1": "35f836f372c48dfb6cb5ed7cffb3cac6477571dae6836fb2913f9b44db420b76",
+ "dataset_hash_no_cutoff": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+ "tokens": 256,
+ "stored_tokens": 256,
+ "bars_available_after_T1": 402,
+ "max_bar_available_at": 1792776856.8159454,
+ "cutoff_hash_matches": true,
+ "strategies": {
+  "BREAKOUT_CLOSE": {
+   "chosen": {
+    "lookback": 12,
+    "vol_mult": 1.5
+   },
+   "stored_chosen": {
+    "lookback": 12,
+    "vol_mult": 1.5
+   },
+   "frozen_sha": "07e09a6f8c43c19393493f6398e0d87bcf6fef19529bbb3b426424c5cdc1298a",
+   "stored_frozen_sha": "07e09a6f8c43c19393493f6398e0d87bcf6fef19529bbb3b426424c5cdc1298a",
+   "verdict": "INSUFFICIENT_SAMPLE",
+   "stored_verdict": "INSUFFICIENT_SAMPLE",
+   "test_n": 6,
+   "stored_test_n": 6,
+   "test_mean_ret": -0.031294165685796994,
+   "stored_test_mean_ret": -0.031294165685796994,
+   "test_ledger_hash": "88ae40542f4bd89e3cffbba11869204dfa05e4a3e4718ec6a4d5480fcb194af1",
+   "stored_test_ledger_hash": "88ae40542f4bd89e3cffbba11869204dfa05e4a3e4718ec6a4d5480fcb194af1",
+   "latest_fill_time": 1792681200.0,
+   "latest_fill_le_T1": true,
+   "wall_s": 11.3,
+   "reproduced": true
+  },
+  "LAB_STATUS": {
+   "chosen": {
+    "min_score": 65
+   },
+   "stored_chosen": {
+    "min_score": 65
+   },
+   "frozen_sha": "683b48261230d6ddc05e1a98d562d69a0f0cd18b3942cbffa9fd1982256c77f1",
+   "stored_frozen_sha": "683b48261230d6ddc05e1a98d562d69a0f0cd18b3942cbffa9fd1982256c77f1",
+   "verdict": "INSUFFICIENT_SAMPLE",
+   "stored_verdict": "INSUFFICIENT_SAMPLE",
+   "test_n": 0,
+   "stored_test_n": 0,
+   "test_mean_ret": null,
+   "stored_test_mean_ret": null,
+   "test_ledger_hash": "e478181404b2039728243ddfd41c8d4a038dc3d6acf429a358cc69414a57d062",
+   "stored_test_ledger_hash": "e478181404b2039728243ddfd41c8d4a038dc3d6acf429a358cc69414a57d062",
+   "latest_fill_time": 0.0,
+   "latest_fill_le_T1": true,
+   "wall_s": 6.0,
+   "reproduced": true
+  }
+ },
+ "seal_is_per_object_only": true
+}
+EXIT=0
+2026-10-23T20:21:23Z

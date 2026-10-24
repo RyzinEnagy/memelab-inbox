@@ -1,0 +1,8 @@
+quantstats 0.0.86
+[1] first non-zero return at 2026-01-01 11:00:00 (we set entry at bar k+1; library does not re-time)
+[2] sharpe default periods=252: 20.159 | periods=8760 (hourly 24/7): 118.856
+    probabilistic_sharpe_ratio: 1.0
+[3] montecarlo_cagr on 2000 hourly returns (permutation MC): {'min': np.float64(-0.2488502687), 'max': np.float64(-0.2488502687), 'std': np.float64(0.0)}
+    std ~0 => shuffling returns cannot change terminal wealth; 'years' uses 252 bars/yr
+[4] montecarlo_drawdown percentile_5/95: -0.9703 -0.9116
+EXIT_CODE=0

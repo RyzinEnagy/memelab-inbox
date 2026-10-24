@@ -1,0 +1,15 @@
+2026-10-23T21:23:52Z
+........................................................................ [ 62%]
+........................................................................ [ 94%]
+.............                                                            [100%]
+229 passed in 34.67s
+EXIT=0
+release_audit EXIT=0
+Needs action: no.
+- none
+- none
+## Credential and key-material shapes in tracked files
+
+- none
+
+Reviewed, not findings:

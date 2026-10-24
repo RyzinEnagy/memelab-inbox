@@ -189,6 +189,9 @@ def _evaluate(con, *, run_id: int, mode: str, feed: dict, policy: dict, now: flo
         a = {**c, "schema": AC.ALERT_SCHEMA, "policy_version": policy["version"], "policy_sha256": policy["policy_sha256"],
              "created_at": now, "created_text": AC.local_text(now, tz), "mode": mode, "quiet_hours": quiet,
              "trade_execution_impact": "none"}
+        bt = _backtest_context(c, now)
+        if bt is not None:                     # backtesting package policy on: token alerts carry its label (UNTESTED when none)
+            a["backtest"] = bt
         cur = con.execute("INSERT INTO alert_events(mode, dedupe_key, cooldown_key, policy, severity, item_id, label, created_at, local_day, status, fixture, "
                           "transports_json, alert_json, run_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                           (mode, c["dedupe_key"], c["cooldown_key"], c["policy"], c["severity"], c["item_id"], c["label"], now, day, status,
@@ -202,6 +205,17 @@ def _evaluate(con, *, run_id: int, mode: str, feed: dict, policy: dict, now: flo
                     (run_id, s["policy"], s.get("item_id"), s["reason_code"], s["reason"]))
     con.commit()
     return {"candidates": len(cands), "new": [a["alert_id"] for a in new], "deduped": deduped, "suppressed": supp, "quiet_hours": quiet}
+
+
+def _backtest_context(c: dict, now: float) -> dict | None:
+    """None unless the backtesting policy is on, so alerts are unchanged when it is off. Never raises."""
+    try:
+        if not (c.get("chain") and c.get("contract")):
+            return None                        # theme alerts: no token, nothing to label
+        from ..backtest import hook
+        return hook.alert_context(c["chain"], c["contract"], now=now)      # None when the backtesting policy is off
+    except Exception as e:  # the alert still goes out, labeled
+        return {"label": "UNTESTED", "why": f"backtest context unavailable ({type(e).__name__})"}
 
 
 # ---------- delivery ----------

@@ -1,0 +1,1194 @@
+{
+ "catalyst_records_with_mint": 0,
+ "max_versions": 1,
+ "old_pages_asof": [
+  {
+   "asof_claimed_date_plus_1d": "UNKNOWN_AS_OF",
+   "claimed_date": "2023-04-18",
+   "first_seen_at": 1792776400.927,
+   "url": "https://solana.com/news/02-25-23-solana-mainnet-beta-outage-report"
+  },
+  {
+   "asof_claimed_date_plus_1d": "UNKNOWN_AS_OF",
+   "claimed_date": "2024-02-09",
+   "first_seen_at": 1792776401.32,
+   "url": "https://solana.com/news/02-06-24-solana-mainnet-beta-outage-report"
+  },
+  {
+   "asof_claimed_date_plus_1d": "UNKNOWN_AS_OF",
+   "claimed_date": "2022-05-02",
+   "first_seen_at": 1792776402.106,
+   "url": "https://solana.com/news/04-30-22-solana-mainnet-beta-outage-report-mitigation"
+  },
+  {
+   "asof_claimed_date_plus_1d": "UNKNOWN_AS_OF",
+   "claimed_date": "2022-06-04",
+   "first_seen_at": 1792776403.11,
+   "url": "https://solana.com/news/06-01-22-solana-mainnet-beta-outage-report-2"
+  }
+ ],
+ "origins": 24,
+ "passes": [
+  {
+   "counts": {
+    "DUPLICATE": 34,
+    "OFF_ALLOWLIST": 2,
+    "RECORDED": 34
+   },
+   "pass": 1,
+   "rows": [
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 1,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/solana-changelog-october-16-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 2,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/geo-aware-leader-schedule"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 3,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/breakpoint-2026-london-speakers-2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 4,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/payments-on-solana-september-2026-in-five-stories"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 5,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/breakpoint-guide-part2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 6,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/solana-changelog-october-8-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 7,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/samsung-wallet"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 8,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/solana-ecosystem-roundup-september-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 9,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/solana-foundation-launches-solana-dv-p-an-atomic-settlement-program-built-for-financial-institutions"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 10,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/solana-microscope"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 1,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/solana-changelog-october-16-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 2,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/geo-aware-leader-schedule"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 3,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/breakpoint-2026-london-speakers-2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 4,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/payments-on-solana-september-2026-in-five-stories"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 5,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/breakpoint-guide-part2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 6,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/solana-changelog-october-8-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 7,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/samsung-wallet"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 8,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/solana-ecosystem-roundup-september-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 9,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/solana-foundation-launches-solana-dv-p-an-atomic-settlement-program-built-for-financial-institutions"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 10,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/solana-microscope"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 11,
+     "state": "RECORDED",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/anza-xyz/agave/releases/tag/v4.3.2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 12,
+     "state": "RECORDED",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/otter-sec/anchor/releases/tag/v1.2.1"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 13,
+     "state": "RECORDED",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/orca-so/whirlpools/releases/tag/v1.0.2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 14,
+     "state": "RECORDED",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/helius-labs/helius-sdk/releases/tag/v3.3.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 15,
+     "state": "RECORDED",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/jito-foundation/jito-solana/releases/tag/v4.3.2-jito"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 16,
+     "state": "RECORDED",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/solana-program/token-2022/releases/tag/rust-legacy%40v0.20.1"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 17,
+     "state": "RECORDED",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/metaplex-foundation/mpl-token-metadata/releases/tag/js%40v3.4.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 18,
+     "state": "RECORDED",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/anza-xyz/kit/releases/tag/v8.5.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 19,
+     "state": "RECORDED",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/pyth-network/pyth-crosschain/releases/tag/pyth-evm-contract-v1.4.6"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 20,
+     "state": "RECORDED",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/metaplex-foundation/umi/releases/tag/v1.6.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 21,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/anza-xyz/agave/releases/tag/v4.3.2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 22,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/otter-sec/anchor/releases/tag/v1.2.1"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 23,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/orca-so/whirlpools/releases/tag/v1.0.2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 24,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/helius-labs/helius-sdk/releases/tag/v3.3.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 25,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/jito-foundation/jito-solana/releases/tag/v4.3.2-jito"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 26,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/solana-program/token-2022/releases/tag/rust-legacy%40v0.20.1"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 27,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/metaplex-foundation/mpl-token-metadata/releases/tag/js%40v3.4.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 28,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/anza-xyz/kit/releases/tag/v8.5.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 29,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/pyth-network/pyth-crosschain/releases/tag/pyth-evm-contract-v1.4.6"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 30,
+     "state": "RECORDED",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/metaplex-foundation/umi/releases/tag/v1.6.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 1,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/solana-changelog-october-16-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 2,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/geo-aware-leader-schedule"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 3,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/breakpoint-2026-london-speakers-2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 4,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/payments-on-solana-september-2026-in-five-stories"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 5,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/breakpoint-guide-part2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 6,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/solana-changelog-october-8-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 7,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/samsung-wallet"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 8,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/solana-ecosystem-roundup-september-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 9,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/solana-foundation-launches-solana-dv-p-an-atomic-settlement-program-built-for-financial-institutions"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 10,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/solana-microscope"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 21,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/anza-xyz/agave/releases/tag/v4.3.2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 22,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/otter-sec/anchor/releases/tag/v1.2.1"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 23,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/orca-so/whirlpools/releases/tag/v1.0.2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 24,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/helius-labs/helius-sdk/releases/tag/v3.3.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 25,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/jito-foundation/jito-solana/releases/tag/v4.3.2-jito"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 26,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/solana-program/token-2022/releases/tag/rust-legacy%40v0.20.1"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 27,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/metaplex-foundation/mpl-token-metadata/releases/tag/js%40v3.4.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 28,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/anza-xyz/kit/releases/tag/v8.5.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 29,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/pyth-network/pyth-crosschain/releases/tag/pyth-evm-contract-v1.4.6"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 31,
+     "state": "RECORDED",
+     "tool": "MAXUN",
+     "url": "https://solana.com/news/02-25-23-solana-mainnet-beta-outage-report"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 30,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/metaplex-foundation/umi/releases/tag/v1.6.0"
+    },
+    {
+     "error": "https://solana.com/news is outside the project_catalyst_watch allowlist",
+     "state": "OFF_ALLOWLIST",
+     "tool": "MAXUN",
+     "url": "https://solana.com/news"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 32,
+     "state": "RECORDED",
+     "tool": "MAXUN",
+     "url": "https://solana.com/news/02-06-24-solana-mainnet-beta-outage-report"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 33,
+     "state": "RECORDED",
+     "tool": "MAXUN",
+     "url": "https://solana.com/news/04-30-22-solana-mainnet-beta-outage-report-mitigation"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": null,
+     "id": 34,
+     "state": "RECORDED",
+     "tool": "MAXUN",
+     "url": "https://solana.com/news/06-01-22-solana-mainnet-beta-outage-report-2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "MAXUN",
+     "id": 31,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/02-25-23-solana-mainnet-beta-outage-report"
+    },
+    {
+     "error": "https://solana.com/news is outside the project_catalyst_watch allowlist",
+     "state": "OFF_ALLOWLIST",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "MAXUN",
+     "id": 32,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/02-06-24-solana-mainnet-beta-outage-report"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "MAXUN",
+     "id": 33,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/04-30-22-solana-mainnet-beta-outage-report-mitigation"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "MAXUN",
+     "id": 34,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/06-01-22-solana-mainnet-beta-outage-report-2"
+    }
+   ]
+  },
+  {
+   "counts": {
+    "DUPLICATE": 68,
+    "OFF_ALLOWLIST": 2
+   },
+   "pass": 2,
+   "rows": [
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 1,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/solana-changelog-october-16-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 2,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/geo-aware-leader-schedule"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 3,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/breakpoint-2026-london-speakers-2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 4,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/payments-on-solana-september-2026-in-five-stories"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 5,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/breakpoint-guide-part2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 6,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/solana-changelog-october-8-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 7,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/samsung-wallet"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 8,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/solana-ecosystem-roundup-september-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 9,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/solana-foundation-launches-solana-dv-p-an-atomic-settlement-program-built-for-financial-institutions"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 10,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/solana-microscope"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 1,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/solana-changelog-october-16-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 2,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/geo-aware-leader-schedule"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 3,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/breakpoint-2026-london-speakers-2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 4,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/payments-on-solana-september-2026-in-five-stories"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 5,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/breakpoint-guide-part2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 6,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/solana-changelog-october-8-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 7,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/samsung-wallet"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 8,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/solana-ecosystem-roundup-september-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 9,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/solana-foundation-launches-solana-dv-p-an-atomic-settlement-program-built-for-financial-institutions"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 10,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://solana.com/news/solana-microscope"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 21,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/anza-xyz/agave/releases/tag/v4.3.2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 22,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/otter-sec/anchor/releases/tag/v1.2.1"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 23,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/orca-so/whirlpools/releases/tag/v1.0.2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 24,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/helius-labs/helius-sdk/releases/tag/v3.3.0"
+    },
+    {
+     "date_disagreement": {
+      "low_confidence": "2026-10-15",
+      "on_record": "2026-10-16"
+     },
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 25,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/jito-foundation/jito-solana/releases/tag/v4.3.2-jito"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 26,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/solana-program/token-2022/releases/tag/rust-legacy%40v0.20.1"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 27,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/metaplex-foundation/mpl-token-metadata/releases/tag/js%40v3.4.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 28,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/anza-xyz/kit/releases/tag/v8.5.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 29,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/pyth-network/pyth-crosschain/releases/tag/pyth-evm-contract-v1.4.6"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 30,
+     "state": "DUPLICATE",
+     "tool": "FIRECRAWL",
+     "url": "https://github.com/metaplex-foundation/umi/releases/tag/v1.6.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 21,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/anza-xyz/agave/releases/tag/v4.3.2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 22,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/otter-sec/anchor/releases/tag/v1.2.1"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 23,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/orca-so/whirlpools/releases/tag/v1.0.2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 24,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/helius-labs/helius-sdk/releases/tag/v3.3.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 25,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/jito-foundation/jito-solana/releases/tag/v4.3.2-jito"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 26,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/solana-program/token-2022/releases/tag/rust-legacy%40v0.20.1"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 27,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/metaplex-foundation/mpl-token-metadata/releases/tag/js%40v3.4.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 28,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/anza-xyz/kit/releases/tag/v8.5.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 29,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/pyth-network/pyth-crosschain/releases/tag/pyth-evm-contract-v1.4.6"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 30,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://github.com/metaplex-foundation/umi/releases/tag/v1.6.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 1,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/solana-changelog-october-16-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 2,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/geo-aware-leader-schedule"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 3,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/breakpoint-2026-london-speakers-2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 4,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/payments-on-solana-september-2026-in-five-stories"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 5,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/breakpoint-guide-part2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 6,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/solana-changelog-october-8-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 7,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/samsung-wallet"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 8,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/solana-ecosystem-roundup-september-2026"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 9,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/solana-foundation-launches-solana-dv-p-an-atomic-settlement-program-built-for-financial-institutions"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 10,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://solana.com/news/solana-microscope"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 21,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/anza-xyz/agave/releases/tag/v4.3.2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 22,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/otter-sec/anchor/releases/tag/v1.2.1"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 23,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/orca-so/whirlpools/releases/tag/v1.0.2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 24,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/helius-labs/helius-sdk/releases/tag/v3.3.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 25,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/jito-foundation/jito-solana/releases/tag/v4.3.2-jito"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 26,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/solana-program/token-2022/releases/tag/rust-legacy%40v0.20.1"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 27,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/metaplex-foundation/mpl-token-metadata/releases/tag/js%40v3.4.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 28,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/anza-xyz/kit/releases/tag/v8.5.0"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 29,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/pyth-network/pyth-crosschain/releases/tag/pyth-evm-contract-v1.4.6"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "MAXUN",
+     "id": 31,
+     "state": "DUPLICATE",
+     "tool": "MAXUN",
+     "url": "https://solana.com/news/02-25-23-solana-mainnet-beta-outage-report"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "EXISTING_COLLECTOR",
+     "id": 30,
+     "state": "DUPLICATE",
+     "tool": "CRAWL4AI",
+     "url": "https://github.com/metaplex-foundation/umi/releases/tag/v1.6.0"
+    },
+    {
+     "error": "https://solana.com/news is outside the project_catalyst_watch allowlist",
+     "state": "OFF_ALLOWLIST",
+     "tool": "MAXUN",
+     "url": "https://solana.com/news"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "MAXUN",
+     "id": 32,
+     "state": "DUPLICATE",
+     "tool": "MAXUN",
+     "url": "https://solana.com/news/02-06-24-solana-mainnet-beta-outage-report"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "MAXUN",
+     "id": 33,
+     "state": "DUPLICATE",
+     "tool": "MAXUN",
+     "url": "https://solana.com/news/04-30-22-solana-mainnet-beta-outage-report-mitigation"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "MAXUN",
+     "id": 34,
+     "state": "DUPLICATE",
+     "tool": "MAXUN",
+     "url": "https://solana.com/news/06-01-22-solana-mainnet-beta-outage-report-2"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "MAXUN",
+     "id": 31,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/02-25-23-solana-mainnet-beta-outage-report"
+    },
+    {
+     "error": "https://solana.com/news is outside the project_catalyst_watch allowlist",
+     "state": "OFF_ALLOWLIST",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "MAXUN",
+     "id": 32,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/02-06-24-solana-mainnet-beta-outage-report"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "MAXUN",
+     "id": 33,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/04-30-22-solana-mainnet-beta-outage-report-mitigation"
+    },
+    {
+     "date_disagreement": null,
+     "dup_of": "MAXUN",
+     "id": 34,
+     "state": "DUPLICATE",
+     "tool": "PLAIN_HTTP",
+     "url": "https://solana.com/news/06-01-22-solana-mainnet-beta-outage-report-2"
+    }
+   ]
+  }
+ ],
+ "refined_date_rows": 10,
+ "versions_per_origin": {
+  "https://github.com/anza-xyz/agave/releases/tag/v4.3.2": 1,
+  "https://github.com/anza-xyz/kit/releases/tag/v8.5.0": 1,
+  "https://github.com/helius-labs/helius-sdk/releases/tag/v3.3.0": 1,
+  "https://github.com/jito-foundation/jito-solana/releases/tag/v4.3.2-jito": 1,
+  "https://github.com/metaplex-foundation/mpl-token-metadata/releases/tag/js@v3.4.0": 1,
+  "https://github.com/metaplex-foundation/umi/releases/tag/v1.6.0": 1,
+  "https://github.com/orca-so/whirlpools/releases/tag/v1.0.2": 1,
+  "https://github.com/otter-sec/anchor/releases/tag/v1.2.1": 1,
+  "https://github.com/pyth-network/pyth-crosschain/releases/tag/pyth-evm-contract-v1.4.6": 1,
+  "https://github.com/solana-program/token-2022/releases/tag/rust-legacy@v0.20.1": 1,
+  "https://solana.com/news/02-06-24-solana-mainnet-beta-outage-report": 1,
+  "https://solana.com/news/02-25-23-solana-mainnet-beta-outage-report": 1,
+  "https://solana.com/news/04-30-22-solana-mainnet-beta-outage-report-mitigation": 1,
+  "https://solana.com/news/06-01-22-solana-mainnet-beta-outage-report-2": 1,
+  "https://solana.com/news/breakpoint-2026-london-speakers-2": 1,
+  "https://solana.com/news/breakpoint-guide-part2": 1,
+  "https://solana.com/news/geo-aware-leader-schedule": 1,
+  "https://solana.com/news/payments-on-solana-september-2026-in-five-stories": 1,
+  "https://solana.com/news/samsung-wallet": 1,
+  "https://solana.com/news/solana-changelog-october-16-2026": 1,
+  "https://solana.com/news/solana-changelog-october-8-2026": 1,
+  "https://solana.com/news/solana-ecosystem-roundup-september-2026": 1,
+  "https://solana.com/news/solana-foundation-launches-solana-dv-p-an-atomic-settlement-program-built-for-financial-institutions": 1,
+  "https://solana.com/news/solana-microscope": 1
+ }
+}

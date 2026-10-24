@@ -1,0 +1,4 @@
+{"engine": "proto (pure Python, CPMM fills)", "tokens": 200, "bars": 200000, "trades": 4079, "secs": 0.348, "note": "strategy variant with 20-bar time exit (not comparable trade count)"}
+{"engine": "vectorbt 1.2.0 (flat fee, no size impact)", "tokens": 200, "bars": 200000, "trades": 1398, "secs": 6.68}
+{"engine": "backtesting.py 0.6.6 (flat fee)", "tokens": 200, "bars": 200000, "trades": 1395, "secs": 3.879}
+{"engine": "proto (pure Python, CPMM fills)", "tokens": 200, "bars": 200000, "trades": 1395, "secs": 0.123, "note": "same strategy as vectorbt/backtesting.py (stop-only exits)"}

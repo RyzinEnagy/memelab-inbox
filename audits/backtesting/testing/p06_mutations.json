@@ -1,0 +1,110 @@
+[
+ {
+  "id": "M06-1 forming bar stored",
+  "file": "memelab/backtest/sources/gecko.py",
+  "old": "        if start + tf_s > observed_at:",
+  "new": "        if False:",
+  "tests": [
+   "tests/test_backtest_sources.py"
+  ]
+ },
+ {
+  "id": "M06-2 pool availability = today (pool list from the present)",
+  "file": "memelab/backtest/sources/gecko.py",
+  "old": "available_at=(created + PROVIDER_LAG_S) if created else observed_at",
+  "new": "available_at=observed_at",
+  "tests": [
+   "tests/test_backtest_sources.py"
+  ]
+ },
+ {
+  "id": "M06-3 unknown dex assumed constant product",
+  "file": "memelab/backtest/sources/gecko.py",
+  "old": "ptype = DEX_POOL_TYPE.get(dex or \"\", \"UNKNOWN\")",
+  "new": "ptype = DEX_POOL_TYPE.get(dex or \"\", \"CPMM\")",
+  "tests": [
+   "tests/test_backtest_sources.py"
+  ]
+ },
+ {
+  "id": "M06-4 pool basis by all-time volume (future leaks)",
+  "file": "memelab/backtest/sources/gecko.py",
+  "old": "bars = store.bars_asof(con, chain=chain, mint=mint, pool_address=p[\"pool_address\"], tf=tf, cutoff=decision_time)",
+  "new": "bars = store.bars_asof(con, chain=chain, mint=mint, pool_address=p[\"pool_address\"], tf=tf, cutoff=9e18)",
+  "tests": [
+   "tests/test_backtest_sources.py"
+  ]
+ },
+ {
+  "id": "M06-5 page date backdates first_seen",
+  "file": "memelab/backtest/sources/captures.py",
+  "old": "    first_seen = captured_at if proof_observed_at is None else min(captured_at, utc_ts(proof_observed_at))",
+  "new": "    first_seen = min(captured_at, source_published_at) if source_published_at else captured_at",
+  "tests": [
+   "tests/test_backtest_sources.py"
+  ]
+ },
+ {
+  "id": "M06-6 second tool counted as new capture",
+  "file": "memelab/backtest/sources/captures.py",
+  "old": "    if prior:\n",
+  "new": "    if False:\n",
+  "tests": [
+   "tests/test_backtest_sources.py"
+  ]
+ },
+ {
+  "id": "M06-7 only latest export used for the universe",
+  "file": "memelab/backtest/sources/labstate.py",
+  "old": "    for commit, ct, path in versions:",
+  "new": "    for commit, ct, path in versions[-1:]:",
+  "tests": [
+   "tests/test_backtest_sources.py"
+  ]
+ },
+ {
+  "id": "M06-8 no retry on 429",
+  "file": "memelab/backtest/sources/gecko.py",
+  "old": "        if status in (429, 500, 502, 503, 504, 0) and attempt < budget.max_retries:",
+  "new": "        if False:",
+  "tests": [
+   "tests/test_backtest_sources.py"
+  ]
+ },
+ {
+  "id": "M06-9 backfilled bar knowable at its close (no provider lag)",
+  "file": "memelab/backtest/store.py",
+  "old": "        available_at = end + provider_lag_s\n",
+  "new": "        available_at = end\n",
+  "tests": [
+   "tests/test_backtest_real_fixture.py"
+  ]
+ },
+ {
+  "id": "M06-10 unchanged bar seen again later stored as a revision",
+  "file": "memelab/backtest/store.py",
+  "old": "    body = dict(o=o, h=h, l=l, c=c, v=volume_usd)\n",
+  "new": "    body = dict(o=o, h=h, l=l, c=c, v=volume_usd, seen=observed_at)\n",
+  "tests": [
+   "tests/test_backtest_real_fixture.py"
+  ]
+ },
+ {
+  "id": "M06-11 pools fetched counts as done (resume skips missing bars)",
+  "file": "memelab/backtest/sources/corpus.py",
+  "old": "    return bool(pools and bars)\n",
+  "new": "    return bool(pools)\n",
+  "tests": [
+   "tests/test_backtest_sources.py"
+  ]
+ },
+ {
+  "id": "M06-12 corrupted mint copies merged by similarity",
+  "file": "memelab/backtest/quality.py",
+  "old": "    invalid = [m for m in ms if b58_len(m) != 32]\n",
+  "new": "    invalid = []\n",
+  "tests": [
+   "tests/test_backtest_sources.py"
+  ]
+ }
+]

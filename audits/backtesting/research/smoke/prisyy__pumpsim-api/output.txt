@@ -1,0 +1,11 @@
+# smoke test: NOT RUN (nothing to run)
+# repo: prisyy/pumpsim-api @ fd92630fec3e61b6faa4708122ea15001cb37d63
+# reason: the repository contains only README.md and LICENSE (git log -1 --stat: 2 files, 78 lines).
+#   The simulator is a closed-source hosted HTTP API (api.pumpsim.dev) that needs an account/API key and credits.
+#   Calling it would send strategy order flow to a third party and is out of scope for a source-code review;
+#   the unauthenticated demo endpoint was NOT called.
+# docs read once via Firecrawl scrape of https://docs.pumpsim.dev (2026-10-23, 5 credits, query mode):
+#   claims BOOST dead-liquidity reserves on migrated coins (~20.69% of effective quote, on-chain virtual_quote_reserves),
+#   creator-fee/cashback handling, seeding from a coin's CURRENT reserves by mint/pool, replay of a tx by signature;
+#   no source code link, no historical reserve/trade time series documented.
+EXIT_CODE=n/a (not run)

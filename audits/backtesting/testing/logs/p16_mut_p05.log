@@ -1,0 +1,13 @@
+2026-10-23T20:15:37Z
+41488adeb52bb77342ae7a75947568d31c7c3e38
+baseline (unmutated): exit 0 :: 15 passed in 0.49s
+[M05-1 forming bar leaks into closed_bars] CAUGHT :: 1 failed, 5 passed in 0.08s
+[M05-2 zero treated as missing] CAUGHT :: 1 failed, 7 passed in 1.20s
+[M05-3 same-time execution instead of next open] CAUGHT :: 1 failed, 3 passed in 0.08s
+[M05-4 append-only triggers removed] CAUGHT :: 1 failed, 4 passed in 0.08s
+[M05-5 bar revision backdated to modeled availability] CAUGHT :: 1 failed, 9 passed in 0.13s
+[M05-6 visibility by event_time instead of available_at] CAUGHT :: 1 failed, 8 passed in 0.10s
+[M05-7 pools from today used for the past] CAUGHT :: 1 failed, 2 passed in 0.07s
+RESULT: all mutations caught
+EXIT=0
+2026-10-23T20:15:42Z

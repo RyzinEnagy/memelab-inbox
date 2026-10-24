@@ -1,0 +1,132 @@
+[
+ {
+  "id": "M16-1 future liquidity snapshot used for a fill",
+  "file": "memelab/backtest/engine.py",
+  "old": "            if a <= t:",
+  "new": "            if True:",
+  "tests": [
+   "tests/test_backtest_engine.py",
+   "tests/test_backtest_runner.py"
+  ]
+ },
+ {
+  "id": "M16-2 stale liquidity snapshot accepted (max age ignored)",
+  "file": "memelab/backtest/engine.py",
+  "old": "        if v is None or t - v[0] > max_age:",
+  "new": "        if v is None:",
+  "tests": [
+   "tests/test_backtest_engine.py",
+   "tests/test_backtest_runner.py"
+  ]
+ },
+ {
+  "id": "M16-3 liquidity haircut dropped (fake depth)",
+  "file": "memelab/backtest/execution.py",
+  "old": "    side_usd = liquidity_usd / 2.0 * haircut",
+  "new": "    side_usd = liquidity_usd / 2.0",
+  "tests": [
+   "tests/test_backtest_execution.py",
+   "tests/test_backtest_engine.py",
+   "tests/test_backtest_e2e_audit.py::test_g25_gap_loss_exceeds_the_intended_stop_with_modeled_exit_liquidity",
+   "tests/test_backtest_e2e_audit.py::test_g09_sell_matches_exact_rational_arithmetic"
+  ]
+ },
+ {
+  "id": "M16-4 lab thesis visible a day before it was written",
+  "file": "memelab/backtest/runner.py",
+  "old": "known = r[\"available_at\"] if thesis_known_at == \"created\"",
+  "new": "known = r[\"available_at\"] - 86400 if thesis_known_at == \"created\"",
+  "tests": [
+   "tests/test_backtest_runner.py",
+   "tests/test_backtest_strategies.py",
+   "tests/test_backtest_engine.py"
+  ]
+ },
+ {
+  "id": "M16-5 pool basis chosen with all future bars",
+  "file": "memelab/backtest/runner.py",
+  "old": "basis = gecko.pool_basis_at(con, chain, mint, t0 + h * 3600)",
+  "new": "basis = gecko.pool_basis_at(con, chain, mint, 4.0e9)",
+  "tests": [
+   "tests/test_backtest_runner.py",
+   "tests/test_backtest_sources.py"
+  ]
+ },
+ {
+  "id": "M16-6 network fee priced with the latest SOL bar (future price)",
+  "file": "memelab/backtest/runner.py",
+  "old": "        i = bisect.bisect_right(av, t) - 1",
+  "new": "        i = len(bars) - 1",
+  "tests": [
+   "tests/test_backtest_runner.py",
+   "tests/test_backtest_engine.py"
+  ]
+ },
+ {
+  "id": "M16-7 launch catalyst usable from its claimed first-trade time",
+  "file": "memelab/backtest/sources/lab_events.py",
+  "old": "\"first_seen_at\": known, \"available_at\": known,",
+  "new": "\"first_seen_at\": known, \"available_at\": float(r[\"first_trade_at\"]) if r.get(\"first_trade_at\") else known,",
+  "tests": [
+   "tests/test_backtest_catalyst.py"
+  ]
+ },
+ {
+  "id": "M16-8 total liquidity across pools used as the main pool depth",
+  "file": "memelab/backtest/assess.py",
+  "old": "liquidity_usd=(main or {}).get(\"reserve_usd\") or mk.get(\"liquidity_usd_total\")",
+  "new": "liquidity_usd=mk.get(\"liquidity_usd_total\") or (main or {}).get(\"reserve_usd\")",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M16-9 delisted token still fillable",
+  "file": "memelab/backtest/engine.py",
+  "old": "        if td.delisted_at is not None and t_fill >= td.delisted_at:",
+  "new": "        if False:",
+  "tests": [
+   "tests/test_backtest_engine.py",
+   "tests/test_backtest_validation.py"
+  ]
+ },
+ {
+  "id": "M16-10 non-executable exit valued at the paper price",
+  "file": "memelab/backtest/engine.py",
+  "old": "proceeds, status, filled, basis, imp, fees = 0.0, \"FAILED\", 0.0, None, None, {}",
+  "new": "proceeds, status, filled, basis, imp, fees = p.tokens * px, \"FILLED\", p.tokens, None, None, {}",
+  "tests": [
+   "tests/test_backtest_engine.py",
+   "tests/test_backtest_validation.py"
+  ]
+ },
+ {
+  "id": "M16-11 strategy sees the bar still forming (one bar of future)",
+  "file": "memelab/backtest/engine.py",
+  "old": "            bars = td.closed_until(t)\n",
+  "new": "            bars = td.closed_until(t + 3600)\n",
+  "tests": [
+   "tests/test_backtest_engine.py",
+   "tests/test_backtest_strategies.py"
+  ]
+ },
+ {
+  "id": "M16-12 dataset hash ignores the sealed-test cutoff",
+  "file": "memelab/backtest/quality.py",
+  "old": "    if cutoff is not None:",
+  "new": "    if False:",
+  "tests": [
+   "tests/test_backtest_sources.py",
+   "tests/test_backtest_runner.py"
+  ]
+ },
+ {
+  "id": "M16-13 validation windows read past their end (no cutoff)",
+  "file": "memelab/backtest/validation.py",
+  "old": "return Engine(cfg, sol_usd).run(strategy, tokens, until=b, decide_from=a,",
+  "new": "return Engine(cfg, sol_usd).run(strategy, tokens, until=None, decide_from=a,",
+  "tests": [
+   "tests/test_backtest_validation.py"
+  ]
+ }
+]

@@ -1,0 +1,438 @@
+{
+ "schema": "memelab.backtest.report/1",
+ "engine_version": "bt-0.2.0",
+ "token": {
+  "evidence_class": "FACT",
+  "chain": "solana",
+  "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+  "symbol": "PAID",
+  "as_of": 1791330503.698,
+  "as_of_utc": "2026-10-06 23:48:23 UTC"
+ },
+ "trace": {
+  "evidence_class": "FACT",
+  "request_key": "b77f916cc9ece2640b02f5f3f5c7b5b2d7607a38a447cbe013be885315ff5d34",
+  "assessment_state": "STALE_DATA",
+  "assessment_tier": "UNAVAILABLE",
+  "cache": "HIT_STALE",
+  "reason": "analysis snapshot is 408.7 h old",
+  "retriable": true,
+  "deep_request_key": null
+ },
+ "headline": {
+  "evidence_class": "HEURISTIC",
+  "label": "UNTESTED",
+  "why": "assessment STALE_DATA: analysis snapshot is 408.7 h old",
+  "good_project": {
+   "source": "lab score and status (unchanged)",
+   "score": 64,
+   "status": "SETUP DEVELOPING",
+   "reads_as": "good project by the lab's rubric"
+  },
+  "good_entry": {
+   "source": "execution and stress at the assessment time",
+   "label": "UNTESTED",
+   "stress_decision": null,
+   "max_size_usd_under_caps": null
+  },
+  "mismatch": null
+ },
+ "lab": {
+  "evidence_class": "FACT",
+  "score": 64,
+  "status": "SETUP DEVELOPING",
+  "fatal_flags": [],
+  "note": "the lab's 100-point score and status are shown as computed; this report never changes them",
+  "fatal_override_detected": false
+ },
+ "historical_evidence": {
+  "evidence_class": "FACT / INFERENCE",
+  "token_specific": {
+   "state": "NONE",
+   "note": "no token-specific backtest; nothing here claims token-specific validation"
+  },
+  "cohort": null,
+  "strategies": {
+   "evidence_class": "FACT (stored runs) / INFERENCE (cost model)",
+   "runs": [
+    {
+     "strategy": "BREAKOUT_RETEST",
+     "run_id": "e3b5638df4f43823f3dc4103238fb116dab8b221da9240aea2ea1f13587d7e3a",
+     "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+     "result_hash": "5de49434c125e8a16acaa1447573a1ff935feafc52f79f9c09737bbabe14bb4c",
+     "ledger_hash": "34524dcda01808cae0b49022471f9b37aaa5291f7f1022f1863c99990022ae22",
+     "n_trades": 34,
+     "net_mean_ret": -0.1130157404978388,
+     "paper_mean_ret_mid": -0.03264752153884296,
+     "cost_drag": 0.08036821895899585,
+     "flag": "NET_NEGATIVE",
+     "fill_model": "LIQ_SNAPSHOT_APPROX",
+     "run_at": "2026-10-23 18:43:54 UTC",
+     "rankable": true,
+     "rank_by_net": 1,
+     "rank_by_paper": 4
+    },
+    {
+     "strategy": "ENTER_AT_DISCOVERY",
+     "run_id": "6826f91100fa1140e7a08ff6c89daa6e2d01c356811632683b0d1311e680adc9",
+     "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+     "result_hash": "d8396465e460acec053528ced9233ae23da80228b533f5a6318b136bfc91ca9a",
+     "ledger_hash": "31820d430857b9e35b2730ec43396aa20413307a134979d6f906e75e7ac5e59b",
+     "n_trades": 36,
+     "net_mean_ret": -0.1328125980168018,
+     "paper_mean_ret_mid": -0.10313861565984742,
+     "cost_drag": 0.029673982356954398,
+     "flag": "NET_NEGATIVE",
+     "fill_model": "LIQ_SNAPSHOT_APPROX",
+     "run_at": "2026-10-23 18:45:40 UTC",
+     "rankable": true,
+     "rank_by_net": 2,
+     "rank_by_paper": 7
+    },
+    {
+     "strategy": "BREAKOUT_CLOSE",
+     "run_id": "b201e999d6e2a83736c77f1d3cb8416ee9949d02854d316f11d3ae8271c1c8e4",
+     "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+     "result_hash": "173824583aaf63a9d6944f6b5833cc26a4a26bc1683835a349441e6f20892e52",
+     "ledger_hash": "b88184fbaef66686f6fd7fad0307b145ee77b4902946c764e743d134d803e5c4",
+     "n_trades": 47,
+     "net_mean_ret": -0.13460619214233976,
+     "paper_mean_ret_mid": -0.029569069582052205,
+     "cost_drag": 0.10503712256028756,
+     "flag": "NET_NEGATIVE",
+     "fill_model": "LIQ_SNAPSHOT_APPROX",
+     "run_at": "2026-10-23 18:43:40 UTC",
+     "rankable": true,
+     "rank_by_net": 3,
+     "rank_by_paper": 3
+    },
+    {
+     "strategy": "MOMENTUM",
+     "run_id": "328b428953a1be7c5a6bef105bd39644db5c2882f2291e8c2fad3caf9ff299d3",
+     "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+     "result_hash": "cf179b67ca89bf3aa5b8ee3bbe35bbf4f8343bcd248781fc78bc5b34dd0d8633",
+     "ledger_hash": "fb0a81672fd9773f50c48ff0c7bf9fc1361052697f18c8415f1f682732395f43",
+     "n_trades": 47,
+     "net_mean_ret": -0.14130668583751857,
+     "paper_mean_ret_mid": -0.024188465600672667,
+     "cost_drag": 0.1171182202368459,
+     "flag": "NET_NEGATIVE",
+     "fill_model": "LIQ_SNAPSHOT_APPROX",
+     "run_at": "2026-10-23 18:45:08 UTC",
+     "rankable": true,
+     "rank_by_net": 4,
+     "rank_by_paper": 1
+    },
+    {
+     "strategy": "MA_CROSS",
+     "run_id": "824ef58f32618fe2c19565d079a5e3c28559f609e4d80f2cb9c0f0bc22e8d448",
+     "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+     "result_hash": "730a5638ac63bd4304a7f27f0aa34e740e65ac63e608249ddaea7cbfb937d8a4",
+     "ledger_hash": "4c9485d3f331f1c8b01e94dc580ba4fc2d9b70536d1ae75b11ecb60e3936a59f",
+     "n_trades": 51,
+     "net_mean_ret": -0.15851336480477415,
+     "paper_mean_ret_mid": -0.02555686085514368,
+     "cost_drag": 0.1329565039496305,
+     "flag": "NET_NEGATIVE",
+     "fill_model": "LIQ_SNAPSHOT_APPROX",
+     "run_at": "2026-10-23 18:46:08 UTC",
+     "rankable": true,
+     "rank_by_net": 5,
+     "rank_by_paper": 2
+    },
+    {
+     "strategy": "RANDOM_ENTRY",
+     "run_id": "852635cfcc7ff3e2745a0b9460a9e66ad67f9e4bd74ade877999850189865509",
+     "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+     "result_hash": "e8ed74f2f20c98b514cc1241c013c39f504d04fba2cfd162cb58a772bf9bdf79",
+     "ledger_hash": "e0eef32c342ba584ee0b75e9c4b31c931435b73dd2d2476d0f21080ee60d55ae",
+     "n_trades": 80,
+     "net_mean_ret": -0.1852375334666215,
+     "paper_mean_ret_mid": -0.04244121487058936,
+     "cost_drag": 0.14279631859603215,
+     "flag": "NET_NEGATIVE",
+     "fill_model": "LIQ_SNAPSHOT_APPROX",
+     "run_at": "2026-10-23 18:45:51 UTC",
+     "rankable": true,
+     "rank_by_net": 6,
+     "rank_by_paper": 5
+    },
+    {
+     "strategy": "RECLAIM",
+     "run_id": "fd6c48dc7e07e152f0cd419f70c377ad80e44294c23f321fea605011b7da074e",
+     "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+     "result_hash": "dc7e0850f6aee2467a8eb7dbb345cd164f770e0feaa3c62404b2def1d5163fc8",
+     "ledger_hash": "d5b3f56215df7afe3023a4b3959b9559907fcf2a739a7a7d500f73c406dcdc91",
+     "n_trades": 42,
+     "net_mean_ret": -0.20487529916488562,
+     "paper_mean_ret_mid": -0.06379271715699225,
+     "cost_drag": 0.14108258200789336,
+     "flag": "NET_NEGATIVE",
+     "fill_model": "LIQ_SNAPSHOT_APPROX",
+     "run_at": "2026-10-23 18:44:06 UTC",
+     "rankable": true,
+     "rank_by_net": 7,
+     "rank_by_paper": 6
+    },
+    {
+     "strategy": "CATALYST_VERIFIED",
+     "run_id": "934212acbcb9cd191f214294e17694a240f7c8aa80db7d2316dc6193ab80dc36",
+     "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+     "result_hash": "6be94812427dece7cd2f070737f92e170a76de277fc8d5738a7e332261fd9e68",
+     "ledger_hash": "e730db86316266b7c52fd3d8992f9b8dd18244ecc73e35089b155ae8f7ec5862",
+     "n_trades": 2,
+     "net_mean_ret": 0.3488908824724988,
+     "paper_mean_ret_mid": 0.4082604258226953,
+     "cost_drag": 0.05936954335019651,
+     "flag": "NET_POSITIVE",
+     "fill_model": "LIQ_SNAPSHOT_APPROX",
+     "run_at": "2026-10-23 18:42:57 UTC",
+     "rankable": false,
+     "rank_by_net": null
+    },
+    {
+     "strategy": "LAB_STATUS",
+     "run_id": "19ff1209a8c577e65ca4657d3dbfa76335d5e785da6fe136e657409b0e01ec8e",
+     "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+     "result_hash": "ae5d1274233627149e9e77d2912c7f83d3b3186544a9f221b750feb87d69a946",
+     "ledger_hash": "b0819ce00d233d6e61172821e4387cba09c5270cf956516dc9a75a58f7d28cb6",
+     "n_trades": 26,
+     "net_mean_ret": -0.03918223658919944,
+     "paper_mean_ret_mid": -0.012083839079902715,
+     "cost_drag": 0.027098397509296726,
+     "flag": "NET_NEGATIVE",
+     "fill_model": "LIQ_SNAPSHOT_APPROX",
+     "run_at": "2026-10-23 18:43:29 UTC",
+     "rankable": false,
+     "rank_by_net": null
+    },
+    {
+     "strategy": "ABSORPTION_BREAK",
+     "run_id": "5ca512c12bc852909b355d2e78c6dc645a5db79cfc1f0e1f368e6b9d17121775",
+     "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+     "result_hash": "62000778218ceca469e74d5165154a36a1ac7dbb3c698099f4b9fa9e96096e28",
+     "ledger_hash": "19658022a6e9218f37b2176309a630f43f96e15bc2abaf771e1f4bba03221a66",
+     "n_trades": 22,
+     "net_mean_ret": -0.2993282116224009,
+     "paper_mean_ret_mid": -0.018519634205090507,
+     "cost_drag": 0.2808085774173104,
+     "flag": "NET_NEGATIVE",
+     "fill_model": "LIQ_SNAPSHOT_APPROX",
+     "run_at": "2026-10-23 18:44:56 UTC",
+     "rankable": false,
+     "rank_by_net": null
+    },
+    {
+     "strategy": "TREND_HHHL",
+     "run_id": "c6501059648931f62b871a15a58ced5bdeac94bdcce75070e93f47b67980ca23",
+     "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+     "result_hash": "b9e7f6bfa448bffc68f2c6e18d6cfaeca3462ada23821e43b95ec773c9aa7c99",
+     "ledger_hash": "43befddc52b94ca3beb7b16e504de4bfd276ad7cb66fdb2a5b47cec89ae4c20f",
+     "n_trades": 21,
+     "net_mean_ret": -0.342984230667663,
+     "paper_mean_ret_mid": -0.09367166346633861,
+     "cost_drag": 0.2493125672013244,
+     "flag": "NET_NEGATIVE",
+     "fill_model": "LIQ_SNAPSHOT_APPROX",
+     "run_at": "2026-10-23 18:44:44 UTC",
+     "rankable": false,
+     "rank_by_net": null
+    },
+    {
+     "strategy": "NO_TRADE",
+     "run_id": "e9741bce515c6b138da447b055a7721e7d465d90fe640fc2ff3b484bd7ee9b83",
+     "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+     "result_hash": "a91597806cc4255079642c8709ee63ecaf3eb9bae8c921ea2038a0e77b3c652e",
+     "ledger_hash": "178f852c10bc3a5be28adfdd0864929fa07d996afc0b2f531daadb796c1b87a8",
+     "n_trades": 0,
+     "net_mean_ret": null,
+     "paper_mean_ret_mid": null,
+     "cost_drag": null,
+     "flag": "NO_TRADES",
+     "fill_model": "LIQ_SNAPSHOT_APPROX",
+     "run_at": "2026-10-23 18:45:29 UTC",
+     "rankable": false,
+     "rank_by_net": null
+    }
+   ],
+   "validation": {
+    "file": "audits/backtesting/validation/p11_results.json",
+    "sha256": "da986bcfcd90e2dd86c7e10cc6758b79052f62dedbc3dc5d6fd7520abd3aab7a",
+    "prereg_sha256": "d0b3686f2d61c72eb85651fac4c9a564ecde9ec119ddd2777ca549c2cba32c16",
+    "dataset_hash": "35f836f372c48dfb6cb5ed7cffb3cac6477571dae6836fb2913f9b44db420b76",
+    "total_trials": 55,
+    "strategies": {
+     "LAB_STATUS": {
+      "verdict": "INSUFFICIENT_SAMPLE",
+      "sealed_test_from": "2026-10-21 12:00:00 UTC",
+      "sealed_test_to": "2026-10-23 16:00:00 UTC",
+      "test_trades": 0,
+      "test_mean_ret": null,
+      "test_ci95": null,
+      "baseline_enter_at_discovery_mean_ret": -0.4220229369063827,
+      "test_ledger_hash": "e478181404b2039728243ddfd41c8d4a038dc3d6acf429a358cc69414a57d062",
+      "notes": [
+       "sealed test has 0 trades < 30; no performance claim"
+      ]
+     },
+     "BREAKOUT_CLOSE": {
+      "verdict": "INSUFFICIENT_SAMPLE",
+      "sealed_test_from": "2026-10-21 12:00:00 UTC",
+      "sealed_test_to": "2026-10-23 16:00:00 UTC",
+      "test_trades": 6,
+      "test_mean_ret": -0.031294165685796994,
+      "test_ci95": null,
+      "baseline_enter_at_discovery_mean_ret": -0.4220229369063827,
+      "test_ledger_hash": "88ae40542f4bd89e3cffbba11869204dfa05e4a3e4718ec6a4d5480fcb194af1",
+      "notes": [
+       "sealed test has 6 trades < 30; no performance claim"
+      ]
+     },
+     "MOMENTUM": {
+      "verdict": "INSUFFICIENT_SAMPLE",
+      "sealed_test_from": "2026-10-21 12:00:00 UTC",
+      "sealed_test_to": "2026-10-23 16:00:00 UTC",
+      "test_trades": 7,
+      "test_mean_ret": -0.2664527747571264,
+      "test_ci95": null,
+      "baseline_enter_at_discovery_mean_ret": -0.4220229369063827,
+      "test_ledger_hash": "9b4dde1b857ce5e812dd9e194e8e86ebc525d958aa707e5a88d3b2a93398cd74",
+      "notes": [
+       "sealed test has 7 trades < 30; no performance claim"
+      ]
+     },
+     "BREAKOUT_RETEST": {
+      "verdict": "INSUFFICIENT_SAMPLE",
+      "sealed_test_from": "2026-10-21 12:00:00 UTC",
+      "sealed_test_to": "2026-10-23 16:00:00 UTC",
+      "test_trades": 6,
+      "test_mean_ret": 0.03038885122166866,
+      "test_ci95": null,
+      "baseline_enter_at_discovery_mean_ret": -0.4220229369063827,
+      "test_ledger_hash": "5bc825028ed57c2e32011dc8b979a7980b0acb2b3e540fb61870fdecc57e8f41",
+      "notes": [
+       "sealed test has 6 trades < 30; no performance claim"
+      ]
+     },
+     "RECLAIM": {
+      "verdict": "INSUFFICIENT_SAMPLE",
+      "sealed_test_from": "2026-10-21 12:00:00 UTC",
+      "sealed_test_to": "2026-10-23 16:00:00 UTC",
+      "test_trades": 4,
+      "test_mean_ret": -0.08292249193958037,
+      "test_ci95": null,
+      "baseline_enter_at_discovery_mean_ret": -0.4220229369063827,
+      "test_ledger_hash": "334bf3a33304b893b0c2249a4a232a1e08743cf421e3ef3d53ac41dbec9383e3",
+      "notes": [
+       "sealed test has 4 trades < 30; no performance claim"
+      ]
+     },
+     "TREND_HHHL": {
+      "verdict": "INSUFFICIENT_SAMPLE",
+      "sealed_test_from": "2026-10-21 12:00:00 UTC",
+      "sealed_test_to": "2026-10-23 16:00:00 UTC",
+      "test_trades": 3,
+      "test_mean_ret": -0.5456188951505668,
+      "test_ci95": null,
+      "baseline_enter_at_discovery_mean_ret": -0.4220229369063827,
+      "test_ledger_hash": "41a90f9762ce49f0eafad5a5e7302c346cdebf15f16bcbf7fb84a09b295d0cea",
+      "notes": [
+       "sealed test has 3 trades < 30; no performance claim"
+      ]
+     },
+     "ABSORPTION_BREAK": {
+      "verdict": "INSUFFICIENT_SAMPLE",
+      "sealed_test_from": "2026-10-21 12:00:00 UTC",
+      "sealed_test_to": "2026-10-23 16:00:00 UTC",
+      "test_trades": 3,
+      "test_mean_ret": -0.08483133485529197,
+      "test_ci95": null,
+      "baseline_enter_at_discovery_mean_ret": -0.4220229369063827,
+      "test_ledger_hash": "da296ced67d0c3cc87f4dd271c70f599add0e1064ef73c0d5372209b42b01a23",
+      "notes": [
+       "no configuration reached 8 training trades; first grid point frozen without tuning",
+       "sealed test has 3 trades < 30; no performance claim"
+      ]
+     },
+     "RANDOM_ENTRY": {
+      "verdict": "INSUFFICIENT_SAMPLE",
+      "sealed_test_from": "2026-10-21 12:00:00 UTC",
+      "sealed_test_to": "2026-10-23 16:00:00 UTC",
+      "test_trades": 9,
+      "test_mean_ret": -0.1757607321193536,
+      "test_ci95": null,
+      "baseline_enter_at_discovery_mean_ret": -0.4220229369063827,
+      "test_ledger_hash": "2be716c6f17064806811a27a63916870c9b952152b62e10d52a0428abbdfdd31",
+      "notes": [
+       "sealed test has 9 trades < 30; no performance claim"
+      ]
+     }
+    },
+    "walk_forward": {
+     "strategy": "BREAKOUT_CLOSE",
+     "pooled_oos_trades": 32,
+     "pooled_oos_mean_ret": -0.07076448973179734,
+     "ci95": [
+      -0.1352162345551741,
+      -0.017922698872838688
+     ]
+    }
+   },
+   "paper_only_profit": [],
+   "min_rank_trades": 30,
+   "note": "whole-universe history of the lab's discovered tokens, net of modeled entry and exit costs; it describes the past, not this token"
+  }
+ },
+ "token_signals": null,
+ "execution_quote": {
+  "evidence_class": "FACT",
+  "source": null,
+  "observed_at_utc": null,
+  "quotes": []
+ },
+ "stress": null,
+ "trade_conditions": null,
+ "catalysts": {
+  "evidence_class": "FACT (capture records) / UNKNOWN (claimed publication times)",
+  "records": [],
+  "n": 0,
+  "collector_status": {
+   "MAXUN": "NOT_ADOPTED (Phase 06A, D-BT-020). No Maxun robot runs; the evaluation robot is idle with no schedule.",
+   "webcapture": "one-shot captures only; no schedule is approved (policy schedules_approved false).",
+   "lab_catalyst_tables": "the lab's own Firecrawl catalyst layer, read only."
+  },
+  "maxun_running": false,
+  "capture_methods": [],
+  "note": "no catalyst record for this mint; absence of a catalyst is not a negative or a positive signal"
+ },
+ "alternate_explanations": {
+  "evidence_class": "HEURISTIC",
+  "items": []
+ },
+ "uncertainty": {
+  "evidence_class": "UNKNOWN",
+  "items": [
+   "the assessment did not run (STALE_DATA); there is no backtest, stress or quote result to show"
+  ]
+ },
+ "coverage": {
+  "evidence_class": "FACT",
+  "bars": 139168,
+  "mints_with_bars": 258,
+  "bars_from": "2025-02-03 00:00:00 UTC",
+  "bars_to": "2026-10-23 17:00:00 UTC",
+  "universe_rows": 2901,
+  "universe_mints": 686,
+  "universe_from": "2026-10-06 23:25:47 UTC",
+  "universe_to": "2026-10-23 10:11:02 UTC",
+  "assessments": 0,
+  "runs": 29,
+  "blocked_sources": [
+   "historical swaps",
+   "historical reserves, ticks and bins",
+   "historical holders and wallet flows"
+  ],
+  "survivorship": "The universe is every token the lab recorded, including ones that later died; no survivor filter"
+ },
+ "disclosure": "Research only. Backtests describe the past over the lab's discovery universe, stress scenarios are hypothetical with no probabilities, and nothing here is an instruction to buy, sell or size a position."
+}

@@ -1,0 +1,101 @@
+[
+ {
+  "id": "M09-1 record visible from its claimed publication time",
+  "file": "memelab/backtest/strategies/catalyst.py",
+  "old": "    return [r for r in records if r[\"available_at\"] <= t]\n",
+  "new": "    return [r for r in records if (r.get(\"published_at\") or r[\"available_at\"]) <= t]\n",
+  "tests": [
+   "tests/test_backtest_catalyst.py"
+  ]
+ },
+ {
+  "id": "M09-2 reposts counted as independent origins",
+  "file": "memelab/backtest/strategies/catalyst.py",
+  "old": "    return len({r.get(\"origin_group\") or r[\"event_id\"] for r in records})\n",
+  "new": "    return len({r[\"event_id\"] for r in records})\n",
+  "tests": [
+   "tests/test_backtest_catalyst.py"
+  ]
+ },
+ {
+  "id": "M09-3 wallet transfers treated as sells",
+  "file": "memelab/backtest/strategies/catalyst.py",
+  "old": "w[\"available_at\"] <= decision_time and w.get(\"kind\") == \"SWAP_SELL\"",
+  "new": "w[\"available_at\"] <= decision_time and w.get(\"kind\") in (\"SWAP_SELL\", \"WALLET_TRANSFER\")",
+  "tests": [
+   "tests/test_backtest_catalyst.py"
+  ]
+ },
+ {
+  "id": "M09-4 attention after the rally treated as prescient",
+  "file": "memelab/backtest/strategies/catalyst.py",
+  "old": "            if prerun > self.params[\"max_prerun\"]:\n",
+  "new": "            if False:\n",
+  "tests": [
+   "tests/test_backtest_catalyst.py"
+  ]
+ },
+ {
+  "id": "M09-5 denial ignored",
+  "file": "memelab/backtest/strategies/catalyst.py",
+  "old": "        if any(r.get(\"denied\") for r in recs):\n",
+  "new": "        if False:\n",
+  "tests": [
+   "tests/test_backtest_catalyst.py"
+  ]
+ },
+ {
+  "id": "M09-6 ticker-only record linked to the token",
+  "file": "memelab/backtest/strategies/catalyst.py",
+  "old": "        recs = [r for r in recs if r.get(\"mint_verified\")]\n",
+  "new": "        recs = list(recs)\n",
+  "tests": [
+   "tests/test_backtest_catalyst.py"
+  ]
+ },
+ {
+  "id": "M09-7 placebo shift does nothing",
+  "file": "memelab/backtest/strategies/catalyst.py",
+  "old": "        d = rng.uniform(-shift_s, shift_s)\n",
+  "new": "        d = 0.0\n",
+  "tests": [
+   "tests/test_backtest_catalyst.py"
+  ]
+ },
+ {
+  "id": "M09-8 verified catalyst overrides a fatal flag",
+  "file": "memelab/backtest/strategies/catalyst.py",
+  "old": "        if theses and max(theses, key=lambda h: h[\"available_at\"]).get(\"fatal_flags\"):\n",
+  "new": "        if False:\n",
+  "tests": [
+   "tests/test_backtest_catalyst.py"
+  ]
+ },
+ {
+  "id": "M09-9 bridge counts commentary and syndication as origins",
+  "file": "memelab/backtest/sources/catalyst_bridge.py",
+  "old": "        return [x for x in out if x[\"counts_as_origin\"]]\n",
+  "new": "        return out\n",
+  "tests": [
+   "tests/test_backtest_catalyst.py"
+  ]
+ },
+ {
+  "id": "M09-10 launch record overwritten by later exports",
+  "file": "memelab/backtest/sources/lab_events.py",
+  "old": "            if key in first:\n                continue\n",
+  "new": "            pass\n",
+  "tests": [
+   "tests/test_backtest_catalyst.py"
+  ]
+ },
+ {
+  "id": "M09-11 catalyst usable before the lab linked the token",
+  "file": "memelab/backtest/sources/catalyst_bridge.py",
+  "old": "\"available_at\": max(r[\"first_seen_at\"], r[\"linked_at\"])",
+  "new": "\"available_at\": r[\"first_seen_at\"]",
+  "tests": [
+   "tests/test_backtest_catalyst.py"
+  ]
+ }
+]

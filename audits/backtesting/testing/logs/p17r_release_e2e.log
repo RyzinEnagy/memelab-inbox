@@ -1,0 +1,5 @@
+# Release end-to-end run
+
+Commit `efd890d509ff04171f3c51b80e2685240d29c417`. Python 3.13.17. Clean clone in a temp folder, network blocked by an audit hook, every credential variable removed, every database and private file in the temp folder.
+[ok] FC not configured: live Firecrawl enrich refuses before any call: exit 1 (0.6s)
+[ok] FC not configured: live Firecrawl search refuses before any call: exit 1 (0.6s)

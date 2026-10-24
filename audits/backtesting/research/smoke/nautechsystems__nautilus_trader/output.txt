@@ -1,0 +1,12 @@
+/home/claude/work/memelab-inbox/audits/backtesting/research/smoke/nautechsystems__nautilus_trader/script.py:68: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  eng.run()
+/home/claude/work/memelab-inbox/audits/backtesting/research/smoke/nautechsystems__nautilus_trader/script.py:68: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  eng.run()
+[A qty=1] bar10 open=110 close=110.50 ; bar11 open=111 ; bar volume=1000
+  on_bar idx=10 ts=2026-01-01 11:00:00+00:00 close=110.50 -> submit MARKET BUY 1
+  FILL px=110.50 qty=1.000000 ts=2026-01-01 11:00:00+00:00 liquidity=2
+[B qty=5000 vs bar volume 10] bar10 open=110 close=110.50 ; bar11 open=111 ; bar volume=10
+  on_bar idx=10 ts=2026-01-01 11:00:00+00:00 close=110.50 -> submit MARKET BUY 5000
+  FILL px=110.50 qty=2.500000 ts=2026-01-01 11:00:00+00:00 liquidity=2
+  FILL px=110.51 qty=4997.500000 ts=2026-01-01 11:00:00+00:00 liquidity=2
+exit_code=0
