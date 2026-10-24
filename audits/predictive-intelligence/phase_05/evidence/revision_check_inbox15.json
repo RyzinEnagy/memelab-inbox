@@ -1,0 +1,385 @@
+{
+ "appeared_after_covering_read": 0,
+ "calls": [
+  {
+   "bytes": 11184,
+   "http": 200,
+   "retrieved_at": "2026-10-24T11:16:46Z",
+   "sha256": "9ca6b1f6f3e9af6c35de20051864cbb07d490a4012b6997e790249076644331f",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/12jc1DzJpzbCDaKuM4brAKh9jcFry2TLG1FfGsL4ftCG/ohlcv/minute?aggregate=15&limit=1000&before_timestamp=1791393500&currency=usd&token=HMYd9tosnUXuNHmq7pXmoePRVBLBBjA3JBfydq6upump"
+  },
+  {
+   "bytes": 11070,
+   "http": 200,
+   "retrieved_at": "2026-10-24T11:16:57Z",
+   "sha256": "f01c9ddc4774e337c2970c7b704e835866c3e65bd58b761b0c9f53acd2ffafc8",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/34w9ReB7AX8DSv3hiZt28nXztKFWwttARW2NwCsXYqrx/ohlcv/minute?aggregate=15&limit=1000&before_timestamp=1791393174&currency=usd&token=CioPfvQWpVF2eTzpBj72x2zPyqgJRgvi36PqdLCCpump"
+  },
+  {
+   "bytes": 40650,
+   "http": 200,
+   "retrieved_at": "2026-10-24T11:17:09Z",
+   "sha256": "a3fec31d4e3da8c7633865cdda00b97ed8721e7db5e36b84d109ab2f43664d59",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/53W7r4XUxCSnLGoAvj3nPiXnSzyWGZkYHVavYtLpyaXM/ohlcv/minute?aggregate=15&limit=1000&before_timestamp=1791391499&currency=usd&token=5VnbrKp28Qs9CAH6PyZdxBNvLxZcbeX3YBsozgWnpump"
+  },
+  {
+   "bytes": 115328,
+   "http": 200,
+   "retrieved_at": "2026-10-24T11:17:20Z",
+   "sha256": "3fac3739a03c1dea76d7a87c4abdcd61eee429ee9ef3ae262f1d09345641f7f5",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/6e3jZLtf4tQbWZm3f7A66jF8tfZn6MRQVrbDFgcNWarA/ohlcv/minute?aggregate=15&limit=1000&before_timestamp=1791390456&currency=usd&token=98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump"
+  },
+  {
+   "bytes": 83887,
+   "http": 200,
+   "retrieved_at": "2026-10-24T11:17:31Z",
+   "sha256": "cb16c8760cc652669f53c236f590e60c0f08b4926bb42d4722d6a984981a81e6",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/BNG5962Zkbd6ZFmfAKjtCF6Z2mJbA7qn97oMsQShspLP/ohlcv/minute?aggregate=15&limit=1000&before_timestamp=1791331653&currency=usd&token=55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW"
+  },
+  {
+   "bytes": 116710,
+   "http": 200,
+   "retrieved_at": "2026-10-24T11:17:43Z",
+   "sha256": "eca047b136a6f49cdcd7530d1c79df9dc436250d43c1eab631278020bba8506b",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu/ohlcv/minute?aggregate=15&limit=1000&before_timestamp=1791391309&currency=usd&token=Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump"
+  },
+  {
+   "bytes": 61070,
+   "http": 200,
+   "retrieved_at": "2026-10-24T11:17:54Z",
+   "sha256": "5017b4e40a626fceeec387b70a13b99867fc43dd9f7f8385b6e5617b8fe4cea0",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/Cprsvqk2riV3WmTewKK9m6cm62zaAqLDArAbBmN3pe4f/ohlcv/minute?aggregate=15&limit=1000&before_timestamp=1791390456&currency=usd&token=7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3"
+  },
+  {
+   "bytes": 62701,
+   "http": 200,
+   "retrieved_at": "2026-10-24T11:18:05Z",
+   "sha256": "c718a18b94edd291c60c752307f8b2b25ef07420fd16ad513b3140c69c4ecd5e",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/GLL3CzybpSCLZdoACf8QUM5YrKVwyA65kQ2RcTsJxxzV/ohlcv/minute?aggregate=15&limit=1000&before_timestamp=1791391309&currency=usd&token=8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF"
+  }
+ ],
+ "changed_values": 402,
+ "changed_volume_only": 0,
+ "comparison": "inbox 15-minute candles (2026-10-06/07, collector projection) against one GeckoTerminal re-read now; classified by store.ingest_gt_response in a separate comparison store",
+ "inbox_reads": 16,
+ "max_rel_diff_changed": 0.999790597755941,
+ "per_pool": [
+  {
+   "gap_days": 16.75,
+   "inbox_reads": 1,
+   "pool": "12jc1DzJpzbCDaKuM4brAKh9jcFry2TLG1FfGsL4ftCG",
+   "reads": [
+    {
+     "added": 88,
+     "at": 1791393500.501,
+     "dropped_after_boundary": 1,
+     "kept": 88,
+     "read": "inbox/an_20261007_batch3.json",
+     "reads": 0,
+     "revisions": 0,
+     "vanished": 0
+    },
+    {
+     "added": 0,
+     "at": 1792840606.3560617,
+     "dropped_after_boundary": 1,
+     "identity_check": "OK_TOKEN_PARAM",
+     "kept": 88,
+     "read": "geckoterminal re-read",
+     "reads": 88,
+     "revisions": 0,
+     "vanished": 0
+    }
+   ]
+  },
+  {
+   "gap_days": 16.75,
+   "inbox_reads": 2,
+   "pool": "34w9ReB7AX8DSv3hiZt28nXztKFWwttARW2NwCsXYqrx",
+   "reads": [
+    {
+     "added": 86,
+     "at": 1791392262.791,
+     "dropped_after_boundary": 1,
+     "kept": 86,
+     "read": "inbox/an_20261007_ton618.json",
+     "reads": 0,
+     "revisions": 0,
+     "vanished": 0
+    },
+    {
+     "added": 1,
+     "at": 1791393174.181,
+     "dropped_after_boundary": 1,
+     "kept": 87,
+     "read": "inbox/an_20261007_ton618_r2.json",
+     "reads": 86,
+     "revisions": 0,
+     "vanished": 0
+    },
+    {
+     "added": 0,
+     "at": 1792840617.852122,
+     "dropped_after_boundary": 1,
+     "identity_check": "OK_TOKEN_PARAM",
+     "kept": 87,
+     "read": "geckoterminal re-read",
+     "reads": 87,
+     "revisions": 0,
+     "vanished": 0
+    }
+   ]
+  },
+  {
+   "gap_days": 16.77,
+   "inbox_reads": 2,
+   "pool": "53W7r4XUxCSnLGoAvj3nPiXnSzyWGZkYHVavYtLpyaXM",
+   "reads": [
+    {
+     "added": 63,
+     "at": 1791385786.03,
+     "dropped_after_boundary": 1,
+     "kept": 63,
+     "read": "inbox/deep_20261007_a3.json",
+     "reads": 0,
+     "revisions": 0,
+     "vanished": 0
+    },
+    {
+     "added": 198,
+     "at": 1791391499.59,
+     "dropped_after_boundary": 1,
+     "kept": 199,
+     "read": "inbox/wl_20261007_1619_c.json",
+     "reads": 0,
+     "revisions": 63,
+     "vanished": 0
+    },
+    {
+     "added": 137,
+     "at": 1792840629.0982926,
+     "dropped_after_boundary": 1,
+     "identity_check": "OK_TOKEN_PARAM",
+     "kept": 334,
+     "read": "geckoterminal re-read",
+     "reads": 197,
+     "revisions": 1,
+     "vanished": 0
+    }
+   ]
+  },
+  {
+   "gap_days": 16.78,
+   "inbox_reads": 3,
+   "pool": "6e3jZLtf4tQbWZm3f7A66jF8tfZn6MRQVrbDFgcNWarA",
+   "reads": [
+    {
+     "added": 199,
+     "at": 1791330503.698,
+     "dropped_after_boundary": 1,
+     "kept": 199,
+     "read": "inbox/deep01a.json",
+     "reads": 0,
+     "revisions": 0,
+     "vanished": 0
+    },
+    {
+     "added": 63,
+     "at": 1791385786.03,
+     "dropped_after_boundary": 1,
+     "kept": 63,
+     "read": "inbox/deep_20261007_a1.json",
+     "reads": 0,
+     "revisions": 2,
+     "vanished": 0
+    },
+    {
+     "added": 69,
+     "at": 1791390456.366,
+     "dropped_after_boundary": 1,
+     "kept": 199,
+     "read": "inbox/wl_20261007_1619_a.json",
+     "reads": 130,
+     "revisions": 64,
+     "vanished": 0
+    },
+    {
+     "added": 736,
+     "at": 1792840640.3881178,
+     "dropped_after_boundary": 1,
+     "identity_check": "OK_TOKEN_PARAM",
+     "kept": 999,
+     "read": "geckoterminal re-read",
+     "reads": 263,
+     "revisions": 2,
+     "vanished": 0
+    }
+   ]
+  },
+  {
+   "gap_days": 17.47,
+   "inbox_reads": 1,
+   "pool": "BNG5962Zkbd6ZFmfAKjtCF6Z2mJbA7qn97oMsQShspLP",
+   "reads": [
+    {
+     "added": 199,
+     "at": 1791331653.849,
+     "dropped_after_boundary": 1,
+     "kept": 199,
+     "read": "inbox/deep03.json",
+     "reads": 0,
+     "revisions": 0,
+     "vanished": 0
+    },
+    {
+     "added": 490,
+     "at": 1792840651.886328,
+     "dropped_after_boundary": 1,
+     "identity_check": "OK_TOKEN_PARAM",
+     "kept": 688,
+     "read": "geckoterminal re-read",
+     "reads": 198,
+     "revisions": 1,
+     "vanished": 0
+    }
+   ]
+  },
+  {
+   "gap_days": 16.77,
+   "inbox_reads": 2,
+   "pool": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+   "reads": [
+    {
+     "added": 199,
+     "at": 1791331653.849,
+     "dropped_after_boundary": 1,
+     "kept": 199,
+     "read": "inbox/deep03.json",
+     "reads": 0,
+     "revisions": 0,
+     "vanished": 0
+    },
+    {
+     "added": 67,
+     "at": 1791391309.926,
+     "dropped_after_boundary": 1,
+     "kept": 199,
+     "read": "inbox/wl_20261007_1619_b.json",
+     "reads": 132,
+     "revisions": 1,
+     "vanished": 0
+    },
+    {
+     "added": 736,
+     "at": 1792840663.1412678,
+     "dropped_after_boundary": 1,
+     "identity_check": "OK_TOKEN_PARAM",
+     "kept": 999,
+     "read": "geckoterminal re-read",
+     "reads": 263,
+     "revisions": 2,
+     "vanished": 0
+    }
+   ]
+  },
+  {
+   "gap_days": 16.78,
+   "inbox_reads": 3,
+   "pool": "Cprsvqk2riV3WmTewKK9m6cm62zaAqLDArAbBmN3pe4f",
+   "reads": [
+    {
+     "added": 199,
+     "at": 1791330503.698,
+     "dropped_after_boundary": 1,
+     "kept": 199,
+     "read": "inbox/deep01a.json",
+     "reads": 0,
+     "revisions": 0,
+     "vanished": 0
+    },
+    {
+     "added": 399,
+     "at": 1791332195.007,
+     "dropped_after_boundary": 1,
+     "kept": 399,
+     "read": "inbox/deep04.json",
+     "reads": 0,
+     "revisions": 199,
+     "vanished": 0
+    },
+    {
+     "added": 65,
+     "at": 1791390456.366,
+     "dropped_after_boundary": 1,
+     "kept": 199,
+     "read": "inbox/wl_20261007_1619_a.json",
+     "reads": 134,
+     "revisions": 1,
+     "vanished": 0
+    },
+    {
+     "added": 50,
+     "at": 1792840674.4265044,
+     "dropped_after_boundary": 1,
+     "identity_check": "OK_TOKEN_PARAM",
+     "kept": 511,
+     "read": "geckoterminal re-read",
+     "reads": 461,
+     "revisions": 2,
+     "vanished": 0
+    }
+   ]
+  },
+  {
+   "gap_days": 16.78,
+   "inbox_reads": 2,
+   "pool": "GLL3CzybpSCLZdoACf8QUM5YrKVwyA65kQ2RcTsJxxzV",
+   "reads": [
+    {
+     "added": 63,
+     "at": 1791385786.03,
+     "dropped_after_boundary": 1,
+     "kept": 63,
+     "read": "inbox/deep_20261007_a2.json",
+     "reads": 0,
+     "revisions": 0,
+     "vanished": 0
+    },
+    {
+     "added": 199,
+     "at": 1791391309.926,
+     "dropped_after_boundary": 1,
+     "kept": 199,
+     "read": "inbox/wl_20261007_1619_b.json",
+     "reads": 0,
+     "revisions": 63,
+     "vanished": 0
+    },
+    {
+     "added": 325,
+     "at": 1792840685.6740363,
+     "dropped_after_boundary": 1,
+     "identity_check": "OK_TOKEN_PARAM",
+     "kept": 523,
+     "read": "geckoterminal re-read",
+     "reads": 198,
+     "revisions": 1,
+     "vanished": 0
+    }
+   ]
+  }
+ ],
+ "pools": 8,
+ "revision_rows": 402,
+ "store_counts": {
+  "predictive_candle_reads": 2237,
+  "predictive_candles": 4631,
+  "predictive_decisions": 0,
+  "predictive_feature_sets": 0,
+  "predictive_feature_values": 0,
+  "predictive_raw_responses": 24,
+  "predictive_snapshots": 0,
+  "predictive_source_status": 0
+ },
+ "vanished": 0
+}

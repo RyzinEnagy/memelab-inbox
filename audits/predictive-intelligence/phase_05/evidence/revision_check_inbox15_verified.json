@@ -1,0 +1,119 @@
+{
+ "changed_fields": {
+  "o": 2,
+  "oh": 1,
+  "ohlcv": 199
+ },
+ "comparison": "inbox 15-minute reads with a recorded request URL against the GeckoTerminal re-read of the first pass (no new call)",
+ "per_pool": [
+  {
+   "pool": "6e3jZLtf4tQbWZm3f7A66jF8tfZn6MRQVrbDFgcNWarA",
+   "reads": [
+    {
+     "identity_check": "OK_BASE",
+     "kept": 199,
+     "read": "inbox/deep01a.json",
+     "token_param": null
+    },
+    {
+     "identity_check": "OK_TOKEN_PARAM",
+     "kept": 999,
+     "read": "geckoterminal re-read",
+     "reads": 198,
+     "revisions": 1,
+     "vanished": 0
+    }
+   ],
+   "revision_kinds": {
+    "OPEN_WINDOW": 1
+   }
+  },
+  {
+   "pool": "BNG5962Zkbd6ZFmfAKjtCF6Z2mJbA7qn97oMsQShspLP",
+   "reads": [
+    {
+     "identity_check": "OK_BASE",
+     "kept": 199,
+     "read": "inbox/deep03.json",
+     "token_param": null
+    },
+    {
+     "identity_check": "OK_TOKEN_PARAM",
+     "kept": 688,
+     "read": "geckoterminal re-read",
+     "reads": 198,
+     "revisions": 1,
+     "vanished": 0
+    }
+   ],
+   "revision_kinds": {
+    "OPEN_WINDOW": 1
+   }
+  },
+  {
+   "pool": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+   "reads": [
+    {
+     "identity_check": "OK_BASE",
+     "kept": 199,
+     "read": "inbox/deep03.json",
+     "token_param": null
+    },
+    {
+     "identity_check": "OK_TOKEN_PARAM",
+     "kept": 999,
+     "read": "geckoterminal re-read",
+     "reads": 198,
+     "revisions": 1,
+     "vanished": 0
+    }
+   ],
+   "revision_kinds": {
+    "OPEN_WINDOW": 1
+   }
+  },
+  {
+   "pool": "Cprsvqk2riV3WmTewKK9m6cm62zaAqLDArAbBmN3pe4f",
+   "reads": [
+    {
+     "identity_check": "OK_BASE",
+     "kept": 199,
+     "read": "inbox/deep01a.json",
+     "token_param": null
+    },
+    {
+     "identity_check": "OK_TOKEN_PARAM",
+     "kept": 511,
+     "read": "geckoterminal re-read",
+     "reads": 0,
+     "revisions": 199,
+     "vanished": 0
+    }
+   ],
+   "revision_kinds": {
+    "VALUES": 199
+   },
+   "values_median_close_ratio": 3324.7717321356718,
+   "values_median_volume_ratio": 0.9985385018516125
+  }
+ ],
+ "pools": 4,
+ "revision_kinds": {
+  "OPEN_WINDOW": 3,
+  "VALUES": 199
+ },
+ "skipped": {
+  "UNVERIFIABLE_REQUEST": 12
+ },
+ "store_counts": {
+  "predictive_candle_reads": 594,
+  "predictive_candles": 3399,
+  "predictive_decisions": 0,
+  "predictive_feature_sets": 0,
+  "predictive_feature_values": 0,
+  "predictive_raw_responses": 8,
+  "predictive_snapshots": 0,
+  "predictive_source_status": 0
+ },
+ "unchanged_reads": 594
+}

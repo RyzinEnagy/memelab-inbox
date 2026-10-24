@@ -1,0 +1,21 @@
+{
+ "appeared_after_covering_read": 0,
+ "changed_examples": [],
+ "changed_values": 0,
+ "comparison": "main store: re-read series against the first read of the same pools",
+ "gap_s_min_max": [
+  1154.7,
+  3039.6
+ ],
+ "identity": {
+  "OK_BASE": 11
+ },
+ "new_positions_outside_earlier_coverage": 0,
+ "responses": 11,
+ "series": 10,
+ "series_status": {
+  "OK": 10
+ },
+ "unchanged_candle_reads": 7223,
+ "vanished": 0
+}

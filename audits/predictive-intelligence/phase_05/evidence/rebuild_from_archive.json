@@ -1,0 +1,27 @@
+{
+ "counts": {
+  "predictive_candle_reads": 7223,
+  "predictive_candles": 74541,
+  "predictive_decisions": 1500,
+  "predictive_feature_sets": 1,
+  "predictive_feature_values": 48000,
+  "predictive_raw_responses": 236,
+  "predictive_snapshots": 1500,
+  "predictive_source_status": 115
+ },
+ "differ": 0,
+ "identical": true,
+ "real_counts": {
+  "predictive_candle_reads": 7223,
+  "predictive_candles": 74541,
+  "predictive_decisions": 1500,
+  "predictive_feature_sets": 1,
+  "predictive_feature_values": 96000,
+  "predictive_raw_responses": 236,
+  "predictive_snapshots": 3000,
+  "predictive_source_status": 115
+ },
+ "snapshots_real": 1500,
+ "snapshots_rebuilt": 1500,
+ "verify_problems": []
+}

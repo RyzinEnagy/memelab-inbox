@@ -1,0 +1,14 @@
+{
+ "provider": {
+  "checked": 1500,
+  "differences": 0,
+  "examples": [],
+  "seconds": 433.7
+ },
+ "capture": {
+  "checked": 1500,
+  "differences": 0,
+  "examples": [],
+  "seconds": 45.7
+ }
+}

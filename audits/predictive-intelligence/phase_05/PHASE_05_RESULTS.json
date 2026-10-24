@@ -1,0 +1,367 @@
+{
+ "phase": "05",
+ "status": "NEEDS_REVIEW",
+ "head_before": "074953d",
+ "head_after": null,
+ "checks": [
+  {
+   "name": "package checksums",
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "entry gate at 074953d",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 993 passed in 146.88s (known failure only)",
+   "pass": true
+  },
+  {
+   "name": "phase 05 tests",
+   "command": "python -m pytest tests/test_predictive_asof_store.py tests/test_predictive_asof_features.py tests/test_predictive_asof_fixture.py -q",
+   "exit_code": 0,
+   "result": "66 passed",
+   "pass": true
+  },
+  {
+   "name": "pre-commit full suite",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 1059 passed in 151.20s (known failure only)",
+   "pass": true
+  },
+  {
+   "name": "real truncation invariance, provider",
+   "command": "python -B asof_real_checks.py truncation",
+   "exit_code": 0,
+   "result": {
+    "checked": 1500,
+    "differences": 0,
+    "examples": [],
+    "seconds": 433.7
+   },
+   "pass": true
+  },
+  {
+   "name": "real truncation invariance, capture",
+   "command": "python -B asof_real_checks.py truncation",
+   "exit_code": 0,
+   "result": {
+    "checked": 1500,
+    "differences": 0,
+    "examples": [],
+    "seconds": 45.7
+   },
+   "pass": true
+  },
+  {
+   "name": "real traps",
+   "command": "python -B asof_real_checks.py traps",
+   "exit_code": 0,
+   "result": {
+    "sample": 40,
+    "after_1s_changed": 0,
+    "at_decision_changed": 40
+   },
+   "pass": true
+  },
+  {
+   "name": "recompute every stored snapshot after the re-read",
+   "command": "python -B asof_real_checks.py recompute",
+   "exit_code": 0,
+   "result": {
+    "snapshots": 3000,
+    "differ": 0,
+    "examples": [],
+    "verify_problems": [],
+    "reread_rows": 10
+   },
+   "pass": true
+  },
+  {
+   "name": "determinism in fresh processes",
+   "command": "python -B asof_real_checks.py fresh",
+   "exit_code": 0,
+   "result": {
+    "sample": 25,
+    "process_1_equal_stored": true,
+    "process_2_equal_stored": true
+   },
+   "pass": true
+  },
+  {
+   "name": "offline rebuild from the committed archive",
+   "command": "python -B build_store.py fromarchive <tmp>",
+   "exit_code": 0,
+   "result": {
+    "snapshots_rebuilt": 1500,
+    "identical": true,
+    "differ": 0,
+    "verify_problems": []
+   },
+   "pass": true
+  },
+  {
+   "name": "mutation check",
+   "command": "python -B mutation_asof.py ../evidence/mutation_asof.json",
+   "exit_code": 0,
+   "result": {
+    "mutations": 35,
+    "caught": 35,
+    "control_passes": true
+   },
+   "pass": true
+  },
+  {
+   "name": "vendor revisions, Phase 04 bodies against Phase 05",
+   "command": "python -B revision_check.py p04",
+   "exit_code": 0,
+   "result": {
+    "both": 57584,
+    "changed": 80,
+    "changed_fields:o": 36,
+    "changed_fields:oh": 21,
+    "changed_fields:ol": 23,
+    "identical": 57504,
+    "only_first": 0,
+    "only_second": 0
+   },
+   "pass": true
+  },
+  {
+   "name": "vendor revisions, re-read sample",
+   "command": "python -B revision_check.py store",
+   "exit_code": 0,
+   "result": {
+    "series": 10,
+    "unchanged_candle_reads": 7223,
+    "changed_values": 0,
+    "vanished": 0,
+    "gap_s_min_max": [
+     1154.7,
+     3039.6
+    ]
+   },
+   "pass": true
+  },
+  {
+   "name": "vendor revisions, inbox reads with recorded requests",
+   "command": "python -B revision_check.py inbox15cmp",
+   "exit_code": 0,
+   "result": {
+    "6e3jZLtf": {
+     "OPEN_WINDOW": 1
+    },
+    "BNG5962Z": {
+     "OPEN_WINDOW": 1
+    },
+    "Cb7ZRgPL": {
+     "OPEN_WINDOW": 1
+    },
+    "Cprsvqk2": {
+     "VALUES": 199
+    }
+   },
+   "pass": true
+  },
+  {
+   "name": "holdout seal",
+   "input": "data/backfill_plan.json",
+   "result": "max boundary 2026-10-16T10:42:06Z <= 2026-10-16T23:00:00Z; fetch scope {\"DEVELOPMENT\": 541, \"NOT_FETCHED_SEALED\": 62, \"NO_POOL_AT_DECISION\": 322, \"OUT_OF_SCOPE_CHAIN\": 575}",
+   "pass": true
+  },
+  {
+   "name": "call pace",
+   "input": "evidence/backfill_calls.json + evidence/revision_check_inbox15.json",
+   "result": "155 GeckoTerminal calls, at most 6 in any 60 s window",
+   "pass": true
+  },
+  {
+   "name": "tracked database unchanged",
+   "command": "sha256sum data/memelab.sqlite",
+   "exit_code": 0,
+   "result": "068287c0d7e454361eb42f54b2f90e49e4075ae3a962a3c57867165ab6a679ca",
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/phase_05/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "319828af0f5bdb82b3f82a1e4512546f61ef63f493e01d60aaa427323de93eda"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/PHASE_05_EVIDENCE.md",
+   "sha256": "11c7dbc34957b38b95ba8484bb79b0e5c4ec149a7511bc5ea9d3254d053134b1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/SKEPTIC_PACKET.md",
+   "sha256": "7b9c55e1d1eb3c0c01ef5be32fed19466f6c7ba8f268b4f0c2410a998cfd7e41"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/data/FEATURE_STORE_CONTRACT.md",
+   "sha256": "747c4a0c0ca90823a36dfa0b9161451ed217aa2d07eee32e8b76537bea253630"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/data/SOURCE_COVERAGE.md",
+   "sha256": "356761597cddd6e92485c947e39821bbdfaaeb0d2770f43eab339d0a6b658c10"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/data/backfill_plan.json",
+   "sha256": "e1b69325290c32ab1169581a1ae18d6fa5bdf35d37e7cb05f5254c2e52cec1e1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/data/series_status.json",
+   "sha256": "0ad570fd9cde66356f708e489229d53c3fbde53915358e8e59cd0887ec92c8fb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/evidence/asof_real_fresh.json",
+   "sha256": "6acd6491db9f94b9c4d88a7303883d4426cfe0c9ba8af3ff4511641beaa2cb9c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/evidence/asof_real_recompute.json",
+   "sha256": "73314011a49fc13ca319dc1f3bfa9fd71d9fd031cbf2a9f53eb53b53389dbfad"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/evidence/asof_real_traps.json",
+   "sha256": "d2925cb92e897d70fd45c9993e5228523f4d85c660a06e625c30b1f89add820c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/evidence/asof_real_truncation.json",
+   "sha256": "c30d25e6e089190ecd79d4e192a556dda056ce206d5f30db1f523b538fa11c3e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/evidence/backfill_calls.json",
+   "sha256": "b7af635f3043fa96fcf1146a77e463d3f8560c35aecd0ab54493fea4eff629be"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/evidence/coverage_counts.json",
+   "sha256": "1febc06ba09f0683b01916155ab8b96bd676527519c37ab4aa2e8c97a41fb934"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/evidence/mutation_asof.json",
+   "sha256": "7c07d64fc0c35ecf4b3e14e6fa393eba7eac56a132d843bb568f268495f48c64"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/evidence/rebuild_from_archive.json",
+   "sha256": "77226b62cf07fccdf32334c17bc5828853e3f9647efd719071c3eab75f812888"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/evidence/revision_check_inbox15.json",
+   "sha256": "e2535a2c9f2e6a0fcbcb7d8ef3243b3f9c59f2a4d8cd0864d51a7704cbcd1b2e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/evidence/revision_check_inbox15_verified.json",
+   "sha256": "2714d85d1dc5c9d196d236cbd08776b7f812ba68be2dd37a9119e3b2bc01bb6c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/evidence/revision_check_p04.json",
+   "sha256": "f7164066383438b413c1d45c8f5348161c4d4446d7fdbd4effc6769b62a2e2c7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/evidence/revision_check_store.json",
+   "sha256": "2d59679ed6ef3b39546c46efa9996b25f7989ced1eee2403cec393cd2fed52f0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/evidence/store_summary.json",
+   "sha256": "81b49314c935898ea64069b1c8ca91afae1094ae1b4738125b1d5fd943d22939"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/probes/asof_real_checks.py",
+   "sha256": "78e2be02f7f3b23ff93df29b8044e5f167e6af9b281cf020bcc4359aafdc5956"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/probes/build_fixtures.py",
+   "sha256": "9e452b880b410f4b11b8a5e082a6398d77e07dec234a3e8f76f6fb78b6c08621"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/probes/build_store.py",
+   "sha256": "a11999c34849c0971d5af62fb90e777cdd945fe2b4f9ea6eb31544cf1f225197"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/probes/cli_regression.py",
+   "sha256": "d641f8cd8f6216f290aa1b3b996b93c4f22b2fdcbc6e9c01a7eb9611d76fde2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/probes/coverage_counts.py",
+   "sha256": "7bfeb64b1ad9c129768af4fd457665f0ed4ffe338630913b88df2ad8cc643ee0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/probes/mutation_asof.py",
+   "sha256": "a093b71f9d332e309178b599b70dace66a1d2159154a38dbf2ca7a85df539803"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/probes/render_contract.py",
+   "sha256": "8841467dd2ecf711fb088e62572bc02aa2f414c8a1bc906a8c9abd7786a2218c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/probes/revision_check.py",
+   "sha256": "2020d962b414e33fecce3f56aaa1cfebe8c8da7193c9115ee7f3068dff49091a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/probes/write_results.py",
+   "sha256": "faffc01ec91263bff477acac452ff5b27dd1a1b55db2af93e15ba47a323fce93"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/raw/MANIFEST.csv",
+   "sha256": "f98f5b8d4bb51294fd502bcc6eba75c9d4f6f5b1d6c39b3e575958455a122361"
+  },
+  {
+   "path": "memelab/predictive/__init__.py",
+   "sha256": "262b4800f2c82f69371dfe3fe614018d99ae7b87507749cbccfa5326a3496067"
+  },
+  {
+   "path": "memelab/predictive/features.py",
+   "sha256": "365b1b5b1b00b8c1efcd959c73c4a58aa471c38cafa901124d8d0b01860fc929"
+  },
+  {
+   "path": "memelab/predictive/sources.py",
+   "sha256": "f83fa965610304931510b9919ce079cb512965c44e21caa3c86fa67348d3ba38"
+  },
+  {
+   "path": "memelab/predictive/store.py",
+   "sha256": "6917bfa42576d974436221b5629a327c7c4f4b826bb77e0185b214c11998da88"
+  },
+  {
+   "path": "tests/fixtures/predictive/asof_fixture.json",
+   "sha256": "57dbf3036a2552fb193668bec8d73cc440073331b676bdcfcfdc8ebba744c0ed"
+  },
+  {
+   "path": "tests/fixtures/predictive/asof_helpers.py",
+   "sha256": "34d790758e9e7e27240b272d4ab119bb3a7587a8e979527c8751b1befd8ea502"
+  },
+  {
+   "path": "tests/fixtures/predictive/asof_pid011_export.json",
+   "sha256": "42578181c3c77c3f2e2e393922aca6b6213e727313587a26fc0474c9ce187ca9"
+  },
+  {
+   "path": "tests/test_predictive_asof_features.py",
+   "sha256": "67bfb41cf786d363f969d405a5246f93c4f7f4fe37fe13edbc4cc792a6cc6b02"
+  },
+  {
+   "path": "tests/test_predictive_asof_fixture.py",
+   "sha256": "9852f8f39da800d9fa54870cf980413ad228e058256f6978962680bed4f6f535"
+  },
+  {
+   "path": "tests/test_predictive_asof_store.py",
+   "sha256": "d846d5f6d35a193c76cd82182796f41c96265a83828b73efa2f01517813a10d9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/raw/*.json.gz",
+   "files": 147,
+   "sha256_of_sorted_file_hashes": "d4c600b3a6f91febe593f53fc58d74bf29ec1d62335d02cf5d372ba41edc09f7",
+   "note": "each file's sha256 is in raw/MANIFEST.csv"
+  }
+ ],
+ "limitations": [
+  "historical candle availability is a reconstruction (end + 300 s, HEURISTIC); revisions before the lab's first read are invisible",
+  "revision gaps measured: 19 min to 2.5 h on the lab's own reads and 17 days on 3 inbox pools; the 48 h re-read of label series is Phase 06's",
+  "DEX type per pool not recorded; no executable depth for past times (P08)",
+  "cover_complete cannot tell a vendor retention limit from a pool's first trade",
+  "the store file is outside git; reproducibility rests on raw/, data/series_status.json and the exports in git (rebuild identical)",
+  "Phase 04 BAKEOFF_ONLY labels: 8 of 102 T1 and 9 of 159 T1b events priced another token (PI-D-038); not Phase 06 labels"
+ ],
+ "blockers": [],
+ "approvals_needed": [],
+ "next_eligible_phase": "05 repair pass after the orchestrator's independent skeptic; then 06 once 05 is PASS"
+}

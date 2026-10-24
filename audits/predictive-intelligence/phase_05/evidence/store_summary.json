@@ -1,0 +1,31 @@
+{
+ "candle_bases": {
+  "PROVIDER_LAG_RECONSTRUCTION": 74541
+ },
+ "counts": {
+  "predictive_candle_reads": 7223,
+  "predictive_candles": 74541,
+  "predictive_decisions": 1500,
+  "predictive_feature_sets": 1,
+  "predictive_feature_values": 96000,
+  "predictive_raw_responses": 236,
+  "predictive_snapshots": 3000,
+  "predictive_source_status": 115
+ },
+ "dropped_after_boundary": 98,
+ "refused_candles": 8212,
+ "responses_by_http": {
+  "200": 132,
+  "429": 15
+ },
+ "revisions": 0,
+ "series_status": {
+  "IDENTITY_MISMATCH": 9,
+  "NO_DATA": 2,
+  "OK": 104
+ },
+ "store": "/home/claude/pi_research/p05/predictive_store.sqlite",
+ "store_sha256_note": "the store file changes with every write; its tables are summarised here",
+ "vanished": 0,
+ "verify_problems": []
+}

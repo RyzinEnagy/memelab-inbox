@@ -1,66 +1,57 @@
 # Predictive Intelligence: handoff
 
-Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Phase 04 evidence: `audits/predictive-intelligence/phase_04/` (PHASE_04_EVIDENCE.md, PHASE_04_RESULTS.json, ACCEPTANCE_CHECKLIST.md, SKEPTIC_PACKET.md, skeptic/, adoption/). Earlier phases stay in `phase_00/` to `phase_03/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Phase 05 evidence: `audits/predictive-intelligence/phase_05/` (PHASE_05_EVIDENCE.md, PHASE_05_RESULTS.json, ACCEPTANCE_CHECKLIST.md, SKEPTIC_PACKET.md, data/, evidence/, probes/, raw/, postcommit/). Earlier phases stay in `phase_00/` to `phase_04/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
 ## Position
 
-- Phase 04 (adoption, install, adapter or build bake-off): PASS, 2026-10-24, after the repair pass that folds in the orchestrator's independent skeptic (2 MATERIAL, 8 MINOR, `phase_04/skeptic/PHASE_04_SKEPTIC.md`; PI-D-035). Post-commit suite, content guard and release audit with history are clean (`phase_04/postcommit/`, `phase_04/PHASE_04_RESULTS.json`).
-- Branch `feature/predictive-intelligence`, four Phase 04 commits on top of `a146a29`: first pass `4a19d71` and its records commit `84f8c86`, the repair commit `783fde4` and the records commit on top of it (read its hash with `git log -1`; this file is part of it). Not pushed. Spend 0 credits.
-- Code added in Phase 04: `memelab/predictive/runtime.py` (standard library only, flag OFF, imported by no existing module), `tests/test_predictive_runtime.py`, `tests/fixtures/predictive/copyleft_fingerprints.json` (hashes only), `docs/predictive-intelligence/locks/` (two hash locks). The repair also changed `memelab/predictive/contract.py` in `enabled()` only (malformed config means OFF; registry fingerprint unchanged). No other file under `memelab/` or `tests/` changed; nothing under `inbox/`, `state/` or `data/` changed. The ignored venv `hazardous/` at the repository root was removed.
+- Phase 05 (immutable temporal evidence and feature store): NEEDS_REVIEW, 2026-10-24, first pass complete; waiting for the orchestrator's independent skeptic (PI-D-013), then a repair pass sets the final status.
+- Branch `feature/predictive-intelligence`: the Phase 05 deliverables commit and a records commit on top of `074953d` (read the hashes with `git log -3 --oneline`; this file is part of the records commit). Not pushed. Spend 0 credits; 155 free GeckoTerminal calls.
+- Code added: `memelab/predictive/store.py`, `sources.py`, `features.py` (standard library only, flag OFF, imported by no existing module); `memelab/predictive/__init__.py` docstring lists the modules. Tests: `tests/test_predictive_asof_store.py` (37), `test_predictive_asof_features.py` (25), `test_predictive_asof_fixture.py` (4); fixtures `tests/fixtures/predictive/asof_helpers.py`, `asof_pid011_export.json`, `asof_fixture.json`. No other file under `memelab/` or `tests/` changed; nothing under `inbox/`, `state/` or `data/` changed.
 
-## What the repair changed
+## What Phase 05 built and found
 
-- M1, lock guard (P32). The skeptic's line `p04sk==1.0 ; python_version >= "3" --hash=sha256:<sdist> --only-binary=:none:` passed `check_lock`, and pip with the lab's flags then ran its `setup.py`, because pip honours per-line options. `check_lock` now accepts only `name==version`, an optional plain marker and `--hash=sha256:<64 hex>` tokens that are known wheel digests; `runtime.install_argv` is the only route and refuses before pip starts. Both of the skeptic's lines are test cases; `hostile_setup_demo.py` case E shows pip alone still runs the `setup.py` and `install_argv` refuses it. Lock sha256 pinned in the tests.
-- M2, containment. `guarded` contains every exception including SystemExit; KeyboardInterrupt and GeneratorExit pass through on purpose. LLM actions count only as a positive int. Any config section that is not an object means OFF, in `capability_report` and in `contract.enabled`.
-- m1, fold audit (prototype): fails closed on NaN times, a cutoff after the test start and, given the target's lag, a shorter-horizon maturity column; shared mints reported. `prototypes/test_core_numpy.py`, 9 tests.
-- m2: the skeptic's 6 surviving mutations plus one or more per repair: 41 of 41 caught. P31 fixture declares its hash algorithm and normalization, checked at load, with a self-test text and a skip-if-absent positive control against the pinned MiroFish clone.
-- m3 to m7: copyleft scan of every code file in the working tree (411); candles dropped by end time, the six holdout-start candles purged from the raw store with recorded hashes, `refuse_bakeoff_labels` plus a test; NaN or negative cost refuses calls, `is_failure` for returned error responses, dotted names refused; Platt on constant scores returns the exact optimum; the Venn-Abers oracle feeds both sides the same probabilities. m8: core lock header; the rollback reports the empty `mpl_toolkits/` directory it leaves (the documented rollback deletes the venv).
-- The new tests fail on the first-pass code: runtime 88 failed of 135, prototype 8 of 9 (`evidence/old_code_check.json`). Re-measured bake-off: every prediction byte-identical to the first pass.
-
-## What Phase 04 found (first pass, unchanged)
-
-- Six approaches on one point-in-time dataset (BAKEOFF_ONLY development labels, T1 24 h 102 events, T1b 6 h 159, holdout untouched, plus the synthetic challenge), identical folds. Behaviour, cost and correctness only; 26 and 33 out-of-sample real events rank nothing on skill.
-- The essential engine is numpy code equal to scikit-learn, the frozen sigmoid and the Venn-Abers reference, byte-identical in a numpy-only venv offline. Research packages live only in a hash-locked venv (PI-D-031, PI-D-032). pandera and Mesa REJECT; statsmodels, arch, crepes and interpret-core DEFERRED. MiroFish ISOLATED_MOCK_ONLY.
+- A private SQLite store with eight append-only `predictive_*` tables and a reversible, checksum-guarded migration; never the tracked lab DB (PI-D-036). Contract and schema: `phase_05/data/FEATURE_STORE_CONTRACT.md`; source matrix and counts: `phase_05/data/SOURCE_COVERAGE.md`.
+- 1,500 decision events from the 89 exports at `98338a8` (one 31-byte "mint" refused), a bounded GeckoTerminal backfill of the 541 development-period Solana decisions on 96 pools (holdout, purged and prospective decisions untouched), 74,541 candle versions, 3,000 feature snapshots (32 features, provider and capture modes).
+- As-of proofs on real data: truncation invariance 0 differences over 1,500 decisions in each mode; 40 of 40 traps change the snapshot when available at the decision and 0 of 40 one second after; 3,000 of 3,000 stored snapshots equal their recomputation after a re-read; a rebuild from the committed raw archive gives identical hashes; determinism across fresh processes. 35 of 35 mutations caught.
+- Findings: (1) reads without `token=<mint>` priced another token for 9 of 96 pools, including 8 of 102 T1 and 9 of 159 T1b Phase 04 BAKEOFF_ONLY events, and a vendor's default side can change over time (PI-D-038); (2) a candle's open, high or low depends on the request window (80 of 57,584 candles; closes and volumes stable), so features use closes and volumes only; (3) a partial export history would mint false decisions, so the store refuses it (PI-D-037).
 
 ## How to check it
 
-From `audits/predictive-intelligence/phase_04/adoption/prototypes/`:
+From the repository root: `python -m pytest tests/test_predictive_asof_store.py tests/test_predictive_asof_features.py tests/test_predictive_asof_fixture.py -q` (66 passed). From `audits/predictive-intelligence/phase_05/probes/` with the store at `/home/claude/pi_research/p05/predictive_store.sqlite`:
 
 ```
-python -B build_dev_sample.py label ../data /home/claude/pi_research/p04_gt_raw && git diff --stat -- ../data   # expect no diff
-python -B holdout_candle_check.py /home/claude/pi_research/p04_gt_raw     # 0 candles ending after the holdout start
-python -B summarize.py                                                     # not_identical_or_failed: []
-python -B mutation_runtime.py /tmp/mut.json                                # 41 of 41 caught
-python -B old_code_check.py /tmp/old.json                                  # runtime 88 failed, prototype 8 failed
-python -m pytest test_core_numpy.py -q                                     # 9 passed
+python -B asof_real_checks.py truncation      # 0 differences in both modes (about 8 min)
+python -B asof_real_checks.py traps           # after_1s_changed 0, at_decision_changed 40
+python -B asof_real_checks.py recompute       # differ 0, verify []
+python -B build_store.py fromarchive /tmp/p05_rebuild.sqlite   # identical true (offline)
+python -B mutation_asof.py /tmp/mut05.json    # 35 of 35 caught
+python -B revision_check.py p04               # 80 changed of 57,584, all in open, high or low
 ```
-
-From the repository root: `python -m pytest tests/test_predictive_runtime.py tests/test_predictive_contract.py -q` (201 passed), `python -m memelab social guard`, `python tools/release_audit.py --history`.
 
 ## Tests
 
-- Entry gate at `a146a29`: `1 failed, 858 passed in 145.42s`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (known).
-- First pass after `4a19d71`: `1 failed, 904 passed`. Orchestrator at `84f8c86`: `1 failed, 904 passed`.
-- Repair pass, after the repair commit `783fde4`, on the committed tree: exit 1, `1 failed, 993 passed in 152.42s (0:02:32)` (858 earlier tests plus 135), only the known failure; `python -m memelab social guard` exit 0 with no violations; `python tools/release_audit.py --history` exit 0, "Needs action: no".
-- Strays after each run: `data/reports/<stamp>_BRETT_0x532f.md`, `data/memelab.sqlite-shm`, `-wal`; remove by hand; tracked DB sha256 `068287c0...` unchanged.
+- Entry gate at `074953d`: `1 failed, 993 passed in 146.88s`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (known).
+- Pre-commit: `1 failed, 1059 passed in 151.20s` (993 plus 66), only the known failure.
+- Post-commit suite, content guard, release audit with history and the CLI regression in two clean clones: `phase_05/postcommit/` and PHASE_05_RESULTS.json (records commit).
+- Strays after each run: `data/reports/<stamp>_BRETT_0x532f.md` (removed by hand); `data/memelab.sqlite-shm` and `-wal` existed before this phase and are ignored; tracked DB sha256 `068287c0...` unchanged.
 
 ## Blockers and open items
 
-- None. The orchestrator verifies the four Phase 04 commits and pushes.
-- PI-D-020 (forward depth and quote collector) stays PROPOSED for Elving.
+- None for the skeptic. PI-D-020 (forward depth and quote collector) stays PROPOSED for Elving.
+- For Phase 06: request `token=<mint>` and pass `store.gt_identity`; re-read label paths of the 9 quote-side pools; note that highs and lows can move with the request window; keep the 48 h re-read of at least 10% of label series (PI-D-018).
 
 ## Approvals needed
 
-None for Phase 05. Paid data, LLM, Zep or MiroFish use, any scheduled collector (PI-D-020), copying AGPL or GPL code, accepting non-commercial weight terms, adding a research package to the lab's runtime, or a merge into `main` need Elving (PI-D-005, PI-D-032).
+None. Paid data, LLM, Zep or MiroFish use, any scheduled collector (PI-D-020), copying AGPL or GPL code, adding a research package to the lab's runtime, or a merge into `main` need Elving (PI-D-005, PI-D-032).
 
 ## Next
 
-Next eligible phase after the orchestrator verifies Phase 04: 05 (immutable temporal evidence and feature store). It starts from PI-D-031 to PI-D-035 and the Phase 04 constraints in ROADMAP.md: install only through `install_argv`, drop candles by end time, pass every label source through `refuse_bakeoff_labels`.
+Next step: the orchestrator's independent skeptic on Phase 05 (`phase_05/SKEPTIC_PACKET.md`), then the Phase 05 repair pass. Phase 06 (outcome label registry and censoring) is eligible only after Phase 05 is PASS.
 
 ## Exact next command
 
 ```
-cd /home/claude/memelab-inbox && git checkout feature/predictive-intelligence && git log -5 --oneline && python -m memelab social guard && python -m pytest tests/test_predictive_runtime.py tests/test_predictive_contract.py -q && python -m pytest tests -q
+cd /home/claude/memelab-inbox && git checkout feature/predictive-intelligence && git log -4 --oneline && python -m memelab social guard && python -m pytest tests/test_predictive_asof_store.py tests/test_predictive_asof_features.py tests/test_predictive_asof_fixture.py -q && python -m pytest tests -q
 ```
 
-Expect four Phase 04 commits on top of `a146a29`, `"violations": []`, `201 passed`, and `1 failed, 993 passed`; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand.
+Expect the two Phase 05 commits on top of `074953d`, `"violations": []`, `66 passed`, and `1 failed, 1059 passed`; then remove `data/reports/*_BRETT_*.md` by hand.

@@ -1,0 +1,111 @@
+{
+ "by_chain": {
+  "base": 225,
+  "bsc": 318,
+  "ethereum": 32,
+  "solana": 925
+ },
+ "by_split_solana": {
+  "development_6h": 830,
+  "retrospective_holdout": 95
+ },
+ "candles": [
+  {
+   "a": 1787686500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "b": 1792147200.0,
+   "n": 74541,
+   "p": 94,
+   "vanished": 0
+  }
+ ],
+ "decisions": 1500,
+ "development_decisions_with_ret_1h": {
+  "BEFORE_FIRST_CANDLE": 4,
+  "VALUE": 535,
+  "VENDOR_NO_DATA": 2
+ },
+ "fetch_scope": {
+  "DEVELOPMENT": 541,
+  "NOT_FETCHED_SEALED": 62,
+  "NO_POOL_AT_DECISION": 322,
+  "OUT_OF_SCOPE_CHAIN": 575
+ },
+ "first_export_utc": 1791410035.0,
+ "key_conflict": 57,
+ "last_export_utc": 1792750826.0,
+ "mints": 247,
+ "responses": {
+  "by_http": {
+   "200": 132,
+   "429": 15
+  },
+  "by_identity": {
+   "MINT_IS_QUOTE": 9,
+   "None": 15,
+   "OK_BASE": 114,
+   "OK_TOKEN_PARAM": 9
+  },
+  "bytes": 10584719,
+  "candles_dropped_after_boundary": 98,
+  "candles_refused": 8212
+ },
+ "series": {
+  "by_kind": {
+   "first": 96,
+   "reread": 10,
+   "token": 9
+  },
+  "by_status": {
+   "IDENTITY_MISMATCH": 9,
+   "NO_DATA": 2,
+   "OK": 104
+  },
+  "complete_history": 58,
+  "rows": 115
+ },
+ "snapshots": {
+  "capture": 1500,
+  "provider": 1500
+ },
+ "values_by_group_and_reason": {
+  "capture": {
+   "candle:NOT_RETRIEVED_BY_DECISION": 6030,
+   "candle:NO_POOL_AT_DECISION": 3220,
+   "candle:OUT_OF_SCOPE_CHAIN": 5750,
+   "cross:NOT_RETRIEVED_BY_DECISION": 603,
+   "cross:NO_POOL_AT_DECISION": 322,
+   "cross:OUT_OF_SCOPE_CHAIN": 575,
+   "history:ABSENT_IN_SNAPSHOT": 457,
+   "history:NO_PRIOR_DECISION": 494,
+   "history:VALUE": 3549,
+   "thesis:ABSENT_IN_SNAPSHOT": 3379,
+   "thesis:VALUE": 19121,
+   "token:ABSENT_IN_SNAPSHOT": 590,
+   "token:VALUE": 910,
+   "universe:VALUE": 3000
+  },
+  "provider": {
+   "candle:BEFORE_FIRST_CANDLE": 66,
+   "candle:NOT_FETCHED_SEALED": 620,
+   "candle:NO_POOL_AT_DECISION": 3220,
+   "candle:OUT_OF_SCOPE_CHAIN": 5750,
+   "candle:VALUE": 5324,
+   "candle:VENDOR_NO_DATA": 20,
+   "cross:ABSENT_IN_SNAPSHOT": 20,
+   "cross:NOT_FETCHED_SEALED": 62,
+   "cross:NO_POOL_AT_DECISION": 322,
+   "cross:OUT_OF_SCOPE_CHAIN": 575,
+   "cross:VALUE": 519,
+   "cross:VENDOR_NO_DATA": 2,
+   "history:ABSENT_IN_SNAPSHOT": 457,
+   "history:NO_PRIOR_DECISION": 494,
+   "history:VALUE": 3549,
+   "thesis:ABSENT_IN_SNAPSHOT": 3379,
+   "thesis:VALUE": 19121,
+   "token:ABSENT_IN_SNAPSHOT": 590,
+   "token:VALUE": 910,
+   "universe:VALUE": 3000
+  }
+ }
+}
