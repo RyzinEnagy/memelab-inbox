@@ -143,3 +143,12 @@ Wrong but plausible: label each target from whichever read covers its window (th
 - These are price-path labels: no fill, size, depth or proceeds are claimed (PRICE_PATH_NOT_PROCEEDS, NO_HISTORICAL_EXECUTABLE_DEPTH).
 
 ## Post-commit results
+
+Run by the orchestrator on the committed tree at `4565e0b`, 2026-10-24 (the phase agent stopped at the provider usage limit before it could run them):
+
+- `python -m pytest tests -q -p no:cacheprovider`: exit 1, `1 failed, 1107 passed in 165.16s (0:02:45)`. The only failure is the known clock-dependent `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`. The stray `data/reports/<stamp>_BRETT_0x532f.md` and `data/memelab.sqlite-shm`/`-wal` were removed by hand; tracked `data/memelab.sqlite` sha256 unchanged.
+- `python -m memelab social guard`: `"violations": []`.
+- `python tools/release_audit.py --history`: `Needs action: no.`
+- `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py`: `"problems": []`, seal sha256 `d5059baeb07099d5d73d74249d4487e362cb38b2e1dafe974139d2d4d0d25390`.
+
+Not yet run: the independent skeptic (PI-D-013) and the frozen 48 h revision re-read (PI-D-018, PI-D-041). Phase 06 stays NEEDS_REVIEW.

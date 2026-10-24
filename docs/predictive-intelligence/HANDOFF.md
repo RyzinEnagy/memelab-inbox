@@ -1,44 +1,52 @@
 # Predictive Intelligence: handoff
 
-Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Phase 06 evidence: `audits/predictive-intelligence/phase_06/` (PHASE_06_EVIDENCE.md, PHASE_06_RESULTS.json, ACCEPTANCE_CHECKLIST.md, SKEPTIC_PACKET.md, labels/, data/, evidence/, probes/, raw/, sealed/). Earlier phases stay in `phase_00/` to `phase_05/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-043). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_06/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
-## Position
+## Position on 2026-10-24
 
-- Phase 06 (outcome label registry and censoring): NEEDS_REVIEW, 2026-10-24, first pass. Waiting for the orchestrator's independent skeptic (PI-D-013) and for the frozen 48 h revision re-read, which cannot run before 2026-10-26T13:05Z (PI-D-041 item 5).
-- Branch `feature/predictive-intelligence`, Phase 06 commits on top of `ed82f3a` (Phase 05 PASS): the deliverables commit and a records commit on top of it (read the hashes with `git log -2`). Not pushed. Spend 0 credits; 381 free GeckoTerminal calls.
-- Code: `memelab/predictive/labels.py` (new, standard library only, flag OFF, imported by no existing module); `contract.py` changed only by change control CC-03 (registry fingerprint `4b4aabce...`, PI-D-040); one docstring line in `__init__.py`. Tests: `tests/test_predictive_labels.py` (41), fixture `tests/fixtures/predictive/labels_hand_trace.json`; `tests/test_predictive_contract.py` re-pinned. Nothing under `inbox/`, `state/` or `data/` changed.
+- Elving stopped the run after Phase 06's first pass and asked for handoff records (PI-D-042). No later phase was started.
+- Phases 00 to 05: PASS, each with an independent skeptic review and a repair pass folded in, re-verified by the orchestrator and pushed.
+- Phase 06 (outcome labels and censoring): NEEDS_REVIEW. Deliverables committed at `4565e0b`; post-commit checks run by the orchestrator (suite `1 failed, 1107 passed`, guard 0 violations, release audit exit 0, seal check 0 problems). Two items open: the independent skeptic, and the frozen 48 h revision re-read.
+- Branch `feature/predictive-intelligence` on GitHub, tip = the stop-records commit on top of `4565e0b` (read it with `git log -2`). `main` untouched. No pull request.
+- Spend: 0 Firecrawl credits. About 680 free GeckoTerminal calls in total.
 
-## What Phase 06 holds
+## What exists now
 
-- Labels for exactly T1 24 h, T1b 6 h and T2 24 h version 1, from `token=<mint>` GeckoTerminal reads, one read per decision, the end-time candle rule, the frozen tie rule, pending before maturity, censoring with the conservative lens, and absence evidence for no-trade and halt classes (CC-03).
-- Development labels (decisions before 2026-10-17, matured before then): T1 136 (34 TARGET_FIRST, 70 INVALIDATION_FIRST, 1 AMBIGUOUS_BAR, 31 NEITHER), T1b 224 (26, 67, 1, 129, 1 NO_TRADES_AFTER_ENTRY), T2 131 (28 DRAWDOWN_50, 0 TRADING_HALT, 103 NO_SEVERE_EVENT). Censored VENDOR_OR_ROUTE_GAP 39, 41, 37; UNVERIFIABLE 0.
-- Holdout labels sealed in `phase_06/sealed/holdout_labels.jsonl.gz` (sha256 `e695500d...`), 99 sealed files hashed in `SEAL.json` (digest `d5059bae...`), `probes/check_seal.py` exit 0; holdout counts and censoring only: labelled 67, 69, 60, T2 7 pending.
-- The phase gate `labels.training_labels(con, as_of, target)`: matured development labels only, bake-off and sealed labels refused.
-- Evidence: offline rebuild from the committed archive 0 differences; 25 of 25 mutations caught; hand-checked fixture (6 cases) and real traces (4 shapes); cross-target invariants 0 violations; revisions at 0.5 to 2.6 h: 0 close or volume changes, 0 label changes.
+- Targets frozen before any price data was read (Phase 01, fingerprint checked by tests): T1 +25% before -15% within 24 h; T1b the same within 6 h; T2 a fall to half the reference price or trading stopping within 24 h. Price-path labels only, no fill, size, depth or profit claims. The exit-adjusted target is BLOCKED (no historical depth); a liquidity target needs a forward collector (PI-D-020, proposed, needs Elving).
+- Decision unit and time: an exact thesis row, timed by the first state export on `main` that holds it (PI-D-015, PI-D-021). `theses.created_at` is never used as decision time (PI-D-011).
+- Library choice (Phases 02 to 04): 132 repos found, 30 audited at pinned commits, ranked top ten with a blind rescore. The engine core is plain numpy and runs offline (PI-D-031). scikit-learn, LightGBM, MAPIE, lifelines and river stay in a research venv, never the lab's runtime. MiroFish scored 8 of 100: AGPL, needs paid LLM and Zep, runs do not repeat, reports success when the LLM is down; isolated mock-only, no paid use approved.
+- Code (flag OFF, imported by no existing module): `memelab/predictive/` contract.py, decisions.py, runtime.py, store.py, sources.py, features.py, labels.py, with `tests/test_predictive_*.py`.
+- Data: point-in-time feature store (1,500 decisions, 3,000 snapshots) and labels, rebuilt offline from committed raw GeckoTerminal bodies (`phase_05/raw/`, `phase_06/raw/`) plus git history. Development labels: T1 136 (34 positive), T1b 224 (26), T2 131 (28). Holdout labels are sealed in `phase_06/sealed/` (counts only; open only in Phase 12 after `check_seal.py`).
+- The honest outlook stated in Phase 01 still holds: with about 9 decision days of development data from one market regime, the likely result is "no measurable skill over the base rate" or not enough history. Data from 2026-10-24 on is the real prospective test.
 
-## Tests
+## New since Phase 00: a backtesting module on another branch
 
-- Entry gate at `ed82f3a`: `1 failed, 1066 passed in 152.58s` (known failure only).
-- Before commit: `1106 passed, 1 deselected` (known failure deselected); guard 0 violations; release audit "Needs action: no".
-- Post-commit results: see PHASE_06_EVIDENCE.md "Post-commit results".
+Another session built `memelab/backtest/` on `origin/feature/backtesting` (scenario-only CONDITIONAL RELEASE accepted by Elving, pull request #4 open, hourly shadow store on his computer at `D:\memelab\backtesting_live`). Phase 00's BACKTEST_NOT_AVAILABLE was correct when checked but is now partly out of date. Before Phase 07, read that branch and decide on an adapter so the two efforts do not keep two GeckoTerminal loaders or two outcome ledgers (PI-D-043).
 
-## Blockers and open items
+## Open items, in order
 
-- The 48 h revision re-read of the 16 sampled reads: run `python -B audits/predictive-intelligence/phase_06/probes/make_labels.py reread48` at or after 2026-10-26T13:49Z (it refuses earlier), then fold the result into the evidence. Until then no fit may claim the frozen revision check. The orchestrator or Elving may instead record a decision that moves it (for example to Phase 07's entry, before any fit).
-- PI-D-020 (forward depth and quote collector) stays PROPOSED for Elving.
+1. Phase 06 skeptic: run an independent skeptic on `audits/predictive-intelligence/phase_06/SKEPTIC_PACKET.md` (brief: `orchestration/SKEPTIC_BRIEF.md`), then a repair pass that folds the review into `phase_06/skeptic/`.
+2. Phase 06 48 h revision re-read: `python -B audits/predictive-intelligence/phase_06/probes/make_labels.py reread48`, at or after 2026-10-26T13:49Z (it refuses earlier). It needs the development store; if the cloud workspace was reclaimed, rebuild the stores first from the committed raw archives (see `phase_05/data/FEATURE_STORE_CONTRACT.md` and `phase_06/labels/TARGET_SCHEMA.md`).
+3. Mark Phase 06 PASS only when both are done (or a recorded decision moves the re-read), then push.
+4. Reconcile with `feature/backtesting` (PI-D-043), then Phase 07 (transparent baselines).
 
-## Approvals needed
+## Waiting on Elving
 
-None for the work done. Paid data, LLM, Zep or MiroFish use, any scheduled collector, copying AGPL or GPL code, adding a research package to the lab's runtime, or a merge into `main` need Elving (PI-D-005, PI-D-032).
+- PI-D-020: a scheduled forward collector for pool depth and quotes (needed for any liquidity or executable target). Not started without his approval.
+- Any paid data, LLM, Zep or MiroFish use; adding research packages to the lab's runtime; a merge into `main`.
 
-## Next
+## Lab rules that still bind
 
-After the skeptic's repair pass and the 48 h re-read (or a recorded decision on its timing): Phase 07 (transparent predictive baselines), fitting only through `labels.training_labels` on the development store with the constraints in ROADMAP.md "Known constraints carried from Phase 06".
+Research only: no trades, no wallets with signing authority, no seed phrases or private keys, no credentials printed or committed. No change under `inbox/`, `state/` or `data/` on this branch. Existing 100-point score and fatal-flaw overrides unchanged. Forecasts stay a separate evidence section with the flag OFF.
 
-## Exact next command
+## Exact next commands
 
 ```
-cd /home/claude/memelab-inbox && git checkout feature/predictive-intelligence && git log -3 --oneline && python -B audits/predictive-intelligence/phase_06/probes/check_seal.py && python -m pytest tests/test_predictive_labels.py tests/test_predictive_contract.py -q && python -m pytest tests -q
+git clone https://github.com/RyzinEnagy/memelab-inbox.git && cd memelab-inbox
+git checkout feature/predictive-intelligence && git log -3 --oneline
+pip install pytest
+python -B audits/predictive-intelligence/phase_06/probes/check_seal.py
+python -m pytest tests -q
 ```
 
-Expect the Phase 06 commits on top of `ed82f3a`, `"problems": []`, `107 passed`, and `1 failed, 1107 passed` (known failure only); then remove `data/reports/*_BRETT_*.md` by hand.
+Expect `"problems": []` from the seal check and `1 failed, 1107 passed` from the suite (only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`, a known clock-dependent failure). Then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand.
