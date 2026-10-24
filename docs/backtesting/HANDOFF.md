@@ -5,7 +5,7 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 ## Position
 
 - Phase completed: 17 (release hardening), 2026-10-23. State: PASS, decision CONDITIONAL RELEASE, scenario-only research mode (docs/backtesting/RELEASE_REPORT.md). Note: audits/backtesting/PHASE_17.md. Phases 00-16 PASS (16 for scenario-only mode; strict reading FAILED; G16 and G27 await Elving's acceptance).
-- Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f, Phase 08 976e747, Phase 09 58abf7d, Phase 10 941e4ed, Phase 11 38d2fcc, Phase 12 999d1eb, Phase 13 4338810, Phase 14 30863a6, Phase 15 41488ad, Phase 16 repair passes 47a7845, 0e63563, c42045b, 7c7b582, record f50b24d; Phase 17 fcb676a, b5039be. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
+- Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f, Phase 08 976e747, Phase 09 58abf7d, Phase 10 941e4ed, Phase 11 38d2fcc, Phase 12 999d1eb, Phase 13 4338810, Phase 14 30863a6, Phase 15 41488ad, Phase 16 repair passes 47a7845, 0e63563, c42045b, 7c7b582, record f50b24d; Phase 17 ddc0794, fcb676a, b5039be, 52c605d, 03fd506, bc7ce30, d18a07a (re-check residual fixes), 7967550 (final clean-install log). Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
 - Spend so far: Firecrawl about 32 of ~100 calls; Maxun 5 of 5 trial credits (0 left, 0 schedules); Crawl4AI local only; Solana public RPC and Jupiter quotes read-only (about 20 calls).
 
 ## Commands and exits
@@ -41,6 +41,7 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 | full suite after Phase 15 / release audit / release e2e | 1 / 0 / 0 | C-1 only, 990 passed / Needs action: no / PASS 78 of 78 |
 | Phase 16: independent reviewer, 5 passes (E2E_RESULTS.md) / every mutation set / full suite / release audit / release e2e | - / 0 / 1 / 0 / 0 | PASS for scenario-only mode / all caught / C-1 only, 1024 passed / Needs action: no / PASS 78 of 78 |
 | Phase 17: clean install / every builder mutation set / full suite / release audit / release e2e | 0 / 0 / 1 / 0 / 0 | 9 steps PASS / 221 of 221 / C-1 only, 1029 passed / Needs action: no / PASS 78 of 78 |
+| Phase 17 after the reviewer's re-check (AGREED) and the R3 to R5 fixes, at 7967550 | 0 / 0 / 1 / 0 / 0 | clean install PASS at d18a07a, checker 72 of 72 / 222 of 222 / C-1 only, 1030 passed / Needs action: no / PASS 78 of 78 |
 
 ## Proven
 
@@ -53,6 +54,10 @@ Universe spans 17 days. Catalyst history thin. Helius key absent in this workspa
 ## Next eligible phase
 
 None in the package. Open for Elving: accept or reject G16 and G27 (rejecting either turns the decision to HOLD), accept the CONDITIONAL RELEASE, decide whether to approve an hourly scheduled task for `backtest refresh` plus `backtest outcomes track`, and whether to open a pull request from feature/backtesting (not done). The Maxun evaluation robot can be deleted in the Maxun console.
+
+## Delivery
+
+Authorized by Elving at the start of this work (the "Both" answer): push a new feature/backtesting branch, fast-forward only, no force, no merge, no pull request, main untouched; and a git bundle plus a zip in D:\memelab. The push record is added in the commit after this one.
 
 ## Roadmap changes
 
