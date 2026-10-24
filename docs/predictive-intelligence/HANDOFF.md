@@ -4,8 +4,8 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 
 ## Position
 
-- Phase 04 (adoption, install, adapter or build bake-off), 2026-10-24, repair pass done: the orchestrator's independent skeptic (2 MATERIAL, 8 MINOR, `phase_04/skeptic/PHASE_04_SKEPTIC.md`) is folded in (PI-D-035). Final status, the post-commit test result and the content-guard and release-audit results are in `phase_04/PHASE_04_RESULTS.json` and the closing section of PHASE_04_EVIDENCE.md, written by the records commit on top of the repair commit.
-- Branch `feature/predictive-intelligence`, four Phase 04 commits on top of `a146a29`: first pass `4a19d71` and its records commit `84f8c86`, then the repair commit and its records commit (read the hashes with `git log -4`). Not pushed. Spend 0 credits.
+- Phase 04 (adoption, install, adapter or build bake-off): PASS, 2026-10-24, after the repair pass that folds in the orchestrator's independent skeptic (2 MATERIAL, 8 MINOR, `phase_04/skeptic/PHASE_04_SKEPTIC.md`; PI-D-035). Post-commit suite, content guard and release audit with history are clean (`phase_04/postcommit/`, `phase_04/PHASE_04_RESULTS.json`).
+- Branch `feature/predictive-intelligence`, four Phase 04 commits on top of `a146a29`: first pass `4a19d71` and its records commit `84f8c86`, the repair commit `783fde4` and the records commit on top of it (read its hash with `git log -1`; this file is part of it). Not pushed. Spend 0 credits.
 - Code added in Phase 04: `memelab/predictive/runtime.py` (standard library only, flag OFF, imported by no existing module), `tests/test_predictive_runtime.py`, `tests/fixtures/predictive/copyleft_fingerprints.json` (hashes only), `docs/predictive-intelligence/locks/` (two hash locks). The repair also changed `memelab/predictive/contract.py` in `enabled()` only (malformed config means OFF; registry fingerprint unchanged). No other file under `memelab/` or `tests/` changed; nothing under `inbox/`, `state/` or `data/` changed. The ignored venv `hazardous/` at the repository root was removed.
 
 ## What the repair changed
@@ -41,12 +41,12 @@ From the repository root: `python -m pytest tests/test_predictive_runtime.py tes
 
 - Entry gate at `a146a29`: `1 failed, 858 passed in 145.42s`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (known).
 - First pass after `4a19d71`: `1 failed, 904 passed`. Orchestrator at `84f8c86`: `1 failed, 904 passed`.
-- Repair pass, after the repair commit: recorded in PHASE_04_RESULTS.json by the records commit (expected `1 failed, 993 passed`: 858 earlier tests plus 135).
+- Repair pass, after the repair commit `783fde4`, on the committed tree: exit 1, `1 failed, 993 passed in 152.42s (0:02:32)` (858 earlier tests plus 135), only the known failure; `python -m memelab social guard` exit 0 with no violations; `python tools/release_audit.py --history` exit 0, "Needs action: no".
 - Strays after each run: `data/reports/<stamp>_BRETT_0x532f.md`, `data/memelab.sqlite-shm`, `-wal`; remove by hand; tracked DB sha256 `068287c0...` unchanged.
 
 ## Blockers and open items
 
-- None for Phase 04 once the orchestrator verifies the repair and records commits.
+- None. The orchestrator verifies the four Phase 04 commits and pushes.
 - PI-D-020 (forward depth and quote collector) stays PROPOSED for Elving.
 
 ## Approvals needed

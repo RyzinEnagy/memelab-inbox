@@ -1,0 +1,14 @@
+Release audit summary (python tools/release_audit.py --history), commit 783fde4c45fd0ddc23d3d4434592159fb37271af, exit 0.
+
+The full report quotes the matched rule names line by line; storing it in a tracked file trips the repository's own
+test (tests/test_release_tools.py, no trade-execution or signing words in tracked files outside the documented
+paths), so only this summary is kept (PI-D-030). Rerun the command for the full report.
+
+- Needs action: no
+- Credential and key-material shapes in tracked files: none (2 reviewed placeholders: tests/test_social_alerts.py, and a test id of 64 "A" characters in phase_04/adoption/evidence/old_code_check.json added by the repair pass)
+- The same shapes in public history: none in 1,892 blobs from every ref (2 reviewed hits, same reasons)
+- Trade-execution and signing code: none; 55 reviewed hits (the hard rules text under docs/ and skills/, the wallet refusal tests and the audit tool's own patterns), none in this phase's files
+- Network paths in non-test code: unchanged from the first pass; the repair adds no row (the copied skeptic scripts and the new prototypes have no network code); memelab/predictive/runtime.py has none
+- Content guard on this branch: exit 0, violations 0; applied to origin/main at 98338a8: violations 0
+- Migrations: migrate_tracked_db exit 0 and migrate_main_db exit 0, social schema 0 to 12, legacy rows unchanged
+- Static checks: 387 Python files, 0 syntax errors; 16 JavaScript files, 0 node --check errors

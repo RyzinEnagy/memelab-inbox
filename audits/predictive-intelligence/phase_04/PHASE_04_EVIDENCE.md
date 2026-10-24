@@ -1,6 +1,6 @@
 # Phase 04 evidence: adoption, install, adapter or build bake-off
 
-Status: **REPAIR APPLIED**, final status set by the records commit on top of the repair commit (closing section). First pass NEEDS_REVIEW; the orchestrator's independent skeptic (PI-D-013, 2 MATERIAL, 8 MINOR) is folded in by the repair pass below (PI-D-035).
+Status: **PASS** (repair pass): the orchestrator's independent skeptic (PI-D-013, 2 MATERIAL, 8 MINOR) is folded in (PI-D-035), and the post-commit suite, content guard and release audit on the repair commit `783fde4` hold (section "Post-commit results, repair pass"). The first pass was NEEDS_REVIEW.
 
 | Item | Value |
 |---|---|
@@ -8,7 +8,7 @@ Status: **REPAIR APPLIED**, final status set by the records commit on top of the
 | HEAD before | `a146a29d17c47a0bdfdef85df2e7a9e2f884d50f` (Phase 03 records commit) |
 | Phase start (UTC) | 2026-10-24T07:55:08Z (entry gate) |
 | Acceptance checklist written | 2026-10-24T07:59Z, before any change (`ACCEPTANCE_CHECKLIST.md`, B1 to B22, one dated amendment at 08:20Z widening B16 to the P31 fixture and the lock folder) |
-| Commits | first pass: deliverables commit `4a19d7135db809ed30f8bb5ce2390a800d1f92c3` (2026-10-24T09:04Z) and records commit `84f8c867e33c639f36a7f8c777f6cc848e6f31c9`; repair pass: the repair commit and the records commit on top of it (hashes: `git log -2`) |
+| Commits | first pass: deliverables commit `4a19d7135db809ed30f8bb5ce2390a800d1f92c3` (2026-10-24T09:04Z) and records commit `84f8c867e33c639f36a7f8c777f6cc848e6f31c9`; repair pass: repair commit `783fde4c45fd0ddc23d3d4434592159fb37271af` (2026-10-24T10:06Z) and the records commit on top of it (its hash: `git log -1`) |
 | Spend | 0 Firecrawl credits; free calls only (below) |
 
 ## Entry gate and standing checks
@@ -70,10 +70,10 @@ Before the commit, on the staged tree: `python -m pytest tests -q` exit 1, `1 fa
 | B14 | OK after the repair (m2, m3): 0 findings in every code file of the working tree (411, `audits/` and root scripts included); fixture spec checked at load and a self-test text reproduced; sha1 and lower-casing mutations caught; positive control against the pinned MiroFish clone flags at least 80% of its backend files when the clone is present |
 | B15 | OK after the repair (M1): the skeptic's two lines are refused by `check_lock` and by `install_argv` before pip starts (test cases and `hostile_setup_demo.py` case E); pip run directly with the lab's flags still builds that sdist (control, so the guard is required); committed locks hold only known wheel digests (test) |
 | B16 | OK: `git diff --name-only a146a29..HEAD` lists only `audits/predictive-intelligence/`, `docs/predictive-intelligence/`, `memelab/predictive/runtime.py`, `memelab/predictive/contract.py` (`enabled()` only, Amendment 2; fingerprint `91d03c76...` unchanged, contract tests unedited and passing), `tests/test_predictive_runtime.py` and `tests/fixtures/predictive/copyleft_fingerprints.json`; no existing test changed; no new test needs a third-party package; strays removed; `data/memelab.sqlite` sha256 unchanged |
-| B17 | first pass OK (below); repair pass: recorded by the records commit (closing section) |
+| B17 | OK: first pass and repair commit, each on the committed tree: suite with only the known failure, content guard 0 violations, release audit exit 0 (below) |
 | B18 | OK: no wheel, venv, pickle, weights, raw API body, token, file over 1 MB or social content in the phase folder (largest file under 500 KB); labels marked BAKEOFF_ONLY and refused as a label source by `runtime.refuse_bakeoff_labels` (test) |
 | B19 | OK: COST_LEDGER rows for the first pass and the repair pass, 0 credits |
-| B20 | OK: records written; status set by the records commit |
+| B20 | OK: records written; PASS only after the repair and its post-commit checks |
 | B21 | OK: every new or changed file scanned before each commit for en and em dashes, curly quotes and 20 marketing words: 0 hits |
 | B22 | first pass two commits; repair pass one repair commit and one records commit (Amendment 2); no push |
 
@@ -87,6 +87,18 @@ Before the commit, on the staged tree: `python -m pytest tests -q` exit 1, `1 fa
 | System interpreter | `pip freeze \| sha256sum` | 0 | `4bbf5c51...`, unchanged since the start |
 
 Files: `postcommit/first_pass/pytest_summary.txt`, `social_guard.out.txt`, `release_audit_history.summary.txt` (summary only, PI-D-030), `summary.json` (moved from `postcommit/` in the repair pass, unchanged).
+
+## Post-commit results, repair pass (repair commit `783fde4c45fd0ddc23d3d4434592159fb37271af`)
+
+| Check | Command | Exit | Result |
+|---|---|---|---|
+| Full suite | `python -m pytest tests -q` (10:06:04Z to 10:08:37Z) | 1 | `1 failed, 993 passed in 152.42s (0:02:32)`; only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (known); 135 runtime tests pass; stray `data/reports/20261024_1006_BRETT_0x532f.md` and the sqlite `-shm` and `-wal` removed by hand; `data/memelab.sqlite` sha256 `068287c0...` unchanged |
+| Content guard | `python -m memelab social guard` | 0 | `"violations": []` (1,204 files scanned) |
+| Release audit | `python tools/release_audit.py --history` | 0 | "Needs action: no"; one new reviewed placeholder shape (a test id of 64 `A` characters in `evidence/old_code_check.json`); no new network-path row; no trade-execution or signing hit in this phase's files |
+| Paths | `git diff --name-only a146a29..HEAD` | 0 | only the B16 set (Amendment 2) |
+| System interpreter | `pip freeze \| sha256sum` | 0 | `4bbf5c51...`, unchanged since the start |
+
+Files: `postcommit/pytest_summary.txt`, `postcommit/social_guard.out.txt`, `postcommit/release_audit_history.summary.txt` (summary only, PI-D-030), `postcommit/summary.json`. `git status` clean after the strays were removed.
 
 ## Sources
 
@@ -160,7 +172,7 @@ Each finding was verified first against the first-pass code (the skeptic's scrip
 | Banned defaults | `python -B banned_scan.py ../evidence/banned_scan.json` | 0 | 28 files, 0 hits |
 | Skeptic probes | from `skeptic/p04/`: `python -I -B skeptic_04_runtime_probes.py REPO TMP`, `python -I -B skeptic_04_lock_bypass.py REPO /home/claude/pi_research/p04/wheels_setuptools OUT` | 0 | no exception escapes; no bypass |
 
-Before the repair commit, on the working tree and then the staged tree: `python -m pytest tests -q` exit 1, `1 failed, 993 passed in 148.46s (0:02:28)` (10:01:11Z to 10:03:40Z; only the known catalyst failure; stray `data/reports/20261024_1001_BRETT_0x532f.md` and the sqlite `-shm` and `-wal` removed by hand; `data/memelab.sqlite` sha256 `068287c0...` unchanged); content guard exit 0, `violations: []` (1,204 files); release audit with history exit 0, "Needs action: no" (one new reviewed placeholder shape: a test id of 64 `A` characters in `evidence/old_code_check.json`). The results that count are the post-commit ones (closing section).
+Before the repair commit, on the working tree and then the staged tree: `python -m pytest tests -q` exit 1, `1 failed, 993 passed in 148.46s (0:02:28)` (10:01:11Z to 10:03:40Z; only the known catalyst failure; stray `data/reports/20261024_1001_BRETT_0x532f.md` and the sqlite `-shm` and `-wal` removed by hand; `data/memelab.sqlite` sha256 `068287c0...` unchanged); content guard exit 0, `violations: []` (1,204 files); release audit with history exit 0, "Needs action: no" (one new reviewed placeholder shape: a test id of 64 `A` characters in `evidence/old_code_check.json`). The results that count are the post-commit ones (section "Post-commit results, repair pass").
 
 Disagreements with the review: none material. Two precisions: the install flags alone cannot stop per-line options, so the guard and `install_argv` are both required and documented as such; a callable that returns an HTTP error status instead of raising is detected only when the caller supplies `is_failure` (documented, not automatic).
 

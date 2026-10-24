@@ -1,0 +1,40 @@
+{
+ "commit": "783fde4c45fd0ddc23d3d4434592159fb37271af",
+ "checks": [
+  {
+   "name": "B17 post-commit full suite (repair commit)",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 993 passed in 152.42s (0:02:32); only test_dedup_corroboration_resurface_denial (known); 135 runtime tests pass",
+   "pass": true
+  },
+  {
+   "name": "B17 post-commit content guard (repair commit)",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "violations [] (1,204 files)",
+   "pass": true
+  },
+  {
+   "name": "B17 post-commit release audit (repair commit)",
+   "command": "python tools/release_audit.py --history",
+   "exit_code": 0,
+   "result": "Needs action: no",
+   "pass": true
+  },
+  {
+   "name": "B16 paths and data (repair commit)",
+   "command": "git diff --name-only a146a29..HEAD; sha256sum data/memelab.sqlite",
+   "exit_code": 0,
+   "result": "only audits/predictive-intelligence/, docs/predictive-intelligence/, memelab/predictive/runtime.py, memelab/predictive/contract.py (enabled() only), tests/test_predictive_runtime.py, tests/fixtures/predictive/copyleft_fingerprints.json; tracked DB 068287c0... unchanged; strays removed",
+   "pass": true
+  },
+  {
+   "name": "B11 system interpreter (repair pass)",
+   "command": "pip freeze | sha256sum",
+   "exit_code": 0,
+   "result": "4bbf5c51... unchanged",
+   "pass": true
+  }
+ ]
+}

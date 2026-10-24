@@ -1,13 +1,13 @@
 {
  "phase": "04",
- "status": "NEEDS_REVIEW",
+ "status": "PASS",
  "head_before": "a146a29d17c47a0bdfdef85df2e7a9e2f884d50f",
  "first_pass_commits": [
   "4a19d7135db809ed30f8bb5ce2390a800d1f92c3",
   "84f8c867e33c639f36a7f8c777f6cc848e6f31c9"
  ],
- "head_after": null,
- "head_after_note": "repair commit on top of 84f8c86; status set by the records commit that records the post-commit checks",
+ "head_after": "783fde4c45fd0ddc23d3d4434592159fb37271af",
+ "head_after_note": "records commit on top of the repair commit head_after (git log -1; this file is part of it)",
  "skeptic": {
   "review": "audits/predictive-intelligence/phase_04/skeptic/PHASE_04_SKEPTIC.md",
   "material": 2,
@@ -189,6 +189,41 @@
    "exit_code": 0,
    "result": "4bbf5c51... both times",
    "pass": true
+  },
+  {
+   "name": "B17 post-commit full suite (repair commit)",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 993 passed in 152.42s (0:02:32); only test_dedup_corroboration_resurface_denial (known); 135 runtime tests pass",
+   "pass": true
+  },
+  {
+   "name": "B17 post-commit content guard (repair commit)",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "violations [] (1,204 files)",
+   "pass": true
+  },
+  {
+   "name": "B17 post-commit release audit (repair commit)",
+   "command": "python tools/release_audit.py --history",
+   "exit_code": 0,
+   "result": "Needs action: no",
+   "pass": true
+  },
+  {
+   "name": "B16 paths and data (repair commit)",
+   "command": "git diff --name-only a146a29..HEAD; sha256sum data/memelab.sqlite",
+   "exit_code": 0,
+   "result": "only audits/predictive-intelligence/, docs/predictive-intelligence/, memelab/predictive/runtime.py, memelab/predictive/contract.py (enabled() only), tests/test_predictive_runtime.py, tests/fixtures/predictive/copyleft_fingerprints.json; tracked DB 068287c0... unchanged; strays removed",
+   "pass": true
+  },
+  {
+   "name": "B11 system interpreter (repair pass)",
+   "command": "pip freeze | sha256sum",
+   "exit_code": 0,
+   "result": "4bbf5c51... unchanged",
+   "pass": true
   }
  ],
  "artifacts": [
@@ -198,7 +233,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_04/PHASE_04_EVIDENCE.md",
-   "sha256": "d1a9fb796df77b8639a23615cf0e010287fafefb49b4b9deaed37e8f9e74ba39"
+   "sha256": "66c2938e70d5b78ff31cabb8a36104be9e71cc1bd454895827d1d316917dbd6d"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/SKEPTIC_PACKET.md",
@@ -909,6 +944,22 @@
    "sha256": "6719b6b8ca0b59a49e92dacc49ee29acb07f82c4c8e453b485984de347577b98"
   },
   {
+   "path": "audits/predictive-intelligence/phase_04/postcommit/pytest_summary.txt",
+   "sha256": "14aa90ce0c24c18916ac390722dd30affc4273c17aa25dc9720f77a109dc14f9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/postcommit/release_audit_history.summary.txt",
+   "sha256": "d3022bbdedec9ec656284f77919a98af9a1d0c3229bb524915dea1376a605f53"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/postcommit/social_guard.out.txt",
+   "sha256": "51920663715784e6597bd279bd5db399a787d70a7e9bf5bd4869ddd8d8c783e4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/postcommit/summary.json",
+   "sha256": "ed17286b7872ef86d90f3465126f21791b6c2f34dbd0d74f1bb65317789cf12c"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_04/skeptic/PHASE_04_SKEPTIC.md",
    "sha256": "5e98f4ec46d5fff0fc605f1ee9e82b6f1ec5376725367894890219034bb0cb93"
   },
@@ -1029,5 +1080,5 @@
  ],
  "blockers": [],
  "approvals_needed": [],
- "next_eligible_phase": "none until the records commit records the post-commit checks"
+ "next_eligible_phase": "05 (immutable temporal evidence and feature store), after the orchestrator verifies Phase 04"
 }
