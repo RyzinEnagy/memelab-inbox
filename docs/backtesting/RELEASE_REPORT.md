@@ -83,13 +83,14 @@ Every other finding from the independent audit (D1 to D11, N1 to N8, C1 to C4, T
 1. migration from empty;
 2. schema rollback and re-apply;
 3. offline import of the committed real GeckoTerminal responses;
-4. a deterministic run twice: the same run id within one commit (2783803032f6 at ddc0794; the id includes the commit), cache HIT the second time, and ledger f9d7dd89c462 at every commit;
+4. a deterministic run twice: the same run id both times (the id includes the commit, so it is listed with its commit in the hash table), cache HIT the second time, and ledger f9d7dd89c462 at every commit;
 5. an opportunity report with adversarial scenarios on the real PAID captures;
 6. analyze with the policy off and on: only the one backtest line differs, and the lab database is byte-identical;
-7. 239 backtest tests passed;
-8. the release audit reports "Needs action: no".
+7. 244 backtest tests passed;
+8. the release audit reports "Needs action: no";
+9. the reviewer's document checker passes every check of the hash table, paths, policy defaults, runbook commands and corpus counts against the code, the evidence and a corpus copy.
 
-Full suite at HEAD: 1024 passed, 1 failed (C-1). Every mutation set is caught: p05 to p16, p16_repair and p16_repair2. `tools/release_e2e.py`: PASS 78 of 78, no network.
+Full suite after the Phase 17 code changes: 1029 passed, 1 failed (C-1). Every builder mutation set is caught: p05 to p16, p16_repair, p16_repair2 and p17_builder, 221 of 221. `tools/release_e2e.py`: PASS 78 of 78, no network.
 
 ## Final hashes
 
