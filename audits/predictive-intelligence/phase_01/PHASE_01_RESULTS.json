@@ -1,0 +1,283 @@
+{
+ "phase": "01",
+ "title": "Freeze the measurable prediction objectives and determine the minimally invasive architecture",
+ "status": "NEEDS_REVIEW",
+ "status_reason": "All gate items hold on the phase agent's own checks; the independent skeptic is run by the orchestrator (PI-D-013) and must be folded in by a repair pass before PASS.",
+ "branch": "feature/predictive-intelligence",
+ "head_before": "94be1bf",
+ "pre_registration_commit": "b6f26218002a009e6d96bf17bde9188d5e809758",
+ "head_after": "Phase 01 content commit on top of b6f2621 (read with git log -1; this file is part of it)",
+ "generated_at_utc": "2026-10-24",
+ "registry_sha256": {
+  "pre_registered": "dd3b4576aa1e408052dd227e361aa2cbf4b38450994c3b5e6a2be5dc199fbccd",
+  "after_cc01": "9f8c9debdb66b28ab5d758c29d67f46f287965aa0d0bf2c1a64a94f9733d9912"
+ },
+ "primary_targets": [
+  "price_path_target_before_invalidation_24h",
+  "price_path_target_before_invalidation_6h",
+  "price_path_severe_drawdown_or_halt_24h"
+ ],
+ "checks": [
+  {
+   "name": "package checksums",
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "exit_code": 0,
+   "result": "41 of 41 OK",
+   "pass": true
+  },
+  {
+   "name": "checkout clean at start",
+   "command": "git status",
+   "exit_code": 0,
+   "result": "clean at 94be1bf",
+   "pass": true
+  },
+  {
+   "name": "entry gate full suite",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 785 passed in 137.59s; only tests/test_catalyst.py::test_dedup_corroboration_resurface_denial (known)",
+   "pass": true
+  },
+  {
+   "name": "predecessor key check PI-D-011",
+   "command": "python audits/predictive-intelligence/phase_01/probes/decision_universe_probe.py origin/main OUT push_events.json",
+   "exit_code": 0,
+   "result": "first-thesis write lag 149 mints, p50 16.92 min, max 116.5 min (matches Phase 00)",
+   "pass": true
+  },
+  {
+   "name": "export commit times vs GitHub push events",
+   "command": "GET https://api.github.com/repos/RyzinEnagy/memelab-inbox/events pages 1-3",
+   "exit_code": 0,
+   "result": "82 of 89 export commits matched, push minus commit 1 to 5 s; commit never before created_at or first_seen_at",
+   "pass": true
+  },
+  {
+   "name": "acceptance checklist before changes",
+   "input": "audits/predictive-intelligence/phase_01/ACCEPTANCE_CHECKLIST.md",
+   "result": "written 2026-10-24T01:31Z before deliverables and network calls",
+   "pass": true
+  },
+  {
+   "name": "pre-registration before price data",
+   "command": "git log -1 --format=%cI b6f2621; first GeckoTerminal call time in gt_coverage_sample.json",
+   "exit_code": 0,
+   "result": "commit 01:35:23Z, first call 01:36:23Z; probe computes coverage only",
+   "pass": true
+  },
+  {
+   "name": "GeckoTerminal coverage sample",
+   "command": "python audits/predictive-intelligence/phase_01/probes/gt_coverage_probe.py",
+   "exit_code": 0,
+   "result": "15 calls (1 HTTP 429); 10 decisions: 5 OK, 4 INELIGIBLE_NO_RECENT_TRADE, 1 HTTP_429; revision check 0 of 1000 changed",
+   "pass": true
+  },
+  {
+   "name": "gap matrix anchors",
+   "command": "python audits/predictive-intelligence/phase_01/probes/check_gap_anchors.py",
+   "exit_code": 0,
+   "result": "cells 88, facilities 11, needs 8, problems 0",
+   "pass": true
+  },
+  {
+   "name": "gap checker negative tests",
+   "input": "6 mutated CSV copies",
+   "result": "each exit 1 with the right message; unchanged copy exit 0",
+   "pass": true
+  },
+  {
+   "name": "document anchors",
+   "command": "python audits/predictive-intelligence/phase_01/probes/check_doc_anchors.py",
+   "exit_code": 0,
+   "result": "anchors 34, problems 0",
+   "pass": true
+  },
+  {
+   "name": "contract tests (P05, P08, P34, P46, P38, P13, P35, P01, P27, P06, CC-01)",
+   "command": "python -m pytest tests/test_predictive_contract.py -q -p no:cacheprovider",
+   "exit_code": 0,
+   "result": "21 passed",
+   "pass": true
+  },
+  {
+   "name": "mutation check",
+   "command": "python audits/predictive-intelligence/phase_01/probes/mutation_check.py",
+   "exit_code": 0,
+   "result": "10 of 10 mutations caught",
+   "pass": true
+  },
+  {
+   "name": "CC-01 coverage recompute offline",
+   "command": "python audits/predictive-intelligence/phase_01/probes/gt_coverage_recompute.py",
+   "exit_code": 0,
+   "result": "no decision changed eligibility",
+   "pass": true
+  },
+  {
+   "name": "final full suite",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 806 passed in 136.72s; same single known failure",
+   "pass": true
+  },
+  {
+   "name": "content guard and release tools with new files staged",
+   "command": "python -m pytest tests/test_content_guard.py tests/test_release_tools.py tests/test_predictive_contract.py -q -p no:cacheprovider",
+   "exit_code": 0,
+   "result": "38 passed",
+   "pass": true
+  },
+  {
+   "name": "tracked data untouched",
+   "command": "git diff --name-only 94be1bf -- inbox state data; sha256sum data/memelab.sqlite",
+   "exit_code": 0,
+   "result": "empty; 068287c0...a6679ca unchanged; strays removed",
+   "pass": true
+  },
+  {
+   "name": "writing style",
+   "input": "23 new or changed files",
+   "result": "no em or en dashes, no curly quotes, no marketing words",
+   "pass": true
+  },
+  {
+   "name": "independent skeptic",
+   "input": "SKEPTIC_PACKET.md",
+   "result": "pending: run by the orchestrator (PI-D-013)",
+   "pass": false
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/phase_01/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "08b1b6869292e4c11c8a9971de01dc16b7aa9684328e686a7ae4965476cb34ae"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/PHASE_01_EVIDENCE.md",
+   "sha256": "2297912625058582704f5f5ee66c49dc018fb8864dd25adec60b6683bc1b06a1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/SKEPTIC_PACKET.md",
+   "sha256": "42f4367bdace49a30243e32feb1271e4e733cb36bfb2435f1eabc2cacc4cc90e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/architecture/ACCEPTANCE_METRICS.md",
+   "sha256": "0cfe89ceef6def96e4778d4e94fa1d6cf2cc269538a933c0caf4e66c810032e5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/architecture/DEPENDENCY_GRAPH.md",
+   "sha256": "3e64fc19d3a1bd48b124704d697062b4bde7e504417292b0ecd6681271203102"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/architecture/GAP_MATRIX.csv",
+   "sha256": "880d629ed4b6b237ff0029313ac38c05a5c84f13d79dcb235a32f860723fca27"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/architecture/PLANNED_SEAMS.md",
+   "sha256": "94189cd435b3a476cadc9989fc457ca431b7569b16a2c275f0bce92d1594e634"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/architecture/TARGET_REGISTRY.md",
+   "sha256": "b90810fe359a6589f5809cbb5392d935696762e204054432f13da5c58da6b7b2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/probes/build_gap_matrix.py",
+   "sha256": "c7572f387e678ddf089611abc8220fee9c32f3365c409b638d8ff9dc98d9c748"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/probes/check_doc_anchors.py",
+   "sha256": "7587ae12cf09edfd14a88dfb8cd96162ea4dd02972dc1e3223269ec582e0da3d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/probes/check_gap_anchors.py",
+   "sha256": "8dd57bfd0ed9d986c1230775ee0eaa6d6c9eee2ec7dd0e53396db09245c91eb8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/probes/decision_universe_probe.py",
+   "sha256": "81eba01cff6ae981b686a87dcc6836c71a3e5e439b85652a19766bd4378e59e6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/probes/decision_universe_summary.json",
+   "sha256": "4d2a8df567297df9c866b552787533a6dfb607199503a5acf454082274183457"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/probes/gt_coverage_cc01.json",
+   "sha256": "03837ced6e09b92dd2fe7fad957fd173b8629e1c5cb58735b12835e7a902fe35"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/probes/gt_coverage_probe.py",
+   "sha256": "45a64a85cc7301e796b28aafe72f40370567b800a0990072cb45b01db7115075"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/probes/gt_coverage_recompute.py",
+   "sha256": "92ca1816feccd7b2ba043bb2f6b120255528b69b6d470da94afbae1fa5354798"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/probes/gt_coverage_sample.json",
+   "sha256": "b4c96925f1633184f6fc65353d6e7cceeda672be0117a4de65776be784332098"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/probes/mutation_check.py",
+   "sha256": "ef563e74f7ffc82f4f019390df0a82d101d5ef46cd23515311a8a36813c97f6d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/probes/power_simulation.py",
+   "sha256": "0af9e882a6e4a194359b8446be050e9d9668dd44899072246a2c0787f961995d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/probes/split_counts.json",
+   "sha256": "d35755bc28e23dfb3334ca8dce846a979c08bcc7c790e6e90efc0e5bc29266f2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_01/probes/split_counts.py",
+   "sha256": "6413d5487c195b3061c9008b4a866fbe24a9f32cd6dd8505aaf330b25ee2684d"
+  },
+  {
+   "path": "memelab/predictive/__init__.py",
+   "sha256": "1eded1e3617c04a8a150be215c012b5d02600e422239d192d0029bc3de8bd299"
+  },
+  {
+   "path": "memelab/predictive/contract.py",
+   "sha256": "aa7a7fe1f6598c8836bbe71fd4d0c057addf05bf111e8ec135dd1d5b81d451bb"
+  },
+  {
+   "path": "tests/test_predictive_contract.py",
+   "sha256": "8004d4ee976e704329d46d61789e23cd7d1cd153fe4034015b793879bdd3a0e9"
+  },
+  {
+   "path": "tests/fixtures/predictive/forecast_examples_format_only.json",
+   "sha256": "f97c5f3b2b19b4138fd075d75d45ee34dc0b23fc3aea0a69f7f1525abd601011"
+  },
+  {
+   "path": "docs/predictive-intelligence/DECISIONS.md",
+   "sha256": "07c73cbd0339132cce6fe2d48805d86872edb3fa374600fab04a2f2291da24f2"
+  },
+  {
+   "path": "docs/predictive-intelligence/ROADMAP.md",
+   "sha256": "ac668f4c35bed0cc645e16b398e58e269f8c54a41f402d08e29140c69016ca5c"
+  },
+  {
+   "path": "docs/predictive-intelligence/HANDOFF.md",
+   "sha256": "2e4fb8aed92deb71331cf3ba7b22ee10c7a554e4dd1de7a3669817cfa903bc58"
+  },
+  {
+   "path": "audits/predictive-intelligence/COST_LEDGER.md",
+   "sha256": "e3cf71eac7452007a57f6d9fdf375435c15c386bb57cefd3555d68cf38851d83"
+  }
+ ],
+ "limitations": [
+  "Coverage sample of 10 decisions; rates are signs only (Wilson 95% for 5 of 9: 27% to 81%).",
+  "Event counts are before eligibility; the retrospective holdout may fall below the 50-event minimum.",
+  "GeckoTerminal 5-minute retention beyond 17 days is UNKNOWN.",
+  "Provider lag 300 s is HEURISTIC.",
+  "7 of 89 export commit times have no push event to confirm them.",
+  "Power arithmetic assumes independent events; real detectability is lower.",
+  "All primary targets are price-path only; no executable or profit statement is possible."
+ ],
+ "blockers": [],
+ "approvals_needed": [
+  "PI-D-020 PROPOSED: forward depth and quote collector (scheduled job) for exit-adjusted and liquidity targets; not needed for Phase 02"
+ ],
+ "next_eligible_phase": "02 after the orchestrator's independent skeptic is folded in and the status is PASS"
+}

@@ -1,54 +1,54 @@
 # Predictive Intelligence: handoff
 
-Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Phase 00 evidence: `audits/predictive-intelligence/phase_00/` (PHASE_00_EVIDENCE.md, PHASE_00_RESULTS.json, baseline/, probes/, skeptic/, SKEPTIC_PACKET.md marked USED). Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Phase 01 evidence: `audits/predictive-intelligence/phase_01/` (PHASE_01_EVIDENCE.md, PHASE_01_RESULTS.json, ACCEPTANCE_CHECKLIST.md, architecture/, probes/, SKEPTIC_PACKET.md). Phase 00 evidence stays in `phase_00/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
 ## Position
 
-- Phase completed: 00 (authoritative repository baseline), 2026-10-24. Status PASS after repair pass 2. It was NEEDS_REVIEW at `dea735c` because the independent skeptic could not be started inside the phase run; the orchestrator ran it (PI-D-013) and its findings were folded in.
-- Branch `feature/predictive-intelligence`. Commits on top of `f99c6c7`: `59a2cfc` (content), `dea735c` (hash record), then the repair pass 2 commit (see "Commit").
-- No production code changed. Nothing under `inbox/`, `state/` or `data/` changed. Not pushed (the orchestrator pushes, PI-D-003). Spend: 0 credits.
+- Phase in progress: 01 (gap analysis, placement and prediction requirements), 2026-10-24. Status NEEDS_REVIEW: every gate item holds on the phase agent's own checks; the orchestrator runs the independent skeptic (PI-D-013), then a repair pass folds it in before PASS.
+- Branch `feature/predictive-intelligence`. Phase 01 commits on top of `94be1bf`: `b6f2621` (pre-registration, 2026-10-24T01:35:23Z, before any price data was read) and the content commit (see "Commit").
+- Code added: `memelab/predictive/__init__.py`, `memelab/predictive/contract.py` (format-only contract, registry, validator, reference-price and path helpers), `tests/test_predictive_contract.py` (21 tests), `tests/fixtures/predictive/forecast_examples_format_only.json`. No existing module imports it; flag `predictive.enabled` defaults OFF. No existing file outside the predictive namespaces changed; nothing under `inbox/`, `state/` or `data/` changed. Not pushed (PI-D-003). Spend 0 credits.
 
-## What the baseline found
+## What Phase 01 decided
 
-- Authoritative code line: this branch (`f99c6c7` contains `main`'s code `f084b60` and social-intel 19 to 21). The scheduled runs execute `main` (code `f084b60`); code from this branch reaches them only after a merge, which is Elving's call (PI-D-005).
-- Real history: 17 days of sparse thesis snapshots (1,801 across 89 exports, 248 mints, 93 with 2 or more priced snapshots) plus candles for 33 pools from 2026-10-06 to 2026-10-08. No candles, pool snapshots or quotes are kept after 2026-10-08. Launch-cohort outcomes exist for 19 (24 h), 8 (7 d) and 2 (30 d) of 1,422 launches; `rug_flag` is NULL everywhere.
-- Clocks (corrected after the skeptic, PI-D-011): `theses.created_at` and every other `t`-stamped column are the start time of the newest collector run behind the thesis, not when the thesis existed. The row is written later: for 149 of 248 mints the first thesis was written a median 16.9 min (p90 28.7, max 116.5) after its `created_at`, and its inputs can be about 50 min older than `created_at`. `tokens.first_seen_at` / `last_seen_at` are wall-clock write times.
-- Free GeckoTerminal OHLCV reaches back to pool creation for a recent pool (about 10 calls a minute per its spec); DEX Screener is current state only.
-- Reusable pieces: the social signal ledger and outcome engine (outcomes_core.py), the event study (alpha_core.py), the causal replay with leakage proof (replay_core.py), and social claim records with stance and horizon. No forecaster, calibration, proper scoring or model registry exists.
-- Backtesting & Stress-Testing v1.2: not anywhere reachable: BACKTEST_NOT_AVAILABLE (PI-D-006).
-- Identity: tables key on mint; 102 symbols are shared by 2 or more real mints; catalyst ticker or name links and symbol-only catalyst alerts are not identity here (PI-D-007, PI-D-012).
-- Lineage: the HIGGS report of 2026-10-07 00:16 UTC is reproduced line for line by the code of that day (`b6c424d`) on the full input set; theses record neither inputs, code version nor module failures (PI-D-008, FEATURE_TRACE gaps 1 and 6).
+- Primary targets (PI-D-014): T1 `price_path_target_before_invalidation_24h` (+25% before -15%), T1b the same at 6 h, T2 `price_path_severe_drawdown_or_halt_24h` (low at half the reference, or no trade from 18 h to 48 h). Price path only: no position size, caveats PRICE_PATH_NOT_PROCEEDS and NO_HISTORICAL_EXECUTABLE_DEPTH. Exit-adjusted target BLOCKED (no historical depth, P08); liquidity degradation DEFERRED (forward collection, PI-D-020 PROPOSED); failed breakout DEFERRED to Phase 08; catalyst and distribution BLOCKED_NO_DATA; 7 d and launch cohort EXPLORATORY. Registry fingerprint `9f8c9debdb66b28ab5d758c29d67f46f287965aa0d0bf2c1a64a94f9733d9912`, pinned by a test.
+- Decision time (PI-D-015): first export commit time on `main` (the thesis row is inside the commit; push events confirm the commit clock within 5 s for 82 of 89 exports); prospective: capture time. Never `theses.created_at`.
+- Change control CC-01 (PI-D-019, from the phase's own attack, before any label): the reference price must come from a candle available at the decision; eligibility before thinning; same-commit theses count once.
+- Acceptance plan (PI-D-016): development before 2026-10-17, sealed retrospective holdout [2026-10-17, 2026-10-24), prospective holdout from 2026-10-24; minimums 100 training (20 per class), 50 holdout (10 per class), 20 per bin; Brier primary with day and mint bootstrap and Holm across three targets; Wilson-interval calibration tolerance; levels ABSTAIN, SHADOW, VALIDATED_EXPERIMENTAL, NO_GO; no trading-edge claim is possible from this data.
+- Placement (PI-D-017): forecasts are a separate section after m24, never feeding score, fatal flags, status or watchlist; reuse `replay_core` LeakageError, cutoff view and LabelGate, `outcomes_core` observation checks, the `outcomes_ledger` journal (separate file, barrier evaluator through `evaluate_all`), `replay_sources.PROVIDER_LAG`, `alpha_core.wilson`, the appended report pattern. Not reused, with reasons: alpha_store candles, catalyst outcomes, launch horizons.
+- Label source (PI-D-018): bounded GeckoTerminal 5-minute backfills, 6 calls a minute or less, 1,200 per run, retrieval time and sha256 kept, revision re-reads.
 
-## Independent skeptic (orchestrator-run)
+## What the data allow
 
-- Review and script: `audits/predictive-intelligence/phase_00/skeptic/`. 1 MATERIAL (F1, clocks) and 5 MINOR findings (F2 launch-cohort counts from a probe bug, F3 second symbol-only path, F4 social claim forecasts missing from the inventory, F5 module crash not on the thesis, F6 wording and definitions). All verified and corrected in repair pass 2.
-- Its counterexample: treating `theses.created_at` as decision time puts a 300 s entry before the score existed and a `first_seen_at <= cutoff` filter drops mints that already had theses. Caught now by `skeptic/skeptic_00_checks.py` section 2; Phase 05 must turn it into an executable fixture test (PI-D-011 rule 3).
-- The state-history probe is a summary tool, not a label builder (its docstring and DATA_COVERAGE.md say so; row selection fixed).
+- Thinned Solana decisions before eligibility: development 177 / 280 / 161 and retrospective holdout 58 / 79 / 49 (T1 / T1b / T2). A 10-decision coverage sample: 5 OK, 4 without a trade in the hour before the decision, 1 rate-limited. The retrospective holdout may end up under 50 eligible events; the prospective holdout is the evaluation that counts, and needs about one to two weeks or more of daily exports.
+- Power arithmetic: with 50 holdout events even a true Brier skill score of 0.10 is detected about a quarter of the time. Expected outcome: "not distinguishable from the base rate" or INSUFFICIENT_HISTORY.
+- Gap matrix: 88 cells, 16 VERIFIED_PRESENT, 23 PARTIAL, 46 MISSING, 3 CONFLICT (GeckoTerminal pacing, catalyst outcomes, thesis clock). Backtesting v1.2 still BACKTEST_NOT_AVAILABLE.
 
 ## Tests
 
-- Baseline at `f99c6c7`: `python -m pytest tests -q -rs -p no:cacheprovider` exit 1, `1 failed, 785 passed in 133.57s`, 786 collected, 0 skipped.
-- After repair pass 2 edits (2026-10-24T01:17Z): `python -m pytest tests -q` exit 1, `1 failed, 785 passed in 132.73s (0:02:12)`. Only failure: `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (known, clock dependent). The orchestrator's independent rerun on `dea735c` gave `1 failed, 785 passed in 134.90s`.
-- `python tools/release_e2e.py` in a clone: exit 0, `Result: PASS. Stages with the expected exit code: 78 of 78. Network attempts: 0.`
-- Strays after each suite run: `data/reports/<stamp>_BRETT_0x532f.md` (tests/test_evm.py), `data/memelab.sqlite-shm`, an empty `-wal`, `.pytest_cache/`. Removed by hand; tracked DB sha256 `068287c0...a6679ca` unchanged.
+- Entry gate at `94be1bf`: `python -m pytest tests -q` exit 1, `1 failed, 785 passed in 137.59s`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (known).
+- Final: `python -m pytest tests -q` exit 1, `1 failed, 806 passed in 136.72s (0:02:16)`, same single known failure (806 = 785 + 21 new).
+- `python audits/predictive-intelligence/phase_01/probes/mutation_check.py`: 10 of 10 mutations caught. `check_gap_anchors.py`: 88 cells, 0 problems. `check_doc_anchors.py`: 34 anchors, 0 problems.
+- Strays after each suite run: `data/reports/<stamp>_BRETT_0x532f.md`, `data/memelab.sqlite-shm`, `-wal`, `.pytest_cache/`; removed by hand; tracked DB sha256 `068287c0...a6679ca` unchanged.
 
 ## Blockers and open items
 
-- Windows-side checks remain BLOCKED for verification: `D:\memelab\crawl4ai-token.txt` (not read), any Crawl4AI or Maxun install, the scheduled task definitions, the Firecrawl key file. Nothing assumed present or absent.
-- Whether GeckoTerminal keeps candles for pools whose liquidity was pulled is UNKNOWN (one inactive pool checked).
+- None blocking Phase 02.
+- PI-D-020 (forward depth and quote collector, a scheduled job) is PROPOSED for Elving; nothing is planned or built without his approval.
+- GeckoTerminal 5-minute retention beyond 17 days is UNKNOWN; Phase 06 should backfill early.
+- Windows-side items from Phase 00 remain BLOCKED for verification (Crawl4AI token file, Maxun, scheduled task definitions).
 
 ## Approvals needed
 
-None new for Phase 01 as scoped by the package. Paid data, LLM, Zep or MiroFish use, scheduled collection, or a merge into `main` need Elving (PI-D-005).
+None for Phase 02. Paid data, LLM, Zep or MiroFish use, any scheduled collector (PI-D-020), or a merge into `main` need Elving (PI-D-005).
 
 ## Next
 
-Next eligible phase: 01 (gap analysis, placement and prediction requirements), after the orchestrator verifies this repair pass. Phase 01 starts by re-running `python -m pytest tests -q` (expect `1 failed, 785 passed`) and reading DATA_COVERAGE.md (especially "Clocks"), EXISTING_PREDICTION_INVENTORY.md and DECISIONS.md PI-D-006 to PI-D-013.
+The orchestrator runs the independent skeptic on `audits/predictive-intelligence/phase_01/SKEPTIC_PACKET.md` and returns the review; the phase agent then verifies each finding, copies the review into `audits/predictive-intelligence/phase_01/skeptic/`, updates the evidence and records, and sets the final status. Next eligible phase after PASS: 02 (independent predictive GitHub discovery).
 
 ## Commit
 
-- Phase 00 content commit `59a2cfc5bc21685607cfa9ee15e40e35ef24b119`; hash record `dea735c7ecf537eebb96c5358fb902cfef7c3fdd`; repair pass 2 is the next commit on top (read it with `git log -1`; this file is part of it, so it cannot hold its own hash).
-- `git diff --name-only f99c6c7..HEAD` lists only files under `docs/predictive-intelligence/` and `audits/predictive-intelligence/`.
+- Pre-registration `b6f26218002a009e6d96bf17bde9188d5e809758` (2026-10-24T01:35:23Z). The Phase 01 content commit is the next commit on top (read it with `git log -1`; this file is part of it, so it cannot hold its own hash).
+- `git diff --name-only 94be1bf..HEAD` lists only files under `docs/predictive-intelligence/`, `audits/predictive-intelligence/`, `memelab/predictive/`, `tests/test_predictive_contract.py` and `tests/fixtures/predictive/`.
 - Not pushed. `git status` clean after the commit.
 
 ## Exact next command
@@ -57,4 +57,4 @@ Next eligible phase: 01 (gap analysis, placement and prediction requirements), a
 cd /home/claude/memelab-inbox && git checkout feature/predictive-intelligence && git log -4 --oneline && python -m pytest tests -q
 ```
 
-Expect the three Phase 00 commits on top of `f99c6c7` and `1 failed, 785 passed`; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm`, `-wal` and `.pytest_cache/` by hand.
+Expect the two Phase 01 commits on top of `94be1bf` and `1 failed, 806 passed`; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm`, `-wal` and `.pytest_cache/` by hand.

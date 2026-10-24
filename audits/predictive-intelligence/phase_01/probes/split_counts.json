@@ -1,0 +1,40 @@
+{
+ "ref": "98338a8ba3c5e65c5850933a35c06885b6ef991a",
+ "data_end": "2026-10-23T10:20Z",
+ "holdout_window_utc": [
+  "2026-10-17T00:00:00Z",
+  "2026-10-24T00:00:00Z"
+ ],
+ "price_path_target_before_invalidation_24h": {
+  "development": 177,
+  "purged_crosses_holdout": 17,
+  "holdout": 58,
+  "after_holdout_window": 0,
+  "not_matured_at_data_end": 26,
+  "all_thinned": 278
+ },
+ "price_path_target_before_invalidation_6h": {
+  "development": 280,
+  "purged_crosses_holdout": 0,
+  "holdout": 79,
+  "after_holdout_window": 0,
+  "not_matured_at_data_end": 7,
+  "all_thinned": 366
+ },
+ "price_path_severe_drawdown_or_halt_24h": {
+  "development": 161,
+  "purged_crosses_holdout": 33,
+  "holdout": 49,
+  "after_holdout_window": 0,
+  "not_matured_at_data_end": 35,
+  "all_thinned": 278
+ },
+ "price_path_target_before_invalidation_7d": {
+  "development": 75,
+  "purged_crosses_holdout": 61,
+  "holdout": 0,
+  "after_holdout_window": 0,
+  "not_matured_at_data_end": 77,
+  "all_thinned": 213
+ }
+}

@@ -151,6 +151,9 @@ def main(ref: str, out: str, push_path: str | None = None) -> None:
             kept += [idx[t] for t in ts]
         matured = [x for x in kept if x["decision_t"] + EXEC_LAG_S + h <= data_end]
         days = collections.Counter(iso(x["decision_t"])[:10] for x in matured)
+        if name == "24h":
+            res["_events_24h_list"] = [{"mint": x["mint"], "created_at": x["created_at"], "decision_t": x["decision_t"], "commit": x["commit"],
+                                        "pool_pit": x["pool_pit"], "status": x["status"]} for x in sorted(matured, key=lambda x: (x["decision_t"], x["mint"]))]
         events[name] = {"decisions_after_thinning": len(kept), "matured_by_data_end": len(matured),
                         "mints": len({x["mint"] for x in matured}), "with_pit_pool": sum(1 for x in matured if x["pool_pit"]),
                         "status": dict(collections.Counter(x["status"] for x in matured)),
@@ -183,6 +186,7 @@ def main(ref: str, out: str, push_path: str | None = None) -> None:
     with open(out, "w") as f:
         json.dump(res, f, indent=1, sort_keys=True, default=str)
     print(json.dumps({k: res[k] for k in ("export_versions", "data_end", "clocks", "universe")}, indent=1, default=str))
+    # _events_24h_list: decision keys only (mint, times, pool, status); no price after a decision is read anywhere in this probe
 
 
 if __name__ == "__main__":

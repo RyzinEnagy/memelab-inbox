@@ -7,5 +7,6 @@ Free calls (GeckoTerminal, DEX Screener, unauthenticated GitHub REST, PyPI, `git
 | Date (UTC) | Phase | Tool | Purpose | Credits | Running total |
 |---|---|---|---|---:|---:|
 | 2026-10-24 | 00 | none | no billable call was made in Phase 00 (Firecrawl MCP tools not used) | 0 | 0 |
+| 2026-10-24 | 01 | none | no billable call; free calls only: 15 GeckoTerminal (coverage probe), 3 GitHub REST events (push times) | 0 | 0 |
 
 Remaining Firecrawl allowance: 150 credits.

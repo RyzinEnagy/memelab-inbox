@@ -1,0 +1,2268 @@
+{
+ "_events_24h_list": [
+  {
+   "commit": "15c2087ededa8958ad7bc433be204ca7b830a2d9",
+   "created_at": 1791385786.03,
+   "decision_t": 1791410035,
+   "mint": "39ahtL8ynzE4amH26J29C93PA5172V3ft9UuUcqQS8fz",
+   "pool_pit": "FiYyzxapRvkbUhF5ZD3mJigWwqBGhtVLH49MDSgCLHdB",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "15c2087ededa8958ad7bc433be204ca7b830a2d9",
+   "created_at": 1791332195.007,
+   "decision_t": 1791410035,
+   "mint": "55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
+   "pool_pit": "BNG5962Zkbd6ZFmfAKjtCF6Z2mJbA7qn97oMsQShspLP",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "15c2087ededa8958ad7bc433be204ca7b830a2d9",
+   "created_at": 1791391795.507,
+   "decision_t": 1791410035,
+   "mint": "5VnbrKp28Qs9CAH6PyZdxBNvLxZcbeX3YBsozgWnpump",
+   "pool_pit": "53W7r4XUxCSnLGoAvj3nPiXnSzyWGZkYHVavYtLpyaXM",
+   "status": "THESIS INVALIDATED"
+  },
+  {
+   "commit": "15c2087ededa8958ad7bc433be204ca7b830a2d9",
+   "created_at": 1791391795.507,
+   "decision_t": 1791410035,
+   "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+   "pool_pit": null,
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "15c2087ededa8958ad7bc433be204ca7b830a2d9",
+   "created_at": 1791391795.507,
+   "decision_t": 1791410035,
+   "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+   "pool_pit": "Cprsvqk2riV3WmTewKK9m6cm62zaAqLDArAbBmN3pe4f",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "15c2087ededa8958ad7bc433be204ca7b830a2d9",
+   "created_at": 1791391795.507,
+   "decision_t": 1791410035,
+   "mint": "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+   "pool_pit": "GLL3CzybpSCLZdoACf8QUM5YrKVwyA65kQ2RcTsJxxzV",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "15c2087ededa8958ad7bc433be204ca7b830a2d9",
+   "created_at": 1791391795.507,
+   "decision_t": 1791410035,
+   "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+   "pool_pit": "6e3jZLtf4tQbWZm3f7A66jF8tfZn6MRQVrbDFgcNWarA",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "15c2087ededa8958ad7bc433be204ca7b830a2d9",
+   "created_at": 1791332195.007,
+   "decision_t": 1791410035,
+   "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+   "pool_pit": "5a7QurJLARt146JajJYPe5nh6vLyFpN2QrHUSLqbsCZy",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "15c2087ededa8958ad7bc433be204ca7b830a2d9",
+   "created_at": 1791393174.181,
+   "decision_t": 1791410035,
+   "mint": "CioPfvQWpVF2eTzpBj72x2zPyqgJRgvi36PqdLCCpump",
+   "pool_pit": "34w9ReB7AX8DSv3hiZt28nXztKFWwttARW2NwCsXYqrx",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "15c2087ededa8958ad7bc433be204ca7b830a2d9",
+   "created_at": 1791332195.007,
+   "decision_t": 1791410035,
+   "mint": "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
+   "pool_pit": "BFrSZakeqNzVtM3EFhroo4eRhagmmWN8BRntiQKFH6Ru",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "15c2087ededa8958ad7bc433be204ca7b830a2d9",
+   "created_at": 1791385786.03,
+   "decision_t": 1791410035,
+   "mint": "EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR",
+   "pool_pit": "ioaDGkQUh6h5nNTmcv8k3NvAgSTiS3xMFNaN3j11KzV",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "15c2087ededa8958ad7bc433be204ca7b830a2d9",
+   "created_at": 1791391795.507,
+   "decision_t": 1791410035,
+   "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+   "pool_pit": null,
+   "status": "WATCH"
+  },
+  {
+   "commit": "15c2087ededa8958ad7bc433be204ca7b830a2d9",
+   "created_at": 1791391795.507,
+   "decision_t": 1791410035,
+   "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+   "pool_pit": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "996190ce180995f2c17d0217e5e6d55fb4e128c4",
+   "created_at": 1791383484.2158554,
+   "decision_t": 1791411637,
+   "mint": "2BVfJ4AHMvHdKtEZNHaBr48dQzTfZvYkjaaxbM6bpump",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "996190ce180995f2c17d0217e5e6d55fb4e128c4",
+   "created_at": 1791383550.9170592,
+   "decision_t": 1791411637,
+   "mint": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+   "pool_pit": null,
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "996190ce180995f2c17d0217e5e6d55fb4e128c4",
+   "created_at": 1791383551.050282,
+   "decision_t": 1791411637,
+   "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+   "pool_pit": null,
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791453600.627,
+   "decision_t": 1791454891,
+   "mint": "2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
+   "pool_pit": "7HNBrAqWdM6978EYTJR2kcnZV3NHQ1YpaAhvBCC8Q3fR",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791454813.699177,
+   "decision_t": 1791454891,
+   "mint": "467xn5zKySHTWNohRyuu3rsf9TyxAYCdNyjEq9u3wCwt",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791453571.477,
+   "decision_t": 1791454891,
+   "mint": "4rLgnFcuADTS2VD7sGxQjoiajbZjYZ411nF7gm7kpump",
+   "pool_pit": "7a9Qi43fP8SpGXLJ7ScbASkFnzKdnkHBMtaMZ7GSifA",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791453162.771,
+   "decision_t": 1791454891,
+   "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+   "pool_pit": "2y6PCqa4fEp3jLiFdan9jVMw7LSK8F3gwsTfy8p7traE",
+   "status": "OVEREXTENDED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791453162.771,
+   "decision_t": 1791454891,
+   "mint": "6XhzSy3VTTkwqMUSQsStM3ncGy6ozcPnzLVmv4HZ64cC",
+   "pool_pit": "98T82C2aQXYBG72NfpWbtssV21J1VvxTE2fM7ixyyNmf",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791454813.774151,
+   "decision_t": 1791454891,
+   "mint": "7JoGUTeaXkjcMGa6xJP2idYNYiLreto1WnsACHnpw3Gd",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791454811.859376,
+   "decision_t": 1791454891,
+   "mint": "7MvmbJzS58NKH9J7Aw9ToxN9RgcKtm6V3U342Se5pump",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791453600.627,
+   "decision_t": 1791454891,
+   "mint": "7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+   "pool_pit": "3b2ys5YveWJ7D6SusGTESpUnmAUzNitHMNNftsmAmxST",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791454811.3374467,
+   "decision_t": 1791454891,
+   "mint": "8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791454812.20876,
+   "decision_t": 1791454891,
+   "mint": "8zbuapjUaAwCkXLiZPbyJ9SycqSAvhm26uDZge5jiDtg",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791453162.771,
+   "decision_t": 1791454891,
+   "mint": "9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+   "pool_pit": "HSJ3UmgN1HpVVhY3kQi1V3kmASxFDSGeVVWSxp5MAJzw",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791453571.477,
+   "decision_t": 1791454891,
+   "mint": "9oXA1VWKNiYDYa6VKHBFFBBvZdvuhw1b2eD5Aka7YrVt",
+   "pool_pit": "23B6d3FvDu2eiZxyBLgWdm2W2vn1bdRwJTR6NCfQpxGE",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791454814.0670142,
+   "decision_t": 1791454891,
+   "mint": "Ci11wAJVj4tMeBo4EJUUKNnejAvHorcktcMSHmSLQdx4",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791454813.4373112,
+   "decision_t": 1791454891,
+   "mint": "EMeugag3yfyvKqNKknGDWAudNALafZjbv9ByzCE8pump",
+   "pool_pit": "EozBrsBqcmuNuZNFxiugHbrPxaq6g8jW1Hr3XHWsBcMp",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791454811.0448022,
+   "decision_t": 1791454891,
+   "mint": "G8uXpbgbNTocG6gUjpg7TyGBCLbDEyJLh8Y9jabLWbwb",
+   "pool_pit": "BtHKam5N9ynQTj19eMD4Avk8EChwYPqyPP27VRRvN3Gq",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791454811.3772323,
+   "decision_t": 1791454891,
+   "mint": "JUPrJXKV6MyLkbFgZMDXPn7mYR4yqMNn5Pwg27zcyyG",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791454811.4015582,
+   "decision_t": 1791454891,
+   "mint": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791454811.1309292,
+   "decision_t": 1791454891,
+   "mint": "METvsvVRapdj9cFLzq4Tr43xK4tAjQfwX76z3n6mWQL",
+   "pool_pit": "6THWeTXhFrfQfB8GnaoiK9bjFQcNB3gY94CNSkPRaedA",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791454813.3850636,
+   "decision_t": 1791454891,
+   "mint": "PERLEQKUNUp1dgFZ8EvyXHdN9d6ZQqfGxALDvfs6pDs",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791454814.1223764,
+   "decision_t": 1791454891,
+   "mint": "QTQgJj7irjAxYy37iBWxHitgRoZ6Svua5zpm7cmFamo",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791453571.477,
+   "decision_t": 1791454891,
+   "mint": "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+   "pool_pit": null,
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791454811.8810875,
+   "decision_t": 1791454891,
+   "mint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "fe8fc3bb685975d7ea5c3bbeb7d6f296e4cad849",
+   "created_at": 1791454811.2511463,
+   "decision_t": 1791454891,
+   "mint": "poNSfquKq512ApeYjVghwViSun4x1MhCqHVH2Paq4jN",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e15a88678c326e6385d6ded8602afcbd720cc2c9",
+   "created_at": 1791474255.536,
+   "decision_t": 1791475160,
+   "mint": "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
+   "pool_pit": "8ewuF2o8ACro7fqWepZ3tKhkbBjndZU4Ldk9scRPw83d",
+   "status": "NEAR ENTRY"
+  },
+  {
+   "commit": "e15a88678c326e6385d6ded8602afcbd720cc2c9",
+   "created_at": 1791474431.957,
+   "decision_t": 1791475160,
+   "mint": "68AGsjomsgTtiTaDhF6XGCeVJDnFeh415ngYYgVxGzns",
+   "pool_pit": "AVaw6h3zE2eU57zDTMqPwdmxJnrFbuBcKoJ3FsdKdL49",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e15a88678c326e6385d6ded8602afcbd720cc2c9",
+   "created_at": 1791474604.786,
+   "decision_t": 1791475160,
+   "mint": "AUuCEHQ7sm2i5GmaHrpE961voWcTY8U6mgrkhcV7pump",
+   "pool_pit": "CN5L4sc6NJEHYGcLX2Rdz9qk4FgTdphJVLWgjNGGovYQ",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "e15a88678c326e6385d6ded8602afcbd720cc2c9",
+   "created_at": 1791474255.536,
+   "decision_t": 1791475160,
+   "mint": "ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg",
+   "pool_pit": null,
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "e15a88678c326e6385d6ded8602afcbd720cc2c9",
+   "created_at": 1791475092.8703191,
+   "decision_t": 1791475160,
+   "mint": "BJfpX1xHcXMiD81EwVf4tWetSx2yuRUB7tyV8SQXcqKU",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "e15a88678c326e6385d6ded8602afcbd720cc2c9",
+   "created_at": 1791474255.536,
+   "decision_t": 1791475160,
+   "mint": "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+   "pool_pit": "C7r9jXWiVYmBYR2Jj5YSLiEitUGJPjQXWeg7HPU8NwUk",
+   "status": "OVEREXTENDED"
+  },
+  {
+   "commit": "e15a88678c326e6385d6ded8602afcbd720cc2c9",
+   "created_at": 1791474431.957,
+   "decision_t": 1791475160,
+   "mint": "H4KUxsEgCp2yDpFvyDuGM5k6XevSKKrrKUxZ3Zr6nyJc",
+   "pool_pit": "5d1MwACzebHE96bX8ZN3jQGjwPuBjQF7vcbmmhr5Gskb",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "3a276b5fd157a49c4ae35eba1a89b1cab796ecb5",
+   "created_at": 1791478357.5,
+   "decision_t": 1791479776,
+   "mint": "46hMQPKT2sPwMSkVenXnpiKVQhrkFvJLSYMWtdkipump",
+   "pool_pit": "C9bagG6C6skabdt1R5TyEqHWaWAsr47DDWorCckyChsF",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "1cddaaca291137ee88d0bbb829abee59603ddf6d",
+   "created_at": 1791482540.435,
+   "decision_t": 1791483065,
+   "mint": "5YLCp1XSRpGevfKBoSJvs7fSv6fSgbTDe3XB3dLfpump",
+   "pool_pit": "3TXrbeYcuPNYt98xJ4W74fuwmPrFb9boANt9oM1trkzZ",
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "1cddaaca291137ee88d0bbb829abee59603ddf6d",
+   "created_at": 1791482540.435,
+   "decision_t": 1791483065,
+   "mint": "AQ7A9nsCcrfbftRq2kfFjCkaG6NicixZ1Vy4RZ4Hpump",
+   "pool_pit": "CVmSV32SWJFNtsRWsquQDHEtmTS7ribq1VNruu3EWFgh",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "1cddaaca291137ee88d0bbb829abee59603ddf6d",
+   "created_at": 1791482365.662,
+   "decision_t": 1791483065,
+   "mint": "pmGXrmpvbWJJebWxE3RBAkdUbY1VPuwRZuU27Nepump",
+   "pool_pit": "C8Vr7AFWJMZZAbnyxc5Em7VtMJgCVFXpC3G7GxLwM312",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d33ced39c701f8c11d68d5682c00da45a6186c06",
+   "created_at": 1791486935.631,
+   "decision_t": 1791487731,
+   "mint": "2LMiWGyNjGKyUkH2oFYmMxzwLzUY84dHZf6DUUZFpump",
+   "pool_pit": "GZwUWL7SyUXV8z8HNbJW3EPLQ8gGD2A4mYhja1NzMwAd",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d33ced39c701f8c11d68d5682c00da45a6186c06",
+   "created_at": 1791486009.775,
+   "decision_t": 1791487731,
+   "mint": "2bN9YoTKiejNonS4Q1EjhypvRfndZLEiYJZUHLwYpump",
+   "pool_pit": "89QZ1Y8EAswxM39uMh35UJ1eRJdjNkUnNcWYx5bk7adh",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d33ced39c701f8c11d68d5682c00da45a6186c06",
+   "created_at": 1791485980.987,
+   "decision_t": 1791487731,
+   "mint": "4EMavj8PiPMnHYjzkcu6eJ5EihhYkaJbMuHznAuZpump",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d33ced39c701f8c11d68d5682c00da45a6186c06",
+   "created_at": 1791486351.854,
+   "decision_t": 1791487731,
+   "mint": "61cfz6tcpHqV2dAKuMLJ6LN5FeLKPxXT6aNgj53Ppump",
+   "pool_pit": "3dkX33EifYXai5gViaD2ARP7Bh8PYzR3RSsSk5JqLXeH",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d33ced39c701f8c11d68d5682c00da45a6186c06",
+   "created_at": 1791485982.275,
+   "decision_t": 1791487731,
+   "mint": "6Kb6io6tDyiizb79yeZ1gaqUNYgdJMXr4upPRa8Ppump",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d33ced39c701f8c11d68d5682c00da45a6186c06",
+   "created_at": 1791486608.803,
+   "decision_t": 1791487731,
+   "mint": "7K52aYQW9rWGjwZmQ7o2d1P6E7bji6hSMsqaLy5EcxLh",
+   "pool_pit": "6qUUCwD9fyRafora8XVmdApQBxCkbUiZTMkcYD47rWsS",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d33ced39c701f8c11d68d5682c00da45a6186c06",
+   "created_at": 1791487139.903,
+   "decision_t": 1791487731,
+   "mint": "8rDFg4MDov1a59dyWFDkshZ633zvZKRaKdpBQBrd4bJK",
+   "pool_pit": "8joibXNa8yh7jma7XQGwqHWjZH2AdWN9b55KUJrttfiX",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d33ced39c701f8c11d68d5682c00da45a6186c06",
+   "created_at": 1791486608.803,
+   "decision_t": 1791487731,
+   "mint": "9JtPfLbN32CszHmstoXYdWaazFLaoxhfqf9mKgQMpump",
+   "pool_pit": "5Tg9D6FeZXY3fACm1jDUNnHeWLvGiuucM8qAN9UznPA",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d33ced39c701f8c11d68d5682c00da45a6186c06",
+   "created_at": 1791486351.854,
+   "decision_t": 1791487731,
+   "mint": "Aov3BtQvrGXM5V9oiHu8PKJWeV8a2rFnr24fwWcNpump",
+   "pool_pit": "HGLSAK3nVLzAZPBMiqrkV52cmZhNVrwVQuzpSnCSYAkw",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d33ced39c701f8c11d68d5682c00da45a6186c06",
+   "created_at": 1791487139.903,
+   "decision_t": 1791487731,
+   "mint": "B3DE8d6CpEF2YBMpxY3Lshj6n8hkz9aSVU451c5Jpump",
+   "pool_pit": "CAgSY4gnosAgUSemM4k5yczXCzHAE3urdXNCv2Yrvhiu",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d33ced39c701f8c11d68d5682c00da45a6186c06",
+   "created_at": 1791486935.631,
+   "decision_t": 1791487731,
+   "mint": "C3AEVqFnCYh2q4VAE1jeUVxHQNQLGVFDGrjqfboEpump",
+   "pool_pit": "J3dQ5vPhZzheVgcKsyRgYMLHivRXFKe88mVfY3KfdTbq",
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "d33ced39c701f8c11d68d5682c00da45a6186c06",
+   "created_at": 1791486608.803,
+   "decision_t": 1791487731,
+   "mint": "FgnSJwFoote99diZUhtRV9Ajcfwzjj6hDx82TDhVpump",
+   "pool_pit": "687HWjAWqxVNRgy7XFeYRpxUNvVSarECu7aQB5EeaJBp",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d33ced39c701f8c11d68d5682c00da45a6186c06",
+   "created_at": 1791486935.631,
+   "decision_t": 1791487731,
+   "mint": "Goh59QCfoX53RgJa615vzXx4swR3mv51VgvAN6ZCpump",
+   "pool_pit": "D2pVedgHQkD2kWnrSFyZX19Tg9X2KJrEiAauMKRchGuz",
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "d33ced39c701f8c11d68d5682c00da45a6186c06",
+   "created_at": 1791486351.854,
+   "decision_t": 1791487731,
+   "mint": "agYKZgcBE2XUzTypkkdJqvwPbu7k5CUZjA6Cm3jpump",
+   "pool_pit": "KoQr2pvCYFiWvidqtBxaKcMGQqJWaNw4oed9CLjfLnA",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d6099a8aacc9ca078d2e4335580eb4261dfbbaf7",
+   "created_at": 1791496744.494,
+   "decision_t": 1791496881,
+   "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+   "pool_pit": null,
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "d6099a8aacc9ca078d2e4335580eb4261dfbbaf7",
+   "created_at": 1791496744.494,
+   "decision_t": 1791496881,
+   "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+   "pool_pit": "6e3jZLtf4tQbWZm3f7A66jF8tfZn6MRQVrbDFgcNWarA",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "d6099a8aacc9ca078d2e4335580eb4261dfbbaf7",
+   "created_at": 1791496744.494,
+   "decision_t": 1791496881,
+   "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+   "pool_pit": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "8a6cd06cdc5a1b0ce3bd4cbb8b307f1a096dc669",
+   "created_at": 1791499964.184,
+   "decision_t": 1791500942,
+   "mint": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+   "pool_pit": null,
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "0c1728ecf2f996e296d4e6fd710b59621fd7529c",
+   "created_at": 1791540552.863,
+   "decision_t": 1791541429,
+   "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+   "pool_pit": "Fe7bpDYCs74GqiCUF14HwgUMToPKV1d9mDYVX5BTohFr",
+   "status": "NEAR ENTRY"
+  },
+  {
+   "commit": "0c1728ecf2f996e296d4e6fd710b59621fd7529c",
+   "created_at": 1791540183.659,
+   "decision_t": 1791541429,
+   "mint": "6hTLdzZaaCjmqtn7RtaEMQsCbXT5Pg8q76tRViEGpump",
+   "pool_pit": "2qWF4dn1JnqhCpAYJQnKVaKezzuUiG4xdnbnCSK1Pgcw",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "0c1728ecf2f996e296d4e6fd710b59621fd7529c",
+   "created_at": 1791540382.791,
+   "decision_t": 1791541429,
+   "mint": "7Xgc5RacHtGzfhw2HukUBk5V986yBbvshr7rrCoopump",
+   "pool_pit": "4wbt5gf46kCt9dhzNFVtAEn5PnFr56U5HTpw27TVytvV",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "0c1728ecf2f996e296d4e6fd710b59621fd7529c",
+   "created_at": 1791540183.659,
+   "decision_t": 1791541429,
+   "mint": "8k4sBtEeK4pf26noKqApv8NBTnuSJcbdwpKYknk5PbAA",
+   "pool_pit": "2i2iULr7UwK1SDRB17T5FUtiMnFQL7fyy7rh69brZihc",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "0c1728ecf2f996e296d4e6fd710b59621fd7529c",
+   "created_at": 1791540382.791,
+   "decision_t": 1791541429,
+   "mint": "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+   "pool_pit": "3dcwhqJp6JBTJPq8ga335HWgSQVS7uQmdmeX7iGjMNpj",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "0c1728ecf2f996e296d4e6fd710b59621fd7529c",
+   "created_at": 1791540183.659,
+   "decision_t": 1791541429,
+   "mint": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+   "pool_pit": "4R8CiMnJWDNoes3fQi1ccPFJygPXazaHaWpHrN3rZeNj",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "0c1728ecf2f996e296d4e6fd710b59621fd7529c",
+   "created_at": 1791540552.863,
+   "decision_t": 1791541429,
+   "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+   "pool_pit": "DA4pM4xSDY4M9V4CgAKKBVH1pw1yscTQQa5nEkGHuKpt",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "de7bfe56bf011201df9710ec41541e4cba5d156c",
+   "created_at": 1791544377.236,
+   "decision_t": 1791544898,
+   "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+   "pool_pit": "2y6PCqa4fEp3jLiFdan9jVMw7LSK8F3gwsTfy8p7traE",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "de7bfe56bf011201df9710ec41541e4cba5d156c",
+   "created_at": 1791544377.236,
+   "decision_t": 1791544898,
+   "mint": "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+   "pool_pit": null,
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "a52efb9b3380af0a6231fe294090a8e5fad40294",
+   "created_at": 1791548299.772,
+   "decision_t": 1791548475,
+   "mint": "3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump",
+   "pool_pit": "7AvDaHLbHW6qaMGuHQGpebbbGaV7fRTdFq5T5Vd4vdoH",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "a52efb9b3380af0a6231fe294090a8e5fad40294",
+   "created_at": 1791548299.772,
+   "decision_t": 1791548475,
+   "mint": "4CBJ86svL6cuzA5CvGoVfrFVwRyMvBeGYBsSQqKx1MnV",
+   "pool_pit": "G58fCy4SMCVjShWgPh4nbfASLsdf4RRph6a72ucq2y8W",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "a52efb9b3380af0a6231fe294090a8e5fad40294",
+   "created_at": 1791548155.919,
+   "decision_t": 1791548475,
+   "mint": "8wrTM8TrirHxsinDBpe7vWL3DPDdpmKfMp4n2Pdopump",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "a52efb9b3380af0a6231fe294090a8e5fad40294",
+   "created_at": 1791548155.919,
+   "decision_t": 1791548475,
+   "mint": "NTRNDMqQSiwEC2jJs3wJiZS6bpGYQJtMNQJgiX3WyV6",
+   "pool_pit": "7r3ZPwVD966dZfZ5xifEQyAfME7xSTA5bbmztctQhDG3",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "1eddfd8f4c6042b3728fb512569479fd75d96b63",
+   "created_at": 1791566378.849,
+   "decision_t": 1791566924,
+   "mint": "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+   "pool_pit": "C7r9jXWiVYmBYR2Jj5YSLiEitUGJPjQXWeg7HPU8NwUk",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "f4e4bf94ffd15f4c4f94fe5b12728047b9fd0d93",
+   "created_at": 1791569105.185,
+   "decision_t": 1791570700,
+   "mint": "BJfpX1xHcXMiD81EwVf4tWetSx2yuRUB7tyV8SQXcqKU",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "a762ef7ae87e0f4fd5862526395081e618d7f1f4",
+   "created_at": 1791587718.4241157,
+   "decision_t": 1791587742,
+   "mint": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+   "pool_pit": null,
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "a762ef7ae87e0f4fd5862526395081e618d7f1f4",
+   "created_at": 1791586351.239,
+   "decision_t": 1791587742,
+   "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+   "pool_pit": null,
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "a762ef7ae87e0f4fd5862526395081e618d7f1f4",
+   "created_at": 1791586351.239,
+   "decision_t": 1791587742,
+   "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+   "pool_pit": "6e3jZLtf4tQbWZm3f7A66jF8tfZn6MRQVrbDFgcNWarA",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "a762ef7ae87e0f4fd5862526395081e618d7f1f4",
+   "created_at": 1791586351.239,
+   "decision_t": 1791587742,
+   "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+   "pool_pit": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791628268.264467,
+   "decision_t": 1791628305,
+   "mint": "58hhY5SV9gMghGkEs1sKarNLu7PMWFtcqUxRn5iZj17F",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791628268.1600115,
+   "decision_t": 1791628305,
+   "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791626273.566,
+   "decision_t": 1791628305,
+   "mint": "6zzzG49KX5nksnqfogs31dwoMYSHaJXkropKbv1QZVga",
+   "pool_pit": "6wXTJaLNN3GCUJajJ9Vj2te51zsNgPVXV37EbFGRAjLz",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791628268.5333087,
+   "decision_t": 1791628305,
+   "mint": "7cUG5xFG48ygqLZxEitTd4Gbaywf6wax52UGc2p3pump",
+   "pool_pit": "GivGuRrZYB359Duk1oTawYnHvFS6WB1THH4K5TGsNji2",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791628268.9960241,
+   "decision_t": 1791628305,
+   "mint": "8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791626054.533,
+   "decision_t": 1791628305,
+   "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+   "pool_pit": "5a7QurJLARt146JajJYPe5nh6vLyFpN2QrHUSLqbsCZy",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791626273.566,
+   "decision_t": 1791628305,
+   "mint": "ArenDYANqFNkp8ZqAXt69vT5Dz7WD4zDfSpVw6oPpump",
+   "pool_pit": "qikS6TVXgNocaDuhRB3B94cyeaUJevP1c7XEyMfYT7Z",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791628268.0871143,
+   "decision_t": 1791628305,
+   "mint": "BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
+   "pool_pit": "7F7Q1oKtpuyg7oYyHXzAUszcnmKHRi18BxBVx7DHazPb",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791626054.533,
+   "decision_t": 1791628305,
+   "mint": "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+   "pool_pit": "6ejg4aYJM3Mk1t2zBKjbJ43df3s7rBMpC9mgo526K51G",
+   "status": "OVEREXTENDED"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791628268.372178,
+   "decision_t": 1791628305,
+   "mint": "Bbj61DG15VquvojnJSVWeKKPo569WEN8CLhfGcEBzsCh",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791628268.8388624,
+   "decision_t": 1791628305,
+   "mint": "CqiwNniAsyjKHcX3dgEkjpYYiPt7u4G54syoUU8Km4z4",
+   "pool_pit": "4hZTHUyzrPWtVqgru8tRxb5tkAsLgpHUaMdGtKs2rDAi",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791628268.443752,
+   "decision_t": 1791628305,
+   "mint": "CqjaL6XvobYG8D4Ty3cjtxw3ZyYfmAf3ggWnyyv2S4FB",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791628269.1032763,
+   "decision_t": 1791628305,
+   "mint": "DZQbBPFpTeeyGyvCwXxYQDZFGGHad2bY6sWZuviuX8MN",
+   "pool_pit": "Hpjzjed5Zi6qodv4NgswZYycNe3bxtda3UFU2ZU5AuxY",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791626273.566,
+   "decision_t": 1791628305,
+   "mint": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+   "pool_pit": "4R8CiMnJWDNoes3fQi1ccPFJygPXazaHaWpHrN3rZeNj",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791626054.533,
+   "decision_t": 1791628305,
+   "mint": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+   "pool_pit": "5PGhKctym6odbHGo2tKMST2AjmJsb2uZBQrKkn4ZuFT5",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791628268.3517451,
+   "decision_t": 1791628305,
+   "mint": "Gzx22syxMWRyTWoWqPFj3cKnsAXf1QwgeJFQ8eaYGt5C",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "9e8aa761ed5e036d3a816292eac9ac1baefe4462",
+   "created_at": 1791628268.490906,
+   "decision_t": 1791628305,
+   "mint": "J7nejjwUAxiSbX3DpvTkURscfFSrK33saNoU2ovHpump",
+   "pool_pit": "92xphy2aJyosodbwsTtDp64KoT5AXMQr1CLUVXkSkLEq",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "0ac1857fb8a7dd9235846f95eb29a789efa0f37d",
+   "created_at": 1791629903.188,
+   "decision_t": 1791630471,
+   "mint": "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+   "pool_pit": "3dcwhqJp6JBTJPq8ga335HWgSQVS7uQmdmeX7iGjMNpj",
+   "status": "THESIS INVALIDATED"
+  },
+  {
+   "commit": "0ac1857fb8a7dd9235846f95eb29a789efa0f37d",
+   "created_at": 1791630165.008,
+   "decision_t": 1791630471,
+   "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+   "pool_pit": "DA4pM4xSDY4M9V4CgAKKBVH1pw1yscTQQa5nEkGHuKpt",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "87101f866183bb773665e2f08fc1b60455ac771f",
+   "created_at": 1791633954.273,
+   "decision_t": 1791634036,
+   "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+   "pool_pit": "2y6PCqa4fEp3jLiFdan9jVMw7LSK8F3gwsTfy8p7traE",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "87101f866183bb773665e2f08fc1b60455ac771f",
+   "created_at": 1791633954.273,
+   "decision_t": 1791634036,
+   "mint": "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+   "pool_pit": null,
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "d0d5c7e4b2027892611243832c5c0994dca4aee7",
+   "created_at": 1791654791.964,
+   "decision_t": 1791656104,
+   "mint": "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+   "pool_pit": "C7r9jXWiVYmBYR2Jj5YSLiEitUGJPjQXWeg7HPU8NwUk",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "030621f2c5ebc6932f21a0b458aa54a4f0184f4f",
+   "created_at": 1791658955.115,
+   "decision_t": 1791660947,
+   "mint": "BJfpX1xHcXMiD81EwVf4tWetSx2yuRUB7tyV8SQXcqKU",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "787fe33925bacdf83d72eba785740908028296ee",
+   "created_at": 1791677055.5952537,
+   "decision_t": 1791677072,
+   "mint": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+   "pool_pit": null,
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "787fe33925bacdf83d72eba785740908028296ee",
+   "created_at": 1791677026.161,
+   "decision_t": 1791677072,
+   "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+   "pool_pit": "6e3jZLtf4tQbWZm3f7A66jF8tfZn6MRQVrbDFgcNWarA",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "787fe33925bacdf83d72eba785740908028296ee",
+   "created_at": 1791677026.161,
+   "decision_t": 1791677072,
+   "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+   "pool_pit": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "729fbf4bda63203ad47a871f84deebb5f66b59ca",
+   "created_at": 1791713724.1140032,
+   "decision_t": 1791713879,
+   "mint": "26iReJL51yoAVUYLtC4vswgRyV7Y8djdpXt7Lg9cpump",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "729fbf4bda63203ad47a871f84deebb5f66b59ca",
+   "created_at": 1791713724.5854535,
+   "decision_t": 1791713879,
+   "mint": "4qT7m9qygRQvpinqSvWE6B4LxaL1vmDX7ERNKQXK7mmj",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "729fbf4bda63203ad47a871f84deebb5f66b59ca",
+   "created_at": 1791712303.695,
+   "decision_t": 1791713879,
+   "mint": "6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
+   "pool_pit": "F6veTYFBPSYZiQSbNUDQCeMpDuSyR3pxghhfbEU2spfR",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "729fbf4bda63203ad47a871f84deebb5f66b59ca",
+   "created_at": 1791712501.634,
+   "decision_t": 1791713879,
+   "mint": "7vMkPxLwaH26qSZ2CgHhzvrgz9wUWMvT256vbUWfarm",
+   "pool_pit": "AALoAMF7sUGQK11Q33FuMU3KaDDpVbaGAfAMpp8YQb1M",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "729fbf4bda63203ad47a871f84deebb5f66b59ca",
+   "created_at": 1791712501.634,
+   "decision_t": 1791713879,
+   "mint": "85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
+   "pool_pit": "7dWwLrscRgkuhTEBnZm6rLvekvS2uft3Sz8EBj4XLUMy",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "729fbf4bda63203ad47a871f84deebb5f66b59ca",
+   "created_at": 1791712679.482,
+   "decision_t": 1791713879,
+   "mint": "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+   "pool_pit": "GLL3CzybpSCLZdoACf8QUM5YrKVwyA65kQ2RcTsJxxzV",
+   "status": "WATCH"
+  },
+  {
+   "commit": "729fbf4bda63203ad47a871f84deebb5f66b59ca",
+   "created_at": 1791713723.7903774,
+   "decision_t": 1791713879,
+   "mint": "8xSeFhrAT8MFrDZSY5Fw719CAwmYWjXYcgYqvhKGSXcJ",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "729fbf4bda63203ad47a871f84deebb5f66b59ca",
+   "created_at": 1791712303.695,
+   "decision_t": 1791713879,
+   "mint": "9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump",
+   "pool_pit": "DMAFL613XTipuA3jFNYczavWT7XsiYf9cR3qmRMZQhB6",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "729fbf4bda63203ad47a871f84deebb5f66b59ca",
+   "created_at": 1791713724.5503387,
+   "decision_t": 1791713879,
+   "mint": "EiLTVJLsFXvPxdzqp7ZtvXVeCB1T2UdgB9WrpxoZceXH",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "729fbf4bda63203ad47a871f84deebb5f66b59ca",
+   "created_at": 1791712501.634,
+   "decision_t": 1791713879,
+   "mint": "EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
+   "pool_pit": "3UMUTZeeVSLywQjeZ6sjngu3jc6oQSxpy2ApNH3xL8sf",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "729fbf4bda63203ad47a871f84deebb5f66b59ca",
+   "created_at": 1791713724.6527085,
+   "decision_t": 1791713879,
+   "mint": "GDqsktneRUHu2FVttJGX4suwNpnr8ToNi1EDEy5Rpump",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "729fbf4bda63203ad47a871f84deebb5f66b59ca",
+   "created_at": 1791713723.627153,
+   "decision_t": 1791713879,
+   "mint": "HBuRKZW5ztyGiYYBPnk7bfDPuUHPAvv7xq6dxYSf4zs9",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "729fbf4bda63203ad47a871f84deebb5f66b59ca",
+   "created_at": 1791713723.6551888,
+   "decision_t": 1791713879,
+   "mint": "HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "729fbf4bda63203ad47a871f84deebb5f66b59ca",
+   "created_at": 1791712303.695,
+   "decision_t": 1791713879,
+   "mint": "HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+   "pool_pit": "6brAAmd965v3amhS6nFX2Fr6ytQC2dPY7M8XkxYRrsNn",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "729fbf4bda63203ad47a871f84deebb5f66b59ca",
+   "created_at": 1791713723.3905275,
+   "decision_t": 1791713879,
+   "mint": "JBSVUpKgYNHt4GLtNebQxTJmZgftTMWENQrziHtGpump",
+   "pool_pit": "CxEL58kANq3aKHAoYKhQGQb9zhwALwjJHAaKM3mZpMS6",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "729fbf4bda63203ad47a871f84deebb5f66b59ca",
+   "created_at": 1791713723.5987613,
+   "decision_t": 1791713879,
+   "mint": "PERLEQKUNUp1dgFZ8EvyXHdN9d6ZQqfGxALDvfs6pDs",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "f69a04478ab2d887259a8b9a6689d26a8f1ae1aa",
+   "created_at": 1791798727.32,
+   "decision_t": 1791800317,
+   "mint": "1zJX5gRnjLgmTpq5sVwkq69mNDQkCemqoasyjaPW6jm",
+   "pool_pit": "4SBYWY5UuxybWuj8FwHdFXUN6mbtACrqbJwiZ9mXworP",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "f69a04478ab2d887259a8b9a6689d26a8f1ae1aa",
+   "created_at": 1791798727.32,
+   "decision_t": 1791800317,
+   "mint": "6Mix12LiHrQFojaQEnfPUC65Qkwd6X4Y5Qg93oFbordr",
+   "pool_pit": "4xp7kN4nVt19caq4kM629vL8vJEqpSFVdZAh27wvYPh8",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "f69a04478ab2d887259a8b9a6689d26a8f1ae1aa",
+   "created_at": 1791799090.77,
+   "decision_t": 1791800317,
+   "mint": "8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS",
+   "pool_pit": "BUVzsLLLG7GWoyJVoU31pXiBveazA6GXTavZ9VD3CwS9",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "f69a04478ab2d887259a8b9a6689d26a8f1ae1aa",
+   "created_at": 1791798867.033,
+   "decision_t": 1791800317,
+   "mint": "8uZieiVy2AanCpYkfxR1quKSbzPKuMUaNYwQ61mrT3iu",
+   "pool_pit": "54q8E1sqsfVBgytXso1xUGS3WRovFAJTfou5XKLFpnp1",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "f69a04478ab2d887259a8b9a6689d26a8f1ae1aa",
+   "created_at": 1791799090.77,
+   "decision_t": 1791800317,
+   "mint": "BVdbH7PLTSQxBssqvWTxVDoA8qfsztdVtMsZQSS9CScZ",
+   "pool_pit": "9kf9wUh4Z8r49TD1utiat8obz9iWs12m38KeK1g5ADju",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "f69a04478ab2d887259a8b9a6689d26a8f1ae1aa",
+   "created_at": 1791798867.033,
+   "decision_t": 1791800317,
+   "mint": "HMYd9tosnUXuNHmq7pXmoePRVBLBBjA3JBfydq6upump",
+   "pool_pit": "12jc1DzJpzbCDaKuM4brAKh9jcFry2TLG1FfGsL4ftCG",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "f69a04478ab2d887259a8b9a6689d26a8f1ae1aa",
+   "created_at": 1791798867.033,
+   "decision_t": 1791800317,
+   "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+   "pool_pit": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "f69a04478ab2d887259a8b9a6689d26a8f1ae1aa",
+   "created_at": 1791798727.32,
+   "decision_t": 1791800317,
+   "mint": "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+   "pool_pit": null,
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+   "created_at": 1791886774.0650861,
+   "decision_t": 1791886823,
+   "mint": "5Upkgkqx9nZJGDCz4Kgo8tiT995Gu1PiF7AGMQbBxEg",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+   "created_at": 1791885382.384,
+   "decision_t": 1791886823,
+   "mint": "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
+   "pool_pit": "8ewuF2o8ACro7fqWepZ3tKhkbBjndZU4Ldk9scRPw83d",
+   "status": "THESIS INVALIDATED"
+  },
+  {
+   "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+   "created_at": 1791886773.0647125,
+   "decision_t": 1791886823,
+   "mint": "7cUG5xFG48ygqLZxEitTd4Gbaywf6wax52UGc2p3pump",
+   "pool_pit": "GivGuRrZYB359Duk1oTawYnHvFS6WB1THH4K5TGsNji2",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+   "created_at": 1791886774.287798,
+   "decision_t": 1791886823,
+   "mint": "8gjB8SX71dTMPE47T8yTUEpig3kRXruPNgvCW2uTEtRB",
+   "pool_pit": "2hyeAyLuhgQ1w6DhtgBUdY8dLaLLzGTFq2LhucbHxvkt",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+   "created_at": 1791885543.833,
+   "decision_t": 1791886823,
+   "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+   "pool_pit": "6e3jZLtf4tQbWZm3f7A66jF8tfZn6MRQVrbDFgcNWarA",
+   "status": "WATCH"
+  },
+  {
+   "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+   "created_at": 1791886774.46602,
+   "decision_t": 1791886823,
+   "mint": "9PJx9p62q3tPsAWqFCaAKMPPs4vmdY79AGhdaqubpump",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+   "created_at": 1791886774.3458924,
+   "decision_t": 1791886823,
+   "mint": "C1aTcwUNwaGa79EGfCBGwYqWZ6P9dCVNTHTv2QqrLcab",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+   "created_at": 1791885382.384,
+   "decision_t": 1791886823,
+   "mint": "Cy1GS2FqefgaMbi45UunrUzin1rfEmTUYnomddzBpump",
+   "pool_pit": "AemYRZmJryzAQ9Z4RLfUBLnPRUY5ecooc94EJvemfti4",
+   "status": "WATCH"
+  },
+  {
+   "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+   "created_at": 1791885543.833,
+   "decision_t": 1791886823,
+   "mint": "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
+   "pool_pit": "BFrSZakeqNzVtM3EFhroo4eRhagmmWN8BRntiQKFH6Ru",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+   "created_at": 1791885243.449,
+   "decision_t": 1791886823,
+   "mint": "DzMwArmdzPqcqgvyqAmTxy79XdA9NwK9mMteqWLJpump",
+   "pool_pit": "4powEghZAR3Qd2HpbKrkyq8bB3dy7vAnSZHbQ3rSXrYh",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+   "created_at": 1791886774.4918442,
+   "decision_t": 1791886823,
+   "mint": "EiLTVJLsFXvPxdzqp7ZtvXVeCB1T2UdgB9WrpxoZceXH",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+   "created_at": 1791885382.384,
+   "decision_t": 1791886823,
+   "mint": "HTmQz7My6MehV7bjhJ6jde8nDND1yvsz68d24LP7YgUQ",
+   "pool_pit": "6fNtUWWpf9VckoZXce7pFUyxA9wPRVPpe83txqdYFiCn",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+   "created_at": 1791886773.568601,
+   "decision_t": 1791886823,
+   "mint": "METAwkXcqyXKy1AtsSgJ8JiUHwGCafnZL38n3vYmeta",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+   "created_at": 1791885243.449,
+   "decision_t": 1791886823,
+   "mint": "NTRNDMqQSiwEC2jJs3wJiZS6bpGYQJtMNQJgiX3WyV6",
+   "pool_pit": "7r3ZPwVD966dZfZ5xifEQyAfME7xSTA5bbmztctQhDG3",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+   "created_at": 1791886773.6068635,
+   "decision_t": 1791886823,
+   "mint": "RACEyWiM2ztEZcJx2AHXU2eWjhxU57x3vXn92b39dLD",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+   "created_at": 1791885243.449,
+   "decision_t": 1791886823,
+   "mint": "u7XNK4pbxXgWzBwqidDV2TtsXwLqqxtjmGfw1H8pump",
+   "pool_pit": "6FBnZzRtdMrjxEPdLK4UGP9Xm2hsYwLY3xp6EWB1e2md",
+   "status": "OVEREXTENDED"
+  },
+  {
+   "commit": "45a28eedc942220d245d8de8707fcb8f4d713da7",
+   "created_at": 1791971620.093,
+   "decision_t": 1791973063,
+   "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+   "pool_pit": "Fe7bpDYCs74GqiCUF14HwgUMToPKV1d9mDYVX5BTohFr",
+   "status": "OVEREXTENDED"
+  },
+  {
+   "commit": "45a28eedc942220d245d8de8707fcb8f4d713da7",
+   "created_at": 1791971868.584,
+   "decision_t": 1791973063,
+   "mint": "33jENUQnjoitkMFpvNJcSHyLAHFWJuHwT6E3E8CNpump",
+   "pool_pit": "6iep3EgqksbZwgzMBCyAJtiVtVYkCgL9BnPBEwLR8AGQ",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "45a28eedc942220d245d8de8707fcb8f4d713da7",
+   "created_at": 1791972143.77,
+   "decision_t": 1791973063,
+   "mint": "4MMQY9bwkxxTtsK3W227Q5ABT6yFY8Pmn9Ze7wmAXKY8",
+   "pool_pit": "5752ia7jC3ZU1c8ycytaSyi5D4nVhApSKvreGbs7pwWL",
+   "status": "OVEREXTENDED"
+  },
+  {
+   "commit": "45a28eedc942220d245d8de8707fcb8f4d713da7",
+   "created_at": 1791971620.093,
+   "decision_t": 1791973063,
+   "mint": "6Mix12LiHrQFojaQEnfPUC65Qkwd6X4Y5Qg93oFbordr",
+   "pool_pit": "4xp7kN4nVt19caq4kM629vL8vJEqpSFVdZAh27wvYPh8",
+   "status": "OVEREXTENDED"
+  },
+  {
+   "commit": "45a28eedc942220d245d8de8707fcb8f4d713da7",
+   "created_at": 1791971620.093,
+   "decision_t": 1791973063,
+   "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+   "pool_pit": "Cprsvqk2riV3WmTewKK9m6cm62zaAqLDArAbBmN3pe4f",
+   "status": "THESIS INVALIDATED"
+  },
+  {
+   "commit": "45a28eedc942220d245d8de8707fcb8f4d713da7",
+   "created_at": 1791971868.584,
+   "decision_t": 1791973063,
+   "mint": "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+   "pool_pit": "GLL3CzybpSCLZdoACf8QUM5YrKVwyA65kQ2RcTsJxxzV",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "45a28eedc942220d245d8de8707fcb8f4d713da7",
+   "created_at": 1791971868.584,
+   "decision_t": 1791973063,
+   "mint": "Eg2ymQ2aQqjMcibnmTt8erC6Tvk9PVpJZCxvVPJz2agu",
+   "pool_pit": "FKfRK3WdaGXokysR1fPGgCDEeGkV1b1YYnX9ykVpG3JG",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "45a28eedc942220d245d8de8707fcb8f4d713da7",
+   "created_at": 1791972143.77,
+   "decision_t": 1791973063,
+   "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+   "pool_pit": null,
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "d54eb539e954cfc5e781bb503d4cdaaf11a6c39b",
+   "created_at": 1792058050.901,
+   "decision_t": 1792059228,
+   "mint": "5GDX5fJTQns4arM1J94wjxdA8KXFsV5qW46MLFpHpump",
+   "pool_pit": "QVCymnis5qQJEJRZPgbEJnNKrQdNkhJtTFk7v1xqu9D",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d54eb539e954cfc5e781bb503d4cdaaf11a6c39b",
+   "created_at": 1792058050.901,
+   "decision_t": 1792059228,
+   "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+   "pool_pit": null,
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "d54eb539e954cfc5e781bb503d4cdaaf11a6c39b",
+   "created_at": 1792058050.901,
+   "decision_t": 1792059228,
+   "mint": "6zzzG49KX5nksnqfogs31dwoMYSHaJXkropKbv1QZVga",
+   "pool_pit": "6wXTJaLNN3GCUJajJ9Vj2te51zsNgPVXV37EbFGRAjLz",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d54eb539e954cfc5e781bb503d4cdaaf11a6c39b",
+   "created_at": 1792059180.943964,
+   "decision_t": 1792059228,
+   "mint": "7VBNRp8mY5AbPNzb9uvJfzmk4u6NC8oDGFxMrMiKpump",
+   "pool_pit": "5HXuHFRSkQG8qUanhnKpEgV4U3Eut5wohbu5ZQYb5Vad",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d54eb539e954cfc5e781bb503d4cdaaf11a6c39b",
+   "created_at": 1792058050.901,
+   "decision_t": 1792059228,
+   "mint": "7VertkgF9KLhxxJXHX6uaWuoYZTP9LdGj2bWmVXVpump",
+   "pool_pit": "CyJwKnLiiY4fmiwqMCSWFSHxo7T9Ubshgs2uRAuJCrk5",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "d54eb539e954cfc5e781bb503d4cdaaf11a6c39b",
+   "created_at": 1792059180.197688,
+   "decision_t": 1792059228,
+   "mint": "ABY3X6QPuDHkgTbxkaJSzpJtdJXRVBhezkf4BbmSDv8b",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d54eb539e954cfc5e781bb503d4cdaaf11a6c39b",
+   "created_at": 1792059181.2774746,
+   "decision_t": 1792059228,
+   "mint": "Ayv8uaTwbphjnfGqRiyn3UmUuZhwaWyRdc5emSfcKs7Z",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d54eb539e954cfc5e781bb503d4cdaaf11a6c39b",
+   "created_at": 1792059180.9780693,
+   "decision_t": 1792059228,
+   "mint": "BRf5k38aEcYPb14tE5yBTSuRk3EVDra2zqct2eCApump",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d54eb539e954cfc5e781bb503d4cdaaf11a6c39b",
+   "created_at": 1792059180.9000058,
+   "decision_t": 1792059228,
+   "mint": "BvkPHKx2QKMbWgo1gT2R9FemF1BvYhv2ufcmeMydrciu",
+   "pool_pit": "7Lr2oc9kUu2UsWvYnAnH4fFe6CNqsW83eSwUyZPa5hQ6",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d54eb539e954cfc5e781bb503d4cdaaf11a6c39b",
+   "created_at": 1792059181.3044727,
+   "decision_t": 1792059228,
+   "mint": "C9vPS4LHZiKoJf6cEWiiHaPHX8MNkEsYMKJJ7DNPpump",
+   "pool_pit": "A6mCmMxYEhjbE6zdxD2ef4TGfsteGm5MrS1PaxSqZ93b",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d54eb539e954cfc5e781bb503d4cdaaf11a6c39b",
+   "created_at": 1792059180.8549128,
+   "decision_t": 1792059228,
+   "mint": "CNyMaRR4krm1yAxfCvPXevNMArZZZk7sRqKwX68uCeJk",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d54eb539e954cfc5e781bb503d4cdaaf11a6c39b",
+   "created_at": 1792058050.901,
+   "decision_t": 1792059228,
+   "mint": "DEW9dSN6QpWyNthphCpMmAbZP1Q4cEKR9xQXAri98WDP",
+   "pool_pit": "B4VFURUHHzyt8YzBGBV9jiarBvjh1EbMAbRNBnNqaxUD",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "d54eb539e954cfc5e781bb503d4cdaaf11a6c39b",
+   "created_at": 1792059181.329917,
+   "decision_t": 1792059228,
+   "mint": "EiLTVJLsFXvPxdzqp7ZtvXVeCB1T2UdgB9WrpxoZceXH",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d54eb539e954cfc5e781bb503d4cdaaf11a6c39b",
+   "created_at": 1792059180.2536771,
+   "decision_t": 1792059228,
+   "mint": "GDf87B1tuQDJHa5seC34s4VoCAFCrCvu7TfiWRnapump",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d54eb539e954cfc5e781bb503d4cdaaf11a6c39b",
+   "created_at": 1792059180.7107532,
+   "decision_t": 1792059228,
+   "mint": "GJJsG36rpY55dLBPm1w1Fama4PcLWqYSwcMu91ejpump",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "d54eb539e954cfc5e781bb503d4cdaaf11a6c39b",
+   "created_at": 1792059180.878162,
+   "decision_t": 1792059228,
+   "mint": "Gx9zHSrCAfoq3xqwfJaKYo5BoqtqdU7tLuNNmfg1Dm5x",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792147133.5910473,
+   "decision_t": 1792147326,
+   "mint": "26iReJL51yoAVUYLtC4vswgRyV7Y8djdpXt7Lg9cpump",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792144599.071,
+   "decision_t": 1792147326,
+   "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+   "pool_pit": "Fe7bpDYCs74GqiCUF14HwgUMToPKV1d9mDYVX5BTohFr",
+   "status": "OVEREXTENDED"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792144397.521,
+   "decision_t": 1792147326,
+   "mint": "2nP9yKQNSGQy851iyawDvBkzkK2R2aqKArQCKc2gpump",
+   "pool_pit": "FpyosQzp5ijfrxqqBVNm67rfam7VsbVNAm7PUf8Yvt1c",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792144803.386,
+   "decision_t": 1792147326,
+   "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+   "pool_pit": null,
+   "status": "NEAR ENTRY"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792144397.521,
+   "decision_t": 1792147326,
+   "mint": "6UtY9iTZMQQ5QZVrbzFnNaJntV7oySm9k97mvwnuZcxr",
+   "pool_pit": "G19cwhvY4teiUm3jgjrDX5RfzfCnSXe1s5upRXVmTQki",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792147134.7311966,
+   "decision_t": 1792147326,
+   "mint": "8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792147133.776264,
+   "decision_t": 1792147326,
+   "mint": "8xSeFhrAT8MFrDZSY5Fw719CAwmYWjXYcgYqvhKGSXcJ",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792147135.1941686,
+   "decision_t": 1792147326,
+   "mint": "Ag41bMMccCEwtcz3y7RaoW5skQHb6ARqiXjcpjZPpump",
+   "pool_pit": "C3KdbPWwzWTJ9Be1bfKmwMtX58ppGxJjCersGyNoYAj9",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792144599.071,
+   "decision_t": 1792147326,
+   "mint": "BsbsB3WLq7vbY5En3MBCAsTrcwaCxNKY2Mp5pGuLpump",
+   "pool_pit": "5iSVs31h7HMdGGmyUvzmHDsYwV7cydD6CZJTbqzCtLii",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792147134.6963456,
+   "decision_t": 1792147326,
+   "mint": "G8aVC4nk5oPWzTHp4PDm3kAuixCebv9WRQMD93h9pump",
+   "pool_pit": "D7rYGDh5RyP4UXPtW2dSUvg8BYkdPSB1ZdAdBKW1zqnX",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792147134.3370943,
+   "decision_t": 1792147326,
+   "mint": "GrXVVBhujJgGBFC12g5pahiCHyDW3d7bUsRwJxhwpump",
+   "pool_pit": "Btvabtxcc8GpcMKQCQjnDoNRY8MvEsSdrXVioUk21d8y",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792144397.521,
+   "decision_t": 1792147326,
+   "mint": "HMYd9tosnUXuNHmq7pXmoePRVBLBBjA3JBfydq6upump",
+   "pool_pit": "12jc1DzJpzbCDaKuM4brAKh9jcFry2TLG1FfGsL4ftCG",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792144599.071,
+   "decision_t": 1792147326,
+   "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+   "pool_pit": null,
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792147134.7634957,
+   "decision_t": 1792147326,
+   "mint": "LAYER4xPpTCb3QL8S9u41EAhAX7mhBn8Q6xMTwY2Yzc",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792144803.386,
+   "decision_t": 1792147326,
+   "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+   "pool_pit": "DA4pM4xSDY4M9V4CgAKKBVH1pw1yscTQQa5nEkGHuKpt",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792147134.621148,
+   "decision_t": 1792147326,
+   "mint": "PZUbFxtuydyLP2JEwCmvWc1p1NHxWsqBYuEoVbcnQA3",
+   "pool_pit": "3kPF3DzZ9LJ6MWFhTPUZuXNVinH1rALPRPF2KDmKQV4V",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e62d107702478c262745c3779f57c1af0bb6a990",
+   "created_at": 1792147134.9920092,
+   "decision_t": 1792147326,
+   "mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "793b93ebba6b499735f02dee267308a5ee7a0de6",
+   "created_at": 1792230818.468,
+   "decision_t": 1792232442,
+   "mint": "4kjruqGHDsSqkMdFfCjV7Vb62HPFhtXyWc2t6JpQzDnz",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "793b93ebba6b499735f02dee267308a5ee7a0de6",
+   "created_at": 1792231268.727,
+   "decision_t": 1792232442,
+   "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+   "pool_pit": "Cprsvqk2riV3WmTewKK9m6cm62zaAqLDArAbBmN3pe4f",
+   "status": "WATCH"
+  },
+  {
+   "commit": "793b93ebba6b499735f02dee267308a5ee7a0de6",
+   "created_at": 1792231057.374,
+   "decision_t": 1792232442,
+   "mint": "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+   "pool_pit": "3dcwhqJp6JBTJPq8ga335HWgSQVS7uQmdmeX7iGjMNpj",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "793b93ebba6b499735f02dee267308a5ee7a0de6",
+   "created_at": 1792232391.3820384,
+   "decision_t": 1792232442,
+   "mint": "CnPL1xnAVHYGH92FpmiNoNhgh3gctkH5y988hMg4bonk",
+   "pool_pit": "AiUCeZYWNAnZcpWPQPGcpeP3zusPiGUZYorLZkXhMoww",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "793b93ebba6b499735f02dee267308a5ee7a0de6",
+   "created_at": 1792230818.468,
+   "decision_t": 1792232442,
+   "mint": "DzMwArmdzPqcqgvyqAmTxy79XdA9NwK9mMteqWLJpump",
+   "pool_pit": "4powEghZAR3Qd2HpbKrkyq8bB3dy7vAnSZHbQ3rSXrYh",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "793b93ebba6b499735f02dee267308a5ee7a0de6",
+   "created_at": 1792230818.468,
+   "decision_t": 1792232442,
+   "mint": "Gj4TowizfdkRJNsTgBEkj2WpBZZmGE7o9nN8q6RhBAGS",
+   "pool_pit": "7NAxbnjiWQmMbAAtCntkSyGqHEvVHZTmyaUBC6347B4M",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "793b93ebba6b499735f02dee267308a5ee7a0de6",
+   "created_at": 1792231057.374,
+   "decision_t": 1792232442,
+   "mint": "purpFPo5voy6fEu8jxSCwVdMs1zyYEYAH6FBQvTYCZK",
+   "pool_pit": "zgLSYJkWC8yU9JvjFRXMD7MjzqY7SebmSAa3REsqaBF",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "793b93ebba6b499735f02dee267308a5ee7a0de6",
+   "created_at": 1792231057.374,
+   "decision_t": 1792232442,
+   "mint": "t9bnCGiZVUYsRKvx4d5dPcoDCSyuBM9C33ZNGNULARP",
+   "pool_pit": "FJ1Gf7yYZQnpjAd2Go6Rws14WmStjZyo8XgxmLPHHaEU",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e5a5ec47256de6a54747d47918bafc60befd4502",
+   "created_at": 1792317990.3970253,
+   "decision_t": 1792318039,
+   "mint": "4MrnXyiavn5uHmntspb2JqQkVa4Ecg2uy1M9nKjVpump",
+   "pool_pit": "8rTFY1TtwAsQv8EMVti4G4hxyyiSPxAunqwey9YHJrYP",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e5a5ec47256de6a54747d47918bafc60befd4502",
+   "created_at": 1792317143.093,
+   "decision_t": 1792318039,
+   "mint": "4by8accPvdRcmDEvJy1svdSJMwfVcNGyWqgQw9EPpump",
+   "pool_pit": "ALNPAbQbgLApREFRDuJoBYJNvKePHbL7Lu6ru7zTeL85",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e5a5ec47256de6a54747d47918bafc60befd4502",
+   "created_at": 1792317990.614998,
+   "decision_t": 1792318039,
+   "mint": "4pSbtLzF6ANmdyYXv4LyxBeH7NEH1PDzCg5tb3d1pump",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "e5a5ec47256de6a54747d47918bafc60befd4502",
+   "created_at": 1792317143.075,
+   "decision_t": 1792318039,
+   "mint": "5x6QQvpRpd1PsFTTTJe6sJFFSqrA21H1j3GZLmo2pump",
+   "pool_pit": "8JoQRQ4oAXNuQSTcComuUAAgF3ViJ7e3escwatMncZ3H",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e5a5ec47256de6a54747d47918bafc60befd4502",
+   "created_at": 1792317990.476091,
+   "decision_t": 1792318039,
+   "mint": "78f7rvyUZnVfJ4HbdRgaHDr4tFWkNZCzNN7z5DZxpump",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "e5a5ec47256de6a54747d47918bafc60befd4502",
+   "created_at": 1792317143.075,
+   "decision_t": 1792318039,
+   "mint": "8Xg89xT8Ve34sKiYqYuMs46mycREsCA2F362UscRpump",
+   "pool_pit": "Em6RvzGXhd35pZ7CVUjCTPEnv4jAztScaVHaXBXCBcG7",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e5a5ec47256de6a54747d47918bafc60befd4502",
+   "created_at": 1792317143.089,
+   "decision_t": 1792318039,
+   "mint": "A2yA6AFtfKkfVkfsnGpvsKoUV5kQPpMYboZsBPvmkA9T",
+   "pool_pit": "9hjKmterUjufRaYUrSTEHEYJZg83LQ52behux54LSeF6",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e5a5ec47256de6a54747d47918bafc60befd4502",
+   "created_at": 1792317143.089,
+   "decision_t": 1792318039,
+   "mint": "Eg2ymQ2aQqjMcibnmTt8erC6Tvk9PVpJZCxvVPJz2agu",
+   "pool_pit": "FKfRK3WdaGXokysR1fPGgCDEeGkV1b1YYnX9ykVpG3JG",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "e5a5ec47256de6a54747d47918bafc60befd4502",
+   "created_at": 1792317991.4462304,
+   "decision_t": 1792318039,
+   "mint": "EiLTVJLsFXvPxdzqp7ZtvXVeCB1T2UdgB9WrpxoZceXH",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e5a5ec47256de6a54747d47918bafc60befd4502",
+   "created_at": 1792317143.075,
+   "decision_t": 1792318039,
+   "mint": "HTmQz7My6MehV7bjhJ6jde8nDND1yvsz68d24LP7YgUQ",
+   "pool_pit": "6fNtUWWpf9VckoZXce7pFUyxA9wPRVPpe83txqdYFiCn",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "e5a5ec47256de6a54747d47918bafc60befd4502",
+   "created_at": 1792317143.089,
+   "decision_t": 1792318039,
+   "mint": "NTRNDMqQSiwEC2jJs3wJiZS6bpGYQJtMNQJgiX3WyV6",
+   "pool_pit": "7r3ZPwVD966dZfZ5xifEQyAfME7xSTA5bbmztctQhDG3",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792405972.5233247,
+   "decision_t": 1792406045,
+   "mint": "3j92g6mygEzuQ25Atdy8xPsScH7hsn33PjH31ZqP61Rg",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792405971.3783588,
+   "decision_t": 1792406045,
+   "mint": "4HxV2vqATQEjn1hYw3eR43x9b3w1Z5ZoNoV5byTbpump",
+   "pool_pit": "9VXsQGaSSTBWcw9Y5nWVmqawqa7voAV2Cy4vrY1ydcze",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792405971.713163,
+   "decision_t": 1792406045,
+   "mint": "5Upkgkqx9nZJGDCz4Kgo8tiT995Gu1PiF7AGMQbBxEg",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792405972.6934834,
+   "decision_t": 1792406045,
+   "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+   "pool_pit": null,
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792405972.3763983,
+   "decision_t": 1792406045,
+   "mint": "6wifasxctST3jd9s6UaoVexc2pvYqTcLWZEAjCTJ51wW",
+   "pool_pit": "BUCFKH9dGcQLhkF9HYyDKhZhsvxsAxM3suMLtzx9aLto",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792405971.548866,
+   "decision_t": 1792406045,
+   "mint": "72yxYmhLgDGwdyi2b9GjDynBB6VuG3kDxNKqDbzXh5bi",
+   "pool_pit": "LeZ2DH1y7bqzAghYbXqKB6fNxoBKqPSPihv3EmkLBRv",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792405971.2795339,
+   "decision_t": 1792406045,
+   "mint": "7eoNeH9tJNyrqV2Y5kMLpuw2iCRTTFhtdBZbykYPfcJ5",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792403927.952,
+   "decision_t": 1792406045,
+   "mint": "8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS",
+   "pool_pit": "BUVzsLLLG7GWoyJVoU31pXiBveazA6GXTavZ9VD3CwS9",
+   "status": "THESIS INVALIDATED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792405971.1818004,
+   "decision_t": 1792406045,
+   "mint": "8w6yhgsGKxfMZRPLNBBjgJQKRRGaXvgDAdhgQacEpump",
+   "pool_pit": "73fZrykffm5wYMecUikuWBSNeR33dvmnf9xQQ9DRQbLK",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792405972.7513692,
+   "decision_t": 1792406045,
+   "mint": "9Vo93nxu8gpY5i54sB3okxCqCTou4Asxg817A63B1GPf",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792405971.4200363,
+   "decision_t": 1792406045,
+   "mint": "ABY3X6QPuDHkgTbxkaJSzpJtdJXRVBhezkf4BbmSDv8b",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792405971.9928944,
+   "decision_t": 1792406045,
+   "mint": "Ag5mMdBSxm8J893RazD9PGkxWKJ5o3UKdWW4ZmJAey9w",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792403927.952,
+   "decision_t": 1792406045,
+   "mint": "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+   "pool_pit": "6ejg4aYJM3Mk1t2zBKjbJ43df3s7rBMpC9mgo526K51G",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792405971.4738925,
+   "decision_t": 1792406045,
+   "mint": "BcUjS39maX8hUQwg1xLtKD8KfY9SGRsSknbHeZXHpump",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792405970.9605465,
+   "decision_t": 1792406045,
+   "mint": "Coyj3LtKn1BNSgWc9HsGK5SKoGfEoDaymig4wrN6pump",
+   "pool_pit": "H739cDUEhbW2ckYhjetYSwxTVT5vd6GrTW5GdfaTQJgB",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792404170.91,
+   "decision_t": 1792406045,
+   "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+   "pool_pit": null,
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792403927.952,
+   "decision_t": 1792406045,
+   "mint": "HqmFi85adLD8BQA7en1HfajdAfzVFps5REgQaYuw6Ax8",
+   "pool_pit": "E5bdE27ATDTeg1ZPNFhjnU5fcVKjccQ5iFZLaX8fscgx",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792404170.91,
+   "decision_t": 1792406045,
+   "mint": "HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+   "pool_pit": "6brAAmd965v3amhS6nFX2Fr6ytQC2dPY7M8XkxYRrsNn",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792405971.0735328,
+   "decision_t": 1792406045,
+   "mint": "Tm2iqbxYjKpW8xCMe6q1xUraNMNzcG5xMztAir3pump",
+   "pool_pit": "8BRDx1ky8xuRBYq1kmVJ4TrSNaDybSiLU2mxmLVB4WaW",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792404170.91,
+   "decision_t": 1792406045,
+   "mint": "nxPqZ4F7ux8Vph5NFu25rEP6Kx9Gr1U6Fmj36Rjpump",
+   "pool_pit": "G2UuRbmVDzDFP4qyoBJrSKBXSi7d6V4bPP9tHPs36y4b",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "1edd8d9868428a08f8917ca070c6e98531dcce38",
+   "created_at": 1792405972.3015575,
+   "decision_t": 1792406045,
+   "mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+   "pool_pit": null,
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "c3a43befb004d373ea110b46208c62518a4ebbce",
+   "created_at": 1792490455.216,
+   "decision_t": 1792491842,
+   "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+   "pool_pit": "5a7QurJLARt146JajJYPe5nh6vLyFpN2QrHUSLqbsCZy",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "c3a43befb004d373ea110b46208c62518a4ebbce",
+   "created_at": 1792490455.216,
+   "decision_t": 1792491842,
+   "mint": "BdXfLfcbDE8YvpbvvmmGTduqcDesaQVUm5xLxgUc2S5t",
+   "pool_pit": "CzcFVsc2hQvf1ZwU6ya2vRF7g29aNu4nNrHw7JVVD3Vw",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "c3a43befb004d373ea110b46208c62518a4ebbce",
+   "created_at": 1792491776.456482,
+   "decision_t": 1792491842,
+   "mint": "CARDSccUMFKoPRZxt5vt3ksUbxEFEcnZ3H2pd3dKxYjp",
+   "pool_pit": null,
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "c3a43befb004d373ea110b46208c62518a4ebbce",
+   "created_at": 1792491118.461,
+   "decision_t": 1792491842,
+   "mint": "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+   "pool_pit": "3dcwhqJp6JBTJPq8ga335HWgSQVS7uQmdmeX7iGjMNpj",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "c3a43befb004d373ea110b46208c62518a4ebbce",
+   "created_at": 1792490073.289,
+   "decision_t": 1792491842,
+   "mint": "D42TjMjz5H7toPu5md5KBXreZkCSdZMEfLQwmBhJXvb1",
+   "pool_pit": "CxyUG8PvWbbKW41MLAq7J87ft3dryDJZV2A5pgwb31an",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "c3a43befb004d373ea110b46208c62518a4ebbce",
+   "created_at": 1792491776.2353017,
+   "decision_t": 1792491842,
+   "mint": "G9wFzt1XqToHN64yrVae5JxFfY9v4K9w7quJ6zXpump",
+   "pool_pit": "YoRW8Npjndef7En6baV94VemoT4TkuKmx6LTb5PRw1o",
+   "status": "RESEARCH REQUIRED"
+  },
+  {
+   "commit": "c3a43befb004d373ea110b46208c62518a4ebbce",
+   "created_at": 1792490274.078,
+   "decision_t": 1792491842,
+   "mint": "GKboyzRdB93iEpfr6Gjs8A2wXe7Tp4kVD5WwkNfepump",
+   "pool_pit": "Fd2JgWzgt5ba9WbnJnRqNuf9NNTTu6eMHWpFpEWwyPfQ",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "c3a43befb004d373ea110b46208c62518a4ebbce",
+   "created_at": 1792490073.289,
+   "decision_t": 1792491842,
+   "mint": "HMYd9tosnUXuNHmq7pXmoePRVBLBBjA3JBfydq6upump",
+   "pool_pit": "12jc1DzJpzbCDaKuM4brAKh9jcFry2TLG1FfGsL4ftCG",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "c3a43befb004d373ea110b46208c62518a4ebbce",
+   "created_at": 1792490073.289,
+   "decision_t": 1792491842,
+   "mint": "SV151D5pjygAKA8aJJcKzm4wFnRX5G92Fye94jQJk7g",
+   "pool_pit": "KKyUyWncRfakBZh2M318BFfdR6332WWu1NePd9amQtj",
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "6e09bfaef12435cef133d56ae6275c5d5c225f64",
+   "created_at": 1792576379.754,
+   "decision_t": 1792577969,
+   "mint": "4kjruqGHDsSqkMdFfCjV7Vb62HPFhtXyWc2t6JpQzDnz",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "6e09bfaef12435cef133d56ae6275c5d5c225f64",
+   "created_at": 1792576636.116,
+   "decision_t": 1792577969,
+   "mint": "6FhVPctYg363pQbs4iSvqyHe2cJzfsvFD96gePy6pump",
+   "pool_pit": "2zPfdGd48k7B2U9yqZ4hJSPAPtoVU9uiEbFQYXEoeXkv",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "6e09bfaef12435cef133d56ae6275c5d5c225f64",
+   "created_at": 1792576636.116,
+   "decision_t": 1792577969,
+   "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+   "pool_pit": null,
+   "status": "SETUP DEVELOPING"
+  },
+  {
+   "commit": "6e09bfaef12435cef133d56ae6275c5d5c225f64",
+   "created_at": 1792576379.754,
+   "decision_t": 1792577969,
+   "mint": "7M3gDRgozcumFsiTeXwjB8cYxpg7Q9R7rH7rkw2Fpump",
+   "pool_pit": "FVq2chsiAcPqwL9L3zafF8juQHb7mui6LWMuE8g5L4K4",
+   "status": "OVEREXTENDED"
+  },
+  {
+   "commit": "6e09bfaef12435cef133d56ae6275c5d5c225f64",
+   "created_at": 1792576942.54,
+   "decision_t": 1792577969,
+   "mint": "8XtRWb4uAAJFMP4QQhoYYCWR6XXb7ybcCdiqPwz9s5WS",
+   "pool_pit": null,
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "6e09bfaef12435cef133d56ae6275c5d5c225f64",
+   "created_at": 1792577914.1114612,
+   "decision_t": 1792577969,
+   "mint": "G8aVC4nk5oPWzTHp4PDm3kAuixCebv9WRQMD93h9pump",
+   "pool_pit": "D7rYGDh5RyP4UXPtW2dSUvg8BYkdPSB1ZdAdBKW1zqnX",
+   "status": "REJECTED"
+  },
+  {
+   "commit": "6e09bfaef12435cef133d56ae6275c5d5c225f64",
+   "created_at": 1792576828.862,
+   "decision_t": 1792577969,
+   "mint": "J8PSdNP3QewKq2Z1JJJFDMaqF7KcaiJhR7gbr5KZpump",
+   "pool_pit": "3KFCgJ5R3zshW8hTDbzjSrrKSRYmKvsMfhc4Vo4iddxD",
+   "status": "DISTRIBUTION RISK"
+  },
+  {
+   "commit": "6e09bfaef12435cef133d56ae6275c5d5c225f64",
+   "created_at": 1792577913.93632,
+   "decision_t": 1792577969,
+   "mint": "MSTRdWXMeZxdE8osAQy3fA4rvTY5rgummDSMEx6U7Nz",
+   "pool_pit": null,
+   "status": "REJECTED"
+  },
+  {
+   "commit": "6e09bfaef12435cef133d56ae6275c5d5c225f64",
+   "created_at": 1792576942.54,
+   "decision_t": 1792577969,
+   "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+   "pool_pit": "DA4pM4xSDY4M9V4CgAKKBVH1pw1yscTQQa5nEkGHuKpt",
+   "status": "SETUP DEVELOPING"
+  }
+ ],
+ "clocks": {
+  "commit_before_created": 0,
+  "commit_minus_created_min": {
+   "n": 1801,
+   "p0": 0.19,
+   "p10": 1.32,
+   "p100": 1325.52,
+   "p25": 6.06,
+   "p50": 11.59,
+   "p75": 19.04,
+   "p90": 28.72
+  },
+  "commit_minus_created_under_delay": 1734,
+  "commit_minus_first_seen_min_for_first_thesis": {
+   "n": 248,
+   "p0": 0.46,
+   "p10": 0.58,
+   "p100": 20660.12,
+   "p25": 0.66,
+   "p50": 8.7,
+   "p75": 87.65,
+   "p90": 1417.7
+  },
+  "export_commits_with_push_event": 82,
+  "first_thesis_write_lag_min_lower_bound": {
+   "n": 149,
+   "p0": 2.46,
+   "p10": 7.67,
+   "p100": 116.5,
+   "p25": 10.66,
+   "p50": 16.92,
+   "p75": 24.37,
+   "p90": 28.65
+  },
+  "mints": 248,
+  "push_minus_commit_s": {
+   "n": 82,
+   "p0": 1.0,
+   "p10": 2.0,
+   "p100": 5.0,
+   "p25": 2.0,
+   "p50": 2.0,
+   "p75": 3.0,
+   "p90": 3.0
+  },
+  "theses": 1801
+ },
+ "data_end": "2026-10-23T10:20Z",
+ "events_solana_priced": {
+  "24h": {
+   "by_day": {
+    "2026-10-07": 16,
+    "2026-10-08": 52,
+    "2026-10-09": 19,
+    "2026-10-10": 23,
+    "2026-10-11": 19,
+    "2026-10-12": 8,
+    "2026-10-13": 16,
+    "2026-10-14": 8,
+    "2026-10-15": 16,
+    "2026-10-16": 17,
+    "2026-10-17": 8,
+    "2026-10-18": 11,
+    "2026-10-19": 21,
+    "2026-10-20": 9,
+    "2026-10-21": 9
+   },
+   "decisions_after_thinning": 278,
+   "first_decision_per_mint_only": 179,
+   "matured_by_data_end": 252,
+   "mints": 179,
+   "status": {
+    "DISTRIBUTION RISK": 37,
+    "NEAR ENTRY": 3,
+    "OVEREXTENDED": 9,
+    "REJECTED": 148,
+    "RESEARCH REQUIRED": 21,
+    "SETUP DEVELOPING": 24,
+    "THESIS INVALIDATED": 5,
+    "WATCH": 5
+   },
+   "with_pit_pool": 163
+  },
+  "6h": {
+   "by_day": {
+    "2026-10-07": 16,
+    "2026-10-08": 74,
+    "2026-10-09": 44,
+    "2026-10-10": 53,
+    "2026-10-11": 26,
+    "2026-10-12": 8,
+    "2026-10-13": 16,
+    "2026-10-14": 8,
+    "2026-10-15": 18,
+    "2026-10-16": 17,
+    "2026-10-17": 8,
+    "2026-10-18": 11,
+    "2026-10-19": 21,
+    "2026-10-20": 11,
+    "2026-10-21": 9,
+    "2026-10-22": 19
+   },
+   "decisions_after_thinning": 366,
+   "first_decision_per_mint_only": 186,
+   "matured_by_data_end": 359,
+   "mints": 186,
+   "status": {
+    "DISTRIBUTION RISK": 78,
+    "NEAR ENTRY": 9,
+    "OVEREXTENDED": 13,
+    "REJECTED": 161,
+    "RESEARCH REQUIRED": 31,
+    "SETUP DEVELOPING": 44,
+    "THESIS DETERIORATING": 2,
+    "THESIS INVALIDATED": 16,
+    "WATCH": 5
+   },
+   "with_pit_pool": 233
+  },
+  "7d": {
+   "by_day": {
+    "2026-10-07": 16,
+    "2026-10-08": 48,
+    "2026-10-09": 11,
+    "2026-10-10": 13,
+    "2026-10-11": 14,
+    "2026-10-12": 6,
+    "2026-10-13": 10,
+    "2026-10-14": 3,
+    "2026-10-15": 15
+   },
+   "decisions_after_thinning": 213,
+   "first_decision_per_mint_only": 134,
+   "matured_by_data_end": 136,
+   "mints": 134,
+   "status": {
+    "DISTRIBUTION RISK": 12,
+    "NEAR ENTRY": 2,
+    "OVEREXTENDED": 5,
+    "REJECTED": 88,
+    "RESEARCH REQUIRED": 11,
+    "SETUP DEVELOPING": 15,
+    "THESIS INVALIDATED": 1,
+    "WATCH": 2
+   },
+   "with_pit_pool": 88
+  }
+ },
+ "export_versions": 89,
+ "launch_cohort": {
+  "by_chain": {
+   "base": 137,
+   "solana": 1285
+  },
+  "first_seen_by_day": {
+   "2026-10-08": 1150,
+   "2026-10-09": 272
+  },
+  "first_seen_range": [
+   "2026-10-08T13:45Z",
+   "2026-10-09T11:57Z"
+  ],
+  "mcap_24h_known": 19,
+  "mcap_7d_known": 8,
+  "mints": 1422,
+  "platform_top": [
+   [
+    "pump.fun",
+    719
+   ],
+   [
+    "raydium-launchlab:StonkFun",
+    433
+   ],
+   [
+    "zora:content",
+    97
+   ],
+   [
+    "clanker",
+    40
+   ],
+   [
+    "pump-fun",
+    33
+   ],
+   [
+    "met-dbc",
+    15
+   ]
+  ],
+  "rug_flag_non_null": 0,
+  "sample_basis": {
+   "graduated": 195,
+   "newest": 1122,
+   "selected": 105
+  }
+ },
+ "liquidity_label_from_snapshots": {
+  "decisions_24h": 351,
+  "note": "follow-up snapshots exist only for tokens the scheduled runs kept analysing (watchlist), a selected subset",
+  "with_exit_cap_at_decision_and_followup_20_28h": 53
+ },
+ "ref": "origin/main",
+ "ref_sha": "98338a8ba3c5e65c5850933a35c06885b6ef991a",
+ "rules": {
+  "alternative_reported": "created_at + delay",
+  "decision_delay_s": 7200,
+  "decision_time": "commit time of the first export holding the thesis (provable: the row is inside the commit)",
+  "execution_lag_s": 300,
+  "horizons_s": {
+   "24h": 86400,
+   "6h": 21600,
+   "7d": 604800
+  }
+ },
+ "universe": {
+  "mints_by_chain": {
+   "base": 6,
+   "bsc": 28,
+   "ethereum": 13,
+   "solana": 201
+  },
+  "mints_with_a_priced_thesis_by_chain": {
+   "base": 6,
+   "bsc": 26,
+   "ethereum": 13,
+   "solana": 190
+  },
+  "mints_with_pit_pool_by_chain": {
+   "base:pool": 6,
+   "bsc:pool": 28,
+   "ethereum:pool": 13,
+   "solana:no_pool": 69,
+   "solana:pool": 132
+  },
+  "thesis_status_all": {
+   "DISTRIBUTION RISK": 610,
+   "NEAR ENTRY": 37,
+   "OVEREXTENDED": 54,
+   "REJECTED": 270,
+   "RESEARCH REQUIRED": 565,
+   "SETUP DEVELOPING": 182,
+   "THESIS DETERIORATING": 15,
+   "THESIS INVALIDATED": 48,
+   "WATCH": 20
+  }
+ }
+}

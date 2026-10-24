@@ -17,9 +17,9 @@ from memelab.predictive import contract as C
 ROOT = Path(__file__).resolve().parent.parent
 FIX = json.loads((ROOT / "tests/fixtures/predictive/forecast_examples_format_only.json").read_text())
 NA = C.BACKTEST_NOT_AVAILABLE
-# Pre-registration fingerprint of TARGETS + ACCEPTANCE (DECISIONS PI-D-014). Changing the registry must change this line
-# and be recorded as change control; a silent edit fails here.
-FROZEN_REGISTRY_SHA = "dd3b4576aa1e408052dd227e361aa2cbf4b38450994c3b5e6a2be5dc199fbccd"
+# Fingerprint of TARGETS + ACCEPTANCE. Pre-registered dd3b4576... (b6f2621, PI-D-014); changed once by CC-01 (PI-D-019) before any
+# label existed. A further change must update this line and be recorded as change control; a silent edit fails here.
+FROZEN_REGISTRY_SHA = "9f8c9debdb66b28ab5d758c29d67f46f287965aa0d0bf2c1a64a94f9733d9912"
 
 
 def abstain():
@@ -51,7 +51,7 @@ def test_registry_is_frozen_and_has_two_to_four_primary_targets():
     assert C.registry_sha256() == FROZEN_REGISTRY_SHA
     assert 2 <= len(C.PRIMARY) <= 4
     need = ("horizon_s", "scope_chain", "decision_time_historical", "decision_time_prospective", "decision_time_never", "execution_lag_s",
-            "price_source", "pool_route", "reference_price", "path", "thinning", "statuses_included", "positive", "negative", "tie_rule",
+            "price_source", "pool_route", "reference_price", "gap_rule", "path", "thinning", "statuses_included", "positive", "negative", "tie_rule",
             "censored", "label_observed_at", "fetch_margin_s", "caveats")
     for name in C.PRIMARY:
         t = C.TARGETS[name]
@@ -214,6 +214,30 @@ def test_identity_decision_clock_idempotency_and_scenarios():
     d = forecast()
     d["chain"] = "base"
     assert "outside the target's scope" in errs(reid(d), model_card=card())
+
+
+# ---------- reference price and path (CC-01 counterexample, P06) ----------
+
+def test_reference_price_uses_only_candles_available_at_the_decision():
+    d = 1_790_000_000.0
+    row = lambda start, close: [start, close, close, close, close, 100.0]   # noqa: E731
+    candles = [row(d - 3900, 1.0),        # ends d - 3600: oldest allowed end
+               row(d - 1000, 2.0),        # ends d - 700: available at d - 400
+               row(d - 500, 3.0),         # ends d - 200: closed before the decision but not served until d + 100
+               row(d - 200, 4.0),         # ends d + 100: closes after the decision, before t_entry
+               row(d + 300, 5.0)]         # the candle holding t_entry
+    assert C.reference_candle(candles, d)[4] == 2.0
+    assert C.reference_candle(candles[:1], d)[4] == 1.0
+    assert C.reference_candle([row(d - 4000, 1.0)], d) is None          # last trade more than an hour before: ineligible
+    assert C.reference_candle(candles[2:], d) is None                   # only not-yet-available candles: ineligible, never "eligible"
+    assert C.reference_candle(candles, d, provider_lag_s=0)[4] == 3.0  # the lag is what excludes the d - 200 candle
+
+
+def test_path_starts_after_entry_and_never_uses_the_entry_candle():
+    d = 1_790_000_000.0
+    starts = [d - 300, d, d + 200, d + 300, d + 600, d + 21600, d + 21600 + 300]
+    got = [c[0] for c in C.path_candles([[s, 1, 1, 1, 1, 1] for s in starts], d, 21600)]
+    assert got == [d + 300, d + 600, d + 21600]                         # t_entry = d + 300; last candle ends at t_entry + 6 h
 
 
 # ---------- flag and isolation ----------

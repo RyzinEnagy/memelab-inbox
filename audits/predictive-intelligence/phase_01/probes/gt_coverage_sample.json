@@ -1,0 +1,333 @@
+{
+ "calls": [
+  {
+   "bytes": 120084,
+   "http": 200,
+   "n": 0,
+   "retrieved_at": "2026-10-24T01:36:23Z",
+   "sha256": "eb4a527e0844e9f22a15400b5fb234ab83effbfc174217b8731801072a8efb7b",
+   "tag": "ohlcv5_F6veTY",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/F6veTYFBPSYZiQSbNUDQCeMpDuSyR3pxghhfbEU2spfR/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791887879&currency=usd"
+  },
+  {
+   "bytes": 106488,
+   "http": 200,
+   "n": 1,
+   "retrieved_at": "2026-10-24T01:36:30Z",
+   "sha256": "91641a04f9ade46dae8d374799f4cb3a4096d91276f6df42dd2a68404962304b",
+   "tag": "ohlcv5_AVaw6h",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/AVaw6h3zE2eU57zDTMqPwdmxJnrFbuBcKoJ3FsdKdL49/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791649160&currency=usd"
+  },
+  {
+   "bytes": 103467,
+   "http": 200,
+   "n": 2,
+   "retrieved_at": "2026-10-24T01:36:38Z",
+   "sha256": "599e2747205cb3e9d3b72da69caff8cbae772a049266df8e45cc08e3b49b813f",
+   "tag": "ohlcv5_ioaDGk",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/ioaDGkQUh6h5nNTmcv8k3NvAgSTiS3xMFNaN3j11KzV/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791584035&currency=usd"
+  },
+  {
+   "bytes": 530,
+   "http": 200,
+   "n": 3,
+   "retrieved_at": "2026-10-24T01:36:45Z",
+   "sha256": "5bc18954a1d563c9233f5862bd865a445b0f83a6612d5e0ceb0114dd20a4d300",
+   "tag": "ohlcv5_AiUCeZ",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/AiUCeZYWNAnZcpWPQPGcpeP3zusPiGUZYorLZkXhMoww/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1792406442&currency=usd"
+  },
+  {
+   "bytes": 122631,
+   "http": 200,
+   "n": 4,
+   "retrieved_at": "2026-10-24T01:36:52Z",
+   "sha256": "3789636fa490c9e2a315cd3ccfe1e38a739009d45bda3aab83c9a0c99001f245",
+   "tag": "ohlcv5_8BRDx1",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/8BRDx1ky8xuRBYq1kmVJ4TrSNaDybSiLU2mxmLVB4WaW/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1792580045&currency=usd"
+  },
+  {
+   "bytes": 272,
+   "http": 429,
+   "n": 5,
+   "retrieved_at": "2026-10-24T01:37:00Z",
+   "sha256": "fe01ad53fdd7d0cfad305454076eac66eb2621cb75eea3d52130e35f2b7a2542",
+   "tag": "ohlcv5_6wXTJa",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/6wXTJaLNN3GCUJajJ9Vj2te51zsNgPVXV37EbFGRAjLz/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1792233228&currency=usd"
+  },
+  {
+   "bytes": 30011,
+   "http": 200,
+   "n": 6,
+   "retrieved_at": "2026-10-24T01:37:06Z",
+   "sha256": "2f3e22ea6095088231f8271ee052246104b5bfa6b2e16088d844b731686c0b5a",
+   "tag": "pools_JUPyiw",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/tokens/JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN/pools?page=1"
+  },
+  {
+   "bytes": 109356,
+   "http": 200,
+   "n": 7,
+   "retrieved_at": "2026-10-24T01:37:13Z",
+   "sha256": "21686428b67290f1c88a19bcc93d69a34973c045608fbc2f2270bed7ca8a2c3d",
+   "tag": "ohlcv5_C8Gr6A",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/C8Gr6AUuq9hEdSYJzoEpNcdjpojPZwqG5MtQbeouNNwg/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791628891&currency=usd"
+  },
+  {
+   "bytes": 1435,
+   "http": 200,
+   "n": 8,
+   "retrieved_at": "2026-10-24T01:37:21Z",
+   "sha256": "267ab33d75a70a814432a0c8d68e4ddbf29b6276344fa114fbdc7e021f04df92",
+   "tag": "pools_CqjaL6",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/tokens/CqjaL6XvobYG8D4Ty3cjtxw3ZyYfmAf3ggWnyyv2S4FB/pools?page=1"
+  },
+  {
+   "bytes": 6685,
+   "http": 200,
+   "n": 9,
+   "retrieved_at": "2026-10-24T01:37:28Z",
+   "sha256": "3277c2bb525e83e36030e2360436f613101f47a52b64da797b8c10db7bf06c56",
+   "tag": "ohlcv5_GbJom7",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/GbJom7FRTUHwvrrKrSBmkKjtyH1e9ZxZvXNjCpvAnkAN/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791802305&currency=usd"
+  },
+  {
+   "bytes": 1363,
+   "http": 200,
+   "n": 10,
+   "retrieved_at": "2026-10-24T01:37:35Z",
+   "sha256": "84a4180db961c886875161b4a8df2f063699a8ea4fb59b25b904bcf7032530d6",
+   "tag": "pools_BRf5k3",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/tokens/BRf5k38aEcYPb14tE5yBTSuRk3EVDra2zqct2eCApump/pools?page=1"
+  },
+  {
+   "bytes": 875,
+   "http": 200,
+   "n": 11,
+   "retrieved_at": "2026-10-24T01:37:43Z",
+   "sha256": "29d3a46f7e0958a2a5c36c38fc658dd51cecc12728e5976d544eb77a98f8fb81",
+   "tag": "ohlcv5_3DW93h",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/3DW93h3Nqin3jpMd9C4ACgLjY96yPaKAgArWqnVMuCPU/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1792233228&currency=usd"
+  },
+  {
+   "bytes": 1359,
+   "http": 200,
+   "n": 12,
+   "retrieved_at": "2026-10-24T01:37:50Z",
+   "sha256": "3eb69f6191d5d1858efa349ee07f30674f3afa2c53138c51ee4292abf3787a60",
+   "tag": "pools_EiLTVJ",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/tokens/EiLTVJLsFXvPxdzqp7ZtvXVeCB1T2UdgB9WrpxoZceXH/pools?page=1"
+  },
+  {
+   "bytes": 2078,
+   "http": 200,
+   "n": 13,
+   "retrieved_at": "2026-10-24T01:37:57Z",
+   "sha256": "2f91da992abead01468dc9beee6cfbac2a8f27f026f33730953939042eaa129b",
+   "tag": "ohlcv5_EVhp44",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/EVhp44NCuqii3Up66v6fvdL1QqCp1oR1LjvqR6Q1FDYJ/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1792233228&currency=usd"
+  },
+  {
+   "bytes": 120084,
+   "http": 200,
+   "n": 14,
+   "retrieved_at": "2026-10-24T01:38:04Z",
+   "sha256": "9cc8057577c3131777eb634f8a3a2c88fe263f08e1dc99ed4142f5e102254b75",
+   "tag": "ohlcv5_F6veTY_again",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/F6veTYFBPSYZiQSbNUDQCeMpDuSyR3pxghhfbEU2spfR/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791887879&currency=usd"
+  }
+ ],
+ "counts": {
+  "coverage": {
+   "HTTP_429": 1,
+   "INELIGIBLE_NO_RECENT_TRADE": 4,
+   "OK": 5
+  },
+  "routes": {
+   "CURRENT_VENDOR_LIST": 4,
+   "PIT_RECORDED": 6
+  }
+ },
+ "note": "coverage only: no barrier, return or class was computed; raw bodies are outside the repo",
+ "probe": "gt_coverage_probe",
+ "registry_commit": "b6f2621",
+ "revision_check": {
+  "candles_first": 1000,
+  "candles_second": 1000,
+  "changed": 0,
+  "common": 1000,
+  "only_first": 0,
+  "only_second": 0,
+  "pool": "F6veTYFBPSYZiQSbNUDQCeMpDuSyR3pxghhfbEU2spfR"
+ },
+ "rows": [
+  {
+   "candles": 1000,
+   "commit": "729fbf4",
+   "coverage": "OK",
+   "decision_utc": "2026-10-11T10:17:59Z",
+   "earliest_candle_h_before_entry": 58.97,
+   "mint": "6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
+   "ohlcv_http": 200,
+   "path_candles_24h": 284,
+   "path_max_gap_h": 0.17,
+   "pool": "F6veTYFBPSYZiQSbNUDQCeMpDuSyR3pxghhfbEU2spfR",
+   "pool_route": "PIT_RECORDED",
+   "reference_trade_in_hour_before_entry": true,
+   "status_at_decision": "REJECTED",
+   "window_requested_back_to_h_before_entry": 35.08
+  },
+  {
+   "candles": 1000,
+   "commit": "e15a886",
+   "coverage": "OK",
+   "decision_utc": "2026-10-08T15:59:20Z",
+   "earliest_candle_h_before_entry": 36.49,
+   "mint": "68AGsjomsgTtiTaDhF6XGCeVJDnFeh415ngYYgVxGzns",
+   "ohlcv_http": 200,
+   "path_candles_24h": 286,
+   "path_max_gap_h": 0.17,
+   "pool": "AVaw6h3zE2eU57zDTMqPwdmxJnrFbuBcKoJ3FsdKdL49",
+   "pool_route": "PIT_RECORDED",
+   "reference_trade_in_hour_before_entry": true,
+   "status_at_decision": "REJECTED",
+   "window_requested_back_to_h_before_entry": 35.08
+  },
+  {
+   "candles": 870,
+   "commit": "15c2087",
+   "coverage": "OK",
+   "decision_utc": "2026-10-07T21:53:55Z",
+   "earliest_candle_h_before_entry": 26.07,
+   "mint": "EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR",
+   "ohlcv_http": 200,
+   "path_candles_24h": 284,
+   "path_max_gap_h": 0.17,
+   "pool": "ioaDGkQUh6h5nNTmcv8k3NvAgSTiS3xMFNaN3j11KzV",
+   "pool_route": "PIT_RECORDED",
+   "reference_trade_in_hour_before_entry": true,
+   "status_at_decision": "REJECTED",
+   "window_requested_back_to_h_before_entry": 35.08
+  },
+  {
+   "candles": 1,
+   "commit": "793b93e",
+   "coverage": "INELIGIBLE_NO_RECENT_TRADE",
+   "decision_utc": "2026-10-17T10:20:42Z",
+   "earliest_candle_h_before_entry": 2.18,
+   "mint": "CnPL1xnAVHYGH92FpmiNoNhgh3gctkH5y988hMg4bonk",
+   "ohlcv_http": 200,
+   "path_candles_24h": 0,
+   "path_max_gap_h": 24.0,
+   "pool": "AiUCeZYWNAnZcpWPQPGcpeP3zusPiGUZYorLZkXhMoww",
+   "pool_route": "PIT_RECORDED",
+   "reference_trade_in_hour_before_entry": false,
+   "status_at_decision": "REJECTED",
+   "window_requested_back_to_h_before_entry": 35.08
+  },
+  {
+   "candles": 1000,
+   "commit": "1edd8d9",
+   "coverage": "OK",
+   "decision_utc": "2026-10-19T10:34:05Z",
+   "earliest_candle_h_before_entry": 97.82,
+   "mint": "Tm2iqbxYjKpW8xCMe6q1xUraNMNzcG5xMztAir3pump",
+   "ohlcv_http": 200,
+   "path_candles_24h": 155,
+   "path_max_gap_h": 0.92,
+   "pool": "8BRDx1ky8xuRBYq1kmVJ4TrSNaDybSiLU2mxmLVB4WaW",
+   "pool_route": "PIT_RECORDED",
+   "reference_trade_in_hour_before_entry": true,
+   "status_at_decision": "REJECTED",
+   "window_requested_back_to_h_before_entry": 35.08
+  },
+  {
+   "candles": 0,
+   "commit": "d54eb53",
+   "coverage": "HTTP_429",
+   "decision_utc": "2026-10-15T10:13:48Z",
+   "mint": "6zzzG49KX5nksnqfogs31dwoMYSHaJXkropKbv1QZVga",
+   "ohlcv_http": 429,
+   "pool": "6wXTJaLNN3GCUJajJ9Vj2te51zsNgPVXV37EbFGRAjLz",
+   "pool_route": "PIT_RECORDED",
+   "status_at_decision": "REJECTED"
+  },
+  {
+   "candles": 1000,
+   "commit": "fe8fc3b",
+   "coverage": "OK",
+   "decision_utc": "2026-10-08T10:21:31Z",
+   "earliest_candle_h_before_entry": 95.28,
+   "mint": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+   "ohlcv_http": 200,
+   "path_candles_24h": 199,
+   "path_max_gap_h": 0.5,
+   "pool": "C8Gr6AUuq9hEdSYJzoEpNcdjpojPZwqG5MtQbeouNNwg",
+   "pool_route": "CURRENT_VENDOR_LIST",
+   "reference_trade_in_hour_before_entry": true,
+   "status_at_decision": "REJECTED",
+   "vendor_pools_http": 200,
+   "vendor_pools_listed": 20,
+   "vendor_top_dex": "meteora",
+   "window_requested_back_to_h_before_entry": 35.08
+  },
+  {
+   "candles": 57,
+   "commit": "9e8aa76",
+   "coverage": "INELIGIBLE_NO_RECENT_TRADE",
+   "decision_utc": "2026-10-10T10:31:45Z",
+   "earliest_candle_h_before_entry": 274.53,
+   "mint": "CqjaL6XvobYG8D4Ty3cjtxw3ZyYfmAf3ggWnyyv2S4FB",
+   "ohlcv_http": 200,
+   "path_candles_24h": 4,
+   "path_max_gap_h": 6.17,
+   "pool": "GbJom7FRTUHwvrrKrSBmkKjtyH1e9ZxZvXNjCpvAnkAN",
+   "pool_route": "CURRENT_VENDOR_LIST",
+   "reference_trade_in_hour_before_entry": false,
+   "status_at_decision": "REJECTED",
+   "vendor_pools_http": 200,
+   "vendor_pools_listed": 1,
+   "vendor_top_dex": "raydium-clmm",
+   "window_requested_back_to_h_before_entry": 35.08
+  },
+  {
+   "candles": 4,
+   "commit": "d54eb53",
+   "coverage": "INELIGIBLE_NO_RECENT_TRADE",
+   "decision_utc": "2026-10-15T10:13:48Z",
+   "earliest_candle_h_before_entry": 237.4,
+   "mint": "BRf5k38aEcYPb14tE5yBTSuRk3EVDra2zqct2eCApump",
+   "ohlcv_http": 200,
+   "path_candles_24h": 0,
+   "path_max_gap_h": 24.0,
+   "pool": "3DW93h3Nqin3jpMd9C4ACgLjY96yPaKAgArWqnVMuCPU",
+   "pool_route": "CURRENT_VENDOR_LIST",
+   "reference_trade_in_hour_before_entry": false,
+   "status_at_decision": "REJECTED",
+   "vendor_pools_http": 200,
+   "vendor_pools_listed": 1,
+   "vendor_top_dex": "pump-fun",
+   "window_requested_back_to_h_before_entry": 35.08
+  },
+  {
+   "candles": 15,
+   "commit": "d54eb53",
+   "coverage": "INELIGIBLE_NO_RECENT_TRADE",
+   "decision_utc": "2026-10-15T10:13:48Z",
+   "earliest_candle_h_before_entry": 258.48,
+   "mint": "EiLTVJLsFXvPxdzqp7ZtvXVeCB1T2UdgB9WrpxoZceXH",
+   "ohlcv_http": 200,
+   "path_candles_24h": 1,
+   "path_max_gap_h": 20.73,
+   "pool": "EVhp44NCuqii3Up66v6fvdL1QqCp1oR1LjvqR6Q1FDYJ",
+   "pool_route": "CURRENT_VENDOR_LIST",
+   "reference_trade_in_hour_before_entry": false,
+   "status_at_decision": "REJECTED",
+   "vendor_pools_http": 200,
+   "vendor_pools_listed": 1,
+   "vendor_top_dex": "orca",
+   "window_requested_back_to_h_before_entry": 35.08
+  }
+ ],
+ "sample": 10,
+ "seed": 20261024
+}

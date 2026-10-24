@@ -4,7 +4,7 @@ optional config file for the flag, no network, no clock.
 FORMAT ONLY. A document that passes `validate` is well formed; that says nothing about predictive accuracy. Phase 01 fitted
 no model and computed no outcome. Human-readable registry: audits/predictive-intelligence/phase_01/architecture/TARGET_REGISTRY.md.
 
-Rules enforced here (package FORECAST_OUTPUT_SCHEMA.md, ADVERSARIAL_SCENARIOS.md, DECISIONS PI-D-006, PI-D-011, PI-D-014 to PI-D-018):
+Rules enforced here (package FORECAST_OUTPUT_SCHEMA.md, ADVERSARIAL_SCENARIOS.md, DECISIONS PI-D-006, PI-D-011, PI-D-014 to PI-D-019):
   - one result per (chain, mint, snapshot_hash, target, target_version, horizon, model_sha); the forecast_id is derived from them;
   - a probability only with prediction_status FORECAST, finite in [0, 1], inside its interval, with base rate, calibration
     reference and model, feature-set and data fingerprints; ABSTAIN carries named reasons and no number (P38);
@@ -14,7 +14,8 @@ Rules enforced here (package FORECAST_OUTPUT_SCHEMA.md, ADVERSARIAL_SCENARIOS.md
   - a label is PENDING until it matures and can never be scored before that (P05);
   - backtesting is BACKTEST_NOT_AVAILABLE unless a verified engine exists; a prompt-package ZIP is not one (P34);
   - decision time never comes from theses.created_at (PI-D-011);
-  - behavioral scenarios never carry a probability (P27).
+  - behavioral scenarios never carry a probability (P27);
+  - the reference price uses only candles available at the decision, and the path never uses the candle holding the entry (CC-01, P06).
 """
 from __future__ import annotations
 
@@ -64,10 +65,13 @@ _COMMON = {
     "price_source": "GeckoTerminal public OHLCV of the reference pool, minute timeframe aggregate 5, currency usd, empty intervals omitted",
     "pool_route": "primary_pool or graduated_pool of the token row in the first export holding the thesis (PIT_RECORDED); otherwise the "
                   "vendor's current top pool for the mint at label time (CURRENT_VENDOR_LIST, flagged and stratified)",
-    "reference_price": "close of the last 5-minute candle that ended at or before t_entry and no earlier than t_entry - 3600 s; none: "
-                       "INELIGIBLE_NO_RECENT_TRADE, decided from pre-entry data only",
+    "reference_price": "close of the newest 5-minute candle available at the decision: candle end + provider lag (300 s, "
+                       "replay_sources.PROVIDER_LAG, HEURISTIC) <= decision time and candle end >= decision time - 3600 s; none: "
+                       "INELIGIBLE_NO_RECENT_TRADE. Only data available at the decision decide eligibility (CC-01, PI-D-019)",
+    "gap_rule": "candles between the reference candle and t_entry are neither reference nor path",
     "path": "5-minute candles that start at or after t_entry and end at or before t_entry + horizon; the candle holding t_entry is never used",
-    "thinning": "per mint the first decision, then each next decision at least one horizon after the previous kept one",
+    "thinning": "eligibility first, then per mint the first eligible decision and each next eligible decision at least one horizon "
+                "after the previous kept one; theses of one mint that share a decision time count once, as the newest created_at",
     "statuses_included": "all thesis statuses, REJECTED and fatal-flagged included",
     "label_observed_at": "retrieval time of the candles; a backfill read is never a historical availability claim",
     "fetch_margin_s": 900,
@@ -174,6 +178,29 @@ def parse_utc(s: Any) -> float:
 
 def forecast_id(chain: str, mint: str, snapshot_hash: str, target: str, target_version: str, horizon_s: int, model_sha: str | None) -> str:
     return "fc_" + sha([chain, mint, snapshot_hash, target, target_version, int(horizon_s), model_sha or "none"])[:32]
+
+
+def reference_candle(candles: list, decision_time: float, *, period_s: int = 300, max_age_s: int = 3600,
+                     provider_lag_s: float | None = None) -> list | None:
+    """Registry reference price P0 (CC-01): the newest candle whose end plus the provider lag is at or before the decision time
+    and whose end is within max_age_s of it. A candle that closed after the decision, or too recently to have been served,
+    never decides eligibility. Rows are GeckoTerminal ohlcv_list rows [start, open, high, low, close, volume]."""
+    if provider_lag_s is None:
+        from ..social.replay_sources import PROVIDER_LAG
+        provider_lag_s = PROVIDER_LAG["geckoterminal-ohlcv"]
+    best = None
+    for c in candles:
+        end = float(c[0]) + period_s
+        if end + provider_lag_s <= decision_time and end >= decision_time - max_age_s and (best is None or c[0] > best[0]):
+            best = c
+    return best
+
+
+def path_candles(candles: list, decision_time: float, horizon_s: int, *, period_s: int = 300, lag_s: int = 300) -> list:
+    """Registry path: candles that start at or after t_entry and end at or before t_entry + horizon. The candle holding t_entry is
+    never part of the path (no same-candle entry, P06)."""
+    t_entry = decision_time + lag_s
+    return sorted((c for c in candles if float(c[0]) >= t_entry and float(c[0]) + period_s <= t_entry + horizon_s), key=lambda c: c[0])
 
 
 def label_matures_at(target: str, decision_time: float) -> float:

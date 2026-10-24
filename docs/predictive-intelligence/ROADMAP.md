@@ -9,7 +9,7 @@ Every gate also includes the standing gate: package checksums verified, predeces
 | Phase | Objective (from the phase prompt) | Entry gate | Deliverables and phase gate (from the phase prompt) | Status |
 |---|---|---|---|---|
 | 00 | Audit the actual lab and establish an executable baseline | none | `baseline/REPO_MAP.md`, `FEATURE_TRACE.md`, `COMMIT_AND_TEST_LOG.md`, `DATA_COVERAGE.md`, `EXISTING_PREDICTION_INVENTORY.md`; pinned HEAD, successful evidence commands or explicit blocker | PASS (2026-10-24, after repair pass 2): NEEDS_REVIEW at `dea735c`; the orchestrator's independent skeptic found 1 MATERIAL (clock of `tokens.first_seen_at`, hidden thesis write lag) and 5 MINOR findings, all verified and corrected (PI-D-011 to PI-D-013) |
-| 01 | Freeze measurable prediction objectives and the minimally invasive architecture | PASS from 00 | `architecture/GAP_MATRIX.csv`, `PLANNED_SEAMS.md`, `TARGET_REGISTRY.md`, `ACCEPTANCE_METRICS.md`, `DEPENDENCY_GRAPH.md`; objective, labels and placement pre-registered with no duplicate subsystem | NOT STARTED |
+| 01 | Freeze measurable prediction objectives and the minimally invasive architecture | PASS from 00 | `architecture/GAP_MATRIX.csv`, `PLANNED_SEAMS.md`, `TARGET_REGISTRY.md`, `ACCEPTANCE_METRICS.md`, `DEPENDENCY_GRAPH.md`; objective, labels and placement pre-registered with no duplicate subsystem | NEEDS_REVIEW (2026-10-24): three primary price-path targets pre-registered before any price data (PI-D-014), decision time = first export commit (PI-D-015), acceptance plan (PI-D-016), placement (PI-D-017), change control CC-01 from the phase's own attack (PI-D-019); waiting for the orchestrator's independent skeptic (PI-D-013) |
 | 02 | Broad, verifiable, diversified discovery of prediction tools | PASS from 01 | `research/SEARCH_LOG.md`, `CANDIDATES.csv` (at least 45 unique verified), `SHORTLIST.csv` (at least 20), `EXCLUSIONS.md`; audited reproducible query corpus | NOT STARTED |
 | 03 | Inspect candidate code, score and rank the strongest transferable repos | PASS from 02 | `research/REVIEWS/*.md` (at least 20), `SCORECARD.csv`, `RANKED_TOP10.md`, `CATEGORY_WINNERS.md`, `LICENSE_AND_SECURITY_GATE.md`, `INDEPENDENT_RESCORE.md`; reproducible evidence-backed top ten | NOT STARTED |
 | 04 | Choose libraries through isolated comparisons and lawful integration plans | PASS from 03 | `adoption/BAKEOFF.md`, `INSTALL_DECISION.md`, `BOM_LOCKS.md`, `MIROFISH_FEASIBILITY.md`, isolated prototypes; executable choice and lawful, budget-aware fallback | NOT STARTED |
@@ -40,3 +40,12 @@ Every gate also includes the standing gate: package checksums verified, predeces
 - `theses.created_at` is the collector-run start, written a median 16.9 min (max 116.5 min) later; never a decision or availability time without a conservative delay or a recorded capture time (PI-D-011). Launch-cohort outcomes: 19 (24 h), 8 (7 d), 2 (30 d) of 1,422.
 - Symbol-only catalyst links and alerts are not identity (PI-D-007, PI-D-012).
 - The independent skeptic is run by the orchestrator, then folded in by a repair pass (PI-D-013).
+
+## Known constraints carried from Phase 01 into later phases
+
+- Primary targets: T1 24 h and T1b 6 h price path +25% before -15%, T2 24 h drawdown to half or trading halt; all price-path only, no size (TARGET_REGISTRY.md, PI-D-014). Registry fingerprint pinned by `tests/test_predictive_contract.py`; any change is change control.
+- Event counts before eligibility: development 177 / 280 / 161, retrospective holdout 58 / 79 / 49 (T1, T1b, T2). A small coverage sample suggests a large share will be ineligible, so the retrospective holdout may fall below 50; the prospective holdout from 2026-10-24 is the evaluation that matters (PI-D-016).
+- Decision time is the first export commit (PI-D-015); the reference price must be available at the decision (CC-01, PI-D-019).
+- Labels come from bounded GeckoTerminal backfills at 6 calls a minute or less (PI-D-018). Exit-adjusted and liquidity targets need forward collection, which is PROPOSED and not approved (PI-D-020).
+- Phase 02 (tool discovery) does not depend on these numbers, but its rubric scoring of "transferable measurable predictive outcomes" and "temporal integrity" should be read against these targets.
+
