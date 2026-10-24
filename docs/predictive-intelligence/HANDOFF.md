@@ -5,7 +5,7 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 ## Position
 
 - Phase in progress: 01 (gap analysis, placement and prediction requirements), 2026-10-24. Status NEEDS_REVIEW: every gate item holds on the phase agent's own checks; the orchestrator runs the independent skeptic (PI-D-013), then a repair pass folds it in before PASS.
-- Branch `feature/predictive-intelligence`. Phase 01 commits on top of `94be1bf`: `b6f2621` (pre-registration, 2026-10-24T01:35:23Z, before any price data was read), `e64c6ca` (content), `27df593` (hash record) and two bookkeeping commits (see "Commit").
+- Branch `feature/predictive-intelligence`. Phase 01 commits on top of `94be1bf`: `b6f2621` (pre-registration, 2026-10-24T01:35:23Z, before any price data was read), `e64c6ca` (content) and bookkeeping commits after it (see "Commit").
 - Code added: `memelab/predictive/__init__.py`, `memelab/predictive/contract.py` (format-only contract, registry, validator, reference-price and path helpers), `tests/test_predictive_contract.py` (21 tests), `tests/fixtures/predictive/forecast_examples_format_only.json`. No existing module imports it; flag `predictive.enabled` defaults OFF. No existing file outside the predictive namespaces changed; nothing under `inbox/`, `state/` or `data/` changed. Not pushed (PI-D-003). Spend 0 credits.
 
 ## What Phase 01 decided
@@ -47,7 +47,7 @@ The orchestrator runs the independent skeptic on `audits/predictive-intelligence
 
 ## Commit
 
-- Pre-registration `b6f26218002a009e6d96bf17bde9188d5e809758` (2026-10-24T01:35:23Z); content `e64c6cae0b9d66c77f03f1049fa693282a25d823` (2026-10-24T01:56:38Z); hash record `27df593`; `ae6a9cb` and a last bookkeeping commit keep the artifact hashes in PHASE_01_RESULTS.json in step with this file (read it with `git log -1`).
+- Pre-registration `b6f26218002a009e6d96bf17bde9188d5e809758` (2026-10-24T01:35:23Z); content `e64c6cae0b9d66c77f03f1049fa693282a25d823` (2026-10-24T01:56:38Z); after that only bookkeeping commits that keep this file and the artifact hashes in PHASE_01_RESULTS.json in step (`git log --oneline 94be1bf..HEAD`; HEAD is the last of them).
 - `git diff --name-only 94be1bf..HEAD` lists only files under `docs/predictive-intelligence/`, `audits/predictive-intelligence/`, `memelab/predictive/`, `tests/test_predictive_contract.py` and `tests/fixtures/predictive/`.
 - Not pushed. `git status` clean after the commit.
 
@@ -57,4 +57,4 @@ The orchestrator runs the independent skeptic on `audits/predictive-intelligence
 cd /home/claude/memelab-inbox && git checkout feature/predictive-intelligence && git log -4 --oneline && python -m pytest tests -q
 ```
 
-Expect five Phase 01 commits on top of `94be1bf` (`b6f2621` pre-registration, `e64c6ca` content, `27df593` hash record, `ae6a9cb` and the bookkeeping commit that carries this line) and `1 failed, 806 passed`; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm`, `-wal` and `.pytest_cache/` by hand.
+Expect the Phase 01 commits from `b6f2621` (pre-registration) and `e64c6ca` (content) up to HEAD on top of `94be1bf`, every later one only hash bookkeeping in HANDOFF.md and PHASE_01_RESULTS.json, and `1 failed, 806 passed`; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm`, `-wal` and `.pytest_cache/` by hand.
