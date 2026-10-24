@@ -21,7 +21,7 @@ All times are UTC epoch seconds inside the module, and every report prints UTC. 
   - Scout, analyze and social alerts then behave exactly as without the module: the hook returns before opening any database.
   - Existing research keeps running.
   - No data is deleted.
-- The switch covers the hook in scout and analyze and the alert label line. Commands run by name still work when the policy is off, because asking for them is explicit: `backtest stress`, `backtest run` and `backtest outcomes ...`. To stop them, do not run them, and remove any scheduled task that calls them.
+- The switch covers the hook in scout and analyze and the alert label line. Commands run by name still work when the policy is off, because asking for them is explicit: `backtest stress`, `backtest run`, `backtest refresh` and the `backtest outcomes` actions. To stop them, do not run them, and remove any scheduled task that calls them.
 - If the research database itself is suspect:
   1. Stop every process that writes to it (scout or analyze with the module on, `backtest` commands, scheduled tasks).
   2. Take a consistent copy first: `python -m memelab backtest backup --to data/backtest/bt.backup.sqlite`. The database runs in WAL mode, so recent commits can sit in `bt.sqlite-wal`; the backup command includes them.
