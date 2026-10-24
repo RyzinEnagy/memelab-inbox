@@ -1,0 +1,98 @@
+{
+ "_note": "FORMAT ONLY. Synthetic documents that show the shape of the Phase 01 forecast contract. They are not forecasts, no model was fitted and no outcome was computed. The ABSTAIN example uses the real HIGGS mint from the Phase 00 feature trace; the FORECAST example uses a made-up address and made-up numbers.",
+ "contract_version": "memelab.predictive.forecast/1",
+ "abstain_example": {
+  "forecast_id": "fc_0740408272aae142096342f8c4dd15aa",
+  "contract_version": "memelab.predictive.forecast/1",
+  "chain": "solana",
+  "mint_address": "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
+  "snapshot_hash": "sha256:622fa3898169c82bf36772397632bde159a7897ca7e7b6797bd3ae5d61341425",
+  "decision_time_utc": "2026-10-07T21:53:00Z",
+  "decision_time_basis": "EXPORT_COMMIT",
+  "target": "price_path_target_before_invalidation_24h",
+  "target_version": "1",
+  "horizon_seconds": 86400,
+  "position_usd": null,
+  "probability": null,
+  "prediction_status": "ABSTAIN",
+  "abstain_reasons": [
+   "MODEL_NOT_SELECTED",
+   "INSUFFICIENT_HISTORY"
+  ],
+  "uncertainty_interval": null,
+  "base_rate": null,
+  "calibration_reference": null,
+  "training_cutoff_utc": null,
+  "model_id": "not_selected",
+  "model_sha": null,
+  "feature_set_sha": null,
+  "data_snapshot_sha": null,
+  "cohort": null,
+  "evidence_refs": [],
+  "backtest_status": "BACKTEST_NOT_AVAILABLE",
+  "backtest_assessment_ref": null,
+  "execution_stress_assessment_ref": null,
+  "behavioral_scenarios": [],
+  "caveats": [
+   "PRICE_PATH_NOT_PROCEEDS",
+   "NO_HISTORICAL_EXECUTABLE_DEPTH"
+  ],
+  "is_fixture": true,
+  "generated_at_utc": "2026-10-07T21:53:01Z"
+ },
+ "forecast_example": {
+  "forecast_id": "fc_62cb192115eba1c0b1fde1cb6248d0cb",
+  "contract_version": "memelab.predictive.forecast/1",
+  "chain": "solana",
+  "mint_address": "FormatExampLeMintNotARea1Token1111111111111",
+  "snapshot_hash": "sha256:6a4373438d97f1495d1cc1655acc533067c7091b486e358fb3e966ffca17af50",
+  "decision_time_utc": "2026-10-20T10:24:02Z",
+  "decision_time_basis": "EXPORT_COMMIT",
+  "target": "price_path_target_before_invalidation_24h",
+  "target_version": "1",
+  "horizon_seconds": 86400,
+  "position_usd": null,
+  "probability": 0.31,
+  "prediction_status": "FORECAST",
+  "abstain_reasons": [],
+  "uncertainty_interval": [
+   0.2,
+   0.43
+  ],
+  "base_rate": 0.34,
+  "calibration_reference": {
+   "holdout_n": 58,
+   "passed": true,
+   "note": "format example only; no evaluation was run"
+  },
+  "training_cutoff_utc": "2026-10-16T00:00:00Z",
+  "model_id": "format-example-not-a-model",
+  "model_sha": "sha256:6d4da2317e5ac776498eb8dfe11debc55f5b0440f9a3608045d3c79cb988c588",
+  "feature_set_sha": "sha256:2ade287fee5cf9878cfc5387db5df6625e3a2bda30ef210ce841fb68165f7ef3",
+  "data_snapshot_sha": "sha256:99eae9166a69fcb53eac88f442d888798b7819f38ba7cc4179978bcee8c08dda",
+  "cohort": "format-example",
+  "evidence_refs": [],
+  "backtest_status": "BACKTEST_NOT_AVAILABLE",
+  "backtest_assessment_ref": null,
+  "execution_stress_assessment_ref": null,
+  "behavioral_scenarios": [],
+  "caveats": [
+   "PRICE_PATH_NOT_PROCEEDS",
+   "NO_HISTORICAL_EXECUTABLE_DEPTH"
+  ],
+  "is_fixture": true,
+  "generated_at_utc": "2026-10-20T10:24:03Z"
+ },
+ "model_card_example": {
+  "model_id": "format-example-not-a-model",
+  "model_sha": "sha256:6d4da2317e5ac776498eb8dfe11debc55f5b0440f9a3608045d3c79cb988c588",
+  "feature_set_sha": "sha256:2ade287fee5cf9878cfc5387db5df6625e3a2bda30ef210ce841fb68165f7ef3",
+  "targets": [
+   "price_path_target_before_invalidation_24h"
+  ],
+  "target_version": {
+   "price_path_target_before_invalidation_24h": "1"
+  },
+  "is_fixture": true
+ }
+}
