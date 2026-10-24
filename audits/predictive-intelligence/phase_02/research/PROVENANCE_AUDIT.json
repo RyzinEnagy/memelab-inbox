@@ -1,0 +1,104 @@
+{
+ "seed": 20261024,
+ "population": "(candidate, qid) pairs with qid from the keyword index (K), documentation (D), paper (A) or WebSearch (W) mechanisms, chained credits excluded, sorted by repo then qid",
+ "population_size": 114,
+ "drawn": [
+  [
+   "online-ml/river",
+   "K07_p1"
+  ],
+  [
+   "adaptive-machine-learning/CapyMOA",
+   "K08_p1"
+  ],
+  [
+   "selimfirat/pysad",
+   "K12_p2"
+  ],
+  [
+   "KhiopsLab/khalib",
+   "K02_p1"
+  ],
+  [
+   "camel-ai/oasis",
+   "W01"
+  ]
+ ],
+ "rows": [
+  {
+   "repo": "online-ml/river",
+   "qid": "K07_p1",
+   "original_ranks": [
+    9,
+    10,
+    30
+   ],
+   "rerun_qid": "K07_p1_audit",
+   "rerun_at": "2026-10-24T03:29:35Z",
+   "rerun_ranks": [
+    9,
+    10,
+    30
+   ],
+   "body_sha256_equal": true,
+   "reappeared": true
+  },
+  {
+   "repo": "adaptive-machine-learning/CapyMOA",
+   "qid": "K08_p1",
+   "original_ranks": [
+    94
+   ],
+   "rerun_qid": "K08_p1_audit",
+   "rerun_at": "2026-10-24T03:29:40Z",
+   "rerun_ranks": [
+    94
+   ],
+   "body_sha256_equal": true,
+   "reappeared": true
+  },
+  {
+   "repo": "selimfirat/pysad",
+   "qid": "K12_p2",
+   "original_ranks": [
+    97
+   ],
+   "rerun_qid": "K12_p2_audit",
+   "rerun_at": "2026-10-24T03:29:47Z",
+   "rerun_ranks": [
+    97
+   ],
+   "body_sha256_equal": true,
+   "reappeared": true
+  },
+  {
+   "repo": "KhiopsLab/khalib",
+   "qid": "K02_p1",
+   "original_ranks": [
+    10
+   ],
+   "rerun_qid": "K02_p1_audit",
+   "rerun_at": "2026-10-24T03:29:31Z",
+   "rerun_ranks": [
+    10
+   ],
+   "body_sha256_equal": true,
+   "reappeared": true
+  },
+  {
+   "repo": "camel-ai/oasis",
+   "qid": "W01",
+   "original_ranks": [
+    "result 5: docsearch.algolia.com/mcp/docs/repo/camel-ai/oasis"
+   ],
+   "rerun_qid": "W01 (WebSearch re-run)",
+   "rerun_at": "2026-10-24T03:29:48Z/03:30:04Z",
+   "rerun_ranks": [
+    "result 5: docsearch.algolia.com/mcp/docs/repo/camel-ai/oasis (same nine URLs in the same order)"
+   ],
+   "body_sha256_equal": null,
+   "reappeared": true
+  }
+ ],
+ "caveat": "repos.ecosyste.ms responses carry cdn-cache-control max-age 3600; an identical body 27 minutes later shows the recorded response is reproducible, not that the index was re-read from its origin. WebSearch has no body hash; the re-run returned the same nine URLs in the same order."
+}

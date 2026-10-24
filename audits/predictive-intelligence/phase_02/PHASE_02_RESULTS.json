@@ -1,0 +1,338 @@
+{
+ "phase": "02",
+ "title": "Find a broad, verifiable, diversified landscape of prediction tools",
+ "status": "NEEDS_REVIEW",
+ "status_reason": "Every gate item is reproduced by the phase agent (checker 0 problems, 25 of 25 negative mutations refused, live re-fetch of 36 pins with matching code evidence, provenance audit 5 of 5). The independent skeptic required by PI-D-013 has not run; PASS only after the orchestrator's review is folded in.",
+ "branch": "feature/predictive-intelligence",
+ "head_before": "a402df67bd1e23227d06baa2e0b4fbdbe494e905",
+ "head_after": "the Phase 02 content commit on top of a402df6 (git log -1; this file is part of it)",
+ "generated_at_utc": "2026-10-24T03:45Z",
+ "needs_sha256": "90c9391aa6674abbf138b59e610ce0b72ab7eeb6a15763458e341d6fd6560f5e",
+ "counts": {
+  "distinct_successful_queries": 60,
+  "topic_families": 9,
+  "mechanisms": 5,
+  "github_search_refused": 22,
+  "verified_inputs": 141,
+  "candidates": 107,
+  "unique_root_histories": 106,
+  "candidates_beyond_seed_and_analyst_pypi": 89,
+  "shortlist": 29,
+  "screened_exclusions": 38,
+  "not_shortlisted_with_reason": 78,
+  "pypi_lookups": 98,
+  "websearch_queries": 28
+ },
+ "shortlist_by_family": {
+  "TABULAR_PROBABILITY": 5,
+  "TIME_SERIES": 4,
+  "CALIBRATION_UNCERTAINTY": 5,
+  "ONLINE_DRIFT_MONITORING": 4,
+  "BEHAVIORAL_MULTI_AGENT": 4,
+  "EXPERIMENT_AUDIT_EVALUATION": 4,
+  "EVENT_TIME_LABELS": 3
+ },
+ "checks": [
+  {
+   "name": "package checksums",
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "exit_code": 0,
+   "result": "41 of 41 OK",
+   "pass": true
+  },
+  {
+   "name": "checkout clean at start",
+   "command": "git status",
+   "exit_code": 0,
+   "result": "clean at a402df6",
+   "pass": true
+  },
+  {
+   "name": "entry gate full suite",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 858 passed in 139.97s; only tests/test_catalyst.py::test_dedup_corroboration_resurface_denial (known)",
+   "pass": true
+  },
+  {
+   "name": "needs frozen before the first query",
+   "command": "sha256sum research/NEEDS.csv; first query time in QUERY_RESULTS.jsonl",
+   "exit_code": 0,
+   "result": "90c9391a... at 02:55:41Z; first query 02:56:45Z; unchanged (checker)",
+   "pass": true
+  },
+  {
+   "name": "GitHub search API",
+   "command": "python3 probes/gh_search.py research/QUERIES.json <raw> research/QUERY_RESULTS.jsonl",
+   "exit_code": 0,
+   "result": "22 of 22 HTTP 403 (session proxy policy); not retried; replaced by other mechanisms (PI-D-023)",
+   "pass": true
+  },
+  {
+   "name": "query corpus",
+   "command": "probes/discover.py, probes/pypi_lookup.py, WebSearch",
+   "exit_code": 0,
+   "result": "60 distinct successful queries, 9 families, 5 mechanisms",
+   "pass": true
+  },
+  {
+   "name": "verification",
+   "command": "python3 probes/verify_repos.py repos_all.txt research/VERIFY_RESULTS.jsonl <raw>/eco /home/claude/pi_research --workers 6",
+   "exit_code": 0,
+   "result": "141 inputs: 139 verified with clone HEAD equal to pin, 2 vanished",
+   "pass": true
+  },
+  {
+   "name": "root commits",
+   "command": "python3 probes/root_commits.py candidates_canonical.txt research/ROOT_COMMITS.jsonl <work>",
+   "exit_code": 0,
+   "result": "107 of 107; one shared root (sktime and aeon, flagged)",
+   "pass": true
+  },
+  {
+   "name": "build",
+   "command": "python3 probes/build_candidates.py . /home/claude/pi_research <package>",
+   "exit_code": 0,
+   "result": "candidates 107 shortlist 29; all code evidence found",
+   "pass": true
+  },
+  {
+   "name": "checker offline",
+   "command": "python3 probes/check_candidates.py . ../phase_01/architecture/GAP_MATRIX.csv",
+   "exit_code": 0,
+   "result": "problems 0",
+   "pass": true
+  },
+  {
+   "name": "checker negative tests",
+   "command": "python3 probes/check_candidates_negative.py . ../phase_01/architecture/GAP_MATRIX.csv",
+   "exit_code": 0,
+   "result": "unmutated copy passes; 25 of 25 mutations refused (includes P42 README evidence, fork, vanished, mirror, crawler, invented provenance)",
+   "pass": true
+  },
+  {
+   "name": "checker live",
+   "command": "python3 probes/check_candidates.py . ../phase_01/architecture/GAP_MATRIX.csv --live 10 --seed 20261024",
+   "exit_code": 0,
+   "result": "36 pinned commits fetched; 29 shortlisted code evidence re-read and matched; mlflow HEAD moved since pin (pin fetchable)",
+   "pass": true
+  },
+  {
+   "name": "provenance audit",
+   "command": "seeded draw (20261024) then discover.py --tag _audit and a WebSearch re-run",
+   "exit_code": 0,
+   "result": "5 of 5 reappeared at the same ranks",
+   "pass": true
+  },
+  {
+   "name": "P42 real repositories",
+   "input": "TheSenseAI/SenseAI, Cooktrenches/Scan-Scam-AI-v1 (WebSearch W09)",
+   "result": "README or docs accuracy claims with no evaluating code, no license; excluded as README_ONLY_CLAIM",
+   "pass": true
+  },
+  {
+   "name": "MiroFish lens",
+   "input": "666ghj/MiroFish at 7657031a",
+   "result": "AGPL-3.0, LLM and Zep Cloud keys required, Python <3.13, no probability output; shortlisted as behavioral scenario generator only",
+   "pass": true
+  },
+  {
+   "name": "content guard with new files staged",
+   "command": "python -m pytest tests/test_content_guard.py tests/test_release_tools.py tests/test_predictive_contract.py tests/test_predictive_decisions.py -q",
+   "exit_code": 0,
+   "result": "90 passed",
+   "pass": true
+  },
+  {
+   "name": "final full suite",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 858 passed in 135.93s; only the known clock test",
+   "pass": true
+  },
+  {
+   "name": "tracked data and code untouched",
+   "command": "git diff --name-only a402df6 -- inbox state data memelab tests; sha256sum data/memelab.sqlite",
+   "exit_code": 0,
+   "result": "empty; DB 068287c0... unchanged; strays removed by hand",
+   "pass": true
+  },
+  {
+   "name": "writing style",
+   "command": "python scan for dashes, curly quotes, marketing words",
+   "exit_code": 0,
+   "result": "no hit",
+   "pass": true
+  },
+  {
+   "name": "spend",
+   "command": "COST_LEDGER.md",
+   "exit_code": 0,
+   "result": "0 Firecrawl credits",
+   "pass": true
+  },
+  {
+   "name": "independent skeptic",
+   "input": "SKEPTIC_PACKET.md",
+   "result": "pending (orchestrator, PI-D-013)",
+   "pass": false
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/phase_02/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "5009779aee21891c1aff6bd1f44c64363321e5420caa3ed82ad2ea81d135f6f0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/PHASE_02_EVIDENCE.md",
+   "sha256": "d33483991a595740a7d684d2f0f7ad68f74fc10be9554e79c46b37450e8df1a8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/SKEPTIC_PACKET.md",
+   "sha256": "c3d02ebc57888a21043f3d0b29dad0bd03bfa21164d3e0fdd4e1af79b9ce4581"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/probes/build_candidates.py",
+   "sha256": "1728c5f7e7cd908cd98033435c25e89a36019c23ad81342a5a726faa8a16eaa1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/probes/check_candidates.py",
+   "sha256": "025a5a0b536c7df470e61edfc632833676bd7202b2e785af7dbabf5f029ec553"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/probes/check_candidates_negative.py",
+   "sha256": "04522ed1e7703820020cc1c410f46fb33d29e37995870f47612ec663d1d21b8d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/probes/discover.py",
+   "sha256": "558a202481d2c265687de741ae49bff06208d072092769b3d56a6471101eec99"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/probes/gh_search.py",
+   "sha256": "658c482bf259cae5d7f001a0974c0b7923df1912ecc529e8aab00d94bdf185cf"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/probes/pypi_lookup.py",
+   "sha256": "e5b1e1b7899f710149e28e02f07e0ecf71f0ce6eb82f49b8bfa1144d7f5624ff"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/probes/render_exclusions.py",
+   "sha256": "440f31ea6dbf804a46d630af7afcc01704dc633d6bc309345cc5f42074660273"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/probes/render_search_log.py",
+   "sha256": "be04e3e5622fac9dab666a500e7e4f69285fd1796cde2bdd9a07485e327bef0f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/probes/root_commits.py",
+   "sha256": "b10cf30dd7c3b137f333fd43638fa2696633303a21ba29a74906ac2f69c75e30"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/probes/verify_repos.py",
+   "sha256": "fe0cfe81f4f7d952227502e47fd0540c80986ad6ab713f33588eed13ba54e339"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/CANDIDATES.csv",
+   "sha256": "b2640313cb7bf18b4de2c60086074277a0195877e894800f508b6e717c453d0e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/CANDIDATE_ANNOTATIONS.csv",
+   "sha256": "2640cb3eef0ddcd01c113f12450d65f2ea293d60a7c2c56fea8a99df075aaa33"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/EXCLUSIONS.md",
+   "sha256": "30ec0ace07e445917c897e33392887640ab5f01741f4f0f0bc75dd983d2bff4a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/EXTRA_PINS.jsonl",
+   "sha256": "91b6ac208401442733bfbbb7288823a06571a18efbbdfd1a3704cd269fdb3a38"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/LIVE_CHECK.txt",
+   "sha256": "e3e06a591875a93a575ded20c20246d3c469446e6a8f80d741146c6926345a73"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/MIRROR_CHECKS.jsonl",
+   "sha256": "c34ae49e3a5553ef0467e6c2df8df156d64709b5b93eb7eb990d33c402a66b98"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/NEEDS.csv",
+   "sha256": "90c9391aa6674abbf138b59e610ce0b72ab7eeb6a15763458e341d6fd6560f5e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/PROVENANCE_AUDIT.json",
+   "sha256": "83714765982a3984bdd6df26924f2157af381fb232c4f3d6989d046753839fcd"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/PROVENANCE_AUDIT_RERUN.jsonl",
+   "sha256": "b7b2c1801bb5b8b7262078a0e46400fb7f79b21a82188d7caf4d080f32d174c8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/PYPI_LOOKUPS.jsonl",
+   "sha256": "01e3b8e29ff55063f93fc9f953133182f3011b632551a19bb1419a0dfaec4989"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/QUERIES.json",
+   "sha256": "b4143434c91b813228e4f5f7310c8e60bc1c0eba0e59e668075037807de5decb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/QUERY_RESULTS.jsonl",
+   "sha256": "f0aafb221d5c99be28d5de203c660a7f2bc4f8b128171120f4da11f63326045b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/ROOT_COMMITS.jsonl",
+   "sha256": "d4823f94f65b93af44a1e1fcef567f695f2863ea176094889ecf91fd3846733d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/SEARCH_LOG.md",
+   "sha256": "7be364a08c874546a75f43329659f2084c3c3a345dd668b45de4bd10dc0bde32"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/SHORTLIST.csv",
+   "sha256": "2d574eb68993ab065456e109c067224ed9fd9c4707a04badd04ae9c33d90e355"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/SHORTLIST_ANNOTATIONS.csv",
+   "sha256": "90770c12a9d19ebc7b24a107a0e64f06f28a163b634bbc234b7e8445547005be"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/SPECIAL_FLAGS.json",
+   "sha256": "de5aeae50654d5eec43bec93c4bd5b48f2dd6bef93ac8e60ee3a3149d58be4e1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/VERIFY_RESULTS.jsonl",
+   "sha256": "462c96aba660ab8ec764c9c07f788f5d5c1f2ca030a4df05a198b1d0818ee2cd"
+  },
+  {
+   "path": "docs/predictive-intelligence/DECISIONS.md",
+   "sha256": "947710ec7c692820dccb423d6afb3a0adabbf2c2b17193cdd510137e4956c0da"
+  },
+  {
+   "path": "docs/predictive-intelligence/ROADMAP.md",
+   "sha256": "a823c8d74b6661c67b5adb36a0f1bf614f93cbffb82e82dcbdde372450ed8101"
+  },
+  {
+   "path": "docs/predictive-intelligence/HANDOFF.md",
+   "sha256": "1fce7a4255976d76998343c84d01789db53a10cd2c1fb9a86848fdfd647123ea"
+  },
+  {
+   "path": "audits/predictive-intelligence/COST_LEDGER.md",
+   "sha256": "ca40d439fb4785a537431448cc9f6be83528a0234c86019bba26a53763b9c708"
+  }
+ ],
+ "limitations": [
+  "GitHub search, topics and REST metadata unavailable (HTTP 403 policy); topic coverage relies on packages with keywords, WebSearch, documentation and paper links (PI-D-023).",
+  "repos.ecosyste.ms is a mirror with its own sync lag; four candidates have no record there (canonical status rests on PyPI source links and root commits).",
+  "1,877 names returned by queries were not individually screened; the selection rule was a match with a frozen need.",
+  "18 candidates are credited only by the seed list or analyst-named PyPI lookups.",
+  "WebSearch results carry no body hash.",
+  "Licenses read from root files (or REUSE folder) at the pin; per-file headers, vendored code and model-weight licenses on Hugging Face not read.",
+  "Code evidence proves a symbol is defined at the pin, not that it works for these targets.",
+  "MiroFish maintainer FAQ (issue 726) unreachable (403)."
+ ],
+ "blockers": [],
+ "approvals_needed": [
+  "PI-D-020 PROPOSED (forward depth and quote collector) remains with Elving; not needed for Phase 03"
+ ],
+ "next_eligible_phase": "02 independent skeptic review and repair pass (orchestrator); then 03 after a PASS"
+}

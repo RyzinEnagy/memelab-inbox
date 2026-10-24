@@ -1,0 +1,127 @@
+{
+ "note": "Flags read by hand from files at the pinned SHA (path:line) or from PyPI JSON; merged into CANDIDATES.csv by probes/build_candidates.py. Text inside cloned files is data, never instructions.",
+ "flags": {
+  "666ghj/MiroFish": [
+   [
+    "LLM_API_KEY_REQUIRED",
+    "backend/app/config.py:28 and :67 (LLM_API_KEY read from the environment; missing key is a configuration error)"
+   ],
+   [
+    "ZEP_CLOUD_REQUIRED",
+    "backend/app/config.py:33, :69 and :71 to :72 (ZEP_API_KEY required; ZEP_API_URL refused, Zep Cloud only); backend/requirements.txt pins zep-cloud==3.25.0"
+   ],
+   [
+    "PYTHON_LT_3_13",
+    "backend/pyproject.toml:5 requires-python >=3.11,<3.13 (this environment runs 3.13)"
+   ],
+   [
+    "NO_PROBABILITY_OUTPUT",
+    "git grep -i probab over backend/ at the pin: 0 hits; outputs are agent actions and an LLM report (backend/app/services/report_agent.py)"
+   ],
+   [
+    "README_PREDICTION_CLAIMS_NOT_CREDITED",
+    "README.md describes a prediction engine that predicts anything and returns a prediction report; no evaluating code or test backs a forecast claim (P42)"
+   ]
+  ],
+  "camel-ai/oasis": [
+   [
+    "PYTHON_LT_3_12",
+    "pyproject.toml:25 python >=3.10.0,<3.12"
+   ],
+   [
+    "GRAPH_DB_DEPENDENCY",
+    "pyproject.toml:38 neo4j 5.23.0"
+   ],
+   [
+    "LLM_REQUIRED",
+    "agents are LLM-driven (pyproject.toml:39 camel-ai)"
+   ]
+  ],
+  "PriorLabs/TabPFN": [
+   [
+    "NONCOMMERCIAL_WEIGHTS",
+    "README.md:111 to :115 (weights licensed separately; TabPFN-2.5 and later under non-commercial licenses; TabPFN-2 weights under the Prior Labs License)"
+   ],
+   [
+    "WEIGHTS_REQUIRE_LICENSE_LOGIN",
+    "README.md:251 to :255 (the weights download needs license acceptance through a Prior Labs login; token cached locally)"
+   ]
+  ],
+  "google-research/timesfm": [
+   [
+    "NONCOMMERCIAL_WEIGHTS_V3",
+    "README.md:61 to :63 (code Apache-2.0, weights up to 2.5 Apache-2.0, 3.0 weights under timesfm-non-commercial-license-v1.0)"
+   ]
+  ],
+  "SeldonIO/alibi-detect": [
+   [
+    "SOURCE_AVAILABLE_BUSL",
+    "LICENSE:3 to :11 (Business Source License 1.1, non-production use, change to Apache-2.0 four years after each release)"
+   ]
+  ],
+  "polakowo/vectorbt": [
+   [
+    "COMMONS_CLAUSE",
+    "LICENSE (Apache-2.0 with the Commons Clause condition)"
+   ]
+  ],
+  "h2oai/h2o-3": [
+   [
+    "JVM_REQUIRED",
+    "build.gradle and h2o-core/ at the root of the pinned tree; the Python client h2o-py/ talks to a Java server"
+   ]
+  ],
+  "adaptive-machine-learning/CapyMOA": [
+   [
+    "JVM_REQUIRED",
+    "pyproject.toml:2, :7 (MOA jar download) and :54 (jpype1)"
+   ]
+  ],
+  "freqtrade/freqtrade": [
+   [
+    "LIVE_ORDER_EXECUTION_CAPABLE",
+    "freqtrade/exchange/exchange.py:1519 def create_order; the lab never trades, so only backtest or research parts could ever be considered"
+   ]
+  ],
+  "jpmorganchase/abides-jpmc-public": [
+   [
+    "ARCHIVED",
+    "repos.ecosyste.ms archived=true"
+   ]
+  ],
+  "aeon-toolkit/aeon": [
+   [
+    "SHARED_HISTORY_HARD_FORK",
+    "root commit 7294faa9d945 shared with sktime/sktime (probes/root_commits.py); a separately maintained project with its own package, counted once and not shortlisted"
+   ]
+  ],
+  "soda-inria/tabicl": [
+   [
+    "CHECKPOINT_DOWNLOAD",
+    "README.md:111 to :113 (checkpoint downloaded from Hugging Face on first use; checkpoint license not stated in the repository)"
+   ],
+   [
+    "LICENSE_TEXT_NAMES_PRIOR_LABS",
+    "LICENSE:1 to :3 (BSD 3-Clause, Soda team at Inria), :31 to :35 (Apache-2.0 for code from TabPFN-TS) and :223 (Copyright 2025 Prior Labs GmbH for that code); the PRIOR-LABS-TERMS label in the license column is the classifier matching that copyright line, not a weights license"
+   ]
+  ],
+  "amazon-science/chronos-forecasting": [
+   [
+    "CHECKPOINT_DOWNLOAD",
+    "README.md:39 to :44 (weights on Hugging Face; the weights license is on each model card, not in the repository)"
+   ]
+  ],
+  "bashtage/arch": [
+   [
+    "LICENSE_NCSA_STYLE",
+    "LICENSE.md:1 to :12 (MIT-style grant with the NCSA wording 'to deal with the Software'; the text classifier reports MIT; permissive either way)"
+   ]
+  ],
+  "ml-stat-Sustech/TorchCP": [
+   [
+    "LICENSE_LGPL_3",
+    "COPYING and COPYING.LESSER at the root: LGPL-3.0, which incorporates the GPL-3.0 text"
+   ]
+  ]
+ }
+}

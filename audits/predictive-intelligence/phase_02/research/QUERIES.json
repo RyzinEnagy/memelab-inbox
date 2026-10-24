@@ -1,0 +1,423 @@
+{
+ "note": "Discovery corpus for Phase 02. The GitHub search API section ran first (2026-10-24T02:56Z) and every call returned HTTP 403 from the session proxy (policy: sessions bound to configured repositories), so the corpus was extended at 2026-10-24T03:10Z with the other mechanisms below. Families are non-overlapping topic families; need ids refer to research/NEEDS.csv.",
+ "github_search": [
+  {
+   "qid": "Q01",
+   "family": "CALIBRATION_UNCERTAINTY",
+   "needs": "N02;N03",
+   "q": "topic:conformal-prediction"
+  },
+  {
+   "qid": "Q02",
+   "family": "CALIBRATION_UNCERTAINTY",
+   "needs": "N02",
+   "q": "probability calibration classifier language:Python"
+  },
+  {
+   "qid": "Q03",
+   "family": "CALIBRATION_UNCERTAINTY",
+   "needs": "N02",
+   "q": "proper scoring rules language:Python"
+  },
+  {
+   "qid": "Q04",
+   "family": "TABULAR_PROBABILITY",
+   "needs": "N01",
+   "q": "topic:imbalanced-learning"
+  },
+  {
+   "qid": "Q05",
+   "family": "TABULAR_PROBABILITY",
+   "needs": "N01",
+   "q": "topic:gradient-boosting"
+  },
+  {
+   "qid": "Q06",
+   "family": "TIME_SERIES",
+   "needs": "N06;N07",
+   "q": "topic:time-series-forecasting language:Python"
+  },
+  {
+   "qid": "Q07",
+   "family": "TIME_SERIES",
+   "needs": "N06;N07",
+   "q": "topic:change-point-detection"
+  },
+  {
+   "qid": "Q08",
+   "family": "ONLINE_DRIFT_MONITORING",
+   "needs": "N08",
+   "q": "topic:concept-drift"
+  },
+  {
+   "qid": "Q09",
+   "family": "ONLINE_DRIFT_MONITORING",
+   "needs": "N09",
+   "q": "topic:online-learning language:Python"
+  },
+  {
+   "qid": "Q10",
+   "family": "ONLINE_DRIFT_MONITORING",
+   "needs": "N08",
+   "q": "topic:model-monitoring"
+  },
+  {
+   "qid": "Q11",
+   "family": "BEHAVIORAL_MULTI_AGENT",
+   "needs": "N13",
+   "q": "topic:agent-based-modeling language:Python"
+  },
+  {
+   "qid": "Q12",
+   "family": "BEHAVIORAL_MULTI_AGENT",
+   "needs": "N13",
+   "q": "social media simulation llm agents"
+  },
+  {
+   "qid": "Q13",
+   "family": "EVENT_TIME_LABELS",
+   "needs": "N05",
+   "q": "topic:survival-analysis language:Python"
+  },
+  {
+   "qid": "Q14",
+   "family": "EVENT_TIME_LABELS",
+   "needs": "N05;N04",
+   "q": "triple barrier labeling"
+  },
+  {
+   "qid": "Q15",
+   "family": "EXPERIMENT_AUDIT_EVALUATION",
+   "needs": "N10",
+   "q": "topic:experiment-tracking"
+  },
+  {
+   "qid": "Q16",
+   "family": "EXPERIMENT_AUDIT_EVALUATION",
+   "needs": "N04",
+   "q": "purged cross validation"
+  },
+  {
+   "qid": "Q17",
+   "family": "EXPERIMENT_AUDIT_EVALUATION",
+   "needs": "N10",
+   "q": "topic:data-validation language:Python"
+  },
+  {
+   "qid": "Q18",
+   "family": "ONCHAIN_FINANCIAL_ANOMALY",
+   "needs": "N11",
+   "q": "topic:anomaly-detection language:Python"
+  },
+  {
+   "qid": "Q19",
+   "family": "ONCHAIN_FINANCIAL_ANOMALY",
+   "needs": "N11",
+   "q": "solana rug pull detection"
+  },
+  {
+   "qid": "Q20",
+   "family": "ONCHAIN_FINANCIAL_ANOMALY",
+   "needs": "N01;N11",
+   "q": "memecoin prediction"
+  },
+  {
+   "qid": "Q21",
+   "family": "SOCIAL_NARRATIVE",
+   "needs": "N12",
+   "q": "crypto sentiment analysis twitter language:Python"
+  },
+  {
+   "qid": "Q22",
+   "family": "ONCHAIN_FINANCIAL_ANOMALY",
+   "needs": "N14",
+   "q": "topic:backtesting language:Python"
+  }
+ ],
+ "package_keyword_index": [
+  {
+   "qid": "K01",
+   "family": "CALIBRATION_UNCERTAINTY",
+   "needs": "N02;N03",
+   "keyword": "conformal-prediction",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/conformal-prediction?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  },
+  {
+   "qid": "K02",
+   "family": "CALIBRATION_UNCERTAINTY",
+   "needs": "N02",
+   "keyword": "probability-calibration",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/probability-calibration?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  },
+  {
+   "qid": "K03",
+   "family": "TABULAR_PROBABILITY",
+   "needs": "N01",
+   "keyword": "imbalanced-learning",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/imbalanced-learning?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  },
+  {
+   "qid": "K04",
+   "family": "TABULAR_PROBABILITY",
+   "needs": "N01",
+   "keyword": "gradient-boosting",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/gradient-boosting?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  },
+  {
+   "qid": "K05",
+   "family": "TIME_SERIES",
+   "needs": "N06;N07",
+   "keyword": "time-series-forecasting",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/time-series-forecasting?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  },
+  {
+   "qid": "K06",
+   "family": "TIME_SERIES",
+   "needs": "N06;N07",
+   "keyword": "change-point-detection",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/change-point-detection?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  },
+  {
+   "qid": "K07",
+   "family": "ONLINE_DRIFT_MONITORING",
+   "needs": "N08",
+   "keyword": "concept-drift",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/concept-drift?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  },
+  {
+   "qid": "K08",
+   "family": "ONLINE_DRIFT_MONITORING",
+   "needs": "N09",
+   "keyword": "online-learning",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/online-learning?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  },
+  {
+   "qid": "K09",
+   "family": "BEHAVIORAL_MULTI_AGENT",
+   "needs": "N13",
+   "keyword": "agent-based-modeling",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/agent-based-modeling?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  },
+  {
+   "qid": "K10",
+   "family": "EVENT_TIME_LABELS",
+   "needs": "N05",
+   "keyword": "survival-analysis",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/survival-analysis?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  },
+  {
+   "qid": "K11",
+   "family": "EXPERIMENT_AUDIT_EVALUATION",
+   "needs": "N10",
+   "keyword": "experiment-tracking",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/experiment-tracking?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  },
+  {
+   "qid": "K12",
+   "family": "ONCHAIN_FINANCIAL_ANOMALY",
+   "needs": "N11",
+   "keyword": "anomaly-detection",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/anomaly-detection?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  },
+  {
+   "qid": "K13",
+   "family": "ONCHAIN_FINANCIAL_ANOMALY",
+   "needs": "N14",
+   "keyword": "backtesting",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/backtesting?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  },
+  {
+   "qid": "K14",
+   "family": "ONLINE_DRIFT_MONITORING",
+   "needs": "N08",
+   "keyword": "model-monitoring",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/model-monitoring?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  }
+ ],
+ "docs_crosslinks": [
+  {
+   "qid": "D01",
+   "family": "TABULAR_PROBABILITY",
+   "needs": "N01;N02;N03",
+   "url": "https://scikit-learn.org/stable/related_projects.html",
+   "what": "scikit-learn documentation, Related Projects page"
+  },
+  {
+   "qid": "D02",
+   "family": "CALIBRATION_UNCERTAINTY",
+   "needs": "N02;N03",
+   "url": "https://raw.githubusercontent.com/valeman/awesome-conformal-prediction/HEAD/README.md",
+   "what": "awesome-conformal-prediction list README"
+  },
+  {
+   "qid": "D03",
+   "family": "BEHAVIORAL_MULTI_AGENT",
+   "needs": "N13",
+   "url": "https://raw.githubusercontent.com/666ghj/MiroFish/HEAD/README.md",
+   "what": "MiroFish README cross-links (navigation only)"
+  },
+  {
+   "qid": "D04",
+   "family": "BEHAVIORAL_MULTI_AGENT",
+   "needs": "N13",
+   "url": "https://raw.githubusercontent.com/camel-ai/oasis/HEAD/README.md",
+   "what": "OASIS README cross-links (navigation only)"
+  },
+  {
+   "qid": "D05",
+   "family": "ONCHAIN_FINANCIAL_ANOMALY",
+   "needs": "N06;N11;N14",
+   "url": "https://raw.githubusercontent.com/wilsonfreitas/awesome-quant/HEAD/README.md",
+   "what": "awesome-quant list README"
+  },
+  {
+   "qid": "D06",
+   "family": "ONLINE_DRIFT_MONITORING",
+   "needs": "N08;N09",
+   "url": "https://raw.githubusercontent.com/online-ml/river/HEAD/README.md",
+   "what": "river README (related projects section)"
+  }
+ ],
+ "paper_links": [
+  {
+   "qid": "A01",
+   "family": "BEHAVIORAL_MULTI_AGENT",
+   "needs": "N13",
+   "url": "https://arxiv.org/abs/2411.11581",
+   "what": "OASIS: Open Agent Social Interaction Simulations with One Million Agents"
+  },
+  {
+   "qid": "A02",
+   "family": "TIME_SERIES",
+   "needs": "N06",
+   "url": "https://arxiv.org/abs/2403.07815",
+   "what": "Chronos: Learning the Language of Time Series"
+  },
+  {
+   "qid": "A03",
+   "family": "BEHAVIORAL_MULTI_AGENT",
+   "needs": "N13;N14",
+   "url": "https://arxiv.org/abs/1904.12066",
+   "what": "ABIDES: Towards High-Fidelity Market Simulation for AI Research"
+  },
+  {
+   "qid": "A04",
+   "family": "CALIBRATION_UNCERTAINTY",
+   "needs": "N02;N03",
+   "url": "https://arxiv.org/abs/2207.12274",
+   "what": "MAPIE library paper (conformal prediction)"
+  },
+  {
+   "qid": "A05",
+   "family": "TABULAR_PROBABILITY",
+   "needs": "N01",
+   "url": "https://arxiv.org/abs/2207.01848",
+   "what": "TabPFN: a transformer that solves small tabular classification problems in a second"
+  },
+  {
+   "qid": "A06",
+   "family": "TIME_SERIES",
+   "needs": "N06",
+   "url": "https://arxiv.org/abs/2310.10688",
+   "what": "TimesFM: a decoder-only foundation model for time-series forecasting"
+  },
+  {
+   "qid": "A07",
+   "family": "BEHAVIORAL_MULTI_AGENT",
+   "needs": "N13",
+   "url": "https://arxiv.org/abs/2304.03442",
+   "what": "Generative Agents: Interactive Simulacra of Human Behavior"
+  },
+  {
+   "qid": "A08",
+   "family": "ONCHAIN_FINANCIAL_ANOMALY",
+   "needs": "N11",
+   "url": "https://arxiv.org/abs/2608.20271",
+   "what": "Catching the Rug: Early Prediction of Fraudulent Memecoins on Solana via Machine Learning (found by W04)"
+  },
+  {
+   "qid": "A09",
+   "family": "ONCHAIN_FINANCIAL_ANOMALY",
+   "needs": "N11",
+   "url": "https://arxiv.org/abs/2504.07132",
+   "what": "SolRPDS rug pull dataset paper (found by W04)"
+  },
+  {
+   "qid": "A10",
+   "family": "ONCHAIN_FINANCIAL_ANOMALY",
+   "needs": "N11",
+   "url": "https://arxiv.org/abs/2603.24625",
+   "what": "arXiv 2603.24625 (found by W04)"
+  },
+  {
+   "qid": "A11",
+   "family": "BEHAVIORAL_MULTI_AGENT",
+   "needs": "N13",
+   "url": "https://arxiv.org/abs/2412.19498",
+   "what": "Casevo: cognitive agents and social evolution simulator (found by W01)"
+  },
+  {
+   "qid": "A12",
+   "family": "TABULAR_PROBABILITY",
+   "needs": "N01",
+   "url": "https://arxiv.org/abs/2602.11139",
+   "what": "TabICLv2 tabular foundation model (found by W14)"
+  }
+ ]
+}

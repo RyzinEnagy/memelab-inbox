@@ -8,5 +8,6 @@ Free calls (GeckoTerminal, DEX Screener, unauthenticated GitHub REST, PyPI, `git
 |---|---|---|---|---:|---:|
 | 2026-10-24 | 00 | none | no billable call was made in Phase 00 (Firecrawl MCP tools not used) | 0 | 0 |
 | 2026-10-24 | 01 | none | no billable call; free calls only: 15 GeckoTerminal (coverage probe), 3 GitHub REST events (push times) | 0 | 0 |
+| 2026-10-24 | 02 | none | no billable call; Firecrawl MCP tools not used; free calls only: GitHub (22 search attempts and 4 other REST or HTML probes, all refused by the session proxy, plus 1 rate-limit read), git ls-remote, blob-less and treeless clones, repos.ecosyste.ms and packages.ecosyste.ms, PyPI JSON, arXiv pages, raw GitHub files, 29 WebSearch calls (counts in phase_02/PHASE_02_EVIDENCE.md) | 0 | 0 |
 
 Remaining Firecrawl allowance: 150 credits.
