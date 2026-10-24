@@ -1,6 +1,7 @@
 # memelab predictive research dependencies: CPython 3.13, Linux x86_64, Windows x86_64, macOS arm64 wheels only.
-# Install only with: python -m pip install --require-hashes --only-binary=:all: --no-deps -r <this file>
-# (docs/predictive-intelligence/DECISIONS.md PI-D-032). Never into the interpreter that runs the scheduled lab.
+# Build the install command only with memelab.predictive.runtime.install_argv (check_lock first, then
+# pip install --require-hashes --only-binary=:all: --no-deps), into a dedicated venv, never the interpreter that
+# runs the scheduled lab (docs/predictive-intelligence/DECISIONS.md PI-D-032, PI-D-035).
 autograd==1.9.1 \
     --hash=sha256:b788bae3fa010cbffb4cfb7b8ba2a3f0daa6072a8506da6164c779fe9cf3e05a
 autograd-gamma==0.4.2 \

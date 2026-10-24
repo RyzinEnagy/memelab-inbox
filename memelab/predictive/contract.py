@@ -213,7 +213,8 @@ def enabled(config_path: str | Path | None = None) -> bool:
         cfg = json.loads(p.read_text())
     except (OSError, ValueError):
         return False
-    return (cfg.get(FLAG_SECTION) or {}).get("enabled") is True
+    sect = cfg.get(FLAG_SECTION) if isinstance(cfg, dict) else None     # malformed config means OFF (Phase 04 skeptic M2)
+    return isinstance(sect, dict) and sect.get("enabled") is True
 
 
 def backtest_status(installed: dict[str, bool] | None = None) -> str:

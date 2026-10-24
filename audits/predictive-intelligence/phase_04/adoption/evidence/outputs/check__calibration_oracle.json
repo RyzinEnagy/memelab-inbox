@@ -12,6 +12,15 @@
    "p0_le_p1_all": true,
    "p_inside_0_1": true
   },
+  "large_scores": {
+   "max_abs_diff_p": 0.0,
+   "max_abs_diff_p0": 0.0,
+   "max_abs_diff_p1": 0.0,
+   "n_cal": 60,
+   "n_test": 100,
+   "p0_le_p1_all": true,
+   "p_inside_0_1": true
+  },
   "outside_calibration_range": {
    "max_abs_diff_p": 0.0,
    "max_abs_diff_p0": 0.0,

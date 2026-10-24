@@ -2,8 +2,19 @@
  "phase": "04",
  "status": "NEEDS_REVIEW",
  "head_before": "a146a29d17c47a0bdfdef85df2e7a9e2f884d50f",
- "head_after": "4a19d7135db809ed30f8bb5ce2390a800d1f92c3",
- "head_after_note": "deliverables commit; the records commit that carries this file is its child (git log)",
+ "first_pass_commits": [
+  "4a19d7135db809ed30f8bb5ce2390a800d1f92c3",
+  "84f8c867e33c639f36a7f8c777f6cc848e6f31c9"
+ ],
+ "head_after": null,
+ "head_after_note": "repair commit on top of 84f8c86; status set by the records commit that records the post-commit checks",
+ "skeptic": {
+  "review": "audits/predictive-intelligence/phase_04/skeptic/PHASE_04_SKEPTIC.md",
+  "material": 2,
+  "minor": 8,
+  "decision": "PI-D-035",
+  "disagreements": "none material; flags alone cannot stop per-line options, so the guard and install_argv are both required; a returned HTTP error status needs is_failure"
+ },
  "checks": [
   {
    "name": "B1 package checksums",
@@ -22,7 +33,7 @@
    "name": "B4 development sample",
    "command": "build_dev_sample.py plan|fetch|label",
    "exit_code": 0,
-   "result": "132 calls {'200': 115, '429': 17}; T1 24h 102 events, T1b 6h 159; holdout_check {'contacted_mints_with_development_rows': [], 'decisions_at_or_after_h0': 0, 'labels_maturing_after_h0': 0}; candles dropped at or after h0 6",
+   "result": "132 calls {'200': 115, '429': 17}; T1 24h 102 events, T1b 6h 159; holdout_check {'contacted_mints_with_development_rows': [], 'decisions_at_or_after_h0': 0, 'labels_maturing_after_h0': 0}; candles ending after h0 left after the purge 0; raw bodies redacted 6",
    "pass": true
   },
   {
@@ -57,7 +68,7 @@
    "name": "B3 B7 banned defaults scan",
    "command": "banned_scan.py",
    "exit_code": 0,
-   "result": "26 files, 0 hits",
+   "result": "28 files, 0 hits",
    "pass": true
   },
   {
@@ -78,7 +89,7 @@
    "name": "B11 rollback",
    "command": "rollback_demo.py",
    "exit_code": 0,
-   "result": "rollback_clean True",
+   "result": "rollback_clean True (files and freeze); leftover empty dirs ['mpl_toolkits'] (m8, reported; the documented rollback deletes the venv)",
    "pass": true
   },
   {
@@ -92,53 +103,88 @@
    "name": "B13 runtime mutations",
    "command": "mutation_runtime.py",
    "exit_code": 0,
-   "result": "17 of 17 caught",
+   "result": "41 of 41 caught",
    "pass": true
   },
   {
    "name": "B15 hostile setup",
    "command": "hostile_setup_demo.py",
    "exit_code": 0,
-   "result": "{\"control_shows_the_threat\": true, \"lab_route_never_ran_setup_py\": true, \"right_hash_installs\": true, \"wrong_hash_refused\": true}",
+   "result": "{\"control_shows_the_threat\": true, \"flags_alone_do_not_stop_it_control\": true, \"lab_route_never_ran_setup_py\": true, \"right_hash_installs\": true, \"skeptic_line_refused_before_pip_by_install_argv\": true, \"skeptic_line_refused_by_check_lock\": true, \"wrong_hash_refused\": true}",
    "pass": true
   },
   {
    "name": "runtime and contract tests",
    "command": "python -m pytest tests/test_predictive_runtime.py tests/test_predictive_contract.py -q",
    "exit_code": 0,
-   "result": "112 passed",
+   "result": "201 passed (135 runtime, 66 contract); first pass 112",
    "pass": true
   },
   {
-   "name": "B17 post-commit full suite",
+   "name": "repair m1 prototype tests",
+   "command": "python -m pytest audits/predictive-intelligence/phase_04/adoption/prototypes/test_core_numpy.py -q",
+   "exit_code": 0,
+   "result": "9 passed",
+   "pass": true
+  },
+  {
+   "name": "repair M1 skeptic counterexample refused",
+   "command": "hostile_setup_demo.py case E; skeptic_04_lock_bypass.py",
+   "exit_code": 0,
+   "result": "check_lock refuses: True; install_argv refuses before pip: True; pip direct with the lab flags still runs setup.py (control): True; skeptic script verdict: no bypass",
+   "pass": true
+  },
+  {
+   "name": "repair M2 skeptic runtime probes",
+   "command": "skeptic_04_runtime_probes.py (after the repair)",
+   "exit_code": 0,
+   "result": "30 probes, escaped 0, dotted name ran parent False",
+   "pass": true
+  },
+  {
+   "name": "repair tests fail on the first-pass code",
+   "command": "old_code_check.py",
+   "exit_code": 0,
+   "result": "runtime: 88 failed, 47 passed in 1.71s; prototype: 8 failed, 1 passed in 0.18s",
+   "pass": true
+  },
+  {
+   "name": "repair m4 m5 raw store purge",
+   "command": "build_dev_sample.py quarantine; holdout_candle_check.py",
+   "exit_code": 0,
+   "result": "6 bodies redacted; candles ending after h0 now 0",
+   "pass": true
+  },
+  {
+   "name": "first pass (4a19d71) B17 post-commit full suite",
    "command": "python -m pytest tests -q",
    "exit_code": 1,
    "result": "1 failed, 904 passed in 153.99s (0:02:33); only test_dedup_corroboration_resurface_denial (known)",
    "pass": true
   },
   {
-   "name": "B17 post-commit content guard",
+   "name": "first pass (4a19d71) B17 post-commit content guard",
    "command": "python -m memelab social guard",
    "exit_code": 0,
    "result": "violations []",
    "pass": true
   },
   {
-   "name": "B17 post-commit release audit",
+   "name": "first pass (4a19d71) B17 post-commit release audit",
    "command": "python tools/release_audit.py --history",
    "exit_code": 0,
    "result": "Needs action: no",
    "pass": true
   },
   {
-   "name": "B16 paths and data",
+   "name": "first pass (4a19d71) B16 paths and data",
    "command": "git diff --name-only a146a29..HEAD; sha256sum data/memelab.sqlite",
    "exit_code": 0,
    "result": "only audits/predictive-intelligence/, docs/predictive-intelligence/, memelab/predictive/runtime.py, tests/test_predictive_runtime.py, tests/fixtures/predictive/copyleft_fingerprints.json; tracked DB 068287c0... unchanged; strays removed",
    "pass": true
   },
   {
-   "name": "B11 system interpreter",
+   "name": "first pass (4a19d71) B11 system interpreter",
    "command": "pip freeze | sha256sum (start and end)",
    "exit_code": 0,
    "result": "4bbf5c51... both times",
@@ -148,11 +194,11 @@
  "artifacts": [
   {
    "path": "audits/predictive-intelligence/phase_04/ACCEPTANCE_CHECKLIST.md",
-   "sha256": "a5646c1b8f29c48060edc1bface29a0a70504147cc6437e79dcc7b957bfecec9"
+   "sha256": "16228d19bb8c6069fcf0223bb62d05088182332221e29875b05427887c33b552"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/PHASE_04_EVIDENCE.md",
-   "sha256": "2862f1ec1cb0614ac8e2cb1664ee09c2e60b0c108ded82ce86f7a433ca4d6517"
+   "sha256": "d1a9fb796df77b8639a23615cf0e010287fafefb49b4b9deaed37e8f9e74ba39"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/SKEPTIC_PACKET.md",
@@ -160,23 +206,23 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/BAKEOFF.md",
-   "sha256": "2e3386767151119350ce41ff4640707b8143ff636b4ed9fd9b7ee4b129265768"
+   "sha256": "9a8343c1b94e6347fe2ca32e9750ef0c423d96d9d072e526c355a368aefcfc64"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/BAKEOFF_RESULTS.json",
-   "sha256": "5cedbc193b815e69b05a93bfa332ad78f5982760ea942ba68235dcd4349dbecd"
+   "sha256": "26172ddbef16b090d4683d4dc0f915d7b1f97d872250c63c51dd6eb8112918e0"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/BOM_LOCKS.md",
-   "sha256": "530b9f8264eed2d163d6525f135a51b438dd95edafe0fda77105a2706e6849cc"
+   "sha256": "7741bcb384ee3eaf4b7dd2c28ffebbedc86397046f4c07a69bd242972f44e819"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/INSTALL_DECISION.md",
-   "sha256": "f86f5df49d24dcee4ac0029d4647d323aad21578aa8f574809d66f447b79dd98"
+   "sha256": "018d4e12c5ced1aeeb058c705d140c73e8c182b4aa97e4bccecf0881fa2e8e8d"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/MIROFISH_FEASIBILITY.md",
-   "sha256": "1e7ecdc8df9ef49c56c109af4abe6cac08816088da3899927dc4b5dc289f4d20"
+   "sha256": "7a48b6efbf972622b7ddd2980a35c8cb0f8f0859ee3a6f20142ebc17d343df0a"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/data/dev_sample_calls.json",
@@ -188,7 +234,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/data/dev_sample_summary.json",
-   "sha256": "4096e71a6d6261da8391dce503a0fe25bff01faecd1192a468022db97143f7cd"
+   "sha256": "db56b54be233990e1f7b21e1a2d7c790ef24dd4fd4d43d9d1d8ad0762a95ac9d"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/data/dev_t1_24h.csv",
@@ -204,7 +250,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/banned_scan.json",
-   "sha256": "8a6d1a6227f9160f1a0f9fba65f3cf9bd0040a3194e220c1780d48e4baa37ad1"
+   "sha256": "16e0c020473494055e792917d3ee7a7303d00202e4692e08a05f3e1a3022fb02"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/core-py313.bom.json",
@@ -239,196 +285,200 @@
    "sha256": "94ee7d8c2c517fa8872a4e444c442f8daa3b83f48181069868b892f0525641b6"
   },
   {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/holdout_candle_check_after_purge.json",
+   "sha256": "07d98e4c6ba06341ba6279036b1607cfbc20baf22faacf9aec9e8e115544d609"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/hostile_setup_demo.json",
-   "sha256": "031b73daf5f81d8db015d1c78b018ff23dc70a081a6fcdf9354b022811b16712"
+   "sha256": "cef76dc60361b4f017ed8802788bed5d115de0e96ffe5d50dfc347c2a04c8bac"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__B0__bundle.json",
-   "sha256": "d445a75e8f8f4c6ff37b65429612134433e9eb6b77c56a9172a97a0af06b44c3"
+   "sha256": "0d0dea6090a15d7c5a6ae61c045a05bfde32e9b4a7a35e3516a3fac82d861a09"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__B0__core_numpy_only.json",
-   "sha256": "9d2ccae4ec57ddeaf057a28474aaabd47213adeeaa2065a04332e2e50149e00b"
+   "sha256": "dab23572591844081d106f78b05343dbc4060df3efe52f4604b3ec98356e28ce"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__COX_LIFELINES__bundle.json",
-   "sha256": "f85ff87c8b2abfe07bb02c564886b61e5c79caa8dd30be142d853d9fd75b0156"
+   "sha256": "e61463780cfca33ba6eb6981ba1632222851def0f99eb9b41842ddc8b316180d"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__HGB_SKLEARN__bundle.json",
-   "sha256": "0a29df855100ea46966c1cce7c81879b514b50dc3e980cc86a5a08f529b8208b"
+   "sha256": "977a18d037b13d930b2f10b1902a70a03cceeceb90fb3161bb7e9a30aac8682a"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LGBM__bundle.json",
-   "sha256": "01ef2692356b94838ccaf222db2db3574e19b8918e31d19dd8d03dfe63cff0c8"
+   "sha256": "2245591ebccdb371fbaa729be9ed6ebd17a86083f42fa221e6d5c450e33e0705"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LR_NUMPY_PLATT__bundle.json",
-   "sha256": "802be7ef2f0a954732ce35747315fae9f2cd431d0b9ace9d528370f890dd8387"
+   "sha256": "1b8e584d1dbb3991c93dfaad485a721f3607b03771f2c6a942b392f10afb62e7"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LR_NUMPY_PLATT__core_numpy_only.json",
-   "sha256": "167825a9517b3e3fe8c28fc41d7544fa0d483ce8a55f4caf2f8d7db6ac6f0077"
+   "sha256": "e72ae2884c39a2d0a9293bed67f6e0984d2316a9e5c5302e07c81ac5d3e0742c"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LR_NUMPY_VENN_ABERS__bundle.json",
-   "sha256": "11384a1f7f65300846c3f16d27b5a8c9c8743f50ab9f1ca5805f3a7f81c4608b"
+   "sha256": "85ff64fdf29a62e2131f9ab0c1816a73b03272a6d9454b5b8d6784ad8107ab10"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LR_NUMPY_VENN_ABERS__core_numpy_only.json",
-   "sha256": "9f1988f6aeabb4c88ba886642e7b6b0d8a89183fc8eddcf223a9ed9943148012"
+   "sha256": "631d40305f604b08a6728f721716fe227f8a43b9a478cf278dec0a16b1a4e0a9"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LR_NUMPY__bundle.json",
-   "sha256": "bd39b47de051869c66e9d794e883ff6b598327e224fedfb471697ef787704544"
+   "sha256": "ba9b6fff181ea00828c6202cfa3b83d5836b9c4441744676a27a776233254080"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LR_NUMPY__core_numpy_only.json",
-   "sha256": "946723e67f6f697531c4f8b8f8f52c7758746f43303e194ebfe8463bc70d7e46"
+   "sha256": "8a2882fec54f7a20fbb46750c618e7cd31cf0717fe9f43c9d1220cd73201ed74"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LR_SKLEARN_SIGMOID_FROZEN__bundle.json",
-   "sha256": "6ae340814d4dfb7cb04260d81d358866eb8c3e531f5e8648f72afc797727a9e2"
+   "sha256": "a069b7b248173c91807907f73163870f7b5bd12a8706b71216a2ab5684b204e6"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LR_SKLEARN__bundle.json",
-   "sha256": "743b19c749b072e4258fadb84fcb74351112787d27c469ff356b98e328cd43c4"
+   "sha256": "5a796c8833b216e1759ed47443ecd9ec709228842bbb0fbcce075aa691477ac9"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__B0__bundle.json",
-   "sha256": "96ab75e644ac1e9319308e1fd41a3b04348398bf1dd37e6a422b6a95965f3ad3"
+   "sha256": "0ad28e333ce5e8fd6ab58372ce902e58c0b854a56e4eb55a930e4b314956a33c"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__B0__core_numpy_only.json",
-   "sha256": "d03d5cce08c5004cff68241435b513c79dd024d44fcdf1dc4ab5a6dc2a61609c"
+   "sha256": "0ab4f9f5f63a5cc7373f50596043d2a97db2d873f571105eecd74875118fd03b"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__COX_LIFELINES__bundle.json",
-   "sha256": "fc81404b888431a613d64f13529544061c03252d5416b9b5228d68724b4609a2"
+   "sha256": "256fd0da3c03c901454fc7848f59d04cef3841d242c2728f0451720aa2207325"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__HGB_SKLEARN__bundle.json",
-   "sha256": "28c5f9f0e5dca161c557e7e829491a394b2f2707c78f800cdecb89bf0ab906ab"
+   "sha256": "3f4a2ea1cd6f6632b61982264b209945fb4fafac6b254867da44ec5a7f02ab09"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LGBM__bundle.json",
-   "sha256": "61bdff65965c34f4be79cb9556c965fc4ee23e8fb436bf7492ba9bb11765d8d1"
+   "sha256": "904dc25dcd1066805d5d8e31a013c2e08a4955122ffbeac9493ac5a32f58e205"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LR_NUMPY_PLATT__bundle.json",
-   "sha256": "28b44ec1a3fe3ad6be16789b9ae60202a9ad7dcdc720255ba826dd7e5679970e"
+   "sha256": "08ff029a4b700e8c117b72323042f19ac953ba10127145ff7428c91be48a8641"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LR_NUMPY_PLATT__core_numpy_only.json",
-   "sha256": "48e7db7047791fe7e42391dfc581f48ddcee2d79dc7928b422c352809ab3c123"
+   "sha256": "9ffc4e73b5bae3c9220e18d0365150b9f2575bb3e71fc0d709aacc575cd34b87"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LR_NUMPY_VENN_ABERS__bundle.json",
-   "sha256": "10cfd18b68073767a14546dd09fe9bbf3b787d006296be9a3ba1a1def87c30ba"
+   "sha256": "949cac7a2b7d376041cba6eef84865c1b1153de32e87781074a57c27c952423d"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LR_NUMPY_VENN_ABERS__core_numpy_only.json",
-   "sha256": "19ca6502c8165ea93a215afd3bbc99b5102823ba56279438c551a5b2d4d9993d"
+   "sha256": "06ced8c0bcf3f0cd88af07d4d7bed34b0be7ad5c199f0126bc08a8fe413dccc9"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LR_NUMPY__bundle.json",
-   "sha256": "10d57d35f0546040f7b7fee670220d8fca8df0984c16d236241c6a232a0aab62"
+   "sha256": "df9619de86a4c2f8c5653b3faa408cf3a2ce89bd29de827876a60c4da2722a7f"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LR_NUMPY__core_numpy_only.json",
-   "sha256": "076337f4371de67efee175140f642cd69b7bcfefbcc68c1ead90c04fbd2059fa"
+   "sha256": "7500a5f122e138ab3b204142f1a1278546d314e960b3d9286185e4a04b5e294a"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LR_SKLEARN_SIGMOID_FROZEN__bundle.json",
-   "sha256": "9fd56fe7912cfe02d19cae2336050d59ddaf836e6c025a7dc098ff4dee8a9ab1"
+   "sha256": "eebcc5caaf8e823de31847f539aa437a88fd6be3b4f5fc9e5029d5f13087c5b6"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LR_SKLEARN__bundle.json",
-   "sha256": "87f60fc9c5679b41a9a900fb9ffa2d91cccad3ca8b4d0bce54c6a5dc1875ebed"
+   "sha256": "adba26a0b2843e00a7c42b33d46059c73e016c1855bb4ddbfbfee2957c34e8b8"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__B0__bundle.json",
-   "sha256": "cb4ad03b329b46f72f10725fce4735cab28c5eeba6768e11cd264306fe6f9ae1"
+   "sha256": "294a5a27f184d3e3eeaea12284f777bb75c020635512bd98f7830d0fc356baed"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__B0__core_numpy_only.json",
-   "sha256": "af5259d8da93deb5c47d04681edbe8ba1c35fa6592f92e018155a6e7097e087a"
+   "sha256": "daaeb6dc96674358d9d7310cf66443a9ed18ae3a74658af1e15bb36ecee2de21"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__COX_LIFELINES__bundle.json",
-   "sha256": "9f0cac0b3a1d09a179af6b83d021ead16aadfcc01d93f2f2bd5cbe5e5d36773b"
+   "sha256": "67e0c2d891fc358951383a8792f46e78e17f8363eeccdeaa2170322453ef3195"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__HGB_SKLEARN__bundle.json",
-   "sha256": "76002f689148258214d837527433b60c6f409fcda058c52056f8924196813c3e"
+   "sha256": "d5a8b19cf9799fd558ecb98ce2355f2ccdf04bf76a622ca4fc9f007aa0dd46c0"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LGBM__bundle.json",
-   "sha256": "f7eaacea0897c22ff6d8fb41aec589b44b234bc5dfb345d6a23950a34d25972d"
+   "sha256": "858d205c3f7bf68ab47b2e9f073dad65648dc116cb985afb762effe5fd854453"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LR_NUMPY_PLATT__bundle.json",
-   "sha256": "8f0ea60399803ab5a7e4166c56110dfac98be244f5099f16c7078871ee56883a"
+   "sha256": "cb6522276d93adbc244d6164614e48ebbbf32864bb0733156c140a253ee4ebf7"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LR_NUMPY_PLATT__core_numpy_only.json",
-   "sha256": "8884e781a52589d9b8cceb16b3ba88e09ea6523654e666b2b0f63c03edba7b01"
+   "sha256": "f73517cb97a396109c45bc27b430e73cdcfed8601d51add18a3fe59fc9406bac"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LR_NUMPY_VENN_ABERS__bundle.json",
-   "sha256": "d4736f076d34b948edf81db02540f22f84a9efb7936e407adf333ca11708acaa"
+   "sha256": "6d693706c77b4ad864fac014072cc0d37423e2845f90ad8dcaffaea96def4eeb"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LR_NUMPY_VENN_ABERS__core_numpy_only.json",
-   "sha256": "3be5b1f57f731b5a37e4748d13e603904aee7d336fb541708d2f31fa00139638"
+   "sha256": "901593896356f32a5d09f183d40d81fc978dfe7fa7558a50a2b728daa247761a"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LR_NUMPY__bundle.json",
-   "sha256": "7482a8c0260dfd8f6429c09fc938ef033f48b4a6f442f52d37f00ea4b56ca9d3"
+   "sha256": "93e7ab29c2ac7e52e0a507b1993b2f202e44afa59d4743288db19c3545f40994"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LR_NUMPY__core_numpy_only.json",
-   "sha256": "5d91c721ae11915a44276ccdb3d1062d4ac286a55ee007695fc9500246699f04"
+   "sha256": "77a61c39265fa1bd6ec6b1fdf550b4a72104410db6bf4064fe4ccd574ddd856c"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LR_SKLEARN_SIGMOID_FROZEN__bundle.json",
-   "sha256": "d434d06c9547ee97087614cc5ea1a327eac3b64ed4ba2afb1062d42d78cd7720"
+   "sha256": "444001a8d47e010bc450c3366a7cb44a1e0845b7480b89167d7b44dca9ca0fa5"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LR_SKLEARN__bundle.json",
-   "sha256": "ff758a0b18f6c3064c6c419776bea2c68fdcc5ff6f64436d5bad82829b9b25ac"
+   "sha256": "c15f794a083202c3dbe438856b51f1fc19391eb176579eab6a6282680f0bae1f"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/check__behavior_mesa.json",
-   "sha256": "a7ae716a5bbfe0fb4aed4c1d2194097842c5ea5dcd70538dc3fc2bc562a0921e"
+   "sha256": "95ab1b5296eabece2d4ff4b10fa0f8e3d13edc470dd02fc5e966c96400ef1fc9"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/check__behavior_mesa_plain_install.json",
-   "sha256": "ecfb95500728198ba78fb08c5d91aa658a3bccc9d75af27b12987f1c61ac85f4"
+   "sha256": "f74c153559b6cbe4a2f9ec3199772a5b23c0bedf58722b3585c41ec9bc2c796a"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/check__behavior_numpy.json",
-   "sha256": "4a474705fd193e7fc6bb3d6a58a9a8a626fc3c80ab2e75bf7e46c556f754cf9a"
+   "sha256": "e5fb496d1842e1feccdccc31ad72c34e9d807c14699654b7cce94931ccec7e4c"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/check__calibration_bundle.json",
-   "sha256": "8edc2722aee460ddcb3799aad26112cf55d33ad869280543f08168e7c69b8e49"
+   "sha256": "ebea931acfb5df4f69d935906a94b4a0b1e459c3db7fe3b4c71ccea16f2efeef"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/check__calibration_oracle.json",
-   "sha256": "577bc961c1c9bbd8b4eef904ea399b249d90b8db5aca65e979db9e1be385fc82"
+   "sha256": "d5de563e25b0c86e4be2528136d516c11e6b2738d43abe606853924efdf83f79"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/check__drift.json",
-   "sha256": "0e85866bad0ce2e558e9d2d9cf09921742f39087be851b185d3ffe8c277f6c2a"
+   "sha256": "3ff4beb2c1ea3e377f5f24b64372b018290343cff6dfec9ce750de39c57789cc"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/check__schema.json",
-   "sha256": "3c64041d7596c386180e01d53e22f89d2e6013ce6a21d10f5af0ac74acfa4242"
+   "sha256": "c5136d41c03e21b1b51a202b0404daae1d012e6d8ceab0739449ca0f75adef9e"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/check__splitter.json",
-   "sha256": "32633087ca9ee737abc3d6fac9e681979b9535022e28e9e856e6b578b93c4c51"
+   "sha256": "fffc13e2f39f6149024e522875143586ee9aa99dc4ad92799e1f4ec7bc790358"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__arch.json",
@@ -504,7 +554,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/mutation_runtime.json",
-   "sha256": "57577a1888358c4320f8f6c5fdf6a2c1ddb1922118306b719185e8db7a1e7896"
+   "sha256": "fba4b6ec5ce8eb53e9c20815dc56aa5dbfe075c5756a3081f3ba920b36bfb0d0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/old_code_check.json",
+   "sha256": "39325cd847fc8162419fe3a70af8c194f34c1c58430dcdbcbb9addd4b4bb78a8"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__challenge__B0__bundle.json",
@@ -676,11 +730,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/check__calibration_bundle.json",
-   "sha256": "e2eddc2f6dc6a6afe53619a96ee24f1ba1df8de32cb8848eaf65a7b350d3f27e"
+   "sha256": "903c77cb248bb023ace1880d2bd67653f2ccc6a62d8c4b046be52d4b952f1bbd"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/check__calibration_oracle.json",
-   "sha256": "760025217932598ffa6ba9783f6522db476d8f6fe9e3beae72c7c642c234d6d6"
+   "sha256": "ab05eb67a5c5820f7c021cbd97bea446d3178c1aa8988824a1ecb909128f1ef9"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/check__drift.json",
@@ -692,7 +746,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/check__splitter.json",
-   "sha256": "b141f6e7521f8d78ad3ae688d9bfa940f71393d83024c20624baa70ec19f69ca"
+   "sha256": "ce9b82c8e349c07cab76f2548da31b1a3546c8a23664639d835be9279279ce2c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/raw_store_quarantine.json",
+   "sha256": "1d4244d8bf696a6f3b5c06b7f044d1ca52a5f1934b399cb0a351dc04e56f35f5"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/research-py313.bom.json",
@@ -708,7 +766,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/rollback_demo.json",
-   "sha256": "c2620fe26244063860e1fc7b91736fb1715f24119a70ad052fe2059cc8e9ad3e"
+   "sha256": "3c14d8b608d6e61118204ab7fbedbb343d220ae971bee41bc45d7c9ecb1543c4"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/evidence/strace/strace_challenge_approaches.txt",
@@ -740,23 +798,23 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/build_copyleft_fingerprints.py",
-   "sha256": "99a67348595b979240e94a78173ddd05cc18a2521ce775d03efd8fce9253ec3a"
+   "sha256": "483af1d41aaaa352c261276963fc506334360701ee46d7e981df83d3fb2b2b57"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/build_dev_sample.py",
-   "sha256": "4c84eb58a84c69847c243fd8cadf9f7227e53a3684e8dd7428b308ae8dd89060"
+   "sha256": "43cb18393b0d29f50334b0aad430dc2ac0b534e4fd410eb77395a26a5459dee8"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/build_lock.py",
-   "sha256": "40cdb4f0526f6157a940d4fcbb8cff1a79085207ab4143e2de8bd95ac37b9ec3"
+   "sha256": "6fc90313c3a7460d938bbb5040181487d6cc9fb90af79e65a677a26ab01cb32c"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/calibration_check.py",
-   "sha256": "3fee052b105c987869739ce8ddf1a527fd1acc86d650ea19dd493c2304ad5499"
+   "sha256": "729a2c5c10cdfa2322c58a2a9cf7580d300430b02bafbbcebf185f64886471da"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/core_numpy.py",
-   "sha256": "833b55e4191b1eebf5a56e08694808c2bd06c3334ae74f268ad59931944cd137"
+   "sha256": "801e4c972fefec6b3a186e8c6afc7c6d9def1db22a2236a9c9ddaf9d3768e8b5"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/drift_check.py",
@@ -768,11 +826,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/holdout_candle_check.py",
-   "sha256": "fdbd207ba61f0cf373ef48afb4481410671a4785836786e7c60be1015440b64d"
+   "sha256": "62509fd4a046f32475c27f3cced092f5c02a9a6aab046690957ef338a16b3a52"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/hostile_setup_demo.py",
-   "sha256": "5dc7a6cfab8756d607b679e69fb85f2976c523d911c4c165966e2642db11fe64"
+   "sha256": "04a99ed9fe50c962028544572e91ed5628012f0ebd4f528c43f6c0c77ece2673"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/import_probe.py",
@@ -788,7 +846,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/mutation_runtime.py",
-   "sha256": "7902471c8e525eb4397b82cfe0ca5c2959f8dcff7f72516bdb81790d633064ff"
+   "sha256": "1b3e4825bac2238f3e3e65a768910f3dc2d2aa220c4f9b6c0b317954e6399652"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/old_code_check.py",
+   "sha256": "448a68cd55f8d00b49b6731355eba358ed48271043381a921ffcb872cbf420a8"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/render_bom.py",
@@ -800,7 +862,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/rollback_demo.py",
-   "sha256": "0efe134d49445a4d1127c88f5182cc09f57b5da79527acbeea5fc1313865b5d6"
+   "sha256": "a80965175837cba330ee45662b6c7b1ab2906bf7d3561692a27efbb9337d75be"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/run_measurements.py",
@@ -819,48 +881,136 @@
    "sha256": "7e30ab93d6a838e82d597445de790ea0771cb3c3a6cf93f0bd1ccfa164da53fa"
   },
   {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/test_core_numpy.py",
+   "sha256": "c319b97317e770984a7c68051179f8a50b8cf1d05f73dae0910ed16ae0f9a302"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/wheel_licenses.py",
    "sha256": "1b374a197b1801eb74332c17bdd29e5c9a28a5c3fb0c00cd1f355ad2fa0592cb"
   },
   {
    "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/write_results.py",
-   "sha256": "643e9e8b8623c5e68463e9fa162eb1a0bb0be3c29bc88c3d62681056b660b60e"
+   "sha256": "f5993c8bf6f60976cc6d1bc9f4f0b5f530e453314653b8b9258957b0504c300c"
   },
   {
-   "path": "audits/predictive-intelligence/phase_04/postcommit/pytest_summary.txt",
+   "path": "audits/predictive-intelligence/phase_04/postcommit/first_pass/pytest_summary.txt",
    "sha256": "179c97b15db2ecf4526e506f576a747b99b916a9742a2de16e7755246617416e"
   },
   {
-   "path": "audits/predictive-intelligence/phase_04/postcommit/release_audit_history.summary.txt",
+   "path": "audits/predictive-intelligence/phase_04/postcommit/first_pass/release_audit_history.summary.txt",
    "sha256": "4f366fab10faa850c737b3f6ce36c13f9dea86fc69bf52d64b0ed6213dc9eafa"
   },
   {
-   "path": "audits/predictive-intelligence/phase_04/postcommit/social_guard.out.txt",
+   "path": "audits/predictive-intelligence/phase_04/postcommit/first_pass/social_guard.out.txt",
    "sha256": "2c4415d1ac7839097cf4d60c1142f495343c05cc861ae6fb9346eb823b8a5d7b"
   },
   {
-   "path": "audits/predictive-intelligence/phase_04/postcommit/summary.json",
+   "path": "audits/predictive-intelligence/phase_04/postcommit/first_pass/summary.json",
    "sha256": "6719b6b8ca0b59a49e92dacc49ee29acb07f82c4c8e453b485984de347577b98"
   },
   {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/PHASE_04_SKEPTIC.md",
+   "sha256": "5e98f4ec46d5fff0fc605f1ee9e82b6f1ec5376725367894890219034bb0cb93"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/clean_install.txt",
+   "sha256": "5214c327245bce9be4561afb788f42ea76b3799c80be45e89bf6025a5f62c73c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/eq_logistic.json",
+   "sha256": "ef800624961593ecbc7c512ee1518afda39f532ca223e5e2478574bee3d0c9fe"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/eq_venn.json",
+   "sha256": "a58fa129cf95ca9b0c6441e8a8d436ce07ac87bd713284a79fb45455a320ede8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/fold_attack.json",
+   "sha256": "de912bbddeb908925494cc79849ee1ca8f2baf7aab4529c7066664a75ede91e2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/lock_bypass.json",
+   "sha256": "5ae69afbafaae7e85c5897587c4b1b10162e6431fc8571359787b60ab7ef64c4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/lock_bypass_after_repair.json",
+   "sha256": "6f678a8b9842951751abf8b84999aa0b0ef3c9c105bff5b143176d48ee4b7d27"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/mirofish_rerun.json",
+   "sha256": "421cc3c51d9d8f8c27a96f9cee60f1cd53ae7a2c8daf71f6bdcd3cacfe913288"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/mutations.json",
+   "sha256": "84ae506b48392d2afa9e0398279b96b8a04e0ea5a07cd47b2f075d003560cf29"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/runtime_probes.json",
+   "sha256": "c204c1cb950a2a40efa5e3b890c7918743ed23f58c5bf66802cdc59cb6701c30"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/runtime_probes_after_repair.json",
+   "sha256": "667fd1a031d6ca5191b8e02eddd6a47e3b7d790868b978f5bc22da75b0e1771a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/skeptic_04_clean_install.sh",
+   "sha256": "e0316d5e37d76b04287870157e34a8f21e90ca84959b83f663df689c3adec5b5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/skeptic_04_equivalence.py",
+   "sha256": "201e641043d263dc7d6adb59aebc2345c72c58ef3c489f6242bee01321a935e8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/skeptic_04_fold_attack.py",
+   "sha256": "5e44ecd2749e4d73a7193037c258dfc5363f1fa935e4ed1fad3a58caf0a953b0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/skeptic_04_holdout.json",
+   "sha256": "5aa3f15494f8b419fde6e254c21a5225fae201ef87332a4011bc19b8ce591308"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/skeptic_04_holdout.py",
+   "sha256": "7857435d831f56069346f5b5a290bbc8c16f88e52d132be62b1220921be69145"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/skeptic_04_lock_bypass.py",
+   "sha256": "fd35bbed82588a7c7ad7055c6ba3122ec7b0729bd2a2e9bca8cee86dd4746f4b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/skeptic_04_mutations.py",
+   "sha256": "c045c76c0a82727c148cb6ac5b0b5912bb5b434c463c622b437b70505be45b40"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/skeptic_04_runtime_probes.py",
+   "sha256": "8f03f162411ee06e2c482bbfeeb027c8e1968e5d0f0f5a6695aaef8fb4e2d5b5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/skeptic/p04/suite_tail.txt",
+   "sha256": "4274e8692a2b27daf05a81169464f7b4c185a9904bc20a716cc5288c8e802303"
+  },
+  {
    "path": "memelab/predictive/runtime.py",
-   "sha256": "d5c9d33f7938f08ecf029b419265d80a0bebc2ff8ddb07ba068efd0235d98969"
+   "sha256": "66459adfd46044f3411b226fad04b4239b267cee3d498cc475df4ea80ed03f38"
+  },
+  {
+   "path": "memelab/predictive/contract.py",
+   "sha256": "ca97947217e40c18494d1e9eb2308e3644079b77a9cbeab750f5d81ba006ff53"
   },
   {
    "path": "tests/test_predictive_runtime.py",
-   "sha256": "75ada0bc30b25aedd86c3670e722265f3d2d067bb9b559ea93c379700b990dab"
+   "sha256": "02c21485f11ca89bc1b6ca1c7440b280a6b4fc9e597f2f04be51637e4a25a21c"
   },
   {
    "path": "tests/fixtures/predictive/copyleft_fingerprints.json",
-   "sha256": "cfe703f934fd3345b37e1933d61ed8146deaf867a0d742f31d7f823f44520aa9"
+   "sha256": "c16171332635d5c0dcc8501ffee9f711d6c4f0e59a6b476ab5896b029d51a2c2"
   },
   {
    "path": "docs/predictive-intelligence/locks/core-py313.txt",
-   "sha256": "0ff27f9bafc2c4e28463386302a92091ad1a5069c8d555dd7c56d281d827c148"
+   "sha256": "89fe4f4dc37a450ffd2b660eedcff8d4e93a81ac9df2566c21b504ce5a722865"
   },
   {
    "path": "docs/predictive-intelligence/locks/research-py313.txt",
-   "sha256": "3ca3b1a8d4f6565a4633b3e9cc66724a251b029e165f907378d6dc130ac1190b"
+   "sha256": "1347f84bb2639143e85e8532e09c8513e0ab679b3982ed8ba5d5bf3b45f2ba84"
   }
  ],
  "limitations": [
@@ -871,9 +1021,13 @@
   "The copyleft gate catches copied runs of 15 or more normalized lines and license markers, not short or rewritten copies",
   "MiroFish was run only against a local mock LLM; live behaviour, costs and quality are unmeasured (BLOCKED, PI-D-005)",
   "Windows and macOS installs were verified by downloading and hashing the wheels, not by installing on those systems",
-  "statsmodels, arch, crepes and interpret-core are deferred, not decided"
+  "statsmodels, arch, crepes and interpret-core are deferred, not decided",
+  "The lock guard protects the lab's route (runtime.install_argv); pip run on a lock directly still honours per-line options",
+  "A callable that returns an HTTP error status instead of raising counts toward the breaker only when the caller passes is_failure",
+  "pip uninstall leaves an empty mpl_toolkits/ directory in the research venv; the documented rollback deletes the venv",
+  "The fold audit and its tests are prototypes until Phase 07 ports them into the lab"
  ],
  "blockers": [],
  "approvals_needed": [],
- "next_eligible_phase": "05, after the orchestrator's independent skeptic and the Phase 04 repair pass"
+ "next_eligible_phase": "none until the records commit records the post-commit checks"
 }

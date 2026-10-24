@@ -1,22 +1,26 @@
 # Predictive Intelligence: handoff
 
-Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Phase 04 evidence: `audits/predictive-intelligence/phase_04/` (PHASE_04_EVIDENCE.md, PHASE_04_RESULTS.json, ACCEPTANCE_CHECKLIST.md, SKEPTIC_PACKET.md, adoption/). Earlier phases stay in `phase_00/` to `phase_03/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Phase 04 evidence: `audits/predictive-intelligence/phase_04/` (PHASE_04_EVIDENCE.md, PHASE_04_RESULTS.json, ACCEPTANCE_CHECKLIST.md, SKEPTIC_PACKET.md, skeptic/, adoption/). Earlier phases stay in `phase_00/` to `phase_03/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
 ## Position
 
-- Phase 04 (adoption, install, adapter or build bake-off): NEEDS_REVIEW, 2026-10-24, first pass complete. The orchestrator runs the independent skeptic (PI-D-013); a repair pass folds the review in before any PASS.
-- Branch `feature/predictive-intelligence`, two Phase 04 commits on top of `a146a29`: the deliverables commit `4a19d71` and the records commit on top of it (read its hash with `git log -1`; this file is part of it). Not pushed. Spend 0 credits.
-- Code added: `memelab/predictive/runtime.py` (standard library only, flag OFF, imported by no existing module), `tests/test_predictive_runtime.py`, `tests/fixtures/predictive/copyleft_fingerprints.json` (hashes only), `docs/predictive-intelligence/locks/` (two hash locks). No existing file under `memelab/` or `tests/` changed; nothing under `inbox/`, `state/` or `data/` changed.
+- Phase 04 (adoption, install, adapter or build bake-off), 2026-10-24, repair pass done: the orchestrator's independent skeptic (2 MATERIAL, 8 MINOR, `phase_04/skeptic/PHASE_04_SKEPTIC.md`) is folded in (PI-D-035). Final status, the post-commit test result and the content-guard and release-audit results are in `phase_04/PHASE_04_RESULTS.json` and the closing section of PHASE_04_EVIDENCE.md, written by the records commit on top of the repair commit.
+- Branch `feature/predictive-intelligence`, four Phase 04 commits on top of `a146a29`: first pass `4a19d71` and its records commit `84f8c86`, then the repair commit and its records commit (read the hashes with `git log -4`). Not pushed. Spend 0 credits.
+- Code added in Phase 04: `memelab/predictive/runtime.py` (standard library only, flag OFF, imported by no existing module), `tests/test_predictive_runtime.py`, `tests/fixtures/predictive/copyleft_fingerprints.json` (hashes only), `docs/predictive-intelligence/locks/` (two hash locks). The repair also changed `memelab/predictive/contract.py` in `enabled()` only (malformed config means OFF; registry fingerprint unchanged). No other file under `memelab/` or `tests/` changed; nothing under `inbox/`, `state/` or `data/` changed. The ignored venv `hazardous/` at the repository root was removed.
 
-## What Phase 04 found
+## What the repair changed
 
-- One common point-in-time dataset: a real development sample (BAKEOFF_ONLY labels, T1 24 h 102 events, T1b 6 h 159, decisions before 2026-10-17 with labels matured by then, PIT pools, 132 GeckoTerminal calls at no more than 6 a minute, holdout untouched) plus the synthetic challenge with a label-maturity purge. Six approaches on identical walk-forward folds: B0, numpy logistic, scikit-learn logistic, HistGradientBoosting, LightGBM, lifelines Cox, plus Platt, frozen sigmoid and Venn-Abers calibration. Behaviour, cost and correctness only: 26 and 33 out-of-sample real events cannot rank anything on skill, and nothing was selected on a score.
-- The essential engine is numpy code: logistic equal to scikit-learn within 2.6e-7, Platt equal to the frozen sigmoid within 5.9e-8, Venn-Abers equal to the reference package within 1.4e-17, Page-Hinkley equal to river's positions; byte-identical predictions in a numpy-only venv, offline. Third-party packages are research-only (PI-D-031, PI-D-032).
-- Library behaviours that shape later phases: HGB raises on an all-missing training column and lifelines on a constant one (training-window column rule added); tree models and Cox return silent near-zero probabilities on one-class windows (count gates first); river's detectors absorb NaN; pandera mutates numpy and the environment at import (REJECT); a plain Mesa install cannot be imported (REJECT); Venn-Abers fails calibration in the large with few positives; purgedcv's docstring contradicts its (safe) purge default; GeckoTerminal's `before_timestamp` is inclusive (PI-D-034).
-- Fold audit now checks each fold's declared training cutoff as well as its test start (own adversarial pass: 31 against 29 leaked labels on the 24 h mutation).
-- Install route: hash locks for CPython 3.13 on Linux, Windows and macOS arm64, `--require-hashes --only-binary=:all: --no-deps`, research venv only; three-platform download verified, offline install and clean uninstall shown, hostile sdist refused without running its `setup.py` (PI-D-032, P32).
-- Runtime states and breakers: `runtime.py`, 46 tests for P30, P31, P32, P34 and the absent crawler, GPU, weights, network and library cases, 17 of 17 mutations caught (PI-D-033).
-- MiroFish: ISOLATED_MOCK_ONLY. Service refuses to start without keys; mock runs not reproducible; exit 0 when the LLM is down, caught by the adapter. No probability, no paid call, no copied code.
+- M1, lock guard (P32). The skeptic's line `p04sk==1.0 ; python_version >= "3" --hash=sha256:<sdist> --only-binary=:none:` passed `check_lock`, and pip with the lab's flags then ran its `setup.py`, because pip honours per-line options. `check_lock` now accepts only `name==version`, an optional plain marker and `--hash=sha256:<64 hex>` tokens that are known wheel digests; `runtime.install_argv` is the only route and refuses before pip starts. Both of the skeptic's lines are test cases; `hostile_setup_demo.py` case E shows pip alone still runs the `setup.py` and `install_argv` refuses it. Lock sha256 pinned in the tests.
+- M2, containment. `guarded` contains every exception including SystemExit; KeyboardInterrupt and GeneratorExit pass through on purpose. LLM actions count only as a positive int. Any config section that is not an object means OFF, in `capability_report` and in `contract.enabled`.
+- m1, fold audit (prototype): fails closed on NaN times, a cutoff after the test start and, given the target's lag, a shorter-horizon maturity column; shared mints reported. `prototypes/test_core_numpy.py`, 9 tests.
+- m2: the skeptic's 6 surviving mutations plus one or more per repair: 41 of 41 caught. P31 fixture declares its hash algorithm and normalization, checked at load, with a self-test text and a skip-if-absent positive control against the pinned MiroFish clone.
+- m3 to m7: copyleft scan of every code file in the working tree (411); candles dropped by end time, the six holdout-start candles purged from the raw store with recorded hashes, `refuse_bakeoff_labels` plus a test; NaN or negative cost refuses calls, `is_failure` for returned error responses, dotted names refused; Platt on constant scores returns the exact optimum; the Venn-Abers oracle feeds both sides the same probabilities. m8: core lock header; the rollback reports the empty `mpl_toolkits/` directory it leaves (the documented rollback deletes the venv).
+- The new tests fail on the first-pass code: runtime 88 failed of 135, prototype 8 of 9 (`evidence/old_code_check.json`). Re-measured bake-off: every prediction byte-identical to the first pass.
+
+## What Phase 04 found (first pass, unchanged)
+
+- Six approaches on one point-in-time dataset (BAKEOFF_ONLY development labels, T1 24 h 102 events, T1b 6 h 159, holdout untouched, plus the synthetic challenge), identical folds. Behaviour, cost and correctness only; 26 and 33 out-of-sample real events rank nothing on skill.
+- The essential engine is numpy code equal to scikit-learn, the frozen sigmoid and the Venn-Abers reference, byte-identical in a numpy-only venv offline. Research packages live only in a hash-locked venv (PI-D-031, PI-D-032). pandera and Mesa REJECT; statsmodels, arch, crepes and interpret-core DEFERRED. MiroFish ISOLATED_MOCK_ONLY.
 
 ## How to check it
 
@@ -24,39 +28,39 @@ From `audits/predictive-intelligence/phase_04/adoption/prototypes/`:
 
 ```
 python -B build_dev_sample.py label ../data /home/claude/pi_research/p04_gt_raw && git diff --stat -- ../data   # expect no diff
-python -B holdout_candle_check.py /home/claude/pi_research/p04_gt_raw     # verdict: no holdout decision can use these candles
-python -B banned_scan.py /tmp/banned.json                                  # hits 0
+python -B holdout_candle_check.py /home/claude/pi_research/p04_gt_raw     # 0 candles ending after the holdout start
 python -B summarize.py                                                     # not_identical_or_failed: []
-python -B mutation_runtime.py /tmp/mut.json                                # 17 of 17 caught
+python -B mutation_runtime.py /tmp/mut.json                                # 41 of 41 caught
+python -B old_code_check.py /tmp/old.json                                  # runtime 88 failed, prototype 8 failed
+python -m pytest test_core_numpy.py -q                                     # 9 passed
 ```
 
-From the repository root: `python -m pytest tests/test_predictive_runtime.py tests/test_predictive_contract.py -q` (112 passed), `python -m memelab social guard`, `python tools/release_audit.py --history`.
+From the repository root: `python -m pytest tests/test_predictive_runtime.py tests/test_predictive_contract.py -q` (201 passed), `python -m memelab social guard`, `python tools/release_audit.py --history`.
 
 ## Tests
 
-- Entry gate at `a146a29`: `python -m pytest tests -q` exit 1, `1 failed, 858 passed in 145.42s (0:02:25)`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (known).
-- Before the commit, staged tree: `1 failed, 904 passed in 142.75s (0:02:22)`.
-- After the deliverables commit `4a19d71`, on the committed tree: exit 1, `1 failed, 904 passed in 153.99s (0:02:33)`, only the known failure; `python -m memelab social guard` exit 0 with no violations; `python tools/release_audit.py --history` exit 0, "Needs action: no" (`audits/predictive-intelligence/phase_04/postcommit/`).
+- Entry gate at `a146a29`: `1 failed, 858 passed in 145.42s`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (known).
+- First pass after `4a19d71`: `1 failed, 904 passed`. Orchestrator at `84f8c86`: `1 failed, 904 passed`.
+- Repair pass, after the repair commit: recorded in PHASE_04_RESULTS.json by the records commit (expected `1 failed, 993 passed`: 858 earlier tests plus 135).
 - Strays after each run: `data/reports/<stamp>_BRETT_0x532f.md`, `data/memelab.sqlite-shm`, `-wal`; remove by hand; tracked DB sha256 `068287c0...` unchanged.
 
 ## Blockers and open items
 
-- None for the skeptic. Open: the skeptic's review and the repair pass.
-- An ignored uv venv `hazardous/` sits at the repository root from an earlier session (2026-10-24T06:48Z); untracked and ignored, left in place.
+- None for Phase 04 once the orchestrator verifies the repair and records commits.
 - PI-D-020 (forward depth and quote collector) stays PROPOSED for Elving.
 
 ## Approvals needed
 
-None for the skeptic or the repair pass. Paid data, LLM, Zep or MiroFish use, any scheduled collector (PI-D-020), copying AGPL or GPL code, accepting non-commercial weight terms, adding a research package to the lab's runtime, or a merge into `main` need Elving (PI-D-005, PI-D-032).
+None for Phase 05. Paid data, LLM, Zep or MiroFish use, any scheduled collector (PI-D-020), copying AGPL or GPL code, accepting non-commercial weight terms, adding a research package to the lab's runtime, or a merge into `main` need Elving (PI-D-005, PI-D-032).
 
 ## Next
 
-Orchestrator: run the independent skeptic on `audits/predictive-intelligence/phase_04/SKEPTIC_PACKET.md`, then return the review for the Phase 04 repair pass. Next eligible phase after a verified PASS: 05 (immutable temporal evidence and feature store), which starts from PI-D-031 to PI-D-034 and the Phase 04 constraints in ROADMAP.md.
+Next eligible phase after the orchestrator verifies Phase 04: 05 (immutable temporal evidence and feature store). It starts from PI-D-031 to PI-D-035 and the Phase 04 constraints in ROADMAP.md: install only through `install_argv`, drop candles by end time, pass every label source through `refuse_bakeoff_labels`.
 
 ## Exact next command
 
 ```
-cd /home/claude/memelab-inbox && git checkout feature/predictive-intelligence && git log -3 --oneline && python -m memelab social guard && python -m pytest tests/test_predictive_runtime.py tests/test_predictive_contract.py -q && python -m pytest tests -q
+cd /home/claude/memelab-inbox && git checkout feature/predictive-intelligence && git log -5 --oneline && python -m memelab social guard && python -m pytest tests/test_predictive_runtime.py tests/test_predictive_contract.py -q && python -m pytest tests -q
 ```
 
-Expect the two Phase 04 commits on top of `a146a29`, `"violations": []`, `112 passed`, and `1 failed, 904 passed` (858 earlier tests plus 46 new); then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand.
+Expect four Phase 04 commits on top of `a146a29`, `"violations": []`, `201 passed`, and `1 failed, 993 passed`; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand.

@@ -1,0 +1,24 @@
+{
+ "pip_version": "pip 26.2.2",
+ "check_lock_plain_sdist_line": [],
+ "check_lock_evil_line": [],
+ "lab_route_plain_line": {
+  "exit": 1,
+  "tail": [
+   "Looking in links: /tmp/tmp4_zg7iug/wh",
+   "ERROR: Could not find a version that satisfies the requirement p04sk==1.0 (from versions: none)",
+   "ERROR: No matching distribution found for p04sk==1.0"
+  ]
+ },
+ "marker_after_plain": false,
+ "lab_route_evil_line": {
+  "exit": 0,
+  "tail": [
+   "Successfully built p04sk",
+   "Installing collected packages: p04sk",
+   "Successfully installed p04sk-1.0"
+  ]
+ },
+ "marker_after_evil": true,
+ "verdict": "BYPASS: check_lock accepted the line and the lab route ran setup.py"
+}

@@ -1,0 +1,26 @@
+{
+ "pip_version": "pip 26.2.2",
+ "check_lock_plain_sdist_line": [],
+ "check_lock_evil_line": [
+  "only --hash=sha256:<64 hex> may follow a requirement; refused '--only-binary=:none:' in p04sk==1.0 ; python_version >= \"3\""
+ ],
+ "lab_route_plain_line": {
+  "exit": 1,
+  "tail": [
+   "Looking in links: /tmp/tmpjd2mceo5/wh",
+   "ERROR: Could not find a version that satisfies the requirement p04sk==1.0 (from versions: none)",
+   "ERROR: No matching distribution found for p04sk==1.0"
+  ]
+ },
+ "marker_after_plain": false,
+ "lab_route_evil_line": {
+  "exit": 0,
+  "tail": [
+   "Successfully built p04sk",
+   "Installing collected packages: p04sk",
+   "Successfully installed p04sk-1.0"
+  ]
+ },
+ "marker_after_evil": true,
+ "verdict": "no bypass"
+}

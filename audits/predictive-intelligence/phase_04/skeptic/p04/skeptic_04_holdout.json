@@ -1,0 +1,90 @@
+{
+ "raw": {
+  "bodies_200": 115,
+  "sha_mismatch": [],
+  "before_timestamp_gt_h0": [],
+  "max_before_minus_h0": 0.0,
+  "candles_beyond_before_timestamp": [],
+  "bodies_whose_newest_candle_equals_before_timestamp": [
+   26,
+   113
+  ],
+  "candles_at_or_after_h0": [
+   [
+    "p000_0",
+    0.0
+   ],
+   [
+    "p027_0",
+    0.0
+   ],
+   [
+    "p074_0",
+    0.0
+   ],
+   [
+    "p079_0",
+    0.0
+   ],
+   [
+    "p081_0",
+    0.0
+   ],
+   [
+    "p082_0",
+    0.0
+   ]
+  ]
+ },
+ "pace": {
+  "calls": 132,
+  "max_calls_in_any_60s": 6,
+  "min_gap_s": 11.1,
+  "http": {
+   "200": 115,
+   "429": 17
+  }
+ },
+ "holdout": {
+  "holdout_decisions_solana": 95,
+  "on_fetched_pools": 23,
+  "with_a_fetched_pre_h0_candle_usable_as_reference": [],
+  "with_a_fetched_pre_h0_candle_in_24h_lookback": 0,
+  "contacted_on_fetched_pools": []
+ },
+ "dev_t1_24h.csv": {
+  "rows": 102,
+  "mine": 102,
+  "differences": [],
+  "n_diff": 0,
+  "classes_mine": {
+   "INVALIDATION_FIRST": 56,
+   "NEITHER": 15,
+   "TARGET_FIRST": 30,
+   "AMBIGUOUS_BAR": 1
+  },
+  "max_decision": "2026-10-15T10:13:48Z",
+  "max_label_matures": "2026-10-16T10:33:48Z",
+  "rows_at_or_after_h0": 0,
+  "contacted_mints_in_rows": [],
+  "max_path_candle_end_used": "2026-10-16T10:18:48Z"
+ },
+ "dev_t1b_6h.csv": {
+  "rows": 159,
+  "mine": 159,
+  "differences": [],
+  "n_diff": 0,
+  "classes_mine": {
+   "NEITHER": 80,
+   "INVALIDATION_FIRST": 54,
+   "TARGET_FIRST": 23,
+   "NO_TRADES_AFTER_ENTRY": 1,
+   "AMBIGUOUS_BAR": 1
+  },
+  "max_decision": "2026-10-16T10:42:06Z",
+  "max_label_matures": "2026-10-16T17:02:06Z",
+  "rows_at_or_after_h0": 0,
+  "contacted_mints_in_rows": [],
+  "max_path_candle_end_used": "2026-10-16T16:47:06Z"
+ }
+}

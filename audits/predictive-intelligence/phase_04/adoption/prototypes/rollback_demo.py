@@ -4,7 +4,10 @@ Steps: (1) new venv; record `pip freeze` and a manifest of every file under site
 docs/predictive-intelligence/locks/research-py313.txt with the lab's flags from a local wheelhouse (no index, no network);
 (3) smoke: the bake-off approaches LR_SKLEARN, LGBM and COX_LIFELINES on the challenge, offline; (4) `pip uninstall -y` every
 locked name; (5) the freeze and the manifest must equal step 1. Also records the system interpreter's `pip freeze` sha256,
-which this phase never changes.
+which this phase never changes. The manifest lists directories as well as files (Phase 04 skeptic m8: pip leaves a namespace
+directory such as `mpl_toolkits/` behind when it is empty, which a file-only manifest did not see); `rollback_clean` requires the
+file manifest to match, and `rollback_clean_with_dirs` also requires no leftover directory. The documented rollback is deleting the
+venv, which leaves nothing.
 
     python rollback_demo.py WHEELHOUSE OUT.json
 """
@@ -35,10 +38,12 @@ def run(cmd, offline=True, **kw):
 def manifest(venv: Path) -> dict:
     sp = next(venv.glob("lib/python3.*/site-packages"))
     files = sorted(p for p in sp.rglob("*") if p.is_file())
+    dirs = sorted(str(p.relative_to(sp)) for p in sp.rglob("*") if p.is_dir() and "__pycache__" not in p.parts)
     h = hashlib.sha256()
     for p in files:
         h.update(str(p.relative_to(sp)).encode() + b"\0" + hashlib.sha256(p.read_bytes()).digest())
-    return {"files": len(files), "sha256": h.hexdigest()}
+    return {"files": len(files), "sha256": h.hexdigest(), "dirs": len(dirs),
+            "dirs_sha256": hashlib.sha256("\n".join(dirs).encode()).hexdigest(), "_dirs": dirs}
 
 
 def main(wheelhouse: str, out: str) -> None:
@@ -74,13 +79,19 @@ def main(wheelhouse: str, out: str) -> None:
         res["uninstall"] = {"exit": un.returncode}
         f2 = run([py, "-m", "pip", "freeze"]).stdout
         m2 = manifest(venv)
+        d0, d2 = m0.pop("_dirs"), m2.pop("_dirs")
         res["before"] = {"freeze_sha256": hashlib.sha256(f0.encode()).hexdigest(), "freeze_lines": len(f0.splitlines()), **m0}
         res["after_uninstall"] = {"freeze_sha256": hashlib.sha256(f2.encode()).hexdigest(), "freeze_lines": len(f2.splitlines()), **m2}
-        if m2 != m0:
+        same_files = (m0["files"], m0["sha256"]) == (m2["files"], m2["sha256"])
+        if not same_files:
             sp = next(venv.glob("lib/python3.*/site-packages"))
-            res["leftovers"] = sorted(str(p.relative_to(sp)) for p in sp.rglob("*") if p.is_file())[:40]
-        res["rollback_clean"] = f0 == f2 and m0 == m2
-    print(json.dumps({k: res[k] for k in ("install", "installed_count", "smoke_offline", "uninstall", "rollback_clean")}, indent=1))
+            res["leftover_files"] = sorted(str(p.relative_to(sp)) for p in sp.rglob("*") if p.is_file())[:40]
+        res["leftover_dirs"] = sorted(set(d2) - set(d0))
+        res["missing_dirs"] = sorted(set(d0) - set(d2))
+        res["rollback_clean"] = f0 == f2 and same_files
+        res["rollback_clean_with_dirs"] = res["rollback_clean"] and not res["leftover_dirs"] and not res["missing_dirs"]
+    print(json.dumps({k: res[k] for k in ("install", "installed_count", "smoke_offline", "uninstall", "rollback_clean",
+                                          "rollback_clean_with_dirs", "leftover_dirs")}, indent=1))
     Path(out).write_text(json.dumps(res, indent=1, sort_keys=True) + "\n")
 
 

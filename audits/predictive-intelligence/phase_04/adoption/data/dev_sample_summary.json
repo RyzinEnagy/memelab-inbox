@@ -4,7 +4,7 @@
   "200": 115,
   "429": 17
  },
- "candles_dropped_at_or_after_h0": 6,
+ "candles_dropped_ending_after_h0": 0,
  "eligibility_unthinned": {
   "ELIGIBLE": 502,
   "MARKET_INACTIVE": 17,
@@ -17,6 +17,7 @@
   "decisions_at_or_after_h0": 0,
   "labels_maturing_after_h0": 0
  },
+ "raw_bodies_redacted": 6,
  "ref": "98338a8ba3c5e65c5850933a35c06885b6ef991a",
  "targets": {
   "price_path_target_before_invalidation_24h": {

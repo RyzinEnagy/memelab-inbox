@@ -1,0 +1,158 @@
+{
+ "sklearn": "1.9.1",
+ "logistic": {
+  "random_300x5": {
+   "max_prob_diff_vs_sklearn_tight": 8.11523148680493e-09,
+   "max_prob_diff_vs_sklearn_default": 0.0002553153924587104,
+   "newton_iters": 8,
+   "obj_numpy": 99.91922353882919,
+   "obj_sklearn_tight": 99.91922353882919,
+   "finite": true
+  },
+  "unscaled_1e4_1e-4": {
+   "max_prob_diff_vs_sklearn_tight": 3.702669567617889e-07,
+   "max_prob_diff_vs_sklearn_default": 8.356305177814605e-07,
+   "newton_iters": 8,
+   "obj_numpy": 104.76127048469496,
+   "obj_sklearn_tight": 104.7612718953363,
+   "finite": true
+  },
+  "separable_C1": {
+   "max_prob_diff_vs_sklearn_tight": 1.9335619771965185e-09,
+   "max_prob_diff_vs_sklearn_default": 0.0005309736545374422,
+   "newton_iters": 8,
+   "obj_numpy": 34.32350437185315,
+   "obj_sklearn_tight": 34.323504371853154,
+   "finite": true
+  },
+  "separable_C1e4": {
+   "max_prob_diff_vs_sklearn_tight": 1.6737417007917088e-10,
+   "max_prob_diff_vs_sklearn_default": 0.04511845011374083,
+   "newton_iters": 16,
+   "obj_numpy": 0.8928237585429177,
+   "obj_sklearn_tight": 0.8928237585429171,
+   "finite": true
+  },
+  "duplicated_columns": {
+   "max_prob_diff_vs_sklearn_tight": 8.88094370266046e-09,
+   "max_prob_diff_vs_sklearn_default": 0.00018171825029278388,
+   "newton_iters": 8,
+   "obj_numpy": 99.28122322161167,
+   "obj_sklearn_tight": 99.28122322161168,
+   "finite": true
+  },
+  "n_lt_d": {
+   "max_prob_diff_vs_sklearn_tight": 2.7205238728456038e-08,
+   "max_prob_diff_vs_sklearn_default": 0.00036558758835669725,
+   "newton_iters": 8,
+   "obj_numpy": 1.8447869890180508,
+   "obj_sklearn_tight": 1.8447869890180528,
+   "finite": true
+  },
+  "two_positives_in_500": {
+   "max_prob_diff_vs_sklearn_tight": 2.047144433137138e-10,
+   "max_prob_diff_vs_sklearn_default": 0.0005255708116843061,
+   "newton_iters": 11,
+   "obj_numpy": 11.65687255501106,
+   "obj_sklearn_tight": 11.65687255501106,
+   "finite": true
+  },
+  "tied_rows": {
+   "max_prob_diff_vs_sklearn_tight": 4.526861663300963e-10,
+   "max_prob_diff_vs_sklearn_default": 6.717502744912895e-05,
+   "newton_iters": 5,
+   "obj_numpy": 202.43480973973652,
+   "obj_sklearn_tight": 202.4348097397365,
+   "finite": true
+  }
+ },
+ "platt": {
+  "random": {
+   "a_np": -1.6723946023944047,
+   "b_np": 0.05249263283309262,
+   "a_sk": -1.6723945996653853,
+   "b_sk": 0.05249263321979123,
+   "max_prob_diff": 4.3740844279938074e-10
+  },
+  "ties": {
+   "a_np": -1.3194657763184896,
+   "b_np": 0.057594900508460514,
+   "a_sk": -1.3194657758848678,
+   "b_sk": 0.05759490014605928,
+   "max_prob_diff": 1.3220835537453013e-10
+  },
+  "extreme_scale": {
+   "a_np": -0.0016723946023944048,
+   "b_np": 0.05249263283309263,
+   "a_sk": -0.0016723946824889608,
+   "b_sk": 0.052492646375547035,
+   "max_prob_diff": 1.2389999276551933e-08
+  },
+  "separable": {
+   "a_np": -8.451460539683108,
+   "b_np": -0.15871361162723543,
+   "a_sk": -8.451460538385367,
+   "b_sk": -0.1587136053702014,
+   "max_prob_diff": 1.5436940614677042e-09
+  },
+  "tiny_n5": {
+   "a_np": -0.06973039764603728,
+   "b_np": 0.3883827569856141,
+   "a_sk": -0.06973002892895488,
+   "b_sk": 0.38838205288831523,
+   "max_prob_diff": 2.636303760295e-07
+  },
+  "constant_scores": {
+   "a_np": 0.0,
+   "b_np": 0.47000362924573563,
+   "a_sk": 0.0,
+   "b_sk": 0.48660935890900736,
+   "max_prob_diff": 0.003922743918366667
+  }
+ },
+ "degenerate": {
+  "logistic_nan": {
+   "raised": "ValueError: Logistic.fit: inputs must be finite (run Prep first; P38)"
+  },
+  "logistic_inf": {
+   "raised": "ValueError: Logistic.fit: inputs must be finite (run Prep first; P38)"
+  },
+  "logistic_one_class": {
+   "raised": "ValueError: Logistic.fit: the window has one class only (INSUFFICIENT_HISTORY)"
+  },
+  "logistic_labels_0_2": {
+   "raised": "ValueError: Logistic.fit: labels must be 0 or 1"
+  },
+  "prep_all_constant_then_fit": {
+   "raised": "ValueError: Logistic.fit: inputs must be finite (run Prep first; P38)"
+  },
+  "prep_inf_at_predict": {
+   "returned": "[[0.0]]"
+  },
+  "predict_nan_without_prep": {
+   "returned": "[nan]"
+  },
+  "brier_nan": {
+   "raised": "ValueError: probabilities must be finite and inside [0, 1] (P38)"
+  },
+  "platt_one_class": {
+   "raised": "ValueError: Platt.fit: the window has one class only (INSUFFICIENT_HISTORY)"
+  },
+  "venn_one_class": {
+   "raised": "ValueError: venn_abers: the window has one class only (INSUFFICIENT_HISTORY)"
+  },
+  "venn_nan_test": {
+   "raised": "ValueError: venn_abers: test scores must be finite (P38)"
+  },
+  "pagehinkley_nan": {
+   "raised": "ValueError: drift input must be a finite number (P38): NaN is refused, never absorbed"
+  },
+  "wilson_n0": {
+   "returned": "(0.0, 1.0)"
+  },
+  "holm_empty": {
+   "returned": "[]"
+  }
+ },
+ "deterministic_same_process": true
+}

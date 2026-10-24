@@ -30,3 +30,7 @@ Written 2026-10-24T07:59Z by the Phase 04 agent, after the entry gate and after 
 ## Amendment (2026-10-24T08:20Z, before any commit)
 
 B16 lists the paths a commit may touch. The P31 gate of B14 needs its fingerprint set as a test fixture and B10's locks belong with the durable records, so the allowed paths also include `tests/fixtures/predictive/copyleft_fingerprints.json` (hashes only) and `docs/predictive-intelligence/locks/` (already inside `docs/predictive-intelligence/`). No other item changed.
+
+## Amendment 2 (2026-10-24, repair pass after the independent skeptic, before the repair commit)
+
+B16 also allows `memelab/predictive/contract.py`, for the flag reader `enabled()` only (skeptic M2: a malformed `data/config.json` crashed it); the registry fingerprint `91d03c76...` must stay unchanged and `tests/test_predictive_contract.py` stays unedited. B13's "never raises" is stated precisely: every exception including SystemExit becomes a state; KeyboardInterrupt and GeneratorExit pass through on purpose. B15 now requires the skeptic's counterexample line to be refused before pip starts (`runtime.install_argv`). B20: status PASS only after the repair and its post-commit checks. B22 for the repair pass: one repair commit and one records commit on top of the two first-pass commits, as in Phases 02 and 03. No other item changed and no threshold moved.

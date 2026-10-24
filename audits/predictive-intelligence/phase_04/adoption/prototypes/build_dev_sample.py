@@ -8,7 +8,11 @@ T1b (6 h). Only development decisions are kept: decision before the holdout star
 
 Holdout protection (Phase 01 seal, ACCEPTANCE holdout_seal and holdout_contacted):
   - every GeckoTerminal request ends at or before the holdout start (before_timestamp <= H0);
-  - every returned candle that starts at or after H0 is dropped and counted;
+  - every returned candle that ends after H0 (start + 300 s > H0) is dropped and counted: GeckoTerminal's before_timestamp
+    returns the candle that contains the boundary (Phase 04 skeptic m4); for the 5-minute-aligned H0 this is the candle that
+    starts at H0;
+  - those candles were then purged from the raw store (`quarantine` below); a body is accepted when its sha256 equals the
+    call log or, for a purged body, the redacted sha256 recorded in evidence/raw_store_quarantine.json;
   - no decision at or after H0 is labeled; the check at the end refuses the output otherwise.
 
 Network: GeckoTerminal public OHLCV only, PIT_RECORDED pools only (no vendor pool lists), at most 6 calls a minute (PACE_S),
@@ -18,6 +22,7 @@ RAW_DIR outside the repository with their sha256; the call log (URL, retrieval t
     python build_dev_sample.py plan  OUT_DIR
     python build_dev_sample.py fetch OUT_DIR RAW_DIR
     python build_dev_sample.py label OUT_DIR RAW_DIR
+    python build_dev_sample.py quarantine OUT_DIR RAW_DIR   # repair pass: purge candles ending after the holdout start
 """
 from __future__ import annotations
 
@@ -220,6 +225,8 @@ def features(e: dict) -> dict:
 def label(out_dir: Path, raw_dir: Path) -> None:
     pl = json.loads((out_dir / "dev_sample_plan.json").read_text())
     calls = json.loads((out_dir / "dev_sample_calls.json").read_text())
+    qpath = out_dir.parent / "evidence" / "raw_store_quarantine.json"
+    redacted = {q["file"]: q["redacted_sha256"] for q in json.loads(qpath.read_text())["bodies"]} if qpath.exists() else {}
     by_tag = {}
     for c in calls:
         if c["http"] == 200:
@@ -230,10 +237,11 @@ def label(out_dir: Path, raw_dir: Path) -> None:
         while f"p{i:03d}_{page}" in by_tag:
             c = by_tag[f"p{i:03d}_{page}"]
             d = json.loads((raw_dir / c["file"]).read_bytes())
-            if hashlib.sha256((raw_dir / c["file"]).read_bytes()).hexdigest() != c["sha256"]:
+            h = hashlib.sha256((raw_dir / c["file"]).read_bytes()).hexdigest()
+            if h != c["sha256"] and h != redacted.get(c["file"]):
                 raise SystemExit(f"raw body {c['file']} changed since retrieval")
             for r in d["data"]["attributes"]["ohlcv_list"]:
-                if int(r[0]) >= H0:
+                if int(r[0]) + PERIOD > H0:
                     dropped_after_h0 += 1
                     continue
                 rows[int(r[0])] = r
@@ -255,7 +263,7 @@ def label(out_dir: Path, raw_dir: Path) -> None:
         e = dict(e, eligibility=cls)
         base.append(e)
     summary = {"ref": REF, "h0": iso(H0), "events_development_pit": len(evs), "eligibility_unthinned": dict(elig_counts),
-               "candles_dropped_at_or_after_h0": dropped_after_h0, "calls": len(calls),
+               "candles_dropped_ending_after_h0": dropped_after_h0, "raw_bodies_redacted": len(redacted), "calls": len(calls),
                "calls_http": dict(collections.Counter(c["http"] for c in calls)), "targets": {}}
     for target, fname in ((T24, "dev_t1_24h.csv"), (T6, "dev_t1b_6h.csv")):
         dev = [e for e in base if C.label_matures_at(target, e["decision_time"]) <= H0]
@@ -304,6 +312,35 @@ def label(out_dir: Path, raw_dir: Path) -> None:
     print(json.dumps(summary, indent=1, sort_keys=True))
 
 
+def quarantine(out_dir: Path, raw_dir: Path) -> None:
+    """Purge every candle that ends after H0 from the raw store (skeptic m5): rewrite the affected bodies without them and record
+    the original and redacted sha256 and the removed candle start times (no price) in evidence/raw_store_quarantine.json."""
+    calls = json.loads((out_dir / "dev_sample_calls.json").read_text())
+    qpath = out_dir.parent / "evidence" / "raw_store_quarantine.json"
+    done = {q["file"]: q for q in json.loads(qpath.read_text())["bodies"]} if qpath.exists() else {}
+    for c in calls:
+        if c["http"] != 200 or c["file"] in done:
+            continue
+        f = raw_dir / c["file"]
+        body = f.read_bytes()
+        assert hashlib.sha256(body).hexdigest() == c["sha256"], f"{c['file']} differs from the call log"
+        d = json.loads(body)
+        lst = d["data"]["attributes"]["ohlcv_list"]
+        late = [int(r[0]) for r in lst if int(r[0]) + PERIOD > H0]
+        if not late:
+            continue
+        d["data"]["attributes"]["ohlcv_list"] = [r for r in lst if int(r[0]) + PERIOD <= H0]
+        new = json.dumps(d, separators=(",", ":")).encode()
+        f.write_bytes(new)
+        done[c["file"]] = {"file": c["file"], "tag": c["tag"], "original_sha256": c["sha256"],
+                           "redacted_sha256": hashlib.sha256(new).hexdigest(), "removed_candle_starts": late,
+                           "removed_candle_starts_minus_h0_s": [t - int(H0) for t in late]}
+    doc = {"purpose": "raw GeckoTerminal bodies of the Phase 04 bake-off with every candle ending after the holdout start removed; "
+                      "start times only, no price", "h0": iso(H0), "bodies": sorted(done.values(), key=lambda q: q["file"])}
+    qpath.write_text(json.dumps(doc, indent=1) + "\n")
+    print(json.dumps({"bodies_redacted": len(done), "candles_removed": sum(len(q["removed_candle_starts"]) for q in done.values())}))
+
+
 if __name__ == "__main__":
     cmd, out = sys.argv[1], Path(sys.argv[2])
     if cmd == "plan":
@@ -312,5 +349,7 @@ if __name__ == "__main__":
         fetch(out, Path(sys.argv[3]))
     elif cmd == "label":
         label(out, Path(sys.argv[3]))
+    elif cmd == "quarantine":
+        quarantine(out, Path(sys.argv[3]))
     else:
         raise SystemExit(__doc__)

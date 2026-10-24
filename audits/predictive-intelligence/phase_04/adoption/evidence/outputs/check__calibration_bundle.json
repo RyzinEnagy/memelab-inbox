@@ -19,6 +19,13 @@
  "mapie_spiegelhalter_p_holdout": 0.628666,
  "mean_p_cal": 0.03449,
  "mode": "bundle",
+ "platt_constant_scores": {
+  "exact_optimum_mean_smoothed_target": 0.0344897133,
+  "numpy": 0.0344897133,
+  "numpy_minus_optimum": -6.938893903907228e-18,
+  "sklearn": 0.0344897133,
+  "sklearn_minus_optimum": -6.136063879225162e-14
+ },
  "platt_numpy_vs_frozen_sigmoid": {
   "max_abs_prob_diff": 5.8283237708289803e-08
  },

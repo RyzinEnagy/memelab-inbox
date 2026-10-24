@@ -1,114 +1,300 @@
 {
  "baseline_exit": 0,
- "mutations": 17,
- "caught": 17,
+ "mutations": 41,
+ "caught": 41,
+ "survived": [],
  "results": [
   {
    "mutation": "none (baseline)",
    "exit": 0,
-   "result": "46 passed in 0.19s",
+   "result": "135 passed in 1.53s",
    "caught": null
   },
   {
    "mutation": "P30 reads a key from the environment",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed in 0.08s",
+   "result": "1 failed in 0.13s",
    "caught": true
   },
   {
    "mutation": "P30 silent success accepted (exit 0 without LLM actions)",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed, 7 passed in 0.09s",
+   "result": "1 failed, 7 passed in 0.13s",
    "caught": true
   },
   {
    "mutation": "P30 approval read loosely (any truthy value)",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed, 1 passed in 0.07s",
+   "result": "1 failed, 1 passed in 0.12s",
    "caught": true
   },
   {
-   "mutation": "unexpected exceptions propagate to discovery",
+   "mutation": "M2 llm_actions coerced with int()",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed, 4 passed in 0.08s",
+   "result": "1 failed, 11 passed in 0.18s",
+   "caught": true
+  },
+  {
+   "mutation": "M2 llm_actions accepts bool and str",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 17 passed in 0.14s",
+   "caught": true
+  },
+  {
+   "mutation": "M2 config sections not type-checked",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 21 passed in 0.15s",
+   "caught": true
+  },
+  {
+   "mutation": "M2 narrowed catch (skeptic's surviving mutant)",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 10 passed in 0.14s",
+   "caught": true
+  },
+  {
+   "mutation": "M2 catch only Exception (SystemExit escapes)",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 10 passed in 0.15s",
+   "caught": true
+  },
+  {
+   "mutation": "M2 SystemExit deliberately not contained",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 10 passed in 0.25s",
+   "caught": true
+  },
+  {
+   "mutation": "KeyboardInterrupt swallowed",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 49 passed in 0.19s",
    "caught": true
   },
   {
    "mutation": "network failure no longer abstains",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed, 14 passed in 0.11s",
+   "result": "1 failed, 30 passed in 0.17s",
    "caught": true
   },
   {
    "mutation": "breaker never opens",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed, 24 passed in 0.11s",
+   "result": "1 failed, 74 passed in 0.25s",
+   "caught": true
+  },
+  {
+   "mutation": "breaker counts only network failures (skeptic's surviving mutant)",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 77 passed in 0.20s",
+   "caught": true
+  },
+  {
+   "mutation": "call and cost caps no longer abstain (skeptic's surviving mutant)",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 80 passed in 0.23s",
    "caught": true
   },
   {
    "mutation": "no pacing between calls",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed, 25 passed in 0.10s",
+   "result": "1 failed, 75 passed in 0.19s",
    "caught": true
   },
   {
    "mutation": "cost cap ignored",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed, 26 passed in 0.11s",
+   "result": "1 failed, 76 passed in 0.24s",
    "caught": true
   },
   {
-   "mutation": "P32 lock without hashes accepted",
+   "mutation": "m6 NaN cost no longer fails closed",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed, 29 passed in 0.10s",
+   "result": "1 failed, 84 passed in 0.25s",
    "caught": true
   },
   {
-   "mutation": "P32 alternate index accepted",
+   "mutation": "m6 returned error responses ignored",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed, 36 passed in 0.11s",
+   "result": "1 failed, 78 passed in 0.22s",
+   "caught": true
+  },
+  {
+   "mutation": "m6 invalid pace accepted",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 90 passed in 0.24s",
+   "caught": true
+  },
+  {
+   "mutation": "M1 only the first option after a requirement is checked",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 103 passed in 0.22s",
+   "caught": true
+  },
+  {
+   "mutation": "M1 sha512 and other hash algorithms accepted",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 104 passed in 0.25s",
+   "caught": true
+  },
+  {
+   "mutation": "M1 marker content not checked",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 111 passed in 0.24s",
+   "caught": true
+  },
+  {
+   "mutation": "M1 known wheel digests not enforced",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 124 passed in 0.30s",
+   "caught": true
+  },
+  {
+   "mutation": "M1 install_argv skips the guard",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 97 passed in 0.23s",
+   "caught": true
+  },
+  {
+   "mutation": "banned options only at line start (skeptic's surviving mutant, new parser)",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 118 passed in 0.27s",
    "caught": true
   },
   {
    "mutation": "P32 sdist accepted when its hash matches",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed, 42 passed in 0.13s",
+   "result": "1 failed, 127 passed in 0.42s",
    "caught": true
   },
   {
    "mutation": "P31 license markers ignored",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed, 44 passed in 0.19s",
+   "result": "1 failed, 128 passed in 0.73s",
    "caught": true
   },
   {
    "mutation": "P31 fingerprints never compared",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed, 44 passed in 0.13s",
+   "result": "1 failed, 131 passed in 0.58s",
+   "caught": true
+  },
+  {
+   "mutation": "P31 shingle hash computed with sha1 (skeptic's surviving mutant)",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 129 passed in 0.54s",
+   "caught": true
+  },
+  {
+   "mutation": "P31 algorithm constant changed",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 128 passed in 0.41s",
+   "caught": true
+  },
+  {
+   "mutation": "P31 lines lower-cased before hashing (skeptic's surviving mutant)",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 129 passed in 0.71s",
+   "caught": true
+  },
+  {
+   "mutation": "P31 marker exemption also skips fingerprints",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 132 passed in 0.67s",
+   "caught": true
+  },
+  {
+   "mutation": "P31 fixture parameters not checked",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 130 passed in 0.65s",
    "caught": true
   },
   {
    "mutation": "P34 importable backtest reported as not available",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed, 27 passed in 0.09s",
+   "result": "1 failed, 96 passed in 0.34s",
    "caught": true
   },
   {
    "mutation": "dependency probe imports the module",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed, 23 passed in 0.10s",
+   "result": "1 failed, 73 passed in 0.32s",
+   "caught": true
+  },
+  {
+   "mutation": "m6 dotted names probed (imports the parent)",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 73 passed in 0.22s",
    "caught": true
   },
   {
    "mutation": "third-party import added to the runtime",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed, 45 passed in 0.25s",
+   "result": "1 failed, 133 passed in 0.73s",
    "caught": true
   },
   {
    "mutation": "weights accepted without the hash",
+   "file": "memelab/predictive/runtime.py",
    "exit": 1,
-   "result": "1 failed, 22 passed in 0.09s",
+   "result": "1 failed, 72 passed in 0.20s",
+   "caught": true
+  },
+  {
+   "mutation": "m5 bake-off rows accepted",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 134 passed in 0.60s",
+   "caught": true
+  },
+  {
+   "mutation": "m5 bake-off path accepted",
+   "file": "memelab/predictive/runtime.py",
+   "exit": 1,
+   "result": "1 failed, 134 passed in 0.70s",
+   "caught": true
+  },
+  {
+   "mutation": "M2 flag reader crashes on malformed config (old code)",
+   "file": "memelab/predictive/contract.py",
+   "exit": 1,
+   "result": "1 failed, 63 passed in 0.20s",
    "caught": true
   }
  ]

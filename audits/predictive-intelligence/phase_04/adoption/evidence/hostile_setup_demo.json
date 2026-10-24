@@ -11,7 +11,7 @@
  "B_lab_route_sdist_with_correct_hash": {
   "exit": 1,
   "tail": [
-   "Looking in links: /tmp/tmpk81u5cxj/wh",
+   "Looking in links: /tmp/tmp76gpy8qr/wh",
    "ERROR: Could not find a version that satisfies the requirement p04evil==1.0 (from versions: none)",
    "ERROR: No matching distribution found for p04evil==1.0"
   ]
@@ -20,7 +20,7 @@
  "C2_lab_route_wheel_right_hash": {
   "exit": 0,
   "tail": [
-   "Processing /tmp/tmpk81u5cxj/wh/p04good-1.0-py3-none-any.whl (from -r /tmp/tmpk81u5cxj/lock_good.txt (line 1))",
+   "Processing /tmp/tmp76gpy8qr/wh/p04good-1.0-py3-none-any.whl (from -r /tmp/tmp76gpy8qr/lock_good.txt (line 1))",
    "Installing collected packages: p04good",
    "Successfully installed p04good-1.0"
   ]
@@ -28,21 +28,41 @@
  "C_lab_route_wheel_wrong_hash": {
   "exit": 1,
   "tail": [
-   "    p04good==1.0 from file:///tmp/tmpk81u5cxj/wh/p04good-1.0-py3-none-any.whl (from -r /tmp/tmpk81u5cxj/lock_badhash.txt (line 1)):",
+   "    p04good==1.0 from file:///tmp/tmp76gpy8qr/wh/p04good-1.0-py3-none-any.whl (from -r /tmp/tmp76gpy8qr/lock_badhash.txt (line 1)):",
    "        Expected sha256 0000000000000000000000000000000000000000000000000000000000000000",
-   "             Got        78aa319cd02215275592e40402dc362d90d27caa25b06a78c5a720d5308a197d"
+   "             Got        5731204b26c2bf71c8f90f26905e87fd65b6ef0f852cd10293081f76b2832c8d"
   ]
  },
  "D_check_lock_sdist_lock": [],
  "D_verify_artifact_sdist": "REFUSED_NOT_A_WHEEL",
  "D_verify_artifact_wheel_right_hash": "AVAILABLE",
  "D_verify_artifact_wheel_wrong_hash": "REFUSED_HASH_MISMATCH",
- "sdist_sha256": "68ade2553e67d9656ffeec37ca2981ca02f8b10c4a610538de3b3ab2d993332b",
+ "E_check_lock_marker_option_line": [
+  "only --hash=sha256:<64 hex> may follow a requirement; refused '--only-binary=:none:' in p04evil2==1.0 ; python_version >= \"3\""
+ ],
+ "E_check_lock_sha512_line": [
+  "only --hash=sha256:<64 hex> may follow a requirement; refused '--hash=sha512:11111111111111111111111111' in p04good==1.0 ; python_version >= \"3\""
+ ],
+ "E_control_marker_written": true,
+ "E_control_pip_direct_with_lab_flags": {
+  "exit": 0,
+  "tail": [
+   "Successfully built p04evil2",
+   "Installing collected packages: p04evil2",
+   "Successfully installed p04evil2-1.0"
+  ]
+ },
+ "E_install_argv": "REFUSED: only --hash=sha256:<64 hex> may follow a requirement; refused '--only-binary=:none:' in p04evil2==1.0 ; python_version >",
+ "E_marker_after_install_argv": false,
+ "sdist_sha256": "10247756d87c18e7741fd0f1f5a642d2e07079ca279c81e7960bf1678902935d",
  "verdict": {
   "control_shows_the_threat": true,
+  "flags_alone_do_not_stop_it_control": true,
   "lab_route_never_ran_setup_py": true,
   "right_hash_installs": true,
+  "skeptic_line_refused_before_pip_by_install_argv": true,
+  "skeptic_line_refused_by_check_lock": true,
   "wrong_hash_refused": true
  },
- "wheel_sha256": "78aa319cd02215275592e40402dc362d90d27caa25b06a78c5a720d5308a197d"
+ "wheel_sha256": "5731204b26c2bf71c8f90f26905e87fd65b6ef0f852cd10293081f76b2832c8d"
 }

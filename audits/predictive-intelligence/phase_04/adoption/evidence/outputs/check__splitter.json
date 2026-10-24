@@ -3,10 +3,14 @@
   "lab_day_rule": {
    "folds": [
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1790553600.0,
      "fold": 0,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 119,
+     "test_rows_sharing_group_with_training": null,
      "train": 532,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -15,10 +19,14 @@
      "train_share": 0.1839
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1790640000.0,
      "fold": 1,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 87,
+     "test_rows_sharing_group_with_training": null,
      "train": 635,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -27,10 +35,14 @@
      "train_share": 0.2195
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1790726400.0,
      "fold": 2,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 93,
+     "test_rows_sharing_group_with_training": null,
      "train": 754,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -39,10 +51,14 @@
      "train_share": 0.2606
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1790812800.0,
      "fold": 3,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 841,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -51,10 +67,14 @@
      "train_share": 0.2907
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1790899200.0,
      "fold": 4,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 87,
+     "test_rows_sharing_group_with_training": null,
      "train": 934,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -63,10 +83,14 @@
      "train_share": 0.3228
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1790985600.0,
      "fold": 5,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 87,
+     "test_rows_sharing_group_with_training": null,
      "train": 1036,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -75,10 +99,14 @@
      "train_share": 0.3581
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791072000.0,
      "fold": 6,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 96,
+     "test_rows_sharing_group_with_training": null,
      "train": 1123,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -87,10 +115,14 @@
      "train_share": 0.3882
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791158400.0,
      "fold": 7,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 107,
+     "test_rows_sharing_group_with_training": null,
      "train": 1210,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -99,10 +131,14 @@
      "train_share": 0.4183
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791244800.0,
      "fold": 8,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 92,
+     "test_rows_sharing_group_with_training": null,
      "train": 1306,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -111,10 +147,14 @@
      "train_share": 0.4514
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791331200.0,
      "fold": 9,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 92,
+     "test_rows_sharing_group_with_training": null,
      "train": 1413,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -123,10 +163,14 @@
      "train_share": 0.4884
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791417600.0,
      "fold": 10,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 88,
+     "test_rows_sharing_group_with_training": null,
      "train": 1505,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -135,10 +179,14 @@
      "train_share": 0.5202
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791504000.0,
      "fold": 11,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 110,
+     "test_rows_sharing_group_with_training": null,
      "train": 1597,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -147,10 +195,14 @@
      "train_share": 0.552
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791590400.0,
      "fold": 12,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 108,
+     "test_rows_sharing_group_with_training": null,
      "train": 1685,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -159,10 +211,14 @@
      "train_share": 0.5824
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791676800.0,
      "fold": 13,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1795,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -171,10 +227,14 @@
      "train_share": 0.6205
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791763200.0,
      "fold": 14,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 108,
+     "test_rows_sharing_group_with_training": null,
      "train": 1903,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -183,10 +243,14 @@
      "train_share": 0.6578
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791849600.0,
      "fold": 15,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 81,
+     "test_rows_sharing_group_with_training": null,
      "train": 2005,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -195,10 +259,14 @@
      "train_share": 0.6931
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791936000.0,
      "fold": 16,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 109,
+     "test_rows_sharing_group_with_training": null,
      "train": 2113,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -207,10 +275,14 @@
      "train_share": 0.7304
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792022400.0,
      "fold": 17,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 110,
+     "test_rows_sharing_group_with_training": null,
      "train": 2194,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -219,10 +291,14 @@
      "train_share": 0.7584
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792108800.0,
      "fold": 18,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 108,
+     "test_rows_sharing_group_with_training": null,
      "train": 2303,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -231,10 +307,14 @@
      "train_share": 0.7961
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792195200.0,
      "fold": 19,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 87,
+     "test_rows_sharing_group_with_training": null,
      "train": 2413,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -243,10 +323,14 @@
      "train_share": 0.8341
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792281600.0,
      "fold": 20,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 116,
+     "test_rows_sharing_group_with_training": null,
      "train": 2521,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -255,10 +339,14 @@
      "train_share": 0.8714
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792368000.0,
      "fold": 21,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 112,
+     "test_rows_sharing_group_with_training": null,
      "train": 2608,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -267,10 +355,14 @@
      "train_share": 0.9015
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792454400.0,
      "fold": 22,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 57,
+     "test_rows_sharing_group_with_training": null,
      "train": 2724,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -280,15 +372,20 @@
     }
    ],
    "min_train_share": 0.1839,
+   "reasons": [],
    "valid_walk_forward": true
   },
   "lab_without_maturity_purge_MUTATION": {
    "folds": [
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1790553600.0,
      "fold": 0,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 119,
+     "test_rows_sharing_group_with_training": null,
      "train": 635,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -297,10 +394,14 @@
      "train_share": 0.2195
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1790640000.0,
      "fold": 1,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 87,
+     "test_rows_sharing_group_with_training": null,
      "train": 754,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -309,10 +410,14 @@
      "train_share": 0.2606
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1790726400.0,
      "fold": 2,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 93,
+     "test_rows_sharing_group_with_training": null,
      "train": 841,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -321,10 +426,14 @@
      "train_share": 0.2907
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1790812800.0,
      "fold": 3,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 934,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -333,10 +442,14 @@
      "train_share": 0.3228
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1790899200.0,
      "fold": 4,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 87,
+     "test_rows_sharing_group_with_training": null,
      "train": 1036,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -345,10 +458,14 @@
      "train_share": 0.3581
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1790985600.0,
      "fold": 5,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 87,
+     "test_rows_sharing_group_with_training": null,
      "train": 1123,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -357,10 +474,14 @@
      "train_share": 0.3882
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791072000.0,
      "fold": 6,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 96,
+     "test_rows_sharing_group_with_training": null,
      "train": 1210,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -369,10 +490,14 @@
      "train_share": 0.4183
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791158400.0,
      "fold": 7,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 107,
+     "test_rows_sharing_group_with_training": null,
      "train": 1306,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -381,10 +506,14 @@
      "train_share": 0.4514
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791244800.0,
      "fold": 8,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 92,
+     "test_rows_sharing_group_with_training": null,
      "train": 1413,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -393,10 +522,14 @@
      "train_share": 0.4884
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791331200.0,
      "fold": 9,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 92,
+     "test_rows_sharing_group_with_training": null,
      "train": 1505,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -405,10 +538,14 @@
      "train_share": 0.5202
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791417600.0,
      "fold": 10,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 88,
+     "test_rows_sharing_group_with_training": null,
      "train": 1597,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -417,10 +554,14 @@
      "train_share": 0.552
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791504000.0,
      "fold": 11,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 110,
+     "test_rows_sharing_group_with_training": null,
      "train": 1685,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -429,10 +570,14 @@
      "train_share": 0.5824
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791590400.0,
      "fold": 12,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 108,
+     "test_rows_sharing_group_with_training": null,
      "train": 1795,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -441,10 +586,14 @@
      "train_share": 0.6205
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791676800.0,
      "fold": 13,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1903,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -453,10 +602,14 @@
      "train_share": 0.6578
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791763200.0,
      "fold": 14,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 108,
+     "test_rows_sharing_group_with_training": null,
      "train": 2005,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -465,10 +618,14 @@
      "train_share": 0.6931
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791849600.0,
      "fold": 15,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 81,
+     "test_rows_sharing_group_with_training": null,
      "train": 2113,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -477,10 +634,14 @@
      "train_share": 0.7304
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791936000.0,
      "fold": 16,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 109,
+     "test_rows_sharing_group_with_training": null,
      "train": 2194,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -489,10 +650,14 @@
      "train_share": 0.7584
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792022400.0,
      "fold": 17,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 110,
+     "test_rows_sharing_group_with_training": null,
      "train": 2303,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -501,10 +666,14 @@
      "train_share": 0.7961
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792108800.0,
      "fold": 18,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 108,
+     "test_rows_sharing_group_with_training": null,
      "train": 2413,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -513,10 +682,14 @@
      "train_share": 0.8341
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792195200.0,
      "fold": 19,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 87,
+     "test_rows_sharing_group_with_training": null,
      "train": 2521,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -525,10 +698,14 @@
      "train_share": 0.8714
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792281600.0,
      "fold": 20,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 116,
+     "test_rows_sharing_group_with_training": null,
      "train": 2608,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -537,10 +714,14 @@
      "train_share": 0.9015
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792368000.0,
      "fold": 21,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 112,
+     "test_rows_sharing_group_with_training": null,
      "train": 2724,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -549,10 +730,14 @@
      "train_share": 0.9416
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792454400.0,
      "fold": 22,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 57,
+     "test_rows_sharing_group_with_training": null,
      "train": 2836,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -562,15 +747,67 @@
     }
    ],
    "min_train_share": 0.2195,
+   "reasons": [
+    "fold 0: train_labels_maturing_after_test_start 102",
+    "fold 0: train_labels_maturing_after_cutoff 103",
+    "fold 1: train_labels_maturing_after_test_start 119",
+    "fold 1: train_labels_maturing_after_cutoff 119",
+    "fold 2: train_labels_maturing_after_test_start 86",
+    "fold 2: train_labels_maturing_after_cutoff 87",
+    "fold 3: train_labels_maturing_after_test_start 93",
+    "fold 3: train_labels_maturing_after_cutoff 93",
+    "fold 4: train_labels_maturing_after_test_start 102",
+    "fold 4: train_labels_maturing_after_cutoff 102",
+    "fold 5: train_labels_maturing_after_test_start 86",
+    "fold 5: train_labels_maturing_after_cutoff 87",
+    "fold 6: train_labels_maturing_after_test_start 86",
+    "fold 6: train_labels_maturing_after_cutoff 87",
+    "fold 7: train_labels_maturing_after_test_start 96",
+    "fold 7: train_labels_maturing_after_cutoff 96",
+    "fold 8: train_labels_maturing_after_test_start 103",
+    "fold 8: train_labels_maturing_after_cutoff 107",
+    "fold 9: train_labels_maturing_after_test_start 92",
+    "fold 9: train_labels_maturing_after_cutoff 92",
+    "fold 10: train_labels_maturing_after_test_start 92",
+    "fold 10: train_labels_maturing_after_cutoff 92",
+    "fold 11: train_labels_maturing_after_test_start 87",
+    "fold 11: train_labels_maturing_after_cutoff 88",
+    "fold 12: train_labels_maturing_after_test_start 110",
+    "fold 12: train_labels_maturing_after_cutoff 110",
+    "fold 13: train_labels_maturing_after_test_start 107",
+    "fold 13: train_labels_maturing_after_cutoff 108",
+    "fold 14: train_labels_maturing_after_test_start 101",
+    "fold 14: train_labels_maturing_after_cutoff 102",
+    "fold 15: train_labels_maturing_after_test_start 108",
+    "fold 15: train_labels_maturing_after_cutoff 108",
+    "fold 16: train_labels_maturing_after_test_start 80",
+    "fold 16: train_labels_maturing_after_cutoff 81",
+    "fold 17: train_labels_maturing_after_test_start 109",
+    "fold 17: train_labels_maturing_after_cutoff 109",
+    "fold 18: train_labels_maturing_after_test_start 109",
+    "fold 18: train_labels_maturing_after_cutoff 110",
+    "fold 19: train_labels_maturing_after_test_start 108",
+    "fold 19: train_labels_maturing_after_cutoff 108",
+    "fold 20: train_labels_maturing_after_test_start 86",
+    "fold 20: train_labels_maturing_after_cutoff 87",
+    "fold 21: train_labels_maturing_after_test_start 115",
+    "fold 21: train_labels_maturing_after_cutoff 116",
+    "fold 22: train_labels_maturing_after_test_start 111",
+    "fold 22: train_labels_maturing_after_cutoff 112"
+   ],
    "valid_walk_forward": false
   },
   "purgedcv_walkforward_purge_0h": {
    "folds": [
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 0,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 451,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -579,10 +816,14 @@
      "train_share": 0.1559
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 1,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 540,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -591,10 +832,14 @@
      "train_share": 0.1867
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 2,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 632,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -603,10 +848,14 @@
      "train_share": 0.2185
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 3,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 766,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -615,10 +864,14 @@
      "train_share": 0.2648
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 4,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 853,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -627,10 +880,14 @@
      "train_share": 0.2948
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 5,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 959,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -639,10 +896,14 @@
      "train_share": 0.3315
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 6,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1063,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -651,10 +912,14 @@
      "train_share": 0.3674
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 7,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1187,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -663,10 +928,14 @@
      "train_share": 0.4103
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 8,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1246,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -675,10 +944,14 @@
      "train_share": 0.4307
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 9,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1364,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -687,10 +960,14 @@
      "train_share": 0.4715
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 10,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1476,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -699,10 +976,14 @@
      "train_share": 0.5102
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 11,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1584,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -711,10 +992,14 @@
      "train_share": 0.5475
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 12,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1669,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -723,10 +1008,14 @@
      "train_share": 0.5769
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 13,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1758,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -735,10 +1024,14 @@
      "train_share": 0.6077
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 14,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1878,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -747,10 +1040,14 @@
      "train_share": 0.6492
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 15,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1972,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -759,10 +1056,14 @@
      "train_share": 0.6816
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 16,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 2101,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -771,10 +1072,14 @@
      "train_share": 0.7262
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 17,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 2177,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -783,10 +1088,14 @@
      "train_share": 0.7525
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 18,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 2272,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -795,10 +1104,14 @@
      "train_share": 0.7853
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 19,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 2376,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -807,10 +1120,14 @@
      "train_share": 0.8213
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 20,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 2507,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -819,10 +1136,14 @@
      "train_share": 0.8666
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 21,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 2580,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -831,10 +1152,14 @@
      "train_share": 0.8918
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 22,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 2679,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -844,15 +1169,20 @@
     }
    ],
    "min_train_share": 0.1559,
+   "reasons": [],
    "valid_walk_forward": true
   },
   "purgedcv_walkforward_purge_default": {
    "folds": [
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 0,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 451,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -861,10 +1191,14 @@
      "train_share": 0.1559
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 1,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 540,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -873,10 +1207,14 @@
      "train_share": 0.1867
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 2,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 632,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -885,10 +1223,14 @@
      "train_share": 0.2185
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 3,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 766,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -897,10 +1239,14 @@
      "train_share": 0.2648
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 4,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 853,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -909,10 +1255,14 @@
      "train_share": 0.2948
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 5,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 959,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -921,10 +1271,14 @@
      "train_share": 0.3315
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 6,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1063,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -933,10 +1287,14 @@
      "train_share": 0.3674
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 7,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1187,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -945,10 +1303,14 @@
      "train_share": 0.4103
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 8,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1246,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -957,10 +1319,14 @@
      "train_share": 0.4307
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 9,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1364,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -969,10 +1335,14 @@
      "train_share": 0.4715
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 10,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1476,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -981,10 +1351,14 @@
      "train_share": 0.5102
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 11,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1584,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -993,10 +1367,14 @@
      "train_share": 0.5475
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 12,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1669,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1005,10 +1383,14 @@
      "train_share": 0.5769
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 13,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1758,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1017,10 +1399,14 @@
      "train_share": 0.6077
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 14,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1878,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1029,10 +1415,14 @@
      "train_share": 0.6492
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 15,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 1972,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1041,10 +1431,14 @@
      "train_share": 0.6816
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 16,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 2101,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1053,10 +1447,14 @@
      "train_share": 0.7262
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 17,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 2177,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1065,10 +1463,14 @@
      "train_share": 0.7525
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 18,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 2272,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1077,10 +1479,14 @@
      "train_share": 0.7853
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 19,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 2376,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1089,10 +1495,14 @@
      "train_share": 0.8213
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 20,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 2507,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1101,10 +1511,14 @@
      "train_share": 0.8666
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 21,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 2580,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1113,10 +1527,14 @@
      "train_share": 0.8918
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 22,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 102,
+     "test_rows_sharing_group_with_training": null,
      "train": 2679,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1126,16 +1544,21 @@
     }
    ],
    "min_train_share": 0.1559,
+   "reasons": [],
    "valid_walk_forward": true
   },
   "rows": 2893,
   "sklearn_timeseriessplit_BANNED_DEFAULT": {
    "folds": [
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 0,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 133,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1144,10 +1567,14 @@
      "train_share": 0.046
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 1,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 253,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1156,10 +1583,14 @@
      "train_share": 0.0875
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 2,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 373,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1168,10 +1599,14 @@
      "train_share": 0.1289
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 3,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 493,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1180,10 +1615,14 @@
      "train_share": 0.1704
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 4,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 613,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1192,10 +1631,14 @@
      "train_share": 0.2119
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 5,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 733,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1204,10 +1647,14 @@
      "train_share": 0.2534
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 6,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 853,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1216,10 +1663,14 @@
      "train_share": 0.2948
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 7,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 973,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1228,10 +1679,14 @@
      "train_share": 0.3363
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 8,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 1093,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1240,10 +1695,14 @@
      "train_share": 0.3778
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 9,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 1213,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1252,10 +1711,14 @@
      "train_share": 0.4193
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 10,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 1333,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1264,10 +1727,14 @@
      "train_share": 0.4608
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 11,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 1453,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1276,10 +1743,14 @@
      "train_share": 0.5022
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 12,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 1573,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1288,10 +1759,14 @@
      "train_share": 0.5437
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 13,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 1693,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1300,10 +1775,14 @@
      "train_share": 0.5852
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 14,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 1813,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1312,10 +1791,14 @@
      "train_share": 0.6267
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 15,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 1933,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1324,10 +1807,14 @@
      "train_share": 0.6682
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 16,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 2053,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1336,10 +1823,14 @@
      "train_share": 0.7096
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 17,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 2173,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1348,10 +1839,14 @@
      "train_share": 0.7511
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 18,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 2293,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1360,10 +1855,14 @@
      "train_share": 0.7926
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 19,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 2413,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1372,10 +1871,14 @@
      "train_share": 0.8341
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 20,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 2533,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1384,10 +1887,14 @@
      "train_share": 0.8756
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 21,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 2653,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1396,10 +1903,14 @@
      "train_share": 0.917
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 22,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 120,
+     "test_rows_sharing_group_with_training": null,
      "train": 2773,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1409,6 +1920,31 @@
     }
    ],
    "min_train_share": 0.046,
+   "reasons": [
+    "fold 0: train_labels_maturing_after_test_start 103",
+    "fold 1: train_labels_maturing_after_test_start 101",
+    "fold 2: train_labels_maturing_after_test_start 105",
+    "fold 3: train_labels_maturing_after_test_start 96",
+    "fold 4: train_labels_maturing_after_test_start 98",
+    "fold 5: train_labels_maturing_after_test_start 120",
+    "fold 6: train_labels_maturing_after_test_start 87",
+    "fold 7: train_labels_maturing_after_test_start 101",
+    "fold 8: train_labels_maturing_after_test_start 96",
+    "fold 9: train_labels_maturing_after_test_start 82",
+    "fold 10: train_labels_maturing_after_test_start 107",
+    "fold 11: train_labels_maturing_after_test_start 100",
+    "fold 12: train_labels_maturing_after_test_start 93",
+    "fold 13: train_labels_maturing_after_test_start 82",
+    "fold 14: train_labels_maturing_after_test_start 111",
+    "fold 15: train_labels_maturing_after_test_start 104",
+    "fold 16: train_labels_maturing_after_test_start 110",
+    "fold 17: train_labels_maturing_after_test_start 86",
+    "fold 18: train_labels_maturing_after_test_start 109",
+    "fold 19: train_labels_maturing_after_test_start 109",
+    "fold 20: train_labels_maturing_after_test_start 98",
+    "fold 21: train_labels_maturing_after_test_start 107",
+    "fold 22: train_labels_maturing_after_test_start 103"
+   ],
    "valid_walk_forward": false
   },
   "summary": {
@@ -1453,10 +1989,14 @@
   "lab_day_rule": {
    "folds": [
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791763200.0,
      "fold": 0,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 67,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1465,10 +2005,14 @@
      "train_share": 0.6569
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791849600.0,
      "fold": 1,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 8,
+     "test_rows_sharing_group_with_training": null,
      "train": 76,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1477,10 +2021,14 @@
      "train_share": 0.7451
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791936000.0,
      "fold": 2,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 83,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1489,10 +2037,14 @@
      "train_share": 0.8137
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792022400.0,
      "fold": 3,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 4,
+     "test_rows_sharing_group_with_training": null,
      "train": 91,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1502,15 +2054,20 @@
     }
    ],
    "min_train_share": 0.6569,
+   "reasons": [],
    "valid_walk_forward": true
   },
   "lab_without_maturity_purge_MUTATION": {
    "folds": [
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791763200.0,
      "fold": 0,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 76,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1519,10 +2076,14 @@
      "train_share": 0.7451
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791849600.0,
      "fold": 1,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 8,
+     "test_rows_sharing_group_with_training": null,
      "train": 83,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1531,10 +2092,14 @@
      "train_share": 0.8137
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791936000.0,
      "fold": 2,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 91,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1543,10 +2108,14 @@
      "train_share": 0.8922
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792022400.0,
      "fold": 3,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 4,
+     "test_rows_sharing_group_with_training": null,
      "train": 98,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1556,15 +2125,29 @@
     }
    ],
    "min_train_share": 0.7451,
+   "reasons": [
+    "fold 0: train_labels_maturing_after_test_start 7",
+    "fold 0: train_labels_maturing_after_cutoff 9",
+    "fold 1: train_labels_maturing_after_test_start 7",
+    "fold 1: train_labels_maturing_after_cutoff 7",
+    "fold 2: train_labels_maturing_after_test_start 8",
+    "fold 2: train_labels_maturing_after_cutoff 8",
+    "fold 3: train_labels_maturing_after_test_start 7",
+    "fold 3: train_labels_maturing_after_cutoff 7"
+   ],
    "valid_walk_forward": false
   },
   "purgedcv_walkforward_purge_0h": {
    "folds": [
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 0,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 55,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1573,10 +2156,14 @@
      "train_share": 0.5392
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 1,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 69,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1585,10 +2172,14 @@
      "train_share": 0.6765
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 2,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 76,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1597,10 +2188,14 @@
      "train_share": 0.7451
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 3,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 83,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1610,15 +2205,20 @@
     }
    ],
    "min_train_share": 0.5392,
+   "reasons": [],
    "valid_walk_forward": true
   },
   "purgedcv_walkforward_purge_default": {
    "folds": [
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 0,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 55,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1627,10 +2227,14 @@
      "train_share": 0.5392
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 1,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 69,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1639,10 +2243,14 @@
      "train_share": 0.6765
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 2,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 76,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1651,10 +2259,14 @@
      "train_share": 0.7451
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 3,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 83,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1664,16 +2276,21 @@
     }
    ],
    "min_train_share": 0.5392,
+   "reasons": [],
    "valid_walk_forward": true
   },
   "rows": 102,
   "sklearn_timeseriessplit_BANNED_DEFAULT": {
    "folds": [
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 0,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 20,
+     "test_rows_sharing_group_with_training": null,
      "train": 22,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 3,
@@ -1682,10 +2299,14 @@
      "train_share": 0.2157
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 1,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 20,
+     "test_rows_sharing_group_with_training": null,
      "train": 42,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 1,
@@ -1694,10 +2315,14 @@
      "train_share": 0.4118
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 2,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 20,
+     "test_rows_sharing_group_with_training": null,
      "train": 62,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 7,
@@ -1706,10 +2331,14 @@
      "train_share": 0.6078
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 3,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 20,
+     "test_rows_sharing_group_with_training": null,
      "train": 82,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 6,
@@ -1719,6 +2348,16 @@
     }
    ],
    "min_train_share": 0.2157,
+   "reasons": [
+    "fold 0: train_decided_after_test_start 3",
+    "fold 0: train_labels_maturing_after_test_start 22",
+    "fold 1: train_decided_after_test_start 1",
+    "fold 1: train_labels_maturing_after_test_start 31",
+    "fold 2: train_decided_after_test_start 7",
+    "fold 2: train_labels_maturing_after_test_start 21",
+    "fold 3: train_decided_after_test_start 6",
+    "fold 3: train_labels_maturing_after_test_start 13"
+   ],
    "valid_walk_forward": false
   },
   "summary": {
@@ -1763,10 +2402,14 @@
   "lab_day_rule": {
    "folds": [
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791763200.0,
      "fold": 0,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 126,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1775,10 +2418,14 @@
      "train_share": 0.7925
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791849600.0,
      "fold": 1,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 8,
+     "test_rows_sharing_group_with_training": null,
      "train": 133,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1787,10 +2434,14 @@
      "train_share": 0.8365
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791936000.0,
      "fold": 2,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 141,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1799,10 +2450,14 @@
      "train_share": 0.8868
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792022400.0,
      "fold": 3,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 5,
+     "test_rows_sharing_group_with_training": null,
      "train": 148,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1811,10 +2466,14 @@
      "train_share": 0.9308
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792108800.0,
      "fold": 4,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 6,
+     "test_rows_sharing_group_with_training": null,
      "train": 153,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1824,15 +2483,20 @@
     }
    ],
    "min_train_share": 0.7925,
+   "reasons": [],
    "valid_walk_forward": true
   },
   "lab_without_maturity_purge_MUTATION": {
    "folds": [
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791763200.0,
      "fold": 0,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 126,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1841,10 +2505,14 @@
      "train_share": 0.7925
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791849600.0,
      "fold": 1,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 8,
+     "test_rows_sharing_group_with_training": null,
      "train": 133,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1853,10 +2521,14 @@
      "train_share": 0.8365
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1791936000.0,
      "fold": 2,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 141,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1865,10 +2537,14 @@
      "train_share": 0.8868
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792022400.0,
      "fold": 3,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 5,
+     "test_rows_sharing_group_with_training": null,
      "train": 148,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1877,10 +2553,14 @@
      "train_share": 0.9308
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": 1792108800.0,
      "fold": 4,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 6,
+     "test_rows_sharing_group_with_training": null,
      "train": 153,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1890,15 +2570,20 @@
     }
    ],
    "min_train_share": 0.7925,
+   "reasons": [],
    "valid_walk_forward": true
   },
   "purgedcv_walkforward_purge_0h": {
    "folds": [
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 0,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 119,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1907,10 +2592,14 @@
      "train_share": 0.7484
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 1,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 126,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1919,10 +2608,14 @@
      "train_share": 0.7925
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 2,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 133,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1931,10 +2624,14 @@
      "train_share": 0.8365
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 3,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 141,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1943,10 +2640,14 @@
      "train_share": 0.8868
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 4,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 148,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1956,15 +2657,20 @@
     }
    ],
    "min_train_share": 0.7484,
+   "reasons": [],
    "valid_walk_forward": true
   },
   "purgedcv_walkforward_purge_default": {
    "folds": [
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 0,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 119,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1973,10 +2679,14 @@
      "train_share": 0.7484
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 1,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 126,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1985,10 +2695,14 @@
      "train_share": 0.7925
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 2,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 133,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -1997,10 +2711,14 @@
      "train_share": 0.8365
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 3,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 141,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -2009,10 +2727,14 @@
      "train_share": 0.8868
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 4,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 7,
+     "test_rows_sharing_group_with_training": null,
      "train": 148,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -2022,16 +2744,21 @@
     }
    ],
    "min_train_share": 0.7484,
+   "reasons": [],
    "valid_walk_forward": true
   },
   "rows": 159,
   "sklearn_timeseriessplit_BANNED_DEFAULT": {
    "folds": [
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 0,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 26,
+     "test_rows_sharing_group_with_training": null,
      "train": 29,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 2,
@@ -2040,10 +2767,14 @@
      "train_share": 0.1824
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 1,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 26,
+     "test_rows_sharing_group_with_training": null,
      "train": 55,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 2,
@@ -2052,10 +2783,14 @@
      "train_share": 0.3459
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 2,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 26,
+     "test_rows_sharing_group_with_training": null,
      "train": 81,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 1,
@@ -2064,10 +2799,14 @@
      "train_share": 0.5094
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 3,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 26,
+     "test_rows_sharing_group_with_training": null,
      "train": 107,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 4,
@@ -2076,10 +2815,14 @@
      "train_share": 0.673
     },
     {
+     "cutoff_after_test_start": false,
      "declared_cutoff": null,
      "fold": 4,
+     "maturity_shorter_than_target": 0,
+     "non_finite_times": 0,
      "overlap_rows": 0,
      "test": 26,
+     "test_rows_sharing_group_with_training": null,
      "train": 133,
      "train_decided_after_cutoff": 0,
      "train_decided_after_test_start": 0,
@@ -2089,6 +2832,16 @@
     }
    ],
    "min_train_share": 0.1824,
+   "reasons": [
+    "fold 0: train_decided_after_test_start 2",
+    "fold 0: train_labels_maturing_after_test_start 13",
+    "fold 1: train_decided_after_test_start 2",
+    "fold 1: train_labels_maturing_after_test_start 16",
+    "fold 2: train_decided_after_test_start 1",
+    "fold 2: train_labels_maturing_after_test_start 8",
+    "fold 3: train_decided_after_test_start 4",
+    "fold 3: train_labels_maturing_after_test_start 13"
+   ],
    "valid_walk_forward": false
   },
   "summary": {

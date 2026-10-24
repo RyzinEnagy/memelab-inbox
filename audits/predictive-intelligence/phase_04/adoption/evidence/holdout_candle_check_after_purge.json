@@ -1,0 +1,8 @@
+{
+ "candles_ending_after_h0": [],
+ "pools": 0,
+ "holdout_window_decisions_on_these_pools": 0,
+ "of_which_decided_within_reference_window_of_h0": 0,
+ "reference_window_s": 4200,
+ "verdict": "no holdout decision can use these candles"
+}

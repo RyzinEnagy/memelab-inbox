@@ -8,7 +8,11 @@ Builds, in a temporary directory, a source distribution `p04evil-1.0.tar.gz` who
   B. the lab route `pip install --require-hashes --only-binary=:all: --no-deps --no-index --find-links WH -r lock` with the
      sdist's correct sha256 in the lock: refused, setup.py never runs (marker absent);
   C. the lab route with a wheel whose hash differs from the lock: refused;
-  D. runtime.check_lock and runtime.verify_artifact on the same files.
+  D. runtime.check_lock and runtime.verify_artifact on the same files;
+  E. the Phase 04 skeptic's counterexample (M1): the sdist's line with an environment marker and a trailing
+     `--only-binary=:none:`. As a control, pip run directly with the lab's flags builds it and runs setup.py (the flags alone
+     are not enough); the lab route, `runtime.install_argv`, refuses the lock before pip is started, and `check_lock` names
+     the option. Same for a trailing `--hash=sha512:` that would admit a file whose sha256 is not locked.
 
     python hostile_setup_demo.py OUT.json
 """
@@ -103,7 +107,34 @@ def main(out: str) -> None:
         res["D_verify_artifact_sdist"] = R.verify_artifact(sd, [sha(sd)])
         res["D_verify_artifact_wheel_wrong_hash"] = R.verify_artifact(whl, ["0" * 64])
         res["D_verify_artifact_wheel_right_hash"] = R.verify_artifact(whl, [sha(whl)])
-        res["verdict"] = {"lab_route_never_ran_setup_py": not res["B_marker_written"] and res["B_lab_route_sdist_with_correct_hash"]["exit"] != 0,
+        marker2 = td / "MARKER_SETUP_RAN_E"
+        sd2 = wh / "p04evil2-1.0.tar.gz"
+        setup2 = (f"from pathlib import Path\nPath({str(marker2)!r}).write_text('setup.py ran')\n"
+                  "from setuptools import setup\nsetup(name='p04evil2', version='1.0', py_modules=[])\n")
+        with tarfile.open(sd2, "w:gz") as t:
+            for name, body in (("p04evil2-1.0/setup.py", setup2), ("p04evil2-1.0/PKG-INFO", "Metadata-Version: 2.1\nName: p04evil2\nVersion: 1.0\n")):
+                data = body.encode()
+                ti = tarfile.TarInfo(name)
+                ti.size = len(data)
+                t.addfile(ti, io.BytesIO(data))
+        lock_e = td / "lock_marker_option.txt"
+        lock_e.write_text(f'p04evil2==1.0 ; python_version >= "3" --hash=sha256:{sha(sd2)} --only-binary=:none:\n')
+        lock_f = td / "lock_sha512.txt"
+        lock_f.write_text(f'p04good==1.0 ; python_version >= "3" --hash=sha256:{"0" * 64} --hash=sha512:{"1" * 128}\n')
+        res["E_check_lock_marker_option_line"] = R.check_lock(lock_e.read_text())
+        res["E_check_lock_sha512_line"] = R.check_lock(lock_f.read_text())
+        try:
+            R.install_argv(lock_e)
+            res["E_install_argv"] = "BUILT (bypass)"
+        except R.InstallRefused as e:
+            res["E_install_argv"] = "REFUSED: " + str(e)[:120]
+        res["E_marker_after_install_argv"] = marker2.exists()
+        res["E_control_pip_direct_with_lab_flags"] = pip(py, ["install", *flags, "-r", str(lock_e)])
+        res["E_control_marker_written"] = marker2.exists()
+        res["verdict"] = {
+                          "skeptic_line_refused_by_check_lock": bool(res["E_check_lock_marker_option_line"]) and bool(res["E_check_lock_sha512_line"]),
+                          "skeptic_line_refused_before_pip_by_install_argv": res["E_install_argv"].startswith("REFUSED") and not res["E_marker_after_install_argv"],
+                          "flags_alone_do_not_stop_it_control": res["E_control_marker_written"],"lab_route_never_ran_setup_py": not res["B_marker_written"] and res["B_lab_route_sdist_with_correct_hash"]["exit"] != 0,
                           "wrong_hash_refused": res["C_lab_route_wheel_wrong_hash"]["exit"] != 0,
                           "right_hash_installs": res["C2_lab_route_wheel_right_hash"]["exit"] == 0,
                           "control_shows_the_threat": res["A_marker_written"]}

@@ -1,0 +1,73 @@
+[
+ {
+  "mutation": "baseline",
+  "tests": [
+   0,
+   "46 passed in 1.27s"
+  ],
+  "mirofish_files_flagged": "81"
+ },
+ {
+  "mutation": "P31 normalization drift: lines lower-cased (fixture built case-sensitive)",
+  "tests_exit": 0,
+  "result": "46 passed in 1.33s",
+  "SURVIVED": true,
+  "mirofish_files_flagged_under_mutation": "65"
+ },
+ {
+  "mutation": "P31 shingle hash changed to sha1 prefix (fixture is sha256)",
+  "tests_exit": 0,
+  "result": "46 passed in 0.21s",
+  "SURVIVED": true,
+  "mirofish_files_flagged_under_mutation": "0"
+ },
+ {
+  "mutation": "P31 shingle length 4 -> 5",
+  "tests_exit": 1,
+  "result": "1 failed, 44 passed in 0.27s",
+  "SURVIVED": false,
+  "mirofish_files_flagged_under_mutation": "0"
+ },
+ {
+  "mutation": "breaker counts only network failures",
+  "tests_exit": 0,
+  "result": "46 passed in 0.20s",
+  "SURVIVED": true
+ },
+ {
+  "mutation": "call and cost caps no longer abstain",
+  "tests_exit": 0,
+  "result": "46 passed in 0.19s",
+  "SURVIVED": true
+ },
+ {
+  "mutation": "pace measured from the call start instead of its end (shorter waits after slow calls)",
+  "tests_exit": 1,
+  "result": "1 failed, 25 passed in 0.10s",
+  "SURVIVED": false
+ },
+ {
+  "mutation": "ImportError becomes COMPONENT_ERROR",
+  "tests_exit": 1,
+  "result": "1 failed, 6 passed in 0.08s",
+  "SURVIVED": false
+ },
+ {
+  "mutation": "check_lock: banned options only at line start",
+  "tests_exit": 0,
+  "result": "46 passed in 0.19s",
+  "SURVIVED": true
+ },
+ {
+  "mutation": "simulation: adapter run accepted when llm_actions key missing",
+  "tests_exit": 1,
+  "result": "1 failed, 8 passed in 0.08s",
+  "SURVIVED": false
+ },
+ {
+  "mutation": "guarded swallows only Exception subclasses of ValueError/RuntimeError",
+  "tests_exit": 0,
+  "result": "46 passed in 0.22s",
+  "SURVIVED": true
+ }
+]

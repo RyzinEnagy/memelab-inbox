@@ -8,35 +8,35 @@
  "env_extra": {},
  "repeat": 2,
  "all_exit_0": true,
- "wall_median_s": 0.7657,
- "wall_min_s": 0.7472,
- "wall_max_s": 0.7842,
- "cpu_median_s": 0.7191,
- "peak_rss_max_mb": 89.6,
+ "wall_median_s": 0.8389,
+ "wall_min_s": 0.8371,
+ "wall_max_s": 0.8407,
+ "cpu_median_s": 0.7566,
+ "peak_rss_max_mb": 88.4,
  "net_events_total": 0,
  "deterministic_stdout": true,
  "runs": [
   {
    "exit": 0,
-   "wall_s": 0.7842,
-   "cpu_s": 0.7235,
-   "peak_rss_mb": 89.0,
+   "wall_s": 0.8371,
+   "cpu_s": 0.7482,
+   "peak_rss_mb": 88.3,
    "net_events": 0,
    "net_examples": [],
    "stdout_sha256": "e1e9180ce83a74d3f7a20d1facd0be31c77f1ecf711436a7f8e194dacc6260e0",
    "stdout_tail": "02,\n   \"undeclared_column\": {\n    \"lab\": \"refused: row 0: columns ['leak_future_ret'] differ from the declared set (strict)\",\n    \"pandera\": \"refused: SchemaErrors\"\n   }\n  }\n },\n \"pandera\": \"0.34.1\",\n \"pandera_import_side_effects\": {\n  \"environ_added\": [\n   \"PYARROW_IGNORE_TIMEZONE\",\n   \"SPARK_LOCAL_IP\"\n  ],\n  \"numpy_attributes_added\": [\n   \"NaN\",\n   \"float_\",\n   \"string_\",\n   \"unicode_\"\n  ]\n }\n}\n",
-   "stderr_tail": "p\": \"clean\", \"lab_ms\": 0.07, \"pandera_ms\": 3.29}, {\"dataset\": \"dev24\", \"trap\": \"future_feature_1s\", \"lab_ms\": 0.04, \"pandera_ms\": 5.44}, {\"dataset\": \"dev24\", \"trap\": \"missing_availability\", \"lab_ms\": 0.01, \"pandera_ms\": 10.16}, {\"dataset\": \"dev24\", \"trap\": \"undeclared_column\", \"lab_ms\": 0.01, \"pandera_ms\": 4.06}, {\"dataset\": \"dev24\", \"trap\": \"immature_label\", \"lab_ms\": 0.08, \"pandera_ms\": 5.73}]}\n"
+   "stderr_tail": "p\": \"clean\", \"lab_ms\": 0.07, \"pandera_ms\": 2.56}, {\"dataset\": \"dev24\", \"trap\": \"future_feature_1s\", \"lab_ms\": 0.04, \"pandera_ms\": 5.43}, {\"dataset\": \"dev24\", \"trap\": \"missing_availability\", \"lab_ms\": 0.02, \"pandera_ms\": 10.47}, {\"dataset\": \"dev24\", \"trap\": \"undeclared_column\", \"lab_ms\": 0.01, \"pandera_ms\": 4.71}, {\"dataset\": \"dev24\", \"trap\": \"immature_label\", \"lab_ms\": 0.07, \"pandera_ms\": 6.39}]}\n"
   },
   {
    "exit": 0,
-   "wall_s": 0.7472,
-   "cpu_s": 0.7148,
-   "peak_rss_mb": 89.6,
+   "wall_s": 0.8407,
+   "cpu_s": 0.765,
+   "peak_rss_mb": 88.4,
    "net_events": 0,
    "net_examples": [],
    "stdout_sha256": "e1e9180ce83a74d3f7a20d1facd0be31c77f1ecf711436a7f8e194dacc6260e0",
    "stdout_tail": "02,\n   \"undeclared_column\": {\n    \"lab\": \"refused: row 0: columns ['leak_future_ret'] differ from the declared set (strict)\",\n    \"pandera\": \"refused: SchemaErrors\"\n   }\n  }\n },\n \"pandera\": \"0.34.1\",\n \"pandera_import_side_effects\": {\n  \"environ_added\": [\n   \"PYARROW_IGNORE_TIMEZONE\",\n   \"SPARK_LOCAL_IP\"\n  ],\n  \"numpy_attributes_added\": [\n   \"NaN\",\n   \"float_\",\n   \"string_\",\n   \"unicode_\"\n  ]\n }\n}\n",
-   "stderr_tail": "ap\": \"clean\", \"lab_ms\": 0.1, \"pandera_ms\": 2.48}, {\"dataset\": \"dev24\", \"trap\": \"future_feature_1s\", \"lab_ms\": 0.05, \"pandera_ms\": 6.14}, {\"dataset\": \"dev24\", \"trap\": \"missing_availability\", \"lab_ms\": 0.01, \"pandera_ms\": 11.04}, {\"dataset\": \"dev24\", \"trap\": \"undeclared_column\", \"lab_ms\": 0.02, \"pandera_ms\": 4.36}, {\"dataset\": \"dev24\", \"trap\": \"immature_label\", \"lab_ms\": 0.08, \"pandera_ms\": 5.53}]}\n"
+   "stderr_tail": "p\": \"clean\", \"lab_ms\": 0.07, \"pandera_ms\": 2.52}, {\"dataset\": \"dev24\", \"trap\": \"future_feature_1s\", \"lab_ms\": 0.05, \"pandera_ms\": 5.86}, {\"dataset\": \"dev24\", \"trap\": \"missing_availability\", \"lab_ms\": 0.01, \"pandera_ms\": 24.58}, {\"dataset\": \"dev24\", \"trap\": \"undeclared_column\", \"lab_ms\": 0.01, \"pandera_ms\": 6.48}, {\"dataset\": \"dev24\", \"trap\": \"immature_label\", \"lab_ms\": 0.08, \"pandera_ms\": 6.18}]}\n"
   }
  ]
 }

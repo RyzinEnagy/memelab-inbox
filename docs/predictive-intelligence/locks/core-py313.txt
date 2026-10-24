@@ -1,6 +1,6 @@
-# memelab predictive research dependencies: CPython 3.13, Linux x86_64, Windows x86_64, macOS arm64 wheels only.
-# Install only with: python -m pip install --require-hashes --only-binary=:all: --no-deps -r <this file>
-# (docs/predictive-intelligence/DECISIONS.md PI-D-032). Never into the interpreter that runs the scheduled lab.
+# memelab predictive core: the numpy the lab already runs (README `pip install pytest numpy`), pinned with wheel hashes
+# for CPython 3.13 on Linux x86_64, Windows x86_64 and macOS arm64. The essential engine needs nothing else.
+# Check with memelab.predictive.runtime.check_lock; install with runtime.install_argv (PI-D-032).
 numpy==2.5.3 \
     --hash=sha256:71cad2b2a7451ab79d8f5e71b453485b6775963d5cf794179144a7463fe6e8ec \
     --hash=sha256:92f30e89b8ee0ecf363033576c422b2f58fed6a80bed0aa48dff6d14c654663e \

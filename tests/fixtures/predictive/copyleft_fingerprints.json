@@ -1,4 +1,17 @@
 {
+"code_suffixes": [
+".py",
+".js",
+".mjs",
+".cjs",
+".ts",
+".tsx",
+".jsx",
+".vue",
+".css",
+".sh",
+".html"
+],
 "fingerprints": [
 "0000391175fd",
 "000148887200",
@@ -5395,8 +5408,34 @@
 "8895bace268e"
 ],
 "hash": "sha256 hex prefix 12",
-"normalization": "whitespace collapsed, lines under 8 characters dropped (runtime.normalized_lines)",
+"normalization": "whitespace collapsed, case kept, lines under 8 characters dropped",
 "purpose": "P31 copyleft gate: winnowed 4-line shingle hashes of pinned AGPL sources; hashes only",
+"selftest": {
+"fingerprints": [
+"033af5cbdf9f",
+"0403a231afd1",
+"083af2d7cd39",
+"0862e3481706",
+"0ad2fa5f9277",
+"0f47502061a9",
+"10969609513f",
+"11ad326d629a",
+"13f622a1222b",
+"15d1c679c368",
+"17c0778000ab",
+"1d90fd700572",
+"234435f76574",
+"23beb63a71c5",
+"268f02ef293d",
+"308fb673d2e7",
+"3319ee62c1f0",
+"39040c3b7ff1",
+"3ad3f3eaebdd",
+"3bf1e99fce4f",
+"42d7d88cfea4"
+],
+"text": "    Value_000 = Compute_Something(Alpha=0, beta=0, Mode='Mixed_Case_0')\n    Value_001 = Compute_Something(Alpha=1, beta=7, Mode='Mixed_Case_1')\n    Value_002 = Compute_Something(Alpha=2, beta=1, Mode='Mixed_Case_2')\n    Value_003 = Compute_Something(Alpha=3, beta=8, Mode='Mixed_Case_3')\n    Value_004 = Compute_Something(Alpha=4, beta=2, Mode='Mixed_Case_4')\n    Value_005 = Compute_Something(Alpha=5, beta=9, Mode='Mixed_Case_0')\n    Value_006 = Compute_Something(Alpha=6, beta=3, Mode='Mixed_Case_1')\n    Value_007 = Compute_Something(Alpha=7, beta=10, Mode='Mixed_Case_2')\n    Value_008 = Compute_Something(Alpha=8, beta=4, Mode='Mixed_Case_3')\n    Value_009 = Compute_Something(Alpha=9, beta=11, Mode='Mixed_Case_4')\n    Value_010 = Compute_Something(Alpha=10, beta=5, Mode='Mixed_Case_0')\n    Value_011 = Compute_Something(Alpha=11, beta=12, Mode='Mixed_Case_1')\n    Value_012 = Compute_Something(Alpha=12, beta=6, Mode='Mixed_Case_2')\n    Value_013 = Compute_Something(Alpha=13, beta=0, Mode='Mixed_Case_3')\n    Value_014 = Compute_Something(Alpha=14, beta=7, Mode='Mixed_Case_4')\n    Value_015 = Compute_Something(Alpha=15, beta=1, Mode='Mixed_Case_0')\n    Value_016 = Compute_Something(Alpha=16, beta=8, Mode='Mixed_Case_1')\n    Value_017 = Compute_Something(Alpha=17, beta=2, Mode='Mixed_Case_2')\n    Value_018 = Compute_Something(Alpha=18, beta=9, Mode='Mixed_Case_3')\n    Value_019 = Compute_Something(Alpha=19, beta=3, Mode='Mixed_Case_4')\n    Value_020 = Compute_Something(Alpha=20, beta=10, Mode='Mixed_Case_0')\n    Value_021 = Compute_Something(Alpha=21, beta=4, Mode='Mixed_Case_1')\n    Value_022 = Compute_Something(Alpha=22, beta=11, Mode='Mixed_Case_2')\n    Value_023 = Compute_Something(Alpha=23, beta=5, Mode='Mixed_Case_3')\n    Value_024 = Compute_Something(Alpha=24, beta=12, Mode='Mixed_Case_4')\n    Value_025 = Compute_Something(Alpha=25, beta=6, Mode='Mixed_Case_0')\n    Value_026 = Compute_Something(Alpha=26, beta=0, Mode='Mixed_Case_1')\n    Value_027 = Compute_Something(Alpha=27, beta=7, Mode='Mixed_Case_2')\n    Value_028 = Compute_Something(Alpha=28, beta=1, Mode='Mixed_Case_3')\n    Value_029 = Compute_Something(Alpha=29, beta=8, Mode='Mixed_Case_4')\n    Value_030 = Compute_Something(Alpha=30, beta=2, Mode='Mixed_Case_0')\n    Value_031 = Compute_Something(Alpha=31, beta=9, Mode='Mixed_Case_1')\n    Value_032 = Compute_Something(Alpha=32, beta=3, Mode='Mixed_Case_2')\n    Value_033 = Compute_Something(Alpha=33, beta=10, Mode='Mixed_Case_3')\n    Value_034 = Compute_Something(Alpha=34, beta=4, Mode='Mixed_Case_4')\n    Value_035 = Compute_Something(Alpha=35, beta=11, Mode='Mixed_Case_0')\n    Value_036 = Compute_Something(Alpha=36, beta=5, Mode='Mixed_Case_1')\n    Value_037 = Compute_Something(Alpha=37, beta=12, Mode='Mixed_Case_2')\n    Value_038 = Compute_Something(Alpha=38, beta=6, Mode='Mixed_Case_3')\n    Value_039 = Compute_Something(Alpha=39, beta=0, Mode='Mixed_Case_4')\n    Value_040 = Compute_Something(Alpha=40, beta=7, Mode='Mixed_Case_0')\n    Value_041 = Compute_Something(Alpha=41, beta=1, Mode='Mixed_Case_1')\n    Value_042 = Compute_Something(Alpha=42, beta=8, Mode='Mixed_Case_2')\n    Value_043 = Compute_Something(Alpha=43, beta=2, Mode='Mixed_Case_3')\n    Value_044 = Compute_Something(Alpha=44, beta=9, Mode='Mixed_Case_4')\n    Value_045 = Compute_Something(Alpha=45, beta=3, Mode='Mixed_Case_0')\n    Value_046 = Compute_Something(Alpha=46, beta=10, Mode='Mixed_Case_1')\n    Value_047 = Compute_Something(Alpha=47, beta=4, Mode='Mixed_Case_2')\n    Value_048 = Compute_Something(Alpha=48, beta=11, Mode='Mixed_Case_3')\n    Value_049 = Compute_Something(Alpha=49, beta=5, Mode='Mixed_Case_4')\n    Value_050 = Compute_Something(Alpha=50, beta=12, Mode='Mixed_Case_0')\n    Value_051 = Compute_Something(Alpha=51, beta=6, Mode='Mixed_Case_1')\n    Value_052 = Compute_Something(Alpha=52, beta=0, Mode='Mixed_Case_2')\n    Value_053 = Compute_Something(Alpha=53, beta=7, Mode='Mixed_Case_3')\n    Value_054 = Compute_Something(Alpha=54, beta=1, Mode='Mixed_Case_4')\n    Value_055 = Compute_Something(Alpha=55, beta=8, Mode='Mixed_Case_0')\n    Value_056 = Compute_Something(Alpha=56, beta=2, Mode='Mixed_Case_1')\n    Value_057 = Compute_Something(Alpha=57, beta=9, Mode='Mixed_Case_2')\n    Value_058 = Compute_Something(Alpha=58, beta=3, Mode='Mixed_Case_3')\n    Value_059 = Compute_Something(Alpha=59, beta=10, Mode='Mixed_Case_4')\n    Value_060 = Compute_Something(Alpha=60, beta=4, Mode='Mixed_Case_0')\n    Value_061 = Compute_Something(Alpha=61, beta=11, Mode='Mixed_Case_1')\n    Value_062 = Compute_Something(Alpha=62, beta=5, Mode='Mixed_Case_2')\n    Value_063 = Compute_Something(Alpha=63, beta=12, Mode='Mixed_Case_3')\n    Value_064 = Compute_Something(Alpha=64, beta=6, Mode='Mixed_Case_4')\n    Value_065 = Compute_Something(Alpha=65, beta=0, Mode='Mixed_Case_0')\n    Value_066 = Compute_Something(Alpha=66, beta=7, Mode='Mixed_Case_1')\n    Value_067 = Compute_Something(Alpha=67, beta=1, Mode='Mixed_Case_2')\n    Value_068 = Compute_Something(Alpha=68, beta=8, Mode='Mixed_Case_3')\n    Value_069 = Compute_Something(Alpha=69, beta=2, Mode='Mixed_Case_4')\n    Value_070 = Compute_Something(Alpha=70, beta=9, Mode='Mixed_Case_0')\n    Value_071 = Compute_Something(Alpha=71, beta=3, Mode='Mixed_Case_1')\n    Value_072 = Compute_Something(Alpha=72, beta=10, Mode='Mixed_Case_2')\n    Value_073 = Compute_Something(Alpha=73, beta=4, Mode='Mixed_Case_3')\n    Value_074 = Compute_Something(Alpha=74, beta=11, Mode='Mixed_Case_4')\n    Value_075 = Compute_Something(Alpha=75, beta=5, Mode='Mixed_Case_0')\n    Value_076 = Compute_Something(Alpha=76, beta=12, Mode='Mixed_Case_1')\n    Value_077 = Compute_Something(Alpha=77, beta=6, Mode='Mixed_Case_2')\n    Value_078 = Compute_Something(Alpha=78, beta=0, Mode='Mixed_Case_3')\n    Value_079 = Compute_Something(Alpha=79, beta=7, Mode='Mixed_Case_4')\n    Value_080 = Compute_Something(Alpha=80, beta=1, Mode='Mixed_Case_0')\n    Value_081 = Compute_Something(Alpha=81, beta=8, Mode='Mixed_Case_1')\n    Value_082 = Compute_Something(Alpha=82, beta=2, Mode='Mixed_Case_2')\n    Value_083 = Compute_Something(Alpha=83, beta=9, Mode='Mixed_Case_3')\n    Value_084 = Compute_Something(Alpha=84, beta=3, Mode='Mixed_Case_4')\n    Value_085 = Compute_Something(Alpha=85, beta=10, Mode='Mixed_Case_0')\n    Value_086 = Compute_Something(Alpha=86, beta=4, Mode='Mixed_Case_1')\n    Value_087 = Compute_Something(Alpha=87, beta=11, Mode='Mixed_Case_2')\n    Value_088 = Compute_Something(Alpha=88, beta=5, Mode='Mixed_Case_3')\n    Value_089 = Compute_Something(Alpha=89, beta=12, Mode='Mixed_Case_4')\n    Value_090 = Compute_Something(Alpha=90, beta=6, Mode='Mixed_Case_0')\n    Value_091 = Compute_Something(Alpha=91, beta=0, Mode='Mixed_Case_1')\n    Value_092 = Compute_Something(Alpha=92, beta=7, Mode='Mixed_Case_2')\n    Value_093 = Compute_Something(Alpha=93, beta=1, Mode='Mixed_Case_3')\n    Value_094 = Compute_Something(Alpha=94, beta=8, Mode='Mixed_Case_4')\n    Value_095 = Compute_Something(Alpha=95, beta=2, Mode='Mixed_Case_0')\n    Value_096 = Compute_Something(Alpha=96, beta=9, Mode='Mixed_Case_1')\n    Value_097 = Compute_Something(Alpha=97, beta=3, Mode='Mixed_Case_2')\n    Value_098 = Compute_Something(Alpha=98, beta=10, Mode='Mixed_Case_3')\n    Value_099 = Compute_Something(Alpha=99, beta=4, Mode='Mixed_Case_4')\n    Value_100 = Compute_Something(Alpha=100, beta=11, Mode='Mixed_Case_0')\n    Value_101 = Compute_Something(Alpha=101, beta=5, Mode='Mixed_Case_1')\n    Value_102 = Compute_Something(Alpha=102, beta=12, Mode='Mixed_Case_2')\n    Value_103 = Compute_Something(Alpha=103, beta=6, Mode='Mixed_Case_3')\n    Value_104 = Compute_Something(Alpha=104, beta=0, Mode='Mixed_Case_4')\n    Value_105 = Compute_Something(Alpha=105, beta=7, Mode='Mixed_Case_0')\n    Value_106 = Compute_Something(Alpha=106, beta=1, Mode='Mixed_Case_1')\n    Value_107 = Compute_Something(Alpha=107, beta=8, Mode='Mixed_Case_2')\n    Value_108 = Compute_Something(Alpha=108, beta=2, Mode='Mixed_Case_3')\n    Value_109 = Compute_Something(Alpha=109, beta=9, Mode='Mixed_Case_4')\n    Value_110 = Compute_Something(Alpha=110, beta=3, Mode='Mixed_Case_0')\n    Value_111 = Compute_Something(Alpha=111, beta=10, Mode='Mixed_Case_1')\n    Value_112 = Compute_Something(Alpha=112, beta=4, Mode='Mixed_Case_2')\n    Value_113 = Compute_Something(Alpha=113, beta=11, Mode='Mixed_Case_3')\n    Value_114 = Compute_Something(Alpha=114, beta=5, Mode='Mixed_Case_4')\n    Value_115 = Compute_Something(Alpha=115, beta=12, Mode='Mixed_Case_0')\n    Value_116 = Compute_Something(Alpha=116, beta=6, Mode='Mixed_Case_1')\n    Value_117 = Compute_Something(Alpha=117, beta=0, Mode='Mixed_Case_2')\n    Value_118 = Compute_Something(Alpha=118, beta=7, Mode='Mixed_Case_3')\n    Value_119 = Compute_Something(Alpha=119, beta=1, Mode='Mixed_Case_4')"
+},
 "shingle_lines": 4,
 "sources": [
 {
@@ -5421,6 +5460,6 @@
 ]
 }
 ],
-"version": 1,
+"version": 2,
 "winnow_window": 12
 }

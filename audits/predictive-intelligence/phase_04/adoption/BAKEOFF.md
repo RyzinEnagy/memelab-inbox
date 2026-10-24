@@ -20,7 +20,7 @@ From Phase 03 (`phase_03/research/CATEGORY_WINNERS.md`, PI-D-028), not from the 
 | Behavioral comparator | numpy trader loop (new code), Mesa | ME-1 |
 | Behavioral simulator | MiroFish, isolated, mock LLM only | MI-1 to MI-4 |
 
-Every prototype was scanned for the defaults Phase 03 banned (`prototypes/banned_scan.py`, 15 rules, each rule self-tested on a matching and a non-matching example): 0 hits in 26 files (24 prototypes, `runtime.py` and its tests); the one allowed hit is TimeSeriesSplit in `splitter_check.py`, used as the negative control (`evidence/banned_scan.json`).
+Every prototype was scanned for the defaults Phase 03 banned (`prototypes/banned_scan.py`, 15 rules, each rule self-tested on a matching and a non-matching example): 0 hits in 28 files (26 prototypes, `runtime.py` and its tests); the one allowed hit is TimeSeriesSplit in `splitter_check.py`, used as the negative control (`evidence/banned_scan.json`).
 
 ## The common point-in-time dataset
 
@@ -32,7 +32,7 @@ Built by `prototypes/build_dev_sample.py` (plan, fetch, label) into `data/`:
 - Features: B2 of ACCEPTANCE_METRICS.md, all from the decision row and its token row in the export where the row first appears, so available at the decision (`feature_available_at` = decision time = export commit time, PI-D-015): log liquidity, log market cap, log 24 h volume, log token age (from `first_pool_at`, known for 102 of 102 and 157 of 159 events) and the fatal-flag indicator. Status and score are in the file but not used by any approach.
 - Labels: frozen registry rules through `contract.reference_candle`, `contract.eligibility` and `contract.path_candles`; barriers +25% and -15%; a candle touching both is AMBIGUOUS_BAR (negative); eligibility before thinning; thinning per target. T1 24 h: 102 events, 30 positive, 77 mints, 9 decision days (2026-10-07 to 10-15). T1b 6 h: 159 events, 23 positive, 80 mints, 10 decision days. Eligibility of the 521 unthinned events: 502 ELIGIBLE, 17 MARKET_INACTIVE, 2 VENDOR_OR_ROUTE_GAP.
 - Prices: GeckoTerminal 5-minute OHLCV of the recorded pool, 132 calls from 2026-10-24T08:02:05Z to 08:40:44Z: 115 HTTP 200 and 17 HTTP 429 (each followed by a 60 s wait and a retry), at most 6 calls in any 60 s window (minimum gap 11.1 s), no failure left after retries, breaker never opened; every call logged with URL, retrieval time, status, size and body sha256 (`data/dev_sample_calls.json`); raw bodies kept outside the repository (`/home/claude/pi_research/p04_gt_raw`) and re-hashed before use.
-- Holdout protection: every request ended at or before the holdout start (largest `before_timestamp` equal to it). GeckoTerminal's `before_timestamp` is inclusive: it also returned the candle starting exactly at the holdout start for 6 pools. Those 6 candles were dropped before any use and counted; none of the 3 holdout decisions on those pools was decided within the 4,200 s in which such a candle could serve as a reference price, and no holdout decision's path can include a candle before its own entry (`prototypes/holdout_candle_check.py`, `evidence/holdout_candle_check.json`). No decision at or after the holdout start and no label maturing after it is in the sample (asserted by the builder). Neither contacted holdout decision of PI-D-021 has a development row in it.
+- Holdout protection: every request ended at or before the holdout start (largest `before_timestamp` equal to it). GeckoTerminal's `before_timestamp` returns the candle that contains the boundary (the skeptic measured it on unaligned requests too); for the aligned holdout start that is the candle starting exactly at it, returned for 6 pools. Those 6 candles were dropped before any use and counted, the builder now drops by candle end (`start + 300 > H0`), and the repair pass purged them from the raw store (`evidence/raw_store_quarantine.json`: original and redacted body sha256, start times only); none of the 3 holdout decisions on those pools was decided within the 4,200 s in which such a candle could serve as a reference price, and no holdout decision's path can include a candle before its own entry (`prototypes/holdout_candle_check.py`, `evidence/holdout_candle_check.json`). No decision at or after the holdout start and no label maturing after it is in the sample (asserted by the builder). Neither contacted holdout decision of PI-D-021 has a development row in it.
 - Not Phase 06's labels: one read per pool, no 48 h revision re-read, PIT route only, no T2. Phase 06 rebuilds labels with its own backfill. The development outcomes behind these 261 target labels (102 and 159, many on the same decisions) were viewed in this phase; Phase 12's experiment ledger must count the runs below as tried configurations (PI-D-034).
 
 ### Synthetic challenge
@@ -49,7 +49,7 @@ Six approaches on the same rows and folds: B0 training prevalence; L2 logistic r
 
 Results are in the generated tables at the end. What they show:
 
-1. Equivalence: LR_NUMPY and LR_SKLEARN give the same Brier and log loss to 6 decimals on all three datasets (largest probability difference 1.3e-7 on the challenge, `calibration_check.py bundle`); numpy Platt and the frozen sigmoid agree to 6 decimals (largest difference 5.9e-8).
+1. Equivalence: LR_NUMPY and LR_SKLEARN give the same Brier and log loss to 6 decimals on all three datasets (largest probability difference 1.3e-7 on the challenge, `calibration_check.py bundle`; the skeptic found at most 3.7e-7 on eight harder cases); numpy Platt and the frozen sigmoid agree to 6 decimals on non-constant scores (largest difference 5.9e-8). On constant scores only `a s + b` is identified: the first-pass Platt stopped at its starting point (0.0039 off), and since the repair pass it returns the exact optimum, the mean smoothed target, which scikit-learn also reaches on the challenge's calibration window (6e-14).
 2. Reproducibility: every approach gave the same output sha256 in three fresh processes; the numpy approaches gave byte-identical predictions in the numpy-only venv and in the full research venv, so the essential engine needs nothing but numpy and is independent of which other packages are installed.
 3. Cost: numpy approaches ran in 0.11 to 0.21 s with 33 to 40 MB peak memory (Venn-Abers 1.3 s on the 2,258-row challenge because the prototype refits the isotonic step per test point); every scikit-learn, LightGBM or lifelines approach costs 1.2 to 2.7 s and 136 to 150 MB, almost all of it import (cold-start table).
 4. Network: 0 socket events in every run (audit hook) and 0 connect, sendto or bind system calls under strace for LightGBM, lifelines, HGB, the numpy logistic, the drift and the schema checks, against 1 for a positive control (`evidence/strace/strace_challenge_approaches.txt`).
@@ -60,7 +60,7 @@ Results are in the generated tables at the end. What they show:
 
 ### Calibration layer (`calibration_check.py`)
 
-- Venn-Abers in numpy against the reference package (`ip200/venn-abers` 1.5.4 in its Phase 03 venv): largest difference in p0, p1 or the merged probability 1.4e-17 over four probe sets: 579 challenge holdout scores, the same with scores rounded to create ties, 4 scores outside the calibration range (where MAPIE's port fails, Phase 03 MA-1), and 200 random scores on a 40-row calibration set. p0 <= p1 and the output inside [0, 1] everywhere.
+- Venn-Abers in numpy against the reference package (`ip200/venn-abers` 1.5.4 in its Phase 03 venv), both given the same probabilities (the first pass gave the numpy code raw scores, which saturate the oracle's sigmoid above about 37 and create ties only the oracle saw, skeptic m7): largest difference in p0, p1 or the merged probability 1.4e-17 over five probe sets: 579 challenge holdout scores, the same with scores rounded to create ties, 4 scores outside the calibration range (where MAPIE's port fails, Phase 03 MA-1), 200 random scores on a 40-row calibration set, and 100 saturating scores from 15 to 65. p0 <= p1 and the output inside [0, 1] everywhere.
 - MAPIE 1.6.0 offline: `BinaryClassificationController` for precision at least 0.10 and 0.20 at 90% confidence found no valid threshold with 16 calibration positives, so it abstains; `spiegelhalter_p_value` ran (0.63). Its Venn-Abers port and prefit Pipelines are never called (banned scan).
 
 ### Splitter and fold audit (`splitter_check.py`)
@@ -73,6 +73,8 @@ The fold audit (`core_numpy.fold_audit`) counts, per fold, training rows decided
 | lab day rule with the maturity purge removed (mutation) | refused: 2,304 labels mature after their cutoff | refused: 31 | not refused: identical folds, because no 6 h label of a boundary day crosses a fold cutoff in this sample (the mutation changes nothing) |
 | purgedcv WalkForwardSplit, default and `purge_horizon=0` | valid, 23 folds, 0.16 | valid, 4 folds, 0.54 | valid, 5 folds, 0.75 |
 | scikit-learn TimeSeriesSplit (banned) | refused: 2,308 labels mature after the test start | refused: 87 | refused: 50 |
+
+After the skeptic (m1) the audit also fails closed: a non-finite decision or maturity time, a declared cutoff after the test start, or (given the target's entry lag, horizon and margin) a maturity column of a shorter horizon makes it invalid, and test rows sharing a mint with training are reported (1, 4, 4 and 1 on the 24 h folds; allowed by the frozen plan as a sensitivity). `prototypes/test_core_numpy.py` covers each case on the real 24 h sample; 8 of its 9 tests fail on the first-pass code.
 
 purgedcv's folds are fixed row counts, so it cannot express the frozen UTC-day rule; it stays an independent oracle. Its docstring says `purge_horizon=None` means no purge, but `src/purgedcv/_base.py:110-111` turns None into a zero horizon and purges; the code is the safe side of that mismatch.
 
@@ -109,7 +111,9 @@ Feasible only as an isolated, unmodified program against a local mock LLM; not r
 1. First real-data run (before the dataset fix): HGB raised `ValueError: window shape cannot be larger than input array shape` and lifelines raised `ConvergenceError` on both real samples, while the challenge had run cleanly. Cause: the age feature was missing for every row because the builder parsed `first_pool_at` as a number when the export stores ISO text (`normalize.py:81`). Fixes: the builder parses ISO text (age now known for 259 of 261 events), and the lab's preprocessing drops columns that are constant or all missing in the training window (`core_numpy.informative_columns`), applied to every approach. The failing runs are kept in `evidence/first_real_run_failures/`.
 2. Error-semantics probe: the numpy logistic, Platt and Venn-Abers returned silent probabilities on a one-class window and NaN through an unprepared logistic; all three now raise (`_check_fit_inputs`).
 3. Own adversarial pass on the splitter: the maturity-purge mutation passed the test-start audit on the 6 h sample. Investigation showed the mutation is a no-op there, but on the 24 h sample the test-start check counted 29 leaked labels where the declared-cutoff check counts 31 (2 labels matured between midnight and the first decision of the next day, which would make a model's recorded training cutoff false, P13). The audit now checks the declared cutoff too.
-4. Drift thresholds: with raw units, Page-Hinkley at threshold 50 raised 58 false alarms on ret_1h scaled by 100; the streams are now standardised on a training window, and both thresholds are reported.
+4. Drift thresholds (first pass): with raw units, Page-Hinkley at threshold 50 raised 58 false alarms on ret_1h scaled by 100; the streams are now standardised on a training window, and both thresholds are reported.
+
+5. Repair pass after the independent skeptic (PI-D-035): the lock guard refuses any per-line option and `install_argv` is the only install route (M1); `guarded` contains SystemExit and every probe of `capability_report` is guarded (M2); the fold audit fails closed (m1); the P31 fixture declares and self-tests the hashing (m2); the copy scan covers the whole repository (m3); boundary candles are dropped by end and purged from the raw store (m4, m5); bake-off labels are refused in code (m5); cost and response failures trip the guard and dotted names are refused (m6); the Platt and Venn-Abers probe edges are fixed (m7). Every approach and check was measured again after the repair; the approach outputs are byte-identical to the first pass.
 
 ## Reproduce
 
@@ -118,12 +122,15 @@ All offline except the dataset fetch. From `audits/predictive-intelligence/phase
 ```
 python -B build_dev_sample.py plan ../data
 python -B build_dev_sample.py fetch ../data RAW_DIR          # network: 132 GeckoTerminal calls at <= 6 a minute
+python -B build_dev_sample.py quarantine ../data RAW_DIR     # purges candles ending after the holdout start (repair pass)
 python -B build_dev_sample.py label ../data RAW_DIR          # offline from the raw bodies; asserts the holdout rules
 python -B holdout_candle_check.py RAW_DIR
 python -B run_measurements.py imports && python -B run_measurements.py approaches && python -B run_measurements.py checks
 python -B summarize.py                                        # third run of everything; sha256 must match
 python -B banned_scan.py ../evidence/banned_scan.json
 python -B render_tables.py ../BAKEOFF.md ../BAKEOFF_RESULTS.json
+python -m pytest test_core_numpy.py -q                        # fold audit, splitter and Platt edge cases
+python -B old_code_check.py ../evidence/old_code_check.json   # the new tests against the first-pass code
 ```
 
 The venvs: `p04_bundle` from `../evidence/bakeoff-bundle.in` with `uv pip compile --override pandas==3.0.5 --universal --generate-hashes --only-binary :all:` and `uv pip install --require-hashes --only-binary :all: --no-deps`; `p04_core` from `docs/predictive-intelligence/locks/core-py313.txt`; `p04_mesa` from `numpy==2.5.3 pandas==3.0.5 scipy==1.18.1 mesa[network]==3.5.1` the same way; the Venn-Abers oracle venv is Phase 03's `ip200__venn-abers`.
@@ -136,55 +143,55 @@ The venvs: `p04_bundle` from `../evidence/bakeoff-bundle.in` with `uv pip compil
 
 | Approach | Venv | Folds | OOS N | Positives | Brier | B0 Brier, same rows | BSS vs B0 | Log loss | Mean p | Observed | Mean p in Wilson 95% | Fold audit | Wall s | CPU s | Peak MB | Same output, 3 runs |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---:|---:|---:|---|
-| B0 | bundle | 23 | 2258 | 87 | 0.037049 | 0.037049 | 0.0 | 0.163286 | 0.04133 | 0.03853 | yes | valid | 0.1673 | 0.1443 | 37.6 | yes |
-| B0 | core_numpy_only | 23 | 2258 | 87 | 0.037049 | 0.037049 | 0.0 | 0.163286 | 0.04133 | 0.03853 | yes | valid | 0.1859 | 0.1554 | 37.5 | yes |
-| COX_LIFELINES | bundle | 23 | 2258 | 87 | 0.036626 | 0.037049 | 0.0114 | 0.158085 | 0.041283 | 0.03853 | yes | valid | 2.1906 | 2.0282 | 138.4 | yes |
-| HGB_SKLEARN | bundle | 23 | 2258 | 87 | 0.037228 | 0.037049 | -0.0048 | 0.163452 | 0.03481 | 0.03853 | yes | valid | 2.7052 | 2.5433 | 150.0 | yes |
-| LGBM | bundle | 23 | 2258 | 87 | 0.037044 | 0.037049 | 0.0001 | 0.164128 | 0.034603 | 0.03853 | yes | valid | 1.8963 | 1.8146 | 146.9 | yes |
-| LR_NUMPY_PLATT | bundle | 23 | 2258 | 87 | 0.036502 | 0.037049 | 0.0147 | 0.155515 | 0.040596 | 0.03853 | yes | valid | 0.1832 | 0.1784 | 39.3 | yes |
-| LR_NUMPY_PLATT | core_numpy_only | 23 | 2258 | 87 | 0.036502 | 0.037049 | 0.0147 | 0.155515 | 0.040596 | 0.03853 | yes | valid | 0.208 | 0.1891 | 39.3 | yes |
-| LR_NUMPY_VENN_ABERS | bundle | 23 | 2258 | 87 | 0.037855 | 0.037049 | -0.0218 | 0.158679 | 0.056769 | 0.03853 | no | valid | 1.3234 | 1.2628 | 39.6 | yes |
-| LR_NUMPY_VENN_ABERS | core_numpy_only | 23 | 2258 | 87 | 0.037855 | 0.037049 | -0.0218 | 0.158679 | 0.056769 | 0.03853 | no | valid | 1.3965 | 1.2872 | 39.7 | yes |
-| LR_NUMPY | bundle | 23 | 2258 | 87 | 0.036301 | 0.037049 | 0.0202 | 0.15367 | 0.041187 | 0.03853 | yes | valid | 0.187 | 0.1812 | 39.3 | yes |
-| LR_NUMPY | core_numpy_only | 23 | 2258 | 87 | 0.036301 | 0.037049 | 0.0202 | 0.15367 | 0.041187 | 0.03853 | yes | valid | 0.2145 | 0.1915 | 39.3 | yes |
-| LR_SKLEARN_SIGMOID_FROZEN | bundle | 23 | 2258 | 87 | 0.036502 | 0.037049 | 0.0147 | 0.155515 | 0.040596 | 0.03853 | yes | valid | 1.6001 | 1.4837 | 145.2 | yes |
-| LR_SKLEARN | bundle | 23 | 2258 | 87 | 0.036301 | 0.037049 | 0.0202 | 0.15367 | 0.041187 | 0.03853 | yes | valid | 1.4838 | 1.3256 | 144.1 | yes |
+| B0 | bundle | 23 | 2258 | 87 | 0.037049 | 0.037049 | 0.0 | 0.163286 | 0.04133 | 0.03853 | yes | valid | 0.1561 | 0.1477 | 36.9 | yes |
+| B0 | core_numpy_only | 23 | 2258 | 87 | 0.037049 | 0.037049 | 0.0 | 0.163286 | 0.04133 | 0.03853 | yes | valid | 0.1763 | 0.1526 | 36.9 | yes |
+| COX_LIFELINES | bundle | 23 | 2258 | 87 | 0.036626 | 0.037049 | 0.0114 | 0.158085 | 0.041283 | 0.03853 | yes | valid | 2.3228 | 2.1784 | 137.4 | yes |
+| HGB_SKLEARN | bundle | 23 | 2258 | 87 | 0.037228 | 0.037049 | -0.0048 | 0.163452 | 0.03481 | 0.03853 | yes | valid | 2.6776 | 2.5209 | 148.5 | yes |
+| LGBM | bundle | 23 | 2258 | 87 | 0.037044 | 0.037049 | 0.0001 | 0.164128 | 0.034603 | 0.03853 | yes | valid | 1.8278 | 1.7666 | 145.7 | yes |
+| LR_NUMPY_PLATT | bundle | 23 | 2258 | 87 | 0.036502 | 0.037049 | 0.0147 | 0.155515 | 0.040596 | 0.03853 | yes | valid | 0.1931 | 0.1871 | 38.5 | yes |
+| LR_NUMPY_PLATT | core_numpy_only | 23 | 2258 | 87 | 0.036502 | 0.037049 | 0.0147 | 0.155515 | 0.040596 | 0.03853 | yes | valid | 0.2001 | 0.1859 | 38.4 | yes |
+| LR_NUMPY_VENN_ABERS | bundle | 23 | 2258 | 87 | 0.037855 | 0.037049 | -0.0218 | 0.158679 | 0.056769 | 0.03853 | no | valid | 1.4735 | 1.3148 | 38.7 | yes |
+| LR_NUMPY_VENN_ABERS | core_numpy_only | 23 | 2258 | 87 | 0.037855 | 0.037049 | -0.0218 | 0.158679 | 0.056769 | 0.03853 | no | valid | 1.2849 | 1.2789 | 38.9 | yes |
+| LR_NUMPY | bundle | 23 | 2258 | 87 | 0.036301 | 0.037049 | 0.0202 | 0.15367 | 0.041187 | 0.03853 | yes | valid | 0.1834 | 0.1817 | 38.4 | yes |
+| LR_NUMPY | core_numpy_only | 23 | 2258 | 87 | 0.036301 | 0.037049 | 0.0202 | 0.15367 | 0.041187 | 0.03853 | yes | valid | 0.2277 | 0.1956 | 38.4 | yes |
+| LR_SKLEARN_SIGMOID_FROZEN | bundle | 23 | 2258 | 87 | 0.036502 | 0.037049 | 0.0147 | 0.155515 | 0.040596 | 0.03853 | yes | valid | 1.5687 | 1.4784 | 144.1 | yes |
+| LR_SKLEARN | bundle | 23 | 2258 | 87 | 0.036301 | 0.037049 | 0.0202 | 0.15367 | 0.041187 | 0.03853 | yes | valid | 1.3198 | 1.2787 | 143.1 | yes |
 
 ### Approaches: Real development sample, T1 24 h (102 events)
 
 | Approach | Venv | Folds | OOS N | Positives | Brier | B0 Brier, same rows | BSS vs B0 | Log loss | Mean p | Observed | Mean p in Wilson 95% | Fold audit | Wall s | CPU s | Peak MB | Same output, 3 runs |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---:|---:|---:|---|
-| B0 | bundle | 4 | 26 | 8 | 0.212494 | 0.212494 | 0.0 | 0.615927 | 0.28398 | 0.307692 | yes | valid | 0.1529 | 0.1197 | 32.7 | yes |
-| B0 | core_numpy_only | 4 | 26 | 8 | 0.212494 | 0.212494 | 0.0 | 0.615927 | 0.28398 | 0.307692 | yes | valid | 0.1112 | 0.1097 | 32.7 | yes |
-| COX_LIFELINES | bundle | 4 | 26 | 8 | 0.213015 | 0.212494 | -0.0025 | 0.619673 | 0.257661 | 0.307692 | yes | valid | 1.2117 | 1.1991 | 136.1 | yes |
-| HGB_SKLEARN | bundle | 4 | 26 | 8 | 0.177049 | 0.212494 | 0.1668 | 0.610746 | 0.217004 | 0.307692 | yes | valid | 1.5469 | 1.3688 | 148.1 | yes |
-| LGBM | bundle | 4 | 26 | 8 | 0.227858 | 0.212494 | -0.0723 | 0.691269 | 0.241284 | 0.307692 | yes | valid | 1.2647 | 1.1945 | 145.7 | yes |
-| LR_NUMPY_PLATT | bundle | 4 | 26 | 8 | 0.232375 | 0.212494 | -0.0936 | 0.679389 | 0.221097 | 0.307692 | yes | valid | 0.1331 | 0.1219 | 34.0 | yes |
-| LR_NUMPY_PLATT | core_numpy_only | 4 | 26 | 8 | 0.232375 | 0.212494 | -0.0936 | 0.679389 | 0.221097 | 0.307692 | yes | valid | 0.1309 | 0.1216 | 34.0 | yes |
-| LR_NUMPY_VENN_ABERS | bundle | 4 | 26 | 8 | 0.236912 | 0.212494 | -0.1149 | 0.675396 | 0.30649 | 0.307692 | yes | valid | 0.1538 | 0.1361 | 34.2 | yes |
-| LR_NUMPY_VENN_ABERS | core_numpy_only | 4 | 26 | 8 | 0.236912 | 0.212494 | -0.1149 | 0.675396 | 0.30649 | 0.307692 | yes | valid | 0.1459 | 0.1254 | 34.2 | yes |
-| LR_NUMPY | bundle | 4 | 26 | 8 | 0.214009 | 0.212494 | -0.0071 | 0.628617 | 0.254384 | 0.307692 | yes | valid | 0.1324 | 0.1183 | 33.7 | yes |
-| LR_NUMPY | core_numpy_only | 4 | 26 | 8 | 0.214009 | 0.212494 | -0.0071 | 0.628617 | 0.254384 | 0.307692 | yes | valid | 0.1255 | 0.1167 | 33.7 | yes |
-| LR_SKLEARN_SIGMOID_FROZEN | bundle | 4 | 26 | 8 | 0.232375 | 0.212494 | -0.0936 | 0.679389 | 0.221097 | 0.307692 | yes | valid | 1.3455 | 1.2338 | 143.4 | yes |
-| LR_SKLEARN | bundle | 4 | 26 | 8 | 0.214009 | 0.212494 | -0.0071 | 0.628617 | 0.254384 | 0.307692 | yes | valid | 1.2197 | 1.1801 | 142.4 | yes |
+| B0 | bundle | 4 | 26 | 8 | 0.212494 | 0.212494 | 0.0 | 0.615927 | 0.28398 | 0.307692 | yes | valid | 0.1303 | 0.1177 | 32.0 | yes |
+| B0 | core_numpy_only | 4 | 26 | 8 | 0.212494 | 0.212494 | 0.0 | 0.615927 | 0.28398 | 0.307692 | yes | valid | 0.1399 | 0.1199 | 31.9 | yes |
+| COX_LIFELINES | bundle | 4 | 26 | 8 | 0.213015 | 0.212494 | -0.0025 | 0.619673 | 0.257661 | 0.307692 | yes | valid | 1.3512 | 1.2377 | 134.8 | yes |
+| HGB_SKLEARN | bundle | 4 | 26 | 8 | 0.177049 | 0.212494 | 0.1668 | 0.610746 | 0.217004 | 0.307692 | yes | valid | 1.5156 | 1.394 | 147.0 | yes |
+| LGBM | bundle | 4 | 26 | 8 | 0.227858 | 0.212494 | -0.0723 | 0.691269 | 0.241284 | 0.307692 | yes | valid | 1.2934 | 1.2248 | 143.8 | yes |
+| LR_NUMPY_PLATT | bundle | 4 | 26 | 8 | 0.232375 | 0.212494 | -0.0936 | 0.679389 | 0.221097 | 0.307692 | yes | valid | 0.1421 | 0.1223 | 33.2 | yes |
+| LR_NUMPY_PLATT | core_numpy_only | 4 | 26 | 8 | 0.232375 | 0.212494 | -0.0936 | 0.679389 | 0.221097 | 0.307692 | yes | valid | 0.1305 | 0.1215 | 33.2 | yes |
+| LR_NUMPY_VENN_ABERS | bundle | 4 | 26 | 8 | 0.236912 | 0.212494 | -0.1149 | 0.675396 | 0.30649 | 0.307692 | yes | valid | 0.1336 | 0.123 | 33.4 | yes |
+| LR_NUMPY_VENN_ABERS | core_numpy_only | 4 | 26 | 8 | 0.236912 | 0.212494 | -0.1149 | 0.675396 | 0.30649 | 0.307692 | yes | valid | 0.1546 | 0.1278 | 33.3 | yes |
+| LR_NUMPY | bundle | 4 | 26 | 8 | 0.214009 | 0.212494 | -0.0071 | 0.628617 | 0.254384 | 0.307692 | yes | valid | 0.1375 | 0.1253 | 33.0 | yes |
+| LR_NUMPY | core_numpy_only | 4 | 26 | 8 | 0.214009 | 0.212494 | -0.0071 | 0.628617 | 0.254384 | 0.307692 | yes | valid | 0.1399 | 0.1236 | 33.0 | yes |
+| LR_SKLEARN_SIGMOID_FROZEN | bundle | 4 | 26 | 8 | 0.232375 | 0.212494 | -0.0936 | 0.679389 | 0.221097 | 0.307692 | yes | valid | 1.3818 | 1.2666 | 142.4 | yes |
+| LR_SKLEARN | bundle | 4 | 26 | 8 | 0.214009 | 0.212494 | -0.0071 | 0.628617 | 0.254384 | 0.307692 | yes | valid | 1.2734 | 1.1995 | 141.4 | yes |
 
 ### Approaches: Real development sample, T1b 6 h (159 events)
 
 | Approach | Venv | Folds | OOS N | Positives | Brier | B0 Brier, same rows | BSS vs B0 | Log loss | Mean p | Observed | Mean p in Wilson 95% | Fold audit | Wall s | CPU s | Peak MB | Same output, 3 runs |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---:|---:|---:|---|
-| B0 | bundle | 5 | 33 | 3 | 0.08672 | 0.08672 | 0.0 | 0.322459 | 0.154899 | 0.090909 | yes | valid | 0.1286 | 0.1188 | 32.8 | yes |
-| B0 | core_numpy_only | 5 | 33 | 3 | 0.08672 | 0.08672 | 0.0 | 0.322459 | 0.154899 | 0.090909 | yes | valid | 0.1255 | 0.1129 | 32.8 | yes |
-| COX_LIFELINES | bundle | 5 | 33 | 3 | 0.079754 | 0.08672 | 0.0803 | 0.291718 | 0.142166 | 0.090909 | yes | valid | 1.3291 | 1.2515 | 136.1 | yes |
-| HGB_SKLEARN | bundle | 5 | 33 | 3 | 0.115522 | 0.08672 | -0.3321 | 0.412037 | 0.119395 | 0.090909 | yes | valid | 1.5055 | 1.4159 | 148.2 | yes |
-| LGBM | bundle | 5 | 33 | 3 | 0.134531 | 0.08672 | -0.5513 | 0.446202 | 0.135324 | 0.090909 | yes | valid | 1.3758 | 1.243 | 145.8 | yes |
-| LR_NUMPY_PLATT | bundle | 5 | 33 | 3 | 0.079261 | 0.08672 | 0.086 | 0.289852 | 0.162289 | 0.090909 | yes | valid | 0.127 | 0.12 | 33.9 | yes |
-| LR_NUMPY_PLATT | core_numpy_only | 5 | 33 | 3 | 0.079261 | 0.08672 | 0.086 | 0.289852 | 0.162289 | 0.090909 | yes | valid | 0.1396 | 0.1225 | 33.9 | yes |
-| LR_NUMPY_VENN_ABERS | bundle | 5 | 33 | 3 | 0.101936 | 0.08672 | -0.1755 | 0.353091 | 0.242536 | 0.090909 | no | valid | 0.1583 | 0.127 | 34.2 | yes |
-| LR_NUMPY_VENN_ABERS | core_numpy_only | 5 | 33 | 3 | 0.101936 | 0.08672 | -0.1755 | 0.353091 | 0.242536 | 0.090909 | no | valid | 0.1371 | 0.1285 | 34.1 | yes |
-| LR_NUMPY | bundle | 5 | 33 | 3 | 0.077572 | 0.08672 | 0.1055 | 0.277649 | 0.138274 | 0.090909 | yes | valid | 0.1309 | 0.1213 | 33.8 | yes |
-| LR_NUMPY | core_numpy_only | 5 | 33 | 3 | 0.077572 | 0.08672 | 0.1055 | 0.277649 | 0.138274 | 0.090909 | yes | valid | 0.1283 | 0.1189 | 33.8 | yes |
-| LR_SKLEARN_SIGMOID_FROZEN | bundle | 5 | 33 | 3 | 0.079261 | 0.08672 | 0.086 | 0.289852 | 0.162289 | 0.090909 | yes | valid | 1.3647 | 1.2402 | 143.2 | yes |
-| LR_SKLEARN | bundle | 5 | 33 | 3 | 0.077572 | 0.08672 | 0.1055 | 0.277649 | 0.138274 | 0.090909 | yes | valid | 1.2595 | 1.202 | 142.7 | yes |
+| B0 | bundle | 5 | 33 | 3 | 0.08672 | 0.08672 | 0.0 | 0.322459 | 0.154899 | 0.090909 | yes | valid | 0.1298 | 0.1192 | 32.0 | yes |
+| B0 | core_numpy_only | 5 | 33 | 3 | 0.08672 | 0.08672 | 0.0 | 0.322459 | 0.154899 | 0.090909 | yes | valid | 0.1171 | 0.1136 | 32.0 | yes |
+| COX_LIFELINES | bundle | 5 | 33 | 3 | 0.079754 | 0.08672 | 0.0803 | 0.291718 | 0.142166 | 0.090909 | yes | valid | 1.2452 | 1.2425 | 135.0 | yes |
+| HGB_SKLEARN | bundle | 5 | 33 | 3 | 0.115522 | 0.08672 | -0.3321 | 0.412037 | 0.119395 | 0.090909 | yes | valid | 1.5184 | 1.4322 | 147.3 | yes |
+| LGBM | bundle | 5 | 33 | 3 | 0.134531 | 0.08672 | -0.5513 | 0.446202 | 0.135324 | 0.090909 | yes | valid | 1.3378 | 1.238 | 144.7 | yes |
+| LR_NUMPY_PLATT | bundle | 5 | 33 | 3 | 0.079261 | 0.08672 | 0.086 | 0.289852 | 0.162289 | 0.090909 | yes | valid | 0.1571 | 0.1341 | 33.1 | yes |
+| LR_NUMPY_PLATT | core_numpy_only | 5 | 33 | 3 | 0.079261 | 0.08672 | 0.086 | 0.289852 | 0.162289 | 0.090909 | yes | valid | 0.1283 | 0.12 | 33.1 | yes |
+| LR_NUMPY_VENN_ABERS | bundle | 5 | 33 | 3 | 0.101936 | 0.08672 | -0.1755 | 0.353091 | 0.242536 | 0.090909 | no | valid | 0.1314 | 0.1235 | 33.3 | yes |
+| LR_NUMPY_VENN_ABERS | core_numpy_only | 5 | 33 | 3 | 0.101936 | 0.08672 | -0.1755 | 0.353091 | 0.242536 | 0.090909 | no | valid | 0.158 | 0.128 | 33.3 | yes |
+| LR_NUMPY | bundle | 5 | 33 | 3 | 0.077572 | 0.08672 | 0.1055 | 0.277649 | 0.138274 | 0.090909 | yes | valid | 0.1487 | 0.1252 | 33.0 | yes |
+| LR_NUMPY | core_numpy_only | 5 | 33 | 3 | 0.077572 | 0.08672 | 0.1055 | 0.277649 | 0.138274 | 0.090909 | yes | valid | 0.1235 | 0.1193 | 33.1 | yes |
+| LR_SKLEARN_SIGMOID_FROZEN | bundle | 5 | 33 | 3 | 0.079261 | 0.08672 | 0.086 | 0.289852 | 0.162289 | 0.090909 | yes | valid | 1.3373 | 1.2392 | 142.1 | yes |
+| LR_SKLEARN | bundle | 5 | 33 | 3 | 0.077572 | 0.08672 | 0.1055 | 0.277649 | 0.138274 | 0.090909 | yes | valid | 1.184 | 1.1715 | 141.6 | yes |
 
 ### Cold start (import in a fresh process, median of 5, offline)
 
@@ -233,11 +240,11 @@ The venvs: `p04_bundle` from `../evidence/bakeoff-bundle.in` with `uv pip compil
 
 | Check | Wall s | CPU s | Peak MB | Socket events | Same output, 3 runs | Exit 0 |
 |---|---:|---:|---:|---:|---|---|
-| behavior_mesa | 1.2601 | 1.2378 | 106.6 | 0 | yes | yes |
-| behavior_mesa_plain_install | 0.5919 | 0.5273 | 88.5 | 0 | yes | no (expected for mesa_plain_install) |
-| behavior_numpy | 0.4759 | 0.4464 | 33.6 | 0 | yes | yes |
-| calibration_bundle | 1.3373 | 1.2487 | 150.3 | 0 | yes | yes |
-| calibration_oracle | 1.7028 | 1.5692 | 143.9 | 0 | yes | yes |
-| drift | 1.2551 | 1.1707 | 140.8 | 0 | yes | yes |
-| schema | 0.7657 | 0.7191 | 89.6 | 0 | yes | yes |
-| splitter | 1.3708 | 1.2891 | 143.7 | 0 | yes | yes |
+| behavior_mesa | 1.3337 | 1.2639 | 105.7 | 0 | yes | yes |
+| behavior_mesa_plain_install | 0.5688 | 0.5232 | 88.1 | 0 | yes | no (expected for mesa_plain_install) |
+| behavior_numpy | 0.4829 | 0.4186 | 32.8 | 0 | yes | yes |
+| calibration_bundle | 1.2816 | 1.2307 | 149.3 | 0 | yes | yes |
+| calibration_oracle | 1.6048 | 1.5588 | 144.1 | 0 | yes | yes |
+| drift | 1.2258 | 1.1731 | 140.0 | 0 | yes | yes |
+| schema | 0.8389 | 0.7566 | 88.4 | 0 | yes | yes |
+| splitter | 1.2305 | 1.2186 | 143.0 | 0 | yes | yes |

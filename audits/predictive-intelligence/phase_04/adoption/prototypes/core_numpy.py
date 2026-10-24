@@ -150,6 +150,12 @@ class Platt:
         _check_fit_inputs(s, y, "Platt.fit")
         n1, n0 = float(np.sum(y > 0)), float(np.sum(y <= 0))
         t = np.where(y > 0, (n1 + 1) / (n1 + 2), 1 / (n0 + 2))
+        if np.ptp(s) == 0:
+            # constant scores (skeptic m7): only a s + b is identified; the optimum predicts the mean smoothed target exactly.
+            # The 2 x 2 Newton system is singular here and scikit-learn's L-BFGS stops near its start, so the two differ.
+            tbar = float(np.mean(t))
+            self.a_, self.b_ = 0.0, math.log((1 - tbar) / tbar)
+            return self
         a, b = 0.0, math.log((n0 + 1) / (n1 + 1))
         for _ in range(max_iter):
             f = a * s + b
@@ -217,6 +223,8 @@ def day_walk_forward(decision_time: np.ndarray, label_matures_at: np.ndarray, *,
     day starting at T. The first cutoff is the midnight after first_last_train_day, extended by whole days until min_train
     training rows exist. A training label can never mature after its validation rows start (the embargo is the maturity)."""
     dt_, mat = np.asarray(decision_time, float), np.asarray(label_matures_at, float)
+    if not (np.all(np.isfinite(dt_)) and np.all(np.isfinite(mat))):
+        raise ValueError("day_walk_forward: decision and maturity times must be finite (a NaN would leave rows out silently)")
     days = np.floor(dt_ / DAY) * DAY
     cut = math.floor(first_last_train_day / DAY) * DAY + DAY
     last_day = float(days.max())
@@ -230,29 +238,51 @@ def day_walk_forward(decision_time: np.ndarray, label_matures_at: np.ndarray, *,
     return folds
 
 
-def fold_audit(decision_time: np.ndarray, label_matures_at: np.ndarray, folds: Iterable[dict], n_labelled: int) -> dict:
-    """Independent check of any splitter's folds (PI-D-029 rule 4): training size, rows decided after the test start, training
-    labels maturing after the test start, and, when the splitter declares a training cutoff (the time the model claims to be
-    trained as of, P13), training rows decided or labels maturing after that cutoff. The cutoff check was added in this phase's
-    own adversarial pass: without it, the lab rule with its maturity purge removed passed the audit on the 6 h sample, because
-    the leaked labels matured between the midnight cutoff and the first decision of the next day."""
+def fold_audit(decision_time: np.ndarray, label_matures_at: np.ndarray, folds: Iterable[dict], n_labelled: int, *,
+               min_maturity_lag_s: float | None = None, groups: Sequence | None = None) -> dict:
+    """Independent check of any splitter's folds (PI-D-029 rule 4), fail closed: training size, rows decided after the test
+    start, training labels maturing after the test start, and, when the splitter declares a training cutoff (the time the model
+    claims to be trained as of, P13), training rows decided or labels maturing after that cutoff. The cutoff check came from
+    this phase's own adversarial pass; the rest from the Phase 04 skeptic (m1):
+      - a non-finite decision or maturity time in any fold row makes the audit invalid (a NaN compares false and hid leaks);
+      - a declared cutoff after the fold's test start is invalid (a model card would claim training after its own decisions);
+      - with min_maturity_lag_s (entry lag + horizon + confirmation + fetch margin of the target), a maturity earlier than
+        decision + that lag is invalid, so a maturity column of a shorter horizon cannot pass for the real one;
+      - with groups (for example the mint), test rows whose group also appears in training are counted and reported; the frozen
+        plan treats them as a sensitivity, so they do not make the audit invalid."""
     dt_, mat = np.asarray(decision_time, float), np.asarray(label_matures_at, float)
-    rows = []
+    grp = np.asarray(groups, dtype=object) if groups is not None else None
+    rows, reasons = [], []
     for k, f in enumerate(folds):
-        tr, te = np.asarray(f["train"]), np.asarray(f["test"])
-        t0 = float(dt_[te].min())
+        tr, te = np.asarray(f["train"], dtype=int), np.asarray(f["test"], dtype=int)
+        used = np.concatenate([tr, te])
+        nonfinite = int(np.sum(~np.isfinite(dt_[used])) + np.sum(~np.isfinite(mat[used])))
+        t0 = float(np.min(dt_[te])) if len(te) and np.all(np.isfinite(dt_[te])) else float("nan")
         cut = f.get("cutoff")
-        rows.append({"fold": k, "train": int(len(tr)), "test": int(len(te)),
-                     "train_share": round(len(tr) / n_labelled, 4) if n_labelled else 0.0,
-                     "train_decided_after_test_start": int(np.sum(dt_[tr] >= t0)),
-                     "train_labels_maturing_after_test_start": int(np.sum(mat[tr] > t0)),
-                     "declared_cutoff": cut,
-                     "train_decided_after_cutoff": int(np.sum(dt_[tr] >= cut)) if cut is not None else 0,
-                     "train_labels_maturing_after_cutoff": int(np.sum(mat[tr] > cut)) if cut is not None else 0,
-                     "overlap_rows": int(len(np.intersect1d(tr, te)))})
-    ok = all(r["train_decided_after_test_start"] == 0 and r["train_labels_maturing_after_test_start"] == 0 and r["overlap_rows"] == 0
-             and r["train_decided_after_cutoff"] == 0 and r["train_labels_maturing_after_cutoff"] == 0 for r in rows)
-    return {"folds": rows, "valid_walk_forward": bool(rows) and ok,
+        cut_ok = cut is None or (isinstance(cut, (int, float)) and math.isfinite(cut) and math.isfinite(t0) and cut <= t0)
+        short = int(np.sum(mat[used] < dt_[used] + min_maturity_lag_s)) if min_maturity_lag_s is not None else 0
+        shared = (int(np.sum(np.isin(grp[te], grp[tr]))) if grp is not None and len(tr) else None)
+        r = {"fold": k, "train": int(len(tr)), "test": int(len(te)),
+             "train_share": round(len(tr) / n_labelled, 4) if n_labelled else 0.0,
+             "non_finite_times": nonfinite,
+             "train_decided_after_test_start": int(np.sum(~(dt_[tr] < t0))),
+             "train_labels_maturing_after_test_start": int(np.sum(~(mat[tr] <= t0))),
+             "declared_cutoff": cut, "cutoff_after_test_start": not cut_ok,
+             "train_decided_after_cutoff": int(np.sum(~(dt_[tr] < cut))) if cut is not None else 0,
+             "train_labels_maturing_after_cutoff": int(np.sum(~(mat[tr] <= cut))) if cut is not None else 0,
+             "maturity_shorter_than_target": short, "test_rows_sharing_group_with_training": shared,
+             "overlap_rows": int(len(np.intersect1d(tr, te)))}
+        rows.append(r)
+        for key in ("non_finite_times", "train_decided_after_test_start", "train_labels_maturing_after_test_start",
+                    "train_decided_after_cutoff", "train_labels_maturing_after_cutoff", "maturity_shorter_than_target",
+                    "overlap_rows"):
+            if r[key]:
+                reasons.append(f"fold {k}: {key} {r[key]}")
+        if r["cutoff_after_test_start"]:
+            reasons.append(f"fold {k}: declared cutoff {cut} is after the test start {t0}")
+        if not len(te):
+            reasons.append(f"fold {k}: empty test set")
+    return {"folds": rows, "valid_walk_forward": bool(rows) and not reasons, "reasons": reasons,
             "min_train_share": min((r["train_share"] for r in rows), default=0.0)}
 
 

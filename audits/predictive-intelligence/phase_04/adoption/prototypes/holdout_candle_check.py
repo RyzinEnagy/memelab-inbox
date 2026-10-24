@@ -26,7 +26,7 @@ for c in calls:
         continue
     body = json.loads((raw / c["file"]).read_bytes())
     for r in body["data"]["attributes"]["ohlcv_list"]:
-        if int(r[0]) >= B.H0:
+        if int(r[0]) + 300 > B.H0:          # ends after H0 (skeptic m4): the candle containing the boundary counts
             late.append({"tag": c["tag"], "candle_start_minus_h0_s": int(r[0]) - B.H0,
                          "before_timestamp_minus_h0_s": int(up.parse_qs(up.urlparse(c["url"]).query)["before_timestamp"][0]) - B.H0})
             pools.add(plan["pools"][int(c["tag"][1:4])]["pool"])
@@ -35,6 +35,6 @@ ex = [D.export_from_doc(s, int(t), json.loads(B.git("show", f"{s}:data/state/lat
 evs = [e for e in D.decisions(D.candidates(ex)) if e["chain"] == "solana" and e["pool_pit"] in pools and e["decision_time"] >= B.H0]
 window = C.ACCEPTANCE["eligibility"]["reference_max_age_s"] + 600
 near = [e for e in evs if e["decision_time"] < B.H0 + window]
-print(json.dumps({"candles_at_or_after_h0": late, "pools": len(pools), "holdout_window_decisions_on_these_pools": len(evs),
+print(json.dumps({"candles_ending_after_h0": late, "pools": len(pools), "holdout_window_decisions_on_these_pools": len(evs),
                   "of_which_decided_within_reference_window_of_h0": len(near), "reference_window_s": window,
                   "verdict": "no holdout decision can use these candles" if not near else "CONTACT"}, indent=1))

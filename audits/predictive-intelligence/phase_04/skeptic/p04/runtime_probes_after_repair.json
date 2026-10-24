@@ -1,0 +1,90 @@
+{
+ "guarded_component_calls_sys_exit": {
+  "returned": "({'component': 'cli_main', 'state': 'COMPONENT_ERROR', 'abstain_reason': 'MODEL_NOT_SELECTED', 'detail': 'SystemExit'}, None)"
+ },
+ "simulation_adapter_calls_sys_exit": {
+  "returned": "{'component': 'behavioral', 'state': 'SIMULATION_NOT_AVAILABLE', 'abstain_reason': None, 'detail': 'ADAPTER_COMPONENT_ERROR:SystemExit'}"
+ },
+ "capability_report_adapter_calls_sys_exit": {
+  "returned": "[{'component': 'gpu', 'state': 'NOT_REQUIRED', 'abstain_reason': None, 'detail': ''}, {'component': 'crawler', 'state': 'NOT_REQUIRED', 'abstain_reason': None, "
+ },
+ "capability_report_llm_actions_'many'": {
+  "returned": "[{'component': 'gpu', 'state': 'NOT_REQUIRED', 'abstain_reason': None, 'detail': ''}, {'component': 'crawler', 'state': 'NOT_REQUIRED', 'abstain_reason': None, "
+ },
+ "capability_report_llm_actions_nan": {
+  "returned": "[{'component': 'gpu', 'state': 'NOT_REQUIRED', 'abstain_reason': None, 'detail': ''}, {'component': 'crawler', 'state': 'NOT_REQUIRED', 'abstain_reason': None, "
+ },
+ "capability_report_llm_actions_inf": {
+  "returned": "[{'component': 'gpu', 'state': 'NOT_REQUIRED', 'abstain_reason': None, 'detail': ''}, {'component': 'crawler', 'state': 'NOT_REQUIRED', 'abstain_reason': None, "
+ },
+ "capability_report_llm_actions_[3]": {
+  "returned": "[{'component': 'gpu', 'state': 'NOT_REQUIRED', 'abstain_reason': None, 'detail': ''}, {'component': 'crawler', 'state': 'NOT_REQUIRED', 'abstain_reason': None, "
+ },
+ "capability_report_llm_actions_{'n': 1}": {
+  "returned": "[{'component': 'gpu', 'state': 'NOT_REQUIRED', 'abstain_reason': None, 'detail': ''}, {'component': 'crawler', 'state': 'NOT_REQUIRED', 'abstain_reason': None, "
+ },
+ "simulation_llm_actions_True_counts_as_available": {
+  "returned": "SIMULATION_NOT_AVAILABLE"
+ },
+ "simulation_llm_actions_str_5_counts": {
+  "returned": "SIMULATION_NOT_AVAILABLE"
+ },
+ "capability_report_config_{\"predictive\": true}": {
+  "returned": "['NOT_REQUIRED', 'NOT_REQUIRED', 'BACKTEST_NOT_AVAILABLE', 'SIMULATION_NOT_AVAILABLE']"
+ },
+ "capability_report_config_{\"predictive\": \"on\"}": {
+  "returned": "['NOT_REQUIRED', 'NOT_REQUIRED', 'BACKTEST_NOT_AVAILABLE', 'SIMULATION_NOT_AVAILABLE']"
+ },
+ "capability_report_config_{\"predictive\": {\"behavioral\": \"yes\"}}": {
+  "returned": "['NOT_REQUIRED', 'NOT_REQUIRED', 'BACKTEST_NOT_AVAILABLE', 'SIMULATION_NOT_AVAILABLE']"
+ },
+ "capability_report_config_[\"predictive\"]": {
+  "returned": "['NOT_REQUIRED', 'NOT_REQUIRED', 'BACKTEST_NOT_AVAILABLE', 'SIMULATION_NOT_AVAILABLE']"
+ },
+ "contract.enabled_{\"predictive\": true}": {
+  "returned": "False"
+ },
+ "contract.enabled_[]": {
+  "returned": "False"
+ },
+ "contract.enabled_{\"predictive\": {\"enabled\": \"true\"}}": {
+  "returned": "False"
+ },
+ "contract.enabled_\"x\"": {
+  "returned": "False"
+ },
+ "callguard_cost_per_call_nan_5_calls_with_cap_1": {
+  "returned": "['COST_CAP_REACHED', 'COST_CAP_REACHED', 'COST_CAP_REACHED', 'COST_CAP_REACHED', 'COST_CAP_REACHED']"
+ },
+ "callguard_max_cost_nan": {
+  "returned": "['COST_CAP_REACHED', 'COST_CAP_REACHED', 'COST_CAP_REACHED']"
+ },
+ "callguard_component_errors_open_breaker": {
+  "returned": "['COMPONENT_ERROR', 'COMPONENT_ERROR', 'COMPONENT_ERROR', 'COMPONENT_ERROR', 'COMPONENT_ERROR', 'CIRCUIT_OPEN', 'CIRCUIT_OPEN']"
+ },
+ "callguard_returned_http_429_never_counts_as_failure": {
+  "returned": "['AVAILABLE', 'AVAILABLE', 'AVAILABLE', 'AVAILABLE', 'AVAILABLE', 'AVAILABLE', 'AVAILABLE']"
+ },
+ "dependency_state_dotted_name": {
+  "returned": "DEPENDENCY_MISSING"
+ },
+ "dependency_state_dotted_name_parent_ran": false,
+ "check_lock_marker_then_only_binary_none": [
+  "only --hash=sha256:<64 hex> may follow a requirement; refused '--only-binary=:none:' in pkg==1.0 ; python_version >= '3'"
+ ],
+ "check_lock_marker_then_sha512_extra": [
+  "only --hash=sha256:<64 hex> may follow a requirement; refused '--hash=sha512:bbbbbbbbbbbbbbbbbbbbbbbbbb' in pkg==1.0 ; python_version >= '3'"
+ ],
+ "check_lock_no_marker_sha512_extra": [
+  "only --hash=sha256:<64 hex> may follow a requirement; refused '--hash=sha512:bbbbbbbbbbbbbbbbbbbbbbbbbb' in pkg==1.0"
+ ],
+ "check_lock_marker_then_prefer_binary": [
+  "only --hash=sha256:<64 hex> may follow a requirement; refused '--prefer-binary' in pkg==1.0 ; python_version >= '3'"
+ ],
+ "check_lock_only_binary_none_own_line": [
+  "option not allowed in a lock: --only-binary=:none:"
+ ],
+ "existing_modules_mentioning_predictive": [
+  "memelab/social/alpha_cli.py"
+ ]
+}

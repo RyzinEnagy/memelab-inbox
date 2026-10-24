@@ -1,0 +1,78 @@
+{
+ "purpose": "raw GeckoTerminal bodies of the Phase 04 bake-off with every candle ending after the holdout start removed; start times only, no price",
+ "h0": "2026-10-17T00:00:00Z",
+ "bodies": [
+  {
+   "file": "0000_p000_0.json",
+   "tag": "p000_0",
+   "original_sha256": "3281e5c2ac899b1469de50a9f4e54cc8370d4bd527d86e0ae018e1e665997199",
+   "redacted_sha256": "b17d3215d54ab351e291366e7d8d783051ba0d3f3b2536c99cb6fbc1229d2c0c",
+   "removed_candle_starts": [
+    1792195200
+   ],
+   "removed_candle_starts_minus_h0_s": [
+    0
+   ]
+  },
+  {
+   "file": "0039_p027_0.json",
+   "tag": "p027_0",
+   "original_sha256": "de7a08fdb2ba28817d489ab5da6180eab723251b9c4ca0637fe8d6b076ff8579",
+   "redacted_sha256": "6cb1eeb4599dc0a59322f3acdee9e004f6e3e4c4ab0ca935e3d019eb93d71389",
+   "removed_candle_starts": [
+    1792195200
+   ],
+   "removed_candle_starts_minus_h0_s": [
+    0
+   ]
+  },
+  {
+   "file": "0102_p074_0.json",
+   "tag": "p074_0",
+   "original_sha256": "91dcd35144845e9a3b66798e2dd242f8f66fab656131b22739725a5122a8d900",
+   "redacted_sha256": "83473ab0e4fccd58f67d23b4ef86458f5a2a3b7789c8922d1a5d25d2fcf3ba63",
+   "removed_candle_starts": [
+    1792195200
+   ],
+   "removed_candle_starts_minus_h0_s": [
+    0
+   ]
+  },
+  {
+   "file": "0110_p079_0.json",
+   "tag": "p079_0",
+   "original_sha256": "41884b6c1892bf970a722fef0f5107b59eca9407da1fa7c3cde4598f6a6100dd",
+   "redacted_sha256": "7de3b5a6ae7dc295374bb9a312062fa7f0b73e9925a0eaa88d4108350630dcda",
+   "removed_candle_starts": [
+    1792195200
+   ],
+   "removed_candle_starts_minus_h0_s": [
+    0
+   ]
+  },
+  {
+   "file": "0116_p081_0.json",
+   "tag": "p081_0",
+   "original_sha256": "ee8ca6b922c6fa1612ac590cc31093e5338bca132adfd7e00197af39a766db0f",
+   "redacted_sha256": "9c89fb837e5ad6d7945aa9ee82bc0da375a1bba8d8355e20925e4dbb8f6e86f2",
+   "removed_candle_starts": [
+    1792195200
+   ],
+   "removed_candle_starts_minus_h0_s": [
+    0
+   ]
+  },
+  {
+   "file": "0117_p082_0.json",
+   "tag": "p082_0",
+   "original_sha256": "25d9ba25cfc69c89979857a5ab9f176ae2c2caaaf238ece2e5bc3610923558c0",
+   "redacted_sha256": "a048c166125638df58866371a20c3e649aa6285d264abc1be1a0f3f716e53cdd",
+   "removed_candle_starts": [
+    1792195200
+   ],
+   "removed_candle_starts_minus_h0_s": [
+    0
+   ]
+  }
+ ]
+}

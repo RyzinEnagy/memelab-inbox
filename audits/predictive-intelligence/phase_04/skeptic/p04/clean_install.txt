@@ -1,0 +1,12 @@
+pip: pip 26.2.2
+install exit 0 in 18.436178679 s
+Successfully installed autograd-1.9.1 autograd-gamma-0.4.2 cloudpickle-3.1.2 contourpy-1.4.0 cycler-0.12.1 fonttools-4.67.0 formulaic-1.2.2 interface-meta-2.0.1 joblib-1.6.0 kiwisolver-1.5.1 lifelines
+installed packages: 30
+smoke ok 1.9.1 4.7.0 0.469994 0.470451
+smoke exit 0
+lifelines 0.30.3 has requirement pandas<3.0,>=2.1, but you have pandas 3.0.5.
+uninstall exit 0
+freeze before 0b897bd2e718a14e after 0b897bd2e718a14e; site-packages manifest before 9408f55174ac4bee after 9408f55174ac4bee
+top-level entries after uninstall:
+./mpl_toolkits ./pip ./pip-26.2.2.dist-info 
+wheelhouse files whose sha256 is in the lock: 30 of 30

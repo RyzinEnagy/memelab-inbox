@@ -44,9 +44,12 @@ def oracle() -> dict:
         "ties_in_calibration": (np.round(s(cal), 1), d["y"][cal], np.round(s(te), 1)),
         "outside_calibration_range": (s(cal), d["y"][cal], np.r_[s(cal).min() - 3, s(cal).min() - 0.5, s(cal).max() + 0.5, s(cal).max() + 3]),
         "random_small": (rng.normal(size=40), (rng.random(40) < 0.3).astype(float), rng.normal(size=200)),
+        # skeptic m7: raw scores above about 37 saturate the sigmoid, so the oracle sees ties the raw scores do not have
+        "large_scores": (rng.uniform(20, 60, size=60), (rng.random(60) < 0.4).astype(float), rng.uniform(15, 65, size=100)),
     }
     for name, (cs, cy, ts) in cases.items():
-        p0, p1, p = K.venn_abers(cs, cy, ts)
+        # both implementations get the same inputs (the probabilities the oracle needs); Venn-Abers depends only on the order
+        p0, p1, p = K.venn_abers(sig(cs), cy, sig(ts))
         va = VennAbers().fit(np.column_stack([1 - sig(cs), sig(cs)]), cy.astype(int))
         pp, p01 = va.predict_proba(np.column_stack([1 - sig(ts), sig(ts)]))
         probes[name] = {"n_cal": int(len(cs)), "n_test": int(len(ts)), "max_abs_diff_p0": float(np.max(np.abs(p0 - p01[:, 0]))),
@@ -85,9 +88,20 @@ def bundle() -> dict:
         ctl[f"precision_ge_{tgt}"] = {"valid_thresholds": nvalid,
                                       "best": None if bcc.best_predict_param is None or nvalid == 0 else round(float(np.atleast_1d(bcc.best_predict_param)[0]), 4)}
     sp = float(spiegelhalter_p_value(d["y"][te].astype(int), pl.predict(s(te))))
+    # skeptic m7: constant scores; only a s + b is identified. numpy returns the exact optimum (the mean smoothed target)
+    yc = d["y"][cal]
+    const = np.full(len(cal), 0.25)
+    from sklearn.calibration import _sigmoid_calibration
+    a_sk, b_sk = _sigmoid_calibration(const, yc)
+    n1, n0 = float(yc.sum()), float(len(yc) - yc.sum())
+    tbar = (n1 * (n1 + 1) / (n1 + 2) + n0 / (n0 + 2)) / len(yc)
+    p_np = float(K.Platt().fit(const, yc).predict(np.array([0.25]))[0])
+    p_sk = float(1 / (1 + np.exp(a_sk * 0.25 + b_sk)))
     return {"mode": "bundle", "sklearn": sklearn.__version__, "mapie": mapie.__version__,
             "logistic_numpy_vs_sklearn": {"max_abs_coef_diff": coef_diff, "max_abs_prob_diff": prob_diff},
             "platt_numpy_vs_frozen_sigmoid": {"max_abs_prob_diff": platt_diff},
+            "platt_constant_scores": {"numpy": round(p_np, 10), "sklearn": round(p_sk, 10), "exact_optimum_mean_smoothed_target": round(tbar, 10),
+                                      "numpy_minus_optimum": p_np - tbar, "sklearn_minus_optimum": p_sk - tbar},
             "mapie_controller": ctl, "mapie_spiegelhalter_p_holdout": round(sp, 6), "calibration_rows": int(len(cal)),
             "calibration_positives": int(d["y"][cal].sum()), "mean_p_cal": round(float(p_cal.mean()), 6)}
 

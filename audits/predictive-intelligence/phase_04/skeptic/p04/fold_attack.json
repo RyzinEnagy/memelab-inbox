@@ -1,0 +1,39 @@
+{
+ "0_lab_rule_real_24h": {
+  "valid": true,
+  "folds": 4
+ },
+ "A_purge_removed_audit": {
+  "valid": false,
+  "leaked_labels": 29
+ },
+ "A_same_folds_one_test_decision_time_NaN": {
+  "valid": true,
+  "leaked_labels_counted": 0
+ },
+ "A2_purge_removed_leaking_rows_maturity_NaN": {
+  "valid": true,
+  "rows_set_to_NaN": 31
+ },
+ "B_cutoff_declared_two_days_after_test_start": {
+  "valid": true
+ },
+ "C_6h_maturity_for_24h_labels": {
+  "audit_on_supplied_column_valid": true,
+  "audit_on_true_column_valid": false,
+  "labels_maturing_after_cutoff_true": 31
+ },
+ "D_test_rows_whose_mint_is_in_training": [
+  1,
+  4,
+  4,
+  1
+ ],
+ "D_test_rows": [
+  7,
+  8,
+  7,
+  4
+ ],
+ "E_rows_whose_decision_time_is_not_their_commit_time": 0
+}

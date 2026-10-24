@@ -1,15 +1,19 @@
 {
  "after_uninstall": {
+  "dirs": 77,
+  "dirs_sha256": "052665948c3cafe662835f5ff1a81c2ce8630fefba43020788d01b70a8a25b89",
   "files": 886,
   "freeze_lines": 0,
   "freeze_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "sha256": "280d84c2ef39b7c06db70c70d25e7d6a2361eb69baa1b04e12a8272d0e2c68bf"
+  "sha256": "02d4646945165d20c17587c47f23b50bbda9e74e10fba19cf7e1cea6bc098a87"
  },
  "before": {
+  "dirs": 76,
+  "dirs_sha256": "4b525ba988fd865cb845e33c2302261c4f7f726e9c7276214bacbf9729a96f09",
   "files": 886,
   "freeze_lines": 0,
   "freeze_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "sha256": "280d84c2ef39b7c06db70c70d25e7d6a2361eb69baa1b04e12a8272d0e2c68bf"
+  "sha256": "02d4646945165d20c17587c47f23b50bbda9e74e10fba19cf7e1cea6bc098a87"
  },
  "check_lock": [],
  "install": {
@@ -19,8 +23,12 @@
   ]
  },
  "installed_count": 30,
+ "leftover_dirs": [
+  "mpl_toolkits"
+ ],
  "lock": "docs/predictive-intelligence/locks/research-py313.txt",
- "lock_sha256": "3ca3b1a8d4f6565a4633b3e9cc66724a251b029e165f907378d6dc130ac1190b",
+ "lock_sha256": "1347f84bb2639143e85e8532e09c8513e0ab679b3982ed8ba5d5bf3b45f2ba84",
+ "missing_dirs": [],
  "packages": 30,
  "pip_check": {
   "exit": 1,
@@ -30,6 +38,7 @@
  },
  "pip_version": "pip 26.2.2",
  "rollback_clean": true,
+ "rollback_clean_with_dirs": false,
  "smoke_offline": {
   "COX_LIFELINES": {
    "brier": 0.036626,
@@ -49,7 +58,7 @@
   "LR_SKLEARN": {
    "brier": 0.036301,
    "exit": 0,
-   "predictions_sha256": "c9c0050e1ec82c5e891263ffa874e4e50ad5f40084a0841879b6458e70bb98a1"
+   "predictions_sha256": "78f8fe6589bc339bb03f7fe140b77d8c590c52f57697abb95a6aae8160b4fe53"
   }
  },
  "system_pip_freeze_sha256": "4bbf5c51faf183d28468285ef5952c4d9d90be7c0c8937c992d58a695fe4e152",

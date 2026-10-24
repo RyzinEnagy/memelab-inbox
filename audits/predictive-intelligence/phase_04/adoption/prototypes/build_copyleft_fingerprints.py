@@ -41,10 +41,15 @@ def main(out: str) -> None:
         fps |= kept
         meta.append({"repo": s["repo"], "pin": s["pin"], "license": s["license"], "roots": s["roots"], "files": len(files),
                      "fingerprints": len(kept)})
-    doc = {"version": 1, "purpose": "P31 copyleft gate: winnowed 4-line shingle hashes of pinned AGPL sources; hashes only",
-           "normalization": "whitespace collapsed, lines under 8 characters dropped (runtime.normalized_lines)",
-           "shingle_lines": R.SHINGLE_LINES, "winnow_window": R.WINNOW_WINDOW, "hash": f"sha256 hex prefix {R.HASH_HEX}",
-           "sources": meta, "fingerprints": sorted(fps)}
+    # self-test (Phase 04 repair, skeptic m2): a synthetic, lab-written text with mixed case and its fingerprints as this
+    # builder computes them; the test recomputes them with the runtime, so a changed hash algorithm, normalization, shingle
+    # length or window fails the suite even though the pinned sources cannot be committed.
+    text = "\n".join(f"    Value_{i:03d} = Compute_Something(Alpha={i}, beta={(i * 7) % 13}, Mode='Mixed_Case_{i % 5}')"
+                     for i in range(120))
+    doc = {"version": 2, "purpose": "P31 copyleft gate: winnowed 4-line shingle hashes of pinned AGPL sources; hashes only",
+           **R.fingerprint_spec(), "code_suffixes": list(R.CODE_SUFFIXES), "sources": meta,
+           "selftest": {"text": text, "fingerprints": sorted(R.winnow(R.shingle_hashes(text)))},
+           "fingerprints": sorted(fps)}
     Path(out).write_text(json.dumps(doc, indent=0, sort_keys=True) + "\n")
     print(json.dumps({"fingerprints": len(fps), "sources": meta}))
 

@@ -1,0 +1,87 @@
+{
+ "guarded_component_calls_sys_exit": {
+  "ESCAPED": "SystemExit: 1"
+ },
+ "simulation_adapter_calls_sys_exit": {
+  "ESCAPED": "SystemExit: 1"
+ },
+ "capability_report_adapter_calls_sys_exit": {
+  "ESCAPED": "SystemExit: 1"
+ },
+ "capability_report_llm_actions_'many'": {
+  "ESCAPED": "ValueError: invalid literal for int() with base 10: 'many'"
+ },
+ "capability_report_llm_actions_nan": {
+  "ESCAPED": "ValueError: cannot convert float NaN to integer"
+ },
+ "capability_report_llm_actions_inf": {
+  "ESCAPED": "OverflowError: cannot convert float infinity to integer"
+ },
+ "capability_report_llm_actions_[3]": {
+  "ESCAPED": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'list'"
+ },
+ "capability_report_llm_actions_{'n': 1}": {
+  "ESCAPED": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'dict'"
+ },
+ "simulation_llm_actions_True_counts_as_available": {
+  "returned": "AVAILABLE"
+ },
+ "simulation_llm_actions_str_5_counts": {
+  "returned": "AVAILABLE"
+ },
+ "capability_report_config_{\"predictive\": true}": {
+  "ESCAPED": "AttributeError: 'bool' object has no attribute 'get'"
+ },
+ "capability_report_config_{\"predictive\": \"on\"}": {
+  "ESCAPED": "AttributeError: 'str' object has no attribute 'get'"
+ },
+ "capability_report_config_{\"predictive\": {\"behavioral\": \"yes\"}}": {
+  "ESCAPED": "AttributeError: 'str' object has no attribute 'get'"
+ },
+ "capability_report_config_[\"predictive\"]": {
+  "ESCAPED": "AttributeError: 'list' object has no attribute 'get'"
+ },
+ "contract.enabled_{\"predictive\": true}": {
+  "ESCAPED": "AttributeError: 'bool' object has no attribute 'get'"
+ },
+ "contract.enabled_[]": {
+  "ESCAPED": "AttributeError: 'list' object has no attribute 'get'"
+ },
+ "contract.enabled_{\"predictive\": {\"enabled\": \"true\"}}": {
+  "returned": "False"
+ },
+ "contract.enabled_\"x\"": {
+  "ESCAPED": "AttributeError: 'str' object has no attribute 'get'"
+ },
+ "callguard_cost_per_call_nan_5_calls_with_cap_1": {
+  "returned": "['AVAILABLE', 'AVAILABLE', 'AVAILABLE', 'AVAILABLE', 'AVAILABLE']"
+ },
+ "callguard_max_cost_nan": {
+  "returned": "['AVAILABLE', 'AVAILABLE', 'AVAILABLE']"
+ },
+ "callguard_component_errors_open_breaker": {
+  "returned": "['COMPONENT_ERROR', 'COMPONENT_ERROR', 'COMPONENT_ERROR', 'COMPONENT_ERROR', 'COMPONENT_ERROR', 'CIRCUIT_OPEN', 'CIRCUIT_OPEN']"
+ },
+ "callguard_returned_http_429_never_counts_as_failure": {
+  "returned": "['AVAILABLE', 'AVAILABLE', 'AVAILABLE', 'AVAILABLE', 'AVAILABLE', 'AVAILABLE', 'AVAILABLE']"
+ },
+ "dependency_state_dotted_name": {
+  "returned": "AVAILABLE"
+ },
+ "dependency_state_dotted_name_parent_ran": true,
+ "check_lock_marker_then_only_binary_none": [],
+ "check_lock_marker_then_sha512_extra": [],
+ "check_lock_no_marker_sha512_extra": [
+  "not an exact pin: pkg==1.0  --hash=sha512:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+ ],
+ "check_lock_marker_then_prefer_binary": [
+  "option not allowed in a lock: pkg==1.0 ; python_version >= '3' --hash=sha256:aaaaaaaaaaaaa"
+ ],
+ "check_lock_only_binary_none_own_line": [
+  "not an exact pin: --only-binary=:none:",
+  "no sha256 hash: --only-binary=:none:"
+ ],
+ "existing_modules_mentioning_predictive": [
+  "memelab/social/alpha_cli.py"
+ ]
+}

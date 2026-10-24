@@ -85,12 +85,18 @@ def main(inp: str, out: str, bom: str, cache: str) -> None:
                      "wheels": [{"file": f, "sha256": h, "platforms": ps, "bytes": sz} for h, (f, ps, sz) in sorted(keep.items(), key=lambda x: x[1][0])]})
         spec = f"{name}=={ver}" + (f" {marker}" if marker else "")
         lines.append(spec + " \\\n" + " \\\n".join(f"    --hash=sha256:{h}" for h in sorted(keep)))
-    header = ("# memelab predictive research dependencies: CPython 3.13, Linux x86_64, Windows x86_64, macOS arm64 wheels only.\n"
-              "# Install only with: python -m pip install --require-hashes --only-binary=:all: --no-deps -r <this file>\n"
-              "# (docs/predictive-intelligence/DECISIONS.md PI-D-032). Never into the interpreter that runs the scheduled lab.\n")
+    if Path(out).name.startswith("core"):
+        header = ("# memelab predictive core: the numpy the lab already runs (README `pip install pytest numpy`), pinned with wheel hashes\n"
+                  "# for CPython 3.13 on Linux x86_64, Windows x86_64 and macOS arm64. The essential engine needs nothing else.\n"
+                  "# Check with memelab.predictive.runtime.check_lock; install with runtime.install_argv (PI-D-032).\n")
+    else:
+        header = ("# memelab predictive research dependencies: CPython 3.13, Linux x86_64, Windows x86_64, macOS arm64 wheels only.\n"
+                  "# Build the install command only with memelab.predictive.runtime.install_argv (check_lock first, then\n"
+                  "# pip install --require-hashes --only-binary=:all: --no-deps), into a dedicated venv, never the interpreter that\n"
+                  "# runs the scheduled lab (docs/predictive-intelligence/DECISIONS.md PI-D-032, PI-D-035).\n")
     text = header + "\n".join(lines) + "\n"
     Path(out).write_text(text)
-    guard = R.check_lock(text)
+    guard = R.check_lock(text, {w["sha256"] for r in rows for w in r["wheels"]})
     Path(bom).write_text(json.dumps({"input_lock": Path(inp).name, "packages": rows, "problems": problems, "check_lock": guard},
                                     indent=1) + "\n")
     print(json.dumps({"packages": len(rows), "hashes": sum(len(r["wheels"]) for r in rows), "problems": problems, "check_lock": guard}))

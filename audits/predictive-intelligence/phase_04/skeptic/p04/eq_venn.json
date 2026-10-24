@@ -1,0 +1,59 @@
+{
+ "venn_abers": {
+  "random_300": {
+   "max_abs_diff": 0.0,
+   "p0_le_p1": true,
+   "in_0_1": true
+  },
+  "heavy_ties_10_levels": {
+   "max_abs_diff": 0.0,
+   "p0_le_p1": true,
+   "in_0_1": true
+  },
+  "test_equals_calibration_points": {
+   "max_abs_diff": 0.0,
+   "p0_le_p1": true,
+   "in_0_1": true
+  },
+  "extreme_test_0_and_1": {
+   "max_abs_diff": 0.0,
+   "p0_le_p1": true,
+   "in_0_1": true
+  },
+  "all_calibration_scores_equal": {
+   "max_abs_diff": 0.0,
+   "p0_le_p1": true,
+   "in_0_1": true
+  },
+  "two_points": {
+   "max_abs_diff": 0.0,
+   "p0_le_p1": true,
+   "in_0_1": true
+  },
+  "antimonotone_calibration": {
+   "max_abs_diff": 4.996003610813204e-16,
+   "p0_le_p1": true,
+   "in_0_1": true
+  },
+  "n2000": {
+   "max_abs_diff": 2.220446049250313e-16,
+   "p0_le_p1": true,
+   "in_0_1": true
+  },
+  "phase_probe_design_with_saturated_sigmoid": {
+   "max_abs_diff": 0.1544715447154471,
+   "numpy_p": [
+    0.5318,
+    0.5333,
+    0.6316,
+    0.6667
+   ],
+   "oracle_p": [
+    0.5122,
+    0.5122,
+    0.5122,
+    0.5122
+   ]
+  }
+ }
+}
