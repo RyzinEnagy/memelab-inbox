@@ -33,8 +33,12 @@ Status: NEEDS_REVIEW (first pass; the orchestrator runs the independent skeptic,
 | Coverage | `python -B coverage_counts.py`, `build_store.py summary` | 0, 0 | `evidence/coverage_counts.json`, `evidence/store_summary.json` |
 | Phase 05 tests | `python -m pytest tests/test_predictive_asof_store.py tests/test_predictive_asof_features.py tests/test_predictive_asof_fixture.py -q` | 0 | `66 passed` |
 | Mutations | `python -B mutation_asof.py ../evidence/mutation_asof.json` | 0 | control passes; 35 of 35 mutations caught; 3 single-layer mutations of deliberately doubled protections survive alone and are caught when mutated together (reported in the file) |
-| Pre-commit suite | `python -m pytest tests -q` | 1 | see PHASE_05_RESULTS.json (`precommit_suite`) |
-| CLI regression, guard, release audit, post-commit suite | run after the commit on the committed tree (PI-D-030) | | recorded in `postcommit/` and PHASE_05_RESULTS.json by the records commit |
+| Pre-commit suite | `python -m pytest tests -q` (staged tree checks: guard 0 violations, release audit exit 0, tracked-file tests 206 passed) | 1 | `1 failed, 1059 passed in 151.20s`, only the known failure |
+| Deliverables commit | `git commit` | 0 | `b4baa78b9c744e0a4e4c0a9c5d6a924bda27fbac` (2026-10-24T11:38:13Z) |
+| Post-commit suite | `python -m pytest tests -q` on `b4baa78` | 1 | `1 failed, 1059 passed in 165.68s`, only the known failure (`postcommit/pytest_summary.txt`); stray BRETT report removed |
+| Post-commit guard | `python -m memelab social guard` | 0 | `"violations": []` (`postcommit/social_guard.out.txt`) |
+| Post-commit release audit | `python tools/release_audit.py --history` | 0 | "Needs action: no"; no Phase 05 file named (`postcommit/release_audit_history.summary.txt`) |
+| CLI regression | `python -B probes/cli_regression.py 074953d b4baa78 postcommit/cli_regression.json` | 0 | 6 commands (`--help`, `init`, two `analyze`, `scout`, `catalyst fc-health`) in two clean clones with temp DBs and the network cut: outputs and report files identical; exits 0, 0, 0, 0, 0, 1 on both sides (fc-health without a key) |
 
 Calls: 155 GeckoTerminal calls in all, at most 6 in any 60 s window across both call logs (checked from `evidence/backfill_calls.json` and `evidence/revision_check_inbox15.json`); 0 Firecrawl credits, no WebSearch or WebFetch (COST_LEDGER.md).
 
@@ -61,7 +65,12 @@ Calls: 155 GeckoTerminal calls in all, at most 6 in any 60 s window across both 
 | A18 | re-read 10 of 96 series (10.4%) and two more comparisons (above); the 48 h rule stays Phase 06's |
 | A19, A20, A21 | `data/SOURCE_COVERAGE.md`; `data/FEATURE_STORE_CONTRACT.md` checked against the code by a test; `tests/fixtures/predictive/asof_fixture.json` (real rows of 3 mints from 12 exports, 4 real reads including a refused quote-side read and its `token=<mint>` re-read) with 8 pinned snapshot hashes |
 | A22 | sockets and the curl wrapper raise inside the Phase 05 tests; temp files; fixed clocks; 35 of 35 mutations caught |
-| A23 to A28 | recorded after the commit (PHASE_05_RESULTS.json, HANDOFF.md) |
+| A23 | `git diff --name-only 074953d b4baa78` lists only `audits/predictive-intelligence/`, `docs/predictive-intelligence/`, `memelab/predictive/` (three new modules and the package docstring), `tests/test_predictive_asof_*.py` and `tests/fixtures/predictive/asof_*`; existing syntax-tree test confirms no existing module imports the package; new modules import the standard library and existing lab modules only; CLI outputs identical; tracked DB sha256 `068287c0...` unchanged; nothing under `inbox/`, `state/`, `data/` |
+| A24 | post-commit suite, guard and release audit above |
+| A25 | 147 gzip bodies, 3.4 MB, every file and body sha256 in `raw/MANIFEST.csv`; largest committed file `tests/fixtures/predictive/asof_fixture.json` (189,461 bytes); no venv, pickle, key or social content |
+| A26 | COST_LEDGER.md row: 0 credits, 155 free calls |
+| A27 | records written; style scan of every file this phase wrote: no dashes, curly quotes or listed marketing words; status NEEDS_REVIEW |
+| A28 | two commits (deliverables `b4baa78` and the records commit on top); `git status` clean including ignored files (the ignored set equals the one at the start); not pushed |
 
 ## Findings (beyond the gate)
 

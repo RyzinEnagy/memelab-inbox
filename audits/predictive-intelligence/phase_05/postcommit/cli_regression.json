@@ -1,0 +1,138 @@
+{
+ "before": {
+  "ref": "074953d",
+  "head": "074953d8aacb7c58fc3955588bad54a0a5782d54",
+  "network_cut": true,
+  "commands": [
+   {
+    "cmd": "--help",
+    "exit": 0,
+    "stdout_sha256": "7f5f0c8108d3a1885e5b8f83220c06efa9ed48d0b300b6deb5be0909cab34ca8",
+    "stdout_head": [
+     "usage: memelab [-h]",
+     "               {init,plan,fetch,save,discover,stage2,analyze,scout,wallet,catalyst,chains,launch,social,watchlist,rejections,social-note} ..."
+    ]
+   },
+   {
+    "cmd": "init",
+    "exit": 0,
+    "stdout_sha256": "dd5a172d214d9e7f02a1a2bde62aecfb5ba34f2003a4dfe2d38d034ef4c61e54",
+    "stdout_head": [
+     "db ready at ROOT/db/lab.sqlite"
+    ]
+   },
+   {
+    "cmd": "analyze DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump --results deep01a deep02 deep03 deep04 --stage1 disc01 --no-persist",
+    "exit": 0,
+    "stdout_sha256": "52c8d5be08737a547193743860b54e01b64b9a2312c920c032efc22434977653",
+    "stdout_head": [
+     "HIGGS score 47 status DISTRIBUTION RISK -> None"
+    ]
+   },
+   {
+    "cmd": "analyze DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump --results disc01 s2_01 deep01a deep02 deep03 deep04 forensics01 --no-persist",
+    "exit": 0,
+    "stdout_sha256": "8d62b356ac87daeab6221b643af02b730e696fa32834db8794c6107026288b79",
+    "stdout_head": [
+     "HIGGS score 51 status REJECTED -> None"
+    ]
+   },
+   {
+    "cmd": "scout --mints DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump --results deep01a deep02 deep03 deep04 --stage1 disc01 --report-dir REPORTS",
+    "exit": 0,
+    "stdout_sha256": "5fd6cf80fd36dfea1683d491be56afeb545cc9e8b70989d5e7b07a93bc680350",
+    "stdout_head": [
+     "# Opportunity Scout report \u2014 2026-10-07 00:16 UTC",
+     ""
+    ]
+   },
+   {
+    "cmd": "catalyst fc-health",
+    "exit": 1,
+    "stdout_sha256": "6c10bffbbfe64cacf75acb5ca959ff1c5d5bd5278a4d1e5ad62c004ed1bb6e08",
+    "stdout_head": [
+     "{",
+     " \"config\": \"ROOT/clone/data/private/firecrawl.json\","
+    ]
+   }
+  ],
+  "report_files": {
+   "STAMP_HIGGS_DoVAVz.md": "2cd67bfbfd142bc1618ef186cf65c3cb98d46908afa114e58d955029b509278b",
+   "STAMP_SCOUT.md": "8361b565b34bdd520deb21ec4c57b11076aa2b95f3a1777ec1b69208326f2202"
+  },
+  "clone_status_after": []
+ },
+ "after": {
+  "ref": "b4baa78",
+  "head": "b4baa78b9c744e0a4e4c0a9c5d6a924bda27fbac",
+  "network_cut": true,
+  "commands": [
+   {
+    "cmd": "--help",
+    "exit": 0,
+    "stdout_sha256": "7f5f0c8108d3a1885e5b8f83220c06efa9ed48d0b300b6deb5be0909cab34ca8",
+    "stdout_head": [
+     "usage: memelab [-h]",
+     "               {init,plan,fetch,save,discover,stage2,analyze,scout,wallet,catalyst,chains,launch,social,watchlist,rejections,social-note} ..."
+    ]
+   },
+   {
+    "cmd": "init",
+    "exit": 0,
+    "stdout_sha256": "dd5a172d214d9e7f02a1a2bde62aecfb5ba34f2003a4dfe2d38d034ef4c61e54",
+    "stdout_head": [
+     "db ready at ROOT/db/lab.sqlite"
+    ]
+   },
+   {
+    "cmd": "analyze DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump --results deep01a deep02 deep03 deep04 --stage1 disc01 --no-persist",
+    "exit": 0,
+    "stdout_sha256": "52c8d5be08737a547193743860b54e01b64b9a2312c920c032efc22434977653",
+    "stdout_head": [
+     "HIGGS score 47 status DISTRIBUTION RISK -> None"
+    ]
+   },
+   {
+    "cmd": "analyze DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump --results disc01 s2_01 deep01a deep02 deep03 deep04 forensics01 --no-persist",
+    "exit": 0,
+    "stdout_sha256": "8d62b356ac87daeab6221b643af02b730e696fa32834db8794c6107026288b79",
+    "stdout_head": [
+     "HIGGS score 51 status REJECTED -> None"
+    ]
+   },
+   {
+    "cmd": "scout --mints DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump --results deep01a deep02 deep03 deep04 --stage1 disc01 --report-dir REPORTS",
+    "exit": 0,
+    "stdout_sha256": "5fd6cf80fd36dfea1683d491be56afeb545cc9e8b70989d5e7b07a93bc680350",
+    "stdout_head": [
+     "# Opportunity Scout report \u2014 2026-10-07 00:16 UTC",
+     ""
+    ]
+   },
+   {
+    "cmd": "catalyst fc-health",
+    "exit": 1,
+    "stdout_sha256": "6c10bffbbfe64cacf75acb5ca959ff1c5d5bd5278a4d1e5ad62c004ed1bb6e08",
+    "stdout_head": [
+     "{",
+     " \"config\": \"ROOT/clone/data/private/firecrawl.json\","
+    ]
+   }
+  ],
+  "report_files": {
+   "STAMP_HIGGS_DoVAVz.md": "2cd67bfbfd142bc1618ef186cf65c3cb98d46908afa114e58d955029b509278b",
+   "STAMP_SCOUT.md": "8361b565b34bdd520deb21ec4c57b11076aa2b95f3a1777ec1b69208326f2202"
+  },
+  "clone_status_after": []
+ },
+ "commands_identical": true,
+ "per_command": [
+  true,
+  true,
+  true,
+  true,
+  true,
+  true
+ ],
+ "reports_identical": true
+}

@@ -2,7 +2,7 @@
  "phase": "05",
  "status": "NEEDS_REVIEW",
  "head_before": "074953d",
- "head_after": null,
+ "head_after": "b4baa78b9c744e0a4e4c0a9c5d6a924bda27fbac",
  "checks": [
   {
    "name": "package checksums",
@@ -183,6 +183,38 @@
    "exit_code": 0,
    "result": "068287c0d7e454361eb42f54b2f90e49e4075ae3a962a3c57867165ab6a679ca",
    "pass": true
+  },
+  {
+   "name": "post-commit full suite",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 1059 passed in 165.68s (0:02:45)",
+   "pass": true
+  },
+  {
+   "name": "post-commit content guard",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "violations: []",
+   "pass": true
+  },
+  {
+   "name": "post-commit release audit with history",
+   "command": "python tools/release_audit.py --history",
+   "exit_code": 0,
+   "result": "Needs action: no",
+   "pass": true
+  },
+  {
+   "name": "CLI regression 074953d against b4baa78 in clean clones",
+   "command": "python -B probes/cli_regression.py 074953d b4baa78 postcommit/cli_regression.json",
+   "exit_code": 0,
+   "result": {
+    "commands_identical": true,
+    "reports_identical": true,
+    "network_cut": true
+   },
+   "pass": true
   }
  ],
  "artifacts": [
@@ -192,7 +224,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_05/PHASE_05_EVIDENCE.md",
-   "sha256": "11c7dbc34957b38b95ba8484bb79b0e5c4ec149a7511bc5ea9d3254d053134b1"
+   "sha256": "5837c97c1fd5b49dd055e7a69b9b60db8e048a94a7550cf2ad5225cbfee5730c"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/SKEPTIC_PACKET.md",
@@ -265,6 +297,26 @@
   {
    "path": "audits/predictive-intelligence/phase_05/evidence/store_summary.json",
    "sha256": "81b49314c935898ea64069b1c8ca91afae1094ae1b4738125b1d5fd943d22939"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/postcommit/cli_regression.json",
+   "sha256": "9ca89d63b458dc3d3a1d14e994a272747038f1b3ca39fb26c3651dafd8b02deb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/postcommit/pytest_summary.txt",
+   "sha256": "8e4d2527033a1e3bc67b49babd3886f02028177de7fef8bdacf5f912138bc2c0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/postcommit/release_audit_history.summary.txt",
+   "sha256": "ea974c8617662f0cdd54d1c00d4f33fd20867e76fc5052385f016aef345daa7a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/postcommit/social_guard.out.txt",
+   "sha256": "0b577c6574743cb62a79b399e1a5ba72f011b7549eadee3ee753bd586cdcd3eb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/postcommit/summary.json",
+   "sha256": "d23bc6c8aed270322df48f1e393257d903207ec178bfb5f3c6b020277982920c"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/probes/asof_real_checks.py",

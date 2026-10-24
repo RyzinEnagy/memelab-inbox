@@ -5,7 +5,7 @@ Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](E
 ## Position
 
 - Phase 05 (immutable temporal evidence and feature store): NEEDS_REVIEW, 2026-10-24, first pass complete; waiting for the orchestrator's independent skeptic (PI-D-013), then a repair pass sets the final status.
-- Branch `feature/predictive-intelligence`: the Phase 05 deliverables commit and a records commit on top of `074953d` (read the hashes with `git log -3 --oneline`; this file is part of the records commit). Not pushed. Spend 0 credits; 155 free GeckoTerminal calls.
+- Branch `feature/predictive-intelligence`: the Phase 05 deliverables commit `b4baa78` and the records commit on top of it (read its hash with `git log -1`; this file is part of it), both on `074953d`. Not pushed. Spend 0 credits; 155 free GeckoTerminal calls.
 - Code added: `memelab/predictive/store.py`, `sources.py`, `features.py` (standard library only, flag OFF, imported by no existing module); `memelab/predictive/__init__.py` docstring lists the modules. Tests: `tests/test_predictive_asof_store.py` (37), `test_predictive_asof_features.py` (25), `test_predictive_asof_fixture.py` (4); fixtures `tests/fixtures/predictive/asof_helpers.py`, `asof_pid011_export.json`, `asof_fixture.json`. No other file under `memelab/` or `tests/` changed; nothing under `inbox/`, `state/` or `data/` changed.
 
 ## What Phase 05 built and found
@@ -32,7 +32,7 @@ python -B revision_check.py p04               # 80 changed of 57,584, all in ope
 
 - Entry gate at `074953d`: `1 failed, 993 passed in 146.88s`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (known).
 - Pre-commit: `1 failed, 1059 passed in 151.20s` (993 plus 66), only the known failure.
-- Post-commit suite, content guard, release audit with history and the CLI regression in two clean clones: `phase_05/postcommit/` and PHASE_05_RESULTS.json (records commit).
+- Post-commit on `b4baa78`: suite `1 failed, 1059 passed in 165.68s` (known failure only), `python -m memelab social guard` exit 0 with no violations, `python tools/release_audit.py --history` exit 0 "Needs action: no", CLI regression `074953d` against `b4baa78` in two clean clones identical (`phase_05/postcommit/`).
 - Strays after each run: `data/reports/<stamp>_BRETT_0x532f.md` (removed by hand); `data/memelab.sqlite-shm` and `-wal` existed before this phase and are ignored; tracked DB sha256 `068287c0...` unchanged.
 
 ## Blockers and open items

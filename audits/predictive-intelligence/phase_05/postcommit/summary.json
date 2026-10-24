@@ -1,0 +1,37 @@
+{
+ "commit": "b4baa78b9c744e0a4e4c0a9c5d6a924bda27fbac",
+ "checks": [
+  {
+   "name": "post-commit full suite",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 1059 passed in 165.68s (0:02:45)",
+   "pass": true
+  },
+  {
+   "name": "post-commit content guard",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "violations: []",
+   "pass": true
+  },
+  {
+   "name": "post-commit release audit with history",
+   "command": "python tools/release_audit.py --history",
+   "exit_code": 0,
+   "result": "Needs action: no",
+   "pass": true
+  },
+  {
+   "name": "CLI regression 074953d against b4baa78 in clean clones",
+   "command": "python -B probes/cli_regression.py 074953d b4baa78 postcommit/cli_regression.json",
+   "exit_code": 0,
+   "result": {
+    "commands_identical": true,
+    "reports_identical": true,
+    "network_cut": true
+   },
+   "pass": true
+  }
+ ]
+}
