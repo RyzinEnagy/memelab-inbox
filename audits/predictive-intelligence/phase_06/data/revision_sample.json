@@ -1,0 +1,102 @@
+{
+ "label_reads": 151,
+ "rule": "label reads of LABELED development records, ordered by sha256 of the request URL, lowest ceil(10%)",
+ "sample": [
+  {
+   "earliest_48h_reread": "2026-10-26T13:49:09Z",
+   "first_retrieved_at": 1792849749.8054783,
+   "response_key": "dabd6d5eac40bb7a2cd77344fbd673133eaf9d4e71a67fbb93618bf67471e9a1",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/zxTpi4BtaWX3mgdAPoezkMD1hxx8CdeCfrqXMWvSCLX/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791583200&currency=usd&token=6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx"
+  },
+  {
+   "earliest_48h_reread": "2026-10-26T13:10:05Z",
+   "first_retrieved_at": 1792847405.5368662,
+   "response_key": "ef25f768fa55b08c114be7cb828c1fc038c2c54bf9abd9466126946fc0aa6594",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/6FBnZzRtdMrjxEPdLK4UGP9Xm2hsYwLY3xp6EWB1e2md/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1792060200&currency=usd&token=u7XNK4pbxXgWzBwqidDV2TtsXwLqqxtjmGfw1H8pump"
+  },
+  {
+   "earliest_48h_reread": "2026-10-26T13:07:26Z",
+   "first_retrieved_at": 1792847246.6039355,
+   "response_key": "1532ebcf390cedf20c48e7deebeaafc2d2fba3aad9d97dddd5903a0c0bed611f",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/4xp7kN4nVt19caq4kM629vL8vJEqpSFVdZAh27wvYPh8/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791973500&currency=usd&token=6Mix12LiHrQFojaQEnfPUC65Qkwd6X4Y5Qg93oFbordr"
+  },
+  {
+   "earliest_48h_reread": "2026-10-26T13:43:54Z",
+   "first_retrieved_at": 1792849434.9625835,
+   "response_key": "d0a06834b6192d0a31ea65e25311bf66930055a8d3df5cf2e4dcff17a49e485b",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/HGLSAK3nVLzAZPBMiqrkV52cmZhNVrwVQuzpSnCSYAkw/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791660900&currency=usd&token=Aov3BtQvrGXM5V9oiHu8PKJWeV8a2rFnr24fwWcNpump"
+  },
+  {
+   "earliest_48h_reread": "2026-10-26T13:28:20Z",
+   "first_retrieved_at": 1792848500.8589983,
+   "response_key": "6860170a48bfe9670366d8935440e77f63c53f55fb26dbdbdd4737bec15696a0",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/Cprsvqk2riV3WmTewKK9m6cm62zaAqLDArAbBmN3pe4f/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1792146300&currency=usd&token=7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3"
+  },
+  {
+   "earliest_48h_reread": "2026-10-26T13:15:16Z",
+   "first_retrieved_at": 1792847716.450799,
+   "response_key": "bee6367f0f3e8de848e205d76842e3bd95f3d906bb3eaa5a808f3e93f1646e5c",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/7HNBrAqWdM6978EYTJR2kcnZV3NHQ1YpaAhvBCC8Q3fR/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791628200&currency=usd&token=2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2"
+  },
+  {
+   "earliest_48h_reread": "2026-10-26T13:07:03Z",
+   "first_retrieved_at": 1792847223.5737395,
+   "response_key": "72184916c4e373c85f24f8f184185d77a61d09ffd55ee681276bf31cb0cde7a3",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/4wbt5gf46kCt9dhzNFVtAEn5PnFr56U5HTpw27TVytvV/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791714600&currency=usd&token=7Xgc5RacHtGzfhw2HukUBk5V986yBbvshr7rrCoopump"
+  },
+  {
+   "earliest_48h_reread": "2026-10-26T13:21:58Z",
+   "first_retrieved_at": 1792848118.7992246,
+   "response_key": "759ee75a68e2f9d7d4ecffe0027c80e96a4ee46175f57c712f9dd3e0d942c5de",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/BUVzsLLLG7GWoyJVoU31pXiBveazA6GXTavZ9VD3CwS9/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791973500&currency=usd&token=8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS"
+  },
+  {
+   "earliest_48h_reread": "2026-10-26T13:26:12Z",
+   "first_retrieved_at": 1792848372.1839573,
+   "response_key": "7f15e09a9cdd556cfc773496bd0b8a7e1364d69436445b5acc583c662fa6360a",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791807300&currency=usd&token=Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump"
+  },
+  {
+   "earliest_48h_reread": "2026-10-26T13:30:51Z",
+   "first_retrieved_at": 1792848651.7586193,
+   "response_key": "3a46c1f0e86be54e4e2f6a2e3885f6501df12d85f3f3ba3b219b5a567b1ad0c0",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/DA4pM4xSDY4M9V4CgAKKBVH1pw1yscTQQa5nEkGHuKpt/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791850200&currency=usd&token=MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump"
+  },
+  {
+   "earliest_48h_reread": "2026-10-26T13:12:45Z",
+   "first_retrieved_at": 1792847565.700251,
+   "response_key": "9926134ddd672caedf9cd8d7868fe5083bf441cd2f8e32e4bdc0bd05d5ade9b2",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/6fqyYM1WgA1SvTwidAnaFme9ATEHBbk1c666STUapHEd/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1792169400&currency=usd&token=8xSeFhrAT8MFrDZSY5Fw719CAwmYWjXYcgYqvhKGSXcJ"
+  },
+  {
+   "earliest_48h_reread": "2026-10-26T13:19:07Z",
+   "first_retrieved_at": 1792847947.4771938,
+   "response_key": "e522a96a98f571037d741011857b00e9d8fcf1d462da3c6cb11b2bd9b3b9f991",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/9c4ELYhnsYNCCiQdAmDDZHbdrw5dRsuQGz8RdruRwGs2/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791660900&currency=usd&token=4EMavj8PiPMnHYjzkcu6eJ5EihhYkaJbMuHznAuZpump"
+  },
+  {
+   "earliest_48h_reread": "2026-10-26T13:19:52Z",
+   "first_retrieved_at": 1792847992.8157008,
+   "response_key": "b108477550154df2b661f1673323f009082e1df96b6cf9a1d4321655a033183d",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/AALoAMF7sUGQK11Q33FuMU3KaDDpVbaGAfAMpp8YQb1M/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791887100&currency=usd&token=7vMkPxLwaH26qSZ2CgHhzvrgz9wUWMvT256vbUWfarm"
+  },
+  {
+   "earliest_48h_reread": "2026-10-26T13:45:37Z",
+   "first_retrieved_at": 1792849537.8327162,
+   "response_key": "1f384dc810f2de8c96744d537dbeba319bc425697094eeb9a718e84b44455996",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/bgoWxfmZAmWFmEPWLaSfY4VtqwoZKc3kLzmy4J6kq1g/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791887100&currency=usd&token=HBuRKZW5ztyGiYYBPnk7bfDPuUHPAvv7xq6dxYSf4zs9"
+  },
+  {
+   "earliest_48h_reread": "2026-10-26T13:05:43Z",
+   "first_retrieved_at": 1792847143.530288,
+   "response_key": "32786178a7c3a480fc5dd4cfb58a1d4abe62346a00b5471c648568b1fbfb857c",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/4R8CiMnJWDNoes3fQi1ccPFJygPXazaHaWpHrN3rZeNj/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791807300&currency=usd&token=GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump"
+  },
+  {
+   "earliest_48h_reread": "2026-10-26T13:33:08Z",
+   "first_retrieved_at": 1792848788.503894,
+   "response_key": "35f4b09bc0ea76aafbbe2a3c2fda6f3d99c4af3bc3f0c50132bc0b6926bdbeb8",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/EozBrsBqcmuNuZNFxiugHbrPxaq6g8jW1Hr3XHWsBcMp/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1791628200&currency=usd&token=EMeugag3yfyvKqNKknGDWAudNALafZjbv9ByzCE8pump"
+  }
+ ]
+}

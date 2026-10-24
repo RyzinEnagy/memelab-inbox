@@ -132,7 +132,12 @@ _COMMON = {
     "label_observed_at": "retrieval time of the candles; a backfill read is never a historical availability claim",
     "fetch_margin_s": 900,
     "censored": ["VENDOR_OR_ROUTE_GAP", "UNVERIFIABLE_NO_VENDOR_HISTORY"],
-    "unverifiable_rule": "a reference candle was found but a later read needed for the label window fails after retries",
+    "unverifiable_rule": "a reference candle was found but a later read needed for the label window fails after retries, or an "
+                         "absence the label needs is not evidenced (CC-03)",
+    "absence_evidence": "an absence of candles over a span (NO_TRADES_AFTER_ENTRY, TRADING_HALT) counts only on an identity-checked "
+                        "read whose boundary is at or after the span end on the candle grid and that returned a candle starting "
+                        "before the span; an empty or short page alone is never evidence of no trade (CC-03, PI-D-039)",
+    "one_read_per_decision": "eligibility, the reference price and every target of one decision come from one response (CC-03)",
     "position_usd": None,
     "caveats": [PRICE_PATH_CAVEAT, "NO_HISTORICAL_EXECUTABLE_DEPTH"],
 }
@@ -150,7 +155,12 @@ TARGETS: dict[str, dict[str, Any]] = {
         drawdown=0.5, halt_quiet_from_s=64800, confirm_s=86400,
         positive=["DRAWDOWN_50", "TRADING_HALT"], negative=["NO_SEVERE_EVENT"],
         tie_rule="none needed: one barrier; TRADING_HALT = no candle on the reference pool or up to 3 other vendor-listed pools of the mint "
-                 "from t_entry + 18 h to t_entry + 48 h"),
+                 "from t_entry + 18 h to t_entry + 48 h",
+        halt_span_rule="a candle is in the halt span [t_entry + 18 h, t_entry + 48 h) when it overlaps it (CC-03)",
+        halt_other_pools="the first three pools other than the reference pool in the vendor's current pool list for the mint (page 1, "
+                         "vendor order), read with token=<mint>; a candle on any in the span makes NO_SEVERE_EVENT; each needs the "
+                         "absence evidence, else UNVERIFIABLE_NO_VENDOR_HISTORY; read only when the reference pool shows an evidenced "
+                         "halt and no drawdown (CC-03)"),
     "exit_adjusted_target_before_invalidation_24h": {"status": "BLOCKED_NO_HISTORICAL_DEPTH", "version": "0", "horizon_s": 86400,
         "why": "needs sell quotes at a stated size at entry and at the barrier times; none kept after 2026-10-08, theses hold exit_cap_3pct at decision only (P08)"},
     "liquidity_degradation_24h": {"status": "DEFERRED_FORWARD_COLLECTION", "version": "0", "horizon_s": 86400,

@@ -1,0 +1,16 @@
+[
+ {
+  "archive": "dev",
+  "at": "2026-10-24T14:14:50Z",
+  "statuses": {
+   "429": 1
+  },
+  "unmapped": 1
+ },
+ {
+  "archive": "sealed",
+  "at": "2026-10-24T14:14:50Z",
+  "statuses": {},
+  "unmapped": 0
+ }
+]

@@ -1,0 +1,319 @@
+{
+ "phase": "06",
+ "status": "NEEDS_REVIEW",
+ "head_before": "ed82f3a9d89b091579bd4ed43646acf14e355d64",
+ "head_after": null,
+ "registry_sha256": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "holdout_labels_sha256": "e695500d01014936cf4a4a46f9975dcf9a9ca1351fe067f28ec36117cb82682b",
+ "seal_sha256": "d5059baeb07099d5d73d74249d4487e362cb38b2e1dafe974139d2d4d0d25390",
+ "development_label_counts": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "DRAWDOWN_50": 28,
+   "NO_SEVERE_EVENT": 103
+  },
+  "price_path_target_before_invalidation_24h": {
+   "AMBIGUOUS_BAR": 1,
+   "INVALIDATION_FIRST": 70,
+   "NEITHER": 31,
+   "TARGET_FIRST": 34
+  },
+  "price_path_target_before_invalidation_6h": {
+   "AMBIGUOUS_BAR": 1,
+   "INVALIDATION_FIRST": 67,
+   "NEITHER": 129,
+   "NO_TRADES_AFTER_ENTRY": 1,
+   "TARGET_FIRST": 26
+  }
+ },
+ "holdout_state_counts": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "LABELED": 60,
+   "MARKET_INACTIVE": 12,
+   "NO_SNAPSHOT_PRICE": 9,
+   "OUT_OF_SCOPE_CHAIN": 81,
+   "PENDING": 7,
+   "THINNED": 2,
+   "VENDOR_OR_ROUTE_GAP": 5
+  },
+  "price_path_target_before_invalidation_24h": {
+   "LABELED": 67,
+   "MARKET_INACTIVE": 12,
+   "NO_SNAPSHOT_PRICE": 9,
+   "OUT_OF_SCOPE_CHAIN": 81,
+   "THINNED": 2,
+   "VENDOR_OR_ROUTE_GAP": 5
+  },
+  "price_path_target_before_invalidation_6h": {
+   "LABELED": 69,
+   "MARKET_INACTIVE": 12,
+   "NO_SNAPSHOT_PRICE": 9,
+   "OUT_OF_SCOPE_CHAIN": 81,
+   "VENDOR_OR_ROUTE_GAP": 5
+  }
+ },
+ "checks": [
+  {
+   "name": "package checksums",
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "entry gate at ed82f3a",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 1066 passed in 152.58s (known failure only)",
+   "pass": true
+  },
+  {
+   "name": "label tests",
+   "command": "python -m pytest tests/test_predictive_labels.py -q",
+   "exit_code": 0,
+   "result": "41 passed",
+   "pass": true
+  },
+  {
+   "name": "contract tests after CC-03",
+   "command": "python -m pytest tests/test_predictive_contract.py -q",
+   "exit_code": 0,
+   "result": "66 passed",
+   "pass": true
+  },
+  {
+   "name": "mutation check",
+   "command": "python -B probes/mutation_labels.py evidence/mutation_labels.json",
+   "exit_code": 0,
+   "result": "25 of 25 caught, control exit 0",
+   "pass": true
+  },
+  {
+   "name": "development labels",
+   "input": "evidence/labels_run.json",
+   "result": {
+    "price_path_severe_drawdown_or_halt_24h": {
+     "DRAWDOWN_50": 28,
+     "NO_SEVERE_EVENT": 103
+    },
+    "price_path_target_before_invalidation_24h": {
+     "AMBIGUOUS_BAR": 1,
+     "INVALIDATION_FIRST": 70,
+     "NEITHER": 31,
+     "TARGET_FIRST": 34
+    },
+    "price_path_target_before_invalidation_6h": {
+     "AMBIGUOUS_BAR": 1,
+     "INVALIDATION_FIRST": 67,
+     "NEITHER": 129,
+     "NO_TRADES_AFTER_ENTRY": 1,
+     "TARGET_FIRST": 26
+    }
+   },
+   "pass": true
+  },
+  {
+   "name": "cross-target invariants (CX-06)",
+   "input": "evidence/labels_run.json",
+   "result": {
+    "development": 0,
+    "holdout": 0
+   },
+   "pass": true
+  },
+  {
+   "name": "offline rebuild from the committed archive",
+   "command": "python -B probes/make_labels.py rebuild",
+   "exit_code": 0,
+   "result": {
+    "archive_files": 256,
+    "development_records": 3888,
+    "differences": 0,
+    "labeled": 491,
+    "stored_records": 3888
+   },
+   "pass": true
+  },
+  {
+   "name": "holdout seal",
+   "command": "python -B probes/check_seal.py",
+   "exit_code": 0,
+   "result": {
+    "files": 99,
+    "seal_sha256": "d5059baeb07099d5d73d74249d4487e362cb38b2e1dafe974139d2d4d0d25390"
+   },
+   "pass": true
+  },
+  {
+   "name": "revision re-read in session (P07, short gap)",
+   "input": "evidence/revision_reread.json",
+   "result": {
+    "appeared": 0,
+    "candles_changed": 0,
+    "candles_compared": 12617,
+    "frozen_48h_checks": 0,
+    "gap_s_max": 4685.2,
+    "gap_s_min": 1680.6,
+    "labels_checked": 44,
+    "labels_revised": 0,
+    "reads": 16,
+    "vanished": 0
+   },
+   "pass": true
+  },
+  {
+   "name": "revision against Phase 05 reads",
+   "input": "evidence/revision_vs_phase05.json",
+   "result": {
+    "read_pairs": 182,
+    "positions_compared": 76120,
+    "unchanged": 76019,
+    "changed_by_fields": {
+     "o": 54,
+     "oh": 26,
+     "ol": 21
+    },
+    "labels_same": 111,
+    "labels_different": 0
+   },
+   "pass": true
+  },
+  {
+   "name": "frozen 48 h revision re-read (PI-D-018)",
+   "command": "python -B probes/make_labels.py reread48",
+   "result": "NOT RUN: earliest 2026-10-26T13:05Z to 13:49Z",
+   "pass": false
+  },
+  {
+   "name": "pacing",
+   "input": "evidence/label_calls.json + sealed/label_calls.json",
+   "result": "381 calls, at most 6 in any 60 s window, 33 HTTP 429 and 1 HTTP 500 retried, 0 Firecrawl credits",
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "memelab/predictive/labels.py",
+   "sha256": "fc8496ed4f1082ab515ae78b4b138dc5a3c8e1dc5b3dfbf5b14b2baf0a17d2dd"
+  },
+  {
+   "path": "memelab/predictive/contract.py",
+   "sha256": "1caa72271fba5e4d96bfaaaab35ea0f75a496790bae5a4dbd6f27c825e78819a"
+  },
+  {
+   "path": "memelab/predictive/__init__.py",
+   "sha256": "6d41a2ace9da63bda8aa98ab5a55215944f4cefc21d849b729c07d5f41568cb9"
+  },
+  {
+   "path": "tests/test_predictive_labels.py",
+   "sha256": "58e15b03c428bd37215d37afb5496550160bed145b15659519066326296ca575"
+  },
+  {
+   "path": "tests/test_predictive_contract.py",
+   "sha256": "e928a8841b70c861fca96b913a647189014b6704acd23f7bc767e4ccf892fe5a"
+  },
+  {
+   "path": "tests/fixtures/predictive/labels_hand_trace.json",
+   "sha256": "70ab9cf3ec9777422e71245a25304888c41bc9f8737ba566912eeabc0e5526ba"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/labels/COVERAGE_CENSORED_REPORT.md",
+   "sha256": "913c97cb868a808d8b8e2648a45e916067fa349a48f97f127e60bff63f214b2f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/labels/HAND_CHECKED_TRACE.md",
+   "sha256": "9c2d5266dc20849697e963f13b3b7151f8b7b41282f823303876f6d09ca36127"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/labels/TARGET_SCHEMA.md",
+   "sha256": "a9a0bc4b08d7907e4378c54d05989ab6d6dfa8edf4c92ab66cced773a9408b18"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/labels/coverage.json",
+   "sha256": "d7544c7eee739ae1d76aafc13f5d36044357ded9dda7d1602100e8540cd93c87"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/labels/coverage_tables.md",
+   "sha256": "5c51a5889552463608ecbcb6212b88239be3c1eeb92cad9bda6d94f4069b40b0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "faa31752ee9fd4b0cb14a0ad198ae53f71f41dd846cd1415f4f288268caf1fc7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/SKEPTIC_PACKET.md",
+   "sha256": "5e184d741a10e916a6cc3c10137fe4636aabc43a8df805bc5ba0262973e278c8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/PHASE_06_EVIDENCE.md",
+   "sha256": "9a5d715a5353710e55b8c3d429877eba0c9f4ab8f9b9c101e6695ff56580b232"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/sealed/SEAL.json",
+   "sha256": "f362ca127baf20e8c3036eca3e11e6d6df4f69b0e0741a4f1b914ada7b2706c2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/sealed/holdout_labels.jsonl.gz",
+   "sha256": "e695500d01014936cf4a4a46f9975dcf9a9ca1351fe067f28ec36117cb82682b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/raw/MANIFEST.csv",
+   "sha256": "f6ac14c05bee85c5e6c4f23e61b9d4c1ef95200907b1f679b5b7af6fa44c329f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/data/read_map.json",
+   "sha256": "7b95bbc2e90ba385b6f9b178de59401151cd31392b8d0e4e0aabd56d3e9b2470"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/data/read_plan.json",
+   "sha256": "bb40aeb79313da36dddad758704267737a377c872934047b8cb87f3b93c55662"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/data/revision_sample.json",
+   "sha256": "581fa61a73bed0e4bb9a016458eab7b2f2151c9d8dac7d79a7394b48a93356e5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/evidence/label_calls.json",
+   "sha256": "a37b09f0a61aa2e81bba3b6de139fcb522dd2f2d63b47935954dc43803eed02f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/evidence/labels_run.json",
+   "sha256": "6a1116f4b4e7ccd3bf0d0942a84c49c680e7ba624f13c9cd1843690feefa2267"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/evidence/mutation_labels.json",
+   "sha256": "3c1a6b4332d0fbe0417822fd0d09daf357355b2b8194dd1ccbf552210882756e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/evidence/real_traces.json",
+   "sha256": "682f339f461a8569dba91fa03abb2598b8877362fa837df2ab7711cb5477a957"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/evidence/rebuild_from_archive.json",
+   "sha256": "17e2ecbd27c759e388f3f5f78b56a4ab433470b97f5c3630cb0ac4ce18ab132e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/evidence/revision_reread.json",
+   "sha256": "ab8c36fff2c435393211741b7b109a4265fe3fdda1cd31a9438af6897a9367a8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/evidence/revision_vs_phase05.json",
+   "sha256": "5d5804235847855a968a43f572a800a1319b6e03896d54f3426b56a63005639e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/evidence/unmapped_transient.json",
+   "sha256": "e4000dcf75ef53585463bdbc9a148630533c5b6c2548f3b65e1efeca58af87b5"
+  }
+ ],
+ "limitations": [
+  "the frozen 48 h revision re-read (PI-D-018) has not run; earliest 2026-10-26T13:05Z",
+  "TRADING_HALT does not occur in development; the halt path is shown on fixtures and as one real reference-pool flag",
+  "development spans 9 (T1), 10 (T1b) and 8 (T2) decision days of one regime",
+  "CURRENT_VENDOR_LIST decisions are censored far more often than PIT_RECORDED ones (39 of 274 against 2 of 521)",
+  "provider-lag availability is a HEURISTIC reconstruction; label_observed_at is a 2026-10-24 retrieval time",
+  "price-path labels only: no fill, size, depth or proceeds"
+ ],
+ "blockers": [
+  "time: the 48 h revision re-read cannot run before 2026-10-26T13:05Z (PI-D-041 item 5)"
+ ],
+ "approvals_needed": [],
+ "next_eligible_phase": "none until the orchestrator's skeptic is folded in and the 48 h re-read has run or its timing is decided; then 07"
+}

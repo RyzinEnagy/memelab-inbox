@@ -19,9 +19,10 @@ ROOT = Path(__file__).resolve().parent.parent
 FIX = json.loads((ROOT / "tests/fixtures/predictive/forecast_examples_format_only.json").read_text())
 NA = C.BACKTEST_NOT_AVAILABLE
 # Fingerprint of TARGETS + ACCEPTANCE. Pre-registered dd3b4576... (b6f2621, PI-D-014); changed by CC-01 (9f8c9deb..., PI-D-019) and
-# by CC-02 (repair pass 2, PI-D-021), both before any label existed. A further change must update this line and be recorded as change
-# control; a silent edit fails here.
-FROZEN_REGISTRY_SHA = "91d03c769dde1d8cbba0f6a40257e7e3c060544ddb2f2b6b8a17556554b5a81a"
+# by CC-02 (repair pass 2, PI-D-021), both before any label existed; changed by CC-03 (Phase 06, PI-D-040: absence evidence, halt span
+# and other pools, one read per decision), also before any label was computed. A further change must update this line and be recorded
+# as change control; a silent edit fails here.
+FROZEN_REGISTRY_SHA = "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896"
 ACCEPTANCE_DOC = ROOT / "audits/predictive-intelligence/phase_01/architecture/ACCEPTANCE_METRICS.md"
 
 

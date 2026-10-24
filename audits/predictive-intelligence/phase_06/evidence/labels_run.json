@@ -1,0 +1,109 @@
+{
+ "cross_target_violations": {
+  "development": 0,
+  "holdout": 0
+ },
+ "dev_class": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "DRAWDOWN_50": 28,
+   "NO_SEVERE_EVENT": 103
+  },
+  "price_path_target_before_invalidation_24h": {
+   "AMBIGUOUS_BAR": 1,
+   "INVALIDATION_FIRST": 70,
+   "NEITHER": 31,
+   "TARGET_FIRST": 34
+  },
+  "price_path_target_before_invalidation_6h": {
+   "AMBIGUOUS_BAR": 1,
+   "INVALIDATION_FIRST": 67,
+   "NEITHER": 129,
+   "NO_TRADES_AFTER_ENTRY": 1,
+   "TARGET_FIRST": 26
+  }
+ },
+ "dev_rows_added": 4026,
+ "dev_state_by_split": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "DEVELOPMENT:LABELED": 131,
+   "DEVELOPMENT:MARKET_INACTIVE": 26,
+   "DEVELOPMENT:NO_SNAPSHOT_PRICE": 34,
+   "DEVELOPMENT:OUT_OF_SCOPE_CHAIN": 475,
+   "DEVELOPMENT:THINNED": 566,
+   "DEVELOPMENT:VENDOR_OR_ROUTE_GAP": 37,
+   "PROSPECTIVE:NO_SNAPSHOT_PRICE": 3,
+   "PROSPECTIVE:OUT_OF_SCOPE_CHAIN": 8,
+   "PROSPECTIVE:PROSPECTIVE": 7,
+   "PURGED:MARKET_INACTIVE": 14,
+   "PURGED:NO_SNAPSHOT_PRICE": 1,
+   "PURGED:OUT_OF_SCOPE_CHAIN": 19,
+   "PURGED:PURGED": 15,
+   "PURGED:THINNED": 2,
+   "PURGED:VENDOR_OR_ROUTE_GAP": 4
+  },
+  "price_path_target_before_invalidation_24h": {
+   "DEVELOPMENT:LABELED": 136,
+   "DEVELOPMENT:MARKET_INACTIVE": 35,
+   "DEVELOPMENT:NO_SNAPSHOT_PRICE": 34,
+   "DEVELOPMENT:OUT_OF_SCOPE_CHAIN": 483,
+   "DEVELOPMENT:THINNED": 568,
+   "DEVELOPMENT:VENDOR_OR_ROUTE_GAP": 39,
+   "PROSPECTIVE:NO_SNAPSHOT_PRICE": 3,
+   "PROSPECTIVE:OUT_OF_SCOPE_CHAIN": 8,
+   "PROSPECTIVE:PROSPECTIVE": 7,
+   "PURGED:MARKET_INACTIVE": 5,
+   "PURGED:NO_SNAPSHOT_PRICE": 1,
+   "PURGED:OUT_OF_SCOPE_CHAIN": 11,
+   "PURGED:PURGED": 10,
+   "PURGED:VENDOR_OR_ROUTE_GAP": 2
+  },
+  "price_path_target_before_invalidation_6h": {
+   "DEVELOPMENT:LABELED": 224,
+   "DEVELOPMENT:MARKET_INACTIVE": 40,
+   "DEVELOPMENT:NO_SNAPSHOT_PRICE": 35,
+   "DEVELOPMENT:OUT_OF_SCOPE_CHAIN": 494,
+   "DEVELOPMENT:THINNED": 490,
+   "DEVELOPMENT:VENDOR_OR_ROUTE_GAP": 41,
+   "PROSPECTIVE:NO_SNAPSHOT_PRICE": 3,
+   "PROSPECTIVE:OUT_OF_SCOPE_CHAIN": 8,
+   "PROSPECTIVE:PROSPECTIVE": 7
+  }
+ },
+ "eligibility": {
+  "ELIGIBLE": 783,
+  "MARKET_INACTIVE": 52,
+  "NOT_READ": 7,
+  "NO_SNAPSHOT_PRICE": 47,
+  "OUT_OF_SCOPE_CHAIN": 583,
+  "VENDOR_OR_ROUTE_GAP": 46
+ },
+ "holdout_sealed_lines": 528,
+ "holdout_state": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "LABELED": 60,
+   "MARKET_INACTIVE": 12,
+   "NO_SNAPSHOT_PRICE": 9,
+   "OUT_OF_SCOPE_CHAIN": 81,
+   "PENDING": 7,
+   "THINNED": 2,
+   "VENDOR_OR_ROUTE_GAP": 5
+  },
+  "price_path_target_before_invalidation_24h": {
+   "LABELED": 67,
+   "MARKET_INACTIVE": 12,
+   "NO_SNAPSHOT_PRICE": 9,
+   "OUT_OF_SCOPE_CHAIN": 81,
+   "THINNED": 2,
+   "VENDOR_OR_ROUTE_GAP": 5
+  },
+  "price_path_target_before_invalidation_6h": {
+   "LABELED": 69,
+   "MARKET_INACTIVE": 12,
+   "NO_SNAPSHOT_PRICE": 9,
+   "OUT_OF_SCOPE_CHAIN": 81,
+   "VENDOR_OR_ROUTE_GAP": 5
+  }
+ },
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "run_key": "b7c1dc4495288de62c31a847ba5f60adfa1d3f6571761959abecb34556137b03"
+}

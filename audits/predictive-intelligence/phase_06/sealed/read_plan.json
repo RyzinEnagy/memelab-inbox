@@ -1,0 +1,774 @@
+{
+ "decisions": [
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "5b38c3e77a66b38721a14fa867cd528d61d570dc2153ac0c4ec4f9cd27a3ec1f",
+   "decision_time": 1792664388.0,
+   "mint": "1zJX5gRnjLgmTpq5sVwkq69mNDQkCemqoasyjaPW6jm",
+   "need_from": 1792577388.0,
+   "pool": "4SBYWY5UuxybWuj8FwHdFXUN6mbtACrqbJwiZ9mXworP",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "05337f6b0f8d9023f630e118c0402b2aa20ab3247a888abd45a1ee31f1dc2360",
+   "decision_time": 1792664388.0,
+   "mint": "2QdtqvDAYaX4zxNbxbL2Jax5yz7jV2cF2TgTv5jRnf5H",
+   "need_from": 1792577388.0,
+   "pool": "CAsrCQT7Y1kQsEpCPqxSz7z2nbR8jL9Q4Ey1ikWhQRTS",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "a9173b9a6ed23ff17079407e335fb721f21389a999fa165666f130e1d213fd03",
+   "decision_time": 1792664388.0,
+   "mint": "39HqgQ18g9R33sUfKq1TjX4sbKrgTb4YntnBCFhURJvy",
+   "need_from": 1792577388.0,
+   "pool": "4misp3ZaffwuvK5tMoG9z3gKmmsa5XAEE2nW2mnxEY6H",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "6ab1cb447448c60918cfd5589806194b986022e1487126eeb1cacc8f9d8d4a7a",
+   "decision_time": 1792406045.0,
+   "mint": "3j92g6mygEzuQ25Atdy8xPsScH7hsn33PjH31ZqP61Rg",
+   "need_from": 1792319045.0,
+   "pool": "26hq83ubjaxGmcMTbGQqrWMUrtwg92EeJgFUYd7zKvUH",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "e81a01192db4bce091a9abec79739104b563c4799919ce924567daec3618183d",
+   "decision_time": 1792406045.0,
+   "mint": "4HxV2vqATQEjn1hYw3eR43x9b3w1Z5ZoNoV5byTbpump",
+   "need_from": 1792319045.0,
+   "pool": "9VXsQGaSSTBWcw9Y5nWVmqawqa7voAV2Cy4vrY1ydcze",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837800.0,
+   "decision_key": "ceed0bf832ada8729e5c318fcff6b526fa4f61854a7fbdfe244d240c86e23747",
+   "decision_time": 1792750826.0,
+   "mint": "4MMQY9bwkxxTtsK3W227Q5ABT6yFY8Pmn9Ze7wmAXKY8",
+   "need_from": 1792663826.0,
+   "pool": "5752ia7jC3ZU1c8ycytaSyi5D4nVhApSKvreGbs7pwWL",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792491300.0,
+   "decision_key": "ba8692e5d3efa659b0f543389979bb73ce0c56258b9895a57c4336a84e10065e",
+   "decision_time": 1792318039.0,
+   "mint": "4MrnXyiavn5uHmntspb2JqQkVa4Ecg2uy1M9nKjVpump",
+   "need_from": 1792231039.0,
+   "pool": "8rTFY1TtwAsQv8EMVti4G4hxyyiSPxAunqwey9YHJrYP",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792491300.0,
+   "decision_key": "f721768a3181be35687c750fe19e843e736327f46ccff9fe05836f43ff4816bc",
+   "decision_time": 1792318039.0,
+   "mint": "4by8accPvdRcmDEvJy1svdSJMwfVcNGyWqgQw9EPpump",
+   "need_from": 1792231039.0,
+   "pool": "ALNPAbQbgLApREFRDuJoBYJNvKePHbL7Lu6ru7zTeL85",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792405800.0,
+   "decision_key": "4875855bf844656bd086db5c67f13417e8a9d0d929a40570cac00d693c61ee54",
+   "decision_time": 1792232442.0,
+   "mint": "4kjruqGHDsSqkMdFfCjV7Vb62HPFhtXyWc2t6JpQzDnz",
+   "need_from": 1792145442.0,
+   "pool": "xg71xrhn7MEj5akrZGteuYeiTLbBzyNCpBn69bRYd5a",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792751100.0,
+   "decision_key": "d5e34e27f2bb03bb78e1c739cff22e0dad1222b86c05caf6a16632456089ae69",
+   "decision_time": 1792577969.0,
+   "mint": "4kjruqGHDsSqkMdFfCjV7Vb62HPFhtXyWc2t6JpQzDnz",
+   "need_from": 1792490969.0,
+   "pool": "xg71xrhn7MEj5akrZGteuYeiTLbBzyNCpBn69bRYd5a",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792491300.0,
+   "decision_key": "3d32b6937666d92de2fbf9429a0fa7c11c8174e4fdff379c468bade0e83f0a43",
+   "decision_time": 1792318039.0,
+   "mint": "4pSbtLzF6ANmdyYXv4LyxBeH7NEH1PDzCg5tb3d1pump",
+   "need_from": 1792231039.0,
+   "pool": "BVSTP2QU9bquGAwFQQbnzEfmx34FC5w8eMvz3qmRgi6k",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "9edf45b5b66aec99c960b406ac064264f73a22f132d48d2e0a8f05f8dda276f0",
+   "decision_time": 1792406045.0,
+   "mint": "5Upkgkqx9nZJGDCz4Kgo8tiT995Gu1PiF7AGMQbBxEg",
+   "need_from": 1792319045.0,
+   "pool": "HG9y5S5DQarVw25V7c4xXgi1fk6RhAYJBQNqe976ceba",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "fc0699b84a6e55be1925e4574aa9fe44289b80c288c9f466ad5d47651e2458db",
+   "decision_time": 1792664388.0,
+   "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+   "need_from": 1792577388.0,
+   "pool": "2y6PCqa4fEp3jLiFdan9jVMw7LSK8F3gwsTfy8p7traE",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792491300.0,
+   "decision_key": "ae326b150322191072ede1b99304712343329f3ddec5de54606b9f0ccc576981",
+   "decision_time": 1792318039.0,
+   "mint": "5x6QQvpRpd1PsFTTTJe6sJFFSqrA21H1j3GZLmo2pump",
+   "need_from": 1792231039.0,
+   "pool": "8JoQRQ4oAXNuQSTcComuUAAgF3ViJ7e3escwatMncZ3H",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792751100.0,
+   "decision_key": "b0381c59bba8d58b21824fa255279f2d4094eed2a486830623dc761538678f02",
+   "decision_time": 1792577969.0,
+   "mint": "6FhVPctYg363pQbs4iSvqyHe2cJzfsvFD96gePy6pump",
+   "need_from": 1792490969.0,
+   "pool": "2zPfdGd48k7B2U9yqZ4hJSPAPtoVU9uiEbFQYXEoeXkv",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792751100.0,
+   "decision_key": "4a783159009f4245d2ea03c8f3c374d2ce58c59a364202bbb385167f597810d4",
+   "decision_time": 1792577969.0,
+   "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+   "need_from": 1792490969.0,
+   "pool": "zxTpi4BtaWX3mgdAPoezkMD1hxx8CdeCfrqXMWvSCLX",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "11a4df37bbd8acb9ddbdf39103d4856c44b604b17284dcf9678161d16e7cbeb9",
+   "decision_time": 1792664388.0,
+   "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+   "need_from": 1792577388.0,
+   "pool": "zxTpi4BtaWX3mgdAPoezkMD1hxx8CdeCfrqXMWvSCLX",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792837800.0,
+   "decision_key": "bfaf08e0e387ff35a30a0af2a1e9d1858c3aec7076bd826e8a8d231c68f76ff7",
+   "decision_time": 1792750826.0,
+   "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+   "need_from": 1792663826.0,
+   "pool": "zxTpi4BtaWX3mgdAPoezkMD1hxx8CdeCfrqXMWvSCLX",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "66f1ceae7901fae5155ac65b7eaca20c2995caa16a94b8bb64f45ac92e1b39b2",
+   "decision_time": 1792406045.0,
+   "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+   "need_from": 1792319045.0,
+   "pool": "3C5YE97HADPDxZehYq9Cis8AXr9aNyrUsczKzE1nDbW9",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "d8f3e6a88b8728f33a50694367618d7e687b19874ea7d77c1dcc996f612c2761",
+   "decision_time": 1792406045.0,
+   "mint": "6wifasxctST3jd9s6UaoVexc2pvYqTcLWZEAjCTJ51wW",
+   "need_from": 1792319045.0,
+   "pool": "BUCFKH9dGcQLhkF9HYyDKhZhsvxsAxM3suMLtzx9aLto",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "87db34b8bbe729d0c2a82760deb3acd12e9e3c9756b586dfe67dd1564f3db206",
+   "decision_time": 1792406045.0,
+   "mint": "72yxYmhLgDGwdyi2b9GjDynBB6VuG3kDxNKqDbzXh5bi",
+   "need_from": 1792319045.0,
+   "pool": "LeZ2DH1y7bqzAghYbXqKB6fNxoBKqPSPihv3EmkLBRv",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792491300.0,
+   "decision_key": "4ae0c5c4c4ff4e0704578efc4fb2295463a7ddcafa84d885a4425501d3fb4ab2",
+   "decision_time": 1792318039.0,
+   "mint": "78f7rvyUZnVfJ4HbdRgaHDr4tFWkNZCzNN7z5DZxpump",
+   "need_from": 1792231039.0,
+   "pool": "2oNu5aXFbecrJGZ9JdjrjAmJbHVD4XeFT683BH8PJwTB",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792405800.0,
+   "decision_key": "5d688a3fa12eae3d6a0b67b9edf5cf391d8700aa89188b527d1434a172e79151",
+   "decision_time": 1792232442.0,
+   "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+   "need_from": 1792145442.0,
+   "pool": "Cprsvqk2riV3WmTewKK9m6cm62zaAqLDArAbBmN3pe4f",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "14ab66911b7883a47b257f8d19b777a3ec5c7182ba721dadd9fdddff395ef853",
+   "decision_time": 1792664388.0,
+   "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+   "need_from": 1792577388.0,
+   "pool": "Cprsvqk2riV3WmTewKK9m6cm62zaAqLDArAbBmN3pe4f",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792751100.0,
+   "decision_key": "e883fc676cc47d00cac2a07274a8e1b20f5401050a62a189b08a50bea302e2a3",
+   "decision_time": 1792577969.0,
+   "mint": "7M3gDRgozcumFsiTeXwjB8cYxpg7Q9R7rH7rkw2Fpump",
+   "need_from": 1792490969.0,
+   "pool": "FVq2chsiAcPqwL9L3zafF8juQHb7mui6LWMuE8g5L4K4",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "061918ef901938469b3595e733bafe9743b16f6f132be1473ccbe04407daf71f",
+   "decision_time": 1792406045.0,
+   "mint": "7eoNeH9tJNyrqV2Y5kMLpuw2iCRTTFhtdBZbykYPfcJ5",
+   "need_from": 1792319045.0,
+   "pool": "SaSvP232sdrqtvmKCFiyfFtZWmK2SNKDTL17zMRT66V",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "4c7c49c5c9e4e583aa99d10e978efb5728d3f9efed5bbdedaf89a0d83b5c0c4e",
+   "decision_time": 1792406045.0,
+   "mint": "8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS",
+   "need_from": 1792319045.0,
+   "pool": "BUVzsLLLG7GWoyJVoU31pXiBveazA6GXTavZ9VD3CwS9",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792491300.0,
+   "decision_key": "013d40a5761d1630162f343c3183c64c5036ea3ceab32e3d6181459633193158",
+   "decision_time": 1792318039.0,
+   "mint": "8Xg89xT8Ve34sKiYqYuMs46mycREsCA2F362UscRpump",
+   "need_from": 1792231039.0,
+   "pool": "Em6RvzGXhd35pZ7CVUjCTPEnv4jAztScaVHaXBXCBcG7",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "35b8bcef307d649b7db535f517f331dee2df05c43c00f40a5755be24a53895f9",
+   "decision_time": 1792664388.0,
+   "mint": "8Xg89xT8Ve34sKiYqYuMs46mycREsCA2F362UscRpump",
+   "need_from": 1792577388.0,
+   "pool": "Em6RvzGXhd35pZ7CVUjCTPEnv4jAztScaVHaXBXCBcG7",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792751100.0,
+   "decision_key": "8e6212fa0a1912324bdb154f9d6047826067429006eac1ef182e92b8daaf343b",
+   "decision_time": 1792577969.0,
+   "mint": "8XtRWb4uAAJFMP4QQhoYYCWR6XXb7ybcCdiqPwz9s5WS",
+   "need_from": 1792490969.0,
+   "pool": "Eb9qkfiSzKd185KdWLkZrMrejKEbA2ah2BK7spNmoPej",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "e8c9fc12e71363903a893a91f63edd05aab4e8ae7f0f50e75602579ff1063489",
+   "decision_time": 1792406045.0,
+   "mint": "8w6yhgsGKxfMZRPLNBBjgJQKRRGaXvgDAdhgQacEpump",
+   "need_from": 1792319045.0,
+   "pool": "73fZrykffm5wYMecUikuWBSNeR33dvmnf9xQQ9DRQbLK",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "3dc51bb30daa2cf2677247bbaf56c5367db28a052457fbd5e1bf4a5265651fbe",
+   "decision_time": 1792664388.0,
+   "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+   "need_from": 1792577388.0,
+   "pool": "6e3jZLtf4tQbWZm3f7A66jF8tfZn6MRQVrbDFgcNWarA",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "4f14972d18e3a4f3ab24f086d4448c055e5bd40fb9f7fd4dc7186bdf387c0c4e",
+   "decision_time": 1792406045.0,
+   "mint": "9Vo93nxu8gpY5i54sB3okxCqCTou4Asxg817A63B1GPf",
+   "need_from": 1792319045.0,
+   "pool": "739FaSK16AUx5gBXjxoweJF71ioQHQmWm1x3pickfLjT",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792665000.0,
+   "decision_key": "b81dd063bdad33bdeb033c9590868515fc68f30fd28a39ea7885cbd3e05ec35d",
+   "decision_time": 1792491842.0,
+   "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+   "need_from": 1792404842.0,
+   "pool": "5a7QurJLARt146JajJYPe5nh6vLyFpN2QrHUSLqbsCZy",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792491300.0,
+   "decision_key": "167185b4fed2c8b1573dde63d448af6715ef19fc9265f5ea84ce3e46ea256e81",
+   "decision_time": 1792318039.0,
+   "mint": "A2yA6AFtfKkfVkfsnGpvsKoUV5kQPpMYboZsBPvmkA9T",
+   "need_from": 1792231039.0,
+   "pool": "9hjKmterUjufRaYUrSTEHEYJZg83LQ52behux54LSeF6",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "a9813ac426444abf31216bfe16006342455d4dab23d340d04ee389cd6058ba93",
+   "decision_time": 1792406045.0,
+   "mint": "ABY3X6QPuDHkgTbxkaJSzpJtdJXRVBhezkf4BbmSDv8b",
+   "need_from": 1792319045.0,
+   "pool": "7C6PyhXKaoi1uwqT3vA1pYYda3PB3QjbCKX94jhjamW9",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "813efdb47aa6653fe6d49bbfc386741bc58ec22c95924a8d9a63dff2f7c31ad8",
+   "decision_time": 1792406045.0,
+   "mint": "Ag5mMdBSxm8J893RazD9PGkxWKJ5o3UKdWW4ZmJAey9w",
+   "need_from": 1792319045.0,
+   "pool": "HndPW2ZkqvoQyZcjEdnP56scNG9SadoSiT9gdjZasgiy",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "72f6f7ba2d6bc6939866ea5df320e64240d79d287fff8045fca10d50b47916ca",
+   "decision_time": 1792664388.0,
+   "mint": "BXoHJddsWJLHtAopeiSbKUSELsu8hSFMs8baGMDkpump",
+   "need_from": 1792577388.0,
+   "pool": "2B8tftZ5ww8TREMr3pgkgERLNjJyJxEAPWMENViGMsL4",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "8eb592d26f5494f5717bca110cc31bbee8cda9b3f6977ecce9752068110ff9b3",
+   "decision_time": 1792406045.0,
+   "mint": "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+   "need_from": 1792319045.0,
+   "pool": "6ejg4aYJM3Mk1t2zBKjbJ43df3s7rBMpC9mgo526K51G",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792665000.0,
+   "decision_key": "029fa7ef40de9172b5876bf785479e29546b301a8350b625c9a0d703dc321a27",
+   "decision_time": 1792491842.0,
+   "mint": "BdXfLfcbDE8YvpbvvmmGTduqcDesaQVUm5xLxgUc2S5t",
+   "need_from": 1792404842.0,
+   "pool": "CzcFVsc2hQvf1ZwU6ya2vRF7g29aNu4nNrHw7JVVD3Vw",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792665000.0,
+   "decision_key": "f750c039bbae3b6a97330829112820e491fd26c69c50985f1e2a21f612d06c51",
+   "decision_time": 1792491842.0,
+   "mint": "CARDSccUMFKoPRZxt5vt3ksUbxEFEcnZ3H2pd3dKxYjp",
+   "need_from": 1792404842.0,
+   "pool": "HnhpJPJgBG2KwniMTNW8cVBHvk1hFog3RC3kjnyc23tD",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792405800.0,
+   "decision_key": "9248a6487381212d40917b7f0dee72fe581c126d0d1b5cea05e81d7e42c48e20",
+   "decision_time": 1792232442.0,
+   "mint": "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+   "need_from": 1792145442.0,
+   "pool": "3dcwhqJp6JBTJPq8ga335HWgSQVS7uQmdmeX7iGjMNpj",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792665000.0,
+   "decision_key": "e3fad59deadeea1331090d99eb21896e6bc9d58d06593e27547682a77a018c13",
+   "decision_time": 1792491842.0,
+   "mint": "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+   "need_from": 1792404842.0,
+   "pool": "3dcwhqJp6JBTJPq8ga335HWgSQVS7uQmdmeX7iGjMNpj",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792405800.0,
+   "decision_key": "f29ee6db3d449e2f68cbdfc114907a99317e546a3956d6d8e99c07c34cff6cfe",
+   "decision_time": 1792232442.0,
+   "mint": "CnPL1xnAVHYGH92FpmiNoNhgh3gctkH5y988hMg4bonk",
+   "need_from": 1792145442.0,
+   "pool": "AiUCeZYWNAnZcpWPQPGcpeP3zusPiGUZYorLZkXhMoww",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "25991cebe15e7ebee9805b14d53730768d573f9027aafcfb91072e4703275c35",
+   "decision_time": 1792406045.0,
+   "mint": "Coyj3LtKn1BNSgWc9HsGK5SKoGfEoDaymig4wrN6pump",
+   "need_from": 1792319045.0,
+   "pool": "H739cDUEhbW2ckYhjetYSwxTVT5vd6GrTW5GdfaTQJgB",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "789284013d1969b1a1f478f63ffb7e6557e9e37c8b73ecc7e68390b86d4f036e",
+   "decision_time": 1792664388.0,
+   "mint": "Cy1GS2FqefgaMbi45UunrUzin1rfEmTUYnomddzBpump",
+   "need_from": 1792577388.0,
+   "pool": "AemYRZmJryzAQ9Z4RLfUBLnPRUY5ecooc94EJvemfti4",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "0738a9152ab89c784b9f75203a7f56ece2254ad903b27c46c7bf3f49db40ffb8",
+   "decision_time": 1792664388.0,
+   "mint": "Cy5TzDyJ4mo6MBAbpwUcAgdfNiXYKrYUPrvhPGVU6XMR",
+   "need_from": 1792577388.0,
+   "pool": "B1w58REDpWVGjP5GmTymitxq4KHL11ytVkHBF2NLBnUw",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792665000.0,
+   "decision_key": "0a32be7c9758aa4eced56dd4a42916ffb3e562ca05c928e5882fc7035976b34f",
+   "decision_time": 1792491842.0,
+   "mint": "D42TjMjz5H7toPu5md5KBXreZkCSdZMEfLQwmBhJXvb1",
+   "need_from": 1792404842.0,
+   "pool": "CxyUG8PvWbbKW41MLAq7J87ft3dryDJZV2A5pgwb31an",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837800.0,
+   "decision_key": "f70899e57ec02ac9754363810f0065e24f8a48fa665184f51f35d1e0309b0c12",
+   "decision_time": 1792750826.0,
+   "mint": "Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk",
+   "need_from": 1792663826.0,
+   "pool": "Q2sPHPdUWFMg7M7wwrQKLrn619cAucfRsmhVJffodSp",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792405800.0,
+   "decision_key": "339c90363465931bd1655e59819a5151a95dc54abd8c802012b25f2a92f150be",
+   "decision_time": 1792232442.0,
+   "mint": "DzMwArmdzPqcqgvyqAmTxy79XdA9NwK9mMteqWLJpump",
+   "need_from": 1792145442.0,
+   "pool": "4powEghZAR3Qd2HpbKrkyq8bB3dy7vAnSZHbQ3rSXrYh",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837800.0,
+   "decision_key": "dd30e856da376667419cbec363e6205288800feac232c3348401e45070fd9a02",
+   "decision_time": 1792750826.0,
+   "mint": "EZYmWw5ZhNAAsm3RVrPUQJZkJu6W31YZFjV5LvW4pump",
+   "need_from": 1792663826.0,
+   "pool": "AKD21K6Ee7m2YCvK8R1ba2BxcUywXBNW891Y8KJpvxt4",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792491300.0,
+   "decision_key": "3fedd2434f0b8a66ed2409db95767983eebd98e418282532501ae16ebdf9f8d0",
+   "decision_time": 1792318039.0,
+   "mint": "Eg2ymQ2aQqjMcibnmTt8erC6Tvk9PVpJZCxvVPJz2agu",
+   "need_from": 1792231039.0,
+   "pool": "FKfRK3WdaGXokysR1fPGgCDEeGkV1b1YYnX9ykVpG3JG",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "f2ecd68b3869d4c7217f63ec53358160282ed7a30f6f1dc8926099cc25512373",
+   "decision_time": 1792664388.0,
+   "mint": "Eg2ymQ2aQqjMcibnmTt8erC6Tvk9PVpJZCxvVPJz2agu",
+   "need_from": 1792577388.0,
+   "pool": "FKfRK3WdaGXokysR1fPGgCDEeGkV1b1YYnX9ykVpG3JG",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792491300.0,
+   "decision_key": "fb26fdce58426c9f2698dee9da098e5b5a52436417e6b1dbbc63f3eaae2d31b9",
+   "decision_time": 1792318039.0,
+   "mint": "EiLTVJLsFXvPxdzqp7ZtvXVeCB1T2UdgB9WrpxoZceXH",
+   "need_from": 1792231039.0,
+   "pool": "EVhp44NCuqii3Up66v6fvdL1QqCp1oR1LjvqR6Q1FDYJ",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "9463a248ea9db8829ada7c5c152767d23e2884de1cd9e88882b7d6e5b7c12c31",
+   "decision_time": 1792664388.0,
+   "mint": "Ez7eEs53hQiXgCGmcbhdX5i1jgg2gC3F6MoeosuVpump",
+   "need_from": 1792577388.0,
+   "pool": "2CTtz7kNDKnfrUDte7Wo3TZKvWAPz1ZFRYUzYahFKroB",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792751100.0,
+   "decision_key": "eb15e159e0c6ececb12c9a1322344de332968ec527224a875b08f0af9cff5a7a",
+   "decision_time": 1792577969.0,
+   "mint": "G8aVC4nk5oPWzTHp4PDm3kAuixCebv9WRQMD93h9pump",
+   "need_from": 1792490969.0,
+   "pool": "D7rYGDh5RyP4UXPtW2dSUvg8BYkdPSB1ZdAdBKW1zqnX",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "15eca45d0e634335803aac8ac184b648d6aea34dbfc0b3be46fe2ded068b2fdc",
+   "decision_time": 1792664388.0,
+   "mint": "G8dUSvywefr4GvfFZBZiLHmbjnwjrrJPAnVifjj7pump",
+   "need_from": 1792577388.0,
+   "pool": "7X4obx1BtkQKYyB26hvNetQF13xp2QMTyJ62KTwS9E4i",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792665000.0,
+   "decision_key": "d099bf3928d1b150256f6f4679e0281a9a9eea2ddb3fb791e0288776576646a8",
+   "decision_time": 1792491842.0,
+   "mint": "G9wFzt1XqToHN64yrVae5JxFfY9v4K9w7quJ6zXpump",
+   "need_from": 1792404842.0,
+   "pool": "YoRW8Npjndef7En6baV94VemoT4TkuKmx6LTb5PRw1o",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792665000.0,
+   "decision_key": "7a346cbaf82e4e76cd65f2283c95093a5f04d101864470c4aab52355a4f9644d",
+   "decision_time": 1792491842.0,
+   "mint": "GKboyzRdB93iEpfr6Gjs8A2wXe7Tp4kVD5WwkNfepump",
+   "need_from": 1792404842.0,
+   "pool": "Fd2JgWzgt5ba9WbnJnRqNuf9NNTTu6eMHWpFpEWwyPfQ",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "584f165de76e91516265c4f924477b162b2ddca437342f89b2c042f0b3cd65a9",
+   "decision_time": 1792664388.0,
+   "mint": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+   "need_from": 1792577388.0,
+   "pool": "5PGhKctym6odbHGo2tKMST2AjmJsb2uZBQrKkn4ZuFT5",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837800.0,
+   "decision_key": "fd78f9591ac88b0ba2b930b415fe952d740ee154854be954f615bf21b8093284",
+   "decision_time": 1792750826.0,
+   "mint": "GgyziLAzNtt35ifpHbPfgb3hnfK2x1SnyX8ASBa3pump",
+   "need_from": 1792663826.0,
+   "pool": "Ap94DoHBXwGxiuVMN7KYHSKDhsw3sg2XH9VKD9uWiqeG",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792405800.0,
+   "decision_key": "1c45c347774de550d727edbff31b54ec7dc2a3effcc15d52dbe3328303c41cc2",
+   "decision_time": 1792232442.0,
+   "mint": "Gj4TowizfdkRJNsTgBEkj2WpBZZmGE7o9nN8q6RhBAGS",
+   "need_from": 1792145442.0,
+   "pool": "7NAxbnjiWQmMbAAtCntkSyGqHEvVHZTmyaUBC6347B4M",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792665000.0,
+   "decision_key": "bcd6f3473d484c6a96dcf5f89f2b7e53f4855c365ba56e33de63f15aacb8c182",
+   "decision_time": 1792491842.0,
+   "mint": "HMYd9tosnUXuNHmq7pXmoePRVBLBBjA3JBfydq6upump",
+   "need_from": 1792404842.0,
+   "pool": "12jc1DzJpzbCDaKuM4brAKh9jcFry2TLG1FfGsL4ftCG",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792491300.0,
+   "decision_key": "00e8969edeed5f6278942cd66c7b9d240681d2bc2cdfb7c0e06735add6995ff3",
+   "decision_time": 1792318039.0,
+   "mint": "HTmQz7My6MehV7bjhJ6jde8nDND1yvsz68d24LP7YgUQ",
+   "need_from": 1792231039.0,
+   "pool": "6fNtUWWpf9VckoZXce7pFUyxA9wPRVPpe83txqdYFiCn",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "c396a8d78bcc47a20a878526c7119056baad7539342deab980b105f95a5c7c0c",
+   "decision_time": 1792406045.0,
+   "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+   "need_from": 1792319045.0,
+   "pool": "BTccxxTFi7a9xJTE1exKn38Jgie35s6gNeRxd8DM61Rc",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792665000.0,
+   "decision_key": "cce42ff1e17b73cb2bd0a4e9b7b8a23dc11294ca9fde1a91076ac38b16598c84",
+   "decision_time": 1792491842.0,
+   "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+   "need_from": 1792404842.0,
+   "pool": "BTccxxTFi7a9xJTE1exKn38Jgie35s6gNeRxd8DM61Rc",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "4c4fcfc2eb4464f9c9dd3c6d6e463ceb4a2f7813e12e2482ecfdb69ec29ab420",
+   "decision_time": 1792406045.0,
+   "mint": "HqmFi85adLD8BQA7en1HfajdAfzVFps5REgQaYuw6Ax8",
+   "need_from": 1792319045.0,
+   "pool": "E5bdE27ATDTeg1ZPNFhjnU5fcVKjccQ5iFZLaX8fscgx",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "13a6bdcbdba8bc4450267c43909fb3079ffe921377b721cda36e9d1db44fef51",
+   "decision_time": 1792664388.0,
+   "mint": "HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump",
+   "need_from": 1792577388.0,
+   "pool": "5E3dXLXGwmTDCokA51WYYaKttjFZBwqCoyUHBUi5gt2m",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "5185af814bb61f43b0b2a20e4e8c97c24082d6f6829856f0ec497a32cf8b6af1",
+   "decision_time": 1792406045.0,
+   "mint": "HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+   "need_from": 1792319045.0,
+   "pool": "6brAAmd965v3amhS6nFX2Fr6ytQC2dPY7M8XkxYRrsNn",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792751100.0,
+   "decision_key": "a923dd4f8526468f62360226bb6011bc0821946a9b3fa2ed58dc5201b2ea0503",
+   "decision_time": 1792577969.0,
+   "mint": "J8PSdNP3QewKq2Z1JJJFDMaqF7KcaiJhR7gbr5KZpump",
+   "need_from": 1792490969.0,
+   "pool": "3KFCgJ5R3zshW8hTDbzjSrrKSRYmKvsMfhc4Vo4iddxD",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792751100.0,
+   "decision_key": "f5c9bd14e51c48d7e1008073b32ac9f419e2d0318da1412edb93333e06e9f6fd",
+   "decision_time": 1792577969.0,
+   "mint": "MSTRdWXMeZxdE8osAQy3fA4rvTY5rgummDSMEx6U7Nz",
+   "need_from": 1792490969.0,
+   "pool": "3Hro9bWkxiyV7ZfH2ZBdqyuNEVZt69ixNyQbAmcvyvys",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792751100.0,
+   "decision_key": "4ee5305aef975858e72fbaed2960c2b70395cab4ff02624c1ea952ab23295fb3",
+   "decision_time": 1792577969.0,
+   "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+   "need_from": 1792490969.0,
+   "pool": "DA4pM4xSDY4M9V4CgAKKBVH1pw1yscTQQa5nEkGHuKpt",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "10ba95c67780ff47221c2b57f97da2feea14237da06c2209c744f5f9cb3920b2",
+   "decision_time": 1792664388.0,
+   "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+   "need_from": 1792577388.0,
+   "pool": "DA4pM4xSDY4M9V4CgAKKBVH1pw1yscTQQa5nEkGHuKpt",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792491300.0,
+   "decision_key": "059ea75ded288aed84311b09c7f063e6cb103fc3f0f8df181007404723cbafc9",
+   "decision_time": 1792318039.0,
+   "mint": "NTRNDMqQSiwEC2jJs3wJiZS6bpGYQJtMNQJgiX3WyV6",
+   "need_from": 1792231039.0,
+   "pool": "7r3ZPwVD966dZfZ5xifEQyAfME7xSTA5bbmztctQhDG3",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792665000.0,
+   "decision_key": "9f308635d834631fdce7a42b665e5485804aee0199cab30ca9e9837357258266",
+   "decision_time": 1792491842.0,
+   "mint": "SV151D5pjygAKA8aJJcKzm4wFnRX5G92Fye94jQJk7g",
+   "need_from": 1792404842.0,
+   "pool": "KKyUyWncRfakBZh2M318BFfdR6332WWu1NePd9amQtj",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "232661e9d24cec71a0211eb076a4599b24354f4805062aeabcfa7992cf217b83",
+   "decision_time": 1792664388.0,
+   "mint": "SV151D5pjygAKA8aJJcKzm4wFnRX5G92Fye94jQJk7g",
+   "need_from": 1792577388.0,
+   "pool": "KKyUyWncRfakBZh2M318BFfdR6332WWu1NePd9amQtj",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837800.0,
+   "decision_key": "5e82d4d4c8258d990e101da27783ab60a0c2ccd3666f70137a4a9b75be6e51e8",
+   "decision_time": 1792750826.0,
+   "mint": "TVvnJTedD3WgAPede2xUmRjweJqNdhCEgyjtKv3rCq4",
+   "need_from": 1792663826.0,
+   "pool": "AkM2Ua4ZJwkcjQ3dKiV2wMeiK1b1a9TaUXoWjf3c94Wr",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "2058336c564b6c47fb8a8fa98db8dd4ea1659fb5b9ede6096730f38e7852b023",
+   "decision_time": 1792406045.0,
+   "mint": "Tm2iqbxYjKpW8xCMe6q1xUraNMNzcG5xMztAir3pump",
+   "need_from": 1792319045.0,
+   "pool": "8BRDx1ky8xuRBYq1kmVJ4TrSNaDybSiLU2mxmLVB4WaW",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837500.0,
+   "decision_key": "a376237a3f43c1d113f6e8394baaf8d884c4ccca45e392405c04da231e643675",
+   "decision_time": 1792664388.0,
+   "mint": "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+   "need_from": 1792577388.0,
+   "pool": "3GkFzURGWNWyErnjQvnkZpgcLnNocjnRwvMYXiVDiVQk",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "bd284f72783b2903ed202de4da318079022cb7b1044e065b2333aba449012da0",
+   "decision_time": 1792406045.0,
+   "mint": "nxPqZ4F7ux8Vph5NFu25rEP6Kx9Gr1U6Fmj36Rjpump",
+   "need_from": 1792319045.0,
+   "pool": "G2UuRbmVDzDFP4qyoBJrSKBXSi7d6V4bPP9tHPs36y4b",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792837800.0,
+   "decision_key": "6fe3df6edb6ae3e1f5d127cdfe6bb160f70f6567b924bd72fb5e15aefcc39fc8",
+   "decision_time": 1792750826.0,
+   "mint": "nxPqZ4F7ux8Vph5NFu25rEP6Kx9Gr1U6Fmj36Rjpump",
+   "need_from": 1792663826.0,
+   "pool": "G2UuRbmVDzDFP4qyoBJrSKBXSi7d6V4bPP9tHPs36y4b",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792579200.0,
+   "decision_key": "3de45469a907d92a7581bcef9b9181df9bbb6776a6e39c64b47d8a048397772e",
+   "decision_time": 1792406045.0,
+   "mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+   "need_from": 1792319045.0,
+   "pool": "2uF4Xh61rDwxnG9woyxsVQP7zuA6kLFpb3NvnRQeoiSd",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792665000.0,
+   "decision_key": "024fccfa5dff09c6bb45248379649a0c2b27bcc4c58cc212f4a07fb71dcdc3c8",
+   "decision_time": 1792491842.0,
+   "mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+   "need_from": 1792404842.0,
+   "pool": "2uF4Xh61rDwxnG9woyxsVQP7zuA6kLFpb3NvnRQeoiSd",
+   "route": "CURRENT_VENDOR_LIST"
+  },
+  {
+   "boundary": 1792405800.0,
+   "decision_key": "f1811e4ad2e31593bf570ca42929f2168acc384a3549318fe3ee637498529ed3",
+   "decision_time": 1792232442.0,
+   "mint": "purpFPo5voy6fEu8jxSCwVdMs1zyYEYAH6FBQvTYCZK",
+   "need_from": 1792145442.0,
+   "pool": "zgLSYJkWC8yU9JvjFRXMD7MjzqY7SebmSAa3REsqaBF",
+   "route": "PIT_RECORDED"
+  },
+  {
+   "boundary": 1792405800.0,
+   "decision_key": "45c9911c820aeb3367f678264ece37d0602c20702347854d70fb72dc66d38736",
+   "decision_time": 1792232442.0,
+   "mint": "t9bnCGiZVUYsRKvx4d5dPcoDCSyuBM9C33ZNGNULARP",
+   "need_from": 1792145442.0,
+   "pool": "FJ1Gf7yYZQnpjAd2Go6Rws14WmStjZyo8XgxmLPHHaEU",
+   "route": "PIT_RECORDED"
+  }
+ ],
+ "holdout_start": "2026-10-17T00:00:00Z",
+ "made_at": "2026-10-24T13:49:22Z",
+ "max_boundary": "2026-10-24T10:30:00Z",
+ "pools": 73,
+ "ref": "efdaee91ebbeabf14268d858fa033d36ebd4ca06"
+}

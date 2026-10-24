@@ -1,0 +1,17 @@
+{
+ "changed_by_fields": {
+  "o": 54,
+  "oh": 26,
+  "ol": 21
+ },
+ "comparison": "Phase 05 reads (earlier) against Phase 06 label reads (later) of the same pools, 5-minute, both identity-checked",
+ "differences": [],
+ "gap_s_max": 9213.841935873032,
+ "gap_s_min": 5461.365396261215,
+ "labels_different": 0,
+ "labels_recomputed_from_phase05_read": 111,
+ "labels_same": 111,
+ "positions_compared": 76120,
+ "read_pairs": 182,
+ "unchanged": 76019
+}

@@ -1,0 +1,855 @@
+{
+ "ambiguous": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "ambiguous": 0,
+   "labeled": 131,
+   "positive_if_tie_positive": 28
+  },
+  "price_path_target_before_invalidation_24h": {
+   "ambiguous": 1,
+   "labeled": 136,
+   "positive_if_tie_positive": 35
+  },
+  "price_path_target_before_invalidation_6h": {
+   "ambiguous": 1,
+   "labeled": 224,
+   "positive_if_tie_positive": 27
+  }
+ },
+ "censoring_lens": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "labeled": 131,
+   "lens_rule": "censored counted positive",
+   "positive_labeled": 28,
+   "unverifiable": 0,
+   "vendor_or_route_gap_unthinned": 37
+  },
+  "price_path_target_before_invalidation_24h": {
+   "labeled": 136,
+   "lens_rule": "censored counted negative",
+   "positive_labeled": 34,
+   "unverifiable": 0,
+   "vendor_or_route_gap_unthinned": 39
+  },
+  "price_path_target_before_invalidation_6h": {
+   "labeled": 224,
+   "lens_rule": "censored counted negative",
+   "positive_labeled": 26,
+   "unverifiable": 0,
+   "vendor_or_route_gap_unthinned": 41
+  }
+ },
+ "development_class": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "DRAWDOWN_50": 28,
+   "NO_SEVERE_EVENT": 103
+  },
+  "price_path_target_before_invalidation_24h": {
+   "AMBIGUOUS_BAR": 1,
+   "INVALIDATION_FIRST": 70,
+   "NEITHER": 31,
+   "TARGET_FIRST": 34
+  },
+  "price_path_target_before_invalidation_6h": {
+   "AMBIGUOUS_BAR": 1,
+   "INVALIDATION_FIRST": 67,
+   "NEITHER": 129,
+   "NO_TRADES_AFTER_ENTRY": 1,
+   "TARGET_FIRST": 26
+  }
+ },
+ "development_class_by_day_utc": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "2026-10-07|DRAWDOWN_50": 8,
+   "2026-10-07|NO_SEVERE_EVENT": 8,
+   "2026-10-08|DRAWDOWN_50": 11,
+   "2026-10-08|NO_SEVERE_EVENT": 32,
+   "2026-10-09|DRAWDOWN_50": 5,
+   "2026-10-09|NO_SEVERE_EVENT": 13,
+   "2026-10-10|DRAWDOWN_50": 1,
+   "2026-10-10|NO_SEVERE_EVENT": 14,
+   "2026-10-11|DRAWDOWN_50": 2,
+   "2026-10-11|NO_SEVERE_EVENT": 10,
+   "2026-10-12|NO_SEVERE_EVENT": 8,
+   "2026-10-13|NO_SEVERE_EVENT": 11,
+   "2026-10-14|DRAWDOWN_50": 1,
+   "2026-10-14|NO_SEVERE_EVENT": 7
+  },
+  "price_path_target_before_invalidation_24h": {
+   "2026-10-07|INVALIDATION_FIRST": 7,
+   "2026-10-07|NEITHER": 2,
+   "2026-10-07|TARGET_FIRST": 7,
+   "2026-10-08|AMBIGUOUS_BAR": 1,
+   "2026-10-08|INVALIDATION_FIRST": 21,
+   "2026-10-08|NEITHER": 11,
+   "2026-10-08|TARGET_FIRST": 10,
+   "2026-10-09|INVALIDATION_FIRST": 9,
+   "2026-10-09|NEITHER": 6,
+   "2026-10-09|TARGET_FIRST": 3,
+   "2026-10-10|INVALIDATION_FIRST": 8,
+   "2026-10-10|NEITHER": 5,
+   "2026-10-10|TARGET_FIRST": 2,
+   "2026-10-11|INVALIDATION_FIRST": 5,
+   "2026-10-11|NEITHER": 4,
+   "2026-10-11|TARGET_FIRST": 3,
+   "2026-10-12|INVALIDATION_FIRST": 7,
+   "2026-10-12|TARGET_FIRST": 1,
+   "2026-10-13|INVALIDATION_FIRST": 5,
+   "2026-10-13|NEITHER": 2,
+   "2026-10-13|TARGET_FIRST": 4,
+   "2026-10-14|INVALIDATION_FIRST": 7,
+   "2026-10-14|TARGET_FIRST": 1,
+   "2026-10-15|INVALIDATION_FIRST": 1,
+   "2026-10-15|NEITHER": 1,
+   "2026-10-15|TARGET_FIRST": 3
+  },
+  "price_path_target_before_invalidation_6h": {
+   "2026-10-07|INVALIDATION_FIRST": 3,
+   "2026-10-07|NEITHER": 6,
+   "2026-10-07|TARGET_FIRST": 7,
+   "2026-10-08|AMBIGUOUS_BAR": 1,
+   "2026-10-08|INVALIDATION_FIRST": 29,
+   "2026-10-08|NEITHER": 27,
+   "2026-10-08|NO_TRADES_AFTER_ENTRY": 1,
+   "2026-10-08|TARGET_FIRST": 6,
+   "2026-10-09|INVALIDATION_FIRST": 8,
+   "2026-10-09|NEITHER": 28,
+   "2026-10-09|TARGET_FIRST": 5,
+   "2026-10-10|INVALIDATION_FIRST": 7,
+   "2026-10-10|NEITHER": 33,
+   "2026-10-10|TARGET_FIRST": 3,
+   "2026-10-11|INVALIDATION_FIRST": 4,
+   "2026-10-11|NEITHER": 10,
+   "2026-10-11|TARGET_FIRST": 2,
+   "2026-10-12|INVALIDATION_FIRST": 3,
+   "2026-10-12|NEITHER": 4,
+   "2026-10-12|TARGET_FIRST": 1,
+   "2026-10-13|INVALIDATION_FIRST": 4,
+   "2026-10-13|NEITHER": 6,
+   "2026-10-13|TARGET_FIRST": 1,
+   "2026-10-14|INVALIDATION_FIRST": 4,
+   "2026-10-14|NEITHER": 4,
+   "2026-10-15|NEITHER": 6,
+   "2026-10-15|TARGET_FIRST": 1,
+   "2026-10-16|INVALIDATION_FIRST": 5,
+   "2026-10-16|NEITHER": 5
+  }
+ },
+ "development_class_by_launch_age_bucket": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "1d_7d|DRAWDOWN_50": 14,
+   "1d_7d|NO_SEVERE_EVENT": 24,
+   "7d_30d|DRAWDOWN_50": 4,
+   "7d_30d|NO_SEVERE_EVENT": 32,
+   "ge_30d|NO_SEVERE_EVENT": 43,
+   "lt_1d|DRAWDOWN_50": 10,
+   "lt_1d|NO_SEVERE_EVENT": 4
+  },
+  "price_path_target_before_invalidation_24h": {
+   "1d_7d|INVALIDATION_FIRST": 19,
+   "1d_7d|NEITHER": 3,
+   "1d_7d|TARGET_FIRST": 16,
+   "7d_30d|INVALIDATION_FIRST": 24,
+   "7d_30d|NEITHER": 4,
+   "7d_30d|TARGET_FIRST": 12,
+   "ge_30d|INVALIDATION_FIRST": 19,
+   "ge_30d|NEITHER": 22,
+   "ge_30d|TARGET_FIRST": 3,
+   "lt_1d|AMBIGUOUS_BAR": 1,
+   "lt_1d|INVALIDATION_FIRST": 8,
+   "lt_1d|NEITHER": 2,
+   "lt_1d|TARGET_FIRST": 3
+  },
+  "price_path_target_before_invalidation_6h": {
+   "1d_7d|INVALIDATION_FIRST": 23,
+   "1d_7d|NEITHER": 11,
+   "1d_7d|TARGET_FIRST": 10,
+   "7d_30d|INVALIDATION_FIRST": 26,
+   "7d_30d|NEITHER": 33,
+   "7d_30d|TARGET_FIRST": 11,
+   "UNKNOWN|INVALIDATION_FIRST": 1,
+   "UNKNOWN|NEITHER": 1,
+   "ge_30d|INVALIDATION_FIRST": 10,
+   "ge_30d|NEITHER": 82,
+   "ge_30d|TARGET_FIRST": 2,
+   "lt_1d|AMBIGUOUS_BAR": 1,
+   "lt_1d|INVALIDATION_FIRST": 7,
+   "lt_1d|NEITHER": 2,
+   "lt_1d|NO_TRADES_AFTER_ENTRY": 1,
+   "lt_1d|TARGET_FIRST": 3
+  }
+ },
+ "development_class_by_liquidity_bucket": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "100k_1m|DRAWDOWN_50": 16,
+   "100k_1m|NO_SEVERE_EVENT": 53,
+   "20k_100k|DRAWDOWN_50": 3,
+   "20k_100k|NO_SEVERE_EVENT": 22,
+   "ge_1m|NO_SEVERE_EVENT": 15,
+   "lt_20k|DRAWDOWN_50": 9,
+   "lt_20k|NO_SEVERE_EVENT": 13
+  },
+  "price_path_target_before_invalidation_24h": {
+   "100k_1m|INVALIDATION_FIRST": 42,
+   "100k_1m|NEITHER": 10,
+   "100k_1m|TARGET_FIRST": 18,
+   "20k_100k|INVALIDATION_FIRST": 17,
+   "20k_100k|NEITHER": 1,
+   "20k_100k|TARGET_FIRST": 9,
+   "ge_1m|INVALIDATION_FIRST": 3,
+   "ge_1m|NEITHER": 12,
+   "ge_1m|TARGET_FIRST": 2,
+   "lt_20k|AMBIGUOUS_BAR": 1,
+   "lt_20k|INVALIDATION_FIRST": 8,
+   "lt_20k|NEITHER": 8,
+   "lt_20k|TARGET_FIRST": 5
+  },
+  "price_path_target_before_invalidation_6h": {
+   "100k_1m|INVALIDATION_FIRST": 38,
+   "100k_1m|NEITHER": 76,
+   "100k_1m|TARGET_FIRST": 14,
+   "20k_100k|INVALIDATION_FIRST": 17,
+   "20k_100k|NEITHER": 4,
+   "20k_100k|TARGET_FIRST": 8,
+   "ge_1m|INVALIDATION_FIRST": 4,
+   "ge_1m|NEITHER": 38,
+   "ge_1m|TARGET_FIRST": 1,
+   "lt_20k|AMBIGUOUS_BAR": 1,
+   "lt_20k|INVALIDATION_FIRST": 8,
+   "lt_20k|NEITHER": 11,
+   "lt_20k|NO_TRADES_AFTER_ENTRY": 1,
+   "lt_20k|TARGET_FIRST": 3
+  }
+ },
+ "development_class_by_route": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "CURRENT_VENDOR_LIST|DRAWDOWN_50": 4,
+   "CURRENT_VENDOR_LIST|NO_SEVERE_EVENT": 29,
+   "PIT_RECORDED|DRAWDOWN_50": 24,
+   "PIT_RECORDED|NO_SEVERE_EVENT": 74
+  },
+  "price_path_target_before_invalidation_24h": {
+   "CURRENT_VENDOR_LIST|INVALIDATION_FIRST": 9,
+   "CURRENT_VENDOR_LIST|NEITHER": 22,
+   "CURRENT_VENDOR_LIST|TARGET_FIRST": 3,
+   "PIT_RECORDED|AMBIGUOUS_BAR": 1,
+   "PIT_RECORDED|INVALIDATION_FIRST": 61,
+   "PIT_RECORDED|NEITHER": 9,
+   "PIT_RECORDED|TARGET_FIRST": 31
+  },
+  "price_path_target_before_invalidation_6h": {
+   "CURRENT_VENDOR_LIST|INVALIDATION_FIRST": 7,
+   "CURRENT_VENDOR_LIST|NEITHER": 56,
+   "CURRENT_VENDOR_LIST|TARGET_FIRST": 2,
+   "PIT_RECORDED|AMBIGUOUS_BAR": 1,
+   "PIT_RECORDED|INVALIDATION_FIRST": 60,
+   "PIT_RECORDED|NEITHER": 73,
+   "PIT_RECORDED|NO_TRADES_AFTER_ENTRY": 1,
+   "PIT_RECORDED|TARGET_FIRST": 24
+  }
+ },
+ "development_class_by_status_group": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "OTHER|DRAWDOWN_50": 7,
+   "OTHER|NO_SEVERE_EVENT": 61,
+   "REJECTED|DRAWDOWN_50": 21,
+   "REJECTED|NO_SEVERE_EVENT": 42
+  },
+  "price_path_target_before_invalidation_24h": {
+   "OTHER|INVALIDATION_FIRST": 35,
+   "OTHER|NEITHER": 19,
+   "OTHER|TARGET_FIRST": 17,
+   "REJECTED|AMBIGUOUS_BAR": 1,
+   "REJECTED|INVALIDATION_FIRST": 35,
+   "REJECTED|NEITHER": 12,
+   "REJECTED|TARGET_FIRST": 17
+  },
+  "price_path_target_before_invalidation_6h": {
+   "OTHER|INVALIDATION_FIRST": 29,
+   "OTHER|NEITHER": 107,
+   "OTHER|TARGET_FIRST": 12,
+   "REJECTED|AMBIGUOUS_BAR": 1,
+   "REJECTED|INVALIDATION_FIRST": 38,
+   "REJECTED|NEITHER": 22,
+   "REJECTED|NO_TRADES_AFTER_ENTRY": 1,
+   "REJECTED|TARGET_FIRST": 14
+  }
+ },
+ "development_class_by_week_utc": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "2026-W41|DRAWDOWN_50": 27,
+   "2026-W41|NO_SEVERE_EVENT": 77,
+   "2026-W42|DRAWDOWN_50": 1,
+   "2026-W42|NO_SEVERE_EVENT": 26
+  },
+  "price_path_target_before_invalidation_24h": {
+   "2026-W41|AMBIGUOUS_BAR": 1,
+   "2026-W41|INVALIDATION_FIRST": 50,
+   "2026-W41|NEITHER": 28,
+   "2026-W41|TARGET_FIRST": 25,
+   "2026-W42|INVALIDATION_FIRST": 20,
+   "2026-W42|NEITHER": 3,
+   "2026-W42|TARGET_FIRST": 9
+  },
+  "price_path_target_before_invalidation_6h": {
+   "2026-W41|AMBIGUOUS_BAR": 1,
+   "2026-W41|INVALIDATION_FIRST": 51,
+   "2026-W41|NEITHER": 104,
+   "2026-W41|NO_TRADES_AFTER_ENTRY": 1,
+   "2026-W41|TARGET_FIRST": 23,
+   "2026-W42|INVALIDATION_FIRST": 16,
+   "2026-W42|NEITHER": 25,
+   "2026-W42|TARGET_FIRST": 3
+  }
+ },
+ "development_key_conflict_labeled": 8,
+ "development_label": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "0": 103,
+   "1": 28
+  },
+  "price_path_target_before_invalidation_24h": {
+   "0": 102,
+   "1": 34
+  },
+  "price_path_target_before_invalidation_6h": {
+   "0": 198,
+   "1": 26
+  }
+ },
+ "development_state_by_day_utc": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "2026-10-07|LABELED": 16,
+   "2026-10-07|NO_SNAPSHOT_PRICE": 2,
+   "2026-10-07|OUT_OF_SCOPE_CHAIN": 7,
+   "2026-10-08|LABELED": 43,
+   "2026-10-08|MARKET_INACTIVE": 8,
+   "2026-10-08|NO_SNAPSHOT_PRICE": 1,
+   "2026-10-08|OUT_OF_SCOPE_CHAIN": 117,
+   "2026-10-08|THINNED": 200,
+   "2026-10-08|VENDOR_OR_ROUTE_GAP": 10,
+   "2026-10-09|LABELED": 18,
+   "2026-10-09|NO_SNAPSHOT_PRICE": 26,
+   "2026-10-09|OUT_OF_SCOPE_CHAIN": 147,
+   "2026-10-09|THINNED": 167,
+   "2026-10-09|VENDOR_OR_ROUTE_GAP": 13,
+   "2026-10-10|LABELED": 15,
+   "2026-10-10|MARKET_INACTIVE": 6,
+   "2026-10-10|OUT_OF_SCOPE_CHAIN": 158,
+   "2026-10-10|THINNED": 189,
+   "2026-10-10|VENDOR_OR_ROUTE_GAP": 11,
+   "2026-10-11|LABELED": 12,
+   "2026-10-11|MARKET_INACTIVE": 8,
+   "2026-10-11|OUT_OF_SCOPE_CHAIN": 18,
+   "2026-10-11|THINNED": 10,
+   "2026-10-11|VENDOR_OR_ROUTE_GAP": 2,
+   "2026-10-12|LABELED": 8,
+   "2026-10-12|NO_SNAPSHOT_PRICE": 4,
+   "2026-10-12|OUT_OF_SCOPE_CHAIN": 8,
+   "2026-10-13|LABELED": 11,
+   "2026-10-13|MARKET_INACTIVE": 4,
+   "2026-10-13|NO_SNAPSHOT_PRICE": 1,
+   "2026-10-13|OUT_OF_SCOPE_CHAIN": 8,
+   "2026-10-13|VENDOR_OR_ROUTE_GAP": 1,
+   "2026-10-14|LABELED": 8,
+   "2026-10-14|OUT_OF_SCOPE_CHAIN": 12
+  },
+  "price_path_target_before_invalidation_24h": {
+   "2026-10-07|LABELED": 16,
+   "2026-10-07|NO_SNAPSHOT_PRICE": 2,
+   "2026-10-07|OUT_OF_SCOPE_CHAIN": 7,
+   "2026-10-08|LABELED": 43,
+   "2026-10-08|MARKET_INACTIVE": 8,
+   "2026-10-08|NO_SNAPSHOT_PRICE": 1,
+   "2026-10-08|OUT_OF_SCOPE_CHAIN": 117,
+   "2026-10-08|THINNED": 200,
+   "2026-10-08|VENDOR_OR_ROUTE_GAP": 10,
+   "2026-10-09|LABELED": 18,
+   "2026-10-09|NO_SNAPSHOT_PRICE": 26,
+   "2026-10-09|OUT_OF_SCOPE_CHAIN": 147,
+   "2026-10-09|THINNED": 167,
+   "2026-10-09|VENDOR_OR_ROUTE_GAP": 13,
+   "2026-10-10|LABELED": 15,
+   "2026-10-10|MARKET_INACTIVE": 6,
+   "2026-10-10|OUT_OF_SCOPE_CHAIN": 158,
+   "2026-10-10|THINNED": 189,
+   "2026-10-10|VENDOR_OR_ROUTE_GAP": 11,
+   "2026-10-11|LABELED": 12,
+   "2026-10-11|MARKET_INACTIVE": 8,
+   "2026-10-11|OUT_OF_SCOPE_CHAIN": 18,
+   "2026-10-11|THINNED": 10,
+   "2026-10-11|VENDOR_OR_ROUTE_GAP": 2,
+   "2026-10-12|LABELED": 8,
+   "2026-10-12|NO_SNAPSHOT_PRICE": 4,
+   "2026-10-12|OUT_OF_SCOPE_CHAIN": 8,
+   "2026-10-13|LABELED": 11,
+   "2026-10-13|MARKET_INACTIVE": 4,
+   "2026-10-13|NO_SNAPSHOT_PRICE": 1,
+   "2026-10-13|OUT_OF_SCOPE_CHAIN": 8,
+   "2026-10-13|VENDOR_OR_ROUTE_GAP": 1,
+   "2026-10-14|LABELED": 8,
+   "2026-10-14|OUT_OF_SCOPE_CHAIN": 12,
+   "2026-10-15|LABELED": 5,
+   "2026-10-15|MARKET_INACTIVE": 9,
+   "2026-10-15|OUT_OF_SCOPE_CHAIN": 8,
+   "2026-10-15|THINNED": 2,
+   "2026-10-15|VENDOR_OR_ROUTE_GAP": 2
+  },
+  "price_path_target_before_invalidation_6h": {
+   "2026-10-07|LABELED": 16,
+   "2026-10-07|NO_SNAPSHOT_PRICE": 2,
+   "2026-10-07|OUT_OF_SCOPE_CHAIN": 7,
+   "2026-10-08|LABELED": 64,
+   "2026-10-08|MARKET_INACTIVE": 8,
+   "2026-10-08|NO_SNAPSHOT_PRICE": 1,
+   "2026-10-08|OUT_OF_SCOPE_CHAIN": 117,
+   "2026-10-08|THINNED": 179,
+   "2026-10-08|VENDOR_OR_ROUTE_GAP": 10,
+   "2026-10-09|LABELED": 41,
+   "2026-10-09|NO_SNAPSHOT_PRICE": 26,
+   "2026-10-09|OUT_OF_SCOPE_CHAIN": 147,
+   "2026-10-09|THINNED": 144,
+   "2026-10-09|VENDOR_OR_ROUTE_GAP": 13,
+   "2026-10-10|LABELED": 43,
+   "2026-10-10|MARKET_INACTIVE": 6,
+   "2026-10-10|OUT_OF_SCOPE_CHAIN": 158,
+   "2026-10-10|THINNED": 161,
+   "2026-10-10|VENDOR_OR_ROUTE_GAP": 11,
+   "2026-10-11|LABELED": 16,
+   "2026-10-11|MARKET_INACTIVE": 8,
+   "2026-10-11|OUT_OF_SCOPE_CHAIN": 18,
+   "2026-10-11|THINNED": 6,
+   "2026-10-11|VENDOR_OR_ROUTE_GAP": 2,
+   "2026-10-12|LABELED": 8,
+   "2026-10-12|NO_SNAPSHOT_PRICE": 4,
+   "2026-10-12|OUT_OF_SCOPE_CHAIN": 8,
+   "2026-10-13|LABELED": 11,
+   "2026-10-13|MARKET_INACTIVE": 4,
+   "2026-10-13|NO_SNAPSHOT_PRICE": 1,
+   "2026-10-13|OUT_OF_SCOPE_CHAIN": 8,
+   "2026-10-13|VENDOR_OR_ROUTE_GAP": 1,
+   "2026-10-14|LABELED": 8,
+   "2026-10-14|OUT_OF_SCOPE_CHAIN": 12,
+   "2026-10-15|LABELED": 7,
+   "2026-10-15|MARKET_INACTIVE": 9,
+   "2026-10-15|OUT_OF_SCOPE_CHAIN": 8,
+   "2026-10-15|VENDOR_OR_ROUTE_GAP": 2,
+   "2026-10-16|LABELED": 10,
+   "2026-10-16|MARKET_INACTIVE": 5,
+   "2026-10-16|NO_SNAPSHOT_PRICE": 1,
+   "2026-10-16|OUT_OF_SCOPE_CHAIN": 11,
+   "2026-10-16|VENDOR_OR_ROUTE_GAP": 2
+  }
+ },
+ "development_state_by_launch_age_bucket": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "1d_7d|LABELED": 38,
+   "1d_7d|MARKET_INACTIVE": 3,
+   "1d_7d|NO_SNAPSHOT_PRICE": 3,
+   "1d_7d|THINNED": 42,
+   "1d_7d|VENDOR_OR_ROUTE_GAP": 1,
+   "7d_30d|LABELED": 36,
+   "7d_30d|MARKET_INACTIVE": 9,
+   "7d_30d|NO_SNAPSHOT_PRICE": 15,
+   "7d_30d|THINNED": 217,
+   "7d_30d|VENDOR_OR_ROUTE_GAP": 29,
+   "UNKNOWN|NO_SNAPSHOT_PRICE": 4,
+   "UNKNOWN|OUT_OF_SCOPE_CHAIN": 475,
+   "ge_30d|LABELED": 43,
+   "ge_30d|MARKET_INACTIVE": 14,
+   "ge_30d|NO_SNAPSHOT_PRICE": 12,
+   "ge_30d|THINNED": 307,
+   "ge_30d|VENDOR_OR_ROUTE_GAP": 4,
+   "lt_1d|LABELED": 14,
+   "lt_1d|VENDOR_OR_ROUTE_GAP": 3
+  },
+  "price_path_target_before_invalidation_24h": {
+   "1d_7d|LABELED": 38,
+   "1d_7d|MARKET_INACTIVE": 4,
+   "1d_7d|NO_SNAPSHOT_PRICE": 3,
+   "1d_7d|THINNED": 42,
+   "1d_7d|VENDOR_OR_ROUTE_GAP": 2,
+   "7d_30d|LABELED": 40,
+   "7d_30d|MARKET_INACTIVE": 10,
+   "7d_30d|NO_SNAPSHOT_PRICE": 15,
+   "7d_30d|THINNED": 217,
+   "7d_30d|VENDOR_OR_ROUTE_GAP": 29,
+   "UNKNOWN|NO_SNAPSHOT_PRICE": 4,
+   "UNKNOWN|OUT_OF_SCOPE_CHAIN": 483,
+   "ge_30d|LABELED": 44,
+   "ge_30d|MARKET_INACTIVE": 21,
+   "ge_30d|NO_SNAPSHOT_PRICE": 12,
+   "ge_30d|THINNED": 309,
+   "ge_30d|VENDOR_OR_ROUTE_GAP": 5,
+   "lt_1d|LABELED": 14,
+   "lt_1d|VENDOR_OR_ROUTE_GAP": 3
+  },
+  "price_path_target_before_invalidation_6h": {
+   "1d_7d|LABELED": 44,
+   "1d_7d|MARKET_INACTIVE": 4,
+   "1d_7d|NO_SNAPSHOT_PRICE": 3,
+   "1d_7d|THINNED": 36,
+   "1d_7d|VENDOR_OR_ROUTE_GAP": 2,
+   "7d_30d|LABELED": 70,
+   "7d_30d|MARKET_INACTIVE": 11,
+   "7d_30d|NO_SNAPSHOT_PRICE": 15,
+   "7d_30d|THINNED": 189,
+   "7d_30d|VENDOR_OR_ROUTE_GAP": 30,
+   "UNKNOWN|LABELED": 2,
+   "UNKNOWN|NO_SNAPSHOT_PRICE": 4,
+   "UNKNOWN|OUT_OF_SCOPE_CHAIN": 494,
+   "ge_30d|LABELED": 94,
+   "ge_30d|MARKET_INACTIVE": 25,
+   "ge_30d|NO_SNAPSHOT_PRICE": 13,
+   "ge_30d|THINNED": 265,
+   "ge_30d|VENDOR_OR_ROUTE_GAP": 6,
+   "lt_1d|LABELED": 14,
+   "lt_1d|VENDOR_OR_ROUTE_GAP": 3
+  }
+ },
+ "development_state_by_liquidity_bucket": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "100k_1m|LABELED": 69,
+   "100k_1m|MARKET_INACTIVE": 2,
+   "100k_1m|OUT_OF_SCOPE_CHAIN": 92,
+   "100k_1m|THINNED": 408,
+   "100k_1m|VENDOR_OR_ROUTE_GAP": 1,
+   "20k_100k|LABELED": 25,
+   "20k_100k|MARKET_INACTIVE": 1,
+   "20k_100k|OUT_OF_SCOPE_CHAIN": 1,
+   "20k_100k|THINNED": 9,
+   "20k_100k|VENDOR_OR_ROUTE_GAP": 2,
+   "UNKNOWN|NO_SNAPSHOT_PRICE": 33,
+   "UNKNOWN|OUT_OF_SCOPE_CHAIN": 257,
+   "ge_1m|LABELED": 15,
+   "ge_1m|MARKET_INACTIVE": 7,
+   "ge_1m|OUT_OF_SCOPE_CHAIN": 125,
+   "ge_1m|THINNED": 147,
+   "ge_1m|VENDOR_OR_ROUTE_GAP": 29,
+   "lt_20k|LABELED": 22,
+   "lt_20k|MARKET_INACTIVE": 16,
+   "lt_20k|NO_SNAPSHOT_PRICE": 1,
+   "lt_20k|THINNED": 2,
+   "lt_20k|VENDOR_OR_ROUTE_GAP": 5
+  },
+  "price_path_target_before_invalidation_24h": {
+   "100k_1m|LABELED": 70,
+   "100k_1m|MARKET_INACTIVE": 3,
+   "100k_1m|OUT_OF_SCOPE_CHAIN": 99,
+   "100k_1m|THINNED": 410,
+   "100k_1m|VENDOR_OR_ROUTE_GAP": 1,
+   "20k_100k|LABELED": 27,
+   "20k_100k|MARKET_INACTIVE": 1,
+   "20k_100k|OUT_OF_SCOPE_CHAIN": 1,
+   "20k_100k|THINNED": 9,
+   "20k_100k|VENDOR_OR_ROUTE_GAP": 2,
+   "UNKNOWN|NO_SNAPSHOT_PRICE": 33,
+   "UNKNOWN|OUT_OF_SCOPE_CHAIN": 257,
+   "ge_1m|LABELED": 17,
+   "ge_1m|MARKET_INACTIVE": 7,
+   "ge_1m|OUT_OF_SCOPE_CHAIN": 126,
+   "ge_1m|THINNED": 147,
+   "ge_1m|VENDOR_OR_ROUTE_GAP": 29,
+   "lt_20k|LABELED": 22,
+   "lt_20k|MARKET_INACTIVE": 24,
+   "lt_20k|NO_SNAPSHOT_PRICE": 1,
+   "lt_20k|THINNED": 2,
+   "lt_20k|VENDOR_OR_ROUTE_GAP": 7
+  },
+  "price_path_target_before_invalidation_6h": {
+   "100k_1m|LABELED": 128,
+   "100k_1m|MARKET_INACTIVE": 3,
+   "100k_1m|OUT_OF_SCOPE_CHAIN": 106,
+   "100k_1m|THINNED": 357,
+   "100k_1m|VENDOR_OR_ROUTE_GAP": 1,
+   "20k_100k|LABELED": 29,
+   "20k_100k|MARKET_INACTIVE": 3,
+   "20k_100k|OUT_OF_SCOPE_CHAIN": 4,
+   "20k_100k|THINNED": 8,
+   "20k_100k|VENDOR_OR_ROUTE_GAP": 3,
+   "UNKNOWN|NO_SNAPSHOT_PRICE": 33,
+   "UNKNOWN|OUT_OF_SCOPE_CHAIN": 257,
+   "ge_1m|LABELED": 43,
+   "ge_1m|MARKET_INACTIVE": 7,
+   "ge_1m|OUT_OF_SCOPE_CHAIN": 127,
+   "ge_1m|THINNED": 124,
+   "ge_1m|VENDOR_OR_ROUTE_GAP": 29,
+   "lt_20k|LABELED": 24,
+   "lt_20k|MARKET_INACTIVE": 27,
+   "lt_20k|NO_SNAPSHOT_PRICE": 2,
+   "lt_20k|THINNED": 1,
+   "lt_20k|VENDOR_OR_ROUTE_GAP": 8
+  }
+ },
+ "development_state_by_route": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "CURRENT_VENDOR_LIST|LABELED": 33,
+   "CURRENT_VENDOR_LIST|MARKET_INACTIVE": 16,
+   "CURRENT_VENDOR_LIST|NO_SNAPSHOT_PRICE": 15,
+   "CURRENT_VENDOR_LIST|THINNED": 173,
+   "CURRENT_VENDOR_LIST|VENDOR_OR_ROUTE_GAP": 35,
+   "OUT_OF_SCOPE_CHAIN|OUT_OF_SCOPE_CHAIN": 475,
+   "PIT_RECORDED|LABELED": 98,
+   "PIT_RECORDED|MARKET_INACTIVE": 10,
+   "PIT_RECORDED|NO_SNAPSHOT_PRICE": 19,
+   "PIT_RECORDED|THINNED": 393,
+   "PIT_RECORDED|VENDOR_OR_ROUTE_GAP": 2
+  },
+  "price_path_target_before_invalidation_24h": {
+   "CURRENT_VENDOR_LIST|LABELED": 34,
+   "CURRENT_VENDOR_LIST|MARKET_INACTIVE": 22,
+   "CURRENT_VENDOR_LIST|NO_SNAPSHOT_PRICE": 15,
+   "CURRENT_VENDOR_LIST|THINNED": 174,
+   "CURRENT_VENDOR_LIST|VENDOR_OR_ROUTE_GAP": 37,
+   "OUT_OF_SCOPE_CHAIN|OUT_OF_SCOPE_CHAIN": 483,
+   "PIT_RECORDED|LABELED": 102,
+   "PIT_RECORDED|MARKET_INACTIVE": 13,
+   "PIT_RECORDED|NO_SNAPSHOT_PRICE": 19,
+   "PIT_RECORDED|THINNED": 394,
+   "PIT_RECORDED|VENDOR_OR_ROUTE_GAP": 2
+  },
+  "price_path_target_before_invalidation_6h": {
+   "CURRENT_VENDOR_LIST|LABELED": 65,
+   "CURRENT_VENDOR_LIST|MARKET_INACTIVE": 23,
+   "CURRENT_VENDOR_LIST|NO_SNAPSHOT_PRICE": 15,
+   "CURRENT_VENDOR_LIST|THINNED": 147,
+   "CURRENT_VENDOR_LIST|VENDOR_OR_ROUTE_GAP": 39,
+   "OUT_OF_SCOPE_CHAIN|OUT_OF_SCOPE_CHAIN": 494,
+   "PIT_RECORDED|LABELED": 159,
+   "PIT_RECORDED|MARKET_INACTIVE": 17,
+   "PIT_RECORDED|NO_SNAPSHOT_PRICE": 20,
+   "PIT_RECORDED|THINNED": 343,
+   "PIT_RECORDED|VENDOR_OR_ROUTE_GAP": 2
+  }
+ },
+ "development_state_by_status_group": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "OTHER|LABELED": 68,
+   "OTHER|MARKET_INACTIVE": 11,
+   "OTHER|NO_SNAPSHOT_PRICE": 27,
+   "OTHER|OUT_OF_SCOPE_CHAIN": 464,
+   "OTHER|THINNED": 550,
+   "OTHER|VENDOR_OR_ROUTE_GAP": 29,
+   "REJECTED|LABELED": 63,
+   "REJECTED|MARKET_INACTIVE": 15,
+   "REJECTED|NO_SNAPSHOT_PRICE": 7,
+   "REJECTED|OUT_OF_SCOPE_CHAIN": 11,
+   "REJECTED|THINNED": 16,
+   "REJECTED|VENDOR_OR_ROUTE_GAP": 8
+  },
+  "price_path_target_before_invalidation_24h": {
+   "OTHER|LABELED": 71,
+   "OTHER|MARKET_INACTIVE": 11,
+   "OTHER|NO_SNAPSHOT_PRICE": 27,
+   "OTHER|OUT_OF_SCOPE_CHAIN": 470,
+   "OTHER|THINNED": 552,
+   "OTHER|VENDOR_OR_ROUTE_GAP": 29,
+   "REJECTED|LABELED": 65,
+   "REJECTED|MARKET_INACTIVE": 24,
+   "REJECTED|NO_SNAPSHOT_PRICE": 7,
+   "REJECTED|OUT_OF_SCOPE_CHAIN": 13,
+   "REJECTED|THINNED": 16,
+   "REJECTED|VENDOR_OR_ROUTE_GAP": 10
+  },
+  "price_path_target_before_invalidation_6h": {
+   "OTHER|LABELED": 148,
+   "OTHER|MARKET_INACTIVE": 12,
+   "OTHER|NO_SNAPSHOT_PRICE": 27,
+   "OTHER|OUT_OF_SCOPE_CHAIN": 477,
+   "OTHER|THINNED": 478,
+   "OTHER|VENDOR_OR_ROUTE_GAP": 29,
+   "REJECTED|LABELED": 76,
+   "REJECTED|MARKET_INACTIVE": 28,
+   "REJECTED|NO_SNAPSHOT_PRICE": 8,
+   "REJECTED|OUT_OF_SCOPE_CHAIN": 17,
+   "REJECTED|THINNED": 12,
+   "REJECTED|VENDOR_OR_ROUTE_GAP": 12
+  }
+ },
+ "development_state_by_week_utc": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "2026-W41|LABELED": 104,
+   "2026-W41|MARKET_INACTIVE": 22,
+   "2026-W41|NO_SNAPSHOT_PRICE": 29,
+   "2026-W41|OUT_OF_SCOPE_CHAIN": 447,
+   "2026-W41|THINNED": 566,
+   "2026-W41|VENDOR_OR_ROUTE_GAP": 36,
+   "2026-W42|LABELED": 27,
+   "2026-W42|MARKET_INACTIVE": 4,
+   "2026-W42|NO_SNAPSHOT_PRICE": 5,
+   "2026-W42|OUT_OF_SCOPE_CHAIN": 28,
+   "2026-W42|VENDOR_OR_ROUTE_GAP": 1
+  },
+  "price_path_target_before_invalidation_24h": {
+   "2026-W41|LABELED": 104,
+   "2026-W41|MARKET_INACTIVE": 22,
+   "2026-W41|NO_SNAPSHOT_PRICE": 29,
+   "2026-W41|OUT_OF_SCOPE_CHAIN": 447,
+   "2026-W41|THINNED": 566,
+   "2026-W41|VENDOR_OR_ROUTE_GAP": 36,
+   "2026-W42|LABELED": 32,
+   "2026-W42|MARKET_INACTIVE": 13,
+   "2026-W42|NO_SNAPSHOT_PRICE": 5,
+   "2026-W42|OUT_OF_SCOPE_CHAIN": 36,
+   "2026-W42|THINNED": 2,
+   "2026-W42|VENDOR_OR_ROUTE_GAP": 3
+  },
+  "price_path_target_before_invalidation_6h": {
+   "2026-W41|LABELED": 180,
+   "2026-W41|MARKET_INACTIVE": 22,
+   "2026-W41|NO_SNAPSHOT_PRICE": 29,
+   "2026-W41|OUT_OF_SCOPE_CHAIN": 447,
+   "2026-W41|THINNED": 490,
+   "2026-W41|VENDOR_OR_ROUTE_GAP": 36,
+   "2026-W42|LABELED": 44,
+   "2026-W42|MARKET_INACTIVE": 18,
+   "2026-W42|NO_SNAPSHOT_PRICE": 6,
+   "2026-W42|OUT_OF_SCOPE_CHAIN": 47,
+   "2026-W42|VENDOR_OR_ROUTE_GAP": 5
+  }
+ },
+ "development_without_key_conflict": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "DRAWDOWN_50": 26,
+   "NO_SEVERE_EVENT": 103
+  },
+  "price_path_target_before_invalidation_24h": {
+   "AMBIGUOUS_BAR": 1,
+   "INVALIDATION_FIRST": 68,
+   "NEITHER": 31,
+   "TARGET_FIRST": 34
+  },
+  "price_path_target_before_invalidation_6h": {
+   "AMBIGUOUS_BAR": 1,
+   "INVALIDATION_FIRST": 65,
+   "NEITHER": 127,
+   "NO_TRADES_AFTER_ENTRY": 1,
+   "TARGET_FIRST": 26
+  }
+ },
+ "export_ref": "efdaee91ebbeabf14268d858fa033d36ebd4ca06",
+ "halt_flags": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "HALT_ON_REFERENCE_POOL": 1,
+   "none": 130
+  }
+ },
+ "holdout": {
+  "holdout_labels_sha256": "e695500d01014936cf4a4a46f9975dcf9a9ca1351fe067f28ec36117cb82682b",
+  "rule": "Phase 06 prints counts and censoring only; Phase 12 opens it once for the frozen champion and baselines; reuse voids it",
+  "sealed_label_lines": 528,
+  "state_counts": {
+   "price_path_severe_drawdown_or_halt_24h": {
+    "LABELED": 60,
+    "MARKET_INACTIVE": 12,
+    "NO_SNAPSHOT_PRICE": 9,
+    "OUT_OF_SCOPE_CHAIN": 81,
+    "PENDING": 7,
+    "THINNED": 2,
+    "VENDOR_OR_ROUTE_GAP": 5
+   },
+   "price_path_target_before_invalidation_24h": {
+    "LABELED": 67,
+    "MARKET_INACTIVE": 12,
+    "NO_SNAPSHOT_PRICE": 9,
+    "OUT_OF_SCOPE_CHAIN": 81,
+    "THINNED": 2,
+    "VENDOR_OR_ROUTE_GAP": 5
+   },
+   "price_path_target_before_invalidation_6h": {
+    "LABELED": 69,
+    "MARKET_INACTIVE": 12,
+    "NO_SNAPSHOT_PRICE": 9,
+    "OUT_OF_SCOPE_CHAIN": 81,
+    "VENDOR_OR_ROUTE_GAP": 5
+   }
+  }
+ },
+ "labels_version": "labels-1",
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "sparse_path": {
+  "price_path_severe_drawdown_or_halt_24h": 20,
+  "price_path_target_before_invalidation_24h": 20,
+  "price_path_target_before_invalidation_6h": 7
+ },
+ "state_by_split": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "DEVELOPMENT:LABELED": 131,
+   "DEVELOPMENT:MARKET_INACTIVE": 26,
+   "DEVELOPMENT:NO_SNAPSHOT_PRICE": 34,
+   "DEVELOPMENT:OUT_OF_SCOPE_CHAIN": 475,
+   "DEVELOPMENT:THINNED": 566,
+   "DEVELOPMENT:VENDOR_OR_ROUTE_GAP": 37,
+   "PROSPECTIVE:NO_SNAPSHOT_PRICE": 3,
+   "PROSPECTIVE:OUT_OF_SCOPE_CHAIN": 8,
+   "PROSPECTIVE:PROSPECTIVE": 7,
+   "PURGED:MARKET_INACTIVE": 14,
+   "PURGED:NO_SNAPSHOT_PRICE": 1,
+   "PURGED:OUT_OF_SCOPE_CHAIN": 19,
+   "PURGED:PURGED": 15,
+   "PURGED:THINNED": 2,
+   "PURGED:VENDOR_OR_ROUTE_GAP": 4
+  },
+  "price_path_target_before_invalidation_24h": {
+   "DEVELOPMENT:LABELED": 136,
+   "DEVELOPMENT:MARKET_INACTIVE": 35,
+   "DEVELOPMENT:NO_SNAPSHOT_PRICE": 34,
+   "DEVELOPMENT:OUT_OF_SCOPE_CHAIN": 483,
+   "DEVELOPMENT:THINNED": 568,
+   "DEVELOPMENT:VENDOR_OR_ROUTE_GAP": 39,
+   "PROSPECTIVE:NO_SNAPSHOT_PRICE": 3,
+   "PROSPECTIVE:OUT_OF_SCOPE_CHAIN": 8,
+   "PROSPECTIVE:PROSPECTIVE": 7,
+   "PURGED:MARKET_INACTIVE": 5,
+   "PURGED:NO_SNAPSHOT_PRICE": 1,
+   "PURGED:OUT_OF_SCOPE_CHAIN": 11,
+   "PURGED:PURGED": 10,
+   "PURGED:VENDOR_OR_ROUTE_GAP": 2
+  },
+  "price_path_target_before_invalidation_6h": {
+   "DEVELOPMENT:LABELED": 224,
+   "DEVELOPMENT:MARKET_INACTIVE": 40,
+   "DEVELOPMENT:NO_SNAPSHOT_PRICE": 35,
+   "DEVELOPMENT:OUT_OF_SCOPE_CHAIN": 494,
+   "DEVELOPMENT:THINNED": 490,
+   "DEVELOPMENT:VENDOR_OR_ROUTE_GAP": 41,
+   "PROSPECTIVE:NO_SNAPSHOT_PRICE": 3,
+   "PROSPECTIVE:OUT_OF_SCOPE_CHAIN": 8,
+   "PROSPECTIVE:PROSPECTIVE": 7
+  }
+ },
+ "survivorship_reads_development_and_purged": {
+  "CURRENT_VENDOR_LIST|EMPTY_PAGE|VENDOR_OR_ROUTE_GAP": 1,
+  "CURRENT_VENDOR_LIST|NOT_READ|NO_SNAPSHOT_PRICE": 15,
+  "CURRENT_VENDOR_LIST|OK_TOKEN_PARAM|ELIGIBLE": 212,
+  "CURRENT_VENDOR_LIST|OK_TOKEN_PARAM|MARKET_INACTIVE": 23,
+  "CURRENT_VENDOR_LIST|OK_TOKEN_PARAM|VENDOR_OR_ROUTE_GAP": 38,
+  "PIT_RECORDED|EMPTY_PAGE|VENDOR_OR_ROUTE_GAP": 2,
+  "PIT_RECORDED|NOT_READ|NO_SNAPSHOT_PRICE": 20,
+  "PIT_RECORDED|OK_TOKEN_PARAM|ELIGIBLE": 502,
+  "PIT_RECORDED|OK_TOKEN_PARAM|MARKET_INACTIVE": 17
+ },
+ "unverifiable_detail": {},
+ "vendor_lists": {
+  "empty": 1,
+  "http": {
+   "200": 59
+  },
+  "mints": 59
+ },
+ "wick_touch_share": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "touches": 28,
+   "wick": 2
+  },
+  "price_path_target_before_invalidation_24h": {
+   "touches": 105,
+   "wick": 11
+  },
+  "price_path_target_before_invalidation_6h": {
+   "touches": 94,
+   "wick": 8
+  }
+ },
+ "window_edge_candle": 0
+}
