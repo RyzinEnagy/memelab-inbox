@@ -57,7 +57,13 @@ None in the package. Open for Elving: accept or reject G16 and G27 (rejecting ei
 
 ## Delivery
 
-Authorized by Elving at the start of this work (the "Both" answer): push a new feature/backtesting branch, fast-forward only, no force, no merge, no pull request, main untouched; and a git bundle plus a zip in D:\memelab. The push record is added in the commit after this one.
+Authorized by Elving at the start of this work (the "Both" answer): push a new feature/backtesting branch, fast-forward only, no force, no merge, no pull request, main untouched; and a git bundle plus a zip in D:\memelab. Push record, 2026-10-24 02:55 UTC:
+- feature/backtesting created on GitHub at 538de7d (all 34 commits from f99c6c7). This commit followed as a fast-forward. No force, no merge, no pull request.
+- Checked after the push: main still at 98338a8 and feature/catalyst-firecrawl still at f99c6c7.
+- Route: a plain `git push` of the new branch through this session's GitHub connection (Elving's account), not the Composio Git Data API. The Composio route would have meant passing about 660 KB of compressed objects through tool calls by hand, which is error-prone; the result on GitHub is the same commits with the same ids.
+- Before the push, the full history and the zip were searched on Elving's computer for the Crawl4AI and Maxun credentials: neither appears.
+
+Bundle and zip in D:\memelab: memelab-inbox_feature-backtesting.bundle (full history of feature/backtesting plus the base ref; `git clone -b feature/backtesting <bundle>`) and memelab-inbox_feature-backtesting.zip (tracked files at the branch tip, gitignored data excluded).
 
 ## Roadmap changes
 
