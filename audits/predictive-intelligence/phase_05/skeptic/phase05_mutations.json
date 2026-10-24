@@ -1,0 +1,76 @@
+{
+ "control": [
+  0,
+  "66 passed in 3.33s"
+ ],
+ "mutations": [
+  {
+   "mutation": "any token parameter counts as the mint's price",
+   "file": "store.py",
+   "caught": false,
+   "result": "66 passed in 4.82s"
+  },
+  {
+   "mutation": "provider-lag availability from candle start",
+   "file": "store.py",
+   "caught": true,
+   "result": "4 failed, 62 passed in 4.56s"
+  },
+  {
+   "mutation": "boundary drop by candle start (PI-D-034 m4 regression)",
+   "file": "store.py",
+   "caught": true,
+   "result": "2 failed, 64 passed in 3.60s"
+  },
+  {
+   "mutation": "as-of view mixes candle periods",
+   "file": "features.py",
+   "caught": false,
+   "result": "66 passed in 3.65s"
+  },
+  {
+   "mutation": "reference candle chosen by start, not end",
+   "file": "features.py",
+   "caught": true,
+   "result": "1 failed, 65 passed in 3.59s"
+  },
+  {
+   "mutation": "token row taken from the newest export (future pool/token facts)",
+   "file": "store.py",
+   "caught": false,
+   "result": "66 passed in 3.74s"
+  },
+  {
+   "mutation": "every read claims the vendor had nothing earlier (censoring becomes BEFORE_FIRST_CANDLE)",
+   "file": "store.py",
+   "caught": true,
+   "result": "1 failed, 65 passed in 3.56s"
+  },
+  {
+   "mutation": "vendor NO_DATA treated as an as-of fact (model input)",
+   "file": "features.py",
+   "caught": true,
+   "result": "3 failed, 63 passed in 3.48s"
+  },
+  {
+   "mutation": "reconstructed values labelled FACT",
+   "file": "features.py",
+   "caught": true,
+   "result": "2 failed, 64 passed in 3.62s"
+  },
+  {
+   "mutation": "revision compared with the oldest version",
+   "file": "store.py",
+   "caught": false,
+   "result": "66 passed in 3.23s"
+  },
+  {
+   "mutation": "check_plan allows a boundary after the pool's last development decision",
+   "file": "sources.py",
+   "caught": false,
+   "result": "66 passed in 3.42s"
+  }
+ ],
+ "caught": 6,
+ "total": 11
+}

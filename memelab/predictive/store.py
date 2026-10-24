@@ -49,7 +49,7 @@ SOURCE_GT = "geckoterminal-ohlcv"
 SOURCE_EXPORT = "state-export"
 AVAILABLE_BASES = ("PROVIDER_LAG_RECONSTRUCTION", "CAPTURE", "REVISION_FIRST_READ")
 SERIES_STATUSES = ("OK", "NO_DATA", "READ_FAILED", "CIRCUIT_OPEN", "CALL_CAP_REACHED", "BAD_BODY", "IDENTITY_MISMATCH")
-IDENTITY_CHECKS = ("OK_BASE", "OK_TOKEN_PARAM", "MINT_IS_QUOTE", "MINT_NOT_IN_POOL", "NO_META")
+IDENTITY_CHECKS = ("OK_BASE", "OK_TOKEN_PARAM", "MINT_IS_QUOTE", "MINT_NOT_IN_POOL", "OTHER_TOKEN_PARAM", "NO_META")
 GT_PERIOD = {("minute", 1): 60, ("minute", 5): 300, ("minute", 15): 900, ("hour", 1): 3600, ("hour", 4): 14400,
              ("hour", 12): 43200, ("day", 1): 86400}
 
@@ -138,9 +138,9 @@ CREATE TABLE predictive_raw_responses (     -- one row per external read; the sa
   body_bytes INTEGER NOT NULL,
   body_gzip BLOB,                           -- vendor body, gzip with mtime 0; NULL for a git blob (it stays in git)
   cover_from REAL,                          -- earliest candle start in the body (NULL: no candle)
-  cover_complete INTEGER,                   -- 1: fewer candles than the limit, so the vendor served nothing earlier
+  cover_complete INTEGER,                   -- always 0 for vendor reads: a short or empty page is NOT proof of no earlier trade
   candles_in_body INTEGER, candles_dropped_after_boundary INTEGER, candles_refused INTEGER,
-  identity_check TEXT,                      -- OK_BASE | OK_TOKEN_PARAM | MINT_IS_QUOTE | MINT_NOT_IN_POOL | NO_META (vendor reads)
+  identity_check TEXT,                      -- OK_BASE | OK_TOKEN_PARAM | MINT_IS_QUOTE | MINT_NOT_IN_POOL | OTHER_TOKEN_PARAM | NO_META
   collector TEXT NOT NULL, ingest_version TEXT NOT NULL, schema_version TEXT NOT NULL,
   recorded_at REAL NOT NULL
 );
@@ -194,7 +194,7 @@ CREATE TABLE predictive_source_status (     -- how one fetch series of one pool 
   period_s INTEGER NOT NULL,                -- candle period of the series (features read 300 s series only)
   detail TEXT,
   cover_from REAL,                          -- earliest candle start read in the series (NULL: none)
-  cover_complete INTEGER NOT NULL,          -- 1: the vendor served nothing before cover_from
+  cover_complete INTEGER NOT NULL,          -- always 0 (repair m2): coverage starts at cover_from, nothing is assumed before it
   last_end_at REAL,                         -- end of the newest candle kept
   calls INTEGER NOT NULL, candles_kept INTEGER NOT NULL,
   response_keys_json TEXT NOT NULL,
@@ -502,9 +502,18 @@ def gt_identity(body: bytes, mint: str, token_param: str | None) -> str:
         return "NO_META"
     if mint not in (base, quote):
         return "MINT_NOT_IN_POOL"
-    if token_param == mint:
-        return "OK_TOKEN_PARAM"
-    return "OK_BASE" if (base == mint and token_param in (None, "base")) else "MINT_IS_QUOTE"
+    if token_param is not None:                       # only the exact mint address counts; "base", "quote" or another address do not
+        return "OK_TOKEN_PARAM" if token_param == mint else "OTHER_TOKEN_PARAM"
+    return "OK_BASE" if base == mint else "MINT_IS_QUOTE"
+
+
+def url_token(url: str) -> str | None:
+    """The `token` query parameter of the URL actually requested (None when absent)."""
+    from urllib.parse import parse_qs, urlsplit
+    vals = parse_qs(urlsplit(url).query).get("token")
+    if vals and len(vals) > 1:
+        raise StoreError("a request URL with two token parameters is ambiguous")
+    return vals[0] if vals else None
 
 
 def _series_key(source_id: str, chain: str, pool: str, period: int, start: float) -> str:
@@ -516,15 +525,31 @@ def _latest_version(con: sqlite3.Connection, series_key: str) -> sqlite3.Row | N
                        (series_key,)).fetchone()
 
 
+def url_period(url: str) -> int | None:
+    """Candle period of a GeckoTerminal OHLCV request URL (`.../ohlcv/<timeframe>?aggregate=<n>`), None when not parseable."""
+    from urllib.parse import parse_qs, urlsplit
+    u = urlsplit(url)
+    tf = u.path.rstrip("/").rsplit("/", 1)[-1] if "/ohlcv/" in u.path else None
+    agg = (parse_qs(u.query).get("aggregate") or ["1"])[0]
+    try:
+        return GT_PERIOD.get((tf, int(agg)))
+    except ValueError:
+        return None
+
+
 def _covered_by_earlier_read(con: sqlite3.Connection, chain: str, pool: str, start: float, period: int,
                              before_retrieved: float) -> sqlite3.Row | None:
-    """An earlier read of the same pool whose window included this candle position: [cover_from, boundary], or everything up to
-    the boundary when that read showed the vendor had nothing earlier."""
-    return con.execute(
-        "SELECT * FROM predictive_raw_responses WHERE source_id=? AND chain=? AND pool_address=? AND http_status=200 "
-        "AND identity_check LIKE 'OK%' AND retrieved_at < ? AND boundary_at IS NOT NULL AND ? + ? <= boundary_at "
-        "AND (cover_complete = 1 OR (cover_from IS NOT NULL AND cover_from <= ?)) ORDER BY retrieved_at LIMIT 1",
-        (SOURCE_GT, chain, pool, before_retrieved, start, period, start)).fetchone()
+    """An earlier read of the same pool and the same candle period whose window [cover_from, boundary] included this position.
+    A read of another period never covers it; a read whose period cannot be parsed is treated as covering (conservative: a
+    candle then counts only from its own read)."""
+    for r in con.execute(
+            "SELECT * FROM predictive_raw_responses WHERE source_id=? AND chain=? AND pool_address=? AND http_status=200 "
+            "AND identity_check LIKE 'OK%' AND retrieved_at < ? AND boundary_at IS NOT NULL AND ? + ? <= boundary_at "
+            "AND (cover_complete = 1 OR (cover_from IS NOT NULL AND cover_from <= ?)) ORDER BY retrieved_at",
+            (SOURCE_GT, chain, pool, before_retrieved, start, period, start)):
+        if url_period(r["request_url"]) in (None, period):
+            return r
+    return None
 
 
 def ingest_gt_response(con: sqlite3.Connection, resp: dict, *, chain: str, mint: str, pool: str, now: float,
@@ -565,12 +590,16 @@ def ingest_gt_response(con: sqlite3.Connection, resp: dict, *, chain: str, mint:
     rows: list = []
     bad_body = None
     ident = None
+    sent = url_token(resp["url"])                     # the token of the request actually sent (skeptic CX-05)
+    recorded = (resp.get("params") or {}).get("token", sent)
+    if recorded != sent:
+        raise StoreError(f"recorded token parameter {recorded!r} disagrees with the URL sent ({sent!r}): read refused")
     if status == 200:
         try:
             rows = parse_gt_ohlcv(body)
         except (ValueError, StoreError) as e:
             bad_body = str(e)[:200]
-        ident = gt_identity(body, mint, (resp.get("params") or {}).get("token"))
+        ident = gt_identity(body, mint, sent)
     kept, dropped, refused = [], 0, 0
     if ident is not None and not ident.startswith("OK"):
         refused, rows_checked = len(rows), []           # never the mint's price: every candle refused, the read kept
@@ -603,7 +632,10 @@ def ingest_gt_response(con: sqlite3.Connection, resp: dict, *, chain: str, mint:
     ident_ok = ident is None or ident.startswith("OK")
     if not ident_ok:
         cover_from = None
-    cover_complete = 1 if (status == 200 and bad_body is None and ident_ok and len(rows) < limit) else 0
+    # Repair m2: the vendor bounds each request in time, so a page shorter than the limit (even an empty one) does not prove
+    # that nothing traded earlier (live: an empty page at 2026-10-14 for a pool with a candle on 2026-09-28). Coverage starts at
+    # the earliest candle read; nothing is assumed before it.
+    cover_complete = 0
     _insert(con, "predictive_raw_responses", {
         "response_key": rk, "source_id": SOURCE_GT, "request_url": resp["url"], "request_json": canon(resp.get("params") or {}),
         "chain": chain, "mint": mint, "pool_address": pool, "boundary_at": float(boundary) if boundary is not None else None,

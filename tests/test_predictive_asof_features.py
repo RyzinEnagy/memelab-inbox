@@ -206,7 +206,7 @@ def test_determinism_across_fresh_processes(world, tmp_path):
     con.commit()
     path = next(r[2] for r in con.execute("PRAGMA database_list") if r[1] == "main")
     code = ("import sys,json; from memelab.predictive import store as S, features as F; c=S.connect(sys.argv[1]); "
-            "print(F.features_as_of(c,'solana',sys.argv[2],float(sys.argv[3]),'1')['snapshot_sha256'])")
+            "print(F.features_as_of(c,'solana',sys.argv[2],float(sys.argv[3]),F.FEATURE_VERSION)['snapshot_sha256'])")
     root = Path(__file__).resolve().parents[1]
     outs = {subprocess.run([sys.executable, "-c", code, path, H.MINT_A, repr(d3)], capture_output=True, text=True, cwd=root,
                            check=True).stdout.strip() for _ in range(2)}
@@ -215,11 +215,12 @@ def test_determinism_across_fresh_processes(world, tmp_path):
 
 def test_another_feature_version_or_definitions_hash_is_refused(world):
     con, (d1, d2, d3) = world
+    for other in ("1", "3"):                      # version 1 (before repair m2) and any later one are refused
+        with pytest.raises(F.FeatureVersionError):
+            F.features_as_of(con, "solana", H.MINT_A, d3, other)
     with pytest.raises(F.FeatureVersionError):
-        F.features_as_of(con, "solana", H.MINT_A, d3, "2")
-    with pytest.raises(F.FeatureVersionError):
-        F.require_compatible("1", "0" * 64)
-    F.require_compatible("1", F.feature_set_sha())
+        F.require_compatible(V, "0" * 64)
+    F.require_compatible(V, F.feature_set_sha())
 
 
 def test_a_changed_definition_changes_the_definitions_hash(monkeypatch):
@@ -431,3 +432,18 @@ def test_same_symbol_mints_and_other_pools_never_join(world):
     upper = H.MINT_A[:5] + H.MINT_A[5].swapcase() + H.MINT_A[6:]
     u = F.features_as_of(con, "solana", upper, d2, V)
     assert {v["missing_reason"] for v in u["values"] if not v["feature_name"].startswith("universe")} == {"NOT_IN_UNIVERSE"}
+
+def test_fifteen_minute_candles_of_the_same_pool_never_enter_five_minute_features(world):
+    con, (d1, d2, d3) = world
+    before = F.features_as_of(con, "solana", H.MINT_A, d3, V)
+    rr = H.resp(H.POOL_A, int(d3), [H.candle(int(d3) // 900 * 900 - 900, c=77.0)], H.T0 + 31 * 86400)
+    rr.update(timeframe="minute", aggregate=15, url=rr["url"].replace("aggregate=5", "aggregate=15"))
+    assert S.url_period(rr["url"]) == 900 and S.url_period(H.resp(H.POOL_A, 1, [], 1)["url"]) == 300
+    r = S.ingest_gt_response(con, rr, chain="solana", mint=H.MINT_A, pool=H.POOL_A, now=1)
+    row = S.iter_rows(con, "SELECT * FROM predictive_candles WHERE period_s = 900")[0]
+    assert r["added"] == 1 and row["available_basis"] == "PROVIDER_LAG_RECONSTRUCTION"   # a 5-minute read never covers it
+    S.record_series_status(con, chain="solana", mint=H.MINT_A, pool=H.POOL_A, series_id="m15", boundary_at=int(d3), need_from=H.T0,
+                           status="OK", detail=None, response_keys=[r["response_key"]], calls=1, candles_kept=1, last_end_at=None,
+                           checked_at=H.T0 + 31 * 86400, now=1, period_s=900)
+    assert F.features_as_of(con, "solana", H.MINT_A, d3, V)["snapshot_sha256"] == before["snapshot_sha256"]
+

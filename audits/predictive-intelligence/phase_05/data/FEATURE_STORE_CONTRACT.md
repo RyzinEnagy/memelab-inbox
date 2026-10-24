@@ -1,4 +1,4 @@
-# Feature store contract (Phase 05, schema `memelab.predictive.store/1`, feature version 1)
+# Feature store contract (Phase 05, schema `memelab.predictive.store/1`, feature version 2)
 
 The point-in-time evidence and feature store of the predictive engine. Code: `memelab/predictive/store.py` (schema, migrations, ingestion, integrity), `memelab/predictive/sources.py` (git export reader, GeckoTerminal plan and fetch), `memelab/predictive/features.py` (as-of view, features, snapshots, training view, truncation proof). Tests: `tests/test_predictive_asof_store.py`, `tests/test_predictive_asof_features.py`, `tests/test_predictive_asof_fixture.py`. Where this document and the code differ, the code is the contract and this document is wrong; `tests/test_predictive_asof_fixture.py` checks that every table, feature, missing reason, the schema checksum and the definitions hash below appear here.
 
@@ -20,7 +20,7 @@ Numbered migrations with a checksum ledger, the pattern of `memelab/social/schem
 <!-- generated:migrations:start -->
 | Version | Name | Up script sha256 |
 |---|---|---|
-| 1 | point-in-time evidence and feature store | `be78da4b765c5f3d21b3aff092da1f6d624c96ce1f9907225f0680047e4c206f` |
+| 1 | point-in-time evidence and feature store | `775d6683f76b89c68938007eb8c6009fe537ab4e06e33409dbc81454fc270f12` |
 <!-- generated:migrations:end -->
 
 ## Tables (version 1)
@@ -29,7 +29,7 @@ Every data table is append-only: triggers refuse UPDATE and DELETE (test `test_e
 
 | Table | One row per | Key fields |
 |---|---|---|
-| `predictive_raw_responses` | external read: a GeckoTerminal response, or a state-export version read from git | `response_key` = sha256(source, URL, retrieval, body sha256); `request_url`, `request_json` (parameters, including `token`), `retrieved_at` (when the bytes arrived), `http_status`, `body_sha256`, `body_bytes`, `body_gzip` (vendor bodies; an export body stays in git, named by commit and blob), `boundary_at` (the request's `before_timestamp`), `cover_from` and `cover_complete` (what the read covered), counts of candles kept, dropped after the boundary and refused, `identity_check`, `collector`, `ingest_version`, `schema_version`, `recorded_at` |
+| `predictive_raw_responses` | external read: a GeckoTerminal response, or a state-export version read from git | `response_key` = sha256(source, URL, retrieval, body sha256); `request_url`, `request_json` (parameters, including `token`), `retrieved_at` (when the bytes arrived), `http_status`, `body_sha256`, `body_bytes`, `body_gzip` (vendor bodies; an export body stays in git, named by commit and blob), `boundary_at` (the request's `before_timestamp`), `cover_from` (the earliest candle the read returned) and `cover_complete` (always 0 since the repair pass: a short page proves nothing earlier), counts of candles kept, dropped after the boundary and refused, `identity_check`, `collector`, `ingest_version`, `schema_version`, `recorded_at` |
 | `predictive_candles` | distinct version of one candle position | `obs_key`; `series_key` = sha256(source, chain, pool, period, start); `source_record_id` = `<pool>:<period>:<start>`; `chain`, `mint`, `pool_address`; `period_s`, `start_at`, `end_at`; `o`, `h`, `l`, `c`, `v`; `vanished`; `event_time` (provider candle start); `published_at` (NULL: UNKNOWN for this vendor); `retrieved_at` (first read of this version); `available_at` and `available_basis`; `revision_of`, `revision_kind`; `response_key`, `raw_sha256` |
 | `predictive_candle_reads` | later read that returned an existing version unchanged | `obs_key`, `response_key`, `retrieved_at` |
 | `predictive_source_status` | planned fetch series (one pool, one boundary) and how it ended | `status` (OK, NO_DATA, READ_FAILED, CIRCUIT_OPEN, CALL_CAP_REACHED, BAD_BODY, IDENTITY_MISMATCH), `period_s`, `boundary_at`, `need_from`, `cover_from`, `cover_complete`, `last_end_at`, `calls`, `candles_kept`, `response_keys_json`, `checked_at` |
@@ -69,7 +69,7 @@ Two availability modes for features: `provider` uses `available_at` (the reconst
 - No symbol or name column exists in any table, so none can take part in a join.
 - A pool belongs to exactly one mint: a read of a pool already read for another mint is refused (`ingest_gt_response`), and a plan that gives one pool to two mints is refused (`sources.plan_backfill`).
 - Candle features read only the point-in-time pool of the decision row's export; another pool of the same mint never enters (test `test_same_symbol_mints_and_other_pools_never_join`).
-- Vendor identity: GeckoTerminal prices the pool's base token unless `token=<address>` asks for another. A read whose body does not show that the candles are the mint's price is kept as a raw read and gives no candle: `identity_check` OK_BASE (no token parameter, mint is base) or OK_TOKEN_PARAM (`token=<mint>` and the mint is in the pool) pass; MINT_IS_QUOTE, MINT_NOT_IN_POOL and NO_META refuse every candle and the series ends IDENTITY_MISMATCH. Every Phase 05 request now carries `token=<mint>`, as the lab's collector does (`memelab/bridge/plan.py`).
+- Vendor identity: GeckoTerminal prices the pool's base token unless `token=<address>` asks for another. The token parameter is read from the URL actually sent (`store.url_token`); a read whose recorded parameters name another token than its URL is refused before anything is stored (skeptic counterexample CX-05). A read whose body does not show that the candles are the mint's price is kept as a raw read and gives no candle: `identity_check` OK_BASE (no token parameter, mint is base) or OK_TOKEN_PARAM (the URL's `token` equals the mint exactly and the mint is in the pool) pass; MINT_IS_QUOTE, MINT_NOT_IN_POOL, OTHER_TOKEN_PARAM (`base`, `quote` or any other address) and NO_META refuse every candle and the series ends IDENTITY_MISMATCH. Every Phase 05 request now carries `token=<mint>`, as the lab's collector does (`memelab/bridge/plan.py`).
 - `store.snapshot_ref_ok(con, chain, mint, snapshot_hash)` is the PI-D-022 check that a forecast's `snapshot_hash` is the `row_sha256` of a decision record of that exact (chain, mint).
 
 ## Ingestion rules
@@ -115,11 +115,11 @@ Every feature input's conservatively established `available_at` is at or before 
 | `features.require_compatible(version, sha=None)` | versions are incompatible by default (P46) |
 | `store.verify(con)` | recomputes body hashes, candle-to-body hashes, decision row hashes, value invariants and snapshot hashes |
 
-## Feature set version 1
+## Feature set version 2
 
 <!-- generated:sha:start -->
-Definitions hash (`features.feature_set_sha()`): `bc06019ea609f18083520196866b86bd6de63b7420b349c9afe7a634ff356332`, 32 features.
-<!-- generated:sha:end --> Transform revision `asof-1`. Values are stored to 10 significant digits so hashes are stable across platforms. "t" is the snapshot time; a window counts candles that end in (t - window, t] and are available at t.
+Definitions hash (`features.feature_set_sha()`): `90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b`, 32 features.
+<!-- generated:sha:end --> Transform revision `asof-2` (version 1 assumed a short vendor page proved no earlier trade; version 2 assumes nothing before the earliest candle read, repair m2). Values are stored to 10 significant digits so hashes are stable across platforms. "t" is the snapshot time; a window counts candles that end in (t - window, t] and are available at t.
 
 <!-- generated:features:start -->
 | Feature | Group | Source | Unit | Window | Transform | Evidence when a value |
@@ -178,7 +178,6 @@ Every missing value names a reason and its basis. AS_OF reasons are decided by w
 | `NO_TOKEN_ROW` | AS_OF |
 | `OUT_OF_SCOPE_CHAIN` | AS_OF |
 | `UNPARSEABLE` | AS_OF |
-| `BEFORE_FIRST_CANDLE` | HEURISTIC |
 | `NO_CANDLE_AVAILABLE` | HEURISTIC |
 | `CALL_CAP_REACHED` | RETRIEVAL |
 | `CIRCUIT_OPEN` | RETRIEVAL |
@@ -198,15 +197,15 @@ Each snapshot's `source_status` names, per source, OK or the RETRIEVAL reasons t
 
 | Item | Value | Rule |
 |---|---|---|
-| Schema | `memelab.predictive.store/1` | a schema change is a new migration, never an edit of version 1 (checksum) |
+| Schema | `memelab.predictive.store/1` | a schema change is a new migration, never an edit of version 1 (checksum); the repair pass edited only comments of version 1 before any store outside this phase existed, and the pinned checksum moved with it |
 | Ingest versions | `state-export/1`, `geckoterminal-ohlcv/1` | on every raw read, candle and decision row |
-| Feature version | `1` | any transform change bumps it with `TRANSFORM_REVISION`; the definitions hash, the golden fixture and this document change with it |
+| Feature version | `2` | any transform change bumps it with `TRANSFORM_REVISION`; the definitions hash, the golden fixture and this document change with it (1 to 2 in the Phase 05 repair pass, m2) |
 | Snapshot reference | `snapshot_key` and `snapshot_sha256` | training, inference and reports cite a snapshot by key and hash; the decision behind it by `decision_key` and `row_sha256` (the forecast contract's `snapshot_hash`) |
 
 ## Known limits
 
 - Historical candle availability is a reconstruction (HEURISTIC): the store proves what the vendor served when read, not what it served at the decision. Revisions are detected only between reads the lab made (Phase 05 re-read sample and the comparisons in `evidence/revision_check_*.json`); a revision before the lab's first read cannot be seen.
-- `cover_complete` assumes the vendor returns fewer candles than the limit only when it has nothing earlier; a vendor retention limit would look the same.
+- A short or empty vendor page is not evidence that nothing traded earlier: the vendor bounds each request in time (an empty page at 2026-10-14 for a pool with a candle on 2026-09-28, skeptic m2). Coverage starts at the earliest candle read, and a window that starts before it is OUTSIDE_FETCHED_WINDOW (RETRIEVAL). Labels must not read an empty page as "no trade" (the halt target, Phase 06).
 - A candle's open, and with it high or low, depends on the request window (80 of 57,584 candles read twice); only closes and volumes feed features. Labels that test barriers on highs and lows (Phase 06) inherit this.
 - A read without `token=<mint>` prices the vendor's base token, and the vendor's orientation of a pool can change: an inbox read of 2026-10-06 priced the other token of a pool whose meta now names the mint as base. Only a read's own meta, or the token parameter, establishes whose price it is.
 - Only the point-in-time pool is read; a decision without one gets NO_POOL_AT_DECISION. No executable depth exists for past times (P08).

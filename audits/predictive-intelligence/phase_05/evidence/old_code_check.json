@@ -1,0 +1,12 @@
+{
+ "what": "repair tests run against the first-pass modules (store.py, features.py, sources.py from b4baa78) with the repaired tests",
+ "command": "copy memelab/ and tests/, replace the three modules with git show b4baa78:<path>, python -m pytest tests/test_predictive_asof_store.py tests/test_predictive_asof_features.py -q",
+ "result": "4 failed, 65 passed",
+ "failed": [
+  "test_cx05_a_recorded_token_that_the_url_did_not_send_is_refused",
+  "test_only_the_exact_mint_as_token_parameter_counts",
+  "test_a_short_page_is_not_proof_of_no_earlier_trade",
+  "test_another_feature_version_or_definitions_hash_is_refused"
+ ],
+ "note": "the m3 tests (period filter, token row of the decision export, A to B to A revision, check_plan clause) pass on the first-pass code because it was right there; they exist to kill the skeptic surviving mutations (evidence/mutation_asof.json)"
+}

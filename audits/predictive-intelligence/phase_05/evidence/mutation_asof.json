@@ -4,11 +4,11 @@
   "mutation": "none (control)",
   "file": "store",
   "caught": false,
-  "result": "66 passed in 3.80s",
-  "seconds": 4.1
+  "result": "73 passed in 4.37s",
+  "seconds": 4.7
  },
- "mutations": 35,
- "caught": 35,
+ "mutations": 43,
+ "caught": 43,
  "errors": [],
  "survivors": [],
  "results": [
@@ -16,176 +16,176 @@
    "mutation": "view cutoff one second late",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 37 passed in 1.77s",
-   "seconds": 2.1
+   "result": "1 failed, 43 passed in 2.52s",
+   "seconds": 2.9
   },
   {
    "mutation": "both layers admit one second later (the audit must still raise)",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 37 passed in 1.81s",
+   "result": "1 failed, 43 passed in 1.81s",
    "seconds": 2.1
   },
   {
    "mutation": "audit removed",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 40 passed in 1.82s",
-   "seconds": 2.1
+   "result": "1 failed, 46 passed in 2.03s",
+   "seconds": 2.5
   },
   {
    "mutation": "revisions ignored: always the first version",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 38 passed in 1.88s",
-   "seconds": 2.2
+   "result": "1 failed, 44 passed in 2.30s",
+   "seconds": 2.7
   },
   {
    "mutation": "capture mode sees series read after the cutoff",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 42 passed in 1.96s",
-   "seconds": 2.3
+   "result": "1 failed, 48 passed in 2.49s",
+   "seconds": 2.9
   },
   {
    "mutation": "decision filter admits later decisions",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 4 passed in 0.60s",
-   "seconds": 0.9
+   "result": "1 failed, 4 passed in 0.65s",
+   "seconds": 1.0
   },
   {
    "mutation": "universe admits later decisions",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 54 passed in 2.99s",
-   "seconds": 3.3
+   "result": "1 failed, 60 passed in 3.24s",
+   "seconds": 3.6
   },
   {
    "mutation": "missing field becomes a zero",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 49 passed in 2.57s",
-   "seconds": 3.0
+   "result": "1 failed, 55 passed in 2.55s",
+   "seconds": 2.9
   },
   {
    "mutation": "feature version not checked",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 46 passed in 2.37s",
-   "seconds": 2.7
+   "result": "1 failed, 52 passed in 2.81s",
+   "seconds": 3.1
   },
   {
    "mutation": "both layers: capture mode uses the reconstruction and sees later series",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 42 passed in 1.90s",
-   "seconds": 2.2
+   "result": "1 failed, 48 passed in 2.50s",
+   "seconds": 2.8
   },
   {
    "mutation": "coverage not required up to the decision",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 59 passed in 3.49s",
-   "seconds": 3.8
+   "result": "1 failed, 65 passed in 3.98s",
+   "seconds": 4.3
   },
   {
    "mutation": "drift not refused",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 52 passed in 2.74s",
-   "seconds": 3.1
+   "result": "1 failed, 58 passed in 3.48s",
+   "seconds": 3.9
   },
   {
    "mutation": "truncated copy keeps every candle",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 43 passed in 2.10s",
-   "seconds": 2.4
+   "result": "1 failed, 49 passed in 2.48s",
+   "seconds": 2.9
   },
   {
    "mutation": "window coverage not checked",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 39 passed in 1.61s",
-   "seconds": 1.9
+   "result": "1 failed, 45 passed in 2.32s",
+   "seconds": 2.7
   },
   {
    "mutation": "retrieval failures look like quiet markets",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 58 passed in 3.17s",
-   "seconds": 3.5
+   "result": "1 failed, 64 passed in 4.12s",
+   "seconds": 4.5
   },
   {
    "mutation": "training view takes later decisions",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 55 passed in 3.36s",
-   "seconds": 3.7
+   "result": "1 failed, 61 passed in 3.83s",
+   "seconds": 4.2
   },
   {
    "mutation": "row validator accepts a later availability",
    "file": "features",
    "caught": true,
-   "result": "1 failed, 56 passed in 3.17s",
-   "seconds": 3.5
+   "result": "1 failed, 62 passed in 3.46s",
+   "seconds": 3.8
   },
   {
    "mutation": "no provider lag",
    "file": "store",
    "caught": true,
-   "result": "1 failed, 21 passed in 1.59s",
-   "seconds": 2.0
+   "result": "1 failed, 21 passed in 1.89s",
+   "seconds": 2.4
   },
   {
    "mutation": "boundary candle kept",
    "file": "store",
    "caught": true,
-   "result": "1 failed, 22 passed in 1.51s",
-   "seconds": 1.8
+   "result": "1 failed, 22 passed in 1.62s",
+   "seconds": 2.0
   },
   {
    "mutation": "revision available at the first version's time",
    "file": "store",
    "caught": true,
-   "result": "1 failed, 25 passed in 1.48s",
-   "seconds": 1.8
+   "result": "1 failed, 25 passed in 1.65s",
+   "seconds": 2.0
   },
   {
    "mutation": "late appearance treated as old history",
    "file": "store",
    "caught": true,
-   "result": "1 failed, 26 passed in 1.44s",
+   "result": "1 failed, 26 passed in 1.36s",
    "seconds": 1.7
   },
   {
    "mutation": "vanished candles ignored",
    "file": "store",
    "caught": true,
-   "result": "1 failed, 27 passed in 1.66s",
-   "seconds": 2.0
+   "result": "1 failed, 27 passed in 1.77s",
+   "seconds": 2.1
   },
   {
    "mutation": "tracked database allowed",
    "file": "store",
    "caught": true,
-   "result": "1 failed in 0.29s",
-   "seconds": 0.6
+   "result": "1 failed in 0.36s",
+   "seconds": 0.7
   },
   {
    "mutation": "any base58 length accepted",
    "file": "store",
    "caught": true,
-   "result": "1 failed, 12 passed in 1.19s",
-   "seconds": 1.5
+   "result": "1 failed, 12 passed in 1.29s",
+   "seconds": 1.7
   },
   {
    "mutation": "vendor identity not checked",
    "file": "store",
    "caught": true,
-   "result": "1 failed, 28 passed in 1.45s",
-   "seconds": 1.8
+   "result": "1 failed, 28 passed in 1.51s",
+   "seconds": 1.9
   },
   {
    "mutation": "partial export history accepted",
@@ -198,63 +198,119 @@
    "mutation": "row existing after its decision accepted",
    "file": "store",
    "caught": true,
-   "result": "1 failed, 18 passed in 1.27s",
-   "seconds": 1.6
+   "result": "1 failed, 18 passed in 1.62s",
+   "seconds": 1.9
   },
   {
    "mutation": "append-only triggers dropped",
    "file": "store",
    "caught": true,
-   "result": "1 failed, 4 passed in 0.53s",
-   "seconds": 0.9
+   "result": "1 failed, 4 passed in 0.62s",
+   "seconds": 1.0
   },
   {
    "mutation": "rollback keeps the ledger",
    "file": "store",
    "caught": true,
-   "result": "1 failed, 2 passed in 0.45s",
+   "result": "1 failed, 2 passed in 0.43s",
    "seconds": 0.8
   },
   {
    "mutation": "millisecond stamps accepted",
    "file": "store",
    "caught": true,
-   "result": "1 failed, 18 passed in 1.25s",
-   "seconds": 1.6
+   "result": "1 failed, 18 passed in 1.38s",
+   "seconds": 1.7
   },
   {
    "mutation": "a pool may serve two mints",
    "file": "store",
    "caught": true,
-   "result": "1 failed, 14 passed in 1.20s",
-   "seconds": 1.5
+   "result": "1 failed, 14 passed in 1.19s",
+   "seconds": 1.6
   },
   {
    "mutation": "holdout pad removed",
    "file": "sources",
    "caught": true,
-   "result": "1 failed, 32 passed in 1.34s",
-   "seconds": 1.7
+   "result": "1 failed, 32 passed in 1.62s",
+   "seconds": 2.0
   },
   {
    "mutation": "sealed decisions fetched",
    "file": "sources",
    "caught": true,
-   "result": "1 failed, 31 passed in 1.61s",
-   "seconds": 1.9
+   "result": "1 failed, 31 passed in 1.70s",
+   "seconds": 2.1
   },
   {
    "mutation": "no token parameter",
    "file": "sources",
    "caught": true,
-   "result": "1 failed, 28 passed in 1.40s",
+   "result": "1 failed, 28 passed in 1.45s",
    "seconds": 1.7
   },
   {
    "mutation": "HTTP errors not counted by the breaker",
    "file": "sources",
    "caught": true,
-   "result": "1 failed, 34 passed in 1.68s",
+   "result": "1 failed, 34 passed in 1.48s",
+   "seconds": 1.8
+  },
+  {
+   "mutation": "any token parameter counts as the mint's price",
+   "file": "store",
+   "caught": true,
+   "result": "1 failed, 38 passed in 1.73s",
+   "seconds": 2.1
+  },
+  {
+   "mutation": "recorded token trusted over the URL sent",
+   "file": "store",
+   "caught": true,
+   "result": "1 failed, 37 passed in 2.03s",
+   "seconds": 2.4
+  },
+  {
+   "mutation": "short page claims the vendor's whole history",
+   "file": "store",
+   "caught": true,
+   "result": "1 failed, 39 passed in 1.74s",
+   "seconds": 2.1
+  },
+  {
+   "mutation": "as-of view mixes candle periods",
+   "file": "features",
+   "caught": true,
+   "result": "1 failed, 68 passed in 3.63s",
+   "seconds": 4.0
+  },
+  {
+   "mutation": "token row taken from the newest export",
+   "file": "store",
+   "caught": true,
+   "result": "1 failed, 40 passed in 1.70s",
+   "seconds": 2.1
+  },
+  {
+   "mutation": "revision compared with the oldest version",
+   "file": "store",
+   "caught": true,
+   "result": "1 failed, 41 passed in 1.82s",
+   "seconds": 2.2
+  },
+  {
+   "mutation": "a read of another candle period covers a position",
+   "file": "store",
+   "caught": true,
+   "result": "1 failed, 68 passed in 3.79s",
+   "seconds": 4.1
+  },
+  {
+   "mutation": "check_plan allows a boundary after the pool's last development decision",
+   "file": "sources",
+   "caught": true,
+   "result": "1 failed, 42 passed in 1.67s",
    "seconds": 2.0
   }
  ],
@@ -263,22 +319,22 @@
    "mutation": "candle SQL filter alone admits one second later",
    "file": "features",
    "caught": false,
-   "result": "66 passed in 3.95s",
+   "result": "73 passed in 4.04s",
    "seconds": 4.3
   },
   {
    "mutation": "visible alone ignores the cutoff",
    "file": "features",
    "caught": false,
-   "result": "66 passed in 3.82s",
-   "seconds": 4.1
+   "result": "73 passed in 4.07s",
+   "seconds": 4.4
   },
   {
    "mutation": "capture candle column alone uses the reconstruction",
    "file": "features",
    "caught": false,
-   "result": "66 passed in 3.87s",
-   "seconds": 4.2
+   "result": "73 passed in 4.26s",
+   "seconds": 4.6
   }
  ]
 }

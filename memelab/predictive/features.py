@@ -36,7 +36,7 @@ from ..social import replay_core as RC
 from . import sources as SRC
 from . import store as S
 
-FEATURE_VERSION = "1"
+FEATURE_VERSION = "2"                      # 2: Phase 05 repair m2, no coverage assumed before the earliest candle read
 FEATURE_SET_NAME = "memelab.predictive.features"
 MODES = ("provider", "capture")
 LeakageError = RC.LeakageError
@@ -48,7 +48,7 @@ REASONS = {
     "NOT_IN_UNIVERSE": AS_OF, "ABSENT_IN_SNAPSHOT": AS_OF, "NOT_NUMERIC": AS_OF, "NON_POSITIVE": AS_OF, "NEGATIVE": AS_OF,
     "UNPARSEABLE": AS_OF, "INCONSISTENT_TIME": AS_OF, "NO_PRIOR_DECISION": AS_OF, "NO_TOKEN_ROW": AS_OF,
     "OUT_OF_SCOPE_CHAIN": AS_OF, "NO_POOL_AT_DECISION": AS_OF,
-    "NO_CANDLE_AVAILABLE": HEURISTIC, "BEFORE_FIRST_CANDLE": HEURISTIC,
+    "NO_CANDLE_AVAILABLE": HEURISTIC,
     "NOT_FETCHED_SEALED": RETRIEVAL, "NOT_FETCHED": RETRIEVAL, "NOT_RETRIEVED_BY_DECISION": RETRIEVAL,
     "VENDOR_NO_DATA": RETRIEVAL, "VENDOR_READ_FAILED": RETRIEVAL, "VENDOR_BAD_BODY": RETRIEVAL, "CIRCUIT_OPEN": RETRIEVAL,
     "CALL_CAP_REACHED": RETRIEVAL, "OUTSIDE_FETCHED_WINDOW": RETRIEVAL, "VENDOR_IDENTITY_MISMATCH": RETRIEVAL,
@@ -112,7 +112,7 @@ FEATURES: list[dict] = [
     _f("xsrc_log_close_over_thesis_price", "cross", _G + "+" + _X, "ln ratio", None, "ln(last close / snapshot.price): pool route consistency (P02)", "HEURISTIC"),
 ]
 NAMES = [f["name"] for f in FEATURES]
-TRANSFORM_REVISION = "asof-1"              # bump with FEATURE_VERSION whenever a transform's code changes
+TRANSFORM_REVISION = "asof-2"              # bump with FEATURE_VERSION whenever a transform's code changes
 
 
 def feature_set_definitions() -> dict:
@@ -304,22 +304,20 @@ def _candle_values(view: AsOfView, dec: dict | None, T: float, thesis_price: flo
             return all_missing("NOT_RETRIEVED_BY_DECISION")
         scope = SRC.fetch_scope({"chain": dec["chain"], "pool_address": pool, "decision_time": dec["decision_time"]})
         return all_missing("NOT_FETCHED_SEALED" if scope == "NOT_FETCHED_SEALED" else "NOT_FETCHED")
-    complete = any(s["cover_complete"] for s in good)
-    cover_from = float("-inf") if complete else min((s["cover_from"] for s in good if s["cover_from"] is not None),
-                                                    default=float("inf"))
+    # Repair m2: a short or empty vendor page never proves that nothing traded earlier, so coverage starts at the earliest
+    # candle read and anything before it is OUTSIDE_FETCHED_WINDOW (RETRIEVAL), never BEFORE_FIRST_CANDLE.
+    cover_from = min((s["cover_from"] for s in good if s["cover_from"] is not None), default=float("inf"))
     if all(s["status"] == "NO_DATA" for s in good):
         return all_missing("VENDOR_NO_DATA")
     cs = view.candles("solana", dec["mint"], pool)
     if not cs:
-        return all_missing("NO_CANDLE_AVAILABLE" if complete else "OUTSIDE_FETCHED_WINDOW")
+        return all_missing("OUTSIDE_FETCHED_WINDOW")
     last = cs[-1]
 
     def price_at(x: float) -> tuple[dict | None, str | None]:
         cand = [c for c in cs if c["end_at"] <= x]
         if cand:
             return cand[-1], None
-        if complete:
-            return None, "BEFORE_FIRST_CANDLE"
         return None, ("OUTSIDE_FETCHED_WINDOW" if cover_from > x - PERIOD_S else "NO_CANDLE_AVAILABLE")
 
     def window(w: float) -> tuple[list[dict] | None, str | None]:

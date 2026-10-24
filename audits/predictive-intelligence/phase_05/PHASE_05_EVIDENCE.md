@@ -1,6 +1,6 @@
 # Phase 05 evidence: provenance-preserving point-in-time feature storage
 
-Status: NEEDS_REVIEW (first pass; the orchestrator runs the independent skeptic, PI-D-013). Branch `feature/predictive-intelligence`, HEAD before `074953d`, work 2026-10-24T10:15Z to 11:45Z (UTC). Package verified (`sha256sum -c SHA256SUMS.txt`: every line OK). Acceptance checklist written before any change: `ACCEPTANCE_CHECKLIST.md` (A1 to A28).
+Status: see the repair pass section at the end (first pass NEEDS_REVIEW; the orchestrator's independent skeptic, PI-D-013, found no material failure and 4 minor findings, folded in by the repair pass). Branch `feature/predictive-intelligence`, HEAD before `074953d`, work 2026-10-24T10:15Z to 11:45Z (UTC). Package verified (`sha256sum -c SHA256SUMS.txt`: every line OK). Acceptance checklist written before any change: `ACCEPTANCE_CHECKLIST.md` (A1 to A28).
 
 ## What was built
 
@@ -102,3 +102,31 @@ Counterexamples tried against this phase and what caught them: a candle availabl
 - DEX type per pool is not recorded; executable depth for past times does not exist (P08).
 - `cover_complete` cannot tell the vendor's retention limit from a pool's first trade.
 - The store file itself is outside git; its reproducibility rests on the committed raw archive, `data/series_status.json` and the exports in git (rebuild check identical).
+
+## Repair pass (independent skeptic folded in, PI-D-039)
+
+Review: `skeptic/PHASE_05_SKEPTIC.md` with its scripts (`skeptic/phase05_*.py`, `phase05_mutations.json`). The skeptic reproduced the suite (`1 failed, 1059 passed`), the guard, the release audit and a full rebuild of the store from the committed archive in both modes (3,000 of 3,000 hashes identical), and made 4 free GeckoTerminal calls (COST_LEDGER.md). Verdict: no material failure, 4 minor findings.
+
+| Finding | Verified | Repair | Caught by |
+|---|---|---|---|
+| m1, counterexample CX-05: a real default-side read of the quote-side pool `6brAAmd9...` recorded with params claiming `token=<mint>` was accepted as the mint's price (591 candles, `xsrc` +3.69 against -0.167 for the honest re-read), with a clean `verify` | yes, by reading `gt_identity`'s call site: the token came from the recorded params, never from the URL | the token is read from the URL sent (`store.url_token`); a read whose recorded token differs is refused before anything is stored; only `token == mint` exactly counts, anything else is OTHER_TOKEN_PARAM | `test_cx05_a_recorded_token_that_the_url_did_not_send_is_refused` (real archived body from the fixture), `test_only_the_exact_mint_as_token_parameter_counts`; both fail on the first-pass code (`evidence/old_code_check.json`: 4 failed, 65 passed) |
+| m2: "fewer candles than the limit means no earlier history" is false (live: an empty page at 2026-10-14 for a pool with a candle on 2026-09-28) | yes: the rule was an assumption, never measured; it gave 3 BEFORE_FIRST_CANDLE values and 2 numbers to the `BvkPHKx2...` decision, and "58 of 115 series show the whole history" was not established | `cover_complete` is always 0; coverage starts at the earliest candle read; BEFORE_FIRST_CANDLE removed; feature version 2 (`asof-2`); store rebuilt offline and snapshots rebuilt: 102 values of 16 decisions changed, all to OUTSIDE_FETCHED_WINDOW (RETRIEVAL); coverage report and contract corrected; Phase 06 told that an empty page is not evidence of no trade | `test_a_short_page_is_not_proof_of_no_earlier_trade`; mutation "short page claims the vendor's whole history" |
+| m3: five protections no test exercised | yes, by running the skeptic's mutation script: 5 survivors | tests for an arbitrary token parameter, 15-minute candles of the same pool (which also showed that an earlier read of another period counted as covering a position: now only a read of the same period does, `store.url_period`), the token row of the decision's own export, a value returning to an earlier version, and `check_plan`'s last-decision clause | `evidence/mutation_asof.json` (the skeptic's five survivors are in the list) |
+| m4: in provider mode the truncation proof cannot see retrieval metadata | yes: `truncated_copy` keeps every raw read and series status in provider mode, and `AsOfView.series_status` does not filter them by time there | stated here as a limit of the proof: the truncation check proves that no market row after the decision reaches a feature; it does not prove that retrieval metadata (series statuses, `cover_from`, a later empty read) cannot change a missing reason. By design those set only RETRIEVAL reasons, which are censoring and never a model input (PI-D-037); the skeptic's probe gave every pool a later empty read and 0 of 1,500 snapshots moved. m2 was the one place where metadata reached a HEURISTIC reason, and it is removed | `skeptic/phase05_purge_probe.py` |
+
+Counterexample CX-05 and what catches it: the skeptic's script `skeptic/phase05_counterexample.py` builds the forged read from the archived body; `test_cx05_a_recorded_token_that_the_url_did_not_send_is_refused` builds the same forgery from the fixture's copy of that kind of read (pool of mint `BVdbH7...`, also quote-side, URL without a token) and asserts the StoreError; on the first-pass code it fails.
+
+Re-run after the repair, on the rebuilt store (`/home/claude/pi_research/p05/predictive_store.sqlite`, rebuilt offline from the stored reads; the version-1 store is kept as `predictive_store_v1c.sqlite`):
+
+| Check | Result |
+|---|---|
+| `python -m pytest tests/test_predictive_asof_*.py -q` | `73 passed` |
+| `asof_real_checks.py truncation` | provider 1,500 checked, 0 differences (485.3 s); capture 1,500, 0 differences (53.8 s) |
+| `asof_real_checks.py traps` | after 1 s: 0 of 40 changed; at the decision: 40 of 40 |
+| `asof_real_checks.py recompute` | 3,000 snapshots, 0 differ, verify [] |
+| `asof_real_checks.py fresh` | both fresh processes equal the stored hashes |
+| `build_store.py archive` then `fromarchive` | 147 files unchanged; offline rebuild with the final code: 1,500 snapshots identical |
+| `revision_check.py store`, `p04` | unchanged: 7,223 re-reads unchanged; 80 of 57,584 differ in open, high or low only |
+| `coverage_counts.py` | development decisions with a 1 h return 535 of 541 (2 VENDOR_NO_DATA, 4 OUTSIDE_FETCHED_WINDOW) |
+| `mutation_asof.py` | control passes; 43 of 43 caught (35 first-pass, the skeptic's 5 survivors, the m1 and m2 rules and the period-coverage fix); 3 single-layer mutations of doubled protections reported, not counted |
+| `repin_fixture.py`, `render_contract.py` | golden hashes and definitions hash re-pinned for version 2; contract re-rendered |

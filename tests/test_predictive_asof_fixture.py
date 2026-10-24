@@ -23,26 +23,26 @@ ROOT = Path(__file__).resolve().parents[1]
 FIX = ROOT / "tests" / "fixtures" / "predictive" / "asof_fixture.json"
 DOC = ROOT / "audits" / "predictive-intelligence" / "phase_05" / "data" / "FEATURE_STORE_CONTRACT.md"
 
-FEATURE_SET_SHA = "bc06019ea609f18083520196866b86bd6de63b7420b349c9afe7a634ff356332"
-SCHEMA_V1_SHA = "be78da4b765c5f3d21b3aff092da1f6d624c96ce1f9907225f0680047e4c206f"
+FEATURE_SET_SHA = "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b"
+SCHEMA_V1_SHA = "775d6683f76b89c68938007eb8c6009fe537ab4e06e33409dbc81454fc270f12"
 # (decision_key, mode) -> snapshot_sha256, pinned from the first build of the fixture store
 EXPECTED = {
     "38cbb8cf9f8604739fb47c0844f328df6ba8cee2e79bca51e922b0858347767a:capture":
-        "3ba7324f3121180936856eb1fb7bc3f40f13dedd0dc4cd7c5a610ac7e08d982d",
+        "0870d1cb1c5287f214f1d85b33a12abcda3ae36062d3580097e45e3436ac15cd",
     "38cbb8cf9f8604739fb47c0844f328df6ba8cee2e79bca51e922b0858347767a:provider":
-        "b169640faa6fcc11afe6b4e12d2361b2551c5281c68974b717750421e9270152",
+        "1115a163afa3ee98d5df06cc7d7d5aa3c1558d1dbefbe27df2648195084915ea",
     "7b01e6ca83b65ff199b2b43151b3d01a683d67db1d41541a4c0b7ad096e68175:capture":
-        "ad4c0982b5512c516fbacf13c5c255eb6c6b22a62b5bd7f0ca6157b58b4ecb88",
+        "d755655779f6e823030f8ebf207dc2324f54713b3e8d23b471e4b06fbf981975",
     "7b01e6ca83b65ff199b2b43151b3d01a683d67db1d41541a4c0b7ad096e68175:provider":
-        "1a887ea9bad6f37622c63dad8543b95ca6ac769e3531a7d5f314cda9d92e5519",
+        "b64dea241fc25a75af99c0e9aec1dc1e238e1bf472709d65444a53e89c948ed7",
     "85cbfa037761e51d0b39b00c75fab1dfbc1374a8cc2e04bbce2f2a9b6a5f344e:capture":
-        "88fb571840aa28a579fbdfb831320af174dc5d92e45dda23c0e1ea5516675a21",
+        "6ce5e79f78ad7fe748273e5d6d12d3c46c9980d5b805a054d619505bb1ba34ee",
     "85cbfa037761e51d0b39b00c75fab1dfbc1374a8cc2e04bbce2f2a9b6a5f344e:provider":
-        "88fb571840aa28a579fbdfb831320af174dc5d92e45dda23c0e1ea5516675a21",
+        "6ce5e79f78ad7fe748273e5d6d12d3c46c9980d5b805a054d619505bb1ba34ee",
     "eb15e159e0c6ececb12c9a1322344de332968ec527224a875b08f0af9cff5a7a:capture":
-        "bac303a6282be2689cfef920db655c701e4db68e9895c7d7004ebf69d9d8af27",
+        "bd00236a707ebdd5f649eb1fac746af447979e2a276246cb051889fb57fa4445",
     "eb15e159e0c6ececb12c9a1322344de332968ec527224a875b08f0af9cff5a7a:provider":
-        "f262e0da46f87351e172024426414232881338e876a1bc5bb1adf2825384b86a",
+        "ace4c4f7bdf92a1585d2ed837a9f5a1347da7ad766a533421b4ec3626bf73c66",
 }
 
 

@@ -118,7 +118,7 @@ def cmd_fresh():
     sample = rnd.sample(rows, min(25, len(rows)))
     code = ("import sys,json; sys.path.insert(0, sys.argv[1]); from memelab.predictive import store as S, features as F; "
             "c=S.connect(sys.argv[2]); rows=json.loads(sys.argv[3]); "
-            "print(json.dumps([F.features_as_of(c,r['chain'],r['mint'],r['decision_time'],'1')['snapshot_sha256'] for r in rows]))")
+            "print(json.dumps([F.features_as_of(c,r['chain'],r['mint'],r['decision_time'],F.FEATURE_VERSION)['snapshot_sha256'] for r in rows]))")
     outs = [json.loads(subprocess.run([sys.executable, "-B", "-c", code, str(REPO), str(STORE), json.dumps(sample)], capture_output=True,
                                       text=True, check=True).stdout) for _ in range(2)]
     stored = [r["snapshot_sha256"] for r in sample]

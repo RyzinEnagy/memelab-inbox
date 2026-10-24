@@ -90,7 +90,7 @@ def test_every_data_table_is_append_only(con, table):
     S.ingest_gt_response(con, H.resp(H.POOL_B, int(d2), sparse, H.T0 + 35 * 86400), chain="solana", mint=H.MINT_B, pool=H.POOL_B,
                          now=H.T0 + 35 * 86400)
     from memelab.predictive import features as F
-    F.build_snapshots(con, feature_version="1", now=H.T0 + 40 * 86400)
+    F.build_snapshots(con, feature_version=F.FEATURE_VERSION, now=H.T0 + 40 * 86400)
     con.commit()
     n = con.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
     assert n > 0
@@ -464,3 +464,88 @@ def test_export_versions_read_git_first_parent_oldest_first(tmp_path):
     ex = SRC.export_versions(repo, "HEAD")
     assert [e["commit_time"] for e in ex] == [1000000000.0, 1000000600.0]
     assert all(len(e["blob"]) == 40 and len(e["body_sha256"]) == 64 and e["theses"] for e in ex)
+
+# ---------------------------------------------------------------- repair pass (independent skeptic m1, m2, m3)
+def _real_default_read():
+    """The real archived default-side read of a quote-side pool from the frozen fixture (URL without a token parameter)."""
+    import base64
+    import gzip
+    fx = json.loads((FIX / "asof_fixture.json").read_text())
+    r = next(x for x in fx["reads"] if x["http_status"] == 200 and "token=" not in x["url"])
+    body = gzip.decompress(base64.b64decode(r["body_gzip_b64"]))
+    return r, body
+
+
+def test_cx05_a_recorded_token_that_the_url_did_not_send_is_refused(con):
+    """Skeptic counterexample CX-05: a default read (no token in the URL) recorded with params claiming token=<mint> was
+    accepted as the mint's price. The token is now taken from the URL sent and a disagreeing record is refused."""
+    r, body = _real_default_read()
+    assert S.gt_identity(body, r["mint"], None) == "MINT_IS_QUOTE"
+    forged = {"url": r["url"], "params": dict(r["params"], token=r["mint"]), "retrieved_at": r["retrieved_at"], "http_status": 200,
+              "body": body, "boundary_at": r["boundary_at"], "timeframe": "minute", "aggregate": 5}
+    with pytest.raises(S.StoreError, match="disagrees with the URL"):
+        S.ingest_gt_response(con, forged, chain="solana", mint=r["mint"], pool=r["pool"], now=1)
+    honest = dict(forged, params=dict(r["params"], token=None))
+    out = S.ingest_gt_response(con, honest, chain="solana", mint=r["mint"], pool=r["pool"], now=1)
+    assert out["identity_check"] == "MINT_IS_QUOTE" and out["added"] == 0
+    assert S.table_counts(con)["predictive_candles"] == 0
+
+
+def test_only_the_exact_mint_as_token_parameter_counts(con):
+    rows = [H.candle(H.T0)]
+    for i, tok in enumerate(("base", "quote", H.MINT_B, H.MINT_A.lower())):
+        rr = H.resp(H.POOL_A, H.T0 + 600, rows, H.T0 + 86400 + i, token=False)
+        rr["url"] += f"&token={tok}"
+        rr["params"]["token"] = tok
+        rr["body"] = H.gt_body(rows, base=H.MINT_B, quote=H.MINT_A)
+        out = S.ingest_gt_response(con, rr, chain="solana", mint=H.MINT_A, pool=H.POOL_A, now=1)
+        assert out["identity_check"] == "OTHER_TOKEN_PARAM" and out["added"] == 0, tok
+    assert S.url_token("https://x/y?a=1&token=Z&b=2") == "Z" and S.url_token("https://x/y?a=1") is None
+    with pytest.raises(S.StoreError):
+        S.url_token("https://x/y?token=A&token=B")
+
+
+def test_a_short_page_is_not_proof_of_no_earlier_trade(con):
+    """Live vendor reads showed an empty page for a pool that traded earlier: a page shorter than the limit no longer marks the
+    vendor's history complete, so nothing before the earliest candle read is assumed."""
+    r = S.ingest_gt_response(con, H.resp(H.POOL_A, H.T0 + 900, [H.candle(H.T0 + 600), H.candle(H.T0 + 300)], H.T0 + 86400),
+                             chain="solana", mint=H.MINT_A, pool=H.POOL_A, now=1)
+    assert r["cover_complete"] == 0 and r["cover_from"] == H.T0 + 300
+    H.series(con, mint=H.MINT_A, pool=H.POOL_A, boundary=H.T0 + 900, need_from=H.T0, keys=[r["response_key"]], checked_at=H.T0 + 86400)
+    assert S.iter_rows(con, "SELECT cover_complete FROM predictive_source_status")[0]["cover_complete"] == 0
+    # an earlier read covering [T0 + 300, T0 + 900] did not cover T0: a candle there later is old history, not an appearance
+    r2 = S.ingest_gt_response(con, H.resp(H.POOL_A, H.T0 + 900, [H.candle(H.T0 + 600), H.candle(H.T0 + 300), H.candle(H.T0)],
+                                          H.T0 + 2 * 86400), chain="solana", mint=H.MINT_A, pool=H.POOL_A, now=2)
+    assert r2["revisions"] == 0 and r2["added"] == 1
+
+
+def test_the_token_row_comes_from_the_decisions_own_export(con):
+    t1, t2 = H.T0 + 86400, H.T0 + 2 * 86400
+    e1 = H.export("c1", t1, [H.thesis(H.MINT_A, t1 - 100)], [H.token(H.MINT_A, pool=H.POOL_A, first_pool_at="2026-10-01T00:00:00Z")])
+    e2 = H.export("c2", t2, [H.thesis(H.MINT_A, t1 - 100)], [H.token(H.MINT_A, pool=H.POOL_A2, first_pool_at="2026-10-05T00:00:00Z")])
+    S.ingest_exports(con, [e1, e2], now=t2)
+    rows = S.iter_rows(con, "SELECT * FROM predictive_decisions")
+    assert len(rows) == 1 and rows[0]["pool_address"] == H.POOL_A
+    assert json.loads(rows[0]["token_json"])["first_pool_at"] == "2026-10-01T00:00:00Z"
+
+
+def test_a_value_that_returns_to_an_earlier_version_is_a_new_version(con):
+    a = [H.candle(H.T0, c=1.0)]
+    b = [H.candle(H.T0, c=2.0)]
+    for i, rows in enumerate((a, b, a)):
+        S.ingest_gt_response(con, H.resp(H.POOL_A, H.T0 + 300, rows, H.T0 + (i + 1) * 86400), chain="solana", mint=H.MINT_A,
+                             pool=H.POOL_A, now=i)
+    vs = S.iter_rows(con, "SELECT * FROM predictive_candles ORDER BY id")
+    assert [v["c"] for v in vs] == [1.0, 2.0, 1.0] and [v["revision_kind"] for v in vs] == [None, "VALUES", "VALUES"]
+    sk = vs[0]["series_key"]
+    assert S._latest_version(con, sk)["obs_key"] == vs[2]["obs_key"]
+
+
+def test_check_plan_refuses_a_boundary_after_the_pools_last_decision():
+    h0 = SRC.holdout_start()
+    p = {"series_id": "s", "chain": "solana", "mint": H.MINT_A, "pool": H.POOL_A, "boundary": int(h0 - 5 * 86400),
+         "need_from": h0 - 9 * 86400, "decisions": 1, "first_decision": h0 - 6 * 86400, "last_decision": h0 - 6 * 86400}
+    with pytest.raises(SRC.SourceError, match="last development decision"):
+        SRC.check_plan([p])
+    SRC.check_plan([dict(p, boundary=int(h0 - 6 * 86400))])
+

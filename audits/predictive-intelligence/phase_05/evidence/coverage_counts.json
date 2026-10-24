@@ -21,7 +21,7 @@
  ],
  "decisions": 1500,
  "development_decisions_with_ret_1h": {
-  "BEFORE_FIRST_CANDLE": 4,
+  "OUTSIDE_FETCHED_WINDOW": 4,
   "VALUE": 535,
   "VENDOR_NO_DATA": 2
  },
@@ -61,7 +61,7 @@
    "NO_DATA": 2,
    "OK": 104
   },
-  "complete_history": 58,
+  "complete_history": 0,
   "rows": 115
  },
  "snapshots": {
@@ -86,11 +86,11 @@
    "universe:VALUE": 3000
   },
   "provider": {
-   "candle:BEFORE_FIRST_CANDLE": 66,
    "candle:NOT_FETCHED_SEALED": 620,
    "candle:NO_POOL_AT_DECISION": 3220,
+   "candle:OUTSIDE_FETCHED_WINDOW": 102,
    "candle:OUT_OF_SCOPE_CHAIN": 5750,
-   "candle:VALUE": 5324,
+   "candle:VALUE": 5288,
    "candle:VENDOR_NO_DATA": 20,
    "cross:ABSENT_IN_SNAPSHOT": 20,
    "cross:NOT_FETCHED_SEALED": 62,

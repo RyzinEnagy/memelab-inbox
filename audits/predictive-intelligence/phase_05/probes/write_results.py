@@ -26,7 +26,7 @@ def sha(p: Path) -> str:
 
 
 def main(head_after: str | None) -> None:
-    pc = PHASE / "postcommit" / "summary.json"
+    pc = PHASE / "postcommit" / ("repair_summary.json" if (PHASE / "postcommit" / "repair_summary.json").exists() else "summary.json")
     post = json.loads(pc.read_text()) if pc.exists() else None
     trunc, traps, rec, fresh = j("asof_real_truncation.json"), j("asof_real_traps.json"), j("asof_real_recompute.json"), j("asof_real_fresh.json")
     mut, arch, p04, rer = j("mutation_asof.json"), j("rebuild_from_archive.json"), j("revision_check_p04.json"), j("revision_check_store.json")
@@ -37,9 +37,14 @@ def main(head_after: str | None) -> None:
         {"name": "entry gate at 074953d", "command": "python -m pytest tests -q", "exit_code": 1,
          "result": "1 failed, 993 passed in 146.88s (known failure only)", "pass": True},
         {"name": "phase 05 tests", "command": "python -m pytest tests/test_predictive_asof_store.py tests/test_predictive_asof_features.py "
-         "tests/test_predictive_asof_fixture.py -q", "exit_code": 0, "result": "66 passed", "pass": True},
-        {"name": "pre-commit full suite", "command": "python -m pytest tests -q", "exit_code": 1,
-         "result": "1 failed, 1059 passed in 151.20s (known failure only)", "pass": True},
+         "tests/test_predictive_asof_fixture.py -q", "exit_code": 0, "result": "73 passed (repair pass)", "pass": True},
+        {"name": "first-pass post-commit full suite at b4baa78", "command": "python -m pytest tests -q", "exit_code": 1,
+         "result": "1 failed, 1059 passed in 165.68s (known failure only)", "pass": True},
+        {"name": "independent skeptic", "input": "skeptic/PHASE_05_SKEPTIC.md", "result": "no material failure; 4 minor (m1 CX-05 token "
+         "from recorded params, m2 short page taken as full history, m3 five untested protections, m4 truncation proof blind to "
+         "retrieval metadata in provider mode); all folded in (PI-D-039)", "pass": True},
+        {"name": "repair tests fail on the first-pass code", "input": "evidence/old_code_check.json",
+         "result": j("old_code_check.json").get("result"), "pass": j("old_code_check.json").get("result") == "4 failed, 65 passed"},
         {"name": "real truncation invariance, provider", "command": "python -B asof_real_checks.py truncation", "exit_code": 0,
          "result": trunc.get("provider"), "pass": trunc.get("provider", {}).get("differences") == 0},
         {"name": "real truncation invariance, capture", "command": "python -B asof_real_checks.py truncation", "exit_code": 0,
@@ -82,18 +87,19 @@ def main(head_after: str | None) -> None:
     arts.append({"path": "audits/predictive-intelligence/phase_05/raw/*.json.gz", "files": len(raw),
                  "sha256_of_sorted_file_hashes": hashlib.sha256("".join(sha(p) for p in raw).encode()).hexdigest(),
                  "note": "each file's sha256 is in raw/MANIFEST.csv"})
-    status = "NEEDS_REVIEW"
-    out = {"phase": "05", "status": status, "head_before": "074953d", "head_after": head_after,
+    status = "PASS" if all(c.get("pass") for c in checks) and post else "NEEDS_REVIEW"
+    out = {"phase": "05", "status": status, "head_before": "074953d", "first_pass_commits": ["b4baa78", "c89bb02"], "head_after": head_after,
            "checks": checks, "artifacts": arts,
            "limitations": [
                "historical candle availability is a reconstruction (end + 300 s, HEURISTIC); revisions before the lab's first read are invisible",
                "revision gaps measured: 19 min to 2.5 h on the lab's own reads and 17 days on 3 inbox pools; the 48 h re-read of label series is Phase 06's",
                "DEX type per pool not recorded; no executable depth for past times (P08)",
-               "cover_complete cannot tell a vendor retention limit from a pool's first trade",
+               "a short or empty vendor page proves nothing about earlier trades; windows before the earliest candle read are OUTSIDE_FETCHED_WINDOW",
+               "in provider mode the truncation proof covers market rows, not retrieval metadata (series statuses, cover_from); those set RETRIEVAL reasons only (skeptic m4)",
                "the store file is outside git; reproducibility rests on raw/, data/series_status.json and the exports in git (rebuild identical)",
                "Phase 04 BAKEOFF_ONLY labels: 8 of 102 T1 and 9 of 159 T1b events priced another token (PI-D-038); not Phase 06 labels"],
            "blockers": [], "approvals_needed": [],
-           "next_eligible_phase": "05 repair pass after the orchestrator's independent skeptic; then 06 once 05 is PASS"}
+           "next_eligible_phase": "06" if status == "PASS" else "05"}
     (PHASE / "PHASE_05_RESULTS.json").write_text(json.dumps(out, indent=1) + "\n")
     print(json.dumps({"checks": len(checks), "all_pass": all(c.get("pass") for c in checks), "artifacts": len(arts)}))
 

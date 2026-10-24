@@ -243,8 +243,6 @@
      "cdl_log_ret_1h",
      "cdl_log_ret_6h",
      "cdl_vol_usd_1h",
-     "cdl_vol_usd_24h",
-     "cdl_candles_24h",
      "cdl_rv_6h",
      "xsrc_log_close_over_thesis_price"
     ]
@@ -963,8 +961,6 @@
      "cdl_log_ret_1h",
      "cdl_log_ret_6h",
      "cdl_vol_usd_1h",
-     "cdl_vol_usd_24h",
-     "cdl_candles_24h",
      "cdl_rv_6h",
      "xsrc_log_close_over_thesis_price"
     ]

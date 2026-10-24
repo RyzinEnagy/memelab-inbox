@@ -72,7 +72,7 @@ MUTATIONS = [
      "    if False:"),
     ("store", "tracked database allowed", "    if p.resolve() in _forbidden_paths():", "    if False:"),
     ("store", "any base58 length accepted", "        if len(b58decode(addr)) != 32:", "        if len(b58decode(addr)) > 64:"),
-    ("store", "vendor identity not checked", "        ident = gt_identity(body, mint, (resp.get(\"params\") or {}).get(\"token\"))",
+    ("store", "vendor identity not checked", "        ident = gt_identity(body, mint, sent)",
      "        ident = \"OK_BASE\""),
     ("store", "partial export history accepted", "    if missing:\n        raise StoreError(f\"{len(missing)} stored export",
      "    if False:\n        raise StoreError(f\"{len(missing)} stored export"),
@@ -88,6 +88,22 @@ MUTATIONS = [
     ("sources", "no token parameter", '            + (f"&token={token}" if token else ""))', "            + \"\")"),
     ("sources", "HTTP errors not counted by the breaker", '                if int(code) != 200:\n                    raise HTTPStatusError',
      '                if False:\n                    raise HTTPStatusError'),
+    # repair pass: the independent skeptic's five surviving mutations and the m1 and m2 rules
+    ("store", "any token parameter counts as the mint's price",
+     '        return "OK_TOKEN_PARAM" if token_param == mint else "OTHER_TOKEN_PARAM"', '        return "OK_TOKEN_PARAM"'),
+    ("store", "recorded token trusted over the URL sent",
+     [("    if recorded != sent:\n        raise StoreError", "    if False:\n        raise StoreError"),
+      ("        ident = gt_identity(body, mint, sent)", "        ident = gt_identity(body, mint, recorded)")]),
+    ("store", "short page claims the vendor's whole history", "    cover_complete = 0", "    cover_complete = 1 if len(rows) < limit else 0"),
+    ("features", "as-of view mixes candle periods", 'f"AND period_s = ? AND {col} <= ?", (chain, mint, pool, PERIOD_S, self.cutoff))',
+     'f"AND ? > 0 AND {col} <= ?", (chain, mint, pool, PERIOD_S, self.cutoff))'),
+    ("store", "token row taken from the newest export", '        tk = tok_at.get((e["commit"], e["mint"]))',
+     '        tk = next((k for ex2 in reversed(exports) for k in ex2.get("tokens") or [] if k["mint"] == e["mint"]), None)'),
+    ("store", "revision compared with the oldest version", "ORDER BY available_at DESC, id DESC LIMIT 1", "ORDER BY available_at ASC, id ASC LIMIT 1"),
+    ("store", "a read of another candle period covers a position", "        if url_period(r[\"request_url\"]) in (None, period):",
+     "        if True:"),
+    ("sources", "check_plan allows a boundary after the pool's last development decision",
+     'if p["boundary"] > h0 - HOLDOUT_CONTACT_PAD_S or p["boundary"] > p["last_decision"]:', 'if p["boundary"] > h0 - HOLDOUT_CONTACT_PAD_S:'),
 ]
 
 
