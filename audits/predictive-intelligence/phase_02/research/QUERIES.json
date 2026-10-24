@@ -1,5 +1,5 @@
 {
- "note": "Discovery corpus for Phase 02. The GitHub search API section ran first (2026-10-24T02:56Z) and every call returned HTTP 403 from the session proxy (policy: sessions bound to configured repositories), so the corpus was extended at 2026-10-24T03:10Z with the other mechanisms below. Families are non-overlapping topic families; need ids refer to research/NEEDS.csv.",
+ "note": "Discovery corpus for Phase 02. The GitHub search API section ran first (2026-10-24T02:56Z) and every call returned HTTP 403 from the session proxy (policy: sessions bound to configured repositories), so the corpus was extended at 2026-10-24T03:10Z with the other mechanisms below. Families are non-overlapping topic families; need ids refer to research/NEEDS.csv. Repair pass 2 (2026-10-24T04:10Z, after the independent skeptic, finding M1) added two query families that had not been searched: point-in-time feature stores and as-of joins (K15, W29, W30) and regime or state models (K16, K17, W31, W32).",
  "github_search": [
   {
    "qid": "Q01",
@@ -284,6 +284,39 @@
    "needs": "N08",
    "keyword": "model-monitoring",
    "url_template": "https://packages.ecosyste.ms/api/v1/keywords/model-monitoring?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  },
+  {
+   "qid": "K15",
+   "family": "POINT_IN_TIME_FEATURE_STORE",
+   "needs": "N06",
+   "keyword": "feature-store",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/feature-store?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  },
+  {
+   "qid": "K16",
+   "family": "REGIME_STATE_MODELS",
+   "needs": "N07;N06",
+   "keyword": "hidden-markov-model",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/hidden-markov-model?per_page=100&page={page}",
+   "pages": [
+    1,
+    2
+   ]
+  },
+  {
+   "qid": "K17",
+   "family": "REGIME_STATE_MODELS",
+   "needs": "N07;N06",
+   "keyword": "regime-switching",
+   "url_template": "https://packages.ecosyste.ms/api/v1/keywords/regime-switching?per_page=100&page={page}",
    "pages": [
     1,
     2

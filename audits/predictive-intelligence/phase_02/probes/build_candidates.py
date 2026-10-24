@@ -18,19 +18,26 @@ CLONE_ROOT at the pinned SHA (path exists in the tree, symbol defined in the
 file); blob id and line are written to SHORTLIST.csv.
 """
 import csv
+import hashlib
 import json
 import os
 import re
 import subprocess
 import sys
 from collections import defaultdict
-from datetime import datetime
 
-INACTIVE_BEFORE = "2025-04-24"  # 18 months before the phase date 2026-10-24
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from verify_repos import classify_license  # noqa: E402
+
+INACTIVE_BEFORE = "2025-04-24"
+GAP_LINK_NOTE = ("proxy link: GAP_MATRIX has no behavioral-simulation facility; N13 belongs to the PLANNED_SEAMS boundary "
+                 "'Behavioral simulation' (isolated adapter); the MODEL_TRAINING cells name where Phase 15 tests incremental "
+                 "value, not a training gap a simulator fills (repair pass 2, skeptic m6)")  # 18 months before the phase date 2026-10-24
 GH = re.compile(r"github\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)")
 LICENSE_FLAG = {"AGPL-3.0": "COPYLEFT_AGPL", "GPL-3.0": "COPYLEFT_GPL", "GPL-2.0": "COPYLEFT_GPL",
                 "GPL": "COPYLEFT_GPL", "LGPL": "COPYLEFT_LGPL", "BUSL-1.1": "SOURCE_AVAILABLE_BUSL",
                 "COMMONS-CLAUSE": "COMMONS_CLAUSE", "NON-COMMERCIAL-TERMS": "NONCOMMERCIAL_TERMS",
+                "FSL-1.1": "SOURCE_AVAILABLE_FSL", "MPL-2.0": "COPYLEFT_FILE_MPL",
                 "ELASTIC": "SOURCE_AVAILABLE_ELASTIC", "POLYFORM": "SOURCE_AVAILABLE_POLYFORM",
                 "OTHER_REVIEW": "LICENSE_REVIEW"}
 
@@ -125,6 +132,14 @@ def main(argv):
     for s in seeds:
         hit(s, "SEED", "PACKAGE_SEED_LIST")
     pypi_by = {p["package"]: p for p in pypi}
+    scan = {}
+    if os.path.exists(os.path.join(R, "LICENSE_SCAN.csv")):
+        for r in csv.DictReader(open(os.path.join(R, "LICENSE_SCAN.csv"))):
+            scan[r["canonical_repo"]] = r["phase03_gate_input"]
+    succ = {}
+    for e in jl(os.path.join(R, "SUCCESSOR_SEARCH.jsonl")):
+        succ[e["canonical"].lower()] = e
+    qinfo = {q["qid"]: q for q in queries}
 
     # shared roots among candidates
     root_owner = defaultdict(list)
@@ -138,18 +153,19 @@ def main(argv):
         k = c.lower()
         v = vrec.get(k, {})
         p = pypi_by.get(a["pypi"]) if a["pypi"] else None
-        lic_files = v.get("license_files") or []
-        if not lic_files and v.get("pinned_sha"):
+        # license files re-read as bytes at the pin: sha256 of the file bytes, so `sha256sum` reproduces it
+        # (repair pass 2, skeptic m3); the classification is recomputed from the same bytes
+        clone = os.path.join(clone_root, c.replace("/", "__"))
+        paths = [f["path"] for f in v.get("license_files") or []]
+        if not paths and v.get("pinned_sha"):
             # REUSE layout: license texts under LICENSES/ instead of the root
-            clone = os.path.join(clone_root, c.replace("/", "__"))
-            names = git(clone, "ls-tree", "-r", "--name-only", v["pinned_sha"], "--", "LICENSES").stdout.split()
-            sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-            from verify_repos import classify_license
-            import hashlib
-            for n in names:
-                text = git(clone, "show", "%s:%s" % (v["pinned_sha"], n)).stdout
-                lic_files.append({"path": n, "sha256": hashlib.sha256(text.encode()).hexdigest(),
-                                  "classification": classify_license(text)})
+            paths = git(clone, "ls-tree", "-r", "--name-only", v["pinned_sha"], "--", "LICENSES").stdout.split()
+        lic_files = []
+        for n in paths:
+            raw = subprocess.run(["git", "-C", clone, "cat-file", "blob", "%s:%s" % (v["pinned_sha"], n)],
+                                 capture_output=True).stdout
+            lic_files.append({"path": n, "sha256": hashlib.sha256(raw).hexdigest(), "bytes": len(raw),
+                              "classification": classify_license(raw.decode("utf-8", "replace"))})
         labels = sorted({l for f in lic_files for l in f["classification"]})
         lflags = sorted({LICENSE_FLAG[l] for l in labels if l in LICENSE_FLAG})
         if not lic_files:
@@ -164,6 +180,34 @@ def main(argv):
         if v.get("eco_archived"):
             activity.append("ARCHIVED")
         gap = sorted({g for n in a["need_ids"].split(";") for g in needs[n]["gap_cells"].split(";")})
+        eco_status, eco_fork, eco_arch, eco_sync = v.get("eco_status", ""), v.get("eco_fork"), v.get("eco_archived"), v.get("eco_last_synced_at") or ""
+        basis = "ECOSYSTEMS_RECORD" if eco_status == 200 else "NO_RECORD"
+        e = succ.get(k)
+        if e and eco_status != 200:
+            basis = e["basis"].split(" ")[0]
+            for pth in e["paths"]:
+                if pth["path"].lower() == k and pth.get("package_record"):
+                    eco_status, eco_fork, eco_arch = "PACKAGE_RECORD", pth["package_record"]["fork"], pth["package_record"]["archived"]
+        if eco_arch and "ARCHIVED" not in activity:
+            activity.append("ARCHIVED")
+        # independent discovery (skeptic m5): a credit from a query that does not name the target, is not
+        # the project's own page, and ran before the candidate was annotated
+        tokens = {t for t in [c.split("/")[1], a["pypi"]] if t}
+        tokens = {re.sub(r"[^a-z0-9]", "", t.lower()) for t in tokens}
+        tokens = {t for t in tokens if len(t) >= 4}
+        name_free = []
+        for qid in sorted(prov[k]):
+            if qid in ("SEED",) or qid.startswith("PYPI:"):
+                continue
+            q = qinfo.get(qid.split(">")[0])
+            if not q:
+                continue
+            text = re.sub(r"[^a-z0-9]", "", ((q.get("query") or "") + " " + (q.get("url") or "")).lower())
+            if any(t in text for t in tokens):
+                continue
+            if (q.get("retrieved_at") or "")[:20] > a["annotated_at"]:
+                continue
+            name_free.append(qid)
         row = {
             "canonical_repo": c, "url": "https://github.com/" + c, "family": a["family"], "role": a["role"],
             "need_ids": a["need_ids"], "gap_cells": ";".join(gap),
@@ -173,14 +217,16 @@ def main(argv):
             "pinned_sha": v.get("pinned_sha", ""), "pin_observed_at": v.get("ls_remote_at", ""),
             "clone_head_matches_pin": str(v.get("head_matches_pin", "")).lower(),
             "commit_date": commit_date,
-            "ecosystems_status": v.get("eco_status", ""),
-            "ecosystems_fork": "" if v.get("eco_fork") is None else str(v.get("eco_fork")).lower(),
-            "ecosystems_archived": "" if v.get("eco_archived") is None else str(v.get("eco_archived")).lower(),
-            "ecosystems_last_synced_at": v.get("eco_last_synced_at") or "",
+            "ecosystems_status": eco_status,
+            "ecosystems_fork": "" if eco_fork is None else str(eco_fork).lower(),
+            "ecosystems_archived": "" if eco_arch is None else str(eco_arch).lower(),
+            "ecosystems_last_synced_at": eco_sync,
+            "canonical_basis": basis,
+            "independent_discovery_qids": ";".join(name_free),
             "root_commits": ";".join((roots.get(k) or {}).get("roots") or []),
             "shared_history_with": ";".join(shared),
             "license": "+".join(labels) if labels else "NONE_FOUND",
-            "license_source": ";".join("FILE:%s sha256:%s" % (f["path"], f["sha256"][:16]) for f in lic_files) or "NONE",
+            "license_source": ";".join("FILE:%s sha256:%s" % (f["path"], f["sha256"]) for f in lic_files) or "NONE",
             "license_flags": ";".join(lflags),
             "dep_flags_pinned_files": ";".join(v.get("dep_flags") or []),
             "dep_files_scanned": ";".join(v.get("dep_files") or []),
@@ -192,7 +238,8 @@ def main(argv):
             "activity_flags": ";".join(activity), "special_flags": ";".join(sflags),
             "special_flag_sources": " | ".join(sflag_src),
             "evidence_basis": "PINNED_TREE" if v.get("status") == "VERIFIED" else "UNVERIFIED",
-            "screen_note": a["screen_note"], "shortlisted": "yes" if c in short else "no",
+            "screen_note": a["screen_note"], "annotated_at": a["annotated_at"],
+            "shortlisted": "yes" if c in short else "no",
         }
         out_rows.append(row)
         if c in short:
@@ -212,6 +259,8 @@ def main(argv):
                 "special_flags": row["special_flags"], "code_evidence": s["code_evidence"],
                 "code_evidence_verified": "|".join(checked),
                 "inclusion_reason": s["inclusion_reason"], "uncertainty_for_phase03": s["uncertainty_for_phase03"],
+                "gap_link_note": GAP_LINK_NOTE if "N13" in a["need_ids"].split(";") else "",
+                "license_scan_phase03": scan.get(c, ""),
             })
     with open(os.path.join(R, "CANDIDATES.csv"), "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(out_rows[0].keys()))

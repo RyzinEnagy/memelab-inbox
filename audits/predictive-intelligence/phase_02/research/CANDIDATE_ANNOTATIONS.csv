@@ -1,108 +1,133 @@
-canonical,family,role,need_ids,pypi,screen_note
-scikit-learn/scikit-learn,TABULAR_PROBABILITY,"logistic regression, probability calibration (Platt, isotonic), Brier and log loss, time-ordered and group splits",N01;N02;N04,scikit-learn,"core dependency candidate for baselines B2 and B3; CPU, wheels for Python 3.13"
-dmlc/xgboost,TABULAR_PROBABILITY,gradient-boosted trees with probability outputs,N01,xgboost,"overfitting risk at 100 to 300 events; must beat B2 (ACCEPTANCE_METRICS)"
-lightgbm-org/LightGBM,TABULAR_PROBABILITY,gradient-boosted trees with probability outputs,N01,lightgbm,"seed URL microsoft/LightGBM now resolves here (same pinned SHA); overfitting risk at small N"
-catboost/catboost,TABULAR_PROBABILITY,gradient-boosted trees with ordered boosting and categorical handling,N01,catboost,"large monorepo; small-N overfitting risk"
-h2oai/h2o-3,TABULAR_PROBABILITY,"AutoML platform on a Java backend",N01,h2o,"needs a JVM server; no Python 3.13 wheel declared (PyPI); AutoML search conflicts with selection discipline (P22)"
-autogluon/autogluon,TABULAR_PROBABILITY,"AutoML ensembles for tabular and time series",N01,autogluon,"heavy dependency tree; AutoML search must be logged as many fits (P22)"
-interpretml/interpret,TABULAR_PROBABILITY,"explainable boosting machine (glassbox additive model) with probability outputs",N01,interpret,"seed URL microsoft/interpret now resolves here (same pinned SHA); interpretable model suits small N"
-stanfordmlgroup/ngboost,TABULAR_PROBABILITY,natural gradient boosting with predictive distributions,N01;N03,ngboost,"distributional outputs; small-N behaviour unknown"
-scikit-learn-contrib/imbalanced-learn,TABULAR_PROBABILITY,"resampling and balanced ensembles for rare classes",N01,imbalanced-learn,"resampling distorts probabilities; needs recalibration on untouched data (P10, P11)"
-ZhiningLiu1998/imbalanced-ensemble,TABULAR_PROBABILITY,ensemble methods for class imbalance,N01,imbalanced-ensemble,"same probability distortion caveat as imbalanced-learn"
-PriorLabs/TabPFN,TABULAR_PROBABILITY,"pretrained tabular in-context classifier for small datasets",N01,tabpfn,"code Apache-2.0; weights 2.5 and later non-commercial and downloaded after a license login (README); torch; possible pretraining overlap is not a time leak but must be checked"
-soda-inria/tabicl,TABULAR_PROBABILITY,"pretrained tabular in-context classifier",N01,tabicl,"BSD-3-Clause with Apache-2.0 code from TabPFN-TS; checkpoint downloaded from Hugging Face; torch"
-perpetual-ml/perpetual,TABULAR_PROBABILITY,"self-generalizing gradient boosting without hyperparameter search",N01,perpetual,"Rust core; fewer tuning degrees of freedom helps P22; PyPI metadata has no repository link"
-statsmodels/statsmodels,TABULAR_PROBABILITY,"logistic regression with inference, multiple-testing adjustment (Holm), proportion intervals",N01;N03,statsmodels,"B2 alternative with standard errors; Holm via multipletests"
-scikit-learn-contrib/MAPIE,CALIBRATION_UNCERTAINTY,"conformal prediction sets and intervals, top-label and Venn-Abers calibration",N02;N03,mapie,"split conformal assumes exchangeability; time-ordered data need care"
-henrikbostrom/crepes,CALIBRATION_UNCERTAINTY,"conformal classifiers and predictive systems, Mondrian categories",N02;N03,crepes,"no tests directory at the pinned SHA"
-ip200/venn-abers,CALIBRATION_UNCERTAINTY,"Venn-Abers probability calibration with interval output",N02;N03,venn-abers,"PyPI shows no Python 3.13 marker or universal wheel (sdist only); small package"
-deel-ai/puncc,CALIBRATION_UNCERTAINTY,conformal prediction toolkit,N03,puncc,"license file under LICENSES/headers (MIT text); declared MIT on PyPI"
-EFS-OpenSource/calibration-framework,CALIBRATION_UNCERTAINTY,"calibration methods and metrics (netcal), reliability diagrams",N02,netcal,"torch is a base requirement (PyPI); no test files found by name"
-lorentzenchr/model-diagnostics,CALIBRATION_UNCERTAINTY,"calibration (identification functions, bias), scoring functions with decomposition, reliability diagrams",N02,model-diagnostics,"directly matches Brier and log-loss reporting with decomposition"
-frazane/scoringrules,CALIBRATION_UNCERTAINTY,proper scoring rules for probabilistic forecasts,N02,scoringrules,"mostly continuous and ensemble scores; Brier for binary is simple"
-TheClimateCorporation/properscoring,CALIBRATION_UNCERTAINTY,"proper scoring rules (CRPS, Brier)",N02,properscoring,"last commit 2022-10-12; version 0.1"
-bashtage/arch,CALIBRATION_UNCERTAINTY,"stationary, circular and moving block bootstrap, volatility models",N03,arch,"block bootstrap for day-block intervals; group (mint) bootstrap needs a custom index"
-astrogilda/tsbootstrap,CALIBRATION_UNCERTAINTY,time series bootstrap methods,N03,tsbootstrap,"overlaps arch for block bootstrap"
-Moffran/calibrated_explanations,CALIBRATION_UNCERTAINTY,"Venn-Abers calibrated probabilities with feature explanations",N02;N03,calibrated-explanations,"wraps crepes; adds explanation layer"
-egonmedhatten/online-cp,CALIBRATION_UNCERTAINTY,online conformal prediction,N03;N09,online-cp,"online exchangeability assumptions"
-KhiopsLab/khalib,CALIBRATION_UNCERTAINTY,classifier calibration library,N02,khalib,"five Python files; young project"
-ml-stat-Sustech/TorchCP,CALIBRATION_UNCERTAINTY,conformal prediction on PyTorch,N03,,"LGPL-3.0 (COPYING and COPYING.LESSER); torch"
-donlnz/nonconformist,CALIBRATION_UNCERTAINTY,conformal prediction (inductive and transductive),N03,,"last commit 2021-03-20"
-OliverHennhoefer/nonconform,CALIBRATION_UNCERTAINTY,"conformal anomaly detection with false discovery rate control",N03;N11,nonconform,"anomaly framing, not classification"
-facebookincubator/MCGrad,CALIBRATION_UNCERTAINTY,multicalibration by gradient boosting,N02,mcgrad,"torch base requirement (PyPI); multicalibration needs groups with enough events"
-unit8co/darts,TIME_SERIES,"forecasting framework with backtesting and probabilistic models",N06;N07,u8darts,"forecasts values, not barrier events; torch optional"
-Nixtla/statsforecast,TIME_SERIES,statistical forecasting models,N06,statsforecast,"value forecasts; could feed features"
-Nixtla/mlforecast,TIME_SERIES,"forecasting with tabular models and lag features",N06,mlforecast,"lag-feature engine; check as-of correctness"
-Nixtla/neuralforecast,TIME_SERIES,neural forecasting models,N06,neuralforecast,"torch base requirement; data hungry"
-sktime/sktime,TIME_SERIES,"time series learning with expanding and sliding window splitters and evaluation",N04;N06,sktime,"splitters relevant to walk-forward; large dependency surface"
-aeon-toolkit/aeon,TIME_SERIES,"time series classification, segmentation, distances",N06;N07,aeon,"fork of sktime history (shared roots expected)"
-amazon-science/chronos-forecasting,TIME_SERIES,pretrained probabilistic time series models,N06,chronos-forecasting,"torch and transformers base requirements; weights on Hugging Face; zero-shot price-path samples could give barrier probabilities but need calibration"
-google-research/timesfm,TIME_SERIES,pretrained time series foundation model,N06,timesfm,"TimesFM 3.0 weights non-commercial; 2.5 and earlier Apache-2.0 (README notice)"
-facebook/prophet,TIME_SERIES,additive trend and seasonality forecasting,N06,prophet,"daily seasonality model, poor fit for 5-minute memecoin paths"
-awslabs/gluonts,TIME_SERIES,probabilistic forecasting toolkit,N06,gluonts,"torch for most models"
-skforecast/skforecast,TIME_SERIES,"recursive and direct forecasting with scikit-learn models, backtesting",N06,skforecast,"D01 links the old path JoaquinAmatRodrigo/skforecast, which resolves here (same pinned SHA)"
-blue-yonder/tsfresh,TIME_SERIES,"automatic time series feature extraction, rolling windows",N06,tsfresh,"thousands of features invite selection bias at small N (P22)"
-bukosabino/ta,TIME_SERIES,technical analysis indicators on pandas,N06,ta,"no test files found by name; PyPI shows no Python 3.13 marker or wheel"
-stumpy-dev/stumpy,TIME_SERIES,"matrix profile for motif and analog search",N07,stumpy,"old path TDAmeritrade/stumpy resolves here (same pinned SHA)"
-tslearn-team/tslearn,TIME_SERIES,"time series distances (DTW), clustering, nearest neighbours",N07,tslearn,"analog cohorts by shape"
-deepcharles/ruptures,TIME_SERIES,offline change point detection,N06;N07,ruptures,"offline segmentation looks at the whole series: must be run on truncated data only (P36)"
-microsoft/qlib,TIME_SERIES,"quant research platform: data, models, backtests for equities",N06;N10;N14,pyqlib,"equity daily-bar assumptions; PyPI shows no Python 3.13 support; heavy"
-online-ml/river,ONLINE_DRIFT_MONITORING,"online learning and drift detectors (ADWIN, Page-Hinkley)",N08;N09,river,"streaming updates must use matured labels only"
-evidentlyai/evidently,ONLINE_DRIFT_MONITORING,"data and prediction drift reports and tests",N08,evidently,"server and UI stack in the package; LLM extras"
-SeldonIO/alibi-detect,ONLINE_DRIFT_MONITORING,"drift and outlier detectors",N08,alibi-detect,"Business Source License 1.1 (non-production use only, Apache-2.0 four years after each release)"
-NannyML/nannyml,ONLINE_DRIFT_MONITORING,"performance estimation without labels (CBPE), univariate and multivariate drift",N08,nannyml,"CBPE assumes calibrated probabilities; last commit 2025-07-12"
-IFCA-Advanced-Computing/frouros,ONLINE_DRIFT_MONITORING,"concept and data drift detection (batch and streaming)",N08,frouros,"last commit 2026-02-11"
-mitre/menelaus,ONLINE_DRIFT_MONITORING,drift detection algorithms,N08,menelaus,"last commit 2023-08-23"
-adaptive-machine-learning/CapyMOA,ONLINE_DRIFT_MONITORING,"stream learning on MOA",N08;N09,capymoa,"needs a Java runtime (MOA)"
-VowpalWabbit/vowpal_wabbit,ONLINE_DRIFT_MONITORING,online learning system,N09,vowpalwabbit,"C++ core"
-whylabs/whylogs,ONLINE_DRIFT_MONITORING,data logging and profile-based drift monitoring,N08,whylogs,"last commit 2025-01-10; PyPI metadata has no repository link"
-deepchecks/deepchecks,ONLINE_DRIFT_MONITORING,"model and data validation suites, drift checks",N08;N10,deepchecks,"AGPL-3.0 at the pinned SHA"
-selimfirat/pysad,ONLINE_DRIFT_MONITORING,streaming anomaly detection,N08;N11,pysad,"anomaly scores, not calibrated probabilities"
-simon-hirsch/ondil,ONLINE_DRIFT_MONITORING,online distributional regression,N09,ondil,"GPL-3.0 at the pinned SHA"
-666ghj/MiroFish,BEHAVIORAL_MULTI_AGENT,"LLM multi-agent social scenario simulation with a report agent (hypothesis generation)",N13,,"AGPL-3.0; needs LLM_API_KEY and ZEP_API_KEY (backend/app/config.py), Zep Cloud only; backend requires Python >=3.11,<3.13; no probability output in backend code; README prediction claims earn nothing"
-camel-ai/oasis,BEHAVIORAL_MULTI_AGENT,"LLM agent social media simulator (Twitter and Reddit style platforms)",N13,camel-oasis,"LLM required for agents; simulated agents sharing one model are not independent votes"
-camel-ai/camel,BEHAVIORAL_MULTI_AGENT,multi-agent LLM framework under OASIS,N13,camel-ai,"framework layer, not a simulator"
-getzep/graphiti,BEHAVIORAL_MULTI_AGENT,"temporal knowledge graph for agent memory (Zep's open-source core)",N13;N12,graphiti-core,"needs an LLM and a graph database (neo4j or falkordb)"
-mesa/mesa,BEHAVIORAL_MULTI_AGENT,agent-based modeling framework,N13,mesa,"seed URL projectmesa/mesa resolves here (same pinned SHA); no LLM needed"
-JoelForamitti/agentpy,BEHAVIORAL_MULTI_AGENT,agent-based modeling framework,N13,agentpy,"seed URL AgentPy/agentpy is not reachable; PyPI links here; last commit 2025-02-06; ecosyste.ms has no record"
-bancaditalia/black-it,BEHAVIORAL_MULTI_AGENT,"calibration of agent-based models to data",N13,black-it,"AGPL-3.0; useful for fitting simulator parameters to observed paths"
-tsinghua-fib-lab/AgentSociety,BEHAVIORAL_MULTI_AGENT,LLM-driven large-scale society simulation,N13,,"LLM required; PyPI lookup not run"
-rgCASS/casevo,BEHAVIORAL_MULTI_AGENT,"cognitive agents and social evolution simulator",N13,,"no test files; small"
-AgentTorch/AgentTorch,BEHAVIORAL_MULTI_AGENT,"differentiable large population models with LLM agents",N13,,"AGPL-3.0; torch and LLM"
-jpmorganchase/abides-jpmc-public,BEHAVIORAL_MULTI_AGENT,"agent-based limit order book market simulator",N13;N14,,"archived (ecosyste.ms); order book markets, not AMM pools"
-abides-sim/abides,BEHAVIORAL_MULTI_AGENT,agent-based market simulator (original ABIDES),N13;N14,,"last commit 2020-11-19; no tests"
-cadCAD-org/cadCAD,BEHAVIORAL_MULTI_AGENT,"system and token economy simulation",N13,cadCAD,"last commit 2024-04-19"
-stelios12312312/TokenLab,BEHAVIORAL_MULTI_AGENT,token economy agent-based simulation,N13,,"small project; crypto token supply and demand models"
-CamDavidsonPilon/lifelines,EVENT_TIME_LABELS,"survival analysis (Kaplan-Meier, Cox, Aalen-Johansen for competing risks)",N05,lifelines,"time-to-event with censoring for target-versus-invalidation timing"
-sebp/scikit-survival,EVENT_TIME_LABELS,survival models compatible with scikit-learn,N05,scikit-survival,"GPL-3.0 at the pinned SHA"
-soda-inria/hazardous,EVENT_TIME_LABELS,competing risks gradient boosting (SurvivalBoost),N05,hazardous,"competing events map to target first versus invalidation first"
-havakv/pycox,EVENT_TIME_LABELS,neural survival models,N05,,"torch; last commit 2024-09-04"
-shi-ang/SurvivalEVAL,EVENT_TIME_LABELS,survival model evaluation metrics,N05;N02,,"GPL-3.0 at the pinned SHA"
-sktime/skpro,EVENT_TIME_LABELS,"probabilistic regression and survival prediction interface",N05;N03,,"interface layer over other libraries"
-mchiuminatto/triple_barrier,EVENT_TIME_LABELS,triple barrier labeling,N05,triple-barrier,"LLM and server packages listed in its dependency files"
-baobach/mlfinpy,EVENT_TIME_LABELS,"triple barrier labels, purged and combinatorial purged cross-validation (AFML methods)",N05;N04,mlfinpy,"reimplementation of methods from a book; check correctness against our barrier rules"
-quantscious/finmlkit,EVENT_TIME_LABELS,"financial ML labels and bars (triple barrier)",N05,finmlkit,"numba; ecosyste.ms has no record"
-mlflow/mlflow,EXPERIMENT_AUDIT_EVALUATION,"experiment tracking and model registry",N10,mlflow,"server stack; heavy; SQLite backend possible"
-treeverse/dvc,EXPERIMENT_AUDIT_EVALUATION,"data and experiment versioning on git",N10,dvc,"old path iterative/dvc resolves here (same pinned SHA)"
-aimhubio/aim,EXPERIMENT_AUDIT_EVALUATION,experiment tracker,N10,aim,"last commit 2025-12-31; PyPI shows no Python 3.13 support"
-IDSIA/sacred,EXPERIMENT_AUDIT_EVALUATION,experiment configuration and run records,N10,sacred,"file storage observer works without a server"
-probabl-ai/skore,EXPERIMENT_AUDIT_EVALUATION,"evaluation reports for scikit-learn estimators and cross-validation",N10;N02,skore,"young project with frequent changes"
-pandera-dev/pandera,EXPERIMENT_AUDIT_EVALUATION,dataframe schema validation,N10;N06,pandera,"feature store schema checks; ecosyste.ms has no record under this name"
-fivetran/great_expectations,EXPERIMENT_AUDIT_EVALUATION,data validation framework,N10,great-expectations,"heavy; now under fivetran"
-eslazarev/purged-cross-validation,EXPERIMENT_AUDIT_EVALUATION,"purged k-fold, combinatorial purged CV, embargo, probability of backtest overfitting",N04;N10,purgedcv,"directly matches purge and embargo needs; young project"
-skfolio/skfolio,EXPERIMENT_AUDIT_EVALUATION,"portfolio optimization with combinatorial purged cross-validation",N04,skfolio,"the CV module is the relevant part"
-sam31415/timeseriescv,EXPERIMENT_AUDIT_EVALUATION,purged and combinatorial purged cross-validation,N04,timeseriescv,"last commit 2022-02-15; five Python files"
-autogluon/fev,EXPERIMENT_AUDIT_EVALUATION,forecasting evaluation benchmark harness,N04;N10,,"benchmark for value forecasts, not event classifiers"
-optuna/optuna,EXPERIMENT_AUDIT_EVALUATION,"hyperparameter search with a persistent trial ledger",N10,optuna,"records every trial (P22), but search itself raises selection risk"
-yzhao062/pyod,ONCHAIN_FINANCIAL_ANOMALY,outlier detection algorithms,N11,pyod,"anomaly scores; holder and wallet data not exported yet"
-pygod-team/pygod,ONCHAIN_FINANCIAL_ANOMALY,graph outlier detection,N11,pygod,"torch geometric; wallet graph data not exported"
-safe-graph/UGFraud,ONCHAIN_FINANCIAL_ANOMALY,graph-based fraud detection,N11,,"last commit 2022-04-17"
-networkx/networkx,ONCHAIN_FINANCIAL_ANOMALY,"graph analysis for wallet and holder networks",N11,networkx,"general graph library"
-freqtrade/freqtrade,ONCHAIN_FINANCIAL_ANOMALY,"crypto trading bot with backtesting and an ML module",N14,freqtrade,"GPL-3.0; includes live order execution, which the lab never uses"
-polakowo/vectorbt,ONCHAIN_FINANCIAL_ANOMALY,vectorized backtesting,N14,vectorbt,"Apache-2.0 with Commons Clause (no selling of the software)"
-mementum/backtrader,ONCHAIN_FINANCIAL_ANOMALY,event-driven backtesting,N14,backtrader,"GPL-3.0; last commit 2023-04-19"
-AI4Finance-Foundation/FinRL,ONCHAIN_FINANCIAL_ANOMALY,reinforcement learning trading environments,N14,finrl,"trading-agent framing; research only"
-Logarithm-Labs/fractal-defi,ONCHAIN_FINANCIAL_ANOMALY,"DeFi strategy research and simulation (pools, lending)",N14,,"on-chain pool mechanics; not memecoin-specific"
-cjhutto/vaderSentiment,SOCIAL_NARRATIVE,rule-based sentiment for social text,N12,vaderSentiment,"no test files; catalyst text history not exported"
-MaartenGr/BERTopic,SOCIAL_NARRATIVE,topic modeling for narrative clustering,N12,bertopic,"embedding models (torch); LLM optional"
-AI4Finance-Foundation/FinGPT,SOCIAL_NARRATIVE,financial LLM fine-tuning and sentiment,N12,,"GPU and LLM; pretraining contamination (P26)"
+canonical,family,role,need_ids,pypi,screen_note,annotated_at
+scikit-learn/scikit-learn,TABULAR_PROBABILITY,"logistic regression, probability calibration (Platt, isotonic), Brier and log loss, time-ordered and group splits",N01;N02;N04,scikit-learn,"core dependency candidate for baselines B2 and B3; CPU, wheels for Python 3.13",2026-10-24T03:21:01Z
+dmlc/xgboost,TABULAR_PROBABILITY,gradient-boosted trees with probability outputs,N01,xgboost,overfitting risk at 100 to 300 events; must beat B2 (ACCEPTANCE_METRICS),2026-10-24T03:21:01Z
+lightgbm-org/LightGBM,TABULAR_PROBABILITY,gradient-boosted trees with probability outputs,N01,lightgbm,seed URL microsoft/LightGBM now resolves here (same pinned SHA); overfitting risk at small N,2026-10-24T03:21:01Z
+catboost/catboost,TABULAR_PROBABILITY,gradient-boosted trees with ordered boosting and categorical handling,N01,catboost,large monorepo; small-N overfitting risk,2026-10-24T03:21:01Z
+h2oai/h2o-3,TABULAR_PROBABILITY,AutoML platform on a Java backend,N01,h2o,needs a JVM server; no Python 3.13 wheel declared (PyPI); AutoML search conflicts with selection discipline (P22),2026-10-24T03:21:01Z
+autogluon/autogluon,TABULAR_PROBABILITY,AutoML ensembles for tabular and time series,N01,autogluon,heavy dependency tree; AutoML search must be logged as many fits (P22),2026-10-24T03:21:01Z
+interpretml/interpret,TABULAR_PROBABILITY,explainable boosting machine (glassbox additive model) with probability outputs,N01,interpret,seed URL microsoft/interpret now resolves here (same pinned SHA); interpretable model suits small N,2026-10-24T03:21:01Z
+stanfordmlgroup/ngboost,TABULAR_PROBABILITY,natural gradient boosting with predictive distributions,N01;N03,ngboost,distributional outputs; small-N behaviour unknown,2026-10-24T03:21:01Z
+scikit-learn-contrib/imbalanced-learn,TABULAR_PROBABILITY,resampling and balanced ensembles for rare classes,N01,imbalanced-learn,"resampling distorts probabilities; needs recalibration on untouched data (P10, P11)",2026-10-24T03:21:01Z
+ZhiningLiu1998/imbalanced-ensemble,TABULAR_PROBABILITY,ensemble methods for class imbalance,N01,imbalanced-ensemble,same probability distortion caveat as imbalanced-learn,2026-10-24T03:21:01Z
+PriorLabs/TabPFN,TABULAR_PROBABILITY,pretrained tabular in-context classifier for small datasets,N01,tabpfn,code Apache-2.0; weights 2.5 and later non-commercial and downloaded after a license login (README); torch; possible pretraining overlap is not a time leak but must be checked,2026-10-24T03:21:01Z
+soda-inria/tabicl,TABULAR_PROBABILITY,pretrained tabular in-context classifier,N01,tabicl,BSD-3-Clause with Apache-2.0 code from TabPFN-TS; checkpoint downloaded from Hugging Face; torch,2026-10-24T03:21:01Z
+perpetual-ml/perpetual,TABULAR_PROBABILITY,self-generalizing gradient boosting without hyperparameter search,N01,perpetual,Rust core; fewer tuning degrees of freedom helps P22; PyPI metadata has no repository link,2026-10-24T03:21:01Z
+statsmodels/statsmodels,TABULAR_PROBABILITY,"logistic regression with inference, multiple-testing adjustment (Holm), proportion intervals",N01;N03,statsmodels,B2 alternative with standard errors; Holm via multipletests,2026-10-24T03:21:01Z
+scikit-learn-contrib/MAPIE,CALIBRATION_UNCERTAINTY,"conformal prediction sets and intervals, top-label and Venn-Abers calibration",N02;N03,mapie,split conformal assumes exchangeability; time-ordered data need care,2026-10-24T03:21:01Z
+henrikbostrom/crepes,CALIBRATION_UNCERTAINTY,"conformal classifiers and predictive systems, Mondrian categories",N02;N03,crepes,no tests directory at the pinned SHA,2026-10-24T03:21:01Z
+ip200/venn-abers,CALIBRATION_UNCERTAINTY,Venn-Abers probability calibration with interval output,N02;N03,venn-abers,PyPI shows no Python 3.13 marker or universal wheel (sdist only); small package,2026-10-24T03:21:01Z
+deel-ai/puncc,CALIBRATION_UNCERTAINTY,conformal prediction toolkit,N03,puncc,license file under LICENSES/headers (MIT text); declared MIT on PyPI,2026-10-24T03:21:01Z
+EFS-OpenSource/calibration-framework,CALIBRATION_UNCERTAINTY,"calibration methods and metrics (netcal), reliability diagrams",N02,netcal,torch is a base requirement (PyPI); no test files found by name,2026-10-24T03:21:01Z
+lorentzenchr/model-diagnostics,CALIBRATION_UNCERTAINTY,"calibration (identification functions, bias), scoring functions with decomposition, reliability diagrams",N02,model-diagnostics,directly matches Brier and log-loss reporting with decomposition,2026-10-24T03:21:01Z
+frazane/scoringrules,CALIBRATION_UNCERTAINTY,proper scoring rules for probabilistic forecasts,N02,scoringrules,mostly continuous and ensemble scores; Brier for binary is simple,2026-10-24T03:21:01Z
+properscoring/properscoring,CALIBRATION_UNCERTAINTY,"proper scoring rules (CRPS, Brier)",N02,properscoring,"archived (ecosyste.ms); last commit 2022-10-12; repair pass 2: recorded first under the pre-transfer path TheClimateCorporation/properscoring (same HEAD), which PyPI still names",2026-10-24T03:21:01Z
+bashtage/arch,CALIBRATION_UNCERTAINTY,"stationary, circular and moving block bootstrap, volatility models",N03,arch,block bootstrap for day-block intervals; group (mint) bootstrap needs a custom index,2026-10-24T03:21:01Z
+astrogilda/tsbootstrap,CALIBRATION_UNCERTAINTY,time series bootstrap methods,N03,tsbootstrap,overlaps arch for block bootstrap,2026-10-24T03:21:01Z
+Moffran/calibrated_explanations,CALIBRATION_UNCERTAINTY,Venn-Abers calibrated probabilities with feature explanations,N02;N03,calibrated-explanations,wraps crepes; adds explanation layer,2026-10-24T03:21:01Z
+egonmedhatten/online-cp,CALIBRATION_UNCERTAINTY,online conformal prediction,N03;N09,online-cp,online exchangeability assumptions,2026-10-24T03:21:01Z
+KhiopsLab/khalib,CALIBRATION_UNCERTAINTY,classifier calibration library,N02,khalib,five Python files; young project,2026-10-24T03:21:01Z
+ml-stat-Sustech/TorchCP,CALIBRATION_UNCERTAINTY,conformal prediction on PyTorch,N03,,LGPL-3.0 (COPYING and COPYING.LESSER); torch,2026-10-24T03:21:01Z
+donlnz/nonconformist,CALIBRATION_UNCERTAINTY,conformal prediction (inductive and transductive),N03,,last commit 2021-03-20,2026-10-24T03:21:01Z
+OliverHennhoefer/nonconform,CALIBRATION_UNCERTAINTY,conformal anomaly detection with false discovery rate control,N03;N11,nonconform,"anomaly framing, not classification",2026-10-24T03:21:01Z
+facebookincubator/MCGrad,CALIBRATION_UNCERTAINTY,multicalibration by gradient boosting,N02,mcgrad,torch base requirement (PyPI); multicalibration needs groups with enough events,2026-10-24T03:21:01Z
+unit8co/darts,TIME_SERIES,forecasting framework with backtesting and probabilistic models,N06;N07,u8darts,"forecasts values, not barrier events; torch optional",2026-10-24T03:21:01Z
+Nixtla/statsforecast,TIME_SERIES,statistical forecasting models,N06,statsforecast,value forecasts; could feed features,2026-10-24T03:21:01Z
+Nixtla/mlforecast,TIME_SERIES,forecasting with tabular models and lag features,N06,mlforecast,lag-feature engine; check as-of correctness,2026-10-24T03:21:01Z
+Nixtla/neuralforecast,TIME_SERIES,neural forecasting models,N06,neuralforecast,torch base requirement; data hungry,2026-10-24T03:21:01Z
+sktime/sktime,TIME_SERIES,time series learning with expanding and sliding window splitters and evaluation,N04;N06,sktime,splitters relevant to walk-forward; large dependency surface,2026-10-24T03:21:01Z
+aeon-toolkit/aeon,TIME_SERIES,"time series classification, segmentation, distances",N06;N07,aeon,fork of sktime history (shared roots expected),2026-10-24T03:21:01Z
+amazon-science/chronos-forecasting,TIME_SERIES,pretrained probabilistic time series models,N06,chronos-forecasting,torch and transformers base requirements; weights on Hugging Face; zero-shot price-path samples could give barrier probabilities but need calibration,2026-10-24T03:21:01Z
+google-research/timesfm,TIME_SERIES,pretrained time series foundation model,N06,timesfm,TimesFM 3.0 weights non-commercial; 2.5 and earlier Apache-2.0 (README notice),2026-10-24T03:21:01Z
+facebook/prophet,TIME_SERIES,additive trend and seasonality forecasting,N06,prophet,"daily seasonality model, poor fit for 5-minute memecoin paths",2026-10-24T03:21:01Z
+awslabs/gluonts,TIME_SERIES,probabilistic forecasting toolkit,N06,gluonts,torch for most models,2026-10-24T03:21:01Z
+skforecast/skforecast,TIME_SERIES,"recursive and direct forecasting with scikit-learn models, backtesting",N06,skforecast,"D01 links the old path JoaquinAmatRodrigo/skforecast, which resolves here (same pinned SHA)",2026-10-24T03:21:01Z
+blue-yonder/tsfresh,TIME_SERIES,"automatic time series feature extraction, rolling windows",N06,tsfresh,thousands of features invite selection bias at small N (P22),2026-10-24T03:21:01Z
+bukosabino/ta,TIME_SERIES,technical analysis indicators on pandas,N06,ta,no test files found by name; PyPI shows no Python 3.13 marker or wheel,2026-10-24T03:21:01Z
+stumpy-dev/stumpy,TIME_SERIES,matrix profile for motif and analog search,N07,stumpy,old path TDAmeritrade/stumpy resolves here (same pinned SHA),2026-10-24T03:21:01Z
+tslearn-team/tslearn,TIME_SERIES,"time series distances (DTW), clustering, nearest neighbours",N07,tslearn,analog cohorts by shape,2026-10-24T03:21:01Z
+deepcharles/ruptures,TIME_SERIES,offline change point detection,N06;N07,ruptures,offline segmentation looks at the whole series: must be run on truncated data only (P36),2026-10-24T03:21:01Z
+microsoft/qlib,TIME_SERIES,"quant research platform: data, models, backtests for equities",N06;N10;N14,pyqlib,equity daily-bar assumptions; PyPI shows no Python 3.13 support; heavy,2026-10-24T03:21:01Z
+online-ml/river,ONLINE_DRIFT_MONITORING,"online learning and drift detectors (ADWIN, Page-Hinkley)",N08;N09,river,streaming updates must use matured labels only,2026-10-24T03:21:01Z
+evidentlyai/evidently,ONLINE_DRIFT_MONITORING,data and prediction drift reports and tests,N08,evidently,server and UI stack in the package; LLM extras,2026-10-24T03:21:01Z
+SeldonIO/alibi-detect,ONLINE_DRIFT_MONITORING,drift and outlier detectors,N08,alibi-detect,"Business Source License 1.1 (non-production use only, Apache-2.0 four years after each release)",2026-10-24T03:21:01Z
+NannyML/nannyml,ONLINE_DRIFT_MONITORING,"performance estimation without labels (CBPE), univariate and multivariate drift",N08,nannyml,CBPE assumes calibrated probabilities; last commit 2025-07-12,2026-10-24T03:21:01Z
+IFCA-Advanced-Computing/frouros,ONLINE_DRIFT_MONITORING,concept and data drift detection (batch and streaming),N08,frouros,last commit 2026-02-11,2026-10-24T03:21:01Z
+mitre/menelaus,ONLINE_DRIFT_MONITORING,drift detection algorithms,N08,menelaus,last commit 2023-08-23,2026-10-24T03:21:01Z
+adaptive-machine-learning/CapyMOA,ONLINE_DRIFT_MONITORING,stream learning on MOA,N08;N09,capymoa,needs a Java runtime (MOA),2026-10-24T03:21:01Z
+VowpalWabbit/vowpal_wabbit,ONLINE_DRIFT_MONITORING,online learning system,N09,vowpalwabbit,C++ core,2026-10-24T03:21:01Z
+whylabs/whylogs,ONLINE_DRIFT_MONITORING,data logging and profile-based drift monitoring,N08,whylogs,last commit 2025-01-10; PyPI metadata has no repository link,2026-10-24T03:21:01Z
+deepchecks/deepchecks,ONLINE_DRIFT_MONITORING,"model and data validation suites, drift checks",N08;N10,deepchecks,AGPL-3.0 at the pinned SHA,2026-10-24T03:21:01Z
+selimfirat/pysad,ONLINE_DRIFT_MONITORING,streaming anomaly detection,N08;N11,pysad,"anomaly scores, not calibrated probabilities",2026-10-24T03:21:01Z
+simon-hirsch/ondil,ONLINE_DRIFT_MONITORING,online distributional regression,N09,ondil,GPL-3.0 at the pinned SHA,2026-10-24T03:21:01Z
+666ghj/MiroFish,BEHAVIORAL_MULTI_AGENT,LLM multi-agent social scenario simulation with a report agent (hypothesis generation),N13,,"AGPL-3.0; needs LLM_API_KEY and ZEP_API_KEY (backend/app/config.py), Zep Cloud only; backend requires Python >=3.11,<3.13; no probability output in backend code; README prediction claims earn nothing",2026-10-24T03:21:01Z
+camel-ai/oasis,BEHAVIORAL_MULTI_AGENT,LLM agent social media simulator (Twitter and Reddit style platforms),N13,camel-oasis,LLM required for agents; simulated agents sharing one model are not independent votes,2026-10-24T03:21:01Z
+camel-ai/camel,BEHAVIORAL_MULTI_AGENT,multi-agent LLM framework under OASIS,N13,camel-ai,"framework layer, not a simulator",2026-10-24T03:21:01Z
+getzep/graphiti,BEHAVIORAL_MULTI_AGENT,temporal knowledge graph for agent memory (Zep's open-source core),N13;N12,graphiti-core,needs an LLM and a graph database (neo4j or falkordb),2026-10-24T03:21:01Z
+mesa/mesa,BEHAVIORAL_MULTI_AGENT,agent-based modeling framework,N13,mesa,seed URL projectmesa/mesa resolves here (same pinned SHA); no LLM needed,2026-10-24T03:21:01Z
+jofmi/agentpy,BEHAVIORAL_MULTI_AGENT,agent-based modeling framework,N13,agentpy,"last commit 2025-02-06; repair pass 2: recorded first under the pre-rename path JoelForamitti/agentpy (same HEAD), which PyPI still names; the package seed AgentPy/agentpy is unreachable",2026-10-24T03:21:01Z
+bancaditalia/black-it,BEHAVIORAL_MULTI_AGENT,calibration of agent-based models to data,N13,black-it,AGPL-3.0; useful for fitting simulator parameters to observed paths,2026-10-24T03:21:01Z
+tsinghua-fib-lab/AgentSociety,BEHAVIORAL_MULTI_AGENT,LLM-driven large-scale society simulation,N13,,LLM required; PyPI lookup not run,2026-10-24T03:21:01Z
+rgCASS/casevo,BEHAVIORAL_MULTI_AGENT,cognitive agents and social evolution simulator,N13,,no test files; small,2026-10-24T03:21:01Z
+AgentTorch/AgentTorch,BEHAVIORAL_MULTI_AGENT,differentiable large population models with LLM agents,N13,,AGPL-3.0; torch and LLM,2026-10-24T03:21:01Z
+jpmorganchase/abides-jpmc-public,BEHAVIORAL_MULTI_AGENT,agent-based limit order book market simulator,N13;N14,,"archived (ecosyste.ms); order book markets, not AMM pools",2026-10-24T03:21:01Z
+abides-sim/abides,BEHAVIORAL_MULTI_AGENT,agent-based market simulator (original ABIDES),N13;N14,,last commit 2020-11-19; no tests,2026-10-24T03:21:01Z
+cadCAD-org/cadCAD,BEHAVIORAL_MULTI_AGENT,system and token economy simulation,N13,cadCAD,last commit 2024-04-19,2026-10-24T03:21:01Z
+stelios12312312/TokenLab,BEHAVIORAL_MULTI_AGENT,token economy agent-based simulation,N13,,small project; crypto token supply and demand models,2026-10-24T03:21:01Z
+CamDavidsonPilon/lifelines,EVENT_TIME_LABELS,"survival analysis (Kaplan-Meier, Cox, Aalen-Johansen for competing risks)",N05,lifelines,time-to-event with censoring for target-versus-invalidation timing,2026-10-24T03:21:01Z
+sebp/scikit-survival,EVENT_TIME_LABELS,survival models compatible with scikit-learn,N05,scikit-survival,GPL-3.0 at the pinned SHA,2026-10-24T03:21:01Z
+soda-inria/hazardous,EVENT_TIME_LABELS,competing risks gradient boosting (SurvivalBoost),N05,hazardous,competing events map to target first versus invalidation first,2026-10-24T03:21:01Z
+havakv/pycox,EVENT_TIME_LABELS,neural survival models,N05,,torch; last commit 2024-09-04,2026-10-24T03:21:01Z
+shi-ang/SurvivalEVAL,EVENT_TIME_LABELS,survival model evaluation metrics,N05;N02,,GPL-3.0 at the pinned SHA,2026-10-24T03:21:01Z
+sktime/skpro,EVENT_TIME_LABELS,probabilistic regression and survival prediction interface,N05;N03,,interface layer over other libraries,2026-10-24T03:21:01Z
+mchiuminatto/triple_barrier,EVENT_TIME_LABELS,triple barrier labeling,N05,triple-barrier,LLM and server packages listed in its dependency files,2026-10-24T03:21:01Z
+baobach/mlfinpy,EVENT_TIME_LABELS,"triple barrier labels, purged and combinatorial purged cross-validation (AFML methods)",N05;N04,mlfinpy,reimplementation of methods from a book; check correctness against our barrier rules,2026-10-24T03:21:01Z
+quantscious/finmlkit,EVENT_TIME_LABELS,financial ML labels and bars (triple barrier),N05,finmlkit,numba; ecosyste.ms has no record,2026-10-24T03:21:01Z
+mlflow/mlflow,EXPERIMENT_AUDIT_EVALUATION,experiment tracking and model registry,N10,mlflow,server stack; heavy; SQLite backend possible,2026-10-24T03:21:01Z
+treeverse/dvc,EXPERIMENT_AUDIT_EVALUATION,data and experiment versioning on git,N10,dvc,old path iterative/dvc resolves here (same pinned SHA),2026-10-24T03:21:01Z
+aimhubio/aim,EXPERIMENT_AUDIT_EVALUATION,experiment tracker,N10,aim,last commit 2025-12-31; PyPI shows no Python 3.13 support,2026-10-24T03:21:01Z
+IDSIA/sacred,EXPERIMENT_AUDIT_EVALUATION,experiment configuration and run records,N10,sacred,file storage observer works without a server,2026-10-24T03:21:01Z
+probabl-ai/skore,EXPERIMENT_AUDIT_EVALUATION,evaluation reports for scikit-learn estimators and cross-validation,N10;N02,skore,young project with frequent changes,2026-10-24T03:21:01Z
+unionai-oss/pandera,EXPERIMENT_AUDIT_EVALUATION,dataframe schema validation,N10;N06,pandera,"feature store schema checks; repair pass 2: same HEAD at pandera-dev/pandera (named by the 2026 PyPI release); ecosyste.ms records only unionai-oss/pandera and the README at the pin links it, so the uniform canonical rule (PI-D-025) takes this path",2026-10-24T03:21:01Z
+fivetran/great_expectations,EXPERIMENT_AUDIT_EVALUATION,data validation framework,N10,great-expectations,heavy; now under fivetran,2026-10-24T03:21:01Z
+eslazarev/purged-cross-validation,EXPERIMENT_AUDIT_EVALUATION,"purged k-fold, combinatorial purged CV, embargo, probability of backtest overfitting",N04;N10,purgedcv,directly matches purge and embargo needs; young project,2026-10-24T03:21:01Z
+skfolio/skfolio,EXPERIMENT_AUDIT_EVALUATION,portfolio optimization with combinatorial purged cross-validation,N04,skfolio,the CV module is the relevant part,2026-10-24T03:21:01Z
+sam31415/timeseriescv,EXPERIMENT_AUDIT_EVALUATION,purged and combinatorial purged cross-validation,N04,timeseriescv,last commit 2022-02-15; five Python files,2026-10-24T03:21:01Z
+autogluon/fev,EXPERIMENT_AUDIT_EVALUATION,forecasting evaluation benchmark harness,N04;N10,,"benchmark for value forecasts, not event classifiers",2026-10-24T03:21:01Z
+optuna/optuna,EXPERIMENT_AUDIT_EVALUATION,hyperparameter search with a persistent trial ledger,N10,optuna,"records every trial (P22), but search itself raises selection risk",2026-10-24T03:21:01Z
+yzhao062/pyod,ONCHAIN_FINANCIAL_ANOMALY,outlier detection algorithms,N11,pyod,anomaly scores; holder and wallet data not exported yet,2026-10-24T03:21:01Z
+pygod-team/pygod,ONCHAIN_FINANCIAL_ANOMALY,graph outlier detection,N11,pygod,torch geometric; wallet graph data not exported,2026-10-24T03:21:01Z
+safe-graph/UGFraud,ONCHAIN_FINANCIAL_ANOMALY,graph-based fraud detection,N11,,last commit 2022-04-17,2026-10-24T03:21:01Z
+networkx/networkx,ONCHAIN_FINANCIAL_ANOMALY,graph analysis for wallet and holder networks,N11,networkx,general graph library,2026-10-24T03:21:01Z
+freqtrade/freqtrade,ONCHAIN_FINANCIAL_ANOMALY,crypto trading bot with backtesting and an ML module,N14,freqtrade,"GPL-3.0; includes live order execution, which the lab never uses",2026-10-24T03:21:01Z
+polakowo/vectorbt,ONCHAIN_FINANCIAL_ANOMALY,vectorized backtesting,N14,vectorbt,Apache-2.0 with Commons Clause (no selling of the software),2026-10-24T03:21:01Z
+mementum/backtrader,ONCHAIN_FINANCIAL_ANOMALY,event-driven backtesting,N14,backtrader,GPL-3.0; last commit 2023-04-19,2026-10-24T03:21:01Z
+AI4Finance-Foundation/FinRL,ONCHAIN_FINANCIAL_ANOMALY,reinforcement learning trading environments,N14,finrl,trading-agent framing; research only,2026-10-24T03:21:01Z
+Logarithm-Labs/fractal-defi,ONCHAIN_FINANCIAL_ANOMALY,"DeFi strategy research and simulation (pools, lending)",N14,,on-chain pool mechanics; not memecoin-specific,2026-10-24T03:21:01Z
+cjhutto/vaderSentiment,SOCIAL_NARRATIVE,rule-based sentiment for social text,N12,vaderSentiment,no test files; catalyst text history not exported,2026-10-24T03:21:01Z
+MaartenGr/BERTopic,SOCIAL_NARRATIVE,topic modeling for narrative clustering,N12,bertopic,embedding models (torch); LLM optional,2026-10-24T03:21:01Z
+AI4Finance-Foundation/FinGPT,SOCIAL_NARRATIVE,financial LLM fine-tuning and sentiment,N12,,GPU and LLM; pretraining contamination (P26),2026-10-24T03:21:01Z
+alteryx/featuretools,POINT_IN_TIME_FEATURE_STORE,automated feature engineering with cutoff times (features computed only from data before each cutoff),N06,featuretools,"last commit 2024-11-13; the closest conceptual match to as-of features; repair pass 2 (skeptic M1, found in D01)",2026-10-24T04:13:48Z
+feast-dev/feast,POINT_IN_TIME_FEATURE_STORE,"feature store with point-in-time correct historical joins (get_historical_features, TTL filter)",N06;N10,feast,"server and online-store stack in the package; offline local use with pandas or dask; repair pass 2 (K15, W29, W33)",2026-10-24T04:13:48Z
+google/temporian,POINT_IN_TIME_FEATURE_STORE,temporal feature engineering designed against leakage,N06,temporian,last commit 2024-07-25; PyPI requires Python <3.12; repair pass 2 (W30),2026-10-24T04:13:48Z
+airbnb/chronon,POINT_IN_TIME_FEATURE_STORE,feature platform with point-in-time backfills (Scala and Spark),N06,,JVM and Spark; repair pass 2 (W33),2026-10-24T04:13:48Z
+quintoandar/butterfree,POINT_IN_TIME_FEATURE_STORE,feature store builder on Spark,N06,butterfree,pyspark (JVM); repair pass 2 (K15),2026-10-24T04:13:48Z
+4paradigm/OpenMLDB,POINT_IN_TIME_FEATURE_STORE,database for consistent offline and online features,N06,openmldb,server database (C++ and Java); repair pass 2 (K15),2026-10-24T04:13:48Z
+featureform/featureform,POINT_IN_TIME_FEATURE_STORE,virtual feature store,N06,featureform,MPL-2.0 (file-level copyleft); server stack; repair pass 2 (K15),2026-10-24T04:13:48Z
+feathr-ai/feathr,POINT_IN_TIME_FEATURE_STORE,feature store with point-in-time joins (Spark),N06,feathr,"last commit 2024-03-26; repair pass 2 (K15, W29)",2026-10-24T04:13:48Z
+alibaba/feathub,POINT_IN_TIME_FEATURE_STORE,stream and batch feature store,N06,feathub,last commit 2023-09-21; repair pass 2 (K15),2026-10-24T04:13:48Z
+logicalclocks/feature-store-api,POINT_IN_TIME_FEATURE_STORE,client for the Hopsworks feature store,N06,hsfs,needs a Hopsworks server; last commit 2024-07-12; PyPI requires Python <3.13; repair pass 2 (K15),2026-10-24T04:13:48Z
+MatsMoll/aligned,POINT_IN_TIME_FEATURE_STORE,feature and data lineage management,N06;N10,aligned,"Functional Source License 1.1 (source-available, Apache-2.0 after two years); repair pass 2 (K15)",2026-10-24T04:13:48Z
+chinmay1182/ftlite,POINT_IN_TIME_FEATURE_STORE,local-first feature store without servers,N06,,"13 commits, one test file; repair pass 2 (K15); PyPI ftlite answered 404",2026-10-24T04:13:48Z
+pydoni/feature-forge,POINT_IN_TIME_FEATURE_STORE,lightweight feature store for small teams,N06,fforge,12 commits; repair pass 2 (W29),2026-10-24T04:13:48Z
+hmmlearn/hmmlearn,REGIME_STATE_MODELS,hidden Markov models with a scikit-learn style API,N07;N06,hmmlearn,"last commit 2024-10-31; repair pass 2 (skeptic M1, found in D01)",2026-10-24T04:13:48Z
+jmschrei/pomegranate,REGIME_STATE_MODELS,probabilistic models including hidden Markov models (PyTorch),N07;N06,pomegranate,torch base requirement; last commit 2025-02-07; PyPI still links the old development repository jmschrei/torchegranate; repair pass 2 (D01),2026-10-24T04:13:48Z
+Yizhan-Oliver-Shu/jump-models,REGIME_STATE_MODELS,statistical jump models for market regime detection,N07,jumpmodels,"13 commits, no test files, last commit 2025-01-12; repair pass 2 (K17, W32)",2026-10-24T04:13:48Z
+deeptime-ml/deeptime,REGIME_STATE_MODELS,Markov state models and time series decomposition,N07;N06,deeptime,LGPL at the pin; repair pass 2 (K16),2026-10-24T04:13:48Z
+Mogeng/IOHMM,REGIME_STATE_MODELS,input-output hidden Markov models,N07,IOHMM,last commit 2023-04-30; repair pass 2 (K16),2026-10-24T04:13:48Z
+maximtrp/mchmm,REGIME_STATE_MODELS,Markov chains and hidden Markov models,N07,mchmm,GPL-3.0 at the pin; six Python files; repair pass 2 (K16),2026-10-24T04:13:48Z
+jamesross2/Bayesian-HMM,REGIME_STATE_MODELS,Bayesian hidden Markov models,N07,,last commit 2019-09-14; repair pass 2 (K16),2026-10-24T04:13:48Z
+AlgorithmicMind/regimelab,REGIME_STATE_MODELS,market regime detection (HMM and Hamilton switching) for equity and VIX data,N07,regimelab,15 commits; equity and volatility-index inputs; repair pass 2 (W32),2026-10-24T04:13:48Z
+Novartis/torchsurv,EVENT_TIME_LABELS,deep survival analysis on PyTorch,N05,torchsurv,"torch base requirement; repair pass 2 (skeptic M1, found in K10)",2026-10-24T04:13:48Z
+autonlab/auton-survival,EVENT_TIME_LABELS,survival regression and counterfactual survival estimators,N05,auton-survival,"torch base requirement; last commit 2023-10-16; repair pass 2 (skeptic M1, found in K10)",2026-10-24T04:13:48Z
+loft-br/xgboost-survival-embeddings,EVENT_TIME_LABELS,survival analysis with XGBoost embeddings,N05,xgbse,"archived (ecosyste.ms); repair pass 2 (skeptic M1, found in K10)",2026-10-24T04:13:48Z
+TA-Lib/ta-lib-python,TIME_SERIES,Python wrapper for the TA-Lib technical indicator library,N06,TA-Lib,"needs the TA-Lib C library; repair pass 2 (skeptic M1, found in D05)",2026-10-24T04:13:48Z

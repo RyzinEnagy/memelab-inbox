@@ -1,27 +1,31 @@
 {
  "phase": "02",
  "title": "Find a broad, verifiable, diversified landscape of prediction tools",
- "status": "NEEDS_REVIEW",
- "status_reason": "Every gate item is reproduced by the phase agent (checker 0 problems, 25 of 25 negative mutations refused, live re-fetch of 36 pins with matching code evidence, provenance audit 5 of 5). The independent skeptic required by PI-D-013 has not run; PASS only after the orchestrator's review is folded in.",
+ "status": "PASS",
+ "status_reason": "All gate items reproduced after repair pass 2. Was NEEDS_REVIEW at 498eaa0; the orchestrator's independent skeptic (PI-D-013) found 1 MATERIAL (M1: the stated selection rule was not applied and point-in-time feature stores were never searched) and 6 MINOR findings (m1 rows on pre-transfer paths, m2 vendored licensing, m3 license hashes of decoded text, m4 checker family guards, m5 credit count, m6 N13 mapping) plus a counterexample (a shortlisted repository on its pre-transfer path passes the checker). Each was verified against live data and repaired (PI-D-025); the counterexample and the skeptic's cases C and D are now refused by the checker.",
  "branch": "feature/predictive-intelligence",
  "head_before": "a402df67bd1e23227d06baa2e0b4fbdbe494e905",
- "head_after": "the Phase 02 content commit on top of a402df6 (git log -1; this file is part of it)",
- "generated_at_utc": "2026-10-24T03:45Z",
+ "head_after": "repair pass 2 commit on top of 498eaa0 (git log -1; this file is part of it)",
+ "generated_at_utc": "2026-10-24T04:33Z",
  "needs_sha256": "90c9391aa6674abbf138b59e610ce0b72ab7eeb6a15763458e341d6fd6560f5e",
  "counts": {
-  "distinct_successful_queries": 60,
-  "topic_families": 9,
+  "distinct_successful_queries": 68,
+  "topic_families": 11,
   "mechanisms": 5,
   "github_search_refused": 22,
-  "verified_inputs": 141,
-  "candidates": 107,
-  "unique_root_histories": 106,
-  "candidates_beyond_seed_and_analyst_pypi": 89,
-  "shortlist": 29,
-  "screened_exclusions": 38,
-  "not_shortlisted_with_reason": 78,
-  "pypi_lookups": 98,
-  "websearch_queries": 28
+  "verified_inputs": 175,
+  "candidates": 132,
+  "unique_root_histories": 131,
+  "candidates_credited_by_corpus_queries": 114,
+  "candidates_with_independent_discovery": 99,
+  "first_107_with_independent_discovery": 74,
+  "shortlist": 30,
+  "screened_exclusions": 46,
+  "not_shortlisted_with_reason": 102,
+  "pypi_lookups": 123,
+  "websearch_queries": 33,
+  "returned_names_not_screened": 2023,
+  "of_which_match_need_terms": 264
  },
  "shortlist_by_family": {
   "TABULAR_PROBABILITY": 5,
@@ -30,7 +34,8 @@
   "ONLINE_DRIFT_MONITORING": 4,
   "BEHAVIORAL_MULTI_AGENT": 4,
   "EXPERIMENT_AUDIT_EVALUATION": 4,
-  "EVENT_TIME_LABELS": 3
+  "EVENT_TIME_LABELS": 3,
+  "POINT_IN_TIME_FEATURE_STORE": 1
  },
  "checks": [
   {
@@ -72,7 +77,7 @@
    "name": "query corpus",
    "command": "probes/discover.py, probes/pypi_lookup.py, WebSearch",
    "exit_code": 0,
-   "result": "60 distinct successful queries, 9 families, 5 mechanisms",
+   "result": "first pass 60 distinct successful queries over 9 families; after repair pass 2 68 over 11 families and 5 mechanisms",
    "pass": true
   },
   {
@@ -93,7 +98,7 @@
    "name": "build",
    "command": "python3 probes/build_candidates.py . /home/claude/pi_research <package>",
    "exit_code": 0,
-   "result": "candidates 107 shortlist 29; all code evidence found",
+   "result": "candidates 132 shortlist 30; all code evidence found; license hashes of file bytes",
    "pass": true
   },
   {
@@ -107,14 +112,14 @@
    "name": "checker negative tests",
    "command": "python3 probes/check_candidates_negative.py . ../phase_01/architecture/GAP_MATRIX.csv",
    "exit_code": 0,
-   "result": "unmutated copy passes; 25 of 25 mutations refused (includes P42 README evidence, fork, vanished, mirror, crawler, invented provenance)",
+   "result": "first pass 25 of 25; after repair pass 2 32 of 32 mutations refused (adds the skeptic's counterexample, cases C and D, a re-added pre-transfer path, a lost archived flag, an inactive and a copyleft shortlisted row)",
    "pass": true
   },
   {
    "name": "checker live",
    "command": "python3 probes/check_candidates.py . ../phase_01/architecture/GAP_MATRIX.csv --live 10 --seed 20261024",
    "exit_code": 0,
-   "result": "36 pinned commits fetched; 29 shortlisted code evidence re-read and matched; mlflow HEAD moved since pin (pin fetchable)",
+   "result": "first pass 36 pins fetched, 29 code evidence matched; repair pass 2: 36 pins fetched, 30 shortlisted code evidence re-read and matched, problems 0",
    "pass": true
   },
   {
@@ -172,10 +177,52 @@
    "pass": true
   },
   {
+   "name": "orchestrator rerun on 498eaa0",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 858 passed in 136.62s (reported by the orchestrator)",
+   "pass": true
+  },
+  {
    "name": "independent skeptic",
-   "input": "SKEPTIC_PACKET.md",
-   "result": "pending (orchestrator, PI-D-013)",
-   "pass": false
+   "input": "skeptic/PHASE_02_SKEPTIC.md",
+   "result": "1 MATERIAL, 6 MINOR, 1 counterexample; all verified and repaired in repair pass 2 (PI-D-025)",
+   "pass": true
+  },
+  {
+   "name": "skeptic counterexample script on the repaired tree",
+   "command": "python3 -I skeptic/PHASE_02_skeptic_counterexample.py . ../phase_01/architecture/GAP_MATRIX.csv /home/claude/pi_orchestration/skeptic/p02",
+   "exit_code": 0,
+   "result": "B, C, D CAUGHT; A shows the repaired row (properscoring/properscoring, archived true)",
+   "pass": true
+  },
+  {
+   "name": "M1 repair: missed names and families screened",
+   "command": "discover.py K15 K16 K17; WebSearch W29 to W33; verify_repos.py on 34 inputs",
+   "exit_code": 0,
+   "result": "six named repositories and two new families screened; 25 new candidates, 8 screened exclusions, feast shortlisted, statsmodels MarkovRegression recorded for N07",
+   "pass": true
+  },
+  {
+   "name": "m1 repair: canonical paths",
+   "command": "SUCCESSOR_SEARCH.jsonl and checker canonical rules",
+   "exit_code": 0,
+   "result": "properscoring, agentpy, pandera moved to recorded paths; finmlkit kept on its package record",
+   "pass": true
+  },
+  {
+   "name": "m2 repair: per-file license scan",
+   "command": "python3 probes/license_scan.py . <work>",
+   "exit_code": 0,
+   "result": "30 shortlisted rows in LICENSE_SCAN.csv",
+   "pass": true
+  },
+  {
+   "name": "final full suite after repair pass 2",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 858 passed in 134.21s; only the known clock test",
+   "pass": true
   }
  ],
  "artifacts": [
@@ -185,31 +232,39 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_02/PHASE_02_EVIDENCE.md",
-   "sha256": "d33483991a595740a7d684d2f0f7ad68f74fc10be9554e79c46b37450e8df1a8"
+   "sha256": "43f461844dbca04a1b0938ebf1acbd9df372ea2ede1b4927cfcd96bbadb55b11"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/SKEPTIC_PACKET.md",
-   "sha256": "c3d02ebc57888a21043f3d0b29dad0bd03bfa21164d3e0fdd4e1af79b9ce4581"
+   "sha256": "a8f62dfd7997caf517709bf153d3cf57636b204662fc0450277b1e56866cef55"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/probes/build_candidates.py",
-   "sha256": "1728c5f7e7cd908cd98033435c25e89a36019c23ad81342a5a726faa8a16eaa1"
+   "sha256": "3e468fec982259c060ed2eb37cf46166f3974fb8aa233a6de1472ac109a68fe1"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/probes/check_candidates.py",
-   "sha256": "025a5a0b536c7df470e61edfc632833676bd7202b2e785af7dbabf5f029ec553"
+   "sha256": "364db0d48694fb4a0328347c0ad401cf165c01222ba59930e559bd81403ccac9"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/probes/check_candidates_negative.py",
-   "sha256": "04522ed1e7703820020cc1c410f46fb33d29e37995870f47612ec663d1d21b8d"
+   "sha256": "1ded214583c2de8142677a670fd49e561034a500c25b65b1baa093ab8caa0bfb"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/probes/discover.py",
    "sha256": "558a202481d2c265687de741ae49bff06208d072092769b3d56a6471101eec99"
   },
   {
+   "path": "audits/predictive-intelligence/phase_02/probes/fetch_pins.py",
+   "sha256": "c8bbd9c78a525c946ab4554ce6087267fd8aded87873b76816fdd7baae009850"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_02/probes/gh_search.py",
    "sha256": "658c482bf259cae5d7f001a0974c0b7923df1912ecc529e8aab00d94bdf185cf"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/probes/license_scan.py",
+   "sha256": "5702e7a07df78903b700414c5820b3c02edae6d04645a16389c865eab9407535"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/probes/pypi_lookup.py",
@@ -217,39 +272,43 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_02/probes/render_exclusions.py",
-   "sha256": "440f31ea6dbf804a46d630af7afcc01704dc633d6bc309345cc5f42074660273"
+   "sha256": "8c16100a7cac2b782b408fd8d91d2d2f740cfc1e5fe56e394e7d08ca154cb709"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/probes/render_search_log.py",
-   "sha256": "be04e3e5622fac9dab666a500e7e4f69285fd1796cde2bdd9a07485e327bef0f"
+   "sha256": "0fd24ef161844256deae8f7d4296e706ea589f28ce93b7e15ad15c514c086723"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/probes/root_commits.py",
-   "sha256": "b10cf30dd7c3b137f333fd43638fa2696633303a21ba29a74906ac2f69c75e30"
+   "sha256": "5440a5c030eb7b5c01bc16e89549a3edea0d0168bce2f01685fc2a62bfdf0cd8"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/probes/verify_repos.py",
-   "sha256": "fe0cfe81f4f7d952227502e47fd0540c80986ad6ab713f33588eed13ba54e339"
+   "sha256": "394092ebc409001036e62fbf42ec7b4b6acd845b8e3f592b9b2d99c972e65185"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/research/CANDIDATES.csv",
-   "sha256": "b2640313cb7bf18b4de2c60086074277a0195877e894800f508b6e717c453d0e"
+   "sha256": "cb5cce4484276175ba73db14aaf1a686c1c9a9b0b9e9c8e0ca3fccf7f69a0607"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/research/CANDIDATE_ANNOTATIONS.csv",
-   "sha256": "2640cb3eef0ddcd01c113f12450d65f2ea293d60a7c2c56fea8a99df075aaa33"
+   "sha256": "db02f61c234eb03453efe5bc50398580cbc431e5dbf99b75f69e6c9ff1ed2a0a"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/research/EXCLUSIONS.md",
-   "sha256": "30ec0ace07e445917c897e33392887640ab5f01741f4f0f0bc75dd983d2bff4a"
+   "sha256": "0e1ad94f51ca9377104eef8a7fe133c54619264c60543262fb6a99449e93f653"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/research/EXTRA_PINS.jsonl",
    "sha256": "91b6ac208401442733bfbbb7288823a06571a18efbbdfd1a3704cd269fdb3a38"
   },
   {
+   "path": "audits/predictive-intelligence/phase_02/research/LICENSE_SCAN.csv",
+   "sha256": "c777e9a1277927dc37df1f45837ec63935478cf861ed75c65e485f1bfe16fb24"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_02/research/LIVE_CHECK.txt",
-   "sha256": "e3e06a591875a93a575ded20c20246d3c469446e6a8f80d741146c6926345a73"
+   "sha256": "3be55d71da3852f6837f64acfc77a56de75bdf25b4c3b04ce85d08e3734081c2"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/research/MIRROR_CHECKS.jsonl",
@@ -258,6 +317,10 @@
   {
    "path": "audits/predictive-intelligence/phase_02/research/NEEDS.csv",
    "sha256": "90c9391aa6674abbf138b59e610ce0b72ab7eeb6a15763458e341d6fd6560f5e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/research/NEEDS_NOTES.md",
+   "sha256": "4f46653a674e1345fa825e5634efee53f471a6f751cf56dd39a935dc8b2e80ae"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/research/PROVENANCE_AUDIT.json",
@@ -269,64 +332,84 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_02/research/PYPI_LOOKUPS.jsonl",
-   "sha256": "01e3b8e29ff55063f93fc9f953133182f3011b632551a19bb1419a0dfaec4989"
+   "sha256": "f15f596d40627315ef61dfa43582204fa1be13d3684c1125550f627cf5898687"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/research/QUERIES.json",
-   "sha256": "b4143434c91b813228e4f5f7310c8e60bc1c0eba0e59e668075037807de5decb"
+   "sha256": "dd74556605206c0a269930ac735b7b827c2ee0b44a28e61a98b19533c311d1f8"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/research/QUERY_RESULTS.jsonl",
-   "sha256": "f0aafb221d5c99be28d5de203c660a7f2bc4f8b128171120f4da11f63326045b"
+   "sha256": "120efd72255ab3f1ca1c92da8f27a4db5041dc7c25aa4a10f1b88556adfec1cb"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/research/ROOT_COMMITS.jsonl",
-   "sha256": "d4823f94f65b93af44a1e1fcef567f695f2863ea176094889ecf91fd3846733d"
+   "sha256": "c99f7fb4fa399c296ad1a45d4434ec833ac3908adfdd27ed48db52e075ae4e32"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/research/SEARCH_LOG.md",
-   "sha256": "7be364a08c874546a75f43329659f2084c3c3a345dd668b45de4bd10dc0bde32"
+   "sha256": "27a06e82effafad08af950dbf9b749aa745ad599f3fc9b0b3b5a7b34680f2325"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/research/SHORTLIST.csv",
-   "sha256": "2d574eb68993ab065456e109c067224ed9fd9c4707a04badd04ae9c33d90e355"
+   "sha256": "6723e7c29b6c32d6dd3dace52f57c2131b396e7693e6cb111425a7e3b63356c2"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/research/SHORTLIST_ANNOTATIONS.csv",
-   "sha256": "90770c12a9d19ebc7b24a107a0e64f06f28a163b634bbc234b7e8445547005be"
+   "sha256": "f4f623020ff0aae6565eef499c3accc86e617b58106bdc6b99a95b47e71b8357"
   },
   {
    "path": "audits/predictive-intelligence/phase_02/research/SPECIAL_FLAGS.json",
    "sha256": "de5aeae50654d5eec43bec93c4bd5b48f2dd6bef93ac8e60ee3a3149d58be4e1"
   },
   {
+   "path": "audits/predictive-intelligence/phase_02/research/SUCCESSOR_SEARCH.jsonl",
+   "sha256": "d969ac81634cc7d58af605033f1d1ae566faa13f3a648e49286cbb5cfc59a51e"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_02/research/VERIFY_RESULTS.jsonl",
-   "sha256": "462c96aba660ab8ec764c9c07f788f5d5c1f2ca030a4df05a198b1d0818ee2cd"
+   "sha256": "c263fbf7fd49e08f51b79e0377beb1e3488cb0eebc5a301c4af372885d71076d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/skeptic/PHASE_02_SKEPTIC.md",
+   "sha256": "bae2ccb6b4a443b77e6e9fa1979230bb9475a9b9ae967d453959db0966b8eb8f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/skeptic/PHASE_02_skeptic_counterexample.py",
+   "sha256": "82e1a4bad8b0f379555a233f37b5aefeeba4215a7d5b92a72f1dbdc4d798bfba"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/skeptic/counterexample_output_498eaa0.txt",
+   "sha256": "a91329f78be839dd7cbf2d444a37c767f5082048cd1ccaf6791dc35d4d0ddd47"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_02/skeptic/counterexample_output_after_repair.txt",
+   "sha256": "6b00b99b046ae29d6c82885f732b77459821196a4ca5c5cdde8ff6b957d70352"
   },
   {
    "path": "docs/predictive-intelligence/DECISIONS.md",
-   "sha256": "947710ec7c692820dccb423d6afb3a0adabbf2c2b17193cdd510137e4956c0da"
+   "sha256": "d5e3de7f48e1044849f4fc36fc3e6ec212436e3175c67a7fec61f0291ed89413"
   },
   {
    "path": "docs/predictive-intelligence/ROADMAP.md",
-   "sha256": "a823c8d74b6661c67b5adb36a0f1bf614f93cbffb82e82dcbdde372450ed8101"
+   "sha256": "0f214500cca27a9d702c46a313b0363bb5053fd0eb7f642110f40d44f95e0b6c"
   },
   {
    "path": "docs/predictive-intelligence/HANDOFF.md",
-   "sha256": "1fce7a4255976d76998343c84d01789db53a10cd2c1fb9a86848fdfd647123ea"
+   "sha256": "bb754272a29e17465af1a838f0934db7f3546a35aca6faa10c3e33993d3c1c79"
   },
   {
    "path": "audits/predictive-intelligence/COST_LEDGER.md",
-   "sha256": "ca40d439fb4785a537431448cc9f6be83528a0234c86019bba26a53763b9c708"
+   "sha256": "cd6aef7ef42a8b0121e8aa42677d3652bdc008969cb454e31139a8ad2fd405a8"
   }
  ],
  "limitations": [
   "GitHub search, topics and REST metadata unavailable (HTTP 403 policy); topic coverage relies on packages with keywords, WebSearch, documentation and paper links (PI-D-023).",
-  "repos.ecosyste.ms is a mirror with its own sync lag; four candidates have no record there (canonical status rests on PyPI source links and root commits).",
-  "1,877 names returned by queries were not individually screened; the selection rule was a match with a frozen need.",
-  "18 candidates are credited only by the seed list or analyst-named PyPI lookups.",
+  "repos.ecosyste.ms is a mirror with its own sync lag; which of two same-HEAD paths GitHub treats as current cannot be read without the GitHub API (PI-D-025 takes the recorded path).",
+  "Selection from returned names was analyst judgment; 2,023 returned names remain unscreened, 264 of them match need terms (EXCLUSIONS.md).",
+  "Independent discovery: 99 of 132 candidates (74 of the first 107); the rest rest on seeds, analyst-named PyPI lookups, name-bearing queries or post-annotation confirmation.",
   "WebSearch results carry no body hash.",
-  "Licenses read from root files (or REUSE folder) at the pin; per-file headers, vendored code and model-weight licenses on Hugging Face not read.",
+  "Per-file license scan reads headers (first 40 lines), nested license files and submodules; a header is a lead, not a determination; model-weight licenses on Hugging Face not read.",
   "Code evidence proves a symbol is defined at the pin, not that it works for these targets.",
   "MiroFish maintainer FAQ (issue 726) unreachable (403)."
  ],
@@ -334,5 +417,6 @@
  "approvals_needed": [
   "PI-D-020 PROPOSED (forward depth and quote collector) remains with Elving; not needed for Phase 03"
  ],
- "next_eligible_phase": "02 independent skeptic review and repair pass (orchestrator); then 03 after a PASS"
+ "next_eligible_phase": "03 (pinned source audit, rubric and ranked top ten), after the orchestrator verifies repair pass 2",
+ "first_pass_commit": "498eaa0"
 }

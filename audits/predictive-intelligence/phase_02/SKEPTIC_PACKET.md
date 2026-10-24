@@ -1,5 +1,7 @@
 # Phase 02 skeptic packet
 
+USED: the orchestrator's independent skeptic reviewed `498eaa0` with this packet; its review is in `skeptic/PHASE_02_SKEPTIC.md` and was folded in as repair pass 2 (PHASE_02_EVIDENCE.md). The text below is kept as it was given to the reviewer, except this note.
+
 For the independent reviewer the orchestrator starts (PI-D-013). This packet lists what to test and how to reproduce it. It holds no conclusions; the phase's claims are in the files below and are claims to falsify.
 
 ## Task

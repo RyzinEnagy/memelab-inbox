@@ -1,0 +1,4 @@
+A real row: stale pre-transfer path, archived lost             checker exit 0 -> NOT CAUGHT | problems 0; recorded TheClimateCorporation/properscoring eco_status=404 archived=''; ecosyste.ms full_name=properscoring/properscoring archived=True
+B shortlisted repo under pre-transfer path, archived unknown   checker exit 0 -> NOT CAUGHT | problems 0
+C whole event-time family dropped from shortlist               checker exit 0 -> NOT CAUGHT | problems 0
+D family minimum met by a relabelled shortlist row             checker exit 0 -> NOT CAUGHT | problems 0

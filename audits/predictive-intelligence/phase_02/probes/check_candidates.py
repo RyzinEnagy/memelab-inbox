@@ -40,7 +40,9 @@ import tempfile
 
 NEEDS_SHA256 = "90c9391aa6674abbf138b59e610ce0b72ab7eeb6a15763458e341d6fd6560f5e"
 HIGH_PRIORITY = ["TABULAR_PROBABILITY", "TIME_SERIES", "CALIBRATION_UNCERTAINTY", "ONLINE_DRIFT_MONITORING",
-                 "BEHAVIORAL_MULTI_AGENT", "EXPERIMENT_AUDIT_EVALUATION"]
+                 "BEHAVIORAL_MULTI_AGENT", "EXPERIMENT_AUDIT_EVALUATION", "EVENT_TIME_LABELS"]  # event time added in repair pass 2 (skeptic m4)
+NOT_PERMISSIVE = ("COPYLEFT_", "SOURCE_AVAILABLE_", "COMMONS_CLAUSE", "NONCOMMERCIAL_TERMS", "NO_LICENSE_FILE_AT_ROOT")
+ISOLATED_FAMILIES = {"BEHAVIORAL_MULTI_AGENT"}  # run behind the PLANNED_SEAMS adapter, never imported in-process
 TOOLING = {"firecrawl/firecrawl", "mendableai/firecrawl", "unclecode/crawl4ai", "getmaxun/maxun"}
 GAP_OK = {"MISSING", "PARTIAL", "CONFLICT"}
 NOT_CODE = re.compile(r"(^|/)(README[^/]*|docs?/.*|.*\.(md|rst|txt|ipynb|html|pdf))$", re.I)
@@ -51,10 +53,11 @@ def jl(p):
 
 
 def table_repos(md, heading_prefix=None):
+    prefixes = (heading_prefix,) if isinstance(heading_prefix, str) else heading_prefix
     out, on = set(), heading_prefix is None
     for line in md.splitlines():
         if line.startswith("## "):
-            on = heading_prefix is None or line.startswith("## " + heading_prefix)
+            on = heading_prefix is None or any(line.startswith("## " + p) for p in prefixes)
         m = re.match(r"^\| `([^`]+)` \|", line)
         if on and m:
             out.add(m.group(1).lower())
@@ -139,11 +142,47 @@ def check(base, gap_csv, live=0, seed=20261024):
     if hist < 45:
         P.append("candidates: %d unique histories, fewer than 45" % hist)
 
+    # canonical path (repair pass 2, skeptic m1 and counterexample): a row must sit on the path the
+    # metadata mirror knows; a row without a mirror record needs a recorded successor search, and a
+    # path that a search showed to be pre-transfer can never be a candidate
+    verify = jl(os.path.join(R, "VERIFY_RESULTS.jsonl"))
+    eco_name = {}
+    for v in verify:
+        if v.get("eco_status") == 200 and v.get("eco_full_name"):
+            eco_name[v["input"].lower()] = v["eco_full_name"]
+    succ_path = os.path.join(R, "SUCCESSOR_SEARCH.jsonl")
+    succ = jl(succ_path) if os.path.exists(succ_path) else []
+    by_canon = {e["canonical"].lower(): e for e in succ}
+    old_paths = {e["recorded_path"].lower(): e["canonical"] for e in succ if e["recorded_path"].lower() != e["canonical"].lower()}
+    for c in cands:
+        n, k = c["canonical_repo"], c["canonical_repo"].lower()
+        if k in old_paths:
+            P.append("candidates: %s is recorded under a pre-transfer path (current path %s)" % (n, old_paths[k]))
+        if str(c["ecosystems_status"]) == "200":
+            if c["canonical_basis"] != "ECOSYSTEMS_RECORD":
+                P.append("candidates: %s canonical basis %s with a mirror record" % (n, c["canonical_basis"]))
+            if k in eco_name and eco_name[k].lower() != k:
+                P.append("candidates: %s differs from its mirror name %s" % (n, eco_name[k]))
+        else:
+            e = by_canon.get(k)
+            if not e or len(e.get("sources") or []) < 2:
+                P.append("candidates: %s has no mirror record and no recorded successor search (possible pre-transfer path)" % n)
+            else:
+                for pth in e["paths"]:
+                    if pth["path"].lower() != k and pth.get("repos_ecosystems") == 200 and pth.get("head") and c["pinned_sha"].startswith(pth["head"]):
+                        P.append("candidates: %s is recorded under a pre-transfer path; %s serves the same HEAD and has a record" % (n, pth["path"]))
+        e = by_canon.get(k)
+        if e:
+            for pth in e["paths"]:
+                if pth["path"].lower() == k and (pth.get("archived") or (pth.get("package_record") or {}).get("archived")):
+                    if "ARCHIVED" not in c["activity_flags"] or c["ecosystems_archived"] != "true":
+                        P.append("candidates: %s lost its archived flag" % n)
+
     excl_md = open(os.path.join(R, "EXCLUSIONS.md")).read()
-    excluded = table_repos(excl_md)
+    excluded = table_repos(excl_md, ("A.", "B.", "C.", "D.", "E.", "F."))
     g_section = table_repos(excl_md, "G.")
     for c in cands:
-        if c["canonical_repo"].lower() in excluded - g_section:
+        if c["canonical_repo"].lower() in excluded:
             P.append("candidates: %s is listed as excluded" % c["canonical_repo"])
     short = list(csv.DictReader(open(os.path.join(R, "SHORTLIST.csv"))))
     by = {c["canonical_repo"]: c for c in cands}
@@ -162,7 +201,15 @@ def check(base, gap_csv, live=0, seed=20261024):
             P.append("shortlist: %s pin differs from candidates" % n)
         if by[n]["shortlisted"] != "yes":
             P.append("shortlist: %s not marked shortlisted in candidates" % n)
-        fam[s["family"]] = fam.get(s["family"], 0) + 1
+        if s["family"] != by[n]["family"]:
+            P.append("shortlist: %s family %s differs from candidates family %s" % (n, s["family"], by[n]["family"]))
+        fam[by[n]["family"]] = fam.get(by[n]["family"], 0) + 1
+        # written shortlist rule (EXCLUSIONS.md section G): active, and permissive unless isolated
+        if by[n]["activity_flags"]:
+            P.append("shortlist: %s breaks the shortlist rule (activity %s)" % (n, by[n]["activity_flags"]))
+        bad = [f for f in by[n]["license_flags"].split(";") if f.startswith(NOT_PERMISSIVE)]
+        if bad and by[n]["family"] not in ISOLATED_FAMILIES:
+            P.append("shortlist: %s breaks the shortlist rule (license %s in-process)" % (n, ";".join(bad)))
         items = [x for x in s["code_evidence_verified"].split("|") if x]
         if not items:
             P.append("shortlist: %s has no code evidence (P42)" % n)

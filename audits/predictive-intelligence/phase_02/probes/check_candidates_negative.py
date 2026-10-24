@@ -178,6 +178,60 @@ def m_no_reason(d, g):
     open(p, "w").write("\n".join(l for l in t if not l.startswith("| `dmlc/xgboost`")) + "\n")
 
 
+def m_transfer(d, g):
+    # the skeptic's counterexample B: a shortlisted repository recorded under its pre-transfer path,
+    # mirror lookup 404, archived and fork flags blank, successor never tried
+    old, new = "projectmesa/mesa", "mesa/mesa"
+
+    def f(r):
+        for x in r:
+            if x["canonical_repo"] == new:
+                x.update(canonical_repo=old, url="https://github.com/" + old, same_head_paths="", ecosystems_status="404",
+                         ecosystems_fork="", ecosystems_archived="", ecosystems_last_synced_at="", canonical_basis="NO_RECORD")
+        return r, None
+    edit(C(d), f)
+    edit(S(d), lambda r: ([dict(x, canonical_repo=old) if x["canonical_repo"] == new else x for x in r], None))
+    p = os.path.join(d, "research", "VERIFY_RESULTS.jsonl")
+    keep = [l for l in open(p) if l.strip() and json.loads(l).get("input", "").lower() != new]
+    open(p, "w").write("".join(keep))
+    p = os.path.join(d, "research", "EXCLUSIONS.md")
+    t = open(p).read().splitlines()
+    open(p, "w").write("\n".join(l for l in t if not l.startswith("| `%s`" % old)) + "\n")
+
+
+def m_old_path_back(d, g):
+    edit(C(d), lambda r: ([dict(x, canonical_repo="TheClimateCorporation/properscoring", ecosystems_status="404",
+                                canonical_basis="NO_RECORD") if x["canonical_repo"] == "properscoring/properscoring" else x for x in r], None))
+
+
+def m_archived_lost(d, g):
+    edit(C(d), lambda r: ([dict(x, ecosystems_archived="", activity_flags="INACTIVE_18M") if x["canonical_repo"] == "properscoring/properscoring" else x for x in r], None))
+
+
+def m_event_dropped(d, g):
+    drop = ("CamDavidsonPilon/lifelines", "soda-inria/hazardous", "baobach/mlfinpy")
+    edit(S(d), lambda r: ([x for x in r if x["canonical_repo"] not in drop], None))
+    edit(C(d), lambda r: ([dict(x, shortlisted="no") if x["canonical_repo"] in drop else x for x in r], None))
+    p = os.path.join(d, "research", "EXCLUSIONS.md")
+    t = open(p).read()
+    i = t.index("## G. ")
+    j = t.index("|---|---|---|---|", i) + len("|---|---|---|---|")
+    t = t[:j] + "".join("\n| `%s` | X | MUTATION | dropped |" % x for x in drop) + t[j:]
+    open(p, "w").write(t)
+
+
+def m_relabel(d, g):
+    edit(S(d), lambda r: ([dict(x, family="ONLINE_DRIFT_MONITORING") if x["canonical_repo"] == "scikit-learn/scikit-learn" else x for x in r], None))
+
+
+def m_inactive_short(d, g):
+    edit(C(d), lambda r: ([dict(x, activity_flags="INACTIVE_18M") if x["canonical_repo"] == "ip200/venn-abers" else x for x in r], None))
+
+
+def m_copyleft_short(d, g):
+    edit(C(d), lambda r: ([dict(x, license_flags="COPYLEFT_GPL") if x["canonical_repo"] == "scikit-learn/scikit-learn" else x for x in r], None))
+
+
 CASES = [
     ("duplicate candidate", m_dup, "duplicate canonical"),
     ("fork counted (suspicious fork)", m_fork, "is a fork"),
@@ -204,6 +258,13 @@ CASES = [
     ("provenance audit failed", m_audit, "audit"),
     ("screened repository dropped from exclusions", m_coverage, "uber/causalml is neither"),
     ("not shortlisted without a reason", m_no_reason, "dmlc/xgboost not shortlisted"),
+    ("pre-transfer path, successor never tried (skeptic B)", m_transfer, "no recorded successor search"),
+    ("known pre-transfer path back as a candidate", m_old_path_back, "pre-transfer path"),
+    ("archived flag lost after a transfer", m_archived_lost, "lost its archived flag"),
+    ("event-time family dropped (skeptic C)", m_event_dropped, "EVENT_TIME_LABELS has 0"),
+    ("family relabelled in the shortlist (skeptic D)", m_relabel, "differs from candidates family"),
+    ("inactive repository shortlisted", m_inactive_short, "breaks the shortlist rule (activity"),
+    ("copyleft library shortlisted in-process", m_copyleft_short, "breaks the shortlist rule (license"),
 ]
 
 

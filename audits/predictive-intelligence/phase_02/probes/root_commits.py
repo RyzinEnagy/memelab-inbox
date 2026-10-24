@@ -36,6 +36,7 @@ def one(repo, work):
         rec["head"] = run("rev-parse", "HEAD")
         rec["roots"] = sorted(run("rev-list", "--max-parents=0", "HEAD").split())
         rec["commit_count"] = int(run("rev-list", "--count", "HEAD") or 0)
+        rec["root_commit_dates"] = sorted(run("log", "--max-parents=0", "--format=%cI", "HEAD").split())
     else:
         rec["error"] = p.stderr.strip()[-200:]
     shutil.rmtree(d, ignore_errors=True)

@@ -63,6 +63,8 @@ def classify_license(text):
         labels.append("LGPL")
     elif "GNU GENERAL PUBLIC LICENSE" in head:
         labels.append("GPL-3.0" if "VERSION 3" in head else ("GPL-2.0" if "VERSION 2" in head else "GPL"))
+    if "FUNCTIONAL SOURCE LICENSE" in head:
+        labels.append("FSL-1.1")  # source-available; its permitted-purpose list says "non-commercial"
     gpl_family = bool(labels)
     if "BUSINESS SOURCE LICENSE" in u:
         labels.append("BUSL-1.1")
@@ -159,9 +161,11 @@ def verify(repo, raw_dir, clone_root):
     lic = []
     for f in files:
         if "/" not in f and LICENSE_RE.match(f):
-            text = sh(["git", "show", "HEAD:" + f], cwd=dest)[1]
-            lic.append({"path": f, "sha256": hashlib.sha256(text.encode()).hexdigest(),
-                        "bytes": len(text.encode()), "classification": classify_license(text)})
+            raw = subprocess.run(["git", "show", "HEAD:" + f], cwd=dest, capture_output=True, timeout=300).stdout
+            text = raw.decode("utf-8", "replace")
+            # sha256 of the file bytes at the pin, so `sha256sum` on a checkout reproduces it (skeptic m3)
+            lic.append({"path": f, "sha256": hashlib.sha256(raw).hexdigest(), "hash_of": "file_bytes",
+                        "bytes": len(raw), "classification": classify_license(text)})
     rec["license_files"] = lic
     flags, depfiles = set(), []
     for f in files:

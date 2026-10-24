@@ -1,12 +1,13 @@
-2026-10-24T03:36:28Z
+2026-10-24T04:23:17Z
 $ python3 probes/check_candidates.py . ../phase_01/architecture/GAP_MATRIX.csv --live 10 --seed 20261024
 live 666ghj/MiroFish head now 7657031ac011 same pin fetched backend/app/services/simulation_runner.py ok; backend/app/services/report_agent.py ok
 live CamDavidsonPilon/lifelines head now 7a8fc34a013e same pin fetched lifelines/fitters/aalen_johansen_fitter.py ok
+live IDSIA/sacred head now 86865b03d05e same pin fetched 
 live IFCA-Advanced-Computing/frouros head now 9fc1f1cd2174 same pin fetched frouros/detectors/data_drift/batch/distance_based/psi.py ok
-live Moffran/calibrated_explanations head now 7fd6bf1bb756 same pin fetched 
 live NannyML/nannyml head now 4c86ee350dc5 same pin fetched nannyml/performance_estimation/confidence_based/cbpe.py ok; nannyml/drift/univariate/calculator.py ok
+live Novartis/torchsurv head now a28dac5e57c6 same pin fetched 
 live PriorLabs/TabPFN head now 9d9d87251688 same pin fetched src/tabpfn/classifier.py ok
-live ZhiningLiu1998/imbalanced-ensemble head now 1efabbfe4ae3 same pin fetched 
+live TA-Lib/ta-lib-python head now ee40529a4cf2 same pin fetched 
 live bancaditalia/black-it head now 6577b3cc12d2 same pin fetched black_it/calibrator.py ok
 live baobach/mlfinpy head now e21e4066164f same pin fetched mlfinpy/labeling/labeling.py ok; mlfinpy/cross_validation/cross_validation.py ok
 live bashtage/arch head now 5db69b011f62 same pin fetched arch/bootstrap/base.py ok; arch/bootstrap/base.py ok
@@ -15,27 +16,26 @@ live camel-ai/oasis head now 8607dba82d73 same pin fetched oasis/social_platform
 live deepcharles/ruptures head now ee1c8ff8a548 same pin fetched src/ruptures/detection/pelt.py ok
 live eslazarev/purged-cross-validation head now 07692dd862d3 same pin fetched src/purgedcv/_purged_kfold.py ok; src/purgedcv/_cpcv.py ok; src/purgedcv/_embargo.py ok
 live evidentlyai/evidently head now 34771fe41c08 same pin fetched src/evidently/presets/drift.py ok
-live facebook/prophet head now 5cf15c0f6e5d same pin fetched 
+live feast-dev/feast head now e304a84f979b same pin fetched sdk/python/feast/feature_store.py ok; sdk/python/feast/infra/offline_stores/dask.py ok; sdk/python/feast/infra/offline_stores/dask.py ok
+live h2oai/h2o-3 head now bcd396656714 same pin fetched 
 live henrikbostrom/crepes head now 88a0dfacabb2 same pin fetched src/crepes/base.py ok; src/crepes/base.py ok
 live interpretml/interpret head now d82ea62a0ed4 same pin fetched python/interpret-core/interpret/glassbox/_ebm.py ok
 live ip200/venn-abers head now 60767e416060 same pin fetched src/venn_abers.py ok
 live lightgbm-org/LightGBM head now 064a6db10c08 same pin fetched python-package/lightgbm/sklearn.py ok
 live lorentzenchr/model-diagnostics head now d0d8eec5f718 same pin fetched src/model_diagnostics/calibration/_compute.py ok; src/model_diagnostics/scoring/_scoring.py ok; src/model_diagnostics/scoring/_scoring.py ok
 live mesa/mesa head now 949dc8c5c6b7 same pin fetched mesa/model.py ok; mesa/agent.py ok
-live mlflow/mlflow head now 154f628530f1 moved pin fetched mlflow/tracking/client.py ok; mlflow/store/model_registry/sqlalchemy_store.py ok
-live networkx/networkx head now 9d866a5f447d same pin fetched 
+live mlflow/mlflow head now 0e437e6e2684 moved pin fetched mlflow/tracking/client.py ok; mlflow/store/model_registry/sqlalchemy_store.py ok
 live online-ml/river head now b674b7585183 same pin fetched river/drift/adwin.py ok; river/linear_model/log_reg.py ok
-live pandera-dev/pandera head now edb0d8b2a92d same pin fetched pandera/api/pandas/container.py ok
 live probabl-ai/skore head now 73a26b4528a3 same pin fetched skore/src/skore/_reports/estimator/report.py ok; skore/src/skore/_reports/cross_validation/report.py ok
-live sam31415/timeseriescv head now cb04fb6ea7a0 same pin fetched 
 live scikit-learn-contrib/MAPIE head now f1cc3d07460b same pin fetched mapie/classification.py ok; mapie/calibration.py ok
 live scikit-learn/scikit-learn head now 59106029d483 same pin fetched sklearn/calibration.py ok; sklearn/metrics/_classification.py ok; sklearn/model_selection/_split.py ok
-live sebp/scikit-survival head now 1c67a781831b same pin fetched 
+live shi-ang/SurvivalEVAL head now ab40bd0bc464 same pin fetched 
 live sktime/sktime head now 2cc1253c7f03 same pin fetched sktime/split/expandingwindow.py ok; sktime/forecasting/model_evaluation/_functions.py ok
 live soda-inria/hazardous head now 1504934e6d88 same pin fetched hazardous/_survival_boost.py ok
-live statsmodels/statsmodels head now aa61cc148b82 same pin fetched statsmodels/stats/multitest.py ok; statsmodels/discrete/discrete_model.py ok
+live statsmodels/statsmodels head now aa61cc148b82 same pin fetched statsmodels/stats/multitest.py ok; statsmodels/discrete/discrete_model.py ok; statsmodels/tsa/regime_switching/markov_regression.py ok
 live stumpy-dev/stumpy head now 248e34409dd0 same pin fetched stumpy/stump.py ok; stumpy/core.py ok
-live tsinghua-fib-lab/AgentSociety head now 0ca73abca877 same pin fetched 
+live tslearn-team/tslearn head now ee252503404e same pin fetched 
+live unionai-oss/pandera head now edb0d8b2a92d same pin fetched pandera/api/pandas/container.py ok
 problems 0
 exit=0
-2026-10-24T03:37:24Z
+2026-10-24T04:24:06Z
