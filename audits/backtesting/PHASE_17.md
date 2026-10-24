@@ -81,4 +81,8 @@ Final clean-install run at d18a07a: RESULT PASS. Run id d994779ccf96 (MISS, then
 - Exact historical pool state.
 - Any edge for any strategy.
 
+## Elving's decisions (2026-10-24)
+
+Accepted G16, G27 and the CONDITIONAL RELEASE; approved hourly shadow tracking, the pull request and deleting the Maxun robot (D-BT-033). The robot was deleted the same day (bakeoff/p06a_maxun/robot_delete.json). The tracking store and script are in place on his computer and a test run passed (RUNBOOK.md, "Shadow-mode calibration").
+
 NEXT ELIGIBLE PHASE: none in the package. The remaining steps are Elving's decisions (G16, G27, the conditional release, any scheduled shadow tracking), plus delivery: push, bundle and zip.

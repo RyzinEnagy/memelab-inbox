@@ -91,7 +91,12 @@ A changed policy is a new request key: earlier assessments stay as they were.
 - `outcomes drift` checks provider coverage, stale pending windows, calibration shifts, provider revisions and collector health.
 - `outcomes daily --day YYYY-MM-DD --asof UTC` produces a replayable daily report, byte-identical for the same as-of.
 - `outcomes shadow --strategy ID --since 2026-10-23T16:00:00Z` runs a frozen strategy forward without saving a run.
-- No scheduled task was created. To run tracking every hour, Elving has to approve a scheduled task that runs `backtest refresh` and then `backtest outcomes track`, within the GeckoTerminal budget above.
+- Hourly tracking (approved by Elving on 2026-10-24, D-BT-033) runs on his computer against the store in D:\memelab\backtesting_live: bt.sqlite, raw/, runs/, code.bundle (the branch the runs use), hourly_shadow.sh (a copy of audits/backtesting/release/hourly_shadow.sh), hourly.log and hourly.state.
+  - One run is four steps, each one call of the script: setup (Python 3.13 venv, code from code.bundle, a session-local copy of the database), refresh (`backtest refresh` with at most 12 GeckoTerminal calls, 3 s apart), track (`backtest outcomes track --min-interval 1800`), save (WAL-safe backup, integrity check, write back, one JSON line in hourly.log).
+  - Work happens on a copy, so a failed or interrupted run never touches the stored database. A second run within 45 minutes of an unfinished one is skipped.
+  - A test run on 2026-10-24 took about 2.5 minutes: refresh 20 calls in 155 s (hence the 12-call cap), track 16 s, save 25 s. It recorded 4,092 outcome rows and resolved 14 waiting windows.
+  - The scheduled task itself was not created yet: the permission check in that session refused it. Its prompt is in HANDOFF.md. When a run cannot reach the computer it does nothing, and the next run catches up.
+  - To update the code the runs use, replace code.bundle with a newer bundle of feature/backtesting. To stop, pause or delete the scheduled task.
 - Deviations open a REEVALUATION_PROPOSED record. A new evaluation needs a new pre-registration, a new sealed split that starts after 2026-10-23 16:00 UTC, and a new strategy version. In-place retuning is refused.
 
 ## Reading the output

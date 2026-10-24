@@ -4,7 +4,7 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 
 ## Position
 
-- Phase completed: 17 (release hardening), 2026-10-23. State: PASS, decision CONDITIONAL RELEASE, scenario-only research mode (docs/backtesting/RELEASE_REPORT.md). Note: audits/backtesting/PHASE_17.md. Phases 00-16 PASS (16 for scenario-only mode; strict reading FAILED; G16 and G27 await Elving's acceptance).
+- Phase completed: 17 (release hardening), 2026-10-23. State: PASS, decision CONDITIONAL RELEASE, scenario-only research mode (docs/backtesting/RELEASE_REPORT.md), accepted by Elving on 2026-10-24 (D-BT-033). Note: audits/backtesting/PHASE_17.md. Phases 00-16 PASS (16 for scenario-only mode; strict reading FAILED; G16 and G27 await Elving's acceptance).
 - Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f, Phase 08 976e747, Phase 09 58abf7d, Phase 10 941e4ed, Phase 11 38d2fcc, Phase 12 999d1eb, Phase 13 4338810, Phase 14 30863a6, Phase 15 41488ad, Phase 16 repair passes 47a7845, 0e63563, c42045b, 7c7b582, record f50b24d; Phase 17 ddc0794, fcb676a, b5039be, 52c605d, 03fd506, bc7ce30, d18a07a (re-check residual fixes), 7967550 (final clean-install log). Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
 - Spend so far: Firecrawl about 32 of ~100 calls; Maxun 5 of 5 trial credits (0 left, 0 schedules); Crawl4AI local only; Solana public RPC and Jupiter quotes read-only (about 20 calls).
 
@@ -53,7 +53,17 @@ Universe spans 17 days. Catalyst history thin. Helius key absent in this workspa
 
 ## Next eligible phase
 
-None in the package. Open for Elving: accept or reject G16 and G27 (rejecting either turns the decision to HOLD), accept the CONDITIONAL RELEASE, decide whether to approve an hourly scheduled task for `backtest refresh` plus `backtest outcomes track`, and whether to open a pull request from feature/backtesting (not done). The Maxun evaluation robot can be deleted in the Maxun console.
+None in the package. Elving's decisions on 2026-10-24 (D-BT-033), all yes:
+- G16 and G27 accepted; the CONDITIONAL RELEASE accepted.
+- Pull request #4 opened from feature/backtesting into feature/catalyst-firecrawl (the branch it was built on, not yet in main). Review only; not merged.
+- Maxun evaluation robot deleted (bakeoff/p06a_maxun/robot_delete.json); no Maxun schedules remain.
+- Hourly shadow tracking approved. The store is on his computer in D:\memelab\backtesting_live and a test run passed (RUNBOOK.md, "Shadow-mode calibration"). This is now the only lasting copy of the research database; the cloud workspace copy is temporary. The scheduled task itself still has to be created: the permission check in this session refused it.
+
+Still open: create the scheduled task (below), and decide when to merge pull request #4.
+
+Scheduled task to create: name "Memelab backtest hourly tracking", every hour, requires Elving's computer with D:\memelab connected, push notifications on. Prompt:
+
+> Hourly shadow tracking for the Memecoin Investing Lab backtesting module (approved by Elving on 2026-10-24, D-BT-033). Research only. Use the device_bash tool on Elving's computer (mcp__remote-devices__device_bash; load it with ToolSearch if deferred). Run these four commands in order, each as its own device_bash call with timeout_ms 175000: `bash $HOME/mnt/memelab/backtesting_live/hourly_shadow.sh setup`, then the same with `refresh`, then `track`, then `save`. If setup prints a line starting with SKIPPED, stop quietly. If any step prints FAILED or exits non-zero, stop, do not retry or repair, and send one push notification naming the step and the FAILED line. If the computer cannot be reached, stop quietly. A successful run sends no notification. Never trade or touch a wallet, seed phrase or private key; never open or print any file in D:\memelab whose name contains "token"; never edit anything in D:\memelab\backtesting_live by hand; make no network calls of your own; never create, change or delete scheduled tasks; never push to GitHub. Final reply: one line with the save output or the reason the run stopped.
 
 ## Delivery
 
@@ -62,6 +72,8 @@ Authorized by Elving at the start of this work (the "Both" answer): push a new f
 - Checked after the push: main still at 98338a8 and feature/catalyst-firecrawl still at f99c6c7.
 - Route: a plain `git push` of the new branch through this session's GitHub connection (Elving's account), not the Composio Git Data API. The Composio route would have meant passing about 660 KB of compressed objects through tool calls by hand, which is error-prone; the result on GitHub is the same commits with the same ids.
 - Before the push, the full history and the zip were searched on Elving's computer for the Crawl4AI and Maxun credentials: neither appears.
+
+Pull request #4 (feature/backtesting into feature/catalyst-firecrawl) opened 2026-10-24 on Elving's approval; not merged.
 
 Bundle and zip in D:\memelab: memelab-inbox_feature-backtesting.bundle (full history of feature/backtesting plus the base ref; `git clone -b feature/backtesting <bundle>`) and memelab-inbox_feature-backtesting.zip (tracked files at the branch tip, gitignored data excluded).
 

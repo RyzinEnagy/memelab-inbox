@@ -7,8 +7,8 @@ Date 2026-10-23. Branch `feature/backtesting`, based on `feature/catalyst-firecr
 The module may be used for research in a clearly labeled scenario-only mode, off by default. It is not an empirically validated strategy engine, and nothing in it should be read as an expectation of profit.
 
 The release is conditional on two points:
-1. Elving accepts the two disclosed limitations G16 and G27, listed below. If either is rejected, the decision becomes HOLD: neither can be fixed in code, and the Phase 16 loop is used up.
-2. The module stays research only. No order path, wallet, schedule or paid service is added without a separate approval.
+1. Elving accepts the two disclosed limitations G16 and G27, listed below. If either is rejected, the decision becomes HOLD: neither can be fixed in code, and the Phase 16 loop is used up. Met: Elving accepted both on 2026-10-24 (D-BT-033).
+2. The module stays research only. No order path, wallet, schedule or paid service is added without a separate approval. Standing. The one schedule approved so far is hourly shadow tracking (below).
 
 Why not RELEASE: key historical evidence is BLOCKED, so the completion checklist rules out a full release.
 - No source holds historical pool reserves, ticks or bins, so exact historical execution cannot be reconstructed. Fills are approximated from liquidity snapshots.
@@ -116,7 +116,7 @@ Memecoins can lose all their value within hours. In this corpus, among lab oppor
 ## Continuing in shadow mode
 
 See RUNBOOK.md, "Shadow-mode calibration":
-- run `backtest refresh` and then `backtest outcomes track` hourly (needs Elving's approval for a scheduled task);
+- run `backtest refresh` and then `backtest outcomes track` hourly (approved by Elving on 2026-10-24; set up as described in RUNBOOK.md);
 - review `outcomes drift` weekly;
 - re-evaluate strategies only through a new pre-registration, a new sealed split starting after 2026-10-23 16:00 UTC, and a new strategy version.
 
@@ -125,4 +125,4 @@ See RUNBOOK.md, "Shadow-mode calibration":
 - Builder: CONDITIONAL RELEASE as above.
 - Independent reviewer (Phase 16): PASS for scenario-only research mode with the disclosed limitations.
 - Independent reviewer (Phase 17): CONDITIONAL RELEASE agreed after re-checking the fixes at efd890d (AGREED; audits/backtesting/testing/P17_REVIEW.md). The record is in audits/backtesting/PHASE_17.md.
-- Elving: acceptance of G16 and G27, and of the CONDITIONAL RELEASE, is pending.
+- Elving, 2026-10-24: accepted G16 and G27, and the CONDITIONAL RELEASE in scenario-only research mode (D-BT-033).
