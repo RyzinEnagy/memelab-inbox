@@ -1,0 +1,87 @@
+
+## environment
+Linux 6.18.44-fc-v153 x86_64
+Python 3.13.17
+sqlite 3.45.1
+clone HEAD ddc0794c538cb8719dc26c0233f38b1eecae16d3
+secrets in clone: 0 files under data/private; .env present: no
+venv: pytest 9.1.1 numpy 2.5.3
+
+## 1 migration from an empty research database
+{
+ "engine_version": "bt-0.2.0",
+ "db": "/tmp/tmp.iI1FDd1nTy/bt/bt.sqlite",
+ "bars": 0,
+ "mints_with_bars": 0,
+ "pools": 0,
+ "universe_rows": 0,
+ "captures": 0,
+ "runs": 0,
+ "results": 0,
+ "assessments": 0
+}
+exit 0
+
+## 2 schema rollback and re-apply (bt tables only)
+{'rolled_back': [1], 'bt_tables_left': [], 'reapplied': [1]}
+exit 0
+
+## 3 offline historical import (committed real GeckoTerminal responses)
+{"mint": "3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump", "pools": 2, "bars": 38, "raw_files": ["gt_ohlcv_3GVSN8.json", "gt_pools_3GVSN8.json"]}
+exit 0
+{
+ "evidence_class": "FACT",
+ "bars": 76,
+ "mints_with_bars": 2,
+ "bars_from": "2026-10-08 06:00:00 UTC",
+ "bars_to": "2026-10-11 16:00:00 UTC",
+ "universe_rows": 1,
+ "universe_mints": 1,
+ "universe_from": "2026-10-09 11:57:32 UTC",
+ "universe_to": "2026-10-09 11:57:32 UTC",
+ "assessments": 0,
+ "runs": 0,
+ "blocked_sources": [
+  "historical swaps",
+  "historical reserves, ticks and bins",
+  "historical holders and wallet flows"
+ ],
+ "survivorship": "The universe is every token the lab recorded, including ones that later died; no survivor filter"
+}
+exit 0
+
+## 4 deterministic backtest, run twice
+{'run_id': '2783803032f6b99eadfc864c4c94235d06250406896df6d6cbefb9bfb2c8a945', 'cache': 'MISS', 'dataset_hash': '1641985565d533f50973fd903ba802bd82f468422d798b9d283f34bf2737e59a', 'n_trades': 1, 'ledger_hash': 'f9d7dd89c462f6000c2ffd5f75e17bda83fd41860b531a2017afafa2639bf0ca'}
+{'run_id': '2783803032f6b99eadfc864c4c94235d06250406896df6d6cbefb9bfb2c8a945', 'cache': 'HIT', 'dataset_hash': '1641985565d533f50973fd903ba802bd82f468422d798b9d283f34bf2737e59a', 'n_trades': 1, 'ledger_hash': 'f9d7dd89c462f6000c2ffd5f75e17bda83fd41860b531a2017afafa2639bf0ca'}
+run 2783803032f6b99eadfc864c4c94235d06250406896df6d6cbefb9bfb2c8a945 (COMPLETE): BREAKOUT_CLOSE v1, engine bt-0.2.0, cost model cost-1
+code ddc0794c538cb8719dc26c0233f38b1eecae16d3, dataset 1641985565d533f50973fd903ba802bd82f468422d798b9d283f34bf2737e59a, result 1dbbf063d87b5afdab3e6feed6d8742e506a895c84899110f4e4b95e803a0208, ledger f9d7dd89c462f6000c2ffd5f75e17bda83fd41860b531a2017afafa2639bf0ca
+1 tokens, 1 trades, mean net -0.9998618442854267, mean paper -0.9998245855786829, counts {'abstain': {}, 'canceled': 0, 'expired': 0, 'filled': 1, 'rejected_limits': 3, 'signals': 4, 'submitted': 4}
+files: data/backtest/runs/2783803032f6b99eadfc864c4c94235d06250406896df6d6cbefb9bfb2c8a945/journal.json, data/backtest/runs/2783803032f6b99eadfc864c4c94235d06250406896df6d6cbefb9bfb2c8a945/result.json
+reproduce: python -m memelab backtest run --strategy BREAKOUT_CLOSE --params '{"buffer": 0.0, "lookback": 6, "max_hold_bars": 48, "max_staleness_bars": 1, "stop_buffer": 0.03, "tp_r": 2.0, "vol_mult": 0.0}' --label p17  (same code and data give the same run id and a cache HIT; changed code or data give a new id)
+exit 0
+
+## 5 opportunity report with adversarial scenarios (real PAID captures, judged at their own time)
+exit 0
+# Backtest and stress: PAID `solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump`
+Label: INCONCLUSIVE. Why: state PARTIAL_WITH_LIMITATIONS, evidence SCENARIO_ONLY, stress RESEARCHABLE.
+Decision RESEARCHABLE: execution is feasible at the smaller sizes under base conditions; scenarios show the downside, not a forecast.
+- BASE: -6.0% at $5,000
+- LIQ_75: -10.8% at $5,000
+- INSIDER_DUMP: -63.7% at $5,000
+- HONEYPOT: -100.0% at $250
+- COMBINED_WORST: -92.7% at $5,000
+report sha256 63d00328782144b9
+
+## 6 disabled-feature rollback: analyze output with the policy off vs on (no persistence)
+off exit 0
+on exit 0
+1a2
+> backtest: STALE_DATA | evidence UNAVAILABLE | stress n/a | research only
+diff lines above: only the one backtest line may appear (with the policy on)
+lab database unchanged: yes
+
+## 7 backtest tests in the clean clone
+239 passed in 35.86s
+
+## 8 release audit in the clean clone
+Needs action: no.
