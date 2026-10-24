@@ -13,7 +13,7 @@ Entry (execution view): INCONCLUSIVE, stress RESEARCHABLE, size under caps $599.
 ## Historical evidence
 
 Token-specific: NOT_RUN (no token-specific backtest; nothing here claims token-specific validation).
-Cohort of past tokens with lab status SETUP DEVELOPING: 0 measured windows (0 complete, 0 cut short when trading stopped, counted at the last traded price, an upper bound) of 0 tokens the lab had recorded by then, tier INSUFFICIENT_HISTORY (minimum 30). Selection-bias risk: no (0 removed for pool disagreement).
+Cohort of past tokens with lab status SETUP DEVELOPING: 0 measured windows (0 complete, 0 cut short with no trades in the window's last hours, counted at their last traded price) of 0 tokens the lab had recorded by then, tier INSUFFICIENT_HISTORY (minimum 30). Selection-bias risk: no (0 removed for pool disagreement).
 
 Strategies over the lab's whole discovery universe (net of modeled costs, ranked by net; paper is mid to mid before costs; under 30 trades is listed, not ranked):
 

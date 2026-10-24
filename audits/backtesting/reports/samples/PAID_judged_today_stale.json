@@ -15,14 +15,14 @@
   "assessment_state": "STALE_DATA",
   "assessment_tier": "UNAVAILABLE",
   "cache": "HIT_STALE",
-  "reason": "analysis snapshot is 407.7 h old",
+  "reason": "analysis snapshot is 408.7 h old",
   "retriable": true,
   "deep_request_key": null
  },
  "headline": {
   "evidence_class": "HEURISTIC",
   "label": "UNTESTED",
-  "why": "assessment STALE_DATA: analysis snapshot is 407.7 h old",
+  "why": "assessment STALE_DATA: analysis snapshot is 408.7 h old",
   "good_project": {
    "source": "lab score and status (unchanged)",
    "score": 64,

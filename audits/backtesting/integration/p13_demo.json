@@ -93,14 +93,14 @@
  },
  "benchmark_fast_ms": {
   "n": 20,
-  "median": 7.9,
-  "max": 8.4
+  "median": 8.3,
+  "max": 14.3
  },
  "stats": {
   "events": {
    "CACHE_HIT": {
     "n": 1,
-    "avg_ms": 2.040863037109375
+    "avg_ms": 1.5664100646972656
    },
    "CATALYST_REFRESH": {
     "n": 1,
@@ -108,11 +108,11 @@
    },
    "COMPLETED": {
     "n": 21,
-    "avg_ms": 8.496681849161783
+    "avg_ms": 9.278887794131325
    },
    "DEEP_INSUFFICIENT_HISTORY": {
     "n": 1,
-    "avg_ms": 129.53996658325195
+    "avg_ms": 127.69961357116699
    },
    "QUEUED_DEEP": {
     "n": 21,
@@ -124,7 +124,7 @@
    },
    "STALE_ON_HIT": {
     "n": 1,
-    "avg_ms": 1.744985580444336
+    "avg_ms": 1.35040283203125
    }
   },
   "states": {

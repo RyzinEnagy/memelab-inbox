@@ -4,8 +4,8 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 
 ## Position
 
-- Phase completed: 15 (outcomes, calibration, drift), 2026-10-23. State: PASS. Note: audits/backtesting/PHASE_15.md. Phases 00-14 PASS (06A EXISTING_TOOL_WINS; 11 all INSUFFICIENT_SAMPLE).
-- Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f, Phase 08 976e747, Phase 09 58abf7d, Phase 10 941e4ed, Phase 11 38d2fcc, Phase 12 999d1eb, Phase 13 4338810, Phase 14 30863a6. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
+- Phase completed: 16 (independent adversarial E2E audit), 2026-10-23. State: PASS for scenario-only research mode with disclosed limitations (strict reading FAILED; G16 and G27 await Elving's acceptance). Note: audits/backtesting/PHASE_16.md. Phases 00-15 PASS.
+- Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f, Phase 08 976e747, Phase 09 58abf7d, Phase 10 941e4ed, Phase 11 38d2fcc, Phase 12 999d1eb, Phase 13 4338810, Phase 14 30863a6, Phase 15 41488ad, Phase 16 repair passes 47a7845, 0e63563, c42045b, 7c7b582. Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
 - Spend so far: Firecrawl about 29 of ~100 calls; Maxun 5 of 5 trial credits (0 left, 0 schedules); Crawl4AI local only; Solana public RPC and Jupiter quotes read-only (about 20 calls).
 
 ## Commands and exits
@@ -39,6 +39,7 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 | full suite after Phase 14 / release audit / release e2e | 1 / 0 / 0 | C-1 only, 976 passed / Needs action: no / PASS 78 of 78 |
 | Phase 15: outcome tests / `mutate.py p15_mutations.json` / `outcomes/p15_outcomes.py` | 0 / 0 / 0 | 14 passed / 22 of 22 / 1,023 opportunities, 24 h: 385 complete, 133 censored, 463 not observable |
 | full suite after Phase 15 / release audit / release e2e | 1 / 0 / 0 | C-1 only, 990 passed / Needs action: no / PASS 78 of 78 |
+| Phase 16: independent reviewer, 5 passes (E2E_RESULTS.md) / every mutation set / full suite / release audit / release e2e | - / 0 / 1 / 0 / 0 | PASS for scenario-only mode / all caught / C-1 only, 1024 passed / Needs action: no / PASS 78 of 78 |
 
 ## Proven
 
@@ -50,7 +51,7 @@ Universe spans 17 days. Catalyst history thin. Helius key absent in this workspa
 
 ## Next eligible phase
 
-16 (independent adversarial E2E audit). Run by a separate reviewer that has not seen the build: G01-G41, full suite, every mutation set, three real dated cases (collapsed 3GVSN8, a failed launch catalyst, a fresh token without history) and a clean-clone run.
+17 (release memo and runbook): RELEASE_REPORT.md, RUNBOOK.md, LICENSE_ATTRIBUTIONS.md, clean-clone reproduction, push feature/backtesting (fast-forward, no merge), git bundle and zip to D:\memelab.
 
 ## Roadmap changes
 

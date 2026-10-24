@@ -6,7 +6,7 @@ Confidence: MODERATE (INFERENCE)
 Freshness: item FRESH, feed FRESH, last observed 2026-10-06 19:48 EDT (2026-10-06 23:48 UTC)
 Contract: solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump
 Provenance: narrative run 0, cluster sample, claims none, chronology runs none, feed sample
-Backtest: UNTESTED (assessment STALE_DATA: analysis snapshot is 407.7 h old), assessment 573119667f4e
+Backtest: UNTESTED (assessment STALE_DATA: analysis snapshot is 408.7 h old), assessment 573119667f4e
 Alert 1, dedupe 4083acd236c1, policy alerts-policy-v1
 Research only. Not a trade instruction, not a score, not a watchlist change.
 FIXTURE DEMO: invented data, not a live alert.

@@ -215,6 +215,8 @@ def test_redaction_of_error_text_beyond_key_prefixes():
     tok = "Zq7Lm2Pw9Rt4Kx8Vb3"                                      # 18 characters, no known prefix
     for text in (f"headers {{'Authorization': 'Bearer {tok}'}}", f"Authorization: Basic {tok}", f'{{"access_token": "{tok}"}}', f"client_secret={tok}&a=1"):
         assert tok not in W.redact_text(text), text
+    assert tok not in W.redact_text(f"invalid key {tok} supplied")                 # an 18-character key after a credential word
+    assert "2026-10-23T12:00:00Z" in W.redact_text("token valid until 2026-10-23T12:00:00Z")   # a timestamp is not a credential
     mint = "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump"
     assert mint in W.redact_text(f"no pool for {mint}")
     assert W.redact_text("429 rate limited, retry in 30 s") == "429 rate limited, retry in 30 s"

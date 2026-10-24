@@ -279,7 +279,8 @@ def empirical_cohort(con, status: str | None, horizon_h: int = 24, min_n: int = 
     import os
     path = str(con.execute("PRAGMA database_list").fetchone()[2] or "")
     # a replaced file is another key (inode); an in-memory database is never cached (a reused id() could alias another one, C3)
-    key = ((path, os.stat(path).st_ino), universe_id, status, horizon_h, min_n, cut, tuple(rev)) if path and os.path.exists(path) else None
+    born = con.execute("SELECT MIN(applied_at) FROM bt_schema_migrations").fetchone()[0]      # a file replaced at the same path and inode differs here (C4)
+    key = ((path, os.stat(path).st_ino, born), universe_id, status, horizon_h, min_n, cut, tuple(rev)) if path and os.path.exists(path) else None
     if key is not None and key in _COHORT_CACHE:
         return copy.deepcopy(_COHORT_CACHE[key])
     rows = con.execute("SELECT chain, mint, MIN(available_at) t FROM bt_universe_members WHERE universe_id=? AND basis='THESIS' AND status_at_entry IS ? "

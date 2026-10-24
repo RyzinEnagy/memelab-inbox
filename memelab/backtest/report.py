@@ -367,7 +367,7 @@ def render_md(doc: dict) -> str:
         kt, n, nc = c.get("known_tokens"), c.get("n") or 0, c.get("n_complete")
         stopped = (n - nc) if nc is not None else None
         line = (f"Cohort of past tokens with lab status {c.get('status')}: {n} measured windows"
-                + (f" ({nc} complete, {stopped} cut short when trading stopped, counted at the last traded price, an upper bound)" if nc is not None else "")
+                + (f" ({nc} complete, {stopped} cut short with no trades in the window's last hours, counted at their last traded price)" if nc is not None else "")
                 + (f" of {kt} token{'' if kt == 1 else 's'} the lab had recorded by then" if kt is not None else "")
                 + f", tier {c.get('tier')} (minimum {c.get('min_n')}).")
         if c.get("tier") == "HISTORICAL_COHORT":

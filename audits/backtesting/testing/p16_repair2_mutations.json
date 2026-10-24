@@ -167,7 +167,7 @@
  {
   "id": "R16d-4 report calls every measured window complete",
   "file": "memelab/backtest/report.py",
-  "old": "        line = (f\"Cohort of past tokens with lab status {c.get('status')}: {n} measured windows\"\n                + (f\" ({nc} complete, {stopped} cut short when trading stopped, counted at the last traded price, an upper bound)\" if nc is not None else \"\")",
+  "old": "        line = (f\"Cohort of past tokens with lab status {c.get('status')}: {n} measured windows\"\n                + (f\" ({nc} complete, {stopped} cut short with no trades in the window's last hours, counted at their last traded price)\" if nc is not None else \"\")",
   "new": "        line = (f\"Cohort of past tokens with lab status {c.get('status')}: {n} complete cases\"",
   "tests": [
    "audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_report_markdown_discloses_cohort_bias_and_censored_windows",
@@ -208,6 +208,25 @@
   "new": "    if len(v) < 16 or _public_address(v) or _hash_or_signature(v) or re.search",
   "tests": [
    "audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_hex_and_secret_key_shaped_values"
+  ]
+ },
+ {
+  "id": "R16d-9 cache key ignores the file identity (supersedes the reviewer's R4-9)",
+  "file": "memelab/backtest/stress.py",
+  "old": "    key = ((path, os.stat(path).st_ino, born), universe_id,",
+  "new": "    key = ((path,), universe_id,",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "R16d-10 cache key keeps the inode but not the database birth time (C4)",
+  "file": "memelab/backtest/stress.py",
+  "old": "    key = ((path, os.stat(path).st_ino, born), universe_id,",
+  "new": "    key = ((path, os.stat(path).st_ino), universe_id,",
+  "tests": [
+   "tests/test_backtest_outcomes.py",
+   "audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_cohort_cache_file_replaced_at_the_same_path"
   ]
  }
 ]

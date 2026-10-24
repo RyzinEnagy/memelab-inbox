@@ -1,0 +1,11 @@
+baseline (unmutated): exit 0 :: 276 passed in 46.71s
+[R4-1 guard needs half the shared hours apart] CAUGHT :: 1 failed, 249 passed in 35.35s
+[R4-2 a single off-market hour refuses the window] CAUGHT :: 1 failed, 111 passed in 22.93s
+[R4-3 other pools summarized by their highest close] CAUGHT :: 1 failed, 252 passed in 36.77s
+[R4-4 credential values need 24 characters] CAUGHT :: 1 failed, 238 passed in 35.63s
+[R4-5 report drops the NOT point-in-time label] CAUGHT :: 1 failed, 112 passed in 23.55s
+[R4-6 alternates drop the selection-bias line] CAUGHT :: 1 failed, 271 passed in 45.39s
+[R4-7 timestamps no longer exempt after credential words] CAUGHT :: 1 failed, 238 passed in 35.26s
+[R4-8 credential word must touch the value again] CAUGHT :: 1 failed, 257 passed in 37.02s
+[R4-9 cache key ignores the inode] MUTATION NOT APPLICABLE (old text not found)
+RESULT: FAILURE

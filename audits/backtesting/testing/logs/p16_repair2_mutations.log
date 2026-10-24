@@ -1,24 +1,26 @@
-baseline (unmutated): exit 0 :: 103 passed in 17.83s
-[R16b-1 cut-short windows dropped from cohort returns] CAUGHT :: 1 failed, 15 passed in 0.65s
-[R16b-2 cohort selection bias never flagged] CAUGHT :: 1 failed, 14 passed in 0.62s
-[R16b-3 pool chosen with data after the as-of] CAUGHT :: 1 failed, 1 passed in 0.24s
-[R16b-4 pools that disagree measured anyway] CAUGHT :: 1 failed, 14 passed in 0.56s
-[R16b-5 a single off-market hour voids the window] CAUGHT :: 1 failed, 18 passed in 0.74s
-[R16b-6 key-prefixed secrets echoed] CAUGHT :: 1 failed, 21 passed in 14.20s
-[R16b-8 concurrent identical runs store duplicate results] CAUGHT :: 1 failed, 5 passed in 1.76s
+baseline (unmutated): exit 0 :: 105 passed in 17.98s
+[R16b-1 cut-short windows dropped from cohort returns] CAUGHT :: 1 failed, 15 passed in 0.60s
+[R16b-2 cohort selection bias never flagged] CAUGHT :: 1 failed, 14 passed in 0.63s
+[R16b-3 pool chosen with data after the as-of] CAUGHT :: 1 failed, 1 passed in 0.23s
+[R16b-4 pools that disagree measured anyway] CAUGHT :: 1 failed, 14 passed in 0.59s
+[R16b-5 a single off-market hour voids the window] CAUGHT :: 1 failed, 18 passed in 0.66s
+[R16b-6 key-prefixed secrets echoed] CAUGHT :: 1 failed, 21 passed in 14.18s
+[R16b-8 concurrent identical runs store duplicate results] CAUGHT :: 1 failed, 5 passed in 1.73s
 [R16b-9 fully sold trades change record shape] CAUGHT :: 1 failed, 1 passed in 0.06s
-[R16b-10 public Solana addresses treated as secrets] CAUGHT :: 1 failed, 20 passed in 0.28s
-[R16c-1 cached cohort handed out by reference] CAUGHT :: 1 failed in 0.12s
+[R16b-10 public Solana addresses treated as secrets] CAUGHT :: 1 failed, 20 passed in 0.30s
+[R16c-1 cached cohort handed out by reference] CAUGHT :: 1 failed in 0.14s
 [R16c-2 request key ignores pool records] CAUGHT :: 1 failed in 0.26s
-[R16c-3 short keys after a credential word echoed] CAUGHT :: 1 failed in 0.09s
-[R16c-4 digests and signatures redacted] CAUGHT :: 1 failed in 0.07s
+[R16c-3 short keys after a credential word echoed] CAUGHT :: 1 failed in 0.08s
+[R16c-4 digests and signatures redacted] CAUGHT :: 1 failed in 0.06s
 [R16c-5 guard removals never raise the bias flag] CAUGHT :: 1 failed, 16 passed in 0.65s
-[R16d-1 side pools compared one at a time] CAUGHT :: 1 failed in 0.25s
-[R16d-2 only hour-after-hour divergence refused] CAUGHT :: 1 failed in 0.20s
-[R16d-3 report hides the cohort bias flag] CAUGHT :: 1 failed, 20 passed in 0.78s
+[R16d-1 side pools compared one at a time] CAUGHT :: 1 failed in 0.30s
+[R16d-2 only hour-after-hour divergence refused] CAUGHT :: 1 failed in 0.18s
+[R16d-3 report hides the cohort bias flag] CAUGHT :: 1 failed, 20 passed in 0.77s
 [R16d-4 report calls every measured window complete] CAUGHT :: 1 failed in 0.14s
-[R16d-5 in-memory cohorts cached] CAUGHT :: 1 failed, 17 passed in 0.65s
+[R16d-5 in-memory cohorts cached] CAUGHT :: 1 failed, 17 passed in 0.61s
 [R16d-6 timestamps and identifiers redacted after credential words] CAUGHT :: 1 failed in 0.07s
 [R16d-7 credential word must touch the value] CAUGHT :: 1 failed in 0.06s
 [R16d-8 digests exempt after credential words again] CAUGHT :: 1 failed in 0.06s
+[R16d-9 cache key ignores the file identity (supersedes the reviewer's R4-9)] CAUGHT :: 1 failed, 20 passed in 0.69s
+[R16d-10 cache key keeps the inode but not the database birth time (C4)] CAUGHT :: 1 failed, 21 passed in 0.74s
 RESULT: all mutations caught

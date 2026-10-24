@@ -1,0 +1,167 @@
+7c7b582
+2026-10-24T00:18:46Z
+============================= test session starts ==============================
+platform linux -- Python 3.13.17, pytest-9.1.1, pluggy-1.7.0 -- /usr/bin/python3
+rootdir: /home/claude/work/memelab-inbox
+plugins: platformdirs-4.12.4, anyio-4.15.1
+collecting ... collected 18 items
+
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_late_persistent_divergence FAILED [  5%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_late_persistent_divergence_72h FAILED [ 11%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_pools_that_never_share_an_hour FAILED [ 16%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_decoy_pools_outvote_the_real_market FAILED [ 22%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_exit_hour_print_on_the_basis FAILED [ 27%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_rug_in_the_final_hour_is_measured PASSED [ 33%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_pass3_shapes_still_refused PASSED [ 38%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_one_junk_pool_among_two_real_side_pools_is_outvoted PASSED [ 44%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_report_line_states_counts_flag_and_split PASSED [ 50%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_report_survives_sparse_or_old_cohort_records PASSED [ 55%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_redaction_32_byte_base58_secret_after_strong_words FAILED [ 61%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_redaction_underscored_or_letters_only_secret_after_strong_words FAILED [ 66%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_redaction_url_encoded_bearer_and_short_basic FAILED [ 72%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_redaction_pass3_cases_now_removed PASSED [ 77%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_redaction_keeps_public_identifiers_outside_credential_context PASSED [ 83%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_redaction_over_redacts_evm_addresses_and_mints_after_a_colon PASSED [ 88%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_cohort_cache_in_memory_never_cached PASSED [ 94%]
+audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_cohort_cache_file_replaced_at_the_same_path FAILED [100%]
+
+=================================== FAILURES ===================================
+___________________ test_r4_guard_late_persistent_divergence ___________________
+
+con = <sqlite3.Connection object at 0x7ff72fb974c0>
+
+    def test_r4_guard_late_persistent_divergence(con):
+        """Pass 3's run rule refused this window (7 consecutive hours apart); pass 4's share rule needs 8 of 24."""
+        c = world(con, lambda i: 1.0 if i < 17 else 0.05, ALL24, {"R": (ALL24, FLAT)})
+>       assert not_fooled(c), c
+E       AssertionError: {'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'n_complete': 30, ...}
+E       assert False
+E        +  where False = not_fooled({'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'n_complete': 30, ...})
+
+audits/backtesting/testing/test_p16r4_repair_attacks.py:104: AssertionError
+_________________ test_r4_guard_late_persistent_divergence_72h _________________
+
+con = <sqlite3.Connection object at 0x7ff72f952890>
+
+    def test_r4_guard_late_persistent_divergence_72h(con):
+        """A 72 h window: the basis leaves the market for the last 23 hours (23 of 72 shared hours, 32%)."""
+        c = world(con, lambda i: 1.0 if i < 49 else 0.05, set(range(72)), {"R": (set(range(72)), FLAT)}, hours=72, horizon_h=72)
+>       assert not_fooled(c), c
+E       AssertionError: {'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'n_complete': 30, ...}
+E       assert False
+E        +  where False = not_fooled({'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'n_complete': 30, ...})
+
+audits/backtesting/testing/test_p16r4_repair_attacks.py:110: AssertionError
+_________________ test_r4_guard_pools_that_never_share_an_hour _________________
+
+con = <sqlite3.Connection object at 0x7ff72f9a0220>
+
+    def test_r4_guard_pools_that_never_share_an_hour(con):
+        """After the decision the basis trades in odd hours (collapsing), the real pool in even hours (flat): no shared hour."""
+        c = world(con, lambda i: max(0.05, 1.0 - 0.04 * (i + 1)), set(range(1, 24, 2)), {"R": (set(range(0, 24, 2)), FLAT)})
+>       assert not_fooled(c), c
+E       AssertionError: {'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'n_complete': 30, ...}
+E       assert False
+E        +  where False = not_fooled({'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'n_complete': 30, ...})
+
+audits/backtesting/testing/test_p16r4_repair_attacks.py:116: AssertionError
+______________ test_r4_guard_decoy_pools_outvote_the_real_market _______________
+
+con = <sqlite3.Connection object at 0x7ff72f9a08b0>
+
+    def test_r4_guard_decoy_pools_outvote_the_real_market(con):
+        """The real pool R stays at 1.00; two thin decoy pools print the basis pool's collapsing price, so the median of the
+        other pools agrees with the basis. Pass 3 compared each pool with the basis and refused the window."""
+        wash = lambda i: max(0.05, 1.0 - 0.04 * (i + 1))  # noqa: E731
+        c = world(con, wash, ALL24, {"R": (ALL24, FLAT), "D1": (ALL24, wash), "D2": (ALL24, wash)})
+>       assert not_fooled(c), c
+E       AssertionError: {'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'n_complete': 30, ...}
+E       assert False
+E        +  where False = not_fooled({'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'n_complete': 30, ...})
+
+audits/backtesting/testing/test_p16r4_repair_attacks.py:124: AssertionError
+__________________ test_r4_guard_exit_hour_print_on_the_basis __________________
+
+con = <sqlite3.Connection object at 0x7ff72f9a1210>
+
+    def test_r4_guard_exit_hour_print_on_the_basis(con):
+        """Limitation: the basis is at the market for 23 hours and closes at 0.05 in the last hour; the real pool stays at 1.00."""
+        c = world(con, lambda i: 1.0 if i < 23 else 0.05, ALL24, {"R": (ALL24, FLAT)})
+>       assert not_fooled(c), c
+E       AssertionError: {'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'n_complete': 30, ...}
+E       assert False
+E        +  where False = not_fooled({'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'n_complete': 30, ...})
+
+audits/backtesting/testing/test_p16r4_repair_attacks.py:130: AssertionError
+__________ test_r4_redaction_32_byte_base58_secret_after_strong_words __________
+
+    def test_r4_redaction_32_byte_base58_secret_after_strong_words():
+        seed = b58encode(bytes([9]) * 32)                       # FAKE: base58 of 32 bytes of 0x09, the shape of an ed25519 seed
+        texts = [f"private key {seed} refused", f"secret {seed} rejected", f"password {seed} wrong", f"Authorization: Bearer {seed}"]
+        leaked = [t.split(" ")[0] for t in texts if seed in (webcapture.redact_text(t) or "")]
+>       assert not leaked, leaked
+E       AssertionError: ['private', 'secret', 'password', 'Authorization:']
+E       assert not ['private', 'secret', 'password', 'Authorization:']
+
+audits/backtesting/testing/test_p16r4_repair_attacks.py:194: AssertionError
+___ test_r4_redaction_underscored_or_letters_only_secret_after_strong_words ____
+
+    def test_r4_redaction_underscored_or_letters_only_secret_after_strong_words():
+        underscored = "_".join(["Q7x2" * 2, "m9K4" * 2, "z3P8" * 2, "w5" * 2])   # FAKE: 30 characters, three underscores, letters and digits
+        phrase = "correct" + "horse" + "battery" + "staple"                      # FAKE: a letters-only passphrase, 28 characters
+        texts = [f"secret {underscored} rejected", f"api key {underscored} rejected", f"password {phrase} rejected"]
+        leaked = [t for t, s in zip(texts, (underscored, underscored, phrase)) if s in (webcapture.redact_text(t) or "")]
+>       assert not leaked, leaked
+E       AssertionError: ['secret Q7x2Q7x2_m9K4m9K4_z3P8z3P8_w5w5 rejected', 'api key Q7x2Q7x2_m9K4m9K4_z3P8z3P8_w5w5 rejected', 'password correcthorsebatterystaple rejected']
+E       assert not ['secret Q7x2Q7x2_m9K4m9K4_z3P8z3P8_w5w5 rejected', 'api key Q7x2Q7x2_m9K4m9K4_z3P8z3P8_w5w5 rejected', 'password correcthorsebatterystaple rejected']
+
+audits/backtesting/testing/test_p16r4_repair_attacks.py:202: AssertionError
+_____________ test_r4_redaction_url_encoded_bearer_and_short_basic _____________
+
+    def test_r4_redaction_url_encoded_bearer_and_short_basic():
+        tail = "Qw3Ke8Rt5Yu1Io0Pa2Sd"                                                      # FAKE token fragments, built at runtime
+        encoded = "A" * 21 + "Mx7Q2" + "A" * 8 + "k9" + "%2B" + tail + "%3D" + "Lk4Jh7Gf6DsZx" + "%3D"
+        basic = "dXNlcjpwYXNz"                                                             # base64 of the placeholder "user:pass"
+        leaked = [label for label, t, s in (("encoded bearer tail", "Authorization: Bearer " + encoded, tail),
+                                            ("short basic value", "Authorization: Basic " + basic, basic)) if s in (webcapture.redact_text(t) or "")]
+>       assert not leaked, leaked
+E       AssertionError: ['encoded bearer tail', 'short basic value']
+E       assert not ['encoded bearer tail', 'short basic value']
+
+audits/backtesting/testing/test_p16r4_repair_attacks.py:211: AssertionError
+_____________ test_r4_cohort_cache_file_replaced_at_the_same_path ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-2469/test_r4_cohort_cache_file_repl0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7ff72fa54590>
+
+    def test_r4_cohort_cache_file_replaced_at_the_same_path(tmp_path, monkeypatch):
+        monkeypatch.setattr(store, "RAW_DIR", tmp_path / "raw")
+        S._COHORT_CACHE.clear()
+        p = tmp_path / "bt.sqlite"
+        first = _file_cohort(p, 1.0)
+        ino = os.stat(p).st_ino
+        _remove(p)
+        second = _file_cohort(p, 0.5)                               # a different database written at the same path, same row ids
+        same_inode = os.stat(p).st_ino == ino
+        S._COHORT_CACHE.clear()
+        if not same_inode:
+            pytest.skip("the filesystem gave the new file another inode")
+>       assert abs(first) < 1e-9 and abs(second - (-0.5)) < 1e-9, f"replaced file at the same inode served {second} (true -0.5)"
+E       AssertionError: replaced file at the same inode served 0.0 (true -0.5)
+E       assert (0.0 < 1e-09 and 0.5 < 1e-09)
+E        +  where 0.0 = abs(0.0)
+E        +  and   0.5 = abs((0.0 - -0.5))
+
+audits/backtesting/testing/test_p16r4_repair_attacks.py:291: AssertionError
+=========================== short test summary info ============================
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_late_persistent_divergence
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_late_persistent_divergence_72h
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_pools_that_never_share_an_hour
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_decoy_pools_outvote_the_real_market
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_exit_hour_print_on_the_basis
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_redaction_32_byte_base58_secret_after_strong_words
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_redaction_underscored_or_letters_only_secret_after_strong_words
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_redaction_url_encoded_bearer_and_short_basic
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_cohort_cache_file_replaced_at_the_same_path
+========================= 9 failed, 9 passed in 1.65s ==========================
+EXIT=1

@@ -8,7 +8,7 @@
    "lab_score": 67,
    "lab_status": "SETUP DEVELOPING",
    "label": "UNTESTED",
-   "why": "assessment STALE_DATA: analysis snapshot is 407.7 h old",
+   "why": "assessment STALE_DATA: analysis snapshot is 408.7 h old",
    "state": "STALE_DATA",
    "tier": "UNAVAILABLE",
    "stress_decision": null,

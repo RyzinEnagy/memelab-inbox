@@ -21,7 +21,7 @@ Order is fixed by the package: 00, 01, 02, 03, 04, 05, 06, 06A, 07, 08, 09, 10, 
 | 13 | Per-opportunity integration | PASS | audits/backtesting/PHASE_13.md |
 | 14 | Reports, CLI, alerts | PASS | audits/backtesting/PHASE_14.md |
 | 15 | Outcomes, calibration, drift | PASS | audits/backtesting/PHASE_15.md |
-| 16 | Independent adversarial E2E audit | pending | |
+| 16 | Independent adversarial E2E audit | PASS for scenario-only research mode (disclosed limitations; strict reading FAILED) | audits/backtesting/PHASE_16.md |
 | 17 | Release memo and runbook | pending | |
 
 Changes to this table are explained in HANDOFF under "Roadmap changes".

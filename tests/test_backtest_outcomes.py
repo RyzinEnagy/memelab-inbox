@@ -479,4 +479,33 @@ def test_report_cohort_line_states_the_bias_flag_and_the_split():
     md = report.render_md(report.build(a, lab={"score": 60, "status": "WATCH", "fatal_flags": []}, shared={}))
     line = next(x for x in md.splitlines() if x.startswith("Cohort of past tokens"))
     assert "45 measured windows (30 complete, 15 cut short" in line and "Selection-bias risk: YES (25% of measurable tokens could not be measured" in line
+    md2 = report.render_md(report.build(dict(a, stress={"historical_evidence": dict(coh, point_in_time=False), "decision": "INCONCLUSIVE"}),
+                                        lab={"score": 60, "status": "WATCH", "fatal_flags": []}, shared={}))
+    assert "NOT point-in-time" in md2 and "NOT point-in-time" not in md
     assert "Complete windows only" in line
+
+
+def test_cohort_cache_follows_a_replaced_database_file(tmp_path):
+    """Phase 16 C4: a different file at the same path (same row ids, different prices) is never served the old cohort."""
+    import os
+    from memelab.backtest import stress as S
+
+    def build(path, step):
+        c = store.connect(path)
+        for k in range(3):
+            m = f"Fr{k}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapump"
+            p = pool(c, m); bars(c, m, p, T0 - 24 * H, 24); bars(c, m, p, T0, 24, step=step)
+            thesis(c, m)
+        c.commit(); c.close()
+    S._COHORT_CACHE.clear()
+    a, b = tmp_path / "a.sqlite", tmp_path / "b.sqlite"
+    build(a, 0.0)
+    c1 = store.connect(a)
+    first = S.empirical_cohort(c1, "WATCH", min_n=1, asof=T0 + 40 * H)
+    c1.close()
+    build(b, -0.05)
+    os.replace(b, a)
+    c2 = store.connect(a)
+    second = S.empirical_cohort(c2, "WATCH", min_n=1, asof=T0 + 40 * H)
+    c2.close()
+    assert first["ret_p10_p50_p90"][1] != second["ret_p10_p50_p90"][1]
