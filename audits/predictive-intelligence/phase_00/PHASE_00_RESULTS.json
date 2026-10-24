@@ -1,0 +1,239 @@
+{
+ "phase": "00",
+ "title": "Audit actual Memecoin Lab and establish an executable baseline",
+ "status": "NEEDS_REVIEW",
+ "status_reason": "Every baseline item reproduced from source and commands; the independent fresh-context skeptic could not be started inside the phase run (no subagent tool; nested claude CLI would be an unapproved LLM call). PI-D-009.",
+ "branch": "feature/predictive-intelligence",
+ "head_before": "f99c6c7",
+ "head_after": "recorded in docs/predictive-intelligence/HANDOFF.md (this file is part of that commit)",
+ "generated_at_utc": "2026-10-24",
+ "checks": [
+  {
+   "name": "package checksums",
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "exit_code": 0,
+   "result": "41 of 41 OK",
+   "pass": true
+  },
+  {
+   "name": "checkout clean at start",
+   "command": "git status",
+   "exit_code": 0,
+   "result": "clean, HEAD f99c6c7",
+   "pass": true
+  },
+  {
+   "name": "main code equals f084b60",
+   "command": "git diff --stat f084b60 origin/main -- memelab tests tools bridge skills docs",
+   "exit_code": 0,
+   "result": "empty",
+   "pass": true
+  },
+  {
+   "name": "f084b60 and 3f27fc7 are ancestors of HEAD",
+   "command": "git merge-base --is-ancestor <sha> HEAD",
+   "exit_code": 0,
+   "result": "both ancestors",
+   "pass": true
+  },
+  {
+   "name": "test collection",
+   "command": "python -m pytest tests -q --collect-only",
+   "exit_code": 0,
+   "result": "786 tests collected in 2.90s",
+   "pass": true
+  },
+  {
+   "name": "full suite baseline",
+   "command": "python -m pytest tests -q -rs -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "1 failed, 785 passed in 133.57s; only tests/test_catalyst.py::test_dedup_corroboration_resurface_denial (known)",
+   "pass": true
+  },
+  {
+   "name": "full suite exact command after records",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 785 passed in 132.19s; same single known failure",
+   "pass": true
+  },
+  {
+   "name": "stray files removed",
+   "command": "git status --porcelain --ignored",
+   "exit_code": 0,
+   "result": "BRETT report, sqlite shm and empty wal, .pytest_cache removed; tracked DB sha256 068287c0... unchanged",
+   "pass": true
+  },
+  {
+   "name": "release e2e on fixtures",
+   "command": "python tools/release_e2e.py --out <scratch>/e2e.md (clone)",
+   "exit_code": 0,
+   "result": "PASS 78 of 78, network attempts 0, tracked files changed 0, tracked DB byte-identical",
+   "pass": true
+  },
+  {
+   "name": "CLI smoke",
+   "command": "python -m memelab --help | init | analyze --no-persist | scout --report-dir <scratch> (clone, temp DB)",
+   "exit_code": 0,
+   "result": "all exit 0; clone git status empty",
+   "pass": true
+  },
+  {
+   "name": "Firecrawl local health",
+   "command": "python -m memelab catalyst fc-health (clone, temp DB, no key)",
+   "exit_code": 1,
+   "result": "config_missing, key missing (expected without config)",
+   "pass": true
+  },
+  {
+   "name": "lineage reproduction",
+   "command": "python3 audits/predictive-intelligence/phase_00/probes/lineage_reproduction_probe.py",
+   "exit_code": 0,
+   "result": "b6c424d code reproduces stored HIGGS report (442 lines equal except change section); HEAD differs in pool facts; partial inputs change score and status",
+   "pass": true
+  },
+  {
+   "name": "state history",
+   "command": "python3 audits/predictive-intelligence/phase_00/probes/state_history_probe.py origin/main <scratch>/out.json",
+   "exit_code": 0,
+   "result": "89 versions, 1,801 thesis snapshots, 248 mints, 93 with 2+ priced snapshots",
+   "pass": true
+  },
+  {
+   "name": "P34 backtesting package",
+   "command": "git ls-tree / git grep / git log --all --grep over all branches; uploads; Mac folder; project search",
+   "exit_code": 0,
+   "result": "nothing found: BACKTEST_NOT_AVAILABLE",
+   "pass": true
+  },
+  {
+   "name": "P01 same symbol different mints",
+   "command": "python3 audits/predictive-intelligence/phase_00/probes/p01_ticker_identity_probe.py origin/main",
+   "exit_code": 0,
+   "result": "tables keyed by mint (701 theses by mint vs 970 by symbol); catalyst matcher links a lone ticker candidate as MODERATE TICKER_MATCH (PI-D-007)",
+   "pass": true
+  },
+  {
+   "name": "P41 untrusted page",
+   "command": "python3 audits/predictive-intelligence/phase_00/probes/p41_untrusted_page_probe.py",
+   "exit_code": 0,
+   "result": "only identifiers kept, no instruction words, key shape redacted; page-named contracts become STRONG links (residual data risk)",
+   "pass": true
+  },
+  {
+   "name": "GeckoTerminal reachability and depth",
+   "command": "curl ohlcv/day and ohlcv/minute?aggregate=15&before_timestamp=1791331200 for pool DQyGMAGx8nB6ykixotLNFC6eVVQjrMqz7AkRyinNkEm1",
+   "exit_code": 0,
+   "result": "HTTP 200 both; day candles 2026-10-04 to 2026-10-20; 237 15m candles back to 2026-10-04",
+   "pass": true
+  },
+  {
+   "name": "DEX Screener reachability",
+   "command": "curl /tokens/v1/solana/DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
+   "exit_code": 0,
+   "result": "HTTP 200, 1 pair, current state only",
+   "pass": true
+  },
+  {
+   "name": "independent skeptic",
+   "command": "none available in the phase run",
+   "exit_code": null,
+   "result": "not run; SKEPTIC_PACKET.md prepared; own adversarial pass recorded as not independent",
+   "pass": false
+  },
+  {
+   "name": "no production change",
+   "command": "git diff --name-only f99c6c7..HEAD",
+   "exit_code": 0,
+   "result": "only docs/predictive-intelligence/ and audits/predictive-intelligence/ (verified after commit, HANDOFF.md)",
+   "pass": true
+  },
+  {
+   "name": "spend",
+   "command": "COST_LEDGER.md",
+   "exit_code": null,
+   "result": "0 credits",
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/COST_LEDGER.md",
+   "sha256": "9fd650df68acd910b993381a099bcdd6102badbd2bfe5a157fc60a11b02dc414"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_00/PHASE_00_EVIDENCE.md",
+   "sha256": "4fa1e6f618c406de9714197824ddd90c5e26cc17133a9e8aad412a9196b98139"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_00/SKEPTIC_PACKET.md",
+   "sha256": "4b46970215f92ea4f801d9cb9dfa2e2803544ca903852cae66053ba963446bed"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_00/baseline/COMMIT_AND_TEST_LOG.md",
+   "sha256": "52597bf2501fffcfad12b6d869c7f54e2f49432ffff8b265f07c579e851a96b8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_00/baseline/DATA_COVERAGE.md",
+   "sha256": "1a482fce93828d40e5dbbbf590b62352b353bcc714c929d411225f9e60fad880"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_00/baseline/EXISTING_PREDICTION_INVENTORY.md",
+   "sha256": "0769e2758ad2124b0b4419e6c3e9626166affabe3e729effde285b8971173e3b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_00/baseline/FEATURE_TRACE.md",
+   "sha256": "c7c03c2b13a377569c31bd4c2b8a2e757df8164ed7477524875dd8de9b2086e6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_00/baseline/PIP_FREEZE.txt",
+   "sha256": "4bbf5c51faf183d28468285ef5952c4d9d90be7c0c8937c992d58a695fe4e152"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_00/baseline/REPO_MAP.md",
+   "sha256": "0ed99408300bbdde6c5be725e2362eba66b5855c5a16f8f74397c8d45ea13ef3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_00/probes/lineage_reproduction_probe.py",
+   "sha256": "68bd509dd20b2bfa5c2026b3bf29b6ed5e7c28dc12248263f6e4e0f33715b5c3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_00/probes/p01_ticker_identity_probe.py",
+   "sha256": "2390a49754813d5f05457e253f5860a0203a125ad38e13e101da210b78611c0c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_00/probes/p41_untrusted_page_probe.py",
+   "sha256": "564300995f2fbb034a998518bf8ef7b26511d40fcebf3aec1289ff6ab435f6aa"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_00/probes/state_history_probe.py",
+   "sha256": "d97da9c64493d193f188e19534de16be593672c661500cd591275953002c9ea6"
+  },
+  {
+   "path": "docs/predictive-intelligence/DECISIONS.md",
+   "sha256": "d47007ed906da6741b3f009f0b0b8d7e7685be4e323caa7eb7d903d33a039421"
+  },
+  {
+   "path": "docs/predictive-intelligence/EXECUTION.md",
+   "sha256": "3b8f5ddc08e67a40635abc3d6abe6a7cadb50085bfd89cab7acd2dac808c1353"
+  },
+  {
+   "path": "docs/predictive-intelligence/ROADMAP.md",
+   "sha256": "2aea1121d1ef810896a8320c2d3d7fb74c9ad4461613a99aec37ed8915c7de5b"
+  }
+ ],
+ "limitations": [
+  "Windows machines unreachable: D:\\memelab\\crawl4ai-token.txt, Crawl4AI or Maxun installs, scheduled task definitions and the Firecrawl key file are BLOCKED for verification; nothing assumed; token not read.",
+  "PR states taken from docs; unauthenticated GitHub REST answered 403 and gh has no access.",
+  "API history depth tested on one pool only; GeckoTerminal survival of pools whose liquidity was pulled is UNKNOWN.",
+  "Provider docs disagree on the GeckoTerminal free rate (10 vs 30 calls a minute); 10 adopted for planning (PI-D-010).",
+  "Known failing test not re-diagnosed; clock dependence taken from social-intel C-1.",
+  "A test opens the tracked DB in WAL mode (shm and empty wal appear; hash unchanged).",
+  "No independent skeptic in this phase (PI-D-009)."
+ ],
+ "blockers": [
+  "Independent skeptic review of Phase 00 by the orchestrator (SKEPTIC_PACKET.md)."
+ ],
+ "approvals_needed": [],
+ "next_eligible_phase": "01, after the orchestrator records an independent skeptic review of Phase 00 with no material failure"
+}
