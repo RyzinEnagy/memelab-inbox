@@ -1,0 +1,65 @@
+[
+ {
+  "id": "P17-1 a window after the last fetch reads as cut short",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "    if not complete_bars and fresh is not None and fresh < end:",
+  "new": "    if False:",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "P17-2 fetch evidence read beyond the as-of",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "\"AND observed_at<=?\", (chain, mint, pool, *FETCH_EVIDENCE, asof)).fetchone()[0]",
+  "new": "\"AND observed_at<=?\", (chain, mint, pool, *FETCH_EVIDENCE, 1e12)).fetchone()[0]",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "P17-3 OHLCV fetches leave no evidence",
+  "file": "memelab/backtest/sources/gecko.py",
+  "old": "    store.record_observation(con, kind=\"OHLCV_FETCHED\"",
+  "new": "    (lambda *a, **k: None)(con, kind=\"OHLCV_FETCHED\"",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "P17-4 refresh ignores waiting windows",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "            if mints or str(out.get(\"missing_reason\") or \"\").startswith(\"NOT_FETCHED_SINCE_WINDOW_END\"):",
+  "new": "            if mints:",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "P17-5 backup copies only the main file",
+  "file": "memelab/backtest/schema.py",
+  "old": "        s.backup(d)",
+  "new": "        d.close(); import shutil; shutil.copyfile(str(src), str(dest)); d = sqlite3.connect(dest)",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "P17-6 run files written into the repository",
+  "file": "memelab/backtest/cli.py",
+  "old": "    runner.RUNS_DIR = _runs_dir(a)",
+  "new": "    pass",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "P17-7 cohort cache misses a same-inode replacement (C4)",
+  "file": "memelab/backtest/stress.py",
+  "old": "    key = ((path, os.stat(path).st_ino, born), universe_id,",
+  "new": "    key = ((path, os.stat(path).st_ino), universe_id,",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ }
+]

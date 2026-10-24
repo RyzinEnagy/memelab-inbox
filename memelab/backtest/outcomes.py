@@ -127,6 +127,16 @@ def pool_disagreement(con, opp: dict, basis_pool: str, start: float, end: float,
     return None
 
 
+FETCH_EVIDENCE = ("OHLCV_FETCHED", "POOL_RESERVE_USD_PRESENT")
+
+
+def pool_freshness(con, chain: str, mint: str, pool: str, asof: float) -> float | None:
+    """Latest time, at or before `asof`, at which this pool's data was fetched (an OHLCV fetch, or the pool listing of
+    the same corpus run). None when the database holds no fetch evidence for the pool (synthetic or legacy data)."""
+    return con.execute(f"SELECT MAX(observed_at) FROM bt_observations WHERE chain=? AND mint=? AND pool_address=? AND kind IN ({','.join('?' * len(FETCH_EVIDENCE))}) "
+                       "AND observed_at<=?", (chain, mint, pool, *FETCH_EVIDENCE, asof)).fetchone()[0]
+
+
 def outcome_for(con, opp: dict, horizon_s: int, observed_asof: float) -> dict:
     """State and realized values for one window, from bars available at observed_asof only."""
     t, end = opp["decision_time"], opp["decision_time"] + horizon_s
@@ -145,6 +155,14 @@ def outcome_for(con, opp: dict, horizon_s: int, observed_asof: float) -> dict:
     bars = [b for b in store.bars_asof(con, chain=opp["chain"], mint=opp["mint"], pool_address=basis["pool_address"], tf=TF, cutoff=observed_asof)
             if b["start"] >= t and b["start"] < end]
     flags = ([f"POOL_BASIS_DELAYED_{delay_h}H"] if delay_h else []) + (["POOL_BASIS_FROM_BARS_ONLY"] if basis.get("from_bars_only") else [])
+    fresh = pool_freshness(con, opp["chain"], opp["mint"], basis["pool_address"], observed_asof)
+    if fresh is None:
+        flags.append("FETCH_TIME_UNKNOWN")
+    complete_bars = bool(bars) and bars[-1]["end"] >= end - TF
+    if not complete_bars and fresh is not None and fresh < end:
+        # missing bars after the last fetch are unknown, not "no trades": wait for a refresh (Phase 17, M2)
+        return {"state": "PENDING", "censored": 0, "realized": None,
+                "missing_reason": f"NOT_FETCHED_SINCE_WINDOW_END: the pool was last fetched {(end - fresh) / 3600:.1f} h before the window closed; run backtest refresh"}
     if not bars:
         last = con.execute("SELECT MAX(end) FROM bt_market_bars WHERE mint=? AND pool_address=? AND available_at<=?",
                            (opp["mint"], basis["pool_address"], observed_asof)).fetchone()[0]
@@ -561,3 +579,32 @@ def render_calibration(cal: dict) -> str:
             L.append(f"- {k}: n {s['n']}, complete {s['complete']}, censored {s['censored']}, not observable {s['not_observable']}; median close {med}; "
                      f"down 50% or more {sh}; {s['verdict']}")
     return "\n".join(L) + "\n"
+
+
+def refresh(con, budget, http_get=None, now: float | None = None, horizons=HORIZONS_S, mints: list[str] | None = None, opps: list[dict] | None = None) -> dict:
+    """Fetch new hourly bars for the basis pools of windows that wait on a refresh (or for `mints`), within `budget`
+    (gecko.Budget: call cap, spacing, backoff). Read-only public API; raw responses are kept by hash."""
+    now = now if now is not None else time.time()
+    http_get = http_get or gecko.default_http_get
+    opps = opps if opps is not None else opportunities(con)
+    want = []
+    for o in opps:
+        if mints and o["mint"] not in mints:
+            continue
+        for h in horizons:
+            out = outcome_for(con, o, h, now)
+            if mints or str(out.get("missing_reason") or "").startswith("NOT_FETCHED_SINCE_WINDOW_END"):
+                b, _ = _basis(con, o, latest=now)
+                if b and (o["chain"], o["mint"], b["pool_address"]) not in want:
+                    want.append((o["chain"], o["mint"], b["pool_address"]))
+                break
+    done, blocked = [], []
+    for chain, mint, pool in want:
+        try:
+            r = gecko.fetch_ohlcv(con, mint, pool, budget, http_get, observed_at=now, chain=chain)
+        except gecko.BudgetExhausted:
+            blocked.append({"mint": mint, "pool": pool, "status": "BUDGET_EXHAUSTED"})
+            continue
+        (done if r["status"] in ("OK", "EMPTY") else blocked).append({"mint": mint, "pool": pool, "status": r["status"], "new_bars": r.get("bars", 0)})
+        con.commit()
+    return {"pools_wanted": len(want), "fetched": done, "not_fetched": blocked, "calls": budget.calls}

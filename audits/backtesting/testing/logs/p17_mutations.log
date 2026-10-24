@@ -1,0 +1,7 @@
+fcb676a
+2026-10-24T00:55:33Z
+baseline (unmutated): exit 0 :: 2 passed in 0.43s
+[P17-1 cache key drops the database birth time (builder's C4 test as killer)] SURVIVED :: 1 passed in 0.31s
+[P17-2 cache key drops the database birth time (reviewer's same-inode test as killer)] CAUGHT :: 1 failed in 0.21s
+RESULT: FAILURE
+EXIT=1

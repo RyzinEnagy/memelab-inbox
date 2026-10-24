@@ -305,3 +305,14 @@ def test_cli_as_of_is_the_run_cutoff(tmp_path, monkeypatch, capsys):
     BC.main(["run", "--strategy", "NO_TRADE", "--as-of", "2026-10-01T00:00:00Z", "--db", str(tmp_path / "bt.sqlite")])
     assert seen["until"] == 1790812800.0
     assert "not an instruction to trade" in capsys.readouterr().out
+
+
+def test_run_files_live_next_to_the_database_given(tmp_path):
+    """L8: `backtest run --db COPY` never writes run files into the repository's data/backtest/runs/."""
+    db = tmp_path / "copy" / "bt.sqlite"
+    store.connect(db).close()
+    r = subprocess.run([sys.executable, "-m", "memelab", "backtest", "run", "--strategy", "NO_TRADE", "--label", "l8", "--db", str(db)],
+                       cwd=ROOT, capture_output=True, text=True)
+    assert r.returncode == 0, r.stderr
+    rid = json.loads(r.stdout)["run_id"]
+    assert (tmp_path / "copy" / "runs" / rid / "result.json").exists() and not (ROOT / "data" / "backtest" / "runs" / rid).exists()

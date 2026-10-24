@@ -3,7 +3,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import sqlite3
 import sys
+from pathlib import Path
 from datetime import datetime, timezone
 
 from . import ENGINE_VERSION, store
@@ -30,9 +32,15 @@ def cmd_status(a):
     print(json.dumps(out, indent=1))
 
 
+def _runs_dir(a):
+    from pathlib import Path
+    return (Path(a.db).parent / "runs") if getattr(a, "db", None) else (store.ROOT / "data" / "backtest" / "runs")
+
+
 def cmd_run(a):
     from .engine import EngineConfig
     from . import runner
+    runner.RUNS_DIR = _runs_dir(a)                       # run files live next to the database they belong to
     cfg = EngineConfig(account_usd=a.account_usd, size_usd=a.size_usd, max_positions=a.max_positions, max_exposure_frac=a.max_exposure,
                        entry_impact_cap=a.entry_impact_cap, max_drawdown_frac=a.max_drawdown)
     con = _con(a)
@@ -125,7 +133,7 @@ def cmd_inspect(a):
            "engine_version": x["engine_version"], "cost_model_version": x["cost_model_version"], "code_sha": x["code_sha"], "dataset_hash": x["dataset_hash"],
            "result_hash": x["result_hash"], "ledger_hash": res.get("ledger_hash"), "config": cfg,
            "summary": {k: res.get(k) for k in ("tokens", "n_trades", "pnl_usd", "mean_ret", "mean_paper_ret_mid", "counts", "wall_s")},
-           "files": [str(p.relative_to(store.ROOT)) for p in sorted((store.ROOT / "data" / "backtest" / "runs" / x["run_id"]).glob("*"))],
+           "files": [str(p) for p in sorted((_runs_dir(a) / x["run_id"]).glob("*"))],
            "reproduce": " ".join(args) + "  (same code and data give the same run id and a cache HIT; changed code or data give a new id)",
            "disclosure": "research backtest on historical data; not a forecast and not an instruction to trade"}
     if a.json:
@@ -180,6 +188,27 @@ def cmd_outcomes(a):
     print(json.dumps(out, indent=1, default=str))
 
 
+def cmd_refresh(a):
+    """Network, read-only: fetch new hourly bars from GeckoTerminal for windows waiting on a refresh (or --mints)."""
+    from . import outcomes as O
+    from .sources import gecko
+    con = _con(a)
+    store.RAW_DIR = (Path(a.db).parent / "raw") if a.db else store.RAW_DIR
+    out = O.refresh(con, gecko.Budget(max_calls=a.max_calls, min_spacing_s=a.spacing), mints=a.mints)
+    print(json.dumps(out, indent=1, default=str))
+
+
+def cmd_backup(a):
+    """Consistent copy of the live research database (sqlite backup API; includes what is still in the WAL file)."""
+    from . import schema
+    src = a.db or store.BT_DB_PATH
+    dest = schema.backup_db(src, a.to)
+    con = sqlite3.connect(f"file:{dest}?mode=ro", uri=True)
+    n = {t: con.execute(f"SELECT COUNT(*) FROM {t}").fetchone()[0] for t in ("bt_market_bars", "bt_universe_members", "bt_assessments", "bt_outcomes")}
+    con.close()
+    print(json.dumps({"backup": str(dest), "rows": n}, indent=1))
+
+
 def cmd_schema(a):
     from . import report
     print(json.dumps(report.json_schema(), indent=1))
@@ -221,6 +250,11 @@ def add_subparser(sp):
     q.add_argument("--day", help="YYYY-MM-DD for the daily report"); q.add_argument("--strategy"); q.add_argument("--since")
     q.add_argument("--with-launches", action="store_true", help="segment by the lab's launch-monitor records (reads git history)")
     q.add_argument("--json", action="store_true"); q.add_argument("--db"); q.set_defaults(fn=cmd_outcomes)
+    q = ssp.add_parser("refresh", help="NETWORK (read-only): fetch new hourly bars for windows waiting on a refresh, within a call budget")
+    q.add_argument("--mints", nargs="*"); q.add_argument("--max-calls", type=int, default=20); q.add_argument("--spacing", type=float, default=3.0)
+    q.add_argument("--db"); q.set_defaults(fn=cmd_refresh)
+    q = ssp.add_parser("backup", help="consistent copy of the research database while it may be in use")
+    q.add_argument("--to", required=True); q.add_argument("--db"); q.set_defaults(fn=cmd_backup)
     q = ssp.add_parser("schema", help="JSON Schema of the report document")
     q.set_defaults(fn=cmd_schema)
 

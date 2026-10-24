@@ -504,8 +504,87 @@ def test_cohort_cache_follows_a_replaced_database_file(tmp_path):
     first = S.empirical_cohort(c1, "WATCH", min_n=1, asof=T0 + 40 * H)
     c1.close()
     build(b, -0.05)
-    os.replace(b, a)
+    for suffix in ("-wal", "-shm"):
+        for f in (a, b):
+            Path(str(f) + suffix).unlink(missing_ok=True)
+    ino = os.stat(a).st_ino
+    with open(a, "r+b") as fh:                                      # same path, same inode, different database (C4)
+        fh.truncate(0); fh.write(b.read_bytes())
+    assert os.stat(a).st_ino == ino
     c2 = store.connect(a)
     second = S.empirical_cohort(c2, "WATCH", min_n=1, asof=T0 + 40 * H)
     c2.close()
     assert first["ret_p10_p50_p90"][1] != second["ret_p10_p50_p90"][1]
+
+
+# ---------------------------------------------------------------- Phase 17: fetch evidence, refresh, backup
+
+def _fetch_evidence(con, mint, pool_addr, t, kind="POOL_RESERVE_USD_PRESENT"):
+    store.record_observation(con, kind=kind, provider="test", payload={"pool": pool_addr, "t": t}, chain="solana", mint=mint, pool_address=pool_addr,
+                             event_time=t, observed_at=t, available_at=t)
+    con.commit()
+
+
+def test_a_window_after_the_last_fetch_waits_instead_of_reading_as_dead(con):
+    """M2: bars were last fetched 2 h into the window; a pass days later must not call the token dead or cut short."""
+    p = pool(con, M1); bars(con, M1, p, T0 - 24 * H, 24); bars(con, M1, p, T0, 2)
+    _fetch_evidence(con, M1, p, T0 + 2 * H + 900)
+    thesis(con, M1)
+    o = opp(con, M1)
+    later = T0 + 5 * 86400
+    out = O.outcome_for(con, o, 24 * 3600, later)
+    assert out["state"] == "PENDING" and out["missing_reason"].startswith("NOT_FETCHED_SINCE_WINDOW_END")
+    _fetch_evidence(con, M1, p, T0 + 30 * H, kind="OHLCV_FETCHED")          # a refresh after the window: nothing new traded
+    out2 = O.outcome_for(con, o, 24 * 3600, later)
+    assert out2["state"] == "CENSORED" and out2["missing_reason"].startswith("BARS_END_EARLY")
+    assert O.outcome_for(con, o, 24 * 3600, T0 + 29 * H)["state"] == "PENDING"     # an as-of before that refresh still waits
+
+
+def test_refresh_fetches_the_waiting_pools_within_budget(con, monkeypatch):
+    import json as _j
+    from memelab.backtest.sources import gecko
+    p = pool(con, M1); bars(con, M1, p, T0 - 24 * H, 24); bars(con, M1, p, T0, 2)
+    _fetch_evidence(con, M1, p, T0 + 2 * H + 900)
+    thesis(con, M1)
+    now = T0 + 3 * 86400
+    rows = [[T0 + i * H, 1.0, 1.01, 0.99, 1.0, 100.0] for i in range(2, 30)]
+    calls = []
+
+    def fake_get(url):
+        calls.append(url)
+        return 200, _j.dumps({"data": {"attributes": {"ohlcv_list": rows}}}).encode()
+    out = O.refresh(con, gecko.Budget(max_calls=5, min_spacing_s=0.0, sleep=lambda s: None), http_get=fake_get, now=now)
+    assert out["pools_wanted"] == 1 and len(calls) == 1 and out["fetched"][0]["new_bars"] > 0 and p in calls[0]
+    assert O.outcome_for(con, opp(con, M1), 24 * 3600, now)["state"] == "COMPLETE"
+    assert O.refresh(con, gecko.Budget(max_calls=0, min_spacing_s=0.0), http_get=fake_get, now=now, mints=[M1])["not_fetched"][0]["status"] == "BUDGET_EXHAUSTED"
+
+
+def test_backup_keeps_rows_still_in_the_wal_file(tmp_path):
+    """M1: moving bt.sqlite alone can lose recent commits under WAL; the backup command copies them."""
+    import subprocess
+    import sys
+    db = tmp_path / "live" / "bt.sqlite"
+    c = store.connect(db)
+    for k in range(50):
+        thesis(c, f"Fw{k:02d}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapump")
+    assert (tmp_path / "live" / "bt.sqlite-wal").exists()
+    r = subprocess.run([sys.executable, "-m", "memelab", "backtest", "backup", "--to", str(tmp_path / "copy.sqlite"), "--db", str(db)],
+                       cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True)
+    c.close()
+    assert r.returncode == 0, r.stderr
+    import json as _j
+    assert _j.loads(r.stdout)["rows"]["bt_universe_members"] == 50
+
+
+def test_refresh_of_a_pool_that_stopped_trading_finalizes_the_window(con):
+    """P17-3: a refresh that brings no new bars is still evidence: the window is cut short, not waiting forever."""
+    import json as _j
+    from memelab.backtest.sources import gecko
+    p = pool(con, M2); bars(con, M2, p, T0 - 24 * H, 24); bars(con, M2, p, T0, 2)
+    _fetch_evidence(con, M2, p, T0 + 2 * H + 900)
+    thesis(con, M2)
+    now = T0 + 3 * 86400
+    rows = [[T0 + i * H, 1.0, 1.01, 0.99, 1.0, 100.0] for i in range(0, 2)]          # nothing traded after hour 2
+    O.refresh(con, gecko.Budget(max_calls=5, min_spacing_s=0.0, sleep=lambda s: None), http_get=lambda u: (200, _j.dumps({"data": {"attributes": {"ohlcv_list": rows}}}).encode()), now=now)
+    out = O.outcome_for(con, opp(con, M2), 24 * 3600, now)
+    assert out["state"] == "CENSORED" and out["missing_reason"].startswith("BARS_END_EARLY")

@@ -1,0 +1,9 @@
+baseline (unmutated): exit 0 :: 48 passed in 4.96s
+[P17-1 a window after the last fetch reads as cut short] CAUGHT :: 1 failed, 21 passed in 0.73s
+[P17-2 fetch evidence read beyond the as-of] CAUGHT :: 1 failed, 21 passed in 0.82s
+[P17-3 OHLCV fetches leave no evidence] CAUGHT :: 1 failed, 24 passed in 1.12s
+[P17-4 refresh ignores waiting windows] CAUGHT :: 1 failed, 22 passed in 0.75s
+[P17-5 backup copies only the main file] CAUGHT :: 1 failed, 23 passed in 1.06s
+[P17-6 run files written into the repository] CAUGHT :: 1 failed, 22 passed in 3.22s
+[P17-7 cohort cache misses a same-inode replacement (C4)] CAUGHT :: 1 failed, 20 passed in 0.73s
+RESULT: all mutations caught

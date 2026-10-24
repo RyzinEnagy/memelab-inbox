@@ -1,0 +1,20 @@
+[
+ {
+  "id": "P17-1 cache key drops the database birth time (builder's C4 test as killer)",
+  "file": "memelab/backtest/stress.py",
+  "old": "key = ((path, os.stat(path).st_ino, born), universe_id",
+  "new": "key = ((path, os.stat(path).st_ino), universe_id",
+  "tests": [
+   "tests/test_backtest_outcomes.py::test_cohort_cache_follows_a_replaced_database_file"
+  ]
+ },
+ {
+  "id": "P17-2 cache key drops the database birth time (reviewer's same-inode test as killer)",
+  "file": "memelab/backtest/stress.py",
+  "old": "key = ((path, os.stat(path).st_ino, born), universe_id",
+  "new": "key = ((path, os.stat(path).st_ino), universe_id",
+  "tests": [
+   "audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_cohort_cache_file_replaced_at_the_same_path"
+  ]
+ }
+]

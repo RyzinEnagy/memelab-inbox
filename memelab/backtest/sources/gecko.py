@@ -123,6 +123,10 @@ def fetch_ohlcv(con, mint: str, pool: str, budget: Budget, http_get=default_http
     if d is None:
         return {"pool": pool, "status": "SOURCE_BLOCKED" if status in (0, 429) else f"HTTP_{status}", "bars": 0}
     rows = ((d.get("data") or {}).get("attributes") or {}).get("ohlcv_list") or []
+    # fetch evidence: the pool's bars are known up to this time even when nothing new traded (outcomes need it, Phase 17 M2)
+    store.record_observation(con, kind="OHLCV_FETCHED", provider=PROVIDER, payload={"pool": pool, "rows": len(rows), "t": observed_at,
+                             "last": max((float(r[0]) for r in rows if r), default=None)}, chain=chain, mint=mint, pool_address=pool,
+                             event_time=observed_at, observed_at=observed_at, available_at=observed_at, value_num=float(len(rows)), raw_ref=raw)
     n, skipped_partial, bad = 0, 0, 0
     starts = [r[0] for r in rows if r]
     dup = {x for x in starts if starts.count(x) > 1}

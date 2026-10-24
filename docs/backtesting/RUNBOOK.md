@@ -21,8 +21,13 @@ All times are UTC epoch seconds inside the module, and every report prints UTC. 
   - Scout, analyze and social alerts then behave exactly as without the module: the hook returns before opening any database.
   - Existing research keeps running.
   - No data is deleted.
-- If the research database itself is suspect, move it aside (for example `data/backtest/bt.sqlite` to `bt.sqlite.hold`). The next use starts an empty one. Never delete it: it is the record of what was known when.
-- Schema rollback (bt tables only, destroys bt rows; back the file up first): `python -c "from memelab.backtest import schema, store; schema.rollback(store.connect(), 0)"`. The lab database is untouched. Phase 17 tested a rollback followed by a re-apply in a clean clone.
+- The switch covers the hook in scout and analyze and the alert label line. Commands run by name still work when the policy is off, because asking for them is explicit: `backtest stress`, `backtest run` and `backtest outcomes ...`. To stop them, do not run them, and remove any scheduled task that calls them.
+- If the research database itself is suspect:
+  1. Stop every process that writes to it (scout or analyze with the module on, `backtest` commands, scheduled tasks).
+  2. Take a consistent copy first: `python -m memelab backtest backup --to data/backtest/bt.backup.sqlite`. The database runs in WAL mode, so recent commits can sit in `bt.sqlite-wal`; the backup command includes them.
+  3. Then move `bt.sqlite`, `bt.sqlite-wal` and `bt.sqlite-shm` aside together. The next use starts an empty database.
+  Never delete the database: it is the record of what was known when.
+- Schema rollback (bt tables only, destroys bt rows; take a backup first): `python -c "from memelab.backtest import schema, store; schema.rollback(store.connect(), 0)"`. The lab database is untouched. Phase 17 tested a rollback followed by a re-apply in a clean clone.
 
 ## Policy settings (scenario config)
 
@@ -51,19 +56,23 @@ A changed policy is a new request key: earlier assessments stay as they were.
 | queued DEEP assessments | `python -m memelab backtest deep --limit 20` |
 | counts and wall time | `python -m memelab backtest assess-stats` |
 | JSON Schema of the report | `python -m memelab backtest schema` |
+| consistent backup of the research database | `python -m memelab backtest backup --to PATH` |
+| new bars for windows waiting on a refresh (network, read-only) | `python -m memelab backtest refresh [--mints ...] [--max-calls 20] [--spacing 3]` |
 
 ## Manual replays
 
 - Strategy replay with a cutoff: `python -m memelab backtest run --strategy ID [--params JSON] --as-of 2026-10-20T00:00:00Z [--decide-from UTC --decide-until UTC] --label NAME`.
   - Nothing after the as-of is read.
-  - The same code and data give the same run id, and the second call is a cache HIT.
+  - The same code (the same commit) and data give the same run id, and the second call is a cache HIT. The ledger hash depends only on the data, the config and the engine version, so it also reproduces across commits.
   - Changed code or data give a new id; old runs are never overwritten.
-- Inspect and reproduce a stored run: `python -m memelab backtest inspect RUN_ID`. It prints the config, the code, dataset, result and ledger hashes, the stored files, and the exact command that reproduces the run.
+  - Run files go next to the database used: `data/backtest/runs/`, or `runs/` beside a `--db` copy.
+- Inspect and reproduce a stored run: `python -m memelab backtest inspect RUN_ID`. It prints the config, the code, dataset, result and ledger hashes, the stored files, and the exact command that reproduces the run. The result hash includes the run's creation time, so it never reproduces; compare ledger hashes.
 - Replay an assessment at its own time: `backtest stress ... --now UTC`. The cohort evidence only uses what the lab had recorded and published by then.
 
 ## Backfills
 
-- Corpus fetches go through `memelab/backtest/sources/corpus.py` and `gecko.py`. Each fetch has a call budget, at least 3 s between calls, exponential backoff on 429 and 5xx, and raw responses saved by hash. The Phase 06 runners are `audits/backtesting/data/run_corpus2.py` and `run_corpus3.py`.
+- Routine refresh for outcome tracking: `python -m memelab backtest refresh --max-calls 20`. It fetches new hourly bars for the basis pools of windows that wait on a refresh, records the fetch time even when nothing new traded, and stays inside the call budget.
+- Corpus fetches go through `memelab/backtest/sources/corpus.py` and `gecko.py`. Each fetch has a call budget, at least 3 s between calls, exponential backoff on 429 and 5xx, and raw responses saved by hash. The Phase 06 runners `audits/backtesting/data/run_corpus2.py` and `run_corpus3.py` are records of how the corpus was built. They hard-code that session's paths: adapt the paths before reusing them.
   - GeckoTerminal answered 429 at 2.2 s pacing in Phase 01. Keep the spacing at 3 s or more.
   - A mint counts as done only after its bar fetches complete (`CORPUS_MINT_DONE`), so an interrupted run resumes cleanly.
 - A backfilled bar is available at its close plus the modeled lag. A later different version is a revision, available only from its own fetch time, so an earlier decision never sees it.
@@ -73,13 +82,14 @@ A changed policy is a new request key: earlier assessments stay as they were.
 
 - `python -m memelab backtest outcomes track` records outcomes at 1, 6, 24 and 72 h for every frozen lab opportunity and every stored assessment.
   - It runs at most once per hour (`--min-interval`) and skips when another writer is busy.
+  - It never fetches. A window whose pool was last fetched before the window closed stays PENDING (NOT_FETCHED_SINCE_WINDOW_END) until `backtest refresh` brings bars or shows nothing traded. A stale pass never turns missing data into "cut short" or "dead".
   - Unchanged results add no rows.
   - A provider revision adds a row that supersedes the old one.
 - `outcomes calibrate [--horizon-h 24] [--with-launches]` gives segments with counts, censoring and a selection-bias flag. A segment with fewer than 30 complete windows is INSUFFICIENT_SAMPLE.
 - `outcomes drift` checks provider coverage, stale pending windows, calibration shifts, provider revisions and collector health.
 - `outcomes daily --day YYYY-MM-DD --asof UTC` produces a replayable daily report, byte-identical for the same as-of.
 - `outcomes shadow --strategy ID --since 2026-10-23T16:00:00Z` runs a frozen strategy forward without saving a run.
-- No scheduled task was created. To run tracking every hour, Elving has to approve a scheduled task. Note that its network fetch step (bars for new windows) needs the GeckoTerminal budget above.
+- No scheduled task was created. To run tracking every hour, Elving has to approve a scheduled task that runs `backtest refresh` and then `backtest outcomes track`, within the GeckoTerminal budget above.
 - Deviations open a REEVALUATION_PROPOSED record. A new evaluation needs a new pre-registration, a new sealed split that starts after 2026-10-23 16:00 UTC, and a new strategy version. In-place retuning is refused.
 
 ## Reading the output
@@ -96,6 +106,21 @@ A changed policy is a new request key: earlier assessments stay as they were.
 - Stress scenarios are hypothetical with no probabilities. The cohort percentiles are empirical frequencies for past tokens with the same lab status. Windows that were cut short count at their last traded price. Read the selection-bias line.
 - Evidence classes: FACT, INFERENCE, HEURISTIC and UNKNOWN are marked on every group of the JSON report.
 
+## Quality statuses
+
+| Where | Status | Meaning |
+|---|---|---|
+| bars | AVAIL_MODELED | first version, available at close plus the modeled 300 s lag |
+| bars | BACKFILLED | fetched long after the close |
+| bars | REVISION | a later, different version; available only from its own fetch time |
+| bars | DUP_TS_IN_RESPONSE | the provider returned the same start twice |
+| assessment state | COMPLETE, PARTIAL_WITH_LIMITATIONS, INSUFFICIENT_HISTORY, INSUFFICIENT_EXECUTION_DATA, UNSUPPORTED_POOL, STALE_DATA, INVALID_TOKEN_ID, RISK_FATAL_FLAW, SOURCE_BLOCKED, ERROR | see REPORTS.md |
+| evidence tier | TOKEN_SPECIFIC, HISTORICAL_COHORT, SCENARIO_ONLY, UNAVAILABLE | what kind of evidence backs the assessment |
+| execution basis | EXACT_CPMM, QUOTE_OBSERVED, LIQ_SNAPSHOT_APPROX, UNSUPPORTED_POOL | how a fill was priced |
+| outcome window | COMPLETE, CENSORED, NOT_OBSERVABLE, PENDING | see OUTCOMES.md; PENDING includes NOT_FETCHED_SINCE_WINDOW_END |
+| catalyst source | OK, DEGRADED, DOWN | collector health for a batch |
+| validation verdict | INSUFFICIENT_SAMPLE and the others in validation.py | sealed-test result per strategy |
+
 ## Diagnostics and source outages
 
 | Symptom | Meaning | Action |
@@ -109,6 +134,7 @@ A changed policy is a new request key: earlier assessments stay as they were.
 | cohort INSUFFICIENT_HISTORY with a selection-bias flag | too few measurable past tokens | expected with today's corpus |
 | POOL_DISAGREEMENT windows | pools of one mint closed more than 30% apart for a lasting share of hours | not measured by design; see OUTCOMES.md |
 | catalyst source DOWN or DEGRADED | the collector failed | no record and no signal are created; the next run retries |
+| many outcome windows PENDING with NOT_FETCHED_SINCE_WINDOW_END | bars were not refreshed after those windows closed | run `backtest refresh`, then `outcomes track` |
 
 Collectors: the existing lab catalyst layer (Firecrawl) and one-shot captures through `sources/webcapture.py` with allowlists and page caps. Maxun is NOT_ADOPTED. No schedule exists, and none may be created without Elving's approval. Credentials never enter this module's records, and status text is redacted.
 
