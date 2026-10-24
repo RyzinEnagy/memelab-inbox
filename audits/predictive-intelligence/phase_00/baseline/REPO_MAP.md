@@ -29,7 +29,9 @@ All tips after `git fetch --all --prune` on 2026-10-24T00:2xZ.
 
 Ancestry checks: `f084b60` and `3f27fc7` are ancestors of HEAD (`git merge-base --is-ancestor` exit 0). `698f73b` (the main data commit the audit branches pin) is not an ancestor of HEAD; it differs from `f084b60` only in `data/state/latest.json`.
 
-Pull requests (from docs, not independently verified: `gh` GraphQL is blocked here and an unauthenticated REST call answered 403): PR #1 merged social-intel 00 to 18 into `main` as `f084b60`; draft PRs #2 and #3 belong to the remediation and verification branches. No PR exists for `feature/social-intelligence` or `feature/catalyst-firecrawl` (social HANDOFF.md "Commit and push"; FIRECRAWL.md "Scheduled runs").
+Pull requests (checked in repair pass 2 with `git ls-remote`, after the skeptic's check 1): `refs/pull/1/head` is `629d402` with no merge ref (PR #1, merged into `main` as `f084b60`); `refs/pull/2/head` `3b434e1` (remediation branch) and `refs/pull/3/head` `2605b5f` (verification branch) both have merge refs, so they are open (drafts per the verification HANDOFF). No PR exists for `feature/social-intelligence` or `feature/catalyst-firecrawl`. The `gh` GraphQL route is blocked here and an unauthenticated REST call answered 403.
+
+Scheduled runs executing `main`: the 2026-10-23 export on `main` holds exactly the tables of `state.py` `TABLES` before `5bfb4f3` (no `catalyst_page_fetches`), which is consistent with `main`'s code; `state.py` is identical at `f084b60` and `3f27fc7`, so the export alone shows pre-Firecrawl code, and the rest rests on FIRECRAWL.md "Scheduled runs" and SKILL.md:33 (skeptic check 5).
 
 ## Authoritative code line for this initiative
 
@@ -39,7 +41,7 @@ Consequence for later phases: anything the predictive engine adds reaches the sc
 
 ## Python package (actual files, HEAD)
 
-406 tracked files. Tracked code outside tests: `memelab/` (package), `tools/` (release_e2e.py, release_audit.py, direct/), `bridge/` (older copies of the JS collectors), `commit_file.py`, `tools_bundle.py`, `bootstrap.sh`.
+406 tracked files. Tracked code outside tests: `memelab/` (package), `tools/` (release_e2e.py, release_audit.py, direct/), `bridge/` (the live collector copies: the six shared files are byte-identical to `memelab/bridge/` (`cmp`), and SKILL.md:33 and tools/direct/direct_refresh.py:8, :22 load `bridge/*.js` from main's raw URL at run time), `commit_file.py`, `tools_bundle.py`, `bootstrap.sh`.
 
 | Path | Lines | Role |
 |---|---:|---|

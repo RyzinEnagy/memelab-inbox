@@ -4,11 +4,11 @@ Contract: [EXECUTION.md](EXECUTION.md). Choices: [DECISIONS.md](DECISIONS.md). C
 
 Status values: PASS, NEEDS_REVIEW, TEST_ONLY, BLOCKED, FAILED, NOT STARTED.
 
-Every gate also includes the standing gate: package checksums verified, predecessor gate re-run independently, full suite run and recorded with no new failure, no stray files, nothing written under tracked `inbox/`, `state/`, `data/`, an independent skeptic's new counterexample recorded, HANDOFF.md rewritten, local commit made.
+Every gate also includes the standing gate: package checksums verified, predecessor gate re-run independently, full suite run and recorded with no new failure, no stray files, nothing written under tracked `inbox/`, `state/`, `data/`, an independent skeptic's new counterexample recorded (orchestrator-run, PI-D-013), HANDOFF.md rewritten, local commit made.
 
 | Phase | Objective (from the phase prompt) | Entry gate | Deliverables and phase gate (from the phase prompt) | Status |
 |---|---|---|---|---|
-| 00 | Audit the actual lab and establish an executable baseline | none | `baseline/REPO_MAP.md`, `FEATURE_TRACE.md`, `COMMIT_AND_TEST_LOG.md`, `DATA_COVERAGE.md`, `EXISTING_PREDICTION_INVENTORY.md`; pinned HEAD, successful evidence commands or explicit blocker | NEEDS_REVIEW (2026-10-24): every baseline item reproduced; the independent skeptic could not be started inside the phase run (PI-D-009). Orchestrator runs it from `audits/predictive-intelligence/phase_00/SKEPTIC_PACKET.md` |
+| 00 | Audit the actual lab and establish an executable baseline | none | `baseline/REPO_MAP.md`, `FEATURE_TRACE.md`, `COMMIT_AND_TEST_LOG.md`, `DATA_COVERAGE.md`, `EXISTING_PREDICTION_INVENTORY.md`; pinned HEAD, successful evidence commands or explicit blocker | PASS (2026-10-24, after repair pass 2): NEEDS_REVIEW at `dea735c`; the orchestrator's independent skeptic found 1 MATERIAL (clock of `tokens.first_seen_at`, hidden thesis write lag) and 5 MINOR findings, all verified and corrected (PI-D-011 to PI-D-013) |
 | 01 | Freeze measurable prediction objectives and the minimally invasive architecture | PASS from 00 | `architecture/GAP_MATRIX.csv`, `PLANNED_SEAMS.md`, `TARGET_REGISTRY.md`, `ACCEPTANCE_METRICS.md`, `DEPENDENCY_GRAPH.md`; objective, labels and placement pre-registered with no duplicate subsystem | NOT STARTED |
 | 02 | Broad, verifiable, diversified discovery of prediction tools | PASS from 01 | `research/SEARCH_LOG.md`, `CANDIDATES.csv` (at least 45 unique verified), `SHORTLIST.csv` (at least 20), `EXCLUSIONS.md`; audited reproducible query corpus | NOT STARTED |
 | 03 | Inspect candidate code, score and rank the strongest transferable repos | PASS from 02 | `research/REVIEWS/*.md` (at least 20), `SCORECARD.csv`, `RANKED_TOP10.md`, `CATEGORY_WINNERS.md`, `LICENSE_AND_SECURITY_GATE.md`, `INDEPENDENT_RESCORE.md`; reproducible evidence-backed top ten | NOT STARTED |
@@ -37,3 +37,6 @@ Every gate also includes the standing gate: package checksums verified, predeces
 - Backtesting & Stress-Testing v1.2 is not installed on any branch: BACKTEST_NOT_AVAILABLE (PI-D-006).
 - Code reaches the scheduled runs only after a merge into `main` (PI-D-005).
 - Stored thesis scores depend on the code version and inputs that produced them, neither of which is recorded (PI-D-008).
+- `theses.created_at` is the collector-run start, written a median 16.9 min (max 116.5 min) later; never a decision or availability time without a conservative delay or a recorded capture time (PI-D-011). Launch-cohort outcomes: 19 (24 h), 8 (7 d), 2 (30 d) of 1,422.
+- Symbol-only catalyst links and alerts are not identity (PI-D-007, PI-D-012).
+- The independent skeptic is run by the orchestrator, then folded in by a repair pass (PI-D-013).

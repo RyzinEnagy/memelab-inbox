@@ -39,10 +39,29 @@ The catalyst matcher stores a mint link from a ticker or name search (memelab/ca
 
 A thesis row records neither the result files that fed it nor the code version (db.py:171). Re-running HEAD on the HIGGS inputs changed pool facts, and an incomplete input set changed score, status and fatal flag; the code of 2026-10-06 (`b6c424d`) reproduced the stored report line for line (lineage probe). Any use of stored scores, statuses or snapshot fields as features or labels must carry the export commit SHA as the version, or recompute with a pinned code SHA and recorded inputs. One thesis time stands for inputs fetched up to about 50 minutes apart (cli.py:44, collector.js:86); a conservative availability time for exported rows is the git commit time of the export.
 
-## PI-D-009 Independent skeptic when the phase agent cannot start one (ADOPTED, 2026-10-24)
+## PI-D-009 Independent skeptic when the phase agent cannot start one (SUPERSEDED by PI-D-013, 2026-10-24)
 
 The attack step needs a fresh-context skeptic that receives artifacts and code paths, not conclusions. Phase 00 ran inside a subagent with no tool to start another agent, and a nested `claude` CLI session would have been an LLM call outside PI-D-003. Rule: the phase agent writes `SKEPTIC_PACKET.md`, runs and labels its own adversarial pass as not independent, and leaves the phase NEEDS_REVIEW; the orchestrator runs the independent skeptic and records its counterexample before marking the phase PASS.
 
 ## PI-D-010 GeckoTerminal planning rate (ADOPTED, 2026-10-24)
 
 The current GeckoTerminal OpenAPI spec says the public API is "limited to approximately 10 calls/minute". The lab's collector paces GeckoTerminal for about 30 a minute (collector.js:78-79), matching an older CoinGecko support article. This initiative plans any free GeckoTerminal backfill at no more than 10 calls a minute, bounded per run, with 429 handling, and records the retrieval time of every candle (a backfill read today is not evidence of what was available on the candle's date, package P04 and P07).
+
+## PI-D-011 theses.created_at is not a decision or availability time (ADOPTED, 2026-10-24, Phase 00 repair pass 2, skeptic F1)
+
+`theses.created_at` (and every other time `persist_result` writes from `t`: `snapshot_json.t`, market and pool snapshots, quotes, holders, rejections) is the start time of the newest collector run among the thesis's input files (cli.py:44, collector.js:86), not the moment the thesis existed. The thesis row is written later. The only stored write time is `tokens.first_seen_at` / `last_seen_at`, wall clock `db.now()` (db.py:254-255, :288-299), set in the same transaction as the first thesis insert when persist_result creates the token row (pipeline.py:197, :243). Measured over all 89 exports on `main`: for 149 of 248 mints the earliest `first_seen_at` is after the earliest thesis `created_at` by p10 7.7, median 16.9, p90 28.7, max 116.5 minutes; in the tracked DB 8 of 8 tokens, 6.2 to 9.6 minutes. Inputs can be up to about 50 minutes older than `created_at` (FEATURE_TRACE.md gap 2).
+
+Rules for every later phase:
+
+1. Never use `theses.created_at` (or the other `t`-stamped columns) as `decision_time` or `available_at` without either a conservative delay that covers the measured write lag (at least the observed maximum, 116.5 minutes, unless a phase measures and justifies a different bound) or a separately recorded capture time. The conservative public availability time for anything in a state export remains the export's git commit time (PI-D-008).
+2. Do not filter a historical universe with `tokens.first_seen_at <= cutoff`: it is a write time and drops mints that already had theses.
+3. Phase 05 turns the skeptic's check (`audits/predictive-intelligence/phase_00/skeptic/skeptic_00_checks.py` section 2, or the SQL `SELECT COUNT(*) FROM tokens k JOIN (SELECT mint, MIN(created_at) c FROM theses GROUP BY mint) t USING(mint) WHERE k.first_seen_at > t.c` on an imported export) into an executable fixture test, and the feature store records a capture or write time for every decision record it creates.
+
+## PI-D-012 Symbol-only catalyst alerts are not identity (ADOPTED, 2026-10-24, extends PI-D-007, skeptic F3)
+
+catalyst/monitor.py:45-50 raises a DETERIORATION alert, keyed by mint, for every watched or linked token whose symbol appears in an unlinked NEGATIVE event title; with 10 XMR mints on record one headline would alert all of them. The matcher also upserts a `tokens` row for the linked mint and fills its symbol and name (match.py:165-166), which sets that row's `first_seen_at`. This initiative excludes such alerts from identity, features and labels, and does not treat a `tokens` row created by the matcher as evidence that the lab analysed that mint. The existing code is not changed.
+
+## PI-D-013 The orchestrator runs the independent skeptic (ADOPTED, 2026-10-24; supersedes PI-D-009)
+
+Phase agents have no tool to start another agent. From Phase 01 on: the phase agent writes `audits/predictive-intelligence/phase_XX/SKEPTIC_PACKET.md` (artifacts and code paths, no conclusions) and labels any adversarial pass of its own as not independent; the orchestrator runs an independent skeptic agent with a fresh context and returns its review; the phase agent folds the review in as a repair pass (verify each finding, correct records, copy the review into `audits/predictive-intelligence/phase_XX/skeptic/`) before the phase can be PASS. Phase 00 followed this sequence.
+

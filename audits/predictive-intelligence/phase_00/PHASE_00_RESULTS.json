@@ -1,11 +1,11 @@
 {
  "phase": "00",
  "title": "Audit actual Memecoin Lab and establish an executable baseline",
- "status": "NEEDS_REVIEW",
- "status_reason": "Every baseline item reproduced from source and commands; the independent fresh-context skeptic could not be started inside the phase run (no subagent tool; nested claude CLI would be an unapproved LLM call). PI-D-009.",
+ "status": "PASS",
+ "status_reason": "All gate items reproduced. Independent skeptic run by the orchestrator (PI-D-013): 1 MATERIAL finding (F1, clock of tokens.first_seen_at and the hidden thesis write lag) and 5 MINOR (F2 to F6), all verified and corrected in repair pass 2; PI-D-011 to PI-D-013 added. Was NEEDS_REVIEW at dea735c.",
  "branch": "feature/predictive-intelligence",
  "head_before": "f99c6c7",
- "head_after": "59a2cfc5bc21685607cfa9ee15e40e35ef24b119",
+ "head_after": "repair pass 2 commit on top of dea735c (read with git log -1; this file is part of it)",
  "generated_at_utc": "2026-10-24",
  "checks": [
   {
@@ -96,7 +96,7 @@
    "name": "state history",
    "command": "python3 audits/predictive-intelligence/phase_00/probes/state_history_probe.py origin/main <scratch>/out.json",
    "exit_code": 0,
-   "result": "89 versions, 1,801 thesis snapshots, 248 mints, 93 with 2+ priced snapshots",
+   "result": "89 versions, 1,801 thesis snapshots, 248 mints, 93 with 2+ priced snapshots; after the F2 fix launch cohort 19/8/2 outcomes, rug_flag NULL 1,422; summary only, not for label building",
    "pass": true
   },
   {
@@ -136,16 +136,16 @@
   },
   {
    "name": "independent skeptic",
-   "command": "none available in the phase run",
-   "exit_code": null,
-   "result": "not run; SKEPTIC_PACKET.md prepared; own adversarial pass recorded as not independent",
-   "pass": false
+   "command": "orchestrator-run independent skeptic; review audits/predictive-intelligence/phase_00/skeptic/PHASE_00_SKEPTIC.md",
+   "exit_code": 0,
+   "result": "1 MATERIAL (F1) and 5 MINOR (F2 to F6), all verified and fixed in repair pass 2; counterexample recorded in PHASE_00_EVIDENCE.md with the check that catches it",
+   "pass": true
   },
   {
    "name": "no production change",
    "command": "git diff --name-only f99c6c7..HEAD",
    "exit_code": 0,
-   "result": "git diff --name-only f99c6c7..59a2cfc lists 18 files, all under docs/predictive-intelligence/ and audits/predictive-intelligence/",
+   "result": "git diff --name-only f99c6c7..HEAD lists only docs/predictive-intelligence/ and audits/predictive-intelligence/ files",
    "pass": true
   },
   {
@@ -168,6 +168,34 @@
    "exit_code": 0,
    "result": "Needs action: no",
    "pass": true
+  },
+  {
+   "name": "skeptic F1 decision lag",
+   "command": "python3 audits/predictive-intelligence/phase_00/skeptic/skeptic_00_checks.py /home/claude/memelab-inbox origin/main",
+   "exit_code": 0,
+   "result": "149 of 248 mints: earliest tokens.first_seen_at after earliest theses.created_at, p50 16.9, p90 28.7, max 116.5 min; tracked DB 8 of 8 (6.2 to 9.6 min)",
+   "pass": true
+  },
+  {
+   "name": "skeptic F2 launch cohort counts",
+   "command": "same script; probe rerun after fix",
+   "exit_code": 0,
+   "result": "mcap_24h 19, mcap_7d 8, mcap_30d 2 (newest row); docs corrected",
+   "pass": true
+  },
+  {
+   "name": "PR refs",
+   "command": "git ls-remote https://github.com/RyzinEnagy/memelab-inbox.git",
+   "exit_code": 0,
+   "result": "pull/1 head only; pull/2 and pull/3 with merge refs",
+   "pass": true
+  },
+  {
+   "name": "full suite after repair pass 2",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 785 passed in 132.73s; same single known failure; strays removed; tracked DB unchanged",
+   "pass": true
   }
  ],
  "artifacts": [
@@ -177,11 +205,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_00/PHASE_00_EVIDENCE.md",
-   "sha256": "4fa1e6f618c406de9714197824ddd90c5e26cc17133a9e8aad412a9196b98139"
+   "sha256": "2b478894f7a3bd9dd93a8d7442f16f58cc526fe6c7272a671111dbbe1409e8b0"
   },
   {
    "path": "audits/predictive-intelligence/phase_00/SKEPTIC_PACKET.md",
-   "sha256": "4b46970215f92ea4f801d9cb9dfa2e2803544ca903852cae66053ba963446bed"
+   "sha256": "45ec48755d93fa2c09929e4cb604a84c76ab5a8474d2a5ed80dbb658f66ca9d7"
   },
   {
    "path": "audits/predictive-intelligence/phase_00/baseline/COMMIT_AND_TEST_LOG.md",
@@ -189,15 +217,15 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_00/baseline/DATA_COVERAGE.md",
-   "sha256": "1a482fce93828d40e5dbbbf590b62352b353bcc714c929d411225f9e60fad880"
+   "sha256": "fc2660983b34060053aceccf4c61bbe6894906f190197768d50a89e2630ae390"
   },
   {
    "path": "audits/predictive-intelligence/phase_00/baseline/EXISTING_PREDICTION_INVENTORY.md",
-   "sha256": "0769e2758ad2124b0b4419e6c3e9626166affabe3e729effde285b8971173e3b"
+   "sha256": "83907884d27dd46bed8329bf57d85144d048b3df7a71a9631d52a39e9210a238"
   },
   {
    "path": "audits/predictive-intelligence/phase_00/baseline/FEATURE_TRACE.md",
-   "sha256": "c7c03c2b13a377569c31bd4c2b8a2e757df8164ed7477524875dd8de9b2086e6"
+   "sha256": "0342ab6b4c57cf7bb883383c1e8ca89827c233026a12d20aaf53f3279a914ac5"
   },
   {
    "path": "audits/predictive-intelligence/phase_00/baseline/PIP_FREEZE.txt",
@@ -205,7 +233,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_00/baseline/REPO_MAP.md",
-   "sha256": "0ed99408300bbdde6c5be725e2362eba66b5855c5a16f8f74397c8d45ea13ef3"
+   "sha256": "1ae532d620ab37949f5f2ec6000e5d7703e2e70b976cb5c73dbf96cb11f995c1"
   },
   {
    "path": "audits/predictive-intelligence/phase_00/probes/lineage_reproduction_probe.py",
@@ -221,34 +249,46 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_00/probes/state_history_probe.py",
-   "sha256": "d97da9c64493d193f188e19534de16be593672c661500cd591275953002c9ea6"
+   "sha256": "48c6732ea8aba08321925386698be9f45ab6f70a2d3a4497f89ede77185f12f6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_00/skeptic/PHASE_00_SKEPTIC.md",
+   "sha256": "746196472e01822c609b728425e212335650e765ee9b72f6ced85380d47e0e9a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_00/skeptic/skeptic_00_checks.py",
+   "sha256": "ff93477c5c77f8bb53373ec24a396da72acea5bc73923cee9dc2df9d769ea841"
   },
   {
    "path": "docs/predictive-intelligence/DECISIONS.md",
-   "sha256": "d47007ed906da6741b3f009f0b0b8d7e7685be4e323caa7eb7d903d33a039421"
+   "sha256": "6e6943260a797cbaf6fa1d3f6f7cf99489c97ce8416487ff082e61e5ff3fec02"
   },
   {
    "path": "docs/predictive-intelligence/EXECUTION.md",
-   "sha256": "3b8f5ddc08e67a40635abc3d6abe6a7cadb50085bfd89cab7acd2dac808c1353"
+   "sha256": "9ca3e8478feb06eb027e8f95974f7d00d2ad8256df59c4b06fe8cbcbc545fb02"
   },
   {
    "path": "docs/predictive-intelligence/ROADMAP.md",
-   "sha256": "2aea1121d1ef810896a8320c2d3d7fb74c9ad4461613a99aec37ed8915c7de5b"
+   "sha256": "308c1487a2ede3fb450d39271f6786bbca842c37318689a9d335f539b520e75b"
   }
  ],
  "limitations": [
   "Windows machines unreachable: D:\\memelab\\crawl4ai-token.txt, Crawl4AI or Maxun installs, scheduled task definitions and the Firecrawl key file are BLOCKED for verification; nothing assumed; token not read.",
-  "PR states taken from docs; unauthenticated GitHub REST answered 403 and gh has no access.",
   "API history depth tested on one pool only; GeckoTerminal survival of pools whose liquidity was pulled is UNKNOWN.",
   "Provider docs disagree on the GeckoTerminal free rate (10 vs 30 calls a minute); 10 adopted for planning (PI-D-010).",
   "Known failing test not re-diagnosed; clock dependence taken from social-intel C-1.",
   "A test opens the tracked DB in WAL mode (shm and empty wal appear; hash unchanged).",
-  "No independent skeptic in this phase (PI-D-009)."
+  "GitHub REST 403 unauthenticated and gh without access; PR state from git ls-remote refs.",
+  "No lock file exists; baseline environment pinned only as a record (baseline/PIP_FREEZE.txt).",
+  "The write-lag measure bounds only each mint's first thesis and only when persist_result created the token row; later theses have no write time."
  ],
- "blockers": [
-  "Independent skeptic review of Phase 00 by the orchestrator (SKEPTIC_PACKET.md)."
- ],
+ "blockers": [],
  "approvals_needed": [],
- "next_eligible_phase": "01, after the orchestrator records an independent skeptic review of Phase 00 with no material failure",
- "head_after_note": "Phase 00 content commit; a follow-up commit records this hash in HANDOFF.md and this file (no other change)."
+ "next_eligible_phase": "01",
+ "head_history": [
+  "59a2cfc5bc21685607cfa9ee15e40e35ef24b119 (content)",
+  "dea735c7ecf537eebb96c5358fb902cfef7c3fdd (hash record)",
+  "repair pass 2 commit"
+ ],
+ "repair_passes": 4
 }

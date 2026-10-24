@@ -1,5 +1,7 @@
 # Skeptic packet for the Phase 00 independent review
 
+Status: USED. The orchestrator gave this packet to an independent skeptic on 2026-10-24 (00:52Z to 01:08Z UTC); its review and check script are in `skeptic/` next to this file and were folded in by repair pass 2. Kept unchanged below as the record of what the skeptic received.
+
 The phase agent could not start a fresh-context skeptic: no subagent tool was available inside the phase run, and starting a nested `claude` CLI session would have been an LLM call outside the recorded approvals. This packet lists the artifacts and code paths only, without the phase agent's conclusions, so the orchestrator can hand it to an independent reviewer.
 
 ## Task for the reviewer

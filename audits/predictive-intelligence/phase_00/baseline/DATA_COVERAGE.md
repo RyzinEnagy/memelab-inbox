@@ -2,14 +2,15 @@
 
 What dated real data exists, where, with which clocks, and how far back the free public APIs reach. Measured 2026-10-24 (UTC). Nothing here was bulk-downloaded; the API checks are four single calls. Feeds Phase 01 feasibility.
 
-Sources: the tracked SQLite file (copied to scratch and opened read-only), `git show` of every committed state export on `origin/main` (probe `probes/state_history_probe.py`, exit 0, output sha256 `120d6bb9a9e75455e85f5c000f1924d8432f582fda6e00373f9df4285d14856d`), the tracked collector files, and the provider docs linked below.
+Sources: the tracked SQLite file (copied to scratch and opened read-only), `git show` of every committed state export on `origin/main` (probe `probes/state_history_probe.py`, exit 0; first output sha256 `120d6bb9a9e75455e85f5c000f1924d8432f582fda6e00373f9df4285d14856d`, rerun after the repair-pass-2 fix `bef4a295fa12bf14e834065fd3f28a4c160e506cbb34e11fd14ef60e7af2d491`), the skeptic's check script (`audits/predictive-intelligence/phase_00/skeptic/skeptic_00_checks.py`), the tracked collector files, and the provider docs linked below.
 
 ## Summary for Phase 01
 
 - The lab holds 17 days of real history (2026-10-06T23:48Z to 2026-10-23T10:11Z), and almost all of it is sparse thesis snapshots, not price series.
 - Price and liquidity series per mint and pool exist only in 40 collector files from 2026-10-06 to 2026-10-08 (125 GeckoTerminal OHLCV series for 33 pools). Nothing after 2026-10-08 is kept: the scheduled runs use a fresh database and export only the tables in state.py:21, which carry no candles, no pool snapshots and no quotes.
-- Union over all 89 committed exports: 1,801 thesis snapshots (time, price, liquidity, exit capacity at 3%, score, status) for 248 mints; 93 mints have two or more priced snapshots, median span 120 h, median gap 0.93 h, 90th percentile gap 23.8 h. Snapshots exist only for tokens that reached deep analysis (selection, see "Universe").
-- Launch-cohort outcome fields are nearly empty: of 1,422 launches ever exported, 8 have a 24 h market cap, 3 a 7 d value, 0 a 30 d value, and `rug_flag` is never 1. The launch pass stopped adding launches after 2026-10-09.
+- Decision lag (corrected in repair pass 2, skeptic F1): `theses.created_at` is the start time of the newest collector run behind the thesis (cli.py:44, collector.js:86), not the moment the thesis existed. The thesis row is written later; its only wall-clock trace is `tokens.first_seen_at`, set by `db.now()` in the same transaction (db.py:254-255, :288-299; pipeline.py:197 then :243). For 149 of the 248 mints with theses, the earliest `first_seen_at` is after the earliest thesis `created_at`: p10 7.7 min, p25 10.7, median 16.9, p75 24.4, p90 28.7, max 116.5 min. For the other 99 the token row was created earlier by another path, so they give no bound. In the tracked DB all 8 tokens with theses show the lag (6.2 to 9.6 min). A thesis can therefore appear more than an hour after its oldest input was fetched (inputs span up to about 50 min before `created_at`, FEATURE_TRACE.md gap 2). PI-D-011.
+- Union over all 89 committed exports: 1,801 thesis snapshots (time, price, liquidity, exit capacity at 3%, score, status) for 248 mints; 93 mints have two or more priced snapshots, median span 120 h, median gap 0.93 h and 90th percentile gap 23.8 h over all their snapshots (1.05 h and 24.1 h over priced snapshots only). Snapshots exist only for tokens that reached deep analysis (selection, see "Universe").
+- Launch-cohort outcome fields are nearly empty: of 1,422 launches ever exported, 19 have a 24 h market cap, 8 a 7 d value and 2 a 30 d value (newest row per mint; main's latest export alone has 19, 8 and 1), and `rug_flag` is NULL in every row. (Corrected in repair pass 2: the first version said 8, 3 and 0 because the history probe kept the oldest row per mint, skeptic F2.) The launch pass stopped adding launches after 2026-10-09.
 - The free GeckoTerminal API returns historical pool OHLCV back to pool creation for a pool created 2026-10-04 (15-minute candles reached back 20 days with `before_timestamp`), including a pool that stopped trading on 2026-10-20. DEX Screener returns only current state. Both answered HTTP 200 from this environment.
 - So a historical training set must be built from GeckoTerminal backfills keyed by the pools the lab already recorded, with the backfill date recorded as the retrieval time (crawl date is not availability date), or collected forward. Phase 01 decides; nothing was pulled in Phase 00.
 
@@ -19,7 +20,7 @@ sha256 `068287c0d7e454361eb42f54b2f90e49e4075ae3a962a3c57867165ab6a679ca`, 2,863
 
 | Table | Rows | Time range (UTC) | Clock column |
 |---|---:|---|---|
-| tokens | 13 | first_seen_at 2026-10-06T23:54 to 2026-10-07T00:45; graduated_at 2026-09-09 to 2026-10-04; first_pool_at 2026-07-23 to 2026-10-04 | first_seen_at, last_seen_at (run time t); graduated_at, first_pool_at (provider) |
+| tokens | 13 | first_seen_at 2026-10-06T23:54 to 2026-10-07T00:45; graduated_at 2026-09-09 to 2026-10-04; first_pool_at 2026-07-23 to 2026-10-04 | first_seen_at, last_seen_at (wall clock `db.now()` at the first and latest persist, not `t`); graduated_at, first_pool_at (provider) |
 | market_snapshots | 33 | observed_at 2026-10-06T23:48 to 2026-10-07T00:16 | observed_at = t (see clocks) |
 | pool_snapshots | 182 | same window | observed_at = t |
 | pools | 58 | pool_created_at 2026-08-12 to 2026-10-06 | pool_created_at (provider), first_seen_at |
@@ -30,7 +31,7 @@ sha256 `068287c0d7e454361eb42f54b2f90e49e4075ae3a962a3c57867165ab6a679ca`, 2,863
 | price_levels | 615 | same window | observed_at = t |
 | social_snapshots | 99 | same window | observed_at = t |
 | token_authorities | 33 | same window | observed_at = t |
-| theses | 33 | created_at 2026-10-06T23:48 to 2026-10-07T00:16 | created_at = t |
+| theses | 33 | created_at 2026-10-06T23:48 to 2026-10-07T00:16 | created_at = t (collector-run start, written 6 to 10 min later, see Clocks) |
 | entries | 43 | | via thesis |
 | rejections | 20 | rejected_at 2026-10-06T23:25 to 2026-10-07T00:16 | rejected_at = t |
 | watchlist | 5 | added_at 2026-10-06T23:48 to 2026-10-07T00:07 | added_at |
@@ -68,6 +69,8 @@ Theses `snapshot_json` keys (m25_watchlist_monitor.py:8-20): `t, price, mcap, fd
 
 ### History across all committed exports (probe `state_history_probe.py`)
 
+The probe is a summary tool, not a label builder: it walks `git log` newest first and lets the last write win, so for tables whose rows are updated in place (launch_cohort outcomes) it keeps the OLDEST copy of each row. That produced the wrong launch-cohort counts in the first version of this file (skeptic F2). Do not reuse it to build labels; a label builder must take the newest row per key and record the version it came from.
+
 | Measure | Value |
 |---|---|
 | `data/state/latest.json` commits on main | 89, first 2026-10-07T17:53-04:00, last 2026-10-23T06:20-04:00 |
@@ -76,14 +79,14 @@ Theses `snapshot_json` keys (m25_watchlist_monitor.py:8-20): `t, price, mcap, fd
 | Thesis snapshots, union by (mint, created_at) | 1,801 for 248 mints |
 | Snapshots per mint | 1 for 144 mints, 2 for 42, 3 to 9 for 36, 12 to 122 for 26 |
 | Mints with 2 or more priced snapshots | 93; span p50 120 h, p90 330 h, max 394 h |
-| Gap between consecutive snapshots | p10 0.12 h, p50 0.93 h, p90 23.8 h |
-| Priced mints last seen more than 72 h before the last export | 58 of 93 |
+| Gap between consecutive snapshots of the 93 priced mints | all snapshots (priced or not): p10 0.12 h, p50 0.93 h, p90 23.8 h; priced snapshots only: p10 0.24 h, p50 1.05 h, p90 24.1 h |
+| Priced mints with no snapshot in the last 72 h of the record | 58 of 93 measured against the newest thesis in the record; 59 against the export time (`_exported_at` or commit time); 60 if only priced snapshots count |
 | Priced mints whose last price is under 10% of their max | 2 of 93 |
 | Last status of priced mints | REJECTED 47, DISTRIBUTION RISK 24, RESEARCH REQUIRED 12, THESIS INVALIDATED 6, SETUP DEVELOPING 2, OVEREXTENDED 2 |
 | Distinct tokens across exports | 989 |
 | Symbols shared by 2 or more mints | 102 (XMR 10 mints, BTC 7, ETH 5, XRP 5, PLAGUE 5) |
 | Distinct rejected mints | 640 |
-| Launch cohort, distinct mints | 1,422; mcap_24h known 8, mcap_7d 3, mcap_30d 0, rug_flag 1: 0 |
+| Launch cohort, distinct mints | 1,422; mcap_24h known 19, mcap_7d 8, mcap_30d 2 (newest row per mint, same as any version); rug_flag NULL in every row. Corrected in repair pass 2 (skeptic F2) |
 
 Earlier versions of the export can be read with `git show <sha>:data/state/latest.json`, so trimmed theses (beyond 12 per mint) survive in git history. The git commit time is a conservative public availability time for every row in a version.
 
@@ -91,13 +94,13 @@ Earlier versions of the export can be read with `git show <sha>:data/state/lates
 
 | Location | Files | Dates (first commit) | Content |
 |---|---:|---|---|
-| `inbox/*.json` (main and HEAD identical) | 40 (+2 plans) | 2026-10-06T19:42-04:00 to 2026-10-08T10:03-04:00 | raw projections keyed `gt_pools:`, `gt_info:`, `gt_ohlcv:<pool>:<tf>`, `gt_trades:`, `jq:<side>:<usd>:<mint>` (Jupiter quotes), `jup_tok:`, `ds:`, `rug:`, `rpc:`, `rpc_evm:`, `goplus:`, catalyst feeds |
+| `inbox/*.json` (main and HEAD identical) | 40 tracked JSON files, 2 of them plans in `inbox/plans/` | 2026-10-06T19:42-04:00 to 2026-10-08T10:03-04:00 | raw projections keyed `gt_pools:`, `gt_info:`, `gt_ohlcv:<pool>:<tf>`, `gt_trades:`, `jq:<side>:<usd>:<mint>` (Jupiter quotes), `jup_tok:`, `ds:`, `rug:`, `rpc:`, `rpc_evm:`, `goplus:`, catalyst feeds |
 | `data/inbox/*.json` | 13 | 2026-10-06 to 2026-10-07 | the session behind the tracked DB (disc01, s2_01, deep01a to deep04, forensics01, stage1 and stage2 files) |
 | `data/reports/*.md` | 24 | 2026-10-06/07 | token and scout reports |
 
 No collector file was committed after 2026-10-08 (`git log --format=%cd origin/main -- inbox/`). Since then the scheduled runs collect with `python -m memelab fetch` in their own session and keep only the state export.
 
-OHLCV in `inbox/` (my count; REPLAY_17.md reports 16,847 candles on the same files): 128 `gt_ohlcv` keys, 125 with candles, 3 empty; 33 pools; day1 series 34 (median 22 candles, earliest 2026-06-10), hour1 34 (median 300, earliest 2026-09-24), minute15 33 (median 200, earliest 2026-10-02), minute5 9, minute1 15; every series ends by 2026-10-07T17:45Z to 2026-10-08.
+OHLCV in `inbox/` (my count; REPLAY_17.md reports 16,847 candles on the same files): 128 `gt_ohlcv` keys, 125 with candles, 3 empty; 33 pools; day1 series 34 (median 18 candles, earliest 2026-06-10), hour1 34 (median 266.5, earliest 2026-09-24), minute15 33 (median 200, earliest 2026-10-02); medians are `statistics.median` over the series as stored per file (a pool fetched in several files counts once per file; the first version reported upper-middle values 22 and 300), minute5 9, minute1 15; every series ends by 2026-10-07T17:45Z to 2026-10-08.
 
 ## Clocks
 
@@ -106,8 +109,9 @@ OHLCV in `inbox/` (my count; REPLAY_17.md reports 16,847 candles on the same fil
 | result `_at` | collector run start, ISO UTC | bridge/collector.js:86 | per-request fetch time is not stored (only `ms` duration); a merge plan re-stamps earlier bodies with the new `_at` |
 | `Result.observed_at` | `_at`, or `time.time()` when `_at` is missing | bridge/ingest.py:24 | a file without `_at` gets the processing time |
 | command time `t` | max `observed_at` over every result file given | cli.py:44 | a thesis mixes inputs fetched up to ~50 min apart under one time (HIGGS: s2_01 23:25Z and deep02 23:59Z stamped 00:16Z) |
-| theses.created_at, snapshot_json.t, market_snapshots.observed_at, pool_snapshots, liquidity_quotes, holders, rejections.rejected_at | `t` | pipeline.py:187-260, cli.py:181 | not a per-field availability time |
-| tokens.first_seen_at / last_seen_at | `t` at upsert | db.py:288-300 | |
+| theses.created_at, snapshot_json.t, market_snapshots.observed_at, pool_snapshots, pools.first_seen_at, liquidity_quotes, holders, rejections.rejected_at | `t`: the start of the newest collector run among the input files | pipeline.py:187-260, cli.py:181 | not when the thesis existed and not a per-field availability time; the row is written later (median 16.9 min, up to 116.5 min, see below); never use as decision_time or available_at without a conservative delay or a separately recorded capture time (PI-D-011) |
+| tokens.first_seen_at / last_seen_at | wall clock `db.now()` (`time.time()`) when the token row is first written and last updated; written in the same transaction as the thesis by persist_result, and also by catalyst match.py:166 and EVM stage 2 | db.py:254-255, :288-299; pipeline.py:197 | the only stored write time; a lower bound on when a token's first thesis row was written; a cutoff filter `first_seen_at <= cutoff` drops mints that already had theses |
+| decision lag (measured) | earliest `tokens.first_seen_at` minus earliest `theses.created_at` per mint, all 89 exports | skeptic check `skeptic/skeptic_00_checks.py` section 2 | 149 of 248 mints positive: p10 7.7, p25 10.7, p50 16.9, p75 24.4, p90 28.7, max 116.5 min; tracked DB 8 of 8, 6.2 to 9.6 min |
 | wallet_transactions.block_time | provider trade time | db.py:141 | chain or provider clock, not lab clock |
 | GeckoTerminal OHLCV row `ts` | candle open time | provider | candle closes at ts + timeframe; availability needs close plus provider delay (replay_sources.py:28 assumes 300 s, HEURISTIC) |
 | pools.pool_created_at, tokens.graduated_at, first_pool_at | provider claims | normalize.py | |
@@ -120,7 +124,7 @@ OHLCV in `inbox/` (my count; REPLAY_17.md reports 16,847 candles on the same fil
 ## Universe and survivorship
 
 - Theses exist only for tokens that passed discovery (stage 1, m01 filters: liquidity at least $20k, 24 h volume at least $50k by default, cli.py:397) and stage 2, or that sat on the watchlist. Stage-1 universes are not exported, so the denominator of "tokens seen" is lost after each session; rejections keep the mint, stage and reason only.
-- Dead tokens do not get deleted, but they stop being observed: 58 of 93 priced mints have no snapshot in the last 72 h of the record. A label computed from theses alone would treat silence as missing, not as death; a token that rugs after its last snapshot is invisible unless a backfill is pulled.
+- Dead tokens do not get deleted, but they stop being observed: 58 of 93 priced mints have no snapshot in the last 72 h of the record (59 or 60 under the other definitions above). A label computed from theses alone would treat silence as missing, not as death; a token that rugs after its last snapshot is invisible unless a backfill is pulled.
 - GeckoTerminal still served candles for HIGGS's Meteora pool, whose daily candles end 2026-10-20 (no trades after that day; empty intervals are omitted by default). DEX Screener's current answer for the same mint lists one pair (PumpSwap, $40.7k liquidity), while the 2026-10-07 bundle listed 18 pools across providers. A current vendor snapshot is not the historical pool set (P02, P09).
 
 ## Free public APIs (checked 2026-10-24, single calls)

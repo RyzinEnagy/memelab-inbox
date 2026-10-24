@@ -11,6 +11,12 @@ Usage (from the repo root):
     python audits/predictive-intelligence/phase_00/probes/state_history_probe.py origin/main OUT.json
 
 Writes only OUT.json (put it outside the repo). Makes no network call.
+
+NOT FOR LABEL BUILDING. This is a summary probe. Versions are walked newest first; thesis snapshots are keyed by
+(mint, created_at) and are immutable, so first-seen wins there. Rows updated in place (launch_cohort outcomes) are
+now kept from the NEWEST version (repair pass 2; the first version kept the oldest row and undercounted outcomes,
+skeptic F2). A label builder must take the newest row per key, record the export commit it came from, and never
+treat theses.created_at as decision or availability time (PI-D-011).
 """
 from __future__ import annotations
 
@@ -72,7 +78,7 @@ def main(ref: str, out: str) -> None:
         for r in tables.get("rejections") or []:
             rejected.setdefault(r["mint"], r.get("rejected_at"))
         for c in tables.get("launch_cohort") or []:
-            cohort[c["mint"]] = c
+            cohort.setdefault(c["mint"], c)     # newest version wins (versions are walked newest first)
     by_mint: dict[str, list] = collections.defaultdict(list)
     for (m, _), v in snaps.items():
         by_mint[m].append(v)
@@ -99,7 +105,8 @@ def main(ref: str, out: str) -> None:
         "tokens_union": len(chains), "tokens_by_chain": dict(collections.Counter(chains.values())),
         "symbols_with_2plus_mints": len(collisions), "symbol_collision_examples": {s: collisions[s][:4] for s in sorted(collisions, key=lambda s: -len(collisions[s]))[:5]},
         "rejected_mints_union": len(rejected),
-        "launch_cohort_union": len(cohort), "launch_cohort_rug_flag_1": sum(1 for c in cohort.values() if c.get("rug_flag")),
+        "launch_cohort_union": len(cohort), "launch_cohort_rug_flag_1": sum(1 for c in cohort.values() if c.get("rug_flag") == 1),
+        "launch_cohort_rug_flag_null": sum(1 for c in cohort.values() if c.get("rug_flag") is None),
         "launch_cohort_with_mcap_24h": sum(1 for c in cohort.values() if c.get("mcap_24h") is not None),
         "launch_cohort_with_mcap_7d": sum(1 for c in cohort.values() if c.get("mcap_7d") is not None),
         "launch_cohort_with_mcap_30d": sum(1 for c in cohort.values() if c.get("mcap_30d") is not None),
