@@ -1,57 +1,49 @@
 # Predictive Intelligence: handoff
 
-Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Phase 05 evidence: `audits/predictive-intelligence/phase_05/` (PHASE_05_EVIDENCE.md, PHASE_05_RESULTS.json, ACCEPTANCE_CHECKLIST.md, SKEPTIC_PACKET.md, data/, evidence/, probes/, raw/, postcommit/). Earlier phases stay in `phase_00/` to `phase_04/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Phase 05 evidence: `audits/predictive-intelligence/phase_05/` (PHASE_05_EVIDENCE.md, PHASE_05_RESULTS.json, ACCEPTANCE_CHECKLIST.md, SKEPTIC_PACKET.md, skeptic/, data/, evidence/, probes/, raw/, postcommit/). Earlier phases stay in `phase_00/` to `phase_04/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
 ## Position
 
-- Phase 05 (immutable temporal evidence and feature store): NEEDS_REVIEW, 2026-10-24, first pass complete; waiting for the orchestrator's independent skeptic (PI-D-013), then a repair pass sets the final status.
-- Branch `feature/predictive-intelligence`: the Phase 05 deliverables commit `b4baa78` and the records commit on top of it (read its hash with `git log -1`; this file is part of it), both on `074953d`. Not pushed. Spend 0 credits; 155 free GeckoTerminal calls.
-- Code added: `memelab/predictive/store.py`, `sources.py`, `features.py` (standard library only, flag OFF, imported by no existing module); `memelab/predictive/__init__.py` docstring lists the modules. Tests: `tests/test_predictive_asof_store.py` (37), `test_predictive_asof_features.py` (25), `test_predictive_asof_fixture.py` (4); fixtures `tests/fixtures/predictive/asof_helpers.py`, `asof_pid011_export.json`, `asof_fixture.json`. No other file under `memelab/` or `tests/` changed; nothing under `inbox/`, `state/` or `data/` changed.
+- Phase 05 (immutable temporal evidence and feature store): PASS, 2026-10-24, after the repair pass that folds in the orchestrator's independent skeptic (no material failure, 4 minor findings, `phase_05/skeptic/PHASE_05_SKEPTIC.md`; PI-D-039).
+- Branch `feature/predictive-intelligence`, four Phase 05 commits on top of `074953d`: first pass `b4baa78` and its records commit `c89bb02`, the repair commit `7116c55` and the records commit on top of it (read its hash with `git log -1`; this file is part of it). Not pushed. Spend 0 credits; 155 free GeckoTerminal calls by the phase, 4 by the skeptic.
+- Code: `memelab/predictive/store.py`, `sources.py`, `features.py` (standard library only, flag OFF, imported by no existing module); `__init__.py` docstring. Tests: `tests/test_predictive_asof_store.py` (43), `test_predictive_asof_features.py` (26), `test_predictive_asof_fixture.py` (4); fixtures `tests/fixtures/predictive/asof_*`. Nothing else under `memelab/` or `tests/` changed; nothing under `inbox/`, `state/` or `data/`.
 
-## What Phase 05 built and found
+## What the repair changed
 
-- A private SQLite store with eight append-only `predictive_*` tables and a reversible, checksum-guarded migration; never the tracked lab DB (PI-D-036). Contract and schema: `phase_05/data/FEATURE_STORE_CONTRACT.md`; source matrix and counts: `phase_05/data/SOURCE_COVERAGE.md`.
-- 1,500 decision events from the 89 exports at `98338a8` (one 31-byte "mint" refused), a bounded GeckoTerminal backfill of the 541 development-period Solana decisions on 96 pools (holdout, purged and prospective decisions untouched), 74,541 candle versions, 3,000 feature snapshots (32 features, provider and capture modes).
-- As-of proofs on real data: truncation invariance 0 differences over 1,500 decisions in each mode; 40 of 40 traps change the snapshot when available at the decision and 0 of 40 one second after; 3,000 of 3,000 stored snapshots equal their recomputation after a re-read; a rebuild from the committed raw archive gives identical hashes; determinism across fresh processes. 35 of 35 mutations caught.
-- Findings: (1) reads without `token=<mint>` priced another token for 9 of 96 pools, including 8 of 102 T1 and 9 of 159 T1b Phase 04 BAKEOFF_ONLY events, and a vendor's default side can change over time (PI-D-038); (2) a candle's open, high or low depends on the request window (80 of 57,584 candles; closes and volumes stable), so features use closes and volumes only; (3) a partial export history would mint false decisions, so the store refuses it (PI-D-037).
+- m1, counterexample CX-05: the vendor token parameter is read from the URL actually sent (`store.url_token`); a read whose recorded parameters disagree is refused; only `token == mint` counts (else OTHER_TOKEN_PARAM, refused). The CX-05 test fails on the first-pass code.
+- m2: a short or empty vendor page is no longer taken as the whole history (`cover_complete` always 0); BEFORE_FIRST_CANDLE removed; feature version 2 (`asof-2`); store and snapshots rebuilt offline: 102 values of 16 decisions moved to OUTSIDE_FETCHED_WINDOW, the `BvkPHKx2...` values among them; "58 of 115 series" claim withdrawn.
+- m3: tests for the skeptic's five surviving mutations; while writing them, an earlier read of another candle period was found to count as covering a position, fixed (`store.url_period`). 43 of 43 mutations caught.
+- m4: the truncation proof's limit (provider mode keeps retrieval metadata) is stated in the evidence.
 
-## How to check it
+## What Phase 05 holds
 
-From the repository root: `python -m pytest tests/test_predictive_asof_store.py tests/test_predictive_asof_features.py tests/test_predictive_asof_fixture.py -q` (66 passed). From `audits/predictive-intelligence/phase_05/probes/` with the store at `/home/claude/pi_research/p05/predictive_store.sqlite`:
-
-```
-python -B asof_real_checks.py truncation      # 0 differences in both modes (about 8 min)
-python -B asof_real_checks.py traps           # after_1s_changed 0, at_decision_changed 40
-python -B asof_real_checks.py recompute       # differ 0, verify []
-python -B build_store.py fromarchive /tmp/p05_rebuild.sqlite   # identical true (offline)
-python -B mutation_asof.py /tmp/mut05.json    # 35 of 35 caught
-python -B revision_check.py p04               # 80 changed of 57,584, all in open, high or low
-```
+- A private SQLite store, append-only `predictive_*` tables, reversible migration, never the tracked DB (PI-D-036); 1,500 decision events from 89 exports at `98338a8`; a bounded backfill of the 541 development-period decisions on 96 pools with the holdout untouched; 3,000 snapshots of 32 features in provider and capture modes.
+- Real-data proofs after the repair: truncation 0 differences over 1,500 decisions in each mode, traps 40 of 40 at the decision and 0 of 40 one second after, 3,000 of 3,000 snapshots equal their recomputation, rebuild from the committed archive identical, determinism across fresh processes.
+- Findings for later phases: request `token=<mint>` (9 of 96 pools have the mint as quote; Phase 04 bake-off events affected 8 of 102 and 9 of 159, PI-D-038); candle opens, highs and lows can depend on the request window; an empty page is not evidence of no trade; give `ingest_exports` the full history (PI-D-037, PI-D-039).
 
 ## Tests
 
-- Entry gate at `074953d`: `1 failed, 993 passed in 146.88s`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (known).
-- Pre-commit: `1 failed, 1059 passed in 151.20s` (993 plus 66), only the known failure.
-- Post-commit on `b4baa78`: suite `1 failed, 1059 passed in 165.68s` (known failure only), `python -m memelab social guard` exit 0 with no violations, `python tools/release_audit.py --history` exit 0 "Needs action: no", CLI regression `074953d` against `b4baa78` in two clean clones identical (`phase_05/postcommit/`).
-- Strays after each run: `data/reports/<stamp>_BRETT_0x532f.md` (removed by hand); `data/memelab.sqlite-shm` and `-wal` existed before this phase and are ignored; tracked DB sha256 `068287c0...` unchanged.
+- Entry gate at `074953d`: `1 failed, 993 passed in 146.88s` (known failure only).
+- First pass post-commit at `b4baa78`: `1 failed, 1059 passed`.
+- Repair post-commit at `7116c55`: `1 failed, 1066 passed in 166.97s`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`; guard exit 0 with no violations; release audit with history exit 0, "Needs action: no"; CLI regression identical.
+- Strays after each run: `data/reports/<stamp>_BRETT_0x532f.md` (removed by hand); tracked DB sha256 `068287c0...` unchanged.
 
 ## Blockers and open items
 
-- None for the skeptic. PI-D-020 (forward depth and quote collector) stays PROPOSED for Elving.
-- For Phase 06: request `token=<mint>` and pass `store.gt_identity`; re-read label paths of the 9 quote-side pools; note that highs and lows can move with the request window; keep the 48 h re-read of at least 10% of label series (PI-D-018).
+- None. PI-D-020 (forward depth and quote collector) stays PROPOSED for Elving.
 
 ## Approvals needed
 
-None. Paid data, LLM, Zep or MiroFish use, any scheduled collector (PI-D-020), copying AGPL or GPL code, adding a research package to the lab's runtime, or a merge into `main` need Elving (PI-D-005, PI-D-032).
+None for Phase 06. Paid data, LLM, Zep or MiroFish use, any scheduled collector, copying AGPL or GPL code, adding a research package to the lab's runtime, or a merge into `main` need Elving (PI-D-005, PI-D-032).
 
 ## Next
 
-Next step: the orchestrator's independent skeptic on Phase 05 (`phase_05/SKEPTIC_PACKET.md`), then the Phase 05 repair pass. Phase 06 (outcome label registry and censoring) is eligible only after Phase 05 is PASS.
+Next eligible phase after the orchestrator verifies Phase 05: 06 (outcome label registry and censoring). It starts from the Phase 05 constraints in ROADMAP.md: `token=<mint>` on every read with the store's identity check, the 9 quote-side pools' paths re-read with the parameter, highs and lows window-dependent, an empty page never read as a halt, the 48 h re-read of at least 10% of label series (PI-D-018), `runtime.refuse_bakeoff_labels` on every label source.
 
 ## Exact next command
 
 ```
-cd /home/claude/memelab-inbox && git checkout feature/predictive-intelligence && git log -4 --oneline && python -m memelab social guard && python -m pytest tests/test_predictive_asof_store.py tests/test_predictive_asof_features.py tests/test_predictive_asof_fixture.py -q && python -m pytest tests -q
+cd /home/claude/memelab-inbox && git checkout feature/predictive-intelligence && git log -5 --oneline && python -m memelab social guard && python -m pytest tests/test_predictive_asof_store.py tests/test_predictive_asof_features.py tests/test_predictive_asof_fixture.py -q && python -m pytest tests -q
 ```
 
-Expect the two Phase 05 commits on top of `074953d`, `"violations": []`, `66 passed`, and `1 failed, 1059 passed`; then remove `data/reports/*_BRETT_*.md` by hand.
+Expect four Phase 05 commits on top of `074953d`, `"violations": []`, `73 passed`, and `1 failed, 1066 passed`; then remove `data/reports/*_BRETT_*.md` by hand.

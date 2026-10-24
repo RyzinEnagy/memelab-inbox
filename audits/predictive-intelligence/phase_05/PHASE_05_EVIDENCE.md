@@ -130,3 +130,7 @@ Re-run after the repair, on the rebuilt store (`/home/claude/pi_research/p05/pre
 | `coverage_counts.py` | development decisions with a 1 h return 535 of 541 (2 VENDOR_NO_DATA, 4 OUTSIDE_FETCHED_WINDOW) |
 | `mutation_asof.py` | control passes; 43 of 43 caught (35 first-pass, the skeptic's 5 survivors, the m1 and m2 rules and the period-coverage fix); 3 single-layer mutations of doubled protections reported, not counted |
 | `repin_fixture.py`, `render_contract.py` | golden hashes and definitions hash re-pinned for version 2; contract re-rendered |
+
+Repair commit `7116c55f8cdaad8d8a705fd97493e409622b24a9`. Post-commit on it: `python -m pytest tests -q` exit 1, `1 failed, 1066 passed in 166.97s` (only the known catalyst failure; 993 earlier tests plus 73); `python -m memelab social guard` exit 0, no violations; `python tools/release_audit.py --history` exit 0, "Needs action: no", no Phase 05 file named; CLI regression `074953d` against `7116c55` identical in two clean clones (`postcommit/repair_*`, `postcommit/cli_regression_repair.json`). Stray BRETT report removed by hand.
+
+Final status: PASS. Every gate item of ACCEPTANCE_CHECKLIST.md holds after the repair (A9 to A13 re-run on the rebuilt store, A22 with 73 tests and 43 of 43 mutations, A24 on the repair commit); the skeptic's counterexample is caught by a test that fails on the first-pass code. Next eligible phase: 06.

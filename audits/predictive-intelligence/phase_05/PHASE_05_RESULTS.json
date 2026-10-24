@@ -1,8 +1,12 @@
 {
  "phase": "05",
- "status": "NEEDS_REVIEW",
+ "status": "PASS",
  "head_before": "074953d",
- "head_after": "b4baa78b9c744e0a4e4c0a9c5d6a924bda27fbac",
+ "first_pass_commits": [
+  "b4baa78",
+  "c89bb02"
+ ],
+ "head_after": "7116c55f8cdaad8d8a705fd97493e409622b24a9",
  "checks": [
   {
    "name": "package checksums",
@@ -21,14 +25,26 @@
    "name": "phase 05 tests",
    "command": "python -m pytest tests/test_predictive_asof_store.py tests/test_predictive_asof_features.py tests/test_predictive_asof_fixture.py -q",
    "exit_code": 0,
-   "result": "66 passed",
+   "result": "73 passed (repair pass)",
    "pass": true
   },
   {
-   "name": "pre-commit full suite",
+   "name": "first-pass post-commit full suite at b4baa78",
    "command": "python -m pytest tests -q",
    "exit_code": 1,
-   "result": "1 failed, 1059 passed in 151.20s (known failure only)",
+   "result": "1 failed, 1059 passed in 165.68s (known failure only)",
+   "pass": true
+  },
+  {
+   "name": "independent skeptic",
+   "input": "skeptic/PHASE_05_SKEPTIC.md",
+   "result": "no material failure; 4 minor (m1 CX-05 token from recorded params, m2 short page taken as full history, m3 five untested protections, m4 truncation proof blind to retrieval metadata in provider mode); all folded in (PI-D-039)",
+   "pass": true
+  },
+  {
+   "name": "repair tests fail on the first-pass code",
+   "input": "evidence/old_code_check.json",
+   "result": "4 failed, 65 passed",
    "pass": true
   },
   {
@@ -39,7 +55,7 @@
     "checked": 1500,
     "differences": 0,
     "examples": [],
-    "seconds": 433.7
+    "seconds": 485.3
    },
    "pass": true
   },
@@ -51,7 +67,7 @@
     "checked": 1500,
     "differences": 0,
     "examples": [],
-    "seconds": 45.7
+    "seconds": 53.8
    },
    "pass": true
   },
@@ -107,8 +123,8 @@
    "command": "python -B mutation_asof.py ../evidence/mutation_asof.json",
    "exit_code": 0,
    "result": {
-    "mutations": 35,
-    "caught": 35,
+    "mutations": 43,
+    "caught": 43,
     "control_passes": true
    },
    "pass": true
@@ -185,34 +201,33 @@
    "pass": true
   },
   {
-   "name": "post-commit full suite",
+   "name": "repair post-commit full suite",
    "command": "python -m pytest tests -q",
    "exit_code": 1,
-   "result": "1 failed, 1059 passed in 165.68s (0:02:45)",
+   "result": "1 failed, 1066 passed in 166.97s (0:02:46)",
    "pass": true
   },
   {
-   "name": "post-commit content guard",
+   "name": "repair post-commit content guard",
    "command": "python -m memelab social guard",
    "exit_code": 0,
    "result": "violations: []",
    "pass": true
   },
   {
-   "name": "post-commit release audit with history",
+   "name": "repair post-commit release audit with history",
    "command": "python tools/release_audit.py --history",
    "exit_code": 0,
    "result": "Needs action: no",
    "pass": true
   },
   {
-   "name": "CLI regression 074953d against b4baa78 in clean clones",
-   "command": "python -B probes/cli_regression.py 074953d b4baa78 postcommit/cli_regression.json",
+   "name": "CLI regression 074953d against 7116c55 in clean clones",
+   "command": "python -B probes/cli_regression.py 074953d 7116c55 postcommit/cli_regression_repair.json",
    "exit_code": 0,
    "result": {
     "commands_identical": true,
-    "reports_identical": true,
-    "network_cut": true
+    "reports_identical": true
    },
    "pass": true
   }
@@ -224,7 +239,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_05/PHASE_05_EVIDENCE.md",
-   "sha256": "5837c97c1fd5b49dd055e7a69b9b60db8e048a94a7550cf2ad5225cbfee5730c"
+   "sha256": "2c28524a9b9d34eb61c1e2a49f394aa1675ace38f1dca5f3e74c6d15ae2e2d2e"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/SKEPTIC_PACKET.md",
@@ -232,11 +247,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_05/data/FEATURE_STORE_CONTRACT.md",
-   "sha256": "747c4a0c0ca90823a36dfa0b9161451ed217aa2d07eee32e8b76537bea253630"
+   "sha256": "ed66fc45112be2d55d66d3f1e00db119cc0724bc8d52e0868a3d0e9dbffb8bec"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/data/SOURCE_COVERAGE.md",
-   "sha256": "356761597cddd6e92485c947e39821bbdfaaeb0d2770f43eab339d0a6b658c10"
+   "sha256": "0f76eab0d4f06eeb7d72bc2c11b9f98c2955bea17e59ffa5a1547dce33e1dedf"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/data/backfill_plan.json",
@@ -244,7 +259,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_05/data/series_status.json",
-   "sha256": "0ad570fd9cde66356f708e489229d53c3fbde53915358e8e59cd0887ec92c8fb"
+   "sha256": "1bde3ec0a86aca5ab1c1f85da1ea257e24c81b85e33fea220e7c5ae10ca39f9b"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/evidence/asof_real_fresh.json",
@@ -256,11 +271,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_05/evidence/asof_real_traps.json",
-   "sha256": "d2925cb92e897d70fd45c9993e5228523f4d85c660a06e625c30b1f89add820c"
+   "sha256": "0f91e8c5e63d26cc7b2867e82dc3b98b31ac1bda6be8d6fafab5044c708a4142"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/evidence/asof_real_truncation.json",
-   "sha256": "c30d25e6e089190ecd79d4e192a556dda056ce206d5f30db1f523b538fa11c3e"
+   "sha256": "927fa0f6ca4a042722ae7ba5062077f45f0d43f0d3986521051da771f1b260bf"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/evidence/backfill_calls.json",
@@ -268,11 +283,15 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_05/evidence/coverage_counts.json",
-   "sha256": "1febc06ba09f0683b01916155ab8b96bd676527519c37ab4aa2e8c97a41fb934"
+   "sha256": "8b1e1ff25c08579f43ed8f4049764a08917995c73796b7df68b7e28217eec733"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/evidence/mutation_asof.json",
-   "sha256": "7c07d64fc0c35ecf4b3e14e6fa393eba7eac56a132d843bb568f268495f48c64"
+   "sha256": "3087fd52dee8e03f0950d2dadf001907b369c0cb37b8b4c39b553c9fae39caa0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/evidence/old_code_check.json",
+   "sha256": "9b6c88cb9f233c3f63230ba9ef1a8471323eeaaf8ae4017bec2146c3c52dabcc"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/evidence/rebuild_from_archive.json",
@@ -303,12 +322,32 @@
    "sha256": "9ca89d63b458dc3d3a1d14e994a272747038f1b3ca39fb26c3651dafd8b02deb"
   },
   {
+   "path": "audits/predictive-intelligence/phase_05/postcommit/cli_regression_repair.json",
+   "sha256": "f85519192f63dd4f04144453ca2be7e9269c75bdb3626f57fa99d7687c8c3093"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_05/postcommit/pytest_summary.txt",
    "sha256": "8e4d2527033a1e3bc67b49babd3886f02028177de7fef8bdacf5f912138bc2c0"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/postcommit/release_audit_history.summary.txt",
    "sha256": "ea974c8617662f0cdd54d1c00d4f33fd20867e76fc5052385f016aef345daa7a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/postcommit/repair_pytest_summary.txt",
+   "sha256": "db460aab7f72c747944b78171086c1270cd874490d80c165672cdf75a35e2a28"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/postcommit/repair_release_audit_history.summary.txt",
+   "sha256": "0fce094d64140eb3a57e7b97a0a5653eeeae3d4ac95d155db0afb21f0cbcb90b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/postcommit/repair_social_guard.out.txt",
+   "sha256": "93f38cff7af14da754cdbcd6299b922bd5c62873572c96bbcfbc2a8ce54b4b2c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/postcommit/repair_summary.json",
+   "sha256": "7f07c873999a3c248af04d6a95984d347f1fab496cfa0b06fc8195e8cf720ebc"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/postcommit/social_guard.out.txt",
@@ -320,7 +359,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_05/probes/asof_real_checks.py",
-   "sha256": "78e2be02f7f3b23ff93df29b8044e5f167e6af9b281cf020bcc4359aafdc5956"
+   "sha256": "c33715658b95fa4eef110dd35c01455350045448bed7bd2b16f634c183b28adb"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/probes/build_fixtures.py",
@@ -340,11 +379,15 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_05/probes/mutation_asof.py",
-   "sha256": "a093b71f9d332e309178b599b70dace66a1d2159154a38dbf2ca7a85df539803"
+   "sha256": "15721bfd79ba70a68d764a4f9a415b69acd579f5d097ab780cfda2d0f2aefa4d"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/probes/render_contract.py",
    "sha256": "8841467dd2ecf711fb088e62572bc02aa2f414c8a1bc906a8c9abd7786a2218c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/probes/repin_fixture.py",
+   "sha256": "ea8091f24b46615cc2fc87a4ba8cae9327b38b9bf3a64596cd156fa35606cf88"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/probes/revision_check.py",
@@ -352,11 +395,39 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_05/probes/write_results.py",
-   "sha256": "faffc01ec91263bff477acac452ff5b27dd1a1b55db2af93e15ba47a323fce93"
+   "sha256": "e70bac4077b911f99de96379abba23e3d13b13379e964091587bbb88ce449944"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/raw/MANIFEST.csv",
    "sha256": "f98f5b8d4bb51294fd502bcc6eba75c9d4f6f5b1d6c39b3e575958455a122361"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/skeptic/PHASE_05_SKEPTIC.md",
+   "sha256": "c8c1507dfecbfe1e97fa4f1561200059193bfa5bd587c7a7c47066f2168d7d8b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/skeptic/phase05_counterexample.py",
+   "sha256": "8e3e452e931a2abcd99e41c3c2ab7cd6e750c2a054e92f33776991c237367a5f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/skeptic/phase05_mutations.json",
+   "sha256": "368bdef02be0ea6219b4a457ef4b1141af3bc390acabe18ad8b33108b745688f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/skeptic/phase05_mutations.py",
+   "sha256": "218ca38a6aaa93a544a8b5d7fcb9d5bf1a43a90ec83aec6ebd41bdfd9031926a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/skeptic/phase05_purge_probe.py",
+   "sha256": "f1ff4c435fc1eaee7dc496c2c7b276c2129966f465f2f6cbc7596d78988f0ebb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/skeptic/phase05_rebuild.py",
+   "sha256": "06cb2056c39ca99e2d9d38ac378b7a22b933c0af728f116b5b3bb9b9e25c1e1f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_05/skeptic/phase05_revision_trap.py",
+   "sha256": "66560b6a548877bd42d8a1b3a08dc8683b4559b0248c2b73962e97b7817fe7f8"
   },
   {
    "path": "memelab/predictive/__init__.py",
@@ -364,7 +435,7 @@
   },
   {
    "path": "memelab/predictive/features.py",
-   "sha256": "365b1b5b1b00b8c1efcd959c73c4a58aa471c38cafa901124d8d0b01860fc929"
+   "sha256": "0c8f76fef9d352423f42152049f74a56faf6377f07cfa28ba53a9f01f826227c"
   },
   {
    "path": "memelab/predictive/sources.py",
@@ -372,7 +443,7 @@
   },
   {
    "path": "memelab/predictive/store.py",
-   "sha256": "6917bfa42576d974436221b5629a327c7c4f4b826bb77e0185b214c11998da88"
+   "sha256": "15180afccd079ea31a7c469c643b9702923666b31c2760ee74b8bcad254dca54"
   },
   {
    "path": "tests/fixtures/predictive/asof_fixture.json",
@@ -388,15 +459,15 @@
   },
   {
    "path": "tests/test_predictive_asof_features.py",
-   "sha256": "67bfb41cf786d363f969d405a5246f93c4f7f4fe37fe13edbc4cc792a6cc6b02"
+   "sha256": "d7bf447993979f7992a8f6784958f72d3e89c8ab6fbe22812afd619765252164"
   },
   {
    "path": "tests/test_predictive_asof_fixture.py",
-   "sha256": "9852f8f39da800d9fa54870cf980413ad228e058256f6978962680bed4f6f535"
+   "sha256": "05ffd7ebb706859ab075d2dac4a8081de656e1820d613b2cb1daeaa2bbd369d9"
   },
   {
    "path": "tests/test_predictive_asof_store.py",
-   "sha256": "d846d5f6d35a193c76cd82182796f41c96265a83828b73efa2f01517813a10d9"
+   "sha256": "5840660327e3cf87ce8a4afb4cb4e7e5cb656babade94e6fe3d661075de2cba9"
   },
   {
    "path": "audits/predictive-intelligence/phase_05/raw/*.json.gz",
@@ -409,11 +480,12 @@
   "historical candle availability is a reconstruction (end + 300 s, HEURISTIC); revisions before the lab's first read are invisible",
   "revision gaps measured: 19 min to 2.5 h on the lab's own reads and 17 days on 3 inbox pools; the 48 h re-read of label series is Phase 06's",
   "DEX type per pool not recorded; no executable depth for past times (P08)",
-  "cover_complete cannot tell a vendor retention limit from a pool's first trade",
+  "a short or empty vendor page proves nothing about earlier trades; windows before the earliest candle read are OUTSIDE_FETCHED_WINDOW",
+  "in provider mode the truncation proof covers market rows, not retrieval metadata (series statuses, cover_from); those set RETRIEVAL reasons only (skeptic m4)",
   "the store file is outside git; reproducibility rests on raw/, data/series_status.json and the exports in git (rebuild identical)",
   "Phase 04 BAKEOFF_ONLY labels: 8 of 102 T1 and 9 of 159 T1b events priced another token (PI-D-038); not Phase 06 labels"
  ],
  "blockers": [],
  "approvals_needed": [],
- "next_eligible_phase": "05 repair pass after the orchestrator's independent skeptic; then 06 once 05 is PASS"
+ "next_eligible_phase": "06"
 }
