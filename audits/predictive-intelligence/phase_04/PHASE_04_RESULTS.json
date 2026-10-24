@@ -1,0 +1,828 @@
+{
+ "phase": "04",
+ "status": "NEEDS_REVIEW",
+ "head_before": "a146a29d17c47a0bdfdef85df2e7a9e2f884d50f",
+ "head_after": null,
+ "head_after_note": "deliverables commit; the records commit that carries this file is its child (git log)",
+ "checks": [
+  {
+   "name": "B1 package checksums",
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "B2 entry gate",
+   "command": "python -m pytest tests -q (a146a29)",
+   "exit_code": 1,
+   "result": "1 failed, 858 passed in 145.42s (0:02:25); only test_dedup_corroboration_resurface_denial",
+   "pass": true
+  },
+  {
+   "name": "B4 development sample",
+   "command": "build_dev_sample.py plan|fetch|label",
+   "exit_code": 0,
+   "result": "132 calls {'200': 115, '429': 17}; T1 24h 102 events, T1b 6h 159; holdout_check {'contacted_mints_with_development_rows': [], 'decisions_at_or_after_h0': 0, 'labels_maturing_after_h0': 0}; candles dropped at or after h0 6",
+   "pass": true
+  },
+  {
+   "name": "B4 holdout candle check",
+   "command": "holdout_candle_check.py RAW",
+   "exit_code": 0,
+   "result": "no holdout decision can use these candles",
+   "pass": true
+  },
+  {
+   "name": "B5 approaches and third runs",
+   "command": "run_measurements.py approaches; summarize.py",
+   "exit_code": 0,
+   "result": "39 runs, all exit 0 and identical over 3 runs",
+   "pass": true
+  },
+  {
+   "name": "B6 fold audit",
+   "command": "splitter_check.py",
+   "exit_code": 0,
+   "result": "lab rule and purgedcv valid on all datasets; purge mutation refused on challenge and 24 h, no-op on 6 h; TimeSeriesSplit refused",
+   "pass": true
+  },
+  {
+   "name": "B7 Venn-Abers oracle",
+   "command": "calibration_check.py oracle",
+   "exit_code": 0,
+   "result": "max abs diff 1.3877787807814457e-17",
+   "pass": true
+  },
+  {
+   "name": "B3 B7 banned defaults scan",
+   "command": "banned_scan.py",
+   "exit_code": 0,
+   "result": "26 files, 0 hits",
+   "pass": true
+  },
+  {
+   "name": "B8 network",
+   "command": "measure.py (audit hook, unshare -n) and strace",
+   "exit_code": 0,
+   "result": "0 socket events in every measured run; 0 connect/sendto/bind syscalls; positive control 1",
+   "pass": true
+  },
+  {
+   "name": "B10 locks",
+   "command": "build_lock.py; pip download --require-hashes x 3 platforms",
+   "exit_code": 0,
+   "result": "research 30 packages 63 hashes, core 1 package 4 hashes; 0 problems; 30 wheels per platform all in the lock",
+   "pass": true
+  },
+  {
+   "name": "B11 rollback",
+   "command": "rollback_demo.py",
+   "exit_code": 0,
+   "result": "rollback_clean True",
+   "pass": true
+  },
+  {
+   "name": "B12 MiroFish feasibility",
+   "command": "mirofish_adapter.py",
+   "exit_code": 0,
+   "result": "backend without keys exit 1; mock runs SIMULATION_RAN, SIMULATION_RAN, same trace False; LLM down SIMULATION_NOT_AVAILABLE NO_LLM_ACTIONS",
+   "pass": true
+  },
+  {
+   "name": "B13 runtime mutations",
+   "command": "mutation_runtime.py",
+   "exit_code": 0,
+   "result": "17 of 17 caught",
+   "pass": true
+  },
+  {
+   "name": "B15 hostile setup",
+   "command": "hostile_setup_demo.py",
+   "exit_code": 0,
+   "result": "{\"control_shows_the_threat\": true, \"lab_route_never_ran_setup_py\": true, \"right_hash_installs\": true, \"wrong_hash_refused\": true}",
+   "pass": true
+  },
+  {
+   "name": "runtime and contract tests",
+   "command": "python -m pytest tests/test_predictive_runtime.py tests/test_predictive_contract.py -q",
+   "exit_code": 0,
+   "result": "112 passed",
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/phase_04/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "a5646c1b8f29c48060edc1bface29a0a70504147cc6437e79dcc7b957bfecec9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/PHASE_04_EVIDENCE.md",
+   "sha256": "8a99566c63782e7062d0ddb39057cf382c45e95a781508face7237015b6cdda4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/SKEPTIC_PACKET.md",
+   "sha256": "1b32caf06a002ac4c4240102229733275b326fb43fe015fb3e05387c7dadd950"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/BAKEOFF.md",
+   "sha256": "2e3386767151119350ce41ff4640707b8143ff636b4ed9fd9b7ee4b129265768"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/BAKEOFF_RESULTS.json",
+   "sha256": "5cedbc193b815e69b05a93bfa332ad78f5982760ea942ba68235dcd4349dbecd"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/BOM_LOCKS.md",
+   "sha256": "530b9f8264eed2d163d6525f135a51b438dd95edafe0fda77105a2706e6849cc"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/INSTALL_DECISION.md",
+   "sha256": "f86f5df49d24dcee4ac0029d4647d323aad21578aa8f574809d66f447b79dd98"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/MIROFISH_FEASIBILITY.md",
+   "sha256": "1e7ecdc8df9ef49c56c109af4abe6cac08816088da3899927dc4b5dc289f4d20"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/data/dev_sample_calls.json",
+   "sha256": "6ab55dfd5f4cd91f4f36d595da4d1a9a636271d0ef2975ac3fa4fcef7a6dffea"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/data/dev_sample_plan.json",
+   "sha256": "5b3aeda4b3deb85670cc34f22367d1b9e5f1e47be0a3bb6a2e79ade3875c7625"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/data/dev_sample_summary.json",
+   "sha256": "4096e71a6d6261da8391dce503a0fe25bff01faecd1192a468022db97143f7cd"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/data/dev_t1_24h.csv",
+   "sha256": "58121e94c8788257bc6aa4a704bbb24a0498ad769d0fc996b6aafd42f1171221"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/data/dev_t1b_6h.csv",
+   "sha256": "728513005d4d4239b670163fa56061401ecb3512a8b23e230cdb9c70d6be5e46"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/bakeoff-bundle.in",
+   "sha256": "74abc8e3aae9ee0bf4e2dbfccf228c4b5dbaa9042b304ef3b0721a5c098b94fd"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/banned_scan.json",
+   "sha256": "8a6d1a6227f9160f1a0f9fba65f3cf9bd0040a3194e220c1780d48e4baa37ad1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/core-py313.bom.json",
+   "sha256": "5b86be680b49f7e306eff5cd49c6eb5d5674b80e6a422cb82070cbde41d4149c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/error_semantics.json",
+   "sha256": "c4c6824422280133aca5830f948fdeb133b0a9c89046345cd5f0e7ad8bc309f0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/first_real_run_failures/approach__dev24__COX_LIFELINES__bundle.json",
+   "sha256": "d3bcc90540fad9e06fc8b4c9ab7690a94f531c9370a11bb588d04c0e9ed7035e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/first_real_run_failures/approach__dev24__HGB_SKLEARN__bundle.json",
+   "sha256": "c93927019245e9e39d2ffa2ea26d7d743328efbd160824be512ea093a0835b8d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/first_real_run_failures/approach__dev6__COX_LIFELINES__bundle.json",
+   "sha256": "e0b7e468b7104c8a5b269ef6f31abd8515a7a11cbf33469c7e482c5931fa1714"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/first_real_run_failures/approach__dev6__HGB_SKLEARN__bundle.json",
+   "sha256": "ed944ae16d64d7b12f873ecd59d820ab12949ba9900096aedeef23e9d36fa36f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/first_real_run_failures/dev_sample_summary_before_age_fix.json",
+   "sha256": "4096e71a6d6261da8391dce503a0fe25bff01faecd1192a468022db97143f7cd"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/holdout_candle_check.json",
+   "sha256": "94ee7d8c2c517fa8872a4e444c442f8daa3b83f48181069868b892f0525641b6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/hostile_setup_demo.json",
+   "sha256": "031b73daf5f81d8db015d1c78b018ff23dc70a081a6fcdf9354b022811b16712"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__B0__bundle.json",
+   "sha256": "d445a75e8f8f4c6ff37b65429612134433e9eb6b77c56a9172a97a0af06b44c3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__B0__core_numpy_only.json",
+   "sha256": "9d2ccae4ec57ddeaf057a28474aaabd47213adeeaa2065a04332e2e50149e00b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__COX_LIFELINES__bundle.json",
+   "sha256": "f85ff87c8b2abfe07bb02c564886b61e5c79caa8dd30be142d853d9fd75b0156"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__HGB_SKLEARN__bundle.json",
+   "sha256": "0a29df855100ea46966c1cce7c81879b514b50dc3e980cc86a5a08f529b8208b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LGBM__bundle.json",
+   "sha256": "01ef2692356b94838ccaf222db2db3574e19b8918e31d19dd8d03dfe63cff0c8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LR_NUMPY_PLATT__bundle.json",
+   "sha256": "802be7ef2f0a954732ce35747315fae9f2cd431d0b9ace9d528370f890dd8387"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LR_NUMPY_PLATT__core_numpy_only.json",
+   "sha256": "167825a9517b3e3fe8c28fc41d7544fa0d483ce8a55f4caf2f8d7db6ac6f0077"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LR_NUMPY_VENN_ABERS__bundle.json",
+   "sha256": "11384a1f7f65300846c3f16d27b5a8c9c8743f50ab9f1ca5805f3a7f81c4608b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LR_NUMPY_VENN_ABERS__core_numpy_only.json",
+   "sha256": "9f1988f6aeabb4c88ba886642e7b6b0d8a89183fc8eddcf223a9ed9943148012"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LR_NUMPY__bundle.json",
+   "sha256": "bd39b47de051869c66e9d794e883ff6b598327e224fedfb471697ef787704544"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LR_NUMPY__core_numpy_only.json",
+   "sha256": "946723e67f6f697531c4f8b8f8f52c7758746f43303e194ebfe8463bc70d7e46"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LR_SKLEARN_SIGMOID_FROZEN__bundle.json",
+   "sha256": "6ae340814d4dfb7cb04260d81d358866eb8c3e531f5e8648f72afc797727a9e2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__challenge__LR_SKLEARN__bundle.json",
+   "sha256": "743b19c749b072e4258fadb84fcb74351112787d27c469ff356b98e328cd43c4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__B0__bundle.json",
+   "sha256": "96ab75e644ac1e9319308e1fd41a3b04348398bf1dd37e6a422b6a95965f3ad3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__B0__core_numpy_only.json",
+   "sha256": "d03d5cce08c5004cff68241435b513c79dd024d44fcdf1dc4ab5a6dc2a61609c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__COX_LIFELINES__bundle.json",
+   "sha256": "fc81404b888431a613d64f13529544061c03252d5416b9b5228d68724b4609a2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__HGB_SKLEARN__bundle.json",
+   "sha256": "28c5f9f0e5dca161c557e7e829491a394b2f2707c78f800cdecb89bf0ab906ab"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LGBM__bundle.json",
+   "sha256": "61bdff65965c34f4be79cb9556c965fc4ee23e8fb436bf7492ba9bb11765d8d1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LR_NUMPY_PLATT__bundle.json",
+   "sha256": "28b44ec1a3fe3ad6be16789b9ae60202a9ad7dcdc720255ba826dd7e5679970e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LR_NUMPY_PLATT__core_numpy_only.json",
+   "sha256": "48e7db7047791fe7e42391dfc581f48ddcee2d79dc7928b422c352809ab3c123"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LR_NUMPY_VENN_ABERS__bundle.json",
+   "sha256": "10cfd18b68073767a14546dd09fe9bbf3b787d006296be9a3ba1a1def87c30ba"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LR_NUMPY_VENN_ABERS__core_numpy_only.json",
+   "sha256": "19ca6502c8165ea93a215afd3bbc99b5102823ba56279438c551a5b2d4d9993d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LR_NUMPY__bundle.json",
+   "sha256": "10d57d35f0546040f7b7fee670220d8fca8df0984c16d236241c6a232a0aab62"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LR_NUMPY__core_numpy_only.json",
+   "sha256": "076337f4371de67efee175140f642cd69b7bcfefbcc68c1ead90c04fbd2059fa"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LR_SKLEARN_SIGMOID_FROZEN__bundle.json",
+   "sha256": "9fd56fe7912cfe02d19cae2336050d59ddaf836e6c025a7dc098ff4dee8a9ab1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev24__LR_SKLEARN__bundle.json",
+   "sha256": "87f60fc9c5679b41a9a900fb9ffa2d91cccad3ca8b4d0bce54c6a5dc1875ebed"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__B0__bundle.json",
+   "sha256": "cb4ad03b329b46f72f10725fce4735cab28c5eeba6768e11cd264306fe6f9ae1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__B0__core_numpy_only.json",
+   "sha256": "af5259d8da93deb5c47d04681edbe8ba1c35fa6592f92e018155a6e7097e087a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__COX_LIFELINES__bundle.json",
+   "sha256": "9f0cac0b3a1d09a179af6b83d021ead16aadfcc01d93f2f2bd5cbe5e5d36773b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__HGB_SKLEARN__bundle.json",
+   "sha256": "76002f689148258214d837527433b60c6f409fcda058c52056f8924196813c3e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LGBM__bundle.json",
+   "sha256": "f7eaacea0897c22ff6d8fb41aec589b44b234bc5dfb345d6a23950a34d25972d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LR_NUMPY_PLATT__bundle.json",
+   "sha256": "8f0ea60399803ab5a7e4166c56110dfac98be244f5099f16c7078871ee56883a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LR_NUMPY_PLATT__core_numpy_only.json",
+   "sha256": "8884e781a52589d9b8cceb16b3ba88e09ea6523654e666b2b0f63c03edba7b01"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LR_NUMPY_VENN_ABERS__bundle.json",
+   "sha256": "d4736f076d34b948edf81db02540f22f84a9efb7936e407adf333ca11708acaa"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LR_NUMPY_VENN_ABERS__core_numpy_only.json",
+   "sha256": "3be5b1f57f731b5a37e4748d13e603904aee7d336fb541708d2f31fa00139638"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LR_NUMPY__bundle.json",
+   "sha256": "7482a8c0260dfd8f6429c09fc938ef033f48b4a6f442f52d37f00ea4b56ca9d3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LR_NUMPY__core_numpy_only.json",
+   "sha256": "5d91c721ae11915a44276ccdb3d1062d4ac286a55ee007695fc9500246699f04"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LR_SKLEARN_SIGMOID_FROZEN__bundle.json",
+   "sha256": "d434d06c9547ee97087614cc5ea1a327eac3b64ed4ba2afb1062d42d78cd7720"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/approach__dev6__LR_SKLEARN__bundle.json",
+   "sha256": "ff758a0b18f6c3064c6c419776bea2c68fdcc5ff6f64436d5bad82829b9b25ac"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/check__behavior_mesa.json",
+   "sha256": "a7ae716a5bbfe0fb4aed4c1d2194097842c5ea5dcd70538dc3fc2bc562a0921e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/check__behavior_mesa_plain_install.json",
+   "sha256": "ecfb95500728198ba78fb08c5d91aa658a3bccc9d75af27b12987f1c61ac85f4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/check__behavior_numpy.json",
+   "sha256": "4a474705fd193e7fc6bb3d6a58a9a8a626fc3c80ab2e75bf7e46c556f754cf9a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/check__calibration_bundle.json",
+   "sha256": "8edc2722aee460ddcb3799aad26112cf55d33ad869280543f08168e7c69b8e49"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/check__calibration_oracle.json",
+   "sha256": "577bc961c1c9bbd8b4eef904ea399b249d90b8db5aca65e979db9e1be385fc82"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/check__drift.json",
+   "sha256": "0e85866bad0ce2e558e9d2d9cf09921742f39087be851b185d3ffe8c277f6c2a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/check__schema.json",
+   "sha256": "3c64041d7596c386180e01d53e22f89d2e6013ce6a21d10f5af0ac74acfa4242"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/check__splitter.json",
+   "sha256": "32633087ca9ee737abc3d6fac9e681979b9535022e28e9e856e6b578b93c4c51"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__arch.json",
+   "sha256": "86a79ef16930f42a246140d9f6335a19fdb40b2167e2babcb3a421e7bd396938"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__core_numpy_prototype.json",
+   "sha256": "24a89dd12294082bbba27f544287555727d66c40af594088457d2772e2553d9b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__crepes.json",
+   "sha256": "0e3aaca975c67644d177a57b4d60fef434ca0c7fddb8a1e80a7fcd69746fc1cc"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__interpret.json",
+   "sha256": "fd1f07aa4948de9f82b7ec9676381770a0f97f1db3adf9588edc1ceabf01e5e3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__lab_runtime_stdlib.json",
+   "sha256": "b4e63de3fec038272785316e5451dc7a7fdef80657a11494dc82a4b597f1aec1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__lifelines.json",
+   "sha256": "7356b02534b6de5dd8619f99a1ec16397a4065c47ec6c5ca4bc674f46e8d2a21"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__lightgbm.json",
+   "sha256": "f31ae4be9b612e28a9e3a7ce9e91f175ef42c4811203f1d43c06a91cd4eb2794"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__mapie.json",
+   "sha256": "b8d55da140cf5dd73d9a533c7c62e3bc55de2657bd6d780ca58675da60ab38ae"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__mesa.json",
+   "sha256": "9bb566b3404cc175eab19742d1ad3643da537a4d71b05d32c02271616597a96c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__numpy.json",
+   "sha256": "03bb3def65fa8f2a0bdf3c31851eebd279a195a3073e65adbbd32d2ef38523b8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__pandera.json",
+   "sha256": "6794126d7928c46eeb60d9db5ccc1b96636d026115e10b4daa74214a41f609c9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__purgedcv.json",
+   "sha256": "c1077f48f1e80d1a6a83cf9b4040876966714776a1812cda30188d0e8812bee3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__river_drift.json",
+   "sha256": "33a881ef3983e103ad19eabec3711d7b1b0f28d1adf48e39d66f310b1e221880"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__sklearn_hgb.json",
+   "sha256": "9001533e1fd6193b95f9d6fe06862fb903f135d3646c6e08010bdf49a65a1a4b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__sklearn_linear_calibration.json",
+   "sha256": "1abf6ef7d4fab72f1a9539d4b14f21e55f6eb801d49b7f836f60199c2791effb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__statsmodels.json",
+   "sha256": "16eaf1e572a694d62e0d29287531636e3c47bc47c0a5e09b21a066b614c0c334"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/measure/import__venn_abers_oracle.json",
+   "sha256": "a92824a5972a3a5dca0c7f359c78254844cafb98c9bc1fee9b2f415913ef1433"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/mirofish_adapter_runs.json",
+   "sha256": "21bb03e8101a77e5085c4a745b9b95003919d28cac3a6ee81c0f889e16d15e0d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/mutation_runtime.json",
+   "sha256": "57577a1888358c4320f8f6c5fdf6a2c1ddb1922118306b719185e8db7a1e7896"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__challenge__B0__bundle.json",
+   "sha256": "5c9ad614643eb2d31748f0c2af3b51ebbd7e1b0fae77a2d39d56d984b3e4f8cf"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__challenge__B0__core_numpy_only.json",
+   "sha256": "5c9ad614643eb2d31748f0c2af3b51ebbd7e1b0fae77a2d39d56d984b3e4f8cf"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__challenge__COX_LIFELINES__bundle.json",
+   "sha256": "cbb8015f7b37e629844ee3bbb9133d496bbcf55d8de57b8cf0dfb850b1952674"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__challenge__HGB_SKLEARN__bundle.json",
+   "sha256": "8682a0cf4e80cd9f3199381440951bf60e76e1ce5c8008599e94adfb35cd4f23"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__challenge__LGBM__bundle.json",
+   "sha256": "e6f8eecd1a7abcfaba9c43b31668af2bd8a67b25be0ce271c2f438e002691ac6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__challenge__LR_NUMPY_PLATT__bundle.json",
+   "sha256": "83ba663d897226049298c178535ba85d42251d7e9d5ce7c90e22363bb3e15180"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__challenge__LR_NUMPY_PLATT__core_numpy_only.json",
+   "sha256": "83ba663d897226049298c178535ba85d42251d7e9d5ce7c90e22363bb3e15180"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__challenge__LR_NUMPY_VENN_ABERS__bundle.json",
+   "sha256": "5a3cd0f98f20147a4964dd7ed3b9d8a533c6616b83fc43f91361d2b1b9a6bc49"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__challenge__LR_NUMPY_VENN_ABERS__core_numpy_only.json",
+   "sha256": "5a3cd0f98f20147a4964dd7ed3b9d8a533c6616b83fc43f91361d2b1b9a6bc49"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__challenge__LR_NUMPY__bundle.json",
+   "sha256": "6813d94959a4a184c50c199fccdfe398b5ca7f5056d6d2df1a9fdf86d5063aa2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__challenge__LR_NUMPY__core_numpy_only.json",
+   "sha256": "6813d94959a4a184c50c199fccdfe398b5ca7f5056d6d2df1a9fdf86d5063aa2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__challenge__LR_SKLEARN_SIGMOID_FROZEN__bundle.json",
+   "sha256": "3ddcc91ab3e5881d2fa638f1a3356455be474f75e53df22c6b81036b4c32b4de"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__challenge__LR_SKLEARN__bundle.json",
+   "sha256": "d61e35bc23a7305a01214db65ae788e2124b3026fcd892469180a32fc758fcc2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev24__B0__bundle.json",
+   "sha256": "131eb03199734eaf8751359a65274d05e1a7bd6a776090468bb7c62aaca208c5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev24__B0__core_numpy_only.json",
+   "sha256": "131eb03199734eaf8751359a65274d05e1a7bd6a776090468bb7c62aaca208c5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev24__COX_LIFELINES__bundle.json",
+   "sha256": "acffffe3882a80075c721e535f2eab1ffb7d8fb524b224e383ef6acb7016539b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev24__HGB_SKLEARN__bundle.json",
+   "sha256": "348ba9c02dee101fe2034e81d9b1270a159246053c48835ce0d5b00bae8d02ac"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev24__LGBM__bundle.json",
+   "sha256": "856f10a4b966792e45e7e2958cffe72a41a410c4b25e1367a321dc6d737f56e6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev24__LR_NUMPY_PLATT__bundle.json",
+   "sha256": "7dc5a95112122fcc32a107a009e9e7ee426e6f06bca45e486ea94f8125b10d40"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev24__LR_NUMPY_PLATT__core_numpy_only.json",
+   "sha256": "7dc5a95112122fcc32a107a009e9e7ee426e6f06bca45e486ea94f8125b10d40"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev24__LR_NUMPY_VENN_ABERS__bundle.json",
+   "sha256": "26e4dc9e2658b1ad235f9d18c7bd200c1814c9b70e04e770744eb3a75e51a785"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev24__LR_NUMPY_VENN_ABERS__core_numpy_only.json",
+   "sha256": "26e4dc9e2658b1ad235f9d18c7bd200c1814c9b70e04e770744eb3a75e51a785"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev24__LR_NUMPY__bundle.json",
+   "sha256": "ee6b9b8a7b15fe26e03ad913159d230e6495b0531b433ad5d19d4b458cfd9c1d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev24__LR_NUMPY__core_numpy_only.json",
+   "sha256": "ee6b9b8a7b15fe26e03ad913159d230e6495b0531b433ad5d19d4b458cfd9c1d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev24__LR_SKLEARN_SIGMOID_FROZEN__bundle.json",
+   "sha256": "1152a48b86a31f8a9afa20b9f81682017d4cb8d792c4243b6f2f30f48f457ec9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev24__LR_SKLEARN__bundle.json",
+   "sha256": "fb10e11e201e0174cb09be6ea6e9af7ec0f6621c6c8fe8e0e49e0db9c3137e2c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev6__B0__bundle.json",
+   "sha256": "417783e013bc8854556d8eb072f04ec60ed5e89fe5f7c71da0fd38abed6b99b9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev6__B0__core_numpy_only.json",
+   "sha256": "417783e013bc8854556d8eb072f04ec60ed5e89fe5f7c71da0fd38abed6b99b9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev6__COX_LIFELINES__bundle.json",
+   "sha256": "ffc88ac478bf4049b973eeaade5a079c7de0417a907ca367b340c1d7039014ad"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev6__HGB_SKLEARN__bundle.json",
+   "sha256": "bc5f0a1e72c37865f19afc1c0be8a7b3c3b7d05bc45549a8eac1058628362517"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev6__LGBM__bundle.json",
+   "sha256": "03c8b606898627f0815263835627ac58015d3f45d25867fedcc1206431aba10a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev6__LR_NUMPY_PLATT__bundle.json",
+   "sha256": "804fda6c1f955f37bb86747b154de893fc85174d066e1665e1d28d610cc4c463"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev6__LR_NUMPY_PLATT__core_numpy_only.json",
+   "sha256": "804fda6c1f955f37bb86747b154de893fc85174d066e1665e1d28d610cc4c463"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev6__LR_NUMPY_VENN_ABERS__bundle.json",
+   "sha256": "c547d0b773e094ba706967f9d4672db379b20562bea8b6140dd0ac51732e106f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev6__LR_NUMPY_VENN_ABERS__core_numpy_only.json",
+   "sha256": "c547d0b773e094ba706967f9d4672db379b20562bea8b6140dd0ac51732e106f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev6__LR_NUMPY__bundle.json",
+   "sha256": "62ec0b502a2247273ab91c6babe0940d5b777de97079bcd5adea2f8035311463"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev6__LR_NUMPY__core_numpy_only.json",
+   "sha256": "62ec0b502a2247273ab91c6babe0940d5b777de97079bcd5adea2f8035311463"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev6__LR_SKLEARN_SIGMOID_FROZEN__bundle.json",
+   "sha256": "aad1e35981d2da444ea19fdcc4e13bedd6a5c6045266da9bb3f59b0eac08e907"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/approach__dev6__LR_SKLEARN__bundle.json",
+   "sha256": "beb7a805954a574b560b8fc4eae0ecb3c4a0f7b096e8288c95786f1833258872"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/check__behavior_mesa.json",
+   "sha256": "3d7c203cd800dc0bad7ab25148155c050a419e6178afd672fe876cfafe3aa99d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/check__behavior_mesa_plain_install.json",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/check__behavior_numpy.json",
+   "sha256": "a2a8d3dd7bd6f3433eb51a0d21eb34a90d7d188383e542c601b0d4c4a01b9100"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/check__calibration_bundle.json",
+   "sha256": "e2eddc2f6dc6a6afe53619a96ee24f1ba1df8de32cb8848eaf65a7b350d3f27e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/check__calibration_oracle.json",
+   "sha256": "760025217932598ffa6ba9783f6522db476d8f6fe9e3beae72c7c642c234d6d6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/check__drift.json",
+   "sha256": "f5c7cccc372bf072fa6ff7bee121618b6456254c27e90ea0942ff33eeda895d7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/check__schema.json",
+   "sha256": "e1e9180ce83a74d3f7a20d1facd0be31c77f1ecf711436a7f8e194dacc6260e0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/outputs/check__splitter.json",
+   "sha256": "b141f6e7521f8d78ad3ae688d9bfa940f71393d83024c20624baa70ec19f69ca"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/research-py313.bom.json",
+   "sha256": "91dd4fdb8df900e7db789945220fe6e49217b5c006ff97c858b1ed4b03898b0e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/research-py313.in",
+   "sha256": "a7a0336c6dd7f0378fa26ab42fe647b7ee1322bba79cbadd787291342e8ee003"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/research-py313.overrides.txt",
+   "sha256": "0f7011f8e062802ab40c0bcfa852c079b99f0097f1a3ea085d2eacfef42263f9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/rollback_demo.json",
+   "sha256": "c2620fe26244063860e1fc7b91736fb1715f24119a70ad052fe2059cc8e9ad3e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/strace/strace_challenge_approaches.txt",
+   "sha256": "ab1d2ba41384cc28d7d08f09600a5c48a7e82481fd4a9e67dbb6911233d4e88d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/wheel_availability.json",
+   "sha256": "a186e06e0d40dc265a8eb513c2454cf5759f77a9fd5b70ec9f3ded1982248f7e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/wheel_licenses.json",
+   "sha256": "38dd6e63f4674ac5e04821087d7dc5da9ea3c274686c25f806f245b35a7f649c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/wheelhouse_check.txt",
+   "sha256": "f0817f1911d9732ec9f7bc6013e3e7ad8e563bcef3b500cd57ae6cf8fdf0161b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/bakeoff.py",
+   "sha256": "06d349c4fa6924ad91d4d814cf6192306bfc804e3cea6408dbaf5bd1ea0bdda9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/banned_scan.py",
+   "sha256": "c9ab017ee7912a978fac59cf7ef888852a7ce7714776348dd15705a9f9963d05"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/behavior_check.py",
+   "sha256": "228a1168f7d0b02de81465b969f71ada042b22e44724ac936fb008af437375b3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/build_copyleft_fingerprints.py",
+   "sha256": "99a67348595b979240e94a78173ddd05cc18a2521ce775d03efd8fce9253ec3a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/build_dev_sample.py",
+   "sha256": "4c84eb58a84c69847c243fd8cadf9f7227e53a3684e8dd7428b308ae8dd89060"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/build_lock.py",
+   "sha256": "40cdb4f0526f6157a940d4fcbb8cff1a79085207ab4143e2de8bd95ac37b9ec3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/calibration_check.py",
+   "sha256": "3fee052b105c987869739ce8ddf1a527fd1acc86d650ea19dd493c2304ad5499"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/core_numpy.py",
+   "sha256": "833b55e4191b1eebf5a56e08694808c2bd06c3334ae74f268ad59931944cd137"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/drift_check.py",
+   "sha256": "3aa6cac7039c4cb8b2a304cbdb83bd7faa8c3dd1e9054069f358f69014756ba8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/error_semantics.py",
+   "sha256": "0296d99d9a981df93e601da418f8ccfc93fc0e3336efccd63f6f9e7d4ae62698"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/holdout_candle_check.py",
+   "sha256": "fdbd207ba61f0cf373ef48afb4481410671a4785836786e7c60be1015440b64d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/hostile_setup_demo.py",
+   "sha256": "5dc7a6cfab8756d607b679e69fb85f2976c523d911c4c165966e2642db11fe64"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/import_probe.py",
+   "sha256": "bc27b3ea4dd571293042cbf97a0c4cf412eb41d44251816bb223c33acc1689b0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/measure.py",
+   "sha256": "1e8537e34a5fd874e2c598e6463ba43b08990999723b029551dea07fd32fd8f1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/mirofish_adapter.py",
+   "sha256": "9cd48b6cc0d1cb344de69e5c9246491430a0e7f201dc0d422d3c0afa2dffebc9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/mutation_runtime.py",
+   "sha256": "7902471c8e525eb4397b82cfe0ca5c2959f8dcff7f72516bdb81790d633064ff"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/render_bom.py",
+   "sha256": "88f3485e874bdbd892f7a631b0ccd7b83931295d7e6d69268796112e539e42cb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/render_tables.py",
+   "sha256": "bf882481c5e115a6240d9071f1d5aadf3895fac39b73cdae5e74ca8170d1fb92"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/rollback_demo.py",
+   "sha256": "0efe134d49445a4d1127c88f5182cc09f57b5da79527acbeea5fc1313865b5d6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/run_measurements.py",
+   "sha256": "c5a76e4a12f36f91659b376592a19786c0e974d011bfef8b1e1e4a141ff1afec"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/schema_check.py",
+   "sha256": "727d89bdde56293ca68bef864fc7c758c78281ef5d3ba398640da8f7c3ec2fee"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/splitter_check.py",
+   "sha256": "6c5125fe202f0736bb2d3f1e30dd7abdcae5e832e1f5bec34c587e7cb32e5dab"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/summarize.py",
+   "sha256": "7e30ab93d6a838e82d597445de790ea0771cb3c3a6cf93f0bd1ccfa164da53fa"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/wheel_licenses.py",
+   "sha256": "1b374a197b1801eb74332c17bdd29e5c9a28a5c3fb0c00cd1f355ad2fa0592cb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/write_results.py",
+   "sha256": "643e9e8b8623c5e68463e9fa162eb1a0bb0be3c29bc88c3d62681056b660b60e"
+  },
+  {
+   "path": "memelab/predictive/runtime.py",
+   "sha256": "d5c9d33f7938f08ecf029b419265d80a0bebc2ff8ddb07ba068efd0235d98969"
+  },
+  {
+   "path": "tests/test_predictive_runtime.py",
+   "sha256": "75ada0bc30b25aedd86c3670e722265f3d2d067bb9b559ea93c379700b990dab"
+  },
+  {
+   "path": "tests/fixtures/predictive/copyleft_fingerprints.json",
+   "sha256": "cfe703f934fd3345b37e1933d61ed8146deaf867a0d742f31d7f823f44520aa9"
+  },
+  {
+   "path": "docs/predictive-intelligence/locks/core-py313.txt",
+   "sha256": "0ff27f9bafc2c4e28463386302a92091ad1a5069c8d555dd7c56d281d827c148"
+  },
+  {
+   "path": "docs/predictive-intelligence/locks/research-py313.txt",
+   "sha256": "3ca3b1a8d4f6565a4633b3e9cc66724a251b029e165f907378d6dc130ac1190b"
+  }
+ ],
+ "limitations": [
+  "The bake-off measures behaviour, cost and correctness; 26 and 33 out-of-sample real events and a synthetic file support no claim of predictive skill",
+  "BAKEOFF_ONLY labels: one read per pool, no 48 h revision re-read, PIT route only, no T2; Phase 06 rebuilds labels",
+  "The development outcomes behind 261 target labels were viewed; Phase 12 must count these runs as tried configurations (PI-D-034)",
+  "Network and telemetry were measured offline only; a library that phones home only when online would need an online, firewalled measurement",
+  "The copyleft gate catches copied runs of 15 or more normalized lines and license markers, not short or rewritten copies",
+  "MiroFish was run only against a local mock LLM; live behaviour, costs and quality are unmeasured (BLOCKED, PI-D-005)",
+  "Windows and macOS installs were verified by downloading and hashing the wheels, not by installing on those systems",
+  "statsmodels, arch, crepes and interpret-core are deferred, not decided"
+ ],
+ "blockers": [],
+ "approvals_needed": [],
+ "next_eligible_phase": "05, after the orchestrator's independent skeptic and the Phase 04 repair pass"
+}

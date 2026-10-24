@@ -1,0 +1,3 @@
+linux: 30 wheels downloaded with pip --require-hashes, 0 not in the lock, 105.6 MB
+win: 30 wheels downloaded with pip --require-hashes, 0 not in the lock, 93.6 MB
+mac: 30 wheels downloaded with pip --require-hashes, 0 not in the lock, 69.3 MB

@@ -1,0 +1,39 @@
+{
+ "candles_at_or_after_h0": [
+  {
+   "tag": "p000_0",
+   "candle_start_minus_h0_s": 0.0,
+   "before_timestamp_minus_h0_s": 0.0
+  },
+  {
+   "tag": "p027_0",
+   "candle_start_minus_h0_s": 0.0,
+   "before_timestamp_minus_h0_s": 0.0
+  },
+  {
+   "tag": "p074_0",
+   "candle_start_minus_h0_s": 0.0,
+   "before_timestamp_minus_h0_s": 0.0
+  },
+  {
+   "tag": "p079_0",
+   "candle_start_minus_h0_s": 0.0,
+   "before_timestamp_minus_h0_s": 0.0
+  },
+  {
+   "tag": "p081_0",
+   "candle_start_minus_h0_s": 0.0,
+   "before_timestamp_minus_h0_s": 0.0
+  },
+  {
+   "tag": "p082_0",
+   "candle_start_minus_h0_s": 0.0,
+   "before_timestamp_minus_h0_s": 0.0
+  }
+ ],
+ "pools": 6,
+ "holdout_window_decisions_on_these_pools": 3,
+ "of_which_decided_within_reference_window_of_h0": 0,
+ "reference_window_s": 4200,
+ "verdict": "no holdout decision can use these candles"
+}

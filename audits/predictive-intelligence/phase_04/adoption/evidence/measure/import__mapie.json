@@ -1,0 +1,77 @@
+{
+ "label": "import__mapie",
+ "python": "/home/claude/pi_research/venvs/p04_bundle/bin/python",
+ "mode": "script",
+ "target": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_04/adoption/prototypes/import_probe.py",
+ "args": [
+  "mapie.risk_control,mapie.metrics.calibration"
+ ],
+ "offline_unshare_n": true,
+ "env_extra": {},
+ "repeat": 5,
+ "all_exit_0": true,
+ "wall_median_s": 1.2861,
+ "wall_min_s": 1.1747,
+ "wall_max_s": 1.301,
+ "cpu_median_s": 1.1933,
+ "peak_rss_max_mb": 143.9,
+ "net_events_total": 0,
+ "deterministic_stdout": true,
+ "runs": [
+  {
+   "exit": 0,
+   "wall_s": 1.1747,
+   "cpu_s": 1.1692,
+   "peak_rss_mb": 143.7,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "ee24bee3ee96032d3883101dae5fc1b47906c1eacdd0f81c733b56e0d4f79613",
+   "stdout_tail": "imported mapie.risk_control,mapie.metrics.calibration | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1586\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.301,
+   "cpu_s": 1.2021,
+   "peak_rss_mb": 143.8,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "ee24bee3ee96032d3883101dae5fc1b47906c1eacdd0f81c733b56e0d4f79613",
+   "stdout_tail": "imported mapie.risk_control,mapie.metrics.calibration | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1586\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.2861,
+   "cpu_s": 1.1933,
+   "peak_rss_mb": 143.8,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "ee24bee3ee96032d3883101dae5fc1b47906c1eacdd0f81c733b56e0d4f79613",
+   "stdout_tail": "imported mapie.risk_control,mapie.metrics.calibration | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1586\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.193,
+   "cpu_s": 1.1709,
+   "peak_rss_mb": 143.7,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "ee24bee3ee96032d3883101dae5fc1b47906c1eacdd0f81c733b56e0d4f79613",
+   "stdout_tail": "imported mapie.risk_control,mapie.metrics.calibration | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1586\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.287,
+   "cpu_s": 1.2048,
+   "peak_rss_mb": 143.9,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "ee24bee3ee96032d3883101dae5fc1b47906c1eacdd0f81c733b56e0d4f79613",
+   "stdout_tail": "imported mapie.risk_control,mapie.metrics.calibration | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1586\n",
+   "stderr_tail": ""
+  }
+ ]
+}

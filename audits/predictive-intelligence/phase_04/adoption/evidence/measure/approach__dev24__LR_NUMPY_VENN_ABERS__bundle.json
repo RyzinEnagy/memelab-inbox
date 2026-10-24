@@ -1,0 +1,47 @@
+{
+ "label": "approach__dev24__LR_NUMPY_VENN_ABERS__bundle",
+ "python": "/home/claude/pi_research/venvs/p04_bundle/bin/python",
+ "mode": "script",
+ "target": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_04/adoption/prototypes/bakeoff.py",
+ "args": [
+  "dev24",
+  "LR_NUMPY_VENN_ABERS",
+  "--min-train",
+  "30"
+ ],
+ "offline_unshare_n": true,
+ "env_extra": {},
+ "repeat": 2,
+ "all_exit_0": true,
+ "wall_median_s": 0.1538,
+ "wall_min_s": 0.1404,
+ "wall_max_s": 0.1672,
+ "cpu_median_s": 0.1361,
+ "peak_rss_max_mb": 34.2,
+ "net_events_total": 0,
+ "deterministic_stdout": true,
+ "runs": [
+  {
+   "exit": 0,
+   "wall_s": 0.1404,
+   "cpu_s": 0.1201,
+   "peak_rss_mb": 34.2,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "26e4dc9e2658b1ad235f9d18c7bd200c1814c9b70e04e770744eb3a75e51a785",
+   "stdout_tail": "\": 0.30649, \"mean_p_inside_wilson95\": true, \"n_oos\": 26, \"observed_rate\": 0.307692, \"p_max\": 0.571429, \"p_min\": 0.111111, \"positives_oos\": 8, \"predictions_sha256\": \"484ff8232395a00961c32c2981571500ad18434177d9177a9515a06dedd9cc0f\", \"rule\": \"day walk-forward, training labels matured by the cutoff (ACCEPTANCE walk_forward); min_train 30\", \"test_sizes\": [7, 8, 7, 4], \"train_sizes\": [67, 76, 83, 91]}\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 0.1672,
+   "cpu_s": 0.1522,
+   "peak_rss_mb": 34.2,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "26e4dc9e2658b1ad235f9d18c7bd200c1814c9b70e04e770744eb3a75e51a785",
+   "stdout_tail": "\": 0.30649, \"mean_p_inside_wilson95\": true, \"n_oos\": 26, \"observed_rate\": 0.307692, \"p_max\": 0.571429, \"p_min\": 0.111111, \"positives_oos\": 8, \"predictions_sha256\": \"484ff8232395a00961c32c2981571500ad18434177d9177a9515a06dedd9cc0f\", \"rule\": \"day walk-forward, training labels matured by the cutoff (ACCEPTANCE walk_forward); min_train 30\", \"test_sizes\": [7, 8, 7, 4], \"train_sizes\": [67, 76, 83, 91]}\n",
+   "stderr_tail": ""
+  }
+ ]
+}

@@ -1,0 +1,853 @@
+{
+ "input_lock": "research_final.lock.txt",
+ "packages": [
+  {
+   "name": "autograd",
+   "version": "1.9.1",
+   "marker": "",
+   "requires_python": ">=3.10",
+   "license_declared": "MIT",
+   "upload_time": "2026-07-02",
+   "wheels": [
+    {
+     "file": "autograd-1.9.1-py3-none-any.whl",
+     "sha256": "b788bae3fa010cbffb4cfb7b8ba2a3f0daa6072a8506da6164c779fe9cf3e05a",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 54387
+    }
+   ]
+  },
+  {
+   "name": "autograd-gamma",
+   "version": "0.4.2",
+   "marker": "",
+   "requires_python": "",
+   "license_declared": "",
+   "upload_time": "2020-02-19",
+   "wheels": [
+    {
+     "file": "autograd_gamma-0.4.2-py2.py3-none-any.whl",
+     "sha256": "83fd9c76ffa6803710124404fc6e4ef33d2a01557d26f7dd36073aa2be05fb1d",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 3828
+    },
+    {
+     "file": "autograd_gamma-0.4.2-py3-none-any.whl",
+     "sha256": "6bf89881ccb5c320ec10927410d6da816bc628b17183f4dee674e6d757ab5552",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 3825
+    }
+   ]
+  },
+  {
+   "name": "cloudpickle",
+   "version": "3.1.2",
+   "marker": "",
+   "requires_python": ">=3.8",
+   "license_declared": "BSD-3-Clause",
+   "upload_time": "2025-11-03",
+   "wheels": [
+    {
+     "file": "cloudpickle-3.1.2-py3-none-any.whl",
+     "sha256": "9acb47f6afd73f60dc1df93bb801b472f05ff42fa6c84167d25cb206be1fbf4a",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 22228
+    }
+   ]
+  },
+  {
+   "name": "contourpy",
+   "version": "1.4.0",
+   "marker": "",
+   "requires_python": ">=3.12",
+   "license_declared": "BSD-3-Clause",
+   "upload_time": "2026-09-11",
+   "wheels": [
+    {
+     "file": "contourpy-1.4.0-cp313-cp313-macosx_11_0_arm64.whl",
+     "sha256": "196759a3e4db60e1546167e361090ebb6d199aa3aafc9e34ea17a5ac3b23e814",
+     "platforms": [
+      "macos_arm64"
+     ],
+     "bytes": 285037
+    },
+    {
+     "file": "contourpy-1.4.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+     "sha256": "f1219a8898523cba821085f2da8a1b962cc696325763f09d7f93538ba43b2d70",
+     "platforms": [
+      "linux_x86_64"
+     ],
+     "bytes": 384707
+    },
+    {
+     "file": "contourpy-1.4.0-cp313-cp313-win_amd64.whl",
+     "sha256": "6507a016976a75a15aee47809a34605de6244ccc056e6164bf9fb14b27eecad4",
+     "platforms": [
+      "win_amd64"
+     ],
+     "bytes": 234084
+    }
+   ]
+  },
+  {
+   "name": "cycler",
+   "version": "0.12.1",
+   "marker": "",
+   "requires_python": ">=3.8",
+   "license_declared": "Copyright (c) 2015, matplotlib project A",
+   "upload_time": "2023-10-07",
+   "wheels": [
+    {
+     "file": "cycler-0.12.1-py3-none-any.whl",
+     "sha256": "85cef7cff222d8644161529808465972e51340599459b8ac3ccbac5a854e0d30",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 8321
+    }
+   ]
+  },
+  {
+   "name": "fonttools",
+   "version": "4.67.0",
+   "marker": "",
+   "requires_python": ">=3.11",
+   "license_declared": "MIT",
+   "upload_time": "2026-10-14",
+   "wheels": [
+    {
+     "file": "fonttools-4.67.0-cp313-cp313-macosx_10_13_universal2.whl",
+     "sha256": "8239e2ca24878715a19f061d065b5721e87da81d145e48b3418f771a469b5a24",
+     "platforms": [
+      "macos_arm64"
+     ],
+     "bytes": 3106141
+    },
+    {
+     "file": "fonttools-4.67.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+     "sha256": "50c41e30aa2e0130b80d1a58ac0f3ea7c02a854a70dbea1ff8d88e0ce524806f",
+     "platforms": [
+      "linux_x86_64"
+     ],
+     "bytes": 5382979
+    },
+    {
+     "file": "fonttools-4.67.0-cp313-cp313-win_amd64.whl",
+     "sha256": "7343cd0ef70edf8be7f4913cb9b55b992fb4e04055b47dcfecddcc2eb045a9d2",
+     "platforms": [
+      "win_amd64"
+     ],
+     "bytes": 2496147
+    },
+    {
+     "file": "fonttools-4.67.0-py3-none-any.whl",
+     "sha256": "4304f03ed7f4ba000a8dcc941ad854bfa52e2f3b6112b8f099b6f431cf98e701",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 1213142
+    }
+   ]
+  },
+  {
+   "name": "formulaic",
+   "version": "1.2.2",
+   "marker": "",
+   "requires_python": ">=3.9",
+   "license_declared": "MIT",
+   "upload_time": "2026-06-02",
+   "wheels": [
+    {
+     "file": "formulaic-1.2.2-py3-none-any.whl",
+     "sha256": "0f84ff49e3fc9dc0e68ab08a0a9427874021aa6c558e66b44dc634a35739b09b",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 118939
+    }
+   ]
+  },
+  {
+   "name": "interface-meta",
+   "version": "2.0.1",
+   "marker": "",
+   "requires_python": ">=3.10",
+   "license_declared": "MIT",
+   "upload_time": "2026-04-30",
+   "wheels": [
+    {
+     "file": "interface_meta-2.0.1-py3-none-any.whl",
+     "sha256": "f38016bef9a4429b6d0792d809be7b65e9781820c674bf7f463999086b6e6323",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 15330
+    }
+   ]
+  },
+  {
+   "name": "joblib",
+   "version": "1.6.0",
+   "marker": "",
+   "requires_python": ">=3.10",
+   "license_declared": "BSD-3-Clause",
+   "upload_time": "2026-08-31",
+   "wheels": [
+    {
+     "file": "joblib-1.6.0-py3-none-any.whl",
+     "sha256": "3dbbf9f6e4b592a2357b854608e980fe6390d131d7a82f011a377ef2ebef7aba",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 306115
+    }
+   ]
+  },
+  {
+   "name": "kiwisolver",
+   "version": "1.5.1",
+   "marker": "",
+   "requires_python": ">=3.10",
+   "license_declared": "=========================",
+   "upload_time": "2026-08-28",
+   "wheels": [
+    {
+     "file": "kiwisolver-1.5.1-cp313-cp313-macosx_10_13_universal2.whl",
+     "sha256": "a5ca5aebae78a0bc13c1943af4af615d4966c5b650b05d5aa83b50e427196fee",
+     "platforms": [
+      "macos_arm64"
+     ],
+     "bytes": 123876
+    },
+    {
+     "file": "kiwisolver-1.5.1-cp313-cp313-macosx_11_0_arm64.whl",
+     "sha256": "77a4c8187a5948d7f8795adb765a3c7b553d07d86d88e43038fc32fc1fb9a3f3",
+     "platforms": [
+      "macos_arm64"
+     ],
+     "bytes": 64673
+    },
+    {
+     "file": "kiwisolver-1.5.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+     "sha256": "74ad5c3dad54a4641b4c28cd15ded70899d04459c6c7aeacafea716be97cce6d",
+     "platforms": [
+      "linux_x86_64"
+     ],
+     "bytes": 1477992
+    },
+    {
+     "file": "kiwisolver-1.5.1-cp313-cp313-win_amd64.whl",
+     "sha256": "dc23390afe9f4ef9ac3bcc72a03a56eebbde03f4c571a32cb38f859cff9a6524",
+     "platforms": [
+      "win_amd64"
+     ],
+     "bytes": 70758
+    }
+   ]
+  },
+  {
+   "name": "lifelines",
+   "version": "0.30.3",
+   "marker": "",
+   "requires_python": ">=3.11",
+   "license_declared": "MIT",
+   "upload_time": "2026-03-05",
+   "wheels": [
+    {
+     "file": "lifelines-0.30.3-py3-none-any.whl",
+     "sha256": "44802480a28d6cb836c7fea4a54ec0ba220eb31c6d7444589637a8bd66066e8c",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 409055
+    }
+   ]
+  },
+  {
+   "name": "lightgbm",
+   "version": "4.7.0",
+   "marker": "",
+   "requires_python": ">=3.10",
+   "license_declared": "",
+   "upload_time": "2026-07-18",
+   "wheels": [
+    {
+     "file": "lightgbm-4.7.0-py3-none-macosx_12_0_arm64.whl",
+     "sha256": "129535462686f274df179133643118c5c5c5667167fe6c3a28d955f0b3c8e868",
+     "platforms": [
+      "macos_arm64"
+     ],
+     "bytes": 1498914
+    },
+    {
+     "file": "lightgbm-4.7.0-py3-none-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+     "sha256": "d23e922acd891e77212e4d0fbcee9ba973c96dee479491341d05ba595357ebb7",
+     "platforms": [
+      "linux_x86_64"
+     ],
+     "bytes": 3476028
+    },
+    {
+     "file": "lightgbm-4.7.0-py3-none-win_amd64.whl",
+     "sha256": "f42d1e5b32b6f170e606d7c689c6165671da98d7bf37f1addec2623efc8740c9",
+     "platforms": [
+      "win_amd64"
+     ],
+     "bytes": 1360833
+    }
+   ]
+  },
+  {
+   "name": "mapie",
+   "version": "1.6.0",
+   "marker": "",
+   "requires_python": ">=3.10",
+   "license_declared": "BSD-3-Clause",
+   "upload_time": "2026-10-19",
+   "wheels": [
+    {
+     "file": "mapie-1.6.0-py3-none-any.whl",
+     "sha256": "6bb6b217f33f1301913d230efab68b8b6ec3c0dcdf1e7ad28ccce73435f71dfb",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 573257
+    }
+   ]
+  },
+  {
+   "name": "matplotlib",
+   "version": "3.11.2",
+   "marker": "",
+   "requires_python": ">=3.11",
+   "license_declared": "License agreement for matplotlib version",
+   "upload_time": "2026-09-11",
+   "wheels": [
+    {
+     "file": "matplotlib-3.11.2-cp313-cp313-macosx_11_0_arm64.whl",
+     "sha256": "2a8285cea8ef4d92aa041d1c33788bcae82248503300f93f1ca2136b9049452f",
+     "platforms": [
+      "macos_arm64"
+     ],
+     "bytes": 9306050
+    },
+    {
+     "file": "matplotlib-3.11.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+     "sha256": "1944895967f87c84c9b4bad29a707b31f5b36df4a3a2339ea1f8ea3ce5105539",
+     "platforms": [
+      "linux_x86_64"
+     ],
+     "bytes": 9861060
+    },
+    {
+     "file": "matplotlib-3.11.2-cp313-cp313-win_amd64.whl",
+     "sha256": "bc067c462a86f0e57bf52fc6e058d90171a5420007dac00c46e90153050c69a7",
+     "platforms": [
+      "win_amd64"
+     ],
+     "bytes": 9349539
+    }
+   ]
+  },
+  {
+   "name": "narwhals",
+   "version": "2.27.1",
+   "marker": "",
+   "requires_python": ">=3.10",
+   "license_declared": "MIT",
+   "upload_time": "2026-10-10",
+   "wheels": [
+    {
+     "file": "narwhals-2.27.1-py3-none-any.whl",
+     "sha256": "d057df13f5852b8e157596e82eb5e955fad267425df5e420e0ee9863da483b31",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 483211
+    }
+   ]
+  },
+  {
+   "name": "numpy",
+   "version": "2.5.3",
+   "marker": "",
+   "requires_python": ">=3.12",
+   "license_declared": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+   "upload_time": "2026-09-06",
+   "wheels": [
+    {
+     "file": "numpy-2.5.3-cp313-cp313-macosx_11_0_arm64.whl",
+     "sha256": "92f30e89b8ee0ecf363033576c422b2f58fed6a80bed0aa48dff6d14c654663e",
+     "platforms": [
+      "macos_arm64"
+     ],
+     "bytes": 12003676
+    },
+    {
+     "file": "numpy-2.5.3-cp313-cp313-macosx_14_0_arm64.whl",
+     "sha256": "f9a2353b37a1a9e78fd82b27ad7e2a32a2d036604d18f02b05e3136c62ca3b09",
+     "platforms": [
+      "macos_arm64"
+     ],
+     "bytes": 5439695
+    },
+    {
+     "file": "numpy-2.5.3-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+     "sha256": "a5fa86b80fd24bcd1aff83ad23be44ea323de3f787be8f8b15d4a65621e25321",
+     "platforms": [
+      "linux_x86_64"
+     ],
+     "bytes": 16708577
+    },
+    {
+     "file": "numpy-2.5.3-cp313-cp313-win_amd64.whl",
+     "sha256": "71cad2b2a7451ab79d8f5e71b453485b6775963d5cf794179144a7463fe6e8ec",
+     "platforms": [
+      "win_amd64"
+     ],
+     "bytes": 12560965
+    }
+   ]
+  },
+  {
+   "name": "packaging",
+   "version": "26.3",
+   "marker": "",
+   "requires_python": ">=3.9",
+   "license_declared": "Apache-2.0 OR BSD-2-Clause",
+   "upload_time": "2026-08-04",
+   "wheels": [
+    {
+     "file": "packaging-26.3-py3-none-any.whl",
+     "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 129956
+    }
+   ]
+  },
+  {
+   "name": "pandas",
+   "version": "3.0.5",
+   "marker": "",
+   "requires_python": ">=3.11",
+   "license_declared": "BSD 3-Clause License",
+   "upload_time": "2026-07-22",
+   "wheels": [
+    {
+     "file": "pandas-3.0.5-cp313-cp313-macosx_11_0_arm64.whl",
+     "sha256": "b86765f268b56f7e665b93bce9d5df69dee7f99e595cf8fb839483ab315942a3",
+     "platforms": [
+      "macos_arm64"
+     ],
+     "bytes": 9932067
+    },
+    {
+     "file": "pandas-3.0.5-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+     "sha256": "4b11c36e218331d0387cbe3a0a5f75162357a1d92d57b2b08a336ff94b19b2be",
+     "platforms": [
+      "linux_x86_64"
+     ],
+     "bytes": 10938525
+    },
+    {
+     "file": "pandas-3.0.5-cp313-cp313-win_amd64.whl",
+     "sha256": "0d298e951f23016ce4699951d044ae6418dbc91bf68cefca0f77666fcbb4e5c6",
+     "platforms": [
+      "win_amd64"
+     ],
+     "bytes": 9826896
+    }
+   ]
+  },
+  {
+   "name": "pillow",
+   "version": "13.0.0",
+   "marker": "",
+   "requires_python": ">=3.11",
+   "license_declared": "MIT-CMU",
+   "upload_time": "2026-10-16",
+   "wheels": [
+    {
+     "file": "pillow-13.0.0-cp313-cp313-macosx_11_0_arm64.whl",
+     "sha256": "f11a3c1358bb3c68012a7b1f41b223c3db9f7bfde90b481df028cfe1c3363313",
+     "platforms": [
+      "macos_arm64"
+     ],
+     "bytes": 4852187
+    },
+    {
+     "file": "pillow-13.0.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+     "sha256": "5f56499c1a74d2b862beb0c33b8016f99d095858455df9d21583bbbc1c15b582",
+     "platforms": [
+      "linux_x86_64"
+     ],
+     "bytes": 7142544
+    },
+    {
+     "file": "pillow-13.0.0-cp313-cp313-win_amd64.whl",
+     "sha256": "9dda0788a9932776a75d8bcc020076edc308ce2508b51f6739a45e3158b3fc42",
+     "platforms": [
+      "win_amd64"
+     ],
+     "bytes": 7284777
+    }
+   ]
+  },
+  {
+   "name": "purgedcv",
+   "version": "0.1.11",
+   "marker": "",
+   "requires_python": ">=3.11",
+   "license_declared": "MIT",
+   "upload_time": "2026-10-16",
+   "wheels": [
+    {
+     "file": "purgedcv-0.1.11-py3-none-any.whl",
+     "sha256": "b7d80142a10ef615138bcbeb1b0c783ce2cec95b3e4266f14b0470d6a8c813c1",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 66391
+    }
+   ]
+  },
+  {
+   "name": "pyparsing",
+   "version": "3.3.3",
+   "marker": "",
+   "requires_python": ">=3.9",
+   "license_declared": "MIT",
+   "upload_time": "2026-09-20",
+   "wheels": [
+    {
+     "file": "pyparsing-3.3.3-py3-none-any.whl",
+     "sha256": "ece8c00a69cf01b45d0b1dedabb469c90d8caf996d4fda40f147627a122849a4",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 126420
+    }
+   ]
+  },
+  {
+   "name": "python-dateutil",
+   "version": "3.0.0",
+   "marker": "",
+   "requires_python": "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7",
+   "license_declared": "Dual License",
+   "upload_time": "2026-10-21",
+   "wheels": [
+    {
+     "file": "python_dateutil-3.0.0-py2.py3-none-any.whl",
+     "sha256": "3c79630202e4152c6add678446984236efe4f57e84d8e892aab0637bab82e9fd",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 94659
+    }
+   ]
+  },
+  {
+   "name": "river",
+   "version": "0.26.1",
+   "marker": "",
+   "requires_python": ">=3.11",
+   "license_declared": "BSD-3-Clause",
+   "upload_time": "2026-08-21",
+   "wheels": [
+    {
+     "file": "river-0.26.1-cp311-abi3-macosx_10_13_universal2.whl",
+     "sha256": "aee5694761a47f9e9b778ea43de081d8d5aab30bc13bcf517a99ff8d06cd5494",
+     "platforms": [
+      "macos_arm64"
+     ],
+     "bytes": 3088870
+    },
+    {
+     "file": "river-0.26.1-cp311-abi3-manylinux_2_28_x86_64.whl",
+     "sha256": "e178d2d20ec1ba7228bd5d89fa8b70cd302b95e73a3c8a5e528153ecc678a019",
+     "platforms": [
+      "linux_x86_64"
+     ],
+     "bytes": 2733262
+    },
+    {
+     "file": "river-0.26.1-cp311-abi3-win_amd64.whl",
+     "sha256": "350c936608c4125181ef60528eaa103ec491a8f6e1fa6445b7e153325c5adb3a",
+     "platforms": [
+      "win_amd64"
+     ],
+     "bytes": 2634647
+    },
+    {
+     "file": "river-0.26.1-cp313-cp313-macosx_10_13_universal2.whl",
+     "sha256": "f621a45ba68ddff2bbcb7e9c01afdb2c30c4074896a2c2ad4a86016e619c072b",
+     "platforms": [
+      "macos_arm64"
+     ],
+     "bytes": 3126011
+    },
+    {
+     "file": "river-0.26.1-cp313-cp313-manylinux_2_28_x86_64.whl",
+     "sha256": "7d8e6aa749f06e6bd71835ef722c14627bbb049f6929f5bc0d8a65dcd813ad4b",
+     "platforms": [
+      "linux_x86_64"
+     ],
+     "bytes": 2744689
+    },
+    {
+     "file": "river-0.26.1-cp313-cp313-win_amd64.whl",
+     "sha256": "7739633e63e57a28a62127e2d8c20fbcacbc30058df4467aaf5ad043fd5a5abe",
+     "platforms": [
+      "win_amd64"
+     ],
+     "bytes": 2636760
+    }
+   ]
+  },
+  {
+   "name": "scikit-learn",
+   "version": "1.9.1",
+   "marker": "",
+   "requires_python": ">=3.11",
+   "license_declared": "BSD-3-Clause",
+   "upload_time": "2026-09-10",
+   "wheels": [
+    {
+     "file": "scikit_learn-1.9.1-cp313-cp313-macosx_12_0_arm64.whl",
+     "sha256": "61cd968ab831a76d0ecbaf0347ab2270268716da28f94fd022497e3d6f205f13",
+     "platforms": [
+      "macos_arm64"
+     ],
+     "bytes": 8262364
+    },
+    {
+     "file": "scikit_learn-1.9.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+     "sha256": "55e79d6e9b0923f1a978179822bd43d7f5543f45e970a00fe861f43486380aba",
+     "platforms": [
+      "linux_x86_64"
+     ],
+     "bytes": 9121732
+    },
+    {
+     "file": "scikit_learn-1.9.1-cp313-cp313-win_amd64.whl",
+     "sha256": "2070f271e5375dc42c6bb93b461ab1c0aa5841d4009267e0cfd95a39dca94a43",
+     "platforms": [
+      "win_amd64"
+     ],
+     "bytes": 8237244
+    }
+   ]
+  },
+  {
+   "name": "scipy",
+   "version": "1.18.1",
+   "marker": "",
+   "requires_python": ">=3.12",
+   "license_declared": "Copyright (c) 2001-2002 Enthought, Inc. ",
+   "upload_time": "2026-08-21",
+   "wheels": [
+    {
+     "file": "scipy-1.18.1-cp313-cp313-macosx_12_0_arm64.whl",
+     "sha256": "e6fb6a55cc0ba97b59a1f288fb86dc6fce8bdfc0fffcbfd015e3a954bf2a2d93",
+     "platforms": [
+      "macos_arm64"
+     ],
+     "bytes": 28715106
+    },
+    {
+     "file": "scipy-1.18.1-cp313-cp313-macosx_14_0_arm64.whl",
+     "sha256": "ea324d9dd34c38bfb9bec8ca4d1b407db97dbb74029f566b8e322b1b6fe56fe6",
+     "platforms": [
+      "macos_arm64"
+     ],
+     "bytes": 20456846
+    },
+    {
+     "file": "scipy-1.18.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+     "sha256": "fdaf5ea890a6183d0565f51a61799d67081bd5b1cf03c5f4b3fd3732108625c9",
+     "platforms": [
+      "linux_x86_64"
+     ],
+     "bytes": 35312578
+    },
+    {
+     "file": "scipy-1.18.1-cp313-cp313-win_amd64.whl",
+     "sha256": "559ed65f60c1af5a03f3912605a1b5114f522c7c32fb23c3376ae8f03219fe28",
+     "platforms": [
+      "win_amd64"
+     ],
+     "bytes": 36622841
+    }
+   ]
+  },
+  {
+   "name": "six",
+   "version": "1.17.0",
+   "marker": "",
+   "requires_python": "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7",
+   "license_declared": "MIT",
+   "upload_time": "2024-12-04",
+   "wheels": [
+    {
+     "file": "six-1.17.0-py2.py3-none-any.whl",
+     "sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 11050
+    }
+   ]
+  },
+  {
+   "name": "threadpoolctl",
+   "version": "3.7.0",
+   "marker": "",
+   "requires_python": ">=3.9",
+   "license_declared": "BSD-3-Clause",
+   "upload_time": "2026-09-15",
+   "wheels": [
+    {
+     "file": "threadpoolctl-3.7.0-py3-none-any.whl",
+     "sha256": "cd8b60b5641b45c67bbf73c64c843235fc2d8a480c87389f52f5dbee893b86be",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 26362
+    }
+   ]
+  },
+  {
+   "name": "typing-extensions",
+   "version": "4.16.0",
+   "marker": "",
+   "requires_python": ">=3.9",
+   "license_declared": "PSF-2.0",
+   "upload_time": "2026-07-02",
+   "wheels": [
+    {
+     "file": "typing_extensions-4.16.0-py3-none-any.whl",
+     "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 45571
+    }
+   ]
+  },
+  {
+   "name": "tzdata",
+   "version": "2026.5",
+   "marker": "",
+   "requires_python": ">=2",
+   "license_declared": "Apache-2.0",
+   "upload_time": "2026-10-03",
+   "wheels": [
+    {
+     "file": "tzdata-2026.5-py2.py3-none-any.whl",
+     "sha256": "b683bd1b6659ddcd810ff02ad09ba821d4bf1065072805063eb35c49617905ac",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 347996
+    }
+   ]
+  },
+  {
+   "name": "wrapt",
+   "version": "2.5.1",
+   "marker": "",
+   "requires_python": ">=3.9",
+   "license_declared": "BSD-2-Clause",
+   "upload_time": "2026-10-14",
+   "wheels": [
+    {
+     "file": "wrapt-2.5.1-cp313-cp313-macosx_11_0_arm64.whl",
+     "sha256": "ab6db7d2a18d366cc57c2228253cf26443190aba0a6dd0939b3c1e8ac6e29e2c",
+     "platforms": [
+      "macos_arm64"
+     ],
+     "bytes": 106190
+    },
+    {
+     "file": "wrapt-2.5.1-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+     "sha256": "f1630201b0e2a96bb26304b7adfbd91a4ef486abb5a4c48377444a0bed749f37",
+     "platforms": [
+      "linux_x86_64"
+     ],
+     "bytes": 248519
+    },
+    {
+     "file": "wrapt-2.5.1-cp313-cp313-win_amd64.whl",
+     "sha256": "09b1893ee4063706574c1813abf479b8b51926633fbdb6f96aab8dc7b0976668",
+     "platforms": [
+      "win_amd64"
+     ],
+     "bytes": 105870
+    },
+    {
+     "file": "wrapt-2.5.1-py3-none-any.whl",
+     "sha256": "c6e6c226b1ca5402d7ae5fb34a0d21f1b49124fe4200e5884d1e19e53c47ac1d",
+     "platforms": [
+      "linux_x86_64",
+      "win_amd64",
+      "macos_arm64"
+     ],
+     "bytes": 81849
+    }
+   ]
+  }
+ ],
+ "problems": [],
+ "check_lock": []
+}

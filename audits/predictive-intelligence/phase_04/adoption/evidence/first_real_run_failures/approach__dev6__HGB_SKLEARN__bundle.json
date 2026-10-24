@@ -1,0 +1,47 @@
+{
+ "label": "approach__dev6__HGB_SKLEARN__bundle",
+ "python": "/home/claude/pi_research/venvs/p04_bundle/bin/python",
+ "mode": "script",
+ "target": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_04/adoption/prototypes/bakeoff.py",
+ "args": [
+  "dev6",
+  "HGB_SKLEARN",
+  "--min-train",
+  "30"
+ ],
+ "offline_unshare_n": true,
+ "env_extra": {},
+ "repeat": 2,
+ "all_exit_0": false,
+ "wall_median_s": 1.2394,
+ "wall_min_s": 1.2234,
+ "wall_max_s": 1.2554,
+ "cpu_median_s": 1.2052,
+ "peak_rss_max_mb": 147.4,
+ "net_events_total": 0,
+ "deterministic_stdout": true,
+ "runs": [
+  {
+   "exit": 1,
+   "wall_s": 1.2554,
+   "cpu_s": 1.2082,
+   "peak_rss_mb": 147.1,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stdout_tail": "",
+   "stderr_tail": "ow_view(distinct_values, 2).mean(axis=1)\n                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/home/claude/pi_research/venvs/p04_bundle/lib/python3.13/site-packages/numpy/lib/_stride_tricks_impl.py\", line 439, in sliding_window_view\n    raise ValueError(\n        'window shape cannot be larger than input array shape')\nValueError: window shape cannot be larger than input array shape\n"
+  },
+  {
+   "exit": 1,
+   "wall_s": 1.2234,
+   "cpu_s": 1.2023,
+   "peak_rss_mb": 147.4,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stdout_tail": "",
+   "stderr_tail": "ow_view(distinct_values, 2).mean(axis=1)\n                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/home/claude/pi_research/venvs/p04_bundle/lib/python3.13/site-packages/numpy/lib/_stride_tricks_impl.py\", line 439, in sliding_window_view\n    raise ValueError(\n        'window shape cannot be larger than input array shape')\nValueError: window shape cannot be larger than input array shape\n"
+  }
+ ]
+}

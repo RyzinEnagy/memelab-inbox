@@ -1,0 +1,77 @@
+{
+ "label": "import__sklearn_linear_calibration",
+ "python": "/home/claude/pi_research/venvs/p04_bundle/bin/python",
+ "mode": "script",
+ "target": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_04/adoption/prototypes/import_probe.py",
+ "args": [
+  "sklearn.linear_model,sklearn.calibration,sklearn.frozen"
+ ],
+ "offline_unshare_n": true,
+ "env_extra": {},
+ "repeat": 5,
+ "all_exit_0": true,
+ "wall_median_s": 1.2268,
+ "wall_min_s": 1.122,
+ "wall_max_s": 1.2628,
+ "cpu_median_s": 1.1595,
+ "peak_rss_max_mb": 141.3,
+ "net_events_total": 0,
+ "deterministic_stdout": true,
+ "runs": [
+  {
+   "exit": 0,
+   "wall_s": 1.2582,
+   "cpu_s": 1.1595,
+   "peak_rss_mb": 141.3,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "63ec34d9119ddd12c9dfc11dfd69d405b5bef2af0a23105163985c468e1521b4",
+   "stdout_tail": "imported sklearn.linear_model,sklearn.calibration,sklearn.frozen | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1517\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.2628,
+   "cpu_s": 1.1761,
+   "peak_rss_mb": 141.3,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "63ec34d9119ddd12c9dfc11dfd69d405b5bef2af0a23105163985c468e1521b4",
+   "stdout_tail": "imported sklearn.linear_model,sklearn.calibration,sklearn.frozen | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1517\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.122,
+   "cpu_s": 1.1119,
+   "peak_rss_mb": 141.3,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "63ec34d9119ddd12c9dfc11dfd69d405b5bef2af0a23105163985c468e1521b4",
+   "stdout_tail": "imported sklearn.linear_model,sklearn.calibration,sklearn.frozen | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1517\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.2268,
+   "cpu_s": 1.176,
+   "peak_rss_mb": 141.3,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "63ec34d9119ddd12c9dfc11dfd69d405b5bef2af0a23105163985c468e1521b4",
+   "stdout_tail": "imported sklearn.linear_model,sklearn.calibration,sklearn.frozen | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1517\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.2261,
+   "cpu_s": 1.1568,
+   "peak_rss_mb": 141.3,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "63ec34d9119ddd12c9dfc11dfd69d405b5bef2af0a23105163985c468e1521b4",
+   "stdout_tail": "imported sklearn.linear_model,sklearn.calibration,sklearn.frozen | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1517\n",
+   "stderr_tail": ""
+  }
+ ]
+}

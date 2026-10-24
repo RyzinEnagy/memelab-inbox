@@ -1,0 +1,65 @@
+{
+ "datasets": {
+  "challenge": {
+   "agree_and_correct": true,
+   "clean": {
+    "lab": "accepted",
+    "pandera": "accepted"
+   },
+   "future_feature_1s": {
+    "lab": "refused: row 1446: feature_available_at 1791274702.0 is after the decision 1791274701.0 (future fea",
+    "pandera": "refused: SchemaErrors"
+   },
+   "immature_label": {
+    "lab": "refused: row 2892: label not matured by 1792591666.0 (P05)",
+    "pandera": "refused: SchemaErrors"
+   },
+   "missing_availability": {
+    "lab": "refused: row 3: feature_available_at missing: an unknown availability time is not available",
+    "pandera": "refused: SchemaErrors"
+   },
+   "rows": 2893,
+   "undeclared_column": {
+    "lab": "refused: row 0: columns ['leak_future_ret'] differ from the declared set (strict)",
+    "pandera": "refused: SchemaErrors"
+   }
+  },
+  "dev24": {
+   "agree_and_correct": true,
+   "clean": {
+    "lab": "accepted",
+    "pandera": "accepted"
+   },
+   "future_feature_1s": {
+    "lab": "refused: row 51: feature_available_at 1791548476.0 is after the decision 1791548475.0 (future featu",
+    "pandera": "refused: SchemaErrors"
+   },
+   "immature_label": {
+    "lab": "refused: row 101: label not matured by 1792146828.0 (P05)",
+    "pandera": "refused: SchemaErrors"
+   },
+   "missing_availability": {
+    "lab": "refused: row 3: feature_available_at missing: an unknown availability time is not available",
+    "pandera": "refused: SchemaErrors"
+   },
+   "rows": 102,
+   "undeclared_column": {
+    "lab": "refused: row 0: columns ['leak_future_ret'] differ from the declared set (strict)",
+    "pandera": "refused: SchemaErrors"
+   }
+  }
+ },
+ "pandera": "0.34.1",
+ "pandera_import_side_effects": {
+  "environ_added": [
+   "PYARROW_IGNORE_TIMEZONE",
+   "SPARK_LOCAL_IP"
+  ],
+  "numpy_attributes_added": [
+   "NaN",
+   "float_",
+   "string_",
+   "unicode_"
+  ]
+ }
+}

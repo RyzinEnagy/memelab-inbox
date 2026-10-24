@@ -1,0 +1,851 @@
+{
+ "wheels": 30,
+ "without_license_file": [],
+ "with_copyleft_text": [
+  {
+   "wheel": "numpy-2.5.3-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+   "families": [
+    "AGPL",
+    "Apache-2.0",
+    "BSD",
+    "GPL",
+    "MIT",
+    "NCSA"
+   ]
+  },
+  {
+   "wheel": "pandas-3.0.5-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+   "families": [
+    "Apache-2.0",
+    "BSD",
+    "GPL",
+    "MIT",
+    "PSF"
+   ]
+  },
+  {
+   "wheel": "pillow-13.0.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+   "families": [
+    "Apache-2.0",
+    "BSD",
+    "GPL",
+    "HPND",
+    "LGPL",
+    "MIT"
+   ]
+  },
+  {
+   "wheel": "scikit_learn-1.9.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+   "families": [
+    "BSD",
+    "GPL",
+    "MIT"
+   ]
+  },
+  {
+   "wheel": "scipy-1.18.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+   "families": [
+    "AGPL",
+    "BSD",
+    "GPL"
+   ]
+  },
+  {
+   "wheel": "typing_extensions-4.16.0-py3-none-any.whl",
+   "families": [
+    "GPL",
+    "PSF"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "wheel": "autograd-1.9.1-py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "autograd-1.9.1.dist-info/licenses/license.txt",
+     "sha256": "026a4de32aeee573f5049220bb9f8cd1ad6a3e1bab3cecb7a28b652c2c6d5099",
+     "bytes": 1117,
+     "families": [
+      "MIT"
+     ]
+    }
+   ],
+   "families": [
+    "MIT"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "autograd_gamma-0.4.2-py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "autograd_gamma-0.4.2.dist-info/LICENSE",
+     "sha256": "224ef7498546f6f39250ea4827954719646c66b0bd757e15031a5c39811f69e8",
+     "bytes": 1079,
+     "families": [
+      "MIT"
+     ]
+    }
+   ],
+   "families": [
+    "MIT"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "cloudpickle-3.1.2-py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "cloudpickle-3.1.2.dist-info/licenses/LICENSE",
+     "sha256": "3029ea34173e9fdc233ad315dc6b100bd1ea71f529b1c1af97664a272fdc55f5",
+     "bytes": 1754,
+     "families": [
+      "BSD"
+     ]
+    }
+   ],
+   "families": [
+    "BSD"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "contourpy-1.4.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+   "license_files": [
+    {
+     "file": "contourpy-1.4.0.dist-info/licenses/LICENSE",
+     "sha256": "11401c428c7014a75728e8679f9c000aacf262015aaba65a760d41aa1130b3af",
+     "bytes": 1534,
+     "families": [
+      "BSD"
+     ]
+    }
+   ],
+   "families": [
+    "BSD"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "cycler-0.12.1-py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "cycler-0.12.1.dist-info/LICENSE",
+     "sha256": "f1218143d766da3fea66f13396b7f15df46a83303f29bf96ba6e98eb4d42f408",
+     "bytes": 1497,
+     "families": [
+      "BSD"
+     ]
+    }
+   ],
+   "families": [
+    "BSD"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "fonttools-4.67.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+   "license_files": [
+    {
+     "file": "fonttools-4.67.0.dist-info/licenses/LICENSE",
+     "sha256": "6787208f83f659ccbc2223b2fde952ffa6f7e8aca62f1a8a2bf5bc51bb1b2383",
+     "bytes": 1072,
+     "families": [
+      "MIT"
+     ]
+    },
+    {
+     "file": "fonttools-4.67.0.dist-info/licenses/LICENSE.external",
+     "sha256": "94a83aaee0729a0f302d34acc4acecbd9d58366f262429075fe557e4a54b2e69",
+     "bytes": 20022,
+     "families": [
+      "Apache-2.0",
+      "BSD",
+      "MIT"
+     ]
+    }
+   ],
+   "families": [
+    "Apache-2.0",
+    "BSD",
+    "MIT"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "formulaic-1.2.2-py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "formulaic-1.2.2.dist-info/licenses/LICENSE",
+     "sha256": "5230cd90a175a680a8ceb1874fa6508d25abb4d0b873a30f10fe2888f3d7e280",
+     "bytes": 1072,
+     "families": [
+      "MIT"
+     ]
+    }
+   ],
+   "families": [
+    "MIT"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "interface_meta-2.0.1-py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "interface_meta-2.0.1.dist-info/licenses/LICENSE",
+     "sha256": "84897fa209a185912827c2cfc7b66cf9d15485ef041deff220820aa5e475df89",
+     "bytes": 1072,
+     "families": [
+      "MIT"
+     ]
+    }
+   ],
+   "families": [
+    "MIT"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "joblib-1.6.0-py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "joblib-1.6.0.dist-info/licenses/LICENSE.txt",
+     "sha256": "42612911c1872c5e4b43f6ae0e8ee59467cd350332241cf72ce90640264fae6a",
+     "bytes": 1527,
+     "families": [
+      "BSD"
+     ]
+    }
+   ],
+   "families": [
+    "BSD"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "kiwisolver-1.5.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+   "license_files": [
+    {
+     "file": "kiwisolver-1.5.1.dist-info/licenses/LICENSE",
+     "sha256": "529c40e5f67f2f88904657a9f7879ae2f8dc76bc9bfef9cb10d988b48804ed61",
+     "bytes": 3289,
+     "families": [
+      "BSD"
+     ]
+    }
+   ],
+   "families": [
+    "BSD"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "lifelines-0.30.3-py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "lifelines-0.30.3.dist-info/licenses/LICENSE",
+     "sha256": "01ab03783d77f529d375f5db2a037804cc8c801951cbd605b3ad2d36b078c1fd",
+     "bytes": 1079,
+     "families": [
+      "MIT"
+     ]
+    }
+   ],
+   "families": [
+    "MIT"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "lightgbm-4.7.0-py3-none-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+   "license_files": [
+    {
+     "file": "lightgbm-4.7.0.dist-info/licenses/LICENSE",
+     "sha256": "ca70f15d841f7e76c8bbd284d25300cd4ae2ef1035e7e5252b13b73449464305",
+     "bytes": 1121,
+     "families": [
+      "MIT"
+     ]
+    }
+   ],
+   "families": [
+    "MIT"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "mapie-1.6.0-py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "mapie-1.6.0.dist-info/licenses/LICENSE",
+     "sha256": "92372faa472615c49bd4255fb56d998644e60b255b1093c7dad969ac70c1a60c",
+     "bytes": 1575,
+     "families": [
+      "BSD"
+     ]
+    }
+   ],
+   "families": [
+    "BSD"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "matplotlib-3.11.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+   "license_files": [
+    {
+     "file": "matplotlib/mpl-data/fonts/ttf/LICENSE_DEJAVU",
+     "sha256": "d75938dec098f06f0ac3c00853065d94f020be1c3c62ef1dc2975ba15b4d9b0e",
+     "bytes": 4816,
+     "families": [
+      "MIT"
+     ]
+    },
+    {
+     "file": "matplotlib/mpl-data/fonts/ttf/LICENSE_STIX",
+     "sha256": "bab3d31dfef07f483624f2f65f2711e76065b8e7273278b1c071ede1041c9959",
+     "bytes": 5476,
+     "families": [
+      "MIT"
+     ]
+    },
+    {
+     "file": "matplotlib-3.11.2.dist-info/LICENSE",
+     "sha256": "822e8e528147569a41975592aee19c11992ab667ba50451cd929031d5fc74491",
+     "bytes": 63442,
+     "families": [
+      "Apache-2.0",
+      "MIT"
+     ]
+    }
+   ],
+   "families": [
+    "Apache-2.0",
+    "MIT"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "narwhals-2.27.1-py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "narwhals-2.27.1.dist-info/licenses/LICENSE.md",
+     "sha256": "811445f30147b8f0c9d444c9025fd528f9532c54b7b83f6e2368473dc91cfdf0",
+     "bytes": 1082,
+     "families": [
+      "MIT"
+     ]
+    }
+   ],
+   "families": [
+    "MIT"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "numpy-2.5.3-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+   "license_files": [
+    {
+     "file": "numpy/_core/include/numpy/random/LICENSE.txt",
+     "sha256": "fbc539f47d0cf83bc61378080fb873d5c14630126cacbfe754035c3926daa5ec",
+     "bytes": 1018,
+     "families": []
+    },
+    {
+     "file": "numpy/ma/LICENSE",
+     "sha256": "05f3b88351988ecfad10abe92c0c50e5875c6452d5009a0084cc291551ffcca6",
+     "bytes": 1593,
+     "families": [
+      "BSD"
+     ]
+    },
+    {
+     "file": "numpy/random/LICENSE.md",
+     "sha256": "103166b62b80443afb9eb3488e052ea06be0cff566b908f199e561fde49af19f",
+     "bytes": 3511,
+     "families": [
+      "BSD",
+      "MIT",
+      "NCSA"
+     ]
+    },
+    {
+     "file": "numpy-2.5.3.dist-info/licenses/LICENSE.txt",
+     "sha256": "4860083caa0de2ac3292ca98bd074bd8f45d8b32624e37b1e70a240bff61e488",
+     "bytes": 46794,
+     "families": [
+      "AGPL",
+      "GPL",
+      "BSD"
+     ]
+    },
+    {
+     "file": "numpy-2.5.3.dist-info/licenses/numpy/_core/include/numpy/libdivide/LICENSE.txt",
+     "sha256": "fbc539f47d0cf83bc61378080fb873d5c14630126cacbfe754035c3926daa5ec",
+     "bytes": 1018,
+     "families": []
+    },
+    {
+     "file": "numpy-2.5.3.dist-info/licenses/numpy/_core/src/common/pythoncapi-compat/COPYING",
+     "sha256": "3f2c1ffa76383a55ae0aac01c9737cd70050dff63e1f026694fbe9d662573c98",
+     "bytes": 690,
+     "families": []
+    },
+    {
+     "file": "numpy-2.5.3.dist-info/licenses/numpy/_core/src/highway/LICENSE",
+     "sha256": "e340270d4f64384569a91d546acb5b094d69ce47f0c015db77abb74dc6f815af",
+     "bytes": 20785,
+     "families": [
+      "Apache-2.0",
+      "BSD"
+     ]
+    },
+    {
+     "file": "numpy-2.5.3.dist-info/licenses/numpy/_core/src/npysort/x86-simd-sort/LICENSE.md",
+     "sha256": "211e7d737d6179a08f791ebb0a99897ce7cd2457410c542876d125576edfe910",
+     "bytes": 1514,
+     "families": [
+      "BSD"
+     ]
+    },
+    {
+     "file": "numpy-2.5.3.dist-info/licenses/numpy/_core/src/umath/svml/LICENSE",
+     "sha256": "c17011467b4fe6e20fbfbeda4df09e58c2bca5480a063e55735a4000a379aad9",
+     "bytes": 1543,
+     "families": [
+      "BSD"
+     ]
+    },
+    {
+     "file": "numpy-2.5.3.dist-info/licenses/numpy/fft/pocketfft/LICENSE.md",
+     "sha256": "a85ca13fdf90160b64a0698215868c13b74d835ad0a4e2ba44713b8c5058a056",
+     "bytes": 1498,
+     "families": [
+      "BSD"
+     ]
+    },
+    {
+     "file": "numpy-2.5.3.dist-info/licenses/numpy/linalg/lapack_lite/LICENSE.txt",
+     "sha256": "a14cc25e10d40a3aa705b7de2fb764a6535d8ee9b2db4e1724900585457dfd55",
+     "bytes": 2266,
+     "families": [
+      "BSD"
+     ]
+    },
+    {
+     "file": "numpy-2.5.3.dist-info/licenses/numpy/ma/LICENSE",
+     "sha256": "05f3b88351988ecfad10abe92c0c50e5875c6452d5009a0084cc291551ffcca6",
+     "bytes": 1593,
+     "families": [
+      "BSD"
+     ]
+    },
+    {
+     "file": "numpy-2.5.3.dist-info/licenses/numpy/random/LICENSE.md",
+     "sha256": "103166b62b80443afb9eb3488e052ea06be0cff566b908f199e561fde49af19f",
+     "bytes": 3511,
+     "families": [
+      "BSD",
+      "MIT",
+      "NCSA"
+     ]
+    },
+    {
+     "file": "numpy-2.5.3.dist-info/licenses/numpy/random/src/distributions/LICENSE.md",
+     "sha256": "469778be8f33d54e1bcaab28c281cc472916d2d273f835e55bc487d30503face",
+     "bytes": 2745,
+     "families": [
+      "BSD",
+      "MIT"
+     ]
+    },
+    {
+     "file": "numpy-2.5.3.dist-info/licenses/numpy/random/src/mt19937/LICENSE.md",
+     "sha256": "0e111337b25494a773106695f0e799f642b8567aaacca4f116a74a8177179156",
+     "bytes": 2926,
+     "families": [
+      "BSD",
+      "MIT"
+     ]
+    },
+    {
+     "file": "numpy-2.5.3.dist-info/licenses/numpy/random/src/pcg64/LICENSE.md",
+     "sha256": "e7d4f4fb20358f314210a892ae17351e04993813646f697ec387385ca2a36918",
+     "bytes": 1154,
+     "families": [
+      "MIT"
+     ]
+    },
+    {
+     "file": "numpy-2.5.3.dist-info/licenses/numpy/random/src/philox/LICENSE.md",
+     "sha256": "6f5828a57223d4cc7f8ea505a2623e7b978b242752c1515e355f46ba2cec1800",
+     "bytes": 1509,
+     "families": [
+      "BSD"
+     ]
+    },
+    {
+     "file": "numpy-2.5.3.dist-info/licenses/numpy/random/src/sfc64/LICENSE.md",
+     "sha256": "9d4098846018319cd68e228ee6220361787f73bccbf00237a85e4fc9621b998f",
+     "bytes": 1226,
+     "families": [
+      "MIT"
+     ]
+    },
+    {
+     "file": "numpy-2.5.3.dist-info/licenses/numpy/random/src/splitmix64/LICENSE.md",
+     "sha256": "268b0ca06759d31ea3ca68dd35f20e877916e927b1c2a835e4592a3c4354b1f9",
+     "bytes": 332,
+     "families": []
+    }
+   ],
+   "families": [
+    "AGPL",
+    "Apache-2.0",
+    "BSD",
+    "GPL",
+    "MIT",
+    "NCSA"
+   ],
+   "strong_copyleft_text_present": true
+  },
+  {
+   "wheel": "packaging-26.3-py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "packaging-26.3.dist-info/licenses/LICENSE",
+     "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48",
+     "bytes": 197,
+     "families": []
+    },
+    {
+     "file": "packaging-26.3.dist-info/licenses/LICENSE.APACHE",
+     "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+     "bytes": 10174,
+     "families": [
+      "Apache-2.0"
+     ]
+    },
+    {
+     "file": "packaging-26.3.dist-info/licenses/LICENSE.BSD",
+     "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5",
+     "bytes": 1344,
+     "families": [
+      "BSD"
+     ]
+    }
+   ],
+   "families": [
+    "Apache-2.0",
+    "BSD"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "pandas-3.0.5-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+   "license_files": [
+    {
+     "file": "pandas-3.0.5.dist-info/LICENSE",
+     "sha256": "5c1052e921e62d36ccda50a61585e9c0444b80c62f39b57c4f3f0d5fb62f5071",
+     "bytes": 52127,
+     "families": [
+      "GPL",
+      "Apache-2.0",
+      "BSD",
+      "MIT",
+      "PSF"
+     ]
+    }
+   ],
+   "families": [
+    "Apache-2.0",
+    "BSD",
+    "GPL",
+    "MIT",
+    "PSF"
+   ],
+   "strong_copyleft_text_present": true
+  },
+  {
+   "wheel": "pillow-13.0.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+   "license_files": [
+    {
+     "file": "pillow-13.0.0.dist-info/licenses/LICENSE",
+     "sha256": "dda12a98c1979cf3d94df1cff45d27a4cb3f04a60c76f76902ac54cac03ec0ce",
+     "bytes": 70307,
+     "families": [
+      "LGPL",
+      "GPL",
+      "Apache-2.0",
+      "BSD",
+      "MIT",
+      "HPND"
+     ]
+    }
+   ],
+   "families": [
+    "Apache-2.0",
+    "BSD",
+    "GPL",
+    "HPND",
+    "LGPL",
+    "MIT"
+   ],
+   "strong_copyleft_text_present": true
+  },
+  {
+   "wheel": "purgedcv-0.1.11-py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "purgedcv-0.1.11.dist-info/licenses/LICENSE",
+     "sha256": "554e85fd9686cec7c3046c9b6f192a76e6e05c6413b29cf8732feadb80e98341",
+     "bytes": 1072,
+     "families": [
+      "MIT"
+     ]
+    }
+   ],
+   "families": [
+    "MIT"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "pyparsing-3.3.3-py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "pyparsing-3.3.3.dist-info/licenses/LICENSE",
+     "sha256": "a5425f9dc14ac74d4c5f0b679e941f2442e32cca7452a4418d5b1a49893ebe4e",
+     "bytes": 1062,
+     "families": [
+      "MIT"
+     ]
+    }
+   ],
+   "families": [
+    "MIT"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "python_dateutil-3.0.0-py2.py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "python_dateutil-3.0.0.dist-info/licenses/LICENSE",
+     "sha256": "ba00f51a0d92823b5a1cde27d8b5b9d2321e67ed8da9bc163eff96d5e17e577e",
+     "bytes": 2889,
+     "families": [
+      "Apache-2.0",
+      "BSD"
+     ]
+    }
+   ],
+   "families": [
+    "Apache-2.0",
+    "BSD"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "river-0.26.1-cp313-cp313-manylinux_2_28_x86_64.whl",
+   "license_files": [
+    {
+     "file": "river-0.26.1.dist-info/licenses/LICENSE",
+     "sha256": "e87f2c8f1ba611702af10cba745e6ceb773d32310135ed55aa2722c55dd0d077",
+     "bytes": 1528,
+     "families": [
+      "BSD"
+     ]
+    }
+   ],
+   "families": [
+    "BSD"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "scikit_learn-1.9.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+   "license_files": [
+    {
+     "file": "sklearn/externals/array_api_compat/LICENSE",
+     "sha256": "4ffd978e3fa18d058d98c66771cfea7ed634aaf7023cf9612b8b55eee9a8f0fe",
+     "bytes": 1097,
+     "families": [
+      "MIT"
+     ]
+    },
+    {
+     "file": "sklearn/externals/array_api_extra/LICENSE",
+     "sha256": "58494398fe147fdce76a68b2decd4c08ce3a1ea237b6d6785001c15f822c6ed6",
+     "bytes": 1097,
+     "families": [
+      "MIT"
+     ]
+    },
+    {
+     "file": "scikit_learn-1.9.1.dist-info/licenses/COPYING",
+     "sha256": "8752dfe82d4a768e76ee309b202e7b33906d1ea9004d68cc61564391cc6b1a96",
+     "bytes": 5078,
+     "families": [
+      "GPL",
+      "BSD"
+     ]
+    }
+   ],
+   "families": [
+    "BSD",
+    "GPL",
+    "MIT"
+   ],
+   "strong_copyleft_text_present": true
+  },
+  {
+   "wheel": "scipy-1.18.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+   "license_files": [
+    {
+     "file": "scipy/_lib/_uarray/LICENSE",
+     "sha256": "c80c39b5fce06ba4897e14e0b0a88b54458334d951eb1361402ffad2cfb863b4",
+     "bytes": 1514,
+     "families": [
+      "BSD"
+     ]
+    },
+    {
+     "file": "scipy/fft/_duccfft/LICENSE.md",
+     "sha256": "c254b2b5fd30ae3c89d36ba061730563b9760fca04f1b746a1b2c3157da2c789",
+     "bytes": 1498,
+     "families": [
+      "BSD"
+     ]
+    },
+    {
+     "file": "scipy/integrate/LICENSE_DOP",
+     "sha256": "ed9bf58c6d74d3fad9d92d1d67d9bff8141d8ab60de784516b0711364fd43357",
+     "bytes": 3572,
+     "families": [
+      "BSD"
+     ]
+    },
+    {
+     "file": "scipy/spatial/qhull_src/COPYING_QHULL.txt",
+     "sha256": "106d55c931fd6a84822e5345d900273d059f1c27310d02567ccb313c5d18c55d",
+     "bytes": 1720,
+     "families": []
+    },
+    {
+     "file": "scipy-1.18.1.dist-info/LICENSE.txt",
+     "sha256": "17e7db9ffa4913121fa2df484633a362456a482da736c99db4711a98473770ea",
+     "bytes": 46845,
+     "families": [
+      "AGPL",
+      "GPL",
+      "BSD"
+     ]
+    }
+   ],
+   "families": [
+    "AGPL",
+    "BSD",
+    "GPL"
+   ],
+   "strong_copyleft_text_present": true
+  },
+  {
+   "wheel": "six-1.17.0-py2.py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "six-1.17.0.dist-info/LICENSE",
+     "sha256": "4375ba20e2b9c6c4e7cad2940a628fd90e95cc3d50ee92aae755715d8ba1fbd0",
+     "bytes": 1066,
+     "families": [
+      "MIT"
+     ]
+    }
+   ],
+   "families": [
+    "MIT"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "threadpoolctl-3.7.0-py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "threadpoolctl-3.7.0.dist-info/licenses/LICENSE",
+     "sha256": "81ac619075248b06e53660b652d10e485f4675f5d0ae0f97ea22370da1f7e23b",
+     "bytes": 1507,
+     "families": [
+      "BSD"
+     ]
+    }
+   ],
+   "families": [
+    "BSD"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "typing_extensions-4.16.0-py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "typing_extensions-4.16.0.dist-info/licenses/LICENSE",
+     "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+     "bytes": 13936,
+     "families": [
+      "GPL",
+      "PSF"
+     ]
+    }
+   ],
+   "families": [
+    "GPL",
+    "PSF"
+   ],
+   "strong_copyleft_text_present": true
+  },
+  {
+   "wheel": "tzdata-2026.5-py2.py3-none-any.whl",
+   "license_files": [
+    {
+     "file": "tzdata-2026.5.dist-info/licenses/LICENSE",
+     "sha256": "df58f69ea88683035d720b5375bcef0cf5aeaa98a1d098d572e0992c378deb46",
+     "bytes": 625,
+     "families": [
+      "Apache-2.0"
+     ]
+    },
+    {
+     "file": "tzdata-2026.5.dist-info/licenses/licenses/LICENSE_APACHE",
+     "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+     "bytes": 11357,
+     "families": [
+      "Apache-2.0"
+     ]
+    }
+   ],
+   "families": [
+    "Apache-2.0"
+   ],
+   "strong_copyleft_text_present": false
+  },
+  {
+   "wheel": "wrapt-2.5.1-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+   "license_files": [
+    {
+     "file": "wrapt-2.5.1.dist-info/licenses/LICENSE",
+     "sha256": "d4f66854a24dda2f2a5282912aedebe6b18186b86284510a433d78fadcd88e5d",
+     "bytes": 1304,
+     "families": [
+      "BSD"
+     ]
+    }
+   ],
+   "families": [
+    "BSD"
+   ],
+   "strong_copyleft_text_present": false
+  }
+ ]
+}

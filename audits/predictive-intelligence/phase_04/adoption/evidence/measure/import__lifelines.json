@@ -1,0 +1,77 @@
+{
+ "label": "import__lifelines",
+ "python": "/home/claude/pi_research/venvs/p04_bundle/bin/python",
+ "mode": "script",
+ "target": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_04/adoption/prototypes/import_probe.py",
+ "args": [
+  "lifelines"
+ ],
+ "offline_unshare_n": true,
+ "env_extra": {},
+ "repeat": 5,
+ "all_exit_0": true,
+ "wall_median_s": 1.1415,
+ "wall_min_s": 1.0812,
+ "wall_max_s": 1.2528,
+ "cpu_median_s": 1.0839,
+ "peak_rss_max_mb": 131.3,
+ "net_events_total": 0,
+ "deterministic_stdout": true,
+ "runs": [
+  {
+   "exit": 0,
+   "wall_s": 1.1415,
+   "cpu_s": 1.0821,
+   "peak_rss_mb": 131.2,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "df6778aa04fe837d1107275598b9a2e16e56610ead424137396966ebafcec386",
+   "stdout_tail": "imported lifelines | heavy modules loaded: numpy,pandas,scipy | modules: 1410\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.2528,
+   "cpu_s": 1.123,
+   "peak_rss_mb": 130.9,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "df6778aa04fe837d1107275598b9a2e16e56610ead424137396966ebafcec386",
+   "stdout_tail": "imported lifelines | heavy modules loaded: numpy,pandas,scipy | modules: 1410\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.1895,
+   "cpu_s": 1.1129,
+   "peak_rss_mb": 130.8,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "df6778aa04fe837d1107275598b9a2e16e56610ead424137396966ebafcec386",
+   "stdout_tail": "imported lifelines | heavy modules loaded: numpy,pandas,scipy | modules: 1410\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.0898,
+   "cpu_s": 1.0839,
+   "peak_rss_mb": 131.3,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "df6778aa04fe837d1107275598b9a2e16e56610ead424137396966ebafcec386",
+   "stdout_tail": "imported lifelines | heavy modules loaded: numpy,pandas,scipy | modules: 1410\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.0812,
+   "cpu_s": 1.0789,
+   "peak_rss_mb": 131.1,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "df6778aa04fe837d1107275598b9a2e16e56610ead424137396966ebafcec386",
+   "stdout_tail": "imported lifelines | heavy modules loaded: numpy,pandas,scipy | modules: 1410\n",
+   "stderr_tail": ""
+  }
+ ]
+}

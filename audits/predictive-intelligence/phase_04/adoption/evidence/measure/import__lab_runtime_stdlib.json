@@ -1,0 +1,77 @@
+{
+ "label": "import__lab_runtime_stdlib",
+ "python": "/usr/bin/python3.13",
+ "mode": "script",
+ "target": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_04/adoption/prototypes/import_probe.py",
+ "args": [
+  "memelab.predictive.runtime"
+ ],
+ "offline_unshare_n": true,
+ "env_extra": {},
+ "repeat": 5,
+ "all_exit_0": true,
+ "wall_median_s": 0.0398,
+ "wall_min_s": 0.0391,
+ "wall_max_s": 0.0408,
+ "cpu_median_s": 0.0387,
+ "peak_rss_max_mb": 17.8,
+ "net_events_total": 0,
+ "deterministic_stdout": true,
+ "runs": [
+  {
+   "exit": 0,
+   "wall_s": 0.0408,
+   "cpu_s": 0.0399,
+   "peak_rss_mb": 17.5,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "bde458f9f8262b6e91bdeb29ad13e471937f72b39c4794cd110572d7c765ee9e",
+   "stdout_tail": "imported memelab.predictive.runtime | heavy modules loaded:  | modules: 93\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 0.0398,
+   "cpu_s": 0.0386,
+   "peak_rss_mb": 17.8,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "bde458f9f8262b6e91bdeb29ad13e471937f72b39c4794cd110572d7c765ee9e",
+   "stdout_tail": "imported memelab.predictive.runtime | heavy modules loaded:  | modules: 93\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 0.0392,
+   "cpu_s": 0.0385,
+   "peak_rss_mb": 17.8,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "bde458f9f8262b6e91bdeb29ad13e471937f72b39c4794cd110572d7c765ee9e",
+   "stdout_tail": "imported memelab.predictive.runtime | heavy modules loaded:  | modules: 93\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 0.04,
+   "cpu_s": 0.0391,
+   "peak_rss_mb": 17.8,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "bde458f9f8262b6e91bdeb29ad13e471937f72b39c4794cd110572d7c765ee9e",
+   "stdout_tail": "imported memelab.predictive.runtime | heavy modules loaded:  | modules: 93\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 0.0391,
+   "cpu_s": 0.0387,
+   "peak_rss_mb": 17.8,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "bde458f9f8262b6e91bdeb29ad13e471937f72b39c4794cd110572d7c765ee9e",
+   "stdout_tail": "imported memelab.predictive.runtime | heavy modules loaded:  | modules: 93\n",
+   "stderr_tail": ""
+  }
+ ]
+}

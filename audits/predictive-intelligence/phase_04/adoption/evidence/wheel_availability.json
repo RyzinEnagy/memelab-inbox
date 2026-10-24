@@ -1,0 +1,114 @@
+{
+ "arch==8.0.0": {
+  "linux": true,
+  "macos_arm64": true,
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "windows": true
+ },
+ "crepes==0.9.1": {
+  "linux": true,
+  "macos_arm64": true,
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "windows": true
+ },
+ "interpret-core==0.7.8": {
+  "linux": true,
+  "macos_arm64": true,
+  "requires_python": null,
+  "sdist_only": false,
+  "windows": true
+ },
+ "lifelines==0.30.3": {
+  "linux": true,
+  "macos_arm64": true,
+  "requires_python": ">=3.11",
+  "sdist_only": false,
+  "windows": true
+ },
+ "lightgbm==4.7.0": {
+  "linux": true,
+  "macos_arm64": true,
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "windows": true
+ },
+ "mapie==1.6.0": {
+  "linux": true,
+  "macos_arm64": true,
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "windows": true
+ },
+ "mesa==3.5.1": {
+  "linux": true,
+  "macos_arm64": true,
+  "requires_python": ">=3.12",
+  "sdist_only": false,
+  "windows": true
+ },
+ "numpy==2.5.3": {
+  "linux": true,
+  "macos_arm64": true,
+  "requires_python": ">=3.12",
+  "sdist_only": false,
+  "windows": true
+ },
+ "pandas==3.0.5": {
+  "linux": true,
+  "macos_arm64": true,
+  "requires_python": ">=3.11",
+  "sdist_only": false,
+  "windows": true
+ },
+ "pandera==0.34.1": {
+  "linux": true,
+  "macos_arm64": true,
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "windows": true
+ },
+ "purgedcv==0.1.11": {
+  "linux": true,
+  "macos_arm64": true,
+  "requires_python": ">=3.11",
+  "sdist_only": false,
+  "windows": true
+ },
+ "river==0.26.1": {
+  "linux": true,
+  "macos_arm64": true,
+  "requires_python": ">=3.11",
+  "sdist_only": false,
+  "windows": true
+ },
+ "scikit-learn==1.9.1": {
+  "linux": true,
+  "macos_arm64": true,
+  "requires_python": ">=3.11",
+  "sdist_only": false,
+  "windows": true
+ },
+ "scipy==1.18.1": {
+  "linux": true,
+  "macos_arm64": true,
+  "requires_python": ">=3.12",
+  "sdist_only": false,
+  "windows": true
+ },
+ "statsmodels==0.15.0": {
+  "linux": true,
+  "macos_arm64": true,
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "windows": true
+ },
+ "venn-abers==1.5.4": {
+  "linux": false,
+  "macos_arm64": false,
+  "requires_python": null,
+  "sdist_only": true,
+  "windows": false
+ }
+}

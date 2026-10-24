@@ -1,0 +1,12 @@
+{
+ "files_scanned": 26,
+ "rules": 15,
+ "hits": [],
+ "negative_controls": [
+  {
+   "file": "audits/predictive-intelligence/phase_04/adoption/prototypes/splitter_check.py",
+   "line": 62,
+   "rule": "row-gap TimeSeriesSplit"
+  }
+ ]
+}

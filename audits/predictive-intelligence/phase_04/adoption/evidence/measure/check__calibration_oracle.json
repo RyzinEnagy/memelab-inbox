@@ -1,0 +1,44 @@
+{
+ "label": "check__calibration_oracle",
+ "python": "/home/claude/pi_research/venvs/ip200__venn-abers/bin/python",
+ "mode": "script",
+ "target": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_04/adoption/prototypes/calibration_check.py",
+ "args": [
+  "oracle"
+ ],
+ "offline_unshare_n": true,
+ "env_extra": {},
+ "repeat": 2,
+ "all_exit_0": true,
+ "wall_median_s": 1.7028,
+ "wall_min_s": 1.66,
+ "wall_max_s": 1.7457,
+ "cpu_median_s": 1.5692,
+ "peak_rss_max_mb": 143.9,
+ "net_events_total": 0,
+ "deterministic_stdout": true,
+ "runs": [
+  {
+   "exit": 0,
+   "wall_s": 1.66,
+   "cpu_s": 1.5489,
+   "peak_rss_mb": 143.7,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "760025217932598ffa6ba9783f6522db476d8f6fe9e3beae72c7c642c234d6d6",
+   "stdout_tail": "   \"max_abs_diff_p1\": 0.0,\n   \"n_cal\": 40,\n   \"n_test\": 200,\n   \"p0_le_p1_all\": true,\n   \"p_inside_0_1\": true\n  },\n  \"ties_in_calibration\": {\n   \"max_abs_diff_p\": 1.734723475976807e-18,\n   \"max_abs_diff_p0\": 0.0,\n   \"max_abs_diff_p1\": 1.734723475976807e-18,\n   \"n_cal\": 467,\n   \"n_test\": 579,\n   \"p0_le_p1_all\": true,\n   \"p_inside_0_1\": true\n  }\n },\n \"venn_abers_version\": \"1.5.4 (no __version__)\"\n}\n",
+   "stderr_tail": "/home/claude/pi_research/venvs/ip200__venn-abers/lib/python3.13/site-packages/venn_abers/venn_abers.py:112: RuntimeWarning: All-NaN slice encountered\n  if np.sum(np.isnan(np.nanmin(grads))) == 0:\n"
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.7457,
+   "cpu_s": 1.5896,
+   "peak_rss_mb": 143.9,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "760025217932598ffa6ba9783f6522db476d8f6fe9e3beae72c7c642c234d6d6",
+   "stdout_tail": "   \"max_abs_diff_p1\": 0.0,\n   \"n_cal\": 40,\n   \"n_test\": 200,\n   \"p0_le_p1_all\": true,\n   \"p_inside_0_1\": true\n  },\n  \"ties_in_calibration\": {\n   \"max_abs_diff_p\": 1.734723475976807e-18,\n   \"max_abs_diff_p0\": 0.0,\n   \"max_abs_diff_p1\": 1.734723475976807e-18,\n   \"n_cal\": 467,\n   \"n_test\": 579,\n   \"p0_le_p1_all\": true,\n   \"p_inside_0_1\": true\n  }\n },\n \"venn_abers_version\": \"1.5.4 (no __version__)\"\n}\n",
+   "stderr_tail": "/home/claude/pi_research/venvs/ip200__venn-abers/lib/python3.13/site-packages/venn_abers/venn_abers.py:112: RuntimeWarning: All-NaN slice encountered\n  if np.sum(np.isnan(np.nanmin(grads))) == 0:\n"
+  }
+ ]
+}

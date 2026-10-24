@@ -1,0 +1,92 @@
+{
+ "backend_without_keys": {
+  "exit_code": 1,
+  "missing_keys_reported": [
+   "LLM_API_KEY",
+   "ZEP_API_KEY"
+  ],
+  "started_server": false
+ },
+ "paid_route": {
+  "reason": "paid LLM or Zep use is not approved (PI-D-005); this adapter only runs a local mock",
+  "status": "NOT_SUPPORTED"
+ },
+ "run1_llm_mock": {
+  "action_counts": {
+   "create_post": 5,
+   "do_nothing": 3,
+   "like_post": 1,
+   "refresh": 8,
+   "sign_up": 4
+  },
+  "agents": 4,
+  "children_cpu_s": 7.4,
+  "children_peak_rss_mb": 593.2,
+  "engine": "MiroFish run_reddit_simulation.py (unmodified, separate process)",
+  "engine_pin": "7657031ac01184afe2cb220f5ee3545573b5e843",
+  "fictional_seed": true,
+  "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+  "license_boundary": "AGPL-3.0 program run as a separate process; no code imported or copied",
+  "llm_actions": 8,
+  "llm_requests_seen_by_mock": 8,
+  "llm_up": true,
+  "rounds": 4,
+  "script_exit_code": 0,
+  "seed_sha256": "749d18c9cbb9833538240439bb6a935b7f635248b38728824ae9f7e4dcb5cde3",
+  "status": "SIMULATION_RAN",
+  "trace_sha256": "f5848ee2d163f09ab4a26b67de7a915bb5e4230853b73ae3208f616d777b9496",
+  "wall_s": 9.76
+ },
+ "run2_llm_mock_same_seed": {
+  "action_counts": {
+   "create_post": 4,
+   "do_nothing": 4,
+   "like_post": 2,
+   "refresh": 11,
+   "sign_up": 4
+  },
+  "agents": 4,
+  "children_cpu_s": 7.85,
+  "children_peak_rss_mb": 593.2,
+  "engine": "MiroFish run_reddit_simulation.py (unmodified, separate process)",
+  "engine_pin": "7657031ac01184afe2cb220f5ee3545573b5e843",
+  "fictional_seed": true,
+  "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+  "license_boundary": "AGPL-3.0 program run as a separate process; no code imported or copied",
+  "llm_actions": 9,
+  "llm_requests_seen_by_mock": 11,
+  "llm_up": true,
+  "rounds": 4,
+  "script_exit_code": 0,
+  "seed_sha256": "749d18c9cbb9833538240439bb6a935b7f635248b38728824ae9f7e4dcb5cde3",
+  "status": "SIMULATION_RAN",
+  "trace_sha256": "5ae031aba38607da8837bbf7e2a4e8f0980129b59a7713c204569fc8d3dca75e",
+  "wall_s": 10.54
+ },
+ "run3_llm_down": {
+  "action_counts": {
+   "create_post": 1,
+   "refresh": 7,
+   "sign_up": 4
+  },
+  "agents": 4,
+  "children_cpu_s": 7.7,
+  "children_peak_rss_mb": 593.2,
+  "engine": "MiroFish run_reddit_simulation.py (unmodified, separate process)",
+  "engine_pin": "7657031ac01184afe2cb220f5ee3545573b5e843",
+  "fictional_seed": true,
+  "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+  "license_boundary": "AGPL-3.0 program run as a separate process; no code imported or copied",
+  "llm_actions": 0,
+  "llm_requests_seen_by_mock": 0,
+  "llm_up": false,
+  "reason": "NO_LLM_ACTIONS",
+  "rounds": 4,
+  "script_exit_code": 0,
+  "seed_sha256": "749d18c9cbb9833538240439bb6a935b7f635248b38728824ae9f7e4dcb5cde3",
+  "status": "SIMULATION_NOT_AVAILABLE",
+  "trace_sha256": "d9cee9def6883d809641cdfdaf1d966d037c6d0d50160b76589987072f606653",
+  "wall_s": 20.67
+ },
+ "same_seed_identical_trace": false
+}

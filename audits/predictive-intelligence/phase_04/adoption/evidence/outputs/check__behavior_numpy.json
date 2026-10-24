@@ -1,0 +1,1 @@
+{"frequencies_sha256": "7331d4276a0d7eef2d96792c6a102e5ed4add8cb0a30cc7a943edfaabec0ad83", "impl": "numpy", "kind": "SIMULATOR_FREQUENCY_NOT_A_PROBABILITY", "mean_hit_share": 0.024, "scenarios": 200, "seeds_per_scenario": 5, "share_of_scenarios_with_any_hit": 0.11}

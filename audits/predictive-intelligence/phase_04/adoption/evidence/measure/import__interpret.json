@@ -1,0 +1,77 @@
+{
+ "label": "import__interpret",
+ "python": "/home/claude/pi_research/venvs/p04_bundle/bin/python",
+ "mode": "script",
+ "target": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_04/adoption/prototypes/import_probe.py",
+ "args": [
+  "interpret.glassbox"
+ ],
+ "offline_unshare_n": true,
+ "env_extra": {},
+ "repeat": 5,
+ "all_exit_0": true,
+ "wall_median_s": 1.2402,
+ "wall_min_s": 1.1903,
+ "wall_max_s": 1.3705,
+ "cpu_median_s": 1.2052,
+ "peak_rss_max_mb": 146.4,
+ "net_events_total": 0,
+ "deterministic_stdout": true,
+ "runs": [
+  {
+   "exit": 0,
+   "wall_s": 1.2731,
+   "cpu_s": 1.2255,
+   "peak_rss_mb": 146.2,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "a22d0f7b50a1fa09ddcf34429aaa07070bda44663aa7948527d6134927150f23",
+   "stdout_tail": "imported interpret.glassbox | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1606\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.2402,
+   "cpu_s": 1.1893,
+   "peak_rss_mb": 146.4,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "a22d0f7b50a1fa09ddcf34429aaa07070bda44663aa7948527d6134927150f23",
+   "stdout_tail": "imported interpret.glassbox | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1606\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.1903,
+   "cpu_s": 1.1727,
+   "peak_rss_mb": 146.0,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "a22d0f7b50a1fa09ddcf34429aaa07070bda44663aa7948527d6134927150f23",
+   "stdout_tail": "imported interpret.glassbox | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1606\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.2214,
+   "cpu_s": 1.2052,
+   "peak_rss_mb": 146.4,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "a22d0f7b50a1fa09ddcf34429aaa07070bda44663aa7948527d6134927150f23",
+   "stdout_tail": "imported interpret.glassbox | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1606\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.3705,
+   "cpu_s": 1.2636,
+   "peak_rss_mb": 146.4,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "a22d0f7b50a1fa09ddcf34429aaa07070bda44663aa7948527d6134927150f23",
+   "stdout_tail": "imported interpret.glassbox | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1606\n",
+   "stderr_tail": ""
+  }
+ ]
+}

@@ -1,0 +1,77 @@
+{
+ "label": "import__lightgbm",
+ "python": "/home/claude/pi_research/venvs/p04_bundle/bin/python",
+ "mode": "script",
+ "target": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_04/adoption/prototypes/import_probe.py",
+ "args": [
+  "lightgbm"
+ ],
+ "offline_unshare_n": true,
+ "env_extra": {},
+ "repeat": 5,
+ "all_exit_0": true,
+ "wall_median_s": 1.2865,
+ "wall_min_s": 1.1518,
+ "wall_max_s": 1.2961,
+ "cpu_median_s": 1.153,
+ "peak_rss_max_mb": 139.9,
+ "net_events_total": 0,
+ "deterministic_stdout": true,
+ "runs": [
+  {
+   "exit": 0,
+   "wall_s": 1.1518,
+   "cpu_s": 1.1407,
+   "peak_rss_mb": 139.6,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "560833583149cb11061729a62936154ceb96e5151bc8dd3480c7a0b98632bb0a",
+   "stdout_tail": "imported lightgbm | heavy modules loaded: numpy,pandas,scipy,sklearn,lightgbm,joblib | modules: 1483\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.2961,
+   "cpu_s": 1.153,
+   "peak_rss_mb": 139.6,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "560833583149cb11061729a62936154ceb96e5151bc8dd3480c7a0b98632bb0a",
+   "stdout_tail": "imported lightgbm | heavy modules loaded: numpy,pandas,scipy,sklearn,lightgbm,joblib | modules: 1483\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.2865,
+   "cpu_s": 1.1654,
+   "peak_rss_mb": 139.6,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "560833583149cb11061729a62936154ceb96e5151bc8dd3480c7a0b98632bb0a",
+   "stdout_tail": "imported lightgbm | heavy modules loaded: numpy,pandas,scipy,sklearn,lightgbm,joblib | modules: 1483\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.2882,
+   "cpu_s": 1.1764,
+   "peak_rss_mb": 139.7,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "560833583149cb11061729a62936154ceb96e5151bc8dd3480c7a0b98632bb0a",
+   "stdout_tail": "imported lightgbm | heavy modules loaded: numpy,pandas,scipy,sklearn,lightgbm,joblib | modules: 1483\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.1678,
+   "cpu_s": 1.133,
+   "peak_rss_mb": 139.9,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "560833583149cb11061729a62936154ceb96e5151bc8dd3480c7a0b98632bb0a",
+   "stdout_tail": "imported lightgbm | heavy modules loaded: numpy,pandas,scipy,sklearn,lightgbm,joblib | modules: 1483\n",
+   "stderr_tail": ""
+  }
+ ]
+}

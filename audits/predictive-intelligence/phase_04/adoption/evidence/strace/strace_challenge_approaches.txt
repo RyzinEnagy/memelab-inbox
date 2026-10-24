@@ -1,0 +1,7 @@
+LGBM exit=0 connect_inet=0 connect_any=0 syscalls_logged=0
+COX_LIFELINES exit=0 connect_inet=0 connect_any=0 syscalls_logged=0
+HGB_SKLEARN exit=0 connect_inet=0 connect_any=0 syscalls_logged=0
+LR_NUMPY exit=0 connect_inet=0 connect_any=0 syscalls_logged=0
+drift_check.py exit=0 connect_inet=0 connect_any=0
+schema_check.py exit=0 connect_inet=0 connect_any=0
+positive control connect_inet=1

@@ -1,0 +1,47 @@
+{
+ "label": "approach__dev24__COX_LIFELINES__bundle",
+ "python": "/home/claude/pi_research/venvs/p04_bundle/bin/python",
+ "mode": "script",
+ "target": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_04/adoption/prototypes/bakeoff.py",
+ "args": [
+  "dev24",
+  "COX_LIFELINES",
+  "--min-train",
+  "30"
+ ],
+ "offline_unshare_n": true,
+ "env_extra": {},
+ "repeat": 2,
+ "all_exit_0": false,
+ "wall_median_s": 1.3353,
+ "wall_min_s": 1.1936,
+ "wall_max_s": 1.4769,
+ "cpu_median_s": 1.161,
+ "peak_rss_max_mb": 135.3,
+ "net_events_total": 0,
+ "deterministic_stdout": true,
+ "runs": [
+  {
+   "exit": 1,
+   "wall_s": 1.4769,
+   "cpu_s": 1.1814,
+   "peak_rss_mb": 135.3,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stdout_tail": "",
+   "stderr_tail": "se exceptions.ConvergenceError(\n        \"\"\"delta contains nan value(s). Convergence halted. {0}\"\"\".format(CONVERGENCE_DOCS)\n    )\nlifelines.exceptions.ConvergenceError: delta contains nan value(s). Convergence halted. Please see the following tips in the lifelines documentation: https://lifelines.readthedocs.io/en/latest/Examples.html#problems-with-convergence-in-the-cox-proportional-hazard-model\n"
+  },
+  {
+   "exit": 1,
+   "wall_s": 1.1936,
+   "cpu_s": 1.1406,
+   "peak_rss_mb": 135.2,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stdout_tail": "",
+   "stderr_tail": "se exceptions.ConvergenceError(\n        \"\"\"delta contains nan value(s). Convergence halted. {0}\"\"\".format(CONVERGENCE_DOCS)\n    )\nlifelines.exceptions.ConvergenceError: delta contains nan value(s). Convergence halted. Please see the following tips in the lifelines documentation: https://lifelines.readthedocs.io/en/latest/Examples.html#problems-with-convergence-in-the-cox-proportional-hazard-model\n"
+  }
+ ]
+}

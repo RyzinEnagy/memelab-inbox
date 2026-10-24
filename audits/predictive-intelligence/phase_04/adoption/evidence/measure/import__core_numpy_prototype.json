@@ -1,0 +1,77 @@
+{
+ "label": "import__core_numpy_prototype",
+ "python": "/home/claude/pi_research/venvs/p04_core/bin/python",
+ "mode": "script",
+ "target": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_04/adoption/prototypes/import_probe.py",
+ "args": [
+  "core_numpy"
+ ],
+ "offline_unshare_n": true,
+ "env_extra": {},
+ "repeat": 5,
+ "all_exit_0": true,
+ "wall_median_s": 0.0958,
+ "wall_min_s": 0.0944,
+ "wall_max_s": 0.1044,
+ "cpu_median_s": 0.0943,
+ "peak_rss_max_mb": 26.8,
+ "net_events_total": 0,
+ "deterministic_stdout": true,
+ "runs": [
+  {
+   "exit": 0,
+   "wall_s": 0.1044,
+   "cpu_s": 0.1017,
+   "peak_rss_mb": 26.6,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "d0891440f04c54ce89c71385494f85feecc6934bae4baea9fe74122a62614463",
+   "stdout_tail": "imported core_numpy | heavy modules loaded: numpy | modules: 197\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 0.0958,
+   "cpu_s": 0.0943,
+   "peak_rss_mb": 26.7,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "d0891440f04c54ce89c71385494f85feecc6934bae4baea9fe74122a62614463",
+   "stdout_tail": "imported core_numpy | heavy modules loaded: numpy | modules: 197\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 0.0951,
+   "cpu_s": 0.0943,
+   "peak_rss_mb": 26.8,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "d0891440f04c54ce89c71385494f85feecc6934bae4baea9fe74122a62614463",
+   "stdout_tail": "imported core_numpy | heavy modules loaded: numpy | modules: 197\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 0.0944,
+   "cpu_s": 0.0938,
+   "peak_rss_mb": 26.7,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "d0891440f04c54ce89c71385494f85feecc6934bae4baea9fe74122a62614463",
+   "stdout_tail": "imported core_numpy | heavy modules loaded: numpy | modules: 197\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 0.1014,
+   "cpu_s": 0.0971,
+   "peak_rss_mb": 26.7,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "d0891440f04c54ce89c71385494f85feecc6934bae4baea9fe74122a62614463",
+   "stdout_tail": "imported core_numpy | heavy modules loaded: numpy | modules: 197\n",
+   "stderr_tail": ""
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "label": "check__behavior_numpy",
+ "python": "/home/claude/pi_research/venvs/p04_core/bin/python",
+ "mode": "script",
+ "target": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_04/adoption/prototypes/behavior_check.py",
+ "args": [
+  "numpy"
+ ],
+ "offline_unshare_n": true,
+ "env_extra": {},
+ "repeat": 2,
+ "all_exit_0": true,
+ "wall_median_s": 0.4759,
+ "wall_min_s": 0.463,
+ "wall_max_s": 0.4889,
+ "cpu_median_s": 0.4464,
+ "peak_rss_max_mb": 33.6,
+ "net_events_total": 0,
+ "deterministic_stdout": true,
+ "runs": [
+  {
+   "exit": 0,
+   "wall_s": 0.4889,
+   "cpu_s": 0.4738,
+   "peak_rss_mb": 33.6,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "a2a8d3dd7bd6f3433eb51a0d21eb34a90d7d188383e542c601b0d4c4a01b9100",
+   "stdout_tail": "{\"frequencies_sha256\": \"7331d4276a0d7eef2d96792c6a102e5ed4add8cb0a30cc7a943edfaabec0ad83\", \"impl\": \"numpy\", \"kind\": \"SIMULATOR_FREQUENCY_NOT_A_PROBABILITY\", \"mean_hit_share\": 0.024, \"scenarios\": 200, \"seeds_per_scenario\": 5, \"share_of_scenarios_with_any_hit\": 0.11}\n",
+   "stderr_tail": "{\"ms_per_model_run\": 0.384}\n"
+  },
+  {
+   "exit": 0,
+   "wall_s": 0.463,
+   "cpu_s": 0.4189,
+   "peak_rss_mb": 33.5,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "a2a8d3dd7bd6f3433eb51a0d21eb34a90d7d188383e542c601b0d4c4a01b9100",
+   "stdout_tail": "{\"frequencies_sha256\": \"7331d4276a0d7eef2d96792c6a102e5ed4add8cb0a30cc7a943edfaabec0ad83\", \"impl\": \"numpy\", \"kind\": \"SIMULATOR_FREQUENCY_NOT_A_PROBABILITY\", \"mean_hit_share\": 0.024, \"scenarios\": 200, \"seeds_per_scenario\": 5, \"share_of_scenarios_with_any_hit\": 0.11}\n",
+   "stderr_tail": "{\"ms_per_model_run\": 0.336}\n"
+  }
+ ]
+}

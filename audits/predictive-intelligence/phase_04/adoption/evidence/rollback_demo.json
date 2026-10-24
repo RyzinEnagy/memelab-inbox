@@ -1,0 +1,59 @@
+{
+ "after_uninstall": {
+  "files": 886,
+  "freeze_lines": 0,
+  "freeze_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "sha256": "280d84c2ef39b7c06db70c70d25e7d6a2361eb69baa1b04e12a8272d0e2c68bf"
+ },
+ "before": {
+  "files": 886,
+  "freeze_lines": 0,
+  "freeze_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "sha256": "280d84c2ef39b7c06db70c70d25e7d6a2361eb69baa1b04e12a8272d0e2c68bf"
+ },
+ "check_lock": [],
+ "install": {
+  "exit": 0,
+  "tail": [
+   "Successfully installed autograd-1.9.1 autograd-gamma-0.4.2 cloudpickle-3.1.2 contourpy-1.4.0 cycler-0.12.1 fonttools-4.67.0 formulaic-1.2.2 interface-meta-2.0.1 joblib-1.6.0 kiwisolver-1.5.1 lifelines-0.30.3 lightgbm-4.7.0 mapie-1.6.0 matplotlib-3.11.2 narwhals-2.27.1 numpy-2.5.3 packaging-26.3 pandas-3.0.5 pillow-13.0.0 purgedcv-0.1.11 pyparsing-3.3.3 python-dateutil-3.0.0 river-0.26.1 scikit-learn-1.9.1 scipy-1.18.1 six-1.17.0 threadpoolctl-3.7.0 typing-extensions-4.16.0 tzdata-2026.5 wrapt-2.5.1"
+  ]
+ },
+ "installed_count": 30,
+ "lock": "docs/predictive-intelligence/locks/research-py313.txt",
+ "lock_sha256": "3ca3b1a8d4f6565a4633b3e9cc66724a251b029e165f907378d6dc130ac1190b",
+ "packages": 30,
+ "pip_check": {
+  "exit": 1,
+  "lines": [
+   "lifelines 0.30.3 has requirement pandas<3.0,>=2.1, but you have pandas 3.0.5."
+  ]
+ },
+ "pip_version": "pip 26.2.2",
+ "rollback_clean": true,
+ "smoke_offline": {
+  "COX_LIFELINES": {
+   "brier": 0.036626,
+   "exit": 0,
+   "predictions_sha256": "45b95c87146c38ee87b6e25062668ac5fb49f2750ebff8dab32ca443b0894151"
+  },
+  "LGBM": {
+   "brier": 0.037044,
+   "exit": 0,
+   "predictions_sha256": "d7c6f31a6f986d3d64576c25e3e86220bf95ebcd5fa58472bad8d29aa0c57720"
+  },
+  "LR_NUMPY": {
+   "brier": 0.036301,
+   "exit": 0,
+   "predictions_sha256": "28bbe3839c0fd8991968ab4beaa1dcd5b67608b654261c0a870ab4a7f90cd511"
+  },
+  "LR_SKLEARN": {
+   "brier": 0.036301,
+   "exit": 0,
+   "predictions_sha256": "c9c0050e1ec82c5e891263ffa874e4e50ad5f40084a0841879b6458e70bb98a1"
+  }
+ },
+ "system_pip_freeze_sha256": "4bbf5c51faf183d28468285ef5952c4d9d90be7c0c8937c992d58a695fe4e152",
+ "uninstall": {
+  "exit": 0
+ }
+}

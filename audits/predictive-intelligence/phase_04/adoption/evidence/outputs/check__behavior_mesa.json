@@ -1,0 +1,1 @@
+{"frequencies_sha256": "301389e267f987978c8a113c23c33a81a7111534e60ed1c5d738825205fd7450", "impl": "mesa", "kind": "SIMULATOR_FREQUENCY_NOT_A_PROBABILITY", "mean_hit_share": 0.02, "scenarios": 200, "seeds_per_scenario": 5, "share_of_scenarios_with_any_hit": 0.095}

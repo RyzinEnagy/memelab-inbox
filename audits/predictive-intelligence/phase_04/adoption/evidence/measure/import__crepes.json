@@ -1,0 +1,77 @@
+{
+ "label": "import__crepes",
+ "python": "/home/claude/pi_research/venvs/p04_bundle/bin/python",
+ "mode": "script",
+ "target": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_04/adoption/prototypes/import_probe.py",
+ "args": [
+  "crepes"
+ ],
+ "offline_unshare_n": true,
+ "env_extra": {},
+ "repeat": 5,
+ "all_exit_0": true,
+ "wall_median_s": 1.1755,
+ "wall_min_s": 1.151,
+ "wall_max_s": 1.2436,
+ "cpu_median_s": 1.1637,
+ "peak_rss_max_mb": 143.4,
+ "net_events_total": 0,
+ "deterministic_stdout": true,
+ "runs": [
+  {
+   "exit": 0,
+   "wall_s": 1.1755,
+   "cpu_s": 1.172,
+   "peak_rss_mb": 143.4,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "23a6506aebe873a1c0fde9578dc2a32bf6cd49a7bfeb257886a895c9d5bed560",
+   "stdout_tail": "imported crepes | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1550\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.151,
+   "cpu_s": 1.149,
+   "peak_rss_mb": 143.2,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "23a6506aebe873a1c0fde9578dc2a32bf6cd49a7bfeb257886a895c9d5bed560",
+   "stdout_tail": "imported crepes | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1550\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.1654,
+   "cpu_s": 1.1637,
+   "peak_rss_mb": 143.4,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "23a6506aebe873a1c0fde9578dc2a32bf6cd49a7bfeb257886a895c9d5bed560",
+   "stdout_tail": "imported crepes | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1550\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.2183,
+   "cpu_s": 1.1612,
+   "peak_rss_mb": 143.2,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "23a6506aebe873a1c0fde9578dc2a32bf6cd49a7bfeb257886a895c9d5bed560",
+   "stdout_tail": "imported crepes | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1550\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.2436,
+   "cpu_s": 1.1974,
+   "peak_rss_mb": 143.1,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "23a6506aebe873a1c0fde9578dc2a32bf6cd49a7bfeb257886a895c9d5bed560",
+   "stdout_tail": "imported crepes | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1550\n",
+   "stderr_tail": ""
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+ "A_control_plain_pip_builds_sdist": {
+  "exit": 0,
+  "tail": [
+   "Successfully built p04evil",
+   "Installing collected packages: p04evil",
+   "Successfully installed p04evil-1.0"
+  ]
+ },
+ "A_marker_written": true,
+ "B_lab_route_sdist_with_correct_hash": {
+  "exit": 1,
+  "tail": [
+   "Looking in links: /tmp/tmpk81u5cxj/wh",
+   "ERROR: Could not find a version that satisfies the requirement p04evil==1.0 (from versions: none)",
+   "ERROR: No matching distribution found for p04evil==1.0"
+  ]
+ },
+ "B_marker_written": false,
+ "C2_lab_route_wheel_right_hash": {
+  "exit": 0,
+  "tail": [
+   "Processing /tmp/tmpk81u5cxj/wh/p04good-1.0-py3-none-any.whl (from -r /tmp/tmpk81u5cxj/lock_good.txt (line 1))",
+   "Installing collected packages: p04good",
+   "Successfully installed p04good-1.0"
+  ]
+ },
+ "C_lab_route_wheel_wrong_hash": {
+  "exit": 1,
+  "tail": [
+   "    p04good==1.0 from file:///tmp/tmpk81u5cxj/wh/p04good-1.0-py3-none-any.whl (from -r /tmp/tmpk81u5cxj/lock_badhash.txt (line 1)):",
+   "        Expected sha256 0000000000000000000000000000000000000000000000000000000000000000",
+   "             Got        78aa319cd02215275592e40402dc362d90d27caa25b06a78c5a720d5308a197d"
+  ]
+ },
+ "D_check_lock_sdist_lock": [],
+ "D_verify_artifact_sdist": "REFUSED_NOT_A_WHEEL",
+ "D_verify_artifact_wheel_right_hash": "AVAILABLE",
+ "D_verify_artifact_wheel_wrong_hash": "REFUSED_HASH_MISMATCH",
+ "sdist_sha256": "68ade2553e67d9656ffeec37ca2981ca02f8b10c4a610538de3b3ab2d993332b",
+ "verdict": {
+  "control_shows_the_threat": true,
+  "lab_route_never_ran_setup_py": true,
+  "right_hash_installs": true,
+  "wrong_hash_refused": true
+ },
+ "wheel_sha256": "78aa319cd02215275592e40402dc362d90d27caa25b06a78c5a720d5308a197d"
+}

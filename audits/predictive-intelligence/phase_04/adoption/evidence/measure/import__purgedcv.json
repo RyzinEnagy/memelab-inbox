@@ -1,0 +1,77 @@
+{
+ "label": "import__purgedcv",
+ "python": "/home/claude/pi_research/venvs/p04_bundle/bin/python",
+ "mode": "script",
+ "target": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_04/adoption/prototypes/import_probe.py",
+ "args": [
+  "purgedcv"
+ ],
+ "offline_unshare_n": true,
+ "env_extra": {},
+ "repeat": 5,
+ "all_exit_0": true,
+ "wall_median_s": 1.0868,
+ "wall_min_s": 1.0498,
+ "wall_max_s": 1.1602,
+ "cpu_median_s": 1.0672,
+ "peak_rss_max_mb": 131.7,
+ "net_events_total": 0,
+ "deterministic_stdout": true,
+ "runs": [
+  {
+   "exit": 0,
+   "wall_s": 1.1154,
+   "cpu_s": 1.0672,
+   "peak_rss_mb": 131.7,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "2e0e4758d434b03dba0b717c36f48c1cf27e5632cbe35bce913296733f87653b",
+   "stdout_tail": "imported purgedcv | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1425\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.0498,
+   "cpu_s": 1.0467,
+   "peak_rss_mb": 131.6,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "2e0e4758d434b03dba0b717c36f48c1cf27e5632cbe35bce913296733f87653b",
+   "stdout_tail": "imported purgedcv | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1425\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.0527,
+   "cpu_s": 1.0494,
+   "peak_rss_mb": 131.7,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "2e0e4758d434b03dba0b717c36f48c1cf27e5632cbe35bce913296733f87653b",
+   "stdout_tail": "imported purgedcv | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1425\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.1602,
+   "cpu_s": 1.0993,
+   "peak_rss_mb": 131.7,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "2e0e4758d434b03dba0b717c36f48c1cf27e5632cbe35bce913296733f87653b",
+   "stdout_tail": "imported purgedcv | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1425\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 1.0868,
+   "cpu_s": 1.0692,
+   "peak_rss_mb": 131.7,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "2e0e4758d434b03dba0b717c36f48c1cf27e5632cbe35bce913296733f87653b",
+   "stdout_tail": "imported purgedcv | heavy modules loaded: numpy,pandas,scipy,sklearn,joblib | modules: 1425\n",
+   "stderr_tail": ""
+  }
+ ]
+}

@@ -1,0 +1,182 @@
+{
+ "numpy_PageHinkley_nan": {
+  "error": "drift input must be a finite number (P38): NaN is refused, never absorbed",
+  "raised": true
+ },
+ "river": "0.26.1",
+ "river_ADWIN_nan": {
+  "estimation_after": "nan",
+  "raised": false
+ },
+ "river_PageHinkley_nan": {
+  "detections_in_next_200_constant_inputs": 0,
+  "mean_after": "nan",
+  "raised": false
+ },
+ "streams": {
+  "challenge_log_liq": {
+   "nan_dropped_before_feeding": 156,
+   "numpy_PageHinkley_t25": {
+    "delay_rows": 17,
+    "detections": 7,
+    "false_alarms_before_shift": 5,
+    "first_after_shift": 2263,
+    "positions": [
+     321,
+     562,
+     836,
+     1239,
+     1943,
+     2263,
+     2834
+    ]
+   },
+   "numpy_PageHinkley_t50": {
+    "delay_rows": 42,
+    "detections": 1,
+    "false_alarms_before_shift": 0,
+    "first_after_shift": 2288,
+    "positions": [
+     2288
+    ]
+   },
+   "page_hinkley_numpy_equals_river": true,
+   "river_ADWIN": {
+    "delay_rows": 57,
+    "detections": 1,
+    "false_alarms_before_shift": 0,
+    "first_after_shift": 2303,
+    "positions": [
+     2303
+    ]
+   },
+   "river_PageHinkley_t25": {
+    "delay_rows": 17,
+    "detections": 7,
+    "false_alarms_before_shift": 5,
+    "first_after_shift": 2263,
+    "positions": [
+     321,
+     562,
+     836,
+     1239,
+     1943,
+     2263,
+     2834
+    ]
+   },
+   "river_PageHinkley_t50": {
+    "delay_rows": 42,
+    "detections": 1,
+    "false_alarms_before_shift": 0,
+    "first_after_shift": 2288,
+    "positions": [
+     2288
+    ]
+   },
+   "rows": 2844,
+   "shift_index": 2246
+  },
+  "challenge_ret_1h": {
+   "nan_dropped_before_feeding": 0,
+   "numpy_PageHinkley_t25": {
+    "delay_rows": 49,
+    "detections": 10,
+    "false_alarms_before_shift": 6,
+    "first_after_shift": 2415,
+    "positions": [
+     476,
+     688,
+     1243,
+     1609,
+     1823,
+     1921,
+     2415,
+     2524,
+     2683,
+     2900
+    ]
+   },
+   "numpy_PageHinkley_t50": {
+    "delay_rows": 79,
+    "detections": 2,
+    "false_alarms_before_shift": 1,
+    "first_after_shift": 2445,
+    "positions": [
+     2154,
+     2445
+    ]
+   },
+   "page_hinkley_numpy_equals_river": true,
+   "river_ADWIN": {
+    "delay_rows": 97,
+    "detections": 1,
+    "false_alarms_before_shift": 0,
+    "first_after_shift": 2463,
+    "positions": [
+     2463
+    ]
+   },
+   "river_PageHinkley_t25": {
+    "delay_rows": 49,
+    "detections": 10,
+    "false_alarms_before_shift": 6,
+    "first_after_shift": 2415,
+    "positions": [
+     476,
+     688,
+     1243,
+     1609,
+     1823,
+     1921,
+     2415,
+     2524,
+     2683,
+     2900
+    ]
+   },
+   "river_PageHinkley_t50": {
+    "delay_rows": 79,
+    "detections": 2,
+    "false_alarms_before_shift": 1,
+    "first_after_shift": 2445,
+    "positions": [
+     2154,
+     2445
+    ]
+   },
+   "rows": 3000,
+   "shift_index": 2366
+  },
+  "dev24_log_liquidity": {
+   "nan_dropped_before_feeding": 0,
+   "numpy_PageHinkley_t25": {
+    "detections": 1,
+    "positions": [
+     93
+    ]
+   },
+   "numpy_PageHinkley_t50": {
+    "detections": 0,
+    "positions": []
+   },
+   "page_hinkley_numpy_equals_river": true,
+   "river_ADWIN": {
+    "detections": 0,
+    "positions": []
+   },
+   "river_PageHinkley_t25": {
+    "detections": 1,
+    "positions": [
+     93
+    ]
+   },
+   "river_PageHinkley_t50": {
+    "detections": 0,
+    "positions": []
+   },
+   "rows": 102,
+   "shift_index": null
+  }
+ }
+}

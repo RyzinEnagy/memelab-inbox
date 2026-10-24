@@ -1,0 +1,310 @@
+{
+ "COX_LIFELINES": {
+  "all_missing_column": {
+   "error": "TypeError",
+   "message": "NaNs were detected in the dataset. Try using pd.isnull to find the problematic values.",
+   "result": "RAISES"
+  },
+  "constant_column": {
+   "error": "ConvergenceError",
+   "message": "delta contains nan value(s). Convergence halted. Please see the following tips in the life",
+   "result": "RAISES"
+  },
+  "inf_feature": {
+   "error": "TypeError",
+   "message": "Infs were detected in the dataset. Try using np.isinf to find the problematic values.",
+   "result": "RAISES"
+  },
+  "nan_feature": {
+   "error": "TypeError",
+   "message": "NaNs were detected in the dataset. Try using pd.isnull to find the problematic values.",
+   "result": "RAISES"
+  },
+  "one_class": {
+   "p_range": [
+    0.0,
+    0.0
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "two_rows": {
+   "p_range": [
+    0.03154609795947294,
+    0.6010923380202144
+   ],
+   "result": "SILENT_FINITE"
+  }
+ },
+ "HGB_SKLEARN": {
+  "all_missing_column": {
+   "error": "ValueError",
+   "message": "window shape cannot be larger than input array shape",
+   "result": "RAISES"
+  },
+  "constant_column": {
+   "p_range": [
+    0.08613062238299506,
+    0.5706907728425603
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "inf_feature": {
+   "p_range": [
+    0.0917945777203647,
+    0.522847030799782
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "nan_feature": {
+   "p_range": [
+    0.08823662326105473,
+    0.5506684439675887
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "one_class": {
+   "p_range": [
+    2.2204460492503083e-15,
+    2.2204460492503083e-15
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "two_rows": {
+   "p_range": [
+    0.5,
+    0.5
+   ],
+   "result": "SILENT_FINITE"
+  }
+ },
+ "LGBM": {
+  "all_missing_column": {
+   "p_range": [
+    0.1033330553320774,
+    0.5232929010690178
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "constant_column": {
+   "p_range": [
+    0.1033330553320774,
+    0.5232929010690178
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "inf_feature": {
+   "p_range": [
+    0.08456065835136795,
+    0.49697861520113146
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "nan_feature": {
+   "p_range": [
+    0.09183226991808897,
+    0.5792137628647108
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "one_class": {
+   "p_range": [
+    1.0000000036274914e-15,
+    1.0000000036274914e-15
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "two_rows": {
+   "p_range": [
+    0.5,
+    0.5
+   ],
+   "result": "SILENT_FINITE"
+  }
+ },
+ "LR_NUMPY (Prep + Logistic)": {
+  "all_missing_column": {
+   "p_range": [
+    0.25079346096623917,
+    0.3798530127448414
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "constant_column": {
+   "p_range": [
+    0.25079346096623917,
+    0.3798530127448414
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "inf_feature": {
+   "p_range": [
+    0.2565927487705297,
+    0.44979680273924044
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "nan_feature": {
+   "p_range": [
+    0.2565927320726008,
+    0.449796463315709
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "one_class": {
+   "error": "ValueError",
+   "message": "Logistic.fit: the window has one class only (INSUFFICIENT_HISTORY)",
+   "result": "RAISES"
+  },
+  "two_rows": {
+   "p_range": [
+    0.09290103724099329,
+    0.784576732982858
+   ],
+   "result": "SILENT_FINITE"
+  }
+ },
+ "LR_SKLEARN": {
+  "all_missing_column": {
+   "error": "ValueError",
+   "message": "Input X contains NaN.\nLogisticRegression does not accept missing values encoded as NaN nat",
+   "result": "RAISES"
+  },
+  "constant_column": {
+   "p_range": [
+    0.25046469486352785,
+    0.3789995676556974
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "inf_feature": {
+   "error": "ValueError",
+   "message": "Input X contains infinity or a value too large for dtype('float64').",
+   "result": "RAISES"
+  },
+  "nan_feature": {
+   "error": "ValueError",
+   "message": "Input X contains NaN.\nLogisticRegression does not accept missing values encoded as NaN nat",
+   "result": "RAISES"
+  },
+  "one_class": {
+   "error": "ValueError",
+   "message": "This solver needs samples of at least 2 classes in the data, but the data contains only on",
+   "result": "RAISES"
+  },
+  "two_rows": {
+   "p_range": [
+    0.3413686111014549,
+    0.594141953806012
+   ],
+   "result": "SILENT_FINITE"
+  }
+ },
+ "Logistic without Prep": {
+  "all_missing_column": {
+   "error": "ValueError",
+   "message": "Logistic.fit: inputs must be finite (run Prep first; P38)",
+   "result": "RAISES"
+  },
+  "constant_column": {
+   "p_range": [
+    0.25121503351431085,
+    0.3796069641368259
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "inf_feature": {
+   "error": "ValueError",
+   "message": "Logistic.fit: inputs must be finite (run Prep first; P38)",
+   "result": "RAISES"
+  },
+  "nan_feature": {
+   "error": "ValueError",
+   "message": "Logistic.fit: inputs must be finite (run Prep first; P38)",
+   "result": "RAISES"
+  },
+  "one_class": {
+   "error": "ValueError",
+   "message": "Logistic.fit: the window has one class only (INSUFFICIENT_HISTORY)",
+   "result": "RAISES"
+  },
+  "two_rows": {
+   "p_range": [
+    0.341333064725163,
+    0.594131254181247
+   ],
+   "result": "SILENT_FINITE"
+  }
+ },
+ "Platt numpy": {
+  "all_missing_column": {
+   "error": "ValueError",
+   "message": "Platt.fit: inputs must be finite (run Prep first; P38)",
+   "result": "RAISES"
+  },
+  "constant_column": {
+   "p_range": [
+    0.3415841584158416,
+    0.3415841584158416
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "inf_feature": {
+   "error": "ValueError",
+   "message": "Platt.fit: inputs must be finite (run Prep first; P38)",
+   "result": "RAISES"
+  },
+  "nan_feature": {
+   "error": "ValueError",
+   "message": "Platt.fit: inputs must be finite (run Prep first; P38)",
+   "result": "RAISES"
+  },
+  "one_class": {
+   "error": "ValueError",
+   "message": "Platt.fit: the window has one class only (INSUFFICIENT_HISTORY)",
+   "result": "RAISES"
+  },
+  "two_rows": {
+   "p_range": [
+    0.1287174501777058,
+    0.6666666666666666
+   ],
+   "result": "SILENT_FINITE"
+  }
+ },
+ "Venn-Abers numpy": {
+  "all_missing_column": {
+   "error": "ValueError",
+   "message": "venn_abers: inputs must be finite (run Prep first; P38)",
+   "result": "RAISES"
+  },
+  "constant_column": {
+   "p_range": [
+    0.2555555555555556,
+    0.2555555555555556
+   ],
+   "result": "SILENT_FINITE"
+  },
+  "inf_feature": {
+   "error": "ValueError",
+   "message": "venn_abers: inputs must be finite (run Prep first; P38)",
+   "result": "RAISES"
+  },
+  "nan_feature": {
+   "error": "ValueError",
+   "message": "venn_abers: inputs must be finite (run Prep first; P38)",
+   "result": "RAISES"
+  },
+  "one_class": {
+   "error": "ValueError",
+   "message": "venn_abers: the window has one class only (INSUFFICIENT_HISTORY)",
+   "result": "RAISES"
+  },
+  "two_rows": {
+   "p_range": [
+    0.49999999999999994,
+    0.6
+   ],
+   "result": "SILENT_FINITE"
+  }
+ }
+}

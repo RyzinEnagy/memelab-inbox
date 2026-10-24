@@ -1,0 +1,115 @@
+{
+ "baseline_exit": 0,
+ "mutations": 17,
+ "caught": 17,
+ "results": [
+  {
+   "mutation": "none (baseline)",
+   "exit": 0,
+   "result": "46 passed in 0.19s",
+   "caught": null
+  },
+  {
+   "mutation": "P30 reads a key from the environment",
+   "exit": 1,
+   "result": "1 failed in 0.08s",
+   "caught": true
+  },
+  {
+   "mutation": "P30 silent success accepted (exit 0 without LLM actions)",
+   "exit": 1,
+   "result": "1 failed, 7 passed in 0.09s",
+   "caught": true
+  },
+  {
+   "mutation": "P30 approval read loosely (any truthy value)",
+   "exit": 1,
+   "result": "1 failed, 1 passed in 0.07s",
+   "caught": true
+  },
+  {
+   "mutation": "unexpected exceptions propagate to discovery",
+   "exit": 1,
+   "result": "1 failed, 4 passed in 0.08s",
+   "caught": true
+  },
+  {
+   "mutation": "network failure no longer abstains",
+   "exit": 1,
+   "result": "1 failed, 14 passed in 0.11s",
+   "caught": true
+  },
+  {
+   "mutation": "breaker never opens",
+   "exit": 1,
+   "result": "1 failed, 24 passed in 0.11s",
+   "caught": true
+  },
+  {
+   "mutation": "no pacing between calls",
+   "exit": 1,
+   "result": "1 failed, 25 passed in 0.10s",
+   "caught": true
+  },
+  {
+   "mutation": "cost cap ignored",
+   "exit": 1,
+   "result": "1 failed, 26 passed in 0.11s",
+   "caught": true
+  },
+  {
+   "mutation": "P32 lock without hashes accepted",
+   "exit": 1,
+   "result": "1 failed, 29 passed in 0.10s",
+   "caught": true
+  },
+  {
+   "mutation": "P32 alternate index accepted",
+   "exit": 1,
+   "result": "1 failed, 36 passed in 0.11s",
+   "caught": true
+  },
+  {
+   "mutation": "P32 sdist accepted when its hash matches",
+   "exit": 1,
+   "result": "1 failed, 42 passed in 0.13s",
+   "caught": true
+  },
+  {
+   "mutation": "P31 license markers ignored",
+   "exit": 1,
+   "result": "1 failed, 44 passed in 0.19s",
+   "caught": true
+  },
+  {
+   "mutation": "P31 fingerprints never compared",
+   "exit": 1,
+   "result": "1 failed, 44 passed in 0.13s",
+   "caught": true
+  },
+  {
+   "mutation": "P34 importable backtest reported as not available",
+   "exit": 1,
+   "result": "1 failed, 27 passed in 0.09s",
+   "caught": true
+  },
+  {
+   "mutation": "dependency probe imports the module",
+   "exit": 1,
+   "result": "1 failed, 23 passed in 0.10s",
+   "caught": true
+  },
+  {
+   "mutation": "third-party import added to the runtime",
+   "exit": 1,
+   "result": "1 failed, 45 passed in 0.25s",
+   "caught": true
+  },
+  {
+   "mutation": "weights accepted without the hash",
+   "exit": 1,
+   "result": "1 failed, 22 passed in 0.09s",
+   "caught": true
+  }
+ ]
+}

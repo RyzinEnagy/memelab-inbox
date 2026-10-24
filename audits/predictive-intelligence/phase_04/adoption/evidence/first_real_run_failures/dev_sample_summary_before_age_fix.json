@@ -1,0 +1,60 @@
+{
+ "calls": 132,
+ "calls_http": {
+  "200": 115,
+  "429": 17
+ },
+ "candles_dropped_at_or_after_h0": 6,
+ "eligibility_unthinned": {
+  "ELIGIBLE": 502,
+  "MARKET_INACTIVE": 17,
+  "VENDOR_OR_ROUTE_GAP": 2
+ },
+ "events_development_pit": 521,
+ "h0": "2026-10-17T00:00:00Z",
+ "holdout_check": {
+  "contacted_mints_with_development_rows": [],
+  "decisions_at_or_after_h0": 0,
+  "labels_maturing_after_h0": 0
+ },
+ "ref": "98338a8ba3c5e65c5850933a35c06885b6ef991a",
+ "targets": {
+  "price_path_target_before_invalidation_24h": {
+   "classes": {
+    "AMBIGUOUS_BAR": 1,
+    "INVALIDATION_FIRST": 56,
+    "NEITHER": 15,
+    "TARGET_FIRST": 30
+   },
+   "decision_days": 9,
+   "development_unthinned": 511,
+   "eligible_unthinned": 496,
+   "file": "dev_t1_24h.csv",
+   "first_decision_utc": "2026-10-07T21:53:55Z",
+   "last_decision_utc": "2026-10-15T10:13:48Z",
+   "max_label_matures_at_utc": "2026-10-16T10:33:48Z",
+   "mints": 77,
+   "positives": 30,
+   "thinned_events": 102
+  },
+  "price_path_target_before_invalidation_6h": {
+   "classes": {
+    "AMBIGUOUS_BAR": 1,
+    "INVALIDATION_FIRST": 54,
+    "NEITHER": 80,
+    "NO_TRADES_AFTER_ENTRY": 1,
+    "TARGET_FIRST": 23
+   },
+   "decision_days": 10,
+   "development_unthinned": 521,
+   "eligible_unthinned": 502,
+   "file": "dev_t1b_6h.csv",
+   "first_decision_utc": "2026-10-07T21:53:55Z",
+   "last_decision_utc": "2026-10-16T10:42:06Z",
+   "max_label_matures_at_utc": "2026-10-16T17:02:06Z",
+   "mints": 80,
+   "positives": 23,
+   "thinned_events": 159
+  }
+ }
+}

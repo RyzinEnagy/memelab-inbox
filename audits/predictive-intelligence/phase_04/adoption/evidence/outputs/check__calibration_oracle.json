@@ -1,0 +1,44 @@
+{
+ "max_abs_diff_any": 1.3877787807814457e-17,
+ "mode": "oracle",
+ "pass_1e-9": true,
+ "probes": {
+  "challenge_holdout": {
+   "max_abs_diff_p": 1.3877787807814457e-17,
+   "max_abs_diff_p0": 0.0,
+   "max_abs_diff_p1": 1.3877787807814457e-17,
+   "n_cal": 467,
+   "n_test": 579,
+   "p0_le_p1_all": true,
+   "p_inside_0_1": true
+  },
+  "outside_calibration_range": {
+   "max_abs_diff_p": 0.0,
+   "max_abs_diff_p0": 0.0,
+   "max_abs_diff_p1": 0.0,
+   "n_cal": 467,
+   "n_test": 4,
+   "p0_le_p1_all": true,
+   "p_inside_0_1": true
+  },
+  "random_small": {
+   "max_abs_diff_p": 0.0,
+   "max_abs_diff_p0": 0.0,
+   "max_abs_diff_p1": 0.0,
+   "n_cal": 40,
+   "n_test": 200,
+   "p0_le_p1_all": true,
+   "p_inside_0_1": true
+  },
+  "ties_in_calibration": {
+   "max_abs_diff_p": 1.734723475976807e-18,
+   "max_abs_diff_p0": 0.0,
+   "max_abs_diff_p1": 1.734723475976807e-18,
+   "n_cal": 467,
+   "n_test": 579,
+   "p0_le_p1_all": true,
+   "p_inside_0_1": true
+  }
+ },
+ "venn_abers_version": "1.5.4 (no __version__)"
+}

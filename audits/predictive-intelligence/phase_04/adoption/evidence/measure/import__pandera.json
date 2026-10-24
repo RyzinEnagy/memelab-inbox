@@ -1,0 +1,77 @@
+{
+ "label": "import__pandera",
+ "python": "/home/claude/pi_research/venvs/p04_bundle/bin/python",
+ "mode": "script",
+ "target": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_04/adoption/prototypes/import_probe.py",
+ "args": [
+  "pandera.pandas"
+ ],
+ "offline_unshare_n": true,
+ "env_extra": {},
+ "repeat": 5,
+ "all_exit_0": true,
+ "wall_median_s": 0.5669,
+ "wall_min_s": 0.5287,
+ "wall_max_s": 0.6185,
+ "cpu_median_s": 0.5352,
+ "peak_rss_max_mb": 81.6,
+ "net_events_total": 0,
+ "deterministic_stdout": true,
+ "runs": [
+  {
+   "exit": 0,
+   "wall_s": 0.5981,
+   "cpu_s": 0.5383,
+   "peak_rss_mb": 81.4,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "9ab04379b365b74314249867dee997a2862be6990a823bd42bd351f6a9394ce5",
+   "stdout_tail": "imported pandera.pandas | heavy modules loaded: numpy,pandas,pydantic | modules: 804\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 0.5287,
+   "cpu_s": 0.5218,
+   "peak_rss_mb": 81.6,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "9ab04379b365b74314249867dee997a2862be6990a823bd42bd351f6a9394ce5",
+   "stdout_tail": "imported pandera.pandas | heavy modules loaded: numpy,pandas,pydantic | modules: 804\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 0.6185,
+   "cpu_s": 0.5486,
+   "peak_rss_mb": 81.4,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "9ab04379b365b74314249867dee997a2862be6990a823bd42bd351f6a9394ce5",
+   "stdout_tail": "imported pandera.pandas | heavy modules loaded: numpy,pandas,pydantic | modules: 804\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 0.5669,
+   "cpu_s": 0.5352,
+   "peak_rss_mb": 81.5,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "9ab04379b365b74314249867dee997a2862be6990a823bd42bd351f6a9394ce5",
+   "stdout_tail": "imported pandera.pandas | heavy modules loaded: numpy,pandas,pydantic | modules: 804\n",
+   "stderr_tail": ""
+  },
+  {
+   "exit": 0,
+   "wall_s": 0.5377,
+   "cpu_s": 0.5269,
+   "peak_rss_mb": 81.6,
+   "net_events": 0,
+   "net_examples": [],
+   "stdout_sha256": "9ab04379b365b74314249867dee997a2862be6990a823bd42bd351f6a9394ce5",
+   "stdout_tail": "imported pandera.pandas | heavy modules loaded: numpy,pandas,pydantic | modules: 804\n",
+   "stderr_tail": ""
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "calibration_positives": 16,
+ "calibration_rows": 467,
+ "logistic_numpy_vs_sklearn": {
+  "max_abs_coef_diff": 2.6140533709861913e-07,
+  "max_abs_prob_diff": 1.305043711152809e-07
+ },
+ "mapie": "1.6.0",
+ "mapie_controller": {
+  "precision_ge_0.1": {
+   "best": null,
+   "valid_thresholds": 0
+  },
+  "precision_ge_0.2": {
+   "best": null,
+   "valid_thresholds": 0
+  }
+ },
+ "mapie_spiegelhalter_p_holdout": 0.628666,
+ "mean_p_cal": 0.03449,
+ "mode": "bundle",
+ "platt_numpy_vs_frozen_sigmoid": {
+  "max_abs_prob_diff": 5.8283237708289803e-08
+ },
+ "sklearn": "1.9.1"
+}
