@@ -68,8 +68,8 @@ $PY -m pytest -q -p no:cacheprovider tests/test_backtest_*.py > "$W/pytest.txt" 
 step "8 release audit in the clean clone"
 $PY tools/release_audit.py > "$W/audit.txt" 2>&1; ok; grep -E "Needs action" "$W/audit.txt" | grep -q "Needs action: no" || FAIL=1; grep -E "Needs action" "$W/audit.txt"
 
-step "9 release documents checked against code and evidence (reviewer's checker, needs a corpus copy)"
-if [ -f "$REPO/data/backtest/bt.sqlite" ]; then cp "$REPO/data/backtest/bt.sqlite" "$W/corpus_copy.sqlite"; $PY audits/backtesting/testing/p17_doc_claims_check.py "$W/corpus_copy.sqlite" > "$W/claims.txt" 2>&1; ok; tail -3 "$W/claims.txt"; else echo "no research corpus on this machine: skipped"; fi
+step "9 release documents checked against code and evidence (reviewer's checker; runs in the source checkout, which holds the gitignored corpus)"
+if [ -f "$REPO/data/backtest/bt.sqlite" ]; then cp "$REPO/data/backtest/bt.sqlite" "$W/corpus_copy.sqlite"; (cd "$REPO" && $PY audits/backtesting/testing/p17_doc_claims_check.py "$W/corpus_copy.sqlite") > "$W/claims.txt" 2>&1; ok; tail -3 "$W/claims.txt"; else echo "no research corpus on this machine: skipped"; fi
 
 echo; echo "RESULT: $([ $FAIL -eq 0 ] && echo PASS || echo FAIL)"
 exit $FAIL
