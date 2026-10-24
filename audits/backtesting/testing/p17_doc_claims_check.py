@@ -109,11 +109,17 @@ for item, val in table.items():
         m = re.search(r"clone HEAD ([0-9a-f]{40})", install_log)
         check("hash: clean-install run id and ledger in the committed log", f"'run_id': '{rid}" in install_log and f"'ledger_hash': '{led}" in install_log)
         # The log is made from a commit and then committed, so HEAD is usually one step past it. The real claim is that
-        # nothing the log tested has changed since: every later change must be prose (.md) or the log itself.
+        # nothing the log tested has changed since: every later change must be prose (.md that no .py or .sh
+        # file names) or the log itself.
         changed = []
         if m and m.group(1) != head:
             changed = subprocess.run(["git", "-C", str(ROOT), "diff", "--name-only", m.group(1), head], capture_output=True, text=True).stdout.split()
-        code_changed = [f for f in changed if not (f.endswith(".md") or f == "audits/backtesting/release/logs/p17_clean_install.log")]
+        def read_by_code(f):  # R5: a .md file that a test, tool or script opens is evidence, not prose. This checker is
+            name = Path(f).name  # left out: it checks the documents it reads at HEAD itself.
+            r = subprocess.run(["git", "-C", str(ROOT), "grep", "-l", "-F", name, head, "--", "*.py", "*.sh",
+                                ":(exclude)audits/backtesting/testing/p17_doc_claims_check.py"], capture_output=True, text=True)
+            return bool(r.stdout.strip())
+        code_changed = [f for f in changed if not ((f.endswith(".md") and not read_by_code(f)) or f == "audits/backtesting/release/logs/p17_clean_install.log")]
         check("clean-install log was made at HEAD or only prose changed since", m and not code_changed,
               f"log {m.group(1)[:7] if m else None}, HEAD {head[:7]}, non-prose changes since: {code_changed[:5]}")
 

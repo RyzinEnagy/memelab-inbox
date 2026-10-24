@@ -34,7 +34,7 @@ def cmd_status(a):
 
 def _runs_dir(a):
     from pathlib import Path
-    return (Path(a.db).parent / "runs") if getattr(a, "db", None) else (store.ROOT / "data" / "backtest" / "runs")
+    return (Path(a.db).parent / "runs") if getattr(a, "db", None) else (Path(store.BT_DB_PATH).parent / "runs")   # MEMELAB_BT_DB too (R3)
 
 
 def cmd_run(a):

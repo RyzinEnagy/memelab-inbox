@@ -40,7 +40,15 @@ $PY audits/backtesting/release/p17_fixture_import.py "$DB"; ok
 $PY -m memelab backtest data --db "$DB"; ok
 
 step "4 deterministic backtest, run twice"
-for i in 1 2; do $PY -m memelab backtest run --strategy BREAKOUT_CLOSE --params '{"lookback": 6, "vol_mult": 0.0}' --label p17 --db "$DB" | $PY -c "import json,sys; d=json.load(sys.stdin); print({k: d[k] for k in ('run_id','cache','dataset_hash','n_trades','ledger_hash')})"; done
+for i in 1 2; do $PY -m memelab backtest run --strategy BREAKOUT_CLOSE --params '{"lookback": 6, "vol_mult": 0.0}' --label p17 --db "$DB" > "$W/run$i.json"; ok; $PY -c "import json,sys; d=json.load(open(sys.argv[1])); print({k: d[k] for k in ('run_id','cache','dataset_hash','n_trades','ledger_hash')})" "$W/run$i.json"; done
+$PY - "$W/run1.json" "$W/run2.json" <<'PYX'
+import json, sys
+a, b = (json.load(open(f)) for f in sys.argv[1:3])
+same = a["run_id"] == b["run_id"] and a["ledger_hash"] == b["ledger_hash"]
+print(f"same run id and ledger: {'yes' if same else 'NO'}; caches {a['cache']} then {b['cache']}")
+sys.exit(0 if same and a["cache"] == "MISS" and b["cache"] == "HIT" else 1)
+PYX
+ok
 RID=$($PY -m memelab backtest run --strategy BREAKOUT_CLOSE --params '{"lookback": 6, "vol_mult": 0.0}' --label p17 --db "$DB" | $PY -c "import json,sys; print(json.load(sys.stdin)['run_id'])")
 $PY -m memelab backtest inspect "$RID" --db "$DB" > "$W/inspect.txt"; ok; head -5 "$W/inspect.txt"
 

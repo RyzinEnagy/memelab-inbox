@@ -50,7 +50,7 @@ These were used in isolated virtual environments as external oracles in Phase 04
 | GeckoTerminal public API | OHLCV and pool lists, read-only, budgeted with backoff | public API terms | historical corpus source |
 | DexScreener, Jupiter quote | read-only checks | public API terms | spot checks |
 | Solana public RPC | pool account reads | public | spot checks |
-| Firecrawl | budgeted page fetches and searches (31 of about 100 approved calls) | paid account owned by Elving | lab catalyst layer and audit confirmation |
+| Firecrawl | budgeted page fetches and searches (about 32 of about 100 approved calls) | paid account owned by Elving | lab catalyst layer and audit confirmation |
 | Crawl4AI 0.9.5 | local runs on Elving's computer, Phase 06A bake-off | Apache-2.0 with an added attribution requirement in its upstream LICENSE | evaluated; existing collector kept; not shipped or imported, so no attribution is owed by the lab today |
 | Maxun Cloud | 5 trial credits, one-shot evaluation runs, no schedule | Maxun source is AGPL-3.0-or-later; Cloud use over HTTPS creates no AGPL obligation for the lab (D-BT-015) | NOT_ADOPTED (D-BT-020). Not installed, embedded or called by the runtime. The evaluation robot is idle with no schedule; Elving may delete it in the Maxun console. |
 

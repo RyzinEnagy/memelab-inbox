@@ -30,14 +30,15 @@ Entry gate: Phase 16 PASS for scenario-only research mode at f50b24d, reproduced
 - M1: new `backtest backup --to PATH` (sqlite backup API, safe with WAL); the runbook's recovery steps use it.
 - L8: run files go next to the database given with `--db`.
 - Tests: fetch evidence, refresh with and without new bars, WAL-safe backup, run-file location, and same-inode file replacement (C4).
-- Guard set: audits/backtesting/testing/p17_builder_mutations.json, 7 of 7 caught.
+- R3 (from the re-check): run files follow MEMELAB_BT_DB when `--db` is not given.
+- Guard set: audits/backtesting/testing/p17_builder_mutations.json, 8 of 8 caught (log: testing/logs/p17_builder_r.log).
 
 ## Commands and exits
 
 | Command | Exit | Result |
 |---|---|---|
-| `python -m pytest tests -q` | 1 | 1029 passed, 1 failed (C-1, pre-existing) |
-| every mutation set p05 to p16, p16_repair, p16_repair2, p17_builder | 0 | all caught (7+12+9+14+11+11+14+11+12+24+20+22+13+10+24+7 = 221) |
+| `python -m pytest tests -q` | 1 | 1030 passed, 1 failed (C-1, pre-existing) |
+| every mutation set p05 to p16, p16_repair, p16_repair2, p17_builder | 0 | all caught (7+12+9+14+11+11+14+11+12+24+20+22+13+10+24+8 = 222) |
 | reviewer's p16r4 and p17 sets | 1 / 1 | p16r4 8 of 9 caught, the ninth (R4-9) not applicable because its line was replaced by the C4 fix; p17 1 of 2, the second's killer test skipped in the harness copy. Both are covered by builder mutations R16d-9, R16d-10 and P17-7, all caught. Log: testing/logs/p17_reviewer_sets.log |
 | `bash audits/backtesting/release/p17_clean_install.sh <repo> <out>` | 0 | RESULT PASS at bc7ce30, 9 steps (below), document checker 72 of 72 |
 | `python tools/release_audit.py` / `python tools/release_e2e.py` | 0 / 0 | Needs action: no / PASS 78 of 78 |
@@ -63,7 +64,9 @@ First sign-off: CONDITIONAL RELEASE agreed, with a fix list.
 
 All were fixed except L15. L15 asks that the push, bundle and zip wait for Elving's authorization. Elving gave that authorization at the start of this work: the "Both" delivery answer, which was to push a new feature/backtesting branch through the Composio Git Data API route (fast-forward, no merge, no PR merge, no main changes) and to put a git bundle plus a zip in D:\memelab.
 
-The reviewer re-checked the fixes. Its re-check result is appended to P17_REVIEW.md.
+The reviewer re-checked the fixes at efd890d, offline, and AGREED (P17_REVIEW.md, "Re-check of the fixes at efd890d"; logs testing/logs/p17r_*.log). It reproduced the clean install, the full suite (1029 passed plus C-1 at that commit), 221 of 221 builder mutations, the checker's 72 of 72, the cohort figures at all 6 real decision points, and release_e2e 78 of 78. It confirmed M1 and M2 by repeating its own reproductions, and confirmed the non-circular release-commit check.
+
+It left seven Low residuals. R3 (run files ignore MEMELAB_BT_DB), R4 (the install script did not check the repeated run) and R5 (every .md counted as prose, though a test reads MAXUN_ADOPTION.md) are fixed. R1 (refresh covers only corpus tokens) and R2 (a fetch records only its newest bar) are documented in RUNBOOK.md and listed as open Low items in the release report. R6 (its own same-inode test can skip) and R7 (wording written before the re-check ran) need no change. The Firecrawl count is corrected to about 32.
 
 The reviewer's own wrong-but-plausible outputs (a misspelled flag, a wrong hash digit, a transposed count, a wrong default) slipped past the existing release checks. Its document checker catches all four, and the clean-install script now runs that checker.
 

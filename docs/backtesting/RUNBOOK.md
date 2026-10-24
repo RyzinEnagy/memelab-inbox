@@ -72,6 +72,8 @@ A changed policy is a new request key: earlier assessments stay as they were.
 ## Backfills
 
 - Routine refresh for outcome tracking: `python -m memelab backtest refresh --max-calls 20`. It fetches new hourly bars for the basis pools of windows that wait on a refresh, records the fetch time even when nothing new traded, and stays inside the call budget.
+  - It only covers tokens already in the corpus. A mint given with `--mints` that has no stored pool gets no request. There is no command yet that imports new lab records or finds pools for new mints; that takes the Python steps in the Phase 06 runners named below. A new sealed test after 2026-10-23 16:00 UTC needs those steps first.
+  - Run it at least every few weeks. A fetch records only the newest bar it saw, so a refresh made long after a window (a fetch returns at most 1,000 hourly bars, about six weeks on a pool that trades every hour) may not reach back into that window and can read it as "no trades".
 - Corpus fetches go through `memelab/backtest/sources/corpus.py` and `gecko.py`. Each fetch has a call budget, at least 3 s between calls, exponential backoff on 429 and 5xx, and raw responses saved by hash. The Phase 06 runners `audits/backtesting/data/run_corpus2.py` and `run_corpus3.py` are records of how the corpus was built. They hard-code that session's paths: adapt the paths before reusing them.
   - GeckoTerminal answered 429 at 2.2 s pacing in Phase 01. Keep the spacing at 3 s or more.
   - A mint counts as done only after its bar fetches complete (`CORPUS_MINT_DONE`), so an interrupted run resumes cleanly.
@@ -141,7 +143,7 @@ Collectors: the existing lab catalyst layer (Firecrawl) and one-shot captures th
 ## Costs and limits
 
 - GeckoTerminal, DexScreener, Jupiter quote and Solana public RPC: free, read-only, rate limited. Keep budgets small and pacing slow.
-- Firecrawl: paid per call, owned by Elving. About 31 of the roughly 100 calls approved for this work were used.
+- Firecrawl: paid per call, owned by Elving. About 32 of the roughly 100 calls approved for this work were used.
 - Maxun Cloud: no credits left, no schedule, nothing running.
 - Storage: the research database is about 155 MB for 139,168 hourly bars over 258 mints. It grows with each corpus refresh.
 

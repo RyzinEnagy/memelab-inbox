@@ -74,8 +74,10 @@ Why not HOLD: after the Phase 17 fixes, no correctness or security defect of Med
 | N4g, N4h, N4i | redaction of diagnostic text | a value after a plain space following a credential word, in rare shapes |
 | exit-hour print | outcomes | a single off-market close in the basis pool's last hour sets the return; a real crash in that hour looks the same |
 | C-1 | lab tests | pre-existing, outside this module |
+| R1 | shadow tracking | `backtest refresh` covers only tokens already in the corpus; importing new lab records and finding pools for new mints still takes Python steps (RUNBOOK.md, "Backfills") |
+| R2 | outcomes | a fetch records only its newest bar, so a refresh made more than about six weeks after a window on a busy pool can read that window as "no trades"; refresh at least every few weeks |
 
-Every other finding from the independent audit (D1 to D11, N1 to N8, C1 to C4, T1) is fixed and guarded by tests and mutations. Details are in audits/backtesting/testing/E2E_RESULTS.md and audits/backtesting/PHASE_16.md.
+Every other finding from the independent audit (D1 to D11, N1 to N8, C1 to C4, T1) is fixed and guarded by tests and mutations. From the Phase 17 re-check, R3 (run files now follow MEMELAB_BT_DB), R4 (the install script checks the repeated run's id, ledger and cache HIT) and R5 (the release-commit check counts a .md file that code reads as evidence, not prose) are fixed. R6 and R7 needed no code change. Details are in audits/backtesting/testing/E2E_RESULTS.md and audits/backtesting/PHASE_16.md.
 
 ## Clean-install evidence (Phase 17)
 
@@ -90,7 +92,7 @@ Every other finding from the independent audit (D1 to D11, N1 to N8, C1 to C4, T
 8. the release audit reports "Needs action: no";
 9. the reviewer's document checker passes every check of the hash table, paths, policy defaults, runbook commands and corpus counts against the code, the evidence and a corpus copy.
 
-Full suite after the Phase 17 code changes: 1029 passed, 1 failed (C-1). Every builder mutation set is caught: p05 to p16, p16_repair, p16_repair2 and p17_builder, 221 of 221. `tools/release_e2e.py`: PASS 78 of 78, no network.
+Full suite after the Phase 17 code changes: 1030 passed, 1 failed (C-1). Every builder mutation set is caught: p05 to p16, p16_repair, p16_repair2 and p17_builder, 222 of 222. `tools/release_e2e.py`: PASS 78 of 78, no network.
 
 ## Final hashes
 
@@ -122,5 +124,5 @@ See RUNBOOK.md, "Shadow-mode calibration":
 
 - Builder: CONDITIONAL RELEASE as above.
 - Independent reviewer (Phase 16): PASS for scenario-only research mode with the disclosed limitations.
-- Independent reviewer (Phase 17): CONDITIONAL RELEASE agreed, conditional on the fixes listed in audits/backtesting/testing/P17_REVIEW.md, which were made and re-checked. The record is in audits/backtesting/PHASE_17.md.
+- Independent reviewer (Phase 17): CONDITIONAL RELEASE agreed after re-checking the fixes at efd890d (AGREED; audits/backtesting/testing/P17_REVIEW.md). The record is in audits/backtesting/PHASE_17.md.
 - Elving: acceptance of G16 and G27, and of the CONDITIONAL RELEASE, is pending.

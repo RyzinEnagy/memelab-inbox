@@ -316,3 +316,16 @@ def test_run_files_live_next_to_the_database_given(tmp_path):
     assert r.returncode == 0, r.stderr
     rid = json.loads(r.stdout)["run_id"]
     assert (tmp_path / "copy" / "runs" / rid / "result.json").exists() and not (ROOT / "data" / "backtest" / "runs" / rid).exists()
+
+
+def test_run_files_follow_memelab_bt_db(tmp_path):
+    """R3: with MEMELAB_BT_DB set and no --db, run files go next to that database, not into the repository."""
+    import os
+    db = tmp_path / "envdb" / "bt.sqlite"
+    store.connect(db).close()
+    env = dict(os.environ, MEMELAB_BT_DB=str(db), MEMELAB_BT_RAW=str(tmp_path / "raw"))
+    r = subprocess.run([sys.executable, "-m", "memelab", "backtest", "run", "--strategy", "NO_TRADE", "--label", "r3"],
+                       cwd=ROOT, capture_output=True, text=True, env=env)
+    assert r.returncode == 0, r.stderr
+    rid = json.loads(r.stdout)["run_id"]
+    assert (tmp_path / "envdb" / "runs" / rid / "result.json").exists() and not (ROOT / "data" / "backtest" / "runs" / rid).exists()

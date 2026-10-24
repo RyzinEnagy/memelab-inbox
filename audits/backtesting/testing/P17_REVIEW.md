@@ -233,3 +233,74 @@ Hard rules kept:
 - every database written was a scratch copy;
 - protected hashes unchanged (`bt.sqlite` `5f4ce7239eb4f0b0`, `memelab.sqlite` `068287c0d7e45436`);
 - removed my own artifacts: one run folder under `data/backtest/runs/` and one BRETT report.
+
+## Re-check of the fixes at efd890d
+
+Re-checked by the same reviewer at commit `efd890d`, 2026-10-24 01:50 to 02:35 UTC. Everything ran offline: no network calls and no Firecrawl.
+
+**Verdict: AGREED. CONDITIONAL RELEASE, scenario-only research mode.**
+- Conditions 1 to 3 of my sign-off are met, and condition 4 is answered.
+- Every Medium and Low item from my list is fixed, except where noted below.
+- Seven new Low residuals (R1 to R7) are listed at the end. They are follow-ups, not blockers: none changes an existing result, and none is a security exposure.
+
+### Commands and exits
+
+| Command | Exit | Result | Log |
+|---|---|---|---|
+| clean install at efd890d (offline copy of the script: venv with `--system-site-packages` instead of `pip install`, because this re-check allows no network; pytest 9.1.1 and numpy 2.5.3 are installed system-wide) | 0 | RESULT PASS, all 11 recorded step exits 0, 244 backtest tests, "Needs action: no", checker 72 of 72. Identical to the committed log (made at bc7ce30) except the commit-bound run id, result hash and report hash; dataset hash, ledger `f9d7dd89c462` and MISS then HIT reproduce | `logs/p17r_clean_install_offline.log` |
+| `pytest tests -q -p no:cacheprovider` | 1 | 1029 passed, 1 failed (C-1, pre-existing); the BRETT report it wrote was deleted | `logs/p17r_full_pytest.log` |
+| `mutate.py` p05 to p16, repair, repair2, p17_builder | 0 each | 221 of 221 caught | `logs/p17r_mutations_all.log` |
+| `mutate.py p16r4_mutations.json` | 1 | R4-1 to R4-8 caught; R4-9 not applicable (its line was replaced by the C4 fix) | same |
+| `mutate.py p17_mutations.json` | 1 | P17-1 CAUGHT now: the builder's C4 test was fixed (L9). P17-2 "survived" only because my same-inode test skipped in the harness copy, where the filesystem gave a new inode. That is a weakness of my test, not a gap; P17-1 and the builder's P17-7 cover it. | same |
+| `p17_doc_claims_check.py <copy>` at efd890d | 0 | 72 of 72 | `logs/p17r_doc_claims_check.log` |
+| the same checker on scratch copies of HEAD's documents with my four seeded errors | 1 | catches 4 of 4 | `logs/p17r_seeded_errors.log` |
+| `p16r4_cohort_check.py <copy>` | 0 | ALL_MATCH True at the 6 real decision points, with the same counts as Phase 16 pass 4 (0, 30, 9, 23, 136, 27): the new freshness rule changes no real cohort figure | `logs/p17r_cohort_check.log` |
+| `tools/release_e2e.py` at efd890d | 0 | PASS 78 of 78, network 0, tracked database byte-identical | `logs/p17r_release_e2e.log` |
+
+### Status of my findings
+
+| Item | Status | Evidence |
+|---|---|---|
+| M1 backup and recovery with WAL | FIXED | My reproduction was repeated: a writer still open, 50 committed rows only in `bt.sqlite-wal`. `python -m memelab backtest backup --to X --db DB`, run from another process, exits 0 and its copy holds all 50 rows. The copy is self-contained: its main file alone, copied elsewhere, holds the 50 rows and its `-wal` is empty. After a clean stop, moving the three files together keeps them. The runbook now says stop writers, back up, then move all three files. |
+| M2 stale tracker and no refresh | FIXED (correctness); operability partly, see R1 | On a corpus copy, a pass 3 days after the last fetch no longer creates any "cut short" or no-bars result (72 h: CENSORED 85 and 43, the same as at the corpus end). The 51 windows on fetched pools stay PENDING with NOT_FETCHED_SINCE_WINDOW_END. With a fake HTTP layer, `outcomes.refresh` makes 1 call for the waiting pool, records OHLCV_FETCHED, and the window resolves. Corpus-end counts at 24 h and 72 h are unchanged from pass 4. |
+| L1 run id bound to a commit | FIXED | The hash table names commit bc7ce30 next to run id afa0d2f66467 (reproduces exactly in the committed log); the runbook says "the same commit" and that ledgers reproduce across commits |
+| L2 sign-off pointer | FIXED | `audits/backtesting/PHASE_17.md` exists, and the report points to this file |
+| L3 "no Medium open" | FIXED | The report now names the two Medium findings and says they are fixed. That is accurate as of this re-check. |
+| L4 standard-library claim | FIXED | "the package's own modules import only the standard library ... and other lab modules; `backtest stress` loads numpy through the lab" |
+| L5 Crawl4AI license | FIXED | "Apache-2.0 with an added attribution requirement"; not shipped |
+| L6 crisis shutdown scope | FIXED | Commands run by name, and scheduled tasks, are named |
+| L7 quality statuses | FIXED | A table in the runbook; every name in it exists in the code |
+| L8 run files location | FIXED for `--db`; see R3 | `backtest run --db COPY` writes `runs/` beside the copy (builder mutation P17-6 caught) |
+| L9 C4 test | FIXED | P17-1 caught |
+| L10 install script exit | FIXED; see R4 | Each step's exit is recorded, and the script ends with RESULT and a nonzero exit on any failure. A minimal bash reproduction of the same structure with one failing step gives RESULT FAIL and exit 1. |
+| L11 result hash | FIXED | The runbook says it never reproduces; compare ledgers |
+| L12 risk disclaimer | FIXED | Observed windows only, about 45% not observable, so the shares may be off in either direction |
+| L13 Firecrawl count | FIXED (one number, 31) | By my count it is probably 32 now (29, plus 2 calls in Phase 16, plus 1 in this review); cosmetic |
+| L14 pins | FIXED | `docs/backtesting/requirements-test.txt`; the install script uses it |
+| L15 push, bundle, zip | ANSWERED | The coordinator reports that Elving authorized them at the start of this work (the "Both" delivery answer: a new feature/backtesting branch through the Composio Git Data API, fast-forward, no force, no merge, no PR merge, main untouched; bundle plus zip to D:\memelab). It is recorded in PHASE_17.md. I record it as answered on the coordinator's statement; I did not see that exchange myself. Nothing had been pushed at efd890d. |
+
+**The coordinator's change to my checker (bc7ce30): confirmed.** The old item was circular: committing the log always moves HEAD. The new rule passes when the log was made at HEAD, or when every later change is a `.md` file or the log itself; between bc7ce30 and efd890d only `PHASE_17.md`, the log and `RELEASE_REPORT.md` changed.
+
+A non-blocking note: not every `.md` file is prose. `tests/test_backtest_webcapture.py` reads `audits/backtesting/research/MAXUN_ADOPTION.md`, and the full suite would catch a change there, so the risk is small. The rule also looks at commits, not at an uncommitted working tree.
+
+### New residuals (Low, follow-ups)
+
+| # | Finding | Evidence | Suggested fix |
+|---|---|---|---|
+| R1 | `backtest refresh` never adds new tokens. It fetches only basis pools of windows already waiting. New opportunities (stored assessments, new lab records) have no stored bars or pools, so they stay NOT_OBSERVABLE: NO_BARS_STORED. Universe import (`labstate.build_universe`) and pool discovery (`corpus.build`) have no CLI. So "continuing in shadow mode" measures only the corpus's own pending windows, and a new sealed split after 2026-10-23 16:00 UTC needs undocumented Python steps. | With a fake HTTP layer: `refresh(mints=[new token])` gives pools_wanted 0 and 0 requests. On the real copy, 62 windows of never-fetched mints (72 h) move from PENDING to NOT_OBSERVABLE after 3 days. That is honest labeling, but nothing will ever fetch them. | a CLI for universe import and for pool discovery of new mints, or a runbook note that the forward path covers only the frozen corpus |
+| R2 | The fetch evidence records only the newest bar. A full 1000-row page reaches back about 41.7 days, so a refresh run more than about six weeks after a window, on a pool that traded every hour, would resolve that window as "no trades". | `gecko.fetch_ohlcv` `limit=1000`; the OHLCV_FETCHED payload has `last` but no first bar | record the first bar time, and treat the fetch as covering only from it when the page is full |
+| R3 | Run files follow `--db` but not `MEMELAB_BT_DB`. With only the environment variable set, runs still go to `<repo>/data/backtest/runs/`, while the runbook says "next to the database used". | `cli._runs_dir` reads `a.db` only | use `store.BT_DB_PATH` when `--db` is absent, or adjust the sentence |
+| R4 | The install script prints step 4's two runs but does not assert the same run id and a HIT; a failed run surfaces only indirectly, through step 4's `inspect` | script lines 43 to 45 | compare the two printed ids and the cache field |
+| R5 | The checker's prose exemption covers every `.md` file (see the note above) | as above | exempt only `.md` files that no test or code reads |
+| R6 | My same-inode test (`test_r4_cohort_cache_file_replaced_at_the_same_path`) skips when the filesystem gives a new inode, so it is not a reliable mutation killer | P17-2 skipped in the harness copy | keep the builder's test as the guard |
+| R7 | The release report and PHASE_17.md stated "re-checked" and "agreed" before this re-check ran | wording in both files | now true; no change needed |
+
+Hard rules kept:
+- no commits;
+- no production or document edits (only this appended section and new logs under `testing/logs/p17r_*`);
+- no token files;
+- no GIT_DIR;
+- no network (the clean install ran from a copy of the script without the pip step);
+- every database written was a scratch copy;
+- protected hashes unchanged (`bt.sqlite` `5f4ce7239eb4f0b0`, `memelab.sqlite` `068287c0d7e45436`);
+- the BRETT report from the full-suite run was deleted.

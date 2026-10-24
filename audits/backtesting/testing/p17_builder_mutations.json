@@ -61,5 +61,14 @@
   "tests": [
    "tests/test_backtest_outcomes.py"
   ]
+ },
+ {
+  "id": "P17-8 run files ignore MEMELAB_BT_DB (R3)",
+  "file": "memelab/backtest/cli.py",
+  "old": "else (Path(store.BT_DB_PATH).parent / \"runs\")",
+  "new": "else (store.ROOT / \"data\" / \"backtest\" / \"runs\")",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
  }
 ]
