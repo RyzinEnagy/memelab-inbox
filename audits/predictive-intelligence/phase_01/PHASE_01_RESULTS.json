@@ -6,7 +6,7 @@
  "branch": "feature/predictive-intelligence",
  "head_before": "94be1bf",
  "pre_registration_commit": "b6f26218002a009e6d96bf17bde9188d5e809758",
- "head_after": "Phase 01 content commit on top of b6f2621 (read with git log -1; this file is part of it)",
+ "head_after": "27df593 (hash record) on top of e64c6ca (content) and b6f2621 (pre-registration); this results file was re-hashed in the next commit",
  "generated_at_utc": "2026-10-24",
  "registry_sha256": {
   "pre_registered": "dd3b4576aa1e408052dd227e361aa2cbf4b38450994c3b5e6a2be5dc199fbccd",
@@ -259,7 +259,7 @@
   },
   {
    "path": "docs/predictive-intelligence/HANDOFF.md",
-   "sha256": "2e4fb8aed92deb71331cf3ba7b22ee10c7a554e4dd1de7a3669817cfa903bc58"
+   "sha256": "96a8af490b5218a9aef7208a8582390d0d4be0d635e4c8fbbdb217fcb2c7ecd3"
   },
   {
    "path": "audits/predictive-intelligence/COST_LEDGER.md",
