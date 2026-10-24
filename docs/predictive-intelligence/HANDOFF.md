@@ -43,4 +43,16 @@ Next eligible phase: 01 (gap analysis, placement and prediction requirements), o
 
 ## Commit
 
-Pending in this file until the Phase 00 commit exists.
+- Phase 00 content commit: `59a2cfc5bc21685607cfa9ee15e40e35ef24b119` (2026-10-23T20:52:23-04:00) on top of `f99c6c7`. `git diff --name-only f99c6c7..59a2cfc` lists 18 files, all under `docs/predictive-intelligence/` and `audits/predictive-intelligence/`.
+- Follow-up commit (this record): updates only this file and `PHASE_00_RESULTS.json` (`head_after`, two guard checks). Its hash is the branch tip; read it with `git log -1`.
+- Checks on a fresh clone of `59a2cfc`: `python -m memelab social guard` exit 0, `violations: []` over 424 files; `python tools/release_audit.py --history` exit 0, `Needs action: no.`
+- sha256: PHASE_00_RESULTS.json `297bca696377fcd64af234a40db875411b7552b7fc744fbe96be3e046068c0c4`; PHASE_00_EVIDENCE.md `4fa1e6f618c406de9714197824ddd90c5e26cc17133a9e8aad412a9196b98139`. Other artifact hashes are in PHASE_00_RESULTS.json.
+- Not pushed. `git status` clean after both commits.
+
+## Exact next command
+
+```
+cd /home/claude/memelab-inbox && git checkout feature/predictive-intelligence && git log -2 --oneline && python -m pytest tests -q
+```
+
+Expect the two Phase 00 commits on top of `f99c6c7` and `1 failed, 785 passed`; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand.
