@@ -1,0 +1,9 @@
+31277 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=31280, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+31277 connect(5, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+31277 connect(5, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+31277 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=31320, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+31277 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=31321, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+31327 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=31334, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+31277 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=31327, si_uid=0, si_status=0, si_utime=237 /* 2.37 s */, si_stime=30 /* 0.30 s */} ---
+31374 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=31376, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+31277 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=31374, si_uid=0, si_status=0, si_utime=229 /* 2.29 s */, si_stime=25 /* 0.25 s */} ---

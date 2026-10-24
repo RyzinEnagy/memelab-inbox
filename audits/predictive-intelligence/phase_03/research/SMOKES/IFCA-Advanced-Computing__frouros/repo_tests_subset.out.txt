@@ -1,0 +1,13 @@
+........................................................................ [ 63%]
+..........................................                               [100%]
+=============================== warnings summary ===============================
+frouros/utils/decorators.py:30
+  /home/claude/pi_research/src/IFCA-Advanced-Computing__frouros/frouros/utils/decorators.py:30: PytestUnknownMarkWarning: Unknown pytest.mark.filename - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.filename(filename)
+
+frouros/tests/integration/test_concept_drift.py::test_streaming_detector_normal[detector_info5]
+  /home/claude/pi_research/venvs/IFCA-Advanced-Computing__frouros/lib/python3.13/site-packages/scipy/stats/_axis_nan_policy.py:586: RuntimeWarning: ks_2samp: Exact calculation unsuccessful. Switching to method=asymp.
+    res = hypotest_fun_out(*samples, **kwds)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+114 passed, 2 warnings in 4.77s

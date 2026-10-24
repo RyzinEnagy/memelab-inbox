@@ -1,0 +1,8 @@
+Environment: Python 3.13.17 venv at /home/claude/pi_research/venvs/evidentlyai__evidently, evidently installed from the pinned source tree (uv pip install ./src/evidentlyai__evidently at 34771fe41c08ca074d96a52aaf4a45cd640cbaf5), then pandas<3 (pandas 3.1.0 from the default resolution breaks import, see import_default_resolution.*).
+Harness: runwrap.py records exit code, wall time and peak RSS of the child (no /usr/bin/time on this host); --offline = unshare -n (no network namespace route), --strace = strace -f -e trace=connect,sendto.
+1. import_default_resolution: DO_NOT_TRACK=1 runwrap.py --offline -- python -I -c "import evidently"   (pandas 3.1.0) exit 1
+2. import_pandas2: same with pandas 2.3.3, exit 0
+3. telemetry_{core,ui}_switch_{on,off}: R4_HARNESS=<harness> XDG_CONFIG_HOME=<tmp> [DO_NOT_TRACK=1] runwrap.py --offline --strace -- python -I -W ignore telemetry_probe_evidently.py {core|ui}
+4. smoke_evidently: DO_NOT_TRACK=1 R4_HARNESS=<harness> XDG_CONFIG_HOME=<tmp> runwrap.py --offline -- python -I smoke_evidently.py
+5. repo_tests_subset: (cwd = pinned clone) DO_NOT_TRACK=1 runwrap.py --offline -- python -m pytest -q -p no:cacheprovider tests/stattests tests/calculations/test_data_drift.py tests/test_preset/test_data_drift_preset.py -x
+Challenge: /home/claude/pi_research/challenge/challenge.csv sha256 18fda40cc7a2a6f5aa607a32f1a096976317f901f5b75d1ae23b4bcaddd5f23d (checked in common.load()).

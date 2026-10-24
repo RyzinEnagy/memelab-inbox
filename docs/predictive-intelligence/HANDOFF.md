@@ -1,58 +1,62 @@
 # Predictive Intelligence: handoff
 
-Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Phase 02 evidence: `audits/predictive-intelligence/phase_02/` (PHASE_02_EVIDENCE.md, PHASE_02_RESULTS.json, ACCEPTANCE_CHECKLIST.md, SKEPTIC_PACKET.md marked USED, skeptic/, research/, probes/). Phases 00 and 01 evidence stays in `phase_00/` and `phase_01/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Rewritten at the end of every phase. Read this first. Contract: [EXECUTION.md](EXECUTION.md). Plan: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md). Phase 03 evidence: `audits/predictive-intelligence/phase_03/` (PHASE_03_EVIDENCE.md, PHASE_03_RESULTS.json, ACCEPTANCE_CHECKLIST.md, SKEPTIC_PACKET.md, skeptic/, research/). Earlier phases stay in `phase_00/` to `phase_02/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
 ## Position
 
-- Phase completed: 02 (independent predictive GitHub discovery), 2026-10-24. Status PASS after repair pass 2. It was NEEDS_REVIEW at `498eaa0`; the orchestrator's independent skeptic found 1 MATERIAL and 6 MINOR findings and a counterexample; each was verified and repaired (change control PI-D-025).
-- Branch `feature/predictive-intelligence`: `498eaa0` (content) and the repair pass 2 commit on top (see "Commit"). No production code: nothing under `memelab/` or `tests/` changed; nothing under `inbox/`, `state/` or `data/` changed. Not pushed (PI-D-003). Spend 0 credits.
+- Phase 03 (pinned source audit, rubric and ranked top ten), 2026-10-24, repair pass done: the orchestrator's skeptic (3 MATERIAL, 9 MINOR) and blind rescore are folded in. Final status, the post-commit test result and the content-guard and release-audit results are in `phase_03/PHASE_03_RESULTS.json` and the closing section of PHASE_03_EVIDENCE.md, written by the records commit on top of the repair commit.
+- Branch `feature/predictive-intelligence`, two Phase 03 commits on top of `77e78ce` (repair content, then records; read the hashes with `git log -3`). The first-pass commit `c9e894d` was never pushed and was rewritten because its smoke files failed the lab's content guard (PI-D-030). No production code: nothing under `memelab/` or `tests/` changed; nothing under `inbox/`, `state/` or `data/` changed. Not pushed. Spend 0 credits.
 
-## What Phase 02 found
+## What Phase 03 found
 
-- GitHub search, repository REST and github.com HTML pages answer 403 from the session proxy; discovery used the package keyword index, documentation and paper links, WebSearch and PyPI; facts come from `git ls-remote` pins, clones at the pin, root commits and repos.ecosyste.ms (PI-D-023).
-- Needs frozen first (`research/NEEDS.csv`, clarifications in `research/NEEDS_NOTES.md`). Corpus: 68 distinct successful queries over 11 families and 5 mechanisms, plus 22 refused GitHub searches (`research/SEARCH_LOG.md`).
-- `research/CANDIDATES.csv`: 132 candidates (131 unique root histories), each on its canonical path (successor search for rows without a mirror record, PI-D-025), with pin, license from the file bytes at the pin, flags, needs, gap cells, provenance and independent-discovery credits (99 of 132).
-- `research/SHORTLIST.csv`: 30 for Phase 03 (tabular 5, time series 4, calibration 5, online and drift 4, behavioral 4 with MiroFish, OASIS, Mesa, black-it, experiment audit 4, event-time labels 3, point-in-time feature store 1: feast), each with code evidence at the pin, the question Phase 03 must answer, and a per-file license scan (`research/LICENSE_SCAN.csv`). No score or rank; the written shortlist rule is in `research/EXCLUSIONS.md` section G.
-- `research/EXCLUSIONS.md`: same-HEAD paths, vanished repositories, forks and mirrors, crawler tooling, README-only repositories (P42), non-matching or archived seeds, the reason each candidate is not shortlisted, and the repair-pass screen (section H).
-- For Phase 03: featuretools (closest conceptual match for as-of features) is an inactive candidate; regime states (N07) come from statsmodels MarkovRegression; license flags and vendored code to resolve are listed in ROADMAP.md "Known constraints carried from Phase 02". MiroFish needs LLM and Zep Cloud keys and Python below 3.13 and has no probability output; OASIS needs Python below 3.12 and neo4j.
+- 30 pinned source reviews by five reviewers, verified by the lead: 89 targeted checks (78 first pass, 11 in the repair pass) and 5 generic checks on all 30, 0 failed, plus re-executions. Three review claims were found wrong in the repair pass and corrected: interpret's "no standard deviations" (a wrong attribute name, IN-5), river's "not LEAKAGE_FAIL" (the end-of-stream flush is learned, RV-4) and purgedcv's leak-free group k-fold, k-fold and CPCV (empty folds and training on later rows, PC-3).
+- Locked weights applied through 50 frozen items (PI-D-026) under the application rules of PI-D-029: verified-finding veto on every item that credits a defective output, wrapper and pass-through rules, fold audit for splitter evidence, an evidence rule the checker now enforces, one data-rights rule.
+- 29 of 30 eligible; mlfinpy REJECT. Top ten: scikit-learn 51, interpret 50, river 49, statsmodels 49, purged-cross-validation 48, LightGBM 45, pandera 44, lifelines 44, MAPIE 44, hazardous 43. Seven are stable under every reading, the reviewers' totals and the blind scores; places 8 to 10 rotate among pandera, MAPIE, hazardous, sktime and crepes (`research/RANKED_TOP10.md`).
+- Category winners: scikit-learn (tabular), sktime (time series, design only), river (online), MAPIE (calibration; never its Venn-Abers port), lifelines (event time; on-chain anomaly NONE verified), Mesa (behavioral), purged-cross-validation (evaluation, `WalkForwardSplit` only). Adoption roles: PI-D-028, ADOPTED as amended; bundle in `research/CATEGORY_WINNERS.md`.
+- Blind rescore (`research/INDEPENDENT_RESCORE.md`): lead minus blind from -7 to +11; hazardous (+16 first pass) resolved criterion by criterion to +11, the rest being item-definition differences cited on both sides.
+- MiroFish 8 of 100: scenario generation only, AGPL, needs paid LLM and Zep (BLOCKED), non-reproducible, silent success when the LLM is down; no accuracy assigned (`research/MIROFISH.md`).
+- Challenge limitation: label overlap cannot inflate a metric on this generator; purged versus unpurged differences up to about 0.002 Brier are noise (`research/SMOKES/_challenge/NOTE.md`).
 
 ## How to check it
 
-- `python3 audits/predictive-intelligence/phase_02/probes/check_candidates.py audits/predictive-intelligence/phase_02 audits/predictive-intelligence/phase_01/architecture/GAP_MATRIX.csv` (offline, `problems 0`); add `--live 10 --seed <n>` to re-fetch pins and re-read the shortlisted code evidence.
-- `python3 audits/predictive-intelligence/phase_02/probes/check_candidates_negative.py audits/predictive-intelligence/phase_02 audits/predictive-intelligence/phase_01/architecture/GAP_MATRIX.csv` (32 of 32 mutations refused, including the skeptic's counterexample).
+From `audits/predictive-intelligence/phase_03/research/`:
+
+```
+python3 -B verify/build_scorecard.py && git diff --stat -- SCORECARD.csv SCORE_ITEMS.csv   # rebuild, expect no diff
+python3 -B verify/check_scorecard.py            # problems 0
+python3 -B verify/check_scorecard_negative.py   # 31 of 31 mutations refused
+python3 -B verify/verify_reviews.py             # checks 89, failed 0 (needs /home/claude/pi_research/src clones)
+python3 -B verify/verify_generic.py             # award mismatches 0
+python3 -B ../skeptic/p03/skeptic_mutations.py .   # 6 of 6 refused
+```
+
+From the repository root: `python -m memelab social guard` (exit 0, no violations) and `python tools/release_audit.py --history` (exit 0).
 
 ## Tests
 
-- Entry gate at `a402df6`: `python -m pytest tests -q` exit 1, `1 failed, 858 passed in 139.97s (0:02:19)`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (known).
-- After the first pass: `1 failed, 858 passed in 135.93s (0:02:15)`; orchestrator's rerun on `498eaa0`: `1 failed, 858 passed in 136.62s`.
-- After repair pass 2: `python -m pytest tests -q` exit 1, `1 failed, 858 passed in 134.21s (0:02:14)`, only the known clock test; strays `data/reports/20261024_0424_BRETT_0x532f.md`, sqlite shm and wal removed by hand; DB sha256 `068287c0...a6679ca` unchanged.
-- Strays after each suite run: `data/reports/<stamp>_BRETT_0x532f.md`, `data/memelab.sqlite-shm`, `-wal`; removed by hand; tracked DB sha256 `068287c0...a6679ca` unchanged.
+- Entry gate at `77e78ce`: `python -m pytest tests -q` exit 1, `1 failed, 858 passed in 143.26s (0:02:23)`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (known).
+- First pass, before its commit: `1 failed, 858 passed in 135.45s`. At the first-pass commit `c9e894d` (orchestrator): `4 failed, 855 passed`, three content-guard tests on the MiroFish smoke files (fixed).
+- Repair pass, after the repair commit: recorded in PHASE_03_RESULTS.json by the records commit.
+- Strays after each run: `data/reports/<stamp>_BRETT_0x532f.md`, `data/memelab.sqlite-shm`, `-wal`; remove by hand; tracked DB sha256 `068287c0...` unchanged.
 
 ## Blockers and open items
 
-- None blocking Phase 03.
-- GitHub issue pages (the MiroFish FAQ, issue 726) and model-weight license files on Hugging Face were not readable from this session; Phase 03 needs another route (WebSearch, or Firecrawl within the cap).
-- Returned names not selected for verification remain unscreened (count and term scan in EXCLUSIONS.md); Phase 03 may pull any with a recorded reason.
+- None for Phase 03 once the orchestrator verifies the two commits.
+- MiroFish maintainer FAQ (issue 726) still unread; nothing rests on it.
 - PI-D-020 (forward depth and quote collector) stays PROPOSED for Elving.
 
 ## Approvals needed
 
-None for Phase 03. Paid data, LLM, Zep or MiroFish use, any scheduled collector (PI-D-020), copying AGPL or GPL code, or a merge into `main` need Elving (PI-D-005).
+None for Phase 04 to start. Paid data, LLM, Zep or MiroFish use, any scheduled collector (PI-D-020), copying AGPL or GPL code, accepting TabPFN-3.5 or other non-commercial weight terms, or a merge into `main` need Elving (PI-D-005).
 
 ## Next
 
-Next eligible phase: 03 (pinned source audit, rubric and ranked top ten), after the orchestrator verifies repair pass 2.
-
-## Commit
-
-- `498eaa0` content; the repair pass 2 commit, message prefix `predictive-intel phase 02: `, is HEAD (read its hash with `git log -1`; this file is part of it). No hash-only commits.
-- `git diff --name-only a402df6..HEAD` lists only files under `audits/predictive-intelligence/` and `docs/predictive-intelligence/`.
-- Not pushed. `git status` clean after the commit.
+Next eligible phase: 04 (adoption, install, adapter or build bake-off), after the orchestrator verifies Phase 03 and pushes. Phase 04 starts from PI-D-028 and must honour the Phase 03 constraints in ROADMAP.md (banned defaults, REJECT routes, fold audits for splitters, the content guard for committed artifacts).
 
 ## Exact next command
 
 ```
-cd /home/claude/memelab-inbox && git checkout feature/predictive-intelligence && git log -3 --oneline && python3 audits/predictive-intelligence/phase_02/probes/check_candidates.py audits/predictive-intelligence/phase_02 audits/predictive-intelligence/phase_01/architecture/GAP_MATRIX.csv && python -m pytest tests -q
+cd /home/claude/memelab-inbox && git checkout feature/predictive-intelligence && git log -3 --oneline && python -m memelab social guard && cd audits/predictive-intelligence/phase_03/research && python3 -B verify/check_scorecard.py && python3 -B verify/check_scorecard_negative.py && cd /home/claude/memelab-inbox && python -m pytest tests -q
 ```
 
-Expect the repair pass 2 commit on top of `498eaa0`, `problems 0` and `1 failed, 858 passed`; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand.
+Expect the two Phase 03 commits on top of `77e78ce`, `"violations": []`, `problems 0`, `31 of 31 mutations refused` and `1 failed, 858 passed`; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand.

@@ -1,0 +1,16 @@
+annotated-types==0.8.0
+mypy-extensions==1.1.0
+numpy==2.5.4
+packaging==26.3
+pandas==3.1.0
+pandera @ file:///home/claude/pi_research/src/unionai-oss__pandera
+pydantic==2.14.1
+pydantic-core==2.50.1
+python-dateutil==3.0.0
+pyyaml==6.0.3
+six==1.17.0
+typeguard==4.6.0
+typing-extensions==4.16.0
+typing-inspect==0.9.0
+typing-inspection==0.4.4
+tzdata==2026.5

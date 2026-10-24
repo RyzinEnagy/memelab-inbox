@@ -1,0 +1,10 @@
+fetched_from https://pypi.org/pypi/hazardous/0.2.0/json
+wheel_sha256 0c25c1b2f76f14bf2d50f68abe762283c01b2c83341420b95302b13cdd94c86f
+hazardous/.DS_Store 8196
+hazardous/data/.DS_Store 6148
+hazardous/data/41586_2019_1007_MOESM7_ESM.txt 386802
+hazardous/data/competing_synthetic.csv 461980
+hazardous/data/seer_cancer_cardio_raw_data.txt 213846118
+hazardous/data/.ipynb_checkpoints/_seer-checkpoint.py 4915
+hazardous/metrics/_negative_log_likelihood.py 14364
+hazardous/tests/.DS_Store 6148

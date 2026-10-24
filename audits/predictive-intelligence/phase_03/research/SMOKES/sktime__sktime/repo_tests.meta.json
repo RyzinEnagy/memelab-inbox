@@ -1,0 +1,11 @@
+{
+ "name": "repo_tests",
+ "command": "unshare -n /home/claude/pi_research/venvs/sktime__sktime/bin/python -I -B -m pytest -q -p no:cacheprovider -o addopts= /home/claude/pi_research/venvs/sktime__sktime/lib/python3.13/site-packages/sktime/split/tests/test_expandingwindow.py /home/claude/pi_research/venvs/sktime__sktime/lib/python3.13/site-packages/sktime/split/tests/test_cutoff.py /home/claude/pi_research/venvs/sktime__sktime/lib/python3.13/site-packages/sktime/split/tests/test_temporaltraintest.py /home/claude/pi_research/venvs/sktime__sktime/lib/python3.13/site-packages/sktime/split/tests/test_expandingcutoff.py",
+ "cwd": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/sktime__sktime",
+ "start_utc": "2026-10-24T05:34:00Z",
+ "exit_code": 1,
+ "wall_s": 15.72,
+ "peak_rss_mb": 193.7,
+ "user_cpu_s": 18.73,
+ "network": "none (unshare -n)"
+}

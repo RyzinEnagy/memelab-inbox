@@ -1,0 +1,6 @@
+31773 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=31783, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+31773 connect(6, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+31773 connect(5, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+32041 connect(5, {sa_family=AF_INET, sin_port=htons(45127), sin_addr=inet_addr("127.0.0.1")}, 16) = -1 ENETUNREACH (Network is unreachable)
+31773 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=32053, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+31773 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=32054, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---

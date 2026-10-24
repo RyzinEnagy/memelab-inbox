@@ -1,0 +1,10 @@
+# command: unshare -n -- /home/claude/pi_research/venvs/eslazarev__purged-cross-validation/bin/python -m pytest -q -p no:cacheprovider /home/claude/pi_research/src/eslazarev__purged-cross-validation/tests/test_purge.py /home/claude/pi_research/src/eslazarev__purged-cross-validation/tests/test_embargo.py /home/claude/pi_research/src/eslazarev__purged-cross-validation/tests/test_walk_forward.py /home/claude/pi_research/src/eslazarev__purged-cross-validation/tests/test_purged_kfold.py /home/claude/pi_research/src/eslazarev__purged-cross-validation/tests/test_purge_embargo_properties.py /home/claude/pi_research/src/eslazarev__purged-cross-validation/tests/test_cpcv.py
+# started_utc: 2026-10-24T04:58:28Z
+# network: OFF (unshare -n, no network namespace)
+........................................................................ [ 59%]
+..................................................                       [100%]
+122 passed in 4.77s
+
+# exit_code: 0
+# wall_s: 5.89
+# peak_child_rss_mb: 171.1

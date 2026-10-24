@@ -1,0 +1,42 @@
+{
+ "command": [
+  "/home/claude/pi_research/venvs/probabl-ai__skore/bin/python",
+  "-m",
+  "pytest",
+  "-p",
+  "no:cacheprovider",
+  "-o",
+  "addopts=",
+  "-o",
+  "filterwarnings=ignore::DeprecationWarning",
+  "-q",
+  "--import-mode=importlib",
+  "tests/unit/checks/test_skd011_golden_feature.py",
+  "tests/unit/checks/test_skd013_train_test_time_overlap.py",
+  "tests/unit/checks/test_skd004_high_class_imbalance.py"
+ ],
+ "wrapped_command": [
+  "unshare",
+  "-n",
+  "/home/claude/pi_research/venvs/probabl-ai__skore/bin/python",
+  "-m",
+  "pytest",
+  "-p",
+  "no:cacheprovider",
+  "-o",
+  "addopts=",
+  "-o",
+  "filterwarnings=ignore::DeprecationWarning",
+  "-q",
+  "--import-mode=importlib",
+  "tests/unit/checks/test_skd011_golden_feature.py",
+  "tests/unit/checks/test_skd013_train_test_time_overlap.py",
+  "tests/unit/checks/test_skd004_high_class_imbalance.py"
+ ],
+ "started_utc": "2026-10-24T05:17:58Z",
+ "exit_code": 0,
+ "wall_s": 5.098,
+ "peak_rss_kb_children": 244328,
+ "env_switches": {},
+ "offline_netns": true
+}

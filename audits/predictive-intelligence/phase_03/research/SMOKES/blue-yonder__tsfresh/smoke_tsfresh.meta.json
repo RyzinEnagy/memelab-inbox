@@ -1,0 +1,11 @@
+{
+ "name": "smoke_tsfresh",
+ "command": "unshare -n /home/claude/pi_research/venvs/blue-yonder__tsfresh/bin/python -I -B /home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/blue-yonder__tsfresh/smoke_tsfresh.py",
+ "cwd": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/blue-yonder__tsfresh",
+ "start_utc": "2026-10-24T05:27:48Z",
+ "exit_code": 0,
+ "wall_s": 86.993,
+ "peak_rss_mb": 334.5,
+ "user_cpu_s": 84.2,
+ "network": "none (unshare -n)"
+}

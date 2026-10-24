@@ -1,0 +1,16 @@
+Reviewer R5, Phase 03. All runs inside a loopback-only network namespace: unshare -n sh -c "python3 -I lo_up.py; <cmd>".
+Clone: git init; git fetch --depth 1 origin 7657031ac01184afe2cb220f5ee3545573b5e843; git checkout FETCH_HEAD -> /home/claude/pi_research/src/666ghj__MiroFish
+Venv: uv venv --python 3.12 /home/claude/pi_research/venvs/666ghj__MiroFish
+  uv pip install --no-deps torch==2.9.1 --index-url https://download.pytorch.org/whl/cpu
+  uv export --frozen --no-hashes --no-dev --python 3.12 (backend/uv.lock), minus -e ., nvidia-*, triton, torch -> installed_from_uv_lock_cpu.txt; uv pip install --no-deps -r that file
+  uv pip check: camel-oasis 0.2.5 and unstructured 0.13.7 declare Python <3.12 (installed on 3.12.3 anyway, as the lock does)
+1) backend tests: cd backend; python -m pytest tests -q -p no:cacheprovider -> backend_pytest.txt: 129 passed, exit 0, wall 17 s
+2) API smoke: cd backend; python smoke_mf_api.py -> api_smoke_output.txt, exit 0
+3) offline simulation, attempt 1 (no tokenizer cache): python3 -I smoke_mf_sim.py VENV_PY backend/scripts/run_reddit_simulation.py OUT 4
+   -> sim_attempt1_summary.json, sim_attempt1_offline_tiktoken_fetch.txt: script exit 1, camel/tiktoken tried https://openaipublic.blob.core.windows.net/encodings/o200k_base.tiktoken
+4) tokenizer files fetched once outside the namespace: TIKTOKEN_CACHE_DIR=/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r5/tiktoken_cache python -c "import tiktoken; tiktoken.get_encoding('o200k_base'); tiktoken.get_encoding('cl100k_base')"
+   sha256 o200k 446a9538cb6c348e3516120d7c08b09f57c36495e2acfffe59a5bf8b0cfb1a2d, cl100k 223921b76ee99bde995b7ff738513eef100fb51d18c93597a113bcffe865b2a7
+5) offline simulation, attempt 2 (TIKTOKEN_CACHE_DIR set, mock LLM on 127.0.0.1:18080): same command -> sim_summary.json, sim_run1/, sim_run2/
+   harness exit 0; both script runs exit 0; run1 wall 15.02 s, run2 17.01 s; peak RSS of children 609.9 MB; trace hashes differ (identical_trace_across_runs false)
+6) LLM endpoint down (P30): sh smoke_mf_llm_down.sh -> llm_down_output.txt: script exit 0, "simulation loop complete", trace has only sign_up, the initial post and refresh
+No key, no Zep, no outbound network in any run.

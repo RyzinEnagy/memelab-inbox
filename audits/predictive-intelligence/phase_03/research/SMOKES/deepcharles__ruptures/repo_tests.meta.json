@@ -1,0 +1,11 @@
+{
+ "name": "repo_tests",
+ "command": "unshare -n /home/claude/pi_research/venvs/deepcharles__ruptures/bin/python -I -m pytest -q -p no:cacheprovider /home/claude/pi_research/src/deepcharles__ruptures/tests/test_l1potts.py /home/claude/pi_research/src/deepcharles__ruptures/tests/test_costs.py /home/claude/pi_research/src/deepcharles__ruptures/tests/test_metrics.py",
+ "cwd": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/deepcharles__ruptures",
+ "start_utc": "2026-10-24T04:37:43Z",
+ "exit_code": 0,
+ "wall_s": 4.355,
+ "peak_rss_mb": 116.1,
+ "user_cpu_s": 2.89,
+ "network": "none (unshare -n)"
+}

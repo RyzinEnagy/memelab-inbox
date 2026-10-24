@@ -1,0 +1,76 @@
+{
+ "env": {
+  "python": "3.13.17",
+  "platform": "Linux-6.18.44-fc-v153-x86_64-with-glibc2.39",
+  "executable": "/home/claude/pi_research/venvs/stumpy-dev__stumpy/bin/python"
+ },
+ "stumpy_version": "1.14.1",
+ "stumpy_file": "/home/claude/pi_research/venvs/stumpy-dev__stumpy/lib/python3.13/site-packages/stumpy/__init__.py",
+ "numba": "0.68.0",
+ "numba_threads": 2,
+ "S1_selfjoin_future_dependence": {
+  "i": 48,
+  "P_i_original": 3.286776317488242,
+  "P_i_after_editing_only_future": 2.6514777092784865,
+  "I_i_original": 128,
+  "I_i_after": 106,
+  "changed": true,
+  "left_I_i_original": 33,
+  "left_I_i_after": 33,
+  "left_index_unchanged": true
+ },
+ "S1_stumpi_left_profile": {
+  "path": "PMINT0023",
+  "len": 250,
+  "updates": 210,
+  "indices_checked": 33,
+  "max_abs_diff_left_P_vs_past_only_mass": 1.7763568394002505e-15,
+  "per_update_ms": 8.707
+ },
+ "role_motif_match": {
+  "library_paths": 120,
+  "planted": 36,
+  "recovered_within_2": 36,
+  "matches_on_paths_without_motif": 4,
+  "max_distance": 2.0,
+  "queries": 120,
+  "per_path_match_ms": 0.711
+ },
+ "role_analog_query": {
+  "library_paths": 119,
+  "candles_scanned": 16634,
+  "query_total_ms": 42.64,
+  "note": "cross-path time cutoff (only paths whose candles were available before the decision) is wrapper code; mass has no time argument"
+ },
+ "S3_nan": {
+  "dense_len": 271,
+  "nan_values": 100,
+  "windows": 260,
+  "windows_with_inf_profile": 243,
+  "mass_inf_distances": 243,
+  "raised": null,
+  "behaviour": "subsequences containing NaN get distance inf; no imputation, no error"
+ },
+ "S5_persistence": {
+  "mp_dtype": "object",
+  "mp_np_save_allow_pickle_false": "ValueError: Object arrays cannot be saved when allow_pickle=False",
+  "mp_shape": [
+   144,
+   4
+  ],
+  "split_columns_npz_reload_equal": true,
+  "stumpi_pickle": "PicklingError: Can't pickle <class 'stumpy.stumpi.stumpi'>: it's not the same object as stumpy.stumpi.stumpi",
+  "stumpi_pickle_bytes": null,
+  "stumpi_after_reload_update_equal": null
+ },
+ "S6_cost": {
+  "import_stumpy_s": 3.0195,
+  "stump_first_call_s": 30.9853,
+  "stump_second_call_s": 0.0011,
+  "mass_first_call_s": 0.609,
+  "mass_second_call_s": 0.0009,
+  "stumpi_updates_s": 1.8284
+ },
+ "S2": "SKIPPED: no probability output (distances and indices only)",
+ "S4": "SKIPPED: no calibration or uncertainty API"
+}

@@ -1,0 +1,6 @@
+Reviewer R5, Phase 03. All runs inside unshare -n with lo_up.py (loopback only).
+Clone: git fetch --depth 1 origin 949dc8c5c6b75092364f4052233a39ef5612c8fc -> /home/claude/pi_research/src/mesa__mesa (mesa.__version__ 4.0.0a0; PyPI latest 3.5.1 not tested)
+Venv: uv venv --python 3.13; uv pip install --only-binary :all: numpy pandas tqdm scipy networkx pytest pytest-mock (venv_freeze.txt); source via PYTHONPATH.
+1) PYTHONPATH=. python -m pytest tests/test_model.py tests/test_agent.py tests/test_agentset.py tests/test_datacollector.py tests/experimental/test_scenarios.py tests/time/test_events.py tests/test_schedule_run.py tests/discrete_space/test_discrete_space.py -q
+   -> mesa_pytest_offline.txt: 411 passed, exit 0, wall 11 s
+2) PYTHONPATH=<clone> python smoke_mesa_traders.py /home/claude/pi_research/challenge/challenge.csv -> smoke_mesa_traders_output.json, exit 0, wall 9 s (challenge.csv sha256 18fda40c...5f23d)

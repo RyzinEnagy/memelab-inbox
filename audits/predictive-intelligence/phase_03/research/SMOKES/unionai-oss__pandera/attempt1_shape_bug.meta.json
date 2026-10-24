@@ -1,0 +1,30 @@
+{
+ "command": [
+  "/home/claude/pi_research/venvs/unionai-oss__pandera/bin/python",
+  "-I",
+  "/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r4/smoke_pandera.py"
+ ],
+ "wrapped_command": [
+  "unshare",
+  "-n",
+  "strace",
+  "-f",
+  "-qq",
+  "-e",
+  "trace=connect,sendto",
+  "-o",
+  "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/unionai-oss__pandera/smoke_pandera.connect.txt",
+  "/home/claude/pi_research/venvs/unionai-oss__pandera/bin/python",
+  "-I",
+  "/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r4/smoke_pandera.py"
+ ],
+ "started_utc": "2026-10-24T05:21:02Z",
+ "exit_code": 1,
+ "wall_s": 5.217,
+ "peak_rss_kb_children": 197036,
+ "env_switches": {},
+ "offline_netns": true,
+ "strace_inet_connect_lines": 0,
+ "strace_inet_targets": {},
+ "strace_unix_connect_lines": 0
+}

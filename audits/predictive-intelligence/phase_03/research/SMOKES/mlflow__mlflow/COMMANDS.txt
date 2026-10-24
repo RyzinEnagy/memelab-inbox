@@ -1,0 +1,13 @@
+Environments (all Python 3.13.17, deleted after the review because each exceeded or approached 500 MB):
+  pin:     /home/claude/pi_research/venvs/mlflow__mlflow, uv pip install ./src/mlflow__mlflow at cd19153f5ed36f40724c22d7798e65ad1c4dd7bc (version 3.17.3.dev0), then pytest and pytest-timeout for repo tests. freeze_pin_full.txt
+  release: /home/claude/pi_research/venvs/mlflow__release_3.17.2, uv pip install mlflow==3.17.2 (PyPI). freeze_release_3.17.2.txt. Used only for the telemetry default.
+  skinny:  /home/claude/pi_research/venvs/mlflow__skinny_3.17.2, uv pip install mlflow-skinny==3.17.2 scikit-learn pandas, then skops. freeze_skinny_3.17.2_plus_sklearn.txt; skinny_3.17.2_dryrun.txt lists skinny alone (41 packages).
+Harness: runwrap.py (exit code, wall time, peak RSS of the child; --offline = unshare -n; --strace = strace -f -e trace=connect,sendto). TMPDIR and XDG_CONFIG_HOME pointed at fresh scratch dirs; cwd a fresh empty dir.
+1. attempt1_default_skops: pin, runwrap.py --offline --strace -- python -I attempt1_smoke_mlflow.py  -> exit 1, skops untrusted type numpy.dtype
+2. smoke_mlflow_pin: pin, same with smoke_mlflow.py (skops_trusted_types=["numpy.dtype"], evaluate config fixed) -> exit 0
+3. telemetry_release_{on,off_mlflow,off_dnt}, telemetry_release_dnt_equals_1, telemetry_pin_on: runwrap.py --offline --strace -- python -I -W ignore telemetry_probe_mlflow.py with no switch, MLFLOW_DISABLE_TELEMETRY=true, DO_NOT_TRACK=true, DO_NOT_TRACK=1
+4. attempt1_skinny_no_skops, smoke_skinny_filestore: skinny venv, MLFLOW_ALLOW_FILE_STORE=true MLFLOW_DISABLE_TELEMETRY=true runwrap.py --offline --strace -- python -I smoke_mlflow_skinny_filestore.py
+5. repo_tests_subset: cwd = pinned clone, runwrap.py --offline -- python -m pytest -q -p no:cacheprovider tests/data/test_pandas_dataset.py tests/data/test_numpy_dataset.py
+6. repo_tests_telemetry: same with tests/telemetry/test_utils.py tests/telemetry/test_installation_id.py
+7. diff -r -q src/mlflow__mlflow/mlflow/telemetry <release venv>/site-packages/mlflow/telemetry -> no differences
+Challenge: /home/claude/pi_research/challenge/challenge.csv sha256 18fda40cc7a2a6f5aa607a32f1a096976317f901f5b75d1ae23b4bcaddd5f23d.

@@ -1,0 +1,3 @@
+/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r1/interpret_pin_build/python/interpret-core/interpret/glassbox/_ebm.py:863: UserWarning: Missing values detected. Our visualizations do not currently display missing values. To retain the glassbox nature of the model you need to either set the missing values to an extreme value like -1000 that will be visible on the graphs, or manually examine the missing value score in ebm.term_scores_[term_index][0]
+  warn(
+RESULTS_JSON {"all_finite": true, "has_standard_deviations_": true, "has_term_standard_deviations_": false, "interpret": "0.7.8", "max_sd_first_term": 0.263993198465309, "n_sd_arrays": 6, "n_terms": 6, "shapes_match": true}

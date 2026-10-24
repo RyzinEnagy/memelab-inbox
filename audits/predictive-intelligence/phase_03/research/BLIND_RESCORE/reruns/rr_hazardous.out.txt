@@ -1,0 +1,5 @@
+hazardous 0.2.0 events train 74 holdout rows 634 nan in X train 252
+fit n_iter=10: 8.8 s; CIF event1 decreases somewhere for 627 of 634 holdout rows, largest drop 0.0576
+predict_proba shape (634, 2) rows sum to 1: True range event1 0.011 0.1683
+pickle identical: True
+IBS event1 holdout 0.01487

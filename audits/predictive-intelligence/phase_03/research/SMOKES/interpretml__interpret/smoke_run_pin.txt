@@ -1,0 +1,1 @@
+command: OMP_NUM_THREADS=1 <venv interpretml__interpret-pin>/bin/python -I smoke_interpret.py challenge.csv scratch (same script as the 0.7.8 run, pin source + pin libebm); exit=0; wall_s=216.083241258

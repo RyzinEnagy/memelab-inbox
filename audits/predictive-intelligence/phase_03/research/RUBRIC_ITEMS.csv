@@ -1,0 +1,51 @@
+item_id,criterion,locked_weight,points,rule,evidence_required
+T1,temporal_integrity,18,3,"The library ships an ordered evaluation procedure in which every evaluated point uses only earlier data (walk-forward or expanding splitter, progressive or prequential validation, online or sequential test, or reference-then-analysis chunking on a timestamp column), and the smoke ran it. Accepting a caller-built fold iterable does not count.",smoke
+T2,temporal_integrity,18,4,"Purge or embargo by label end time (not by row count) shipped by the library, run on the challenge or a constructed case and checked by an independent overlap checker with zero overlapping training rows.",smoke plus independent check
+T3,temporal_integrity,18,2,"Pending or unmatured labels are represented as such (censoring, delayed label release, label-free estimation, or exclusion by maturity) and never scored or trained as negatives, shown in the smoke.",smoke
+T4a,temporal_integrity,18,3,"Feature availability enforcement: a library mechanism refused, dropped or nulled a feature value whose availability time is after the decision (the S1 trap or a hand-built probe), shown in the smoke.",smoke
+T4b,temporal_integrity,18,1,"A library leakage or chronology heuristic raised a flag in the smoke (target-proxy feature, train and test time overlap).",smoke
+T5,temporal_integrity,18,3,"A library-provided past-only computation mode (backward windows, left or streaming profile, filtered state) verified by a truncation-invariance or past-only recomputation test with zero difference.",smoke
+T6,temporal_integrity,18,2,"Replay discipline record: runs or artifacts carry a training cutoff, creation time, data fingerprint, or first-known (revision) timestamps that a replay check can read, shown in the smoke.",smoke
+O1,transferable_outcomes,14,5,"The library itself outputs per-row probabilities for a binary event (classifier, survival-to-horizon or calibrator output), finite, in [0,1] and of the right shape in S2.",smoke
+O2,transferable_outcomes,14,3,"A censor-aware time-to-event model (survival or competing risks) was fitted with censored rows kept as censored in the smoke.",smoke
+O3,transferable_outcomes,14,2,"A covariate-conditional competing-risk output that matches the T1 barrier race (target first versus invalidation first versus censored), shown in the smoke.",smoke
+O4,transferable_outcomes,14,2,"Continuous, quantile or volatility outputs for a continuous target produced in the smoke (code presence alone does not count).",smoke
+O5,transferable_outcomes,14,2,"Multi-entity generalization: a group-disjoint split by exact mint, or a model fitted across many short entity series, shown in the smoke.",smoke
+C1,calibration_uncertainty,12,2,"The library computes a proper score (Brier, log loss, or a censor-aware Brier) used or checked in the smoke.",smoke or pin
+C2,calibration_uncertainty,12,3,"Post-hoc probability recalibration that can be fitted on a later window than the model (prefit or manual mode), run in the smoke with no definition error found.",smoke
+C3,calibration_uncertainty,12,3,"Intervals, prediction sets or bootstrap intervals whose coverage was measured in the smoke (empirical or Monte Carlo).",smoke
+C4,calibration_uncertainty,12,2,"A built-in no-decision output (empty or two-label set, refusal to return a threshold, explicit p-value floor) shown in the smoke.",smoke
+C5,calibration_uncertainty,12,2,"Transparent uncertainty diagnostics beyond C3: reliability with counts or bands, calibration tests, standard errors, interval width or calibration checks, shown in the smoke.",smoke
+F1,features,10,2,"Native missing-value handling in the core path: NaN covariates accepted with a defined, visible treatment (own bin, infinite distance, declared nullability, native split) and finite results, shown in S3. Silent garbage, silent row loss or a refusal earns 0.",smoke
+F2,features,10,3,"Irregular real timestamps accepted without a fixed frequency (as-of joins, time-based purge, delayed labels on irregular times), shown in the smoke.",smoke
+F3,features,10,2,"Feature extraction from price or volume paths (windows, change points, motifs, regime states, summaries) produced usable output in the smoke.",smoke
+F4,features,10,2,"Cross-token or entity features: entity-keyed joins that keep same-symbol mints apart, or cross-series analog search, shown in the smoke.",smoke
+F5,features,10,1,"Typed event or feature records produced or validated (typed feature views, schema-checked tables, typed action records), shown in the smoke.",smoke
+D1,decision_execution,10,3,"A per-row weight or cost or utility hook in fit or evaluation (sample weights, cost matrix, custom objective) present at the pin.",pin
+D2,decision_execution,10,3,"Decision-threshold selection with a statistical guarantee or an explicit cost matrix, exercised in the smoke.",smoke
+D3,decision_execution,10,2,"A guard against false confidence from selection (SPA, MCS, Reality Check, PBO, multiple-testing correction, FDR-controlled selection) exercised in the smoke.",smoke
+D4,decision_execution,10,2,"A machine-readable alarm or failure status that a downstream gate can use to degrade or abstain (drift alarm, test status, check severity, schema failure), raised in the smoke.",smoke
+Q1,code_quality,8,2,"A subset of the repository's own tests ran and passed (exit 0, or failures only from documented missing optional test dependencies, test data, network or keys).",smoke
+Q2,code_quality,8,2,"The test subset that ran covers the reviewed role path, and no test was found to encode a defect.",smoke
+Q3,code_quality,8,2,"Maintenance: a commit on or after 2026-04-24 (six months before review) and a release or tag on or after 2025-04-24 (18 months).",pin or registry
+Q4,code_quality,8,1,"Declared dependencies are complete for the runtime path reviewed (no undeclared runtime import found, install as declared imports).",smoke or pin
+Q5,code_quality,8,1,"No silent wrong-output defect found in the role path (silent NaN, wrong math, swallowed exceptions, wrong metadata, vanishing rows).",smoke
+I1,integration_fit,8,2,"Runs on Python 3.13 (the lab runtime), shown in the smoke.",smoke
+I2,integration_fit,8,1,"Works with pandas 3.x and numpy 2.x without overrides or downgrades (or needs neither).",smoke
+I3,integration_fit,8,2,"Usable as an in-process library API without a server, daemon, subprocess or LLM endpoint.",smoke or pin
+I4,integration_fit,8,2,"Filling its role does not require a parallel subsystem the lab plans to build itself (PLANNED_SEAMS: as-of view, label evaluator, model registry, forecast store) or a separate service store.",records
+I5,integration_fit,8,1,"Install footprint under 500 MB and no GPU, browser or proprietary binaries pulled by default.",smoke or measured venv
+R1,reproducibility,8,2,"Same inputs and seed gave identical outputs across two runs, two calls or two code paths, shown in the smoke.",smoke
+R2,reproducibility,8,2,"Save and reload gave identical outputs (bit-identical), shown in the smoke.",smoke
+R3,reproducibility,8,1,"A persistence format for fitted state or outputs that does not execute code on load (native text, JSON, YAML safe_load, skops, npz, SQLite) was used in the smoke.",smoke
+R4,reproducibility,8,2,"The library produced a run or audit record (run registry entry, data fingerprint, split audit, checkpoint of parameters and losses, per-run config and outputs) in the smoke.",smoke
+R5,reproducibility,8,1,"Artifacts carry the producing library version, or a schema that detects a mismatch on load, shown in the smoke.",smoke
+K1,cost_latency,5,2,"The role path ran with no network at import, fit and predict (guard, unshare -n or strace), with default settings or a documented local switch.",smoke
+K2,cost_latency,5,1,"Some configuration of the role path fits the challenge-size problem in under 60 s and infers in under 100 ms per row, measured.",smoke
+K3,cost_latency,5,1,"Peak memory under 1 GB in the smoke and no paid service (LLM, memory cloud, licensed weights) needed for the role.",smoke
+K4,cost_latency,5,1,"A released wheel usable on Python 3.13 exists for Windows or is pure Python (PyPI file list).",registry
+L1,license_security,7,3,"Root license at the pin is permissive (MIT, BSD, Apache-2.0, NCSA). Weak copyleft would earn 1; strong copyleft (GPL, AGPL) earns 0.",pin
+L2,license_security,7,1,"The default install route carries no restrictive vendored, transitive, model-weight or data-rights terms and no unknown-rights data.",pin or registry
+L3,license_security,7,1,"No telemetry or phone-home anywhere in the package by default (a working off switch does not earn the point).",pin plus smoke
+L4,license_security,7,1,"The recommended install route was inspected and runs no install-time network or destructive script and ships what the source tree contains.",pin or registry
+L5,license_security,7,1,"No API key, token or secret is needed for the role and no network service is exposed by default.",pin plus smoke

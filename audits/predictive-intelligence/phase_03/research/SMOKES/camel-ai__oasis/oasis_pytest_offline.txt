@@ -1,0 +1,131 @@
+...............................Fs                                        [100%]
+=================================== FAILURES ===================================
+_______________________________ test_agent_graph _______________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-206/test_agent_graph0')
+
+    def test_agent_graph(tmp_path):
+        twitter_channel = Channel()
+        graph = AgentGraph()
+>       agent_0 = SocialAgent(
+            agent_id=0,
+            user_info=UserInfo(name="0"),
+            channel=twitter_channel,
+        )
+
+test/agent/test_agent_graph.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+oasis/social_agent/agent.py:106: in __init__
+    super().__init__(
+../../venvs/camel-ai__oasis/lib/python3.11/site-packages/camel/agents/chat_agent.py:524: in __init__
+    resolved_models = self._resolve_models(model)
+../../venvs/camel-ai__oasis/lib/python3.11/site-packages/camel/agents/chat_agent.py:712: in _resolve_models
+    return ModelFactory.create(
+../../venvs/camel-ai__oasis/lib/python3.11/site-packages/camel/models/model_factory.py:223: in create
+    return model_class(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = (<camel.models.openai_model.OpenAIModel object at 0x7fa8d4894b50>,)
+kwargs = {'api_key': None, 'max_retries': 3, 'model_config_dict': None, 'model_type': gpt-4.1-mini-2025-04-14, ...}
+signature = <Signature (self, model_type: Union[camel.types.enums.ModelType, str], model_config_dict: Optional[Dict[str, Any]] = N... Optional[Any] = None, api_mode: Literal['chat_completions', 'responses'] = 'chat_completions', **kwargs: Any) -> None>
+bound_arguments = <BoundArguments (self=<camel.models.openai_model.OpenAIModel object at 0x7fa8d4894b50>, model_type=gpt-4.1-mini-2025-0...ken_counter=None, timeout=None, max_retries=3, client=None, async_client=None, api_mode='chat_completions', kwargs={})>
+arguments = {'api_key': None, 'api_mode': 'chat_completions', 'async_client': None, 'client': None, ...}
+missing_keys = ['OPENAI_API_KEY'], param_name = 'api_key'
+env_var_name = 'OPENAI_API_KEY', value = None
+env_key_urls = {'AIML_API_KEY': 'https://aimlapi.com/', 'ANTHROPIC_API_KEY': 'https://platform.claude.com/docs/en/api/overview', 'AVIAN_API_KEY': 'https://avian.io', 'AZURE_OPENAI_API_KEY': 'https://portal.azure.com/', ...}
+key_way = 'https://platform.openai.com/docs/overview'
+
+    @wraps(func)
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
+        signature = inspect.signature(func)
+        bound_arguments = signature.bind(*args, **kwargs)
+        bound_arguments.apply_defaults()
+        arguments = bound_arguments.arguments
+    
+        missing_keys = []
+        for param_name, env_var_name in param_env_list:
+            if not isinstance(env_var_name, str):
+                raise TypeError(
+                    f"Environment variable name must be a string, got"
+                    f" {type(env_var_name)}"
+                )
+    
+            value = None
+            if (
+                param_name
+            ):  # If param_name is provided, check function argument first
+                if not isinstance(param_name, str):
+                    raise TypeError(
+                        f"Parameter name must be a string, "
+                        f"got {type(param_name)}"
+                    )
+                value = arguments.get(param_name)
+                # If we found a valid value in arguments, continue to next
+                # item
+                if value:
+                    continue
+    
+            # Check environment variable if no valid value found yet
+            value = os.environ.get(env_var_name)
+            if not value or value.strip() == "":
+                missing_keys.append(env_var_name)
+    
+        if missing_keys:
+            env_key_urls = {
+                'ANTHROPIC_API_KEY': "https://platform.claude.com/docs/en/api/overview",
+                'AIML_API_KEY': "https://aimlapi.com/",
+                'COHERE_API_KEY': "https://cohere.com/",
+                'COMETAPI_KEY': "https://api.cometapi.com/console/token",
+                'DEEPSEEK_API_KEY': "https://www.deepseek.com/",
+                'AZURE_OPENAI_API_KEY': "https://portal.azure.com/",
+                'OPENAI_API_KEY': "https://platform.openai.com/docs/overview",
+                'FISHAUDIO_API_KEY': "https://fish.audio/",
+                'GEMINI_API_KEY': "https://gemini.google.com/",
+                'INTERNLM_API_KEY': "https://internlm.intern-ai.org.cn/api/tokens",
+                'GROQ_API_KEY': "https://console.groq.com/keys",
+                'MISTRAL_API_KEY': "https://mistral.ai/",
+                'MOONSHOT_API_KEY': "platform.moonshot.ai/console",
+                'NVIDIA_API_KEY': "https://build.nvidia.com/settings/api-keys",
+                'OPENAI_COMPATIBILITY_API_KEY': "https://platform.openai.com/docs/overview",
+                'QWEN_API_KEY': "https://tongyi.aliyun.com/",
+                'REKA_API_KEY': "https://docs.reka.ai/quick-start",
+                'SAMBA_API_KEY': "cloud.sambanova.ai/apis",
+                'TOGETHER_API_KEY': "https://docs.together.ai/docs/quickstart",
+                'YI_API_KEY': "https://platform.lingyiwanwu.com/docs",
+                'ZHIPUAI_API_KEY': "https://www.zhipuai.cn/",
+                'KLAVIS_API_KEY': "https://www.klavis.ai/docs",
+                'XAI_API_KEY': "https://docs.x.ai/docs/overview",
+                'AVIAN_API_KEY': "https://avian.io",
+            }
+            key_way = env_key_urls.get(
+                missing_keys[0], "the official website"
+            )
+>           raise ValueError(
+                "Missing or empty required API keys in "
+                f"environment variables: {', '.join(missing_keys)}.\n"
+                f"You can obtain the API key from {key_way}"
+            )
+E           ValueError: Missing or empty required API keys in environment variables: OPENAI_API_KEY.
+E           You can obtain the API key from https://platform.openai.com/docs/overview
+
+../../venvs/camel-ai__oasis/lib/python3.11/site-packages/camel/utils/commons.py:347: ValueError
+------------------------------ Captured log call -------------------------------
+INFO     social.agent:agent.py:86 No available actions defined, using all actions.
+=============================== warnings summary ===============================
+../../venvs/camel-ai__oasis/lib/python3.11/site-packages/sentence_transformers/evaluation/SentenceEvaluator.py:81
+  /home/claude/pi_research/venvs/camel-ai__oasis/lib/python3.11/site-packages/sentence_transformers/evaluation/SentenceEvaluator.py:81: DeprecationWarning: invalid escape sequence '\g'
+    return re.sub(r"([a-z])([A-Z])", "\g<1> \g<2>", class_name)
+
+../../venvs/camel-ai__oasis/lib/python3.11/site-packages/sentence_transformers/model_card.py:515
+  /home/claude/pi_research/venvs/camel-ai__oasis/lib/python3.11/site-packages/sentence_transformers/model_card.py:515: DeprecationWarning: invalid escape sequence '\d'
+    if dataset_name and re.match("_dataset_\d+", dataset_name):
+
+../../venvs/camel-ai__oasis/lib/python3.11/site-packages/sentence_transformers/losses/DenoisingAutoEncoderLoss.py:16
+  /home/claude/pi_research/venvs/camel-ai__oasis/lib/python3.11/site-packages/sentence_transformers/losses/DenoisingAutoEncoderLoss.py:16: DeprecationWarning: invalid escape sequence '\_'
+    """
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED test/agent/test_agent_graph.py::test_agent_graph - ValueError: Missing...
+1 failed, 31 passed, 1 skipped, 3 warnings in 15.49s
+exit=1 wall=18s

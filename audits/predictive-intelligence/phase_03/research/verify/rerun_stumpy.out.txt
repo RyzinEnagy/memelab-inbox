@@ -1,0 +1,1 @@
+RESULTS_JSON {"checked_indices": [30, 75, 120, 180, 240], "self_join_P_at_100_changes_when_only_samples_after_150_change": true, "self_join_left_I_at_100_unchanged": true, "stumpi_left_P_vs_lead_numpy_past_only_max_abs_diff": 1.389999226830696e-13, "stumpy_version": "1.14.1"}

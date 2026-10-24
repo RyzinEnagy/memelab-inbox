@@ -1,0 +1,2 @@
+24808 connect(3, {sa_family=AF_INET, sin_port=htons(45127), sin_addr=inet_addr("127.0.0.1")}, 16) = -1 ENETUNREACH (Network is unreachable)
+24808 connect(3, {sa_family=AF_INET, sin_port=htons(45127), sin_addr=inet_addr("127.0.0.1")}, 16) = -1 ENETUNREACH (Network is unreachable)

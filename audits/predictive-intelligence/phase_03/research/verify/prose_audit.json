@@ -1,0 +1,128 @@
+{
+ "purpose": "repair pass (skeptic m1): seeded spot audit of awards whose evidence is review prose alone (PROSE_OK items)",
+ "population": "241 cells, 318 points (Q2 23, Q4 24, Q5 14, I2 9, I3 28, I4 26, K2 16, K3 22, L2 23, L4 29, L5 27)",
+ "sample": "random.seed(20261024); random.sample(prose_cells, 20) over SCORE_ITEMS.csv rows in file order",
+ "results": [
+  [
+   "IFCA-Advanced-Computing/frouros",
+   "K3",
+   "confirmed",
+   "smoke_frouros.meta.json peak_rss_kb_children 211172"
+  ],
+  [
+   "scikit-learn-contrib/MAPIE",
+   "L2",
+   "confirmed",
+   "pin THIRD_PARTY_NOTICES.md present, MIT notices"
+  ],
+  [
+   "soda-inria/hazardous",
+   "Q2",
+   "confirmed under the first-pass reading",
+   "repo_tests.meta.json ran test_metrics, test_aj_calibration, test_km_calibration, test_cindex: the metric functions, not SurvivalBoost (strict reading H in sensitivity.py drops it)"
+  ],
+  [
+   "interpretml/interpret",
+   "I3",
+   "confirmed",
+   "pin _ebm.py:3125 EBMClassifierMixin(_SKClassifierMixin), :3650 EBMClassifier"
+  ],
+  [
+   "bashtage/arch",
+   "Q4",
+   "confirmed",
+   "raw_smoke_arch.txt arch 8.0.0+pin5db69b01 imports and exits 0; pyproject declares numpy, pandas, scipy, statsmodels, packaging"
+  ],
+  [
+   "mesa/mesa",
+   "L2",
+   "confirmed",
+   "pin pyproject dependencies numpy, pandas, tqdm, scipy"
+  ],
+  [
+   "scikit-learn/scikit-learn",
+   "I4",
+   "confirmed",
+   "phase_01 PLANNED_SEAMS.md: models.py seam, library choice from Phases 03 and 04"
+  ],
+  [
+   "henrikbostrom/crepes",
+   "Q5",
+   "confirmed",
+   "raw_smoke_crepes.txt S3: NaN rows reach the learner, which raises; with an imputer sets for 527 rows; no silent output found"
+  ],
+  [
+   "evidentlyai/evidently",
+   "K3",
+   "confirmed",
+   "smoke_evidently.meta.json peak_rss_kb_children 307464"
+  ],
+  [
+   "unionai-oss/pandera",
+   "K2",
+   "confirmed with a number difference",
+   "smoke_pandera.out.txt 30000_rows_s 0.027 (review says 0.036 s); the item threshold holds either way"
+  ],
+  [
+   "mlflow/mlflow",
+   "Q2",
+   "confirmed under the first-pass reading",
+   "dataset and telemetry tests ran; tracking store and registry untested (strict reading H drops it)"
+  ],
+  [
+   "lightgbm-org/LightGBM",
+   "L5",
+   "confirmed",
+   "socket only in python-package/lightgbm/dask.py (distributed training)"
+  ],
+  [
+   "soda-inria/hazardous",
+   "L5",
+   "confirmed",
+   "no network code; data/_seer.py:141 only names a download page"
+  ],
+  [
+   "mesa/mesa",
+   "L4",
+   "confirmed",
+   "commands.txt: uv pip install --only-binary :all:"
+  ],
+  [
+   "NannyML/nannyml",
+   "L4",
+   "confirmed",
+   "pin setup.py plus poetry-core build backend"
+  ],
+  [
+   "interpretml/interpret",
+   "L2",
+   "confirmed",
+   "one Apache-2.0 file in libebm (blind rescore: GaussianDistribution.hpp), permissive; notice recorded in the gate"
+  ],
+  [
+   "bashtage/arch",
+   "L5",
+   "confirmed",
+   "no urlopen, requests, urllib.request or socket use outside tests"
+  ],
+  [
+   "unionai-oss/pandera",
+   "L4",
+   "confirmed",
+   "pin setup.py is a bare setup()"
+  ],
+  [
+   "evidentlyai/evidently",
+   "Q5",
+   "confirmed",
+   "smoke_evidently.out.txt S2_probs: y_prob 1.5 and NaN raise ValueError"
+  ],
+  [
+   "unionai-oss/pandera",
+   "Q5",
+   "confirmed",
+   "lambda checks dropped on to_yaml with a UserWarning; the role path uses registered checks only"
+  ]
+ ],
+ "summary": "20 of 20 hold under the written reading; 1 number differs without changing the item; Q2 depends on its reading (main mechanism tested versus every component tested), shown as sensitivity reading H"
+}

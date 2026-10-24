@@ -1,0 +1,8 @@
+27551 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=27574, si_uid=0, si_status=0, si_utime=8 /* 0.08 s */, si_stime=0} ---
+27551 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=27578, si_uid=0, si_status=0, si_utime=10 /* 0.10 s */, si_stime=0} ---
+27584 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=27582, si_uid=0, si_status=0, si_utime=8 /* 0.08 s */, si_stime=0} ---
+27551 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=27586, si_uid=0, si_status=0, si_utime=10 /* 0.10 s */, si_stime=0} ---
+27551 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=27591, si_uid=0, si_status=0, si_utime=8 /* 0.08 s */, si_stime=0} ---
+27551 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=27603, si_uid=0, si_status=0, si_utime=9 /* 0.09 s */, si_stime=1 /* 0.01 s */} ---
+27551 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=27618, si_uid=0, si_status=0, si_utime=34 /* 0.34 s */, si_stime=1 /* 0.01 s */} ---
+27551 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=27632, si_uid=0, si_status=0, si_utime=33 /* 0.33 s */, si_stime=1 /* 0.01 s */} ---

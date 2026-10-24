@@ -1,0 +1,648 @@
+FF.............................F.............F....FF.................... [ 93%]
+.....                                                                    [100%]
+=================================== FAILURES ===================================
+__________________ TestCalibrate.test_calibrator_calibrate[1] __________________
+
+self = <tests.test_calibrator.TestCalibrate object at 0x7f8a4d77a0f0>
+n_jobs = 1
+
+    @pytest.mark.parametrize("n_jobs", [1, 2])
+    def test_calibrator_calibrate(self, n_jobs: int) -> None:
+        """Test the Calibrator.calibrate method, positive case, with different number of jobs."""
+        cal = Calibrator(
+            samplers=[
+                self.random_sampler,
+                self.halton_sampler,
+                self.rseq_sampler,
+                self.forest_sampler,
+                self.bb_sampler,
+                self.gauss_sampler,
+                self.xgboost_sampler,
+            ],
+            real_data=self.real_data,
+            model=self.model,
+            parameters_bounds=self.bounds,
+            parameters_precision=self.bounds_step,
+            ensemble_size=3,
+            loss_function=self.loss,
+            saving_folder=None,
+            random_state=self.random_state,
+            n_jobs=n_jobs,
+        )
+    
+        params, losses = cal.calibrate(14)
+    
+        # This is a temporary workaround to make tests to run also on Windows.
+        #   See: https://github.com/bancaditalia/black-it/issues/49
+        if sys.platform == "win32":
+            assert np.allclose(params, self.win32_expected_params)
+            assert np.allclose(losses, self.win32_expected_losses)
+        else:
+>           assert np.allclose(params, self.expected_params)
+E           assert False
+E            +  where False = <function allclose at 0x7f8a63517db0>(array([[0.96, 0.54],\n       [0.56, 0.37],\n       [0.58, 0.38],\n       [0.97, 0.49],\n       [0.53, 0.46],\n       [0.8 ,...[0.6 , 0.42],\n       [0.18, 0.39],\n       [0.51, 0.33],\n       [0.63, 0.39],\n       [0.32, 0.93],\n       [0.67, 0.64]]), array([[0.52, 0.01],\n       [0.56, 0.37],\n       [0.59, 0.36],\n       [0.55, 0.46],\n       [0.53, 0.46],\n       [0.8 ,...[0.6 , 0.42],\n       [0.18, 0.39],\n       [0.51, 0.33],\n       [0.04, 0.99],\n       [0.32, 0.93],\n       [0.56, 0.24]]))
+E            +    where <function allclose at 0x7f8a63517db0> = np.allclose
+E            +    and   array([[0.52, 0.01],\n       [0.56, 0.37],\n       [0.59, 0.36],\n       [0.55, 0.46],\n       [0.53, 0.46],\n       [0.8 ,...[0.6 , 0.42],\n       [0.18, 0.39],\n       [0.51, 0.33],\n       [0.04, 0.99],\n       [0.32, 0.93],\n       [0.56, 0.24]]) = <tests.test_calibrator.TestCalibrate object at 0x7f8a4d77a0f0>.expected_params
+
+tests/test_calibrator.py:185: AssertionError
+----------------------------- Captured stdout call -----------------------------
+
+***
+Number of free params:       2.
+Explorable param space size: 10000.
+***
+
+Selecting 1 processes for the parallel evaluation of the model
+
+BATCH NUMBER:   1
+PARAMS SAMPLED: 0
+
+METHOD: RandomUniformSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 1.76
+---->   avg loss new params: 1.76
+----> avg loss exist params: 1.76
+---->         curr min loss: 1.7633062203439915
+====>    total elapsed time: 0.0s
+
+BATCH NUMBER:   2
+PARAMS SAMPLED: 1
+
+METHOD: HaltonSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 1.88
+---->   avg loss new params: 1.88
+----> avg loss exist params: 1.82
+---->         curr min loss: 1.7633062203439915
+====>    total elapsed time: 0.0s
+
+BATCH NUMBER:   3
+PARAMS SAMPLED: 2
+
+METHOD: RSequenceSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 0.99
+---->   avg loss new params: 0.99
+----> avg loss exist params: 1.55
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.0s
+
+BATCH NUMBER:   4
+PARAMS SAMPLED: 3
+
+METHOD: RandomForestSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 1.31
+---->   avg loss new params: 1.31
+----> avg loss exist params: 1.49
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.8s
+
+BATCH NUMBER:   5
+PARAMS SAMPLED: 4
+
+METHOD: BestBatchSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 2.91
+---->   avg loss new params: 2.91
+----> avg loss exist params: 1.77
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.0s
+
+BATCH NUMBER:   6
+PARAMS SAMPLED: 5
+
+METHOD: GaussianProcessSampler
+----> sim exec elapsed time: 0.2s
+---->   min loss new params: 2.94
+---->   avg loss new params: 2.94
+----> avg loss exist params: 1.96
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.2s
+
+BATCH NUMBER:   7
+PARAMS SAMPLED: 6
+
+METHOD: XGBoostSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 5.74
+---->   avg loss new params: 5.74
+----> avg loss exist params: 2.5
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.8s
+
+BATCH NUMBER:   8
+PARAMS SAMPLED: 7
+
+METHOD: RandomUniformSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 2.56
+---->   avg loss new params: 2.56
+----> avg loss exist params: 2.51
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.0s
+
+BATCH NUMBER:   9
+PARAMS SAMPLED: 8
+
+METHOD: HaltonSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 2.88
+---->   avg loss new params: 2.88
+----> avg loss exist params: 2.55
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.0s
+
+BATCH NUMBER:   10
+PARAMS SAMPLED: 9
+
+METHOD: RSequenceSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 4.47
+---->   avg loss new params: 4.47
+----> avg loss exist params: 2.74
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.0s
+
+BATCH NUMBER:   11
+PARAMS SAMPLED: 10
+
+METHOD: RandomForestSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 1.26
+---->   avg loss new params: 1.26
+----> avg loss exist params: 2.61
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 1.5s
+
+BATCH NUMBER:   12
+PARAMS SAMPLED: 11
+
+METHOD: BestBatchSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 2.86
+---->   avg loss new params: 2.86
+----> avg loss exist params: 2.63
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.0s
+
+BATCH NUMBER:   13
+PARAMS SAMPLED: 12
+
+METHOD: GaussianProcessSampler
+----> sim exec elapsed time: 0.1s
+---->   min loss new params: 2.31
+---->   avg loss new params: 2.31
+----> avg loss exist params: 2.61
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.2s
+
+BATCH NUMBER:   14
+PARAMS SAMPLED: 13
+
+METHOD: XGBoostSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 0.48
+---->   avg loss new params: 0.48
+----> avg loss exist params: 2.45
+---->         curr min loss: 0.4803180026519381
+====>    total elapsed time: 0.3s
+__________________ TestCalibrate.test_calibrator_calibrate[2] __________________
+
+self = <tests.test_calibrator.TestCalibrate object at 0x7f8a4d77a360>
+n_jobs = 2
+
+    @pytest.mark.parametrize("n_jobs", [1, 2])
+    def test_calibrator_calibrate(self, n_jobs: int) -> None:
+        """Test the Calibrator.calibrate method, positive case, with different number of jobs."""
+        cal = Calibrator(
+            samplers=[
+                self.random_sampler,
+                self.halton_sampler,
+                self.rseq_sampler,
+                self.forest_sampler,
+                self.bb_sampler,
+                self.gauss_sampler,
+                self.xgboost_sampler,
+            ],
+            real_data=self.real_data,
+            model=self.model,
+            parameters_bounds=self.bounds,
+            parameters_precision=self.bounds_step,
+            ensemble_size=3,
+            loss_function=self.loss,
+            saving_folder=None,
+            random_state=self.random_state,
+            n_jobs=n_jobs,
+        )
+    
+        params, losses = cal.calibrate(14)
+    
+        # This is a temporary workaround to make tests to run also on Windows.
+        #   See: https://github.com/bancaditalia/black-it/issues/49
+        if sys.platform == "win32":
+            assert np.allclose(params, self.win32_expected_params)
+            assert np.allclose(losses, self.win32_expected_losses)
+        else:
+>           assert np.allclose(params, self.expected_params)
+E           assert False
+E            +  where False = <function allclose at 0x7f8a63517db0>(array([[0.96, 0.54],\n       [0.56, 0.37],\n       [0.58, 0.38],\n       [0.97, 0.49],\n       [0.53, 0.46],\n       [0.8 ,...[0.6 , 0.42],\n       [0.18, 0.39],\n       [0.51, 0.33],\n       [0.63, 0.39],\n       [0.32, 0.93],\n       [0.67, 0.64]]), array([[0.52, 0.01],\n       [0.56, 0.37],\n       [0.59, 0.36],\n       [0.55, 0.46],\n       [0.53, 0.46],\n       [0.8 ,...[0.6 , 0.42],\n       [0.18, 0.39],\n       [0.51, 0.33],\n       [0.04, 0.99],\n       [0.32, 0.93],\n       [0.56, 0.24]]))
+E            +    where <function allclose at 0x7f8a63517db0> = np.allclose
+E            +    and   array([[0.52, 0.01],\n       [0.56, 0.37],\n       [0.59, 0.36],\n       [0.55, 0.46],\n       [0.53, 0.46],\n       [0.8 ,...[0.6 , 0.42],\n       [0.18, 0.39],\n       [0.51, 0.33],\n       [0.04, 0.99],\n       [0.32, 0.93],\n       [0.56, 0.24]]) = <tests.test_calibrator.TestCalibrate object at 0x7f8a4d77a360>.expected_params
+
+tests/test_calibrator.py:185: AssertionError
+----------------------------- Captured stdout call -----------------------------
+
+***
+Number of free params:       2.
+Explorable param space size: 10000.
+***
+
+Selecting 2 processes for the parallel evaluation of the model
+
+BATCH NUMBER:   1
+PARAMS SAMPLED: 0
+
+METHOD: RandomUniformSampler
+----> sim exec elapsed time: 3.2s
+---->   min loss new params: 1.76
+---->   avg loss new params: 1.76
+----> avg loss exist params: 1.76
+---->         curr min loss: 1.7633062203439915
+====>    total elapsed time: 3.2s
+
+BATCH NUMBER:   2
+PARAMS SAMPLED: 1
+
+METHOD: HaltonSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 1.88
+---->   avg loss new params: 1.88
+----> avg loss exist params: 1.82
+---->         curr min loss: 1.7633062203439915
+====>    total elapsed time: 0.0s
+
+BATCH NUMBER:   3
+PARAMS SAMPLED: 2
+
+METHOD: RSequenceSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 0.99
+---->   avg loss new params: 0.99
+----> avg loss exist params: 1.55
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.0s
+
+BATCH NUMBER:   4
+PARAMS SAMPLED: 3
+
+METHOD: RandomForestSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 1.31
+---->   avg loss new params: 1.31
+----> avg loss exist params: 1.49
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.9s
+
+BATCH NUMBER:   5
+PARAMS SAMPLED: 4
+
+METHOD: BestBatchSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 2.91
+---->   avg loss new params: 2.91
+----> avg loss exist params: 1.77
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.0s
+
+BATCH NUMBER:   6
+PARAMS SAMPLED: 5
+
+METHOD: GaussianProcessSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 2.94
+---->   avg loss new params: 2.94
+----> avg loss exist params: 1.96
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.1s
+
+BATCH NUMBER:   7
+PARAMS SAMPLED: 6
+
+METHOD: XGBoostSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 5.74
+---->   avg loss new params: 5.74
+----> avg loss exist params: 2.5
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.4s
+
+BATCH NUMBER:   8
+PARAMS SAMPLED: 7
+
+METHOD: RandomUniformSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 2.56
+---->   avg loss new params: 2.56
+----> avg loss exist params: 2.51
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.0s
+
+BATCH NUMBER:   9
+PARAMS SAMPLED: 8
+
+METHOD: HaltonSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 2.88
+---->   avg loss new params: 2.88
+----> avg loss exist params: 2.55
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.0s
+
+BATCH NUMBER:   10
+PARAMS SAMPLED: 9
+
+METHOD: RSequenceSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 4.47
+---->   avg loss new params: 4.47
+----> avg loss exist params: 2.74
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.0s
+
+BATCH NUMBER:   11
+PARAMS SAMPLED: 10
+
+METHOD: RandomForestSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 1.26
+---->   avg loss new params: 1.26
+----> avg loss exist params: 2.61
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.8s
+
+BATCH NUMBER:   12
+PARAMS SAMPLED: 11
+
+METHOD: BestBatchSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 2.86
+---->   avg loss new params: 2.86
+----> avg loss exist params: 2.63
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.0s
+
+BATCH NUMBER:   13
+PARAMS SAMPLED: 12
+
+METHOD: GaussianProcessSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 2.31
+---->   avg loss new params: 2.31
+----> avg loss exist params: 2.61
+---->         curr min loss: 0.9922451648013012
+====>    total elapsed time: 0.1s
+
+BATCH NUMBER:   14
+PARAMS SAMPLED: 13
+
+METHOD: XGBoostSampler
+----> sim exec elapsed time: 0.0s
+---->   min loss new params: 0.48
+---->   avg loss new params: 0.48
+----> avg loss exist params: 2.45
+---->         curr min loss: 0.4803180026519381
+====>    total elapsed time: 0.1s
+______________________________ test_best_batch_2d ______________________________
+
+    def test_best_batch_2d() -> None:
+        """Test the best-batch sampler, 2d."""
+        # construct a fake grid of evaluated losses
+        xs = np.linspace(0, 1, 6)
+        ys = np.linspace(0, 1, 6)
+        xys_list = []
+        losses_list = []
+    
+        for x in xs:
+            for y in ys:
+                xys_list.append([x, y])
+                losses_list.append(x**2 + y**2)
+    
+        xys = np.array(xys_list)
+        losses = np.array(losses_list)
+    
+        sampler = BestBatchSampler(batch_size=8, random_state=0)
+        param_grid = SearchSpace(
+            parameters_bounds=np.array([[0, 1], [0, 1]]).T,
+            parameters_precision=np.array([0.01, 0.01]),
+            verbose=False,
+        )
+        new_params = sampler.sample(param_grid, xys, losses)
+    
+>       assert np.allclose(expected_params, new_params)
+E       assert False
+E        +  where False = <function allclose at 0x7f8a63517db0>(array([[0.43, 0.22],\n       [0.41, 0.01],\n       [0.03, 0.42],\n       [0.2 , 0.04],\n       [0.23, 0.  ],\n       [0.05, 0.05],\n       [0.  , 0.03],\n       [0.03, 0.04]]), array([[0.23, 0.42],\n       [0.41, 0.01],\n       [0.03, 0.42],\n       [0.2 , 0.04],\n       [0.23, 0.  ],\n       [0.05, 0.05],\n       [0.  , 0.03],\n       [0.03, 0.04]]))
+E        +    where <function allclose at 0x7f8a63517db0> = np.allclose
+
+tests/test_samplers/test_best_batch.py:62: AssertionError
+____________________________ test_random_forest_2d _____________________________
+
+    def test_random_forest_2d() -> None:
+        """Test the random forest sampler, 2d."""
+        # construct a fake grid of evaluated losses
+        xs = np.linspace(0, 1, 6)
+        ys = np.linspace(0, 1, 6)
+        xys_list = []
+        losses_list = []
+    
+        for x in xs:
+            for y in ys:
+                xys_list.append([x, y])
+                losses_list.append(x**2 + y**2)
+    
+        xys = np.array(xys_list)
+        losses = np.array(losses_list)
+    
+        sampler = RandomForestSampler(batch_size=4, random_state=0)
+        param_grid = SearchSpace(
+            parameters_bounds=np.array([[0, 1], [0, 1]]).T,
+            parameters_precision=np.array([0.01, 0.01]),
+            verbose=False,
+        )
+        new_params = sampler.sample(param_grid, xys, losses)
+    
+>       assert np.allclose(expected_params, new_params)
+E       assert False
+E        +  where False = <function allclose at 0x7f8a63517db0>(array([[0.01, 0.  ],\n       [0.01, 0.02],\n       [0.08, 0.02],\n       [0.04, 0.05]]), array([[0.09, 0.02],\n       [0.  , 0.04],\n       [0.02, 0.1 ],\n       [0.1 , 0.1 ]]))
+E        +    where <function allclose at 0x7f8a63517db0> = np.allclose
+
+tests/test_samplers/test_random_forest.py:50: AssertionError
+_______________________________ test_xgboost_2d ________________________________
+
+    def test_xgboost_2d() -> None:
+        """Test the xgboost sampler, 2d."""
+        # construct a fake grid of evaluated losses
+        xs = np.linspace(0, 1, 6)
+        ys = np.linspace(0, 1, 6)
+        xys_list = []
+        losses_list = []
+    
+        for x in xs:
+            for y in ys:
+                xys_list.append([x, y])
+                losses_list.append(x**2 + y**2)
+    
+        xys = np.array(xys_list)
+        losses = np.array(losses_list)
+    
+        sampler = XGBoostSampler(batch_size=4, random_state=0)
+        param_grid = SearchSpace(
+            parameters_bounds=np.array([[0, 1], [0, 1]]).T,
+            parameters_precision=np.array([0.01, 0.01]),
+            verbose=False,
+        )
+        new_params = sampler.sample(param_grid, xys, losses)
+>       assert np.allclose(expected_params, new_params)
+E       assert False
+E        +  where False = <function allclose at 0x7f8a63517db0>(array([[0.24, 0.26],\n       [0.37, 0.21],\n       [0.43, 0.14],\n       [0.11, 0.04]]), array([[0.2 , 0.14],\n       [0.38, 0.06],\n       [0.24, 0.13],\n       [0.38, 0.12]]))
+E        +    where <function allclose at 0x7f8a63517db0> = np.allclose
+
+tests/test_samplers/test_xgboost.py:67: AssertionError
+_______________________________ test_clip_losses _______________________________
+
+    def test_clip_losses() -> None:
+        """Test the xgboost _clip_losses method."""
+        true_params = np.array(
+            [
+                0.0,  # g1
+                0.0,  # b1
+                0.9,  # g2
+                0.2,  # b2
+                0.9,  # g3
+                -0.2,  # b3
+                1.01,  # g4
+                0.01,  # b4
+            ],
+        )
+    
+        parameter_bounds = [
+            [0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0],  # lower bounds
+            [0.1, 0.1, 1.0, 1.0, 1.0, 0.0, 1.1, 1.0],  # upper bounds
+        ]
+    
+        precisions = [0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01]
+    
+        target_series = BH4(true_params, N=1000, seed=0)
+    
+        halton = HaltonSampler(batch_size=3)
+        xgboost = XGBoostSampler(batch_size=3)
+    
+        loss = MethodOfMomentsLoss()
+    
+        cal = Calibrator(
+            real_data=target_series,
+            samplers=[halton, xgboost],
+            loss_function=loss,
+            model=BH4,
+            parameters_bounds=parameter_bounds,
+            parameters_precision=precisions,
+            ensemble_size=3,
+            random_state=0,
+        )
+    
+        # verify that the calibration does not break,
+        # it would without the call to _clip_losses
+        _, losses = cal.calibrate(2)
+    
+>       assert np.allclose(
+            losses,
+            np.array(
+                [0.18388932, 0.58118863, 0.84728975, 0.87882275, 0.88818152, 1.2508034],
+            ),
+        )
+E       assert False
+E        +  where False = <function allclose at 0x7f8a63517db0>(array([0.16656126, 0.6408656 , 0.84728975, 0.87882275, 0.88818152,\n       1.25716011]), array([0.18388932, 0.58118863, 0.84728975, 0.87882275, 0.88818152,\n       1.2508034 ]))
+E        +    where <function allclose at 0x7f8a63517db0> = np.allclose
+E        +    and   array([0.18388932, 0.58118863, 0.84728975, 0.87882275, 0.88818152,\n       1.2508034 ]) = <built-in function array>([0.18388932, 0.58118863, 0.84728975, 0.87882275, 0.88818152, 1.2508034])
+E        +      where <built-in function array> = np.array
+
+tests/test_samplers/test_xgboost.py:114: AssertionError
+----------------------------- Captured stdout call -----------------------------
+
+***
+Number of free params:       8.
+Explorable param space size: 13988943766831.
+***
+
+Selecting 2 processes for the parallel evaluation of the model
+
+BATCH NUMBER:   1
+PARAMS SAMPLED: 0
+
+METHOD: HaltonSampler
+----> sim exec elapsed time: 0.4s
+---->   min loss new params: 0.85
+---->   avg loss new params: 0.87
+----> avg loss exist params: 0.87
+---->         curr min loss: 0.8472897500728004
+====>    total elapsed time: 0.4s
+
+BATCH NUMBER:   2
+PARAMS SAMPLED: 3
+
+METHOD: XGBoostSampler
+----> sim exec elapsed time: 0.6s
+---->   min loss new params: 0.17
+---->   avg loss new params: 0.69
+----> avg loss exist params: 0.78
+---->         curr min loss: 0.16656126139594618
+====>    total elapsed time: 0.6s
+=============================== warnings summary ===============================
+tests/test_calibrator.py::TestCalibrate::test_calibrator_calibrate[1]
+tests/test_calibrator.py::TestCalibrate::test_calibrator_calibrate[2]
+  /home/claude/pi_research/venvs/bancaditalia__black-it/lib/python3.12/site-packages/sklearn/gaussian_process/kernels.py:445: ConvergenceWarning: The optimal value found for dimension 0 of parameter length_scale is close to the specified lower bound 1e-05. Decreasing the bound and calling fit again may find a better value.
+    warnings.warn(
+
+tests/test_losses/test_gsl.py::TestDiscretize::test_discretize_time_series_any_args
+tests/test_losses/test_gsl.py::TestDiscretize::test_discretize_time_series_partition
+  /home/claude/pi_research/venvs/bancaditalia__black-it/lib/python3.12/site-packages/numpy/core/function_base.py:166: RuntimeWarning: invalid value encountered in multiply
+    y = y * delta
+
+tests/test_losses/test_gsl.py::TestDiscretize::test_discretize_time_series_partition
+tests/test_losses/test_gsl.py::TestDiscretize::test_discretize_time_series_partition
+tests/test_losses/test_gsl.py::TestDiscretize::test_discretize_time_series_partition
+tests/test_losses/test_gsl.py::TestDiscretize::test_discretize_time_series_partition
+tests/test_losses/test_gsl.py::TestDiscretize::test_discretize_time_series_partition
+  /home/claude/pi_research/venvs/bancaditalia__black-it/lib/python3.12/site-packages/numpy/core/function_base.py:158: RuntimeWarning: invalid value encountered in multiply
+    y *= step
+
+tests/test_losses/test_gsl.py::TestDiscretize::test_discretize_time_series_partition
+tests/test_losses/test_gsl.py::TestDiscretize::test_discretize_time_series_partition
+tests/test_losses/test_gsl.py::TestDiscretize::test_discretize_time_series_partition
+tests/test_losses/test_gsl.py::TestDiscretize::test_discretize_time_series_partition
+  /home/claude/pi_research/venvs/bancaditalia__black-it/lib/python3.12/site-packages/numpy/core/function_base.py:168: RuntimeWarning: invalid value encountered in add
+    y += start
+
+tests/test_losses/test_gsl.py::TestDiscretize::test_discretize_time_series_partition
+tests/test_losses/test_gsl.py::TestDiscretize::test_ordering_is_preserved
+  /home/claude/pi_research/venvs/bancaditalia__black-it/lib/python3.12/site-packages/numpy/core/function_base.py:158: RuntimeWarning: overflow encountered in multiply
+    y *= step
+
+tests/test_losses/test_gsl.py::TestGetWords::test_get_words
+  /home/claude/pi_research/src/bancaditalia__black-it/black_it/loss_functions/gsl_div.py:272: RuntimeWarning: overflow encountered in multiply
+    tsw = tsw + time_series[i : tswlen + i] * k
+
+tests/test_samplers/test_xgboost.py: 999 warnings
+  /home/claude/pi_research/src/bancaditalia__black-it/examples/models/economics/brock_hommes.py:156: DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+    x[t] = (np.sum(weighted_exp) + dividend_noise) / R
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_calibrator.py::TestCalibrate::test_calibrator_calibrate[1]
+FAILED tests/test_calibrator.py::TestCalibrate::test_calibrator_calibrate[2]
+FAILED tests/test_samplers/test_best_batch.py::test_best_batch_2d - assert False
+FAILED tests/test_samplers/test_random_forest.py::test_random_forest_2d - ass...
+FAILED tests/test_samplers/test_xgboost.py::test_xgboost_2d - assert False
+FAILED tests/test_samplers/test_xgboost.py::test_clip_losses - assert False
+6 failed, 71 passed, 1015 warnings in 47.80s
+exit=1 wall=58s

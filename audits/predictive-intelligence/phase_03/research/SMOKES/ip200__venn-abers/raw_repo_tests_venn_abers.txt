@@ -1,0 +1,23 @@
+# command: unshare -n -- /home/claude/pi_research/venvs/ip200__venn-abers/bin/python -m pytest -q -p no:cacheprovider /home/claude/pi_research/src/ip200__venn-abers/tests
+# started_utc: 2026-10-24T04:47:56Z
+# network: OFF (unshare -n, no network namespace)
+..................                                                       [100%]
+=============================== warnings summary ===============================
+tests/test_venn_abers.py::test_venn_abers_regressor_cvap
+tests/test_venn_abers.py::test_venn_abers_cv_predict_interval_ensemble
+tests/test_venn_abers.py::test_venn_abers_cv_predict_interval_ensemble
+tests/test_venn_abers.py::test_venn_abers_cv_epsilon_regression
+tests/test_venn_abers.py::test_venn_abers_prediction_above_range
+  /home/claude/pi_research/venvs/ip200__venn-abers/lib/python3.13/site-packages/venn_abers/venn_abers.py:179: RuntimeWarning: All-NaN slice encountered
+    if np.sum(np.isnan(np.nanmin(grads))) == 0:
+
+tests/test_venn_abers.py::test_venn_abers_prediction_above_range
+  /home/claude/pi_research/venvs/ip200__venn-abers/lib/python3.13/site-packages/venn_abers/venn_abers.py:112: RuntimeWarning: All-NaN slice encountered
+    if np.sum(np.isnan(np.nanmin(grads))) == 0:
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+18 passed, 6 warnings in 1.99s
+
+# exit_code: 0
+# wall_s: 2.68
+# peak_child_rss_mb: 180.9

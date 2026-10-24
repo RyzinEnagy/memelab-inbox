@@ -1,0 +1,8 @@
+VA probe 0.25: mapie p0 0.2791 p1 0.3023 | definition p0 0.2791 p1 0.3023
+VA probe 0.9: mapie p0 0.4412 p1 0.5000 | definition p0 0.4412 p1 1.0000
+VA NaN score -> [[0.5278, 0.4722]]
+rows train/cal/holdout 1650 511 527 positives 66 16 17
+pipeline prefit: max abs change of caller base predictions 0.010561510363995052
+LAC 0.90: coverage 0.9184 positives covered 0 of 17 set sizes [29, 498, 0]
+risk controller best_predict_param: None | warnings: ['No predict parameters were found to control the risk at the given targ']
+spiegelhalter p (holdout, base): 0.6215

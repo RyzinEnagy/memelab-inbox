@@ -1,0 +1,27 @@
+python 3.13.17; 26 distributions
+  cloudpickle                  3.1.2          BSD License
+  contourpy                    1.4.0          BSD-3-Clause
+  cycler                       0.12.1         BSD License
+  fonttools                    4.67.0         MIT
+  iniconfig                    2.3.1          MIT
+  joblib                       1.6.0          BSD-3-Clause
+  kiwisolver                   1.5.1          BSD License
+  matplotlib                   3.11.2         Python Software Foundation License
+  model-diagnostics            1.5.0          MIT License
+  narwhals                     2.27.1         MIT
+  numpy                        2.5.4          BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0
+  packaging                    26.3           Apache-2.0 OR BSD-2-Clause
+  pandas                       3.1.0          BSD-3-Clause
+  pillow                       13.0.0         MIT-CMU
+  pluggy                       1.7.0          MIT License
+  polars                       2.0.0          MIT License
+  polars-runtime-32            2.0.0          MIT License
+  pygments                     2.21.0         BSD-2-Clause
+  pyparsing                    3.3.3          MIT
+  pytest                       9.1.1          MIT
+  python-dateutil              3.0.0          BSD License; Apache Software License
+  scikit-learn                 1.9.1          BSD-3-Clause
+  scipy                        1.18.1         BSD License
+  six                          1.17.0         MIT License
+  threadpoolctl                3.7.0          BSD-3-Clause
+  tzdata                       2026.5         Apache-2.0

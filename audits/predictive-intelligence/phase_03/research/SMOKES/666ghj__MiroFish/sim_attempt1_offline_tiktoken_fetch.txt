@@ -1,0 +1,151 @@
+============================================================
+OASIS Reddit模拟
+配置文件: /tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r5/mf_sim/run1/simulation_config.json
+模拟ID: smoke_r5
+等待命令模式: 禁用
+============================================================
+
+轮数已截断: 24 -> 4 (max_rounds=4)
+
+模拟参数:
+  - 总模拟时长: 24小时
+  - 每轮时间: 60分钟
+  - 总轮数: 4
+  - 最大轮数限制: 4
+  - Agent数量: 4
+
+初始化LLM模型...
+LLM配置: model=gpt-4o-mini, base_url=http://127.0.0.1:18080/v1...
+加载Agent Profile...
+{'user_profile': 'A fictional crypto trader used only to test the simulator plumbing.', 'mbti': 'ISTJ', 'gender': 'male', 'age': 30, 'country': 'Nowhere'}
+{'user_profile': 'A fictional crypto trader used only to test the simulator plumbing.', 'mbti': 'ISTJ', 'gender': 'female', 'age': 30, 'country': 'Nowhere'}
+{'user_profile': 'A fictional crypto trader used only to test the simulator plumbing.', 'mbti': 'ISTJ', 'gender': 'male', 'age': 30, 'country': 'Nowhere'}
+{'user_profile': 'A fictional crypto trader used only to test the simulator plumbing.', 'mbti': 'ISTJ', 'gender': 'female', 'age': 30, 'country': 'Nowhere'}
+模拟进程已退出
+
+--- stderr ---
+/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/sentence_transformers/evaluation/SentenceEvaluator.py:81: SyntaxWarning: invalid escape sequence '\g'
+  return re.sub(r"([a-z])([A-Z])", "\g<1> \g<2>", class_name)
+/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/sentence_transformers/model_card.py:515: SyntaxWarning: invalid escape sequence '\d'
+  if dataset_name and re.match("_dataset_\d+", dataset_name):
+/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/sentence_transformers/losses/DenoisingAutoEncoderLoss.py:16: SyntaxWarning: invalid escape sequence '\_'
+  """
+Traceback (most recent call last):
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 963, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='openaipublic.blob.core.windows.net', port=443): Failed to resolve 'openaipublic.blob.core.windows.net' ([Errno -3] Temporary failure in name resolution)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/requests/adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='openaipublic.blob.core.windows.net', port=443): Max retries exceeded with url: /encodings/o200k_base.tiktoken (Caused by NameResolutionError("HTTPSConnection(host='openaipublic.blob.core.windows.net', port=443): Failed to resolve 'openaipublic.blob.core.windows.net' ([Errno -3] Temporary failure in name resolution)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/claude/pi_research/src/666ghj__MiroFish/backend/scripts/run_reddit_simulation.py", line 762, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/src/666ghj__MiroFish/backend/scripts/run_reddit_simulation.py", line 734, in main
+    await runner.run(max_rounds=args.max_rounds)
+  File "/home/claude/pi_research/src/666ghj__MiroFish/backend/scripts/run_reddit_simulation.py", line 565, in run
+    self.agent_graph = await generate_reddit_agent_graph(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/oasis/social_agent/agents_generator.py", line 610, in generate_reddit_agent_graph
+    await asyncio.gather(*tasks)
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/oasis/social_agent/agents_generator.py", line 598, in process_agent
+    agent = SocialAgent(
+            ^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/oasis/social_agent/agent.py", line 106, in __init__
+    super().__init__(
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/camel/agents/chat_agent.py", line 479, in __init__
+    self.model_backend.token_counter,
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/camel/models/model_manager.py", line 155, in token_counter
+    return self.current_model.token_counter
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/camel/models/openai_model.py", line 244, in token_counter
+    self._token_counter = OpenAITokenCounter(self.model_type)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/camel/utils/token_counting.py", line 162, in __init__
+    self.encoding = get_model_encoding(self.model)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/camel/utils/token_counting.py", line 63, in get_model_encoding
+    encoding = tiktoken.encoding_for_model(value_for_tiktoken)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/tiktoken/model.py", line 103, in encoding_for_model
+    return get_encoding(encoding_name_for_model(model_name))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/tiktoken/registry.py", line 73, in get_encoding
+    enc = Encoding(**constructor())
+                     ^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/tiktoken_ext/openai_public.py", line 92, in o200k_base
+    mergeable_ranks = load_tiktoken_bpe(
+                      ^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/tiktoken/load.py", line 147, in load_tiktoken_bpe
+    contents = read_file_cached(tiktoken_bpe_file, expected_hash)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/tiktoken/load.py", line 64, in read_file_cached
+    contents = read_file(blobpath)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/tiktoken/load.py", line 25, in read_file
+    resp = requests.get(blobpath)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/requests/adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='openaipublic.blob.core.windows.net', port=443): Max retries exceeded with url: /encodings/o200k_base.tiktoken (Caused by NameResolutionError("HTTPSConnection(host='openaipublic.blob.core.windows.net', port=443): Failed to resolve 'openaipublic.blob.core.windows.net' ([Errno -3] Temporary failure in name resolution)"))

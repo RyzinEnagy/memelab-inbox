@@ -1,0 +1,2 @@
+ERROR - 2026-10-24 00:50:42,717 - social.twitter - list index out of range
+ERROR - 2026-10-24 00:50:42,867 - social.twitter - Failed to load the model: Twitter/twhin-bert-base

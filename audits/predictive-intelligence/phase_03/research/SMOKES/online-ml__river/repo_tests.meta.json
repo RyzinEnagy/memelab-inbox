@@ -1,0 +1,11 @@
+{
+ "name": "repo_tests",
+ "command": "unshare -n /home/claude/pi_research/venvs/online-ml__river/bin/python -I -B -m pytest -q -p no:cacheprovider -o addopts= --rootdir /tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/river_tests -p no:randomly /tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/river_tests/tests/drift /tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/river_tests/tests/stream",
+ "cwd": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/online-ml__river",
+ "start_utc": "2026-10-24T05:22:21Z",
+ "exit_code": 0,
+ "wall_s": 5.674,
+ "peak_rss_mb": 133.9,
+ "user_cpu_s": 4.77,
+ "network": "none (unshare -n)"
+}

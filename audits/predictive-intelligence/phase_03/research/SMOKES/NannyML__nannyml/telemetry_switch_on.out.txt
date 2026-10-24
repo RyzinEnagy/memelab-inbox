@@ -1,0 +1,7 @@
+All 1 retries exhausted after 2 total attempts. Final error: HTTPSConnectionPool(host='api.segment.io', port=443): Max retries exceeded with url: /v1/batch (Caused by ProxyError('Unable to connect to proxy', NewConnectionError("HTTPSConnection(host='127.0.0.1', port=45127): Failed to establish a new connection: [Errno 101] Network is unreachable")))
+error uploading: HTTPSConnectionPool(host='api.segment.io', port=443): Max retries exceeded with url: /v1/batch (Caused by ProxyError('Unable to connect to proxy', NewConnectionError("HTTPSConnection(host='127.0.0.1', port=45127): Failed to establish a new connection: [Errno 101] Network is unreachable")))
+before import R4_DOTENV_PROBE = None
+after import R4_DOTENV_PROBE = None
+NML_DISABLE_USAGE_LOGGING set: False
+segment host: None write_key set: True
+probe done

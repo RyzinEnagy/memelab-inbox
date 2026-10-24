@@ -1,0 +1,11 @@
+{
+ "name": "repo_tests",
+ "command": "unshare -n /home/claude/pi_research/venvs/blue-yonder__tsfresh/bin/python -I -B -m pytest -q -p no:cacheprovider --rootdir /tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/tsfresh_tests /tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/tsfresh_tests/tests/units/utilities/test_dataframe_functions.py",
+ "cwd": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/blue-yonder__tsfresh",
+ "start_utc": "2026-10-24T05:29:28Z",
+ "exit_code": 0,
+ "wall_s": 5.999,
+ "peak_rss_mb": 258.2,
+ "user_cpu_s": 5.83,
+ "network": "none (unshare -n)"
+}

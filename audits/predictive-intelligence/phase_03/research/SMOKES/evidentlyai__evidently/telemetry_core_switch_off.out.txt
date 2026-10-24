@@ -1,0 +1,5 @@
+mode core True XDG_CONFIG_HOME /tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r4/xdg_MFzz
+workspace runs 1
+evidently.telemetry imported: False
+iterative_telemetry imported: False
+files written under XDG_CONFIG_HOME: []

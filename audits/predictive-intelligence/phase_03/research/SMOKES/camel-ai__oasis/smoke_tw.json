@@ -1,0 +1,1 @@
+{"mode": "twitter", "rounds": 1, "wall_s": 0.97, "trace": [[0, "sign_up"], [1, "sign_up"], [2, "sign_up"], [3, "sign_up"], [0, "create_post"], [1, "do_nothing"], [0, "like_post"], [3, "create_post"], [2, "do_nothing"]], "trace_sha256": "7e30fec4618e57fb0610ad648eb94c1739e7c4eb51a0760eff9062998aa369a9", "post_created_at": [[0], [1]]}

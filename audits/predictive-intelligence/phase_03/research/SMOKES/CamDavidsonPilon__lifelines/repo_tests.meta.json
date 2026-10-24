@@ -1,0 +1,11 @@
+{
+ "name": "repo_tests",
+ "command": "unshare -n /home/claude/pi_research/venvs/CamDavidsonPilon__lifelines/bin/python -I -B -m pytest -q -p no:cacheprovider /home/claude/pi_research/src/CamDavidsonPilon__lifelines/lifelines/tests/utils/test_concordance.py /home/claude/pi_research/src/CamDavidsonPilon__lifelines/lifelines/tests/test_estimation.py -k AalenJohansen or concordance or Concordance",
+ "cwd": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/CamDavidsonPilon__lifelines",
+ "start_utc": "2026-10-24T04:52:04Z",
+ "exit_code": 0,
+ "wall_s": 13.098,
+ "peak_rss_mb": 193.7,
+ "user_cpu_s": 10.17,
+ "network": "none (unshare -n)"
+}

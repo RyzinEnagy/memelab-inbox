@@ -1,0 +1,210 @@
+{
+ "env": {
+  "python": "3.13.17",
+  "platform": "Linux-6.18.44-fc-v153-x86_64-with-glibc2.39",
+  "executable": "/home/claude/pi_research/venvs/online-ml__river/bin/python"
+ },
+ "river_version": "0.26.1",
+ "river_file": "/home/claude/pi_research/venvs/online-ml__river/lib/python3.13/site-packages/river/__init__.py",
+ "S2_S6_online_delayed": {
+  "n": 527,
+  "positives": 17,
+  "shape": [
+   527
+  ],
+  "finite": true,
+  "in_0_1": true,
+  "min": 0.010027471313199636,
+  "max": 0.16547519907438074,
+  "mean": 0.06247036875937596,
+  "brier": 0.03162432731125991,
+  "logloss": 0.14606060372033036,
+  "base_rate_train": 0.042382588774341354,
+  "brier_base": 0.03131998778125741,
+  "logloss_base": 0.1438782556723353,
+  "bss_vs_base": -0.0097171024499767,
+  "auc": 0.6923875432525951,
+  "learned": 2893,
+  "learned_after_data_end_but_unmatured": 1,
+  "nan_labels_skipped": 107,
+  "learn_us_per_row": 12.9,
+  "predict_us_per_row": 4.5
+ },
+ "label_maturity_no_delay": {
+  "brier": 0.03159635562832005,
+  "logloss": 0.14563497904690884,
+  "auc": 0.6750865051903114,
+  "bss_vs_base": -0.008824008776530334,
+  "learned": 2893
+ },
+ "S1_trap": {
+  "with_trap": {
+   "brier": 0.011764688044779948,
+   "logloss": 0.07528798018115201,
+   "auc": 0.9990772779700116,
+   "bss_vs_base": 0.624371244109482
+  },
+  "clean": {
+   "brier": 0.03162432731125991,
+   "logloss": 0.14606060372033036,
+   "auc": 0.6923875432525951,
+   "bss_vs_base": -0.0097171024499767
+  },
+  "library_stopped_it": false,
+  "mechanism": "simulate_qa delays labels (moment + delay) but yields every feature at question time; no feature availability"
+ },
+ "simulate_qa_end_flush": {
+  "answers_after_last_question": 108,
+  "of_which_not_matured_by_last_moment": 108,
+  "note": "stream/qa.py final loop yields every pending memento; a model trained to the end of the data would learn unmatured labels unless the caller filters them"
+ },
+ "S3_nan": {
+  "bare_LR_nan_values": {
+   "pred": NaN,
+   "weights_finite_after_learning": false
+  },
+  "StatImputer_none_values": {
+   "pred": 0.3272853733550834,
+   "raised": null
+  },
+  "StatImputer_nan_values": {
+   "pred": NaN,
+   "raised": null
+  },
+  "StatImputer_omitted_keys": {
+   "pred": null,
+   "raised": "KeyError: 'vol_24h'"
+  },
+  "no_imputer_omitted_keys": {
+   "pred": 0.35247338648676835
+  },
+  "compose_Select_omitted_key": "KeyError: 'liq_usd'"
+ },
+ "S4_calibration": {
+  "mean_pred": 0.06247036875937596,
+  "observed": 0.03225806451612903,
+  "wilson95": [
+   0.02023611185402105,
+   0.051049936564188825
+  ],
+  "inside": false,
+  "library_tools": "no classifier calibrator; conf.RegressionJackknife gives regression intervals only; metrics include LogLoss, ROCAUC"
+ },
+ "drift_feature_streams": {
+  "liq_usd": {
+   "n": 2844,
+   "holdout_n": 598,
+   "ADWIN": {
+    "train": 0,
+    "val": 0,
+    "embargo": 0,
+    "holdout": 1,
+    "rows_into_holdout_before_first_detection": 58
+   },
+   "PageHinkley": {
+    "train": 0,
+    "val": 0,
+    "embargo": 0,
+    "holdout": 1,
+    "rows_into_holdout_before_first_detection": 30
+   },
+   "KSWIN": {
+    "train": 4,
+    "val": 0,
+    "embargo": 0,
+    "holdout": 2,
+    "rows_into_holdout_before_first_detection": 32
+   }
+  },
+  "ret_1h": {
+   "n": 3000,
+   "holdout_n": 634,
+   "ADWIN": {
+    "train": 0,
+    "val": 0,
+    "embargo": 0,
+    "holdout": 1,
+    "rows_into_holdout_before_first_detection": 450
+   },
+   "PageHinkley": {
+    "train": 0,
+    "val": 0,
+    "embargo": 0,
+    "holdout": 0,
+    "rows_into_holdout_before_first_detection": null
+   },
+   "KSWIN": {
+    "train": 2,
+    "val": 1,
+    "embargo": 0,
+    "holdout": 2,
+    "rows_into_holdout_before_first_detection": 36
+   }
+  }
+ },
+ "drift_update_us": 206.8,
+ "drift_control_no_shift": {
+  "liq_usd": {
+   "ADWIN": {
+    "train": 0,
+    "val": 0,
+    "embargo": 0,
+    "holdout": 0,
+    "rows_into_holdout_before_first_detection": null
+   },
+   "PageHinkley": {
+    "train": 0,
+    "val": 0,
+    "embargo": 0,
+    "holdout": 1,
+    "rows_into_holdout_before_first_detection": 209
+   },
+   "KSWIN": {
+    "train": 4,
+    "val": 0,
+    "embargo": 0,
+    "holdout": 1,
+    "rows_into_holdout_before_first_detection": 291
+   }
+  },
+  "ret_1h": {
+   "ADWIN": {
+    "train": 0,
+    "val": 0,
+    "embargo": 0,
+    "holdout": 0,
+    "rows_into_holdout_before_first_detection": null
+   },
+   "PageHinkley": {
+    "train": 0,
+    "val": 0,
+    "embargo": 0,
+    "holdout": 0,
+    "rows_into_holdout_before_first_detection": null
+   },
+   "KSWIN": {
+    "train": 2,
+    "val": 1,
+    "embargo": 0,
+    "holdout": 1,
+    "rows_into_holdout_before_first_detection": 262
+   }
+  }
+ },
+ "drift_error_stream_ADWIN": {
+  "train": 1,
+  "val": 0,
+  "embargo": 0,
+  "holdout": 0,
+  "rows_into_holdout_before_first_detection": null
+ },
+ "S5_persistence": {
+  "format": "pickle (Rust-backed objects implement __getstate__)",
+  "pipeline_bytes": 1424,
+  "pipeline_identical": true,
+  "adwin_roundtrip_same_state": true
+ },
+ "S6_timings": {
+  "import_s": 3.8416
+ }
+}

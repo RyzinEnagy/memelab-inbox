@@ -1,0 +1,101 @@
+{
+ "IFCA-Advanced-Computing__frouros": {
+  "command": "unshare -n /home/claude/pi_research/venvs/IFCA-Advanced-Computing__frouros/bin/python -I ...",
+  "compared_against": "SMOKES/IFCA-Advanced-Computing__frouros/smoke_frouros.out.txt",
+  "differences": [],
+  "exit_code": 0,
+  "identical_after_normalization": true,
+  "n_differences": 0,
+  "values_compared": 93,
+  "wall_s": 4.1
+ },
+ "baobach__mlfinpy": {
+  "command": "unshare -n /home/claude/pi_research/venvs/baobach__mlfinpy/bin/python -I ...",
+  "compared_against": "SMOKES/baobach__mlfinpy/raw_smoke_mlfinpy.txt",
+  "differences": [],
+  "exit_code": 0,
+  "identical_after_normalization": true,
+  "n_differences": 0,
+  "values_compared": 39,
+  "wall_s": 5.1
+ },
+ "deepcharles__ruptures": {
+  "command": "unshare -n /home/claude/pi_research/venvs/deepcharles__ruptures/bin/python -I ...",
+  "compared_against": "SMOKES/deepcharles__ruptures/smoke_ruptures.result.json",
+  "differences": [],
+  "exit_code": 0,
+  "identical_after_normalization": true,
+  "n_differences": 0,
+  "values_compared": 62,
+  "wall_s": 112.5
+ },
+ "online-ml__river": {
+  "command": "unshare -n /home/claude/pi_research/venvs/online-ml__river/bin/python -I ...",
+  "compared_against": "SMOKES/online-ml__river/smoke_river.result.json",
+  "differences": [],
+  "exit_code": 0,
+  "identical_after_normalization": true,
+  "n_differences": 0,
+  "values_compared": 125,
+  "wall_s": 7.8
+ },
+ "probabl-ai__skore": {
+  "command": "unshare -n /home/claude/pi_research/venvs/probabl-ai__skore/bin/python -I ...",
+  "compared_against": "SMOKES/probabl-ai__skore/smoke_skore.out.txt",
+  "differences": [
+   ".LINEAGE.data_refs.skore/projects/pi_r4/reports/2026-10-24T05-16-56.268524+00-00__id_01a16c57-324a-7498-8a6d-8cf34f37029f__estimator__baseline_legit/data/test_data.json",
+   ".LINEAGE.data_refs.skore/projects/pi_r4/reports/2026-10-24T05-16-56.268524+00-00__id_01a16c57-324a-7498-8a6d-8cf34f37029f__estimator__baseline_legit/data/train_data.json",
+   ".LINEAGE.data_refs.skore/projects/pi_r4/reports/2026-10-24T06-18-01.855435+00-00__id_01a16c8f-20fe-7ccf-8ed9-dea846c9e59e__estimator__baseline_legit/data/test_data.json",
+   ".LINEAGE.data_refs.skore/projects/pi_r4/reports/2026-10-24T06-18-01.855435+00-00__id_01a16c8f-20fe-7ccf-8ed9-dea846c9e59e__estimator__baseline_legit/data/train_data.json",
+   ".LINEAGE.metadata_json.creation-date",
+   ".LINEAGE.metadata_json.id",
+   ".LINEAGE.metadata_json.report_id",
+   ".LINEAGE.report_id"
+  ],
+  "exit_code": 0,
+  "identical_after_normalization": false,
+  "n_differences": 8,
+  "values_compared": 287,
+  "wall_s": 12.3
+ },
+ "scikit-learn-contrib__MAPIE": {
+  "command": "unshare -n /home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/bin/python -I ...",
+  "compared_against": "SMOKES/scikit-learn-contrib__MAPIE/raw_smoke_mapie.txt",
+  "differences": [],
+  "exit_code": 0,
+  "identical_after_normalization": true,
+  "n_differences": 0,
+  "values_compared": 120,
+  "wall_s": 4.3
+ },
+ "sktime__sktime": {
+  "command": "unshare -n /home/claude/pi_research/venvs/sktime__sktime/bin/python -I ...",
+  "compared_against": "SMOKES/sktime__sktime/smoke_sktime.result.json",
+  "differences": [],
+  "exit_code": 0,
+  "identical_after_normalization": true,
+  "n_differences": 0,
+  "values_compared": 134,
+  "wall_s": 5.8
+ },
+ "statsmodels__statsmodels": {
+  "command": "unshare -n /home/claude/pi_research/venvs/statsmodels__statsmodels/bin/python -I ...",
+  "compared_against": "SMOKES/statsmodels__statsmodels/smoke_output.txt",
+  "differences": [],
+  "exit_code": 0,
+  "identical_after_normalization": true,
+  "n_differences": 0,
+  "values_compared": 177,
+  "wall_s": 3.4
+ },
+ "unionai-oss__pandera": {
+  "command": "unshare -n /home/claude/pi_research/venvs/unionai-oss__pandera/bin/python -I ...",
+  "compared_against": "SMOKES/unionai-oss__pandera/smoke_pandera.out.txt",
+  "differences": [],
+  "exit_code": 0,
+  "identical_after_normalization": true,
+  "n_differences": 0,
+  "values_compared": 141,
+  "wall_s": 2.2
+ }
+}

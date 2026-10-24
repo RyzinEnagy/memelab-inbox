@@ -1,0 +1,9 @@
+command: OMP_NUM_THREADS=1 python -m pytest <pin>/tests/python_package_test/test_sklearn.py -k "binary or probability or predict_proba" -q -p no:cacheprovider -x (tests at pin 064a6db1, installed lightgbm 4.7.0 wheel); exit=0; last 8 lines:
+    y = column_or_1d(y, warn=True)
+
+test_sklearn.py: 10 warnings
+  /home/claude/pi_research/venvs/lightgbm-org__LightGBM/lib/python3.13/site-packages/sklearn/preprocessing/_label.py:139: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+    y = column_or_1d(y, dtype=self.classes_.dtype, warn=True)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+29 passed, 22 skipped, 709 deselected, 38 warnings in 6.81s

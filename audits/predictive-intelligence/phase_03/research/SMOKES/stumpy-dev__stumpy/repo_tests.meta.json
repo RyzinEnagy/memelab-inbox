@@ -1,0 +1,11 @@
+{
+ "name": "repo_tests",
+ "command": "unshare -n /home/claude/pi_research/venvs/stumpy-dev__stumpy/bin/python -I -B -m pytest -q -p no:cacheprovider /home/claude/pi_research/src/stumpy-dev__stumpy/tests/test_motifs.py",
+ "cwd": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/stumpy-dev__stumpy",
+ "start_utc": "2026-10-24T04:47:28Z",
+ "exit_code": 0,
+ "wall_s": 7.35,
+ "peak_rss_mb": 286.7,
+ "user_cpu_s": 6.53,
+ "network": "none (unshare -n)"
+}

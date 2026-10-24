@@ -1,0 +1,38 @@
+{
+ "command": [
+  "/home/claude/pi_research/venvs/evidentlyai__evidently/bin/python",
+  "-I",
+  "-W",
+  "ignore",
+  "/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r4/telemetry_probe_evidently.py",
+  "core"
+ ],
+ "wrapped_command": [
+  "unshare",
+  "-n",
+  "strace",
+  "-f",
+  "-qq",
+  "-e",
+  "trace=connect,sendto",
+  "-o",
+  "telemetry_core_switch_off.connect.txt",
+  "/home/claude/pi_research/venvs/evidentlyai__evidently/bin/python",
+  "-I",
+  "-W",
+  "ignore",
+  "/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r4/telemetry_probe_evidently.py",
+  "core"
+ ],
+ "started_utc": "2026-10-24T04:38:45Z",
+ "exit_code": 0,
+ "wall_s": 7.423,
+ "peak_rss_kb_children": 297216,
+ "env_switches": {
+  "DO_NOT_TRACK": "1"
+ },
+ "offline_netns": true,
+ "strace_inet_connect_lines": 0,
+ "strace_inet_targets": {},
+ "strace_unix_connect_lines": 0
+}

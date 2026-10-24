@@ -1,0 +1,1 @@
+command: OMP_NUM_THREADS=1 <venv interpretml__interpret-pin: pin source via .pth + libebm built from pin with build.sh -release_64>/bin/python -I smoke_interpret_pin_cox.py challenge.csv scratch; exit=0; wall_s=27.437130624

@@ -1,0 +1,24 @@
+{
+ "command": [
+  "/home/claude/pi_research/venvs/evidentlyai__evidently/bin/python",
+  "-I",
+  "-c",
+  "import sys,evidently; print(evidently.__version__, 'evidently.telemetry' in sys.modules, 'iterative_telemetry' in sys.modules)"
+ ],
+ "wrapped_command": [
+  "unshare",
+  "-n",
+  "/home/claude/pi_research/venvs/evidentlyai__evidently/bin/python",
+  "-I",
+  "-c",
+  "import sys,evidently; print(evidently.__version__, 'evidently.telemetry' in sys.modules, 'iterative_telemetry' in sys.modules)"
+ ],
+ "started_utc": "2026-10-24T04:37:39Z",
+ "exit_code": 0,
+ "wall_s": 7.336,
+ "peak_rss_kb_children": 291076,
+ "env_switches": {
+  "DO_NOT_TRACK": "1"
+ },
+ "offline_netns": true
+}

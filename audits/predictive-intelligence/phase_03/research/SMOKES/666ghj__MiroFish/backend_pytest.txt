@@ -1,0 +1,30 @@
+........................................................................ [ 55%]
+.........................................................                [100%]
+=============================== warnings summary ===============================
+../../../venvs/666ghj__MiroFish/lib/python3.12/site-packages/zep_cloud/types/date_filter.py:17
+  /home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/zep_cloud/types/date_filter.py:17: SyntaxWarning: invalid escape sequence '\<'
+    """
+
+../../../venvs/666ghj__MiroFish/lib/python3.12/site-packages/zep_cloud/types/search_filters.py:15
+  /home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/zep_cloud/types/search_filters.py:15: SyntaxWarning: invalid escape sequence '\{'
+    """
+
+../../../venvs/666ghj__MiroFish/lib/python3.12/site-packages/zep_cloud/types/search_filters.py:50
+  /home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/zep_cloud/types/search_filters.py:50: SyntaxWarning: invalid escape sequence '\{'
+    """
+
+../../../venvs/666ghj__MiroFish/lib/python3.12/site-packages/zep_cloud/types/search_filters.py:59
+  /home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/zep_cloud/types/search_filters.py:59: SyntaxWarning: invalid escape sequence '\{'
+    """
+
+../../../venvs/666ghj__MiroFish/lib/python3.12/site-packages/zep_cloud/types/search_filters.py:78
+  /home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/zep_cloud/types/search_filters.py:78: SyntaxWarning: invalid escape sequence '\{'
+    """
+
+../../../venvs/666ghj__MiroFish/lib/python3.12/site-packages/zep_cloud/types/property_filter.py:22
+  /home/claude/pi_research/venvs/666ghj__MiroFish/lib/python3.12/site-packages/zep_cloud/types/property_filter.py:22: SyntaxWarning: invalid escape sequence '\<'
+    """
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+129 passed, 6 warnings in 6.52s
+exit=0 wall=17s

@@ -1,0 +1,63 @@
+{
+ "mesa_version": "4.0.0a0",
+ "n_train_labeled": 1746,
+ "n_holdout": 634,
+ "n_holdout_censored_excluded": 107,
+ "train_prevalence": 0.04238,
+ "T_steps": 12,
+ "agents": 20,
+ "seeds_per_row": 5,
+ "S3_rows_with_nan_liq": 30,
+ "S3_no_impute_freq_on_nan_rows": [
+  0.0
+ ],
+ "S3_note": "NaN liquidity gives a NaN price path; no barrier is ever touched, so the row silently scores 0",
+ "S1_legit": {
+  "brier": 0.03461,
+  "logloss": 0.35861,
+  "brier_base": 0.03132,
+  "logloss_base": 0.14388,
+  "auc": 0.5878
+ },
+ "S1_trap_leak_future_ret": {
+  "brier": 0.02171,
+  "logloss": 0.18953,
+  "brier_base": 0.03132,
+  "logloss_base": 0.14388,
+  "auc": 0.8082
+ },
+ "S1_library_guard": "none: Mesa accepts any number as agent input; availability time is the wrapper's job",
+ "S2_freq_min_max": [
+  0.0,
+  0.4
+ ],
+ "S2_all_finite_in_0_1": true,
+ "S2_distinct_values": [
+  0.0,
+  0.2,
+  0.4
+ ],
+ "S4_mean_freq_vs_prevalence": [
+  0.0285,
+  0.0323
+ ],
+ "S4_reliability_3bins": [
+  {
+   "n": 460,
+   "mean_freq": 0.0,
+   "observed": 0.0261
+  },
+  {
+   "n": 67,
+   "mean_freq": 0.2239,
+   "observed": 0.0746
+  }
+ ],
+ "S5_same_seed_identical": true,
+ "S5_other_seed_identical": false,
+ "S5_freq_sha256": "61cd4e712f9fd14a96d2ce1d7d8b2fb724f8ed7348e2996bf61abc8e811d5643",
+ "S6_wall_s_total": 8.27,
+ "S6_ms_per_model_run_legit_pass": 0.779,
+ "S6_model_runs": 13175,
+ "S6_peak_rss_mb": 101.6
+}

@@ -1,0 +1,36 @@
+{
+ "command": [
+  "/home/claude/pi_research/venvs/mlflow__release_3.17.2/bin/python",
+  "-I",
+  "-W",
+  "ignore",
+  "/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r4/telemetry_probe_mlflow.py"
+ ],
+ "wrapped_command": [
+  "unshare",
+  "-n",
+  "strace",
+  "-f",
+  "-qq",
+  "-e",
+  "trace=connect,sendto",
+  "-o",
+  "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/mlflow__mlflow/telemetry_release_off_dnt.connect.txt",
+  "/home/claude/pi_research/venvs/mlflow__release_3.17.2/bin/python",
+  "-I",
+  "-W",
+  "ignore",
+  "/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r4/telemetry_probe_mlflow.py"
+ ],
+ "started_utc": "2026-10-24T05:02:57Z",
+ "exit_code": 0,
+ "wall_s": 12.939,
+ "peak_rss_kb_children": 234960,
+ "env_switches": {
+  "DO_NOT_TRACK": "true"
+ },
+ "offline_netns": true,
+ "strace_inet_connect_lines": 0,
+ "strace_inet_targets": {},
+ "strace_unix_connect_lines": 2
+}

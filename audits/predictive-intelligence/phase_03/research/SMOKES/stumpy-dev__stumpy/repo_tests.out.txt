@@ -1,0 +1,11 @@
+......................                                                   [100%]
+=============================== warnings summary ===============================
+tests/test_motifs.py::test_motifs_two_motifs
+tests/test_motifs.py::test_motifs_max_matches
+tests/test_motifs.py::test_motifs_max_matches_max_distances_inf
+tests/test_motifs.py::test_naive_match_exclusion_zone
+  /home/claude/pi_research/src/stumpy-dev__stumpy/stumpy/core.py:380: UserWarning: 'where' used without 'out', expect uninitialized memory in output. If this is intentional, use out=None.
+    std[np.less(std, threshold, where=~np.isnan(std))] = 1.0
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+22 passed, 4 warnings in 5.12s

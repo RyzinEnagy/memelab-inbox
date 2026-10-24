@@ -1,0 +1,57 @@
+{
+ "true_params": [
+  0.02,
+  0.6
+ ],
+ "series_len": 120,
+ "model_evals_per_calibration": 144,
+ "best_params_seed1": [
+  0.017,
+  0.73
+ ],
+ "best_loss_seed1": 0.13393109772826112,
+ "top5_params_seed1": [
+  [
+   0.017,
+   0.73
+  ],
+  [
+   0.013000000000000001,
+   0.6599999999999999
+  ],
+  [
+   0.018000000000000002,
+   0.55
+  ],
+  [
+   0.018000000000000002,
+   0.58
+  ],
+  [
+   0.016,
+   0.71
+  ]
+ ],
+ "best_params_seed2": [
+  0.023000000000000003,
+  0.54
+ ],
+ "best_loss_seed2": 0.15532969384255824,
+ "same_random_state_identical": true,
+ "different_random_state_identical": false,
+ "wall_s_per_calibration": [
+  0.6,
+  0.58
+ ],
+ "S1_series_past_cutoff_accepted": true,
+ "S1_note": "Calibrator takes real_data as given; no timestamp, cut-off or availability check exists",
+ "checkpoint_files": [
+  "calibration_params.json",
+  "calibration_results.csv",
+  "loss_function_pickled.pickle",
+  "scheduler_pickled.pickle",
+  "series_samp.h5"
+ ],
+ "checkpoint_uses_pickle": true,
+ "peak_rss_mb": 164.6
+}

@@ -1,0 +1,64 @@
+# command: unshare -n -- /home/claude/pi_research/venvs/eslazarev__purged-cross-validation/bin/python -I /home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/eslazarev__purged-cross-validation/smoke_purgedcv.py
+# started_utc: 2026-10-24T04:57:31Z
+# network: OFF (unshare -n, no network namespace)
+=== purgedcv 0.1.11 from /home/claude/pi_research/venvs/eslazarev__purged-cross-validation/lib/python3.13/site-packages/purgedcv/__init__.py | python 3.13.17 | numpy 2.5.4 | pandas 3.1.0
+
+--- hand case: six 24 h labels, one test row ---
+windows (h): [(0, 24), (6, 30), (12, 36), (30, 54), (36, 60), (60, 84)]; test row 3 = [30, 54)
+purge kept [0, 1, 5] (expected [0, 1, 5]: row 1 matures exactly at the test decision, rows 2 and 4 overlap)
+embargo 24 h kept [0, 1] (expected [0, 1]: row 5 decided at 60 h, inside [54 h, 78 h])
+row 1 maturing one second after the test decision: purge kept [0, 5] (expected [0, 5])
+independent checker on the unpurged candidates flags [2, 4] (expected [2, 4])
+HAND CASE PASS: True
+
+challenge sha256 18fda40cc7a2a6f5aa607a32f1a096976317f901f5b75d1ae23b4bcaddd5f23d
+labeled rows 2893; irregular gaps between decisions: min 0 s, median 604 s, max 6694 s; duplicate decision times 1
+
+--- the challenge's own split: is the 'embargo' split enough for 24 h labels? ---
+embargo split spans 14.0 h; label horizon 24 h
+val rows whose label window overlaps holdout windows (purgedcv): 45; independent checker: 45; rows with label_matures_at > first holdout decision: 45
+train rows overlapping val windows: purgedcv 96; independent checker 96
+
+--- splitters on the challenge (independent overlap and embargo check per fold) ---
+  WalkForwardSplit(expanding, 5 x 280 rows): 5 folds in 17.1 ms; (train, test) sizes [(1403, 280), (1671, 280), (1943, 280), (2222, 280), (2522, 280)]; overlap leaks per fold [0, 0, 0, 0, 0]; embargo violations per fold [0, 0, 0, 0, 0]
+  PurgedKFold(5, embargo 24 h): 5 folds in 31.4 ms; (train, test) sizes [(2091, 579), (2039, 579), (1997, 579), (2011, 578), (2204, 578)]; overlap leaks per fold [0, 0, 0, 0, 0]; embargo violations per fold [0, 0, 0, 0, 0]
+  CombinatorialPurgedCV(6, 2 test groups, embargo 24 h): 15 folds in 153.1 ms; (train, test) sizes [(1739, 965), (1434, 965), (1409, 965), (1414, 965), (1607, 965), (1660, 964)] ...; overlap leaks per fold [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; embargo violations per fold [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  audit_splitter(PurgedKFold) per fold:
+ fold  candidate_train_size  final_train_size  test_size  rows_removed_by_purge  rows_removed_by_embargo  final_overlap_fraction  temporal_leakage_free
+    0                  2314              2091        579                    111                      112                     0.0                   True
+    1                  2314              2039        579                    168                      107                     0.0                   True
+    2                  2314              1997        579                    207                      110                     0.0                   True
+    3                  2315              2011        578                    200                      104                     0.0                   True
+    4                  2315              2204        578                    111                        0                     0.0                   True
+
+  without purge information (plain sklearn KFold on the same rows), for contrast:
+  sklearn KFold(5) overlap leaks per fold [111, 168, 207, 200, 111]; TimeSeriesSplit(5, test_size=280) [90, 102, 110, 111, 91]
+
+--- groups: exact mint versus symbol (P01, P14) ---
+  PurgedGroupKFold by mint: mints shared train/test per fold [0, 0, 0, 0, 0]; overlap leaks [0, 0, 0, 0, 0]
+  WalkForwardSplit with mint groups bound: TypeError: WalkForwardSplit.__init__() got an unexpected keyword argument 'groups'
+  symbols 120 vs mints 300: grouping by symbol would merge different mints; the library cannot know which key is identity
+
+--- S1 leak trap through the splitter ---
+  walk-forward legit: mean Brier 0.03330, mean AUC 0.7504
+  walk-forward legit + leak_future_ret: mean Brier 0.00325, mean AUC 0.9994
+  purgedcv purges by label windows only; it has no feature-availability notion, so the trap column passes
+
+--- input validation ---
+  rows not in time order (prediction and evaluation shuffled together): ValueError: prediction_times must be monotonic non-decreasing.
+  NaT in evaluation times: ValueError: evaluation_times contains NaT values.
+  evaluation before prediction: ValueError: evaluation_times falls before prediction_times at index 0: 2026-09-20T14:27:48.000000 < 2026-09-21T14:27:48.00
+
+--- P22: probability of backtest overfitting (CSCV) ---
+  20 pure-noise configurations: PBO=0.609 slope=-0.729 combos=12870
+  same with one configuration given a real drift: PBO=0.000 slope=-1.000
+
+--- S5 persistence ---
+  pickled splitter (46805 bytes) yields identical folds after reload: True; folds are deterministic (no randomness)
+
+--- summary ---
+ALL PURGE/EMBARGO CHECKS PASS: True; peak RSS 161.0 MB
+
+# exit_code: 0
+# wall_s: 43.65
+# peak_child_rss_mb: 163.1

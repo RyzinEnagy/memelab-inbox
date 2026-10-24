@@ -1,0 +1,3 @@
+command: OMP_NUM_THREADS=1 python -m pytest <pin copy>/python/interpret-core/tests/glassbox/ebm/test_cox.py -q -p no:cacheprovider -x (pin source d82ea62a + libebm built from pin by build.sh -release_64); exit=0; wall_s=10; last lines:
+..........................                                               [100%]
+26 passed in 10.13s

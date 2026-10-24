@@ -1,0 +1,30 @@
+22577 sendto(8, "\0", 1, 0, NULL, 0)    = 1
+22577 sendto(8, "\0", 1, 0, NULL, 0)    = 1
+22577 sendto(8, "\0", 1, 0, NULL, 0)    = 1
+22577 sendto(8, "\0", 1, 0, NULL, 0)    = 1
+22617 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22618, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+22619 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22620, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+22619 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22621, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+22619 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22622, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+22617 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22619, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+22623 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22624, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+22623 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22625, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+22617 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22623, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+22626 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22627, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+22626 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22628, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+22617 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22626, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+22629 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22630, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+22629 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22631, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+22617 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22629, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+22613 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22617, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+22613 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22632, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+22577 sendto(8, "\0", 1, 0, NULL, 0)    = 1
+22577 sendto(8, "\0", 1, 0, NULL, 0)    = 1
+22613 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22634, si_uid=0, si_status=128, si_utime=0, si_stime=0} ---
+22577 sendto(8, "\0", 1, 0, NULL, 0)    = 1
+22577 sendto(14, "\0", 1, 0, NULL, 0)   = 1
+22577 sendto(14, "\0", 1, 0, NULL, 0)   = 1
+22577 sendto(14, "\0", 1, 0, NULL, 0)   = 1
+22577 sendto(8, "\0", 1, 0, NULL, 0)    = 1
+22633 connect(3, {sa_family=AF_INET, sin_port=htons(8000), sin_addr=inet_addr("35.232.253.5")}, 16) = -1 ENETUNREACH (Network is unreachable)
+22577 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22633, si_uid=0, si_status=0, si_utime=10 /* 0.10 s */, si_stime=3 /* 0.03 s */} ---

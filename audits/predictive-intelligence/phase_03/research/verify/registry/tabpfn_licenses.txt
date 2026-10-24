@@ -1,0 +1,10 @@
+fetched_utc 2026-10-24T06:01:58Z
+tabpfn_3_5_LICENSE url https://huggingface.co/Prior-Labs/tabpfn_3_5/resolve/main/LICENSE bytes 16905 sha256 9570fdd687bb76ed45499412ad57d6ba949848e6d731f1242572bb57f2f73ae1
+tabpfn_3_5_contains 'non-commercial and non-production' 1
+tabpfn_3_5_contains 'Section 13 of the German Civil Code' 1
+tabpfn_3_5_contains 'Outputs may be used only for Non-Commercial Purposes' 1
+tabpfn_3_5_contains 'commercial decision-making' 1
+tabpfn_v2_clf_LICENSE url https://huggingface.co/Prior-Labs/TabPFN-v2-clf/resolve/main/LICENSE.txt bytes 11483 sha256 08b1851b4b6136b5fb0cb124d3258e0d91e3e1623f1be5904b77e4d270d112d8
+tabpfn_v2_contains 'Built with PriorLabs-TabPFN' 1
+tabpfn_v2_contains 'internal benchmarking and testing without external' 1
+tabpfn_v2_contains 'at the beginning of any such AI model name' 1 (repair pass, read from the same cached file, sha256 08b1851b4b6136b5)

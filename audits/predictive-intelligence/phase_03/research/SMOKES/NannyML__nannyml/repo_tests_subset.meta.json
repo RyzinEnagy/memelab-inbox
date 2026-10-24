@@ -1,0 +1,36 @@
+{
+ "command": [
+  "/home/claude/pi_research/venvs/NannyML__nannyml/bin/python",
+  "-m",
+  "pytest",
+  "-q",
+  "-p",
+  "no:cacheprovider",
+  "tests/test_calibration.py",
+  "tests/drift/test_univariate_drift_methods.py",
+  "tests/performance_estimation/CBPE/test_cbpe.py",
+  "tests/test_chunk.py"
+ ],
+ "wrapped_command": [
+  "unshare",
+  "-n",
+  "/home/claude/pi_research/venvs/NannyML__nannyml/bin/python",
+  "-m",
+  "pytest",
+  "-q",
+  "-p",
+  "no:cacheprovider",
+  "tests/test_calibration.py",
+  "tests/drift/test_univariate_drift_methods.py",
+  "tests/performance_estimation/CBPE/test_cbpe.py",
+  "tests/test_chunk.py"
+ ],
+ "started_utc": "2026-10-24T04:48:59Z",
+ "exit_code": 1,
+ "wall_s": 63.975,
+ "peak_rss_kb_children": 479036,
+ "env_switches": {
+  "NML_DISABLE_USAGE_LOGGING": "1"
+ },
+ "offline_netns": true
+}

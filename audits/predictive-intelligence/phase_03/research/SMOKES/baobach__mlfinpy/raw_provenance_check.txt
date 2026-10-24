@@ -1,0 +1,30 @@
+# command: bash /home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/baobach__mlfinpy/provenance_check.sh
+# started_utc: 2026-10-24T05:05:22Z
+# network: ON
+fork HEAD: 47889b884c7e7e4ca850ce2b87ea1514e0834866 2020-03-19T12:06:38+00:00
+--- fork LICENSE (first 4 lines)
+BSD 3-Clause License
+
+Copyright (c) 2019, Hudson and Thames Quantitative Research
+All rights reserved.
+--- mlfinpy LICENSE (first 4 lines)
+MIT License
+
+Copyright (c) 2024, Robert Bach
+
+--- identical defect line
+91:            test_times = pd.Series(index=[self.samples_info_sets[start_ix]], data=[self.samples_info_sets[end_ix-1]])
+122:            test_times = pd.Series(
+123-                index=[self.samples_info_sets.iloc[start_ix]], data=[self.samples_info_sets.iloc[end_ix - 1]]
+124-            )
+--- shared test docstring
+mlfinlab/tests/test_cross_validation.py:1
+/home/claude/pi_research/src/baobach__mlfinpy/tests/test_cross_validation.py:1
+mlfinlab/cross_validation/cross_validation.py: 122 vs 169 non-blank lines; lines in matching blocks 60 (36% of the mlfinpy file)
+mlfinlab/labeling/labeling.py: 220 vs 310 non-blank lines; lines in matching blocks 114 (37% of the mlfinpy file)
+mlfinlab/tests/test_cross_validation.py: 326 vs 311 non-blank lines; lines in matching blocks 238 (77% of the mlfinpy file)
+Hudson and Thames notices found in mlfinpy LICENSE or package code: 0
+
+# exit_code: 0
+# wall_s: 1.38
+# peak_child_rss_mb: 16.4

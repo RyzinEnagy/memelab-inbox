@@ -1,0 +1,9 @@
+Reviewer R5, Phase 03. All runs inside unshare -n with lo_up.py (loopback only).
+Clone: git fetch --depth 1 origin 8607dba82d73f7bfc371b3beafe57cc844687be2 -> /home/claude/pi_research/src/camel-ai__oasis (also fetched tag v0.2.5 e97a1d83 to diff)
+Venv: uv venv --python 3.11 /home/claude/pi_research/venvs/camel-ai__oasis; uv pip install -r installed_requirements.txt (pyproject pins at the pin, torch 2.9.1+cpu from the PyTorch CPU index). No lock file in the repo: transitive versions float (venv_freeze.txt).
+Source used from the clone via PYTHONPATH (no build step).
+1) tests: DO_NOT_TRACK=true HF_HUB_OFFLINE=1 python -m pytest test/infra/database test/infra/recsys/test_update_rec_table_reddit.py test/agent/test_action_docstring.py test/agent/test_agent_graph.py -q
+   -> oasis_pytest_offline.txt: 31 passed, 1 skipped, 1 failed (test_agent_graph needs OPENAI_API_KEY), exit 1, wall 18 s
+2) sh run_oasis_smoke.sh (mock LLM ../666ghj__MiroFish/mock_llm.py on 127.0.0.1:18080, TIKTOKEN_CACHE_DIR pre-filled) -> smoke_run1.json, smoke_run2.json, smoke_tw.json, smoke_tw_log_errors.txt, mock_requests.jsonl
+   reddit run1 and run2 exit 0 (1.76 s and 1.38 s inside the simulation), trace hashes differ; twitter exit 0 with "Failed to load the model: Twitter/twhin-bert-base" in its log
+3) sh measure_rss.sh -> measure_rss_output.txt: exit 0, 15.57 s including imports, peak RSS 608.6 MB

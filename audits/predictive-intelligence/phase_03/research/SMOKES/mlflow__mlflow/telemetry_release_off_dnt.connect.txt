@@ -1,0 +1,5 @@
+32572 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=32573, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+32572 connect(5, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+32572 connect(5, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+32572 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=32639, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+32572 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=32640, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---

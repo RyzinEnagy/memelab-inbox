@@ -1,0 +1,1 @@
+command: TABPFN_MODEL_CACHE_DIR=<scratch>/tabpfn_cache TABPFN_NO_BROWSER=1 python -I smoke_tabpfn.py challenge.csv scratch; exit=0; wall_s=235.807897854

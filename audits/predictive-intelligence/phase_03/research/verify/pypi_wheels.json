@@ -1,0 +1,355 @@
+{
+ "666ghj/MiroFish": {
+  "error": "HTTP Error 404: Not Found",
+  "package": "mirofish"
+ },
+ "CamDavidsonPilon/lifelines": {
+  "k4_pass": true,
+  "package": "lifelines",
+  "pure_wheels": [
+   "lifelines-0.30.3-py3-none-any.whl"
+  ],
+  "requires_python": ">=3.11",
+  "sdist_only": false,
+  "upload_time": "2026-03-05T16:54:42.414715Z",
+  "version": "0.30.3",
+  "windows_313_wheels": []
+ },
+ "IFCA-Advanced-Computing/frouros": {
+  "k4_pass": false,
+  "package": "frouros",
+  "pure_wheels": [
+   "frouros-0.9.0-py3-none-any.whl"
+  ],
+  "requires_python": "<3.13,>=3.9",
+  "sdist_only": false,
+  "upload_time": "2024-10-05T12:06:35.221660Z",
+  "version": "0.9.0",
+  "windows_313_wheels": []
+ },
+ "NannyML/nannyml": {
+  "k4_pass": false,
+  "package": "nannyml",
+  "pure_wheels": [
+   "nannyml-0.13.1-py3-none-any.whl"
+  ],
+  "requires_python": "<3.13,>=3.9",
+  "sdist_only": false,
+  "upload_time": "2025-07-12T08:14:25.311189Z",
+  "version": "0.13.1",
+  "windows_313_wheels": []
+ },
+ "PriorLabs/TabPFN": {
+  "k4_pass": true,
+  "package": "tabpfn",
+  "pure_wheels": [
+   "tabpfn-9.2.0-py3-none-any.whl"
+  ],
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "upload_time": "2026-10-12T15:12:54.671330Z",
+  "version": "9.2.0",
+  "windows_313_wheels": []
+ },
+ "bancaditalia/black-it": {
+  "k4_pass": false,
+  "package": "black-it",
+  "pure_wheels": [
+   "black_it-0.3.3-py3-none-any.whl"
+  ],
+  "requires_python": "<3.13,>=3.9",
+  "sdist_only": false,
+  "upload_time": "2025-11-17T09:17:36.199320Z",
+  "version": "0.3.3",
+  "windows_313_wheels": []
+ },
+ "baobach/mlfinpy": {
+  "k4_pass": true,
+  "package": "mlfinpy",
+  "pure_wheels": [
+   "mlfinpy-0.1.2-py3-none-any.whl"
+  ],
+  "requires_python": "<4.0,>=3.11",
+  "sdist_only": false,
+  "upload_time": "2024-10-09T12:28:14.322192Z",
+  "version": "0.1.2",
+  "windows_313_wheels": []
+ },
+ "bashtage/arch": {
+  "k4_pass": true,
+  "package": "arch",
+  "pure_wheels": [],
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "upload_time": "2025-10-21T08:42:37.818056Z",
+  "version": "8.0.0",
+  "windows_313_wheels": [
+   "arch-8.0.0-cp313-cp313-win_amd64.whl"
+  ]
+ },
+ "blue-yonder/tsfresh": {
+  "k4_pass": true,
+  "package": "tsfresh",
+  "pure_wheels": [
+   "tsfresh-0.21.2-py2.py3-none-any.whl"
+  ],
+  "requires_python": ">=3.9",
+  "sdist_only": false,
+  "upload_time": "2026-05-31T18:24:57.044159Z",
+  "version": "0.21.2",
+  "windows_313_wheels": []
+ },
+ "camel-ai/oasis": {
+  "k4_pass": false,
+  "package": "camel-oasis",
+  "pure_wheels": [
+   "camel_oasis-0.2.5-py3-none-any.whl"
+  ],
+  "requires_python": "<3.12,>=3.10.0",
+  "sdist_only": false,
+  "upload_time": "2025-12-04T11:58:18.363139Z",
+  "version": "0.2.5",
+  "windows_313_wheels": []
+ },
+ "deepcharles/ruptures": {
+  "k4_pass": true,
+  "package": "ruptures",
+  "pure_wheels": [],
+  "requires_python": "<3.14,>=3.9",
+  "sdist_only": false,
+  "upload_time": "2025-09-10T09:47:30.729506Z",
+  "version": "1.1.10",
+  "windows_313_wheels": [
+   "ruptures-1.1.10-cp313-cp313-win_amd64.whl"
+  ]
+ },
+ "eslazarev/purged-cross-validation": {
+  "k4_pass": true,
+  "package": "purgedcv",
+  "pure_wheels": [
+   "purgedcv-0.1.11-py3-none-any.whl"
+  ],
+  "requires_python": ">=3.11",
+  "sdist_only": false,
+  "upload_time": "2026-10-16T08:44:56.521991Z",
+  "version": "0.1.11",
+  "windows_313_wheels": []
+ },
+ "evidentlyai/evidently": {
+  "k4_pass": true,
+  "package": "evidently",
+  "pure_wheels": [
+   "evidently-0.7.23-py3-none-any.whl"
+  ],
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "upload_time": "2026-09-11T09:01:32.078421Z",
+  "version": "0.7.23",
+  "windows_313_wheels": []
+ },
+ "feast-dev/feast": {
+  "k4_pass": true,
+  "package": "feast",
+  "pure_wheels": [
+   "feast-0.67.0-py3-none-any.whl"
+  ],
+  "requires_python": ">=3.10.0",
+  "sdist_only": false,
+  "upload_time": "2026-10-13T13:57:45.293547Z",
+  "version": "0.67.0",
+  "windows_313_wheels": []
+ },
+ "henrikbostrom/crepes": {
+  "k4_pass": true,
+  "package": "crepes",
+  "pure_wheels": [
+   "crepes-0.9.1-py3-none-any.whl"
+  ],
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "upload_time": "2026-06-12T12:44:31.312749Z",
+  "version": "0.9.1",
+  "windows_313_wheels": []
+ },
+ "interpretml/interpret": {
+  "k4_pass": true,
+  "package": "interpret-core",
+  "pure_wheels": [
+   "interpret_core-0.7.8-py3-none-any.whl"
+  ],
+  "requires_python": null,
+  "sdist_only": false,
+  "upload_time": "2026-03-17T21:54:26.420113Z",
+  "version": "0.7.8",
+  "windows_313_wheels": []
+ },
+ "ip200/venn-abers": {
+  "k4_pass": false,
+  "package": "venn-abers",
+  "pure_wheels": [],
+  "requires_python": null,
+  "sdist_only": true,
+  "upload_time": "2026-08-12T04:57:37.420574Z",
+  "version": "1.5.4",
+  "windows_313_wheels": []
+ },
+ "lightgbm-org/LightGBM": {
+  "k4_pass": true,
+  "package": "lightgbm",
+  "pure_wheels": [],
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "upload_time": "2026-07-18T21:00:35.225082Z",
+  "version": "4.7.0",
+  "windows_313_wheels": [
+   "lightgbm-4.7.0-py3-none-win_amd64.whl"
+  ]
+ },
+ "lorentzenchr/model-diagnostics": {
+  "k4_pass": true,
+  "package": "model-diagnostics",
+  "pure_wheels": [
+   "model_diagnostics-1.5.0-py3-none-any.whl"
+  ],
+  "requires_python": ">=3.11",
+  "sdist_only": false,
+  "upload_time": "2026-04-25T18:02:13.235696Z",
+  "version": "1.5.0",
+  "windows_313_wheels": []
+ },
+ "mesa/mesa": {
+  "k4_pass": true,
+  "package": "mesa",
+  "pure_wheels": [
+   "mesa-3.5.1-py3-none-any.whl"
+  ],
+  "requires_python": ">=3.12",
+  "sdist_only": false,
+  "upload_time": "2026-03-15T11:42:26.166951Z",
+  "version": "3.5.1",
+  "windows_313_wheels": []
+ },
+ "mlflow/mlflow": {
+  "k4_pass": true,
+  "package": "mlflow",
+  "pure_wheels": [
+   "mlflow-3.17.2-py3-none-any.whl"
+  ],
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "upload_time": "2026-10-21T02:08:42.779429Z",
+  "version": "3.17.2",
+  "windows_313_wheels": []
+ },
+ "online-ml/river": {
+  "k4_pass": true,
+  "package": "river",
+  "pure_wheels": [],
+  "requires_python": ">=3.11",
+  "sdist_only": false,
+  "upload_time": "2026-08-21T15:16:27.254836Z",
+  "version": "0.26.1",
+  "windows_313_wheels": [
+   "river-0.26.1-cp311-abi3-win_amd64.whl",
+   "river-0.26.1-cp313-cp313-win_amd64.whl"
+  ]
+ },
+ "probabl-ai/skore": {
+  "k4_pass": true,
+  "package": "skore",
+  "pure_wheels": [
+   "skore-0.28.0-py3-none-any.whl"
+  ],
+  "requires_python": "<3.15,>=3.11.4",
+  "sdist_only": false,
+  "upload_time": "2026-10-14T15:43:24.522881Z",
+  "version": "0.28.0",
+  "windows_313_wheels": []
+ },
+ "scikit-learn-contrib/MAPIE": {
+  "k4_pass": true,
+  "package": "mapie",
+  "pure_wheels": [
+   "mapie-1.6.0-py3-none-any.whl"
+  ],
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "upload_time": "2026-10-19T09:08:14.985303Z",
+  "version": "1.6.0",
+  "windows_313_wheels": []
+ },
+ "scikit-learn/scikit-learn": {
+  "k4_pass": true,
+  "package": "scikit-learn",
+  "pure_wheels": [],
+  "requires_python": ">=3.11",
+  "sdist_only": false,
+  "upload_time": "2026-09-10T18:32:29.891551Z",
+  "version": "1.9.1",
+  "windows_313_wheels": [
+   "scikit_learn-1.9.1-cp313-cp313-win_amd64.whl",
+   "scikit_learn-1.9.1-cp313-cp313-win_arm64.whl"
+  ]
+ },
+ "sktime/sktime": {
+  "k4_pass": true,
+  "package": "sktime",
+  "pure_wheels": [
+   "sktime-1.2.0-py3-none-any.whl"
+  ],
+  "requires_python": "<3.15,>=3.10",
+  "sdist_only": false,
+  "upload_time": "2026-09-22T22:11:11.090007Z",
+  "version": "1.2.0",
+  "windows_313_wheels": []
+ },
+ "soda-inria/hazardous": {
+  "k4_pass": true,
+  "package": "hazardous",
+  "pure_wheels": [
+   "hazardous-0.2.0-py3-none-any.whl"
+  ],
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "upload_time": "2026-07-15T16:33:47.489836Z",
+  "version": "0.2.0",
+  "windows_313_wheels": []
+ },
+ "statsmodels/statsmodels": {
+  "k4_pass": true,
+  "package": "statsmodels",
+  "pure_wheels": [],
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "upload_time": "2026-08-27T10:34:19.376888Z",
+  "version": "0.15.0",
+  "windows_313_wheels": [
+   "statsmodels-0.15.0-cp313-cp313-win_amd64.whl",
+   "statsmodels-0.15.0-cp313-cp313-win_arm64.whl"
+  ]
+ },
+ "stumpy-dev/stumpy": {
+  "k4_pass": true,
+  "package": "stumpy",
+  "pure_wheels": [
+   "stumpy-1.14.1-py3-none-any.whl"
+  ],
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "upload_time": "2026-02-08T01:54:08.255439Z",
+  "version": "1.14.1",
+  "windows_313_wheels": []
+ },
+ "unionai-oss/pandera": {
+  "k4_pass": true,
+  "package": "pandera",
+  "pure_wheels": [
+   "pandera-0.34.1-py3-none-any.whl"
+  ],
+  "requires_python": ">=3.10",
+  "sdist_only": false,
+  "upload_time": "2026-10-06T15:16:27.372449Z",
+  "version": "0.34.1",
+  "windows_313_wheels": []
+ }
+}

@@ -1,0 +1,65 @@
+# command: unshare -n -- /home/claude/pi_research/venvs/baobach__mlfinpy/bin/python -I /home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/baobach__mlfinpy/smoke_mlfinpy.py
+# started_utc: 2026-10-24T05:01:53Z
+# network: OFF (unshare -n, no network namespace)
+/home/claude/pi_research/venvs/baobach__mlfinpy/lib/python3.12/site-packages/mlfinpy/cross_validation/combinatorial.py:157: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  delta = self.samples_info_sets[0] - self.samples_info_sets.index[0]
+/home/claude/pi_research/venvs/baobach__mlfinpy/lib/python3.12/site-packages/mlfinpy/cross_validation/combinatorial.py:166: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  else self.samples_info_sets[ix[1] - 1] + embargo
+=== mlfinpy 0.1.2 from /home/claude/pi_research/venvs/baobach__mlfinpy/lib/python3.12/site-packages/mlfinpy/__init__.py | python 3.12.3 | numpy 1.26.4 | pandas 2.3.3
+import time 4.34 s; warnings at import: 0
+
+=== PART A: purge and embargo ===
+--- A1 hand case: six 24 h labels, PurgedKFold(n_splits=3) ---
+windows (h): [(0, 24), (6, 30), (12, 36), (30, 54), (36, 60), (60, 84)]
+  fold 0: test [0, 1] train [4, 5] -> rows still overlapping a test label window: []
+  fold 1: test [2, 3] train [0, 1, 5] -> rows still overlapping a test label window: [0, 1]
+  fold 2: test [4, 5] train [0, 1, 2, 3] -> rows still overlapping a test label window: [3]
+  ml_get_train_times given the test window [30 h, 54 h] directly keeps decisions at hours [0, 60] (expected [0, 60] with closed intervals: rows ending exactly at 30 h are also dropped)
+  PurgedKFold builds the test window as [label END of the first test row, label end of the last test row]:
+  cross_validation.py: test_times = pd.Series(index=[self.samples_info_sets.iloc[start_ix]], data=[self.samples_info_sets.iloc[end_ix - 1]])
+
+--- A2 challenge: PurgedKFold(5, pct_embargo=0.01) on decision_time / label_matures_at ---
+challenge sha256 18fda40cc7a2a6f5aa607a32f1a096976317f901f5b75d1ae23b4bcaddd5f23d
+rows 2892 (labeled, one duplicate decision time dropped because the index lookup needs unique times)
+  5 folds in 0.08 s; (train, test) sizes [(2165, 579), (2211, 579), (2171, 578), (2177, 578), (2314, 578)]
+  training rows whose label window overlaps a test window, per fold: [0, 99, 96, 95, 111]
+  for scale, plain KFold(5) leaves [111, 167, 208, 200, 111]
+  training rows inside the configured embargo (the 28 row positions after each test block): [0, 0, 0, 0, 0] (post-test side is over-purged, which is safe)
+
+--- A2b decisions sharing one timestamp (memelab decisions share an export commit time) ---
+  PurgedKFold with shared timestamps: TypeError: '<' not supported between instances of 'int' and 'slice'
+
+--- A3 CombinatorialPurgedKFold ---
+  unique decision times: ValueError: zero-dimensional arrays cannot be concatenated (combinatorial.py appends a scalar get_loc result, then np.concatenate fails)
+  every decision time twice, embargo=0: generator raised after yielding 15 splits: ValueError: all the input arrays must have same number of dimensions, but the array at index 0 has 2 dimension(s) and the array at i (trailing code after the loop in combinatorial.py; list() or sklearn would fail)
+  every decision time twice, embargo=0: 15 splits, attribute after split self.embargo=0; warnings during split: 45 (FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version)
+  every decision time twice, embargo=5: generator raised after yielding 15 splits: ValueError: all the input arrays must have same number of dimensions, but the array at index 0 has 2 dimension(s) and the array at i (trailing code after the loop in combinatorial.py; list() or sklearn would fail)
+  every decision time twice, embargo=5: 15 splits, attribute after split self.embargo=0; warnings during split: 45 (FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version)
+  training sets identical for embargo=0 and embargo=5: True (combinatorial.py sets self.embargo = 0 inside split)
+  CPCV overlap leaks per split (purge uses the test start correctly here): [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+=== PART B: triple-barrier labels versus the memelab T1 rule ===
+  A clean +30% rise: memelab T1 -> TARGET_FIRST (y=1) | mlfinpy bin=1 t1=+0.83h (pt_sl=[1,0.6] becomes symmetric +-25%) | mlfinpy side=+1 bin=1 t1=+0.83h (+25%/-15%) | vertical barrier at +24.00 h | agree None/+1: [True, True]
+  B -16% first, then +30%: memelab T1 -> INVALIDATION_FIRST (y=0) | mlfinpy bin=1 t1=+1.67h (pt_sl=[1,0.6] becomes symmetric +-25%) | mlfinpy side=+1 bin=0 t1=+0.42h (+25%/-15%) | vertical barrier at +24.00 h | agree None/+1: [False, True]
+  C +26% wick only (close stays <= 105): memelab T1 -> TARGET_FIRST (y=1) | mlfinpy bin=0 t1=+24.00h (pt_sl=[1,0.6] becomes symmetric +-25%) | mlfinpy side=+1 bin=0 t1=+24.00h (+25%/-15%) | vertical barrier at +24.00 h | agree None/+1: [False, False]
+  D one candle touches both barriers, then +26% close: memelab T1 -> AMBIGUOUS_BAR (y=0) | mlfinpy bin=1 t1=+0.58h (pt_sl=[1,0.6] becomes symmetric +-25%) | mlfinpy side=+1 bin=1 t1=+0.58h (+25%/-15%) | vertical barrier at +24.00 h | agree None/+1: [False, False]
+  E exactly +25.0%: memelab T1 -> TARGET_FIRST (y=1) | mlfinpy bin=0 t1=+24.00h (pt_sl=[1,0.6] becomes symmetric +-25%) | mlfinpy side=+1 bin=0 t1=+24.00h (+25%/-15%) | vertical barrier at +24.00 h | agree None/+1: [False, False]
+  F +28% inside the entry gap, flat after entry: memelab T1 -> NEITHER (y=0) | mlfinpy bin=1 t1=+0.17h (pt_sl=[1,0.6] becomes symmetric +-25%) | mlfinpy side=+1 bin=1 t1=+0.17h (+25%/-15%) | vertical barrier at +24.00 h | agree None/+1: [False, False]
+  G pending: +31% about 5.8 h after the decision, data end about 6.8 h after it: memelab T1 -> PENDING (y=None) | mlfinpy bin=1 t1=+6.00h (pt_sl=[1,0.6] becomes symmetric +-25%) | mlfinpy side=+1 bin=1 t1=+6.00h (+25%/-15%) | vertical barrier at +nan h | agree None/+1: [False, False]
+  H sparse: no candles from about 2 h to 40 h after the decision, then +31%: memelab T1 -> NEITHER (y=0) | mlfinpy bin=1 t1=+40.00h (pt_sl=[1,0.6] becomes symmetric +-25%) | mlfinpy side=+1 bin=1 t1=+40.00h (+25%/-15%) | vertical barrier at +40.00 h | agree None/+1: [False, False]
+  disagreements with the memelab rule: 13 of 16 case-mode pairs
+
+--- B2 cost of labeling ---
+  200 events on 5000 5-minute bars: 0.37 s (1.9 ms per event); labeled 199
+
+--- S1 leak trap ---
+  mlfinpy has no feature-availability notion; its CV purges by samples_info_sets only (and PurgedKFold does so incorrectly, A1/A2)
+
+--- S5 persistence ---
+  pickled PurgedKFold yields identical folds: True
+
+peak RSS 278.1 MB
+
+# exit_code: 0
+# wall_s: 10.56
+# peak_child_rss_mb: 278.1

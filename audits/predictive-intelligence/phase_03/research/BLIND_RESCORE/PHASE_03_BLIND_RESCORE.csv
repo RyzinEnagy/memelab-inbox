@@ -1,0 +1,8 @@
+repo,temporal_integrity,transferable_outcomes,calibration_uncertainty,features,decision_execution,code_quality,integration_fit,reproducibility,cost_latency,license_security,total,flags
+eslazarev/purged-cross-validation,14,3,0,1,4,7,8,6,5,6,54,none
+interpretml/interpret,1,7,1,3,2,7,7,4,5,5,42,RESEARCH_ONLY (survival_cox objective only)
+online-ml/river,6,7,2,4,2,4,5,4,4,4,42,LEAKAGE_FAIL (model state after a simulate_qa or progressive_val_score replay; drift detectors unaffected)
+scikit-learn-contrib/MAPIE,3,3,8,0,6,6,7,3,4,6,46,none
+scikit-learn/scikit-learn,5,8,7,3,3,8,8,5,5,6,58,none
+soda-inria/hazardous,1,9,5,2,0,3,3,2,3,4,32,REJECT (PyPI 0.2.0 wheel and sdist only; pinned source not rejected)
+statsmodels/statsmodels,1,7,3,2,2,7,6,4,5,6,43,LEAKAGE_FAIL (MarkovRegression default use); RESEARCH_ONLY (regime states)

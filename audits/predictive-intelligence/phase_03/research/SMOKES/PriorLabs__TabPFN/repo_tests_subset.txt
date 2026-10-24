@@ -1,0 +1,5 @@
+command: TABPFN_NO_BROWSER=1 TABPFN_MODEL_CACHE_DIR=<scratch> python -m pytest <pin>/tests/test_browser_auth.py test_validation.py test_checkpoint.py test_settings.py -q -p no:cacheprovider -x (installed from pin 9d9d8725); exit=0; wall_s=4; last lines:
+0.17s setup    tests/test_browser_auth.py::TestGetCachedToken::test_returns_env_var
+
+(9 durations < 0.005s hidden.  Use -vv to show these durations.)
+=================== 72 passed, 1 skipped, 1 warning in 0.60s ===================

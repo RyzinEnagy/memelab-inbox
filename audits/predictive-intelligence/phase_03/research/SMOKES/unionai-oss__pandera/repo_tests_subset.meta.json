@@ -1,0 +1,32 @@
+{
+ "command": [
+  "/home/claude/pi_research/venvs/unionai-oss__pandera/bin/python",
+  "-m",
+  "pytest",
+  "-p",
+  "no:cacheprovider",
+  "-q",
+  "tests/pandas/test_checks.py",
+  "tests/pandas/test_extensions.py",
+  "tests/pandas/test_from_to_format_conversions.py"
+ ],
+ "wrapped_command": [
+  "unshare",
+  "-n",
+  "/home/claude/pi_research/venvs/unionai-oss__pandera/bin/python",
+  "-m",
+  "pytest",
+  "-p",
+  "no:cacheprovider",
+  "-q",
+  "tests/pandas/test_checks.py",
+  "tests/pandas/test_extensions.py",
+  "tests/pandas/test_from_to_format_conversions.py"
+ ],
+ "started_utc": "2026-10-24T05:21:57Z",
+ "exit_code": 0,
+ "wall_s": 1.633,
+ "peak_rss_kb_children": 105748,
+ "env_switches": {},
+ "offline_netns": true
+}

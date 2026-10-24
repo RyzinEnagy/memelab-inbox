@@ -1,0 +1,46 @@
+RESULT import_side_effects {"env_after": {"PYARROW_IGNORE_TIMEZONE": "1", "SPARK_LOCAL_IP": "127.0.0.1"}, "env_before": {"PYARROW_IGNORE_TIMEZONE": null, "SPARK_LOCAL_IP": null}, "import_s": 0.189, "numpy_NaN_alias_after": true, "numpy_NaN_alias_before": false, "numpy_version": "2.5.4", "pandas_version": "3.1.0"}
+RESULT S1_asof_gate {"legit_with_availability": {"checks_failed": ["available_before_decision(decision_col=decision_time)"], "columns_failed": ["None"], "first_failure_index": null, "n_failure_cases": 1, "seconds": 0.0181, "valid": false}, "model_effect": {"legit": {"all_finite": true, "auc": 0.6956170703575548, "baseline_brier": 0.03131998778125741, "baseline_log_loss": 0.1438782556723353, "brier": 0.030994248764367856, "log_loss": 0.13825735494421482, "n": 527, "p_max": 0.3273859715172795, "p_min": 0.0007914946811029089, "positives": 17}, "with_trap": {"all_finite": true, "auc": 1.0, "baseline_brier": 0.03131998778125741, "baseline_log_loss": 0.1438782556723353, "brier": 0.0015848779128707763, "log_loss": 0.006990406509728641, "n": 527, "p_max": 0.9996481225600977, "p_min": 4.6237112711976506e-11, "positives": 17}}, "one_row_availability_missing": {"checks_failed": ["available_before_decision(decision_col=decision_time)", "dtype('int64')", "not_nullable"], "columns_failed": ["None", "ret_1h_available_at"], "first_failure_index": 5, "n_failure_cases": 3, "seconds": 0.0281, "valid": false}, "one_row_available_1s_after_decision": {"checks_failed": ["available_before_decision(decision_col=decision_time)"], "columns_failed": ["None"], "first_failure_index": null, "n_failure_cases": 1, "seconds": 0.0134, "valid": false}, "trap_column_without_availability_metadata": {"checks_failed": ["available_before_decision(decision_col=decision_time)"], "columns_failed": ["None"], "first_failure_index": null, "n_failure_cases": 1, "seconds": 0.0126, "valid": false}, "with_trap_and_its_available_at": {"checks_failed": ["available_before_decision(decision_col=decision_time)"], "columns_failed": ["None"], "first_failure_index": null, "n_failure_cases": 1, "seconds": 0.0742, "valid": false}}
+RESULT S2_forecast_schema {"interval_excludes_point": {"checks_failed": ["interval_contains_point"], "columns_failed": ["decision_id", "lower", "probability", "upper"], "first_failure_index": 1, "n_failure_cases": 4, "seconds": 0.0057, "valid": false}, "p_1_5": {"checks_failed": ["in_range(0.0, 1.0)", "interval_contains_point"], "columns_failed": ["decision_id", "lower", "probability", "upper"], "first_failure_index": 2, "n_failure_cases": 5, "seconds": 0.0383, "valid": false}, "p_inf": {"checks_failed": ["finite", "in_range(0.0, 1.0)", "interval_contains_point"], "columns_failed": ["decision_id", "lower", "probability", "upper"], "first_failure_index": 2, "n_failure_cases": 6, "seconds": 0.013, "valid": false}, "p_nan": {"checks_failed": ["interval_contains_point", "not_nullable"], "columns_failed": ["decision_id", "lower", "probability", "upper"], "first_failure_index": 2, "n_failure_cases": 4, "seconds": 0.0151, "valid": false}, "p_negative": {"checks_failed": ["in_range(0.0, 1.0)", "interval_contains_point"], "columns_failed": ["decision_id", "lower", "probability", "upper"], "first_failure_index": 2, "n_failure_cases": 5, "seconds": 0.0219, "valid": false}, "valid_forecasts": {"columns_out": ["decision_id", "probability", "lower", "upper"], "seconds": 0.0098, "valid": true}}
+RESULT P05_label_maturity {"challenge_labels": {"columns_out": ["label", "label_matures_at"], "seconds": 0.0022, "valid": true}, "pending_row_given_label_0": {"checks_failed": ["label_only_when_matured(as_of=1792592000)"], "columns_failed": ["label", "label_matures_at"], "first_failure_index": 2893, "n_failure_cases": 2, "seconds": 0.0043, "valid": false}}
+RESULT S3_nullable {"legit_valid": false, "nan_in_non_nullable_age_h": {"checks_failed": ["available_before_decision(decision_col=decision_time)", "not_nullable"], "columns_failed": ["None", "age_h"], "first_failure_index": 3, "n_failure_cases": 2, "seconds": 0.0608, "valid": false}, "nan_in_nullable_liq_usd_rows": 156}
+RESULT S5_schema_io {"lambda_checks_to_yaml": "serialized", "roundtrip_same_result": true, "yaml_bytes": 933, "yaml_mentions_registered_check": true}
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r4/smoke_pandera.py", line 182, in <module>
+    feature_schema.validate(big, lazy=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/unionai-oss__pandera/lib/python3.13/site-packages/pandera/api/pandas/container.py", line 232, in validate
+    return self._validate(
+           ~~~~~~~~~~~~~~^
+        check_obj=check_obj,
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        inplace=inplace,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/claude/pi_research/venvs/unionai-oss__pandera/lib/python3.13/site-packages/pandera/api/pandas/container.py", line 252, in _validate
+    return self.get_backend(check_obj).validate(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        check_obj,
+        ^^^^^^^^^^
+    ...<6 lines>...
+        inplace=inplace,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/claude/pi_research/venvs/unionai-oss__pandera/lib/python3.13/site-packages/pandera/backends/pandas/container.py", line 161, in validate
+    raise SchemaErrors(
+    ...<3 lines>...
+    )
+pandera.errors.SchemaErrors: {
+    "DATA": {
+        "CHECK_ERROR": [
+            {
+                "schema": null,
+                "column": null,
+                "check": "available_before_decision(decision_col=decision_time)",
+                "error": "Error while executing check function: AssertionError()Traceback (most recent call last):  File \"/home/claude/pi_research/venvs/unionai-oss__pandera/lib/python3.13/site-packages/pandera/backends/pandas/container.py\", line 338, in run_checks    self.run_check(check_obj, schema, check, check_index)    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  File \"/home/claude/pi_research/venvs/unionai-oss__pandera/lib/python3.13/site-packages/pandera/backends/pandas/base.py\", line 122, in run_check    check_result: CheckResult = check(check_obj, *args)                                ~~~~~^^^^^^^^^^^^^^^^^^  File \"/home/claude/pi_research/venvs/unionai-oss__pandera/lib/python3.13/site-packages/pandera/api/checks.py\", line 276, in __call__    return backend(check_obj, column)  File \"/home/claude/pi_research/venvs/unionai-oss__pandera/lib/python3.13/site-packages/pandera/backends/pandas/checks.py\", line 365, in __call__    return self.postprocess(check_obj, check_output)           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^  File \"/home/claude/pi_research/venvs/unionai-oss__pandera/lib/python3.13/site-packages/pandera/backends/pandas/checks.py\", line 194, in postprocess    return postprocess_fn(check_obj, check_output)  File \"/home/claude/pi_research/venvs/unionai-oss__pandera/lib/python3.13/site-packages/pandera/backends/pandas/checks.py\", line 283, in postprocess_table    assert check_obj.shape == check_output.shape           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^AssertionError"
+            }
+        ]
+    }
+}

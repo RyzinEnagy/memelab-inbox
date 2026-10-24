@@ -1,0 +1,252 @@
+............EEEEEEE.............                                         [100%]
+==================================== ERRORS ====================================
+_ ERROR at setup of test_batch_statistical_univariate[detector0-23171.19994366-0.001-kwargs0] _
+
+    @pytest.fixture(scope="module")
+    def elec2_dataset() -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Elec2 dataset.
+    
+        :return: dataset
+        :rtype: Tuple[np.ndarray, np.ndarray, np.ndarray]
+        """
+        elec2 = Elec2()  # pylint: disable=redefined-outer-name
+>       elec2.download()
+
+frouros/tests/conftest.py:162: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Elec2(url=['https://nextcloud.ifca.es/index.php/s/2coqgBEpa82boLS/download', 'https://www.openml.org/data/download/2419/electricity-normalized.arff'], file_path='/tmp/tmp_wnxkrg0')
+
+    def download(self) -> None:
+        """Download dataset.
+    
+        :raises DownloadError: Download exception
+        """
+        for url in self.url:
+            try:
+                self._get_file(url=url)
+                break
+            except requests.exceptions.RequestException:
+                logger.warning("File cannot be downloaded from %s", url)
+        else:
+>           raise DownloadError("File cannot be downloaded from any of the urls.")
+E           frouros.datasets.exceptions.DownloadError: File cannot be downloaded from any of the urls.
+
+frouros/datasets/base.py:138: DownloadError
+---------------------------- Captured stderr setup -----------------------------
+INFO:frouros:Trying to download data from https://nextcloud.ifca.es/index.php/s/2coqgBEpa82boLS/download to /tmp/tmp_wnxkrg0
+WARNING:frouros:File cannot be downloaded from https://nextcloud.ifca.es/index.php/s/2coqgBEpa82boLS/download
+INFO:frouros:Trying to download data from https://www.openml.org/data/download/2419/electricity-normalized.arff to /tmp/tmp_wnxkrg0
+WARNING:frouros:File cannot be downloaded from https://www.openml.org/data/download/2419/electricity-normalized.arff
+------------------------------ Captured log setup ------------------------------
+INFO     frouros:base.py:101 Trying to download data from https://nextcloud.ifca.es/index.php/s/2coqgBEpa82boLS/download to /tmp/tmp_wnxkrg0
+WARNING  frouros:base.py:136 File cannot be downloaded from https://nextcloud.ifca.es/index.php/s/2coqgBEpa82boLS/download
+INFO     frouros:base.py:101 Trying to download data from https://www.openml.org/data/download/2419/electricity-normalized.arff to /tmp/tmp_wnxkrg0
+WARNING  frouros:base.py:136 File cannot be downloaded from https://www.openml.org/data/download/2419/electricity-normalized.arff
+_ ERROR at setup of test_batch_statistical_univariate[detector1-108757.63520694-0.00990099-kwargs1] _
+
+    @pytest.fixture(scope="module")
+    def elec2_dataset() -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Elec2 dataset.
+    
+        :return: dataset
+        :rtype: Tuple[np.ndarray, np.ndarray, np.ndarray]
+        """
+        elec2 = Elec2()  # pylint: disable=redefined-outer-name
+>       elec2.download()
+
+frouros/tests/conftest.py:162: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Elec2(url=['https://nextcloud.ifca.es/index.php/s/2coqgBEpa82boLS/download', 'https://www.openml.org/data/download/2419/electricity-normalized.arff'], file_path='/tmp/tmp_wnxkrg0')
+
+    def download(self) -> None:
+        """Download dataset.
+    
+        :raises DownloadError: Download exception
+        """
+        for url in self.url:
+            try:
+                self._get_file(url=url)
+                break
+            except requests.exceptions.RequestException:
+                logger.warning("File cannot be downloaded from %s", url)
+        else:
+>           raise DownloadError("File cannot be downloaded from any of the urls.")
+E           frouros.datasets.exceptions.DownloadError: File cannot be downloaded from any of the urls.
+
+frouros/datasets/base.py:138: DownloadError
+_ ERROR at setup of test_batch_statistical_univariate[detector2-3776.09848103-5.38105056e-07-kwargs2] _
+
+    @pytest.fixture(scope="module")
+    def elec2_dataset() -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Elec2 dataset.
+    
+        :return: dataset
+        :rtype: Tuple[np.ndarray, np.ndarray, np.ndarray]
+        """
+        elec2 = Elec2()  # pylint: disable=redefined-outer-name
+>       elec2.download()
+
+frouros/tests/conftest.py:162: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Elec2(url=['https://nextcloud.ifca.es/index.php/s/2coqgBEpa82boLS/download', 'https://www.openml.org/data/download/2419/electricity-normalized.arff'], file_path='/tmp/tmp_wnxkrg0')
+
+    def download(self) -> None:
+        """Download dataset.
+    
+        :raises DownloadError: Download exception
+        """
+        for url in self.url:
+            try:
+                self._get_file(url=url)
+                break
+            except requests.exceptions.RequestException:
+                logger.warning("File cannot be downloaded from %s", url)
+        else:
+>           raise DownloadError("File cannot be downloaded from any of the urls.")
+E           frouros.datasets.exceptions.DownloadError: File cannot be downloaded from any of the urls.
+
+frouros/datasets/base.py:138: DownloadError
+_ ERROR at setup of test_batch_statistical_univariate[detector3-0.99576271-0.0-kwargs3] _
+
+    @pytest.fixture(scope="module")
+    def elec2_dataset() -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Elec2 dataset.
+    
+        :return: dataset
+        :rtype: Tuple[np.ndarray, np.ndarray, np.ndarray]
+        """
+        elec2 = Elec2()  # pylint: disable=redefined-outer-name
+>       elec2.download()
+
+frouros/tests/conftest.py:162: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Elec2(url=['https://nextcloud.ifca.es/index.php/s/2coqgBEpa82boLS/download', 'https://www.openml.org/data/download/2419/electricity-normalized.arff'], file_path='/tmp/tmp_wnxkrg0')
+
+    def download(self) -> None:
+        """Download dataset.
+    
+        :raises DownloadError: Download exception
+        """
+        for url in self.url:
+            try:
+                self._get_file(url=url)
+                break
+            except requests.exceptions.RequestException:
+                logger.warning("File cannot be downloaded from %s", url)
+        else:
+>           raise DownloadError("File cannot be downloaded from any of the urls.")
+E           frouros.datasets.exceptions.DownloadError: File cannot be downloaded from any of the urls.
+
+frouros/datasets/base.py:138: DownloadError
+_ ERROR at setup of test_batch_statistical_univariate[detector4-0.99576271-0.0-kwargs4] _
+
+    @pytest.fixture(scope="module")
+    def elec2_dataset() -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Elec2 dataset.
+    
+        :return: dataset
+        :rtype: Tuple[np.ndarray, np.ndarray, np.ndarray]
+        """
+        elec2 = Elec2()  # pylint: disable=redefined-outer-name
+>       elec2.download()
+
+frouros/tests/conftest.py:162: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Elec2(url=['https://nextcloud.ifca.es/index.php/s/2coqgBEpa82boLS/download', 'https://www.openml.org/data/download/2419/electricity-normalized.arff'], file_path='/tmp/tmp_wnxkrg0')
+
+    def download(self) -> None:
+        """Download dataset.
+    
+        :raises DownloadError: Download exception
+        """
+        for url in self.url:
+            try:
+                self._get_file(url=url)
+                break
+            except requests.exceptions.RequestException:
+                logger.warning("File cannot be downloaded from %s", url)
+        else:
+>           raise DownloadError("File cannot be downloaded from any of the urls.")
+E           frouros.datasets.exceptions.DownloadError: File cannot be downloaded from any of the urls.
+
+frouros/datasets/base.py:138: DownloadError
+_ ERROR at setup of test_batch_statistical_univariate[detector5-6912.0-0.0-kwargs5] _
+
+    @pytest.fixture(scope="module")
+    def elec2_dataset() -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Elec2 dataset.
+    
+        :return: dataset
+        :rtype: Tuple[np.ndarray, np.ndarray, np.ndarray]
+        """
+        elec2 = Elec2()  # pylint: disable=redefined-outer-name
+>       elec2.download()
+
+frouros/tests/conftest.py:162: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Elec2(url=['https://nextcloud.ifca.es/index.php/s/2coqgBEpa82boLS/download', 'https://www.openml.org/data/download/2419/electricity-normalized.arff'], file_path='/tmp/tmp_wnxkrg0')
+
+    def download(self) -> None:
+        """Download dataset.
+    
+        :raises DownloadError: Download exception
+        """
+        for url in self.url:
+            try:
+                self._get_file(url=url)
+                break
+            except requests.exceptions.RequestException:
+                logger.warning("File cannot be downloaded from %s", url)
+        else:
+>           raise DownloadError("File cannot be downloaded from any of the urls.")
+E           frouros.datasets.exceptions.DownloadError: File cannot be downloaded from any of the urls.
+
+frouros/datasets/base.py:138: DownloadError
+_ ERROR at setup of test_batch_statistical_univariate[detector6--287.92032554-0.0-kwargs6] _
+
+    @pytest.fixture(scope="module")
+    def elec2_dataset() -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Elec2 dataset.
+    
+        :return: dataset
+        :rtype: Tuple[np.ndarray, np.ndarray, np.ndarray]
+        """
+        elec2 = Elec2()  # pylint: disable=redefined-outer-name
+>       elec2.download()
+
+frouros/tests/conftest.py:162: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Elec2(url=['https://nextcloud.ifca.es/index.php/s/2coqgBEpa82boLS/download', 'https://www.openml.org/data/download/2419/electricity-normalized.arff'], file_path='/tmp/tmp_wnxkrg0')
+
+    def download(self) -> None:
+        """Download dataset.
+    
+        :raises DownloadError: Download exception
+        """
+        for url in self.url:
+            try:
+                self._get_file(url=url)
+                break
+            except requests.exceptions.RequestException:
+                logger.warning("File cannot be downloaded from %s", url)
+        else:
+>           raise DownloadError("File cannot be downloaded from any of the urls.")
+E           frouros.datasets.exceptions.DownloadError: File cannot be downloaded from any of the urls.
+
+frouros/datasets/base.py:138: DownloadError
+=========================== short test summary info ============================
+ERROR frouros/tests/integration/test_data_drift.py::test_batch_statistical_univariate[detector0-23171.19994366-0.001-kwargs0]
+ERROR frouros/tests/integration/test_data_drift.py::test_batch_statistical_univariate[detector1-108757.63520694-0.00990099-kwargs1]
+ERROR frouros/tests/integration/test_data_drift.py::test_batch_statistical_univariate[detector2-3776.09848103-5.38105056e-07-kwargs2]
+ERROR frouros/tests/integration/test_data_drift.py::test_batch_statistical_univariate[detector3-0.99576271-0.0-kwargs3]
+ERROR frouros/tests/integration/test_data_drift.py::test_batch_statistical_univariate[detector4-0.99576271-0.0-kwargs4]
+ERROR frouros/tests/integration/test_data_drift.py::test_batch_statistical_univariate[detector5-6912.0-0.0-kwargs5]
+ERROR frouros/tests/integration/test_data_drift.py::test_batch_statistical_univariate[detector6--287.92032554-0.0-kwargs6]
+25 passed, 7 errors in 0.46s

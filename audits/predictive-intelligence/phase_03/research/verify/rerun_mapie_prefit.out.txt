@@ -1,0 +1,21 @@
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:108: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide(P1[:, 1], P1[:, 0])
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:116: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P1[i:, 1] - P1[i, 1]), (P1[i:, 0] - P1[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:117: RuntimeWarning: All-NaN slice encountered
+  if np.sum(np.isnan(np.nanmin(grads))) == 0:
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:133: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P0[:, 1] - P0[i, 1]), (P0[:, 0] - P0[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:141: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P0[:, 1] - P0[i, 1]), (P0[:, 0] - P0[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:108: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide(P1[:, 1], P1[:, 0])
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:116: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P1[i:, 1] - P1[i, 1]), (P1[i:, 0] - P1[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:117: RuntimeWarning: All-NaN slice encountered
+  if np.sum(np.isnan(np.nanmin(grads))) == 0:
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:133: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P0[:, 1] - P0[i, 1]), (P0[:, 0] - P0[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:141: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P0[:, 1] - P0[i, 1]), (P0[:, 0] - P0[i, 0]))
+RESULTS_JSON {"caller_base_max_abs_change": 0.01758937345553435, "caller_scaler_mean_changed": true, "mapie": "1.6.0+pinf1cc3d07", "rows_cal": 556, "rows_holdout": 527, "rows_train": 1746, "same_scaler_object": true, "venn_abers_probe_above_cal_max": {"cal_max_score": 0.2929863006029349, "ivap_definition_p1": 1.0, "p0": 0.3333333333333333, "p1": 0.5}}

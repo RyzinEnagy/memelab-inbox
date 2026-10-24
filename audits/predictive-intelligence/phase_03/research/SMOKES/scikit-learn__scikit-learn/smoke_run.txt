@@ -1,0 +1,1 @@
+command: OMP_NUM_THREADS=1 /home/claude/pi_research/venvs/scikit-learn__scikit-learn/bin/python -I smoke_sklearn.py challenge.csv scratch; exit=0; wall_s=8.661436282

@@ -1,0 +1,1090 @@
+{
+ "checks": [
+  {
+   "id": "PIN-ALL",
+   "repo": "all",
+   "kind": "pin",
+   "claim": "every local clone HEAD equals the SHORTLIST.csv pin",
+   "observed": {
+    "repos": 30,
+    "mismatches": []
+   },
+   "pass": true
+  },
+  {
+   "id": "SK-1",
+   "repo": "scikit-learn__scikit-learn",
+   "kind": "pin",
+   "claim": "TimeSeriesSplit is row based: train_end = test_start - gap (_split.py:1104, :1292-1306)",
+   "observed": [
+    "class TimeSeriesSplit(_BaseKFold):",
+    true
+   ],
+   "pass": true
+  },
+  {
+   "id": "SK-2",
+   "repo": "scikit-learn__scikit-learn",
+   "kind": "smoke",
+   "claim": "TimeSeriesSplit gap 0 leaves 93 to 107 unmatured training labels per fold; custom day walk-forward 0",
+   "observed": {
+    "gap0": [
+     102,
+     106,
+     93,
+     99,
+     107
+    ],
+    "walk_forward_max": 0,
+    "folds": 19
+   },
+   "pass": true
+  },
+  {
+   "id": "SK-3",
+   "repo": "scikit-learn__scikit-learn",
+   "kind": "smoke",
+   "claim": "two runs give identical metrics (run1 file versus final file)",
+   "observed": {
+    "S1_leak_trap": true,
+    "S2_probability": true,
+    "S4_calibration": true
+   },
+   "pass": true
+  },
+  {
+   "id": "SK-4",
+   "repo": "scikit-learn__scikit-learn",
+   "kind": "smoke",
+   "claim": "sigmoid calibration fitted on the later val window ran (FrozenEstimator); pickle reload identical; version stamp 1.10.dev0",
+   "observed": {
+    "frozen_sigmoid_brier": 0.030943,
+    "pickle_identical": true,
+    "stamp": "1.10.dev0"
+   },
+   "pass": true
+  },
+  {
+   "id": "SK-5",
+   "repo": "scikit-learn__scikit-learn",
+   "kind": "rerun",
+   "claim": "lead's own fit on all 1,746 train rows reproduces R1's holdout Brier 0.030994",
+   "observed": [
+    0.030994,
+    0.030994
+   ],
+   "pass": true
+  },
+  {
+   "id": "SK-6",
+   "repo": "scikit-learn__scikit-learn",
+   "kind": "pin",
+   "claim": "brier_score_loss and sample_weight in CalibratedClassifierCV.fit; _sklearn_version stamped in pickles",
+   "observed": [
+    "def brier_score_loss(",
+    "def fit(self, X, y, sample_weight=None, **fit_params):",
+    "return dict(state.items(), _sklearn_version=__version__)"
+   ],
+   "pass": true
+  },
+  {
+   "id": "LG-1",
+   "repo": "lightgbm-org__LightGBM",
+   "kind": "pin",
+   "claim": "deterministic defaults to false (config.h:271); binary_logloss metric exists",
+   "observed": [
+    "bool deterministic = false;",
+    true
+   ],
+   "pass": true
+  },
+  {
+   "id": "LG-2",
+   "repo": "lightgbm-org__LightGBM",
+   "kind": "smoke",
+   "claim": "native text model sha256 identical across two runs; reload max abs diff 0; same-seed trees identical",
+   "observed": {
+    "sha_a": "51e72e0caf34",
+    "sha_b": "51e72e0caf34",
+    "diff": 0.0,
+    "det": true
+   },
+   "pass": true
+  },
+  {
+   "id": "LG-3",
+   "repo": "lightgbm-org__LightGBM",
+   "kind": "pin",
+   "claim": "sklearn fit accepts sample_weight (D1)",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "LG-4",
+   "repo": "lightgbm-org__LightGBM",
+   "kind": "smoke",
+   "claim": "native NaN: 77 holdout rows with NaN give finite probabilities; network attempts 0",
+   "observed": {
+    "S3": {
+     "fit_with_nan_ok": true,
+     "holdout_rows_with_nan": 77,
+     "params_default": {
+      "use_missing": true,
+      "zero_as_missing": false
+     },
+     "proba_finite": true,
+     "train_rows_with_nan": 252
+    },
+    "net": []
+   },
+   "pass": true
+  },
+  {
+   "id": "IN-1",
+   "repo": "interpretml__interpret",
+   "kind": "pin",
+   "claim": "survival_cox objective exists at the pin (SurvivalCoxObjective.hpp, _ebm.py) and JSON reload is labelled untested",
+   "observed": [
+    true,
+    true,
+    true
+   ],
+   "pass": true
+  },
+  {
+   "id": "IN-2",
+   "repo": "interpretml__interpret",
+   "kind": "smoke",
+   "claim": "pin Cox fit keeps 107 censored holdout rows; Harrell C 0.6749 above the permutation range",
+   "observed": {
+    "c": 0.6749,
+    "cens": 107,
+    "perm97.5": 0.6231
+   },
+   "pass": true
+  },
+  {
+   "id": "IN-3",
+   "repo": "interpretml__interpret",
+   "kind": "smoke",
+   "claim": "same seed identical probabilities; JSON export reload identical; pickle reload identical; release and pin metrics equal",
+   "observed": {
+    "det": {
+     "same_seed_identical_proba": true
+    },
+    "json": {
+     "identical": true,
+     "max_abs_diff": 0.0
+    },
+    "release_eq_pin": true
+   },
+   "pass": true
+  },
+  {
+   "id": "IN-4",
+   "repo": "interpretml__interpret",
+   "kind": "pin",
+   "claim": "fit accepts sample_weight; bags argument allows caller-defined validation rows",
+   "observed": [
+    true,
+    true
+   ],
+   "pass": true
+  },
+  {
+   "id": "TP-1",
+   "repo": "PriorLabs__TabPFN",
+   "kind": "registry",
+   "claim": "default TabPFN-3.5 weight license text (HF) sha256 9570fdd6... is non-commercial, non-production, not for consumers, outputs restricted",
+   "observed": [
+    true,
+    true,
+    true
+   ],
+   "pass": true
+  },
+  {
+   "id": "TP-2",
+   "repo": "PriorLabs__TabPFN",
+   "kind": "registry",
+   "claim": "TabPFN-2 classifier weight license (HF) sha256 08b1851b... asks for 'Built with PriorLabs-TabPFN' attribution when distributed",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "TP-3",
+   "repo": "PriorLabs__TabPFN",
+   "kind": "pin",
+   "claim": "default model_version is V3_5 and loading calls a license check; config.json fetched to increment a download counter",
+   "observed": [
+    true,
+    true,
+    true
+   ],
+   "pass": true
+  },
+  {
+   "id": "TP-4",
+   "repo": "PriorLabs__TabPFN",
+   "kind": "smoke",
+   "claim": "default constructor fails offline with a gated-repo error after one blocked connect; reruns differ by 6e-8 (not bit-identical)",
+   "observed": {
+    "err": "TabPFNHuggingFaceGatedRepoError: Hugging",
+    "det": {
+     "holdout_rows_checked": 100,
+     "max_abs_diff": 5.960464477539063e-08,
+     "same_seed_identical_proba": false
+    }
+   },
+   "pass": true
+  },
+  {
+   "id": "SM-1",
+   "repo": "statsmodels__statsmodels",
+   "kind": "pin",
+   "claim": "MarkovSwitching.predict raises NotImplementedError out of sample (markov_switching.py:806-807) although the docstring promises forecasting",
+   "observed": [
+    "if out_of_sample > 0:\n            raise NotImplementedError",
+    "In-sample prediction and out-of-sample forecasting"
+   ],
+   "pass": true
+  },
+  {
+   "id": "SM-2",
+   "repo": "statsmodels__statsmodels",
+   "kind": "rerun",
+   "claim": "filtered regime probabilities with fixed parameters are unchanged when later rows are appended; smoothed ones change (control)",
+   "observed": {
+    "filtered_first_1000_with_800_later_rows_appended_max_abs_diff": 0.0,
+    "out_of_sample_predict": "NotImplementedError",
+    "smoothed_first_1000_with_800_later_rows_appended_max_abs_diff": 0.018620023187954637,
+    "statsmodels_version": "0.1.dev1+gaa61cc148"
+   },
+   "pass": true
+  },
+  {
+   "id": "SM-3",
+   "repo": "statsmodels__statsmodels",
+   "kind": "smoke",
+   "claim": "Holm adjusted (0.036, 0.060, 0.060); Wilson equals lab alpha_core.wilson within 1e-5; pickle reload identical",
+   "observed": {
+    "holm": "{\"adjusted\": [0.036, 0.06, 0.06], \"manual\": [0.036, 0.06, 0.06], \"pvals\": [0.012, 0.03, 0.041], \"reject\": [true, false, ",
+    "wilson": 9.029968906171248e-06,
+    "pickle": true
+   },
+   "pass": true
+  },
+  {
+   "id": "FE-1",
+   "repo": "feast-dev__feast",
+   "kind": "pin",
+   "claim": "dask offline store keeps feature rows with timestamp <= entity time (dask.py _filter_ttl :1187-1220); created-timestamp filter off by default",
+   "observed": [
+    true,
+    "filter_by_created_timestamp: bool = False,"
+   ],
+   "pass": true
+  },
+  {
+   "id": "FE-2",
+   "repo": "feast-dev__feast",
+   "kind": "rerun",
+   "claim": "lead re-ran R1's script in a fresh scratch dir: identical point-in-time table, 0 rows with own future value, 330 rows silently dropped",
+   "observed": {
+    "pit_equal": true,
+    "own_future": 0,
+    "dropped": 330
+   },
+   "pass": true
+  },
+  {
+   "id": "FE-3",
+   "repo": "feast-dev__feast",
+   "kind": "pin",
+   "claim": "pyproject requires pandas <3 (lab runs pandas 3)",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "MA-1",
+   "repo": "scikit-learn-contrib__MAPIE",
+   "kind": "pin",
+   "claim": "MAPIE's Venn-Abers p1 loop lacks the 'p1[-1, 1] = 1.0' line that venn-abers has (venn_abers.py:118)",
+   "observed": [
+    false,
+    "p1[-1, 1] = 1.0"
+   ],
+   "pass": true
+  },
+  {
+   "id": "MA-2",
+   "repo": "scikit-learn-contrib__MAPIE",
+   "kind": "smoke",
+   "claim": "LAC 0.90 coverage 0.9184 with 0 of 17 positives; Venn-Abers p1 differs from the definition by 0.4; risk controller abstains",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "MA-3",
+   "repo": "scikit-learn-contrib__MAPIE",
+   "kind": "pin",
+   "claim": "no Brier or log-loss function in mapie/metrics (C1)",
+   "observed": [
+    false,
+    false
+   ],
+   "pass": true
+  },
+  {
+   "id": "CR-1",
+   "repo": "henrikbostrom__crepes",
+   "kind": "pin",
+   "claim": "no test files at the pin",
+   "observed": 0,
+   "pass": true
+  },
+  {
+   "id": "CR-2",
+   "repo": "henrikbostrom__crepes",
+   "kind": "smoke",
+   "claim": "class-conditional sets cover 16 of 17 positives (0.9412); martingale alarms only after the shift (619, 637, 622); no alarm val only; seeded p-values identical",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "VA-1",
+   "repo": "ip200__venn-abers",
+   "kind": "smoke",
+   "claim": "Venn-Abers equals the IVAP definition on 530 probes (max diff 0); NaN test score returns 0.625 silently",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "MD-1",
+   "repo": "lorentzenchr__model-diagnostics",
+   "kind": "smoke",
+   "claim": "decomposition equals own Brier and log loss exactly; NaN to SquaredError returns nan silently; zero-event bin p-value misleading (chance 0.362)",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "AR-1",
+   "repo": "bashtage__arch",
+   "kind": "smoke",
+   "claim": "Monte Carlo coverage IID 0.715 versus stationary 0.875; SPA p 0.306; NaN gives [nan, nan] without error",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "AR-2",
+   "repo": "bashtage__arch",
+   "kind": "pin",
+   "claim": "root LICENSE.md sha256 c6e622bd... (NCSA-style permissive)",
+   "observed": "c6e622bd89db4e13",
+   "pass": true
+  },
+  {
+   "id": "MF-1",
+   "repo": "baobach__mlfinpy",
+   "kind": "rerun",
+   "claim": "PurgedKFold leaves overlapping label windows in training on a 6-row constructed case",
+   "observed": 3,
+   "pass": true
+  },
+  {
+   "id": "MF-2",
+   "repo": "baobach__mlfinpy",
+   "kind": "rerun",
+   "claim": "defective purge line identical to BSD-3 mlfinlab fork 47889b88 :91; no Hudson and Thames notice in mlfinpy",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "MF-3",
+   "repo": "baobach__mlfinpy",
+   "kind": "smoke",
+   "claim": "no Python 3.13 resolution (numba 0.60 has no cp313 wheel)",
+   "observed": "# peak_child_rss_mb: 44.5",
+   "pass": true
+  },
+  {
+   "id": "PC-1",
+   "repo": "eslazarev__purged-cross-validation",
+   "kind": "rerun",
+   "claim": "lead's own interval-union checker: walk-forward, purged k-fold, CPCV, group k-fold leave 0 overlapping training rows; scikit-learn KFold control leaves 111 to 207 (overlap only: says nothing about fold sizes or training on later rows, see PC-3)",
+   "observed": {
+    "WalkForwardSplit_leaks": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "PurgedKFold_leaks": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "CPCV_leaks_max": 0,
+    "control_sklearn_KFold_leaks": [
+     111,
+     168,
+     207,
+     200,
+     111
+    ]
+   },
+   "pass": true
+  },
+  {
+   "id": "PC-2",
+   "repo": "eslazarev__purged-cross-validation",
+   "kind": "pin",
+   "claim": "overlap primitive is half-open (_intervals.py)",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "LL-1",
+   "repo": "CamDavidsonPilon__lifelines",
+   "kind": "pin",
+   "claim": "k_fold_cross_validation shuffles rows (utils/__init__.py:765); pandas<3.0 declared",
+   "observed": [
+    "df = df.reindex(np.random.permutation(df.index)).sort_values(event_col)",
+    true
+   ],
+   "pass": true
+  },
+  {
+   "id": "LL-2",
+   "repo": "CamDavidsonPilon__lifelines",
+   "kind": "smoke",
+   "claim": "censor-aware Cox concordance 0.696 clean, 0.991 with trap; identical metrics on pandas 3.0.5",
+   "observed": {
+    "clean": 0.696,
+    "trap": 0.991,
+    "pandas3_same": true
+   },
+   "pass": true
+  },
+  {
+   "id": "HZ-1",
+   "repo": "soda-inria__hazardous",
+   "kind": "registry",
+   "claim": "PyPI hazardous 0.2.0 wheel (sha256 0c25c1b2...) ships a 213,846,118-byte SEER file that is not in the pinned tree",
+   "observed": {
+    "in_pin_tree": false
+   },
+   "pass": true
+  },
+  {
+   "id": "HZ-2",
+   "repo": "soda-inria__hazardous",
+   "kind": "smoke",
+   "claim": "default fit 253.8 s; cumulative incidence non-monotone for 634 of 634 rows; same seed refit identical",
+   "observed": {
+    "fit_s": 253.827,
+    "nonmono": 634,
+    "seed": true
+   },
+   "pass": true
+  },
+  {
+   "id": "HZ-T",
+   "repo": "soda-inria__hazardous",
+   "kind": "rerun",
+   "claim": "SurvivalBoost fits the 1,746 train rows in under 60 s at a reduced n_iter (K2)",
+   "observed": {
+    "fit_s_n_iter_10": 14.66,
+    "fit_s_n_iter_20": 19.56,
+    "hazardous_version": "0.2.0",
+    "predict_ms_per_row_one_horizon": 0.0026,
+    "proba_shape": [
+     634,
+     2
+    ],
+    "train_rows": 1746
+   },
+   "pass": true
+  },
+  {
+   "id": "REPEAT",
+   "repo": "all",
+   "kind": "rerun",
+   "claim": "reviewer smoke scripts re-run by the lead give identical results after removing timing, path and id fields",
+   "observed": {
+    "IFCA-Advanced-Computing__frouros": [
+     true,
+     93
+    ],
+    "baobach__mlfinpy": [
+     true,
+     39
+    ],
+    "deepcharles__ruptures": [
+     true,
+     62
+    ],
+    "online-ml__river": [
+     true,
+     125
+    ],
+    "probabl-ai__skore": [
+     false,
+     287
+    ],
+    "scikit-learn-contrib__MAPIE": [
+     true,
+     120
+    ],
+    "sktime__sktime": [
+     true,
+     134
+    ],
+    "statsmodels__statsmodels": [
+     true,
+     177
+    ],
+    "unionai-oss__pandera": [
+     true,
+     141
+    ]
+   },
+   "pass": true
+  },
+  {
+   "id": "RV-1",
+   "repo": "online-ml__river",
+   "kind": "rerun",
+   "claim": "simulate_qa releases 2,892 labels at or after maturity and 0 before; 108 flushed unmatured at stream end",
+   "observed": {
+    "answers_released_at_or_after_maturity": 2892,
+    "answers_released_before_maturity": 0,
+    "flush_answers": 108,
+    "flush_answers_not_matured_by_last_decision": 108,
+    "flush_answers_with_a_label": 1,
+    "questions": 3000,
+    "river_version": "0.26.1"
+   },
+   "pass": true
+  },
+  {
+   "id": "RV-2",
+   "repo": "online-ml__river",
+   "kind": "pin",
+   "claim": "end-of-stream flush loop (qa.py:244)",
+   "observed": "for memento in mementos:",
+   "pass": true
+  },
+  {
+   "id": "RV-3",
+   "repo": "online-ml__river",
+   "kind": "smoke",
+   "claim": "NaN values silently make LogisticRegression weights non-finite",
+   "observed": {
+    "pred": null,
+    "weights_finite_after_learning": false
+   },
+   "pass": true
+  },
+  {
+   "id": "ST-1",
+   "repo": "sktime__sktime",
+   "kind": "pin",
+   "claim": "evaluate passes the test-period X to predict (_functions.py:289); no purge or embargo in sktime/split",
+   "observed": [
+    "y_pred = method(fh=fh, X=X_test, **pred_args)",
+    0
+   ],
+   "pass": true
+  },
+  {
+   "id": "ST-2",
+   "repo": "sktime__sktime",
+   "kind": "smoke",
+   "claim": "row-count expanding window leaves unmatured training labels; instance splitter shares 0 mints; panel NaN pipeline finite",
+   "observed": {
+    "unmatured": [
+     94,
+     116,
+     112,
+     84,
+     84
+    ],
+    "mint_overlap": [
+     0,
+     0,
+     0
+    ]
+   },
+   "pass": true
+  },
+  {
+   "id": "TS-1",
+   "repo": "blue-yonder__tsfresh",
+   "kind": "pin",
+   "claim": "ComprehensiveFCParameters repeats the key number_of_maxima in one dict (settings.py:272-278)",
+   "observed": 3,
+   "pass": true
+  },
+  {
+   "id": "TS-2",
+   "repo": "blue-yonder__tsfresh",
+   "kind": "smoke",
+   "claim": "backward windows truncation invariant (127,428 of 127,428 cells)",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "RU-1",
+   "repo": "deepcharles__ruptures",
+   "kind": "pin",
+   "claim": "typing_extensions imported (base.py:8) but not declared in setup.cfg",
+   "observed": [
+    "from typing_extensions import Self",
+    false
+   ],
+   "pass": true
+  },
+  {
+   "id": "RU-2",
+   "repo": "deepcharles__ruptures",
+   "kind": "smoke",
+   "claim": "a NaN in a path makes PELT return a breakpoint every 5 samples with no error",
+   "observed": {
+    "Pelt_l2": [
+     15,
+     20,
+     25,
+     30
+    ],
+    "L1Potts": "ValueError: signal must contain only fin"
+   },
+   "pass": true
+  },
+  {
+   "id": "SU-1",
+   "repo": "stumpy-dev__stumpy",
+   "kind": "rerun",
+   "claim": "stumpi left profile equals the lead's own past-only numpy distance; self-join P changes when only future samples change",
+   "observed": {
+    "checked_indices": [
+     30,
+     75,
+     120,
+     180,
+     240
+    ],
+    "self_join_P_at_100_changes_when_only_samples_after_150_change": true,
+    "self_join_left_I_at_100_unchanged": true,
+    "stumpi_left_P_vs_lead_numpy_past_only_max_abs_diff": 1.389999226830696e-13,
+    "stumpy_version": "1.14.1"
+   },
+   "pass": true
+  },
+  {
+   "id": "SU-2",
+   "repo": "stumpy-dev__stumpy",
+   "kind": "smoke",
+   "claim": "pickling a stumpi object fails",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "EV-1",
+   "repo": "evidentlyai__evidently",
+   "kind": "pin",
+   "claim": "telemetry posts to a raw-IP HTTP endpoint unless DO_NOT_TRACK is set; EVIDENTLY_DISABLE_TELEMETRY defined but unread",
+   "observed": [
+    true,
+    true,
+    1
+   ],
+   "pass": true
+  },
+  {
+   "id": "EV-2",
+   "repo": "evidentlyai__evidently",
+   "kind": "smoke",
+   "claim": "import fails under the default pandas 3 resolution; UI path connects once without the switch and 0 times with it",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "NM-1",
+   "repo": "NannyML__nannyml",
+   "kind": "pin",
+   "claim": "Segment usage tracker created at import with a hard-coded key and a MAC-derived id; off switch NML_DISABLE_USAGE_LOGGING",
+   "observed": [
+    true,
+    true,
+    true
+   ],
+   "pass": true
+  },
+  {
+   "id": "NM-2",
+   "repo": "NannyML__nannyml",
+   "kind": "smoke",
+   "claim": "fresh install fails to import (statsmodels undeclared); telemetry connects with the switch absent, not with it",
+   "observed": [
+    2,
+    0
+   ],
+   "pass": true
+  },
+  {
+   "id": "FR-1",
+   "repo": "IFCA-Advanced-Computing__frouros",
+   "kind": "smoke",
+   "claim": "PSI on a column with NaN returns 0.0 without error; KS returns NaN",
+   "observed": "{\"EMD\": {\"raised\": false, \"result\": \"DistanceResult(distance=np.float64(nan))\"}, \"KSTest\": {\"raised\": false, \"result\": \"StatisticalResult(statistic=np.float64(nan), p_value=np.float64(nan))\"}, \"PSI\": ",
+   "pass": true
+  },
+  {
+   "id": "FR-2",
+   "repo": "IFCA-Advanced-Computing__frouros",
+   "kind": "pin",
+   "claim": "numpy, scipy and matplotlib upper bounds in pyproject; __version__ 0.9.0 while pyproject says 0.10.0",
+   "observed": [
+    true,
+    true,
+    true
+   ],
+   "pass": true
+  },
+  {
+   "id": "ML-1",
+   "repo": "mlflow__mlflow",
+   "kind": "pin",
+   "claim": "telemetry client set at import; disabled only by MLFLOW_DISABLE_TELEMETRY, DO_NOT_TRACK equal to 'true', CI or dev builds",
+   "observed": [
+    true,
+    true
+   ],
+   "pass": true
+  },
+  {
+   "id": "ML-2",
+   "repo": "mlflow__mlflow",
+   "kind": "smoke",
+   "claim": "release 3.17.2: DO_NOT_TRACK=1 still connects; MLFLOW_DISABLE_TELEMETRY=true does not; lineage run id matches registered version",
+   "observed": [
+    1,
+    0
+   ],
+   "pass": true
+  },
+  {
+   "id": "SO-1",
+   "repo": "probabl-ai__skore",
+   "kind": "smoke",
+   "claim": "SKD011 names the trap column as likely target leakage (tip); SKD013 flags shuffled KFold time overlap (issue)",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "SO-2",
+   "repo": "probabl-ai__skore",
+   "kind": "pin",
+   "claim": "git_commit recorded as 'None (working tree dirty)' outside a repository (string in source)",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "PA-1",
+   "repo": "unionai-oss__pandera",
+   "kind": "rerun",
+   "claim": "lead's own registered as-of check: legit 0 failing rows, 1-second-late row 41 caught, trap 3,000 rows caught, strict=True refuses an undeclared column, a raising check fails closed",
+   "observed": {
+    "check_that_raises": "validation failed (fail-closed): SchemaError",
+    "legit_rows_failing": 0,
+    "one_second_late_rows_failing": [
+     41
+    ],
+    "trap_with_availability_rows_failing": 3000,
+    "undeclared_column_strict_true": "refused: SchemaErrors column_in_schema"
+   },
+   "pass": true
+  },
+  {
+   "id": "PA-2",
+   "repo": "unionai-oss__pandera",
+   "kind": "smoke",
+   "claim": "import re-adds numpy 2 removed aliases and sets SPARK_LOCAL_IP and PYARROW_IGNORE_TIMEZONE",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "MI-1",
+   "repo": "666ghj__MiroFish",
+   "kind": "pin",
+   "claim": "AGPL-3.0 LICENSE sha256 8486a10c...; Flask binds 0.0.0.0; CORS origins '*'; default SECRET_KEY; no random seeding anywhere",
+   "observed": [
+    "8486a10c4393cee1",
+    "host = os.environ.get('FLASK_HOST', '0.0.0.0')",
+    "CORS(app, resources={r\"/api/*\": {\"origins\": \"*\"}})",
+    "SECRET_KEY = os.environ.get('SECRET_KEY', 'mirofish-secret-key')",
+    "0 hits"
+   ],
+   "pass": true
+  },
+  {
+   "id": "MI-2",
+   "repo": "666ghj__MiroFish",
+   "kind": "pin",
+   "claim": "ReportAgent plan prompt states that the simulated world's evolution is the prediction of the future (report_agent.py:552-567)",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "MI-3",
+   "repo": "666ghj__MiroFish",
+   "kind": "smoke",
+   "claim": "two identical runs against a deterministic mock differ (trace sha a0a70f5f vs 3159ba9f); with the LLM unreachable the script exits 0 and prints loop complete",
+   "observed": [
+    "a0a70f5f",
+    "3159ba9f"
+   ],
+   "pass": true
+  },
+  {
+   "id": "MI-4",
+   "repo": "666ghj__MiroFish",
+   "kind": "smoke",
+   "claim": "API list route answers 200 without credentials and reflects an untrusted CORS origin",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "OA-1",
+   "repo": "camel-ai__oasis",
+   "kind": "pin",
+   "claim": "Reddit clock starts at datetime.now() (platform.py:76-81); agent swallows LLM exceptions and returns them (agent.py:153-155)",
+   "observed": [
+    true,
+    true
+   ],
+   "pass": true
+  },
+  {
+   "id": "OA-2",
+   "repo": "camel-ai__oasis",
+   "kind": "smoke",
+   "claim": "two runs with the deterministic mock give different traces (7bb959b1 vs 10472c0f)",
+   "observed": [
+    "7bb959b1",
+    "10472c0f"
+   ],
+   "pass": true
+  },
+  {
+   "id": "ME-1",
+   "repo": "mesa__mesa",
+   "kind": "smoke",
+   "claim": "same seeds give a byte-identical frequency vector (sha 61cd4e71); the trap lifts AUC 0.59 to 0.81 unchecked",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "ME-2",
+   "repo": "mesa__mesa",
+   "kind": "pin",
+   "claim": "Model seeds a numpy Generator and a stdlib Random from the scenario (model.py:128-129)",
+   "observed": [
+    true
+   ],
+   "pass": true
+  },
+  {
+   "id": "BI-1",
+   "repo": "bancaditalia__black-it",
+   "kind": "smoke",
+   "claim": "6 golden-value tests fail with the locked scikit-learn, scipy and joblib versions",
+   "observed": true,
+   "pass": true
+  },
+  {
+   "id": "BI-2",
+   "repo": "bancaditalia__black-it",
+   "kind": "pin",
+   "claim": "NaN moments silently set to 0 (utils/time_series.py:87); AGPL-3.0 LICENSE sha256 d6e088f2...",
+   "observed": [
+    "np.nan_to_num(avg_vec_mom, copy=False)",
+    "d6e088f2fc2918a7"
+   ],
+   "pass": true
+  },
+  {
+   "id": "PC-3",
+   "repo": "eslazarev__purged-cross-validation",
+   "kind": "rerun",
+   "claim": "fold audit: walk-forward trains on 1,403 to 2,522 earlier rows with 0 rows decided after the test start; purged k-fold and CPCV train on up to 2,091 and 1,739 later rows; group k-fold by mint has two empty training folds (0, 0, 45, 179, 397)",
+   "observed": {
+    "walk_forward_min_train": 1403,
+    "purged_kfold_future": 2091,
+    "cpcv_future": 1739,
+    "group_kfold_n_train": [
+     0,
+     0,
+     45,
+     179,
+     397
+    ]
+   },
+   "pass": true
+  },
+  {
+   "id": "SK-7",
+   "repo": "scikit-learn__scikit-learn",
+   "kind": "rerun",
+   "claim": "fold audit: TimeSeriesSplit trains only on earlier rows (min 483, 0 decided after the test start) but leaves up to 110 training labels maturing after the test start",
+   "observed": {
+    "min_n_train": 483,
+    "max_train_decided_after_first_test": 0,
+    "max_train_label_matures_after_first_test": 110
+   },
+   "pass": true
+  },
+  {
+   "id": "ST-3",
+   "repo": "sktime__sktime",
+   "kind": "rerun",
+   "claim": "fold audit: ExpandingWindowSplitter trains only on earlier rows (min 1,000); InstanceSplitter by mint trains on up to 1,966 rows decided after the test start",
+   "observed": {
+    "expanding_min_train": 1000,
+    "instance_future": 1966
+   },
+   "pass": true
+  },
+  {
+   "id": "ST-4",
+   "repo": "sktime__sktime",
+   "kind": "smoke",
+   "claim": "sktime's own panel classifiers raised on unequal-length series; the only probabilities came from DummyClassifier(prior) (one constant) and SklearnClassifierPipeline wrapping scikit-learn LogisticRegression",
+   "observed": [
+    true,
+    true,
+    true
+   ],
+   "pass": true
+  },
+  {
+   "id": "MA-4",
+   "repo": "scikit-learn-contrib__MAPIE",
+   "kind": "rerun",
+   "claim": "VennAbersCalibrator(cv='prefit') with a fitted Pipeline refits the caller's transformers on the calibration rows (caller predictions change); Venn-Abers p1 0.5 above the calibration range where the definition gives 1.0",
+   "observed": {
+    "caller_base_max_abs_change": 0.01759,
+    "p1": 0.5
+   },
+   "pass": true
+  },
+  {
+   "id": "MA-5",
+   "repo": "scikit-learn-contrib__MAPIE",
+   "kind": "pin",
+   "claim": "custom per-row risk BinaryRisk(risk_occurrence, risk_condition) (risks.py:277) is consumed by BinaryClassificationController (binary_classification.py:182); MAPIE's own code, not a pass-through",
+   "observed": [
+    "class BinaryRisk(_OccurrenceConditionRisk):",
+    "binary_risk_choice_map[risk] if isinstance(risk, str) else risk"
+   ],
+   "pass": true
+  },
+  {
+   "id": "CR-3",
+   "repo": "henrikbostrom__crepes",
+   "kind": "pin",
+   "claim": "crepes WrapClassifier.fit passes **kwargs to the wrapped learner (base.py:3379); no weight or cost is consumed by crepes code",
+   "observed": [
+    "self.learner.fit(X, y, **kwargs)",
+    0
+   ],
+   "pass": true
+  },
+  {
+   "id": "HZ-3",
+   "repo": "soda-inria__hazardous",
+   "kind": "rerun",
+   "claim": "recalibrate_survival_function subtracts the absolute calibration error, so it moves survival away from the KM curve when the model under-states survival, and leaves [0, 1] (to -0.27) in the mirror case",
+   "observed": {
+    "abs": true,
+    "mirror_min": -0.273394,
+    "src": "return np.abs(mean_predictions - pred_km)"
+   },
+   "pass": true
+  },
+  {
+   "id": "RV-4",
+   "repo": "online-ml__river",
+   "kind": "pin",
+   "claim": "progressive_val_score learns every answer simulate_qa yields, including the end-of-stream flush (progressive_validation.py:138-155 after qa.py:244)",
+   "observed": [
+    true,
+    true
+   ],
+   "pass": true
+  },
+  {
+   "id": "RV-5",
+   "repo": "online-ml__river",
+   "kind": "registry",
+   "claim": "the 34 Rust crates in the normal dependency closure of the pinned Cargo.lock are all permissive (read from the local crates.io cache); the one MPL-2.0 crate is dev or bench only",
+   "observed": {
+    "normal_closure_crates": 34,
+    "normal_closure_non_permissive": [],
+    "non_permissive_or_unknown": [
+     "colored 3.1.1: MPL-2.0 (dev or bench only)"
+    ]
+   },
+   "pass": true
+  },
+  {
+   "id": "IN-5",
+   "repo": "interpretml__interpret",
+   "kind": "rerun",
+   "claim": "review S4 'has_term_standard_deviations false' is wrong (blind rescore): the pinned EBM sets standard_deviations_ (_ebm.py:1639), one finite array per term",
+   "observed": {
+    "has_standard_deviations_": true,
+    "n_sd_arrays": 6,
+    "all_finite": true
+   },
+   "pass": true
+  }
+ ],
+ "failed": 0,
+ "repositories_covered": [
+  "666ghj__MiroFish",
+  "CamDavidsonPilon__lifelines",
+  "IFCA-Advanced-Computing__frouros",
+  "NannyML__nannyml",
+  "PriorLabs__TabPFN",
+  "bancaditalia__black-it",
+  "baobach__mlfinpy",
+  "bashtage__arch",
+  "blue-yonder__tsfresh",
+  "camel-ai__oasis",
+  "deepcharles__ruptures",
+  "eslazarev__purged-cross-validation",
+  "evidentlyai__evidently",
+  "feast-dev__feast",
+  "henrikbostrom__crepes",
+  "interpretml__interpret",
+  "ip200__venn-abers",
+  "lightgbm-org__LightGBM",
+  "lorentzenchr__model-diagnostics",
+  "mesa__mesa",
+  "mlflow__mlflow",
+  "online-ml__river",
+  "probabl-ai__skore",
+  "scikit-learn-contrib__MAPIE",
+  "scikit-learn__scikit-learn",
+  "sktime__sktime",
+  "soda-inria__hazardous",
+  "statsmodels__statsmodels",
+  "stumpy-dev__stumpy",
+  "unionai-oss__pandera"
+ ]
+}

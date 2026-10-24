@@ -1,0 +1,254 @@
+{
+ "env": {
+  "python": "3.13.17",
+  "platform": "Linux-6.18.44-fc-v153-x86_64-with-glibc2.39",
+  "executable": "/home/claude/pi_research/venvs/sktime__sktime/bin/python"
+ },
+ "sktime_version": "1.2.0",
+ "sktime_file": "/home/claude/pi_research/venvs/sktime__sktime/lib/python3.13/site-packages/sktime/__init__.py",
+ "pandas": "3.0.5",
+ "decision_index": {
+  "n": 3000,
+  "monotonic": true,
+  "duplicates": 2,
+  "inferred_freq": "None"
+ },
+ "A1_expanding_rows": {
+  "folds": 5,
+  "detail": [
+   {
+    "train": 1000,
+    "test": 100,
+    "gap_s": 1124.0,
+    "train_labels_not_matured_at_test_start": 94
+   },
+   {
+    "train": 1400,
+    "test": 100,
+    "gap_s": 36.0,
+    "train_labels_not_matured_at_test_start": 116
+   },
+   {
+    "train": 1800,
+    "test": 100,
+    "gap_s": 941.0,
+    "train_labels_not_matured_at_test_start": 112
+   },
+   {
+    "train": 2200,
+    "test": 100,
+    "gap_s": 747.0,
+    "train_labels_not_matured_at_test_start": 84
+   },
+   {
+    "train": 2600,
+    "test": 100,
+    "gap_s": 1237.0,
+    "train_labels_not_matured_at_test_start": 84
+   }
+  ],
+  "raised": null
+ },
+ "A2_expanding_timedelta": {
+  "folds": 0,
+  "detail": [],
+  "raised": "KeyError: Timestamp('2026-10-03 14:27:48+0000', tz='UTC')"
+ },
+ "A3_fh_offset_gap_100_rows": {
+  "folds": 5,
+  "detail": [
+   {
+    "train": 1000,
+    "test": 100,
+    "gap_s": 93979.0,
+    "train_labels_not_matured_at_test_start": 0
+   },
+   {
+    "train": 1400,
+    "test": 100,
+    "gap_s": 95535.0,
+    "train_labels_not_matured_at_test_start": 0
+   },
+   {
+    "train": 1800,
+    "test": 100,
+    "gap_s": 79673.0,
+    "train_labels_not_matured_at_test_start": 5
+   },
+   {
+    "train": 2200,
+    "test": 100,
+    "gap_s": 82116.0,
+    "train_labels_not_matured_at_test_start": 10
+   },
+   {
+    "train": 2600,
+    "test": 100,
+    "gap_s": 76245.0,
+    "train_labels_not_matured_at_test_start": 15
+   }
+  ],
+  "raised": null
+ },
+ "A4_expanding_cutoff_timestamp": {
+  "folds": 4,
+  "detail": [
+   {
+    "train": 1500,
+    "test": 100,
+    "gap_s": 199.0,
+    "train_labels_not_matured_at_test_start": 91
+   },
+   {
+    "train": 1900,
+    "test": 100,
+    "gap_s": 939.0,
+    "train_labels_not_matured_at_test_start": 105
+   },
+   {
+    "train": 2300,
+    "test": 100,
+    "gap_s": 273.0,
+    "train_labels_not_matured_at_test_start": 110
+   },
+   {
+    "train": 2700,
+    "test": 100,
+    "gap_s": 613.0,
+    "train_labels_not_matured_at_test_start": 115
+   }
+  ],
+  "raised": null
+ },
+ "A5_instance_splitter": {
+  "folds": 3,
+  "mint_overlap_train_test": [
+   0,
+   0,
+   0
+  ],
+  "raised": null,
+  "time_order_inside_fold": "not enforced (instances split, timestamps ignored)"
+ },
+ "S1_trap_through_splitter": {
+  "clean": {
+   "mean_fold_brier": 0.03356794347009921,
+   "mean_fold_brier_base": 0.03470982323153099,
+   "folds": 5
+  },
+  "with_trap": {
+   "mean_fold_brier": 0.0035462958983204797,
+   "mean_fold_brier_base": 0.03470982323153099,
+   "folds": 5
+  },
+  "library_stopped_it": false,
+  "evaluate_note": "forecasting evaluate() passes X_test (future exogenous rows) to predict (_functions.py:289)"
+ },
+ "D_forecast_irregular": {
+  "raised": "TypeError: unsupported operand type(s) for *: 'int' and 'NoneType'"
+ },
+ "C_panel_meta": {
+  "valid_pd_multiindex": true,
+  "n_instances": 289,
+  "is_equal_length": 0.0,
+  "is_equally_spaced": false,
+  "has_nans": 0.0,
+  "positives": 145
+ },
+ "C_registry": {
+  "classifiers": 80,
+  "unequal_length": 7,
+  "missing_values": 11,
+  "unequal_and_missing": 6,
+  "unequal_core_deps_only": [
+   "DummyClassifier",
+   "KNeighborsTimeSeriesClassifier",
+   "MultiplexClassifier",
+   "SklearnClassifierPipeline",
+   "TSCGridSearchCV",
+   "TimeSeriesSVC"
+  ]
+ },
+ "C_classification_S2_S6": {
+  "SummaryClassifier": {
+   "raised": "ValueError: Data seen by SummaryClassifier instance has unequal length series, but this SummaryClassifier instance cannot handle unequal length series. Calls with unequal length series may result in error or unre"
+  },
+  "DummyClassifier(prior)": {
+   "n": 87,
+   "positives": 38,
+   "shape": [
+    87
+   ],
+   "finite": true,
+   "in_0_1": true,
+   "min": 0.5297029702970297,
+   "max": 0.5297029702970297,
+   "mean": 0.5297029702970298,
+   "brier": 0.25463781441305616,
+   "logloss": 0.702434784780757,
+   "base_rate_train": 0.5297029702970297,
+   "brier_base": 0.25463781441305616,
+   "logloss_base": 0.702434784780757,
+   "bss_vs_base": 0.0,
+   "auc": 0.5,
+   "fit_s": 0.055,
+   "predict_ms_per_instance": 0.293,
+   "proba_shape": [
+    87,
+    2
+   ],
+   "tags_unequal": true,
+   "tags_missing": true
+  },
+  "KNeighborsTimeSeriesClassifier(dtw)": {
+   "raised": "ValueError: Data seen by KNeighborsTimeSeriesClassifier instance has unequal length series, but this KNeighborsTimeSeriesClassifier instance cannot handle unequal length series. Calls with unequal length series m"
+  },
+  "SklearnClassifierPipeline(SummaryTransformer, LogisticRegression)": {
+   "n": 87,
+   "positives": 38,
+   "shape": [
+    87
+   ],
+   "finite": true,
+   "in_0_1": true,
+   "min": 0.4751932487990243,
+   "max": 0.6314252112614701,
+   "mean": 0.5301903315154476,
+   "brier": 0.2486179172410109,
+   "logloss": 0.6905194049104699,
+   "base_rate_train": 0.5297029702970297,
+   "brier_base": 0.25463781441305616,
+   "logloss_base": 0.702434784780757,
+   "bss_vs_base": 0.023641018070789,
+   "auc": 0.6632653061224489,
+   "fit_s": 0.725,
+   "predict_ms_per_instance": 3.678,
+   "proba_shape": [
+    87,
+    2
+   ],
+   "tags_unequal": false,
+   "tags_missing": false
+  }
+ },
+ "S3_nan_panel": {
+  "SummaryClassifier": {
+   "raised": "ValueError: Data seen by SummaryClassifier instance has missing values and unequal length series, but this SummaryClassifier instance cannot handle missing values or unequa"
+  },
+  "SummaryTransformer_LR_pipeline": {
+   "raised": null,
+   "proba_finite": true
+  }
+ },
+ "S5_persistence": {
+  "estimator": "SklearnClassifierPipeline(SummaryTransformer, LogisticRegression)",
+  "format": "BaseObject.save() returns an in-memory pickle; with a path it writes a zip holding pickles",
+  "identical": true,
+  "raised": null
+ },
+ "S4": "SKIPPED for sktime core: no classifier calibration in core; probabilistic forecasting intervals need soft dependencies (skpro) not installed",
+ "S6_timings": {
+  "import_s": 3.6379,
+  "registry_s": 1.2448
+ }
+}

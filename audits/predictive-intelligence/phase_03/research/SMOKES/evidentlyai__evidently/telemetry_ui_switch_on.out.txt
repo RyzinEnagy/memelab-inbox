@@ -1,0 +1,10 @@
+INFO - 2026-10-24 00:39:02,679 - httpx - _client - HTTP Request: GET http://testserver.local/api/projects "HTTP/1.1 200 OK"
+fatal: not a git repository (or any of the parent directories): .git
+INFO - 2026-10-24 00:39:02,699 - httpx - _client - HTTP Request: GET http://testserver.local/api/version "HTTP/1.1 200 OK"
+mode ui False XDG_CONFIG_HOME /tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r4/xdg_lMpt
+Observer for '/tmp/ev_probe_0ixtf1hf/ws' started
+GET /api/projects 200 []
+GET /api/version 200 {"application":"Evidently UI","version":"0.7.22","commit":"-"}
+evidently.telemetry imported: True
+iterative_telemetry imported: True
+files written under XDG_CONFIG_HOME: ['evidentlyai/telemetry', 'evidentlyai/telemetry.lock']

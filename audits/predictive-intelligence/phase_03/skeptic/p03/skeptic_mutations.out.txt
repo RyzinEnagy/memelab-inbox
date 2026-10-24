@@ -1,0 +1,7 @@
+s_total_plus_one_sklearn           REFUSED   total of scikit-learn/scikit-learn is 52, criteria sum to 51
+s_fabricated_point_existing_file   ACCEPTED  
+s_readme_at_pin                    ACCEPTED  
+s_docs_at_pin                      ACCEPTED  
+s_T3_from_review_prose             ACCEPTED  
+s_T1_from_review_prose             ACCEPTED  
+top ten without MAPIE O1: [('scikit-learn/scikit-learn', '51'), ('eslazarev/purged-cross-validation', '50'), ('online-ml/river', '49'), ('statsmodels/statsmodels', '49'), ('soda-inria/hazardous', '48'), ('interpretml/interpret', '48'), ('sktime/sktime', '46'), ('lightgbm-org/LightGBM', '45'), ('unionai-oss/pandera', '44'), ('CamDavidsonPilon/lifelines', '44'), ('scikit-learn-contrib/MAPIE', '44'), ('probabl-ai/skore', '41')]

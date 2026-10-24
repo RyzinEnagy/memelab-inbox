@@ -1,0 +1,1 @@
+RESULTS_JSON {"filtered_first_1000_with_800_later_rows_appended_max_abs_diff": 0.0, "out_of_sample_predict": "NotImplementedError", "smoothed_first_1000_with_800_later_rows_appended_max_abs_diff": 0.018620023187954637, "statsmodels_version": "0.1.dev1+gaa61cc148"}

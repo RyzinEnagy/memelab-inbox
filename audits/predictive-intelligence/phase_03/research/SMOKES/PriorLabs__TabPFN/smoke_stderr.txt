@@ -1,0 +1,3 @@
+/home/claude/pi_research/venvs/PriorLabs__TabPFN/lib/python3.13/site-packages/tabpfn/validation.py:234: UserWarning: Running on CPU with more than 200 samples may be slow.
+Consider using a GPU or the tabpfn-client API: https://github.com/PriorLabs/tabpfn-client
+  _validate_num_samples_for_cpu(

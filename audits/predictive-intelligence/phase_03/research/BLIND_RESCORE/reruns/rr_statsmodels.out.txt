@@ -1,0 +1,6 @@
+statsmodels 0.15.0
+filter, train params, train-only vs extended series: max abs diff 0.0
+smooth, train params, extended vs filter on train rows: max abs diff 0.2487
+filter, full-sample params vs train params on train rows: max abs diff 0.997 (label switching possible) 0.6557
+out-of-sample predict: NotImplementedError
+holm [0.036, 0.06, 0.06]

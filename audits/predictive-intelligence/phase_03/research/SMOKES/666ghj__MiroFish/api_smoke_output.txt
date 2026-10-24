@@ -1,0 +1,24 @@
+[00:47:33] INFO: ==================================================
+[00:47:33] INFO: MiroFish Backend 启动中...
+[00:47:33] INFO: ==================================================
+[00:47:34] INFO: 已注册模拟进程清理函数
+[00:47:34] INFO: MiroFish Backend 启动完成
+{
+ "config_validate_errors_without_keys": [
+  "LLM_API_KEY 未配置",
+  "ZEP_API_KEY 未配置"
+ ],
+ "secret_key_default": true,
+ "llm_base_url_default": "https://api.openai.com/v1",
+ "api_rule_count": 59,
+ "list_without_auth_status": 200,
+ "cors_allow_origin": "http://untrusted.example",
+ "start_unknown_status": 404,
+ "start_unknown_keys": [
+  "error",
+  "success"
+ ],
+ "start_unknown_has_traceback": false,
+ "report_unknown_status": 404,
+ "report_unknown_has_traceback": false
+}

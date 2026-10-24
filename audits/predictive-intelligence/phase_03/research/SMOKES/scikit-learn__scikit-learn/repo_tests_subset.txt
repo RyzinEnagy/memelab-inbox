@@ -1,0 +1,4 @@
+command: OMP_NUM_THREADS=1 python -m pytest --pyargs sklearn.tests.test_calibration sklearn.model_selection.tests.test_split -k 'calibrat or time_series or TimeSeries' -q -p no:cacheprovider (built from pin 59106029); exit=0; wall_s=14; last lines:
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+137 passed, 138 skipped, 265 deselected, 20 warnings in 13.53s

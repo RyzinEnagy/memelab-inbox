@@ -1,0 +1,3 @@
+/home/claude/pi_research/venvs/evidentlyai__evidently/lib/python3.13/site-packages/evidently/descriptors/text_match.py:140: SyntaxWarning: invalid escape sequence '\d'
+  TextMatch(text_column="description", match_items=r"\b\d{3}-\d{3}-\d{4}\b", match_type="regex")
+0.7.22 False False

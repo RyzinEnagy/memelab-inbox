@@ -1,0 +1,271 @@
+{
+ "max_rounds": 4,
+ "runs": [
+  {
+   "tag": "run1",
+   "exit_code": 0,
+   "wall_s": 15.02,
+   "tables": [
+    "user",
+    "sqlite_sequence",
+    "post",
+    "follow",
+    "mute",
+    "like",
+    "dislike",
+    "report",
+    "trace",
+    "rec",
+    "comment",
+    "comment_like",
+    "comment_dislike",
+    "product",
+    "chat_group",
+    "group_members",
+    "group_messages"
+   ],
+   "counts": {
+    "user": 4,
+    "sqlite_sequence": 3,
+    "post": 3,
+    "follow": 0,
+    "mute": 0,
+    "like": 3,
+    "dislike": 0,
+    "report": 0,
+    "trace": 19,
+    "rec": 8,
+    "comment": 0,
+    "comment_like": 0,
+    "comment_dislike": 0,
+    "product": 0,
+    "chat_group": 0,
+    "group_members": 0,
+    "group_messages": 0
+   },
+   "trace_user_action": [
+    [
+     0,
+     "sign_up"
+    ],
+    [
+     1,
+     "sign_up"
+    ],
+    [
+     2,
+     "sign_up"
+    ],
+    [
+     3,
+     "sign_up"
+    ],
+    [
+     0,
+     "create_post"
+    ],
+    [
+     0,
+     "refresh"
+    ],
+    [
+     2,
+     "refresh"
+    ],
+    [
+     0,
+     "like_post"
+    ],
+    [
+     2,
+     "create_post"
+    ],
+    [
+     3,
+     "refresh"
+    ],
+    [
+     0,
+     "refresh"
+    ],
+    [
+     2,
+     "refresh"
+    ],
+    [
+     3,
+     "like_post"
+    ],
+    [
+     2,
+     "like_post"
+    ],
+    [
+     3,
+     "refresh"
+    ],
+    [
+     3,
+     "do_nothing"
+    ],
+    [
+     0,
+     "refresh"
+    ],
+    [
+     2,
+     "refresh"
+    ],
+    [
+     0,
+     "create_post"
+    ]
+   ],
+   "trace_sha256": "a0a70f5fc7c6e9b90c8b4993f809dda0d9f04c11d7bdceba254f3f7136623ce7",
+   "posts_sha256": "19d65a81577ce25ae67308302434290b517d0e1b16368c4fb7a31e6f87c10b05",
+   "llm_requests": 8,
+   "llm_prompt_chars_total": 21455,
+   "llm_reply_kinds": {
+    "tool:create_post": 2,
+    "tool:do_nothing": 1,
+    "tool:like_post": 5
+   }
+  },
+  {
+   "tag": "run2",
+   "exit_code": 0,
+   "wall_s": 17.01,
+   "tables": [
+    "user",
+    "sqlite_sequence",
+    "post",
+    "follow",
+    "mute",
+    "like",
+    "dislike",
+    "report",
+    "trace",
+    "rec",
+    "comment",
+    "comment_like",
+    "comment_dislike",
+    "product",
+    "chat_group",
+    "group_members",
+    "group_messages"
+   ],
+   "counts": {
+    "user": 4,
+    "sqlite_sequence": 3,
+    "post": 5,
+    "follow": 0,
+    "mute": 0,
+    "like": 1,
+    "dislike": 0,
+    "report": 0,
+    "trace": 20,
+    "rec": 12,
+    "comment": 0,
+    "comment_like": 0,
+    "comment_dislike": 0,
+    "product": 0,
+    "chat_group": 0,
+    "group_members": 0,
+    "group_messages": 0
+   },
+   "trace_user_action": [
+    [
+     0,
+     "sign_up"
+    ],
+    [
+     1,
+     "sign_up"
+    ],
+    [
+     2,
+     "sign_up"
+    ],
+    [
+     3,
+     "sign_up"
+    ],
+    [
+     0,
+     "create_post"
+    ],
+    [
+     1,
+     "refresh"
+    ],
+    [
+     2,
+     "refresh"
+    ],
+    [
+     1,
+     "like_post"
+    ],
+    [
+     2,
+     "create_post"
+    ],
+    [
+     1,
+     "refresh"
+    ],
+    [
+     3,
+     "refresh"
+    ],
+    [
+     1,
+     "refresh"
+    ],
+    [
+     2,
+     "refresh"
+    ],
+    [
+     3,
+     "create_post"
+    ],
+    [
+     1,
+     "do_nothing"
+    ],
+    [
+     2,
+     "do_nothing"
+    ],
+    [
+     0,
+     "refresh"
+    ],
+    [
+     1,
+     "refresh"
+    ],
+    [
+     0,
+     "create_post"
+    ],
+    [
+     1,
+     "create_post"
+    ]
+   ],
+   "trace_sha256": "3159ba9f5f9841a19b52beb8608df6c6d5d23e3b866ce0784162429a7146cb24",
+   "posts_sha256": "c08b6a349a50f178f82a04e55d65d5598347c39746cb45e7ebdd11756fb90718",
+   "llm_requests": 8,
+   "llm_prompt_chars_total": 21968,
+   "llm_reply_kinds": {
+    "tool:create_post": 4,
+    "tool:do_nothing": 2,
+    "tool:like_post": 2
+   }
+  }
+ ],
+ "identical_trace_across_runs": false,
+ "peak_rss_children_mb": 609.9
+}

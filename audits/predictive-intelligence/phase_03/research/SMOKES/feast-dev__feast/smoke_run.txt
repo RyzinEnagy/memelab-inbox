@@ -1,0 +1,1 @@
+command: OMP_NUM_THREADS=1 /home/claude/pi_research/venvs/feast-dev__feast/bin/python -I smoke_feast.py challenge.csv scratch; exit=0; wall_s=4.911044627

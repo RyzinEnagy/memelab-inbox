@@ -1,0 +1,1159 @@
+# command: unshare -n -- /home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/bin/python -m pytest -q -p no:cacheprovider /home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/tests/test_compute.py /home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/scoring/tests/test_scoring.py /home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/_utils/tests/test_isotonic.py
+# started_utc: 2026-10-24T04:50:09Z
+# network: OFF (unshare -n, no network namespace)
+....sssss..................F.F........s......sssss...................F.F [ 23%]
+........................................................................ [ 46%]
+........................................................................ [ 69%]
+........................................................................ [ 93%]
+.....................                                                    [100%]
+=================================== FAILURES ===================================
+_________________ test_compute_bias_multiple_predictions[cat] __________________
+
+x = 0    2.0
+1    2.0
+2    2.0
+3    2.0
+4    2.0
+5    1.0
+6    1.0
+7    1.0
+8    1.0
+9    1.0
+Name: nice_feature, dtype: category
+Categories (2, str): ['1.0', '2.0']
+name = 'nice_feature'
+
+    def to_pl_series(x, name=None) -> pl.Series:
+        """Convert x to a polars Series."""
+        try:
+>           feature_out = pl.Series(name=name, values=x)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/_utils/array.py:402: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/series/series.py:374: in __init__
+    self._s = pandas_to_pyseries(name, values, dtype=dtype, strict=strict)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'nice_feature'
+values = 0    2.0
+1    2.0
+2    2.0
+3    2.0
+4    2.0
+5    1.0
+6    1.0
+7    1.0
+8    1.0
+9    1.0
+Name: nice_feature, dtype: category
+Categories (2, str): ['1.0', '2.0']
+dtype = None, strict = True, nan_to_null = True
+
+    def pandas_to_pyseries(
+        name: str,
+        values: pd.Series[Any] | pd.Index[Any] | pd.DatetimeIndex,
+        dtype: PolarsDataType | None = None,
+        *,
+        strict: bool = True,
+        nan_to_null: bool = True,
+    ) -> PySeries:
+        """Construct a PySeries from a pandas Series or DatetimeIndex."""
+        if not name and values.name is not None:
+            name = str(values.name)
+        if is_simple_numpy_backed_pandas_series(values):
+            return pl.Series(
+                name, values.to_numpy(), dtype=dtype, nan_to_null=nan_to_null, strict=strict
+            )._s
+        if not _PYARROW_AVAILABLE:
+            msg = (
+                "pyarrow is required for converting a pandas series to Polars, "
+                "unless it is a simple numpy-backed one "
+                "(e.g. 'int64', 'bool', 'float32' - not 'Int64')"
+            )
+>           raise ImportError(msg)
+E           ImportError: pyarrow is required for converting a pandas series to Polars, unless it is a simple numpy-backed one (e.g. 'int64', 'bool', 'float32' - not 'Int64')
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/_utils/construction/series.py:445: ImportError
+
+During handling of the above exception, another exception occurred:
+
+name = 'pyarrow', extra = '', min_version = '14.0.0', errors = 'raise'
+
+    def import_optional_dependency(
+        name: str,
+        extra: str = "",
+        min_version: str | None = None,
+        *,
+        errors: Literal["raise", "warn", "ignore"] = "raise",
+    ) -> types.ModuleType | None:
+        """
+        Import an optional dependency.
+    
+        By default, if a dependency is missing an ImportError with a nice
+        message will be raised. If a dependency is present, but too old,
+        we raise.
+    
+        Parameters
+        ----------
+        name : str
+            The module name.
+        extra : str
+            Additional text to include in the ImportError message.
+        errors : str {'raise', 'warn', 'ignore'}
+            What to do when a dependency is not found or its version is too old.
+    
+            * raise : Raise an ImportError
+            * warn : Only applicable when a module's version is to old.
+              Warns that the version is too old and returns None
+            * ignore: If the module is not installed, return None, otherwise,
+              return the module, even if the version is too old.
+              It's expected that users validate the version locally when
+              using ``errors="ignore"`` (see. ``io/html.py``)
+        min_version : str, default None
+            Specify a minimum version that is different from the global pandas
+            minimum version required.
+        Returns
+        -------
+        maybe_module : Optional[ModuleType]
+            The imported module, when found and the version is correct.
+            None is returned when the package is not found and `errors`
+            is False, or when the package's version is too old and `errors`
+            is ``'warn'`` or ``'ignore'``.
+        """
+        assert errors in {"warn", "raise", "ignore"}
+    
+        package_name = INSTALL_MAPPING.get(name)
+        install_name = package_name if package_name is not None else name
+    
+        msg = (
+            f"`Import {install_name}` failed. {extra} "
+            f"Use pip, conda, or your preferred package management tool "
+            f"to install the {install_name} package."
+        )
+        try:
+>           module = importlib.import_module(name)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/pandas/compat/_optional.py:158: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'pyarrow', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'pyarrow'
+
+/usr/lib/python3.13/importlib/__init__.py:88: ModuleNotFoundError
+
+The above exception was the direct cause of the following exception:
+
+feature_type = 'cat'
+
+    @pytest.mark.parametrize("feature_type", ["cat", "num", "string"])
+    def test_compute_bias_multiple_predictions(feature_type):
+        """Test compute_bias for multiple predictions."""
+        with pl.StringCache():
+            n_obs = 10
+            y_obs = np.ones(n_obs)
+            y_obs[: 10 // 2] = 2
+            y_pred = pl.DataFrame(
+                {"model_1": np.ones(n_obs), "model_2": 3 * np.ones(n_obs)}
+            )
+            if feature_type == "cat":
+                feature = pd_Series(
+                    y_obs.astype("=U8"), dtype="category", name="nice_feature"
+                )
+            elif feature_type == "string":
+                feature = pd_Series(y_obs.astype("=U8"), name="nice_feature")
+            else:
+                feature = pl.Series(values=y_obs, name="nice_feature")
+    
+            if isinstance(feature, SkipContainer):
+                pytest.skip("Module for data container not imported.")
+    
+>           df_bias = compute_bias(
+                y_obs=y_obs,
+                y_pred=y_pred,
+                feature=feature,
+            )
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/tests/test_compute.py:322: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/_compute.py:212: in compute_bias
+    feature_series, n_bins, f_binned = bin_feature(
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/_utils/binning.py:121: in bin_feature
+    feature_out = to_pl_series(feature, name=feature_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/_utils/array.py:414: in to_pl_series
+    feature_out = pl.from_dataframe(
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/_utils/expired.py:114: in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/convert/general.py:1165: in from_dataframe
+    return pycapsule_to_frame(df, rechunk=rechunk)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/_utils/pycapsule.py:44: in pycapsule_to_frame
+    df = wrap_df(PySeries.from_arrow_c_stream(obj).struct_unnest())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/pandas/core/frame.py:774: in __arrow_c_stream__
+    pa = import_optional_dependency("pyarrow", min_version="14.0.0")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'pyarrow', extra = '', min_version = '14.0.0', errors = 'raise'
+
+    def import_optional_dependency(
+        name: str,
+        extra: str = "",
+        min_version: str | None = None,
+        *,
+        errors: Literal["raise", "warn", "ignore"] = "raise",
+    ) -> types.ModuleType | None:
+        """
+        Import an optional dependency.
+    
+        By default, if a dependency is missing an ImportError with a nice
+        message will be raised. If a dependency is present, but too old,
+        we raise.
+    
+        Parameters
+        ----------
+        name : str
+            The module name.
+        extra : str
+            Additional text to include in the ImportError message.
+        errors : str {'raise', 'warn', 'ignore'}
+            What to do when a dependency is not found or its version is too old.
+    
+            * raise : Raise an ImportError
+            * warn : Only applicable when a module's version is to old.
+              Warns that the version is too old and returns None
+            * ignore: If the module is not installed, return None, otherwise,
+              return the module, even if the version is too old.
+              It's expected that users validate the version locally when
+              using ``errors="ignore"`` (see. ``io/html.py``)
+        min_version : str, default None
+            Specify a minimum version that is different from the global pandas
+            minimum version required.
+        Returns
+        -------
+        maybe_module : Optional[ModuleType]
+            The imported module, when found and the version is correct.
+            None is returned when the package is not found and `errors`
+            is False, or when the package's version is too old and `errors`
+            is ``'warn'`` or ``'ignore'``.
+        """
+        assert errors in {"warn", "raise", "ignore"}
+    
+        package_name = INSTALL_MAPPING.get(name)
+        install_name = package_name if package_name is not None else name
+    
+        msg = (
+            f"`Import {install_name}` failed. {extra} "
+            f"Use pip, conda, or your preferred package management tool "
+            f"to install the {install_name} package."
+        )
+        try:
+            module = importlib.import_module(name)
+        except ImportError as err:
+            if errors == "raise":
+>               raise ImportError(msg) from err
+E               ImportError: `Import pyarrow` failed.  Use pip, conda, or your preferred package management tool to install the pyarrow package.
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/pandas/compat/_optional.py:161: ImportError
+________________ test_compute_bias_multiple_predictions[string] ________________
+
+x = 0    2.0
+1    2.0
+2    2.0
+3    2.0
+4    2.0
+5    1.0
+6    1.0
+7    1.0
+8    1.0
+9    1.0
+Name: nice_feature, dtype: str
+name = 'nice_feature'
+
+    def to_pl_series(x, name=None) -> pl.Series:
+        """Convert x to a polars Series."""
+        try:
+>           feature_out = pl.Series(name=name, values=x)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/_utils/array.py:402: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/series/series.py:374: in __init__
+    self._s = pandas_to_pyseries(name, values, dtype=dtype, strict=strict)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'nice_feature'
+values = 0    2.0
+1    2.0
+2    2.0
+3    2.0
+4    2.0
+5    1.0
+6    1.0
+7    1.0
+8    1.0
+9    1.0
+Name: nice_feature, dtype: str
+dtype = None, strict = True, nan_to_null = True
+
+    def pandas_to_pyseries(
+        name: str,
+        values: pd.Series[Any] | pd.Index[Any] | pd.DatetimeIndex,
+        dtype: PolarsDataType | None = None,
+        *,
+        strict: bool = True,
+        nan_to_null: bool = True,
+    ) -> PySeries:
+        """Construct a PySeries from a pandas Series or DatetimeIndex."""
+        if not name and values.name is not None:
+            name = str(values.name)
+        if is_simple_numpy_backed_pandas_series(values):
+            return pl.Series(
+                name, values.to_numpy(), dtype=dtype, nan_to_null=nan_to_null, strict=strict
+            )._s
+        if not _PYARROW_AVAILABLE:
+            msg = (
+                "pyarrow is required for converting a pandas series to Polars, "
+                "unless it is a simple numpy-backed one "
+                "(e.g. 'int64', 'bool', 'float32' - not 'Int64')"
+            )
+>           raise ImportError(msg)
+E           ImportError: pyarrow is required for converting a pandas series to Polars, unless it is a simple numpy-backed one (e.g. 'int64', 'bool', 'float32' - not 'Int64')
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/_utils/construction/series.py:445: ImportError
+
+During handling of the above exception, another exception occurred:
+
+name = 'pyarrow', extra = '', min_version = '14.0.0', errors = 'raise'
+
+    def import_optional_dependency(
+        name: str,
+        extra: str = "",
+        min_version: str | None = None,
+        *,
+        errors: Literal["raise", "warn", "ignore"] = "raise",
+    ) -> types.ModuleType | None:
+        """
+        Import an optional dependency.
+    
+        By default, if a dependency is missing an ImportError with a nice
+        message will be raised. If a dependency is present, but too old,
+        we raise.
+    
+        Parameters
+        ----------
+        name : str
+            The module name.
+        extra : str
+            Additional text to include in the ImportError message.
+        errors : str {'raise', 'warn', 'ignore'}
+            What to do when a dependency is not found or its version is too old.
+    
+            * raise : Raise an ImportError
+            * warn : Only applicable when a module's version is to old.
+              Warns that the version is too old and returns None
+            * ignore: If the module is not installed, return None, otherwise,
+              return the module, even if the version is too old.
+              It's expected that users validate the version locally when
+              using ``errors="ignore"`` (see. ``io/html.py``)
+        min_version : str, default None
+            Specify a minimum version that is different from the global pandas
+            minimum version required.
+        Returns
+        -------
+        maybe_module : Optional[ModuleType]
+            The imported module, when found and the version is correct.
+            None is returned when the package is not found and `errors`
+            is False, or when the package's version is too old and `errors`
+            is ``'warn'`` or ``'ignore'``.
+        """
+        assert errors in {"warn", "raise", "ignore"}
+    
+        package_name = INSTALL_MAPPING.get(name)
+        install_name = package_name if package_name is not None else name
+    
+        msg = (
+            f"`Import {install_name}` failed. {extra} "
+            f"Use pip, conda, or your preferred package management tool "
+            f"to install the {install_name} package."
+        )
+        try:
+>           module = importlib.import_module(name)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/pandas/compat/_optional.py:158: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'pyarrow', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'pyarrow'
+
+/usr/lib/python3.13/importlib/__init__.py:88: ModuleNotFoundError
+
+The above exception was the direct cause of the following exception:
+
+feature_type = 'string'
+
+    @pytest.mark.parametrize("feature_type", ["cat", "num", "string"])
+    def test_compute_bias_multiple_predictions(feature_type):
+        """Test compute_bias for multiple predictions."""
+        with pl.StringCache():
+            n_obs = 10
+            y_obs = np.ones(n_obs)
+            y_obs[: 10 // 2] = 2
+            y_pred = pl.DataFrame(
+                {"model_1": np.ones(n_obs), "model_2": 3 * np.ones(n_obs)}
+            )
+            if feature_type == "cat":
+                feature = pd_Series(
+                    y_obs.astype("=U8"), dtype="category", name="nice_feature"
+                )
+            elif feature_type == "string":
+                feature = pd_Series(y_obs.astype("=U8"), name="nice_feature")
+            else:
+                feature = pl.Series(values=y_obs, name="nice_feature")
+    
+            if isinstance(feature, SkipContainer):
+                pytest.skip("Module for data container not imported.")
+    
+>           df_bias = compute_bias(
+                y_obs=y_obs,
+                y_pred=y_pred,
+                feature=feature,
+            )
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/tests/test_compute.py:322: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/_compute.py:212: in compute_bias
+    feature_series, n_bins, f_binned = bin_feature(
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/_utils/binning.py:121: in bin_feature
+    feature_out = to_pl_series(feature, name=feature_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/_utils/array.py:414: in to_pl_series
+    feature_out = pl.from_dataframe(
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/_utils/expired.py:114: in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/convert/general.py:1165: in from_dataframe
+    return pycapsule_to_frame(df, rechunk=rechunk)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/_utils/pycapsule.py:44: in pycapsule_to_frame
+    df = wrap_df(PySeries.from_arrow_c_stream(obj).struct_unnest())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/pandas/core/frame.py:774: in __arrow_c_stream__
+    pa = import_optional_dependency("pyarrow", min_version="14.0.0")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'pyarrow', extra = '', min_version = '14.0.0', errors = 'raise'
+
+    def import_optional_dependency(
+        name: str,
+        extra: str = "",
+        min_version: str | None = None,
+        *,
+        errors: Literal["raise", "warn", "ignore"] = "raise",
+    ) -> types.ModuleType | None:
+        """
+        Import an optional dependency.
+    
+        By default, if a dependency is missing an ImportError with a nice
+        message will be raised. If a dependency is present, but too old,
+        we raise.
+    
+        Parameters
+        ----------
+        name : str
+            The module name.
+        extra : str
+            Additional text to include in the ImportError message.
+        errors : str {'raise', 'warn', 'ignore'}
+            What to do when a dependency is not found or its version is too old.
+    
+            * raise : Raise an ImportError
+            * warn : Only applicable when a module's version is to old.
+              Warns that the version is too old and returns None
+            * ignore: If the module is not installed, return None, otherwise,
+              return the module, even if the version is too old.
+              It's expected that users validate the version locally when
+              using ``errors="ignore"`` (see. ``io/html.py``)
+        min_version : str, default None
+            Specify a minimum version that is different from the global pandas
+            minimum version required.
+        Returns
+        -------
+        maybe_module : Optional[ModuleType]
+            The imported module, when found and the version is correct.
+            None is returned when the package is not found and `errors`
+            is False, or when the package's version is too old and `errors`
+            is ``'warn'`` or ``'ignore'``.
+        """
+        assert errors in {"warn", "raise", "ignore"}
+    
+        package_name = INSTALL_MAPPING.get(name)
+        install_name = package_name if package_name is not None else name
+    
+        msg = (
+            f"`Import {install_name}` failed. {extra} "
+            f"Use pip, conda, or your preferred package management tool "
+            f"to install the {install_name} package."
+        )
+        try:
+            module = importlib.import_module(name)
+        except ImportError as err:
+            if errors == "raise":
+>               raise ImportError(msg) from err
+E               ImportError: `Import pyarrow` failed.  Use pip, conda, or your preferred package management tool to install the pyarrow package.
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/pandas/compat/_optional.py:161: ImportError
+_______________ test_compute_marginal_multiple_predictions[cat] ________________
+
+x = 0    2.0
+1    2.0
+2    2.0
+3    2.0
+4    2.0
+5    1.0
+6    1.0
+7    1.0
+8    1.0
+9    1.0
+Name: nice_feature, dtype: category
+Categories (2, str): ['1.0', '2.0']
+name = 'nice_feature'
+
+    def to_pl_series(x, name=None) -> pl.Series:
+        """Convert x to a polars Series."""
+        try:
+>           feature_out = pl.Series(name=name, values=x)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/_utils/array.py:402: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/series/series.py:374: in __init__
+    self._s = pandas_to_pyseries(name, values, dtype=dtype, strict=strict)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'nice_feature'
+values = 0    2.0
+1    2.0
+2    2.0
+3    2.0
+4    2.0
+5    1.0
+6    1.0
+7    1.0
+8    1.0
+9    1.0
+Name: nice_feature, dtype: category
+Categories (2, str): ['1.0', '2.0']
+dtype = None, strict = True, nan_to_null = True
+
+    def pandas_to_pyseries(
+        name: str,
+        values: pd.Series[Any] | pd.Index[Any] | pd.DatetimeIndex,
+        dtype: PolarsDataType | None = None,
+        *,
+        strict: bool = True,
+        nan_to_null: bool = True,
+    ) -> PySeries:
+        """Construct a PySeries from a pandas Series or DatetimeIndex."""
+        if not name and values.name is not None:
+            name = str(values.name)
+        if is_simple_numpy_backed_pandas_series(values):
+            return pl.Series(
+                name, values.to_numpy(), dtype=dtype, nan_to_null=nan_to_null, strict=strict
+            )._s
+        if not _PYARROW_AVAILABLE:
+            msg = (
+                "pyarrow is required for converting a pandas series to Polars, "
+                "unless it is a simple numpy-backed one "
+                "(e.g. 'int64', 'bool', 'float32' - not 'Int64')"
+            )
+>           raise ImportError(msg)
+E           ImportError: pyarrow is required for converting a pandas series to Polars, unless it is a simple numpy-backed one (e.g. 'int64', 'bool', 'float32' - not 'Int64')
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/_utils/construction/series.py:445: ImportError
+
+During handling of the above exception, another exception occurred:
+
+name = 'pyarrow', extra = '', min_version = '14.0.0', errors = 'raise'
+
+    def import_optional_dependency(
+        name: str,
+        extra: str = "",
+        min_version: str | None = None,
+        *,
+        errors: Literal["raise", "warn", "ignore"] = "raise",
+    ) -> types.ModuleType | None:
+        """
+        Import an optional dependency.
+    
+        By default, if a dependency is missing an ImportError with a nice
+        message will be raised. If a dependency is present, but too old,
+        we raise.
+    
+        Parameters
+        ----------
+        name : str
+            The module name.
+        extra : str
+            Additional text to include in the ImportError message.
+        errors : str {'raise', 'warn', 'ignore'}
+            What to do when a dependency is not found or its version is too old.
+    
+            * raise : Raise an ImportError
+            * warn : Only applicable when a module's version is to old.
+              Warns that the version is too old and returns None
+            * ignore: If the module is not installed, return None, otherwise,
+              return the module, even if the version is too old.
+              It's expected that users validate the version locally when
+              using ``errors="ignore"`` (see. ``io/html.py``)
+        min_version : str, default None
+            Specify a minimum version that is different from the global pandas
+            minimum version required.
+        Returns
+        -------
+        maybe_module : Optional[ModuleType]
+            The imported module, when found and the version is correct.
+            None is returned when the package is not found and `errors`
+            is False, or when the package's version is too old and `errors`
+            is ``'warn'`` or ``'ignore'``.
+        """
+        assert errors in {"warn", "raise", "ignore"}
+    
+        package_name = INSTALL_MAPPING.get(name)
+        install_name = package_name if package_name is not None else name
+    
+        msg = (
+            f"`Import {install_name}` failed. {extra} "
+            f"Use pip, conda, or your preferred package management tool "
+            f"to install the {install_name} package."
+        )
+        try:
+>           module = importlib.import_module(name)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/pandas/compat/_optional.py:158: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'pyarrow', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'pyarrow'
+
+/usr/lib/python3.13/importlib/__init__.py:88: ModuleNotFoundError
+
+The above exception was the direct cause of the following exception:
+
+feature_type = 'cat'
+
+    @pytest.mark.parametrize("feature_type", ["cat", "num", "string"])
+    def test_compute_marginal_multiple_predictions(feature_type):
+        """Test compute_marginal for multiple predictions."""
+        with pl.StringCache():
+            n_obs = 10
+            y_obs = np.ones(n_obs)
+            y_obs[: 10 // 2] = 2
+            y_pred = pl.DataFrame(
+                {"model_1": np.ones(n_obs), "model_2": 3 * np.ones(n_obs)}
+            )
+            if feature_type == "cat":
+                feature = pd_DataFrame(
+                    pd_Series(y_obs.astype("=U8"), dtype="category", name="nice_feature")
+                )
+            elif feature_type == "string":
+                feature = pd_DataFrame(pd_Series(y_obs.astype("=U8"), name="nice_feature"))
+            else:
+                feature = pl.Series(values=y_obs, name="nice_feature").to_frame()
+    
+            if isinstance(feature, SkipContainer):
+                pytest.skip("Module for data container not imported.")
+    
+>           df_marginal = compute_marginal(
+                y_obs=y_obs,
+                y_pred=y_pred,
+                X=feature,
+                feature_name="nice_feature",
+            ).drop(["y_obs_stderr", "y_pred_stderr", "weights"])
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/tests/test_compute.py:861: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/_compute.py:589: in compute_marginal
+    feature, n_bins, f_binned = bin_feature(
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/_utils/binning.py:121: in bin_feature
+    feature_out = to_pl_series(feature, name=feature_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/_utils/array.py:414: in to_pl_series
+    feature_out = pl.from_dataframe(
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/_utils/expired.py:114: in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/convert/general.py:1165: in from_dataframe
+    return pycapsule_to_frame(df, rechunk=rechunk)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/_utils/pycapsule.py:44: in pycapsule_to_frame
+    df = wrap_df(PySeries.from_arrow_c_stream(obj).struct_unnest())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/pandas/core/frame.py:774: in __arrow_c_stream__
+    pa = import_optional_dependency("pyarrow", min_version="14.0.0")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'pyarrow', extra = '', min_version = '14.0.0', errors = 'raise'
+
+    def import_optional_dependency(
+        name: str,
+        extra: str = "",
+        min_version: str | None = None,
+        *,
+        errors: Literal["raise", "warn", "ignore"] = "raise",
+    ) -> types.ModuleType | None:
+        """
+        Import an optional dependency.
+    
+        By default, if a dependency is missing an ImportError with a nice
+        message will be raised. If a dependency is present, but too old,
+        we raise.
+    
+        Parameters
+        ----------
+        name : str
+            The module name.
+        extra : str
+            Additional text to include in the ImportError message.
+        errors : str {'raise', 'warn', 'ignore'}
+            What to do when a dependency is not found or its version is too old.
+    
+            * raise : Raise an ImportError
+            * warn : Only applicable when a module's version is to old.
+              Warns that the version is too old and returns None
+            * ignore: If the module is not installed, return None, otherwise,
+              return the module, even if the version is too old.
+              It's expected that users validate the version locally when
+              using ``errors="ignore"`` (see. ``io/html.py``)
+        min_version : str, default None
+            Specify a minimum version that is different from the global pandas
+            minimum version required.
+        Returns
+        -------
+        maybe_module : Optional[ModuleType]
+            The imported module, when found and the version is correct.
+            None is returned when the package is not found and `errors`
+            is False, or when the package's version is too old and `errors`
+            is ``'warn'`` or ``'ignore'``.
+        """
+        assert errors in {"warn", "raise", "ignore"}
+    
+        package_name = INSTALL_MAPPING.get(name)
+        install_name = package_name if package_name is not None else name
+    
+        msg = (
+            f"`Import {install_name}` failed. {extra} "
+            f"Use pip, conda, or your preferred package management tool "
+            f"to install the {install_name} package."
+        )
+        try:
+            module = importlib.import_module(name)
+        except ImportError as err:
+            if errors == "raise":
+>               raise ImportError(msg) from err
+E               ImportError: `Import pyarrow` failed.  Use pip, conda, or your preferred package management tool to install the pyarrow package.
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/pandas/compat/_optional.py:161: ImportError
+______________ test_compute_marginal_multiple_predictions[string] ______________
+
+x = 0    2.0
+1    2.0
+2    2.0
+3    2.0
+4    2.0
+5    1.0
+6    1.0
+7    1.0
+8    1.0
+9    1.0
+Name: nice_feature, dtype: str
+name = 'nice_feature'
+
+    def to_pl_series(x, name=None) -> pl.Series:
+        """Convert x to a polars Series."""
+        try:
+>           feature_out = pl.Series(name=name, values=x)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/_utils/array.py:402: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/series/series.py:374: in __init__
+    self._s = pandas_to_pyseries(name, values, dtype=dtype, strict=strict)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'nice_feature'
+values = 0    2.0
+1    2.0
+2    2.0
+3    2.0
+4    2.0
+5    1.0
+6    1.0
+7    1.0
+8    1.0
+9    1.0
+Name: nice_feature, dtype: str
+dtype = None, strict = True, nan_to_null = True
+
+    def pandas_to_pyseries(
+        name: str,
+        values: pd.Series[Any] | pd.Index[Any] | pd.DatetimeIndex,
+        dtype: PolarsDataType | None = None,
+        *,
+        strict: bool = True,
+        nan_to_null: bool = True,
+    ) -> PySeries:
+        """Construct a PySeries from a pandas Series or DatetimeIndex."""
+        if not name and values.name is not None:
+            name = str(values.name)
+        if is_simple_numpy_backed_pandas_series(values):
+            return pl.Series(
+                name, values.to_numpy(), dtype=dtype, nan_to_null=nan_to_null, strict=strict
+            )._s
+        if not _PYARROW_AVAILABLE:
+            msg = (
+                "pyarrow is required for converting a pandas series to Polars, "
+                "unless it is a simple numpy-backed one "
+                "(e.g. 'int64', 'bool', 'float32' - not 'Int64')"
+            )
+>           raise ImportError(msg)
+E           ImportError: pyarrow is required for converting a pandas series to Polars, unless it is a simple numpy-backed one (e.g. 'int64', 'bool', 'float32' - not 'Int64')
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/_utils/construction/series.py:445: ImportError
+
+During handling of the above exception, another exception occurred:
+
+name = 'pyarrow', extra = '', min_version = '14.0.0', errors = 'raise'
+
+    def import_optional_dependency(
+        name: str,
+        extra: str = "",
+        min_version: str | None = None,
+        *,
+        errors: Literal["raise", "warn", "ignore"] = "raise",
+    ) -> types.ModuleType | None:
+        """
+        Import an optional dependency.
+    
+        By default, if a dependency is missing an ImportError with a nice
+        message will be raised. If a dependency is present, but too old,
+        we raise.
+    
+        Parameters
+        ----------
+        name : str
+            The module name.
+        extra : str
+            Additional text to include in the ImportError message.
+        errors : str {'raise', 'warn', 'ignore'}
+            What to do when a dependency is not found or its version is too old.
+    
+            * raise : Raise an ImportError
+            * warn : Only applicable when a module's version is to old.
+              Warns that the version is too old and returns None
+            * ignore: If the module is not installed, return None, otherwise,
+              return the module, even if the version is too old.
+              It's expected that users validate the version locally when
+              using ``errors="ignore"`` (see. ``io/html.py``)
+        min_version : str, default None
+            Specify a minimum version that is different from the global pandas
+            minimum version required.
+        Returns
+        -------
+        maybe_module : Optional[ModuleType]
+            The imported module, when found and the version is correct.
+            None is returned when the package is not found and `errors`
+            is False, or when the package's version is too old and `errors`
+            is ``'warn'`` or ``'ignore'``.
+        """
+        assert errors in {"warn", "raise", "ignore"}
+    
+        package_name = INSTALL_MAPPING.get(name)
+        install_name = package_name if package_name is not None else name
+    
+        msg = (
+            f"`Import {install_name}` failed. {extra} "
+            f"Use pip, conda, or your preferred package management tool "
+            f"to install the {install_name} package."
+        )
+        try:
+>           module = importlib.import_module(name)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/pandas/compat/_optional.py:158: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'pyarrow', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'pyarrow'
+
+/usr/lib/python3.13/importlib/__init__.py:88: ModuleNotFoundError
+
+The above exception was the direct cause of the following exception:
+
+feature_type = 'string'
+
+    @pytest.mark.parametrize("feature_type", ["cat", "num", "string"])
+    def test_compute_marginal_multiple_predictions(feature_type):
+        """Test compute_marginal for multiple predictions."""
+        with pl.StringCache():
+            n_obs = 10
+            y_obs = np.ones(n_obs)
+            y_obs[: 10 // 2] = 2
+            y_pred = pl.DataFrame(
+                {"model_1": np.ones(n_obs), "model_2": 3 * np.ones(n_obs)}
+            )
+            if feature_type == "cat":
+                feature = pd_DataFrame(
+                    pd_Series(y_obs.astype("=U8"), dtype="category", name="nice_feature")
+                )
+            elif feature_type == "string":
+                feature = pd_DataFrame(pd_Series(y_obs.astype("=U8"), name="nice_feature"))
+            else:
+                feature = pl.Series(values=y_obs, name="nice_feature").to_frame()
+    
+            if isinstance(feature, SkipContainer):
+                pytest.skip("Module for data container not imported.")
+    
+>           df_marginal = compute_marginal(
+                y_obs=y_obs,
+                y_pred=y_pred,
+                X=feature,
+                feature_name="nice_feature",
+            ).drop(["y_obs_stderr", "y_pred_stderr", "weights"])
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/tests/test_compute.py:861: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/_compute.py:589: in compute_marginal
+    feature, n_bins, f_binned = bin_feature(
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/_utils/binning.py:121: in bin_feature
+    feature_out = to_pl_series(feature, name=feature_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/_utils/array.py:414: in to_pl_series
+    feature_out = pl.from_dataframe(
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/_utils/expired.py:114: in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/convert/general.py:1165: in from_dataframe
+    return pycapsule_to_frame(df, rechunk=rechunk)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/polars/_utils/pycapsule.py:44: in pycapsule_to_frame
+    df = wrap_df(PySeries.from_arrow_c_stream(obj).struct_unnest())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/pandas/core/frame.py:774: in __arrow_c_stream__
+    pa = import_optional_dependency("pyarrow", min_version="14.0.0")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'pyarrow', extra = '', min_version = '14.0.0', errors = 'raise'
+
+    def import_optional_dependency(
+        name: str,
+        extra: str = "",
+        min_version: str | None = None,
+        *,
+        errors: Literal["raise", "warn", "ignore"] = "raise",
+    ) -> types.ModuleType | None:
+        """
+        Import an optional dependency.
+    
+        By default, if a dependency is missing an ImportError with a nice
+        message will be raised. If a dependency is present, but too old,
+        we raise.
+    
+        Parameters
+        ----------
+        name : str
+            The module name.
+        extra : str
+            Additional text to include in the ImportError message.
+        errors : str {'raise', 'warn', 'ignore'}
+            What to do when a dependency is not found or its version is too old.
+    
+            * raise : Raise an ImportError
+            * warn : Only applicable when a module's version is to old.
+              Warns that the version is too old and returns None
+            * ignore: If the module is not installed, return None, otherwise,
+              return the module, even if the version is too old.
+              It's expected that users validate the version locally when
+              using ``errors="ignore"`` (see. ``io/html.py``)
+        min_version : str, default None
+            Specify a minimum version that is different from the global pandas
+            minimum version required.
+        Returns
+        -------
+        maybe_module : Optional[ModuleType]
+            The imported module, when found and the version is correct.
+            None is returned when the package is not found and `errors`
+            is False, or when the package's version is too old and `errors`
+            is ``'warn'`` or ``'ignore'``.
+        """
+        assert errors in {"warn", "raise", "ignore"}
+    
+        package_name = INSTALL_MAPPING.get(name)
+        install_name = package_name if package_name is not None else name
+    
+        msg = (
+            f"`Import {install_name}` failed. {extra} "
+            f"Use pip, conda, or your preferred package management tool "
+            f"to install the {install_name} package."
+        )
+        try:
+            module = importlib.import_module(name)
+        except ImportError as err:
+            if errors == "raise":
+>               raise ImportError(msg) from err
+E               ImportError: `Import pyarrow` failed.  Use pip, conda, or your preferred package management tool to install the pyarrow package.
+
+/home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/pandas/compat/_optional.py:161: ImportError
+=============================== warnings summary ===============================
+calibration/tests/test_compute.py::test_compute_bias[feature0-f_grouped0]
+calibration/tests/test_compute.py::test_compute_bias[feature1-f_grouped1]
+calibration/tests/test_compute.py::test_compute_bias[feature2-f_grouped2]
+calibration/tests/test_compute.py::test_compute_bias[feature3-f_grouped3]
+  /home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/tests/test_compute.py:64: DeprecationWarning: the string cache has been replaced by pl.Categories
+    with pl.StringCache():
+
+calibration/tests/test_compute.py: 78 warnings
+  /home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/_compute.py:209: DeprecationWarning: the string cache has been replaced by pl.Categories
+    with pl.StringCache():
+
+calibration/tests/test_compute.py::test_compute_bias_n_bins_string_like_feature[cat]
+calibration/tests/test_compute.py::test_compute_bias_n_bins_string_like_feature[cat_physical]
+calibration/tests/test_compute.py::test_compute_bias_n_bins_string_like_feature[enum]
+calibration/tests/test_compute.py::test_compute_bias_n_bins_string_like_feature[string]
+  /home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/tests/test_compute.py:267: DeprecationWarning: the string cache has been replaced by pl.Categories
+    with pl.StringCache():
+
+calibration/tests/test_compute.py::test_compute_bias_multiple_predictions[cat]
+calibration/tests/test_compute.py::test_compute_bias_multiple_predictions[num]
+calibration/tests/test_compute.py::test_compute_bias_multiple_predictions[string]
+  /home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/tests/test_compute.py:303: DeprecationWarning: the string cache has been replaced by pl.Categories
+    with pl.StringCache():
+
+calibration/tests/test_compute.py::test_compute_marginal[feature0-f_grouped0-None]
+calibration/tests/test_compute.py::test_compute_marginal[feature1-f_grouped1-bin_edges1]
+calibration/tests/test_compute.py::test_compute_marginal[feature2-f_grouped2-bin_edges2]
+calibration/tests/test_compute.py::test_compute_marginal[feature3-f_grouped3-None]
+  /home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/tests/test_compute.py:569: DeprecationWarning: the string cache has been replaced by pl.Categories
+    with pl.StringCache():
+
+calibration/tests/test_compute.py: 73 warnings
+  /home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/_compute.py:587: DeprecationWarning: the string cache has been replaced by pl.Categories
+    with pl.StringCache():
+
+calibration/tests/test_compute.py::test_compute_marginal_n_bins_string_like_feature[cat]
+calibration/tests/test_compute.py::test_compute_marginal_n_bins_string_like_feature[cat_physical]
+calibration/tests/test_compute.py::test_compute_marginal_n_bins_string_like_feature[enum]
+calibration/tests/test_compute.py::test_compute_marginal_n_bins_string_like_feature[string]
+  /home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/tests/test_compute.py:798: DeprecationWarning: the string cache has been replaced by pl.Categories
+    with pl.StringCache():
+
+calibration/tests/test_compute.py::test_compute_marginal_multiple_predictions[cat]
+calibration/tests/test_compute.py::test_compute_marginal_multiple_predictions[num]
+calibration/tests/test_compute.py::test_compute_marginal_multiple_predictions[string]
+  /home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/tests/test_compute.py:842: DeprecationWarning: the string cache has been replaced by pl.Categories
+    with pl.StringCache():
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../../../../../home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/tests/test_compute.py::test_compute_bias_multiple_predictions[cat]
+FAILED ../../../../../../home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/tests/test_compute.py::test_compute_bias_multiple_predictions[string]
+FAILED ../../../../../../home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/tests/test_compute.py::test_compute_marginal_multiple_predictions[cat]
+FAILED ../../../../../../home/claude/pi_research/venvs/lorentzenchr__model-diagnostics/lib/python3.13/site-packages/model_diagnostics/calibration/tests/test_compute.py::test_compute_marginal_multiple_predictions[string]
+4 failed, 294 passed, 11 skipped, 173 warnings in 4.59s
+
+# exit_code: 1
+# wall_s: 5.41
+# peak_child_rss_mb: 281.8

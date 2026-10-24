@@ -1,0 +1,5 @@
+command: OMP_NUM_THREADS=1 python -m pytest --pyargs statsmodels.tsa.regime_switching.tests.test_markov_regression statsmodels.stats.tests.test_multi -q -p no:cacheprovider (installed from pin aa61cc14); exit=0; wall_s=11; last lines:
+    @pytest.mark.smoke
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+507 passed, 3 warnings in 11.04s

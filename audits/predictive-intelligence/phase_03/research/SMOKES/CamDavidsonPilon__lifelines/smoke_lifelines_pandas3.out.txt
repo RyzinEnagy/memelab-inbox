@@ -1,0 +1,129 @@
+ICI =  0.008745817492061438
+E50 =  0.006082003342140763
+{
+ "env": {
+  "python": "3.13.17",
+  "platform": "Linux-6.18.44-fc-v153-x86_64-with-glibc2.39",
+  "executable": "/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/ll_pd3/bin/python"
+ },
+ "lifelines_version": "0.30.3",
+ "lifelines_file": "/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/ll_pd3/lib/python3.13/site-packages/lifelines/__init__.py",
+ "counts": {
+  "train": 1746,
+  "val": 556,
+  "holdout": 527,
+  "holdout_all": 634,
+  "embargo": 64,
+  "censored": 107
+ },
+ "train_prevalence": 0.042382588774341354,
+ "S3_nan": {
+  "coxph_fit_with_nan": "TypeError: NaNs were detected in the dataset. Try using pd.isnull to find the problematic values.",
+  "handling": "required imputation; R3 wrapper imputes train medians"
+ },
+ "S2_S6_clean": {
+  "features": [
+   "liq_usd",
+   "vol_24h",
+   "age_h",
+   "score100",
+   "fatal_flag",
+   "ret_1h"
+  ],
+  "fit_s": 0.0405,
+  "predict_ms_per_row": 0.0041,
+  "binary_24h_on_labeled_holdout": {
+   "n": 527,
+   "positives": 17,
+   "shape": [
+    527
+   ],
+   "finite": true,
+   "in_0_1": true,
+   "min": 0.0028168848877968555,
+   "max": 0.2510393585326678,
+   "mean": 0.03860912707420059,
+   "brier": 0.0308323904448515,
+   "logloss": 0.1368990598190368,
+   "base_rate_train": 0.042382588774341354,
+   "brier_base": 0.03131998778125741,
+   "logloss_base": 0.1438782556723353,
+   "bss_vs_base": 0.015568247976702643,
+   "auc": 0.6959630911188005
+  },
+  "concordance_holdout_all_incl_censored": 0.6961803768145784,
+  "ipcw_ibs_1_23h": 0.015686077662940286,
+  "ipcw_ibs_km_baseline": 0.01577350593402834
+ },
+ "S1_trap": {
+  "with_trap": {
+   "concordance_holdout_all_incl_censored": 0.9912488417584681,
+   "ipcw_ibs_1_23h": 0.007797242462098238
+  },
+  "with_trap_binary_brier": 0.004434878289265,
+  "with_trap_binary_auc": 1.0,
+  "clean_concordance": 0.6961803768145784,
+  "clean_ibs": 0.015686077662940286,
+  "clean_binary_brier": 0.0308323904448515,
+  "library_stopped_it": false,
+  "library_mechanism": "none; k_fold_cross_validation permutes rows at random (utils/__init__.py:764), not by time"
+ },
+ "S4_calibration": {
+  "survival_probability_calibration_ICI": 0.008745817492061438,
+  "E50": 0.006082003342140763,
+  "seconds": 0.453,
+  "calibration_in_the_large_mean_pred": 0.03860912707420059,
+  "observed_rate": 0.03225806451612903,
+  "wilson95": [
+   0.02023611185402105,
+   0.051049936564188825
+  ],
+  "mean_pred_inside_wilson": true,
+  "recalibration_api": "none (no isotonic/Platt/conformal); confidence intervals on coefficients and on univariate curves only"
+ },
+ "role_competing_AJ": {
+  "train_events": [
+   968,
+   74,
+   704
+  ],
+  "fit_s": 0.099,
+  "cif_target_first_24h_train": 0.04238258877434135,
+  "cif_invalidation_first_24h_train": 0.4032073310423813,
+  "train_prevalence_binary": 0.042382588774341354,
+  "brier_holdout_if_used_as_constant": 0.03131998778125741,
+  "covariate_competing_risk_model": "none at pin (no Fine-Gray or cause-specific CIF regression found by grep)",
+  "jitter_note": "ties are jittered with np.random.seed(seed) on the global RNG (aalen_johansen_fitter.py:171-182)"
+ },
+ "S5_persistence": {
+  "format": "pickle (no native text/ONNX format)",
+  "bytes": 137996,
+  "identical": true
+ },
+ "weibull_aft": {
+  "fit_s": 0.4467,
+  "binary_24h": {
+   "n": 527,
+   "positives": 17,
+   "shape": [
+    527
+   ],
+   "finite": true,
+   "in_0_1": true,
+   "min": 0.002546153854578015,
+   "max": 0.2626022633296309,
+   "mean": 0.03864439855404379,
+   "brier": 0.030850644924102572,
+   "logloss": 0.1369793135634007,
+   "base_rate_train": 0.042382588774341354,
+   "brier_base": 0.03131998778125741,
+   "logloss_base": 0.1438782556723353,
+   "bss_vs_base": 0.014985409969914043,
+   "auc": 0.696078431372549
+  },
+  "concordance": 0.6961803768145784
+ },
+ "S6_timings": {
+  "import_s": 6.1717
+ }
+}

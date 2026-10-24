@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import evidently; print(evidently.__version__)
+    ^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/evidentlyai__evidently/lib/python3.13/site-packages/evidently/__init__.py", line 3, in <module>
+    from evidently import descriptors
+  File "/home/claude/pi_research/venvs/evidentlyai__evidently/lib/python3.13/site-packages/evidently/descriptors/__init__.py", line 30, in <module>
+    from evidently.core.datasets import ColumnTest
+  File "/home/claude/pi_research/venvs/evidentlyai__evidently/lib/python3.13/site-packages/evidently/core/datasets.py", line 33, in <module>
+    from evidently.legacy.suite.base_suite import MetadataValueType
+  File "/home/claude/pi_research/venvs/evidentlyai__evidently/lib/python3.13/site-packages/evidently/legacy/suite/base_suite.py", line 39, in <module>
+    from evidently.legacy.tests.base_test import Test
+  File "/home/claude/pi_research/venvs/evidentlyai__evidently/lib/python3.13/site-packages/evidently/legacy/tests/__init__.py", line 25, in <module>
+    from .data_integrity_tests import TestAllColumnsShareOfMissingValues
+  File "/home/claude/pi_research/venvs/evidentlyai__evidently/lib/python3.13/site-packages/evidently/legacy/tests/data_integrity_tests.py", line 11, in <module>
+    from pandas.core.dtypes.common import infer_dtype_from_object  # type: ignore[attr-defined]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ImportError: cannot import name 'infer_dtype_from_object' from 'pandas.core.dtypes.common' (/home/claude/pi_research/venvs/evidentlyai__evidently/lib/python3.13/site-packages/pandas/core/dtypes/common.py)

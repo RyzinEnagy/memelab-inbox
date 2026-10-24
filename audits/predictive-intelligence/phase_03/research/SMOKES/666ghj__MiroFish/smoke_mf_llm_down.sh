@@ -1,0 +1,5 @@
+#!/bin/sh
+# P30 check: LLM endpoint unreachable (nothing listens on 127.0.0.1:18099). Run inside unshare -n after lo_up.py.
+cd /tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r5/mf_sim_nollm && env -u HTTPS_PROXY -u HTTP_PROXY -u https_proxy -u http_proxy LLM_API_KEY=mock-not-a-key LLM_BASE_URL=http://127.0.0.1:18099/v1 LLM_MODEL_NAME=gpt-4o-mini HF_HUB_OFFLINE=1 TIKTOKEN_CACHE_DIR=/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r5/tiktoken_cache /home/claude/pi_research/venvs/666ghj__MiroFish/bin/python /home/claude/pi_research/src/666ghj__MiroFish/backend/scripts/run_reddit_simulation.py --config /tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r5/mf_sim_nollm/simulation_config.json --no-wait --max-rounds 2
+echo "exit_code=$?"
+python3 -c "import sqlite3; c=sqlite3.connect('/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r5/mf_sim_nollm/reddit_simulation.db'); print('trace', c.execute('select user_id, action from trace').fetchall())"

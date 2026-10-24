@@ -1,0 +1,12 @@
+..............................................                           [100%]
+=============================== warnings summary ===============================
+tests/test_chunk.py: 34 warnings
+  /home/claude/pi_research/src/NannyML__nannyml/tests/test_chunk.py:106: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '['blue' 'blue' 'blue' ... 'blue' 'blue' 'green']' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+    data.loc[data.week < 16, ['f4']] = data.loc[data.week < 16, ['f4']].replace(rule2a)
+
+tests/test_chunk.py: 11 warnings
+  /home/claude/pi_research/src/NannyML__nannyml/nannyml/chunk.py:181: UserWarning: The resulting number of chunks is too low. Please consider splitting your data in a different way or continue at your own risk.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+46 passed, 45 warnings in 6.94s

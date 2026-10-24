@@ -1,0 +1,1 @@
+RESULTS_JSON {"check_that_raises": "validation failed (fail-closed): SchemaError", "legit_rows_failing": 0, "one_second_late_rows_failing": [41], "trap_with_availability_rows_failing": 3000, "undeclared_column_strict_true": "refused: SchemaErrors column_in_schema"}

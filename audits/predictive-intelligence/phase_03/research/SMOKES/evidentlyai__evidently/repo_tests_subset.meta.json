@@ -1,0 +1,36 @@
+{
+ "command": [
+  "/home/claude/pi_research/venvs/evidentlyai__evidently/bin/python",
+  "-m",
+  "pytest",
+  "-q",
+  "-p",
+  "no:cacheprovider",
+  "tests/stattests",
+  "tests/calculations/test_data_drift.py",
+  "tests/test_preset/test_data_drift_preset.py",
+  "-x"
+ ],
+ "wrapped_command": [
+  "unshare",
+  "-n",
+  "/home/claude/pi_research/venvs/evidentlyai__evidently/bin/python",
+  "-m",
+  "pytest",
+  "-q",
+  "-p",
+  "no:cacheprovider",
+  "tests/stattests",
+  "tests/calculations/test_data_drift.py",
+  "tests/test_preset/test_data_drift_preset.py",
+  "-x"
+ ],
+ "started_utc": "2026-10-24T04:41:16Z",
+ "exit_code": 0,
+ "wall_s": 8.308,
+ "peak_rss_kb_children": 308008,
+ "env_switches": {
+  "DO_NOT_TRACK": "1"
+ },
+ "offline_netns": true
+}

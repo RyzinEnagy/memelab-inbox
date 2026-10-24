@@ -1,0 +1,1 @@
+RESULTS_JSON {"fit_s_n_iter_10": 14.66, "fit_s_n_iter_20": 19.56, "hazardous_version": "0.2.0", "predict_ms_per_row_one_horizon": 0.0026, "proba_shape": [634, 2], "train_rows": 1746}

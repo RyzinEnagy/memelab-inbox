@@ -1,0 +1,8 @@
+Reviewer R5, Phase 03. All runs inside unshare -n with lo_up.py (loopback only).
+Clone: git fetch --depth 1 origin 6577b3cc12d26be0eff1924694dd58ede7a5ae6e -> /home/claude/pi_research/src/bancaditalia__black-it; tag v0.3.3 (8019ea97) fetched: git diff shows no change in black_it/ or pyproject.toml, so PyPI 0.3.3 matches the pinned package code.
+Venv: uv venv --python 3.12; uv pip install --only-binary :all: black-it==0.3.3 pytest hypothesis[numpy] mistletoe pytest-randomly; source used from the clone via PYTHONPATH.
+1) MPLBACKEND=Agg PYTHONPATH=. python -m pytest tests/test_calibrator.py tests/test_losses tests/test_samplers tests/test_search_space.py tests/test_utils -q -p no:randomly -o log_cli=false
+   -> blackit_pytest_offline.txt: 71 passed, 6 failed (golden values), exit 1, wall 58 s (scikit-learn 1.9.1, scipy 1.17.1)
+2) uv pip install scikit-learn==1.6.1 scipy==1.13.1 joblib==1.5.2 (poetry.lock values); same pytest -> blackit_pytest_offline_locked_sklearn.txt: same 6 failed, 71 passed, exit 1, wall 55 s
+3) PYTHONPATH=<clone> python smoke_blackit_calibrate.py WORKDIR -> smoke_blackit_output.txt (raw, includes calibrator prints), smoke_blackit_summary.json; exit 0, wall 3 s
+4) PYTHONPATH=<clone> python smoke_blackit_nan.py (and a no-NaN variant) -> smoke_blackit_nan_output.json

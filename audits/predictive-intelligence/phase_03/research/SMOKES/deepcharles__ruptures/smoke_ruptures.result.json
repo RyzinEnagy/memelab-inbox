@@ -1,0 +1,142 @@
+{
+ "env": {
+  "python": "3.13.17",
+  "platform": "Linux-6.18.44-fc-v153-x86_64-with-glibc2.39",
+  "executable": "/home/claude/pi_research/venvs/deepcharles__ruptures/bin/python"
+ },
+ "ruptures_version": "1.1.11.dev0+gee1c8ff",
+ "ruptures_file": "/home/claude/pi_research/venvs/deepcharles__ruptures/lib/python3.13/site-packages/ruptures/__init__.py",
+ "paths": {
+  "n": 300,
+  "len_min": 20,
+  "len_max": 251,
+  "with_true_change": 199
+ },
+ "R1_change_points": {
+  "detector": "Pelt(model=normal, min_size=4, jump=1), pen=3*log(n), log returns",
+  "paths_with_true_change": 199,
+  "mean_precision_margin3": 0.632,
+  "mean_recall_margin3": 0.616,
+  "paths_without_change": 101,
+  "false_alarm_paths": 16,
+  "fit_predict_s_median": 0.14894,
+  "fit_predict_s_p95": 0.57015,
+  "fit_predict_s_max": 1.01631,
+  "total_s": 60.145
+ },
+ "S1_truncation": {
+  "paths_tested": 245,
+  "bkps_before_decision_differ": 31,
+  "feature_candles_since_last_break_differs": 31,
+  "examples": [
+   {
+    "mint": "PMINT0011",
+    "n": 216,
+    "d": 129,
+    "causal_bkps_before_d": [
+     89
+    ],
+    "full_series_bkps_before_d": [
+     91
+    ]
+   },
+   {
+    "mint": "PMINT0013",
+    "n": 208,
+    "d": 124,
+    "causal_bkps_before_d": [
+     63
+    ],
+    "full_series_bkps_before_d": [
+     63,
+     82,
+     103
+    ]
+   },
+   {
+    "mint": "PMINT0014",
+    "n": 60,
+    "d": 36,
+    "causal_bkps_before_d": [],
+    "full_series_bkps_before_d": [
+     27
+    ]
+   }
+  ],
+  "library_as_of_mechanism": "none: fit() takes the whole array; Window score at k reads signal[k-width//2:k+width//2] (future half-window)"
+ },
+ "S1_window_future_dependence": {
+  "k": 75,
+  "score_k_original": 1.2482306672823007e-05,
+  "score_k_after_editing_only_future": 1.0054023949636837,
+  "changed": true
+ },
+ "irregular_time": {
+  "mint": "PMINT0011",
+  "dense_len": 273,
+  "kept_len": 217,
+  "max_gap_candles": 3,
+  "note": "fit(signal) has no time argument; a gap of k missing candles is one step to the detector"
+ },
+ "S3_nan": {
+  "Pelt_l2": {
+   "result": [
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60,
+    65,
+    69
+   ],
+   "raised": null
+  },
+  "Pelt_normal": {
+   "result": [
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60,
+    65,
+    69
+   ],
+   "raised": null
+  },
+  "KernelCPD_rbf": {
+   "result": [
+    69
+   ],
+   "raised": null
+  },
+  "L1Potts": {
+   "result": null,
+   "raised": "ValueError: signal must contain only finite values (no NaN or Inf)."
+  }
+ },
+ "S5_persistence": {
+  "format": "pickle (no native format; results are plain int lists)",
+  "bytes": 1728,
+  "identical": true
+ },
+ "S6_cost": {
+  "path_len": 250,
+  "expanding_refits": 19,
+  "pelt_normal_total_s": 2.7674,
+  "pelt_normal_per_refit_ms": 145.65,
+  "kernelcpd_rbf_total_s": 0.0103,
+  "kernelcpd_per_refit_ms": 0.54
+ },
+ "S2": "SKIPPED: no probability output (segmentation only)",
+ "S4": "SKIPPED: no calibration or uncertainty API (penalty is a hard threshold)"
+}

@@ -1,0 +1,12 @@
+22698 sendto(8, "\0", 1, 0, NULL, 0)    = 1
+22698 sendto(8, "\0", 1, 0, NULL, 0)    = 1
+22698 sendto(8, "\0", 1, 0, NULL, 0)    = 1
+22698 sendto(8, "\0", 1, 0, NULL, 0)    = 1
+22698 sendto(8, "\0", 1, 0, NULL, 0)    = 1
+22698 sendto(8, "\0", 1, 0, NULL, 0)    = 1
+22698 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=22761, si_uid=0, si_status=128, si_utime=0, si_stime=0} ---
+22698 sendto(8, "\0", 1, 0, NULL, 0)    = 1
+22698 sendto(14, "\0", 1, 0, NULL, 0)   = 1
+22698 sendto(14, "\0", 1, 0, NULL, 0)   = 1
+22698 sendto(14, "\0", 1, 0, NULL, 0)   = 1
+22698 sendto(8, "\0", 1, 0, NULL, 0)    = 1

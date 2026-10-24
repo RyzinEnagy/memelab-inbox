@@ -1,0 +1,7 @@
+Environment: Python 3.13.17 venv at /home/claude/pi_research/venvs/IFCA-Advanced-Computing__frouros, frouros built from the pinned tree (uv pip install ./src/IFCA-Advanced-Computing__frouros "scikit-learn<1.7" pandas at 9fc1f1cd2174f0aaa7eefb7133f2a17b7ba7b970; scikit-learn and pandas only for the harness baseline model). Later pytest>=8.3.1,<8.5 and pytest-mock for the repo tests.
+Harness: runwrap.py (exit code, wall time, peak RSS of the child; --offline = unshare -n; --strace = strace -f -e trace=connect,sendto).
+1. smoke_frouros: R4_HARNESS=<harness> runwrap.py --offline --strace -- python -I smoke_frouros.py   (fresh empty cwd)
+2. repo_tests_subset: cwd = pinned clone; runwrap.py --offline -- python -m pytest -p no:cacheprovider -o addopts="" -q frouros/tests/unit/detectors frouros/tests/unit/utils frouros/tests/unit/callbacks frouros/tests/integration/test_concept_drift.py
+3. repo_tests_integration: same with frouros/tests/integration/test_data_drift.py (7 errors = dataset download fixture, offline)
+4. base_dependency_dryrun.txt: uv pip install --dry-run of the pinned tree into an empty 3.13 venv
+Challenge: /home/claude/pi_research/challenge/challenge.csv sha256 18fda40cc7a2a6f5aa607a32f1a096976317f901f5b75d1ae23b4bcaddd5f23d.

@@ -1,0 +1,60 @@
+# command: unshare -n -- /home/claude/pi_research/venvs/bashtage__arch/bin/python -I /home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/bashtage__arch/smoke_arch.py
+# started_utc: 2026-10-24T04:52:10Z
+# network: OFF (unshare -n, no network namespace)
+=== arch 8.0.0+pin5db69b01 from /home/claude/pi_research/venvs/bashtage__arch/lib/python3.13/site-packages/arch/__init__.py | python 3.13.17 | numpy 2.5.4 | pandas 3.1.0
+challenge sha256 18fda40cc7a2a6f5aa607a32f1a096976317f901f5b75d1ae23b4bcaddd5f23d
+splits {'t_val0': 1791556781, 't_hold0': 1792073808, 'train_labeled': 1746, 'train_purged_label_matures_after_val_start': 96, 'val_labeled': 556, 'val_purged_label_matures_after_holdout_start': 45, 'holdout_labeled': 527, 'holdout_censored_excluded': 107, 'censored_total': 107, 'embargo_rows': 64}
+train prevalence 0.04000; holdout rows (time-ordered, censored excluded) 527, positives 17; base holdout pred_hash=cc58f5135049e5ed
+holdout UTC days 6, rows per day [47, 108, 87, 116, 112, 57]; distinct mints 254, distinct symbols 120
+
+point: Brier=0.03089 BSS vs B0=0.0123
+
+--- block bootstrap of Brier and Brier skill score (reps=2000, 95% percentile intervals) ---
+optimal_block_length on the per-row Brier loss:
+   stationary  circular
+0       2.392     2.739
+  IID                                              Brier [0.01818, 0.04478] width 0.02659 | BSS [-0.0408, 0.0561] includes 0: True | 0.11 s
+  Stationary(mean block 2.39, optimal)             Brier [0.01710, 0.04576] width 0.02865 | BSS [-0.0408, 0.0577] includes 0: True | 0.15 s
+  Stationary(mean block 97, about one day of rows) Brier [0.02195, 0.04073] width 0.01878 | BSS [-0.0195, 0.0418] includes 0: True | 0.10 s
+  MovingBlock(block 97)                            Brier [0.02022, 0.04159] width 0.02137 | BSS [-0.0160, 0.0518] includes 0: True | 0.09 s
+  CircularBlock(block 3, optimal)                  Brier [0.01702, 0.04559] width 0.02857 | BSS [-0.0400, 0.0594] includes 0: True | 0.06 s
+  IID BCa: Brier [0.01921, 0.04612] BSS [-0.0326, 0.0646]
+
+  group (cluster) bootstraps are not built in; done here by resampling per-cluster sums with IIDBootstrap:
+  cluster bootstrap over UTC decision days (6 clusters, IIDBootstrap on per-cluster sums): Brier [0.01857, 0.04264] BSS [-0.0430, 0.0379]
+  cluster bootstrap over exact mints (254 clusters, IIDBootstrap on per-cluster sums): Brier [0.01759, 0.04606] BSS [-0.0429, 0.0621]
+  cluster bootstrap over symbols (identity trap: merges different mints) (120 clusters, IIDBootstrap on per-cluster sums): Brier [0.01690, 0.04648] BSS [-0.0383, 0.0571]
+
+  reproducibility: same seed twice identical: True | different seed differs: True
+
+--- S4 interval coverage check (Monte Carlo, clustered binary events, known mean) ---
+  Markov binary series n=500, P(1|1)=0.5, P(1|0)=0.02, true mean 0.0385; 200 simulations x 399 reps; nominal 0.90
+  IID                    empirical coverage 0.715
+  Stationary(optimal)    empirical coverage 0.875
+  Stationary(block 25)   empirical coverage 0.865
+  (5.7 s)
+
+--- S1 leak trap ---
+  leaky model BSS 0.9452, stationary 95% [0.9095, 0.9767]: a bootstrap quantifies sampling noise, it cannot detect look-ahead
+
+--- S3 missing values ---
+  NaN in the loss series: no error, interval [nan, nan]
+  optimal_block_length with NaN: ValueError: x must be an array of finite numbers; got 1 NaN (ndarray)
+
+--- role-specific: multiple-comparison tests on holdout losses (P22) ---
+  SPA (benchmark B0 vs 3 models): pvalues {'lower': 0.306, 'consistent': 0.306, 'upper': 0.377} (small p means some model beats B0)
+  MCS 90% set: included ['B0_prevalence', 'base_LR', 'score100_only_LR'] excluded ['noise_around_prevalence']
+
+--- role-specific: volatility models (what arch offers beyond the bootstrap) ---
+  GARCH(1,1) on 2016 simulated 5-minute returns (true omega=0.02, alpha=0.1, beta=0.85): est [0.015, 0.078, 0.878] se [0.004, 0.013, 0.021] conv_flag=0 warnings=0 fit 17 ms; 12-step variance forecast last=0.2952
+  GARCH(1,1) on 60 simulated 5-minute returns (true omega=0.02, alpha=0.1, beta=0.85): est [0.001, 0.0, 1.0] se [0.029, 0.079, 0.054] conv_flag=0 warnings=0 fit 10 ms; 12-step variance forecast last=0.3278
+
+--- S5 persistence ---
+  pickled bootstrap (13664 bytes) reproduces the same interval after reload: True; state is the seed plus the data, no model file
+
+--- S6 cost ---
+  2000-rep stationary bootstrap on 527 rows: 0.05 s; peak RSS 173.2 MB
+
+# exit_code: 0
+# wall_s: 10.07
+# peak_child_rss_mb: 174.4

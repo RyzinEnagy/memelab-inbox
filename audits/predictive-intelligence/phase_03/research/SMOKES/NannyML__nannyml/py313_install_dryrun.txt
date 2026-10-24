@@ -1,0 +1,6 @@
+ + tzlocal==5.4.5
+ + urllib3==2.8.0
+ + wrapt==2.5.1
+ + xgboost==2.1.4
+ + yarl==1.25.1
+exit=0

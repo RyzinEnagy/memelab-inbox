@@ -1,0 +1,77 @@
+[1m============================= test session starts ==============================[0m
+collected 30 items
+
+tests/data/test_pandas_dataset.py [32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[31mE[0m[31mE[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[31m                        [ 50%][0m
+tests/data/test_numpy_dataset.py [32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[31m                         [100%][0m
+
+==================================== ERRORS ====================================
+[31m[1m_____________ ERROR at setup of test_from_pandas_spark_datasource ______________[0m
+
+    [0m[37m@pytest[39;49;00m.fixture(scope=[33m"[39;49;00m[33mmodule[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mspark_session[39;49;00m():[90m[39;49;00m
+>       [94mfrom[39;49;00m[90m [39;49;00m[04m[96mpyspark[39;49;00m[04m[96m.[39;49;00m[04m[96msql[39;49;00m[90m [39;49;00m[94mimport[39;49;00m SparkSession[90m[39;49;00m
+[1m[31mE       ModuleNotFoundError: No module named 'pyspark'[0m
+
+
+[1m[31mtests/data/test_pandas_dataset.py[0m:23: ModuleNotFoundError
+[31m[1m_____________ ERROR at setup of test_from_pandas_delta_datasource ______________[0m
+
+    [0m[37m@pytest[39;49;00m.fixture(scope=[33m"[39;49;00m[33mmodule[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mspark_session[39;49;00m():[90m[39;49;00m
+>       [94mfrom[39;49;00m[90m [39;49;00m[04m[96mpyspark[39;49;00m[04m[96m.[39;49;00m[04m[96msql[39;49;00m[90m [39;49;00m[94mimport[39;49;00m SparkSession[90m[39;49;00m
+[1m[31mE       ModuleNotFoundError: No module named 'pyspark'[0m
+
+
+[1m[31mtests/data/test_pandas_dataset.py[0m:23: ModuleNotFoundError
+[33m=============================== warnings summary ===============================[0m
+tests/data/test_pandas_dataset.py::test_conversion_to_json
+  /home/claude/pi_research/src/mlflow__mlflow/mlflow/store/db_migrations/versions/89d4b8295536_create_latest_metrics_table.py:44: SADeprecationWarning: The ``noload`` loader strategy is deprecated and will be removed in a future release.  This option produces incorrect results by returning ``None`` for related items. (deprecated since: 2.1) (This warning originated from the `configure_mappers()` process, which was invoked automatically in response to a user-initiated operation.)
+    num_metric_entries = session.query(SqlMetric).count()
+
+tests/data/test_pandas_dataset.py: 16 warnings
+  /home/claude/pi_research/src/mlflow__mlflow/mlflow/data/digest_utils.py:29: Pandas4Warning: Starting with pandas version 4.0 all arguments of all will be keyword-only.
+    string_columns = trimmed_df.columns[(df.map(type) == str).all(0)]
+
+tests/data/test_pandas_dataset.py::test_conversion_to_json
+tests/data/test_pandas_dataset.py::test_from_pandas_file_system_datasource
+  /home/claude/pi_research/src/mlflow__mlflow/mlflow/types/utils.py:440: UserWarning: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details.
+    warnings.warn(
+
+tests/data/test_pandas_dataset.py::test_from_pandas_with_targets
+tests/data/test_pandas_dataset.py::test_from_pandas_file_system_datasource
+tests/data/test_numpy_dataset.py::test_from_numpy_features_only
+tests/data/test_numpy_dataset.py::test_from_numpy_features_and_targets
+  /home/claude/pi_research/src/mlflow__mlflow/mlflow/data/dataset_source_registry.py:148: UserWarning: The specified dataset source can be interpreted in multiple ways: LocalArtifactDatasetSource, LocalArtifactDatasetSource. MLflow will assume that this is a LocalArtifactDatasetSource source.
+    return _dataset_source_registry.resolve(
+
+tests/data/test_pandas_dataset.py::test_to_evaluation_dataset
+  /home/claude/pi_research/src/mlflow__mlflow/mlflow/data/evaluation_dataset.py:409: Pandas4Warning: The inplace keyword in DataFrame.drop is deprecated and will be removed in a future version (PDEP-8).
+  See https://pandas.pydata.org/docs/dev/whatsnew/v3.1.0.html#deprecation-inplace for more details.
+    features_data = features_data.drop(targets, axis=1, inplace=False)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============================= slowest 10 durations =============================
+12.21s setup    tests/data/test_pandas_dataset.py::test_conversion_to_json
+0.13s call     tests/data/test_numpy_dataset.py::test_from_numpy_features_and_targets
+0.09s call     tests/data/test_pandas_dataset.py::test_from_pandas_no_source_specified
+0.07s call     tests/data/test_pandas_dataset.py::test_from_pandas_with_targets
+0.03s setup    tests/data/test_pandas_dataset.py::test_to_evaluation_dataset
+0.03s setup    tests/data/test_numpy_dataset.py::test_conversion_to_json_with_multi_tensor_features_and_targets[features0-targets0]
+0.03s setup    tests/data/test_numpy_dataset.py::test_schema_and_profile_with_multi_tensor_features_and_targets[features0-targets0]
+0.03s setup    tests/data/test_pandas_dataset.py::test_digest_property_has_expected_value
+0.03s setup    tests/data/test_numpy_dataset.py::test_conversion_to_json_with_multi_tensor_features_and_targets[features2-targets2]
+0.03s setup    tests/data/test_numpy_dataset.py::test_conversion_to_json
+
+========================= per-file durations (sorted) ==========================
+::group::per-file durations (sorted)
+
+| Rank | File                                | Duration | Tests | Min    | Max     | Avg    |
+| ---- | ----------------------------------- | -------- | ----- | ------ | ------- | ------ |
+| 1    | `tests/data/test_pandas_dataset.py` | 12.93s   | 15    | 0.009s | 12.230s | 0.862s |
+
+::endgroup::
+
+[36m[1m=========================== short test summary info ============================[0m
+[31mERROR[0m tests/data/test_pandas_dataset.py::[1mtest_from_pandas_spark_datasource[0m - ModuleNotFoundError: No module named 'pyspark'
+[31mERROR[0m tests/data/test_pandas_dataset.py::[1mtest_from_pandas_delta_datasource[0m - ModuleNotFoundError: No module named 'pyspark'
+[31m================== [32m28 passed[0m, [33m24 warnings[0m, [31m[1m2 errors[0m[31m in 13.81s[0m[31m ==================[0m

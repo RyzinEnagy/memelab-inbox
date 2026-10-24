@@ -1,0 +1,11 @@
+Environment: Python 3.12 venv at /home/claude/pi_research/venvs/NannyML__nannyml, nannyml installed from the pinned source tree (uv pip install ./src/NannyML__nannyml at 4c86ee350dc541cb244f965cf555b4b2a004ae99, poetry-core build; setup.py is a bare setup() and was not run separately). Default resolution: freeze_default_resolution.txt (pandas 3.1.0). import fails: statsmodels is imported (nannyml/plots/components/joy_plot.py:12) but not declared. statsmodels added: freeze_tested.txt. Smokes ran with pandas 3.1.0. Afterwards pandas<3 was installed only to rerun tests/test_chunk.py.
+Harness: runwrap.py (exit code, wall time, peak RSS of the child; --offline = unshare -n; --strace = strace -f -e trace=connect,sendto).
+Each run used a fresh empty working directory under the reviewer scratchpad.
+1. import_default_resolution: NML_DISABLE_USAGE_LOGGING=1 runwrap.py --offline -- python -I -c "import nannyml"  exit 1 (ModuleNotFoundError statsmodels)
+2. import_pandas3_statsmodels: same after adding statsmodels, exit 0
+3. telemetry_switch_{on,off}: R4_HARNESS=<harness> [NML_DISABLE_USAGE_LOGGING=1] runwrap.py --offline --strace -- python -I -W ignore telemetry_probe_nannyml.py
+4. smoke_nannyml: NML_DISABLE_USAGE_LOGGING=1 R4_HARNESS=<harness> runwrap.py --offline -- python -I smoke_nannyml.py
+5. repo_tests_subset (pandas 3.1.0): cwd = pinned clone, runwrap.py --offline -- python -m pytest -q -p no:cacheprovider tests/test_calibration.py tests/drift/test_univariate_drift_methods.py tests/performance_estimation/CBPE/test_cbpe.py tests/test_chunk.py
+6. repo_tests_chunk_pandas2: tests/test_chunk.py again with pandas 2.3.3
+7. py313_install_dryrun.txt (uv resolves 0.13.1 on 3.13 because uv ignores the requires-python upper bound) and py313_pip_download.txt (pip on 3.13 finds no matching distribution)
+Challenge: /home/claude/pi_research/challenge/challenge.csv sha256 18fda40cc7a2a6f5aa607a32f1a096976317f901f5b75d1ae23b4bcaddd5f23d.

@@ -1,0 +1,5 @@
+30376 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=30407, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+30376 connect(5, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+30376 connect(5, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+30376 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=30558, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+30376 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=30559, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---

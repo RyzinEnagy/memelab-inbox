@@ -1,0 +1,2 @@
+{"pandera": "0.34.1", "A_dataframe_check_le": [1, 2], "B_column_check_le_nullable": [1], "C_column_check_le_default_nullable": [1, 2], "D_dataframe_check_not_gt": [1]}
+row 2 (unknown availability) must fail under DATA_TIME_CONTRACT; rows listed are the ones pandera refused

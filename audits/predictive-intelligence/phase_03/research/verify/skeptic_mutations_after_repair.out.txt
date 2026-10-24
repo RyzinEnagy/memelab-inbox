@@ -1,0 +1,7 @@
+s_total_plus_one_sklearn           REFUSED   total of scikit-learn/scikit-learn is 52, criteria sum to 51
+s_fabricated_point_existing_file   REFUSED   ANCHOR: no pinned line, fold audit or quoted token found in a cited raw file ('probabl-ai/skore', 'C4')
+s_readme_at_pin                    REFUSED   P42 at the pin: documentation file cited as evidence ('mesa/mesa', 'D2'): README.md
+s_docs_at_pin                      REFUSED   P42 at the pin: documentation file cited as evidence ('blue-yonder/tsfresh', 'T2'): docs/text/faq.rst
+s_T3_from_review_prose             REFUSED   P13 guard: chronology item without raw output or re-execution ('deepcharles/ruptures', 'T3')
+s_T1_from_review_prose             REFUSED   P13 guard: chronology item without raw output or re-execution ('mesa/mesa', 'T1')
+top ten without MAPIE O1: [('scikit-learn/scikit-learn', '51'), ('interpretml/interpret', '50'), ('online-ml/river', '49'), ('statsmodels/statsmodels', '49'), ('eslazarev/purged-cross-validation', '48'), ('lightgbm-org/LightGBM', '45'), ('unionai-oss/pandera', '44'), ('CamDavidsonPilon/lifelines', '44'), ('scikit-learn-contrib/MAPIE', '44'), ('soda-inria/hazardous', '43'), ('sktime/sktime', '41'), ('probabl-ai/skore', '41')]

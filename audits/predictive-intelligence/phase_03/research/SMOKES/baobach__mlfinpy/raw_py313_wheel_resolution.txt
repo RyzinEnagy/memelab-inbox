@@ -1,0 +1,17 @@
+# command: uv pip compile -p 3.13 --only-binary :all: /home/claude/pi_research/src/baobach__mlfinpy/pyproject.toml
+# started_utc: 2026-10-24T04:55:01Z
+# network: ON
+warning: The `UV_NATIVE_TLS` environment variable is deprecated and will be removed in a future release. Use `UV_SYSTEM_CERTS` instead.
+  × No solution found when resolving dependencies:
+  ╰─▶ Because numba==0.60.0 has no usable wheels and only the following
+      versions of numba are available:
+          numba<=0.60.0
+          numba>=0.61.0
+      we can conclude that numba>=0.60.0,<0.61.0 cannot be used.
+      And because mlfinpy depends on numba>=0.60.0,<0.61.0, we can conclude
+      that your requirements are unsatisfiable.
+
+hint: Wheels are required for `numba` because building from source is disabled for all packages (i.e., with `--no-build`)
+# exit_code: 1
+# wall_s: 0.04
+# peak_child_rss_mb: 44.5

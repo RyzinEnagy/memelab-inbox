@@ -1,0 +1,53 @@
+RESULT env {"default_tracking_uri_before_set": "sqlite:////tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r4/cwd_TuX5/mlflow.db", "import_s": 5.047, "mlflow_version": "3.17.3.dev0", "workdir": "/tmp/mlf_rbpwm51a"}
+2026/10/24 01:00:00 INFO mlflow.store.db.utils: Creating initial MLflow database tables...
+2026/10/24 01:00:00 INFO mlflow.store.db.utils: Updating database tables
+Traceback (most recent call last):
+  File "/home/claude/pi_research/venvs/mlflow__mlflow/lib/python3.13/site-packages/mlflow/sklearn/__init__.py", line 709, in _save_model
+    skops.io.load(output_path, trusted=skops_trusted_types)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/mlflow__mlflow/lib/python3.13/site-packages/skops/io/_persist.py", line 152, in load
+    audit_tree(tree, trusted=trusted)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/mlflow__mlflow/lib/python3.13/site-packages/skops/io/_audit.py", line 63, in audit_tree
+    raise UntrustedTypesFoundException(unsafe)
+skops.io.exceptions.UntrustedTypesFoundException: Untrusted types found in the file: ['numpy.dtype'].
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r4/smoke_mlflow.py", line 59, in <module>
+    model, run_id, info, log_s, ds = log_one("legit", F)
+                                     ~~~~~~~^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r4/smoke_mlflow.py", line 53, in log_one
+    info = mlflow.sklearn.log_model(model, name="model", signature=sig, input_example=Xtr.head(3),
+                                    pyfunc_predict_fn="predict_proba", registered_model_name="pi_r4_baseline")
+  File "/home/claude/pi_research/venvs/mlflow__mlflow/lib/python3.13/site-packages/mlflow/sklearn/__init__.py", line 497, in log_model
+    return Model.log(
+           ~~~~~~~~~^
+        artifact_path=artifact_path,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<21 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/home/claude/pi_research/venvs/mlflow__mlflow/lib/python3.13/site-packages/mlflow/telemetry/track.py", line 24, in wrapper
+    return func(*args, **kwargs)
+  File "/home/claude/pi_research/venvs/mlflow__mlflow/lib/python3.13/site-packages/mlflow/models/model.py", line 1228, in log
+    flavor.save_model(path=local_path, mlflow_model=mlflow_model, **kwargs)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/mlflow__mlflow/lib/python3.13/site-packages/mlflow/sklearn/__init__.py", line 315, in save_model
+    _save_model(
+    ~~~~~~~~~~~^
+        sk_model=sk_model,
+        ^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        skops_trusted_types=skops_trusted_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/claude/pi_research/venvs/mlflow__mlflow/lib/python3.13/site-packages/mlflow/sklearn/__init__.py", line 712, in _save_model
+    raise MlflowException(
+    ...<5 lines>...
+    )
+mlflow.exceptions.MlflowException: The saved sklearn model references untrusted types. If you are sure loading these types is safe, set the 'skops_trusted_types' parameter when calling 'log_model' or 'save_model' to the list of trusted types. Root error: Untrusted types found in the file: ['numpy.dtype'].

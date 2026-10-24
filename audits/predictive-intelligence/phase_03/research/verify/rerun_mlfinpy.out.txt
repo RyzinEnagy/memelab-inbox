@@ -1,0 +1,1 @@
+RESULTS_JSON {"folds": [{"overlapping_train_rows": [], "test": [0, 1], "train": [4, 5]}, {"overlapping_train_rows": [0, 1], "test": [2, 3], "train": [0, 1, 5]}, {"overlapping_train_rows": [3], "test": [4, 5], "train": [0, 1, 2, 3]}], "total_overlapping_train_rows": 3}

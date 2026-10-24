@@ -1,0 +1,11 @@
+{
+ "name": "smoke_stumpy",
+ "command": "unshare -n /home/claude/pi_research/venvs/stumpy-dev__stumpy/bin/python -I -B /home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/stumpy-dev__stumpy/smoke_stumpy.py",
+ "cwd": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/stumpy-dev__stumpy",
+ "start_utc": "2026-10-24T04:46:23Z",
+ "exit_code": 0,
+ "wall_s": 37.415,
+ "peak_rss_mb": 468.4,
+ "user_cpu_s": 27.05,
+ "network": "none (unshare -n)"
+}

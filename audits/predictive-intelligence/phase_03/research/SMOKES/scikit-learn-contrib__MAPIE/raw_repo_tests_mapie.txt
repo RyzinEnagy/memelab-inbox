@@ -1,0 +1,12 @@
+# command: unshare -n -- /home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/bin/python -m pytest -q -p no:cacheprovider /home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/tests/test_calibration.py /home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/tests/test_metrics.py
+# started_utc: 2026-10-24T04:44:22Z
+# network: OFF (unshare -n, no network namespace)
+........................................................................ [ 30%]
+........................................................................ [ 61%]
+........................................................................ [ 92%]
+..................                                                       [100%]
+234 passed in 27.11s
+
+# exit_code: 0
+# wall_s: 28.96
+# peak_child_rss_mb: 184.5

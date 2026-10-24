@@ -1,0 +1,1 @@
+command: OMP_NUM_THREADS=1 /home/claude/pi_research/venvs/statsmodels__statsmodels/bin/python -I smoke_statsmodels.py challenge.csv scratch; exit=0; wall_s=3.411811696

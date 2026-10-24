@@ -1,0 +1,9 @@
+purge hand: [0, 1, 5] expect [0,1,5]
+embargo 24h: [0, 1] expect [0,1]
+purge 6h case: [0, 6] expect [0,6] (row1 ends 8h touches test start 7h? no: row1 [2,8) overlaps [7,14) -> drop; row2 [5,11) drop; row5 [13,19) overlaps [7,14) drop; row6 [14,20) kept, row0 [0,6) kept)
+group check raises: GroupLeakageError
+nonmonotonic: ValueError prediction_times must be monotonic non-decreasing.
+rows 2893 PurgedKFold leaks per fold: [0, 0, 0, 0, 0]
+WalkForward leaks per fold: [0, 0, 0, 0, 0]
+sklearn TSS(5,280) leaks: [90, 102, 110, 111, 91]
+PurgedGroupKFold shared mints per fold: [0, 0, 0, 0, 0] leaks: [0, 0, 0, 0, 0]

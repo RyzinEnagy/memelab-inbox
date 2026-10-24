@@ -1,0 +1,1501 @@
+repo,item_id,criterion,item_points,points,evidence,verify_checks,note
+scikit-learn/scikit-learn,T1,temporal_integrity,3,3,SMOKES/scikit-learn__scikit-learn/smoke_output.txt S1_splitters TimeSeriesSplit gap_0_rows; pin:scikit-learn__scikit-learn/sklearn/model_selection/_split.py:1104; fold_audit:sklearn.TimeSeriesSplit,SK-1;SK-2;SK-7,
+scikit-learn/scikit-learn,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,"custom walk-forward iterables are caller code (not T1); TimeSeriesSplit purges by rows, not label time (T2 0); no availability concept (S1 trap passed)"
+scikit-learn/scikit-learn,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,"custom walk-forward iterables are caller code (not T1); TimeSeriesSplit purges by rows, not label time (T2 0); no availability concept (S1 trap passed)"
+scikit-learn/scikit-learn,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,"custom walk-forward iterables are caller code (not T1); TimeSeriesSplit purges by rows, not label time (T2 0); no availability concept (S1 trap passed)"
+scikit-learn/scikit-learn,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,"custom walk-forward iterables are caller code (not T1); TimeSeriesSplit purges by rows, not label time (T2 0); no availability concept (S1 trap passed)"
+scikit-learn/scikit-learn,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,"custom walk-forward iterables are caller code (not T1); TimeSeriesSplit purges by rows, not label time (T2 0); no availability concept (S1 trap passed)"
+scikit-learn/scikit-learn,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,"custom walk-forward iterables are caller code (not T1); TimeSeriesSplit purges by rows, not label time (T2 0); no availability concept (S1 trap passed)"
+scikit-learn/scikit-learn,O1,transferable_outcomes,5,5,"SMOKES/scikit-learn__scikit-learn/smoke_output.txt S2_probability (527,2) finite in [0,1]; REVIEWS/scikit-learn__scikit-learn.md s4 S2",SK-5,
+scikit-learn/scikit-learn,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,GroupKFold by mint ran but mint disjointness was not measured (O5 0); regression not run (O4 0)
+scikit-learn/scikit-learn,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,GroupKFold by mint ran but mint disjointness was not measured (O5 0); regression not run (O4 0)
+scikit-learn/scikit-learn,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,GroupKFold by mint ran but mint disjointness was not measured (O5 0); regression not run (O4 0)
+scikit-learn/scikit-learn,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,GroupKFold by mint ran but mint disjointness was not measured (O5 0); regression not run (O4 0)
+scikit-learn/scikit-learn,C1,calibration_uncertainty,2,2,pin:scikit-learn__scikit-learn/sklearn/metrics/_classification.py:3708; SMOKES/scikit-learn__scikit-learn/smoke_output.txt brier and logloss fields,SK-6,
+scikit-learn/scikit-learn,C2,calibration_uncertainty,3,3,"SMOKES/scikit-learn__scikit-learn/smoke_output.txt S4_calibration frozen_sigmoid holdout brier 0.030943 (FrozenEstimator fit on train, sigmoid calibrated on the later val split); REVIEWS/scikit-learn__scikit-learn.md s4 S4",SK-4,
+scikit-learn/scikit-learn,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,calibration_curve returns no bin counts (C5 0); no intervals or abstention
+scikit-learn/scikit-learn,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,calibration_curve returns no bin counts (C5 0); no intervals or abstention
+scikit-learn/scikit-learn,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,calibration_curve returns no bin counts (C5 0); no intervals or abstention
+scikit-learn/scikit-learn,F1,features,2,2,SMOKES/scikit-learn__scikit-learn/smoke_output.txt S3_missing.HistGradientBoosting_native_nan proba_finite; REVIEWS/scikit-learn__scikit-learn.md s4 S3,,
+scikit-learn/scikit-learn,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+scikit-learn/scikit-learn,F3,features,2,0,no qualifying evidence (unanswered = 0),,
+scikit-learn/scikit-learn,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+scikit-learn/scikit-learn,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+scikit-learn/scikit-learn,D1,decision_execution,3,3,pin:scikit-learn__scikit-learn/sklearn/calibration.py:448,SK-6,
+scikit-learn/scikit-learn,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+scikit-learn/scikit-learn,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+scikit-learn/scikit-learn,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+scikit-learn/scikit-learn,Q1,code_quality,2,2,SMOKES/scikit-learn__scikit-learn/repo_tests_subset.txt 137 passed,,
+scikit-learn/scikit-learn,Q2,code_quality,2,2,REVIEWS/scikit-learn__scikit-learn.md s3 tests: test_calibration and test_split cover the role path,,
+scikit-learn/scikit-learn,Q3,code_quality,2,2,REVIEWS/scikit-learn__scikit-learn.md s1 commit 2026-10-23; release 1.9.1 2026-09-10; verify/VERIFY_GENERIC.json scikit-learn/scikit-learn Q3_check true,PIN-ALL,
+scikit-learn/scikit-learn,Q4,code_quality,1,1,"REVIEWS/scikit-learn__scikit-learn.md s1 built from the pin, imports",,
+scikit-learn/scikit-learn,Q5,code_quality,1,1,"REVIEWS/scikit-learn__scikit-learn.md s4 no silent wrong output; isotonic hard 0 is the isotonic fit, flagged P38",,
+scikit-learn/scikit-learn,I1,integration_fit,2,2,SMOKES/scikit-learn__scikit-learn/smoke_output.txt python 3.13.17,,
+scikit-learn/scikit-learn,I2,integration_fit,1,1,"verify/closure_size.py: numpy 2.5.4, no pandas needed",,
+scikit-learn/scikit-learn,I3,integration_fit,2,2,REVIEWS/scikit-learn__scikit-learn.md s8 estimator API,,
+scikit-learn/scikit-learn,I4,integration_fit,2,2,REVIEWS/scikit-learn__scikit-learn.md s8 baseline and calibration layer; PLANNED_SEAMS models.py seam,,
+scikit-learn/scikit-learn,I5,integration_fit,1,1,verify/closure_size.py: declared closure 202.6 MB,,
+scikit-learn/scikit-learn,R1,reproducibility,2,2,"SMOKES/scikit-learn__scikit-learn/smoke_output_run1.txt equals smoke_output.txt S1, S2, S4",SK-3,
+scikit-learn/scikit-learn,R2,reproducibility,2,2,SMOKES/scikit-learn__scikit-learn/smoke_output.txt S5_persistence pickle and joblib identical,SK-4,
+scikit-learn/scikit-learn,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+scikit-learn/scikit-learn,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,
+scikit-learn/scikit-learn,R5,reproducibility,1,1,SMOKES/scikit-learn__scikit-learn/smoke_output.txt S5 version_stamp_in_state 1.10.dev0; pin:scikit-learn__scikit-learn/sklearn/base.py:517,SK-4;SK-6,
+scikit-learn/scikit-learn,K1,cost_latency,2,2,SMOKES/scikit-learn__scikit-learn/smoke_output.txt network_attempts [],,
+scikit-learn/scikit-learn,K2,cost_latency,1,1,"SMOKES/scikit-learn__scikit-learn/smoke_output.txt S6_cost fit 0.19 s, single row 0.8 to 1.9 ms",,
+scikit-learn/scikit-learn,K3,cost_latency,1,1,SMOKES/scikit-learn__scikit-learn/smoke_output.txt peak_rss_mb 143,,
+scikit-learn/scikit-learn,K4,cost_latency,1,1,REVIEWS/scikit-learn__scikit-learn.md s4 S6: 1.9.1 cp313-win_amd64 on PyPI; verify/VERIFY_GENERIC.json scikit-learn/scikit-learn K4_check true,,
+scikit-learn/scikit-learn,L1,license_security,3,3,REVIEWS/scikit-learn__scikit-learn.md s2 COPYING BSD-3-Clause at the pin; verify/VERIFY_GENERIC.json scikit-learn/scikit-learn L1_check true,,
+scikit-learn/scikit-learn,L2,license_security,1,1,REVIEWS/scikit-learn__scikit-learn.md s2 vendored MIT and BSD only,,
+scikit-learn/scikit-learn,L3,license_security,1,1,REVIEWS/scikit-learn__scikit-learn.md s2 no telemetry under sklearn/; verify/VERIFY_GENERIC.json scikit-learn/scikit-learn L3_check true,,
+scikit-learn/scikit-learn,L4,license_security,1,1,REVIEWS/scikit-learn__scikit-learn.md s1 meson build inspected; release wheel,,
+scikit-learn/scikit-learn,L5,license_security,1,1,"REVIEWS/scikit-learn__scikit-learn.md s2 no secrets, no service",,
+lightgbm-org/LightGBM,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,"accepts caller folds only; defaults shuffle (1,834 to 1,842 later rows per training fold)"
+lightgbm-org/LightGBM,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,"accepts caller folds only; defaults shuffle (1,834 to 1,842 later rows per training fold)"
+lightgbm-org/LightGBM,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,"accepts caller folds only; defaults shuffle (1,834 to 1,842 later rows per training fold)"
+lightgbm-org/LightGBM,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,"accepts caller folds only; defaults shuffle (1,834 to 1,842 later rows per training fold)"
+lightgbm-org/LightGBM,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,"accepts caller folds only; defaults shuffle (1,834 to 1,842 later rows per training fold)"
+lightgbm-org/LightGBM,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,"accepts caller folds only; defaults shuffle (1,834 to 1,842 later rows per training fold)"
+lightgbm-org/LightGBM,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,"accepts caller folds only; defaults shuffle (1,834 to 1,842 later rows per training fold)"
+lightgbm-org/LightGBM,O1,transferable_outcomes,5,5,"SMOKES/lightgbm-org__LightGBM/smoke_output.txt S2_probability (527,2)",,
+lightgbm-org/LightGBM,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+lightgbm-org/LightGBM,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+lightgbm-org/LightGBM,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+lightgbm-org/LightGBM,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+lightgbm-org/LightGBM,C1,calibration_uncertainty,2,2,pin:lightgbm-org__LightGBM/src/metric/binary_metric.hpp:134; SMOKES/lightgbm-org__LightGBM/smoke_output.txt S1_cv final_valid_logloss_mean,LG-1,
+lightgbm-org/LightGBM,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,raw probabilities 1 of 3 Wilson bins; no recalibration or intervals
+lightgbm-org/LightGBM,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,raw probabilities 1 of 3 Wilson bins; no recalibration or intervals
+lightgbm-org/LightGBM,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,raw probabilities 1 of 3 Wilson bins; no recalibration or intervals
+lightgbm-org/LightGBM,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,raw probabilities 1 of 3 Wilson bins; no recalibration or intervals
+lightgbm-org/LightGBM,F1,features,2,2,SMOKES/lightgbm-org__LightGBM/smoke_output.txt S3_missing finite with NaN,LG-4,
+lightgbm-org/LightGBM,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+lightgbm-org/LightGBM,F3,features,2,0,no qualifying evidence (unanswered = 0),,
+lightgbm-org/LightGBM,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+lightgbm-org/LightGBM,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+lightgbm-org/LightGBM,D1,decision_execution,3,3,pin:lightgbm-org__LightGBM/python-package/lightgbm/sklearn.py:1944 fit(sample_weight),LG-3,
+lightgbm-org/LightGBM,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+lightgbm-org/LightGBM,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+lightgbm-org/LightGBM,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+lightgbm-org/LightGBM,Q1,code_quality,2,2,SMOKES/lightgbm-org__LightGBM/repo_tests_subset.txt 29 passed (pin tests on the 4.7.0 wheel),,
+lightgbm-org/LightGBM,Q2,code_quality,2,2,REVIEWS/lightgbm-org__LightGBM.md s3 test_sklearn binary and predict_proba,,
+lightgbm-org/LightGBM,Q3,code_quality,2,2,REVIEWS/lightgbm-org__LightGBM.md s1 commit 2026-10-23; 4.7.0 2026-07-18; verify/VERIFY_GENERIC.json lightgbm-org/LightGBM Q3_check true,,
+lightgbm-org/LightGBM,Q4,code_quality,1,1,REVIEWS/lightgbm-org__LightGBM.md s2 binary wheel imports,,
+lightgbm-org/LightGBM,Q5,code_quality,1,1,REVIEWS/lightgbm-org__LightGBM.md s4 none silent; imbalance switches inflate by design,,
+lightgbm-org/LightGBM,I1,integration_fit,2,2,SMOKES/lightgbm-org__LightGBM/smoke_output.txt python 3.13.17,,
+lightgbm-org/LightGBM,I2,integration_fit,1,1,"verify/closure_size.py venv: pandas 3.1.0, numpy 2.5.4",,
+lightgbm-org/LightGBM,I3,integration_fit,2,2,REVIEWS/lightgbm-org__LightGBM.md s3 sklearn API,,
+lightgbm-org/LightGBM,I4,integration_fit,2,2,REVIEWS/lightgbm-org__LightGBM.md s8 Phase 08 comparator,,
+lightgbm-org/LightGBM,I5,integration_fit,1,1,verify/closure_size.py: closure 180.0 MB,,
+lightgbm-org/LightGBM,R1,reproducibility,2,2,SMOKES/lightgbm-org__LightGBM/smoke_output.txt determinism trees identical; SMOKES/lightgbm-org__LightGBM/smoke_output_run1.txt same text sha256,LG-2,
+lightgbm-org/LightGBM,R2,reproducibility,2,2,SMOKES/lightgbm-org__LightGBM/smoke_output.txt S5 native_text identical max_abs_diff 0,LG-2,
+lightgbm-org/LightGBM,R3,reproducibility,1,1,"SMOKES/lightgbm-org__LightGBM/smoke_output.txt S5 native_text model (C++ parser, no code execution)",LG-2,
+lightgbm-org/LightGBM,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,text header carries no library version field shown (R5 0)
+lightgbm-org/LightGBM,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,text header carries no library version field shown (R5 0)
+lightgbm-org/LightGBM,K1,cost_latency,2,2,SMOKES/lightgbm-org__LightGBM/smoke_output.txt network_attempts [],LG-4,
+lightgbm-org/LightGBM,K2,cost_latency,1,1,"SMOKES/lightgbm-org__LightGBM/smoke_output.txt S6 fit 0.075 s, single row 0.46 ms",,
+lightgbm-org/LightGBM,K3,cost_latency,1,1,SMOKES/lightgbm-org__LightGBM/smoke_output.txt peak_rss_mb 182,,
+lightgbm-org/LightGBM,K4,cost_latency,1,1,REVIEWS/lightgbm-org__LightGBM.md s4 S6 py3-none-win_amd64 wheel; verify/VERIFY_GENERIC.json lightgbm-org/LightGBM K4_check true,,
+lightgbm-org/LightGBM,L1,license_security,3,3,REVIEWS/lightgbm-org__LightGBM.md s2 MIT at the pin; verify/VERIFY_GENERIC.json lightgbm-org/LightGBM L1_check true,,
+lightgbm-org/LightGBM,L2,license_security,1,1,"REVIEWS/lightgbm-org__LightGBM.md s2 Eigen MPL-2.0 parts only, unmodified; notices missing from the wheel recorded in the gate",,
+lightgbm-org/LightGBM,L3,license_security,1,1,REVIEWS/lightgbm-org__LightGBM.md s2 none found; verify/VERIFY_GENERIC.json lightgbm-org/LightGBM L3_check true,,
+lightgbm-org/LightGBM,L4,license_security,1,1,"REVIEWS/lightgbm-org__LightGBM.md s2 binary wheel, no install code",,
+lightgbm-org/LightGBM,L5,license_security,1,1,REVIEWS/lightgbm-org__LightGBM.md s2 no secrets; dask sockets only for distributed training,,
+interpretml/interpret,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,bags lets the caller choose validation rows (not T1); leak visible as top term but not refused
+interpretml/interpret,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,bags lets the caller choose validation rows (not T1); leak visible as top term but not refused
+interpretml/interpret,T3,temporal_integrity,2,2,SMOKES/interpretml__interpret/smoke_output_pin_cox.txt cox_survival holdout_censored_before_24h 107 kept censored,IN-2,
+interpretml/interpret,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,bags lets the caller choose validation rows (not T1); leak visible as top term but not refused
+interpretml/interpret,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,bags lets the caller choose validation rows (not T1); leak visible as top term but not refused
+interpretml/interpret,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,bags lets the caller choose validation rows (not T1); leak visible as top term but not refused
+interpretml/interpret,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,bags lets the caller choose validation rows (not T1); leak visible as top term but not refused
+interpretml/interpret,O1,transferable_outcomes,5,5,"SMOKES/interpretml__interpret/smoke_output.txt S2_probability (527,2)",IN-3,
+interpretml/interpret,O2,transferable_outcomes,3,3,"SMOKES/interpretml__interpret/smoke_output_pin_cox.txt survival_cox fit with censoring, Harrell C 0.6749; pin:interpretml__interpret/shared/libebm/compute/objectives/SurvivalCoxObjective.hpp:31",IN-1;IN-2,
+interpretml/interpret,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+interpretml/interpret,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+interpretml/interpret,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+interpretml/interpret,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,"no recalibration, interval or abstention; Wilson bins inside on a logistic fixture earn nothing; C5 corrected in the repair pass (IN-5: the review probed the wrong attribute name)"
+interpretml/interpret,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,"no recalibration, interval or abstention; Wilson bins inside on a logistic fixture earn nothing; C5 corrected in the repair pass (IN-5: the review probed the wrong attribute name)"
+interpretml/interpret,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,"no recalibration, interval or abstention; Wilson bins inside on a logistic fixture earn nothing; C5 corrected in the repair pass (IN-5: the review probed the wrong attribute name)"
+interpretml/interpret,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,"no recalibration, interval or abstention; Wilson bins inside on a logistic fixture earn nothing; C5 corrected in the repair pass (IN-5: the review probed the wrong attribute name)"
+interpretml/interpret,C5,calibration_uncertainty,2,2,"verify/rerun_interpret_sd.out.txt has_standard_deviations_ true, n_sd_arrays 6 of 6 terms, all_finite true (per-term spread across outer bags); pin:interpretml__interpret/python/interpret-core/interpret/glassbox/_ebm.py:1639",IN-5,
+interpretml/interpret,F1,features,2,2,SMOKES/interpretml__interpret/smoke_output.txt S3_missing native missing bin,,
+interpretml/interpret,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+interpretml/interpret,F3,features,2,0,no qualifying evidence (unanswered = 0),,
+interpretml/interpret,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+interpretml/interpret,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+interpretml/interpret,D1,decision_execution,3,3,pin:interpretml__interpret/python/interpret-core/interpret/glassbox/_ebm.py:475 sample_weight,IN-4,
+interpretml/interpret,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+interpretml/interpret,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+interpretml/interpret,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+interpretml/interpret,Q1,code_quality,2,2,SMOKES/interpretml__interpret/repo_tests_subset.txt test_cox.py 26 passed,,
+interpretml/interpret,Q2,code_quality,2,2,REVIEWS/interpretml__interpret.md s3 Cox tests cover the survival path,,
+interpretml/interpret,Q3,code_quality,2,2,REVIEWS/interpretml__interpret.md s1 commit 2026-10-18; 0.7.8 2026-03-17; verify/VERIFY_GENERIC.json interpretml/interpret Q3_check true,,
+interpretml/interpret,Q4,code_quality,1,1,REVIEWS/interpretml__interpret.md s1 release and pin both import,,
+interpretml/interpret,Q5,code_quality,1,1,"REVIEWS/interpretml__interpret.md s4 JSON load labelled untested, not silent",,
+interpretml/interpret,I1,integration_fit,2,2,SMOKES/interpretml__interpret/smoke_output.txt python 3.13.17,,
+interpretml/interpret,I2,integration_fit,1,1,"verify/closure_size.py venv: pandas 3.1.0, numpy 2.5.4",,
+interpretml/interpret,I3,integration_fit,2,2,REVIEWS/interpretml__interpret.md s3 sklearn-style API,,
+interpretml/interpret,I4,integration_fit,2,2,REVIEWS/interpretml__interpret.md s8 glassbox comparator,,
+interpretml/interpret,I5,integration_fit,1,1,verify/closure_size.py: closure 318.0 MB,,
+interpretml/interpret,R1,reproducibility,2,2,SMOKES/interpretml__interpret/smoke_output.txt determinism same_seed_identical_proba,IN-3,
+interpretml/interpret,R2,reproducibility,2,2,SMOKES/interpretml__interpret/smoke_output.txt S5 pickle identical,IN-3,
+interpretml/interpret,R3,reproducibility,1,1,"SMOKES/interpretml__interpret/smoke_output.txt S5 json_export reloaded identically (private, beta path)",IN-1;IN-3,
+interpretml/interpret,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,
+interpretml/interpret,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+interpretml/interpret,K1,cost_latency,2,2,SMOKES/interpretml__interpret/smoke_output.txt network_attempts [],,
+interpretml/interpret,K2,cost_latency,1,1,"SMOKES/interpretml__interpret/smoke_output.txt S6 fit 22.5 s default, single row 0.16 ms",,
+interpretml/interpret,K3,cost_latency,1,1,REVIEWS/interpretml__interpret.md s4 peak RSS 250 MB,,
+interpretml/interpret,K4,cost_latency,1,1,"REVIEWS/interpretml__interpret.md s4 S6 pure wheel with bundled Windows DLL, 3.13 classifier; verify/VERIFY_GENERIC.json interpretml/interpret K4_check true",,
+interpretml/interpret,L1,license_security,3,3,REVIEWS/interpretml__interpret.md s2 MIT at the pin; verify/VERIFY_GENERIC.json interpretml/interpret L1_check true,,
+interpretml/interpret,L2,license_security,1,1,REVIEWS/interpretml__interpret.md s2 one Apache-2.0 file (permissive),,
+interpretml/interpret,L3,license_security,1,1,REVIEWS/interpretml__interpret.md s2 no telemetry; unpkg JS only for cloud-notebook visuals; verify/VERIFY_GENERIC.json interpretml/interpret L3_check true,,
+interpretml/interpret,L4,license_security,1,1,REVIEWS/interpretml__interpret.md s1 build.sh inspected; wheel has no install code,,
+interpretml/interpret,L5,license_security,1,1,REVIEWS/interpretml__interpret.md s2 no secrets; dashboard server not needed,,
+PriorLabs/TabPFN,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,O1,transferable_outcomes,5,5,"SMOKES/PriorLabs__TabPFN/smoke_output.txt S2_probability (527,2)",,
+PriorLabs/TabPFN,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,F1,features,2,2,SMOKES/PriorLabs__TabPFN/smoke_output.txt S3_missing native,,
+PriorLabs/TabPFN,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,F3,features,2,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+PriorLabs/TabPFN,Q1,code_quality,2,2,SMOKES/PriorLabs__TabPFN/repo_tests_subset.txt 72 passed,,
+PriorLabs/TabPFN,Q2,code_quality,2,0,no qualifying evidence (unanswered = 0),,offline test subset did not cover the classifier path (Q2 0)
+PriorLabs/TabPFN,Q3,code_quality,2,2,REVIEWS/PriorLabs__TabPFN.md s1 commit 2026-10-21; 9.2.0 2026-10-12; verify/VERIFY_GENERIC.json PriorLabs/TabPFN Q3_check true,,
+PriorLabs/TabPFN,Q4,code_quality,1,1,"REVIEWS/PriorLabs__TabPFN.md s1 installed from the pin, 91 files identical",,
+PriorLabs/TabPFN,Q5,code_quality,1,1,"REVIEWS/PriorLabs__TabPFN.md s4 errors raised, none silent",,
+PriorLabs/TabPFN,I1,integration_fit,2,2,SMOKES/PriorLabs__TabPFN/smoke_output.txt python 3.13.17,,
+PriorLabs/TabPFN,I2,integration_fit,1,0,no qualifying evidence (unanswered = 0),,pandas version of the deleted venv not recorded (I2 0); 1.2 GB with torch (I5 0)
+PriorLabs/TabPFN,I3,integration_fit,2,2,REVIEWS/PriorLabs__TabPFN.md s3 sklearn-style estimator,,
+PriorLabs/TabPFN,I4,integration_fit,2,2,REVIEWS/PriorLabs__TabPFN.md s8 small-N comparator,,
+PriorLabs/TabPFN,I5,integration_fit,1,0,no qualifying evidence (unanswered = 0),,pandas version of the deleted venv not recorded (I2 0); 1.2 GB with torch (I5 0)
+PriorLabs/TabPFN,R1,reproducibility,2,0,no qualifying evidence (unanswered = 0),,"reruns and reload differ by 6e-8, not bit-identical; fitted state is pickle"
+PriorLabs/TabPFN,R2,reproducibility,2,0,no qualifying evidence (unanswered = 0),,"reruns and reload differ by 6e-8, not bit-identical; fitted state is pickle"
+PriorLabs/TabPFN,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,"reruns and reload differ by 6e-8, not bit-identical; fitted state is pickle"
+PriorLabs/TabPFN,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,"reruns and reload differ by 6e-8, not bit-identical; fitted state is pickle"
+PriorLabs/TabPFN,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,"reruns and reload differ by 6e-8, not bit-identical; fitted state is pickle"
+PriorLabs/TabPFN,K1,cost_latency,2,2,SMOKES/PriorLabs__TabPFN/smoke_output.txt network_attempts_after_v2_fit_predict [] once v2 weights are cached,TP-4,
+PriorLabs/TabPFN,K2,cost_latency,1,1,"SMOKES/PriorLabs__TabPFN/smoke_output.txt S6 batch 62 ms per row, fit 0.96 s",,
+PriorLabs/TabPFN,K3,cost_latency,1,1,SMOKES/PriorLabs__TabPFN/smoke_output.txt peak_rss_mb 996; v2 weights need no paid license,TP-2,
+PriorLabs/TabPFN,K4,cost_latency,1,1,REVIEWS/PriorLabs__TabPFN.md s4 S6 pure wheel; torch cp313-win_amd64; verify/VERIFY_GENERIC.json PriorLabs/TabPFN K4_check true,,
+PriorLabs/TabPFN,L1,license_security,3,3,REVIEWS/PriorLabs__TabPFN.md s2 code LICENSE Apache-2.0; verify/VERIFY_GENERIC.json PriorLabs/TabPFN L1_check true,,
+PriorLabs/TabPFN,L2,license_security,1,0,no qualifying evidence (unanswered = 0),,default weights non-commercial (L2 0); download counter call (L3 0); license token for default weights (L5 0)
+PriorLabs/TabPFN,L3,license_security,1,0,no qualifying evidence (unanswered = 0),,default weights non-commercial (L2 0); download counter call (L3 0); license token for default weights (L5 0)
+PriorLabs/TabPFN,L4,license_security,1,1,"REVIEWS/PriorLabs__TabPFN.md s2 setuptools build, no install scripts",,
+PriorLabs/TabPFN,L5,license_security,1,0,no qualifying evidence (unanswered = 0),,default weights non-commercial (L2 0); download counter call (L3 0); license token for default weights (L5 0)
+statsmodels/statsmodels,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+statsmodels/statsmodels,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+statsmodels/statsmodels,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+statsmodels/statsmodels,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+statsmodels/statsmodels,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+statsmodels/statsmodels,T5,temporal_integrity,3,3,"verify/rerun_statsmodels.out.txt filtered diff 0.0, smoothed diff 0.0186; SMOKES/statsmodels__statsmodels/smoke_output.txt markov_regression.truncation_test",SM-2,
+statsmodels/statsmodels,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+statsmodels/statsmodels,O1,transferable_outcomes,5,5,"SMOKES/statsmodels__statsmodels/smoke_output.txt S2_probability finite in [0,1], n 527",,
+statsmodels/statsmodels,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+statsmodels/statsmodels,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+statsmodels/statsmodels,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+statsmodels/statsmodels,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+statsmodels/statsmodels,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,no Brier or log loss function used (C1 0); GLM CI coverage not measured (C3 0)
+statsmodels/statsmodels,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,no Brier or log loss function used (C1 0); GLM CI coverage not measured (C3 0)
+statsmodels/statsmodels,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,no Brier or log loss function used (C1 0); GLM CI coverage not measured (C3 0)
+statsmodels/statsmodels,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,no Brier or log loss function used (C1 0); GLM CI coverage not measured (C3 0)
+statsmodels/statsmodels,C5,calibration_uncertainty,2,2,"SMOKES/statsmodels__statsmodels/smoke_output.txt S4_uncertainty holm, wilson_vs_lab 9e-6, GLM mean CI per row, standard errors",SM-3,
+statsmodels/statsmodels,F1,features,2,0,no qualifying evidence (unanswered = 0),,
+statsmodels/statsmodels,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+statsmodels/statsmodels,F3,features,2,2,SMOKES/statsmodels__statsmodels/smoke_output.txt markov_regression regime states (N07),SM-2,
+statsmodels/statsmodels,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+statsmodels/statsmodels,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+statsmodels/statsmodels,D1,decision_execution,3,3,"pin:statsmodels__statsmodels/statsmodels/genmod/generalized_linear_model.py:95 freq_weights, var_weights",,
+statsmodels/statsmodels,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+statsmodels/statsmodels,D3,decision_execution,2,2,SMOKES/statsmodels__statsmodels/smoke_output.txt S4_uncertainty holm adjusted equal to hand computation,SM-3,
+statsmodels/statsmodels,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+statsmodels/statsmodels,Q1,code_quality,2,2,SMOKES/statsmodels__statsmodels/repo_tests_subset.txt 507 passed,,
+statsmodels/statsmodels,Q2,code_quality,2,2,REVIEWS/statsmodels__statsmodels.md s3 regime_switching and multitest tests,,
+statsmodels/statsmodels,Q3,code_quality,2,2,REVIEWS/statsmodels__statsmodels.md s1 commit 2026-10-23; 0.15.0 2026-08-27; verify/VERIFY_GENERIC.json statsmodels/statsmodels Q3_check true,,
+statsmodels/statsmodels,Q4,code_quality,1,1,"REVIEWS/statsmodels__statsmodels.md s1 built from the pin, imports",,
+statsmodels/statsmodels,Q5,code_quality,1,1,REVIEWS/statsmodels__statsmodels.md s4 default raises on NaN; out-of-sample predict raises (P42 recorded),SM-1,
+statsmodels/statsmodels,I1,integration_fit,2,2,SMOKES/statsmodels__statsmodels/smoke_output.txt python 3.13.17,,
+statsmodels/statsmodels,I2,integration_fit,1,1,"REVIEWS/statsmodels__statsmodels.md s1 pandas 3.1.0, numpy 2.5.4",,
+statsmodels/statsmodels,I3,integration_fit,2,2,REVIEWS/statsmodels__statsmodels.md s3 model API,,
+statsmodels/statsmodels,I4,integration_fit,2,2,"REVIEWS/statsmodels__statsmodels.md s8 B2 cross-check, Holm, Wilson",,
+statsmodels/statsmodels,I5,integration_fit,1,1,verify/closure_size.py: closure 260.5 MB,,
+statsmodels/statsmodels,R1,reproducibility,2,2,"verify/repeat_runs.json statsmodels__statsmodels: reviewer script re-run by the lead, identical after normalization",REPEAT,
+statsmodels/statsmodels,R2,reproducibility,2,2,SMOKES/statsmodels__statsmodels/smoke_output.txt S5_persistence identical,SM-3,
+statsmodels/statsmodels,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,pickle only (R3 0)
+statsmodels/statsmodels,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,pickle only (R3 0)
+statsmodels/statsmodels,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,pickle only (R3 0)
+statsmodels/statsmodels,K1,cost_latency,2,2,SMOKES/statsmodels__statsmodels/smoke_output.txt network_attempts [],,
+statsmodels/statsmodels,K2,cost_latency,1,1,"SMOKES/statsmodels__statsmodels/smoke_output.txt S6 Logit 0.002 s, predict 0.005 ms",,
+statsmodels/statsmodels,K3,cost_latency,1,1,SMOKES/statsmodels__statsmodels/smoke_output.txt peak_rss_mb 180,,
+statsmodels/statsmodels,K4,cost_latency,1,1,REVIEWS/statsmodels__statsmodels.md s4 S6 0.15.0 cp313-win_amd64; verify/VERIFY_GENERIC.json statsmodels/statsmodels K4_check true,,
+statsmodels/statsmodels,L1,license_security,3,3,REVIEWS/statsmodels__statsmodels.md s2 LICENSE.txt BSD-3-Clause at the pin; verify/VERIFY_GENERIC.json statsmodels/statsmodels L1_check true,,
+statsmodels/statsmodels,L2,license_security,1,1,REVIEWS/statsmodels__statsmodels.md s2 nested BSD only,,
+statsmodels/statsmodels,L3,license_security,1,1,REVIEWS/statsmodels__statsmodels.md s2 none found; verify/VERIFY_GENERIC.json statsmodels/statsmodels L3_check true,,
+statsmodels/statsmodels,L4,license_security,1,1,REVIEWS/statsmodels__statsmodels.md s2 meson build,,
+statsmodels/statsmodels,L5,license_security,1,1,REVIEWS/statsmodels__statsmodels.md s2 no secrets,,
+scikit-learn-contrib/MAPIE,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+scikit-learn-contrib/MAPIE,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+scikit-learn-contrib/MAPIE,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+scikit-learn-contrib/MAPIE,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+scikit-learn-contrib/MAPIE,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+scikit-learn-contrib/MAPIE,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+scikit-learn-contrib/MAPIE,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+scikit-learn-contrib/MAPIE,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,"its only probability output is the Venn-Abers port that fails the definition (MA-1, MA-4): O1 0 by the verified-finding veto"
+scikit-learn-contrib/MAPIE,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,"its only probability output is the Venn-Abers port that fails the definition (MA-1, MA-4): O1 0 by the verified-finding veto"
+scikit-learn-contrib/MAPIE,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"its only probability output is the Venn-Abers port that fails the definition (MA-1, MA-4): O1 0 by the verified-finding veto"
+scikit-learn-contrib/MAPIE,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"its only probability output is the Venn-Abers port that fails the definition (MA-1, MA-4): O1 0 by the verified-finding veto"
+scikit-learn-contrib/MAPIE,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"its only probability output is the Venn-Abers port that fails the definition (MA-1, MA-4): O1 0 by the verified-finding veto"
+scikit-learn-contrib/MAPIE,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,no Brier or log loss function (C1 0); Venn-Abers port fails the definition above the calibration range (C2 0)
+scikit-learn-contrib/MAPIE,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,no Brier or log loss function (C1 0); Venn-Abers port fails the definition above the calibration range (C2 0)
+scikit-learn-contrib/MAPIE,C3,calibration_uncertainty,3,3,SMOKES/scikit-learn-contrib__MAPIE/raw_smoke_mapie.txt lac conf=0.9 coverage 0.9184,MA-2,
+scikit-learn-contrib/MAPIE,C4,calibration_uncertainty,2,2,SMOKES/scikit-learn-contrib__MAPIE/raw_smoke_mapie.txt `sizes: empty=29` at conf 0.9; risk controller `no valid threshold on 16 calibration positives`,MA-2,
+scikit-learn-contrib/MAPIE,C5,calibration_uncertainty,2,2,"SMOKES/scikit-learn-contrib__MAPIE/raw_smoke_mapie.txt ECE, Spiegelhalter p 0.6215, KS p 0.996",,
+scikit-learn-contrib/MAPIE,F1,features,2,0,no qualifying evidence (unanswered = 0),,
+scikit-learn-contrib/MAPIE,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+scikit-learn-contrib/MAPIE,F3,features,2,0,no qualifying evidence (unanswered = 0),,
+scikit-learn-contrib/MAPIE,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+scikit-learn-contrib/MAPIE,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+scikit-learn-contrib/MAPIE,D1,decision_execution,3,3,"pin:scikit-learn-contrib__MAPIE/mapie/risk_control/risks.py:277 BinaryRisk(risk_occurrence, risk_condition): custom per-row risk; pin:scikit-learn-contrib__MAPIE/mapie/risk_control/binary_classification.py:182 consumed by BinaryClassificationController",MA-5,
+scikit-learn-contrib/MAPIE,D2,decision_execution,3,3,SMOKES/scikit-learn-contrib__MAPIE/raw_smoke_mapie.txt `precision >= 0.1 at 90% confidence: no valid threshold` (Learn-then-Test controller abstains),MA-2,
+scikit-learn-contrib/MAPIE,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,sample_weight passed through to the wrapped estimator does not count for D1 (pass-through rule); D1 rests on MAPIE's own BinaryRisk
+scikit-learn-contrib/MAPIE,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,sample_weight passed through to the wrapped estimator does not count for D1 (pass-through rule); D1 rests on MAPIE's own BinaryRisk
+scikit-learn-contrib/MAPIE,Q1,code_quality,2,2,SMOKES/scikit-learn-contrib__MAPIE/raw_repo_tests_mapie.txt 234 passed,,
+scikit-learn-contrib/MAPIE,Q2,code_quality,2,2,REVIEWS/scikit-learn-contrib__MAPIE.md s3 test_calibration and test_metrics,,
+scikit-learn-contrib/MAPIE,Q3,code_quality,2,2,REVIEWS/scikit-learn-contrib__MAPIE.md s1 commit 2026-10-19; 1.6.0 2026-10-19; verify/VERIFY_GENERIC.json scikit-learn-contrib/MAPIE Q3_check true,,
+scikit-learn-contrib/MAPIE,Q4,code_quality,1,1,"REVIEWS/scikit-learn-contrib__MAPIE.md s2 numpy, scipy, scikit-learn only",,
+scikit-learn-contrib/MAPIE,Q5,code_quality,1,0,no qualifying evidence (unanswered = 0),,"Venn-Abers p1 defect, NaN score to a probability, prefit Pipeline refits the caller's transformers (MA-4) (Q5 0)"
+scikit-learn-contrib/MAPIE,I1,integration_fit,2,2,SMOKES/scikit-learn-contrib__MAPIE/raw_smoke_mapie.txt python 3.13.17,,
+scikit-learn-contrib/MAPIE,I2,integration_fit,1,1,SMOKES/scikit-learn-contrib__MAPIE/raw_smoke_mapie.txt pandas 3.1.0 numpy 2.5.4,,
+scikit-learn-contrib/MAPIE,I3,integration_fit,2,2,REVIEWS/scikit-learn-contrib__MAPIE.md s3 scikit-learn API,,
+scikit-learn-contrib/MAPIE,I4,integration_fit,2,2,REVIEWS/scikit-learn-contrib__MAPIE.md s8 offline evaluation helper,,
+scikit-learn-contrib/MAPIE,I5,integration_fit,1,1,verify/closure_size.py: closure 204.4 MB,,
+scikit-learn-contrib/MAPIE,R1,reproducibility,2,2,"verify/repeat_runs.json scikit-learn-contrib__MAPIE: reviewer script re-run by the lead, identical after normalization",REPEAT,
+scikit-learn-contrib/MAPIE,R2,reproducibility,2,2,SMOKES/scikit-learn-contrib__MAPIE/raw_smoke_mapie.txt pickle reload identical sets and probabilities,,
+scikit-learn-contrib/MAPIE,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+scikit-learn-contrib/MAPIE,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,
+scikit-learn-contrib/MAPIE,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+scikit-learn-contrib/MAPIE,K1,cost_latency,2,2,"SMOKES/scikit-learn-contrib__MAPIE/raw_smoke_mapie.txt unshare -n, exit 0",,
+scikit-learn-contrib/MAPIE,K2,cost_latency,1,1,"REVIEWS/scikit-learn-contrib__MAPIE.md s4 S6 fit 40 to 170 ms, predict microseconds",,
+scikit-learn-contrib/MAPIE,K3,cost_latency,1,1,REVIEWS/scikit-learn-contrib__MAPIE.md s4 S6 166 MB,,
+scikit-learn-contrib/MAPIE,K4,cost_latency,1,1,SMOKES/scikit-learn-contrib__MAPIE/raw_pypi_files_r2.txt py3-none-any; verify/VERIFY_GENERIC.json scikit-learn-contrib/MAPIE K4_check true,,
+scikit-learn-contrib/MAPIE,L1,license_security,3,3,REVIEWS/scikit-learn-contrib__MAPIE.md s2 BSD-3-Clause sha256 92372faa; verify/VERIFY_GENERIC.json scikit-learn-contrib/MAPIE L1_check true,,
+scikit-learn-contrib/MAPIE,L2,license_security,1,1,REVIEWS/scikit-learn-contrib__MAPIE.md s2 vendored MIT notices present,,
+scikit-learn-contrib/MAPIE,L3,license_security,1,1,REVIEWS/scikit-learn-contrib__MAPIE.md s2 no network or telemetry code; verify/VERIFY_GENERIC.json scikit-learn-contrib/MAPIE L3_check true,,
+scikit-learn-contrib/MAPIE,L4,license_security,1,1,"REVIEWS/scikit-learn-contrib__MAPIE.md s2 setuptools, no setup.py",,
+scikit-learn-contrib/MAPIE,L5,license_security,1,1,REVIEWS/scikit-learn-contrib__MAPIE.md s2 none,,
+henrikbostrom/crepes,T1,temporal_integrity,3,3,"SMOKES/henrikbostrom__crepes/raw_smoke_crepes.txt conformal test martingales over time-ordered scores: no alarm on train then val, `{'SimpleJumper': 619, 'SleeperStayer': 637` after the shift",CR-2,
+henrikbostrom/crepes,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,no probability recalibration (C2 0)
+henrikbostrom/crepes,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,no probability recalibration (C2 0)
+henrikbostrom/crepes,C3,calibration_uncertainty,3,3,"SMOKES/henrikbostrom__crepes/raw_smoke_crepes.txt marginal `coverage=0.9184`, class-conditional Mondrian `coverage=0.9336 positives_cov=0.9412`",CR-2,
+henrikbostrom/crepes,C4,calibration_uncertainty,2,2,"SMOKES/henrikbostrom__crepes/raw_smoke_crepes.txt class-conditional sets `{0,1}=406` at conf 0.9 (two-label no-decision sets)",CR-2,
+henrikbostrom/crepes,C5,calibration_uncertainty,2,2,SMOKES/henrikbostrom__crepes/raw_smoke_crepes.txt `ks_test (uniformity of p-values) from evaluate`,,
+henrikbostrom/crepes,F1,features,2,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,F3,features,2,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,D4,decision_execution,2,2,"SMOKES/henrikbostrom__crepes/raw_smoke_crepes.txt martingale `alarm index (c=100, n means no alarm)` 619 to 637 after the shift",CR-2,
+henrikbostrom/crepes,Q1,code_quality,2,0,no qualifying evidence (unanswered = 0),,"no test files at the pin (Q1 0, Q2 0)"
+henrikbostrom/crepes,Q2,code_quality,2,0,no qualifying evidence (unanswered = 0),,"no test files at the pin (Q1 0, Q2 0)"
+henrikbostrom/crepes,Q3,code_quality,2,2,REVIEWS/henrikbostrom__crepes.md s1 commit 2026-07-08; 0.9.1 2026-06-12; verify/VERIFY_GENERIC.json henrikbostrom/crepes Q3_check true,,
+henrikbostrom/crepes,Q4,code_quality,1,1,"REVIEWS/henrikbostrom__crepes.md s2 numpy, pandas, scipy",,
+henrikbostrom/crepes,Q5,code_quality,1,1,REVIEWS/henrikbostrom__crepes.md s4 none found; global RNG side effect recorded,,
+henrikbostrom/crepes,I1,integration_fit,2,2,SMOKES/henrikbostrom__crepes/raw_smoke_crepes.txt python 3.13.17,,
+henrikbostrom/crepes,I2,integration_fit,1,1,"REVIEWS/henrikbostrom__crepes.md s1 pandas 3.1.0, numpy 2.5.4",,
+henrikbostrom/crepes,I3,integration_fit,2,2,REVIEWS/henrikbostrom__crepes.md s3 WrapClassifier and functions,,
+henrikbostrom/crepes,I4,integration_fit,2,2,REVIEWS/henrikbostrom__crepes.md s8 drift monitor and abstention signal,,
+henrikbostrom/crepes,I5,integration_fit,1,1,verify/closure_size.py: closure 213.0 MB,,
+henrikbostrom/crepes,R1,reproducibility,2,2,SMOKES/henrikbostrom__crepes/raw_smoke_crepes.txt two predict_p calls with the same seed equal,CR-2,
+henrikbostrom/crepes,R2,reproducibility,2,2,SMOKES/henrikbostrom__crepes/raw_smoke_crepes.txt pickle reload identical p-values,,
+henrikbostrom/crepes,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+henrikbostrom/crepes,K1,cost_latency,2,2,SMOKES/henrikbostrom__crepes/raw_smoke_crepes.txt unshare -n,,
+henrikbostrom/crepes,K2,cost_latency,1,1,"REVIEWS/henrikbostrom__crepes.md s4 S6 calibrate 2.9 ms, 0.1 ms per row",,
+henrikbostrom/crepes,K3,cost_latency,1,1,REVIEWS/henrikbostrom__crepes.md s4 S6 241 MB,,
+henrikbostrom/crepes,K4,cost_latency,1,1,SMOKES/henrikbostrom__crepes/raw_pypi_files_r2.txt py3-none-any; verify/VERIFY_GENERIC.json henrikbostrom/crepes K4_check true,,
+henrikbostrom/crepes,L1,license_security,3,3,REVIEWS/henrikbostrom__crepes.md s2 BSD-3-Clause sha256 3bed289f; verify/VERIFY_GENERIC.json henrikbostrom/crepes L1_check true,,
+henrikbostrom/crepes,L2,license_security,1,1,REVIEWS/henrikbostrom__crepes.md s2 no vendored code,,
+henrikbostrom/crepes,L3,license_security,1,1,REVIEWS/henrikbostrom__crepes.md s2 no network code; verify/VERIFY_GENERIC.json henrikbostrom/crepes L3_check true,,
+henrikbostrom/crepes,L4,license_security,1,1,REVIEWS/henrikbostrom__crepes.md s2 plain setuptools,,
+henrikbostrom/crepes,L5,license_security,1,1,REVIEWS/henrikbostrom__crepes.md s2 none,,
+ip200/venn-abers,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,estimator mode shuffles time by default (S4c)
+ip200/venn-abers,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,estimator mode shuffles time by default (S4c)
+ip200/venn-abers,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,estimator mode shuffles time by default (S4c)
+ip200/venn-abers,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,estimator mode shuffles time by default (S4c)
+ip200/venn-abers,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,estimator mode shuffles time by default (S4c)
+ip200/venn-abers,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,estimator mode shuffles time by default (S4c)
+ip200/venn-abers,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,estimator mode shuffles time by default (S4c)
+ip200/venn-abers,O1,transferable_outcomes,5,5,"SMOKES/ip200__venn-abers/raw_smoke_venn_abers.txt output shape (527, 2), `rows sum to 1: True`, `finite=True in[0,1]=True`",,
+ip200/venn-abers,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,C2,calibration_uncertainty,3,3,"SMOKES/ip200__venn-abers/raw_smoke_venn_abers.txt manual prefit path on the later window, `max |p1 - definition| = 0` on 530 probes",VA-1,
+ip200/venn-abers,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,C5,calibration_uncertainty,2,2,SMOKES/ip200__venn-abers/raw_smoke_venn_abers.txt `interval p1-p0: median=0.0075` per-row interval width,,
+ip200/venn-abers,F1,features,2,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,F3,features,2,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,Q1,code_quality,2,2,SMOKES/ip200__venn-abers/raw_repo_tests_venn_abers.txt 18 passed,,
+ip200/venn-abers,Q2,code_quality,2,2,REVIEWS/ip200__venn-abers.md s3 all 4 test files,,
+ip200/venn-abers,Q3,code_quality,2,2,REVIEWS/ip200__venn-abers.md s1 commit 2026-09-02; 1.5.4 2026-08-12; verify/VERIFY_GENERIC.json ip200/venn-abers Q3_check true,,
+ip200/venn-abers,Q4,code_quality,1,1,REVIEWS/ip200__venn-abers.md s1 builds and imports on 3.13,,
+ip200/venn-abers,Q5,code_quality,1,0,no qualifying evidence (unanswered = 0),,NaN score returns 0.625 silently (Q5 0)
+ip200/venn-abers,I1,integration_fit,2,2,SMOKES/ip200__venn-abers/raw_smoke_venn_abers.txt python 3.13.17,,
+ip200/venn-abers,I2,integration_fit,1,1,"REVIEWS/ip200__venn-abers.md s1 pandas 3.1.0, numpy 2.5.4",,
+ip200/venn-abers,I3,integration_fit,2,2,REVIEWS/ip200__venn-abers.md s3 manual mode on score arrays,,
+ip200/venn-abers,I4,integration_fit,2,2,REVIEWS/ip200__venn-abers.md s8 test oracle and calibrator,,
+ip200/venn-abers,I5,integration_fit,1,1,verify/closure_size.py: closure 246.9 MB,,
+ip200/venn-abers,R1,reproducibility,2,2,SMOKES/ip200__venn-abers/raw_smoke_venn_abers.txt manual mode equals the VennAbers class,,
+ip200/venn-abers,R2,reproducibility,2,2,SMOKES/ip200__venn-abers/raw_smoke_venn_abers.txt pickle reload identical,,
+ip200/venn-abers,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+ip200/venn-abers,K1,cost_latency,2,2,SMOKES/ip200__venn-abers/raw_smoke_venn_abers.txt unshare -n,,
+ip200/venn-abers,K2,cost_latency,1,1,"REVIEWS/ip200__venn-abers.md s4 S6 fit 8 to 11 ms, 0.23 us per row",,
+ip200/venn-abers,K3,cost_latency,1,1,REVIEWS/ip200__venn-abers.md s4 S6 159 MB,,
+ip200/venn-abers,K4,cost_latency,1,0,no qualifying evidence (unanswered = 0),,sdist only on PyPI (K4 0)
+ip200/venn-abers,L1,license_security,3,3,REVIEWS/ip200__venn-abers.md s2 MIT sha256 232ce5b4; verify/VERIFY_GENERIC.json ip200/venn-abers L1_check true,,
+ip200/venn-abers,L2,license_security,1,1,REVIEWS/ip200__venn-abers.md s2 no vendored code,,
+ip200/venn-abers,L3,license_security,1,1,REVIEWS/ip200__venn-abers.md s2 no network code; verify/VERIFY_GENERIC.json ip200/venn-abers L3_check true,,
+ip200/venn-abers,L4,license_security,1,1,REVIEWS/ip200__venn-abers.md s2 setup.py inspected,,
+ip200/venn-abers,L5,license_security,1,1,REVIEWS/ip200__venn-abers.md s2 none,,
+lorentzenchr/model-diagnostics,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,C1,calibration_uncertainty,2,2,SMOKES/lorentzenchr__model-diagnostics/raw_smoke_model_diagnostics.txt `SquaredError (Brier) decomposition` and `LogLoss decomposition` equal own Brier and log loss,MD-1,
+lorentzenchr/model-diagnostics,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,C5,calibration_uncertainty,2,2,SMOKES/lorentzenchr__model-diagnostics/raw_smoke_model_diagnostics.txt `PAV blocks with counts` for the reliability curve and generalised bias with bias_stderr and p_value per bin,,
+lorentzenchr/model-diagnostics,F1,features,2,2,SMOKES/lorentzenchr__model-diagnostics/raw_smoke_model_diagnostics.txt `rows with NaN liq_usd are reported as their own bin`,MD-1,
+lorentzenchr/model-diagnostics,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,F3,features,2,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,D1,decision_execution,3,3,pin:lorentzenchr__model-diagnostics/src/model_diagnostics/scoring/_scoring.py:704 decompose(weights=),,
+lorentzenchr/model-diagnostics,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,Q1,code_quality,2,2,"SMOKES/lorentzenchr__model-diagnostics/raw_repo_tests_model_diagnostics.txt 294 passed, 4 need test-only pyarrow",,
+lorentzenchr/model-diagnostics,Q2,code_quality,2,2,REVIEWS/lorentzenchr__model-diagnostics.md s3 calibration and scoring tests,,
+lorentzenchr/model-diagnostics,Q3,code_quality,2,2,REVIEWS/lorentzenchr__model-diagnostics.md s1 commit 2026-04-26; 1.5.0 2026-04-25; verify/VERIFY_GENERIC.json lorentzenchr/model-diagnostics Q3_check true,,
+lorentzenchr/model-diagnostics,Q4,code_quality,1,0,no qualifying evidence (unanswered = 0),,pyarrow needed for pandas categorical inputs is undeclared (Q4 0); misleading zero-event p-values and silent NaN in bare scores (Q5 0)
+lorentzenchr/model-diagnostics,Q5,code_quality,1,0,no qualifying evidence (unanswered = 0),,pyarrow needed for pandas categorical inputs is undeclared (Q4 0); misleading zero-event p-values and silent NaN in bare scores (Q5 0)
+lorentzenchr/model-diagnostics,I1,integration_fit,2,2,SMOKES/lorentzenchr__model-diagnostics/raw_smoke_model_diagnostics.txt python 3.13.17,,
+lorentzenchr/model-diagnostics,I2,integration_fit,1,1,"REVIEWS/lorentzenchr__model-diagnostics.md s1 pandas 3.1.0, numpy 2.5.4",,
+lorentzenchr/model-diagnostics,I3,integration_fit,2,2,REVIEWS/lorentzenchr__model-diagnostics.md s3 stateless functions,,
+lorentzenchr/model-diagnostics,I4,integration_fit,2,2,REVIEWS/lorentzenchr__model-diagnostics.md s8 offline oracle,,
+lorentzenchr/model-diagnostics,I5,integration_fit,1,1,verify/closure_size.py: closure 471.5 MB,,
+lorentzenchr/model-diagnostics,R1,reproducibility,2,2,SMOKES/lorentzenchr__model-diagnostics/raw_smoke_model_diagnostics.txt repeated call identical,,
+lorentzenchr/model-diagnostics,R2,reproducibility,2,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+lorentzenchr/model-diagnostics,K1,cost_latency,2,2,SMOKES/lorentzenchr__model-diagnostics/raw_smoke_model_diagnostics.txt unshare -n,,
+lorentzenchr/model-diagnostics,K2,cost_latency,1,1,REVIEWS/lorentzenchr__model-diagnostics.md s4 S6 decompose 1.5 ms,,
+lorentzenchr/model-diagnostics,K3,cost_latency,1,1,REVIEWS/lorentzenchr__model-diagnostics.md s4 S6 242 MB,,
+lorentzenchr/model-diagnostics,K4,cost_latency,1,1,SMOKES/lorentzenchr__model-diagnostics/raw_pypi_files_r2.txt py3-none-any; verify/VERIFY_GENERIC.json lorentzenchr/model-diagnostics K4_check true,,
+lorentzenchr/model-diagnostics,L1,license_security,3,3,REVIEWS/lorentzenchr__model-diagnostics.md s2 MIT sha256 45620685; verify/VERIFY_GENERIC.json lorentzenchr/model-diagnostics L1_check true,,
+lorentzenchr/model-diagnostics,L2,license_security,1,1,REVIEWS/lorentzenchr__model-diagnostics.md s2 no vendored code,,
+lorentzenchr/model-diagnostics,L3,license_security,1,1,REVIEWS/lorentzenchr__model-diagnostics.md s2 no network code; verify/VERIFY_GENERIC.json lorentzenchr/model-diagnostics L3_check true,,
+lorentzenchr/model-diagnostics,L4,license_security,1,1,REVIEWS/lorentzenchr__model-diagnostics.md s2 hatchling,,
+lorentzenchr/model-diagnostics,L5,license_security,1,1,REVIEWS/lorentzenchr__model-diagnostics.md s2 none,,
+bashtage/arch,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,O4,transferable_outcomes,2,2,"SMOKES/bashtage__arch/raw_smoke_arch.txt GARCH(1,1) estimates and volatility on 2016 returns",,
+bashtage/arch,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,C3,calibration_uncertainty,3,3,"SMOKES/bashtage__arch/raw_smoke_arch.txt Monte Carlo coverage IID 0.715, stationary 0.875",AR-1,
+bashtage/arch,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,F1,features,2,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,F3,features,2,2,"SMOKES/bashtage__arch/raw_smoke_arch.txt GARCH(1,1) volatility state on 2016 returns, `12-step variance forecast last=0.2952` (degenerate on 60 returns)",,
+bashtage/arch,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,D3,decision_execution,2,2,"SMOKES/bashtage__arch/raw_smoke_arch.txt SPA p 0.306, MCS 90% set",AR-1,
+bashtage/arch,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,Q1,code_quality,2,2,SMOKES/bashtage__arch/raw_repo_tests_arch.txt 186 passed,,
+bashtage/arch,Q2,code_quality,2,2,REVIEWS/bashtage__arch.md s3 bootstrap and multiple comparison tests,,
+bashtage/arch,Q3,code_quality,2,2,REVIEWS/bashtage__arch.md s1 commit 2026-10-22; 8.0.0 2025-10-21; verify/VERIFY_GENERIC.json bashtage/arch Q3_check true,,
+bashtage/arch,Q4,code_quality,1,1,REVIEWS/bashtage__arch.md s1 built from the pin,,
+bashtage/arch,Q5,code_quality,1,0,no qualifying evidence (unanswered = 0),,"NaN gives a silent [nan, nan] interval; degenerate GARCH without warning (Q5 0)"
+bashtage/arch,I1,integration_fit,2,2,SMOKES/bashtage__arch/raw_smoke_arch.txt python 3.13,,
+bashtage/arch,I2,integration_fit,1,1,"REVIEWS/bashtage__arch.md s1 pandas 3.1.0, numpy 2.5.4",,
+bashtage/arch,I3,integration_fit,2,2,REVIEWS/bashtage__arch.md s3 bootstrap objects,,
+bashtage/arch,I4,integration_fit,2,2,REVIEWS/bashtage__arch.md s8 offline evaluation,,
+bashtage/arch,I5,integration_fit,1,1,verify/closure_size.py: closure 263.3 MB,,
+bashtage/arch,R1,reproducibility,2,2,SMOKES/bashtage__arch/raw_smoke_arch.txt same seed twice identical,AR-1,
+bashtage/arch,R2,reproducibility,2,2,SMOKES/bashtage__arch/raw_smoke_arch.txt pickled bootstrap identical interval,,
+bashtage/arch,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+bashtage/arch,K1,cost_latency,2,2,SMOKES/bashtage__arch/raw_smoke_arch.txt unshare -n,,
+bashtage/arch,K2,cost_latency,1,1,REVIEWS/bashtage__arch.md s4 S6 0.05 s per 2000 resamples,,
+bashtage/arch,K3,cost_latency,1,1,REVIEWS/bashtage__arch.md s4 S6 174 MB,,
+bashtage/arch,K4,cost_latency,1,1,SMOKES/bashtage__arch/raw_pypi_files_r2.txt 8.0.0 cp313 win_amd64; verify/VERIFY_GENERIC.json bashtage/arch K4_check true,,
+bashtage/arch,L1,license_security,3,3,pin:bashtage__arch/LICENSE.md:1 NCSA-style permissive; verify/VERIFY_GENERIC.json bashtage/arch L1_check true,AR-2,
+bashtage/arch,L2,license_security,1,1,REVIEWS/bashtage__arch.md s2 vendored pandas decorators (BSD-3),,
+bashtage/arch,L3,license_security,1,1,REVIEWS/bashtage__arch.md s2 no network code; verify/VERIFY_GENERIC.json bashtage/arch L3_check true,,
+bashtage/arch,L4,license_security,1,1,REVIEWS/bashtage__arch.md s2 meson build; research scripts not imported,,
+bashtage/arch,L5,license_security,1,1,REVIEWS/bashtage__arch.md s2 none,,
+sktime/sktime,T1,temporal_integrity,3,3,SMOKES/sktime__sktime/smoke_sktime.result.json A1_expanding_rows and A4_expanding_cutoff_timestamp ordered folds; fold_audit:sktime.ExpandingWindowSplitter; fold_audit:sktime.ExpandingCutoffSplitter,ST-2;ST-3,
+sktime/sktime,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,no purge or embargo (84 to 116 unmatured training labels per fold)
+sktime/sktime,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,no purge or embargo (84 to 116 unmatured training labels per fold)
+sktime/sktime,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,no purge or embargo (84 to 116 unmatured training labels per fold)
+sktime/sktime,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,no purge or embargo (84 to 116 unmatured training labels per fold)
+sktime/sktime,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,no purge or embargo (84 to 116 unmatured training labels per fold)
+sktime/sktime,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,no purge or embargo (84 to 116 unmatured training labels per fold)
+sktime/sktime,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,"probabilities only from DummyClassifier(prior), one constant, and a wrapped scikit-learn LogisticRegression; its own panel classifiers raised on unequal series (ST-4): O1 0 by the wrapper rule; InstanceSplitter trains on later rows (ST-3), so O5 rests on the panel model"
+sktime/sktime,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,"probabilities only from DummyClassifier(prior), one constant, and a wrapped scikit-learn LogisticRegression; its own panel classifiers raised on unequal series (ST-4): O1 0 by the wrapper rule; InstanceSplitter trains on later rows (ST-3), so O5 rests on the panel model"
+sktime/sktime,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"probabilities only from DummyClassifier(prior), one constant, and a wrapped scikit-learn LogisticRegression; its own panel classifiers raised on unequal series (ST-4): O1 0 by the wrapper rule; InstanceSplitter trains on later rows (ST-3), so O5 rests on the panel model"
+sktime/sktime,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"probabilities only from DummyClassifier(prior), one constant, and a wrapped scikit-learn LogisticRegression; its own panel classifiers raised on unequal series (ST-4): O1 0 by the wrapper rule; InstanceSplitter trains on later rows (ST-3), so O5 rests on the panel model"
+sktime/sktime,O5,transferable_outcomes,2,2,SMOKES/sktime__sktime/smoke_sktime.result.json C_panel_meta n_instances 289 (unequal length) fitted as one panel model by SklearnClassifierPipeline with a per-instance SummaryTransformer,ST-2;ST-4,
+sktime/sktime,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+sktime/sktime,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+sktime/sktime,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+sktime/sktime,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+sktime/sktime,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+sktime/sktime,F1,features,2,2,SMOKES/sktime__sktime/smoke_sktime.result.json S3_nan_panel summary pipeline proba_finite,ST-2,
+sktime/sktime,F2,features,3,0,no qualifying evidence (unanswered = 0),,timedelta windows and forecasting fail on irregular timestamps (F2 0)
+sktime/sktime,F3,features,2,2,SMOKES/sktime__sktime/smoke_sktime.result.json SummaryTransformer features on unequal windows,,
+sktime/sktime,F4,features,2,0,no qualifying evidence (unanswered = 0),,timedelta windows and forecasting fail on irregular timestamps (F2 0)
+sktime/sktime,F5,features,1,0,no qualifying evidence (unanswered = 0),,timedelta windows and forecasting fail on irregular timestamps (F2 0)
+sktime/sktime,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+sktime/sktime,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+sktime/sktime,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+sktime/sktime,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+sktime/sktime,Q1,code_quality,2,2,"SMOKES/sktime__sktime/repo_tests.out.txt 1,417 passed; 2 failed on a data file the reviewer did not copy",,
+sktime/sktime,Q2,code_quality,2,2,REVIEWS/sktime__sktime.md s3 splitter tests,,
+sktime/sktime,Q3,code_quality,2,2,REVIEWS/sktime__sktime.md s1 commit 2026-10-23; 1.2.0 2026-09-22; verify/VERIFY_GENERIC.json sktime/sktime Q3_check true,,
+sktime/sktime,Q4,code_quality,1,1,REVIEWS/sktime__sktime.md s1 core dependencies,,
+sktime/sktime,Q5,code_quality,1,1,REVIEWS/sktime__sktime.md s4 refusals raise; no silent output,,
+sktime/sktime,I1,integration_fit,2,2,SMOKES/sktime__sktime/smoke_sktime.result.json python 3.13.17,,
+sktime/sktime,I2,integration_fit,1,1,SMOKES/sktime__sktime/smoke_sktime.result.json pandas 3.0.5,,
+sktime/sktime,I3,integration_fit,2,2,REVIEWS/sktime__sktime.md s3 estimator API,,
+sktime/sktime,I4,integration_fit,2,2,REVIEWS/sktime__sktime.md s8 splitter designs,,
+sktime/sktime,I5,integration_fit,1,1,verify/closure_size.py: closure 259.6 MB,,
+sktime/sktime,R1,reproducibility,2,2,"verify/repeat_runs.json sktime__sktime: reviewer script re-run by the lead, identical after normalization",REPEAT,
+sktime/sktime,R2,reproducibility,2,2,SMOKES/sktime__sktime/smoke_sktime.result.json S5_persistence identical,,
+sktime/sktime,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,pickle only (R3 0)
+sktime/sktime,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,pickle only (R3 0)
+sktime/sktime,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,pickle only (R3 0)
+sktime/sktime,K1,cost_latency,2,2,SMOKES/sktime__sktime/smoke_sktime.meta.json unshare -n,,
+sktime/sktime,K2,cost_latency,1,1,"SMOKES/sktime__sktime/smoke_sktime.result.json fit 0.73 s, 3.7 ms per instance",,
+sktime/sktime,K3,cost_latency,1,1,REVIEWS/sktime__sktime.md s4 206 MB,,
+sktime/sktime,K4,cost_latency,1,1,REVIEWS/sktime__sktime.md s4 S6 pure wheel; verify/VERIFY_GENERIC.json sktime/sktime K4_check true,,
+sktime/sktime,L1,license_security,3,3,REVIEWS/sktime__sktime.md s2 BSD-3 sha256 4f5bdd0f; verify/VERIFY_GENERIC.json sktime/sktime L1_check true,,
+sktime/sktime,L2,license_security,1,1,REVIEWS/sktime__sktime.md s2 GPL and source-available packages only behind optional wrappers,,
+sktime/sktime,L3,license_security,1,1,REVIEWS/sktime__sktime.md s2 no telemetry; verify/VERIFY_GENERIC.json sktime/sktime L3_check true,,
+sktime/sktime,L4,license_security,1,1,REVIEWS/sktime__sktime.md s2 pure Python,,
+sktime/sktime,L5,license_security,1,1,REVIEWS/sktime__sktime.md s2 none,,
+blue-yonder/tsfresh,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,T5,temporal_integrity,3,3,"SMOKES/blue-yonder__tsfresh/smoke_tsfresh.out.txt truncation invariance 127,428 of 127,428 cells",TS-2,
+blue-yonder/tsfresh,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,F1,features,2,0,no qualifying evidence (unanswered = 0),,NaN refused (F1 0)
+blue-yonder/tsfresh,F2,features,3,0,no qualifying evidence (unanswered = 0),,NaN refused (F1 0)
+blue-yonder/tsfresh,F3,features,2,2,"SMOKES/blue-yonder__tsfresh/smoke_tsfresh.out.txt 1,566 features per window",,
+blue-yonder/tsfresh,F4,features,2,0,no qualifying evidence (unanswered = 0),,NaN refused (F1 0)
+blue-yonder/tsfresh,F5,features,1,0,no qualifying evidence (unanswered = 0),,NaN refused (F1 0)
+blue-yonder/tsfresh,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,D3,decision_execution,2,2,"SMOKES/blue-yonder__tsfresh/smoke_tsfresh.out.txt P22_selection fdr_level 0.05: selected_under_5_permuted_labels all 0, selected_true_label 69",,
+blue-yonder/tsfresh,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,Q1,code_quality,2,2,SMOKES/blue-yonder__tsfresh/repo_tests.out.txt 36 passed,,
+blue-yonder/tsfresh,Q2,code_quality,2,2,REVIEWS/blue-yonder__tsfresh.md s3 dataframe_functions tests (roll_time_series),,
+blue-yonder/tsfresh,Q3,code_quality,2,2,REVIEWS/blue-yonder__tsfresh.md s1 commit 2026-07-06; 0.21.2 2026-05-31; verify/VERIFY_GENERIC.json blue-yonder/tsfresh Q3_check true,,
+blue-yonder/tsfresh,Q4,code_quality,1,1,REVIEWS/blue-yonder__tsfresh.md s2 wheel imports,,
+blue-yonder/tsfresh,Q5,code_quality,1,0,no qualifying evidence (unanswered = 0),,duplicate dict key drops two promised settings silently (Q5 0)
+blue-yonder/tsfresh,I1,integration_fit,2,2,SMOKES/blue-yonder__tsfresh/smoke_tsfresh.result.json python 3.13.17,,
+blue-yonder/tsfresh,I2,integration_fit,1,1,SMOKES/blue-yonder__tsfresh/smoke_tsfresh.result.json pandas 3.0.5,,
+blue-yonder/tsfresh,I3,integration_fit,2,2,REVIEWS/blue-yonder__tsfresh.md s3 functions,,
+blue-yonder/tsfresh,I4,integration_fit,2,2,REVIEWS/blue-yonder__tsfresh.md s8 feature catalogue,,
+blue-yonder/tsfresh,I5,integration_fit,1,0,no qualifying evidence (unanswered = 0),,venv 503 MB (I5 0)
+blue-yonder/tsfresh,R1,reproducibility,2,2,SMOKES/blue-yonder__tsfresh/smoke_tsfresh.out.txt from_columns re-extraction equals the first extraction,,
+blue-yonder/tsfresh,R2,reproducibility,2,2,SMOKES/blue-yonder__tsfresh/smoke_tsfresh.out.txt pickled settings reused identically,,
+blue-yonder/tsfresh,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+blue-yonder/tsfresh,K1,cost_latency,2,2,SMOKES/blue-yonder__tsfresh/smoke_tsfresh.meta.json unshare -n,,
+blue-yonder/tsfresh,K2,cost_latency,1,1,REVIEWS/blue-yonder__tsfresh.md s4 S6 Minimal 2.8 ms per window,,
+blue-yonder/tsfresh,K3,cost_latency,1,1,REVIEWS/blue-yonder__tsfresh.md s4 335 MB,,
+blue-yonder/tsfresh,K4,cost_latency,1,1,REVIEWS/blue-yonder__tsfresh.md s4 S6 pure wheel; verify/VERIFY_GENERIC.json blue-yonder/tsfresh K4_check true,,
+blue-yonder/tsfresh,L1,license_security,3,3,REVIEWS/blue-yonder__tsfresh.md s2 MIT sha256 18042836; verify/VERIFY_GENERIC.json blue-yonder/tsfresh L1_check true,,
+blue-yonder/tsfresh,L2,license_security,1,1,REVIEWS/blue-yonder__tsfresh.md s2 MPL-2.0 dependency files unmodified,,
+blue-yonder/tsfresh,L3,license_security,1,1,REVIEWS/blue-yonder__tsfresh.md s2 requests only in examples; verify/VERIFY_GENERIC.json blue-yonder/tsfresh L3_check true,,
+blue-yonder/tsfresh,L4,license_security,1,1,REVIEWS/blue-yonder__tsfresh.md s2 wheel needs no scripts,,
+blue-yonder/tsfresh,L5,license_security,1,1,REVIEWS/blue-yonder__tsfresh.md s2 none,,
+stumpy-dev/stumpy,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,T5,temporal_integrity,3,3,verify/rerun_stumpy.out.txt stumpi left_P equals lead numpy past-only distance (1.4e-13); SMOKES/stumpy-dev__stumpy/smoke_stumpy.out.txt,SU-1,
+stumpy-dev/stumpy,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,F1,features,2,2,SMOKES/stumpy-dev__stumpy/smoke_stumpy.result.json `subsequences containing NaN get distance inf`,,
+stumpy-dev/stumpy,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,F3,features,2,2,SMOKES/stumpy-dev__stumpy/smoke_stumpy.result.json role_motif_match recovered_within_2 36 of 36 planted,,
+stumpy-dev/stumpy,F4,features,2,2,"SMOKES/stumpy-dev__stumpy/smoke_stumpy.result.json role_analog_query over 119 library_paths, candles_scanned 16634",,
+stumpy-dev/stumpy,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+stumpy-dev/stumpy,Q1,code_quality,2,2,SMOKES/stumpy-dev__stumpy/repo_tests.out.txt 22 passed,,
+stumpy-dev/stumpy,Q2,code_quality,2,2,REVIEWS/stumpy-dev__stumpy.md s3 motif tests,,
+stumpy-dev/stumpy,Q3,code_quality,2,2,REVIEWS/stumpy-dev__stumpy.md s1 commit 2026-10-16; 1.14.1 2026-02-08; verify/VERIFY_GENERIC.json stumpy-dev/stumpy Q3_check true,,
+stumpy-dev/stumpy,Q4,code_quality,1,1,"REVIEWS/stumpy-dev__stumpy.md s2 numpy, scipy, numba",,
+stumpy-dev/stumpy,Q5,code_quality,1,1,REVIEWS/stumpy-dev__stumpy.md s4 failures raise; none silent,,
+stumpy-dev/stumpy,I1,integration_fit,2,2,SMOKES/stumpy-dev__stumpy/smoke_stumpy.result.json python 3.13.17,,
+stumpy-dev/stumpy,I2,integration_fit,1,1,"verify/closure_size.py venv: numpy 2.5.4, no pandas",,
+stumpy-dev/stumpy,I3,integration_fit,2,2,REVIEWS/stumpy-dev__stumpy.md s3 functions,,
+stumpy-dev/stumpy,I4,integration_fit,2,2,REVIEWS/stumpy-dev__stumpy.md s8 analog research,,
+stumpy-dev/stumpy,I5,integration_fit,1,1,verify/closure_size.py: closure 364.0 MB,,
+stumpy-dev/stumpy,R1,reproducibility,2,2,verify/rerun_stumpy.out.txt two code paths equal,SU-1,
+stumpy-dev/stumpy,R2,reproducibility,2,0,no qualifying evidence (unanswered = 0),,stumpi state cannot be pickled (R2 0)
+stumpy-dev/stumpy,R3,reproducibility,1,1,SMOKES/stumpy-dev__stumpy/smoke_stumpy.result.json npz of float and int columns reloads equal,,
+stumpy-dev/stumpy,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,stumpi state cannot be pickled (R2 0)
+stumpy-dev/stumpy,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,stumpi state cannot be pickled (R2 0)
+stumpy-dev/stumpy,K1,cost_latency,2,2,SMOKES/stumpy-dev__stumpy/smoke_stumpy.meta.json unshare -n,,
+stumpy-dev/stumpy,K2,cost_latency,1,1,"REVIEWS/stumpy-dev__stumpy.md s4 S6 cold 31 s, warm mass 0.9 ms",,
+stumpy-dev/stumpy,K3,cost_latency,1,1,REVIEWS/stumpy-dev__stumpy.md s4 468 MB,,
+stumpy-dev/stumpy,K4,cost_latency,1,1,REVIEWS/stumpy-dev__stumpy.md s4 S6 py3-none-any; numba cp313 win; verify/VERIFY_GENERIC.json stumpy-dev/stumpy K4_check true,,
+stumpy-dev/stumpy,L1,license_security,3,3,REVIEWS/stumpy-dev__stumpy.md s2 BSD-3 sha256 36af1079; verify/VERIFY_GENERIC.json stumpy-dev/stumpy L1_check true,,
+stumpy-dev/stumpy,L2,license_security,1,1,"REVIEWS/stumpy-dev__stumpy.md s2 numba BSD, llvmlite BSD-2 and Apache-2.0",,
+stumpy-dev/stumpy,L3,license_security,1,1,REVIEWS/stumpy-dev__stumpy.md s2 no network code; verify/VERIFY_GENERIC.json stumpy-dev/stumpy L3_check true,,
+stumpy-dev/stumpy,L4,license_security,1,1,REVIEWS/stumpy-dev__stumpy.md s2 pure Python build,,
+stumpy-dev/stumpy,L5,license_security,1,1,REVIEWS/stumpy-dev__stumpy.md s2 none,,
+deepcharles/ruptures,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,no causal mode; refit on a prefix is wrapper code; Window reads future samples
+deepcharles/ruptures,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,no causal mode; refit on a prefix is wrapper code; Window reads future samples
+deepcharles/ruptures,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,no causal mode; refit on a prefix is wrapper code; Window reads future samples
+deepcharles/ruptures,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,no causal mode; refit on a prefix is wrapper code; Window reads future samples
+deepcharles/ruptures,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,no causal mode; refit on a prefix is wrapper code; Window reads future samples
+deepcharles/ruptures,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,no causal mode; refit on a prefix is wrapper code; Window reads future samples
+deepcharles/ruptures,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,no causal mode; refit on a prefix is wrapper code; Window reads future samples
+deepcharles/ruptures,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,F1,features,2,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,F3,features,2,2,"SMOKES/deepcharles__ruptures/smoke_ruptures.result.json change points precision 0.632, recall 0.616",,
+deepcharles/ruptures,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,Q1,code_quality,2,2,SMOKES/deepcharles__ruptures/repo_tests.out.txt 130 passed,,
+deepcharles/ruptures,Q2,code_quality,2,2,"REVIEWS/deepcharles__ruptures.md s3 costs, metrics, l1potts tests",,
+deepcharles/ruptures,Q3,code_quality,2,2,REVIEWS/deepcharles__ruptures.md s1 commit 2026-05-26; 1.1.10 2025-09-10; verify/VERIFY_GENERIC.json deepcharles/ruptures Q3_check true,,
+deepcharles/ruptures,Q4,code_quality,1,0,no qualifying evidence (unanswered = 0),,typing_extensions undeclared (Q4 0); NaN gives silent breakpoints (Q5 0)
+deepcharles/ruptures,Q5,code_quality,1,0,no qualifying evidence (unanswered = 0),,typing_extensions undeclared (Q4 0); NaN gives silent breakpoints (Q5 0)
+deepcharles/ruptures,I1,integration_fit,2,2,SMOKES/deepcharles__ruptures/smoke_ruptures.result.json python 3.13.17,,
+deepcharles/ruptures,I2,integration_fit,1,1,"verify/closure_size.py venv: numpy 2.5.4, no pandas",,
+deepcharles/ruptures,I3,integration_fit,2,2,REVIEWS/deepcharles__ruptures.md s3 fit and predict API,,
+deepcharles/ruptures,I4,integration_fit,2,2,REVIEWS/deepcharles__ruptures.md s8 optional feature,,
+deepcharles/ruptures,I5,integration_fit,1,1,verify/closure_size.py: closure 172.8 MB,,
+deepcharles/ruptures,R1,reproducibility,2,2,"verify/repeat_runs.json deepcharles__ruptures: reviewer script re-run by the lead, identical after normalization",REPEAT,
+deepcharles/ruptures,R2,reproducibility,2,2,SMOKES/deepcharles__ruptures/smoke_ruptures.result.json pickle reload identical breakpoints,,
+deepcharles/ruptures,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+deepcharles/ruptures,K1,cost_latency,2,2,SMOKES/deepcharles__ruptures/smoke_ruptures.meta.json unshare -n,,
+deepcharles/ruptures,K2,cost_latency,1,1,REVIEWS/deepcharles__ruptures.md s4 S6 KernelCPD 0.54 ms per refit,,
+deepcharles/ruptures,K3,cost_latency,1,1,REVIEWS/deepcharles__ruptures.md s4 106 MB,,
+deepcharles/ruptures,K4,cost_latency,1,1,REVIEWS/deepcharles__ruptures.md s4 S6 1.1.10 cp313 win_amd64; verify/VERIFY_GENERIC.json deepcharles/ruptures K4_check true,,
+deepcharles/ruptures,L1,license_security,3,3,REVIEWS/deepcharles__ruptures.md s2 BSD-2-Clause sha256 f29c48be; verify/VERIFY_GENERIC.json deepcharles/ruptures L1_check true,,
+deepcharles/ruptures,L2,license_security,1,1,REVIEWS/deepcharles__ruptures.md s2 numpy and scipy only,,
+deepcharles/ruptures,L3,license_security,1,1,REVIEWS/deepcharles__ruptures.md s2 no network code; verify/VERIFY_GENERIC.json deepcharles/ruptures L3_check true,,
+deepcharles/ruptures,L4,license_security,1,1,REVIEWS/deepcharles__ruptures.md s2 setup.py only cythonizes,,
+deepcharles/ruptures,L5,license_security,1,1,REVIEWS/deepcharles__ruptures.md s2 none,,
+online-ml/river,T1,temporal_integrity,3,3,SMOKES/online-ml__river/smoke_river.result.json progressive validation through simulate_qa in decision order,RV-1,
+online-ml/river,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+online-ml/river,T3,temporal_integrity,2,2,"verify/rerun_river.out.txt answers_released_before_maturity 0 of 2,892 during the stream; 108 flushed at stream end are learned by progressive_val_score (RV-4), hence the scoped LEAKAGE_FAIL",RV-1;RV-2;RV-4,
+online-ml/river,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+online-ml/river,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+online-ml/river,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+online-ml/river,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+online-ml/river,O1,transferable_outcomes,5,5,SMOKES/online-ml__river/smoke_river.result.json S2_S6_online_delayed shape [527] finite,,
+online-ml/river,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+online-ml/river,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+online-ml/river,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+online-ml/river,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+online-ml/river,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,no library metric used in the smoke (C1 0); miscalibrated
+online-ml/river,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,no library metric used in the smoke (C1 0); miscalibrated
+online-ml/river,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,no library metric used in the smoke (C1 0); miscalibrated
+online-ml/river,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,no library metric used in the smoke (C1 0); miscalibrated
+online-ml/river,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,no library metric used in the smoke (C1 0); miscalibrated
+online-ml/river,F1,features,2,0,no qualifying evidence (unanswered = 0),,"NaN silently corrupts weights (F1 0, Q5 0)"
+online-ml/river,F2,features,3,3,"SMOKES/online-ml__river/smoke_river.result.json S2_S6_online_delayed: moment and delay on irregular decision times, nan_labels_skipped 107",RV-1,
+online-ml/river,F3,features,2,0,no qualifying evidence (unanswered = 0),,"NaN silently corrupts weights (F1 0, Q5 0)"
+online-ml/river,F4,features,2,0,no qualifying evidence (unanswered = 0),,"NaN silently corrupts weights (F1 0, Q5 0)"
+online-ml/river,F5,features,1,0,no qualifying evidence (unanswered = 0),,"NaN silently corrupts weights (F1 0, Q5 0)"
+online-ml/river,D1,decision_execution,3,3,pin:online-ml__river/river/linear_model/base.py:183 learn_one(w=),,
+online-ml/river,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+online-ml/river,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+online-ml/river,D4,decision_execution,2,2,"SMOKES/online-ml__river/smoke_river.result.json drift_feature_streams ADWIN and PageHinkley alarms in holdout (rows_into_holdout_before_first_detection 58 and 30), none in train",,
+online-ml/river,Q1,code_quality,2,2,SMOKES/online-ml__river/repo_tests.out.txt 161 passed,,
+online-ml/river,Q2,code_quality,2,2,REVIEWS/online-ml__river.md s3 drift and stream tests,,
+online-ml/river,Q3,code_quality,2,2,REVIEWS/online-ml__river.md s1 commit 2026-10-23; 0.26.1 2026-08-21; verify/VERIFY_GENERIC.json online-ml/river Q3_check true,,
+online-ml/river,Q4,code_quality,1,1,"REVIEWS/online-ml__river.md s2 numpy, scipy, narwhals",,
+online-ml/river,Q5,code_quality,1,0,no qualifying evidence (unanswered = 0),,
+online-ml/river,I1,integration_fit,2,2,SMOKES/online-ml__river/smoke_river.result.json python 3.13.17,,
+online-ml/river,I2,integration_fit,1,1,"verify/closure_size.py venv: numpy 2.5.4, pandas optional",,
+online-ml/river,I3,integration_fit,2,2,REVIEWS/online-ml__river.md s3 dict API,,
+online-ml/river,I4,integration_fit,2,2,REVIEWS/online-ml__river.md s8 drift monitoring (missing in the lab),,
+online-ml/river,I5,integration_fit,1,1,verify/closure_size.py: closure 175.6 MB,,
+online-ml/river,R1,reproducibility,2,2,"verify/repeat_runs.json online-ml__river: reviewer script re-run by the lead, identical after normalization",REPEAT,
+online-ml/river,R2,reproducibility,2,2,"SMOKES/online-ml__river/smoke_river.result.json S5_persistence pipeline identical, ADWIN state",,
+online-ml/river,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+online-ml/river,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,
+online-ml/river,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+online-ml/river,K1,cost_latency,2,2,SMOKES/online-ml__river/smoke_river.meta.json unshare -n,,
+online-ml/river,K2,cost_latency,1,1,"SMOKES/online-ml__river/smoke_river.result.json learn 12.9 us, predict 4.5 us per row",,
+online-ml/river,K3,cost_latency,1,1,REVIEWS/online-ml__river.md s4 134 MB,,
+online-ml/river,K4,cost_latency,1,1,REVIEWS/online-ml__river.md s4 S6 0.26.1 cp313 win_amd64; verify/VERIFY_GENERIC.json online-ml/river K4_check true,,
+online-ml/river,L1,license_security,3,3,REVIEWS/online-ml__river.md s2 BSD-3 sha256 e87f2c8f; verify/VERIFY_GENERIC.json online-ml/river L1_check true,,
+online-ml/river,L2,license_security,1,1,"verify/river_crate_licenses.out.txt normal_closure_crates 34, normal_closure_non_permissive [] (MPL-2.0 colored is dev or bench only); REVIEWS/online-ml__river.md s2 numpy, scipy, narwhals",RV-5,
+online-ml/river,L3,license_security,1,1,REVIEWS/online-ml__river.md s2 no telemetry; verify/VERIFY_GENERIC.json online-ml/river L3_check true,,
+online-ml/river,L4,license_security,1,1,REVIEWS/online-ml__river.md s2 wheel route; source build updates rustup (recorded in the gate),,
+online-ml/river,L5,license_security,1,1,REVIEWS/online-ml__river.md s2 network only in explicit dataset and stream helpers,,
+evidentlyai/evidently,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,C1,calibration_uncertainty,2,2,SMOKES/evidentlyai__evidently/smoke_evidently.out.txt S2_probs LogLoss equals sklearn,,
+evidentlyai/evidently,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,F1,features,2,0,no qualifying evidence (unanswered = 0),,NaN dropped silently (F1 0)
+evidentlyai/evidently,F2,features,3,0,no qualifying evidence (unanswered = 0),,NaN dropped silently (F1 0)
+evidentlyai/evidently,F3,features,2,0,no qualifying evidence (unanswered = 0),,NaN dropped silently (F1 0)
+evidentlyai/evidently,F4,features,2,0,no qualifying evidence (unanswered = 0),,NaN dropped silently (F1 0)
+evidentlyai/evidently,F5,features,1,0,no qualifying evidence (unanswered = 0),,NaN dropped silently (F1 0)
+evidentlyai/evidently,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,D4,decision_execution,2,2,SMOKES/evidentlyai__evidently/smoke_evidently.out.txt ROLE_drift flags liq_usd and ret_1h,,
+evidentlyai/evidently,Q1,code_quality,2,2,SMOKES/evidentlyai__evidently/repo_tests_subset.out.txt 78 passed,,
+evidentlyai/evidently,Q2,code_quality,2,2,REVIEWS/evidentlyai__evidently.md s3 stattests and drift tests,,
+evidentlyai/evidently,Q3,code_quality,2,2,REVIEWS/evidentlyai__evidently.md s1 commit 2026-09-11; 0.7.23 2026-09-11; verify/VERIFY_GENERIC.json evidentlyai/evidently Q3_check true,,
+evidentlyai/evidently,Q4,code_quality,1,0,no qualifying evidence (unanswered = 0),,import fails under the default pandas 3 resolution (Q4 0)
+evidentlyai/evidently,Q5,code_quality,1,1,REVIEWS/evidentlyai__evidently.md s4 invalid probabilities raise,,
+evidentlyai/evidently,I1,integration_fit,2,2,SMOKES/evidentlyai__evidently/smoke_evidently.meta.json python 3.13.17 with pandas<3,,
+evidentlyai/evidently,I2,integration_fit,1,0,no qualifying evidence (unanswered = 0),,needs pandas<3 (I2 0); 656 MB (I5 0)
+evidentlyai/evidently,I3,integration_fit,2,2,REVIEWS/evidentlyai__evidently.md s3 Report API,,
+evidentlyai/evidently,I4,integration_fit,2,2,REVIEWS/evidentlyai__evidently.md s8 drift reports without the UI service,,
+evidentlyai/evidently,I5,integration_fit,1,0,no qualifying evidence (unanswered = 0),,needs pandas<3 (I2 0); 656 MB (I5 0)
+evidentlyai/evidently,R1,reproducibility,2,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,R2,reproducibility,2,2,SMOKES/evidentlyai__evidently/smoke_evidently.out.txt S5_persist roundtrip_dict_identical,,
+evidentlyai/evidently,R3,reproducibility,1,1,"SMOKES/evidentlyai__evidently/smoke_evidently.out.txt JSON snapshot, no pickle",,
+evidentlyai/evidently,R4,reproducibility,2,2,"SMOKES/evidentlyai__evidently/telemetry_core_switch_on.out.txt local Workspace add_run, runs 1",,
+evidentlyai/evidently,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+evidentlyai/evidently,K1,cost_latency,2,2,SMOKES/evidentlyai__evidently/telemetry_core_switch_on.meta.json core path 0 inet connects,EV-2,
+evidentlyai/evidently,K2,cost_latency,1,1,SMOKES/evidentlyai__evidently/smoke_evidently.out.txt S6_cost 0.40 s report,,
+evidentlyai/evidently,K3,cost_latency,1,1,REVIEWS/evidentlyai__evidently.md s4 307 MB,,
+evidentlyai/evidently,K4,cost_latency,1,1,REVIEWS/evidentlyai__evidently.md s4 S6 py3-none-any; verify/VERIFY_GENERIC.json evidentlyai/evidently K4_check true,,
+evidentlyai/evidently,L1,license_security,3,3,REVIEWS/evidentlyai__evidently.md s2 Apache-2.0 sha256 379054a0; verify/VERIFY_GENERIC.json evidentlyai/evidently L1_check true,,
+evidentlyai/evidently,L2,license_security,1,1,REVIEWS/evidentlyai__evidently.md s2 bundled JS under MIT,,
+evidentlyai/evidently,L3,license_security,1,0,no qualifying evidence (unanswered = 0),,UI telemetry on by default (L3 0)
+evidentlyai/evidently,L4,license_security,1,1,"REVIEWS/evidentlyai__evidently.md s2 hatchling, no hooks",,
+evidentlyai/evidently,L5,license_security,1,1,"REVIEWS/evidentlyai__evidently.md s2 UI service optional, not started",,
+NannyML/nannyml,T1,temporal_integrity,3,3,SMOKES/NannyML__nannyml/smoke_nannyml.py timestamp_column_name chunking; pin:NannyML__nannyml/nannyml/chunk.py:165,,
+NannyML/nannyml,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,T3,temporal_integrity,2,2,SMOKES/NannyML__nannyml/smoke_nannyml.out.txt ROLE_cbpe estimates for 107 rows without labels,,
+NannyML/nannyml,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,C3,calibration_uncertainty,3,3,SMOKES/NannyML__nannyml/smoke_nannyml.out.txt ROLE_cbpe 4 of 4 chunks inside 3 SE,,
+NannyML/nannyml,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,C5,calibration_uncertainty,2,2,SMOKES/NannyML__nannyml/smoke_nannyml.out.txt needs_calibration ECE check,,
+NannyML/nannyml,F1,features,2,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,F3,features,2,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,D1,decision_execution,3,3,pin:NannyML__nannyml/nannyml/performance_estimation/confidence_based/metrics.py:2121 business_value cost matrix,,
+NannyML/nannyml,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,D4,decision_execution,2,2,"SMOKES/NannyML__nannyml/smoke_nannyml.out.txt per-chunk alerts: holdout_alerts and reference_alerts per column, holdout_chunk_alerts 1",,
+NannyML/nannyml,Q1,code_quality,2,0,no qualifying evidence (unanswered = 0),,34 test errors under pandas 3 (Q1 0); last commit 2025-07-12 (Q3 0); statsmodels undeclared (Q4 0); invalid probabilities accepted (Q5 0)
+NannyML/nannyml,Q2,code_quality,2,2,SMOKES/NannyML__nannyml/repo_tests_subset.out.txt CBPE and drift tests pass,,
+NannyML/nannyml,Q3,code_quality,2,0,no qualifying evidence (unanswered = 0),,34 test errors under pandas 3 (Q1 0); last commit 2025-07-12 (Q3 0); statsmodels undeclared (Q4 0); invalid probabilities accepted (Q5 0)
+NannyML/nannyml,Q4,code_quality,1,0,no qualifying evidence (unanswered = 0),,34 test errors under pandas 3 (Q1 0); last commit 2025-07-12 (Q3 0); statsmodels undeclared (Q4 0); invalid probabilities accepted (Q5 0)
+NannyML/nannyml,Q5,code_quality,1,0,no qualifying evidence (unanswered = 0),,34 test errors under pandas 3 (Q1 0); last commit 2025-07-12 (Q3 0); statsmodels undeclared (Q4 0); invalid probabilities accepted (Q5 0)
+NannyML/nannyml,I1,integration_fit,2,0,no qualifying evidence (unanswered = 0),,Python <3.13 (I1 0); 1.7 GB with NVIDIA and Chromium binaries (I5 0)
+NannyML/nannyml,I2,integration_fit,1,1,"REVIEWS/NannyML__nannyml.md s4 smoke ran on pandas 3.1.0, numpy 2.5.4",,
+NannyML/nannyml,I3,integration_fit,2,2,REVIEWS/NannyML__nannyml.md s3 calculator API,,
+NannyML/nannyml,I4,integration_fit,2,2,REVIEWS/NannyML__nannyml.md s8 monitoring idea,,
+NannyML/nannyml,I5,integration_fit,1,0,no qualifying evidence (unanswered = 0),,Python <3.13 (I1 0); 1.7 GB with NVIDIA and Chromium binaries (I5 0)
+NannyML/nannyml,R1,reproducibility,2,0,no qualifying evidence (unanswered = 0),,AP band unseeded (R1 0)
+NannyML/nannyml,R2,reproducibility,2,2,SMOKES/NannyML__nannyml/smoke_nannyml.out.txt S5_persist identical estimates,,
+NannyML/nannyml,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,AP band unseeded (R1 0)
+NannyML/nannyml,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,AP band unseeded (R1 0)
+NannyML/nannyml,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,AP band unseeded (R1 0)
+NannyML/nannyml,K1,cost_latency,2,2,SMOKES/NannyML__nannyml/telemetry_switch_off.meta.json 0 connects with the documented switch,NM-2,
+NannyML/nannyml,K2,cost_latency,1,1,REVIEWS/NannyML__nannyml.md s4 CBPE 0.075 ms per row,,
+NannyML/nannyml,K3,cost_latency,1,1,REVIEWS/NannyML__nannyml.md s4 325 MB,,
+NannyML/nannyml,K4,cost_latency,1,0,no qualifying evidence (unanswered = 0),,
+NannyML/nannyml,L1,license_security,3,3,REVIEWS/NannyML__nannyml.md s2 Apache-2.0 sha256 4712221f; verify/VERIFY_GENERIC.json NannyML/nannyml L1_check true,,
+NannyML/nannyml,L2,license_security,1,0,no qualifying evidence (unanswered = 0),,NVIDIA NCCL binary in a CPU install (L2 0); telemetry on by default (L3 0)
+NannyML/nannyml,L3,license_security,1,0,no qualifying evidence (unanswered = 0),,NVIDIA NCCL binary in a CPU install (L2 0); telemetry on by default (L3 0)
+NannyML/nannyml,L4,license_security,1,1,"REVIEWS/NannyML__nannyml.md s2 bare setup(), poetry-core",,
+NannyML/nannyml,L5,license_security,1,1,REVIEWS/NannyML__nannyml.md s2 no service by default,,
+IFCA-Advanced-Computing/frouros,T1,temporal_integrity,3,3,SMOKES/IFCA-Advanced-Computing__frouros/smoke_frouros.out.txt ROLE_streaming_concept detectors on the time-ordered error stream,,
+IFCA-Advanced-Computing/frouros,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,F1,features,2,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,F3,features,2,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,D4,decision_execution,2,2,SMOKES/IFCA-Advanced-Computing__frouros/smoke_frouros.out.txt ROLE_batch_ks flagged_at_0.05 holdout liq_usd and ret_1h; ddm_drifts_with_trap 2,,
+IFCA-Advanced-Computing/frouros,Q1,code_quality,2,2,SMOKES/IFCA-Advanced-Computing__frouros/repo_tests_subset.out.txt 114 passed; 7 download-fixture errors offline,,
+IFCA-Advanced-Computing/frouros,Q2,code_quality,2,2,REVIEWS/IFCA-Advanced-Computing__frouros.md s3 detector tests,,
+IFCA-Advanced-Computing/frouros,Q3,code_quality,2,0,no qualifying evidence (unanswered = 0),,no release since 2024-10-05 and last commit 2026-02-11 (Q3 0); NaN gives PSI 0.0 (Q5 0)
+IFCA-Advanced-Computing/frouros,Q4,code_quality,1,1,REVIEWS/IFCA-Advanced-Computing__frouros.md s2 declared dependencies install,,
+IFCA-Advanced-Computing/frouros,Q5,code_quality,1,0,no qualifying evidence (unanswered = 0),,no release since 2024-10-05 and last commit 2026-02-11 (Q3 0); NaN gives PSI 0.0 (Q5 0)
+IFCA-Advanced-Computing/frouros,I1,integration_fit,2,2,SMOKES/IFCA-Advanced-Computing__frouros/smoke_frouros.meta.json python 3.13.17,,
+IFCA-Advanced-Computing/frouros,I2,integration_fit,1,0,no qualifying evidence (unanswered = 0),,numpy<2.3 and scipy<1.16 pins (I2 0)
+IFCA-Advanced-Computing/frouros,I3,integration_fit,2,2,REVIEWS/IFCA-Advanced-Computing__frouros.md s3 detector API,,
+IFCA-Advanced-Computing/frouros,I4,integration_fit,2,2,REVIEWS/IFCA-Advanced-Computing__frouros.md s8 reference implementations,,
+IFCA-Advanced-Computing/frouros,I5,integration_fit,1,1,verify/closure_size.py: closure 253.4 MB,,
+IFCA-Advanced-Computing/frouros,R1,reproducibility,2,2,"verify/repeat_runs.json IFCA-Advanced-Computing__frouros: reviewer script re-run by the lead, identical after normalization",REPEAT,
+IFCA-Advanced-Computing/frouros,R2,reproducibility,2,2,SMOKES/IFCA-Advanced-Computing__frouros/smoke_frouros.out.txt S5_persist identical,,
+IFCA-Advanced-Computing/frouros,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+IFCA-Advanced-Computing/frouros,K1,cost_latency,2,2,SMOKES/IFCA-Advanced-Computing__frouros/smoke_frouros.meta.json 0 inet connects,,
+IFCA-Advanced-Computing/frouros,K2,cost_latency,1,1,"REVIEWS/IFCA-Advanced-Computing__frouros.md s4 KS 0.05 s, ADWIN 58 us",,
+IFCA-Advanced-Computing/frouros,K3,cost_latency,1,1,REVIEWS/IFCA-Advanced-Computing__frouros.md s4 211 MB,,
+IFCA-Advanced-Computing/frouros,K4,cost_latency,1,0,no qualifying evidence (unanswered = 0),,PyPI release declares <3.13 (K4 0)
+IFCA-Advanced-Computing/frouros,L1,license_security,3,3,REVIEWS/IFCA-Advanced-Computing__frouros.md s2 BSD-3 sha256 1e54672a; verify/VERIFY_GENERIC.json IFCA-Advanced-Computing/frouros L1_check true,,
+IFCA-Advanced-Computing/frouros,L2,license_security,1,1,REVIEWS/IFCA-Advanced-Computing__frouros.md s2 permissive base set,,
+IFCA-Advanced-Computing/frouros,L3,license_security,1,1,REVIEWS/IFCA-Advanced-Computing__frouros.md s2 no telemetry; verify/VERIFY_GENERIC.json IFCA-Advanced-Computing/frouros L3_check true,,
+IFCA-Advanced-Computing/frouros,L4,license_security,1,1,REVIEWS/IFCA-Advanced-Computing__frouros.md s2 setup.py reads pyproject only,,
+IFCA-Advanced-Computing/frouros,L5,license_security,1,1,REVIEWS/IFCA-Advanced-Computing__frouros.md s2 none,,
+666ghj/MiroFish,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,F1,features,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,F2,features,3,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,F3,features,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,F4,features,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,F5,features,1,1,"SMOKES/666ghj__MiroFish/sim_summary.json typed SQLite tables post, like and trace with counts (sqlite_sequence listed)",MI-3,
+666ghj/MiroFish,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,Q1,code_quality,2,2,SMOKES/666ghj__MiroFish/backend_pytest.txt 129 passed,,
+666ghj/MiroFish,Q2,code_quality,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,Q3,code_quality,2,2,REVIEWS/666ghj__MiroFish.md s1 commit 2026-10-02; tag v0.1.2 2026-03-06 (lead git fetch); verify/VERIFY_GENERIC.json 666ghj/MiroFish Q3_check true,,
+666ghj/MiroFish,Q4,code_quality,1,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,Q5,code_quality,1,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,I1,integration_fit,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,I2,integration_fit,1,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,I3,integration_fit,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,I4,integration_fit,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,I5,integration_fit,1,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,R1,reproducibility,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,R2,reproducibility,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,R3,reproducibility,1,1,SMOKES/666ghj__MiroFish/sim_run1/simulation_config.json JSON and SQLite outputs,,
+666ghj/MiroFish,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,K1,cost_latency,2,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,K2,cost_latency,1,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,K3,cost_latency,1,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,K4,cost_latency,1,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,L1,license_security,3,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,L2,license_security,1,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+666ghj/MiroFish,L3,license_security,1,1,REVIEWS/666ghj__MiroFish.md s2 no telemetry in MiroFish code; unstructured analytics not triggered; verify/VERIFY_GENERIC.json 666ghj/MiroFish L3_check true,,
+666ghj/MiroFish,L4,license_security,1,1,"REVIEWS/666ghj__MiroFish.md s2 only sdists langdetect and docopt, plain setup()",,
+666ghj/MiroFish,L5,license_security,1,0,no qualifying evidence (unanswered = 0),,"no probability, no seed control, silent success when the LLM is down, AGPL, keys required, unauthenticated service on 0.0.0.0"
+camel-ai/oasis,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,F1,features,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,F2,features,3,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,F3,features,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,F4,features,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,F5,features,1,1,"SMOKES/camel-ai__oasis/smoke_run1.json typed action trace: sign_up, create_post, refresh, do_nothing",OA-2,
+camel-ai/oasis,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,Q1,code_quality,2,2,SMOKES/camel-ai__oasis/oasis_pytest_offline.txt 31 passed; 1 needs an API key,,
+camel-ai/oasis,Q2,code_quality,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,Q3,code_quality,2,2,REVIEWS/camel-ai__oasis.md s1 commit 2026-10-19; camel-oasis 0.2.5 2025-12-04; verify/VERIFY_GENERIC.json camel-ai/oasis Q3_check true,,
+camel-ai/oasis,Q4,code_quality,1,1,REVIEWS/camel-ai__oasis.md s1 exact pins install,,
+camel-ai/oasis,Q5,code_quality,1,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,I1,integration_fit,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,I2,integration_fit,1,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,I3,integration_fit,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,I4,integration_fit,2,2,REVIEWS/camel-ai__oasis.md s8 inside the planned behavioral boundary,,
+camel-ai/oasis,I5,integration_fit,1,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,R1,reproducibility,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,R2,reproducibility,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,R3,reproducibility,1,1,SMOKES/camel-ai__oasis/smoke_run1.json SQLite trace,,
+camel-ai/oasis,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,K1,cost_latency,2,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,K2,cost_latency,1,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,K3,cost_latency,1,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,K4,cost_latency,1,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,L1,license_security,3,3,REVIEWS/camel-ai__oasis.md s2 Apache-2.0 sha256 950deb34; verify/VERIFY_GENERIC.json camel-ai/oasis L1_check true,,
+camel-ai/oasis,L2,license_security,1,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+camel-ai/oasis,L3,license_security,1,1,REVIEWS/camel-ai__oasis.md s2 no telemetry in OASIS; verify/VERIFY_GENERIC.json camel-ai/oasis L3_check true,,
+camel-ai/oasis,L4,license_security,1,1,REVIEWS/camel-ai__oasis.md s2 wheels only,,
+camel-ai/oasis,L5,license_security,1,0,no qualifying evidence (unanswered = 0),,"no outcome, no seed, swallowed LLM exceptions, GPL igraph imported, Python <3.12, LLM key needed"
+mesa/mesa,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,F1,features,2,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,F2,features,3,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,F3,features,2,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,F4,features,2,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,F5,features,1,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,Q1,code_quality,2,2,SMOKES/mesa__mesa/mesa_pytest_offline.txt 411 passed,,
+mesa/mesa,Q2,code_quality,2,2,"REVIEWS/mesa__mesa.md s3 model, agent, datacollector, scenarios, events tests",,
+mesa/mesa,Q3,code_quality,2,2,REVIEWS/mesa__mesa.md s1 commit 2026-10-22; 3.5.1 2026-03-15; verify/VERIFY_GENERIC.json mesa/mesa Q3_check true,,
+mesa/mesa,Q4,code_quality,1,1,REVIEWS/mesa__mesa.md s1 core dependencies,,
+mesa/mesa,Q5,code_quality,1,1,REVIEWS/mesa__mesa.md s4 none in the library (NaN handling is the smoke model's),,
+mesa/mesa,I1,integration_fit,2,2,SMOKES/mesa__mesa/smoke_mesa_traders_output.json python 3.13,,
+mesa/mesa,I2,integration_fit,1,1,"REVIEWS/mesa__mesa.md s1 pandas 3.1.0, numpy 2.5.4",,
+mesa/mesa,I3,integration_fit,2,2,REVIEWS/mesa__mesa.md s3 in-process model API,,
+mesa/mesa,I4,integration_fit,2,2,REVIEWS/mesa__mesa.md s8 inside the planned behavioral boundary,,
+mesa/mesa,I5,integration_fit,1,1,verify/closure_size.py venv 263 MB,,
+mesa/mesa,R1,reproducibility,2,2,SMOKES/mesa__mesa/smoke_mesa_traders_output.json same seeds byte-identical frequency vector,ME-1,
+mesa/mesa,R2,reproducibility,2,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,"a framework: the market model, its events and features are the smoke's own code"
+mesa/mesa,K1,cost_latency,2,2,SMOKES/mesa__mesa/commands.txt All runs inside unshare -n with lo_up.py (loopback only); REVIEWS/mesa__mesa.md s4 S6,,
+mesa/mesa,K2,cost_latency,1,1,REVIEWS/mesa__mesa.md s4 S6 0.78 ms per run,,
+mesa/mesa,K3,cost_latency,1,1,REVIEWS/mesa__mesa.md s4 S6 102 MB,,
+mesa/mesa,K4,cost_latency,1,1,REVIEWS/mesa__mesa.md s1 3.5.1 py3-none-any; verify/VERIFY_GENERIC.json mesa/mesa K4_check true,,
+mesa/mesa,L1,license_security,3,3,REVIEWS/mesa__mesa.md s2 Apache-2.0 sha256 cfc7749b; verify/VERIFY_GENERIC.json mesa/mesa L1_check true,,
+mesa/mesa,L2,license_security,1,1,REVIEWS/mesa__mesa.md s2 permissive core dependencies,,
+mesa/mesa,L3,license_security,1,1,REVIEWS/mesa__mesa.md s2 none; verify/VERIFY_GENERIC.json mesa/mesa L3_check true,,
+mesa/mesa,L4,license_security,1,1,REVIEWS/mesa__mesa.md s2 binary-only dependency install,,
+mesa/mesa,L5,license_security,1,1,REVIEWS/mesa__mesa.md s2 none,,
+bancaditalia/black-it,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,F1,features,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,F2,features,3,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,F3,features,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,F4,features,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,F5,features,1,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,Q1,code_quality,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,Q2,code_quality,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,Q3,code_quality,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,Q4,code_quality,1,1,REVIEWS/bancaditalia__black-it.md s1 wheel resolution installs,,
+bancaditalia/black-it,Q5,code_quality,1,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,I1,integration_fit,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,I2,integration_fit,1,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,I3,integration_fit,2,2,REVIEWS/bancaditalia__black-it.md s3 Calibrator API,,
+bancaditalia/black-it,I4,integration_fit,2,2,REVIEWS/bancaditalia__black-it.md s8 offline fitting step,,
+bancaditalia/black-it,I5,integration_fit,1,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,R1,reproducibility,2,2,SMOKES/bancaditalia__black-it/smoke_blackit_summary.json same random_state byte-identical,,
+bancaditalia/black-it,R2,reproducibility,2,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,R3,reproducibility,1,1,SMOKES/bancaditalia__black-it/smoke_blackit_summary.json checkpoint_files calibration_params.json and calibration_results.csv; REVIEWS/bancaditalia__black-it.md s4 S5,,
+bancaditalia/black-it,R4,reproducibility,2,2,"SMOKES/bancaditalia__black-it/smoke_blackit_summary.json checkpoint_files (parameters, losses, series_samp.h5); REVIEWS/bancaditalia__black-it.md s4 S5",,
+bancaditalia/black-it,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,K1,cost_latency,2,2,SMOKES/bancaditalia__black-it/commands.txt All runs inside unshare -n with lo_up.py (loopback only); REVIEWS/bancaditalia__black-it.md s4 S6,,
+bancaditalia/black-it,K2,cost_latency,1,1,SMOKES/bancaditalia__black-it/smoke_blackit_output.txt 0.6 s per calibration,,
+bancaditalia/black-it,K3,cost_latency,1,1,REVIEWS/bancaditalia__black-it.md s4 S6 165 MB,,
+bancaditalia/black-it,K4,cost_latency,1,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,L1,license_security,3,0,no qualifying evidence (unanswered = 0),,AGPL; 6 golden tests fail; no commit in 11 months; Python <3.13; NaN moments set to 0
+bancaditalia/black-it,L2,license_security,1,1,REVIEWS/bancaditalia__black-it.md s2 permissive transitive set,,
+bancaditalia/black-it,L3,license_security,1,1,REVIEWS/bancaditalia__black-it.md s2 none; verify/VERIFY_GENERIC.json bancaditalia/black-it L3_check true,,
+bancaditalia/black-it,L4,license_security,1,1,REVIEWS/bancaditalia__black-it.md s2 wheels only,,
+bancaditalia/black-it,L5,license_security,1,1,REVIEWS/bancaditalia__black-it.md s2 none,,
+CamDavidsonPilon/lifelines,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+CamDavidsonPilon/lifelines,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+CamDavidsonPilon/lifelines,T3,temporal_integrity,2,2,SMOKES/CamDavidsonPilon__lifelines/smoke_lifelines.result.json concordance_holdout_all_incl_censored on 634 rows including 107 censored,LL-2,
+CamDavidsonPilon/lifelines,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+CamDavidsonPilon/lifelines,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+CamDavidsonPilon/lifelines,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+CamDavidsonPilon/lifelines,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+CamDavidsonPilon/lifelines,O1,transferable_outcomes,5,5,"SMOKES/CamDavidsonPilon__lifelines/smoke_lifelines.result.json binary_24h_on_labeled_holdout shape [527] finite in [0,1]",,
+CamDavidsonPilon/lifelines,O2,transferable_outcomes,3,3,SMOKES/CamDavidsonPilon__lifelines/smoke_lifelines.result.json S2_S6_clean CoxPH and weibull_aft fitted on T and E with 107 censored kept,LL-2,
+CamDavidsonPilon/lifelines,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,competing risks marginal only (O3 0)
+CamDavidsonPilon/lifelines,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,competing risks marginal only (O3 0)
+CamDavidsonPilon/lifelines,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,competing risks marginal only (O3 0)
+CamDavidsonPilon/lifelines,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+CamDavidsonPilon/lifelines,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+CamDavidsonPilon/lifelines,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+CamDavidsonPilon/lifelines,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+CamDavidsonPilon/lifelines,C5,calibration_uncertainty,2,2,"SMOKES/CamDavidsonPilon__lifelines/smoke_lifelines.out.txt ICI 0.0087, E50 0.0061",,
+CamDavidsonPilon/lifelines,F1,features,2,0,no qualifying evidence (unanswered = 0),,NaN refused (F1 0)
+CamDavidsonPilon/lifelines,F2,features,3,0,no qualifying evidence (unanswered = 0),,NaN refused (F1 0)
+CamDavidsonPilon/lifelines,F3,features,2,0,no qualifying evidence (unanswered = 0),,NaN refused (F1 0)
+CamDavidsonPilon/lifelines,F4,features,2,0,no qualifying evidence (unanswered = 0),,NaN refused (F1 0)
+CamDavidsonPilon/lifelines,F5,features,1,0,no qualifying evidence (unanswered = 0),,NaN refused (F1 0)
+CamDavidsonPilon/lifelines,D1,decision_execution,3,3,pin:CamDavidsonPilon__lifelines/lifelines/fitters/coxph_fitter.py:175 weights_col,,
+CamDavidsonPilon/lifelines,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+CamDavidsonPilon/lifelines,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+CamDavidsonPilon/lifelines,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+CamDavidsonPilon/lifelines,Q1,code_quality,2,2,SMOKES/CamDavidsonPilon__lifelines/repo_tests.out.txt 16 passed (flaky installed: undeclared test dependency),,
+CamDavidsonPilon/lifelines,Q2,code_quality,2,2,REVIEWS/CamDavidsonPilon__lifelines.md s3 concordance and Aalen-Johansen tests,,
+CamDavidsonPilon/lifelines,Q3,code_quality,2,0,no qualifying evidence (unanswered = 0),,"last commit 2026-03-06, more than six months before review (Q3 0)"
+CamDavidsonPilon/lifelines,Q4,code_quality,1,1,REVIEWS/CamDavidsonPilon__lifelines.md s2 runtime dependencies complete,,
+CamDavidsonPilon/lifelines,Q5,code_quality,1,1,REVIEWS/CamDavidsonPilon__lifelines.md s4 NaN raises a clear error,,
+CamDavidsonPilon/lifelines,I1,integration_fit,2,2,SMOKES/CamDavidsonPilon__lifelines/smoke_lifelines.result.json python 3.13.17,,
+CamDavidsonPilon/lifelines,I2,integration_fit,1,0,no qualifying evidence (unanswered = 0),,declares pandas<3.0 (I2 0)
+CamDavidsonPilon/lifelines,I3,integration_fit,2,2,REVIEWS/CamDavidsonPilon__lifelines.md s3 fitter API,,
+CamDavidsonPilon/lifelines,I4,integration_fit,2,2,"REVIEWS/CamDavidsonPilon__lifelines.md s8 survival baselines, nothing like it exists",,
+CamDavidsonPilon/lifelines,I5,integration_fit,1,1,verify/closure_size.py: closure 295.1 MB,,
+CamDavidsonPilon/lifelines,R1,reproducibility,2,2,SMOKES/CamDavidsonPilon__lifelines/smoke_lifelines_pandas3.result.json identical metrics in a second run,LL-2,
+CamDavidsonPilon/lifelines,R2,reproducibility,2,2,SMOKES/CamDavidsonPilon__lifelines/smoke_lifelines.result.json S5_persistence identical,,
+CamDavidsonPilon/lifelines,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+CamDavidsonPilon/lifelines,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,
+CamDavidsonPilon/lifelines,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+CamDavidsonPilon/lifelines,K1,cost_latency,2,2,SMOKES/CamDavidsonPilon__lifelines/smoke_lifelines.meta.json unshare -n,,
+CamDavidsonPilon/lifelines,K2,cost_latency,1,1,"SMOKES/CamDavidsonPilon__lifelines/smoke_lifelines.result.json fit 0.12 s, 0.006 ms per row",,
+CamDavidsonPilon/lifelines,K3,cost_latency,1,1,REVIEWS/CamDavidsonPilon__lifelines.md s4 194 MB,,
+CamDavidsonPilon/lifelines,K4,cost_latency,1,1,REVIEWS/CamDavidsonPilon__lifelines.md s4 S6 py3-none-any wheel; verify/VERIFY_GENERIC.json CamDavidsonPilon/lifelines K4_check true,,
+CamDavidsonPilon/lifelines,L1,license_security,3,3,REVIEWS/CamDavidsonPilon__lifelines.md s2 MIT sha256 01ab0378; verify/VERIFY_GENERIC.json CamDavidsonPilon/lifelines L1_check true,,
+CamDavidsonPilon/lifelines,L2,license_security,1,1,REVIEWS/CamDavidsonPilon__lifelines.md s2 permissive dependencies,,
+CamDavidsonPilon/lifelines,L3,license_security,1,1,REVIEWS/CamDavidsonPilon__lifelines.md s2 no network code; verify/VERIFY_GENERIC.json CamDavidsonPilon/lifelines L3_check true,,
+CamDavidsonPilon/lifelines,L4,license_security,1,1,REVIEWS/CamDavidsonPilon__lifelines.md s1 plain setup.py,,
+CamDavidsonPilon/lifelines,L5,license_security,1,1,REVIEWS/CamDavidsonPilon__lifelines.md s2 none,,
+soda-inria/hazardous,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,T3,temporal_integrity,2,2,"SMOKES/soda-inria__hazardous/smoke_hazardous.result.json proba_shape [634, 3] and ibs_event1 on holdout_all (634 rows, 107 censored as event 0); SMOKES/soda-inria__hazardous/smoke_hazardous.py `0 = censored`",,
+soda-inria/hazardous,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,O1,transferable_outcomes,5,5,"SMOKES/soda-inria__hazardous/smoke_hazardous.result.json proba_shape [634,3] rows_sum_to_1",HZ-2,
+soda-inria/hazardous,O2,transferable_outcomes,3,3,SMOKES/soda-inria__hazardous/smoke_hazardous.result.json S2_S3_S6_clean SurvivalBoost fit_s 253.827 on event and duration with censored rows as event 0,,
+soda-inria/hazardous,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,cumulative incidence decreases in time for 634 of 634 rows (HZ-2): the competing-risk race output fails its definition (O3 0 by the veto)
+soda-inria/hazardous,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,cumulative incidence decreases in time for 634 of 634 rows (HZ-2): the competing-risk race output fails its definition (O3 0 by the veto)
+soda-inria/hazardous,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,cumulative incidence decreases in time for 634 of 634 rows (HZ-2): the competing-risk race output fails its definition (O3 0 by the veto)
+soda-inria/hazardous,C1,calibration_uncertainty,2,2,"SMOKES/soda-inria__hazardous/smoke_hazardous.result.json ibs_event1 and ibs_event2 (IPCW integrated Brier, censor-aware)",,
+soda-inria/hazardous,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,"recalibrate_survival_function subtracts the absolute error and is unclipped (HZ-3: moves away from KM, leaves [0, 1]) (C2 0)"
+soda-inria/hazardous,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,"recalibrate_survival_function subtracts the absolute error and is unclipped (HZ-3: moves away from KM, leaves [0, 1]) (C2 0)"
+soda-inria/hazardous,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,"recalibrate_survival_function subtracts the absolute error and is unclipped (HZ-3: moves away from KM, leaves [0, 1]) (C2 0)"
+soda-inria/hazardous,C5,calibration_uncertainty,2,2,SMOKES/soda-inria__hazardous/smoke_hazardous.result.json S4_calibration aj_calibration_per_event_holdout and wilson95 in-the-large,,
+soda-inria/hazardous,F1,features,2,2,SMOKES/soda-inria__hazardous/smoke_hazardous.result.json S3_nan 264 NaN accepted,,
+soda-inria/hazardous,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,F3,features,2,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,Q1,code_quality,2,2,SMOKES/soda-inria__hazardous/repo_tests.out.txt 104 passed,,
+soda-inria/hazardous,Q2,code_quality,2,2,REVIEWS/soda-inria__hazardous.md s3 metrics and calibration tests,,
+soda-inria/hazardous,Q3,code_quality,2,2,REVIEWS/soda-inria__hazardous.md s1 commit 2026-07-15; 0.2.0 2026-07-15; verify/VERIFY_GENERIC.json soda-inria/hazardous Q3_check true,,
+soda-inria/hazardous,Q4,code_quality,1,1,REVIEWS/soda-inria__hazardous.md s2 declares lifelines and setuptools,,
+soda-inria/hazardous,Q5,code_quality,1,0,no qualifying evidence (unanswered = 0),,cumulative incidence non-monotone for 634 of 634 rows (Q5 0)
+soda-inria/hazardous,I1,integration_fit,2,2,SMOKES/soda-inria__hazardous/smoke_hazardous.result.json python 3.13.17,,
+soda-inria/hazardous,I2,integration_fit,1,0,no qualifying evidence (unanswered = 0),,pulls lifelines with pandas<3.0 (I2 0)
+soda-inria/hazardous,I3,integration_fit,2,2,REVIEWS/soda-inria__hazardous.md s3 scikit-learn estimator,,
+soda-inria/hazardous,I4,integration_fit,2,2,REVIEWS/soda-inria__hazardous.md s8 comparator for the T1 race,,
+soda-inria/hazardous,I5,integration_fit,1,1,verify/closure_size.py: closure 330.9 MB,,
+soda-inria/hazardous,R1,reproducibility,2,2,SMOKES/soda-inria__hazardous/smoke_hazardous.result.json refit_same_seed_identical_n_iter20,HZ-2,
+soda-inria/hazardous,R2,reproducibility,2,2,SMOKES/soda-inria__hazardous/smoke_hazardous.result.json identical_after_reload,,
+soda-inria/hazardous,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+soda-inria/hazardous,K1,cost_latency,2,2,SMOKES/soda-inria__hazardous/smoke_hazardous.meta.json unshare -n,,
+soda-inria/hazardous,K2,cost_latency,1,1,"verify/rerun_hazardous_timing.out.txt fit 14.7 s at n_iter 10, 0.003 ms per row; REVIEWS/soda-inria__hazardous.md s4 S6",HZ-T,
+soda-inria/hazardous,K3,cost_latency,1,1,REVIEWS/soda-inria__hazardous.md s4 182 MB,,
+soda-inria/hazardous,K4,cost_latency,1,0,no qualifying evidence (unanswered = 0),,the only PyPI release is the rejected artifact (K4 0)
+soda-inria/hazardous,L1,license_security,3,3,REVIEWS/soda-inria__hazardous.md s2 MIT sha256 cb492c05 at the pin; verify/VERIFY_GENERIC.json soda-inria/hazardous L1_check true,,
+soda-inria/hazardous,L2,license_security,1,0,no qualifying evidence (unanswered = 0),,"default PyPI route carries unknown-rights data and differs from the source tree (L2 0, L4 0)"
+soda-inria/hazardous,L3,license_security,1,1,REVIEWS/soda-inria__hazardous.md s2 no network code; verify/VERIFY_GENERIC.json soda-inria/hazardous L3_check true,,
+soda-inria/hazardous,L4,license_security,1,0,no qualifying evidence (unanswered = 0),,"default PyPI route carries unknown-rights data and differs from the source tree (L2 0, L4 0)"
+soda-inria/hazardous,L5,license_security,1,1,REVIEWS/soda-inria__hazardous.md s2 none,,
+baobach/mlfinpy,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,PurgedKFold leaves overlapping windows (lead rerun: 3 of 3 expected)
+baobach/mlfinpy,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,PurgedKFold leaves overlapping windows (lead rerun: 3 of 3 expected)
+baobach/mlfinpy,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,PurgedKFold leaves overlapping windows (lead rerun: 3 of 3 expected)
+baobach/mlfinpy,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,PurgedKFold leaves overlapping windows (lead rerun: 3 of 3 expected)
+baobach/mlfinpy,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,PurgedKFold leaves overlapping windows (lead rerun: 3 of 3 expected)
+baobach/mlfinpy,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,PurgedKFold leaves overlapping windows (lead rerun: 3 of 3 expected)
+baobach/mlfinpy,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,PurgedKFold leaves overlapping windows (lead rerun: 3 of 3 expected)
+baobach/mlfinpy,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,F1,features,2,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,F3,features,2,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,D1,decision_execution,3,3,pin:baobach__mlfinpy/mlfinpy/sample_weights/attribution.py:57 get_weights_by_return (sample weights by return attribution),,
+baobach/mlfinpy,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,Q1,code_quality,2,2,SMOKES/baobach__mlfinpy/raw_repo_tests_mlfinpy.txt 17 passed,,
+baobach/mlfinpy,Q2,code_quality,2,0,no qualifying evidence (unanswered = 0),,a test encodes the purge defect; no release in 18 months; sklearn undeclared
+baobach/mlfinpy,Q3,code_quality,2,0,no qualifying evidence (unanswered = 0),,a test encodes the purge defect; no release in 18 months; sklearn undeclared
+baobach/mlfinpy,Q4,code_quality,1,0,no qualifying evidence (unanswered = 0),,a test encodes the purge defect; no release in 18 months; sklearn undeclared
+baobach/mlfinpy,Q5,code_quality,1,0,no qualifying evidence (unanswered = 0),,a test encodes the purge defect; no release in 18 months; sklearn undeclared
+baobach/mlfinpy,I1,integration_fit,2,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,I2,integration_fit,1,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,I3,integration_fit,2,2,REVIEWS/baobach__mlfinpy.md s3 functions and splitters,,
+baobach/mlfinpy,I4,integration_fit,2,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,I5,integration_fit,1,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,R1,reproducibility,2,2,"verify/repeat_runs.json baobach__mlfinpy: reviewer script re-run by the lead, identical after normalization",REPEAT,
+baobach/mlfinpy,R2,reproducibility,2,2,SMOKES/baobach__mlfinpy/raw_smoke_mlfinpy.txt pickled PurgedKFold identical folds,,
+baobach/mlfinpy,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,K1,cost_latency,2,2,SMOKES/baobach__mlfinpy/raw_smoke_mlfinpy.txt unshare -n,,
+baobach/mlfinpy,K2,cost_latency,1,1,REVIEWS/baobach__mlfinpy.md s4 1.9 ms per event,,
+baobach/mlfinpy,K3,cost_latency,1,1,REVIEWS/baobach__mlfinpy.md s4 278 MB,,
+baobach/mlfinpy,K4,cost_latency,1,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,L1,license_security,3,3,REVIEWS/baobach__mlfinpy.md s2 LICENSE MIT at the pin; verify/VERIFY_GENERIC.json baobach/mlfinpy L1_check true,,
+baobach/mlfinpy,L2,license_security,1,0,no qualifying evidence (unanswered = 0),,
+baobach/mlfinpy,L3,license_security,1,1,REVIEWS/baobach__mlfinpy.md s2 no network code; verify/VERIFY_GENERIC.json baobach/mlfinpy L3_check true,,
+baobach/mlfinpy,L4,license_security,1,1,"REVIEWS/baobach__mlfinpy.md s2 poetry-core, no scripts",,
+baobach/mlfinpy,L5,license_security,1,1,REVIEWS/baobach__mlfinpy.md s2 none,,
+mlflow/mlflow,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,T6,temporal_integrity,2,2,"SMOKES/mlflow__mlflow/smoke_mlflow_pin.out.txt LINEAGE training_label_cutoff_epoch, dataset digest, utc_time_created",ML-2,
+mlflow/mlflow,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,C1,calibration_uncertainty,2,2,SMOKES/mlflow__mlflow/smoke_mlflow_pin.out.txt S4_evaluate log_loss 0.13826,,
+mlflow/mlflow,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,F1,features,2,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,F3,features,2,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+mlflow/mlflow,Q1,code_quality,2,2,SMOKES/mlflow__mlflow/repo_tests_subset.out.txt 72 of 74 pass; 2 need pyspark,,
+mlflow/mlflow,Q2,code_quality,2,2,REVIEWS/mlflow__mlflow.md s3 dataset and telemetry tests,,
+mlflow/mlflow,Q3,code_quality,2,2,REVIEWS/mlflow__mlflow.md s1 commit 2026-10-23; 3.17.2 2026-10-21; verify/VERIFY_GENERIC.json mlflow/mlflow Q3_check true,,
+mlflow/mlflow,Q4,code_quality,1,1,REVIEWS/mlflow__mlflow.md s1 pin build imports,,
+mlflow/mlflow,Q5,code_quality,1,1,REVIEWS/mlflow__mlflow.md s4 no silent wrong output found,,
+mlflow/mlflow,I1,integration_fit,2,2,SMOKES/mlflow__mlflow/smoke_mlflow_pin.meta.json python 3.13.17,,
+mlflow/mlflow,I2,integration_fit,1,1,"REVIEWS/mlflow__mlflow.md s4 pandas 3.1.0, numpy 2.5.4",,
+mlflow/mlflow,I3,integration_fit,2,2,"REVIEWS/mlflow__mlflow.md s4 client with sqlite, no server",,
+mlflow/mlflow,I4,integration_fit,2,0,no qualifying evidence (unanswered = 0),,duplicates the planned files-with-sha256 registry (I4 0); 558 MB (I5 0)
+mlflow/mlflow,I5,integration_fit,1,0,no qualifying evidence (unanswered = 0),,duplicates the planned files-with-sha256 registry (I4 0); 558 MB (I5 0)
+mlflow/mlflow,R1,reproducibility,2,0,no qualifying evidence (unanswered = 0),,no repeat run compared (R1 0)
+mlflow/mlflow,R2,reproducibility,2,2,SMOKES/mlflow__mlflow/smoke_mlflow_pin.out.txt S5_persist reload identical,,
+mlflow/mlflow,R3,reproducibility,1,1,SMOKES/mlflow__mlflow/smoke_mlflow_pin.out.txt model.skops artifact,,
+mlflow/mlflow,R4,reproducibility,2,2,SMOKES/mlflow__mlflow/smoke_mlflow_pin.out.txt LINEAGE run and registered version,ML-2,
+mlflow/mlflow,R5,reproducibility,1,1,SMOKES/mlflow__mlflow/smoke_mlflow_pin.out.txt MLmodel mlflow_version; signature refuses a missing column,,
+mlflow/mlflow,K1,cost_latency,2,2,SMOKES/mlflow__mlflow/smoke_mlflow_pin.connect.txt 0 inet connects at the pin,,
+mlflow/mlflow,K2,cost_latency,1,1,REVIEWS/mlflow__mlflow.md s4 2.7 ms per call,,
+mlflow/mlflow,K3,cost_latency,1,1,REVIEWS/mlflow__mlflow.md s4 419 MB,,
+mlflow/mlflow,K4,cost_latency,1,1,REVIEWS/mlflow__mlflow.md s4 S6 pure wheel; verify/VERIFY_GENERIC.json mlflow/mlflow K4_check true,,
+mlflow/mlflow,L1,license_security,3,3,pin:mlflow__mlflow/LICENSE.txt:1 Apache-2.0; verify/VERIFY_GENERIC.json mlflow/mlflow L1_check true,,
+mlflow/mlflow,L2,license_security,1,1,REVIEWS/mlflow__mlflow.md s2 permissive transitive set,,
+mlflow/mlflow,L3,license_security,1,0,no qualifying evidence (unanswered = 0),,release telemetry on by default; DO_NOT_TRACK=1 does not stop it (L3 0)
+mlflow/mlflow,L4,license_security,1,1,"REVIEWS/mlflow__mlflow.md s2 setuptools, no custom step",,
+mlflow/mlflow,L5,license_security,1,1,REVIEWS/mlflow__mlflow.md s2 server optional,,
+probabl-ai/skore,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,T4b,temporal_integrity,1,1,SMOKES/probabl-ai__skore/smoke_skore.out.txt SKD011 names leak_future_ret; SKD013 flags shuffled KFold,SO-1,
+probabl-ai/skore,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,T6,temporal_integrity,2,2,"SMOKES/probabl-ai__skore/smoke_skore.out.txt LINEAGE data_refs with uuid7 report ids, UTC creation date and content-hashed train and test data",,
+probabl-ai/skore,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,C1,calibration_uncertainty,2,2,SMOKES/probabl-ai__skore/smoke_skore.out.txt S2_probs Brier and log loss equal the harness,,
+probabl-ai/skore,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,calibration curve has no bin counts (C5 0)
+probabl-ai/skore,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,calibration curve has no bin counts (C5 0)
+probabl-ai/skore,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,calibration curve has no bin counts (C5 0)
+probabl-ai/skore,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,calibration curve has no bin counts (C5 0)
+probabl-ai/skore,F1,features,2,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,F3,features,2,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+probabl-ai/skore,D4,decision_execution,2,2,SMOKES/probabl-ai__skore/smoke_skore.out.txt check codes SKD001 and others with issue and tip severities,SO-1,
+probabl-ai/skore,Q1,code_quality,2,2,SMOKES/probabl-ai__skore/repo_tests_subset.out.txt 34 passed with the hub extra,,
+probabl-ai/skore,Q2,code_quality,2,2,"REVIEWS/probabl-ai__skore.md s3 SKD011, SKD013, SKD004 tests",,
+probabl-ai/skore,Q3,code_quality,2,2,REVIEWS/probabl-ai__skore.md s1 commit 2026-10-21; 0.28.0 2026-10-14; verify/VERIFY_GENERIC.json probabl-ai/skore Q3_check true,,
+probabl-ai/skore,Q4,code_quality,1,1,REVIEWS/probabl-ai__skore.md s1 library installs and imports,,
+probabl-ai/skore,Q5,code_quality,1,0,no qualifying evidence (unanswered = 0),,git_commit recorded as a wrong string outside a repository (Q5 0)
+probabl-ai/skore,I1,integration_fit,2,2,SMOKES/probabl-ai__skore/smoke_skore.meta.json python 3.13.17,,
+probabl-ai/skore,I2,integration_fit,1,1,"REVIEWS/probabl-ai__skore.md s1 pandas 3.1.0, numpy 2.5.4",,
+probabl-ai/skore,I3,integration_fit,2,2,REVIEWS/probabl-ai__skore.md s3 EstimatorReport,,
+probabl-ai/skore,I4,integration_fit,2,2,REVIEWS/probabl-ai__skore.md s8 reports without the project store,,
+probabl-ai/skore,I5,integration_fit,1,1,verify/closure_size.py: closure 383.3 MB,,
+probabl-ai/skore,R1,reproducibility,2,2,"verify/repeat_runs.json probabl-ai__skore: reviewer script re-run by the lead; 279 of 287 values identical, the 8 others are uuid7 report ids and creation dates by design",REPEAT,
+probabl-ai/skore,R2,reproducibility,2,2,SMOKES/probabl-ai__skore/smoke_skore.out.txt S5_persist identical,,
+probabl-ai/skore,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,pickle storage (R3 0)
+probabl-ai/skore,R4,reproducibility,2,2,SMOKES/probabl-ai__skore/smoke_skore.out.txt LINEAGE metadata.json,,
+probabl-ai/skore,R5,reproducibility,1,1,SMOKES/probabl-ai__skore/smoke_skore.out.txt metadata skore-version,,
+probabl-ai/skore,K1,cost_latency,2,2,SMOKES/probabl-ai__skore/smoke_skore.connect.txt 0 inet connects,,
+probabl-ai/skore,K2,cost_latency,1,1,REVIEWS/probabl-ai__skore.md s4 S6 report 0.05 s; checks 22 to 30 s for one report,,
+probabl-ai/skore,K3,cost_latency,1,1,REVIEWS/probabl-ai__skore.md s4 234 MB,,
+probabl-ai/skore,K4,cost_latency,1,1,REVIEWS/probabl-ai__skore.md s4 S6 py3-none-any; verify/VERIFY_GENERIC.json probabl-ai/skore K4_check true,,
+probabl-ai/skore,L1,license_security,3,3,REVIEWS/probabl-ai__skore.md s2 MIT sha256 1a326199; verify/VERIFY_GENERIC.json probabl-ai/skore L1_check true,,
+probabl-ai/skore,L2,license_security,1,1,REVIEWS/probabl-ai__skore.md s2 vendored BSD-2-Clause file,,
+probabl-ai/skore,L3,license_security,1,1,"REVIEWS/probabl-ai__skore.md s2 no telemetry, 0 connects; verify/VERIFY_GENERIC.json probabl-ai/skore L3_check true",,
+probabl-ai/skore,L4,license_security,1,1,REVIEWS/probabl-ai__skore.md s2 hatch hook inspected,,
+probabl-ai/skore,L5,license_security,1,1,REVIEWS/probabl-ai__skore.md s2 hub and CLI network only on explicit use,,
+unionai-oss/pandera,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,T3,temporal_integrity,2,2,SMOKES/unionai-oss__pandera/smoke_pandera.out.txt P05_label_maturity: a labelled PENDING row refused,,
+unionai-oss/pandera,T4a,temporal_integrity,3,3,"verify/rerun_pandera.out.txt lead's own registered check: trap 3,000 rows refused, 1-second-late row caught; SMOKES/unionai-oss__pandera/smoke_pandera.out.txt",PA-1,
+unionai-oss/pandera,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,F1,features,2,2,SMOKES/unionai-oss__pandera/smoke_pandera.out.txt S3_nullable declared nullability enforced,,
+unionai-oss/pandera,F2,features,3,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,F3,features,2,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,F5,features,1,1,SMOKES/unionai-oss__pandera/smoke_pandera.out.txt S2_forecast_schema typed forecast and S1_asof_gate feature schemas,,
+unionai-oss/pandera,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+unionai-oss/pandera,D4,decision_execution,2,2,"SMOKES/unionai-oss__pandera/smoke_pandera.out.txt lazy failure cases: checks_failed, first_failure_index, n_failure_cases",PA-1,
+unionai-oss/pandera,Q1,code_quality,2,2,SMOKES/unionai-oss__pandera/repo_tests_subset.out.txt 56 passed,,
+unionai-oss/pandera,Q2,code_quality,2,2,"REVIEWS/unionai-oss__pandera.md s3 checks, extensions, format conversions",,
+unionai-oss/pandera,Q3,code_quality,2,2,REVIEWS/unionai-oss__pandera.md s1 commit 2026-10-23; 0.34.1 2026-10-06; verify/VERIFY_GENERIC.json unionai-oss/pandera Q3_check true,,
+unionai-oss/pandera,Q4,code_quality,1,1,REVIEWS/unionai-oss__pandera.md s1 installs and imports,,
+unionai-oss/pandera,Q5,code_quality,1,1,REVIEWS/unionai-oss__pandera.md s4 fail-closed; lambda-check loss warned,PA-1,
+unionai-oss/pandera,I1,integration_fit,2,2,SMOKES/unionai-oss__pandera/smoke_pandera.out.txt python 3.13,,
+unionai-oss/pandera,I2,integration_fit,1,1,"SMOKES/unionai-oss__pandera/smoke_pandera.out.txt pandas 3.1.0, numpy 2.5.4",,
+unionai-oss/pandera,I3,integration_fit,2,2,REVIEWS/unionai-oss__pandera.md s3 schema API,,
+unionai-oss/pandera,I4,integration_fit,2,2,REVIEWS/unionai-oss__pandera.md s8 validator for the planned feature and label tables,,
+unionai-oss/pandera,I5,integration_fit,1,1,verify/closure_size.py: closure 10.2 MB plus pandas,,
+unionai-oss/pandera,R1,reproducibility,2,2,"verify/repeat_runs.json unionai-oss__pandera: reviewer script re-run by the lead, identical after normalization",REPEAT,
+unionai-oss/pandera,R2,reproducibility,2,2,SMOKES/unionai-oss__pandera/smoke_pandera.out.txt S5 YAML round trip keeps registered checks,,
+unionai-oss/pandera,R3,reproducibility,1,1,SMOKES/unionai-oss__pandera/smoke_pandera.out.txt YAML schema (safe_load),,
+unionai-oss/pandera,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,failure cases are not run records (R4 0)
+unionai-oss/pandera,R5,reproducibility,1,1,verify/rerun_pandera.out.txt strict=True refuses an undeclared column,PA-1,
+unionai-oss/pandera,K1,cost_latency,2,2,SMOKES/unionai-oss__pandera/smoke_pandera.connect.txt 0 inet connects,,
+unionai-oss/pandera,K2,cost_latency,1,1,"REVIEWS/unionai-oss__pandera.md s4 0.036 s for 30,000 rows",,
+unionai-oss/pandera,K3,cost_latency,1,1,REVIEWS/unionai-oss__pandera.md s4 189 MB,,
+unionai-oss/pandera,K4,cost_latency,1,1,REVIEWS/unionai-oss__pandera.md s4 S6 pure wheel; verify/VERIFY_GENERIC.json unionai-oss/pandera K4_check true,,
+unionai-oss/pandera,L1,license_security,3,3,REVIEWS/unionai-oss__pandera.md s2 MIT sha256 142d0a4e; verify/VERIFY_GENERIC.json unionai-oss/pandera L1_check true,,
+unionai-oss/pandera,L2,license_security,1,1,REVIEWS/unionai-oss__pandera.md s2 permissive transitive set,,
+unionai-oss/pandera,L3,license_security,1,1,"REVIEWS/unionai-oss__pandera.md s2 no telemetry, 0 connects; verify/VERIFY_GENERIC.json unionai-oss/pandera L3_check true",,
+unionai-oss/pandera,L4,license_security,1,1,REVIEWS/unionai-oss__pandera.md s2 bare setup(),,
+unionai-oss/pandera,L5,license_security,1,1,REVIEWS/unionai-oss__pandera.md s2 none,,
+eslazarev/purged-cross-validation,T1,temporal_integrity,3,3,SMOKES/eslazarev__purged-cross-validation/raw_smoke_purgedcv.txt WalkForwardSplit 5 ordered folds; fold_audit:purgedcv.WalkForwardSplit,PC-1;PC-3,
+eslazarev/purged-cross-validation,T2,temporal_integrity,4,4,"verify/rerun_purgedcv.out.txt WalkForwardSplit_leaks [0, 0, 0, 0, 0] and hand_case_kept [0, 1, 5] (lead interval-union checker); fold_audit:purgedcv.WalkForwardSplit",PC-1;PC-2;PC-3,
+eslazarev/purged-cross-validation,T3,temporal_integrity,2,2,verify/fold_audit_purgedcv.out.txt WalkForwardSplit train_label_matures_after_first_test 0 in every fold; fold_audit:purgedcv.WalkForwardSplit,PC-3,
+eslazarev/purged-cross-validation,T4a,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,"no feature availability (S1 trap passed through walk-forward); PurgedKFold and CPCV train on up to 2,091 and 1,739 later rows (PC-3), so no temporal point rests on them"
+eslazarev/purged-cross-validation,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,"no feature availability (S1 trap passed through walk-forward); PurgedKFold and CPCV train on up to 2,091 and 1,739 later rows (PC-3), so no temporal point rests on them"
+eslazarev/purged-cross-validation,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,"no feature availability (S1 trap passed through walk-forward); PurgedKFold and CPCV train on up to 2,091 and 1,739 later rows (PC-3), so no temporal point rests on them"
+eslazarev/purged-cross-validation,T6,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,"no feature availability (S1 trap passed through walk-forward); PurgedKFold and CPCV train on up to 2,091 and 1,739 later rows (PC-3), so no temporal point rests on them"
+eslazarev/purged-cross-validation,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,"PurgedGroupKFold by mint leaves training folds of 0, 0, 45, 179 and 397 rows (PC-3): no usable group split (O5 0)"
+eslazarev/purged-cross-validation,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,"PurgedGroupKFold by mint leaves training folds of 0, 0, 45, 179 and 397 rows (PC-3): no usable group split (O5 0)"
+eslazarev/purged-cross-validation,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"PurgedGroupKFold by mint leaves training folds of 0, 0, 45, 179 and 397 rows (PC-3): no usable group split (O5 0)"
+eslazarev/purged-cross-validation,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"PurgedGroupKFold by mint leaves training folds of 0, 0, 45, 179 and 397 rows (PC-3): no usable group split (O5 0)"
+eslazarev/purged-cross-validation,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,"PurgedGroupKFold by mint leaves training folds of 0, 0, 45, 179 and 397 rows (PC-3): no usable group split (O5 0)"
+eslazarev/purged-cross-validation,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+eslazarev/purged-cross-validation,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+eslazarev/purged-cross-validation,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+eslazarev/purged-cross-validation,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+eslazarev/purged-cross-validation,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+eslazarev/purged-cross-validation,F1,features,2,0,no qualifying evidence (unanswered = 0),,
+eslazarev/purged-cross-validation,F2,features,3,3,"SMOKES/eslazarev__purged-cross-validation/raw_smoke_purgedcv.txt irregular gaps 0 to 6,694 s purged by time",PC-1,
+eslazarev/purged-cross-validation,F3,features,2,0,no qualifying evidence (unanswered = 0),,
+eslazarev/purged-cross-validation,F4,features,2,0,no qualifying evidence (unanswered = 0),,
+eslazarev/purged-cross-validation,F5,features,1,0,no qualifying evidence (unanswered = 0),,
+eslazarev/purged-cross-validation,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+eslazarev/purged-cross-validation,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+eslazarev/purged-cross-validation,D3,decision_execution,2,2,"SMOKES/eslazarev__purged-cross-validation/raw_smoke_purgedcv.txt PBO 0.609 noise, 0.000 real drift",,
+eslazarev/purged-cross-validation,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+eslazarev/purged-cross-validation,Q1,code_quality,2,2,SMOKES/eslazarev__purged-cross-validation/raw_repo_tests_purgedcv.txt 122 passed,,
+eslazarev/purged-cross-validation,Q2,code_quality,2,2,"REVIEWS/eslazarev__purged-cross-validation.md s3 purge, embargo, walk-forward, CPCV and property tests",,
+eslazarev/purged-cross-validation,Q3,code_quality,2,2,REVIEWS/eslazarev__purged-cross-validation.md s1 commit 2026-10-23; 0.1.11 2026-10-16; verify/VERIFY_GENERIC.json eslazarev/purged-cross-validation Q3_check true,,
+eslazarev/purged-cross-validation,Q4,code_quality,1,1,"REVIEWS/eslazarev__purged-cross-validation.md s2 numpy, pandas, scikit-learn, scipy; optuna lazy",,
+eslazarev/purged-cross-validation,Q5,code_quality,1,1,REVIEWS/eslazarev__purged-cross-validation.md s4 input validation raises on unordered times and NaT,,
+eslazarev/purged-cross-validation,I1,integration_fit,2,2,SMOKES/eslazarev__purged-cross-validation/raw_smoke_purgedcv.txt python 3.13.17,,
+eslazarev/purged-cross-validation,I2,integration_fit,1,1,SMOKES/eslazarev__purged-cross-validation/raw_smoke_purgedcv.txt pandas 3.1.0 numpy 2.5.4,,
+eslazarev/purged-cross-validation,I3,integration_fit,2,2,REVIEWS/eslazarev__purged-cross-validation.md s3 splitter interface and primitives,,
+eslazarev/purged-cross-validation,I4,integration_fit,2,2,REVIEWS/eslazarev__purged-cross-validation.md s8 feeds the planned day walk-forward and LabelGate,,
+eslazarev/purged-cross-validation,I5,integration_fit,1,1,verify/closure_size.py: closure 247.0 MB,,
+eslazarev/purged-cross-validation,R1,reproducibility,2,2,verify/rerun_purgedcv.out.txt lead run reproduces the reviewer's per-fold counts,PC-1,
+eslazarev/purged-cross-validation,R2,reproducibility,2,2,SMOKES/eslazarev__purged-cross-validation/raw_smoke_purgedcv.txt pickled splitter identical folds,,
+eslazarev/purged-cross-validation,R3,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+eslazarev/purged-cross-validation,R4,reproducibility,2,2,SMOKES/eslazarev__purged-cross-validation/raw_smoke_purgedcv.txt audit_splitter rows removed by purge and embargo per fold,,
+eslazarev/purged-cross-validation,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,
+eslazarev/purged-cross-validation,K1,cost_latency,2,2,SMOKES/eslazarev__purged-cross-validation/raw_smoke_purgedcv.txt unshare -n,,
+eslazarev/purged-cross-validation,K2,cost_latency,1,1,REVIEWS/eslazarev__purged-cross-validation.md s4 S6 folds in 17 to 153 ms,,
+eslazarev/purged-cross-validation,K3,cost_latency,1,1,SMOKES/eslazarev__purged-cross-validation/raw_smoke_purgedcv.txt peak RSS 163 MB,,
+eslazarev/purged-cross-validation,K4,cost_latency,1,1,SMOKES/eslazarev__purged-cross-validation/raw_pypi_files_r2.txt py3-none-any; verify/VERIFY_GENERIC.json eslazarev/purged-cross-validation K4_check true,,
+eslazarev/purged-cross-validation,L1,license_security,3,3,REVIEWS/eslazarev__purged-cross-validation.md s2 MIT sha256 554e85fd; verify/VERIFY_GENERIC.json eslazarev/purged-cross-validation L1_check true,,
+eslazarev/purged-cross-validation,L2,license_security,1,1,"REVIEWS/eslazarev__purged-cross-validation.md s2 independent implementation, no vendored code",,
+eslazarev/purged-cross-validation,L3,license_security,1,1,REVIEWS/eslazarev__purged-cross-validation.md s2 no network code; verify/VERIFY_GENERIC.json eslazarev/purged-cross-validation L3_check true,,
+eslazarev/purged-cross-validation,L4,license_security,1,1,REVIEWS/eslazarev__purged-cross-validation.md s2 hatchling,,
+eslazarev/purged-cross-validation,L5,license_security,1,1,REVIEWS/eslazarev__purged-cross-validation.md s2 none,,
+feast-dev/feast,T1,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,T2,temporal_integrity,4,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,T3,temporal_integrity,2,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,T4a,temporal_integrity,3,3,SMOKES/feast-dev__feast/smoke_output.txt S1_leak_trap.timestamp_field_is_availability_time rows_returning_own_future_value 0; verify/rerun_feast_r1_script.out.txt,FE-1;FE-2,
+feast-dev/feast,T4b,temporal_integrity,1,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,T5,temporal_integrity,3,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,T6,temporal_integrity,2,2,SMOKES/feast-dev__feast/smoke_output.txt pit_semantics filter_by_created_timestamp_True exactly_at_second 2.0 (revision blocked),FE-2,
+feast-dev/feast,O1,transferable_outcomes,5,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,O2,transferable_outcomes,3,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,O3,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,O4,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,O5,transferable_outcomes,2,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,C1,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,C2,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,C3,calibration_uncertainty,3,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,C4,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,C5,calibration_uncertainty,2,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,F1,features,2,0,no qualifying evidence (unanswered = 0),,rows silently dropped instead of nulled (F1 0)
+feast-dev/feast,F2,features,3,3,SMOKES/feast-dev__feast/smoke_output.txt pit_semantics irregular per-entity times to the second,FE-2,
+feast-dev/feast,F3,features,2,0,no qualifying evidence (unanswered = 0),,rows silently dropped instead of nulled (F1 0)
+feast-dev/feast,F4,features,2,2,SMOKES/feast-dev__feast/smoke_output.txt pit_semantics other_mint_same_symbol 50.0,FE-2,
+feast-dev/feast,F5,features,1,1,SMOKES/feast-dev__feast/smoke_feast.py typed FeatureViews `schema=[Field(name=` with `dtype=Float64`; SMOKES/feast-dev__feast/smoke_output.txt per_view_row_counts for 3 views,,
+feast-dev/feast,D1,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,D2,decision_execution,3,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,D3,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,D4,decision_execution,2,0,no qualifying evidence (unanswered = 0),,
+feast-dev/feast,Q1,code_quality,2,2,SMOKES/feast-dev__feast/repo_tests_subset.txt 7 passed; one file needs the ibis extra,,
+feast-dev/feast,Q2,code_quality,2,2,REVIEWS/feast-dev__feast.md s3 dask offline store tests,,
+feast-dev/feast,Q3,code_quality,2,2,REVIEWS/feast-dev__feast.md s1 commit 2026-10-19; 0.67.0 2026-10-13; verify/VERIFY_GENERIC.json feast-dev/feast Q3_check true,,
+feast-dev/feast,Q4,code_quality,1,1,REVIEWS/feast-dev__feast.md s1 pure wheel imports,,
+feast-dev/feast,Q5,code_quality,1,0,no qualifying evidence (unanswered = 0),,"330 of 3,000 rows vanish silently, contradicting its docstring (Q5 0)"
+feast-dev/feast,I1,integration_fit,2,2,SMOKES/feast-dev__feast/smoke_output.txt python 3.13.17,,
+feast-dev/feast,I2,integration_fit,1,0,no qualifying evidence (unanswered = 0),,requires pandas<3 (I2 0); duplicates the planned in-house as-of view (I4 0)
+feast-dev/feast,I3,integration_fit,2,2,REVIEWS/feast-dev__feast.md s4 local provider in process,,
+feast-dev/feast,I4,integration_fit,2,0,no qualifying evidence (unanswered = 0),,requires pandas<3 (I2 0); duplicates the planned in-house as-of view (I4 0)
+feast-dev/feast,I5,integration_fit,1,1,verify/closure_size.py: closure 355.8 MB,,
+feast-dev/feast,R1,reproducibility,2,2,verify/rerun_feast_r1_script.out.txt pit_semantics equal to the reviewer's run,FE-2,
+feast-dev/feast,R2,reproducibility,2,0,no qualifying evidence (unanswered = 0),,nothing to save or reload (R2 0)
+feast-dev/feast,R3,reproducibility,1,1,"SMOKES/feast-dev__feast/smoke_output.txt registry.db and online.db (sqlite, protobuf); REVIEWS/feast-dev__feast.md s2",,
+feast-dev/feast,R4,reproducibility,2,0,no qualifying evidence (unanswered = 0),,nothing to save or reload (R2 0)
+feast-dev/feast,R5,reproducibility,1,0,no qualifying evidence (unanswered = 0),,nothing to save or reload (R2 0)
+feast-dev/feast,K1,cost_latency,2,2,SMOKES/feast-dev__feast/smoke_output.txt network_attempts [] after import and apply,FE-2,
+feast-dev/feast,K2,cost_latency,1,1,"SMOKES/feast-dev__feast/smoke_output.txt S6 3,000 rows joined in 0.51 s",,
+feast-dev/feast,K3,cost_latency,1,1,SMOKES/feast-dev__feast/smoke_output.txt peak_rss_mb 242,,
+feast-dev/feast,K4,cost_latency,1,1,REVIEWS/feast-dev__feast.md s1 pure wheel; verify/VERIFY_GENERIC.json feast-dev/feast K4_check true,,
+feast-dev/feast,L1,license_security,3,3,REVIEWS/feast-dev__feast.md s2 Apache-2.0 at the pin; verify/VERIFY_GENERIC.json feast-dev/feast L1_check true,,
+feast-dev/feast,L2,license_security,1,1,REVIEWS/feast-dev__feast.md s2 MPL-2.0 only in unmodified dependencies,,
+feast-dev/feast,L3,license_security,1,1,REVIEWS/feast-dev__feast.md s2 no usage module at the pin; verify/VERIFY_GENERIC.json feast-dev/feast L3_check true,,
+feast-dev/feast,L4,license_security,1,1,REVIEWS/feast-dev__feast.md s2 pure wheel,,
+feast-dev/feast,L5,license_security,1,1,REVIEWS/feast-dev__feast.md s2 auth code unused locally; no server started,,

@@ -1,0 +1,4 @@
+{"with_one_nan_in_real_data": {"outcome": "ran", "losses": [5.440000054338926, 5.839706027126627, 6.273569884310684, 7.850168183235037], "warning_emitted": false},
+ "same_data_without_nan": {"outcome": "ran", "losses": [2.563095956715741, 3.473819281627838, 5.275421731748526, 8.967642179016199]},
+ "cause": "black_it/utils/time_series.py:87 np.nan_to_num(avg_vec_mom, copy=False) turns NaN moments into 0 without a warning",
+ "command": "PYTHONPATH=<clone> python smoke_blackit_nan.py (inside unshare -n); the no-NaN variant replaces the NaN line with pass"}

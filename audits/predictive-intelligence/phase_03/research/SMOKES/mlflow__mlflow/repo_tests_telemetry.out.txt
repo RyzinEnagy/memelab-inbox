@@ -1,0 +1,34 @@
+[1m============================= test session starts ==============================[0m
+collected 44 items
+
+tests/telemetry/test_utils.py [32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33m     [ 86%][0m
+tests/telemetry/test_installation_id.py [32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33m                           [100%][0m
+
+[33m=============================== warnings summary ===============================[0m
+tests/telemetry/test_utils.py::test_detect_environment_from_env_var[KAGGLE_KERNEL_RUN_TYPE-kaggle]
+  /home/claude/pi_research/src/mlflow__mlflow/mlflow/store/db_migrations/versions/89d4b8295536_create_latest_metrics_table.py:44: SADeprecationWarning: The ``noload`` loader strategy is deprecated and will be removed in a future release.  This option produces incorrect results by returning ``None`` for related items. (deprecated since: 2.1) (This warning originated from the `configure_mappers()` process, which was invoked automatically in response to a user-initiated operation.)
+    num_metric_entries = session.query(SqlMetric).count()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============================= slowest 10 durations =============================
+10.12s setup    tests/telemetry/test_utils.py::test_detect_environment_from_env_var[KAGGLE_KERNEL_RUN_TYPE-kaggle]
+0.11s setup    tests/telemetry/test_utils.py::test_get_config_url
+0.10s setup    tests/telemetry/test_utils.py::test_detect_agent_ignores_invalid_ai_agent[]
+0.07s setup    tests/telemetry/test_utils.py::test_detect_agent[environment0-custom-agent]
+0.04s setup    tests/telemetry/test_utils.py::test_detect_agent[environment4-gemini-cli]
+0.04s setup    tests/telemetry/test_utils.py::test_detect_agent[environment5-copilot-cli]
+0.03s setup    tests/telemetry/test_utils.py::test_detect_agent[environment10-cursor-cli]
+0.03s setup    tests/telemetry/test_utils.py::test_detect_agent[environment11-kiro]
+0.03s setup    tests/telemetry/test_installation_id.py::test_get_or_create_installation_id_should_not_raise
+0.03s setup    tests/telemetry/test_utils.py::test_detect_agent[environment7-cline]
+
+========================= per-file durations (sorted) ==========================
+::group::per-file durations (sorted)
+
+| Rank | File                            | Duration | Tests | Min    | Max     | Avg    |
+| ---- | ------------------------------- | -------- | ----- | ------ | ------- | ------ |
+| 1    | `tests/telemetry/test_utils.py` | 11.31s   | 38    | 0.015s | 10.121s | 0.298s |
+
+::endgroup::
+
+[33m======================== [32m44 passed[0m, [33m[1m1 warning[0m[33m in 11.63s[0m[33m ========================[0m

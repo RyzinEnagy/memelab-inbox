@@ -1,0 +1,32 @@
+{
+ "command": [
+  "/home/claude/pi_research/venvs/IFCA-Advanced-Computing__frouros/bin/python",
+  "-m",
+  "pytest",
+  "-p",
+  "no:cacheprovider",
+  "-o",
+  "addopts=",
+  "-q",
+  "frouros/tests/integration/test_data_drift.py"
+ ],
+ "wrapped_command": [
+  "unshare",
+  "-n",
+  "/home/claude/pi_research/venvs/IFCA-Advanced-Computing__frouros/bin/python",
+  "-m",
+  "pytest",
+  "-p",
+  "no:cacheprovider",
+  "-o",
+  "addopts=",
+  "-q",
+  "frouros/tests/integration/test_data_drift.py"
+ ],
+ "started_utc": "2026-10-24T04:56:29Z",
+ "exit_code": 1,
+ "wall_s": 4.351,
+ "peak_rss_kb_children": 169696,
+ "env_switches": {},
+ "offline_netns": true
+}

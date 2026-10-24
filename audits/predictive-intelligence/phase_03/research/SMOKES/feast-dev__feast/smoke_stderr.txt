@@ -1,0 +1,2 @@
+/home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/feast-dev__feast/smoke_feast.py:263: DeprecationWarning: Entity value_type will be mandatory in the next release. Please specify a value_type for entity 'mint'.
+  mint = Entity(name="mint", join_keys=["mint"])

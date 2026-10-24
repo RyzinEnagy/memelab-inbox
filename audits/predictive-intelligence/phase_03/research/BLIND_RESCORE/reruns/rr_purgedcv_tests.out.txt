@@ -1,0 +1,9 @@
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/e2e/test_e2e_prose_gate.py::test_contributor_can_run_prose_gate
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 62 passed, 13 skipped, 7 warnings in 98.27s (0:01:38)
+    @pytest.mark.parametrize("value", ["NaT", "nat", "nan", np.timedelta64("NaT")])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+461 passed, 1 warning in 8.30s

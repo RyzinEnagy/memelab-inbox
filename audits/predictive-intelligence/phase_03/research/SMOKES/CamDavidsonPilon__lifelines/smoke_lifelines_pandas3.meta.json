@@ -1,0 +1,11 @@
+{
+ "name": "smoke_lifelines_pandas3",
+ "command": "unshare -n /tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/ll_pd3/bin/python -I -B /home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/CamDavidsonPilon__lifelines/smoke_lifelines.py",
+ "cwd": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/CamDavidsonPilon__lifelines",
+ "start_utc": "2026-10-24T04:52:38Z",
+ "exit_code": 0,
+ "wall_s": 8.997,
+ "peak_rss_mb": 192.2,
+ "user_cpu_s": 5.83,
+ "network": "none (unshare -n)"
+}

@@ -1,0 +1,3 @@
+5232  --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=5238, si_uid=0, si_status=128, si_utime=0, si_stime=0} ---
+5232  --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=5239, si_uid=0, si_status=128, si_utime=0, si_stime=0} ---
+5232  --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=5249, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---

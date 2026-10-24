@@ -1,0 +1,6 @@
+fork_head 47889b884c7e7e4ca850ce2b87ea1514e0834866
+fork_license_file LICENSE.txt bsd3_hudson True
+fork_line_91_defect True
+mlfinpy_line_122_124  test_times = pd.Series(  index=[self.samples_info_sets.iloc[start_ix]], data=[self.samples_info_sets.iloc[end_ix - 1]]  ) 
+mlfinpy_hudson_notices 0
+shared_test_docstring True

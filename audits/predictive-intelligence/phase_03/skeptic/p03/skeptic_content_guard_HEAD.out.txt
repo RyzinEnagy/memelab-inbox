@@ -1,0 +1,9 @@
+violations 8
+  audits/predictive-intelligence/phase_03/research/SMOKES/666ghj__MiroFish/sim_run1/reddit_profiles.json [0].bio JSON: social-only content key 'bio'
+  audits/predictive-intelligence/phase_03/research/SMOKES/666ghj__MiroFish/sim_run1/reddit_profiles.json [1].bio JSON: social-only content key 'bio'
+  audits/predictive-intelligence/phase_03/research/SMOKES/666ghj__MiroFish/sim_run1/reddit_profiles.json [2].bio JSON: social-only content key 'bio'
+  audits/predictive-intelligence/phase_03/research/SMOKES/666ghj__MiroFish/sim_run1/reddit_profiles.json [3].bio JSON: social-only content key 'bio'
+  audits/predictive-intelligence/phase_03/research/SMOKES/666ghj__MiroFish/sim_run2/reddit_profiles.json [0].bio JSON: social-only content key 'bio'
+  audits/predictive-intelligence/phase_03/research/SMOKES/666ghj__MiroFish/sim_run2/reddit_profiles.json [1].bio JSON: social-only content key 'bio'
+  audits/predictive-intelligence/phase_03/research/SMOKES/666ghj__MiroFish/sim_run2/reddit_profiles.json [2].bio JSON: social-only content key 'bio'
+  audits/predictive-intelligence/phase_03/research/SMOKES/666ghj__MiroFish/sim_run2/reddit_profiles.json [3].bio JSON: social-only content key 'bio'

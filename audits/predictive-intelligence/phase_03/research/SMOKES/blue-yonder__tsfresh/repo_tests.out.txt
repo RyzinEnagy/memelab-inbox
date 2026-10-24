@@ -1,0 +1,28 @@
+....................................                                     [100%]
+=============================== warnings summary ===============================
+tests/units/utilities/test_dataframe_functions.py::ImputeTestCase::test_impute_range
+tests/units/utilities/test_dataframe_functions.py::ImputeTestCase::test_impute_range
+tests/units/utilities/test_dataframe_functions.py::ImputeTestCase::test_impute_range
+tests/units/utilities/test_dataframe_functions.py::ImputeTestCase::test_toplevel_impute
+tests/units/utilities/test_dataframe_functions.py::ImputeTestCase::test_toplevel_impute
+tests/units/utilities/test_dataframe_functions.py::ImputeTestCase::test_toplevel_impute
+  /home/claude/pi_research/venvs/blue-yonder__tsfresh/lib/python3.13/site-packages/tsfresh/utilities/dataframe_functions.py:172: Pandas4Warning: The copy keyword is deprecated and will be removed in a future version. Copy-on-Write is active in pandas since 3.0 which utilizes a lazy copy mechanism that defers copies until necessary. Use .copy() to make an eager copy if necessary.
+    df_impute.astype(np.float64, copy=False)
+
+tests/units/utilities/test_dataframe_functions.py::ImputeTestCase::test_impute_zero
+tests/units/utilities/test_dataframe_functions.py::ImputeTestCase::test_impute_zero
+tests/units/utilities/test_dataframe_functions.py::ImputeTestCase::test_impute_zero
+tests/units/utilities/test_dataframe_functions.py::ImputeTestCase::test_impute_zero
+tests/units/utilities/test_dataframe_functions.py::ImputeTestCase::test_impute_zero
+tests/units/utilities/test_dataframe_functions.py::ImputeTestCase::test_impute_zero
+  /home/claude/pi_research/venvs/blue-yonder__tsfresh/lib/python3.13/site-packages/tsfresh/utilities/dataframe_functions.py:98: Pandas4Warning: The copy keyword is deprecated and will be removed in a future version. Copy-on-Write is active in pandas since 3.0 which utilizes a lazy copy mechanism that defers copies until necessary. Use .copy() to make an eager copy if necessary.
+    df_impute.astype(np.float64, copy=False)
+
+tests/units/utilities/test_dataframe_functions.py::ImputeTestCase::test_toplevel_impute
+tests/units/utilities/test_dataframe_functions.py::ImputeTestCase::test_toplevel_impute
+tests/units/utilities/test_dataframe_functions.py::ImputeTestCase::test_toplevel_impute
+  /home/claude/pi_research/venvs/blue-yonder__tsfresh/lib/python3.13/site-packages/tsfresh/utilities/dataframe_functions.py:76: Pandas4Warning: The copy keyword is deprecated and will be removed in a future version. Copy-on-Write is active in pandas since 3.0 which utilizes a lazy copy mechanism that defers copies until necessary. Use .copy() to make an eager copy if necessary.
+    df_impute.astype(np.float64, copy=False)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+36 passed, 15 warnings in 5.24s

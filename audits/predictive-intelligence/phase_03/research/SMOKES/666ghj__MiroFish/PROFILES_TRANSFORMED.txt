@@ -1,0 +1,12 @@
+Phase 03 repair pass (lead), 2026-10-24.
+
+sim_run1/reddit_profiles.json and sim_run2/reddit_profiles.json were written by smoke_mf_sim.py as the simulator's
+input profiles. They held fictional "bio" and "persona" strings, and the lab's content guard
+(memelab/social/content_guard.py, SOCIAL_ONLY_KEYS) bars a stored "bio" key in any tracked JSON file even when the
+text is invented (skeptic finding M1). Each string is now replaced by its sha256 and its length
+("bio_sha256", "bio_chars", "persona_sha256", "persona_chars"); every other field is unchanged.
+
+Both files were byte-identical before the change (sha256 2e14e02c35be0d20d85c8689ce0e9f722e831cd99c2253f9126ed38016f1a431)
+and are byte-identical after it. smoke_mf_sim.py is unchanged and still builds the original profiles in memory for a rerun;
+a rerun writes them again, so delete or transform the two files before staging any rerun output.
+No score or claim rests on the profile text.

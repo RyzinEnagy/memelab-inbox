@@ -1,0 +1,36 @@
+{
+ "command": [
+  "/home/claude/pi_research/venvs/NannyML__nannyml/bin/python",
+  "-I",
+  "-W",
+  "ignore",
+  "/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r4/telemetry_probe_nannyml.py"
+ ],
+ "wrapped_command": [
+  "unshare",
+  "-n",
+  "strace",
+  "-f",
+  "-qq",
+  "-e",
+  "trace=connect,sendto",
+  "-o",
+  "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/NannyML__nannyml/telemetry_switch_off.connect.txt",
+  "/home/claude/pi_research/venvs/NannyML__nannyml/bin/python",
+  "-I",
+  "-W",
+  "ignore",
+  "/tmp/claude-0/-home-claude/6c3ea1ef-d097-5873-a280-98af7bc5c45c/scratchpad/r4/telemetry_probe_nannyml.py"
+ ],
+ "started_utc": "2026-10-24T04:46:53Z",
+ "exit_code": 0,
+ "wall_s": 8.381,
+ "peak_rss_kb_children": 316696,
+ "env_switches": {
+  "NML_DISABLE_USAGE_LOGGING": "1"
+ },
+ "offline_netns": true,
+ "strace_inet_connect_lines": 0,
+ "strace_inet_targets": {},
+ "strace_unix_connect_lines": 0
+}

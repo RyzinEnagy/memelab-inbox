@@ -1,0 +1,11 @@
+{
+ "name": "repo_tests",
+ "command": "unshare -n /home/claude/pi_research/venvs/soda-inria__hazardous/bin/python -I -B -m pytest -q -p no:cacheprovider /home/claude/pi_research/src/soda-inria__hazardous/hazardous/tests/test_metrics.py /home/claude/pi_research/src/soda-inria__hazardous/hazardous/tests/test_aj_calibration.py /home/claude/pi_research/src/soda-inria__hazardous/hazardous/tests/test_km_calibration.py /home/claude/pi_research/src/soda-inria__hazardous/hazardous/tests/test_cindex.py",
+ "cwd": "/home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/soda-inria__hazardous",
+ "start_utc": "2026-10-24T05:10:53Z",
+ "exit_code": 0,
+ "wall_s": 18.105,
+ "peak_rss_mb": 297.3,
+ "user_cpu_s": 13.79,
+ "network": "none (unshare -n)"
+}

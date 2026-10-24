@@ -1,0 +1,1 @@
+command: OMP_NUM_THREADS=1 /home/claude/pi_research/venvs/interpretml__interpret/bin/python -I smoke_interpret.py challenge.csv scratch; exit=0; wall_s=175.916913948

@@ -1,0 +1,653 @@
+{
+  "phase": "03",
+  "title": "Pinned source audit, rubric and ranked top ten",
+  "status": "NEEDS_REVIEW",
+  "status_reason": "Repair pass applied in this commit; the post-commit full suite, content guard and release audit run on this commit and are recorded by the records commit that follows.",
+  "branch": "feature/predictive-intelligence",
+  "head_before": "77e78ce58788ef935af496a5753d53d1bed57b97",
+  "head_after": "repair commit on top of 77e78ce (git log -2)",
+  "first_pass_commit": "c9e894d (rewritten, never pushed; PI-D-030)",
+  "generated_at_utc": "2026-10-24T07:45Z",
+  "rubric_items_sha256": "cb4b0a2112d152587424cefad98bbd8b71ae7f9ff2f1be517e47890a94c937f8",
+  "counts": {
+    "reviews": 30,
+    "rubric_items": 50,
+    "score_cells": 1500,
+    "targeted_checks": 89,
+    "targeted_checks_failed": 0,
+    "negative_mutations": 31,
+    "negative_mutations_refused": 31,
+    "eligible": 29,
+    "rejected_outright": 1,
+    "skeptic_findings": {
+      "material": 3,
+      "minor": 9
+    },
+    "blind_rescore_repos": 7,
+    "prose_only_cells": 241,
+    "prose_audit_sample": 20,
+    "prose_audit_wrong": 0
+  },
+  "top_ten": [
+    {
+      "rank": 1,
+      "repo": "scikit-learn/scikit-learn",
+      "lead_total": 51,
+      "reviewer_total": 53,
+      "integration_decision": "INSTALL",
+      "blind_total": 58
+    },
+    {
+      "rank": 2,
+      "repo": "interpretml/interpret",
+      "lead_total": 50,
+      "reviewer_total": 45,
+      "integration_decision": "INSTALL (classification); ISOLATED_RESEARCH (survival)",
+      "blind_total": 42
+    },
+    {
+      "rank": 3,
+      "repo": "online-ml/river",
+      "lead_total": 49,
+      "reviewer_total": 49,
+      "integration_decision": "ADAPTER (drift); INSPIRED_IMPLEMENTATION (delayed progressive validation); ISOLATED_RESEARCH (online learners)",
+      "blind_total": 42
+    },
+    {
+      "rank": 4,
+      "repo": "statsmodels/statsmodels",
+      "lead_total": 49,
+      "reviewer_total": 46,
+      "integration_decision": "INSTALL (Logit, Holm, Wilson); ISOLATED_RESEARCH (MarkovRegression)",
+      "blind_total": 43
+    },
+    {
+      "rank": 5,
+      "repo": "eslazarev/purged-cross-validation",
+      "lead_total": 48,
+      "reviewer_total": 51,
+      "integration_decision": "ADAPTER",
+      "blind_total": 54
+    },
+    {
+      "rank": 6,
+      "repo": "lightgbm-org/LightGBM",
+      "lead_total": 45,
+      "reviewer_total": 42,
+      "integration_decision": "INSTALL"
+    },
+    {
+      "rank": 7,
+      "repo": "unionai-oss/pandera",
+      "lead_total": 44,
+      "reviewer_total": 43,
+      "integration_decision": "ADAPTER"
+    },
+    {
+      "rank": 8,
+      "repo": "CamDavidsonPilon/lifelines",
+      "lead_total": 44,
+      "reviewer_total": 47,
+      "integration_decision": "ADAPTER"
+    },
+    {
+      "rank": 9,
+      "repo": "scikit-learn-contrib/MAPIE",
+      "lead_total": 44,
+      "reviewer_total": 39,
+      "integration_decision": "ADAPTER",
+      "blind_total": 46
+    },
+    {
+      "rank": 10,
+      "repo": "soda-inria/hazardous",
+      "lead_total": 43,
+      "reviewer_total": 41,
+      "integration_decision": "ISOLATED_RESEARCH",
+      "blind_total": 32
+    }
+  ],
+  "next_after_cut": [
+    {
+      "rank": 11,
+      "repo": "sktime/sktime",
+      "lead_total": 41
+    },
+    {
+      "rank": 12,
+      "repo": "probabl-ai/skore",
+      "lead_total": 41
+    },
+    {
+      "rank": 13,
+      "repo": "henrikbostrom/crepes",
+      "lead_total": 40
+    }
+  ],
+  "stable_under_every_reading": [
+    "scikit-learn/scikit-learn",
+    "interpretml/interpret",
+    "online-ml/river",
+    "statsmodels/statsmodels",
+    "eslazarev/purged-cross-validation",
+    "lightgbm-org/LightGBM",
+    "CamDavidsonPilon/lifelines"
+  ],
+  "ineligible": [
+    {
+      "repo": "baobach/mlfinpy",
+      "lead_total": 21,
+      "integration_decision": "REJECT"
+    }
+  ],
+  "category_winners": {
+    "supervised_tabular": "scikit-learn/scikit-learn (51)",
+    "time_series": "sktime/sktime (41; design reference only)",
+    "online_incremental": "online-ml/river (49; no replay-trained model state)",
+    "calibration_uncertainty": "scikit-learn-contrib/MAPIE (44; never its Venn-Abers port or a prefit Pipeline)",
+    "onchain_anomaly_event_time": "CamDavidsonPilon/lifelines (44); on-chain anomaly: NONE verified",
+    "behavioral_multi_agent": "mesa/mesa (30; scenario tool, no probability output)",
+    "evaluation_monitoring": "eslazarev/purged-cross-validation (48; WalkForwardSplit only)"
+  },
+  "blind_rescore": {
+    "eslazarev/purged-cross-validation": {
+      "blind": 54,
+      "lead_final": 48
+    },
+    "interpretml/interpret": {
+      "blind": 42,
+      "lead_final": 50
+    },
+    "online-ml/river": {
+      "blind": 42,
+      "lead_final": 49
+    },
+    "scikit-learn-contrib/MAPIE": {
+      "blind": 46,
+      "lead_final": 44
+    },
+    "scikit-learn/scikit-learn": {
+      "blind": 58,
+      "lead_final": 51
+    },
+    "soda-inria/hazardous": {
+      "blind": 32,
+      "lead_final": 43
+    },
+    "statsmodels/statsmodels": {
+      "blind": 43,
+      "lead_final": 49
+    }
+  },
+  "mirofish": {
+    "lead_total": 8,
+    "reviewer_total": 10,
+    "integration_decision": "ISOLATED_RESEARCH",
+    "summary": "scenario generation only; AGPL; needs paid LLM and Zep (BLOCKED); non-deterministic; silent success when the LLM is down; P26 to P28 apply; no numeric accuracy assigned"
+  },
+  "challenge_limitation": "embargo band 14.6 h against 24 h labels (45 val, 96 train overlapping rows); label overlap cannot inflate a metric on this generator; purged versus unpurged differences up to about 0.002 Brier are sample-size noise (placebo test); no point rests on such a metric",
+  "checks": [
+    {
+      "name": "package checksums",
+      "command": "sha256sum -c SHA256SUMS.txt",
+      "exit_code": 0,
+      "result": "41 of 41 OK",
+      "pass": true
+    },
+    {
+      "name": "entry gate full suite (first pass)",
+      "command": "python -m pytest tests -q (temp MEMELAB_DB) at 77e78ce",
+      "exit_code": 1,
+      "result": "1 failed, 858 passed in 143.26s (0:02:23); only tests/test_catalyst.py::test_dedup_corroboration_resurface_denial (known)",
+      "pass": true
+    },
+    {
+      "name": "first-pass commit c9e894d (orchestrator)",
+      "command": "python -m pytest tests -q",
+      "exit_code": 1,
+      "result": "4 failed, 855 passed in 154.86s: the known failure plus three content-guard tests (skeptic M1); commit rewritten, never pushed",
+      "pass": false
+    },
+    {
+      "name": "content guard on the staged repair tree",
+      "command": "python -m memelab social guard",
+      "exit_code": 0,
+      "result": "955 files, 219 JSON, violations []",
+      "pass": true
+    },
+    {
+      "name": "release audit on the staged repair tree",
+      "command": "python tools/release_audit.py",
+      "exit_code": 0,
+      "result": "guard 0 violations on the branch and origin/main; migrations exit 0; syntax errors 0",
+      "pass": true
+    },
+    {
+      "name": "targeted review verification",
+      "command": "python3 -B verify/verify_reviews.py --json verify/VERIFY_RESULTS.json",
+      "exit_code": 0,
+      "result": "checks 89, failed 0, repositories covered 30",
+      "pass": true
+    },
+    {
+      "name": "generic item verification",
+      "command": "python3 -B verify/verify_generic.py --json verify/VERIFY_GENERIC.json",
+      "exit_code": 0,
+      "result": "repositories 30, award mismatches 0",
+      "pass": true
+    },
+    {
+      "name": "fold audit",
+      "command": "<purgedcv venv> fold_audit.py purgedcv sklearn; <sktime venv> fold_audit.py sktime (unshare -n)",
+      "exit_code": 0,
+      "result": "WalkForwardSplit min train 1403, 0 later rows; PurgedKFold and CPCV up to 2091 and 1739 later rows; PurgedGroupKFold train sizes 0, 0, 45, 179, 397",
+      "pass": true
+    },
+    {
+      "name": "scorecard rebuild",
+      "command": "python3 -B verify/build_scorecard.py",
+      "exit_code": 0,
+      "result": "no diff on rerun",
+      "pass": true
+    },
+    {
+      "name": "scorecard positive check",
+      "command": "python3 -B verify/check_scorecard.py",
+      "exit_code": 0,
+      "result": "problems 0 (adds FOLD, P42 at the pin, PROSE_OK, ANCHOR, extended veto)",
+      "pass": true
+    },
+    {
+      "name": "scorecard negative check",
+      "command": "python3 -B verify/check_scorecard_negative.py",
+      "exit_code": 0,
+      "result": "31 of 31 mutations refused (19 first pass, 12 repair pass incl. the skeptic's counterexample and its five accepted mutations)",
+      "pass": true
+    },
+    {
+      "name": "skeptic mutation script on the repaired files",
+      "command": "python3 -B ../skeptic/p03/skeptic_mutations.py .",
+      "exit_code": 0,
+      "result": "6 of 6 refused (5 were accepted at c9e894d)",
+      "pass": true
+    },
+    {
+      "name": "skeptic purgedcv reproduction",
+      "command": "<purgedcv venv> -I ../skeptic/p03/skeptic_purgedcv.py challenge.csv",
+      "exit_code": 0,
+      "result": "output identical to the skeptic's",
+      "pass": true
+    },
+    {
+      "name": "placebo embargo test rerun",
+      "command": "<MAPIE venv> -I ../skeptic/p03/skeptic_embargo_test.py challenge.csv",
+      "exit_code": 0,
+      "result": "identical to the skeptic's: logistic purge 0.000102 (placebo max 0.000432), HGB 0.000858 (placebo max 0.002346)",
+      "pass": true
+    },
+    {
+      "name": "lead counterexample",
+      "command": "python3 -B verify/counterexample_lead.py",
+      "exit_code": 0,
+      "result": "refused",
+      "pass": true
+    },
+    {
+      "name": "sensitivity of the cut",
+      "command": "python3 -B verify/sensitivity.py verify/sensitivity.json",
+      "exit_code": 0,
+      "result": "seven stable members under readings A to H, reviewers' totals and blind scores",
+      "pass": true
+    },
+    {
+      "name": "challenge regenerates",
+      "command": "cd SMOKES/_challenge && sha256sum -c SHA256SUMS",
+      "exit_code": 0,
+      "result": "2 of 2 OK",
+      "pass": true
+    },
+    {
+      "name": "hygiene and style",
+      "command": "scan of changed files",
+      "exit_code": 0,
+      "result": "no secrets, binaries, weights or files over 1 MB; no social-only JSON keys; 0 en or em dashes, 0 curly quotes in lead-written files",
+      "pass": true
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "audits/predictive-intelligence/phase_03/ACCEPTANCE_CHECKLIST.md",
+      "sha256": "376a36d9f64b0544f35875402dca3712f349a15bc302698d7a71a7a8ff184f5e"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/PHASE_03_EVIDENCE.md",
+      "sha256": "45c1e1a7094c7b3f63271139d9457e963f9f40426c7612816544d642924aef7c"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/SKEPTIC_PACKET.md",
+      "sha256": "93b5ae56ebf5469e4a3e1decdc488a08e0326ae2b1c16a35f6b3fde82404c57e"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/skeptic/PHASE_03_SKEPTIC.md",
+      "sha256": "d92e77ea0579668352bb1575a6f95b9f157414171c5ed8bc2548527df3ee4b47"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/RUBRIC_ITEMS.csv",
+      "sha256": "cb4b0a2112d152587424cefad98bbd8b71ae7f9ff2f1be517e47890a94c937f8"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/SCORE_ITEMS.csv",
+      "sha256": "d2ec021681feeeeff295970ed9390ea94bf95cfc83abdae65248a7cd1482c762"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/SCORECARD.csv",
+      "sha256": "54275ad969a0f872883620abedd2500b6f3b7c345c56dfb1bb745393365a36d3"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/RANKED_TOP10.md",
+      "sha256": "a5c8e90c406076928ca6ffada6d0f1f3924cdc07fc42259e996e280ea8b89ac9"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/CATEGORY_WINNERS.md",
+      "sha256": "2b4847b5748aef45d63660abb64dadc94c6e75e129623fe44ffd219c05694351"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/LICENSE_AND_SECURITY_GATE.md",
+      "sha256": "190f3c7ad40d107a8d255183db4b1429e8e52729307a73a40bcf9a04ae88c495"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/MIROFISH.md",
+      "sha256": "83a77cccc84ed58ee812455a7d9b68b8a45ed26a276fabe144ab93ee7681ca68"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/BLIND_RESCORE_PACKET.md",
+      "sha256": "30745b3aefed9d2c16fdaf4f9222d7c4cdeaf2a2d91aaa8e1a2945490995ae45"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/INDEPENDENT_RESCORE.md",
+      "sha256": "1d990f27e308d3e4366c06d74c0b6ace12e38cd3bc84d9a4c7842d53a9a97c4a"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/REVIEW_VERIFICATION.md",
+      "sha256": "133399b94c09774a31d9d9ce290809612cc4032f80c77d43339215b264c922b8"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/BLIND_RESCORE/PHASE_03_BLIND_RESCORE.md",
+      "sha256": "4df7415ea06fff45e7e0f5ec36eff740f2832cdb243f7cbdbefdaca0d5578a3a"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/BLIND_RESCORE/PHASE_03_BLIND_RESCORE.csv",
+      "sha256": "53011f814778bd016d40930556adf464b910d3cb9ec22d8f2b7e5b36482237a9"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/build_scorecard.py",
+      "sha256": "7183cc1b9390ed601f790bf7abc321e69703a57e61e140eda7751d1809ba6c62"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/check_scorecard.py",
+      "sha256": "aa4d7b50e348feca0b943b68ab23d2761929c23dea0f2e87552ba4652d2ea059"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/check_scorecard_negative.py",
+      "sha256": "e6aa6df8f9f7b9ad31b3cc81ba0a518d3c48aeb6ccb982814056e095885056cf"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/closure_size.py",
+      "sha256": "edd3387d73aea98064169e0473f423dafa44b05d68d9cd4eaba6ba0d1caa10a0"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/counterexample_lead.py",
+      "sha256": "b005e186810ebe0f46ac29cbdffedcb609dd56ae6fab06bda8a80bf16ec686f5"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/fold_audit.py",
+      "sha256": "3168c34d0688bd84bdd38bf45db9a35c74658b9ee8f7bb0a546b81608b90b6ac"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/pypi_wheels.py",
+      "sha256": "c2a02bd32e631da733b2dd97961fa5db9bfb1a977b4538d7284bedef78d5cce1"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/repeat_runs.py",
+      "sha256": "ea7342f7f0900d8b625fab7668a338020cead49d621a3260d3362551c614663b"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_hazardous_recal.py",
+      "sha256": "4e7e1d543032547acd33324c2b61cce254e0f7158d6fd985ee331612f01db256"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_hazardous_timing.py",
+      "sha256": "278eef09fc7e7f998d7813a1f640d71af20e7d42bcc1163aa0693e0a85454844"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_interpret_sd.py",
+      "sha256": "975a5b7a6fdb53cd4a6c28a041850e62de888d92d7588625afc07e8f470b5bf5"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_mapie_prefit.py",
+      "sha256": "8273a45e6e3b82c5e393d5c266482bb86e7c1ad74eccd282eee82f8913fdfe77"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_mlfinpy.py",
+      "sha256": "cf8ec58315ecf446bcc2a59d592ca5625033967626abc895b4b56c6d55bacee5"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_pandera.py",
+      "sha256": "7b373091cdcdd8d22a1905b3223b9aa1e437543ade1e3f0e2708f2c793f2a5d6"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_purgedcv.py",
+      "sha256": "7022e4e6c19ffb0649902f813713f3caa0f948b0f6b47c543a036673e2ff76fc"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_river.py",
+      "sha256": "e7bbcbb41bc5032875ffefb9158c3c91453e6ce2f83adf594be5943208ffd748"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_statsmodels.py",
+      "sha256": "8fb5da4f07df35cefead40a2655aaba32ae8c4eb597e63abae80e90369711442"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_stumpy.py",
+      "sha256": "7688ac3a4d4f4c0746d8b0b218299e6b32e13f8f851b0354d06f7ec230101486"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/river_crate_licenses.py",
+      "sha256": "2dfa856456806b731248f81efe6b9afff2b5ac5f81c6aab22c986d2741bed175"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/score_inputs.py",
+      "sha256": "b32eccdd8298ebf18358a7848f8a372ceeba2105f847f3704a9de1c3777c4dc8"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/sensitivity.py",
+      "sha256": "a76f629dd0ebb5002599dec5dfebee41f00d9b4126cb9dadeb70384b2db9798f"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/verify_generic.py",
+      "sha256": "0b91760cc74f39ebadd6a703be09ddd722ae5213f82e8b8fe1098dae48b134b5"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/verify_reviews.py",
+      "sha256": "e6e4ca835df2ee1fc509f1c3bdfbd04f54fff59c397aea03305ceaff65e6801c"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/fetch_registry.sh",
+      "sha256": "c83c291b9c398efd0fffab0ad502c9effe5422557df7beee9ae57d8bb2486847"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/make_blind_copy.sh",
+      "sha256": "d79f23c797db439d2768355040c89f517f7e44d8dc5e19ecdfaf48b4e36dfc2f"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/VERIFY_GENERIC.json",
+      "sha256": "da674843b820893bfe4645caf1cc5ecaca8771ca13c681335f1aa06152cff9dc"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/VERIFY_RESULTS.json",
+      "sha256": "ed397ab655cd2890a74a9c1d845e043c00995360050225464c92c1dd6512ab47"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/prose_audit.json",
+      "sha256": "7f8b94510beebe15c69271221d4777ec4f55cef607543c7d253fd48279daba98"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/pypi_wheels.json",
+      "sha256": "3dc16fb1b02fd2d2c44c3a7ac67b803a281d3a8d2686c0ae244259f581e32332"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/repeat_runs.json",
+      "sha256": "542792fe9c801e46443fb6efccfe0e4a6e469e17614daf038c52a2caddd16d37"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/sensitivity.json",
+      "sha256": "3c44d9afa1884b9c5b5424122ae16d9931ef7d7e54095800cc1bb49ffde7205e"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/fold_audit_purgedcv.out.txt",
+      "sha256": "ea21538af8eed0d7840d7b536c12cc389d1d3e3cfef1f7b532c68d6a980d3fcc"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/fold_audit_sktime.out.txt",
+      "sha256": "f966320552ad5f40ec6daee4719a2cdfc0d03bb014b1f66dd6ab79ea0b97c263"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_feast_r1_script.out.txt",
+      "sha256": "a158248a35d55e42260fa7fe97108f3a52c724c9dfd44e1c77ed15c3fd061110"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_hazardous_recal.out.txt",
+      "sha256": "6f20fca06d9e00ee53f121dec6ddb0daed5a9e543db3d2f3dc3b2a789ff1b6a6"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_hazardous_timing.out.txt",
+      "sha256": "408570ae66d14338ee8bdffa5c2d5e3faea9a24672a9ae1c02d5508f9f9a31f8"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_interpret_sd.out.txt",
+      "sha256": "77d9e5faa9cc3b6d307eb9de93d304a65cc59098fb4dfe6443505c18bd7054db"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_mapie_prefit.out.txt",
+      "sha256": "03fdb52d7911e24cd67f41254722ba09d4f43b4a07bf718ee68dc30db954b160"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_mlfinpy.out.txt",
+      "sha256": "90d032c8091328e12110d4a7877101515505aa618c60e769323d9c39e8cc0c37"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_mlfinpy_provenance.out.txt",
+      "sha256": "cbba1089a60d73cc922e74b5785a22b1539b4420d6fdc5ec19fe094f45f28025"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_pandera.out.txt",
+      "sha256": "0e2c82fba52d609d0c338f7778f32ac6a1d7f44420f7932a5cdd464cd0a31f3c"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_purgedcv.out.txt",
+      "sha256": "d521140d201a3f795a3c9d556ae3120d0cd3f583fd5757344bb9aa6b4455cea9"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_river.out.txt",
+      "sha256": "aa141d53f899780ffe12414409d2ed230540e4e468004e085943519cbcea2f3e"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_statsmodels.out.txt",
+      "sha256": "d8abf48964bf669713dc1e27c7c1ca404435f53aebe57458111088b238be9f1a"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/rerun_stumpy.out.txt",
+      "sha256": "5d529ee585ed817ac57f35bd515bdf052fc283e5c7a4df300c00efc2626eeeb0"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/river_crate_licenses.out.txt",
+      "sha256": "168ff82fbd9a64b4f17db7fa81897794e1f78bd750429329813430ee779be5d9"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/verify/skeptic_mutations_after_repair.out.txt",
+      "sha256": "0dc49893b9aef3973eabe14368403b093861992ca3bae852bdf1c41dd308d7ba"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/SMOKES/_challenge/NOTE.md",
+      "sha256": "1762b04839263b0534297dd60fada54e5128d12166e18515ab03dbb25af62403"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/SMOKES/_challenge/SHA256SUMS",
+      "sha256": "52b086b161527948fceaae0b2766f01c47b7c70f3d8b84963c9358082012b5fa"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/SMOKES/_challenge/challenge.csv",
+      "sha256": "18fda40cc7a2a6f5aa607a32f1a096976317f901f5b75d1ae23b4bcaddd5f23d"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/SMOKES/_challenge/make_challenge.py",
+      "sha256": "23cfab07a032c21dfe1e2ef12f7de817737bbde8bd332d5f2e2c1c4ee6cae535"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/SMOKES/_challenge/overlap_effect.err.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/SMOKES/_challenge/overlap_effect.out.txt",
+      "sha256": "b5119dced1c86ee83bfabb55813476daac17660cedb462002efd8d40a64daa05"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/SMOKES/_challenge/overlap_effect.py",
+      "sha256": "20b6b16df634a7dc7014350c5d4dba2864bbafcb1ba09636e530c58280d77103"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/SMOKES/_challenge/placebo_lead_rerun.out.txt",
+      "sha256": "8278ddc58c38642533216b9df97b8a027a79023de01eed2c98c86e185d1b82c0"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/SMOKES/666ghj__MiroFish/PROFILES_TRANSFORMED.txt",
+      "sha256": "074a196bf9b9379e7fbea22a8f6d7288cf80153d625250c9a2a72d0131a478ce"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/SMOKES/666ghj__MiroFish/sim_run1/reddit_profiles.json",
+      "sha256": "4f29dca87f342ac76ae73ba5a7b0889f4b87045f7d91fc03c474afb924b4b2ee"
+    },
+    {
+      "path": "audits/predictive-intelligence/phase_03/research/SMOKES/666ghj__MiroFish/sim_run2/reddit_profiles.json",
+      "sha256": "4f29dca87f342ac76ae73ba5a7b0889f4b87045f7d91fc03c474afb924b4b2ee"
+    },
+    {
+      "path": "docs/predictive-intelligence/DECISIONS.md",
+      "sha256": "3a34d3bce0f134c041bb665cd6f9c71f039740f5175ade353cd052de8fed77f7"
+    },
+    {
+      "path": "docs/predictive-intelligence/ROADMAP.md",
+      "sha256": "06480d5b6c9eae6cfd63aafed3935e2a1d3e8b400f3bce2b512bf672520ab97b"
+    },
+    {
+      "path": "docs/predictive-intelligence/HANDOFF.md",
+      "sha256": "d4db52e19986ed39d753c9cd31ed8c3bf2cf648617f314f7da04bd1522c23909"
+    },
+    {
+      "path": "audits/predictive-intelligence/COST_LEDGER.md",
+      "sha256": "397a38b15124ef2f786c29b3304fee3052013cc54e92deec7e0c27b2d79ba4ab"
+    }
+  ],
+  "limitations": [
+    "All smokes ran on synthetic data; no model has shown memecoin forecast skill; the ranking is fitness for the pipeline.",
+    "241 awarded cells (318 points) rest on review prose for low-risk items (PROSE_OK); a seeded 20-cell audit found none wrong.",
+    "The ANCHOR rule checks that a quoted token occurs in the cited file, not that the file supports the claim; a fabricated point quoting a real token of an unrelated file would pass.",
+    "Q2 depends on its reading; the strict reading (every role component tested) is published as sensitivity H, not applied.",
+    "Several large reviewer venvs were deleted; their claims were checked against source and raw outputs, and some items stay unanswered (scored 0).",
+    "LightGBM results describe the 4.7.0 wheel; interpret's survival objective exists only at the pin; hazardous is eligible as pinned source only.",
+    "The 50 items were written after the lead read every review, so they were not blind to the evidence; the blind rescore and sensitivity readings are the controls.",
+    "The fold audit covers the splitters that points rest on, on the shared challenge only."
+  ],
+  "blockers": [
+    "post-commit suite, guard and release audit (recorded by the records commit)"
+  ],
+  "approvals_needed": [],
+  "approvals_note": "None for Phase 04 to start. Paid LLM, Zep or MiroFish use, non-commercial weight terms (TabPFN), AGPL or GPL copying, scheduled collectors (PI-D-020 PROPOSED) and merges into main stay with Elving (PI-D-005).",
+  "spend": {
+    "credits": 0,
+    "firecrawl_calls": 0,
+    "llm_calls": 0,
+    "paid_calls": 0
+  },
+  "next_eligible_phase": "none until the records commit records the post-commit checks"
+}

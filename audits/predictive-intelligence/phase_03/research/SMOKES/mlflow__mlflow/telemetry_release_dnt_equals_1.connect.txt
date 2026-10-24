@@ -1,0 +1,6 @@
+376   --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=377, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+376   connect(5, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+376   connect(5, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+473   connect(5, {sa_family=AF_INET, sin_port=htons(45127), sin_addr=inet_addr("127.0.0.1")}, 16) = -1 ENETUNREACH (Network is unreachable)
+376   --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=474, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---
+376   --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=475, si_uid=0, si_status=0, si_utime=0, si_stime=0} ---

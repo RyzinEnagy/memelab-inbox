@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/home/claude/pi_research/venvs/NannyML__nannyml/lib/python3.12/site-packages/nannyml/__init__.py", line 44, in <module>
+    from .data_quality import MissingValuesCalculator, NumericalRangeCalculator, UnseenValuesCalculator
+  File "/home/claude/pi_research/venvs/NannyML__nannyml/lib/python3.12/site-packages/nannyml/data_quality/__init__.py", line 8, in <module>
+    from .missing import MissingValuesCalculator
+  File "/home/claude/pi_research/venvs/NannyML__nannyml/lib/python3.12/site-packages/nannyml/data_quality/missing/__init__.py", line 8, in <module>
+    from .calculator import MissingValuesCalculator
+  File "/home/claude/pi_research/venvs/NannyML__nannyml/lib/python3.12/site-packages/nannyml/data_quality/missing/calculator.py", line 14, in <module>
+    from nannyml.base import AbstractCalculator, _list_missing
+  File "/home/claude/pi_research/venvs/NannyML__nannyml/lib/python3.12/site-packages/nannyml/base.py", line 17, in <module>
+    from nannyml._typing import Key, Metric, Result, Self
+  File "/home/claude/pi_research/venvs/NannyML__nannyml/lib/python3.12/site-packages/nannyml/_typing.py", line 30, in <module>
+    from nannyml.plots import Figure
+  File "/home/claude/pi_research/venvs/NannyML__nannyml/lib/python3.12/site-packages/nannyml/plots/__init__.py", line 12, in <module>
+    from nannyml.plots.components.figure import Figure  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/pi_research/venvs/NannyML__nannyml/lib/python3.12/site-packages/nannyml/plots/components/__init__.py", line 7, in <module>
+    from .joy_plot import calculate_chunk_distributions
+  File "/home/claude/pi_research/venvs/NannyML__nannyml/lib/python3.12/site-packages/nannyml/plots/components/joy_plot.py", line 12, in <module>
+    from statsmodels import api as sm
+ModuleNotFoundError: No module named 'statsmodels'

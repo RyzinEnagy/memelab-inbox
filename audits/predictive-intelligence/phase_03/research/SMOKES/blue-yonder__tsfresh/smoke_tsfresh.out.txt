@@ -1,0 +1,88 @@
+{
+ "env": {
+  "python": "3.13.17",
+  "platform": "Linux-6.18.44-fc-v153-x86_64-with-glibc2.39",
+  "executable": "/home/claude/pi_research/venvs/blue-yonder__tsfresh/bin/python"
+ },
+ "tsfresh_version": "0.21.2",
+ "pandas": "3.0.5",
+ "settings_sizes": {
+  "comprehensive": 75,
+  "efficient": 73,
+  "minimal": 10
+ },
+ "data": {
+  "paths": 150,
+  "rows": 21469,
+  "decisions": 149,
+  "positives": 76
+ },
+ "rolled_dir1": {
+  "windows_for_decisions": 149,
+  "rows_after_window_time": 0,
+  "rows_total": 1788
+ },
+ "rolled_dir-1": {
+  "windows_for_decisions": 149,
+  "rows_after_window_time": 1639,
+  "rows_total": 1788
+ },
+ "S1_direction_leak": {
+  "window": "12 rows",
+  "auc_ret_maximum_backward": 0.7860490266762797,
+  "auc_ret_maximum_forward": 0.795602018745494,
+  "auc_ret_sum_values_backward": 0.8471521268925739,
+  "auc_ret_sum_values_forward": 0.9585436193222783,
+  "library_stopped_it": false,
+  "note": "with rolling_direction=-1 the window named (mint, t) holds rows at or after t; the library allows it"
+ },
+ "S1_truncation_backward": {
+  "windows_compared": 82,
+  "features": 1554,
+  "cells_equal": 127428,
+  "cells_total": 127428
+ },
+ "S1_impute_scope": {
+  "feature": "ret__sum_values",
+  "value_imputed_with_all_rows": -0.017959001707625433,
+  "value_imputed_with_train_rows_only": -0.023080229666673446,
+  "differs": true
+ },
+ "P22_selection": {
+  "decisions": 149,
+  "features_extracted": 1566,
+  "selected_true_label": 69,
+  "selected_under_5_permuted_labels": [
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "fdr_level": 0.05,
+  "hypotheses_independent": false,
+  "extract_ms_per_decision_window": 124.71
+ },
+ "S3_nan_in_series": "ValueError: Column must not contain NaN values: ret",
+ "S5_persistence": {
+  "settings_pickle_bytes": 2575,
+  "columns_reproduced": 69,
+  "columns_requested": 69,
+  "values_identical": true
+ },
+ "S6_one_window_ms": {
+  "comprehensive": 151.3,
+  "efficient": 136.5,
+  "minimal": 2.8
+ },
+ "S2": "SKIPPED: feature extraction only, no probability output",
+ "S4": "SKIPPED: no calibration or uncertainty API",
+ "S6_timings": {
+  "import_s": 5.1561,
+  "roll_dir1_s": 10.0113,
+  "roll_dir-1_s": 10.3662,
+  "extract_minimal_dir1_s": 0.0635,
+  "extract_minimal_dir-1_s": 0.0644,
+  "extract_comprehensive_decisions_s": 18.5819
+ }
+}

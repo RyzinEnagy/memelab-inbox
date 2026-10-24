@@ -1,0 +1,124 @@
+== mapie 1.6.0 license:  | BSD-3-Clause | requires_python >=3.10
+    mapie-1.6.0-py3-none-any.whl 2026-10-19T09:08:14
+    mapie-1.6.0.tar.gz 2026-10-19T09:08:17
+== crepes 0.9.1 license:  | None | requires_python >=3.10
+    crepes-0.9.1-py3-none-any.whl 2026-06-12T12:44:31
+    crepes-0.9.1.tar.gz 2026-06-12T12:44:32
+== venn-abers 1.5.4 license: MIT | None | requires_python None
+    venn_abers-1.5.4.tar.gz 2026-08-12T04:57:37
+== model-diagnostics 1.5.0 license: MIT License
+        
+        Copyright ( | None | requires_python >=3.11
+    model_diagnostics-1.5.0-py3-none-any.whl 2026-04-25T18:02:13
+    model_diagnostics-1.5.0.tar.gz 2026-04-25T18:02:11
+== arch 8.0.0 license:  | NCSA | requires_python >=3.10
+    arch-8.0.0-cp310-cp310-macosx_10_9_x86_64.whl 2025-10-21T08:42:37
+    arch-8.0.0-cp310-cp310-macosx_11_0_arm64.whl 2025-10-21T08:40:10
+    arch-8.0.0-cp310-cp310-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl 2025-10-21T09:16:27
+    arch-8.0.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl 2025-10-21T09:16:30
+    arch-8.0.0-cp310-cp310-musllinux_1_2_x86_64.whl 2025-10-21T09:16:31
+    arch-8.0.0-cp310-cp310-win_amd64.whl 2025-10-21T08:42:14
+    arch-8.0.0-cp311-cp311-macosx_10_9_x86_64.whl 2025-10-21T08:46:46
+    arch-8.0.0-cp311-cp311-macosx_11_0_arm64.whl 2025-10-21T08:39:58
+    arch-8.0.0-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl 2025-10-21T09:11:39
+    arch-8.0.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl 2025-10-21T09:11:41
+    arch-8.0.0-cp311-cp311-musllinux_1_2_x86_64.whl 2025-10-21T09:11:43
+    arch-8.0.0-cp311-cp311-win_amd64.whl 2025-10-21T08:43:16
+    arch-8.0.0-cp312-cp312-macosx_10_13_x86_64.whl 2025-10-21T08:45:19
+    arch-8.0.0-cp312-cp312-macosx_11_0_arm64.whl 2025-10-21T08:42:57
+    arch-8.0.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl 2025-10-21T09:13:26
+    arch-8.0.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl 2025-10-21T09:13:28
+    arch-8.0.0-cp312-cp312-musllinux_1_2_x86_64.whl 2025-10-21T09:13:29
+    arch-8.0.0-cp312-cp312-win_amd64.whl 2025-10-21T08:42:14
+    arch-8.0.0-cp313-cp313-macosx_10_13_x86_64.whl 2025-10-21T08:46:04
+    arch-8.0.0-cp313-cp313-macosx_11_0_arm64.whl 2025-10-21T08:40:11
+    arch-8.0.0-cp313-cp313-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl 2025-10-21T09:13:48
+    arch-8.0.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl 2025-10-21T09:13:50
+    arch-8.0.0-cp313-cp313-musllinux_1_2_x86_64.whl 2025-10-21T09:13:52
+    arch-8.0.0-cp313-cp313-win_amd64.whl 2025-10-21T08:42:06
+    arch-8.0.0-cp314-cp314-macosx_10_15_x86_64.whl 2025-10-21T08:49:28
+    arch-8.0.0-cp314-cp314-macosx_11_0_arm64.whl 2025-10-21T08:50:02
+    arch-8.0.0-cp314-cp314-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl 2025-10-21T09:25:15
+    arch-8.0.0-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl 2025-10-21T09:25:17
+    arch-8.0.0-cp314-cp314-musllinux_1_2_x86_64.whl 2025-10-21T09:25:19
+    arch-8.0.0-cp314-cp314-win_amd64.whl 2025-10-21T08:44:28
+    arch-8.0.0.tar.gz 2025-10-21T08:55:52
+== purgedcv 0.1.11 license: MIT | None | requires_python >=3.11
+    purgedcv-0.1.11-py3-none-any.whl 2026-10-16T08:44:56
+    purgedcv-0.1.11.tar.gz 2026-10-16T08:44:58
+== mlfinpy 0.1.2 license: MIT | None | requires_python <4.0,>=3.11
+    mlfinpy-0.1.2-py3-none-any.whl 2024-10-09T12:28:14
+    mlfinpy-0.1.2.tar.gz 2024-10-09T12:28:15
+== numba 0.68.0 license: BSD | None | requires_python >=3.10
+    numba-0.68.0-cp310-cp310-macosx_12_0_arm64.whl 2026-09-30T15:04:34
+    numba-0.68.0-cp310-cp310-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl 2026-09-30T15:04:36
+    numba-0.68.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl 2026-09-30T15:04:39
+    numba-0.68.0-cp310-cp310-win_amd64.whl 2026-09-30T15:04:41
+    numba-0.68.0-cp311-cp311-macosx_12_0_arm64.whl 2026-09-30T15:04:44
+    numba-0.68.0-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl 2026-09-30T15:04:46
+    numba-0.68.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl 2026-09-30T15:04:48
+    numba-0.68.0-cp311-cp311-win_amd64.whl 2026-09-30T15:04:50
+    numba-0.68.0-cp312-cp312-macosx_12_0_arm64.whl 2026-09-30T15:04:53
+    numba-0.68.0-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl 2026-09-30T15:04:55
+    numba-0.68.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl 2026-09-30T15:04:57
+    numba-0.68.0-cp312-cp312-win_amd64.whl 2026-09-30T15:04:59
+    numba-0.68.0-cp312-cp312-win_arm64.whl 2026-09-30T15:05:01
+    numba-0.68.0-cp313-cp313-macosx_12_0_arm64.whl 2026-09-30T15:05:04
+    numba-0.68.0-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl 2026-09-30T15:05:06
+    numba-0.68.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl 2026-09-30T15:05:08
+    numba-0.68.0-cp313-cp313-win_amd64.whl 2026-09-30T15:05:11
+    numba-0.68.0-cp313-cp313-win_arm64.whl 2026-09-30T15:05:13
+    numba-0.68.0-cp314-cp314-macosx_12_0_arm64.whl 2026-09-30T15:05:15
+    numba-0.68.0-cp314-cp314-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl 2026-09-30T15:05:18
+    numba-0.68.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl 2026-09-30T15:05:20
+    numba-0.68.0-cp314-cp314t-macosx_12_0_arm64.whl 2026-09-30T15:05:27
+    numba-0.68.0-cp314-cp314t-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl 2026-09-30T15:05:29
+    numba-0.68.0-cp314-cp314t-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl 2026-09-30T15:05:31
+    numba-0.68.0-cp314-cp314t-win_amd64.whl 2026-09-30T15:05:33
+    numba-0.68.0-cp314-cp314-win_amd64.whl 2026-09-30T15:05:22
+    numba-0.68.0-cp314-cp314-win_arm64.whl 2026-09-30T15:05:24
+    numba-0.68.0-cp315-cp315-macosx_12_0_arm64.whl 2026-09-30T15:05:35
+    numba-0.68.0-cp315-cp315-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl 2026-09-30T15:05:37
+    numba-0.68.0-cp315-cp315-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl 2026-09-30T15:05:40
+    numba-0.68.0-cp315-cp315-win_amd64.whl 2026-09-30T15:05:42
+    numba-0.68.0.tar.gz 2026-09-30T15:05:44
+== llvmlite 0.50.0 license:  | BSD-2-Clause AND Apache-2.0 WITH LLVM-exception | requires_python >=3.10
+    llvmlite-0.50.0-cp310-cp310-macosx_12_0_arm64.whl 2026-09-29T18:42:25
+    llvmlite-0.50.0-cp310-cp310-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl 2026-09-29T18:42:29
+    llvmlite-0.50.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl 2026-09-29T18:42:33
+    llvmlite-0.50.0-cp310-cp310-win_amd64.whl 2026-09-29T18:42:37
+    llvmlite-0.50.0-cp311-cp311-macosx_12_0_arm64.whl 2026-09-29T18:42:40
+    llvmlite-0.50.0-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl 2026-09-29T18:42:44
+    llvmlite-0.50.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl 2026-09-29T18:42:48
+    llvmlite-0.50.0-cp311-cp311-win_amd64.whl 2026-09-29T18:42:52
+    llvmlite-0.50.0-cp312-cp312-macosx_12_0_arm64.whl 2026-09-29T18:42:56
+    llvmlite-0.50.0-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl 2026-09-29T18:43:00
+    llvmlite-0.50.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl 2026-09-29T18:43:04
+    llvmlite-0.50.0-cp312-cp312-win_amd64.whl 2026-09-29T18:43:08
+    llvmlite-0.50.0-cp312-cp312-win_arm64.whl 2026-09-29T18:43:12
+    llvmlite-0.50.0-cp313-cp313-macosx_12_0_arm64.whl 2026-09-29T18:43:16
+    llvmlite-0.50.0-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl 2026-09-29T18:43:20
+    llvmlite-0.50.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl 2026-09-29T18:43:25
+    llvmlite-0.50.0-cp313-cp313-win_amd64.whl 2026-09-29T18:43:29
+    llvmlite-0.50.0-cp313-cp313-win_arm64.whl 2026-09-29T18:43:33
+    llvmlite-0.50.0-cp314-cp314-macosx_12_0_arm64.whl 2026-09-29T18:43:37
+    llvmlite-0.50.0-cp314-cp314-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl 2026-09-29T18:43:41
+    llvmlite-0.50.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl 2026-09-29T18:43:46
+    llvmlite-0.50.0-cp314-cp314t-macosx_12_0_arm64.whl 2026-09-29T18:43:59
+    llvmlite-0.50.0-cp314-cp314t-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl 2026-09-29T18:44:03
+    llvmlite-0.50.0-cp314-cp314t-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl 2026-09-29T18:44:09
+    llvmlite-0.50.0-cp314-cp314t-win_amd64.whl 2026-09-29T18:44:13
+    llvmlite-0.50.0-cp314-cp314-win_amd64.whl 2026-09-29T18:43:51
+    llvmlite-0.50.0-cp314-cp314-win_arm64.whl 2026-09-29T18:43:55
+    llvmlite-0.50.0-cp315-cp315-macosx_12_0_arm64.whl 2026-09-29T18:44:17
+    llvmlite-0.50.0-cp315-cp315-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl 2026-09-29T18:44:21
+    llvmlite-0.50.0-cp315-cp315-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl 2026-09-29T18:44:25
+    llvmlite-0.50.0-cp315-cp315t-macosx_12_0_arm64.whl 2026-09-29T18:44:32
+    llvmlite-0.50.0-cp315-cp315t-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl 2026-09-29T18:44:36
+    llvmlite-0.50.0-cp315-cp315t-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl 2026-09-29T18:44:40
+    llvmlite-0.50.0-cp315-cp315t-win_amd64.whl 2026-09-29T18:44:44
+    llvmlite-0.50.0-cp315-cp315-win_amd64.whl 2026-09-29T18:44:29
+    llvmlite-0.50.0.tar.gz 2026-09-29T18:44:46
+numba 0.60.0 cp313 wheels: [] | win wheels: ['numba-0.60.0-cp310-cp310-win_amd64.whl', 'numba-0.60.0-cp311-cp311-win_amd64.whl', 'numba-0.60.0-cp312-cp312-win_amd64.whl', 'numba-0.60.0-cp39-cp39-win_amd64.whl']
+numpy 1.26.4 cp313 wheels: [] | win wheels: ['numpy-1.26.4-cp310-cp310-win32.whl', 'numpy-1.26.4-cp310-cp310-win_amd64.whl', 'numpy-1.26.4-cp311-cp311-win32.whl', 'numpy-1.26.4-cp311-cp311-win_amd64.whl', 'numpy-1.26.4-cp312-cp312-win32.whl', 'numpy-1.26.4-cp312-cp312-win_amd64.whl']
+polars 2.0.0 cp313 wheels: [] | win wheels: []

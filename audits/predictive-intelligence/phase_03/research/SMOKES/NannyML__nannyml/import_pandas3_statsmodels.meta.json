@@ -1,0 +1,24 @@
+{
+ "command": [
+  "/home/claude/pi_research/venvs/NannyML__nannyml/bin/python",
+  "-I",
+  "-c",
+  "import sys, nannyml, pandas; print(nannyml.__version__, pandas.__version__, 'segment.analytics' in sys.modules)"
+ ],
+ "wrapped_command": [
+  "unshare",
+  "-n",
+  "/home/claude/pi_research/venvs/NannyML__nannyml/bin/python",
+  "-I",
+  "-c",
+  "import sys, nannyml, pandas; print(nannyml.__version__, pandas.__version__, 'segment.analytics' in sys.modules)"
+ ],
+ "started_utc": "2026-10-24T04:45:37Z",
+ "exit_code": 0,
+ "wall_s": 10.991,
+ "peak_rss_kb_children": 319716,
+ "env_switches": {
+  "NML_DISABLE_USAGE_LOGGING": "1"
+ },
+ "offline_netns": true
+}

@@ -1,0 +1,113 @@
+{
+ "env": {
+  "python": "3.13.17",
+  "platform": "Linux-6.18.44-fc-v153-x86_64-with-glibc2.39",
+  "executable": "/home/claude/pi_research/venvs/soda-inria__hazardous/bin/python"
+ },
+ "hazardous_version": "0.2.0",
+ "hazardous_file": "/home/claude/pi_research/venvs/soda-inria__hazardous/lib/python3.13/site-packages/hazardous/__init__.py",
+ "S2_S3_S6_clean": {
+  "features": [
+   "liq_usd",
+   "vol_24h",
+   "age_h",
+   "score100",
+   "fatal_flag",
+   "ret_1h"
+  ],
+  "fit_s": 253.827,
+  "predict_grid_ms_per_row": 3.1389,
+  "predict_one_horizon_ms_per_row": 0.052,
+  "proba_shape": [
+   634,
+   3
+  ],
+  "rows_sum_to_1": true,
+  "binary_target_first_24h": {
+   "n": 527,
+   "positives": 17,
+   "shape": [
+    527
+   ],
+   "finite": true,
+   "in_0_1": true,
+   "min": 0.00047372607159600684,
+   "max": 0.2770615302223014,
+   "mean": 0.01791983779585616,
+   "brier": 0.03195845988017735,
+   "logloss": 0.15710651245961912,
+   "base_rate_train": 0.042382588774341354,
+   "brier_base": 0.03131998778125741,
+   "logloss_base": 0.1438782556723353,
+   "bss_vs_base": -0.0203854517242823,
+   "auc": 0.6402537485582468
+  },
+  "ibs_event1": 0.015036395501718763,
+  "ibs_event2": 0.11970942149197973,
+  "cindex_event1": [
+   0.5938176197836167,
+   0.6151549469782766
+  ],
+  "cif1_non_monotone_rows": 634,
+  "cif1_largest_decrease": 0.05810995151679621
+ },
+ "S3_nan": {
+  "fit_with_nan": "no error: check_array(ensure_all_finite='allow-nan') at _survival_boost.py fit, HistGradientBoosting handles NaN",
+  "nan_in_train_X": 264
+ },
+ "aj_baseline_ibs_event1": 0.014641773851286717,
+ "aj_baseline_ibs_event2": 0.1177918966978218,
+ "S1_trap": {
+  "with_trap": {
+   "ibs_event1": 0.006147967678741728,
+   "ibs_event2": 0.1175529686715433,
+   "cindex_event1": [
+    0.9873261205564142,
+    0.9911458869556264
+   ]
+  },
+  "with_trap_binary_brier": 0.0016011714618656297,
+  "with_trap_auc": 1.0,
+  "clean": {
+   "ibs_event1": 0.015036395501718763,
+   "ibs_event2": 0.11970942149197973,
+   "cindex_event1": [
+    0.5938176197836167,
+    0.6151549469782766
+   ]
+  },
+  "clean_binary_brier": 0.03195845988017735,
+  "library_stopped_it": false,
+  "library_mechanism": "none: no time-aware splitter or availability field; scikit-learn API so any sklearn splitter can be used"
+ },
+ "S4_calibration": {
+  "aj_calibration_per_event_holdout": {
+   "0": 0.0003310359723454461,
+   "1": 0.00012125845194239011,
+   "2": 0.00011144437470493978
+  },
+  "in_the_large_mean_pred_24h": 0.01791983779585616,
+  "observed": 0.03225806451612903,
+  "wilson95": [
+   0.02023611185402105,
+   0.051049936564188825
+  ],
+  "inside_wilson": false,
+  "recalibrate_survival_function_val_to_holdout": {
+   "min": 0.12144124882023183,
+   "max": 0.9985507779470951,
+   "outside_0_1": 0
+  },
+  "notes": "recalibration is a marginal shift of the any-event survival function (km_calibration.py), not clipped; no conformal or CIF recalibration"
+ },
+ "S5_persistence": {
+  "format": "pickle (sklearn estimator)",
+  "bytes": 1289974,
+  "identical_after_reload": true,
+  "refit_same_seed_identical_n_iter20": true,
+  "refit_other_seed_max_abs_diff_p1_n_iter20": 0.16926635141132312
+ },
+ "S6_timings": {
+  "import_s": 4.5943
+ }
+}

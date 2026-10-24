@@ -1,0 +1,173 @@
+# command: unshare -n -- /home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/bin/python -I /home/claude/memelab-inbox/audits/predictive-intelligence/phase_03/research/SMOKES/scikit-learn-contrib__MAPIE/smoke_mapie.py
+# started_utc: 2026-10-24T05:08:18Z
+# network: OFF (unshare -n, no network namespace)
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:108: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide(P1[:, 1], P1[:, 0])
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:116: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P1[i:, 1] - P1[i, 1]), (P1[i:, 0] - P1[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:133: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P0[:, 1] - P0[i, 1]), (P0[:, 0] - P0[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:141: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P0[:, 1] - P0[i, 1]), (P0[:, 0] - P0[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:108: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide(P1[:, 1], P1[:, 0])
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:116: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P1[i:, 1] - P1[i, 1]), (P1[i:, 0] - P1[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:117: RuntimeWarning: All-NaN slice encountered
+  if np.sum(np.isnan(np.nanmin(grads))) == 0:
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:133: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P0[:, 1] - P0[i, 1]), (P0[:, 0] - P0[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:141: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P0[:, 1] - P0[i, 1]), (P0[:, 0] - P0[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:108: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide(P1[:, 1], P1[:, 0])
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:116: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P1[i:, 1] - P1[i, 1]), (P1[i:, 0] - P1[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:117: RuntimeWarning: All-NaN slice encountered
+  if np.sum(np.isnan(np.nanmin(grads))) == 0:
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:133: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P0[:, 1] - P0[i, 1]), (P0[:, 0] - P0[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:141: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P0[:, 1] - P0[i, 1]), (P0[:, 0] - P0[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:108: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide(P1[:, 1], P1[:, 0])
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:116: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P1[i:, 1] - P1[i, 1]), (P1[i:, 0] - P1[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:117: RuntimeWarning: All-NaN slice encountered
+  if np.sum(np.isnan(np.nanmin(grads))) == 0:
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:133: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P0[:, 1] - P0[i, 1]), (P0[:, 0] - P0[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:141: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P0[:, 1] - P0[i, 1]), (P0[:, 0] - P0[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:108: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide(P1[:, 1], P1[:, 0])
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:116: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P1[i:, 1] - P1[i, 1]), (P1[i:, 0] - P1[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:117: RuntimeWarning: All-NaN slice encountered
+  if np.sum(np.isnan(np.nanmin(grads))) == 0:
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:133: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P0[:, 1] - P0[i, 1]), (P0[:, 0] - P0[i, 0]))
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/_venn_abers.py:141: RuntimeWarning: invalid value encountered in divide
+  grads = np.divide((P0[:, 1] - P0[i, 1]), (P0[:, 0] - P0[i, 0]))
+=== MAPIE 1.6.0+pinf1cc3d07 from /home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/__init__.py | python 3.13.17 | numpy 2.5.4 | pandas 3.1.0
+challenge sha256 18fda40cc7a2a6f5aa607a32f1a096976317f901f5b75d1ae23b4bcaddd5f23d
+splits {'t_val0': 1791556781, 't_hold0': 1792073808, 'train_labeled': 1746, 'train_purged_label_matures_after_val_start': 96, 'val_labeled': 556, 'val_purged_label_matures_after_holdout_start': 45, 'holdout_labeled': 527, 'holdout_censored_excluded': 107, 'censored_total': 107, 'embargo_rows': 64}
+train prevalence (baseline B0) = 0.04000
+base fit 75.0 ms; base cal pred_hash=5424ee4df45fddcc holdout pred_hash=cc58f5135049e5ed
+
+--- S1 leak trap ---
+rows where leak_available_at > decision_time: 3000/3000 (an as-of filter would drop leak_future_ret)
+[S1 base (legit features)] n=527 positives=17 shape=(527,) finite=True in[0,1]=True min=0.00080 max=0.32355
+[S1 base (legit features)] brier=0.03089 baseline_brier=0.03128 BSS=0.0123 logloss=0.13763 baseline_logloss=0.14334 AUC=0.6988 AP=0.0859 pred_hash=cc58f5135049e5ed
+[S1 leaky (+leak_future_ret)] n=527 positives=17 shape=(527,) finite=True in[0,1]=True min=0.00000 max=0.99948
+[S1 leaky (+leak_future_ret)] brier=0.00171 baseline_brier=0.03128 BSS=0.9452 logloss=0.00731 baseline_logloss=0.14334 AUC=1.0000 AP=1.0000 pred_hash=44b7e9cda3172238
+MAPIE SplitConformalClassifier accepted the trap column without any check; leaky 90% sets: singletons=491/527
+[S1 leaky + MAPIE Venn-Abers] n=527 positives=17 shape=(527,) finite=True in[0,1]=True min=0.00203 max=0.88889
+[S1 leaky + MAPIE Venn-Abers] brier=0.00244 baseline_brier=0.03128 BSS=0.9221 logloss=0.01685 baseline_logloss=0.14334 AUC=1.0000 AP=1.0000 pred_hash=67e0f134b3d6c6a7
+MAPIE has no feature-availability or time-split mechanism in these classes: nothing refused the trap column.
+
+--- S2 probability shape and imbalance (base model, holdout, censored excluded) ---
+[S2 base] n=527 positives=17 shape=(527,) finite=True in[0,1]=True min=0.00080 max=0.32355
+[S2 base] brier=0.03089 baseline_brier=0.03128 BSS=0.0123 logloss=0.13763 baseline_logloss=0.14334 AUC=0.6988 AP=0.0859 pred_hash=cc58f5135049e5ed
+[S2 base] reliability, 10 uniform bins (lo, hi, n, mean_p, obs_rate, positives, wilson95_lo, wilson95_hi):
+   [0.0,0.1) n= 500 mean_p=0.0295 obs=0.0280 pos= 14 wilson=(0.0168,0.0464)
+   [0.1,0.2) n=  23 mean_p=0.1330 obs=0.1304 pos=  3 wilson=(0.0454,0.3213)
+   [0.2,0.3) n=   3 mean_p=0.2118 obs=0.0000 pos=  0 wilson=(0.0000,0.5615)
+   [0.3,0.4) n=   1 mean_p=0.3235 obs=0.0000 pos=  0 wilson=(0.0000,0.7935)
+   [0.4,0.5) n=0
+   [0.5,0.6) n=0
+   [0.6,0.7) n=0
+   [0.7,0.8) n=0
+   [0.8,0.9) n=0
+   [0.9,1.0) n=0
+[S2 base] ECE_uniform10 (count-weighted |obs-mean_p|) = 0.00331
+[S2 base] reliability, 5 quantile bins (ACCEPTANCE style; mean_p inside Wilson 95%?):
+   p in [0.0008,0.0102] n= 106 mean_p=0.0057 obs=0.0094 pos=  1 wilson=(0.0017,0.0515) inside=True
+   p in [0.0102,0.0201] n= 106 mean_p=0.0155 obs=0.0189 pos=  2 wilson=(0.0052,0.0662) inside=True
+   p in [0.0201,0.0320] n= 105 mean_p=0.0251 obs=0.0190 pos=  2 wilson=(0.0052,0.0668) inside=True
+   p in [0.0322,0.0534] n= 105 mean_p=0.0414 obs=0.0381 pos=  4 wilson=(0.0149,0.0939) inside=True
+   p in [0.0538,0.3235] n= 105 mean_p=0.0906 obs=0.0762 pos=  8 wilson=(0.0391,0.1432) inside=True
+[S2 base] ECE_quantile5 = 0.00617; all quantile bins inside Wilson: True
+[S2 base] calibration-in-the-large: mean_p=0.0356 prevalence=0.0323 wilson95=(0.0202,0.0510) inside=True
+
+--- S3 missing covariates ---
+holdout rows with NaN features: 77
+bare LogisticRegression + NaN conformalize: ValueError: Input X contains NaN.
+LogisticRegression does not accept missing values encoded as NaN natively. For supervised learning, you might want to consider sklearn.ens
+Pipeline(SimpleImputer median) inside the estimator: NaN rows pass through MAPIE, sets returned for 527 rows
+HistGradientBoosting (native NaN) inside MAPIE: sets returned for 527 rows; MAPIE itself does not impute, it defers to the estimator
+MAPIE Venn-Abers core given a NaN test score returns [[0.5, 0.5]] without an error
+
+--- S4 calibration and uncertainty ---
+S4a split conformal prediction sets (prefit base, conformalized on purged val, evaluated on holdout)
+  aps on a binary target: refused by MAPIE: Invalid conformity score for binary target. The only valid score is 'lac'.
+  lac conf=0.9: coverage=0.9184 (lib=0.9184) positives_cov=0.0000 (n_pos=17) negatives_cov=0.9490 sizes: empty=29 {0}=498 {1}=0 {0,1}=0
+  lac conf=0.95: coverage=0.9431 (lib=0.9431) positives_cov=0.0000 (n_pos=17) negatives_cov=0.9745 sizes: empty=15 {0}=512 {1}=0 {0,1}=0
+  lac: conformalize 2.2 ms, predict_set 2.2 us/row
+  (lac 0.9 coverage on its own calibration rows = 0.9022; positives in cal = 16)
+
+S4b Venn-Abers (MAPIE port), prefit on the same base scores
+  Pipeline passed as estimator with cv='prefit': base pipeline predictions changed after VennAbersCalibrator.fit: True (max abs change 0.0106)
+  imputer medians now: [10.0192, 10.9563, 46.194, 55.0, 0.0, 0.0041]
+  base refit; holdout pred_hash=cc58f5135049e5ed (must equal the first hash)
+  fit 23.7 ms, predict 1.9 us/row; p0p1 shape (527, 2); interval width p1-p0: median=0.0075 p90=0.0210 max=0.5342; p0<=p1 for all rows: True
+[S4b MAPIE Venn-Abers] n=527 positives=17 shape=(527,) finite=True in[0,1]=True min=0.00990 max=0.50000
+[S4b MAPIE Venn-Abers] brier=0.03261 baseline_brier=0.03128 BSS=-0.0427 logloss=0.13905 baseline_logloss=0.14334 AUC=0.6974 AP=0.0833 pred_hash=7ed78268d127c2df
+[S4b MAPIE Venn-Abers] reliability, 10 uniform bins (lo, hi, n, mean_p, obs_rate, positives, wilson95_lo, wilson95_hi):
+   [0.0,0.1) n= 512 mean_p=0.0323 obs=0.0293 pos= 15 wilson=(0.0178,0.0478)
+   [0.1,0.2) n=   5 mean_p=0.1713 obs=0.0000 pos=  0 wilson=(0.0000,0.4345)
+   [0.2,0.3) n=0
+   [0.3,0.4) n=   3 mean_p=0.3769 obs=0.6667 pos=  2 wilson=(0.2077,0.9385)
+   [0.4,0.5) n=0
+   [0.5,0.6) n=   7 mean_p=0.5000 obs=0.0000 pos=  0 wilson=(-0.0000,0.3543)
+   [0.6,0.7) n=0
+   [0.7,0.8) n=0
+   [0.8,0.9) n=0
+   [0.9,1.0) n=0
+[S4b MAPIE Venn-Abers] ECE_uniform10 (count-weighted |obs-mean_p|) = 0.01287
+[S4b MAPIE Venn-Abers] reliability, 5 quantile bins (ACCEPTANCE style; mean_p inside Wilson 95%?):
+   p in [0.0099,0.0101] n= 106 mean_p=0.0101 obs=0.0189 pos=  2 wilson=(0.0052,0.0662) inside=True
+   p in [0.0101,0.0101] n= 106 mean_p=0.0101 obs=0.0094 pos=  1 wilson=(0.0017,0.0515) inside=True
+   p in [0.0101,0.0347] n= 105 mean_p=0.0146 obs=0.0190 pos=  2 wilson=(0.0052,0.0668) inside=True
+   p in [0.0387,0.0668] n= 105 mean_p=0.0605 obs=0.0286 pos=  3 wilson=(0.0098,0.0807) inside=True
+   p in [0.0668,0.5000] n= 105 mean_p=0.1144 obs=0.0857 pos=  9 wilson=(0.0457,0.1549) inside=True
+[S4b MAPIE Venn-Abers] ECE_quantile5 = 0.01488; all quantile bins inside Wilson: True
+[S4b MAPIE Venn-Abers] calibration-in-the-large: mean_p=0.0418 prevalence=0.0323 wilson95=(0.0202,0.0510) inside=True
+
+S4c MAPIE ECE and calibration tests versus this smoke's own computation
+  base: MAPIE ECE uniform(num_bins=10)=0.00331 own ECE uniform10=0.00331; MAPIE ECE quantile(5)=0.00366; spiegelhalter_p=0.6215 ks_p=0.9960
+  venn-abers: MAPIE ECE uniform(num_bins=10)=0.01287 own ECE uniform10=0.01287; MAPIE ECE quantile(5)=0.01139; spiegelhalter_p=0.6746 ks_p=0.4882
+  MAPIE uniform num_bins=10: edges=[0.0, 0.111, 0.222, 0.333, 0.444, 0.556, 0.667, 0.778, 0.889, 1.0] sizes=[0, 502, 24, 1, 0, 0, 0, 0, 0, 0] (bin 0 holds only scores <= 0, so 9 usable intervals of width 1/9)
+  when every bin has the same sign of (observed - mean_p), any binned ECE equals |mean_p - prevalence|, which is why MAPIE and own ECE agree here although the bins differ
+
+S4d Venn-Abers correctness against the definition (isotonic fit with the test score appended)
+  530 probe scores (holdout plus 2 above and 1 below every calibration score)
+  max |p0 MAPIE - p0 definition| = 0; max |p1 MAPIE - p1 definition| = 0.4
+  above max cal score: MAPIE p0=0.4000 p1=0.6000 | definition p0=0.4000 p1=1.0000
+  far above max cal score: MAPIE p0=0.4000 p1=0.6000 | definition p0=0.4000 p1=1.0000
+  below min cal score: MAPIE p0=0.0000 p1=0.0100 | definition p0=0.0000 p1=0.0100/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/utils.py:1402: UserWarning: No predict parameters were found to control the risk at the given target and confidence levels. Try using a larger calibration set or a better model or less strict target and confidence levels.
+  warnings.warn(warning_msg)
+/home/claude/pi_research/venvs/scikit-learn-contrib__MAPIE/lib/python3.13/site-packages/mapie/utils.py:1402: UserWarning: No predict parameters were found to control the risk at the given target and confidence levels. Try using a larger calibration set or a better model or less strict target and confidence levels.
+  warnings.warn(warning_msg)
+
+  rows where MAPIE p1 differs from the definition by >1e-9: 6; p0: 0
+
+--- S5 persistence ---
+pickle size 31848 bytes; reload identical sets: True; identical Venn-Abers probabilities: True
+MAPIE has no native save format; pickle/joblib only (executes code on load, trusted files only)
+
+--- role-specific: MAPIE exchangeability test on time-ordered conformity scores ---
+  val only (no shift expected): n=511 p_value=0.8905 is_exchangeable=True (1.4 s)
+  val then holdout (covariate shift at the boundary): n=1038 p_value=0.7264 is_exchangeable=True (2.8 s)
+  mean LAC score val=0.0667 holdout=0.0639; holdout mean liq log1p 10.820 vs val 10.016
+
+--- role-specific: MAPIE risk control (alert threshold with a precision guarantee, Learn-then-Test) ---
+  precision >= 0.1 at 90% confidence: no valid threshold on 16 calibration positives (controller abstains)
+  precision >= 0.2 at 90% confidence: no valid threshold on 16 calibration positives (controller abstains)
+
+--- S6 cost ---
+base fit 75.0 ms; peak RSS 163.4 MB; ran with no network namespace (see runner header)
+
+# exit_code: 0
+# wall_s: 13.55
+# peak_child_rss_mb: 165.9

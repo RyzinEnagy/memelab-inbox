@@ -1,0 +1,11 @@
+# command: unshare -n -- /home/claude/pi_research/venvs/bashtage__arch/bin/python -m pytest -q -p no:cacheprovider /home/claude/pi_research/venvs/bashtage__arch/lib/python3.13/site-packages/arch/tests/bootstrap/test_block_length.py /home/claude/pi_research/venvs/bashtage__arch/lib/python3.13/site-packages/arch/tests/bootstrap/test_samplers.py /home/claude/pi_research/venvs/bashtage__arch/lib/python3.13/site-packages/arch/tests/bootstrap/test_bootstrap_fixes.py /home/claude/pi_research/venvs/bashtage__arch/lib/python3.13/site-packages/arch/tests/bootstrap/test_multiple_comparison.py
+# started_utc: 2026-10-24T04:52:37Z
+# network: OFF (unshare -n, no network namespace)
+........................................................................ [ 38%]
+........................................................................ [ 77%]
+..........................................                               [100%]
+186 passed in 33.24s
+
+# exit_code: 0
+# wall_s: 36.08
+# peak_child_rss_mb: 210.1
