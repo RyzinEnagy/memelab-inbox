@@ -6,7 +6,7 @@
  ],
  "head_before": "ed82f3a9d89b091579bd4ed43646acf14e355d64",
  "repair_pass_2_head_before": "121384bf25adbe4dd004d4d9da2a2069e9af64a8",
- "head_after": null,
+ "head_after": "2f4b53e40300fe298a6c199456cb5f63c6106771",
  "registry_sha256": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
  "holdout_labels_sha256": "e695500d01014936cf4a4a46f9975dcf9a9ca1351fe067f28ec36117cb82682b",
  "seal_sha256": "d5059baeb07099d5d73d74249d4487e362cb38b2e1dafe974139d2d4d0d25390",
@@ -226,6 +226,34 @@
    "input": "evidence/label_calls.json + sealed/label_calls.json",
    "result": "both logs at most 6 calls in any 60 s window; development log 280 calls, 25 HTTP 429 retried; holdout counts inside sealed/ (m8); 0 Firecrawl credits",
    "pass": true
+  },
+  {
+   "name": "repair pass 2 post-commit full suite at 2f4b53e",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 1124 passed in 195.82s (known failure only)",
+   "pass": true
+  },
+  {
+   "name": "repair pass 2 post-commit content guard",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "violations []",
+   "pass": true
+  },
+  {
+   "name": "repair pass 2 post-commit release audit (single-branch clone)",
+   "command": "python tools/release_audit.py --history",
+   "exit_code": 0,
+   "result": "Needs action: no.",
+   "pass": true
+  },
+  {
+   "name": "repair pass 2 post-commit seal check",
+   "command": "python -B probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
   }
  ],
  "artifacts": [
@@ -283,7 +311,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_06/PHASE_06_EVIDENCE.md",
-   "sha256": "c000678fd0d40653a1420d67e05d5b437b236483b225bab0d313d3b90559c854"
+   "sha256": "5299b820db1aa469687d82a81ab1c5775b0605d4277b0f0412ebc222c3b1a67b"
   },
   {
    "path": "audits/predictive-intelligence/phase_06/sealed/SEAL.json",

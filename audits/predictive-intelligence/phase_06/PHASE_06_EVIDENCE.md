@@ -176,3 +176,13 @@ Run by the orchestrator on the committed tree at `4565e0b`, 2026-10-24 (the phas
 - `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py`: `"problems": []`, seal sha256 `d5059baeb07099d5d73d74249d4487e362cb38b2e1dafe974139d2d4d0d25390`.
 
 Not yet run: the independent skeptic (PI-D-013) and the frozen 48 h revision re-read (PI-D-018, PI-D-041). Phase 06 stays NEEDS_REVIEW.
+
+Repair pass 2, run by the phase agent on the committed tree at `2f4b53e40300fe298a6c199456cb5f63c6106771`, 2026-10-25:
+
+- `MEMELAB_DB=<tmp> python -m pytest tests -q -p no:cacheprovider`: exit 1, `1 failed, 1124 passed in 195.82s (0:03:15)`, only the known `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`; stray `data/reports/20261025_1353_BRETT_0x532f.md` removed by hand.
+- `python -m memelab social guard`: exit 0, `"violations": []`.
+- `python tools/release_audit.py --history` on a single-branch clone of `feature/predictive-intelligence` (this branch only, PI-D-045 item 7): exit 0, "Needs action: no."
+- `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py`: exit 0, `"problems": []` (seal digest and SEAL.json sha256 found in DECISIONS.md).
+- `git status --short`: clean after removing the stray.
+
+Phase 06 stays NEEDS_REVIEW with one item open: the frozen 48 h revision re-read (`make_labels.py reread48`, not before 2026-10-26T13:49Z for all 16 sampled reads).
