@@ -71,6 +71,8 @@
    "decision_support": {
     "size_cap": {
      "basis": "EXECUTION_DATA_MISSING",
+     "pool_address": "B4VFURUHHzyt8YzBGBV9jiarBvjh1EbMAbRNBnNqaxUD",
+     "route_lost_sizes": [],
      "size_cap_usd": null
     },
     "structural_veto": {
@@ -160,6 +162,8 @@
    "decision_support": {
     "size_cap": {
      "basis": "EXECUTION_DATA_MISSING",
+     "pool_address": null,
+     "route_lost_sizes": [],
      "size_cap_usd": null
     },
     "structural_veto": {
@@ -255,6 +259,8 @@
    "decision_support": {
     "size_cap": {
      "basis": "EXECUTION_DATA_MISSING",
+     "pool_address": null,
+     "route_lost_sizes": [],
      "size_cap_usd": null
     },
     "structural_veto": {

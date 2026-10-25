@@ -1,476 +1,223 @@
 {
  "authority": {
-  "agree": 28,
-  "compared": 33,
+  "agree": 6,
+  "compared_clean_rows": 6,
   "detail": [
    {
     "agree": true,
     "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.77,
+    "hours_after": 22.09,
+    "identity": "OK",
     "lab_db_freeze_authority_set": false,
     "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:07:33Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
+    "lab_db_observed_at_utc": "2026-10-06T23:48:23Z",
+    "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
     "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.62,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:16:35Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.62,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:16:35Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": false,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.91,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-06T23:59:10Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 0.0
-   },
-   {
-    "agree": false,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.91,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-06T23:59:10Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 0.0
-   },
-   {
-    "agree": false,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.77,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:07:33Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 0.0
-   },
-   {
-    "agree": false,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.62,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:16:35Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 0.0
-   },
-   {
-    "agree": false,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.62,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:16:35Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 0.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.91,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-06T23:59:10Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.77,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:07:33Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.62,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:16:35Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.62,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:16:35Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
+    "oc_mint_authority_active": 0.0
    },
    {
     "agree": true,
     "decision_time_utc": "2026-10-07T21:53:55Z",
     "hours_after": 22.09,
+    "identity": "OK",
     "lab_db_freeze_authority_set": false,
     "lab_db_mint_authority_set": false,
     "lab_db_observed_at_utc": "2026-10-06T23:48:23Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
     "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
     "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
+    "oc_mint_authority_active": 0.0
    },
    {
     "agree": true,
     "decision_time_utc": "2026-10-07T21:53:55Z",
     "hours_after": 22.09,
+    "identity": "OK",
     "lab_db_freeze_authority_set": false,
     "lab_db_mint_authority_set": false,
     "lab_db_observed_at_utc": "2026-10-06T23:48:23Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
     "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
     "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 22.09,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-06T23:48:23Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
+    "oc_mint_authority_active": 0.0
    },
    {
     "agree": true,
     "decision_time_utc": "2026-10-07T21:53:55Z",
     "hours_after": 21.77,
+    "identity": "OK",
     "lab_db_freeze_authority_set": false,
     "lab_db_mint_authority_set": false,
     "lab_db_observed_at_utc": "2026-10-07T00:07:33Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
     "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
     "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
+    "oc_mint_authority_active": 0.0
    },
    {
     "agree": true,
     "decision_time_utc": "2026-10-07T21:53:55Z",
     "hours_after": 21.62,
+    "identity": "OK",
     "lab_db_freeze_authority_set": false,
     "lab_db_mint_authority_set": false,
     "lab_db_observed_at_utc": "2026-10-07T00:16:35Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
     "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
     "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
+    "oc_mint_authority_active": 0.0
    },
    {
     "agree": true,
     "decision_time_utc": "2026-10-07T21:53:55Z",
     "hours_after": 21.62,
+    "identity": "OK",
     "lab_db_freeze_authority_set": false,
     "lab_db_mint_authority_set": false,
     "lab_db_observed_at_utc": "2026-10-07T00:16:35Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
     "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
     "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.91,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-06T23:59:10Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.77,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:07:33Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.62,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:16:35Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.62,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:16:35Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.91,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-06T23:59:10Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.77,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:07:33Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.62,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:16:35Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.62,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:16:35Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.91,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-06T23:59:10Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.77,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:07:33Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.62,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:16:35Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.62,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:16:35Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.77,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:07:33Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.62,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:16:35Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
-   },
-   {
-    "agree": true,
-    "decision_time_utc": "2026-10-07T21:53:55Z",
-    "hours_after": 21.62,
-    "lab_db_freeze_authority_set": false,
-    "lab_db_mint_authority_set": false,
-    "lab_db_observed_at_utc": "2026-10-07T00:16:35Z",
-    "lab_db_source": "merged",
-    "lab_db_token_program_2022": 1.0,
-    "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
-    "oc_freeze_authority_active": 0.0,
-    "oc_mint_authority_active": 0.0,
-    "oc_token2022": 1.0
+    "oc_mint_authority_active": 0.0
    }
   ],
-  "disagree": 5,
-  "mints": 8,
+  "disagree": 0,
+  "finding": "lab data quality: token_authorities rows of other mints carry the Token-2022 metadata of one mint; refused as a reference (P01); the lab tables are not changed",
+  "identity": {
+   "OK": 6,
+   "OTHER_MINT_METADATA": 27
+  },
   "no_decision_after": 0,
-  "note": "lab DB reads of Oct 6 to 7 (source merged) against the nearest later export decision; both are the lab's own readings, not an independent chain read",
-  "rows": 33
+  "note": "both sides are the lab's own readings, not an independent chain read; every authority is revoked on every side",
+  "refused_other_mint_metadata": [
+   {
+    "metadata_mints": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+    "mint": "55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
+    "rows": 3
+   },
+   {
+    "metadata_mints": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+    "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+    "rows": 5
+   },
+   {
+    "metadata_mints": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+    "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+    "rows": 4
+   },
+   {
+    "metadata_mints": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+    "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+    "rows": 4
+   },
+   {
+    "metadata_mints": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+    "mint": "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
+    "rows": 4
+   },
+   {
+    "metadata_mints": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+    "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+    "rows": 4
+   },
+   {
+    "metadata_mints": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+    "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+    "rows": 3
+   }
+  ],
+  "rows": 33,
+  "token_program_lab_tokens_vs_export": {
+   "agree": 8,
+   "detail": [
+    {
+     "agree": true,
+     "decisions": 1,
+     "export_oc_token2022_values": [
+      1.0
+     ],
+     "lab_tokens_table_program_2022": 1.0,
+     "mint": "55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW"
+    },
+    {
+     "agree": true,
+     "decisions": 50,
+     "export_oc_token2022_values": [
+      0.0
+     ],
+     "lab_tokens_table_program_2022": 0.0,
+     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx"
+    },
+    {
+     "agree": true,
+     "decisions": 13,
+     "export_oc_token2022_values": [
+      1.0
+     ],
+     "lab_tokens_table_program_2022": 1.0,
+     "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3"
+    },
+    {
+     "agree": true,
+     "decisions": 67,
+     "export_oc_token2022_values": [
+      1.0
+     ],
+     "lab_tokens_table_program_2022": 1.0,
+     "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump"
+    },
+    {
+     "agree": true,
+     "decisions": 3,
+     "export_oc_token2022_values": [
+      1.0
+     ],
+     "lab_tokens_table_program_2022": 1.0,
+     "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump"
+    },
+    {
+     "agree": false,
+     "decisions": 1,
+     "export_oc_token2022_values": [
+      1.0
+     ],
+     "lab_tokens_table_program_2022": null,
+     "mint": "DEW9dSN6QpWyNthphCpMmAbZP1Q4cEKR9xQXAri98WDP"
+    },
+    {
+     "agree": true,
+     "decisions": 2,
+     "export_oc_token2022_values": [
+      1.0
+     ],
+     "lab_tokens_table_program_2022": 1.0,
+     "mint": "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump"
+    },
+    {
+     "agree": true,
+     "decisions": 14,
+     "export_oc_token2022_values": [
+      1.0
+     ],
+     "lab_tokens_table_program_2022": 1.0,
+     "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR"
+    },
+    {
+     "agree": true,
+     "decisions": 66,
+     "export_oc_token2022_values": [
+      1.0
+     ],
+     "lab_tokens_table_program_2022": 1.0,
+     "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump"
+    },
+    {
+     "agree": false,
+     "decisions": 1,
+     "export_oc_token2022_values": [
+      1.0
+     ],
+     "lab_tokens_table_program_2022": null,
+     "mint": "Tm2iqbxYjKpW8xCMe6q1xUraNMNzcG5xMztAir3pump"
+    }
+   ],
+   "mints": 10
+  }
  },
  "developer_wallets": {
   "not_observed_dev": [
@@ -522,6 +269,17 @@
    }
   ],
   "pass": true
+ },
+ "path_switch": {
+  "capture_delay_h_max": 21.62,
+  "capture_delay_h_min": 4.68,
+  "decisions": 13,
+  "exported_earlier_in_old_path": 13,
+  "hours_earlier_max": 7.75,
+  "hours_earlier_min": 4.51,
+  "labelled": 13,
+  "note": "conservative for features (later decision time), but these labels' windows start 4.5 to 7.75 h after the lab first exported the rows; the largest capture delays are these rows",
+  "switch_decision_time_utc": "2026-10-07T21:53:55Z"
  },
  "swaps_vs_candles": {
   "kinds": {

@@ -15,7 +15,7 @@
  },
  "invalid_inputs_all_rejected": true,
  "label_y": 1,
- "latency_s_median_of_20": 0.0011,
+ "latency_s_median_of_20": 0.0012,
  "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
  "model_inputs": {
   "log1p_token_age_days": 2.1236466957454527,

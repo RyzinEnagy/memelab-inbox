@@ -811,7 +811,7 @@ def test_search_ledger_holds_phase_08_rows_then_every_registered_phase_09_config
     reg = [r["experiment_id"] for r in csv.DictReader(open(p9 / "EXPERIMENT_REGISTRY.csv"))]
     traps = {"NC2OC", "P13OC", "P36OC", "CX09"}
     assert [x for x in reg if x.split(":")[-1] not in traps and x not in ids] == []
-    assert sum(1 for r in led[len(prior):] if r["kind"] == "DEBUG_RUN_REAL_DATA") == 3
+    assert sum(1 for r in led[len(prior):] if r["kind"] == "DEBUG_RUN_REAL_DATA") == 4
     metrics = list(csv.DictReader(open(p9 / "ONCHAIN_METRICS.csv")))
     assert all(r["verdict"] in ("INSUFFICIENT_DAYS", "INSUFFICIENT_EVENTS", "INSUFFICIENT_HISTORY") for r in metrics)
     assert all(r["status"] == B.PROVISIONAL and r["revision_check_claimed"] == "False" for r in metrics)

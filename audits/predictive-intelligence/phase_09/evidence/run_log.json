@@ -4,22 +4,22 @@
  "bootstrap_reps": 2000,
  "code_sha256": {
   "audits/predictive-intelligence/phase_07/probes/run_baselines.py": "300af6e9f3764ce0ea5361f00e8a7809bdaefb56f5714bb1643336c787a92bff",
-  "audits/predictive-intelligence/phase_09/probes/run_onchain.py": "63ce083c93ebe652e1abda7753b7e4febdc8d3914e345d504635b5a5ebd9f773",
+  "audits/predictive-intelligence/phase_09/probes/run_onchain.py": "8ff01af82bddbfc5360eaebe411ef89f6e336c2d8da06655f3c31d57eb3f76fb",
   "memelab/predictive/baselines.py": "3be1306a4137b7db6bdffac9541278c1703843fe1ccb75c58b99be35d6858b71",
   "memelab/predictive/contract.py": "1caa72271fba5e4d96bfaaaab35ea0f75a496790bae5a4dbd6f27c825e78819a",
   "memelab/predictive/depth_adapter.py": "1be7095d314c1496cd0d7bfdbddbce95fdfadff270870676302d8f3baa8b10c4",
   "memelab/predictive/features.py": "6a66f93bd6fd753aaa989a5ea9e89878e16698f3e6ea8bf95a847f33b4eae3b3",
   "memelab/predictive/labels.py": "f50620c37129c6434a7fa9f58ff8e0733438b950ac86cc7f81eb596da41059ef",
-  "memelab/predictive/onchain.py": "05ca87c536d9c8bd039448c7304c03d9f23a1ec5eec2e1aadf5ffe2c001513c8",
+  "memelab/predictive/onchain.py": "fffb4a1cbe6679466b1d4219cc70a780b8fc22a31e3e2bf6993207fa2a1d5021",
   "memelab/predictive/stats.py": "e249d9d99e0d69e3f55d80e9a3d42b3a4efaf44c6488c04c4f318d576895096a"
  },
- "cpu_s": 53.8,
- "debug_runs_logged": 3,
- "end_utc": "2026-10-25T22:57:57Z",
- "head": "18bd243250f3dd36378c4360280ce166f65f4e13",
+ "cpu_s": 52.74,
+ "debug_runs_logged": 4,
+ "end_utc": "2026-10-25T23:35:57Z",
+ "head": "e306d437751682cb36aa1a83a45f8c8a32efe2e7",
  "labelled_development_decisions": 240,
  "labels_version": "labels-1",
- "max_rss_mb": 91.3,
+ "max_rss_mb": 91.5,
  "onchain_feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
  "outputs_sha256": {
   "artifacts/T1_24h/A1_OC_B2_TC.json": "f0c041adfc96f946037e53a8f167cbb10eeca3b5a3e72532a8ea493a24a8a55e",
@@ -41,11 +41,11 @@
   "artifacts/folds/T1b_6h.json": "9a22200a2997e7652acc3fc6b4dc2f3d8e85cd41f63889c17d605201f8cfa6c4",
   "artifacts/folds/T2_24h.json": "07c35fd1024063d43f11b64b8348d0edd0b39c1d3ffcc665cd216c78f57484e0",
   "evidence/collector_state.json": "e7fc837d3691bea0c3ebf059c541f9a149754fa9870f92a97bd7c32f5f6fc01e",
-  "evidence/crosschecks.json": "69e64a4b9cfcb589b0a1056b183969cf92dac3d495cb8a3cdc18530d27d3b433",
+  "evidence/crosschecks.json": "3e7b2656f7bdc3fa93e0bb47c53ad626024cf60c080199818ee9526e23ff9f95",
   "evidence/folds.json": "40f7d790df8a89bcb6e6658cd361b94059e88a17addf6484667d5113b0235550",
   "evidence/phase07_equality.json": "c9169da7ef0a0271061bc8a9000ab96f4cc4b3bd412bc19dbc7fc853008f851b",
-  "evidence/serialization_smoke.json": "3b757886f7f99834feca99418aae9258be943494ce4332bfb541a001c62396a6",
-  "evidence/trace/FORECAST_TRACE.json": "a9ef3437b1566dbeaf8c50fc9e9b8620ccce7d0fe61f13ef35715cec9993e262",
+  "evidence/serialization_smoke.json": "abfcfb441ad6c072e331a69492854bdc0434ae46d847f628213571d23cd3534b",
+  "evidence/trace/FORECAST_TRACE.json": "cd6c7a5b2efa0ef4b5a028874633b94398bd9915391b846825d80042bbf91cd0",
   "evidence/traps.json": "142cb362c4c9da9d28404ec6aa035d1fd89cd36d92941c80197695ac3bb2f6ad",
   "evidence/v2_consistency.json": "d7f4dc79cb56b0de9539cdc1ea53182ff14c2d16d6b9b07085b9bebe3fab5ba5",
   "experiments/EARLY_WARNING.csv": "23b377dd2ec95f74de906631719e7f9b032c6ff78bd9e6b5fc5bcd818566652b",
@@ -57,13 +57,13 @@
   "experiments/OOS_PREDICTIONS.csv": "a44677f83bd5383422ec139f7ae730c82592b8d780dd6ffcac9fdf0bd5521e68",
   "experiments/PARSE_COVERAGE_BY_DAY.csv": "93dac7010ccef6018e5cfc02d3a073e891b5597705ea47812283389846662be7",
   "experiments/RULES_VS_MODEL.csv": "2c254936ab2b37e144ee7413d5f2e2f2cedfdff2e437f21fe8d6b23aad7b6dc2",
-  "experiments/SEARCH_LEDGER.csv": "745dac85c85bb6945949d5774b776d6199c443ad7db79cded0c81c5f34d7a084"
+  "experiments/SEARCH_LEDGER.csv": "9409e7ecbf647d2dce7244def91320c5a735ada6efc4c6ace088b9dc96113448"
  },
  "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
  "revision_check_claimed": false,
  "socket_events": [],
  "solana_decisions_with_onchain_snapshot": 925,
- "start_utc": "2026-10-25T22:57:03Z",
+ "start_utc": "2026-10-25T23:35:03Z",
  "status": "PROVISIONAL_PENDING_REVISION_REREAD",
  "stores": {
   "after": {
@@ -79,5 +79,5 @@
   "unchanged": true
  },
  "vendor_calls": 0,
- "wall_s": 54.42
+ "wall_s": 54.03
 }

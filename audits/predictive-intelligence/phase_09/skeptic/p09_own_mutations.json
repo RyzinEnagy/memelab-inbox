@@ -1,0 +1,181 @@
+{
+ "applied": 24,
+ "caught": 20,
+ "survived": [
+  "link takes the first of two collector rows",
+  "exit_context uses the oldest OK quote",
+  "pre-decision quote accepted as label baseline",
+  "unknown token program read as SPL"
+ ],
+ "not_applied": [],
+ "results": [
+  {
+   "mutation": "CX-09 with a one-hour tolerance in visible_at",
+   "file": "memelab/predictive/depth_adapter.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_cx09_a_post_decision_read_is_never_depth_at_the_decision"
+  },
+  {
+   "mutation": "assert_visible one-hour tolerance",
+   "file": "memelab/predictive/depth_adapter.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_cx09_a_post_decision_read_is_never_depth_at_the_decision"
+  },
+  {
+   "mutation": "link ignores the export time",
+   "file": "memelab/predictive/depth_adapter.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_adapter_identity_link - Failed:..."
+  },
+  {
+   "mutation": "link tolerates an hour between the two walks",
+   "file": "memelab/predictive/depth_adapter.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_adapter_identity_link - Failed:..."
+  },
+  {
+   "mutation": "link takes the first of two collector rows",
+   "file": "memelab/predictive/depth_adapter.py",
+   "applied": true,
+   "caught": false,
+   "first_failure": ""
+  },
+  {
+   "mutation": "adapter may open the lab database",
+   "file": "memelab/predictive/depth_adapter.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_adapter_schema_states_and_read_only"
+  },
+  {
+   "mutation": "schema migration floor removed",
+   "file": "memelab/predictive/depth_adapter.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_adapter_schema_states_and_read_only"
+  },
+  {
+   "mutation": "exit_context uses the oldest OK quote",
+   "file": "memelab/predictive/depth_adapter.py",
+   "applied": true,
+   "caught": false,
+   "first_failure": ""
+  },
+  {
+   "mutation": "pre-decision quote accepted as label baseline",
+   "file": "memelab/predictive/depth_adapter.py",
+   "applied": true,
+   "caught": false,
+   "first_failure": ""
+  },
+  {
+   "mutation": "dev-wallet mint suffix check removed",
+   "file": "memelab/predictive/onchain.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_developer_wallet_misclassification_and_inferred_clusters"
+  },
+  {
+   "mutation": "CEX labels ignored (custody list only)",
+   "file": "memelab/predictive/onchain.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_p19_exchange_or_custody_is_never_an_insider"
+  },
+  {
+   "mutation": "deposit to an exchange counted as a sale",
+   "file": "memelab/predictive/onchain.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_p18_a_transfer_is_never_a_sale"
+  },
+  {
+   "mutation": "inferred cluster sale counted as insider",
+   "file": "memelab/predictive/onchain.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_developer_wallet_misclassification_and_inferred_clusters"
+  },
+  {
+   "mutation": "AsOfView reads a day ahead",
+   "file": "memelab/predictive/onchain.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_values_are_available_at_the_decision_and_never_use_a_later_decision"
+  },
+  {
+   "mutation": "size cap ignores max_loss",
+   "file": "memelab/predictive/onchain.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_a_forecast_never_clears_a_fatal_flag_and_the_cap_ignores_the_forecast"
+  },
+  {
+   "mutation": "unknown veto treated as no veto",
+   "file": "memelab/predictive/onchain.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_a_forecast_never_clears_a_fatal_flag_and_the_cap_ignores_the_forecast"
+  },
+  {
+   "mutation": "missing flag list is a pass",
+   "file": "memelab/predictive/onchain.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_a_forecast_never_clears_a_fatal_flag_and_the_cap_ignores_the_forecast"
+  },
+  {
+   "mutation": "unknown token program read as SPL",
+   "file": "memelab/predictive/onchain.py",
+   "applied": true,
+   "caught": false,
+   "first_failure": ""
+  },
+  {
+   "mutation": "version 2 consistency tolerance 1e-2",
+   "file": "memelab/predictive/onchain.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_v2_consistency - AssertionError..."
+  },
+  {
+   "mutation": "early wallet UNKNOWN mapped to HOLDING",
+   "file": "memelab/predictive/onchain.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_unknown_lines_are_not_observed_and_new_formats_are_unparseable"
+  },
+  {
+   "mutation": "capture delay sign flipped",
+   "file": "memelab/predictive/onchain.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_p36_snapshot_time_after_the_decision_refuses_the_row"
+  },
+  {
+   "mutation": "rule shrinkage m=0",
+   "file": "memelab/predictive/onchain.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_rule_cells_are_shrunk_to_the_training_prevalence_and_a_missing_cell_gives_b0"
+  },
+  {
+   "mutation": "early warning at equality",
+   "file": "memelab/predictive/onchain.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_early_warning_counts_and_lead_time"
+  },
+  {
+   "mutation": "negative lead time tolerated",
+   "file": "memelab/predictive/onchain.py",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_early_warning_counts_and_lead_time"
+  }
+ ]
+}

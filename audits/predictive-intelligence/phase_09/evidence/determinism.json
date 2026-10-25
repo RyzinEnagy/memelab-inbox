@@ -1,19 +1,21 @@
 {
- "files_differing": [
-  "evidence/trace/FORECAST_TRACE.json"
- ],
+ "files_differing": [],
  "identical_otherwise": true,
+ "note": "repair pass 2 changes only the cross-checks (M1), the decision-support smoke (M2 signature), the trace latency and the ledger's debug rows; every metric, card, fold and prediction file is byte-equal to the first pass",
+ "repair_run_vs_first_pass_run_3": [
+  "evidence/crosschecks.json",
+  "evidence/serialization_smoke.json",
+  "evidence/trace/FORECAST_TRACE.json",
+  "experiments/SEARCH_LEDGER.csv"
+ ],
  "run_a": {
-  "head": "18bd243250f3dd36378c4360280ce166f65f4e13",
+  "head": "e306d437751682cb36aa1a83a45f8c8a32efe2e7",
   "outputs": 36,
-  "start_utc": "2026-10-25T22:57:03Z"
+  "start_utc": "2026-10-25T23:35:03Z"
  },
  "run_b": {
-  "head": "18bd243250f3dd36378c4360280ce166f65f4e13",
+  "head": "e306d437751682cb36aa1a83a45f8c8a32efe2e7",
   "outputs": 36,
-  "start_utc": "2026-10-25T22:58:05Z"
- },
- "trace_fields_differing": [
-  "latency_s_median_of_20"
- ]
+  "start_utc": "2026-10-25T23:35:57Z"
+ }
 }
