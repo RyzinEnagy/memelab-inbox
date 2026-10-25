@@ -1,13 +1,29 @@
 {
  "phase": "09",
- "status": "NEEDS_REVIEW",
+ "status": "PASS",
  "provisional": "PROVISIONAL_PENDING_REVISION_REREAD (PI-D-046)",
- "status_reason": "first pass: every gate item holds on the phase agent's checks; the independent skeptic (PI-D-013) is run by the orchestrator, then a repair pass",
+ "status_reason": "repair pass 2 folded in the orchestrator's independent skeptic (2 MATERIAL, 4 minor, CX-S09), each verified and repaired (PI-D-056); every gate item holds",
  "test_only_parts": [
   "depth_adapter (no collector row exists)",
+  "depth-based size cap on real quotes",
   "proposed liquidity and exit labels",
   "wallet-movement rules (fixtures; real holder classes checked)"
  ],
+ "skeptic": {
+  "review": "skeptic/PHASE_09_SKEPTIC.md",
+  "material": 2,
+  "minor": 4,
+  "counterexample": "CX-S09 size cap from post-decision, stale and other-pool quotes",
+  "caught_by": [
+   "tests/test_predictive_onchain.py::test_cx_s09_size_cap_uses_only_the_newest_visible_reads_of_the_decision_pool",
+   "tests/test_predictive_onchain.py::test_size_cap_newest_read_per_size_wins_and_a_lost_route_is_not_depth",
+   "probes/cx_s09_check.py (first-pass code 2000.0, repaired 100.0)",
+   "probes/mutation_onchain.py CX-S09 mutations"
+  ],
+  "m1": "27 of 33 lab token_authorities rows carry another mint's metadata: refused by onchain.authority_read_identity; first-pass claims withdrawn"
+ },
+ "repair2_code_commit": "e306d43",
+ "repair2_outputs_commit": "58490be",
  "head_before": "c7d6a2f",
  "preregistration_commit": "3079af1",
  "code_commit": "15bc5b5",
@@ -15,7 +31,7 @@
   "a52233c",
   "18bd243"
  ],
- "head_after": "934d2d4138c576ecbbaba96ac5d0a32295f4928c",
+ "head_after": "58490be",
  "registry_sha256": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
  "onchain_feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
  "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
@@ -524,14 +540,27 @@
    "name": "G4/G25 phase tests",
    "command": "python -m pytest tests/test_predictive_onchain.py -q -p no:cacheprovider",
    "exit_code": 0,
-   "result": "43 passed",
+   "result": "50 passed",
    "pass": true
   },
   {
-   "name": "G25 mutation probe",
-   "command": "python -B audits/predictive-intelligence/phase_09/probes/mutation_onchain.py OUT.json",
+   "name": "G25 mutation probe at HEAD 58490be",
+   "command": "python -B audits/predictive-intelligence/phase_09/probes/mutation_onchain.py evidence/mutation_onchain.json",
    "exit_code": 0,
-   "result": "55 of 55 caught",
+   "result": "66 of 66 caught",
+   "pass": true
+  },
+  {
+   "name": "G20 CX-S09",
+   "command": "python -B audits/predictive-intelligence/phase_09/probes/cx_s09_check.py evidence/cx_s09_check.json",
+   "exit_code": 0,
+   "result": "first-pass cap 2000.0, repaired 100.0",
+   "pass": true
+  },
+  {
+   "name": "G22 authority cross-check identity",
+   "input": "evidence/crosschecks.json",
+   "result": "27 rows OTHER_MINT_METADATA refused; 6 clean rows agree; token program 8 of 8 against the lab tokens table",
    "pass": true
   },
   {
@@ -574,7 +603,7 @@
    "name": "G17 recorded run",
    "command": "python -B audits/predictive-intelligence/phase_09/probes/run_onchain.py OUT --npz NPZ",
    "exit_code": 0,
-   "result": "at 18bd243; socket events 0; stores unchanged",
+   "result": "repair run at e306d43; socket events 0; stores unchanged; metrics, cards, folds, predictions byte-equal to the first pass",
    "pass": true
   },
   {
@@ -599,42 +628,7 @@
   {
    "name": "G24 search ledger",
    "input": "experiments/SEARCH_LEDGER.csv",
-   "result": "1804 rows; 3 real-data debug runs logged",
-   "pass": true
-  },
-  {
-   "name": "G27 post-commit suite at 934d2d4",
-   "command": "python -m pytest tests -q -p no:cacheprovider",
-   "exit_code": 1,
-   "result": "1 failed, 1272 passed in 166.48s (known failure only)",
-   "pass": true
-  },
-  {
-   "name": "G27 social guard",
-   "command": "python -m memelab social guard",
-   "exit_code": 0,
-   "result": "violations []",
-   "pass": true
-  },
-  {
-   "name": "G27 seal check",
-   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
-   "exit_code": 0,
-   "result": "problems []",
-   "pass": true
-  },
-  {
-   "name": "G27 release audit single-branch clone",
-   "command": "python tools/release_audit.py --history",
-   "exit_code": 0,
-   "result": "Needs action: no",
-   "pass": true
-  },
-  {
-   "name": "G27 git status",
-   "command": "git status --short",
-   "exit_code": 0,
-   "result": "clean after removing the suite's strays",
+   "result": "1804 rows; 4 real-data runs before the repair run logged",
    "pass": true
   }
  ],
@@ -721,7 +715,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_09/data/SOURCE_LEDGER.md",
-   "sha256": "bed8ab661f92fac818a6ad2fcecac26fd2dcc160917824d30a5431c2d80b4146"
+   "sha256": "f0dda130d571c06012edeef8af0dfe40370ae02cfe02c48f94bd706fa5150eab"
   },
   {
    "path": "audits/predictive-intelligence/phase_09/evidence/collector_state.json",
@@ -729,11 +723,15 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_09/evidence/crosschecks.json",
-   "sha256": "69e64a4b9cfcb589b0a1056b183969cf92dac3d495cb8a3cdc18530d27d3b433"
+   "sha256": "3e7b2656f7bdc3fa93e0bb47c53ad626024cf60c080199818ee9526e23ff9f95"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/evidence/cx_s09_check.json",
+   "sha256": "f75deb70c6863fad23519f7664317d25ee1022aa2ad4377621535ccf9edd7acf"
   },
   {
    "path": "audits/predictive-intelligence/phase_09/evidence/determinism.json",
-   "sha256": "ec5577310a29e45119a8e7d3d93a6b646bb5d8039f07ace51544f836deb3ef22"
+   "sha256": "f754e37bff8a52ef0adcea2c954399f305cd58d714493a809b6e8f37c3414ef4"
   },
   {
    "path": "audits/predictive-intelligence/phase_09/evidence/folds.json",
@@ -741,7 +739,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_09/evidence/mutation_onchain.json",
-   "sha256": "09c61008dc49a9de94fb2e0b921aa22d18d781a887d7460f5d267cec1e8e8417"
+   "sha256": "c3b1cf7c83aebc58b544f5a38482af4591463ec77ead9d4040ae452bcb261c56"
   },
   {
    "path": "audits/predictive-intelligence/phase_09/evidence/phase07_equality.json",
@@ -749,11 +747,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_09/evidence/run_log.json",
-   "sha256": "3b2639b0bacb63becc5beaeb5f5b8698af1a26b2f052082738b60e5748a72854"
+   "sha256": "4274c7c098829e8fb427a71af7182592d376a233d76fffdb0bb72a590c01ce5c"
   },
   {
    "path": "audits/predictive-intelligence/phase_09/evidence/serialization_smoke.json",
-   "sha256": "3b757886f7f99834feca99418aae9258be943494ce4332bfb541a001c62396a6"
+   "sha256": "abfcfb441ad6c072e331a69492854bdc0434ae46d847f628213571d23cd3534b"
   },
   {
    "path": "audits/predictive-intelligence/phase_09/evidence/sklearn_crosscheck.json",
@@ -761,7 +759,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_09/evidence/trace/FORECAST_TRACE.json",
-   "sha256": "a9ef3437b1566dbeaf8c50fc9e9b8620ccce7d0fe61f13ef35715cec9993e262"
+   "sha256": "cd6c7a5b2efa0ef4b5a028874633b94398bd9915391b846825d80042bbf91cd0"
   },
   {
    "path": "audits/predictive-intelligence/phase_09/evidence/trace/FORECAST_TRACE.md",
@@ -821,7 +819,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_09/experiments/SEARCH_LEDGER.csv",
-   "sha256": "745dac85c85bb6945949d5774b776d6199c443ad7db79cded0c81c5f34d7a084"
+   "sha256": "9409e7ecbf647d2dce7244def91320c5a735ada6efc4c6ace088b9dc96113448"
   },
   {
    "path": "audits/predictive-intelligence/phase_09/models/LIQUIDITY_TARGET_PROPOSALS.md",
@@ -829,7 +827,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_09/models/ONCHAIN_LIQUIDITY_CARD.md",
-   "sha256": "f05f932de32a71661a616edb75f82516a139cc440f8d5178fa28ef2550f34400"
+   "sha256": "5cab1b5e2f905ef2d13c3d2758af1b3fd355dbb307f3afcba80b2d98cf28470b"
   },
   {
    "path": "audits/predictive-intelligence/phase_09/postcommit/pytest_summary.txt",
@@ -848,12 +846,16 @@
    "sha256": "b916c569302f8f79ccbf9a98ec7f608ec893491fc08774f96c69415eea505a77"
   },
   {
+   "path": "audits/predictive-intelligence/phase_09/probes/cx_s09_check.py",
+   "sha256": "eed7620ffa42b4a8f4a028b1b4236d146c351d8be117f58cef80b112bf8c0b2b"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_09/probes/mutation_onchain.py",
-   "sha256": "339e33dacc59f0eaa2ee643630238d8e010b0ec0a4eb68cc9d3190780f10a23c"
+   "sha256": "b7481748720a052f89a6ddbd8cbb960992129a1cc43f0070c2390c42435179b6"
   },
   {
    "path": "audits/predictive-intelligence/phase_09/probes/run_onchain.py",
-   "sha256": "63ce083c93ebe652e1abda7753b7e4febdc8d3914e345d504635b5a5ebd9f773"
+   "sha256": "8ff01af82bddbfc5360eaebe411ef89f6e336c2d8da06655f3c31d57eb3f76fb"
   },
   {
    "path": "audits/predictive-intelligence/phase_09/probes/sklearn_crosscheck_onchain.py",
@@ -864,8 +866,40 @@
    "sha256": "12c2f235beda02a3239044a2d27af75d54104e48de3fb738e73dfea462c199bb"
   },
   {
+   "path": "audits/predictive-intelligence/phase_09/skeptic/PHASE_09_SKEPTIC.md",
+   "sha256": "c0ae79d66c383a0b5be97d54ee83fe9a52ab29524288dbebb01049396674ce57"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/skeptic/p09_cx_sizecap.py",
+   "sha256": "47eaaff45f58f535bdcb4c5066723ae04bee1b7bcefdb2fef91ad203c2b520bc"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/skeptic/p09_own_mutations.json",
+   "sha256": "77d998b72716ec67a97f3b7803d6b8b4ce442f967c01bcf61cc9acaa217049e4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/skeptic/p09_own_mutations.py",
+   "sha256": "edaaf642666d30cef64ec1197c147ede962e6b814557c3df0739868a2312a8f8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/skeptic/p09_recompute_fold.py",
+   "sha256": "4fb83a743be9089adf8146026899b59579f58766f2a4d1d18bd081c4dab69e79"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/skeptic/p09_rederive.py",
+   "sha256": "7f7e7cc9dd43f17b82aeb02b570e7357b55d98f9ce394b770177a2340d90cebe"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/skeptic/p09_walk_compare.py",
+   "sha256": "f816967c41fe833a3ebb78ecfdebde4132ddacad0002fe7449c75771a8fbb20b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/skeptic/p09_walk_fixture.py",
+   "sha256": "d661eb482008f6b3522df672c6a46ef4dfce4ce79d0f42f729110764bfd8d03c"
+  },
+  {
    "path": "memelab/predictive/onchain.py",
-   "sha256": "05ca87c536d9c8bd039448c7304c03d9f23a1ec5eec2e1aadf5ffe2c001513c8"
+   "sha256": "fffb4a1cbe6679466b1d4219cc70a780b8fc22a31e3e2bf6993207fa2a1d5021"
   },
   {
    "path": "memelab/predictive/depth_adapter.py",
@@ -873,7 +907,7 @@
   },
   {
    "path": "tests/test_predictive_onchain.py",
-   "sha256": "c71ff125d3b434357de37d0032bbc5ad3f0e5e66372c958e0d832849ffe641f9"
+   "sha256": "fe6df28a36e714e44d9c7300d05beb19a069176e92b50ed1badaa2206dbc78fb"
   },
   {
    "path": "tests/fixtures/predictive/bt_depth_schema_v2.sql",
@@ -881,20 +915,23 @@
   },
   {
    "path": "docs/predictive-intelligence/DECISIONS.md",
-   "sha256": "8a364d1e971e3f080922066f6af89819c2076fe02ed921df39fb53eb33d737d1"
+   "sha256": "b1539b00026a89c32d46eb7f4ff96a72b59b2995a3b68697cdf482848b655a92"
   },
   {
    "path": "docs/predictive-intelligence/ROADMAP.md",
-   "sha256": "dcc688bbb2b26a2b53371015a72af8847fd87a81352b1c714f857a48977ba12c"
+   "sha256": "8822a884b3885f16e5bf53e674220bd01d9d7896df572a04bc334cfef6300996"
   },
   {
    "path": "docs/predictive-intelligence/HANDOFF.md",
-   "sha256": "1d4eee4e80f7c638fc2d34c66b85a11e598191f6c92b99ae0b9445e982f31e47"
+   "sha256": "3a17fd0fc29b8494426b9808c3be764344b456ce0ea2f0e425ff2ef2d486bdd8"
   }
  ],
  "limitations": [
   "no historical depth, quotes, swaps, holders, wallet flows or authority histories exist for the decisions; nothing substituted",
-  "on-chain readings are the lab's module outputs at its collector time (capture delay up to 21.6 h), not chain reads at the decision; rationale text is version dependent (PI-D-008)",
+  "on-chain readings are the lab's module outputs at its collector time (capture delay up to 21.6 h on the 13 path-switch decisions, 7.8 h elsewhere), not chain reads at the decision; rationale text is version dependent (PI-D-008)",
+  "the 13 decisions at the path-switch commit 15c2087 are dated 4.5 to 7.75 h after the lab first exported their rows under state/latest.json (Phase 05 design)",
+  "the lab DB token_authorities table is contaminated (27 of 33 rows carry another mint's metadata); not a reference",
+  "the oracle covers the 48 fitted fold and holdout designs, not the NC1 refits",
   "authority features have no variance in development (0 of 240 active)",
   "T2 has 8 out-of-sample rows with 1 positive on 1 day; T1 3 days; T1b 3 positives: every verdict INSUFFICIENT",
   "collector adapter, proposals and wallet rules are fixture-only (TEST_ONLY); the collector's decision timing walk differs from the predictive one and the link rate is unmeasured",
@@ -902,9 +939,9 @@
   "every number provisional until Phase 06's 48 h re-read"
  ],
  "blockers": [
-  "independent skeptic and repair pass (orchestrator)",
-  "forward depth collector not deployed (PI-D-044)"
+  "forward depth collector not deployed (PI-D-044): adapter, size cap on real quotes and proposals stay TEST_ONLY",
+  "Phase 06 48 h re-read owed (PI-D-046)"
  ],
  "approvals_needed": [],
- "next_eligible_phase": "none until the Phase 09 skeptic review and repair pass; then 10 if the orchestrator records PASS"
+ "next_eligible_phase": "10 (after the orchestrator's re-verification; Phase 09 results provisional under PI-D-046)"
 }

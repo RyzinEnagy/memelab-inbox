@@ -1,0 +1,19 @@
+{
+ "first_pass_size_cap": {
+  "basis": "FORWARD_QUOTES",
+  "quotes_used": 4,
+  "size_cap_usd": 2000.0
+ },
+ "first_pass_wrong": true,
+ "pass": true,
+ "repaired_as_of": true,
+ "repaired_size_cap": {
+  "basis": "FORWARD_QUOTES_VISIBLE_AT_DECISION",
+  "oldest_used_age_s": 3000.0,
+  "pool_address": "PoolA",
+  "quotes_used": 2,
+  "route_lost_sizes": [],
+  "size_cap_usd": 100.0
+ },
+ "rows": 4
+}

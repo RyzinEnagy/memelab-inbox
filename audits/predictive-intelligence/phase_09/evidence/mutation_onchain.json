@@ -1,7 +1,7 @@
 {
- "applied": 55,
- "caught": 55,
- "mutations": 55,
+ "applied": 66,
+ "caught": 66,
+ "mutations": 66,
  "not_applied": [],
  "results": [
   {
@@ -253,6 +253,83 @@
    "applied": true,
    "caught": true,
    "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_cx_s09_size_cap_uses_only_the_newest_visible_reads_of_the_decision_pool",
+   "mutation": "CX-S09 size cap reads rows after the decision"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_cx_s09_size_cap_uses_only_the_newest_visible_reads_of_the_decision_pool",
+   "mutation": "CX-S09 size cap reads every pool"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_size_cap_newest_read_per_size_wins_and_a_lost_route_is_not_depth",
+   "mutation": "CX-S09 oldest read per size wins"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_cx_s09_size_cap_uses_only_the_newest_visible_reads_of_the_decision_pool",
+   "mutation": "CX-S09 recency limit ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_size_cap_newest_read_per_size_wins_and_a_lost_route_is_not_depth",
+   "mutation": "CX-S09 lost route ignored (older OK read used)"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_developer_wallet_misclassification_and_inferred_clusters",
+   "mutation": "token's own mint trusted as its dev wallet"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_authority_read_identity_refuses_another_mints_metadata",
+   "mutation": "authority read with another mint's metadata accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_unknown_or_missing_token_program_is_not_read_as_spl",
+   "mutation": "S: unknown token program read as SPL"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_link_refuses_two_collector_rows_for_one_exact_row",
+   "mutation": "S: link takes the first of two collector rows"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_exit_context_takes_the_newest_ok_quote",
+   "mutation": "S: exit_context uses the oldest OK quote"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_a_quote_before_the_decision_is_never_the_label_baseline",
+   "mutation": "S: pre-decision quote accepted as label baseline"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
    "first_failure": "FAILED tests/test_predictive_onchain.py::test_p19_exchange_or_custody_is_never_an_insider",
    "mutation": "exchange checked after the developer label"
   },
@@ -281,7 +358,7 @@
    "applied": true,
    "caught": true,
    "file": "memelab/predictive/depth_adapter.py",
-   "first_failure": "FAILED tests/test_predictive_onchain.py::test_cx09_a_post_decision_read_is_never_depth_at_the_decision",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_cx_s09_size_cap_uses_only_the_newest_visible_reads_of_the_decision_pool",
    "mutation": "CX-09 post-decision rows visible"
   },
   {

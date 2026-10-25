@@ -1,6 +1,6 @@
 # Phase 09 evidence: on-chain, liquidity, wallet and authority forecasts
 
-Status: NEEDS_REVIEW (first pass; every gate item below holds on this agent's checks; the independent skeptic of PI-D-013 is the orchestrator's next step). All numbers PROVISIONAL under PI-D-046 (`revision_check_claimed: false`). Parts resting only on fixtures are TEST_ONLY: the collector adapter, the proposed liquidity and exit labels, and the wallet-movement rules.
+Status: PASS after repair pass 2 (the orchestrator's independent skeptic: 2 MATERIAL, 4 minor, counterexample CX-S09; each verified and repaired, see "Independent skeptic and repair pass 2"). All numbers PROVISIONAL under PI-D-046 (`revision_check_claimed: false`). Parts resting only on fixtures are TEST_ONLY: the collector adapter, the depth-based size cap, the proposed liquidity and exit labels, and the wallet-movement rules.
 
 ## Where and when
 
@@ -41,7 +41,7 @@ Status: NEEDS_REVIEW (first pass; every gate item below holds on this agent's ch
 - Models: every on-chain model passes the training gate in every fold (inputs on every labelled row), and every verdict is INSUFFICIENT_DAYS (T2: 8 rows, 1 positive, 1 day; T1: 24, 8, 3 days) or INSUFFICIENT_EVENTS (T1b: 44, 3, 5 days). No model can be called better or worse than the base rate, B2 or the simple on-chain rule. All MODEL_NOT_PROMOTED.
 - Execution semantics: a forecast never clears a fatal flag; a size cap comes from depth only and is EXECUTION_DATA_MISSING on every decision here.
 - Collector adapter: read-only contract against the documented schema; this checkout has no collector database (COLLECTOR_NOT_AVAILABLE); fixture-tested only (TEST_ONLY).
-- Real cross-checks: authority 33 of 33 agree; token program disagrees for one mint (lab DB against the export); swaps against candles agree on one mint and differ on four (pool fragmentation, latest-trades page); 19 exchange holders never insider; one dev wallet looks like a mint.
+- Real cross-checks (corrected in repair pass 2): 27 of 33 lab authority rows carry another mint's metadata and are refused; the 6 clean rows agree on authority (not independent); the token program agrees 8 of 8 between the lab `tokens` table and the export; swaps against candles agree on one mint and differ on four (pool fragmentation, latest-trades page); 19 exchange holders never insider; one dev wallet looks like a mint.
 
 ## Acceptance checklist results
 
@@ -89,7 +89,23 @@ Status: NEEDS_REVIEW (first pass; every gate item below holds on this agent's ch
 - A forecast lowering the veto or raising the cap: impossible by construction (no probability argument; test with 0.001 to 0.999; mutation).
 - Limitation found, not fixed: the collector times a decision with `git log` over its state paths (`labstate.state_versions`), the predictive engine with the first-parent history of `data/state/latest.json`. Main's pushes were all fast-forwards (PI-D-021 item 6), so they should agree; where they do not, `depth_adapter.link` raises instead of guessing. The first real rows must measure the link rate.
 - Limitation: authority features have no variance in development (0 active of 240) and the T2 out-of-sample set is one day; nothing about authority risk can be learned here.
-- Limitation: the capture delay reaches 21.6 h; a model sees what the lab saw, which can be stale.
+- Limitation: the capture delay reaches 21.6 h on the 13 path-switch decisions (exported 4.5 to 7.75 h earlier under `state/latest.json`, readings up to 13.9 h old then) and 7.8 h elsewhere; a model sees what the lab saw, which can be stale (corrected in repair pass 2).
+
+## Independent skeptic and repair pass 2
+
+Review: `skeptic/PHASE_09_SKEPTIC.md` with its scripts (`p09_cx_sizecap.py`, `p09_own_mutations.py`, `p09_walk_compare.py`, `p09_walk_fixture.py`, `p09_rederive.py`, `p09_recompute_fold.py`). The skeptic reproduced every model number, fold, verdict, trap and as-of claim. Each finding was verified before repair (commit `e306d43` code, `58490be` outputs, records after; PI-D-056).
+
+| Finding | Verified | Repair | Caught by |
+|---|---|---|---|
+| M1 authority cross-check against contaminated lab rows | yes: 27 of 33 `token_authorities` rows (7 mints) name `98kfF7rm...` in their `tokenMetadata.mint` and `metadataPointer.metadataAddress`; the lab `tokens` table says SPL for `6GmAFSYs...` like all 50 of its export decisions | `onchain.authority_read_identity` and `metadata_mints`; the cross-check refuses OTHER_MINT_METADATA rows (27), compares 6 clean rows, compares the token program with the lab `tokens` table (8 of 8 agree, 2 without a program); the runner fails if a clean row disagrees; card, ledger, PI-D-055, HANDOFF corrected; the contamination recorded as a lab data-quality finding, tables unchanged | `test_authority_read_identity_refuses_another_mints_metadata`; mutation "authority read with another mint's metadata accepted" |
+| M2 and CX-S09: size cap without time, pool or recency | yes: the first-pass `decision_support` returns $2,000 on the skeptic's fixture where the as-of answer is $100 (`evidence/cx_s09_check.json`, run with the first-pass code from `796e844`) | `size_cap_usd` and `decision_support` take `decision_time`, `pool_address`, `max_age_s`; rows go through `depth_adapter.visible_at` and `assert_visible`; same pool only; newest answered read per size; a lost route removes that size; no pool or nothing usable is EXECUTION_DATA_MISSING | `test_cx_s09_size_cap_uses_only_the_newest_visible_reads_of_the_decision_pool` (fails on the first-pass code: no such signature, and the first-pass number is $2,000), `test_size_cap_newest_read_per_size_wins_and_a_lost_route_is_not_depth`; five mutations |
+| minor 1 mutation probe failed at HEAD | yes (ledger file not copied) | the probe copies the four output files the last test reads; run at HEAD `58490be`: exit 0, 66 of 66 | `evidence/mutation_onchain.json` |
+| minor 2 four surviving mutations | yes | tests for two collector rows of one exact row (EVM case), the newest OK quote in `exit_context`, a pre-decision quote never a label baseline, an unknown or missing token program never SPL; the four mutations added to the probe | 66 of 66 |
+| minor 3 dev wallet equal to the token's own mint | yes | `wallet_role` treats an address equal to the token row's mint as DEV_LABEL_SUSPECT | test assertion; mutation "token's own mint trusted as its dev wallet" |
+| minor 4 path-switch decisions and the 21.6 h claim | yes: 13 labelled decisions at `15c2087` (2026-10-07T21:53:55Z), rows exported 4.51 to 7.75 h earlier under `state/latest.json`; capture delays 4.68 to 21.62 h, at most 13.87 h at the first old-path export; 7.8 h maximum elsewhere | recorded in the card, ledger, PI-D-055, ROADMAP; new evidence `crosschecks.json` `path_switch`; walk comparison `p09_walk_compare.py` on `origin/main` `e245d91` reproduced (13 mismatches, all at that commit) | `evidence/crosschecks.json` |
+| minor 5 oracle excludes NC1 refits | yes; not required by G16 | none | |
+
+Repair run (recorded run at `e306d43`, 23:35:03Z, exit 0) and a second run (23:35:57Z): identical. Against the first pass, only `crosschecks.json`, `serialization_smoke.json`, the trace's latency and the ledger's debug rows changed (`evidence/determinism.json`); metrics, cards, folds and predictions are byte-equal. Oracle again 48 designs within 1.75e-11; trace 0 differences; 50 tests; mutations 66 of 66; CX-S09 probe exit 0.
 
 ## Artifacts
 
