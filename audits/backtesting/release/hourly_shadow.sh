@@ -4,9 +4,11 @@
 #   bash hourly_shadow.sh setup     python 3.13 venv, code from code.bundle, working copy of the database
 #   bash hourly_shadow.sh refresh   backtest refresh: GeckoTerminal only, read-only, at most 12 calls, 3 s apart (about 95 s)
 #   bash hourly_shadow.sh collect   backtest depth collect (D-BT-034): the lab's exports of the last 72 h from the public
-#                                   GitHub repository (shallow git fetch), then pool reserves (GeckoTerminal, at most 6
-#                                   calls, 10 s apart) and keyless Jupiter sell quotes (at most 40, 2.5 s apart) for
-#                                   decisions of the last 24 h; no new call after 100 s (about 110 s at most)
+#                                   GitHub repository (shallow git fetch, stopped at 20 s), then pool reserves
+#                                   (GeckoTerminal, at most 6 calls, 10 s apart and at most 6 in any 60 s counting the
+#                                   refresh step's calls) and keyless Jupiter sell quotes (at most 48, 2.2 s apart) for
+#                                   decisions of the last 24 h; no call after 115 s, program stopped at 140 s, so the
+#                                   step ends within about 165 s
 #   bash hourly_shadow.sh track     backtest outcomes track (no network)
 #   bash hourly_shadow.sh save      WAL-safe backup, integrity check, write back, one log line
 #   bash hourly_shadow.sh status    last log lines and the store state
@@ -51,9 +53,16 @@ collect)
   T=""; command -v timeout >/dev/null 2>&1 && T="timeout"
   since=$(date -u -d '-72 hours' +%Y-%m-%dT%H:%M:%SZ)
   REPO_ARGS=(--repo "$W/lab.git")
-  GIT_TERMINAL_PROMPT=0 ${T:+$T 60} git -C "$W/lab.git" fetch -q --shallow-since="$since" "$LAB_REPO" +refs/heads/main:refs/remotes/origin/main > "$W/fetch.err" 2>&1 \
+  GIT_TERMINAL_PROMPT=0 ${T:+$T 20} git -C "$W/lab.git" fetch -q --shallow-since="$since" "$LAB_REPO" +refs/heads/main:refs/remotes/origin/main > "$W/fetch.err" 2>&1 \
     || { echo "EXPORTS_NOT_FETCHED: git fetch exit $?; collecting for stored decisions only"; REPO_ARGS=(); }
-  MEMELAB_BT_RAW="$W/raw" ${T:+$T 160} "$PY" -m memelab backtest depth collect ${REPO_ARGS[@]+"${REPO_ARGS[@]}"} --db "$W/bt.sqlite" > "$W/collect.json" 2> "$W/collect.err" || fail "depth collect exit $?"
+  # GeckoTerminal calls the refresh step made, counted at the time its output was written (after its last call)
+  PRIOR=$("$PY" -c 'import json, os, sys, time
+p = sys.argv[1]
+try:
+    print(int(json.load(open(p)).get("calls") or 0), os.path.getmtime(p))
+except Exception:
+    print(12, time.time())' "$W/refresh.json")
+  MEMELAB_BT_RAW="$W/raw" ${T:+$T 140} "$PY" -m memelab backtest depth collect ${REPO_ARGS[@]+"${REPO_ARGS[@]}"} --gt-prior-calls "${PRIOR% *}" --gt-prior-end "${PRIOR#* }" --db "$W/bt.sqlite" > "$W/collect.json" 2> "$W/collect.err" || fail "depth collect exit $?"
   tail -c 600 "$W/collect.json"; echo
   ;;
 track)
@@ -81,7 +90,7 @@ def tail(name):
         return {"unparsed": str(e)[:80]}
 r, k, c = tail("refresh.json"), tail("track.json"), tail("collect.json")
 keep = lambda d, ks: {x: d.get(x) for x in ks if x in d}
-print(json.dumps({"t": t, "step": "save", "result": "OK", "refresh": r if len(json.dumps(r)) < 400 else keep(r, ("pools_wanted", "calls", "status")), "collect": keep(c, ("decisions_new", "pools_active", "pool_snapshots", "quotes", "quote_source", "calls", "deadline_hit", "wall_s", "unparsed")),
+print(json.dumps({"t": t, "step": "save", "result": "OK", "refresh": r if len(json.dumps(r)) < 400 else keep(r, ("pools_wanted", "calls", "status")), "collect": keep(c, ("status", "decisions_new", "pools_active", "lookups", "pool_snapshots", "quotes", "quote_source", "calls", "deadline_hit", "wall_s", "unparsed")),
                   "track": keep(k, ("status", "opportunities", "states", "new_rows", "fetched"))}))
 PYX
   echo "idle $(now)" > "$STATE"

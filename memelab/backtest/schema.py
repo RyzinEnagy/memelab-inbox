@@ -250,15 +250,14 @@ V1_DOWN = "\n".join(
     + [f"DROP TABLE IF EXISTS {t};" for t in reversed(APPEND_ONLY)]
 )
 
-# v2 (D-BT-034): forward depth collector. Additive: two new append-only tables; v1 tables are unchanged.
+# v2 (D-BT-034): forward depth collector. Additive: three new append-only tables; v1 tables are unchanged.
 V2_TABLES = {
     # one row per lab decision (exact thesis row first visible in an export) the collector follows for 25 h
     "bt_depth_decisions": """
 CREATE TABLE IF NOT EXISTS bt_depth_decisions (
   id INTEGER PRIMARY KEY,
   chain TEXT NOT NULL, mint TEXT NOT NULL, pool_address TEXT,
-  pool_source TEXT CHECK (pool_source IN ('EXPORT_PRIMARY_POOL','EXPORT_GRADUATED_POOL','VENDOR_TOP_POOL','NO_POOL','UNSUPPORTED_CHAIN')),
-  pool_resolved_at REAL,
+  pool_source TEXT NOT NULL CHECK (pool_source IN ('EXPORT_PRIMARY_POOL','EXPORT_GRADUATED_POOL','NONE_IN_EXPORT','UNSUPPORTED_CHAIN')),
   export_commit TEXT NOT NULL, export_time REAL NOT NULL, export_path TEXT,
   created_at REAL NOT NULL, row_sha256 TEXT NOT NULL, status TEXT,
   recorded_at REAL NOT NULL, content_hash TEXT NOT NULL,
@@ -266,7 +265,21 @@ CREATE TABLE IF NOT EXISTS bt_depth_decisions (
 );
 CREATE INDEX IF NOT EXISTS bt_depth_decisions_time ON bt_depth_decisions(export_time);
 """,
-    # one row per pool read (kind POOL) or sell quote (kind QUOTE); captured_at is when the response arrived
+    # vendor top-pool lookups for decisions whose export names no pool: every attempt, its outcome and its body
+    "bt_depth_pool_lookups": """
+CREATE TABLE IF NOT EXISTS bt_depth_pool_lookups (
+  id INTEGER PRIMARY KEY,
+  run_id TEXT NOT NULL, decision_id INTEGER NOT NULL REFERENCES bt_depth_decisions(id),
+  chain TEXT NOT NULL, mint TEXT NOT NULL, attempt INTEGER NOT NULL,
+  request_url TEXT, captured_at REAL, http_status INTEGER, raw_sha256 TEXT, raw_ref TEXT,
+  state TEXT NOT NULL, pool_address TEXT, value_json TEXT,
+  recorded_at REAL NOT NULL, content_hash TEXT NOT NULL,
+  UNIQUE(content_hash)
+);
+CREATE INDEX IF NOT EXISTS bt_depth_pool_lookups_dec ON bt_depth_pool_lookups(decision_id, state);
+""",
+    # one row per pool read (kind POOL) or sell quote (kind QUOTE), including reads not made (state says why);
+    # captured_at is when the response arrived
     "bt_depth_snapshots": """
 CREATE TABLE IF NOT EXISTS bt_depth_snapshots (
   id INTEGER PRIMARY KEY,
@@ -283,6 +296,7 @@ CREATE TABLE IF NOT EXISTS bt_depth_snapshots (
   UNIQUE(content_hash)
 );
 CREATE INDEX IF NOT EXISTS bt_depth_snapshots_key ON bt_depth_snapshots(chain, mint, pool_address, kind, captured_at);
+CREATE INDEX IF NOT EXISTS bt_depth_snapshots_run ON bt_depth_snapshots(run_id);
 """,
 }
 V2_UP = "\n".join(V2_TABLES.values()) + "\n" + _triggers(list(V2_TABLES))

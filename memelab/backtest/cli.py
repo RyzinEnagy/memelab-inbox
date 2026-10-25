@@ -217,7 +217,8 @@ def cmd_depth(a):
         except Exception as e:                       # lab exports not readable: collect for stored decisions only
             exports = {"status": f"EXPORTS_UNREADABLE: {type(e).__name__}", "decisions": []}
     out = depth.collect(con, exports=exports, now=None if not a.now else now, gt_max_calls=a.max_gt_calls, jup_max_calls=a.max_quote_calls,
-                        gt_spacing_s=a.gt_spacing, jup_spacing_s=a.quote_spacing, deadline_s=a.deadline)
+                        gt_spacing_s=a.gt_spacing, jup_spacing_s=a.quote_spacing, deadline_s=a.deadline,
+                        gt_prior_calls=a.gt_prior_calls, gt_prior_end=a.gt_prior_end)
     print(json.dumps(out, indent=1, default=str))
 
 
@@ -280,9 +281,11 @@ def add_subparser(sp):
     q.add_argument("action", choices=["collect", "status"])
     q.add_argument("--repo", help="git repository holding the lab's state exports (a shallow fetch of main is enough)")
     q.add_argument("--ref", default="refs/remotes/origin/main"); q.add_argument("--now", help="UTC time of this run (default: now)")
-    q.add_argument("--max-gt-calls", type=int, default=6); q.add_argument("--max-quote-calls", type=int, default=40)
-    q.add_argument("--gt-spacing", type=float, default=10.0); q.add_argument("--quote-spacing", type=float, default=2.5)
-    q.add_argument("--deadline", type=float, default=100.0, help="no new call starts after this many seconds")
+    q.add_argument("--max-gt-calls", type=int, default=6); q.add_argument("--max-quote-calls", type=int, default=48)
+    q.add_argument("--gt-spacing", type=float, default=10.0); q.add_argument("--quote-spacing", type=float, default=2.2)
+    q.add_argument("--deadline", type=float, default=115.0, help="no call or retry starts after this many seconds")
+    q.add_argument("--gt-prior-calls", type=int, default=0, help="GeckoTerminal calls the refresh step just made (count against 6 in 60 s)")
+    q.add_argument("--gt-prior-end", type=float, help="UTC epoch seconds when that refresh step ended")
     q.add_argument("--hours", type=float, default=48.0, help="status: decisions exported in the last N hours")
     q.add_argument("--db"); q.set_defaults(fn=cmd_depth)
     q = ssp.add_parser("backup", help="consistent copy of the research database while it may be in use")
