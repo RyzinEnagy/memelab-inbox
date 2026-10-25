@@ -5,7 +5,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 ## Position on 2026-10-25
 
 - Phases 00 to 05: PASS. Phase 06: NEEDS_REVIEW, one item open (the frozen 48 h revision re-read, not before 2026-10-26T13:49Z). Phases 07 and 08: PASS, PROVISIONAL under PI-D-046.
-- Phase 09 (on-chain, liquidity, wallet and authority forecasts): NEEDS_REVIEW after its first pass. Every gate item holds on the phase agent's checks; the independent skeptic (PI-D-013) is the orchestrator's next step, then a repair pass. All numbers PROVISIONAL under PI-D-046. Commits (local only; the orchestrator pushes): pre-registration `3079af1`, code `15bc5b5`, runner repairs `a52233c` and `18bd243`, outputs and records after (hash in `phase_09/PHASE_09_RESULTS.json`).
+- Phase 09 (on-chain, liquidity, wallet and authority forecasts): NEEDS_REVIEW after its first pass. Every gate item holds on the phase agent's checks; the independent skeptic (PI-D-013) is the orchestrator's next step, then a repair pass. All numbers PROVISIONAL under PI-D-046. Commits (local only; the orchestrator pushes): pre-registration `3079af1`, code `15bc5b5`, runner repairs `a52233c` and `18bd243`, outputs and records `934d2d4`, and a post-commit records commit on top. Post-commit at `934d2d4`: suite `1 failed, 1272 passed` (known failure only), guard 0 violations, seal check 0 problems, single-branch release audit exit 0.
 - Spend: 0 Firecrawl credits; Phase 09 made no vendor or network call (one `git fetch` of `origin/feature/backtesting`).
 
 ## What Phase 09 found

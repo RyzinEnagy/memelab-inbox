@@ -15,7 +15,7 @@
   "a52233c",
   "18bd243"
  ],
- "head_after": null,
+ "head_after": "934d2d4138c576ecbbaba96ac5d0a32295f4928c",
  "registry_sha256": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
  "onchain_feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
  "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
@@ -601,6 +601,41 @@
    "input": "experiments/SEARCH_LEDGER.csv",
    "result": "1804 rows; 3 real-data debug runs logged",
    "pass": true
+  },
+  {
+   "name": "G27 post-commit suite at 934d2d4",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "1 failed, 1272 passed in 166.48s (known failure only)",
+   "pass": true
+  },
+  {
+   "name": "G27 social guard",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "violations []",
+   "pass": true
+  },
+  {
+   "name": "G27 seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "G27 release audit single-branch clone",
+   "command": "python tools/release_audit.py --history",
+   "exit_code": 0,
+   "result": "Needs action: no",
+   "pass": true
+  },
+  {
+   "name": "G27 git status",
+   "command": "git status --short",
+   "exit_code": 0,
+   "result": "clean after removing the suite's strays",
+   "pass": true
   }
  ],
  "artifacts": [
@@ -797,6 +832,22 @@
    "sha256": "f05f932de32a71661a616edb75f82516a139cc440f8d5178fa28ef2550f34400"
   },
   {
+   "path": "audits/predictive-intelligence/phase_09/postcommit/pytest_summary.txt",
+   "sha256": "785ef7bb3302c89a3146b783b5f351d4f5c886b585ff66b80ac71f39f71416d5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/postcommit/release_audit_history.summary.txt",
+   "sha256": "4caa17767dc4d5e7551d240d066d82d0b1ad6bda42791f6d4a25013cd2e7f7b2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/postcommit/seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/postcommit/social_guard.out.txt",
+   "sha256": "b916c569302f8f79ccbf9a98ec7f608ec893491fc08774f96c69415eea505a77"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_09/probes/mutation_onchain.py",
    "sha256": "339e33dacc59f0eaa2ee643630238d8e010b0ec0a4eb68cc9d3190780f10a23c"
   },
@@ -838,7 +889,7 @@
   },
   {
    "path": "docs/predictive-intelligence/HANDOFF.md",
-   "sha256": "061cb3f1d35c098a5c206dd3208ae3494e25b15270d752608460a0ba1ebf78fc"
+   "sha256": "1d4eee4e80f7c638fc2d34c66b85a11e598191f6c92b99ae0b9445e982f31e47"
   }
  ],
  "limitations": [

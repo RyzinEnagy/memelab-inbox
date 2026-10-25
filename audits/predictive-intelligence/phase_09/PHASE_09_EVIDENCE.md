@@ -97,4 +97,15 @@ sha256 of every file under `audits/predictive-intelligence/phase_09/` except thi
 
 ## Post-commit results
 
-To be recorded after the outputs commit (suite, `python -m memelab social guard`, `python tools/release_audit.py --history` on a single-branch clone, `check_seal.py`, `git status`).
+At the outputs commit `934d2d4` (files in `postcommit/`):
+
+| Check | Command | Result |
+|---|---|---|
+| Suite | `python -m pytest tests -q -p no:cacheprovider` (23:05:56Z to 23:08:43Z) | exit 1, `1 failed, 1272 passed in 166.48s`; only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` |
+| Strays | `git status --short` | `data/reports/20261025_2306_BRETT_0x532f.md`, `data/memelab.sqlite-shm`, `-wal`; removed by hand; `data/memelab.sqlite` sha256 `068287c0...` unchanged |
+| Guard | `python -m memelab social guard` | exit 0, `"violations": []` |
+| Seal | `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | exit 0, `"problems": []` |
+| Release audit | `python tools/release_audit.py --history` on a single-branch clone at `934d2d4` | exit 0, "Needs action: no." |
+| Working tree | `git status --short` | clean |
+
+G27: PASS. The follow-up commit records these results and the hash; it changes no code, test or output.
