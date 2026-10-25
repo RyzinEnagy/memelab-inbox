@@ -67,6 +67,9 @@ P07_SPLITS = {"T1_24h": "0ab64525e04b8664a1cab51c9e24f5fa4f750681d32a5d97bfc5207
 # real-data runs before the recorded run (P22): appended here before the recorded run, never removed
 DEBUG_RUNS: list[str] = [
     "features-only probe before the code commit (about 21:40Z): tech-1 and the version 2 consistency on the 240 labelled development decisions; label rows read for their decision keys only, no label value used, no fit, no metric",
+    "recorded run 1 at d290384 (21:23Z, code committed 21:22:26Z): every configuration of the registry on real labels, the same "
+    "numbers as the recorded run; its P06-T probe counted a value changed only by the moved query time as a trap (1 of 154 "
+    "accepted), repaired in the runner and rerun as the recorded run; outputs overwritten in place (determinism shown by run 3)",
 ]
 COMPARISONS = [(m, "B0") for m in ("B2",) + T.ALL_IDS] + [(m, "B2") for m in T.MODEL_IDS + ("A5_T_B2_TC",)]
 
@@ -194,27 +197,38 @@ def traps(fs, dev_ex_by_target, tsnaps, cards_h):
     out["NC2T"] = {"decisions_with_every_tech_feature": n, "with_a_future_value": val, "refused_by_allowlist": refused_allow,
                    "refused_by_validate_rows": refused_asof, "accepted": accepted, "min_trap_delay_s": min_delay,
                    "pass": accepted == 0 and refused_allow == refused_asof == val and val > 0}
-    # P06-T: cutoff moved to T + 600 s (the candle holding T and the one closing at T become visible)
-    changed = refused6 = accepted6 = 0
+    # P06-T: cutoff moved to T + 600 s (the candle closing at T and the one holding T can become visible). A value that changes
+    # because a candle not available at T entered carries an availability after T and must be refused; a value that changes
+    # only because the query time moved (the last close's age, windows sliding over inputs already available at T) is not a
+    # trap and must pass (repair of recorded run 1, whose probe counted such a value as a trap)
+    late = refused6 = accepted6 = clock_only = clock_only_refused = 0
     nn = 0
     for k, s in sorted(tsnaps.items()):
         if T.row_status(s) is not None:
             continue
         nn += 1
         later = T.technical_as_of(fs, s["chain"], s["mint"], s["decision_time"] + 600, mode="provider")["values"]
-        diff = [c for c in T.TECH if later[c]["value"] != s["values"][c]["value"]]
-        if not diff:
-            continue
-        changed += 1
-        c = diff[0]
-        row = {"decision_time": s["decision_time"], c: later[c]["value"], c + "__available_at": later[c]["available_at"]}
-        try:
-            F.validate_rows([row], columns=list(row), availability=[c + "__available_at"])
-            accepted6 += 1
-        except F.AsOfError:
-            refused6 += 1
-    out["P06T"] = {"decisions_with_every_tech_feature": nn, "values_changed_by_moving_the_cutoff_600s": changed,
-                   "refused": refused6, "accepted": accepted6, "pass": accepted6 == 0 and refused6 == changed}
+        for c in T.TECH:
+            if later[c]["value"] == s["values"][c]["value"]:
+                continue
+            av = later[c]["available_at"] if later[c]["available_at"] is not None else s["decision_time"] + 600
+            row = {"decision_time": s["decision_time"], c: later[c]["value"], c + "__available_at": av}
+            try:
+                F.validate_rows([row], columns=list(row), availability=[c + "__available_at"])
+                ok = True
+            except F.AsOfError:
+                ok = False
+            if av > s["decision_time"]:
+                late += 1
+                refused6 += not ok
+                accepted6 += ok
+            else:
+                clock_only += 1
+                clock_only_refused += not ok
+    out["P06T"] = {"decisions_with_every_tech_feature": nn, "values_using_a_candle_not_available_at_T": late,
+                   "refused": refused6, "accepted": accepted6,
+                   "values_changed_only_by_the_moved_query_time": clock_only, "of_which_refused": clock_only_refused,
+                   "pass": accepted6 == 0 and refused6 == late and late > 0 and clock_only_refused == 0}
     # P13-T: a holdout-start card applied to the earliest development decision
     res = {}
     for target, exs in dev_ex_by_target.items():
@@ -238,16 +252,17 @@ def traps(fs, dev_ex_by_target, tsnaps, cards_h):
     return out
 
 
-def trace(fs, res_by_target, tsnaps, cards_h, info):
+def trace(fs, res_by_target, tsnaps, cards_h, info, *, need_number=False):
     pick = None
     for target in (L.T1B, L.T1, L.T2):
-        rows = sorted([r for r in res_by_target[target]["oos"] if r["example"].tech_status is None],
+        rows = sorted([r for r in res_by_target[target]["oos"] if r["example"].tech_status is None
+                       and (not need_number or math.isfinite(r[T.PRIMARY]))],
                       key=lambda r: (r["example"].decision_time, r["example"].mint))
         if rows:
             pick = (target, rows[0])
             break
     if pick is None:
-        return {"status": "NO_OOS_ROW_WITH_EVERY_TECH_FEATURE"}
+        return {"status": "NO_OOS_ROW_WITH_EVERY_TECH_FEATURE" + ("_AND_A_PRIMARY_NUMBER" if need_number else "")}
     target, row = pick
     e = row["example"]
     s = tsnaps[e.decision_key]
@@ -261,7 +276,9 @@ def trace(fs, res_by_target, tsnaps, cards_h, info):
     out = {"target": target, "decision_key": e.decision_key, "chain": e.chain, "mint": e.mint, "pool_address": s["pool_address"],
            "decision_time": Tt, "decision_time_utc": B._iso(Tt), "decision_time_basis": "EXPORT_COMMIT",
            "row_sha256": info[e.decision_key]["row_sha256"], "label_y": e.y, "fold": row["fold"], "fold_cutoff_utc": fold["cutoff_utc"],
-           "selection_rule": "earliest out-of-sample row of T1b (then T1, T2) by decision time then mint with every tech-1 feature",
+           "selection_rule": ("earliest out-of-sample row of T1b (then T1, T2) by decision time then mint with every tech-1 feature"
+                              + (" and a number from the primary model M2 (second trace, added after recorded run 1 because the "
+                                 "pre-registered row's fold had no fitted technical model)" if need_number else "")),
            "candles_read": [{"start_at": c["start_at"], "end_at": c["end_at"], "available_at": c["available_at"],
                              "retrieved_at": c["retrieved_at"], "available_basis": c["available_basis"], "close": c["c"], "volume_usd": c["v"],
                              "obs_key": c["obs_key"]} for c in cs],
@@ -566,6 +583,7 @@ def main() -> int:
     tdir = ev_dir / "trace"
     tj = trace(fs, res_by_target, tsnaps, cards_h, info)
     write_json(tdir / "FORECAST_TRACE.json", tj)
+    write_json(tdir / "second" / "FORECAST_TRACE.json", trace(fs, res_by_target, tsnaps, cards_h, info, need_number=True))
     if a.npz:
         np.savez(a.npz, **npz)
     store_sha_after = {p: P7.fsha(p) for p in (a.dev_store, a.feature_store)}
