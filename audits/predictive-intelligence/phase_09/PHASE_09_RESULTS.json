@@ -1,0 +1,859 @@
+{
+ "phase": "09",
+ "status": "NEEDS_REVIEW",
+ "provisional": "PROVISIONAL_PENDING_REVISION_REREAD (PI-D-046)",
+ "status_reason": "first pass: every gate item holds on the phase agent's checks; the independent skeptic (PI-D-013) is run by the orchestrator, then a repair pass",
+ "test_only_parts": [
+  "depth_adapter (no collector row exists)",
+  "proposed liquidity and exit labels",
+  "wallet-movement rules (fixtures; real holder classes checked)"
+ ],
+ "head_before": "c7d6a2f",
+ "preregistration_commit": "3079af1",
+ "code_commit": "15bc5b5",
+ "runner_repair_commits": [
+  "a52233c",
+  "18bd243"
+ ],
+ "head_after": null,
+ "registry_sha256": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "onchain_feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+ "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "labels_version": "labels-1",
+ "revision_check_claimed": false,
+ "promotion": "MODEL_NOT_PROMOTED for every model",
+ "results": {
+  "T2_24h": {
+   "B2 vs B0": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.152604",
+    "brier_ref": "0.127496",
+    "bss_vs_ref": "-0.196927",
+    "bss_ci_mint_lo": "-2.049343",
+    "bss_ci_mint_hi": "0.913707",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "R1_OC_RULE vs B0": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.125498",
+    "brier_ref": "0.127496",
+    "bss_vs_ref": "0.015674",
+    "bss_ci_mint_lo": "-0.111919",
+    "bss_ci_mint_hi": "0.308433",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M1_OC_LOGIT vs B0": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.109234",
+    "brier_ref": "0.127496",
+    "bss_vs_ref": "0.143237",
+    "bss_ci_mint_lo": "-0.120801",
+    "bss_ci_mint_hi": "0.737871",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M2_OC_LOGIT_B2 vs B0": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.131480",
+    "brier_ref": "0.127496",
+    "bss_vs_ref": "-0.031247",
+    "bss_ci_mint_lo": "-1.483906",
+    "bss_ci_mint_hi": "0.856907",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M3_OC_LOGIT_TREND vs B0": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.183812",
+    "brier_ref": "0.127496",
+    "bss_vs_ref": "-0.441703",
+    "bss_ci_mint_lo": "-1.752031",
+    "bss_ci_mint_hi": "0.991267",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "A1_OC_B2_TC vs B0": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.152604",
+    "brier_ref": "0.127496",
+    "bss_vs_ref": "-0.196927",
+    "bss_ci_mint_lo": "-2.049343",
+    "bss_ci_mint_hi": "0.913707",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "R1_OC_RULE vs B2": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.125498",
+    "brier_ref": "0.152604",
+    "bss_vs_ref": "0.177623",
+    "bss_ci_mint_lo": "-7.019674",
+    "bss_ci_mint_hi": "0.656972",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M1_OC_LOGIT vs B2": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.109234",
+    "brier_ref": "0.152604",
+    "bss_vs_ref": "0.284198",
+    "bss_ci_mint_lo": "-5.959258",
+    "bss_ci_mint_hi": "0.862851",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M2_OC_LOGIT_B2 vs B2": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.131480",
+    "brier_ref": "0.152604",
+    "bss_vs_ref": "0.138421",
+    "bss_ci_mint_lo": "-0.398749",
+    "bss_ci_mint_hi": "0.192943",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M3_OC_LOGIT_TREND vs B2": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.183812",
+    "brier_ref": "0.152604",
+    "bss_vs_ref": "-0.204504",
+    "bss_ci_mint_lo": "-0.550749",
+    "bss_ci_mint_hi": "0.970456",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M1_OC_LOGIT vs R1_OC_RULE": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.109234",
+    "brier_ref": "0.125498",
+    "bss_vs_ref": "0.129594",
+    "bss_ci_mint_lo": "-0.255568",
+    "bss_ci_mint_hi": "0.684612",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M2_OC_LOGIT_B2 vs R1_OC_RULE": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.131480",
+    "brier_ref": "0.125498",
+    "bss_vs_ref": "-0.047669",
+    "bss_ci_mint_lo": "-1.354533",
+    "bss_ci_mint_hi": "0.793089",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M3_OC_LOGIT_TREND vs R1_OC_RULE": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.183812",
+    "brier_ref": "0.125498",
+    "bss_vs_ref": "-0.464661",
+    "bss_ci_mint_lo": "-1.642337",
+    "bss_ci_mint_hi": "0.987372",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M2_OC_LOGIT_B2 vs A1_OC_B2_TC": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.131480",
+    "brier_ref": "0.152604",
+    "bss_vs_ref": "0.138421",
+    "bss_ci_mint_lo": "-0.398749",
+    "bss_ci_mint_hi": "0.192943",
+    "verdict": "INSUFFICIENT_DAYS"
+   }
+  },
+  "T1_24h": {
+   "B2 vs B0": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.244867",
+    "brier_ref": "0.229726",
+    "bss_vs_ref": "-0.065908",
+    "bss_ci_mint_lo": "-0.246292",
+    "bss_ci_mint_hi": "0.106499",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "R1_OC_RULE vs B0": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.224810",
+    "brier_ref": "0.229726",
+    "bss_vs_ref": "0.021401",
+    "bss_ci_mint_lo": "-0.009940",
+    "bss_ci_mint_hi": "0.052743",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M1_OC_LOGIT vs B0": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.233472",
+    "brier_ref": "0.229726",
+    "bss_vs_ref": "-0.016305",
+    "bss_ci_mint_lo": "-0.271353",
+    "bss_ci_mint_hi": "0.235773",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M2_OC_LOGIT_B2 vs B0": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.245434",
+    "brier_ref": "0.229726",
+    "bss_vs_ref": "-0.068377",
+    "bss_ci_mint_lo": "-0.364815",
+    "bss_ci_mint_hi": "0.175955",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M3_OC_LOGIT_TREND vs B0": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.239312",
+    "brier_ref": "0.229726",
+    "bss_vs_ref": "-0.041728",
+    "bss_ci_mint_lo": "-0.373640",
+    "bss_ci_mint_hi": "0.254135",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "A1_OC_B2_TC vs B0": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.244867",
+    "brier_ref": "0.229726",
+    "bss_vs_ref": "-0.065908",
+    "bss_ci_mint_lo": "-0.246292",
+    "bss_ci_mint_hi": "0.106499",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "R1_OC_RULE vs B2": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.224810",
+    "brier_ref": "0.244867",
+    "bss_vs_ref": "0.081910",
+    "bss_ci_mint_lo": "-0.106155",
+    "bss_ci_mint_hi": "0.216933",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M1_OC_LOGIT vs B2": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.233472",
+    "brier_ref": "0.244867",
+    "bss_vs_ref": "0.046536",
+    "bss_ci_mint_lo": "-0.131813",
+    "bss_ci_mint_hi": "0.218030",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M2_OC_LOGIT_B2 vs B2": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.245434",
+    "brier_ref": "0.244867",
+    "bss_vs_ref": "-0.002317",
+    "bss_ci_mint_lo": "-0.162005",
+    "bss_ci_mint_hi": "0.136285",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M3_OC_LOGIT_TREND vs B2": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.239312",
+    "brier_ref": "0.244867",
+    "bss_vs_ref": "0.022685",
+    "bss_ci_mint_lo": "-0.247624",
+    "bss_ci_mint_hi": "0.262984",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M1_OC_LOGIT vs R1_OC_RULE": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.233472",
+    "brier_ref": "0.224810",
+    "bss_vs_ref": "-0.038530",
+    "bss_ci_mint_lo": "-0.309483",
+    "bss_ci_mint_hi": "0.225469",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M2_OC_LOGIT_B2 vs R1_OC_RULE": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.245434",
+    "brier_ref": "0.224810",
+    "bss_vs_ref": "-0.091741",
+    "bss_ci_mint_lo": "-0.403945",
+    "bss_ci_mint_hi": "0.166530",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M3_OC_LOGIT_TREND vs R1_OC_RULE": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.239312",
+    "brier_ref": "0.224810",
+    "bss_vs_ref": "-0.064509",
+    "bss_ci_mint_lo": "-0.415429",
+    "bss_ci_mint_hi": "0.251763",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M2_OC_LOGIT_B2 vs A1_OC_B2_TC": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.245434",
+    "brier_ref": "0.244867",
+    "bss_vs_ref": "-0.002317",
+    "bss_ci_mint_lo": "-0.162005",
+    "bss_ci_mint_hi": "0.136285",
+    "verdict": "INSUFFICIENT_DAYS"
+   }
+  },
+  "T1b_6h": {
+   "B2 vs B0": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.059460",
+    "brier_ref": "0.066669",
+    "bss_vs_ref": "0.108133",
+    "bss_ci_mint_lo": "-0.127161",
+    "bss_ci_mint_hi": "0.218790",
+    "verdict": "INSUFFICIENT_EVENTS"
+   },
+   "R1_OC_RULE vs B0": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.068447",
+    "brier_ref": "0.066669",
+    "bss_vs_ref": "-0.026672",
+    "bss_ci_mint_lo": "-0.210082",
+    "bss_ci_mint_hi": "0.050127",
+    "verdict": "INSUFFICIENT_EVENTS"
+   },
+   "M1_OC_LOGIT vs B0": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.071816",
+    "brier_ref": "0.066669",
+    "bss_vs_ref": "-0.077209",
+    "bss_ci_mint_lo": "-0.440788",
+    "bss_ci_mint_hi": "0.136635",
+    "verdict": "INSUFFICIENT_EVENTS"
+   },
+   "M2_OC_LOGIT_B2 vs B0": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.065444",
+    "brier_ref": "0.066669",
+    "bss_vs_ref": "0.018368",
+    "bss_ci_mint_lo": "-0.443338",
+    "bss_ci_mint_hi": "0.202722",
+    "verdict": "INSUFFICIENT_EVENTS"
+   },
+   "M3_OC_LOGIT_TREND vs B0": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.076347",
+    "brier_ref": "0.066669",
+    "bss_vs_ref": "-0.145163",
+    "bss_ci_mint_lo": "-1.706682",
+    "bss_ci_mint_hi": "0.275186",
+    "verdict": "INSUFFICIENT_EVENTS"
+   },
+   "A1_OC_B2_TC vs B0": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.059460",
+    "brier_ref": "0.066669",
+    "bss_vs_ref": "0.108133",
+    "bss_ci_mint_lo": "-0.127161",
+    "bss_ci_mint_hi": "0.218790",
+    "verdict": "INSUFFICIENT_EVENTS"
+   },
+   "R1_OC_RULE vs B2": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.068447",
+    "brier_ref": "0.059460",
+    "bss_vs_ref": "-0.151150",
+    "bss_ci_mint_lo": "-0.375822",
+    "bss_ci_mint_hi": "0.018444",
+    "verdict": "INSUFFICIENT_EVENTS"
+   },
+   "M1_OC_LOGIT vs B2": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.071816",
+    "brier_ref": "0.059460",
+    "bss_vs_ref": "-0.207814",
+    "bss_ci_mint_lo": "-0.570124",
+    "bss_ci_mint_hi": "0.063317",
+    "verdict": "INSUFFICIENT_EVENTS"
+   },
+   "M2_OC_LOGIT_B2 vs B2": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.065444",
+    "brier_ref": "0.059460",
+    "bss_vs_ref": "-0.100648",
+    "bss_ci_mint_lo": "-0.415906",
+    "bss_ci_mint_hi": "0.082546",
+    "verdict": "INSUFFICIENT_EVENTS"
+   },
+   "M3_OC_LOGIT_TREND vs B2": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.076347",
+    "brier_ref": "0.059460",
+    "bss_vs_ref": "-0.284007",
+    "bss_ci_mint_lo": "-1.746864",
+    "bss_ci_mint_hi": "0.161510",
+    "verdict": "INSUFFICIENT_EVENTS"
+   },
+   "M1_OC_LOGIT vs R1_OC_RULE": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.071816",
+    "brier_ref": "0.068447",
+    "bss_vs_ref": "-0.049224",
+    "bss_ci_mint_lo": "-0.265264",
+    "bss_ci_mint_hi": "0.111626",
+    "verdict": "INSUFFICIENT_EVENTS"
+   },
+   "M2_OC_LOGIT_B2 vs R1_OC_RULE": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.065444",
+    "brier_ref": "0.068447",
+    "bss_vs_ref": "0.043871",
+    "bss_ci_mint_lo": "-0.252816",
+    "bss_ci_mint_hi": "0.199242",
+    "verdict": "INSUFFICIENT_EVENTS"
+   },
+   "M3_OC_LOGIT_TREND vs R1_OC_RULE": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.076347",
+    "brier_ref": "0.068447",
+    "bss_vs_ref": "-0.115413",
+    "bss_ci_mint_lo": "-1.420493",
+    "bss_ci_mint_hi": "0.276394",
+    "verdict": "INSUFFICIENT_EVENTS"
+   },
+   "M2_OC_LOGIT_B2 vs A1_OC_B2_TC": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.065444",
+    "brier_ref": "0.059460",
+    "bss_vs_ref": "-0.100648",
+    "bss_ci_mint_lo": "-0.415906",
+    "bss_ci_mint_hi": "0.082546",
+    "verdict": "INSUFFICIENT_EVENTS"
+   }
+  }
+ },
+ "checks": [
+  {
+   "name": "G1 package checksums",
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "exit_code": 0,
+   "result": "41 OK",
+   "pass": true
+  },
+  {
+   "name": "G2 entry suite at c7d6a2f",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "1 failed, 1229 passed in 169.59s (known failure only)",
+   "pass": true
+  },
+  {
+   "name": "G2 entry seal",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "G3 pre-registration before any fit",
+   "input": "3079af1 at 2026-10-25T22:37:55Z; first real-label run 22:54:40Z",
+   "result": "ordered",
+   "pass": true
+  },
+  {
+   "name": "G4/G25 phase tests",
+   "command": "python -m pytest tests/test_predictive_onchain.py -q -p no:cacheprovider",
+   "exit_code": 0,
+   "result": "43 passed",
+   "pass": true
+  },
+  {
+   "name": "G25 mutation probe",
+   "command": "python -B audits/predictive-intelligence/phase_09/probes/mutation_onchain.py OUT.json",
+   "exit_code": 0,
+   "result": "55 of 55 caught",
+   "pass": true
+  },
+  {
+   "name": "G6 version 2 consistency",
+   "input": "evidence/v2_consistency.json",
+   "result": "240 of 240 equal",
+   "pass": true
+  },
+  {
+   "name": "G7 Phase 07 folds and B0/B2",
+   "input": "evidence/phase07_equality.json",
+   "result": "split fingerprints equal, 0 of 76 differences",
+   "pass": true
+  },
+  {
+   "name": "G10 verdicts",
+   "input": "experiments/ONCHAIN_METRICS.csv",
+   "result": "every verdict INSUFFICIENT_DAYS or INSUFFICIENT_EVENTS",
+   "pass": true
+  },
+  {
+   "name": "G12 traps",
+   "input": "evidence/traps.json",
+   "result": {
+    "CX09": true,
+    "NC2OC": true,
+    "P13OC": true,
+    "P36OC": true
+   },
+   "pass": true
+  },
+  {
+   "name": "G16 oracle newton-cholesky 1e-9",
+   "command": "/home/claude/pi_research/venvs/p04_bundle/bin/python -B audits/predictive-intelligence/phase_09/probes/sklearn_crosscheck_onchain.py run3.npz OUT.json",
+   "exit_code": 0,
+   "result": "48 real designs, max 1.75e-11; Prep 5.8e-15",
+   "pass": true
+  },
+  {
+   "name": "G17 recorded run",
+   "command": "python -B audits/predictive-intelligence/phase_09/probes/run_onchain.py OUT --npz NPZ",
+   "exit_code": 0,
+   "result": "at 18bd243; socket events 0; stores unchanged",
+   "pass": true
+  },
+  {
+   "name": "G17 determinism",
+   "input": "evidence/determinism.json",
+   "result": "identical except run log and trace latency",
+   "pass": true
+  },
+  {
+   "name": "G18 collector state",
+   "input": "evidence/collector_state.json",
+   "result": "COLLECTOR_NOT_AVAILABLE (adapter TEST_ONLY)",
+   "pass": true
+  },
+  {
+   "name": "G23 trace",
+   "command": "python -B audits/predictive-intelligence/phase_09/probes/verify_trace_onchain.py evidence/trace/FORECAST_TRACE.json",
+   "exit_code": 0,
+   "result": "0 differences, 4 invalid inputs refused",
+   "pass": true
+  },
+  {
+   "name": "G24 search ledger",
+   "input": "experiments/SEARCH_LEDGER.csv",
+   "result": "1804 rows; 3 real-data debug runs logged",
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/phase_09/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "eb9cb3e14840f06983059a14fa68524c717e3edb48787d93f87e86671d77dc7d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/SKEPTIC_PACKET.md",
+   "sha256": "82bfea25732ae46b1306d3bf048bc5337a111b84641e9d01350d1d953a77386b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/T1_24h/A1_OC_B2_TC.json",
+   "sha256": "f0c041adfc96f946037e53a8f167cbb10eeca3b5a3e72532a8ea493a24a8a55e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/T1_24h/M1_OC_LOGIT.json",
+   "sha256": "8eaf15575399eae5084a2ea9383420dba2807b3686b504b18bce619c94924de6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/T1_24h/M2_OC_LOGIT_B2.json",
+   "sha256": "6fc65eee759237020445f85cd7f60d312f111bcb4eaff5290f5486f0aab57bad"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/T1_24h/M3_OC_LOGIT_TREND.json",
+   "sha256": "94c14d0468820610f82597188238b3c3e00194f3d6900d169d5233805c6663d1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/T1_24h/R1_OC_RULE.json",
+   "sha256": "0d4ca221b2b328512f23c680021334e5862c5ce65cf13b3bcf4acd255ca742ef"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/T1b_6h/A1_OC_B2_TC.json",
+   "sha256": "d33f731cce3f03490acf681545fc5f9743ab498f76ce976932cd7442c52c4785"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/T1b_6h/M1_OC_LOGIT.json",
+   "sha256": "326c969a72760400713a72365f9a9a40e14a8ceac38039b319524cb4f8813526"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/T1b_6h/M2_OC_LOGIT_B2.json",
+   "sha256": "9fb8949ddcd361e436bac53ecf8c8fbddafc98d13faca0777caa381134e86e7d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/T1b_6h/M3_OC_LOGIT_TREND.json",
+   "sha256": "3d518796c04f1da391c4671370a5f1350c131013ec0687da4b6c0385d0b82508"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/T1b_6h/R1_OC_RULE.json",
+   "sha256": "05f5cb2a0d9e6fe4a93cc33fb18f6c88d943e88517f63142636e6a7cdad46ef3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/T2_24h/A1_OC_B2_TC.json",
+   "sha256": "7407de8e2a0d5c48baf5488b6b082002e40ab01e61902fdb9b2c55dff08c2251"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/T2_24h/M1_OC_LOGIT.json",
+   "sha256": "96e4751e94d1ca0174490be4f8649e9b23132081b9b46bc03ee2d8375a846a6a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/T2_24h/M2_OC_LOGIT_B2.json",
+   "sha256": "ece506d97267351214c8050e86fbbab0a7f3c6d07e2f4fe16a5e6cf2e1f1227d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/T2_24h/M3_OC_LOGIT_TREND.json",
+   "sha256": "b275183936ada36a770b2c7608e0d27b075894be2ed4847ffd5a5f169bd6a0a0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/T2_24h/R1_OC_RULE.json",
+   "sha256": "e971ff6c48380a49d84497fd388550970a87d804ebd525f76940d217169b02ad"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/folds/T1_24h.json",
+   "sha256": "1aa4fdb908486e717e7674b5a465bb3388dcadd3b40863f42fd22d7ef436b998"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/folds/T1b_6h.json",
+   "sha256": "9a22200a2997e7652acc3fc6b4dc2f3d8e85cd41f63889c17d605201f8cfa6c4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/artifacts/folds/T2_24h.json",
+   "sha256": "07c35fd1024063d43f11b64b8348d0edd0b39c1d3ffcc665cd216c78f57484e0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/data/SOURCE_LEDGER.md",
+   "sha256": "bed8ab661f92fac818a6ad2fcecac26fd2dcc160917824d30a5431c2d80b4146"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/evidence/collector_state.json",
+   "sha256": "e7fc837d3691bea0c3ebf059c541f9a149754fa9870f92a97bd7c32f5f6fc01e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/evidence/crosschecks.json",
+   "sha256": "69e64a4b9cfcb589b0a1056b183969cf92dac3d495cb8a3cdc18530d27d3b433"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/evidence/determinism.json",
+   "sha256": "ec5577310a29e45119a8e7d3d93a6b646bb5d8039f07ace51544f836deb3ef22"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/evidence/folds.json",
+   "sha256": "40f7d790df8a89bcb6e6658cd361b94059e88a17addf6484667d5113b0235550"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/evidence/mutation_onchain.json",
+   "sha256": "09c61008dc49a9de94fb2e0b921aa22d18d781a887d7460f5d267cec1e8e8417"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/evidence/phase07_equality.json",
+   "sha256": "c9169da7ef0a0271061bc8a9000ab96f4cc4b3bd412bc19dbc7fc853008f851b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/evidence/run_log.json",
+   "sha256": "3b2639b0bacb63becc5beaeb5f5b8698af1a26b2f052082738b60e5748a72854"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/evidence/serialization_smoke.json",
+   "sha256": "3b757886f7f99834feca99418aae9258be943494ce4332bfb541a001c62396a6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/evidence/sklearn_crosscheck.json",
+   "sha256": "9e8444cf64c1f63104ed21937daf0a12401393652e728c2b389c5571fc64f0bb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/evidence/trace/FORECAST_TRACE.json",
+   "sha256": "a9ef3437b1566dbeaf8c50fc9e9b8620ccce7d0fe61f13ef35715cec9993e262"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/evidence/trace/FORECAST_TRACE.md",
+   "sha256": "fd0d9acc4e60f56853ba68147aef10e1690059e641429c90d90587793f85a34f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/evidence/trace/verify_trace.json",
+   "sha256": "ed6f194f56dbb2da5070105d5769efa88168ff3e4f6cf73f8fb864f882b78ef6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/evidence/traps.json",
+   "sha256": "142cb362c4c9da9d28404ec6aa035d1fd89cd36d92941c80197695ac3bb2f6ad"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/evidence/v2_consistency.json",
+   "sha256": "d7f4dc79cb56b0de9539cdc1ea53182ff14c2d16d6b9b07085b9bebe3fab5ba5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/experiments/EARLY_WARNING.csv",
+   "sha256": "23b377dd2ec95f74de906631719e7f9b032c6ff78bd9e6b5fc5bcd818566652b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/experiments/EARLY_WARNING_COHORTS.csv",
+   "sha256": "5e0ded626ccf58ef213da82d421d2ef0623109fe99bb838f116c5f544bdbd984"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/experiments/EXPERIMENT_REGISTRY.csv",
+   "sha256": "258c7e146797784c804b86adc4bc8a24f4c88c9143c52a1a2f0bd4a1b1f68106"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/experiments/NC1OC_SEEDS.csv",
+   "sha256": "617dfcad4ddfdac80c2c593b7ee47ad83d14d3196a9ac50c8f2fcc35f5de22d7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/experiments/ONCHAIN_COVERAGE.csv",
+   "sha256": "711718565320dc81e9626959e5d5d99aaeac13752615daad3b952f55be519dc2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/experiments/ONCHAIN_FEATURES_DEVELOPMENT.csv",
+   "sha256": "2367fc1d5285944accf7ef0a84dc0f2a68ce3b5c412be9afec9df74d23add876"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/experiments/ONCHAIN_METRICS.csv",
+   "sha256": "3541219266e9a89fabbdcd2d9386f57fafcbadbb951b9b7be73db1729f5b6467"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/experiments/OOS_PREDICTIONS.csv",
+   "sha256": "a44677f83bd5383422ec139f7ae730c82592b8d780dd6ffcac9fdf0bd5521e68"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/experiments/PARSE_COVERAGE_BY_DAY.csv",
+   "sha256": "93dac7010ccef6018e5cfc02d3a073e891b5597705ea47812283389846662be7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/experiments/RULES_VS_MODEL.csv",
+   "sha256": "2c254936ab2b37e144ee7413d5f2e2f2cedfdff2e437f21fe8d6b23aad7b6dc2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/experiments/SEARCH_LEDGER.csv",
+   "sha256": "745dac85c85bb6945949d5774b776d6199c443ad7db79cded0c81c5f34d7a084"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/models/LIQUIDITY_TARGET_PROPOSALS.md",
+   "sha256": "76b8d17f234f52f8c15644de25ad63d28cfbdbc2580ed47d250ceee8b2e039bd"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/models/ONCHAIN_LIQUIDITY_CARD.md",
+   "sha256": "f05f932de32a71661a616edb75f82516a139cc440f8d5178fa28ef2550f34400"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/probes/mutation_onchain.py",
+   "sha256": "339e33dacc59f0eaa2ee643630238d8e010b0ec0a4eb68cc9d3190780f10a23c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/probes/run_onchain.py",
+   "sha256": "63ce083c93ebe652e1abda7753b7e4febdc8d3914e345d504635b5a5ebd9f773"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/probes/sklearn_crosscheck_onchain.py",
+   "sha256": "3cbb2e91d5e79ac6bf7653977b1b148beae7c2d25c25744611e42e27a7bd80dc"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/probes/verify_trace_onchain.py",
+   "sha256": "12c2f235beda02a3239044a2d27af75d54104e48de3fb738e73dfea462c199bb"
+  },
+  {
+   "path": "memelab/predictive/onchain.py",
+   "sha256": "05ca87c536d9c8bd039448c7304c03d9f23a1ec5eec2e1aadf5ffe2c001513c8"
+  },
+  {
+   "path": "memelab/predictive/depth_adapter.py",
+   "sha256": "1be7095d314c1496cd0d7bfdbddbce95fdfadff270870676302d8f3baa8b10c4"
+  },
+  {
+   "path": "tests/test_predictive_onchain.py",
+   "sha256": "c71ff125d3b434357de37d0032bbc5ad3f0e5e66372c958e0d832849ffe641f9"
+  },
+  {
+   "path": "tests/fixtures/predictive/bt_depth_schema_v2.sql",
+   "sha256": "8178e0073702f4a2fc039544bc35eeafbb573efcfc975d093c852f70a4d1572a"
+  },
+  {
+   "path": "docs/predictive-intelligence/DECISIONS.md",
+   "sha256": "8a364d1e971e3f080922066f6af89819c2076fe02ed921df39fb53eb33d737d1"
+  },
+  {
+   "path": "docs/predictive-intelligence/ROADMAP.md",
+   "sha256": "41c40bf16992d9a7e280e0b18b9ab88c32a6b73cb4c4de1ab18d9fa6dc0bb130"
+  },
+  {
+   "path": "docs/predictive-intelligence/HANDOFF.md",
+   "sha256": "061cb3f1d35c098a5c206dd3208ae3494e25b15270d752608460a0ba1ebf78fc"
+  }
+ ],
+ "limitations": [
+  "no historical depth, quotes, swaps, holders, wallet flows or authority histories exist for the decisions; nothing substituted",
+  "on-chain readings are the lab's module outputs at its collector time (capture delay up to 21.6 h), not chain reads at the decision; rationale text is version dependent (PI-D-008)",
+  "authority features have no variance in development (0 of 240 active)",
+  "T2 has 8 out-of-sample rows with 1 positive on 1 day; T1 3 days; T1b 3 positives: every verdict INSUFFICIENT",
+  "collector adapter, proposals and wallet rules are fixture-only (TEST_ONLY); the collector's decision timing walk differs from the predictive one and the link rate is unmeasured",
+  "real swap cross-check cannot verify a transaction on chain (10-character signatures, no pool per trade)",
+  "every number provisional until Phase 06's 48 h re-read"
+ ],
+ "blockers": [
+  "independent skeptic and repair pass (orchestrator)",
+  "forward depth collector not deployed (PI-D-044)"
+ ],
+ "approvals_needed": [],
+ "next_eligible_phase": "none until the Phase 09 skeptic review and repair pass; then 10 if the orchestrator records PASS"
+}

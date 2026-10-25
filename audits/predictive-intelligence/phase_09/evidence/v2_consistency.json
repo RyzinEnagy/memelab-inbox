@@ -1,0 +1,9 @@
+{
+ "compared": [
+  "adj_top10",
+  "ln(1 + liquidity)",
+  "ln(1 + exit_cap_3pct)"
+ ],
+ "decisions_checked": 240,
+ "inconsistent": {}
+}

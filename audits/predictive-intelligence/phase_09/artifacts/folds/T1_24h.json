@@ -1,0 +1,1998 @@
+{
+ "folds": [
+  {
+   "cards": {
+    "A1_OC_B2_TC": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.4416907041747248,
+        -0.17908848080132803,
+        0.01481300684509097,
+        -0.17973841368813193,
+        -1.0452771147959485
+       ],
+       "intercept": -1.3916125206481844,
+       "n_iter": 7
+      },
+      "prep": {
+       "ind": [],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4
+       ],
+       "med": [
+        12.222486804999999,
+        15.135674615,
+        13.68726056,
+        1.0,
+        2.6141129069716236
+       ],
+       "mu": [
+        11.71747570839423,
+        15.139161210365385,
+        13.736981649259615,
+        0.5384615384615384,
+        2.809831316510275
+       ],
+       "n_in": 5,
+       "sd": [
+        2.5393545803725246,
+        2.9216447008973163,
+        1.8635258260294145,
+        0.4985185152621431,
+        2.0006542484006977
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "oc_structural_fatal",
+        "oc_distribution_fatal"
+       ]
+      },
+      "train_prediction_sd": 0.13406110007663297
+     },
+     "data_snapshot_sha": "bd57098ec1002fb46cc9ae9099362eb0f8dcdaa0b33328f502f80797753a3d29",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 25,
+     "kind": "A1_OC_B2_TC",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "A1_OC_B2_TC:price_path_target_before_invalidation_24h",
+     "model_sha": "3e9166c27f91771f31ad7a5387f1df0a3f577250be12706e6e92c28cfb0107a0",
+     "n_train": 104,
+     "n_used": 104,
+     "onchain_version": "onchain-1",
+     "phase": "09",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    },
+    "M1_OC_LOGIT": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        -0.15453256948300553,
+        0.009380407506828595,
+        0.5374830910414906,
+        0.8692120285098668,
+        -0.12529512722759223,
+        -0.436758102139028,
+        -0.07424170564146355,
+        0.24759566767401617,
+        -0.48308466096098995,
+        -0.7546954696862269,
+        -0.18829641388581211
+       ],
+       "intercept": -1.558027219393446,
+       "n_iter": 8
+      },
+      "prep": {
+       "ind": [
+        3,
+        4,
+        5
+       ],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+       ],
+       "med": [
+        0.0,
+        0.0,
+        1.0,
+        65.0,
+        0.01860649089,
+        3.1,
+        20.368279514999998,
+        1.0
+       ],
+       "mu": [
+        0.41346153846153844,
+        0.10576923076923077,
+        1.125,
+        59.58653846153846,
+        0.017881771467086534,
+        5.071153846153846,
+        21.381220339629905,
+        1.1346153846153846,
+        0.057692307692307696,
+        0.07692307692307693,
+        0.019230769230769232
+       ],
+       "n_in": 8,
+       "sd": [
+        0.49245415489622607,
+        0.30754203060998997,
+        0.6605286344459844,
+        35.52778180980968,
+        0.012340935212188304,
+        8.087593455373996,
+        16.075640432730395,
+        0.5199425320998374,
+        0.23316068563427192,
+        0.26646935501059654,
+        0.13733516208736252
+       ]
+      },
+      "spec": {
+       "columns": [
+        "oc_structural_fatal",
+        "oc_distribution_fatal",
+        "oc_lp_risk_ord",
+        "oc_lp_locked_pct",
+        "oc_exit_cap_share",
+        "oc_largest_unexplained_pct",
+        "thesis_adj_top10_pct",
+        "oc_wash_ord"
+       ],
+       "kind": "logit",
+       "rows": [
+        "oc_structural_fatal",
+        "oc_distribution_fatal"
+       ]
+      },
+      "train_prediction_sd": 0.1711892491371388
+     },
+     "data_snapshot_sha": "bd57098ec1002fb46cc9ae9099362eb0f8dcdaa0b33328f502f80797753a3d29",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 25,
+     "kind": "M1_OC_LOGIT",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "M1_OC_LOGIT:price_path_target_before_invalidation_24h",
+     "model_sha": "ba11784d77f9a124835829e52e80a14307ba345cff5f2b7ae546aa4bb32b3d33",
+     "n_train": 104,
+     "n_used": 104,
+     "onchain_version": "onchain-1",
+     "phase": "09",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    },
+    "M2_OC_LOGIT_B2": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.30790940822887014,
+        -0.3323448870542832,
+        0.41345346195273736,
+        -0.5079561336006388,
+        -0.7236071028812754,
+        0.28000656292203974,
+        0.24580273735881975,
+        0.5153229162748459,
+        0.8518140075730407,
+        0.038083665634148695,
+        -0.18801449547294238,
+        0.07299370603402598,
+        0.15277156551142151,
+        -0.5046910922834363,
+        -0.6701207905914665,
+        -0.09506992395466146
+       ],
+       "intercept": -1.7487015671069788,
+       "n_iter": 9
+      },
+      "prep": {
+       "ind": [
+        8,
+        9,
+        10
+       ],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+       ],
+       "med": [
+        12.222486804999999,
+        15.135674615,
+        13.68726056,
+        1.0,
+        2.6141129069716236,
+        0.0,
+        0.0,
+        1.0,
+        65.0,
+        0.01860649089,
+        3.1,
+        20.368279514999998,
+        1.0
+       ],
+       "mu": [
+        11.71747570839423,
+        15.139161210365385,
+        13.736981649259615,
+        0.5384615384615384,
+        2.809831316510275,
+        0.41346153846153844,
+        0.10576923076923077,
+        1.125,
+        59.58653846153846,
+        0.017881771467086534,
+        5.071153846153846,
+        21.381220339629905,
+        1.1346153846153846,
+        0.057692307692307696,
+        0.07692307692307693,
+        0.019230769230769232
+       ],
+       "n_in": 13,
+       "sd": [
+        2.5393545803725246,
+        2.9216447008973163,
+        1.8635258260294145,
+        0.4985185152621431,
+        2.0006542484006977,
+        0.49245415489622607,
+        0.30754203060998997,
+        0.6605286344459844,
+        35.52778180980968,
+        0.012340935212188304,
+        8.087593455373996,
+        16.075640432730395,
+        0.5199425320998374,
+        0.23316068563427192,
+        0.26646935501059654,
+        0.13733516208736252
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "oc_structural_fatal",
+        "oc_distribution_fatal",
+        "oc_lp_risk_ord",
+        "oc_lp_locked_pct",
+        "oc_exit_cap_share",
+        "oc_largest_unexplained_pct",
+        "thesis_adj_top10_pct",
+        "oc_wash_ord"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "oc_structural_fatal",
+        "oc_distribution_fatal"
+       ]
+      },
+      "train_prediction_sd": 0.18722890947488102
+     },
+     "data_snapshot_sha": "bd57098ec1002fb46cc9ae9099362eb0f8dcdaa0b33328f502f80797753a3d29",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 25,
+     "kind": "M2_OC_LOGIT_B2",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "M2_OC_LOGIT_B2:price_path_target_before_invalidation_24h",
+     "model_sha": "0ba3346bd2aadc71a9280b7ccce55859807acbd5bb463036ebdbff01d359f0af",
+     "n_train": 104,
+     "n_used": 104,
+     "onchain_version": "onchain-1",
+     "phase": "09",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    },
+    "M3_OC_LOGIT_TREND": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.44075330934389967,
+        -0.3663213736180557,
+        0.38841002541881126,
+        -0.570794236205037,
+        -0.7120841285002382,
+        0.27137439610136216,
+        0.2367590029278794,
+        0.5368683666292985,
+        0.7703273880122232,
+        -0.0056695779444924845,
+        -0.22664505127143175,
+        0.13613548692162825,
+        0.15564786827710828,
+        -0.2991941200617708,
+        -0.1879453323127023,
+        0.012330015278876335,
+        -0.2779594378026936,
+        -0.5187212664022883,
+        -0.6718984926208754,
+        -0.10032187518937317,
+        0.10778184941904666,
+        0.015999763232913848,
+        0.10778184941904666,
+        0.10327300795489118
+       ],
+       "intercept": -1.8008312398397623,
+       "n_iter": 9
+      },
+      "prep": {
+       "ind": [
+        8,
+        9,
+        10,
+        13,
+        14,
+        15,
+        16
+       ],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+       ],
+       "med": [
+        12.222486804999999,
+        15.135674615,
+        13.68726056,
+        1.0,
+        2.6141129069716236,
+        0.0,
+        0.0,
+        1.0,
+        65.0,
+        0.01860649089,
+        3.1,
+        20.368279514999998,
+        1.0,
+        0.002955467388,
+        0.04905687398,
+        -3.4203291185e-05,
+        0.0
+       ],
+       "mu": [
+        11.71747570839423,
+        15.139161210365385,
+        13.736981649259615,
+        0.5384615384615384,
+        2.809831316510275,
+        0.41346153846153844,
+        0.10576923076923077,
+        1.125,
+        59.58653846153846,
+        0.017881771467086534,
+        5.071153846153846,
+        21.381220339629905,
+        1.1346153846153846,
+        0.006040900011167306,
+        0.15806641206336536,
+        -0.40548152435296014,
+        0.28846153846153844,
+        0.057692307692307696,
+        0.07692307692307693,
+        0.019230769230769232,
+        0.7692307692307693,
+        0.7884615384615384,
+        0.7692307692307693,
+        0.7788461538461539
+       ],
+       "n_in": 17,
+       "sd": [
+        2.5393545803725246,
+        2.9216447008973163,
+        1.8635258260294145,
+        0.4985185152621431,
+        2.0006542484006977,
+        0.49245415489622607,
+        0.30754203060998997,
+        0.6605286344459844,
+        35.52778180980968,
+        0.012340935212188304,
+        8.087593455373996,
+        16.075640432730395,
+        0.5199425320998374,
+        0.11278401089575855,
+        0.7696142057459369,
+        4.252020186945962,
+        3.236430479482096,
+        0.23316068563427192,
+        0.26646935501059654,
+        0.13733516208736252,
+        0.42132504423474315,
+        0.4083992419537558,
+        0.42132504423474315,
+        0.4150238818251392
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "oc_structural_fatal",
+        "oc_distribution_fatal",
+        "oc_lp_risk_ord",
+        "oc_lp_locked_pct",
+        "oc_exit_cap_share",
+        "oc_largest_unexplained_pct",
+        "thesis_adj_top10_pct",
+        "oc_wash_ord",
+        "oc_d_log1p_liquidity",
+        "oc_d_log1p_exit_cap",
+        "oc_d_adj_top10_pp",
+        "oc_d_lp_locked_pp"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "oc_structural_fatal",
+        "oc_distribution_fatal"
+       ]
+      },
+      "train_prediction_sd": 0.1976031462507921
+     },
+     "data_snapshot_sha": "bd57098ec1002fb46cc9ae9099362eb0f8dcdaa0b33328f502f80797753a3d29",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 25,
+     "kind": "M3_OC_LOGIT_TREND",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "M3_OC_LOGIT_TREND:price_path_target_before_invalidation_24h",
+     "model_sha": "230b3d2c7605e30f9e3c6cdd2b4b1a4aa6e75b8ee3a7fd4e882746ebd5912b9b",
+     "n_train": 104,
+     "n_used": 104,
+     "onchain_version": "onchain-1",
+     "phase": "09",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    },
+    "R1_OC_RULE": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "b0": 0.2403846153846154,
+      "cells": {
+       "S0D0": {
+        "k": 13,
+        "n": 55,
+        "p": 0.2374358974358974
+       },
+       "S0D1": {
+        "k": 0,
+        "n": 6,
+        "p": 0.1849112426035503
+       },
+       "S1D0": {
+        "k": 10,
+        "n": 38,
+        "p": 0.2553050397877984
+       },
+       "S1D1": {
+        "k": 2,
+        "n": 5,
+        "p": 0.2723076923076923
+       }
+      },
+      "m": 20.0,
+      "spec": {
+       "columns": [
+        "oc_structural_fatal",
+        "oc_distribution_fatal"
+       ],
+       "kind": "rule",
+       "rows": []
+      }
+     },
+     "data_snapshot_sha": "bd57098ec1002fb46cc9ae9099362eb0f8dcdaa0b33328f502f80797753a3d29",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 25,
+     "kind": "R1_OC_RULE",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "R1_OC_RULE:price_path_target_before_invalidation_24h",
+     "model_sha": "e1df055a236bd5da4ab6288f181b45d6c4af9a7b51eafab1277fd01e7c1f9afc",
+     "n_train": 104,
+     "n_used": 104,
+     "onchain_version": "onchain-1",
+     "phase": "09",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    }
+   },
+   "cutoff_utc": "2026-10-13T00:00:00Z",
+   "fold": 0
+  },
+  {
+   "cards": {
+    "A1_OC_B2_TC": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.48181958481152776,
+        -0.19874190852006546,
+        0.044492699712456965,
+        -0.21009710281254051,
+        -1.1403489510930087
+       ],
+       "intercept": -1.4829296754744317,
+       "n_iter": 7
+      },
+      "prep": {
+       "ind": [],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4
+       ],
+       "med": [
+        12.30440178,
+        15.135674615,
+        13.640752710000001,
+        1.0,
+        2.6921336816958745
+       ],
+       "mu": [
+        11.759683566276786,
+        15.144637649535714,
+        13.724763990205357,
+        0.5178571428571429,
+        2.86117344113833
+       ],
+       "n_in": 5,
+       "sd": [
+        2.4772312581050997,
+        2.8506411210868254,
+        1.8198369018174492,
+        0.4996810207011865,
+        2.000918369460668
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "oc_structural_fatal",
+        "oc_distribution_fatal"
+       ]
+      },
+      "train_prediction_sd": 0.13843920981436542
+     },
+     "data_snapshot_sha": "34fa216172a82834825b3453fa65e68388b006607644fe3829915b4b331f4c5b",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 26,
+     "kind": "A1_OC_B2_TC",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "A1_OC_B2_TC:price_path_target_before_invalidation_24h",
+     "model_sha": "075c1ddf1d0d4059429f9b3cd22bc2699a4616585812b3d1bb361e2fd65121f1",
+     "n_train": 112,
+     "n_used": 112,
+     "onchain_version": "onchain-1",
+     "phase": "09",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "M1_OC_LOGIT": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        -0.1780752676801937,
+        0.030728491265563943,
+        0.552475892309155,
+        0.7685477190368003,
+        -0.1443670614573117,
+        -0.4642907096665618,
+        -0.11271640485277278,
+        0.27648646205641453,
+        -0.478674763105639,
+        -0.8377667240719538,
+        -0.18843234677080767
+       ],
+       "intercept": -1.613050517776493,
+       "n_iter": 8
+      },
+      "prep": {
+       "ind": [
+        3,
+        4,
+        5
+       ],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+       ],
+       "med": [
+        0.0,
+        0.0,
+        1.0,
+        65.5,
+        0.0188744498,
+        3.1,
+        20.396100275000002,
+        1.0
+       ],
+       "mu": [
+        0.4017857142857143,
+        0.09821428571428571,
+        1.125,
+        59.848214285714285,
+        0.018380280704705355,
+        5.065178571428571,
+        21.60355977662062,
+        1.0982142857142858,
+        0.05357142857142857,
+        0.08928571428571429,
+        0.017857142857142856
+       ],
+       "n_in": 8,
+       "sd": [
+        0.4902590683318695,
+        0.2976041662946243,
+        0.6698214047682519,
+        35.448267089779826,
+        0.012339416068944068,
+        7.825253416953397,
+        15.636858505962973,
+        0.5338509260313123,
+        0.2251700038021159,
+        0.2851557039762734,
+        0.132432115840994
+       ]
+      },
+      "spec": {
+       "columns": [
+        "oc_structural_fatal",
+        "oc_distribution_fatal",
+        "oc_lp_risk_ord",
+        "oc_lp_locked_pct",
+        "oc_exit_cap_share",
+        "oc_largest_unexplained_pct",
+        "thesis_adj_top10_pct",
+        "oc_wash_ord"
+       ],
+       "kind": "logit",
+       "rows": [
+        "oc_structural_fatal",
+        "oc_distribution_fatal"
+       ]
+      },
+      "train_prediction_sd": 0.16569073240674714
+     },
+     "data_snapshot_sha": "34fa216172a82834825b3453fa65e68388b006607644fe3829915b4b331f4c5b",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 26,
+     "kind": "M1_OC_LOGIT",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "M1_OC_LOGIT:price_path_target_before_invalidation_24h",
+     "model_sha": "4061a8da8cc4fa017c02a65a62140c291e10e8bc9deb7455b249b49af7df5746",
+     "n_train": 112,
+     "n_used": 112,
+     "onchain_version": "onchain-1",
+     "phase": "09",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "M2_OC_LOGIT_B2": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.3492750706003425,
+        -0.3984791612327283,
+        0.3000176981558849,
+        -0.5393707443925119,
+        -0.8523838813542115,
+        0.21149316244687222,
+        0.2703226661996659,
+        0.5084405379550836,
+        0.6804769142881012,
+        0.02847157777046155,
+        -0.1485086600348496,
+        0.023436247713223498,
+        0.17425214069730194,
+        -0.5388287574009853,
+        -0.7512173533362042,
+        -0.06940903684344005
+       ],
+       "intercept": -1.825615189161794,
+       "n_iter": 9
+      },
+      "prep": {
+       "ind": [
+        8,
+        9,
+        10
+       ],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+       ],
+       "med": [
+        12.30440178,
+        15.135674615,
+        13.640752710000001,
+        1.0,
+        2.6921336816958745,
+        0.0,
+        0.0,
+        1.0,
+        65.5,
+        0.0188744498,
+        3.1,
+        20.396100275000002,
+        1.0
+       ],
+       "mu": [
+        11.759683566276786,
+        15.144637649535714,
+        13.724763990205357,
+        0.5178571428571429,
+        2.86117344113833,
+        0.4017857142857143,
+        0.09821428571428571,
+        1.125,
+        59.848214285714285,
+        0.018380280704705355,
+        5.065178571428571,
+        21.60355977662062,
+        1.0982142857142858,
+        0.05357142857142857,
+        0.08928571428571429,
+        0.017857142857142856
+       ],
+       "n_in": 13,
+       "sd": [
+        2.4772312581050997,
+        2.8506411210868254,
+        1.8198369018174492,
+        0.4996810207011865,
+        2.000918369460668,
+        0.4902590683318695,
+        0.2976041662946243,
+        0.6698214047682519,
+        35.448267089779826,
+        0.012339416068944068,
+        7.825253416953397,
+        15.636858505962973,
+        0.5338509260313123,
+        0.2251700038021159,
+        0.2851557039762734,
+        0.132432115840994
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "oc_structural_fatal",
+        "oc_distribution_fatal",
+        "oc_lp_risk_ord",
+        "oc_lp_locked_pct",
+        "oc_exit_cap_share",
+        "oc_largest_unexplained_pct",
+        "thesis_adj_top10_pct",
+        "oc_wash_ord"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "oc_structural_fatal",
+        "oc_distribution_fatal"
+       ]
+      },
+      "train_prediction_sd": 0.18547952819322291
+     },
+     "data_snapshot_sha": "34fa216172a82834825b3453fa65e68388b006607644fe3829915b4b331f4c5b",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 26,
+     "kind": "M2_OC_LOGIT_B2",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "M2_OC_LOGIT_B2:price_path_target_before_invalidation_24h",
+     "model_sha": "5dda745e5c332cd9e00d3fbb7f4bc9922bbee9a837a3655f1c1f6b1a5813e6db",
+     "n_train": 112,
+     "n_used": 112,
+     "onchain_version": "onchain-1",
+     "phase": "09",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "M3_OC_LOGIT_TREND": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.5107036628410047,
+        -0.433629741425808,
+        0.3051362994619847,
+        -0.6238339391142221,
+        -0.7901176165603881,
+        0.20206942679682874,
+        0.2605332253372447,
+        0.5550580787981009,
+        0.6224567918932568,
+        -0.057891349721392746,
+        -0.2051412097332749,
+        0.08296741025832517,
+        0.18545735283114062,
+        -0.3901107845806975,
+        -0.19360907076761488,
+        0.040724749663916815,
+        -0.24673260298521746,
+        -0.5417145333443046,
+        -0.7613013588515114,
+        -0.08749691823879664,
+        0.1272302363340618,
+        0.0468693704407526,
+        0.1272302363340618,
+        0.12604617845374996
+       ],
+       "intercept": -1.8968833674205505,
+       "n_iter": 9
+      },
+      "prep": {
+       "ind": [
+        8,
+        9,
+        10,
+        13,
+        14,
+        15,
+        16
+       ],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+       ],
+       "med": [
+        12.30440178,
+        15.135674615,
+        13.640752710000001,
+        1.0,
+        2.6921336816958745,
+        0.0,
+        0.0,
+        1.0,
+        65.5,
+        0.0188744498,
+        3.1,
+        20.396100275000002,
+        1.0,
+        0.0044350179905,
+        0.07324473703,
+        -3.4203291185e-05,
+        0.0
+       ],
+       "mu": [
+        11.759683566276786,
+        15.144637649535714,
+        13.724763990205357,
+        0.5178571428571429,
+        2.86117344113833,
+        0.4017857142857143,
+        0.09821428571428571,
+        1.125,
+        59.848214285714285,
+        0.018380280704705355,
+        5.065178571428571,
+        21.60355977662062,
+        1.0982142857142858,
+        0.011310564013253572,
+        0.17489696623991074,
+        -0.3807155691210264,
+        0.19642857142857142,
+        0.05357142857142857,
+        0.08928571428571429,
+        0.017857142857142856,
+        0.7678571428571429,
+        0.7857142857142857,
+        0.7678571428571429,
+        0.7767857142857143
+       ],
+       "n_in": 17,
+       "sd": [
+        2.4772312581050997,
+        2.8506411210868254,
+        1.8198369018174492,
+        0.4996810207011865,
+        2.000918369460668,
+        0.4902590683318695,
+        0.2976041662946243,
+        0.6698214047682519,
+        35.448267089779826,
+        0.012339416068944068,
+        7.825253416953397,
+        15.636858505962973,
+        0.5338509260313123,
+        0.11505809900747098,
+        0.7405776751980239,
+        4.0986697779106835,
+        3.215029675808068,
+        0.2251700038021159,
+        0.2851557039762734,
+        0.132432115840994,
+        0.4221996577691746,
+        0.41032590332414487,
+        0.4221996577691746,
+        0.41640085058432214
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "oc_structural_fatal",
+        "oc_distribution_fatal",
+        "oc_lp_risk_ord",
+        "oc_lp_locked_pct",
+        "oc_exit_cap_share",
+        "oc_largest_unexplained_pct",
+        "thesis_adj_top10_pct",
+        "oc_wash_ord",
+        "oc_d_log1p_liquidity",
+        "oc_d_log1p_exit_cap",
+        "oc_d_adj_top10_pp",
+        "oc_d_lp_locked_pp"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "oc_structural_fatal",
+        "oc_distribution_fatal"
+       ]
+      },
+      "train_prediction_sd": 0.1992245956060872
+     },
+     "data_snapshot_sha": "34fa216172a82834825b3453fa65e68388b006607644fe3829915b4b331f4c5b",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 26,
+     "kind": "M3_OC_LOGIT_TREND",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "M3_OC_LOGIT_TREND:price_path_target_before_invalidation_24h",
+     "model_sha": "a92432c7d771d800a72471ce21745f6751fb154541531f8727e4c267023d56d6",
+     "n_train": 112,
+     "n_used": 112,
+     "onchain_version": "onchain-1",
+     "phase": "09",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "R1_OC_RULE": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "b0": 0.23214285714285715,
+      "cells": {
+       "S0D0": {
+        "k": 14,
+        "n": 61,
+        "p": 0.23015873015873015
+       },
+       "S0D1": {
+        "k": 0,
+        "n": 6,
+        "p": 0.17857142857142858
+       },
+       "S1D0": {
+        "k": 10,
+        "n": 40,
+        "p": 0.24404761904761904
+       },
+       "S1D1": {
+        "k": 2,
+        "n": 5,
+        "p": 0.26571428571428574
+       }
+      },
+      "m": 20.0,
+      "spec": {
+       "columns": [
+        "oc_structural_fatal",
+        "oc_distribution_fatal"
+       ],
+       "kind": "rule",
+       "rows": []
+      }
+     },
+     "data_snapshot_sha": "34fa216172a82834825b3453fa65e68388b006607644fe3829915b4b331f4c5b",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 26,
+     "kind": "R1_OC_RULE",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "R1_OC_RULE:price_path_target_before_invalidation_24h",
+     "model_sha": "8c6d9c99d9b42e1d071d06b5425a5c8c9ad1cbc7cd2aa660c90891f25c27d948",
+     "n_train": 112,
+     "n_used": 112,
+     "onchain_version": "onchain-1",
+     "phase": "09",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    }
+   },
+   "cutoff_utc": "2026-10-14T00:00:00Z",
+   "fold": 1
+  },
+  {
+   "cards": {
+    "A1_OC_B2_TC": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.5401849164294715,
+        -0.09666483189876211,
+        -0.2786426542724988,
+        -0.27422189792858614,
+        -1.2015882384973355
+       ],
+       "intercept": -1.3929679110376318,
+       "n_iter": 7
+      },
+      "prep": {
+       "ind": [],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4
+       ],
+       "med": [
+        12.32170129,
+        15.02735102,
+        13.62321429,
+        1.0,
+        2.6690614980695364
+       ],
+       "mu": [
+        11.79100913217886,
+        15.103251162910567,
+        13.668157933756097,
+        0.5284552845528455,
+        2.874976698828906
+       ],
+       "n_in": 5,
+       "sd": [
+        2.4131975985972947,
+        2.8372051379499066,
+        1.814595783710123,
+        0.4991896400978455,
+        1.9754249389009009
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "oc_structural_fatal",
+        "oc_distribution_fatal"
+       ]
+      },
+      "train_prediction_sd": 0.14642418863070708
+     },
+     "data_snapshot_sha": "7202d7087e3e67d3ea6fc1cf9605c51ddfc8daf7e2f3163f42cf4cb600601063",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 30,
+     "kind": "A1_OC_B2_TC",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "A1_OC_B2_TC:price_path_target_before_invalidation_24h",
+     "model_sha": "172fd95735128db06ebdbd9eed8e15754f5e191bded74fc7378db17030e4a3f2",
+     "n_train": 123,
+     "n_used": 123,
+     "onchain_version": "onchain-1",
+     "phase": "09",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    },
+    "M1_OC_LOGIT": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        -0.13436409175801386,
+        0.10855555829397744,
+        0.7080117318314098,
+        0.6957189026713057,
+        -0.33792619453092665,
+        -0.2608464896226164,
+        -0.3245076937216245,
+        0.11704846555566849,
+        -0.458807177413935,
+        -0.8346083356160602,
+        -0.20863422399199227
+       ],
+       "intercept": -1.5284435652334207,
+       "n_iter": 8
+      },
+      "prep": {
+       "ind": [
+        3,
+        4,
+        5
+       ],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+       ],
+       "med": [
+        0.0,
+        0.0,
+        1.0,
+        65.0,
+        0.01889261143,
+        3.1,
+        20.3491009,
+        1.0
+       ],
+       "mu": [
+        0.4146341463414634,
+        0.11382113821138211,
+        1.1219512195121952,
+        59.796747967479675,
+        0.01908159660896748,
+        5.084552845528455,
+        21.447295759884632,
+        1.08130081300813,
+        0.04878048780487805,
+        0.08130081300813008,
+        0.016260162601626018
+       ],
+       "n_in": 8,
+       "sd": [
+        0.49265877748107706,
+        0.3175939021890181,
+        0.6697331813534624,
+        35.41047554103405,
+        0.01606289019321218,
+        7.602503144908627,
+        15.179025169594967,
+        0.5194352144703509,
+        0.2154088016177524,
+        0.27329652543043265,
+        0.12647438362686217
+       ]
+      },
+      "spec": {
+       "columns": [
+        "oc_structural_fatal",
+        "oc_distribution_fatal",
+        "oc_lp_risk_ord",
+        "oc_lp_locked_pct",
+        "oc_exit_cap_share",
+        "oc_largest_unexplained_pct",
+        "thesis_adj_top10_pct",
+        "oc_wash_ord"
+       ],
+       "kind": "logit",
+       "rows": [
+        "oc_structural_fatal",
+        "oc_distribution_fatal"
+       ]
+      },
+      "train_prediction_sd": 0.17113716198113443
+     },
+     "data_snapshot_sha": "7202d7087e3e67d3ea6fc1cf9605c51ddfc8daf7e2f3163f42cf4cb600601063",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 30,
+     "kind": "M1_OC_LOGIT",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "M1_OC_LOGIT:price_path_target_before_invalidation_24h",
+     "model_sha": "dd965fe0bb1a2880bdecfded192e9b9440bc325e38a9145646f9801e1a05ed70",
+     "n_train": 123,
+     "n_used": 123,
+     "onchain_version": "onchain-1",
+     "phase": "09",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    },
+    "M2_OC_LOGIT_B2": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.30632051404252975,
+        -0.29308316177831145,
+        -0.19967006812548246,
+        -0.4670077869840563,
+        -0.9815909065915758,
+        -0.037148374869625175,
+        0.23287646271818885,
+        0.6208518182347609,
+        0.47246923784067496,
+        -0.20428894109204213,
+        -0.052137423940366204,
+        -0.06673430277870442,
+        0.09873047861402429,
+        -0.6026704731880966,
+        -0.7705015236692782,
+        -0.04340172210035047
+       ],
+       "intercept": -1.6854297893293138,
+       "n_iter": 9
+      },
+      "prep": {
+       "ind": [
+        8,
+        9,
+        10
+       ],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+       ],
+       "med": [
+        12.32170129,
+        15.02735102,
+        13.62321429,
+        1.0,
+        2.6690614980695364,
+        0.0,
+        0.0,
+        1.0,
+        65.0,
+        0.01889261143,
+        3.1,
+        20.3491009,
+        1.0
+       ],
+       "mu": [
+        11.79100913217886,
+        15.103251162910567,
+        13.668157933756097,
+        0.5284552845528455,
+        2.874976698828906,
+        0.4146341463414634,
+        0.11382113821138211,
+        1.1219512195121952,
+        59.796747967479675,
+        0.01908159660896748,
+        5.084552845528455,
+        21.447295759884632,
+        1.08130081300813,
+        0.04878048780487805,
+        0.08130081300813008,
+        0.016260162601626018
+       ],
+       "n_in": 13,
+       "sd": [
+        2.4131975985972947,
+        2.8372051379499066,
+        1.814595783710123,
+        0.4991896400978455,
+        1.9754249389009009,
+        0.49265877748107706,
+        0.3175939021890181,
+        0.6697331813534624,
+        35.41047554103405,
+        0.01606289019321218,
+        7.602503144908627,
+        15.179025169594967,
+        0.5194352144703509,
+        0.2154088016177524,
+        0.27329652543043265,
+        0.12647438362686217
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "oc_structural_fatal",
+        "oc_distribution_fatal",
+        "oc_lp_risk_ord",
+        "oc_lp_locked_pct",
+        "oc_exit_cap_share",
+        "oc_largest_unexplained_pct",
+        "thesis_adj_top10_pct",
+        "oc_wash_ord"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "oc_structural_fatal",
+        "oc_distribution_fatal"
+       ]
+      },
+      "train_prediction_sd": 0.19783374883045207
+     },
+     "data_snapshot_sha": "7202d7087e3e67d3ea6fc1cf9605c51ddfc8daf7e2f3163f42cf4cb600601063",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 30,
+     "kind": "M2_OC_LOGIT_B2",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "M2_OC_LOGIT_B2:price_path_target_before_invalidation_24h",
+     "model_sha": "4f6d72fe435f850a81756b2db0ec4d831b8e9511a923e073b947985f42418007",
+     "n_train": 123,
+     "n_used": 123,
+     "onchain_version": "onchain-1",
+     "phase": "09",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    },
+    "M3_OC_LOGIT_TREND": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.4389049150302643,
+        -0.3533229686800569,
+        -0.15583587721911252,
+        -0.6015234044321822,
+        -0.9161802550731246,
+        0.022987132741812855,
+        0.35087053505237903,
+        0.5578867893423904,
+        0.35549512162854585,
+        -0.20984391349846354,
+        -0.05670457702576789,
+        -0.09607227056919157,
+        0.1372990907702391,
+        0.05701231167588436,
+        0.2610611671392088,
+        -0.4297924442578017,
+        -0.2479979710557507,
+        -0.6623681363659727,
+        -0.7570039367023417,
+        -0.22870924775123835,
+        0.1592682451852287,
+        0.09588262847914795,
+        0.1592682451852287,
+        0.09586572624536913
+       ],
+       "intercept": -1.7316882088028371,
+       "n_iter": 8
+      },
+      "prep": {
+       "ind": [
+        8,
+        9,
+        10,
+        13,
+        14,
+        15,
+        16
+       ],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+       ],
+       "med": [
+        12.32170129,
+        15.02735102,
+        13.62321429,
+        1.0,
+        2.6690614980695364,
+        0.0,
+        0.0,
+        1.0,
+        65.0,
+        0.01889261143,
+        3.1,
+        20.3491009,
+        1.0,
+        0.004825690637,
+        0.07324473703,
+        -0.001255802210185,
+        0.0
+       ],
+       "mu": [
+        11.79100913217886,
+        15.103251162910567,
+        13.668157933756097,
+        0.5284552845528455,
+        2.874976698828906,
+        0.4146341463414634,
+        0.11382113821138211,
+        1.1219512195121952,
+        59.796747967479675,
+        0.01908159660896748,
+        5.084552845528455,
+        21.447295759884632,
+        1.08130081300813,
+        0.016701309124653656,
+        0.21539602709170733,
+        -0.3796917651305713,
+        0.44715447154471544,
+        0.04878048780487805,
+        0.08130081300813008,
+        0.016260162601626018,
+        0.7560975609756098,
+        0.7723577235772358,
+        0.7560975609756098,
+        0.7642276422764228
+       ],
+       "n_in": 17,
+       "sd": [
+        2.4131975985972947,
+        2.8372051379499066,
+        1.814595783710123,
+        0.4991896400978455,
+        1.9754249389009009,
+        0.49265877748107706,
+        0.3175939021890181,
+        0.6697331813534624,
+        35.41047554103405,
+        0.01606289019321218,
+        7.602503144908627,
+        15.179025169594967,
+        0.5194352144703509,
+        0.2640885228396908,
+        0.9384755948414757,
+        3.9424799878539183,
+        5.239318599077805,
+        0.2154088016177524,
+        0.27329652543043265,
+        0.12647438362686217,
+        0.4294345576014392,
+        0.4193104701862643,
+        0.4294345576014392,
+        0.42448056852704436
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "oc_structural_fatal",
+        "oc_distribution_fatal",
+        "oc_lp_risk_ord",
+        "oc_lp_locked_pct",
+        "oc_exit_cap_share",
+        "oc_largest_unexplained_pct",
+        "thesis_adj_top10_pct",
+        "oc_wash_ord",
+        "oc_d_log1p_liquidity",
+        "oc_d_log1p_exit_cap",
+        "oc_d_adj_top10_pp",
+        "oc_d_lp_locked_pp"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "oc_structural_fatal",
+        "oc_distribution_fatal"
+       ]
+      },
+      "train_prediction_sd": 0.21191258556166648
+     },
+     "data_snapshot_sha": "7202d7087e3e67d3ea6fc1cf9605c51ddfc8daf7e2f3163f42cf4cb600601063",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 30,
+     "kind": "M3_OC_LOGIT_TREND",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "M3_OC_LOGIT_TREND:price_path_target_before_invalidation_24h",
+     "model_sha": "954cd9ed804114c7f36bc3b505785f42fe1f8d88040f99c67acd5b80c6509d9e",
+     "n_train": 123,
+     "n_used": 123,
+     "onchain_version": "onchain-1",
+     "phase": "09",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    },
+    "R1_OC_RULE": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "b0": 0.24390243902439024,
+      "cells": {
+       "S0D0": {
+        "k": 16,
+        "n": 65,
+        "p": 0.24562410329985654
+       },
+       "S0D1": {
+        "k": 0,
+        "n": 7,
+        "p": 0.18066847335140018
+       },
+       "S1D0": {
+        "k": 11,
+        "n": 44,
+        "p": 0.24809451219512196
+       },
+       "S1D1": {
+        "k": 3,
+        "n": 7,
+        "p": 0.2917795844625113
+       }
+      },
+      "m": 20.0,
+      "spec": {
+       "columns": [
+        "oc_structural_fatal",
+        "oc_distribution_fatal"
+       ],
+       "kind": "rule",
+       "rows": []
+      }
+     },
+     "data_snapshot_sha": "7202d7087e3e67d3ea6fc1cf9605c51ddfc8daf7e2f3163f42cf4cb600601063",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 30,
+     "kind": "R1_OC_RULE",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "R1_OC_RULE:price_path_target_before_invalidation_24h",
+     "model_sha": "2884895aa801b6d790b3fc93ac4a711459d4aa275d77275f9180f40516ef773a",
+     "n_train": 123,
+     "n_used": 123,
+     "onchain_version": "onchain-1",
+     "phase": "09",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    }
+   },
+   "cutoff_utc": "2026-10-15T00:00:00Z",
+   "fold": 2
+  }
+ ],
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "target": "price_path_target_before_invalidation_24h"
+}

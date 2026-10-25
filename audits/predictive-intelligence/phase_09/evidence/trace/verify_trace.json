@@ -1,0 +1,11 @@
+{
+ "decision_key": "6070e73636132d818acc46fe134dd097aadbac0bed79ff8de90a0e44ebf74f9e",
+ "decision_time_utc": "2026-10-14T10:17:43Z",
+ "differences": [],
+ "inputs_compared": 13,
+ "invalid_inputs_all_rejected": true,
+ "models_compared": 7,
+ "pass": true,
+ "values_available_after_T": [],
+ "values_compared": 25
+}

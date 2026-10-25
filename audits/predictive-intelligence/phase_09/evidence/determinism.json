@@ -1,0 +1,19 @@
+{
+ "files_differing": [
+  "evidence/trace/FORECAST_TRACE.json"
+ ],
+ "identical_otherwise": true,
+ "run_a": {
+  "head": "18bd243250f3dd36378c4360280ce166f65f4e13",
+  "outputs": 36,
+  "start_utc": "2026-10-25T22:57:03Z"
+ },
+ "run_b": {
+  "head": "18bd243250f3dd36378c4360280ce166f65f4e13",
+  "outputs": 36,
+  "start_utc": "2026-10-25T22:58:05Z"
+ },
+ "trace_fields_differing": [
+  "latency_s_median_of_20"
+ ]
+}

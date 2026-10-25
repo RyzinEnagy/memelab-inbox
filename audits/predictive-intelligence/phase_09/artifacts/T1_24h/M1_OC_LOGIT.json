@@ -1,0 +1,127 @@
+{
+ "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "body": {
+  "logistic": {
+   "C": 1.0,
+   "coef": [
+    -0.10519901055722332,
+    0.19835601139809003,
+    0.441073646327292,
+    0.5768238500363035,
+    -0.17772168408932193,
+    -0.09308336574717814,
+    -0.33610957735438385,
+    0.15732597382616298,
+    -0.4915884000020268,
+    -0.8101169262249401,
+    -0.1817370642063861
+   ],
+   "intercept": -1.4065624608646734,
+   "n_iter": 8
+  },
+  "prep": {
+   "ind": [
+    3,
+    4,
+    5
+   ],
+   "keep": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "med": [
+    0.0,
+    0.0,
+    1.0,
+    59.5,
+    0.0188744498,
+    3.1500000000000004,
+    20.347073895,
+    1.0
+   ],
+   "mu": [
+    0.39705882352941174,
+    0.11029411764705882,
+    1.1470588235294117,
+    58.36029411764706,
+    0.019117246553602946,
+    4.977205882352941,
+    21.269404577836838,
+    1.0735294117647058,
+    0.04411764705882353,
+    0.07352941176470588,
+    0.014705882352941176
+   ],
+   "n_in": 8,
+   "sd": [
+    0.4892883752827684,
+    0.31325600594324693,
+    0.6700462205820303,
+    34.644183535691404,
+    0.01582991050144183,
+    7.267359712640249,
+    14.51430429414201,
+    0.49456387414118347,
+    0.20535647123189618,
+    0.26100351984263015,
+    0.12037283488047723
+   ]
+  },
+  "spec": {
+   "columns": [
+    "oc_structural_fatal",
+    "oc_distribution_fatal",
+    "oc_lp_risk_ord",
+    "oc_lp_locked_pct",
+    "oc_exit_cap_share",
+    "oc_largest_unexplained_pct",
+    "thesis_adj_top10_pct",
+    "oc_wash_ord"
+   ],
+   "kind": "logit",
+   "rows": [
+    "oc_structural_fatal",
+    "oc_distribution_fatal"
+   ]
+  },
+  "train_prediction_sd": 0.15157789096730173
+ },
+ "data_snapshot_sha": "5d0c9c7d594e0023b63ca9d23baf9bd4146b47482c2dcdf91a7c5c509a87fc10",
+ "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+ "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+ "feature_version": "2",
+ "k_train": 34,
+ "k_used": 34,
+ "kind": "M1_OC_LOGIT",
+ "label_mode": "provider",
+ "label_set_sha": "9fae5b7ead0a832f5960b249d2afc8a67fd8e5ee2ebe86b232c9ecbc128b33a1",
+ "labels_version": "labels-1",
+ "max_train_decision_time": 1792059228.0,
+ "max_train_label_matures_at": 1792146828.0,
+ "model_id": "M1_OC_LOGIT:price_path_target_before_invalidation_24h",
+ "model_sha": "934782c5bc371ae5a0a9a47b45838138004043bb0987804279603abfd40362be",
+ "n_train": 136,
+ "n_used": 136,
+ "onchain_version": "onchain-1",
+ "phase": "09",
+ "promotion": "MODEL_NOT_PROMOTED",
+ "publishable": false,
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "revision_check_claimed": false,
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "store_schema": "memelab.predictive.store/1",
+ "target_version": {
+  "price_path_target_before_invalidation_24h": "1"
+ },
+ "targets": [
+  "price_path_target_before_invalidation_24h"
+ ],
+ "training_cutoff": 1792195200.0,
+ "training_cutoff_utc": "2026-10-17T00:00:00Z"
+}

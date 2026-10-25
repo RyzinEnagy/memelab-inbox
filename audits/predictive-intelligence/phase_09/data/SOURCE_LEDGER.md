@@ -1,0 +1,24 @@
+# Phase 09 source ledger: on-chain, liquidity, wallet and authority sources
+
+Every source the phase prompt asks about (step 1), what exists for the lab's decisions, its time basis and how Phase 09 uses it. FACT / INFERENCE / HEURISTIC / UNKNOWN as in the lab's evidence buckets. No vendor or network call was made in this phase (0 Firecrawl credits, 0 GeckoTerminal, 0 RPC; `evidence/run_log.json` socket events 0).
+
+| Source | Where | Time basis | Coverage for the decisions | Bucket | Use in Phase 09 |
+|---|---|---|---|---|---|
+| Thesis row fatal flags (`fatal_flags_json`) | export `data/state/latest.json` on main, Phase 05 store `predictive_decisions.row_json` | export commit time (PI-D-015), FACT for availability | 925 of 925 Solana decisions | FACT that the lab recorded it; the flag rule is m24's | `oc_structural_fatal`, `oc_distribution_fatal`, authority flags, veto |
+| Score-breakdown rationale (`score_breakdown_json`) | same | same; text depends on m24's version (PI-D-008) | 922 of 925 parsed, 0 unparseable values | the readings are FACT as recorded; LP risk, wash and early-wallet classes are HEURISTIC | mechanics issues, transfer fee, LP risk and lock, route, friction, largest holder, cluster confidence, early wallets, wash |
+| Thesis snapshot (`snapshot_json`) | same | collector time `t` (median 1,046 s before the decision on labelled rows, max 21.6 h) | liquidity 1,186 of 1,500 rows, exit capacity 1,384 | FACT as recorded | exit share, change features, capture delay; version 2 columns reused |
+| Token row (`token_program`, `creator`, `dev_wallet`, `primary_pool`) | export token row of the decision's commit | export commit time | token program 914 of 925 | FACT as recorded | `oc_token2022`; developer-wallet rule |
+| Mint and freeze authority reads | lab DB `token_authorities` (33 rows, 8 mints) | 2026-10-06T23:48Z to 2026-10-07T00:16Z | before every development decision of those mints | FACT (lab reading, source merged) | cross-check only: 33 of 33 agree on authority, 1 mint disagrees on token program |
+| Holder table with classes | lab DB `holders` (660 rows, 8 mints, RugCheck) | 2026-10-06 to 07 | 8 mints, one read each | FACT for the read; classes are labels (CEX, POOL, BURN, DEV) | P19 check (19 CEX rows never insider) |
+| Wallet clusters | lab DB `wallet_clusters` (172 rows; HIGH 75, MODERATE 89, LOW 8) | 2026-10-06 to 07 | 8 mints | INFERENCE (RugCheck transfer networks) | none beyond the export's cluster confidence; clustering kept INFERRED |
+| Swaps (trades) | lab DB `wallet_transactions` (3,774 rows, 6 mints, GeckoTerminal trades) | block time 2026-10-05T23:59Z to 2026-10-07T00:09Z | before the development decisions; 10-character signatures; no pool | FACT that the vendor listed them; not verifiable on chain | swaps-against-candles cross-check (P02, P18) |
+| Pool snapshots and quotes of Oct 6 to 7 | lab DB `pool_snapshots` (182), `liquidity_quotes` (498), `pools` (58 with DEX) | 2026-10-06 to 07 | 33 thesis rows | FACT for that read | pool-program inventory only (meteora, meteoraDlmm, meteora-damm-v2, orca, pumpswap, raydium, raydium-clmm, hadron, manifest); never a feature |
+| Historical reserves, ticks, bins, LP changes | none reachable without a paid indexer or archive RPC | | 0 | UNKNOWN (SOURCE_BLOCKED, backtesting PROVENANCE.md) | none; never substituted by a modern read |
+| Historical swaps beyond the latest page | GeckoTerminal trades endpoint returns the latest 300 trades only | | 0 | UNKNOWN (SOURCE_BLOCKED) | none |
+| Wallet activity history (creator transfers, flows) | Helius or similar (no key, not approved) | | 0 | UNKNOWN (SOURCE_BLOCKED) | none |
+| Pool program version at the decision | not in the export | | 0 | UNKNOWN | none |
+| Token-2022 transfer-fee authority changes | not in the export beyond the fee value | | fee value 922 of 925 | UNKNOWN for changes | `oc_fee_change_pp` between decisions only |
+| Forward reserves and sell quotes ($100, $500, $2,000) | backtesting collector tables (`bt_depth_*`, migration 2) | `captured_at` of each read, after the decision | 0 rows (not deployed; this checkout COLLECTOR_NOT_AVAILABLE) | FACT once collected | read-only adapter contract and proposals, TEST_ONLY |
+| Price candles (labels and cross-check) | Phase 05 store (GeckoTerminal 5-minute OHLCV, read 2026-10-24) | provider-lag reconstruction (HEURISTIC) | the Phase 05 pools | as in Phase 05 | swaps-against-candles cross-check only |
+
+Observed against inferred: authority, fee, program and route readings are observations recorded by the lab; holder classes are labels; clusters, early-wallet direction, wash level and LP risk are inferences or heuristics of the lab's modules. Movements against swaps: the only movement data that exists (lab DB) is swaps; no transfer record exists, so no distribution can be labelled from it.

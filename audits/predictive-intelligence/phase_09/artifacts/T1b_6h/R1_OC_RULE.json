@@ -1,0 +1,69 @@
+{
+ "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "body": {
+  "b0": 0.11607142857142858,
+  "cells": {
+   "S0D0": {
+    "k": 14,
+    "n": 146,
+    "p": 0.09832185886402754
+   },
+   "S0D1": {
+    "k": 0,
+    "n": 13,
+    "p": 0.07034632034632035
+   },
+   "S1D0": {
+    "k": 10,
+    "n": 55,
+    "p": 0.16428571428571428
+   },
+   "S1D1": {
+    "k": 2,
+    "n": 10,
+    "p": 0.14404761904761904
+   }
+  },
+  "m": 20.0,
+  "spec": {
+   "columns": [
+    "oc_structural_fatal",
+    "oc_distribution_fatal"
+   ],
+   "kind": "rule",
+   "rows": []
+  }
+ },
+ "data_snapshot_sha": "bb718e6b0db3ef5fbf676836d1dd31ea998a1a01e56074414c62b4d0cef801b8",
+ "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+ "feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+ "feature_version": "2",
+ "k_train": 26,
+ "k_used": 26,
+ "kind": "R1_OC_RULE",
+ "label_mode": "provider",
+ "label_set_sha": "c03969674ec67e932be2f8ac0c34f6797008428fcf1ab9871feba52e99306618",
+ "labels_version": "labels-1",
+ "max_train_decision_time": 1792147326.0,
+ "max_train_label_matures_at": 1792170126.0,
+ "model_id": "R1_OC_RULE:price_path_target_before_invalidation_6h",
+ "model_sha": "bd3a323bfa1bc04a639d8c232da9c94aadc212dd91ab9cb9122614d087832f5e",
+ "n_train": 224,
+ "n_used": 224,
+ "onchain_version": "onchain-1",
+ "phase": "09",
+ "promotion": "MODEL_NOT_PROMOTED",
+ "publishable": false,
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "revision_check_claimed": false,
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "store_schema": "memelab.predictive.store/1",
+ "target_version": {
+  "price_path_target_before_invalidation_6h": "1"
+ },
+ "targets": [
+  "price_path_target_before_invalidation_6h"
+ ],
+ "training_cutoff": 1792195200.0,
+ "training_cutoff_utc": "2026-10-17T00:00:00Z"
+}

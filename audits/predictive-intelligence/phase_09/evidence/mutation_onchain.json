@@ -1,0 +1,394 @@
+{
+ "applied": 55,
+ "caught": 55,
+ "mutations": 55,
+ "not_applied": [],
+ "results": [
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_values_are_available_at_the_decision_and_never_use_a_later_decision",
+   "mutation": "oldest visible decision used instead of the newest"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_p36_snapshot_time_after_the_decision_refuses_the_row",
+   "mutation": "P36 snapshot time check removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_change_features_use_the_previous_decision_only",
+   "mutation": "previous decision may share the decision time"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_change_features_use_the_previous_decision_only",
+   "mutation": "previous decision is the first, not the latest"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_current_values_match_the_rationale_lines_and_flags",
+   "mutation": "LP risk order changed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_flag_families_and_unknown_flags",
+   "mutation": "CANNOT_EXIT_5K not structural"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_flag_families_and_unknown_flags",
+   "mutation": "INSIDER_DISTRIBUTION not a distribution flag"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_unknown_lines_are_not_observed_and_new_formats_are_unparseable",
+   "mutation": "unknown line format guessed as not observed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_authority_needs_observed_mechanics_and_a_contradiction_is_refused",
+   "mutation": "authority read without observed mechanics"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_authority_needs_observed_mechanics_and_a_contradiction_is_refused",
+   "mutation": "contradiction accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_current_values_match_the_rationale_lines_and_flags",
+   "mutation": "exit share uses market cap"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_no_sell_route_and_exit_share - ...",
+   "mutation": "zero liquidity accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_no_sell_route_and_exit_share - ...",
+   "mutation": "NO_SELL_ROUTE flag ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_change_features_use_the_previous_decision_only",
+   "mutation": "change of liquidity reversed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_authority_switch_between_decisions",
+   "mutation": "authority switch ignores freeze"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_values_are_available_at_the_decision_and_never_use_a_later_decision",
+   "mutation": "value available at the next export"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_snapshot_is_deterministic_and_values_are_finite",
+   "mutation": "non-finite value accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_v2_consistency - AssertionError...",
+   "mutation": "v2 tolerance loosened"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_attach_checks_identity_and_keeps_missing_values_missing",
+   "mutation": "attach ignores the decision time"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_attach_checks_identity_and_keeps_missing_values_missing",
+   "mutation": "missing value becomes zero"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_training_rows_must_be_matured_and_inputs_declared",
+   "mutation": "allowlist removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_count_gate_counts_the_rows_a_model_uses",
+   "mutation": "count gate on all training rows"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_rule_cells_are_shrunk_to_the_training_prevalence_and_a_missing_cell_gives_b0",
+   "mutation": "rule shrinkage removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_rule_cells_are_shrunk_to_the_training_prevalence_and_a_missing_cell_gives_b0",
+   "mutation": "rule missing cell scored as no-flag cell"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_m2_uses_required_rows_and_optional_missing_inputs",
+   "mutation": "required rows not enforced"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_p13_a_card_never_scores_an_earlier_decision",
+   "mutation": "P13 guard removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_card_roundtrip_tamper_and_version",
+   "mutation": "card version check removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_fixture_signal_is_found_and_flagged_as_fixture",
+   "mutation": "CX-S08 scored rows standardised with their own statistics"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_walk_forward_refuses_a_training_set_other_than_the_index",
+   "mutation": "walk-forward index check removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_degenerate_flag - assert (False)",
+   "mutation": "degenerate test inverted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_early_warning_counts_and_lead_time",
+   "mutation": "alarm at or above the prevalence"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_early_warning_counts_and_lead_time",
+   "mutation": "negative lead time accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_a_forecast_never_clears_a_fatal_flag_and_the_cap_ignores_the_forecast",
+   "mutation": "a missing flag list is a pass"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_a_forecast_never_clears_a_fatal_flag_and_the_cap_ignores_the_forecast",
+   "mutation": "forecast clears the veto"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_a_forecast_never_clears_a_fatal_flag_and_the_cap_ignores_the_forecast",
+   "mutation": "size cap ignores the loss limit"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_p19_exchange_or_custody_is_never_an_insider",
+   "mutation": "exchange checked after the developer label"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_developer_wallet_misclassification_and_inferred_clusters",
+   "mutation": "mint-like developer address trusted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_p18_a_transfer_is_never_a_sale",
+   "mutation": "a transfer counts as a sale"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/onchain.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_developer_wallet_misclassification_and_inferred_clusters",
+   "mutation": "inferred cluster counted as insider"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_cx09_a_post_decision_read_is_never_depth_at_the_decision",
+   "mutation": "CX-09 post-decision rows visible"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_cx09_a_post_decision_read_is_never_depth_at_the_decision",
+   "mutation": "CX-09 assert_visible removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_adapter_schema_states_and_read_only",
+   "mutation": "read-only open removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_adapter_schema_states_and_read_only",
+   "mutation": "tracked lab database accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_adapter_schema_states_and_read_only",
+   "mutation": "migration version not checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_adapter_schema_states_and_read_only",
+   "mutation": "column check removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_adapter_identity_link - memelab...",
+   "mutation": "Solana compared without case"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_adapter_identity_link - Failed:...",
+   "mutation": "export time not checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_p02_rows_stay_per_pool_and_p08_reserve_is_never_exit_capacity",
+   "mutation": "proceeds from reported reserve"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_p02_rows_stay_per_pool_and_p08_reserve_is_never_exit_capacity",
+   "mutation": "PRICE_DISAGREES gets a number"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_proposed_liquidity_label_states",
+   "mutation": "P37 lost route is not an event"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_proposed_liquidity_label_states",
+   "mutation": "P05 maturity check removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_proposed_liquidity_label_states",
+   "mutation": "unanswered read used as baseline"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_proposed_liquidity_label_states",
+   "mutation": "drop threshold direction"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_proposed_liquidity_label_states",
+   "mutation": "label is not size specific"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/depth_adapter.py",
+   "first_failure": "FAILED tests/test_predictive_onchain.py::test_p02_rows_stay_per_pool_and_p08_reserve_is_never_exit_capacity",
+   "mutation": "pools merged"
+  }
+ ],
+ "survived": []
+}

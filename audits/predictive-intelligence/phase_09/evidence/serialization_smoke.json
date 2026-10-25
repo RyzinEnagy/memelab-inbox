@@ -1,0 +1,275 @@
+{
+ "T1_24h": {
+  "A1_OC_B2_TC": {
+   "abstain": null,
+   "file_sha256": "f0c041adfc96f946037e53a8f167cbb10eeca3b5a3e72532a8ea493a24a8a55e",
+   "k_train": 34,
+   "k_used": 34,
+   "model_sha": "6d2c43adec5668eaad3979c3cee7dfcd61d9d8641c6d49bc896af6a21427188f",
+   "n_train": 136,
+   "n_used": 136,
+   "numbers": 136,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "M1_OC_LOGIT": {
+   "abstain": null,
+   "file_sha256": "8eaf15575399eae5084a2ea9383420dba2807b3686b504b18bce619c94924de6",
+   "k_train": 34,
+   "k_used": 34,
+   "model_sha": "934782c5bc371ae5a0a9a47b45838138004043bb0987804279603abfd40362be",
+   "n_train": 136,
+   "n_used": 136,
+   "numbers": 136,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "M2_OC_LOGIT_B2": {
+   "abstain": null,
+   "file_sha256": "6fc65eee759237020445f85cd7f60d312f111bcb4eaff5290f5486f0aab57bad",
+   "k_train": 34,
+   "k_used": 34,
+   "model_sha": "1ba2aef1faefd86ddec22708715dcdea61c50cc2a874afdadb20572142b74770",
+   "n_train": 136,
+   "n_used": 136,
+   "numbers": 136,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "M3_OC_LOGIT_TREND": {
+   "abstain": null,
+   "file_sha256": "94c14d0468820610f82597188238b3c3e00194f3d6900d169d5233805c6663d1",
+   "k_train": 34,
+   "k_used": 34,
+   "model_sha": "ab75899751a14ab2e09d1d60260cc0c91d6735a05ff5642af171540af983f1e5",
+   "n_train": 136,
+   "n_used": 136,
+   "numbers": 136,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "R1_OC_RULE": {
+   "abstain": null,
+   "file_sha256": "0d4ca221b2b328512f23c680021334e5862c5ce65cf13b3bcf4acd255ca742ef",
+   "k_train": 34,
+   "k_used": 34,
+   "model_sha": "e3491c36696146ab95c84457e3251681b2fcb2b348f8e65ae084d431f52fa1f3",
+   "n_train": 136,
+   "n_used": 136,
+   "numbers": 136,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "contract": {
+   "abstain_errors": [],
+   "abstain_valid": true,
+   "decision_support": {
+    "size_cap": {
+     "basis": "EXECUTION_DATA_MISSING",
+     "size_cap_usd": null
+    },
+    "structural_veto": {
+     "flags": [],
+     "state": "NO_FATAL_FLAG",
+     "structural": [],
+     "veto": false
+    },
+    "veto_overrides_forecast": false
+   },
+   "forecast_errors": [
+    "calibration_reference needs holdout_n >= 50 out-of-sample events (else INSUFFICIENT_HISTORY)",
+    "model trained after the decision time: not an as-of forecast (P13)"
+   ],
+   "forecast_refused": true
+  }
+ },
+ "T1b_6h": {
+  "A1_OC_B2_TC": {
+   "abstain": null,
+   "file_sha256": "d33f731cce3f03490acf681545fc5f9743ab498f76ce976932cd7442c52c4785",
+   "k_train": 26,
+   "k_used": 26,
+   "model_sha": "bcfc3b94d020caf1c54b338dda0fd6ae10933a1e2cea18ed457f31aaae1d03a9",
+   "n_train": 224,
+   "n_used": 224,
+   "numbers": 224,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "M1_OC_LOGIT": {
+   "abstain": null,
+   "file_sha256": "326c969a72760400713a72365f9a9a40e14a8ceac38039b319524cb4f8813526",
+   "k_train": 26,
+   "k_used": 26,
+   "model_sha": "82c72bda532c1fb02738fbc47df216bf936cb3364b59c35e3578e4bbd543d38d",
+   "n_train": 224,
+   "n_used": 224,
+   "numbers": 224,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "M2_OC_LOGIT_B2": {
+   "abstain": null,
+   "file_sha256": "9fb8949ddcd361e436bac53ecf8c8fbddafc98d13faca0777caa381134e86e7d",
+   "k_train": 26,
+   "k_used": 26,
+   "model_sha": "69caa50402ccc1b11670463f2b23494d0f87ec7af94b887a4734a2716d57e406",
+   "n_train": 224,
+   "n_used": 224,
+   "numbers": 224,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "M3_OC_LOGIT_TREND": {
+   "abstain": null,
+   "file_sha256": "3d518796c04f1da391c4671370a5f1350c131013ec0687da4b6c0385d0b82508",
+   "k_train": 26,
+   "k_used": 26,
+   "model_sha": "865df8bc9b00e3bcdfbf0c789c3924a6e0e171b8fe1c4b25d9314af940963f1c",
+   "n_train": 224,
+   "n_used": 224,
+   "numbers": 224,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "R1_OC_RULE": {
+   "abstain": null,
+   "file_sha256": "05f5cb2a0d9e6fe4a93cc33fb18f6c88d943e88517f63142636e6a7cdad46ef3",
+   "k_train": 26,
+   "k_used": 26,
+   "model_sha": "bd3a323bfa1bc04a639d8c232da9c94aadc212dd91ab9cb9122614d087832f5e",
+   "n_train": 224,
+   "n_used": 224,
+   "numbers": 224,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "contract": {
+   "abstain_errors": [],
+   "abstain_valid": true,
+   "decision_support": {
+    "size_cap": {
+     "basis": "EXECUTION_DATA_MISSING",
+     "size_cap_usd": null
+    },
+    "structural_veto": {
+     "flags": [
+      "TRANSFER_HOOK_UNKNOWN",
+      "LARGEST_HOLDER_GT_15PCT",
+      "TOP10_GT_50PCT"
+     ],
+     "state": "VETO",
+     "structural": [
+      "TRANSFER_HOOK_UNKNOWN"
+     ],
+     "veto": true
+    },
+    "veto_overrides_forecast": true
+   },
+   "forecast_errors": [
+    "calibration_reference needs holdout_n >= 50 out-of-sample events (else INSUFFICIENT_HISTORY)",
+    "model trained after the decision time: not an as-of forecast (P13)"
+   ],
+   "forecast_refused": true
+  }
+ },
+ "T2_24h": {
+  "A1_OC_B2_TC": {
+   "abstain": null,
+   "file_sha256": "7407de8e2a0d5c48baf5488b6b082002e40ab01e61902fdb9b2c55dff08c2251",
+   "k_train": 28,
+   "k_used": 28,
+   "model_sha": "7ddaeff1b9c6837e87536ff92d252bf5811279fab992f7b1c2a60ed056cf882c",
+   "n_train": 131,
+   "n_used": 131,
+   "numbers": 131,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "M1_OC_LOGIT": {
+   "abstain": null,
+   "file_sha256": "96e4751e94d1ca0174490be4f8649e9b23132081b9b46bc03ee2d8375a846a6a",
+   "k_train": 28,
+   "k_used": 28,
+   "model_sha": "efa6b18dd21304e930c4ce0a39238b9373e07c4903872d48bd6a1956eec1bc3d",
+   "n_train": 131,
+   "n_used": 131,
+   "numbers": 131,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "M2_OC_LOGIT_B2": {
+   "abstain": null,
+   "file_sha256": "ece506d97267351214c8050e86fbbab0a7f3c6d07e2f4fe16a5e6cf2e1f1227d",
+   "k_train": 28,
+   "k_used": 28,
+   "model_sha": "abfbd30a4f1c865314d1f2d58f5e026864218d230ea49ac77581e42482f6d82a",
+   "n_train": 131,
+   "n_used": 131,
+   "numbers": 131,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "M3_OC_LOGIT_TREND": {
+   "abstain": null,
+   "file_sha256": "b275183936ada36a770b2c7608e0d27b075894be2ed4847ffd5a5f169bd6a0a0",
+   "k_train": 28,
+   "k_used": 28,
+   "model_sha": "89d9704d4674da1acaea63be4c810e1c7a735f286e7ce35550238c6cb430fc1d",
+   "n_train": 131,
+   "n_used": 131,
+   "numbers": 131,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "R1_OC_RULE": {
+   "abstain": null,
+   "file_sha256": "e971ff6c48380a49d84497fd388550970a87d804ebd525f76940d217169b02ad",
+   "k_train": 28,
+   "k_used": 28,
+   "model_sha": "2888abbf7d17cfeb12452c82fb32e494538318214b680f4f6d3026293431388b",
+   "n_train": 131,
+   "n_used": 131,
+   "numbers": 131,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "contract": {
+   "abstain_errors": [],
+   "abstain_valid": true,
+   "decision_support": {
+    "size_cap": {
+     "basis": "EXECUTION_DATA_MISSING",
+     "size_cap_usd": null
+    },
+    "structural_veto": {
+     "flags": [],
+     "state": "NO_FATAL_FLAG",
+     "structural": [],
+     "veto": false
+    },
+    "veto_overrides_forecast": false
+   },
+   "forecast_errors": [
+    "calibration_reference needs holdout_n >= 50 out-of-sample events (else INSUFFICIENT_HISTORY)",
+    "model trained after the decision time: not an as-of forecast (P13)"
+   ],
+   "forecast_refused": true
+  }
+ }
+}

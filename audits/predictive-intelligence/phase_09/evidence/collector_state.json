@@ -1,0 +1,10 @@
+{
+ "default_path": "data/backtest/bt.sqlite",
+ "note": "the collector runs only on Elving's computer once deployed (RUNBOOK of feature/backtesting); this cloud checkout has no collector database: no forward row exists",
+ "status": {
+  "adapter": "depth-adapter-1",
+  "evidence_class": "TEST_ONLY",
+  "path": "/home/claude/memelab-inbox/data/backtest/bt.sqlite",
+  "state": "COLLECTOR_NOT_AVAILABLE"
+ }
+}
