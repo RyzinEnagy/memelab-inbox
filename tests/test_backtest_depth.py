@@ -240,6 +240,7 @@ def test_collect_pools_quotes_and_provenance(con, exports):
         assert "swapMode=ExactIn" in q["request_url"] and "slippageBps=300" in q["request_url"]
         qv = json.loads(q["value_json"])
         assert qv["price_captured_at"] == p["captured_at"] and qv["price_raw_sha256"] == p["raw_sha256"] and qv["price_check"] == "OK"
+        assert abs(qv["implied_over_pool_price"] - 1.0) < 0.02
         assert qv["route"] and qv["route"][0]["label"] and qv["route"][0]["amm"]
         qc = next(c for c in calls if c["url"] == q["request_url"])
         assert q["captured_at"] == qc["end"]
@@ -392,7 +393,8 @@ def test_quote_identity_checked(con, exports):
 
 def test_counterexample_stale_pool_price_is_flagged(con, exports):
     """Skeptic M4: the export's pool shows twice the market price; the router sells at the market. Without a check the
-    proceeds read as a 50% haircut. The router's own USD value of the tokens (swapUsdValue) gives it away."""
+    proceeds read as a 50% haircut. The router's implied price (proceeds before its small stated impact, per token) is
+    half the pool's price, which gives it away."""
     d = json.loads(SOL_POOLS)
     for it in d["data"]:
         if it["attributes"]["address"] == A_POOL:
@@ -410,7 +412,27 @@ def test_counterexample_stale_pool_price_is_flagged(con, exports):
     rows = _snaps(con, mint=A, kind="QUOTE")
     assert [r["state"] for r in rows] == ["PRICE_DISAGREES"] * 3
     v = json.loads(rows[0]["value_json"])
-    assert v["price_check"] == "DISAGREES" and 0.45 < v["swap_usd_over_size"] < 0.55 and v["price_source"].endswith("base_token_price_usd")
+    assert v["price_check"] == "DISAGREES" and 0.45 < v["implied_over_pool_price"] < 0.55 and v["price_source"].endswith("base_token_price_usd")
+
+
+def test_real_price_impact_is_not_a_price_disagreement(con, exports):
+    """Live run 2026-10-25 14:13Z: a $2,000 sale of 3vZY... got 0.80 of the size with priceImpactPct 0.203, and the
+    router's swapUsdValue (it values the output) was 0.80 of the size too. A check on swapUsdValue would call real
+    depth a pricing error; the implied price check must not. Here A's $2,000 quote is given a 20% impact."""
+    def deep_impact(url):
+        q = parse_qs(urlparse(url).query)
+        key = (q["inputMint"][0], q["amount"][0])
+        j = json.loads(JUP[key]) if key in JUP and key[0] == A else None
+        if not j or int(j["inAmount"]) < 10 ** 11 * 5:
+            return None
+        j["priceImpactPct"] = "0.2"
+        j["outAmount"] = str(int(int(j["outAmount"]) * 0.8 / (1 - 0.010878965890850858)))
+        j["swapUsdValue"] = str(float(j["swapUsdValue"]) * 0.8)
+        return 200, json.dumps(j).encode()
+    _run(con, exports, quote_hook=deep_impact)
+    r = [x for x in _snaps(con, mint=A, kind="QUOTE") if x["size_usd"] == 2000.0][0]
+    v = json.loads(r["value_json"])
+    assert r["state"] == "OK" and r["out_usd"] / 2000 < 0.81 and abs(v["implied_over_pool_price"] - 1.0) < 0.02 and v["price_check"] == "OK"
 
 
 def test_quote_order_rotates_and_prefers_unquoted_pools(con, exports):

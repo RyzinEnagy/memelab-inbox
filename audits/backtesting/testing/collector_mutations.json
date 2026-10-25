@@ -394,5 +394,14 @@
   "tests": [
    "tests/test_backtest_depth.py"
   ]
+ },
+ {
+  "id": "MR-17 price check on swapUsdValue (it values the output, so real impact reads as a pricing error)",
+  "file": "memelab/backtest/depth.py",
+  "old": "            check = (implied / price) if implied is not None else None",
+  "new": "            check = (swap_usd / size) if swap_usd is not None else None",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
  }
 ]

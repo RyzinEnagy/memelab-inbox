@@ -8,8 +8,8 @@ export commit:
   USD and the mint's USD price, from GeckoTerminal's multi-pool endpoint (up to 30 pools of one network per call);
 - on Solana, sell quotes for the mint into USDC at fixed USD sizes from Jupiter's keyless quote endpoint. The token
   amount sold is size / the mint's USD price from the pool read made earlier in the same run, and that price, its pool and
-  its read time are stored with the quote. A quote whose own USD valuation of the sale (swapUsdValue) differs from the
-  size by more than 10% is PRICE_DISAGREES, not OK. Other chains have no free quote source here: QUOTE_UNSUPPORTED_CHAIN.
+  its read time are stored with the quote. A quote whose implied price (proceeds before the router's stated price
+  impact, per token) differs from that pool price by more than 10% is PRICE_DISAGREES, not OK. Other chains have no free quote source here: QUOTE_UNSUPPORTED_CHAIN.
 
 These are observations made after the decision: the first one comes at the first hourly run after the export, up to
 about an hour later, and the lag is stored on every row (since_export_s). Every row keeps captured_at (UTC epoch seconds
@@ -47,7 +47,7 @@ DEADLINE_S = 115.0              # no call, first or retry, starts after this man
 HTTP_TIMEOUT_S = 10.0           # so the run ends by DEADLINE_S + HTTP_TIMEOUT_S plus database work
 RETRY_WAIT_S = 5.0              # one retry after a 429, a 5xx or no answer, if the cap and the deadline allow it
 RETRY_STATUS = (0, 429, 500, 502, 503, 504)
-PRICE_TOLERANCE = 0.10          # swapUsdValue / size outside 0.9 to 1.1 gives PRICE_DISAGREES
+PRICE_TOLERANCE = 0.10          # quote's implied price / pool price outside 0.9 to 1.1 gives PRICE_DISAGREES
 USDC = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
 USDC_DECIMALS = 6
 NETWORK = {"solana": "solana", "bsc": "bsc", "base": "base", "ethereum": "eth"}   # lab chain -> GeckoTerminal network id
@@ -438,11 +438,16 @@ def collect(con, *, exports: dict | None, now: float | None = None, http_get=Non
             out_usd = out_usd / 10 ** USDC_DECIMALS if out_usd is not None else None
             impact = _num(j.get("priceImpactPct"))
             swap_usd = _num(j.get("swapUsdValue"))
-            check = (swap_usd / size) if swap_usd is not None else None
+            # The router's own price for the mint: proceeds before its stated price impact, per token sold. A sale that
+            # loses far more than the router's price impact was sized at a price the market does not pay (skeptic M4).
+            # swapUsdValue is not used for this: it values the output, so it falls with real impact too.
+            implied = (out_usd / ((1.0 - impact) * amount)) if out_usd and impact is not None and 0.0 <= impact < 1.0 and amount > 0 else None
+            check = (implied / price) if implied is not None else None
             if state == "OK" and check is not None and abs(check - 1.0) > price_tolerance:
-                state = "PRICE_DISAGREES"      # the pool's price and the router's valuation of the same tokens disagree
+                state = "PRICE_DISAGREES"      # the pool's price and the router's price for the same tokens disagree
             vals.update(out_amount_raw=j.get("outAmount"), other_amount_threshold=j.get("otherAmountThreshold"), swap_usd_value=swap_usd,
-                        swap_usd_over_size=check, price_check="NO_SWAP_USD_VALUE" if check is None else ("OK" if abs(check - 1.0) <= price_tolerance else "DISAGREES"),
+                        implied_price_usd=implied, implied_over_pool_price=check,
+                        price_check="NO_PRICE_IMPACT" if check is None else ("OK" if abs(check - 1.0) <= price_tolerance else "DISAGREES"),
                         context_slot=j.get("contextSlot"), slippage_bps=j.get("slippageBps"),
                         route=[{"label": (s.get("swapInfo") or {}).get("label"), "amm": (s.get("swapInfo") or {}).get("ammKey"), "percent": s.get("percent")}
                                for s in j.get("routePlan") or []],
