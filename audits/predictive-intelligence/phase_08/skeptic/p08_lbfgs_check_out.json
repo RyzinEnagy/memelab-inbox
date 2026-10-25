@@ -1,0 +1,36 @@
+{
+ "rows": 138,
+ "positives": 20,
+ "prep_mu_maxdiff_vs_card": 1.110014302696527e-10,
+ "prep_sd_maxdiff_vs_card": 3.657554814573416e-11,
+ "card": {
+  "obj": 47.754974273197,
+  "maxgrad": 3.8904086618885e-09
+ },
+ "own_newton": {
+  "obj": 47.754974273197,
+  "maxgrad": 3.4416913763379853e-15,
+  "coef_diff_vs_card": 6.436869370851639e-10
+ },
+ "lbfgs_tol0.0001": {
+  "obj": 47.75503799583065,
+  "maxgrad": 0.013426572637911915,
+  "n_iter": 19,
+  "coef_diff_vs_card": 0.0035996398427689535,
+  "coef_diff_vs_own_newton": 0.003599639553838352
+ },
+ "lbfgs_tol1e-12": {
+  "obj": 47.754974273202016,
+  "maxgrad": 7.2490848412459785e-06,
+  "n_iter": 41,
+  "coef_diff_vs_card": 1.127770761999436e-06,
+  "coef_diff_vs_own_newton": 1.1274594574200991e-06
+ },
+ "newton-cholesky_tol1e-12": {
+  "obj": 47.754974273197,
+  "maxgrad": 4.717892743144603e-13,
+  "n_iter": 6,
+  "coef_diff_vs_card": 6.436159383227391e-10,
+  "coef_diff_vs_own_newton": 7.099876242477876e-14
+ }
+}

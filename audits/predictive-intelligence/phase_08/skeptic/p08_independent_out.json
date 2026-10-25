@@ -1,0 +1,358 @@
+{
+ "features": {
+  "decisions": 240,
+  "status": {
+   "NO_POOL": 71,
+   "OK": 154,
+   "PARTIAL": 15
+  },
+  "missing_mismatch": [],
+  "n_missing_mismatch": 0,
+  "max_rel_diff_vs_committed": 4.99993467850679e-07,
+  "complete": 154
+ },
+ "targets": {
+  "T1_24h": {
+   "n_dev": 136,
+   "k_dev": 34,
+   "folds": [
+    {
+     "cutoff": "2026-10-13",
+     "n_train": 104,
+     "k_train": 25,
+     "m1_used": [
+      61,
+      18
+     ],
+     "m2_used": [
+      61,
+      18
+     ],
+     "m1_gate": false,
+     "m2_gate": false,
+     "n_test": 11,
+     "k_test": 4
+    },
+    {
+     "cutoff": "2026-10-14",
+     "n_train": 112,
+     "k_train": 26,
+     "m1_used": [
+      68,
+      19
+     ],
+     "m2_used": [
+      68,
+      19
+     ],
+     "m1_gate": false,
+     "m2_gate": false,
+     "n_test": 8,
+     "k_test": 1
+    },
+    {
+     "cutoff": "2026-10-15",
+     "n_train": 123,
+     "k_train": 30,
+     "m1_used": [
+      76,
+      22
+     ],
+     "m2_used": [
+      76,
+      22
+     ],
+     "m1_gate": false,
+     "m2_gate": false,
+     "n_test": 5,
+     "k_test": 3
+    }
+   ],
+   "oos_n": 24,
+   "compare_with_committed": {
+    "B0": {
+     "both": 24,
+     "only_mine": 0,
+     "only_committed": 0,
+     "max_abs_diff": 4.390243902308022e-07
+    },
+    "M1": {
+     "both": 0,
+     "only_mine": 0,
+     "only_committed": 0,
+     "max_abs_diff": null
+    },
+    "M1n": {
+     "both": 0,
+     "only_mine": 0,
+     "only_committed": 0,
+     "max_abs_diff": null
+    },
+    "M2": {
+     "both": 0,
+     "only_mine": 0,
+     "only_committed": 0,
+     "max_abs_diff": null
+    },
+    "M3": {
+     "both": 0,
+     "only_mine": 0,
+     "only_committed": 0,
+     "max_abs_diff": null
+    }
+   },
+   "scores": {},
+   "holdout_start": {
+    "n": 136,
+    "k": 34,
+    "m1_used": [
+     87,
+     26
+    ],
+    "m2_used": [
+     87,
+     26
+    ]
+   }
+  },
+  "T1b_6h": {
+   "n_dev": 224,
+   "k_dev": 26,
+   "folds": [
+    {
+     "cutoff": "2026-10-12",
+     "n_train": 180,
+     "k_train": 23,
+     "m1_used": [
+      111,
+      17
+     ],
+     "m2_used": [
+      111,
+      17
+     ],
+     "m1_gate": false,
+     "m2_gate": false,
+     "n_test": 8,
+     "k_test": 1
+    },
+    {
+     "cutoff": "2026-10-13",
+     "n_train": 188,
+     "k_train": 24,
+     "m1_used": [
+      118,
+      18
+     ],
+     "m2_used": [
+      118,
+      18
+     ],
+     "m1_gate": false,
+     "m2_gate": false,
+     "n_test": 11,
+     "k_test": 1
+    },
+    {
+     "cutoff": "2026-10-14",
+     "n_train": 199,
+     "k_train": 25,
+     "m1_used": [
+      126,
+      19
+     ],
+     "m2_used": [
+      126,
+      19
+     ],
+     "m1_gate": false,
+     "m2_gate": false,
+     "n_test": 8,
+     "k_test": 0
+    },
+    {
+     "cutoff": "2026-10-15",
+     "n_train": 207,
+     "k_train": 25,
+     "m1_used": [
+      133,
+      19
+     ],
+     "m2_used": [
+      133,
+      19
+     ],
+     "m1_gate": false,
+     "m2_gate": false,
+     "n_test": 7,
+     "k_test": 1
+    },
+    {
+     "cutoff": "2026-10-16",
+     "n_train": 214,
+     "k_train": 26,
+     "m1_used": [
+      138,
+      20
+     ],
+     "m2_used": [
+      138,
+      20
+     ],
+     "m1_gate": true,
+     "m2_gate": true,
+     "n_test": 10,
+     "k_test": 0
+    }
+   ],
+   "oos_n": 44,
+   "compare_with_committed": {
+    "B0": {
+     "both": 44,
+     "only_mine": 0,
+     "only_committed": 0,
+     "max_abs_diff": 4.255319148993575e-07
+    },
+    "M1": {
+     "both": 6,
+     "only_mine": 0,
+     "only_committed": 0,
+     "max_abs_diff": 4.910185284826007e-07
+    },
+    "M1n": {
+     "both": 6,
+     "only_mine": 0,
+     "only_committed": 0,
+     "max_abs_diff": 4.823668309089646e-07
+    },
+    "M2": {
+     "both": 6,
+     "only_mine": 0,
+     "only_committed": 0,
+     "max_abs_diff": 4.1435662587185895e-07
+    },
+    "M3": {
+     "both": 6,
+     "only_mine": 0,
+     "only_committed": 0,
+     "max_abs_diff": 4.452525917096606e-07
+    }
+   },
+   "scores": {
+    "M1": {
+     "n": 6,
+     "k": 0,
+     "days": 1,
+     "brier": 0.004582061492114,
+     "brier_b0": 0.014761114507817278,
+     "bss": 0.6895856685016972
+    },
+    "M1n": {
+     "n": 6,
+     "k": 0,
+     "days": 1,
+     "brier": 0.004582057667475902,
+     "brier_b0": 0.014761114507817278,
+     "bss": 0.6895859276039551
+    },
+    "M2": {
+     "n": 6,
+     "k": 0,
+     "days": 1,
+     "brier": 0.004006582405202109,
+     "brier_b0": 0.014761114507817278,
+     "bss": 0.7285718227387046
+    },
+    "M3": {
+     "n": 6,
+     "k": 0,
+     "days": 1,
+     "brier": 0.004963150423996904,
+     "brier_b0": 0.014761114507817278,
+     "bss": 0.6637685845897009
+    }
+   },
+   "holdout_start": {
+    "n": 224,
+    "k": 26,
+    "m1_used": [
+     144,
+     20
+    ],
+    "m2_used": [
+     144,
+     20
+    ]
+   }
+  },
+  "T2_24h": {
+   "n_dev": 131,
+   "k_dev": 28,
+   "folds": [
+    {
+     "cutoff": "2026-10-14",
+     "n_train": 104,
+     "k_train": 27,
+     "m1_used": [
+      61,
+      13
+     ],
+     "m2_used": [
+      61,
+      13
+     ],
+     "m1_gate": false,
+     "m2_gate": false,
+     "n_test": 8,
+     "k_test": 1
+    }
+   ],
+   "oos_n": 8,
+   "compare_with_committed": {
+    "B0": {
+     "both": 8,
+     "only_mine": 0,
+     "only_committed": 0,
+     "max_abs_diff": 3.84615384652065e-07
+    },
+    "M1": {
+     "both": 0,
+     "only_mine": 0,
+     "only_committed": 0,
+     "max_abs_diff": null
+    },
+    "M1n": {
+     "both": 0,
+     "only_mine": 0,
+     "only_committed": 0,
+     "max_abs_diff": null
+    },
+    "M2": {
+     "both": 0,
+     "only_mine": 0,
+     "only_committed": 0,
+     "max_abs_diff": null
+    },
+    "M3": {
+     "both": 0,
+     "only_mine": 0,
+     "only_committed": 0,
+     "max_abs_diff": null
+    }
+   },
+   "scores": {},
+   "holdout_start": {
+    "n": 131,
+    "k": 28,
+    "m1_used": [
+     83,
+     14
+    ],
+    "m2_used": [
+     83,
+     14
+    ]
+   }
+  }
+ }
+}

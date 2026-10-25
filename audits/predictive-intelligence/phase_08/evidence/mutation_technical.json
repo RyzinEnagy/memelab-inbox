@@ -1,7 +1,13 @@
 {
- "applied": 28,
- "caught": 28,
- "mutations": 28,
+ "applied": 39,
+ "caught": 39,
+ "equivalent_mutations": [
+  {
+   "caught": false,
+   "mutation": "S: fit's own maturity check removed (equivalent: check_asof with as_of=cutoff refuses an immature label first)"
+  }
+ ],
+ "mutations": 39,
  "not_applied": [],
  "results": [
   {
@@ -171,6 +177,72 @@
    "caught": true,
    "first_failure": "FAILED tests/test_predictive_technical.py::test_windows_of_6_and_24_hours_are_distinct",
    "mutation": "range 6 h uses the 24 h window"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_a_value_is_available_when_its_latest_input_is",
+   "mutation": "S: availability is the earliest input"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_cx_s08_a_number_does_not_depend_on_the_other_rows_scored_with_it",
+   "mutation": "S: CX-S08 scored rows standardised with their own statistics"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_a_fetch_series_ending_before_the_decision_does_not_cover_it",
+   "mutation": "S: a series ending an hour before T covers T"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_p13_the_guard_refuses_a_decision_one_minute_before_the_cutoff_and_accepts_one_at_it",
+   "mutation": "S: P13 guard one day loose"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_attach_refuses_a_snapshot_of_another_decision_time",
+   "mutation": "S: identity join ignores the decision time"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_v2_consistency_catches_a_small_derived_difference",
+   "mutation": "S: version 2 derived tolerance 1e-3"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_failed_breakout_needs_a_close_strictly_below_the_prior_high_and_retest_a_close_strictly_above",
+   "mutation": "S: failed breakout at equality"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_failed_breakout_needs_a_close_strictly_below_the_prior_high_and_retest_a_close_strictly_above",
+   "mutation": "S: retest break at equality"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_stumps_treat_values_closer_than_split_eps_as_equal_and_allow_a_leaf_of_exactly_min_leaf",
+   "mutation": "S: split tolerance removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_stumps_treat_values_closer_than_split_eps_as_equal_and_allow_a_leaf_of_exactly_min_leaf",
+   "mutation": "S: stump leaf minimum off by one"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_nc1t_seeds_permute_differently",
+   "mutation": "S: NC1 one permutation for every seed"
   }
  ],
  "survived": []

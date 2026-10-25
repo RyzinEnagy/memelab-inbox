@@ -58,6 +58,25 @@ MUTATIONS = [
     ("rv over closes skips the base price", "seq = [base] + [c for c in ws if c is not base]", "seq = [c for c in ws if c is not base]"),
     ("range 6 h uses the 24 h window", 'for name, w in (("tech_log_range_6h", H6), ("tech_log_range_24h", H24)):',
      'for name, w in (("tech_log_range_6h", H24), ("tech_log_range_24h", H24)):'),
+    # repair pass 2: the independent skeptic's twelve surviving mutations (skeptic/p08_own_mutations.py), CX-S08 among them
+    ("S: availability is the earliest input", 'round(max(float(c["_avail"]) for c in inputs), 6)', 'round(min(float(c["_avail"]) for c in inputs), 6)'),
+    ("S: CX-S08 scored rows standardised with their own statistics",
+     'prep, lr = K.Prep.from_dict(body["prep"]), K.Logistic.from_dict(body["logistic"])', 'prep, lr = K.Prep().fit(X), K.Logistic.from_dict(body["logistic"])'),
+    ("S: a series ending an hour before T covers T", "need_to = T - lag", "need_to = T - lag - 3600.0"),
+    ("S: P13 guard one day loose", 'early = [e for e in examples if e.decision_time < float(card["training_cutoff"])]',
+     'early = [e for e in examples if e.decision_time < float(card["training_cutoff"]) - 86400.0]'),
+    ("S: identity join ignores the decision time", ' or float(s["decision_time"]) != e.decision_time:', ':'),
+    ("S: version 2 derived tolerance 1e-3", "abs(a - _r(b)) > 1e-9 * max(1.0, abs(a))", "abs(a - _r(b)) > 1e-3 * max(1.0, abs(a))"),
+    ("S: failed breakout at equality", 'RH > PH and last["c"] < PH', 'RH > PH and last["c"] <= PH'),
+    ("S: retest break at equality", 'broke = any(c["c"] > PH6 for c in w6)', 'broke = any(c["c"] >= PH6 for c in w6)'),
+    ("S: split tolerance removed", "SPLIT_EPS = 1e-7", "SPLIT_EPS = 0.0"),
+    ("S: stump leaf minimum off by one", "(nl >= self.min_leaf) & (nr >= self.min_leaf)", "(nl > self.min_leaf) & (nr > self.min_leaf)"),
+    ("S: NC1 one permutation for every seed", "yy = np.random.default_rng(s).permutation(B.labels_of(train))",
+     "yy = np.random.default_rng(0).permutation(B.labels_of(train))"),
+]
+EQUIVALENT = [
+    ("S: fit's own maturity check removed (equivalent: check_asof with as_of=cutoff refuses an immature label first)",
+     "if not (e.decision_time < cutoff and e.label_matures_at <= cutoff):", "if not (e.decision_time < cutoff):"),
 ]
 
 
@@ -67,7 +86,7 @@ def main() -> int:
     files += [TARGET, TEST, "audits/predictive-intelligence/phase_08/experiments/EXPERIMENT_REGISTRY.csv",
               "audits/predictive-intelligence/phase_08/experiments/SEARCH_LEDGER.csv",
               "audits/predictive-intelligence/phase_07/experiments/SEARCH_LEDGER.csv"]
-    results = []
+    results, equiv = [], []
     with tempfile.TemporaryDirectory() as td:
         root = Path(td) / "repo"
         for f in sorted(set(files)):
@@ -90,10 +109,17 @@ def main() -> int:
             first = next((ln for ln in r.stdout.splitlines() if ln.startswith("FAILED") or ln.startswith("ERROR")), "")
             results.append({"mutation": name, "applied": True, "caught": r.returncode != 0, "first_failure": first[:200]})
             (root / TARGET).write_text(orig)
+        for name, old, new in EQUIVALENT:
+            (root / TARGET).write_text(orig.replace(old, new))
+            r = subprocess.run([sys.executable, "-B", "-m", "pytest", TEST, "-q", "-x", "-p", "no:cacheprovider"], cwd=root,
+                               capture_output=True, text=True)
+            equiv.append({"mutation": name, "caught": r.returncode != 0})
+            (root / TARGET).write_text(orig)
     applied = [r for r in results if r["applied"]]
     rep = {"mutations": len(MUTATIONS), "applied": len(applied), "caught": sum(1 for r in applied if r["caught"]),
            "survived": [r["mutation"] for r in applied if not r["caught"]],
-           "not_applied": [r["mutation"] for r in results if not r["applied"]], "results": results}
+           "not_applied": [r["mutation"] for r in results if not r["applied"]], "results": results,
+           "equivalent_mutations": equiv}
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(rep, indent=1, sort_keys=True) + "\n")
     print(json.dumps({k: rep[k] for k in ("mutations", "applied", "caught", "survived", "not_applied")}))

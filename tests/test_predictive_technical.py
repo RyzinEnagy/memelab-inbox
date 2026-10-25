@@ -616,3 +616,113 @@ def test_p22_every_registered_configuration_is_in_the_search_ledger():
     traps = {x for x in reg if x.rsplit(":", 1)[1] in ("NC2T", "P06T", "P13T")}
     assert set(reg) - traps <= ids
     assert any(r["kind"] == "DEBUG_RUN_REAL_DATA" for r in led if r["phase"] == "08")
+
+
+# ---------------------------------------------------------------- repair pass 2 (Phase 08 skeptic m2, CX-S08)
+def test_cx_s08_a_number_does_not_depend_on_the_other_rows_scored_with_it(fixture_run):
+    """Score-time re-standardisation (the batch fit_transform bug) makes a forecast depend on other, possibly later, rows."""
+    dev, _ = fixture_run
+    train = gate_like(dev)(H0)
+    rows = [e for e in dev if e.tech_status is None][:40]
+    for m in T.MODEL_IDS:
+        card = T.fit(m, T1, train, H0, is_fixture=True)
+        batch = T.predict_numbers(card, rows)[0]
+        alone = np.array([T.predict_numbers(card, [e])[0][0] for e in rows])
+        assert np.allclose(batch, alone, rtol=1e-12, atol=0), m
+        assert np.isfinite(alone).all()
+
+
+def test_scoring_uses_the_cards_training_mean_and_sd():
+    rng = np.random.default_rng(5)
+    exs = []
+    for i in range(200):
+        x = {c: rng.normal(3.0, 2.0) for c in T.TECH}
+        x.update({B.LIQ: 11.0, B.MCAP: 12.0, B.VOL: 12.0, B.FATAL: 0.0, B.AGE: 1.0, B.SCORE: 50.0})
+        y = int(rng.uniform() < 1 / (1 + math.exp(-(x["tech_log_ret_1h"] - 3.0))))
+        exs.append(T.TExample(f"k{i}", "solana", H.MINT_A, D0 + i * 600, D0 + i * 600 + 21900, y, x, {c: D0 + i * 600 for c in x}))
+    card = T.fit("M1_T_LOGIT", T1B, exs, D0 + 3 * 86400, is_fixture=True)
+    prep = card["body"]["prep"]
+    X = T.matrix(exs, card["body"]["spec"]["columns"])
+    assert np.allclose(prep["mu"], X.mean(axis=0)) and np.allclose(prep["sd"], X.std(axis=0))
+    e = exs[0]
+    z = [(e.x[c] - mu) / sd for c, mu, sd in zip(card["body"]["spec"]["columns"], prep["mu"], prep["sd"])]
+    lg = card["body"]["logistic"]
+    want = 1 / (1 + math.exp(-(lg["intercept"] + sum(a * b for a, b in zip(lg["coef"], z)))))
+    assert T.predict_numbers(card, [e])[0][0] == pytest.approx(want, rel=1e-12)
+
+
+def test_a_value_is_available_when_its_latest_input_is(tmp_path):
+    con = build(tmp_path, wave)
+    snap = tech(con, H.D3)
+    newest = max(float(r[0]) for r in con.execute("SELECT available_at FROM predictive_candles WHERE available_at <= ?", (H.D3,)))
+    assert newest == H.D3
+    for k, v in snap["values"].items():
+        assert v["available_at"] == newest, k          # every tech-1 value uses the newest close
+
+
+def test_a_fetch_series_ending_before_the_decision_does_not_cover_it(tmp_path):
+    con = build(tmp_path, wave, last_end=H.D3 - 3600)
+    snap = tech(con, H.D3)
+    assert {v["missing_reason"] for v in snap["values"].values()} == {"NOT_FETCHED"}
+    assert T.row_status(snap) == "CENSORED_RETRIEVAL"
+
+
+def test_p13_the_guard_refuses_a_decision_one_minute_before_the_cutoff_and_accepts_one_at_it(fixture_run):
+    dev, _ = fixture_run
+    card = T.fit("M1_T_LOGIT", T1, gate_like(dev)(H0), H0, is_fixture=True)
+    e = [x for x in dev if x.tech_status is None][0]
+    with pytest.raises(T.ModelTrainedAfterDecision):
+        T.predict(card, [T.TExample(**{**e.__dict__, "decision_time": H0 - 60, "avail": {c: H0 - 60 for c in e.avail}})])
+    p, _ = T.predict(card, [T.TExample(**{**e.__dict__, "decision_time": H0, "avail": {c: H0 for c in e.avail}})])
+    assert np.isfinite(p[0])
+
+
+def test_attach_refuses_a_snapshot_of_another_decision_time(tmp_path):
+    con = build(tmp_path, wave)
+    s = tech(con, H.D3)
+    e = B.Example(s["decision_key"], "solana", H.MINT_A, H.D3, H.D3 + 86400, 0, {c: 1.0 for c in B.ALLOWED_COLUMNS},
+                  {c: H.D3 for c in B.ALLOWED_COLUMNS})
+    with pytest.raises(B.IdentityJoinError):
+        T.attach([e], {s["decision_key"]: dict(s, decision_time=H.D3 - 1)})
+
+
+def test_v2_consistency_catches_a_small_derived_difference(tmp_path):
+    con = build(tmp_path, wave)
+    f = F.features_as_of(con, "solana", H.MINT_A, H.D3, F.FEATURE_VERSION)
+    row = {v["feature_name"]: v["value"] for v in f["values"]}
+    s = tech(con, H.D3)
+    assert T.v2_consistency(s, row) == []
+    row["cdl_last_close_age_s"] = row["cdl_last_close_age_s"] + 0.01     # moves the derived value by about 3e-5
+    assert T.v2_consistency(s, row)
+
+
+def test_failed_breakout_needs_a_close_strictly_below_the_prior_high_and_retest_a_close_strictly_above(tmp_path):
+    t = H.D3
+
+    def back_to_high(s):
+        if s + 300 == t - 300:
+            return 1.0
+        return 1.2 if t - 3600 < s + 300 <= t - 900 else 1.0
+    v = vals(tech(build(tmp_path, back_to_high, name="a.sqlite"), t))
+    assert v["tech_failed_breakout_1h"] == 0.0 and v["tech_log_breakout_1h"] == pytest.approx(math.log(1.2))
+    flat = vals(tech(build(tmp_path, lambda s: 1.0, name="b.sqlite"), t))
+    assert flat["tech_retest_6h"] == 0.0 and flat["tech_failed_breakout_1h"] == 0.0 and flat["tech_log_breakout_1h"] == 0.0
+
+
+def test_stumps_treat_values_closer_than_split_eps_as_equal_and_allow_a_leaf_of_exactly_min_leaf():
+    x = np.array([0.0] * 20 + [1e-9] * 20 + [1.0] * 20)[:, None]
+    y = np.array([0.0] * 20 + [1.0] * 40)
+    m = T.Stumps(rounds=1, lr=1.0).fit(x, y)
+    assert m.trees[0][1] == pytest.approx(0.5, abs=1e-6)          # not between 0 and 1e-9
+    x2 = np.array([0.0] * 10 + [1.0] * 30)[:, None]
+    y2 = np.array([1.0] * 10 + [0.0] * 25 + [1.0] * 5)
+    m2 = T.Stumps(rounds=1, lr=1.0, min_leaf=10).fit(x2, y2)
+    assert m2.trees and m2.trees[0][1] == 0.5
+
+
+def test_nc1t_seeds_permute_differently(fixture_run):
+    _, res = fixture_run
+    a = np.array([r["NC1T_0"] for r in res["oos"]])
+    b = np.array([r["NC1T_1"] for r in res["oos"]])
+    ok = np.isfinite(a) & np.isfinite(b)
+    assert ok.any() and not np.array_equal(a[ok], b[ok])

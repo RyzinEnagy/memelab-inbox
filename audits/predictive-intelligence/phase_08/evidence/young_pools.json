@@ -1,0 +1,254 @@
+{
+ "censored_retrieval_decisions": 15,
+ "older_pool_short_history": 3,
+ "pool_younger_than_window": 12,
+ "reading": "a pool younger than the 24 h window at T has no history to fetch; the frozen version 2 coverage rule still labels it OUTSIDE_FETCHED_WINDOW (RETRIEVAL basis). No number moves: such rows are excluded either way. Consequence: tech-1 models cannot score a pool younger than about 24 h 5 min at its decision.",
+ "rows": [
+  {
+   "candles_begin_within_0_1_h_of_first_pool": true,
+   "class": "POOL_YOUNGER_THAN_WINDOW",
+   "decision_key": "19ddfd5de2a026e432008e1b1b893c091b8bb4faf92b85a1cb4d984812a1e292",
+   "first_candle_minus_first_pool_at_h": -0.05,
+   "history_before_T_h": 1.06,
+   "pool_age_h_at_T": 1.01,
+   "series": [
+    {
+     "calls": 1,
+     "cover_from": 1791483900.0,
+     "need_from": 1791397431.0,
+     "status": "OK"
+    }
+   ]
+  },
+  {
+   "candles_begin_within_0_1_h_of_first_pool": true,
+   "class": "POOL_YOUNGER_THAN_WINDOW",
+   "decision_key": "1ec073a4ab8b9f8dddaa78dcbf44b6b4979c1900e596ecd08b213826d860e63f",
+   "first_candle_minus_first_pool_at_h": -0.07,
+   "history_before_T_h": 4.23,
+   "pool_age_h_at_T": 4.16,
+   "series": [
+    {
+     "calls": 1,
+     "cover_from": 1791472500.0,
+     "need_from": 1791397431.0,
+     "status": "OK"
+    }
+   ]
+  },
+  {
+   "candles_begin_within_0_1_h_of_first_pool": true,
+   "class": "POOL_YOUNGER_THAN_WINDOW",
+   "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
+   "first_candle_minus_first_pool_at_h": -0.06,
+   "history_before_T_h": 11.36,
+   "pool_age_h_at_T": 11.3,
+   "series": [
+    {
+     "calls": 2,
+     "cover_from": 1791587400.0,
+     "need_from": 1791538005.0,
+     "status": "OK"
+    }
+   ]
+  },
+  {
+   "candles_begin_within_0_1_h_of_first_pool": false,
+   "class": "OLDER_POOL_SHORT_HISTORY",
+   "decision_key": "37bb74585b03f3f03c5043658e1910e54f000b2bde87d3ef714b39d4c7481080",
+   "first_candle_minus_first_pool_at_h": 27.73,
+   "history_before_T_h": 15.47,
+   "pool_age_h_at_T": 43.2,
+   "series": [
+    {
+     "calls": 1,
+     "cover_from": 1791658200.0,
+     "need_from": 1791623579.0,
+     "status": "OK"
+    }
+   ]
+  },
+  {
+   "candles_begin_within_0_1_h_of_first_pool": true,
+   "class": "POOL_YOUNGER_THAN_WINDOW",
+   "decision_key": "39a1c4f7e028d0d93c0ab7f0ba61fc13e6cdcc54934657ed99574c0796b5091e",
+   "first_candle_minus_first_pool_at_h": -0.04,
+   "history_before_T_h": 16.81,
+   "pool_age_h_at_T": 16.77,
+   "series": [
+    {
+     "calls": 1,
+     "cover_from": 1791427200.0,
+     "need_from": 1791397431.0,
+     "status": "OK"
+    }
+   ]
+  },
+  {
+   "candles_begin_within_0_1_h_of_first_pool": false,
+   "class": "POOL_YOUNGER_THAN_WINDOW",
+   "decision_key": "6828ce213b00690d37994854643d8c2499e3a2a24a373b8e5ec88aa066605224",
+   "first_candle_minus_first_pool_at_h": 16.79,
+   "history_before_T_h": 0.19,
+   "pool_age_h_at_T": 16.98,
+   "series": [
+    {
+     "calls": 2,
+     "cover_from": 1791547800.0,
+     "need_from": 1791458175.0,
+     "status": "OK"
+    }
+   ]
+  },
+  {
+   "candles_begin_within_0_1_h_of_first_pool": true,
+   "class": "POOL_YOUNGER_THAN_WINDOW",
+   "decision_key": "74582082349ad2000840fe65a96662ab6dfa2febf73c2e333aa94c62f648c640",
+   "first_candle_minus_first_pool_at_h": -0.05,
+   "history_before_T_h": 18.56,
+   "pool_age_h_at_T": 18.52,
+   "series": [
+    {
+     "calls": 1,
+     "cover_from": 1791420900.0,
+     "need_from": 1791397431.0,
+     "status": "OK"
+    }
+   ]
+  },
+  {
+   "candles_begin_within_0_1_h_of_first_pool": false,
+   "class": "OLDER_POOL_SHORT_HISTORY",
+   "decision_key": "813221ba77d4bcae64664e1328cdb3c9622c9723e53395830b6030183f90a8f7",
+   "first_candle_minus_first_pool_at_h": 49.01,
+   "history_before_T_h": 16.9,
+   "pool_age_h_at_T": 65.91,
+   "series": [
+    {
+     "calls": 1,
+     "cover_from": 1791426900.0,
+     "need_from": 1791397431.0,
+     "status": "OK"
+    }
+   ]
+  },
+  {
+   "candles_begin_within_0_1_h_of_first_pool": true,
+   "class": "POOL_YOUNGER_THAN_WINDOW",
+   "decision_key": "8d78dc1d787cc7480abe3eb12555965d6d81366d13013b058d4670c55a0a4079",
+   "first_candle_minus_first_pool_at_h": -0.01,
+   "history_before_T_h": 13.48,
+   "pool_age_h_at_T": 13.47,
+   "series": [
+    {
+     "calls": 1,
+     "cover_from": 1791439200.0,
+     "need_from": 1791397431.0,
+     "status": "OK"
+    }
+   ]
+  },
+  {
+   "candles_begin_within_0_1_h_of_first_pool": true,
+   "class": "POOL_YOUNGER_THAN_WINDOW",
+   "decision_key": "8ff1f5a3b3cea39a0fadfdd589c7176efcf4c6253e31fba29787452c9eb10ca2",
+   "first_candle_minus_first_pool_at_h": 0.05,
+   "history_before_T_h": 0.9,
+   "pool_age_h_at_T": 0.95,
+   "series": [
+    {
+     "calls": 1,
+     "cover_from": 1791484500.0,
+     "need_from": 1791397431.0,
+     "status": "OK"
+    }
+   ]
+  },
+  {
+   "candles_begin_within_0_1_h_of_first_pool": true,
+   "class": "POOL_YOUNGER_THAN_WINDOW",
+   "decision_key": "ac1be05dbd88a7da84d168880ce1a01a4f3abffdb0e694b5350311320e39ec9d",
+   "first_candle_minus_first_pool_at_h": 0.08,
+   "history_before_T_h": 0.44,
+   "pool_age_h_at_T": 0.52,
+   "series": [
+    {
+     "calls": 1,
+     "cover_from": 1791546900.0,
+     "need_from": 1791458175.0,
+     "status": "OK"
+    }
+   ]
+  },
+  {
+   "candles_begin_within_0_1_h_of_first_pool": true,
+   "class": "POOL_YOUNGER_THAN_WINDOW",
+   "decision_key": "b5ddb6ad15aa67ea8d65afdc71b58d2e39ea51378fcf3ad87b3fe1bb4950e8a4",
+   "first_candle_minus_first_pool_at_h": -0.01,
+   "history_before_T_h": 15.81,
+   "pool_age_h_at_T": 15.81,
+   "series": [
+    {
+     "calls": 1,
+     "cover_from": 1791430800.0,
+     "need_from": 1791397431.0,
+     "status": "OK"
+    }
+   ]
+  },
+  {
+   "candles_begin_within_0_1_h_of_first_pool": false,
+   "class": "OLDER_POOL_SHORT_HISTORY",
+   "decision_key": "bee8c1456657cff1f403b73097025b41e2e3155cf65b01aeba1b236713907cd8",
+   "first_candle_minus_first_pool_at_h": 24.11,
+   "history_before_T_h": 18.98,
+   "pool_age_h_at_T": 43.09,
+   "series": [
+    {
+     "calls": 1,
+     "cover_from": 1791419400.0,
+     "need_from": 1791397431.0,
+     "status": "OK"
+    }
+   ]
+  },
+  {
+   "candles_begin_within_0_1_h_of_first_pool": true,
+   "class": "POOL_YOUNGER_THAN_WINDOW",
+   "decision_key": "da64a9d95b19fc0004aa868a493eec4accb6e595fa3fd160bcbcbc849742a56c",
+   "first_candle_minus_first_pool_at_h": -0.04,
+   "history_before_T_h": 3.15,
+   "pool_age_h_at_T": 3.11,
+   "series": [
+    {
+     "calls": 1,
+     "cover_from": 1791476400.0,
+     "need_from": 1791397431.0,
+     "status": "OK"
+    },
+    {
+     "calls": 1,
+     "cover_from": 1791476400.0,
+     "need_from": 1791397431.0,
+     "status": "OK"
+    }
+   ]
+  },
+  {
+   "candles_begin_within_0_1_h_of_first_pool": true,
+   "class": "POOL_YOUNGER_THAN_WINDOW",
+   "decision_key": "e92f86dd49618974e2a0e0c667c6435bc27f13a6c136c2126561bcdb4c6b9029",
+   "first_candle_minus_first_pool_at_h": -0.03,
+   "history_before_T_h": 4.23,
+   "pool_age_h_at_T": 4.2,
+   "series": [
+    {
+     "calls": 1,
+     "cover_from": 1791472500.0,
+     "need_from": 1791397431.0,
+     "status": "OK"
+    }
+   ]
+  }
+ ]
+}

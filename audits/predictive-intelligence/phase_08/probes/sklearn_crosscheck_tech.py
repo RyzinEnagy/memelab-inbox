@@ -21,7 +21,10 @@ sys.path.insert(0, str(REPO))
 import numpy as np  # noqa: E402
 import sklearn  # noqa: E402
 from sklearn.ensemble import GradientBoostingClassifier  # noqa: E402
+from sklearn.impute import SimpleImputer  # noqa: E402
 from sklearn.linear_model import LogisticRegression  # noqa: E402
+from sklearn.pipeline import make_pipeline  # noqa: E402
+from sklearn.preprocessing import StandardScaler  # noqa: E402
 
 from memelab.predictive import stats as K  # noqa: E402
 from memelab.predictive import technical as T  # noqa: E402
@@ -48,13 +51,26 @@ def stump_compare(X, y, p_np=None):
     return out
 
 
+def prep_compare(X, Z):
+    """Repair pass 2 (skeptic m6): stats.Prep against scikit-learn. Columns with at least two distinct finite training values
+    are kept (the lab's rule, recomputed here with numpy), then SimpleImputer(median, add_indicator) and StandardScaler."""
+    keep = [j for j in range(X.shape[1]) if np.unique(X[np.isfinite(X[:, j]), j]).size >= 2]
+    pipe = make_pipeline(SimpleImputer(strategy="median", add_indicator=True), StandardScaler()).fit(X[:, keep])
+    Zs = pipe.transform(X[:, keep])
+    return {"shape_equal": list(Zs.shape) == list(Z.shape),
+            "max_abs_design_diff": float(np.max(np.abs(Zs - Z))) if Zs.shape == Z.shape else None}
+
+
 def logit_compare(Z, y, coef=None):
     lr = LogisticRegression(C=1.0, solver="lbfgs", tol=1e-12, max_iter=100000).fit(Z, y)
     sk = np.r_[lr.intercept_, lr.coef_.ravel()]
+    nc = LogisticRegression(C=1.0, solver="newton-cholesky", tol=1e-12, max_iter=100000).fit(Z, y)
+    skn = np.r_[nc.intercept_, nc.coef_.ravel()]
     if coef is None:
         m = K.Logistic(C=1.0).fit(Z, y)
         coef = np.r_[m.intercept_, m.coef_]
     return {"rows": int(len(y)), "max_abs_coef_diff": float(np.max(np.abs(sk - coef))),
+            "max_abs_coef_diff_newton_cholesky": float(np.max(np.abs(skn - coef))),
             "max_abs_prob_diff": float(np.max(np.abs(K.sigmoid(Z @ coef[1:] + coef[0]) - lr.predict_proba(Z)[:, 1])))}
 
 
@@ -66,7 +82,8 @@ def main(npz_path: str, out: str) -> int:
             base = key[:-2]
             y = d[base + "_y"]
             if base + "_Z" in d.files:
-                real["logistic"].append({"fold": base, **logit_compare(d[base + "_Z"], y, d[base + "_coef"])})
+                real["logistic"].append({"fold": base, **logit_compare(d[base + "_Z"], y, d[base + "_coef"]),
+                                         "prep": prep_compare(d[key], d[base + "_Z"])})
             if base + "_p" in d.files:
                 real["stumps"].append({"fold": base, **stump_compare(d[key], y, d[base + "_p"])})
     synth = {"logistic": [], "stumps": []}
@@ -83,16 +100,24 @@ def main(npz_path: str, out: str) -> int:
         synth["logistic"].append({"seed": 1000 + seed, **logit_compare(prep.transform(X), y)})
     allr = real["stumps"] + synth["stumps"]
     alll = real["logistic"] + synth["logistic"]
+    preps = [r["prep"] for r in real["logistic"]]
     rep = {"sklearn": sklearn.__version__, "numpy": np.__version__, "real_fold_designs": real, "synthetic_designs": synth,
            "max_stump_prob_diff": max((r["max_abs_prob_diff"] for r in allr), default=None),
            "max_logit_coef_diff": max((r["max_abs_coef_diff"] for r in alll), default=None),
            "stump_rounds_with_a_different_split": sum(r["rounds_numpy"] - r["same_split_rounds"] for r in allr),
-           "thresholds": {"logistic_coef": 1e-6, "stump_prob": 1e-9}}
+           "max_logit_coef_diff_newton_cholesky": max((r["max_abs_coef_diff_newton_cholesky"] for r in alll), default=None),
+           "max_prep_design_diff": max((p["max_abs_design_diff"] for p in preps), default=None),
+           "prep_shapes_equal": all(p["shape_equal"] for p in preps),
+           "holdout_start_designs_checked": sorted({r["fold"] for r in real["logistic"] + real["stumps"] if "_H_" in r["fold"]}),
+           "thresholds": {"logistic_coef": 1e-6, "stump_prob": 1e-9, "note": "pass keeps the pre-registered lbfgs rule (G16); "
+                          "newton-cholesky and the preprocessing are reported beside it (repair pass 2, skeptic m6)"}}
     rep["pass"] = (rep["max_logit_coef_diff"] is not None and rep["max_logit_coef_diff"] <= 1e-6
                    and rep["max_stump_prob_diff"] is not None and rep["max_stump_prob_diff"] <= 1e-9)
     Path(out).parent.mkdir(parents=True, exist_ok=True)
     Path(out).write_text(json.dumps(rep, indent=1, sort_keys=True) + "\n")
-    print(json.dumps({k: rep[k] for k in ("max_stump_prob_diff", "max_logit_coef_diff", "stump_rounds_with_a_different_split", "pass")}))
+    print(json.dumps({k: rep[k] for k in ("max_stump_prob_diff", "max_logit_coef_diff", "max_logit_coef_diff_newton_cholesky",
+                                          "max_prep_design_diff", "prep_shapes_equal", "holdout_start_designs_checked",
+                                          "stump_rounds_with_a_different_split", "pass")}))
     return 0 if rep["pass"] else 1
 
 

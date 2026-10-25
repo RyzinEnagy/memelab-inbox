@@ -1,0 +1,110 @@
+[
+ {
+  "mutation": "availability is the earliest input, not the latest (hides a late input from the P36 guard)",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "test rows standardised with their own statistics (test-time prep refit)",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "as-of view one provider lag late",
+  "applied": true,
+  "caught": true,
+  "first_failure": "FAILED tests/test_predictive_technical.py::test_values_match_an_independent_hand_computation"
+ },
+ {
+  "mutation": "series boundary may end an hour before T",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "P13 guard lets the cutoff instant through only for later cards",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "predict-time as-of check removed",
+  "applied": true,
+  "caught": true,
+  "first_failure": "FAILED tests/test_predictive_technical.py::test_nc2t_a_future_return_is_refused_by_the_allowlist_and_by_validate_rows"
+ },
+ {
+  "mutation": "identity join ignores the decision time",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "missing-reason swap at px",
+  "applied": true,
+  "caught": true,
+  "first_failure": "FAILED tests/test_predictive_technical.py::test_a_window_before_the_fetched_history_is_censored_retrieval"
+ },
+ {
+  "mutation": "v2 derived tolerance loosened to 1e-3",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "failed breakout uses <= the prior high",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "retest break counts a close equal to the prior high",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "stump split equality tolerance removed",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "stump min leaf off by one",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "NC1 permutes only the first seed",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "training rows not checked for maturity in fit",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "rows used by M2 do not require B2 columns",
+  "applied": true,
+  "caught": true,
+  "first_failure": "FAILED tests/test_predictive_technical.py::test_ablations_drop_exactly_one_family_and_use_m2_rows"
+ },
+ {
+  "mutation": "relative volume window 1 h replaced by 2 h",
+  "applied": true,
+  "caught": true,
+  "first_failure": "FAILED tests/test_predictive_technical.py::test_values_match_an_independent_hand_computation"
+ },
+ {
+  "mutation": "last close age in seconds",
+  "applied": true,
+  "caught": true,
+  "first_failure": "FAILED tests/test_predictive_technical.py::test_values_match_an_independent_hand_computation"
+ }
+]

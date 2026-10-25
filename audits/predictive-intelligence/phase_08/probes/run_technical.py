@@ -66,10 +66,16 @@ P07_SPLITS = {"T1_24h": "0ab64525e04b8664a1cab51c9e24f5fa4f750681d32a5d97bfc5207
               "T2_24h": "82a1c33b12cef45995eb15edd07b8e27ddcd76eafbdb8c503f5feb9501be86cd"}
 # real-data runs before the recorded run (P22): appended here before the recorded run, never removed
 DEBUG_RUNS: list[str] = [
-    "features-only probe before the code commit (about 21:40Z): tech-1 and the version 2 consistency on the 240 labelled development decisions; label rows read for their decision keys only, no label value used, no fit, no metric",
+    "features-only probe before the code commit (about 21:16Z; corrected from 21:40Z in repair pass 2, skeptic m4): tech-1 and the version 2 consistency on the 240 labelled development decisions; label rows read for their decision keys only, no label value used, no fit, no metric",
     "recorded run 1 at d290384 (21:23Z, code committed 21:22:26Z): every configuration of the registry on real labels, the same "
     "numbers as the recorded run; its P06-T probe counted a value changed only by the moved query time as a trap (1 of 154 "
-    "accepted), repaired in the runner and rerun as the recorded run; outputs overwritten in place (determinism shown by run 3)",
+    "accepted: tech_log_ret_1h of decision 55257a0b, whose 1 h base slid on a sparse pool; skeptic m5), repaired in the runner by "
+    "reinterpreting the pre-registered P06-T wording after the result (late inputs refused, clock-only changes accepted) and "
+    "rerun as recorded run 2; outputs overwritten in place",
+    "run 3 at d9b2a9c into a scratch folder: determinism check of recorded run 2, same configurations, identical outputs",
+    "repair-pass-2 rerun at the repair commit: same configurations; the runner now exits non-zero on a failed trap and also "
+    "writes the holdout-start designs for the oracle; outputs identical apart from the run log, the traces' latency field and "
+    "this ledger's debug rows",
 ]
 COMPARISONS = [(m, "B0") for m in ("B2",) + T.ALL_IDS] + [(m, "B2") for m in T.MODEL_IDS + ("A5_T_B2_TC",)]
 
@@ -199,8 +205,9 @@ def traps(fs, dev_ex_by_target, tsnaps, cards_h):
                    "pass": accepted == 0 and refused_allow == refused_asof == val and val > 0}
     # P06-T: cutoff moved to T + 600 s (the candle closing at T and the one holding T can become visible). A value that changes
     # because a candle not available at T entered carries an availability after T and must be refused; a value that changes
-    # only because the query time moved (the last close's age, windows sliding over inputs already available at T) is not a
-    # trap and must pass (repair of recorded run 1, whose probe counted such a value as a trap)
+    # only because the query time moved (windows sliding over inputs already available at T, the last close's age) is not a
+    # trap and must pass. This reinterprets the pre-registered wording ("values that change are refused") after recorded run 1,
+    # whose probe counted such a value as a trap (tech_log_ret_1h of 55257a0b, 1 h base slid on a sparse pool; skeptic m5)
     late = refused6 = accepted6 = clock_only = clock_only_refused = 0
     nn = 0
     for k, s in sorted(tsnaps.items()):
@@ -507,6 +514,19 @@ def main() -> int:
                         npz[tag + "_coef"] = np.r_[c["body"]["logistic"]["intercept"], c["body"]["logistic"]["coef"]]
                     else:
                         npz[tag + "_p"] = T.Stumps.from_dict(c["body"]["stumps"]).predict_proba1(X)
+            for m, c in cards_h[target].items():                  # the frozen holdout-start cards (skeptic m6)
+                if "abstain" in c["body"]:
+                    continue
+                use = [e for e in train if T.complete(e, c["body"]["spec"]["rows"])]
+                X = T.matrix(use, c["body"]["spec"]["columns"])
+                tag = f"{s}_H_{m}"
+                npz[tag + "_X"] = X
+                npz[tag + "_y"] = B.labels_of(use)
+                if "logistic" in c["body"]:
+                    npz[tag + "_Z"] = K.Prep.from_dict(c["body"]["prep"]).transform(X)
+                    npz[tag + "_coef"] = np.r_[c["body"]["logistic"]["intercept"], c["body"]["logistic"]["coef"]]
+                else:
+                    npz[tag + "_p"] = T.Stumps.from_dict(c["body"]["stumps"]).predict_proba1(X)
     # Holm across the three targets per (model, reference) on the ALL view
     holm_adj = {}
     for key, per_t in holm_in.items():
@@ -601,6 +621,14 @@ def main() -> int:
         "debug_runs_logged": len(DEBUG_RUNS), "outputs_sha256": {o: P7.fsha(out / o) for o in outputs}})
     print(json.dumps({"targets": {s: folds_ev[s]["status"] for s in folds_ev}, "outputs": len(outputs), "socket_events": len(SOCKET_EVENTS),
                       "stores_unchanged": store_sha_before == store_sha_after, "ledger_missing": len(missing)}))
+    failed = [k for k, v in tr.items() if isinstance(v, dict) and v.get("pass") is False]
+    failed += ["trace invalid inputs"] if (tj.get("invalid_inputs_all_rejected") is False) else []
+    failed += ["registry rows missing from the ledger"] if missing else []
+    failed += ["socket events"] if SOCKET_EVENTS else []
+    failed += ["stores changed"] if store_sha_before != store_sha_after else []
+    if failed:                                                     # a failed trap stops the run visibly (skeptic m3)
+        print(json.dumps({"FAILED": failed}), file=sys.stderr)
+        return 1
     return 0
 
 

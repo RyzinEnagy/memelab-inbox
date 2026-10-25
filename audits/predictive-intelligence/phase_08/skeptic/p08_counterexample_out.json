@@ -1,0 +1,74 @@
+{
+ "CX-S08 score-time re-standardisation": {
+  "phase_tests": "40 passed in 3.46s",
+  "runner_exit": 0,
+  "runner_tail": "{\"targets\": {\"T1_24h\": \"OK\", \"T1b_6h\": \"OK\", \"T2_24h\": \"OK\"}, \"outputs\": 28, \"socket_events\": 0, \"stores_unchanged\": true, \"ledger_missing\": 0}",
+  "outputs_changed_vs_committed": [
+   "experiments/ABLATIONS.csv",
+   "experiments/HIT_MISS_COHORTS.csv",
+   "experiments/NC1T_SEEDS.csv",
+   "experiments/OOS_PREDICTIONS.csv",
+   "experiments/TECHNICAL_METRICS.csv"
+  ],
+  "verify_trace": {
+   "evidence/trace/FORECAST_TRACE.json": {
+    "exit": 0,
+    "tail": "{\"pass\": true, \"differences\": []}"
+   },
+   "evidence/trace/second/FORECAST_TRACE.json": {
+    "exit": 1,
+    "tail": "{\"pass\": false, \"differences\": [\"M1_T_LOGIT: independent 0.09269587782582636 vs trace 0.18913739577914304\", \"M2_T_LOGIT_B2: independent 0.12040023176471847 vs trace 0.2983607822641996\"]}"
+   }
+  }
+ },
+ "series boundary up to 1 h before T counts as covering T": {
+  "phase_tests": "40 passed in 3.49s",
+  "runner_exit": 0,
+  "runner_tail": "{\"targets\": {\"T1_24h\": \"OK\", \"T1b_6h\": \"OK\", \"T2_24h\": \"OK\"}, \"outputs\": 28, \"socket_events\": 0, \"stores_unchanged\": true, \"ledger_missing\": 0}",
+  "outputs_changed_vs_committed": [
+   "evidence/traps.json"
+  ],
+  "verify_trace": {
+   "evidence/trace/FORECAST_TRACE.json": {
+    "exit": 0,
+    "tail": "{\"pass\": true, \"differences\": []}"
+   },
+   "evidence/trace/second/FORECAST_TRACE.json": {
+    "exit": 0,
+    "tail": "{\"pass\": true, \"differences\": []}"
+   }
+  }
+ },
+ "value availability is the earliest input": {
+  "phase_tests": "40 passed in 3.55s",
+  "runner_exit": 0,
+  "runner_tail": "{\"targets\": {\"T1_24h\": \"OK\", \"T1b_6h\": \"OK\", \"T2_24h\": \"OK\"}, \"outputs\": 28, \"socket_events\": 0, \"stores_unchanged\": true, \"ledger_missing\": 0}",
+  "outputs_changed_vs_committed": [
+   "artifacts/T1_24h/M1_T_LOGIT.json",
+   "artifacts/T1_24h/M2_T_LOGIT_B2.json",
+   "artifacts/T1_24h/M3_T_STUMPS.json",
+   "artifacts/T1b_6h/M1_T_LOGIT.json",
+   "artifacts/T1b_6h/M2_T_LOGIT_B2.json",
+   "artifacts/T1b_6h/M3_T_STUMPS.json",
+   "artifacts/T2_24h/M1_T_LOGIT.json",
+   "artifacts/T2_24h/M2_T_LOGIT_B2.json",
+   "artifacts/T2_24h/M3_T_STUMPS.json",
+   "artifacts/folds/T1_24h.json",
+   "artifacts/folds/T1b_6h.json",
+   "artifacts/folds/T2_24h.json",
+   "evidence/serialization_smoke.json",
+   "evidence/traps.json",
+   "experiments/TECH_FEATURES_DEVELOPMENT.csv"
+  ],
+  "verify_trace": {
+   "evidence/trace/FORECAST_TRACE.json": {
+    "exit": 0,
+    "tail": "{\"pass\": true, \"differences\": []}"
+   },
+   "evidence/trace/second/FORECAST_TRACE.json": {
+    "exit": 0,
+    "tail": "{\"pass\": true, \"differences\": []}"
+   }
+  }
+ }
+}
