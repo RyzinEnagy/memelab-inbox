@@ -158,6 +158,23 @@ def test_unknown_lines_are_not_observed_and_new_formats_are_unparseable():
     assert v4["oc_lp_risk_ord"][1] == "ABSENT_IN_SNAPSHOT"
 
 
+def test_unknown_or_missing_token_program_is_not_read_as_spl():
+    for prog, reason in (("SomeOtherProgram1111111111111111111111111111", "UNPARSEABLE"), (None, "ABSENT_IN_SNAPSHOT")):
+        v = O.current_values(O.parse_row(thesis(MINT, 100.0), token(MINT, program=prog)))
+        assert v["oc_token2022"] == (None, reason)
+    assert O.current_values(O.parse_row(thesis(MINT, 100.0), None))["oc_token2022"] == (None, "NO_TOKEN_ROW")
+
+
+def test_authority_read_identity_refuses_another_mints_metadata():
+    other = json.dumps([{"extension": "metadataPointer", "state": {"metadataAddress": MINT_B}},
+                        {"extension": "tokenMetadata", "state": {"mint": MINT_B, "name": "X"}}])
+    assert O.authority_read_identity(MINT, other) == "OTHER_MINT_METADATA"
+    assert O.authority_read_identity(MINT_B, other) == "OK"
+    assert O.authority_read_identity(MINT, "[]") == "NO_METADATA" and O.authority_read_identity(MINT, None) == "NO_METADATA"
+    half = json.dumps([{"extension": "tokenMetadata", "state": {"mint": MINT}}, {"extension": "metadataPointer", "state": {"metadataAddress": MINT_B}}])
+    assert O.authority_read_identity(MINT, half) == "OTHER_MINT_METADATA"
+
+
 def test_authority_needs_observed_mechanics_and_a_contradiction_is_refused():
     no_mech = breakdown(mech="UNKNOWN: token mechanics missing")
     v = O.current_values(O.parse_row(thesis(MINT, 100.0, bd=no_mech), token(MINT)))
@@ -478,10 +495,17 @@ def test_early_warning_counts_and_lead_time():
     assert O.early_warning(tie, "M", touch={})["misses"] == 1
 
 
-# ---------------------------------------------------------------- decision support: veto and size cap (step 5, P25, P44)
-QUOTES = [{"kind": "QUOTE", "state": "OK", "size_usd": 100.0, "proceeds_ratio": 0.99},
-          {"kind": "QUOTE", "state": "OK", "size_usd": 500.0, "proceeds_ratio": 0.96},
-          {"kind": "QUOTE", "state": "OK", "size_usd": 2000.0, "proceeds_ratio": 0.80}]
+# ---------------------------------------------------------------- decision support: veto and size cap (step 5, P25, P44, CX-S09)
+TQ = 1793100000.0
+
+
+def _q(size, ratio, t, *, pool="PA", state="OK", i=0):
+    return {"id": i, "kind": "QUOTE", "state": state, "size_usd": size, "pool_address": pool, "available_at": t, "captured_at": t,
+            "proceeds_ratio": ratio if state == "OK" else None}
+
+
+QUOTES = [_q(100.0, 0.99, TQ - 600, i=1), _q(500.0, 0.96, TQ - 600, i=2), _q(2000.0, 0.80, TQ - 600, i=3)]
+CAP = dict(decision_time=TQ, pool_address="PA", max_loss=0.05, max_age_s=7200.0)
 
 
 def _doc(p=None):
@@ -491,23 +515,55 @@ def _doc(p=None):
 
 def test_a_forecast_never_clears_a_fatal_flag_and_the_cap_ignores_the_forecast():
     flags = [{"flag": "CANNOT_EXIT_5K", "category": "exitability"}]
-    outs = [O.decision_support(_doc(p), flags, QUOTES, max_loss=0.05) for p in (None, 0.001, 0.5, 0.999)]
+    outs = [O.decision_support(_doc(p), flags, QUOTES, **CAP) for p in (None, 0.001, 0.5, 0.999)]
     assert all(o["veto_overrides_forecast"] and o["structural_veto"]["structural"] == ["CANNOT_EXIT_5K"] for o in outs)
     assert len({json.dumps(o["size_cap"], sort_keys=True) for o in outs}) == 1
     assert outs[0]["size_cap"]["size_cap_usd"] == 500.0
     assert "probability" not in inspect.signature(O.size_cap_usd).parameters
-    none = O.decision_support(_doc(0.9), None, [], max_loss=0.05)
+    none = O.decision_support(_doc(0.9), None, [], **CAP)
     assert none["structural_veto"]["state"] == "VETO_UNKNOWN" and none["veto_overrides_forecast"]   # unknown is not a pass
-    clean = O.decision_support(_doc(0.9), [], [], max_loss=0.05)
+    clean = O.decision_support(_doc(0.9), [], [], **CAP)
     assert clean["structural_veto"]["veto"] is False and clean["size_cap"]["basis"] == "EXECUTION_DATA_MISSING"   # P44
     assert clean["position_usd_from_forecast"] is None
+    nopool = O.decision_support(_doc(0.9), [], QUOTES, **dict(CAP, pool_address=None))
+    assert nopool["size_cap"]["basis"] == "EXECUTION_DATA_MISSING"
 
 
 def test_p25_tvl_says_fine_but_the_quote_says_no_exit():
-    cap = O.size_cap_usd([{"kind": "QUOTE", "state": "OK", "size_usd": 100.0, "proceeds_ratio": 0.6, "reported_reserve_usd": 5e6}], max_loss=0.05)
+    cap = O.size_cap_usd([dict(_q(100.0, 0.6, TQ - 60), reported_reserve_usd=5e6)], **CAP)
     assert cap["size_cap_usd"] == 0.0
     with pytest.raises(O.OnchainError):
-        O.size_cap_usd(QUOTES, max_loss=1.5)
+        O.size_cap_usd(QUOTES, **dict(CAP, max_loss=1.5))
+    with pytest.raises(O.OnchainError):
+        O.size_cap_usd(QUOTES, **dict(CAP, max_age_s=0))
+
+
+def test_cx_s09_size_cap_uses_only_the_newest_visible_reads_of_the_decision_pool(tmp_path):
+    """Skeptic counterexample CX-S09: every collector row of the mint handed to decision_support. A 19.4 h old quote on another
+    pool (0.99 at $2,000), the decision pool 50 min before (0.60 at $2,000, 0.97 at $100) and the collector's own first read
+    25 min after the decision (0.98 at $2,000). The first-pass code returned a $2,000 cap; the as-of answer is $100."""
+    d0 = TD - 72000
+    con = DA.connect_ro(collector(tmp_path, [q(TD - 70000, 1980.0, size=2000.0, pool="POOLB"), q(TD - 3000, 1200.0, size=2000.0),
+                                             q(TD - 3000, 97.0, size=100.0), q(TD + 1500, 1960.0, size=2000.0)]))
+    obs = DA.observations(con, chain="solana", mint=MINT)
+    assert d0 < TD and len(obs) == 4
+    out = O.decision_support(_doc(0.9), [], obs, decision_time=TD, pool_address="POOL1", max_loss=0.05, max_age_s=6 * 3600.0)
+    assert out["size_cap"]["size_cap_usd"] == 100.0 and out["size_cap"]["basis"] == "FORWARD_QUOTES_VISIBLE_AT_DECISION"
+    assert DA.exit_context(obs, T=TD, pool_address="POOL1", size_usd=2000.0)["proceeds_ratio"] == pytest.approx(0.6)
+    stale = O.size_cap_usd(obs, decision_time=TD, pool_address="POOL1", max_loss=0.05, max_age_s=600.0)
+    assert stale["basis"] == "EXECUTION_DATA_MISSING"                        # recency limit
+    other = O.size_cap_usd(obs, decision_time=TD, pool_address="POOLB", max_loss=0.05, max_age_s=6 * 3600.0)
+    assert other["basis"] == "EXECUTION_DATA_MISSING"                        # the 19.4 h read is too old even on its own pool
+
+
+def test_size_cap_newest_read_per_size_wins_and_a_lost_route_is_not_depth():
+    rows = [_q(2000.0, 0.99, TQ - 3000, i=1), _q(2000.0, None, TQ - 600, state="NO_ROUTE", i=2), _q(100.0, 0.99, TQ - 600, i=3)]
+    cap = O.size_cap_usd(rows, **CAP)
+    assert cap["size_cap_usd"] == 100.0 and cap["route_lost_sizes"] == [2000.0]
+    rows2 = [_q(2000.0, 0.99, TQ - 3000, i=1), _q(2000.0, 0.70, TQ - 600, i=2)]
+    assert O.size_cap_usd(rows2, **CAP)["size_cap_usd"] == 0.0
+    post = [_q(2000.0, 0.99, TQ + 1, i=1)]
+    assert O.size_cap_usd(post, **CAP)["basis"] == "EXECUTION_DATA_MISSING"   # captured after the decision (CX-09)
 
 
 # ---------------------------------------------------------------- wallet movements (P18, P19, developer wallet)
@@ -546,6 +602,8 @@ def test_developer_wallet_misclassification_and_inferred_clusters():
     assert sale["is_sale"] and not sale["counts_as_insider_distribution"]
     known = O.wallet_role("Mint1111", token_row={"dev_wallet": "Mint1111"}, known_mints=["Mint1111"])
     assert known["role"] == "DEV_LABEL_SUSPECT"
+    own = O.wallet_role(MINT_B, token_row={"mint": MINT_B, "dev_wallet": MINT_B})     # the token's own mint named as its dev wallet
+    assert own["role"] == "DEV_LABEL_SUSPECT" and own["insider"] is None
     c = O.wallet_role("W1", token_row=TOKEN_ROW, clusters={"W1": "HIGH"})
     assert c["role"] == "CLUSTER_MEMBER_INFERRED" and c["basis"] == "INFERRED"
     m = O.movement_class({"kind": "SWAP", "direction": "SELL", "counterparty_is_pool": True}, c)
@@ -611,6 +669,32 @@ def test_adapter_identity_link(tmp_path):
         DA.link(con, chain="solana", mint=MINT, row_sha256="rowsha", decision_time=TD + 3600)   # another export of the row
     other = DA.connect_ro(collector(tmp_path, [q(TD + 400, 1.0, mint=MINT_B)], name="o.sqlite"))
     assert DA.observations(other, chain="solana", mint=MINT) == []
+
+
+def test_link_refuses_two_collector_rows_for_one_exact_row(tmp_path):
+    p = collector(tmp_path)
+    con = sqlite3.connect(p)
+    evm = "0xAbCdEf0123456789abcdef0123456789ABCDEF01"
+    for i, m in enumerate((evm, evm.lower())):
+        con.execute(DEC_SQL, ("base", m, "P", "EXPORT_PRIMARY_POOL", "c1", TD, TD - 600, "evmrow", "WATCH", TD, f"e{i}"))
+    con.commit()
+    con.close()
+    ro = DA.connect_ro(p)
+    with pytest.raises(DA.DepthIdentityError):
+        DA.link(ro, chain="base", mint=evm, row_sha256="evmrow", decision_time=TD)
+
+
+def test_exit_context_takes_the_newest_ok_quote(tmp_path):
+    con = DA.connect_ro(collector(tmp_path, [q(TD + 400, 495.0), q(TD + 4000, 300.0)]))
+    obs = DA.observations(con, chain="solana", mint=MINT)
+    ctx = DA.exit_context(obs, T=TD + 5000, pool_address="POOL1", size_usd=500.0)
+    assert ctx["proceeds_ratio"] == pytest.approx(0.6) and ctx["age_s"] == pytest.approx(1000.0)
+
+
+def test_a_quote_before_the_decision_is_never_the_label_baseline(tmp_path):
+    con = DA.connect_ro(collector(tmp_path, [q(TD - 100, 490.0), q(TD + 86400 + 300, 300.0)]))
+    obs = DA.observations(con, chain="solana", mint=MINT)
+    assert _label(obs)["state"] == "CENSORED_NO_BASELINE"
 
 
 def test_cx09_a_post_decision_read_is_never_depth_at_the_decision(tmp_path):

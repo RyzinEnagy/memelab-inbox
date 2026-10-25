@@ -86,6 +86,9 @@ DEBUG_RUNS: list[str] = [
     "recorded run 2 at a52233c (22:55:49Z to 22:56:44Z): every configuration, all traps passed; the runner's ledger check failed "
     "because the registry names the shuffled control P09:<target>:NC1OC while the ledger held only its per-seed rows; repaired in "
     "the runner only (a summary row per target and view) and rerun as recorded run 3, which supersedes it; outputs overwritten",
+    "recorded run 3 at 18bd243 (22:57:03Z to 22:57:57Z): the first-pass outputs; superseded by the repair-pass-2 run (skeptic M1: "
+    "the authority cross-check now refuses lab reads carrying another mint's metadata; M2: the size cap takes the decision time and "
+    "pool; path-switch evidence added); no configuration, model or threshold changed",
 ]
 COMPARISONS = ([(m, "B0") for m in ("B2",) + O.MODEL_IDS] + [(m, "B2") for m in ("R1_OC_RULE", "M1_OC_LOGIT", "M2_OC_LOGIT_B2", "M3_OC_LOGIT_TREND")]
                + [(m, "R1_OC_RULE") for m in ("M1_OC_LOGIT", "M2_OC_LOGIT_B2", "M3_OC_LOGIT_TREND")] + [("M2_OC_LOGIT_B2", "A1_OC_B2_TC")])
@@ -288,14 +291,25 @@ def lab_ro():
 
 
 def authority_crosscheck(fs, all_snaps):
+    """Repair pass 2 (skeptic M1): a lab DB authority read is a reference only when the mints named in its own Token-2022
+    metadata are its row's mint (onchain.authority_read_identity); rows carrying another mint's metadata are refused and
+    counted. The token program is compared with the lab DB's own tokens table, not with the authority rows."""
     lab = lab_ro()
-    rows = [dict(r) for r in lab.execute("SELECT mint, observed_at, source, mint_authority, freeze_authority, token_program, transfer_fee_bps "
+    rows = [dict(r) for r in lab.execute("SELECT mint, observed_at, source, mint_authority, freeze_authority, token_program, extensions_json "
                                          "FROM token_authorities ORDER BY mint, observed_at")]
+    lab_tokens = {r["mint"]: r["token_program"] for r in lab.execute("SELECT mint, token_program FROM tokens")}
     by_mint: dict[str, list] = {}
     for s in all_snaps.values():
         by_mint.setdefault(s["mint"], []).append(s)
+    ident = Counter()
+    contaminated = Counter()
     out, agree, disagree, none_after = [], 0, 0, 0
     for r in rows:
+        st = O.authority_read_identity(r["mint"], r["extensions_json"])
+        ident[st] += 1
+        if st == "OTHER_MINT_METADATA":
+            contaminated[(r["mint"], ";".join(sorted(O.metadata_mints(r["extensions_json"]))))] += 1
+            continue
         later = sorted([s for s in by_mint.get(r["mint"], []) if s["decision_time"] >= r["observed_at"]], key=lambda s: s["decision_time"])
         if not later:
             none_after += 1
@@ -304,20 +318,58 @@ def authority_crosscheck(fs, all_snaps):
         lab_mint, lab_freeze = float(r["mint_authority"] is not None), float(r["freeze_authority"] is not None)
         v = s["values"]
         ok = (v["oc_mint_authority_active"]["value"] == lab_mint and v["oc_freeze_authority_active"]["value"] == lab_freeze)
-        tp = 1.0 if r["token_program"] == O.TOKEN_2022 else 0.0 if r["token_program"] == O.TOKEN_SPL else None
-        ok_tp = v["oc_token2022"]["value"] == tp
-        agree += ok and ok_tp
-        disagree += not (ok and ok_tp)
-        out.append({"mint": r["mint"], "lab_db_observed_at_utc": iso(r["observed_at"]), "lab_db_source": r["source"],
+        agree += ok
+        disagree += not ok
+        out.append({"mint": r["mint"], "lab_db_observed_at_utc": iso(r["observed_at"]), "identity": st,
                     "lab_db_mint_authority_set": bool(lab_mint), "lab_db_freeze_authority_set": bool(lab_freeze),
                     "decision_time_utc": iso(s["decision_time"]), "hours_after": round((s["decision_time"] - r["observed_at"]) / 3600, 2),
-                    "oc_mint_authority_active": v["oc_mint_authority_active"]["value"], "oc_freeze_authority_active": v["oc_freeze_authority_active"]["value"],
-                    "oc_token2022": v["oc_token2022"]["value"], "lab_db_token_program_2022": tp, "agree": bool(ok and ok_tp)})
+                    "oc_mint_authority_active": v["oc_mint_authority_active"]["value"],
+                    "oc_freeze_authority_active": v["oc_freeze_authority_active"]["value"], "agree": bool(ok)})
+    prog = []
+    for m, tp in sorted(lab_tokens.items()):
+        ss = sorted(by_mint.get(m, []), key=lambda s: s["decision_time"])
+        if not ss:
+            continue
+        want = 1.0 if tp == O.TOKEN_2022 else 0.0 if tp == O.TOKEN_SPL else None
+        got = {s["values"]["oc_token2022"]["value"] for s in ss}
+        prog.append({"mint": m, "lab_tokens_table_program_2022": want, "export_oc_token2022_values": sorted(x for x in got if x is not None),
+                     "decisions": len(ss), "agree": got == {want}})
     lab.close()
-    return {"rows": len(rows), "compared": len(out), "agree": agree, "disagree": disagree, "no_decision_after": none_after,
-            "mints": len({r["mint"] for r in rows}), "detail": out,
-            "note": "lab DB reads of Oct 6 to 7 (source merged) against the nearest later export decision; both are the lab's own readings, "
-                    "not an independent chain read"}
+    return {"rows": len(rows), "identity": dict(ident),
+            "refused_other_mint_metadata": [{"mint": m, "metadata_mints": mm, "rows": n} for (m, mm), n in sorted(contaminated.items())],
+            "compared_clean_rows": len(out), "agree": agree, "disagree": disagree, "no_decision_after": none_after, "detail": out,
+            "token_program_lab_tokens_vs_export": {"mints": len(prog), "agree": sum(p["agree"] for p in prog), "detail": prog},
+            "finding": "lab data quality: token_authorities rows of other mints carry the Token-2022 metadata of one mint; refused as a "
+                       "reference (P01); the lab tables are not changed",
+            "note": "both sides are the lab's own readings, not an independent chain read; every authority is revoked on every side"}
+
+
+def path_switch(fs, keys):
+    """Repair pass 2 (skeptic minor 4): decisions dated at the commit where the export moved from state/latest.json to
+    data/state/latest.json; the predictive walk reads the new path only (Phase 05 design), so these rows were exported earlier."""
+    t_switch = min(float(r[0]) for r in fs.execute("SELECT decision_time FROM predictive_decisions"))
+    rows = [dict(r) for r in fs.execute("SELECT decision_key, row_sha256, row_json, decision_time FROM predictive_decisions WHERE decision_time=?",
+                                        (t_switch,))]
+    from memelab.predictive import decisions as D
+    first = {}
+    log = subprocess.run(["git", "log", "--format=%H %ct", "origin/main", "--", "state/latest.json"], cwd=REPO, capture_output=True, text=True).stdout
+    for ln in log.splitlines()[::-1]:
+        h, ct = ln.split()
+        r = subprocess.run(["git", "show", f"{h}:state/latest.json"], cwd=REPO, capture_output=True, text=True)
+        if r.returncode:
+            continue
+        d = json.loads(r.stdout)
+        d = d.get("_tables", d)
+        for row in d.get("theses") or []:
+            first.setdefault(D.row_sha256(row), float(ct))
+    lags = [(t_switch - first[r["row_sha256"]]) / 3600 for r in rows if r["row_sha256"] in first]
+    caps = [(t_switch - json.loads(json.loads(r["row_json"])["snapshot_json"])["t"]) / 3600 for r in rows]
+    return {"switch_decision_time_utc": iso(t_switch), "decisions": len(rows), "labelled": sum(1 for r in rows if r["decision_key"] in keys),
+            "exported_earlier_in_old_path": len(lags), "hours_earlier_min": round(min(lags), 2) if lags else None,
+            "hours_earlier_max": round(max(lags), 2) if lags else None,
+            "capture_delay_h_min": round(min(caps), 2), "capture_delay_h_max": round(max(caps), 2),
+            "note": "conservative for features (later decision time), but these labels' windows start 4.5 to 7.75 h after the lab first "
+                    "exported the rows; the largest capture delays are these rows"}
 
 
 def swaps_vs_candles(fs):
@@ -661,9 +713,9 @@ def main() -> int:
         fc = dict(doc, prediction_status="FORECAST", abstain_reasons=[], probability=0.3, uncertainty_interval=[0.2, 0.4])
         mc = {k: c2[k] for k in ("model_sha", "feature_set_sha", "targets", "target_version", "training_cutoff_utc")}
         ef = C.validate(fc, model_card=mc, backtest=C.BACKTEST_NOT_AVAILABLE)
-        ds = O.decision_support(doc, json.loads(json.loads(dev.execute("SELECT row_json FROM predictive_decisions WHERE decision_key=?",
-                                                                        (ex0.decision_key,)).fetchone()[0])["fatal_flags_json"] or "null"),
-                                [], max_loss=0.05)
+        drow = dev.execute("SELECT row_json, pool_address FROM predictive_decisions WHERE decision_key=?", (ex0.decision_key,)).fetchone()
+        ds = O.decision_support(doc, json.loads(json.loads(drow[0])["fatal_flags_json"] or "null"), [], decision_time=ex0.decision_time,
+                                pool_address=drow[1], max_loss=0.05, max_age_s=7200.0)
         smoke[s]["contract"] = {"abstain_errors": ea, "forecast_errors": ef, "abstain_valid": not ea, "forecast_refused": bool(ef),
                                 "decision_support": {k: ds[k] for k in ("structural_veto", "veto_overrides_forecast", "size_cap")}}
         if a.npz:
@@ -775,7 +827,7 @@ def main() -> int:
     write_json(ev_dir / "v2_consistency.json", {"decisions_checked": len(keys), "inconsistent": incons,
                                                "compared": ["adj_top10", "ln(1 + liquidity)", "ln(1 + exit_cap_3pct)"]})
     xc = {"authority": authority_crosscheck(fs, all_snaps), "swaps_vs_candles": swaps_vs_candles(fs), "holder_classes": holder_classes(),
-          "developer_wallets": dev_wallet_cases(fs)}
+          "developer_wallets": dev_wallet_cases(fs), "path_switch": path_switch(fs, keys)}
     write_json(ev_dir / "crosschecks.json", xc)
     default_bt = REPO / "data" / "backtest" / "bt.sqlite"
     write_json(ev_dir / "collector_state.json", {"default_path": str(default_bt.relative_to(REPO)), "status": DA.status(default_bt),
@@ -805,6 +857,7 @@ def main() -> int:
     failed = [k for k, v in tr.items() if isinstance(v, dict) and v.get("pass") is False]
     failed += ["trace invalid inputs"] if (tj.get("invalid_inputs_all_rejected") is False) else []
     failed += ["holder classes"] if not xc["holder_classes"]["pass"] else []
+    failed += ["authority reference not clean"] if xc["authority"]["disagree"] else []
     failed += ["registry rows missing from the ledger"] if missing else []
     failed += ["socket events"] if SOCKET_EVENTS else []
     failed += ["stores changed"] if store_sha_before != store_sha_after else []

@@ -19,7 +19,12 @@ REPO = Path(__file__).resolve().parents[4]
 ON = "memelab/predictive/onchain.py"
 DA = "memelab/predictive/depth_adapter.py"
 TEST = "tests/test_predictive_onchain.py"
-EXTRA = [ON, DA, TEST, "tests/fixtures/predictive/bt_depth_schema_v2.sql"]
+EXTRA = [ON, DA, TEST, "tests/fixtures/predictive/bt_depth_schema_v2.sql",
+         # the committed-outputs test reads these (repair pass 2, skeptic minor 1: the probe now runs at HEAD)
+         "audits/predictive-intelligence/phase_08/experiments/SEARCH_LEDGER.csv",
+         "audits/predictive-intelligence/phase_09/experiments/SEARCH_LEDGER.csv",
+         "audits/predictive-intelligence/phase_09/experiments/EXPERIMENT_REGISTRY.csv",
+         "audits/predictive-intelligence/phase_09/experiments/ONCHAIN_METRICS.csv"]
 
 MUTATIONS = [
     # onchain-1 features
@@ -72,9 +77,21 @@ MUTATIONS = [
      '        return {"veto": False, "state": "NO_FATAL_FLAG", "flags": [], "structural": []}'),
     (ON, "forecast clears the veto", '"veto_overrides_forecast": v["veto"] is not False,',
      '"veto_overrides_forecast": v["veto"] is not False and not (forecast_doc.get("probability") or 1) < 0.01,'),
-    (ON, "size cap ignores the loss limit", 'good = [q["size_usd"] for q in ok if q["proceeds_ratio"] >= 1 - max_loss]', 'good = [q["size_usd"] for q in ok]'),
+    (ON, "size cap ignores the loss limit", 'good = [s for s, q in ok.items() if q["proceeds_ratio"] >= 1 - max_loss]', 'good = [s for s, q in ok.items()]'),
+    # repair pass 2: CX-S09 and the skeptic's four survivors
+    (ON, "CX-S09 size cap reads rows after the decision", 'rows = [q for q in DA.visible_at(quotes, T) if q.get("kind") == "QUOTE"', 'rows = [q for q in quotes if q.get("kind") == "QUOTE"'),
+    (ON, "CX-S09 size cap reads every pool", 'if q.get("kind") == "QUOTE" and q.get("pool_address") == pool_address\n', 'if q.get("kind") == "QUOTE"\n'),
+    (ON, "CX-S09 oldest read per size wins", 'for q in sorted(rows, key=lambda q: (q["available_at"], q.get("id") or 0)):', 'for q in sorted(rows, key=lambda q: (-q["available_at"], q.get("id") or 0)):'),
+    (ON, "CX-S09 recency limit ignored", 'fresh = {s: q for s, q in newest.items() if T - q["available_at"] <= max_age_s}', 'fresh = dict(newest)'),
+    (ON, "CX-S09 lost route ignored (older OK read used)", 'and q.get("state") in DA.ANSWERED and q.get("size_usd") is not None]', 'and q.get("state") == "OK" and q.get("size_usd") is not None]'),
+    (ON, "token's own mint trusted as its dev wallet", 'address.endswith(MINT_SUFFIXES) or address == tr.get("mint") or address in set(known_mints)', 'address.endswith(MINT_SUFFIXES) or address in set(known_mints)'),
+    (ON, "authority read with another mint's metadata accepted", '    return "OK" if named == {mint} else "OTHER_MINT_METADATA"', '    return "OK" if mint in named else "OTHER_MINT_METADATA"'),
+    (ON, "S: unknown token program read as SPL", '(None, wt or ("ABSENT_IN_SNAPSHOT" if tp is None else "UNPARSEABLE")))', '(0.0, None))'),
+    (DA, "S: link takes the first of two collector rows", '        raise DepthIdentityError("two collector decisions share one exact row")', '        rows = rows[:1]'),
+    (DA, "S: exit_context uses the oldest OK quote", '    q = ok[-1]', '    q = ok[0]'),
+    (DA, "S: pre-decision quote accepted as label baseline", 'and o["captured_at"] is not None and T <= o["captured_at"] <= float(as_of)]', 'and o["captured_at"] is not None and T - 3600.0 <= o["captured_at"] <= float(as_of)]'),
     (ON, "exchange checked after the developer label", '    if address in set(custody) or address in cex_labels:', '    if False:'),
-    (ON, "mint-like developer address trusted", "        if address.endswith(MINT_SUFFIXES) or address in set(known_mints):", "        if False:"),
+    (ON, "mint-like developer address trusted", '        if address.endswith(MINT_SUFFIXES) or address == tr.get("mint") or address in set(known_mints):', "        if False:"),
     (ON, "a transfer counts as a sale", 'is_sale = kind == "SWAP" and direction == "SELL" and bool(movement.get("counterparty_is_pool"))',
      'is_sale = direction in ("SELL", "OUT")'),
     (ON, "inferred cluster counted as insider", 'bool(is_sale and role.get("role") == "DEV" and role.get("basis") == "OBSERVED")',

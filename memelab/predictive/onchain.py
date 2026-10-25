@@ -32,6 +32,7 @@ import numpy as np
 
 from . import baselines as B
 from . import contract as C
+from . import depth_adapter as DA
 from . import features as F
 from . import labels as L
 from . import stats as K
@@ -740,26 +741,72 @@ def structural_veto(fatal_flags: Sequence[Any] | None) -> dict:
             "structural": [n for n in names if n in STRUCTURAL_FLAGS]}
 
 
-def size_cap_usd(quotes: Sequence[dict], *, max_loss: float) -> dict:
-    """Largest quoted size whose OK sell quote returns at least (1 - max_loss) of the size, from depth only. `quotes` are adapter
-    observations visible at the time of use; no probability enters (independent of any classifier output)."""
+def size_cap_usd(quotes: Sequence[dict], *, decision_time: float, pool_address: str, max_loss: float, max_age_s: float) -> dict:
+    """Largest quoted size whose newest sell quote on the decision's pool, read at or before the decision and at most `max_age_s`
+    old, is OK and returns at least (1 - max_loss) of the size. From depth only: no probability enters (independent of any
+    classifier output). Rows of another pool (P02), rows captured after the decision (CX-09, CX-S09) and older reads of a size
+    with a newer one are never used; nothing usable gives EXECUTION_DATA_MISSING (P44). `quotes` are depth_adapter observations."""
     if not (isinstance(max_loss, (int, float)) and 0 < max_loss < 1):
         raise OnchainError("max_loss must be in (0, 1)")
-    ok = [q for q in quotes if q.get("kind") == "QUOTE" and q.get("state") == "OK" and q.get("proceeds_ratio") is not None]
+    if not (isinstance(max_age_s, (int, float)) and not isinstance(max_age_s, bool) and math.isfinite(max_age_s) and max_age_s > 0):
+        raise OnchainError("max_age_s must be a positive number")
+    T = float(decision_time)
+    rows = [q for q in DA.visible_at(quotes, T) if q.get("kind") == "QUOTE" and q.get("pool_address") == pool_address
+            and q.get("state") in DA.ANSWERED and q.get("size_usd") is not None]
+    DA.assert_visible(rows, T)
+    newest: dict[float, dict] = {}
+    for q in sorted(rows, key=lambda q: (q["available_at"], q.get("id") or 0)):
+        newest[float(q["size_usd"])] = q
+    fresh = {s: q for s, q in newest.items() if T - q["available_at"] <= max_age_s}
+    ok = {s: q for s, q in fresh.items() if q["state"] == "OK" and q.get("proceeds_ratio") is not None}
     if not ok:
-        return {"size_cap_usd": None, "basis": "EXECUTION_DATA_MISSING"}
-    good = [q["size_usd"] for q in ok if q["proceeds_ratio"] >= 1 - max_loss]
-    return {"size_cap_usd": max(good) if good else 0.0, "basis": "FORWARD_QUOTES", "quotes_used": len(ok)}
+        return {"size_cap_usd": None, "basis": "EXECUTION_DATA_MISSING", "pool_address": pool_address,
+                "route_lost_sizes": sorted(s for s, q in fresh.items() if q["state"] in DA.ROUTE_LOST)}
+    good = [s for s, q in ok.items() if q["proceeds_ratio"] >= 1 - max_loss]
+    return {"size_cap_usd": max(good) if good else 0.0, "basis": "FORWARD_QUOTES_VISIBLE_AT_DECISION", "pool_address": pool_address,
+            "quotes_used": len(ok), "oldest_used_age_s": max(T - q["available_at"] for q in ok.values()),
+            "route_lost_sizes": sorted(s for s, q in fresh.items() if q["state"] in DA.ROUTE_LOST)}
 
 
-def decision_support(forecast_doc: dict, fatal_flags: Sequence[Any] | None, quotes: Sequence[dict], *, max_loss: float) -> dict:
-    """The forecast beside the structural veto and a depth-only size cap. The veto and the cap are computed without looking at
-    the forecast; a forecast never clears a veto (`veto_overrides_forecast`)."""
+def decision_support(forecast_doc: dict, fatal_flags: Sequence[Any] | None, quotes: Sequence[dict], *, decision_time: float,
+                     pool_address: str | None, max_loss: float, max_age_s: float) -> dict:
+    """The forecast beside the structural veto and a depth-only size cap at the decision on the decision's pool. The veto and the
+    cap are computed without looking at the forecast; a forecast never clears a veto (`veto_overrides_forecast`)."""
     v = structural_veto(fatal_flags)
-    cap = size_cap_usd(quotes, max_loss=max_loss)
+    if pool_address is None:
+        cap = {"size_cap_usd": None, "basis": "EXECUTION_DATA_MISSING", "pool_address": None, "route_lost_sizes": []}
+    else:
+        cap = size_cap_usd(quotes, decision_time=decision_time, pool_address=pool_address, max_loss=max_loss, max_age_s=max_age_s)
     return {"forecast": forecast_doc, "structural_veto": v, "veto_overrides_forecast": v["veto"] is not False,
             "size_cap": cap, "position_usd_from_forecast": None,
             "note": "research only; a forecast is not an order; the lab's fatal flags and sizing rules apply unchanged"}
+
+
+# ---------------------------------------------------------------- identity of a lab authority read (skeptic M1)
+def metadata_mints(extensions: Any) -> set[str]:
+    """Mint addresses named inside a Token-2022 extension list (tokenMetadata.mint, metadataPointer.metadataAddress)."""
+    ext = _json(extensions)
+    out: set[str] = set()
+    if not isinstance(ext, list):
+        return out
+    for e in ext:
+        st = e.get("state") if isinstance(e, dict) else None
+        if not isinstance(st, dict):
+            continue
+        if e.get("extension") == "tokenMetadata" and isinstance(st.get("mint"), str):
+            out.add(st["mint"])
+        if e.get("extension") == "metadataPointer" and isinstance(st.get("metadataAddress"), str):
+            out.add(st["metadataAddress"])
+    return out
+
+
+def authority_read_identity(mint: str, extensions: Any) -> str:
+    """OK when every mint named in the read's own metadata is the row's mint (or none is named, NO_METADATA); else
+    OTHER_MINT_METADATA: the row mixes two identities (P01) and is refused as a reference."""
+    named = metadata_mints(extensions)
+    if not named:
+        return "NO_METADATA"
+    return "OK" if named == {mint} else "OTHER_MINT_METADATA"
 
 
 # ---------------------------------------------------------------- wallet movements (P18, P19, developer wallet)
@@ -776,7 +823,7 @@ def wallet_role(address: str, *, token_row: dict | None, custody: Iterable[str] 
         return {"role": "CUSTODY_OR_EXCHANGE", "basis": "LABELLED", "label": cex_labels.get(address), "insider": False}
     tr = token_row or {}
     if address and address in (tr.get("creator"), tr.get("dev_wallet")):
-        if address.endswith(MINT_SUFFIXES) or address in set(known_mints):
+        if address.endswith(MINT_SUFFIXES) or address == tr.get("mint") or address in set(known_mints):
             return {"role": "DEV_LABEL_SUSPECT", "basis": "INFERENCE", "label": "address looks like a mint, not a wallet", "insider": None}
         return {"role": "DEV", "basis": "OBSERVED", "label": "creator or dev wallet of the token row", "insider": True}
     if clusters and address in clusters:
