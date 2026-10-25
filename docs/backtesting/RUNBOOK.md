@@ -58,6 +58,8 @@ A changed policy is a new request key: earlier assessments stay as they were.
 | JSON Schema of the report | `python -m memelab backtest schema` |
 | consistent backup of the research database | `python -m memelab backtest backup --to PATH` |
 | new bars for windows waiting on a refresh (network, read-only) | `python -m memelab backtest refresh [--mints ...] [--max-calls 20] [--spacing 3]` |
+| pool reserves and sell quotes for the lab's decisions of the last 24 h (network, read-only) | `python -m memelab backtest depth collect --repo LAB_GIT [--ref refs/remotes/origin/main] [--max-gt-calls 6] [--max-quote-calls 40] [--deadline 100]` |
+| what the depth collector holds per decision (lag to the first snapshot, grid hours covered) | `python -m memelab backtest depth status [--hours 48]` |
 
 ## Manual replays
 
@@ -92,12 +94,50 @@ A changed policy is a new request key: earlier assessments stay as they were.
 - `outcomes daily --day YYYY-MM-DD --asof UTC` produces a replayable daily report, byte-identical for the same as-of.
 - `outcomes shadow --strategy ID --since 2026-10-23T16:00:00Z` runs a frozen strategy forward without saving a run.
 - Hourly tracking (approved by Elving on 2026-10-24, D-BT-033) runs on his computer against the store in D:\memelab\backtesting_live: bt.sqlite, raw/, runs/, code.bundle (the branch the runs use), hourly_shadow.sh (a copy of audits/backtesting/release/hourly_shadow.sh), hourly.log and hourly.state.
-  - One run is four steps, each one call of the script: setup (Python 3.13 venv, code from code.bundle, a session-local copy of the database), refresh (`backtest refresh` with at most 12 GeckoTerminal calls, 3 s apart), track (`backtest outcomes track --min-interval 1800`), save (WAL-safe backup, integrity check, write back, one JSON line in hourly.log).
+  - One run is five steps, each one call of the script: setup (Python 3.13 venv, code from code.bundle, a session-local copy of the database), refresh (`backtest refresh` with at most 12 GeckoTerminal calls, 3 s apart), collect (`backtest depth collect`, see "Forward depth collection" below), track (`backtest outcomes track --min-interval 1800`), save (WAL-safe backup, integrity check, write back, one JSON line in hourly.log that now includes the collect summary).
   - Work happens on a copy, so a failed or interrupted run never touches the stored database. A second run within 45 minutes of an unfinished one is skipped.
   - A test run on 2026-10-24 took about 2.5 minutes: refresh 20 calls in 155 s (hence the 12-call cap), track 16 s, save 25 s. It recorded 4,092 outcome rows and resolved 14 waiting windows.
-  - The scheduled task itself was not created yet: the permission check in that session refused it. Its prompt is in HANDOFF.md. When a run cannot reach the computer it does nothing, and the next run catches up.
+  - The scheduled task itself was not created yet: the permission check in that session refused it. Its prompt is in "Scheduled task prompt" below. When a run cannot reach the computer it does nothing, and the next run catches up.
   - To update the code the runs use, replace code.bundle with a newer bundle of feature/backtesting. To stop, pause or delete the scheduled task.
 - Deviations open a REEVALUATION_PROPOSED record. A new evaluation needs a new pre-registration, a new sealed split that starts after 2026-10-23 16:00 UTC, and a new strategy version. In-place retuning is refused.
+
+## Forward depth collection
+
+Approved by Elving on 2026-10-25 (predictive PI-D-020, now PI-D-044; D-BT-034), folded into the hourly tracker as the step `collect`, between refresh and track. It records what the exit-adjusted and liquidity-degradation targets need and nothing kept so far gives: pool reserves and executable sell quotes for every lab decision, at the decision and every hour to 24 h.
+
+- Which decisions: every thesis row first visible in an export of `data/state/latest.json` on `main` whose commit is at most 24 h old. The step fetches the last 72 h of `main` from the public repository (shallow git fetch, about 7 MB, no credentials). The oldest export read is the baseline: its rows are never new. The decision time is the export commit time (PI-D-015); the identity is chain plus exact mint plus the exact row (sha256 of the row without `id`, PI-D-021).
+- Which pool: the token row of that export (`primary_pool`, else `graduated_pool`), else the vendor's top pool at the first collect (pool source VENDOR_TOP_POOL, from GeckoTerminal's token endpoint with `include=top_pools`). A pool that does not hold the mint is recorded as IDENTITY_MISMATCH and gets no quote.
+- Each run, until 25 h after the export commit:
+  - pool read: GeckoTerminal `networks/{network}/pools/multi/{up to 30 pools}?include=base_token,quote_token&include_composition=true`; reserves in token units and in USD, the mint's side and USD price, decimals, 1 h and 24 h volume;
+  - sell quotes (Solana only): Jupiter `https://api.jup.ag/swap/v1/quote`, keyless, selling the mint for USDC at 100, 500 and 2,000 USD. The token amount is the size divided by the pool's USD price from the same run, rounded down to the mint's decimals, and is stored with the quote. BSC, Base and Ethereum pools get a QUOTE_UNSUPPORTED_CHAIN row (no free quote source here);
+  - every row keeps captured_at (UTC epoch seconds when the response arrived), the request URL, the HTTP status, the sha256 of the raw body (kept under raw/geckoterminal/ or raw/jupiter/) and the seconds since the export commit.
+- Budget per run: GeckoTerminal at most 6 calls, 10 s apart, the first one 10 s after the step starts (refresh called GeckoTerminal just before); Jupiter at most 40 calls, 2.5 s apart (the keyless limit is 0.5 a second); no new call after 100 s, 10 s timeout per call, one retry on 429 or a network error. Quotes go first to pools never quoted, then to the ones quoted longest ago. The live smoke on 2026-10-25 took 42 s for 4 GeckoTerminal and 6 Jupiter calls; a full run is about 105 to 110 s. The script also stops the step at 160 s.
+- Per hour, with refresh: GeckoTerminal at most 18 calls (12 refresh, 6 collect), Jupiter at most 40, GitHub one shallow fetch. Today's exports bring about 19 new thesis rows a day, 16 of them on Solana, so about 48 quotes would be wanted per hour; the 40-call cap means a pool can miss a quote in some hours, and the rows say so.
+- Failures: if the GitHub fetch fails, the step prints EXPORTS_NOT_FETCHED and still collects for the decisions already stored. A failed read is a row with its state (SOURCE_BLOCKED, HTTP_429, NOT_IN_RESPONSE, NO_ROUTE, NOT_TRADABLE, IDENTITY_MISMATCH, NO_PRICE_OR_DECIMALS), never an invented value. If every quote is refused (401, 403, 429 or no answer), the run reports `quote_source` QUOTE_SOURCE_BLOCKED and still records the pool reads. Only a program error makes the step print FAILED; the run then stops before save, so the stored database is untouched.
+- Data: two append-only tables added by schema migration 2 (`bt_depth_decisions`, `bt_depth_snapshots`); the v1 tables are unchanged. The first collect on the work copy applies the migration; save writes it back. Code without migration 2 ignores the new tables.
+- Rollback: restore the previous hourly_shadow.sh and code.bundle (see deployment step 3). The new tables can stay. To drop them, with no run in progress and after a backup: `python -c "from memelab.backtest import schema, store; schema.rollback(store.connect('PATH/bt.sqlite'), 1)"`, run with the code of this commit or later.
+- Evidence: audits/backtesting/collector/ (smoke results, raw bodies, SKEPTIC_PACKET.md) and audits/backtesting/testing/logs/c01_*.log.
+
+### Deployment to Elving's computer
+
+These steps need a session linked to his computer (device_bash). Nothing here was run on his computer yet.
+
+1. Make the new code bundle. The collector commits are on the local branch `work/backtesting-collector`, based on feature/backtesting at 054a619; they are not pushed. Once they are on feature/backtesting (a fast-forward), in a clone of the repository:
+   `git bundle create code.bundle feature/backtesting` then `git bundle verify code.bundle`.
+   The setup step clones the branch named feature/backtesting from the bundle, so the bundle must carry that branch name.
+2. Check that no run is in progress: `bash $HOME/mnt/memelab/backtesting_live/hourly_shadow.sh status` must show `idle`. If the scheduled task exists, pause it first.
+3. Keep the old files, then put the new ones in place (in D:\memelab\backtesting_live):
+   `cd $HOME/mnt/memelab/backtesting_live && cp bt.sqlite bt.sqlite.before-collector && cp code.bundle code.bundle.before-collector && cp hourly_shadow.sh hourly_shadow.sh.before-collector`
+   then copy the new code.bundle and the new hourly_shadow.sh (audits/backtesting/release/hourly_shadow.sh at the deployed commit) over the old ones.
+4. One run by hand, each command as its own device_bash call with timeout_ms 175000: `bash $HOME/mnt/memelab/backtesting_live/hourly_shadow.sh setup`, then `refresh`, `collect`, `track`, `save`. Check: setup prints the new commit; collect prints a JSON summary with `pool_snapshots` mostly OK and `quote_source` OK, and `wall_s` under 110; save prints one line with result OK and a `collect` part. EXPORTS_NOT_FETCHED is not a failure, but repeated ones mean GitHub is not reachable from his computer.
+5. Create the scheduled task, or update the existing one, with the prompt below: name "Memelab backtest hourly tracking", every hour, requires Elving's computer with D:\memelab connected, push notifications on. Then resume it if it was paused.
+6. To go back: pause the task, copy the three .before-collector files back over bt.sqlite, code.bundle and hourly_shadow.sh, and put back the four-step prompt (git history of HANDOFF.md at 054a619). Restoring bt.sqlite discards what was recorded after step 3; skip that copy to keep it (the old code ignores the new tables).
+
+### Scheduled task prompt
+
+This text replaces the four-step prompt that was in HANDOFF.md. Every rule of that prompt is kept; the only change is the collect step between refresh and track.
+
+> Hourly shadow tracking for the Memecoin Investing Lab backtesting module (approved by Elving on 2026-10-24, D-BT-033; forward depth collection approved on 2026-10-25, D-BT-034). Research only. Use the device_bash tool on Elving's computer (mcp__remote-devices__device_bash; load it with ToolSearch if deferred). Run these five commands in order, each as its own device_bash call with timeout_ms 175000: `bash $HOME/mnt/memelab/backtesting_live/hourly_shadow.sh setup`, then the same with `refresh`, then `collect`, then `track`, then `save`. If setup prints a line starting with SKIPPED, stop quietly. If any step prints FAILED or exits non-zero, stop, do not retry or repair, and send one push notification naming the step and the FAILED line. If the computer cannot be reached, stop quietly. A successful run sends no notification. Never trade or touch a wallet, seed phrase or private key; never open or print any file in D:\memelab whose name contains "token"; never edit anything in D:\memelab\backtesting_live by hand; make no network calls of your own; never create, change or delete scheduled tasks; never push to GitHub. Final reply: one line with the save output or the reason the run stopped.
 
 ## Reading the output
 
@@ -148,6 +188,7 @@ Collectors: the existing lab catalyst layer (Firecrawl) and one-shot captures th
 ## Costs and limits
 
 - GeckoTerminal, DexScreener, Jupiter quote and Solana public RPC: free, read-only, rate limited. Keep budgets small and pacing slow.
+- Jupiter quotes are keyless on `api.jup.ag` at 0.5 requests a second (its plans page, read 2026-10-25: "great for AI agent or test use cases"). `lite-api.jup.ag` is being retired with a shrinking rate limit; the collector does not use it. No API key is used or stored.
 - Firecrawl: paid per call, owned by Elving. About 32 of the roughly 100 calls approved for this work were used.
 - Maxun Cloud: no credits left, no schedule, nothing running.
 - Storage: the research database is about 155 MB for 139,168 hourly bars over 258 mints. It grows with each corpus refresh.

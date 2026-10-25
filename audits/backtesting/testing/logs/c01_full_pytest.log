@@ -1,0 +1,6 @@
+command: python -m pytest tests -q -p no:cacheprovider (tree identical to 50565ada429e869dd9ecd434675c722efd04f6b9, run before the commit)
+utc: 2026-10-25T13:27Z
+=========================== short test summary info ============================
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+1 failed, 1043 passed in 210.90s (0:03:30)
+EXIT=1

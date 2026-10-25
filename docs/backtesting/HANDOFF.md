@@ -6,7 +6,8 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 
 - Phase completed: 17 (release hardening), 2026-10-23. State: PASS, decision CONDITIONAL RELEASE, scenario-only research mode (docs/backtesting/RELEASE_REPORT.md), accepted by Elving on 2026-10-24 (D-BT-033). Note: audits/backtesting/PHASE_17.md. Phases 00-16 PASS (16 for scenario-only mode; strict reading FAILED; G16 and G27 await Elving's acceptance).
 - Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f, Phase 08 976e747, Phase 09 58abf7d, Phase 10 941e4ed, Phase 11 38d2fcc, Phase 12 999d1eb, Phase 13 4338810, Phase 14 30863a6, Phase 15 41488ad, Phase 16 repair passes 47a7845, 0e63563, c42045b, 7c7b582, record f50b24d; Phase 17 ddc0794, fcb676a, b5039be, 52c605d, 03fd506, bc7ce30, d18a07a (re-check residual fixes), 7967550 (final clean-install log). Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
-- Spend so far: Firecrawl about 32 of ~100 calls; Maxun 5 of 5 trial credits (0 left, 0 schedules); Crawl4AI local only; Solana public RPC and Jupiter quotes read-only (about 20 calls).
+- After the release (2026-10-25): forward depth collector (D-BT-034), Elving's approval of predictive PI-D-020 (now PI-D-044), folded into the hourly tracker as the step `collect`. Local branch `work/backtesting-collector` from feature/backtesting at 054a619, not pushed. Code commit 50565ad, records in the commit that follows it. Record: audits/backtesting/collector/COLLECTOR.md; reviewer packet: audits/backtesting/collector/SKEPTIC_PACKET.md.
+- Spend so far: Firecrawl about 32 of ~100 calls; Maxun 5 of 5 trial credits (0 left, 0 schedules); Crawl4AI local only; Solana public RPC and Jupiter quotes read-only (about 20 calls). Collector work on 2026-10-25: GeckoTerminal 11 calls, Jupiter keyless quotes 14, GitHub 4 (ls-remote and shallow fetches), Firecrawl 1 search.
 
 ## Commands and exits
 
@@ -42,6 +43,9 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 | Phase 16: independent reviewer, 5 passes (E2E_RESULTS.md) / every mutation set / full suite / release audit / release e2e | - / 0 / 1 / 0 / 0 | PASS for scenario-only mode / all caught / C-1 only, 1024 passed / Needs action: no / PASS 78 of 78 |
 | Phase 17: clean install / every builder mutation set / full suite / release audit / release e2e | 0 / 0 / 1 / 0 / 0 | 9 steps PASS / 221 of 221 / C-1 only, 1029 passed / Needs action: no / PASS 78 of 78 |
 | Phase 17 after the reviewer's re-check (AGREED) and the R3 to R5 fixes, at 7967550 | 0 / 0 / 1 / 0 / 0 | clean install PASS at d18a07a, checker 72 of 72 / 222 of 222 / C-1 only, 1030 passed / Needs action: no / PASS 78 of 78 |
+| Collector (D-BT-034): `pytest tests/test_backtest_depth.py` / `mutate.py collector_mutations.json` / full suite / release audit / release e2e at 50565ad | 0 / 0 / 1 / 0 / 0 | 13 passed / 18 of 18 caught / C-1 only, 1043 passed / Needs action: no / PASS 78 of 78 |
+| Collector live smoke 2026-10-25 13:22Z (`backtest depth collect --max-gt-calls 4 --max-quote-calls 6`) | 0 | 19 decisions from export e245d91, 19 pool snapshots OK, 6 quotes OK, 42.2 s |
+| hourly_shadow.sh five steps in a scratch HOME, network blocked after setup (testing/logs/c01_hourly_script_e2e.log) | 0 each | collect EXPORTS_NOT_FETCHED and SOURCE_BLOCKED rows, save OK; forced collect failure left the stored file unchanged |
 
 ## Proven
 
@@ -59,11 +63,14 @@ None in the package. Elving's decisions on 2026-10-24 (D-BT-033), all yes:
 - Maxun evaluation robot deleted (bakeoff/p06a_maxun/robot_delete.json); no Maxun schedules remain.
 - Hourly shadow tracking approved. The store is on his computer in D:\memelab\backtesting_live and a test run passed (RUNBOOK.md, "Shadow-mode calibration"). This is now the only lasting copy of the research database; the cloud workspace copy is temporary. The scheduled task itself still has to be created: the permission check in this session refused it.
 
-Still open: create the scheduled task (below), and decide when to merge pull request #4.
+Forward depth collector (D-BT-034, 2026-10-25): built and tested in this workspace, not deployed. The hourly run gains the step `collect` between refresh and track. The scheduled task prompt now has five steps and lives in RUNBOOK.md ("Scheduled task prompt"); it replaces the four-step prompt that was here (git history at 054a619). Deployment steps: RUNBOOK.md, "Deployment to Elving's computer".
 
-Scheduled task to create: name "Memelab backtest hourly tracking", every hour, requires Elving's computer with D:\memelab connected, push notifications on. Prompt:
-
-> Hourly shadow tracking for the Memecoin Investing Lab backtesting module (approved by Elving on 2026-10-24, D-BT-033). Research only. Use the device_bash tool on Elving's computer (mcp__remote-devices__device_bash; load it with ToolSearch if deferred). Run these four commands in order, each as its own device_bash call with timeout_ms 175000: `bash $HOME/mnt/memelab/backtesting_live/hourly_shadow.sh setup`, then the same with `refresh`, then `track`, then `save`. If setup prints a line starting with SKIPPED, stop quietly. If any step prints FAILED or exits non-zero, stop, do not retry or repair, and send one push notification naming the step and the FAILED line. If the computer cannot be reached, stop quietly. A successful run sends no notification. Never trade or touch a wallet, seed phrase or private key; never open or print any file in D:\memelab whose name contains "token"; never edit anything in D:\memelab\backtesting_live by hand; make no network calls of your own; never create, change or delete scheduled tasks; never push to GitHub. Final reply: one line with the save output or the reason the run stopped.
+Still open:
+- Bring the collector commits onto feature/backtesting (fast-forward from 054a619) and push, under the D-BT-003 push route, if Elving wants them there; until then they exist only on the local branch work/backtesting-collector.
+- Deploy to D:\memelab\backtesting_live (new code.bundle and hourly_shadow.sh, one run by hand) and create the scheduled task with the five-step prompt; the earlier permission check refused creating it.
+- The refresh step still paces GeckoTerminal at 3 s (up to 20 a minute in its burst); only collect keeps to 6 a minute. Changing refresh to `--spacing 10 --max-calls 8` would bring the whole run to 6 a minute at the cost of fewer refreshed pools per hour. Elving's call.
+- Quotes exist only for Solana; BSC, Base and Ethereum get reserves only. The 40-quote cap leaves some Solana pools without a quote in some hours on a busy day.
+- Decide when to merge pull request #4.
 
 ## Delivery
 
