@@ -1,0 +1,656 @@
+{
+ "folds": [
+  {
+   "cards": {
+    "A1_M2_minus_momentum": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "tech_rv_1h",
+        "tech_rv_6h",
+        "tech_log_range_6h",
+        "tech_log_range_24h",
+        "tech_log_rel_vol_1h",
+        "tech_log1p_candles_24h",
+        "tech_log1p_last_close_age_min",
+        "tech_log_breakout_1h",
+        "tech_failed_breakout_1h",
+        "tech_retest_6h",
+        "tech_log_dist_24h_high",
+        "tech_log_pullback_6h",
+        "log1p_token_age_days"
+       ],
+       "kind": "logit",
+       "optional": [
+        "log1p_token_age_days"
+       ],
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "tech_log_ret_1h",
+        "tech_log_ret_6h",
+        "tech_log_ret_24h",
+        "tech_rv_1h",
+        "tech_rv_6h",
+        "tech_log_range_6h",
+        "tech_log_range_24h",
+        "tech_log_rel_vol_1h",
+        "tech_log1p_candles_24h",
+        "tech_log1p_last_close_age_min",
+        "tech_log_breakout_1h",
+        "tech_failed_breakout_1h",
+        "tech_retest_6h",
+        "tech_log_dist_24h_high",
+        "tech_log_pullback_6h"
+       ]
+      }
+     },
+     "data_snapshot_sha": "0bbc3ba79ff256ed65048dd0dff4e2247c732c58438b321fe28d697c42b77272",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
+     "feature_version": "2",
+     "k_train": 27,
+     "k_used": 13,
+     "kind": "A1_M2_minus_momentum",
+     "label_mode": "provider",
+     "label_set_sha": "51b4d85c2b5d947408eb9f0137ca5ca6af99db2ca6c3f0f75853d2c46ad33c82",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791887879.0,
+     "model_id": "A1_M2_minus_momentum:price_path_severe_drawdown_or_halt_24h",
+     "model_sha": "d3b184a642b8f316c6f21bca815653c0a546d6bbfc71ba5771d5eb10b64cb283",
+     "n_train": 104,
+     "n_used": 61,
+     "phase": "08",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_severe_drawdown_or_halt_24h": "1"
+     },
+     "targets": [
+      "price_path_severe_drawdown_or_halt_24h"
+     ],
+     "tech_version": "tech-1",
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "A2_M2_minus_volatility": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "tech_log_ret_1h",
+        "tech_log_ret_6h",
+        "tech_log_ret_24h",
+        "tech_log_rel_vol_1h",
+        "tech_log1p_candles_24h",
+        "tech_log1p_last_close_age_min",
+        "tech_log_breakout_1h",
+        "tech_failed_breakout_1h",
+        "tech_retest_6h",
+        "tech_log_dist_24h_high",
+        "tech_log_pullback_6h",
+        "log1p_token_age_days"
+       ],
+       "kind": "logit",
+       "optional": [
+        "log1p_token_age_days"
+       ],
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "tech_log_ret_1h",
+        "tech_log_ret_6h",
+        "tech_log_ret_24h",
+        "tech_rv_1h",
+        "tech_rv_6h",
+        "tech_log_range_6h",
+        "tech_log_range_24h",
+        "tech_log_rel_vol_1h",
+        "tech_log1p_candles_24h",
+        "tech_log1p_last_close_age_min",
+        "tech_log_breakout_1h",
+        "tech_failed_breakout_1h",
+        "tech_retest_6h",
+        "tech_log_dist_24h_high",
+        "tech_log_pullback_6h"
+       ]
+      }
+     },
+     "data_snapshot_sha": "0bbc3ba79ff256ed65048dd0dff4e2247c732c58438b321fe28d697c42b77272",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
+     "feature_version": "2",
+     "k_train": 27,
+     "k_used": 13,
+     "kind": "A2_M2_minus_volatility",
+     "label_mode": "provider",
+     "label_set_sha": "51b4d85c2b5d947408eb9f0137ca5ca6af99db2ca6c3f0f75853d2c46ad33c82",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791887879.0,
+     "model_id": "A2_M2_minus_volatility:price_path_severe_drawdown_or_halt_24h",
+     "model_sha": "f1c9186158d4eab2f7f2b1912c3afc68fd6c1715342299838a3e29ab2172e499",
+     "n_train": 104,
+     "n_used": 61,
+     "phase": "08",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_severe_drawdown_or_halt_24h": "1"
+     },
+     "targets": [
+      "price_path_severe_drawdown_or_halt_24h"
+     ],
+     "tech_version": "tech-1",
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "A3_M2_minus_volume": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "tech_log_ret_1h",
+        "tech_log_ret_6h",
+        "tech_log_ret_24h",
+        "tech_rv_1h",
+        "tech_rv_6h",
+        "tech_log_range_6h",
+        "tech_log_range_24h",
+        "tech_log_breakout_1h",
+        "tech_failed_breakout_1h",
+        "tech_retest_6h",
+        "tech_log_dist_24h_high",
+        "tech_log_pullback_6h",
+        "log1p_token_age_days"
+       ],
+       "kind": "logit",
+       "optional": [
+        "log1p_token_age_days"
+       ],
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "tech_log_ret_1h",
+        "tech_log_ret_6h",
+        "tech_log_ret_24h",
+        "tech_rv_1h",
+        "tech_rv_6h",
+        "tech_log_range_6h",
+        "tech_log_range_24h",
+        "tech_log_rel_vol_1h",
+        "tech_log1p_candles_24h",
+        "tech_log1p_last_close_age_min",
+        "tech_log_breakout_1h",
+        "tech_failed_breakout_1h",
+        "tech_retest_6h",
+        "tech_log_dist_24h_high",
+        "tech_log_pullback_6h"
+       ]
+      }
+     },
+     "data_snapshot_sha": "0bbc3ba79ff256ed65048dd0dff4e2247c732c58438b321fe28d697c42b77272",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
+     "feature_version": "2",
+     "k_train": 27,
+     "k_used": 13,
+     "kind": "A3_M2_minus_volume",
+     "label_mode": "provider",
+     "label_set_sha": "51b4d85c2b5d947408eb9f0137ca5ca6af99db2ca6c3f0f75853d2c46ad33c82",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791887879.0,
+     "model_id": "A3_M2_minus_volume:price_path_severe_drawdown_or_halt_24h",
+     "model_sha": "74623895c9b919bf1b3d00fae0935fce7f979d6d8e2e9e48a09793e845dcfee1",
+     "n_train": 104,
+     "n_used": 61,
+     "phase": "08",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_severe_drawdown_or_halt_24h": "1"
+     },
+     "targets": [
+      "price_path_severe_drawdown_or_halt_24h"
+     ],
+     "tech_version": "tech-1",
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "A4_M2_minus_structure": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "tech_log_ret_1h",
+        "tech_log_ret_6h",
+        "tech_log_ret_24h",
+        "tech_rv_1h",
+        "tech_rv_6h",
+        "tech_log_range_6h",
+        "tech_log_range_24h",
+        "tech_log_rel_vol_1h",
+        "tech_log1p_candles_24h",
+        "tech_log1p_last_close_age_min",
+        "log1p_token_age_days"
+       ],
+       "kind": "logit",
+       "optional": [
+        "log1p_token_age_days"
+       ],
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "tech_log_ret_1h",
+        "tech_log_ret_6h",
+        "tech_log_ret_24h",
+        "tech_rv_1h",
+        "tech_rv_6h",
+        "tech_log_range_6h",
+        "tech_log_range_24h",
+        "tech_log_rel_vol_1h",
+        "tech_log1p_candles_24h",
+        "tech_log1p_last_close_age_min",
+        "tech_log_breakout_1h",
+        "tech_failed_breakout_1h",
+        "tech_retest_6h",
+        "tech_log_dist_24h_high",
+        "tech_log_pullback_6h"
+       ]
+      }
+     },
+     "data_snapshot_sha": "0bbc3ba79ff256ed65048dd0dff4e2247c732c58438b321fe28d697c42b77272",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
+     "feature_version": "2",
+     "k_train": 27,
+     "k_used": 13,
+     "kind": "A4_M2_minus_structure",
+     "label_mode": "provider",
+     "label_set_sha": "51b4d85c2b5d947408eb9f0137ca5ca6af99db2ca6c3f0f75853d2c46ad33c82",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791887879.0,
+     "model_id": "A4_M2_minus_structure:price_path_severe_drawdown_or_halt_24h",
+     "model_sha": "ba557f00bb8d5ac661a10080ce3005d811ccff07d7e1f4f17da1cf7cfd04ecbe",
+     "n_train": 104,
+     "n_used": 61,
+     "phase": "08",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_severe_drawdown_or_halt_24h": "1"
+     },
+     "targets": [
+      "price_path_severe_drawdown_or_halt_24h"
+     ],
+     "tech_version": "tech-1",
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "A5_T_B2_TC": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days"
+       ],
+       "kind": "logit",
+       "optional": [
+        "log1p_token_age_days"
+       ],
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "tech_log_ret_1h",
+        "tech_log_ret_6h",
+        "tech_log_ret_24h",
+        "tech_rv_1h",
+        "tech_rv_6h",
+        "tech_log_range_6h",
+        "tech_log_range_24h",
+        "tech_log_rel_vol_1h",
+        "tech_log1p_candles_24h",
+        "tech_log1p_last_close_age_min",
+        "tech_log_breakout_1h",
+        "tech_failed_breakout_1h",
+        "tech_retest_6h",
+        "tech_log_dist_24h_high",
+        "tech_log_pullback_6h"
+       ]
+      }
+     },
+     "data_snapshot_sha": "0bbc3ba79ff256ed65048dd0dff4e2247c732c58438b321fe28d697c42b77272",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
+     "feature_version": "2",
+     "k_train": 27,
+     "k_used": 13,
+     "kind": "A5_T_B2_TC",
+     "label_mode": "provider",
+     "label_set_sha": "51b4d85c2b5d947408eb9f0137ca5ca6af99db2ca6c3f0f75853d2c46ad33c82",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791887879.0,
+     "model_id": "A5_T_B2_TC:price_path_severe_drawdown_or_halt_24h",
+     "model_sha": "140bc30ce3e4edc2c5a5698269917e8ea3f4b1339baac3812d3f9f63db31cd7f",
+     "n_train": 104,
+     "n_used": 61,
+     "phase": "08",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_severe_drawdown_or_halt_24h": "1"
+     },
+     "targets": [
+      "price_path_severe_drawdown_or_halt_24h"
+     ],
+     "tech_version": "tech-1",
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "M1_T_LOGIT": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "tech_log_ret_1h",
+        "tech_log_ret_6h",
+        "tech_log_ret_24h",
+        "tech_rv_1h",
+        "tech_rv_6h",
+        "tech_log_range_6h",
+        "tech_log_range_24h",
+        "tech_log_rel_vol_1h",
+        "tech_log1p_candles_24h",
+        "tech_log1p_last_close_age_min",
+        "tech_log_breakout_1h",
+        "tech_failed_breakout_1h",
+        "tech_retest_6h",
+        "tech_log_dist_24h_high",
+        "tech_log_pullback_6h"
+       ],
+       "kind": "logit",
+       "optional": [],
+       "rows": [
+        "tech_log_ret_1h",
+        "tech_log_ret_6h",
+        "tech_log_ret_24h",
+        "tech_rv_1h",
+        "tech_rv_6h",
+        "tech_log_range_6h",
+        "tech_log_range_24h",
+        "tech_log_rel_vol_1h",
+        "tech_log1p_candles_24h",
+        "tech_log1p_last_close_age_min",
+        "tech_log_breakout_1h",
+        "tech_failed_breakout_1h",
+        "tech_retest_6h",
+        "tech_log_dist_24h_high",
+        "tech_log_pullback_6h"
+       ]
+      }
+     },
+     "data_snapshot_sha": "0bbc3ba79ff256ed65048dd0dff4e2247c732c58438b321fe28d697c42b77272",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
+     "feature_version": "2",
+     "k_train": 27,
+     "k_used": 13,
+     "kind": "M1_T_LOGIT",
+     "label_mode": "provider",
+     "label_set_sha": "51b4d85c2b5d947408eb9f0137ca5ca6af99db2ca6c3f0f75853d2c46ad33c82",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791887879.0,
+     "model_id": "M1_T_LOGIT:price_path_severe_drawdown_or_halt_24h",
+     "model_sha": "a47763d4df3638799722c123c1443eace5debaa2bfce372650a4cf8a8e797b68",
+     "n_train": 104,
+     "n_used": 61,
+     "phase": "08",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_severe_drawdown_or_halt_24h": "1"
+     },
+     "targets": [
+      "price_path_severe_drawdown_or_halt_24h"
+     ],
+     "tech_version": "tech-1",
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "M2_T_LOGIT_B2": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "tech_log_ret_1h",
+        "tech_log_ret_6h",
+        "tech_log_ret_24h",
+        "tech_rv_1h",
+        "tech_rv_6h",
+        "tech_log_range_6h",
+        "tech_log_range_24h",
+        "tech_log_rel_vol_1h",
+        "tech_log1p_candles_24h",
+        "tech_log1p_last_close_age_min",
+        "tech_log_breakout_1h",
+        "tech_failed_breakout_1h",
+        "tech_retest_6h",
+        "tech_log_dist_24h_high",
+        "tech_log_pullback_6h",
+        "log1p_token_age_days"
+       ],
+       "kind": "logit",
+       "optional": [
+        "log1p_token_age_days"
+       ],
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "tech_log_ret_1h",
+        "tech_log_ret_6h",
+        "tech_log_ret_24h",
+        "tech_rv_1h",
+        "tech_rv_6h",
+        "tech_log_range_6h",
+        "tech_log_range_24h",
+        "tech_log_rel_vol_1h",
+        "tech_log1p_candles_24h",
+        "tech_log1p_last_close_age_min",
+        "tech_log_breakout_1h",
+        "tech_failed_breakout_1h",
+        "tech_retest_6h",
+        "tech_log_dist_24h_high",
+        "tech_log_pullback_6h"
+       ]
+      }
+     },
+     "data_snapshot_sha": "0bbc3ba79ff256ed65048dd0dff4e2247c732c58438b321fe28d697c42b77272",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
+     "feature_version": "2",
+     "k_train": 27,
+     "k_used": 13,
+     "kind": "M2_T_LOGIT_B2",
+     "label_mode": "provider",
+     "label_set_sha": "51b4d85c2b5d947408eb9f0137ca5ca6af99db2ca6c3f0f75853d2c46ad33c82",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791887879.0,
+     "model_id": "M2_T_LOGIT_B2:price_path_severe_drawdown_or_halt_24h",
+     "model_sha": "9b78bb65cc7506dc14a3b4bbbac68d5e28ae1a84b0c6093690a6db8fece0d3c2",
+     "n_train": 104,
+     "n_used": 61,
+     "phase": "08",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_severe_drawdown_or_halt_24h": "1"
+     },
+     "targets": [
+      "price_path_severe_drawdown_or_halt_24h"
+     ],
+     "tech_version": "tech-1",
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "M3_T_STUMPS": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "tech_log_ret_1h",
+        "tech_log_ret_6h",
+        "tech_log_ret_24h",
+        "tech_rv_1h",
+        "tech_rv_6h",
+        "tech_log_range_6h",
+        "tech_log_range_24h",
+        "tech_log_rel_vol_1h",
+        "tech_log1p_candles_24h",
+        "tech_log1p_last_close_age_min",
+        "tech_log_breakout_1h",
+        "tech_failed_breakout_1h",
+        "tech_retest_6h",
+        "tech_log_dist_24h_high",
+        "tech_log_pullback_6h"
+       ],
+       "kind": "stumps",
+       "optional": [],
+       "rows": [
+        "tech_log_ret_1h",
+        "tech_log_ret_6h",
+        "tech_log_ret_24h",
+        "tech_rv_1h",
+        "tech_rv_6h",
+        "tech_log_range_6h",
+        "tech_log_range_24h",
+        "tech_log_rel_vol_1h",
+        "tech_log1p_candles_24h",
+        "tech_log1p_last_close_age_min",
+        "tech_log_breakout_1h",
+        "tech_failed_breakout_1h",
+        "tech_retest_6h",
+        "tech_log_dist_24h_high",
+        "tech_log_pullback_6h"
+       ]
+      }
+     },
+     "data_snapshot_sha": "0bbc3ba79ff256ed65048dd0dff4e2247c732c58438b321fe28d697c42b77272",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
+     "feature_version": "2",
+     "k_train": 27,
+     "k_used": 13,
+     "kind": "M3_T_STUMPS",
+     "label_mode": "provider",
+     "label_set_sha": "51b4d85c2b5d947408eb9f0137ca5ca6af99db2ca6c3f0f75853d2c46ad33c82",
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791887879.0,
+     "model_id": "M3_T_STUMPS:price_path_severe_drawdown_or_halt_24h",
+     "model_sha": "2ac406ac89a0510a7b3b569910962b52bf55806d7832768dc76f38a12cbafbed",
+     "n_train": 104,
+     "n_used": 61,
+     "phase": "08",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_severe_drawdown_or_halt_24h": "1"
+     },
+     "targets": [
+      "price_path_severe_drawdown_or_halt_24h"
+     ],
+     "tech_version": "tech-1",
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    }
+   },
+   "cutoff_utc": "2026-10-14T00:00:00Z",
+   "fold": 0
+  }
+ ],
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "target": "price_path_severe_drawdown_or_halt_24h"
+}

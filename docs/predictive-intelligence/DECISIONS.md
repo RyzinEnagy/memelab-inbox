@@ -318,3 +318,13 @@ Written with `audits/predictive-intelligence/phase_08/ACCEPTANCE_CHECKLIST.md` a
 3. Technical inputs are never imputed: AS_OF missingness gives OOD, RETRIEVAL missingness CENSORED_RETRIEVAL (censoring, never a model input), HEURISTIC missingness OOD.
 4. Only the decision's point-in-time pool from its own export is used; a decision without one gets NO_POOL_AT_DECISION and no technical value. The vendor's current pool list (the label route CURRENT_VENDOR_LIST) is never a feature source, because it was read on 2026-10-24 and selects pools with later knowledge (P09, P43).
 5. The registry target `failed_breakout_6h` (DEFERRED_PHASE_08) stays DEFERRED: labelling it needs a frozen definition by change control and new vendor reads, outside this phase's single slice. Phase 08 builds breakout features, not that target.
+
+## PI-D-051 Phase 08 technical predictors: result, frozen cards and rules carried forward (ADOPTED, 2026-10-25, Phase 08; PROVISIONAL under PI-D-046)
+
+Recorded with the Phase 08 outputs (`audits/predictive-intelligence/phase_08/models/TECHNICAL_MODEL_CARD.md`). ACCEPTANCE and the registry fingerprint (`4b4aabce...`) are unchanged.
+
+1. Result on development data (retrospective, provider mode): no technical model is distinguishable from the base rate and every one is MODEL_NOT_PROMOTED. Technical inputs exist only on the PIT_RECORDED route with 24 h of fetched history (154 of 240 labelled decisions). T1 and T2 technical models never reach the training minimum (INSUFFICIENT_HISTORY); T1b fits only in the last fold and scores 6 rows with 0 positive on 1 day (INSUFFICIENT_DAYS). The folds and Phase 07's B0 and B2 numbers are reproduced exactly.
+2. Frozen cards for Phase 12: M1, M2 and M3 per primary target at 2026-10-17T00:00Z (`phase_08/artifacts/`); T1b fitted (144 rows, 20 positive), T1 and T2 abstain. MODEL_STALE after 2026-10-31. Phase 12 adds them to its ledger and evaluates any of them only through its own selection rule.
+3. The cumulative search ledger for Phase 12 is now `phase_08/experiments/SEARCH_LEDGER.csv` (Phase 07's rows unchanged first, then Phase 08's, including recorded run 1 and the features-only probe).
+4. Live inference (Phase 17) keeps every vendor read on `store.ingest_gt_response`, whose refusal of a candle served before it closed is what keeps version 2 from using an in-progress close; tech-1 also drops such a candle itself.
+5. Oracle tolerance: the pre-registered 1e-6 against scikit-learn lbfgs was exceeded (1.13e-6) on a real fold design; lbfgs stops early there (gradient 7.2e-6) and scikit-learn's exact Newton solvers agree with the numpy fit within 7.1e-14. Later oracle checks of the numpy logistic use newton-cholesky or newton-cg, or report the gradient beside an lbfgs difference.

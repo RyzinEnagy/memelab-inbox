@@ -1,0 +1,76 @@
+{
+ "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "body": {
+  "abstain": "INSUFFICIENT_HISTORY",
+  "spec": {
+   "columns": [
+    "tech_log_ret_1h",
+    "tech_log_ret_6h",
+    "tech_log_ret_24h",
+    "tech_rv_1h",
+    "tech_rv_6h",
+    "tech_log_range_6h",
+    "tech_log_range_24h",
+    "tech_log_rel_vol_1h",
+    "tech_log1p_candles_24h",
+    "tech_log1p_last_close_age_min",
+    "tech_log_breakout_1h",
+    "tech_failed_breakout_1h",
+    "tech_retest_6h",
+    "tech_log_dist_24h_high",
+    "tech_log_pullback_6h"
+   ],
+   "kind": "stumps",
+   "optional": [],
+   "rows": [
+    "tech_log_ret_1h",
+    "tech_log_ret_6h",
+    "tech_log_ret_24h",
+    "tech_rv_1h",
+    "tech_rv_6h",
+    "tech_log_range_6h",
+    "tech_log_range_24h",
+    "tech_log_rel_vol_1h",
+    "tech_log1p_candles_24h",
+    "tech_log1p_last_close_age_min",
+    "tech_log_breakout_1h",
+    "tech_failed_breakout_1h",
+    "tech_retest_6h",
+    "tech_log_dist_24h_high",
+    "tech_log_pullback_6h"
+   ]
+  }
+ },
+ "data_snapshot_sha": "e4844dbc8129ef941e873d834087592858b92e1f1eb49c248cf3820d05f4ae35",
+ "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+ "feature_set_sha": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
+ "feature_version": "2",
+ "k_train": 34,
+ "k_used": 26,
+ "kind": "M3_T_STUMPS",
+ "label_mode": "provider",
+ "label_set_sha": "9fae5b7ead0a832f5960b249d2afc8a67fd8e5ee2ebe86b232c9ecbc128b33a1",
+ "labels_version": "labels-1",
+ "max_train_decision_time": 1792059228.0,
+ "max_train_label_matures_at": 1792146828.0,
+ "model_id": "M3_T_STUMPS:price_path_target_before_invalidation_24h",
+ "model_sha": "3ba11decbbaa0bbccd2e19a840ad2de17a887c8749f738220a0d7ef9b5ad7d23",
+ "n_train": 136,
+ "n_used": 87,
+ "phase": "08",
+ "promotion": "MODEL_NOT_PROMOTED",
+ "publishable": false,
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "revision_check_claimed": false,
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "store_schema": "memelab.predictive.store/1",
+ "target_version": {
+  "price_path_target_before_invalidation_24h": "1"
+ },
+ "targets": [
+  "price_path_target_before_invalidation_24h"
+ ],
+ "tech_version": "tech-1",
+ "training_cutoff": 1792195200.0,
+ "training_cutoff_utc": "2026-10-17T00:00:00Z"
+}

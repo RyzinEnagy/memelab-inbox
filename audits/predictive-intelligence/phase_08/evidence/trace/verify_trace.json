@@ -1,0 +1,15 @@
+{
+ "candles_visible_in_last_25h": 102,
+ "decision_key": "efa03ae4fa14ee4d6825f87cc4015ef2cc9c5ffd80226944db9bac72899cc426",
+ "decision_time_utc": "2026-10-12T10:18:37Z",
+ "differences": [],
+ "independent_numbers": {
+  "B0": 0.12777777777777777,
+  "B2": 0.026525851151045512,
+  "M1_T_LOGIT": null,
+  "M2_T_LOGIT_B2": null,
+  "M3_T_STUMPS": null
+ },
+ "invalid_inputs_all_rejected": true,
+ "pass": true
+}

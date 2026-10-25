@@ -64,7 +64,9 @@ MUTATIONS = [
 def main() -> int:
     out = Path(sys.argv[1])
     files = subprocess.run(["git", "ls-files", "memelab", "tests"], cwd=REPO, capture_output=True, text=True, check=True).stdout.split()
-    files += [TARGET, TEST]
+    files += [TARGET, TEST, "audits/predictive-intelligence/phase_08/experiments/EXPERIMENT_REGISTRY.csv",
+              "audits/predictive-intelligence/phase_08/experiments/SEARCH_LEDGER.csv",
+              "audits/predictive-intelligence/phase_07/experiments/SEARCH_LEDGER.csv"]
     results = []
     with tempfile.TemporaryDirectory() as td:
         root = Path(td) / "repo"

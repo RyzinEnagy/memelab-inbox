@@ -1,0 +1,177 @@
+{
+ "applied": 28,
+ "caught": 28,
+ "mutations": 28,
+ "not_applied": [],
+ "results": [
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_p06_an_in_progress_candle_is_refused_at_ingest_and_ignored_by_tech_if_a_view_ever_served_one",
+   "mutation": "P06: in-progress candle filter removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_breakout_failed_breakout_retest_and_exhaustion_on_shaped_paths",
+   "mutation": "retest tolerance 3% to 10%"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_breakout_failed_breakout_retest_and_exhaustion_on_shaped_paths",
+   "mutation": "prior high includes the last hour"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_breakout_failed_breakout_retest_and_exhaustion_on_shaped_paths",
+   "mutation": "failed breakout ignores the fall back"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_values_match_an_independent_hand_computation",
+   "mutation": "breakout reads highs"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_values_match_an_independent_hand_computation",
+   "mutation": "relative volume per day, not per hour"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_values_match_an_independent_hand_computation",
+   "mutation": "window includes its start"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_values_match_an_independent_hand_computation",
+   "mutation": "price at x uses a candle ending before x only"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_coverage_boundary_a_window_needs_one_candle_before_it",
+   "mutation": "coverage needs no candle before the window"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_a_window_before_the_fetched_history_is_censored_retrieval",
+   "mutation": "retrieval missingness becomes OOD"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_count_gate_on_the_rows_with_every_technical_input",
+   "mutation": "count gate on all training rows"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_p13_a_card_trained_after_a_decision_cannot_score_it",
+   "mutation": "P13 guard removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_stumps_learn_a_step_respect_the_leaf_minimum_and_are_deterministic",
+   "mutation": "stump leaf minimum 1"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_stumps_leaf_value_is_the_newton_step",
+   "mutation": "stump leaf is the mean residual"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_stumps_learn_a_step_respect_the_leaf_minimum_and_are_deterministic",
+   "mutation": "stump initial score 0"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_stumps_leaf_value_is_the_newton_step",
+   "mutation": "stump threshold at the lower value"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_walk_forward_refuses_a_gate_that_disagrees_with_the_frozen_index",
+   "mutation": "walk-forward index check removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_nc2t_the_allowlist_refuses_an_undeclared_column_even_with_a_plausible_availability",
+   "mutation": "allowlist removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_tech_restates_version_2_exactly_where_they_overlap",
+   "mutation": "version 2 comparison skipped"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_p10_p11_p38_degenerate_and_invalid_numbers",
+   "mutation": "degenerate test inverted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_hit_miss_counts_an_alert_only_strictly_above_the_training_prevalence",
+   "mutation": "alert at or above the prevalence"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_identity_a_decision_key_of_another_decision_is_refused",
+   "mutation": "identity of the decision not checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_cards_round_trip_exactly_and_tampering_or_another_feature_set_is_refused",
+   "mutation": "card feature-set check removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_ood_and_censored_rows_never_train_and_abstain_with_their_reason",
+   "mutation": "abstain reason always OOD"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_a_window_before_the_fetched_history_is_censored_retrieval",
+   "mutation": "pullback against the 24 h high"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_attach_keeps_a_missing_technical_input_missing_and_the_row_abstains",
+   "mutation": "missing value given the decision availability and a zero"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_values_match_an_independent_hand_computation",
+   "mutation": "rv over closes skips the base price"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_technical.py::test_windows_of_6_and_24_hours_are_distinct",
+   "mutation": "range 6 h uses the 24 h window"
+  }
+ ],
+ "survived": []
+}

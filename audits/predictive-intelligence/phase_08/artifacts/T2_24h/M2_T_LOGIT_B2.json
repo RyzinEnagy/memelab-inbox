@@ -1,0 +1,87 @@
+{
+ "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "body": {
+  "abstain": "INSUFFICIENT_HISTORY",
+  "spec": {
+   "columns": [
+    "thesis_log1p_liquidity_usd",
+    "thesis_log1p_mcap_usd",
+    "thesis_log1p_vol_24h_usd",
+    "thesis_fatal_present",
+    "tech_log_ret_1h",
+    "tech_log_ret_6h",
+    "tech_log_ret_24h",
+    "tech_rv_1h",
+    "tech_rv_6h",
+    "tech_log_range_6h",
+    "tech_log_range_24h",
+    "tech_log_rel_vol_1h",
+    "tech_log1p_candles_24h",
+    "tech_log1p_last_close_age_min",
+    "tech_log_breakout_1h",
+    "tech_failed_breakout_1h",
+    "tech_retest_6h",
+    "tech_log_dist_24h_high",
+    "tech_log_pullback_6h",
+    "log1p_token_age_days"
+   ],
+   "kind": "logit",
+   "optional": [
+    "log1p_token_age_days"
+   ],
+   "rows": [
+    "thesis_log1p_liquidity_usd",
+    "thesis_log1p_mcap_usd",
+    "thesis_log1p_vol_24h_usd",
+    "thesis_fatal_present",
+    "tech_log_ret_1h",
+    "tech_log_ret_6h",
+    "tech_log_ret_24h",
+    "tech_rv_1h",
+    "tech_rv_6h",
+    "tech_log_range_6h",
+    "tech_log_range_24h",
+    "tech_log_rel_vol_1h",
+    "tech_log1p_candles_24h",
+    "tech_log1p_last_close_age_min",
+    "tech_log_breakout_1h",
+    "tech_failed_breakout_1h",
+    "tech_retest_6h",
+    "tech_log_dist_24h_high",
+    "tech_log_pullback_6h"
+   ]
+  }
+ },
+ "data_snapshot_sha": "ca27275d1d1a3bef815009bb99d3607b7f33119cbc5280b8f56eda31dee9dbcc",
+ "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+ "feature_set_sha": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
+ "feature_version": "2",
+ "k_train": 28,
+ "k_used": 14,
+ "kind": "M2_T_LOGIT_B2",
+ "label_mode": "provider",
+ "label_set_sha": "4bf69e8092c8569cdd75cfc0c14b750ea00c8dac22ff0c1f6a4620732adc2c24",
+ "labels_version": "labels-1",
+ "max_train_decision_time": 1791973063.0,
+ "max_train_label_matures_at": 1792147063.0,
+ "model_id": "M2_T_LOGIT_B2:price_path_severe_drawdown_or_halt_24h",
+ "model_sha": "ef43deb01467c5245d5ad852fca7a80f47354fbcce1ab43a851746937d4d0c9c",
+ "n_train": 131,
+ "n_used": 83,
+ "phase": "08",
+ "promotion": "MODEL_NOT_PROMOTED",
+ "publishable": false,
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "revision_check_claimed": false,
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "store_schema": "memelab.predictive.store/1",
+ "target_version": {
+  "price_path_severe_drawdown_or_halt_24h": "1"
+ },
+ "targets": [
+  "price_path_severe_drawdown_or_halt_24h"
+ ],
+ "tech_version": "tech-1",
+ "training_cutoff": 1792195200.0,
+ "training_cutoff_utc": "2026-10-17T00:00:00Z"
+}

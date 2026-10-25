@@ -1,0 +1,40 @@
+{
+ "CX08_real": {
+  "note": "tech-1 reads closes and volumes only (test_tech_reads_closes_and_volumes_only, test_cx08_*); these revisions cannot move a tech-1 value",
+  "open_window_revisions_on_these_pools": 0,
+  "pools": 80
+ },
+ "NC2T": {
+  "accepted": 0,
+  "decisions_with_every_tech_feature": 154,
+  "min_trap_delay_s": 3071.0,
+  "pass": true,
+  "refused_by_allowlist": 98,
+  "refused_by_validate_rows": 98,
+  "with_a_future_value": 98
+ },
+ "P06T": {
+  "accepted": 0,
+  "decisions_with_every_tech_feature": 154,
+  "of_which_refused": 0,
+  "pass": true,
+  "refused": 1758,
+  "values_changed_only_by_the_moved_query_time": 12,
+  "values_using_a_candle_not_available_at_T": 1758
+ },
+ "P13T": {
+  "pass": true,
+  "results": {
+   "T1_24h:M1_T_LOGIT": "REFUSED",
+   "T1_24h:M2_T_LOGIT_B2": "REFUSED",
+   "T1_24h:M3_T_STUMPS": "REFUSED",
+   "T1b_6h:M1_T_LOGIT": "REFUSED",
+   "T1b_6h:M2_T_LOGIT_B2": "REFUSED",
+   "T1b_6h:M3_T_STUMPS": "REFUSED",
+   "T2_24h:M1_T_LOGIT": "REFUSED",
+   "T2_24h:M2_T_LOGIT_B2": "REFUSED",
+   "T2_24h:M3_T_STUMPS": "REFUSED"
+  }
+ },
+ "registry_rows_missing_from_ledger": []
+}

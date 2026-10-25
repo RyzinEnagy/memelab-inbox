@@ -1,0 +1,4287 @@
+{
+ "b2_inputs": {
+  "log1p_token_age_days": 2.3397370277429306,
+  "thesis_fatal_present": 0.0,
+  "thesis_log1p_liquidity_usd": 13.32250489,
+  "thesis_log1p_mcap_usd": 15.58899288,
+  "thesis_log1p_vol_24h_usd": 15.06501584
+ },
+ "candles_not_yet_available_at_T": [
+  {
+   "available_at": 1792147500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "end_at": 1792147200.0,
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792146900.0
+  }
+ ],
+ "candles_read": [
+  {
+   "available_at": 1792057800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003434653156646516,
+   "end_at": 1792057500.0,
+   "obs_key": "8095085307b13e789bee96ee3d3f74938574108e09314c0a733e19aab42d0136",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792057200.0,
+   "volume_usd": 12.880015607229469
+  },
+  {
+   "available_at": 1792058100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003402215745050185,
+   "end_at": 1792057800.0,
+   "obs_key": "49b6f8241334bf0f582c9f9fcfb88692ff0b5106ac262abbb3196a70723e449c",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792057500.0,
+   "volume_usd": 629.1907822500256
+  },
+  {
+   "available_at": 1792058400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0034372123366616983,
+   "end_at": 1792058100.0,
+   "obs_key": "ad77ca68f97f3fb4b8645485f17533907f4cd1cb241e11677e61b4fdb9eea066",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792057800.0,
+   "volume_usd": 713.1782765486848
+  },
+  {
+   "available_at": 1792058700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0034199436686237717,
+   "end_at": 1792058400.0,
+   "obs_key": "d73ee36f7cacd1162f18e0692682ebad721c5c255166c05e62a3727962b8fe82",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792058100.0,
+   "volume_usd": 737.98203881726
+  },
+  {
+   "available_at": 1792059000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003445014045504432,
+   "end_at": 1792058700.0,
+   "obs_key": "eddab2f9f1f569664a2fa52b89efc8f8274b8daadbce8cc00cd619f2e326724c",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792058400.0,
+   "volume_usd": 105.54087229473994
+  },
+  {
+   "available_at": 1792059300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00339221204108039,
+   "end_at": 1792059000.0,
+   "obs_key": "332bcb5af4c45c1b121695d37b35553aea2873bd3e999b182699701fa2d9ea80",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792058700.0,
+   "volume_usd": 2815.1112756148154
+  },
+  {
+   "available_at": 1792059600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0031671990964083994,
+   "end_at": 1792059300.0,
+   "obs_key": "20d889342c551633d81e4e1ed717fbb99dd6226ef57af0b99ce0bbb1ccc01c79",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792059000.0,
+   "volume_usd": 17770.62888586449
+  },
+  {
+   "available_at": 1792059900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0031935144776679106,
+   "end_at": 1792059600.0,
+   "obs_key": "32fca9c240c68c04339e795072b47f6d26c445f362ea675354b5d306839cc294",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792059300.0,
+   "volume_usd": 7875.684504020577
+  },
+  {
+   "available_at": 1792060200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003165340630140898,
+   "end_at": 1792059900.0,
+   "obs_key": "b9196eef988bc63c92ea0cd1826ff5d14dcfcf741fb184f23ad8aec4e065c7b2",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792059600.0,
+   "volume_usd": 3727.950011383486
+  },
+  {
+   "available_at": 1792060500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003198755576436695,
+   "end_at": 1792060200.0,
+   "obs_key": "175f6cba989ee49b60df4c4004cb6e9ce3d07d8cba0f6d596b672a392fb3e722",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792059900.0,
+   "volume_usd": 1712.0520544548237
+  },
+  {
+   "available_at": 1792060800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003184148385208604,
+   "end_at": 1792060500.0,
+   "obs_key": "9b59e87456498aa9a174b8f9e3053ecbd43c3cff373b47d486c0033ab0b95827",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792060200.0,
+   "volume_usd": 6825.030858616785
+  },
+  {
+   "available_at": 1792061100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0032669949858350643,
+   "end_at": 1792060800.0,
+   "obs_key": "9105927ad37bb31639e9da2a1a00872dc840961c3e94c9e90bed4735a03e2196",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792060500.0,
+   "volume_usd": 7773.216134910904
+  },
+  {
+   "available_at": 1792061400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00319617441566232,
+   "end_at": 1792061100.0,
+   "obs_key": "2d6583695522e9d7043df6c3554ad8422bd583460ac8c1b07d30a3ab1e449b03",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792060800.0,
+   "volume_usd": 5994.94537804238
+  },
+  {
+   "available_at": 1792061700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003263558549398288,
+   "end_at": 1792061400.0,
+   "obs_key": "17448539dd97ae75c43e14558dae50e60eb194df6d10890cbab51eaad72459bf",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792061100.0,
+   "volume_usd": 3665.061668365094
+  },
+  {
+   "available_at": 1792062000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003190024317781923,
+   "end_at": 1792061700.0,
+   "obs_key": "f56ce141edcd00f32b0638c8c2f561c46528e2df7a432eeaa2a7be729f35ad7c",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792061400.0,
+   "volume_usd": 2082.124255687744
+  },
+  {
+   "available_at": 1792062300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003203717936381905,
+   "end_at": 1792062000.0,
+   "obs_key": "48e3a6f6fddf9500714abadeebcec80132afe7784613c1a3ad575ed803e3aa1f",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792061700.0,
+   "volume_usd": 1507.3663630941185
+  },
+  {
+   "available_at": 1792062600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003202162394635123,
+   "end_at": 1792062300.0,
+   "obs_key": "9700b741c83d1c3f7edbabd3271bc43ce477918daba4869568be4457318e6427",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792062000.0,
+   "volume_usd": 3109.0146052163595
+  },
+  {
+   "available_at": 1792062900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0032697938094857263,
+   "end_at": 1792062600.0,
+   "obs_key": "2eff59e69729f59fe15d93fd628578dfe055a354dad76ad55b0ec813c935db82",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792062300.0,
+   "volume_usd": 2680.85306775475
+  },
+  {
+   "available_at": 1792063200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00332167128109764,
+   "end_at": 1792062900.0,
+   "obs_key": "e9617c2e96c60f9a89ca0a613892d347e73c92f4d1b586c8a163e0589537f06a",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792062600.0,
+   "volume_usd": 5451.907728424219
+  },
+  {
+   "available_at": 1792063500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003375823254855841,
+   "end_at": 1792063200.0,
+   "obs_key": "ec34c3849e8323fc46a086167aa9dd555e8c6762f9de188e80b00fc24ebdc5c2",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792062900.0,
+   "volume_usd": 2898.1919089291227
+  },
+  {
+   "available_at": 1792063800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003467725846644373,
+   "end_at": 1792063500.0,
+   "obs_key": "a88211a172452ed4b87ee0d9135089639fc2506084ac8f7c2e1fbfbe0ebfbe27",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792063200.0,
+   "volume_usd": 4103.402178724014
+  },
+  {
+   "available_at": 1792064100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0038035294660687287,
+   "end_at": 1792063800.0,
+   "obs_key": "107cea48fa6d3c5289543bc2290c6772fcb2f55075a6a2ef32a9b9d43e153a2a",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792063500.0,
+   "volume_usd": 12696.68583448606
+  },
+  {
+   "available_at": 1792064400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0037156788170365986,
+   "end_at": 1792064100.0,
+   "obs_key": "eec4a9c7866e512d57f071530e8e712ab1362c23d603a8b7be893ccd378e55e3",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792063800.0,
+   "volume_usd": 12318.705280746479
+  },
+  {
+   "available_at": 1792064700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003645591891424514,
+   "end_at": 1792064400.0,
+   "obs_key": "362a55d5451342460145602f156e02c1283856d17ef1cc2c7273e5db0c1b3139",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792064100.0,
+   "volume_usd": 1079.8767014936539
+  },
+  {
+   "available_at": 1792065000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0036691879871972653,
+   "end_at": 1792064700.0,
+   "obs_key": "d4e076867539113cfb6f4358b35814009a26b87560c901c6c406950165fe1f5a",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792064400.0,
+   "volume_usd": 5399.713169581371
+  },
+  {
+   "available_at": 1792065300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0037506276319388943,
+   "end_at": 1792065000.0,
+   "obs_key": "58010dbb6fc3398246dcb2d72ed0455e206536988137cc29fdc88aa2d6b85212",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792064700.0,
+   "volume_usd": 2528.263602245886
+  },
+  {
+   "available_at": 1792065600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0036883745024505234,
+   "end_at": 1792065300.0,
+   "obs_key": "926b890240143e56251c657d645271ebb733c32a6307a70d5bf61c03831eafe2",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792065000.0,
+   "volume_usd": 1726.9647097020825
+  },
+  {
+   "available_at": 1792065900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00367192090212667,
+   "end_at": 1792065600.0,
+   "obs_key": "8379e942a608f229a5fe6adab02c1a7fcf263288a9b2cd1b4188be25ac548638",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792065300.0,
+   "volume_usd": 870.7271276832521
+  },
+  {
+   "available_at": 1792066200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003604243031343618,
+   "end_at": 1792065900.0,
+   "obs_key": "c728e735e3c494a5d87fa861879e09e03e5bc08ae7ce6a372805b3810bc72b37",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792065600.0,
+   "volume_usd": 1211.0816409760325
+  },
+  {
+   "available_at": 1792066500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003626263226310505,
+   "end_at": 1792066200.0,
+   "obs_key": "86f6923fd73aa6f50a33777a37b1ce69bb3f70372a81e63a2af7315c82c1eadd",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792065900.0,
+   "volume_usd": 307.0507135485587
+  },
+  {
+   "available_at": 1792066800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0035883379887921407,
+   "end_at": 1792066500.0,
+   "obs_key": "47c2ca0dec6556fbd6df85d39873159938d991c883a2a72f41bd054ebb4afe01",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792066200.0,
+   "volume_usd": 1025.413194188006
+  },
+  {
+   "available_at": 1792067100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00394917918331498,
+   "end_at": 1792066800.0,
+   "obs_key": "3575ac27caf7b195a595bde5ee5a29f28ae423da85b66d6d8c19a6a4fba6b3e3",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792066500.0,
+   "volume_usd": 97034.7258554653
+  },
+  {
+   "available_at": 1792067400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004525503962178419,
+   "end_at": 1792067100.0,
+   "obs_key": "08c3805258188fd09d35513d682196e3ce6d162e7e09d14360c2d467c16f1d0f",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792066800.0,
+   "volume_usd": 64320.4169205495
+  },
+  {
+   "available_at": 1792067700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004681486117052979,
+   "end_at": 1792067400.0,
+   "obs_key": "e02f20dd22baed823fe58e55f34ac8aa366cf5495e4ab032fa935263fa0cf9b8",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792067100.0,
+   "volume_usd": 51103.34066118867
+  },
+  {
+   "available_at": 1792068000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004538707259673542,
+   "end_at": 1792067700.0,
+   "obs_key": "d572a4fa7f0e563a74679d6fecd00b1ffe50d0b1e91b2efefe7a22feca02c359",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792067400.0,
+   "volume_usd": 30291.88663997082
+  },
+  {
+   "available_at": 1792068300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004351565250883729,
+   "end_at": 1792068000.0,
+   "obs_key": "95bc58fb91fcef3a8f21f40b6c2536535d98bc002334de1308fa97339399993f",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792067700.0,
+   "volume_usd": 19817.251590508597
+  },
+  {
+   "available_at": 1792068600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004063856530705769,
+   "end_at": 1792068300.0,
+   "obs_key": "e98de1df93ce22f01c498345113558a290e783a02851e48f9f97f3adf8e7e670",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792068000.0,
+   "volume_usd": 18436.686912586938
+  },
+  {
+   "available_at": 1792068900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004686629352846271,
+   "end_at": 1792068600.0,
+   "obs_key": "c429ce3621d12170f7b44668900b29b84ff07282cce34c696c5a5428e3918831",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792068300.0,
+   "volume_usd": 30576.5617123367
+  },
+  {
+   "available_at": 1792069200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0045383182876036305,
+   "end_at": 1792068900.0,
+   "obs_key": "d652350982d400aebd02c54a2271be62e9dd847a8d7a811cb51b29ebdac73bae",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792068600.0,
+   "volume_usd": 11935.102877997633
+  },
+  {
+   "available_at": 1792069500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004395922652534995,
+   "end_at": 1792069200.0,
+   "obs_key": "1358a8be4b15c1920328ce2e9ac3ede27f7cc964f1e518f7627fc409349c6a8d",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792068900.0,
+   "volume_usd": 3105.5390818238916
+  },
+  {
+   "available_at": 1792069800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004291489592326631,
+   "end_at": 1792069500.0,
+   "obs_key": "f6e002427db0df75d4fa068cfd24d8e84b34fa591cdb148e1b9226e179e6b867",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792069200.0,
+   "volume_usd": 8138.386511175681
+  },
+  {
+   "available_at": 1792070100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004179539173641387,
+   "end_at": 1792069800.0,
+   "obs_key": "ee775cf42d17a84243223a9d6cf8eb60582be0c9c180f189868b11f6b4e1ddbd",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792069500.0,
+   "volume_usd": 11217.080184335113
+  },
+  {
+   "available_at": 1792070400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004457536298671545,
+   "end_at": 1792070100.0,
+   "obs_key": "136d1e865db5142e2a462e444da2b8f9333b6daca6794d03d247c0328283fe6b",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792069800.0,
+   "volume_usd": 12713.555926900652
+  },
+  {
+   "available_at": 1792070700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0044425204980051945,
+   "end_at": 1792070400.0,
+   "obs_key": "3e160d5240afef4a3548825fc7a2c734a164b0efdf5743096dc139d406bbbf32",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792070100.0,
+   "volume_usd": 17043.288509703278
+  },
+  {
+   "available_at": 1792071000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004186101864195678,
+   "end_at": 1792070700.0,
+   "obs_key": "18b0fd4f36971794afb6f02ad026c83a0e817cb1c4388562b217d9d4a0567ea5",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792070400.0,
+   "volume_usd": 7233.555239334434
+  },
+  {
+   "available_at": 1792071300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003998145318023358,
+   "end_at": 1792071000.0,
+   "obs_key": "6a94aa2fdc74d6e500ce2632b70e1e7604522486c4e406064481fe95f76191e6",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792070700.0,
+   "volume_usd": 8458.934896446093
+  },
+  {
+   "available_at": 1792071600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003884288178722755,
+   "end_at": 1792071300.0,
+   "obs_key": "59663da7721b7b73c4e701825d1e71d531d2694f5c9a5278c82ebf6ecfd021d9",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792071000.0,
+   "volume_usd": 19158.709733728756
+  },
+  {
+   "available_at": 1792071900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004005874611943111,
+   "end_at": 1792071600.0,
+   "obs_key": "443a945618327a319431534ddda0975e54f479b00280ccd0c6ff26eb0f851448",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792071300.0,
+   "volume_usd": 8620.024204074038
+  },
+  {
+   "available_at": 1792072200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003953691581443907,
+   "end_at": 1792071900.0,
+   "obs_key": "6a009789dc24d200625da7ca50505439df1cb2fad5cf0ebad93c5f5e47e66b97",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792071600.0,
+   "volume_usd": 6468.900817713498
+  },
+  {
+   "available_at": 1792072500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00385997693296036,
+   "end_at": 1792072200.0,
+   "obs_key": "472ec2bd5527bf08c6ffa2d1ca1867f648dd0f329021c6406b12c409f7fa3b4d",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792071900.0,
+   "volume_usd": 6507.863362961141
+  },
+  {
+   "available_at": 1792072800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003778254125691615,
+   "end_at": 1792072500.0,
+   "obs_key": "bfcf48ad23c38ceb62054ab91c67287d6d2851dba48b23da9b388923ad2228c2",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792072200.0,
+   "volume_usd": 3444.4970503166514
+  },
+  {
+   "available_at": 1792073100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003872830803209324,
+   "end_at": 1792072800.0,
+   "obs_key": "9017eedf8833073b6a823321e22ee604f523389d59d25261a47a5ea6b976adb8",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792072500.0,
+   "volume_usd": 6980.945767131055
+  },
+  {
+   "available_at": 1792073400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003961608728680351,
+   "end_at": 1792073100.0,
+   "obs_key": "cb8408341ae0bc6188e13cc7f254ac7a06482b492537aced72463854e6647632",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792072800.0,
+   "volume_usd": 5604.355784497178
+  },
+  {
+   "available_at": 1792073700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004125789499107147,
+   "end_at": 1792073400.0,
+   "obs_key": "e42c24d8fb47320fad6a7a968a91f9b65f25eebb92940bca64d8b46704428d83",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792073100.0,
+   "volume_usd": 9684.952674292752
+  },
+  {
+   "available_at": 1792074000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004130838615284054,
+   "end_at": 1792073700.0,
+   "obs_key": "188635ff51a2ad0dc45ef4c0dc78c50c6322a18088f77283f5012eeae3d09000",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792073400.0,
+   "volume_usd": 2666.931470911074
+  },
+  {
+   "available_at": 1792074300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00414919799778017,
+   "end_at": 1792074000.0,
+   "obs_key": "51f5f94555e98e46274699faf0edd745d92da104c4d9f914b68d63af17fbccbb",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792073700.0,
+   "volume_usd": 3030.7230767187953
+  },
+  {
+   "available_at": 1792074600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004208306460846202,
+   "end_at": 1792074300.0,
+   "obs_key": "9f25703b79cbc5e6252fa8392572f7b999d792ad64998a696d64610b9714c194",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792074000.0,
+   "volume_usd": 3276.701899459962
+  },
+  {
+   "available_at": 1792074900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0041241281491272855,
+   "end_at": 1792074600.0,
+   "obs_key": "8b40dcb95d7d6925aeb3cf8d7b418ad2e03af3244ff7657957464ebb3249226e",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792074300.0,
+   "volume_usd": 12052.977207592281
+  },
+  {
+   "available_at": 1792075200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004114092231323159,
+   "end_at": 1792074900.0,
+   "obs_key": "e7c92ca47301644699c77c9a6f08ad6bfe84b3dd324680945d9a8845995f54b5",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792074600.0,
+   "volume_usd": 1176.1666500231404
+  },
+  {
+   "available_at": 1792075500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00406696331730524,
+   "end_at": 1792075200.0,
+   "obs_key": "411fb3f2aeb95506fdd3380a8c8b67c50c92df15b7bf3f0ecf8f0b92a154895f",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792074900.0,
+   "volume_usd": 958.2178862963437
+  },
+  {
+   "available_at": 1792075800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004239559727319087,
+   "end_at": 1792075500.0,
+   "obs_key": "dfa66cc6faf6de959944ade5848859e566ff6719d937dfb6a908e4857f9d9015",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792075200.0,
+   "volume_usd": 8180.806429611126
+  },
+  {
+   "available_at": 1792076100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004364125356107554,
+   "end_at": 1792075800.0,
+   "obs_key": "f01404251d9a471b03433f478c8521019bbd22f48d1c27242d9c2f0862cc0b38",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792075500.0,
+   "volume_usd": 8602.086178817432
+  },
+  {
+   "available_at": 1792076400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004517683542605944,
+   "end_at": 1792076100.0,
+   "obs_key": "348e54ea5b2d891f0226c341cb75584572c219ffc045eea1571f3f4d1a42f3c9",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792075800.0,
+   "volume_usd": 6626.08086147172
+  },
+  {
+   "available_at": 1792076700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004549391717140488,
+   "end_at": 1792076400.0,
+   "obs_key": "a3ed1984f1b6a59bb307184818d94458109a45928dee1c76ce104a9bae879b8b",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792076100.0,
+   "volume_usd": 20859.319049138438
+  },
+  {
+   "available_at": 1792077000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004508059934241026,
+   "end_at": 1792076700.0,
+   "obs_key": "682580bf2874a21d709aae9004072eaf2f4f3599f50c362aa6a9fe7b8c83551f",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792076400.0,
+   "volume_usd": 1133.299756015184
+  },
+  {
+   "available_at": 1792077300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004662508282328965,
+   "end_at": 1792077000.0,
+   "obs_key": "63ab73339930eb3b058029f8e7f8b8affd18c107405b0e2ed26a64d84f4b6517",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792076700.0,
+   "volume_usd": 17774.467721569406
+  },
+  {
+   "available_at": 1792077600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0048350163414416425,
+   "end_at": 1792077300.0,
+   "obs_key": "219e04945592cf3f8ab76e1953f10b7e9577316b0a46d3532534d1e78b5af68b",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792077000.0,
+   "volume_usd": 19968.904458972956
+  },
+  {
+   "available_at": 1792077900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004944071553920957,
+   "end_at": 1792077600.0,
+   "obs_key": "7f7a04d780888ceb00cfe73aad7dd4afa6d84cf2ac2fd27ec9aacd0af2b609f3",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792077300.0,
+   "volume_usd": 11841.161119737664
+  },
+  {
+   "available_at": 1792078200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0048208395897630825,
+   "end_at": 1792077900.0,
+   "obs_key": "23bd00899d134e2c43c6c2f1d9db3456b49b011fd6732115493f22afaf9fc0e1",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792077600.0,
+   "volume_usd": 63760.89040210701
+  },
+  {
+   "available_at": 1792078500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0047608394068323085,
+   "end_at": 1792078200.0,
+   "obs_key": "a97353c6ee21b3e32b7346212c2556d67c4f887592b054f8862d9c05631eb16c",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792077900.0,
+   "volume_usd": 16707.65925378966
+  },
+  {
+   "available_at": 1792078800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004739910107895314,
+   "end_at": 1792078500.0,
+   "obs_key": "3faef34013486bc5b9e755d8c9714aa06601513fd3cde78f8e950ef0d9701978",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792078200.0,
+   "volume_usd": 6155.273665202883
+  },
+  {
+   "available_at": 1792079100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004785187148975662,
+   "end_at": 1792078800.0,
+   "obs_key": "fbafeaaf703baa3a76e100b7f69882760aaabf5c97ef00d88addb6fb87980637",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792078500.0,
+   "volume_usd": 7884.290036918296
+  },
+  {
+   "available_at": 1792079400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004766333367099247,
+   "end_at": 1792079100.0,
+   "obs_key": "aaaf4ee676e132e577880e10506821466c7165127738e8e54e01e0bb5486b1eb",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792078800.0,
+   "volume_usd": 2207.0470608731976
+  },
+  {
+   "available_at": 1792079700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00437163738384345,
+   "end_at": 1792079400.0,
+   "obs_key": "686c14325708c03857f8d12c1e204761f3b72342d3d6630366d5a3cd9f466cff",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792079100.0,
+   "volume_usd": 23246.999959813136
+  },
+  {
+   "available_at": 1792080000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004403549788232129,
+   "end_at": 1792079700.0,
+   "obs_key": "fed4c4ebb62926e7ba3b0ed1dcd769eba9b0b83ea02e68755f9609f666689f36",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792079400.0,
+   "volume_usd": 5305.311274034981
+  },
+  {
+   "available_at": 1792080300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00428593024078875,
+   "end_at": 1792080000.0,
+   "obs_key": "24a29abe17da963ad116432b0b61d2f81d9670fb91ceb6a5fec60cc714c913da",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792079700.0,
+   "volume_usd": 8974.854384178427
+  },
+  {
+   "available_at": 1792080600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004273691802634316,
+   "end_at": 1792080300.0,
+   "obs_key": "eda19aeeeef6a69d85ee61dad92e001fed519cd4b5e2a37535a63c7c2e54740c",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792080000.0,
+   "volume_usd": 3433.9291726452693
+  },
+  {
+   "available_at": 1792080900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004284553104809393,
+   "end_at": 1792080600.0,
+   "obs_key": "29904575991ca3c197ff561bf93836aebee38d996c0853f77ac3f4d1275ab628",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792080300.0,
+   "volume_usd": 5509.7686215203885
+  },
+  {
+   "available_at": 1792081200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0043487352799820465,
+   "end_at": 1792080900.0,
+   "obs_key": "495cee2b31f43457dd092cffb9e62f7a1ff6d7a183f4abb8da7a201e8e8499da",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792080600.0,
+   "volume_usd": 3227.826639336423
+  },
+  {
+   "available_at": 1792081500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004293393391959254,
+   "end_at": 1792081200.0,
+   "obs_key": "f10320ae63417c3d2e1db917439296d4bd30f43b4a68a486f74bcedaf2ac1488",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792080900.0,
+   "volume_usd": 3263.2692138936586
+  },
+  {
+   "available_at": 1792081800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004286039404776051,
+   "end_at": 1792081500.0,
+   "obs_key": "d6ece3a2c89dbcdece4941969a6702c901180a625da75698c74f93e7ecec34ab",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792081200.0,
+   "volume_usd": 4590.695450267366
+  },
+  {
+   "available_at": 1792082100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004152519307880662,
+   "end_at": 1792081800.0,
+   "obs_key": "e41bd55432d366c1382ae5a55310c033fede65efda8318f1951aa3f26ce280d2",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792081500.0,
+   "volume_usd": 11674.671661990355
+  },
+  {
+   "available_at": 1792082400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004143100886460753,
+   "end_at": 1792082100.0,
+   "obs_key": "23e93eca9bea81db9ecd5f06c0f8eee704ba757d63abe538e06f6c44dfd64132",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792081800.0,
+   "volume_usd": 3498.2074272388895
+  },
+  {
+   "available_at": 1792082700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004082591231506178,
+   "end_at": 1792082400.0,
+   "obs_key": "0e3eb20490b52e938751e070cf4789c7a7f545c7110ea110e58b9bbe1fd59df2",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792082100.0,
+   "volume_usd": 2883.1592790895
+  },
+  {
+   "available_at": 1792083000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004057974231542287,
+   "end_at": 1792082700.0,
+   "obs_key": "5fe3a988cd2916563ca77467093f6b8e3b45aa9d0be9f11e89563244a5c214fa",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792082400.0,
+   "volume_usd": 2122.2209052152684
+  },
+  {
+   "available_at": 1792083300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0039057010064240264,
+   "end_at": 1792083000.0,
+   "obs_key": "56bb09f4c42643edbd363e51e2c995f37bee65ac83caa2149c9af57bd95490b3",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792082700.0,
+   "volume_usd": 9660.180612423888
+  },
+  {
+   "available_at": 1792083600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0038650146930033517,
+   "end_at": 1792083300.0,
+   "obs_key": "573a13f04c79cc495e38d4b711cbcf96685dd13d2add80454ed8add6e205d5b5",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792083000.0,
+   "volume_usd": 12886.394167972017
+  },
+  {
+   "available_at": 1792083900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004094120045953771,
+   "end_at": 1792083600.0,
+   "obs_key": "cc64db274ea633d0108042ac0e7bbe8abafdad0a8df46104a7a8dbd0baa24448",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792083300.0,
+   "volume_usd": 4955.599906956237
+  },
+  {
+   "available_at": 1792084200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004055871613261055,
+   "end_at": 1792083900.0,
+   "obs_key": "2af92266c848e58add251c5de53561be1db4614952f6d7eed6c5b22b21dc08f0",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792083600.0,
+   "volume_usd": 1684.1901233908998
+  },
+  {
+   "available_at": 1792084500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004096360482261801,
+   "end_at": 1792084200.0,
+   "obs_key": "917fea0c9da704d457ce756206a29668feaa4ccfd9323d2015c059bd1d6d1a34",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792083900.0,
+   "volume_usd": 14698.297768341887
+  },
+  {
+   "available_at": 1792084800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00412935817334757,
+   "end_at": 1792084500.0,
+   "obs_key": "643de5d7db03f757177b26d7793dfc17beefa53809b0102e8fc3527bfb674135",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792084200.0,
+   "volume_usd": 4359.242669092822
+  },
+  {
+   "available_at": 1792085100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004166173712762345,
+   "end_at": 1792084800.0,
+   "obs_key": "ab96dccde97aefd6bb0a97ee8e9f6305d2fc6628a8f747019326e5f91e6c3259",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792084500.0,
+   "volume_usd": 1784.1177502444355
+  },
+  {
+   "available_at": 1792085400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004181060153027595,
+   "end_at": 1792085100.0,
+   "obs_key": "e59644bb0e91ebfa7ac11a4f486118b13aa74baf011991faa7b10956ff793822",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792084800.0,
+   "volume_usd": 1857.0958745520393
+  },
+  {
+   "available_at": 1792085700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004215509564504772,
+   "end_at": 1792085400.0,
+   "obs_key": "0d96370288f1854a1f58be94caffadb16f3bbf07aaeae976c171ad06e0fa8d06",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792085100.0,
+   "volume_usd": 1472.261569605899
+  },
+  {
+   "available_at": 1792086000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004200878731105765,
+   "end_at": 1792085700.0,
+   "obs_key": "dc218c4138333d8be9b3b731a6e83d6f14e745501f7e03b163d6149210f6c74a",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792085400.0,
+   "volume_usd": 2156.7750220099147
+  },
+  {
+   "available_at": 1792086300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004128380945287323,
+   "end_at": 1792086000.0,
+   "obs_key": "37490fa485fae0e2a7d7c0cfe980790c23105f4e0d7847d132bcba1856ad9806",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792085700.0,
+   "volume_usd": 2103.3917160819133
+  },
+  {
+   "available_at": 1792086600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004095558601888206,
+   "end_at": 1792086300.0,
+   "obs_key": "fa53215230fa50546ad220f28971adfc39d1ea1fa78c3d145000bcb83afd5379",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792086000.0,
+   "volume_usd": 1836.6966160182217
+  },
+  {
+   "available_at": 1792086900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004082746551264299,
+   "end_at": 1792086600.0,
+   "obs_key": "70777cbef337643c3950fee102485415ec58f74d004a11b01a0b51da41851682",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792086300.0,
+   "volume_usd": 998.2165186284907
+  },
+  {
+   "available_at": 1792087200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004063570141665995,
+   "end_at": 1792086900.0,
+   "obs_key": "5e1d9a923c42ec4836235284933540029186b601fa4328ca087b51426753c0f8",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792086600.0,
+   "volume_usd": 856.0732146127378
+  },
+  {
+   "available_at": 1792087500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004059617733789235,
+   "end_at": 1792087200.0,
+   "obs_key": "be37d10bd700990c715e74b6c33260c3f3d3550e423cf4e3665e61bb4f9e1071",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792086900.0,
+   "volume_usd": 1506.1568053225317
+  },
+  {
+   "available_at": 1792087800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004082404352882228,
+   "end_at": 1792087500.0,
+   "obs_key": "17ce5656191278f0637aa028779dc36d007621698aedc1bf01cf8a25f4fe380c",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792087200.0,
+   "volume_usd": 1791.7092420091035
+  },
+  {
+   "available_at": 1792088100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.003951848291969632,
+   "end_at": 1792087800.0,
+   "obs_key": "65b38ecfb73066c9b8423678652c1aa03d65930ab56f604702a16222699cc64f",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792087500.0,
+   "volume_usd": 1981.0291068106658
+  },
+  {
+   "available_at": 1792088400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004240440312865617,
+   "end_at": 1792088100.0,
+   "obs_key": "cc495b1394af567ec731c7e3c98de0ed3e0fc65024194070b72a44bb2c65e93f",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792087800.0,
+   "volume_usd": 10547.581709981394
+  },
+  {
+   "available_at": 1792088700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004285677900771959,
+   "end_at": 1792088400.0,
+   "obs_key": "a8fda8cd44e81664ab7acccc0f4f06916a1df7632b84fa09cde20b1e6fe0d27b",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792088100.0,
+   "volume_usd": 8468.337831982099
+  },
+  {
+   "available_at": 1792089000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004390017839807873,
+   "end_at": 1792088700.0,
+   "obs_key": "ebc9a15634ba71486c1a697cf584f41dee4e3449ba16c269ee0f46f5b89feb48",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792088400.0,
+   "volume_usd": 3657.221757185675
+  },
+  {
+   "available_at": 1792089300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004778876307126724,
+   "end_at": 1792089000.0,
+   "obs_key": "3ebf7e1bf928ef869b5565003fa7f7416a94f7f8800b200e76ae965c8960a0a6",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792088700.0,
+   "volume_usd": 17138.771108776447
+  },
+  {
+   "available_at": 1792089600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004574238750614175,
+   "end_at": 1792089300.0,
+   "obs_key": "28abd6e82cdabaa95a61fe6ae2f7787c2b2aa11a437dbfb4384190d6b2a779ff",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792089000.0,
+   "volume_usd": 6067.974180920246
+  },
+  {
+   "available_at": 1792089900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004563223372416703,
+   "end_at": 1792089600.0,
+   "obs_key": "f6d5e3be907200dba23a6626bf0ad2470bbff3d07228bab89123d6f322d39a5d",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792089300.0,
+   "volume_usd": 3004.130362132409
+  },
+  {
+   "available_at": 1792090200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004575474920372569,
+   "end_at": 1792089900.0,
+   "obs_key": "938a80ce1226fc7401a1e246c13a59835423431ed0ed00c378ff7107a8c2fc2c",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792089600.0,
+   "volume_usd": 1537.5950048151647
+  },
+  {
+   "available_at": 1792090500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00447285360876437,
+   "end_at": 1792090200.0,
+   "obs_key": "e5d7e35e931b038be440f33df62f5cc5cf22a11bf436fdbd7e4828cb5418e25a",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792089900.0,
+   "volume_usd": 4091.6611914810323
+  },
+  {
+   "available_at": 1792090800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0044710820495548345,
+   "end_at": 1792090500.0,
+   "obs_key": "16b6293559d9f0aa3d043b03f9310f9582389c4f7d6eceecead9c9f243563efa",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792090200.0,
+   "volume_usd": 1324.5370903407756
+  },
+  {
+   "available_at": 1792091100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004491259032275646,
+   "end_at": 1792090800.0,
+   "obs_key": "0446bb72ad547f217577c69b4fd3db9e9fdb22af1baf69b7917ca1a53e33b839",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792090500.0,
+   "volume_usd": 2550.7032329003587
+  },
+  {
+   "available_at": 1792091400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004428007897054776,
+   "end_at": 1792091100.0,
+   "obs_key": "07597683df925e457a0b9258cfac6003800f9b5cdeb503302e83e791f8bf76ba",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792090800.0,
+   "volume_usd": 5095.039617223233
+  },
+  {
+   "available_at": 1792091700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004404075090698194,
+   "end_at": 1792091400.0,
+   "obs_key": "a1ad6e1196d6fc9e58c6c77676119f2c0a0f0dfa00dafda245dfaf1aea982c9d",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792091100.0,
+   "volume_usd": 1001.4896686930582
+  },
+  {
+   "available_at": 1792092000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004383512092462125,
+   "end_at": 1792091700.0,
+   "obs_key": "b4ac43a50e7b127a8fa9abc48adc64300b3f6f4cd1bd76cc49b146d7883d9a59",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792091400.0,
+   "volume_usd": 360.96746894566496
+  },
+  {
+   "available_at": 1792092300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004334901297431016,
+   "end_at": 1792092000.0,
+   "obs_key": "5d92194c59f970140f6c411e2328d404f25e06d394ca001f8f8929f7fcfc1436",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792091700.0,
+   "volume_usd": 7403.1342085383085
+  },
+  {
+   "available_at": 1792092600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0044222256246166354,
+   "end_at": 1792092300.0,
+   "obs_key": "00148292a6f72947fafafc4bf9aa390c145d7d157bd9cb4dfb940b8f3da7f240",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792092000.0,
+   "volume_usd": 1915.92658008137
+  },
+  {
+   "available_at": 1792092900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004474957779942354,
+   "end_at": 1792092600.0,
+   "obs_key": "e855f9090e9026f426ef3e3ca715596e2c528cf6a8d8f800e840f9304f399bff",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792092300.0,
+   "volume_usd": 2530.4808423825625
+  },
+  {
+   "available_at": 1792093200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00444586854650848,
+   "end_at": 1792092900.0,
+   "obs_key": "8139bc07ee1f3d4c5e257b7700725bab2ba782177a840a865c236e52bf2823c6",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792092600.0,
+   "volume_usd": 485.6006834632992
+  },
+  {
+   "available_at": 1792093500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004457594114777238,
+   "end_at": 1792093200.0,
+   "obs_key": "af17b36fb56b020fd263a79a023691a15a4bd527910bcef2eabd1f247ecf37bd",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792092900.0,
+   "volume_usd": 4243.586266262016
+  },
+  {
+   "available_at": 1792093800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004525856071965245,
+   "end_at": 1792093500.0,
+   "obs_key": "fb87a6a00526d4b37f8d29d839d929256c61522a06128d54b7a1210993e91259",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792093200.0,
+   "volume_usd": 795.5141260439455
+  },
+  {
+   "available_at": 1792094100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0045947171788498385,
+   "end_at": 1792093800.0,
+   "obs_key": "2312be900893f6fb1ce85c4d2564603cef9944e93389b41c726146bb2eea6a69",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792093500.0,
+   "volume_usd": 4102.704407558604
+  },
+  {
+   "available_at": 1792094400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0046186613746709996,
+   "end_at": 1792094100.0,
+   "obs_key": "b9a853e35565a606bf038694ef6f55f89756963f91848ae826ef458767f269a1",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792093800.0,
+   "volume_usd": 479.7873746800607
+  },
+  {
+   "available_at": 1792094700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004788166841622113,
+   "end_at": 1792094400.0,
+   "obs_key": "26e63fefaba5261c37f00c3a85880c158c08262d06e738dc9171ac68451ff449",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792094100.0,
+   "volume_usd": 4764.353189363874
+  },
+  {
+   "available_at": 1792095000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004672402646500248,
+   "end_at": 1792094700.0,
+   "obs_key": "05b04258b3a9c41e348faccd74bff36e13010a02809552055b8ff327d991f713",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792094400.0,
+   "volume_usd": 10911.11601808675
+  },
+  {
+   "available_at": 1792095300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004546978710649662,
+   "end_at": 1792095000.0,
+   "obs_key": "ee0d6800f30e9b725fc973938b915bd6447b3d05f916c7f20de130ec46fe54cb",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792094700.0,
+   "volume_usd": 2484.8320679617977
+  },
+  {
+   "available_at": 1792095600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004539056083328968,
+   "end_at": 1792095300.0,
+   "obs_key": "a4c9b9f58cd5491fb68d50ddf8593f7c62664faa56420c66dce96422be313b62",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792095000.0,
+   "volume_usd": 2769.5229826144027
+  },
+  {
+   "available_at": 1792095900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00477684448997887,
+   "end_at": 1792095600.0,
+   "obs_key": "af8320c008f51db24813994cb5eae4c69982f8009eb1dc2b0ca581138952ad83",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792095300.0,
+   "volume_usd": 12573.432749015516
+  },
+  {
+   "available_at": 1792096200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00470661557943388,
+   "end_at": 1792095900.0,
+   "obs_key": "bc7e595430d337378608ab3dac87682d4daf52b1201578d8ca6d1733d2adbd66",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792095600.0,
+   "volume_usd": 2170.178550201235
+  },
+  {
+   "available_at": 1792096500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004735086170372395,
+   "end_at": 1792096200.0,
+   "obs_key": "88c2bbc16b801ea476556768448c7d97fc090e9e094e3e5efe81ed49c5900b6e",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792095900.0,
+   "volume_usd": 3204.3182720074233
+  },
+  {
+   "available_at": 1792096800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0046695188677241045,
+   "end_at": 1792096500.0,
+   "obs_key": "b7e1c45d3ffcc43f80a6b8d2e86a21cbf2fb692a460c002ff7e32b17af2828c7",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792096200.0,
+   "volume_usd": 4408.2654759436255
+  },
+  {
+   "available_at": 1792097100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004718652565202875,
+   "end_at": 1792096800.0,
+   "obs_key": "8de297747170c782582434d5ee97f063472512f3fba46009f926c42ff32b5c26",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792096500.0,
+   "volume_usd": 1449.333884813298
+  },
+  {
+   "available_at": 1792097400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004746319698566883,
+   "end_at": 1792097100.0,
+   "obs_key": "3d09d98ccc96e1aaee1b30e5df0ebb7026639b0c92b8c9c820f8de11cf90bffb",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792096800.0,
+   "volume_usd": 530.6518131898671
+  },
+  {
+   "available_at": 1792097700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004773223303592652,
+   "end_at": 1792097400.0,
+   "obs_key": "f5e89e8bde7d02b1ddebb63c2d371b94f8d6dd16d68d3aff2205181b6e7d6f75",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792097100.0,
+   "volume_usd": 1837.4192207723625
+  },
+  {
+   "available_at": 1792098000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004743092410765289,
+   "end_at": 1792097700.0,
+   "obs_key": "0124a9b7198108fe01838f34d132335da734d0c74d3a6efade76f2eb31d3ac6d",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792097400.0,
+   "volume_usd": 538.4440138887214
+  },
+  {
+   "available_at": 1792098300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00479413559605924,
+   "end_at": 1792098000.0,
+   "obs_key": "c775c40758d0ea85ec2871e1266cab0c11e7cac995786db4b98ca289d98d2b87",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792097700.0,
+   "volume_usd": 784.8702189852974
+  },
+  {
+   "available_at": 1792098600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004813964518428443,
+   "end_at": 1792098300.0,
+   "obs_key": "7e9bad7bf300286e81de2a9b68f8ca4e250c5df48075d1b5017b9f224846caf6",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792098000.0,
+   "volume_usd": 1932.6426841831353
+  },
+  {
+   "available_at": 1792098900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004933989085358916,
+   "end_at": 1792098600.0,
+   "obs_key": "f330c594757d548e7c3e61d52a88dd03da3ac161ac1658e3129afb47a66db263",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792098300.0,
+   "volume_usd": 3669.514027191704
+  },
+  {
+   "available_at": 1792099200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004798224532228979,
+   "end_at": 1792098900.0,
+   "obs_key": "e0821a32e51fccc3222273151fd653f815b993b0762fc538a443cd4a00bb95ab",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792098600.0,
+   "volume_usd": 4499.7775651019165
+  },
+  {
+   "available_at": 1792099500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004853073647031043,
+   "end_at": 1792099200.0,
+   "obs_key": "f887af68bfbf01fd81662fb3241a4d6dace5c5bc29b6fcbf10f454f316f474e8",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792098900.0,
+   "volume_usd": 2612.924716414705
+  },
+  {
+   "available_at": 1792099800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004796434735621617,
+   "end_at": 1792099500.0,
+   "obs_key": "fe9c5540cff96c2c0679a8124b7f06f8aadd96840ae4b5eff754e7a0fd02fe39",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792099200.0,
+   "volume_usd": 1370.4394612546973
+  },
+  {
+   "available_at": 1792100100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004720316843334049,
+   "end_at": 1792099800.0,
+   "obs_key": "cc2408c1c19d358ebb07f2185e75f040b8f80b1fa689af5df112425fda16e786",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792099500.0,
+   "volume_usd": 3354.9328431430854
+  },
+  {
+   "available_at": 1792100400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00474183619905895,
+   "end_at": 1792100100.0,
+   "obs_key": "4b047a2a71dce637beaf5c7309a9f9dbf5092c11a90825512b5ea9577a1facf5",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792099800.0,
+   "volume_usd": 732.8148072082171
+  },
+  {
+   "available_at": 1792100700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0046344702062667015,
+   "end_at": 1792100400.0,
+   "obs_key": "8e6f0e6a5db6bc1c01791767ee7f8542261c690e145ddb34499df234dd15272c",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792100100.0,
+   "volume_usd": 13947.493769480698
+  },
+  {
+   "available_at": 1792101000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004526785346862245,
+   "end_at": 1792100700.0,
+   "obs_key": "6528af495a5d959f9d441fb60f8af48c3565e01b989282286144750a257b3739",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792100400.0,
+   "volume_usd": 3660.460896201866
+  },
+  {
+   "available_at": 1792101300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00451694747824577,
+   "end_at": 1792101000.0,
+   "obs_key": "c196ca40fad8f4919cc3020770986112f5c0a7e54595644118f2106f5a304bb1",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792100700.0,
+   "volume_usd": 1688.131437141825
+  },
+  {
+   "available_at": 1792101600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.006092709058411256,
+   "end_at": 1792101300.0,
+   "obs_key": "c2e82e986b281e04d27fee6762158914cef14cfc5ce8334b365353466ed16b79",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792101000.0,
+   "volume_usd": 195526.4806418534
+  },
+  {
+   "available_at": 1792101900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00552453356998318,
+   "end_at": 1792101600.0,
+   "obs_key": "44211b76f488843d94cd5332cad742516ef3abf544cdf1b01ae219f5e3d92a1d",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792101300.0,
+   "volume_usd": 91063.03689032987
+  },
+  {
+   "available_at": 1792102200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005792730600317287,
+   "end_at": 1792101900.0,
+   "obs_key": "7d772f41ce60eea350f7e185813a25f2d416ac267ac785c8c4198d6cb0a21894",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792101600.0,
+   "volume_usd": 48091.648994553536
+  },
+  {
+   "available_at": 1792102500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005386634568832627,
+   "end_at": 1792102200.0,
+   "obs_key": "ebc24af7dd041f8bbdf16c4bb90a95de61afd2e23aceda61281c298d2decb31f",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792101900.0,
+   "volume_usd": 26494.87906412831
+  },
+  {
+   "available_at": 1792102800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005525758691553629,
+   "end_at": 1792102500.0,
+   "obs_key": "4ddf8e3a1e6be8913ff4ae1c720876bce16af691aa840c19ac9078fdf8151e0a",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792102200.0,
+   "volume_usd": 16017.320726320819
+  },
+  {
+   "available_at": 1792103100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0057468282504265725,
+   "end_at": 1792102800.0,
+   "obs_key": "b3f2a407f026066b6e8a21b2da20398f634aed4ac764eac976f31e91529befaa",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792102500.0,
+   "volume_usd": 22013.040714110768
+  },
+  {
+   "available_at": 1792103400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.006417933389020039,
+   "end_at": 1792103100.0,
+   "obs_key": "72ea321eaa03e099e613dc9253a46fac2df1af931f43d629c52f0096e19b1af1",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792102800.0,
+   "volume_usd": 43645.397176129336
+  },
+  {
+   "available_at": 1792103700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.006495356790998571,
+   "end_at": 1792103400.0,
+   "obs_key": "5bc53c5eee8900e437fb1e8b6067cc4d3962fc1c39ba2068eee630b42f961368",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792103100.0,
+   "volume_usd": 60155.822708871645
+  },
+  {
+   "available_at": 1792104000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.006245671638919409,
+   "end_at": 1792103700.0,
+   "obs_key": "d562e44fe72ba203e812fdc0823d08c56eab14f30a90e564511b1df6ce41de74",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792103400.0,
+   "volume_usd": 28067.4124188198
+  },
+  {
+   "available_at": 1792104300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0061613871724248955,
+   "end_at": 1792104000.0,
+   "obs_key": "fa96aca6ff094afe2d0f0b88cc579e36ff1496762393d0caf7d528e72efbc67c",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792103700.0,
+   "volume_usd": 28155.818458782185
+  },
+  {
+   "available_at": 1792104600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005923584522912335,
+   "end_at": 1792104300.0,
+   "obs_key": "770ee6cf907c9c5885558454793f7daeaad8445cc7c6a7e1930cdcf3000e8b72",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792104000.0,
+   "volume_usd": 10736.086839880772
+  },
+  {
+   "available_at": 1792104900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.006000271609771566,
+   "end_at": 1792104600.0,
+   "obs_key": "5809ffc43b482587741ab44b9dda9c09b336c71ff2178dab2368cd38ebc43beb",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792104300.0,
+   "volume_usd": 6248.502668084156
+  },
+  {
+   "available_at": 1792105200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.006051404901305388,
+   "end_at": 1792104900.0,
+   "obs_key": "29622f102bf4848fb6ab9a07e4dd8e5b58d7d4e022b1f38ba61bbe0d375d9677",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792104600.0,
+   "volume_usd": 4027.9589244945723
+  },
+  {
+   "available_at": 1792105500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0058869657336032355,
+   "end_at": 1792105200.0,
+   "obs_key": "7ec2c1b408c59fe1017a5033e6a35707c4a95ba5fdd6035431d73d0b0b1dbc64",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792104900.0,
+   "volume_usd": 11660.08417692722
+  },
+  {
+   "available_at": 1792105800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005738941677526058,
+   "end_at": 1792105500.0,
+   "obs_key": "e0ff08259e7508f329d2da899a255739922aba791d20009c8912d43c147aa1ad",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792105200.0,
+   "volume_usd": 11493.884568313164
+  },
+  {
+   "available_at": 1792106100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005719208586285804,
+   "end_at": 1792105800.0,
+   "obs_key": "16d5183796b48350e119cc08588b623bcd6b2b29f63dad8636b7d41cdb07af1f",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792105500.0,
+   "volume_usd": 8073.736412946201
+  },
+  {
+   "available_at": 1792106400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005405681349513963,
+   "end_at": 1792106100.0,
+   "obs_key": "16bf2c98c396147816f2db390f2d02a49417d4850b9fd68a38149f30ef36659f",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792105800.0,
+   "volume_usd": 13589.624524310246
+  },
+  {
+   "available_at": 1792106700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005574697156147061,
+   "end_at": 1792106400.0,
+   "obs_key": "bd1a5aada6066d12620215a166144e22cc6565a757d28583900d4901f618092c",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792106100.0,
+   "volume_usd": 7251.33871373893
+  },
+  {
+   "available_at": 1792107000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0054808177160040805,
+   "end_at": 1792106700.0,
+   "obs_key": "4ba8125c345e8d65e3458e65633d2fb3f11ef8c83208f344921b70094809daf4",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792106400.0,
+   "volume_usd": 4762.57599084614
+  },
+  {
+   "available_at": 1792107300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00529187735525184,
+   "end_at": 1792107000.0,
+   "obs_key": "e4cdd2361b9a7c5ab13af828be61b4606c53e0cc93b1ce202ffc5ff6631218a2",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792106700.0,
+   "volume_usd": 20114.8170803031
+  },
+  {
+   "available_at": 1792107600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005350599750346359,
+   "end_at": 1792107300.0,
+   "obs_key": "1e368feff1365b953f4b53d54641976e8d2e7e95ad5374ea54918837d0805491",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792107000.0,
+   "volume_usd": 4025.7115303657883
+  },
+  {
+   "available_at": 1792107900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005171540869922888,
+   "end_at": 1792107600.0,
+   "obs_key": "b26fbe6c82bfa8aa263e9d96eb7c829fd78839d509e312332719b77d2d5f0f30",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792107300.0,
+   "volume_usd": 8350.422420522327
+  },
+  {
+   "available_at": 1792108200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005062783444002311,
+   "end_at": 1792107900.0,
+   "obs_key": "61355a2c89b169967165bb0515e054b546fc1559b1cd27303e07be4e13931ebe",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792107600.0,
+   "volume_usd": 8697.695475520728
+  },
+  {
+   "available_at": 1792108500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0052105505216924735,
+   "end_at": 1792108200.0,
+   "obs_key": "b38593e9c085b606476822f2110d2ee700740ce804558cbcd07fa61222dae91c",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792107900.0,
+   "volume_usd": 8183.871522150483
+  },
+  {
+   "available_at": 1792108800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005127655036377499,
+   "end_at": 1792108500.0,
+   "obs_key": "57db4f3314386184adaf76d9d3bf2b567544b353a5595a144c47308007766c60",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792108200.0,
+   "volume_usd": 3788.3078445496476
+  },
+  {
+   "available_at": 1792109100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005086470576526226,
+   "end_at": 1792108800.0,
+   "obs_key": "72439a4d6f47269f750c868c5a3d270aef210e8306a246aa901ea440826d9d31",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792108500.0,
+   "volume_usd": 1795.777117717046
+  },
+  {
+   "available_at": 1792109400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005103750760099761,
+   "end_at": 1792109100.0,
+   "obs_key": "76027c3d7ad8bbcfa130042af44a043ba436cf5168491385d7244599a9845a3f",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792108800.0,
+   "volume_usd": 7628.061060110989
+  },
+  {
+   "available_at": 1792109700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005012716641292804,
+   "end_at": 1792109400.0,
+   "obs_key": "e49962a6a3495d15a00a1d7c2864d6923963ef559f43793a09ff9541b58d64fe",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792109100.0,
+   "volume_usd": 4955.490191562097
+  },
+  {
+   "available_at": 1792110000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00502987526964604,
+   "end_at": 1792109700.0,
+   "obs_key": "2da5cc2f70f1b8b732913e937c18a61e82075b5fb8c1fcbef455943c7b98a06f",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792109400.0,
+   "volume_usd": 1599.41057803241
+  },
+  {
+   "available_at": 1792110300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00497760639939462,
+   "end_at": 1792110000.0,
+   "obs_key": "ab7e19eb02c6028708026f1a60de4cd225b3b67d46f22e44e5cb160d2a9ab95f",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792109700.0,
+   "volume_usd": 4944.653683128157
+  },
+  {
+   "available_at": 1792110600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004879097476330698,
+   "end_at": 1792110300.0,
+   "obs_key": "244a1850081d1fa143d4150d005c11225214df6594b7f7a906b5eefdb8110c7a",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792110000.0,
+   "volume_usd": 2660.853577558867
+  },
+  {
+   "available_at": 1792110900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004965237524453304,
+   "end_at": 1792110600.0,
+   "obs_key": "ff59722787acf1c04d8098c441f13f2d460fbc2ba3c7b89f0ad759b4afb26491",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792110300.0,
+   "volume_usd": 2409.23493606683
+  },
+  {
+   "available_at": 1792111200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005000850047275238,
+   "end_at": 1792110900.0,
+   "obs_key": "8cad62fd985907e0087b29cad708344706252df87bf25b30062692e63e123d88",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792110600.0,
+   "volume_usd": 4589.137434598749
+  },
+  {
+   "available_at": 1792111500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0050121471067437265,
+   "end_at": 1792111200.0,
+   "obs_key": "f564b73bf669d0da2a8f9a052020808381792bbaa58c221642e068902828cd44",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792110900.0,
+   "volume_usd": 423.22902918227777
+  },
+  {
+   "available_at": 1792111800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0049561435879162405,
+   "end_at": 1792111500.0,
+   "obs_key": "4b345368570b9c40178ade3b0df9a1349cbf03a7af6325400fbdc7782ac573e9",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792111200.0,
+   "volume_usd": 2190.9790262890624
+  },
+  {
+   "available_at": 1792112100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004923321516690708,
+   "end_at": 1792111800.0,
+   "obs_key": "d0ca305c6fff8f2d6a454a90785572405a1db118bdde4cd0a4040201c91d03aa",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792111500.0,
+   "volume_usd": 2160.025311164087
+  },
+  {
+   "available_at": 1792112400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004767780816072887,
+   "end_at": 1792112100.0,
+   "obs_key": "224fcfee860bf419ad575f8fdb2772f28bcf356aecc6b1f58c50ed297b8baee3",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792111800.0,
+   "volume_usd": 8773.659253516607
+  },
+  {
+   "available_at": 1792112700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004841340332387671,
+   "end_at": 1792112400.0,
+   "obs_key": "cf5e599f1cf4006cef3200b76f0f1c6a767d5e343d75f2f8e4ce64246e90f172",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792112100.0,
+   "volume_usd": 5254.4643608927345
+  },
+  {
+   "available_at": 1792113000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004843981928386815,
+   "end_at": 1792112700.0,
+   "obs_key": "d7c1238f73fa33c90a1b1f956318f38d310458cb258030b5a3325293074a256e",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792112400.0,
+   "volume_usd": 1241.5591114649358
+  },
+  {
+   "available_at": 1792113300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004856229503069585,
+   "end_at": 1792113000.0,
+   "obs_key": "9090dab05c6ce745d077d52f27a6663a69140dcfb85822bb130242ba0070ca53",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792112700.0,
+   "volume_usd": 3892.800796347824
+  },
+  {
+   "available_at": 1792113600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004845890869025535,
+   "end_at": 1792113300.0,
+   "obs_key": "25d391a0990b85a56a06da33ef104c287401e5e809c27ebe0bf34c1106fa5711",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792113000.0,
+   "volume_usd": 335.3375060172348
+  },
+  {
+   "available_at": 1792113900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004821249046893592,
+   "end_at": 1792113600.0,
+   "obs_key": "987f7d1ca77954f8f4dff2dc82fbe384e20e330cbe4ccb2edbe881ed9a25093c",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792113300.0,
+   "volume_usd": 2062.3185700517365
+  },
+  {
+   "available_at": 1792114200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004803448312592079,
+   "end_at": 1792113900.0,
+   "obs_key": "6eb4463630ccf472ecebd5302069c6cb485c380fe047b83927d567250450b164",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792113600.0,
+   "volume_usd": 359.632116420465
+  },
+  {
+   "available_at": 1792114500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004801713781085124,
+   "end_at": 1792114200.0,
+   "obs_key": "ea7e55d67681094fdbe19b5ee898ac2e9063e329ccb4d2296d0e9b0c46e6aabb",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792113900.0,
+   "volume_usd": 3050.465262
+  },
+  {
+   "available_at": 1792114800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004694726775691634,
+   "end_at": 1792114500.0,
+   "obs_key": "6fe9af61aed069d56a4f0d6d4285c4621f801710d779a4a72d8265d27c1a2e71",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792114200.0,
+   "volume_usd": 8525.936430314261
+  },
+  {
+   "available_at": 1792115100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0045989890847969355,
+   "end_at": 1792114800.0,
+   "obs_key": "31fe35f583b86c29a7ff6b99941eefc932a430b5598eaa8ca4c1e27a82e38ac4",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792114500.0,
+   "volume_usd": 6431.39130484871
+  },
+  {
+   "available_at": 1792115400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0045952701415947405,
+   "end_at": 1792115100.0,
+   "obs_key": "e76cdefb82c90adf85f3460732a549924d4537d5f4b72ca99faeb8f07335e8f0",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792114800.0,
+   "volume_usd": 17072.609826465552
+  },
+  {
+   "available_at": 1792115700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004470969171824027,
+   "end_at": 1792115400.0,
+   "obs_key": "6c4e4fa67973e3f0d7cf82a2de26c13bc604b68147ea5d64ed50dd368fecfd72",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792115100.0,
+   "volume_usd": 5974.478228557191
+  },
+  {
+   "available_at": 1792116000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004447542198486495,
+   "end_at": 1792115700.0,
+   "obs_key": "bc3909ec9bed2d7547adb5ba8b5a8afc62203de9e95e55e76bdf776156c1b1d9",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792115400.0,
+   "volume_usd": 2009.7509582587234
+  },
+  {
+   "available_at": 1792116300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0044417037746648244,
+   "end_at": 1792116000.0,
+   "obs_key": "fa64f7473bf08dc42cde7928be0a8b71fdb5b2d1cedc8de5aa2060cec9cacf8e",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792115700.0,
+   "volume_usd": 6374.782729116936
+  },
+  {
+   "available_at": 1792116600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0044341275896159615,
+   "end_at": 1792116300.0,
+   "obs_key": "fbc5ee82adec8bc81855a74885697f154cc7f6f11da874841f375d8c78e4c45a",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792116000.0,
+   "volume_usd": 1229.633990228072
+  },
+  {
+   "available_at": 1792116900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0045910608424732215,
+   "end_at": 1792116600.0,
+   "obs_key": "ee20f38a46fa3feb1712b0849b8bf6b5b5385c17974e872563c136055bafec31",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792116300.0,
+   "volume_usd": 5050.354472327415
+  },
+  {
+   "available_at": 1792117200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004565148370861874,
+   "end_at": 1792116900.0,
+   "obs_key": "4c3a8ef633acc27ba662a315e45108fa142a5b6311576349c5309d6bd352c283",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792116600.0,
+   "volume_usd": 3249.671622235172
+  },
+  {
+   "available_at": 1792117500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004555964425272203,
+   "end_at": 1792117200.0,
+   "obs_key": "085c7d7b4ce0f6204c05dddd1115bf1913dcb6804dd27c77262676ec54d2e5a4",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792116900.0,
+   "volume_usd": 1853.575574585348
+  },
+  {
+   "available_at": 1792117800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0047034982169591785,
+   "end_at": 1792117500.0,
+   "obs_key": "5f9becd70343f2f3785b73e13fe94af213da252335a8b586a8a910b340ff74de",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792117200.0,
+   "volume_usd": 2963.0181688462217
+  },
+  {
+   "available_at": 1792118100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004658664214690496,
+   "end_at": 1792117800.0,
+   "obs_key": "926b22a9722698572b79e83c4a93aa2102ebe4c5d7e6a13f376a7d3c7b98cb50",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792117500.0,
+   "volume_usd": 2655.393546548328
+  },
+  {
+   "available_at": 1792118400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004833213042405958,
+   "end_at": 1792118100.0,
+   "obs_key": "2c8642bc8e341b82f72f9ee816f87c8f308a45b1f1c3970adf9ceeff7eed50e5",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792117800.0,
+   "volume_usd": 11177.126206271183
+  },
+  {
+   "available_at": 1792118700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0047348647381591415,
+   "end_at": 1792118400.0,
+   "obs_key": "70172a9fa132aa64f77adac1f17e5b8c2a5420ef8af545736a442b841cbd29be",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792118100.0,
+   "volume_usd": 1891.5701623667826
+  },
+  {
+   "available_at": 1792119000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004737701364881217,
+   "end_at": 1792118700.0,
+   "obs_key": "0a8a1157845e526b734acbb623b660be7ef303bbec912b56af8e2acdc54d7aff",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792118400.0,
+   "volume_usd": 2267.454648406515
+  },
+  {
+   "available_at": 1792119300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004754127124357055,
+   "end_at": 1792119000.0,
+   "obs_key": "f6d0626859657f96c1657984636b57b292bcfecb457e24be009317e0621fce68",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792118700.0,
+   "volume_usd": 7844.902001987286
+  },
+  {
+   "available_at": 1792119600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00471783669077992,
+   "end_at": 1792119300.0,
+   "obs_key": "2561ef22f3cfa91a609595cdd28250a53d5742e4938e5cea4bd25b99071a1167",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792119000.0,
+   "volume_usd": 2981.165448498572
+  },
+  {
+   "available_at": 1792119900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004765632653368776,
+   "end_at": 1792119600.0,
+   "obs_key": "3bf11664895c9e3ac404bce6df1fd6c63ae3362dcacd657e4e41804baaa4afc4",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792119300.0,
+   "volume_usd": 1551.1153260712265
+  },
+  {
+   "available_at": 1792120200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004790593053365898,
+   "end_at": 1792119900.0,
+   "obs_key": "18020aca7088144e0a6e2e9058e865e59162b767a5594e433da3be9db33efbcc",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792119600.0,
+   "volume_usd": 2417.4898184327253
+  },
+  {
+   "available_at": 1792120500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004783888253483906,
+   "end_at": 1792120200.0,
+   "obs_key": "89a887989a9ff06913eb044895cc8b9c06899bde597d3ce4c0b4587afd987249",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792119900.0,
+   "volume_usd": 434.8737084754613
+  },
+  {
+   "available_at": 1792120800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004774925966900165,
+   "end_at": 1792120500.0,
+   "obs_key": "205d00c50ffac2c1e122c5acea5c961fbff8e820cf03702c85ed8ce71f913d26",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792120200.0,
+   "volume_usd": 1463.3850582275809
+  },
+  {
+   "available_at": 1792121100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.004734045354471807,
+   "end_at": 1792120800.0,
+   "obs_key": "5c28effdc83bea90594f9fec48b0f78b5018bad659a2a69dd6d995290e8b2966",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792120500.0,
+   "volume_usd": 1481.1869109340278
+  },
+  {
+   "available_at": 1792121400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005028449322271501,
+   "end_at": 1792121100.0,
+   "obs_key": "6e48af780fe4c6b9a69edf74884c6346e501fee31158cbaf659109be82487fba",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792120800.0,
+   "volume_usd": 45669.31966360266
+  },
+  {
+   "available_at": 1792121700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005088283688061627,
+   "end_at": 1792121400.0,
+   "obs_key": "a1417479bbf905deff4bce1f8f35b58cf627844ed93f3341c9dfdff00afaa9df",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792121100.0,
+   "volume_usd": 28108.579499032705
+  },
+  {
+   "available_at": 1792122000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0054753213426308785,
+   "end_at": 1792121700.0,
+   "obs_key": "78b82bc57cc41ea92b1ba0aa00216330570f69ebeae3b54cab9625eadabac0bc",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792121400.0,
+   "volume_usd": 42469.8049078305
+  },
+  {
+   "available_at": 1792122300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0058400928708392565,
+   "end_at": 1792122000.0,
+   "obs_key": "41b2306e2fb17f351b5c59767bba3175d76bc3447b1ca2baa38f57127ad3ae54",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792121700.0,
+   "volume_usd": 32023.289148063828
+  },
+  {
+   "available_at": 1792122600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.006000842855640231,
+   "end_at": 1792122300.0,
+   "obs_key": "3be2679c67af5730ccb7583729a2d2a77dd723481436c07066818a6793c82c67",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792122000.0,
+   "volume_usd": 48843.60455736325
+  },
+  {
+   "available_at": 1792122900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005744270735843033,
+   "end_at": 1792122600.0,
+   "obs_key": "013a435ddb3d9431faf786aed815afa33a081a693efcb7f3b088eee9e517faba",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792122300.0,
+   "volume_usd": 22675.651725594056
+  },
+  {
+   "available_at": 1792123200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005595241991070297,
+   "end_at": 1792122900.0,
+   "obs_key": "f113f781c3cd953e2920c85121039559f0854b03fc8d818ec2480b6e694386cb",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792122600.0,
+   "volume_usd": 10800.836956423544
+  },
+  {
+   "available_at": 1792123500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005933082098008786,
+   "end_at": 1792123200.0,
+   "obs_key": "0c7d5fad19ab76dec5b21507e17267f41fb20c7107a8b404431042bb3818d1ee",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792122900.0,
+   "volume_usd": 14421.241536996728
+  },
+  {
+   "available_at": 1792123800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005920622216998984,
+   "end_at": 1792123500.0,
+   "obs_key": "ec17fc81689e33588c3be98944018e87a4e9c6045ef1538aa944b4390be5b418",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792123200.0,
+   "volume_usd": 12573.446832893093
+  },
+  {
+   "available_at": 1792124100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005630370485166984,
+   "end_at": 1792123800.0,
+   "obs_key": "42dad5b796150155fac2b2ba91c90e5439abe46eeb9f52120a022ea0aa3b7f76",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792123500.0,
+   "volume_usd": 14410.504574080845
+  },
+  {
+   "available_at": 1792124400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005995888637028228,
+   "end_at": 1792124100.0,
+   "obs_key": "78d2625017b73da73f859d5d2e91e691a095cc5be94cdf2c025b05515dc283ca",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792123800.0,
+   "volume_usd": 12098.021242605832
+  },
+  {
+   "available_at": 1792124700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.006294103074255628,
+   "end_at": 1792124400.0,
+   "obs_key": "af49b911510822718522162f2894b57b99e15253452ac1ae1ff953a148692acb",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792124100.0,
+   "volume_usd": 21884.597422575684
+  },
+  {
+   "available_at": 1792125000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.006035081498700647,
+   "end_at": 1792124700.0,
+   "obs_key": "327534b74857d3a0b52db0762d5f6de87d60354d19e5f74fc642820ca879d325",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792124400.0,
+   "volume_usd": 11059.586509374874
+  },
+  {
+   "available_at": 1792125300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005879620062322026,
+   "end_at": 1792125000.0,
+   "obs_key": "43e91ab7538650906eb64cf83195bc79f916361d07d89686f0d54b1d22d96d80",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792124700.0,
+   "volume_usd": 6181.01747008463
+  },
+  {
+   "available_at": 1792125600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.006038017126458076,
+   "end_at": 1792125300.0,
+   "obs_key": "1d08413dc32c8f39c303ce75b52dedb7b23d9abbd75b5914b7842bd8be34b6dd",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792125000.0,
+   "volume_usd": 5861.298215208685
+  },
+  {
+   "available_at": 1792125900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005627689208218523,
+   "end_at": 1792125600.0,
+   "obs_key": "8d59cec6ed665db8982ab3fd1015afd21c208322afd3c4ce3121ebe1d1d0eb8e",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792125300.0,
+   "volume_usd": 12571.58110631703
+  },
+  {
+   "available_at": 1792126200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005710150709930412,
+   "end_at": 1792125900.0,
+   "obs_key": "ff120fa4021bfaafed3b7b06b08515e92019dd08163b7f74aee0e1a60102b7b5",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792125600.0,
+   "volume_usd": 1606.466775445121
+  },
+  {
+   "available_at": 1792126500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005593907765110222,
+   "end_at": 1792126200.0,
+   "obs_key": "06ef1b43b9b97e4b954bbf6e57c280246b26ea026fde3ad757ed8b952e7fa356",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792125900.0,
+   "volume_usd": 6029.695628085887
+  },
+  {
+   "available_at": 1792126800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005528681282477624,
+   "end_at": 1792126500.0,
+   "obs_key": "3495b0ba567b0f43dcd1a5cd076430d763bb4ada1cba6e886d890343bee6733d",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792126200.0,
+   "volume_usd": 5946.848946742632
+  },
+  {
+   "available_at": 1792127100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0055219910342063005,
+   "end_at": 1792126800.0,
+   "obs_key": "b7803a4721926e83f37b4893693439ce7811ebfaaf1ccc743cb3d69cf50c0678",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792126500.0,
+   "volume_usd": 2957.1892132103603
+  },
+  {
+   "available_at": 1792127400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0056472966584090786,
+   "end_at": 1792127100.0,
+   "obs_key": "4b006c12cffde9512acd5f0198dd427d4f4b9a5e8923e223d3b70246b9b9acb4",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792126800.0,
+   "volume_usd": 3156.17216139097
+  },
+  {
+   "available_at": 1792127700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005615466789255217,
+   "end_at": 1792127400.0,
+   "obs_key": "9bcbabe4e02aceeb4b09abfbef5b64f8bbd5a59ed65f2b4a635ed51c2ec53722",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792127100.0,
+   "volume_usd": 1644.706695893871
+  },
+  {
+   "available_at": 1792128000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005602286351363383,
+   "end_at": 1792127700.0,
+   "obs_key": "bef0c1a03e189996aebd333f14d184439ac876ba9bf49d90c9f44c4c852d1a33",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792127400.0,
+   "volume_usd": 513.6323744434651
+  },
+  {
+   "available_at": 1792128300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005596749933575567,
+   "end_at": 1792128000.0,
+   "obs_key": "c60d42cdc2644c34209feabc09f126002fffcb311945520568a61344a207fc7d",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792127700.0,
+   "volume_usd": 1147.1323153146843
+  },
+  {
+   "available_at": 1792128600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005499331649083519,
+   "end_at": 1792128300.0,
+   "obs_key": "832cdc14b85a4a9f415e3242a58a0fddd0d2d91006263e41bc07876ff38bf1f6",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792128000.0,
+   "volume_usd": 10243.31223958112
+  },
+  {
+   "available_at": 1792128900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005349523125942092,
+   "end_at": 1792128600.0,
+   "obs_key": "5407f45fffba3a79710279c41cdccd48f0292986ea0462f7d121a17301f02880",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792128300.0,
+   "volume_usd": 2399.979822380031
+  },
+  {
+   "available_at": 1792129200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005303486842416949,
+   "end_at": 1792128900.0,
+   "obs_key": "beddd43477a7c65f84ee33eab46d8a9e3b16a184966d2db324fcd3873ccf4287",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792128600.0,
+   "volume_usd": 1721.55577200067
+  },
+  {
+   "available_at": 1792129500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005359502059232283,
+   "end_at": 1792129200.0,
+   "obs_key": "3919d4ddd0331261883513aacbd720b7a183972f6904ccef26f1113586ad2386",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792128900.0,
+   "volume_usd": 17194.058284797848
+  },
+  {
+   "available_at": 1792129800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0053063227156315155,
+   "end_at": 1792129500.0,
+   "obs_key": "41a7a85fbb5b8cc48c2f17fe16120f4a115697e1db7f1bd0032d32c4d69be906",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792129200.0,
+   "volume_usd": 1347.5111547251392
+  },
+  {
+   "available_at": 1792130100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00537495284750839,
+   "end_at": 1792129800.0,
+   "obs_key": "9e0b81123d3769789cee7e625204ec9eb5077b95aca48ae43619f514ef458d9a",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792129500.0,
+   "volume_usd": 1168.685721222067
+  },
+  {
+   "available_at": 1792130400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005218452129120875,
+   "end_at": 1792130100.0,
+   "obs_key": "3a9f48808a4fa84be4be675ba2cb6ada37f35dba26eb79daf48981c34b305e5b",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792129800.0,
+   "volume_usd": 2855.058371327363
+  },
+  {
+   "available_at": 1792130700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005301224515341068,
+   "end_at": 1792130400.0,
+   "obs_key": "68f0943dab5619d4b5b1e2b847f42c3198651e6aa47023fdbe6119276eb25987",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792130100.0,
+   "volume_usd": 1810.267361098114
+  },
+  {
+   "available_at": 1792131000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0054291924735789905,
+   "end_at": 1792130700.0,
+   "obs_key": "2cc5d51d672a47e47c704291e9460e5f5c131138975b349a1692de01983cca36",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792130400.0,
+   "volume_usd": 6735.357089651377
+  },
+  {
+   "available_at": 1792131300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005922133059159919,
+   "end_at": 1792131000.0,
+   "obs_key": "40b86f7f02b705eefaaebe912cafd8c5c74e6f1f2bd74100b9c9d17d3e125458",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792130700.0,
+   "volume_usd": 12100.204851164617
+  },
+  {
+   "available_at": 1792131600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005721151704011911,
+   "end_at": 1792131300.0,
+   "obs_key": "2bc8dc72c8e2714d06cc17b2ed612d5f16609a25321dfbce6dbdb3915f21105b",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792131000.0,
+   "volume_usd": 5194.184456511376
+  },
+  {
+   "available_at": 1792131900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005735210715334543,
+   "end_at": 1792131600.0,
+   "obs_key": "88b403a8327f40431e09c4c78a2b1b931b2dd90198dbb1a51e3b44ae8ee12300",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792131300.0,
+   "volume_usd": 835.6044059308043
+  },
+  {
+   "available_at": 1792132200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005667599575812451,
+   "end_at": 1792131900.0,
+   "obs_key": "bb32ced01e77cc41301857edfefb1edd62dec89e4a7d55406ec6b7b7221dbc59",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792131600.0,
+   "volume_usd": 5738.538932082767
+  },
+  {
+   "available_at": 1792132500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0057075591609876365,
+   "end_at": 1792132200.0,
+   "obs_key": "925010800f13df3c9883ec6404f6adca8567a94e8928eb698dcf8f5739a84526",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792131900.0,
+   "volume_usd": 4971.769606945683
+  },
+  {
+   "available_at": 1792132800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0057202157360436755,
+   "end_at": 1792132500.0,
+   "obs_key": "b011e82183539ff76e52e46dd672af18ab11348b8ef07242511a1e22ebf78eba",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792132200.0,
+   "volume_usd": 2084.2412041508346
+  },
+  {
+   "available_at": 1792133100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005635540294216253,
+   "end_at": 1792132800.0,
+   "obs_key": "d58e9b03ffafe61de22436847dd2323df40803eba90f1807c09e179a8b5089f9",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792132500.0,
+   "volume_usd": 2354.295654005027
+  },
+  {
+   "available_at": 1792133400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005765939979503985,
+   "end_at": 1792133100.0,
+   "obs_key": "9ec89a3ac6204635c86ab331ecb816c3aa1af80999c4dd9d9afb81a8ac226448",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792132800.0,
+   "volume_usd": 2790.958801146507
+  },
+  {
+   "available_at": 1792133700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005826540999680024,
+   "end_at": 1792133400.0,
+   "obs_key": "8ddf8bf518c3dc7044a7410a589efebf23f0d48c4e190653b3f89ee9f842b09c",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792133100.0,
+   "volume_usd": 1366.1276488511007
+  },
+  {
+   "available_at": 1792134000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005866555922295187,
+   "end_at": 1792133700.0,
+   "obs_key": "a1531ffab2526c78ed218f14bce843b6e341c1b7a73e6cd99d96f0817c01b5b4",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792133400.0,
+   "volume_usd": 12580.36953543831
+  },
+  {
+   "available_at": 1792134300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005714201335627903,
+   "end_at": 1792134000.0,
+   "obs_key": "aad9de454df1bac6a8912152860bdf6a3341569315de0c34418e5c727d621841",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792133700.0,
+   "volume_usd": 2924.327784515238
+  },
+  {
+   "available_at": 1792134600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005728564545681603,
+   "end_at": 1792134300.0,
+   "obs_key": "d887c1baeeefcb18162592a294c3fae2458a7d4d030326a85c595579def6370d",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792134000.0,
+   "volume_usd": 4420.713755254509
+  },
+  {
+   "available_at": 1792134900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005676115917488858,
+   "end_at": 1792134600.0,
+   "obs_key": "ea7d30e21eaf3170f713c477cecfd42cdaa7ce8281ba7f6edf80bcb923fce486",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792134300.0,
+   "volume_usd": 207.10050771821577
+  },
+  {
+   "available_at": 1792135200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005396798642863757,
+   "end_at": 1792134900.0,
+   "obs_key": "772483e62a9a694a8cb431877e8d1b8ca50d71f92774c2ba7c1dd9f0eb3a8b2e",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792134600.0,
+   "volume_usd": 12612.402969608644
+  },
+  {
+   "available_at": 1792135500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0053985027603032035,
+   "end_at": 1792135200.0,
+   "obs_key": "aa34300bdc1ba9298ced8baf804d5ad275485c3a155a153f178b8c62269ab651",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792134900.0,
+   "volume_usd": 413.0334183031696
+  },
+  {
+   "available_at": 1792135800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005434235599084532,
+   "end_at": 1792135500.0,
+   "obs_key": "d3e6626d7e0a8127a168336f67f43c8e7d62fc5efdfa6fe930ca837b6b9dfb15",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792135200.0,
+   "volume_usd": 1027.497025455465
+  },
+  {
+   "available_at": 1792136100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005396378485794786,
+   "end_at": 1792135800.0,
+   "obs_key": "187fb686f050b0fdff893be516989c01ed18ca0792362977d52283e9aabcca06",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792135500.0,
+   "volume_usd": 1675.6999532553662
+  },
+  {
+   "available_at": 1792136400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005327136469376858,
+   "end_at": 1792136100.0,
+   "obs_key": "153dd84e2c37d2fe0a5687754ec3c0abd5066a6f6d26de7c7ec742652e369c6e",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792135800.0,
+   "volume_usd": 1235.6020967430331
+  },
+  {
+   "available_at": 1792136700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005295367911883675,
+   "end_at": 1792136400.0,
+   "obs_key": "491ff6e3a8f3340c897bc19869aa621ce22528d8ca67cfc326463aab3a86f459",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792136100.0,
+   "volume_usd": 2734.856055924189
+  },
+  {
+   "available_at": 1792137000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005277160588331712,
+   "end_at": 1792136700.0,
+   "obs_key": "1420bc04aac3fa823493b1ccd9de766333d3c1561d468042a538a248409a649c",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792136400.0,
+   "volume_usd": 646.6204945130407
+  },
+  {
+   "available_at": 1792137300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005319546678935631,
+   "end_at": 1792137000.0,
+   "obs_key": "66b584c39add27fc1fcb17a34a552d5f8581c2570a0275e22c52e3b33ccef055",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792136700.0,
+   "volume_usd": 611.0061515840512
+  },
+  {
+   "available_at": 1792137600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005271993398565228,
+   "end_at": 1792137300.0,
+   "obs_key": "a73a46d5f7d67dd46cf59c30ab40d4fce6b7bef8b019061835a143ef7767d7b0",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792137000.0,
+   "volume_usd": 960.960940963303
+  },
+  {
+   "available_at": 1792137900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005351119194434854,
+   "end_at": 1792137600.0,
+   "obs_key": "e971df91c5c7105b1194c131fda378eefd01aeeebf3d8d741886d4a25def1a94",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792137300.0,
+   "volume_usd": 2920.658562031422
+  },
+  {
+   "available_at": 1792138200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005361761657162708,
+   "end_at": 1792137900.0,
+   "obs_key": "d7d67f1dfff8270d1aa6351244e80d9303415d55e30a33af060b94cfb590da1f",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792137600.0,
+   "volume_usd": 3625.943114756127
+  },
+  {
+   "available_at": 1792138500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005439363437117924,
+   "end_at": 1792138200.0,
+   "obs_key": "db35b2b8433007027e5f0a2d66c7d9445972790e9b738ee0694c13ab3f162a98",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792137900.0,
+   "volume_usd": 4107.422803126409
+  },
+  {
+   "available_at": 1792138800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0054154462288214305,
+   "end_at": 1792138500.0,
+   "obs_key": "9ecd2b56309476d3304b6bb32657cd1d97a89b9586f30900aac31f0c364ac673",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792138200.0,
+   "volume_usd": 598.1437717053777
+  },
+  {
+   "available_at": 1792139100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00536070225706698,
+   "end_at": 1792138800.0,
+   "obs_key": "0f5305ce32ac31d00d673c0440f6b98fc7fe5d71f56a1ec65401e954d6e53279",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792138500.0,
+   "volume_usd": 2485.3608568077643
+  },
+  {
+   "available_at": 1792139400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005586983945445573,
+   "end_at": 1792139100.0,
+   "obs_key": "5eaf648cafa8a56cb21914514e62afed8d301eaa01255116392835a68ad3f32c",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792138800.0,
+   "volume_usd": 37978.62644690364
+  },
+  {
+   "available_at": 1792139700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005601247435435075,
+   "end_at": 1792139400.0,
+   "obs_key": "0b0e41013907b6fa0312beb8f601f4c18d217f5a86907dc916cd1092816c2429",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792139100.0,
+   "volume_usd": 4460.6024582219425
+  },
+  {
+   "available_at": 1792140000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0056536342293851275,
+   "end_at": 1792139700.0,
+   "obs_key": "54125c650bb4586778f4c22ca145b86627ef44f223d2fe1c25ec97da150f588e",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792139400.0,
+   "volume_usd": 321.0503610909833
+  },
+  {
+   "available_at": 1792140300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005637122242247612,
+   "end_at": 1792140000.0,
+   "obs_key": "458990672eda96a79fa13d59e0fc978867147eae09dca519ac86e183ea4adead",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792139700.0,
+   "volume_usd": 415.43631500079204
+  },
+  {
+   "available_at": 1792140600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005523239020284973,
+   "end_at": 1792140300.0,
+   "obs_key": "ee679212f62c9b03264761a7a8a53ecf283d267c42a4588172ffa07402dd39b4",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792140000.0,
+   "volume_usd": 1820.247654947848
+  },
+  {
+   "available_at": 1792140900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005507600156081837,
+   "end_at": 1792140600.0,
+   "obs_key": "9f2c0da65d084812ca0edc7acb7f9c9005657675ab12a94ce9da73d528268b88",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792140300.0,
+   "volume_usd": 1283.7823160493094
+  },
+  {
+   "available_at": 1792141200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0056511322497929594,
+   "end_at": 1792140900.0,
+   "obs_key": "5da2ec37f5aff098695a235ccb73d64f0a56acf9ac21313fae22b3a8c41272f5",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792140600.0,
+   "volume_usd": 3510.3265683987984
+  },
+  {
+   "available_at": 1792141500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00576218666677205,
+   "end_at": 1792141200.0,
+   "obs_key": "8d062826c7033345a38a2ac934a0301d1a42be4841f46d6509061d4a79599eb5",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792140900.0,
+   "volume_usd": 5865.1533864504345
+  },
+  {
+   "available_at": 1792141800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005711920662301309,
+   "end_at": 1792141500.0,
+   "obs_key": "6416485d0c6996a2e6bd480ee99614c379ef790df0515c243b8bc22670ebd1cf",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792141200.0,
+   "volume_usd": 2598.329611588571
+  },
+  {
+   "available_at": 1792142100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005632173291235795,
+   "end_at": 1792141800.0,
+   "obs_key": "a2d4ad04d2677db6b7dfef6b387e67902c9f1654375adc599ee70f28c76f2cb7",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792141500.0,
+   "volume_usd": 1937.389402388713
+  },
+  {
+   "available_at": 1792142400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005735450841604453,
+   "end_at": 1792142100.0,
+   "obs_key": "fed92ba1b8dc3a8caa80a266d5c648be27ebe039112cd974c0e7d91b1ed9c640",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792141800.0,
+   "volume_usd": 1546.8589957238291
+  },
+  {
+   "available_at": 1792142700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005787723346782441,
+   "end_at": 1792142400.0,
+   "obs_key": "072d424cfd1ffc936a477146bc75d228226b976910e66b654e4bc264c18a1493",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792142100.0,
+   "volume_usd": 4157.724530856267
+  },
+  {
+   "available_at": 1792143000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005919245010909369,
+   "end_at": 1792142700.0,
+   "obs_key": "6c5ee76f8d2269c31ce4d388673348fee8620081c8882beee53701618d634fde",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792142400.0,
+   "volume_usd": 24999.082246759383
+  },
+  {
+   "available_at": 1792143300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0060370767489817245,
+   "end_at": 1792143000.0,
+   "obs_key": "e1dac1b5722bb4419c8aad41b96245d1d89bf51360697089be7e38783e9ad4d1",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792142700.0,
+   "volume_usd": 13420.56944247399
+  },
+  {
+   "available_at": 1792143600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.006249052175390187,
+   "end_at": 1792143300.0,
+   "obs_key": "4d1310bfc55802706432bec2ae89545894b83027cedacb31b08f89432fe73f27",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792143000.0,
+   "volume_usd": 31465.817896245484
+  },
+  {
+   "available_at": 1792143900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.006515002495744797,
+   "end_at": 1792143600.0,
+   "obs_key": "9dadb6552a2657d0bcf897bf27bd2d2172bdc11f2601edf29f60f36daa0b6e10",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792143300.0,
+   "volume_usd": 31296.116782336445
+  },
+  {
+   "available_at": 1792144200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.006360159740600536,
+   "end_at": 1792143900.0,
+   "obs_key": "a33466a80a0bd25c6bfaf69b3ab9460c70fbf26416917c2a350b8839caff73c1",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792143600.0,
+   "volume_usd": 10610.906787927574
+  },
+  {
+   "available_at": 1792144500.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00620736185029102,
+   "end_at": 1792144200.0,
+   "obs_key": "0cb3d534ab870b32b18d6ff75a9e6118ec5e78e071575bf716c7b98c4db318db",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792143900.0,
+   "volume_usd": 11087.537827598007
+  },
+  {
+   "available_at": 1792144800.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005974391207904507,
+   "end_at": 1792144500.0,
+   "obs_key": "152e56f0f964a5b8b3725bcf2f1a059682ac3763024f5c2e159ad14bbee3a3e3",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792144200.0,
+   "volume_usd": 11245.425717146336
+  },
+  {
+   "available_at": 1792145100.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.005982302009924211,
+   "end_at": 1792144800.0,
+   "obs_key": "0c7e60290ec0df9ca43a93d322fea6d47065c171b2d0663038a31789cd632d6e",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792144500.0,
+   "volume_usd": 6447.6957704121605
+  },
+  {
+   "available_at": 1792145400.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.006058370477578132,
+   "end_at": 1792145100.0,
+   "obs_key": "ec74aec32ce2e9edd48cbb56ea427c2ef88fd93094b88699764bc66b55738293",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792144800.0,
+   "volume_usd": 2981.27897571231
+  },
+  {
+   "available_at": 1792145700.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0061444510482102374,
+   "end_at": 1792145400.0,
+   "obs_key": "33d1eb6350202d956696b0e0462bfd84baaa74d744697dd1e101816cf434db96",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792145100.0,
+   "volume_usd": 1529.8664247074378
+  },
+  {
+   "available_at": 1792146000.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.006123090532979208,
+   "end_at": 1792145700.0,
+   "obs_key": "c73ec0ddd4a3b62d5c24b2f5f3e961750684993a72dbed943c023bcdd2f439cc",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792145400.0,
+   "volume_usd": 1243.127624760399
+  },
+  {
+   "available_at": 1792146300.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.006124971233289833,
+   "end_at": 1792146000.0,
+   "obs_key": "763693fdfe92489a97d1b0bb8e4c8ab407d14abb070369dc8310bb1f684af09f",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792145700.0,
+   "volume_usd": 1115.5949999008185
+  },
+  {
+   "available_at": 1792146600.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00622773982840542,
+   "end_at": 1792146300.0,
+   "obs_key": "621ca74595013cf2d4d0f1478cdcad88af2e4386cca320bc08abb60c1046758b",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792146000.0,
+   "volume_usd": 2839.595589019769
+  },
+  {
+   "available_at": 1792146900.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.0061996615880672,
+   "end_at": 1792146600.0,
+   "obs_key": "80a14a4a13716045eb57e8d1f7c613d128d1c3a0e3ab6d5e754d7c422b02df02",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792146300.0,
+   "volume_usd": 1788.1300494148197
+  },
+  {
+   "available_at": 1792147200.0,
+   "available_basis": "PROVIDER_LAG_RECONSTRUCTION",
+   "close": 0.00605151439440201,
+   "end_at": 1792146900.0,
+   "obs_key": "081afd8a8a3d2d874d615cd245d5eb2a151015d1551fafc5618acc05b74eac21",
+   "retrieved_at": 1792840190.3274074,
+   "start_at": 1792146600.0,
+   "volume_usd": 3214.9523433310055
+  }
+ ],
+ "chain": "solana",
+ "decision_key": "9105b9d11b14eff43cfc58e66ed479442d651792cc274acd505525dd8814b505",
+ "decision_time": 1792147326.0,
+ "decision_time_basis": "EXPORT_COMMIT",
+ "decision_time_utc": "2026-10-16T10:42:06Z",
+ "fold": 4,
+ "fold_cutoff_utc": "2026-10-16T00:00:00Z",
+ "invalid_inputs": {
+  "candle_closing_at_T_used": "REFUSED: row 0: tech_log_ret_1h__available_at 1792147626.0 is after the decision 1792147326.0 (future feature, P36)",
+  "holdout_start_card_on_this_development_decision": "REFUSED: card M2_T_LOGIT_B2:price_path_target_before_invalidation_6h trained to 2026-10-17T00:00:00Z cannot score 1 earlier decision(s) (P13, RETROSPECTIVE_MODEL_NOT_AVAILABLE_AS_OF)",
+  "non_finite_feature": "no number, reason OOD",
+  "non_finite_feature_in_a_fit": "REFUSED: Stumps.fit: inputs must be finite (run Prep first; P38)",
+  "view_row_available_after_T": "REFUSED: candle record available at 1792147327.0 reached a strategy at cutoff 1792147326.0"
+ },
+ "invalid_inputs_all_rejected": true,
+ "label_y": 0,
+ "latency_s_median_of_20": 0.0475,
+ "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+ "models": {
+  "B0": {
+   "abstain": null,
+   "card": {
+    "body": {
+     "p": 0.12149532710280374
+    },
+    "data_snapshot_sha": "49d58cc797d8f1362034a4807ef76f22b993e37d74c6b7958db2ffd6654b6afa",
+    "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+    "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+    "feature_version": "2",
+    "k_train": 26,
+    "k_used": 26,
+    "kind": "B0",
+    "label_mode": "provider",
+    "label_set_sha": "4ca67a17a99c49d01323f083d8e8cf1f1401d3b9c74c79de74c51b3413c1095b",
+    "label_store_migration": 2,
+    "labels_version": "labels-1",
+    "max_train_decision_time": 1792059228.0,
+    "max_train_label_matures_at": 1792082028.0,
+    "model_id": "B0:price_path_target_before_invalidation_6h",
+    "model_sha": "ac2c93610d83fb32470f2b22746c0d57aa7a1162766723d065426af5ff293290",
+    "n_train": 214,
+    "n_used": 214,
+    "phase": "07",
+    "publishable": false,
+    "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+    "revision_check_claimed": false,
+    "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+    "store_schema": "memelab.predictive.store/1",
+    "target_version": {
+     "price_path_target_before_invalidation_6h": "1"
+    },
+    "targets": [
+     "price_path_target_before_invalidation_6h"
+    ],
+    "training_cutoff": 1792108800.0,
+    "training_cutoff_utc": "2026-10-16T00:00:00Z"
+   },
+   "card_model_sha": "ac2c93610d83fb32470f2b22746c0d57aa7a1162766723d065426af5ff293290",
+   "number": 0.12149532710280374,
+   "training_cutoff_utc": "2026-10-16T00:00:00Z"
+  },
+  "B2": {
+   "abstain": null,
+   "card": {
+    "body": {
+     "columns": [
+      "thesis_log1p_liquidity_usd",
+      "thesis_log1p_mcap_usd",
+      "thesis_log1p_vol_24h_usd",
+      "thesis_fatal_present",
+      "log1p_token_age_days"
+     ],
+     "logistic": {
+      "C": 1.0,
+      "coef": [
+       0.2025377721726837,
+       -0.8085154758651116,
+       0.6109679786820055,
+       0.046168394717990224,
+       -0.6174902988035835
+      ],
+      "intercept": -2.402857059555472,
+      "n_iter": 8
+     },
+     "prep": {
+      "ind": [],
+      "keep": [
+       0,
+       1,
+       2,
+       3,
+       4
+      ],
+      "med": [
+       12.933694885000001,
+       15.469419734999999,
+       14.071173085,
+       0.0,
+       3.2277142165360635
+      ],
+      "mu": [
+       12.508847257859815,
+       15.751782630411215,
+       14.047527906364488,
+       0.3644859813084112,
+       3.3288372527443304
+      ],
+      "n_in": 5,
+      "sd": [
+       2.1405832328865353,
+       2.5641433910371285,
+       1.636331283726137,
+       0.48128572671341063,
+       1.8933713653648239
+      ]
+     },
+     "required": [
+      "thesis_log1p_liquidity_usd",
+      "thesis_log1p_mcap_usd",
+      "thesis_log1p_vol_24h_usd",
+      "thesis_fatal_present"
+     ]
+    },
+    "data_snapshot_sha": "49d58cc797d8f1362034a4807ef76f22b993e37d74c6b7958db2ffd6654b6afa",
+    "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+    "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+    "feature_version": "2",
+    "k_train": 26,
+    "k_used": 26,
+    "kind": "B2",
+    "label_mode": "provider",
+    "label_set_sha": "4ca67a17a99c49d01323f083d8e8cf1f1401d3b9c74c79de74c51b3413c1095b",
+    "label_store_migration": 2,
+    "labels_version": "labels-1",
+    "max_train_decision_time": 1792059228.0,
+    "max_train_label_matures_at": 1792082028.0,
+    "model_id": "B2:price_path_target_before_invalidation_6h",
+    "model_sha": "acc8aa8ff06532d6124984270aaa04c7235018577383a6a723ef1e83ee922343",
+    "n_train": 214,
+    "n_used": 214,
+    "phase": "07",
+    "publishable": false,
+    "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+    "revision_check_claimed": false,
+    "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+    "store_schema": "memelab.predictive.store/1",
+    "target_version": {
+     "price_path_target_before_invalidation_6h": "1"
+    },
+    "targets": [
+     "price_path_target_before_invalidation_6h"
+    ],
+    "training_cutoff": 1792108800.0,
+    "training_cutoff_utc": "2026-10-16T00:00:00Z"
+   },
+   "card_model_sha": "acc8aa8ff06532d6124984270aaa04c7235018577383a6a723ef1e83ee922343",
+   "number": 0.16700274818648242,
+   "training_cutoff_utc": "2026-10-16T00:00:00Z"
+  },
+  "M1_T_LOGIT": {
+   "abstain": null,
+   "card": {
+    "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+    "body": {
+     "logistic": {
+      "C": 1.0,
+      "coef": [
+       -0.051445508471555115,
+       -0.26994559746134006,
+       -0.05620554734046132,
+       0.22424618598769563,
+       -0.09657450563778222,
+       -0.04083795367381116,
+       0.2966223652038207,
+       0.2953177201639387,
+       0.39946992124292025,
+       0.25918475645897504,
+       0.2529076351692322,
+       0.24877626155069912,
+       -0.08969126812240419,
+       -0.374557492939091,
+       -0.23088753322530253
+      ],
+      "intercept": -2.0520621754575044,
+      "n_iter": 7
+     },
+     "prep": {
+      "ind": [],
+      "keep": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       12,
+       13,
+       14
+      ],
+      "med": [
+       -0.007201158163,
+       -0.0065492474,
+       0.10138959125,
+       0.050937479305,
+       0.17052437665,
+       0.20288783585,
+       0.48955407630000003,
+       -0.4898549245,
+       5.65248918,
+       2.204562444,
+       -0.1680789513,
+       0.0,
+       0.0,
+       -0.21543706965,
+       -0.11231408885
+      ],
+      "mu": [
+       -0.012818477723122319,
+       0.05428851852008694,
+       0.24947601786731882,
+       0.07923437173441304,
+       0.24973764472376817,
+       0.3249422652918116,
+       0.7507253595782608,
+       -0.5529264761743405,
+       5.553064429507246,
+       2.2069890379492754,
+       -0.22812017283741307,
+       0.028985507246376812,
+       0.050724637681159424,
+       -0.2926620290472558,
+       -0.1602609578912558
+      ],
+      "n_in": 15,
+      "sd": [
+       0.07733181379977506,
+       0.25772694258514856,
+       0.5911158969881722,
+       0.07730113806692152,
+       0.22865689214482904,
+       0.3170339576251279,
+       0.6320428820647538,
+       0.9170804305624537,
+       0.23243732056997543,
+       0.25737951300574446,
+       0.24707697068948276,
+       0.1677657522143511,
+       0.21943483956125684,
+       0.26823172778017385,
+       0.1615091202724738
+      ]
+     },
+     "spec": {
+      "columns": [
+       "tech_log_ret_1h",
+       "tech_log_ret_6h",
+       "tech_log_ret_24h",
+       "tech_rv_1h",
+       "tech_rv_6h",
+       "tech_log_range_6h",
+       "tech_log_range_24h",
+       "tech_log_rel_vol_1h",
+       "tech_log1p_candles_24h",
+       "tech_log1p_last_close_age_min",
+       "tech_log_breakout_1h",
+       "tech_failed_breakout_1h",
+       "tech_retest_6h",
+       "tech_log_dist_24h_high",
+       "tech_log_pullback_6h"
+      ],
+      "kind": "logit",
+      "optional": [],
+      "rows": [
+       "tech_log_ret_1h",
+       "tech_log_ret_6h",
+       "tech_log_ret_24h",
+       "tech_rv_1h",
+       "tech_rv_6h",
+       "tech_log_range_6h",
+       "tech_log_range_24h",
+       "tech_log_rel_vol_1h",
+       "tech_log1p_candles_24h",
+       "tech_log1p_last_close_age_min",
+       "tech_log_breakout_1h",
+       "tech_failed_breakout_1h",
+       "tech_retest_6h",
+       "tech_log_dist_24h_high",
+       "tech_log_pullback_6h"
+      ]
+     },
+     "train_prediction_sd": 0.1453188374755674
+    },
+    "data_snapshot_sha": "32ae2b0d58da06e97819777ca610330bda5df3d73ab587bec1b1af412150f5f1",
+    "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+    "feature_set_sha": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
+    "feature_version": "2",
+    "k_train": 26,
+    "k_used": 20,
+    "kind": "M1_T_LOGIT",
+    "label_mode": "provider",
+    "label_set_sha": "4ca67a17a99c49d01323f083d8e8cf1f1401d3b9c74c79de74c51b3413c1095b",
+    "labels_version": "labels-1",
+    "max_train_decision_time": 1792059228.0,
+    "max_train_label_matures_at": 1792082028.0,
+    "model_id": "M1_T_LOGIT:price_path_target_before_invalidation_6h",
+    "model_sha": "ca638cf4bf5b7d3aca338cba5c106890551742f2607ddf64a32ea626be44de35",
+    "n_train": 214,
+    "n_used": 138,
+    "phase": "08",
+    "promotion": "MODEL_NOT_PROMOTED",
+    "publishable": false,
+    "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+    "revision_check_claimed": false,
+    "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+    "store_schema": "memelab.predictive.store/1",
+    "target_version": {
+     "price_path_target_before_invalidation_6h": "1"
+    },
+    "targets": [
+     "price_path_target_before_invalidation_6h"
+    ],
+    "tech_version": "tech-1",
+    "training_cutoff": 1792108800.0,
+    "training_cutoff_utc": "2026-10-16T00:00:00Z"
+   },
+   "card_model_sha": "ca638cf4bf5b7d3aca338cba5c106890551742f2607ddf64a32ea626be44de35",
+   "number": 0.09269587783560007,
+   "training_cutoff_utc": "2026-10-16T00:00:00Z"
+  },
+  "M2_T_LOGIT_B2": {
+   "abstain": null,
+   "card": {
+    "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+    "body": {
+     "logistic": {
+      "C": 1.0,
+      "coef": [
+       0.005128355734759341,
+       -0.39810500507415625,
+       0.3567348207056408,
+       -0.22214718638550057,
+       0.013570843984506337,
+       -0.19191953652784202,
+       -0.042147157542993925,
+       0.09037714756707932,
+       -0.20634707173980077,
+       -0.009207489638998366,
+       0.2500369575344482,
+       0.44869009847141766,
+       0.23544203604027225,
+       0.2487559813219496,
+       0.22784861450006733,
+       0.242443677894057,
+       -0.10691752404557099,
+       -0.3808754275018896,
+       -0.2114312036843758,
+       -0.25775789951113975
+      ],
+      "intercept": -2.126218015155152,
+      "n_iter": 7
+     },
+     "prep": {
+      "ind": [],
+      "keep": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       12,
+       13,
+       14,
+       15,
+       16,
+       17,
+       18,
+       19
+      ],
+      "med": [
+       12.862224529999999,
+       15.25547863,
+       14.090601945,
+       0.0,
+       -0.007201158163,
+       -0.0065492474,
+       0.10138959125,
+       0.050937479305,
+       0.17052437665,
+       0.20288783585,
+       0.48955407630000003,
+       -0.4898549245,
+       5.65248918,
+       2.204562444,
+       -0.1680789513,
+       0.0,
+       0.0,
+       -0.21543706965,
+       -0.11231408885,
+       3.0842099276566395
+      ],
+      "mu": [
+       12.589142761391303,
+       15.17278670347826,
+       14.069160868173913,
+       0.3115942028985507,
+       -0.012818477723122319,
+       0.05428851852008694,
+       0.24947601786731882,
+       0.07923437173441304,
+       0.24973764472376817,
+       0.3249422652918116,
+       0.7507253595782608,
+       -0.5529264761743405,
+       5.553064429507246,
+       2.2069890379492754,
+       -0.22812017283741307,
+       0.028985507246376812,
+       0.050724637681159424,
+       -0.2926620290472558,
+       -0.1602609578912558,
+       2.915027907143539
+      ],
+      "n_in": 20,
+      "sd": [
+       1.0181711176042256,
+       1.3052547408685882,
+       1.1444519740538266,
+       0.463144961776081,
+       0.07733181379977506,
+       0.25772694258514856,
+       0.5911158969881722,
+       0.07730113806692152,
+       0.22865689214482904,
+       0.3170339576251279,
+       0.6320428820647538,
+       0.9170804305624537,
+       0.23243732056997543,
+       0.25737951300574446,
+       0.24707697068948276,
+       0.1677657522143511,
+       0.21943483956125684,
+       0.26823172778017385,
+       0.1615091202724738,
+       1.2298196848718517
+      ]
+     },
+     "spec": {
+      "columns": [
+       "thesis_log1p_liquidity_usd",
+       "thesis_log1p_mcap_usd",
+       "thesis_log1p_vol_24h_usd",
+       "thesis_fatal_present",
+       "tech_log_ret_1h",
+       "tech_log_ret_6h",
+       "tech_log_ret_24h",
+       "tech_rv_1h",
+       "tech_rv_6h",
+       "tech_log_range_6h",
+       "tech_log_range_24h",
+       "tech_log_rel_vol_1h",
+       "tech_log1p_candles_24h",
+       "tech_log1p_last_close_age_min",
+       "tech_log_breakout_1h",
+       "tech_failed_breakout_1h",
+       "tech_retest_6h",
+       "tech_log_dist_24h_high",
+       "tech_log_pullback_6h",
+       "log1p_token_age_days"
+      ],
+      "kind": "logit",
+      "optional": [
+       "log1p_token_age_days"
+      ],
+      "rows": [
+       "thesis_log1p_liquidity_usd",
+       "thesis_log1p_mcap_usd",
+       "thesis_log1p_vol_24h_usd",
+       "thesis_fatal_present",
+       "tech_log_ret_1h",
+       "tech_log_ret_6h",
+       "tech_log_ret_24h",
+       "tech_rv_1h",
+       "tech_rv_6h",
+       "tech_log_range_6h",
+       "tech_log_range_24h",
+       "tech_log_rel_vol_1h",
+       "tech_log1p_candles_24h",
+       "tech_log1p_last_close_age_min",
+       "tech_log_breakout_1h",
+       "tech_failed_breakout_1h",
+       "tech_retest_6h",
+       "tech_log_dist_24h_high",
+       "tech_log_pullback_6h"
+      ]
+     },
+     "train_prediction_sd": 0.14925430224517847
+    },
+    "data_snapshot_sha": "32ae2b0d58da06e97819777ca610330bda5df3d73ab587bec1b1af412150f5f1",
+    "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+    "feature_set_sha": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
+    "feature_version": "2",
+    "k_train": 26,
+    "k_used": 20,
+    "kind": "M2_T_LOGIT_B2",
+    "label_mode": "provider",
+    "label_set_sha": "4ca67a17a99c49d01323f083d8e8cf1f1401d3b9c74c79de74c51b3413c1095b",
+    "labels_version": "labels-1",
+    "max_train_decision_time": 1792059228.0,
+    "max_train_label_matures_at": 1792082028.0,
+    "model_id": "M2_T_LOGIT_B2:price_path_target_before_invalidation_6h",
+    "model_sha": "ac5c960cb004b654a86f19037baa6144e57d893b67bf15a75adc302ac41f4b0c",
+    "n_train": 214,
+    "n_used": 138,
+    "phase": "08",
+    "promotion": "MODEL_NOT_PROMOTED",
+    "publishable": false,
+    "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+    "revision_check_claimed": false,
+    "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+    "store_schema": "memelab.predictive.store/1",
+    "target_version": {
+     "price_path_target_before_invalidation_6h": "1"
+    },
+    "targets": [
+     "price_path_target_before_invalidation_6h"
+    ],
+    "tech_version": "tech-1",
+    "training_cutoff": 1792108800.0,
+    "training_cutoff_utc": "2026-10-16T00:00:00Z"
+   },
+   "card_model_sha": "ac5c960cb004b654a86f19037baa6144e57d893b67bf15a75adc302ac41f4b0c",
+   "number": 0.12040023163700103,
+   "training_cutoff_utc": "2026-10-16T00:00:00Z"
+  },
+  "M3_T_STUMPS": {
+   "abstain": null,
+   "card": {
+    "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+    "body": {
+     "spec": {
+      "columns": [
+       "tech_log_ret_1h",
+       "tech_log_ret_6h",
+       "tech_log_ret_24h",
+       "tech_rv_1h",
+       "tech_rv_6h",
+       "tech_log_range_6h",
+       "tech_log_range_24h",
+       "tech_log_rel_vol_1h",
+       "tech_log1p_candles_24h",
+       "tech_log1p_last_close_age_min",
+       "tech_log_breakout_1h",
+       "tech_failed_breakout_1h",
+       "tech_retest_6h",
+       "tech_log_dist_24h_high",
+       "tech_log_pullback_6h"
+      ],
+      "kind": "stumps",
+      "optional": [],
+      "rows": [
+       "tech_log_ret_1h",
+       "tech_log_ret_6h",
+       "tech_log_ret_24h",
+       "tech_rv_1h",
+       "tech_rv_6h",
+       "tech_log_range_6h",
+       "tech_log_range_24h",
+       "tech_log_rel_vol_1h",
+       "tech_log1p_candles_24h",
+       "tech_log1p_last_close_age_min",
+       "tech_log_breakout_1h",
+       "tech_failed_breakout_1h",
+       "tech_retest_6h",
+       "tech_log_dist_24h_high",
+       "tech_log_pullback_6h"
+      ]
+     },
+     "stumps": {
+      "init": -1.7749523509116738,
+      "lr": 0.1,
+      "min_leaf": 10,
+      "rounds": 100,
+      "trees": [
+       [
+        3,
+        0.1139095228,
+        -0.5717514124293784,
+        2.058305084745763
+       ],
+       [
+        3,
+        0.1139095228,
+        -0.5373144316914784,
+        1.5960348454179538
+       ],
+       [
+        3,
+        0.1139095228,
+        -0.5040162723095413,
+        1.2910366971040805
+       ],
+       [
+        3,
+        0.1139095228,
+        -0.47187047012122324,
+        1.0724993922010055
+       ],
+       [
+        6,
+        0.81943725815,
+        -0.5736754716444803,
+        0.8872174269383967
+       ],
+       [
+        1,
+        -0.21229541899999999,
+        1.9137774308164444,
+        -0.20703079685420317
+       ],
+       [
+        6,
+        0.8006848264499999,
+        -0.5915600237048654,
+        0.6844388772374735
+       ],
+       [
+        3,
+        0.04867399912,
+        -0.8161829859903164,
+        0.5020934358017091
+       ],
+       [
+        14,
+        -0.1705036184,
+        0.6418554993958723,
+        -0.5156030528599261
+       ],
+       [
+        1,
+        -0.21229541899999999,
+        1.2593510455553865,
+        -0.17406590114694398
+       ],
+       [
+        3,
+        0.04867399912,
+        -0.7674961732591761,
+        0.40797519456918324
+       ],
+       [
+        7,
+        -0.83300995465,
+        -0.7877858519479606,
+        0.35720135805962344
+       ],
+       [
+        9,
+        2.2789694035,
+        -0.4627946659019525,
+        0.5844792641233222
+       ],
+       [
+        14,
+        -0.1705036184,
+        0.4943637580780016,
+        -0.45412794533145034
+       ],
+       [
+        7,
+        -0.83300995465,
+        -0.7586858224382059,
+        0.32187784619134135
+       ],
+       [
+        9,
+        2.2789694035,
+        -0.4316074299842722,
+        0.5108793195711051
+       ],
+       [
+        0,
+        -0.063897394705,
+        0.6342915878628932,
+        -0.2536806359889979
+       ],
+       [
+        6,
+        0.8006848264499999,
+        -0.46355100385053205,
+        0.40195530777586885
+       ],
+       [
+        0,
+        -0.009707680976499999,
+        0.3928571126458671,
+        -0.49464105012767284
+       ],
+       [
+        7,
+        -0.83300995465,
+        -0.7299541358694294,
+        0.28941618520189394
+       ],
+       [
+        7,
+        -0.11594614885000001,
+        0.31807165406701665,
+        -0.5247814393875765
+       ],
+       [
+        9,
+        2.2789694035,
+        -0.39703194284219306,
+        0.4418017828937001
+       ],
+       [
+        7,
+        -0.83300995465,
+        -0.7146093604551236,
+        0.27554206108313095
+       ],
+       [
+        7,
+        -0.23739392274999999,
+        0.3598586758101367,
+        -0.45815346756762854
+       ],
+       [
+        3,
+        0.04867399912,
+        -0.6708885528106874,
+        0.28407613400897136
+       ],
+       [
+        7,
+        -0.11594614885000001,
+        0.28392258001542814,
+        -0.48633543692088343
+       ],
+       [
+        7,
+        -0.83300995465,
+        -0.704708877388041,
+        0.265539818463512
+       ],
+       [
+        0,
+        -0.009707680976499999,
+        0.3463937781710288,
+        -0.45826777401801605
+       ],
+       [
+        7,
+        -0.23739392274999999,
+        0.328639980143392,
+        -0.429578747879112
+       ],
+       [
+        7,
+        -0.83300995465,
+        -0.6878767538940037,
+        0.25097583138040563
+       ],
+       [
+        6,
+        0.8006848264499999,
+        -0.41315105819059283,
+        0.33691207405657747
+       ],
+       [
+        7,
+        -0.11594614885000001,
+        0.27149515842827165,
+        -0.4678593367457572
+       ],
+       [
+        9,
+        2.2789694035,
+        -0.36099203942185204,
+        0.3856850280447574
+       ],
+       [
+        7,
+        -0.83300995465,
+        -0.6727343945793931,
+        0.23950957627637254
+       ],
+       [
+        7,
+        -0.23739392274999999,
+        0.30825387648906133,
+        -0.4074642171715054
+       ],
+       [
+        8,
+        5.3612811449999995,
+        -1.162771374440903,
+        0.12872425300933507
+       ],
+       [
+        0,
+        -0.009707680976499999,
+        0.3064197414828394,
+        -0.42286604990201315
+       ],
+       [
+        3,
+        0.04867399912,
+        -0.6246050980495607,
+        0.24382009563336896
+       ],
+       [
+        7,
+        -0.11594614885000001,
+        0.24782857135187217,
+        -0.4361826710461138
+       ],
+       [
+        7,
+        -0.83300995465,
+        -0.6622420231762246,
+        0.23073311140313635
+       ],
+       [
+        7,
+        0.6052908294999999,
+        -0.11279363536495343,
+        0.763483932071003
+       ],
+       [
+        7,
+        -0.23739392274999999,
+        0.29957560273742795,
+        -0.39573744960571466
+       ],
+       [
+        9,
+        2.2789694035,
+        -0.32694814219723217,
+        0.33780491039116517
+       ],
+       [
+        7,
+        -0.83300995465,
+        -0.6416376314729,
+        0.21743305575571356
+       ],
+       [
+        7,
+        -0.11594614885000001,
+        0.23860175727114974,
+        -0.4214693127000463
+       ],
+       [
+        7,
+        0.6052908294999999,
+        -0.10956605260986181,
+        0.7356613254120093
+       ],
+       [
+        6,
+        0.8006848264499999,
+        -0.36765622072970494,
+        0.2879910659323121
+       ],
+       [
+        8,
+        5.3612811449999995,
+        -1.1448516108755684,
+        0.11521554215227532
+       ],
+       [
+        1,
+        -0.036538616955,
+        0.40346468618014436,
+        -0.26276468285488364
+       ],
+       [
+        10,
+        -0.07721954351999999,
+        -0.1868697079448402,
+        0.5407027173437449
+       ],
+       [
+        7,
+        -0.23739392274999999,
+        0.2792141681178764,
+        -0.37347129877911084
+       ],
+       [
+        7,
+        -0.83300995465,
+        -0.6269706558091008,
+        0.20843322994160263
+       ],
+       [
+        0,
+        0.02436635325,
+        0.19423521626918192,
+        -0.5198359892960049
+       ],
+       [
+        7,
+        -0.23739392274999999,
+        0.26500437255834397,
+        -0.3586107620856567
+       ],
+       [
+        7,
+        0.6052908294999999,
+        -0.10647801715643541,
+        0.7044082307381895
+       ],
+       [
+        3,
+        0.04867399912,
+        -0.579342781292019,
+        0.21265028925765336
+       ],
+       [
+        7,
+        -0.11594614885000001,
+        0.2218151467339369,
+        -0.39765094258134276
+       ],
+       [
+        13,
+        -0.4062231946,
+        -0.4683562663729383,
+        0.1697890414078837
+       ],
+       [
+        13,
+        -0.09223038131,
+        0.1088202211505406,
+        -1.1277779882019359
+       ],
+       [
+        10,
+        -0.07721954351999999,
+        -0.1800877474196061,
+        0.524006108686855
+       ],
+       [
+        7,
+        -0.83300995465,
+        -0.6010311013583302,
+        0.19319452596185036
+       ],
+       [
+        7,
+        -0.23739392274999999,
+        0.2604626461317229,
+        -0.3547885860207721
+       ],
+       [
+        9,
+        2.2832320035,
+        -0.2741743628897703,
+        0.32735072043926505
+       ],
+       [
+        8,
+        5.339798127,
+        -1.1297567634697963,
+        0.10247842820457252
+       ],
+       [
+        13,
+        -0.1469105439,
+        0.17588830111155615,
+        -0.5895448970948054
+       ],
+       [
+        10,
+        -0.07721954351999999,
+        -0.1733813928608014,
+        0.495450512245972
+       ],
+       [
+        1,
+        -0.036538616955,
+        0.35073094295163465,
+        -0.23750126135919858
+       ],
+       [
+        13,
+        -0.4062231946,
+        -0.45307419568721097,
+        0.15981833278467095
+       ],
+       [
+        7,
+        -0.83300995465,
+        -0.583493050944041,
+        0.18438972863694844
+       ],
+       [
+        7,
+        -0.23739392274999999,
+        0.2503251915773261,
+        -0.3437143013619224
+       ],
+       [
+        7,
+        0.6052908294999999,
+        -0.09648641313873224,
+        0.6189956812555172
+       ],
+       [
+        13,
+        -0.09223038131,
+        0.10307231724400724,
+        -1.1225937519447011
+       ],
+       [
+        10,
+        -0.07721954351999999,
+        -0.16432560678897068,
+        0.470028715225505
+       ],
+       [
+        7,
+        -0.11594614885000001,
+        0.20632016717108073,
+        -0.38097350628586496
+       ],
+       [
+        8,
+        5.643676984500001,
+        0.3337828698028604,
+        -0.2543661355295312
+       ],
+       [
+        3,
+        0.04867399912,
+        -0.5506255601486987,
+        0.19494643864118313
+       ],
+       [
+        0,
+        0.02436635325,
+        0.17569841828684,
+        -0.4867230477971617
+       ],
+       [
+        8,
+        5.3612811449999995,
+        -1.1196940303024385,
+        0.09874404599911425
+       ],
+       [
+        9,
+        2.2832320035,
+        -0.2578807847041831,
+        0.29992699917680044
+       ],
+       [
+        0,
+        -0.094153852835,
+        -0.4829877988655131,
+        0.09247473540214164
+       ],
+       [
+        13,
+        -0.1469105439,
+        0.16206499364976515,
+        -0.5640284916754692
+       ],
+       [
+        7,
+        -0.83300995465,
+        -0.5705612349541586,
+        0.18026011805921613
+       ],
+       [
+        7,
+        -0.11594614885000001,
+        0.2013620963632996,
+        -0.37308534821518397
+       ],
+       [
+        10,
+        -0.07721954351999999,
+        -0.16171146150961868,
+        0.46089745514531444
+       ],
+       [
+        8,
+        5.643676984500001,
+        0.3241010306551773,
+        -0.24927142174104114
+       ],
+       [
+        5,
+        0.29874195505,
+        -0.308846261407805,
+        0.23067548994972673
+       ],
+       [
+        7,
+        -0.11594614885000001,
+        0.19755608480554912,
+        -0.36767283262747585
+       ],
+       [
+        7,
+        0.6052908294999999,
+        -0.09081136133479853,
+        0.5768525098367822
+       ],
+       [
+        0,
+        0.02436635325,
+        0.16557986473046193,
+        -0.46716408352481054
+       ],
+       [
+        13,
+        -0.4062231946,
+        -0.4259272691945808,
+        0.14438082368361912
+       ],
+       [
+        1,
+        -0.036538616955,
+        0.31462814291449914,
+        -0.2228315454125292
+       ],
+       [
+        6,
+        0.8006848264499999,
+        -0.30390626902567913,
+        0.23136252824958065
+       ],
+       [
+        0,
+        -0.094153852835,
+        -0.46248012524689336,
+        0.08869057095883946
+       ],
+       [
+        7,
+        -0.83300995465,
+        -0.5450715363864435,
+        0.16795097430806524
+       ],
+       [
+        7,
+        -0.11594614885000001,
+        0.19395951201582176,
+        -0.36286586977220076
+       ],
+       [
+        7,
+        0.6052908294999999,
+        -0.08652027434277867,
+        0.5452110377228582
+       ],
+       [
+        8,
+        5.339798127,
+        -1.114787256594464,
+        0.09076480978783623
+       ],
+       [
+        8,
+        5.643676984500001,
+        0.30688724596520034,
+        -0.23911020812867395
+       ],
+       [
+        13,
+        -0.1469105439,
+        0.15528798874983757,
+        -0.5455350977324362
+       ],
+       [
+        9,
+        2.2832320035,
+        -0.2444065080930383,
+        0.27730298310218526
+       ]
+      ]
+     },
+     "train_prediction_sd": 0.16201583052686144
+    },
+    "data_snapshot_sha": "32ae2b0d58da06e97819777ca610330bda5df3d73ab587bec1b1af412150f5f1",
+    "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+    "feature_set_sha": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
+    "feature_version": "2",
+    "k_train": 26,
+    "k_used": 20,
+    "kind": "M3_T_STUMPS",
+    "label_mode": "provider",
+    "label_set_sha": "4ca67a17a99c49d01323f083d8e8cf1f1401d3b9c74c79de74c51b3413c1095b",
+    "labels_version": "labels-1",
+    "max_train_decision_time": 1792059228.0,
+    "max_train_label_matures_at": 1792082028.0,
+    "model_id": "M3_T_STUMPS:price_path_target_before_invalidation_6h",
+    "model_sha": "a0c1d14a26d0c2778b6cbc82a4fb3993509686c2f034afcd4ed185f32adea6b6",
+    "n_train": 214,
+    "n_used": 138,
+    "phase": "08",
+    "promotion": "MODEL_NOT_PROMOTED",
+    "publishable": false,
+    "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+    "revision_check_claimed": false,
+    "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+    "store_schema": "memelab.predictive.store/1",
+    "target_version": {
+     "price_path_target_before_invalidation_6h": "1"
+    },
+    "targets": [
+     "price_path_target_before_invalidation_6h"
+    ],
+    "tech_version": "tech-1",
+    "training_cutoff": 1792108800.0,
+    "training_cutoff_utc": "2026-10-16T00:00:00Z"
+   },
+   "card_model_sha": "a0c1d14a26d0c2778b6cbc82a4fb3993509686c2f034afcd4ed185f32adea6b6",
+   "number": 0.1528586513809437,
+   "training_cutoff_utc": "2026-10-16T00:00:00Z"
+  }
+ },
+ "pool_address": "Fe7bpDYCs74GqiCUF14HwgUMToPKV1d9mDYVX5BTohFr",
+ "row_sha256": "2e9d8f63d3b494bc3ecbd950913dc363d6dbc5208a7ef7d9140212c32a7c06c8",
+ "selection_rule": "earliest out-of-sample row of T1b (then T1, T2) by decision time then mint with every tech-1 feature and a number from the primary model M2 (second trace, added after recorded run 1 because the pre-registered row's fold had no fitted technical model)",
+ "target": "price_path_target_before_invalidation_6h",
+ "tech_available_at": {
+  "tech_failed_breakout_1h": 1792147200.0,
+  "tech_log1p_candles_24h": 1792147200.0,
+  "tech_log1p_last_close_age_min": 1792147200.0,
+  "tech_log_breakout_1h": 1792147200.0,
+  "tech_log_dist_24h_high": 1792147200.0,
+  "tech_log_pullback_6h": 1792147200.0,
+  "tech_log_range_24h": 1792147200.0,
+  "tech_log_range_6h": 1792147200.0,
+  "tech_log_rel_vol_1h": 1792147200.0,
+  "tech_log_ret_1h": 1792147200.0,
+  "tech_log_ret_24h": 1792147200.0,
+  "tech_log_ret_6h": 1792147200.0,
+  "tech_retest_6h": 1792147200.0,
+  "tech_rv_1h": 1792147200.0,
+  "tech_rv_6h": 1792147200.0
+ },
+ "tech_snapshot_sha": "4bf8dcfe38bc482bff038f87b1a5b7a408d3c0fb4a9145d3d59c07782613618e",
+ "tech_values": {
+  "tech_failed_breakout_1h": 0.0,
+  "tech_log1p_candles_24h": 5.66296048,
+  "tech_log1p_last_close_age_min": 2.091864062,
+  "tech_log_breakout_1h": 0.0,
+  "tech_log_dist_24h_high": -0.07379903981,
+  "tech_log_pullback_6h": -0.07379903981,
+  "tech_log_range_24h": 0.7140790538,
+  "tech_log_range_6h": 0.2219067627,
+  "tech_log_rel_vol_1h": -0.7066900961,
+  "tech_log_ret_1h": -0.07379903981,
+  "tech_log_ret_24h": 0.616437956,
+  "tech_log_ret_6h": 0.07260963854,
+  "tech_retest_6h": 0.0,
+  "tech_rv_1h": 0.06235567199,
+  "tech_rv_6h": 0.174306385
+ }
+}

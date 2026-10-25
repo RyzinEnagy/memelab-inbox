@@ -1,0 +1,684 @@
+{
+ "phase": "08",
+ "status": "NEEDS_REVIEW",
+ "provisional": "PROVISIONAL_PENDING_REVISION_REREAD (PI-D-046)",
+ "status_reason": "phase agents cannot run the independent skeptic (PI-D-013); the orchestrator runs it. Own checks hold except the pre-registered lbfgs tolerance (1.13e-6 against 1e-6), diagnosed as lbfgs's stopping point",
+ "head_before": "1139575",
+ "preregistration_commit": "8599318",
+ "code_commit": "d290384",
+ "runner_repair_commit": "d9b2a9c",
+ "head_after": "pending: the outputs commit; recorded in the post-commit records commit",
+ "registry_sha256": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "tech_feature_set_sha": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
+ "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "labels_version": "labels-1",
+ "revision_check_claimed": false,
+ "promotion": "MODEL_NOT_PROMOTED for every model",
+ "results": {
+  "T1_24h": {
+   "B2": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.244867",
+    "brier_ref": "0.229726",
+    "bss_vs_ref": "-0.065908",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "-0.246292",
+    "bss_ci_mint_hi": "0.106499",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "abstain_reasons": "",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M1_T_LOGIT": {
+    "n_with_number": "0",
+    "positives": "",
+    "decision_days": "",
+    "brier": "",
+    "brier_ref": "",
+    "bss_vs_ref": "",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "",
+    "bss_ci_mint_hi": "",
+    "governing": "",
+    "p_holm": "",
+    "abstain_reasons": "INSUFFICIENT_HISTORY=24",
+    "verdict": "INSUFFICIENT_HISTORY"
+   },
+   "M2_T_LOGIT_B2": {
+    "n_with_number": "0",
+    "positives": "",
+    "decision_days": "",
+    "brier": "",
+    "brier_ref": "",
+    "bss_vs_ref": "",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "",
+    "bss_ci_mint_hi": "",
+    "governing": "",
+    "p_holm": "",
+    "abstain_reasons": "INSUFFICIENT_HISTORY=24",
+    "verdict": "INSUFFICIENT_HISTORY"
+   },
+   "M3_T_STUMPS": {
+    "n_with_number": "0",
+    "positives": "",
+    "decision_days": "",
+    "brier": "",
+    "brier_ref": "",
+    "bss_vs_ref": "",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "",
+    "bss_ci_mint_hi": "",
+    "governing": "",
+    "p_holm": "",
+    "abstain_reasons": "INSUFFICIENT_HISTORY=24",
+    "verdict": "INSUFFICIENT_HISTORY"
+   },
+   "M2_T_LOGIT_B2_vs_B2": {
+    "n_with_number": "0",
+    "positives": "",
+    "decision_days": "",
+    "brier": "",
+    "brier_ref": "",
+    "bss_vs_ref": "",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "",
+    "bss_ci_mint_hi": "",
+    "governing": "",
+    "p_holm": "",
+    "abstain_reasons": "INSUFFICIENT_HISTORY=24",
+    "verdict": "INSUFFICIENT_HISTORY"
+   }
+  },
+  "T1b_6h": {
+   "B2": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.059460",
+    "brier_ref": "0.066669",
+    "bss_vs_ref": "0.108133",
+    "bss_ci_day_lo": "-0.022229",
+    "bss_ci_day_hi": "0.205970",
+    "bss_ci_mint_lo": "-0.127161",
+    "bss_ci_mint_hi": "0.218790",
+    "governing": "mint",
+    "p_holm": "0.275862",
+    "abstain_reasons": "",
+    "verdict": "INSUFFICIENT_EVENTS"
+   },
+   "M1_T_LOGIT": {
+    "n_with_number": "6",
+    "positives": "0",
+    "decision_days": "1",
+    "brier": "0.004582",
+    "brier_ref": "0.014761",
+    "bss_vs_ref": "0.689586",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "0.487779",
+    "bss_ci_mint_hi": "0.882214",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "abstain_reasons": "INSUFFICIENT_HISTORY=34;OOD=4",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M2_T_LOGIT_B2": {
+    "n_with_number": "6",
+    "positives": "0",
+    "decision_days": "1",
+    "brier": "0.004007",
+    "brier_ref": "0.014761",
+    "bss_vs_ref": "0.728572",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "0.432288",
+    "bss_ci_mint_hi": "0.941038",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "abstain_reasons": "INSUFFICIENT_HISTORY=34;OOD=4",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M3_T_STUMPS": {
+    "n_with_number": "6",
+    "positives": "0",
+    "decision_days": "1",
+    "brier": "0.004963",
+    "brier_ref": "0.014761",
+    "bss_vs_ref": "0.663769",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "0.162041",
+    "bss_ci_mint_hi": "0.940249",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "abstain_reasons": "INSUFFICIENT_HISTORY=34;OOD=4",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M2_T_LOGIT_B2_vs_B2": {
+    "n_with_number": "6",
+    "positives": "0",
+    "decision_days": "1",
+    "brier": "0.004007",
+    "brier_ref": "0.012230",
+    "bss_vs_ref": "0.672398",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "0.552724",
+    "bss_ci_mint_hi": "0.876499",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "abstain_reasons": "INSUFFICIENT_HISTORY=34;OOD=4",
+    "verdict": "INSUFFICIENT_DAYS"
+   }
+  },
+  "T2_24h": {
+   "B2": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.152604",
+    "brier_ref": "0.127496",
+    "bss_vs_ref": "-0.196927",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "-2.049343",
+    "bss_ci_mint_hi": "0.913707",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "abstain_reasons": "",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "M1_T_LOGIT": {
+    "n_with_number": "0",
+    "positives": "",
+    "decision_days": "",
+    "brier": "",
+    "brier_ref": "",
+    "bss_vs_ref": "",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "",
+    "bss_ci_mint_hi": "",
+    "governing": "",
+    "p_holm": "",
+    "abstain_reasons": "INSUFFICIENT_HISTORY=8",
+    "verdict": "INSUFFICIENT_HISTORY"
+   },
+   "M2_T_LOGIT_B2": {
+    "n_with_number": "0",
+    "positives": "",
+    "decision_days": "",
+    "brier": "",
+    "brier_ref": "",
+    "bss_vs_ref": "",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "",
+    "bss_ci_mint_hi": "",
+    "governing": "",
+    "p_holm": "",
+    "abstain_reasons": "INSUFFICIENT_HISTORY=8",
+    "verdict": "INSUFFICIENT_HISTORY"
+   },
+   "M3_T_STUMPS": {
+    "n_with_number": "0",
+    "positives": "",
+    "decision_days": "",
+    "brier": "",
+    "brier_ref": "",
+    "bss_vs_ref": "",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "",
+    "bss_ci_mint_hi": "",
+    "governing": "",
+    "p_holm": "",
+    "abstain_reasons": "INSUFFICIENT_HISTORY=8",
+    "verdict": "INSUFFICIENT_HISTORY"
+   },
+   "M2_T_LOGIT_B2_vs_B2": {
+    "n_with_number": "0",
+    "positives": "",
+    "decision_days": "",
+    "brier": "",
+    "brier_ref": "",
+    "bss_vs_ref": "",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "",
+    "bss_ci_mint_hi": "",
+    "governing": "",
+    "p_holm": "",
+    "abstain_reasons": "INSUFFICIENT_HISTORY=8",
+    "verdict": "INSUFFICIENT_HISTORY"
+   }
+  }
+ },
+ "train_only_cards_at_holdout_start": {
+  "T1_24h": {
+   "M1_T_LOGIT": {
+    "model_sha": "c5ae485a7bc2d988a723dfc724927b8a1ed3ebf7c45794973ffa03ca3fff619c",
+    "n_used": 87,
+    "k_used": 26,
+    "abstain": "INSUFFICIENT_HISTORY"
+   },
+   "M2_T_LOGIT_B2": {
+    "model_sha": "821e8700879b6aa2a9ce51d213506b6461f08b9c8a4e17d464d2f991616592d9",
+    "n_used": 87,
+    "k_used": 26,
+    "abstain": "INSUFFICIENT_HISTORY"
+   },
+   "M3_T_STUMPS": {
+    "model_sha": "3ba11decbbaa0bbccd2e19a840ad2de17a887c8749f738220a0d7ef9b5ad7d23",
+    "n_used": 87,
+    "k_used": 26,
+    "abstain": "INSUFFICIENT_HISTORY"
+   }
+  },
+  "T1b_6h": {
+   "M1_T_LOGIT": {
+    "model_sha": "be8fff758ca81a01b9e1f7569f70663b1ef43cd8ec2a2ad9e65fa9484bf155fe",
+    "n_used": 144,
+    "k_used": 20,
+    "abstain": null
+   },
+   "M2_T_LOGIT_B2": {
+    "model_sha": "eefba4b0e68a125d514aa80f73ca99b4188e5575ee3d959aeeeaa488456d9fcf",
+    "n_used": 144,
+    "k_used": 20,
+    "abstain": null
+   },
+   "M3_T_STUMPS": {
+    "model_sha": "30931dd6a5bfb8a9a6e07874e814d43007f914ced8264ec1b3167b1f43e4947b",
+    "n_used": 144,
+    "k_used": 20,
+    "abstain": null
+   }
+  },
+  "T2_24h": {
+   "M1_T_LOGIT": {
+    "model_sha": "d1a8bc7677608c8f4dfd24fdb0ca4545b7da672129dd1e51ddcea11a02f55860",
+    "n_used": 83,
+    "k_used": 14,
+    "abstain": "INSUFFICIENT_HISTORY"
+   },
+   "M2_T_LOGIT_B2": {
+    "model_sha": "ef43deb01467c5245d5ad852fca7a80f47354fbcce1ab43a851746937d4d0c9c",
+    "n_used": 83,
+    "k_used": 14,
+    "abstain": "INSUFFICIENT_HISTORY"
+   },
+   "M3_T_STUMPS": {
+    "model_sha": "6b7d77225d3207c7a57dee6f9252c9224a0d3dea38f71143224af8f775ef941b",
+    "n_used": 83,
+    "k_used": 14,
+    "abstain": "INSUFFICIENT_HISTORY"
+   }
+  }
+ },
+ "checks": [
+  {
+   "name": "package checksums",
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "entry gate at 1139575",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "1 failed, 1179 passed in 165.18s (known failure only)",
+   "pass": true
+  },
+  {
+   "name": "seal check at entry",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "G3 pre-registration before any fit",
+   "input": "8599318 at 2026-10-25T21:06:04Z holds checklist, registry and PI-D-050; technical.py absent at it; first real-label run after the code commit d290384 (21:22:26Z)",
+   "result": "pass",
+   "pass": true
+  },
+  {
+   "name": "G4/G21 phase tests",
+   "command": "python -m pytest tests/test_predictive_technical.py -q",
+   "exit_code": 0,
+   "result": "40 passed",
+   "pass": true
+  },
+  {
+   "name": "G21 mutation probe",
+   "command": "python -B probes/mutation_technical.py evidence/mutation_technical.json",
+   "exit_code": 0,
+   "result": "28 of 28 caught",
+   "pass": true
+  },
+  {
+   "name": "G6 version 2 consistency",
+   "input": "evidence/v2_consistency.json",
+   "result": "240 decisions, 0 inconsistent",
+   "pass": true
+  },
+  {
+   "name": "G5 no input after T",
+   "input": "evidence/unavailable_candles.json",
+   "result": "248 candles not yet available at T, 0 used; store candles ending after availability 0",
+   "pass": true
+  },
+  {
+   "name": "G7 same folds and B0/B2 numbers as Phase 07",
+   "input": "evidence/phase07_equality.json",
+   "result": "{\"T1_24h\": {\"b0_b2_differences_at_6_decimals\": 0, \"oos_rows\": 24, \"split_fingerprint_equal\": true}, \"T1b_6h\": {\"b0_b2_differences_at_6_decimals\": 0, \"oos_rows\": 44, \"split_fingerprint_equal\": true}, \"T2_24h\": {\"b0_b2_differences_at_6_decimals\": 0, \"oos_rows\": 8, \"split_fingerprint_equal\": true}}",
+   "pass": true
+  },
+  {
+   "name": "G11 NC2-T future feature",
+   "input": "evidence/traps.json NC2T",
+   "result": "{\"accepted\": 0, \"decisions_with_every_tech_feature\": 154, \"min_trap_delay_s\": 3071.0, \"pass\": true, \"refused_by_allowlist\": 98, \"refused_by_validate_rows\": 98, \"with_a_future_value\": 98}",
+   "pass": true
+  },
+  {
+   "name": "G11 P06-T moved cutoff",
+   "input": "evidence/traps.json P06T",
+   "result": "{\"accepted\": 0, \"decisions_with_every_tech_feature\": 154, \"of_which_refused\": 0, \"pass\": true, \"refused\": 1758, \"values_changed_only_by_the_moved_query_time\": 12, \"values_using_a_candle_not_available_at_T\": 1758}",
+   "pass": true
+  },
+  {
+   "name": "G11 P13-T later card",
+   "input": "evidence/traps.json P13T",
+   "result": "9 of 9 refused",
+   "pass": true
+  },
+  {
+   "name": "G14 artifacts",
+   "input": "evidence/serialization_smoke.json",
+   "result": "every card round-trips, tampering refused, runtime.verify_artifact passes, no pickle",
+   "pass": true
+  },
+  {
+   "name": "G15 contract",
+   "input": "evidence/serialization_smoke.json contract",
+   "result": "ABSTAIN valid, FORECAST refused for every target",
+   "pass": true
+  },
+  {
+   "name": "G16 stumps oracle",
+   "command": "sklearn_crosscheck_tech.py (research venv)",
+   "exit_code": 1,
+   "result": "stumps max probability difference 3.3e-16, same split every round",
+   "pass": true
+  },
+  {
+   "name": "G16 logistic oracle, scikit-learn lbfgs (pre-registered tolerance 1e-6)",
+   "command": "sklearn_crosscheck_tech.py (research venv)",
+   "exit_code": 1,
+   "result": "max coefficient difference 1.13e-06 on the real T1b fold-4 M1 design: above 1e-6",
+   "pass": false
+  },
+  {
+   "name": "G16 logistic, diagnosis added after the result",
+   "command": "logit_solver_diagnosis.py (research venv)",
+   "exit_code": 0,
+   "result": "lbfgs stops with gradient up to 7.2e-6, numpy at 2.2e-15; newton-cholesky and newton-cg agree with numpy within 4.1e-13",
+   "pass": true
+  },
+  {
+   "name": "G17 determinism",
+   "input": "evidence/determinism.json",
+   "result": "28 files; differ only in ['evidence/trace/FORECAST_TRACE.json', 'evidence/trace/second/FORECAST_TRACE.json'] latency fields",
+   "pass": true
+  },
+  {
+   "name": "G17 isolation",
+   "input": "evidence/run_log.json",
+   "result": "socket events 0, vendor calls 0, stores unchanged True",
+   "pass": true
+  },
+  {
+   "name": "G19 forecast traces",
+   "command": "python -B probes/verify_trace.py evidence/trace/FORECAST_TRACE.json (and second/)",
+   "exit_code": 0,
+   "result": "pre-registered: no difference; second: no difference; invalid inputs rejected",
+   "pass": true
+  },
+  {
+   "name": "G20 search ledger",
+   "input": "experiments/SEARCH_LEDGER.csv",
+   "result": "registry rows missing []",
+   "pass": true
+  },
+  {
+   "name": "pre-commit full suite",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "1 failed, 1218 passed in 165.93s (known failure only; before the ledger test was added)",
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/phase_08/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "e42d70a321dc2e52ccf245400880a3223a5abab012e884d4a8d0bb27c4e06ad4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/SKEPTIC_PACKET.md",
+   "sha256": "8aade18ee41992e2ab90a4369565873fd5d7e397067d621da62baae8e5a58495"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/artifacts/T1_24h/M1_T_LOGIT.json",
+   "sha256": "483276fced3fda3f041ab8e611929f263c5d241a5a4770cdc2ed83f12710b7e6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/artifacts/T1_24h/M2_T_LOGIT_B2.json",
+   "sha256": "a52ca9199bf23ee050bfb805b92981d6a5d4a59a031be26989dd7b7cbccbc5e1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/artifacts/T1_24h/M3_T_STUMPS.json",
+   "sha256": "3ce64a6ec727176716458d98fb9bb3acc8d0a3262bb3bfb31df329f00a897b1b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/artifacts/T1b_6h/M1_T_LOGIT.json",
+   "sha256": "463391012c729b0c21c307c91891eccfe6cae16b451c3194350b7f64b3b7bec0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/artifacts/T1b_6h/M2_T_LOGIT_B2.json",
+   "sha256": "09fa06e812c383c72305872ebf309d961129e5e23334d22f509795ab7981fbf0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/artifacts/T1b_6h/M3_T_STUMPS.json",
+   "sha256": "f2a6c75bdb0c8484c157147ff770084ee8470e0e35eecdfa8478db8b93b422bb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/artifacts/T2_24h/M1_T_LOGIT.json",
+   "sha256": "0df064f77bde68fa338a28d0ea8f9194e07098f962aa9a180a3daddd14129a59"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/artifacts/T2_24h/M2_T_LOGIT_B2.json",
+   "sha256": "e2480a97cb2d90104d0f13d52f5b5f6ea6e60504897508af4e45d358484f7ea8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/artifacts/T2_24h/M3_T_STUMPS.json",
+   "sha256": "34e480ed1a0913e9ad39554a9aa0017bae45b48f8b6e523af2404a40af9b3031"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/artifacts/folds/T1_24h.json",
+   "sha256": "cb45115daf8d660560897cb1e5a128236ab08ddf208b18d5610031348ac2dec6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/artifacts/folds/T1b_6h.json",
+   "sha256": "abf5fedbb2aee303935d7497b4dd65ea8a40e54287fff9e511b6ddaeb73294fe"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/artifacts/folds/T2_24h.json",
+   "sha256": "2713cdf3776cd9fb9ad1e761e33df17151d3e5e73c701305e7087d29db24457a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/determinism.json",
+   "sha256": "eb83e58e40db533e4521a3c48fc5f1a426539bda962a4bf8a66cd5699bee7c91"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/folds.json",
+   "sha256": "f30a35127c31a319db486d4e33ef3356cf567ec22c1a033db6aad073b917edb7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/logit_solver_diagnosis.json",
+   "sha256": "eee984ce7a122daf216b55e6fb301f36ae310d5538340158d98efaa57cc92c35"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/mutation_technical.json",
+   "sha256": "564f3193311e8cfe7e1f8409310d6565eafc972f17f2664cfb7f145e6bbc8c02"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/phase07_equality.json",
+   "sha256": "c9169da7ef0a0271061bc8a9000ab96f4cc4b3bd412bc19dbc7fc853008f851b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/run_log.json",
+   "sha256": "fea33bbf3f07d129d32d3c674416010be0b5d94da93269b998f291dc1fd9fa93"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/serialization_smoke.json",
+   "sha256": "f91cbd57e37c3670a6de8ce74afc416b7249d702afdb9706162fb87825b516a4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/sklearn_crosscheck.json",
+   "sha256": "7e3af5856194eb1c40949b80a3104a6f94aa0b5c4900dcd33691fd46ecd91a43"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/trace/FORECAST_TRACE.json",
+   "sha256": "ffb6d5f49a8fd115c6b6617cc4a52d90755427036f892628843bf3f4ce04271c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/trace/FORECAST_TRACE.md",
+   "sha256": "a3afbcc51936a0e3ac2f7001cdf2e8ef0c3cf2bd729b7f287327e3e7ec0d3fbe"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/trace/second/FORECAST_TRACE.json",
+   "sha256": "a01167f6d9c740c9fa4c72b8ca7d8e8d832a373b3dce83f31fb4dfde43f459c4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/trace/second/FORECAST_TRACE.md",
+   "sha256": "f7bab6b1e5f71936362f9fad6fba5f3aa3bb92cdc081064211d575337cbd9a0c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/trace/second/verify_trace.json",
+   "sha256": "7b3c0d7076d385e174f025f833f51eed7dd1f7348743d13ee65d1e9a5b684cb6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/trace/verify_trace.json",
+   "sha256": "017dd92cf1888d3fb62940bf16528564c786a6d721b1a8d441f65539a836ffe2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/traps.json",
+   "sha256": "c0b8e8c7027cfe6a7ddd2d994084234c5bede5f4304a48f1cb50a0cc76b6f921"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/unavailable_candles.json",
+   "sha256": "69196e18a2c75a371ce3ee038ce91d3cc9fbe181bd76e36fa79c994df19e4ebd"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/v2_consistency.json",
+   "sha256": "027c4dc2c06933e43e81966bcccc3900c6c7ec6629a406d26504a898adc59949"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/experiments/ABLATIONS.csv",
+   "sha256": "5a87ea3e52ad01c107facc263d2332731dfc8acf525d04dac938860db815fe20"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/experiments/EXPERIMENT_REGISTRY.csv",
+   "sha256": "e7d2048664c3ee28f763d8e7a7df66a3f4f5800385d8faca502c62ffc5eee6f4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/experiments/HIT_MISS_COHORTS.csv",
+   "sha256": "9b5806de6a97b83093581ececdff76a057a14933d53b5a384fa532644cea1e3d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/experiments/NC1T_SEEDS.csv",
+   "sha256": "9d34aca23704446ef3860addea76ee97360e0402a5c93f56ded168c9de5be3b5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/experiments/OOS_PREDICTIONS.csv",
+   "sha256": "26366297dab3b8b3c5624f1077d1857bea98c5c4fa590a40c49b2ee932ec5b09"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/experiments/SEARCH_LEDGER.csv",
+   "sha256": "82e1901bd4e173294d238870a4b2b57e072b0b816c137345b10ddb2b57660e0d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/experiments/TECHNICAL_METRICS.csv",
+   "sha256": "3b2ff0d9ac1ca8811e7b4101769099a3fc3bd8ab9d4f6c8f14cefd3aad6e12b9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/experiments/TECH_COVERAGE.csv",
+   "sha256": "91dfe36cd2df08f015cabd2adb27b9f0cc145b0ffe16e5c7bd99bcf699964e87"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/experiments/TECH_FEATURES_DEVELOPMENT.csv",
+   "sha256": "264052ededc81d8aba426f16bf4a3f85a3dc36ee2525d80b4f0d10c8877b1e0b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/models/TECHNICAL_MODEL_CARD.md",
+   "sha256": "a3a773fbb38aa8a1febd7c73c1457c30fca2712fc959ba77d0b311c00cb8f198"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/probes/logit_solver_diagnosis.py",
+   "sha256": "d0ba468be5cd142f9d7d2e0fef3835a6053e1533a873fcb863549f46a38d1369"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/probes/mutation_technical.py",
+   "sha256": "41f56173f594da116f6c0a5cfdc13a3bb8bf99efdf604c573666531757533867"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/probes/run_technical.py",
+   "sha256": "68ca35af61c696d70e14af831a0b207cb3e9adf6e306e139ebb040eac8332e69"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/probes/sklearn_crosscheck_tech.py",
+   "sha256": "d7cf5f0b9ef7501566108b554d3f86d4e8b7b784fe5e4ed0c9943a2688d05b91"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/probes/verify_trace.py",
+   "sha256": "073b83a0aab67e1720c3ddf3d104f10bd31d7e2ebbd1d4099a30ff32c621589e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/probes/write_results.py",
+   "sha256": "5f19bb7709dc61f28d833f4f7688bc35975a16b0bcff24cdce9e2a324bcf4d99"
+  },
+  {
+   "path": "memelab/predictive/technical.py",
+   "sha256": "cf84a7ab499e1f47665ad0b7141ffece18557a145eaea6b02c709e9ff495040f"
+  },
+  {
+   "path": "tests/test_predictive_technical.py",
+   "sha256": "a8e819ca5714010bdf08abfc89334e5a77c2cd9ee861f81e5e22cccddc0b193b"
+  }
+ ],
+ "limitations": [
+  "PROVISIONAL until the Phase 06 48 h revision re-read is folded in; a changed development label means a rerun that supersedes these outputs (PI-D-046)",
+  "development only, retrospective provider-mode reconstruction; cards are not as-of models for decisions before 2026-10-17",
+  "technical inputs exist only on the PIT_RECORDED route with 24 h of fetched history: 154 of 240 labelled decisions",
+  "T1 and T2 technical models never pass the training gate (INSUFFICIENT_HISTORY); T1b only in the last fold, scoring 6 rows with 0 positive on 1 day (INSUFFICIENT_DAYS)",
+  "the T1b Brier skill on 6 negatives (M2 0.729) is not evidence of skill; no ranking or calibration can be checked without a positive",
+  "one market regime (2026-W41 and W42); no per-cohort or regime statement",
+  "pre-registered lbfgs tolerance exceeded (1.13e-6); the exact Newton oracles agree within 7.1e-14 (diagnosis added after the result)",
+  "a second forecast trace was added after recorded run 1 because the pre-registered row's fold had no fitted technical model",
+  "recorded run 1's P06-T probe was defective (counted a clock-only change); repaired and rerun; numbers unchanged",
+  "the search-ledger test was added with the outputs (40 tests; 39 at the code commit)"
+ ],
+ "blockers": [],
+ "open_dependency": "Phase 06 48 h revision re-read (not before 2026-10-26T13:49Z), run by the orchestrator",
+ "approvals_needed": [],
+ "next_eligible_phase": "09 after the orchestrator's independent skeptic and the repair pass (Phase 08 results PROVISIONAL under PI-D-046)"
+}

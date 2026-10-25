@@ -1,0 +1,46 @@
+{
+ "folds": {
+  "T1b_6h_f4_M1_T_LOGIT": {
+   "columns": 15,
+   "lbfgs": {
+    "max_abs_coef_diff_to_numpy": 1.1274585492437872e-06,
+    "max_abs_gradient": 7.249085401762889e-06,
+    "n_iter": 41
+   },
+   "newton-cg": {
+    "max_abs_coef_diff_to_numpy": 6.106226635438361e-16,
+    "max_abs_gradient": 1.609823385706477e-15,
+    "n_iter": 8
+   },
+   "newton-cholesky": {
+    "max_abs_coef_diff_to_numpy": 7.066569551739121e-14,
+    "max_abs_gradient": 4.718447854656915e-13,
+    "n_iter": 6
+   },
+   "numpy_newton_max_abs_gradient": 2.220446049250313e-15,
+   "rows": 138
+  },
+  "T1b_6h_f4_M2_T_LOGIT_B2": {
+   "columns": 20,
+   "lbfgs": {
+    "max_abs_coef_diff_to_numpy": 8.552681176610122e-07,
+    "max_abs_gradient": 3.2453672909049658e-06,
+    "n_iter": 48
+   },
+   "newton-cg": {
+    "max_abs_coef_diff_to_numpy": 8.074096946586451e-14,
+    "max_abs_gradient": 3.6695646521422987e-13,
+    "n_iter": 8
+   },
+   "newton-cholesky": {
+    "max_abs_coef_diff_to_numpy": 4.059530489541885e-13,
+    "max_abs_gradient": 3.010369731271112e-12,
+    "n_iter": 6
+   },
+   "numpy_newton_max_abs_gradient": 2.8553548414578245e-15,
+   "rows": 138
+  }
+ },
+ "reading": "the numpy fit is at the optimum (gradient near 1e-15); lbfgs stops with a gradient near 1e-6 to 1e-5, so its 1.1e-6 coefficient difference is lbfgs's own stopping point; the exact Newton solvers agree with numpy",
+ "sklearn": "1.9.1"
+}

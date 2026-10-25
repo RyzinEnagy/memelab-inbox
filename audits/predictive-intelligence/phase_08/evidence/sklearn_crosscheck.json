@@ -1,0 +1,196 @@
+{
+ "max_logit_coef_diff": 1.1274585492437872e-06,
+ "max_stump_prob_diff": 3.3306690738754696e-16,
+ "numpy": "2.5.3",
+ "pass": false,
+ "real_fold_designs": {
+  "logistic": [
+   {
+    "fold": "T1b_6h_f4_M1_T_LOGIT",
+    "max_abs_coef_diff": 1.1274585492437872e-06,
+    "max_abs_prob_diff": 6.681376291672869e-07,
+    "rows": 138
+   },
+   {
+    "fold": "T1b_6h_f4_M2_T_LOGIT_B2",
+    "max_abs_coef_diff": 8.552681176610122e-07,
+    "max_abs_prob_diff": 2.889705228437123e-07,
+    "rows": 138
+   }
+  ],
+  "stumps": [
+   {
+    "fold": "T1b_6h_f4_M3_T_STUMPS",
+    "max_abs_diff_to_stored_card": 0.0,
+    "max_abs_prob_diff": 1.6653345369377348e-16,
+    "positives": 20,
+    "rounds_numpy": 100,
+    "rounds_sklearn": 100,
+    "rows": 138,
+    "same_split_rounds": 100
+   }
+  ]
+ },
+ "sklearn": "1.9.1",
+ "stump_rounds_with_a_different_split": 0,
+ "synthetic_designs": {
+  "logistic": [
+   {
+    "max_abs_coef_diff": 1.8746978025507843e-08,
+    "max_abs_prob_diff": 1.5757526616866357e-08,
+    "rows": 177,
+    "seed": 1000
+   },
+   {
+    "max_abs_coef_diff": 1.5632546590538254e-08,
+    "max_abs_prob_diff": 1.7593823287143096e-08,
+    "rows": 373,
+    "seed": 1001
+   },
+   {
+    "max_abs_coef_diff": 8.763525738419986e-09,
+    "max_abs_prob_diff": 1.020561057885061e-08,
+    "rows": 289,
+    "seed": 1002
+   },
+   {
+    "max_abs_coef_diff": 4.9234651910978755e-09,
+    "max_abs_prob_diff": 4.899037453487409e-09,
+    "rows": 203,
+    "seed": 1003
+   },
+   {
+    "max_abs_coef_diff": 3.464949772935544e-08,
+    "max_abs_prob_diff": 4.4044335234527665e-08,
+    "rows": 324,
+    "seed": 1004
+   },
+   {
+    "max_abs_coef_diff": 6.437765781575067e-08,
+    "max_abs_prob_diff": 6.494294910175391e-08,
+    "rows": 241,
+    "seed": 1005
+   },
+   {
+    "max_abs_coef_diff": 3.2106900166306573e-08,
+    "max_abs_prob_diff": 4.927742924820677e-08,
+    "rows": 265,
+    "seed": 1006
+   },
+   {
+    "max_abs_coef_diff": 3.594620156394113e-08,
+    "max_abs_prob_diff": 2.9489395203530222e-08,
+    "rows": 135,
+    "seed": 1007
+   },
+   {
+    "max_abs_coef_diff": 1.2628037150685945e-08,
+    "max_abs_prob_diff": 1.5576959999652473e-08,
+    "rows": 219,
+    "seed": 1008
+   },
+   {
+    "max_abs_coef_diff": 8.245601978984496e-09,
+    "max_abs_prob_diff": 7.2558378194642614e-09,
+    "rows": 324,
+    "seed": 1009
+   }
+  ],
+  "stumps": [
+   {
+    "max_abs_prob_diff": 1.6653345369377348e-16,
+    "positives": 42,
+    "rounds_numpy": 100,
+    "rounds_sklearn": 100,
+    "rows": 177,
+    "same_split_rounds": 100,
+    "seed": 1000
+   },
+   {
+    "max_abs_prob_diff": 1.1102230246251565e-16,
+    "positives": 76,
+    "rounds_numpy": 100,
+    "rounds_sklearn": 100,
+    "rows": 373,
+    "same_split_rounds": 100,
+    "seed": 1001
+   },
+   {
+    "max_abs_prob_diff": 2.220446049250313e-16,
+    "positives": 68,
+    "rounds_numpy": 100,
+    "rounds_sklearn": 100,
+    "rows": 289,
+    "same_split_rounds": 100,
+    "seed": 1002
+   },
+   {
+    "max_abs_prob_diff": 2.220446049250313e-16,
+    "positives": 46,
+    "rounds_numpy": 100,
+    "rounds_sklearn": 100,
+    "rows": 203,
+    "same_split_rounds": 100,
+    "seed": 1003
+   },
+   {
+    "max_abs_prob_diff": 2.220446049250313e-16,
+    "positives": 77,
+    "rounds_numpy": 100,
+    "rounds_sklearn": 100,
+    "rows": 324,
+    "same_split_rounds": 100,
+    "seed": 1004
+   },
+   {
+    "max_abs_prob_diff": 1.6653345369377348e-16,
+    "positives": 52,
+    "rounds_numpy": 100,
+    "rounds_sklearn": 100,
+    "rows": 241,
+    "same_split_rounds": 100,
+    "seed": 1005
+   },
+   {
+    "max_abs_prob_diff": 3.3306690738754696e-16,
+    "positives": 73,
+    "rounds_numpy": 100,
+    "rounds_sklearn": 100,
+    "rows": 265,
+    "same_split_rounds": 100,
+    "seed": 1006
+   },
+   {
+    "max_abs_prob_diff": 2.220446049250313e-16,
+    "positives": 32,
+    "rounds_numpy": 100,
+    "rounds_sklearn": 100,
+    "rows": 135,
+    "same_split_rounds": 100,
+    "seed": 1007
+   },
+   {
+    "max_abs_prob_diff": 2.220446049250313e-16,
+    "positives": 41,
+    "rounds_numpy": 100,
+    "rounds_sklearn": 100,
+    "rows": 219,
+    "same_split_rounds": 100,
+    "seed": 1008
+   },
+   {
+    "max_abs_prob_diff": 1.6653345369377348e-16,
+    "positives": 87,
+    "rounds_numpy": 100,
+    "rounds_sklearn": 100,
+    "rows": 324,
+    "same_split_rounds": 100,
+    "seed": 1009
+   }
+  ]
+ },
+ "thresholds": {
+  "logistic_coef": 1e-06,
+  "stump_prob": 1e-09
+ }
+}

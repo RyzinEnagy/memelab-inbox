@@ -1,0 +1,24 @@
+{
+ "different": [
+  "evidence/trace/FORECAST_TRACE.json",
+  "evidence/trace/second/FORECAST_TRACE.json"
+ ],
+ "different_only_in": {
+  "evidence/trace/FORECAST_TRACE.json": [
+   "latency_s_median_of_20 (a wall-clock timing)"
+  ],
+  "evidence/trace/second/FORECAST_TRACE.json": [
+   "latency_s_median_of_20 (a wall-clock timing)"
+  ]
+ },
+ "excluded": [
+  "evidence/run_log.json (times)"
+ ],
+ "files_compared": 28,
+ "identical": false,
+ "identical_apart_from_timings": true,
+ "runs": {
+  "recorded_run_2": "audits/predictive-intelligence/phase_08 at d9b2a9c",
+  "run_3": "scratch folder, same code, fresh process"
+ }
+}

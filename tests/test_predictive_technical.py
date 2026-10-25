@@ -603,3 +603,16 @@ def test_attach_keeps_a_missing_technical_input_missing_and_the_row_abstains(tmp
     assert all(b.avail[c] <= H.D3 for c in T.TECH)
     with pytest.raises(B.IdentityJoinError):
         T.attach([base[0]], {sb["decision_key"]: dict(sb, mint=H.MINT_A)})
+
+
+def test_p22_every_registered_configuration_is_in_the_search_ledger():
+    import csv
+    root = Path(__file__).resolve().parent.parent / "audits" / "predictive-intelligence"
+    reg = [r["experiment_id"] for r in csv.DictReader(open(root / "phase_08" / "experiments" / "EXPERIMENT_REGISTRY.csv"))]
+    led = list(csv.DictReader(open(root / "phase_08" / "experiments" / "SEARCH_LEDGER.csv")))
+    p07 = list(csv.DictReader(open(root / "phase_07" / "experiments" / "SEARCH_LEDGER.csv")))
+    assert led[:len(p07)] == p07                                   # cumulative: Phase 07's rows first, unchanged
+    ids = {r["experiment_id"] for r in led}
+    traps = {x for x in reg if x.rsplit(":", 1)[1] in ("NC2T", "P06T", "P13T")}
+    assert set(reg) - traps <= ids
+    assert any(r["kind"] == "DEBUG_RUN_REAL_DATA" for r in led if r["phase"] == "08")

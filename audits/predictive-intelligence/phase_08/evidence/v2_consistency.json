@@ -1,0 +1,17 @@
+{
+ "decisions_checked": 240,
+ "derived": [
+  "tech_log1p_candles_24h",
+  "tech_log1p_last_close_age_min",
+  "tech_log_rel_vol_1h"
+ ],
+ "inconsistent": {},
+ "restated": [
+  "tech_log_dist_24h_high",
+  "tech_log_range_24h",
+  "tech_log_ret_1h",
+  "tech_log_ret_24h",
+  "tech_log_ret_6h",
+  "tech_rv_6h"
+ ]
+}

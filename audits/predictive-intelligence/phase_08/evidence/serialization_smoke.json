@@ -1,0 +1,152 @@
+{
+ "T1_24h": {
+  "M1_T_LOGIT": {
+   "abstain": "INSUFFICIENT_HISTORY",
+   "file_sha256": "483276fced3fda3f041ab8e611929f263c5d241a5a4770cdc2ed83f12710b7e6",
+   "k_train": 34,
+   "k_used": 26,
+   "model_sha": "c5ae485a7bc2d988a723dfc724927b8a1ed3ebf7c45794973ffa03ca3fff619c",
+   "n_train": 136,
+   "n_used": 87,
+   "numbers": 0,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "M2_T_LOGIT_B2": {
+   "abstain": "INSUFFICIENT_HISTORY",
+   "file_sha256": "a52ca9199bf23ee050bfb805b92981d6a5d4a59a031be26989dd7b7cbccbc5e1",
+   "k_train": 34,
+   "k_used": 26,
+   "model_sha": "821e8700879b6aa2a9ce51d213506b6461f08b9c8a4e17d464d2f991616592d9",
+   "n_train": 136,
+   "n_used": 87,
+   "numbers": 0,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "M3_T_STUMPS": {
+   "abstain": "INSUFFICIENT_HISTORY",
+   "file_sha256": "3ce64a6ec727176716458d98fb9bb3acc8d0a3262bb3bfb31df329f00a897b1b",
+   "k_train": 34,
+   "k_used": 26,
+   "model_sha": "3ba11decbbaa0bbccd2e19a840ad2de17a887c8749f738220a0d7ef9b5ad7d23",
+   "n_train": 136,
+   "n_used": 87,
+   "numbers": 0,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "contract": {
+   "abstain_errors": [],
+   "abstain_valid": true,
+   "forecast_errors": [
+    "calibration_reference needs holdout_n >= 50 out-of-sample events (else INSUFFICIENT_HISTORY)",
+    "model trained after the decision time: not an as-of forecast (P13)"
+   ],
+   "forecast_refused": true
+  }
+ },
+ "T1b_6h": {
+  "M1_T_LOGIT": {
+   "abstain": null,
+   "file_sha256": "463391012c729b0c21c307c91891eccfe6cae16b451c3194350b7f64b3b7bec0",
+   "k_train": 26,
+   "k_used": 20,
+   "model_sha": "be8fff758ca81a01b9e1f7569f70663b1ef43cd8ec2a2ad9e65fa9484bf155fe",
+   "n_train": 224,
+   "n_used": 144,
+   "numbers": 144,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "M2_T_LOGIT_B2": {
+   "abstain": null,
+   "file_sha256": "09fa06e812c383c72305872ebf309d961129e5e23334d22f509795ab7981fbf0",
+   "k_train": 26,
+   "k_used": 20,
+   "model_sha": "eefba4b0e68a125d514aa80f73ca99b4188e5575ee3d959aeeeaa488456d9fcf",
+   "n_train": 224,
+   "n_used": 144,
+   "numbers": 144,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "M3_T_STUMPS": {
+   "abstain": null,
+   "file_sha256": "f2a6c75bdb0c8484c157147ff770084ee8470e0e35eecdfa8478db8b93b422bb",
+   "k_train": 26,
+   "k_used": 20,
+   "model_sha": "30931dd6a5bfb8a9a6e07874e814d43007f914ced8264ec1b3167b1f43e4947b",
+   "n_train": 224,
+   "n_used": 144,
+   "numbers": 144,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "contract": {
+   "abstain_errors": [],
+   "abstain_valid": true,
+   "forecast_errors": [
+    "calibration_reference needs holdout_n >= 50 out-of-sample events (else INSUFFICIENT_HISTORY)",
+    "model trained after the decision time: not an as-of forecast (P13)"
+   ],
+   "forecast_refused": true
+  }
+ },
+ "T2_24h": {
+  "M1_T_LOGIT": {
+   "abstain": "INSUFFICIENT_HISTORY",
+   "file_sha256": "0df064f77bde68fa338a28d0ea8f9194e07098f962aa9a180a3daddd14129a59",
+   "k_train": 28,
+   "k_used": 14,
+   "model_sha": "d1a8bc7677608c8f4dfd24fdb0ca4545b7da672129dd1e51ddcea11a02f55860",
+   "n_train": 131,
+   "n_used": 83,
+   "numbers": 0,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "M2_T_LOGIT_B2": {
+   "abstain": "INSUFFICIENT_HISTORY",
+   "file_sha256": "e2480a97cb2d90104d0f13d52f5b5f6ea6e60504897508af4e45d358484f7ea8",
+   "k_train": 28,
+   "k_used": 14,
+   "model_sha": "ef43deb01467c5245d5ad852fca7a80f47354fbcce1ab43a851746937d4d0c9c",
+   "n_train": 131,
+   "n_used": 83,
+   "numbers": 0,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "M3_T_STUMPS": {
+   "abstain": "INSUFFICIENT_HISTORY",
+   "file_sha256": "34e480ed1a0913e9ad39554a9aa0017bae45b48f8b6e523af2404a40af9b3031",
+   "k_train": 28,
+   "k_used": 14,
+   "model_sha": "6b7d77225d3207c7a57dee6f9252c9224a0d3dea38f71143224af8f775ef941b",
+   "n_train": 131,
+   "n_used": 83,
+   "numbers": 0,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "contract": {
+   "abstain_errors": [],
+   "abstain_valid": true,
+   "forecast_errors": [
+    "calibration_reference needs holdout_n >= 50 out-of-sample events (else INSUFFICIENT_HISTORY)",
+    "model trained after the decision time: not an as-of forecast (P13)"
+   ],
+   "forecast_refused": true
+  }
+ }
+}
