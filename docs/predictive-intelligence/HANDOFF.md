@@ -1,13 +1,13 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-052). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_08/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-053). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_08/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
 ## Position on 2026-10-25
 
 - Phases 00 to 05: PASS, each with an independent skeptic review and a repair pass folded in, re-verified by the orchestrator and pushed.
 - Phase 06 (outcome labels and censoring): NEEDS_REVIEW with one item open, the frozen 48 h revision re-read (not before 2026-10-26T13:49Z; the orchestrator's session runs it). Everything else is folded in (PI-D-045).
 - Phase 07 (transparent baselines): PASS, PROVISIONAL under PI-D-046 (repair pass 2, PI-D-049), pushed at `1139575`.
-- Phase 08 (technical predictors): NEEDS_REVIEW for one item, PROVISIONAL under PI-D-046. The orchestrator's independent skeptic (no material failure, 8 minor findings, CX-S08) is folded in by repair pass 2 (PI-D-052). The only open item is checklist G16: the numpy logistic differs from scikit-learn lbfgs by up to 2.08e-6 against a pre-registered 1e-6; lbfgs stops early (gradients 1.0e-6 to 7.2e-6) and newton-cholesky agrees within 9.0e-12. It stays failed as registered until the orchestrator or Elving records whether the explanation closes it. Commits: pre-registration `8599318`, code `d290384`, runner repair `d9b2a9c`, outputs `fc6b990`, post-commit records `0656b7c`, repair code `e81ee46`, repair outputs and records `1dbfd86`, and a post-commit records commit on top (all local; the orchestrator pushes). Post-commit at `1dbfd86`: suite `1 failed, 1229 passed` (known failure only), guard 0 violations, seal check 0 problems, single-branch release audit exit 0.
+- Phase 08 (technical predictors): PASS, PROVISIONAL under PI-D-046. The orchestrator's independent skeptic (no material failure, 8 minor findings, CX-S08) is folded in by repair pass 2 (PI-D-052). Checklist G16 (logistic within 1e-6 of scikit-learn lbfgs, up to 2.08e-6) stays failed as registered and is closed by the orchestrator's decision PI-D-053, made after the result (lbfgs stops early; newton-cholesky within 9.0e-12). Later phases use newton-cholesky at 1e-9 as the logistic oracle. Commits: pre-registration `8599318`, code `d290384`, runner repair `d9b2a9c`, outputs `fc6b990`, post-commit records `0656b7c`, repair code `e81ee46`, repair outputs and records `1dbfd86`, and a post-commit records commit on top (all local; the orchestrator pushes). Post-commit at `1dbfd86`: suite `1 failed, 1229 passed` (known failure only), guard 0 violations, seal check 0 problems, single-branch release audit exit 0.
 - Spend: 0 Firecrawl credits; Phase 08 made no vendor or network call.
 
 ## What Phase 08 found
@@ -19,7 +19,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 - Frozen for Phase 12: M1, M2, M3 cards per target at 2026-10-17T00:00Z (T1b fitted, T1 and T2 abstain), in `phase_08/artifacts/`. Cumulative search ledger: `phase_08/experiments/SEARCH_LEDGER.csv` (1,133 rows).
 - Repair pass 2: 50 tests and 39 of 39 mutations caught (including CX-S08, a scorer that standardises the scored rows with their own statistics); the runner now exits 1 on a failed trap; the oracle covers the preprocessing (2.1e-14) and the frozen T1b cards.
 - Young pools: 12 of the 15 censored development decisions are pools younger than the 24 h window at T. tech-1 models cannot score a pool younger than about 24 h 5 min, so in live use most new candidates would abstain.
-- Fragility: both fitted T1b states sit exactly at 20 positives (fold 4: 138 rows; holdout start: 144). One development label changed by the 48 h re-read turns every fitted Phase 08 model into INSUFFICIENT_HISTORY, so the rerun in open item 2 must not be skipped.
+- Fragility: both fitted T1b states sit exactly at 20 positives (fold 4: 138 rows; holdout start: 144). One development label changed by the 48 h re-read turns every fitted Phase 08 model into INSUFFICIENT_HISTORY, so the rerun in open item 1 must not be skipped.
 
 ## What exists now
 
@@ -29,9 +29,8 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Open items, in order
 
-1. Orchestrator or Elving: record whether the lbfgs explanation closes Phase 08's G16 (PI-D-052 item 8); with it recorded, Phase 08 is PASS (provisional under PI-D-046).
-2. Phase 06 48 h revision re-read: `python -B audits/predictive-intelligence/phase_06/probes/make_labels.py reread48`, at or after 2026-10-26T13:49Z. If any development label changes: rerun `phase_07/probes/run_baselines.py` at `f977aab` and `phase_08/probes/run_technical.py` at `e81ee46` (or later), commit the superseding outputs and record it.
-3. Phase 09 only after Phase 08's gate (orchestrator's decision).
+1. Phase 06 48 h revision re-read: `python -B audits/predictive-intelligence/phase_06/probes/make_labels.py reread48`, at or after 2026-10-26T13:49Z. If any development label changes: rerun `phase_07/probes/run_baselines.py` at `f977aab` and `phase_08/probes/run_technical.py` at `e81ee46` (or later), commit the superseding outputs and record it.
+2. Phase 09 is eligible (orchestrator's decision), with Phase 07 and 08 results PROVISIONAL until item 1 is done.
 
 ## Waiting on Elving
 

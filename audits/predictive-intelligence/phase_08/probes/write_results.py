@@ -88,7 +88,8 @@ def main(status: str, head_after: str, post: str | None = None) -> None:
         {"name": "G16 stumps oracle", "command": "sklearn_crosscheck_tech.py (research venv)", "exit_code": 1,
          "result": f"stumps max probability difference {xc['max_stump_prob_diff']:.2g}, same split every round", "pass": xc["max_stump_prob_diff"] <= 1e-9},
         {"name": "G16 logistic oracle, scikit-learn lbfgs (pre-registered tolerance 1e-6)", "command": "sklearn_crosscheck_tech.py (research venv)", "exit_code": 1,
-         "result": f"max coefficient difference {xc['max_logit_coef_diff']:.3g} (fold 4 and holdout-start designs): above 1e-6, failed as registered", "pass": False},
+         "result": f"max coefficient difference {xc['max_logit_coef_diff']:.3g} (fold 4 and holdout-start designs): above 1e-6, failed as registered", "pass": False,
+         "closed_by": "PI-D-053 (orchestrator decision after the result: lbfgs stops early; newton-cholesky within 9.0e-12; replacement oracle newton-cholesky at 1e-9 frozen for later phases)"},
         {"name": "G16 logistic, diagnosis added after the result", "command": "logit_solver_diagnosis.py (research venv)", "exit_code": 0,
          "result": f"lbfgs stops with gradients 1.0e-6 to 7.2e-6, numpy at most 3.3e-15; newton-cholesky and newton-cg agree with numpy within {newton:.2g}", "pass": newton <= 1e-6},
         {"name": "G17 determinism", "input": "evidence/determinism.json",
@@ -113,7 +114,9 @@ def main(status: str, head_after: str, post: str | None = None) -> None:
         "status_reason": ("repair pass 2 folded in the independent skeptic (no material failure, 8 minor, CX-S08); every gate item holds "
                           "except checklist item G16 (logistic within 1e-6 of scikit-learn lbfgs), failed as registered (up to 2.08e-6) and "
                           "explained as lbfgs's stopping point (newton-cholesky within 9.0e-12); PASS needs the orchestrator or Elving to "
-                          "record that the explanation closes G16 (PI-D-052 item 8)" if status == "NEEDS_REVIEW" else ""),
+                          "record that the explanation closes G16 (PI-D-052 item 8)" if status == "NEEDS_REVIEW" else
+                          "repair pass 2 folded in the independent skeptic (no material failure, 8 minor, CX-S08); every gate item holds; "
+                          "checklist item G16 failed as registered and is closed by the orchestrator's decision PI-D-053 (made after the result)"),
         "head_before": "1139575", "preregistration_commit": "8599318", "code_commit": "d290384", "runner_repair_commit": "d9b2a9c",
         "first_pass_head": "0656b7c", "repair2_code_commit": "e81ee46",
         "skeptic": {"review": "skeptic/PHASE_08_SKEPTIC.md", "material": 0, "minor": 8, "counterexample": "CX-S08 score-time re-standardisation",
@@ -144,7 +147,8 @@ def main(status: str, head_after: str, post: str | None = None) -> None:
         "blockers": [],
         "open_dependency": "Phase 06 48 h revision re-read (not before 2026-10-26T13:49Z), run by the orchestrator",
         "approvals_needed": [],
-        "next_eligible_phase": "09 once G16 is closed by a recorded decision (orchestrator or Elving); Phase 08 results PROVISIONAL under PI-D-046",
+        "next_eligible_phase": "09 (orchestrator's decision); Phase 08 results PROVISIONAL under PI-D-046",
+        "decisions_closing_items": {"G16": "PI-D-053"},
     }
     (P8 / "PHASE_08_RESULTS.json").write_text(json.dumps(out, indent=1, sort_keys=False) + "\n")
     ev = P8 / "PHASE_08_EVIDENCE.md"

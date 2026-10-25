@@ -1,6 +1,6 @@
 # Phase 08 evidence: technical market-state predictors
 
-Status: NEEDS_REVIEW after repair pass 2 (PI-D-052), for one item only: checklist item G16 (logistic within 1e-6 of scikit-learn lbfgs) failed as registered and is explained as lbfgs's stopping point; every other gate item holds. The independent skeptic found no material failure (8 minor findings, CX-S08), all folded in. Every number is PROVISIONAL_PENDING_REVISION_REREAD (PI-D-046). Deliverables: `models/TECHNICAL_MODEL_CARD.md`, `memelab/predictive/technical.py`, `probes/run_technical.py` (train and predict runner), `evidence/run_log.json` (run manifest), `experiments/TECHNICAL_METRICS.csv`, `ABLATIONS.csv`, `HIT_MISS_COHORTS.csv` (out-of-sample against baseline tables), `tests/test_predictive_technical.py` (adverse forecast fixture tests), `evidence/trace/` (timestamp-by-timestamp traces).
+Status: PASS, PROVISIONAL_PENDING_REVISION_REREAD (PI-D-046). The independent skeptic found no material failure (8 minor findings, CX-S08), all folded in by repair pass 2 (PI-D-052). Checklist item G16 (logistic within 1e-6 of scikit-learn lbfgs) failed as registered and stays recorded as failed; the orchestrator closed it by decision PI-D-053 (made after the result: lbfgs stops early, newton-cholesky agrees within 9.0e-12; replacement oracle newton-cholesky at 1e-9 frozen for later phases). Every other gate item holds.
 
 ## Where and when
 
@@ -73,7 +73,7 @@ Every model: MODEL_NOT_PROMOTED. Train-only cards at the holdout start: T1b M1, 
 | G13 | pass: hit and miss, coverage, cost |
 | G14 | pass |
 | G15 | pass |
-| G16 | FAILED as registered: logistic against lbfgs up to 2.08e-6 (1.13e-6 fold 4, 2.08e-6 the M2 holdout-start design), above 1e-6. Explained: lbfgs stops with gradients of 1.0e-6 to 7.2e-6; numpy at most 3.3e-15; newton-cholesky within 9.0e-12. Stumps pass (3.3e-16); `stats.Prep` equals scikit-learn within 2.1e-14 (repair pass 2) |
+| G16 | FAILED as registered, closed by PI-D-053 (orchestrator, after the result): logistic against lbfgs up to 2.08e-6 (1.13e-6 fold 4, 2.08e-6 the M2 holdout-start design), above 1e-6. Explained: lbfgs stops with gradients of 1.0e-6 to 7.2e-6; numpy at most 3.3e-15; newton-cholesky within 9.0e-12. Stumps pass (3.3e-16); `stats.Prep` equals scikit-learn within 2.1e-14 (repair pass 2) |
 | G17 | pass (apart from the traces' wall-clock latency field) |
 | G18 | pass (fixture: M1, M2, M3 beat B0, NC1-T does not, NO_REAL_HISTORICAL_EVIDENCE) |
 | G19 | pass (both traces) |
@@ -209,7 +209,7 @@ Repair pass 2, on the committed tree at `1dbfd86` (files `postcommit/repair2_*`)
 | `audits/predictive-intelligence/phase_08/probes/run_technical.py` | `378d1e5d29cd377ac95e4f68ead082dd3aca50b1650f69745173f232b9637e3d` |
 | `audits/predictive-intelligence/phase_08/probes/sklearn_crosscheck_tech.py` | `1df176049c12c9cd018992d9ee082185bc5df1e846da09865d011cefa22e42dc` |
 | `audits/predictive-intelligence/phase_08/probes/verify_trace.py` | `073b83a0aab67e1720c3ddf3d104f10bd31d7e2ebbd1d4099a30ff32c621589e` |
-| `audits/predictive-intelligence/phase_08/probes/write_results.py` | `8bb699cdc954b2ad1e4bdaa8fedc9a93e2365ec48aedcbc8ff0e73144cbb1e28` |
+| `audits/predictive-intelligence/phase_08/probes/write_results.py` | `85e1c91d7577ab301d4f711c714adc4acfe957292e940322f63e94daba5cf056` |
 | `audits/predictive-intelligence/phase_08/probes/young_pools.py` | `e73ec751f1b5b3a06b0241577da427a5c63ba98a52912c9e3f705097760b115d` |
 | `audits/predictive-intelligence/phase_08/skeptic/PHASE_08_SKEPTIC.md` | `845d09e286c733977f5e15d488d2c9e7974f57c5bb519ab30aaaa0434d7c9872` |
 | `audits/predictive-intelligence/phase_08/skeptic/p08_counterexample.py` | `c6bae09a68c5ccd883022a720187c02a2ece3889197a07e283768cd10bd0d0e1` |
