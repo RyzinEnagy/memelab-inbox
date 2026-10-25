@@ -1,0 +1,11 @@
+Skeptic probes (audits/backtesting/collector/skeptic_probes/), paths pointed at this worktree.
+
+== first-pass code 53008cb
+probe_429: test_jup_429_on_last_budgeted_call and test_gt_200_then_failures raised gecko.BudgetExhausted ('GeckoTerminal budget of 4 calls used', '... of 6 calls used').
+sim_cap: hour 0, 1, 2: jup calls 37, pools quoted 13/16, wall 100.6, deadline_hit True; never quoted in hour 0 by export position: [13, 14, 15].
+probe_cx: three quotes state OK, proceeds ratio 0.500, 0.498, 0.495.
+
+== repaired code
+probe_429: both runs end with a summary (no exception); slow network wall 75.0 s.
+sim_cap (summary key renamed): no refresh calls: jup calls 48, 16/16 pools, wall 104.0; after 12 refresh calls (at 5c7c1d7): jup calls 27, 9/16 pools, 21 NOT_ATTEMPTED_DEADLINE rows; skipped in hour 0 by export position [4, 5, 6, 8, 9, 11, 12], in hour 1 [0, 1, 2, 3, 7, 10, 14] (the hour-0 skips all quoted), in hour 2 [5, 6, 8, 9, 12, 13, 15]. At e3d2d0e, counting OK quotes only, positions 6 and 9 were skipped three hours running.
+probe_cx: three quotes PRICE_DISAGREES (its final assert, all OK, now fails as intended).

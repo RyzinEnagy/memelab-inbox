@@ -6,8 +6,8 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 
 - Phase completed: 17 (release hardening), 2026-10-23. State: PASS, decision CONDITIONAL RELEASE, scenario-only research mode (docs/backtesting/RELEASE_REPORT.md), accepted by Elving on 2026-10-24 (D-BT-033). Note: audits/backtesting/PHASE_17.md. Phases 00-16 PASS (16 for scenario-only mode; strict reading FAILED; G16 and G27 await Elving's acceptance).
 - Baseline SHA f99c6c7. Phase 06 f6641ce, Phase 06A db91542, Phase 07 e18c12f, Phase 08 976e747, Phase 09 58abf7d, Phase 10 941e4ed, Phase 11 38d2fcc, Phase 12 999d1eb, Phase 13 4338810, Phase 14 30863a6, Phase 15 41488ad, Phase 16 repair passes 47a7845, 0e63563, c42045b, 7c7b582, record f50b24d; Phase 17 ddc0794, fcb676a, b5039be, 52c605d, 03fd506, bc7ce30, d18a07a (re-check residual fixes), 7967550 (final clean-install log). Branch `feature/backtesting`. Corpus: data/backtest/bt.sqlite (gitignored), dataset hash 3d8dfd1e6dfa... over 261 mints.
-- After the release (2026-10-25): forward depth collector (D-BT-034), Elving's approval of predictive PI-D-020 (now PI-D-044), folded into the hourly tracker as the step `collect`. Local branch `work/backtesting-collector` from feature/backtesting at 054a619, not pushed. Code commit 50565ad, records in the commit that follows it. Record: audits/backtesting/collector/COLLECTOR.md; reviewer packet: audits/backtesting/collector/SKEPTIC_PACKET.md.
-- Spend so far: Firecrawl about 32 of ~100 calls; Maxun 5 of 5 trial credits (0 left, 0 schedules); Crawl4AI local only; Solana public RPC and Jupiter quotes read-only (about 20 calls). Collector work on 2026-10-25: GeckoTerminal 11 calls, Jupiter keyless quotes 14, GitHub 4 (ls-remote and shallow fetches), Firecrawl 1 search.
+- After the release (2026-10-25): forward depth collector (D-BT-034), Elving's approval of predictive PI-D-020 (now PI-D-044), folded into the hourly tracker as the step `collect`. Local branch `work/backtesting-collector` from feature/backtesting at 054a619, not pushed. First pass 50565ad (code) and 53008cb (records); an independent skeptic then found 4 material and 10 minor issues (audits/backtesting/collector/COLLECTOR_SKEPTIC.md), fixed in the repair pass (D-BT-035) in the commits that follow. Record: audits/backtesting/collector/COLLECTOR.md; reviewer packet: audits/backtesting/collector/SKEPTIC_PACKET.md.
+- Spend so far: Firecrawl about 32 of ~100 calls; Maxun 5 of 5 trial credits (0 left, 0 schedules); Crawl4AI local only; Solana public RPC and Jupiter quotes read-only (about 20 calls). Collector work on 2026-10-25: GeckoTerminal 17 calls, Jupiter keyless quotes 54, GitHub 5 (ls-remote and shallow fetches), Firecrawl 1 search; 6, 40 and 1 of these were a full-size live collect run made by mistake in the repair pass (audits/backtesting/collector/COLLECTOR.md).
 
 ## Commands and exits
 
@@ -46,6 +46,7 @@ Rewritten at the end of every phase. Contract: [EXECUTION.md](EXECUTION.md). Pla
 | Collector (D-BT-034): `pytest tests/test_backtest_depth.py` / `mutate.py collector_mutations.json` / full suite / release audit / release e2e at 50565ad | 0 / 0 / 1 / 0 / 0 | 13 passed / 18 of 18 caught / C-1 only, 1043 passed / Needs action: no / PASS 78 of 78 |
 | Collector live smoke 2026-10-25 13:22Z (`backtest depth collect --max-gt-calls 4 --max-quote-calls 6`) | 0 | 19 decisions from export e245d91, 19 pool snapshots OK, 6 quotes OK, 42.2 s |
 | hourly_shadow.sh five steps in a scratch HOME, network blocked after setup (testing/logs/c01_hourly_script_e2e.log) | 0 each | collect EXPORTS_NOT_FETCHED and SOURCE_BLOCKED rows, save OK; forced collect failure left the stored file unchanged |
+| Collector repair pass (D-BT-035): depth tests / mutations / full suite / release audit --history / release e2e / script run | see c01r_*.log | recorded in audits/backtesting/collector/COLLECTOR.md, "Checks" |
 
 ## Proven
 
@@ -68,8 +69,10 @@ Forward depth collector (D-BT-034, 2026-10-25): built and tested in this workspa
 Still open:
 - Bring the collector commits onto feature/backtesting (fast-forward from 054a619) and push, under the D-BT-003 push route, if Elving wants them there; until then they exist only on the local branch work/backtesting-collector.
 - Deploy to D:\memelab\backtesting_live (new code.bundle and hourly_shadow.sh, one run by hand) and create the scheduled task with the five-step prompt; the earlier permission check refused creating it.
-- The refresh step still paces GeckoTerminal at 3 s (up to 20 a minute in its burst); only collect keeps to 6 a minute. Changing refresh to `--spacing 10 --max-calls 8` would bring the whole run to 6 a minute at the cost of fewer refreshed pools per hour. Elving's call.
-- Quotes exist only for Solana; BSC, Base and Ethereum get reserves only. The 40-quote cap leaves some Solana pools without a quote in some hours on a busy day.
+- The refresh step still paces GeckoTerminal at 3 s (up to 12 calls in about 35 s); collect waits until the 60 s window holds fewer than 6 GeckoTerminal calls, counting refresh's (D-BT-035), so the rule holds for every window with a collect call but not inside refresh's own burst. Changing refresh to `--spacing 10 --max-calls 8` would bring the whole run to 6 a minute at the cost of fewer refreshed pools per hour. Elving's call.
+- Quotes exist only for Solana; BSC, Base and Ethereum get reserves only. After a busy refresh about 27 of 48 quotes fit before the deadline; the others get NOT_ATTEMPTED_DEADLINE rows and the skipped pools rotate.
+- The predictive adapter must read these rows as post-decision observations (RUNBOOK, "For the predictive adapter").
+- tools/release_audit.py waves through any `exec:` pattern in `audits/backtesting/*.md` (skeptic minor 9); narrowing that rule is a release change, not made here.
 - Decide when to merge pull request #4.
 
 ## Delivery

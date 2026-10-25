@@ -1,0 +1,372 @@
+[
+ {
+  "id": 20,
+  "mint": "PonziBtgwfemdft5ch9Rj9pKcSPSx5cJbgPiGJNAxz7",
+  "size_usd": 100.0,
+  "state_first_repair_code": "PRICE_DISAGREES",
+  "implied_over_pool_price": 0.26169807478650575,
+  "state_final_code": "PRICE_DISAGREES",
+  "price_impact": 0.06456709626270848,
+  "out_over_size": 0.24480099
+ },
+ {
+  "id": 21,
+  "mint": "PonziBtgwfemdft5ch9Rj9pKcSPSx5cJbgPiGJNAxz7",
+  "size_usd": 500.0,
+  "state_first_repair_code": "PRICE_DISAGREES",
+  "implied_over_pool_price": 0.2616980747865435,
+  "state_final_code": "PRICE_DISAGREES",
+  "price_impact": 0.08582398936202801,
+  "out_over_size": 0.239238102
+ },
+ {
+  "id": 22,
+  "mint": "PonziBtgwfemdft5ch9Rj9pKcSPSx5cJbgPiGJNAxz7",
+  "size_usd": 2000.0,
+  "state_first_repair_code": "PRICE_DISAGREES",
+  "implied_over_pool_price": 0.26169807478654356,
+  "state_final_code": "PRICE_DISAGREES",
+  "price_impact": 0.15795253488303082,
+  "out_over_size": 0.2203622005
+ },
+ {
+  "id": 25,
+  "mint": "9aqmJjCnnMQv42TXLk921ceUkN35nea2QP969n1caqjj",
+  "size_usd": 100.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.9889497325517514,
+  "state_final_code": "OK",
+  "price_impact": 0.001678763335592052,
+  "out_over_size": 0.98728952
+ },
+ {
+  "id": 26,
+  "mint": "9aqmJjCnnMQv42TXLk921ceUkN35nea2QP969n1caqjj",
+  "size_usd": 500.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.9889497325532016,
+  "state_final_code": "OK",
+  "price_impact": 0.010961485904055783,
+  "out_over_size": 0.978109374
+ },
+ {
+  "id": 27,
+  "mint": "9aqmJjCnnMQv42TXLk921ceUkN35nea2QP969n1caqjj",
+  "size_usd": 2000.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.9889497325533829,
+  "state_final_code": "OK",
+  "price_impact": 0.04451966880026063,
+  "out_over_size": 0.944922018
+ },
+ {
+  "id": 28,
+  "mint": "7SL2VnfYsChvog5oQY9Nmtqu1wceaMiQzWoqoLQpump",
+  "size_usd": 100.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.9941639941054347,
+  "state_final_code": "OK",
+  "price_impact": 0.0029246021005327845,
+  "out_over_size": 0.99125646
+ },
+ {
+  "id": 29,
+  "mint": "7SL2VnfYsChvog5oQY9Nmtqu1wceaMiQzWoqoLQpump",
+  "size_usd": 500.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.9941639941083479,
+  "state_final_code": "OK",
+  "price_impact": 0.017186874811004133,
+  "out_over_size": 0.9770774219999999
+ },
+ {
+  "id": 30,
+  "mint": "7SL2VnfYsChvog5oQY9Nmtqu1wceaMiQzWoqoLQpump",
+  "size_usd": 2000.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.9941639941087121,
+  "state_final_code": "OK",
+  "price_impact": 0.042526637817552074,
+  "out_over_size": 0.951885542
+ },
+ {
+  "id": 32,
+  "mint": "kLqMvUm1p4pRbxU4r8kWCTVAuWMJLtcTJqGb4b5pump",
+  "size_usd": 100.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 1.0021033199999998,
+  "state_final_code": "OK",
+  "price_impact": 0.0,
+  "out_over_size": 1.00210332
+ },
+ {
+  "id": 33,
+  "mint": "kLqMvUm1p4pRbxU4r8kWCTVAuWMJLtcTJqGb4b5pump",
+  "size_usd": 500.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 1.000955665188451,
+  "state_final_code": "OK",
+  "price_impact": 0.011248049818801308,
+  "out_over_size": 0.989696866
+ },
+ {
+  "id": 34,
+  "mint": "kLqMvUm1p4pRbxU4r8kWCTVAuWMJLtcTJqGb4b5pump",
+  "size_usd": 2000.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 1.000955665188451,
+  "state_final_code": "OK",
+  "price_impact": 0.05480334104320529,
+  "out_over_size": 0.9460999505
+ },
+ {
+  "id": 35,
+  "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+  "size_usd": 100.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.9959718399999999,
+  "state_final_code": "OK",
+  "price_impact": 0.0,
+  "out_over_size": 0.9959718399999999
+ },
+ {
+  "id": 36,
+  "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+  "size_usd": 500.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.9963011460000001,
+  "state_final_code": "OK",
+  "price_impact": 0.0,
+  "out_over_size": 0.996301146
+ },
+ {
+  "id": 37,
+  "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+  "size_usd": 2000.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.9954690075,
+  "state_final_code": "OK",
+  "price_impact": 0.0,
+  "out_over_size": 0.9954690075
+ },
+ {
+  "id": 38,
+  "mint": "AKotzk1dhcNangAJBtvNKtT9bhbSVZc2mMhRFgkFpump",
+  "size_usd": 100.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.9687013355533799,
+  "state_final_code": "OK",
+  "price_impact": 0.004669556433300362,
+  "out_over_size": 0.9641779300000001
+ },
+ {
+  "id": 39,
+  "mint": "AKotzk1dhcNangAJBtvNKtT9bhbSVZc2mMhRFgkFpump",
+  "size_usd": 500.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.96870133555338,
+  "state_final_code": "OK",
+  "price_impact": 0.010713667022510306,
+  "out_over_size": 0.958322992
+ },
+ {
+  "id": 40,
+  "mint": "AKotzk1dhcNangAJBtvNKtT9bhbSVZc2mMhRFgkFpump",
+  "size_usd": 2000.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.9687013355533799,
+  "state_final_code": "OK",
+  "price_impact": 0.019639600829611508,
+  "out_over_size": 0.949676428
+ },
+ {
+  "id": 41,
+  "mint": "3vZY2MKBzRMoT4nGUCWYzXPTES2jLaLNMV8Fn5cKpump",
+  "size_usd": 100.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 1.0006575547224204,
+  "state_final_code": "OK",
+  "price_impact": 0.018786511563024338,
+  "out_over_size": 0.9818586899999999
+ },
+ {
+  "id": 42,
+  "mint": "3vZY2MKBzRMoT4nGUCWYzXPTES2jLaLNMV8Fn5cKpump",
+  "size_usd": 500.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 1.0006575547224204,
+  "state_final_code": "OK",
+  "price_impact": 0.0642928966246268,
+  "out_over_size": 0.936322382
+ },
+ {
+  "id": 43,
+  "mint": "3vZY2MKBzRMoT4nGUCWYzXPTES2jLaLNMV8Fn5cKpump",
+  "size_usd": 2000.0,
+  "state_first_repair_code": "PRICE_DISAGREES",
+  "implied_over_pool_price": 1.000657554722449,
+  "state_final_code": "OK",
+  "price_impact": 0.20295159194473733,
+  "out_over_size": 0.7975725109999999
+ },
+ {
+  "id": 44,
+  "mint": "EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR",
+  "size_usd": 100.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.998784376484733,
+  "state_final_code": "OK",
+  "price_impact": 0.0031096065956336977,
+  "out_over_size": 0.9956785499999999
+ },
+ {
+  "id": 45,
+  "mint": "EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR",
+  "size_usd": 500.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.9987843764897393,
+  "state_final_code": "OK",
+  "price_impact": 0.012154643960696574,
+  "out_over_size": 0.9866445079999999
+ },
+ {
+  "id": 46,
+  "mint": "EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR",
+  "size_usd": 2000.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.9987843764900521,
+  "state_final_code": "OK",
+  "price_impact": 0.04359725433739371,
+  "out_over_size": 0.95524012
+ },
+ {
+  "id": 47,
+  "mint": "9k6gfTLbDaUpx635kQaGTeDvzYs7hWdDW1MerpjYpump",
+  "size_usd": 100.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 1.000127828965979,
+  "state_final_code": "OK",
+  "price_impact": 0.004869636485382219,
+  "out_over_size": 0.99525757
+ },
+ {
+  "id": 48,
+  "mint": "9k6gfTLbDaUpx635kQaGTeDvzYs7hWdDW1MerpjYpump",
+  "size_usd": 500.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 1.000127828965979,
+  "state_final_code": "OK",
+  "price_impact": 0.00547769675766636,
+  "out_over_size": 0.994649432
+ },
+ {
+  "id": 49,
+  "mint": "9k6gfTLbDaUpx635kQaGTeDvzYs7hWdDW1MerpjYpump",
+  "size_usd": 2000.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 1.0001278291113107,
+  "state_final_code": "OK",
+  "price_impact": 0.007581009537598656,
+  "out_over_size": 0.9925458505
+ },
+ {
+  "id": 50,
+  "mint": "7M3gDRgozcumFsiTeXwjB8cYxpg7Q9R7rH7rkw2Fpump",
+  "size_usd": 100.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 1.0018604100000001,
+  "state_final_code": "OK",
+  "price_impact": 0.0,
+  "out_over_size": 1.00186041
+ },
+ {
+  "id": 51,
+  "mint": "7M3gDRgozcumFsiTeXwjB8cYxpg7Q9R7rH7rkw2Fpump",
+  "size_usd": 500.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.9996361530314629,
+  "state_final_code": "OK",
+  "price_impact": 0.0013127726798229868,
+  "out_over_size": 0.998323858
+ },
+ {
+  "id": 52,
+  "mint": "7M3gDRgozcumFsiTeXwjB8cYxpg7Q9R7rH7rkw2Fpump",
+  "size_usd": 2000.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 0.9996361530326635,
+  "state_final_code": "OK",
+  "price_impact": 0.008885546511814979,
+  "out_over_size": 0.9907538395000001
+ },
+ {
+  "id": 53,
+  "mint": "4Hcm1TfA1MvVhCQHvJCcKL7ymUhJZAV7P439H5ZHnKRh",
+  "size_usd": 100.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 1.0022120079095729,
+  "state_final_code": "OK",
+  "price_impact": 0.005871540016614584,
+  "out_over_size": 0.99632748
+ },
+ {
+  "id": 54,
+  "mint": "4Hcm1TfA1MvVhCQHvJCcKL7ymUhJZAV7P439H5ZHnKRh",
+  "size_usd": 500.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 1.0022120079106662,
+  "state_final_code": "OK",
+  "price_impact": 0.01097379778315979,
+  "out_over_size": 0.991213936
+ },
+ {
+  "id": 55,
+  "mint": "4Hcm1TfA1MvVhCQHvJCcKL7ymUhJZAV7P439H5ZHnKRh",
+  "size_usd": 2000.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 1.0022120079114862,
+  "state_final_code": "OK",
+  "price_impact": 0.029504788086811548,
+  "out_over_size": 0.9726419550000001
+ },
+ {
+  "id": 56,
+  "mint": "43N5UGr3mnfhJFzpBPNM7ZdnobghiYBtHTaQfZQv65mh",
+  "size_usd": 100.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 1.0003674840248347,
+  "state_final_code": "OK",
+  "price_impact": 0.023722936224749715,
+  "out_over_size": 0.97663583
+ },
+ {
+  "id": 57,
+  "mint": "43N5UGr3mnfhJFzpBPNM7ZdnobghiYBtHTaQfZQv65mh",
+  "size_usd": 500.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 1.0003674840248777,
+  "state_final_code": "OK",
+  "price_impact": 0.09318306673646297,
+  "out_over_size": 0.907150174
+ },
+ {
+  "id": 58,
+  "mint": "43N5UGr3mnfhJFzpBPNM7ZdnobghiYBtHTaQfZQv65mh",
+  "size_usd": 2000.0,
+  "state_first_repair_code": "PRICE_DISAGREES",
+  "implied_over_pool_price": 1.0003674840248884,
+  "state_final_code": "OK",
+  "price_impact": 0.2840285100848195,
+  "out_over_size": 0.716234598
+ },
+ {
+  "id": 59,
+  "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+  "size_usd": 100.0,
+  "state_first_repair_code": "OK",
+  "implied_over_pool_price": 1.0046587,
+  "state_final_code": "OK",
+  "price_impact": 0.0,
+  "out_over_size": 1.0046587
+ }
+]

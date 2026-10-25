@@ -1,4 +1,4 @@
-# Skeptic packet: forward depth collector (D-BT-034)
+# Skeptic packet: forward depth collector (D-BT-034, repair D-BT-035)
 
 For an independent reviewer. This packet states the task, where everything is and how to rerun it. It makes no claim about the result; judge from the artifacts.
 
@@ -24,16 +24,17 @@ Branch `work/backtesting-collector` (local, not pushed), base feature/backtestin
 | What | Path |
 |---|---|
 | collector code | memelab/backtest/depth.py |
-| changed code | memelab/backtest/schema.py (migration 2), memelab/backtest/cli.py (`backtest depth`), memelab/backtest/sources/gecko.py (`get_json(..., provider=)`) |
+| changed code | memelab/backtest/schema.py (migration 2: three tables), memelab/backtest/cli.py (`backtest depth`, `--gt-prior-calls`, `--gt-prior-end`), memelab/backtest/sources/gecko.py (`get_json(..., provider=)`) |
 | hourly script | audits/backtesting/release/hourly_shadow.sh (step `collect`, save log line) |
 | tests | tests/test_backtest_depth.py; tests/test_backtest_timeguard.py (migration list) |
 | fixtures | tests/fixtures/backtest/depth/ (recorded smoke bodies; the no-route and 401 bodies in the test file are written by hand) |
 | mutations | audits/backtesting/testing/collector_mutations.json |
-| work record | audits/backtesting/collector/COLLECTOR.md |
+| work record and repair table | audits/backtesting/collector/COLLECTOR.md |
+| first review and its probes | audits/backtesting/collector/COLLECTOR_SKEPTIC.md, audits/backtesting/collector/skeptic_probes/ (paths inside point at the reviewer's clone) |
 | smoke artifacts | audits/backtesting/collector/smoke/ (collect.json, status.json, decisions.csv, snapshots.csv, raw/, dev_run_collect.json) |
-| logs | audits/backtesting/testing/logs/c01_full_pytest.log, c01_mutations.log, c01_release_audit.log, c01_release_e2e.log, c01_hourly_script_e2e.log |
+| logs | first pass: audits/backtesting/testing/logs/c01_*.log; repair pass: c01r_*.log |
 | operator text | docs/backtesting/RUNBOOK.md, "Forward depth collection", "Deployment to Elving's computer", "Scheduled task prompt" |
-| records | docs/backtesting/DECISIONS.md (D-BT-034), docs/backtesting/HANDOFF.md |
+| records | docs/backtesting/DECISIONS.md (D-BT-034, D-BT-035), docs/backtesting/HANDOFF.md |
 
 ## Commands
 
@@ -45,7 +46,7 @@ git diff 054a619..HEAD --stat
 python -m pytest tests/test_backtest_depth.py -q -p no:cacheprovider
 python audits/backtesting/testing/mutate.py audits/backtesting/testing/collector_mutations.json
 python -m pytest tests -q -p no:cacheprovider          # known failure: tests/test_catalyst.py::test_dedup_corroboration_resurface_denial
-python tools/release_audit.py
+python tools/release_audit.py --history
 python tools/release_e2e.py --out e2e.md
 rm -f data/reports/*_BRETT_*.md data/memelab.sqlite-shm data/memelab.sqlite-wal   # strays the suite leaves
 ```
@@ -75,3 +76,6 @@ Local script run without market calls (as in c01_hourly_script_e2e.log): make a 
 - Can a failed collect change the stored database on Elving's computer?
 - Are the v1 tables and their migration checksum unchanged, and does rollback to 1 remove only the new tables?
 - Does the revised scheduled-task prompt keep every rule of the four-step prompt at 054a619 (docs/backtesting/HANDOFF.md)?
+- For each row of the repair table in COLLECTOR.md: does the named test fail on the first-pass code (50565ad) and pass now, and does the named mutation survive anywhere?
+- Can any 60 s window that holds a collect call hold more than 6 GeckoTerminal calls, given the refresh step's count and end time?
+- Can a quote be OK while the router's implied price for the tokens sold is far from the pool price used, and can real price impact be flagged as PRICE_DISAGREES (see live_repair_run/)?
