@@ -6,7 +6,7 @@
  "head_before": "b0275c6dd0434a8d8e62d60de77821a7175a1ec9",
  "preregistration_commit": "74183c93807e39bdb315b6308bff7bf43abd6d38",
  "code_commit": "667244731771386df74290ffa8afd16a14ec4393",
- "head_after": "OUTPUTS_COMMIT_SEE_HANDOFF",
+ "head_after": "ccee7ad4188bd52dff70476fbb31eca84ae75863",
  "registry_sha256": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
  "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
  "labels_version": "labels-1",
@@ -444,6 +444,48 @@
    "exit_code": 1,
    "result": "1 failed, 1167 passed in 169.21s (known failure only)",
    "pass": true
+  },
+  {
+   "name": "post-commit full suite at ccee7ad",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "1 failed, 1167 passed in 174.38s (known failure only; stray BRETT report removed by hand)",
+   "pass": true
+  },
+  {
+   "name": "post-commit social guard",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "violations []",
+   "pass": true
+  },
+  {
+   "name": "post-commit release audit, single-branch clone",
+   "command": "python tools/release_audit.py --history (clone of feature/predictive-intelligence with origin/main)",
+   "exit_code": 0,
+   "result": "Needs action: no.",
+   "pass": true
+  },
+  {
+   "name": "post-commit release audit, full local clone",
+   "command": "python tools/release_audit.py --history",
+   "exit_code": 1,
+   "result": "one history finding in a blob reachable only from origin/feature/backtesting (fetched for PI-D-047), not from this branch; noted for that branch's owner",
+   "pass": true
+  },
+  {
+   "name": "post-commit seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "git status after the suite",
+   "command": "git status --short",
+   "exit_code": 0,
+   "result": "clean after removing the stray report",
+   "pass": true
   }
  ],
  "artifacts": [
@@ -606,6 +648,22 @@
   {
    "path": "audits/predictive-intelligence/phase_07/models/BASELINE_SPEC.md",
    "sha256": "d011306d0e59874ae01d87edc3eee9cf3ad44c3aabe654c5e32143950c917b65"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/postcommit/pytest_summary.txt",
+   "sha256": "afbcab3e36ad2bce3b9edb893dafa37b9f1f1a3d1c30409f688472ff0bcf7b64"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/postcommit/release_audit_history.summary.txt",
+   "sha256": "a1848ae10a5741c49190a491c3a446e38b826a803ac3ccc8cf26fb9aea559e05"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/postcommit/seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/postcommit/social_guard.out.txt",
+   "sha256": "b47fdc90c55036ed6e075bb975fd9ed5679306efd8c39033b5be7d785b57eb4b"
   },
   {
    "path": "audits/predictive-intelligence/phase_07/probes/mutation_baselines.py",

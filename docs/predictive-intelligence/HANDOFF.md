@@ -6,7 +6,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 - Phases 00 to 05: PASS, each with an independent skeptic review and a repair pass folded in, re-verified by the orchestrator and pushed.
 - Phase 06 (outcome labels and censoring): NEEDS_REVIEW with one item open, the frozen 48 h revision re-read (not before 2026-10-26T13:49Z; the orchestrator's session has a scheduled follow-up to run it). Everything else in Phase 06 is folded in (PI-D-045).
-- Phase 07 (transparent baselines): started on Elving's instruction of 2026-10-25 15:40 New York time ("continue with the subsequent phases, beginning with phase 07"), recorded as PI-D-046: every Phase 07 result is PROVISIONAL until the re-read is folded in; if the re-read changes any development label, Phase 07 reruns from its frozen code and the provisional outputs are superseded, not edited; nothing claims the revision check. First pass done and committed; status NEEDS_REVIEW, waiting for the orchestrator's independent skeptic (PI-D-013). Commits: pre-registration `74183c9` (checklist, experiment registry, PI-D-046, PI-D-047, before any fit), frozen code `6672447` (before the recorded run), outputs and records on top (hashes in `phase_07/PHASE_07_EVIDENCE.md`).
+- Phase 07 (transparent baselines): started on Elving's instruction of 2026-10-25 15:40 New York time ("continue with the subsequent phases, beginning with phase 07"), recorded as PI-D-046: every Phase 07 result is PROVISIONAL until the re-read is folded in; if the re-read changes any development label, Phase 07 reruns from its frozen code and the provisional outputs are superseded, not edited; nothing claims the revision check. First pass done and committed; status NEEDS_REVIEW, waiting for the orchestrator's independent skeptic (PI-D-013). Commits: pre-registration `74183c9` (checklist, experiment registry, PI-D-046, PI-D-047, before any fit), frozen code `6672447` (before the recorded run), outputs `ccee7ad`, and a records commit on top with the post-commit results. Post-commit at `ccee7ad`: suite `1 failed, 1167 passed` (known failure only), guard 0 violations, release audit with history on this branch exit 0, seal check 0 problems.
 - Branch `feature/predictive-intelligence`: the Phase 06 repair commits and all Phase 07 commits are local (the orchestrator pushes). `main` untouched. No pull request.
 - Spend: 0 Firecrawl credits; Phase 07 made no vendor call (the runner refuses any socket connect).
 
@@ -35,6 +35,10 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 ## Waiting on Elving
 
 - Any paid data, LLM, Zep or MiroFish use; adding research packages to the lab's runtime; a merge into `main`.
+
+## Note outside this branch
+
+The release audit on a full local clone flags a history blob that is reachable only from `origin/feature/backtesting` (`audits/backtesting/research/smoke/etcherfx__sol-trade/output.txt`, rule key_material_field; fetched here to read that branch for PI-D-047); it is not reachable from `feature/predictive-intelligence`, whose own audit passes. That branch's owner should review it, as with the earlier `work/backtesting-collector` note (PI-D-045 item 7).
 
 ## Lab rules that still bind
 

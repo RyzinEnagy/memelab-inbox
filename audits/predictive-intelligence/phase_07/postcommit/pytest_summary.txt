@@ -1,0 +1,6 @@
+Full suite on the committed tree at ccee7ad4188bd52dff70476fbb31eca84ae75863, 2026-10-25
+command: python -m pytest tests -q -p no:cacheprovider
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+1 failed, 1167 passed in 174.38s (0:02:54)
+EXIT 1
+stray removed by hand: data/reports/20261025_2014_BRETT_0x532f.md

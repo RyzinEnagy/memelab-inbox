@@ -1,0 +1,5 @@
+Release audit summary (PI-D-030: the full report quotes rule words and is not committed)
+
+1. Full local clone, python tools/release_audit.py --history at ccee7ad: exit 1, "Needs action: yes." Only finding: section "The same shapes in public history": blob acbc9c9016, path audits/backtesting/research/smoke/etcherfx__sol-trade/output.txt line 42, rule key_material_field. The blob is reachable from origin/feature/backtesting (fetched in this phase to read it for PI-D-047), not from feature/predictive-intelligence (git rev-list --objects: 0 hits). Tracked files on this branch: no finding.
+2. Single-branch clone of feature/predictive-intelligence at ccee7ad with origin/main, python tools/release_audit.py --history: exit 0, "Needs action: no."
+Reviewed items (same as earlier phases): placeholder shapes in two files, hard-rules text naming the seed phrase rule; guard on origin/main 0 violations; migrations unchanged; syntax errors 0.
