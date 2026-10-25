@@ -49,7 +49,8 @@ SOURCE_GT = "geckoterminal-ohlcv"
 SOURCE_EXPORT = "state-export"
 AVAILABLE_BASES = ("PROVIDER_LAG_RECONSTRUCTION", "CAPTURE", "REVISION_FIRST_READ")
 SERIES_STATUSES = ("OK", "NO_DATA", "READ_FAILED", "CIRCUIT_OPEN", "CALL_CAP_REACHED", "BAD_BODY", "IDENTITY_MISMATCH")
-IDENTITY_CHECKS = ("OK_BASE", "OK_TOKEN_PARAM", "MINT_IS_QUOTE", "MINT_NOT_IN_POOL", "OTHER_TOKEN_PARAM", "NO_META")
+IDENTITY_CHECKS = ("OK_BASE", "OK_TOKEN_PARAM", "MINT_IS_QUOTE", "MINT_NOT_IN_POOL", "OTHER_TOKEN_PARAM", "NO_META",
+                   "TOKEN_PARAM_NOT_BASE")
 GT_PERIOD = {("minute", 1): 60, ("minute", 5): 300, ("minute", 15): 900, ("hour", 1): 3600, ("hour", 4): 14400,
              ("hour", 12): 43200, ("day", 1): 86400}
 
@@ -503,7 +504,12 @@ def gt_identity(body: bytes, mint: str, token_param: str | None) -> str:
     if mint not in (base, quote):
         return "MINT_NOT_IN_POOL"
     if token_param is not None:                       # only the exact mint address counts; "base", "quote" or another address do not
-        return "OK_TOKEN_PARAM" if token_param == mint else "OTHER_TOKEN_PARAM"
+        if token_param != mint:
+            return "OTHER_TOKEN_PARAM"
+        # With token=<mint> GeckoTerminal re-orients the body: meta.base is the mint (all 216 real reads of Phases 05 and 06,
+        # quote-side pools included). A body that still shows the other token as base may price the other token (a vendor
+        # change or a proxy that drops the parameter): refused (Phase 06 skeptic counterexample CX-S06, PI-D-045).
+        return "OK_TOKEN_PARAM" if base == mint else "TOKEN_PARAM_NOT_BASE"
     return "OK_BASE" if base == mint else "MINT_IS_QUOTE"
 
 

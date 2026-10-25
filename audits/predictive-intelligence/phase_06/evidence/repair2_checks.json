@@ -1,0 +1,49 @@
+{
+ "relabel_comparison": {
+  "development_rows_before": 4026,
+  "development_rows_after": 4026,
+  "differences": {
+   "split": 0,
+   "state": 0,
+   "class": 0,
+   "p0": 0,
+   "flags": 0,
+   "label_key": 0
+  },
+  "holdout_state_counts_changed": false,
+  "holdout_labels_sha256": "e695500d01014936cf4a4a46f9975dcf9a9ca1351fe067f28ec36117cb82682b",
+  "seal_digest": "d5059baeb07099d5d73d74249d4487e362cb38b2e1dafe974139d2d4d0d25390",
+  "rebuild_from_archive_differences": 0
+ },
+ "mutation_check": "44 of 44 caught (evidence/mutation_labels.json); first pass 25 of 25; the skeptic's 17 gave 3 caught on the first-pass tests",
+ "new_tests_on_first_pass_code": {
+  "command": "new tests/test_predictive_labels.py and tests/test_predictive_asof_store.py with labels.py and store.py from 121384b",
+  "result": "6 failed, 95 passed",
+  "failed": [
+   "test_m1_gate_recomputes_split_and_maturity_from_the_registry",
+   "test_m3_a_revision_that_leaves_labeled_removes_the_label",
+   "test_m2_gate_refuses_a_sealed_or_bakeoff_store_file",
+   "test_cx_s06_a_token_read_whose_body_keeps_the_other_token_as_base_gives_no_candle",
+   "test_p0_far_from_the_snapshot_price_is_flagged",
+   "test_predictive_asof_store.py::test_a_read_that_prices_another_token_is_refused"
+  ],
+  "note": "the M1 tests pin rules the first-pass code already applied correctly; they fail under the mutations, not on that code"
+ },
+ "skeptic_gate_attacks_after_repair": {
+  "command": "pytest skeptic/p06_gate_attacks.py",
+  "result": "the three GAP rows now raise LabelError (stored split or maturity disagrees) or are excluded; refuse_sealed is on the gate path; the attack file's assertions that documented the gaps fail as intended"
+ },
+ "cx_s06_after_repair": {
+  "command": "python -B skeptic/p06_counterexample_cx_s06.py",
+  "result": "identity TOKEN_PARAM_NOT_BASE, decision VENDOR_OR_ROUTE_GAP, CAUGHT by current code: True; real development token reads with meta.base != mint: 0 of 207 (the script's last line, a P0 ratio, now has no P0 to divide)"
+ },
+ "seal_tamper": {
+  "raw_edit": 1,
+  "raw_edit_plus_rewritten_SEAL_json": 1,
+  "problems": [
+   "seal digest not recorded in DECISIONS.md",
+   "SEAL.json sha256 not recorded in DECISIONS.md"
+  ],
+  "note": "throwaway copy; before the repair the second case exited 0"
+ }
+}

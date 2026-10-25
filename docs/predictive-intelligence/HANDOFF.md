@@ -1,18 +1,18 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-043). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_06/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-045). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_06/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
-## Position on 2026-10-24
+## Position on 2026-10-25
 
 - Elving stopped the run after Phase 06's first pass and asked for handoff records (PI-D-042). No later phase was started.
 - Phases 00 to 05: PASS, each with an independent skeptic review and a repair pass folded in, re-verified by the orchestrator and pushed.
-- Phase 06 (outcome labels and censoring): NEEDS_REVIEW. Deliverables committed at `4565e0b`; post-commit checks run by the orchestrator (suite `1 failed, 1107 passed`, guard 0 violations, release audit exit 0, seal check 0 problems). Two items open: the independent skeptic, and the frozen 48 h revision re-read.
-- Branch `feature/predictive-intelligence` on GitHub, tip = the stop-records commit on top of `4565e0b` (read it with `git log -2`). `main` untouched. No pull request.
-- Spend: 0 Firecrawl credits. About 680 free GeckoTerminal calls in total.
+- Phase 06 (outcome labels and censoring): NEEDS_REVIEW with one item open, the frozen 48 h revision re-read (not before 2026-10-26T13:49Z). Elving asked to continue Phase 06 on 2026-10-25: the independent skeptic (1 MATERIAL test-coverage finding, 8 minor, counterexample CX-S06; all development counts reproduced independently) is folded in by repair pass 2 (PI-D-045, `phase_06/skeptic/`): 13 tests for frozen rules (44 of 44 mutations caught), orientation check for `token=<mint>` reads plus a P0 sanity flag, a stricter training gate, the seal manifest's own hash pinned, holdout call counts removed from public records. Relabel with the repaired code: 0 changes. Commits: first pass `4565e0b`, stop records `121384b`, repair pass 2 and its records on top (read with `git log -3`); post-commit results in `phase_06/PHASE_06_EVIDENCE.md`.
+- Branch `feature/predictive-intelligence`: the repair-pass commits are local, not pushed (the orchestrator pushes). `main` untouched. No pull request.
+- Spend: 0 Firecrawl credits; free GeckoTerminal calls only (counts per phase in COST_LEDGER.md; Phase 06's holdout calls are counted only inside `phase_06/sealed/`, PI-D-045 item 6).
 
 ## What exists now
 
-- Targets frozen before any price data was read (Phase 01, fingerprint checked by tests): T1 +25% before -15% within 24 h; T1b the same within 6 h; T2 a fall to half the reference price or trading stopping within 24 h. Price-path labels only, no fill, size, depth or profit claims. The exit-adjusted target is BLOCKED (no historical depth); a liquidity target needs a forward collector (PI-D-020, proposed, needs Elving).
+- Targets frozen before any price data was read (Phase 01, fingerprint checked by tests): T1 +25% before -15% within 24 h; T1b the same within 6 h; T2 a fall to half the reference price or trading stopping within 24 h. Price-path labels only, no fill, size, depth or profit claims. The exit-adjusted target is BLOCKED (no historical depth); a liquidity target needs forward data: Elving approved forward depth and quote collection on 2026-10-25 inside the backtesting module's hourly tracker (D-BT-034), read here through an adapter; both targets stay deferred and unfrozen until enough forward data exists (PI-D-044).
 - Decision unit and time: an exact thesis row, timed by the first state export on `main` that holds it (PI-D-015, PI-D-021). `theses.created_at` is never used as decision time (PI-D-011).
 - Library choice (Phases 02 to 04): 132 repos found, 30 audited at pinned commits, ranked top ten with a blind rescore. The engine core is plain numpy and runs offline (PI-D-031). scikit-learn, LightGBM, MAPIE, lifelines and river stay in a research venv, never the lab's runtime. MiroFish scored 8 of 100: AGPL, needs paid LLM and Zep, runs do not repeat, reports success when the LLM is down; isolated mock-only, no paid use approved.
 - Code (flag OFF, imported by no existing module): `memelab/predictive/` contract.py, decisions.py, runtime.py, store.py, sources.py, features.py, labels.py, with `tests/test_predictive_*.py`.
@@ -25,15 +25,18 @@ Another session built `memelab/backtest/` on `origin/feature/backtesting` (scena
 
 ## Open items, in order
 
-1. Phase 06 skeptic: run an independent skeptic on `audits/predictive-intelligence/phase_06/SKEPTIC_PACKET.md` (brief: `orchestration/SKEPTIC_BRIEF.md`), then a repair pass that folds the review into `phase_06/skeptic/`.
+1. Done 2026-10-25: Phase 06 skeptic and repair pass 2 (PI-D-045).
 2. Phase 06 48 h revision re-read: `python -B audits/predictive-intelligence/phase_06/probes/make_labels.py reread48`, at or after 2026-10-26T13:49Z (it refuses earlier). It needs the development store; if the cloud workspace was reclaimed, rebuild the stores first from the committed raw archives (see `phase_05/data/FEATURE_STORE_CONTRACT.md` and `phase_06/labels/TARGET_SCHEMA.md`).
-3. Mark Phase 06 PASS only when both are done (or a recorded decision moves the re-read), then push.
+3. Fold the re-read's result into the evidence (a revision that changes a label is stored as a new row, PI-D-041); mark Phase 06 PASS only then (or after a recorded decision that moves the re-read), then push.
 4. Reconcile with `feature/backtesting` (PI-D-043), then Phase 07 (transparent baselines).
 
 ## Waiting on Elving
 
-- PI-D-020: a scheduled forward collector for pool depth and quotes (needed for any liquidity or executable target). Not started without his approval.
 - Any paid data, LLM, Zep or MiroFish use; adding research packages to the lab's runtime; a merge into `main`.
+
+## Note outside this branch
+
+The release audit on a full clone (all local branches) flags a blob on the local branch `work/backtesting-collector` (another session's worktree); it is not reachable from `feature/predictive-intelligence`, and that branch's owner reviews it before pushing (PI-D-045 item 7).
 
 ## Lab rules that still bind
 
@@ -49,4 +52,4 @@ python -B audits/predictive-intelligence/phase_06/probes/check_seal.py
 python -m pytest tests -q
 ```
 
-Expect `"problems": []` from the seal check and `1 failed, 1107 passed` from the suite (only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`, a known clock-dependent failure). Then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand.
+Expect `"problems": []` from the seal check and `1 failed, 1124 passed` from the suite (only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`, a known clock-dependent failure). Then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand.

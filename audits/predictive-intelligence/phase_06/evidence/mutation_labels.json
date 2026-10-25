@@ -1,73 +1,73 @@
 {
  "control_exit": 0,
- "mutations": 25,
- "caught": 25,
+ "mutations": 44,
+ "caught": 44,
  "results": [
   {
    "mutation": "tie resolved positive",
    "caught": true,
    "exit": 1,
-   "seconds": 0.4
+   "seconds": 0.5
   },
   {
    "mutation": "upper barrier strict",
    "caught": true,
    "exit": 1,
-   "seconds": 0.4
+   "seconds": 0.5
   },
   {
    "mutation": "pending ignored",
    "caught": true,
    "exit": 1,
-   "seconds": 0.5
+   "seconds": 0.6
   },
   {
    "mutation": "path includes the candle holding t_entry",
    "caught": true,
    "exit": 1,
-   "seconds": 0.4
+   "seconds": 0.5
   },
   {
    "mutation": "empty page read as no trade",
    "caught": true,
    "exit": 1,
-   "seconds": 0.5
+   "seconds": 0.6
   },
   {
    "mutation": "absence ignores the boundary",
    "caught": true,
    "exit": 1,
-   "seconds": 0.4
+   "seconds": 0.6
   },
   {
    "mutation": "other pool not evidenced counts as quiet",
    "caught": true,
    "exit": 1,
-   "seconds": 0.4
+   "seconds": 0.7
   },
   {
    "mutation": "halt without other pools",
    "caught": true,
    "exit": 1,
-   "seconds": 0.5
+   "seconds": 0.6
   },
   {
    "mutation": "list failure means halt",
    "caught": true,
    "exit": 1,
-   "seconds": 0.5
+   "seconds": 0.6
   },
   {
    "mutation": "drawdown threshold from the T1 lower barrier",
    "caught": true,
    "exit": 1,
-   "seconds": 0.8
+   "seconds": 1.1
   },
   {
    "mutation": "no thinning",
    "caught": true,
    "exit": 1,
-   "seconds": 0.6
+   "seconds": 0.8
   },
   {
    "mutation": "purge ignored",
@@ -79,79 +79,193 @@
    "mutation": "identity not checked on reads",
    "caught": true,
    "exit": 1,
-   "seconds": 0.5
+   "seconds": 0.6
   },
   {
    "mutation": "boundary candle kept",
    "caught": true,
    "exit": 1,
-   "seconds": 0.5
+   "seconds": 0.7
   },
   {
    "mutation": "read of another mint accepted",
    "caught": true,
    "exit": 1,
-   "seconds": 0.5
+   "seconds": 0.6
   },
   {
    "mutation": "training gate ignores maturity",
    "caught": true,
    "exit": 1,
-   "seconds": 0.6
+   "seconds": 0.8
   },
   {
    "mutation": "training gate skips the bake-off guard",
    "caught": true,
    "exit": 1,
-   "seconds": 0.6
+   "seconds": 0.7
   },
   {
    "mutation": "capture mode ignored",
    "caught": true,
    "exit": 1,
-   "seconds": 0.7
+   "seconds": 0.9
   },
   {
    "mutation": "revision used before its read",
    "caught": true,
    "exit": 1,
-   "seconds": 0.8
+   "seconds": 1.0
   },
   {
    "mutation": "holdout rows allowed in the table",
    "caught": true,
    "exit": 1,
-   "seconds": 0.6
+   "seconds": 0.9
   },
   {
    "mutation": "revision check ignores the 48 h gap",
    "caught": true,
    "exit": 1,
-   "seconds": 0.8
+   "seconds": 0.9
   },
   {
    "mutation": "cross-target first-touch invariant off",
    "caught": true,
    "exit": 1,
-   "seconds": 0.8
+   "seconds": 0.9
   },
   {
    "mutation": "seal ignores content",
    "caught": true,
    "exit": 1,
-   "seconds": 0.9
+   "seconds": 1.1
   },
   {
    "mutation": "wick flag off",
    "caught": true,
    "exit": 1,
-   "seconds": 0.7
+   "seconds": 0.9
   },
   {
    "mutation": "forbidden field names allowed",
    "caught": true,
    "exit": 1,
-   "seconds": 0.6
+   "seconds": 0.8
+  },
+  {
+   "mutation": "thinning before eligibility (CC-01)",
+   "caught": true,
+   "exit": 1,
+   "seconds": 1.1
+  },
+  {
+   "mutation": "pending at equality (< to <=)",
+   "caught": true,
+   "exit": 1,
+   "seconds": 1.2
+  },
+  {
+   "mutation": "purge boundary (<= to <)",
+   "caught": true,
+   "exit": 1,
+   "seconds": 1.1
+  },
+  {
+   "mutation": "halt span starts at 24 h",
+   "caught": true,
+   "exit": 1,
+   "seconds": 1.0
+  },
+  {
+   "mutation": "halt span overlap to containment",
+   "caught": true,
+   "exit": 1,
+   "seconds": 0.9
+  },
+  {
+   "mutation": "NEITHER and NO_TRADES swapped",
+   "caught": true,
+   "exit": 1,
+   "seconds": 0.5
+  },
+  {
+   "mutation": "P0 from the candle open",
+   "caught": true,
+   "exit": 1,
+   "seconds": 0.9
+  },
+  {
+   "mutation": "T2 drawdown strict",
+   "caught": true,
+   "exit": 1,
+   "seconds": 1.0
+  },
+  {
+   "mutation": "absence cover non-strict",
+   "caught": true,
+   "exit": 1,
+   "seconds": 1.1
+  },
+  {
+   "mutation": "first-touch scan from the end",
+   "caught": true,
+   "exit": 1,
+   "seconds": 1.0
+  },
+  {
+   "mutation": "conservative lens flipped",
+   "caught": true,
+   "exit": 1,
+   "seconds": 1.1
+  },
+  {
+   "mutation": "ceil_grid becomes floor",
+   "caught": true,
+   "exit": 1,
+   "seconds": 1.0
+  },
+  {
+   "mutation": "other pools: only the first two",
+   "caught": true,
+   "exit": 1,
+   "seconds": 1.0
+  },
+  {
+   "mutation": "other pools: four",
+   "caught": true,
+   "exit": 1,
+   "seconds": 1.0
+  },
+  {
+   "mutation": "cross-target drawdown invariant off",
+   "caught": true,
+   "exit": 1,
+   "seconds": 1.1
+  },
+  {
+   "mutation": "gate trusts the stored split",
+   "caught": true,
+   "exit": 1,
+   "seconds": 1.1
+  },
+  {
+   "mutation": "gate takes the original even when a revision left LABELED",
+   "caught": true,
+   "exit": 1,
+   "seconds": 1.1
+  },
+  {
+   "mutation": "gate skips the store-path refusals",
+   "caught": true,
+   "exit": 1,
+   "seconds": 1.2
+  },
+  {
+   "mutation": "P0 sanity flag off",
+   "caught": true,
+   "exit": 1,
+   "seconds": 1.3
   }
  ]
 }

@@ -1,0 +1,75 @@
+{
+ "control_exit": 0,
+ "n": 17,
+ "caught": 3,
+ "results": [
+  {
+   "mutation": "thinning before eligibility (CC-01)",
+   "caught": false
+  },
+  {
+   "mutation": "pending at equality (< to <=)",
+   "caught": false
+  },
+  {
+   "mutation": "purge boundary (<= to <)",
+   "caught": false
+  },
+  {
+   "mutation": "halt span starts at 24 h",
+   "caught": false
+  },
+  {
+   "mutation": "halt span overlap -> containment",
+   "caught": false
+  },
+  {
+   "mutation": "NEITHER and NO_TRADES swapped",
+   "caught": true
+  },
+  {
+   "mutation": "reference = newest candle in read before entry",
+   "caught": true
+  },
+  {
+   "mutation": "p0 from candle open",
+   "caught": false
+  },
+  {
+   "mutation": "T2 drawdown inclusive -> strict",
+   "caught": false
+  },
+  {
+   "mutation": "absence cover strict -> non-strict",
+   "caught": false
+  },
+  {
+   "mutation": "first-touch scan from the end",
+   "caught": true
+  },
+  {
+   "mutation": "training gate allows censored",
+   "caught": false
+  },
+  {
+   "mutation": "training gate allows purged split",
+   "caught": false
+  },
+  {
+   "mutation": "conservative lens flipped",
+   "caught": false
+  },
+  {
+   "mutation": "ceil_grid -> floor",
+   "caught": false
+  },
+  {
+   "mutation": "other pools: only first 2",
+   "caught": false
+  },
+  {
+   "mutation": "cross-target drawdown invariant off",
+   "caught": false
+  }
+ ]
+}

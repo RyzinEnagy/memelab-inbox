@@ -332,9 +332,13 @@ def test_a_read_that_prices_another_token_is_refused(con):
     nometa["body"] = json.dumps({"data": {"attributes": {"ohlcv_list": rows}}}).encode()
     assert S.ingest_gt_response(con, nometa, chain="solana", mint=H.MINT_A, pool=H.POOL_A, now=1)["identity_check"] == "NO_META"
     assert S.table_counts(con)["predictive_candles"] == 0
-    inverted = H.resp(H.POOL_A, H.T0 + 600, rows, H.T0 + 86403)          # token=<mint>: the vendor prices the mint
-    inverted["body"] = H.gt_body(rows, base=H.MINT_B, quote=H.MINT_A)
-    r = S.ingest_gt_response(con, inverted, chain="solana", mint=H.MINT_A, pool=H.POOL_A, now=1)
+    inverted = H.resp(H.POOL_A, H.T0 + 600, rows, H.T0 + 86403)          # token=<mint>, but the body keeps the other token as
+    inverted["body"] = H.gt_body(rows, base=H.MINT_B, quote=H.MINT_A)    # base: refused (CX-S06, PI-D-045); real token reads
+    r = S.ingest_gt_response(con, inverted, chain="solana", mint=H.MINT_A, pool=H.POOL_A, now=1)   # show the mint as base
+    assert r["identity_check"] == "TOKEN_PARAM_NOT_BASE" and r["added"] == 0
+    oriented = H.resp(H.POOL_A, H.T0 + 600, rows, H.T0 + 86404)
+    oriented["body"] = H.gt_body(rows, base=H.MINT_A, quote=H.MINT_B)
+    r = S.ingest_gt_response(con, oriented, chain="solana", mint=H.MINT_A, pool=H.POOL_A, now=1)
     assert r["identity_check"] == "OK_TOKEN_PARAM" and r["added"] == 1
     assert "token=" + H.MINT_A in SRC.gt_url(H.POOL_A, 1, token=H.MINT_A)
 

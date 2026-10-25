@@ -55,6 +55,9 @@ FORBIDDEN_NAME_WORDS = ("profit", "return", "exit", "executable", "pnl", "procee
 SEALED_DIR = "audits/predictive-intelligence/phase_06/sealed"
 NEEDS_OTHER_POOLS = "NEEDS_OTHER_POOLS"
 LIST_FAILED = "LIST_FAILED"
+# P0 against the decision's own snapshot price: outside this ratio range the row is flagged (a wrong-token read, CX-S06, would be
+# thousands of times away; all 224 real T1b development ratios lie in 0.23 to 1.47). A flag, not a class: the registry decides classes.
+P0_SNAPSHOT_RATIO = (0.1, 10.0)
 
 
 class LabelError(ValueError):
@@ -421,6 +424,9 @@ def build(u: Universe) -> tuple[list[dict], dict[str, str]]:
                     rec["state"] = "PENDING"
                 else:
                     rec.update(classify(target, d["decision_time"], rd, u.other_reads.get(k) if target == T2 else None))
+                    sp = snapshot_price(d)
+                    if rec.get("p0") and sp and not (P0_SNAPSHOT_RATIO[0] <= rec["p0"] / sp <= P0_SNAPSHOT_RATIO[1]):
+                        rec["flags"] = list(rec.get("flags") or []) + ["P0_FAR_FROM_SNAPSHOT_PRICE"]
             rec.setdefault("label_class", None)
             rec.setdefault("label", None)
             rec.setdefault("flags", [])
@@ -677,35 +683,53 @@ def refuse_sealed(path: str | Path | None) -> None:
         raise LabelError(f"{path}: the sealed holdout is opened once in Phase 12, never read as training data")
 
 
+def _db_paths(con: sqlite3.Connection) -> list[str]:
+    return [r[2] for r in con.execute("PRAGMA database_list") if r[2]]
+
+
 def training_labels(con: sqlite3.Connection, as_of: float, target: str, *, mode: str = "provider",
                     include_key_conflict: bool = True) -> list[dict]:
     """Labels a model trained as of `as_of` may use: DEVELOPMENT, LABELED (never PENDING, censored, thinned, purged or sealed),
-    label_matures_at <= as_of. A revised label is used from its own read (REVISION_FIRST_READ), the original before it. Mode
-    'capture' also requires label_observed_at <= as_of (what the lab actually held then); 'provider' is the reconstruction."""
+    matured by `as_of`. Split and maturity are recomputed from the decision time and the frozen registry, never taken from the
+    stored columns (a stored row that disagrees raises). Every version of a (decision, target) is considered: the newest one
+    available by `as_of` decides, so a revision that leaves LABELED removes the label from training (a revised row is available
+    from its own read, the original from its maturity). Mode 'capture' also requires label_observed_at <= as_of (what the lab
+    actually held then); 'provider' is the reconstruction. The store file must not be the sealed holdout or bake-off data."""
     if target not in TARGETS:
         raise LabelError(f"{target} is not a primary target")
     if mode not in ("provider", "capture"):
         raise LabelError("mode is provider or capture")
-    rows = S.iter_rows(con, "SELECT * FROM predictive_labels WHERE target=? AND split='DEVELOPMENT' AND state='LABELED' "
-                            "AND censored=0 ORDER BY decision_key, id", (target,))
+    for p in _db_paths(con):
+        refuse_sealed(p)
+        R.refuse_bakeoff_labels(path=p)
+    rows = S.iter_rows(con, "SELECT * FROM predictive_labels WHERE target=? ORDER BY decision_key, id", (target,))
     R.refuse_bakeoff_labels(rows)
-    best: dict[str, tuple[float, dict]] = {}
+    best: dict[str, tuple[float, int, dict]] = {}
     for r in rows:
-        if r["split"] != "DEVELOPMENT" or r["label"] not in (0, 1):
-            raise LabelError("training labels must be matured development labels")
-        avail = r["label_matures_at"] if r["revision_of"] is None else max(r["label_observed_at"], r["label_matures_at"])
+        if r["target_version"] != C.TARGETS[target]["version"]:
+            raise LabelError(f"row {r['label_key'][:12]} has target version {r['target_version']}, not the registry's")
+        split = split_of(target, r["decision_time"])
+        mat = C.label_matures_at(target, r["decision_time"])
+        if r["split"] != split or abs(float(r["label_matures_at"]) - mat) > 1e-6:
+            raise LabelError(f"row {r['label_key'][:12]}: stored split or maturity disagrees with the registry "
+                             f"({r['split']} vs {split})")
+        if split != "DEVELOPMENT":
+            continue
+        avail = mat if r["revision_of"] is None else max(float(r["label_observed_at"] or math.inf), mat)
         if mode == "capture":
-            avail = max(avail, r["label_observed_at"])
-        if avail > as_of or r["label_matures_at"] > as_of:
+            avail = max(avail, float(r["label_observed_at"] or math.inf))
+        if avail > as_of:
+            continue
+        cur = best.get(r["decision_key"])
+        if cur is None or (avail, r["id"]) >= (cur[0], cur[1]):
+            best[r["decision_key"]] = (avail, r["id"], r)
+    out = []
+    for _, _, r in best.values():
+        if r["state"] != "LABELED" or r["censored"] or r["label"] not in (0, 1):
             continue
         if not include_key_conflict and "KEY_CONFLICT" in json.loads(r["flags_json"]):
             continue
-        cur = best.get(r["decision_key"])
-        if cur is None or avail >= cur[0]:
-            best[r["decision_key"]] = (avail, r)
-    out = [v[1] for v in best.values()]
-    for r in out:
         C.assert_scorable({"label": r["label"], "target": target, "decision_time": r["decision_time"], "label_status": r["state"],
-                           "label_observed_at": r["label_observed_at"], "forecast_id": r["label_key"]},
-                          as_of if mode == "capture" else max(as_of, r["label_observed_at"]))
+                           "label_observed_at": r["label_observed_at"], "forecast_id": r["label_key"]}, as_of)
+        out.append(r)
     return sorted(out, key=lambda r: (r["decision_time"], r["mint"]))

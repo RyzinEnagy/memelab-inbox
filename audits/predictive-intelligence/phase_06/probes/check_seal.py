@@ -1,8 +1,10 @@
 """Phase 06: check the holdout seal without opening it.
 
 Recomputes the sha256 and size of every file listed in sealed/SEAL.json (bytes only; nothing is decompressed or parsed), checks
-the seal's own digest, and checks that the holdout label file's sha256 is the one recorded in PHASE_06_RESULTS.json and in
-docs/predictive-intelligence/DECISIONS.md. Exit 0 when the seal holds, 1 otherwise.
+the seal's own digest, and checks that three values are recorded OUTSIDE the seal, in docs/predictive-intelligence/DECISIONS.md
+(and the holdout label hash also in PHASE_06_RESULTS.json): the holdout label file's sha256, the seal digest, and the sha256 of
+SEAL.json itself, so a rewritten SEAL.json fails (Phase 06 skeptic m4, PI-D-045). It prints no count of sealed files (m8).
+Exit 0 when the seal holds, 1 otherwise.
 
     python -B check_seal.py
 """
@@ -27,9 +29,12 @@ def main() -> int:
     res = PHASE / "PHASE_06_RESULTS.json"
     if res.exists() and h not in res.read_text():
         probs.append("holdout label sha256 not in PHASE_06_RESULTS.json")
-    if h not in (REPO / "docs/predictive-intelligence/DECISIONS.md").read_text():
-        probs.append("holdout label sha256 not in DECISIONS.md")
-    print(json.dumps({"files": len(seal["files"]), "holdout_labels_sha256": h, "seal_sha256": seal.get("seal_sha256"),
+    dec = (REPO / "docs/predictive-intelligence/DECISIONS.md").read_text()
+    own = L.file_sha256(PHASE / "sealed" / "SEAL.json")
+    for name, v in (("holdout label sha256", h), ("seal digest", seal.get("seal_sha256")), ("SEAL.json sha256", own)):
+        if not v or v not in dec:
+            probs.append(f"{name} not recorded in DECISIONS.md")
+    print(json.dumps({"holdout_labels_sha256": h, "seal_sha256": seal.get("seal_sha256"), "seal_json_sha256": own,
                       "problems": probs}, indent=1))
     return 1 if probs else 0
 

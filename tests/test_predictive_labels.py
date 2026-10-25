@@ -479,3 +479,164 @@ def test_p09_a_decision_whose_route_resolves_no_pool_is_a_censored_gap_not_unrea
     p = dec(pool=None, route="CURRENT_VENDOR_LIST", t=L.prospective_start() + 60)
     recs, elig = L.build(L.Universe([p], as_of=LATE))
     assert elig[p["decision_key"]] == "NOT_READ" and {r["state"] for r in recs} == {"PROSPECTIVE"}
+
+
+# ---------------------------------------------------------------- repair pass 2: the independent skeptic's surviving mutations (M1)
+def test_m1_p0_is_the_reference_candle_close_not_its_open():
+    rows = ref_rows(1.0)
+    rows[-1] = H.candle(rows[-1][0], c=1.0, o=0.8, h=1.0, l=0.8)            # reference candle opens at 0.8, closes at 1.0
+    rows += [H.candle(int(L.ceil_grid(TE)) + 600, c=1.0, h=1.10, l=0.99)] + grid(TE + 3600, TE + 2 * 86400)
+    r = build_one(rows)[0]
+    assert r[L.T1]["p0"] == 1.0 and r[L.T1]["label_class"] == "NEITHER"   # from the open (0.8) the 1.10 high would be +37%
+
+
+def test_m1_thinning_runs_after_eligibility():
+    gap = dec(t=DT, key="gap")                                              # its own read is empty: VENDOR_OR_ROUTE_GAP
+    later = dec(t=DT + 3 * 3600, key="later")
+    rows = [H.candle(s, c=1.0) for s in range(int(DT + 2 * 3600) // 300 * 300, int(DT + 3 * 3600 + 3 * 86400), 300)]
+    recs, elig = L.build(L.Universe([gap, later], as_of=LATE, read_of={
+        "gap": mkread([], L.needed_boundary(L.T2, DT)), "later": mkread(rows, L.needed_boundary(L.T2, DT + 3 * 3600))}))
+    assert elig == {"gap": "VENDOR_OR_ROUTE_GAP", "later": "ELIGIBLE"}
+    assert {r["target"]: r["state"] for r in recs if r["decision_key"] == "later"} == {t: "LABELED" for t in L.TARGETS}
+
+
+def test_m1_a_trade_from_18_h_in_the_halt_span_is_no_halt():
+    assert L.halt_span(DT)[0] == TE + 18 * 3600                              # the registry's span start, from absolute times
+    rows = ref_rows(1.0) + grid(TE, TE + 3600) + [H.candle(int(L.ceil_grid(TE + 19 * 3600)), c=1.0)]   # one trade at about 19 h
+    r = build_one(rows, others=[])[0][L.T2]
+    assert r["label_class"] == "NO_SEVERE_EVENT"
+
+
+def test_m1_a_candle_overlapping_the_halt_span_start_is_in_the_span():
+    s, e = L.halt_span(DT)
+    edge = int(s // 300 * 300)                                              # starts before the span, ends inside it
+    assert edge < s < edge + 300
+    rows = ref_rows(1.0) + grid(TE, TE + 3600) + [H.candle(edge, c=1.0)]
+    assert L.in_span(rows[-1], s, e) and not L.in_span(H.candle(edge - 300), s, e)
+    assert build_one(rows, others=[])[0][L.T2]["label_class"] == "NO_SEVERE_EVENT"
+
+
+def test_m1_exactly_three_other_pools_count():
+    rows = ref_rows(1.0) + grid(TE, TE + 3 * 3600)
+    s, e = L.halt_span(DT)
+    quiet = [mkread(grid(TE - 7200, TE), L.ceil_grid(e), pool=p) for p in (POOL_A2, POOL_B, H.POOL_A2)]
+    traded = mkread(grid(TE - 7200, TE) + [H.candle(int(L.ceil_grid(s)) + 600, c=1.0)], L.ceil_grid(e), pool=POOL_B)
+    assert build_one(rows, others=[quiet[0], quiet[1], traded])[0][L.T2]["label_class"] == "NO_SEVERE_EVENT"   # third counts
+    assert build_one(rows, others=quiet + [traded])[0][L.T2]["label_class"] == "TRADING_HALT"                 # fourth does not
+
+
+def test_m1_a_low_exactly_at_half_is_a_drawdown():
+    rows = ref_rows(1.0) + [H.candle(int(L.ceil_grid(TE)) + 900, c=0.6, o=1.0, h=1.0, l=0.5)] + grid(TE + 3600, TE + 2 * 86400, c=0.6)
+    assert build_one(rows)[0][L.T2]["label_class"] == "DRAWDOWN_50"
+
+
+def test_m1_span_ends_are_rounded_up_to_the_candle_grid():
+    assert L.ceil_grid(H.T0 + 1) == H.T0 + 300 and L.ceil_grid(H.T0) == H.T0
+    s, e = L.halt_span(DT)
+    assert e % 300 and L.needed_boundary(L.T2, DT) == L.ceil_grid(e) > e
+    assert not L.absence_evidenced(mkread(ref_rows(), e // 300 * 300), s, e)       # floor of the span end is short
+
+
+def test_m1_absence_needs_a_candle_strictly_before_the_span():
+    s, e = L.halt_span(DT)
+    rd = L.Read(pool=POOL, mint=MINT, url="u", boundary=L.ceil_grid(e), retrieved_at=LATE, http_status=200, identity="OK_TOKEN_PARAM",
+                candles=((s, 1, 1, 1, 1, 1),), cover_from=s)
+    assert not L.absence_evidenced(rd, s, e)
+
+
+def test_m1_pending_and_purge_boundaries_are_inclusive():
+    rows = ref_rows(1.0) + grid(TE, TE + 2 * 86400)
+    at = C.label_matures_at(L.T1B, DT)
+    assert build_one(rows, boundary=L.needed_boundary(L.T1B, DT), retrieved=at)[0][L.T1B]["state"] == "LABELED"
+    t = L.holdout_start() - (C.label_matures_at(L.T1B, 0.0) - 0.0)          # matures exactly at the holdout start
+    assert C.label_matures_at(L.T1B, t) == L.holdout_start() and L.split_of(L.T1B, t) == "DEVELOPMENT"
+
+
+def test_m1_conservative_lens_values():
+    recs, _ = build_one([])                                                  # empty page: censored gap
+    lens = {t: json.loads(L.record_row(r, run_key="r", registry_sha="x", now=0)["sensitivity_json"])["conservative_lens"]
+            for t, r in recs.items()}
+    assert lens == {L.T1: 0, L.T1B: 0, L.T2: 1}
+
+
+def test_m1_t2_drawdown_without_a_t1_touch_violates_the_invariant():
+    t1 = {"decision_key": "k", "target": L.T1, "state": "LABELED", "label_class": "NEITHER", "first_touch_start": None, "p0": 1.0, "p0_start": 0}
+    t2 = {"decision_key": "k", "target": L.T2, "state": "LABELED", "label_class": "DRAWDOWN_50", "first_touch_start": 600, "p0": 1.0, "p0_start": 0}
+    assert [v["rule"] for v in L.cross_target_violations([t1, t2])] == ["a 50% drawdown touches the T1 lower barrier no later"]
+
+
+# ---------------------------------------------------------------- repair pass 2: the training gate (m1 to m3)
+def _store_one(con, rows=None):
+    recs, _ = build_one(rows or (ref_rows() + grid(TE, TE + 2 * 86400)))
+    L.store_labels(con, list(recs.values()), export_ref="x", params={}, now=LATE)
+    return recs, {r["target"]: r for r in S.iter_rows(con, "SELECT * FROM predictive_labels")}
+
+
+def test_m1_gate_recomputes_split_and_maturity_from_the_registry(con):
+    _, stored = _store_one(con)
+    row = dict(stored[L.T1])
+    del row["id"]
+    forged = dict(row, label_key="forged", decision_key="forged", decision_time=L.holdout_start() + 3600,
+                  label_matures_at=C.label_matures_at(L.T1, L.holdout_start() + 3600) - 4 * 86400)
+    L._insert_strict(con, "predictive_labels", forged)                       # claims DEVELOPMENT for a holdout-time decision
+    with pytest.raises(L.LabelError, match="disagrees with the registry"):
+        L.training_labels(con, LATE, L.T1)
+
+
+def test_m1_gate_never_returns_a_purged_labeled_row(tmp_path):
+    c = L.connect(tmp_path / "p.sqlite")
+    t = L.holdout_start() - 10 * 3600                                         # T1 purged by the registry
+    _, stored = _store_one(c)
+    row = dict(stored[L.T1])
+    del row["id"]
+    L._insert_strict(c, "predictive_labels", dict(row, label_key="purged", decision_key="purged", decision_time=t, split="PURGED",
+                                                  label_matures_at=C.label_matures_at(L.T1, t)))
+    assert [r["decision_key"] for r in L.training_labels(c, LATE, L.T1)] == [row["decision_key"]]
+
+
+def test_m3_a_revision_that_leaves_labeled_removes_the_label(con):
+    recs, stored = _store_one(con)
+    rev = dict(recs[L.T1], state="UNVERIFIABLE_NO_VENDOR_HISTORY", label_class=None, label=None, revision_of=stored[L.T1]["label_key"],
+               revision_reason="TEST", read=mkread(ref_rows() + grid(TE, TE + 2 * 86400), T2B(), LATE + 3 * 86400))
+    rev["censored"] = 1
+    L.store_labels(con, [rev], export_ref="x", params={"r": 1}, now=LATE + 3 * 86400)
+    assert len(L.training_labels(con, LATE, L.T1)) == 1                     # before the revising read
+    assert L.training_labels(con, LATE + 3 * 86400, L.T1) == []              # after it: censored, not trained on
+
+
+def test_m2_gate_refuses_a_sealed_or_bakeoff_store_file(tmp_path, monkeypatch):
+    for bad in (L.SEALED_DIR, R.BAKEOFF_DATA_DIR):
+        p = tmp_path / bad / "store.sqlite"
+        p.parent.mkdir(parents=True)
+        c = L.connect(p)
+        with pytest.raises(ValueError):
+            L.training_labels(c, LATE, L.T1)
+        c.close()
+
+
+# ---------------------------------------------------------------- repair pass 2: CX-S06, a token=<mint> read that kept the other base
+ZCAT, ZEC, ZPOOL = "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR", "A7bdiYdS5GjqGFtxf17ppRHtDKPkkRqbKtR27dxvQXaS", "BTccxxTFi7a9xJTE1exKn38Jgie35s6gNeRxd8DM61Rc"
+
+
+def test_cx_s06_a_token_read_whose_body_keeps_the_other_token_as_base_gives_no_candle():
+    """The real ZEC/ZCAT pool (ZCAT quote in the vendor list). Real token=<mint> reads show ZCAT as meta.base at about 0.046 USD;
+    a body that kept ZEC as base (about 1,161 USD) would label ZCAT from ZEC's path. Accepted as OK_TOKEN_PARAM before the repair."""
+    rows = ref_rows(1161.0) + [H.candle(int(L.ceil_grid(TE)) + 600, c=1161.0, h=1161.0 * 1.3, l=1160.0)] + grid(TE + 3600, TE + 2 * 86400, c=1161.0)
+    url = H.GT.format(pool=ZPOOL, b=int(T2B())) + f"&token={ZCAT}"
+    wrong = H.gt_body(rows, base=ZEC, quote=ZCAT)
+    rd = L.read_from_body(wrong, mint=ZCAT, pool=ZPOOL, url=url, boundary=T2B(), retrieved_at=LATE, http_status=200, response_key="cx")
+    assert rd.identity == "TOKEN_PARAM_NOT_BASE" and not rd.ok and rd.candles == ()
+    d = dec(mint=ZCAT, pool=ZPOOL, price=0.0456, vol=2e6, route="CURRENT_VENDOR_LIST")
+    recs, elig = L.build(L.Universe([d], as_of=LATE, read_of={d["decision_key"]: rd}))
+    assert elig[d["decision_key"]] == "VENDOR_OR_ROUTE_GAP" and all(r["label"] is None for r in recs)
+    right = L.read_from_body(H.gt_body(rows, base=ZCAT, quote=ZEC), mint=ZCAT, pool=ZPOOL, url=url, boundary=T2B(), retrieved_at=LATE,
+                             http_status=200, response_key="ok")
+    assert right.identity == "OK_TOKEN_PARAM" and right.ok
+
+
+def test_p0_far_from_the_snapshot_price_is_flagged():
+    rows = ref_rows(1161.0) + grid(TE, TE + 2 * 86400, c=1161.0)
+    far = build_one(rows, price=0.0456)[0]
+    near = build_one(rows, price=1100.0)[0]
+    assert all("P0_FAR_FROM_SNAPSHOT_PRICE" in r["flags"] for r in far.values())
+    assert not any("P0_FAR_FROM_SNAPSHOT_PRICE" in r["flags"] for r in near.values())
