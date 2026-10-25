@@ -60,8 +60,9 @@ def default_http_get(url: str, timeout: float = 30.0) -> tuple[int, bytes]:
         return 0, b""
 
 
-def get_json(url: str, budget: Budget, http_get: Callable[[str], tuple[int, bytes]] = default_http_get) -> tuple[int, dict | None, str | None]:
-    """Bounded GET with exponential backoff on 429/5xx/network errors. Returns (status, json, raw_ref)."""
+def get_json(url: str, budget: Budget, http_get: Callable[[str], tuple[int, bytes]] = default_http_get, provider: str = PROVIDER) -> tuple[int, dict | None, str | None]:
+    """Bounded GET with exponential backoff on 429/5xx/network errors. Returns (status, json, raw_ref); the raw body is
+    kept under raw/<provider>/."""
     for attempt in range(budget.max_retries + 1):
         if budget.calls >= budget.max_calls:
             raise BudgetExhausted(f"GeckoTerminal budget of {budget.max_calls} calls used")
@@ -74,7 +75,7 @@ def get_json(url: str, budget: Budget, http_get: Callable[[str], tuple[int, byte
             except json.JSONDecodeError:
                 budget.errors += 1
                 return status, None, None
-            return status, d, store.save_raw(PROVIDER, body)
+            return status, d, store.save_raw(provider, body)
         if status in (429, 500, 502, 503, 504, 0) and attempt < budget.max_retries:
             budget.retries += 1
             budget.sleep(min(60.0, 5.0 * (2 ** attempt)) + random.random())

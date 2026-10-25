@@ -1,0 +1,297 @@
+{
+ "decisions": 19,
+ "rows": [
+  {
+   "chain": "solana",
+   "mint": "7M3gDRgozcumFsiTeXwjB8cYxpg7Q9R7rH7rkw2Fpump",
+   "pool": "FVq2chsiAcPqwL9L3zafF8juQHb7mui6LWMuE8g5L4K4",
+   "pool_source": "EXPORT_GRADUATED_POOL",
+   "status": "RESEARCH REQUIRED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11545.2,
+   "first_quote_lag_s": 11545.4,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 1,
+   "states": {
+    "POOL:OK": 1,
+    "QUOTE:OK": 3
+   }
+  },
+  {
+   "chain": "solana",
+   "mint": "9aqmJjCnnMQv42TXLk921ceUkN35nea2QP969n1caqjj",
+   "pool": "7Nj7mBE7iVmjvnBHNvjgaz6G3ZktTHFNbf7aQDfZ7iNR",
+   "pool_source": "EXPORT_GRADUATED_POOL",
+   "status": "REJECTED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11545.2,
+   "first_quote_lag_s": 11552.9,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 1,
+   "states": {
+    "POOL:OK": 1,
+    "QUOTE:OK": 3
+   }
+  },
+  {
+   "chain": "solana",
+   "mint": "3vZY2MKBzRMoT4nGUCWYzXPTES2jLaLNMV8Fn5cKpump",
+   "pool": "AvM3A3hFJpJLK4MtMzyWhumaXKHvFKdt7LH2kQeXaRCJ",
+   "pool_source": "EXPORT_GRADUATED_POOL",
+   "status": "RESEARCH REQUIRED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11545.2,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  },
+  {
+   "chain": "solana",
+   "mint": "kLqMvUm1p4pRbxU4r8kWCTVAuWMJLtcTJqGb4b5pump",
+   "pool": "29wZa1Cfy7JmsRJ2dohAKmuLU4Fsu8rHh5BUrtMb24GQ",
+   "pool_source": "EXPORT_GRADUATED_POOL",
+   "status": "RESEARCH REQUIRED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11545.2,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  },
+  {
+   "chain": "base",
+   "mint": "0x532f27101965dd16442e59d40670faf5ebb142e4",
+   "pool": "0xba3f945812a83471d709bce9c3ca699a19fb46f7",
+   "pool_source": "EXPORT_PRIMARY_POOL",
+   "status": "RESEARCH REQUIRED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11566.0,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  },
+  {
+   "chain": "bsc",
+   "mint": "0x3d4f0513e8a29669b960f9dbca61861548a9a760",
+   "pool": "0x7f51bbf34156ba802deb0e38b7671dc4fa32041d",
+   "pool_source": "EXPORT_PRIMARY_POOL",
+   "status": "RESEARCH REQUIRED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11555.7,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  },
+  {
+   "chain": "bsc",
+   "mint": "0x6ec90334d89dbdc89e08a133271be3d104128edb",
+   "pool": "0x933477eba23726ca95a957cb85dbb1957267ef85",
+   "pool_source": "EXPORT_PRIMARY_POOL",
+   "status": "RESEARCH REQUIRED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11555.7,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  },
+  {
+   "chain": "solana",
+   "mint": "7SL2VnfYsChvog5oQY9Nmtqu1wceaMiQzWoqoLQpump",
+   "pool": "B4Wmjc6PvjCtU3qSVS3eTT9Mr4M5V5jBkRQctWANTc71",
+   "pool_source": "EXPORT_GRADUATED_POOL",
+   "status": "REJECTED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11545.2,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  },
+  {
+   "chain": "solana",
+   "mint": "AKotzk1dhcNangAJBtvNKtT9bhbSVZc2mMhRFgkFpump",
+   "pool": "4FoNNNMMKMa66ppCiA9557cg63s2BNN9UoFcaKxXbmvg",
+   "pool_source": "EXPORT_GRADUATED_POOL",
+   "status": "REJECTED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11545.2,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  },
+  {
+   "chain": "solana",
+   "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+   "pool": "6e3jZLtf4tQbWZm3f7A66jF8tfZn6MRQVrbDFgcNWarA",
+   "pool_source": "EXPORT_GRADUATED_POOL",
+   "status": "DISTRIBUTION RISK",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11545.2,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  },
+  {
+   "chain": "solana",
+   "mint": "7VertkgF9KLhxxJXHX6uaWuoYZTP9LdGj2bWmVXVpump",
+   "pool": "CyJwKnLiiY4fmiwqMCSWFSHxo7T9Ubshgs2uRAuJCrk5",
+   "pool_source": "EXPORT_GRADUATED_POOL",
+   "status": "REJECTED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11545.2,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  },
+  {
+   "chain": "solana",
+   "mint": "EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR",
+   "pool": "ioaDGkQUh6h5nNTmcv8k3NvAgSTiS3xMFNaN3j11KzV",
+   "pool_source": "EXPORT_GRADUATED_POOL",
+   "status": "REJECTED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11545.2,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  },
+  {
+   "chain": "solana",
+   "mint": "NTRNDMqQSiwEC2jJs3wJiZS6bpGYQJtMNQJgiX3WyV6",
+   "pool": "7r3ZPwVD966dZfZ5xifEQyAfME7xSTA5bbmztctQhDG3",
+   "pool_source": "EXPORT_GRADUATED_POOL",
+   "status": "REJECTED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11545.2,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  },
+  {
+   "chain": "solana",
+   "mint": "9k6gfTLbDaUpx635kQaGTeDvzYs7hWdDW1MerpjYpump",
+   "pool": "7c8vwwPwHpky4UCHjXdvfZRHpjLEpW9Rpb92LeodJDbW",
+   "pool_source": "EXPORT_GRADUATED_POOL",
+   "status": "OVEREXTENDED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11545.2,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  },
+  {
+   "chain": "solana",
+   "mint": "2SESmE4AN8KSKu3MUtF6QJTFC5LT6WzodGW7JMQRyxvP",
+   "pool": "FNBtPfCeGZ1ydcmhxKDt1L1v9C3tmVYPDW8gPcXLeWbi",
+   "pool_source": "VENDOR_TOP_POOL",
+   "status": "RESEARCH REQUIRED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11545.2,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  },
+  {
+   "chain": "solana",
+   "mint": "4Hcm1TfA1MvVhCQHvJCcKL7ymUhJZAV7P439H5ZHnKRh",
+   "pool": "BrvNhGJQiMdNUrr8ttr7nbabuV3XyWM1FvRBXjSeTuDW",
+   "pool_source": "VENDOR_TOP_POOL",
+   "status": "RESEARCH REQUIRED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11545.2,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  },
+  {
+   "chain": "solana",
+   "mint": "43N5UGr3mnfhJFzpBPNM7ZdnobghiYBtHTaQfZQv65mh",
+   "pool": "5zxwes1V8Rat69t4LuqC3Ei6oeTu4DT8PC5JiGdYqodC",
+   "pool_source": "VENDOR_TOP_POOL",
+   "status": "RESEARCH REQUIRED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11545.2,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  },
+  {
+   "chain": "solana",
+   "mint": "PonziBtgwfemdft5ch9Rj9pKcSPSx5cJbgPiGJNAxz7",
+   "pool": "AtTEDNMCAKPxUHVxKFVDhV5uVszoXPrbAew2iintUdZY",
+   "pool_source": "VENDOR_TOP_POOL",
+   "status": "RESEARCH REQUIRED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11545.2,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  },
+  {
+   "chain": "solana",
+   "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+   "pool": "zxTpi4BtaWX3mgdAPoezkMD1hxx8CdeCfrqXMWvSCLX",
+   "pool_source": "VENDOR_TOP_POOL",
+   "status": "OVEREXTENDED",
+   "export_time": 1792923002.0,
+   "first_pool_lag_s": 11545.2,
+   "first_quote_lag_s": null,
+   "pool_hours_of_25": 1,
+   "quote_hours_of_25": 0,
+   "states": {
+    "POOL:OK": 1
+   }
+  }
+ ],
+ "snapshots": {
+  "POOL:OK": 19,
+  "QUOTE:OK": 6,
+  "QUOTE:QUOTE_UNSUPPORTED_CHAIN": 3
+ }
+}

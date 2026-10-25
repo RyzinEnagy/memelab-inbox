@@ -198,6 +198,29 @@ def cmd_refresh(a):
     print(json.dumps(out, indent=1, default=str))
 
 
+def cmd_depth(a):
+    """Forward depth collector (D-BT-034). `collect` is NETWORK (read-only, budgeted): GeckoTerminal pool reads and, on
+    Solana, keyless Jupiter sell quotes for the lab's decisions of the last 24 h. `status` reads the database only."""
+    import time as _t
+    from . import depth
+    con = _con(a)
+    now = _ts(a.now) if a.now else _t.time()
+    if a.action == "status":
+        out = depth.status(con, now=now, hours=a.hours)
+        print(json.dumps(out, indent=1, default=str))
+        return
+    store.RAW_DIR = (Path(a.db).parent / "raw") if a.db else store.RAW_DIR
+    exports = None
+    if a.repo:
+        try:
+            exports = depth.export_decisions(a.repo, a.ref, now=now)
+        except Exception as e:                       # lab exports not readable: collect for stored decisions only
+            exports = {"status": f"EXPORTS_UNREADABLE: {type(e).__name__}", "decisions": []}
+    out = depth.collect(con, exports=exports, now=None if not a.now else now, gt_max_calls=a.max_gt_calls, jup_max_calls=a.max_quote_calls,
+                        gt_spacing_s=a.gt_spacing, jup_spacing_s=a.quote_spacing, deadline_s=a.deadline)
+    print(json.dumps(out, indent=1, default=str))
+
+
 def cmd_backup(a):
     """Consistent copy of the live research database (sqlite backup API; includes what is still in the WAL file)."""
     from . import schema
@@ -253,6 +276,15 @@ def add_subparser(sp):
     q = ssp.add_parser("refresh", help="NETWORK (read-only): fetch new hourly bars for windows waiting on a refresh, within a call budget")
     q.add_argument("--mints", nargs="*"); q.add_argument("--max-calls", type=int, default=20); q.add_argument("--spacing", type=float, default=3.0)
     q.add_argument("--db"); q.set_defaults(fn=cmd_refresh)
+    q = ssp.add_parser("depth", help="forward depth collector: collect (NETWORK, read-only, budgeted) or status")
+    q.add_argument("action", choices=["collect", "status"])
+    q.add_argument("--repo", help="git repository holding the lab's state exports (a shallow fetch of main is enough)")
+    q.add_argument("--ref", default="refs/remotes/origin/main"); q.add_argument("--now", help="UTC time of this run (default: now)")
+    q.add_argument("--max-gt-calls", type=int, default=6); q.add_argument("--max-quote-calls", type=int, default=40)
+    q.add_argument("--gt-spacing", type=float, default=10.0); q.add_argument("--quote-spacing", type=float, default=2.5)
+    q.add_argument("--deadline", type=float, default=100.0, help="no new call starts after this many seconds")
+    q.add_argument("--hours", type=float, default=48.0, help="status: decisions exported in the last N hours")
+    q.add_argument("--db"); q.set_defaults(fn=cmd_depth)
     q = ssp.add_parser("backup", help="consistent copy of the research database while it may be in use")
     q.add_argument("--to", required=True); q.add_argument("--db"); q.set_defaults(fn=cmd_backup)
     q = ssp.add_parser("schema", help="JSON Schema of the report document")

@@ -250,8 +250,50 @@ V1_DOWN = "\n".join(
     + [f"DROP TABLE IF EXISTS {t};" for t in reversed(APPEND_ONLY)]
 )
 
-MIGRATIONS = [(1, "backtesting core v1", V1_UP, V1_DOWN)]
-BT_TABLES = list(V1_TABLES)
+# v2 (D-BT-034): forward depth collector. Additive: two new append-only tables; v1 tables are unchanged.
+V2_TABLES = {
+    # one row per lab decision (exact thesis row first visible in an export) the collector follows for 25 h
+    "bt_depth_decisions": """
+CREATE TABLE IF NOT EXISTS bt_depth_decisions (
+  id INTEGER PRIMARY KEY,
+  chain TEXT NOT NULL, mint TEXT NOT NULL, pool_address TEXT,
+  pool_source TEXT CHECK (pool_source IN ('EXPORT_PRIMARY_POOL','EXPORT_GRADUATED_POOL','VENDOR_TOP_POOL','NO_POOL','UNSUPPORTED_CHAIN')),
+  pool_resolved_at REAL,
+  export_commit TEXT NOT NULL, export_time REAL NOT NULL, export_path TEXT,
+  created_at REAL NOT NULL, row_sha256 TEXT NOT NULL, status TEXT,
+  recorded_at REAL NOT NULL, content_hash TEXT NOT NULL,
+  UNIQUE(chain, mint, row_sha256)
+);
+CREATE INDEX IF NOT EXISTS bt_depth_decisions_time ON bt_depth_decisions(export_time);
+""",
+    # one row per pool read (kind POOL) or sell quote (kind QUOTE); captured_at is when the response arrived
+    "bt_depth_snapshots": """
+CREATE TABLE IF NOT EXISTS bt_depth_snapshots (
+  id INTEGER PRIMARY KEY,
+  run_id TEXT NOT NULL, decision_id INTEGER NOT NULL REFERENCES bt_depth_decisions(id),
+  chain TEXT NOT NULL, mint TEXT NOT NULL, pool_address TEXT NOT NULL,
+  kind TEXT NOT NULL CHECK (kind IN ('POOL','QUOTE')), provider TEXT NOT NULL,
+  size_usd REAL, token_amount REAL, token_amount_raw TEXT, decimals INTEGER,
+  request_url TEXT, captured_at REAL, http_status INTEGER, raw_sha256 TEXT, raw_ref TEXT,
+  state TEXT NOT NULL, since_export_s REAL,
+  reserve_usd REAL, price_usd REAL, out_usd REAL,
+  price_impact REAL,                -- as the quote source returns it: a decimal ratio (0.01 is 1%)
+  value_json TEXT,
+  recorded_at REAL NOT NULL, content_hash TEXT NOT NULL,
+  UNIQUE(content_hash)
+);
+CREATE INDEX IF NOT EXISTS bt_depth_snapshots_key ON bt_depth_snapshots(chain, mint, pool_address, kind, captured_at);
+""",
+}
+V2_UP = "\n".join(V2_TABLES.values()) + "\n" + _triggers(list(V2_TABLES))
+V2_DOWN = "\n".join(
+    [f"DROP TRIGGER IF EXISTS {t}_no_update; DROP TRIGGER IF EXISTS {t}_no_delete;" for t in V2_TABLES]
+    + [f"DROP TABLE IF EXISTS {t};" for t in reversed(list(V2_TABLES))]
+)
+
+MIGRATIONS = [(1, "backtesting core v1", V1_UP, V1_DOWN), (2, "forward depth collector", V2_UP, V2_DOWN)]
+LATEST = max(m[0] for m in MIGRATIONS)
+BT_TABLES = list(V1_TABLES) + list(V2_TABLES)
 
 
 def _checksum(sql: str) -> str:

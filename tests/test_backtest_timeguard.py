@@ -204,13 +204,13 @@ def test_migration_on_copy_of_tracked_db_leaves_legacy_unchanged(tmp_path):
     schema.backup_db(src, dst)
     c = sqlite3.connect(dst)
     before = _legacy_fingerprint(c)
-    assert schema.migrate(c) == [1]
+    assert schema.migrate(c) == [m[0] for m in schema.MIGRATIONS]   # [1, 2] since D-BT-034
     assert schema.migrate(c) == []                                  # idempotent
     c.close()
     c = sqlite3.connect(dst)                                        # reopen
-    assert schema.current_version(c) == 1
+    assert schema.current_version(c) == schema.LATEST
     assert _legacy_fingerprint(c) == before
-    assert schema.rollback(c) == [1]
+    assert schema.rollback(c) == [m[0] for m in schema.MIGRATIONS][::-1]
     assert not [r for r in c.execute("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'bt_%' AND name != 'bt_schema_migrations'")]
     assert _legacy_fingerprint(c) == before
     c.close()
