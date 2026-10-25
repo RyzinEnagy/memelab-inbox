@@ -83,6 +83,9 @@ DEBUG_RUNS: list[str] = [
     "tables, then stopped in the P36-OC trap (the in-memory store refused the copied decision row by its foreign key to the raw "
     "export read); outputs were not read; repaired in the runner only (foreign keys off in that in-memory copy) and rerun as "
     "recorded run 2, which supersedes it",
+    "recorded run 2 at a52233c (22:55:49Z to 22:56:44Z): every configuration, all traps passed; the runner's ledger check failed "
+    "because the registry names the shuffled control P09:<target>:NC1OC while the ledger held only its per-seed rows; repaired in "
+    "the runner only (a summary row per target and view) and rerun as recorded run 3, which supersedes it; outputs overwritten",
 ]
 COMPARISONS = ([(m, "B0") for m in ("B2",) + O.MODEL_IDS] + [(m, "B2") for m in ("R1_OC_RULE", "M1_OC_LOGIT", "M2_OC_LOGIT_B2", "M3_OC_LOGIT_TREND")]
                + [(m, "R1_OC_RULE") for m in ("M1_OC_LOGIT", "M2_OC_LOGIT_B2", "M3_OC_LOGIT_TREND")] + [("M2_OC_LOGIT_B2", "A1_OC_B2_TC")])
@@ -583,6 +586,10 @@ def main() -> int:
                                 **{k: e2[k] for k in ("scored", "hits", "misses", "false_alarms", "correct_rejections", "lead_time_h_median",
                                                       "support_note")}, "lead_times_h": ";".join(str(x) for x in e2["lead_times_h"]),
                                 "status": O.PROVISIONAL})
+            ledger.append({"phase": "09", "experiment_id": f"P09:{target}:NC1OC", "target": target, "candidate": "NC1OC",
+                           "kind": "NEGATIVE_CONTROL", "view": view, "seed": "0..19 (one row per seed below)", "folds": len(res["folds"]),
+                           "n_rows": len(rows), "n_with_number": "", "verdict": "see NC1OC rows of ONCHAIN_METRICS.csv",
+                           "split_fingerprint": res.get("split_fingerprint")})
             for nc in nc1_summary(rows, res.get("nc1_seeds", []), a.reps):
                 nc1_rows.append({"target_short": s, "view": view, **nc})
                 ledger.append({"phase": "09", "experiment_id": f"P09:{target}:NC1OC_seed{nc['seed']:02d}", "target": target,
