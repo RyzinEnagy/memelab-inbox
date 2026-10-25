@@ -79,6 +79,10 @@ TARGET_ORDER = (L.T2, L.T1, L.T1B)               # T2 is the target this phase i
 DEBUG_RUNS: list[str] = [
     "features-only probe after the pre-registration commit 3079af1 (22:42:40Z to 22:42:41Z): onchain-1 missing-reason counts over "
     "the 925 Solana decision rows of the Phase 05 store; no label read, no fit, no metric",
+    "recorded run 1 at 15bc5b5 (22:54:40Z to 22:55:35Z): every configuration of the registry on real labels; it wrote the experiment "
+    "tables, then stopped in the P36-OC trap (the in-memory store refused the copied decision row by its foreign key to the raw "
+    "export read); outputs were not read; repaired in the runner only (foreign keys off in that in-memory copy) and rerun as "
+    "recorded run 2, which supersedes it",
 ]
 COMPARISONS = ([(m, "B0") for m in ("B2",) + O.MODEL_IDS] + [(m, "B2") for m in ("R1_OC_RULE", "M1_OC_LOGIT", "M2_OC_LOGIT_B2", "M3_OC_LOGIT_TREND")]
                + [(m, "R1_OC_RULE") for m in ("M1_OC_LOGIT", "M2_OC_LOGIT_B2", "M3_OC_LOGIT_TREND")] + [("M2_OC_LOGIT_B2", "A1_OC_B2_TC")])
@@ -220,6 +224,7 @@ def traps(fs, dev_ex_by_target, osnaps, cards_h, all_snaps):
     e = min(dev_ex_by_target[L.T2], key=lambda x: (x.decision_time, x.mint))
     row = dict(fs.execute("SELECT * FROM predictive_decisions WHERE decision_key=?", (e.decision_key,)).fetchone())
     mem = S.connect(":memory:")
+    mem.execute("PRAGMA foreign_keys=OFF")              # the copied row's raw export read is not copied (runner repair after run 1)
     rj = json.loads(row["row_json"])
     sn = json.loads(rj["snapshot_json"])
     sn["t"] = float(row["decision_time"]) + 60.0
