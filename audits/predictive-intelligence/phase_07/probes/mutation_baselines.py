@@ -17,8 +17,9 @@ import time
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[4]
-TESTS = ["tests/test_predictive_baselines.py", "tests/test_predictive_stats.py"]
+TESTS = ["tests/test_predictive_baselines.py", "tests/test_predictive_stats.py", "tests/test_predictive_asof_features.py"]
 BL, ST = "memelab/predictive/baselines.py", "memelab/predictive/stats.py"
+FT = "memelab/predictive/features.py"
 
 MUTATIONS = [
     (BL, "count gate ignores the event minimum", 'if n < a["min_train_events"] or', "if n < 10 or"),
@@ -55,6 +56,27 @@ MUTATIONS = [
     (ST, "Wilson without the continuity of z", "    c = (ph + z * z / (2 * n)) / den", "    c = ph"),
     (ST, "Brier skill reference ignored", "    return float(\"nan\") if den == 0 else 1.0 - float(np.sum((p - y) ** 2)) / den",
      "    return 1.0 - float(np.sum((p - y) ** 2)) / max(den, 1e-300)"),
+    # repair pass 2: the skeptic's nine surviving gaps (M1), the count gate (m1, CX-S07), NC1 (m2), availability (m3)
+    (ST, "bootstrap 90% interval", "    a = (1 - conf) / 2\n", "    a = (1 - conf)\n"),
+    (BL, "narrower interval governs", 'w = max(intervals, key=lambda u: intervals[u]["ci"][1] - intervals[u]["ci"][0])',
+     'w = min(intervals, key=lambda u: intervals[u]["ci"][1] - intervals[u]["ci"][0])'),
+    (BL, "mint bootstrap groups by day", '(("day", days), ("mint", mints))', '(("day", days), ("mint", days))'),
+    (ST, "standardisation with ddof=1", "        sd = Z.std(axis=0)\n", "        sd = Z.std(axis=0, ddof=1)\n"),
+    (BL, "unseen status gets 0.5", 'p[i] = body["groups"][key]["p"] if key in body["groups"] else body["b0"]',
+     'p[i] = body["groups"][key]["p"] if key in body["groups"] else 0.5'),
+    (ST, "log loss clip ignored", "    q = np.clip(p, clip, 1 - clip)\n", "    q = np.clip(p, 1e-15, 1 - 1e-15)\n"),
+    (BL, "one-sided p counts only BSS < 0", '"p_one_sided": (1 + int(np.sum(~(bs["values"] > 0)))) / (reps + 1)',
+     '"p_one_sided": (1 + int(np.sum(bs["values"] < 0))) / (reps + 1)'),
+    (BL, "B4C window 10x", "B4C_WINDOW_S = 43200.0", "B4C_WINDOW_S = 432000.0"),
+    (BL, "worse when the upper bound is below 0.05", "    if hi < 0:\n", "    if hi < 0.05:\n"),
+    (BL, "no out-of-sample count gate (CX-S07)", "    g = evaluation_gate(int(res[\"n_with_number\"]), int(res.get(\"positives\") or 0))\n    if g:\n        return g\n",
+     ""),
+    (BL, "count gate ignores the per-class minimum", 'k < a["min_holdout_per_class"] or n - k < a["min_holdout_per_class"]', "False"),
+    (BL, "NC1 verdict ignores days", "    if days < a[\"min_effective_days\"]:\n        return \"INSUFFICIENT_DAYS\"\n    g = evaluation_gate(n, k)",
+     "    g = evaluation_gate(n, k)"),
+    (FT, "unknown availability becomes the decision time (m3)",
+     'if v["value"] is not None and v["feature_available_at"] is None and not (v["source_record_count"] == 0 and v["value"] == 0):',
+     "if False:"),
 ]
 
 

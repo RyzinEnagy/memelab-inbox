@@ -298,7 +298,7 @@ def test_p23_p24_few_days_give_no_interval_and_no_claim_but_both_scores_with_cou
 
 
 def test_verdicts_need_five_days_an_interval_above_zero_and_holm():
-    base = {"n_with_number": 50, "days": 6}
+    base = {"n_with_number": 50, "positives": 15, "days": 6}
     assert B.verdict(dict(base, gov_ci=[0.01, 0.2]), p_holm=0.01) == "SKILL_INDICATED_DEVELOPMENT_ONLY"
     assert B.verdict(dict(base, gov_ci=[0.01, 0.2]), p_holm=0.2) == "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
     assert B.verdict(dict(base, gov_ci=[0.01, 0.2])) == "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
@@ -370,3 +370,127 @@ def test_the_new_modules_use_only_numpy_and_the_standard_library():
         names = {a.name.split(".")[0] for n in ast.walk(tree) if isinstance(n, ast.Import) for a in n.names}
         names |= {n.module.split(".")[0] for n in ast.walk(tree) if isinstance(n, ast.ImportFrom) and n.module and n.level == 0}
         assert names <= {"__future__", "hashlib", "json", "math", "dataclasses", "typing", "numpy", "datetime"}, (mod, names)
+
+
+# ---------------------------------------------------------------- repair pass 2: frozen interval and verdict rules (skeptic M1)
+def _clustered_rows(seed=3, days=6, per_day=20, mints=60):
+    """Rows over `days` decision days and `mints` mints; the model beats B0 strongly on some days and not on others."""
+    rng = np.random.default_rng(seed)
+    rows = []
+    for i in range(days * per_day):
+        d = i // per_day
+        y = int(rng.uniform() < 0.3)
+        good = d % 2 == 0
+        p = (0.6 if y else 0.15) if good else (0.25 if y else 0.35)
+        rows.append({"y": y, "M": p, "B0": 0.3, "fold": d,
+                     "example": B.Example(f"k{i}", "solana", f"m{i % mints}", D0 + d * 86400 + 600, D0, y)})
+    return rows
+
+
+def test_the_interval_is_the_95_percent_percentile_of_the_group_bootstrap():
+    rng = np.random.default_rng(0)
+    v = rng.normal(size=200)
+    groups = [f"g{i % 40}" for i in range(200)]
+    bs = K.group_bootstrap(groups, lambda idx: float(np.mean(v[idx])), reps=1000, seed=4)
+    fin = bs["values"][np.isfinite(bs["values"])]
+    assert bs["ci"] == pytest.approx((float(np.quantile(fin, 0.025)), float(np.quantile(fin, 0.975))), abs=1e-12)
+    assert bs["ci"][0] < float(np.quantile(fin, 0.05)) - 1e-6                  # not a 90% interval
+
+
+def test_the_wider_interval_governs_and_the_mint_bootstrap_groups_by_mint():
+    rows = _clustered_rows()
+    ev = B.evaluate(rows, "M", reps=500)
+    iv = ev["intervals"]
+    assert iv["day"]["groups"] == 6 and iv["mint"]["groups"] == 60          # mint intervals resample mints, not days
+    widths = {u: iv[u]["ci"][1] - iv[u]["ci"][0] for u in iv}
+    assert widths["day"] != widths["mint"]
+    assert ev["governing"] == max(widths, key=widths.get) and ev["gov_ci"] == iv[ev["governing"]]["ci"]
+    # an explicit case where the narrower interval excludes 0 and the wider does not: not a WORSE verdict
+    res = {"n_with_number": 120, "positives": 36, "days": 6, "gov_ci": None}
+    res.update(intervals={"day": {"ci": [-0.19, -0.06]}, "mint": {"ci": [-0.49, 0.03]}})
+    w = max(res["intervals"], key=lambda u: res["intervals"][u]["ci"][1] - res["intervals"][u]["ci"][0])
+    assert w == "mint"
+    assert B.verdict(dict(res, gov_ci=res["intervals"][w]["ci"])) == "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+
+
+def test_worse_than_base_rate_needs_the_upper_bound_below_zero():
+    base = {"n_with_number": 60, "positives": 15, "days": 6}
+    assert B.verdict(dict(base, gov_ci=[-0.3, -0.001])) == "WORSE_THAN_BASE_RATE"
+    assert B.verdict(dict(base, gov_ci=[-0.3, 0.01])) == "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+    assert B.verdict(dict(base, gov_ci=[-0.3, 0.0])) == "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+
+
+def test_the_one_sided_p_counts_replicates_at_zero_as_no_skill():
+    rows = _clustered_rows()
+    for r in rows:
+        r["M"] = r["B0"]                                                      # every replicate's skill is exactly 0
+    ev = B.evaluate(rows, "M", reps=300)
+    assert ev["bss"] == 0.0 and ev["p_one_sided"] == 1.0
+    assert all(ev["intervals"][u]["p_one_sided"] == 1.0 for u in ev["intervals"])
+
+
+def test_an_unseen_status_group_gets_the_training_prevalence():
+    dev = make(n=400, seed=21)
+    card = B.fit_all(T1, gate_like(dev)(H0), H0)["B1"]
+    e = B.Example(**{**dev[0].__dict__, "status": "A STATUS NEVER SEEN"})
+    p, why = B.predict(card, [e])
+    assert p[0] == card["body"]["b0"] and why == [None]
+
+
+def test_log_loss_clip_and_population_standardisation():
+    assert K.log_loss(np.array([1.0, 0.0]), np.array([0.0, 0.0])) == pytest.approx((-math.log(1e-6) - math.log(1 - 1e-6)) / 2, abs=1e-12)
+    X = np.array([[1.0, 2.0], [3.0, 2.5], [5.0, 7.0], [7.0, 1.0]])
+    prep = K.Prep().fit(X)
+    assert np.allclose(prep.sd, X.std(axis=0, ddof=0)) and np.allclose(prep.transform(X).std(axis=0), 1.0)
+
+
+def test_b4c_uses_controls_within_12_hours_only():
+    e0 = make(n=10, seed=22)[0]
+    def ctl(i, dt, y):
+        return B.Example(**{**e0.__dict__, "decision_key": f"c{i}", "mint": f"{H.MINT_B}{i}", "decision_time": e0.decision_time + dt, "y": y})
+    near = [ctl(i, 11 * 3600, 1) for i in range(3)]
+    far = [ctl(10 + i, 13 * 3600, 0) for i in range(3)]
+    assert B.contemporaneous_control(e0, near + far) == 1.0
+    assert math.isnan(B.contemporaneous_control(e0, far[:0] + near[:2]))         # fewer than 3 controls: none
+
+
+# ---------------------------------------------------------------- repair pass 2: CX-S07 and the out-of-sample count gate (m1, m2)
+def test_cx_s07_one_positive_over_five_days_never_earns_a_skill_verdict():
+    """CX-S07 (Phase 07 skeptic): 6 rows with one positive over 5 days had earned SKILL_INDICATED_DEVELOPMENT_ONLY. The frozen
+    out-of-sample minimums (50 events, 10 per class) now stand behind every directional verdict."""
+    base = C.parse_utc("2026-10-12T12:00:00Z")
+    spec = [(0, 1, 0.45), (0, 0, 0.05), (1, 0, 0.06), (2, 0, 0.05), (3, 0, 0.07), (4, 0, 0.05)]
+    rows = [{"fold": d, "y": y, "B0": 0.20, "B2": p, "B2_why": None,
+             "example": B.Example(f"k{i}", "solana", f"Mint{i}pump", base + d * 86400.0, base + d * 86400.0 + 87600, y)}
+            for i, (d, y, p) in enumerate(spec)]
+    ev = B.evaluate(rows, "B2")
+    p_holm = K.holm([float("nan"), ev["p_one_sided"], float("nan")])[1]
+    assert ev["days"] == 5 and ev["gov_ci"][0] > 0 and p_holm < 0.05            # the interval alone would say skill
+    assert B.verdict(ev, p_holm) == "INSUFFICIENT_EVENTS"
+
+
+def test_the_out_of_sample_count_gate_uses_the_frozen_minimums():
+    a = C.ACCEPTANCE
+    assert (a["min_holdout_events"], a["min_holdout_per_class"]) == (50, 10)
+    assert B.evaluation_gate(50, 10) is None and B.evaluation_gate(50, 40) is None
+    assert B.evaluation_gate(49, 20) == B.evaluation_gate(50, 9) == B.evaluation_gate(50, 41) == "INSUFFICIENT_EVENTS"
+    ok = {"n_with_number": 50, "positives": 10, "days": 5, "gov_ci": [0.01, 0.2]}
+    assert B.verdict(ok, p_holm=0.01) == "SKILL_INDICATED_DEVELOPMENT_ONLY"
+    for bad in (dict(ok, n_with_number=49), dict(ok, positives=9), dict(ok, positives=41)):
+        assert B.verdict(bad, p_holm=0.01) == "INSUFFICIENT_EVENTS"
+        assert B.verdict(dict(bad, gov_ci=[-0.3, -0.1])) == "INSUFFICIENT_EVENTS"     # no WORSE claim either
+    assert B.verdict(dict(ok, days=4, n_with_number=10), p_holm=0.01) == "INSUFFICIENT_DAYS"   # days first
+
+
+def test_nc1_verdicts_follow_the_same_minimums():
+    assert B.nc1_verdict(8, 1, 1, 0.02) == "INSUFFICIENT_DAYS"
+    assert B.nc1_verdict(44, 3, 5, -0.03) == "INSUFFICIENT_EVENTS"
+    assert B.nc1_verdict(60, 12, 6, -0.03) == "NC1_DEGRADES_OR_EQUAL"
+    assert B.nc1_verdict(60, 12, 6, 0.01) == "NC1_FAILS_MEAN_BSS_ABOVE_0"
+    assert B.nc1_verdict(0, 0, 0, None) == "INSUFFICIENT_HISTORY"
+
+
+def test_the_identity_join_also_checks_the_chain():
+    a = make(n=10, seed=23)[0]
+    with pytest.raises(B.IdentityJoinError, match="chain"):
+        B.join([_label_row(a)], {a.decision_key: _feature_row(a, chain="base")})

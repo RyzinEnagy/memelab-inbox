@@ -591,6 +591,12 @@ def training_view(con: sqlite3.Connection, *, as_of: float, feature_version: str
         vals = stored_values(con, r["snapshot_key"])
         row = {"decision_time": r["decision_time"], "decision_key": r["decision_key"], "chain": r["chain"], "mint": r["mint"]}
         for v in vals:
+            if v["value"] is not None and v["feature_available_at"] is None and not (v["source_record_count"] == 0 and v["value"] == 0):
+                # a value whose availability is unknown is not available (validate_rows' rule); the decision time is assumed only
+                # for a zero computed from no input row (an empty window or universe: nothing after the decision can enter it)
+                # and for a missing value (Phase 07 skeptic m3)
+                raise AsOfError(f"snapshot {r['snapshot_key'][:12]}: {v['feature_name']} has a value from input rows but no "
+                                f"availability time")
             row[v["feature_name"]] = v["value"]
             row[v["feature_name"] + "__available_at"] = (v["feature_available_at"] if v["feature_available_at"] is not None
                                                          else r["decision_time"])

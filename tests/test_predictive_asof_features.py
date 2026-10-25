@@ -334,6 +334,22 @@ def test_training_view_takes_decisions_up_to_its_as_of_only_and_never_mixes_vers
         F.training_view(con, as_of=d2, feature_version=V)
 
 
+def test_training_view_refuses_a_value_with_no_availability_time_except_a_zero_from_no_input(world):
+    """Phase 07 skeptic m3: an unknown availability time must not become the decision time on the read path. A zero computed
+    from no input row (an empty window or universe) is the only value allowed without one."""
+    con, (d1, d2, d3) = world
+    F.build_snapshots(con, feature_version=V, now=1.0)
+    F.training_view(con, as_of=d3, feature_version=V)
+    con.execute("DROP TRIGGER predictive_feature_values_no_update")
+    k = con.execute("SELECT value_key FROM predictive_feature_values WHERE feature_name='thesis_log1p_liquidity_usd' "
+                    "AND value IS NOT NULL LIMIT 1").fetchone()[0]
+    con.execute("UPDATE predictive_feature_values SET feature_available_at=NULL WHERE value_key=?", (k,))
+    with pytest.raises(F.AsOfError, match="no availability time"):
+        F.training_view(con, as_of=d3, feature_version=V)
+    con.execute("UPDATE predictive_feature_values SET value=0, source_record_count=0 WHERE value_key=?", (k,))
+    F.training_view(con, as_of=d3, feature_version=V)       # a zero from no input row: allowed, available at the decision
+
+
 def test_the_row_validator_refuses_future_unknown_and_undeclared_inputs():
     cols = ["decision_time", "a", "a__available_at"]
     ok = {"decision_time": 10.0, "a": 1.0, "a__available_at": 10.0}

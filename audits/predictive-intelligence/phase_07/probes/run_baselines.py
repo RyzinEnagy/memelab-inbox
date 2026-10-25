@@ -55,6 +55,7 @@ FEATURE_STORE = "/home/claude/pi_research/p05/predictive_store.sqlite"
 CODE = ["memelab/predictive/stats.py", "memelab/predictive/baselines.py", "memelab/predictive/labels.py",
         "memelab/predictive/features.py", "memelab/predictive/contract.py",
         "audits/predictive-intelligence/phase_07/probes/run_baselines.py"]
+DEBUG_RUNS = ("between 74183c9 (19:51:19Z) and 6672447 (20:05:44Z), first", "between 74183c9 and 6672447, second (with --npz; its oracle file is equal to the committed one)")
 VIEWS = ("ALL", "NEW_MINTS", "NEW_CREATORS", "NEW_NARRATIVES", "PIT_ONLY", "NO_KEY_CONFLICT")
 
 
@@ -279,6 +280,7 @@ def main() -> int:
     frows, snaps, info = load_inputs(dev, fs)
 
     metrics, calib, oos_out, cohorts, prev_rows, nc1_rows, ledger, folds_ev = [], [], [], [], [], [], [], {}
+    coverage: list[dict] = []
     holm_in: dict[tuple[str, str], dict[str, float]] = {}
     npz: dict[str, np.ndarray] = {}
     art_dir = out / "artifacts"
@@ -327,8 +329,10 @@ def main() -> int:
                                "kind": kind, "view": view, "seed": 20261025, "folds": len(res["folds"]),
                                "n_rows": ev["n_rows"], "n_with_number": ev["n_with_number"], "verdict": ev.get("verdict"),
                                "split_fingerprint": res.get("split_fingerprint") if view != "NO_KEY_CONFLICT" else runs[False][1].get("split_fingerprint")})
+            nrows = [r for r in rows if any(math.isfinite(r[f"NC1_{q}"]) for q in res.get("nc1_seeds", []))]
+            nk, nd = int(sum(r["y"] for r in nrows)), len({r["example"].day for r in nrows})
             for nc in nc1_summary(rows, res.get("nc1_seeds", []), a.reps):
-                nc1_rows.append({"target_short": s, "view": view, **nc})
+                nc1_rows.append({"target_short": s, "view": view, **nc, "positives": nk, "days": nd})
                 ledger.append({"phase": "07", "experiment_id": f"P07:{target}:NC1_seed{nc['seed']:02d}", "target": target,
                                "candidate": "NC1", "kind": "NEGATIVE_CONTROL", "view": view, "seed": nc["seed"],
                                "folds": len(res["folds"]), "n_rows": len(rows), "n_with_number": nc["n"], "verdict": "",
@@ -369,6 +373,16 @@ def main() -> int:
                                   "prevalence": float(yy.mean()) if big else None, "wilson_lo": wl, "wilson_hi": wh,
                                   "days": len({e.day for e in ee}), "mints": len({e.mint for e in ee}), "as_of_utc": B._iso(H),
                                   "note": "" if big else "n < 20: counts only, no rate claimed", "status": B.PROVISIONAL})
+        # missing-feature coverage by cohort (phase prompt step 2; skeptic m8)
+        for which, exs in (("DEVELOPMENT_AT_HOLDOUT_START", dev_ex), ("OUT_OF_SAMPLE", [r["example"] for r in res["oos"]])):
+            for dim, fn in [("ALL", lambda e: "ALL")] + list(dims.items()):
+                for v in sorted({fn(e) or "UNKNOWN" for e in exs}):
+                    ee = [e for e in exs if (fn(e) or "UNKNOWN") == v]
+                    for col in sorted(B.ALLOWED_COLUMNS):
+                        miss = sum(1 for e in ee if not math.isfinite(e.x.get(col, float("nan"))))
+                        coverage.append({"target_short": s, "set": which, "dimension": dim, "value": v, "column": col,
+                                         "required_by": ("B2" if col in B.B2_REQUIRED else "B2 optional" if col in B.B2_OPTIONAL else "B3"),
+                                         "n": len(ee), "missing": miss, "missing_share": miss / len(ee) if ee else None})
         # train-only artifacts at the holdout start
         train = examples_at(dev, target, H, frows, snaps, info)[0]
         cards = B.fit_all(target, train, H)
@@ -453,17 +467,21 @@ def main() -> int:
                                 "split_fingerprint": folds_ev[SHORT[target]]["split_fingerprint"],
                                 "label_set_sha": label_set[target]["label_set_sha"]}))
     # NC1 aggregate rows into the metrics table
+    b2_brier = {(SHORT[t], view): ev.get("brier") for t, view, ev, kind in metrics if ev["baseline"] == "B2"}
     for s in SHORT.values():
         for view in VIEWS:
             v = [r for r in nc1_rows if r["target_short"] == s and r["view"] == view and r.get("n")]
             bss = [r["bss"] for r in v if r.get("bss") is not None and math.isfinite(r["bss"])]
+            b2b = b2_brier.get((s, view))
+            mean_bss = float(np.mean(bss)) if bss else None
             mrows.append({"target": [t for t, x in SHORT.items() if x == s][0], "target_short": s, "view": view, "baseline": "NC1",
-                          "kind": "NEGATIVE_CONTROL", "n_with_number": v[0]["n"] if v else 0, "nc1_seeds": len(v),
-                          "nc1_mean_bss": float(np.mean(bss)) if bss else None,
+                          "kind": "NEGATIVE_CONTROL", "n_with_number": v[0]["n"] if v else 0, "positives": v[0]["positives"] if v else None,
+                          "decision_days": v[0]["days"] if v else None, "nc1_seeds": len(v),
+                          "nc1_mean_bss": mean_bss,
                           "nc1_share_bss_gt_0": float(np.mean([x > 0 for x in bss])) if bss else None,
                           "nc1_mean_brier": float(np.mean([r["brier"] for r in v])) if v else None,
-                          "verdict": ("NC1_DEGRADES_OR_EQUAL" if bss and np.mean(bss) <= 0 else
-                                      "NC1_FINDING_MEAN_BSS_ABOVE_0" if bss else "INSUFFICIENT_HISTORY"),
+                          "nc1_share_beating_b2": (float(np.mean([r["brier"] < b2b for r in v])) if v and b2b is not None else None),
+                          "verdict": B.nc1_verdict(v[0]["n"] if v else 0, v[0]["positives"] if v else 0, v[0]["days"] if v else 0, mean_bss),
                           "status": B.PROVISIONAL, "revision_check_claimed": False})
     exp = out / "experiments"
     write_csv(exp / "BASELINE_METRICS.csv", mrows)
@@ -472,6 +490,7 @@ def main() -> int:
     write_csv(exp / "OOS_COHORTS.csv", cohorts)
     write_csv(exp / "TRAINING_PREVALENCE.csv", prev_rows)
     write_csv(exp / "NC1_SEEDS.csv", nc1_rows)
+    write_csv(exp / "FEATURE_COVERAGE.csv", coverage)
     # search ledger: Phase 07 runs plus the Phase 04 bake-off runs as tried configurations (PI-D-034)
     bake = json.loads((REPO / "audits/predictive-intelligence/phase_04/adoption/BAKEOFF_RESULTS.json").read_text())
     for ds in ("dev24", "dev6"):
@@ -481,6 +500,18 @@ def main() -> int:
                            "folds": "", "n_rows": "", "n_with_number": "",
                            "verdict": "tried configuration (PI-D-034); labels without token=<mint> for 8 of 102 and 9 of 159 events (PI-D-038)",
                            "split_fingerprint": ""})
+    for f in sorted((REPO / "audits/predictive-intelligence/phase_04/adoption/evidence/first_real_run_failures").glob("*.json")):
+        ledger.append({"phase": "04", "experiment_id": f"P04:first_real_run:{f.stem}", "target": "", "candidate": f.stem,
+                       "kind": "BAKEOFF_PRE_FIX_RUN", "view": "first real-data run before the token-age fix", "seed": "",
+                       "folds": "", "n_rows": "", "n_with_number": "",
+                       "verdict": "tried configuration (Phase 07 skeptic m4); kept in phase_04/adoption/evidence/first_real_run_failures/",
+                       "split_fingerprint": ""})
+    for i, when in enumerate(DEBUG_RUNS, 1):
+        ledger.append({"phase": "07", "experiment_id": f"P07:debug_run_{i}", "target": "all three", "candidate": "B0 to B4, B4C, NC1",
+                       "kind": "DEBUG_RUN_REAL_DATA", "view": "all views", "seed": "20261025 and NC1 seeds", "folds": "as recorded run",
+                       "n_rows": "", "n_with_number": "",
+                       "verdict": f"{when}; 200 bootstrap replicates, outputs in the session scratchpad (not kept); predictions identical to the recorded run (skeptic check 12); disclosed in PHASE_07_EVIDENCE.md",
+                       "split_fingerprint": ""})
     write_csv(exp / "SEARCH_LEDGER.csv", ledger)
     ev_dir = out / "evidence"
     write_json(ev_dir / "folds.json", folds_ev)

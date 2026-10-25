@@ -576,18 +576,48 @@ def evaluate(rows: Sequence[dict], model: str, *, reference: str = "B0", reps: i
     return res
 
 
+def evaluation_gate(n: int, k: int) -> str | None:
+    """Out-of-sample count gate behind any directional verdict: the frozen out-of-sample minimums of ACCEPTANCE (50 events and
+    10 per class, PI-D-016 and PI-D-021) applied to the evaluation set (CP07-1, PI-D-049; skeptic m1, counterexample CX-S07:
+    6 rows with one positive over 5 days had earned a skill verdict)."""
+    a = C.ACCEPTANCE
+    if n < a["min_holdout_events"] or k < a["min_holdout_per_class"] or n - k < a["min_holdout_per_class"]:
+        return "INSUFFICIENT_EVENTS"
+    return None
+
+
 def verdict(res: dict, p_holm: float | None = None) -> str:
+    """Frozen verdict order: no number, fewer than 5 days (or no governing interval), fewer than the out-of-sample event
+    minimums, then the governing interval: upper bound below 0 is worse, lower bound above 0 with Holm-adjusted p below 0.05 is
+    skill on development data only, anything else not distinguishable."""
     a = C.ACCEPTANCE
     if not res.get("n_with_number"):
         return "INSUFFICIENT_HISTORY"
     if res["days"] < a["min_effective_days"] or res.get("gov_ci") is None:
         return "INSUFFICIENT_DAYS"
+    g = evaluation_gate(int(res["n_with_number"]), int(res.get("positives") or 0))
+    if g:
+        return g
     lo, hi = res["gov_ci"]
     if hi < 0:
         return "WORSE_THAN_BASE_RATE"
     if lo > 0 and p_holm is not None and p_holm < 1 - a["bootstrap"]["conf"]:
         return "SKILL_INDICATED_DEVELOPMENT_ONLY"
     return "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+
+
+def nc1_verdict(n: int, k: int, days: int, mean_bss: float | None) -> str:
+    """NC1 under the same rules as a baseline verdict (skeptic m2): below 5 days or the out-of-sample event minimums the
+    shuffled control is uninformative and no pass or fail is claimed."""
+    a = C.ACCEPTANCE
+    if not n or mean_bss is None:
+        return "INSUFFICIENT_HISTORY"
+    if days < a["min_effective_days"]:
+        return "INSUFFICIENT_DAYS"
+    g = evaluation_gate(n, k)
+    if g:
+        return g
+    return "NC1_DEGRADES_OR_EQUAL" if mean_bss <= 0 else "NC1_FAILS_MEAN_BSS_ABOVE_0"
 
 
 def abstain_document(target: str, *, mint: str, snapshot_hash: str, decision_time_utc: str, generated_at_utc: str,
