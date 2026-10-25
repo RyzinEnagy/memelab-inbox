@@ -375,10 +375,11 @@ def collect(con, *, exports: dict | None, now: float | None = None, http_get=Non
         con.commit()
 
     def quote_key(p):
-        n = con.execute("SELECT COUNT(DISTINCT run_id) FROM bt_depth_snapshots WHERE kind='QUOTE' AND state='OK' AND chain=? AND mint=? AND pool_address=? "
-                        "AND captured_at>=?", (p["chain"], p["mint"], p["pool_address"], p["export_time"])).fetchone()[0]
-        last = con.execute("SELECT MAX(captured_at) FROM bt_depth_snapshots WHERE kind='QUOTE' AND state='OK' AND chain=? AND mint=? AND pool_address=?",
-                           (p["chain"], p["mint"], p["pool_address"])).fetchone()[0]
+        # runs in which the pool got an answered quote (any state), so a pool without a route cannot keep the front forever
+        n = con.execute("SELECT COUNT(DISTINCT run_id) FROM bt_depth_snapshots WHERE kind='QUOTE' AND http_status IS NOT NULL AND chain=? AND mint=? "
+                        "AND pool_address=? AND captured_at>=?", (p["chain"], p["mint"], p["pool_address"], p["export_time"])).fetchone()[0]
+        last = con.execute("SELECT MAX(captured_at) FROM bt_depth_snapshots WHERE kind='QUOTE' AND http_status IS NOT NULL AND chain=? AND mint=? "
+                           "AND pool_address=?", (p["chain"], p["mint"], p["pool_address"])).fetchone()[0]
         return (n, -1.0 if last is None else last, _hash_order(run_id, p["chain"], p["mint"], p["pool_address"]))
 
     def run_pools(chain):

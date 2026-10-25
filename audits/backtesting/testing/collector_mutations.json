@@ -403,5 +403,23 @@
   "tests": [
    "tests/test_backtest_depth.py"
   ]
+ },
+ {
+  "id": "MR-18 quote turns counted on OK quotes only (a pool without a route keeps the front)",
+  "file": "memelab/backtest/depth.py",
+  "old": "        n = con.execute(\"SELECT COUNT(DISTINCT run_id) FROM bt_depth_snapshots WHERE kind='QUOTE' AND http_status IS NOT NULL AND chain=? AND mint=? \"\n                        \"AND pool_address=? AND captured_at>=?\", (p[\"chain\"], p[\"mint\"], p[\"pool_address\"], p[\"export_time\"])).fetchone()[0]\n        last = con.execute(\"SELECT MAX(captured_at) FROM bt_depth_snapshots WHERE kind='QUOTE' AND http_status IS NOT NULL AND chain=? AND mint=? \"\n                           \"AND pool_address=?\", (p[\"chain\"], p[\"mint\"], p[\"pool_address\"])).fetchone()[0]\n",
+  "new": "        n = con.execute(\"SELECT COUNT(DISTINCT run_id) FROM bt_depth_snapshots WHERE kind='QUOTE' AND state='OK' AND chain=? AND mint=? \"\n                        \"AND pool_address=? AND captured_at>=?\", (p[\"chain\"], p[\"mint\"], p[\"pool_address\"], p[\"export_time\"])).fetchone()[0]\n        last = con.execute(\"SELECT MAX(captured_at) FROM bt_depth_snapshots WHERE kind='QUOTE' AND state='OK' AND chain=? AND mint=? \"\n                           \"AND pool_address=?\", (p[\"chain\"], p[\"mint\"], p[\"pool_address\"])).fetchone()[0]\n",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-19 quote order by hash only (no history)",
+  "file": "memelab/backtest/depth.py",
+  "old": "        return (n, -1.0 if last is None else last, _hash_order(",
+  "new": "        return (0, 0.0, _hash_order(",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
  }
 ]

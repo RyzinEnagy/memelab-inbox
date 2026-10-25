@@ -444,6 +444,17 @@ def test_quote_order_rotates_and_prefers_unquoted_pools(con, exports):
     assert len(first) == 1 and len(second) == 1 and first != second
 
 
+def test_every_pool_gets_its_turn_including_pools_without_a_route(con, exports):
+    """Cap of one pool per hour, four Solana pools (two answer NO_ROUTE): four hours give each pool exactly one turn."""
+    import time as _t
+    turns = []
+    for h in range(4):
+        _run(con, exports, now=NOW + h * 3600, jup_max_calls=3)
+        rid = "depth-" + _t.strftime("%Y%m%dT%HZ", _t.gmtime(NOW + h * 3600))
+        turns.append({s["mint"] for s in _snaps(con, kind="QUOTE", provider="jupiter", run_id=rid) if s["http_status"]})
+    assert all(len(t) == 1 for t in turns) and set().union(*turns) == {A, B, D, Q}
+
+
 def test_pool_lookup_failures_are_recorded_and_retried(con, exports):
     _run(con, exports, gt_fail={1: 429, 2: 429})                 # the token lookup and its retry
     lk = [dict(r) for r in con.execute("SELECT * FROM bt_depth_pool_lookups WHERE mint=?", (D,))]
