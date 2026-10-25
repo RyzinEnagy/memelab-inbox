@@ -1,0 +1,66 @@
+{
+ "body": {
+  "b0": 0.25,
+  "groups": {
+   "CONSTRUCTIVE": {
+    "k": 6,
+    "n": 25,
+    "p": 0.24444444444444444
+   },
+   "REJECTED": {
+    "k": 17,
+    "n": 65,
+    "p": 0.25882352941176473
+   },
+   "RISK_OR_UNRESOLVED": {
+    "k": 11,
+    "n": 46,
+    "p": 0.24242424242424243
+   }
+  },
+  "m": 20.0,
+  "status_groups": {
+   "DISTRIBUTION RISK": "RISK_OR_UNRESOLVED",
+   "ENTRY CONDITIONS MET": "CONSTRUCTIVE",
+   "NEAR ENTRY": "CONSTRUCTIVE",
+   "OVEREXTENDED": "RISK_OR_UNRESOLVED",
+   "REJECTED": "REJECTED",
+   "RESEARCH REQUIRED": "RISK_OR_UNRESOLVED",
+   "SETUP DEVELOPING": "CONSTRUCTIVE",
+   "THESIS DETERIORATING": "RISK_OR_UNRESOLVED",
+   "THESIS INVALIDATED": "RISK_OR_UNRESOLVED",
+   "WATCH": "CONSTRUCTIVE"
+  }
+ },
+ "data_snapshot_sha": "77da8b72654ef47e57baff39c53f973f2624082adef7a355f4e058f1fa526c1e",
+ "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+ "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "feature_version": "2",
+ "k_train": 34,
+ "k_used": 34,
+ "kind": "B1",
+ "label_mode": "provider",
+ "label_set_sha": "9fae5b7ead0a832f5960b249d2afc8a67fd8e5ee2ebe86b232c9ecbc128b33a1",
+ "label_store_migration": 2,
+ "labels_version": "labels-1",
+ "max_train_decision_time": 1792059228.0,
+ "max_train_label_matures_at": 1792146828.0,
+ "model_id": "B1:price_path_target_before_invalidation_24h",
+ "model_sha": "122f1da80c16d1d14162bf7d80ba62b80ae2d88da93f992d63b2cd0343367180",
+ "n_train": 136,
+ "n_used": 136,
+ "phase": "07",
+ "publishable": false,
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "revision_check_claimed": false,
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "store_schema": "memelab.predictive.store/1",
+ "target_version": {
+  "price_path_target_before_invalidation_24h": "1"
+ },
+ "targets": [
+  "price_path_target_before_invalidation_24h"
+ ],
+ "training_cutoff": 1792195200.0,
+ "training_cutoff_utc": "2026-10-17T00:00:00Z"
+}

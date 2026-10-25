@@ -1,0 +1,182 @@
+{
+ "clean_exit_code": 0,
+ "mutations": 29,
+ "caught": 29,
+ "results": [
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "count gate ignores the event minimum",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "count gate ignores the per-class minimum",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "identity join ignores the mint",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "identity join ignores the decision time (CX-07)",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "allowlist off (NC2)",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "availability not validated",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "no shrinkage toward B0",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "walk-forward trusts the gate without comparing",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "fold audit without the target's maturity lag",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "claims on fewer than 5 days",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "skill without Holm",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "day bootstrap on fewer than 5 days",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "B4 matches the same mint",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "fixture flag lost",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "card hash not verified",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "missing required input not OOD",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "negative token age kept",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "AUC on a constant prediction",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "AUC ties by order",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "average precision without tie groups",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "calibration bins below 40 events",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "Holm drops undefined tests from the family",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "walk-forward ignores maturity",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "fold audit ignores a late declared cutoff",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "probabilities outside [0, 1] accepted",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "Platt constant-score optimum lost",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "Prep median from zero",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "Wilson without the continuity of z",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "Brier skill reference ignored",
+   "exit_code": 1,
+   "caught": true
+  }
+ ],
+ "seconds": 36.8
+}

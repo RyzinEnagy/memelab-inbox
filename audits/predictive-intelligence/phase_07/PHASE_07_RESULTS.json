@@ -1,0 +1,658 @@
+{
+ "phase": "07",
+ "status": "NEEDS_REVIEW",
+ "status_reason": "first pass complete; independent skeptic pending (PI-D-013); all results PROVISIONAL until the Phase 06 48 h re-read is folded in (PI-D-046)",
+ "entry_gate_exception": "PI-D-046: Phase 06 NEEDS_REVIEW (48 h re-read open); Phase 07 on Elving's instruction of 2026-10-25 15:40 New York time",
+ "head_before": "b0275c6dd0434a8d8e62d60de77821a7175a1ec9",
+ "preregistration_commit": "74183c93807e39bdb315b6308bff7bf43abd6d38",
+ "code_commit": "667244731771386df74290ffa8afd16a14ec4393",
+ "head_after": "OUTPUTS_COMMIT_SEE_HANDOFF",
+ "registry_sha256": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "labels_version": "labels-1",
+ "revision_check_claimed": false,
+ "results": {
+  "T1_24h": {
+   "B0": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.229726",
+    "brier_b0": "0.229726",
+    "bss_vs_b0": "0.000000",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "0.000000",
+    "bss_ci_mint_hi": "0.000000",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "log_loss": "0.655344",
+    "log_loss_b0": "0.655344",
+    "verdict": "REFERENCE"
+   },
+   "B1": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.230069",
+    "brier_b0": "0.229726",
+    "bss_vs_b0": "-0.001493",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "-0.029217",
+    "bss_ci_mint_hi": "0.022915",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "log_loss": "0.656186",
+    "log_loss_b0": "0.655344",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "B2": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.244867",
+    "brier_b0": "0.229726",
+    "bss_vs_b0": "-0.065908",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "-0.246292",
+    "bss_ci_mint_hi": "0.106499",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "log_loss": "0.718837",
+    "log_loss_b0": "0.655344",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "B3": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.220808",
+    "brier_b0": "0.229726",
+    "bss_vs_b0": "0.038820",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "-0.155960",
+    "bss_ci_mint_hi": "0.282158",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "log_loss": "0.655257",
+    "log_loss_b0": "0.655344",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "B3F": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.230147",
+    "brier_b0": "0.229726",
+    "bss_vs_b0": "-0.001835",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "-0.012034",
+    "bss_ci_mint_hi": "0.008996",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "log_loss": "0.656493",
+    "log_loss_b0": "0.655344",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "B4": {
+    "n_with_number": "24",
+    "positives": "8",
+    "decision_days": "3",
+    "brier": "0.213750",
+    "brier_b0": "0.229726",
+    "bss_vs_b0": "0.069541",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "-0.003695",
+    "bss_ci_mint_hi": "0.139396",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "log_loss": "0.613828",
+    "log_loss_b0": "0.655344",
+    "verdict": "INSUFFICIENT_DAYS"
+   }
+  },
+  "T1b_6h": {
+   "B0": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.066669",
+    "brier_b0": "0.066669",
+    "bss_vs_b0": "0.000000",
+    "bss_ci_day_lo": "0.000000",
+    "bss_ci_day_hi": "0.000000",
+    "bss_ci_mint_lo": "0.000000",
+    "bss_ci_mint_hi": "0.000000",
+    "governing": "day",
+    "p_holm": "",
+    "log_loss": "0.265774",
+    "log_loss_b0": "0.265774",
+    "verdict": "REFERENCE"
+   },
+   "B1": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.066426",
+    "brier_b0": "0.066669",
+    "bss_vs_b0": "0.003639",
+    "bss_ci_day_lo": "-0.162920",
+    "bss_ci_day_hi": "0.100752",
+    "bss_ci_mint_lo": "-0.275048",
+    "bss_ci_mint_hi": "0.081670",
+    "governing": "mint",
+    "p_holm": "1.000000",
+    "log_loss": "0.259272",
+    "log_loss_b0": "0.265774",
+    "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+   },
+   "B2": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.059460",
+    "brier_b0": "0.066669",
+    "bss_vs_b0": "0.108133",
+    "bss_ci_day_lo": "-0.022229",
+    "bss_ci_day_hi": "0.205970",
+    "bss_ci_mint_lo": "-0.127161",
+    "bss_ci_mint_hi": "0.218790",
+    "governing": "mint",
+    "p_holm": "0.275862",
+    "log_loss": "0.216998",
+    "log_loss_b0": "0.265774",
+    "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+   },
+   "B3": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.073165",
+    "brier_b0": "0.066669",
+    "bss_vs_b0": "-0.097431",
+    "bss_ci_day_lo": "-0.188766",
+    "bss_ci_day_hi": "-0.059424",
+    "bss_ci_mint_lo": "-0.492613",
+    "bss_ci_mint_hi": "0.027754",
+    "governing": "mint",
+    "p_holm": "1.000000",
+    "log_loss": "0.281821",
+    "log_loss_b0": "0.265774",
+    "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+   },
+   "B3F": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.066283",
+    "brier_b0": "0.066669",
+    "bss_vs_b0": "0.005790",
+    "bss_ci_day_lo": "-0.095501",
+    "bss_ci_day_hi": "0.083220",
+    "bss_ci_mint_lo": "-0.128648",
+    "bss_ci_mint_hi": "0.072586",
+    "governing": "mint",
+    "p_holm": "1.000000",
+    "log_loss": "0.261856",
+    "log_loss_b0": "0.265774",
+    "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+   },
+   "B4": {
+    "n_with_number": "44",
+    "positives": "3",
+    "decision_days": "5",
+    "brier": "0.065528",
+    "brier_b0": "0.066669",
+    "bss_vs_b0": "0.017109",
+    "bss_ci_day_lo": "-0.132373",
+    "bss_ci_day_hi": "0.115793",
+    "bss_ci_mint_lo": "-0.414545",
+    "bss_ci_mint_hi": "0.135609",
+    "governing": "mint",
+    "p_holm": "1.000000",
+    "log_loss": "0.258654",
+    "log_loss_b0": "0.265774",
+    "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+   }
+  },
+  "T2_24h": {
+   "B0": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.127496",
+    "brier_b0": "0.127496",
+    "bss_vs_b0": "0.000000",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "0.000000",
+    "bss_ci_mint_hi": "0.000000",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "log_loss": "0.431582",
+    "log_loss_b0": "0.431582",
+    "verdict": "REFERENCE"
+   },
+   "B1": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.123174",
+    "brier_b0": "0.127496",
+    "bss_vs_b0": "0.033905",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "-0.176442",
+    "bss_ci_mint_hi": "0.513811",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "log_loss": "0.414346",
+    "log_loss_b0": "0.431582",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "B2": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.152604",
+    "brier_b0": "0.127496",
+    "bss_vs_b0": "-0.196927",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "-2.049343",
+    "bss_ci_mint_hi": "0.913707",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "log_loss": "0.419189",
+    "log_loss_b0": "0.431582",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "B3": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.127729",
+    "brier_b0": "0.127496",
+    "bss_vs_b0": "-0.001829",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "-0.023214",
+    "bss_ci_mint_hi": "0.054688",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "log_loss": "0.432170",
+    "log_loss_b0": "0.431582",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "B3F": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.123188",
+    "brier_b0": "0.127496",
+    "bss_vs_b0": "0.033791",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "-0.257379",
+    "bss_ci_mint_hi": "0.666676",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "log_loss": "0.414379",
+    "log_loss_b0": "0.431582",
+    "verdict": "INSUFFICIENT_DAYS"
+   },
+   "B4": {
+    "n_with_number": "8",
+    "positives": "1",
+    "decision_days": "1",
+    "brier": "0.133127",
+    "brier_b0": "0.127496",
+    "bss_vs_b0": "-0.044165",
+    "bss_ci_day_lo": "",
+    "bss_ci_day_hi": "",
+    "bss_ci_mint_lo": "-0.196118",
+    "bss_ci_mint_hi": "0.353828",
+    "governing": "UNDEFINED",
+    "p_holm": "",
+    "log_loss": "0.449354",
+    "log_loss_b0": "0.431582",
+    "verdict": "INSUFFICIENT_DAYS"
+   }
+  }
+ },
+ "nc1_mean_bss": {
+  "T1_24h": "-0.033240",
+  "T1b_6h": "-0.033297",
+  "T2_24h": "0.021686"
+ },
+ "engine_status_per_target": {
+  "T1_24h": [
+   "ABSTAIN",
+   "INSUFFICIENT_HISTORY",
+   "MODEL_NOT_SELECTED"
+  ],
+  "T1b_6h": [
+   "ABSTAIN",
+   "INSUFFICIENT_HISTORY",
+   "MODEL_NOT_SELECTED"
+  ],
+  "T2_24h": [
+   "ABSTAIN",
+   "INSUFFICIENT_HISTORY",
+   "MODEL_NOT_SELECTED"
+  ]
+ },
+ "checks": [
+  {
+   "name": "package checksums",
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "entry gate at b0275c6",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "1 failed, 1124 passed in 220.79s (known failure only)",
+   "pass": true
+  },
+  {
+   "name": "seal check at entry",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "pre-registration before any fit",
+   "input": "commit 74183c9 (2026-10-25T19:51:19Z) holds the checklist and registry; stats.py and baselines.py absent at it",
+   "result": "pass",
+   "pass": true
+  },
+  {
+   "name": "phase 07 tests",
+   "command": "python -m pytest tests/test_predictive_stats.py tests/test_predictive_baselines.py -q",
+   "exit_code": 0,
+   "result": "43 passed",
+   "pass": true
+  },
+  {
+   "name": "recorded run",
+   "command": "python -B audits/predictive-intelligence/phase_07/probes/run_baselines.py audits/predictive-intelligence/phase_07 --npz <scratch>",
+   "exit_code": 0,
+   "result": "head 6672447, socket events 0, stores unchanged True",
+   "pass": true
+  },
+  {
+   "name": "determinism",
+   "input": "two runs into two folders",
+   "result": "32 files identical True",
+   "pass": true
+  },
+  {
+   "name": "scikit-learn oracle",
+   "command": "p04_bundle venv: probes/sklearn_crosscheck.py",
+   "exit_code": 0,
+   "result": "coef 3.03e-07, metrics 5.55e-17, ties 1.11e-16",
+   "pass": true
+  },
+  {
+   "name": "mutations",
+   "command": "python -B probes/mutation_baselines.py",
+   "exit_code": 0,
+   "result": "29 of 29 caught",
+   "pass": true
+  },
+  {
+   "name": "NC2 future feature",
+   "input": "evidence/traps.json",
+   "result": "136 of 136 refused, accepted 0",
+   "pass": true
+  },
+  {
+   "name": "NC3 same ticker",
+   "input": "evidence/traps.json",
+   "result": "8 of 8 pairs refused",
+   "pass": true
+  },
+  {
+   "name": "CX-07 join by mint latest snapshot",
+   "input": "evidence/traps.json",
+   "result": "250 of 250 refused",
+   "pass": true
+  },
+  {
+   "name": "serialization smoke",
+   "input": "evidence/serialization_smoke.json",
+   "result": "18 cards round trip identical, tampering refused, verify_artifact ok",
+   "pass": true
+  },
+  {
+   "name": "contract smoke",
+   "input": "evidence/serialization_smoke.json",
+   "result": "ABSTAIN valid, FORECAST refused, every target",
+   "pass": true
+  },
+  {
+   "name": "full suite before the outputs commit",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "1 failed, 1167 passed in 169.21s (known failure only)",
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/phase_07/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "32fd9d0047d5b35f605ac0eb0297eef1b5ed61e8253bffdeaa476a9fe153b5d8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/SKEPTIC_PACKET.md",
+   "sha256": "cac49f9b2ae97720898e7a95fb1bd0772ff6674d8c179f353d86a9756a945998"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T1_24h/B0.json",
+   "sha256": "d89ab4a62fba636ea6a225856f786547b2a6e5cad1668d70410509f8a64cbde0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T1_24h/B1.json",
+   "sha256": "f84066700ca67ff7c3d4ff9ae9cf2a949803cd3007d8404c9fc418cb27ed1d8c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T1_24h/B2.json",
+   "sha256": "451a38b2dbc0d65e20f676c7aeaa5ccf3486fd991222e4f89053dc44a16796f4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T1_24h/B3.json",
+   "sha256": "f9a18b45322416eced63cc038ea8070143b589ca53c56cf0b14a2d4e62668ff8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T1_24h/B3F.json",
+   "sha256": "cd28cf657ebfd7ac0909f0190bd0b882c1b80579ed6052c0d0e7538b65e21de7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T1_24h/B4.json",
+   "sha256": "ea96d08e5a8372c5042db6b72b98523ad186b858e7ded1510d531af8278940ed"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T1b_6h/B0.json",
+   "sha256": "232f38edfb5e63c414dee5de5cc6bf5209d9484f7244c9847516c1f1bd4df06e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T1b_6h/B1.json",
+   "sha256": "f8d1f830870c4ebed7748bf76b53268a6a44b1005ccb0f0bf546f81f5dae06ed"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T1b_6h/B2.json",
+   "sha256": "412db87d6ffb60115dbc8fd6bf717bb1de3462df077b6cbf39ff8e3aa43e461c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T1b_6h/B3.json",
+   "sha256": "d4b3bbdfaec3f83a8eea1b05c0101d74bd9ab526bd22b01628cf16c68eed4acc"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T1b_6h/B3F.json",
+   "sha256": "cb23b7dbe791d5b85748c0e5147a742f7e6faea1ec9ecb23fdee3fd7188cf2e8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T1b_6h/B4.json",
+   "sha256": "5ef325adcdcfbb125222de0d522ee0cc2726095f283f822ee238d438d9e6cbbc"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T2_24h/B0.json",
+   "sha256": "ba7f22958de4c3314e6d991bd4d1f050f34ef8f10df03b2a1adf3e2acd3b7863"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T2_24h/B1.json",
+   "sha256": "3431edd2bb961c0af5a4456dba9d4c0bd5fed5c01162c959ea128206a7d1ab7f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T2_24h/B2.json",
+   "sha256": "412d4bce917b2ab3619edd8f9c257ffc446603004c5eeefd25c2571dee047488"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T2_24h/B3.json",
+   "sha256": "cc5d58a8b07c98b63d56dd1a8784bf6d12841519b680347f441887a41c9dc8af"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T2_24h/B3F.json",
+   "sha256": "e05576ae3a74b85c51462162d9b2a76af2385ec04f284a5f15b89642091edd14"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/T2_24h/B4.json",
+   "sha256": "0010b258c19e5ff73dd4c88ec064fc0d8094d9d41abaee9a1a72d107662200cf"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/folds/T1_24h.json",
+   "sha256": "9394b60c3652b25f402445336ff5a70f9a29a955b0f3eab0ad400e6d6821dae4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/folds/T1b_6h.json",
+   "sha256": "1cc753177d4fc2b1e21304043b246583bb2dd24e84168ece0e2f2f40958b1ce4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/artifacts/folds/T2_24h.json",
+   "sha256": "ecee1ad616143d29e4abad6d9f6be0fbb98c68af66a384e71b5863e8c0896ac8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/evidence/determinism.json",
+   "sha256": "16b66250d6d15bba1cfc7fe794880302c930918cebbdea3457dc21ea59897af1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/evidence/folds.json",
+   "sha256": "7938433ba07dd7bf8f41ad491023a394f8b00a0346ae28921cbcf0ca0869bbdd"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/evidence/label_sets.json",
+   "sha256": "3fcbcbb145808f8d2d980ca948738112a0183230a94f2812e46516c2ac12cf9f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/evidence/mutation_baselines.json",
+   "sha256": "f5b41c664a0de0df667669af35e6071dea3d9b4e663adf37a70f066336cbefec"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/evidence/run_log.json",
+   "sha256": "633eda002cdd40448f3ada918e92a6d90fb1725d47703ba2fcbb49bf94221325"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/evidence/serialization_smoke.json",
+   "sha256": "a056f27ee1de09eb70a261de6d342d6a86235f231f1bc085792adcdc8599e0dd"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/evidence/sklearn_crosscheck.json",
+   "sha256": "3f4bfa31ec7a03154cfa2c70314d146fa90109c5c76a47366c194a0a330b5f01"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/evidence/traps.json",
+   "sha256": "6f9518fabadba865e2c8df359688a68e67978029dbb41d3a53c11df360e2a6e3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/experiments/BASELINE_METRICS.csv",
+   "sha256": "6369e877ea68fadfac6c5b4145d877b1a6a0f08a407dd8868c6571a43c5de0bb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/experiments/CALIBRATION_BINS.csv",
+   "sha256": "f46052f72e0c4750a8b16d6511a28e4fe7405e7967a7aceeecda588db07b0ade"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/experiments/EXPERIMENT_REGISTRY.csv",
+   "sha256": "b60c05fc3f72aab1cfe741687908c292460b17729aaea315f4c7457b829b309e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/experiments/NC1_SEEDS.csv",
+   "sha256": "14cfd7c92cd93db71f22dd91530fbc1656442035cab7017b5dadd6332c8ee6f7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/experiments/OOS_COHORTS.csv",
+   "sha256": "4dd1e59a6e99f55c53f9b23cdb7bb8f85cc95eb9da7bcd1be67439cc317f9ee7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/experiments/OOS_PREDICTIONS.csv",
+   "sha256": "c2130761d983745e81ebbee112f49b680a3ab8a1535eb7e748868c5604ca2fca"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/experiments/SEARCH_LEDGER.csv",
+   "sha256": "a0e729ed1e20cdee3b3d837865b6601d3cbb618411422937506cb3e18e8b98ca"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/experiments/TRAINING_PREVALENCE.csv",
+   "sha256": "e4a2a3b33fc3983c883fc365393fcf8750f3723bcae74fb35258fd207673b248"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/models/BASELINE_SPEC.md",
+   "sha256": "d011306d0e59874ae01d87edc3eee9cf3ad44c3aabe654c5e32143950c917b65"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/probes/mutation_baselines.py",
+   "sha256": "b8ad3164808af7fdde50032a2af68ba3b6fafc75395d017d0c8ff37c2efa5105"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/probes/run_baselines.py",
+   "sha256": "68381d76a250d44f4b1fb5fbb2ed52f0297063aa6154d2ccc09bd53c53163dac"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/probes/sklearn_crosscheck.py",
+   "sha256": "4e59764ad6c099537e024a21abbb1fd015cfa32658ad4f26826ddf50903ae97d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/probes/write_results.py",
+   "sha256": "409643f8000ede99fc4f3697f93ee1c04e3ab724e3326a99fc7043ca93f479d9"
+  },
+  {
+   "path": "memelab/predictive/stats.py",
+   "sha256": "e249d9d99e0d69e3f55d80e9a3d42b3a4efaf44c6488c04c4f318d576895096a"
+  },
+  {
+   "path": "memelab/predictive/baselines.py",
+   "sha256": "9ae44a4b66753d84b1366b3bf80af7bf038397202805d319cf16b20f4b5f2399"
+  },
+  {
+   "path": "tests/test_predictive_stats.py",
+   "sha256": "666085f4facb54ddfe3d33c5bf1703a808946f28289484d3fd6b65d53eb8a2af"
+  },
+  {
+   "path": "tests/test_predictive_baselines.py",
+   "sha256": "7d1bcf3c4d8bff81bb9853942db69b732dbe9d662ddbe1a6816880e052de0c68"
+  }
+ ],
+ "limitations": [
+  "PROVISIONAL until the Phase 06 48 h revision re-read is folded in; a changed development label means a rerun that supersedes these outputs (PI-D-046)",
+  "development only, retrospective provider-mode reconstruction; the cards are not as-of models for decisions before 2026-10-17",
+  "out-of-sample support: T1 24 events (8 positive) over 3 days, T1b 44 (3) over 5 days, T2 8 (1) on 1 day; one market regime",
+  "AUC and average precision never computable (fewer than 10 positives out of sample)",
+  "day bootstrap on 5 days is unstable (day ESS above n for T1b)",
+  "NC1 on T2 has a positive mean skill on 8 rows (finding)",
+  "ACCEPTANCE B4 computed in its as-of form; the contemporaneous form B4C is description only (PI-D-048)",
+  "debug runs on the real development data at 200 replicates happened after the pre-registration and before the code commit; changes after them are listed in the evidence (none to a baseline, setting, seed, split or threshold; Holm made more conservative)"
+ ],
+ "blockers": [
+  "Phase 06 48 h revision re-read open (not before 2026-10-26T13:49Z)"
+ ],
+ "approvals_needed": [],
+ "next_eligible_phase": "none until the independent skeptic is folded in and the Phase 06 re-read is resolved; then 08"
+}

@@ -1,0 +1,66 @@
+{
+ "body": {
+  "b0": 0.21374045801526717,
+  "groups": {
+   "CONSTRUCTIVE": {
+    "k": 1,
+    "n": 25,
+    "p": 0.11721798134011875
+   },
+   "REJECTED": {
+    "k": 21,
+    "n": 63,
+    "p": 0.3045157730157271
+   },
+   "RISK_OR_UNRESOLVED": {
+    "k": 6,
+    "n": 43,
+    "p": 0.1630922088937356
+   }
+  },
+  "m": 20.0,
+  "status_groups": {
+   "DISTRIBUTION RISK": "RISK_OR_UNRESOLVED",
+   "ENTRY CONDITIONS MET": "CONSTRUCTIVE",
+   "NEAR ENTRY": "CONSTRUCTIVE",
+   "OVEREXTENDED": "RISK_OR_UNRESOLVED",
+   "REJECTED": "REJECTED",
+   "RESEARCH REQUIRED": "RISK_OR_UNRESOLVED",
+   "SETUP DEVELOPING": "CONSTRUCTIVE",
+   "THESIS DETERIORATING": "RISK_OR_UNRESOLVED",
+   "THESIS INVALIDATED": "RISK_OR_UNRESOLVED",
+   "WATCH": "CONSTRUCTIVE"
+  }
+ },
+ "data_snapshot_sha": "cb959de10fca4fca6d709f80484ae7eef14afe4a3f66e2a14aa7b98cb2d5de44",
+ "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+ "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "feature_version": "2",
+ "k_train": 28,
+ "k_used": 28,
+ "kind": "B1",
+ "label_mode": "provider",
+ "label_set_sha": "4bf69e8092c8569cdd75cfc0c14b750ea00c8dac22ff0c1f6a4620732adc2c24",
+ "label_store_migration": 2,
+ "labels_version": "labels-1",
+ "max_train_decision_time": 1791973063.0,
+ "max_train_label_matures_at": 1792147063.0,
+ "model_id": "B1:price_path_severe_drawdown_or_halt_24h",
+ "model_sha": "7a4ad854d8c83dfafc71613b7a8151e33ff4b8ceb908a1ab817ccdcb29b23a17",
+ "n_train": 131,
+ "n_used": 131,
+ "phase": "07",
+ "publishable": false,
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "revision_check_claimed": false,
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "store_schema": "memelab.predictive.store/1",
+ "target_version": {
+  "price_path_severe_drawdown_or_halt_24h": "1"
+ },
+ "targets": [
+  "price_path_severe_drawdown_or_halt_24h"
+ ],
+ "training_cutoff": 1792195200.0,
+ "training_cutoff_utc": "2026-10-17T00:00:00Z"
+}

@@ -1,0 +1,17 @@
+{
+ "price_path_severe_drawdown_or_halt_24h": {
+  "label_set_sha": "4bf69e8092c8569cdd75cfc0c14b750ea00c8dac22ff0c1f6a4620732adc2c24",
+  "n": 131,
+  "positives": 28
+ },
+ "price_path_target_before_invalidation_24h": {
+  "label_set_sha": "9fae5b7ead0a832f5960b249d2afc8a67fd8e5ee2ebe86b232c9ecbc128b33a1",
+  "n": 136,
+  "positives": 34
+ },
+ "price_path_target_before_invalidation_6h": {
+  "label_set_sha": "c03969674ec67e932be2f8ac0c34f6797008428fcf1ab9871feba52e99306618",
+  "n": 224,
+  "positives": 26
+ }
+}

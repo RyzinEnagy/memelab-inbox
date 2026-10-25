@@ -1,0 +1,92 @@
+{
+ "body": {
+  "columns": [
+   "thesis_log1p_liquidity_usd",
+   "thesis_log1p_mcap_usd",
+   "thesis_log1p_vol_24h_usd",
+   "thesis_fatal_present",
+   "log1p_token_age_days"
+  ],
+  "logistic": {
+   "C": 1.0,
+   "coef": [
+    0.389113377725218,
+    -0.13042804015565834,
+    -0.18244349507489652,
+    -0.2663241987805705,
+    -0.9439837186734957
+   ],
+   "intercept": -1.2756655772579404,
+   "n_iter": 7
+  },
+  "prep": {
+   "ind": [],
+   "keep": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "med": [
+    12.37833844,
+    15.079283745,
+    13.68726056,
+    0.5,
+    2.6709836788363326
+   ],
+   "mu": [
+    11.906886411529413,
+    15.14805856572059,
+    13.737432825014706,
+    0.5,
+    2.8915625843670645
+   ],
+   "n_in": 5,
+   "sd": [
+    2.339887520516299,
+    2.735903914825881,
+    1.7666190670161477,
+    0.5,
+    1.9121791500810053
+   ]
+  },
+  "required": [
+   "thesis_log1p_liquidity_usd",
+   "thesis_log1p_mcap_usd",
+   "thesis_log1p_vol_24h_usd",
+   "thesis_fatal_present"
+  ]
+ },
+ "data_snapshot_sha": "77da8b72654ef47e57baff39c53f973f2624082adef7a355f4e058f1fa526c1e",
+ "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+ "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "feature_version": "2",
+ "k_train": 34,
+ "k_used": 34,
+ "kind": "B2",
+ "label_mode": "provider",
+ "label_set_sha": "9fae5b7ead0a832f5960b249d2afc8a67fd8e5ee2ebe86b232c9ecbc128b33a1",
+ "label_store_migration": 2,
+ "labels_version": "labels-1",
+ "max_train_decision_time": 1792059228.0,
+ "max_train_label_matures_at": 1792146828.0,
+ "model_id": "B2:price_path_target_before_invalidation_24h",
+ "model_sha": "e04172636be8263ff89a36af82a1148555c521c1443f4ce3e9e214253ac24470",
+ "n_train": 136,
+ "n_used": 136,
+ "phase": "07",
+ "publishable": false,
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "revision_check_claimed": false,
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "store_schema": "memelab.predictive.store/1",
+ "target_version": {
+  "price_path_target_before_invalidation_24h": "1"
+ },
+ "targets": [
+  "price_path_target_before_invalidation_24h"
+ ],
+ "training_cutoff": 1792195200.0,
+ "training_cutoff_utc": "2026-10-17T00:00:00Z"
+}

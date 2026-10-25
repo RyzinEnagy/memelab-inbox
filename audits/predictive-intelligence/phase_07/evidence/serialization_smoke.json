@@ -1,0 +1,251 @@
+{
+ "T1_24h": {
+  "B0": {
+   "abstain": null,
+   "file_sha256": "d89ab4a62fba636ea6a225856f786547b2a6e5cad1668d70410509f8a64cbde0",
+   "k_train": 34,
+   "model_sha": "6aad694e5cc310130410a65e442aa80601f42fdf9d652e91218b01dbbed59443",
+   "n_train": 136,
+   "n_used": 136,
+   "numbers": 136,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "B1": {
+   "abstain": null,
+   "file_sha256": "f84066700ca67ff7c3d4ff9ae9cf2a949803cd3007d8404c9fc418cb27ed1d8c",
+   "k_train": 34,
+   "model_sha": "122f1da80c16d1d14162bf7d80ba62b80ae2d88da93f992d63b2cd0343367180",
+   "n_train": 136,
+   "n_used": 136,
+   "numbers": 136,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "B2": {
+   "abstain": null,
+   "file_sha256": "451a38b2dbc0d65e20f676c7aeaa5ccf3486fd991222e4f89053dc44a16796f4",
+   "k_train": 34,
+   "model_sha": "e04172636be8263ff89a36af82a1148555c521c1443f4ce3e9e214253ac24470",
+   "n_train": 136,
+   "n_used": 136,
+   "numbers": 136,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "B3": {
+   "abstain": null,
+   "file_sha256": "f9a18b45322416eced63cc038ea8070143b589ca53c56cf0b14a2d4e62668ff8",
+   "k_train": 34,
+   "model_sha": "e55cf42b3ba3018e1fc7e9ba3c6961ddbce622fdf3d277ee5c33500e6fbde39c",
+   "n_train": 136,
+   "n_used": 136,
+   "numbers": 136,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "B3F": {
+   "abstain": null,
+   "file_sha256": "cd28cf657ebfd7ac0909f0190bd0b882c1b80579ed6052c0d0e7538b65e21de7",
+   "k_train": 34,
+   "model_sha": "89e9d2bd6167841a31a13aef1536dd9a880f8405de4f3737be90ab95261da0ed",
+   "n_train": 136,
+   "n_used": 136,
+   "numbers": 136,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "B4": {
+   "abstain": null,
+   "file_sha256": "ea96d08e5a8372c5042db6b72b98523ad186b858e7ded1510d531af8278940ed",
+   "k_train": 34,
+   "model_sha": "ac441b8a0abcf7cea59f7c36cd12d907340e870ea32e2134d71959f6fd62f97d",
+   "n_train": 136,
+   "n_used": 136,
+   "numbers": 136,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "contract": {
+   "abstain_errors": [],
+   "abstain_valid": true,
+   "forecast_errors": [
+    "calibration_reference needs holdout_n >= 50 out-of-sample events (else INSUFFICIENT_HISTORY)",
+    "model trained after the decision time: not an as-of forecast (P13)"
+   ],
+   "forecast_refused": true
+  }
+ },
+ "T1b_6h": {
+  "B0": {
+   "abstain": null,
+   "file_sha256": "232f38edfb5e63c414dee5de5cc6bf5209d9484f7244c9847516c1f1bd4df06e",
+   "k_train": 26,
+   "model_sha": "58e20e75c8f6ca4eacd14bdcfc696f2ac3e04ad25130569e1aa2c1914d090645",
+   "n_train": 224,
+   "n_used": 224,
+   "numbers": 224,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "B1": {
+   "abstain": null,
+   "file_sha256": "f8d1f830870c4ebed7748bf76b53268a6a44b1005ccb0f0bf546f81f5dae06ed",
+   "k_train": 26,
+   "model_sha": "a3cfb5ad33fa3eb65445ad16bd8fe40e6ab45c4cb36c1b0d8bd62483531b6bea",
+   "n_train": 224,
+   "n_used": 224,
+   "numbers": 224,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "B2": {
+   "abstain": null,
+   "file_sha256": "412db87d6ffb60115dbc8fd6bf717bb1de3462df077b6cbf39ff8e3aa43e461c",
+   "k_train": 26,
+   "model_sha": "440927a9afea1ec9f3aa95315583111f25589351d62964057f29d510887e57b7",
+   "n_train": 224,
+   "n_used": 224,
+   "numbers": 224,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "B3": {
+   "abstain": null,
+   "file_sha256": "d4b3bbdfaec3f83a8eea1b05c0101d74bd9ab526bd22b01628cf16c68eed4acc",
+   "k_train": 26,
+   "model_sha": "f928a479036c7e4fff5c13145cbb25884c6fcdfc999a9292846924938f6a8bee",
+   "n_train": 224,
+   "n_used": 224,
+   "numbers": 224,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "B3F": {
+   "abstain": null,
+   "file_sha256": "cb23b7dbe791d5b85748c0e5147a742f7e6faea1ec9ecb23fdee3fd7188cf2e8",
+   "k_train": 26,
+   "model_sha": "be2a443887e3ed6e9ccee934c33164718cb9dd7c74b2b1e2d86839e3e1329dcd",
+   "n_train": 224,
+   "n_used": 224,
+   "numbers": 224,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "B4": {
+   "abstain": null,
+   "file_sha256": "5ef325adcdcfbb125222de0d522ee0cc2726095f283f822ee238d438d9e6cbbc",
+   "k_train": 26,
+   "model_sha": "1c604f48e1b911bbc21b99f39bdf96074cfc5ba508cb27c79e5528147412ff5b",
+   "n_train": 224,
+   "n_used": 224,
+   "numbers": 224,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "contract": {
+   "abstain_errors": [],
+   "abstain_valid": true,
+   "forecast_errors": [
+    "calibration_reference needs holdout_n >= 50 out-of-sample events (else INSUFFICIENT_HISTORY)",
+    "model trained after the decision time: not an as-of forecast (P13)"
+   ],
+   "forecast_refused": true
+  }
+ },
+ "T2_24h": {
+  "B0": {
+   "abstain": null,
+   "file_sha256": "ba7f22958de4c3314e6d991bd4d1f050f34ef8f10df03b2a1adf3e2acd3b7863",
+   "k_train": 28,
+   "model_sha": "582bb22428724b26507e5a4dbc45bf714acf3a83eef3b0994aed3947a30f7bb1",
+   "n_train": 131,
+   "n_used": 131,
+   "numbers": 131,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "B1": {
+   "abstain": null,
+   "file_sha256": "3431edd2bb961c0af5a4456dba9d4c0bd5fed5c01162c959ea128206a7d1ab7f",
+   "k_train": 28,
+   "model_sha": "7a4ad854d8c83dfafc71613b7a8151e33ff4b8ceb908a1ab817ccdcb29b23a17",
+   "n_train": 131,
+   "n_used": 131,
+   "numbers": 131,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "B2": {
+   "abstain": null,
+   "file_sha256": "412d4bce917b2ab3619edd8f9c257ffc446603004c5eeefd25c2571dee047488",
+   "k_train": 28,
+   "model_sha": "d045d9d7a40947f9a7af108c01f0217440d3e19a16fc5d12328dc57d73ad4aaf",
+   "n_train": 131,
+   "n_used": 131,
+   "numbers": 131,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "B3": {
+   "abstain": null,
+   "file_sha256": "cc5d58a8b07c98b63d56dd1a8784bf6d12841519b680347f441887a41c9dc8af",
+   "k_train": 28,
+   "model_sha": "9e57e07d81067ef717ef00fefc32ab4bfe8e9c5ddffac866ea712f784e7bc8cb",
+   "n_train": 131,
+   "n_used": 131,
+   "numbers": 131,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "B3F": {
+   "abstain": null,
+   "file_sha256": "e05576ae3a74b85c51462162d9b2a76af2385ec04f284a5f15b89642091edd14",
+   "k_train": 28,
+   "model_sha": "7c9f2dd420c81b2cb6bcc98e4a68908f41a6937d7ead50181ef40feabfbc3691",
+   "n_train": 131,
+   "n_used": 131,
+   "numbers": 131,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "B4": {
+   "abstain": null,
+   "file_sha256": "0010b258c19e5ff73dd4c88ec064fc0d8094d9d41abaee9a1a72d107662200cf",
+   "k_train": 28,
+   "model_sha": "290cdc7d4614645b0bbf3648661e580a378799d839b87a65fb66e0a2107ab386",
+   "n_train": 131,
+   "n_used": 131,
+   "numbers": 131,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "contract": {
+   "abstain_errors": [],
+   "abstain_valid": true,
+   "forecast_errors": [
+    "calibration_reference needs holdout_n >= 50 out-of-sample events (else INSUFFICIENT_HISTORY)",
+    "model trained after the decision time: not an as-of forecast (P13)"
+   ],
+   "forecast_refused": true
+  }
+ }
+}

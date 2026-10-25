@@ -1,0 +1,53 @@
+{
+ "CX07": {
+  "label_rows": 491,
+  "pass": true,
+  "refused": 250,
+  "rows_whose_mint_has_a_later_snapshot": 250
+ },
+ "NC2": {
+  "accepted": 0,
+  "min_trap_delay_s": 965.0,
+  "pass": true,
+  "refused_by_allowlist": 136,
+  "refused_by_validate_rows": 136,
+  "rows": 136
+ },
+ "NC3": {
+  "accepted": 0,
+  "groups": [
+   {
+    "mints": [
+     "3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump",
+     "46hMQPKT2sPwMSkVenXnpiKVQhrkFvJLSYMWtdkipump"
+    ],
+    "symbol_sha256": "209ac652c496f6f5"
+   },
+   {
+    "mints": [
+     "AQ7A9nsCcrfbftRq2kfFjCkaG6NicixZ1Vy4RZ4Hpump",
+     "Goh59QCfoX53RgJa615vzXx4swR3mv51VgvAN6ZCpump"
+    ],
+    "symbol_sha256": "51d7ba68cb51a109"
+   },
+   {
+    "mints": [
+     "6Kb6io6tDyiizb79yeZ1gaqUNYgdJMXr4upPRa8Ppump",
+     "BsbsB3WLq7vbY5En3MBCAsTrcwaCxNKY2Mp5pGuLpump"
+    ],
+    "symbol_sha256": "29640639f8b637bb"
+   },
+   {
+    "mints": [
+     "JUPrJXKV6MyLkbFgZMDXPn7mYR4yqMNn5Pwg27zcyyG",
+     "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN"
+    ],
+    "symbol_sha256": "e12ed9c08470f6c3"
+   }
+  ],
+  "ordered_pairs": 8,
+  "pass": true,
+  "refused": 8,
+  "symbol_groups": 4
+ }
+}

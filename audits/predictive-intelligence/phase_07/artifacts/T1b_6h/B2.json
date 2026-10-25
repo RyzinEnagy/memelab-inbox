@@ -1,0 +1,97 @@
+{
+ "body": {
+  "columns": [
+   "thesis_log1p_liquidity_usd",
+   "thesis_log1p_mcap_usd",
+   "thesis_log1p_vol_24h_usd",
+   "thesis_fatal_present",
+   "log1p_token_age_days"
+  ],
+  "logistic": {
+   "C": 1.0,
+   "coef": [
+    0.19828763103792107,
+    -0.8147424269167846,
+    0.611044988027221,
+    0.01897391769333592,
+    -0.6476622941956258,
+    -0.19905994960562964
+   ],
+   "intercept": -2.4880882064399614,
+   "n_iter": 9
+  },
+  "prep": {
+   "ind": [
+    4
+   ],
+   "keep": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "med": [
+    12.933694885000001,
+    15.486155895,
+    14.071173085,
+    0.0,
+    3.249110498964135
+   ],
+   "mu": [
+    12.502484389308036,
+    15.7876126598125,
+    14.05313763125893,
+    0.3794642857142857,
+    3.3554031126673682,
+    0.008928571428571428
+   ],
+   "n_in": 5,
+   "sd": [
+    2.2160872716748847,
+    2.5669387402954102,
+    1.627917356263039,
+    0.48525368785989936,
+    1.8714163665397865,
+    0.09406833707904232
+   ]
+  },
+  "required": [
+   "thesis_log1p_liquidity_usd",
+   "thesis_log1p_mcap_usd",
+   "thesis_log1p_vol_24h_usd",
+   "thesis_fatal_present"
+  ]
+ },
+ "data_snapshot_sha": "f052cd0308274384bda213ee972a1b3dd6e09276814ac15831c1337b42faa105",
+ "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+ "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "feature_version": "2",
+ "k_train": 26,
+ "k_used": 26,
+ "kind": "B2",
+ "label_mode": "provider",
+ "label_set_sha": "c03969674ec67e932be2f8ac0c34f6797008428fcf1ab9871feba52e99306618",
+ "label_store_migration": 2,
+ "labels_version": "labels-1",
+ "max_train_decision_time": 1792147326.0,
+ "max_train_label_matures_at": 1792170126.0,
+ "model_id": "B2:price_path_target_before_invalidation_6h",
+ "model_sha": "440927a9afea1ec9f3aa95315583111f25589351d62964057f29d510887e57b7",
+ "n_train": 224,
+ "n_used": 224,
+ "phase": "07",
+ "publishable": false,
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "revision_check_claimed": false,
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "store_schema": "memelab.predictive.store/1",
+ "target_version": {
+  "price_path_target_before_invalidation_6h": "1"
+ },
+ "targets": [
+  "price_path_target_before_invalidation_6h"
+ ],
+ "training_cutoff": 1792195200.0,
+ "training_cutoff_utc": "2026-10-17T00:00:00Z"
+}

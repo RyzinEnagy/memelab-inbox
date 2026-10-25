@@ -1,0 +1,3027 @@
+{
+ "folds": [
+  {
+   "cards": {
+    "B0": {
+     "body": {
+      "p": 0.2403846153846154
+     },
+     "data_snapshot_sha": "ddd67d96c9c1fa68b1884f22ae1a8c8d9f762ed08c85558fcee079e00fe445e8",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 25,
+     "kind": "B0",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "B0:price_path_target_before_invalidation_24h",
+     "model_sha": "5f0659ee7ec23b12472908b640e786fc4d47c168a8aabb1266f79ce79c1a2eca",
+     "n_train": 104,
+     "n_used": 104,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    },
+    "B1": {
+     "body": {
+      "b0": 0.2403846153846154,
+      "groups": {
+       "CONSTRUCTIVE": {
+        "k": 4,
+        "n": 17,
+        "p": 0.238045738045738
+       },
+       "REJECTED": {
+        "k": 14,
+        "n": 53,
+        "p": 0.25763962065331925
+       },
+       "RISK_OR_UNRESOLVED": {
+        "k": 7,
+        "n": 34,
+        "p": 0.21866096866096865
+       }
+      },
+      "m": 20.0,
+      "status_groups": {
+       "DISTRIBUTION RISK": "RISK_OR_UNRESOLVED",
+       "ENTRY CONDITIONS MET": "CONSTRUCTIVE",
+       "NEAR ENTRY": "CONSTRUCTIVE",
+       "OVEREXTENDED": "RISK_OR_UNRESOLVED",
+       "REJECTED": "REJECTED",
+       "RESEARCH REQUIRED": "RISK_OR_UNRESOLVED",
+       "SETUP DEVELOPING": "CONSTRUCTIVE",
+       "THESIS DETERIORATING": "RISK_OR_UNRESOLVED",
+       "THESIS INVALIDATED": "RISK_OR_UNRESOLVED",
+       "WATCH": "CONSTRUCTIVE"
+      }
+     },
+     "data_snapshot_sha": "ddd67d96c9c1fa68b1884f22ae1a8c8d9f762ed08c85558fcee079e00fe445e8",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 25,
+     "kind": "B1",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "B1:price_path_target_before_invalidation_24h",
+     "model_sha": "4cfbdf48b0c7882f7813f5e8ae03f7d781fe501d27e18f8a755da25990b9d43e",
+     "n_train": 104,
+     "n_used": 104,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    },
+    "B2": {
+     "body": {
+      "columns": [
+       "thesis_log1p_liquidity_usd",
+       "thesis_log1p_mcap_usd",
+       "thesis_log1p_vol_24h_usd",
+       "thesis_fatal_present",
+       "log1p_token_age_days"
+      ],
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.4416907041747248,
+        -0.17908848080132803,
+        0.01481300684509097,
+        -0.17973841368813193,
+        -1.0452771147959485
+       ],
+       "intercept": -1.3916125206481844,
+       "n_iter": 7
+      },
+      "prep": {
+       "ind": [],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4
+       ],
+       "med": [
+        12.222486804999999,
+        15.135674615,
+        13.68726056,
+        1.0,
+        2.6141129069716236
+       ],
+       "mu": [
+        11.71747570839423,
+        15.139161210365385,
+        13.736981649259615,
+        0.5384615384615384,
+        2.809831316510275
+       ],
+       "n_in": 5,
+       "sd": [
+        2.5393545803725246,
+        2.9216447008973163,
+        1.8635258260294145,
+        0.4985185152621431,
+        2.0006542484006977
+       ]
+      },
+      "required": [
+       "thesis_log1p_liquidity_usd",
+       "thesis_log1p_mcap_usd",
+       "thesis_log1p_vol_24h_usd",
+       "thesis_fatal_present"
+      ]
+     },
+     "data_snapshot_sha": "ddd67d96c9c1fa68b1884f22ae1a8c8d9f762ed08c85558fcee079e00fe445e8",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 25,
+     "kind": "B2",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "B2:price_path_target_before_invalidation_24h",
+     "model_sha": "934181f497edcfc990d8d55cab81c2ac7e7278cac4e3f8b76a28846033fe173c",
+     "n_train": 104,
+     "n_used": 104,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    },
+    "B3": {
+     "body": {
+      "column": "thesis_score",
+      "platt": {
+       "a": -0.07631272534392489,
+       "b": 5.639287074714065
+      }
+     },
+     "data_snapshot_sha": "ddd67d96c9c1fa68b1884f22ae1a8c8d9f762ed08c85558fcee079e00fe445e8",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 25,
+     "kind": "B3",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "B3:price_path_target_before_invalidation_24h",
+     "model_sha": "b832b38ddc1f1a6387563ff3c50464d55c48ca7caf49af0ba48e28d419493647",
+     "n_train": 104,
+     "n_used": 104,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    },
+    "B3F": {
+     "body": {
+      "b0": 0.2403846153846154,
+      "groups": {
+       "0": {
+        "k": 11,
+        "n": 48,
+        "p": 0.23246606334841627
+       },
+       "1": {
+        "k": 14,
+        "n": 56,
+        "p": 0.24746963562753035
+       }
+      },
+      "m": 20.0
+     },
+     "data_snapshot_sha": "ddd67d96c9c1fa68b1884f22ae1a8c8d9f762ed08c85558fcee079e00fe445e8",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 25,
+     "kind": "B3F",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "B3F:price_path_target_before_invalidation_24h",
+     "model_sha": "1269ca1bee6e5adb9c74f8a33ac4a4047125a5463114d843c4838c3b65bdab6d",
+     "n_train": 104,
+     "n_used": 104,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    },
+    "B4": {
+     "body": {
+      "b0": 0.2403846153846154,
+      "factor": 3.0,
+      "m": 20.0,
+      "train": [
+       [
+        "2BVfJ4AHMvHdKtEZNHaBr48dQzTfZvYkjaaxbM6bpump",
+        224514.783765905,
+        21299255.41550298,
+        1
+       ],
+       [
+        "2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
+        56583.20547295681,
+        649766.0220461632,
+        1
+       ],
+       [
+        "2LMiWGyNjGKyUkH2oFYmMxzwLzUY84dHZf6DUUZFpump",
+        5994.017682508696,
+        31452.13817061333,
+        1
+       ],
+       [
+        "2bN9YoTKiejNonS4Q1EjhypvRfndZLEiYJZUHLwYpump",
+        18319.87716009934,
+        183733.2942587034,
+        0
+       ],
+       [
+        "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+        124638.9724415287,
+        1065869.2610830131,
+        0
+       ],
+       [
+        "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+        2814247.327725162,
+        613970045.0582645,
+        0
+       ],
+       [
+        "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+        2938116.2998880516,
+        624004550.2643672,
+        0
+       ],
+       [
+        "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+        2979177.055100321,
+        630810600.91116,
+        0
+       ],
+       [
+        "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+        3238081.0415338855,
+        654354655.0663934,
+        0
+       ],
+       [
+        "39ahtL8ynzE4amH26J29C93PA5172V3ft9UuUcqQS8fz",
+        412188.29636082565,
+        3881849.651808471,
+        0
+       ],
+       [
+        "3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump",
+        147952.60294766436,
+        11444153.458969265,
+        0
+       ],
+       [
+        "467xn5zKySHTWNohRyuu3rsf9TyxAYCdNyjEq9u3wCwt",
+        7875.41248669511,
+        16631.647470784923,
+        0
+       ],
+       [
+        "46hMQPKT2sPwMSkVenXnpiKVQhrkFvJLSYMWtdkipump",
+        915467.055927286,
+        440994493.8500575,
+        1
+       ],
+       [
+        "4CBJ86svL6cuzA5CvGoVfrFVwRyMvBeGYBsSQqKx1MnV",
+        2047.418942485516,
+        7577.4871933180575,
+        0
+       ],
+       [
+        "4EMavj8PiPMnHYjzkcu6eJ5EihhYkaJbMuHznAuZpump",
+        7297.674235005435,
+        14722.856993860501,
+        0
+       ],
+       [
+        "4rLgnFcuADTS2VD7sGxQjoiajbZjYZ411nF7gm7kpump",
+        53875.20479822026,
+        1068313.1145433714,
+        0
+       ],
+       [
+        "55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
+        135695.44934427732,
+        1091945.3019069291,
+        1
+       ],
+       [
+        "5VnbrKp28Qs9CAH6PyZdxBNvLxZcbeX3YBsozgWnpump",
+        133432.3912017072,
+        1063799.9985997907,
+        0
+       ],
+       [
+        "5YLCp1XSRpGevfKBoSJvs7fSv6fSgbTDe3XB3dLfpump",
+        190587.38705724632,
+        19525814.89474881,
+        1
+       ],
+       [
+        "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+        487877.74470726843,
+        5861726.890792798,
+        0
+       ],
+       [
+        "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+        491983.4405126124,
+        5782408.37108041,
+        0
+       ],
+       [
+        "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+        660062.2085848472,
+        8713826.328053715,
+        0
+       ],
+       [
+        "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
+        414664.9519423625,
+        3840359.6138061234,
+        0
+       ],
+       [
+        "61cfz6tcpHqV2dAKuMLJ6LN5FeLKPxXT6aNgj53Ppump",
+        77.07342850900986,
+        1955.072606904198,
+        0
+       ],
+       [
+        "68AGsjomsgTtiTaDhF6XGCeVJDnFeh415ngYYgVxGzns",
+        108384.69127858867,
+        1341245.9782650033,
+        0
+       ],
+       [
+        "6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
+        64539.36106320177,
+        886983.7691950137,
+        0
+       ],
+       [
+        "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+        3580824.9712794237,
+        125067726.68320934,
+        0
+       ],
+       [
+        "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+        3644673.3577634683,
+        111503569.41377814,
+        0
+       ],
+       [
+        "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+        3919403.747073977,
+        150363021.76854816,
+        0
+       ],
+       [
+        "6Kb6io6tDyiizb79yeZ1gaqUNYgdJMXr4upPRa8Ppump",
+        3449.243488804237,
+        3433.3571736069107,
+        0
+       ],
+       [
+        "6XhzSy3VTTkwqMUSQsStM3ncGy6ozcPnzLVmv4HZ64cC",
+        71760.17710811725,
+        2084413.9409969042,
+        0
+       ],
+       [
+        "6hTLdzZaaCjmqtn7RtaEMQsCbXT5Pg8q76tRViEGpump",
+        32660.234684848783,
+        421837.28977790324,
+        1
+       ],
+       [
+        "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+        30085888.727794237,
+        519807343.7366595,
+        0
+       ],
+       [
+        "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+        30468048.648413736,
+        535434501.7960331,
+        0
+       ],
+       [
+        "6zzzG49KX5nksnqfogs31dwoMYSHaJXkropKbv1QZVga",
+        32684.736530557802,
+        504101.0919836894,
+        0
+       ],
+       [
+        "7K52aYQW9rWGjwZmQ7o2d1P6E7bji6hSMsqaLy5EcxLh",
+        32031.745645892504,
+        252756.87912820108,
+        0
+       ],
+       [
+        "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+        244674.8029527279,
+        2420612.3102221545,
+        1
+       ],
+       [
+        "7Xgc5RacHtGzfhw2HukUBk5V986yBbvshr7rrCoopump",
+        55869.84741726664,
+        958894.7682476925,
+        1
+       ],
+       [
+        "7vMkPxLwaH26qSZ2CgHhzvrgz9wUWMvT256vbUWfarm",
+        40069.41979033718,
+        350970.68862259865,
+        1
+       ],
+       [
+        "7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+        52459.77570967651,
+        1354988.4550300345,
+        0
+       ],
+       [
+        "85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
+        54062.37183651638,
+        900671.1888202844,
+        1
+       ],
+       [
+        "8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
+        8102.971709564658,
+        52413243.762746125,
+        0
+       ],
+       [
+        "8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
+        8141.249742883829,
+        52413244.81101093,
+        0
+       ],
+       [
+        "8k4sBtEeK4pf26noKqApv8NBTnuSJcbdwpKYknk5PbAA",
+        151559.05226812162,
+        2344906.7263878863,
+        0
+       ],
+       [
+        "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+        216879.60419109958,
+        1739723.5777285742,
+        1
+       ],
+       [
+        "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+        496773.60443113255,
+        4866735.56218437,
+        0
+       ],
+       [
+        "8rDFg4MDov1a59dyWFDkshZ633zvZKRaKdpBQBrd4bJK",
+        7147.10067829244,
+        26476.491931835037,
+        1
+       ],
+       [
+        "8wrTM8TrirHxsinDBpe7vWL3DPDdpmKfMp4n2Pdopump",
+        7921.073998306893,
+        17405.277761081503,
+        0
+       ],
+       [
+        "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+        371919.7786657425,
+        3650125.563905091,
+        0
+       ],
+       [
+        "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+        387878.11857532046,
+        4198066.423096746,
+        0
+       ],
+       [
+        "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+        390312.47995803016,
+        4348608.426978806,
+        0
+       ],
+       [
+        "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+        462787.83077997324,
+        4947033.133379651,
+        0
+       ],
+       [
+        "9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump",
+        258247.07940656994,
+        2467881.4667484225,
+        0
+       ],
+       [
+        "9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+        59921.877535880936,
+        1130944.9111072845,
+        0
+       ],
+       [
+        "9JtPfLbN32CszHmstoXYdWaazFLaoxhfqf9mKgQMpump",
+        12059.127133799107,
+        91820.52534457853,
+        0
+       ],
+       [
+        "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+        80661.66921041321,
+        1128630.5622852386,
+        0
+       ],
+       [
+        "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+        131878.69045351757,
+        1290406.7994681068,
+        1
+       ],
+       [
+        "9oXA1VWKNiYDYa6VKHBFFBBvZdvuhw1b2eD5Aka7YrVt",
+        44006.40437532138,
+        405419.6138978579,
+        0
+       ],
+       [
+        "AQ7A9nsCcrfbftRq2kfFjCkaG6NicixZ1Vy4RZ4Hpump",
+        413394.99159803195,
+        92032535.49080595,
+        1
+       ],
+       [
+        "AUuCEHQ7sm2i5GmaHrpE961voWcTY8U6mgrkhcV7pump",
+        107332.30157786592,
+        2689525.62431141,
+        0
+       ],
+       [
+        "Aov3BtQvrGXM5V9oiHu8PKJWeV8a2rFnr24fwWcNpump",
+        8106.5195376272495,
+        49266.486035881055,
+        0
+       ],
+       [
+        "ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg",
+        368741.69637524395,
+        1497575.3909631907,
+        1
+       ],
+       [
+        "ArenDYANqFNkp8ZqAXt69vT5Dz7WD4zDfSpVw6oPpump",
+        42258.10320286935,
+        155077.10930952866,
+        0
+       ],
+       [
+        "BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
+        102015.05073156631,
+        4694142.660223086,
+        0
+       ],
+       [
+        "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+        232957.89717219316,
+        2865283.9151207646,
+        1
+       ],
+       [
+        "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+        713404.8128732789,
+        6329597.411457475,
+        0
+       ],
+       [
+        "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+        874663.6108717853,
+        8077952.34883252,
+        0
+       ],
+       [
+        "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+        912120.8430788856,
+        9761785.747249149,
+        1
+       ],
+       [
+        "C3AEVqFnCYh2q4VAE1jeUVxHQNQLGVFDGrjqfboEpump",
+        368161.58255235176,
+        71648082.94423473,
+        0
+       ],
+       [
+        "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+        338811.87066016527,
+        4569925.04488073,
+        0
+       ],
+       [
+        "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+        347705.0402982732,
+        4510370.452226256,
+        0
+       ],
+       [
+        "Ci11wAJVj4tMeBo4EJUUKNnejAvHorcktcMSHmSLQdx4",
+        69.94908981623885,
+        74610787.30002181,
+        0
+       ],
+       [
+        "CioPfvQWpVF2eTzpBj72x2zPyqgJRgvi36PqdLCCpump",
+        37456.53236639172,
+        516615.2836726054,
+        1
+       ],
+       [
+        "DZQbBPFpTeeyGyvCwXxYQDZFGGHad2bY6sWZuviuX8MN",
+        19290.518686252693,
+        155781.4606464832,
+        0
+       ],
+       [
+        "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
+        370394.41012269724,
+        2131373.1062710565,
+        0
+       ],
+       [
+        "EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR",
+        139785.99378334853,
+        1377482.6078348518,
+        0
+       ],
+       [
+        "EMeugag3yfyvKqNKknGDWAudNALafZjbv9ByzCE8pump",
+        30357.06790525096,
+        298120.6459263662,
+        0
+       ],
+       [
+        "EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
+        61544.958660426426,
+        930196.7621534531,
+        0
+       ],
+       [
+        "FgnSJwFoote99diZUhtRV9Ajcfwzjj6hDx82TDhVpump",
+        18963.278355217466,
+        214416.3846472486,
+        0
+       ],
+       [
+        "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+        712703.1311846771,
+        10677100.184695458,
+        0
+       ],
+       [
+        "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+        874137.3523559622,
+        9485364.071858885,
+        1
+       ],
+       [
+        "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+        333076.3452464832,
+        3335007.6132093673,
+        0
+       ],
+       [
+        "Goh59QCfoX53RgJa615vzXx4swR3mv51VgvAN6ZCpump",
+        661829.7052742741,
+        231567259.17395186,
+        0
+       ],
+       [
+        "H4KUxsEgCp2yDpFvyDuGM5k6XevSKKrrKUxZ3Zr6nyJc",
+        84751.66244250123,
+        1279630.4567198716,
+        0
+       ],
+       [
+        "HBuRKZW5ztyGiYYBPnk7bfDPuUHPAvv7xq6dxYSf4zs9",
+        15.562692246252796,
+        382719865.3210998,
+        0
+       ],
+       [
+        "HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
+        477313.8332854557,
+        605915586.6352724,
+        0
+       ],
+       [
+        "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+        768180.8746163086,
+        54294735.689807296,
+        0
+       ],
+       [
+        "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+        766633.1129805171,
+        9756298.530208103,
+        1
+       ],
+       [
+        "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+        939013.715944526,
+        13293376.6747855,
+        0
+       ],
+       [
+        "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+        974284.6843124661,
+        12682726.799746327,
+        1
+       ],
+       [
+        "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+        1040985.667376793,
+        11794527.317663502,
+        0
+       ],
+       [
+        "HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+        234018.09416346753,
+        2730289.877445259,
+        0
+       ],
+       [
+        "JUPrJXKV6MyLkbFgZMDXPn7mYR4yqMNn5Pwg27zcyyG",
+        7.663074199709731,
+        40633371.10635339,
+        0
+       ],
+       [
+        "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+        6129949.053500502,
+        1252640849.3876731,
+        0
+       ],
+       [
+        "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+        394395.8559698642,
+        4301443.007551643,
+        0
+       ],
+       [
+        "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+        440240.7954196436,
+        4982562.87073265,
+        0
+       ],
+       [
+        "NTRNDMqQSiwEC2jJs3wJiZS6bpGYQJtMNQJgiX3WyV6",
+        6970.227282798398,
+        39777.831980559204,
+        1
+       ],
+       [
+        "PERLEQKUNUp1dgFZ8EvyXHdN9d6ZQqfGxALDvfs6pDs",
+        6835.085968466801,
+        112549780.05478305,
+        0
+       ],
+       [
+        "agYKZgcBE2XUzTypkkdJqvwPbu7k5CUZjA6Cm3jpump",
+        10059.059709760675,
+        58801.38768793796,
+        1
+       ],
+       [
+        "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+        606799.9973030066,
+        57287508.29206103,
+        0
+       ],
+       [
+        "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+        610890.4544009033,
+        57779964.736333676,
+        0
+       ],
+       [
+        "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+        678084.740607491,
+        64644431.376028866,
+        0
+       ],
+       [
+        "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+        1021421.7946382834,
+        167622729.4455942,
+        0
+       ],
+       [
+        "pmGXrmpvbWJJebWxE3RBAkdUbY1VPuwRZuU27Nepump",
+        78417.44605672771,
+        3430768.335309039,
+        1
+       ]
+      ]
+     },
+     "data_snapshot_sha": "ddd67d96c9c1fa68b1884f22ae1a8c8d9f762ed08c85558fcee079e00fe445e8",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 25,
+     "kind": "B4",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "B4:price_path_target_before_invalidation_24h",
+     "model_sha": "bb9572de1c2be174f72393b0053ea3117fbb73472d20d843fe622a96615155b2",
+     "n_train": 104,
+     "n_used": 104,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    }
+   },
+   "cutoff_utc": "2026-10-13T00:00:00Z",
+   "fold": 0
+  },
+  {
+   "cards": {
+    "B0": {
+     "body": {
+      "p": 0.23214285714285715
+     },
+     "data_snapshot_sha": "9f08df81dcb348d78b4189cdee9ab264aa4570dac5f681809301dbfd0555a9dc",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 26,
+     "kind": "B0",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "B0:price_path_target_before_invalidation_24h",
+     "model_sha": "e71b2b2a6940202e671fc2f00965f0cb463de0d90df3379b3e35b137dca8e7bd",
+     "n_train": 112,
+     "n_used": 112,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "B1": {
+     "body": {
+      "b0": 0.23214285714285715,
+      "groups": {
+       "CONSTRUCTIVE": {
+        "k": 5,
+        "n": 21,
+        "p": 0.235191637630662
+       },
+       "REJECTED": {
+        "k": 14,
+        "n": 55,
+        "p": 0.24857142857142855
+       },
+       "RISK_OR_UNRESOLVED": {
+        "k": 7,
+        "n": 36,
+        "p": 0.20790816326530612
+       }
+      },
+      "m": 20.0,
+      "status_groups": {
+       "DISTRIBUTION RISK": "RISK_OR_UNRESOLVED",
+       "ENTRY CONDITIONS MET": "CONSTRUCTIVE",
+       "NEAR ENTRY": "CONSTRUCTIVE",
+       "OVEREXTENDED": "RISK_OR_UNRESOLVED",
+       "REJECTED": "REJECTED",
+       "RESEARCH REQUIRED": "RISK_OR_UNRESOLVED",
+       "SETUP DEVELOPING": "CONSTRUCTIVE",
+       "THESIS DETERIORATING": "RISK_OR_UNRESOLVED",
+       "THESIS INVALIDATED": "RISK_OR_UNRESOLVED",
+       "WATCH": "CONSTRUCTIVE"
+      }
+     },
+     "data_snapshot_sha": "9f08df81dcb348d78b4189cdee9ab264aa4570dac5f681809301dbfd0555a9dc",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 26,
+     "kind": "B1",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "B1:price_path_target_before_invalidation_24h",
+     "model_sha": "8126fc2e3b737e8c1538c1a375e204ea29b3f90d29e1929e98726a2a23363dad",
+     "n_train": 112,
+     "n_used": 112,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "B2": {
+     "body": {
+      "columns": [
+       "thesis_log1p_liquidity_usd",
+       "thesis_log1p_mcap_usd",
+       "thesis_log1p_vol_24h_usd",
+       "thesis_fatal_present",
+       "log1p_token_age_days"
+      ],
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.48181958481152776,
+        -0.19874190852006546,
+        0.044492699712456965,
+        -0.21009710281254051,
+        -1.1403489510930087
+       ],
+       "intercept": -1.4829296754744317,
+       "n_iter": 7
+      },
+      "prep": {
+       "ind": [],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4
+       ],
+       "med": [
+        12.30440178,
+        15.135674615,
+        13.640752710000001,
+        1.0,
+        2.6921336816958745
+       ],
+       "mu": [
+        11.759683566276786,
+        15.144637649535714,
+        13.724763990205357,
+        0.5178571428571429,
+        2.86117344113833
+       ],
+       "n_in": 5,
+       "sd": [
+        2.4772312581050997,
+        2.8506411210868254,
+        1.8198369018174492,
+        0.4996810207011865,
+        2.000918369460668
+       ]
+      },
+      "required": [
+       "thesis_log1p_liquidity_usd",
+       "thesis_log1p_mcap_usd",
+       "thesis_log1p_vol_24h_usd",
+       "thesis_fatal_present"
+      ]
+     },
+     "data_snapshot_sha": "9f08df81dcb348d78b4189cdee9ab264aa4570dac5f681809301dbfd0555a9dc",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 26,
+     "kind": "B2",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "B2:price_path_target_before_invalidation_24h",
+     "model_sha": "98d498cb3d7681b71ea47b2e62917b6368df33c8db46d7ca2e8c36c1388b9234",
+     "n_train": 112,
+     "n_used": 112,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "B3": {
+     "body": {
+      "column": "thesis_score",
+      "platt": {
+       "a": -0.06858627575254624,
+       "b": 5.2566419069881
+      }
+     },
+     "data_snapshot_sha": "9f08df81dcb348d78b4189cdee9ab264aa4570dac5f681809301dbfd0555a9dc",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 26,
+     "kind": "B3",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "B3:price_path_target_before_invalidation_24h",
+     "model_sha": "710fe134bb7542b1778eba6c4fc74c75c4af8b86d30ade28503ff06c71ac5d88",
+     "n_train": 112,
+     "n_used": 112,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "B3F": {
+     "body": {
+      "b0": 0.23214285714285715,
+      "groups": {
+       "0": {
+        "k": 12,
+        "n": 54,
+        "p": 0.2249034749034749
+       },
+       "1": {
+        "k": 14,
+        "n": 58,
+        "p": 0.239010989010989
+       }
+      },
+      "m": 20.0
+     },
+     "data_snapshot_sha": "9f08df81dcb348d78b4189cdee9ab264aa4570dac5f681809301dbfd0555a9dc",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 26,
+     "kind": "B3F",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "B3F:price_path_target_before_invalidation_24h",
+     "model_sha": "517e7f9f3c4c5bda47f1253178b9972f9ccf86daa43624f094231d2410bb612b",
+     "n_train": 112,
+     "n_used": 112,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "B4": {
+     "body": {
+      "b0": 0.23214285714285715,
+      "factor": 3.0,
+      "m": 20.0,
+      "train": [
+       [
+        "1zJX5gRnjLgmTpq5sVwkq69mNDQkCemqoasyjaPW6jm",
+        493165.55710758717,
+        17309391.47895329,
+        0
+       ],
+       [
+        "2BVfJ4AHMvHdKtEZNHaBr48dQzTfZvYkjaaxbM6bpump",
+        224514.783765905,
+        21299255.41550298,
+        1
+       ],
+       [
+        "2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
+        56583.20547295681,
+        649766.0220461632,
+        1
+       ],
+       [
+        "2LMiWGyNjGKyUkH2oFYmMxzwLzUY84dHZf6DUUZFpump",
+        5994.017682508696,
+        31452.13817061333,
+        1
+       ],
+       [
+        "2bN9YoTKiejNonS4Q1EjhypvRfndZLEiYJZUHLwYpump",
+        18319.87716009934,
+        183733.2942587034,
+        0
+       ],
+       [
+        "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+        124638.9724415287,
+        1065869.2610830131,
+        0
+       ],
+       [
+        "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+        2814247.327725162,
+        613970045.0582645,
+        0
+       ],
+       [
+        "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+        2938116.2998880516,
+        624004550.2643672,
+        0
+       ],
+       [
+        "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+        2979177.055100321,
+        630810600.91116,
+        0
+       ],
+       [
+        "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+        3238081.0415338855,
+        654354655.0663934,
+        0
+       ],
+       [
+        "39ahtL8ynzE4amH26J29C93PA5172V3ft9UuUcqQS8fz",
+        412188.29636082565,
+        3881849.651808471,
+        0
+       ],
+       [
+        "3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump",
+        147952.60294766436,
+        11444153.458969265,
+        0
+       ],
+       [
+        "467xn5zKySHTWNohRyuu3rsf9TyxAYCdNyjEq9u3wCwt",
+        7875.41248669511,
+        16631.647470784923,
+        0
+       ],
+       [
+        "46hMQPKT2sPwMSkVenXnpiKVQhrkFvJLSYMWtdkipump",
+        915467.055927286,
+        440994493.8500575,
+        1
+       ],
+       [
+        "4CBJ86svL6cuzA5CvGoVfrFVwRyMvBeGYBsSQqKx1MnV",
+        2047.418942485516,
+        7577.4871933180575,
+        0
+       ],
+       [
+        "4EMavj8PiPMnHYjzkcu6eJ5EihhYkaJbMuHznAuZpump",
+        7297.674235005435,
+        14722.856993860501,
+        0
+       ],
+       [
+        "4rLgnFcuADTS2VD7sGxQjoiajbZjYZ411nF7gm7kpump",
+        53875.20479822026,
+        1068313.1145433714,
+        0
+       ],
+       [
+        "55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
+        135695.44934427732,
+        1091945.3019069291,
+        1
+       ],
+       [
+        "5VnbrKp28Qs9CAH6PyZdxBNvLxZcbeX3YBsozgWnpump",
+        133432.3912017072,
+        1063799.9985997907,
+        0
+       ],
+       [
+        "5YLCp1XSRpGevfKBoSJvs7fSv6fSgbTDe3XB3dLfpump",
+        190587.38705724632,
+        19525814.89474881,
+        1
+       ],
+       [
+        "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+        487877.74470726843,
+        5861726.890792798,
+        0
+       ],
+       [
+        "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+        491983.4405126124,
+        5782408.37108041,
+        0
+       ],
+       [
+        "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+        660062.2085848472,
+        8713826.328053715,
+        0
+       ],
+       [
+        "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
+        414664.9519423625,
+        3840359.6138061234,
+        0
+       ],
+       [
+        "61cfz6tcpHqV2dAKuMLJ6LN5FeLKPxXT6aNgj53Ppump",
+        77.07342850900986,
+        1955.072606904198,
+        0
+       ],
+       [
+        "68AGsjomsgTtiTaDhF6XGCeVJDnFeh415ngYYgVxGzns",
+        108384.69127858867,
+        1341245.9782650033,
+        0
+       ],
+       [
+        "6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
+        64539.36106320177,
+        886983.7691950137,
+        0
+       ],
+       [
+        "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+        3580824.9712794237,
+        125067726.68320934,
+        0
+       ],
+       [
+        "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+        3644673.3577634683,
+        111503569.41377814,
+        0
+       ],
+       [
+        "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+        3919403.747073977,
+        150363021.76854816,
+        0
+       ],
+       [
+        "6Kb6io6tDyiizb79yeZ1gaqUNYgdJMXr4upPRa8Ppump",
+        3449.243488804237,
+        3433.3571736069107,
+        0
+       ],
+       [
+        "6Mix12LiHrQFojaQEnfPUC65Qkwd6X4Y5Qg93oFbordr",
+        541651.4941015705,
+        3283455.839946337,
+        1
+       ],
+       [
+        "6XhzSy3VTTkwqMUSQsStM3ncGy6ozcPnzLVmv4HZ64cC",
+        71760.17710811725,
+        2084413.9409969042,
+        0
+       ],
+       [
+        "6hTLdzZaaCjmqtn7RtaEMQsCbXT5Pg8q76tRViEGpump",
+        32660.234684848783,
+        421837.28977790324,
+        1
+       ],
+       [
+        "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+        30085888.727794237,
+        519807343.7366595,
+        0
+       ],
+       [
+        "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+        30468048.648413736,
+        535434501.7960331,
+        0
+       ],
+       [
+        "6zzzG49KX5nksnqfogs31dwoMYSHaJXkropKbv1QZVga",
+        32684.736530557802,
+        504101.0919836894,
+        0
+       ],
+       [
+        "7K52aYQW9rWGjwZmQ7o2d1P6E7bji6hSMsqaLy5EcxLh",
+        32031.745645892504,
+        252756.87912820108,
+        0
+       ],
+       [
+        "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+        244674.8029527279,
+        2420612.3102221545,
+        1
+       ],
+       [
+        "7Xgc5RacHtGzfhw2HukUBk5V986yBbvshr7rrCoopump",
+        55869.84741726664,
+        958894.7682476925,
+        1
+       ],
+       [
+        "7vMkPxLwaH26qSZ2CgHhzvrgz9wUWMvT256vbUWfarm",
+        40069.41979033718,
+        350970.68862259865,
+        1
+       ],
+       [
+        "7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+        52459.77570967651,
+        1354988.4550300345,
+        0
+       ],
+       [
+        "85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
+        54062.37183651638,
+        900671.1888202844,
+        1
+       ],
+       [
+        "8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS",
+        253260.78346203486,
+        4173114.595480011,
+        0
+       ],
+       [
+        "8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
+        8102.971709564658,
+        52413243.762746125,
+        0
+       ],
+       [
+        "8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
+        8141.249742883829,
+        52413244.81101093,
+        0
+       ],
+       [
+        "8k4sBtEeK4pf26noKqApv8NBTnuSJcbdwpKYknk5PbAA",
+        151559.05226812162,
+        2344906.7263878863,
+        0
+       ],
+       [
+        "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+        216879.60419109958,
+        1739723.5777285742,
+        1
+       ],
+       [
+        "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+        496773.60443113255,
+        4866735.56218437,
+        0
+       ],
+       [
+        "8rDFg4MDov1a59dyWFDkshZ633zvZKRaKdpBQBrd4bJK",
+        7147.10067829244,
+        26476.491931835037,
+        1
+       ],
+       [
+        "8uZieiVy2AanCpYkfxR1quKSbzPKuMUaNYwQ61mrT3iu",
+        39265.301820890876,
+        484632.75484267605,
+        0
+       ],
+       [
+        "8wrTM8TrirHxsinDBpe7vWL3DPDdpmKfMp4n2Pdopump",
+        7921.073998306893,
+        17405.277761081503,
+        0
+       ],
+       [
+        "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+        371919.7786657425,
+        3650125.563905091,
+        0
+       ],
+       [
+        "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+        387878.11857532046,
+        4198066.423096746,
+        0
+       ],
+       [
+        "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+        390312.47995803016,
+        4348608.426978806,
+        0
+       ],
+       [
+        "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+        462787.83077997324,
+        4947033.133379651,
+        0
+       ],
+       [
+        "9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump",
+        258247.07940656994,
+        2467881.4667484225,
+        0
+       ],
+       [
+        "9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+        59921.877535880936,
+        1130944.9111072845,
+        0
+       ],
+       [
+        "9JtPfLbN32CszHmstoXYdWaazFLaoxhfqf9mKgQMpump",
+        12059.127133799107,
+        91820.52534457853,
+        0
+       ],
+       [
+        "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+        80661.66921041321,
+        1128630.5622852386,
+        0
+       ],
+       [
+        "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+        131878.69045351757,
+        1290406.7994681068,
+        1
+       ],
+       [
+        "9oXA1VWKNiYDYa6VKHBFFBBvZdvuhw1b2eD5Aka7YrVt",
+        44006.40437532138,
+        405419.6138978579,
+        0
+       ],
+       [
+        "AQ7A9nsCcrfbftRq2kfFjCkaG6NicixZ1Vy4RZ4Hpump",
+        413394.99159803195,
+        92032535.49080595,
+        1
+       ],
+       [
+        "AUuCEHQ7sm2i5GmaHrpE961voWcTY8U6mgrkhcV7pump",
+        107332.30157786592,
+        2689525.62431141,
+        0
+       ],
+       [
+        "Aov3BtQvrGXM5V9oiHu8PKJWeV8a2rFnr24fwWcNpump",
+        8106.5195376272495,
+        49266.486035881055,
+        0
+       ],
+       [
+        "ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg",
+        368741.69637524395,
+        1497575.3909631907,
+        1
+       ],
+       [
+        "ArenDYANqFNkp8ZqAXt69vT5Dz7WD4zDfSpVw6oPpump",
+        42258.10320286935,
+        155077.10930952866,
+        0
+       ],
+       [
+        "BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
+        102015.05073156631,
+        4694142.660223086,
+        0
+       ],
+       [
+        "BVdbH7PLTSQxBssqvWTxVDoA8qfsztdVtMsZQSS9CScZ",
+        40181.86741264698,
+        468697.24991927686,
+        0
+       ],
+       [
+        "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+        232957.89717219316,
+        2865283.9151207646,
+        1
+       ],
+       [
+        "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+        713404.8128732789,
+        6329597.411457475,
+        0
+       ],
+       [
+        "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+        874663.6108717853,
+        8077952.34883252,
+        0
+       ],
+       [
+        "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+        912120.8430788856,
+        9761785.747249149,
+        1
+       ],
+       [
+        "C3AEVqFnCYh2q4VAE1jeUVxHQNQLGVFDGrjqfboEpump",
+        368161.58255235176,
+        71648082.94423473,
+        0
+       ],
+       [
+        "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+        338811.87066016527,
+        4569925.04488073,
+        0
+       ],
+       [
+        "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+        347705.0402982732,
+        4510370.452226256,
+        0
+       ],
+       [
+        "Ci11wAJVj4tMeBo4EJUUKNnejAvHorcktcMSHmSLQdx4",
+        69.94908981623885,
+        74610787.30002181,
+        0
+       ],
+       [
+        "CioPfvQWpVF2eTzpBj72x2zPyqgJRgvi36PqdLCCpump",
+        37456.53236639172,
+        516615.2836726054,
+        1
+       ],
+       [
+        "DZQbBPFpTeeyGyvCwXxYQDZFGGHad2bY6sWZuviuX8MN",
+        19290.518686252693,
+        155781.4606464832,
+        0
+       ],
+       [
+        "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
+        370394.41012269724,
+        2131373.1062710565,
+        0
+       ],
+       [
+        "EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR",
+        139785.99378334853,
+        1377482.6078348518,
+        0
+       ],
+       [
+        "EMeugag3yfyvKqNKknGDWAudNALafZjbv9ByzCE8pump",
+        30357.06790525096,
+        298120.6459263662,
+        0
+       ],
+       [
+        "EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
+        61544.958660426426,
+        930196.7621534531,
+        0
+       ],
+       [
+        "FgnSJwFoote99diZUhtRV9Ajcfwzjj6hDx82TDhVpump",
+        18963.278355217466,
+        214416.3846472486,
+        0
+       ],
+       [
+        "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+        712703.1311846771,
+        10677100.184695458,
+        0
+       ],
+       [
+        "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+        874137.3523559622,
+        9485364.071858885,
+        1
+       ],
+       [
+        "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+        333076.3452464832,
+        3335007.6132093673,
+        0
+       ],
+       [
+        "Goh59QCfoX53RgJa615vzXx4swR3mv51VgvAN6ZCpump",
+        661829.7052742741,
+        231567259.17395186,
+        0
+       ],
+       [
+        "H4KUxsEgCp2yDpFvyDuGM5k6XevSKKrrKUxZ3Zr6nyJc",
+        84751.66244250123,
+        1279630.4567198716,
+        0
+       ],
+       [
+        "HBuRKZW5ztyGiYYBPnk7bfDPuUHPAvv7xq6dxYSf4zs9",
+        15.562692246252796,
+        382719865.3210998,
+        0
+       ],
+       [
+        "HMYd9tosnUXuNHmq7pXmoePRVBLBBjA3JBfydq6upump",
+        55183.77064019423,
+        1265634.7461168657,
+        0
+       ],
+       [
+        "HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
+        477313.8332854557,
+        605915586.6352724,
+        0
+       ],
+       [
+        "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+        768180.8746163086,
+        54294735.689807296,
+        0
+       ],
+       [
+        "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+        766633.1129805171,
+        9756298.530208103,
+        1
+       ],
+       [
+        "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+        939013.715944526,
+        13293376.6747855,
+        0
+       ],
+       [
+        "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+        974284.6843124661,
+        12682726.799746327,
+        1
+       ],
+       [
+        "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+        1040985.667376793,
+        11794527.317663502,
+        0
+       ],
+       [
+        "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+        1454834.7709240003,
+        16600268.03295566,
+        0
+       ],
+       [
+        "HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+        234018.09416346753,
+        2730289.877445259,
+        0
+       ],
+       [
+        "JUPrJXKV6MyLkbFgZMDXPn7mYR4yqMNn5Pwg27zcyyG",
+        7.663074199709731,
+        40633371.10635339,
+        0
+       ],
+       [
+        "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+        6129949.053500502,
+        1252640849.3876731,
+        0
+       ],
+       [
+        "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+        394395.8559698642,
+        4301443.007551643,
+        0
+       ],
+       [
+        "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+        440240.7954196436,
+        4982562.87073265,
+        0
+       ],
+       [
+        "NTRNDMqQSiwEC2jJs3wJiZS6bpGYQJtMNQJgiX3WyV6",
+        6970.227282798398,
+        39777.831980559204,
+        1
+       ],
+       [
+        "PERLEQKUNUp1dgFZ8EvyXHdN9d6ZQqfGxALDvfs6pDs",
+        6835.085968466801,
+        112549780.05478305,
+        0
+       ],
+       [
+        "agYKZgcBE2XUzTypkkdJqvwPbu7k5CUZjA6Cm3jpump",
+        10059.059709760675,
+        58801.38768793796,
+        1
+       ],
+       [
+        "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+        606799.9973030066,
+        57287508.29206103,
+        0
+       ],
+       [
+        "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+        610890.4544009033,
+        57779964.736333676,
+        0
+       ],
+       [
+        "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+        677225.3170172616,
+        64775140.571588434,
+        0
+       ],
+       [
+        "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+        678084.740607491,
+        64644431.376028866,
+        0
+       ],
+       [
+        "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+        1021421.7946382834,
+        167622729.4455942,
+        0
+       ],
+       [
+        "pmGXrmpvbWJJebWxE3RBAkdUbY1VPuwRZuU27Nepump",
+        78417.44605672771,
+        3430768.335309039,
+        1
+       ]
+      ]
+     },
+     "data_snapshot_sha": "9f08df81dcb348d78b4189cdee9ab264aa4570dac5f681809301dbfd0555a9dc",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 26,
+     "kind": "B4",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "B4:price_path_target_before_invalidation_24h",
+     "model_sha": "22325a090f0778dc6efa6514a600367513609d53daf5fd841a653ec6e4a155ce",
+     "n_train": 112,
+     "n_used": 112,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    }
+   },
+   "cutoff_utc": "2026-10-14T00:00:00Z",
+   "fold": 1
+  },
+  {
+   "cards": {
+    "B0": {
+     "body": {
+      "p": 0.24390243902439024
+     },
+     "data_snapshot_sha": "70e1bcfa0880906d4fb0613d990872fd2d1e04fdeb1780de45ad8c85fe948fae",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 30,
+     "kind": "B0",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "B0:price_path_target_before_invalidation_24h",
+     "model_sha": "f37b66c6d14c8b84fd08a5962089066d567d90752b51124055ad71b9eb6355e0",
+     "n_train": 123,
+     "n_used": 123,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    },
+    "B1": {
+     "body": {
+      "b0": 0.24390243902439024,
+      "groups": {
+       "CONSTRUCTIVE": {
+        "k": 5,
+        "n": 23,
+        "p": 0.2297220646625071
+       },
+       "REJECTED": {
+        "k": 16,
+        "n": 62,
+        "p": 0.2546103509815586
+       },
+       "RISK_OR_UNRESOLVED": {
+        "k": 9,
+        "n": 38,
+        "p": 0.23927670311185872
+       }
+      },
+      "m": 20.0,
+      "status_groups": {
+       "DISTRIBUTION RISK": "RISK_OR_UNRESOLVED",
+       "ENTRY CONDITIONS MET": "CONSTRUCTIVE",
+       "NEAR ENTRY": "CONSTRUCTIVE",
+       "OVEREXTENDED": "RISK_OR_UNRESOLVED",
+       "REJECTED": "REJECTED",
+       "RESEARCH REQUIRED": "RISK_OR_UNRESOLVED",
+       "SETUP DEVELOPING": "CONSTRUCTIVE",
+       "THESIS DETERIORATING": "RISK_OR_UNRESOLVED",
+       "THESIS INVALIDATED": "RISK_OR_UNRESOLVED",
+       "WATCH": "CONSTRUCTIVE"
+      }
+     },
+     "data_snapshot_sha": "70e1bcfa0880906d4fb0613d990872fd2d1e04fdeb1780de45ad8c85fe948fae",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 30,
+     "kind": "B1",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "B1:price_path_target_before_invalidation_24h",
+     "model_sha": "6541addcf2e9c640a81902ae5147d4940b4b8bfbdff9294f6dcba3d3437bc740",
+     "n_train": 123,
+     "n_used": 123,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    },
+    "B2": {
+     "body": {
+      "columns": [
+       "thesis_log1p_liquidity_usd",
+       "thesis_log1p_mcap_usd",
+       "thesis_log1p_vol_24h_usd",
+       "thesis_fatal_present",
+       "log1p_token_age_days"
+      ],
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.5401849164294715,
+        -0.09666483189876211,
+        -0.2786426542724988,
+        -0.27422189792858614,
+        -1.2015882384973355
+       ],
+       "intercept": -1.3929679110376318,
+       "n_iter": 7
+      },
+      "prep": {
+       "ind": [],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4
+       ],
+       "med": [
+        12.32170129,
+        15.02735102,
+        13.62321429,
+        1.0,
+        2.6690614980695364
+       ],
+       "mu": [
+        11.79100913217886,
+        15.103251162910567,
+        13.668157933756097,
+        0.5284552845528455,
+        2.874976698828906
+       ],
+       "n_in": 5,
+       "sd": [
+        2.4131975985972947,
+        2.8372051379499066,
+        1.814595783710123,
+        0.4991896400978455,
+        1.9754249389009009
+       ]
+      },
+      "required": [
+       "thesis_log1p_liquidity_usd",
+       "thesis_log1p_mcap_usd",
+       "thesis_log1p_vol_24h_usd",
+       "thesis_fatal_present"
+      ]
+     },
+     "data_snapshot_sha": "70e1bcfa0880906d4fb0613d990872fd2d1e04fdeb1780de45ad8c85fe948fae",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 30,
+     "kind": "B2",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "B2:price_path_target_before_invalidation_24h",
+     "model_sha": "319637876825c5a412207e544b991cd818e59abb0976ab7362366153ab470e2b",
+     "n_train": 123,
+     "n_used": 123,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    },
+    "B3": {
+     "body": {
+      "column": "thesis_score",
+      "platt": {
+       "a": -0.06611835345915931,
+       "b": 5.033651851779047
+      }
+     },
+     "data_snapshot_sha": "70e1bcfa0880906d4fb0613d990872fd2d1e04fdeb1780de45ad8c85fe948fae",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 30,
+     "kind": "B3",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "B3:price_path_target_before_invalidation_24h",
+     "model_sha": "10e6792b3f3a35b4de3d5c1b1be09215a43608561de1f47b224485c8cdd54340",
+     "n_train": 123,
+     "n_used": 123,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    },
+    "B3F": {
+     "body": {
+      "b0": 0.24390243902439024,
+      "groups": {
+       "0": {
+        "k": 14,
+        "n": 58,
+        "p": 0.24202626641651032
+       },
+       "1": {
+        "k": 16,
+        "n": 65,
+        "p": 0.24562410329985654
+       }
+      },
+      "m": 20.0
+     },
+     "data_snapshot_sha": "70e1bcfa0880906d4fb0613d990872fd2d1e04fdeb1780de45ad8c85fe948fae",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 30,
+     "kind": "B3F",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "B3F:price_path_target_before_invalidation_24h",
+     "model_sha": "4f19a117e6f56d71d11c314125f76190c0e289dd0ba4c01d6a0e3870c095ca1e",
+     "n_train": 123,
+     "n_used": 123,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    },
+    "B4": {
+     "body": {
+      "b0": 0.24390243902439024,
+      "factor": 3.0,
+      "m": 20.0,
+      "train": [
+       [
+        "1zJX5gRnjLgmTpq5sVwkq69mNDQkCemqoasyjaPW6jm",
+        493165.55710758717,
+        17309391.47895329,
+        0
+       ],
+       [
+        "2BVfJ4AHMvHdKtEZNHaBr48dQzTfZvYkjaaxbM6bpump",
+        224514.783765905,
+        21299255.41550298,
+        1
+       ],
+       [
+        "2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
+        56583.20547295681,
+        649766.0220461632,
+        1
+       ],
+       [
+        "2LMiWGyNjGKyUkH2oFYmMxzwLzUY84dHZf6DUUZFpump",
+        5994.017682508696,
+        31452.13817061333,
+        1
+       ],
+       [
+        "2bN9YoTKiejNonS4Q1EjhypvRfndZLEiYJZUHLwYpump",
+        18319.87716009934,
+        183733.2942587034,
+        0
+       ],
+       [
+        "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+        124638.9724415287,
+        1065869.2610830131,
+        0
+       ],
+       [
+        "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+        2814247.327725162,
+        613970045.0582645,
+        0
+       ],
+       [
+        "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+        2938116.2998880516,
+        624004550.2643672,
+        0
+       ],
+       [
+        "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+        2979177.055100321,
+        630810600.91116,
+        0
+       ],
+       [
+        "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+        3238081.0415338855,
+        654354655.0663934,
+        0
+       ],
+       [
+        "39ahtL8ynzE4amH26J29C93PA5172V3ft9UuUcqQS8fz",
+        412188.29636082565,
+        3881849.651808471,
+        0
+       ],
+       [
+        "3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump",
+        147952.60294766436,
+        11444153.458969265,
+        0
+       ],
+       [
+        "467xn5zKySHTWNohRyuu3rsf9TyxAYCdNyjEq9u3wCwt",
+        7875.41248669511,
+        16631.647470784923,
+        0
+       ],
+       [
+        "46hMQPKT2sPwMSkVenXnpiKVQhrkFvJLSYMWtdkipump",
+        915467.055927286,
+        440994493.8500575,
+        1
+       ],
+       [
+        "4CBJ86svL6cuzA5CvGoVfrFVwRyMvBeGYBsSQqKx1MnV",
+        2047.418942485516,
+        7577.4871933180575,
+        0
+       ],
+       [
+        "4EMavj8PiPMnHYjzkcu6eJ5EihhYkaJbMuHznAuZpump",
+        7297.674235005435,
+        14722.856993860501,
+        0
+       ],
+       [
+        "4rLgnFcuADTS2VD7sGxQjoiajbZjYZ411nF7gm7kpump",
+        53875.20479822026,
+        1068313.1145433714,
+        0
+       ],
+       [
+        "55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
+        135695.44934427732,
+        1091945.3019069291,
+        1
+       ],
+       [
+        "5Upkgkqx9nZJGDCz4Kgo8tiT995Gu1PiF7AGMQbBxEg",
+        3505.457245586927,
+        64341.2692607945,
+        1
+       ],
+       [
+        "5VnbrKp28Qs9CAH6PyZdxBNvLxZcbeX3YBsozgWnpump",
+        133432.3912017072,
+        1063799.9985997907,
+        0
+       ],
+       [
+        "5YLCp1XSRpGevfKBoSJvs7fSv6fSgbTDe3XB3dLfpump",
+        190587.38705724632,
+        19525814.89474881,
+        1
+       ],
+       [
+        "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+        487877.74470726843,
+        5861726.890792798,
+        0
+       ],
+       [
+        "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+        491983.4405126124,
+        5782408.37108041,
+        0
+       ],
+       [
+        "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+        660062.2085848472,
+        8713826.328053715,
+        0
+       ],
+       [
+        "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
+        414664.9519423625,
+        3840359.6138061234,
+        0
+       ],
+       [
+        "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
+        450707.5955264556,
+        3359661.296855541,
+        1
+       ],
+       [
+        "61cfz6tcpHqV2dAKuMLJ6LN5FeLKPxXT6aNgj53Ppump",
+        77.07342850900986,
+        1955.072606904198,
+        0
+       ],
+       [
+        "68AGsjomsgTtiTaDhF6XGCeVJDnFeh415ngYYgVxGzns",
+        108384.69127858867,
+        1341245.9782650033,
+        0
+       ],
+       [
+        "6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
+        64539.36106320177,
+        886983.7691950137,
+        0
+       ],
+       [
+        "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+        3580824.9712794237,
+        125067726.68320934,
+        0
+       ],
+       [
+        "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+        3644673.3577634683,
+        111503569.41377814,
+        0
+       ],
+       [
+        "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+        3919403.747073977,
+        150363021.76854816,
+        0
+       ],
+       [
+        "6Kb6io6tDyiizb79yeZ1gaqUNYgdJMXr4upPRa8Ppump",
+        3449.243488804237,
+        3433.3571736069107,
+        0
+       ],
+       [
+        "6Mix12LiHrQFojaQEnfPUC65Qkwd6X4Y5Qg93oFbordr",
+        541651.4941015705,
+        3283455.839946337,
+        1
+       ],
+       [
+        "6XhzSy3VTTkwqMUSQsStM3ncGy6ozcPnzLVmv4HZ64cC",
+        71760.17710811725,
+        2084413.9409969042,
+        0
+       ],
+       [
+        "6hTLdzZaaCjmqtn7RtaEMQsCbXT5Pg8q76tRViEGpump",
+        32660.234684848783,
+        421837.28977790324,
+        1
+       ],
+       [
+        "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+        30085888.727794237,
+        519807343.7366595,
+        0
+       ],
+       [
+        "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+        30468048.648413736,
+        535434501.7960331,
+        0
+       ],
+       [
+        "6zzzG49KX5nksnqfogs31dwoMYSHaJXkropKbv1QZVga",
+        32684.736530557802,
+        504101.0919836894,
+        0
+       ],
+       [
+        "7K52aYQW9rWGjwZmQ7o2d1P6E7bji6hSMsqaLy5EcxLh",
+        32031.745645892504,
+        252756.87912820108,
+        0
+       ],
+       [
+        "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+        244674.8029527279,
+        2420612.3102221545,
+        1
+       ],
+       [
+        "7Xgc5RacHtGzfhw2HukUBk5V986yBbvshr7rrCoopump",
+        55869.84741726664,
+        958894.7682476925,
+        1
+       ],
+       [
+        "7vMkPxLwaH26qSZ2CgHhzvrgz9wUWMvT256vbUWfarm",
+        40069.41979033718,
+        350970.68862259865,
+        1
+       ],
+       [
+        "7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+        52459.77570967651,
+        1354988.4550300345,
+        0
+       ],
+       [
+        "85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
+        54062.37183651638,
+        900671.1888202844,
+        1
+       ],
+       [
+        "8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS",
+        253260.78346203486,
+        4173114.595480011,
+        0
+       ],
+       [
+        "8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
+        8102.971709564658,
+        52413243.762746125,
+        0
+       ],
+       [
+        "8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
+        8141.249742883829,
+        52413244.81101093,
+        0
+       ],
+       [
+        "8k4sBtEeK4pf26noKqApv8NBTnuSJcbdwpKYknk5PbAA",
+        151559.05226812162,
+        2344906.7263878863,
+        0
+       ],
+       [
+        "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+        216879.60419109958,
+        1739723.5777285742,
+        1
+       ],
+       [
+        "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+        496773.60443113255,
+        4866735.56218437,
+        0
+       ],
+       [
+        "8rDFg4MDov1a59dyWFDkshZ633zvZKRaKdpBQBrd4bJK",
+        7147.10067829244,
+        26476.491931835037,
+        1
+       ],
+       [
+        "8uZieiVy2AanCpYkfxR1quKSbzPKuMUaNYwQ61mrT3iu",
+        39265.301820890876,
+        484632.75484267605,
+        0
+       ],
+       [
+        "8wrTM8TrirHxsinDBpe7vWL3DPDdpmKfMp4n2Pdopump",
+        7921.073998306893,
+        17405.277761081503,
+        0
+       ],
+       [
+        "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+        371919.7786657425,
+        3650125.563905091,
+        0
+       ],
+       [
+        "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+        387878.11857532046,
+        4198066.423096746,
+        0
+       ],
+       [
+        "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+        390312.47995803016,
+        4348608.426978806,
+        0
+       ],
+       [
+        "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+        418994.1191375373,
+        4221637.6655007815,
+        0
+       ],
+       [
+        "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+        462787.83077997324,
+        4947033.133379651,
+        0
+       ],
+       [
+        "9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump",
+        258247.07940656994,
+        2467881.4667484225,
+        0
+       ],
+       [
+        "9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+        59921.877535880936,
+        1130944.9111072845,
+        0
+       ],
+       [
+        "9JtPfLbN32CszHmstoXYdWaazFLaoxhfqf9mKgQMpump",
+        12059.127133799107,
+        91820.52534457853,
+        0
+       ],
+       [
+        "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+        80661.66921041321,
+        1128630.5622852386,
+        0
+       ],
+       [
+        "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+        131878.69045351757,
+        1290406.7994681068,
+        1
+       ],
+       [
+        "9oXA1VWKNiYDYa6VKHBFFBBvZdvuhw1b2eD5Aka7YrVt",
+        44006.40437532138,
+        405419.6138978579,
+        0
+       ],
+       [
+        "AQ7A9nsCcrfbftRq2kfFjCkaG6NicixZ1Vy4RZ4Hpump",
+        413394.99159803195,
+        92032535.49080595,
+        1
+       ],
+       [
+        "AUuCEHQ7sm2i5GmaHrpE961voWcTY8U6mgrkhcV7pump",
+        107332.30157786592,
+        2689525.62431141,
+        0
+       ],
+       [
+        "Aov3BtQvrGXM5V9oiHu8PKJWeV8a2rFnr24fwWcNpump",
+        8106.5195376272495,
+        49266.486035881055,
+        0
+       ],
+       [
+        "ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg",
+        368741.69637524395,
+        1497575.3909631907,
+        1
+       ],
+       [
+        "ArenDYANqFNkp8ZqAXt69vT5Dz7WD4zDfSpVw6oPpump",
+        42258.10320286935,
+        155077.10930952866,
+        0
+       ],
+       [
+        "BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
+        102015.05073156631,
+        4694142.660223086,
+        0
+       ],
+       [
+        "BVdbH7PLTSQxBssqvWTxVDoA8qfsztdVtMsZQSS9CScZ",
+        40181.86741264698,
+        468697.24991927686,
+        0
+       ],
+       [
+        "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+        232957.89717219316,
+        2865283.9151207646,
+        1
+       ],
+       [
+        "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+        713404.8128732789,
+        6329597.411457475,
+        0
+       ],
+       [
+        "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+        874663.6108717853,
+        8077952.34883252,
+        0
+       ],
+       [
+        "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+        912120.8430788856,
+        9761785.747249149,
+        1
+       ],
+       [
+        "C3AEVqFnCYh2q4VAE1jeUVxHQNQLGVFDGrjqfboEpump",
+        368161.58255235176,
+        71648082.94423473,
+        0
+       ],
+       [
+        "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+        338811.87066016527,
+        4569925.04488073,
+        0
+       ],
+       [
+        "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+        347705.0402982732,
+        4510370.452226256,
+        0
+       ],
+       [
+        "Ci11wAJVj4tMeBo4EJUUKNnejAvHorcktcMSHmSLQdx4",
+        69.94908981623885,
+        74610787.30002181,
+        0
+       ],
+       [
+        "CioPfvQWpVF2eTzpBj72x2zPyqgJRgvi36PqdLCCpump",
+        37456.53236639172,
+        516615.2836726054,
+        1
+       ],
+       [
+        "Cy1GS2FqefgaMbi45UunrUzin1rfEmTUYnomddzBpump",
+        239294.42848124285,
+        2624152.484751679,
+        0
+       ],
+       [
+        "DZQbBPFpTeeyGyvCwXxYQDZFGGHad2bY6sWZuviuX8MN",
+        19290.518686252693,
+        155781.4606464832,
+        0
+       ],
+       [
+        "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
+        76996.88554467433,
+        692020.9750858457,
+        0
+       ],
+       [
+        "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
+        370394.41012269724,
+        2131373.1062710565,
+        0
+       ],
+       [
+        "DzMwArmdzPqcqgvyqAmTxy79XdA9NwK9mMteqWLJpump",
+        117968.24218251428,
+        743427.0216193211,
+        0
+       ],
+       [
+        "EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR",
+        139785.99378334853,
+        1377482.6078348518,
+        0
+       ],
+       [
+        "EMeugag3yfyvKqNKknGDWAudNALafZjbv9ByzCE8pump",
+        30357.06790525096,
+        298120.6459263662,
+        0
+       ],
+       [
+        "EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
+        61544.958660426426,
+        930196.7621534531,
+        0
+       ],
+       [
+        "FgnSJwFoote99diZUhtRV9Ajcfwzjj6hDx82TDhVpump",
+        18963.278355217466,
+        214416.3846472486,
+        0
+       ],
+       [
+        "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+        712703.1311846771,
+        10677100.184695458,
+        0
+       ],
+       [
+        "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+        874137.3523559622,
+        9485364.071858885,
+        1
+       ],
+       [
+        "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+        333076.3452464832,
+        3335007.6132093673,
+        0
+       ],
+       [
+        "Goh59QCfoX53RgJa615vzXx4swR3mv51VgvAN6ZCpump",
+        661829.7052742741,
+        231567259.17395186,
+        0
+       ],
+       [
+        "H4KUxsEgCp2yDpFvyDuGM5k6XevSKKrrKUxZ3Zr6nyJc",
+        84751.66244250123,
+        1279630.4567198716,
+        0
+       ],
+       [
+        "HBuRKZW5ztyGiYYBPnk7bfDPuUHPAvv7xq6dxYSf4zs9",
+        15.562692246252796,
+        382719865.3210998,
+        0
+       ],
+       [
+        "HMYd9tosnUXuNHmq7pXmoePRVBLBBjA3JBfydq6upump",
+        55183.77064019423,
+        1265634.7461168657,
+        0
+       ],
+       [
+        "HTmQz7My6MehV7bjhJ6jde8nDND1yvsz68d24LP7YgUQ",
+        226495.93459121004,
+        1573682.4721625543,
+        0
+       ],
+       [
+        "HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
+        477313.8332854557,
+        605915586.6352724,
+        0
+       ],
+       [
+        "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+        768180.8746163086,
+        54294735.689807296,
+        0
+       ],
+       [
+        "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+        766633.1129805171,
+        9756298.530208103,
+        1
+       ],
+       [
+        "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+        939013.715944526,
+        13293376.6747855,
+        0
+       ],
+       [
+        "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+        974284.6843124661,
+        12682726.799746327,
+        1
+       ],
+       [
+        "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+        1040985.667376793,
+        11794527.317663502,
+        0
+       ],
+       [
+        "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+        1454834.7709240003,
+        16600268.03295566,
+        0
+       ],
+       [
+        "HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+        234018.09416346753,
+        2730289.877445259,
+        0
+       ],
+       [
+        "JUPrJXKV6MyLkbFgZMDXPn7mYR4yqMNn5Pwg27zcyyG",
+        7.663074199709731,
+        40633371.10635339,
+        0
+       ],
+       [
+        "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+        6129949.053500502,
+        1252640849.3876731,
+        0
+       ],
+       [
+        "METAwkXcqyXKy1AtsSgJ8JiUHwGCafnZL38n3vYmeta",
+        1501962.019253322,
+        124395676.3903946,
+        0
+       ],
+       [
+        "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+        394395.8559698642,
+        4301443.007551643,
+        0
+       ],
+       [
+        "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+        440240.7954196436,
+        4982562.87073265,
+        0
+       ],
+       [
+        "NTRNDMqQSiwEC2jJs3wJiZS6bpGYQJtMNQJgiX3WyV6",
+        6970.227282798398,
+        39777.831980559204,
+        1
+       ],
+       [
+        "NTRNDMqQSiwEC2jJs3wJiZS6bpGYQJtMNQJgiX3WyV6",
+        59995.06645669107,
+        288751.2837852932,
+        1
+       ],
+       [
+        "PERLEQKUNUp1dgFZ8EvyXHdN9d6ZQqfGxALDvfs6pDs",
+        6835.085968466801,
+        112549780.05478305,
+        0
+       ],
+       [
+        "RACEyWiM2ztEZcJx2AHXU2eWjhxU57x3vXn92b39dLD",
+        184468.93956475545,
+        215823.34322313836,
+        0
+       ],
+       [
+        "agYKZgcBE2XUzTypkkdJqvwPbu7k5CUZjA6Cm3jpump",
+        10059.059709760675,
+        58801.38768793796,
+        1
+       ],
+       [
+        "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+        606799.9973030066,
+        57287508.29206103,
+        0
+       ],
+       [
+        "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+        610890.4544009033,
+        57779964.736333676,
+        0
+       ],
+       [
+        "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+        677225.3170172616,
+        64775140.571588434,
+        0
+       ],
+       [
+        "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+        678084.740607491,
+        64644431.376028866,
+        0
+       ],
+       [
+        "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+        1021421.7946382834,
+        167622729.4455942,
+        0
+       ],
+       [
+        "pmGXrmpvbWJJebWxE3RBAkdUbY1VPuwRZuU27Nepump",
+        78417.44605672771,
+        3430768.335309039,
+        1
+       ],
+       [
+        "u7XNK4pbxXgWzBwqidDV2TtsXwLqqxtjmGfw1H8pump",
+        1312964.2016480197,
+        915790311.5473375,
+        1
+       ]
+      ]
+     },
+     "data_snapshot_sha": "70e1bcfa0880906d4fb0613d990872fd2d1e04fdeb1780de45ad8c85fe948fae",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 30,
+     "kind": "B4",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "label_store_migration": 2,
+     "labels_version": "labels-1",
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "B4:price_path_target_before_invalidation_24h",
+     "model_sha": "229ca568e4a533691657aebe8659b3cc8ed156c0b4204495d4a81631591c8d9d",
+     "n_train": 123,
+     "n_used": 123,
+     "phase": "07",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    }
+   },
+   "cutoff_utc": "2026-10-15T00:00:00Z",
+   "fold": 2
+  }
+ ],
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "target": "price_path_target_before_invalidation_24h"
+}
