@@ -1,0 +1,3 @@
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+1 failed, 1229 passed in 170.66s (0:02:50)
+command: python -m pytest tests -q -p no:cacheprovider at 1dbfd86; exit 1 (known clock-dependent failure only); stray data/reports/20261025_2216_BRETT_0x532f.md removed by hand

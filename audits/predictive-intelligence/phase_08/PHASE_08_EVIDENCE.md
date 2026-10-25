@@ -14,7 +14,7 @@ Status: NEEDS_REVIEW after repair pass 2 (PI-D-052), for one item only: checklis
 | Recorded run 2 | 2026-10-25T21:24:03Z to 21:24:29Z at `d9b2a9c` (`evidence/run_log.json`) |
 | Outputs and records | `fc6b990` 2026-10-25T21:35:12Z; post-commit records `0656b7c` |
 | Repair pass 2 code | `e81ee46` 2026-10-25T22:12:48Z (tests, probes, skeptic copy) |
-| Repair pass 2 outputs and records | the commit after `e81ee46` (hash in HANDOFF.md) |
+| Repair pass 2 outputs and records | `1dbfd86` 2026-10-25T22:16:20Z; post-commit records in the next commit |
 | Python, numpy | 3.13, the lab's numpy; scikit-learn 1.9.1 only in `/home/claude/pi_research/venvs/p04_bundle` |
 
 ## Entry gate (re-run independently)
@@ -139,6 +139,15 @@ On the committed tree at `fc6b990` (files in `postcommit/`):
 
 `git status` clean after removing the stray report.
 
+Repair pass 2, on the committed tree at `1dbfd86` (files `postcommit/repair2_*`):
+
+| Command | Exit | Result |
+|---|---|---|
+| `python -m pytest tests -q -p no:cacheprovider` | 1 | `1 failed, 1229 passed in 170.66s`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`; stray `data/reports/20261025_2216_BRETT_0x532f.md` removed by hand |
+| `python -m memelab social guard` | 0 | `"violations": []` |
+| `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | 0 | `"problems": []` |
+| `python tools/release_audit.py --history` on a single-branch clone at `1dbfd86` with `origin/main` (`e245d91`) | 0 | "Needs action: no." |
+
 ## Artifacts
 
 <!-- artifacts:start -->
@@ -189,6 +198,10 @@ On the committed tree at `fc6b990` (files in `postcommit/`):
 | `audits/predictive-intelligence/phase_08/models/TECHNICAL_MODEL_CARD.md` | `7de49fd8cd03d35a60a1fc1fb77700f3cb0da8859d46c1eeddfd497536dc04ba` |
 | `audits/predictive-intelligence/phase_08/postcommit/pytest_summary.txt` | `a05d46b445f060adf925beb94a93b03d17892be0974d7ab05d5b95965b188b87` |
 | `audits/predictive-intelligence/phase_08/postcommit/release_audit_history.summary.txt` | `8ab707b934d444e046e034d4440d0c4f37f4d019510965e57291a7920c13bfb8` |
+| `audits/predictive-intelligence/phase_08/postcommit/repair2_pytest_summary.txt` | `8057945bfc7b91e8adb8f785cfaf89eb227ceb7e23078f3a079889c7c70f7f19` |
+| `audits/predictive-intelligence/phase_08/postcommit/repair2_release_audit_history.summary.txt` | `e5515f6563b38fdf14027e8b82e77ac980235bd70f33300fbf39433806a2274f` |
+| `audits/predictive-intelligence/phase_08/postcommit/repair2_seal_check.json` | `6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d` |
+| `audits/predictive-intelligence/phase_08/postcommit/repair2_social_guard.out.txt` | `8d80dafc5ad3919b849740d88dc1316d6995a0c5013dcbd62725977fe2c586af` |
 | `audits/predictive-intelligence/phase_08/postcommit/seal_check.json` | `6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d` |
 | `audits/predictive-intelligence/phase_08/postcommit/social_guard.out.txt` | `65ef17a84f4147ebf9f20004c35973272ef6b04c2696806a055c17804042084c` |
 | `audits/predictive-intelligence/phase_08/probes/logit_solver_diagnosis.py` | `d0ba468be5cd142f9d7d2e0fef3835a6053e1533a873fcb863549f46a38d1369` |
