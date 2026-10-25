@@ -128,7 +128,7 @@ Approved by Elving on 2026-10-25 (predictive PI-D-020, now PI-D-044; D-BT-034, r
 
 These steps need a session linked to his computer (device_bash). Nothing here was run on his computer yet.
 
-1. Make the new code bundle. The collector commits are on the local branch `work/backtesting-collector`, based on feature/backtesting at 054a619; they are not pushed. Once they are on feature/backtesting (a fast-forward), in a clone of the repository:
+1. Make the new code bundle. The collector commits are on feature/backtesting (pushed at fa32bd1 on 2026-10-25). In a fresh clone of the repository:
    `git bundle create code.bundle feature/backtesting` then `git bundle verify code.bundle`.
    The setup step clones the branch named feature/backtesting from the bundle, so the bundle must carry that branch name.
 2. Check that no run is in progress: `bash $HOME/mnt/memelab/backtesting_live/hourly_shadow.sh status` must show `idle`. If the scheduled task exists, pause it first.
