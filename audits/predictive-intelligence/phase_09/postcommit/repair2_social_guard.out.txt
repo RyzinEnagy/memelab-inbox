@@ -1,0 +1,43 @@
+{
+ "allowlist": [
+  {
+   "path": "tests/fixtures/social/inbox/soc_fx01.json",
+   "reason": "invented placeholder the ingester must quarantine (test_bad_items_quarantined_good_items_kept)",
+   "where": "soc:x:example_trader_a.body.items[3].text"
+  },
+  {
+   "path": "tests/fixtures/social/inbox/soc_fx01.json",
+   "reason": "invented PROTECTED item (hash of an invented sentence) the ingester must quarantine as NOT_PUBLIC",
+   "where": "soc:x:example_trader_a.body.items[4].visibility"
+  },
+  {
+   "path": "tests/fixtures/social/registry/leaderboard_fresh.json",
+   "reason": "invented placeholder the registry importer must reject as BLOCKED_CONTENT_KEY (Phase 08)",
+   "where": "rows[6].bio"
+  },
+  {
+   "path": "tests/fixtures/social/discord_bot/fx_discord_gateway.json",
+   "reason": "invented GUILD_CREATE member entry for the bot itself (its role ids), needed to compute its channel permissions (Phase 20)",
+   "where": "connections[0].frames[2].d.members"
+  },
+  {
+   "path": "tests/fixtures/social/roundtrip_01.json",
+   "reason": "invented sentences used to prove the store hashes text and never writes it (Phase 01)",
+   "where": "observations[*].text"
+  },
+  {
+   "path": "tests/fixtures/catalyst/firecrawl/fx_enrich.json",
+   "reason": "invented page text used to prove catalyst enrich keeps hashes and identifiers only (Firecrawl)",
+   "where": "exchanges[*].response.body.data.markdown"
+  },
+  {
+   "path": "tests/fixtures/catalyst/firecrawl/fx_pull.json",
+   "reason": "invented rendered JSON document used to prove the navigate-mode fallback parser (Firecrawl)",
+   "where": "exchanges[*].response.body.data.rawHtml"
+  }
+ ],
+ "files_scanned": 2027,
+ "json_files": 520,
+ "sqlite_files": 1,
+ "violations": []
+}

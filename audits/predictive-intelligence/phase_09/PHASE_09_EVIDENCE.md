@@ -125,3 +125,7 @@ At the outputs commit `934d2d4` (files in `postcommit/`):
 | Working tree | `git status --short` | clean |
 
 G27: PASS. The follow-up commit records these results and the hash; it changes no code, test or output.
+
+## Post-commit results, repair pass 2
+
+At `c59730f` (files `postcommit/repair2_*`): suite `python -m pytest tests -q -p no:cacheprovider` (23:41:04Z to 23:43:59Z) exit 1, `1 failed, 1279 passed in 175.14s`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`; strays (`data/reports/20261025_2341_BRETT_0x532f.md`, `data/memelab.sqlite-shm`, `-wal`) removed by hand, `data/memelab.sqlite` unchanged; `python -m memelab social guard` exit 0, `"violations": []`; `check_seal.py` exit 0, `"problems": []`; `python tools/release_audit.py --history` on a single-branch clone exit 0, "Needs action: no."; `git status` clean. G27: PASS. Phase 09: PASS, PROVISIONAL under PI-D-046.

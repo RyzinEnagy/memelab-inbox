@@ -31,7 +31,7 @@
   "a52233c",
   "18bd243"
  ],
- "head_after": "58490be",
+ "head_after": "c59730f80ce1f0838358a67598b8b65a19d6c80c",
  "registry_sha256": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
  "onchain_feature_set_sha": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
  "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
@@ -630,6 +630,41 @@
    "input": "experiments/SEARCH_LEDGER.csv",
    "result": "1804 rows; 4 real-data runs before the repair run logged",
    "pass": true
+  },
+  {
+   "name": "G27 post-commit suite at c59730f",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "1 failed, 1279 passed in 175.14s (known failure only)",
+   "pass": true
+  },
+  {
+   "name": "G27 social guard",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "violations []",
+   "pass": true
+  },
+  {
+   "name": "G27 seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "G27 release audit single-branch clone",
+   "command": "python tools/release_audit.py --history",
+   "exit_code": 0,
+   "result": "Needs action: no",
+   "pass": true
+  },
+  {
+   "name": "G27 git status",
+   "command": "git status --short",
+   "exit_code": 0,
+   "result": "clean after removing the suite's strays",
+   "pass": true
   }
  ],
  "artifacts": [
@@ -838,6 +873,22 @@
    "sha256": "4caa17767dc4d5e7551d240d066d82d0b1ad6bda42791f6d4a25013cd2e7f7b2"
   },
   {
+   "path": "audits/predictive-intelligence/phase_09/postcommit/repair2_pytest_summary.txt",
+   "sha256": "1a8157493a15892cd846055dbceb4bde038b5afedc0b17bf3ef1b95093b32e4d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/postcommit/repair2_release_audit_history.summary.txt",
+   "sha256": "cfbd50e2c243035b5580272d7444009fc3eaff3ea38745ea1d22bd4683758d3d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/postcommit/repair2_seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_09/postcommit/repair2_social_guard.out.txt",
+   "sha256": "3f46ee39fc43cc0b58b70c21a7e7c1dd6f5fb67410fe1a9ec56cbf76a275b892"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_09/postcommit/seal_check.json",
    "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
   },
@@ -919,11 +970,11 @@
   },
   {
    "path": "docs/predictive-intelligence/ROADMAP.md",
-   "sha256": "8822a884b3885f16e5bf53e674220bd01d9d7896df572a04bc334cfef6300996"
+   "sha256": "da0b0de7821ccf33dfc62ebb4a8723183a090c275073e62a9569d62eec94cc35"
   },
   {
    "path": "docs/predictive-intelligence/HANDOFF.md",
-   "sha256": "3a17fd0fc29b8494426b9808c3be764344b456ce0ea2f0e425ff2ef2d486bdd8"
+   "sha256": "a50e775e69b119e916807d4c196af6b1ee1bb2eed4f94b99ea58cd6f53ed446a"
   }
  ],
  "limitations": [

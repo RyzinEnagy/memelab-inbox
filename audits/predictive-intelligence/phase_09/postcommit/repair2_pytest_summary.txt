@@ -1,0 +1,4 @@
+Repair pass 2: python -m pytest tests -q -p no:cacheprovider at c59730f (2026-10-25T23:41:04Z to 23:43:59Z): exit=1
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+1 failed, 1279 passed in 175.14s (0:02:55)
+Strays removed by hand: data/reports/20261025_2341_BRETT_0x532f.md, data/memelab.sqlite-shm, data/memelab.sqlite-wal; data/memelab.sqlite sha256 068287c0... unchanged.
