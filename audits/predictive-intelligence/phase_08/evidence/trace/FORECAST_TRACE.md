@@ -73,4 +73,4 @@ Every candle read is visible at T: its end plus the 300 s provider lag, or the l
 | non_finite_feature_in_a_fit | REFUSED: Stumps.fit: inputs must be finite (run Prep first; P38) |
 | view_row_available_after_T | REFUSED: candle record available at 1791800318.0 reached a strategy at cutoff 1791800317.0 |
 
-Independent check (`probes/verify_trace.py`): no difference; latency of one forecast from the store, median of 20: 0.0141 s.
+Independent check (`probes/verify_trace.py`): no difference; latency of one forecast from the store, median of 20: 0.0172 s.

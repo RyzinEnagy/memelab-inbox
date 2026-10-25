@@ -3023,7 +3023,7 @@
  },
  "invalid_inputs_all_rejected": true,
  "label_y": 0,
- "latency_s_median_of_20": 0.0475,
+ "latency_s_median_of_20": 0.0499,
  "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
  "models": {
   "B0": {

@@ -1,5 +1,45 @@
 {
  "folds": {
+  "T1b_6h_H_M1_T_LOGIT": {
+   "columns": 15,
+   "lbfgs": {
+    "max_abs_coef_diff_to_numpy": 5.628523634670923e-07,
+    "max_abs_gradient": 1.013504921321129e-06,
+    "n_iter": 40
+   },
+   "newton-cg": {
+    "max_abs_coef_diff_to_numpy": 4.996003610813204e-16,
+    "max_abs_gradient": 7.577272143066693e-15,
+    "n_iter": 8
+   },
+   "newton-cholesky": {
+    "max_abs_coef_diff_to_numpy": 3.5482727867020003e-13,
+    "max_abs_gradient": 2.315814207065614e-12,
+    "n_iter": 6
+   },
+   "numpy_newton_max_abs_gradient": 3.3306690738754696e-15,
+   "rows": 144
+  },
+  "T1b_6h_H_M2_T_LOGIT_B2": {
+   "columns": 21,
+   "lbfgs": {
+    "max_abs_coef_diff_to_numpy": 2.0838363463671072e-06,
+    "max_abs_gradient": 4.66788469927204e-06,
+    "n_iter": 50
+   },
+   "newton-cg": {
+    "max_abs_coef_diff_to_numpy": 6.49102993577344e-12,
+    "max_abs_gradient": 1.0895867541549364e-11,
+    "n_iter": 8
+   },
+   "newton-cholesky": {
+    "max_abs_coef_diff_to_numpy": 8.976930310211628e-12,
+    "max_abs_gradient": 1.787350822901601e-11,
+    "n_iter": 7
+   },
+   "numpy_newton_max_abs_gradient": 1.609823385706477e-15,
+   "rows": 144
+  },
   "T1b_6h_f4_M1_T_LOGIT": {
    "columns": 15,
    "lbfgs": {

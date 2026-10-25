@@ -2,12 +2,25 @@
  "phase": "08",
  "status": "NEEDS_REVIEW",
  "provisional": "PROVISIONAL_PENDING_REVISION_REREAD (PI-D-046)",
- "status_reason": "phase agents cannot run the independent skeptic (PI-D-013); the orchestrator runs it. Own checks hold except the pre-registered lbfgs tolerance (1.13e-6 against 1e-6), diagnosed as lbfgs's stopping point",
+ "status_reason": "repair pass 2 folded in the independent skeptic (no material failure, 8 minor, CX-S08); every gate item holds except checklist item G16 (logistic within 1e-6 of scikit-learn lbfgs), failed as registered (up to 2.08e-6) and explained as lbfgs's stopping point (newton-cholesky within 9.0e-12); PASS needs the orchestrator or Elving to record that the explanation closes G16 (PI-D-052 item 8)",
  "head_before": "1139575",
  "preregistration_commit": "8599318",
  "code_commit": "d290384",
  "runner_repair_commit": "d9b2a9c",
- "head_after": "fc6b9900e55fe1612cd911a82bf4fae09f21f943",
+ "first_pass_head": "0656b7c",
+ "repair2_code_commit": "e81ee46",
+ "skeptic": {
+  "review": "skeptic/PHASE_08_SKEPTIC.md",
+  "material": 0,
+  "minor": 8,
+  "counterexample": "CX-S08 score-time re-standardisation",
+  "caught_by": [
+   "tests/test_predictive_technical.py::test_cx_s08_a_number_does_not_depend_on_the_other_rows_scored_with_it",
+   "tests/test_predictive_technical.py::test_scoring_uses_the_cards_training_mean_and_sd",
+   "probes/mutation_technical.py mutation 'S: CX-S08'"
+  ]
+ },
+ "head_after": "pending: the repair-pass-2 outputs commit; recorded in the post-commit records commit",
  "registry_sha256": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
  "tech_feature_set_sha": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
  "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
@@ -352,17 +365,43 @@
    "pass": true
   },
   {
-   "name": "G4/G21 phase tests",
+   "name": "G4/G21 phase tests (repair pass 2)",
    "command": "python -m pytest tests/test_predictive_technical.py -q",
    "exit_code": 0,
-   "result": "40 passed",
+   "result": "50 passed",
    "pass": true
   },
   {
    "name": "G21 mutation probe",
    "command": "python -B probes/mutation_technical.py evidence/mutation_technical.json",
    "exit_code": 0,
-   "result": "28 of 28 caught",
+   "result": "39 of 39 caught (the phase's 28 plus the skeptic's 11 non-equivalent survivors); equivalent: [\"S: fit's own maturity check removed (equivalent: check_asof with as_of=cutoff refuses an immature label first)\"]",
+   "pass": true
+  },
+  {
+   "name": "CX-S08 score-time re-standardisation",
+   "command": "pytest -k cx_s08 and the mutation 'S: CX-S08'",
+   "exit_code": 0,
+   "result": "the batch number equals the single-row number; the mutation is caught",
+   "pass": true
+  },
+  {
+   "name": "skeptic m3 runner stops on a failed trap",
+   "input": "evidence/runner_exit_check.json",
+   "result": "exit 1 with NC2T failed under the availability mutation",
+   "pass": true
+  },
+  {
+   "name": "skeptic m1 young pools",
+   "input": "evidence/young_pools.json",
+   "result": "12 of 15 censored decisions are pools younger than the window; disclosed, label kept",
+   "pass": true
+  },
+  {
+   "name": "G16 preprocessing oracle (repair pass 2)",
+   "command": "sklearn_crosscheck_tech.py",
+   "exit_code": 1,
+   "result": "stats.Prep against SimpleImputer plus StandardScaler 2.1e-14; holdout-start designs ['T1b_6h_H_M1_T_LOGIT', 'T1b_6h_H_M2_T_LOGIT_B2', 'T1b_6h_H_M3_T_STUMPS']",
    "pass": true
   },
   {
@@ -424,14 +463,14 @@
    "name": "G16 logistic oracle, scikit-learn lbfgs (pre-registered tolerance 1e-6)",
    "command": "sklearn_crosscheck_tech.py (research venv)",
    "exit_code": 1,
-   "result": "max coefficient difference 1.13e-06 on the real T1b fold-4 M1 design: above 1e-6",
+   "result": "max coefficient difference 2.08e-06 (fold 4 and holdout-start designs): above 1e-6, failed as registered",
    "pass": false
   },
   {
    "name": "G16 logistic, diagnosis added after the result",
    "command": "logit_solver_diagnosis.py (research venv)",
    "exit_code": 0,
-   "result": "lbfgs stops with gradient up to 7.2e-6, numpy at 2.2e-15; newton-cholesky and newton-cg agree with numpy within 4.1e-13",
+   "result": "lbfgs stops with gradients 1.0e-6 to 7.2e-6, numpy at most 3.3e-15; newton-cholesky and newton-cg agree with numpy within 9e-12",
    "pass": true
   },
   {
@@ -463,35 +502,7 @@
    "name": "pre-commit full suite",
    "command": "python -m pytest tests -q -p no:cacheprovider",
    "exit_code": 1,
-   "result": "1 failed, 1218 passed in 165.93s (known failure only; before the ledger test was added)",
-   "pass": true
-  },
-  {
-   "name": "post-commit full suite at fc6b990",
-   "command": "python -m pytest tests -q -p no:cacheprovider",
-   "exit_code": 1,
-   "result": "1 failed, 1219 passed in 174.62s (known failure only: tests/test_catalyst.py::test_dedup_corroboration_resurface_denial)",
-   "pass": true
-  },
-  {
-   "name": "post-commit content guard",
-   "command": "python -m memelab social guard",
-   "exit_code": 0,
-   "result": "violations []",
-   "pass": true
-  },
-  {
-   "name": "post-commit seal check",
-   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
-   "exit_code": 0,
-   "result": "problems []",
-   "pass": true
-  },
-  {
-   "name": "post-commit release audit with history, single-branch clone with origin/main",
-   "command": "python tools/release_audit.py --history",
-   "exit_code": 0,
-   "result": "Needs action: no.",
+   "result": "1 failed, 1218 passed in 165.93s (known failure only; first pass, before the ledger test was added)",
    "pass": true
   }
  ],
@@ -562,11 +573,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_08/evidence/logit_solver_diagnosis.json",
-   "sha256": "eee984ce7a122daf216b55e6fb301f36ae310d5538340158d98efaa57cc92c35"
+   "sha256": "bca2f41b8168d9179396f4a2f37bf4e66656da0bb6b07c0084454f7967591a27"
   },
   {
    "path": "audits/predictive-intelligence/phase_08/evidence/mutation_technical.json",
-   "sha256": "564f3193311e8cfe7e1f8409310d6565eafc972f17f2664cfb7f145e6bbc8c02"
+   "sha256": "c548b02afc7c183363eb5b1b3772d452cd800fa4ce15e95a97659e9121016dd9"
   },
   {
    "path": "audits/predictive-intelligence/phase_08/evidence/phase07_equality.json",
@@ -574,7 +585,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_08/evidence/run_log.json",
-   "sha256": "fea33bbf3f07d129d32d3c674416010be0b5d94da93269b998f291dc1fd9fa93"
+   "sha256": "088778594bd437f03be5251db4f038dce94d5db8d053905f8806f396b790e975"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/runner_exit_check.json",
+   "sha256": "2ca5f239e220fdbc7a1f3c66bf16d98dacd8ee0fb4c7e0cb172b64d8f58eaed5"
   },
   {
    "path": "audits/predictive-intelligence/phase_08/evidence/serialization_smoke.json",
@@ -582,23 +597,23 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_08/evidence/sklearn_crosscheck.json",
-   "sha256": "7e3af5856194eb1c40949b80a3104a6f94aa0b5c4900dcd33691fd46ecd91a43"
+   "sha256": "78d14cbc635914bde85fa77aa4e1db851a8b533ebb1e4d37700531f1c1988ef3"
   },
   {
    "path": "audits/predictive-intelligence/phase_08/evidence/trace/FORECAST_TRACE.json",
-   "sha256": "ffb6d5f49a8fd115c6b6617cc4a52d90755427036f892628843bf3f4ce04271c"
+   "sha256": "539e97695d58b94c4a2e1c8b9d03a62f8ce9ddc4e633c2f24c405d176c6a8adc"
   },
   {
    "path": "audits/predictive-intelligence/phase_08/evidence/trace/FORECAST_TRACE.md",
-   "sha256": "a3afbcc51936a0e3ac2f7001cdf2e8ef0c3cf2bd729b7f287327e3e7ec0d3fbe"
+   "sha256": "fbf9fd0d4147dd793fd9af2a3fd10a15c95f565aa5482f60dcb03759e522628c"
   },
   {
    "path": "audits/predictive-intelligence/phase_08/evidence/trace/second/FORECAST_TRACE.json",
-   "sha256": "a01167f6d9c740c9fa4c72b8ca7d8e8d832a373b3dce83f31fb4dfde43f459c4"
+   "sha256": "ab85bfedd3d896547f37c8b03270e89d8d8bef9789d410b65d422c5188423d65"
   },
   {
    "path": "audits/predictive-intelligence/phase_08/evidence/trace/second/FORECAST_TRACE.md",
-   "sha256": "f7bab6b1e5f71936362f9fad6fba5f3aa3bb92cdc081064211d575337cbd9a0c"
+   "sha256": "eb5589fb5fffa8ec3e76c27260557a92be44a4a5604e4230f469d7c2c5795468"
   },
   {
    "path": "audits/predictive-intelligence/phase_08/evidence/trace/second/verify_trace.json",
@@ -619,6 +634,10 @@
   {
    "path": "audits/predictive-intelligence/phase_08/evidence/v2_consistency.json",
    "sha256": "027c4dc2c06933e43e81966bcccc3900c6c7ec6629a406d26504a898adc59949"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/evidence/young_pools.json",
+   "sha256": "a4b06e68b8f69186ce139a30c040dd47d5d1ebeef8a3ea188f9ab84a69cc825a"
   },
   {
    "path": "audits/predictive-intelligence/phase_08/experiments/ABLATIONS.csv",
@@ -642,7 +661,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_08/experiments/SEARCH_LEDGER.csv",
-   "sha256": "82e1901bd4e173294d238870a4b2b57e072b0b816c137345b10ddb2b57660e0d"
+   "sha256": "0771137e6a5fea0077bcd0dde476a1af9c7b521b2a5257c4832dbf3cc5c36389"
   },
   {
    "path": "audits/predictive-intelligence/phase_08/experiments/TECHNICAL_METRICS.csv",
@@ -658,7 +677,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_08/models/TECHNICAL_MODEL_CARD.md",
-   "sha256": "a3a773fbb38aa8a1febd7c73c1457c30fca2712fc959ba77d0b311c00cb8f198"
+   "sha256": "7de49fd8cd03d35a60a1fc1fb77700f3cb0da8859d46c1eeddfd497536dc04ba"
   },
   {
    "path": "audits/predictive-intelligence/phase_08/postcommit/pytest_summary.txt",
@@ -682,15 +701,15 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_08/probes/mutation_technical.py",
-   "sha256": "41f56173f594da116f6c0a5cfdc13a3bb8bf99efdf604c573666531757533867"
+   "sha256": "263c8ca59f61b0cb205161179341d607655fef3104575d4077efcb77131d8328"
   },
   {
    "path": "audits/predictive-intelligence/phase_08/probes/run_technical.py",
-   "sha256": "68ca35af61c696d70e14af831a0b207cb3e9adf6e306e139ebb040eac8332e69"
+   "sha256": "378d1e5d29cd377ac95e4f68ead082dd3aca50b1650f69745173f232b9637e3d"
   },
   {
    "path": "audits/predictive-intelligence/phase_08/probes/sklearn_crosscheck_tech.py",
-   "sha256": "d7cf5f0b9ef7501566108b554d3f86d4e8b7b784fe5e4ed0c9943a2688d05b91"
+   "sha256": "1df176049c12c9cd018992d9ee082185bc5df1e846da09865d011cefa22e42dc"
   },
   {
    "path": "audits/predictive-intelligence/phase_08/probes/verify_trace.py",
@@ -698,7 +717,51 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_08/probes/write_results.py",
-   "sha256": "5f19bb7709dc61f28d833f4f7688bc35975a16b0bcff24cdce9e2a324bcf4d99"
+   "sha256": "8bb699cdc954b2ad1e4bdaa8fedc9a93e2365ec48aedcbc8ff0e73144cbb1e28"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/probes/young_pools.py",
+   "sha256": "e73ec751f1b5b3a06b0241577da427a5c63ba98a52912c9e3f705097760b115d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/skeptic/PHASE_08_SKEPTIC.md",
+   "sha256": "845d09e286c733977f5e15d488d2c9e7974f57c5bb519ab30aaaa0434d7c9872"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/skeptic/p08_counterexample.py",
+   "sha256": "c6bae09a68c5ccd883022a720187c02a2ece3889197a07e283768cd10bd0d0e1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/skeptic/p08_counterexample_out.json",
+   "sha256": "6b92e2b01f52f1778873caa1354a0354d5d1290bb1615fd086af03b163e5d711"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/skeptic/p08_independent.py",
+   "sha256": "9fd612a30899c005427b0e39fff0cbd28aefb89eb6a5d83f776248a26b276a1a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/skeptic/p08_independent_out.json",
+   "sha256": "6bc82428b2cfae6aba0ba5c13a95ff55fc5296d9d2b70147974e9321ca99d0ce"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/skeptic/p08_lbfgs_check.py",
+   "sha256": "4cbe812656e3d944cae84316fcdf939058dd76cfa3c639eae1387c32e4228cf7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/skeptic/p08_lbfgs_check_out.json",
+   "sha256": "8afb418922853af6977ff3899e10469b282d31c2a02dd800161e728202f5823a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/skeptic/p08_own_mutations.json",
+   "sha256": "ce98b77782055556993347d70c3d6c38ab6d3f53305db5d2c10dbbd05fef136b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/skeptic/p08_own_mutations.py",
+   "sha256": "2971bd8def436c815e94a7c60897456b052b3c2124c65696f1dfbc1414b1f074"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/skeptic/p08_p06t_check.py",
+   "sha256": "0874564626835f31fbf88c7bb7d3cbdc503a955c8707439da53e3512537775e0"
   },
   {
    "path": "memelab/predictive/technical.py",
@@ -706,7 +769,7 @@
   },
   {
    "path": "tests/test_predictive_technical.py",
-   "sha256": "a8e819ca5714010bdf08abfc89334e5a77c2cd9ee861f81e5e22cccddc0b193b"
+   "sha256": "0efccdeb38361f35c79a053239479df1409c09b855bb3d6b27263eb2f4527a08"
   }
  ],
  "limitations": [
@@ -716,13 +779,16 @@
   "T1 and T2 technical models never pass the training gate (INSUFFICIENT_HISTORY); T1b only in the last fold, scoring 6 rows with 0 positive on 1 day (INSUFFICIENT_DAYS)",
   "the T1b Brier skill on 6 negatives (M2 0.729) is not evidence of skill; no ranking or calibration can be checked without a positive",
   "one market regime (2026-W41 and W42); no per-cohort or regime statement",
-  "pre-registered lbfgs tolerance exceeded (1.13e-6); the exact Newton oracles agree within 7.1e-14 (diagnosis added after the result)",
+  "pre-registered lbfgs tolerance exceeded (up to 2.08e-6, G16 failed as registered); newton-cholesky agrees within 9.0e-12 (diagnosis added after the result)",
+  "both fitted T1b states sit exactly at 20 positives (fold 4 138 rows, holdout start 144): one changed development label from the 48 h re-read turns every fitted model into INSUFFICIENT_HISTORY",
+  "12 of the 15 CENSORED_RETRIEVAL decisions are pools younger than the 24 h window (labelled by the frozen version 2 rule); tech-1 models cannot score pools under about 24 h 5 min old",
+  "the P06-T rule was reinterpreted after recorded run 1 (late inputs refused, clock-only changes accepted)",
   "a second forecast trace was added after recorded run 1 because the pre-registered row's fold had no fitted technical model",
   "recorded run 1's P06-T probe was defective (counted a clock-only change); repaired and rerun; numbers unchanged",
-  "the search-ledger test was added with the outputs (40 tests; 39 at the code commit)"
+  "the search-ledger test was added with the outputs (40 tests; 39 at the code commit); repair pass 2 added 10 (50)"
  ],
  "blockers": [],
  "open_dependency": "Phase 06 48 h revision re-read (not before 2026-10-26T13:49Z), run by the orchestrator",
  "approvals_needed": [],
- "next_eligible_phase": "09 after the orchestrator's independent skeptic and the repair pass (Phase 08 results PROVISIONAL under PI-D-046)"
+ "next_eligible_phase": "09 once G16 is closed by a recorded decision (orchestrator or Elving); Phase 08 results PROVISIONAL under PI-D-046"
 }

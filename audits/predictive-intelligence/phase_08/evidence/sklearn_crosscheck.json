@@ -1,24 +1,74 @@
 {
- "max_logit_coef_diff": 1.1274585492437872e-06,
+ "holdout_start_designs_checked": [
+  "T1b_6h_H_M1_T_LOGIT",
+  "T1b_6h_H_M2_T_LOGIT_B2",
+  "T1b_6h_H_M3_T_STUMPS"
+ ],
+ "max_logit_coef_diff": 2.0838363463671072e-06,
+ "max_logit_coef_diff_newton_cholesky": 8.976930310211628e-12,
+ "max_prep_design_diff": 2.1316282072803006e-14,
  "max_stump_prob_diff": 3.3306690738754696e-16,
  "numpy": "2.5.3",
  "pass": false,
+ "prep_shapes_equal": true,
  "real_fold_designs": {
   "logistic": [
    {
+    "fold": "T1b_6h_H_M1_T_LOGIT",
+    "max_abs_coef_diff": 5.628523634670923e-07,
+    "max_abs_coef_diff_newton_cholesky": 3.5482727867020003e-13,
+    "max_abs_prob_diff": 9.114343729743624e-08,
+    "prep": {
+     "max_abs_design_diff": 2.1316282072803006e-14,
+     "shape_equal": true
+    },
+    "rows": 144
+   },
+   {
+    "fold": "T1b_6h_H_M2_T_LOGIT_B2",
+    "max_abs_coef_diff": 2.0838363463671072e-06,
+    "max_abs_coef_diff_newton_cholesky": 8.976930310211628e-12,
+    "max_abs_prob_diff": 3.8527056533954607e-07,
+    "prep": {
+     "max_abs_design_diff": 0.0,
+     "shape_equal": true
+    },
+    "rows": 144
+   },
+   {
     "fold": "T1b_6h_f4_M1_T_LOGIT",
     "max_abs_coef_diff": 1.1274585492437872e-06,
+    "max_abs_coef_diff_newton_cholesky": 7.066569551739121e-14,
     "max_abs_prob_diff": 6.681376291672869e-07,
+    "prep": {
+     "max_abs_design_diff": 1.5376588891058418e-14,
+     "shape_equal": true
+    },
     "rows": 138
    },
    {
     "fold": "T1b_6h_f4_M2_T_LOGIT_B2",
     "max_abs_coef_diff": 8.552681176610122e-07,
+    "max_abs_coef_diff_newton_cholesky": 4.059530489541885e-13,
     "max_abs_prob_diff": 2.889705228437123e-07,
+    "prep": {
+     "max_abs_design_diff": 1.5376588891058418e-14,
+     "shape_equal": true
+    },
     "rows": 138
    }
   ],
   "stumps": [
+   {
+    "fold": "T1b_6h_H_M3_T_STUMPS",
+    "max_abs_diff_to_stored_card": 0.0,
+    "max_abs_prob_diff": 1.6653345369377348e-16,
+    "positives": 20,
+    "rounds_numpy": 100,
+    "rounds_sklearn": 100,
+    "rows": 144,
+    "same_split_rounds": 100
+   },
    {
     "fold": "T1b_6h_f4_M3_T_STUMPS",
     "max_abs_diff_to_stored_card": 0.0,
@@ -37,60 +87,70 @@
   "logistic": [
    {
     "max_abs_coef_diff": 1.8746978025507843e-08,
+    "max_abs_coef_diff_newton_cholesky": 2.255751141433393e-12,
     "max_abs_prob_diff": 1.5757526616866357e-08,
     "rows": 177,
     "seed": 1000
    },
    {
     "max_abs_coef_diff": 1.5632546590538254e-08,
+    "max_abs_coef_diff_newton_cholesky": 1.6653345369377348e-16,
     "max_abs_prob_diff": 1.7593823287143096e-08,
     "rows": 373,
     "seed": 1001
    },
    {
     "max_abs_coef_diff": 8.763525738419986e-09,
+    "max_abs_coef_diff_newton_cholesky": 7.632783294297951e-17,
     "max_abs_prob_diff": 1.020561057885061e-08,
     "rows": 289,
     "seed": 1002
    },
    {
     "max_abs_coef_diff": 4.9234651910978755e-09,
+    "max_abs_coef_diff_newton_cholesky": 2.220446049250313e-16,
     "max_abs_prob_diff": 4.899037453487409e-09,
     "rows": 203,
     "seed": 1003
    },
    {
     "max_abs_coef_diff": 3.464949772935544e-08,
+    "max_abs_coef_diff_newton_cholesky": 2.220446049250313e-16,
     "max_abs_prob_diff": 4.4044335234527665e-08,
     "rows": 324,
     "seed": 1004
    },
    {
     "max_abs_coef_diff": 6.437765781575067e-08,
+    "max_abs_coef_diff_newton_cholesky": 4.6629367034256575e-15,
     "max_abs_prob_diff": 6.494294910175391e-08,
     "rows": 241,
     "seed": 1005
    },
    {
     "max_abs_coef_diff": 3.2106900166306573e-08,
+    "max_abs_coef_diff_newton_cholesky": 2.220446049250313e-16,
     "max_abs_prob_diff": 4.927742924820677e-08,
     "rows": 265,
     "seed": 1006
    },
    {
     "max_abs_coef_diff": 3.594620156394113e-08,
+    "max_abs_coef_diff_newton_cholesky": 3.235189893757706e-12,
     "max_abs_prob_diff": 2.9489395203530222e-08,
     "rows": 135,
     "seed": 1007
    },
    {
     "max_abs_coef_diff": 1.2628037150685945e-08,
+    "max_abs_coef_diff_newton_cholesky": 4.218847493575595e-13,
     "max_abs_prob_diff": 1.5576959999652473e-08,
     "rows": 219,
     "seed": 1008
    },
    {
     "max_abs_coef_diff": 8.245601978984496e-09,
+    "max_abs_coef_diff_newton_cholesky": 2.220446049250313e-16,
     "max_abs_prob_diff": 7.2558378194642614e-09,
     "rows": 324,
     "seed": 1009
@@ -191,6 +251,7 @@
  },
  "thresholds": {
   "logistic_coef": 1e-06,
+  "note": "pass keeps the pre-registered lbfgs rule (G16); newton-cholesky and the preprocessing are reported beside it (repair pass 2, skeptic m6)",
   "stump_prob": 1e-09
  }
 }

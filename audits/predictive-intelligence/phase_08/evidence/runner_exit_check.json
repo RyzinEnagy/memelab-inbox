@@ -1,0 +1,9 @@
+{
+ "check": "skeptic m3: the runner must exit non-zero when a trap fails",
+ "how": "a copy of the tree at e81ee46 (git archive) with technical.py's value availability taken as the earliest input instead of the latest (the skeptic's mutation); run_technical.py into a scratch folder",
+ "exit_code": 1,
+ "stderr_last_line": "{\"FAILED\": [\"NC2T\"]}",
+ "NC2T": {"pass": false, "accepted": 9},
+ "P06T": {"pass": true, "accepted": 0},
+ "unmutated_rerun_at_e81ee46": {"exit_code": 0}
+}
