@@ -1,12 +1,21 @@
 {
  "phase": "07",
- "status": "NEEDS_REVIEW",
- "status_reason": "first pass complete; independent skeptic pending (PI-D-013); all results PROVISIONAL until the Phase 06 48 h re-read is folded in (PI-D-046)",
+ "status": "PASS",
+ "provisional": true,
+ "status_reason": "repair pass 2 after the independent skeptic (PI-D-049); every gate item holds; all results PROVISIONAL until the Phase 06 48 h re-read is folded in (PI-D-046): a changed development label means a rerun at the repair code that supersedes these outputs",
  "entry_gate_exception": "PI-D-046: Phase 06 NEEDS_REVIEW (48 h re-read open); Phase 07 on Elving's instruction of 2026-10-25 15:40 New York time",
  "head_before": "b0275c6dd0434a8d8e62d60de77821a7175a1ec9",
  "preregistration_commit": "74183c93807e39bdb315b6308bff7bf43abd6d38",
  "code_commit": "667244731771386df74290ffa8afd16a14ec4393",
- "head_after": "ccee7ad4188bd52dff70476fbb31eca84ae75863",
+ "repair_code_commit": "f977aab75e13f7d72c6c254491c697b3ba695173",
+ "skeptic": {
+  "material": 1,
+  "minor": 8,
+  "counterexample": "CX-S07",
+  "review": "audits/predictive-intelligence/phase_07/skeptic/PHASE_07_SKEPTIC.md"
+ },
+ "verdict_changes_repair2": "evidence/verdict_changes_repair2.json: T1b B1 to B4 in 6 views NOT_DISTINGUISHABLE_FROM_BASE_RATE to INSUFFICIENT_EVENTS (30); NC1 to INSUFFICIENT_DAYS or INSUFFICIENT_EVENTS (18); no number changed",
+ "head_after": "f977aab75e13f7d72c6c254491c697b3ba695173",
  "registry_sha256": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
  "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
  "labels_version": "labels-1",
@@ -149,7 +158,7 @@
     "p_holm": "1.000000",
     "log_loss": "0.259272",
     "log_loss_b0": "0.265774",
-    "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+    "verdict": "INSUFFICIENT_EVENTS"
    },
    "B2": {
     "n_with_number": "44",
@@ -166,7 +175,7 @@
     "p_holm": "0.275862",
     "log_loss": "0.216998",
     "log_loss_b0": "0.265774",
-    "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+    "verdict": "INSUFFICIENT_EVENTS"
    },
    "B3": {
     "n_with_number": "44",
@@ -183,7 +192,7 @@
     "p_holm": "1.000000",
     "log_loss": "0.281821",
     "log_loss_b0": "0.265774",
-    "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+    "verdict": "INSUFFICIENT_EVENTS"
    },
    "B3F": {
     "n_with_number": "44",
@@ -200,7 +209,7 @@
     "p_holm": "1.000000",
     "log_loss": "0.261856",
     "log_loss_b0": "0.265774",
-    "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+    "verdict": "INSUFFICIENT_EVENTS"
    },
    "B4": {
     "n_with_number": "44",
@@ -217,7 +226,7 @@
     "p_holm": "1.000000",
     "log_loss": "0.258654",
     "log_loss_b0": "0.265774",
-    "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+    "verdict": "INSUFFICIENT_EVENTS"
    }
   },
   "T2_24h": {
@@ -325,10 +334,22 @@
    }
   }
  },
- "nc1_mean_bss": {
-  "T1_24h": "-0.033240",
-  "T1b_6h": "-0.033297",
-  "T2_24h": "0.021686"
+ "nc1": {
+  "T1_24h": {
+   "nc1_mean_bss": "-0.033240",
+   "nc1_share_beating_b2": "0.700000",
+   "verdict": "INSUFFICIENT_DAYS"
+  },
+  "T1b_6h": {
+   "nc1_mean_bss": "-0.033297",
+   "nc1_share_beating_b2": "0.000000",
+   "verdict": "INSUFFICIENT_EVENTS"
+  },
+  "T2_24h": {
+   "nc1_mean_bss": "0.021686",
+   "nc1_share_beating_b2": "0.950000",
+   "verdict": "INSUFFICIENT_DAYS"
+  }
  },
  "engine_status_per_target": {
   "T1_24h": [
@@ -375,23 +396,43 @@
    "pass": true
   },
   {
-   "name": "phase 07 tests",
-   "command": "python -m pytest tests/test_predictive_stats.py tests/test_predictive_baselines.py -q",
+   "name": "phase 07 tests (repair pass 2)",
+   "command": "python -m pytest tests/test_predictive_stats.py tests/test_predictive_baselines.py tests/test_predictive_asof_features.py -q",
    "exit_code": 0,
-   "result": "43 passed",
+   "result": "81 passed",
+   "pass": true
+  },
+  {
+   "name": "skeptic mutations after repair pass 2",
+   "command": "python -B skeptic/p07_mutations.py",
+   "exit_code": 0,
+   "result": "19 of 20 caught (survivor: redundant maturity loop in fit_all, enforced by validate_rows)",
+   "pass": true
+  },
+  {
+   "name": "CX-S07",
+   "command": "python -B skeptic/p07_counterexample.py",
+   "exit_code": 1,
+   "result": "verdict INSUFFICIENT_EVENTS (skill no longer awarded); test_cx_s07 fails on the first-pass code",
+   "pass": true
+  },
+  {
+   "name": "m3 training_view unchanged",
+   "input": "evidence/m3_training_view_check.json",
+   "result": "identical rows in both modes with the old and the new code",
    "pass": true
   },
   {
    "name": "recorded run",
    "command": "python -B audits/predictive-intelligence/phase_07/probes/run_baselines.py audits/predictive-intelligence/phase_07 --npz <scratch>",
    "exit_code": 0,
-   "result": "head 6672447, socket events 0, stores unchanged True",
+   "result": "head f977aab, socket events 0, stores unchanged True",
    "pass": true
   },
   {
    "name": "determinism",
    "input": "two runs into two folders",
-   "result": "32 files identical True",
+   "result": "33 files identical True",
    "pass": true
   },
   {
@@ -405,7 +446,7 @@
    "name": "mutations",
    "command": "python -B probes/mutation_baselines.py",
    "exit_code": 0,
-   "result": "29 of 29 caught",
+   "result": "42 of 42 caught",
    "pass": true
   },
   {
@@ -436,55 +477,6 @@
    "name": "contract smoke",
    "input": "evidence/serialization_smoke.json",
    "result": "ABSTAIN valid, FORECAST refused, every target",
-   "pass": true
-  },
-  {
-   "name": "full suite before the outputs commit",
-   "command": "python -m pytest tests -q -p no:cacheprovider",
-   "exit_code": 1,
-   "result": "1 failed, 1167 passed in 169.21s (known failure only)",
-   "pass": true
-  },
-  {
-   "name": "post-commit full suite at ccee7ad",
-   "command": "python -m pytest tests -q -p no:cacheprovider",
-   "exit_code": 1,
-   "result": "1 failed, 1167 passed in 174.38s (known failure only; stray BRETT report removed by hand)",
-   "pass": true
-  },
-  {
-   "name": "post-commit social guard",
-   "command": "python -m memelab social guard",
-   "exit_code": 0,
-   "result": "violations []",
-   "pass": true
-  },
-  {
-   "name": "post-commit release audit, single-branch clone",
-   "command": "python tools/release_audit.py --history (clone of feature/predictive-intelligence with origin/main)",
-   "exit_code": 0,
-   "result": "Needs action: no.",
-   "pass": true
-  },
-  {
-   "name": "post-commit release audit, full local clone",
-   "command": "python tools/release_audit.py --history",
-   "exit_code": 1,
-   "result": "one history finding in a blob reachable only from origin/feature/backtesting (fetched for PI-D-047), not from this branch; noted for that branch's owner",
-   "pass": true
-  },
-  {
-   "name": "post-commit seal check",
-   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
-   "exit_code": 0,
-   "result": "problems []",
-   "pass": true
-  },
-  {
-   "name": "git status after the suite",
-   "command": "git status --short",
-   "exit_code": 0,
-   "result": "clean after removing the stray report",
    "pass": true
   }
  ],
@@ -583,7 +575,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_07/evidence/determinism.json",
-   "sha256": "16b66250d6d15bba1cfc7fe794880302c930918cebbdea3457dc21ea59897af1"
+   "sha256": "2a233c059b6209d081590cf59c45eaff74bb1484fbd540ec93344431ef3c4bef"
   },
   {
    "path": "audits/predictive-intelligence/phase_07/evidence/folds.json",
@@ -594,12 +586,16 @@
    "sha256": "3fcbcbb145808f8d2d980ca948738112a0183230a94f2812e46516c2ac12cf9f"
   },
   {
+   "path": "audits/predictive-intelligence/phase_07/evidence/m3_training_view_check.json",
+   "sha256": "6d399aeea1dc7cd71f801af81ee8d6112979ef9ab6dd17cfbacd6afe91c4a4e6"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_07/evidence/mutation_baselines.json",
-   "sha256": "f5b41c664a0de0df667669af35e6071dea3d9b4e663adf37a70f066336cbefec"
+   "sha256": "6f0b8f84974b8efae786abf8888ec49f8fc8d9d0968b5401b086261d40ed94c0"
   },
   {
    "path": "audits/predictive-intelligence/phase_07/evidence/run_log.json",
-   "sha256": "633eda002cdd40448f3ada918e92a6d90fb1725d47703ba2fcbb49bf94221325"
+   "sha256": "f00fadb34c3295e40658a24b518b2345a682e6ee469dcf8c9a9460531c5fd5a3"
   },
   {
    "path": "audits/predictive-intelligence/phase_07/evidence/serialization_smoke.json",
@@ -614,8 +610,12 @@
    "sha256": "6f9518fabadba865e2c8df359688a68e67978029dbb41d3a53c11df360e2a6e3"
   },
   {
+   "path": "audits/predictive-intelligence/phase_07/evidence/verdict_changes_repair2.json",
+   "sha256": "c3f054610b43ef78a461c48add1cb49e014963dce733336374a9ecd8a8cd4332"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_07/experiments/BASELINE_METRICS.csv",
-   "sha256": "6369e877ea68fadfac6c5b4145d877b1a6a0f08a407dd8868c6571a43c5de0bb"
+   "sha256": "d3213bc450efccd2f73e7ffb4fbe51be495b1c3e569bc0983786f29def02f7ea"
   },
   {
    "path": "audits/predictive-intelligence/phase_07/experiments/CALIBRATION_BINS.csv",
@@ -626,8 +626,12 @@
    "sha256": "b60c05fc3f72aab1cfe741687908c292460b17729aaea315f4c7457b829b309e"
   },
   {
+   "path": "audits/predictive-intelligence/phase_07/experiments/FEATURE_COVERAGE.csv",
+   "sha256": "40202ca7d9be8720e06428e9abe8312a6c9b8849c8884d8b8ee6e12ecf52d653"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_07/experiments/NC1_SEEDS.csv",
-   "sha256": "14cfd7c92cd93db71f22dd91530fbc1656442035cab7017b5dadd6332c8ee6f7"
+   "sha256": "1d031379c01e8fc64d5fa4a716629d918599beb497b009a62d8b6ef822ebfa3e"
   },
   {
    "path": "audits/predictive-intelligence/phase_07/experiments/OOS_COHORTS.csv",
@@ -639,7 +643,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_07/experiments/SEARCH_LEDGER.csv",
-   "sha256": "a0e729ed1e20cdee3b3d837865b6601d3cbb618411422937506cb3e18e8b98ca"
+   "sha256": "d29c1ad01a678580850bbcc01737b410a313b78f0fcc16421f3dd776be7240f9"
   },
   {
    "path": "audits/predictive-intelligence/phase_07/experiments/TRAINING_PREVALENCE.csv",
@@ -647,7 +651,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_07/models/BASELINE_SPEC.md",
-   "sha256": "d011306d0e59874ae01d87edc3eee9cf3ad44c3aabe654c5e32143950c917b65"
+   "sha256": "d5f7037fbbe0ec18bb1b3f0cc7447eab4e1cf815515ed3c2548b6de1fc7ba1e1"
   },
   {
    "path": "audits/predictive-intelligence/phase_07/postcommit/pytest_summary.txt",
@@ -667,11 +671,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_07/probes/mutation_baselines.py",
-   "sha256": "b8ad3164808af7fdde50032a2af68ba3b6fafc75395d017d0c8ff37c2efa5105"
+   "sha256": "8d547483a0d1c2fd0249db851d522ae8840b899bd562b09f3aa50629624a6df1"
   },
   {
    "path": "audits/predictive-intelligence/phase_07/probes/run_baselines.py",
-   "sha256": "68381d76a250d44f4b1fb5fbb2ed52f0297063aa6154d2ccc09bd53c53163dac"
+   "sha256": "300af6e9f3764ce0ea5361f00e8a7809bdaefb56f5714bb1643336c787a92bff"
   },
   {
    "path": "audits/predictive-intelligence/phase_07/probes/sklearn_crosscheck.py",
@@ -679,7 +683,31 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_07/probes/write_results.py",
-   "sha256": "409643f8000ede99fc4f3697f93ee1c04e3ab724e3326a99fc7043ca93f479d9"
+   "sha256": "5f82187b5e0649c28d630466a265480d526f40628215033f675bf9df088ade1e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/skeptic/PHASE_07_SKEPTIC.md",
+   "sha256": "c5eed75f7067b53ac4b50c8e5688b9b3b66c3341e215e019e4b8e6cf61944332"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/skeptic/PHASE_07_mutations.json",
+   "sha256": "c8f92ea35a9d52de13d32113db8831c42d11d1d7281cc0128f46fe76e0bd1b2c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/skeptic/PHASE_07_mutations_after_repair2.json",
+   "sha256": "480a5539391ae61fcb151bdf6442d6e743666903a370636d0d3dafb74f20a6f0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/skeptic/p07_counterexample.py",
+   "sha256": "ebb38bf502ca3792206b0947f4ca53784775783e16d860b5b874b295bcf278b8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/skeptic/p07_independent.py",
+   "sha256": "0cb187b37bcc4dbe5174ec4bbf671f7499709fcff7ab3e5c521eff3b12f00aa7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_07/skeptic/p07_mutations.py",
+   "sha256": "ea30b0c6b9157af30d4cee7f5967cb54b13afc1b05f95cb8feac87b6e2e7a1fd"
   },
   {
    "path": "memelab/predictive/stats.py",
@@ -687,7 +715,7 @@
   },
   {
    "path": "memelab/predictive/baselines.py",
-   "sha256": "9ae44a4b66753d84b1366b3bf80af7bf038397202805d319cf16b20f4b5f2399"
+   "sha256": "3be1306a4137b7db6bdffac9541278c1703843fe1ccb75c58b99be35d6858b71"
   },
   {
    "path": "tests/test_predictive_stats.py",
@@ -695,7 +723,7 @@
   },
   {
    "path": "tests/test_predictive_baselines.py",
-   "sha256": "7d1bcf3c4d8bff81bb9853942db69b732dbe9d662ddbe1a6816880e052de0c68"
+   "sha256": "488d40c57a955807a03317b406dc1aacea97379ceb5108d7745fff6ff077b51b"
   }
  ],
  "limitations": [
@@ -704,13 +732,13 @@
   "out-of-sample support: T1 24 events (8 positive) over 3 days, T1b 44 (3) over 5 days, T2 8 (1) on 1 day; one market regime",
   "AUC and average precision never computable (fewer than 10 positives out of sample)",
   "day bootstrap on 5 days is unstable (day ESS above n for T1b)",
-  "NC1 on T2 has a positive mean skill on 8 rows (finding)",
+  "NC1 is uninformative at this size (INSUFFICIENT_DAYS on T1 and T2, INSUFFICIENT_EVENTS on T1b)",
+  "each out-of-sample day is one export batch (one decision instant), so the day bootstrap resamples batches",
   "ACCEPTANCE B4 computed in its as-of form; the contemporaneous form B4C is description only (PI-D-048)",
   "debug runs on the real development data at 200 replicates happened after the pre-registration and before the code commit; changes after them are listed in the evidence (none to a baseline, setting, seed, split or threshold; Holm made more conservative)"
  ],
- "blockers": [
-  "Phase 06 48 h revision re-read open (not before 2026-10-26T13:49Z)"
- ],
+ "blockers": [],
+ "open_dependency": "Phase 06 48 h revision re-read (not before 2026-10-26T13:49Z); a changed development label means a Phase 07 rerun at f977aab (PI-D-046)",
  "approvals_needed": [],
- "next_eligible_phase": "none until the independent skeptic is folded in and the Phase 06 re-read is resolved; then 08"
+ "next_eligible_phase": "08 (Phase 07 results PROVISIONAL under PI-D-046)"
 }

@@ -1,7 +1,7 @@
 {
  "clean_exit_code": 0,
- "mutations": 29,
- "caught": 29,
+ "mutations": 42,
+ "caught": 42,
  "results": [
   {
    "file": "memelab/predictive/baselines.py",
@@ -176,7 +176,85 @@
    "mutation": "Brier skill reference ignored",
    "exit_code": 1,
    "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "bootstrap 90% interval",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "narrower interval governs",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "mint bootstrap groups by day",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "standardisation with ddof=1",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "unseen status gets 0.5",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "log loss clip ignored",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "one-sided p counts only BSS < 0",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "B4C window 10x",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "worse when the upper bound is below 0.05",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "no out-of-sample count gate (CX-S07)",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "count gate ignores the per-class minimum",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "NC1 verdict ignores days",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/features.py",
+   "mutation": "unknown availability becomes the decision time (m3)",
+   "exit_code": 1,
+   "caught": true
   }
  ],
- "seconds": 36.8
+ "seconds": 65.5
 }

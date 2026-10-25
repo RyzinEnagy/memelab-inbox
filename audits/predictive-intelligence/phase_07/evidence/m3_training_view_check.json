@@ -1,0 +1,52 @@
+{
+ "provider_and_capture_rows_and_sha256_new": {
+  "provider": [
+   1324,
+   "4d1d87f70c0547ee8e4f4af36bca39195b10d8a390ad9a8d6d73fcc3fad85df3"
+  ],
+  "capture": [
+   1324,
+   "f793278893a754a9d0b060ce46e7ae858d754c0ca9503e81182dd43e21052178"
+  ]
+ },
+ "old": {
+  "provider": [
+   1324,
+   "4d1d87f70c0547ee8e4f4af36bca39195b10d8a390ad9a8d6d73fcc3fad85df3"
+  ],
+  "capture": [
+   1324,
+   "f793278893a754a9d0b060ce46e7ae858d754c0ca9503e81182dd43e21052178"
+  ]
+ },
+ "identical": true,
+ "values_with_null_availability_by_mode_and_feature": [
+  [
+   "capture",
+   "universe_new_mints_24h",
+   171
+  ],
+  [
+   "provider",
+   "cdl_candles_24h",
+   1
+  ],
+  [
+   "provider",
+   "cdl_vol_usd_1h",
+   18
+  ],
+  [
+   "provider",
+   "cdl_vol_usd_24h",
+   1
+  ],
+  [
+   "provider",
+   "universe_new_mints_24h",
+   171
+  ]
+ ],
+ "of_which_not_zero_from_no_input": 0,
+ "note": "training_view at the holdout start with the Phase 06 code and with the repaired code gives identical rows in both modes; every stored value without an availability time is a zero computed from no input row"
+}

@@ -1,0 +1,338 @@
+[
+ {
+  "target": "T1b_6h",
+  "view": "ALL",
+  "baseline": "B1",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "ALL",
+  "baseline": "B2",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "ALL",
+  "baseline": "B3",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "ALL",
+  "baseline": "B3F",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "ALL",
+  "baseline": "B4",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_MINTS",
+  "baseline": "B1",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_MINTS",
+  "baseline": "B2",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_MINTS",
+  "baseline": "B3",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_MINTS",
+  "baseline": "B3F",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_MINTS",
+  "baseline": "B4",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_CREATORS",
+  "baseline": "B1",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_CREATORS",
+  "baseline": "B2",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_CREATORS",
+  "baseline": "B3",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_CREATORS",
+  "baseline": "B3F",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_CREATORS",
+  "baseline": "B4",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_NARRATIVES",
+  "baseline": "B1",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_NARRATIVES",
+  "baseline": "B2",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_NARRATIVES",
+  "baseline": "B3",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_NARRATIVES",
+  "baseline": "B3F",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_NARRATIVES",
+  "baseline": "B4",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "PIT_ONLY",
+  "baseline": "B1",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "PIT_ONLY",
+  "baseline": "B2",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "PIT_ONLY",
+  "baseline": "B3",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "PIT_ONLY",
+  "baseline": "B3F",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "PIT_ONLY",
+  "baseline": "B4",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NO_KEY_CONFLICT",
+  "baseline": "B1",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NO_KEY_CONFLICT",
+  "baseline": "B2",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NO_KEY_CONFLICT",
+  "baseline": "B3",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NO_KEY_CONFLICT",
+  "baseline": "B3F",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NO_KEY_CONFLICT",
+  "baseline": "B4",
+  "first_pass": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1_24h",
+  "view": "ALL",
+  "baseline": "NC1",
+  "first_pass": "NC1_DEGRADES_OR_EQUAL",
+  "repair_pass_2": "INSUFFICIENT_DAYS"
+ },
+ {
+  "target": "T1_24h",
+  "view": "NEW_MINTS",
+  "baseline": "NC1",
+  "first_pass": "NC1_DEGRADES_OR_EQUAL",
+  "repair_pass_2": "INSUFFICIENT_DAYS"
+ },
+ {
+  "target": "T1_24h",
+  "view": "NEW_CREATORS",
+  "baseline": "NC1",
+  "first_pass": "NC1_DEGRADES_OR_EQUAL",
+  "repair_pass_2": "INSUFFICIENT_DAYS"
+ },
+ {
+  "target": "T1_24h",
+  "view": "NEW_NARRATIVES",
+  "baseline": "NC1",
+  "first_pass": "NC1_DEGRADES_OR_EQUAL",
+  "repair_pass_2": "INSUFFICIENT_DAYS"
+ },
+ {
+  "target": "T1_24h",
+  "view": "PIT_ONLY",
+  "baseline": "NC1",
+  "first_pass": "NC1_DEGRADES_OR_EQUAL",
+  "repair_pass_2": "INSUFFICIENT_DAYS"
+ },
+ {
+  "target": "T1_24h",
+  "view": "NO_KEY_CONFLICT",
+  "baseline": "NC1",
+  "first_pass": "NC1_DEGRADES_OR_EQUAL",
+  "repair_pass_2": "INSUFFICIENT_DAYS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "ALL",
+  "baseline": "NC1",
+  "first_pass": "NC1_DEGRADES_OR_EQUAL",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_MINTS",
+  "baseline": "NC1",
+  "first_pass": "NC1_DEGRADES_OR_EQUAL",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_CREATORS",
+  "baseline": "NC1",
+  "first_pass": "NC1_DEGRADES_OR_EQUAL",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NEW_NARRATIVES",
+  "baseline": "NC1",
+  "first_pass": "NC1_DEGRADES_OR_EQUAL",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "PIT_ONLY",
+  "baseline": "NC1",
+  "first_pass": "NC1_DEGRADES_OR_EQUAL",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T1b_6h",
+  "view": "NO_KEY_CONFLICT",
+  "baseline": "NC1",
+  "first_pass": "NC1_DEGRADES_OR_EQUAL",
+  "repair_pass_2": "INSUFFICIENT_EVENTS"
+ },
+ {
+  "target": "T2_24h",
+  "view": "ALL",
+  "baseline": "NC1",
+  "first_pass": "NC1_FINDING_MEAN_BSS_ABOVE_0",
+  "repair_pass_2": "INSUFFICIENT_DAYS"
+ },
+ {
+  "target": "T2_24h",
+  "view": "NEW_MINTS",
+  "baseline": "NC1",
+  "first_pass": "NC1_FINDING_MEAN_BSS_ABOVE_0",
+  "repair_pass_2": "INSUFFICIENT_DAYS"
+ },
+ {
+  "target": "T2_24h",
+  "view": "NEW_CREATORS",
+  "baseline": "NC1",
+  "first_pass": "NC1_FINDING_MEAN_BSS_ABOVE_0",
+  "repair_pass_2": "INSUFFICIENT_DAYS"
+ },
+ {
+  "target": "T2_24h",
+  "view": "NEW_NARRATIVES",
+  "baseline": "NC1",
+  "first_pass": "NC1_FINDING_MEAN_BSS_ABOVE_0",
+  "repair_pass_2": "INSUFFICIENT_DAYS"
+ },
+ {
+  "target": "T2_24h",
+  "view": "PIT_ONLY",
+  "baseline": "NC1",
+  "first_pass": "NC1_FINDING_MEAN_BSS_ABOVE_0",
+  "repair_pass_2": "INSUFFICIENT_DAYS"
+ },
+ {
+  "target": "T2_24h",
+  "view": "NO_KEY_CONFLICT",
+  "baseline": "NC1",
+  "first_pass": "NC1_DEGRADES_OR_EQUAL",
+  "repair_pass_2": "INSUFFICIENT_DAYS"
+ }
+]

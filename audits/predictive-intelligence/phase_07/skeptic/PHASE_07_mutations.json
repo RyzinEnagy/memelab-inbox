@@ -1,0 +1,127 @@
+{
+ "clean_exit_code": 0,
+ "mutations": 20,
+ "caught": 9,
+ "results": [
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "bootstrap resamples rows, not groups",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "bootstrap 90% interval",
+   "exit_code": 0,
+   "caught": false
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "narrower interval governs",
+   "exit_code": 0,
+   "caught": false
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "mint bootstrap groups by day (copy error)",
+   "exit_code": 0,
+   "caught": false
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "intercept penalised",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "standardisation with ddof=1",
+   "exit_code": 0,
+   "caught": false
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "test window two days (pooled rows counted twice)",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "unseen status gets 0.5, not B0",
+   "exit_code": 0,
+   "caught": false
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "NC1 labels not shuffled",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "identity join ignores the chain",
+   "exit_code": 0,
+   "caught": false
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "Holm without monotone step-down",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "Holm as plain Bonferroni",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "log loss clip ignored",
+   "exit_code": 0,
+   "caught": false
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "fit_all accepts unmatured training rows",
+   "exit_code": 0,
+   "caught": false
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "one-sided p counts only BSS < 0",
+   "exit_code": 0,
+   "caught": false
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "B3 OOD row predicted at Platt(0)",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "B4 missing liquidity predicts 0",
+   "exit_code": 1,
+   "caught": true
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "B4C window 10x",
+   "exit_code": 0,
+   "caught": false
+  },
+  {
+   "file": "memelab/predictive/baselines.py",
+   "mutation": "worse-than-base when upper bound <= 0.05",
+   "exit_code": 0,
+   "caught": false
+  },
+  {
+   "file": "memelab/predictive/stats.py",
+   "mutation": "calibration bin minimum 10",
+   "exit_code": 1,
+   "caught": true
+  }
+ ]
+}

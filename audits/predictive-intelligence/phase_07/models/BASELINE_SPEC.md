@@ -1,14 +1,14 @@
 # Baseline specification and results (Phase 07)
 
-Status of every number here: PROVISIONAL_PENDING_REVISION_REREAD (PI-D-046). Phase 06's frozen 48 h revision re-read has not run yet; if it changes any development label, `probes/run_baselines.py` is rerun at the Phase 07 code commit `667244731771386df74290ffa8afd16a14ec4393` and its outputs replace these files (superseded, never edited). Nothing here claims the frozen revision check.
+Status of every number here: PROVISIONAL_PENDING_REVISION_REREAD (PI-D-046). Phase 06's frozen 48 h revision re-read has not run yet; if it changes any development label, `probes/run_baselines.py` is rerun at the Phase 07 repair code commit `f977aab75e13f7d72c6c254491c697b3ba695173` (first-pass code `6672447`) and its outputs replace these files (superseded, never edited). Nothing here claims the frozen revision check.
 
 Research only. No number here is a published probability: publication needs a passed calibration check on the sealed holdout (Phase 12 and 13) and a selected champion (Phase 16). These are price-path targets with no execution data (PRICE_PATH_NOT_PROCEEDS, NO_HISTORICAL_EXECUTABLE_DEPTH, BACKTEST_NOT_AVAILABLE): nothing here says anything about proceeds, fills or trading.
 
-Pre-registration: `../ACCEPTANCE_CHECKLIST.md` and `../experiments/EXPERIMENT_REGISTRY.csv`, committed in `74183c9` (2026-10-25T19:51:19Z) before any baseline was fitted; the code was committed in `6672447` (20:05:44Z) before the recorded run (`../evidence/run_log.json`, start 20:06Z, HEAD `6672447`).
+Pre-registration: `../ACCEPTANCE_CHECKLIST.md` and `../experiments/EXPERIMENT_REGISTRY.csv`, committed in `74183c9` (2026-10-25T19:51:19Z) before any baseline was fitted; the code was committed in `6672447` (20:05:44Z) before the first recorded run. Repair pass 2 (PI-D-049, after the independent skeptic) changed the verdict function and NC1 rules, not any number; the outputs here come from the rerun at `f977aab` (`../evidence/run_log.json`).
 
 ## Answer in one paragraph
 
-On the development labels and the frozen walk-forward, no baseline is distinguishable from the training base rate for any primary target. T1 (24 h) and T2 (24 h) do not reach the frozen minimum of 5 out-of-sample decision days (3 and 1), so their verdict is INSUFFICIENT_DAYS: no claim either way. T1b (6 h) reaches exactly 5 days but has only 3 positive events out of sample; every baseline's governing interval contains 0 (NOT_DISTINGUISHABLE_FROM_BASE_RATE), and the Holm-adjusted p-values across the three targets are 0.28 or more. This is the outcome stated in advance in Phase 01 (PI-D-016). The engine stays at ABSTAIN with INSUFFICIENT_HISTORY and MODEL_NOT_SELECTED; the train-only cards below are frozen for Phase 12, which evaluates them once on the sealed holdout.
+On the development labels and the frozen walk-forward, no baseline is distinguishable from the training base rate for any primary target. T1 (24 h) and T2 (24 h) do not reach the frozen minimum of 5 out-of-sample decision days (3 and 1), so their verdict is INSUFFICIENT_DAYS: no claim either way. T1b (6 h) reaches exactly 5 days but has only 44 events with 3 positive out of sample, below the frozen out-of-sample minimums (50 events, 10 per class), so its verdict is INSUFFICIENT_EVENTS (PI-D-049; in the first pass it read NOT_DISTINGUISHABLE_FROM_BASE_RATE, and every governing interval does contain 0, with Holm-adjusted p 0.28 or more). This is the outcome stated in advance in Phase 01 (PI-D-016). The engine stays at ABSTAIN with INSUFFICIENT_HISTORY and MODEL_NOT_SELECTED; the train-only cards below are frozen for Phase 12, which evaluates them once on the sealed holdout.
 
 ## Inputs
 
@@ -61,11 +61,11 @@ Brier skill score (BSS) is against B0 on the same rows. Intervals are 95% bootst
 | T1 24 h | B3 | 24 (8) | 3 | 0.2208 | 0.2297 | 0.039 | undefined | -0.156 to 0.282 | undefined | INSUFFICIENT_DAYS |
 | T1 24 h | B3F | 24 (8) | 3 | 0.2301 | 0.2297 | -0.002 | undefined | -0.012 to 0.009 | undefined | INSUFFICIENT_DAYS |
 | T1 24 h | B4 | 24 (8) | 3 | 0.2138 | 0.2297 | 0.070 | undefined | -0.004 to 0.139 | undefined | INSUFFICIENT_DAYS |
-| T1b 6 h | B1 | 44 (3) | 5 | 0.0664 | 0.0667 | 0.004 | -0.163 to 0.101 | -0.275 to 0.082 | 1.00 | NOT_DISTINGUISHABLE_FROM_BASE_RATE |
-| T1b 6 h | B2 | 44 (3) | 5 | 0.0595 | 0.0667 | 0.108 | -0.022 to 0.206 | -0.127 to 0.219 | 0.28 | NOT_DISTINGUISHABLE_FROM_BASE_RATE |
-| T1b 6 h | B3 | 44 (3) | 5 | 0.0732 | 0.0667 | -0.097 | -0.189 to -0.059 | -0.493 to 0.028 | 1.00 | NOT_DISTINGUISHABLE_FROM_BASE_RATE |
-| T1b 6 h | B3F | 44 (3) | 5 | 0.0663 | 0.0667 | 0.006 | -0.096 to 0.083 | -0.129 to 0.073 | 1.00 | NOT_DISTINGUISHABLE_FROM_BASE_RATE |
-| T1b 6 h | B4 | 44 (3) | 5 | 0.0655 | 0.0667 | 0.017 | -0.132 to 0.116 | -0.415 to 0.136 | 1.00 | NOT_DISTINGUISHABLE_FROM_BASE_RATE |
+| T1b 6 h | B1 | 44 (3) | 5 | 0.0664 | 0.0667 | 0.004 | -0.163 to 0.101 | -0.275 to 0.082 | 1.00 | INSUFFICIENT_EVENTS |
+| T1b 6 h | B2 | 44 (3) | 5 | 0.0595 | 0.0667 | 0.108 | -0.022 to 0.206 | -0.127 to 0.219 | 0.28 | INSUFFICIENT_EVENTS |
+| T1b 6 h | B3 | 44 (3) | 5 | 0.0732 | 0.0667 | -0.097 | -0.189 to -0.059 | -0.493 to 0.028 | 1.00 | INSUFFICIENT_EVENTS |
+| T1b 6 h | B3F | 44 (3) | 5 | 0.0663 | 0.0667 | 0.006 | -0.096 to 0.083 | -0.129 to 0.073 | 1.00 | INSUFFICIENT_EVENTS |
+| T1b 6 h | B4 | 44 (3) | 5 | 0.0655 | 0.0667 | 0.017 | -0.132 to 0.116 | -0.415 to 0.136 | 1.00 | INSUFFICIENT_EVENTS |
 | T2 24 h | B1 | 8 (1) | 1 | 0.1232 | 0.1275 | 0.034 | undefined | -0.176 to 0.514 | undefined | INSUFFICIENT_DAYS |
 | T2 24 h | B2 | 8 (1) | 1 | 0.1526 | 0.1275 | -0.197 | undefined | -2.049 to 0.914 | undefined | INSUFFICIENT_DAYS |
 | T2 24 h | B3 | 8 (1) | 1 | 0.1277 | 0.1275 | -0.002 | undefined | -0.023 to 0.055 | undefined | INSUFFICIENT_DAYS |
@@ -74,7 +74,11 @@ Brier skill score (BSS) is against B0 on the same rows. Intervals are 95% bootst
 
 Brier and log loss disagree in direction relative to B0 in 6 rows of the CSV (P23): T2 B2 in the ALL view (Brier worse, 0.1526 against 0.1275; log loss better, 0.419 against 0.432; 8 rows, 1 positive), T2 B2 new narratives, T2 B1 PIT only, and T1 B3 in the new-mints, new-creators and no-KEY_CONFLICT views. Both are always shown with counts; neither changes a verdict, which rests on Brier (the frozen primary score) and its interval. ROC AUC and average precision are not computed: no out-of-sample set has 10 events in each class (ACCEPTANCE). Calibration: T1 and T2 have fewer than 40 out-of-sample events, so only calibration in the large is checked (passes for every baseline: mean prediction inside the Wilson interval of the observed rate); T1b has 44 events, 2 quantile bins of 22, every bin inside its Wilson interval for every baseline (`../experiments/CALIBRATION_BINS.csv`). With 3 positives this check has almost no power and supports no calibration claim.
 
-What to read into the T1b numbers: B2's point estimate (BSS 0.108) rests on 3 positive events over 5 days in one week (2026-W42); its day interval just includes 0 and its mint interval is wide; Holm across the three targets (undefined tests counted as p = 1) gives 0.28. B3's day interval lies below 0 while its mint interval does not; by the frozen rule the wider (mint) interval governs, so the verdict is not "worse than base rate", but nothing suggests the lab's score carries probability information for this target either.
+What to read into the T1b numbers: B2's point estimate (BSS 0.108) rests on 3 positive events over 5 days in one week (2026-W42); its day interval just includes 0 and its mint interval is wide; Holm across the three targets (undefined tests counted as p = 1) gives 0.28. B3's day interval lies below 0 while its mint interval does not; by the frozen rule the wider (mint) interval governs, so the interval rule alone would not say "worse than base rate" (and the count gate now stops any directional verdict on 3 positives), but nothing suggests the lab's score carries probability information for this target either.
+
+Unit of dependence: every out-of-sample decision day is one export batch, one decision instant near 10:15Z (T1 3 instants, T1b 5, T2 1; all 8 T2 rows at 2026-10-14T10:17:43Z), so the day bootstrap resamples whole batches; two of T1b's five batches hold no positive.
+
+Missing-feature coverage by cohort (development set and out-of-sample set): `../experiments/FEATURE_COVERAGE.csv`. Every model column is complete except token age on T1b (2 of 224 development rows, 2 of 44 out-of-sample rows; B2 fills it with the training median and a missing indicator).
 
 Effective sample size: the design-effect ESS (n times the independent-rows variance over the block-bootstrap variance of the mean squared error) is reported beside every row. For T1b the day ESS exceeds n (about 98 against 44): with 5 day-groups the bootstrap variance is itself unstable and small, so an ESS above n means "no information beyond n", not more data. Mint ESS is close to n (each mint appears about once out of sample).
 
@@ -82,19 +86,19 @@ Effective sample size: the design-effect ESS (n times the independent-rows varia
 
 | View | T1 24 h B2 | T1b 6 h B2 | T2 24 h B2 |
 |---|---|---|---|
-| new mints only | 13 rows, BSS -0.089, INSUFFICIENT_DAYS | 24 rows (2 positive), BSS 0.099, NOT_DISTINGUISHABLE | 4 rows (0 positive), INSUFFICIENT_DAYS |
-| new creators (unknown kept) | 14 rows, -0.095, INSUFFICIENT_DAYS | 25 rows (2), 0.097, NOT_DISTINGUISHABLE | 5 rows (0), INSUFFICIENT_DAYS |
-| new narratives (unknown kept) | 19 rows, -0.057, INSUFFICIENT_DAYS | 34 rows (3), 0.125, NOT_DISTINGUISHABLE | 6 rows (0), INSUFFICIENT_DAYS |
-| PIT_RECORDED route only | 19 rows, -0.069, INSUFFICIENT_DAYS | 33 rows (3), 0.087, NOT_DISTINGUISHABLE | 7 rows (1), INSUFFICIENT_DAYS |
-| without KEY_CONFLICT (refitted) | 24 rows, -0.054, INSUFFICIENT_DAYS | 42 rows (3), 0.105, NOT_DISTINGUISHABLE | 8 rows (1), INSUFFICIENT_DAYS |
+| new mints only | 13 rows, BSS -0.089, INSUFFICIENT_DAYS | 24 rows (2 positive), BSS 0.099, INSUFFICIENT_EVENTS | 4 rows (0 positive), INSUFFICIENT_DAYS |
+| new creators (unknown kept) | 14 rows, -0.095, INSUFFICIENT_DAYS | 25 rows (2), 0.097, INSUFFICIENT_EVENTS | 5 rows (0), INSUFFICIENT_DAYS |
+| new narratives (unknown kept) | 19 rows, -0.057, INSUFFICIENT_DAYS | 34 rows (3), 0.125, INSUFFICIENT_EVENTS | 6 rows (0), INSUFFICIENT_DAYS |
+| PIT_RECORDED route only | 19 rows, -0.069, INSUFFICIENT_DAYS | 33 rows (3), 0.087, INSUFFICIENT_EVENTS | 7 rows (1), INSUFFICIENT_DAYS |
+| without KEY_CONFLICT (refitted) | 24 rows, -0.054, INSUFFICIENT_DAYS | 42 rows (3), 0.105, INSUFFICIENT_EVENTS | 8 rows (1), INSUFFICIENT_DAYS |
 
-No view changes a verdict. Narrative ids are known for about 8% of labelled decisions, so the narrative view is close to the ALL view. Descriptive cohort tables by route, status group, liquidity bucket, launch-age bucket, week and day: `../experiments/OOS_COHORTS.csv` (no rate is claimed below 20 events; every T1b out-of-sample event is in one ISO week, so no regime statement is possible, P21).
+No view changes a verdict (T1 and T2 INSUFFICIENT_DAYS, T1b INSUFFICIENT_EVENTS in every view). Narrative ids are known for about 8% of labelled decisions, so the narrative view is close to the ALL view. Descriptive cohort tables by route, status group, liquidity bucket, launch-age bucket, week and day: `../experiments/OOS_COHORTS.csv` (no rate is claimed below 20 events; every T1b out-of-sample event is in one ISO week, so no regime statement is possible, P21).
 
 ### Negative controls and traps
 
 | Control | Result | Pass |
 |---|---|---|
-| NC1, 20 seeds | mean BSS of the shuffled B2: T1 -0.033 (share of seeds above 0: 0.20), T1b -0.033 (0.25), T2 +0.022 (0.60) | T1 and T1b degrade as required. T2 is a recorded finding, not hidden: 8 rows with 1 positive on 1 day, where a shuffled fit lands near B0 and scatter around 0 is expected; with no claim possible on T2 this does not change any verdict |
+| NC1, 20 seeds | mean BSS of the shuffled B2 against B0: T1 -0.033, T1b -0.033, T2 +0.022; share of shuffled fits beating the real B2: T1 0.70, T1b 0.00, T2 0.95 | uninformative at this size: T1 and T2 INSUFFICIENT_DAYS, T1b INSUFFICIENT_EVENTS under the same rules as a baseline verdict (PI-D-049 item 3). The shares say B2 is noise on T1 and T2; the first pass's "degrades" and "finding" readings are withdrawn |
 | NC2, future feature | 136 of 136 T1 rows refused by the allowlist and 136 of 136 by `validate_rows`; 0 accepted; smallest trap delay 965 s after the decision | yes |
 | NC3, same-ticker join | 4 real symbol groups, 8 ordered pairs, 8 refused, 0 accepted | yes |
 | CX-07 (new counterexample) | joining by mint with the mint's newest stored snapshot would attach a later decision's features to 250 of 491 development label rows; all 250 refused by the identity join (decision time and key must match) | yes |
@@ -129,8 +133,10 @@ Coefficients of the final B2 cards (standardised inputs; liquidity, market cap, 
 
 ## Conventions fixed here
 
+0. Count gate (PI-D-049): no directional verdict (skill or worse) on fewer than the frozen out-of-sample minimums, 50 events and 10 per class (ACCEPTANCE `min_holdout_events`, `min_holdout_per_class`); the verdict is then INSUFFICIENT_EVENTS. NC1 follows the same 5-day and count rules.
+
 1. Holm across the three primary targets counts an undefined test as p = 1 in a family of three (conservative); its own adjusted value is shown as undefined.
-2. A verdict above NOT_DISTINGUISHABLE needs at least 5 out-of-sample decision days, a defined governing interval with its lower bound above 0 and a Holm-adjusted p below 0.05; even then it is SKILL_INDICATED_DEVELOPMENT_ONLY, never a promotion (the holdout is untouched).
+2. A verdict above NOT_DISTINGUISHABLE needs at least 5 out-of-sample decision days, the count gate of item 0, a defined governing interval with its lower bound above 0 and a Holm-adjusted p below 0.05; even then it is SKILL_INDICATED_DEVELOPMENT_ONLY, never a promotion (the holdout is untouched).
 3. B4C is a description of market-wide co-movement and never a forecaster.
 4. All verdicts are on development data, retrospective, provider mode, PROVISIONAL.
 
@@ -145,4 +151,4 @@ python -B audits/predictive-intelligence/phase_07/probes/run_baselines.py audits
 /home/claude/pi_research/venvs/p04_bundle/bin/python -B audits/predictive-intelligence/phase_07/probes/sklearn_crosscheck.py <scratch>/arrays.npz audits/predictive-intelligence/phase_07/evidence/sklearn_crosscheck.json
 ```
 
-Two runs into two folders gave identical sha256 for all 32 generated files (`../evidence/determinism.json`).
+Two runs into two folders gave identical sha256 for all 33 generated files (`../evidence/determinism.json`).

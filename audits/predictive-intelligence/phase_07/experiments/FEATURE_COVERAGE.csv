@@ -1,0 +1,751 @@
+target_short,set,dimension,value,column,required_by,n,missing,missing_share
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,log1p_token_age_days,B2 optional,136,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,thesis_fatal_present,B2,136,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,thesis_log1p_liquidity_usd,B2,136,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,thesis_log1p_mcap_usd,B2,136,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,thesis_log1p_vol_24h_usd,B2,136,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,thesis_score,B3,136,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,log1p_token_age_days,B2 optional,34,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,thesis_fatal_present,B2,34,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,thesis_log1p_liquidity_usd,B2,34,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,thesis_log1p_mcap_usd,B2,34,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,thesis_log1p_vol_24h_usd,B2,34,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,thesis_score,B3,34,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,log1p_token_age_days,B2 optional,102,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,thesis_fatal_present,B2,102,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,thesis_log1p_liquidity_usd,B2,102,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,thesis_log1p_mcap_usd,B2,102,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,thesis_log1p_vol_24h_usd,B2,102,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,thesis_score,B3,102,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,log1p_token_age_days,B2 optional,25,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,thesis_fatal_present,B2,25,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,thesis_log1p_liquidity_usd,B2,25,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,thesis_log1p_mcap_usd,B2,25,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,thesis_log1p_vol_24h_usd,B2,25,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,thesis_score,B3,25,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,log1p_token_age_days,B2 optional,65,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,thesis_fatal_present,B2,65,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,thesis_log1p_liquidity_usd,B2,65,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,thesis_log1p_mcap_usd,B2,65,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,thesis_log1p_vol_24h_usd,B2,65,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,thesis_score,B3,65,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,log1p_token_age_days,B2 optional,46,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,thesis_fatal_present,B2,46,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,thesis_log1p_liquidity_usd,B2,46,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,thesis_log1p_mcap_usd,B2,46,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,thesis_log1p_vol_24h_usd,B2,46,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,thesis_score,B3,46,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,log1p_token_age_days,B2 optional,70,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,thesis_fatal_present,B2,70,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,thesis_log1p_liquidity_usd,B2,70,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,thesis_log1p_mcap_usd,B2,70,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,thesis_log1p_vol_24h_usd,B2,70,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,thesis_score,B3,70,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,log1p_token_age_days,B2 optional,27,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,thesis_fatal_present,B2,27,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,thesis_log1p_liquidity_usd,B2,27,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,thesis_log1p_mcap_usd,B2,27,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,thesis_log1p_vol_24h_usd,B2,27,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,thesis_score,B3,27,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,log1p_token_age_days,B2 optional,17,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,thesis_fatal_present,B2,17,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,thesis_log1p_liquidity_usd,B2,17,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,thesis_log1p_mcap_usd,B2,17,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,thesis_log1p_vol_24h_usd,B2,17,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,thesis_score,B3,17,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,log1p_token_age_days,B2 optional,22,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,thesis_fatal_present,B2,22,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,thesis_log1p_liquidity_usd,B2,22,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,thesis_log1p_mcap_usd,B2,22,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,thesis_log1p_vol_24h_usd,B2,22,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,thesis_score,B3,22,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,log1p_token_age_days,B2 optional,38,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,thesis_fatal_present,B2,38,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,thesis_log1p_liquidity_usd,B2,38,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,thesis_log1p_mcap_usd,B2,38,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,thesis_log1p_vol_24h_usd,B2,38,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,thesis_score,B3,38,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,log1p_token_age_days,B2 optional,40,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,thesis_fatal_present,B2,40,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,thesis_log1p_liquidity_usd,B2,40,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,thesis_log1p_mcap_usd,B2,40,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,thesis_log1p_vol_24h_usd,B2,40,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,thesis_score,B3,40,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,log1p_token_age_days,B2 optional,44,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,thesis_fatal_present,B2,44,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,thesis_log1p_liquidity_usd,B2,44,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,thesis_log1p_mcap_usd,B2,44,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,thesis_log1p_vol_24h_usd,B2,44,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,thesis_score,B3,44,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,log1p_token_age_days,B2 optional,14,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,thesis_fatal_present,B2,14,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,thesis_log1p_liquidity_usd,B2,14,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,thesis_log1p_mcap_usd,B2,14,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,thesis_log1p_vol_24h_usd,B2,14,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,thesis_score,B3,14,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,log1p_token_age_days,B2 optional,104,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,thesis_fatal_present,B2,104,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,thesis_log1p_liquidity_usd,B2,104,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,thesis_log1p_mcap_usd,B2,104,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,thesis_log1p_vol_24h_usd,B2,104,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,thesis_score,B3,104,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,log1p_token_age_days,B2 optional,32,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,thesis_fatal_present,B2,32,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,thesis_log1p_liquidity_usd,B2,32,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,thesis_log1p_mcap_usd,B2,32,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,thesis_log1p_vol_24h_usd,B2,32,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,thesis_score,B3,32,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,log1p_token_age_days,B2 optional,16,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,thesis_fatal_present,B2,16,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,thesis_log1p_liquidity_usd,B2,16,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,thesis_log1p_mcap_usd,B2,16,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,thesis_log1p_vol_24h_usd,B2,16,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,thesis_score,B3,16,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,log1p_token_age_days,B2 optional,43,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,thesis_fatal_present,B2,43,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,thesis_log1p_liquidity_usd,B2,43,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,thesis_log1p_mcap_usd,B2,43,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,thesis_log1p_vol_24h_usd,B2,43,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,thesis_score,B3,43,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,log1p_token_age_days,B2 optional,18,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,thesis_fatal_present,B2,18,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,thesis_log1p_liquidity_usd,B2,18,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,thesis_log1p_mcap_usd,B2,18,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,thesis_log1p_vol_24h_usd,B2,18,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,thesis_score,B3,18,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,log1p_token_age_days,B2 optional,15,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,thesis_fatal_present,B2,15,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,thesis_log1p_liquidity_usd,B2,15,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,thesis_log1p_mcap_usd,B2,15,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,thesis_log1p_vol_24h_usd,B2,15,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,thesis_score,B3,15,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,log1p_token_age_days,B2 optional,12,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,thesis_fatal_present,B2,12,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,thesis_log1p_liquidity_usd,B2,12,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,thesis_log1p_mcap_usd,B2,12,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,thesis_log1p_vol_24h_usd,B2,12,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,thesis_score,B3,12,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,log1p_token_age_days,B2 optional,8,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,thesis_fatal_present,B2,8,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,thesis_log1p_liquidity_usd,B2,8,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,thesis_log1p_mcap_usd,B2,8,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,thesis_log1p_vol_24h_usd,B2,8,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,thesis_score,B3,8,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,log1p_token_age_days,B2 optional,11,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,thesis_fatal_present,B2,11,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,thesis_log1p_liquidity_usd,B2,11,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,thesis_log1p_mcap_usd,B2,11,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,thesis_log1p_vol_24h_usd,B2,11,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,thesis_score,B3,11,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,log1p_token_age_days,B2 optional,8,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,thesis_fatal_present,B2,8,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,thesis_log1p_liquidity_usd,B2,8,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,thesis_log1p_mcap_usd,B2,8,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,thesis_log1p_vol_24h_usd,B2,8,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,thesis_score,B3,8,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-15,log1p_token_age_days,B2 optional,5,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-15,thesis_fatal_present,B2,5,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-15,thesis_log1p_liquidity_usd,B2,5,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-15,thesis_log1p_mcap_usd,B2,5,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-15,thesis_log1p_vol_24h_usd,B2,5,0,0.000000
+T1_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-15,thesis_score,B3,5,0,0.000000
+T1_24h,OUT_OF_SAMPLE,ALL,ALL,log1p_token_age_days,B2 optional,24,0,0.000000
+T1_24h,OUT_OF_SAMPLE,ALL,ALL,thesis_fatal_present,B2,24,0,0.000000
+T1_24h,OUT_OF_SAMPLE,ALL,ALL,thesis_log1p_liquidity_usd,B2,24,0,0.000000
+T1_24h,OUT_OF_SAMPLE,ALL,ALL,thesis_log1p_mcap_usd,B2,24,0,0.000000
+T1_24h,OUT_OF_SAMPLE,ALL,ALL,thesis_log1p_vol_24h_usd,B2,24,0,0.000000
+T1_24h,OUT_OF_SAMPLE,ALL,ALL,thesis_score,B3,24,0,0.000000
+T1_24h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,log1p_token_age_days,B2 optional,5,0,0.000000
+T1_24h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,thesis_fatal_present,B2,5,0,0.000000
+T1_24h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,thesis_log1p_liquidity_usd,B2,5,0,0.000000
+T1_24h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,thesis_log1p_mcap_usd,B2,5,0,0.000000
+T1_24h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,thesis_log1p_vol_24h_usd,B2,5,0,0.000000
+T1_24h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,thesis_score,B3,5,0,0.000000
+T1_24h,OUT_OF_SAMPLE,route,PIT_RECORDED,log1p_token_age_days,B2 optional,19,0,0.000000
+T1_24h,OUT_OF_SAMPLE,route,PIT_RECORDED,thesis_fatal_present,B2,19,0,0.000000
+T1_24h,OUT_OF_SAMPLE,route,PIT_RECORDED,thesis_log1p_liquidity_usd,B2,19,0,0.000000
+T1_24h,OUT_OF_SAMPLE,route,PIT_RECORDED,thesis_log1p_mcap_usd,B2,19,0,0.000000
+T1_24h,OUT_OF_SAMPLE,route,PIT_RECORDED,thesis_log1p_vol_24h_usd,B2,19,0,0.000000
+T1_24h,OUT_OF_SAMPLE,route,PIT_RECORDED,thesis_score,B3,19,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,log1p_token_age_days,B2 optional,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,thesis_fatal_present,B2,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,thesis_log1p_liquidity_usd,B2,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,thesis_log1p_mcap_usd,B2,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,thesis_log1p_vol_24h_usd,B2,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,thesis_score,B3,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,REJECTED,log1p_token_age_days,B2 optional,10,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,REJECTED,thesis_fatal_present,B2,10,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,REJECTED,thesis_log1p_liquidity_usd,B2,10,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,REJECTED,thesis_log1p_mcap_usd,B2,10,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,REJECTED,thesis_log1p_vol_24h_usd,B2,10,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,REJECTED,thesis_score,B3,10,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,log1p_token_age_days,B2 optional,10,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,thesis_fatal_present,B2,10,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,thesis_log1p_liquidity_usd,B2,10,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,thesis_log1p_mcap_usd,B2,10,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,thesis_log1p_vol_24h_usd,B2,10,0,0.000000
+T1_24h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,thesis_score,B3,10,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,log1p_token_age_days,B2 optional,15,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,thesis_fatal_present,B2,15,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,thesis_log1p_liquidity_usd,B2,15,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,thesis_log1p_mcap_usd,B2,15,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,thesis_log1p_vol_24h_usd,B2,15,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,thesis_score,B3,15,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,20k_100k,log1p_token_age_days,B2 optional,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,20k_100k,thesis_fatal_present,B2,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,20k_100k,thesis_log1p_liquidity_usd,B2,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,20k_100k,thesis_log1p_mcap_usd,B2,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,20k_100k,thesis_log1p_vol_24h_usd,B2,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,20k_100k,thesis_score,B3,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,ge_1m,log1p_token_age_days,B2 optional,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,ge_1m,thesis_fatal_present,B2,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,ge_1m,thesis_log1p_liquidity_usd,B2,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,ge_1m,thesis_log1p_mcap_usd,B2,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,ge_1m,thesis_log1p_vol_24h_usd,B2,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,ge_1m,thesis_score,B3,4,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,lt_20k,log1p_token_age_days,B2 optional,1,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,lt_20k,thesis_fatal_present,B2,1,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,lt_20k,thesis_log1p_liquidity_usd,B2,1,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,lt_20k,thesis_log1p_mcap_usd,B2,1,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,lt_20k,thesis_log1p_vol_24h_usd,B2,1,0,0.000000
+T1_24h,OUT_OF_SAMPLE,liquidity_bucket,lt_20k,thesis_score,B3,1,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,log1p_token_age_days,B2 optional,6,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,thesis_fatal_present,B2,6,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,thesis_log1p_liquidity_usd,B2,6,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,thesis_log1p_mcap_usd,B2,6,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,thesis_log1p_vol_24h_usd,B2,6,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,thesis_score,B3,6,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,log1p_token_age_days,B2 optional,11,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,thesis_fatal_present,B2,11,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,thesis_log1p_liquidity_usd,B2,11,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,thesis_log1p_mcap_usd,B2,11,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,thesis_log1p_vol_24h_usd,B2,11,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,thesis_score,B3,11,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,log1p_token_age_days,B2 optional,7,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,thesis_fatal_present,B2,7,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,thesis_log1p_liquidity_usd,B2,7,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,thesis_log1p_mcap_usd,B2,7,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,thesis_log1p_vol_24h_usd,B2,7,0,0.000000
+T1_24h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,thesis_score,B3,7,0,0.000000
+T1_24h,OUT_OF_SAMPLE,week,2026-W42,log1p_token_age_days,B2 optional,24,0,0.000000
+T1_24h,OUT_OF_SAMPLE,week,2026-W42,thesis_fatal_present,B2,24,0,0.000000
+T1_24h,OUT_OF_SAMPLE,week,2026-W42,thesis_log1p_liquidity_usd,B2,24,0,0.000000
+T1_24h,OUT_OF_SAMPLE,week,2026-W42,thesis_log1p_mcap_usd,B2,24,0,0.000000
+T1_24h,OUT_OF_SAMPLE,week,2026-W42,thesis_log1p_vol_24h_usd,B2,24,0,0.000000
+T1_24h,OUT_OF_SAMPLE,week,2026-W42,thesis_score,B3,24,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-13,log1p_token_age_days,B2 optional,11,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-13,thesis_fatal_present,B2,11,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-13,thesis_log1p_liquidity_usd,B2,11,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-13,thesis_log1p_mcap_usd,B2,11,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-13,thesis_log1p_vol_24h_usd,B2,11,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-13,thesis_score,B3,11,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-14,log1p_token_age_days,B2 optional,8,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-14,thesis_fatal_present,B2,8,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-14,thesis_log1p_liquidity_usd,B2,8,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-14,thesis_log1p_mcap_usd,B2,8,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-14,thesis_log1p_vol_24h_usd,B2,8,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-14,thesis_score,B3,8,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-15,log1p_token_age_days,B2 optional,5,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-15,thesis_fatal_present,B2,5,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-15,thesis_log1p_liquidity_usd,B2,5,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-15,thesis_log1p_mcap_usd,B2,5,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-15,thesis_log1p_vol_24h_usd,B2,5,0,0.000000
+T1_24h,OUT_OF_SAMPLE,day,2026-10-15,thesis_score,B3,5,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,log1p_token_age_days,B2 optional,224,2,0.008929
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,thesis_fatal_present,B2,224,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,thesis_log1p_liquidity_usd,B2,224,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,thesis_log1p_mcap_usd,B2,224,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,thesis_log1p_vol_24h_usd,B2,224,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,thesis_score,B3,224,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,log1p_token_age_days,B2 optional,65,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,thesis_fatal_present,B2,65,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,thesis_log1p_liquidity_usd,B2,65,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,thesis_log1p_mcap_usd,B2,65,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,thesis_log1p_vol_24h_usd,B2,65,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,thesis_score,B3,65,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,log1p_token_age_days,B2 optional,159,2,0.012579
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,thesis_fatal_present,B2,159,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,thesis_log1p_liquidity_usd,B2,159,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,thesis_log1p_mcap_usd,B2,159,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,thesis_log1p_vol_24h_usd,B2,159,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,thesis_score,B3,159,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,log1p_token_age_days,B2 optional,50,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,thesis_fatal_present,B2,50,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,thesis_log1p_liquidity_usd,B2,50,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,thesis_log1p_mcap_usd,B2,50,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,thesis_log1p_vol_24h_usd,B2,50,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,thesis_score,B3,50,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,log1p_token_age_days,B2 optional,76,2,0.026316
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,thesis_fatal_present,B2,76,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,thesis_log1p_liquidity_usd,B2,76,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,thesis_log1p_mcap_usd,B2,76,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,thesis_log1p_vol_24h_usd,B2,76,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,thesis_score,B3,76,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,log1p_token_age_days,B2 optional,98,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,thesis_fatal_present,B2,98,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,thesis_log1p_liquidity_usd,B2,98,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,thesis_log1p_mcap_usd,B2,98,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,thesis_log1p_vol_24h_usd,B2,98,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,thesis_score,B3,98,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,log1p_token_age_days,B2 optional,128,2,0.015625
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,thesis_fatal_present,B2,128,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,thesis_log1p_liquidity_usd,B2,128,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,thesis_log1p_mcap_usd,B2,128,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,thesis_log1p_vol_24h_usd,B2,128,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,thesis_score,B3,128,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,log1p_token_age_days,B2 optional,29,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,thesis_fatal_present,B2,29,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,thesis_log1p_liquidity_usd,B2,29,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,thesis_log1p_mcap_usd,B2,29,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,thesis_log1p_vol_24h_usd,B2,29,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,thesis_score,B3,29,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,log1p_token_age_days,B2 optional,43,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,thesis_fatal_present,B2,43,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,thesis_log1p_liquidity_usd,B2,43,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,thesis_log1p_mcap_usd,B2,43,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,thesis_log1p_vol_24h_usd,B2,43,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,thesis_score,B3,43,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,log1p_token_age_days,B2 optional,24,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,thesis_fatal_present,B2,24,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,thesis_log1p_liquidity_usd,B2,24,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,thesis_log1p_mcap_usd,B2,24,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,thesis_log1p_vol_24h_usd,B2,24,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,thesis_score,B3,24,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,log1p_token_age_days,B2 optional,44,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,thesis_fatal_present,B2,44,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,thesis_log1p_liquidity_usd,B2,44,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,thesis_log1p_mcap_usd,B2,44,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,thesis_log1p_vol_24h_usd,B2,44,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,thesis_score,B3,44,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,log1p_token_age_days,B2 optional,70,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,thesis_fatal_present,B2,70,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,thesis_log1p_liquidity_usd,B2,70,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,thesis_log1p_mcap_usd,B2,70,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,thesis_log1p_vol_24h_usd,B2,70,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,thesis_score,B3,70,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,UNKNOWN,log1p_token_age_days,B2 optional,2,2,1.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,UNKNOWN,thesis_fatal_present,B2,2,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,UNKNOWN,thesis_log1p_liquidity_usd,B2,2,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,UNKNOWN,thesis_log1p_mcap_usd,B2,2,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,UNKNOWN,thesis_log1p_vol_24h_usd,B2,2,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,UNKNOWN,thesis_score,B3,2,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,log1p_token_age_days,B2 optional,94,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,thesis_fatal_present,B2,94,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,thesis_log1p_liquidity_usd,B2,94,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,thesis_log1p_mcap_usd,B2,94,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,thesis_log1p_vol_24h_usd,B2,94,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,thesis_score,B3,94,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,log1p_token_age_days,B2 optional,14,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,thesis_fatal_present,B2,14,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,thesis_log1p_liquidity_usd,B2,14,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,thesis_log1p_mcap_usd,B2,14,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,thesis_log1p_vol_24h_usd,B2,14,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,thesis_score,B3,14,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,log1p_token_age_days,B2 optional,180,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,thesis_fatal_present,B2,180,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,thesis_log1p_liquidity_usd,B2,180,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,thesis_log1p_mcap_usd,B2,180,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,thesis_log1p_vol_24h_usd,B2,180,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,thesis_score,B3,180,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,log1p_token_age_days,B2 optional,44,2,0.045455
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,thesis_fatal_present,B2,44,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,thesis_log1p_liquidity_usd,B2,44,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,thesis_log1p_mcap_usd,B2,44,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,thesis_log1p_vol_24h_usd,B2,44,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,thesis_score,B3,44,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,log1p_token_age_days,B2 optional,16,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,thesis_fatal_present,B2,16,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,thesis_log1p_liquidity_usd,B2,16,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,thesis_log1p_mcap_usd,B2,16,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,thesis_log1p_vol_24h_usd,B2,16,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,thesis_score,B3,16,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,log1p_token_age_days,B2 optional,64,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,thesis_fatal_present,B2,64,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,thesis_log1p_liquidity_usd,B2,64,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,thesis_log1p_mcap_usd,B2,64,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,thesis_log1p_vol_24h_usd,B2,64,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,thesis_score,B3,64,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,log1p_token_age_days,B2 optional,41,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,thesis_fatal_present,B2,41,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,thesis_log1p_liquidity_usd,B2,41,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,thesis_log1p_mcap_usd,B2,41,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,thesis_log1p_vol_24h_usd,B2,41,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,thesis_score,B3,41,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,log1p_token_age_days,B2 optional,43,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,thesis_fatal_present,B2,43,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,thesis_log1p_liquidity_usd,B2,43,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,thesis_log1p_mcap_usd,B2,43,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,thesis_log1p_vol_24h_usd,B2,43,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,thesis_score,B3,43,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,log1p_token_age_days,B2 optional,16,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,thesis_fatal_present,B2,16,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,thesis_log1p_liquidity_usd,B2,16,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,thesis_log1p_mcap_usd,B2,16,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,thesis_log1p_vol_24h_usd,B2,16,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,thesis_score,B3,16,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,log1p_token_age_days,B2 optional,8,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,thesis_fatal_present,B2,8,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,thesis_log1p_liquidity_usd,B2,8,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,thesis_log1p_mcap_usd,B2,8,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,thesis_log1p_vol_24h_usd,B2,8,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,thesis_score,B3,8,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,log1p_token_age_days,B2 optional,11,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,thesis_fatal_present,B2,11,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,thesis_log1p_liquidity_usd,B2,11,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,thesis_log1p_mcap_usd,B2,11,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,thesis_log1p_vol_24h_usd,B2,11,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,thesis_score,B3,11,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,log1p_token_age_days,B2 optional,8,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,thesis_fatal_present,B2,8,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,thesis_log1p_liquidity_usd,B2,8,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,thesis_log1p_mcap_usd,B2,8,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,thesis_log1p_vol_24h_usd,B2,8,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,thesis_score,B3,8,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-15,log1p_token_age_days,B2 optional,7,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-15,thesis_fatal_present,B2,7,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-15,thesis_log1p_liquidity_usd,B2,7,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-15,thesis_log1p_mcap_usd,B2,7,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-15,thesis_log1p_vol_24h_usd,B2,7,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-15,thesis_score,B3,7,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-16,log1p_token_age_days,B2 optional,10,2,0.200000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-16,thesis_fatal_present,B2,10,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-16,thesis_log1p_liquidity_usd,B2,10,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-16,thesis_log1p_mcap_usd,B2,10,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-16,thesis_log1p_vol_24h_usd,B2,10,0,0.000000
+T1b_6h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-16,thesis_score,B3,10,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,ALL,ALL,log1p_token_age_days,B2 optional,44,2,0.045455
+T1b_6h,OUT_OF_SAMPLE,ALL,ALL,thesis_fatal_present,B2,44,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,ALL,ALL,thesis_log1p_liquidity_usd,B2,44,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,ALL,ALL,thesis_log1p_mcap_usd,B2,44,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,ALL,ALL,thesis_log1p_vol_24h_usd,B2,44,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,ALL,ALL,thesis_score,B3,44,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,log1p_token_age_days,B2 optional,11,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,thesis_fatal_present,B2,11,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,thesis_log1p_liquidity_usd,B2,11,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,thesis_log1p_mcap_usd,B2,11,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,thesis_log1p_vol_24h_usd,B2,11,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,thesis_score,B3,11,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,route,PIT_RECORDED,log1p_token_age_days,B2 optional,33,2,0.060606
+T1b_6h,OUT_OF_SAMPLE,route,PIT_RECORDED,thesis_fatal_present,B2,33,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,route,PIT_RECORDED,thesis_log1p_liquidity_usd,B2,33,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,route,PIT_RECORDED,thesis_log1p_mcap_usd,B2,33,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,route,PIT_RECORDED,thesis_log1p_vol_24h_usd,B2,33,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,route,PIT_RECORDED,thesis_score,B3,33,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,log1p_token_age_days,B2 optional,10,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,thesis_fatal_present,B2,10,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,thesis_log1p_liquidity_usd,B2,10,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,thesis_log1p_mcap_usd,B2,10,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,thesis_log1p_vol_24h_usd,B2,10,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,thesis_score,B3,10,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,REJECTED,log1p_token_age_days,B2 optional,19,2,0.105263
+T1b_6h,OUT_OF_SAMPLE,status_group,REJECTED,thesis_fatal_present,B2,19,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,REJECTED,thesis_log1p_liquidity_usd,B2,19,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,REJECTED,thesis_log1p_mcap_usd,B2,19,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,REJECTED,thesis_log1p_vol_24h_usd,B2,19,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,REJECTED,thesis_score,B3,19,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,log1p_token_age_days,B2 optional,15,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,thesis_fatal_present,B2,15,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,thesis_log1p_liquidity_usd,B2,15,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,thesis_log1p_mcap_usd,B2,15,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,thesis_log1p_vol_24h_usd,B2,15,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,thesis_score,B3,15,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,log1p_token_age_days,B2 optional,26,2,0.076923
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,thesis_fatal_present,B2,26,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,thesis_log1p_liquidity_usd,B2,26,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,thesis_log1p_mcap_usd,B2,26,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,thesis_log1p_vol_24h_usd,B2,26,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,thesis_score,B3,26,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,20k_100k,log1p_token_age_days,B2 optional,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,20k_100k,thesis_fatal_present,B2,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,20k_100k,thesis_log1p_liquidity_usd,B2,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,20k_100k,thesis_log1p_mcap_usd,B2,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,20k_100k,thesis_log1p_vol_24h_usd,B2,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,20k_100k,thesis_score,B3,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,ge_1m,log1p_token_age_days,B2 optional,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,ge_1m,thesis_fatal_present,B2,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,ge_1m,thesis_log1p_liquidity_usd,B2,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,ge_1m,thesis_log1p_mcap_usd,B2,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,ge_1m,thesis_log1p_vol_24h_usd,B2,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,ge_1m,thesis_score,B3,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,lt_20k,log1p_token_age_days,B2 optional,2,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,lt_20k,thesis_fatal_present,B2,2,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,lt_20k,thesis_log1p_liquidity_usd,B2,2,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,lt_20k,thesis_log1p_mcap_usd,B2,2,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,lt_20k,thesis_log1p_vol_24h_usd,B2,2,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,liquidity_bucket,lt_20k,thesis_score,B3,2,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,log1p_token_age_days,B2 optional,9,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,thesis_fatal_present,B2,9,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,thesis_log1p_liquidity_usd,B2,9,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,thesis_log1p_mcap_usd,B2,9,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,thesis_log1p_vol_24h_usd,B2,9,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,thesis_score,B3,9,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,log1p_token_age_days,B2 optional,14,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,thesis_fatal_present,B2,14,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,thesis_log1p_liquidity_usd,B2,14,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,thesis_log1p_mcap_usd,B2,14,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,thesis_log1p_vol_24h_usd,B2,14,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,thesis_score,B3,14,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,UNKNOWN,log1p_token_age_days,B2 optional,2,2,1.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,UNKNOWN,thesis_fatal_present,B2,2,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,UNKNOWN,thesis_log1p_liquidity_usd,B2,2,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,UNKNOWN,thesis_log1p_mcap_usd,B2,2,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,UNKNOWN,thesis_log1p_vol_24h_usd,B2,2,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,UNKNOWN,thesis_score,B3,2,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,log1p_token_age_days,B2 optional,19,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,thesis_fatal_present,B2,19,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,thesis_log1p_liquidity_usd,B2,19,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,thesis_log1p_mcap_usd,B2,19,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,thesis_log1p_vol_24h_usd,B2,19,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,thesis_score,B3,19,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,week,2026-W42,log1p_token_age_days,B2 optional,44,2,0.045455
+T1b_6h,OUT_OF_SAMPLE,week,2026-W42,thesis_fatal_present,B2,44,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,week,2026-W42,thesis_log1p_liquidity_usd,B2,44,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,week,2026-W42,thesis_log1p_mcap_usd,B2,44,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,week,2026-W42,thesis_log1p_vol_24h_usd,B2,44,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,week,2026-W42,thesis_score,B3,44,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-12,log1p_token_age_days,B2 optional,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-12,thesis_fatal_present,B2,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-12,thesis_log1p_liquidity_usd,B2,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-12,thesis_log1p_mcap_usd,B2,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-12,thesis_log1p_vol_24h_usd,B2,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-12,thesis_score,B3,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-13,log1p_token_age_days,B2 optional,11,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-13,thesis_fatal_present,B2,11,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-13,thesis_log1p_liquidity_usd,B2,11,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-13,thesis_log1p_mcap_usd,B2,11,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-13,thesis_log1p_vol_24h_usd,B2,11,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-13,thesis_score,B3,11,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-14,log1p_token_age_days,B2 optional,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-14,thesis_fatal_present,B2,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-14,thesis_log1p_liquidity_usd,B2,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-14,thesis_log1p_mcap_usd,B2,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-14,thesis_log1p_vol_24h_usd,B2,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-14,thesis_score,B3,8,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-15,log1p_token_age_days,B2 optional,7,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-15,thesis_fatal_present,B2,7,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-15,thesis_log1p_liquidity_usd,B2,7,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-15,thesis_log1p_mcap_usd,B2,7,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-15,thesis_log1p_vol_24h_usd,B2,7,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-15,thesis_score,B3,7,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-16,log1p_token_age_days,B2 optional,10,2,0.200000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-16,thesis_fatal_present,B2,10,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-16,thesis_log1p_liquidity_usd,B2,10,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-16,thesis_log1p_mcap_usd,B2,10,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-16,thesis_log1p_vol_24h_usd,B2,10,0,0.000000
+T1b_6h,OUT_OF_SAMPLE,day,2026-10-16,thesis_score,B3,10,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,log1p_token_age_days,B2 optional,131,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,thesis_fatal_present,B2,131,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,thesis_log1p_liquidity_usd,B2,131,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,thesis_log1p_mcap_usd,B2,131,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,thesis_log1p_vol_24h_usd,B2,131,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,ALL,ALL,thesis_score,B3,131,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,log1p_token_age_days,B2 optional,33,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,thesis_fatal_present,B2,33,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,thesis_log1p_liquidity_usd,B2,33,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,thesis_log1p_mcap_usd,B2,33,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,thesis_log1p_vol_24h_usd,B2,33,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,route,CURRENT_VENDOR_LIST,thesis_score,B3,33,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,log1p_token_age_days,B2 optional,98,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,thesis_fatal_present,B2,98,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,thesis_log1p_liquidity_usd,B2,98,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,thesis_log1p_mcap_usd,B2,98,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,thesis_log1p_vol_24h_usd,B2,98,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,route,PIT_RECORDED,thesis_score,B3,98,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,log1p_token_age_days,B2 optional,25,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,thesis_fatal_present,B2,25,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,thesis_log1p_liquidity_usd,B2,25,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,thesis_log1p_mcap_usd,B2,25,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,thesis_log1p_vol_24h_usd,B2,25,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,CONSTRUCTIVE,thesis_score,B3,25,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,log1p_token_age_days,B2 optional,63,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,thesis_fatal_present,B2,63,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,thesis_log1p_liquidity_usd,B2,63,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,thesis_log1p_mcap_usd,B2,63,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,thesis_log1p_vol_24h_usd,B2,63,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,REJECTED,thesis_score,B3,63,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,log1p_token_age_days,B2 optional,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,thesis_fatal_present,B2,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,thesis_log1p_liquidity_usd,B2,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,thesis_log1p_mcap_usd,B2,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,thesis_log1p_vol_24h_usd,B2,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,status_group,RISK_OR_UNRESOLVED,thesis_score,B3,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,log1p_token_age_days,B2 optional,69,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,thesis_fatal_present,B2,69,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,thesis_log1p_liquidity_usd,B2,69,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,thesis_log1p_mcap_usd,B2,69,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,thesis_log1p_vol_24h_usd,B2,69,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,100k_1m,thesis_score,B3,69,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,log1p_token_age_days,B2 optional,25,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,thesis_fatal_present,B2,25,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,thesis_log1p_liquidity_usd,B2,25,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,thesis_log1p_mcap_usd,B2,25,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,thesis_log1p_vol_24h_usd,B2,25,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,20k_100k,thesis_score,B3,25,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,log1p_token_age_days,B2 optional,15,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,thesis_fatal_present,B2,15,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,thesis_log1p_liquidity_usd,B2,15,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,thesis_log1p_mcap_usd,B2,15,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,thesis_log1p_vol_24h_usd,B2,15,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,ge_1m,thesis_score,B3,15,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,log1p_token_age_days,B2 optional,22,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,thesis_fatal_present,B2,22,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,thesis_log1p_liquidity_usd,B2,22,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,thesis_log1p_mcap_usd,B2,22,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,thesis_log1p_vol_24h_usd,B2,22,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,liquidity_bucket,lt_20k,thesis_score,B3,22,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,log1p_token_age_days,B2 optional,38,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,thesis_fatal_present,B2,38,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,thesis_log1p_liquidity_usd,B2,38,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,thesis_log1p_mcap_usd,B2,38,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,thesis_log1p_vol_24h_usd,B2,38,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,1d_7d,thesis_score,B3,38,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,log1p_token_age_days,B2 optional,36,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,thesis_fatal_present,B2,36,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,thesis_log1p_liquidity_usd,B2,36,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,thesis_log1p_mcap_usd,B2,36,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,thesis_log1p_vol_24h_usd,B2,36,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,7d_30d,thesis_score,B3,36,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,log1p_token_age_days,B2 optional,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,thesis_fatal_present,B2,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,thesis_log1p_liquidity_usd,B2,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,thesis_log1p_mcap_usd,B2,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,thesis_log1p_vol_24h_usd,B2,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,ge_30d,thesis_score,B3,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,log1p_token_age_days,B2 optional,14,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,thesis_fatal_present,B2,14,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,thesis_log1p_liquidity_usd,B2,14,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,thesis_log1p_mcap_usd,B2,14,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,thesis_log1p_vol_24h_usd,B2,14,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,launch_age_bucket,lt_1d,thesis_score,B3,14,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,log1p_token_age_days,B2 optional,104,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,thesis_fatal_present,B2,104,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,thesis_log1p_liquidity_usd,B2,104,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,thesis_log1p_mcap_usd,B2,104,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,thesis_log1p_vol_24h_usd,B2,104,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W41,thesis_score,B3,104,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,log1p_token_age_days,B2 optional,27,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,thesis_fatal_present,B2,27,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,thesis_log1p_liquidity_usd,B2,27,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,thesis_log1p_mcap_usd,B2,27,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,thesis_log1p_vol_24h_usd,B2,27,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,week,2026-W42,thesis_score,B3,27,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,log1p_token_age_days,B2 optional,16,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,thesis_fatal_present,B2,16,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,thesis_log1p_liquidity_usd,B2,16,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,thesis_log1p_mcap_usd,B2,16,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,thesis_log1p_vol_24h_usd,B2,16,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-07,thesis_score,B3,16,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,log1p_token_age_days,B2 optional,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,thesis_fatal_present,B2,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,thesis_log1p_liquidity_usd,B2,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,thesis_log1p_mcap_usd,B2,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,thesis_log1p_vol_24h_usd,B2,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-08,thesis_score,B3,43,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,log1p_token_age_days,B2 optional,18,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,thesis_fatal_present,B2,18,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,thesis_log1p_liquidity_usd,B2,18,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,thesis_log1p_mcap_usd,B2,18,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,thesis_log1p_vol_24h_usd,B2,18,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-09,thesis_score,B3,18,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,log1p_token_age_days,B2 optional,15,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,thesis_fatal_present,B2,15,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,thesis_log1p_liquidity_usd,B2,15,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,thesis_log1p_mcap_usd,B2,15,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,thesis_log1p_vol_24h_usd,B2,15,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-10,thesis_score,B3,15,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,log1p_token_age_days,B2 optional,12,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,thesis_fatal_present,B2,12,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,thesis_log1p_liquidity_usd,B2,12,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,thesis_log1p_mcap_usd,B2,12,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,thesis_log1p_vol_24h_usd,B2,12,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-11,thesis_score,B3,12,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,log1p_token_age_days,B2 optional,8,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,thesis_fatal_present,B2,8,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,thesis_log1p_liquidity_usd,B2,8,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,thesis_log1p_mcap_usd,B2,8,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,thesis_log1p_vol_24h_usd,B2,8,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-12,thesis_score,B3,8,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,log1p_token_age_days,B2 optional,11,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,thesis_fatal_present,B2,11,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,thesis_log1p_liquidity_usd,B2,11,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,thesis_log1p_mcap_usd,B2,11,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,thesis_log1p_vol_24h_usd,B2,11,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-13,thesis_score,B3,11,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,log1p_token_age_days,B2 optional,8,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,thesis_fatal_present,B2,8,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,thesis_log1p_liquidity_usd,B2,8,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,thesis_log1p_mcap_usd,B2,8,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,thesis_log1p_vol_24h_usd,B2,8,0,0.000000
+T2_24h,DEVELOPMENT_AT_HOLDOUT_START,day,2026-10-14,thesis_score,B3,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,ALL,ALL,log1p_token_age_days,B2 optional,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,ALL,ALL,thesis_fatal_present,B2,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,ALL,ALL,thesis_log1p_liquidity_usd,B2,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,ALL,ALL,thesis_log1p_mcap_usd,B2,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,ALL,ALL,thesis_log1p_vol_24h_usd,B2,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,ALL,ALL,thesis_score,B3,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,log1p_token_age_days,B2 optional,1,0,0.000000
+T2_24h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,thesis_fatal_present,B2,1,0,0.000000
+T2_24h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,thesis_log1p_liquidity_usd,B2,1,0,0.000000
+T2_24h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,thesis_log1p_mcap_usd,B2,1,0,0.000000
+T2_24h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,thesis_log1p_vol_24h_usd,B2,1,0,0.000000
+T2_24h,OUT_OF_SAMPLE,route,CURRENT_VENDOR_LIST,thesis_score,B3,1,0,0.000000
+T2_24h,OUT_OF_SAMPLE,route,PIT_RECORDED,log1p_token_age_days,B2 optional,7,0,0.000000
+T2_24h,OUT_OF_SAMPLE,route,PIT_RECORDED,thesis_fatal_present,B2,7,0,0.000000
+T2_24h,OUT_OF_SAMPLE,route,PIT_RECORDED,thesis_log1p_liquidity_usd,B2,7,0,0.000000
+T2_24h,OUT_OF_SAMPLE,route,PIT_RECORDED,thesis_log1p_mcap_usd,B2,7,0,0.000000
+T2_24h,OUT_OF_SAMPLE,route,PIT_RECORDED,thesis_log1p_vol_24h_usd,B2,7,0,0.000000
+T2_24h,OUT_OF_SAMPLE,route,PIT_RECORDED,thesis_score,B3,7,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,log1p_token_age_days,B2 optional,2,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,thesis_fatal_present,B2,2,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,thesis_log1p_liquidity_usd,B2,2,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,thesis_log1p_mcap_usd,B2,2,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,thesis_log1p_vol_24h_usd,B2,2,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,CONSTRUCTIVE,thesis_score,B3,2,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,REJECTED,log1p_token_age_days,B2 optional,1,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,REJECTED,thesis_fatal_present,B2,1,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,REJECTED,thesis_log1p_liquidity_usd,B2,1,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,REJECTED,thesis_log1p_mcap_usd,B2,1,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,REJECTED,thesis_log1p_vol_24h_usd,B2,1,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,REJECTED,thesis_score,B3,1,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,log1p_token_age_days,B2 optional,5,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,thesis_fatal_present,B2,5,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,thesis_log1p_liquidity_usd,B2,5,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,thesis_log1p_mcap_usd,B2,5,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,thesis_log1p_vol_24h_usd,B2,5,0,0.000000
+T2_24h,OUT_OF_SAMPLE,status_group,RISK_OR_UNRESOLVED,thesis_score,B3,5,0,0.000000
+T2_24h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,log1p_token_age_days,B2 optional,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,thesis_fatal_present,B2,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,thesis_log1p_liquidity_usd,B2,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,thesis_log1p_mcap_usd,B2,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,thesis_log1p_vol_24h_usd,B2,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,liquidity_bucket,100k_1m,thesis_score,B3,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,log1p_token_age_days,B2 optional,2,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,thesis_fatal_present,B2,2,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,thesis_log1p_liquidity_usd,B2,2,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,thesis_log1p_mcap_usd,B2,2,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,thesis_log1p_vol_24h_usd,B2,2,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,1d_7d,thesis_score,B3,2,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,log1p_token_age_days,B2 optional,3,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,thesis_fatal_present,B2,3,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,thesis_log1p_liquidity_usd,B2,3,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,thesis_log1p_mcap_usd,B2,3,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,thesis_log1p_vol_24h_usd,B2,3,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,7d_30d,thesis_score,B3,3,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,log1p_token_age_days,B2 optional,3,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,thesis_fatal_present,B2,3,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,thesis_log1p_liquidity_usd,B2,3,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,thesis_log1p_mcap_usd,B2,3,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,thesis_log1p_vol_24h_usd,B2,3,0,0.000000
+T2_24h,OUT_OF_SAMPLE,launch_age_bucket,ge_30d,thesis_score,B3,3,0,0.000000
+T2_24h,OUT_OF_SAMPLE,week,2026-W42,log1p_token_age_days,B2 optional,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,week,2026-W42,thesis_fatal_present,B2,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,week,2026-W42,thesis_log1p_liquidity_usd,B2,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,week,2026-W42,thesis_log1p_mcap_usd,B2,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,week,2026-W42,thesis_log1p_vol_24h_usd,B2,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,week,2026-W42,thesis_score,B3,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,day,2026-10-14,log1p_token_age_days,B2 optional,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,day,2026-10-14,thesis_fatal_present,B2,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,day,2026-10-14,thesis_log1p_liquidity_usd,B2,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,day,2026-10-14,thesis_log1p_mcap_usd,B2,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,day,2026-10-14,thesis_log1p_vol_24h_usd,B2,8,0,0.000000
+T2_24h,OUT_OF_SAMPLE,day,2026-10-14,thesis_score,B3,8,0,0.000000

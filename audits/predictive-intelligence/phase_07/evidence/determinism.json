@@ -1,14 +1,7 @@
 {
- "generated_files": 32,
+ "generated_files": 33,
  "identical": true,
- "run1_extra_inputs_not_generated": [
-  "ACCEPTANCE_CHECKLIST.md",
-  "experiments/EXPERIMENT_REGISTRY.csv",
-  "probes/mutation_baselines.py",
-  "probes/run_baselines.py",
-  "probes/sklearn_crosscheck.py"
- ],
- "run2_only_compared": true,
+ "run": "repair pass 2, code f977aab",
  "sha256": {
   "artifacts/T1_24h/B0.json": "d89ab4a62fba636ea6a225856f786547b2a6e5cad1668d70410509f8a64cbde0",
   "artifacts/T1_24h/B1.json": "f84066700ca67ff7c3d4ff9ae9cf2a949803cd3007d8404c9fc418cb27ed1d8c",
@@ -35,12 +28,13 @@
   "evidence/label_sets.json": "3fcbcbb145808f8d2d980ca948738112a0183230a94f2812e46516c2ac12cf9f",
   "evidence/serialization_smoke.json": "a056f27ee1de09eb70a261de6d342d6a86235f231f1bc085792adcdc8599e0dd",
   "evidence/traps.json": "6f9518fabadba865e2c8df359688a68e67978029dbb41d3a53c11df360e2a6e3",
-  "experiments/BASELINE_METRICS.csv": "6369e877ea68fadfac6c5b4145d877b1a6a0f08a407dd8868c6571a43c5de0bb",
+  "experiments/BASELINE_METRICS.csv": "d3213bc450efccd2f73e7ffb4fbe51be495b1c3e569bc0983786f29def02f7ea",
   "experiments/CALIBRATION_BINS.csv": "f46052f72e0c4750a8b16d6511a28e4fe7405e7967a7aceeecda588db07b0ade",
-  "experiments/NC1_SEEDS.csv": "14cfd7c92cd93db71f22dd91530fbc1656442035cab7017b5dadd6332c8ee6f7",
+  "experiments/FEATURE_COVERAGE.csv": "40202ca7d9be8720e06428e9abe8312a6c9b8849c8884d8b8ee6e12ecf52d653",
+  "experiments/NC1_SEEDS.csv": "1d031379c01e8fc64d5fa4a716629d918599beb497b009a62d8b6ef822ebfa3e",
   "experiments/OOS_COHORTS.csv": "4dd1e59a6e99f55c53f9b23cdb7bb8f85cc95eb9da7bcd1be67439cc317f9ee7",
   "experiments/OOS_PREDICTIONS.csv": "c2130761d983745e81ebbee112f49b680a3ab8a1535eb7e748868c5604ca2fca",
-  "experiments/SEARCH_LEDGER.csv": "a0e729ed1e20cdee3b3d837865b6601d3cbb618411422937506cb3e18e8b98ca",
+  "experiments/SEARCH_LEDGER.csv": "d29c1ad01a678580850bbcc01737b410a313b78f0fcc16421f3dd776be7240f9",
   "experiments/TRAINING_PREVALENCE.csv": "e4a2a3b33fc3983c883fc365393fcf8750f3723bcae74fb35258fd207673b248"
  }
 }
