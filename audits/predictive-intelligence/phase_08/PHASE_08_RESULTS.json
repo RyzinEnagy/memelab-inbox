@@ -7,7 +7,7 @@
  "preregistration_commit": "8599318",
  "code_commit": "d290384",
  "runner_repair_commit": "d9b2a9c",
- "head_after": "pending: the outputs commit; recorded in the post-commit records commit",
+ "head_after": "fc6b9900e55fe1612cd911a82bf4fae09f21f943",
  "registry_sha256": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
  "tech_feature_set_sha": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
  "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
@@ -465,6 +465,34 @@
    "exit_code": 1,
    "result": "1 failed, 1218 passed in 165.93s (known failure only; before the ledger test was added)",
    "pass": true
+  },
+  {
+   "name": "post-commit full suite at fc6b990",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "1 failed, 1219 passed in 174.62s (known failure only: tests/test_catalyst.py::test_dedup_corroboration_resurface_denial)",
+   "pass": true
+  },
+  {
+   "name": "post-commit content guard",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "violations []",
+   "pass": true
+  },
+  {
+   "name": "post-commit seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "post-commit release audit with history, single-branch clone with origin/main",
+   "command": "python tools/release_audit.py --history",
+   "exit_code": 0,
+   "result": "Needs action: no.",
+   "pass": true
   }
  ],
  "artifacts": [
@@ -631,6 +659,22 @@
   {
    "path": "audits/predictive-intelligence/phase_08/models/TECHNICAL_MODEL_CARD.md",
    "sha256": "a3a773fbb38aa8a1febd7c73c1457c30fca2712fc959ba77d0b311c00cb8f198"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/postcommit/pytest_summary.txt",
+   "sha256": "a05d46b445f060adf925beb94a93b03d17892be0974d7ab05d5b95965b188b87"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/postcommit/release_audit_history.summary.txt",
+   "sha256": "8ab707b934d444e046e034d4440d0c4f37f4d019510965e57291a7920c13bfb8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/postcommit/seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_08/postcommit/social_guard.out.txt",
+   "sha256": "65ef17a84f4147ebf9f20004c35973272ef6b04c2696806a055c17804042084c"
   },
   {
    "path": "audits/predictive-intelligence/phase_08/probes/logit_solver_diagnosis.py",

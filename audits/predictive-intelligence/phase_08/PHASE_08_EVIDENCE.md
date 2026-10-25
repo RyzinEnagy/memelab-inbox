@@ -12,7 +12,7 @@ Status: NEEDS_REVIEW (the orchestrator runs the independent skeptic, PI-D-013). 
 | Code before recorded run 1 | `d290384` 2026-10-25T21:22:26Z |
 | Runner repair before recorded run 2 | `d9b2a9c` 2026-10-25T21:24:03Z |
 | Recorded run 2 | 2026-10-25T21:24:03Z to 21:24:29Z at `d9b2a9c` (`evidence/run_log.json`) |
-| Outputs and records | the commit after `d9b2a9c` (hash in HANDOFF.md) |
+| Outputs and records | `fc6b990` 2026-10-25T21:35:12Z; post-commit records in the next commit |
 | Python, numpy | 3.13, the lab's numpy; scikit-learn 1.9.1 only in `/home/claude/pi_research/venvs/p04_bundle` |
 
 ## Entry gate (re-run independently)
@@ -78,7 +78,7 @@ Every model: MODEL_NOT_PROMOTED. Train-only cards at the holdout start: T1b M1, 
 | G20 | pass: 1,133 ledger rows (Phase 07's 520 plus 613) |
 | G21 | pass: tests for P06, P10, P11, P13, P20, P21, P22, P36, P38, P43, CX-08; 28 of 28 mutations caught |
 | G22 | pass: no existing module imports the new code (existing test), flag OFF, score and fatal flags untouched |
-| G23 | after the commit, below |
+| G23 | pass: suite (known failure only), guard, seal check and single-branch release audit after the commit, below |
 
 ## Iteration log
 
@@ -100,7 +100,16 @@ Pending: the orchestrator runs it from `SKEPTIC_PACKET.md`. Its review, countere
 
 ## Post-commit results
 
-Recorded after the outputs commit (below this line in a later commit).
+On the committed tree at `fc6b990` (files in `postcommit/`):
+
+| Command | Exit | Result |
+|---|---|---|
+| `python -m pytest tests -q -p no:cacheprovider` | 1 | `1 failed, 1219 passed in 174.62s`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`; stray `data/reports/20261025_2135_BRETT_0x532f.md` removed by hand |
+| `python -m memelab social guard` | 0 | `"violations": []` |
+| `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | 0 | `"problems": []` |
+| `python tools/release_audit.py --history` on a single-branch clone of `feature/predictive-intelligence` at `fc6b990` with `origin/main` (`e245d91`) | 0 | "Needs action: no." |
+
+`git status` clean after removing the stray report.
 
 ## Artifacts
 
@@ -148,6 +157,10 @@ Recorded after the outputs commit (below this line in a later commit).
 | `audits/predictive-intelligence/phase_08/experiments/TECH_COVERAGE.csv` | `91dfe36cd2df08f015cabd2adb27b9f0cc145b0ffe16e5c7bd99bcf699964e87` |
 | `audits/predictive-intelligence/phase_08/experiments/TECH_FEATURES_DEVELOPMENT.csv` | `264052ededc81d8aba426f16bf4a3f85a3dc36ee2525d80b4f0d10c8877b1e0b` |
 | `audits/predictive-intelligence/phase_08/models/TECHNICAL_MODEL_CARD.md` | `a3a773fbb38aa8a1febd7c73c1457c30fca2712fc959ba77d0b311c00cb8f198` |
+| `audits/predictive-intelligence/phase_08/postcommit/pytest_summary.txt` | `a05d46b445f060adf925beb94a93b03d17892be0974d7ab05d5b95965b188b87` |
+| `audits/predictive-intelligence/phase_08/postcommit/release_audit_history.summary.txt` | `8ab707b934d444e046e034d4440d0c4f37f4d019510965e57291a7920c13bfb8` |
+| `audits/predictive-intelligence/phase_08/postcommit/seal_check.json` | `6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d` |
+| `audits/predictive-intelligence/phase_08/postcommit/social_guard.out.txt` | `65ef17a84f4147ebf9f20004c35973272ef6b04c2696806a055c17804042084c` |
 | `audits/predictive-intelligence/phase_08/probes/logit_solver_diagnosis.py` | `d0ba468be5cd142f9d7d2e0fef3835a6053e1533a873fcb863549f46a38d1369` |
 | `audits/predictive-intelligence/phase_08/probes/mutation_technical.py` | `41f56173f594da116f6c0a5cfdc13a3bb8bf99efdf604c573666531757533867` |
 | `audits/predictive-intelligence/phase_08/probes/run_technical.py` | `68ca35af61c696d70e14af831a0b207cb3e9adf6e306e139ebb040eac8332e69` |
