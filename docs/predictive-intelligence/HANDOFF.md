@@ -1,49 +1,41 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-066). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_12/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-069). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_13/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
 ## Position on 2026-10-26
 
-- Phases 00 to 11: PASS (Phase 06 since the frozen 48 h re-read, PI-D-059; Phase 10 with TEST_ONLY parts; Phase 11 after repair pass 2, PI-D-063).
-- Phase 12 (walk-forward discipline, search discipline and the single evaluation of the sealed retrospective holdout): PASS on 2026-10-26 after repair pass 2 (PI-D-066). The orchestrator's independent skeptic found no material failure, 5 minor findings and CX-S12; repaired at `e7f0b6c` without changing any recorded output, number or verdict. Commits: pre-registration `79d30f5`, frozen code `3ea7030`, pre-opening predictions `d58de61`, opening outputs `de7ac77`, results `c549748`, first-pass post-commit `ae911ac` (pushed), repair code `e7f0b6c`, repair outputs and records on top (see "Phase 12 commits").
-- Spend: 0 Firecrawl credits, 0 vendor calls, 0 language-model calls, no network use in Phase 12.
+- Phases 00 to 12: PASS (Phase 12 after repair pass 2, PI-D-066; the retrospective holdout is opened and spent).
+- Phase 13 (calibration, uncertainty and abstention): NEEDS_REVIEW, first pass plus the agent's own self-review pass 2 (PI-D-068), awaiting the orchestrator's independent skeptic (PI-D-013). One checklist item, G7, failed as registered and needs a decision (below).
+- Spend: 0 Firecrawl credits, 0 vendor calls, 0 language-model calls, no network use in Phase 13.
 
-## What Phase 12 did (PI-D-064, PI-D-065)
+## What Phase 13 did (PI-D-067, PI-D-068, PI-D-069)
 
-- Plan frozen before any code, prediction or opening (`phase_12/validation/WALK_FORWARD_PROTOCOL.md`): the 69 frozen holdout-start cards of Phases 07 to 11 as candidates (no refit, no tuning); champion per target by a rule on committed development verdicts (B2 unless a card earned `champion_over_B2`; none did, so B2 by default); primary B2 against B0, Brier skill with day and mint bootstrap (20,000 replicates, wider governs), Holm across the three targets, Phase 07's frozen verdict and the 50-event, 10-per-class gate; secondary family with Holm, a max-T day-block correction and a full-search Bonferroni (N_search 118 = 87 development configurations + 31 Phase 04 bake-off configurations); NC1, NC2, NC3 and P13 traps; sensitivities and dataset-shift breakdowns.
-- `memelab/predictive/evaluation.py` (evaluation-1, numpy and the standard library, flag OFF, imported by no other module): seal-report check against the pins, `open_holdout` (logs the opening before decompressing; refuses a second first opening), `holdout_rows`, identity join, `check_card_time` and `score` (RETROSPECTIVE_MODEL_NOT_AVAILABLE_AS_OF, MODEL_STALE), `champion`, `holdout_verdict`, `max_t`, `bonferroni`, `ledger_totals`, `shadow_criteria`. 42 tests plus 5 output tests; mutation probe 44 of 44.
-- Every holdout prediction (12,255 rows: 69 cards and 60 NC1 controls over the 95 Solana holdout decisions) was computed with no label and committed with its sha256 before the opening. The tech-1 cards have no inputs on the holdout (NOT_FETCHED_SEALED, no pool) and abstain.
-- The seal was opened once (2026-10-26T17:33:27Z at `d58de61`, `OPENING_LOG.json`); a REPRODUCTION gave byte-equal outputs; scikit-learn recomputed 572 metric values within 1.1e-16; an independent check without the lab's code found the same 66, 68, 59 scored rows and labels.
-
-## What the Phase 12 repair changed (PI-D-066)
-
-- CX-S12: the recorded run computed max-T only against B0, so the 63 comparisons against B2 could never have survived the correction. `evaluation.selection_status` now separates FAILS, SURVIVES and CORRECTION_NOT_COMPUTED; the max-T against B2 was computed POST_OPENING (51 cards, smallest p 0.638). All 129 secondary rows are now fully corrected: 13 FAIL, 116 had no uncorrected skill, 0 survive.
-- The `verdict` value SKILL_INDICATED_RETROSPECTIVE_HOLDOUT on the T1 B1-against-B0 row of `HOLDOUT_METRICS.csv` and `FULL_EXPERIMENT_LEDGER.csv` is Holm-only and not a claim (selection status FAILS, max-T 0.991). The recorded files stay as written; `validation/FULL_EXPERIMENT_LEDGER_CORRECTED.csv` carries `selection_status` and `claim` and is the cumulative ledger from here on.
-- N_search with the 9 non-probability rules: 127 (POST_OPENING sensitivity, same outcome). Tests for the skeptic's 5 surviving mutations; mutation probe 63 of 63; 57 phase tests.
-- The seal was honour-based: the sealed label file is tracked and public, and any script could have read it unlogged; the single-opening claim rests on commit order and honesty. Every later read is logged (two REPRODUCTION runs, the independent label check, the reviewer's reads, the POST_OPENING corrections).
-- Rule: any computation on opened holdout outcomes is POST_OPENING, logged, and may only make results more conservative (`evaluation.conservative_status`).
+- Rules frozen before any code or fit (`phase_13/ACCEPTANCE_CHECKLIST.md`, `0fdf698`): calibration rows only from the champion's chronologically valid development out-of-sample rows; calibrator fit gate 100 events, 20 per class, 5 days; fixed method rule (Venn-Abers from 200 events with 40 per class, else Platt); the frozen ACCEPTANCE tolerance checked only on prospective evidence that is not the fit set; a publication rule (flag ON, level SHADOW or VALIDATED_EXPERIMENTAL, CALIBRATED, support of 20 in the score's bin, display range [0.01, 0.99], interval holding the point, caveats); 28 abstention conditions, each mapped to one unchanged contract reason; CX-13 named in advance.
+- `memelab/predictive/calibration.py` (calibration-1) and `memelab/predictive/abstention.py` (abstention-1): numpy and the standard library, flag OFF, imported by no other module. The contract (`memelab.predictive.forecast/1`) is unchanged; `validate_publication` adds the Phase 13 checks to `contract.validate` and closes the PI-D-022 items for `calibration_reference`. ForecastResult schema `phase_13/models/FORECAST_RESULT_SCHEMA.json` (a forecast/1 document plus its abstention-1 record). 124 tests (55 + 62 + 7 output tests); mutation probe 79 of 79.
+- Self-review pass 2 (not independent, PI-D-068): a tampered calibration card, a level that differs from the card's, a forged support and an arbitrary base rate could have passed the publication path; closed with tests that fail on the first-pass module; recorded outputs byte-equal after the fix.
 
 ## Result (empirical)
 
-- T1 24 h: 66 events (15 positive), BSS of B2 against B0 -0.024, governing mint interval -0.156 to 0.134, Holm p 1.0: NOT_DISTINGUISHABLE_FROM_BASE_RATE.
-- T1b 6 h: 68 (12), BSS -0.083, day interval -0.174 to -0.020, governing mint interval -0.168 to 0.002, Holm p 1.0: NOT_DISTINGUISHABLE_FROM_BASE_RATE; calibration in the large failed (mean 0.082, observed 0.176); WORSE_THAN_BASE_RATE in two sensitivities (contacted included, point-in-time route).
-- T2 24 h: 59 (7), BSS +0.292 (mostly a lower holdout prevalence, 0.119 against 0.214): INSUFFICIENT_EVENTS; possible partial contact (PI-D-045 item 6).
-- 0 of 129 secondary comparisons survive the selection correction (against B2 since the POST_OPENING max-T); shuffled-label B2 matches the real B2 in 45% (T1) and 85% (T1b) of seeds. No model shows out-of-sample value; base rate or abstention; every complex model MODEL_NOT_PROMOTED; nothing reaches SHADOW. This is the outcome Phase 01 stated in advance.
+- T1 24 h, T1b 6 h, T2 24 h: UNCALIBRATED. Calibration sets 24 (8 positive, 3 days), 44 (3, 5), 8 (1, 1); no chronologically valid development set can reach the gate. Calibration artifacts `phase_13/artifacts/<target>/CALIBRATION_CARD.json`, level ABSTAIN, publishable false.
+- Every request ends ABSTAIN with named reasons: 76 development, 193 retrospective holdout (POST_OPENING description) and 30 prospective (10 decisions by 3 targets); publication coverage 0%. Today every target abstains with FLAG_OFF, MODEL_NOT_SELECTED, UNCALIBRATED, INSUFFICIENT_HISTORY and NOT_YET_MATURED.
+- Exchangeability of the event rate is rejected across decision days (T1b p 0.023, T2 p 0.020) and routes (T1 p 0.021, T1b p 0.011); block intervals of the base rate are 1.04 to 1.51 times the Wilson width.
+- POST_OPENING only: a development-fitted descriptive Venn-Abers fails the frozen check on the holdout for all three targets (combined FAILS, never a claim).
+- Card and tables: `phase_13/models/CALIBRATION_CARD.md`, `calibration/RELIABILITY_COVERAGE.csv`, `calibration/ABSTENTION_MATRIX.md`.
 
 ## Open items, in order
 
-1. The orchestrator re-verifies Phase 12 and pushes; Phase 13 (calibration, uncertainty and abstention) is eligible once it records Phase 12 PASS.
-2. For Phase 13 and later: the retrospective holdout is spent (any reuse is EXPLORATORY; any post-opening computation only more conservative); calibration work uses development data only and cannot claim holdout calibration; only the prospective holdout (Phase 19) can support a promotion. tech-1 has no holdout evaluation. The max-T correction is centred, not studentized, and Phase 16 and 19 plans must define the correction for the champion_over_B2 comparison before their data are read (change control before any prospective read). Phase 19 keeps prospective labels out of any file the runner can read until its plan and predictions are committed.
-3. Carried: catalyst source roles and event categories have no time in the lab schema; replayed social bot shares are lower bounds; collector deployment on Elving's computer (backtesting RUNBOOK); forward social and catalyst collection needs new approvals; regime labels are lab-universe proxies.
+1. The orchestrator runs the independent skeptic on `phase_13/SKEPTIC_PACKET.md`; the phase agent folds the review in (repair pass), then PASS only if every gate item holds.
+2. G7 failed as registered: scikit-learn `_sigmoid_calibration` differs from the numpy Platt by 1.5e-6 (T1b) and 9.4e-6 (T2) on two descriptive below-gate fits because its lbfgs stops early (its gradient up to 5.7e-7, the numpy fit's below 1e-15); the PI-D-053 newton-cholesky construction agrees within 5.3e-15 (added after seeing the result). No output depends on these fits. Closing it needs a decision by the orchestrator or Elving, as PI-D-053 did for Phase 08.
+3. For later phases: Phase 16 sets levels and cannot promote from the retrospective holdout; Phase 17 calls `abstention.forecast_result` and `validate_publication` for every eligible decision, keeps the raw model number in its request record and recomputes the calibrated point before publishing; Phase 19 supplies prospective evidence (at least 50 matured events and 10 per class, not the fit set) through `calibration.build_card`; the champion cards are MODEL_STALE for decisions after 2026-10-31.
+4. Carried: the tech-1 cards have no holdout evaluation; catalyst and social tables are not exported; forward depth collection is approved but not deployed (PI-D-044); regime labels are lab-universe proxies; the CURRENT_VENDOR_LIST route abstains POOL_NOT_POINT_IN_TIME.
 
-## Phase 12 commits
+## Phase 13 commits
 
-- First pass: HEAD before `63076ad`; pre-registration `79d30f5` (16:41:13Z); frozen code `3ea7030` (17:32:01Z); pre-opening outputs `d58de61` (17:33:19Z); opening outputs `de7ac77` (17:47:49Z); results `c549748`; post-commit record `ae911ac` (pushed). Post-commit at `c549748`: suite `1 failed, 1445 passed`.
-- Repair pass 2: code `e7f0b6c` (19:46:57Z), outputs and records `23f3750` (19:59:41Z), and this post-commit record on top (local only; the orchestrator pushes). Post-commit at `23f3750`: suite `1 failed, 1455 passed` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no.", `git status` clean.
+Pre-registration `0fdf698` (20:21:18Z); frozen code `5a3c582` (20:52:33Z); recorded run outputs `9cd5288`; self-review pass 2 code `2e1488a` (21:03:53Z); outputs, evidence and records on top; post-commit record after it (local only; the orchestrator pushes). Post-commit results: `phase_13/PHASE_13_EVIDENCE.md`, "Post-commit results".
 
 ## Waiting on Elving
 
-- Any paid data, LLM, Zep or MiroFish use; social API credentials or consent (X, Telegram, Reddit, Discord, YouTube, Farcaster routes are BLOCKED); scheduled catalyst or social collection into a store this engine can read; adding research packages to the lab's runtime; a merge into `main`; deploying the forward depth collector (already approved, PI-D-044; not yet done).
+- The G7 decision (or the orchestrator's). Any paid data, LLM, Zep or MiroFish use; social API credentials or consent; scheduled catalyst or social collection into a store this engine can read; research packages in the lab's runtime; a merge into `main`; deploying the forward depth collector (approved, PI-D-044; not yet done).
 
 ## Note outside this branch
 
@@ -57,12 +49,12 @@ Research only: no trades, no wallets with signing authority, no seed phrases or 
 
 ```
 git clone https://github.com/RyzinEnagy/memelab-inbox.git && cd memelab-inbox
-git checkout feature/predictive-intelligence && git log -8 --oneline
+git checkout feature/predictive-intelligence && git log -12 --oneline
 pip install pytest
 python -B audits/predictive-intelligence/phase_06/probes/check_seal.py
 python -m pytest tests -q
-python -m pytest tests/test_predictive_evaluation.py tests/test_predictive_phase12_outputs.py -q
-python -B audits/predictive-intelligence/phase_12/probes/post_opening_corrections.py /tmp/po   # compare with validation/ (POST_OPENING, logged)
+python -m pytest tests/test_predictive_calibration.py tests/test_predictive_abstention.py tests/test_predictive_phase13_outputs.py -q
+python -B audits/predictive-intelligence/phase_13/probes/run_calibration.py /tmp/p13   # about 10 s; compare with phase_13/ (POST_OPENING reads of committed Phase 12 files, logged)
 ```
 
-Expect `"problems": []` from the seal check (the opening did not change the sealed files), `1 failed, 1455 passed` with only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` failing in the suite. Then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. A REPRODUCTION of the opening (`python -B audits/predictive-intelligence/phase_12/probes/run_holdout.py open OUT --reproduction`, about 11 min) needs the two private stores under `/home/claude/pi_research/` (rebuild them from the committed archives if the workspace was reclaimed: `phase_05/data/FEATURE_STORE_CONTRACT.md`, `phase_06/labels/TARGET_SCHEMA.md`) and the git objects of the holdout decisions' export commits.
+Expect `"problems": []` from the seal check and only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` failing in the suite; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. The runner needs the two private stores under `/home/claude/pi_research/` (rebuild them from the committed archives if the workspace was reclaimed: `phase_05/data/FEATURE_STORE_CONTRACT.md`, `phase_06/labels/TARGET_SCHEMA.md`).

@@ -3,7 +3,7 @@
  "code_sha256": {
   "audits/predictive-intelligence/phase_07/probes/run_baselines.py": "300af6e9f3764ce0ea5361f00e8a7809bdaefb56f5714bb1643336c787a92bff",
   "audits/predictive-intelligence/phase_13/probes/run_calibration.py": "d889c2808689a784c23d3586c8b8be43e5b2500865980ffdc04be247e308b1b6",
-  "memelab/predictive/abstention.py": "4796771405bd11ad12badead1819a1468a78fc8a03eb6f5abe1440a0d429d283",
+  "memelab/predictive/abstention.py": "ce31ebb31cff0c5890adaebb56eea1feaeabaf71e6463f1cbec72039c4abda16",
   "memelab/predictive/baselines.py": "3be1306a4137b7db6bdffac9541278c1703843fe1ccb75c58b99be35d6858b71",
   "memelab/predictive/calibration.py": "c9cbd2057a5abb320baf3537b14fb4d471d57db21959ac6475573082320dfbc6",
   "memelab/predictive/contract.py": "1caa72271fba5e4d96bfaaaab35ea0f75a496790bae5a4dbd6f27c825e78819a",
@@ -12,15 +12,15 @@
   "memelab/predictive/labels.py": "f50620c37129c6434a7fa9f58ff8e0733438b950ac86cc7f81eb596da41059ef",
   "memelab/predictive/stats.py": "e249d9d99e0d69e3f55d80e9a3d42b3a4efaf44c6488c04c4f318d576895096a"
  },
- "cpu_s": 9.34,
+ "cpu_s": 9.64,
  "dirty_code": "",
- "end_utc": "2026-10-26T20:52:49Z",
+ "end_utc": "2026-10-26T21:04:04Z",
  "failures": [],
  "firecrawl_credits": 0,
  "flag_on": false,
- "head": "5a3c58276dd3c92f1523f68bc9c012cb3125a768",
+ "head": "2e1488a075d1eccea8c6b0835b69fe400a19e38a",
  "llm_calls": 0,
- "max_rss_mb": 82.8,
+ "max_rss_mb": 82.9,
  "outputs_sha256": {
   "artifacts/T1_24h/CALIBRATION_CARD.json": "ed48e3a7a0281d5990400b550d11b6742b99c6ddba5373baee127db8bb618ca2",
   "artifacts/T1b_6h/CALIBRATION_CARD.json": "5b962f55af051c8520472e15eca95f354e039557ba227fc344474f19e14f6526",
@@ -38,7 +38,7 @@
   "calibration/FORECAST_RESULTS_HOLDOUT_POST_OPENING.jsonl": "fcbed78731aa9ce05c8da075b7408448b6771f1c5bf43a32a03e34f79a0ba96b",
   "calibration/FORECAST_RESULTS_TODAY.jsonl": "c8c5d199f9d571d88f29509ff7ea25b8d17c66ebfd0bab7f8a7104dbf1207ec5",
   "calibration/HOLDOUT_POST_OPENING.json": "b2d06f9270708a680534882f6db7026e1a85774faf509ab340a6eddd4d1a3a57",
-  "calibration/POST_OPENING_LOG.json": "b0b3478fe3e9b228bad8b4880d506f6f2d783cabac6c49a96c3b06ac8ef08e97",
+  "calibration/POST_OPENING_LOG.json": "a49afa779627240a1a497be0473a4288e1ac203d2c849356b6904caa99e38b81",
   "calibration/RELIABILITY_COVERAGE.csv": "8eda557b19e95d8821b7c65544bdf21c7581ff009ea424c2c157f96712f02682",
   "calibration/REPLAY_CHECKS.json": "eb5daa95039b83d9bee1829c06f18a20782080d9111c838f4dbd1990c79e26f0",
   "calibration/SCORE_REPORT_DEV.json": "3564d4087b24eb7c5f560b2e9b7ab56210f5b7a37620abb5acd7b2cc452ee662",
@@ -52,11 +52,11 @@
   "HOLDOUT_SCORED.csv": "d4c35253e6879d915dd31b6fdd6428d588c0e25e53d9e9895ad2531a771f08d6",
   "OPENING_LOG.json": "ed392a484870f581b874eb7cbe700fb3dc69bb21a6b2b03ce9c1e9be0eb7f0f4"
  },
- "post_opening_logged_at_utc": "2026-10-26T20:52:49Z",
+ "post_opening_logged_at_utc": "2026-10-26T21:04:04Z",
  "registry_fingerprint": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
  "registry_sha256": "d73e19cff2b91eb293b3f4c86b1752b4f805d162e97e27d279b72e8c210146fb",
  "socket_events": [],
- "start_utc": "2026-10-26T20:52:40Z",
+ "start_utc": "2026-10-26T21:03:54Z",
  "stores": {
   "/home/claude/pi_research/p05/predictive_store.sqlite": {
    "after": "2525f0c4a7b2662713d07e99acd1a371c33aa5082994f5f552aba477f98dd8de",
@@ -68,5 +68,5 @@
   }
  },
  "vendor_calls": 0,
- "wall_s": 9.49
+ "wall_s": 10.08
 }

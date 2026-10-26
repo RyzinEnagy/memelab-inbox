@@ -23,5 +23,6 @@ Free calls (GeckoTerminal, DEX Screener, unauthenticated GitHub REST, PyPI, `git
 | 2026-10-26 | 11 | none | no billable call and no vendor call; Firecrawl, WebSearch, WebFetch and any language model not used; the analog runner refuses any socket call (audit hook, 0 events); no `git fetch` (the pinned `origin/main` commit `e245d91` was already local) | 0 | 0 |
 | 2026-10-26 | 12 | none | no billable call and no vendor call; Firecrawl, WebSearch, WebFetch and any language model not used; the Phase 12 runner refuses any socket call (audit hook, 0 events); no `git fetch`; no candle read for the holdout (the tech-1 cards stay unscored) | 0 | 0 |
 | 2026-10-26 | 12 repair pass 2 | none | no billable call and no vendor call; Firecrawl, WebSearch, WebFetch and any language model not used; runners refuse any socket call (audit hook, 0 events); no `git fetch` | 0 | 0 |
+| 2026-10-26 | 13 | none | no billable call and no vendor call; Firecrawl, WebSearch, WebFetch and any language model not used; the Phase 13 runner refuses any socket call (audit hook, 0 events); no `git fetch`; the oracles ran offline in the existing research venvs | 0 | 0 |
 
 Remaining Firecrawl allowance: 150 credits.

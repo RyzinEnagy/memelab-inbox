@@ -1,0 +1,35 @@
+{
+ "differs": [
+  "calibration/POST_OPENING_LOG.json"
+ ],
+ "files": {
+  "artifacts/T1_24h/CALIBRATION_CARD.json": "byte_equal",
+  "artifacts/T1b_6h/CALIBRATION_CARD.json": "byte_equal",
+  "artifacts/T2_24h/CALIBRATION_CARD.json": "byte_equal",
+  "calibration/ABSTENTION_MATRIX.csv": "byte_equal",
+  "calibration/ABSTENTION_RECORDS_DEV.jsonl": "byte_equal",
+  "calibration/ABSTENTION_RECORDS_HOLDOUT_POST_OPENING.jsonl": "byte_equal",
+  "calibration/BASE_RATE_UNCERTAINTY.csv": "byte_equal",
+  "calibration/BELOW_GATE_DESCRIPTIVE.json": "byte_equal",
+  "calibration/CALIBRATION_SETS.csv": "byte_equal",
+  "calibration/DRIFT_DEV.json": "byte_equal",
+  "calibration/EXCHANGEABILITY.json": "byte_equal",
+  "calibration/FOLD_CALIBRATION_CARDS.json": "byte_equal",
+  "calibration/FORECAST_RESULTS_DEV.jsonl": "byte_equal",
+  "calibration/FORECAST_RESULTS_HOLDOUT_POST_OPENING.jsonl": "byte_equal",
+  "calibration/FORECAST_RESULTS_TODAY.jsonl": "byte_equal",
+  "calibration/HOLDOUT_POST_OPENING.json": "byte_equal",
+  "calibration/POST_OPENING_LOG.json": "differs",
+  "calibration/RELIABILITY_COVERAGE.csv": "byte_equal",
+  "calibration/REPLAY_CHECKS.json": "byte_equal",
+  "calibration/SCORE_REPORT_DEV.json": "byte_equal",
+  "calibration/TODAY_STATUS.json": "byte_equal",
+  "experiments/EXPERIMENT_REGISTRY.csv": "byte_equal",
+  "experiments/LEDGER_TOTALS.json": "byte_equal",
+  "experiments/SEARCH_LEDGER.csv": "byte_equal"
+ },
+ "first_recorded_code": "5a3c582",
+ "first_recorded_outputs_commit": "9cd5288",
+ "note": "POST_OPENING_LOG.json names the code commit (head_code) and so differs only in that line; every other output is byte-equal",
+ "repair_code": "2e1488a"
+}

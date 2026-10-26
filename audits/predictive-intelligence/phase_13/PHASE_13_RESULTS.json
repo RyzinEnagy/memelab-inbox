@@ -1,0 +1,464 @@
+{
+ "phase": "13",
+ "status": "NEEDS_REVIEW",
+ "head_before": "6f4f8ea6254b6623cb66c627e6b61de3f9455fa8",
+ "head_after": null,
+ "commits": {
+  "pre_registration": "0fdf698",
+  "frozen_code": "5a3c582",
+  "recorded_run_outputs": "9cd5288",
+  "self_review_pass_2_code": "2e1488a"
+ },
+ "result": {
+  "T1_24h": {
+   "calibration_set": {
+    "n": 24,
+    "k": 8,
+    "days": 3
+   },
+   "status": "UNCALIBRATED",
+   "level": "ABSTAIN",
+   "publishable": false,
+   "card_sha256": "39cdb003495653edf63fb17f4ac407dacffab24d4bbe8d05b5dd064051402c24",
+   "today": "ABSTAIN",
+   "holdout_post_opening": "FAILS_SELECTION_CORRECTION"
+  },
+  "T1b_6h": {
+   "calibration_set": {
+    "n": 44,
+    "k": 3,
+    "days": 5
+   },
+   "status": "UNCALIBRATED",
+   "level": "ABSTAIN",
+   "publishable": false,
+   "card_sha256": "e8d71d5cc3e0653f15d84d4211d2c1f26cb4c163f759ae9d47f5cd48c3f2145a",
+   "today": "ABSTAIN",
+   "holdout_post_opening": "FAILS_SELECTION_CORRECTION"
+  },
+  "T2_24h": {
+   "calibration_set": {
+    "n": 8,
+    "k": 1,
+    "days": 1
+   },
+   "status": "UNCALIBRATED",
+   "level": "ABSTAIN",
+   "publishable": false,
+   "card_sha256": "54755efd3808cf7c71b3dd2a8f324b31013a89228697b71adb342d088dda5b91",
+   "today": "ABSTAIN",
+   "holdout_post_opening": "FAILS_SELECTION_CORRECTION"
+  }
+ },
+ "checks": [
+  {
+   "name": "G1 package checksums",
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "result": "41 OK, 0 failed",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G2 entry suite at 6f4f8ea",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "result": "1 failed, 1455 passed in 197.15s (known test_dedup_corroboration_resurface_denial only)",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "G2 entry seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "result": "problems [] with the three pinned hashes",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G2 Phase 12 key tests",
+   "command": "python -m pytest tests/test_predictive_evaluation.py tests/test_predictive_phase12_outputs.py -q",
+   "result": "57 passed",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G3 pre-registration first",
+   "command": "git log",
+   "result": "0fdf698 (20:21:18Z) before the first code commit 5a3c582 (20:52:33Z)",
+   "exit_code": null,
+   "pass": true
+  },
+  {
+   "name": "G4 frozen code before the recorded run",
+   "command": "git log; evidence/run_log.json dirty_code",
+   "result": "recorded run at 5a3c582, repeated at 2e1488a; three earlier debug runs logged",
+   "exit_code": null,
+   "pass": true
+  },
+  {
+   "name": "G5 calibration set chronologically valid",
+   "command": "run_calibration.py REPLAY_CHECKS.json",
+   "result": "fold card sha equal (3, 5, 1 folds); OOS numbers equal to Phase 07 within its 6 decimals (5.0e-7); refusals tested",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G6 fit gate and method rule",
+   "command": "tests/test_predictive_calibration.py",
+   "result": "boundaries tested",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G7 Platt against scikit-learn _sigmoid_calibration within 1e-6",
+   "command": "oracle_calibration.py (p04_bundle)",
+   "result": "FAILED as registered on ['T1b_6h', 'T2_24h'] (worst 9.42e-06; lbfgs stops early); newton-cholesky 5.3e-15; isotonic 6.9e-18; Venn-Abers (ip200) 6.9e-18",
+   "exit_code": 1,
+   "pass": false
+  },
+  {
+   "name": "G8 frozen calibration tolerance",
+   "command": "tests",
+   "result": "stats.calibration_bins with ACCEPTANCE values, pinned",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G9 intervals widen with small support",
+   "command": "tests; BELOW_GATE_DESCRIPTIVE.json",
+   "result": "width non-increasing in support; 30-event confident set gives no calibrated card",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G10 abstention conditions",
+   "command": "tests/test_predictive_abstention.py",
+   "result": "28 conditions, each triggered alone with its contract reason; equal to the checklist's rule 12",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G11 P38 and invalid input",
+   "command": "tests",
+   "result": "NaN, inf, -0.1, 1.1 never publish; validator refuses injected values; NaN features are missing inputs",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G12 P11 and P10",
+   "command": "tests",
+   "result": "flat predictions flagged and fail calibration; always-negative rare event shows BSS <= 0 and worse log loss",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G13 overconfident rare class",
+   "command": "tests",
+   "result": "0.9 on a 2% class never calibrated",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G14 P23",
+   "command": "tests; SCORE_REPORT_DEV.json",
+   "result": "conflict flagged with both scores; T2 development rows show it",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G15 P27",
+   "command": "tests",
+   "result": "agreement 0.9 refused in scenarios, cohort, reference, simulation kind and source, behavioral input",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G16 P12",
+   "command": "tests",
+   "result": "token-history card on a new mint abstains; cross-sectional new-mint forecast needs its caveat",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G17 P39",
+   "command": "tests; DRIFT_DEV.json",
+   "result": "drift alarms only after the step; records append-only; no alarm on real development data (24, 44, 8 observations)",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G18 publication rule",
+   "command": "tests",
+   "result": "fixture FORECAST valid; every single condition gives ABSTAIN; tampered documents refused",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G19 schema",
+   "command": "tests; evidence/schema_jsonschema_check.json",
+   "result": "in-house checker and jsonschema 4.26.0: 0 errors on 299 written pairs; 12 mutations refused",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G20 real result",
+   "command": "run_calibration.py",
+   "result": "T1_24h 24/8/3 UNCALIBRATED; T1b_6h 44/3/5 UNCALIBRATED; T2_24h 8/1/1 UNCALIBRATED",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G21 holdout description only",
+   "command": "HOLDOUT_POST_OPENING.json; POST_OPENING_LOG.json",
+   "result": "T1_24h FAILS_SELECTION_CORRECTION; T1b_6h FAILS_SELECTION_CORRECTION; T2_24h FAILS_SELECTION_CORRECTION; no claim; sealed folder not read",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G22 today",
+   "command": "TODAY_STATUS.json",
+   "result": "T1_24h ABSTAIN ['FLAG_OFF', 'INSUFFICIENT_HISTORY', 'MODEL_NOT_SELECTED', 'NOT_YET_MATURED', 'UNCALIBRATED']; T1b_6h ABSTAIN ['FLAG_OFF', 'INSUFFICIENT_HISTORY', 'MODEL_NOT_SELECTED', 'NOT_YET_MATURED', 'UNCALIBRATED']; T2_24h ABSTAIN ['FLAG_OFF', 'INSUFFICIENT_HISTORY', 'MODEL_NOT_SELECTED', 'NOT_YET_MATURED', 'UNCALIBRATED']",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G23 search ledger",
+   "command": "evaluation.ledger_totals on experiments/SEARCH_LEDGER.csv",
+   "result": "3203 rows; candidates 87 and N_search 118 unchanged",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G24 determinism and isolation",
+   "command": "twin run; run_log.json",
+   "result": "twin identical; socket events 0; stores unchanged; rerun at 2e1488a differs only in ['calibration/POST_OPENING_LOG.json'] (code commit line)",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G25 mutation probe",
+   "command": "probes/mutation_calibration.py",
+   "result": "79 of 79 caught",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G26 flag, imports, registry, contract",
+   "command": "tests; run_log.json",
+   "result": "flag OFF; no module imports calibration or abstention; contract and fingerprint 4b4aabce unchanged",
+   "exit_code": 0,
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/phase_13/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "f77c61fd22056ebc74ede19ab394fa1bb40be323afd9ed2916a48ca1c19c2fef"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/PHASE_13_EVIDENCE.md",
+   "sha256": "8a39e0408f3c1e560aa397e08e5a6ff1d0df7ab7e704d0cbfa9968ef7c5d063f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/SKEPTIC_PACKET.md",
+   "sha256": "a71eb372dc42b9a83d867b77e7cea0494776f992586fb39f9addf7c4534e7c77"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/artifacts/T1_24h/CALIBRATION_CARD.json",
+   "sha256": "ed48e3a7a0281d5990400b550d11b6742b99c6ddba5373baee127db8bb618ca2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/artifacts/T1b_6h/CALIBRATION_CARD.json",
+   "sha256": "5b962f55af051c8520472e15eca95f354e039557ba227fc344474f19e14f6526"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/artifacts/T2_24h/CALIBRATION_CARD.json",
+   "sha256": "41a98dd35d58223a24bc8eadc158e45a02c3fb6d3d08173cfca6e113d9006b38"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/ABSTENTION_MATRIX.csv",
+   "sha256": "69bf3240437baf2a49e8812bd48e8575d1b44738554e92aca019b4ee30e38ee8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/ABSTENTION_MATRIX.md",
+   "sha256": "62ab7083fc199a7cd8d4f9d0edc528786fa22e92e08e38e461c670054510abc3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/ABSTENTION_RECORDS_DEV.jsonl",
+   "sha256": "5f7864c8e83f6b2f25635770b31260a30ca4a9d3fafe10403281454b22dd1f7d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/ABSTENTION_RECORDS_HOLDOUT_POST_OPENING.jsonl",
+   "sha256": "dc564e732ca2e25ad248dc14517eb8b213af46a9fa8a190b857f1094e921851a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/BASE_RATE_UNCERTAINTY.csv",
+   "sha256": "73a45da97befeb0e4f607f62450075e1263a917ef7a426550f3761b128324eac"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/BELOW_GATE_DESCRIPTIVE.json",
+   "sha256": "98d1f24cb637a84007e81ccb4b7a51742442d447cda9f80185fa932928c984cb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/CALIBRATION_SETS.csv",
+   "sha256": "69a71dc920976b6e40bfdc4bfb37976cc10e8dcb6efc4df430138bad98b44b24"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/DRIFT_DEV.json",
+   "sha256": "2e17f18d0bb5fc68b15c25159c42315076710bd8a58f65e4c7a9fbc6f8d5a787"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/EXCHANGEABILITY.json",
+   "sha256": "1f0d2ae0729ae4c14a9617eca35a61a30f79bce8ac70618ba98b18def596b5fa"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/FOLD_CALIBRATION_CARDS.json",
+   "sha256": "a590c147448ccd27eec0719688a2e86a43fb2d26a0b25d9e3070225944620ed2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/FORECAST_RESULTS_DEV.jsonl",
+   "sha256": "f96d1c923e8cf6732e9d38d95030abea364d7fe05791039eb02e40a324dc8280"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/FORECAST_RESULTS_HOLDOUT_POST_OPENING.jsonl",
+   "sha256": "fcbed78731aa9ce05c8da075b7408448b6771f1c5bf43a32a03e34f79a0ba96b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/FORECAST_RESULTS_TODAY.jsonl",
+   "sha256": "c8c5d199f9d571d88f29509ff7ea25b8d17c66ebfd0bab7f8a7104dbf1207ec5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/HOLDOUT_POST_OPENING.json",
+   "sha256": "b2d06f9270708a680534882f6db7026e1a85774faf509ab340a6eddd4d1a3a57"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/POST_OPENING_LOG.json",
+   "sha256": "a49afa779627240a1a497be0473a4288e1ac203d2c849356b6904caa99e38b81"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/RELIABILITY_COVERAGE.csv",
+   "sha256": "8eda557b19e95d8821b7c65544bdf21c7581ff009ea424c2c157f96712f02682"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/REPLAY_CHECKS.json",
+   "sha256": "eb5daa95039b83d9bee1829c06f18a20782080d9111c838f4dbd1990c79e26f0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/SCORE_REPORT_DEV.json",
+   "sha256": "3564d4087b24eb7c5f560b2e9b7ab56210f5b7a37620abb5acd7b2cc452ee662"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/calibration/TODAY_STATUS.json",
+   "sha256": "98eba6a28fb8dd6792b14e8c52a6d187b5d81bb73acafdebb26415c50025ca60"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/evidence/entry/entry_summary.txt",
+   "sha256": "b655a94709a29ff829122e28826e2cda855f59cbb3e779e67f622f439484ed3e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/evidence/entry/seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/evidence/frozen_code_rerun_sr2.json",
+   "sha256": "f048124af144a87585514cb03d86db1a8cdd8c71e44d2352122ae3e7ede9e6d0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/evidence/mutation_calibration.json",
+   "sha256": "4831cc2ed48cbc9788ce86e09ee95120ab250ea41896f4ad2acb915059cfef5f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/evidence/mutation_calibration_sr2.json",
+   "sha256": "89189b72a08f0f6d19850ac3daf2d87fda063221d555899fc92f5ef395f195f8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/evidence/oracle_sklearn_statsmodels.json",
+   "sha256": "d075f1f1ee23181b0d344aa8fca684300f9644ecd49290311e597b7dca01bb42"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/evidence/oracle_venn_abers.json",
+   "sha256": "ce5fcb8adf5f6edd9dca030f1044a9738621227ab63af0f830654a10f668c9a4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/evidence/run_log.json",
+   "sha256": "a3fdd507a938dab451ba0e7432aeb0ced3452df45ba7a52b42775765b6536c81"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/evidence/schema_jsonschema_check.json",
+   "sha256": "23cfc10ea76895570927b2aed9b53b6902bb363174b7563e712fc4e0d39089c3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/evidence/sr2_old_code_check.json",
+   "sha256": "73567587c631936777cb9b992e2ffdba7c03818d193f862e4596d205761b2a54"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/experiments/EXPERIMENT_REGISTRY.csv",
+   "sha256": "d73e19cff2b91eb293b3f4c86b1752b4f805d162e97e27d279b72e8c210146fb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/experiments/LEDGER_TOTALS.json",
+   "sha256": "7cbe15fd453093e888c839719e1c641f96869383f8b39c4710909f4cb16b6727"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/experiments/SEARCH_LEDGER.csv",
+   "sha256": "a95967eff66ec698d91cb2dcfd16e42fc2bc621936c93769817a30f77b7c76af"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/models/CALIBRATION_CARD.md",
+   "sha256": "a1d6cce8c22bf41fe47585a760b6eae1b577af22833f9fb5215066e9b18e2486"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/models/FORECAST_RESULT_SCHEMA.json",
+   "sha256": "e6ce732e40c429f8044d79148b16178ff29f8dfcd4faff9225786227aba44cb5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/probes/mutation_calibration.py",
+   "sha256": "7c7139fffac18c7b047893043ce05943bcdc243fb91a6ed2c603d41a7e956911"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/probes/oracle_calibration.py",
+   "sha256": "55eba02662eb2ab0a5aa4e9ade79b16ccbae30f4a5e77c33ccfc9353bb9bab61"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/probes/run_calibration.py",
+   "sha256": "d889c2808689a784c23d3586c8b8be43e5b2500865980ffdc04be247e308b1b6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/probes/write_results.py",
+   "sha256": "a558ee7cd710b29c7e2f2827dd2ddca96444416305162c6af0d2ad4490584104"
+  },
+  {
+   "path": "memelab/predictive/calibration.py",
+   "sha256": "c9cbd2057a5abb320baf3537b14fb4d471d57db21959ac6475573082320dfbc6"
+  },
+  {
+   "path": "memelab/predictive/abstention.py",
+   "sha256": "ce31ebb31cff0c5890adaebb56eea1feaeabaf71e6463f1cbec72039c4abda16"
+  },
+  {
+   "path": "tests/test_predictive_calibration.py",
+   "sha256": "3c565997711beebe8980d062f6d8f450cfa1f6fff8981151f4d3e8e57d08eb3a"
+  },
+  {
+   "path": "tests/test_predictive_abstention.py",
+   "sha256": "886128cb81160218dce0d231233ab0310e3eff058ef5615b96c90b29f907f784"
+  },
+  {
+   "path": "tests/test_predictive_phase13_outputs.py",
+   "sha256": "ffaf293781aabacec626807e05feea4688faeab13de7ed255d5afd2ebc5e553e"
+  }
+ ],
+ "limitations": [
+  "Publication path (FORECAST, SHADOW and VALIDATED_EXPERIMENTAL levels, admissible evidence) is TEST_ONLY: fixtures only; no real card is calibrated.",
+  "G7 failed as registered on two descriptive below-gate fits (scikit-learn lbfgs stops early); a decision by the orchestrator or Elving is needed to close it (PI-D-069 item 6).",
+  "The comparison with Phase 07's out-of-sample file is to its 6 decimals (fold cards equal by model sha).",
+  "Exchangeability of the event rate is rejected across days (T1b, T2) and routes (T1, T1b): any calibration interval is conditional on an assumption the data contradict; no interval covers unmodelled risk.",
+  "The published point cannot be recomputed from the document alone; Phase 17 keeps the raw number in its request record (PI-D-068).",
+  "Development replay names CALIBRATION_EVIDENCE_PENDING at fold cutoffs that predate the prospective holdout, following the frozen evidence rule.",
+  "The 10 prospective decisions have no stored features (Phase 05 store ends at the seal) and no price read: today's records add OOD and SOURCE_STALE.",
+  "Every run read the opened holdout outcomes from committed Phase 12 files (POST_OPENING, logged); none fitted, selected or promoted."
+ ],
+ "blockers": [],
+ "approvals_needed": [
+  "A decision on checklist item G7 (as PI-D-053 did for Phase 08 G16), by the orchestrator or Elving."
+ ],
+ "next_eligible_phase": "14, once the orchestrator records Phase 13 PASS after the independent skeptic and repair pass"
+}
