@@ -1,11 +1,11 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-059). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_10/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-060). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_10/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
 ## Position on 2026-10-26
 
-- Phases 00 to 09: PASS. Phase 06 became PASS on 2026-10-26 when the frozen 48 h revision re-read ran (PI-D-059): 16 of 16 sampled reads re-read 48.0 to 48.9 h later, 12,617 candle positions compared, 0 changed (0 close, 0 volume, 0 open, high or low), 0 appeared or vanished; 44 development labels re-derived, 0 changed, no revision row; an independent comparison without the lab's code agrees. 20 free GeckoTerminal calls (4 HTTP 429 retried), at most 6 a minute. No rerun of Phases 07 to 10 is owed; PI-D-046's provisional condition is lifted for the revision check (outputs not rewritten). Commit `c127b08` (see "Phase 06 re-read commits" below).
-- Phase 10 (social and catalyst outcome forecasts): NEEDS_REVIEW after the first pass; the orchestrator's independent skeptic (PI-D-013) is next, then a repair pass. Its PI-D-046 condition is lifted for the revision check (PI-D-059); its own review is still open. TEST_ONLY parts: the catalyst classifier, the social evidence adapter and the catalyst target proposals (no catalyst or social row exists for any decision). Commits (local only; the orchestrator pushes): pre-registration `c3f04c8`, code `0784a9a`, outputs and records `f4b3a89`, post-commit records on top. Post-commit at `f4b3a89`: suite `1 failed, 1330 passed` (known failure only), guard 0 violations, seal check 0 problems, single-branch release audit exit 0.
+- Phases 00 to 10: PASS. Phase 06 became PASS on 2026-10-26 when the frozen 48 h revision re-read ran (PI-D-059): 16 of 16 sampled reads re-read 48.0 to 48.9 h later, 12,617 candle positions compared, 0 changed (0 close, 0 volume, 0 open, high or low), 0 appeared or vanished; 44 development labels re-derived, 0 changed, no revision row; an independent comparison without the lab's code agrees. 20 free GeckoTerminal calls (4 HTTP 429 retried), at most 6 a minute. No rerun of Phases 07 to 10 is owed; PI-D-046's provisional condition is lifted for the revision check (outputs not rewritten). Commit `c127b08` (see "Phase 06 re-read commits" below).
+- Phase 10 (social and catalyst outcome forecasts): PASS on 2026-10-26 after repair pass 2 (PI-D-060). TEST_ONLY parts: the catalyst classifier, the social evidence adapter and the catalyst target proposals (no catalyst or social row exists for any decision). The orchestrator's independent skeptic found 2 MATERIAL, both in those TEST_ONLY parts, and 6 minor; no real-data number changed. Commits (local only; the orchestrator pushes): pre-registration `c3f04c8`, code `0784a9a`, outputs and records `f4b3a89`; repair code `1c75a12`, repair outputs `06999b7`, repair records and post-commit records on top (see "Phase 10 repair commits").
 - Spend: 0 Firecrawl credits; Phase 10 made no vendor, crawler or language-model call (one `git fetch` of `origin/main`); the Phase 06 re-read made 20 free GeckoTerminal calls (COST_LEDGER.md).
 
 ## What Phase 10 found
@@ -14,8 +14,15 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 - What the lab did record at each decision is socialcat-1 (`memelab/predictive/socialcat.py`, PI-D-057): the m19 attention proxy (trend, narrative strength, organic or paid), the m20 manipulation screen, the m21 lifecycle stage, the token row's channels and narrative tag, and the narrative tables of the decision's own export; available at the export commit, LAB_RECORDED, 0 unparseable over 925 decisions. These are on-chain and market proxies, not social text. Lab-derived classes: HIGH_ATTENTION_PROXY 74, NARRATIVE_REVERSAL 56 decisions (never a verified catalyst).
 - Models (PI-D-058): R2 attention rule, R3 amplification alarm (counts only), S1 attention logistic, S2 attention plus B2 (primary), S3 with change features, G1 boosted stumps, A2 B2 on S2's rows. 306 metric rows, all INSUFFICIENT_HISTORY (T2, and T1 fold 0 with 98 usable rows), INSUFFICIENT_DAYS (T1: 13 rows, 4 positive, 2 days) or INSUFFICIENT_EVENTS (T1b: 37 rows, 3 positive, 5 days); no incremental value beyond B2 claimed; all MODEL_NOT_PROMOTED; same folds and B0/B2 numbers as Phase 07.
 - Leakage controls on the real history: token rows equal their own export 925 of 925 (CX-10: the newest export would add 20 narrative tags, 74 websites, 4 twitter links); a later export's tables refused 240 of 240 (P04-SC); next-decision values refused 156 of 156 (NC2-SC); snapshot time after the decision refuses all values (P36-SC); holdout-start cards refused on development decisions (P13-SC).
-- Checks: 51 tests; mutation probe 85 of 85 at HEAD (1 equivalent reported apart); trace recomputed independently (0 differences); every out-of-sample number (326) recomputed without the module (0 differences); oracle newton-cholesky within 1.9e-11 on 40 real designs; two runs identical.
+- Checks: 56 tests; mutation probe 102 of 102 at HEAD (1 equivalent reported apart); trace recomputed independently (0 differences); every out-of-sample number (326) recomputed from the cards without the module (0 differences); oracle newton-cholesky within 1.9e-11 on 40 real logistic designs and GradientBoostingClassifier within 2.2e-16 on the 10 fitted G1 stump designs; two runs identical.
 - Catalyst follow-through, withdrawal and amplification reversal are written as proposals only (`phase_10/models/CATALYST_TARGET_PROPOSALS.md`), registry unchanged.
+
+## What the Phase 10 repair changed (PI-D-060)
+
+- CX-10b-A (M1): a VERIFIED catalyst is available only from the time its last condition held (link, item naming the mint, start of CONFIRMED in the revision log, official item naming the mint or second independent item), classified as of the decision; a follow-through window starts at `max(available_at, decision) + lag` and an availability after the decision is refused. The first-pass rule is withdrawn from the proposals.
+- CX-10b-B (M2): `social_as_of` applies a suspension only when recorded by the decision (`identity_checked_at` and the ACCOUNT_STATUS review) and treats `account_kind` (no time in the lab schema) as UNKNOWN in a replay; live callers pass `accounts_read_at`. Replayed bot shares are lower bounds.
+- Minors: provenance lists the adjacent lab rows that name decision mints (`social_snapshots`, launch tables, inbox boosts and metadata; none used); "paid/boosted" is m19's organic flag (mostly organic score below 40); item versions recorded after T ignored; G1 stumps checked by the Phase 08 oracle; an item without a role is not independent, OFFICIAL / STRONG is a strong link, an official source must name the mint; the runner reads the pinned `origin/main` commit `e245d91`.
+- Frozen-code discipline: the recorded run was repeated at `1c75a12`; every metric, card, fold, prediction, ledger and trap file is byte-equal to the first pass (trace latency only). Evidence: `phase_10/PHASE_10_EVIDENCE.md` section "Independent skeptic and repair pass 2", `evidence/cx10b_check.json`, `evidence/determinism.json`.
 
 ## What exists now
 
@@ -25,9 +32,13 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Open items, in order
 
-1. Phase 10 independent skeptic and repair pass (orchestrator, PI-D-013): `audits/predictive-intelligence/phase_10/SKEPTIC_PACKET.md`.
-2. Phase 11 is eligible only after the orchestrator records Phase 10 PASS.
+1. The orchestrator re-verifies Phase 10 and pushes; Phase 11 (analog cohorts and regimes) is eligible once it records Phase 10 PASS.
+2. Residual Phase 10 risks for later phases: catalyst source roles and event categories have no time in the lab schema; replayed social bot shares are lower bounds (no timed bot label exists).
 3. Collector deployment on Elving's computer (backtesting RUNBOOK); forward social and catalyst collection would need new approvals (credentials, consent, scheduled jobs).
+
+## Phase 10 repair commits
+
+- HEAD before: `70bd8d9` (pushed). Repair code `1c75a12` (2026-10-26T14:34:34Z), outputs `06999b7` (recorded run at `1c75a12`, 14:34:40Z), records commit on top, then a post-commit records commit (local only; the orchestrator pushes). Post-commit results are recorded in `PHASE_10_RESULTS.json` (G27 repair entries) and the evidence file.
 
 ## Phase 06 re-read commits
 
@@ -56,4 +67,4 @@ python -B audits/predictive-intelligence/phase_06/probes/check_seal.py
 python -m pytest tests -q
 ```
 
-Expect `"problems": []` from the seal check and `1 failed, 1330 passed` from the suite (only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`, a known clock-dependent failure). Then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. The Phase 07 to 10 runners need the two private stores under `/home/claude/pi_research/` (rebuild them from the committed archives if the workspace was reclaimed: `phase_05/data/FEATURE_STORE_CONTRACT.md`, `phase_06/labels/TARGET_SCHEMA.md`); the Phase 10 runner also reads `origin/main` git objects.
+Expect `"problems": []` from the seal check and `1 failed, 1335 passed` from the suite (only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`, a known clock-dependent failure). Then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. The Phase 07 to 10 runners need the two private stores under `/home/claude/pi_research/` (rebuild them from the committed archives if the workspace was reclaimed: `phase_05/data/FEATURE_STORE_CONTRACT.md`, `phase_06/labels/TARGET_SCHEMA.md`); the Phase 10 runner also reads `origin/main` git objects.

@@ -5,9 +5,9 @@ Status: proposals only. Nothing here is in the target registry (fingerprint `4b4
 ## 1. Catalyst follow-through (`proposed_follow_through_label`)
 
 - Unit: one catalyst event and one exact (chain, mint) for which `classify_catalyst` gives VERIFIED at the decision. UNVERIFIED_EVENT, IDENTITY_UNVERIFIED and NOT_AVAILABLE_AT_DECISION are never labelled and never get a probability.
-- Start: the first 5-minute candle whose start is at or after `available_at + provider_lag_s`, where `available_at` is the later of the event's earliest visible source sighting (`first_seen_at`, never `published_at`) and the exact-mint link's `linked_at`. The reference price is that candle's close: the first price a reader of the catalyst could act on.
+- Start (corrected in repair pass 2, CX-10b-A, PI-D-060): the event is classified as of the decision time T, and the window starts at the first 5-minute candle whose start is at or after `max(available_at, T) + provider_lag_s`. `available_at` is the latest of: the event's earliest visible source sighting (`first_seen_at`, never `published_at`), the strong exact-mint links' `linked_at`, the sighting of the first independent item that names the mint, the start of the CONFIRMED evidence status in the revision log, and the sighting that met the source rule (the first official item naming the mint, or the second independent item). A VERIFIED event always has `available_at` at or before T, so the window starts at the decision plus the lag; a move before the decision, or before the catalyst was verified, is never a follow-through. The reference price is that candle's close. The first-pass rule (the later of first sighting and link) let a VERIFIED event's window start before its verification and before the decision, and is withdrawn.
 - Event: `up` touched before `down` within `horizon_s`; a candle touching both is negative (the AMBIGUOUS_BAR convention of T1); a path shorter than the horizon is PENDING or CENSORED, never negative; no price after availability is CENSORED_NO_PRICE_AFTER_AVAILABILITY.
-- Parameters to freeze later (no default in code): `provider_lag_s`, `up`, `down`, `horizon_s`. The natural first choice is T1's (300 s, +25%, -15%, 24 h) so results compare with the frozen targets, but that is for the change control to decide.
+- Parameters to freeze later (no default in code; `decision_time` is also required): `provider_lag_s`, `up`, `down`, `horizon_s`. The natural first choice is T1's (300 s, +25%, -15%, 24 h) so results compare with the frozen targets, but that is for the change control to decide.
 - Price-path only: no size, no fill, PRICE_PATH_NOT_PROCEEDS and NO_HISTORICAL_EXECUTABLE_DEPTH as for T1 (P08, P44).
 
 ## 2. Catalyst failure or withdrawal (`proposed_withdrawal_label`)
@@ -19,10 +19,10 @@ Status: proposals only. Nothing here is in the target registry (fingerprint `4b4
 
 ## 3. Network-amplification reversal (no code yet)
 
-- Unit: a decision whose attention at T is suspect (`sc_attention_suspect` = 1: a paid boost or a manufactured flow screen) and accelerating (`sc_attention_trend_ord` = 2), or, once social data exist, whose exact-mint mentions are majority bot accounts (`sx_bot_share` above one half).
+- Unit: a decision whose attention at T is suspect (`sc_attention_suspect` = 1: the lab's "paid/boosted" reading, which is mostly a Jupiter organic score below 40 and sometimes an active boost, or a manufactured flow screen) and accelerating (`sc_attention_trend_ord` = 2), or, once social data exist, whose exact-mint mentions are majority bot accounts (`sx_bot_share` above one half).
 - Event: the frozen T2 event (half the reference price or a halt within 24 h) on that decision.
 - Today this is measured only as the R3 alarm counts on the frozen targets (`experiments/AMPLIFICATION_ALARM.csv`), which is a description at counts this small, not a target. A separate target would need its own eligibility (only suspect, accelerating decisions) and enough of them to meet the training minimums (100 events, 20 per class), which the development data do not have.
 
 ## What a change control must state before any outcome is read
 
-The unit and its eligibility, every parameter value, the availability clock, the censoring rules, the identity rule (exact chain and mint, NAMED_IN_SOURCE / STRONG with the mint in a visible original source), the split (forward only, with the prospective holdout), the minimums, the baselines (B0 and B2 at the same decision), and the verdict function (Phase 07's, unchanged).
+The unit and its eligibility, every parameter value, the availability clock, the censoring rules, the identity rule (exact chain and mint, NAMED_IN_SOURCE or OFFICIAL / STRONG with the mint in a visible original or independent source), the availability rule above, the split (forward only, with the prospective holdout), the minimums, the baselines (B0 and B2 at the same decision), and the verdict function (Phase 07's, unchanged).

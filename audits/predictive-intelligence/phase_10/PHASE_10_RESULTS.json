@@ -9,7 +9,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_10/PHASE_10_EVIDENCE.md",
-   "sha256": "d76ba35eeb7d57a7cd82bc553d05be68965181c17cccb01f245420dbd259b1c0"
+   "sha256": "2a5f7747cc08407eda36fb5d925eafcfbe352d3b6ca599d5a7c588065b0fd851"
   },
   {
    "path": "audits/predictive-intelligence/phase_10/SKEPTIC_PACKET.md",
@@ -101,15 +101,19 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_10/data/CATALYST_PROVENANCE.md",
-   "sha256": "2a35c228e7ecd9b2ac2e1eaf0f5f9ea456106dff9235fd2348300b7dd4427205"
+   "sha256": "19ba945d8394f9695a1d8e45646872a8be00e94d210fa86699da210752f04cd5"
   },
   {
    "path": "audits/predictive-intelligence/phase_10/evidence/crosschecks.json",
    "sha256": "0bde0d8726f6225f4f9ac24c2710d5bb7908fcdbb1c8b4f060a183c9830d0187"
   },
   {
+   "path": "audits/predictive-intelligence/phase_10/evidence/cx10b_check.json",
+   "sha256": "bd31623a5323d7b1c3785a38f984a9e827c64be9e1f947bf44f3bd369f5e8fa6"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_10/evidence/determinism.json",
-   "sha256": "63e3a58cd90869e8e8ef381210819df128e8ad1064117a020511369a3bed4ec6"
+   "sha256": "5cd9486e3e827d336494de626e5751031941f8129900141e9bae7147cf7349ab"
   },
   {
    "path": "audits/predictive-intelligence/phase_10/evidence/folds.json",
@@ -117,11 +121,15 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_10/evidence/mutation_social.json",
-   "sha256": "11a3bd29059b90eb519839ff2c7d4153fa34c488a3918a83c186dd0bab0e2917"
+   "sha256": "ac988a5a47ac6d6e1f23baaeffd927649c1646cf70228e6b5bb82b959a150fa6"
   },
   {
    "path": "audits/predictive-intelligence/phase_10/evidence/phase07_equality.json",
    "sha256": "c9169da7ef0a0271061bc8a9000ab96f4cc4b3bd412bc19dbc7fc853008f851b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/evidence/provenance_rescan.json",
+   "sha256": "7273ac9ecca165ca6ab7e993ae4a844c74e314a746ccf68d63751a70c72e6d60"
   },
   {
    "path": "audits/predictive-intelligence/phase_10/evidence/recompute_oos.json",
@@ -129,19 +137,23 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_10/evidence/run_log.json",
-   "sha256": "b98f7880ca441db47966d0c0fc84a02442b4b75e10d48c75e2d64a84ff66bc35"
+   "sha256": "b687716cbf732983900640e04036138c6dbb98e5b36e86f3e029c73954b0c138"
   },
   {
    "path": "audits/predictive-intelligence/phase_10/evidence/serialization_smoke.json",
    "sha256": "3765f9c1b8472929e8b4e190f983d9fdc681306a6d3d8953e73173a40ed4f0b0"
   },
   {
+   "path": "audits/predictive-intelligence/phase_10/evidence/skeptic_mutations_at_repair.json",
+   "sha256": "9c43f5de236b86d0f51a5a74f3e0f48a497b94a9999b26387c51c394e2d58cbf"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_10/evidence/sklearn_crosscheck.json",
-   "sha256": "081f18378833e40072c4e79e22947209512ca6d958db5963e7d92d1042d5cb3c"
+   "sha256": "085866b1e253bc44f0c3d045dc4d3f98c365e9f82204fe8da731223a83770ab8"
   },
   {
    "path": "audits/predictive-intelligence/phase_10/evidence/trace/FORECAST_TRACE.json",
-   "sha256": "ee4084b2d4746032b2da97fb78ed9e715bed06dace7bcd4cf242020c7382f9af"
+   "sha256": "6e04a1dd7f28ee3ecd84f95db59ccabb6f29c41ffac5e4acc9e62861136b5cce"
   },
   {
    "path": "audits/predictive-intelligence/phase_10/evidence/trace/FORECAST_TRACE.md",
@@ -201,11 +213,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_10/models/CATALYST_MODEL_CARD.md",
-   "sha256": "f233da8d35398c0196130d389ff9bcd366c68f25d3399580e34e51375435c606"
+   "sha256": "0349e4253b7e8fe786f8581403b500efeac826932299bd7d63956722421b1912"
   },
   {
    "path": "audits/predictive-intelligence/phase_10/models/CATALYST_TARGET_PROPOSALS.md",
-   "sha256": "24773d303a3d5601816eb994cf2622ffb46dd91b7eef4b0673bfe639e9461d3e"
+   "sha256": "c899e1a1feb8c63d27cdc1dfc0cc40ec87ee89fddd217b30b6d267b7b548077b"
   },
   {
    "path": "audits/predictive-intelligence/phase_10/postcommit/pytest_summary.txt",
@@ -224,8 +236,12 @@
    "sha256": "5547f2d2643ded1a1213f525a6a312d4c7695de22e91b162cb27eb85db955785"
   },
   {
+   "path": "audits/predictive-intelligence/phase_10/probes/cx10b_check.py",
+   "sha256": "fe8debcfe194dd3aeb989ab40cfb10a07dfbbe05450f0a39ad6b8b537074f886"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_10/probes/mutation_social.py",
-   "sha256": "213f2007cd316a27dd97b1cacff6866a159ecd8c9c1b503a0bcd05065b967453"
+   "sha256": "ca88e99a821834a056774b2f2ccb75aacc7dc0b23aeaab301f05aeea7d7a401c"
   },
   {
    "path": "audits/predictive-intelligence/phase_10/probes/recompute_oos_social.py",
@@ -233,39 +249,59 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_10/probes/run_social.py",
-   "sha256": "95da9c5c66bb11f84707af16c1c979d931be1878c94dc79c138322cdc5c6736c"
+   "sha256": "f070dee2122ad598809b879f90beeef9308fd2c3c4d247bf2959c0e68181ade4"
   },
   {
    "path": "audits/predictive-intelligence/phase_10/probes/sklearn_crosscheck_social.py",
-   "sha256": "d15cc2d2193380b240e2c7dc92be90e06a6482397a6304d880248a13a78d0b2f"
+   "sha256": "b0a471507323e0789774395c968a34f6bb2ee3c9ee0061a24571db460d9e93de"
   },
   {
    "path": "audits/predictive-intelligence/phase_10/probes/verify_trace_social.py",
    "sha256": "f897f592a78afdbb7839b59cc99e9973a675c5848cd687b113dd1f1a3dacb7a7"
   },
   {
-   "path": "memelab/predictive/socialcat.py",
-   "sha256": "a8cbf36cea7121db825ba3d1b1840563d0bc50962c59b7a92a2333467e81d763"
+   "path": "audits/predictive-intelligence/phase_10/skeptic/PHASE_10_SKEPTIC.md",
+   "sha256": "5a76cd7380a5b1b35fe4b9225592907ed7eed1bddb2849e1fcaee75e9b7ac34b"
   },
   {
-   "path": "tests/test_predictive_social.py",
-   "sha256": "6c8af0050133309c35fc2bb205311aa7783a8a36ab065001f1fbfd2dbf4ebffd"
+   "path": "audits/predictive-intelligence/phase_10/skeptic/p10b_counterexamples.py",
+   "sha256": "4cc8afb880cfc62dc4d4c5d25f806f2e63432f4935921ed03d1ca2ea4602f865"
   },
   {
-   "path": "docs/predictive-intelligence/DECISIONS.md",
-   "sha256": "b32bcaa00bd7ec612d7d92a0f5236d86bb58ee91d6aac9811c67fbf558dd5fc8"
+   "path": "audits/predictive-intelligence/phase_10/skeptic/p10b_counterexamples_out.json",
+   "sha256": "e1bc1be93b730ec714356d1468d9d4197663b3bf995d51627eba588ead07a125"
   },
   {
-   "path": "docs/predictive-intelligence/ROADMAP.md",
-   "sha256": "dc5a517fe2faeeeb25ee95078b19e391e557d433e5f5fe301fb75ca853d21b88"
+   "path": "audits/predictive-intelligence/phase_10/skeptic/p10b_export_tables.py",
+   "sha256": "5fb7a534e7a5f38feb66e22409c491d9f87f58548940e4ea1cc44ede3d634ea1"
   },
   {
-   "path": "docs/predictive-intelligence/HANDOFF.md",
-   "sha256": "f6f02fb85eb9900b05541081d4b3f6aaf6ca5b8a8fe7d96d16448b752193f37c"
+   "path": "audits/predictive-intelligence/phase_10/skeptic/p10b_features_indep.py",
+   "sha256": "77f26cc8ea77becbe9d73d8400b04621b8d89afe7b4983dd8cd3f741ec1ab608"
   },
   {
-   "path": "audits/predictive-intelligence/COST_LEDGER.md",
-   "sha256": "589f4d241f0687c69efe5db77ba6c8ab7fae2ef581de78504996e5c2284a44a3"
+   "path": "audits/predictive-intelligence/phase_10/skeptic/p10b_inbox_attention.py",
+   "sha256": "7e4baa21043d6262b906ccdd39f4faf903e3fbe1af67289938efeec222741858"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/skeptic/p10b_launch_channels.py",
+   "sha256": "711981eebd3c2f3151acb55ae000cdb230c6c35e31f5964310646862bbd2a81a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/skeptic/p10b_own_mutations.json",
+   "sha256": "012cdbae80733f836a8f1ba113de7f7c077a135721a89ea3dc630bdb80435bc4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/skeptic/p10b_own_mutations.py",
+   "sha256": "1dee575c4fe26c32c279ecae8379d4285d50d0f97ccb9a91051c59d6bb91946a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/skeptic/p10b_rederive.py",
+   "sha256": "c528ff6a67fc8038d544b48a74a67eb0e01f9be1d5288d7819d7a2b0b5b58e41"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/skeptic/p10b_rows_scan.py",
+   "sha256": "cb8083e7b4814b9802066208f05bb4bc72089a2711ee8d4e1304dfb89eaab575"
   }
  ],
  "blockers": [
@@ -304,7 +340,7 @@
    "exit_code": 0,
    "name": "G4 numpy core, tests, social and catalyst code unchanged",
    "pass": true,
-   "result": "51 passed; git diff f99c6c7 HEAD on memelab/social, catalyst, chains, modules empty"
+   "result": "56 passed at repair code 1c75a12 (51 in the first pass); git diff f99c6c7 HEAD on memelab/social, catalyst, chains, modules empty"
   },
   {
    "input": "evidence/traps.json CX10, evidence/crosschecks.json export_context_provenance",
@@ -371,27 +407,27 @@
    "exit_code": 0,
    "name": "G15 oracle newton-cholesky 1e-9",
    "pass": true,
-   "result": "40 real designs, max 1.88e-11; Prep 4.9e-15"
+   "result": "40 real logistic designs, max 1.88e-11; Prep 4.9e-15; repair pass 2: 10 G1 stump designs against GradientBoostingClassifier, max 2.2e-16"
   },
   {
    "input": "evidence/determinism.json, evidence/run_log.json",
    "name": "G16 determinism and isolation",
    "pass": true,
-   "result": "identical except trace latency; 0 socket events; stores unchanged"
+   "result": "first pass and repair run at 1c75a12: identical except trace latency; repair run vs first pass 36 of 37 byte-equal, trace latency only; 0 socket events; stores unchanged by both runs"
   },
   {
    "command": "pytest tests/test_predictive_social.py",
    "exit_code": 0,
    "name": "G17 catalyst classifier (TEST_ONLY)",
    "pass": true,
-   "result": "P04, P15, P17, P41, P45, identity, evidence as of T, type, no probability tests pass"
+   "result": "P04, P15, P17, P41, P45, identity, evidence as of T, type, no probability; repair pass 2: VERIFIED availability from the last condition (CX-10b-A), follow-through from the decision, missing role, OFFICIAL link, official item naming the mint"
   },
   {
    "command": "pytest tests/test_predictive_social.py",
    "exit_code": 0,
    "name": "G18 social adapter (TEST_ONLY)",
    "pass": true,
-   "result": "P03, P15, P16, P17, P26, P36, ticker-only, track record, read-only tests pass"
+   "result": "P03, P15, P16, P17, P26, P36, ticker-only, track record, read-only; repair pass 2: account labels as known at T (CX-10b-B), versions recorded after T (m3)"
   },
   {
    "input": "evidence/trace/FORECAST_TRACE.json event_without_post_event_text; test_p15_a_duplicated_influencer_article_counts_once",
@@ -409,7 +445,7 @@
    "input": "data/CATALYST_PROVENANCE.md",
    "name": "G21 provenance and rights",
    "pass": true,
-   "result": "written"
+   "result": "written; repair pass 2 adds the adjacent lab rows naming decision mints (m1) and the paid/boosted meaning (m2)"
   },
   {
    "input": "evidence/crosschecks.json",
@@ -442,7 +478,7 @@
    "exit_code": 0,
    "name": "G25 mutation probe at HEAD",
    "pass": true,
-   "result": "85 of 85 caught, 1 equivalent reported apart"
+   "result": "102 of 102 caught at 1c75a12 (85 in the first pass), 1 equivalent reported apart"
   },
   {
    "input": "test_no_other_module_imports_the_phase_10_code; crosschecks modules_importing_socialcat []",
@@ -484,27 +520,80 @@
    "name": "G27 git status clean",
    "pass": true,
    "result": "clean after stray removal"
+  },
+  {
+   "command": "python -B probes/cx10b_check.py 0784a9a 1c75a12 evidence/cx10b_check.json",
+   "exit_code": 0,
+   "name": "R2 skeptic counterexamples on first-pass and repaired code",
+   "pass": true,
+   "result": "first pass: CX-10b-A available_at T-2900 and follow-through label 1; CX-10b-B mentions 1, bot share 0.5; m3 mentions 1. Repaired: T-600 and label 0; 2 and 0; 2"
+  },
+  {
+   "command": "python -B probes/run_social.py audits/predictive-intelligence/phase_10 --npz <scratch> (head 1c75a12, 14:34:40Z)",
+   "exit_code": 0,
+   "name": "R2 recorded run repeated at the repair code",
+   "pass": true,
+   "result": "targets OK, 0 socket events, stores unchanged, ledger_missing 0; every metric, card, fold, prediction, ledger and trap file byte-equal to the first pass"
+  },
+  {
+   "command": "python -B probes/verify_trace_social.py; python -B probes/recompute_oos_social.py",
+   "exit_code": 0,
+   "name": "R2 trace and out-of-sample recomputation after the repair run",
+   "pass": true,
+   "result": "0 differences; 326 numbers 0 differences"
+  },
+  {
+   "input": "skeptic/p10b_own_mutations.py on a clone at 1c75a12 (evidence/skeptic_mutations_at_repair.json)",
+   "name": "R2 skeptic's own mutations at the repair code",
+   "pass": true,
+   "result": "16 caught including m3; 1 equivalent (as the skeptic found); 1 pattern renamed, the same mutation caught by the phase probe"
+  },
+  {
+   "input": "skeptic scripts at e245d91 (evidence/provenance_rescan.json)",
+   "name": "R2 provenance rescan (m1)",
+   "pass": true,
+   "result": "social_snapshots 99 rows, 8 mints, 216 decisions; launch tables 24, 38, 18 mints; boosts 3 mints; 45 inbox files"
   }
  ],
  "commits": {
   "code": "0784a9a",
-  "pre_registration": "c3f04c8"
+  "outputs_first_pass": "f4b3a89",
+  "pre_registration": "c3f04c8",
+  "repair_code": "1c75a12",
+  "repair_outputs": "06999b7"
  },
  "head_after": "f4b3a89",
  "head_before": "1a52308",
  "limitations": [
   "no social or catalyst row exists for any decision: every decision CATALYST_TABLES_NOT_EXPORTED and SOCIAL_TABLES_NOT_EXPORTED; no verified catalyst, no catalyst probability",
-  "socialcat-1 inputs are the lab's on-chain and market attention proxies, not social text, and depend on the lab's code version per export (PI-D-008)",
+  "socialcat-1 inputs are the lab's on-chain and market attention proxies, not social text, and depend on the lab's code version per export (PI-D-008); the lab's 'paid/boosted' reading is mostly a Jupiter organic score below 40, sometimes an active boost",
   "development only, retrospective, provider mode; 1 to 5 out-of-sample days; every verdict INSUFFICIENT_HISTORY, INSUFFICIENT_DAYS or INSUFFICIENT_EVENTS",
   "catalyst follow-through, withdrawal and amplification targets are proposals only",
-  "every number PROVISIONAL until Phase 06's 48 h revision re-read is folded in",
-  "the independent skeptic has not run yet (PI-D-013)"
+  "the catalyst classifier, the social adapter and the proposals are TEST_ONLY (fixtures); in a replay the adapter cannot apply untimed bot labels, so replayed bot shares are lower bounds; catalyst source roles and event categories have no time in the lab schema",
+  "recompute_oos_social.py recomputes predictions from the cards with independent code; it takes socialcat-1 values from the committed CSV (re-derived independently by the skeptic) and does not refit; fits are checked by the scikit-learn oracle (logistic and, since repair pass 2, the G1 stumps)"
  ],
- "next_eligible_phase": "none until the orchestrator's independent skeptic and the Phase 10 repair pass; then Phase 11 if Phase 10 is recorded PASS (provisional under PI-D-046)",
+ "next_eligible_phase": "11, once the orchestrator records Phase 10 PASS",
  "phase": "10",
- "provisional": "PROVISIONAL_PENDING_REVISION_REREAD (PI-D-046)",
+ "provisional": "LIFTED for the revision check by PI-D-059 (the 48 h re-read changed no label); the cards keep PROVISIONAL_PENDING_REVISION_REREAD and revision_check_claimed false as written",
  "revision_check_claimed": false,
- "status": "NEEDS_REVIEW",
+ "skeptic": {
+  "material": [
+   "M1 CX-10b-A: VERIFIED availability from first sighting and link; follow-through could start before verification and the decision (TEST_ONLY part)",
+   "M2 CX-10b-B: later suspensions and untimed bot labels applied at earlier decisions (TEST_ONLY part)"
+  ],
+  "minor": [
+   "m1 provenance missed adjacent lab rows",
+   "m2 paid/boosted wording",
+   "m3 surviving mutant (versions after T)",
+   "m4 no oracle for G1 stump fits",
+   "m5 classifier edges",
+   "m6 traps.json depends on origin/main"
+  ],
+  "real_data_numbers_changed": 0,
+  "repairs": "PI-D-060; PHASE_10_EVIDENCE.md section 'Independent skeptic and repair pass 2'",
+  "review": "skeptic/PHASE_10_SKEPTIC.md (attempt 10b at 564be76) with skeptic/p10b_*.py"
+ },
+ "status": "PASS",
  "test_only_parts": [
   "catalyst classifier (no catalyst row exists)",
   "social evidence adapter (no social row exists)",
