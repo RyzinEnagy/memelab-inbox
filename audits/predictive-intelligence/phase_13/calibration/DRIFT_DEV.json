@@ -1,0 +1,35 @@
+{
+ "T1_24h": {
+  "alarm_times_utc": [],
+  "note": "fewer observations than min_obs cannot alarm",
+  "observations": 24,
+  "settings": {
+   "delta": 0.005,
+   "min_obs": 30,
+   "threshold": 2.0,
+   "two_sided": false
+  }
+ },
+ "T1b_6h": {
+  "alarm_times_utc": [],
+  "note": "",
+  "observations": 44,
+  "settings": {
+   "delta": 0.005,
+   "min_obs": 30,
+   "threshold": 2.0,
+   "two_sided": false
+  }
+ },
+ "T2_24h": {
+  "alarm_times_utc": [],
+  "note": "fewer observations than min_obs cannot alarm",
+  "observations": 8,
+  "settings": {
+   "delta": 0.005,
+   "min_obs": 30,
+   "threshold": 2.0,
+   "two_sided": false
+  }
+ }
+}

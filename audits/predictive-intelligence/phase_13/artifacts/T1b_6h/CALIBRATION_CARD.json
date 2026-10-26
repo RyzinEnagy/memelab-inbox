@@ -1,0 +1,88 @@
+{
+ "calibration_set": {
+  "days": 5,
+  "first_decision_utc": "2026-10-12T10:18:37Z",
+  "k": 3,
+  "last_decision_utc": "2026-10-16T10:42:06Z",
+  "n": 44,
+  "negatives": 41,
+  "rows_sha": "c17cba5953d8b587124ee52f860841c20653ff621cb651dfc1be04505e9abda8",
+  "rule": "champion out-of-sample rows of the development walk-forward, decided before and matured by the cutoff"
+ },
+ "calibration_version": "calibration-1",
+ "calibrator": null,
+ "card_sha": "e8d71d5cc3e0653f15d84d4211d2c1f26cb4c163f759ae9d47f5cd48c3f2145a",
+ "champion_kind": "B2",
+ "champion_model_id": "B2:price_path_target_before_invalidation_6h",
+ "champion_model_sha": "440927a9afea1ec9f3aa95315583111f25589351d62964057f29d510887e57b7",
+ "champion_training_cutoff_utc": "2026-10-17T00:00:00Z",
+ "cutoff": 1792195200.0,
+ "cutoff_utc": "2026-10-17T00:00:00Z",
+ "degeneracy": {
+  "flat": false,
+  "n": 44,
+  "near_flat": false,
+  "ptp": 0.30788611199346577,
+  "sd": 0.07784280958125529
+ },
+ "details": [
+  "NO_CALIBRATOR",
+  "CALIBRATION_SET_TOO_SMALL"
+ ],
+ "evidence": {
+  "check": null,
+  "k": 0,
+  "n": 0,
+  "passed": false,
+  "source": "PROSPECTIVE_HOLDOUT",
+  "status": "NOT_YET_MATURED"
+ },
+ "evidence_rule": {
+  "min_events": 50,
+  "min_per_class": 10
+ },
+ "fit_gate": {
+  "passed": false,
+  "rule": {
+   "min_days": 5,
+   "min_events": 100,
+   "min_per_class": 20
+  },
+  "shortfalls": [
+   "events 44 < 100",
+   "per class 3 < 20"
+  ]
+ },
+ "interval_rule": "hull of the calibrator interval and the Wilson 95% interval of the support bin; excludes unmodelled risk",
+ "is_fixture": false,
+ "level": "ABSTAIN",
+ "method_rule": {
+  "chosen": null,
+  "else": "PLATT",
+  "venn_abers": {
+   "min_events": 200,
+   "min_per_class": 40
+  }
+ },
+ "phase": "13",
+ "publishable": false,
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "source": "STATISTICAL_MODEL",
+ "status": "UNCALIBRATED",
+ "support_bins": [
+  {
+   "k": 0,
+   "n": 22,
+   "p_max": 0.10004715634560717,
+   "p_min": 0.006009495282533625
+  },
+  {
+   "k": 3,
+   "n": 22,
+   "p_max": 0.3138956072759994,
+   "p_min": 0.10972408584721373
+  }
+ ],
+ "target": "price_path_target_before_invalidation_6h",
+ "target_version": "1"
+}

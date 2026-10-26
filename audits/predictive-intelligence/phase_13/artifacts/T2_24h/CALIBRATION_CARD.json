@@ -1,0 +1,83 @@
+{
+ "calibration_set": {
+  "days": 1,
+  "first_decision_utc": "2026-10-14T10:17:43Z",
+  "k": 1,
+  "last_decision_utc": "2026-10-14T10:17:43Z",
+  "n": 8,
+  "negatives": 7,
+  "rows_sha": "b6af61da83e0448fc87019ca922ff15c2379e17668975585ed9b31df791e47ef",
+  "rule": "champion out-of-sample rows of the development walk-forward, decided before and matured by the cutoff"
+ },
+ "calibration_version": "calibration-1",
+ "calibrator": null,
+ "card_sha": "54755efd3808cf7c71b3dd2a8f324b31013a89228697b71adb342d088dda5b91",
+ "champion_kind": "B2",
+ "champion_model_id": "B2:price_path_severe_drawdown_or_halt_24h",
+ "champion_model_sha": "d045d9d7a40947f9a7af108c01f0217440d3e19a16fc5d12328dc57d73ad4aaf",
+ "champion_training_cutoff_utc": "2026-10-17T00:00:00Z",
+ "cutoff": 1792195200.0,
+ "cutoff_utc": "2026-10-17T00:00:00Z",
+ "degeneracy": {
+  "flat": false,
+  "n": 8,
+  "near_flat": false,
+  "ptp": 0.7231455509847946,
+  "sd": 0.22305757644437418
+ },
+ "details": [
+  "NO_CALIBRATOR",
+  "CALIBRATION_SET_TOO_SMALL"
+ ],
+ "evidence": {
+  "check": null,
+  "k": 0,
+  "n": 0,
+  "passed": false,
+  "source": "PROSPECTIVE_HOLDOUT",
+  "status": "NOT_YET_MATURED"
+ },
+ "evidence_rule": {
+  "min_events": 50,
+  "min_per_class": 10
+ },
+ "fit_gate": {
+  "passed": false,
+  "rule": {
+   "min_days": 5,
+   "min_events": 100,
+   "min_per_class": 20
+  },
+  "shortfalls": [
+   "events 8 < 100",
+   "per class 1 < 20",
+   "decision days 1 < 5"
+  ]
+ },
+ "interval_rule": "hull of the calibrator interval and the Wilson 95% interval of the support bin; excludes unmodelled risk",
+ "is_fixture": false,
+ "level": "ABSTAIN",
+ "method_rule": {
+  "chosen": null,
+  "else": "PLATT",
+  "venn_abers": {
+   "min_events": 200,
+   "min_per_class": 40
+  }
+ },
+ "phase": "13",
+ "publishable": false,
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "source": "STATISTICAL_MODEL",
+ "status": "UNCALIBRATED",
+ "support_bins": [
+  {
+   "k": 1,
+   "n": 8,
+   "p_max": 0.7245656745502019,
+   "p_min": 0.0014201235654073717
+  }
+ ],
+ "target": "price_path_severe_drawdown_or_halt_24h",
+ "target_version": "1"
+}

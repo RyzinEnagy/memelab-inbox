@@ -98,10 +98,10 @@ def sklearn_checks(d: Path) -> dict:
     res["worst"] = worst
     # G7 as registered compares with _sigmoid_calibration within 1e-6; the PI-D-053 reference (newton-cholesky, 1e-9) is reported
     # beside it and never replaces the registered check
-    res["g7_as_registered_pass"] = worst["platt_param"] <= 1e-6
+    res["g7_as_registered_pass"] = bool(worst["platt_param"] <= 1e-6)
     res["g7_cases_over_1e-6"] = sorted(k for k, v in res["platt"].items() if v["max_abs_param_diff"] > 1e-6)
-    res["pi_d_053_reference_pass"] = worst["platt_param_newton_cholesky"] <= 1e-9
-    res["pass"] = res["g7_as_registered_pass"] and worst["isotonic"] <= 1e-12 and worst["scores"] <= 1e-9
+    res["pi_d_053_reference_pass"] = bool(worst["platt_param_newton_cholesky"] <= 1e-9)
+    res["pass"] = bool(res["g7_as_registered_pass"] and worst["isotonic"] <= 1e-12 and worst["scores"] <= 1e-9)
     try:
         from statsmodels.stats.proportion import proportion_confint
         wd = 0.0
@@ -111,7 +111,7 @@ def sklearn_checks(d: Path) -> dict:
                     lo, hi = proportion_confint(int(r["positives"]), int(r["n"]), alpha=0.05, method="wilson")
                     wd = max(wd, abs(lo - float(r["wilson_lo"])), abs(hi - float(r["wilson_hi"])))
         res["wilson_statsmodels_max_abs_diff_vs_table_12_decimals"] = wd
-        res["pass"] = res["pass"] and wd <= 1e-11
+        res["pass"] = bool(res["pass"] and wd <= 1e-11)
     except ImportError:
         res["wilson"] = "statsmodels not importable here"
     return res
@@ -140,7 +140,7 @@ def venn_abers_checks(d: Path) -> dict:
         res["cases"][name] = case
     worst = max(max(v for k, v in c.items() if k.startswith("max_abs") or k.startswith("recorded")) for c in res["cases"].values())
     res["worst"] = worst
-    res["pass"] = worst <= 1e-12
+    res["pass"] = bool(worst <= 1e-12)
     return res
 
 

@@ -1,0 +1,179 @@
+{
+ "T1_24h": {
+  "0": {
+   "calibration_set": {
+    "days": 0,
+    "first_decision_utc": null,
+    "k": 0,
+    "last_decision_utc": null,
+    "n": 0,
+    "negatives": 0,
+    "rows_sha": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "rule": "champion out-of-sample rows of the development walk-forward, decided before and matured by the cutoff"
+   },
+   "card_sha": "d19a6eb7967820805461b9deb7aca5d4a8ab8b6e279c67c9da93b37027c3026c",
+   "cutoff_utc": "2026-10-13T00:00:00Z",
+   "details": [
+    "NO_CALIBRATOR",
+    "CALIBRATION_SET_TOO_SMALL"
+   ],
+   "status": "UNCALIBRATED"
+  },
+  "1": {
+   "calibration_set": {
+    "days": 0,
+    "first_decision_utc": null,
+    "k": 0,
+    "last_decision_utc": null,
+    "n": 0,
+    "negatives": 0,
+    "rows_sha": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "rule": "champion out-of-sample rows of the development walk-forward, decided before and matured by the cutoff"
+   },
+   "card_sha": "f23eb6b7e4b34e23dd77e8af996a5c8917b292c7070e7acd7c65919c2032da00",
+   "cutoff_utc": "2026-10-14T00:00:00Z",
+   "details": [
+    "NO_CALIBRATOR",
+    "CALIBRATION_SET_TOO_SMALL"
+   ],
+   "status": "UNCALIBRATED"
+  },
+  "2": {
+   "calibration_set": {
+    "days": 1,
+    "first_decision_utc": "2026-10-13T10:20:23Z",
+    "k": 4,
+    "last_decision_utc": "2026-10-13T10:20:23Z",
+    "n": 11,
+    "negatives": 7,
+    "rows_sha": "a70eac6d95aeabe5a98b5ade62c2d0cd018b1aceb138941844c76f526db8a395",
+    "rule": "champion out-of-sample rows of the development walk-forward, decided before and matured by the cutoff"
+   },
+   "card_sha": "e6009307c2f47d641b1f4ce5a142b96f7d4cbd7c66877f96a9f195022a6deff7",
+   "cutoff_utc": "2026-10-15T00:00:00Z",
+   "details": [
+    "NO_CALIBRATOR",
+    "CALIBRATION_SET_TOO_SMALL"
+   ],
+   "status": "UNCALIBRATED"
+  }
+ },
+ "T1b_6h": {
+  "0": {
+   "calibration_set": {
+    "days": 0,
+    "first_decision_utc": null,
+    "k": 0,
+    "last_decision_utc": null,
+    "n": 0,
+    "negatives": 0,
+    "rows_sha": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "rule": "champion out-of-sample rows of the development walk-forward, decided before and matured by the cutoff"
+   },
+   "card_sha": "8512bd8f0b22d53a5980b01a3cb20b7605e8d32a3753540e938174935850a196",
+   "cutoff_utc": "2026-10-12T00:00:00Z",
+   "details": [
+    "NO_CALIBRATOR",
+    "CALIBRATION_SET_TOO_SMALL"
+   ],
+   "status": "UNCALIBRATED"
+  },
+  "1": {
+   "calibration_set": {
+    "days": 1,
+    "first_decision_utc": "2026-10-12T10:18:37Z",
+    "k": 1,
+    "last_decision_utc": "2026-10-12T10:18:37Z",
+    "n": 8,
+    "negatives": 7,
+    "rows_sha": "ac90f7a7c9514a02a1a60105735e4b16c02e8e27ac96b431964e00e3d03814b8",
+    "rule": "champion out-of-sample rows of the development walk-forward, decided before and matured by the cutoff"
+   },
+   "card_sha": "fa73639ee0ca2029b2222b778841027fa9945212960569932716dc9c4e13690e",
+   "cutoff_utc": "2026-10-13T00:00:00Z",
+   "details": [
+    "NO_CALIBRATOR",
+    "CALIBRATION_SET_TOO_SMALL"
+   ],
+   "status": "UNCALIBRATED"
+  },
+  "2": {
+   "calibration_set": {
+    "days": 2,
+    "first_decision_utc": "2026-10-12T10:18:37Z",
+    "k": 2,
+    "last_decision_utc": "2026-10-13T10:20:23Z",
+    "n": 19,
+    "negatives": 17,
+    "rows_sha": "ae3b37c2156d3320bd4bb4e080aaab7d219b1263acea8eb087d4f82b72ac22de",
+    "rule": "champion out-of-sample rows of the development walk-forward, decided before and matured by the cutoff"
+   },
+   "card_sha": "0bc53ede4b908a6aaa9a99e5bb5f7704264530f0b92b4cc417de82de89277d9d",
+   "cutoff_utc": "2026-10-14T00:00:00Z",
+   "details": [
+    "NO_CALIBRATOR",
+    "CALIBRATION_SET_TOO_SMALL"
+   ],
+   "status": "UNCALIBRATED"
+  },
+  "3": {
+   "calibration_set": {
+    "days": 3,
+    "first_decision_utc": "2026-10-12T10:18:37Z",
+    "k": 2,
+    "last_decision_utc": "2026-10-14T10:17:43Z",
+    "n": 27,
+    "negatives": 25,
+    "rows_sha": "f38c4e1710a4a0e54eff9ea4df235d627f773f8e5484503d3d4211c8b644c0c9",
+    "rule": "champion out-of-sample rows of the development walk-forward, decided before and matured by the cutoff"
+   },
+   "card_sha": "248969857900cabbcc70413217f840956c1fd3a12be01d040c5e62cc4e78cf3d",
+   "cutoff_utc": "2026-10-15T00:00:00Z",
+   "details": [
+    "NO_CALIBRATOR",
+    "CALIBRATION_SET_TOO_SMALL"
+   ],
+   "status": "UNCALIBRATED"
+  },
+  "4": {
+   "calibration_set": {
+    "days": 4,
+    "first_decision_utc": "2026-10-12T10:18:37Z",
+    "k": 3,
+    "last_decision_utc": "2026-10-15T10:13:48Z",
+    "n": 34,
+    "negatives": 31,
+    "rows_sha": "d17d77cc8787c7a20106ab4a7dc536e7d244549c2450d3d43a0b2b380f14aef4",
+    "rule": "champion out-of-sample rows of the development walk-forward, decided before and matured by the cutoff"
+   },
+   "card_sha": "c4cfc35a53afa4c538608fb83afc3831f8ec648c6d5933ee577c05cf5acb4250",
+   "cutoff_utc": "2026-10-16T00:00:00Z",
+   "details": [
+    "NO_CALIBRATOR",
+    "CALIBRATION_SET_TOO_SMALL"
+   ],
+   "status": "UNCALIBRATED"
+  }
+ },
+ "T2_24h": {
+  "0": {
+   "calibration_set": {
+    "days": 0,
+    "first_decision_utc": null,
+    "k": 0,
+    "last_decision_utc": null,
+    "n": 0,
+    "negatives": 0,
+    "rows_sha": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "rule": "champion out-of-sample rows of the development walk-forward, decided before and matured by the cutoff"
+   },
+   "card_sha": "2eacaeac5f15fd68f6a377e20112f6e4530f5cc1d3535e212f5236ba2c4a2d63",
+   "cutoff_utc": "2026-10-14T00:00:00Z",
+   "details": [
+    "NO_CALIBRATOR",
+    "CALIBRATION_SET_TOO_SMALL"
+   ],
+   "status": "UNCALIBRATED"
+  }
+ }
+}

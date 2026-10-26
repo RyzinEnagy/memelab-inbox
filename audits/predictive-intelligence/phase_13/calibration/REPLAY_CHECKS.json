@@ -1,0 +1,56 @@
+{
+ "backtest_status": "BACKTEST_NOT_AVAILABLE",
+ "flag_on": false,
+ "targets": {
+  "T1_24h": {
+   "calibration_rows": 24,
+   "card_at_H": "39cdb003495653edf63fb17f4ac407dacffab24d4bbe8d05b5dd064051402c24",
+   "card_time_cross_check_equal": true,
+   "committed_rows": 24,
+   "equal_within_rounding": true,
+   "fold_card_sha_equal": true,
+   "fold_cutoffs_equal": true,
+   "folds": 3,
+   "max_abs_diff_vs_committed_6_decimals": 4.6326428598808533e-07,
+   "oos_rows": 24
+  },
+  "T1b_6h": {
+   "calibration_rows": 44,
+   "card_at_H": "e8d71d5cc3e0653f15d84d4211d2c1f26cb4c163f759ae9d47f5cd48c3f2145a",
+   "card_time_cross_check_equal": true,
+   "committed_rows": 44,
+   "equal_within_rounding": true,
+   "fold_card_sha_equal": true,
+   "fold_cutoffs_equal": true,
+   "folds": 5,
+   "max_abs_diff_vs_committed_6_decimals": 4.952825336254976e-07,
+   "oos_rows": 44
+  },
+  "T2_24h": {
+   "calibration_rows": 8,
+   "card_at_H": "54755efd3808cf7c71b3dd2a8f324b31013a89228697b71adb342d088dda5b91",
+   "card_time_cross_check_equal": true,
+   "committed_rows": 8,
+   "equal_within_rounding": true,
+   "fold_card_sha_equal": true,
+   "fold_cutoffs_equal": true,
+   "folds": 1,
+   "max_abs_diff_vs_committed_6_decimals": 4.686156180218337e-07,
+   "oos_rows": 8
+  }
+ },
+ "traps_cx13_on_real_holdout_rows": {
+  "T1_24h": {
+   "holdout_rows_as_fit_set": "REFUSED: calibration row 5d688a3fa12e is RETROSPECTIVE_HOLDOUT: only development out-of-sample rows calibrate (the retrospective ",
+   "holdout_rows_relabelled_development": "REFUSED: calibration row 5d688a3fa12e is not a development row (decided before and matured by 2026-10-17T00:00:00Z): a holdout ro"
+  },
+  "T1b_6h": {
+   "holdout_rows_as_fit_set": "REFUSED: calibration row 5d688a3fa12e is RETROSPECTIVE_HOLDOUT: only development out-of-sample rows calibrate (the retrospective ",
+   "holdout_rows_relabelled_development": "REFUSED: calibration row 5d688a3fa12e is not a development row (decided before and matured by 2026-10-17T00:00:00Z): a holdout ro"
+  },
+  "T2_24h": {
+   "holdout_rows_as_fit_set": "REFUSED: calibration row 5d688a3fa12e is RETROSPECTIVE_HOLDOUT: only development out-of-sample rows calibrate (the retrospective ",
+   "holdout_rows_relabelled_development": "REFUSED: calibration row 5d688a3fa12e is not a development row (decided before and matured by 2026-10-17T00:00:00Z): a holdout ro"
+  }
+ }
+}

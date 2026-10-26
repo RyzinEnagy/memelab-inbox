@@ -1,0 +1,37 @@
+condition,contract_reason,explanation,dev_T1_24h,dev_T1b_6h,dev_T2_24h,holdout_post_opening_T1_24h,holdout_post_opening_T1b_6h,holdout_post_opening_T2_24h
+FLAG_OFF,FLAG_OFF,"the predictive flag is off, so nothing is published",24,44,8,66,68,59
+CHAIN_OUT_OF_SCOPE,OUT_OF_SCOPE_CHAIN,the target is defined for Solana decisions only,0,0,0,0,0,0
+MINT_NOT_VERIFIED,UNVERIFIED_EVENT,the token is not an exact verified address,0,0,0,0,0,0
+TARGET_NOT_PRIMARY,TARGET_NOT_FEASIBLE,the target is not one of the three pre-registered primary targets,0,0,0,0,0,0
+POOL_NOT_POINT_IN_TIME,TARGET_NOT_FEASIBLE,no point-in-time pool on the registered price route at the decision,5,11,1,12,14,11
+MARKET_INACTIVE,NO_RECENT_PRICE,no recent trade gives a reference price at the decision,0,0,0,0,0,0
+SOURCE_GAP,SOURCE_STALE,the price source or route failed or is unknown at the decision,0,0,0,0,0,0
+DISALLOWED_INPUT,RESTRICTED_SOURCE,"an input is not allowed (sealed data, bake-off labels, a column outside the card, data available after the decision, or a simulation number)",0,0,0,0,0,0
+SIZE_REQUESTED,EXECUTION_DATA_MISSING,"a position size needs executable depth, which has no history",0,0,0,0,0,0
+BACKTEST_REQUIRED_NOT_AVAILABLE,EXECUTION_DATA_MISSING,a stress assessment was required and backtesting is not available,0,0,0,0,0,0
+MISSING_REQUIRED_INPUT,OOD,a required model input is missing,0,0,0,0,0,0
+FEATURE_OUT_OF_RANGE,OOD,an input lies far outside the model's training range,0,1,0,0,0,0
+SCORE_OUTSIDE_CALIBRATION_RANGE,OOD,the model's raw number lies outside the range seen in calibration,0,4,0,4,2,10
+NO_TOKEN_HISTORY,INSUFFICIENT_HISTORY,the model needs this token's own history and there is not enough,0,0,0,0,0,0
+MODEL_NOT_PROMOTED,MODEL_NOT_SELECTED,the model has not reached SHADOW or VALIDATED_EXPERIMENTAL,24,44,8,66,68,59
+NO_CHAMPION,MODEL_NOT_SELECTED,no champion model exists for this target,0,0,0,0,0,0
+MODEL_TRAINED_AFTER_DECISION,MODEL_NOT_SELECTED,"the model was trained after the decision, so it was not available then",0,0,0,0,0,0
+MODEL_TOO_OLD,MODEL_STALE,the model is more than 14 days older than the decision,0,0,0,0,0,0
+FEATURE_SET_MISMATCH,FEATURE_SCHEMA_MISMATCH,the inputs come from another feature set than the model's,0,0,0,0,0,0
+INVALID_PROBABILITY,MODEL_NOT_SELECTED,the model or calibrator produced a number that is not a finite probability,0,0,0,0,0,0
+NO_CALIBRATOR,UNCALIBRATED,no calibration of this model has passed the frozen check,24,44,8,66,68,59
+DEGENERATE_FLAT_PREDICTIONS,UNCALIBRATED,the model gives the same number for everything,0,0,0,0,0,0
+POINT_OUTSIDE_DISPLAY_RANGE,UNCALIBRATED,the calibrated number is more extreme than the evidence can support,0,0,0,0,0,0
+CALIBRATION_SET_TOO_SMALL,INSUFFICIENT_HISTORY,too few out-of-sample outcomes to fit a calibration,24,44,8,66,68,59
+CALIBRATION_EVIDENCE_TOO_SMALL,INSUFFICIENT_HISTORY,too few independent outcomes to check a calibration,24,44,8,66,68,59
+LOW_SUPPORT,INSUFFICIENT_HISTORY,too few calibration outcomes near this model number,24,28,8,4,2,59
+CALIBRATION_EVIDENCE_PENDING,NOT_YET_MATURED,the outcomes that would check the calibration have not matured,24,44,8,66,68,59
+DRIFT,DRIFT_ALERT,the model's recent errors drifted upward,0,0,0,0,0,0
+COVERAGE_REQUESTS,,dev: requests,24,44,8,,,
+COVERAGE_FORECAST,,dev: forecast,0,0,0,,,
+COVERAGE_RAW_NUMBER,,dev: raw_number,24,44,8,,,
+COVERAGE_CALIBRATED_NUMBER,,dev: calibrated_number,0,0,0,,,
+COVERAGE_REQUESTS,,holdout_post_opening: requests,,,,66,68,59
+COVERAGE_FORECAST,,holdout_post_opening: forecast,,,,0,0,0
+COVERAGE_RAW_NUMBER,,holdout_post_opening: raw_number,,,,66,68,59
+COVERAGE_CALIBRATED_NUMBER,,holdout_post_opening: calibrated_number,,,,0,0,0

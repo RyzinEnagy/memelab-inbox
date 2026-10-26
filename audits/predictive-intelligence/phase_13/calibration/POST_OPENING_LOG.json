@@ -1,0 +1,20 @@
+{
+ "computations": [
+  "abstention-1 replay on the scored holdout rows",
+  "raw B2 reliability (equal to Phase 12)",
+  "development below-gate Venn-Abers applied to holdout scores",
+  "prevalence shift development vs holdout"
+ ],
+ "decision": "PI-D-066 item 2, PI-D-067",
+ "head_code": "5a3c58276dd3c92f1523f68bc9c012cb3125a768",
+ "inputs_sha256": {
+  "CALIBRATION_BINS.csv": "6220f72d5bf81881815fea9a703c9064ced73f111ac30f51971a5459ae215990",
+  "HOLDOUT_DECISIONS.csv": "3d33cdf4bfa2a2241ca3666d662cc778c23d86d80b08e6c61fe29f5ec59b7983",
+  "HOLDOUT_SCORED.csv": "d4c35253e6879d915dd31b6fdd6428d588c0e25e53d9e9895ad2531a771f08d6",
+  "OPENING_LOG.json": "ed392a484870f581b874eb7cbe700fb3dc69bb21a6b2b03ce9c1e9be0eb7f0f4"
+ },
+ "label": "POST_OPENING",
+ "rule": "may only make a statement more conservative (evaluation.conservative_status); never fits, selects or promotes",
+ "sealed_folder_read": false,
+ "time": "see evidence/run_log.json (kept out of this file so two runs are byte-equal)"
+}

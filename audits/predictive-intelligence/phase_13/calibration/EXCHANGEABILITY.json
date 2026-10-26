@@ -1,0 +1,188 @@
+{
+ "T1_24h": {
+  "day_rates": {
+   "2026-10-07": {
+    "n": 16,
+    "positives": 7
+   },
+   "2026-10-08": {
+    "n": 43,
+    "positives": 10
+   },
+   "2026-10-09": {
+    "n": 18,
+    "positives": 3
+   },
+   "2026-10-10": {
+    "n": 15,
+    "positives": 2
+   },
+   "2026-10-11": {
+    "n": 12,
+    "positives": 3
+   },
+   "2026-10-12": {
+    "n": 8,
+    "positives": 1
+   },
+   "2026-10-13": {
+    "n": 11,
+    "positives": 4
+   },
+   "2026-10-14": {
+    "n": 8,
+    "positives": 1
+   },
+   "2026-10-15": {
+    "n": 5,
+    "positives": 3
+   }
+  },
+  "days": {
+   "groups": 9,
+   "n": 136,
+   "p": 0.24938753062346883,
+   "permutations": 20000,
+   "positives": 34,
+   "seed": 20261025,
+   "stat": 10.182898754991779,
+   "status": "EXCHANGEABILITY_NOT_REJECTED_NOT_PROVED"
+  },
+  "regime": "one out-of-sample regime label in development (Phase 11): regime exchangeability cannot be tested",
+  "route": {
+   "groups": 2,
+   "n": 136,
+   "p": 0.02104894755262237,
+   "permutations": 20000,
+   "positives": 34,
+   "seed": 20261025,
+   "stat": 6.326797385620915,
+   "status": "EXCHANGEABILITY_REJECTED"
+  },
+  "rows": "ALL_DEVELOPMENT_LABELS_AT_H"
+ },
+ "T1b_6h": {
+  "day_rates": {
+   "2026-10-07": {
+    "n": 16,
+    "positives": 7
+   },
+   "2026-10-08": {
+    "n": 64,
+    "positives": 6
+   },
+   "2026-10-09": {
+    "n": 41,
+    "positives": 5
+   },
+   "2026-10-10": {
+    "n": 43,
+    "positives": 3
+   },
+   "2026-10-11": {
+    "n": 16,
+    "positives": 2
+   },
+   "2026-10-12": {
+    "n": 8,
+    "positives": 1
+   },
+   "2026-10-13": {
+    "n": 11,
+    "positives": 1
+   },
+   "2026-10-14": {
+    "n": 8,
+    "positives": 0
+   },
+   "2026-10-15": {
+    "n": 7,
+    "positives": 1
+   },
+   "2026-10-16": {
+    "n": 10,
+    "positives": 0
+   }
+  },
+  "days": {
+   "groups": 10,
+   "n": 224,
+   "p": 0.02294885255737213,
+   "permutations": 20000,
+   "positives": 26,
+   "seed": 20261025,
+   "stat": 19.8342132838085,
+   "status": "EXCHANGEABILITY_REJECTED"
+  },
+  "regime": "one out-of-sample regime label in development (Phase 11): regime exchangeability cannot be tested",
+  "route": {
+   "groups": 2,
+   "n": 224,
+   "p": 0.010849457527123643,
+   "permutations": 20000,
+   "positives": 26,
+   "seed": 20261025,
+   "stat": 6.49444720736448,
+   "status": "EXCHANGEABILITY_REJECTED"
+  },
+  "rows": "ALL_DEVELOPMENT_LABELS_AT_H"
+ },
+ "T2_24h": {
+  "day_rates": {
+   "2026-10-07": {
+    "n": 16,
+    "positives": 8
+   },
+   "2026-10-08": {
+    "n": 43,
+    "positives": 11
+   },
+   "2026-10-09": {
+    "n": 18,
+    "positives": 5
+   },
+   "2026-10-10": {
+    "n": 15,
+    "positives": 1
+   },
+   "2026-10-11": {
+    "n": 12,
+    "positives": 2
+   },
+   "2026-10-12": {
+    "n": 8,
+    "positives": 0
+   },
+   "2026-10-13": {
+    "n": 11,
+    "positives": 0
+   },
+   "2026-10-14": {
+    "n": 8,
+    "positives": 1
+   }
+  },
+  "days": {
+   "groups": 8,
+   "n": 131,
+   "p": 0.019649017549122544,
+   "permutations": 20000,
+   "positives": 28,
+   "seed": 20261025,
+   "stat": 16.322643216427082,
+   "status": "EXCHANGEABILITY_REJECTED"
+  },
+  "regime": "one out-of-sample regime label in development (Phase 11): regime exchangeability cannot be tested",
+  "route": {
+   "groups": 2,
+   "n": 131,
+   "p": 0.15244237788110596,
+   "permutations": 20000,
+   "positives": 28,
+   "seed": 20261025,
+   "stat": 2.2472738937965797,
+   "status": "EXCHANGEABILITY_NOT_REJECTED_NOT_PROVED"
+  },
+  "rows": "ALL_DEVELOPMENT_LABELS_AT_H"
+ }
+}

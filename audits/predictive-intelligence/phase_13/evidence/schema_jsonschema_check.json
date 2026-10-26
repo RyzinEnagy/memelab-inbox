@@ -1,0 +1,17 @@
+{
+ "files": {
+  "FORECAST_RESULTS_DEV.jsonl": {
+   "errors": 0,
+   "pairs": 76
+  },
+  "FORECAST_RESULTS_HOLDOUT_POST_OPENING.jsonl": {
+   "errors": 0,
+   "pairs": 193
+  },
+  "FORECAST_RESULTS_TODAY.jsonl": {
+   "errors": 0,
+   "pairs": 30
+  }
+ },
+ "jsonschema_version": "4.26.0"
+}

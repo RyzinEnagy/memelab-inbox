@@ -1,0 +1,131 @@
+{
+ "T1_24h": {
+  "auc": null,
+  "auc_note": "fewer than 10 per class: no AUC or AP",
+  "average_precision": null,
+  "brier": 0.24486653469096206,
+  "brier_ref": 0.22972581553043958,
+  "bss": -0.06590778283042487,
+  "bss_governing": "day",
+  "bss_intervals": {
+   "day": {
+    "ci": [
+     -0.6126903760784355,
+     0.09400718514595774
+    ],
+    "finite": 2000,
+    "groups": 3
+   },
+   "mint": {
+    "ci": [
+     -0.24629210531622137,
+     0.10649866623833677
+    ],
+    "finite": 2000,
+    "groups": 24
+   }
+  },
+  "conflict": null,
+  "days": 3,
+  "degeneracy": {
+   "flat": false,
+   "n": 24,
+   "near_flat": false,
+   "ptp": 0.35247365321504587,
+   "sd": 0.10511887896526709
+  },
+  "log_loss": 0.7188367068629423,
+  "log_loss_ref": 0.6553439844977906,
+  "log_loss_skill": -0.09688457339515821,
+  "mints": 24,
+  "n": 24,
+  "positives": 8,
+  "prevalence": 0.3333333333333333
+ },
+ "T1b_6h": {
+  "auc": null,
+  "auc_note": "fewer than 10 per class: no AUC or AP",
+  "average_precision": null,
+  "brier": 0.059459895849723755,
+  "brier_ref": 0.06666901450113442,
+  "bss": 0.10813297159639279,
+  "bss_governing": "mint",
+  "bss_intervals": {
+   "day": {
+    "ci": [
+     -0.02222892195072501,
+     0.20597039474902723
+    ],
+    "finite": 2000,
+    "groups": 5
+   },
+   "mint": {
+    "ci": [
+     -0.127161472928769,
+     0.21878996505601506
+    ],
+    "finite": 2000,
+    "groups": 37
+   }
+  },
+  "conflict": null,
+  "days": 5,
+  "degeneracy": {
+   "flat": false,
+   "n": 44,
+   "near_flat": false,
+   "ptp": 0.30788611199346577,
+   "sd": 0.07784280958125529
+  },
+  "log_loss": 0.2169975493391273,
+  "log_loss_ref": 0.2657735401777552,
+  "log_loss_skill": 0.1835246308041253,
+  "mints": 37,
+  "n": 44,
+  "positives": 3,
+  "prevalence": 0.06818181818181818
+ },
+ "T2_24h": {
+  "auc": null,
+  "auc_note": "fewer than 10 per class: no AUC or AP",
+  "average_precision": null,
+  "brier": 0.15260380154781691,
+  "brier_ref": 0.12749630177514792,
+  "bss": -0.19692727885510353,
+  "bss_governing": "mint",
+  "bss_intervals": {
+   "day": {
+    "ci": [
+     -0.19692727885510353,
+     -0.19692727885510353
+    ],
+    "finite": 2000,
+    "groups": 1
+   },
+   "mint": {
+    "ci": [
+     -2.049342990699519,
+     0.9137069666634497
+    ],
+    "finite": 2000,
+    "groups": 8
+   }
+  },
+  "conflict": "BRIER_LOGLOSS_CONFLICT",
+  "days": 1,
+  "degeneracy": {
+   "flat": false,
+   "n": 8,
+   "near_flat": false,
+   "ptp": 0.7231455509847946,
+   "sd": 0.22305757644437418
+  },
+  "log_loss": 0.4191889690609649,
+  "log_loss_ref": 0.43158154676885807,
+  "log_loss_skill": 0.028714336376689964,
+  "mints": 8,
+  "n": 8,
+  "positives": 1,
+  "prevalence": 0.125
+ }
+}

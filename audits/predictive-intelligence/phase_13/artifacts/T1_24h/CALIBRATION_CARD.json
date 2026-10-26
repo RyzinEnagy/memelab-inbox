@@ -1,0 +1,83 @@
+{
+ "calibration_set": {
+  "days": 3,
+  "first_decision_utc": "2026-10-13T10:20:23Z",
+  "k": 8,
+  "last_decision_utc": "2026-10-15T10:13:48Z",
+  "n": 24,
+  "negatives": 16,
+  "rows_sha": "e857d152ba57b71d844b531cf51db9c3786623a0a0c9f66e6a09900719a6ecee",
+  "rule": "champion out-of-sample rows of the development walk-forward, decided before and matured by the cutoff"
+ },
+ "calibration_version": "calibration-1",
+ "calibrator": null,
+ "card_sha": "39cdb003495653edf63fb17f4ac407dacffab24d4bbe8d05b5dd064051402c24",
+ "champion_kind": "B2",
+ "champion_model_id": "B2:price_path_target_before_invalidation_24h",
+ "champion_model_sha": "e04172636be8263ff89a36af82a1148555c521c1443f4ce3e9e214253ac24470",
+ "champion_training_cutoff_utc": "2026-10-17T00:00:00Z",
+ "cutoff": 1792195200.0,
+ "cutoff_utc": "2026-10-17T00:00:00Z",
+ "degeneracy": {
+  "flat": false,
+  "n": 24,
+  "near_flat": false,
+  "ptp": 0.35247365321504587,
+  "sd": 0.10511887896526709
+ },
+ "details": [
+  "NO_CALIBRATOR",
+  "CALIBRATION_SET_TOO_SMALL"
+ ],
+ "evidence": {
+  "check": null,
+  "k": 0,
+  "n": 0,
+  "passed": false,
+  "source": "PROSPECTIVE_HOLDOUT",
+  "status": "NOT_YET_MATURED"
+ },
+ "evidence_rule": {
+  "min_events": 50,
+  "min_per_class": 10
+ },
+ "fit_gate": {
+  "passed": false,
+  "rule": {
+   "min_days": 5,
+   "min_events": 100,
+   "min_per_class": 20
+  },
+  "shortfalls": [
+   "events 24 < 100",
+   "per class 8 < 20",
+   "decision days 3 < 5"
+  ]
+ },
+ "interval_rule": "hull of the calibrator interval and the Wilson 95% interval of the support bin; excludes unmodelled risk",
+ "is_fixture": false,
+ "level": "ABSTAIN",
+ "method_rule": {
+  "chosen": null,
+  "else": "PLATT",
+  "venn_abers": {
+   "min_events": 200,
+   "min_per_class": 40
+  }
+ },
+ "phase": "13",
+ "publishable": false,
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "source": "STATISTICAL_MODEL",
+ "status": "UNCALIBRATED",
+ "support_bins": [
+  {
+   "k": 8,
+   "n": 24,
+   "p_max": 0.3979806678720905,
+   "p_min": 0.04550701465704466
+  }
+ ],
+ "target": "price_path_target_before_invalidation_24h",
+ "target_version": "1"
+}

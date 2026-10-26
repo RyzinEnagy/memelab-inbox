@@ -1,0 +1,181 @@
+{
+ "as_of_utc": "2026-10-26T20:00:00Z",
+ "decisions": 10,
+ "note": "prospective decisions of the development store; their features are not in the Phase 05 store (sealed by design) and no price was read, so inputs are missing and eligibility is unknown; no label of them is read",
+ "targets": {
+  "T1_24h": {
+   "calibration_card_sha": "39cdb003495653edf63fb17f4ac407dacffab24d4bbe8d05b5dd064051402c24",
+   "calibration_status": "UNCALIBRATED",
+   "champion": "B2:price_path_target_before_invalidation_24h",
+   "champion_model_sha": "e04172636be8263ff89a36af82a1148555c521c1443f4ce3e9e214253ac24470",
+   "champion_stale_after_utc": "2026-10-31T00:00:00Z",
+   "decision_requests": 10,
+   "prediction_status": "ABSTAIN",
+   "reason_counts": {
+    "FLAG_OFF": 10,
+    "INSUFFICIENT_HISTORY": 10,
+    "MODEL_NOT_SELECTED": 10,
+    "NOT_YET_MATURED": 10,
+    "OOD": 10,
+    "SOURCE_STALE": 10,
+    "TARGET_NOT_FEASIBLE": 1,
+    "UNCALIBRATED": 10
+   },
+   "standing_conditions": [
+    {
+     "code": "FLAG_OFF",
+     "detail": "",
+     "reason": "FLAG_OFF"
+    },
+    {
+     "code": "MODEL_NOT_PROMOTED",
+     "detail": "level ABSTAIN",
+     "reason": "MODEL_NOT_SELECTED"
+    },
+    {
+     "code": "NO_CALIBRATOR",
+     "detail": "status UNCALIBRATED",
+     "reason": "UNCALIBRATED"
+    },
+    {
+     "code": "CALIBRATION_SET_TOO_SMALL",
+     "detail": "events 24 < 100; per class 8 < 20; decision days 3 < 5",
+     "reason": "INSUFFICIENT_HISTORY"
+    },
+    {
+     "code": "CALIBRATION_EVIDENCE_TOO_SMALL",
+     "detail": "0 matured evidence events",
+     "reason": "INSUFFICIENT_HISTORY"
+    },
+    {
+     "code": "CALIBRATION_EVIDENCE_PENDING",
+     "detail": "prospective holdout labels not matured (Phase 19)",
+     "reason": "NOT_YET_MATURED"
+    }
+   ],
+   "standing_reasons": [
+    "INSUFFICIENT_HISTORY",
+    "NOT_YET_MATURED",
+    "UNCALIBRATED",
+    "MODEL_NOT_SELECTED",
+    "FLAG_OFF"
+   ]
+  },
+  "T1b_6h": {
+   "calibration_card_sha": "e8d71d5cc3e0653f15d84d4211d2c1f26cb4c163f759ae9d47f5cd48c3f2145a",
+   "calibration_status": "UNCALIBRATED",
+   "champion": "B2:price_path_target_before_invalidation_6h",
+   "champion_model_sha": "440927a9afea1ec9f3aa95315583111f25589351d62964057f29d510887e57b7",
+   "champion_stale_after_utc": "2026-10-31T00:00:00Z",
+   "decision_requests": 10,
+   "prediction_status": "ABSTAIN",
+   "reason_counts": {
+    "FLAG_OFF": 10,
+    "INSUFFICIENT_HISTORY": 10,
+    "MODEL_NOT_SELECTED": 10,
+    "NOT_YET_MATURED": 10,
+    "OOD": 10,
+    "SOURCE_STALE": 10,
+    "TARGET_NOT_FEASIBLE": 1,
+    "UNCALIBRATED": 10
+   },
+   "standing_conditions": [
+    {
+     "code": "FLAG_OFF",
+     "detail": "",
+     "reason": "FLAG_OFF"
+    },
+    {
+     "code": "MODEL_NOT_PROMOTED",
+     "detail": "level ABSTAIN",
+     "reason": "MODEL_NOT_SELECTED"
+    },
+    {
+     "code": "NO_CALIBRATOR",
+     "detail": "status UNCALIBRATED",
+     "reason": "UNCALIBRATED"
+    },
+    {
+     "code": "CALIBRATION_SET_TOO_SMALL",
+     "detail": "events 44 < 100; per class 3 < 20",
+     "reason": "INSUFFICIENT_HISTORY"
+    },
+    {
+     "code": "CALIBRATION_EVIDENCE_TOO_SMALL",
+     "detail": "0 matured evidence events",
+     "reason": "INSUFFICIENT_HISTORY"
+    },
+    {
+     "code": "CALIBRATION_EVIDENCE_PENDING",
+     "detail": "prospective holdout labels not matured (Phase 19)",
+     "reason": "NOT_YET_MATURED"
+    }
+   ],
+   "standing_reasons": [
+    "INSUFFICIENT_HISTORY",
+    "NOT_YET_MATURED",
+    "UNCALIBRATED",
+    "MODEL_NOT_SELECTED",
+    "FLAG_OFF"
+   ]
+  },
+  "T2_24h": {
+   "calibration_card_sha": "54755efd3808cf7c71b3dd2a8f324b31013a89228697b71adb342d088dda5b91",
+   "calibration_status": "UNCALIBRATED",
+   "champion": "B2:price_path_severe_drawdown_or_halt_24h",
+   "champion_model_sha": "d045d9d7a40947f9a7af108c01f0217440d3e19a16fc5d12328dc57d73ad4aaf",
+   "champion_stale_after_utc": "2026-10-31T00:00:00Z",
+   "decision_requests": 10,
+   "prediction_status": "ABSTAIN",
+   "reason_counts": {
+    "FLAG_OFF": 10,
+    "INSUFFICIENT_HISTORY": 10,
+    "MODEL_NOT_SELECTED": 10,
+    "NOT_YET_MATURED": 10,
+    "OOD": 10,
+    "SOURCE_STALE": 10,
+    "TARGET_NOT_FEASIBLE": 1,
+    "UNCALIBRATED": 10
+   },
+   "standing_conditions": [
+    {
+     "code": "FLAG_OFF",
+     "detail": "",
+     "reason": "FLAG_OFF"
+    },
+    {
+     "code": "MODEL_NOT_PROMOTED",
+     "detail": "level ABSTAIN",
+     "reason": "MODEL_NOT_SELECTED"
+    },
+    {
+     "code": "NO_CALIBRATOR",
+     "detail": "status UNCALIBRATED",
+     "reason": "UNCALIBRATED"
+    },
+    {
+     "code": "CALIBRATION_SET_TOO_SMALL",
+     "detail": "events 8 < 100; per class 1 < 20; decision days 1 < 5",
+     "reason": "INSUFFICIENT_HISTORY"
+    },
+    {
+     "code": "CALIBRATION_EVIDENCE_TOO_SMALL",
+     "detail": "0 matured evidence events",
+     "reason": "INSUFFICIENT_HISTORY"
+    },
+    {
+     "code": "CALIBRATION_EVIDENCE_PENDING",
+     "detail": "prospective holdout labels not matured (Phase 19)",
+     "reason": "NOT_YET_MATURED"
+    }
+   ],
+   "standing_reasons": [
+    "INSUFFICIENT_HISTORY",
+    "NOT_YET_MATURED",
+    "UNCALIBRATED",
+    "MODEL_NOT_SELECTED",
+    "FLAG_OFF"
+   ]
+  }
+ }
+}
