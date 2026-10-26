@@ -2,7 +2,7 @@
  "phase": "13",
  "status": "NEEDS_REVIEW",
  "head_before": "6f4f8ea6254b6623cb66c627e6b61de3f9455fa8",
- "head_after": null,
+ "head_after": "9f95b714a20d4ac95196972f6e87919ce01c4fad",
  "commits": {
   "pre_registration": "0fdf698",
   "frozen_code": "5a3c582",
@@ -246,6 +246,41 @@
    "result": "flag OFF; no module imports calibration or abstention; contract and fingerprint 4b4aabce unchanged",
    "exit_code": 0,
    "pass": true
+  },
+  {
+   "name": "G27 post-commit suite at 9f95b71",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "result": "1 failed, 1579 passed in 191.43s (known test_dedup_corroboration_resurface_denial only)",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "G27 content guard",
+   "command": "python -m memelab social guard",
+   "result": "0 violations",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G27 seal check after the phase",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "result": "problems [] with the three pinned hashes",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G27 single-branch release audit",
+   "command": "python tools/release_audit.py --history (single-branch clone at 9f95b71)",
+   "result": "Needs action: no.",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G27 git status",
+   "command": "git status --short",
+   "result": "clean after the strays were removed",
+   "exit_code": 0,
+   "pass": true
   }
  ],
  "artifacts": [
@@ -255,7 +290,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_13/PHASE_13_EVIDENCE.md",
-   "sha256": "8a39e0408f3c1e560aa397e08e5a6ff1d0df7ab7e704d0cbfa9968ef7c5d063f"
+   "sha256": "0290905d6f2c6911a601ebab97de1b0e177705dd161128be799a96f2b8b07944"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/SKEPTIC_PACKET.md",
@@ -408,6 +443,22 @@
   {
    "path": "audits/predictive-intelligence/phase_13/models/FORECAST_RESULT_SCHEMA.json",
    "sha256": "e6ce732e40c429f8044d79148b16178ff29f8dfcd4faff9225786227aba44cb5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/postcommit/pytest_summary.txt",
+   "sha256": "67bf7b4fb10f14e96ba83da3b58a28b8030d1d4b2e2847695f38bd6fbff851cf"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/postcommit/release_audit_history.summary.txt",
+   "sha256": "5361bc64543c83800ca22d6bc2a928101c15e94c532439298fe36e235bc08699"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/postcommit/seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/postcommit/social_guard.out.txt",
+   "sha256": "18c21df8221f09f92bff0c1e33893eb0e093d9217c9a6818cca4b656a79ed805"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/probes/mutation_calibration.py",

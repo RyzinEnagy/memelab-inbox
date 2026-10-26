@@ -31,7 +31,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Phase 13 commits
 
-Pre-registration `0fdf698` (20:21:18Z); frozen code `5a3c582` (20:52:33Z); recorded run outputs `9cd5288`; self-review pass 2 code `2e1488a` (21:03:53Z); outputs, evidence and records on top; post-commit record after it (local only; the orchestrator pushes). Post-commit results: `phase_13/PHASE_13_EVIDENCE.md`, "Post-commit results".
+Pre-registration `0fdf698` (20:21:18Z); frozen code `5a3c582` (20:52:33Z); recorded run outputs `9cd5288`; self-review pass 2 code `2e1488a` (21:03:53Z); outputs, evidence and records on top; records `9f95b71`; post-commit record on top (local only; the orchestrator pushes). Post-commit at `9f95b71`: suite `1 failed, 1579 passed` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no.", `git status` clean.
 
 ## Waiting on Elving
 

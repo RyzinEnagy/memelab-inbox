@@ -104,3 +104,16 @@ Every run of the runner reads the opened holdout outcomes from committed Phase 1
 - The out-of-sample comparison with Phase 07 is to 6 decimals.
 - Calibration intervals assume exchangeability, which the development data reject for some targets; no interval covers unmodelled risk.
 - Prospective evidence does not exist yet (Phase 19).
+
+## Post-commit results (at `9f95b71`)
+
+| Command | Result | Exit |
+|---|---|---|
+| `python -m pytest tests -q -p no:cacheprovider` (21:09:02Z) | `1 failed, 1579 passed, 1 warning in 191.43s`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` | 1 |
+| strays removed by hand | `data/reports/20261026_2109_BRETT_0x532f.md`, `data/memelab.sqlite-shm`, `-wal` | |
+| `python -m memelab social guard` | 0 violations | 0 |
+| `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | `"problems": []`, the three pinned hashes (the sealed folder is unchanged) | 0 |
+| `python tools/release_audit.py --history` on a single-branch clone at `9f95b71` | "Needs action: no." | 0 |
+| `git status --short` | clean | 0 |
+
+Files: `postcommit/`. The one warning is the expected RuntimeWarning of `test_a_calibrator_that_returns_a_non_finite_number_is_refused` (a NaN Platt parameter, refused).
