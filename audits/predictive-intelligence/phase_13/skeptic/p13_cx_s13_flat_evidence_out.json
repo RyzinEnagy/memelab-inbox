@@ -1,0 +1,73 @@
+{
+ "CAUGHT_BY_CODE": false,
+ "flat_evidence_card": {
+  "bin_mean_preds": [
+   0.3076923076923077,
+   0.3076923076923077,
+   0.3076923076923077,
+   0.3076923076923077,
+   0.3076923076923077
+  ],
+  "calibration_set_degeneracy": {
+   "flat": false,
+   "n": 300,
+   "near_flat": false,
+   "ptp": 0.9232870312117494,
+   "sd": 0.21960939575944302
+  },
+  "check_bins_ok": true,
+  "check_in_the_large": true,
+  "details": [],
+  "evidence_k": 34,
+  "evidence_n": 120,
+  "evidence_passed": true,
+  "evidence_score_ptp": 0.0,
+  "status": "CALIBRATED"
+ },
+ "honest_card": {
+  "method": "VENN_ABERS",
+  "status": "CALIBRATED"
+ },
+ "published_at_scores_the_evidence_never_tested": [
+  {
+   "interval": [
+    0.03612045660173077,
+    0.1806894201833441
+   ],
+   "probability": 0.1111111111111111,
+   "raw": 0.11382158806762187,
+   "raw_quantile": 0.1,
+   "status": "FORECAST",
+   "validator_errors": []
+  },
+  {
+   "interval": [
+    0.24167774406017556,
+    0.47637381158245135
+   ],
+   "probability": 0.3076923076923077,
+   "raw": 0.37918000696206433,
+   "raw_quantile": 0.5,
+   "status": "FORECAST",
+   "validator_errors": []
+  },
+  {
+   "interval": [
+    0.5576623297382323,
+    0.7869413244763347
+   ],
+   "probability": 0.6774193548387097,
+   "raw": 0.6754530647567407,
+   "raw_quantile": 0.9,
+   "status": "FORECAST",
+   "validator_errors": []
+  }
+ ],
+ "with_evidence_flat_check": {
+  "details": [
+   "NO_CALIBRATOR",
+   "CALIBRATION_CHECK_FAILED"
+  ],
+  "status": "UNCALIBRATED"
+ }
+}

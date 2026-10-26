@@ -381,6 +381,14 @@ def main() -> int:
                    "regime": "one out-of-sample regime label in development (Phase 11): regime exchangeability cannot be tested",
                    "day_rates": {d: {"n": int(sum(1 for x in days if x == d)), "positives": int(sum(yd[i] for i, x in enumerate(days) if x == d))}
                                  for d in sorted(set(days))}}
+        # repair pass 2 (PI-D-070, skeptic m2): route rates and the day test without the earliest decision day
+        routes = [e.route or "UNKNOWN" for e in dev_ex]
+        exch[s]["route_rates"] = {r_: {"n": int(sum(1 for x in routes if x == r_)), "positives": int(sum(yd[i] for i, x in enumerate(routes) if x == r_))}
+                                  for r_ in sorted(set(routes))}
+        first_day = min(days)
+        keep = [i for i, d in enumerate(days) if d != first_day]
+        exch[s]["days_without_first_day"] = {"dropped_day": first_day,
+                                             **CAL.heterogeneity([days[i] for i in keep], yd[keep])}
         # drift stream: champion loss minus B0 loss at each label's maturity (out-of-sample rows only)
         stream = [(rr["example"].label_matures_at, (rr["B2"] - rr["y"]) ** 2 - (rr["B0"] - rr["y"]) ** 2) for rr in res["oos"]
                   if math.isfinite(rr["B2"])]
@@ -433,6 +441,19 @@ def main() -> int:
                              "view": "DEVELOPMENT", "seed": CAL.SEED, "folds": len(res["folds"]), "n_rows": n_rows,
                              "n_with_number": n_num, "verdict": verdict, "split_fingerprint": sf, "selection_status": "",
                              "claim": "NOT_A_CLAIM_DESCRIPTIVE"})
+
+    # Holm over the six exchangeability tests (repair pass 2, PI-D-070, skeptic m2)
+    fam = [(s_, kind) for s_ in (SHORT[t] for t in TARGETS) for kind in ("days", "route")]
+    ph = CAL.K.holm([exch[s_][kind]["p"] if exch[s_][kind]["p"] is not None else 1.0 for s_, kind in fam])
+    for (s_, kind), q in zip(fam, ph):
+        exch[s_][kind]["p_holm_six_tests"] = q
+        exch[s_][kind]["status_after_holm"] = "EXCHANGEABILITY_REJECTED" if q < 0.05 else "NOT_REJECTED_AFTER_HOLM"
+    for s_ in (SHORT[t] for t in TARGETS):
+        ledger13.append({"phase": "13", "experiment_id": f"P13:{LONG[s_]}:EXCHANGEABILITY_HOLM_AND_FIRST_DAY_DROP", "target": LONG[s_],
+                         "candidate": "labels", "kind": "DESCRIPTION_ONLY", "view": "DEVELOPMENT", "seed": CAL.SEED, "folds": "",
+                         "n_rows": exch[s_]["days"]["n"], "n_with_number": exch[s_]["days"]["n"],
+                         "verdict": f"holm days {exch[s_]['days']['p_holm_six_tests']:.3f} route {exch[s_]['route']['p_holm_six_tests']:.3f}",
+                         "split_fingerprint": "", "selection_status": "", "claim": "NOT_A_CLAIM_DESCRIPTIVE_ADDED_IN_REPAIR_PASS_2"})
 
     # ---------------------------------------------------------------- today: the newest prospective decisions (no label read)
     today = C.parse_utc(AS_OF_TODAY)

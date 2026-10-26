@@ -72,7 +72,10 @@ CONDITIONS: dict[str, tuple[str, str]] = {
     "LOW_SUPPORT": ("INSUFFICIENT_HISTORY", "too few calibration outcomes near this model number"),
     "CALIBRATION_EVIDENCE_PENDING": ("NOT_YET_MATURED", "the outcomes that would check the calibration have not matured"),
     "DRIFT": ("DRIFT_ALERT", "the model's recent errors drifted upward"),
+    "CALIBRATION_AFTER_DECISION": ("UNCALIBRATED", "the calibration or its evidence was not available at the decision"),
 }
+# conditions added after the pre-registration by recorded change control (the checklist's rule 12 lists the first 28)
+ADDED_BY_CHANGE_CONTROL = {"CALIBRATION_AFTER_DECISION": "PI-D-070 (skeptic M3)"}
 assert all(r in C.ABSTAIN_REASONS for r, _ in CONDITIONS.values())
 TRADING_WORDS = ("buy", "sell", "long", "short", "entry", "exit now", "moon", "pump", "guaranteed", "signal", "target hit")
 
@@ -161,7 +164,7 @@ def out_of_range(card: dict, x: dict) -> list[str]:
 # ---------------------------------------------------------------- evaluation of one request
 def evaluate(req: dict, *, card: dict | None, level: str, cal_card: dict | None, raw: float | None, raw_why: str | None = None,
              drift_alarms: Sequence[float] = (), backtest_status: str | None = None,
-             allowed_columns: Iterable[str] = B.ALLOWED_COLUMNS) -> dict:
+             allowed_columns: Iterable[str] = B.ALLOWED_COLUMNS, config_path: str | Path | None = None) -> dict:
     """Every condition of rule 12 for one (decision, target) request, plus the calibrated point, interval and support when they
     exist. `raw` is the champion card's own number for the request (from the card's predict), `raw_why` its reason when it has
     none. Nothing here short-circuits: all conditions are evaluated and returned."""
@@ -175,8 +178,11 @@ def evaluate(req: dict, *, card: dict | None, level: str, cal_card: dict | None,
             CAL.verify_card(cal_card)
         except Exception as e:                    # a tampered or foreign calibration card counts as none (self-review pass 2)
             refused, cal_card = f"calibration card refused: {type(e).__name__}", None
-    if req.get("flag_on") is not True:
-        conds.append(_cond("FLAG_OFF"))
+    # the flag is read here, never taken from the caller (repair pass 2, PI-D-070, skeptic M1); a request can only add FLAG_OFF
+    if not C.enabled(config_path):
+        conds.append(_cond("FLAG_OFF", "predictive.enabled is not true in the config"))
+    elif req.get("flag_on") is False:
+        conds.append(_cond("FLAG_OFF", "the request says the flag is off"))
     if req.get("chain") != reg.get("scope_chain", "solana"):
         conds.append(_cond("CHAIN_OUT_OF_SCOPE", f"chain {req.get('chain')!r}"))
     if not mint_verified(req.get("chain"), req.get("mint")):
@@ -213,6 +219,13 @@ def evaluate(req: dict, *, card: dict | None, level: str, cal_card: dict | None,
         support = CAL.support_of(cal_card["support_bins"], float(raw))
         if support is None:
             conds.append(_cond("SCORE_OUTSIDE_CALIBRATION_RANGE", f"raw {float(raw):.4f}"))
+    rng = ((cal_card or {}).get("evidence") or {}).get("score_range")
+    if rng and _fin(raw) and not (float(rng[0]) <= float(raw) <= float(rng[1])) and \
+            not any(c["code"] == "SCORE_OUTSIDE_CALIBRATION_RANGE" for c in conds):
+        conds.append(_cond("SCORE_OUTSIDE_CALIBRATION_RANGE", f"raw {float(raw):.4f} outside the evidence range (PI-D-070)"))
+    if cal_card is not None and float(cal_card.get("available_at", math.inf)) > T:
+        conds.append(_cond("CALIBRATION_AFTER_DECISION", f"calibration available {_iso(float(cal_card['available_at']))}"
+                           if _fin(cal_card.get("available_at")) else "no availability time"))
     if card is not None and card.get("needs_token_history") is True and int(req.get("token_history_rows") or 0) < TOKEN_HISTORY_MIN_ROWS:
         conds.append(_cond("NO_TOKEN_HISTORY", f"{int(req.get('token_history_rows') or 0)} matured rows of this mint"))
     if level not in CAL.PUBLISHABLE_LEVELS:
@@ -347,9 +360,10 @@ def build(req: dict, ev: dict, *, card: dict | None, level: str, cal_card: dict 
 
 def forecast_result(req: dict, *, card: dict | None, level: str, cal_card: dict | None, raw: float | None,
                     raw_why: str | None = None, drift_alarms: Sequence[float] = (), generated_at_utc: str,
-                    backtest_status: str | None = None, is_fixture: bool = False) -> tuple[dict, dict]:
+                    backtest_status: str | None = None, is_fixture: bool = False,
+                    config_path: str | Path | None = None) -> tuple[dict, dict]:
     ev = evaluate(req, card=card, level=level, cal_card=cal_card, raw=raw, raw_why=raw_why, drift_alarms=drift_alarms,
-                  backtest_status=backtest_status)
+                  backtest_status=backtest_status, config_path=config_path)
     return build(req, ev, card=card, level=level, cal_card=cal_card, generated_at_utc=generated_at_utc, is_fixture=is_fixture)
 
 
@@ -359,7 +373,7 @@ def _plain(v: Any) -> bool:
 
 
 def validate_publication(doc: dict, *, model_card: dict | None, calibration_card: dict | None, record: dict | None = None,
-                         backtest: str | None = None) -> list[str]:
+                         backtest: str | None = None, config_path: str | Path | None = None) -> list[str]:
     """`contract.validate` plus the Phase 13 rules. Empty list: the document may be shown."""
     if not isinstance(doc, dict):
         return ["document is not an object"]
@@ -384,6 +398,8 @@ def validate_publication(doc: dict, *, model_card: dict | None, calibration_card
             if extra:
                 errs.append(f"calibration_reference has keys outside the allowlist: {extra} (PI-D-022)")
     if st == "FORECAST":
+        if not C.enabled(config_path):
+            errs.append("FORECAST while the predictive flag is OFF (read from the config, never from the caller; PI-D-070)")
         errs += _forecast_checks(doc, model_card, calibration_card, ref)
         if record is not None and record.get("conditions"):
             errs.append("a FORECAST whose record lists abstention conditions")
@@ -418,6 +434,13 @@ def _forecast_checks(doc: dict, model_card: dict | None, cal: dict | None, ref: 
         errs.append(f"card level {cal['level']}: a probability needs SHADOW or VALIDATED_EXPERIMENTAL")
     if cal["target"] != doc.get("target") or cal["champion_model_sha"] != doc.get("model_sha"):
         errs.append("calibration card of another target or model")
+    if CAL.evidence_gate(int(cal["evidence"].get("n") or 0), int(cal["evidence"].get("k") or 0)):
+        errs.append("calibration evidence below 50 events or 10 per class (PI-D-070)")
+    try:
+        if float(cal["available_at"]) > C.parse_utc(doc.get("decision_time_utc")):
+            errs.append("calibration card or its evidence available after the decision (PI-D-070, skeptic M3)")
+    except (C.ContractError, TypeError, ValueError, KeyError):
+        errs.append("calibration availability cannot be compared with the decision time")
     if not isinstance(ref, dict):
         return errs + ["FORECAST without calibration_reference"]
     if sorted(ref) != sorted(CAL.REFERENCE_KEYS):

@@ -1,0 +1,237 @@
+{
+ "T1_24h": {
+  "decimal_truth": {
+   "a": 0.16499536264944287,
+   "b": 0.6385875718041645,
+   "grad_inf": 2e-60,
+   "iterations": 5
+  },
+  "k": 8,
+  "lab_vs_lbfgs_tight_max_abs_diff": 2.809252830360265e-11,
+  "lab_vs_sklearn_options_max_abs_diff": 1.140106747343772e-07,
+  "lbfgs_sklearn_options": {
+   "a": 0.16499547666011663,
+   "b": 0.6385875033416556,
+   "grad_inf": 2.267219205709381e-07,
+   "max_abs_diff_to_decimal_truth": 1.1401067376293206e-07,
+   "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+   "nit": 9
+  },
+  "lbfgs_tight": {
+   "a": 0.16499536262134937,
+   "b": 0.6385875718097543,
+   "grad_inf": 4.619860050070201e-12,
+   "max_abs_diff_to_decimal_truth": 2.8093499748749196e-11,
+   "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+   "nit": 11
+  },
+  "n": 24,
+  "numpy_platt_lab": {
+   "a": 0.1649953626494419,
+   "b": 0.6385875718041647,
+   "grad_inf": 4.440892098500626e-16,
+   "max_abs_diff_to_decimal_truth": 9.71445146547012e-16
+  },
+  "sklearn_sigmoid_calibration": {
+   "a": 0.16499547666011705,
+   "b": 0.6385875033416554,
+   "equals_lbfgs_sklearn_options_within": 4.163336342344337e-16,
+   "version": "1.9.1"
+  },
+  "trust_exact": {
+   "a": 0.16499536264944065,
+   "b": 0.6385875718041648,
+   "grad_inf": 6.661338147750939e-16,
+   "max_abs_diff_to_decimal_truth": 2.220446049250313e-15,
+   "nit": 3
+  }
+ },
+ "T1b_6h": {
+  "decimal_truth": {
+   "a": -9.595599604794407,
+   "b": 3.8142464930316975,
+   "grad_inf": 1.44e-59,
+   "iterations": 7
+  },
+  "k": 3,
+  "lab_vs_lbfgs_tight_max_abs_diff": 1.7637447058405087e-11,
+  "lab_vs_sklearn_options_max_abs_diff": 1.4959025076421995e-06,
+  "lbfgs_sklearn_options": {
+   "a": -9.595601100696914,
+   "b": 3.814246727010795,
+   "grad_inf": 3.744573698447225e-08,
+   "max_abs_diff_to_decimal_truth": 1.4959025076421995e-06,
+   "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+   "nit": 9
+  },
+  "lbfgs_tight": {
+   "a": -9.595599604811003,
+   "b": 3.814246493049335,
+   "grad_inf": 4.358536101478627e-11,
+   "max_abs_diff_to_decimal_truth": 1.7637447058405087e-11,
+   "message": "ABNORMAL: ",
+   "nit": 11
+  },
+  "n": 44,
+  "numpy_platt_lab": {
+   "a": -9.595599604794407,
+   "b": 3.8142464930316975,
+   "grad_inf": 6.938893903907228e-17,
+   "max_abs_diff_to_decimal_truth": 0.0
+  },
+  "sklearn_sigmoid_calibration": {
+   "a": -9.59560110069691,
+   "b": 3.8142467270107945,
+   "equals_lbfgs_sklearn_options_within": 3.552713678800501e-15,
+   "version": "1.9.1"
+  },
+  "trust_exact": {
+   "a": -9.595599604794394,
+   "b": 3.8142464930316944,
+   "grad_inf": 3.119032809806299e-15,
+   "max_abs_diff_to_decimal_truth": 1.2434497875801753e-14,
+   "nit": 7
+  }
+ },
+ "T2_24h": {
+  "decimal_truth": {
+   "a": -0.3316267202395135,
+   "b": 1.5727467196109641,
+   "grad_inf": 8.698954033559672e-42,
+   "iterations": 5
+  },
+  "k": 1,
+  "lab_vs_lbfgs_tight_max_abs_diff": 2.1017106277554376e-08,
+  "lab_vs_sklearn_options_max_abs_diff": 9.41661258996307e-06,
+  "lbfgs_sklearn_options": {
+   "a": -0.3316361368521035,
+   "b": 1.572748588618611,
+   "grad_inf": 5.736679278070533e-07,
+   "max_abs_diff_to_decimal_truth": 9.41661259001858e-06,
+   "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+   "nit": 5
+  },
+  "lbfgs_tight": {
+   "a": -0.3316266992224073,
+   "b": 1.5727467192306845,
+   "grad_inf": 4.191466174141567e-09,
+   "max_abs_diff_to_decimal_truth": 2.1017106222043225e-08,
+   "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+   "nit": 7
+  },
+  "n": 8,
+  "numpy_platt_lab": {
+   "a": -0.33162672023951356,
+   "b": 1.5727467196109641,
+   "grad_inf": 5.551115123125783e-17,
+   "max_abs_diff_to_decimal_truth": 5.551115123125783e-17
+  },
+  "sklearn_sigmoid_calibration": {
+   "a": -0.33163613685210347,
+   "b": 1.572748588618611,
+   "equals_lbfgs_sklearn_options_within": 5.551115123125783e-17,
+   "version": "1.9.1"
+  },
+  "trust_exact": {
+   "a": -0.33162672002246246,
+   "b": 1.5727467194672158,
+   "grad_inf": 1.2206652355573056e-10,
+   "max_abs_diff_to_decimal_truth": 2.1705104380487228e-10,
+   "nit": 3
+  }
+ },
+ "syn_n30_rare": {
+  "decimal_truth": {
+   "a": -11.639252037062674,
+   "b": 5.3843692624057855,
+   "grad_inf": 3.7e-59,
+   "iterations": 8
+  },
+  "k": 4,
+  "lab_vs_lbfgs_tight_max_abs_diff": 5.055866836300993e-11,
+  "lab_vs_sklearn_options_max_abs_diff": 4.382395175639431e-07,
+  "lbfgs_sklearn_options": {
+   "a": -11.639251598823156,
+   "b": 5.384369227472889,
+   "grad_inf": 3.088021041791622e-07,
+   "max_abs_diff_to_decimal_truth": 4.382395175639431e-07,
+   "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+   "nit": 10
+  },
+  "lbfgs_tight": {
+   "a": -11.639252037012115,
+   "b": 5.384369262385175,
+   "grad_inf": 6.646787287234446e-12,
+   "max_abs_diff_to_decimal_truth": 5.055866836300993e-11,
+   "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+   "nit": 12
+  },
+  "n": 30,
+  "numpy_platt_lab": {
+   "a": -11.639252037062674,
+   "b": 5.3843692624057855,
+   "grad_inf": 6.245004513516506e-17,
+   "max_abs_diff_to_decimal_truth": 0.0
+  },
+  "sklearn_sigmoid_calibration": {
+   "a": -11.63925159882316,
+   "b": 5.38436922747289,
+   "equals_lbfgs_sklearn_options_within": 3.552713678800501e-15,
+   "version": "1.9.1"
+  },
+  "trust_exact": {
+   "a": -11.639251973496185,
+   "b": 5.384369239396316,
+   "grad_inf": 1.9964869904867677e-09,
+   "max_abs_diff_to_decimal_truth": 6.356648896144179e-08,
+   "nit": 21
+  }
+ },
+ "syn_n500": {
+  "decimal_truth": {
+   "a": -18.221006509079437,
+   "b": 7.30044385339539,
+   "grad_inf": 4.8859e-58,
+   "iterations": 9
+  },
+  "k": 123,
+  "lab_vs_lbfgs_tight_max_abs_diff": 1.836966134760587e-10,
+  "lab_vs_sklearn_options_max_abs_diff": 3.380157664878425e-08,
+  "lbfgs_sklearn_options": {
+   "a": -18.221006475277857,
+   "b": 7.300443846844301,
+   "grad_inf": 2.016080467015513e-07,
+   "max_abs_diff_to_decimal_truth": 3.380158020149793e-08,
+   "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+   "nit": 12
+  },
+  "lbfgs_tight": {
+   "a": -18.221006508895737,
+   "b": 7.300443853327452,
+   "grad_inf": 4.883460302806952e-11,
+   "max_abs_diff_to_decimal_truth": 1.837001661897375e-10,
+   "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+   "nit": 14
+  },
+  "n": 500,
+  "numpy_platt_lab": {
+   "a": -18.221006509079434,
+   "b": 7.30044385339539,
+   "grad_inf": 3.5083047578154947e-14,
+   "max_abs_diff_to_decimal_truth": 3.552713678800501e-15
+  },
+  "sklearn_sigmoid_calibration": {
+   "a": -18.221006475277857,
+   "b": 7.300443846844301,
+   "equals_lbfgs_sklearn_options_within": 0.0,
+   "version": "1.9.1"
+  },
+  "trust_exact": {
+   "a": -18.221006509079217,
+   "b": 7.300443853395303,
+   "grad_inf": 2.5224267119483557e-13,
+   "max_abs_diff_to_decimal_truth": 2.2026824808563106e-13,
+   "nit": 9
+  }
+ }
+}

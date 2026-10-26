@@ -1,0 +1,144 @@
+{
+ "applied": 21,
+ "caught": 12,
+ "survived": [
+  "K1 Platt tolerance 1e-12 -> 1e-2",
+  "K2 Platt one Newton step",
+  "M5 support ties to the upper bin",
+  "M6 exchangeability alpha 0.05 -> 0.01",
+  "M11 verify_card registry check off",
+  "M13 validator display range dropped",
+  "M14 validator support minimum 20 -> 1",
+  "M17 token history minimum 20 -> 1",
+  "M18 validator FORECAST record conditions not checked"
+ ],
+ "not_applied": [],
+ "results": [
+  {
+   "mutation": "K1 Platt tolerance 1e-12 -> 1e-2",
+   "applied": true,
+   "caught": false,
+   "first_failure": ""
+  },
+  {
+   "mutation": "K2 Platt one Newton step",
+   "applied": true,
+   "caught": false,
+   "first_failure": ""
+  },
+  {
+   "mutation": "M1 Venn-Abers per-class gate 40 -> 20",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_frozen_constants_are_the_preregistered_ones"
+  },
+  {
+   "mutation": "M2 OOD bound 4 -> 40",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_frozen_constants_are_the_preregistered_ones"
+  },
+  {
+   "mutation": "M3 near-flat sd 0.005 -> 0",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_frozen_constants_are_the_preregistered_ones"
+  },
+  {
+   "mutation": "M4 support interval Wilson z 1.96 -> 1.0",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_the_interval_is_the_hull_of_the_calibrator_interval_and_the_support_wilson"
+  },
+  {
+   "mutation": "M5 support ties to the upper bin",
+   "applied": true,
+   "caught": false,
+   "first_failure": ""
+  },
+  {
+   "mutation": "M6 exchangeability alpha 0.05 -> 0.01",
+   "applied": true,
+   "caught": false,
+   "first_failure": ""
+  },
+  {
+   "mutation": "M7 drift threshold 2.0 -> 20.0",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_frozen_constants_are_the_preregistered_ones"
+  },
+  {
+   "mutation": "M8 drift alarm counts only strictly earlier",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_p39_drift_alarms_after_a_step_and_never_before_it"
+  },
+  {
+   "mutation": "M9 evidence status NONE not named",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_a_card_is_calibrated_only_with_a_calibrator_and_passed_admissible_evidence"
+  },
+  {
+   "mutation": "M10 verify_card publishable check off",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_card_sha_level_source_and_status_are_checked_on_load"
+  },
+  {
+   "mutation": "M11 verify_card registry check off",
+   "applied": true,
+   "caught": false,
+   "first_failure": ""
+  },
+  {
+   "mutation": "M12 base-rate bootstrap reps 20000 -> 200",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_frozen_constants_are_the_preregistered_ones"
+  },
+  {
+   "mutation": "M13 validator display range dropped",
+   "applied": true,
+   "caught": false,
+   "first_failure": ""
+  },
+  {
+   "mutation": "M14 validator support minimum 20 -> 1",
+   "applied": true,
+   "caught": false,
+   "first_failure": ""
+  },
+  {
+   "mutation": "M15 evaluate evidence-too-small dropped",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[CALIBRATION_EVIDENCE_TOO_SMALL]"
+  },
+  {
+   "mutation": "M16 model age boundary > -> >=",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_card_time_conditions_agree_with_the_phase_12_replay_guard"
+  },
+  {
+   "mutation": "M17 token history minimum 20 -> 1",
+   "applied": true,
+   "caught": false,
+   "first_failure": ""
+  },
+  {
+   "mutation": "M18 validator FORECAST record conditions not checked",
+   "applied": true,
+   "caught": false,
+   "first_failure": ""
+  },
+  {
+   "mutation": "M19 degenerate flag from card ignored in evaluate",
+   "applied": true,
+   "caught": true,
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[DEGENERATE_FLAT_PREDICTIONS]"
+  }
+ ]
+}

@@ -392,7 +392,7 @@ def test_card_sha_level_source_and_status_are_checked_on_load():
         CAL.verify_card(t)
     t = dict(card, calibrator=None)
     t["card_sha"] = CAL.sha({k: v for k, v in t.items() if k != "card_sha"})
-    with pytest.raises(CAL.CalibrationError, match="CALIBRATED card needs"):
+    with pytest.raises(CAL.CalibrationError, match="calibrator exists|status, details or publishable"):
         CAL.verify_card(t)
     t = dict(card, publishable=False)
     t["card_sha"] = CAL.sha({k: v for k, v in t.items() if k != "card_sha"})
@@ -469,3 +469,87 @@ def test_a_permutation_p_value_is_never_zero():
     assert het["p"] == pytest.approx(1 / 51)
     sh = CAL.prevalence_shift(np.zeros(50), np.ones(50), perms=40)
     assert sh["p"] == pytest.approx(1 / 41)
+
+
+# ---------------------------------------------------------------- repair pass 2 after the independent skeptic (PI-D-070, PI-D-071)
+def _platt_reference(s, y, digits=60):
+    """Independent Platt solution: Newton steps on the smoothed-target log loss in decimal arithmetic (no numpy)."""
+    from decimal import Decimal, getcontext
+    getcontext().prec = digits
+    n1, n0 = sum(1 for v in y if v > 0), sum(1 for v in y if v <= 0)
+    one = Decimal(1)
+    t = [Decimal(n1 + 1) / Decimal(n1 + 2) if v > 0 else one / Decimal(n0 + 2) for v in y]
+    S = [Decimal(repr(float(v))) for v in s]
+    a, b = Decimal(0), (Decimal(n0 + 1) / Decimal(n1 + 1)).ln()
+    for _ in range(100):
+        ga = gb = haa = hab = hbb = Decimal(0)
+        for si, ti in zip(S, t):
+            f = a * si + b
+            p = one / (one + f.exp())
+            r, w = ti - p, p * (one - p)
+            ga += r * si
+            gb += r
+            haa += w * si * si
+            hab += w * si
+            hbb += w
+        det = haa * hbb - hab * hab
+        da, db = (hbb * ga - hab * gb) / det, (-hab * ga + haa * gb) / det
+        a, b = a - da, b - db
+        if max(abs(da), abs(db)) < Decimal(10) ** -40:
+            break
+    return float(a), float(b), float(max(abs(ga), abs(gb)))
+
+
+PLATT_SETS = {
+    # the recorded T2 calibration set (8 development out-of-sample rows, public in phase_13/calibration/CALIBRATION_SETS.csv)
+    "t2_like": ([0.212651593748, 0.72456567455, 0.027283286595, 0.244477767214, 0.089198227979, 0.08182020118, 0.001420123565, 0.027401468616], [1, 0, 0, 0, 0, 0, 0, 0]),
+}
+
+
+@pytest.mark.parametrize("name", ["t2_like", "synthetic_30", "synthetic_300"])
+def test_rp2_numpy_platt_equals_a_60_digit_newton_solution(name):
+    """G7 decision (PI-D-071): the numpy Platt is pinned to an independent exact solution within 1e-9 and its gradient."""
+    if name in PLATT_SETS:
+        s, y = PLATT_SETS[name]
+    else:
+        n = int(name.split("_")[1])
+        rng = np.random.default_rng(n)
+        y = (rng.random(n) < 0.3).astype(int).tolist()
+        s = np.clip(0.2 + 0.3 * np.array(y) + rng.normal(0, 0.12, n), 0.01, 0.99).tolist()
+    a_ref, b_ref, g_ref = _platt_reference(s, y)
+    assert g_ref < 1e-30
+    pl = K.Platt().fit(np.asarray(s, float), np.asarray(y, float))
+    assert abs(pl.a_ - a_ref) <= 1e-9 and abs(pl.b_ - b_ref) <= 1e-9
+    yy = np.asarray(y, float)
+    n1, n0 = yy.sum(), (1 - yy).sum()
+    t = np.where(yy > 0, (n1 + 1) / (n1 + 2), 1 / (n0 + 2))
+    p = pl.predict(np.asarray(s, float))
+    assert max(abs(np.sum((t - p) * np.asarray(s))), abs(np.sum(t - p))) < 1e-10
+
+
+def test_rp2_support_ties_go_to_the_lower_bin_and_alpha_is_frozen():
+    import inspect
+    bins = [{"n": 20, "k": 2, "p_min": 0.1, "p_max": 0.2}, {"n": 20, "k": 8, "p_min": 0.3, "p_max": 0.4}]
+    assert CAL.support_of(bins, 0.25)["k"] == 2
+    assert inspect.signature(CAL.heterogeneity).parameters["alpha"].default == 0.05
+
+
+def test_rp2_a_card_of_another_registry_is_refused():
+    card = CAL.build_card(T1, champion(), rows(300, 90, seed=11), H, level="SHADOW", evidence=evidence(120, 36, seed=12))
+    c = dict(card, registry_sha="0" * 64)
+    c["card_sha"] = CAL.sha({k: v for k, v in c.items() if k != "card_sha"})
+    with pytest.raises(CAL.CalibrationError, match="registry"):
+        CAL.verify_card(c)
+
+
+def test_rp2_evidence_from_another_source_is_refused_at_build():
+    ev = evidence(60, 20)
+    with pytest.raises(CAL.CalibrationError, match="spent"):
+        CAL.build_card(T1, champion(), rows(300, 90, seed=11), H, evidence={**ev, "source": "RETROSPECTIVE_HOLDOUT"})
+
+
+def test_rp2_cards_record_their_availability():
+    card = CAL.build_card(T1, champion(), rows(300, 90, seed=11), H, level="SHADOW", evidence=evidence(120, 36, seed=12))
+    assert card["available_at"] == card["evidence"]["as_of"] > H and card["evidence"]["score_range"][0] <= card["evidence"]["score_range"][1]
+    pend = CAL.build_card(T1, champion(), rows(30, 9), H, evidence={"status": "NOT_YET_MATURED", "source": "PROSPECTIVE_HOLDOUT"})
+    assert pend["available_at"] == H and pend["evidence"]["as_of"] is None

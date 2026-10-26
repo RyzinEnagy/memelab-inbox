@@ -101,7 +101,8 @@
       "CALIBRATION_EVIDENCE_TOO_SMALL",
       "LOW_SUPPORT",
       "CALIBRATION_EVIDENCE_PENDING",
-      "DRIFT"
+      "DRIFT",
+      "CALIBRATION_AFTER_DECISION"
      ]
     },
     "detail": {
@@ -647,7 +648,7 @@
  "$id": "memelab.predictive.forecast_result/1",
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "additionalProperties": false,
- "description": "Format only. A document that passes says nothing about accuracy. A probability appears only on FORECAST, finite in the display range, with a CALIBRATED SHADOW or VALIDATED_EXPERIMENTAL calibration reference; ABSTAIN carries named reasons and no number.",
+ "description": "Format only. A document that passes says nothing about accuracy. A probability appears only on FORECAST, finite in the display range, with a CALIBRATED SHADOW or VALIDATED_EXPERIMENTAL calibration reference; ABSTAIN carries named reasons and no number. Change control PI-D-070 added the condition CALIBRATION_AFTER_DECISION.",
  "properties": {
   "document": {
    "$ref": "#/$defs/document"

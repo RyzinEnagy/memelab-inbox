@@ -52,6 +52,7 @@ DRIFT = {"delta": 0.005, "threshold": 2.0, "min_obs": 30, "two_sided": False}
 CALIBRATED, UNCALIBRATED = "CALIBRATED", "UNCALIBRATED"
 LEVELS = ("ABSTAIN", "SHADOW", "VALIDATED_EXPERIMENTAL", "NO_GO")
 PUBLISHABLE_LEVELS = ("SHADOW", "VALIDATED_EXPERIMENTAL")
+REGISTRY_LEVELS = ("VALIDATED_EXPERIMENTAL",)    # a level a card cannot give itself: refused until the Phase 16 registry exists
 METHODS = ("VENN_ABERS", "PLATT")
 SOURCES = ("STATISTICAL_MODEL",)                  # a behavioral simulation is never a calibration source (P27)
 SPLITS_ALLOWED = ("DEVELOPMENT",)
@@ -402,50 +403,69 @@ def drift_at(alarms: Sequence[float], decision_time: float) -> bool:
 
 
 # ---------------------------------------------------------------- calibration cards
+def decide(cn: dict, *, champion_present: bool, flat: bool, calibrator_method: str | None, ev: dict, level: str) -> dict:
+    """The gate decisions of a card from its own recorded facts (repair pass 2, PI-D-070, skeptic M2 and M4). `build_card`
+    writes exactly this and `verify_card` recomputes it, so a card cannot claim more than its counts allow."""
+    gate = fit_gate(int(cn["n"]), int(cn["k"]), int(cn["days"]))
+    chosen = method_for(int(cn["n"]), int(cn["k"]), int(cn["days"])) if not gate else None
+    details: list[str] = []
+    if not champion_present:
+        details.append("NO_CHAMPION")
+    if gate:
+        details.append("CALIBRATION_SET_TOO_SMALL")
+    elif flat:
+        details.append("DEGENERATE_FLAT_PREDICTIONS")
+    has_cal = calibrator_method is not None
+    ev_flat = bool((ev.get("degeneracy") or {}).get("flat"))
+    ev_small = bool(evidence_gate(int(ev.get("n") or 0), int(ev.get("k") or 0)))
+    if has_cal:
+        if ev["status"] == "NOT_YET_MATURED":
+            details.append("CALIBRATION_EVIDENCE_PENDING")
+        elif ev["status"] == "NONE" or ev_small:
+            details.append("CALIBRATION_EVIDENCE_TOO_SMALL")
+        elif ev_flat:
+            details.append("DEGENERATE_FLAT_PREDICTIONS")
+        elif not ev["passed"]:
+            details.append("CALIBRATION_CHECK_FAILED")
+    ok = (has_cal and champion_present and ev["status"] == "ADMISSIBLE" and bool(ev["passed"]) and not ev_small and not ev_flat
+          and ev.get("source") in EVIDENCE_SOURCES)
+    status = CALIBRATED if ok else UNCALIBRATED
+    if status == UNCALIBRATED:
+        details.insert(0, "NO_CALIBRATOR")
+    return {"fit_gate": {"rule": FIT_GATE, "shortfalls": gate, "passed": not gate},
+            "method_rule": {"venn_abers": VENN_ABERS_GATE, "else": "PLATT", "chosen": chosen},
+            "status": status, "details": details, "publishable": status == CALIBRATED and level in PUBLISHABLE_LEVELS}
+
+
 def build_card(target: str, champion: dict | None, rows: Sequence[dict], cutoff: float, *, level: str = "ABSTAIN",
                source: str = "STATISTICAL_MODEL", evidence: dict | None = None, is_fixture: bool = False) -> dict:
     """The calibration artifact of one champion card at `cutoff`. Rows go through `rows_at` (refused if invalid); the fit gate
     and the method rule decide whether a calibrator exists; the evidence (rule 4) decides whether it passed. Status CALIBRATED
-    only with a calibrator and a passed check on admissible evidence."""
+    only with a calibrator and a passed, non-flat check on admissible prospective evidence (`decide`)."""
     if target not in C.PRIMARY:
         raise CalibrationError(f"{target} is not a primary target")
     if level not in LEVELS:
         raise CalibrationError(f"level {level!r} is not one of {LEVELS}")
+    if level in REGISTRY_LEVELS:
+        raise CalibrationError(f"level {level} needs the Phase 16 promotion registry, which does not exist yet (PI-D-070)")
     if source not in SOURCES:
         raise CalibrationError(f"calibration source {source!r} refused: a behavioral simulation is never calibrated into a "
                                "probability (P27)")
     use = rows_at(rows, cutoff)
     cn = counts(use)
-    details: list[str] = []
-    if champion is None:
-        details.append("NO_CHAMPION")
     gate = fit_gate(cn["n"], cn["k"], cn["days"])
     method = method_for(cn["n"], cn["k"], cn["days"])
     cal = None
     deg = degeneracy([r["score"] for r in use]) if use else None
-    if gate:
-        details.append("CALIBRATION_SET_TOO_SMALL")
-    elif deg and deg["flat"]:
-        details.append("DEGENERATE_FLAT_PREDICTIONS")
-    else:
+    if not gate and not (deg and deg["flat"]):
         cal = fit_calibrator([r["score"] for r in use], [r["y"] for r in use], method)
     bins = support_bins([r["score"] for r in use], [r["y"] for r in use]) if use else []
-    ev = {"status": "NONE", "n": 0, "k": 0, "check": None, "passed": False, "source": None}
+    ev = {"status": "NONE", "n": 0, "k": 0, "check": None, "passed": False, "source": None, "as_of": None, "as_of_utc": None,
+          "degeneracy": None, "score_range": None}
     if evidence is not None:
-        ev = _evidence(evidence, cal, use)
-    if cal is not None:
-        if ev["status"] == "NOT_YET_MATURED":
-            details.append("CALIBRATION_EVIDENCE_PENDING")
-        elif ev["status"] == "ADMISSIBLE" and evidence_gate(ev["n"], ev["k"]):
-            details.append("CALIBRATION_EVIDENCE_TOO_SMALL")
-        elif ev["status"] == "ADMISSIBLE" and not ev["passed"]:
-            details.append("CALIBRATION_CHECK_FAILED")
-        elif ev["status"] == "NONE":
-            details.append("CALIBRATION_EVIDENCE_TOO_SMALL")
-    status = CALIBRATED if (cal is not None and champion is not None and ev["status"] == "ADMISSIBLE" and ev["passed"]
-                            and not evidence_gate(ev["n"], ev["k"])) else UNCALIBRATED
-    if status == UNCALIBRATED and "NO_CALIBRATOR" not in details:
-        details.insert(0, "NO_CALIBRATOR")
+        ev = _evidence(evidence, cal, use, cutoff)
+    dec = decide(cn, champion_present=champion is not None, flat=bool(deg and deg["flat"]),
+                 calibrator_method=(cal or {}).get("method"), ev=ev, level=level)
     card = {"phase": PHASE, "calibration_version": CALIBRATION_VERSION, "target": target,
             "target_version": C.TARGETS[target]["version"], "registry_sha": C.registry_sha256(), "source": source,
             "champion_model_id": champion.get("model_id") if champion else None,
@@ -456,40 +476,64 @@ def build_card(target: str, champion: dict | None, rows: Sequence[dict], cutoff:
             "calibration_set": {**cn, "rows_sha": sha([[r["decision_key"], round(float(r["score"]), 12), int(r["y"])] for r in use]),
                                 "first_decision_utc": _iso(use[0]["decision_time"]) if use else None,
                                 "last_decision_utc": _iso(use[-1]["decision_time"]) if use else None,
+                                "last_decision_time": float(use[-1]["decision_time"]) if use else None,
+                                "last_label_matures_at": max(float(r["label_matures_at"]) for r in use) if use else None,
                                 "rule": "champion out-of-sample rows of the development walk-forward, decided before and matured by the cutoff"},
-            "fit_gate": {"rule": FIT_GATE, "shortfalls": gate, "passed": not gate},
-            "method_rule": {"venn_abers": VENN_ABERS_GATE, "else": "PLATT", "chosen": method if not gate else None},
+            "fit_gate": dec["fit_gate"], "method_rule": dec["method_rule"],
             "calibrator": cal, "support_bins": bins, "degeneracy": deg, "evidence": ev, "evidence_rule": EVIDENCE_GATE,
-            "status": status, "details": details, "level": level,
-            "publishable": status == CALIBRATED and level in PUBLISHABLE_LEVELS,
+            "status": dec["status"], "details": dec["details"], "level": level, "publishable": dec["publishable"],
+            "available_at": max(float(cutoff), float(ev["as_of"])) if ev.get("as_of") is not None else float(cutoff),
             "interval_rule": "hull of the calibrator interval and the Wilson 95% interval of the support bin; excludes unmodelled risk",
             "is_fixture": bool(is_fixture)}
     card["card_sha"] = sha({k: v for k, v in card.items() if k != "card_sha"})
     return card
 
 
-def _evidence(evidence: dict, cal: dict | None, fit_rows: Sequence[dict]) -> dict:
-    """Admissible evidence: out-of-sample rows (same row rules, its own cutoff) not in the fit set; or a pending status."""
+EVIDENCE_SOURCES = ("PROSPECTIVE_HOLDOUT",)       # the opened retrospective holdout is spent (PI-D-065): never evidence
+
+
+def _evidence(evidence: dict, cal: dict | None, fit_rows: Sequence[dict], fit_cutoff: float) -> dict:
+    """Admissible evidence: prospective out-of-sample rows (own maturity time `cutoff`) not in the fit set, from the
+    prospective holdout only; or a pending status. Records its as-of time, its own degeneracy and score range (PI-D-070)."""
     st = evidence.get("status")
+    src = evidence.get("source")
     if st == "NOT_YET_MATURED":
-        return {"status": "NOT_YET_MATURED", "n": 0, "k": 0, "check": None, "passed": False, "source": evidence.get("source")}
+        return {"status": "NOT_YET_MATURED", "n": 0, "k": 0, "check": None, "passed": False, "source": src, "as_of": None,
+                "as_of_utc": None, "degeneracy": None, "score_range": None}
     if st != "ADMISSIBLE":
         raise CalibrationError(f"evidence status {st!r} is not one of {EVIDENCE_STATUSES}")
+    if src not in EVIDENCE_SOURCES:
+        raise CalibrationError(f"evidence source {src!r} refused: only {EVIDENCE_SOURCES} (the retrospective holdout is spent, PI-D-065)")
+    if float(evidence["fit_cutoff"]) != float(fit_cutoff):
+        raise CalibrationError("evidence fit_cutoff differs from the card's cutoff")
     rows = list(evidence["rows"])
-    check_evidence_rows(rows, fit_cutoff=float(evidence["fit_cutoff"]), as_of=float(evidence["cutoff"]))
+    as_of = float(evidence["cutoff"])
+    check_evidence_rows(rows, fit_cutoff=float(fit_cutoff), as_of=as_of)
     fit_keys = {r["decision_key"] for r in fit_rows}
     if any(r["decision_key"] in fit_keys for r in rows):
         raise CalibrationError("calibration evidence overlaps the fit set: a check on the fit rows passes by construction")
     n, k = len(rows), int(sum(int(r["y"]) for r in rows))
-    if cal is None or not rows:
-        return {"status": "ADMISSIBLE", "n": n, "k": k, "check": None, "passed": False, "source": evidence.get("source")}
-    p, _, _ = apply_calibrator(cal, [r["score"] for r in rows])
+    base = {"status": "ADMISSIBLE", "n": n, "k": k, "check": None, "passed": False, "source": src, "as_of": as_of,
+            "as_of_utc": _iso(as_of), "degeneracy": None, "score_range": None}
+    if not rows:
+        return base
+    sc = [float(r["score"]) for r in rows]
+    base["degeneracy"] = degeneracy(sc)
+    base["score_range"] = [min(sc), max(sc)]
+    if cal is None:
+        return base
+    p, _, _ = apply_calibrator(cal, sc)
     rel = reliability([r["y"] for r in rows], p)
     rel = {kk: vv for kk, vv in rel.items() if kk != "note"}
-    return {"status": "ADMISSIBLE", "n": n, "k": k, "check": rel, "passed": check_passed(rel), "source": evidence.get("source")}
+    base["check"] = rel
+    base["passed"] = check_passed(rel) and not base["degeneracy"]["flat"]
+    return base
 
 
 def verify_card(card: dict) -> dict:
+    """Refuse a card whose content differs from its sha, or whose recorded decisions are not what its own recorded facts allow:
+    the fit gate, the method, the evidence source, maturity and gate, the check, the status, the details and the publishable
+    flag are recomputed (repair pass 2, PI-D-070, skeptic M2). Full authenticity of the facts needs the Phase 16 registry."""
     want = sha({k: v for k, v in card.items() if k != "card_sha"})
     if card.get("card_sha") != want:
         raise CardHashMismatch(f"calibration card {card.get('target')}: content does not match its card_sha")
@@ -499,10 +543,61 @@ def verify_card(card: dict) -> dict:
         raise CalibrationError("calibration card made under another registry fingerprint")
     if card.get("source") not in SOURCES:
         raise CalibrationError("calibration card source is not a statistical model (P27)")
-    if card.get("status") == CALIBRATED and (card.get("calibrator") is None or not card["evidence"].get("passed")):
-        raise CalibrationError("a CALIBRATED card needs a calibrator and a passed check on admissible evidence")
-    if card.get("publishable") != (card.get("status") == CALIBRATED and card.get("level") in PUBLISHABLE_LEVELS):
-        raise CalibrationError("publishable flag disagrees with status and level")
+    if card.get("level") not in LEVELS:
+        raise CalibrationError("calibration card level is not one of the frozen levels")
+    if card.get("level") in REGISTRY_LEVELS:
+        raise CalibrationError(f"level {card['level']} needs the Phase 16 promotion registry, which does not exist yet (PI-D-070)")
+    cn = card["calibration_set"]
+    n, k, days = int(cn["n"]), int(cn["k"]), int(cn["days"])
+    if not (0 <= k <= n and int(cn["negatives"]) == n - k and 0 <= days <= n and (days > 0) == (n > 0)):
+        raise CalibrationError("calibration set counts are inconsistent")
+    cut = float(card["cutoff"])
+    if n:
+        if cn.get("last_decision_time") is None or not float(cn["last_decision_time"]) < min(cut, HOLDOUT_START):
+            raise CalibrationError("calibration rows are not all development rows decided before the cutoff (spent or later rows)")
+        try:
+            first, last = C.parse_utc(cn["first_decision_utc"]), C.parse_utc(cn["last_decision_utc"])
+        except (C.ContractError, KeyError) as e:
+            raise CalibrationError(f"calibration set times unreadable: {e}")
+        if _iso(float(cn["last_decision_time"])) != cn["last_decision_utc"] or not first <= last < min(cut, HOLDOUT_START):
+            raise CalibrationError("calibration set times disagree or lie outside the development window (spent or later rows)")
+        if cn.get("last_label_matures_at") is None or not float(cn["last_label_matures_at"]) <= min(cut, HOLDOUT_START):
+            raise CalibrationError("a calibration label matures after the cutoff or the holdout start")
+        if sum(int(b["n"]) for b in card["support_bins"]) != n or sum(int(b["k"]) for b in card["support_bins"]) != k:
+            raise CalibrationError("support bins do not add up to the calibration set")
+    ev = card["evidence"]
+    if ev.get("status") not in EVIDENCE_STATUSES:
+        raise CalibrationError("evidence status unknown")
+    if ev["status"] == "ADMISSIBLE":
+        if ev.get("source") not in EVIDENCE_SOURCES:
+            raise CalibrationError(f"evidence source {ev.get('source')!r} refused: spent or unknown evidence (PI-D-065)")
+        if ev.get("as_of") is None or float(ev["as_of"]) < max(cut, PROSPECTIVE_START):
+            raise CalibrationError("evidence has no maturity time after the calibrator's cutoff and the prospective start")
+        chk = ev.get("check")
+        if ev.get("passed") and (chk is None or int(chk.get("n", -1)) != int(ev["n"]) or not check_passed(chk)):
+            raise CalibrationError("evidence marked passed without a passing check on its own rows")
+        deg = ev.get("degeneracy")
+        if ev.get("passed") and (deg is None or deg.get("flat") or not (float(deg["ptp"]) > FLAT_PTP)):
+            raise CalibrationError("flat or unchecked evidence marked passed (rule 8)")
+    elif ev.get("passed") or ev.get("n") or ev.get("k"):
+        raise CalibrationError("pending or missing evidence carries counts or a pass")
+    calm = (card.get("calibrator") or {}).get("method")
+    deg = card.get("degeneracy") or {}
+    dec = decide(cn, champion_present=card.get("champion_model_sha") is not None, flat=bool(deg.get("flat")),
+                 calibrator_method=calm, ev=ev, level=card["level"])
+    if card["fit_gate"] != dec["fit_gate"] or card["method_rule"] != dec["method_rule"]:
+        raise CalibrationError("the fit gate or method recorded on the card is not what its counts give")
+    if calm is not None and (calm != dec["method_rule"]["chosen"] or deg.get("flat")):
+        raise CalibrationError("a calibrator exists where the gate, the method rule or rule 8 allows none or another")
+    if calm == "VENN_ABERS":
+        pairs = card["calibrator"]["params"]["calibration"]
+        if len(pairs) != n or int(sum(int(q[1]) for q in pairs)) != k:
+            raise CalibrationError("Venn-Abers calibration pairs do not match the calibration set counts")
+    if card.get("status") != dec["status"] or card.get("details") != dec["details"] or card.get("publishable") != dec["publishable"]:
+        raise CalibrationError(f"status, details or publishable flag differ from what the card's facts allow ({dec['status']})")
+    want_av = max(cut, float(ev["as_of"])) if ev.get("as_of") is not None else cut
+    if float(card.get("available_at", -1)) != want_av:
+        raise CalibrationError("available_at is not the later of the cutoff and the evidence maturity")
     return card
 
 

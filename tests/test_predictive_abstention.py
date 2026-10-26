@@ -7,6 +7,7 @@ import hashlib
 import json
 import math
 import re
+import tempfile
 from pathlib import Path
 
 import numpy as np
@@ -27,6 +28,15 @@ DAY = 86400.0
 T1 = L.T1
 BT = C.BACKTEST_NOT_AVAILABLE
 _ALPH = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
+_CFG_DIR = Path(tempfile.mkdtemp(prefix="p13_cfg_"))
+ON_CFG = _CFG_DIR / "config_on.json"
+ON_CFG.write_text(json.dumps({"predictive": {"enabled": True}}))
+OFF_CFG = _CFG_DIR / "config_absent.json"                 # never written: the flag is OFF
+
+
+def vp(*a, **k):
+    """validate_publication with the flag ON in a temporary config (the layer reads the flag itself, PI-D-070)."""
+    return AB.validate_publication(*a, **{"config_path": ON_CFG, **k})
 
 
 def mint(i: int) -> str:
@@ -75,12 +85,12 @@ def world(seed: int = 1, *, level: str = "SHADOW", fit_n: int = 300, ev_n: int =
            "new_mint": False, "token_history_rows": 0}
     raw, why = B.predict(card, [q])
     return {"req": req, "card": card, "level": level, "cal": cal, "raw": float(raw[0]), "raw_why": why[0], "drift": [],
-            "rows": rows, "ev": ev}
+            "rows": rows, "ev": ev, "cfg": ON_CFG}
 
 
 def run(w, **kw):
     a = dict(card=w["card"], level=w["level"], cal_card=w["cal"], raw=w["raw"], raw_why=w["raw_why"], drift_alarms=w["drift"],
-             generated_at_utc="2026-11-01T00:00:00Z", backtest_status=BT, is_fixture=True)
+             generated_at_utc="2026-11-01T00:00:00Z", backtest_status=BT, is_fixture=True, config_path=w.get("cfg", ON_CFG))
     a.update(kw)
     return AB.forecast_result(w["req"], **a)
 
@@ -92,12 +102,12 @@ def good():
 
 # ---------------------------------------------------------------- the vocabulary
 def test_every_condition_maps_to_one_frozen_contract_reason_and_matches_the_preregistration():
-    assert len(AB.CONDITIONS) == 28
+    assert len(AB.CONDITIONS) == 28 + len(AB.ADDED_BY_CHANGE_CONTROL) == 29
     assert all(r in C.ABSTAIN_REASONS for r, _ in AB.CONDITIONS.values())
     chk = (ROOT / "audits/predictive-intelligence/phase_13/ACCEPTANCE_CHECKLIST.md").read_text()
     rule12 = chk.split("12. Abstention conditions")[1].split("13. Persistence")[0]
     listed = re.findall(r"^    - ([A-Z_]+): .*\(([A-Z_]+)(?:[,;)])", rule12, re.M)
-    assert {c for c, _ in listed} == set(AB.CONDITIONS)
+    assert {c for c, _ in listed} == set(AB.CONDITIONS) - set(AB.ADDED_BY_CHANGE_CONTROL)
     for code, reason in listed:
         assert AB.CONDITIONS[code][0] == reason, code
     assert C.CONTRACT_VERSION == "memelab.predictive.forecast/1" and C.registry_sha256().startswith("4b4aabce")
@@ -108,7 +118,7 @@ def test_a_request_meeting_every_condition_publishes_a_valid_forecast(good):
     doc, rec = run(good)
     assert doc["prediction_status"] == "FORECAST" and rec["conditions"] == [] and rec["reasons"] == []
     assert C.validate(doc, model_card=good["card"], backtest=BT) == []
-    assert AB.validate_publication(doc, model_card=good["card"], calibration_card=good["cal"], record=rec, backtest=BT) == []
+    assert vp(doc, model_card=good["card"], calibration_card=good["cal"], record=rec, backtest=BT) == []
     lo, hi = doc["uncertainty_interval"]
     assert lo <= doc["probability"] <= hi and CAL.DISPLAY_RANGE[0] <= doc["probability"] <= CAL.DISPLAY_RANGE[1]
     assert AB.SHADOW_CAVEAT in doc["caveats"] and AB.INTERVAL_CAVEAT in doc["caveats"] and doc["is_fixture"] is True
@@ -137,7 +147,7 @@ def _card_flag(w):
 
 
 SINGLE = {
-    "FLAG_OFF": _set(("req", "flag_on"), False),
+    "FLAG_OFF": _set(("cfg",), OFF_CFG),
     "CHAIN_OUT_OF_SCOPE": lambda w: w["req"].update(chain="base", mint="0x" + "ab" * 20),
     "MINT_NOT_VERIFIED": _set(("req", "mint"), "MukLDtJ8Cx9DxLbeyLRWPSposTMWuwHANbuaudpump"),
     "TARGET_NOT_PRIMARY": _set(("req", "target"), "exit_adjusted_target_before_invalidation_24h"),
@@ -176,7 +186,7 @@ def test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_rea
     assert AB.CONDITIONS[code][0] in doc["abstain_reasons"]
     assert doc["probability"] is None and doc["uncertainty_interval"] is None
     assert C.validate(doc, backtest=BT) == []
-    assert AB.validate_publication(doc, model_card=w["card"], calibration_card=w["cal"], record=rec, backtest=BT) == []
+    assert vp(doc, model_card=w["card"], calibration_card=w["cal"], record=rec, backtest=BT) == []
     assert schema_errors({"document": doc, "record": rec}) == []
     assert rec["target"] == w["req"]["target"] and rec["horizon_seconds"] == C.TARGETS[w["req"]["target"]]["horizon_s"]
 
@@ -227,7 +237,7 @@ def test_p38_an_invalid_raw_number_never_publishes(good, raw):
 def test_p38_the_validator_refuses_an_injected_invalid_probability(good, bad):
     doc, rec = run(good)
     d = dict(doc, probability=bad)
-    assert AB.validate_publication(d, model_card=good["card"], calibration_card=good["cal"], record=rec, backtest=BT)
+    assert vp(d, model_card=good["card"], calibration_card=good["cal"], record=rec, backtest=BT)
 
 
 def test_p38_nan_features_are_missing_inputs_not_zeros(good):
@@ -256,7 +266,7 @@ def test_the_validator_refuses_each_unsupported_forecast(good):
     card, cal = good["card"], good["cal"]
 
     def bad(d, c=cal, mc=card):
-        return AB.validate_publication(d, model_card=mc, calibration_card=c, backtest=BT)
+        return vp(d, model_card=mc, calibration_card=c, backtest=BT)
 
     ref = dict(doc["calibration_reference"])
     assert bad(_tamper(doc, calibration_reference={**ref, "holdout_n": ref["holdout_n"] + 1}))
@@ -281,15 +291,15 @@ def test_p27_an_agent_agreement_never_becomes_a_probability(good):
     card, cal = good["card"], good["cal"]
     scen = _tamper(doc, behavioral_scenarios=[{"name": "fast follow-through", "agent_agreement": 0.9}])
     assert C.validate(scen, model_card=card, backtest=BT) == []          # the frozen contract alone lets this key through
-    assert AB.validate_publication(scen, model_card=card, calibration_card=cal, backtest=BT)
-    assert AB.validate_publication(_tamper(doc, behavioral_scenarios=[{"name": "x", "agents": "90"}, {"name": "y", "n": 9}]),
+    assert vp(scen, model_card=card, calibration_card=cal, backtest=BT)
+    assert vp(_tamper(doc, behavioral_scenarios=[{"name": "x", "agents": "90"}, {"name": "y", "n": 9}]),
                                    model_card=card, calibration_card=cal, backtest=BT)
-    assert AB.validate_publication(_tamper(doc, cohort={"vote_share": 0.9}), model_card=card, calibration_card=cal, backtest=BT)
-    assert AB.validate_publication(_tamper(doc, cohort={"route": "CAPTURE", "rate": 0.9}), model_card=card, calibration_card=cal, backtest=BT)
+    assert vp(_tamper(doc, cohort={"vote_share": 0.9}), model_card=card, calibration_card=cal, backtest=BT)
+    assert vp(_tamper(doc, cohort={"route": "CAPTURE", "rate": 0.9}), model_card=card, calibration_card=cal, backtest=BT)
     sim = dict(card, kind="MIROFISH_SIMULATION")
-    assert any("simulation" in e for e in AB.validate_publication(doc, model_card=sim, calibration_card=cal, backtest=BT))
+    assert any("simulation" in e for e in vp(doc, model_card=sim, calibration_card=cal, backtest=BT))
     ok = _tamper(doc, behavioral_scenarios=[{"name": "fast follow-through", "assumptions": ["listing confirmed"], "monitor": "volume"}])
-    assert AB.validate_publication(ok, model_card=card, calibration_card=cal, backtest=BT) == []
+    assert vp(ok, model_card=card, calibration_card=cal, backtest=BT) == []
     w = copy.deepcopy(good)
     w["req"]["behavioral_inputs"] = [{"agent_agreement": 0.9}]
     d2, r2 = run(w)
@@ -306,16 +316,16 @@ def test_p12_a_new_mint_abstains_with_a_history_card_and_is_labelled_with_a_cros
     w2["req"]["new_mint"] = True
     d2, r2 = run(w2)
     assert d2["prediction_status"] == "FORECAST" and AB.NEW_MINT_CAVEAT in d2["caveats"] and d2["cohort"]["new_mint"] is True
-    assert AB.validate_publication(d2, model_card=w2["card"], calibration_card=w2["cal"], record=r2, backtest=BT) == []
+    assert vp(d2, model_card=w2["card"], calibration_card=w2["cal"], record=r2, backtest=BT) == []
     stripped = _tamper(d2, caveats=[c for c in d2["caveats"] if c != AB.NEW_MINT_CAVEAT])
-    assert any("P12" in e for e in AB.validate_publication(stripped, model_card=w2["card"], calibration_card=w2["cal"], backtest=BT))
+    assert any("P12" in e for e in vp(stripped, model_card=w2["card"], calibration_card=w2["cal"], backtest=BT))
 
 
 def test_an_abstention_record_must_match_its_document(good):
     w = copy.deepcopy(good)
     w["level"] = "ABSTAIN"
     doc, rec = run(w)
-    v = lambda d, r: AB.validate_publication(d, model_card=w["card"], calibration_card=w["cal"], record=r, backtest=BT)
+    v = lambda d, r: vp(d, model_card=w["card"], calibration_card=w["cal"], record=r, backtest=BT)
     assert v(doc, rec) == []
     assert v(_tamper(doc, abstain_reasons=["MODEL_NOT_SELECTED", "OOD"]), rec)          # an invented reason
     hidden = copy.deepcopy(rec)
@@ -523,7 +533,7 @@ def test_an_abstention_document_cannot_carry_a_reference_outside_the_allowlist(g
     w["level"] = "ABSTAIN"
     doc, rec = run(w)
     bad = _tamper(doc, calibration_reference={"agent_share": 0.9})
-    errs = AB.validate_publication(bad, model_card=w["card"], calibration_card=w["cal"], record=rec, backtest=BT)
+    errs = vp(bad, model_card=w["card"], calibration_card=w["cal"], record=rec, backtest=BT)
     assert any("allowlist" in e for e in errs)
 
 
@@ -535,7 +545,7 @@ def test_a_calibrated_card_kept_at_level_abstain_never_publishes(good):
     assert w["cal"]["status"] == CAL.CALIBRATED and w["cal"]["publishable"] is False and ev["passed"]
     ref = CAL.reference(w["cal"], support_n=doc["calibration_reference"]["support_n"], support_k=doc["calibration_reference"]["support_k"])
     d = _tamper(doc, calibration_reference=ref, caveats=[c for c in doc["caveats"] if c != AB.SHADOW_CAVEAT])
-    errs = AB.validate_publication(d, model_card=good["card"], calibration_card=w["cal"], backtest=BT)
+    errs = vp(d, model_card=good["card"], calibration_card=w["cal"], backtest=BT)
     assert any("SHADOW or VALIDATED_EXPERIMENTAL" in e for e in errs)
 
 
@@ -544,7 +554,7 @@ def test_an_edited_record_that_keeps_its_id_is_refused(good):
     w["level"] = "ABSTAIN"
     doc, rec = run(w)
     edited = dict(rec, model_id="B9:edited")
-    errs = AB.validate_publication(doc, model_card=w["card"], calibration_card=w["cal"], record=edited, backtest=BT)
+    errs = vp(doc, model_card=w["card"], calibration_card=w["cal"], record=edited, backtest=BT)
     assert errs == ["abstention record content does not match its record_id"]
 
 
@@ -579,12 +589,175 @@ def test_sr2_a_forged_support_count_is_refused(good):
     doc, rec = run(good)
     ref = dict(doc["calibration_reference"])
     forged = _tamper(doc, calibration_reference={**ref, "support_n": 1000, "support_k": int(1000 * doc["probability"])})
-    errs = AB.validate_publication(forged, model_card=good["card"], calibration_card=good["cal"], backtest=BT)
+    errs = vp(forged, model_card=good["card"], calibration_card=good["cal"], backtest=BT)
     assert any("support bin" in e for e in errs)
 
 
 def test_sr2_the_base_rate_is_the_model_card_prevalence(good):
     doc, rec = run(good)
-    errs = AB.validate_publication(_tamper(doc, base_rate=0.5), model_card=good["card"], calibration_card=good["cal"], backtest=BT)
+    errs = vp(_tamper(doc, base_rate=0.5), model_card=good["card"], calibration_card=good["cal"], backtest=BT)
     assert any("training prevalence" in e for e in errs)
-    assert AB.validate_publication(doc, model_card=good["card"], calibration_card=good["cal"], record=rec, backtest=BT) == []
+    assert vp(doc, model_card=good["card"], calibration_card=good["cal"], record=rec, backtest=BT) == []
+
+
+# ---------------------------------------------------------------- repair pass 2 after the independent skeptic (PI-D-070)
+def _reseal(card):
+    c = copy.deepcopy(card)
+    c["card_sha"] = CAL.sha({k: v for k, v in c.items() if k != "card_sha"})
+    return c
+
+
+def test_rp2_m1_the_flag_is_read_from_the_config_never_from_the_caller(good):
+    w = copy.deepcopy(good)
+    w["req"]["flag_on"] = True                       # the caller claims ON
+    w["cfg"] = OFF_CFG                               # the config says OFF
+    doc, rec = run(w)
+    assert doc["prediction_status"] == "ABSTAIN" and "FLAG_OFF" in doc["abstain_reasons"]
+    fdoc, frec = run(good)
+    assert fdoc["prediction_status"] == "FORECAST"
+    errs = AB.validate_publication(fdoc, model_card=good["card"], calibration_card=good["cal"], record=frec, backtest=BT,
+                                   config_path=OFF_CFG)
+    assert any("flag is OFF" in e for e in errs)
+    assert any("flag is OFF" in e for e in AB.validate_publication(fdoc, model_card=good["card"], calibration_card=good["cal"],
+                                                                     record=frec, backtest=BT) if not C.enabled())
+
+
+def test_rp2_m2_a_card_cannot_claim_more_than_its_counts_and_never_uses_spent_evidence():
+    """Skeptic attacks A2, A2b, A2c: forged cards with a recomputed sha."""
+    small = world(seed=3, fit_n=24)
+    c = copy.deepcopy(small["cal"])
+    use = CAL.rows_at(small["rows"], CAL.HOLDOUT_START)
+    c["calibrator"] = CAL.fit_calibrator([q["score"] for q in use], [q["y"] for q in use], "PLATT")
+    c["fit_gate"]["passed"] = True
+    c["status"], c["details"], c["level"], c["publishable"] = "CALIBRATED", [], "SHADOW", True
+    c["evidence"] = {"status": "ADMISSIBLE", "n": 66, "k": 15, "check": None, "passed": True, "source": "RETROSPECTIVE_HOLDOUT",
+                     "as_of": CAL.PROSPECTIVE_START + 5 * DAY, "as_of_utc": "x", "degeneracy": None, "score_range": None}
+    forged = _reseal(c)
+    with pytest.raises(CAL.CalibrationError):
+        CAL.verify_card(forged)
+    doc, rec = run(small, cal_card=forged, level="SHADOW")
+    assert doc["prediction_status"] == "ABSTAIN" and "UNCALIBRATED" in doc["abstain_reasons"]
+    good = world()
+    for edit, match in ((lambda e: e.update(n=60, k=2), "passed without a passing check"),     # A2b evidence per class below 10
+                        (lambda e: e.update(source="RETROSPECTIVE_HOLDOUT"), "spent"),        # spent evidence
+                        (lambda e: e.update(as_of=None), "no maturity time"),                         # no maturity
+                        (lambda e: e.update(degeneracy=dict(e["degeneracy"], flat=True, ptp=0.0)), "flat")):  # flat evidence passed
+        c = copy.deepcopy(good["cal"])
+        edit(c["evidence"])
+        with pytest.raises(CAL.CalibrationError, match=match):
+            CAL.verify_card(_reseal(c))
+    c = copy.deepcopy(good["cal"])                                                # A2c rows claimed in the holdout window
+    c["calibration_set"]["last_decision_time"] = CAL.HOLDOUT_START + DAY
+    with pytest.raises(CAL.CalibrationError, match="development rows"):
+        CAL.verify_card(_reseal(c))
+    c = copy.deepcopy(good["cal"])
+    c["method_rule"]["chosen"] = "PLATT"
+    with pytest.raises(CAL.CalibrationError):
+        CAL.verify_card(_reseal(c))
+    c = copy.deepcopy(good["cal"])
+    c["calibrator"]["params"]["calibration"] = c["calibrator"]["params"]["calibration"][:-1]
+    with pytest.raises(CAL.CalibrationError, match="pairs"):
+        CAL.verify_card(_reseal(c))
+    c = copy.deepcopy(good["cal"])
+    c["available_at"] = CAL.HOLDOUT_START
+    with pytest.raises(CAL.CalibrationError, match="available_at"):
+        CAL.verify_card(_reseal(c))
+
+
+def test_rp2_m3_a_calibration_learned_after_the_decision_never_publishes(good):
+    """Skeptic attack A3: decided at P0 + 12 h, the evidence matured at P0 + 5 days."""
+    w = copy.deepcopy(good)
+    T = CAL.PROSPECTIVE_START + 0.5 * DAY
+    w["req"]["decision_time"] = T
+    w["req"]["avail"] = {k: T - 600.0 for k in w["req"]["x"]}
+    assert good["cal"]["available_at"] == good["ev"]["cutoff"] > T
+    doc, rec = run(w)
+    assert doc["prediction_status"] == "ABSTAIN"
+    assert any(c["code"] == "CALIBRATION_AFTER_DECISION" for c in rec["conditions"]) and "UNCALIBRATED" in doc["abstain_reasons"]
+    fdoc, _ = run(good)
+    hand = _tamper(fdoc, decision_time_utc=CAL._iso(T))
+    assert any("after the decision" in e for e in vp(hand, model_card=good["card"], calibration_card=good["cal"], backtest=BT))
+
+
+def test_rp2_m4_cx_s13_flat_evidence_never_calibrates_and_scores_outside_the_evidence_abstain():
+    """CX-S13: every prospective evidence score set to one value; the first-pass code returned CALIBRATED."""
+    w = world()
+    ev = copy.deepcopy(w["ev"])
+    med = float(np.median([q["score"] for q in w["rows"]]))
+    for q in ev["rows"]:
+        q["score"] = med
+    card = CAL.build_card(T1, w["card"], w["rows"], H, level="SHADOW", evidence=ev, is_fixture=True)
+    assert card["status"] == CAL.UNCALIBRATED and card["evidence"]["passed"] is False
+    assert "DEGENERATE_FLAT_PREDICTIONS" in card["details"] and card["evidence"]["degeneracy"]["flat"]
+    w2 = copy.deepcopy(w)
+    w2["cal"] = card
+    doc, rec = run(w2, raw=med)
+    assert doc["prediction_status"] == "ABSTAIN"
+    lo, hi = w["cal"]["evidence"]["score_range"]
+    rs = [q["score"] for q in w["rows"]]
+    outside = [x for x in rs if x < lo or x > hi]
+    assert outside, "fixture must have calibration scores outside the evidence range"
+    w3 = copy.deepcopy(w)
+    w3["raw"] = outside[0]
+    d3, r3 = run(w3)
+    assert d3["prediction_status"] == "ABSTAIN"
+    assert any(c["code"] == "SCORE_OUTSIDE_CALIBRATION_RANGE" and "evidence range" in c["detail"] for c in r3["conditions"])
+
+
+def test_rp2_m5_validator_constants_and_record_conditions(good, monkeypatch):
+    doc, rec = run(good)
+    assert vp(doc, model_card=good["card"], calibration_card=good["cal"], record=rec, backtest=BT) == []
+    bad = copy.deepcopy(rec)
+    bad["conditions"] = [AB._cond("DRIFT")]
+    assert any("record lists" in e for e in vp(doc, model_card=good["card"], calibration_card=good["cal"], record=bad, backtest=BT))
+    monkeypatch.setattr(CAL, "DISPLAY_RANGE", (0.999, 1.0))
+    assert any("display range" in e for e in vp(doc, model_card=good["card"], calibration_card=good["cal"], backtest=BT))
+    monkeypatch.setattr(CAL, "DISPLAY_RANGE", (0.01, 0.99))
+    monkeypatch.setattr(CAL, "SUPPORT_MIN", 10_000)
+    assert any("support below" in e for e in vp(doc, model_card=good["card"], calibration_card=good["cal"], backtest=BT))
+
+
+@pytest.mark.parametrize("rows, abstains", [(19, True), (20, False)])
+def test_rp2_token_history_minimum_is_20_rows(good, rows, abstains):
+    w = copy.deepcopy(good)
+    _card_flag(w)
+    w["req"]["token_history_rows"] = rows
+    codes = {c["code"] for c in run(w)[1]["conditions"]}
+    assert ("NO_TOKEN_HISTORY" in codes) is abstains
+
+
+def test_rp2_a_score_outside_the_calibration_bins_abstains_without_evidence():
+    w = world(evidence="NOT_YET_MATURED")
+    assert w["cal"]["evidence"]["score_range"] is None and w["cal"]["support_bins"]
+    w["raw"] = min(1.0, max(r["score"] for r in w["rows"]) + 1e-4)
+    doc, rec = run(w)
+    hit = [c for c in rec["conditions"] if c["code"] == "SCORE_OUTSIDE_CALIBRATION_RANGE"]
+    assert hit and "evidence" not in hit[0]["detail"]
+
+
+def test_rp2_a_below_gate_card_cannot_carry_a_calibrator():
+    small = world(seed=3, fit_n=24)
+    c = copy.deepcopy(small["cal"])
+    use = CAL.rows_at(small["rows"], CAL.HOLDOUT_START)
+    c["calibrator"] = CAL.fit_calibrator([q["score"] for q in use], [q["y"] for q in use], "PLATT")
+    with pytest.raises(CAL.CalibrationError, match="a calibrator exists where"):
+        CAL.verify_card(_reseal(c))
+
+
+def test_rp2_a_card_cannot_relabel_its_own_times_or_level():
+    """Skeptic attacks A2c (calibration set times moved into the holdout window) and A7b (level relabelled
+    VALIDATED_EXPERIMENTAL so the SHADOW label is no longer needed): both resealed, both refused."""
+    good = world()
+    c = copy.deepcopy(good["cal"])
+    c["calibration_set"]["first_decision_utc"] = "2026-10-18T00:00:00Z"
+    c["calibration_set"]["last_decision_utc"] = "2026-10-20T00:00:00Z"
+    with pytest.raises(CAL.CalibrationError, match="development window"):
+        CAL.verify_card(_reseal(c))
+    c = copy.deepcopy(good["cal"])
+    c["level"] = "VALIDATED_EXPERIMENTAL"
+    with pytest.raises(CAL.CalibrationError, match="Phase 16"):
+        CAL.verify_card(_reseal(c))
+    doc, rec = run(good, cal_card=_reseal(c), level="VALIDATED_EXPERIMENTAL")
+    assert doc["prediction_status"] == "ABSTAIN"
+    with pytest.raises(CAL.CalibrationError, match="Phase 16"):
+        CAL.build_card(T1, good["card"], good["rows"], H, level="VALIDATED_EXPERIMENTAL", evidence=good["ev"])

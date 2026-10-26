@@ -17,6 +17,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[4]
 CP = "memelab/predictive/calibration.py"
+SP = "memelab/predictive/stats.py"
 AP = "memelab/predictive/abstention.py"
 TESTS = ["tests/test_predictive_calibration.py", "tests/test_predictive_abstention.py"]
 EXTRA = [CP, AP, *TESTS, "audits/predictive-intelligence/phase_13/ACCEPTANCE_CHECKLIST.md",
@@ -47,13 +48,8 @@ MUTATIONS = [
     (CP, "E2 pre-cutoff evidence admitted", '        if float(r["decision_time"]) < max(fit_cutoff, PROSPECTIVE_START):', "        if False:"),
     (CP, "E3 evidence overlapping fit admitted", "    if any(r[\"decision_key\"] in fit_keys for r in rows):", "    if False:"),
     (CP, "E4 evidence maturity ignored", '        if not float(r["label_matures_at"]) <= as_of:', "        if False:"),
-    (CP, "E5 calibrated without a passed check", '    status = CALIBRATED if (cal is not None and champion is not None and ev["status"] == "ADMISSIBLE" and ev["passed"]',
-     '    status = CALIBRATED if (cal is not None and champion is not None and ev["status"] == "ADMISSIBLE"'),
-    (CP, "E6 flat predictions calibrated", '    elif deg and deg["flat"]:', "    elif False:"),
     (CP, "E7 simulation source accepted", '    if source not in SOURCES:\n        raise CalibrationError(f"calibration source', '    if False:\n        raise CalibrationError(f"calibration source'),
     (CP, "E8 card sha not verified", '    if card.get("card_sha") != want:', "    if False:"),
-    (CP, "E9 publishable ignores level", '            "publishable": status == CALIBRATED and level in PUBLISHABLE_LEVELS,', '            "publishable": status == CALIBRATED,'),
-    (CP, "E10 calibrated card without calibrator accepted", '    if card.get("status") == CALIBRATED and (card.get("calibrator") is None or not card["evidence"].get("passed")):', "    if False:"),
     # numbers
     (CP, "N1 interval ignores support", "    return [float(min(low, wl)), float(max(high, wh))]", "    return [float(low), float(high)]"),
     (CP, "N2 flat threshold loosened", "FLAT_PTP = 1e-9", "FLAT_PTP = -1.0"),
@@ -67,7 +63,6 @@ MUTATIONS = [
     (CP, "N10 drift two sided", 'DRIFT = {"delta": 0.005, "threshold": 2.0, "min_obs": 30, "two_sided": False}', 'DRIFT = {"delta": 0.005, "threshold": 20.0, "min_obs": 30, "two_sided": False}'),
     (CP, "N11 base rate governing narrower", '    out["governing"] = "day_block" if wd >= wm else "mint_block"', '    out["governing"] = "day_block" if wd < wm else "mint_block"'),
     # abstention conditions
-    (AP, "A1 flag ignored", '    if req.get("flag_on") is not True:', "    if False:"),
     (AP, "A2 chain ignored", "    if req.get(\"chain\") != reg.get(\"scope_chain\", \"solana\"):", "    if False:"),
     (AP, "A3 mint not verified", '    if not mint_verified(req.get("chain"), req.get("mint")):', "    if False:"),
     (AP, "A4 pool not checked", '    if req.get("pool_point_in_time") is not True:', "    if False:"),
@@ -114,8 +109,47 @@ MUTATIONS = [
     (AP, "P1 append-only check off", "    if now != expect_sha:", "    if False:"),
     (AP, "P2 trading words allowed", '    if any(re.search(r"\\b" + re.escape(w) + r"\\b", low) for w in TRADING_WORDS):', "    if False:"),
     (AP, "P3 forecast with conditions", "    if conds:\n        doc = {", "    if False:\n        doc = {"),
+    # repair pass 2 (PI-D-070) and the skeptic's surviving mutations
+    (CP, "E5 calibrated without a passed check", '    ok = (has_cal and champion_present and ev["status"] == "ADMISSIBLE" and bool(ev["passed"]) and not ev_small and not ev_flat',
+     '    ok = (has_cal and champion_present and ev["status"] == "ADMISSIBLE" and not ev_small and not ev_flat'),
+    (CP, "E6 flat predictions calibrated", '    if not gate and not (deg and deg["flat"]):', "    if not gate:"),
+    (CP, "E9 publishable ignores level", '            "status": status, "details": details, "publishable": status == CALIBRATED and level in PUBLISHABLE_LEVELS}',
+     '            "status": status, "details": details, "publishable": status == CALIBRATED}'),
+    (CP, "E10 calibrator where none is allowed accepted", '    if calm is not None and (calm != dec["method_rule"]["chosen"] or deg.get("flat")):', "    if False:"),
+    (SP, "K1 Platt tolerance 1e-12 -> 1e-2", "max_iter: int = 200, tol: float = 1e-12", "max_iter: int = 200, tol: float = 1e-2"),
+    (SP, "K2 Platt one Newton step", "max_iter: int = 200, tol: float = 1e-12", "max_iter: int = 1, tol: float = 1e-12"),
+    (CP, "M5 support ties to the upper bin", "        if g < gap:", "        if g <= gap:"),
+    (CP, "M6 exchangeability alpha 0.05 -> 0.01", "alpha: float = 0.05", "alpha: float = 0.01"),
+    (CP, "M11 verify_card registry check off", '    if card.get("registry_sha") != C.registry_sha256():', "    if False:"),
+    (AP, "M13 validator display range dropped", "    if not (_fin(p) and CAL.DISPLAY_RANGE[0] <= p <= CAL.DISPLAY_RANGE[1]):", "    if not _fin(p):"),
+    (AP, "M14 validator support minimum 20 -> 1", "    if not (isinstance(sn, int) and isinstance(sk, int) and 0 <= sk <= sn) or sn < CAL.SUPPORT_MIN:",
+     "    if not (isinstance(sn, int) and isinstance(sk, int) and 0 <= sk <= sn) or sn < 1:"),
+    (AP, "M17 token history minimum 20 -> 1", "TOKEN_HISTORY_MIN_ROWS = 20", "TOKEN_HISTORY_MIN_ROWS = 1"),
+    (AP, "M18 validator FORECAST record conditions not checked", '        if record is not None and record.get("conditions"):\n            errs.append("a FORECAST whose record',
+     '        if False:\n            errs.append("a FORECAST whose record'),
+    (AP, "R1 flag taken from the caller", "    if not C.enabled(config_path):\n        conds.append(_cond(\"FLAG_OFF\"", "    if req.get(\"flag_on\") is not True:\n        conds.append(_cond(\"FLAG_OFF\""),
+    (AP, "R2 validator ignores the flag", "        if not C.enabled(config_path):\n            errs.append(\"FORECAST while", "        if False:\n            errs.append(\"FORECAST while"),
+    (CP, "R3 gate not recomputed on load", '    if card["fit_gate"] != dec["fit_gate"] or card["method_rule"] != dec["method_rule"]:', "    if False:"),
+    (CP, "R4 status not recomputed on load", '    if card.get("status") != dec["status"] or card.get("details") != dec["details"] or card.get("publishable") != dec["publishable"]:', "    if False:"),
+    (CP, "R5 spent evidence source accepted on load", '        if ev.get("source") not in EVIDENCE_SOURCES:\n            raise CalibrationError(f"evidence source {ev.get', '        if False:\n            raise CalibrationError(f"evidence source {ev.get'),
+    (CP, "R6 spent evidence source accepted at build", '    if src not in EVIDENCE_SOURCES:', "    if False:"),
+    (CP, "R7 evidence without maturity accepted", '        if ev.get("as_of") is None or float(ev["as_of"]) < max(cut, PROSPECTIVE_START):', "        if False:"),
+    (CP, "R8 flat evidence passes", '    base["passed"] = check_passed(rel) and not base["degeneracy"]["flat"]', '    base["passed"] = check_passed(rel)'),
+    (CP, "R9 flat evidence marked passed accepted on load", '        if ev.get("passed") and (deg is None or deg.get("flat") or not (float(deg["ptp"]) > FLAT_PTP)):', "        if False:"),
+    (CP, "R10 holdout-window rows accepted on load", '        if cn.get("last_decision_time") is None or not float(cn["last_decision_time"]) < min(cut, HOLDOUT_START):', "        if False:"),
+    (CP, "R11 Venn-Abers pairs not counted", '        if len(pairs) != n or int(sum(int(q[1]) for q in pairs)) != k:', "        if False:"),
+    (CP, "R12 available_at not checked", '    if float(card.get("available_at", -1)) != want_av:', "    if False:"),
+    (CP, "R17 card gives itself VALIDATED_EXPERIMENTAL", '    if card.get("level") in REGISTRY_LEVELS:\n        raise CalibrationError(f"level {card', '    if False:\n        raise CalibrationError(f"level {card'),
+    (CP, "R18 calibration set times not compared", '        if _iso(float(cn["last_decision_time"])) != cn["last_decision_utc"] or not first <= last < min(cut, HOLDOUT_START):', "        if False:"),
+    (AP, "R13 calibration after the decision used", '    if cal_card is not None and float(cal_card.get("available_at", math.inf)) > T:', "    if False:"),
+    (AP, "R14 validator ignores availability", '        if float(cal["available_at"]) > C.parse_utc(doc.get("decision_time_utc")):', "        if False:"),
+    (AP, "R15 evidence range ignored", "    if rng and _fin(raw) and not (float(rng[0]) <= float(raw) <= float(rng[1])) and \\", "    if False and \\"),
 ]
-EQUIVALENT: list[tuple] = []
+# R16 is defence in depth: verify_card already refuses any CALIBRATED card whose evidence is below the gate, and the
+# validator refuses any card that is not CALIBRATED, so no input reaches this branch with the gate failing
+EQUIVALENT: list[tuple] = [
+    (AP, "R16 validator evidence gate off", '    if CAL.evidence_gate(int(cal["evidence"].get("n") or 0), int(cal["evidence"].get("k") or 0)):\n        errs.append("calibration evidence below', '    if False:\n        errs.append("calibration evidence below'),
+]
 
 
 def main() -> int:
@@ -130,7 +164,7 @@ def main() -> int:
             if src.is_file():
                 (root / f).parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(src, root / f)
-        orig = {p: (root / p).read_text() for p in (CP, AP)}
+        orig = {p: (root / p).read_text() for p in (CP, AP, SP)}
         cmd = [sys.executable, "-B", "-m", "pytest", *TESTS, "-q", "-x", "-p", "no:cacheprovider"]
         base = subprocess.run(cmd, cwd=root, capture_output=True, text=True)
         if base.returncode != 0:
