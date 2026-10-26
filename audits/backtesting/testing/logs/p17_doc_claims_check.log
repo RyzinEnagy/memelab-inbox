@@ -1,0 +1,61 @@
+fcb676a
+2026-10-24T01:02:26Z
+PASS runbook command `backtest run`
+PASS runbook command `backtest deep`
+PASS runbook command `python -m memelab backtest status`
+PASS runbook command `python -m memelab backtest data`
+PASS runbook command `python -m memelab backtest stress MINT --results ID ... [--p`
+PASS runbook command `python -m memelab backtest assess MINT [--json]`
+PASS runbook command `python -m memelab backtest deep --limit 20`
+PASS runbook command `python -m memelab backtest assess-stats`
+PASS runbook command `python -m memelab backtest schema`
+PASS runbook command `python -m memelab backtest run --strategy ID [--params JSON]`
+PASS runbook command `python -m memelab backtest inspect RUN_ID`
+PASS runbook command `backtest stress ... --now UTC`
+PASS runbook command `python -m memelab backtest outcomes track`
+PASS runbook command `outcomes calibrate [--horizon-h 24] [--with-launches]`
+PASS runbook command `outcomes drift`
+PASS runbook command `outcomes daily --day YYYY-MM-DD --asof UTC`
+PASS runbook command `outcomes shadow --strategy ID --since 2026-10-23T16:00:00Z`
+PASS policy default enabled = false  (code has false)
+PASS policy default sizes_usd = [250, 1000, 5000]  (code has [250, 1000, 5000])
+PASS policy default max_loss_usd = 250  (code has 250)
+PASS policy default max_exit_impact = 0.05  (code has 0.05)
+PASS policy default deep_stage = queue  (code has queue)
+PASS policy default ta_strategies = 4 TA strategies  (code has 4 TA strategies)
+PASS policy default min_cohort_trades = 30  (code has 30)
+PASS policy default provider_lag_s = 300  (code has 300)
+PASS runbook names audits/backtesting/data/run_corpus2.py
+PASS runbook names memelab/backtest/sources/corpus.py
+PASS report names audits/backtesting/PHASE_16.md
+FAIL report names audits/backtesting/PHASE_17.md
+PASS report names audits/backtesting/release/logs/p17_clean_install.log
+PASS report names audits/backtesting/release/p17_clean_install.sh
+PASS report names audits/backtesting/testing/E2E_RESULTS.md
+PASS report names tools/release_e2e.py
+PASS licenses names audits/backtesting
+PASS licenses names audits/backtesting/bakeoff
+PASS licenses names audits/backtesting/research/REPO_REVIEWS
+PASS licenses names memelab/backtest
+PASS hash: research database file  (5f4ce7239eb4f0b0)
+PASS hash: sealed-test cutoff dataset
+PASS hash: whole-corpus dataset
+PASS hash: Phase 11 pre-registration file  (d0b3686f2d61)
+PASS hash: sealed-test ledger BREAKOUT_CLOSE
+PASS hash: sealed-test ledger LAB_STATUS
+PASS hash: Phase 10 run BREAKOUT_CLOSE
+PASS hash: Phase 10 run LAB_STATUS
+PASS hash: Phase 10 run MOMENTUM
+PASS hash: Phase 10 run BREAKOUT_RETEST
+PASS hash: Phase 10 run RECLAIM
+PASS hash: Phase 10 run MA_CROSS
+PASS hash: Phase 10 run RANDOM_ENTRY
+PASS hash: Phase 10 run ENTER_AT_DISCOVERY
+PASS hash: Phase 15 daily report reproduces at HEAD  (now 9e8b48b3299a, committed DAILY_SAMPLE.md 9e8b48b3299a)
+PASS hash: clean-install run id and ledger in the committed log
+FAIL clean-install log was made at the release commit  (log ddc0794, HEAD fcb676a)
+PASS report: 139,168 hourly bars over 258 mints  (139,168 over 258)
+PASS report: 429 of 686 universe mints have no stored bars  (429 of 686)
+PASS runbook: storage sentence
+55 of 57 checks pass
+EXIT=1

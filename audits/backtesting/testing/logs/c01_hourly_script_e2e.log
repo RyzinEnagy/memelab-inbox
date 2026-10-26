@@ -1,0 +1,61 @@
+Local run of audits/backtesting/release/hourly_shadow.sh at 50565ad on this Linux workspace (not Elving's computer), 2026-10-25T13:34Z to 13:36Z.
+HOME pointed at a scratch folder holding mnt/memelab/backtesting_live with code.bundle (feature/backtesting at 50565ad), bt.sqlite (copy of the live smoke database: schema 2, 19 decisions) and the script.
+setup ran with network (uv, numpy, clone from the bundle). refresh, collect, track and save ran with HTTPS_PROXY and HTTP_PROXY set to http://127.0.0.1:9, so no market call left the machine.
+
+setup: exit 0, 12 s: setup ok: code 50565ad, python 3.13.14
+== refresh
+{
+ "pools_wanted": 0,
+ "fetched": [],
+ "not_fetched": [],
+ "calls": 0
+}
+
+== collect
+EXPORTS_NOT_FETCHED: git fetch exit 128; collecting for stored decisions only
+{
+ "run_id": "depth-20261025T133504Z",
+ "exports": {
+  "status": "NOT_READ"
+ },
+ "decisions_new": 0,
+ "unresolved_pools": 0,
+ "deadline_hit": false,
+ "pool_snapshots": {
+  "SOURCE_BLOCKED": 19
+ },
+ "quotes": {
+  "QUOTE_UNSUPPORTED_CHAIN": 3
+ },
+ "not_attempted": {},
+ "quote_source": "NOT_USED",
+ "calls": {
+  "geckoterminal": 6,
+  "jupiter": 0,
+  "retries": 3
+ },
+ "pools_active": 19,
+ "wall_s": 60.0
+}
+
+== track
+{
+ "status": "RAN",
+ "asof": 1792935364.7097504,
+ "opportunities": 0,
+ "states": {},
+ "new_rows": 0,
+ "fetched": 0,
+ "deferred_fetches": 0
+}
+
+== save
+{"t": "2026-10-25T13:36:05Z", "step": "save", "result": "OK", "refresh": {"pools_wanted": 0, "fetched": [], "not_fetched": [], "calls": 0}, "collect": {"decisions_new": 0, "pools_active": 19, "pool_snapshots": {"SOURCE_BLOCKED": 19}, "quotes": {"QUOTE_UNSUPPORTED_CHAIN": 3}, "quote_source": "NOT_USED", "calls": {"geckoterminal": 6, "jupiter": 0, "retries": 3}, "deadline_hit": false, "wall_s": 60.0}, "track": {"status": "RAN", "opportunities": 0, "states": {}, "new_rows": 0, "fetched": 0}}
+
+== failure check: work copy replaced by a non-database file, then collect
+stored bt.sqlite sha256 before: e8c7fa27fab67928...
+EXPORTS_NOT_FETCHED: git fetch exit 128; collecting for stored decisions only
+FAILED: depth collect exit 1 (exit 1)
+hourly.log: {"t": "2026-10-25T13:36:16Z", "step": "collect", "result": "FAILED", "detail": "depth collect exit 1"}
+hourly.state: idle 2026-10-25T13:36:16Z after failure
+stored bt.sqlite sha256 after: e8c7fa27fab67928... (unchanged), integrity_check ok, schema version 2

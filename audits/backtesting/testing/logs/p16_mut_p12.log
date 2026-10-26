@@ -1,0 +1,18 @@
+2026-10-23T20:17:17Z
+41488adeb52bb77342ae7a75947568d31c7c3e38
+baseline (unmutated): exit 0 :: 13 passed in 0.13s
+[M12-1 liquidity unchanged when the price falls] CAUGHT :: 1 failed, 12 passed in 0.12s
+[M12-2 fatal flag can be overridden] CAUGHT :: 1 failed, 3 passed in 0.04s
+[M12-3 unknown insider share treated as zero silently] CAUGHT :: 1 failed, 6 passed in 0.06s
+[M12-4 honeypot still sells] CAUGHT :: 1 failed, 12 passed in 0.13s
+[M12-5 observed quotes extrapolated] CAUGHT :: 1 failed, 8 passed in 0.06s
+[M12-6 observed quotes scale the model up (both guards removed)] CAUGHT :: 1 failed, 11 passed in 0.13s
+[M12-7 pool fee ignored] CAUGHT :: 1 failed, 7 passed in 0.06s
+[M12-8 probabilities attached to shocks] CAUGHT :: 1 failed in 0.04s
+[M12-9 marked value reported as realizable] CAUGHT :: 1 failed, 2 passed in 0.04s
+[M12-10 quote depletion never fails] CAUGHT :: 1 failed, 8 passed in 0.06s
+[M12-11 authority shocks shown for every token] CAUGHT :: 1 failed, 4 passed in 0.05s
+[M12-12 cohort percentiles from too few cases] CAUGHT :: 1 failed, 10 passed in 0.10s
+RESULT: all mutations caught
+EXIT=0
+2026-10-23T20:17:22Z

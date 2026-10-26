@@ -1,0 +1,248 @@
+{
+ "PAID demo (SETUP DEVELOPING)": {
+  "asof": "2026-10-06 23:00",
+  "package": {
+   "known": 0,
+   "n": 0,
+   "n_complete": 0,
+   "tier": "INSUFFICIENT_HISTORY",
+   "selection_bias_risk": false,
+   "unmeasured_share": null,
+   "p10_p50": [
+    null,
+    null
+   ],
+   "complete_only_p10_p50": [
+    null,
+    null
+   ],
+   "worst_p10_p50": null,
+   "missing_reasons": {}
+  },
+  "independent": {
+   "known": 0,
+   "n": 0,
+   "n_complete": 0,
+   "guard_removed": 0,
+   "selection_bias_risk": false,
+   "p10_p50": null,
+   "worst_p10_p50": null
+  },
+  "match": true
+ },
+ "RUG thesis (REJECTED)": {
+  "asof": "2026-10-09 12:00",
+  "package": {
+   "known": 67,
+   "n": 30,
+   "n_complete": 28,
+   "tier": "HISTORICAL_COHORT",
+   "selection_bias_risk": false,
+   "unmeasured_share": 0.1892,
+   "p10_p50": [
+    -0.7221496186148688,
+    -0.10134995605712477
+   ],
+   "complete_only_p10_p50": [
+    -0.7757117393563163,
+    -0.10606547175161862
+   ],
+   "worst_p10_p50": [
+    -0.8779186945656077,
+    -0.21445238468566669
+   ],
+   "missing_reasons": {
+    "NO_BARS_STORED": 4,
+    "window not closed and published yet": 30,
+    "NO_BARS_IN_WINDOW": 3,
+    "BARS_END_EARLY": 2
+   }
+  },
+  "independent": {
+   "known": 67,
+   "n": 30,
+   "n_complete": 28,
+   "guard_removed": 0,
+   "selection_bias_risk": false,
+   "p10_p50": [
+    -0.7221496186148688,
+    -0.10134995605712477
+   ],
+   "worst_p10_p50": [
+    -0.8779186945656077,
+    -0.21445238468566669
+   ]
+  },
+  "match": true
+ },
+ "puter/PQC thesis (REJECTED)": {
+  "asof": "2026-10-08 19:00",
+  "package": {
+   "known": 45,
+   "n": 9,
+   "n_complete": 9,
+   "tier": "INSUFFICIENT_HISTORY",
+   "selection_bias_risk": true,
+   "unmeasured_share": 0.25,
+   "p10_p50": [
+    null,
+    null
+   ],
+   "complete_only_p10_p50": [
+    null,
+    null
+   ],
+   "worst_p10_p50": null,
+   "missing_reasons": {
+    "NO_BARS_STORED": 3,
+    "window not closed and published yet": 33
+   }
+  },
+  "independent": {
+   "known": 45,
+   "n": 9,
+   "n_complete": 9,
+   "guard_removed": 0,
+   "selection_bias_risk": true,
+   "p10_p50": [
+    -0.9942401778469693,
+    -0.39522616772151453
+   ],
+   "worst_p10_p50": [
+    -0.9967348922676883,
+    -0.46150827988908016
+   ]
+  },
+  "match": true
+ },
+ "QTC thesis (RESEARCH REQUIRED)": {
+  "asof": "2026-10-20 10:00",
+  "package": {
+   "known": 47,
+   "n": 23,
+   "n_complete": 20,
+   "tier": "INSUFFICIENT_HISTORY",
+   "selection_bias_risk": true,
+   "unmeasured_share": 0.4773,
+   "p10_p50": [
+    null,
+    null
+   ],
+   "complete_only_p10_p50": [
+    null,
+    null
+   ],
+   "worst_p10_p50": null,
+   "missing_reasons": {
+    "NO_BARS_STORED": 15,
+    "NO_BARS_IN_WINDOW": 6,
+    "window not closed and published yet": 3,
+    "BARS_END_EARLY": 3
+   }
+  },
+  "independent": {
+   "known": 47,
+   "n": 23,
+   "n_complete": 20,
+   "guard_removed": 0,
+   "selection_bias_risk": true,
+   "p10_p50": [
+    -0.9999712664918331,
+    -0.032116345773015365
+   ],
+   "worst_p10_p50": [
+    -0.9999737522560407,
+    -0.06901937607356334
+   ]
+  },
+  "match": true
+ },
+ "corpus end (REJECTED)": {
+  "asof": "2026-10-23 17:00",
+  "package": {
+   "known": 192,
+   "n": 136,
+   "n_complete": 105,
+   "tier": "HISTORICAL_COHORT",
+   "selection_bias_risk": true,
+   "unmeasured_share": 0.2688,
+   "p10_p50": [
+    -0.7757117393563163,
+    -0.03281732100722262
+   ],
+   "complete_only_p10_p50": [
+    -0.5942135635786895,
+    -0.07613617446675292
+   ],
+   "worst_p10_p50": [
+    -0.8779186945656077,
+    -0.21445238468566669
+   ],
+   "missing_reasons": {
+    "window not closed and published yet": 6,
+    "NO_BARS_STORED": 29,
+    "BARS_END_EARLY": 31,
+    "NO_BARS_IN_WINDOW": 20,
+    "NO_POOL_BASIS": 1
+   }
+  },
+  "independent": {
+   "known": 192,
+   "n": 136,
+   "n_complete": 105,
+   "guard_removed": 0,
+   "selection_bias_risk": true,
+   "p10_p50": [
+    -0.7757117393563163,
+    -0.03281732100722262
+   ],
+   "worst_p10_p50": [
+    -0.8779186945656077,
+    -0.21445238468566669
+   ]
+  },
+  "match": true
+ },
+ "corpus end (RESEARCH REQUIRED)": {
+  "asof": "2026-10-23 17:00",
+  "package": {
+   "known": 51,
+   "n": 27,
+   "n_complete": 23,
+   "tier": "INSUFFICIENT_HISTORY",
+   "selection_bias_risk": true,
+   "unmeasured_share": 0.4706,
+   "p10_p50": [
+    null,
+    null
+   ],
+   "complete_only_p10_p50": [
+    null,
+    null
+   ],
+   "worst_p10_p50": null,
+   "missing_reasons": {
+    "NO_BARS_STORED": 16,
+    "NO_BARS_IN_WINDOW": 8,
+    "BARS_END_EARLY": 4
+   }
+  },
+  "independent": {
+   "known": 51,
+   "n": 27,
+   "n_complete": 23,
+   "guard_removed": 0,
+   "selection_bias_risk": true,
+   "p10_p50": [
+    -0.9999712664918331,
+    -0.0011517677394218273
+   ],
+   "worst_p10_p50": [
+    -0.9999737522560407,
+    -0.053633329474271796
+   ]
+  },
+  "match": true
+ }
+}
+EXIT=0

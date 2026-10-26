@@ -1,0 +1,128 @@
+[
+ {
+  "id": "S1 quote buys the token (input/output swapped)",
+  "file": "memelab/backtest/depth.py",
+  "old": "url = f\"{JUP_QUOTE}?inputMint={p['mint']}&outputMint={USDC}&",
+  "new": "url = f\"{JUP_QUOTE}?inputMint={USDC}&outputMint={p['mint']}&",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S2 amount = size * price",
+  "file": "memelab/backtest/depth.py",
+  "old": "        amount = size / price\n",
+  "new": "        amount = size * price\n",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S3 price always base side",
+  "file": "memelab/backtest/depth.py",
+  "old": "a.get(f\"{side}_token_price_usd\")",
+  "new": "a.get(\"base_token_price_usd\")",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S4 decimals always base token",
+  "file": "memelab/backtest/depth.py",
+  "old": "tok = included.get(base if side == \"base\" else quote) or {}",
+  "new": "tok = included.get(base) or {}",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S5 Solana identity case-insensitive",
+  "file": "memelab/backtest/depth.py",
+  "old": "return a == b if chain == \"solana\" else a.lower() == b.lower()",
+  "new": "return a.lower() == b.lower()",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S6 future-dated export accepted",
+  "file": "memelab/backtest/depth.py",
+  "old": "if i == 0 or ct < now - window_s or ct > now:",
+  "new": "if i == 0 or ct < now - window_s:",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S7 failed pool read dropped",
+  "file": "memelab/backtest/depth.py",
+  "old": "            it = next((v for k, v in items.items() if _same(chain, k, p[\"pool_address\"])), None)\n",
+  "new": "            it = next((v for k, v in items.items() if _same(chain, k, p[\"pool_address\"])), None)\n            if resp[\"status\"] != 200: continue\n",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S8 ExactOut instead of ExactIn",
+  "file": "memelab/backtest/depth.py",
+  "old": "swapMode=ExactIn",
+  "new": "swapMode=ExactOut",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S9 decision_id points to oldest decision",
+  "file": "memelab/backtest/depth.py",
+  "old": "\"ORDER BY export_time, id\", (now - active_s, now)",
+  "new": "\"ORDER BY export_time DESC, id DESC\", (now - active_s, now)",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S10 NOT_IN_RESPONSE treated as OK with empty values",
+  "file": "memelab/backtest/depth.py",
+  "old": "                state, v = \"NOT_IN_RESPONSE\", {}",
+  "new": "                state, v = \"OK\", {}",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S11 slippage not recorded in URL",
+  "file": "memelab/backtest/depth.py",
+  "old": "&slippageBps={SLIPPAGE_BPS}",
+  "new": "",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S12 route not recorded",
+  "file": "memelab/backtest/depth.py",
+  "old": "\"route\": [{\"label\"",
+  "new": "\"route_\": [{\"label\"",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S13 out_usd with 9 decimals",
+  "file": "memelab/backtest/depth.py",
+  "old": "out_usd / 10 ** USDC_DECIMALS",
+  "new": "out_usd / 10 ** 9",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S14 ceil instead of floor",
+  "file": "memelab/backtest/depth.py",
+  "old": "raw = int(math.floor(amount * 10 ** int(dec)))",
+  "new": "raw = int(math.ceil(amount * 10 ** int(dec)))",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ }
+]

@@ -1,0 +1,94 @@
+{
+ "PAID_demo (SETUP DEVELOPING)": {
+  "asof": "2026-10-06 23:48",
+  "package_n": 0,
+  "package_tier": "INSUFFICIENT_HISTORY",
+  "package_known_tokens": 1,
+  "package_window_states": {
+   "PENDING": 1
+  },
+  "independent_known": 1,
+  "independent_complete_n": 0,
+  "independent_censored_early": 0,
+  "package_median": null,
+  "independent_median": null,
+  "bars_after_asof_used": 0,
+  "match": true
+ },
+ "RUG thesis (REJECTED)": {
+  "asof": "2026-10-09 12:18",
+  "package_n": 29,
+  "package_tier": "INSUFFICIENT_HISTORY",
+  "package_known_tokens": 71,
+  "package_window_states": {
+   "NOT_OBSERVABLE": 4,
+   "COMPLETE": 29,
+   "PENDING": 33,
+   "CENSORED": 5
+  },
+  "independent_known": 71,
+  "independent_complete_n": 29,
+  "independent_censored_early": 2,
+  "package_median": null,
+  "independent_median": -0.10267594237461886,
+  "bars_after_asof_used": 0,
+  "match": true
+ },
+ "puter/PQC thesis (REJECTED)": {
+  "asof": "2026-10-08 19:30",
+  "package_n": 9,
+  "package_tier": "INSUFFICIENT_HISTORY",
+  "package_known_tokens": 58,
+  "package_window_states": {
+   "NOT_OBSERVABLE": 3,
+   "COMPLETE": 9,
+   "PENDING": 46
+  },
+  "independent_known": 58,
+  "independent_complete_n": 9,
+  "independent_censored_early": 0,
+  "package_median": null,
+  "independent_median": -0.39522616772151453,
+  "bars_after_asof_used": 0,
+  "match": true
+ },
+ "QTC thesis (RESEARCH REQUIRED)": {
+  "asof": "2026-10-20 10:19",
+  "package_n": 20,
+  "package_tier": "INSUFFICIENT_HISTORY",
+  "package_known_tokens": 47,
+  "package_window_states": {
+   "NOT_OBSERVABLE": 15,
+   "CENSORED": 9,
+   "COMPLETE": 20,
+   "PENDING": 3
+  },
+  "independent_known": 47,
+  "independent_complete_n": 20,
+  "independent_censored_early": 3,
+  "package_median": null,
+  "independent_median": -0.016634056756218596,
+  "bars_after_asof_used": 0,
+  "match": true
+ },
+ "corpus end (REJECTED)": {
+  "asof": "2026-10-23 17:34",
+  "package_n": 105,
+  "package_tier": "HISTORICAL_COHORT",
+  "package_known_tokens": 192,
+  "package_window_states": {
+   "PENDING": 6,
+   "NOT_OBSERVABLE": 30,
+   "COMPLETE": 105,
+   "CENSORED": 51
+  },
+  "independent_known": 192,
+  "independent_complete_n": 105,
+  "independent_censored_early": 31,
+  "package_median": -0.07613617446675292,
+  "independent_median": -0.07613617446675292,
+  "bars_after_asof_used": 0,
+  "match": true
+ }
+}
+EXIT=0

@@ -1,0 +1,17 @@
+$ python3.13 -m venv /home/claude/ext/venvs/tradingstrategy-ai__trade-executor
+$ python3 -I /home/claude/work/memelab-inbox/audits/backtesting/research/smoke/tradingstrategy-ai__trade-executor/script.py /home/claude/ext/venvs/tradingstrategy-ai__trade-executor/bin/python
+
+interpreter: Python 3.13.17
+$ /home/claude/ext/venvs/tradingstrategy-ai__trade-executor/bin/python -m pip install --only-binary :all: --no-cache-dir trade-executor
+ERROR: Ignored the following versions that require a different python version: 0.1.0 Requires-Python >=3.10,<3.11; 0.1.1 Requires-Python >=3.10,<3.11; 0.2 Requires-Python >=3.10,<3.11; 0.3 Requires-Python >=3.10,<3.11
+ERROR: Could not find a version that satisfies the requirement trade-executor (from versions: none)
+ERROR: No matching distribution found for trade-executor
+pip_exit_code=1
+$ /home/claude/ext/venvs/tradingstrategy-ai__trade-executor/bin/python -m pip install --only-binary :all: --no-cache-dir trade-executor==0.3
+ERROR: Ignored the following versions that require a different python version: 0.1.0 Requires-Python >=3.10,<3.11; 0.1.1 Requires-Python >=3.10,<3.11; 0.2 Requires-Python >=3.10,<3.11; 0.3 Requires-Python >=3.10,<3.11
+ERROR: Could not find a version that satisfies the requirement trade-executor==0.3 (from versions: none)
+ERROR: No matching distribution found for trade-executor==0.3
+pip_exit_code=1
+RESULT: INSTALL_FAILED (no release supports Python 3.13)
+exit_code=1
+wall_seconds=1

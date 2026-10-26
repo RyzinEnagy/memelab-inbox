@@ -1,0 +1,12 @@
+# command: unshare -rn timeout 300 /home/claude/ext/venvs/nikkisora__PolarBT/bin/python -I script.py /home/claude/ext/smoke_stage/nikkisora__PolarBT
+# venv: python 3.13.17, pip install --only-binary=:all: polars numpy -> polars 2.0.0, numpy 2.5.4 (PolarBT itself NOT installed)
+# stub package: empty __init__.py + 8 modules copied byte-identical from repo @ 18f9363a (sha256 in /home/claude/ext/smoke_stage/nikkisora__PolarBT/SHA256SUMS.txt)
+# run at 2026-10-23T16:02:33Z
+polars 2.0.0
+bar k=10: open=110.0 close=110.5; bar k+1 open=111.0 close=111.5
+[1] order_delay=0: signal saw close=110.5; entry filled_bar=10 filled_price=110.5
+[1] order_delay=1: signal saw close=110.5; entry filled_bar=11 filled_price=111.5
+[2] SL=105 TP=118 both inside bar 12 (open=112, low=90, high=130): exit filled_bar=12 price=118.0
+[3] trade_value=100: AMMSlippage buy=1.0909 (x*y=k exact-in 1.1000); sell=0.9091 (x*y=k 0.9091)
+[3] trade_value=1000: AMMSlippage buy=1.5000 (x*y=k exact-in 2.0000); sell=0.5000 (x*y=k 0.5000)
+EXIT_CODE=0

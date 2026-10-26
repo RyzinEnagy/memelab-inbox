@@ -1,0 +1,24 @@
+=== collector 2026-10-25T13:36:31Z tree of 50565ad
+command: python audits/backtesting/testing/mutate.py audits/backtesting/testing/collector_mutations.json
+baseline (unmutated): exit 0 :: 13 passed in 3.28s
+[MC-1 baseline rows counted as new decisions] CAUGHT :: 1 failed, 2 passed in 0.78s
+[MC-2 24 h entry window ignored] CAUGHT :: 1 failed in 0.45s
+[MC-3 primary pool of the export ignored] CAUGHT :: 1 failed in 0.45s
+[MC-4 pool identity not checked] CAUGHT :: 1 failed, 3 passed in 1.19s
+[MC-5 EVM identity compared with case] CAUGHT :: 1 failed, 3 passed in 1.10s
+[MC-6 token amount ignores the mint's decimals] CAUGHT :: 1 failed, 3 passed in 1.11s
+[MC-7 quote identity not checked] CAUGHT :: 1 failed, 8 passed in 2.75s
+[MC-8 captured_at is the request start, not the response] CAUGHT :: 1 failed, 3 passed in 1.13s
+[MC-9 first GeckoTerminal call does not wait after refresh] CAUGHT :: 1 failed, 4 passed in 1.40s
+[MC-10 GeckoTerminal faster than 6 a minute] CAUGHT :: 1 failed, 4 passed in 1.55s
+[MC-11 GeckoTerminal call cap ignored] CAUGHT :: 1 failed, 5 passed in 1.98s
+[MC-12 deadline ignored] CAUGHT :: 1 failed, 6 passed in 2.13s
+[MC-13 blocked quote source reported as OK] CAUGHT :: 1 failed, 7 passed in 2.50s
+[MC-14 decisions followed forever] CAUGHT :: 1 failed, 9 passed in 3.33s
+[MC-15 since_export_s sign] CAUGHT :: 1 failed, 3 passed in 1.18s
+[MC-16 depth tables not append-only] CAUGHT :: 1 failed, 11 passed in 3.24s
+[MC-17 rollback drops a v1 table too] CAUGHT :: 1 failed, 11 passed in 3.26s
+[MC-18 collect step writes the stored database] CAUGHT :: 1 failed, 12 passed in 3.20s
+RESULT: all mutations caught
+EXIT=0
+first pass: MC-1 SURVIVED (fixture baseline was outside the window); test_rows_of_the_oldest_export_read_are_never_new added, then 18 of 18 caught

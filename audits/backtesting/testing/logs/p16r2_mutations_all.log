@@ -1,0 +1,261 @@
+=== p05 2026-10-23T21:55:19Z 0e63563
+baseline (unmutated): exit 0 :: 15 passed in 1.44s
+[M05-1 forming bar leaks into closed_bars] CAUGHT :: 1 failed, 5 passed in 0.14s
+[M05-2 zero treated as missing] CAUGHT :: 1 failed, 7 passed in 0.12s
+[M05-3 same-time execution instead of next open] CAUGHT :: 1 failed, 3 passed in 0.11s
+[M05-4 append-only triggers removed] CAUGHT :: 1 failed, 4 passed in 0.11s
+[M05-5 bar revision backdated to modeled availability] CAUGHT :: 1 failed, 9 passed in 0.14s
+[M05-6 visibility by event_time instead of available_at] CAUGHT :: 1 failed, 8 passed in 0.13s
+[M05-7 pools from today used for the past] CAUGHT :: 1 failed, 2 passed in 0.09s
+RESULT: all mutations caught
+EXIT=0
+=== p06 2026-10-23T21:55:24Z 0e63563
+baseline (unmutated): exit 0 :: 17 passed in 0.38s
+[M06-1 forming bar stored] CAUGHT :: 1 failed, 3 passed in 0.19s
+[M06-2 pool availability = today (pool list from the present)] CAUGHT :: 1 failed in 0.12s
+[M06-3 unknown dex assumed constant product] CAUGHT :: 1 failed, 2 passed in 0.14s
+[M06-4 pool basis by all-time volume (future leaks)] CAUGHT :: 1 failed, 4 passed in 0.17s
+[M06-5 page date backdates first_seen] CAUGHT :: 1 failed, 6 passed in 0.25s
+[M06-6 second tool counted as new capture] CAUGHT :: 1 failed, 7 passed in 0.24s
+[M06-7 only latest export used for the universe] CAUGHT :: 1 failed, 5 passed in 0.21s
+[M06-8 no retry on 429] CAUGHT :: 1 failed in 0.13s
+[M06-9 backfilled bar knowable at its close (no provider lag)] CAUGHT :: 1 failed, 1 passed in 0.10s
+[M06-10 unchanged bar seen again later stored as a revision] CAUGHT :: 1 failed, 1 passed in 0.09s
+[M06-11 pools fetched counts as done (resume skips missing bars)] CAUGHT :: 1 failed, 12 passed in 0.30s
+[M06-12 corrupted mint copies merged by similarity] CAUGHT :: 1 failed, 11 passed in 0.28s
+RESULT: all mutations caught
+EXIT=0
+=== p06a 2026-10-23T21:55:31Z 0e63563
+baseline (unmutated): exit 0 :: 21 passed in 0.28s
+[M06A-1 allowlist not enforced] CAUGHT :: 1 failed, 5 passed in 0.18s
+[M06A-2 any GitHub owner accepted for releases] CAUGHT :: 1 failed, 10 passed in 0.24s
+[M06A-3 redirect target not checked] CAUGHT :: 1 failed, 19 passed in 0.27s
+[M06A-4 rendered text date enters record identity] CAUGHT :: 1 failed, 3 passed in 0.13s
+[M06A-5 failed fetch still recorded] CAUGHT :: 1 failed, 12 passed in 0.21s
+[M06A-6 no page cap] CAUGHT :: 1 failed, 13 passed in 0.26s
+[M06A-7 Maxun accepted as runtime collector] CAUGHT :: 1 failed, 15 passed in 0.25s
+[M06A-8 schedules approved by default] CAUGHT :: 1 failed, 14 passed in 0.27s
+[M06A-10 capture date taken from the page claim] CAUGHT :: 1 failed in 0.12s
+RESULT: all mutations caught
+EXIT=0
+=== p07 2026-10-23T21:55:36Z 0e63563
+baseline (unmutated): exit 0 :: 15 passed in 0.09s
+[M07-1 swap fee charged twice on a buy] CAUGHT :: 1 failed in 0.08s
+[M07-2 Token-2022 transfer fee ignored on a buy] CAUGHT :: 1 failed, 5 passed in 0.09s
+[M07-3 quote from the future accepted] CAUGHT :: 1 failed, 6 passed in 0.09s
+[M07-4 stale quote accepted] CAUGHT :: 1 failed, 6 passed in 0.09s
+[M07-5 CLMM priced as constant product] CAUGHT :: 1 failed, 2 passed in 0.08s
+[M07-6 failed legs still counted] CAUGHT :: 1 failed, 4 passed in 0.09s
+[M07-7 impact cap ignored on exit] CAUGHT :: 1 failed, 4 passed in 0.09s
+[M07-8 integer rounding in the user's favor] CAUGHT :: 1 failed in 0.08s
+[M07-9 state after execution time used] CAUGHT :: 1 failed, 3 passed in 0.08s
+[M07-10 exit converted at the entry rate] CAUGHT :: 1 failed, 7 passed in 0.12s
+[M07-11 missing USD rate defaults to 1] CAUGHT :: 1 failed, 7 passed in 0.09s
+[M07-12 quotes extrapolated above the largest quoted size] CAUGHT :: 1 failed, 6 passed in 0.09s
+[M07-13 pumpswap virtual reserves dropped] CAUGHT :: 1 failed, 10 passed in 0.10s
+[M07-14 pumpswap default fee optimistic] CAUGHT :: 1 failed, 14 passed in 0.10s
+RESULT: all mutations caught
+EXIT=0
+=== p08 2026-10-23T21:55:42Z 0e63563
+baseline (unmutated): exit 0 :: 16 passed in 0.13s
+[M08-1 breakout level includes the bar being tested] CAUGHT :: 1 failed in 0.08s
+[M08-2 pivots known when they print (repainting)] CAUGHT :: 1 failed, 2 passed in 0.12s
+[M08-3 future bar accepted by a strategy] CAUGHT :: 1 failed, 15 passed in 0.13s
+[M08-4 mixed timeframes accepted] CAUGHT :: 1 failed, 12 passed in 0.12s
+[M08-5 exhaustion guard removed] CAUGHT :: 1 failed, 11 passed in 0.13s
+[M08-6 liquidity filter removed] CAUGHT :: 1 failed, 11 passed in 0.13s
+[M08-7 signal identity by symbol-like key (mint dropped)] CAUGHT :: 1 failed, 14 passed in 0.13s
+[M08-8 lab fatal flag ignored] CAUGHT :: 1 failed, 8 passed in 0.13s
+[M08-9 random baseline peeks at price] CAUGHT :: 1 failed, 9 passed in 0.12s
+[M08-10 stale last bar traded] CAUGHT :: 1 failed, 6 passed in 0.15s
+[M08-11 wick counted as breakout] CAUGHT :: 1 failed in 0.10s
+RESULT: all mutations caught
+EXIT=0
+=== p09 2026-10-23T21:55:47Z 0e63563
+baseline (unmutated): exit 0 :: 12 passed in 6.91s
+[M09-1 record visible from its claimed publication time] CAUGHT :: 1 failed in 0.10s
+[M09-2 reposts counted as independent origins] CAUGHT :: 1 failed, 1 passed in 0.09s
+[M09-3 wallet transfers treated as sells] CAUGHT :: 1 failed, 2 passed in 0.09s
+[M09-4 attention after the rally treated as prescient] CAUGHT :: 1 failed, 3 passed in 0.09s
+[M09-5 denial ignored] CAUGHT :: 1 failed, 4 passed in 0.09s
+[M09-6 ticker-only record linked to the token] CAUGHT :: 1 failed, 4 passed in 0.09s
+[M09-7 placebo shift does nothing] CAUGHT :: 1 failed, 5 passed in 0.12s
+[M09-8 verified catalyst overrides a fatal flag] CAUGHT :: 1 failed, 9 passed in 0.21s
+[M09-9 bridge counts commentary and syndication as origins] CAUGHT :: 1 failed, 8 passed in 0.19s
+[M09-10 launch record overwritten by later exports] CAUGHT :: 1 failed, 10 passed in 7.19s
+[M09-11 catalyst usable before the lab linked the token] CAUGHT :: 1 failed, 8 passed in 0.19s
+RESULT: all mutations caught
+EXIT=0
+=== p10 2026-10-23T21:56:06Z 0e63563
+baseline (unmutated): exit 0 :: 27 passed in 1.88s
+[M10-1 bar applied at its start (before it completed)] CAUGHT :: 1 failed, 10 passed in 0.16s
+[M10-2 gap-through stop filled at the stop price] CAUGHT :: 1 failed in 0.11s
+[M10-3 target checked before stop inside one bar] CAUGHT :: 1 failed, 2 passed in 0.12s
+[M10-4 entry without enough cash] CAUGHT :: 1 failed, 3 passed in 0.13s
+[M10-5 correlated group cap ignored] CAUGHT :: 1 failed, 11 passed in 0.15s
+[M10-6 drawdown halt ignored] CAUGHT :: 1 failed, 12 passed in 0.15s
+[M10-7 crash through stop filled at the stop] CAUGHT :: 1 failed, 16 passed in 0.16s
+[M10-8 fill on the bar that was open at decision time] CAUGHT :: 1 failed in 0.11s
+[M10-9 end-of-run marking reads past the cutoff] CAUGHT :: 1 failed, 9 passed in 0.15s
+[M10-10 network fee not charged on canceled entries] CAUGHT :: 1 failed, 17 passed in 0.16s
+[M10-11 runner applies later bar revisions] CAUGHT :: 1 failed, 2 passed in 0.17s
+[M10-12 run id blind to code changes] CAUGHT :: 1 failed, 3 passed in 0.17s
+[M10-13 discovery baseline retried until tradable] CAUGHT :: 1 failed, 14 passed in 0.15s
+[M10-14 thesis known at its creation even under the commit rule] CAUGHT :: 1 failed in 0.15s
+RESULT: all mutations caught
+EXIT=0
+=== p11 2026-10-23T21:56:15Z 0e63563
+baseline (unmutated): exit 0 :: 14 passed in 6.77s
+[M11-1 two or three day blocks give an interval] CAUGHT :: 1 failed, 10 passed in 5.08s
+[M11-2 tiny samples enter the Holm comparison] CAUGHT :: 1 failed, 10 passed in 5.10s
+[M11-3 sealed test readable twice] CAUGHT :: 1 failed in 0.09s
+[M11-4 tuning on the validation window] CAUGHT :: 1 failed, 11 passed in 6.19s
+[M11-5 no embargo before window end] CAUGHT :: 1 failed, 1 passed in 0.15s
+[M11-6 verdict ignores the minimum sample] CAUGHT :: 1 failed, 3 passed in 1.73s
+[M11-7 overfit flag never fires] CAUGHT :: 1 failed, 11 passed in 6.61s
+[M11-8 walk-forward tunes on its out-of-sample block] CAUGHT :: 1 failed, 7 passed in 2.51s
+[M11-9 regime labeled with the price after entry] CAUGHT :: 1 failed, 9 passed in 5.19s
+[M11-10 deflated Sharpe on small samples] CAUGHT :: 1 failed, 5 passed in 1.87s
+[M11-11 frozen config can be changed after the test] CAUGHT :: 1 failed in 0.09s
+RESULT: all mutations caught
+EXIT=0
+=== p12 2026-10-23T21:57:00Z 0e63563
+baseline (unmutated): exit 0 :: 13 passed in 0.14s
+[M12-1 liquidity unchanged when the price falls] CAUGHT :: 1 failed, 12 passed in 0.16s
+[M12-2 fatal flag can be overridden] CAUGHT :: 1 failed, 3 passed in 0.07s
+[M12-3 unknown insider share treated as zero silently] CAUGHT :: 1 failed, 6 passed in 0.08s
+[M12-4 honeypot still sells] CAUGHT :: 1 failed, 12 passed in 0.16s
+[M12-5 observed quotes extrapolated] CAUGHT :: 1 failed, 8 passed in 0.09s
+[M12-6 observed quotes scale the model up (both guards removed)] CAUGHT :: 1 failed, 11 passed in 0.16s
+[M12-7 pool fee ignored] CAUGHT :: 1 failed, 7 passed in 0.09s
+[M12-8 probabilities attached to shocks] CAUGHT :: 1 failed in 0.06s
+[M12-9 marked value reported as realizable] CAUGHT :: 1 failed, 2 passed in 0.07s
+[M12-10 quote depletion never fails] CAUGHT :: 1 failed, 8 passed in 0.09s
+[M12-11 authority shocks shown for every token] CAUGHT :: 1 failed, 4 passed in 0.07s
+[M12-12 cohort percentiles from too few cases] CAUGHT :: 1 failed, 10 passed in 0.15s
+RESULT: all mutations caught
+EXIT=0
+=== p13 2026-10-23T21:57:05Z 0e63563
+baseline (unmutated): exit 0 :: 27 passed in 1.01s
+[M13-1 assessment enabled by default] CAUGHT :: 1 failed in 0.33s
+[M13-2 hook ignores the policy switch] CAUGHT :: 1 failed in 0.33s
+[M13-3 all-zero authority key read as active] CAUGHT :: 1 failed, 1 passed in 0.34s
+[M13-4 cache key ignores the snapshot] CAUGHT :: 1 failed, 2 passed in 0.40s
+[M13-5 precheck skipped (invalid, stale, no price)] CAUGHT :: 1 failed, 4 passed in 0.43s
+[M13-6 lab fatal flag not an abstain state] CAUGHT :: 1 failed, 3 passed in 0.41s
+[M13-7 unverified catalyst triggers refresh] CAUGHT :: 1 failed, 11 passed in 0.56s
+[M13-8 stale catalyst triggers refresh] CAUGHT :: 1 failed, 11 passed in 0.61s
+[M13-9 duplicate catalyst triggers refresh again] CAUGHT :: 1 failed, 11 passed in 0.58s
+[M13-10 hook lets an exception through] CAUGHT :: 1 failed, 10 passed in 0.57s
+[M13-11 assessment changes the lab status] CAUGHT :: 1 failed, 1 passed in 0.36s
+[M13-12 unclosed bars used for token signals] CAUGHT :: 1 failed, 15 passed in 0.73s
+[M13-13 DEEP stage reads past the assessment time] CAUGHT :: 1 failed, 16 passed in 0.77s
+[M13-14 scout attaches a record when the policy is off] CAUGHT :: 1 failed, 14 passed in 0.68s
+[M13-15 abstain records dropped instead of stored] CAUGHT :: 1 failed, 4 passed in 0.42s
+[M13-16 cache key ignores new evidence rows] CAUGHT :: 1 failed, 22 passed in 0.93s
+[M13-17 robot outage triggers a refresh] CAUGHT :: 1 failed, 23 passed in 1.02s
+[M13-18 wallet transfer relabeled as a sale] CAUGHT :: 1 failed, 20 passed in 0.92s
+[M13-19 liquidity summed across pools] CAUGHT :: 1 failed, 18 passed in 0.81s
+[M13-20 published time used as availability] CAUGHT :: 1 failed, 19 passed in 0.89s
+[M13-21 cached answer served after it aged out] CAUGHT :: 1 failed, 24 passed in 1.00s
+[M13-22 severe stress silently dropped] CAUGHT :: 1 failed, 25 passed in 0.98s
+[M13-23 severe stress rewrites the lab score] CAUGHT :: 1 failed, 25 passed in 1.14s
+[M13-24 cache key ignores the token's bars] CAUGHT :: 1 failed, 26 passed in 1.16s
+RESULT: all mutations caught
+EXIT=0
+=== p14 2026-10-23T21:57:31Z 0e63563
+baseline (unmutated): exit 0 :: 49 passed in 7.21s
+[M14-1 missing assessment not labeled UNTESTED] CAUGHT :: 1 failed, 12 passed in 0.77s
+[M14-2 lab fatal flag does not win the label] CAUGHT :: 1 failed, 14 passed in 0.81s
+[M14-3 strategies ranked by paper return] CAUGHT :: 1 failed, 4 passed in 0.53s
+[M14-4 tiny samples ranked] CAUGHT :: 1 failed, 4 passed in 0.51s
+[M14-5 paper-only profit not flagged] CAUGHT :: 1 failed, 4 passed in 0.49s
+[M14-6 high-status mismatch hidden] CAUGHT :: 1 failed, 10 passed in 0.70s
+[M14-7 fatal override not detected] CAUGHT :: 1 failed, 13 passed in 0.74s
+[M14-8 blocked quote given made-up proceeds] CAUGHT :: 1 failed, 3 passed in 0.44s
+[M14-9 abstained candidate loses the lab view] CAUGHT :: 1 failed in 0.35s
+[M14-10 alert hides a missing assessment] CAUGHT :: 1 failed, 16 passed in 0.83s
+[M14-11 alerts change when the policy is off] CAUGHT :: 1 failed, 16 passed in 0.80s
+[M14-12 scout section printed when off] CAUGHT :: 1 failed, 14 passed in 0.71s
+[M14-13 paper value shown as executable] CAUGHT :: 1 failed in 0.38s
+[M14-14 report implies Maxun is running] CAUGHT :: 1 failed, 15 passed in 0.80s
+[M14-15 late crawl not warned] CAUGHT :: 1 failed, 15 passed in 0.83s
+[M14-16 robot refresh burst not rate limited] CAUGHT :: 1 failed, 11 passed in 0.58s
+[M14-17 old assessment age not disclosed on alerts] CAUGHT :: 1 failed, 16 passed in 0.76s
+[M14-18 --as-of ignored] CAUGHT :: 1 failed, 21 passed in 6.54s
+[M14-19 new token reported with token-specific evidence] CAUGHT :: 1 failed, 2 passed in 0.45s
+[M14-20 missing quote uncertainty dropped] CAUGHT :: 1 failed, 3 passed in 0.43s
+RESULT: all mutations caught
+EXIT=0
+=== p15 2026-10-23T21:58:03Z 0e63563
+baseline (unmutated): exit 0 :: 16 passed in 0.70s
+[M15-1 bars after the window used] CAUGHT :: 1 failed in 0.16s
+[M15-2 outcome reads bars not yet available] CAUGHT :: 1 failed, 2 passed in 0.20s
+[M15-3 unfinished window reported] CAUGHT :: 1 failed in 0.15s
+[M15-4 not-observable outcomes dropped] CAUGHT :: 1 failed, 3 passed in 0.22s
+[M15-5 screened-out tokens left out of the study] CAUGHT :: 1 failed, 3 passed in 0.22s
+[M15-6 rerun appends duplicate rows] CAUGHT :: 1 failed, 1 passed in 0.16s
+[M15-7 revision loses its superseded row link] CAUGHT :: 1 failed, 1 passed in 0.16s
+[M15-8 catalyst list judged by claimed publication time] CAUGHT :: 1 failed, 5 passed in 0.30s
+[M15-9 capture judged by claimed publication time] CAUGHT :: 1 failed, 5 passed in 0.29s
+[M15-10 tracker not rate limited] CAUGHT :: 1 failed, 8 passed in 0.39s
+[M15-11 retry not exponential] CAUGHT :: 1 failed, 8 passed in 0.43s
+[M15-12 daily report reads outcomes after its asof] CAUGHT :: 1 failed, 6 passed in 0.34s
+[M15-13 daily report not ranked by the lab score] CAUGHT :: 1 failed, 6 passed in 0.38s
+[M15-14 censored windows left out of drawdown share] CAUGHT :: 1 failed, 3 passed in 0.28s
+[M15-15 small segments reported as reportable] CAUGHT :: 1 failed, 3 passed in 0.29s
+[M15-16 in-place retune allowed] CAUGHT :: 1 failed, 11 passed in 0.64s
+[M15-17 coverage drift not warned] CAUGHT :: 1 failed, 11 passed in 0.62s
+[M15-18 shadow saved as a run] CAUGHT :: 1 failed, 13 passed in 0.66s
+[M15-19 slippage model not scaled by price] CAUGHT :: 1 failed, 10 passed in 0.48s
+[M15-20 stale pending not warned] CAUGHT :: 1 failed, 12 passed in 0.66s
+[M15-21 stored assessments not tracked] CAUGHT :: 1 failed, 7 passed in 0.41s
+[M15-22 calibration drift not warned] CAUGHT :: 1 failed, 11 passed in 0.66s
+RESULT: all mutations caught
+EXIT=0
+=== p16 2026-10-23T21:58:20Z 0e63563
+baseline (unmutated): exit 0 :: 126 passed in 17.65s
+[M16-1 future liquidity snapshot used for a fill] CAUGHT :: 1 failed, 14 passed in 0.19s
+[M16-2 stale liquidity snapshot accepted (max age ignored)] CAUGHT :: 1 failed, 6 passed in 0.19s
+[M16-3 liquidity haircut dropped (fake depth)] CAUGHT :: 1 failed, 11 passed in 0.27s
+[M16-4 lab thesis visible a day before it was written] CAUGHT :: 1 failed in 0.22s
+[M16-5 pool basis chosen with all future bars] CAUGHT :: 1 failed, 4 passed in 0.23s
+[M16-6 network fee priced with the latest SOL bar (future price)] CAUGHT :: 1 failed, 1 passed in 0.25s
+[M16-7 launch catalyst usable from its claimed first-trade time] CAUGHT :: 1 failed, 10 passed in 7.35s
+[M16-8 total liquidity across pools used as the main pool depth] CAUGHT :: 1 failed, 18 passed in 0.96s
+[M16-9 delisted token still fillable] CAUGHT :: 1 failed, 18 passed in 0.22s
+[M16-10 non-executable exit valued at the paper price] CAUGHT :: 1 failed, 6 passed in 0.22s
+[M16-11 strategy sees the bar still forming (one bar of future)] CAUGHT :: 1 failed in 0.16s
+[M16-12 dataset hash ignores the sealed-test cutoff] CAUGHT :: 1 failed, 10 passed in 0.34s
+[M16-13 validation windows read past their end (no cutoff)] CAUGHT :: 1 failed, 13 passed in 7.41s
+RESULT: all mutations caught
+EXIT=0
+=== p16_repair 2026-10-23T21:59:00Z 0e63563
+baseline (unmutated): exit 0 :: 39 passed in 14.36s
+[R16-1 cohort ignores the assessment time] CAUGHT :: 1 failed in 0.43s
+[R16-2 cohort mixes every pool of a mint] CAUGHT :: 1 failed, 1 passed in 0.50s
+[R16-3 partial exit shrinks the cost basis] CAUGHT :: 1 failed, 3 passed in 0.48s
+[R16-4 unsold remainder dropped at the end] CAUGHT :: 1 failed, 2 passed in 0.46s
+[R16-5 entry ignores the network fee in the cash check] CAUGHT :: 1 failed, 4 passed in 0.45s
+[R16-6 concurrent first migration crashes] CAUGHT :: 1 failed, 5 passed in 2.02s
+[R16-7 busy tracker crashes instead of skipping] CAUGHT :: 1 failed, 6 passed in 4.04s
+[R16-8 batch status echoes credentials] CAUGHT :: 1 failed, 11 passed in 14.19s
+[R16-9 archive proof older than the page accepted] CAUGHT :: 1 failed, 12 passed in 14.21s
+[R16-10 assessment cohort read without its as-of] CAUGHT :: 1 failed in 0.40s
+RESULT: all mutations caught
+EXIT=0
+=== p16_repair2 2026-10-23T21:59:56Z 0e63563
+baseline (unmutated): exit 0 :: 87 passed in 17.22s
+[R16b-1 cut-short windows dropped from cohort returns] CAUGHT :: 1 failed, 15 passed in 0.70s
+[R16b-2 cohort selection bias never flagged] CAUGHT :: 1 failed, 15 passed in 0.70s
+[R16b-3 pool chosen with data after the as-of] CAUGHT :: 1 failed, 1 passed in 0.24s
+[R16b-4 pools that disagree measured anyway] CAUGHT :: 1 failed, 14 passed in 0.72s
+[R16b-5 a thin off-market print voids the window] CAUGHT :: 1 failed, 14 passed in 0.71s
+[R16b-6 key-prefixed secrets echoed] CAUGHT :: 1 failed, 21 passed in 14.44s
+[R16b-7 Authorization values echoed] CAUGHT :: 1 failed, 24 passed in 0.47s
+[R16b-8 concurrent identical runs store duplicate results] CAUGHT :: 1 failed, 6 passed in 1.81s
+[R16b-9 fully sold trades change record shape] CAUGHT :: 1 failed, 1 passed in 0.11s
+[R16b-10 public Solana addresses treated as secrets] CAUGHT :: 1 failed, 20 passed in 0.42s
+RESULT: all mutations caught
+EXIT=0
+ALLDONE

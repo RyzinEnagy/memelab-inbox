@@ -1,0 +1,7 @@
+bt 1.4.1
+bar k=10: open=110.0 close=110.5; bar k+1 open=111.0
+[1] close series, signal at k -> 2026-01-01 10:00:00 price 110.5 SAME_BAR_CLOSE_FILL = True
+[2] open series + signal shifted 1 -> 2026-01-01 11:00:00 price 111.0 NEXT_BAR_OPEN = True
+[3] SqrtCostModel, entry-bar volume=1000.0: qty=8839.53 fill price=110.5 fee at bar k=23232.48
+[3] SqrtCostModel, entry-bar volume=0.0: qty=9049.77 fill price=110.5 fee at bar k=0.00
+EXIT_CODE=0

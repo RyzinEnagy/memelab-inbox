@@ -1,0 +1,98 @@
+=== p16r4_guard_scan.py at 7c7b582 2026-10-23T23:47:46Z
+{
+ "opportunities": 1023,
+ "asof": "2026-10-23 17:34",
+ "by_horizon": {
+  "1h": {
+   "state_COMPLETE": 417,
+   "measured": 417,
+   "multi_pool_measured": 74,
+   "state_NOT_OBSERVABLE": 495,
+   "state_CENSORED": 111
+  },
+  "6h": {
+   "state_COMPLETE": 421,
+   "measured": 449,
+   "multi_pool_measured": 83,
+   "state_NOT_OBSERVABLE": 495,
+   "state_CENSORED": 107
+  },
+  "24h": {
+   "state_COMPLETE": 385,
+   "measured": 460,
+   "multi_pool_measured": 83,
+   "state_NOT_OBSERVABLE": 464,
+   "state_CENSORED": 132,
+   "exit": 1,
+   "state_PENDING": 42
+  },
+  "72h": {
+   "state_COMPLETE": 348,
+   "measured": 433,
+   "multi_pool_measured": 88,
+   "state_NOT_OBSERVABLE": 434,
+   "state_CENSORED": 128,
+   "exit": 2,
+   "state_PENDING": 113
+  }
+ },
+ "removed": [
+  {
+   "horizon_h": 24,
+   "mint": "Bm67LrewgThV5H72LC4EkyPc9xk6iwMR1CkSkK8z72q9",
+   "status": "REJECTED_AT_SCREEN",
+   "decision": "2026-10-18 09:51",
+   "hours_apart": 2,
+   "shared_hours": 2,
+   "gap_pct": 3.44
+  },
+  {
+   "horizon_h": 72,
+   "mint": "Bm67LrewgThV5H72LC4EkyPc9xk6iwMR1CkSkK8z72q9",
+   "status": "REJECTED_AT_SCREEN",
+   "decision": "2026-10-18 09:51",
+   "hours_apart": 2,
+   "shared_hours": 2,
+   "gap_pct": 3.44
+  }
+ ],
+ "examples": [
+  {
+   "horizon_h": 24,
+   "mint": "FPTfWkiT8uxEbZsrTUzepN8GXnxt4d8BENxbxWihAcus",
+   "status": "REJECTED_AT_SCREEN",
+   "decision": "2026-10-12 09:51",
+   "shapes": [
+    "exit"
+   ],
+   "shared_hours": 3,
+   "hours_apart": 1,
+   "measured_ret": 0.3837
+  },
+  {
+   "horizon_h": 72,
+   "mint": "FPTfWkiT8uxEbZsrTUzepN8GXnxt4d8BENxbxWihAcus",
+   "status": "REJECTED_AT_SCREEN",
+   "decision": "2026-10-12 09:51",
+   "shapes": [
+    "exit"
+   ],
+   "shared_hours": 3,
+   "hours_apart": 1,
+   "measured_ret": 0.3837
+  },
+  {
+   "horizon_h": 72,
+   "mint": "39HqgQ18g9R33sUfKq1TjX4sbKrgTb4YntnBCFhURJvy",
+   "status": "REJECTED_AT_SCREEN",
+   "decision": "2026-10-13 09:51",
+   "shapes": [
+    "exit"
+   ],
+   "shared_hours": 1,
+   "hours_apart": 1,
+   "measured_ret": -0.0586
+  }
+ ]
+}
+EXIT=0

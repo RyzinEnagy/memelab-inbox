@@ -1,0 +1,15 @@
+2026-10-23T20:15:49Z
+41488adeb52bb77342ae7a75947568d31c7c3e38
+baseline (unmutated): exit 0 :: 20 passed in 0.27s
+[M06A-1 allowlist not enforced] CAUGHT :: 1 failed, 5 passed in 0.13s
+[M06A-2 any GitHub owner accepted for releases] CAUGHT :: 1 failed, 10 passed in 0.18s
+[M06A-3 redirect target not checked] CAUGHT :: 1 failed, 19 passed in 0.27s
+[M06A-4 rendered text date enters record identity] CAUGHT :: 1 failed, 3 passed in 0.11s
+[M06A-5 failed fetch still recorded] CAUGHT :: 1 failed, 12 passed in 0.19s
+[M06A-6 no page cap] CAUGHT :: 1 failed, 13 passed in 0.22s
+[M06A-7 Maxun accepted as runtime collector] CAUGHT :: 1 failed, 15 passed in 0.23s
+[M06A-8 schedules approved by default] CAUGHT :: 1 failed, 14 passed in 0.25s
+[M06A-10 capture date taken from the page claim] CAUGHT :: 1 failed in 0.09s
+RESULT: all mutations caught
+EXIT=0
+2026-10-23T20:15:54Z

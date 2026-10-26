@@ -205,6 +205,10 @@ def cmd_analyze(a):
     r = pipeline.analyze_token(a.mint, bodies, observed_at=t, sol_price=sol, benchmarks=_benchmarks(bodies, (s1 or {}).get("survivors")), account=account,
                                discovery_signals=disc, persist=not a.no_persist)
     print(f"{r['bundle']['identity'].get('symbol')} score {r['score']['total']} status {r['status']['status']} -> {r.get('report_path')}")
+    from .backtest import hook as _bt
+    line = _bt.one_line(_bt.maybe_assess(r))          # None (prints nothing) unless the backtest policy is enabled
+    if line:
+        print(line)
     if a.print:
         print(r["report_md"])
 
@@ -265,10 +269,15 @@ def cmd_scout(a):
         except Exception:
             prior = None
     results = []
+    from .backtest import hook as _bt
+    bt_on = _bt.enabled()                              # backtesting policy (off by default): adds a section, never changes the rest
     for mint in a.mints:
         disc = next((c for c in s1.get("survivors", []) if c["mint"] == mint), None)
         r = pipeline.analyze_token(mint, bodies, observed_at=t, sol_price=sol, benchmarks=bm, discovery_signals=disc, persist=True, report_dir=report_dir)
         results.append(r)
+        bt = _bt.maybe_assess(r)                       # None unless the backtest policy is enabled; never alters r
+        if bt is not None:
+            r["backtest_assessment"] = bt
     ranked, serious, near, rejected = scout_lists(results, s2, a.min_score)
     cg = bodies.get("raw:cg_sol") or {}
     env = {"SOL": f"${sol:,.2f}" + (f" ({cg['solana'].get('usd_24h_change', 0):+.1f}% 24h)" if cg.get("solana") else ""),
@@ -279,9 +288,34 @@ def cmd_scout(a):
     social = social_section(a, results, serious, t, prior)
     md = report.render_scout_report(env, serious, near, rejected, when=t, social=social)
     path = (report_dir or (db.DATA_DIR / "reports")) / f"{time.strftime('%Y%m%d_%H%M', time.gmtime(t))}_SCOUT.md"
+    if bt_on:
+        md += "\n" + _backtest_reports(results, path)
     path.write_text(md)
     print(md)
     print(f"\n-> {path}")
+
+
+def _backtest_reports(results: list[dict], scout_path: Path) -> str:
+    """Policy on only: the scout's backtest section plus one Markdown and one JSON report per assessed mint, next to
+    the scout report. Every analyzed mint appears; a missing assessment is labeled UNTESTED."""
+    from .backtest import report as BR, store as BS
+    sec = BR.scout_section(results)
+    try:
+        con = BS.connect()
+        shared = BR.shared_context(con)
+        for r, row in zip(results, sec["rows"]):
+            doc = BR.build(r.get("backtest_assessment"), con=con, lab={**row, "score": row["lab_score"], "status": row["lab_status"],
+                           "fatal_flags": [f["flag"] for f in (r.get("score") or {}).get("fatal_flags") or []]},
+                           lab_db=db.DB_PATH, shared=shared)
+            stem = scout_path.stem.replace("_SCOUT", "") + f"_{row['symbol'] or 'X'}_{(row['mint'] or '')[:8]}.backtest"
+            scout_path.with_name(stem + ".md").write_text(BR.render_md(doc))
+            scout_path.with_name(stem + ".json").write_text(json.dumps(doc, indent=1, default=str))
+            row["report"] = stem + ".md"
+        con.close()
+    except Exception as e:                              # the scout report still goes out
+        sec["error"] = f"per-token backtest reports not written: {type(e).__name__}: {e}"
+    scout_path.with_name(scout_path.stem + ".backtest.json").write_text(json.dumps(sec, indent=1, default=str))
+    return BR.render_scout_section(sec)
 
 
 def _median(xs):
@@ -407,6 +441,7 @@ def main(argv=None):
     from .chains.cli import add_subparser as _chains; _chains(sp)
     from .launch.cli import add_subparser as _launch; _launch(sp)
     from .social.cli import add_subparser as _social; _social(sp)
+    from .backtest.cli import add_subparser as _backtest; _backtest(sp)
     sp.add_parser("watchlist").set_defaults(fn=cmd_watchlist)
     p = sp.add_parser("rejections"); p.add_argument("--limit", type=int, default=50); p.set_defaults(fn=cmd_rejections)
     p = sp.add_parser("social-note"); p.add_argument("mint"); p.add_argument("metric"); p.add_argument("--value", type=float); p.add_argument("--text"); p.add_argument("--source", default="browser"); p.add_argument("--note"); p.set_defaults(fn=cmd_social_note)

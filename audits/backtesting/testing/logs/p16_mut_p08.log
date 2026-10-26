@@ -1,0 +1,17 @@
+2026-10-23T20:16:00Z
+41488adeb52bb77342ae7a75947568d31c7c3e38
+baseline (unmutated): exit 0 :: 16 passed in 0.13s
+[M08-1 breakout level includes the bar being tested] CAUGHT :: 1 failed in 0.05s
+[M08-2 pivots known when they print (repainting)] CAUGHT :: 1 failed, 2 passed in 0.09s
+[M08-3 future bar accepted by a strategy] CAUGHT :: 1 failed, 15 passed in 0.11s
+[M08-4 mixed timeframes accepted] CAUGHT :: 1 failed, 12 passed in 0.10s
+[M08-5 exhaustion guard removed] CAUGHT :: 1 failed, 11 passed in 0.10s
+[M08-6 liquidity filter removed] CAUGHT :: 1 failed, 11 passed in 0.11s
+[M08-7 signal identity by symbol-like key (mint dropped)] CAUGHT :: 1 failed, 14 passed in 0.10s
+[M08-8 lab fatal flag ignored] CAUGHT :: 1 failed, 8 passed in 0.12s
+[M08-9 random baseline peeks at price] CAUGHT :: 1 failed, 9 passed in 0.10s
+[M08-10 stale last bar traded] CAUGHT :: 1 failed, 6 passed in 0.09s
+[M08-11 wick counted as breakout] CAUGHT :: 1 failed in 0.05s
+RESULT: all mutations caught
+EXIT=0
+2026-10-23T20:16:05Z

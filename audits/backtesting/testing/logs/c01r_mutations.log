@@ -1,0 +1,54 @@
+=== collector repair, tree of 5c7c1d7
+command: python audits/backtesting/testing/mutate.py audits/backtesting/testing/collector_mutations.json
+baseline (unmutated): exit 0 :: 31 passed in 12.88s
+[MC-1 baseline rows counted as new decisions] CAUGHT :: 1 failed, 2 passed in 1.23s
+[MC-2 24 h entry window ignored] CAUGHT :: 1 failed in 0.76s
+[MC-3 primary pool of the export ignored] CAUGHT :: 1 failed in 0.55s
+[MC-4 pool identity not checked] CAUGHT :: 1 failed, 4 passed in 1.64s
+[MC-5 EVM identity compared with case] CAUGHT :: 1 failed, 4 passed in 1.54s
+[MC-6 token amount ignores the mint's decimals] CAUGHT :: 1 failed, 4 passed in 1.55s
+[MC-7 quote identity not checked] CAUGHT :: 1 failed, 20 passed in 8.14s
+[MC-8 captured_at is the request start, not the response] CAUGHT :: 1 failed, 4 passed in 1.50s
+[MC-9 refresh calls not counted in the GeckoTerminal window] CAUGHT :: 1 failed, 7 passed in 2.33s
+[MC-10 GeckoTerminal faster than one call per 10 s] CAUGHT :: 1 failed, 7 passed in 2.75s
+[MC-11 GeckoTerminal and Jupiter call caps ignored] CAUGHT :: 1 failed, 17 passed in 6.91s
+[MC-12 deadline ignored before a call] CAUGHT :: 1 failed, 17 passed in 6.97s
+[MC-13 blocked quote source reported as OK] CAUGHT :: 1 failed, 19 passed in 8.01s
+[MC-14 decisions followed forever] CAUGHT :: 1 failed, 27 passed in 11.78s
+[MC-15 since_export_s sign] CAUGHT :: 1 failed, 4 passed in 2.07s
+[MC-16 depth tables not append-only] CAUGHT :: 1 failed, 29 passed in 12.45s
+[MC-17 rollback drops a v1 table too] CAUGHT :: 1 failed, 29 passed in 12.40s
+[MC-18 collect step writes the stored database] CAUGHT :: 1 failed, 30 passed in 12.39s
+[MR-1 cap on the retry raises (skeptic M1)] CAUGHT :: 1 failed, 17 passed in 7.78s
+[MR-2 retry made after the cap (skeptic M1)] CAUGHT :: 1 failed, 11 passed in 5.16s
+[MR-3 no retry at all] CAUGHT :: 1 failed, 18 passed in 8.31s
+[MR-4 GeckoTerminal 60 s window not enforced (skeptic M2)] CAUGHT :: 1 failed, 7 passed in 3.11s
+[MR-5 quote order by export position (skeptic M3)] CAUGHT :: 1 failed, 23 passed in 11.22s
+[MR-6 skipped quotes leave no row (skeptic M3, minor 2)] CAUGHT :: 1 failed, 4 passed in 1.89s
+[MR-7 pools not read leave no row] CAUGHT :: 1 failed, 8 passed in 3.56s
+[MR-8 price check removed (skeptic M4)] CAUGHT :: 1 failed, 21 passed in 9.91s
+[MR-9 price source not recorded (skeptic M4)] CAUGHT :: 1 failed, 4 passed in 1.94s
+[MR-10 same-hour rerun not refused (minor 5)] CAUGHT :: 1 failed, 26 passed in 12.01s
+[MR-11 failed pool lookup not recorded (minor 4)] CAUGHT :: 1 failed, 25 passed in 11.85s
+[MR-12 failed lookups not retried (minor 4)] CAUGHT :: 1 failed, 25 passed in 12.44s
+[MR-13 one bad row makes the export unreadable (minor 7)] CAUGHT :: 1 error in 0.83s
+[MR-14 retry bodies dropped (minor 8)] CAUGHT :: 1 failed, 18 passed in 8.19s
+[MR-15 script git fetch without a short stop (minor 1)] CAUGHT :: 1 failed, 30 passed in 13.06s
+[MR-16 script refresh calls not passed to collect (skeptic M2)] CAUGHT :: 1 failed, 30 passed in 13.35s
+[S3 price always base side] CAUGHT :: 1 failed, 5 passed in 2.50s
+[S4 decimals always base token] CAUGHT :: 1 failed, 5 passed in 2.65s
+[S5 Solana identity case-insensitive] CAUGHT :: 1 failed, 6 passed in 2.90s
+[S6 future-dated export accepted] CAUGHT :: 1 failed, 3 passed in 1.56s
+[S7 failed pool read dropped] CAUGHT :: 1 failed, 4 passed in 1.98s
+[S8 ExactOut instead of ExactIn] CAUGHT :: 1 failed, 4 passed in 1.84s
+[S9 decision_id points to the oldest decision] CAUGHT :: 1 failed, 4 passed in 1.86s
+[S10 NOT_IN_RESPONSE treated as OK] CAUGHT :: 1 failed, 4 passed in 2.10s
+[S11 slippage not in the URL] CAUGHT :: 1 failed, 4 passed in 3.70s
+[S12 route not recorded] CAUGHT :: 1 failed, 4 passed in 1.61s
+[MR-17 price check on swapUsdValue (it values the output, so real impact reads as a pricing error)] CAUGHT :: 1 failed, 22 passed in 9.97s
+[MR-18 quote turns counted on OK quotes only (a pool without a route keeps the front)] CAUGHT :: 1 failed, 24 passed in 10.73s
+[MR-19 quote order by hash only (no history)] CAUGHT :: 1 failed, 24 passed in 10.43s
+RESULT: all mutations caught
+EXIT 0
+
+Earlier passes of the repair: MC-11 (cap) and MC-12 (deadline) survived as equivalent mutations of the main loop, whose own checks did the same work; MC-12 in that form made the loop spin at the deadline. Both were moved to the read itself and test_read_refuses_past_the_cap_and_the_deadline_without_calling added. MR-1 and MR-2 survived until that test and a retries == 0 assertion were added. MR-17 was added after the live run. MR-18 and MR-19 were added with the turn-counting change.

@@ -1,0 +1,4 @@
+# Pinned versions verified by the Phase 17 clean install (Linux, Python 3.13.17, SQLite 3.45.1).
+# The backtesting package itself adds no third-party dependency; these are the lab's test and numeric needs.
+pytest==9.1.1
+numpy==2.5.3
