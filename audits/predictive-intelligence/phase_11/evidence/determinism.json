@@ -3,22 +3,51 @@
  "outputs_compared": 28,
  "outputs_identical": true,
  "recorded_run": {
-  "end_utc": "2026-10-26T15:27:03Z",
-  "head": "ff98b8df877fad909c13427d50f8087c837bf146",
-  "start_utc": "2026-10-26T15:26:22Z",
-  "wall_s": 40.58
+  "end_utc": "2026-10-26T16:09:11Z",
+  "head": "b0fbf807280ab78f44903eedf0fbca3017b43350",
+  "start_utc": "2026-10-26T16:08:21Z",
+  "wall_s": 49.53
  },
- "superseded_run_1": {
+ "superseded_first_pass_run": {
+  "files_equal": [
+   "evidence/folds.json",
+   "evidence/label_sets.json",
+   "evidence/regime_counts.json",
+   "experiments/REGIME_SERIES.csv"
+  ],
   "files_that_differ_from_the_recorded_run": [
+   "artifacts/T1_24h/AC1_STRATA.json",
+   "artifacts/T1_24h/AC2_KNN.json",
+   "artifacts/T1_24h/AC3_KNN_REGIME.json",
+   "artifacts/T1b_6h/AC1_STRATA.json",
+   "artifacts/T1b_6h/AC2_KNN.json",
+   "artifacts/T1b_6h/AC3_KNN_REGIME.json",
+   "artifacts/T2_24h/AC1_STRATA.json",
+   "artifacts/T2_24h/AC2_KNN.json",
+   "artifacts/T2_24h/AC3_KNN_REGIME.json",
+   "artifacts/folds/T1_24h.json",
+   "artifacts/folds/T1b_6h.json",
+   "artifacts/folds/T2_24h.json",
+   "evidence/serialization_smoke.json",
+   "evidence/trace/trace.json",
+   "evidence/traps.json",
+   "experiments/ANALOG_METRICS.csv",
+   "experiments/COHORT_COVERAGE.csv",
+   "experiments/CROSS_PHASE_COMPARISON.csv",
+   "experiments/DIVERGENCE_FLAGS.csv",
+   "experiments/LOCO_SENSITIVITY.csv",
+   "experiments/NC1AC_SEEDS.csv",
+   "experiments/OOS_PREDICTIONS.csv",
+   "experiments/REGIME_BREAKDOWN.csv",
    "experiments/SEARCH_LEDGER.csv"
   ],
-  "head": "0482a6017d62d32f35f86a2111f3f569096063b4",
-  "start_utc": "2026-10-26T15:20:26Z"
+  "head": "ff98b8df877fad909c13427d50f8087c837bf146",
+  "start_utc": "2026-10-26T15:26:22Z"
  },
  "twin": {
-  "end_utc": "2026-10-26T15:27:44Z",
-  "head": "ff98b8df877fad909c13427d50f8087c837bf146",
-  "start_utc": "2026-10-26T15:27:03Z",
-  "wall_s": 41.18
+  "end_utc": "2026-10-26T16:10:01Z",
+  "head": "b0fbf807280ab78f44903eedf0fbca3017b43350",
+  "start_utc": "2026-10-26T16:09:11Z",
+  "wall_s": 49.92
  }
 }

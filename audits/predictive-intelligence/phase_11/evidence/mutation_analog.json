@@ -1,8 +1,8 @@
 {
- "applied": 47,
- "caught": 47,
+ "applied": 61,
+ "caught": 61,
  "equivalent": [],
- "mutations": 47,
+ "mutations": 61,
  "not_applied": [],
  "results": [
   {
@@ -326,6 +326,104 @@
    "file": "memelab/predictive/analog.py",
    "first_failure": "FAILED tests/test_predictive_analog.py::test_fit_refuses_a_pool_row_from_after_the_cutoff",
    "mutation": "fit accepts a later pool row"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_one_analog_per_cluster_so_duplicate_windows_count_once",
+   "mutation": "CX-S11 first-pass clusters (row creator, no grouping)"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_the_same_creator_is_excluded_p14",
+   "mutation": "groups ignore the creator link"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_a_target_whose_mint_had_another_creator_excludes_that_deployers_other_mints_p14",
+   "mutation": "P14 exclusion by the target's own creator field only"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_g_is_distinct_groups_and_the_icc_n_is_reported_beside_it_m1",
+   "mutation": "ICC ignored in n_eff"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_new_mint_means_no_earlier_decision_not_no_matured_row_m4",
+   "mutation": "new_mint from the matured pool only"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_the_index_cache_is_kept_apart_by_regime",
+   "mutation": "index cache ignores the regime"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_the_router_uses_the_regime_matched_cohort",
+   "mutation": "router uses the regime-blind cohort"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_regime_equality_is_quiet_and_the_window_is_24_hours",
+   "mutation": "ACTIVE when equal to the past median"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_regime_equality_is_quiet_and_the_window_is_24_hours",
+   "mutation": "regime window 48 h"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_day_kish_ess_value - assert (False)",
+   "mutation": "day Kish ESS reported as the day count"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_depth_band_is_the_10th_to_90th_percentile",
+   "mutation": "depth band widened to min..max"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_nc1_seeds_differ_and_degenerate_flag",
+   "mutation": "NC1 permutation with a fixed seed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_nc1_seeds_differ_and_degenerate_flag",
+   "mutation": "degenerate never flagged"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_pool_rows_with_a_missing_input_are_never_neighbour_candidates",
+   "mutation": "pool rows with a missing input used as candidates"
   },
   {
    "applied": true,

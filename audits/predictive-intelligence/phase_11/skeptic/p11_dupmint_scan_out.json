@@ -1,0 +1,94 @@
+{
+ "answers_scanned": 152,
+ "answers_with_a_mint_twice": 98,
+ "with_number": 76,
+ "examples": [
+  {
+   "target": "T1_24h",
+   "key": "aa0ffbf981d4",
+   "model": "AC2_KNN",
+   "G": 30,
+   "dup_mints": {
+    "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump": 2
+   },
+   "has_number": true,
+   "clusters_of_dup": [
+    "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+    "creator:6SJHhnhrmRUGn7tLPW8n23XmoHASRzvo9xeYk7UQYL6L"
+   ]
+  },
+  {
+   "target": "T1_24h",
+   "key": "314ab615f744",
+   "model": "AC2_KNN",
+   "G": 30,
+   "dup_mints": {
+    "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump": 2
+   },
+   "has_number": true,
+   "clusters_of_dup": [
+    "creator:6SJHhnhrmRUGn7tLPW8n23XmoHASRzvo9xeYk7UQYL6L",
+    "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC"
+   ]
+  },
+  {
+   "target": "T1_24h",
+   "key": "b3900a65df76",
+   "model": "AC2_KNN",
+   "G": 30,
+   "dup_mints": {
+    "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump": 2
+   },
+   "has_number": true,
+   "clusters_of_dup": [
+    "creator:6SJHhnhrmRUGn7tLPW8n23XmoHASRzvo9xeYk7UQYL6L",
+    "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC"
+   ]
+  },
+  {
+   "target": "T1_24h",
+   "key": "40c9f4fe5e31",
+   "model": "AC2_KNN",
+   "G": 30,
+   "dup_mints": {
+    "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump": 2
+   },
+   "has_number": true,
+   "clusters_of_dup": [
+    "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+    "creator:6SJHhnhrmRUGn7tLPW8n23XmoHASRzvo9xeYk7UQYL6L"
+   ]
+  },
+  {
+   "target": "T1_24h",
+   "key": "0290434ab2ed",
+   "model": "AC2_KNN",
+   "G": 30,
+   "dup_mints": {
+    "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump": 2
+   },
+   "has_number": true,
+   "clusters_of_dup": [
+    "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+    "creator:6SJHhnhrmRUGn7tLPW8n23XmoHASRzvo9xeYk7UQYL6L"
+   ]
+  },
+  {
+   "target": "T1_24h",
+   "key": "8087dec44b53",
+   "model": "AC2_KNN",
+   "G": 30,
+   "dup_mints": {
+    "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN": 2,
+    "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump": 2
+   },
+   "has_number": true,
+   "clusters_of_dup": [
+    "creator:5e2qRc1DNEXmyxP8qwPwJhRWjef7usLyi7v5xjqLr5G7",
+    "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+    "creator:6SJHhnhrmRUGn7tLPW8n23XmoHASRzvo9xeYk7UQYL6L",
+    "mint:6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+   ]
+  }
+ ]
+}

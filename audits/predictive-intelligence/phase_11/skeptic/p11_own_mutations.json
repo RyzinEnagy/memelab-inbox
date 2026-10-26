@@ -1,0 +1,110 @@
+[
+ {
+  "mutation": "kNN ignores the same-mint and same-creator exclusion (allowed mask dropped)",
+  "applied": true,
+  "caught": true,
+  "first_failure": "FAILED tests/test_predictive_analog.py::test_the_same_mint_is_token_history_never_an_analog_p01"
+ },
+ {
+  "mutation": "index cache ignores the regime (AC3 reuses another regime's reference rows)",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "router uses the regime-blind cohort",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "ACTIVE when equal to the past median",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "regime window 48 h",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "regime window excludes the current export",
+  "applied": true,
+  "caught": true,
+  "first_failure": "FAILED tests/test_predictive_analog.py::test_tone_is_the_share_of_constructive_lab_statuses"
+ },
+ {
+  "mutation": "day Kish ESS reported as the day count",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "shrinkage toward 0.5 instead of the pool prevalence",
+  "applied": true,
+  "caught": true,
+  "first_failure": "FAILED tests/test_predictive_analog.py::test_number_is_shrunk_to_the_pool_prevalence_with_a_wilson_interval_on_g"
+ },
+ {
+  "mutation": "OOD threshold from the nearest other cluster, not the K-th",
+  "applied": true,
+  "caught": true,
+  "first_failure": "FAILED tests/test_predictive_analog.py::test_ood_threshold_is_the_95th_percentile_of_kth_other_cluster_distances"
+ },
+ {
+  "mutation": "depth flag band widened to min..max",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "new_mint always False",
+  "applied": true,
+  "caught": true,
+  "first_failure": "FAILED tests/test_predictive_analog.py::test_a_new_mint_gets_a_labelled_cohort_estimate_or_abstains_p12"
+ },
+ {
+  "mutation": "time split puts one analog in OLDER",
+  "applied": true,
+  "caught": true,
+  "first_failure": "FAILED tests/test_predictive_analog.py::test_time_change_sensitivity_flags_an_unstable_cohort"
+ },
+ {
+  "mutation": "NC1 permutation with a fixed seed",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "degenerate never flagged",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "pool rows with a missing input used as candidates (NaN distances)",
+  "applied": true,
+  "caught": false,
+  "first_failure": ""
+ },
+ {
+  "mutation": "first_seen check uses the decision time",
+  "applied": true,
+  "caught": true,
+  "first_failure": "FAILED tests/test_predictive_analog.py::test_future_issued_token_is_refused_p43"
+ },
+ {
+  "mutation": "AC3 on a WARMUP target uses the whole pool",
+  "applied": true,
+  "caught": true,
+  "first_failure": "FAILED tests/test_predictive_analog.py::test_regime_warmup_abstains_and_an_unseen_regime_is_ood"
+ },
+ {
+  "mutation": "same creator only excluded in AC1",
+  "applied": true,
+  "caught": true,
+  "first_failure": "FAILED tests/test_predictive_analog.py::test_the_same_creator_is_excluded_p14"
+ }
+]

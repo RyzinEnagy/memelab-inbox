@@ -1,0 +1,23 @@
+{
+ "first_pass_0482a60": {
+  "test_a_target_whose_mint_had_another_creator_excludes_that_deployers_other_mints_p14": {
+   "exit": 1,
+   "last": "1 failed in 0.38s"
+  },
+  "test_cx_s11_one_mint_under_two_creator_values_is_one_analog": {
+   "exit": 1,
+   "last": "1 failed in 0.47s"
+  }
+ },
+ "head": {
+  "test_a_target_whose_mint_had_another_creator_excludes_that_deployers_other_mints_p14": {
+   "exit": 0,
+   "last": "1 passed in 0.35s"
+  },
+  "test_cx_s11_one_mint_under_two_creator_values_is_one_analog": {
+   "exit": 0,
+   "last": "1 passed in 0.40s"
+  }
+ },
+ "pass": true
+}

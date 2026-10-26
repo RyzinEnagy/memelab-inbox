@@ -2,20 +2,13 @@
  {
   "answers": {
    "AC1_STRATA": {
-    "G": 7,
-    "analog_days": 6,
+    "G": 6,
+    "G_meaning": "distinct groups (mint and creator components), not an effective sample size",
+    "analog_days": 5,
     "analog_mints": 6,
     "analogs": [
      {
-      "cluster": "mint:solana:6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
-      "day": "2026-10-07",
-      "decision_key": "890568ea68c73b91e762bfe4885807d14eabf17bb4a747d4ce2f16b08d4d6de2",
-      "distance": null,
-      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
-      "y": 0
-     },
-     {
-      "cluster": "mint:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "cluster": "group:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
       "day": "2026-10-08",
       "decision_key": "0ada51f42f6d28b0c653eb63300afb4d8b7bf8ab66818fa97d507bb6dcd84fb1",
       "distance": null,
@@ -23,7 +16,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+      "cluster": "group:solana:JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
       "day": "2026-10-08",
       "decision_key": "c69b5d5fe795785b35b9b9f33b42b57b7855e86fc641d7cc7604d5b9167dde67",
       "distance": null,
@@ -31,7 +24,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:5e2qRc1DNEXmyxP8qwPwJhRWjef7usLyi7v5xjqLr5G7",
+      "cluster": "group:solana:6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
       "day": "2026-10-10",
       "decision_key": "2eccf63571757d286da47fe780d475f7f659241ad002641feab67e0f49be09ff",
       "distance": null,
@@ -39,7 +32,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:GziA3ZgkmnUcK9vuscnDpzLTcpHTSnmyQ6JwPKP5oSkR",
+      "cluster": "group:solana:2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
       "day": "2026-10-11",
       "decision_key": "047c511d9d5089358ad9a3e5c1b1c1e06becb33501371e57b4bddfd18d866afc",
       "distance": null,
@@ -47,7 +40,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "cluster": "group:solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
       "day": "2026-10-12",
       "decision_key": "44abdc7df1c1819615a001d0598954efd79e08a450ab6d12efe91d44f425c04d",
       "distance": null,
@@ -55,7 +48,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:BxgkvRwqzYFWuDbRjfTYfgTtb41NaFw1aQ3129F79eBT",
+      "cluster": "group:solana:METAwkXcqyXKy1AtsSgJ8JiUHwGCafnZL38n3vYmeta",
       "day": "2026-10-13",
       "decision_key": "8087dec44b53cac461bde3870abb934c0aac3cdc6134e860a7ab677ba0d04d5d",
       "distance": null,
@@ -69,7 +62,7 @@
      "ge_30d",
      "ge_1m"
     ],
-    "day_kish_ess": 5.444444444444445,
+    "day_kish_ess": 4.5,
     "decision_key": "f86ab79bcc1ac13ea6d4adadc1df5106c634e3de6bc99f9c4f745374e87c18a5",
     "decision_time": 1792059228.0,
     "excluded": {
@@ -84,8 +77,12 @@
     "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
     "model": "AC1_STRATA",
+    "n_eff_icc": 5.994089814602002,
     "new_mint": false,
+    "no_matured_token_rows": false,
+    "no_prior_decision": false,
     "number": null,
+    "pool_day_icc": 0.0029580064267310698,
     "pool_n": 123,
     "pool_positives": 30,
     "positives": 0,
@@ -95,13 +92,13 @@
      "ANALOGS_TOO_FEW:G_BELOW_MIN"
     ],
     "regime": "QUIET/RISK_OFF",
-    "shrunk_number": 0.18066847335140018,
+    "shrunk_number": 0.18761726078799248,
     "time_sensitivity": {
-     "newer_n": 4,
+     "newer_n": 3,
      "newer_rate": 0.0,
      "newer_wilson": [
-      0.0,
-      0.4898908364545973
+      5.551115123125783e-17,
+      0.5614970317550454
      ],
      "older_n": 3,
      "older_rate": 0.0,
@@ -109,21 +106,27 @@
       5.551115123125783e-17,
       0.5614970317550454
      ],
-     "split_time": 1791628305.0,
+     "split_time": 1791677072.0,
      "time_unstable": false
     },
     "wilson": [
-     5.551115123125783e-17,
-     0.35433043506668743
+     2.7755575615628914e-17,
+     0.3903342879021653
+    ],
+    "wilson_assumes_independent_analogs": true,
+    "wilson_icc": [
+     0.0,
+     0.390568839943362
     ]
    },
    "AC2_KNN": {
     "G": 30,
+    "G_meaning": "distinct groups (mint and creator components), not an effective sample size",
     "analog_days": 7,
-    "analog_mints": 28,
+    "analog_mints": 30,
     "analogs": [
      {
-      "cluster": "creator:GziA3ZgkmnUcK9vuscnDpzLTcpHTSnmyQ6JwPKP5oSkR",
+      "cluster": "group:solana:2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
       "day": "2026-10-08",
       "decision_key": "76bc7baa8425056cdce41e07ed26661994998879a6368905ad57d94ee5f47104",
       "distance": 1.2674010481796154,
@@ -131,7 +134,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "cluster": "group:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
       "day": "2026-10-08",
       "decision_key": "0ada51f42f6d28b0c653eb63300afb4d8b7bf8ab66818fa97d507bb6dcd84fb1",
       "distance": 1.3440276716915351,
@@ -139,7 +142,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "cluster": "group:solana:6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
       "day": "2026-10-07",
       "decision_key": "890568ea68c73b91e762bfe4885807d14eabf17bb4a747d4ce2f16b08d4d6de2",
       "distance": 1.556698138289584,
@@ -147,15 +150,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:5e2qRc1DNEXmyxP8qwPwJhRWjef7usLyi7v5xjqLr5G7",
-      "day": "2026-10-10",
-      "decision_key": "2eccf63571757d286da47fe780d475f7f659241ad002641feab67e0f49be09ff",
-      "distance": 1.5890702853425076,
-      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
-      "y": 0
-     },
-     {
-      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "cluster": "group:solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
       "day": "2026-10-12",
       "decision_key": "44abdc7df1c1819615a001d0598954efd79e08a450ab6d12efe91d44f425c04d",
       "distance": 1.6274822527027728,
@@ -163,7 +158,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+      "cluster": "group:solana:JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
       "day": "2026-10-08",
       "decision_key": "c69b5d5fe795785b35b9b9f33b42b57b7855e86fc641d7cc7604d5b9167dde67",
       "distance": 1.6814267461605605,
@@ -171,7 +166,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "cluster": "group:solana:C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
       "day": "2026-10-08",
       "decision_key": "fa458de1dec6b0180e2bcb66ad2fb66d8089fde0b98edc7002e129d35480955b",
       "distance": 1.7184379814758008,
@@ -179,7 +174,7 @@
       "y": 1
      },
      {
-      "cluster": "mint:solana:nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+      "cluster": "group:solana:nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
       "day": "2026-10-09",
       "decision_key": "bf652e17f02ac91d46a72f7c4f9cdcf0830c27aea3e297f7cd60bbb1a69b6ad0",
       "distance": 1.8083493192063682,
@@ -187,7 +182,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "cluster": "group:solana:5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
       "day": "2026-10-08",
       "decision_key": "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
       "distance": 1.8123981076154614,
@@ -195,7 +190,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "cluster": "group:solana:GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
       "day": "2026-10-10",
       "decision_key": "c8d4cd7ee702168311a2782d20de184fc4770aa0a90ab07bcb68160e459132c7",
       "distance": 1.8777100933059483,
@@ -203,7 +198,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:Hok9nbV89yBSKCttxe3goqajwbiqQa9mtHvQBsbJH3Np",
+      "cluster": "group:solana:ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg",
       "day": "2026-10-08",
       "decision_key": "01f6e0af42de4459c70fc91793824829bc645151e001752fd8342029c0882917",
       "distance": 2.0153451771603357,
@@ -211,7 +206,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "cluster": "group:solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
       "day": "2026-10-07",
       "decision_key": "bcc8f42cdb5bff89ba45958ce9114f3be0e4d9ca2e8d068331dcf15a24692fee",
       "distance": 2.0405277713756615,
@@ -219,7 +214,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:52T4zD6pQ9LuMeLgcmzH61RBMTP3ywCCLnq3caKkxyvJ",
+      "cluster": "group:solana:1zJX5gRnjLgmTpq5sVwkq69mNDQkCemqoasyjaPW6jm",
       "day": "2026-10-12",
       "decision_key": "efa03ae4fa14ee4d6825f87cc4015ef2cc9c5ffd80226944db9bac72899cc426",
       "distance": 2.1629701844716784,
@@ -227,7 +222,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6SJHhnhrmRUGn7tLPW8n23XmoHASRzvo9xeYk7UQYL6L",
+      "cluster": "group:solana:MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
       "day": "2026-10-09",
       "decision_key": "96a3993868007a6f1f2b3ddb20d0ed956b6fb091f9b109944ceb0499aa485822",
       "distance": 2.1709684240593425,
@@ -235,7 +230,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
+      "cluster": "group:solana:HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
       "day": "2026-10-11",
       "decision_key": "dfe400dcca348f53c3737da35a5a559b963a1d8fa3001ab9ac5e82a71fb96d00",
       "distance": 2.1993629992115467,
@@ -243,7 +238,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "cluster": "group:solana:8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
       "day": "2026-10-11",
       "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
       "distance": 2.2383195231560404,
@@ -251,7 +246,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:BxgkvRwqzYFWuDbRjfTYfgTtb41NaFw1aQ3129F79eBT",
+      "cluster": "group:solana:METAwkXcqyXKy1AtsSgJ8JiUHwGCafnZL38n3vYmeta",
       "day": "2026-10-13",
       "decision_key": "8087dec44b53cac461bde3870abb934c0aac3cdc6134e860a7ab677ba0d04d5d",
       "distance": 2.2911193506549945,
@@ -259,7 +254,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:5xsibKwtiN6ruxsYrEyWVpV3KcwuzSPbQd1n28a7spEd",
+      "cluster": "group:solana:6Mix12LiHrQFojaQEnfPUC65Qkwd6X4Y5Qg93oFbordr",
       "day": "2026-10-12",
       "decision_key": "57507d51778c5339375908434b0cef012a3942a8b5d36b80fe071a022f894e47",
       "distance": 2.311617119589832,
@@ -267,7 +262,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "cluster": "group:solana:5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
       "day": "2026-10-08",
       "decision_key": "4609064b63d2bbe7826c498958e4b4e1e9bfc0f96ed9709f708c87b39c05ef85",
       "distance": 2.328075708992042,
@@ -275,7 +270,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:EhwA3ymE7ZSwDmVs1eErB4JRhg7721ARL6LthocjdTBb",
+      "cluster": "group:solana:Cy1GS2FqefgaMbi45UunrUzin1rfEmTUYnomddzBpump",
       "day": "2026-10-13",
       "decision_key": "b3900a65df7687424cbe2628e6ac35a723d620153758cb308afa6635a2fc0fc2",
       "distance": 2.370484058334719,
@@ -283,7 +278,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "cluster": "group:solana:CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
       "day": "2026-10-09",
       "decision_key": "f94e8926676295a610c2864653161ec2c9218c490cda084f895512e91e576e0e",
       "distance": 2.3883259672678916,
@@ -291,7 +286,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:3pbJPnxQZpQvTrfjt9a7hbDnfeiaXMHocpJgoaRvRP7U",
+      "cluster": "group:solana:9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump",
       "day": "2026-10-11",
       "decision_key": "7dbf3d7b3a5c7fe0c6783706d6964ee35c4f69ed699280e6d0398a3c72f3eb4a",
       "distance": 2.3885832786731647,
@@ -299,15 +294,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
-      "day": "2026-10-10",
-      "decision_key": "ea25cd11736e788ab866e91bab56e6745458c910a4965cedd7d6ce3295d0fd70",
-      "distance": 2.4016905537808815,
-      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
-      "y": 0
-     },
-     {
-      "cluster": "creator:8HCj9vivAFwE1YcKPH1mrFDvsfErX2orEAgdMLim6zDf",
+      "cluster": "group:solana:u7XNK4pbxXgWzBwqidDV2TtsXwLqqxtjmGfw1H8pump",
       "day": "2026-10-13",
       "decision_key": "77af704887d2e26a9d44a07bcc348859ac005b08412df9d363be4ef197e99c0a",
       "distance": 2.5375976617729923,
@@ -315,7 +302,7 @@
       "y": 1
      },
      {
-      "cluster": "mint:solana:39ahtL8ynzE4amH26J29C93PA5172V3ft9UuUcqQS8fz",
+      "cluster": "group:solana:39ahtL8ynzE4amH26J29C93PA5172V3ft9UuUcqQS8fz",
       "day": "2026-10-07",
       "decision_key": "29c621774bb63c563e34f1b6aaa75bcbbef466711576010c1d65daa3d3e812a0",
       "distance": 2.5405393554209184,
@@ -323,7 +310,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+      "cluster": "group:solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
       "day": "2026-10-07",
       "decision_key": "d53cf36c858abac6389483f1bb87e331fcb973c6f4a42faa36f48516a9c4b855",
       "distance": 2.560801673881892,
@@ -331,7 +318,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:DAR7byxGpLWWdWUkRYM7Lqycvk5KGXMwoHkUJcD4se4r",
+      "cluster": "group:solana:DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
       "day": "2026-10-07",
       "decision_key": "f2a709cb1be8e692fa3585785278837256975e0ae627d6e6034cb3e4906a8525",
       "distance": 2.5646672840803393,
@@ -339,7 +326,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:3p7f4xNVj7nGcmXe1J1vxt1fvqcY3k8aMwM72PKFN42q",
+      "cluster": "group:solana:55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
       "day": "2026-10-07",
       "decision_key": "ee1e0cc17d1bc117166664bd54e44dad7d171ef7e6a6cb57215112b5b70607f1",
       "distance": 2.607555650803372,
@@ -347,7 +334,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:cWKFaakqsCJ8efDYHsTAAe8RAf8a4UQVacfmnKnLEZL",
+      "cluster": "group:solana:Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
       "day": "2026-10-10",
       "decision_key": "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17",
       "distance": 2.622817304781981,
@@ -355,17 +342,33 @@
       "y": 0
      },
      {
-      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "cluster": "group:solana:BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
       "day": "2026-10-10",
       "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
       "distance": 2.7855622014468358,
       "mint": "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
       "y": 1
+     },
+     {
+      "cluster": "group:solana:46hMQPKT2sPwMSkVenXnpiKVQhrkFvJLSYMWtdkipump",
+      "day": "2026-10-08",
+      "decision_key": "a8299cda76821713abdabb730d056f6e307a4696d7e18711d59d88c48c46211b",
+      "distance": 2.7934726848618174,
+      "mint": "46hMQPKT2sPwMSkVenXnpiKVQhrkFvJLSYMWtdkipump",
+      "y": 1
+     },
+     {
+      "cluster": "group:solana:Goh59QCfoX53RgJa615vzXx4swR3mv51VgvAN6ZCpump",
+      "day": "2026-10-08",
+      "decision_key": "74582082349ad2000840fe65a96662ab6dfa2febf73c2e333aa94c62f648c640",
+      "distance": 2.7958008711014863,
+      "mint": "Goh59QCfoX53RgJa615vzXx4swR3mv51VgvAN6ZCpump",
+      "y": 0
      }
     ],
     "as_of": 1792022400.0,
     "b0": 0.24390243902439024,
-    "day_kish_ess": 6.164383561643835,
+    "day_kish_ess": 5.555555555555555,
     "decision_key": "f86ab79bcc1ac13ea6d4adadc1df5106c634e3de6bc99f9c4f745374e87c18a5",
     "decision_time": 1792059228.0,
     "excluded": {
@@ -377,18 +380,22 @@
      "NO_HISTORICAL_EXECUTABLE_DEPTH",
      "PRICE_PATH_NOT_PROCEEDS"
     ],
-    "kth_distance": 2.7855622014468358,
+    "kth_distance": 2.7958008711014863,
     "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
     "model": "AC2_KNN",
+    "n_eff_icc": 29.61455974458313,
     "new_mint": false,
-    "number": 0.2575609756097561,
-    "ood_threshold": 3.8419346809405677,
+    "no_matured_token_rows": false,
+    "no_prior_decision": false,
+    "number": 0.2775609756097561,
+    "ood_threshold": 3.927226703914115,
+    "pool_day_icc": 0.0029580064267310698,
     "pool_n": 123,
     "pool_positives": 30,
-    "positives": 8,
+    "positives": 9,
     "publishable": false,
-    "raw_rate": 0.26666666666666666,
+    "raw_rate": 0.3,
     "reasons": [],
     "ref_n": 122,
     "regime": "QUIET/RISK_OFF",
@@ -406,7 +413,7 @@
       1.974242889455452
      ]
     },
-    "shrunk_number": 0.2575609756097561,
+    "shrunk_number": 0.2775609756097561,
     "time_sensitivity": {
      "newer_n": 15,
      "newer_rate": 0.26666666666666666,
@@ -415,26 +422,32 @@
       0.5195043405598057
      ],
      "older_n": 15,
-     "older_rate": 0.26666666666666666,
+     "older_rate": 0.3333333333333333,
      "older_wilson": [
-      0.10897453325692374,
-      0.5195043405598057
+      0.1517632443971473,
+      0.5828645226148023
      ],
-     "split_time": 1791544898.0,
+     "split_time": 1791541429.0,
      "time_unstable": false
     },
     "wilson": [
-     0.14182663319596317,
-     0.4444796169518888
+     0.16664748268243793,
+     0.47875787458714947
+    ],
+    "wilson_assumes_independent_analogs": true,
+    "wilson_icc": [
+     0.1659935361214922,
+     0.4799349274008354
     ]
    },
    "AC3_KNN_REGIME": {
     "G": 30,
+    "G_meaning": "distinct groups (mint and creator components), not an effective sample size",
     "analog_days": 5,
     "analog_mints": 30,
     "analogs": [
      {
-      "cluster": "mint:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "cluster": "group:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
       "day": "2026-10-08",
       "decision_key": "0ada51f42f6d28b0c653eb63300afb4d8b7bf8ab66818fa97d507bb6dcd84fb1",
       "distance": 1.385310647024493,
@@ -442,7 +455,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:GziA3ZgkmnUcK9vuscnDpzLTcpHTSnmyQ6JwPKP5oSkR",
+      "cluster": "group:solana:2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
       "day": "2026-10-11",
       "decision_key": "047c511d9d5089358ad9a3e5c1b1c1e06becb33501371e57b4bddfd18d866afc",
       "distance": 1.4493849255740683,
@@ -450,7 +463,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:5e2qRc1DNEXmyxP8qwPwJhRWjef7usLyi7v5xjqLr5G7",
+      "cluster": "group:solana:6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
       "day": "2026-10-10",
       "decision_key": "2eccf63571757d286da47fe780d475f7f659241ad002641feab67e0f49be09ff",
       "distance": 1.5978710945830161,
@@ -458,7 +471,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+      "cluster": "group:solana:JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
       "day": "2026-10-08",
       "decision_key": "c69b5d5fe795785b35b9b9f33b42b57b7855e86fc641d7cc7604d5b9167dde67",
       "distance": 1.774795979878756,
@@ -466,7 +479,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "cluster": "group:solana:5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
       "day": "2026-10-08",
       "decision_key": "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
       "distance": 1.791762904467621,
@@ -474,7 +487,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "cluster": "group:solana:C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
       "day": "2026-10-09",
       "decision_key": "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
       "distance": 1.8247711252453171,
@@ -482,7 +495,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+      "cluster": "group:solana:nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
       "day": "2026-10-08",
       "decision_key": "9bd332f01ceedf04af712e099a28ddd18135b94f83ab65ad0ab6c731c9767da2",
       "distance": 1.8938010969534498,
@@ -490,7 +503,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "cluster": "group:solana:GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
       "day": "2026-10-10",
       "decision_key": "c8d4cd7ee702168311a2782d20de184fc4770aa0a90ab07bcb68160e459132c7",
       "distance": 1.9013690532408891,
@@ -498,7 +511,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "cluster": "group:solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
       "day": "2026-10-11",
       "decision_key": "a4c4f406e5d565b94eed1445d18c00d5bb3004099be9167d639305aaba8395cf",
       "distance": 1.9593407257438193,
@@ -506,7 +519,7 @@
       "y": 1
      },
      {
-      "cluster": "mint:solana:HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
+      "cluster": "group:solana:HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
       "day": "2026-10-11",
       "decision_key": "dfe400dcca348f53c3737da35a5a559b963a1d8fa3001ab9ac5e82a71fb96d00",
       "distance": 2.1651622351010857,
@@ -514,7 +527,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:BxgkvRwqzYFWuDbRjfTYfgTtb41NaFw1aQ3129F79eBT",
+      "cluster": "group:solana:METAwkXcqyXKy1AtsSgJ8JiUHwGCafnZL38n3vYmeta",
       "day": "2026-10-13",
       "decision_key": "8087dec44b53cac461bde3870abb934c0aac3cdc6134e860a7ab677ba0d04d5d",
       "distance": 2.1804421223255637,
@@ -522,7 +535,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "cluster": "group:solana:8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
       "day": "2026-10-11",
       "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
       "distance": 2.2772990439018677,
@@ -530,7 +543,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "cluster": "group:solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
       "day": "2026-10-13",
       "decision_key": "314ab615f744a86317bb583db137cd46ed6bfdb0a7b31a0e8a8fb8beb8b2f36a",
       "distance": 2.2906457347501346,
@@ -538,7 +551,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+      "cluster": "group:solana:MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
       "day": "2026-10-10",
       "decision_key": "ea25cd11736e788ab866e91bab56e6745458c910a4965cedd7d6ce3295d0fd70",
       "distance": 2.3588020368251312,
@@ -546,7 +559,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:3pbJPnxQZpQvTrfjt9a7hbDnfeiaXMHocpJgoaRvRP7U",
+      "cluster": "group:solana:9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump",
       "day": "2026-10-11",
       "decision_key": "7dbf3d7b3a5c7fe0c6783706d6964ee35c4f69ed699280e6d0398a3c72f3eb4a",
       "distance": 2.376707370507415,
@@ -554,7 +567,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:EhwA3ymE7ZSwDmVs1eErB4JRhg7721ARL6LthocjdTBb",
+      "cluster": "group:solana:Cy1GS2FqefgaMbi45UunrUzin1rfEmTUYnomddzBpump",
       "day": "2026-10-13",
       "decision_key": "b3900a65df7687424cbe2628e6ac35a723d620153758cb308afa6635a2fc0fc2",
       "distance": 2.3826827020864667,
@@ -562,7 +575,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "cluster": "group:solana:CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
       "day": "2026-10-10",
       "decision_key": "e31e5965247f03929d5711cef1b77f9d1400566bbbc8974e6fd486a142e0ee10",
       "distance": 2.4656294582105067,
@@ -570,7 +583,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "cluster": "group:solana:5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
       "day": "2026-10-13",
       "decision_key": "aa0ffbf981d4f46e743ba454ec6ad1695fbc918847cb815262337424b13c92e3",
       "distance": 2.554935430001009,
@@ -578,7 +591,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:cWKFaakqsCJ8efDYHsTAAe8RAf8a4UQVacfmnKnLEZL",
+      "cluster": "group:solana:Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
       "day": "2026-10-10",
       "decision_key": "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17",
       "distance": 2.555719842104836,
@@ -586,7 +599,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:8HCj9vivAFwE1YcKPH1mrFDvsfErX2orEAgdMLim6zDf",
+      "cluster": "group:solana:u7XNK4pbxXgWzBwqidDV2TtsXwLqqxtjmGfw1H8pump",
       "day": "2026-10-13",
       "decision_key": "77af704887d2e26a9d44a07bcc348859ac005b08412df9d363be4ef197e99c0a",
       "distance": 2.573622764864127,
@@ -594,7 +607,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "cluster": "group:solana:BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
       "day": "2026-10-10",
       "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
       "distance": 2.7411715489085227,
@@ -602,7 +615,7 @@
       "y": 1
      },
      {
-      "cluster": "mint:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "cluster": "group:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
       "day": "2026-10-11",
       "decision_key": "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
       "distance": 2.888661827200829,
@@ -610,7 +623,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:DDDw9AgUrPJxGxAZNC6DPEpyQv5Jd1wfiGzwVza2v2fb",
+      "cluster": "group:solana:6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
       "day": "2026-10-11",
       "decision_key": "06a18bd40785c9b511cd2308a51e807323fb8428c9001e246bf14c4daab1a7ae",
       "distance": 2.9981369256851447,
@@ -618,7 +631,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:5mawG9WZxT2xmeuijSS7XxigNcr7Wv8d9Umx2t2RxmAi",
+      "cluster": "group:solana:HTmQz7My6MehV7bjhJ6jde8nDND1yvsz68d24LP7YgUQ",
       "day": "2026-10-13",
       "decision_key": "0290434ab2ede41be7172d281027de4cd36e855f6c61a5c978ddba0ca22edcbb",
       "distance": 3.0167622899201665,
@@ -626,7 +639,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:CVop2LAjqx77Lacg9wFN8vm4jhUugAW8wjS1PiYYWY97",
+      "cluster": "group:solana:8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
       "day": "2026-10-10",
       "decision_key": "cd2ec28f9818dcd3396374be4131d350e84b42b8b456fabfa57f140be4835c35",
       "distance": 3.0467830763642536,
@@ -634,7 +647,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:3kg6tMZhcsd3vxHEJVrY4MdyQxFDLp2MCW4vBF2YSJ6L",
+      "cluster": "group:solana:6XhzSy3VTTkwqMUSQsStM3ncGy6ozcPnzLVmv4HZ64cC",
       "day": "2026-10-08",
       "decision_key": "c3d393f2a8263c41fb5504de2beea920acbb35fa0ef05179f78c4e010cea4aa4",
       "distance": 3.0858440999702705,
@@ -642,7 +655,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "cluster": "group:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
       "day": "2026-10-08",
       "decision_key": "ddd4f6f1356e1f275defbe9242a903a0b01660477fc46b2858576836f1dddfe3",
       "distance": 3.0966049277574252,
@@ -650,7 +663,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:E7JzWSx2XVaWFaQRbd9K5Yani9Q3aZfC3AwExU1T4m5G",
+      "cluster": "group:solana:BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
       "day": "2026-10-10",
       "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
       "distance": 3.1049496490671227,
@@ -658,7 +671,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:HuthLMyzfAdwVVqHvpr28pziyL1uXyYyZshi3y9F9Svo",
+      "cluster": "group:solana:EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
       "day": "2026-10-11",
       "decision_key": "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
       "distance": 3.124406425488087,
@@ -666,7 +679,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "cluster": "group:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
       "day": "2026-10-08",
       "decision_key": "b10e9ef1f318464f792bf7e606bb0b09715cf4d49be25a325b0378318beb3554",
       "distance": 3.1404020750940305,
@@ -692,9 +705,13 @@
     "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
     "model": "AC3_KNN_REGIME",
+    "n_eff_icc": 29.46542530647281,
     "new_mint": false,
+    "no_matured_token_rows": false,
+    "no_prior_decision": false,
     "number": 0.1975609756097561,
     "ood_threshold": 4.478198036841491,
+    "pool_day_icc": 0.0029580064267310698,
     "pool_n": 123,
     "pool_positives": 30,
     "positives": 5,
@@ -737,15 +754,21 @@
     "wilson": [
      0.0733654237184855,
      0.3356435050641603
+    ],
+    "wilson_assumes_independent_analogs": true,
+    "wilson_icc": [
+     0.07283623648074994,
+     0.3373872837986672
     ]
    },
    "AC3_LOCO": {
     "G": 30,
+    "G_meaning": "distinct groups (mint and creator components), not an effective sample size",
     "analog_days": 5,
     "analog_mints": 30,
     "analogs": [
      {
-      "cluster": "mint:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "cluster": "group:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
       "day": "2026-10-08",
       "decision_key": "0ada51f42f6d28b0c653eb63300afb4d8b7bf8ab66818fa97d507bb6dcd84fb1",
       "distance": 1.385310647024493,
@@ -753,7 +776,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:GziA3ZgkmnUcK9vuscnDpzLTcpHTSnmyQ6JwPKP5oSkR",
+      "cluster": "group:solana:2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
       "day": "2026-10-11",
       "decision_key": "047c511d9d5089358ad9a3e5c1b1c1e06becb33501371e57b4bddfd18d866afc",
       "distance": 1.4493849255740683,
@@ -761,7 +784,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:5e2qRc1DNEXmyxP8qwPwJhRWjef7usLyi7v5xjqLr5G7",
+      "cluster": "group:solana:6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
       "day": "2026-10-10",
       "decision_key": "2eccf63571757d286da47fe780d475f7f659241ad002641feab67e0f49be09ff",
       "distance": 1.5978710945830161,
@@ -769,7 +792,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+      "cluster": "group:solana:JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
       "day": "2026-10-08",
       "decision_key": "c69b5d5fe795785b35b9b9f33b42b57b7855e86fc641d7cc7604d5b9167dde67",
       "distance": 1.774795979878756,
@@ -777,7 +800,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "cluster": "group:solana:5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
       "day": "2026-10-08",
       "decision_key": "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
       "distance": 1.791762904467621,
@@ -785,7 +808,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "cluster": "group:solana:C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
       "day": "2026-10-09",
       "decision_key": "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
       "distance": 1.8247711252453171,
@@ -793,7 +816,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+      "cluster": "group:solana:nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
       "day": "2026-10-08",
       "decision_key": "9bd332f01ceedf04af712e099a28ddd18135b94f83ab65ad0ab6c731c9767da2",
       "distance": 1.8938010969534498,
@@ -801,7 +824,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "cluster": "group:solana:GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
       "day": "2026-10-10",
       "decision_key": "c8d4cd7ee702168311a2782d20de184fc4770aa0a90ab07bcb68160e459132c7",
       "distance": 1.9013690532408891,
@@ -809,7 +832,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "cluster": "group:solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
       "day": "2026-10-11",
       "decision_key": "a4c4f406e5d565b94eed1445d18c00d5bb3004099be9167d639305aaba8395cf",
       "distance": 1.9593407257438193,
@@ -817,7 +840,7 @@
       "y": 1
      },
      {
-      "cluster": "mint:solana:HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
+      "cluster": "group:solana:HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
       "day": "2026-10-11",
       "decision_key": "dfe400dcca348f53c3737da35a5a559b963a1d8fa3001ab9ac5e82a71fb96d00",
       "distance": 2.1651622351010857,
@@ -825,7 +848,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:BxgkvRwqzYFWuDbRjfTYfgTtb41NaFw1aQ3129F79eBT",
+      "cluster": "group:solana:METAwkXcqyXKy1AtsSgJ8JiUHwGCafnZL38n3vYmeta",
       "day": "2026-10-13",
       "decision_key": "8087dec44b53cac461bde3870abb934c0aac3cdc6134e860a7ab677ba0d04d5d",
       "distance": 2.1804421223255637,
@@ -833,7 +856,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "cluster": "group:solana:8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
       "day": "2026-10-11",
       "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
       "distance": 2.2772990439018677,
@@ -841,7 +864,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "cluster": "group:solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
       "day": "2026-10-13",
       "decision_key": "314ab615f744a86317bb583db137cd46ed6bfdb0a7b31a0e8a8fb8beb8b2f36a",
       "distance": 2.2906457347501346,
@@ -849,7 +872,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+      "cluster": "group:solana:MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
       "day": "2026-10-10",
       "decision_key": "ea25cd11736e788ab866e91bab56e6745458c910a4965cedd7d6ce3295d0fd70",
       "distance": 2.3588020368251312,
@@ -857,7 +880,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:3pbJPnxQZpQvTrfjt9a7hbDnfeiaXMHocpJgoaRvRP7U",
+      "cluster": "group:solana:9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump",
       "day": "2026-10-11",
       "decision_key": "7dbf3d7b3a5c7fe0c6783706d6964ee35c4f69ed699280e6d0398a3c72f3eb4a",
       "distance": 2.376707370507415,
@@ -865,7 +888,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:EhwA3ymE7ZSwDmVs1eErB4JRhg7721ARL6LthocjdTBb",
+      "cluster": "group:solana:Cy1GS2FqefgaMbi45UunrUzin1rfEmTUYnomddzBpump",
       "day": "2026-10-13",
       "decision_key": "b3900a65df7687424cbe2628e6ac35a723d620153758cb308afa6635a2fc0fc2",
       "distance": 2.3826827020864667,
@@ -873,7 +896,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "cluster": "group:solana:CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
       "day": "2026-10-10",
       "decision_key": "e31e5965247f03929d5711cef1b77f9d1400566bbbc8974e6fd486a142e0ee10",
       "distance": 2.4656294582105067,
@@ -881,7 +904,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "cluster": "group:solana:5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
       "day": "2026-10-13",
       "decision_key": "aa0ffbf981d4f46e743ba454ec6ad1695fbc918847cb815262337424b13c92e3",
       "distance": 2.554935430001009,
@@ -889,7 +912,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:cWKFaakqsCJ8efDYHsTAAe8RAf8a4UQVacfmnKnLEZL",
+      "cluster": "group:solana:Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
       "day": "2026-10-10",
       "decision_key": "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17",
       "distance": 2.555719842104836,
@@ -897,7 +920,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:8HCj9vivAFwE1YcKPH1mrFDvsfErX2orEAgdMLim6zDf",
+      "cluster": "group:solana:u7XNK4pbxXgWzBwqidDV2TtsXwLqqxtjmGfw1H8pump",
       "day": "2026-10-13",
       "decision_key": "77af704887d2e26a9d44a07bcc348859ac005b08412df9d363be4ef197e99c0a",
       "distance": 2.573622764864127,
@@ -905,7 +928,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "cluster": "group:solana:BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
       "day": "2026-10-10",
       "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
       "distance": 2.7411715489085227,
@@ -913,7 +936,7 @@
       "y": 1
      },
      {
-      "cluster": "mint:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "cluster": "group:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
       "day": "2026-10-11",
       "decision_key": "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
       "distance": 2.888661827200829,
@@ -921,7 +944,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:DDDw9AgUrPJxGxAZNC6DPEpyQv5Jd1wfiGzwVza2v2fb",
+      "cluster": "group:solana:6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
       "day": "2026-10-11",
       "decision_key": "06a18bd40785c9b511cd2308a51e807323fb8428c9001e246bf14c4daab1a7ae",
       "distance": 2.9981369256851447,
@@ -929,7 +952,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:5mawG9WZxT2xmeuijSS7XxigNcr7Wv8d9Umx2t2RxmAi",
+      "cluster": "group:solana:HTmQz7My6MehV7bjhJ6jde8nDND1yvsz68d24LP7YgUQ",
       "day": "2026-10-13",
       "decision_key": "0290434ab2ede41be7172d281027de4cd36e855f6c61a5c978ddba0ca22edcbb",
       "distance": 3.0167622899201665,
@@ -937,7 +960,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:CVop2LAjqx77Lacg9wFN8vm4jhUugAW8wjS1PiYYWY97",
+      "cluster": "group:solana:8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
       "day": "2026-10-10",
       "decision_key": "cd2ec28f9818dcd3396374be4131d350e84b42b8b456fabfa57f140be4835c35",
       "distance": 3.0467830763642536,
@@ -945,7 +968,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:3kg6tMZhcsd3vxHEJVrY4MdyQxFDLp2MCW4vBF2YSJ6L",
+      "cluster": "group:solana:6XhzSy3VTTkwqMUSQsStM3ncGy6ozcPnzLVmv4HZ64cC",
       "day": "2026-10-08",
       "decision_key": "c3d393f2a8263c41fb5504de2beea920acbb35fa0ef05179f78c4e010cea4aa4",
       "distance": 3.0858440999702705,
@@ -953,7 +976,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "cluster": "group:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
       "day": "2026-10-08",
       "decision_key": "ddd4f6f1356e1f275defbe9242a903a0b01660477fc46b2858576836f1dddfe3",
       "distance": 3.0966049277574252,
@@ -961,7 +984,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:E7JzWSx2XVaWFaQRbd9K5Yani9Q3aZfC3AwExU1T4m5G",
+      "cluster": "group:solana:BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
       "day": "2026-10-10",
       "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
       "distance": 3.1049496490671227,
@@ -969,7 +992,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:HuthLMyzfAdwVVqHvpr28pziyL1uXyYyZshi3y9F9Svo",
+      "cluster": "group:solana:EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
       "day": "2026-10-11",
       "decision_key": "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
       "distance": 3.124406425488087,
@@ -977,7 +1000,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "cluster": "group:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
       "day": "2026-10-08",
       "decision_key": "b10e9ef1f318464f792bf7e606bb0b09715cf4d49be25a325b0378318beb3554",
       "distance": 3.1404020750940305,
@@ -1003,9 +1026,13 @@
     "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
     "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
     "model": "AC3_KNN_REGIME_LOCO",
+    "n_eff_icc": 29.46542530647281,
     "new_mint": false,
+    "no_matured_token_rows": false,
+    "no_prior_decision": false,
     "number": 0.1975609756097561,
     "ood_threshold": 4.478198036841491,
+    "pool_day_icc": 0.0029580064267310698,
     "pool_n": 123,
     "pool_positives": 30,
     "positives": 5,
@@ -1048,6 +1075,11 @@
     "wilson": [
      0.0733654237184855,
      0.3356435050641603
+    ],
+    "wilson_assumes_independent_analogs": true,
+    "wilson_icc": [
+     0.07283623648074994,
+     0.3373872837986672
     ]
    }
   },
@@ -1213,11 +1245,12 @@
   "answers": {
    "AC1_STRATA": {
     "G": 10,
+    "G_meaning": "distinct groups (mint and creator components), not an effective sample size",
     "analog_days": 5,
     "analog_mints": 10,
     "analogs": [
      {
-      "cluster": "creator:3p7f4xNVj7nGcmXe1J1vxt1fvqcY3k8aMwM72PKFN42q",
+      "cluster": "group:solana:55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
       "day": "2026-10-07",
       "decision_key": "ee1e0cc17d1bc117166664bd54e44dad7d171ef7e6a6cb57215112b5b70607f1",
       "distance": null,
@@ -1225,7 +1258,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "cluster": "group:solana:5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
       "day": "2026-10-08",
       "decision_key": "4609064b63d2bbe7826c498958e4b4e1e9bfc0f96ed9709f708c87b39c05ef85",
       "distance": null,
@@ -1233,7 +1266,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "cluster": "group:solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
       "day": "2026-10-08",
       "decision_key": "cb2d1994ed8ac733183554793ba4e45f143f808c3f2ce0010787bfa1c067212c",
       "distance": null,
@@ -1241,7 +1274,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:BEyyzsG2GR1eyvhTo83E7yg6jHU6fDypzvA4yRL5yBhx",
+      "cluster": "group:solana:8k4sBtEeK4pf26noKqApv8NBTnuSJcbdwpKYknk5PbAA",
       "day": "2026-10-09",
       "decision_key": "7823c065d9d68719b7ac13a57a5a98e66cb09eebe2464b061b3def3c8d05d249",
       "distance": null,
@@ -1249,7 +1282,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "cluster": "group:solana:5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
       "day": "2026-10-09",
       "decision_key": "c283f6bc648b42a35c28967a11b9d2a9e4c09ea751b8bc1cc463a305b0372ec3",
       "distance": null,
@@ -1257,7 +1290,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "cluster": "group:solana:BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
       "day": "2026-10-10",
       "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
       "distance": null,
@@ -1265,7 +1298,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "cluster": "group:solana:GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
       "day": "2026-10-10",
       "decision_key": "c8d4cd7ee702168311a2782d20de184fc4770aa0a90ab07bcb68160e459132c7",
       "distance": null,
@@ -1273,7 +1306,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "cluster": "group:solana:C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
       "day": "2026-10-10",
       "decision_key": "beb1b5cdb3e549aac0f446c774801790150c0db77c6fe1104e6ff28efd07cd4a",
       "distance": null,
@@ -1281,7 +1314,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "cluster": "group:solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
       "day": "2026-10-11",
       "decision_key": "7fe99e47eeb5cbb76a4516ae8a28373f39481232fbee2a2902dfb74f15377c2a",
       "distance": null,
@@ -1289,7 +1322,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "cluster": "group:solana:8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
       "day": "2026-10-11",
       "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
       "distance": null,
@@ -1318,8 +1351,12 @@
     "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
     "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
     "model": "AC1_STRATA",
+    "n_eff_icc": 9.370305380137028,
     "new_mint": false,
+    "no_matured_token_rows": false,
+    "no_prior_decision": false,
     "number": null,
+    "pool_day_icc": 0.05600089807796684,
     "pool_n": 104,
     "pool_positives": 27,
     "positives": 2,
@@ -1349,15 +1386,21 @@
     "wilson": [
      0.05668215145437519,
      0.5098375284633583
+    ],
+    "wilson_assumes_independent_analogs": true,
+    "wilson_icc": [
+     0.05456868155478464,
+     0.5198876028127093
     ]
    },
    "AC2_KNN": {
     "G": 30,
+    "G_meaning": "distinct groups (mint and creator components), not an effective sample size",
     "analog_days": 5,
-    "analog_mints": 29,
+    "analog_mints": 30,
     "analogs": [
      {
-      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "cluster": "group:solana:8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
       "day": "2026-10-11",
       "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
       "distance": 0.19753858659520507,
@@ -1365,7 +1408,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "cluster": "group:solana:5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
       "day": "2026-10-08",
       "decision_key": "4609064b63d2bbe7826c498958e4b4e1e9bfc0f96ed9709f708c87b39c05ef85",
       "distance": 0.35716737147954425,
@@ -1373,7 +1416,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "cluster": "group:solana:GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
       "day": "2026-10-09",
       "decision_key": "69ebb2b8cf74041e91f116bf5378d3d2b9b196fb7cee5d3074683c480c36370f",
       "distance": 0.5059233371870901,
@@ -1381,7 +1424,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "cluster": "group:solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
       "day": "2026-10-07",
       "decision_key": "bcc8f42cdb5bff89ba45958ce9114f3be0e4d9ca2e8d068331dcf15a24692fee",
       "distance": 0.5517502456725171,
@@ -1389,7 +1432,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "cluster": "group:solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
       "day": "2026-10-07",
       "decision_key": "83b6ea620fee50541d7f2ce14b1d9ffc74d8e249ff9c658d9a4bc6176b9dbdea",
       "distance": 0.6803589705380968,
@@ -1397,7 +1440,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:DAR7byxGpLWWdWUkRYM7Lqycvk5KGXMwoHkUJcD4se4r",
+      "cluster": "group:solana:DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
       "day": "2026-10-07",
       "decision_key": "f2a709cb1be8e692fa3585785278837256975e0ae627d6e6034cb3e4906a8525",
       "distance": 0.7329334777019115,
@@ -1405,7 +1448,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:6SJHhnhrmRUGn7tLPW8n23XmoHASRzvo9xeYk7UQYL6L",
+      "cluster": "group:solana:MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
       "day": "2026-10-09",
       "decision_key": "96a3993868007a6f1f2b3ddb20d0ed956b6fb091f9b109944ceb0499aa485822",
       "distance": 0.942263692654264,
@@ -1413,7 +1456,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:7dRdgoX3yDm4ySJ3x4qpcEj7QQDB2UDNT8rScF2h7P2d",
+      "cluster": "group:solana:5VnbrKp28Qs9CAH6PyZdxBNvLxZcbeX3YBsozgWnpump",
       "day": "2026-10-07",
       "decision_key": "7174d94c01624ee5fe6a8d1e76012a9e83effbbfd296e6081a66fd3cc650fc04",
       "distance": 0.9520127405124453,
@@ -1421,7 +1464,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:6nm7Vsepvzv9jsYiJS8HfrQRGSCCiZ9L5DgwhdDgsi8z",
+      "cluster": "group:solana:9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
       "day": "2026-10-07",
       "decision_key": "742780f582621cdfba75f568e8803f3caa84d73e46c80073f9f9efa0cbd32063",
       "distance": 0.9656973440689354,
@@ -1429,7 +1472,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:3p7f4xNVj7nGcmXe1J1vxt1fvqcY3k8aMwM72PKFN42q",
+      "cluster": "group:solana:55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
       "day": "2026-10-07",
       "decision_key": "ee1e0cc17d1bc117166664bd54e44dad7d171ef7e6a6cb57215112b5b70607f1",
       "distance": 0.9960449086968534,
@@ -1437,7 +1480,7 @@
       "y": 1
      },
      {
-      "cluster": "mint:solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+      "cluster": "group:solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
       "day": "2026-10-07",
       "decision_key": "d53cf36c858abac6389483f1bb87e331fcb973c6f4a42faa36f48516a9c4b855",
       "distance": 1.1342912312370241,
@@ -1445,7 +1488,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "cluster": "group:solana:CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
       "day": "2026-10-09",
       "decision_key": "f94e8926676295a610c2864653161ec2c9218c490cda084f895512e91e576e0e",
       "distance": 1.155893234568469,
@@ -1453,7 +1496,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:E7JzWSx2XVaWFaQRbd9K5Yani9Q3aZfC3AwExU1T4m5G",
+      "cluster": "group:solana:BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
       "day": "2026-10-10",
       "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
       "distance": 1.159408926570125,
@@ -1461,7 +1504,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "cluster": "group:solana:BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
       "day": "2026-10-10",
       "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
       "distance": 1.1595175647856841,
@@ -1469,15 +1512,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
-      "day": "2026-10-10",
-      "decision_key": "ea25cd11736e788ab866e91bab56e6745458c910a4965cedd7d6ce3295d0fd70",
-      "distance": 1.1690212226695667,
-      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
-      "y": 0
-     },
-     {
-      "cluster": "creator:4MvWfNVdFmM1UkopeRRChT7GMnJzi4jCLC4YReusZyQu",
+      "cluster": "group:solana:EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR",
       "day": "2026-10-07",
       "decision_key": "1d2ce2503a6bfd64db30421d01cade089e2b2222d70fe04deba013c4e16a4279",
       "distance": 1.2453618884115212,
@@ -1485,7 +1520,7 @@
       "y": 1
      },
      {
-      "cluster": "mint:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "cluster": "group:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
       "day": "2026-10-11",
       "decision_key": "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
       "distance": 1.258030720412887,
@@ -1493,7 +1528,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:4m4cnkT3vqHez5hKHRy3Wt3Fr8JmTowG5LARa8fd8YAx",
+      "cluster": "group:solana:5YLCp1XSRpGevfKBoSJvs7fSv6fSgbTDe3XB3dLfpump",
       "day": "2026-10-08",
       "decision_key": "96ba81cb7967c34e9b00527bae608609533f0193af8faaaec94a2f1047c9c789",
       "distance": 1.2736522645234778,
@@ -1501,7 +1536,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:BEyyzsG2GR1eyvhTo83E7yg6jHU6fDypzvA4yRL5yBhx",
+      "cluster": "group:solana:8k4sBtEeK4pf26noKqApv8NBTnuSJcbdwpKYknk5PbAA",
       "day": "2026-10-09",
       "decision_key": "7823c065d9d68719b7ac13a57a5a98e66cb09eebe2464b061b3def3c8d05d249",
       "distance": 1.4232470672705602,
@@ -1509,7 +1544,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "cluster": "group:solana:C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
       "day": "2026-10-09",
       "decision_key": "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
       "distance": 1.4313011627219046,
@@ -1517,7 +1552,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:HuthLMyzfAdwVVqHvpr28pziyL1uXyYyZshi3y9F9Svo",
+      "cluster": "group:solana:EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
       "day": "2026-10-11",
       "decision_key": "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
       "distance": 1.4741396996222316,
@@ -1525,7 +1560,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:A4emsn3r9pEypNJBniEgxotx4mU6cEXZx74DvkXSx24e",
+      "cluster": "group:solana:3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump",
       "day": "2026-10-09",
       "decision_key": "164f7e743514aacc7db62ff5d44feb25d7e6b4b3f9882f6b922df07063d45cc5",
       "distance": 1.4833457867437572,
@@ -1533,7 +1568,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:4jew14MJcHNQkxaNp75eFFCkK2QfGvWi3ZdmCu4QD5xa",
+      "cluster": "group:solana:AQ7A9nsCcrfbftRq2kfFjCkaG6NicixZ1Vy4RZ4Hpump",
       "day": "2026-10-08",
       "decision_key": "9a5f7f746b0126f949bcb06a4852a2a024b3dfce5c2bc7ef53510136ac85d2fe",
       "distance": 1.4904586082159894,
@@ -1541,7 +1576,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:B7y8AXyWtst2JsAx9zYTP8ZhUbxYRBC8heUMMFPbAHSn",
+      "cluster": "group:solana:7Xgc5RacHtGzfhw2HukUBk5V986yBbvshr7rrCoopump",
       "day": "2026-10-09",
       "decision_key": "615afbdf23daef264aaf3a28cf74d13fe85b3a96841bdc9c0bdbafce328d764b",
       "distance": 1.5020280827937065,
@@ -1549,7 +1584,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:5CEbueQnq1Ym2uSSx2xXds3jQAqT1BDnkA59RZobSPAG",
+      "cluster": "group:solana:6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
       "day": "2026-10-07",
       "decision_key": "5c881e3466928992948f13debaf6a3cc829f0a6d6b8d96b136f16b196b10d784",
       "distance": 1.5054255307024151,
@@ -1557,7 +1592,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:B9Zbs2W9VK22AHnCWiK4PqBueDFzN17RNAFu5uFozLMJ",
+      "cluster": "group:solana:68AGsjomsgTtiTaDhF6XGCeVJDnFeh415ngYYgVxGzns",
       "day": "2026-10-08",
       "decision_key": "bd9562043a777073d9cdb8dd5fb4b65e013e5beb6ddbe15a0e7d6b263f3d8f1f",
       "distance": 1.520454837303725,
@@ -1565,7 +1600,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:J8PmdBcNNYCvPz5Y9dvNJbVZLhNenQqn1g9GAswCVr62",
+      "cluster": "group:solana:H4KUxsEgCp2yDpFvyDuGM5k6XevSKKrrKUxZ3Zr6nyJc",
       "day": "2026-10-08",
       "decision_key": "9ea5cdce825e91b0a05c9db0b2cb7492920a95afdadb40dada09d24bfd4fb40d",
       "distance": 1.5411413301430137,
@@ -1573,7 +1608,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:5QdvNDBSjyFRMzxPxU8ZKJkwBm2u9XqPFqspSC1uUVbY",
+      "cluster": "group:solana:C3AEVqFnCYh2q4VAE1jeUVxHQNQLGVFDGrjqfboEpump",
       "day": "2026-10-08",
       "decision_key": "b5ddb6ad15aa67ea8d65afdc71b58d2e39ea51378fcf3ad87b3fe1bb4950e8a4",
       "distance": 1.552548055474449,
@@ -1581,7 +1616,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:BrPvZR3KVpkAi4tJBw2hGZtcPaaqMQmAeYzYXiW1hHS9",
+      "cluster": "group:solana:Goh59QCfoX53RgJa615vzXx4swR3mv51VgvAN6ZCpump",
       "day": "2026-10-08",
       "decision_key": "74582082349ad2000840fe65a96662ab6dfa2febf73c2e333aa94c62f648c640",
       "distance": 1.5810643381051184,
@@ -1589,11 +1624,19 @@
       "y": 1
      },
      {
-      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "cluster": "group:solana:5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
       "day": "2026-10-08",
       "decision_key": "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
       "distance": 1.6083015163320176,
       "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+      "y": 0
+     },
+     {
+      "cluster": "group:solana:Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+      "day": "2026-10-10",
+      "decision_key": "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17",
+      "distance": 1.6280614119801313,
+      "mint": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
       "y": 0
      }
     ],
@@ -1611,13 +1654,17 @@
      "NO_HISTORICAL_EXECUTABLE_DEPTH",
      "PRICE_PATH_NOT_PROCEEDS"
     ],
-    "kth_distance": 1.6083015163320176,
+    "kth_distance": 1.6280614119801313,
     "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
     "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
     "model": "AC2_KNN",
+    "n_eff_icc": 22.392424859521867,
     "new_mint": false,
+    "no_matured_token_rows": false,
+    "no_prior_decision": false,
     "number": 0.3838461538461539,
-    "ood_threshold": 3.8930544211197846,
+    "ood_threshold": 4.026418455018226,
+    "pool_day_icc": 0.05600089807796684,
     "pool_n": 104,
     "pool_positives": 27,
     "positives": 14,
@@ -1660,15 +1707,21 @@
     "wilson": [
      0.30232388907699753,
      0.638577003801267
+    ],
+    "wilson_assumes_independent_analogs": true,
+    "wilson_icc": [
+     0.2805793297315271,
+     0.662516082973458
     ]
    },
    "AC3_KNN_REGIME": {
     "G": 30,
+    "G_meaning": "distinct groups (mint and creator components), not an effective sample size",
     "analog_days": 4,
     "analog_mints": 30,
     "analogs": [
      {
-      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "cluster": "group:solana:8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
       "day": "2026-10-11",
       "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
       "distance": 0.19651571809834234,
@@ -1676,7 +1729,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "cluster": "group:solana:GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
       "day": "2026-10-10",
       "decision_key": "c8d4cd7ee702168311a2782d20de184fc4770aa0a90ab07bcb68160e459132c7",
       "distance": 0.5407811612124749,
@@ -1684,7 +1737,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "cluster": "group:solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
       "day": "2026-10-11",
       "decision_key": "7fe99e47eeb5cbb76a4516ae8a28373f39481232fbee2a2902dfb74f15377c2a",
       "distance": 0.8048208465474704,
@@ -1692,7 +1745,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "cluster": "group:solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
       "day": "2026-10-11",
       "decision_key": "a4c4f406e5d565b94eed1445d18c00d5bb3004099be9167d639305aaba8395cf",
       "distance": 0.8701887061535328,
@@ -1700,7 +1753,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "cluster": "group:solana:BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
       "day": "2026-10-10",
       "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
       "distance": 1.0787063313675296,
@@ -1708,7 +1761,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:E7JzWSx2XVaWFaQRbd9K5Yani9Q3aZfC3AwExU1T4m5G",
+      "cluster": "group:solana:BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
       "day": "2026-10-10",
       "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
       "distance": 1.1449851061255063,
@@ -1716,7 +1769,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+      "cluster": "group:solana:MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
       "day": "2026-10-10",
       "decision_key": "ea25cd11736e788ab866e91bab56e6745458c910a4965cedd7d6ce3295d0fd70",
       "distance": 1.153676384261442,
@@ -1724,7 +1777,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "cluster": "group:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
       "day": "2026-10-11",
       "decision_key": "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
       "distance": 1.2599480410461157,
@@ -1732,7 +1785,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "cluster": "group:solana:CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
       "day": "2026-10-10",
       "decision_key": "e31e5965247f03929d5711cef1b77f9d1400566bbbc8974e6fd486a142e0ee10",
       "distance": 1.2881435416735316,
@@ -1740,7 +1793,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6nm7Vsepvzv9jsYiJS8HfrQRGSCCiZ9L5DgwhdDgsi8z",
+      "cluster": "group:solana:9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
       "day": "2026-10-10",
       "decision_key": "8fe539bd60dd0b346db5db50310c79192ca8f8d23cfeee62eb1d81dcc666f178",
       "distance": 1.3328451680856281,
@@ -1748,7 +1801,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:HuthLMyzfAdwVVqHvpr28pziyL1uXyYyZshi3y9F9Svo",
+      "cluster": "group:solana:EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
       "day": "2026-10-11",
       "decision_key": "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
       "distance": 1.4121629489968046,
@@ -1756,7 +1809,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "cluster": "group:solana:C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
       "day": "2026-10-09",
       "decision_key": "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
       "distance": 1.4328120244000389,
@@ -1764,7 +1817,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:cWKFaakqsCJ8efDYHsTAAe8RAf8a4UQVacfmnKnLEZL",
+      "cluster": "group:solana:Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
       "day": "2026-10-10",
       "decision_key": "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17",
       "distance": 1.6129447392528882,
@@ -1772,7 +1825,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "cluster": "group:solana:5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
       "day": "2026-10-08",
       "decision_key": "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
       "distance": 1.6142936285608822,
@@ -1780,7 +1833,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
+      "cluster": "group:solana:2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
       "day": "2026-10-08",
       "decision_key": "248557a701f4bb14f56902cc7a3d528c515153b34efa83d418b268479d38a50e",
       "distance": 1.7631448236250815,
@@ -1788,7 +1841,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:3kg6tMZhcsd3vxHEJVrY4MdyQxFDLp2MCW4vBF2YSJ6L",
+      "cluster": "group:solana:6XhzSy3VTTkwqMUSQsStM3ncGy6ozcPnzLVmv4HZ64cC",
       "day": "2026-10-08",
       "decision_key": "c3d393f2a8263c41fb5504de2beea920acbb35fa0ef05179f78c4e010cea4aa4",
       "distance": 1.7640272197166023,
@@ -1796,7 +1849,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "cluster": "group:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
       "day": "2026-10-08",
       "decision_key": "ddd4f6f1356e1f275defbe9242a903a0b01660477fc46b2858576836f1dddfe3",
       "distance": 1.8276976704115473,
@@ -1804,7 +1857,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "cluster": "group:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
       "day": "2026-10-08",
       "decision_key": "b10e9ef1f318464f792bf7e606bb0b09715cf4d49be25a325b0378318beb3554",
       "distance": 1.8673258651696247,
@@ -1812,7 +1865,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
+      "cluster": "group:solana:85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
       "day": "2026-10-11",
       "decision_key": "b1df8c0418b2c85d55511be0f2a5fd2edff7f8fde1aa252655ca47fec387765e",
       "distance": 1.8945534011039886,
@@ -1820,7 +1873,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:DDDw9AgUrPJxGxAZNC6DPEpyQv5Jd1wfiGzwVza2v2fb",
+      "cluster": "group:solana:6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
       "day": "2026-10-11",
       "decision_key": "06a18bd40785c9b511cd2308a51e807323fb8428c9001e246bf14c4daab1a7ae",
       "distance": 2.0098769745829554,
@@ -1828,7 +1881,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:9w77zeGGmtNxH5yShwr1XYRRoCBqYdCdqgDG7pyLQQ6",
+      "cluster": "group:solana:6zzzG49KX5nksnqfogs31dwoMYSHaJXkropKbv1QZVga",
       "day": "2026-10-10",
       "decision_key": "8c42f733faf2620bd22dc644cd3dee86164669ed294dd086401683984dfeefbb",
       "distance": 2.1435290276095107,
@@ -1836,7 +1889,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:8F9qf3MLLaGaw71TyYTzsJEL6szVDGJwDQaPAZJH4AS1",
+      "cluster": "group:solana:ArenDYANqFNkp8ZqAXt69vT5Dz7WD4zDfSpVw6oPpump",
       "day": "2026-10-10",
       "decision_key": "4df5c9017fb4a8d4365de29ee4bf8d674b42f33c69ba4acac1381cf56dbeb62b",
       "distance": 2.2957386091693,
@@ -1844,7 +1897,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:8mQgJk3qST37qQd312PhAnGP7M1dPYvDFb4rTrnWBSbW",
+      "cluster": "group:solana:7vMkPxLwaH26qSZ2CgHhzvrgz9wUWMvT256vbUWfarm",
       "day": "2026-10-11",
       "decision_key": "37bb74585b03f3f03c5043658e1910e54f000b2bde87d3ef714b39d4c7481080",
       "distance": 2.336553128608121,
@@ -1852,7 +1905,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:3pbJPnxQZpQvTrfjt9a7hbDnfeiaXMHocpJgoaRvRP7U",
+      "cluster": "group:solana:9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump",
       "day": "2026-10-11",
       "decision_key": "7dbf3d7b3a5c7fe0c6783706d6964ee35c4f69ed699280e6d0398a3c72f3eb4a",
       "distance": 2.404432824395119,
@@ -1860,7 +1913,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6cehGGyvZf7qhGa1Hrx5HXsFNaJWegd9kxj2eujHdD5f",
+      "cluster": "group:solana:4rLgnFcuADTS2VD7sGxQjoiajbZjYZ411nF7gm7kpump",
       "day": "2026-10-08",
       "decision_key": "1d889a5ab9f8e7cc1d1e8befa633e82cea83337889c5c2037266882a96932e0a",
       "distance": 2.477970932513664,
@@ -1868,7 +1921,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:CVop2LAjqx77Lacg9wFN8vm4jhUugAW8wjS1PiYYWY97",
+      "cluster": "group:solana:8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
       "day": "2026-10-10",
       "decision_key": "cd2ec28f9818dcd3396374be4131d350e84b42b8b456fabfa57f140be4835c35",
       "distance": 2.508449494823084,
@@ -1876,7 +1929,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:DZQbBPFpTeeyGyvCwXxYQDZFGGHad2bY6sWZuviuX8MN",
+      "cluster": "group:solana:DZQbBPFpTeeyGyvCwXxYQDZFGGHad2bY6sWZuviuX8MN",
       "day": "2026-10-10",
       "decision_key": "358a97cfcf638a73c4d40df91d36934da1f2e9393825054afea48c9fef8b7321",
       "distance": 2.5470565267693615,
@@ -1884,7 +1937,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:3ibF99etfSPk9m7AshDWUYFTeY2qtfFZ4oQsXZUMzHnH",
+      "cluster": "group:solana:9oXA1VWKNiYDYa6VKHBFFBBvZdvuhw1b2eD5Aka7YrVt",
       "day": "2026-10-08",
       "decision_key": "825ad9aa2ba4d9efb97bd26f89581dadedd7978ba7faf2cab03e6b47b52e71cb",
       "distance": 2.7963449713932933,
@@ -1892,7 +1945,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+      "cluster": "group:solana:nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
       "day": "2026-10-08",
       "decision_key": "9bd332f01ceedf04af712e099a28ddd18135b94f83ab65ad0ab6c731c9767da2",
       "distance": 3.0646826564942287,
@@ -1900,7 +1953,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "cluster": "group:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
       "day": "2026-10-08",
       "decision_key": "0ada51f42f6d28b0c653eb63300afb4d8b7bf8ab66818fa97d507bb6dcd84fb1",
       "distance": 3.2391679742129833,
@@ -1926,9 +1979,13 @@
     "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
     "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
     "model": "AC3_KNN_REGIME",
+    "n_eff_icc": 20.350835694061267,
     "new_mint": false,
+    "no_matured_token_rows": false,
+    "no_prior_decision": false,
     "number": null,
     "ood_threshold": 4.793820651272783,
+    "pool_day_icc": 0.05600089807796684,
     "pool_n": 104,
     "pool_positives": 27,
     "positives": 3,
@@ -1973,15 +2030,21 @@
     "wilson": [
      0.03459988874733419,
      0.25621082579184085
+    ],
+    "wilson_assumes_independent_analogs": true,
+    "wilson_icc": [
+     0.028144901262432326,
+     0.2988859206664637
     ]
    },
    "AC3_LOCO": {
     "G": 30,
+    "G_meaning": "distinct groups (mint and creator components), not an effective sample size",
     "analog_days": 4,
     "analog_mints": 30,
     "analogs": [
      {
-      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "cluster": "group:solana:8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
       "day": "2026-10-11",
       "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
       "distance": 0.19651571809834234,
@@ -1989,7 +2052,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "cluster": "group:solana:GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
       "day": "2026-10-10",
       "decision_key": "c8d4cd7ee702168311a2782d20de184fc4770aa0a90ab07bcb68160e459132c7",
       "distance": 0.5407811612124749,
@@ -1997,7 +2060,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "cluster": "group:solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
       "day": "2026-10-11",
       "decision_key": "7fe99e47eeb5cbb76a4516ae8a28373f39481232fbee2a2902dfb74f15377c2a",
       "distance": 0.8048208465474704,
@@ -2005,7 +2068,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "cluster": "group:solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
       "day": "2026-10-11",
       "decision_key": "a4c4f406e5d565b94eed1445d18c00d5bb3004099be9167d639305aaba8395cf",
       "distance": 0.8701887061535328,
@@ -2013,7 +2076,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "cluster": "group:solana:BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
       "day": "2026-10-10",
       "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
       "distance": 1.0787063313675296,
@@ -2021,7 +2084,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:E7JzWSx2XVaWFaQRbd9K5Yani9Q3aZfC3AwExU1T4m5G",
+      "cluster": "group:solana:BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
       "day": "2026-10-10",
       "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
       "distance": 1.1449851061255063,
@@ -2029,7 +2092,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+      "cluster": "group:solana:MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
       "day": "2026-10-10",
       "decision_key": "ea25cd11736e788ab866e91bab56e6745458c910a4965cedd7d6ce3295d0fd70",
       "distance": 1.153676384261442,
@@ -2037,7 +2100,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "cluster": "group:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
       "day": "2026-10-11",
       "decision_key": "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
       "distance": 1.2599480410461157,
@@ -2045,7 +2108,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "cluster": "group:solana:CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
       "day": "2026-10-10",
       "decision_key": "e31e5965247f03929d5711cef1b77f9d1400566bbbc8974e6fd486a142e0ee10",
       "distance": 1.2881435416735316,
@@ -2053,7 +2116,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6nm7Vsepvzv9jsYiJS8HfrQRGSCCiZ9L5DgwhdDgsi8z",
+      "cluster": "group:solana:9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
       "day": "2026-10-10",
       "decision_key": "8fe539bd60dd0b346db5db50310c79192ca8f8d23cfeee62eb1d81dcc666f178",
       "distance": 1.3328451680856281,
@@ -2061,7 +2124,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:HuthLMyzfAdwVVqHvpr28pziyL1uXyYyZshi3y9F9Svo",
+      "cluster": "group:solana:EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
       "day": "2026-10-11",
       "decision_key": "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
       "distance": 1.4121629489968046,
@@ -2069,7 +2132,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "cluster": "group:solana:C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
       "day": "2026-10-09",
       "decision_key": "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
       "distance": 1.4328120244000389,
@@ -2077,7 +2140,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:cWKFaakqsCJ8efDYHsTAAe8RAf8a4UQVacfmnKnLEZL",
+      "cluster": "group:solana:Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
       "day": "2026-10-10",
       "decision_key": "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17",
       "distance": 1.6129447392528882,
@@ -2085,7 +2148,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "cluster": "group:solana:5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
       "day": "2026-10-08",
       "decision_key": "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
       "distance": 1.6142936285608822,
@@ -2093,7 +2156,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
+      "cluster": "group:solana:2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
       "day": "2026-10-08",
       "decision_key": "248557a701f4bb14f56902cc7a3d528c515153b34efa83d418b268479d38a50e",
       "distance": 1.7631448236250815,
@@ -2101,7 +2164,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:3kg6tMZhcsd3vxHEJVrY4MdyQxFDLp2MCW4vBF2YSJ6L",
+      "cluster": "group:solana:6XhzSy3VTTkwqMUSQsStM3ncGy6ozcPnzLVmv4HZ64cC",
       "day": "2026-10-08",
       "decision_key": "c3d393f2a8263c41fb5504de2beea920acbb35fa0ef05179f78c4e010cea4aa4",
       "distance": 1.7640272197166023,
@@ -2109,7 +2172,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "cluster": "group:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
       "day": "2026-10-08",
       "decision_key": "ddd4f6f1356e1f275defbe9242a903a0b01660477fc46b2858576836f1dddfe3",
       "distance": 1.8276976704115473,
@@ -2117,7 +2180,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "cluster": "group:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
       "day": "2026-10-08",
       "decision_key": "b10e9ef1f318464f792bf7e606bb0b09715cf4d49be25a325b0378318beb3554",
       "distance": 1.8673258651696247,
@@ -2125,7 +2188,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
+      "cluster": "group:solana:85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
       "day": "2026-10-11",
       "decision_key": "b1df8c0418b2c85d55511be0f2a5fd2edff7f8fde1aa252655ca47fec387765e",
       "distance": 1.8945534011039886,
@@ -2133,7 +2196,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:DDDw9AgUrPJxGxAZNC6DPEpyQv5Jd1wfiGzwVza2v2fb",
+      "cluster": "group:solana:6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
       "day": "2026-10-11",
       "decision_key": "06a18bd40785c9b511cd2308a51e807323fb8428c9001e246bf14c4daab1a7ae",
       "distance": 2.0098769745829554,
@@ -2141,7 +2204,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:9w77zeGGmtNxH5yShwr1XYRRoCBqYdCdqgDG7pyLQQ6",
+      "cluster": "group:solana:6zzzG49KX5nksnqfogs31dwoMYSHaJXkropKbv1QZVga",
       "day": "2026-10-10",
       "decision_key": "8c42f733faf2620bd22dc644cd3dee86164669ed294dd086401683984dfeefbb",
       "distance": 2.1435290276095107,
@@ -2149,7 +2212,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:8F9qf3MLLaGaw71TyYTzsJEL6szVDGJwDQaPAZJH4AS1",
+      "cluster": "group:solana:ArenDYANqFNkp8ZqAXt69vT5Dz7WD4zDfSpVw6oPpump",
       "day": "2026-10-10",
       "decision_key": "4df5c9017fb4a8d4365de29ee4bf8d674b42f33c69ba4acac1381cf56dbeb62b",
       "distance": 2.2957386091693,
@@ -2157,7 +2220,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:8mQgJk3qST37qQd312PhAnGP7M1dPYvDFb4rTrnWBSbW",
+      "cluster": "group:solana:7vMkPxLwaH26qSZ2CgHhzvrgz9wUWMvT256vbUWfarm",
       "day": "2026-10-11",
       "decision_key": "37bb74585b03f3f03c5043658e1910e54f000b2bde87d3ef714b39d4c7481080",
       "distance": 2.336553128608121,
@@ -2165,7 +2228,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:3pbJPnxQZpQvTrfjt9a7hbDnfeiaXMHocpJgoaRvRP7U",
+      "cluster": "group:solana:9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump",
       "day": "2026-10-11",
       "decision_key": "7dbf3d7b3a5c7fe0c6783706d6964ee35c4f69ed699280e6d0398a3c72f3eb4a",
       "distance": 2.404432824395119,
@@ -2173,7 +2236,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6cehGGyvZf7qhGa1Hrx5HXsFNaJWegd9kxj2eujHdD5f",
+      "cluster": "group:solana:4rLgnFcuADTS2VD7sGxQjoiajbZjYZ411nF7gm7kpump",
       "day": "2026-10-08",
       "decision_key": "1d889a5ab9f8e7cc1d1e8befa633e82cea83337889c5c2037266882a96932e0a",
       "distance": 2.477970932513664,
@@ -2181,7 +2244,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:CVop2LAjqx77Lacg9wFN8vm4jhUugAW8wjS1PiYYWY97",
+      "cluster": "group:solana:8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
       "day": "2026-10-10",
       "decision_key": "cd2ec28f9818dcd3396374be4131d350e84b42b8b456fabfa57f140be4835c35",
       "distance": 2.508449494823084,
@@ -2189,7 +2252,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:DZQbBPFpTeeyGyvCwXxYQDZFGGHad2bY6sWZuviuX8MN",
+      "cluster": "group:solana:DZQbBPFpTeeyGyvCwXxYQDZFGGHad2bY6sWZuviuX8MN",
       "day": "2026-10-10",
       "decision_key": "358a97cfcf638a73c4d40df91d36934da1f2e9393825054afea48c9fef8b7321",
       "distance": 2.5470565267693615,
@@ -2197,7 +2260,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:3ibF99etfSPk9m7AshDWUYFTeY2qtfFZ4oQsXZUMzHnH",
+      "cluster": "group:solana:9oXA1VWKNiYDYa6VKHBFFBBvZdvuhw1b2eD5Aka7YrVt",
       "day": "2026-10-08",
       "decision_key": "825ad9aa2ba4d9efb97bd26f89581dadedd7978ba7faf2cab03e6b47b52e71cb",
       "distance": 2.7963449713932933,
@@ -2205,7 +2268,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+      "cluster": "group:solana:nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
       "day": "2026-10-08",
       "decision_key": "9bd332f01ceedf04af712e099a28ddd18135b94f83ab65ad0ab6c731c9767da2",
       "distance": 3.0646826564942287,
@@ -2213,7 +2276,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "cluster": "group:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
       "day": "2026-10-08",
       "decision_key": "0ada51f42f6d28b0c653eb63300afb4d8b7bf8ab66818fa97d507bb6dcd84fb1",
       "distance": 3.2391679742129833,
@@ -2239,9 +2302,13 @@
     "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
     "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
     "model": "AC3_KNN_REGIME_LOCO",
+    "n_eff_icc": 20.350835694061267,
     "new_mint": false,
+    "no_matured_token_rows": false,
+    "no_prior_decision": false,
     "number": null,
     "ood_threshold": 4.793820651272783,
+    "pool_day_icc": 0.05600089807796684,
     "pool_n": 104,
     "pool_positives": 27,
     "positives": 3,
@@ -2286,6 +2353,11 @@
     "wilson": [
      0.03459988874733419,
      0.25621082579184085
+    ],
+    "wilson_assumes_independent_analogs": true,
+    "wilson_icc": [
+     0.028144901262432326,
+     0.2988859206664637
     ]
    }
   },
@@ -2432,11 +2504,12 @@
   "answers": {
    "AC1_STRATA": {
     "G": 10,
+    "G_meaning": "distinct groups (mint and creator components), not an effective sample size",
     "analog_days": 6,
     "analog_mints": 10,
     "analogs": [
      {
-      "cluster": "creator:3p7f4xNVj7nGcmXe1J1vxt1fvqcY3k8aMwM72PKFN42q",
+      "cluster": "group:solana:55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
       "day": "2026-10-07",
       "decision_key": "ee1e0cc17d1bc117166664bd54e44dad7d171ef7e6a6cb57215112b5b70607f1",
       "distance": null,
@@ -2444,7 +2517,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "cluster": "group:solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
       "day": "2026-10-08",
       "decision_key": "9578a21bb38544ce438f5cb5f25eebe742c652c6a91967375bf033cb61410ed6",
       "distance": null,
@@ -2452,7 +2525,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:BEyyzsG2GR1eyvhTo83E7yg6jHU6fDypzvA4yRL5yBhx",
+      "cluster": "group:solana:8k4sBtEeK4pf26noKqApv8NBTnuSJcbdwpKYknk5PbAA",
       "day": "2026-10-09",
       "decision_key": "7823c065d9d68719b7ac13a57a5a98e66cb09eebe2464b061b3def3c8d05d249",
       "distance": null,
@@ -2460,7 +2533,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "cluster": "group:solana:5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
       "day": "2026-10-09",
       "decision_key": "86ceaa8fb73556114ff2756f06f78f6908772b3dc2f8e5501161111e33340103",
       "distance": null,
@@ -2468,7 +2541,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "cluster": "group:solana:BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
       "day": "2026-10-10",
       "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
       "distance": null,
@@ -2476,7 +2549,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "cluster": "group:solana:GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
       "day": "2026-10-10",
       "decision_key": "35aa378b59abd7ca37e93cd1f88472a86e3be9fee9b37e071f74f171b3f6256b",
       "distance": null,
@@ -2484,7 +2557,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "cluster": "group:solana:C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
       "day": "2026-10-10",
       "decision_key": "38e97913e0b1329de062291c85417a6c16a3e69c602414b32c083c6f023529e4",
       "distance": null,
@@ -2492,7 +2565,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "cluster": "group:solana:8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
       "day": "2026-10-11",
       "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
       "distance": null,
@@ -2500,7 +2573,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "cluster": "group:solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
       "day": "2026-10-13",
       "decision_key": "314ab615f744a86317bb583db137cd46ed6bfdb0a7b31a0e8a8fb8beb8b2f36a",
       "distance": null,
@@ -2508,7 +2581,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "cluster": "group:solana:5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
       "day": "2026-10-13",
       "decision_key": "aa0ffbf981d4f46e743ba454ec6ad1695fbc918847cb815262337424b13c92e3",
       "distance": null,
@@ -2537,8 +2610,12 @@
     "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
     "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
     "model": "AC1_STRATA",
+    "n_eff_icc": 9.390546786343771,
     "new_mint": false,
+    "no_matured_token_rows": false,
+    "no_prior_decision": false,
     "number": null,
+    "pool_day_icc": 0.06490071638240771,
     "pool_n": 199,
     "pool_positives": 25,
     "positives": 3,
@@ -2568,15 +2645,21 @@
     "wilson": [
      0.10779126740630099,
      0.6032218525388546
+    ],
+    "wilson_assumes_independent_analogs": true,
+    "wilson_icc": [
+     0.10441451741798724,
+     0.6117117580621535
     ]
    },
    "AC2_KNN": {
     "G": 30,
+    "G_meaning": "distinct groups (mint and creator components), not an effective sample size",
     "analog_days": 7,
-    "analog_mints": 29,
+    "analog_mints": 30,
     "analogs": [
      {
-      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "cluster": "group:solana:8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
       "day": "2026-10-11",
       "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
       "distance": 0.21925146060898248,
@@ -2584,7 +2667,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "cluster": "group:solana:5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
       "day": "2026-10-08",
       "decision_key": "4609064b63d2bbe7826c498958e4b4e1e9bfc0f96ed9709f708c87b39c05ef85",
       "distance": 0.39787141482354715,
@@ -2592,7 +2675,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "cluster": "group:solana:GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
       "day": "2026-10-09",
       "decision_key": "69ebb2b8cf74041e91f116bf5378d3d2b9b196fb7cee5d3074683c480c36370f",
       "distance": 0.5328269107318553,
@@ -2600,7 +2683,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "cluster": "group:solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
       "day": "2026-10-07",
       "decision_key": "bcc8f42cdb5bff89ba45958ce9114f3be0e4d9ca2e8d068331dcf15a24692fee",
       "distance": 0.5812650985538343,
@@ -2608,7 +2691,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "cluster": "group:solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
       "day": "2026-10-08",
       "decision_key": "9578a21bb38544ce438f5cb5f25eebe742c652c6a91967375bf033cb61410ed6",
       "distance": 0.702386040560484,
@@ -2616,7 +2699,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:DAR7byxGpLWWdWUkRYM7Lqycvk5KGXMwoHkUJcD4se4r",
+      "cluster": "group:solana:DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
       "day": "2026-10-07",
       "decision_key": "f2a709cb1be8e692fa3585785278837256975e0ae627d6e6034cb3e4906a8525",
       "distance": 0.8088621772854501,
@@ -2624,7 +2707,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6SJHhnhrmRUGn7tLPW8n23XmoHASRzvo9xeYk7UQYL6L",
+      "cluster": "group:solana:MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
       "day": "2026-10-09",
       "decision_key": "96a3993868007a6f1f2b3ddb20d0ed956b6fb091f9b109944ceb0499aa485822",
       "distance": 0.997475027324225,
@@ -2632,7 +2715,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:7dRdgoX3yDm4ySJ3x4qpcEj7QQDB2UDNT8rScF2h7P2d",
+      "cluster": "group:solana:5VnbrKp28Qs9CAH6PyZdxBNvLxZcbeX3YBsozgWnpump",
       "day": "2026-10-07",
       "decision_key": "7174d94c01624ee5fe6a8d1e76012a9e83effbbfd296e6081a66fd3cc650fc04",
       "distance": 1.0735137353421154,
@@ -2640,7 +2723,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6nm7Vsepvzv9jsYiJS8HfrQRGSCCiZ9L5DgwhdDgsi8z",
+      "cluster": "group:solana:9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
       "day": "2026-10-07",
       "decision_key": "742780f582621cdfba75f568e8803f3caa84d73e46c80073f9f9efa0cbd32063",
       "distance": 1.0834423022265542,
@@ -2648,7 +2731,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:3p7f4xNVj7nGcmXe1J1vxt1fvqcY3k8aMwM72PKFN42q",
+      "cluster": "group:solana:55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
       "day": "2026-10-07",
       "decision_key": "ee1e0cc17d1bc117166664bd54e44dad7d171ef7e6a6cb57215112b5b70607f1",
       "distance": 1.1229999122395586,
@@ -2656,15 +2739,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
-      "day": "2026-10-10",
-      "decision_key": "d175a7eb960e5cb5fbc01bf0f4c79ddc63fbbeac2abb131ad1a55aa7e7ce27c5",
-      "distance": 1.1355308994435582,
-      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
-      "y": 0
-     },
-     {
-      "cluster": "mint:solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+      "cluster": "group:solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
       "day": "2026-10-07",
       "decision_key": "d53cf36c858abac6389483f1bb87e331fcb973c6f4a42faa36f48516a9c4b855",
       "distance": 1.170551248542684,
@@ -2672,7 +2747,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "cluster": "group:solana:CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
       "day": "2026-10-09",
       "decision_key": "f94e8926676295a610c2864653161ec2c9218c490cda084f895512e91e576e0e",
       "distance": 1.2446736142227885,
@@ -2680,7 +2755,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:E7JzWSx2XVaWFaQRbd9K5Yani9Q3aZfC3AwExU1T4m5G",
+      "cluster": "group:solana:BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
       "day": "2026-10-10",
       "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
       "distance": 1.2641105873744523,
@@ -2688,7 +2763,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "cluster": "group:solana:BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
       "day": "2026-10-10",
       "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
       "distance": 1.2909946038858808,
@@ -2696,7 +2771,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:6sq1bQoYVqP2jC3RA72WoLx5VRCiSLUxeouHohJubEQN",
+      "cluster": "group:solana:DzMwArmdzPqcqgvyqAmTxy79XdA9NwK9mMteqWLJpump",
       "day": "2026-10-13",
       "decision_key": "f6887280c240a824e6485c856ae15d86afe505c51ff77efc6f668cdd61bedc62",
       "distance": 1.2943762869379518,
@@ -2704,7 +2779,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "cluster": "group:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
       "day": "2026-10-11",
       "decision_key": "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
       "distance": 1.3032003219083677,
@@ -2712,7 +2787,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:4MvWfNVdFmM1UkopeRRChT7GMnJzi4jCLC4YReusZyQu",
+      "cluster": "group:solana:EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR",
       "day": "2026-10-07",
       "decision_key": "1d2ce2503a6bfd64db30421d01cade089e2b2222d70fe04deba013c4e16a4279",
       "distance": 1.3714179655394447,
@@ -2720,7 +2795,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:4m4cnkT3vqHez5hKHRy3Wt3Fr8JmTowG5LARa8fd8YAx",
+      "cluster": "group:solana:5YLCp1XSRpGevfKBoSJvs7fSv6fSgbTDe3XB3dLfpump",
       "day": "2026-10-08",
       "decision_key": "96ba81cb7967c34e9b00527bae608609533f0193af8faaaec94a2f1047c9c789",
       "distance": 1.4049973296087643,
@@ -2728,7 +2803,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "cluster": "group:solana:C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
       "day": "2026-10-09",
       "decision_key": "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
       "distance": 1.4338584961290999,
@@ -2736,7 +2811,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:5xsibKwtiN6ruxsYrEyWVpV3KcwuzSPbQd1n28a7spEd",
+      "cluster": "group:solana:6Mix12LiHrQFojaQEnfPUC65Qkwd6X4Y5Qg93oFbordr",
       "day": "2026-10-12",
       "decision_key": "57507d51778c5339375908434b0cef012a3942a8b5d36b80fe071a022f894e47",
       "distance": 1.4787005721384285,
@@ -2744,7 +2819,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:5CEbueQnq1Ym2uSSx2xXds3jQAqT1BDnkA59RZobSPAG",
+      "cluster": "group:solana:6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
       "day": "2026-10-08",
       "decision_key": "1e3c0e5b504a364b8acbbf15f7f3cbce448fb052aca20f2f4bcf111d986dcc3c",
       "distance": 1.5535960763674406,
@@ -2752,7 +2827,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "cluster": "group:solana:5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
       "day": "2026-10-08",
       "decision_key": "b7d182d1314b5f008d3885852a371994b714329453fa0aecc5d27a039a12e8ea",
       "distance": 1.5815585838105328,
@@ -2760,7 +2835,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:BEyyzsG2GR1eyvhTo83E7yg6jHU6fDypzvA4yRL5yBhx",
+      "cluster": "group:solana:8k4sBtEeK4pf26noKqApv8NBTnuSJcbdwpKYknk5PbAA",
       "day": "2026-10-09",
       "decision_key": "7823c065d9d68719b7ac13a57a5a98e66cb09eebe2464b061b3def3c8d05d249",
       "distance": 1.5816601238105648,
@@ -2768,7 +2843,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:4jew14MJcHNQkxaNp75eFFCkK2QfGvWi3ZdmCu4QD5xa",
+      "cluster": "group:solana:AQ7A9nsCcrfbftRq2kfFjCkaG6NicixZ1Vy4RZ4Hpump",
       "day": "2026-10-09",
       "decision_key": "7a0cf5efaa0a16dd23386a7b20ea1bb2f05648ee622f01a69ba8ce031e1d0010",
       "distance": 1.621576061161352,
@@ -2776,7 +2851,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:B9Zbs2W9VK22AHnCWiK4PqBueDFzN17RNAFu5uFozLMJ",
+      "cluster": "group:solana:68AGsjomsgTtiTaDhF6XGCeVJDnFeh415ngYYgVxGzns",
       "day": "2026-10-08",
       "decision_key": "bd9562043a777073d9cdb8dd5fb4b65e013e5beb6ddbe15a0e7d6b263f3d8f1f",
       "distance": 1.6329320224432007,
@@ -2784,7 +2859,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:A4emsn3r9pEypNJBniEgxotx4mU6cEXZx74DvkXSx24e",
+      "cluster": "group:solana:3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump",
       "day": "2026-10-09",
       "decision_key": "164f7e743514aacc7db62ff5d44feb25d7e6b4b3f9882f6b922df07063d45cc5",
       "distance": 1.6401028109888423,
@@ -2792,7 +2867,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:HuthLMyzfAdwVVqHvpr28pziyL1uXyYyZshi3y9F9Svo",
+      "cluster": "group:solana:EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
       "day": "2026-10-11",
       "decision_key": "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
       "distance": 1.6631047030344441,
@@ -2800,7 +2875,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:B7y8AXyWtst2JsAx9zYTP8ZhUbxYRBC8heUMMFPbAHSn",
+      "cluster": "group:solana:7Xgc5RacHtGzfhw2HukUBk5V986yBbvshr7rrCoopump",
       "day": "2026-10-09",
       "decision_key": "615afbdf23daef264aaf3a28cf74d13fe85b3a96841bdc9c0bdbafce328d764b",
       "distance": 1.6933975959403818,
@@ -2808,17 +2883,25 @@
       "y": 1
      },
      {
-      "cluster": "creator:5QdvNDBSjyFRMzxPxU8ZKJkwBm2u9XqPFqspSC1uUVbY",
+      "cluster": "group:solana:C3AEVqFnCYh2q4VAE1jeUVxHQNQLGVFDGrjqfboEpump",
       "day": "2026-10-08",
       "decision_key": "b5ddb6ad15aa67ea8d65afdc71b58d2e39ea51378fcf3ad87b3fe1bb4950e8a4",
       "distance": 1.6982948092076606,
       "mint": "C3AEVqFnCYh2q4VAE1jeUVxHQNQLGVFDGrjqfboEpump",
       "y": 0
+     },
+     {
+      "cluster": "group:solana:Goh59QCfoX53RgJa615vzXx4swR3mv51VgvAN6ZCpump",
+      "day": "2026-10-08",
+      "decision_key": "74582082349ad2000840fe65a96662ab6dfa2febf73c2e333aa94c62f648c640",
+      "distance": 1.730908707361957,
+      "mint": "Goh59QCfoX53RgJa615vzXx4swR3mv51VgvAN6ZCpump",
+      "y": 0
      }
     ],
     "as_of": 1791936000.0,
     "b0": 0.12562814070351758,
-    "day_kish_ess": 4.945054945054945,
+    "day_kish_ess": 4.6875,
     "decision_key": "6070e73636132d818acc46fe134dd097aadbac0bed79ff8de90a0e44ebf74f9e",
     "decision_time": 1791973063.0,
     "excluded": {
@@ -2830,13 +2913,17 @@
      "NO_HISTORICAL_EXECUTABLE_DEPTH",
      "PRICE_PATH_NOT_PROCEEDS"
     ],
-    "kth_distance": 1.6982948092076606,
+    "kth_distance": 1.730908707361957,
     "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
     "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
     "model": "AC2_KNN",
+    "n_eff_icc": 22.21458915009652,
     "new_mint": false,
+    "no_matured_token_rows": false,
+    "no_prior_decision": false,
     "number": 0.19025125628140704,
-    "ood_threshold": 3.7995079575736757,
+    "ood_threshold": 3.845486185164642,
+    "pool_day_icc": 0.06490071638240771,
     "pool_n": 199,
     "pool_positives": 25,
     "positives": 7,
@@ -2873,21 +2960,27 @@
       0.10897453325692374,
       0.5195043405598057
      ],
-     "split_time": 1791541429.0,
+     "split_time": 1791534411.0,
      "time_unstable": false
     },
     "wilson": [
      0.11792388144489496,
      0.40928326158122164
+    ],
+    "wilson_assumes_independent_analogs": true,
+    "wilson_icc": [
+     0.1055573105627357,
+     0.43973901014817646
     ]
    },
    "AC3_KNN_REGIME": {
     "G": 30,
+    "G_meaning": "distinct groups (mint and creator components), not an effective sample size",
     "analog_days": 5,
-    "analog_mints": 29,
+    "analog_mints": 30,
     "analogs": [
      {
-      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "cluster": "group:solana:8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
       "day": "2026-10-11",
       "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
       "distance": 0.21187679406539303,
@@ -2895,7 +2988,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "cluster": "group:solana:GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
       "day": "2026-10-10",
       "decision_key": "b38e8374c31aa13ea0a166d3649101867f0fa0542ff1adaa105f9dc43fb7b5c6",
       "distance": 0.5803822718654057,
@@ -2903,7 +2996,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "cluster": "group:solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
       "day": "2026-10-08",
       "decision_key": "cf95bc578a908792277841eef6e270624002fdb46555d90861431fafd8b0ad6e",
       "distance": 0.7734052691460499,
@@ -2911,7 +3004,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "cluster": "group:solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
       "day": "2026-10-08",
       "decision_key": "06c52604ac9ce8c862383b3dd6b6c488ba5f24fe76df31e11c3e65edc609d5ac",
       "distance": 0.7905898230598779,
@@ -2919,7 +3012,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "cluster": "group:solana:5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
       "day": "2026-10-13",
       "decision_key": "aa0ffbf981d4f46e743ba454ec6ad1695fbc918847cb815262337424b13c92e3",
       "distance": 0.9741228045968173,
@@ -2927,7 +3020,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6SJHhnhrmRUGn7tLPW8n23XmoHASRzvo9xeYk7UQYL6L",
+      "cluster": "group:solana:MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
       "day": "2026-10-09",
       "decision_key": "15e5b5576aa2af102fd7768f2069034505b2effe2ecc26771dbbb9f259ab5b5f",
       "distance": 1.05364760243663,
@@ -2935,7 +3028,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "cluster": "group:solana:BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
       "day": "2026-10-10",
       "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
       "distance": 1.193118965201842,
@@ -2943,7 +3036,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:E7JzWSx2XVaWFaQRbd9K5Yani9Q3aZfC3AwExU1T4m5G",
+      "cluster": "group:solana:BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
       "day": "2026-10-10",
       "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
       "distance": 1.2393549061699374,
@@ -2951,7 +3044,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "cluster": "group:solana:CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
       "day": "2026-10-09",
       "decision_key": "88eea8894153efdeec3973590391e218a55e9e494baede0478cdb38271fbef35",
       "distance": 1.2469973005186419,
@@ -2959,15 +3052,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
-      "day": "2026-10-10",
-      "decision_key": "74a8b1d4a8593ca61ffc5f089abce608072c567952412d82381f3afc2415c111",
-      "distance": 1.2717966786936212,
-      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
-      "y": 0
-     },
-     {
-      "cluster": "creator:6sq1bQoYVqP2jC3RA72WoLx5VRCiSLUxeouHohJubEQN",
+      "cluster": "group:solana:DzMwArmdzPqcqgvyqAmTxy79XdA9NwK9mMteqWLJpump",
       "day": "2026-10-13",
       "decision_key": "f6887280c240a824e6485c856ae15d86afe505c51ff77efc6f668cdd61bedc62",
       "distance": 1.2737404146105284,
@@ -2975,7 +3060,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+      "cluster": "group:solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
       "day": "2026-10-08",
       "decision_key": "f544ca8e1085c3e71fa8269b78d49aa1b3defc419c565cc0679f270dd3cff9c9",
       "distance": 1.2802924172284442,
@@ -2983,7 +3068,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "cluster": "group:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
       "day": "2026-10-11",
       "decision_key": "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
       "distance": 1.2953961158390508,
@@ -2991,7 +3076,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "cluster": "group:solana:C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
       "day": "2026-10-09",
       "decision_key": "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
       "distance": 1.4350553046244823,
@@ -2999,7 +3084,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6nm7Vsepvzv9jsYiJS8HfrQRGSCCiZ9L5DgwhdDgsi8z",
+      "cluster": "group:solana:9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
       "day": "2026-10-10",
       "decision_key": "8fe539bd60dd0b346db5db50310c79192ca8f8d23cfeee62eb1d81dcc666f178",
       "distance": 1.4624336038009165,
@@ -3007,7 +3092,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:HuthLMyzfAdwVVqHvpr28pziyL1uXyYyZshi3y9F9Svo",
+      "cluster": "group:solana:EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
       "day": "2026-10-11",
       "decision_key": "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
       "distance": 1.5438988792568582,
@@ -3015,7 +3100,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:5CEbueQnq1Ym2uSSx2xXds3jQAqT1BDnkA59RZobSPAG",
+      "cluster": "group:solana:6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
       "day": "2026-10-08",
       "decision_key": "1e3c0e5b504a364b8acbbf15f7f3cbce448fb052aca20f2f4bcf111d986dcc3c",
       "distance": 1.5930843424335244,
@@ -3023,7 +3108,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:DAR7byxGpLWWdWUkRYM7Lqycvk5KGXMwoHkUJcD4se4r",
+      "cluster": "group:solana:DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
       "day": "2026-10-13",
       "decision_key": "40c9f4fe5e315983358f1effbd4da9f482965bd23bf29d8f5c8031459559dbdc",
       "distance": 1.6021330324351106,
@@ -3031,7 +3116,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "cluster": "group:solana:5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
       "day": "2026-10-08",
       "decision_key": "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
       "distance": 1.6410465155633003,
@@ -3039,7 +3124,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:cWKFaakqsCJ8efDYHsTAAe8RAf8a4UQVacfmnKnLEZL",
+      "cluster": "group:solana:Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
       "day": "2026-10-10",
       "decision_key": "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17",
       "distance": 1.7412830186933888,
@@ -3047,7 +3132,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
+      "cluster": "group:solana:2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
       "day": "2026-10-08",
       "decision_key": "248557a701f4bb14f56902cc7a3d528c515153b34efa83d418b268479d38a50e",
       "distance": 1.86796754112958,
@@ -3055,7 +3140,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:3kg6tMZhcsd3vxHEJVrY4MdyQxFDLp2MCW4vBF2YSJ6L",
+      "cluster": "group:solana:6XhzSy3VTTkwqMUSQsStM3ncGy6ozcPnzLVmv4HZ64cC",
       "day": "2026-10-08",
       "decision_key": "c3d393f2a8263c41fb5504de2beea920acbb35fa0ef05179f78c4e010cea4aa4",
       "distance": 1.8988152459348588,
@@ -3063,7 +3148,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:EUmh5o7E7dfskre5nCDCnegA3Sz2Cpiss7HZJhAWUq8p",
+      "cluster": "group:solana:RACEyWiM2ztEZcJx2AHXU2eWjhxU57x3vXn92b39dLD",
       "day": "2026-10-13",
       "decision_key": "49ddc4bd84b2290af91c20a10d83b96006df23d3e7b920aef5c627e2ce0b06dd",
       "distance": 1.9119344280999186,
@@ -3071,7 +3156,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "cluster": "group:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
       "day": "2026-10-08",
       "decision_key": "ddd4f6f1356e1f275defbe9242a903a0b01660477fc46b2858576836f1dddfe3",
       "distance": 1.9595390919193563,
@@ -3079,7 +3164,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "cluster": "group:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
       "day": "2026-10-08",
       "decision_key": "b10e9ef1f318464f792bf7e606bb0b09715cf4d49be25a325b0378318beb3554",
       "distance": 1.999846901001932,
@@ -3087,7 +3172,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
+      "cluster": "group:solana:85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
       "day": "2026-10-11",
       "decision_key": "b1df8c0418b2c85d55511be0f2a5fd2edff7f8fde1aa252655ca47fec387765e",
       "distance": 2.016652393063893,
@@ -3095,7 +3180,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:NTRNDMczz1bzzB3eYk5VdMdovbf223wFuq57FEjqkoA",
+      "cluster": "group:solana:NTRNDMqQSiwEC2jJs3wJiZS6bpGYQJtMNQJgiX3WyV6",
       "day": "2026-10-13",
       "decision_key": "127dc358b74e36906c0b918c048b63c36af26ee5ebadcc488ff436b443d31a7e",
       "distance": 2.0578326483656317,
@@ -3103,7 +3188,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:5mawG9WZxT2xmeuijSS7XxigNcr7Wv8d9Umx2t2RxmAi",
+      "cluster": "group:solana:HTmQz7My6MehV7bjhJ6jde8nDND1yvsz68d24LP7YgUQ",
       "day": "2026-10-13",
       "decision_key": "0290434ab2ede41be7172d281027de4cd36e855f6c61a5c978ddba0ca22edcbb",
       "distance": 2.098722973199713,
@@ -3111,7 +3196,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:8HCj9vivAFwE1YcKPH1mrFDvsfErX2orEAgdMLim6zDf",
+      "cluster": "group:solana:u7XNK4pbxXgWzBwqidDV2TtsXwLqqxtjmGfw1H8pump",
       "day": "2026-10-13",
       "decision_key": "77af704887d2e26a9d44a07bcc348859ac005b08412df9d363be4ef197e99c0a",
       "distance": 2.131924300653544,
@@ -3119,11 +3204,19 @@
       "y": 0
      },
      {
-      "cluster": "creator:DDDw9AgUrPJxGxAZNC6DPEpyQv5Jd1wfiGzwVza2v2fb",
+      "cluster": "group:solana:6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
       "day": "2026-10-11",
       "decision_key": "06a18bd40785c9b511cd2308a51e807323fb8428c9001e246bf14c4daab1a7ae",
       "distance": 2.158746476065246,
       "mint": "6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
+      "y": 0
+     },
+     {
+      "cluster": "group:solana:6zzzG49KX5nksnqfogs31dwoMYSHaJXkropKbv1QZVga",
+      "day": "2026-10-10",
+      "decision_key": "8c42f733faf2620bd22dc644cd3dee86164669ed294dd086401683984dfeefbb",
+      "distance": 2.359200134456573,
+      "mint": "6zzzG49KX5nksnqfogs31dwoMYSHaJXkropKbv1QZVga",
       "y": 0
      }
     ],
@@ -3141,13 +3234,17 @@
      "NO_HISTORICAL_EXECUTABLE_DEPTH",
      "PRICE_PATH_NOT_PROCEEDS"
     ],
-    "kth_distance": 2.158746476065246,
+    "kth_distance": 2.359200134456573,
     "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
     "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
     "model": "AC3_KNN_REGIME",
+    "n_eff_icc": 21.933500568528476,
     "new_mint": false,
+    "no_matured_token_rows": false,
+    "no_prior_decision": false,
     "number": 0.15025125628140704,
-    "ood_threshold": 4.436090805753605,
+    "ood_threshold": 4.5028006684456505,
+    "pool_day_icc": 0.06490071638240771,
     "pool_n": 199,
     "pool_positives": 25,
     "positives": 5,
@@ -3190,15 +3287,21 @@
     "wilson": [
      0.0733654237184855,
      0.3356435050641603
+    ],
+    "wilson_assumes_independent_analogs": true,
+    "wilson_icc": [
+     0.06413631927390401,
+     0.3685559503222056
     ]
    },
    "AC3_LOCO": {
     "G": 30,
+    "G_meaning": "distinct groups (mint and creator components), not an effective sample size",
     "analog_days": 5,
-    "analog_mints": 29,
+    "analog_mints": 30,
     "analogs": [
      {
-      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "cluster": "group:solana:8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
       "day": "2026-10-11",
       "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
       "distance": 0.21187679406539303,
@@ -3206,7 +3309,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "cluster": "group:solana:GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
       "day": "2026-10-10",
       "decision_key": "b38e8374c31aa13ea0a166d3649101867f0fa0542ff1adaa105f9dc43fb7b5c6",
       "distance": 0.5803822718654057,
@@ -3214,7 +3317,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "cluster": "group:solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
       "day": "2026-10-08",
       "decision_key": "cf95bc578a908792277841eef6e270624002fdb46555d90861431fafd8b0ad6e",
       "distance": 0.7734052691460499,
@@ -3222,7 +3325,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "cluster": "group:solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
       "day": "2026-10-08",
       "decision_key": "06c52604ac9ce8c862383b3dd6b6c488ba5f24fe76df31e11c3e65edc609d5ac",
       "distance": 0.7905898230598779,
@@ -3230,7 +3333,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "cluster": "group:solana:5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
       "day": "2026-10-13",
       "decision_key": "aa0ffbf981d4f46e743ba454ec6ad1695fbc918847cb815262337424b13c92e3",
       "distance": 0.9741228045968173,
@@ -3238,7 +3341,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6SJHhnhrmRUGn7tLPW8n23XmoHASRzvo9xeYk7UQYL6L",
+      "cluster": "group:solana:MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
       "day": "2026-10-09",
       "decision_key": "15e5b5576aa2af102fd7768f2069034505b2effe2ecc26771dbbb9f259ab5b5f",
       "distance": 1.05364760243663,
@@ -3246,7 +3349,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "cluster": "group:solana:BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
       "day": "2026-10-10",
       "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
       "distance": 1.193118965201842,
@@ -3254,7 +3357,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:E7JzWSx2XVaWFaQRbd9K5Yani9Q3aZfC3AwExU1T4m5G",
+      "cluster": "group:solana:BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
       "day": "2026-10-10",
       "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
       "distance": 1.2393549061699374,
@@ -3262,7 +3365,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "cluster": "group:solana:CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
       "day": "2026-10-09",
       "decision_key": "88eea8894153efdeec3973590391e218a55e9e494baede0478cdb38271fbef35",
       "distance": 1.2469973005186419,
@@ -3270,15 +3373,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
-      "day": "2026-10-10",
-      "decision_key": "74a8b1d4a8593ca61ffc5f089abce608072c567952412d82381f3afc2415c111",
-      "distance": 1.2717966786936212,
-      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
-      "y": 0
-     },
-     {
-      "cluster": "creator:6sq1bQoYVqP2jC3RA72WoLx5VRCiSLUxeouHohJubEQN",
+      "cluster": "group:solana:DzMwArmdzPqcqgvyqAmTxy79XdA9NwK9mMteqWLJpump",
       "day": "2026-10-13",
       "decision_key": "f6887280c240a824e6485c856ae15d86afe505c51ff77efc6f668cdd61bedc62",
       "distance": 1.2737404146105284,
@@ -3286,7 +3381,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+      "cluster": "group:solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
       "day": "2026-10-08",
       "decision_key": "f544ca8e1085c3e71fa8269b78d49aa1b3defc419c565cc0679f270dd3cff9c9",
       "distance": 1.2802924172284442,
@@ -3294,7 +3389,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "cluster": "group:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
       "day": "2026-10-11",
       "decision_key": "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
       "distance": 1.2953961158390508,
@@ -3302,7 +3397,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "cluster": "group:solana:C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
       "day": "2026-10-09",
       "decision_key": "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
       "distance": 1.4350553046244823,
@@ -3310,7 +3405,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:6nm7Vsepvzv9jsYiJS8HfrQRGSCCiZ9L5DgwhdDgsi8z",
+      "cluster": "group:solana:9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
       "day": "2026-10-10",
       "decision_key": "8fe539bd60dd0b346db5db50310c79192ca8f8d23cfeee62eb1d81dcc666f178",
       "distance": 1.4624336038009165,
@@ -3318,7 +3413,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:HuthLMyzfAdwVVqHvpr28pziyL1uXyYyZshi3y9F9Svo",
+      "cluster": "group:solana:EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
       "day": "2026-10-11",
       "decision_key": "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
       "distance": 1.5438988792568582,
@@ -3326,7 +3421,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:5CEbueQnq1Ym2uSSx2xXds3jQAqT1BDnkA59RZobSPAG",
+      "cluster": "group:solana:6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
       "day": "2026-10-08",
       "decision_key": "1e3c0e5b504a364b8acbbf15f7f3cbce448fb052aca20f2f4bcf111d986dcc3c",
       "distance": 1.5930843424335244,
@@ -3334,7 +3429,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:DAR7byxGpLWWdWUkRYM7Lqycvk5KGXMwoHkUJcD4se4r",
+      "cluster": "group:solana:DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
       "day": "2026-10-13",
       "decision_key": "40c9f4fe5e315983358f1effbd4da9f482965bd23bf29d8f5c8031459559dbdc",
       "distance": 1.6021330324351106,
@@ -3342,7 +3437,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "cluster": "group:solana:5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
       "day": "2026-10-08",
       "decision_key": "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
       "distance": 1.6410465155633003,
@@ -3350,7 +3445,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:cWKFaakqsCJ8efDYHsTAAe8RAf8a4UQVacfmnKnLEZL",
+      "cluster": "group:solana:Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
       "day": "2026-10-10",
       "decision_key": "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17",
       "distance": 1.7412830186933888,
@@ -3358,7 +3453,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
+      "cluster": "group:solana:2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
       "day": "2026-10-08",
       "decision_key": "248557a701f4bb14f56902cc7a3d528c515153b34efa83d418b268479d38a50e",
       "distance": 1.86796754112958,
@@ -3366,7 +3461,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:3kg6tMZhcsd3vxHEJVrY4MdyQxFDLp2MCW4vBF2YSJ6L",
+      "cluster": "group:solana:6XhzSy3VTTkwqMUSQsStM3ncGy6ozcPnzLVmv4HZ64cC",
       "day": "2026-10-08",
       "decision_key": "c3d393f2a8263c41fb5504de2beea920acbb35fa0ef05179f78c4e010cea4aa4",
       "distance": 1.8988152459348588,
@@ -3374,7 +3469,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:EUmh5o7E7dfskre5nCDCnegA3Sz2Cpiss7HZJhAWUq8p",
+      "cluster": "group:solana:RACEyWiM2ztEZcJx2AHXU2eWjhxU57x3vXn92b39dLD",
       "day": "2026-10-13",
       "decision_key": "49ddc4bd84b2290af91c20a10d83b96006df23d3e7b920aef5c627e2ce0b06dd",
       "distance": 1.9119344280999186,
@@ -3382,7 +3477,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "cluster": "group:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
       "day": "2026-10-08",
       "decision_key": "ddd4f6f1356e1f275defbe9242a903a0b01660477fc46b2858576836f1dddfe3",
       "distance": 1.9595390919193563,
@@ -3390,7 +3485,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "cluster": "group:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
       "day": "2026-10-08",
       "decision_key": "b10e9ef1f318464f792bf7e606bb0b09715cf4d49be25a325b0378318beb3554",
       "distance": 1.999846901001932,
@@ -3398,7 +3493,7 @@
       "y": 0
      },
      {
-      "cluster": "mint:solana:85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
+      "cluster": "group:solana:85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
       "day": "2026-10-11",
       "decision_key": "b1df8c0418b2c85d55511be0f2a5fd2edff7f8fde1aa252655ca47fec387765e",
       "distance": 2.016652393063893,
@@ -3406,7 +3501,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:NTRNDMczz1bzzB3eYk5VdMdovbf223wFuq57FEjqkoA",
+      "cluster": "group:solana:NTRNDMqQSiwEC2jJs3wJiZS6bpGYQJtMNQJgiX3WyV6",
       "day": "2026-10-13",
       "decision_key": "127dc358b74e36906c0b918c048b63c36af26ee5ebadcc488ff436b443d31a7e",
       "distance": 2.0578326483656317,
@@ -3414,7 +3509,7 @@
       "y": 1
      },
      {
-      "cluster": "creator:5mawG9WZxT2xmeuijSS7XxigNcr7Wv8d9Umx2t2RxmAi",
+      "cluster": "group:solana:HTmQz7My6MehV7bjhJ6jde8nDND1yvsz68d24LP7YgUQ",
       "day": "2026-10-13",
       "decision_key": "0290434ab2ede41be7172d281027de4cd36e855f6c61a5c978ddba0ca22edcbb",
       "distance": 2.098722973199713,
@@ -3422,7 +3517,7 @@
       "y": 0
      },
      {
-      "cluster": "creator:8HCj9vivAFwE1YcKPH1mrFDvsfErX2orEAgdMLim6zDf",
+      "cluster": "group:solana:u7XNK4pbxXgWzBwqidDV2TtsXwLqqxtjmGfw1H8pump",
       "day": "2026-10-13",
       "decision_key": "77af704887d2e26a9d44a07bcc348859ac005b08412df9d363be4ef197e99c0a",
       "distance": 2.131924300653544,
@@ -3430,11 +3525,19 @@
       "y": 0
      },
      {
-      "cluster": "creator:DDDw9AgUrPJxGxAZNC6DPEpyQv5Jd1wfiGzwVza2v2fb",
+      "cluster": "group:solana:6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
       "day": "2026-10-11",
       "decision_key": "06a18bd40785c9b511cd2308a51e807323fb8428c9001e246bf14c4daab1a7ae",
       "distance": 2.158746476065246,
       "mint": "6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
+      "y": 0
+     },
+     {
+      "cluster": "group:solana:6zzzG49KX5nksnqfogs31dwoMYSHaJXkropKbv1QZVga",
+      "day": "2026-10-10",
+      "decision_key": "8c42f733faf2620bd22dc644cd3dee86164669ed294dd086401683984dfeefbb",
+      "distance": 2.359200134456573,
+      "mint": "6zzzG49KX5nksnqfogs31dwoMYSHaJXkropKbv1QZVga",
       "y": 0
      }
     ],
@@ -3452,13 +3555,17 @@
      "NO_HISTORICAL_EXECUTABLE_DEPTH",
      "PRICE_PATH_NOT_PROCEEDS"
     ],
-    "kth_distance": 2.158746476065246,
+    "kth_distance": 2.359200134456573,
     "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
     "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
     "model": "AC3_KNN_REGIME_LOCO",
+    "n_eff_icc": 21.933500568528476,
     "new_mint": false,
+    "no_matured_token_rows": false,
+    "no_prior_decision": false,
     "number": 0.15025125628140704,
-    "ood_threshold": 4.436090805753605,
+    "ood_threshold": 4.5028006684456505,
+    "pool_day_icc": 0.06490071638240771,
     "pool_n": 199,
     "pool_positives": 25,
     "positives": 5,
@@ -3501,6 +3608,11 @@
     "wilson": [
      0.0733654237184855,
      0.3356435050641603
+    ],
+    "wilson_assumes_independent_analogs": true,
+    "wilson_icc": [
+     0.06413631927390401,
+     0.3685559503222056
     ]
    }
   },

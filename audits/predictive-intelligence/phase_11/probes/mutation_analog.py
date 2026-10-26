@@ -22,7 +22,8 @@ EXTRA = [AP, TEST,
          "audits/predictive-intelligence/phase_11/experiments/SEARCH_LEDGER.csv",
          "audits/predictive-intelligence/phase_11/experiments/EXPERIMENT_REGISTRY.csv",
          "audits/predictive-intelligence/phase_11/experiments/ANALOG_METRICS.csv",
-         "audits/predictive-intelligence/phase_11/evidence/traps.json"]
+         "audits/predictive-intelligence/phase_11/evidence/traps.json",
+         "audits/predictive-intelligence/phase_11/experiments/OOS_PREDICTIONS.csv"]
 
 MUTATIONS = [
     # the as-of pool (P43, NC2-AC, P36)

@@ -42,6 +42,8 @@
   "AC2_KNN_same_creator_rows": 42,
   "AC3_KNN_REGIME_answers_with_same_creator_rows": 9,
   "AC3_KNN_REGIME_same_creator_rows": 42,
+  "answers_with_a_mint_twice": 0,
+  "development_mints_with_several_creator_values": 4,
   "pass": true
  },
  "P36_AC": {

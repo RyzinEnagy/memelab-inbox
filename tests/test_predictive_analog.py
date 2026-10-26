@@ -600,12 +600,19 @@ def test_committed_outputs_ledger_registry_verdicts_and_traps():
     traps = {"NC2AC", "P13AC", "P36AC", "P43AC", "P14AC", "CX11"}
     missing = [x for x in reg if x.split(":")[-1] not in traps and not any(i.startswith(x) for i in ids)]
     assert missing == []
-    assert sum(1 for r in led[len(prior):] if r["kind"] == "DEBUG_RUN_REAL_DATA") == 2
+    assert sum(1 for r in led[len(prior):] if r["kind"] == "DEBUG_RUN_REAL_DATA") == 4
     metrics = list(csv.DictReader(open(p11 / "experiments/ANALOG_METRICS.csv")))
     assert all(r["verdict"] in ("INSUFFICIENT_DAYS", "INSUFFICIENT_EVENTS", "INSUFFICIENT_HISTORY") for r in metrics)
     assert all(r["promotion"] == "MODEL_NOT_PROMOTED" for r in metrics)
+    assert all(r["claim"].startswith("none") for r in metrics if r["kind"] != "NEGATIVE_CONTROL")
+    oos = list(csv.DictReader(open(p11 / "experiments/OOS_PREDICTIONS.csv")))
+    for r in oos:                                   # CX-S11 on the real history: no mint twice among one answer's analogs
+        for m in ("AC2_KNN", "AC3_KNN_REGIME"):
+            if r[m + "_G"]:
+                assert r[m + "_G"] == r[m + "_analog_mints"]
     t = json.loads((p11 / "evidence/traps.json").read_text())
     assert all(v.get("pass") is not False for v in t.values()) and t["CX11"]["full_sample_label_differs"] == 32
+    assert t["P14_AC"]["answers_with_a_mint_twice"] == 0
 
 
 

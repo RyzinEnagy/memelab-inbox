@@ -1,0 +1,21 @@
+{
+ "numbers": 93,
+ "kish_below_5": 59,
+ "neff_below_20": 11,
+ "neff_min": 16.767895070238847,
+ "neff_median": 23.65930599369085,
+ "max_day_share": 0.6333333333333333,
+ "median_hw_ratio": 1.1324156258365337,
+ "by_target": {
+  "T1_24h": {
+   "false": 25
+  },
+  "T1b_6h": {
+   "false": 57,
+   "true": 3
+  },
+  "T2_24h": {
+   "true": 8
+  }
+ }
+}

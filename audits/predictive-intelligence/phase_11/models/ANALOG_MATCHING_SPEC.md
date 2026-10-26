@@ -1,6 +1,6 @@
 # Analog matching spec (analog-1)
 
-Phase 11 deliverable. Code: `memelab/predictive/analog.py` (numpy and the standard library, flag OFF, imported by no existing module). Tests: `tests/test_predictive_analog.py` (50). Pre-registration: `../ACCEPTANCE_CHECKLIST.md`, `../experiments/EXPERIMENT_REGISTRY.csv`, PI-D-061 (commit `46afc85`, before any cohort on a labelled row). Frozen code: `0482a60`. Recorded run: `../probes/run_analog.py` at `0482a60`.
+Phase 11 deliverable (repaired in pass 2 after the independent skeptic, PI-D-063). Code: `memelab/predictive/analog.py` (numpy and the standard library, flag OFF, imported by no existing module). Tests: `tests/test_predictive_analog.py` (63). Pre-registration: `../ACCEPTANCE_CHECKLIST.md`, `../experiments/EXPERIMENT_REGISTRY.csv`, PI-D-061 (commit `46afc85`, before any cohort on a labelled row). Frozen code: `0482a60`, repaired at `b0fbf80`. Recorded run: `../probes/run_analog.py` at `b0fbf80`.
 
 Everything here is research only. A cohort number is never a published probability: it carries `publishable: false`, the label COHORT_ESTIMATE_NOT_TOKEN_HISTORY, NO_HISTORICAL_EXECUTABLE_DEPTH and PRICE_PATH_NOT_PROCEEDS, and in a forecast document it is an ABSTAIN with UNCALIBRATED and MODEL_NOT_SELECTED.
 
@@ -13,8 +13,8 @@ Everything here is research only. A cohort number is never a published probabili
 | Every input available at its own decision | `check_asof` through `features.validate_rows` | P36 |
 | No current token list, vendor list or later export | the module has no such input; tests check the signature | survivorship (P09) |
 | Same chain and exact mint = token history, never an analog | `_excluded`, `token_history` | similarity is never identity (P01) |
-| Same creator wallet excluded | `_excluded` | same-deployer leakage (P14) |
-| One analog per cluster (creator, else mint) | `cluster_of`, `KnnIndex.nearest_clusters`, newest row per cluster in AC1 | an analog is an independent token or deployer, not a duplicate window |
+| Every row in a group that holds the target's mint or the target's creator wallet is excluded | `_excluded` over `groups` | same-deployer leakage (P14), over every creator ever recorded for the mint |
+| One analog per group: a group is a connected component over (chain, mint) and every creator wallet recorded for that mint in the pool (union-find), so a mint whose rows carry different creator values is one group | `groups`, `regroup`, `KnnIndex.nearest_clusters`, newest row per group in AC1 | an analog is an independent token or deployer, not a duplicate window (CX-S11: the first pass keyed each row by its own creator field and could count one mint twice) |
 | Leave one campaign out (same narrative tag) | `select(..., loco=True)` | sensitivity |
 
 ## Cohort models
@@ -25,7 +25,7 @@ Everything here is research only. A cohort number is never a published probabili
 | AC2_KNN | 30 nearest clusters; distance over z-scored ln(1 + liquidity), ln(1 + market cap), ln(1 + 24 h volume), ln(1 + token age in days) (pool mean, population sd, sd 0 counts 1) plus 1 per mismatch of launchpad class (PUMP_FUN, OTHER_LAUNCHPAD, NONE_RECORDED) and token program (`oc_token2022`); Euclidean; ties by decision key | missing target input (MISSING_INPUT); K-th distance above the 95th percentile of the pool rows' own K-th other-cluster distances (FAR_FROM_ANALOGS) |
 | AC3_KNN_REGIME (primary) | AC2 restricted to pool rows whose own regime label equals the target's label at T | WARMUP or UNKNOWN target regime (REGIME_UNKNOWN); no pool row in that label (REGIME_UNSEEN); OOD threshold from the restricted pool |
 
-Gates after selection: the pool passes the training gate (100 events, 20 per class) else INSUFFICIENT_HISTORY; G (independent clusters) at least 20 and analog days at least 5, else ANALOGS_TOO_FEW. Number = (analog positives + 20 x pool prevalence) / (G + 20); raw rate and Wilson 95% interval on G beside it; older and newer halves of the analogs with Wilson intervals, TIME_UNSTABLE when they do not overlap.
+Gates after selection: the pool passes the training gate (100 events, 20 per class) else INSUFFICIENT_HISTORY; G (distinct groups among the analogs; not an effective sample size) at least 20 and analog days at least 5, else ANALOGS_TOO_FEW. Number = (analog positives + 20 x pool prevalence) / (G + 20); raw rate and Wilson 95% interval on G beside it; older and newer halves of the analogs with Wilson intervals, TIME_UNSTABLE when they do not overlap. Beside G every answer reports the pool's day ICC (one-way ANOVA of the pool labels by decision day), the design-effect N `n_eff_icc = G / (1 + (G / day Kish ESS - 1) x ICC)` and a Wilson interval on it; the Wilson interval on G assumes independent analogs and says so. No gate uses the ICC N.
 
 ## Regime label at T
 
@@ -39,7 +39,7 @@ Counterexample CX-11 (`regime_full_sample`, a trap kept for tests only): full-sa
 
 ## Divergence flags (phase prompt step 5)
 
-For the target against its selected analogs: `OC_MINT_AUTHORITY_ACTIVE`, `OC_FREEZE_AUTHORITY_ACTIVE`, `OC_TRANSFER_FEE_PRESENT`, `OC_TOKEN2022` give `_DIFFERS_FROM_ANALOGS` when fewer than half of the analogs with a known value share the target's value, `_UNKNOWN` when the target's value is missing; `oc_exit_cap_share` and `oc_round_trip_friction_pct` outside the analogs' 10th to 90th percentile give EXIT_CAP_SHARE_DIFFERS and FRICTION_DIFFERS. No historical executable depth exists (NO_HISTORICAL_EXECUTABLE_DEPTH on every answer); the exit-capacity share is the lab's stale snapshot context, not depth at the decision. On the recorded run the flags appear on many answers (`../experiments/DIVERGENCE_FLAGS.csv`): for AC3, token program differs on 20 of 74 answers with analogs, transfer fee on 14, exit-capacity share on 15, friction on 13.
+For the target against its selected analogs: `OC_MINT_AUTHORITY_ACTIVE`, `OC_FREEZE_AUTHORITY_ACTIVE`, `OC_TRANSFER_FEE_PRESENT`, `OC_TOKEN2022` give `_DIFFERS_FROM_ANALOGS` when fewer than half of the analogs with a known value share the target's value, `_UNKNOWN` when the target's value is missing; `oc_exit_cap_share` and `oc_round_trip_friction_pct` outside the analogs' 10th to 90th percentile give EXIT_CAP_SHARE_DIFFERS and FRICTION_DIFFERS. No historical executable depth exists (NO_HISTORICAL_EXECUTABLE_DEPTH on every answer); the exit-capacity share is the lab's stale snapshot context, not depth at the decision. On the recorded run the flags appear on many answers (`../experiments/DIVERGENCE_FLAGS.csv`): see the file for the counts of the repaired run.
 
 ## Reproducible cohort query
 
@@ -51,7 +51,7 @@ Builds the pool exactly as the runner does and prints every model's answer (anal
 
 ## Limits
 
-- Development covers 9 to 10 decision days, and the export instants cluster on 2026-10-08 to 10-10 (hourly exports). The analogs of an out-of-sample decision come from few days: of 93 answers with a number, 59 have a day Kish ESS below 5 and the largest single-day share reaches 63% (`../evidence/postrun_checks.json`). The frozen rule counts days (at least 5), not the day Kish ESS; G (clusters) overstates independence when days are batched.
-- 115 of 925 Solana decisions have no creator in their token row; their cluster is the mint, so an unrecorded common deployer is not caught. Dev wallets are not used.
-- Regime labels rest on the lab's own exports and statuses (version dependent, PI-D-008); the expanding median is dominated by the hourly export days.
+- Development covers 9 to 10 decision days, and the export instants cluster on 2026-10-08 to 10-10 (hourly exports). The analogs of an out-of-sample decision come from few days: of 92 answers with a number, 58 have a day Kish ESS below 5 and the largest single-day share reaches 63% (`../evidence/postrun_checks.json`). The frozen rule counts days (at least 5), not the day Kish ESS; G (groups) overstates independence when days are batched; the ICC N is below 20 for 8 of them (all T1b AC2, minimum 15.7).
+- 115 of 925 Solana decisions have no creator in their token row; a group joins only the creators that were recorded, so a deployer never recorded is not caught. Dev wallets are not used.
+- Regime labels rest on the lab's own exports and statuses (version dependent, PI-D-008); the expanding median is dominated by the hourly export days, and the activity half also moves with the lab's decision mix (first decisions of a mint are 11% of the hourly days and 60% of the daily days, with lower volume). ACTIVE/QUIET and RISK_ON/RISK_OFF are lab-universe names, not market risk appetite.
 - No historical depth, quotes or chain-wide data exist; no catalyst row exists (PI-D-058).

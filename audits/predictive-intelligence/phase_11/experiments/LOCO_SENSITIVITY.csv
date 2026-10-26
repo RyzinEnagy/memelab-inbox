@@ -1,4 +1,4 @@
 target_short,oos_rows,answers_changed,common_rows,brier_ac3,brier_ac3_loco,same_campaign_rows_excluded,oos_rows_with_narrative_tag,claim,status
 T1_24h,24,0,2,0.310172,0.310172,5,6,descriptive sensitivity only,DEVELOPMENT_RETROSPECTIVE_REVISION_CHECK_PASSED
 T2_24h,8,0,0,,,2,4,descriptive sensitivity only,DEVELOPMENT_RETROSPECTIVE_REVISION_CHECK_PASSED
-T1b_6h,44,0,21,0.048624,0.048624,18,13,descriptive sensitivity only,DEVELOPMENT_RETROSPECTIVE_REVISION_CHECK_PASSED
+T1b_6h,44,0,20,0.050527,0.050527,18,13,descriptive sensitivity only,DEVELOPMENT_RETROSPECTIVE_REVISION_CHECK_PASSED

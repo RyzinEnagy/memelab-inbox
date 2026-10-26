@@ -1,12 +1,15 @@
 {
  "phase": "11",
- "status": "NEEDS_REVIEW",
+ "status": "PASS",
  "head_before": "aae7a55860cee7b3ab1b1866bb5179f4ae83530b",
- "head_after": "208cdc1192fed58fad1d40d3766da22226a0c524",
+ "head_after": null,
  "commits": {
   "pre_registration": "46afc85",
   "frozen_code": "0482a60",
-  "ledger_repair": "ff98b8d"
+  "ledger_repair": "ff98b8d",
+  "first_pass_outputs": "208cdc1",
+  "first_pass_postcommit": "fcb76be",
+  "repair_code": "b0fbf80"
  },
  "checks": [
   {
@@ -46,7 +49,7 @@
   {
    "name": "G4 tests",
    "command": "python -m pytest tests/test_predictive_analog.py -q",
-   "result": "51 passed",
+   "result": "63 passed (12 added in repair pass 2)",
    "exit_code": 0,
    "pass": true
   },
@@ -65,7 +68,7 @@
   {
    "name": "G7 identity and groups",
    "input": "evidence/traps.json P14_AC; tests P01, P14",
-   "result": "0 same-creator analogs, 42 rows excluded",
+   "result": "groups over mints and every recorded creator (CX-S11 repaired): 0 answers with a mint twice, 0 same-creator analogs; CX-S11 tests fail on 0482a60 and pass at b0fbf80 (evidence/cx_s11_check.json)",
    "pass": true
   },
   {
@@ -144,20 +147,20 @@
   {
    "name": "G20 trace and cohort query",
    "command": "python -B probes/verify_trace_analog.py; python -B probes/postrun_checks.py",
-   "result": "0 differences, 6/6 invalid inputs rejected; cohort query reproduces trace and 93 numbers",
+   "result": "0 differences, 6/6 invalid inputs rejected; cohort query reproduces trace and 92 numbers",
    "exit_code": 0,
    "pass": true
   },
   {
    "name": "G21 search ledger",
    "input": "experiments/SEARCH_LEDGER.csv",
-   "result": "Phase 10 ledger plus every Phase 11 configuration (after the ledger repair ff98b8d), 2 debug runs",
+   "result": "Phase 10 ledger plus every Phase 11 configuration, 4 debug runs (the unlabelled looks, features-only probe, two superseded recorded runs)",
    "pass": true
   },
   {
    "name": "G22 mutation probe",
    "command": "python -B probes/mutation_analog.py",
-   "result": "47 of 47 caught",
+   "result": "61 of 61 caught (the skeptic's 9 survivors and 4 CX-S11 reverts added)",
    "exit_code": 0,
    "pass": true
   },
@@ -168,31 +171,22 @@
    "pass": true
   },
   {
-   "name": "G24 post-commit suite at 208cdc1",
-   "command": "python -m pytest tests -q -p no:cacheprovider",
-   "result": "1 failed, 1386 passed in 277.33s (known failure only)",
-   "exit_code": 1,
-   "pass": true
-  },
-  {
-   "name": "G24 social guard",
-   "command": "python -m memelab social guard",
-   "result": "0 violations",
+   "name": "Skeptic M1 CX-S11",
+   "command": "python -B probes/cx_s11_check.py evidence/cx_s11_check.json",
+   "result": "2 tests fail on 0482a60, pass at b0fbf80; real answers with a mint twice 98 of 152 first pass, 0 now",
    "exit_code": 0,
    "pass": true
   },
   {
-   "name": "G24 seal check",
-   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
-   "result": "problems []",
-   "exit_code": 0,
+   "name": "Skeptic minors m1 to m7",
+   "input": "PHASE_11_EVIDENCE.md repair table",
+   "result": "m1, m3, m4, m5, m6 repaired; m2 and m7 recorded with the phase that carries them",
    "pass": true
   },
   {
-   "name": "G24 release audit",
-   "command": "python tools/release_audit.py --history (single-branch clone at 208cdc1)",
-   "result": "Needs action: no.",
-   "exit_code": 0,
+   "name": "Repair rerun determinism",
+   "input": "evidence/determinism.json",
+   "result": "28/28 identical at b0fbf80; 24 files changed against the first pass, 4 equal; no verdict changed",
    "pass": true
   }
  ],
@@ -203,7 +197,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_11/PHASE_11_EVIDENCE.md",
-   "sha256": "365b9b512e29c56a66ee2c45c790658a95c90830a25e655a4ec709296df2f19a"
+   "sha256": "6d659e07cb41dbcdd58401a3b4fff491204cfc4a25fb6fd5083b6ad42b49fccf"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/SKEPTIC_PACKET.md",
@@ -211,55 +205,59 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_11/artifacts/T1_24h/AC1_STRATA.json",
-   "sha256": "ff657d2869aee9dab35a8df29073ac5efa1d18e776e5165903efb210e8c0a89a"
+   "sha256": "7e5bb0860e948db387447b6b32d499770e4656e0b5f14d7cb692fc2380e9875c"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/artifacts/T1_24h/AC2_KNN.json",
-   "sha256": "1ebc195e18bba71a27bf31b589ae200bc40a25c24026be7c6db28acd76e801cb"
+   "sha256": "fb81866f5883e442bdd3b598b2b073abeeec8d2b8d4fd9857bae1313e179021c"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/artifacts/T1_24h/AC3_KNN_REGIME.json",
-   "sha256": "a0883471abaeaed5c34c71a764135c9f7c5c44b0917aa168217f48b579baf861"
+   "sha256": "4d1517cbc1d135a2493b6640e68eeb0ae8cea8b384cbcb27f237e52c385a3684"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/artifacts/T1b_6h/AC1_STRATA.json",
-   "sha256": "59b3cfb0c222cb12c0a49eb56179f4c9005302f98870c749249069e805062161"
+   "sha256": "03657fdccbc4830d60d9d819a17e8886f8759b841a71684506fccaa9cebabfdd"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/artifacts/T1b_6h/AC2_KNN.json",
-   "sha256": "58e3f54eab7ad49b28ba846e9fa8acf02d4c702fd8dbbe04f58af44a98b320f8"
+   "sha256": "05828d94c0fa6457974146b8a214f8df8a677651ac1c266641de70e380cae94a"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/artifacts/T1b_6h/AC3_KNN_REGIME.json",
-   "sha256": "662c82fcc8c5a4354c91ebd152c714ba235395bf7fb324d84a2383e758cb7da4"
+   "sha256": "7a1dbd91cc33444b8417740335cfa113664282c4b37b9b00d1cf813b4720535f"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/artifacts/T2_24h/AC1_STRATA.json",
-   "sha256": "15a7241f306fa261bdb9e174a668f5379b1dc339d2e4b3a08740a4211669f669"
+   "sha256": "766af93144d120a6f316f30ca3de89abd832d6ce27bccc40de97320e0932bf8a"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/artifacts/T2_24h/AC2_KNN.json",
-   "sha256": "698971bc99948ea2b94b6b49e85cc6fa08a9e8e1f35107aa6718be76a11708d7"
+   "sha256": "da1607436c9b7b0d49eff831ae5e7fd1ed0dc499f987850ea9514095a3f2aa27"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/artifacts/T2_24h/AC3_KNN_REGIME.json",
-   "sha256": "64f9b9438b353adf3913a6341c09f6e40dfbef7e77e984f7e5e59aee118d235c"
+   "sha256": "04a766b8c82d8670fb8e7e0fd5868dce4ff2cb1232e2db95cbaaf71240168036"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/artifacts/folds/T1_24h.json",
-   "sha256": "379a86d57d687685128a5232506e133c7cf587c64c2af4767393a8477f3d4aee"
+   "sha256": "e804155cbb4415383be3071e5a4553792612b1426bb7666c22022bb28bf1f077"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/artifacts/folds/T1b_6h.json",
-   "sha256": "4e367360139505421fe4f7ec5a099cc2cb5ba08c1cb254562c2c553e6fad2508"
+   "sha256": "cdedb22a85fadebf08d644a96137450f998cfce537575d1afd3d37058569fcfe"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/artifacts/folds/T2_24h.json",
-   "sha256": "495385ad2b58f2b0d91aad10626fd1801f109beefe9d818244270ad2ab1adbdf"
+   "sha256": "42ac83df3344b25b363c73f1eb919c7b2bcf47832db66315af1fe86fbba5fa64"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/evidence/cx_s11_check.json",
+   "sha256": "8d78a3b929d690af709159967ea613bbba8c7165d56858dae31def32bc34379e"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/evidence/determinism.json",
-   "sha256": "8b432044654dda049234f1abde3d0a2faca5a58aa304093fa87d1c7d65ab48d3"
+   "sha256": "e42b01e95a87c022edc1b3eb4b3e71761538883d292eac3a2f6e2713190583bd"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/evidence/entry/entry_phase10_recompute.json",
@@ -283,11 +281,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_11/evidence/mutation_analog.json",
-   "sha256": "1e8aeef6a84e611d730f3194f9fa54421ce517436279cb3f947727ef78958a2e"
+   "sha256": "f676f4ee4471194981bd7d8dd2f97bbae0dcd8c574c1b6170f2773ebf60dc89e"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/evidence/postrun_checks.json",
-   "sha256": "606fd1ef9dc04c8a13906e579eca96d4f0bf27619a23841293f7986bbc09ca0f"
+   "sha256": "dd7cb6f51458d7333a6f327aaea3cccc0366094d6a063bd14d3cb26af100d1c2"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/evidence/regime_counts.json",
@@ -295,43 +293,43 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_11/evidence/run_log.json",
-   "sha256": "bb973d18927555a918cef77e85455a1bf51f7f88b6d1759f8ea146467fed4853"
+   "sha256": "4c43383bd45f5c355481fb25a98ed58989aed63560dd989d2db4ea8eb28d0a10"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/evidence/serialization_smoke.json",
-   "sha256": "445d2695f3dabca7fb25dd85a804585992804812ff7f9750563ba4d678230159"
+   "sha256": "3068699d75b47b3a16a7ba56e52f82dac3c64f998c082520f629b10053944a19"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/evidence/sklearn_crosscheck.json",
-   "sha256": "e65606c63cf8d0adb6cbed5bfd9b0a7498235a9b671936ed43b4278a30a6ffab"
+   "sha256": "eadbd0bfec5ea333908e066d1d0d14af89123c8091c2017d51ba8c6357f798ff"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/evidence/trace/trace.json",
-   "sha256": "1b1fd94ca24fbe546c82af44cf62f62af1fdc08b98c83d45e97da54be6c8bd8d"
+   "sha256": "d1b48819c0160791b254dff166ea08e6b903ad03e964b4fe7095e0966ab3721b"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/evidence/trace/verify_trace.json",
-   "sha256": "fef49097b5af855d9e56881e24da99ab926f6894d2ac9cfc3445d84cf3586e57"
+   "sha256": "f4dae390efbffac42ec043be8182c24702ce9fd1afe78f66b76bbb8339ceacda"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/evidence/traps.json",
-   "sha256": "53d498af2fbe33b1341d3cc2b0ccac0d6de86d4ee8ac987d666a23b200ff46c5"
+   "sha256": "5d315e802f07e84de46781c2dff50952c493c66e972a60969345e3f34782281d"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/experiments/ANALOG_METRICS.csv",
-   "sha256": "d538c68b6ea554d35506ea4e6788d9fda4765f0d4a6493a2e06422f424724ac5"
+   "sha256": "b1bac20040d64a7d5148f09b8d0fa150e637cd281a277e2cd29d01173e85d44b"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/experiments/COHORT_COVERAGE.csv",
-   "sha256": "d0f0e303c1e8d882d8574337ddc9de04021e327c0cee622d254fefc74bb7bf7b"
+   "sha256": "16deaf9850f4e84fb695771191a1f4df53d2468bbd6e6b5113ec954542283c81"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/experiments/CROSS_PHASE_COMPARISON.csv",
-   "sha256": "7c604a8a959492fa4001b7690cf3a764f898f3bd74fec7970283f40dbc251f2c"
+   "sha256": "62d4eb5e6637883bf079fe10aea35c987746080594eccd325637fa14bb64efd9"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/experiments/DIVERGENCE_FLAGS.csv",
-   "sha256": "1729b666cdababbee0d4c15d785a79d605678e2184375e601fee46bf28443454"
+   "sha256": "569d4395b671ccbd02ad75e8d053c25285ae31b5a37ba731887ba1b7f8061436"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/experiments/EXPERIMENT_REGISTRY.csv",
@@ -339,19 +337,19 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_11/experiments/LOCO_SENSITIVITY.csv",
-   "sha256": "da29d5a8fb96954a08aeb031e7163029e74943b334339f2dfae1c913a1d1d3d2"
+   "sha256": "9b7bc63d3c3dc6cf1f9f7ccb02d94a2c6d4d2562f008e50cf55dabb066219538"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/experiments/NC1AC_SEEDS.csv",
-   "sha256": "f3a01de5750534293930090b97545a5b73220c8850a6f730eca5cc0525b75e4d"
+   "sha256": "603b0b5986f37c7e214aa0149d4668da362920589a4a3f9545447638cdca1bb4"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/experiments/OOS_PREDICTIONS.csv",
-   "sha256": "38b64b7847abfff994e6d5910be958cf204d25b63d67846095ead03b9c8a81f2"
+   "sha256": "7e8d1450b56539f63226ad4a6e2d7c4ce65b77115a477b43690e250865f032e8"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/experiments/REGIME_BREAKDOWN.csv",
-   "sha256": "f280c5f6f1c6fdbcb1306dd023e4421fab39b9351ee7da0ab348a739c33a173a"
+   "sha256": "ea68159c0635f6d776ff8ff472efb9bdd5e6bca9be35f2cd85683bfbd3fc181a"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/experiments/REGIME_SERIES.csv",
@@ -359,11 +357,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_11/experiments/SEARCH_LEDGER.csv",
-   "sha256": "07689ed928d7b72adc673bb682fc01124c1f50bc2ee0e31c34ff3862520ab17b"
+   "sha256": "aca5907f2742f0b6c7989303ca7f4f7245e331b7d948124c9c42d92798930ac7"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/models/ANALOG_MATCHING_SPEC.md",
-   "sha256": "8df4d7b7bce3176aaf6169754f8013e2a538fc894af25375189b02110f998a73"
+   "sha256": "3f03d5a843f9263ba2f1e648f83dae7e0101c2c6ae3461485dfe89e8d62a52a6"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/postcommit/pytest_summary.txt",
@@ -386,8 +384,12 @@
    "sha256": "6132ddcf5795004d787ecdbc1a8b5ce98fdea0390199ee814c074921381eabff"
   },
   {
+   "path": "audits/predictive-intelligence/phase_11/probes/cx_s11_check.py",
+   "sha256": "8924debd4d901c50be4f515da2613ebb80a6c7ed20c7c0cf39183deb7e8e46c7"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_11/probes/mutation_analog.py",
-   "sha256": "227dc27a78d7a8c9db5fc0e3beba3084b224f954edd1f94a116cc1d1f2969206"
+   "sha256": "36c4908e55f7df7b9fb98b4925470ae239b968e2d922674234b0bd9313985a25"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/probes/postrun_checks.py",
@@ -395,7 +397,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_11/probes/run_analog.py",
-   "sha256": "90c35c20285631ea5cddc2a383843a1f77a4aac742d6e0a4a23fd5646e18c556"
+   "sha256": "884a63dd9f8797084f0ff003ab444bb612cb3729b6986ce6d7a8bb8621d2dc00"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/probes/sklearn_crosscheck_analog.py",
@@ -403,28 +405,84 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_11/probes/verify_trace_analog.py",
-   "sha256": "a88c3fa84e2ae6d8335a523eff005450e033aa8c6353f3245f897acfb566578e"
+   "sha256": "6c9bbef77c2cd4fcfa4b00b2f9807557aec18fd72a0c6cab472f979e745c5442"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/skeptic/PHASE_11_SKEPTIC.md",
+   "sha256": "bf9483ad0f31f608dbbdbd95bc7b2e044ac001d7a28454021a0c71029e9a3bba"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/skeptic/p11_counterexample_cx_s11.py",
+   "sha256": "e4ccdfaf074531042c729e51497e1f28458f083131e508095b4f0c2fb76a9c9b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/skeptic/p11_day_ess.py",
+   "sha256": "5fd0b3b8625165a0bd9174182911fe31ef321cae7ab09079e9670cff41bd986c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/skeptic/p11_day_ess_out.json",
+   "sha256": "e7c55a55212ba9f96c30ab20b7f10e2d301b2605c838feed75a6eb88b0556f5c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/skeptic/p11_dupmint_scan.py",
+   "sha256": "d6627c19b756c84c3dcbcaf368c9f5c03fcebf042c30b4b992f14ffdc45d51c4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/skeptic/p11_dupmint_scan_out.json",
+   "sha256": "5b883f2c3d6dac4b84b7d9848bc6218cce8446e632c6f209f9ec190ec93bb7e8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/skeptic/p11_independent.py",
+   "sha256": "ac3d63ec86288e63b5ad780106d7489d14c02b34b1981fd51b3b462cbed0a0b7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/skeptic/p11_independent_out.json",
+   "sha256": "fa00de6cc161fcaa5f17812b7abf04a0e8d3507e8c3defe2b92f5b3442575893"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/skeptic/p11_own_mutations.json",
+   "sha256": "4dae12085c86aef1a9642ef6467f9cbb132b4f1d470d28bb0f404beae024be82"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/skeptic/p11_own_mutations.py",
+   "sha256": "3256c7c7723d5d21f4f68b2bd83e73d1debb002891e0ef5a9c91f8e1aa5b0e58"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/skeptic/p11_pool_regime_check.py",
+   "sha256": "99767d13d5c54af9233264faf67fd47f7f4b9e008cb2217cc2ce4a6bd9cfa2d3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/skeptic/p11_pool_regime_check_out.json",
+   "sha256": "60b9a9e60057605e500f09bdfe66a326394af1bc69a75f06a4971e652d999a5f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/skeptic/p11_unionfind_effect.py",
+   "sha256": "b9714ac3c6055aad6968f2ecda435c908cfa0650f05ea7032b6a7afb99c2dcde"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/skeptic/p11_unionfind_effect_out.json",
+   "sha256": "6bc93e856032ade235d2bce5a92a8086e454743f47eec09d4891b30376d3c587"
   },
   {
    "path": "memelab/predictive/analog.py",
-   "sha256": "4d15a8565bd1e2b8e1b2526a9a8eb3ed354423b347469c60f2201dd1e670484f"
+   "sha256": "5087ca065cb28b9e1a006ce1b66757b23654d5be95502db43cbbb605c5689448"
   },
   {
    "path": "tests/test_predictive_analog.py",
-   "sha256": "8a50b105e12e645b0afffcdc5ba9624948909b48a0782fc5b34df65251b23de2"
+   "sha256": "5ea6c87acf3e4ce37301d1ffa37e74fa2d51e10a8165443427ba6558686a41b7"
   }
  ],
  "limitations": [
   "Development has 9 to 10 decision days and one out-of-sample regime label: every comparison and the regime breakdown are INSUFFICIENT_DAYS, INSUFFICIENT_HISTORY or INSUFFICIENT_EVENTS; no analog model is promoted.",
-  "Day dependence: 59 of 93 cohort numbers have a day Kish ESS below 5 (largest single-day share 63%); the frozen rule counts days, so G overstates independence on batched export days.",
-  "115 of 925 Solana decisions lack a creator; their cluster is the mint, so an unrecorded common deployer is not caught; dev wallets not used.",
-  "Regime labels describe the lab's exported universe (24 h volume, constructive statuses), not chain-wide conditions; no catalyst category exists (CATALYST_TABLES_NOT_EXPORTED).",
+  "Day dependence: 58 of 92 cohort numbers have a day Kish ESS below 5 (largest single-day share 63%); G counts distinct groups and overstates independence on batched export days; the day-ICC N is reported beside it (below 20 for 8 numbers, minimum 15.7), no gate uses it.",
+  "115 of 925 Solana decisions lack a creator; groups join only recorded creators, so a deployer never recorded is not caught; dev wallets not used.",
+  "Regime labels describe the lab's exported universe and decision mix (24 h volume, constructive statuses), not chain-wide conditions or market risk appetite (skeptic m2, recorded); no catalyst category exists (CATALYST_TABLES_NOT_EXPORTED).",
   "The survivorship count against the newest export cannot discriminate (the lab never drops a token row); the guard is by construction and by tests.",
   "No historical executable depth: every answer carries NO_HISTORICAL_EXECUTABLE_DEPTH; a size gives EXECUTION_DATA_MISSING.",
   "Recorded run 1 lacked the B0 and AC3_LOCO ledger rows; repaired at ff98b8d and rerun with every other output byte-equal.",
-  "The independent skeptic (PI-D-013) has not run yet."
+  "Repair pass 2 (PI-D-063) changed 12 AC2 and 1 AC3 numbers (largest 0.040) and moved 3 answers between a number and an abstention; no verdict changed; Phase 12 uses the refrozen cards."
  ],
  "blockers": [],
  "approvals_needed": [],
- "next_eligible_phase": "none until the orchestrator's independent skeptic and the repair pass make Phase 11 PASS; then 12"
+ "next_eligible_phase": "12, once the orchestrator records Phase 11 PASS"
 }
