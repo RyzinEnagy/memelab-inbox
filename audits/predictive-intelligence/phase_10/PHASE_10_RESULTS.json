@@ -9,7 +9,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_10/PHASE_10_EVIDENCE.md",
-   "sha256": "2a5f7747cc08407eda36fb5d925eafcfbe352d3b6ca599d5a7c588065b0fd851"
+   "sha256": "e157d4c29c7e13e047f0f9310cdfaf3bd8c323d646d75f9190a1731cde17c157"
   },
   {
    "path": "audits/predictive-intelligence/phase_10/SKEPTIC_PACKET.md",
@@ -226,6 +226,22 @@
   {
    "path": "audits/predictive-intelligence/phase_10/postcommit/release_audit_history.summary.txt",
    "sha256": "041a5c7d6d442e399af23bdc17b74565fa1ab2c8ea0c3adbab85cd3676371c07"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/postcommit/repair2_pytest_summary.txt",
+   "sha256": "0aaa763d66c56a350705d3d032d7359ab29c33b3a50aa82a8c8d7d8561596d2b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/postcommit/repair2_release_audit_history.summary.txt",
+   "sha256": "e25cb5fa2656043551c8e506147e5164304bea05d4a3582445e549da6d7f7a54"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/postcommit/repair2_seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/postcommit/repair2_social_guard.out.txt",
+   "sha256": "3194c2fadbe857a0d33cb8b02e4ead746da83f151bcbfb708ff6c01ca0eebd64"
   },
   {
    "path": "audits/predictive-intelligence/phase_10/postcommit/seal_check.json",
@@ -553,6 +569,41 @@
    "name": "R2 provenance rescan (m1)",
    "pass": true,
    "result": "social_snapshots 99 rows, 8 mints, 216 decisions; launch tables 24, 38, 18 mints; boosts 3 mints; 45 inbox files"
+  },
+  {
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "name": "G27 repair post-commit full suite at 717dc99",
+   "pass": true,
+   "result": "1 failed, 1335 passed in 221.66s (known failure only: tests/test_catalyst.py::test_dedup_corroboration_resurface_denial); stray data/reports/20261026_1444_BRETT_0x532f.md removed by hand; data/memelab.sqlite unchanged"
+  },
+  {
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "name": "G27 repair social guard at 717dc99",
+   "pass": true,
+   "result": "0 violations"
+  },
+  {
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "name": "G27 repair seal check at 717dc99",
+   "pass": true,
+   "result": "problems []"
+  },
+  {
+   "command": "python tools/release_audit.py --history",
+   "exit_code": 0,
+   "name": "G27 repair release audit single-branch clone at 717dc99",
+   "pass": true,
+   "result": "Needs action: no."
+  },
+  {
+   "command": "git status --short",
+   "exit_code": 0,
+   "name": "G27 repair git status clean",
+   "pass": true,
+   "result": "clean after stray removal"
   }
  ],
  "commits": {
@@ -562,7 +613,7 @@
   "repair_code": "1c75a12",
   "repair_outputs": "06999b7"
  },
- "head_after": "f4b3a89",
+ "head_after": "717dc99",
  "head_before": "1a52308",
  "limitations": [
   "no social or catalyst row exists for any decision: every decision CATALYST_TABLES_NOT_EXPORTED and SOCIAL_TABLES_NOT_EXPORTED; no verified catalyst, no catalyst probability",

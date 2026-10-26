@@ -38,7 +38,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Phase 10 repair commits
 
-- HEAD before: `70bd8d9` (pushed). Repair code `1c75a12` (2026-10-26T14:34:34Z), outputs `06999b7` (recorded run at `1c75a12`, 14:34:40Z), records commit on top, then a post-commit records commit (local only; the orchestrator pushes). Post-commit results are recorded in `PHASE_10_RESULTS.json` (G27 repair entries) and the evidence file.
+- HEAD before: `70bd8d9` (pushed). Repair code `1c75a12` (2026-10-26T14:34:34Z), outputs `06999b7` (recorded run at `1c75a12`, 14:34:40Z), records `717dc99`, and this post-commit record on top (local only; the orchestrator pushes). Post-commit at `717dc99`: suite `1 failed, 1335 passed` (known failure only; stray BRETT report removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no.", `git status` clean.
 
 ## Phase 06 re-read commits
 
