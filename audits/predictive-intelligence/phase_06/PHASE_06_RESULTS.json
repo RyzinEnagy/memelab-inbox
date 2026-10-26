@@ -27,7 +27,7 @@
   "revision_rows_written": 0,
   "decision": "PI-D-059"
  },
- "head_after": "2f4b53e40300fe298a6c199456cb5f63c6106771",
+ "head_after": "c127b08ebb35b7ad49422a3882c0ea9050c70973",
  "registry_sha256": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
  "holdout_labels_sha256": "e695500d01014936cf4a4a46f9975dcf9a9ca1351fe067f28ec36117cb82682b",
  "seal_sha256": "d5059baeb07099d5d73d74249d4487e362cb38b2e1dafe974139d2d4d0d25390",
@@ -310,6 +310,34 @@
    "exit_code": 0,
    "result": "124 passed",
    "pass": true
+  },
+  {
+   "name": "48 h re-read post-commit full suite at c127b08",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 1330 passed in 247.98s (known failure only)",
+   "pass": true
+  },
+  {
+   "name": "48 h re-read post-commit content guard",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "violations []",
+   "pass": true
+  },
+  {
+   "name": "48 h re-read post-commit seal check",
+   "command": "python -B probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "48 h re-read post-commit release audit (single-branch clone)",
+   "command": "python tools/release_audit.py --history",
+   "exit_code": 0,
+   "result": "Needs action: no. (full clone exit 1 only for blob acbc9c9016 on origin/feature/backtesting, not reachable from this branch)",
+   "pass": true
   }
  ],
  "artifacts": [
@@ -367,7 +395,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_06/PHASE_06_EVIDENCE.md",
-   "sha256": "dc40286ba102ebfc9cbfdc5aaf1daa341ce0f55f4fa9fb5b68fcd49cb536fa5a"
+   "sha256": "42dfcef5a529508a8ad7378093ffaf02020ab47770bd8cfa51dd8b7ac10ab730"
   },
   {
    "path": "audits/predictive-intelligence/phase_06/sealed/SEAL.json",

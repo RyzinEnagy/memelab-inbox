@@ -218,4 +218,10 @@ Gate: every Phase 06 gate item now holds (A1 to A22 as recorded above, A10 compl
 | `raw_reread48/MANIFEST.csv` | `9a81a40b463f09176b3a5b2d840a996b02deafe8e34b2ad85c8e527b43873fc0` |
 | `probes/reread48_archive.py` | `7a5815d7212c8290c32ba0d17c3cf673177f2fda458be8d6114fa0d5c2fb6279` |
 
-Post-commit results for this step are recorded below.
+Post-commit results for this step, run by the phase agent on the committed tree at `c127b08ebb35b7ad49422a3882c0ea9050c70973`, 2026-10-26:
+
+- `MEMELAB_DB=<tmp> python -m pytest tests -q -p no:cacheprovider`: exit 1, `1 failed, 1330 passed in 247.98s (0:04:07)`, only the known `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`; stray `data/reports/20261026_1403_BRETT_0x532f.md` removed by hand; tracked `data/memelab.sqlite` sha256 unchanged.
+- `python -m memelab social guard`: exit 0, `"violations": []`.
+- `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py`: exit 0, `"problems": []`.
+- `python tools/release_audit.py --history` on a single-branch clone of `feature/predictive-intelligence` at `c127b08`: exit 0, "Needs action: no." On the full local clone it exits 1 for the known blob `acbc9c9016` (`audits/backtesting/research/smoke/etcherfx__sol-trade/output.txt`), reachable only from `origin/feature/backtesting` and `work/backtesting-collector`, not from this branch (PI-D-045 item 7, PI-D-049 item 6).
+- `git status --short`: clean after removing the stray. Not pushed (the orchestrator pushes).

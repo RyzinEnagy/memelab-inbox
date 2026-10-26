@@ -4,7 +4,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Position on 2026-10-26
 
-- Phases 00 to 09: PASS. Phase 06 became PASS on 2026-10-26 when the frozen 48 h revision re-read ran (PI-D-059): 16 of 16 sampled reads re-read 48.0 to 48.9 h later, 12,617 candle positions compared, 0 changed (0 close, 0 volume, 0 open, high or low), 0 appeared or vanished; 44 development labels re-derived, 0 changed, no revision row; an independent comparison without the lab's code agrees. 20 free GeckoTerminal calls (4 HTTP 429 retried), at most 6 a minute. No rerun of Phases 07 to 10 is owed; PI-D-046's provisional condition is lifted for the revision check (outputs not rewritten). Commit: see "Phase 06 re-read commits" below.
+- Phases 00 to 09: PASS. Phase 06 became PASS on 2026-10-26 when the frozen 48 h revision re-read ran (PI-D-059): 16 of 16 sampled reads re-read 48.0 to 48.9 h later, 12,617 candle positions compared, 0 changed (0 close, 0 volume, 0 open, high or low), 0 appeared or vanished; 44 development labels re-derived, 0 changed, no revision row; an independent comparison without the lab's code agrees. 20 free GeckoTerminal calls (4 HTTP 429 retried), at most 6 a minute. No rerun of Phases 07 to 10 is owed; PI-D-046's provisional condition is lifted for the revision check (outputs not rewritten). Commit `c127b08` (see "Phase 06 re-read commits" below).
 - Phase 10 (social and catalyst outcome forecasts): NEEDS_REVIEW after the first pass; the orchestrator's independent skeptic (PI-D-013) is next, then a repair pass. Its PI-D-046 condition is lifted for the revision check (PI-D-059); its own review is still open. TEST_ONLY parts: the catalyst classifier, the social evidence adapter and the catalyst target proposals (no catalyst or social row exists for any decision). Commits (local only; the orchestrator pushes): pre-registration `c3f04c8`, code `0784a9a`, outputs and records `f4b3a89`, post-commit records on top. Post-commit at `f4b3a89`: suite `1 failed, 1330 passed` (known failure only), guard 0 violations, seal check 0 problems, single-branch release audit exit 0.
 - Spend: 0 Firecrawl credits; Phase 10 made no vendor, crawler or language-model call (one `git fetch` of `origin/main`); the Phase 06 re-read made 20 free GeckoTerminal calls (COST_LEDGER.md).
 
@@ -31,7 +31,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Phase 06 re-read commits
 
-- HEAD before: `564be76` (pushed). Re-read commit and its post-commit results: recorded in `audits/predictive-intelligence/phase_06/PHASE_06_EVIDENCE.md` (section "48 h revision re-read" and the post-commit block after it) and in `PHASE_06_RESULTS.json`. Local only; the orchestrator pushes.
+- HEAD before: `564be76` (pushed). Re-read commit `c127b08`, with this record on top (local only; the orchestrator pushes). Post-commit at `c127b08`: suite `1 failed, 1330 passed` (known failure only), guard 0 violations, seal check 0 problems, single-branch release audit exit 0. Details: `audits/predictive-intelligence/phase_06/PHASE_06_EVIDENCE.md` (section "48 h revision re-read") and `PHASE_06_RESULTS.json`.
 - The development store `/home/claude/pi_research/p06/dev_store.sqlite` now also holds the 16 second reads (raw rows only, no label rows added); a copy taken before the re-read is in `/home/claude/pi_research/p06/backup_pre_reread48/`. The second bodies are committed in `phase_06/raw_reread48/`.
 
 ## Waiting on Elving
