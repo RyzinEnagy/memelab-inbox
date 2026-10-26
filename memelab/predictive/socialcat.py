@@ -13,11 +13,14 @@ PI-D-057 (committed before any feature on a labelled row and before any fit). Ru
     token row is never used (counterexample CX-10: tags and channels are filled in later);
   - no social item or catalyst event exists for these decisions (none exported), so every real decision carries the states
     SOCIAL_TABLES_NOT_EXPORTED and CATALYST_TABLES_NOT_EXPORTED; nothing crawled today stands in for them (P04);
-  - catalyst identity is an exact chain and mint link NAMED_IN_SOURCE / STRONG whose mint appears in a visible original or
-    independent source item; a mint named only on a crawled page or a ticker or name match is not identity (PI-D-007, PI-D-012,
-    the Phase 00 P41 finding); an unverified catalyst returns an explicit state and never a probability (P17, P45);
+  - catalyst identity is an exact chain and mint link NAMED_IN_SOURCE or OFFICIAL / STRONG whose mint appears in a visible
+    original or independent source item; a mint named only on a crawled page or a ticker or name match is not identity (PI-D-007,
+    PI-D-012, the Phase 00 P41 finding); an unverified catalyst returns an explicit state and never a probability (P17, P45); a
+    VERIFIED catalyst is available only from the time its last condition held (identity, CONFIRMED evidence, the official or
+    second independent source), never from its first sighting (repair pass 2, CX-10b-A, PI-D-060);
   - social evidence: first-known original versions only (P03), deleted items excluded (P17), duplicates by content hash and by
-    trader collapsed (P15), bot accounts excluded and reported (P16), ticker-only mentions never identity, claims extracted by a
+    trader collapsed (P15), bot accounts and suspensions excluded and reported only when known at T (P16; an account label
+    without a time is UNKNOWN at T in a replay, CX-10b-B, PI-D-060), ticker-only mentions never identity, claims extracted by a
     model excluded (P26), every row audited at T (P36);
   - models fit only through the Phase 07 gate (`labels.training_labels` rows joined by `baselines.join`) and the frozen minimums;
     every fitted object is a JSON card (no pickle); a card trained after a decision cannot score it (P13).
@@ -762,6 +765,7 @@ TYPE_FROM_CLAIM = {"LISTING": "LISTING", "PARTNERSHIP": "PARTNERSHIP", "LAUNCH":
                    "WALLET_CLAIM": "BIG_TRADER_CLAIM"}
 TYPE_FROM_CATEGORY = {"ACCESS": "LISTING", "ROTATION": "NARRATIVE_REVERSAL"}
 INDEPENDENT_ROLES = frozenset({"ORIGINAL", "INDEPENDENT"})
+STRONG_LINK_TYPES = frozenset({"NAMED_IN_SOURCE", "OFFICIAL"})     # match.py: OFFICIAL needs the event's own source to state the mint
 WITHDRAW_KINDS = frozenset({"DENIED", "CANCELLED", "DELETED_SOURCE"})
 CATALYST_STATES = ("VERIFIED", "UNVERIFIED_EVENT", "IDENTITY_UNVERIFIED", "NOT_AVAILABLE_AT_DECISION")
 
@@ -802,13 +806,37 @@ def evidence_as_of(event: dict, revisions: Sequence[dict], T: float) -> str:
     return "UNKNOWN_AS_OF"
 
 
+def confirmed_since(event: dict, revisions: Sequence[dict], T: float) -> float | None:
+    """When the evidence status that holds at T became CONFIRMED: the first CONFIRMED revision after the last revision at or before
+    T that set anything else; the mutable row's `updated_at` when no evidence revision exists and the row was last updated by T
+    (conservative: the row may have been CONFIRMED earlier); None when the status at T is not CONFIRMED (repair pass 2, CX-10b-A)."""
+    ev = sorted((r for r in revisions if r.get("field") == "evidence_status" and float(r["revised_at"]) <= T),
+                key=lambda r: (float(r["revised_at"]), r.get("id") or 0))
+    if ev:
+        since = None
+        for r in ev:
+            if str(r.get("new_value")) == "CONFIRMED":
+                since = float(r["revised_at"]) if since is None else since
+            else:
+                since = None
+        return since
+    if event.get("updated_at") is not None and float(event["updated_at"]) <= T and str(event.get("evidence_status")) == "CONFIRMED":
+        return float(event["updated_at"])
+    return None
+
+
 def classify_catalyst(event: dict, items: Sequence[dict], roles: dict, revisions: Sequence[dict], links: Sequence[dict], *,
                       chain: str, mint: str, decision_time: float, page_facts: Sequence[dict] = (), claim_type: str | None = None,
                       source_groups: dict | None = None, official_sources: Iterable[str] = (), attention_only: bool = False) -> dict:
     """One catalyst event for one exact (chain, mint) at T. items: catalyst_items rows; roles: item id -> role from
     catalyst_event_sources; revisions: catalyst_event_revisions rows; links: catalyst_token_links rows of the event; page_facts:
     crawled pages {fetched_at, contracts}; source_groups: source_id -> group. Never returns a probability for anything but a
-    VERIFIED event, and even then only `probability_allowed` (a calibrated model is a later phase)."""
+    VERIFIED event, and even then only `probability_allowed` (a calibrated model is a later phase).
+
+    `available_at` of a VERIFIED event is the latest of: the first visible item's sighting, the strong links' `linked_at`, the
+    sighting of the first independent item that names the mint, the time the evidence became CONFIRMED (`confirmed_since`) and
+    the sighting that completed the source rule (the first official item that names the mint, or the second independent item).
+    An item without a role in catalyst_event_sources is not independent (repair pass 2, m5)."""
     Tq = float(decision_time)
     audit = RC.Audit()
     source_groups = source_groups or {}
@@ -825,8 +853,13 @@ def classify_catalyst(event: dict, items: Sequence[dict], roles: dict, revisions
     first_seen = min(float(i["first_seen_at"]) for i in vis)
     live = list(vis)
     indep, seen_urls, seen_hash = [], set(), set()
-    for i in live:
-        if roles.get(i.get("id"), "ORIGINAL") not in INDEPENDENT_ROLES:
+    no_role = 0
+    for i in sorted(live, key=lambda i: (float(i["first_seen_at"]), str(i.get("id")))):
+        role = roles.get(i.get("id"))
+        if role is None:
+            no_role += 1
+            continue
+        if role not in INDEPENDENT_ROLES:
             continue
         u, h = i.get("url"), _body_hash(i)
         if (u and u in seen_urls) or (h and h in seen_hash):
@@ -838,11 +871,15 @@ def classify_catalyst(event: dict, items: Sequence[dict], roles: dict, revisions
     withdrawn = sorted({r["kind"] for r in revs if r.get("kind") in WITHDRAW_KINDS or (r.get("field") == "status" and r.get("new_value") in ("DENIED", "CANCELLED"))})
     if withdrawn:
         reasons.append("WITHDRAWN_BY_T:" + ",".join(withdrawn))
+    if no_role:
+        reasons.append(f"ITEMS_WITHOUT_ROLE_NOT_INDEPENDENT:{no_role}")
     # identity: exact chain and mint, NAMED_IN_SOURCE / STRONG, mint present in a visible original or independent item
     ident = "NO_LINK"
     mine = [k for k in lnks if k.get("mint") == mint and (k.get("chain") or "solana") == chain]
-    strong = [k for k in mine if k.get("link_type") == "NAMED_IN_SOURCE" and k.get("link_strength") == "STRONG"]
-    in_source = any(mint in str(i.get("url") or "") or mint in str(i.get("body") or "") for i in indep)
+    strong = [k for k in mine if k.get("link_type") in STRONG_LINK_TYPES and k.get("link_strength") == "STRONG"]
+    names = lambda i: mint in str(i.get("url") or "") or mint in str(i.get("body") or "")
+    naming = [i for i in indep if names(i)]
+    in_source = bool(naming)
     on_page = any(mint in (p.get("contracts") or []) for p in pages)
     if strong and in_source:
         ident = "EXACT_MINT_IN_SOURCE"
@@ -854,8 +891,20 @@ def classify_catalyst(event: dict, items: Sequence[dict], roles: dict, revisions
         ident = "TICKER_OR_NAME_ONLY"
     groups = [source_groups.get(i.get("source_id"), "") for i in live]
     etype, basis = event_type(event, claim_type=claim_type, source_groups=groups, evidence_as_of=ev_status, attention_only=attention_only)
-    official = any(i.get("source_id") in set(official_sources) for i in indep)
-    avail = max([first_seen] + [float(k["linked_at"]) for k in strong]) if strong else None
+    off_set = set(official_sources)
+    official_items = [i for i in naming if i.get("source_id") in off_set]      # an official item must itself name the mint (m5)
+    official = bool(official_items)
+    if official_items and len(indep) >= 2:
+        rule_at = min(float(official_items[0]["first_seen_at"]), float(indep[1]["first_seen_at"]))
+    elif official_items:
+        rule_at = float(official_items[0]["first_seen_at"])
+    elif len(indep) >= 2:
+        rule_at = float(indep[1]["first_seen_at"])
+    else:
+        rule_at = None
+    conf_at = confirmed_since(event, revisions, Tq)
+    parts = [first_seen] + [float(k["linked_at"]) for k in strong] + ([float(naming[0]["first_seen_at"])] if naming else [])
+    avail = max(parts + [conf_at, rule_at]) if (strong and naming and conf_at is not None and rule_at is not None) else None
     if ident != "EXACT_MINT_IN_SOURCE":
         state = "IDENTITY_UNVERIFIED"
         reasons.append(ident)
@@ -871,17 +920,37 @@ def classify_catalyst(event: dict, items: Sequence[dict], roles: dict, revisions
         reasons.append("SINGLE_NON_OFFICIAL_SOURCE")
     else:
         state = "VERIFIED"
+        if avail is None or avail > Tq:
+            raise SocialCatError("a VERIFIED catalyst needs an availability at or before T")
     return {**base, "state": state, "event_type": etype, "type_basis": basis, "first_seen_at": first_seen,
-            "available_at": avail if state == "VERIFIED" else None, "independent_sources": len(indep), "evidence_as_of": ev_status,
+            "available_at": avail if state == "VERIFIED" else None, "confirmed_since": conf_at, "source_rule_met_at": rule_at,
+            "independent_sources": len(indep), "items_without_role": no_role, "evidence_as_of": ev_status,
             "identity": ident, "official_source": official, "probability_allowed": state == "VERIFIED", "reasons": reasons}
 
 
 # ================================================================ social evidence adapter (TEST_ONLY: no social row exists here)
 SOCIAL_TABLES = ("social_accounts", "social_items", "social_observations", "social_item_versions", "social_token_resolutions",
-                 "social_claims", "social_claim_extractions", "social_trader_accounts", "social_token_refs")
+                 "social_claims", "social_claim_extractions", "social_trader_accounts", "social_token_refs",
+                 "social_registry_entities", "social_registry_reviews")
 OK_RETRIEVAL = frozenset({"OK", "PARTIAL"})
 GONE_RETRIEVAL = frozenset({"DELETED", "NOT_FOUND"})
 BOT_KINDS = frozenset({"BOT"})
+UNKNOWN_AS_OF = "UNKNOWN_AS_OF"
+
+
+def account_as_of(a: dict, T: float, *, reviews: Sequence[dict] = (), accounts_read_at: float | None = None) -> dict:
+    """The kind and identity status of a social account as known at T (repair pass 2, CX-10b-B). `social_accounts` is updated in
+    place (`registry.set_account_status` overwrites `identity_status` and `identity_checked_at`; `account_kind` has no time at all).
+    With `accounts_read_at` at or before T (the accounts table was read by then, a live read), the row as read was known at T.
+    Otherwise (a replay): the status counts only when it was recorded by T (its `identity_checked_at` and every ACCOUNT_STATUS
+    review that set it at or before T), else it is UNKNOWN_AS_OF; a kind other than UNKNOWN has no time and is UNKNOWN_AS_OF."""
+    status, kind = a.get("identity_status"), a.get("account_kind") or "UNKNOWN"
+    if accounts_read_at is not None and float(accounts_read_at) <= float(T):
+        return {"kind": kind, "status": status, "mode": "READ_BY_T"}
+    known = [float(a["identity_checked_at"])] if a.get("identity_checked_at") is not None else []
+    rec = [float(r["reviewed_at"]) for r in reviews if r.get("to_state") == status]
+    st = status if (known and max(known + rec) <= float(T)) else UNKNOWN_AS_OF
+    return {"kind": kind if kind == "UNKNOWN" else UNKNOWN_AS_OF, "status": st, "mode": "REPLAY"}
 
 
 def connect_social_ro(path: str | Path) -> sqlite3.Connection:
@@ -906,12 +975,21 @@ def read_social(con: sqlite3.Connection) -> dict[str, list[dict]]:
 
 
 def social_as_of(tables: dict[str, list[dict]], chain: str, mint: str, decision_time: float, *,
-                 track_rows: Sequence[dict] = ()) -> dict:
+                 track_rows: Sequence[dict] = (), accounts_read_at: float | None = None) -> dict:
     """Social evidence for one exact (chain, mint) at T. track_rows: {trader_id, called_at, matured_at, hit} from the outcomes
-    ledger (only calls before T whose outcome matured by T count). Every row used passes replay_core.Audit at T."""
+    ledger (only calls before T whose outcome matured by T count). Every row used passes replay_core.Audit at T. Account kinds
+    and suspensions count only as known at T (`account_as_of`); an exact-mint item whose account is BOT, PROJECT or SUSPENDED
+    in the store but not known to be at T counts as an account of unknown kind and is reported in
+    `counts["account_label_unknown_as_of"]` (repair pass 2, CX-10b-B)."""
     Tq = float(decision_time)
     audit = RC.Audit()
     acc = {a["account_id"]: a for a in tables.get("social_accounts") or []}
+    ent_acct = {e["entity_id"]: e.get("account_id") for e in tables.get("social_registry_entities") or []
+                if e.get("entity_kind") == "SOCIAL_ACCOUNT"}
+    reviews_of: dict[str, list[dict]] = {}
+    for r in tables.get("social_registry_reviews") or []:
+        if r.get("target_type") == "ACCOUNT_STATUS" and ent_acct.get(r.get("target_id")):
+            reviews_of.setdefault(ent_acct[r["target_id"]], []).append(r)
     obs_by: dict[str, list[dict]] = {}
     for o in tables.get("social_observations") or []:
         if o.get("ingested_at") is not None and float(o["ingested_at"]) <= Tq:
@@ -933,7 +1011,8 @@ def social_as_of(tables: dict[str, list[dict]], chain: str, mint: str, decision_
     for ta in tables.get("social_trader_accounts") or []:
         if float(ta["linked_at"]) <= Tq:
             trader_of[ta["account_id"]] = ta["trader_id"]
-    counts = {"edited_without_original": 0, "deleted_before_t": 0, "bot_or_suspended": 0, "duplicates_collapsed": 0}
+    counts = {"edited_without_original": 0, "deleted_before_t": 0, "bot_or_suspended": 0, "duplicates_collapsed": 0,
+              "account_label_unknown_as_of": 0}
     originals: list[dict] = []
     seen_hash: set[str] = set()
     for it in sorted(tables.get("social_items") or [], key=lambda i: (i.get("first_ingested_at") or 0, i["item_key"])):
@@ -952,7 +1031,7 @@ def social_as_of(tables: dict[str, list[dict]], chain: str, mint: str, decision_
         if not ok:
             continue
         vs = [v for v in vers_by.get(k, []) if float(v["first_recorded_at"]) <= Tq]
-        if vers_by.get(k):
+        if vs:                                          # versions recorded after T do not exist at T (m3: the truncated view)
             orig = [v for v in vs if v.get("version_kind") == "ORIGINAL"]
             if not orig:
                 counts["edited_without_original"] += 1
@@ -961,9 +1040,13 @@ def social_as_of(tables: dict[str, list[dict]], chain: str, mint: str, decision_
         else:
             chash = ok[0].get("content_hash")
         a = acc.get(it.get("account_id") or ok[0].get("account_id")) or {}
-        if a.get("account_kind") in BOT_KINDS or a.get("identity_status") == "SUSPENDED":
+        st = account_as_of(a, Tq, reviews=reviews_of.get(a.get("account_id"), ()), accounts_read_at=accounts_read_at)
+        if st["kind"] in BOT_KINDS or st["status"] == "SUSPENDED":
             counts["bot_or_suspended"] += 1
             continue
+        if (a.get("account_kind") in BOT_KINDS | {"PROJECT"} and st["kind"] == UNKNOWN_AS_OF) or \
+                (a.get("identity_status") == "SUSPENDED" and st["status"] == UNKNOWN_AS_OF):
+            counts["account_label_unknown_as_of"] += 1
         if chash and chash in seen_hash:
             counts["duplicates_collapsed"] += 1
             continue
@@ -972,8 +1055,8 @@ def social_as_of(tables: dict[str, list[dict]], chain: str, mint: str, decision_
         aid = a.get("account_id") or it.get("account_id")
         originals.append({"item_key": k, "account_id": aid, "source": trader_of.get(aid, f"account:{aid}"),
                           "trader_id": trader_of.get(aid), "platform": it.get("platform"), "available_at": float(ok[0]["ingested_at"]),
-                          "verified": a.get("identity_status") == "VERIFIED" and a.get("identity_checked_at") is not None
-                          and float(a["identity_checked_at"]) <= Tq, "official": a.get("account_kind") == "PROJECT"})
+                          "verified": st["status"] == "VERIFIED" and a.get("identity_checked_at") is not None
+                          and float(a["identity_checked_at"]) <= Tq, "official": st["kind"] == "PROJECT"})
     exact_keys = {o["item_key"] for o in originals}
     bot_total = counts["bot_or_suspended"]
     n_total = len(originals) + bot_total
@@ -1027,6 +1110,7 @@ def social_as_of(tables: dict[str, list[dict]], chain: str, mint: str, decision_
             raise SocialCatError(f"{kk} is not finite (P38)")
     return {"chain": chain, "mint": mint, "decision_time": Tq, "values": vals, "counts": counts, "evidence_class": "TEST_ONLY",
             "rows_audited": audit.records, "llm_used": False,
+            "account_labels": "READ_BY_T" if (accounts_read_at is not None and float(accounts_read_at) <= Tq) else "REPLAY_KNOWN_AT_T_ONLY",
             "attention_confidence": "LOW" if (vals["sx_bot_share"] or 0) > 0.5 else "NORMAL"}
 
 
@@ -1034,15 +1118,21 @@ def social_as_of(tables: dict[str, list[dict]], chain: str, mint: str, decision_
 PROPOSAL_STATUS = "PROPOSED_NOT_FROZEN"
 
 
-def proposed_follow_through_label(candles: Sequence[dict], *, available_at: float, provider_lag_s: float, up: float, down: float,
-                                  horizon_s: float) -> dict:
-    """Proposal: a VERIFIED catalyst's price path from the first candle that starts after available_at + provider_lag_s (the first
-    price a reader of the catalyst could act on): `up` before `down` within horizon_s; a candle touching both is negative; a path
-    shorter than the horizon is PENDING or CENSORED, never negative. candles: {t (start), close, high, low}, 5 minutes."""
+def proposed_follow_through_label(candles: Sequence[dict], *, available_at: float, decision_time: float, provider_lag_s: float,
+                                  up: float, down: float, horizon_s: float) -> dict:
+    """Proposal: a catalyst VERIFIED at the decision (classified as of decision_time), its price path from the first candle that
+    starts at or after max(available_at, decision_time) + provider_lag_s (entry rule: never before the decision, and never before
+    the catalyst was verified; repair pass 2, CX-10b-A): `up` before `down` within horizon_s; a candle touching both is negative; a
+    path shorter than the horizon is PENDING or CENSORED, never negative. candles: {t (start), close, high, low}, 5 minutes."""
     for k, v in (("provider_lag_s", provider_lag_s), ("up", up), ("down", down), ("horizon_s", horizon_s)):
         if not (isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and v > 0):
             raise SocialCatError(f"{k} must be a positive number")
-    start = float(available_at) + float(provider_lag_s)
+    for k, v in (("available_at", available_at), ("decision_time", decision_time)):
+        if not (isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v)):
+            raise SocialCatError(f"{k} must be a finite time")
+    if float(available_at) > float(decision_time):
+        raise SocialCatError("the catalyst was not available at the decision (available_at after decision_time)")
+    start = max(float(available_at), float(decision_time)) + float(provider_lag_s)
     path = sorted((c for c in candles if float(c["t"]) >= start), key=lambda c: float(c["t"]))
     base = {"status": PROPOSAL_STATUS, "evidence_class": "TEST_ONLY"}
     if not path:

@@ -524,7 +524,8 @@ def link(*, at=T - 1800, lt="NAMED_IN_SOURCE", st="STRONG", mint=MINT):
 
 
 def classify(items, links, *, revisions=(), roles=None, pages=(), event=None, **kw):
-    return SC.classify_catalyst(event or EV, items, roles or {}, list(revisions), links, chain="solana", mint=MINT, decision_time=T,
+    roles = {i["id"]: "ORIGINAL" for i in items} if roles is None else roles      # a role must be given (repair pass 2, m5)
+    return SC.classify_catalyst(event or EV, items, roles, list(revisions), links, chain="solana", mint=MINT, decision_time=T,
                                 page_facts=pages, **kw)
 
 
@@ -538,7 +539,9 @@ def test_verified_needs_exact_mint_in_source_confirmed_evidence_and_two_independ
     two = [item(1, seen=T - 3000, body=f"token {MINT} listed"), item(2, seen=T - 2000, body="other wording", source="news:b")]
     out = classify(two, [link()])
     assert out["state"] == "VERIFIED" and out["probability_allowed"] is True and out["independent_sources"] == 2
-    assert out["first_seen_at"] == T - 3000 and out["available_at"] == T - 1800      # later of first sighting and the link
+    # available when the last condition held (repair pass 2, CX-10b-A): the link at T-1800 is later than the second independent
+    # item (T-2000), the item naming the mint (T-3000) and the CONFIRMED row (updated T-3600)
+    assert out["first_seen_at"] == T - 3000 and out["available_at"] == T - 1800 and out["source_rule_met_at"] == T - 2000
     one = classify(two[:1], [link()])
     assert one["state"] == "UNVERIFIED_EVENT" and "SINGLE_NON_OFFICIAL_SOURCE" in one["reasons"] and not one["probability_allowed"]
     assert classify(two[:1], [link()], official_sources=["news:a"])["state"] == "VERIFIED"
@@ -638,8 +641,81 @@ def test_one_event_without_post_event_text_classifies_as_on_inputs_truncated_at_
     assert strip(full) == strip(trunc) and full["state"] == "VERIFIED"
 
 
+def test_cx10b_a_verified_availability_is_when_the_last_condition_held_and_follow_through_starts_at_the_decision():
+    """Skeptic counterexample CX-10b-A (repair pass 2): a rumor seen at T-3000, linked by exact mint at T-2900, an independent rumor
+    at T-2800, the exchange's own notice and the CONFIRMED revision at T-600. The first-pass code gave available_at T-2900 and
+    labelled a +30% move at T-1500 (before verification and before the decision) as follow-through."""
+    ev = {"event_key": "e1", "category": "ACCESS", "evidence_status": "CONFIRMED", "created_at": T - 3000, "updated_at": T - 600}
+    items = [item(1, seen=T - 3000, url="https://x.example/1", body=f"{MINT} soon on exchange", source="social:x"),
+             item(2, seen=T - 2800, url="https://agg.example/2", body="exchange rumour", source="agg:b"),
+             item(3, seen=T - 600, url="https://exchange.example/notice", body=f"listing notice {MINT}", source="exch:official")]
+    roles = {1: "ORIGINAL", 2: "INDEPENDENT", 3: "INDEPENDENT"}
+    revs = [{"id": 1, "kind": "CREATED", "revised_at": T - 3000},
+            {"id": 2, "kind": "REVISED", "field": "evidence_status", "old_value": "RUMOR", "new_value": "CONFIRMED", "revised_at": T - 600}]
+    links = [link(at=T - 2900)]
+    at = lambda t: SC.classify_catalyst(ev, items, roles, revs, links, chain="solana", mint=MINT, decision_time=t,
+                                        official_sources=["exch:official"])
+    out = at(T)
+    assert out["state"] == "VERIFIED" and out["confirmed_since"] == T - 600 and out["available_at"] == T - 600
+    assert at(T - 1000)["state"] == "UNVERIFIED_EVENT" and at(T - 601)["state"] == "UNVERIFIED_EVENT"
+    assert at(T - 600)["state"] == "VERIFIED" and at(T - 600)["available_at"] == T - 600   # VERIFIED exactly from its availability
+    # the follow-through window starts at the decision plus the lag: the move at T-1500 is not a follow-through
+    path = [{"t": T - 3000 + 300 * k, "close": 1.3 if T - 3000 + 300 * k >= T - 1500 else 1.0,
+             "high": 1.3 if T - 3000 + 300 * k >= T - 1500 else 1.0, "low": 1.3 if T - 3000 + 300 * k >= T - 1500 else 1.0}
+            for k in range(40)]
+    lab = SC.proposed_follow_through_label(path, available_at=out["available_at"], decision_time=T, provider_lag_s=300, up=0.25,
+                                           down=0.15, horizon_s=7200)
+    assert lab["label"] == 0 and lab["state"] == "NEITHER_WITHIN_HORIZON"
+    mid = SC.proposed_follow_through_label(path, available_at=T - 2400, decision_time=T, provider_lag_s=300, up=0.25, down=0.15,
+                                           horizon_s=7200)
+    assert mid["label"] == 0 and mid["state"] == "NEITHER_WITHIN_HORIZON"   # a move between availability and the decision is not one
+    pre = SC.proposed_follow_through_label(path, available_at=T - 3000, decision_time=T - 3000, provider_lag_s=300, up=0.25,
+                                           down=0.15, horizon_s=7200)
+    assert pre["label"] == 1 and pre["state"] == "TARGET_FIRST"          # the same path from an earlier decision does count
+    with pytest.raises(SC.SocialCatError):                                   # not available at the decision
+        SC.proposed_follow_through_label(path, available_at=T - 600, decision_time=T - 1000, provider_lag_s=300, up=0.25,
+                                         down=0.15, horizon_s=7200)
+
+
+def test_verified_availability_takes_the_latest_of_link_naming_item_confirmation_and_source_rule():
+    a = item(1, seen=T - 3000, body=f"{MINT} listed")
+    b = item(2, seen=T - 2000, body="second report", source="news:b")
+    conf = [{"id": 1, "field": "evidence_status", "kind": "REVISED", "new_value": "CONFIRMED", "revised_at": T - 2800}]
+    ev = dict(EV, updated_at=T - 2800)
+    out = classify([a, b], [link(at=T - 2500)], revisions=conf, event=ev)
+    assert out["state"] == "VERIFIED" and out["source_rule_met_at"] == T - 2000 and out["available_at"] == T - 2000
+    off = item(3, seen=T - 2600, body=f"official notice {MINT}", source="exch:official")
+    out = classify([a, b, off], [link(at=T - 2500)], revisions=conf, event=ev, official_sources=["exch:official"])
+    assert out["official_source"] is True and out["source_rule_met_at"] == T - 2600 and out["available_at"] == T - 2500
+    flip = conf + [{"id": 2, "field": "evidence_status", "kind": "REVISED", "new_value": "REPORTED", "revised_at": T - 2400},
+                   {"id": 3, "field": "evidence_status", "kind": "CORROBORATED", "new_value": "CONFIRMED", "revised_at": T - 2200},
+                   {"id": 4, "field": "evidence_status", "kind": "CORROBORATED", "new_value": "CONFIRMED", "revised_at": T - 100}]
+    out = classify([a, b], [link(at=T - 2500)], revisions=flip, event=ev)
+    assert out["confirmed_since"] == T - 2200 and out["available_at"] == T - 2000          # the current CONFIRMED run began at T-2200
+    late_name = [item(1, seen=T - 3000, body="no address"), item(2, seen=T - 2000, body="still none", source="news:b"),
+                 item(4, seen=T - 300, body=f"now with {MINT}", source="news:c")]
+    out = classify(late_name, [link(at=T - 2500)], revisions=conf, event=ev)
+    assert out["state"] == "VERIFIED" and out["available_at"] == T - 300                     # identity only from the naming item
+    assert SC.confirmed_since(dict(EV, evidence_status="REPORTED"), [], T) is None
+
+
+def test_classifier_edges_missing_role_official_link_and_an_official_item_that_does_not_name_the_mint():
+    two = [item(1, seen=T - 3000, body=f"{MINT} listed"), item(2, seen=T - 2000, body="report", source="news:b")]
+    out = classify(two, [link()], roles={1: "ORIGINAL"})                     # item 2 has no role: not independent
+    assert out["state"] == "UNVERIFIED_EVENT" and out["items_without_role"] == 1 and "SINGLE_NON_OFFICIAL_SOURCE" in out["reasons"]
+    assert classify(two, [link(lt="OFFICIAL")])["identity"] == "EXACT_MINT_IN_SOURCE"
+    assert classify(two, [link(lt="OFFICIAL", st="MODERATE")])["identity"] == "TICKER_OR_NAME_ONLY"
+    silent = [two[0], item(3, seen=T - 1000, body="we list a new asset", source="exch:official")]
+    out = classify(silent, [link()], official_sources=["exch:official"])
+    assert out["official_source"] is False and out["state"] == "VERIFIED" and out["source_rule_met_at"] == T - 1000
+    assert classify(silent[:1] + [dict(silent[1], body=f"we list {MINT}")], [link()], roles={1: "COMMENTARY", 3: "INDEPENDENT"},
+                    official_sources=["exch:official"])["official_source"] is True
+
+
 # ---------------------------------------------------------------- social evidence adapter (TEST_ONLY)
 def social_world(**over):
+    """Account rows as read at T (`accounts_read_at=T`, a live read) unless a test says otherwise; a replay without a read time
+    knows only timed account states (repair pass 2, CX-10b-B)."""
     acc = [{"account_id": "x:id:1", "platform": "x", "account_kind": "PERSON", "identity_status": "VERIFIED", "identity_checked_at": T - 86400},
            {"account_id": "tg:id:1", "platform": "telegram", "account_kind": "PERSON", "identity_status": "UNVERIFIED", "identity_checked_at": None},
            {"account_id": "x:id:bot", "platform": "x", "account_kind": "BOT", "identity_status": "UNVERIFIED", "identity_checked_at": None},
@@ -670,7 +746,7 @@ def social_world(**over):
 
 
 def test_social_counts_exact_originals_once_and_never_after_t():
-    out = SC.social_as_of(social_world(), "solana", MINT, T)
+    out = SC.social_as_of(social_world(), "solana", MINT, T, accounts_read_at=T)
     v = out["values"]
     assert v["sx_mentions_exact"] == 3.0                                          # x:1 (= tg:1), x:2, x:proj
     assert out["counts"]["duplicates_collapsed"] == 1 and out["counts"]["bot_or_suspended"] == 1
@@ -679,7 +755,7 @@ def test_social_counts_exact_originals_once_and_never_after_t():
     assert v["sx_novelty_h"] == pytest.approx(5.0) and out["evidence_class"] == "TEST_ONLY" and out["llm_used"] is False
     assert v["sx_volume_accel"] == pytest.approx(math.log((2 + 1) / (1 / 6 + 1)))
     assert v["sx_concentration"] == pytest.approx(1 / 3)
-    later = SC.social_as_of(social_world(), "solana", MINT, T + 3600)["values"]
+    later = SC.social_as_of(social_world(), "solana", MINT, T + 3600, accounts_read_at=T)["values"]
     assert later["sx_mentions_exact"] == 4.0                                       # the late post exists only from its ingestion
 
 
@@ -688,19 +764,19 @@ def test_trader_links_and_identity_checks_count_only_when_made_by_t():
     for o in tw["social_observations"]:
         if o["item_key"] == "tg:1":
             o["content_hash"] = "h1-tg"                                        # a different text from the same trader
-    assert SC.social_as_of(tw, "solana", MINT, T)["values"]["sx_distinct_sources"] == 3.0       # x:1 and tg:1 are one trader
+    assert SC.social_as_of(tw, "solana", MINT, T, accounts_read_at=T)["values"]["sx_distinct_sources"] == 3.0       # x:1 and tg:1 are one trader
     tw["social_trader_accounts"][1]["linked_at"] = T + 60
-    assert SC.social_as_of(tw, "solana", MINT, T)["values"]["sx_distinct_sources"] == 4.0       # the link did not exist at T
+    assert SC.social_as_of(tw, "solana", MINT, T, accounts_read_at=T)["values"]["sx_distinct_sources"] == 4.0       # the link did not exist at T
     tw2 = social_world()
     tw2["social_accounts"][0]["identity_checked_at"] = T + 60
-    assert SC.social_as_of(tw2, "solana", MINT, T)["values"]["sx_verified_traders"] == 0.0
+    assert SC.social_as_of(tw2, "solana", MINT, T, accounts_read_at=T)["values"]["sx_verified_traders"] == 0.0
 
 
 def test_p03_an_edited_post_uses_the_first_known_original_or_is_excluded():
     vers = [{"item_key": "x:2", "provider_version_at": T - 1800, "version_kind": "ORIGINAL", "content_hash": "h1", "first_recorded_at": T - 1800},
             {"item_key": "x:2", "provider_version_at": T - 60, "version_kind": "EDIT", "content_hash": "hNEW", "first_recorded_at": T - 60},
             {"item_key": "x:proj", "provider_version_at": T - 200, "version_kind": "EDIT", "content_hash": "hE", "first_recorded_at": T - 200}]
-    out = SC.social_as_of(social_world(social_item_versions=vers), "solana", MINT, T)
+    out = SC.social_as_of(social_world(social_item_versions=vers), "solana", MINT, T, accounts_read_at=T)
     # x:2's original equals x:1's article: collapsed; x:proj has only an edit visible: excluded
     assert out["counts"]["edited_without_original"] == 1 and out["counts"]["duplicates_collapsed"] == 2
     assert out["values"]["sx_mentions_exact"] == 1.0
@@ -710,12 +786,12 @@ def test_p17_deleted_before_t_is_excluded_and_after_t_still_counts():
     tw = social_world()
     tw["social_observations"].append({"id": 99, "item_key": "x:2", "account_id": "x:id:2", "observed_at": T - 120, "ingested_at": T - 120,
                                       "retrieval_status": "DELETED", "content_hash": None})
-    out = SC.social_as_of(tw, "solana", MINT, T)
+    out = SC.social_as_of(tw, "solana", MINT, T, accounts_read_at=T)
     assert out["values"]["sx_deleted_before_t"] == 1.0 and out["values"]["sx_mentions_exact"] == 2.0
     tw2 = social_world()
     tw2["social_observations"].append({"id": 99, "item_key": "x:2", "account_id": "x:id:2", "observed_at": T + 120, "ingested_at": T + 120,
                                        "retrieval_status": "DELETED", "content_hash": None})
-    assert SC.social_as_of(tw2, "solana", MINT, T)["values"]["sx_mentions_exact"] == 3.0
+    assert SC.social_as_of(tw2, "solana", MINT, T, accounts_read_at=T)["values"]["sx_mentions_exact"] == 3.0
 
 
 def test_p16_bot_majority_downgrades_attention_confidence():
@@ -726,7 +802,7 @@ def test_p16_bot_majority_downgrades_attention_confidence():
                                           "ingested_at": T - 100, "retrieval_status": "OK", "content_hash": f"bot{i}"})
         tw["social_token_resolutions"].append({"item_key": f"b{i}", "mention_kind": "CONTRACT", "status": "resolved", "resolved_chain": "solana",
                                                "resolved_contract": MINT, "resolved_at": T - 100})
-    out = SC.social_as_of(tw, "solana", MINT, T)
+    out = SC.social_as_of(tw, "solana", MINT, T, accounts_read_at=T)
     assert out["values"]["sx_mentions_exact"] == 3.0 and out["values"]["sx_bot_share"] == pytest.approx(7 / 10)
     assert out["attention_confidence"] == "LOW"
 
@@ -782,21 +858,72 @@ def test_social_store_is_read_only_and_refuses_lab_and_predictive_stores(tmp_pat
             SC.connect_social_ro(bad)
 
 
+def test_cx10b_b_a_suspension_or_bot_label_recorded_after_t_is_not_applied_at_t():
+    """Skeptic counterexample CX-10b-B (repair pass 2): an account VERIFIED at T-1 d whose exact-mint post was ingested at T-2900
+    is suspended at T+1 d (the row is updated in place). The first-pass code gave 1 mention and bot share 0.5 at T; the store as
+    it was at T gives 2 and 0."""
+    acc = {"account_id": "x:id:1", "account_kind": "PERSON", "identity_status": "VERIFIED", "identity_checked_at": T - 86400}
+    acc2 = dict(acc, account_id="x:id:2")
+    posts = [({"item_key": k, "account_id": a, "platform": "x", "first_ingested_at": T - 2900},
+              {"id": n, "item_key": k, "account_id": a, "ingested_at": T - 2900, "retrieval_status": "OK", "content_hash": h})
+             for n, (k, a, h) in enumerate((("k1", "x:id:1", "h1"), ("k2", "x:id:2", "h2")), 1)]
+    res = [{"item_key": k, "mention_kind": "CONTRACT", "status": "resolved", "resolved_chain": "solana", "resolved_contract": MINT,
+            "resolved_at": T - 2800} for k in ("k1", "k2")]
+
+    def world(a1, **extra):
+        return {"social_accounts": [a1, acc2], "social_items": [p[0] for p in posts], "social_observations": [p[1] for p in posts],
+                "social_item_versions": [], "social_token_resolutions": res, "social_claims": [], "social_claim_extractions": [],
+                "social_trader_accounts": [], "social_token_refs": [], **extra}
+    at_t = SC.social_as_of(world(acc), "solana", MINT, T)
+    assert at_t["values"]["sx_mentions_exact"] == 2.0 and at_t["values"]["sx_bot_share"] == 0.0
+    later = SC.social_as_of(world(dict(acc, identity_status="SUSPENDED", identity_checked_at=T + 86400)), "solana", MINT, T)
+    assert later["values"] == at_t["values"] and later["counts"]["account_label_unknown_as_of"] == 1     # the truncated view
+    # a suspension recorded after T with a check time before T (set_account_status(checked_at=...)): the review time governs
+    ents = [{"entity_id": "acct:x:id:1", "entity_kind": "SOCIAL_ACCOUNT", "account_id": "x:id:1"}]
+    rv = lambda t: [{"target_type": "ACCOUNT_STATUS", "target_id": "acct:x:id:1", "action": "SET_SUSPENDED", "from_state": "VERIFIED",
+                     "to_state": "SUSPENDED", "reviewed_at": t}]
+    back = dict(acc, identity_status="SUSPENDED", identity_checked_at=T - 60)
+    assert SC.social_as_of(world(back, social_registry_entities=ents, social_registry_reviews=rv(T + 3600)), "solana", MINT, T)["values"] == at_t["values"]
+    known = SC.social_as_of(world(back, social_registry_entities=ents, social_registry_reviews=rv(T - 30)), "solana", MINT, T)
+    assert known["values"]["sx_mentions_exact"] == 1.0 and known["values"]["sx_bot_share"] == 0.5        # suspended by T: excluded
+    # a BOT kind has no time: UNKNOWN at T in a replay, applied only when the accounts were read by T
+    bot = dict(acc, account_kind="BOT")
+    rep_ = SC.social_as_of(world(bot), "solana", MINT, T)
+    assert rep_["values"] == at_t["values"] and rep_["counts"]["account_label_unknown_as_of"] == 1 and rep_["account_labels"] == "REPLAY_KNOWN_AT_T_ONLY"
+    assert SC.social_as_of(world(bot), "solana", MINT, T, accounts_read_at=T + 1)["values"] == at_t["values"]
+    read = SC.social_as_of(world(bot), "solana", MINT, T, accounts_read_at=T - 10)
+    assert read["values"]["sx_bot_share"] == 0.5 and read["account_labels"] == "READ_BY_T"
+    proj = SC.social_as_of(world(dict(acc, account_kind="PROJECT")), "solana", MINT, T)
+    assert proj["values"]["sx_official_link"] == 0.0 and proj["counts"]["account_label_unknown_as_of"] == 1
+    assert SC.social_as_of(world(dict(acc, account_kind="PROJECT")), "solana", MINT, T, accounts_read_at=T)["values"]["sx_official_link"] == 1.0
+
+
+def test_m3_an_item_version_recorded_after_t_does_not_exist_at_t():
+    """Skeptic m3 (repair pass 2): x:2's ORIGINAL version (equal to x:1's article) is recorded only after T. At T the item is
+    visible with its observed hash; the later version must neither exclude it nor collapse it (the truncated view)."""
+    base = SC.social_as_of(social_world(), "solana", MINT, T, accounts_read_at=T)
+    vers = [{"item_key": "x:2", "provider_version_at": T - 1800, "version_kind": "ORIGINAL", "content_hash": "h1", "first_recorded_at": T + 60}]
+    out = SC.social_as_of(social_world(social_item_versions=vers), "solana", MINT, T, accounts_read_at=T)
+    assert out["values"] == base["values"] and out["counts"] == base["counts"] and out["values"]["sx_mentions_exact"] == 3.0
+    edit_late = [{"item_key": "x:2", "provider_version_at": T + 30, "version_kind": "EDIT", "content_hash": "hX", "first_recorded_at": T + 60}]
+    assert SC.social_as_of(social_world(social_item_versions=edit_late), "solana", MINT, T, accounts_read_at=T)["values"] == base["values"]
+
+
 # ---------------------------------------------------------------- proposals (PROPOSED_NOT_FROZEN, TEST_ONLY)
 def test_proposed_follow_through_label_states():
     c = lambda t, close, hi=None, lo=None: {"t": t, "close": close, "high": hi if hi is not None else close, "low": lo if lo is not None else close}
     f = SC.proposed_follow_through_label
     path = [c(T - 300, 1.0, 9.0), c(T + 300, 1.0), c(T + 600, 1.1, 1.3), c(T + 900, 1.0)]
-    out = f(path, available_at=T, provider_lag_s=300, up=0.25, down=0.15, horizon_s=1200)
+    out = f(path, available_at=T, decision_time=T, provider_lag_s=300, up=0.25, down=0.15, horizon_s=1200)
     assert out["label"] == 1 and out["state"] == "TARGET_FIRST" and out["status"] == SC.PROPOSAL_STATUS and out["evidence_class"] == "TEST_ONLY"
     both = [c(T + 300, 1.0), c(T + 600, 1.0, 1.3, 0.8)]
-    amb = f(both, available_at=T, provider_lag_s=300, up=0.25, down=0.15, horizon_s=1200)
+    amb = f(both, available_at=T, decision_time=T, provider_lag_s=300, up=0.25, down=0.15, horizon_s=1200)
     assert amb["state"] == "AMBIGUOUS_BAR" and amb["label"] == 0
     short = [c(T + 300, 1.0), c(T + 600, 1.0)]
-    assert f(short, available_at=T, provider_lag_s=300, up=0.25, down=0.15, horizon_s=86400)["label"] is None
-    assert f([c(T - 600, 1.0)], available_at=T, provider_lag_s=300, up=0.25, down=0.15, horizon_s=600)["state"] == "CENSORED_NO_PRICE_AFTER_AVAILABILITY"
+    assert f(short, available_at=T, decision_time=T, provider_lag_s=300, up=0.25, down=0.15, horizon_s=86400)["label"] is None
+    assert f([c(T - 600, 1.0)], available_at=T, decision_time=T, provider_lag_s=300, up=0.25, down=0.15, horizon_s=600)["state"] == "CENSORED_NO_PRICE_AFTER_AVAILABILITY"
     with pytest.raises(SC.SocialCatError):
-        f(path, available_at=T, provider_lag_s=0, up=0.25, down=0.15, horizon_s=1200)
+        f(path, available_at=T, decision_time=T, provider_lag_s=0, up=0.25, down=0.15, horizon_s=1200)
 
 
 def test_proposed_withdrawal_label_states():

@@ -6,7 +6,7 @@ decision mints by exact address, the token row provenance), the event without po
 cumulative search ledger.
 
 Reads only: the Phase 06 development store (labels through `labels.training_labels`, decision rows), the Phase 05 store (version 2
-snapshots through `features.training_view`, decision rows through `features.AsOfView`), git objects of `origin/main` (the export
+snapshots through `features.training_view`, decision rows through `features.AsOfView`), git objects of `MAIN_REF` (the export
 commit of each decision, read with `git show`, never checked out) and the tracked `inbox/` catalyst reads, all read-only. Never
 opens the sealed holdout folder. No network: an audit hook refuses any socket call. Deterministic: two runs into two folders give
 identical files except `evidence/run_log.json` (times) and the trace's latency field.
@@ -14,7 +14,12 @@ identical files except `evidence/run_log.json` (times) and the trace's latency f
     python -B run_social.py OUTDIR [--reps 2000] [--dev-store PATH] [--feature-store PATH] [--npz PATH]
 
 PROVISIONAL (PI-D-046): until Phase 06's 48 h revision re-read is folded in. If it changes a development label, rerun this
-script at the Phase 10 code commit; the new outputs supersede these.
+script at the Phase 10 code commit; the new outputs supersede these. (The re-read changed no label, PI-D-059.)
+
+Repair pass 2 (PI-D-060, skeptic m6 and m4): git reads use the pinned `MAIN_REF` (the `origin/main` commit the first recorded
+run read), so the CX-10 trap's newest-export counts and the export walk do not depend on where `origin/main` is today; `--npz`
+also writes every fitted G1 stump design (`<tag>_Xs`, `_ys`, `_Zs`, `_ps`) for the stump oracle in
+`sklearn_crosscheck_social.py`.
 """
 from __future__ import annotations
 
@@ -45,6 +50,7 @@ from memelab.predictive import runtime as R  # noqa: E402
 from memelab.predictive import socialcat as SC  # noqa: E402
 from memelab.predictive import stats as K  # noqa: E402
 from memelab.predictive import store as S  # noqa: E402
+from memelab.predictive import technical as T8  # noqa: E402
 
 SOCKET_EVENTS: list[str] = []
 
@@ -76,6 +82,7 @@ P07_SPLITS = {"T1_24h": "0ab64525e04b8664a1cab51c9e24f5fa4f750681d32a5d97bfc5207
               "T1b_6h": "aa16e7adeae7d5bc8567de9ab85ed1f28843afe51bc0de9b52e24d587beb8a31",
               "T2_24h": "82a1c33b12cef45995eb15edd07b8e27ddcd76eafbdb8c503f5feb9501be86cd"}
 TARGET_ORDER = (L.T1, L.T2, L.T1B)               # T1 (the follow-through-like target) is reported first
+MAIN_REF = "e245d91cc5f56060ba8e1aa7182c846c77d1526c"   # origin/main read by the first recorded run (pinned in repair pass 2, m6)
 BASE_SHA = "f99c6c7"                             # the branch base (PI-D-001): social and catalyst code must be unchanged since
 # real-data runs before the recorded run (P22): appended before the recorded run, never removed
 DEBUG_RUNS: list[str] = [
@@ -106,6 +113,15 @@ def iso(t):
 
 def git(*a: str) -> str:
     return subprocess.run(["git", "-C", str(REPO), *a], check=True, capture_output=True, text=True).stdout
+
+
+def stump_npz(npz: dict, tag: str, card: dict, use: list) -> None:
+    """A fitted G1 card's training design for the stump oracle (repair pass 2, m4): raw columns, labels, the card's Prep transform
+    and the card's own training probabilities."""
+    X = SC.matrix(use, card["body"]["spec"]["columns"])
+    Z = K.Prep.from_dict(card["body"]["prep"]).transform(X)
+    npz[tag + "_Xs"], npz[tag + "_ys"], npz[tag + "_Zs"] = X, B.labels_of(use), Z
+    npz[tag + "_ps"] = T8.Stumps.from_dict(card["body"]["stumps"]).predict_proba1(Z)
 
 
 # ---------------------------------------------------------------- the decision's own export (narrative tables, token rows)
@@ -281,7 +297,7 @@ def traps(fs, dev_ex_by_target, ssnaps, cards_h, all_snaps):
     out["P36SC"] = {"decision_key": e.decision_key, "values_with_a_number": sum(1 for v in s["values"].values() if v["value"] is not None),
                     "reasons": dict(reasons), "pass": reasons.get("INCONSISTENT_TIME") == len(SC.SC)}
     # P04-SC: the narrative tables of the next export commit handed to every labelled decision
-    order = [ln.split() for ln in git("rev-list", "--reverse", "--first-parent", "--timestamp", "origin/main", "--", EXPORT_PATH).splitlines() if ln.strip()]
+    order = [ln.split() for ln in git("rev-list", "--reverse", "--first-parent", "--timestamp", MAIN_REF, "--", EXPORT_PATH).splitlines() if ln.strip()]
     nxt_of = {c: order[i + 1][1] for i, (t, c) in enumerate(order[:-1])}
     tried = refused = acc = 0
     for k, sn in sorted(ssnaps.items()):
@@ -302,7 +318,7 @@ def traps(fs, dev_ex_by_target, ssnaps, cards_h, all_snaps):
 def cx10(fs, all_snaps):
     """CX-10 on the real history: the token row stored with each decision equals the token row of its own export (provenance), and
     the newest export's token row would carry later narrative tags and channels."""
-    newest = export_doc(git("rev-parse", "origin/main").strip())
+    newest = export_doc(git("rev-parse", MAIN_REF).strip())
     newest_tok = {t["mint"]: t for t in newest["tables"].get("tokens") or []}
     prov_equal = prov_diff = 0
     later = Counter()
@@ -338,7 +354,7 @@ def inbox_catalyst(fs):
     out = []
     for f in sorted((REPO / "inbox").glob("cat*.json")):
         rel = str(f.relative_to(REPO))
-        first = git("log", "--format=%H %ct", "--diff-filter=A", "origin/main", "--", rel).split()
+        first = git("log", "--format=%H %ct", "--diff-filter=A", MAIN_REF, "--", rel).split()
         committed = float(first[1]) if len(first) >= 2 else None
         d = json.loads(f.read_text())
         keys = {k: v for k, v in d.items() if not k.startswith("_")} if isinstance(d, dict) else {}
@@ -434,7 +450,7 @@ def trace(fs, res_by_target, ssnaps, cards_h):
     cx = context_of(dec["export_commit"])
     trunc = F.truncated_copy(fs, e.decision_time)
     st = SC.socialcat_as_of(trunc, e.chain, e.mint, e.decision_time, decision_key=e.decision_key, context=cx)
-    order = [ln.split() for ln in git("rev-list", "--reverse", "--first-parent", "--timestamp", "origin/main", "--", EXPORT_PATH).splitlines() if ln.strip()]
+    order = [ln.split() for ln in git("rev-list", "--reverse", "--first-parent", "--timestamp", MAIN_REF, "--", EXPORT_PATH).splitlines() if ln.strip()]
     idx = [c for t, c in order].index(dec["export_commit"])
     nxt = order[idx + 1][1] if idx + 1 < len(order) else None
     try:
@@ -663,6 +679,8 @@ def main() -> int:
                 tr = sex_at(dev, target, f["cutoff"], frows, snaps, info, ssnaps)[0]
                 for m in SC.MODEL_IDS:
                     c = f["cards"][m]
+                    if "abstain" not in c["body"] and "stumps" in c["body"]:
+                        stump_npz(npz, f"{s}_f{f['fold']}_{m}", c, [e for e in tr if SC.complete(e, c["body"]["spec"]["rows"])])
                     if "abstain" in c["body"] or "logistic" not in c["body"]:
                         continue
                     use = [e for e in tr if SC.complete(e, c["body"]["spec"]["rows"])]
@@ -672,6 +690,8 @@ def main() -> int:
                     npz[tag + "_Z"] = K.Prep.from_dict(c["body"]["prep"]).transform(X)
                     npz[tag + "_coef"] = np.r_[c["body"]["logistic"]["intercept"], c["body"]["logistic"]["coef"]]
             for m, c in cards_h[target].items():
+                if "abstain" not in c["body"] and "stumps" in c["body"]:
+                    stump_npz(npz, f"{s}_H_{m}", c, [e for e in train if SC.complete(e, c["body"]["spec"]["rows"])])
                 if "abstain" in c["body"] or "logistic" not in c["body"]:
                     continue
                 use = [e for e in train if SC.complete(e, c["body"]["spec"]["rows"])]

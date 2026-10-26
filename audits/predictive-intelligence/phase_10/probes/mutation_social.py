@@ -1,4 +1,4 @@
-"""Phase 10 mutation probe: each mutation of memelab/predictive/socialcat.py must make tests/test_predictive_social.py fail.
+"""Phase 10 mutation probe (repair pass 2 adds the mutations of CX-10b-A, CX-10b-B, m3 and m5): each mutation of memelab/predictive/socialcat.py must make tests/test_predictive_social.py fail.
 
 Works on a temporary copy of the repository's tracked files plus the Phase 10 files and the committed outputs the last tests read
 (the checkout is never edited), so it runs at HEAD. Writes a JSON report.
@@ -101,10 +101,10 @@ MUTATIONS = [
     (SCP, "link made after T used", 'for k in links if float(k["linked_at"]) <= Tq], Tq)', 'for k in links], Tq)'),
     (SCP, "revisions after T used", 'for r in revisions if float(r["revised_at"]) <= Tq], Tq)', 'for r in revisions], Tq)'),
     (SCP, "P45 event without a source item classified", '    if not vis:\n        return {**base, "state": "NOT_AVAILABLE_AT_DECISION"', '    if False:\n        return {**base, "state": "NOT_AVAILABLE_AT_DECISION"'),
-    (SCP, "P15 syndicated copies counted", '        if roles.get(i.get("id"), "ORIGINAL") not in INDEPENDENT_ROLES:\n            continue', '        if False:\n            continue'),
+    (SCP, "P15 syndicated copies counted", '        if role not in INDEPENDENT_ROLES:\n            continue', '        if False:\n            continue'),
     (SCP, "P15 duplicate bodies counted", '        if (u and u in seen_urls) or (h and h in seen_hash):\n            continue', '        if (u and u in seen_urls):\n            continue'),
     (SCP, "P41 page-named contract accepted as identity", "    if strong and in_source:\n        ident = \"EXACT_MINT_IN_SOURCE\"", "    if strong and (in_source or on_page):\n        ident = \"EXACT_MINT_IN_SOURCE\""),
-    (SCP, "ticker match accepted as identity", '    strong = [k for k in mine if k.get("link_type") == "NAMED_IN_SOURCE" and k.get("link_strength") == "STRONG"]', '    strong = list(mine)'),
+    (SCP, "ticker match accepted as identity", '    strong = [k for k in mine if k.get("link_type") in STRONG_LINK_TYPES and k.get("link_strength") == "STRONG"]', '    strong = list(mine)'),
     (SCP, "identity from any mint", '    mine = [k for k in lnks if k.get("mint") == mint and (k.get("chain") or "solana") == chain]', '    mine = list(lnks)'),
     (SCP, "P17 rumor verified", '    elif withdrawn or ev_status == "RUMOR":', '    elif withdrawn:'),
     (SCP, "P17 denial ignored", '    elif withdrawn or ev_status == "RUMOR":', '    elif ev_status == "RUMOR":'),
@@ -126,14 +126,14 @@ MUTATIONS = [
     (SCP, "P03 edit used when no original is visible", '            if not orig:\n                counts["edited_without_original"] += 1\n                continue',
      '            if not orig:\n                counts["edited_without_original"] += 1\n                orig = vs'),
     (SCP, "P03 latest version used", '            chash = orig[0].get("content_hash")', '            chash = vs[-1].get("content_hash")'),
-    (SCP, "P16 bots counted", '        if a.get("account_kind") in BOT_KINDS or a.get("identity_status") == "SUSPENDED":', '        if False:'),
+    (SCP, "P16 bots counted", '        if st["kind"] in BOT_KINDS or st["status"] == "SUSPENDED":', '        if False:'),
     (SCP, "P15 duplicates counted", '        if chash and chash in seen_hash:\n            counts["duplicates_collapsed"] += 1\n            continue',
      '        if False:\n            counts["duplicates_collapsed"] += 1\n            continue'),
     (SCP, "trader link after T used", '        if float(ta["linked_at"]) <= Tq:\n            trader_of', '        if True:\n            trader_of'),
     (SCP, "P26 model-extracted claims used", '        if c.get("item_key") in llm_items or c.get("extraction_id") in llm_ids:\n            llm_excluded += 1\n            continue',
      '        if False:\n            llm_excluded += 1\n            continue'),
     (SCP, "track record includes calls not matured by T", 'and float(r["called_at"]) < Tq and float(r["matured_at"]) <= Tq]', 'and float(r["called_at"]) < Tq]'),
-    (SCP, "verified trader without a check by T", '"verified": a.get("identity_status") == "VERIFIED" and a.get("identity_checked_at") is not None\n                          and float(a["identity_checked_at"]) <= Tq,',
+    (SCP, "verified trader without a check by T", '"verified": st["status"] == "VERIFIED" and a.get("identity_checked_at") is not None\n                          and float(a["identity_checked_at"]) <= Tq,',
      '"verified": a.get("identity_status") == "VERIFIED",'),
     (SCP, "read-only open removed", '    con = sqlite3.connect(f"file:{p}?mode=ro", uri=True)', "    con = sqlite3.connect(str(p))"),
     (SCP, "lab database accepted as a social store", '    if p == (repo / "data" / "memelab.sqlite").resolve():\n        raise SocialCatError', '    if False:\n        raise SocialCatError'),
@@ -143,6 +143,27 @@ MUTATIONS = [
     (SCP, "ambiguous bar counted positive", '            return {**base, "label": 0, "state": "AMBIGUOUS_BAR", "touch_t": float(c["t"])}', '            return {**base, "label": 1, "state": "AMBIGUOUS_BAR", "touch_t": float(c["t"])}'),
     (SCP, "short path labelled negative", '        return {**base, "label": None, "state": "PENDING_OR_CENSORED"}', '        return {**base, "label": 0, "state": "PENDING_OR_CENSORED"}'),
     (SCP, "withdrawal pending read as negative", '        return {**base, "label": None, "state": "PENDING"}', '        return {**base, "label": 0, "state": "PENDING"}'),
+    # repair pass 2 (the independent skeptic's CX-10b-A, CX-10b-B, m3, m5; PI-D-060)
+    (SCP, "CX-10b-A VERIFIED available from first sighting and link",
+     '    avail = max(parts + [conf_at, rule_at]) if (strong and naming and conf_at is not None and rule_at is not None) else None',
+     '    avail = max([first_seen] + [float(k["linked_at"]) for k in strong]) if (strong and naming and conf_at is not None and rule_at is not None) else None'),
+    (SCP, "CX-10b-A confirmation time ignored", '    avail = max(parts + [conf_at, rule_at]) if', '    avail = max(parts + [rule_at]) if'),
+    (SCP, "CX-10b-A source-rule time ignored", '    avail = max(parts + [conf_at, rule_at]) if', '    avail = max(parts + [conf_at]) if'),
+    (SCP, "CX-10b-A naming item time ignored", ' + ([float(naming[0]["first_seen_at"])] if naming else [])', ''),
+    (SCP, "CX-10b-A confirmation run not reset by a downgrade", '            else:\n                since = None', '            else:\n                pass'),
+    (SCP, "CX-10b-A second independent item not the second sighting", '    for i in sorted(live, key=lambda i: (float(i["first_seen_at"]), str(i.get("id")))):', '    for i in sorted(live, key=lambda i: (-float(i["first_seen_at"]), str(i.get("id")))):'),
+    (SCP, "CX-10b-A follow-through from availability, not the decision", '    start = max(float(available_at), float(decision_time)) + float(provider_lag_s)',
+     '    start = float(available_at) + float(provider_lag_s)'),
+    (SCP, "CX-10b-A availability after the decision accepted", '    if float(available_at) > float(decision_time):\n        raise SocialCatError', '    if False:\n        raise SocialCatError'),
+    (SCP, "m5 item without a role counted as independent", '        if role is None:\n            no_role += 1\n            continue', '        if role is None:\n            role = "ORIGINAL"'),
+    (SCP, "m5 OFFICIAL link not a strong link", 'STRONG_LINK_TYPES = frozenset({"NAMED_IN_SOURCE", "OFFICIAL"})', 'STRONG_LINK_TYPES = frozenset({"NAMED_IN_SOURCE"})'),
+    (SCP, "m5 official item need not name the mint", '    official_items = [i for i in naming if i.get("source_id") in off_set]', '    official_items = [i for i in indep if i.get("source_id") in off_set]'),
+    (SCP, "CX-10b-B suspension recorded after T applied", '    st = status if (known and max(known + rec) <= float(T)) else UNKNOWN_AS_OF', '    st = status'),
+    (SCP, "CX-10b-B review time ignored", '    st = status if (known and max(known + rec) <= float(T)) else UNKNOWN_AS_OF', '    st = status if (known and max(known) <= float(T)) else UNKNOWN_AS_OF'),
+    (SCP, "CX-10b-B untimed kind applied in a replay", '    return {"kind": kind if kind == "UNKNOWN" else UNKNOWN_AS_OF, "status": st, "mode": "REPLAY"}', '    return {"kind": kind, "status": st, "mode": "REPLAY"}'),
+    (SCP, "CX-10b-B accounts read after T treated as known at T", '    if accounts_read_at is not None and float(accounts_read_at) <= float(T):\n        return', '    if accounts_read_at is not None:\n        return'),
+    (SCP, "m3 item versions recorded after T visible", '        vs = [v for v in vers_by.get(k, []) if float(v["first_recorded_at"]) <= Tq]', '        vs = list(vers_by.get(k, []))'),
+    (SCP, "m3 a version recorded after T decides whether versions exist", '        if vs:                                          # versions recorded', '        if vers_by.get(k):                              # versions recorded'),
 ]
 
 # Equivalent mutations, run and reported but not counted: removing fit's own maturity check leaves `check_asof(..., as_of=cutoff,
