@@ -84,6 +84,9 @@ DEBUG_RUNS: list[str] = [
     "features-only probe after the pre-registration commit 46afc85 (15:14:33Z to 15:14:37Z on 2026-10-26): regime series, CX-11 "
     "flip count (32) and analog-1 inputs (launchpad class, token program, regime per decision) over the 830 Solana development "
     "decisions of the Phase 05 store; no label read, no cohort, no metric",
+    "recorded run 1 at 0482a60 (15:20:26Z to 15:21:09Z) and its determinism twin (15:21:30Z to 15:22:15Z): every output equal to "
+    "the run at the ledger-repair commit except SEARCH_LEDGER.csv, which lacked the B0 and AC3_LOCO rows (found by the committed-"
+    "outputs test); superseded by the run at the ledger-repair commit",
 ]
 STATUS = A.STATUS
 
@@ -449,6 +452,12 @@ def main() -> int:
                                "kind": KIND.get(m, "ANALOG_COHORT"), "view": f"{view} vs {ref}", "seed": 20261025,
                                "folds": len(res["folds"]), "n_rows": ev["n_rows"], "n_with_number": ev["n_with_number"],
                                "verdict": ev.get("verdict"), "split_fingerprint": runs[view != "NO_KEY_CONFLICT"][1].get("split_fingerprint")})
+            # the reference B0 and the leave-one-campaign-out sensitivity are configurations too (ledger only, no claim)
+            for m, kind, verdict in (("B0", "REFERENCE_PHASE07", "REFERENCE"), (A.LOCO, KIND[A.LOCO], "SENSITIVITY_NO_CLAIM")):
+                ledger.append({"phase": "11", "experiment_id": f"P11:{target}:{m}", "target": target, "candidate": m, "kind": kind,
+                               "view": view, "seed": 20261025, "folds": len(res["folds"]), "n_rows": len(rows),
+                               "n_with_number": sum(1 for r in rows if math.isfinite(r[m])), "verdict": verdict,
+                               "split_fingerprint": runs[view != "NO_KEY_CONFLICT"][1].get("split_fingerprint")})
             # NC1-AC
             seeds = res.get("nc1_seeds", [])
             nrows = [r for r in rows if any(math.isfinite(r[f"NC1AC_{q}"]) for q in seeds)]
