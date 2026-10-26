@@ -1,0 +1,42 @@
+{
+ "except": "run_log_plan.json and run_log_predict.json (times)",
+ "files": {
+  "CANDIDATES.json": {
+   "equal": true,
+   "recorded": "5fd37b64e6bcb20f16897b1b76b14fc4e048f9c17c5b908fefb490232cc955c4",
+   "twin": "5fd37b64e6bcb20f16897b1b76b14fc4e048f9c17c5b908fefb490232cc955c4"
+  },
+  "HOLDOUT_DECISIONS.csv": {
+   "equal": true,
+   "recorded": "3d33cdf4bfa2a2241ca3666d662cc778c23d86d80b08e6c61fe29f5ec59b7983",
+   "twin": "3d33cdf4bfa2a2241ca3666d662cc778c23d86d80b08e6c61fe29f5ec59b7983"
+  },
+  "HOLDOUT_PREDICTIONS.csv": {
+   "equal": true,
+   "recorded": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "twin": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b"
+  },
+  "LEDGER_TOTALS.json": {
+   "equal": true,
+   "recorded": "444babf763f51be2408a5c75913bb860ef8c2b2db1fec56cb9542f92361d6380",
+   "twin": "444babf763f51be2408a5c75913bb860ef8c2b2db1fec56cb9542f92361d6380"
+  },
+  "PREOPEN_MANIFEST.json": {
+   "equal": true,
+   "recorded": "3f19686b52d71d2040eb765dc56f18f1b98caee7235bdd07351071466e2b5681",
+   "twin": "3f19686b52d71d2040eb765dc56f18f1b98caee7235bdd07351071466e2b5681"
+  },
+  "PREOPEN_TRAPS.json": {
+   "equal": true,
+   "recorded": "8f47f96fd121b5c079db7915b3d64c536c625d29b9f78b12bfd16e5144798f5c",
+   "twin": "8f47f96fd121b5c079db7915b3d64c536c625d29b9f78b12bfd16e5144798f5c"
+  },
+  "REPLAY_AUDIT.json": {
+   "equal": true,
+   "recorded": "2737f3f833cac6e74957877c65a178028c1fa90c3f31990120d129cddc6dbfdd",
+   "twin": "2737f3f833cac6e74957877c65a178028c1fa90c3f31990120d129cddc6dbfdd"
+  }
+ },
+ "recorded_run": "validation/ (2026-10-26T17:32:47Z, HEAD 3ea7030)",
+ "twin_run": "session scratchpad (17:32:55Z), same HEAD"
+}

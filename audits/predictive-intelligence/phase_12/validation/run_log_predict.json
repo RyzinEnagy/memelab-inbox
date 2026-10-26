@@ -1,0 +1,43 @@
+{
+ "code_sha256": {
+  "audits/predictive-intelligence/phase_07/probes/run_baselines.py": "300af6e9f3764ce0ea5361f00e8a7809bdaefb56f5714bb1643336c787a92bff",
+  "audits/predictive-intelligence/phase_10/probes/run_social.py": "f070dee2122ad598809b879f90beeef9308fd2c3c4d247bf2959c0e68181ade4",
+  "audits/predictive-intelligence/phase_11/probes/run_analog.py": "884a63dd9f8797084f0ff003ab444bb612cb3729b6986ce6d7a8bb8621d2dc00",
+  "audits/predictive-intelligence/phase_12/probes/run_holdout.py": "a593b35b625287ecbb13aac310988734a56532013ac8e85d284b441d0c641455",
+  "memelab/predictive/analog.py": "5087ca065cb28b9e1a006ce1b66757b23654d5be95502db43cbbb605c5689448",
+  "memelab/predictive/baselines.py": "3be1306a4137b7db6bdffac9541278c1703843fe1ccb75c58b99be35d6858b71",
+  "memelab/predictive/contract.py": "1caa72271fba5e4d96bfaaaab35ea0f75a496790bae5a4dbd6f27c825e78819a",
+  "memelab/predictive/evaluation.py": "da41c738e8574f1d10dcd2d115d5168b1890764c8e8db6159b232bab1b030036",
+  "memelab/predictive/features.py": "6a66f93bd6fd753aaa989a5ea9e89878e16698f3e6ea8bf95a847f33b4eae3b3",
+  "memelab/predictive/labels.py": "f50620c37129c6434a7fa9f58ff8e0733438b950ac86cc7f81eb596da41059ef",
+  "memelab/predictive/onchain.py": "fffb4a1cbe6679466b1d4219cc70a780b8fc22a31e3e2bf6993207fa2a1d5021",
+  "memelab/predictive/socialcat.py": "430161bbda3b283a7d24450ad75f035be53bfad9495db353f51d62bd6b4db549",
+  "memelab/predictive/stats.py": "e249d9d99e0d69e3f55d80e9a3d42b3a4efaf44c6488c04c4f318d576895096a",
+  "memelab/predictive/technical.py": "cf84a7ab499e1f47665ad0b7141ffece18557a145eaea6b02c709e9ff495040f"
+ },
+ "cpu_s": 6.596,
+ "end_utc": "2026-10-26T17:32:55Z",
+ "failures": [],
+ "firecrawl_credits": 0,
+ "head": "3ea7030082981fbe09ea06f289051055afef7bd6",
+ "llm_calls": 0,
+ "max_rss_kb": 245348,
+ "network_calls": 0,
+ "numpy": "2.5.3",
+ "python": "3.13.17",
+ "start_utc": "2026-10-26T17:32:47Z",
+ "step": "predict",
+ "stores_after": {
+  "/home/claude/memelab-inbox/data/memelab.sqlite": "068287c0d7e454361eb42f54b2f90e49e4075ae3a962a3c57867165ab6a679ca",
+  "/home/claude/pi_research/p05/predictive_store.sqlite": "2525f0c4a7b2662713d07e99acd1a371c33aa5082994f5f552aba477f98dd8de",
+  "/home/claude/pi_research/p06/dev_store.sqlite": "d2a5a7c67afb82da79c4c957ba3b32576963bc4d96bf61ca14fa81b2b5b6e8db"
+ },
+ "stores_before": {
+  "/home/claude/memelab-inbox/data/memelab.sqlite": "068287c0d7e454361eb42f54b2f90e49e4075ae3a962a3c57867165ab6a679ca",
+  "/home/claude/pi_research/p05/predictive_store.sqlite": "2525f0c4a7b2662713d07e99acd1a371c33aa5082994f5f552aba477f98dd8de",
+  "/home/claude/pi_research/p06/dev_store.sqlite": "d2a5a7c67afb82da79c4c957ba3b32576963bc4d96bf61ca14fa81b2b5b6e8db"
+ },
+ "stores_unchanged": true,
+ "vendor_calls": 0,
+ "wall_s": 7.556
+}
