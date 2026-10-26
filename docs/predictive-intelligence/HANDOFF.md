@@ -33,7 +33,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 ## Phase 14 commits
 
 - HEAD before `2fd0aae`; pre-registration `9ed8377` (22:21:08Z); frozen code `c59c494` (23:08:49Z); recorded run `872578d` (23:18:04Z); records on top; post-commit record after that (local only; the orchestrator pushes).
-- Pre-freeze suite at the frozen tree: `1 failed, 1766 passed, 1 skipped` (known failure only). Post-commit results: `phase_14/postcommit/`.
+- Pre-freeze suite at the frozen tree: `1 failed, 1766 passed, 1 skipped` (known failure only). Records commit `bf06b87`; post-commit at `bf06b87`: suite `1 failed, 1772 passed, 1 skipped` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no.", `git status` clean (`phase_14/postcommit/`).
 
 ## Waiting on Elving
 

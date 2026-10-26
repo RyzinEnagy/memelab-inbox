@@ -114,3 +114,14 @@ Scope of "no label read": Phase 14's own code, seed builder and runner read no l
 ## Skeptic
 
 Packet: `SKEPTIC_PACKET.md`. The independent review and its counterexample are folded in by the repair pass.
+
+## Post-commit at the records commit `bf06b87`
+
+| Command | Exit | Result |
+|---|---|---|
+| `python -m pytest tests -q -p no:cacheprovider` (from 23:23:05Z) | 1 | `1 failed, 1772 passed, 1 skipped, 1 warning in 203.75s`, only the known failure; stray `data/reports/20261026_2323_BRETT_0x532f.md` removed by hand |
+| `python -m memelab social guard` | 0 | 0 violations |
+| `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | 0 | `"problems": []` |
+| `python tools/release_audit.py --history` on a single-branch clone | 0 | "Needs action: no." |
+| `git status --short` | 0 | clean after the post-commit record |
+

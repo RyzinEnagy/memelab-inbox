@@ -9,7 +9,7 @@
   "statistical_engine": "UNAFFECTED"
  },
  "head_before": "2fd0aae",
- "head_after": "872578d",
+ "head_after": "bf06b87",
  "commits": {
   "pre_registration": "9ed8377",
   "frozen_code": "c59c494",
@@ -202,6 +202,34 @@
    "name": "PI-D-074 release audit entries",
    "command": "python -B probes/release_exempt_compare.py 2fd0aae",
    "result": "findings outside the Phase 14 files equal (63 reviewed, 0 unexplained)",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G20 post-commit suite at bf06b87",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "result": "1 failed, 1772 passed, 1 skipped in 203.75s (known test_dedup_corroboration_resurface_denial only)",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "G20 content guard at bf06b87",
+   "command": "python -m memelab social guard",
+   "result": "0 violations",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G20 seal check at bf06b87",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "result": "problems []",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G20 single-branch release audit at bf06b87",
+   "command": "python tools/release_audit.py --history (single-branch clone)",
+   "result": "Needs action: no.",
    "exit_code": 0,
    "pass": true
   }
