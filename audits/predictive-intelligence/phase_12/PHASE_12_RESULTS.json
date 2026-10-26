@@ -2,7 +2,7 @@
  "phase": "12",
  "status": "PASS",
  "head_before": "63076adb7a42ac7f7c2cc271d535d8e7a6947d0e",
- "head_after": null,
+ "head_after": "23f3750ccf95927170aae83d4cb029c748379872",
  "commits": {
   "pre_registration": "79d30f5",
   "frozen_code": "3ea7030",
@@ -256,11 +256,39 @@
    "pass": true
   },
   {
-   "name": "G23 suite, guard, seal check, release audit after the commit",
-   "command": "see the post-commit records commit",
-   "result": "pending",
-   "exit_code": null,
-   "pass": null
+   "name": "G23 full suite after the repair commit",
+   "command": "python -m pytest tests -q -p no:cacheprovider at 23f3750",
+   "result": "1 failed, 1455 passed in 234.75s (known test_dedup_corroboration_resurface_denial only); strays removed by hand",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "G23 social guard",
+   "command": "python -m memelab social guard",
+   "result": "0 violations",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G23 seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "result": "problems [] with the three pinned hashes",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G23 single-branch release audit",
+   "command": "python tools/release_audit.py --history on a single-branch clone at 23f3750",
+   "result": "Needs action: no.",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G23 git status",
+   "command": "git status --short",
+   "result": "clean after removing the strays",
+   "exit_code": 0,
+   "pass": true
   }
  ],
  "artifacts": [
@@ -331,6 +359,22 @@
   {
    "path": "audits/predictive-intelligence/phase_12/postcommit/release_audit_history.summary.txt",
    "sha256": "a38fafb25b4ead133f2ed54e8b36d0ed2a3ae926ff7aaecbc75a572141b4312e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/postcommit/repair2_pytest_summary.txt",
+   "sha256": "5893fe3b8bc4a95b334d80e8df93144dddfc57fed2ea2274be05dcee620c3205"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/postcommit/repair2_release_audit_history.summary.txt",
+   "sha256": "60962b3cfe51075d6ec128dbd6f988f64088d21e5fec77dd1d0c50ba8ba73e04"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/postcommit/repair2_seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/postcommit/repair2_social_guard.out.txt",
+   "sha256": "a6128cc01cbba962a48b53fa70fe9d72c975c22b37bde04b2122698b15efc83a"
   },
   {
    "path": "audits/predictive-intelligence/phase_12/postcommit/seal_check.json",

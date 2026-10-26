@@ -39,7 +39,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 ## Phase 12 commits
 
 - First pass: HEAD before `63076ad`; pre-registration `79d30f5` (16:41:13Z); frozen code `3ea7030` (17:32:01Z); pre-opening outputs `d58de61` (17:33:19Z); opening outputs `de7ac77` (17:47:49Z); results `c549748`; post-commit record `ae911ac` (pushed). Post-commit at `c549748`: suite `1 failed, 1445 passed`.
-- Repair pass 2: code `e7f0b6c` (19:46:57Z), outputs and records in the next commit, then a post-commit records commit (hashes in `PHASE_12_RESULTS.json`). Local only; the orchestrator pushes.
+- Repair pass 2: code `e7f0b6c` (19:46:57Z), outputs and records `23f3750` (19:59:41Z), and this post-commit record on top (local only; the orchestrator pushes). Post-commit at `23f3750`: suite `1 failed, 1455 passed` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no.", `git status` clean.
 
 ## Waiting on Elving
 
@@ -65,4 +65,4 @@ python -m pytest tests/test_predictive_evaluation.py tests/test_predictive_phase
 python -B audits/predictive-intelligence/phase_12/probes/post_opening_corrections.py /tmp/po   # compare with validation/ (POST_OPENING, logged)
 ```
 
-Expect `"problems": []` from the seal check (the opening did not change the sealed files) and only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` failing in the suite. Then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. A REPRODUCTION of the opening (`python -B audits/predictive-intelligence/phase_12/probes/run_holdout.py open OUT --reproduction`, about 11 min) needs the two private stores under `/home/claude/pi_research/` (rebuild them from the committed archives if the workspace was reclaimed: `phase_05/data/FEATURE_STORE_CONTRACT.md`, `phase_06/labels/TARGET_SCHEMA.md`) and the git objects of the holdout decisions' export commits.
+Expect `"problems": []` from the seal check (the opening did not change the sealed files), `1 failed, 1455 passed` with only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` failing in the suite. Then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. A REPRODUCTION of the opening (`python -B audits/predictive-intelligence/phase_12/probes/run_holdout.py open OUT --reproduction`, about 11 min) needs the two private stores under `/home/claude/pi_research/` (rebuild them from the committed archives if the workspace was reclaimed: `phase_05/data/FEATURE_STORE_CONTRACT.md`, `phase_06/labels/TARGET_SCHEMA.md`) and the git objects of the holdout decisions' export commits.

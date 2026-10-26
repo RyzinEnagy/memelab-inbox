@@ -142,3 +142,13 @@ Holdout reads after the first opening, all logged: the first-pass REPRODUCTION a
 ## Counterexample CX-S12 and what catches it now
 
 The reviewer's: "0 of 129 secondary comparisons survive the selection correction" read as "no frozen card beats B2 after correction", although the first-pass rule could not report any comparison against B2 as surviving. Now caught by `tests/test_predictive_evaluation.py::test_cx_s12_a_correction_that_was_not_computed_is_never_read_as_did_not_survive` (fails on the first-pass module), by `probes/cx_s12_check.py` on the reviewer's synthetic data, and on the real holdout by the POST_OPENING max-T against B2 (all 129 rows corrected, 0 not computed; `tests/test_predictive_phase12_outputs.py` asserts no row is CORRECTION_NOT_COMPUTED or a survivor).
+
+## Post-commit results after repair pass 2 (at `23f3750`)
+
+| Command | Result | Exit |
+|---|---|---|
+| `python -m pytest tests -q -p no:cacheprovider` | `1 failed, 1455 passed in 234.75s`; only the known `test_dedup_corroboration_resurface_denial`; strays removed by hand; `data/memelab.sqlite` unchanged (`postcommit/repair2_pytest_summary.txt`) | 1 |
+| `python -m memelab social guard` | 0 violations | 0 |
+| `check_seal.py` | `"problems": []` | 0 |
+| `python tools/release_audit.py --history` on a single-branch clone at `23f3750` | "Needs action: no." | 0 |
+| `git status --short` | clean | 0 |
