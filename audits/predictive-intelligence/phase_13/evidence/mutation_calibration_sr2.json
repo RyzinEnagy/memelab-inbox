@@ -1,0 +1,563 @@
+{
+ "applied": 79,
+ "caught": 79,
+ "equivalent": [],
+ "mutations": 79,
+ "not_applied": [],
+ "results": [
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_a_row_that_cannot_calibrate_is_refused_never_dropped[bad2-only development]",
+   "mutation": "C1 split not checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_a_row_that_cannot_calibrate_is_refused_never_dropped[bad3-not a development row]",
+   "mutation": "C2 relabelled holdout accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_a_row_that_cannot_calibrate_is_refused_never_dropped[bad0-at or after the cutoff]",
+   "mutation": "C3 row at the cutoff accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_a_row_that_cannot_calibrate_is_refused_never_dropped[bad1-matures after]",
+   "mutation": "C4 immature label accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_a_row_that_cannot_calibrate_is_refused_never_dropped[bad4-in-sample]",
+   "mutation": "C5 in-sample score accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_a_duplicate_decision_or_a_missing_field_is_refused",
+   "mutation": "C6 duplicate accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_a_row_that_cannot_calibrate_is_refused_never_dropped[bad5-P38]",
+   "mutation": "C7 non-finite score accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_rows_at_keeps_only_rows_known_at_the_cutoff_and_checks_them",
+   "mutation": "C8 rows_at filters future rows silently into the check"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_the_fit_gate_boundaries[99-30-5-False]",
+   "mutation": "G1 event gate off by one"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_the_fit_gate_boundaries[100-81-5-False]",
+   "mutation": "G2 per-class gate checks positives only"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_the_fit_gate_boundaries[150-40-4-False]",
+   "mutation": "G3 day gate dropped"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_the_method_rule_is_fixed_by_counts_only[199-60-PLATT]",
+   "mutation": "G4 Venn-Abers from fewer events"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_the_evidence_gate[50-9-False]",
+   "mutation": "G5 evidence gate per class dropped"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_frozen_constants_are_the_preregistered_ones",
+   "mutation": "G6 fit gate constant loosened"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_evidence_must_be_prospective_out_of_sample_and_not_the_fit_set",
+   "mutation": "E1 holdout evidence admitted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_evidence_must_be_prospective_out_of_sample_and_not_the_fit_set",
+   "mutation": "E2 pre-cutoff evidence admitted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_evidence_must_be_prospective_out_of_sample_and_not_the_fit_set",
+   "mutation": "E3 evidence overlapping fit admitted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_evidence_must_be_prospective_out_of_sample_and_not_the_fit_set",
+   "mutation": "E4 evidence maturity ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_a_failed_check_on_enough_evidence_leaves_the_card_uncalibrated",
+   "mutation": "E5 calibrated without a passed check"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_p11_flat_all_positive_predictions_are_flagged_and_fail_calibration",
+   "mutation": "E6 flat predictions calibrated"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_card_sha_level_source_and_status_are_checked_on_load",
+   "mutation": "E7 simulation source accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_card_sha_level_source_and_status_are_checked_on_load",
+   "mutation": "E8 card sha not verified"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_a_card_is_calibrated_only_with_a_calibrator_and_passed_admissible_evidence",
+   "mutation": "E9 publishable ignores level"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_card_sha_level_source_and_status_are_checked_on_load",
+   "mutation": "E10 calibrated card without calibrator accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_the_interval_never_narrows_as_support_falls",
+   "mutation": "N1 interval ignores support"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_frozen_constants_are_the_preregistered_ones",
+   "mutation": "N2 flat threshold loosened"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_p23_a_brier_and_log_loss_conflict_is_flagged_with_both_scores_and_counts",
+   "mutation": "N3 conflict flag never set"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_p10_an_always_negative_model_on_a_rare_event_shows_its_weakness",
+   "mutation": "N4 AUC below 10 per class"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_the_wider_bootstrap_interval_governs_the_score_report",
+   "mutation": "N5 narrower bootstrap governs"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_a_calibrator_that_returns_a_non_finite_number_is_refused",
+   "mutation": "N6 calibrator output not range checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_a_non_finite_score_never_reaches_a_calibrator_p38[nan]",
+   "mutation": "N7 calibrator input NaN accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_support_bins_follow_the_frozen_quantile_layout_and_refuse_extrapolation",
+   "mutation": "N8 support extrapolates"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_a_permutation_p_value_is_never_zero",
+   "mutation": "N9 heterogeneity p without +1"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_frozen_constants_are_the_preregistered_ones",
+   "mutation": "N10 drift two sided"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/calibration.py",
+   "first_failure": "FAILED tests/test_predictive_calibration.py::test_block_intervals_of_the_event_rate_widen_with_clustered_days",
+   "mutation": "N11 base rate governing narrower"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[FLAG_OFF]",
+   "mutation": "A1 flag ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[CHAIN_OUT_OF_SCOPE]",
+   "mutation": "A2 chain ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[MINT_NOT_VERIFIED]",
+   "mutation": "A3 mint not verified"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[POOL_NOT_POINT_IN_TIME]",
+   "mutation": "A4 pool not checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[SOURCE_GAP]",
+   "mutation": "A5 gap treated as eligible"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[SIZE_REQUESTED]",
+   "mutation": "A6 size ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[BACKTEST_REQUIRED_NOT_AVAILABLE]",
+   "mutation": "A7 backtest requirement ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[MISSING_REQUIRED_INPUT]",
+   "mutation": "A8 missing input ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[FEATURE_OUT_OF_RANGE]",
+   "mutation": "A9 out of range ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[SCORE_OUTSIDE_CALIBRATION_RANGE]",
+   "mutation": "A10 extrapolated score accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_today_every_target_abstains_with_the_preregistered_reasons",
+   "mutation": "A11 level ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[MODEL_TRAINED_AFTER_DECISION]",
+   "mutation": "A12 future-trained card accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[MODEL_TOO_OLD]",
+   "mutation": "A13 stale card accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[FEATURE_SET_MISMATCH]",
+   "mutation": "A14 feature set not compared"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[INVALID_PROBABILITY]",
+   "mutation": "A15 invalid raw accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_a_calibration_card_of_another_model_or_target_is_no_calibrator",
+   "mutation": "A16 calibration card of another model accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_display_range_and_support_conditions[POINT_OUTSIDE_DISPLAY_RANGE-patch0]",
+   "mutation": "A17 display range ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_display_range_and_support_conditions[LOW_SUPPORT-patch1]",
+   "mutation": "A18 low support ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[DRIFT]",
+   "mutation": "A19 drift ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[CALIBRATION_EVIDENCE_PENDING]",
+   "mutation": "A20 pending evidence not named"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[NO_TOKEN_HISTORY]",
+   "mutation": "A21 token history ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[DISALLOWED_INPUT]",
+   "mutation": "A22 disallowed path not refused"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_disallowed_inputs_are_named",
+   "mutation": "A23 late availability accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_p27_an_agent_agreement_never_becomes_a_probability",
+   "mutation": "A24 behavioral input accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_p27_an_agent_agreement_never_becomes_a_probability",
+   "mutation": "V1 scenario numbers accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_p27_an_agent_agreement_never_becomes_a_probability",
+   "mutation": "V2 cohort fractions accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_p27_an_agent_agreement_never_becomes_a_probability",
+   "mutation": "V3 simulation source accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_an_abstention_document_cannot_carry_a_reference_outside_the_allowlist",
+   "mutation": "V4 reference allowlist off"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_the_validator_refuses_each_unsupported_forecast",
+   "mutation": "V5 reference numbers not compared"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_the_validator_refuses_each_unsupported_forecast",
+   "mutation": "V6 support interval not required"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_the_validator_refuses_each_unsupported_forecast",
+   "mutation": "V7 shadow caveat not required"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_the_validator_refuses_each_unsupported_forecast",
+   "mutation": "V8 new mint caveat not required"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_a_calibrated_card_kept_at_level_abstain_never_publishes",
+   "mutation": "V9 level not checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_an_abstention_record_must_match_its_document",
+   "mutation": "V10 record reasons not compared"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_an_edited_record_that_keeps_its_id_is_refused",
+   "mutation": "V11 record id not checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_the_validator_refuses_each_unsupported_forecast",
+   "mutation": "V12 interval caveat not required"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_the_validator_refuses_each_unsupported_forecast",
+   "mutation": "V13 calibration card not verified"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_sr2_a_tampered_calibration_card_counts_as_no_calibration",
+   "mutation": "S1 tampered calibration card used"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_sr2_the_level_must_be_the_calibration_card_level",
+   "mutation": "S2 level mismatch ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_sr2_a_forged_support_count_is_refused",
+   "mutation": "S3 forged support accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_sr2_the_base_rate_is_the_model_card_prevalence",
+   "mutation": "S4 base rate not compared"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_p39_drift_degrades_later_forecasts_and_never_rewrites_earlier_records",
+   "mutation": "P1 append-only check off"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_plain_language_refuses_a_trading_word_even_from_an_explanation",
+   "mutation": "P2 trading words allowed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/abstention.py",
+   "first_failure": "FAILED tests/test_predictive_abstention.py::test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[BACKTEST_REQUIRED_NOT_AVAILABLE]",
+   "mutation": "P3 forecast with conditions"
+  }
+ ],
+ "survived": []
+}

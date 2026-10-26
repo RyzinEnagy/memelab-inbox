@@ -169,6 +169,12 @@ def evaluate(req: dict, *, card: dict | None, level: str, cal_card: dict | None,
     reg = C.TARGETS.get(tgt, {})
     T = float(req["decision_time"])
     conds: list[dict] = []
+    refused = None
+    if cal_card is not None:
+        try:
+            CAL.verify_card(cal_card)
+        except Exception as e:                    # a tampered or foreign calibration card counts as none (self-review pass 2)
+            refused, cal_card = f"calibration card refused: {type(e).__name__}", None
     if req.get("flag_on") is not True:
         conds.append(_cond("FLAG_OFF"))
     if req.get("chain") != reg.get("scope_chain", "solana"):
@@ -211,6 +217,8 @@ def evaluate(req: dict, *, card: dict | None, level: str, cal_card: dict | None,
         conds.append(_cond("NO_TOKEN_HISTORY", f"{int(req.get('token_history_rows') or 0)} matured rows of this mint"))
     if level not in CAL.PUBLISHABLE_LEVELS:
         conds.append(_cond("MODEL_NOT_PROMOTED", f"level {level}"))
+    elif cal_card is not None and cal_card.get("level") != level:
+        conds.append(_cond("MODEL_NOT_PROMOTED", f"level {level} differs from the calibration card's {cal_card.get('level')}"))
     if card is None:
         conds.append(_cond("NO_CHAMPION"))
     elif "abstain" in (card.get("body") or {}):
@@ -228,7 +236,7 @@ def evaluate(req: dict, *, card: dict | None, level: str, cal_card: dict | None,
     cal_ok = (cal_card is not None and cal_card.get("status") == CAL.CALIBRATED and card is not None
               and cal_card.get("champion_model_sha") == card.get("model_sha") and cal_card.get("target") == tgt)
     if not cal_ok:
-        why = "no calibration card" if cal_card is None else (
+        why = (refused or "no calibration card") if cal_card is None else (
             "calibration card of another model or target" if card is not None and (cal_card.get("champion_model_sha") != card.get("model_sha")
                                                                                    or cal_card.get("target") != tgt)
             else f"status {cal_card.get('status')}")
@@ -423,11 +431,17 @@ def _forecast_checks(doc: dict, model_card: dict | None, cal: dict | None, ref: 
     sn, sk = ref.get("support_n"), ref.get("support_k")
     if not (isinstance(sn, int) and isinstance(sk, int) and 0 <= sk <= sn) or sn < CAL.SUPPORT_MIN:
         errs.append(f"support below {CAL.SUPPORT_MIN} calibration events (P24)")
+    elif not any(int(b["n"]) == sn and int(b["k"]) == sk for b in cal.get("support_bins") or []):
+        errs.append("support_n and support_k are not a support bin of the stored card (PI-D-022, self-review pass 2)")
     else:
         wl, wh = K.wilson(sk, sn)
         iv = doc.get("uncertainty_interval")
         if not (isinstance(iv, list) and len(iv) == 2 and all(_fin(v) for v in iv) and iv[0] <= wl + 1e-12 and iv[1] >= wh - 1e-12):
             errs.append("the interval is narrower than the Wilson interval of its support (P23, P24)")
+    if model_card is not None and model_card.get("n_train"):
+        want_base = float(model_card["k_train"]) / float(model_card["n_train"])
+        if not (_fin(doc.get("base_rate")) and abs(float(doc["base_rate"]) - want_base) <= 1e-12):
+            errs.append("base_rate is not the model card's training prevalence (self-review pass 2)")
     p = doc.get("probability")
     if not (_fin(p) and CAL.DISPLAY_RANGE[0] <= p <= CAL.DISPLAY_RANGE[1]):
         errs.append(f"probability outside the display range {CAL.DISPLAY_RANGE}")

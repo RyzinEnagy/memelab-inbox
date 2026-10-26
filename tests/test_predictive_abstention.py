@@ -75,7 +75,7 @@ def world(seed: int = 1, *, level: str = "SHADOW", fit_n: int = 300, ev_n: int =
            "new_mint": False, "token_history_rows": 0}
     raw, why = B.predict(card, [q])
     return {"req": req, "card": card, "level": level, "cal": cal, "raw": float(raw[0]), "raw_why": why[0], "drift": [],
-            "rows": rows}
+            "rows": rows, "ev": ev}
 
 
 def run(w, **kw):
@@ -507,8 +507,8 @@ def test_the_schema_accepts_both_kinds_of_result_and_refuses_mutations(good):
 def test_a_calibration_card_of_another_model_or_target_is_no_calibrator(good):
     w = copy.deepcopy(good)
     other = dict(w["card"], model_sha="c" * 64)
-    w["cal"] = CAL.build_card(T1, other, w["rows"], H, level="SHADOW",
-                              evidence={**world()["cal"]["evidence"], "status": "NOT_YET_MATURED"})
+    w["cal"] = CAL.build_card(T1, other, w["rows"], H, level="SHADOW", evidence=w["ev"], is_fixture=True)
+    assert w["cal"]["status"] == CAL.CALIBRATED                # a valid, calibrated card, but of another model
     doc, rec = run(w)
     no = [c for c in rec["conditions"] if c["code"] == "NO_CALIBRATOR"]
     assert doc["prediction_status"] == "ABSTAIN" and no and "another model" in no[0]["detail"]
@@ -556,3 +556,35 @@ def test_plain_language_refuses_a_trading_word_even_from_an_explanation(good, mo
     rec2["conditions"][0]["explanation"] = "buy before the move"
     with pytest.raises(AB.PublicationError, match="trading word"):
         AB.describe(doc, rec2)
+
+
+# ---------------------------------------------------------------- self-review pass 2 (not independent): four holes closed
+def test_sr2_a_tampered_calibration_card_counts_as_no_calibration(good):
+    w = copy.deepcopy(good)
+    w["cal"]["calibration_set"]["n"] = 10_000                 # content edited, sha kept
+    doc, rec = run(w)
+    no = [c for c in rec["conditions"] if c["code"] == "NO_CALIBRATOR"]
+    assert doc["prediction_status"] == "ABSTAIN" and no and "refused" in no[0]["detail"]
+
+
+def test_sr2_the_level_must_be_the_calibration_card_level(good):
+    w = copy.deepcopy(good)
+    w["level"] = "VALIDATED_EXPERIMENTAL"                      # the card says SHADOW
+    doc, rec = run(w)
+    assert doc["prediction_status"] == "ABSTAIN"
+    assert any(c["code"] == "MODEL_NOT_PROMOTED" and "differs" in c["detail"] for c in rec["conditions"])
+
+
+def test_sr2_a_forged_support_count_is_refused(good):
+    doc, rec = run(good)
+    ref = dict(doc["calibration_reference"])
+    forged = _tamper(doc, calibration_reference={**ref, "support_n": 1000, "support_k": int(1000 * doc["probability"])})
+    errs = AB.validate_publication(forged, model_card=good["card"], calibration_card=good["cal"], backtest=BT)
+    assert any("support bin" in e for e in errs)
+
+
+def test_sr2_the_base_rate_is_the_model_card_prevalence(good):
+    doc, rec = run(good)
+    errs = AB.validate_publication(_tamper(doc, base_rate=0.5), model_card=good["card"], calibration_card=good["cal"], backtest=BT)
+    assert any("training prevalence" in e for e in errs)
+    assert AB.validate_publication(doc, model_card=good["card"], calibration_card=good["cal"], record=rec, backtest=BT) == []

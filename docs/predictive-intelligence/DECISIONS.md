@@ -486,3 +486,14 @@ Written with `audits/predictive-intelligence/phase_13/ACCEPTANCE_CHECKLIST.md` a
 5. Interval: hull of the calibrator's own interval and the Wilson interval of the support bin, so it widens with small support; it never stands for unmodelled risk.
 6. Abstention: 28 named conditions, each mapped to one existing contract reason (the checklist's rule 12), all evaluated and persisted with the attempted target and horizon in an append-only `abstention-1` record beside the ABSTAIN document.
 7. Expected, stated in advance: UNCALIBRATED for all three primary targets (calibration sets of 24, 44 and 8 rows with 8, 3 and 1 positive), ABSTAIN everywhere, publication coverage 0%.
+
+## PI-D-068 Change control CP13-0: self-review pass 2 before the independent skeptic (ADOPTED, 2026-10-26, Phase 13; not independent)
+
+The phase agent's own adversarial pass on the recorded run at `5a3c582` (outputs `9cd5288`) found four ways a forged or mismatched FORECAST could pass the publication path. None can occur in today's outputs (every document is ABSTAIN), but each would matter once a card is promoted. Fixed in `abstention.py` with a test each that fails on the first-pass module (`phase_13/evidence/sr2_old_code_check.json`: 4 failed) and four new mutations (probe 79 of 79):
+
+1. `evaluate` verifies the calibration card's sha; a tampered or foreign card counts as none (NO_CALIBRATOR, detail "calibration card refused").
+2. The requested level must equal the calibration card's level (else MODEL_NOT_PROMOTED).
+3. `validate_publication` requires `support_n` and `support_k` to be one of the stored card's support bins (a forged large support would have narrowed the required interval; completes PI-D-022's "numbers match a stored evaluation").
+4. `validate_publication` requires `base_rate` to equal the model card's training prevalence.
+
+The calibration rules, gates, thresholds and the 28 conditions are unchanged. The recorded run is repeated at the repair commit; every output must be byte-equal except the run log, or the change is reported. Still open, for Phase 17: the published probability cannot be recomputed from the document alone (the raw model number is not in the contract), so Phase 17 must keep the raw number in its internal request record and recompute the calibrated point before publishing.
