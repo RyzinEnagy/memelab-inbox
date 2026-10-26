@@ -1,0 +1,665 @@
+{
+ "$defs": {
+  "calibration_reference": {
+   "additionalProperties": false,
+   "properties": {
+    "calibration_card_sha": {
+     "pattern": "^[0-9a-f]{64}$",
+     "type": "string"
+    },
+    "calibration_k": {
+     "minimum": 20,
+     "type": "integer"
+    },
+    "calibration_n": {
+     "minimum": 100,
+     "type": "integer"
+    },
+    "calibration_version": {
+     "const": "calibration-1"
+    },
+    "holdout_k": {
+     "minimum": 10,
+     "type": "integer"
+    },
+    "holdout_n": {
+     "minimum": 50,
+     "type": "integer"
+    },
+    "level": {
+     "enum": [
+      "SHADOW",
+      "VALIDATED_EXPERIMENTAL"
+     ]
+    },
+    "method": {
+     "enum": [
+      "VENN_ABERS",
+      "PLATT"
+     ]
+    },
+    "passed": {
+     "const": true
+    },
+    "status": {
+     "const": "CALIBRATED"
+    },
+    "support_k": {
+     "minimum": 0,
+     "type": "integer"
+    },
+    "support_n": {
+     "minimum": 20,
+     "type": "integer"
+    }
+   },
+   "required": [
+    "calibration_card_sha",
+    "calibration_version",
+    "method",
+    "level",
+    "status",
+    "holdout_n",
+    "holdout_k",
+    "passed",
+    "calibration_n",
+    "calibration_k",
+    "support_n",
+    "support_k"
+   ],
+   "type": "object"
+  },
+  "condition": {
+   "additionalProperties": false,
+   "properties": {
+    "code": {
+     "enum": [
+      "FLAG_OFF",
+      "CHAIN_OUT_OF_SCOPE",
+      "MINT_NOT_VERIFIED",
+      "TARGET_NOT_PRIMARY",
+      "POOL_NOT_POINT_IN_TIME",
+      "MARKET_INACTIVE",
+      "SOURCE_GAP",
+      "DISALLOWED_INPUT",
+      "SIZE_REQUESTED",
+      "BACKTEST_REQUIRED_NOT_AVAILABLE",
+      "MISSING_REQUIRED_INPUT",
+      "FEATURE_OUT_OF_RANGE",
+      "SCORE_OUTSIDE_CALIBRATION_RANGE",
+      "NO_TOKEN_HISTORY",
+      "MODEL_NOT_PROMOTED",
+      "NO_CHAMPION",
+      "MODEL_TRAINED_AFTER_DECISION",
+      "MODEL_TOO_OLD",
+      "FEATURE_SET_MISMATCH",
+      "INVALID_PROBABILITY",
+      "NO_CALIBRATOR",
+      "DEGENERATE_FLAT_PREDICTIONS",
+      "POINT_OUTSIDE_DISPLAY_RANGE",
+      "CALIBRATION_SET_TOO_SMALL",
+      "CALIBRATION_EVIDENCE_TOO_SMALL",
+      "LOW_SUPPORT",
+      "CALIBRATION_EVIDENCE_PENDING",
+      "DRIFT"
+     ]
+    },
+    "detail": {
+     "type": "string"
+    },
+    "explanation": {
+     "minLength": 1,
+     "type": "string"
+    },
+    "reason": {
+     "enum": [
+      "INSUFFICIENT_HISTORY",
+      "NOT_YET_MATURED",
+      "UNCALIBRATED",
+      "MODEL_STALE",
+      "DRIFT_ALERT",
+      "OOD",
+      "FEATURE_SCHEMA_MISMATCH",
+      "EXECUTION_DATA_MISSING",
+      "NO_RECENT_PRICE",
+      "OUT_OF_SCOPE_CHAIN",
+      "OUT_OF_SCOPE_OPPORTUNITY_TYPE",
+      "TARGET_NOT_FEASIBLE",
+      "UNVERIFIED_EVENT",
+      "RESTRICTED_SOURCE",
+      "SOURCE_STALE",
+      "MODEL_NOT_SELECTED",
+      "FLAG_OFF"
+     ]
+    }
+   },
+   "required": [
+    "code",
+    "reason",
+    "detail",
+    "explanation"
+   ],
+   "type": "object"
+  },
+  "document": {
+   "additionalProperties": false,
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "prediction_status": {
+        "const": "ABSTAIN"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "abstain_reasons": {
+        "minItems": 1,
+        "type": "array"
+       },
+       "probability": {
+        "type": "null"
+       },
+       "uncertainty_interval": {
+        "type": "null"
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "prediction_status": {
+        "const": "FORECAST"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "abstain_reasons": {
+        "maxItems": 0,
+        "type": "array"
+       },
+       "calibration_reference": {
+        "$ref": "#/$defs/calibration_reference"
+       },
+       "caveats": {
+        "contains": {
+         "const": "INTERVAL_EXCLUDES_UNMODELED_RISK"
+        },
+        "type": "array"
+       },
+       "probability": {
+        "maximum": 0.99,
+        "minimum": 0.01,
+        "type": "number"
+       },
+       "uncertainty_interval": {
+        "type": "array"
+       }
+      }
+     }
+    }
+   ],
+   "properties": {
+    "abstain_reasons": {
+     "items": {
+      "enum": [
+       "INSUFFICIENT_HISTORY",
+       "NOT_YET_MATURED",
+       "UNCALIBRATED",
+       "MODEL_STALE",
+       "DRIFT_ALERT",
+       "OOD",
+       "FEATURE_SCHEMA_MISMATCH",
+       "EXECUTION_DATA_MISSING",
+       "NO_RECENT_PRICE",
+       "OUT_OF_SCOPE_CHAIN",
+       "OUT_OF_SCOPE_OPPORTUNITY_TYPE",
+       "TARGET_NOT_FEASIBLE",
+       "UNVERIFIED_EVENT",
+       "RESTRICTED_SOURCE",
+       "SOURCE_STALE",
+       "MODEL_NOT_SELECTED",
+       "FLAG_OFF"
+      ]
+     },
+     "type": "array"
+    },
+    "backtest_assessment_ref": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "backtest_status": {
+     "enum": [
+      "BACKTEST_NOT_AVAILABLE",
+      "UNVERIFIED",
+      "VERIFIED"
+     ]
+    },
+    "base_rate": {
+     "maximum": 1,
+     "minimum": 0,
+     "type": [
+      "number",
+      "null"
+     ]
+    },
+    "behavioral_scenarios": {
+     "items": {
+      "$ref": "#/$defs/scenario"
+     },
+     "type": "array"
+    },
+    "calibration_reference": {
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "caveats": {
+     "items": {
+      "type": "string"
+     },
+     "minItems": 1,
+     "type": "array"
+    },
+    "chain": {
+     "type": "string"
+    },
+    "cohort": {
+     "additionalProperties": {
+      "type": [
+       "string",
+       "boolean",
+       "integer",
+       "null"
+      ]
+     },
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "contract_version": {
+     "const": "memelab.predictive.forecast/1"
+    },
+    "data_snapshot_sha": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "decision_time_basis": {
+     "enum": [
+      "EXPORT_COMMIT",
+      "CAPTURE_TIME"
+     ]
+    },
+    "decision_time_utc": {
+     "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+     "type": "string"
+    },
+    "evidence_refs": {
+     "items": {
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "execution_stress_assessment_ref": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "feature_set_sha": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "forecast_id": {
+     "pattern": "^fc_[0-9a-f]{32}$",
+     "type": "string"
+    },
+    "generated_at_utc": {
+     "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+     "type": "string"
+    },
+    "horizon_seconds": {
+     "minimum": 1,
+     "type": "integer"
+    },
+    "is_fixture": {
+     "type": "boolean"
+    },
+    "mint_address": {
+     "minLength": 32,
+     "type": "string"
+    },
+    "model_id": {
+     "type": "string"
+    },
+    "model_sha": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "position_usd": {
+     "type": "null"
+    },
+    "prediction_status": {
+     "enum": [
+      "FORECAST",
+      "ABSTAIN"
+     ]
+    },
+    "probability": {
+     "maximum": 1,
+     "minimum": 0,
+     "type": [
+      "number",
+      "null"
+     ]
+    },
+    "snapshot_hash": {
+     "pattern": "^(sha256:)?[0-9a-f]{64}$",
+     "type": "string"
+    },
+    "target": {
+     "enum": [
+      "price_path_target_before_invalidation_24h",
+      "price_path_target_before_invalidation_6h",
+      "price_path_severe_drawdown_or_halt_24h",
+      "exit_adjusted_target_before_invalidation_24h",
+      "liquidity_degradation_24h",
+      "failed_breakout_6h",
+      "catalyst_followthrough_24h_7d",
+      "distribution_event_24h",
+      "price_path_target_before_invalidation_7d",
+      "launch_cohort_collapse_24h"
+     ]
+    },
+    "target_version": {
+     "type": "string"
+    },
+    "training_cutoff_utc": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "uncertainty_interval": {
+     "items": {
+      "maximum": 1,
+      "minimum": 0,
+      "type": "number"
+     },
+     "maxItems": 2,
+     "minItems": 2,
+     "type": [
+      "array",
+      "null"
+     ]
+    }
+   },
+   "required": [
+    "forecast_id",
+    "contract_version",
+    "chain",
+    "mint_address",
+    "snapshot_hash",
+    "decision_time_utc",
+    "decision_time_basis",
+    "target",
+    "target_version",
+    "horizon_seconds",
+    "position_usd",
+    "probability",
+    "prediction_status",
+    "abstain_reasons",
+    "uncertainty_interval",
+    "base_rate",
+    "calibration_reference",
+    "training_cutoff_utc",
+    "model_id",
+    "model_sha",
+    "feature_set_sha",
+    "data_snapshot_sha",
+    "cohort",
+    "evidence_refs",
+    "backtest_status",
+    "backtest_assessment_ref",
+    "execution_stress_assessment_ref",
+    "behavioral_scenarios",
+    "caveats",
+    "is_fixture",
+    "generated_at_utc"
+   ],
+   "type": "object"
+  },
+  "record": {
+   "additionalProperties": false,
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "prediction_status": {
+        "const": "ABSTAIN"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "conditions": {
+        "minItems": 1,
+        "type": "array"
+       },
+       "reasons": {
+        "minItems": 1,
+        "type": "array"
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "prediction_status": {
+        "const": "FORECAST"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "conditions": {
+        "maxItems": 0,
+        "type": "array"
+       }
+      }
+     }
+    }
+   ],
+   "properties": {
+    "calibration_card_sha": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "calibration_status": {
+     "enum": [
+      "CALIBRATED",
+      "UNCALIBRATED",
+      null
+     ]
+    },
+    "chain": {
+     "type": "string"
+    },
+    "conditions": {
+     "items": {
+      "$ref": "#/$defs/condition"
+     },
+     "type": "array"
+    },
+    "decision_time_basis": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "decision_time_utc": {
+     "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+     "type": "string"
+    },
+    "forecast_id": {
+     "pattern": "^fc_[0-9a-f]{32}$",
+     "type": "string"
+    },
+    "generated_at_utc": {
+     "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+     "type": "string"
+    },
+    "horizon_seconds": {
+     "minimum": 1,
+     "type": "integer"
+    },
+    "is_fixture": {
+     "type": "boolean"
+    },
+    "level": {
+     "enum": [
+      "ABSTAIN",
+      "SHADOW",
+      "VALIDATED_EXPERIMENTAL",
+      "NO_GO"
+     ]
+    },
+    "mint": {
+     "type": "string"
+    },
+    "model_id": {
+     "type": "string"
+    },
+    "model_sha": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "prediction_status": {
+     "enum": [
+      "FORECAST",
+      "ABSTAIN"
+     ]
+    },
+    "reasons": {
+     "items": {
+      "enum": [
+       "INSUFFICIENT_HISTORY",
+       "NOT_YET_MATURED",
+       "UNCALIBRATED",
+       "MODEL_STALE",
+       "DRIFT_ALERT",
+       "OOD",
+       "FEATURE_SCHEMA_MISMATCH",
+       "EXECUTION_DATA_MISSING",
+       "NO_RECENT_PRICE",
+       "OUT_OF_SCOPE_CHAIN",
+       "OUT_OF_SCOPE_OPPORTUNITY_TYPE",
+       "TARGET_NOT_FEASIBLE",
+       "UNVERIFIED_EVENT",
+       "RESTRICTED_SOURCE",
+       "SOURCE_STALE",
+       "MODEL_NOT_SELECTED",
+       "FLAG_OFF"
+      ]
+     },
+     "type": "array"
+    },
+    "record_id": {
+     "pattern": "^[0-9a-f]{64}$",
+     "type": "string"
+    },
+    "record_version": {
+     "const": "abstention-1"
+    },
+    "target": {
+     "enum": [
+      "price_path_target_before_invalidation_24h",
+      "price_path_target_before_invalidation_6h",
+      "price_path_severe_drawdown_or_halt_24h",
+      "exit_adjusted_target_before_invalidation_24h",
+      "liquidity_degradation_24h",
+      "failed_breakout_6h",
+      "catalyst_followthrough_24h_7d",
+      "distribution_event_24h",
+      "price_path_target_before_invalidation_7d",
+      "launch_cohort_collapse_24h"
+     ]
+    },
+    "target_version": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "record_version",
+    "forecast_id",
+    "chain",
+    "mint",
+    "target",
+    "target_version",
+    "horizon_seconds",
+    "decision_time_utc",
+    "decision_time_basis",
+    "prediction_status",
+    "conditions",
+    "reasons",
+    "model_id",
+    "model_sha",
+    "level",
+    "calibration_card_sha",
+    "calibration_status",
+    "is_fixture",
+    "generated_at_utc",
+    "record_id"
+   ],
+   "type": "object"
+  },
+  "scenario": {
+   "additionalProperties": {
+    "items": {
+     "type": "string"
+    },
+    "type": [
+     "string",
+     "array"
+    ]
+   },
+   "type": "object"
+  }
+ },
+ "$id": "memelab.predictive.forecast_result/1",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "additionalProperties": false,
+ "description": "Format only. A document that passes says nothing about accuracy. A probability appears only on FORECAST, finite in the display range, with a CALIBRATED SHADOW or VALIDATED_EXPERIMENTAL calibration reference; ABSTAIN carries named reasons and no number.",
+ "properties": {
+  "document": {
+   "$ref": "#/$defs/document"
+  },
+  "record": {
+   "$ref": "#/$defs/record"
+  }
+ },
+ "required": [
+  "document",
+  "record"
+ ],
+ "title": "ForecastResult: a forecast/1 document and its abstention-1 record (Phase 13, PI-D-067)",
+ "type": "object"
+}
