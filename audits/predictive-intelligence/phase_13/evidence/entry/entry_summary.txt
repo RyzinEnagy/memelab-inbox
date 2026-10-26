@@ -1,0 +1,9 @@
+=========================== short test summary info ============================
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+1 failed, 1455 passed in 197.15s (0:03:17)
+exit=1
+HEAD 6f4f8ea6254b6623cb66c627e6b61de3f9455fa8, started 2026-10-26T20:12:29Z, python -m pytest tests -q -p no:cacheprovider
+strays removed by hand: data/reports/20261026_2012_BRETT_0x532f.md, data/memelab.sqlite-shm, data/memelab.sqlite-wal
+phase 12 key check: python -m pytest tests/test_predictive_evaluation.py tests/test_predictive_phase12_outputs.py -q: 57 passed in 1.93s
+phase 12 RESULTS.json status: PASS
+sha256 data/memelab.sqlite 068287c0d7e454361eb42f54b2f90e49e4075ae3a962a3c57867165ab6a679ca; p06 dev_store d2a5a7c67afb82da79c4c957ba3b32576963bc4d96bf61ca14fa81b2b5b6e8db; p05 predictive_store 2525f0c4a7b2662713d07e99acd1a371c33aa5082994f5f552aba477f98dd8de (equal to Phase 12 records)
