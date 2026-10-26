@@ -1,0 +1,50 @@
+{
+ "T1_24h": {
+  "censored": 5,
+  "contacted_excluded": 1,
+  "contacted_labelled": 1,
+  "key_conflict_excluded": 0,
+  "rows": 176,
+  "scorable": 66,
+  "states": {
+   "LABELED": 67,
+   "MARKET_INACTIVE": 12,
+   "NO_SNAPSHOT_PRICE": 9,
+   "OUT_OF_SCOPE_CHAIN": 81,
+   "THINNED": 2,
+   "VENDOR_OR_ROUTE_GAP": 5
+  }
+ },
+ "T1b_6h": {
+  "censored": 5,
+  "contacted_excluded": 1,
+  "contacted_labelled": 1,
+  "key_conflict_excluded": 0,
+  "rows": 176,
+  "scorable": 68,
+  "states": {
+   "LABELED": 69,
+   "MARKET_INACTIVE": 12,
+   "NO_SNAPSHOT_PRICE": 9,
+   "OUT_OF_SCOPE_CHAIN": 81,
+   "VENDOR_OR_ROUTE_GAP": 5
+  }
+ },
+ "T2_24h": {
+  "censored": 5,
+  "contacted_excluded": 1,
+  "contacted_labelled": 1,
+  "key_conflict_excluded": 0,
+  "rows": 176,
+  "scorable": 59,
+  "states": {
+   "LABELED": 60,
+   "MARKET_INACTIVE": 12,
+   "NO_SNAPSHOT_PRICE": 9,
+   "OUT_OF_SCOPE_CHAIN": 81,
+   "PENDING": 7,
+   "THINNED": 2,
+   "VENDOR_OR_ROUTE_GAP": 5
+  }
+ }
+}

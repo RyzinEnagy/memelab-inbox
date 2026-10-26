@@ -1,0 +1,19 @@
+{
+ "bakeoff_configurations": 31,
+ "candidate_configurations": 87,
+ "debug_runs": 18,
+ "holdout_evaluation_rows": 186,
+ "n_search": 118,
+ "negative_control_fits": 366,
+ "other_rows": 54,
+ "rows": 3145,
+ "rows_by_phase": {
+  "04": 31,
+  "07": 488,
+  "08": 616,
+  "09": 670,
+  "10": 703,
+  "11": 388,
+  "12": 249
+ }
+}

@@ -1,0 +1,424 @@
+{
+ "holm_family": [
+  "T1_24h",
+  "T1b_6h",
+  "T2_24h"
+ ],
+ "p_holm": {
+  "T1_24h": 1.0,
+  "T1b_6h": 1.0,
+  "T2_24h": 0.10034498275086245
+ },
+ "primary": {
+  "T1_24h": {
+   "calibration": {
+    "bins": [
+     {
+      "mean_pred": 0.08718870700433316,
+      "n": 22,
+      "observed": 0.13636363636363635,
+      "ok": true,
+      "p_max": 0.13750612355078495,
+      "p_min": 0.041786227559707144,
+      "positives": 3,
+      "wilson": [
+       0.04749003714055253,
+       0.33334987166571717
+      ]
+     },
+     {
+      "mean_pred": 0.17891997384502065,
+      "n": 22,
+      "observed": 0.3181818181818182,
+      "ok": true,
+      "p_max": 0.21492586743894834,
+      "p_min": 0.1417154915151794,
+      "positives": 7,
+      "wilson": [
+       0.1636059318135624,
+       0.5268140225895723
+      ]
+     },
+     {
+      "mean_pred": 0.31341877966078663,
+      "n": 22,
+      "observed": 0.22727272727272727,
+      "ok": true,
+      "p_max": 0.6246044988220409,
+      "p_min": 0.21642359328883876,
+      "positives": 5,
+      "wilson": [
+       0.10123039985248516,
+       0.4343995317522171
+      ]
+     }
+    ],
+    "ece": 0.09152760869472001,
+    "every_bin_ok": true,
+    "in_the_large_ok": true,
+    "mean_pred": 0.19317582017004684,
+    "n": 66,
+    "observed": 0.22727272727272727,
+    "wilson": [
+     0.14285229563373036,
+     0.34169455364638307
+    ]
+   },
+   "champion": "P07_B2",
+   "counts": {
+    "censored": 5,
+    "contacted_excluded": 1,
+    "contacted_labelled": 1,
+    "key_conflict_excluded": 0,
+    "rows": 176,
+    "scorable": 66,
+    "states": {
+     "LABELED": 67,
+     "MARKET_INACTIVE": 12,
+     "NO_SNAPSHOT_PRICE": 9,
+     "OUT_OF_SCOPE_CHAIN": 81,
+     "THINNED": 2,
+     "VENDOR_OR_ROUTE_GAP": 5
+    }
+   },
+   "creator_group_interval": {
+    "ci": [
+     -0.15759564375140933,
+     0.1336096377089173
+    ],
+    "finite": 20000,
+    "groups": 57
+   },
+   "holdout_prevalence": {
+    "n": 66,
+    "positives": 15,
+    "prevalence": 0.22727272727272727,
+    "wilson": [
+     0.14285229563373036,
+     0.34169455364638307
+    ]
+   },
+   "metric": {
+    "abstain_reasons": "{}",
+    "average_precision": 0.3085605446339392,
+    "brier": 0.18039434762028045,
+    "brier_ref": 0.17613636363636365,
+    "bss": -0.02417436068288259,
+    "bss_ci_day_hi": 0.08029320983504051,
+    "bss_ci_day_lo": -0.1591246729394009,
+    "bss_ci_mint_hi": 0.13392227387028927,
+    "bss_ci_mint_lo": -0.15594405364506064,
+    "cal_bins": 3,
+    "cal_every_bin_ok": true,
+    "cal_in_the_large_ok": true,
+    "cal_mean_pred": 0.19317582017004684,
+    "cal_observed": 0.22727272727272727,
+    "coverage": 1.0,
+    "creator_group_ci_hi": 0.1336096377089173,
+    "creator_group_ci_lo": -0.15759564375140933,
+    "days": 7,
+    "ece": 0.09152760869472001,
+    "ess_day": 108.51609270235646,
+    "ess_mint": 62.78507410098282,
+    "governing": "mint",
+    "kind": "PRIMARY_HOLDOUT",
+    "log_loss": 0.5632554991922296,
+    "log_loss_ref": 0.5373666835127148,
+    "mints": 57,
+    "model": "P07_B2",
+    "n_rows": 66,
+    "n_with_number": 66,
+    "note": "",
+    "p_holm": 1.0,
+    "p_one_sided": 0.6266686665666716,
+    "positives": 15,
+    "prevalence": 0.22727272727272727,
+    "reference": "P07_B0",
+    "roc_auc": 0.550326797385621,
+    "target": "price_path_target_before_invalidation_24h",
+    "target_short": "T1_24h",
+    "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+    "view": "PRIMARY"
+   },
+   "shadow_criteria": {
+    "all": false,
+    "bss_point_at_least_0": false,
+    "calibration": true,
+    "count_gates": true,
+    "promotion": "NONE_IN_PHASE_12"
+   },
+   "target": "price_path_target_before_invalidation_24h",
+   "training_prevalence_b0": 0.25
+  },
+  "T1b_6h": {
+   "calibration": {
+    "bins": [
+     {
+      "mean_pred": 0.023026787582085147,
+      "n": 23,
+      "observed": 0.13043478260869565,
+      "ok": false,
+      "p_max": 0.038316817254223305,
+      "p_min": 0.008162535002558575,
+      "positives": 3,
+      "wilson": [
+       0.04537659093631238,
+       0.32127482270095964
+      ]
+     },
+     {
+      "mean_pred": 0.060066142923618865,
+      "n": 23,
+      "observed": 0.21739130434782608,
+      "ok": false,
+      "p_max": 0.08438506313503835,
+      "p_min": 0.03922792107276508,
+      "positives": 5,
+      "wilson": [
+       0.09663978026586204,
+       0.4190348301626401
+      ]
+     },
+     {
+      "mean_pred": 0.16787832682781348,
+      "n": 22,
+      "observed": 0.18181818181818182,
+      "ok": true,
+      "p_max": 0.40927208291369865,
+      "p_min": 0.09244342866081161,
+      "positives": 4,
+      "wilson": [
+       0.07306884583422052,
+       0.38516607437126543
+      ]
+     }
+    ],
+    "ece": 0.09405205011995457,
+    "every_bin_ok": false,
+    "in_the_large_ok": false,
+    "mean_pred": 0.08241853811533954,
+    "n": 68,
+    "observed": 0.17647058823529413,
+    "wilson": [
+     0.10393587249437691,
+     0.2836044040774335
+    ]
+   },
+   "champion": "P07_B2",
+   "counts": {
+    "censored": 5,
+    "contacted_excluded": 1,
+    "contacted_labelled": 1,
+    "key_conflict_excluded": 0,
+    "rows": 176,
+    "scorable": 68,
+    "states": {
+     "LABELED": 69,
+     "MARKET_INACTIVE": 12,
+     "NO_SNAPSHOT_PRICE": 9,
+     "OUT_OF_SCOPE_CHAIN": 81,
+     "VENDOR_OR_ROUTE_GAP": 5
+    }
+   },
+   "creator_group_interval": {
+    "ci": [
+     -0.16423062182764644,
+     -0.001358122291475761
+    ],
+    "finite": 20000,
+    "groups": 57
+   },
+   "holdout_prevalence": {
+    "n": 68,
+    "positives": 12,
+    "prevalence": 0.17647058823529413,
+    "wilson": [
+     0.10393587249437691,
+     0.2836044040774335
+    ]
+   },
+   "metric": {
+    "abstain_reasons": "{}",
+    "average_precision": 0.2029892407773408,
+    "brier": 0.1613887109908731,
+    "brier_ref": 0.14897677821128452,
+    "bss": -0.08331454692882057,
+    "bss_ci_day_hi": -0.019940533927435666,
+    "bss_ci_day_lo": -0.17361525751410034,
+    "bss_ci_mint_hi": 0.0024233425585239244,
+    "bss_ci_mint_lo": -0.1675279835602911,
+    "cal_bins": 3,
+    "cal_every_bin_ok": false,
+    "cal_in_the_large_ok": false,
+    "cal_mean_pred": 0.08241853811533954,
+    "cal_observed": 0.17647058823529413,
+    "coverage": 1.0,
+    "creator_group_ci_hi": -0.001358122291475761,
+    "creator_group_ci_lo": -0.16423062182764644,
+    "days": 7,
+    "ece": 0.09405205011995457,
+    "ess_day": 302.76423776324174,
+    "ess_mint": 69.83340779197052,
+    "governing": "mint",
+    "kind": "PRIMARY_HOLDOUT",
+    "log_loss": 0.578104473021638,
+    "log_loss_ref": 0.48164440222045535,
+    "mints": 57,
+    "model": "P07_B2",
+    "n_rows": 68,
+    "n_with_number": 68,
+    "note": "",
+    "p_holm": 1.0,
+    "p_one_sided": 0.9717514124293786,
+    "positives": 12,
+    "prevalence": 0.17647058823529413,
+    "reference": "P07_B0",
+    "roc_auc": 0.5178571428571429,
+    "target": "price_path_target_before_invalidation_6h",
+    "target_short": "T1b_6h",
+    "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+    "view": "PRIMARY"
+   },
+   "shadow_criteria": {
+    "all": false,
+    "bss_point_at_least_0": false,
+    "calibration": false,
+    "count_gates": true,
+    "promotion": "NONE_IN_PHASE_12"
+   },
+   "target": "price_path_target_before_invalidation_6h",
+   "training_prevalence_b0": 0.11607142857142858
+  },
+  "T2_24h": {
+   "calibration": {
+    "bins": [
+     {
+      "mean_pred": 0.009195654893265546,
+      "n": 30,
+      "observed": 0.03333333333333333,
+      "ok": true,
+      "p_max": 0.026995323190569583,
+      "p_min": 0.00026164418402223577,
+      "positives": 1,
+      "wilson": [
+       0.005908590381612455,
+       0.16670390991409173
+      ]
+     },
+     {
+      "mean_pred": 0.2334086782413473,
+      "n": 29,
+      "observed": 0.20689655172413793,
+      "ok": true,
+      "p_max": 0.7513095818717368,
+      "p_min": 0.027065505475255974,
+      "positives": 6,
+      "wilson": [
+       0.09846070197841039,
+       0.38390090403867905
+      ]
+     }
+    ],
+    "ece": 0.025304780037306875,
+    "every_bin_ok": true,
+    "in_the_large_ok": true,
+    "mean_pred": 0.11940205619994981,
+    "n": 59,
+    "observed": 0.11864406779661017,
+    "wilson": [
+     0.05867582775790306,
+     0.22523640399981695
+    ]
+   },
+   "champion": "P07_B2",
+   "counts": {
+    "censored": 5,
+    "contacted_excluded": 1,
+    "contacted_labelled": 1,
+    "key_conflict_excluded": 0,
+    "rows": 176,
+    "scorable": 59,
+    "states": {
+     "LABELED": 60,
+     "MARKET_INACTIVE": 12,
+     "NO_SNAPSHOT_PRICE": 9,
+     "OUT_OF_SCOPE_CHAIN": 81,
+     "PENDING": 7,
+     "THINNED": 2,
+     "VENDOR_OR_ROUTE_GAP": 5
+    }
+   },
+   "creator_group_interval": {
+    "ci": [
+     -0.0070023380190675465,
+     0.5800881344352391
+    ],
+    "finite": 20000,
+    "groups": 52
+   },
+   "holdout_prevalence": {
+    "n": 59,
+    "positives": 7,
+    "prevalence": 0.11864406779661017,
+    "wilson": [
+     0.05867582775790306,
+     0.22523640399981695
+    ]
+   },
+   "metric": {
+    "abstain_reasons": "{}",
+    "average_precision": null,
+    "brier": 0.08038543924364928,
+    "brier_ref": 0.11361097640590262,
+    "bss": 0.2924500626026405,
+    "bss_ci_day_hi": 0.6740492845660988,
+    "bss_ci_day_lo": -0.025757509880623752,
+    "bss_ci_mint_hi": 0.5713811952493514,
+    "bss_ci_mint_lo": -0.0016828037461117825,
+    "cal_bins": 2,
+    "cal_every_bin_ok": true,
+    "cal_in_the_large_ok": true,
+    "cal_mean_pred": 0.11940205619994981,
+    "cal_observed": 0.11864406779661017,
+    "coverage": 1.0,
+    "creator_group_ci_hi": 0.5800881344352391,
+    "creator_group_ci_lo": -0.0070023380190675465,
+    "days": 6,
+    "ece": 0.025304780037306875,
+    "ess_day": 35.71103407789404,
+    "ess_mint": 58.85967536087005,
+    "governing": "day",
+    "kind": "PRIMARY_HOLDOUT",
+    "log_loss": 0.2617162086400819,
+    "log_loss_ref": 0.39500513745255017,
+    "mints": 52,
+    "model": "P07_B2",
+    "n_rows": 59,
+    "n_with_number": 59,
+    "note": "possible partial contact with the T2 holdout through first-pass public call counts (PI-D-045 item 6); nobody computed the bound",
+    "p_holm": 0.10034498275086245,
+    "p_one_sided": 0.03344832758362082,
+    "positives": 7,
+    "prevalence": 0.11864406779661017,
+    "reference": "P07_B0",
+    "roc_auc": null,
+    "target": "price_path_severe_drawdown_or_halt_24h",
+    "target_short": "T2_24h",
+    "verdict": "INSUFFICIENT_EVENTS",
+    "view": "PRIMARY"
+   },
+   "shadow_criteria": {
+    "all": false,
+    "bss_point_at_least_0": true,
+    "calibration": true,
+    "count_gates": false,
+    "promotion": "NONE_IN_PHASE_12"
+   },
+   "target": "price_path_severe_drawdown_or_halt_24h",
+   "training_prevalence_b0": 0.21374045801526717
+  }
+ },
+ "reps": 20000,
+ "seed": 20261025,
+ "t2_note": "possible partial contact with the T2 holdout through first-pass public call counts (PI-D-045 item 6); nobody computed the bound"
+}
