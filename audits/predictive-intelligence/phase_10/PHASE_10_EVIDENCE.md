@@ -34,7 +34,17 @@ Status: NEEDS_REVIEW (first pass complete; the orchestrator's independent skepti
 | `python -B probes/mutation_social.py evidence/mutation_social.json` (with the committed outputs in place) | 85 of 85 caught, 0 survived, 1 equivalent | 0 |
 | `python -m memelab social guard` | 0 violations | 0 |
 
-Post-commit results (full suite, guard, seal check, single-branch release audit) are in `postcommit/` and in the section below once run.
+## Post-commit results at `f4b3a89` (outputs and records commit)
+
+| Command | Result | Exit |
+|---|---|---|
+| `python -m pytest tests -q -p no:cacheprovider` (2026-10-26T00:30:57Z) | `1 failed, 1330 passed in 181.86s`; only the known `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`; strays removed by hand; `data/memelab.sqlite` sha256 unchanged | 1 |
+| `python -m memelab social guard` | 0 violations | 0 |
+| `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | `"problems": []` | 0 |
+| `python tools/release_audit.py --history` on a single-branch clone at `f4b3a89` | `Needs action: no.` | 0 |
+| `git status --short` | clean after the stray removal | |
+
+Files: `postcommit/pytest_summary.txt`, `social_guard.out.txt`, `seal_check.json`, `release_audit_history.summary.txt`.
 
 ## What was built
 

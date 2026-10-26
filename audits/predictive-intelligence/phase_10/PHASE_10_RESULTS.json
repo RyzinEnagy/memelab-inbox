@@ -9,7 +9,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_10/PHASE_10_EVIDENCE.md",
-   "sha256": "5b7f0eaa407db8e7335104e50e9fadf07efebdd568686e9b85c81202eee17ab8"
+   "sha256": "d76ba35eeb7d57a7cd82bc553d05be68965181c17cccb01f245420dbd259b1c0"
   },
   {
    "path": "audits/predictive-intelligence/phase_10/SKEPTIC_PACKET.md",
@@ -208,6 +208,22 @@
    "sha256": "24773d303a3d5601816eb994cf2622ffb46dd91b7eef4b0673bfe639e9461d3e"
   },
   {
+   "path": "audits/predictive-intelligence/phase_10/postcommit/pytest_summary.txt",
+   "sha256": "f18fffa5a1802292e0d6b7b5734c24157518a409cc6621d9712ac5f33d331f41"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/postcommit/release_audit_history.summary.txt",
+   "sha256": "041a5c7d6d442e399af23bdc17b74565fa1ab2c8ea0c3adbab85cd3676371c07"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/postcommit/seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/postcommit/social_guard.out.txt",
+   "sha256": "5547f2d2643ded1a1213f525a6a312d4c7695de22e91b162cb27eb85db955785"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_10/probes/mutation_social.py",
    "sha256": "213f2007cd316a27dd97b1cacff6866a159ecd8c9c1b503a0bcd05065b967453"
   },
@@ -241,11 +257,11 @@
   },
   {
    "path": "docs/predictive-intelligence/ROADMAP.md",
-   "sha256": "4db8cdb249ac637b038d214be26bb595a592781632a671b60ab62e79a02d8df8"
+   "sha256": "dc5a517fe2faeeeb25ee95078b19e391e557d433e5f5fe301fb75ca853d21b88"
   },
   {
    "path": "docs/predictive-intelligence/HANDOFF.md",
-   "sha256": "c204266873a15f8907c87952bcaa6246bdfebf388322ac8416b08a670108f25e"
+   "sha256": "f6f02fb85eb9900b05541081d4b3f6aaf6ca5b8a8fe7d96d16448b752193f37c"
   },
   {
    "path": "audits/predictive-intelligence/COST_LEDGER.md",
@@ -435,17 +451,46 @@
    "result": "none"
   },
   {
-   "input": "run after the commit",
-   "name": "G27 post-commit suite, guard, seal, release audit",
-   "pass": null,
-   "result": "pending at this commit"
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "name": "G27 post-commit full suite at f4b3a89",
+   "pass": true,
+   "result": "1 failed, 1330 passed in 181.86s (known failure only)"
+  },
+  {
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "name": "G27 social guard",
+   "pass": true,
+   "result": "0 violations"
+  },
+  {
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "name": "G27 seal check",
+   "pass": true,
+   "result": "problems []"
+  },
+  {
+   "command": "python tools/release_audit.py --history",
+   "exit_code": 0,
+   "name": "G27 release audit single-branch clone at f4b3a89",
+   "pass": true,
+   "result": "Needs action: no."
+  },
+  {
+   "command": "git status --short",
+   "exit_code": 0,
+   "name": "G27 git status clean",
+   "pass": true,
+   "result": "clean after stray removal"
   }
  ],
  "commits": {
   "code": "0784a9a",
   "pre_registration": "c3f04c8"
  },
- "head_after": "0784a9a",
+ "head_after": "f4b3a89",
  "head_before": "1a52308",
  "limitations": [
   "no social or catalyst row exists for any decision: every decision CATALYST_TABLES_NOT_EXPORTED and SOCIAL_TABLES_NOT_EXPORTED; no verified catalyst, no catalyst probability",

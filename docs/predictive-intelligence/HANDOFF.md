@@ -5,7 +5,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 ## Position on 2026-10-26
 
 - Phases 00 to 05: PASS. Phase 06: NEEDS_REVIEW, one item open (the frozen 48 h revision re-read, not before 2026-10-26T13:49Z). Phases 07 to 09: PASS, PROVISIONAL under PI-D-046.
-- Phase 10 (social and catalyst outcome forecasts): NEEDS_REVIEW after the first pass; the orchestrator's independent skeptic (PI-D-013) is next, then a repair pass. PROVISIONAL under PI-D-046. TEST_ONLY parts: the catalyst classifier, the social evidence adapter and the catalyst target proposals (no catalyst or social row exists for any decision). Commits (local only; the orchestrator pushes): pre-registration `c3f04c8`, code `0784a9a`, outputs and records on top (the post-commit records commit holds the final hash in `phase_10/PHASE_10_RESULTS.json`).
+- Phase 10 (social and catalyst outcome forecasts): NEEDS_REVIEW after the first pass; the orchestrator's independent skeptic (PI-D-013) is next, then a repair pass. PROVISIONAL under PI-D-046. TEST_ONLY parts: the catalyst classifier, the social evidence adapter and the catalyst target proposals (no catalyst or social row exists for any decision). Commits (local only; the orchestrator pushes): pre-registration `c3f04c8`, code `0784a9a`, outputs and records `f4b3a89`, post-commit records on top. Post-commit at `f4b3a89`: suite `1 failed, 1330 passed` (known failure only), guard 0 violations, seal check 0 problems, single-branch release audit exit 0.
 - Spend: 0 Firecrawl credits, no vendor, crawler or language-model call; one `git fetch` of `origin/main`.
 
 ## What Phase 10 found
