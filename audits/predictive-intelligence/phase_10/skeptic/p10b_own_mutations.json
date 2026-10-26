@@ -1,0 +1,110 @@
+[
+ {
+  "mutation": "narrative snapshot 1h after T allowed",
+  "applied": true,
+  "caught": true,
+  "result": "1 failed, 11 passed in 0.48s"
+ },
+ {
+  "mutation": "one non-official source verifies",
+  "applied": true,
+  "caught": true,
+  "result": "1 failed, 27 passed in 1.67s"
+ },
+ {
+  "mutation": "edit versions recorded after T visible",
+  "applied": true,
+  "caught": false,
+  "result": "51 passed in 2.87s"
+ },
+ {
+  "mutation": "previous decision may be the decision itself",
+  "applied": true,
+  "caught": true,
+  "result": "1 failed, 4 passed in 0.24s"
+ },
+ {
+  "mutation": "snapshot t up to a day after T accepted",
+  "applied": true,
+  "caught": true,
+  "result": "1 failed, 8 passed in 0.31s"
+ },
+ {
+  "mutation": "suspect acceleration counts as organic",
+  "applied": true,
+  "caught": true,
+  "result": "1 failed, 2 passed in 0.18s"
+ },
+ {
+  "mutation": "page-named mint is identity",
+  "applied": true,
+  "caught": true,
+  "result": "1 failed, 29 passed in 1.42s"
+ },
+ {
+  "mutation": "track record includes calls not matured by T",
+  "applied": true,
+  "caught": true,
+  "result": "1 failed, 43 passed in 1.32s"
+ },
+ {
+  "mutation": "track record includes calls after T",
+  "applied": true,
+  "caught": false,
+  "result": "51 passed in 3.11s"
+ },
+ {
+  "mutation": "rumor treated as reported",
+  "applied": true,
+  "caught": true,
+  "result": "1 failed, 32 passed in 1.49s"
+ },
+ {
+  "mutation": "model-extracted claims kept",
+  "applied": true,
+  "caught": true,
+  "result": "1 failed, 42 passed in 1.40s"
+ },
+ {
+  "mutation": "deleted items kept",
+  "applied": true,
+  "caught": true,
+  "result": "1 failed, 39 passed in 1.38s"
+ },
+ {
+  "mutation": "bot accounts kept",
+  "applied": true,
+  "caught": true,
+  "result": "1 failed, 36 passed in 1.40s"
+ },
+ {
+  "mutation": "crawled page after T counts",
+  "applied": true,
+  "caught": true,
+  "result": "1 failed, 28 passed in 1.60s"
+ },
+ {
+  "mutation": "search page counted as a channel",
+  "applied": true,
+  "caught": true,
+  "result": "1 failed, 3 passed in 0.16s"
+ },
+ {
+  "mutation": "unknown lifecycle becomes early",
+  "applied": true,
+  "caught": true,
+  "result": "1 failed, 1 passed in 0.19s"
+ },
+ {
+  "mutation": "missing organic reading becomes organic",
+  "applied": true,
+  "caught": true,
+  "result": "1 failed, 1 passed in 0.20s"
+ },
+ {
+  "mutation": "observation ingested after T visible",
+  "applied": true,
+  "caught": true,
+  "result": "1 failed, 39 passed in 1.61s"
+ }
+]

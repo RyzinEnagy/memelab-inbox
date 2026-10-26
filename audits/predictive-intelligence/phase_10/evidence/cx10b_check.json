@@ -1,0 +1,81 @@
+{
+ "first_pass": {
+  "CX_10b_A": {
+   "available_at_minus_T_s": -2900.0,
+   "defect": true,
+   "follow_through": {
+    "label": 1,
+    "state": "TARGET_FIRST"
+   },
+   "state_at_T": "VERIFIED",
+   "state_at_T_minus_1000": "UNVERIFIED_EVENT"
+  },
+  "CX_10b_B": {
+   "bot_kind_without_time": {
+    "sx_bot_share": 0.5,
+    "sx_mentions_exact": 1.0
+   },
+   "defect": true,
+   "suspended_after_T": {
+    "sx_bot_share": 0.5,
+    "sx_mentions_exact": 1.0
+   },
+   "truncated_view_at_T": {
+    "sx_bot_share": 0.0,
+    "sx_mentions_exact": 2.0
+   }
+  },
+  "commit": "0784a9a7d4e06d7188bff437559d950a7fdaa682",
+  "m3_version_after_T": {
+   "defect": true,
+   "truncated_view_at_T": {
+    "sx_bot_share": 0.0,
+    "sx_mentions_exact": 2.0
+   },
+   "with_a_version_recorded_after_T": {
+    "sx_bot_share": 0.0,
+    "sx_mentions_exact": 1.0
+   }
+  }
+ },
+ "pass": true,
+ "repaired": {
+  "CX_10b_A": {
+   "available_at_minus_T_s": -600.0,
+   "defect": false,
+   "follow_through": {
+    "label": 0,
+    "state": "NEITHER_WITHIN_HORIZON"
+   },
+   "state_at_T": "VERIFIED",
+   "state_at_T_minus_1000": "UNVERIFIED_EVENT"
+  },
+  "CX_10b_B": {
+   "bot_kind_without_time": {
+    "sx_bot_share": 0.0,
+    "sx_mentions_exact": 2.0
+   },
+   "defect": false,
+   "suspended_after_T": {
+    "sx_bot_share": 0.0,
+    "sx_mentions_exact": 2.0
+   },
+   "truncated_view_at_T": {
+    "sx_bot_share": 0.0,
+    "sx_mentions_exact": 2.0
+   }
+  },
+  "commit": "1c75a12a6a55ea4784f0b908af11fdbde8a87b4b",
+  "m3_version_after_T": {
+   "defect": false,
+   "truncated_view_at_T": {
+    "sx_bot_share": 0.0,
+    "sx_mentions_exact": 2.0
+   },
+   "with_a_version_recorded_after_T": {
+    "sx_bot_share": 0.0,
+    "sx_mentions_exact": 2.0
+   }
+  }
+ }
+}

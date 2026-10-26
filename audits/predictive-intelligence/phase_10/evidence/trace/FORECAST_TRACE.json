@@ -26,7 +26,7 @@
  "invalid_inputs_all_rejected": true,
  "lab_event_classes": [],
  "label_y": 1,
- "latency_s_median_of_20": 0.0005,
+ "latency_s_median_of_20": 0.0006,
  "mint": "5Upkgkqx9nZJGDCz4Kgo8tiT995Gu1PiF7AGMQbBxEg",
  "model_inputs": {
   "log1p_token_age_days": 2.289644079225823,

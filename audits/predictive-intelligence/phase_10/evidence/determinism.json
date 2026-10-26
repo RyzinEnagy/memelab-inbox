@@ -1,23 +1,59 @@
 {
- "differing": [
-  "evidence/trace/FORECAST_TRACE.json"
- ],
- "latency_s": [
-  0.0005,
-  0.0006
- ],
- "note": "run 1 wrote into the phase folder, so its run log also lists the pre-existing probes and documents of that folder; every file both runs wrote is compared",
- "outputs_compared": 37,
- "pass": true,
- "run1": {
-  "dir": "audits/predictive-intelligence/phase_10",
-  "head": "0784a9a7d4e06d7188bff437559d950a7fdaa682",
-  "start_utc": "2026-10-26T00:20:50Z"
+ "first_pass": {
+  "differing": [
+   "evidence/trace/FORECAST_TRACE.json"
+  ],
+  "latency_s": [
+   0.0005,
+   0.0006
+  ],
+  "note": "run 1 wrote into the phase folder, so its run log also lists the pre-existing probes and documents of that folder; every file both runs wrote is compared",
+  "outputs_compared": 37,
+  "pass": true,
+  "run1": {
+   "dir": "audits/predictive-intelligence/phase_10",
+   "head": "0784a9a7d4e06d7188bff437559d950a7fdaa682",
+   "start_utc": "2026-10-26T00:20:50Z"
+  },
+  "run2": {
+   "dir": "/home/claude/pi_orchestration/phase10/run2 (outside the repository)",
+   "head": "0784a9a7d4e06d7188bff437559d950a7fdaa682",
+   "start_utc": "2026-10-26T00:22:22Z"
+  },
+  "trace_equal_without_latency": true
  },
- "run2": {
-  "dir": "/home/claude/pi_orchestration/phase10/run2 (outside the repository)",
-  "head": "0784a9a7d4e06d7188bff437559d950a7fdaa682",
-  "start_utc": "2026-10-26T00:22:22Z"
- },
- "trace_equal_without_latency": true
+ "repair_pass_2": {
+  "code_files_changed_since_first_pass": [
+   "audits/predictive-intelligence/phase_10/probes/run_social.py",
+   "memelab/predictive/socialcat.py"
+  ],
+  "latency_s": [
+   0.0006,
+   0.0006
+  ],
+  "note": "run 1 and run 2 are byte-identical (the trace latency happened to be equal); against the first pass only the trace differs, by its latency field",
+  "outputs_compared": 37,
+  "pass": true,
+  "repair_run_vs_first_pass_compared": 37,
+  "repair_run_vs_first_pass_differing": [
+   "evidence/trace/FORECAST_TRACE.json"
+  ],
+  "run1": {
+   "dir": "audits/predictive-intelligence/phase_10",
+   "head": "1c75a12a6a55ea4784f0b908af11fdbde8a87b4b",
+   "start_utc": "2026-10-26T14:34:40Z"
+  },
+  "run1_vs_run2_differing": [],
+  "run2": {
+   "dir": "scratch folder outside the repository",
+   "head": "1c75a12a6a55ea4784f0b908af11fdbde8a87b4b",
+   "start_utc": "2026-10-26T14:35:53Z"
+  },
+  "stores": {
+   "first_pass_dev_store": "58213988487ef0135b5cd8ccfc623b0df614484dd8c5cb2723c1114f04730b9f",
+   "note": "the development store gained the 16 raw second reads of the Phase 06 48 h re-read (PI-D-059), no label row; the Phase 05 store and data/memelab.sqlite are unchanged; both runs left every store unchanged",
+   "repair_dev_store": "d2a5a7c67afb82da79c4c957ba3b32576963bc4d96bf61ca14fa81b2b5b6e8db"
+  },
+  "trace_equal_without_latency": true
+ }
 }

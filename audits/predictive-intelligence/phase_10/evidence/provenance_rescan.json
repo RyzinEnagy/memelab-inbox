@@ -1,0 +1,52 @@
+{
+ "commands": [
+  "python3 -B skeptic/p10b_rows_scan.py <repo> e245d91cc5f56060ba8e1aa7182c846c77d1526c <dev_store copy> rows_scan.json (exit 0)",
+  "python3 -B skeptic/p10b_launch_channels.py <repo> <p05 store copy> (exit 0)",
+  "python3 -B skeptic/p10b_inbox_attention.py <repo> e245d91cc5f56060ba8e1aa7182c846c77d1526c <dev_store copy> (exit 0)"
+ ],
+ "dexscreener_boosts_in_inbox": {
+  "decisions_at_or_after_first_sighting": 16,
+  "distinct_decision_mints": 3,
+  "files": {
+   "inbox/cat01.json": 1,
+   "inbox/eco01.json": 2,
+   "inbox/lp_t1_pump.json": 1
+  }
+ },
+ "inbox_files_naming_decision_mints_by_exact_address": 45,
+ "launch_tables_in_exports": {
+  "decisions_with_row_committed_before": {
+   "launch_cohort": 236,
+   "launch_monitor": 45,
+   "upcoming_launches": 52
+  },
+  "launch_cohort": 38,
+  "launch_monitor": 18,
+  "upcoming_launches": 24
+ },
+ "memelab_sqlite_social_snapshots": {
+  "committed_utc": "2026-10-07T01:12:13+00:00",
+  "decisions_of_those_mints": 216,
+  "first_decision_of_those_mints_after_commit_h": 20.7,
+  "metrics": [
+   "holder_change_1h",
+   "holder_change_24h",
+   "holder_change_6h"
+  ],
+  "mints": 8,
+  "observed_utc_range": [
+   "2026-10-06T23:48:23.698000+00:00",
+   "2026-10-07T00:16:35.007000+00:00"
+  ],
+  "rows": 99
+ },
+ "note": "the skeptic counted 46 inbox files at its clone's origin/main 98338a8 (an earlier main commit than e245d91); at the pinned e245d91 the count is 45 (inbox files come and go with the scheduled runs)",
+ "upcoming_launches_vs_token_row_of_own_export": {
+  "decisions_with_launch_row_in_own_export": 52,
+  "ds_profile_flag": 2,
+  "telegram_only_in_launch_row": 5,
+  "twitter_only_in_launch_row": 9,
+  "website_only_in_launch_row": 16
+ },
+ "what": "repair pass 2 verification of skeptic m1 (adjacent lab rows naming decision mints), run with the skeptic's own scripts (copied to skeptic/) at the pinned ref e245d91 on copies of the stores; no Phase 10 number depends on these rows"
+}

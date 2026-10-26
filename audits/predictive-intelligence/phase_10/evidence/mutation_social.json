@@ -1,13 +1,13 @@
 {
- "applied": 85,
- "caught": 85,
+ "applied": 102,
+ "caught": 102,
  "equivalent": [
   {
    "caught": false,
    "mutation": "training maturity check removed (equivalent)"
   }
  ],
- "mutations": 85,
+ "mutations": 102,
  "not_applied": [],
  "results": [
   {
@@ -581,7 +581,7 @@
    "applied": true,
    "caught": true,
    "file": "memelab/predictive/socialcat.py",
-   "first_failure": "FAILED tests/test_predictive_social.py::test_proposed_follow_through_label_states",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_cx10b_a_verified_availability_is_when_the_last_condition_held_and_follow_through_starts_at_the_decision",
    "mutation": "follow-through starts before availability"
   },
   {
@@ -604,6 +604,125 @@
    "file": "memelab/predictive/socialcat.py",
    "first_failure": "FAILED tests/test_predictive_social.py::test_proposed_withdrawal_label_states",
    "mutation": "withdrawal pending read as negative"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_cx10b_a_verified_availability_is_when_the_last_condition_held_and_follow_through_starts_at_the_decision",
+   "mutation": "CX-10b-A VERIFIED available from first sighting and link"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_cx10b_a_verified_availability_is_when_the_last_condition_held_and_follow_through_starts_at_the_decision",
+   "mutation": "CX-10b-A confirmation time ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_verified_availability_takes_the_latest_of_link_naming_item_confirmation_and_source_rule",
+   "mutation": "CX-10b-A source-rule time ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_verified_availability_takes_the_latest_of_link_naming_item_confirmation_and_source_rule",
+   "mutation": "CX-10b-A naming item time ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_verified_availability_takes_the_latest_of_link_naming_item_confirmation_and_source_rule",
+   "mutation": "CX-10b-A confirmation run not reset by a downgrade"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_verified_needs_exact_mint_in_source_confirmed_evidence_and_two_independent_or_official_sources",
+   "mutation": "CX-10b-A second independent item not the second sighting"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_cx10b_a_verified_availability_is_when_the_last_condition_held_and_follow_through_starts_at_the_decision",
+   "mutation": "CX-10b-A follow-through from availability, not the decision"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_cx10b_a_verified_availability_is_when_the_last_condition_held_and_follow_through_starts_at_the_decision",
+   "mutation": "CX-10b-A availability after the decision accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_classifier_edges_missing_role_official_link_and_an_official_item_that_does_not_name_the_mint",
+   "mutation": "m5 item without a role counted as independent"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_classifier_edges_missing_role_official_link_and_an_official_item_that_does_not_name_the_mint",
+   "mutation": "m5 OFFICIAL link not a strong link"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_classifier_edges_missing_role_official_link_and_an_official_item_that_does_not_name_the_mint",
+   "mutation": "m5 official item need not name the mint"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_cx10b_b_a_suspension_or_bot_label_recorded_after_t_is_not_applied_at_t",
+   "mutation": "CX-10b-B suspension recorded after T applied"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_cx10b_b_a_suspension_or_bot_label_recorded_after_t_is_not_applied_at_t",
+   "mutation": "CX-10b-B review time ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_cx10b_b_a_suspension_or_bot_label_recorded_after_t_is_not_applied_at_t",
+   "mutation": "CX-10b-B untimed kind applied in a replay"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_cx10b_b_a_suspension_or_bot_label_recorded_after_t_is_not_applied_at_t",
+   "mutation": "CX-10b-B accounts read after T treated as known at T"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_m3_an_item_version_recorded_after_t_does_not_exist_at_t",
+   "mutation": "m3 item versions recorded after T visible"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_m3_an_item_version_recorded_after_t_does_not_exist_at_t",
+   "mutation": "m3 a version recorded after T decides whether versions exist"
   },
   {
    "applied": true,

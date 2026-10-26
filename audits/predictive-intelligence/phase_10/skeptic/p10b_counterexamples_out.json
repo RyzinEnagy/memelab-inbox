@@ -1,0 +1,40 @@
+{
+ "CX_A_available_at_before_verification": {
+  "state_at_T": "VERIFIED",
+  "available_at_minus_T_s": -2900.0,
+  "verified_from_minus_T_s": -600,
+  "state_at_T_minus_1000": "UNVERIFIED_EVENT",
+  "follow_through_label_from_available_at": {
+   "status": "PROPOSED_NOT_FROZEN",
+   "evidence_class": "TEST_ONLY",
+   "label": 1,
+   "state": "TARGET_FIRST",
+   "touch_t": 1998500.0
+  },
+  "defect": true
+ },
+ "CX_B_suspension_after_T": {
+  "truncated_view": {
+   "sx_mentions_exact": 2.0,
+   "sx_bot_share": 0.0,
+   "conf": "NORMAL"
+  },
+  "full_store_later": {
+   "sx_mentions_exact": 1.0,
+   "sx_bot_share": 0.5,
+   "conf": "NORMAL"
+  },
+  "defect": true
+ },
+ "CX_B2_bot_label_has_no_time": {
+  "sx_bot_share_when_relabelled": 0.5,
+  "note": "social_accounts.account_kind has no timestamp; a later BOT label is applied at every past T"
+ },
+ "read_only_probe": {
+  "write_attempt": "refused: attempt to write a readonly database",
+  "refusals": {
+   "/home/claude/pi_research/p06/dev_store.sqlite": "SocialCatError",
+   "/home/claude/pi_orchestration/skeptic_10b/data/memelab.sqlite": "SocialCatError"
+  }
+ }
+}

@@ -3,6 +3,7 @@
  "max_coef_diff_all": 1.880451350189105e-11,
  "max_coef_diff_real": 1.880451350189105e-11,
  "max_prep_diff_all": 4.884981308350689e-15,
+ "max_stump_prob_diff": 2.220446049250313e-16,
  "oracle": "newton-cholesky (PI-D-053)",
  "real_designs": [
   {
@@ -567,6 +568,139 @@
   }
  ],
  "sklearn_version": "1.9.1",
+ "stump_designs": [
+  {
+   "columns": 11,
+   "design": "T1_24h_H_G1_SC_STUMPS_B2",
+   "max_abs_prob_diff_to_card": 1.6653345369377348e-16,
+   "positives": 33,
+   "prep": {
+    "max_abs_design_diff": 3.552713678800501e-15,
+    "shape_equal": true
+   },
+   "rounds_sklearn": 100,
+   "rows": 129,
+   "within_1e-9": true
+  },
+  {
+   "columns": 11,
+   "design": "T1_24h_f1_G1_SC_STUMPS_B2",
+   "max_abs_prob_diff_to_card": 1.3877787807814457e-16,
+   "positives": 25,
+   "prep": {
+    "max_abs_design_diff": 2.220446049250313e-15,
+    "shape_equal": true
+   },
+   "rounds_sklearn": 100,
+   "rows": 105,
+   "within_1e-9": true
+  },
+  {
+   "columns": 11,
+   "design": "T1_24h_f2_G1_SC_STUMPS_B2",
+   "max_abs_prob_diff_to_card": 1.6653345369377348e-16,
+   "positives": 29,
+   "prep": {
+    "max_abs_design_diff": 1.7763568394002505e-15,
+    "shape_equal": true
+   },
+   "rounds_sklearn": 100,
+   "rows": 116,
+   "within_1e-9": true
+  },
+  {
+   "columns": 11,
+   "design": "T1b_6h_H_G1_SC_STUMPS_B2",
+   "max_abs_prob_diff_to_card": 1.1102230246251565e-16,
+   "positives": 25,
+   "prep": {
+    "max_abs_design_diff": 3.9968028886505635e-15,
+    "shape_equal": true
+   },
+   "rounds_sklearn": 100,
+   "rows": 210,
+   "within_1e-9": true
+  },
+  {
+   "columns": 11,
+   "design": "T1b_6h_f0_G1_SC_STUMPS_B2",
+   "max_abs_prob_diff_to_card": 1.1102230246251565e-16,
+   "positives": 22,
+   "prep": {
+    "max_abs_design_diff": 2.220446049250313e-15,
+    "shape_equal": true
+   },
+   "rounds_sklearn": 100,
+   "rows": 173,
+   "within_1e-9": true
+  },
+  {
+   "columns": 11,
+   "design": "T1b_6h_f1_G1_SC_STUMPS_B2",
+   "max_abs_prob_diff_to_card": 1.3877787807814457e-16,
+   "positives": 23,
+   "prep": {
+    "max_abs_design_diff": 4.884981308350689e-15,
+    "shape_equal": true
+   },
+   "rounds_sklearn": 100,
+   "rows": 180,
+   "within_1e-9": true
+  },
+  {
+   "columns": 11,
+   "design": "T1b_6h_f2_G1_SC_STUMPS_B2",
+   "max_abs_prob_diff_to_card": 1.6653345369377348e-16,
+   "positives": 24,
+   "prep": {
+    "max_abs_design_diff": 3.3306690738754696e-15,
+    "shape_equal": true
+   },
+   "rounds_sklearn": 100,
+   "rows": 191,
+   "within_1e-9": true
+  },
+  {
+   "columns": 11,
+   "design": "T1b_6h_f3_G1_SC_STUMPS_B2",
+   "max_abs_prob_diff_to_card": 1.1102230246251565e-16,
+   "positives": 24,
+   "prep": {
+    "max_abs_design_diff": 3.1086244689504383e-15,
+    "shape_equal": true
+   },
+   "rounds_sklearn": 100,
+   "rows": 199,
+   "within_1e-9": true
+  },
+  {
+   "columns": 11,
+   "design": "T1b_6h_f4_G1_SC_STUMPS_B2",
+   "max_abs_prob_diff_to_card": 2.220446049250313e-16,
+   "positives": 25,
+   "prep": {
+    "max_abs_design_diff": 4.884981308350689e-15,
+    "shape_equal": true
+   },
+   "rounds_sklearn": 100,
+   "rows": 206,
+   "within_1e-9": true
+  },
+  {
+   "columns": 11,
+   "design": "T2_24h_H_G1_SC_STUMPS_B2",
+   "max_abs_prob_diff_to_card": 2.220446049250313e-16,
+   "positives": 26,
+   "prep": {
+    "max_abs_design_diff": 2.220446049250313e-15,
+    "shape_equal": true
+   },
+   "rounds_sklearn": 100,
+   "rows": 124,
+   "within_1e-9": true
+  }
+ ],
+ "stump_designs_checked": 10,
  "synthetic_designs": [
   {
    "columns": 24,
