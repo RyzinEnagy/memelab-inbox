@@ -1,0 +1,16 @@
+{
+ "blocker": "BLOCKER_OK",
+ "byte_equal": 22,
+ "command": "python -B -c BLOCKER audits/predictive-intelligence/phase_13/probes/run_calibration.py TMP",
+ "differ": [
+  "calibration/POST_OPENING_LOG.json",
+  "evidence/run_log.json"
+ ],
+ "exit_code": 0,
+ "expected_differences": [
+  "calibration/POST_OPENING_LOG.json",
+  "evidence/run_log.json"
+ ],
+ "new": [],
+ "pass": true
+}

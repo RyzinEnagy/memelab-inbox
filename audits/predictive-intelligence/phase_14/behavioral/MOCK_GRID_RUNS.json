@@ -1,0 +1,674 @@
+{
+ "fictional:EVIDENCE_BLIND": {
+  "contamination_flags": [],
+  "cost": {
+   "calls_refused": 0,
+   "cap_usd": 0.0,
+   "est_cost_usd": 0.0,
+   "llm_calls": 128,
+   "prompt_chars": 0,
+   "wall_s": 0.018
+  },
+  "doc_sha256": "4f4a77a6f8fbb884a5cd9e5c1faa78c3e5acf44e5c5c457e29282fc6ce06bd53",
+  "forecast_entries": [
+   {
+    "engine_mode": "MOCK_SIMULATOR",
+    "flags": [
+     "NOT_SOURCE_GROUNDED"
+    ],
+    "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+    "label": "ORGANIC_ATTENTION_CONTINUATION",
+    "monitor_expect": "EVENT",
+    "monitor_metric": "price_path_target_before_invalidation_6h",
+    "monitor_window_end_utc": "2026-10-12T11:00:00Z",
+    "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+    "scenario_ref": "behavioral-1:4f4a77a6f8fbb884a5cd9e5c1faa78c3e5acf44e5c5c457e29282fc6ce06bd53",
+    "stability": "UNSTABLE",
+    "status": "SIMULATION_RAN"
+   }
+  ],
+  "labels": [
+   "ORGANIC_ATTENTION_CONTINUATION"
+  ],
+  "llm_actions": 128,
+  "reasons": [
+   "UNSTABLE_EXPLORATORY"
+  ],
+  "refused_claims": {
+   "IDENTITY_LINK": 0,
+   "INSIDER_INTENT_KEPT_AS_SPECULATION": 0,
+   "UNKNOWN_CLAIM": 0,
+   "WALLET_CONTROL": 0
+  },
+  "service_requests": 10,
+  "stability": {
+   "distinct_label_sets": 1,
+   "evidence_sensitive": false,
+   "flags": [
+    "NOT_SOURCE_GROUNDED"
+   ],
+   "repeat_identical": true,
+   "runs": 10,
+   "status": "UNSTABLE"
+  },
+  "status": "SIMULATION_RAN",
+  "valid": true
+ },
+ "fictional:NONREPRODUCIBLE": {
+  "contamination_flags": [],
+  "cost": {
+   "calls_refused": 0,
+   "cap_usd": 0.0,
+   "est_cost_usd": 0.0,
+   "llm_calls": 160,
+   "prompt_chars": 0,
+   "wall_s": 0.017
+  },
+  "doc_sha256": "0d38d283cfda736f4a01f9a5d745854e2f21b1be55c1ea1aa1b686c18b66b462",
+  "forecast_entries": [
+   {
+    "engine_mode": "MOCK_SIMULATOR",
+    "flags": [
+     "DEGRADED_SOURCE_CHANGES",
+     "NOT_REPRODUCIBLE",
+     "PERSONA_SENSITIVE",
+     "SEED_SENSITIVE"
+    ],
+    "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+    "label": "ORGANIC_ATTENTION_CONTINUATION",
+    "monitor_expect": "EVENT",
+    "monitor_metric": "price_path_target_before_invalidation_6h",
+    "monitor_window_end_utc": "2026-10-12T11:00:00Z",
+    "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+    "scenario_ref": "behavioral-1:0d38d283cfda736f4a01f9a5d745854e2f21b1be55c1ea1aa1b686c18b66b462",
+    "stability": "UNSTABLE",
+    "status": "SIMULATION_RAN"
+   },
+   {
+    "engine_mode": "MOCK_SIMULATOR",
+    "flags": [
+     "DEGRADED_SOURCE_CHANGES",
+     "NOT_REPRODUCIBLE",
+     "PERSONA_SENSITIVE",
+     "SEED_SENSITIVE"
+    ],
+    "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+    "label": "ATTENTION_EXHAUSTION",
+    "monitor_expect": "EVENT",
+    "monitor_metric": "price_path_target_before_invalidation_6h",
+    "monitor_window_end_utc": "2026-10-12T11:00:00Z",
+    "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+    "scenario_ref": "behavioral-1:0d38d283cfda736f4a01f9a5d745854e2f21b1be55c1ea1aa1b686c18b66b462",
+    "stability": "UNSTABLE",
+    "status": "SIMULATION_RAN"
+   }
+  ],
+  "labels": [
+   "ATTENTION_EXHAUSTION",
+   "ORGANIC_ATTENTION_CONTINUATION"
+  ],
+  "llm_actions": 160,
+  "reasons": [
+   "UNSTABLE_EXPLORATORY"
+  ],
+  "refused_claims": {
+   "IDENTITY_LINK": 0,
+   "INSIDER_INTENT_KEPT_AS_SPECULATION": 0,
+   "UNKNOWN_CLAIM": 0,
+   "WALLET_CONTROL": 0
+  },
+  "service_requests": 10,
+  "stability": {
+   "distinct_label_sets": 2,
+   "evidence_sensitive": true,
+   "flags": [
+    "DEGRADED_SOURCE_CHANGES",
+    "NOT_REPRODUCIBLE",
+    "PERSONA_SENSITIVE",
+    "SEED_SENSITIVE"
+   ],
+   "repeat_identical": false,
+   "runs": 10,
+   "status": "UNSTABLE"
+  },
+  "status": "SIMULATION_RAN",
+  "valid": true
+ },
+ "fictional:PERSONA_SENSITIVE": {
+  "contamination_flags": [],
+  "cost": {
+   "calls_refused": 0,
+   "cap_usd": 0.0,
+   "est_cost_usd": 0.0,
+   "llm_calls": 160,
+   "prompt_chars": 0,
+   "wall_s": 0.019
+  },
+  "doc_sha256": "07160a4db0bb933ba8e4e24e176cb6a09c0c9941a5ee52bb1f6b325e64a26f24",
+  "forecast_entries": [
+   {
+    "engine_mode": "MOCK_SIMULATOR",
+    "flags": [
+     "DEGRADED_SOURCE_CHANGES",
+     "PERSONA_SENSITIVE"
+    ],
+    "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+    "label": "ORGANIC_ATTENTION_CONTINUATION",
+    "monitor_expect": "EVENT",
+    "monitor_metric": "price_path_severe_drawdown_or_halt_24h",
+    "monitor_window_end_utc": "2026-10-13T05:00:00Z",
+    "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+    "scenario_ref": "behavioral-1:07160a4db0bb933ba8e4e24e176cb6a09c0c9941a5ee52bb1f6b325e64a26f24",
+    "stability": "UNSTABLE",
+    "status": "SIMULATION_RAN"
+   },
+   {
+    "engine_mode": "MOCK_SIMULATOR",
+    "flags": [
+     "DEGRADED_SOURCE_CHANGES",
+     "PERSONA_SENSITIVE"
+    ],
+    "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+    "label": "MANUFACTURED_ATTENTION_DUMP",
+    "monitor_expect": "EVENT",
+    "monitor_metric": "price_path_severe_drawdown_or_halt_24h",
+    "monitor_window_end_utc": "2026-10-13T05:00:00Z",
+    "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+    "scenario_ref": "behavioral-1:07160a4db0bb933ba8e4e24e176cb6a09c0c9941a5ee52bb1f6b325e64a26f24",
+    "stability": "UNSTABLE",
+    "status": "SIMULATION_RAN"
+   }
+  ],
+  "labels": [
+   "MANUFACTURED_ATTENTION_DUMP",
+   "ORGANIC_ATTENTION_CONTINUATION"
+  ],
+  "llm_actions": 160,
+  "reasons": [
+   "UNSTABLE_EXPLORATORY"
+  ],
+  "refused_claims": {
+   "IDENTITY_LINK": 0,
+   "INSIDER_INTENT_KEPT_AS_SPECULATION": 0,
+   "UNKNOWN_CLAIM": 0,
+   "WALLET_CONTROL": 0
+  },
+  "service_requests": 10,
+  "stability": {
+   "distinct_label_sets": 2,
+   "evidence_sensitive": true,
+   "flags": [
+    "DEGRADED_SOURCE_CHANGES",
+    "PERSONA_SENSITIVE"
+   ],
+   "repeat_identical": true,
+   "runs": 10,
+   "status": "UNSTABLE"
+  },
+  "status": "SIMULATION_RAN",
+  "valid": true
+ },
+ "fictional:SEED_SENSITIVE": {
+  "contamination_flags": [],
+  "cost": {
+   "calls_refused": 0,
+   "cap_usd": 0.0,
+   "est_cost_usd": 0.0,
+   "llm_calls": 160,
+   "prompt_chars": 0,
+   "wall_s": 0.018
+  },
+  "doc_sha256": "e57c86b798fda61173f92dcc690c6f5f902868a4147ec5f12bac3c636c846fdd",
+  "forecast_entries": [
+   {
+    "engine_mode": "MOCK_SIMULATOR",
+    "flags": [
+     "DEGRADED_SOURCE_CHANGES",
+     "SEED_SENSITIVE"
+    ],
+    "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+    "label": "ORGANIC_ATTENTION_CONTINUATION",
+    "monitor_expect": "EVENT",
+    "monitor_metric": "price_path_target_before_invalidation_6h",
+    "monitor_window_end_utc": "2026-10-12T11:00:00Z",
+    "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+    "scenario_ref": "behavioral-1:e57c86b798fda61173f92dcc690c6f5f902868a4147ec5f12bac3c636c846fdd",
+    "stability": "UNSTABLE",
+    "status": "SIMULATION_RAN"
+   },
+   {
+    "engine_mode": "MOCK_SIMULATOR",
+    "flags": [
+     "DEGRADED_SOURCE_CHANGES",
+     "SEED_SENSITIVE"
+    ],
+    "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+    "label": "ATTENTION_EXHAUSTION",
+    "monitor_expect": "EVENT",
+    "monitor_metric": "price_path_target_before_invalidation_6h",
+    "monitor_window_end_utc": "2026-10-12T11:00:00Z",
+    "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+    "scenario_ref": "behavioral-1:e57c86b798fda61173f92dcc690c6f5f902868a4147ec5f12bac3c636c846fdd",
+    "stability": "UNSTABLE",
+    "status": "SIMULATION_RAN"
+   }
+  ],
+  "labels": [
+   "ATTENTION_EXHAUSTION",
+   "ORGANIC_ATTENTION_CONTINUATION"
+  ],
+  "llm_actions": 160,
+  "reasons": [
+   "UNSTABLE_EXPLORATORY"
+  ],
+  "refused_claims": {
+   "IDENTITY_LINK": 0,
+   "INSIDER_INTENT_KEPT_AS_SPECULATION": 0,
+   "UNKNOWN_CLAIM": 0,
+   "WALLET_CONTROL": 0
+  },
+  "service_requests": 10,
+  "stability": {
+   "distinct_label_sets": 2,
+   "evidence_sensitive": true,
+   "flags": [
+    "DEGRADED_SOURCE_CHANGES",
+    "SEED_SENSITIVE"
+   ],
+   "repeat_identical": true,
+   "runs": 10,
+   "status": "UNSTABLE"
+  },
+  "status": "SIMULATION_RAN",
+  "valid": true
+ },
+ "fictional:STABLE": {
+  "contamination_flags": [],
+  "cost": {
+   "calls_refused": 0,
+   "cap_usd": 0.0,
+   "est_cost_usd": 0.0,
+   "llm_calls": 160,
+   "prompt_chars": 0,
+   "wall_s": 0.02
+  },
+  "doc_sha256": "82809fa223022366e5da8503e687b07803d6dfe90b11915675db5066df7f10c3",
+  "forecast_entries": [
+   {
+    "engine_mode": "MOCK_SIMULATOR",
+    "flags": [
+     "DEGRADED_SOURCE_CHANGES"
+    ],
+    "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+    "label": "ORGANIC_ATTENTION_CONTINUATION",
+    "monitor_expect": "EVENT",
+    "monitor_metric": "price_path_target_before_invalidation_6h",
+    "monitor_window_end_utc": "2026-10-12T11:00:00Z",
+    "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+    "scenario_ref": "behavioral-1:82809fa223022366e5da8503e687b07803d6dfe90b11915675db5066df7f10c3",
+    "stability": "STABLE",
+    "status": "SIMULATION_RAN"
+   }
+  ],
+  "labels": [
+   "ORGANIC_ATTENTION_CONTINUATION"
+  ],
+  "llm_actions": 160,
+  "reasons": [],
+  "refused_claims": {
+   "IDENTITY_LINK": 0,
+   "INSIDER_INTENT_KEPT_AS_SPECULATION": 0,
+   "UNKNOWN_CLAIM": 0,
+   "WALLET_CONTROL": 0
+  },
+  "service_requests": 10,
+  "stability": {
+   "distinct_label_sets": 1,
+   "evidence_sensitive": true,
+   "flags": [
+    "DEGRADED_SOURCE_CHANGES"
+   ],
+   "repeat_identical": true,
+   "runs": 10,
+   "status": "STABLE"
+  },
+  "status": "SIMULATION_RAN",
+  "valid": true
+ },
+ "real_development_seed:EVIDENCE_BLIND": {
+  "contamination_flags": [],
+  "cost": {
+   "calls_refused": 0,
+   "cap_usd": 0.0,
+   "est_cost_usd": 0.0,
+   "llm_calls": 128,
+   "prompt_chars": 0,
+   "wall_s": 0.027
+  },
+  "doc_sha256": "ab73eecaec16d6a397c8b811bde75a82ea1a341299d467b0d06a9caba0a40236",
+  "forecast_entries": [
+   {
+    "engine_mode": "MOCK_SIMULATOR",
+    "flags": [
+     "NOT_SOURCE_GROUNDED"
+    ],
+    "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+    "label": "ORGANIC_ATTENTION_CONTINUATION",
+    "monitor_expect": "EVENT",
+    "monitor_metric": "price_path_target_before_invalidation_6h",
+    "monitor_window_end_utc": "2026-10-08T03:53:55Z",
+    "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+    "scenario_ref": "behavioral-1:ab73eecaec16d6a397c8b811bde75a82ea1a341299d467b0d06a9caba0a40236",
+    "stability": "UNSTABLE",
+    "status": "SIMULATION_RAN"
+   }
+  ],
+  "labels": [
+   "ORGANIC_ATTENTION_CONTINUATION"
+  ],
+  "llm_actions": 128,
+  "reasons": [
+   "UNSTABLE_EXPLORATORY"
+  ],
+  "refused_claims": {
+   "IDENTITY_LINK": 0,
+   "INSIDER_INTENT_KEPT_AS_SPECULATION": 0,
+   "UNKNOWN_CLAIM": 0,
+   "WALLET_CONTROL": 0
+  },
+  "service_requests": 10,
+  "stability": {
+   "distinct_label_sets": 1,
+   "evidence_sensitive": false,
+   "flags": [
+    "NOT_SOURCE_GROUNDED"
+   ],
+   "repeat_identical": true,
+   "runs": 10,
+   "status": "UNSTABLE"
+  },
+  "status": "SIMULATION_RAN",
+  "valid": true
+ },
+ "real_development_seed:NONREPRODUCIBLE": {
+  "contamination_flags": [],
+  "cost": {
+   "calls_refused": 0,
+   "cap_usd": 0.0,
+   "est_cost_usd": 0.0,
+   "llm_calls": 160,
+   "prompt_chars": 0,
+   "wall_s": 0.032
+  },
+  "doc_sha256": "3f08ec21f7378a53276f01cceb22db1ed170475fbe14377f60ee79cbae3cdf6d",
+  "forecast_entries": [
+   {
+    "engine_mode": "MOCK_SIMULATOR",
+    "flags": [
+     "DEGRADED_SOURCE_CHANGES",
+     "NOT_REPRODUCIBLE",
+     "PERSONA_SENSITIVE",
+     "SEED_SENSITIVE"
+    ],
+    "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+    "label": "ATTENTION_EXHAUSTION",
+    "monitor_expect": "EVENT",
+    "monitor_metric": "price_path_target_before_invalidation_6h",
+    "monitor_window_end_utc": "2026-10-08T03:53:55Z",
+    "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+    "scenario_ref": "behavioral-1:3f08ec21f7378a53276f01cceb22db1ed170475fbe14377f60ee79cbae3cdf6d",
+    "stability": "UNSTABLE",
+    "status": "SIMULATION_RAN"
+   },
+   {
+    "engine_mode": "MOCK_SIMULATOR",
+    "flags": [
+     "DEGRADED_SOURCE_CHANGES",
+     "NOT_REPRODUCIBLE",
+     "PERSONA_SENSITIVE",
+     "SEED_SENSITIVE"
+    ],
+    "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+    "label": "ORGANIC_ATTENTION_CONTINUATION",
+    "monitor_expect": "EVENT",
+    "monitor_metric": "price_path_target_before_invalidation_6h",
+    "monitor_window_end_utc": "2026-10-08T03:53:55Z",
+    "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+    "scenario_ref": "behavioral-1:3f08ec21f7378a53276f01cceb22db1ed170475fbe14377f60ee79cbae3cdf6d",
+    "stability": "UNSTABLE",
+    "status": "SIMULATION_RAN"
+   }
+  ],
+  "labels": [
+   "ATTENTION_EXHAUSTION",
+   "ORGANIC_ATTENTION_CONTINUATION"
+  ],
+  "llm_actions": 160,
+  "reasons": [
+   "UNSTABLE_EXPLORATORY"
+  ],
+  "refused_claims": {
+   "IDENTITY_LINK": 0,
+   "INSIDER_INTENT_KEPT_AS_SPECULATION": 0,
+   "UNKNOWN_CLAIM": 0,
+   "WALLET_CONTROL": 0
+  },
+  "service_requests": 10,
+  "stability": {
+   "distinct_label_sets": 2,
+   "evidence_sensitive": true,
+   "flags": [
+    "DEGRADED_SOURCE_CHANGES",
+    "NOT_REPRODUCIBLE",
+    "PERSONA_SENSITIVE",
+    "SEED_SENSITIVE"
+   ],
+   "repeat_identical": false,
+   "runs": 10,
+   "status": "UNSTABLE"
+  },
+  "status": "SIMULATION_RAN",
+  "valid": true
+ },
+ "real_development_seed:PERSONA_SENSITIVE": {
+  "contamination_flags": [],
+  "cost": {
+   "calls_refused": 0,
+   "cap_usd": 0.0,
+   "est_cost_usd": 0.0,
+   "llm_calls": 160,
+   "prompt_chars": 0,
+   "wall_s": 0.025
+  },
+  "doc_sha256": "4dfe0b76d2207d0fc36d0c0885ba1cd4a12fb03e39a12d13b7d275ae86aca37c",
+  "forecast_entries": [
+   {
+    "engine_mode": "MOCK_SIMULATOR",
+    "flags": [
+     "DEGRADED_SOURCE_CHANGES",
+     "PERSONA_SENSITIVE"
+    ],
+    "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+    "label": "MANUFACTURED_ATTENTION_DUMP",
+    "monitor_expect": "EVENT",
+    "monitor_metric": "price_path_severe_drawdown_or_halt_24h",
+    "monitor_window_end_utc": "2026-10-08T21:53:55Z",
+    "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+    "scenario_ref": "behavioral-1:4dfe0b76d2207d0fc36d0c0885ba1cd4a12fb03e39a12d13b7d275ae86aca37c",
+    "stability": "UNSTABLE",
+    "status": "SIMULATION_RAN"
+   },
+   {
+    "engine_mode": "MOCK_SIMULATOR",
+    "flags": [
+     "DEGRADED_SOURCE_CHANGES",
+     "PERSONA_SENSITIVE"
+    ],
+    "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+    "label": "ORGANIC_ATTENTION_CONTINUATION",
+    "monitor_expect": "EVENT",
+    "monitor_metric": "price_path_severe_drawdown_or_halt_24h",
+    "monitor_window_end_utc": "2026-10-08T21:53:55Z",
+    "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+    "scenario_ref": "behavioral-1:4dfe0b76d2207d0fc36d0c0885ba1cd4a12fb03e39a12d13b7d275ae86aca37c",
+    "stability": "UNSTABLE",
+    "status": "SIMULATION_RAN"
+   }
+  ],
+  "labels": [
+   "MANUFACTURED_ATTENTION_DUMP",
+   "ORGANIC_ATTENTION_CONTINUATION"
+  ],
+  "llm_actions": 160,
+  "reasons": [
+   "UNSTABLE_EXPLORATORY"
+  ],
+  "refused_claims": {
+   "IDENTITY_LINK": 0,
+   "INSIDER_INTENT_KEPT_AS_SPECULATION": 0,
+   "UNKNOWN_CLAIM": 0,
+   "WALLET_CONTROL": 0
+  },
+  "service_requests": 10,
+  "stability": {
+   "distinct_label_sets": 2,
+   "evidence_sensitive": true,
+   "flags": [
+    "DEGRADED_SOURCE_CHANGES",
+    "PERSONA_SENSITIVE"
+   ],
+   "repeat_identical": true,
+   "runs": 10,
+   "status": "UNSTABLE"
+  },
+  "status": "SIMULATION_RAN",
+  "valid": true
+ },
+ "real_development_seed:SEED_SENSITIVE": {
+  "contamination_flags": [],
+  "cost": {
+   "calls_refused": 0,
+   "cap_usd": 0.0,
+   "est_cost_usd": 0.0,
+   "llm_calls": 160,
+   "prompt_chars": 0,
+   "wall_s": 0.033
+  },
+  "doc_sha256": "19b67d25ad6f4792c97884c0c665de729f6219a2519be1cc63add8ed58f6d973",
+  "forecast_entries": [
+   {
+    "engine_mode": "MOCK_SIMULATOR",
+    "flags": [
+     "DEGRADED_SOURCE_CHANGES",
+     "SEED_SENSITIVE"
+    ],
+    "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+    "label": "ATTENTION_EXHAUSTION",
+    "monitor_expect": "EVENT",
+    "monitor_metric": "price_path_target_before_invalidation_6h",
+    "monitor_window_end_utc": "2026-10-08T03:53:55Z",
+    "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+    "scenario_ref": "behavioral-1:19b67d25ad6f4792c97884c0c665de729f6219a2519be1cc63add8ed58f6d973",
+    "stability": "UNSTABLE",
+    "status": "SIMULATION_RAN"
+   },
+   {
+    "engine_mode": "MOCK_SIMULATOR",
+    "flags": [
+     "DEGRADED_SOURCE_CHANGES",
+     "SEED_SENSITIVE"
+    ],
+    "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+    "label": "ORGANIC_ATTENTION_CONTINUATION",
+    "monitor_expect": "EVENT",
+    "monitor_metric": "price_path_target_before_invalidation_6h",
+    "monitor_window_end_utc": "2026-10-08T03:53:55Z",
+    "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+    "scenario_ref": "behavioral-1:19b67d25ad6f4792c97884c0c665de729f6219a2519be1cc63add8ed58f6d973",
+    "stability": "UNSTABLE",
+    "status": "SIMULATION_RAN"
+   }
+  ],
+  "labels": [
+   "ATTENTION_EXHAUSTION",
+   "ORGANIC_ATTENTION_CONTINUATION"
+  ],
+  "llm_actions": 160,
+  "reasons": [
+   "UNSTABLE_EXPLORATORY"
+  ],
+  "refused_claims": {
+   "IDENTITY_LINK": 0,
+   "INSIDER_INTENT_KEPT_AS_SPECULATION": 0,
+   "UNKNOWN_CLAIM": 0,
+   "WALLET_CONTROL": 0
+  },
+  "service_requests": 10,
+  "stability": {
+   "distinct_label_sets": 2,
+   "evidence_sensitive": true,
+   "flags": [
+    "DEGRADED_SOURCE_CHANGES",
+    "SEED_SENSITIVE"
+   ],
+   "repeat_identical": true,
+   "runs": 10,
+   "status": "UNSTABLE"
+  },
+  "status": "SIMULATION_RAN",
+  "valid": true
+ },
+ "real_development_seed:STABLE": {
+  "contamination_flags": [],
+  "cost": {
+   "calls_refused": 0,
+   "cap_usd": 0.0,
+   "est_cost_usd": 0.0,
+   "llm_calls": 160,
+   "prompt_chars": 0,
+   "wall_s": 0.03
+  },
+  "doc_sha256": "b8d8005579ab3f070bb4a9586253dc201d005b1ce98bc7c0d3a37cb4d9b9bab9",
+  "forecast_entries": [
+   {
+    "engine_mode": "MOCK_SIMULATOR",
+    "flags": [
+     "DEGRADED_SOURCE_CHANGES"
+    ],
+    "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+    "label": "ATTENTION_EXHAUSTION",
+    "monitor_expect": "EVENT",
+    "monitor_metric": "price_path_severe_drawdown_or_halt_24h",
+    "monitor_window_end_utc": "2026-10-08T21:53:55Z",
+    "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+    "scenario_ref": "behavioral-1:b8d8005579ab3f070bb4a9586253dc201d005b1ce98bc7c0d3a37cb4d9b9bab9",
+    "stability": "STABLE",
+    "status": "SIMULATION_RAN"
+   }
+  ],
+  "labels": [
+   "ATTENTION_EXHAUSTION"
+  ],
+  "llm_actions": 160,
+  "reasons": [],
+  "refused_claims": {
+   "IDENTITY_LINK": 0,
+   "INSIDER_INTENT_KEPT_AS_SPECULATION": 0,
+   "UNKNOWN_CLAIM": 0,
+   "WALLET_CONTROL": 0
+  },
+  "service_requests": 10,
+  "stability": {
+   "distinct_label_sets": 1,
+   "evidence_sensitive": true,
+   "flags": [
+    "DEGRADED_SOURCE_CHANGES"
+   ],
+   "repeat_identical": true,
+   "runs": 10,
+   "status": "STABLE"
+  },
+  "status": "SIMULATION_RAN",
+  "valid": true
+ }
+}

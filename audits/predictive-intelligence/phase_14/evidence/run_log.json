@@ -1,0 +1,104 @@
+{
+ "cpu_s": 5.74,
+ "debug_runs": [
+  "build_seeds.py debug run 2026-10-26T22:36:48Z to 22:36:59Z into scratch at the uncommitted Phase 14 code: 830 development seeds, 0 refused by check_seed, 0 label calls, 0 socket events; no rule, model or metric run on them",
+  "mirofish boundary debug run 2026-10-26 between 22:37Z and 22:40Z (fictional seed only, mock LLM through the meter, meter cap 1.0 USD at fictional prices): SIMULATION_RAN, NOT_CODABLE, 9 LLM actions, 10 metered calls, 52 s; no real seed, no label",
+  "run_behavioral.py --skip-mirofish debug run 2026-10-26T22:40:54Z to 22:41:36Z into scratch at the uncommitted code: rules on the 830 development seeds (830 RULES_RAN; labels ATTENTION_EXHAUSTION 309, MANUFACTURED_ATTENTION_DUMP 313, NO_GROUNDED_SCENARIO 227, ORGANIC_ATTENTION_CONTINUATION 66; 0 catalyst hypotheses; twin byte-equal), mock grids, P30 matrix (39 cases), cost caps, core check pass; a BrokenPipeError printed by the mock server thread after the SLOW case's client timeout (silenced afterwards, no result changed); no label read, nothing scored",
+  "mirofish boundary debug run 2026-10-26T22:52:46Z to 22:52:57Z after PI-D-073 (body-byte charge; fictional seed, mock LLM, config cap 5.0 and meter cap 5.0 USD at fictional prices): SIMULATION_RAN, NOT_CODABLE, 9 LLM actions, 9 metered calls, 86,066 prompt characters, 0.10064 USD charged (about 0.0112 per call), used only to set the low meter cap of the recorded run to 0.03 USD (about two calls)"
+ ],
+ "dirty_code": "",
+ "end_utc": "2026-10-26T23:11:05Z",
+ "files": {
+  "behavioral/CORE_UNAFFECTED.json": "dea41481ebbdcb6663ff43a6f2a0c6e052cef7b9e055ed941a4890767a5bac6a",
+  "behavioral/COST_CAP.json": "8cff7d08921ac22c11c7ee7cbc470195fe99b8bf4b47cbe2df6ec8b2db58e235",
+  "behavioral/MIROFISH_PROBE.json": "cb17b844017d54ec9d63b4e266688b1190c7a9775417565f3e18dae0ee5f51d5",
+  "behavioral/MOCK_GRID_RUNS.json": "34f9906d0b5c715b676f16fbb6b4998505126996596d037f1c3641493ecf38d6",
+  "behavioral/P30_MATRIX.csv": "b928fbb073e6e7431f6bca3b18d59ee24df36f6a0fef1285c07dbdf359fb0851",
+  "behavioral/RULE_COUNTS.json": "0fe08f3050acc42482accba739a3db27f9b4b0565409b4e3710091434b96c453",
+  "behavioral/RULE_SCENARIOS_DEV.jsonl": "1e4ad4bb0527263c89dbb11499bb8cfaad5851a88262f50ed83a634101dcbeb4",
+  "behavioral/SEEDS_DEV.jsonl": "a0c618177503013016f0043356ff5d99ec85e55c872c097ddc87c0f57d26a0c1",
+  "behavioral/SEEDS_DEV_LOG.json": "50ff246048b1423e5f2bfef03ad47cefec37a063289bb148dfb85e4bcdd0e76c"
+ },
+ "firecrawl_credits": 0,
+ "head": "c59c494ae5b6c91ddca89916a799aed03a6a7960",
+ "label_calls": [],
+ "paid_calls": 0,
+ "peak_rss_mb": 58.5,
+ "script": "audits/predictive-intelligence/phase_14/probes/run_behavioral.py",
+ "sealed_opens": [],
+ "socket_connects": 211,
+ "socket_hosts": [
+  "127.0.0.1"
+ ],
+ "start_utc": "2026-10-26T23:09:12Z",
+ "summary": {
+  "core_unaffected": true,
+  "cost": {
+   "meter_charged_not_above_cap": true,
+   "worst_case_requests": 0
+  },
+  "grid_status": {
+   "fictional:EVIDENCE_BLIND": "UNSTABLE",
+   "fictional:NONREPRODUCIBLE": "UNSTABLE",
+   "fictional:PERSONA_SENSITIVE": "UNSTABLE",
+   "fictional:SEED_SENSITIVE": "UNSTABLE",
+   "fictional:STABLE": "STABLE",
+   "real_development_seed:EVIDENCE_BLIND": "UNSTABLE",
+   "real_development_seed:NONREPRODUCIBLE": "UNSTABLE",
+   "real_development_seed:PERSONA_SENSITIVE": "UNSTABLE",
+   "real_development_seed:SEED_SENSITIVE": "UNSTABLE",
+   "real_development_seed:STABLE": "STABLE"
+  },
+  "mirofish": {
+   "config_cap_below_worst_case": [
+    "SIMULATION_NOT_AVAILABLE",
+    [
+     "COST_CAP_REACHED"
+    ]
+   ],
+   "llm_down": [
+    "SIMULATION_NOT_AVAILABLE",
+    [
+     "NO_LLM_ACTIONS"
+    ]
+   ],
+   "meter_cap_high": [
+    "SIMULATION_RAN",
+    [
+     "NOT_CODABLE"
+    ]
+   ],
+   "meter_cap_high_repeat": [
+    "SIMULATION_RAN",
+    [
+     "NOT_CODABLE"
+    ]
+   ],
+   "meter_cap_low": [
+    "SIMULATION_NOT_AVAILABLE",
+    [
+     "COST_CAP_REACHED"
+    ]
+   ]
+  },
+  "p30_all_not_available_except_stable": true,
+  "p30_cases": 39,
+  "rules": {
+   "catalyst_hypotheses": 0,
+   "documents_with_validation_errors": 0,
+   "labels": {
+    "ATTENTION_EXHAUSTION": 309,
+    "MANUFACTURED_ATTENTION_DUMP": 313,
+    "NO_GROUNDED_SCENARIO": 227,
+    "ORGANIC_ATTENTION_CONTINUATION": 66
+   },
+   "seeds": 830,
+   "statuses": {
+    "RULES_RAN": 830
+   },
+   "twin_byte_equal": true
+  }
+ },
+ "vendor_calls": 0,
+ "wall_s": 112.97
+}

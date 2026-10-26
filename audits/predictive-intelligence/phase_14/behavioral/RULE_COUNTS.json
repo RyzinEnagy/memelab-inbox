@@ -1,0 +1,52 @@
+{
+ "catalyst_hypotheses": 0,
+ "created_at_utc": "2026-10-26T23:09:12Z",
+ "documents_with_validation_errors": 0,
+ "label_combinations": {
+  "ATTENTION_EXHAUSTION": 224,
+  "ATTENTION_EXHAUSTION+MANUFACTURED_ATTENTION_DUMP": 85,
+  "MANUFACTURED_ATTENTION_DUMP": 228,
+  "NO_GROUNDED_SCENARIO": 227,
+  "ORGANIC_ATTENTION_CONTINUATION": 66
+ },
+ "labels": {
+  "ATTENTION_EXHAUSTION": 309,
+  "MANUFACTURED_ATTENTION_DUMP": 313,
+  "NO_GROUNDED_SCENARIO": 227,
+  "ORGANIC_ATTENTION_CONTINUATION": 66
+ },
+ "outcomes_read": false,
+ "real_seed_mutations": {
+  "behavioral_derived_observation": {
+   "check_seed": [
+    "BEHAVIORAL_FEEDBACK"
+   ],
+   "hypotheses": 0,
+   "rule_status": "SEED_REFUSED"
+  },
+  "observation_one_second_after_decision": {
+   "check_seed": [
+    "OBSERVATION_AFTER_DECISION",
+    "POST_DECISION_DATE"
+   ],
+   "hypotheses": 0,
+   "rule_status": "SEED_REFUSED"
+  },
+  "quoted_text_with_post_decision_date": {
+   "check_seed": [
+    "POST_DECISION_DATE"
+   ],
+   "hypotheses": 0,
+   "rule_status": "SEED_REFUSED"
+  }
+ },
+ "rule_scenarios_sha256": "1e4ad4bb0527263c89dbb11499bb8cfaad5851a88262f50ed83a634101dcbeb4",
+ "rules_sha256": "557ef8780869b939b21185370c0baf484fdd9603da42618f75d981512828fc19",
+ "scored": false,
+ "seed_check_recomputed_differs": 0,
+ "seeds": 830,
+ "statuses": {
+  "RULES_RAN": 830
+ },
+ "twin_byte_equal": true
+}

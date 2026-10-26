@@ -1,0 +1,348 @@
+{
+ "clone_head": "7657031ac01184afe2cb220f5ee3545573b5e843",
+ "note": "fictional seed only; mock LLM (no model, no spend); prices are fictional and exist only to exercise the cap; the runner's simulation_state with no adapter is SIMULATION_NOT_AVAILABLE by construction",
+ "runs": {
+  "config_cap_below_worst_case": {
+   "contamination_flags": [
+    "LLM_PRETRAINING_CONTAMINATION_RISK",
+    "EXPLORATORY_NOT_AS_OF"
+   ],
+   "cost": {
+    "calls_refused": 0,
+    "cap_usd": 0.05,
+    "est_cost_usd": 0.0,
+    "llm_calls": 0,
+    "prompt_chars": 0,
+    "wall_s": 0.0
+   },
+   "doc_sha256": "824e97868cec11a927333fb03fb33d4ab3dae077915c1f588a4625a9d43d170f",
+   "forecast_entries": [
+    {
+     "engine_mode": "EXTERNAL_SIMULATOR",
+     "flags": [
+      "EXPLORATORY_NOT_AS_OF",
+      "LLM_PRETRAINING_CONTAMINATION_RISK"
+     ],
+     "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+     "label": "NO_HYPOTHESIS",
+     "monitor_expect": "NONE",
+     "monitor_metric": "NONE",
+     "monitor_window_end_utc": "NONE",
+     "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+     "scenario_ref": "behavioral-1:824e97868cec11a927333fb03fb33d4ab3dae077915c1f588a4625a9d43d170f",
+     "stability": "NOT_ASSESSED",
+     "status": "SIMULATION_NOT_AVAILABLE"
+    }
+   ],
+   "labels": [],
+   "llm_actions": 0,
+   "meter_cap_usd": 1.0,
+   "reasons": [
+    "COST_CAP_REACHED"
+   ],
+   "refused_claims": {
+    "IDENTITY_LINK": 0,
+    "INSIDER_INTENT_KEPT_AS_SPECULATION": 0,
+    "UNKNOWN_CLAIM": 0,
+    "WALLET_CONTROL": 0
+   },
+   "runner_side": null,
+   "stability": {
+    "flags": [],
+    "status": "NOT_ASSESSED"
+   },
+   "status": "SIMULATION_NOT_AVAILABLE",
+   "trace_sha256": [],
+   "valid": true,
+   "wall_s_measured": 0.0
+  },
+  "llm_down": {
+   "contamination_flags": [
+    "LLM_PRETRAINING_CONTAMINATION_RISK",
+    "EXPLORATORY_NOT_AS_OF"
+   ],
+   "cost": {
+    "calls_refused": 31,
+    "cap_usd": 1.0,
+    "est_cost_usd": 0.046105,
+    "llm_calls": 5,
+    "prompt_chars": 39900,
+    "wall_s": 22.473
+   },
+   "doc_sha256": "deea50ceb9480013bf3e045c6df4ed27adfa6d7d6d7c6fcc3e3c7ccc5f45782e",
+   "forecast_entries": [
+    {
+     "engine_mode": "EXTERNAL_SIMULATOR",
+     "flags": [
+      "EXPLORATORY_NOT_AS_OF",
+      "LLM_PRETRAINING_CONTAMINATION_RISK"
+     ],
+     "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+     "label": "NO_HYPOTHESIS",
+     "monitor_expect": "NONE",
+     "monitor_metric": "NONE",
+     "monitor_window_end_utc": "NONE",
+     "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+     "scenario_ref": "behavioral-1:deea50ceb9480013bf3e045c6df4ed27adfa6d7d6d7c6fcc3e3c7ccc5f45782e",
+     "stability": "NOT_ASSESSED",
+     "status": "SIMULATION_NOT_AVAILABLE"
+    }
+   ],
+   "labels": [],
+   "llm_actions": 0,
+   "meter_cap_usd": 1.0,
+   "reasons": [
+    "NO_LLM_ACTIONS"
+   ],
+   "refused_claims": {
+    "IDENTITY_LINK": 0,
+    "INSIDER_INTENT_KEPT_AS_SPECULATION": 0,
+    "UNKNOWN_CLAIM": 0,
+    "WALLET_CONTROL": 0
+   },
+   "runner_side": {
+    "action_counts": {
+     "create_post": 1,
+     "refresh": 9,
+     "sign_up": 4
+    },
+    "meter_breaker_open": true,
+    "meter_ledger_statuses": [
+     "CIRCUIT_OPEN",
+     "FORWARDED"
+    ],
+    "script_exit_code": 0,
+    "trace_rows": 14
+   },
+   "stability": {
+    "flags": [],
+    "status": "NOT_ASSESSED"
+   },
+   "status": "SIMULATION_NOT_AVAILABLE",
+   "trace_sha256": [
+    "6943e59e1b42898233616c898b9c7bfc2a2dfd1106e1347a750d90cf5c3fbd16"
+   ],
+   "valid": true,
+   "wall_s_measured": 22.47
+  },
+  "meter_cap_high": {
+   "contamination_flags": [
+    "LLM_PRETRAINING_CONTAMINATION_RISK",
+    "EXPLORATORY_NOT_AS_OF"
+   ],
+   "cost": {
+    "calls_refused": 0,
+    "cap_usd": 1.0,
+    "est_cost_usd": 0.080473,
+    "llm_calls": 8,
+    "prompt_chars": 68992,
+    "wall_s": 10.514
+   },
+   "doc_sha256": "a9a4c236cf82b976477ebc9a6f6bd050bd61cdf77c3ad25fae980229034771ed",
+   "forecast_entries": [
+    {
+     "engine_mode": "EXTERNAL_SIMULATOR",
+     "flags": [
+      "EXPLORATORY_NOT_AS_OF",
+      "LLM_PRETRAINING_CONTAMINATION_RISK",
+      "SINGLE_RUN"
+     ],
+     "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+     "label": "NO_HYPOTHESIS",
+     "monitor_expect": "NONE",
+     "monitor_metric": "NONE",
+     "monitor_window_end_utc": "NONE",
+     "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+     "scenario_ref": "behavioral-1:a9a4c236cf82b976477ebc9a6f6bd050bd61cdf77c3ad25fae980229034771ed",
+     "stability": "NOT_ASSESSED",
+     "status": "SIMULATION_RAN"
+    }
+   ],
+   "labels": [],
+   "llm_actions": 8,
+   "meter_cap_usd": 1.0,
+   "reasons": [
+    "NOT_CODABLE"
+   ],
+   "refused_claims": {
+    "IDENTITY_LINK": 0,
+    "INSIDER_INTENT_KEPT_AS_SPECULATION": 0,
+    "UNKNOWN_CLAIM": 0,
+    "WALLET_CONTROL": 0
+   },
+   "runner_side": {
+    "action_counts": {
+     "create_post": 2,
+     "do_nothing": 5,
+     "like_post": 2,
+     "refresh": 8,
+     "sign_up": 4
+    },
+    "meter_breaker_open": false,
+    "meter_ledger_statuses": [
+     "FORWARDED"
+    ],
+    "script_exit_code": 0,
+    "trace_rows": 21
+   },
+   "stability": {
+    "flags": [
+     "SINGLE_RUN"
+    ],
+    "status": "NOT_ASSESSED"
+   },
+   "status": "SIMULATION_RAN",
+   "trace_sha256": [
+    "1eff20c76458e37dfc29549aba1ac62c9c8a33600d62ed51762c47e821ed9d15"
+   ],
+   "valid": true,
+   "wall_s_measured": 10.51
+  },
+  "meter_cap_high_repeat": {
+   "contamination_flags": [
+    "LLM_PRETRAINING_CONTAMINATION_RISK",
+    "EXPLORATORY_NOT_AS_OF"
+   ],
+   "cost": {
+    "calls_refused": 0,
+    "cap_usd": 1.0,
+    "est_cost_usd": 0.097535,
+    "llm_calls": 9,
+    "prompt_chars": 83514,
+    "wall_s": 10.521
+   },
+   "doc_sha256": "55e40db1f47f0854994a9635f707f71b31187d1aa2569555bc6fc983a4c0019b",
+   "forecast_entries": [
+    {
+     "engine_mode": "EXTERNAL_SIMULATOR",
+     "flags": [
+      "EXPLORATORY_NOT_AS_OF",
+      "LLM_PRETRAINING_CONTAMINATION_RISK",
+      "SINGLE_RUN"
+     ],
+     "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+     "label": "NO_HYPOTHESIS",
+     "monitor_expect": "NONE",
+     "monitor_metric": "NONE",
+     "monitor_window_end_utc": "NONE",
+     "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+     "scenario_ref": "behavioral-1:55e40db1f47f0854994a9635f707f71b31187d1aa2569555bc6fc983a4c0019b",
+     "stability": "NOT_ASSESSED",
+     "status": "SIMULATION_RAN"
+    }
+   ],
+   "labels": [],
+   "llm_actions": 9,
+   "meter_cap_usd": 1.0,
+   "reasons": [
+    "NOT_CODABLE"
+   ],
+   "refused_claims": {
+    "IDENTITY_LINK": 0,
+    "INSIDER_INTENT_KEPT_AS_SPECULATION": 0,
+    "UNKNOWN_CLAIM": 0,
+    "WALLET_CONTROL": 0
+   },
+   "runner_side": {
+    "action_counts": {
+     "create_post": 5,
+     "do_nothing": 3,
+     "like_post": 2,
+     "refresh": 9,
+     "sign_up": 4
+    },
+    "meter_breaker_open": false,
+    "meter_ledger_statuses": [
+     "FORWARDED"
+    ],
+    "script_exit_code": 0,
+    "trace_rows": 23
+   },
+   "stability": {
+    "flags": [
+     "SINGLE_RUN"
+    ],
+    "status": "NOT_ASSESSED"
+   },
+   "status": "SIMULATION_RAN",
+   "trace_sha256": [
+    "efeeb5b172d72e32fd8c3b308de539f6531bea1248cf8a01ecc25ffe36df2c23"
+   ],
+   "valid": true,
+   "wall_s_measured": 10.52
+  },
+  "meter_cap_low": {
+   "contamination_flags": [
+    "LLM_PRETRAINING_CONTAMINATION_RISK",
+    "EXPLORATORY_NOT_AS_OF"
+   ],
+   "cost": {
+    "calls_refused": 60,
+    "cap_usd": 0.03,
+    "est_cost_usd": 0.027665,
+    "llm_calls": 3,
+    "prompt_chars": 23942,
+    "wall_s": 44.749
+   },
+   "doc_sha256": "b235f8580cd5eed47f95ceedbae07043283684e3578665df00bbd1df1be6f41c",
+   "forecast_entries": [
+    {
+     "engine_mode": "EXTERNAL_SIMULATOR",
+     "flags": [
+      "EXPLORATORY_NOT_AS_OF",
+      "LLM_PRETRAINING_CONTAMINATION_RISK"
+     ],
+     "kind": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST",
+     "label": "NO_HYPOTHESIS",
+     "monitor_expect": "NONE",
+     "monitor_metric": "NONE",
+     "monitor_window_end_utc": "NONE",
+     "notice": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice.",
+     "scenario_ref": "behavioral-1:b235f8580cd5eed47f95ceedbae07043283684e3578665df00bbd1df1be6f41c",
+     "stability": "NOT_ASSESSED",
+     "status": "SIMULATION_NOT_AVAILABLE"
+    }
+   ],
+   "labels": [],
+   "llm_actions": 3,
+   "meter_cap_usd": 0.03,
+   "reasons": [
+    "COST_CAP_REACHED"
+   ],
+   "refused_claims": {
+    "IDENTITY_LINK": 0,
+    "INSIDER_INTENT_KEPT_AS_SPECULATION": 0,
+    "UNKNOWN_CLAIM": 0,
+    "WALLET_CONTROL": 0
+   },
+   "runner_side": {
+    "action_counts": {
+     "create_post": 1,
+     "do_nothing": 1,
+     "like_post": 2,
+     "refresh": 8,
+     "sign_up": 4
+    },
+    "meter_breaker_open": false,
+    "meter_ledger_statuses": [
+     "COST_CAP",
+     "FORWARDED"
+    ],
+    "script_exit_code": 0,
+    "trace_rows": 16
+   },
+   "stability": {
+    "flags": [],
+    "status": "NOT_ASSESSED"
+   },
+   "status": "SIMULATION_NOT_AVAILABLE",
+   "trace_sha256": [
+    "ffec27cd05ec657406aa28de9c32c1be14b435e7d5d1eaafeab1e2f46b2184f1"
+   ],
+   "valid": true,
+   "wall_s_measured": 44.75
+  }
+ },
+ "same_seed_trace_identical": false,
+ "venv_python": "Python 3.12.3"
+}

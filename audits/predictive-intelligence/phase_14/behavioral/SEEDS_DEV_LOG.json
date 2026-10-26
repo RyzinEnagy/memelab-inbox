@@ -1,0 +1,33 @@
+{
+ "decisions_in_store": 925,
+ "dev_end_utc": "2026-10-17T00:00:00Z",
+ "development_decisions": 830,
+ "end_utc": "2026-10-26T23:09:11Z",
+ "export_provenance": {
+  "blob_equal": 925,
+  "commit_time_equal": 925
+ },
+ "feature_store_sha256_after": "2525f0c4a7b2662713d07e99acd1a371c33aa5082994f5f552aba477f98dd8de",
+ "feature_store_sha256_before": "2525f0c4a7b2662713d07e99acd1a371c33aa5082994f5f552aba477f98dd8de",
+ "head": "c59c494ae5b6c91ddca89916a799aed03a6a7960",
+ "label_calls": [],
+ "main_ref": "e245d91cc5f56060ba8e1aa7182c846c77d1526c",
+ "observation_counts": {
+  "LAB_ATTENTION_PROXY:sc_attention_reversal": 585,
+  "LAB_ATTENTION_PROXY:sc_attention_suspect": 793,
+  "LAB_ATTENTION_PROXY:sc_attention_trend_ord": 708,
+  "LAB_ATTENTION_PROXY:sc_channels_n": 830,
+  "LAB_ATTENTION_PROXY:sc_lifecycle_late": 826,
+  "LAB_ATTENTION_PROXY:sc_narrative_tagged": 830,
+  "LAB_ATTENTION_PROXY:sc_organic_acceleration": 708,
+  "SOURCE_STATE:catalyst_state": 830,
+  "SOURCE_STATE:social_state": 830
+ },
+ "refusal_codes": {},
+ "script": "audits/predictive-intelligence/phase_14/probes/build_seeds.py",
+ "sealed_opens": [],
+ "seeds_refused": 0,
+ "seeds_sha256": "a0c618177503013016f0043356ff5d99ec85e55c872c097ddc87c0f57d26a0c1",
+ "socket_events": [],
+ "start_utc": "2026-10-26T23:09:02Z"
+}

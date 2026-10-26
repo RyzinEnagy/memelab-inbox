@@ -1,0 +1,325 @@
+{
+ "module": "memelab/predictive/behavioral.py",
+ "tests": "tests/test_predictive_behavioral.py",
+ "mutations": 63,
+ "caught": 63,
+ "survivors": [],
+ "results": [
+  {
+   "mutation": "S1 post-decision observation accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[after"
+  },
+  {
+   "mutation": "S2 missing time accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[no"
+  },
+  {
+   "mutation": "S3 unsourced observation accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[no"
+  },
+  {
+   "mutation": "S4 observation sha not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[value"
+  },
+  {
+   "mutation": "S5 outcome key accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[outcome"
+  },
+  {
+   "mutation": "S6 outcome name accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[outcome"
+  },
+  {
+   "mutation": "S7 post-decision date accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[iso"
+  },
+  {
+   "mutation": "S8 bare later date accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[date"
+  },
+  {
+   "mutation": "S9 unix time ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[unix"
+  },
+  {
+   "mutation": "S10 injection accepted in seeds",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[injection-<lambda>-PROMPT_INJECTION_SUSPECTED]"
+  },
+  {
+   "mutation": "S11 behavioral feedback accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[behavioral"
+  },
+  {
+   "mutation": "S12 observation cap off",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[too"
+  },
+  {
+   "mutation": "S13 mint not verified",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[ticker-<lambda>-MINT_NOT_VERIFIED]"
+  },
+  {
+   "mutation": "S14 seed sha not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[seed"
+  },
+  {
+   "mutation": "S15 catalyst state unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[catalyst"
+  },
+  {
+   "mutation": "S16 url allowed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[url-<lambda>-PROMPT_INJECTION_SUSPECTED]"
+  },
+  {
+   "mutation": "R1 probability key accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_code_response_refuses_numbers_anywhere"
+  },
+  {
+   "mutation": "R2 fractions accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_agreement_never_becomes_a_number[NESTED_FRACTION-RESPONSE_REFUSED_PROBABILITY]"
+  },
+  {
+   "mutation": "R3 injection accepted in responses",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_failure_states[INJECTION-RESPONSE_REFUSED_INJECTION-1]"
+  },
+  {
+   "mutation": "R4 digits allowed in codes",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_agreement_never_becomes_a_number[INSIDER_CODE_DIGITS-BAD_RESPONSE]"
+  },
+  {
+   "mutation": "R5 codes outside vocabulary accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_agreement_never_becomes_a_number[COUNT_WORDS-BAD_RESPONSE]"
+  },
+  {
+   "mutation": "R6 ungrounded catalyst accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_failure_states[INVENTED_CATALYST-UNGROUNDED_CATALYST-1]"
+  },
+  {
+   "mutation": "R7 refs outside the seed accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_grid_stability[EVIDENCE_BLIND-UNSTABLE-NOT_SOURCE_GROUNDED]"
+  },
+  {
+   "mutation": "R8 wallet claims not counted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_wallet_and_identity_claims_are_refused_and_counted"
+  },
+  {
+   "mutation": "R9 llm_actions bool accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_code_response_refuses_numbers_anywhere"
+  },
+  {
+   "mutation": "R10 named assumptions not required",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_code_response_refuses_numbers_anywhere"
+  },
+  {
+   "mutation": "R11 silent run accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_failure_states[SILENT-NO_LLM_ACTIONS-1]"
+  },
+  {
+   "mutation": "R12 meter cap ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_a_meter_block_at_its_cap_refuses_the_run"
+  },
+  {
+   "mutation": "V1 floats anywhere",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_validate_scenario_refuses_each_violation[float"
+  },
+  {
+   "mutation": "V2 prob-like key in documents",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_validate_scenario_refuses_each_violation[nested"
+  },
+  {
+   "mutation": "V3 fiction not required",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_validate_scenario_refuses_each_violation[not"
+  },
+  {
+   "mutation": "V4 contamination not recomputed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_doc_sha_and_run_status_rules"
+  },
+  {
+   "mutation": "V5 p26 late cutoff accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_doc_sha_and_run_status_rules"
+  },
+  {
+   "mutation": "V6 doc sha unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_doc_sha_and_run_status_rules"
+  },
+  {
+   "mutation": "T1 majority counts as stable",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_grid_stability[SEED_SENSITIVE-UNSTABLE-SEED_SENSITIVE]"
+  },
+  {
+   "mutation": "T2 repeat ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_stability_rules_directly"
+  },
+  {
+   "mutation": "T3 short grid assessed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_stability_rules_directly"
+  },
+  {
+   "mutation": "T4 source grounding ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_grid_stability[EVIDENCE_BLIND-UNSTABLE-NOT_SOURCE_GROUNDED]"
+  },
+  {
+   "mutation": "G1 approval truthy",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_gates_before_any_contact[cfg2-NOT_APPROVED-SIMULATION_NOT_AVAILABLE]"
+  },
+  {
+   "mutation": "G2 kill switch ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_gates_before_any_contact[cfg7-KILL_SWITCH-SIMULATION_NOT_AVAILABLE]"
+  },
+  {
+   "mutation": "G3 any mode",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_gates_before_any_contact[cfg4-MODE_NOT_ON_DEMAND_LOCAL-NOT_SUPPORTED]"
+  },
+  {
+   "mutation": "G4 host names allowed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_non_loopback_endpoints_are_refused_before_a_socket_opens[http://127.0.0.1:0080]"
+  },
+  {
+   "mutation": "G5 paid engine allowed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_paid_or_rule_engines_are_not_run_by_an_adapter"
+  },
+  {
+   "mutation": "G6 worst case not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_worst_case_refusal_makes_no_call"
+  },
+  {
+   "mutation": "G7 worst case undercounted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_worst_case_refusal_makes_no_call"
+  },
+  {
+   "mutation": "G8 meter charges past cap",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_meter_stops_at_the_cap_and_never_charges_past_it"
+  },
+  {
+   "mutation": "G9 max_tokens not forced",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_meter_stops_at_the_cap_and_never_charges_past_it"
+  },
+  {
+   "mutation": "G10 meter breaker off",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_meter_caps_prompt_calls_breaker_kill_and_bad_settings"
+  },
+  {
+   "mutation": "G11 meter call cap off",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_meter_caps_prompt_calls_breaker_kill_and_bad_settings"
+  },
+  {
+   "mutation": "G12 prompt cap off",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_meter_caps_prompt_calls_breaker_kill_and_bad_settings"
+  },
+  {
+   "mutation": "G12b body cap off",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_charge_bounds_tokens_by_body_bytes_for_any_script"
+  },
+  {
+   "mutation": "G19 charge on characters / 4",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_worst_case_refusal_makes_no_call"
+  },
+  {
+   "mutation": "G20 usage above charge ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_meter_fails_closed_when_usage_exceeds_the_charge"
+  },
+  {
+   "mutation": "G21 external engine as a loopback service",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_external_engines_never_run_as_a_loopback_service"
+  },
+  {
+   "mutation": "G13 key-like env allowed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_subprocess_gates[env0-eng0-False-KEY_NOT_APPROVED]"
+  },
+  {
+   "mutation": "G14 parent environment inherited",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_subprocess_environment_is_built_from_scratch"
+  },
+  {
+   "mutation": "G15 401 not named",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_failure_states[KEY_MISSING-KEY_MISSING-1]"
+  },
+  {
+   "mutation": "G16 retries on key errors",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_failure_states[KEY_MISSING-KEY_MISSING-1]"
+  },
+  {
+   "mutation": "G17 netns not required",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_subprocess_gates[env4-eng4-False-NETNS_REQUIRED]"
+  },
+  {
+   "mutation": "G18 cost setting nan accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_worst_case_refusal_makes_no_call"
+  },
+  {
+   "mutation": "U1 rule R5 dropped",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_rules_fire_only_on_their_inputs[obs5-labels5]"
+  },
+  {
+   "mutation": "U2 missing fires R3",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_valid_documents_validate_and_match_the_json_schema"
+  },
+  {
+   "mutation": "U3 projection carries a count",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_forecast_entries_are_strings_and_pass_the_publication_validator"
+  }
+ ],
+ "wall_s": 340.6
+}

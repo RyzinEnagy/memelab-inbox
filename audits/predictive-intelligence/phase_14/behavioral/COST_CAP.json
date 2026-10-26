@@ -1,0 +1,106 @@
+{
+ "meter_cap": {
+  "charged_not_above_cap": true,
+  "first_run": {
+   "cost": {
+    "calls_refused": 9,
+    "cap_usd": 0.01,
+    "est_cost_usd": 0.009709,
+    "llm_calls": 7,
+    "prompt_chars": 1505,
+    "wall_s": 0.416
+   },
+   "reasons": [
+    "COST_CAP_REACHED"
+   ],
+   "status": "SIMULATION_NOT_AVAILABLE"
+  },
+  "max_tokens_seen_upstream": [
+   512
+  ],
+  "meter": {
+   "breaker_open": false,
+   "calls_forwarded": 7,
+   "calls_refused": 25,
+   "cap_microusd": 10000,
+   "cap_reached": true,
+   "charged_microusd": 9709,
+   "killed": false,
+   "prompt_chars": 1505,
+   "usage_above_charge": 0
+  },
+  "second_run": {
+   "cost": {
+    "calls_refused": 16,
+    "cap_usd": 0.01,
+    "est_cost_usd": 0.0,
+    "llm_calls": 0,
+    "prompt_chars": 0,
+    "wall_s": 0.401
+   },
+   "reasons": [
+    "COST_CAP_REACHED"
+   ],
+   "status": "SIMULATION_NOT_AVAILABLE"
+  },
+  "upstream_calls": 7,
+  "upstream_calls_after_first_run": 7
+ },
+ "prompt_call_kill": {
+  "after_kill": 503,
+  "four_calls_cap_three": [
+   200,
+   200,
+   200,
+   429
+  ],
+  "ledger_statuses": [
+   "PROMPT_TOO_LARGE",
+   "FORWARDED",
+   "FORWARDED",
+   "FORWARDED",
+   "CALL_CAP",
+   "KILLED"
+  ],
+  "prompt_over_cap": 413
+ },
+ "upstream_breaker": {
+  "codes": [
+   500,
+   500,
+   500,
+   500,
+   500,
+   503,
+   503
+  ],
+  "meter": {
+   "breaker_open": true,
+   "calls_forwarded": 5,
+   "calls_refused": 2,
+   "cap_microusd": 1000000,
+   "cap_reached": false,
+   "charged_microusd": 0,
+   "killed": false,
+   "prompt_chars": 10,
+   "usage_above_charge": 0
+  },
+  "upstream_calls": 5
+ },
+ "worst_case_refusal": {
+  "plan": {
+   "cap_micro": 0,
+   "detail": "worst case 1465728 micro-USD against cap 0",
+   "ok": false,
+   "price_in_micro": 1000,
+   "price_out_micro": 2000,
+   "reason": "COST_CAP_REACHED",
+   "worst_micro": 1465728
+  },
+  "reasons": [
+   "COST_CAP_REACHED"
+  ],
+  "service_requests": 0,
+  "status": "SIMULATION_NOT_AVAILABLE"
+ }
+}
