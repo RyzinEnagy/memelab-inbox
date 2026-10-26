@@ -1,0 +1,160 @@
+{
+ "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "body": {
+  "logistic": {
+   "C": 1.0,
+   "coef": [
+    0.2954453124360271,
+    0.3750303955724098,
+    0.1287557039920239,
+    0.6282302088589847,
+    -1.8835073127890947,
+    0.37057949951515684,
+    0.539161240222502,
+    0.41243984249925913,
+    0.3369991188271126,
+    -0.02370014918510075,
+    0.07390854086179298,
+    0.8983634372856665,
+    -0.005701137162688526,
+    0.3824460910372205,
+    0.3824460910372205
+   ],
+   "intercept": -2.912441590353905,
+   "n_iter": 9
+  },
+  "prep": {
+   "ind": [
+    11,
+    12
+   ],
+   "keep": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "med": [
+    12.5855618,
+    15.037376824999999,
+    13.72469038,
+    0.0,
+    2.607241653652082,
+    1.0,
+    0.0,
+    0.615,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0
+   ],
+   "mu": [
+    12.122778352741937,
+    15.073911203040323,
+    13.813377036604837,
+    0.49193548387096775,
+    2.892590405103394,
+    0.9193548387096774,
+    0.41935483870967744,
+    0.5852419354838709,
+    1.3306451612903225,
+    0.3709677419354839,
+    1.1048387096774193,
+    -0.016129032258064516,
+    0.03225806451612903,
+    0.7258064516129032,
+    0.7258064516129032
+   ],
+   "n_in": 13,
+   "sd": [
+    1.949118432284047,
+    2.7321253233601412,
+    1.5945765493342279,
+    0.49993495934931836,
+    1.964355449426728,
+    0.7361273359512275,
+    0.4934535013154307,
+    0.24402030491161414,
+    0.7039264784000641,
+    0.4830638429636108,
+    0.9142117033278239,
+    0.28352251340720885,
+    0.17668469596940845,
+    0.44610698986901065,
+    0.44610698986901065
+   ]
+  },
+  "spec": {
+   "columns": [
+    "thesis_log1p_liquidity_usd",
+    "thesis_log1p_mcap_usd",
+    "thesis_log1p_vol_24h_usd",
+    "thesis_fatal_present",
+    "log1p_token_age_days",
+    "sc_attention_trend_ord",
+    "sc_attention_suspect",
+    "sc_narrative_strength",
+    "sc_manipulation_ord",
+    "sc_lifecycle_late",
+    "sc_channels_n",
+    "sc_d_attention_trend",
+    "sc_attention_reversal"
+   ],
+   "kind": "logit",
+   "rows": [
+    "thesis_log1p_liquidity_usd",
+    "thesis_log1p_mcap_usd",
+    "thesis_log1p_vol_24h_usd",
+    "thesis_fatal_present",
+    "sc_attention_trend_ord",
+    "sc_attention_suspect"
+   ]
+  },
+  "train_prediction_sd": 0.26846570390954944
+ },
+ "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+ "data_snapshot_sha": "6b67311ba6444fdf8eb48634fa5b64518dbd4648d2ef1e38b63d04c1e12c35eb",
+ "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+ "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+ "feature_version": "2",
+ "k_train": 28,
+ "k_used": 26,
+ "kind": "S3_SC_LOGIT_TREND",
+ "label_mode": "provider",
+ "label_set_sha": "4bf69e8092c8569cdd75cfc0c14b750ea00c8dac22ff0c1f6a4620732adc2c24",
+ "labels_version": "labels-1",
+ "llm_used": false,
+ "max_train_decision_time": 1791973063.0,
+ "max_train_label_matures_at": 1792147063.0,
+ "model_id": "S3_SC_LOGIT_TREND:price_path_severe_drawdown_or_halt_24h",
+ "model_sha": "92f900a26c0cd2ce4e18fb77368965bc8d1b1549dd0fe829d32d01b07bb58765",
+ "n_train": 131,
+ "n_used": 124,
+ "phase": "10",
+ "promotion": "MODEL_NOT_PROMOTED",
+ "publishable": false,
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "revision_check_claimed": false,
+ "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+ "socialcat_version": "socialcat-1",
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "store_schema": "memelab.predictive.store/1",
+ "target_version": {
+  "price_path_severe_drawdown_or_halt_24h": "1"
+ },
+ "targets": [
+  "price_path_severe_drawdown_or_halt_24h"
+ ],
+ "training_cutoff": 1792195200.0,
+ "training_cutoff_utc": "2026-10-17T00:00:00Z"
+}

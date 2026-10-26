@@ -1,0 +1,617 @@
+{
+ "applied": 85,
+ "caught": 85,
+ "equivalent": [
+  {
+   "caught": false,
+   "mutation": "training maturity check removed (equivalent)"
+  }
+ ],
+ "mutations": 85,
+ "not_applied": [],
+ "results": [
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_change_features_and_the_attention_reversal_use_the_previous_decision_only",
+   "mutation": "trend order changed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p16_paid_or_manufactured_attention_is_suspect_and_never_organic_acceleration",
+   "mutation": "manipulation order changed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_unknown_lines_are_not_observed_new_formats_unparseable_and_a_contradiction_is_refused",
+   "mutation": "snapshot contradiction accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_unknown_lines_are_not_observed_new_formats_unparseable_and_a_contradiction_is_refused",
+   "mutation": "unknown trend word guessed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_unknown_lines_are_not_observed_new_formats_unparseable_and_a_contradiction_is_refused",
+   "mutation": "unknown line format guessed as not observed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p16_paid_or_manufactured_attention_is_suspect_and_never_organic_acceleration",
+   "mutation": "P16 paid attention not suspect"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p16_paid_or_manufactured_attention_is_suspect_and_never_organic_acceleration",
+   "mutation": "P16 manufactured flow not suspect"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_unknown_lines_are_not_observed_new_formats_unparseable_and_a_contradiction_is_refused",
+   "mutation": "P16 unknown paid counted as organic"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p16_paid_or_manufactured_attention_is_suspect_and_never_organic_acceleration",
+   "mutation": "suspect acceleration counted as organic"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p16_paid_or_manufactured_attention_is_suspect_and_never_organic_acceleration",
+   "mutation": "unknown suspect counted as organic acceleration"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_unknown_lines_are_not_observed_new_formats_unparseable_and_a_contradiction_is_refused",
+   "mutation": "MANIA counted as late"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_unknown_lines_are_not_observed_new_formats_unparseable_and_a_contradiction_is_refused",
+   "mutation": "unknown lifecycle stage counted as early"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_channels_count_http_links_only_and_search_pages_are_fake",
+   "mutation": "search pages counted as channels"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_channels_count_http_links_only_and_search_pages_are_fake",
+   "mutation": "non-links counted as channels"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_channels_count_http_links_only_and_search_pages_are_fake",
+   "mutation": "'None' strings counted as set"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_cx10_the_token_row_and_narrative_tables_come_from_the_decisions_own_export",
+   "mutation": "CX-10 context commit not checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_cx10_the_token_row_and_narrative_tables_come_from_the_decisions_own_export",
+   "mutation": "CX-10 context time not checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_cx10_the_token_row_and_narrative_tables_come_from_the_decisions_own_export",
+   "mutation": "CX-10 context blob not checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_narrative_context_newest_snapshot_at_or_before_t",
+   "mutation": "narrative snapshot after T accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_narrative_context_newest_snapshot_at_or_before_t",
+   "mutation": "oldest narrative snapshot used"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_narrative_context_newest_snapshot_at_or_before_t",
+   "mutation": "narrative first seen after T accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_narrative_context_newest_snapshot_at_or_before_t",
+   "mutation": "unknown narrative lifecycle guessed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_values_are_available_at_the_decision_and_never_use_a_later_decision",
+   "mutation": "oldest visible decision used instead of the newest"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p36_snapshot_time_after_the_decision_refuses_the_row",
+   "mutation": "P36 snapshot time check removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_change_features_and_the_attention_reversal_use_the_previous_decision_only",
+   "mutation": "previous decision is the first, not the latest"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_values_are_available_at_the_decision_and_never_use_a_later_decision",
+   "mutation": "previous decision may share the decision time"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_change_features_and_the_attention_reversal_use_the_previous_decision_only",
+   "mutation": "trend change reversed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_no_reversal_from_exhaustion_and_suspect_acceleration_is_not_high_attention",
+   "mutation": "reversal from any previous trend"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_values_are_available_at_the_decision_and_never_use_a_later_decision",
+   "mutation": "value available after the decision"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_snapshot_is_deterministic_and_values_are_finite",
+   "mutation": "non-finite value accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_no_reversal_from_exhaustion_and_suspect_acceleration_is_not_high_attention",
+   "mutation": "high attention class from suspect acceleration"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_attach_checks_identity_and_keeps_missing_values_missing",
+   "mutation": "attach ignores the decision time"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_attach_checks_identity_and_keeps_missing_values_missing",
+   "mutation": "missing value becomes zero"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_attach_checks_identity_and_keeps_missing_values_missing",
+   "mutation": "a value without availability accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_training_rows_must_be_matured_and_inputs_declared",
+   "mutation": "allowlist removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_count_gate_counts_the_rows_a_model_uses",
+   "mutation": "count gate on all training rows"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_rule_cells_are_shrunk_to_the_training_prevalence_and_a_missing_cell_gives_b0",
+   "mutation": "rule shrinkage removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_rule_cells_are_shrunk_to_the_training_prevalence_and_a_missing_cell_gives_b0",
+   "mutation": "rule missing cell scored as a known cell"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_s2_uses_required_rows_optional_missing_inputs_and_a2_the_same_rows",
+   "mutation": "required rows not enforced"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p13_a_card_never_scores_an_earlier_decision",
+   "mutation": "P13 guard removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_card_roundtrip_tamper_and_version",
+   "mutation": "card version check removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_fixture_signal_is_found_and_flagged_as_fixture",
+   "mutation": "scored rows standardised with their own statistics"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_fixture_signal_is_found_and_flagged_as_fixture",
+   "mutation": "boosted model reads the logistic body"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_walk_forward_refuses_a_training_set_other_than_the_index",
+   "mutation": "walk-forward index check removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_degenerate_flag_and_campaign_groups",
+   "mutation": "degenerate test inverted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_amplification_alarm_counts_and_lead_time",
+   "mutation": "alarm at or above the prevalence"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_amplification_alarm_counts_and_lead_time",
+   "mutation": "negative lead time accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_degenerate_flag_and_campaign_groups",
+   "mutation": "campaign by mint only"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p04_published_at_is_not_availability_and_a_page_crawled_after_t_is_ignored",
+   "mutation": "P04 published time used as availability"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p04_published_at_is_not_availability_and_a_page_crawled_after_t_is_ignored",
+   "mutation": "P04 page crawled after T used"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_verified_needs_exact_mint_in_source_confirmed_evidence_and_two_independent_or_official_sources",
+   "mutation": "link made after T used"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p17_rumor_denial_and_deleted_source_are_never_verified",
+   "mutation": "revisions after T used"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p45_an_event_without_a_source_item_seen_by_t_is_refused",
+   "mutation": "P45 event without a source item classified"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p15_a_duplicated_influencer_article_counts_once",
+   "mutation": "P15 syndicated copies counted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p15_a_duplicated_influencer_article_counts_once",
+   "mutation": "P15 duplicate bodies counted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p41_a_mint_named_only_on_a_crawled_page_is_not_identity",
+   "mutation": "P41 page-named contract accepted as identity"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_ticker_or_name_matches_are_never_identity",
+   "mutation": "ticker match accepted as identity"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_verified_needs_exact_mint_in_source_confirmed_evidence_and_two_independent_or_official_sources",
+   "mutation": "identity from any mint"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p17_rumor_denial_and_deleted_source_are_never_verified",
+   "mutation": "P17 rumor verified"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p17_rumor_denial_and_deleted_source_are_never_verified",
+   "mutation": "P17 denial ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p17_rumor_denial_and_deleted_source_are_never_verified",
+   "mutation": "deleted source not a withdrawal"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_evidence_as_of_uses_the_revision_log_not_the_row_edited_later",
+   "mutation": "evidence from the row edited later"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_evidence_as_of_uses_the_revision_log_not_the_row_edited_later",
+   "mutation": "oldest evidence revision used"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_verified_needs_exact_mint_in_source_confirmed_evidence_and_two_independent_or_official_sources",
+   "mutation": "single source verified"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_verified_needs_exact_mint_in_source_confirmed_evidence_and_two_independent_or_official_sources",
+   "mutation": "unverified catalyst allowed a probability"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_event_type_comes_from_structured_fields_only",
+   "mutation": "trader claim from a news source"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p17_rumor_denial_and_deleted_source_are_never_verified",
+   "mutation": "rumor type not first"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p17_deleted_before_t_is_excluded_and_after_t_still_counts",
+   "mutation": "P36 observations after T visible"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_ticker_only_mentions_and_other_mints_are_never_identity",
+   "mutation": "resolution after T used"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_social_counts_exact_originals_once_and_never_after_t",
+   "mutation": "ticker mention used as identity"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p17_deleted_before_t_is_excluded_and_after_t_still_counts",
+   "mutation": "P17 deleted item counted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p03_an_edited_post_uses_the_first_known_original_or_is_excluded",
+   "mutation": "P03 edit used when no original is visible"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p03_an_edited_post_uses_the_first_known_original_or_is_excluded",
+   "mutation": "P03 latest version used"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_social_counts_exact_originals_once_and_never_after_t",
+   "mutation": "P16 bots counted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_social_counts_exact_originals_once_and_never_after_t",
+   "mutation": "P15 duplicates counted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_trader_links_and_identity_checks_count_only_when_made_by_t",
+   "mutation": "trader link after T used"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_p26_model_extracted_claims_are_excluded_and_disagreement_uses_deterministic_ones",
+   "mutation": "P26 model-extracted claims used"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_track_record_uses_only_calls_before_t_whose_outcome_matured_by_t",
+   "mutation": "track record includes calls not matured by T"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_trader_links_and_identity_checks_count_only_when_made_by_t",
+   "mutation": "verified trader without a check by T"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_social_store_is_read_only_and_refuses_lab_and_predictive_stores",
+   "mutation": "read-only open removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_social_store_is_read_only_and_refuses_lab_and_predictive_stores",
+   "mutation": "lab database accepted as a social store"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_proposed_follow_through_label_states",
+   "mutation": "follow-through starts before availability"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_proposed_follow_through_label_states",
+   "mutation": "ambiguous bar counted positive"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_proposed_follow_through_label_states",
+   "mutation": "short path labelled negative"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "FAILED tests/test_predictive_social.py::test_proposed_withdrawal_label_states",
+   "mutation": "withdrawal pending read as negative"
+  },
+  {
+   "applied": true,
+   "caught": false,
+   "file": "memelab/predictive/socialcat.py",
+   "first_failure": "",
+   "mutation": "training maturity check removed (equivalent)"
+  }
+ ],
+ "survived": []
+}

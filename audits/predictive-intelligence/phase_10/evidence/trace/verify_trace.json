@@ -1,0 +1,13 @@
+{
+ "decision_key": "4b33b36c051d59016f7826b9d7fb62a92fdb179e79b4a5f97faf783de95f0917",
+ "decision_time_utc": "2026-10-13T10:20:23Z",
+ "differences": [],
+ "event_without_post_event_text": true,
+ "inputs_compared": 11,
+ "invalid_inputs_all_rejected": true,
+ "models_compared": 8,
+ "pass": true,
+ "token_row_equals_own_export": true,
+ "values_available_after_T": [],
+ "values_compared": 8
+}

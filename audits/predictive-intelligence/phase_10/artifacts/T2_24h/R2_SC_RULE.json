@@ -1,0 +1,82 @@
+{
+ "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "body": {
+  "b0": 0.21374045801526717,
+  "cells": {
+   "T0S0": {
+    "k": 1,
+    "n": 19,
+    "p": 0.13525151693090626
+   },
+   "T0S1": {
+    "k": 4,
+    "n": 20,
+    "p": 0.20687022900763358
+   },
+   "T1S0": {
+    "k": 3,
+    "n": 35,
+    "p": 0.13226925746009716
+   },
+   "T1S1": {
+    "k": 7,
+    "n": 21,
+    "p": 0.27499534537330106
+   },
+   "T2S0": {
+    "k": 2,
+    "n": 18,
+    "p": 0.16512655685014063
+   },
+   "T2S1": {
+    "k": 9,
+    "n": 11,
+    "p": 0.4282196503324304
+   }
+  },
+  "m": 20.0,
+  "spec": {
+   "columns": [
+    "sc_attention_trend_ord",
+    "sc_attention_suspect"
+   ],
+   "kind": "rule",
+   "rows": []
+  }
+ },
+ "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+ "data_snapshot_sha": "6b67311ba6444fdf8eb48634fa5b64518dbd4648d2ef1e38b63d04c1e12c35eb",
+ "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+ "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+ "feature_version": "2",
+ "k_train": 28,
+ "k_used": 28,
+ "kind": "R2_SC_RULE",
+ "label_mode": "provider",
+ "label_set_sha": "4bf69e8092c8569cdd75cfc0c14b750ea00c8dac22ff0c1f6a4620732adc2c24",
+ "labels_version": "labels-1",
+ "llm_used": false,
+ "max_train_decision_time": 1791973063.0,
+ "max_train_label_matures_at": 1792147063.0,
+ "model_id": "R2_SC_RULE:price_path_severe_drawdown_or_halt_24h",
+ "model_sha": "e4336ebba476384ed3b102dc8528125e90c31fe452c1533e7b7520979af580a6",
+ "n_train": 131,
+ "n_used": 131,
+ "phase": "10",
+ "promotion": "MODEL_NOT_PROMOTED",
+ "publishable": false,
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "revision_check_claimed": false,
+ "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+ "socialcat_version": "socialcat-1",
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "store_schema": "memelab.predictive.store/1",
+ "target_version": {
+  "price_path_severe_drawdown_or_halt_24h": "1"
+ },
+ "targets": [
+  "price_path_severe_drawdown_or_halt_24h"
+ ],
+ "training_cutoff": 1792195200.0,
+ "training_cutoff_utc": "2026-10-17T00:00:00Z"
+}

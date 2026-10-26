@@ -1,39 +1,38 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-056). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_09/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-058). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_10/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
-## Position on 2026-10-25
+## Position on 2026-10-26
 
-- Phases 00 to 05: PASS. Phase 06: NEEDS_REVIEW, one item open (the frozen 48 h revision re-read, not before 2026-10-26T13:49Z). Phases 07 and 08: PASS, PROVISIONAL under PI-D-046.
-- Phase 09 (on-chain, liquidity, wallet and authority forecasts): PASS, PROVISIONAL under PI-D-046, after repair pass 2 (PI-D-056): the orchestrator's independent skeptic (2 MATERIAL, 4 minor, CX-S09; every number reproduced) is folded in. TEST_ONLY parts: the collector adapter, the depth size cap, the liquidity proposals and the wallet-movement rules (no forward collector rows exist). Commits (local only; the orchestrator pushes): pre-registration `3079af1`, code `15bc5b5`, runner repairs `a52233c` and `18bd243`, first-pass outputs `934d2d4`, repair code `e306d43`, repair outputs `58490be`, records `c59730f` and a post-commit records commit on top. Post-commit at `c59730f`: suite `1 failed, 1279 passed` (known failure only), guard 0 violations, seal check 0 problems, single-branch release audit exit 0.
-- Spend: 0 Firecrawl credits; Phase 09 made no vendor or network call (one `git fetch` of `origin/feature/backtesting`).
+- Phases 00 to 05: PASS. Phase 06: NEEDS_REVIEW, one item open (the frozen 48 h revision re-read, not before 2026-10-26T13:49Z). Phases 07 to 09: PASS, PROVISIONAL under PI-D-046.
+- Phase 10 (social and catalyst outcome forecasts): NEEDS_REVIEW after the first pass; the orchestrator's independent skeptic (PI-D-013) is next, then a repair pass. PROVISIONAL under PI-D-046. TEST_ONLY parts: the catalyst classifier, the social evidence adapter and the catalyst target proposals (no catalyst or social row exists for any decision). Commits (local only; the orchestrator pushes): pre-registration `c3f04c8`, code `0784a9a`, outputs and records on top (the post-commit records commit holds the final hash in `phase_10/PHASE_10_RESULTS.json`).
+- Spend: 0 Firecrawl credits, no vendor, crawler or language-model call; one `git fetch` of `origin/main`.
 
-## What Phase 09 found
+## What Phase 10 found
 
-- Data sufficiency: no historical reserves, quotes, swaps, holder distributions, wallet flows or authority histories exist for the lab's decisions, and none is substituted by a modern read. What exists is the lab's own on-chain reading inside each exported thesis and token row (fatal flags, score-breakdown rationale, snapshot fields, token program). Phase 09 turns it into the as-of feature set onchain-1 (`memelab/predictive/onchain.py`, PI-D-054): 0 unparseable values over 925 Solana decisions, availability at the export commit, capture delay median 17 min, up to 21.6 h on the 13 decisions at the path-switch commit `15c2087` (rows exported 4.5 to 7.75 h earlier under `state/latest.json`, which the predictive walk does not read) and up to 7.8 h elsewhere.
-- Models (PI-D-055): the simple on-chain rule R1, the veto alarm R0 (counts only), the on-chain logistic M1, M2 (with B2's columns, primary), M3 (with change features) and A1 (B2 on M2's rows). Every model passes the training gate in every fold; every verdict is INSUFFICIENT_DAYS (T2: 8 out-of-sample rows, 1 positive, 1 day; T1: 24, 8, 3 days) or INSUFFICIENT_EVENTS (T1b: 44, 3, 5 days). Nothing is better or worse than the base rate, B2 or the simple rule as far as this data can tell. All MODEL_NOT_PROMOTED. Same folds and B0/B2 numbers as Phase 07 (76 of 76).
-- Authority features have no variance in development (0 of 240 decisions with mint or freeze authority active). The R0 veto alarm on T2 out of sample: 0 hits, 1 miss, 1 false alarm, 6 correct rejections (counts only).
-- Execution semantics: `onchain.decision_support` keeps every lab fatal flag as a veto no forecast clears; `size_cap_usd` uses only answered quotes of the decision's pool captured at or before the decision, newest per size, within a maximum age (CX-S09 repaired), and is EXECUTION_DATA_MISSING on every decision here.
-- Collector (PI-D-044): read-only adapter `memelab/predictive/depth_adapter.py` against the documented schema of migration 2 (no import of `memelab.backtest`); this checkout has no collector database (COLLECTOR_NOT_AVAILABLE); fixture-tested only (TEST_ONLY). Counterexample CX-09: a collector read captured after the decision is never a feature of that decision.
-- Liquidity drawdown, exit capacity and distribution stay DEFERRED or BLOCKED; written as proposals in `phase_09/models/LIQUIDITY_TARGET_PROPOSALS.md`, not frozen, registry unchanged.
-- Real cross-checks (corrected in repair pass 2): 27 of 33 lab DB `token_authorities` rows carry another mint's Token-2022 metadata (`98kfF7rm...`), a lab data-quality finding; they are refused as a reference and the first pass's "33 of 33 agree" is withdrawn; the 6 clean rows agree on authority (not independent); the token program agrees 8 of 8 between the lab `tokens` table and the export; swaps against candles agree on one mint and differ on four (pool fragmentation, latest-trades page; signatures truncated, no on-chain verification possible); 19 exchange holders never insider; one dev wallet looks like a mint (`55Vr2VpS...`).
-- Checks: traps NC2-OC 170 of 170, P13-OC 15 of 15, P36-OC, CX-09, CX-S09; trace recomputed independently (0 differences); oracle newton-cholesky within 1.75e-11 on 48 real designs; 50 tests; mutation probe 66 of 66 at HEAD; two runs identical; the repair run's metrics, cards, folds and predictions are byte-equal to the first pass.
+- Data sufficiency: no social item, observation, claim, trader link or track record and no catalyst event, item, link or assessment exists for any of the lab's decisions in anything readable here (social and catalyst tables are not exported, `data/private/` is absent, every social route is BUILT on fixtures or BLOCKED). Every decision carries CATALYST_TABLES_NOT_EXPORTED and SOCIAL_TABLES_NOT_EXPORTED; no catalyst is VERIFIED and no catalyst probability exists. No crawl stands in for history (P04).
+- What the lab did record at each decision is socialcat-1 (`memelab/predictive/socialcat.py`, PI-D-057): the m19 attention proxy (trend, narrative strength, organic or paid), the m20 manipulation screen, the m21 lifecycle stage, the token row's channels and narrative tag, and the narrative tables of the decision's own export; available at the export commit, LAB_RECORDED, 0 unparseable over 925 decisions. These are on-chain and market proxies, not social text. Lab-derived classes: HIGH_ATTENTION_PROXY 74, NARRATIVE_REVERSAL 56 decisions (never a verified catalyst).
+- Models (PI-D-058): R2 attention rule, R3 amplification alarm (counts only), S1 attention logistic, S2 attention plus B2 (primary), S3 with change features, G1 boosted stumps, A2 B2 on S2's rows. 306 metric rows, all INSUFFICIENT_HISTORY (T2, and T1 fold 0 with 98 usable rows), INSUFFICIENT_DAYS (T1: 13 rows, 4 positive, 2 days) or INSUFFICIENT_EVENTS (T1b: 37 rows, 3 positive, 5 days); no incremental value beyond B2 claimed; all MODEL_NOT_PROMOTED; same folds and B0/B2 numbers as Phase 07.
+- Leakage controls on the real history: token rows equal their own export 925 of 925 (CX-10: the newest export would add 20 narrative tags, 74 websites, 4 twitter links); a later export's tables refused 240 of 240 (P04-SC); next-decision values refused 156 of 156 (NC2-SC); snapshot time after the decision refuses all values (P36-SC); holdout-start cards refused on development decisions (P13-SC).
+- Checks: 51 tests; mutation probe 85 of 85 at HEAD (1 equivalent reported apart); trace recomputed independently (0 differences); every out-of-sample number (326) recomputed without the module (0 differences); oracle newton-cholesky within 1.9e-11 on 40 real designs; two runs identical.
+- Catalyst follow-through, withdrawal and amplification reversal are written as proposals only (`phase_10/models/CATALYST_TARGET_PROPOSALS.md`), registry unchanged.
 
 ## What exists now
 
 - Targets frozen before any price data was read (Phase 01): T1 +25% before -15% within 24 h; T1b the same within 6 h; T2 half the reference price or a trading halt within 24 h. Price-path labels only, no fill, size, depth or profit claims.
-- Code (flag OFF, imported by no existing module): `memelab/predictive/` contract, decisions, runtime, store, sources, features, labels, stats, baselines, technical, onchain, depth_adapter, with `tests/test_predictive_*.py`.
-- Data: point-in-time feature store (1,500 decisions, 3,000 snapshots), development labels (T1 136 with 34 positive, T1b 224 with 26, T2 131 with 28), holdout labels sealed in `phase_06/sealed/` (open only in Phase 12 after `check_seal.py`). Frozen cards for Phase 12: `phase_07/artifacts/`, `phase_08/artifacts/`, `phase_09/artifacts/`.
+- Code (flag OFF, imported by no existing module): `memelab/predictive/` contract, decisions, runtime, store, sources, features, labels, stats, baselines, technical, onchain, depth_adapter, socialcat, with `tests/test_predictive_*.py`.
+- Data: point-in-time feature store (1,500 decisions, 3,000 snapshots), development labels (T1 136 with 34 positive, T1b 224 with 26, T2 131 with 28), holdout labels sealed in `phase_06/sealed/` (open only in Phase 12 after `check_seal.py`). Frozen cards for Phase 12: `phase_07/artifacts/`, `phase_08/artifacts/`, `phase_09/artifacts/`, `phase_10/artifacts/`.
 
 ## Open items, in order
 
-1. Phase 10 is eligible if the orchestrator records Phase 09 PASS (provisional under PI-D-046).
-2. Phase 06 48 h revision re-read: `python -B audits/predictive-intelligence/phase_06/probes/make_labels.py reread48`, at or after 2026-10-26T13:49Z. If any development label changes: rerun `phase_07/probes/run_baselines.py` at `f977aab`, `phase_08/probes/run_technical.py` at `e81ee46` and `phase_09/probes/run_onchain.py` at `e306d43` (or later), commit the superseding outputs and record it.
-3. Collector deployment on Elving's computer (backtesting RUNBOOK); once rows exist, measure the adapter's link rate before any proposal is frozen.
+1. Phase 10 independent skeptic and repair pass (orchestrator, PI-D-013): `audits/predictive-intelligence/phase_10/SKEPTIC_PACKET.md`.
+2. Phase 06 48 h revision re-read: `python -B audits/predictive-intelligence/phase_06/probes/make_labels.py reread48`, at or after 2026-10-26T13:49Z. If any development label changes: rerun `phase_07/probes/run_baselines.py` at `f977aab`, `phase_08/probes/run_technical.py` at `e81ee46`, `phase_09/probes/run_onchain.py` at `e306d43` and `phase_10/probes/run_social.py` at `0784a9a` (or later), commit the superseding outputs and record it.
+3. Phase 11 is eligible only after the orchestrator records Phase 10 PASS (provisional under PI-D-046).
+4. Collector deployment on Elving's computer (backtesting RUNBOOK); forward social and catalyst collection would need new approvals (credentials, consent, scheduled jobs).
 
 ## Waiting on Elving
 
-- Any paid data, LLM, Zep or MiroFish use; adding research packages to the lab's runtime; a merge into `main`; deploying the forward depth collector (already approved, PI-D-044; not yet done).
+- Any paid data, LLM, Zep or MiroFish use; social API credentials or consent (X, Telegram, Reddit, Discord, YouTube, Farcaster routes are BLOCKED); scheduled catalyst or social collection into a store this engine can read; adding research packages to the lab's runtime; a merge into `main`; deploying the forward depth collector (already approved, PI-D-044; not yet done).
 
 ## Note outside this branch
 
@@ -41,16 +40,16 @@ The release audit on a full local clone flags a history blob reachable only from
 
 ## Lab rules that still bind
 
-Research only: no trades, no wallets with signing authority, no seed phrases or private keys, no credentials printed or committed. No change under `inbox/`, `state/` or `data/` on this branch. Existing 100-point score and fatal-flag overrides unchanged. Forecasts stay a separate evidence section with the flag OFF.
+Research only: no trades, no wallets with signing authority, no seed phrases or private keys, no credentials printed or committed. No change under `inbox/`, `state/` or `data/` on this branch. Existing 100-point score and fatal-flag overrides unchanged. Forecasts stay a separate evidence section with the flag OFF. No raw social content in the repository.
 
 ## Exact next commands
 
 ```
 git clone https://github.com/RyzinEnagy/memelab-inbox.git && cd memelab-inbox
-git checkout feature/predictive-intelligence && git log -8 --oneline
+git checkout feature/predictive-intelligence && git log -8 --oneline && git fetch origin main
 pip install pytest
 python -B audits/predictive-intelligence/phase_06/probes/check_seal.py
 python -m pytest tests -q
 ```
 
-Expect `"problems": []` from the seal check and `1 failed, 1279 passed` from the suite (only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`, a known clock-dependent failure). Then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. The Phase 07 to 09 runners need the two private stores under `/home/claude/pi_research/` (rebuild them from the committed archives if the workspace was reclaimed: `phase_05/data/FEATURE_STORE_CONTRACT.md`, `phase_06/labels/TARGET_SCHEMA.md`).
+Expect `"problems": []` from the seal check and `1 failed, 1330 passed` from the suite (only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`, a known clock-dependent failure). Then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. The Phase 07 to 10 runners need the two private stores under `/home/claude/pi_research/` (rebuild them from the committed archives if the workspace was reclaimed: `phase_05/data/FEATURE_STORE_CONTRACT.md`, `phase_06/labels/TARGET_SCHEMA.md`); the Phase 10 runner also reads `origin/main` git objects.

@@ -1,0 +1,103 @@
+{
+ "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "body": {
+  "logistic": {
+   "C": 1.0,
+   "coef": [
+    0.05347670100742108,
+    0.25408930639738864,
+    0.5791735175945564,
+    0.5228572300846692,
+    -2.3722982270468473
+   ],
+   "intercept": -2.4607929305383496,
+   "n_iter": 8
+  },
+  "prep": {
+   "ind": [],
+   "keep": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "med": [
+    12.5855618,
+    15.037376824999999,
+    13.72469038,
+    0.0,
+    2.607241653652082
+   ],
+   "mu": [
+    12.122778352741937,
+    15.073911203040323,
+    13.813377036604837,
+    0.49193548387096775,
+    2.892590405103394
+   ],
+   "n_in": 5,
+   "sd": [
+    1.949118432284047,
+    2.7321253233601412,
+    1.5945765493342279,
+    0.49993495934931836,
+    1.964355449426728
+   ]
+  },
+  "spec": {
+   "columns": [
+    "thesis_log1p_liquidity_usd",
+    "thesis_log1p_mcap_usd",
+    "thesis_log1p_vol_24h_usd",
+    "thesis_fatal_present",
+    "log1p_token_age_days"
+   ],
+   "kind": "logit",
+   "rows": [
+    "thesis_log1p_liquidity_usd",
+    "thesis_log1p_mcap_usd",
+    "thesis_log1p_vol_24h_usd",
+    "thesis_fatal_present",
+    "sc_attention_trend_ord",
+    "sc_attention_suspect"
+   ]
+  },
+  "train_prediction_sd": 0.235212468380112
+ },
+ "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+ "data_snapshot_sha": "6b67311ba6444fdf8eb48634fa5b64518dbd4648d2ef1e38b63d04c1e12c35eb",
+ "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+ "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+ "feature_version": "2",
+ "k_train": 28,
+ "k_used": 26,
+ "kind": "A2_SC_B2_TC",
+ "label_mode": "provider",
+ "label_set_sha": "4bf69e8092c8569cdd75cfc0c14b750ea00c8dac22ff0c1f6a4620732adc2c24",
+ "labels_version": "labels-1",
+ "llm_used": false,
+ "max_train_decision_time": 1791973063.0,
+ "max_train_label_matures_at": 1792147063.0,
+ "model_id": "A2_SC_B2_TC:price_path_severe_drawdown_or_halt_24h",
+ "model_sha": "f54ef7501580be4f6070b58c6e6e0b4038665b34ffac50a96ec9b617cfea626d",
+ "n_train": 131,
+ "n_used": 124,
+ "phase": "10",
+ "promotion": "MODEL_NOT_PROMOTED",
+ "publishable": false,
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "revision_check_claimed": false,
+ "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+ "socialcat_version": "socialcat-1",
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "store_schema": "memelab.predictive.store/1",
+ "target_version": {
+  "price_path_severe_drawdown_or_halt_24h": "1"
+ },
+ "targets": [
+  "price_path_severe_drawdown_or_halt_24h"
+ ],
+ "training_cutoff": 1792195200.0,
+ "training_cutoff_utc": "2026-10-17T00:00:00Z"
+}

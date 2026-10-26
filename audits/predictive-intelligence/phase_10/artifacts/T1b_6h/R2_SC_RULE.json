@@ -1,0 +1,82 @@
+{
+ "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "body": {
+  "b0": 0.11607142857142858,
+  "cells": {
+   "T0S0": {
+    "k": 2,
+    "n": 51,
+    "p": 0.060865191146881284
+   },
+   "T0S1": {
+    "k": 3,
+    "n": 31,
+    "p": 0.10434173669467786
+   },
+   "T1S0": {
+    "k": 10,
+    "n": 59,
+    "p": 0.15596745027124773
+   },
+   "T1S1": {
+    "k": 2,
+    "n": 34,
+    "p": 0.08002645502645502
+   },
+   "T2S0": {
+    "k": 4,
+    "n": 24,
+    "p": 0.14366883116883117
+   },
+   "T2S1": {
+    "k": 4,
+    "n": 11,
+    "p": 0.20391705069124424
+   }
+  },
+  "m": 20.0,
+  "spec": {
+   "columns": [
+    "sc_attention_trend_ord",
+    "sc_attention_suspect"
+   ],
+   "kind": "rule",
+   "rows": []
+  }
+ },
+ "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+ "data_snapshot_sha": "90a00c7ba0a66fbc2cfc7c3f98232fe46ee2a3f6d22f5ff885a7310bb3d0d28a",
+ "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+ "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+ "feature_version": "2",
+ "k_train": 26,
+ "k_used": 26,
+ "kind": "R2_SC_RULE",
+ "label_mode": "provider",
+ "label_set_sha": "c03969674ec67e932be2f8ac0c34f6797008428fcf1ab9871feba52e99306618",
+ "labels_version": "labels-1",
+ "llm_used": false,
+ "max_train_decision_time": 1792147326.0,
+ "max_train_label_matures_at": 1792170126.0,
+ "model_id": "R2_SC_RULE:price_path_target_before_invalidation_6h",
+ "model_sha": "6e85b93541ca5314a4d9a81dc15bafe0221370cb060500d70ecec0469a11711e",
+ "n_train": 224,
+ "n_used": 224,
+ "phase": "10",
+ "promotion": "MODEL_NOT_PROMOTED",
+ "publishable": false,
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "revision_check_claimed": false,
+ "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+ "socialcat_version": "socialcat-1",
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "store_schema": "memelab.predictive.store/1",
+ "target_version": {
+  "price_path_target_before_invalidation_6h": "1"
+ },
+ "targets": [
+  "price_path_target_before_invalidation_6h"
+ ],
+ "training_cutoff": 1792195200.0,
+ "training_cutoff_utc": "2026-10-17T00:00:00Z"
+}

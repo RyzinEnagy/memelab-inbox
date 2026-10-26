@@ -1,0 +1,468 @@
+{
+ "approvals_needed": [
+  "none for this phase; for real social or catalyst evaluation: social API credentials or consent and scheduled collection (Elving)"
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/phase_10/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "967c1f78be62b729a573489e2733b35afcc08e61f266c5e69c12d2ba60946823"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/PHASE_10_EVIDENCE.md",
+   "sha256": "5b7f0eaa407db8e7335104e50e9fadf07efebdd568686e9b85c81202eee17ab8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/SKEPTIC_PACKET.md",
+   "sha256": "454877f24d26179910c94de3a60738aac22b2a8b23883d1ef5980d3dc4a6a38c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T1_24h/A2_SC_B2_TC.json",
+   "sha256": "5619019c580bc869d742b738e1233d1921dc42d56064072dfb487ae1390895c7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T1_24h/G1_SC_STUMPS_B2.json",
+   "sha256": "ee7c935ea6762759eff24783825de5aa374caf5275d9520e76c93ff6061b9372"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T1_24h/R2_SC_RULE.json",
+   "sha256": "f348c4ba14aea98447470a6518863d8988090f2cc2a47fc3bb63c46134bcdca8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T1_24h/S1_SC_LOGIT.json",
+   "sha256": "42b9e05e6c3e1f7ded3b557263c742a73b7be5f20d3a30816ff5ad6a2aabe803"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T1_24h/S2_SC_LOGIT_B2.json",
+   "sha256": "22e0547e3c559589337aa654b430dc32d4b7ab384d43791601d4e9d275880282"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T1_24h/S3_SC_LOGIT_TREND.json",
+   "sha256": "d20c565612b365f69f85023a382916d27ec3084d85dd5afb25cc943a965babd2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T1b_6h/A2_SC_B2_TC.json",
+   "sha256": "5cfdf54bbb8e90a40055455606035321ce98243e509d1b0931a32ff5cbb9cb99"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T1b_6h/G1_SC_STUMPS_B2.json",
+   "sha256": "6a5d698d0fd5c2c68573317cd8d72dfefaa663cf1b550aa3e50d4c270e816fa3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T1b_6h/R2_SC_RULE.json",
+   "sha256": "291fc029ac2130c5428b032ad624411185c95ac1edfa2e677049a52062f3a740"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T1b_6h/S1_SC_LOGIT.json",
+   "sha256": "76b04ac3bb45baeea855cd223073db0915c16e85b489e8a8affd1b61e4207e23"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T1b_6h/S2_SC_LOGIT_B2.json",
+   "sha256": "c57b7f302054852982744727296d847bbc516b4d5c9c189be11acf65852d7390"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T1b_6h/S3_SC_LOGIT_TREND.json",
+   "sha256": "e4ad26ca296f1095fab077673736cab381e75aa9d8de5791d395b63269a8cf7c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T2_24h/A2_SC_B2_TC.json",
+   "sha256": "54bfda82e7263e53fc4e4712a5d9a50f8b8f486cbbcae9e122efa1dd7a09c9ec"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T2_24h/G1_SC_STUMPS_B2.json",
+   "sha256": "546c0b50f91bdec775a238231d314a03d178ef833b20d92d77ce552524597597"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T2_24h/R2_SC_RULE.json",
+   "sha256": "15d07f4093804213a162532f18fe3782fea9b1b4d6744711f8d55386a14b47fa"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T2_24h/S1_SC_LOGIT.json",
+   "sha256": "becf7a485b8d845ee90bddd19c16852ba6439fc64de2037260272b08e5a94a54"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T2_24h/S2_SC_LOGIT_B2.json",
+   "sha256": "72225f61a848f3cfb09cdcafe47168bd72cf180c68fd5e07bc411f94ad872340"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/T2_24h/S3_SC_LOGIT_TREND.json",
+   "sha256": "0fc45e7855606199bcc5e9d734f07d4049a0c011c14ec7ecb2ce6178285603e8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/folds/T1_24h.json",
+   "sha256": "0b0964560ad5ca440d53966ae2988fa15e89057d7b3d565e7add2b9960f8e575"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/folds/T1b_6h.json",
+   "sha256": "84e5ede40eb5455093a7286f69af23e69cd9ed19c58e505b2ccfe35c91c876b5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/artifacts/folds/T2_24h.json",
+   "sha256": "ce3ffe1cece700d3fd0a4ec9f19de5d3baa006a02fb1ee1677b1c80e2ca19ff6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/data/CATALYST_PROVENANCE.md",
+   "sha256": "2a35c228e7ecd9b2ac2e1eaf0f5f9ea456106dff9235fd2348300b7dd4427205"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/evidence/crosschecks.json",
+   "sha256": "0bde0d8726f6225f4f9ac24c2710d5bb7908fcdbb1c8b4f060a183c9830d0187"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/evidence/determinism.json",
+   "sha256": "63e3a58cd90869e8e8ef381210819df128e8ad1064117a020511369a3bed4ec6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/evidence/folds.json",
+   "sha256": "14c57322d2394c7f813c29480a3945d7da31e21968958cafe0d6b1066b38fcdc"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/evidence/mutation_social.json",
+   "sha256": "11a3bd29059b90eb519839ff2c7d4153fa34c488a3918a83c186dd0bab0e2917"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/evidence/phase07_equality.json",
+   "sha256": "c9169da7ef0a0271061bc8a9000ab96f4cc4b3bd412bc19dbc7fc853008f851b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/evidence/recompute_oos.json",
+   "sha256": "9597cf6cde6dff33fff2e8f118baddc4855058ae797860231a79ea3b38c60045"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/evidence/run_log.json",
+   "sha256": "b98f7880ca441db47966d0c0fc84a02442b4b75e10d48c75e2d64a84ff66bc35"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/evidence/serialization_smoke.json",
+   "sha256": "3765f9c1b8472929e8b4e190f983d9fdc681306a6d3d8953e73173a40ed4f0b0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/evidence/sklearn_crosscheck.json",
+   "sha256": "081f18378833e40072c4e79e22947209512ca6d958db5963e7d92d1042d5cb3c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/evidence/trace/FORECAST_TRACE.json",
+   "sha256": "ee4084b2d4746032b2da97fb78ed9e715bed06dace7bcd4cf242020c7382f9af"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/evidence/trace/FORECAST_TRACE.md",
+   "sha256": "88ac8f9dd7a749d6b7e6b53ed857410d5b77d536c77b0f2f48ead8f1b5695af5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/evidence/trace/verify_trace.json",
+   "sha256": "e0d905446714f52c19edc1d45e73716ae3b688379dadd35947956740413b7280"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/evidence/traps.json",
+   "sha256": "acc15e3f9b8cba126f511abdd17f190139cc93451b51e86bd843d74449dd1ff8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/experiments/ABLATION.csv",
+   "sha256": "888f78facd7cb55101aedc6432090cd6771592b9eb4db28776428c4902c52cd6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/experiments/ALARM_COHORTS.csv",
+   "sha256": "c852ef3c231f9c1795b1d2dff53f6809294c703937aa88852a0afc1886ea7b6d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/experiments/AMPLIFICATION_ALARM.csv",
+   "sha256": "ed3aacc764be1bdc6bf4445911400ee847bdbc55fe687a1c85598b37e9b758e0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/experiments/EXPERIMENT_REGISTRY.csv",
+   "sha256": "4177bb7f5ae4318e9b054aff4394838de1d0bbd580d4704f697b1171a051c91f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/experiments/NARRATIVE_COVERAGE_BY_DAY.csv",
+   "sha256": "04551d7ee933d18781e5fede2a51905a3a63adb19db0195f8427bcfb9190bdef"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/experiments/NC1SC_SEEDS.csv",
+   "sha256": "996b27ab471c1bcfe140475e2277527ff0ae3da9088d1fbf0d72a692e09e39e3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/experiments/OOS_PREDICTIONS.csv",
+   "sha256": "6053917baac6a82278ca222b4a142a3f5cf1663a838edf0d377e996468514134"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/experiments/SEARCH_LEDGER.csv",
+   "sha256": "93f2aaa3874c12ca627cf273536df3b16f972ea71f536ed36a899e5cba26e337"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/experiments/SOCIAL_COVERAGE.csv",
+   "sha256": "0007ee441dcae832808949e18140bbecb8db0b792aae2043425c272a33757dc3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/experiments/SOCIAL_FEATURES_DEVELOPMENT.csv",
+   "sha256": "75a952c6a4c3e3565c51194ab367b6c3cf503fbee7e6d8f242d8daf464a89dfc"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/experiments/SOCIAL_METRICS.csv",
+   "sha256": "ab2b03965fd71f076a83d1dbcda1f1261b9ea95c137f56d106e6c9138782dd25"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/models/CATALYST_MODEL_CARD.md",
+   "sha256": "f233da8d35398c0196130d389ff9bcd366c68f25d3399580e34e51375435c606"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/models/CATALYST_TARGET_PROPOSALS.md",
+   "sha256": "24773d303a3d5601816eb994cf2622ffb46dd91b7eef4b0673bfe639e9461d3e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/probes/mutation_social.py",
+   "sha256": "213f2007cd316a27dd97b1cacff6866a159ecd8c9c1b503a0bcd05065b967453"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/probes/recompute_oos_social.py",
+   "sha256": "96cde6c2e3a7003588c328262e977473effdee977512d52759a67172098c7352"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/probes/run_social.py",
+   "sha256": "95da9c5c66bb11f84707af16c1c979d931be1878c94dc79c138322cdc5c6736c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/probes/sklearn_crosscheck_social.py",
+   "sha256": "d15cc2d2193380b240e2c7dc92be90e06a6482397a6304d880248a13a78d0b2f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_10/probes/verify_trace_social.py",
+   "sha256": "f897f592a78afdbb7839b59cc99e9973a675c5848cd687b113dd1f1a3dacb7a7"
+  },
+  {
+   "path": "memelab/predictive/socialcat.py",
+   "sha256": "a8cbf36cea7121db825ba3d1b1840563d0bc50962c59b7a92a2333467e81d763"
+  },
+  {
+   "path": "tests/test_predictive_social.py",
+   "sha256": "6c8af0050133309c35fc2bb205311aa7783a8a36ab065001f1fbfd2dbf4ebffd"
+  },
+  {
+   "path": "docs/predictive-intelligence/DECISIONS.md",
+   "sha256": "b32bcaa00bd7ec612d7d92a0f5236d86bb58ee91d6aac9811c67fbf558dd5fc8"
+  },
+  {
+   "path": "docs/predictive-intelligence/ROADMAP.md",
+   "sha256": "4db8cdb249ac637b038d214be26bb595a592781632a671b60ab62e79a02d8df8"
+  },
+  {
+   "path": "docs/predictive-intelligence/HANDOFF.md",
+   "sha256": "c204266873a15f8907c87952bcaa6246bdfebf388322ac8416b08a670108f25e"
+  },
+  {
+   "path": "audits/predictive-intelligence/COST_LEDGER.md",
+   "sha256": "589f4d241f0687c69efe5db77ba6c8ab7fae2ef581de78504996e5c2284a44a3"
+  }
+ ],
+ "blockers": [
+  "forward social and catalyst collection into a readable store needs credentials, consent and scheduled jobs that are not approved (PI-D-005)"
+ ],
+ "checks": [
+  {
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "exit_code": 0,
+   "name": "G1 package checksums",
+   "pass": true,
+   "result": "41 OK, 0 failed"
+  },
+  {
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "name": "G2 entry suite at 1a52308",
+   "pass": true,
+   "result": "1 failed, 1279 passed in 179.56s (known failure only)"
+  },
+  {
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "name": "G2 seal check",
+   "pass": true,
+   "result": "problems []"
+  },
+  {
+   "input": "c3f04c8 (2026-10-25T23:58:29Z) before recorded run start 2026-10-26T00:20:50Z; code 0784a9a before the run",
+   "name": "G3 pre-registration before any fit",
+   "pass": true,
+   "result": "ordered"
+  },
+  {
+   "command": "python -m pytest tests/test_predictive_social.py -q",
+   "exit_code": 0,
+   "name": "G4 numpy core, tests, social and catalyst code unchanged",
+   "pass": true,
+   "result": "51 passed; git diff f99c6c7 HEAD on memelab/social, catalyst, chains, modules empty"
+  },
+  {
+   "input": "evidence/traps.json CX10, evidence/crosschecks.json export_context_provenance",
+   "name": "G5 as-of features and CX-10",
+   "pass": true,
+   "result": "token rows equal own export 925 of 925; blob and commit time equal 925 of 925"
+  },
+  {
+   "input": "evidence/phase07_equality.json",
+   "name": "G6 same frozen folds, B0/B2 equal Phase 07",
+   "pass": true,
+   "result": "split fingerprints equal; 0 differences at 6 decimals"
+  },
+  {
+   "input": "run_social.py via labels.training_labels and baselines.join; sealed and bake-off paths refused",
+   "name": "G7 gate use and identity",
+   "pass": true,
+   "result": "ok"
+  },
+  {
+   "input": "evidence/folds.json",
+   "name": "G8 count gates",
+   "pass": true,
+   "result": "no fit below 100 events or 20 per class (T1 fold 0 98 usable rows and T2 abstain)"
+  },
+  {
+   "input": "experiments/SOCIAL_METRICS.csv",
+   "name": "G9 metrics and verdicts",
+   "pass": true,
+   "result": "306 rows: INSUFFICIENT_HISTORY 84, INSUFFICIENT_DAYS 120, INSUFFICIENT_EVENTS 102; 0 directional"
+  },
+  {
+   "input": "experiments/ABLATION.csv",
+   "name": "G10 ablation",
+   "pass": true,
+   "result": "no incremental value claimed"
+  },
+  {
+   "input": "evidence/traps.json",
+   "name": "G11 negative controls and traps",
+   "pass": true,
+   "result": "NC2-SC 156/156 refused, P04-SC 240/240, P36-SC 19/19, P13-SC all refused, NC1-SC uninformative"
+  },
+  {
+   "input": "experiments/AMPLIFICATION_ALARM.csv, ALARM_COHORTS.csv",
+   "name": "G12 amplification alarm and cohorts",
+   "pass": true,
+   "result": "counts only below 20"
+  },
+  {
+   "input": "evidence/serialization_smoke.json",
+   "name": "G13 artifacts",
+   "pass": true,
+   "result": "round trip identical, tamper refused, no pickle"
+  },
+  {
+   "input": "evidence/serialization_smoke.json contract",
+   "name": "G14 contract",
+   "pass": true,
+   "result": "ABSTAIN valid, FORECAST with probability refused, catalyst probability none"
+  },
+  {
+   "command": "p04_bundle python -B probes/sklearn_crosscheck_social.py",
+   "exit_code": 0,
+   "name": "G15 oracle newton-cholesky 1e-9",
+   "pass": true,
+   "result": "40 real designs, max 1.88e-11; Prep 4.9e-15"
+  },
+  {
+   "input": "evidence/determinism.json, evidence/run_log.json",
+   "name": "G16 determinism and isolation",
+   "pass": true,
+   "result": "identical except trace latency; 0 socket events; stores unchanged"
+  },
+  {
+   "command": "pytest tests/test_predictive_social.py",
+   "exit_code": 0,
+   "name": "G17 catalyst classifier (TEST_ONLY)",
+   "pass": true,
+   "result": "P04, P15, P17, P41, P45, identity, evidence as of T, type, no probability tests pass"
+  },
+  {
+   "command": "pytest tests/test_predictive_social.py",
+   "exit_code": 0,
+   "name": "G18 social adapter (TEST_ONLY)",
+   "pass": true,
+   "result": "P03, P15, P16, P17, P26, P36, ticker-only, track record, read-only tests pass"
+  },
+  {
+   "input": "evidence/trace/FORECAST_TRACE.json event_without_post_event_text; test_p15_a_duplicated_influencer_article_counts_once",
+   "name": "G19 two named validations",
+   "pass": true,
+   "result": "truncated snapshot equal, next export refused; duplicate counted once"
+  },
+  {
+   "input": "models/CATALYST_TARGET_PROPOSALS.md; registry 4b4aabce",
+   "name": "G20 proposals not frozen",
+   "pass": true,
+   "result": "no defaults, PROPOSED_NOT_FROZEN, TEST_ONLY"
+  },
+  {
+   "input": "data/CATALYST_PROVENANCE.md",
+   "name": "G21 provenance and rights",
+   "pass": true,
+   "result": "written"
+  },
+  {
+   "input": "evidence/crosschecks.json",
+   "name": "G22 real cross-checks",
+   "pass": true,
+   "result": "inbox reads 11 exact Solana mints (listing state), 1 boost; ticker searches not identity"
+  },
+  {
+   "command": "python -B probes/verify_trace_social.py",
+   "exit_code": 0,
+   "name": "G23 forecast trace",
+   "pass": true,
+   "result": "0 differences; invalid inputs all rejected"
+  },
+  {
+   "command": "python -B probes/recompute_oos_social.py",
+   "exit_code": 0,
+   "name": "G23b every out-of-sample number recomputed",
+   "pass": true,
+   "result": "456 values, 326 numbers, 0 differences"
+  },
+  {
+   "input": "experiments/SEARCH_LEDGER.csv",
+   "name": "G24 search ledger",
+   "pass": true,
+   "result": "Phase 09 ledger plus every Phase 10 configuration and 1 debug run; 0 registry rows missing"
+  },
+  {
+   "command": "python -B probes/mutation_social.py evidence/mutation_social.json",
+   "exit_code": 0,
+   "name": "G25 mutation probe at HEAD",
+   "pass": true,
+   "result": "85 of 85 caught, 1 equivalent reported apart"
+  },
+  {
+   "input": "test_no_other_module_imports_the_phase_10_code; crosschecks modules_importing_socialcat []",
+   "name": "G26 flag and imports",
+   "pass": true,
+   "result": "none"
+  },
+  {
+   "input": "run after the commit",
+   "name": "G27 post-commit suite, guard, seal, release audit",
+   "pass": null,
+   "result": "pending at this commit"
+  }
+ ],
+ "commits": {
+  "code": "0784a9a",
+  "pre_registration": "c3f04c8"
+ },
+ "head_after": "0784a9a",
+ "head_before": "1a52308",
+ "limitations": [
+  "no social or catalyst row exists for any decision: every decision CATALYST_TABLES_NOT_EXPORTED and SOCIAL_TABLES_NOT_EXPORTED; no verified catalyst, no catalyst probability",
+  "socialcat-1 inputs are the lab's on-chain and market attention proxies, not social text, and depend on the lab's code version per export (PI-D-008)",
+  "development only, retrospective, provider mode; 1 to 5 out-of-sample days; every verdict INSUFFICIENT_HISTORY, INSUFFICIENT_DAYS or INSUFFICIENT_EVENTS",
+  "catalyst follow-through, withdrawal and amplification targets are proposals only",
+  "every number PROVISIONAL until Phase 06's 48 h revision re-read is folded in",
+  "the independent skeptic has not run yet (PI-D-013)"
+ ],
+ "next_eligible_phase": "none until the orchestrator's independent skeptic and the Phase 10 repair pass; then Phase 11 if Phase 10 is recorded PASS (provisional under PI-D-046)",
+ "phase": "10",
+ "provisional": "PROVISIONAL_PENDING_REVISION_REREAD (PI-D-046)",
+ "revision_check_claimed": false,
+ "status": "NEEDS_REVIEW",
+ "test_only_parts": [
+  "catalyst classifier (no catalyst row exists)",
+  "social evidence adapter (no social row exists)",
+  "catalyst target proposals"
+ ]
+}

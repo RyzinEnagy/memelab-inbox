@@ -1,0 +1,285 @@
+{
+ "catalyst_state_all_decisions": {
+  "CATALYST_TABLES_NOT_EXPORTED": 925
+ },
+ "dexscreener_boosts_vs_lab_paid_flag": [
+  {
+   "decision_time_utc": "2026-10-12T10:18:37Z",
+   "mint": "HMYd9tosnUXuNHmq7pXmoePRVBLBBjA3JBfydq6upump",
+   "sc_attention_paid": 0.0,
+   "sc_attention_suspect": 0.0
+  },
+  {
+   "decision_time_utc": "2026-10-16T10:42:06Z",
+   "mint": "HMYd9tosnUXuNHmq7pXmoePRVBLBBjA3JBfydq6upump",
+   "sc_attention_paid": 0.0,
+   "sc_attention_suspect": 1.0
+  },
+  {
+   "decision_time_utc": "2026-10-20T10:24:02Z",
+   "mint": "HMYd9tosnUXuNHmq7pXmoePRVBLBBjA3JBfydq6upump",
+   "sc_attention_paid": 0.0,
+   "sc_attention_suspect": 0.0
+  }
+ ],
+ "export_context_provenance": {
+  "blob_equal": 925,
+  "commit_time_equal": 925
+ },
+ "inbox_catalyst_reads": [
+  {
+   "decision_mints_named_by_exact_address": 11,
+   "file": "inbox/cat01.json",
+   "first_committed_utc": "2026-10-07T14:07:14Z",
+   "key": "cat:exch:coinbase:assets",
+   "kind": "EXCHANGE_ASSET_LIST_LISTING_STATE",
+   "mints_whose_first_decision_is_after_the_commit": 11,
+   "read_at": "2026-10-07T14:06:04.230Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/cat01.json",
+   "first_committed_utc": "2026-10-07T14:07:14Z",
+   "key": "cat:mkt:dexscreener:boosts",
+   "kind": "PAID_BOOST_LIST",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:06:04.230Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 2,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "ds_search:Bitcoin Fog",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 2,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "ds_search:Dogecoin",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "ds_search:Iranian",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "ds_search:PENGU",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "ds_search:PRL",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "ds_search:PUMP",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "ds_search:Pudgy Penguins",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 6,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "ds_search:Raydium",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 6,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "ds_search:SWORDINU",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "ds_search:TRUMP",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "ds_search:Tom Lee",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "ds_search:Trump",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "jup_tok:Backpack",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "jup_tok:Iranian",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "jup_tok:Meme",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 2,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "jup_tok:NEAR",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 2,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "jup_tok:PENGU",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "jup_tok:PRL",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 2,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "jup_tok:PUMP",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 2,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "jup_tok:Pudgy Penguins",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "jup_tok:Robinhood",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "jup_tok:SWORDINU",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "jup_tok:TRUMP",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 1,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "jup_tok:Trump",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 1,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  },
+  {
+   "decision_mints_named_by_exact_address": 2,
+   "file": "inbox/catm01.json",
+   "first_committed_utc": "2026-10-07T14:20:48Z",
+   "key": "jup_tok:WIF",
+   "kind": "TICKER_SEARCH_RESULTS_NOT_IDENTITY",
+   "mints_whose_first_decision_is_after_the_commit": 2,
+   "read_at": "2026-10-07T14:19:05.897Z"
+  }
+ ],
+ "lab_event_classes_all_decisions": {
+  "HIGH_ATTENTION_PROXY": 74,
+  "NARRATIVE_REVERSAL": 56
+ },
+ "modules_importing_socialcat": [],
+ "real_catalyst_rows": 0,
+ "real_social_rows": 0,
+ "social_and_catalyst_code_changed_since_base": "none",
+ "social_state_all_decisions": {
+  "SOCIAL_TABLES_NOT_EXPORTED": 925
+ }
+}

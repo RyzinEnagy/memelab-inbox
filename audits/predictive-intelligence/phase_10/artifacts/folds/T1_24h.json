@@ -1,0 +1,3054 @@
+{
+ "folds": [
+  {
+   "cards": {
+    "A2_SC_B2_TC": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      }
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 24,
+     "kind": "A2_SC_B2_TC",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "A2_SC_B2_TC:price_path_target_before_invalidation_24h",
+     "model_sha": "1ac21646485c56e6f8aaee87f8ae61a4541c1f33d05c045386765db9412c2612",
+     "n_train": 104,
+     "n_used": 98,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    },
+    "G1_SC_STUMPS_B2": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect",
+        "sc_narrative_strength",
+        "sc_manipulation_ord",
+        "sc_lifecycle_late",
+        "sc_channels_n"
+       ],
+       "kind": "stumps",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      }
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 24,
+     "kind": "G1_SC_STUMPS_B2",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "G1_SC_STUMPS_B2:price_path_target_before_invalidation_24h",
+     "model_sha": "a3671f4872fe9caba27c6c5dfad5ed91859992734ec661066742fb13f116cd67",
+     "n_train": 104,
+     "n_used": 98,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    },
+    "R2_SC_RULE": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "b0": 0.2403846153846154,
+      "cells": {
+       "T0S0": {
+        "k": 2,
+        "n": 13,
+        "p": 0.20629370629370627
+       },
+       "T0S1": {
+        "k": 2,
+        "n": 20,
+        "p": 0.1701923076923077
+       },
+       "T1S0": {
+        "k": 7,
+        "n": 23,
+        "p": 0.27459749552772805
+       },
+       "T1S1": {
+        "k": 6,
+        "n": 18,
+        "p": 0.28441295546558704
+       },
+       "T2S0": {
+        "k": 3,
+        "n": 14,
+        "p": 0.22963800904977374
+       },
+       "T2S1": {
+        "k": 4,
+        "n": 10,
+        "p": 0.29358974358974355
+       }
+      },
+      "m": 20.0,
+      "spec": {
+       "columns": [
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ],
+       "kind": "rule",
+       "rows": []
+      }
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 25,
+     "kind": "R2_SC_RULE",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "R2_SC_RULE:price_path_target_before_invalidation_24h",
+     "model_sha": "cfbf72072fbfdc143f2386421d3bd22a85298e60fcb6b404ba6c0c7af0bf7801",
+     "n_train": 104,
+     "n_used": 104,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    },
+    "S1_SC_LOGIT": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "sc_attention_trend_ord",
+        "sc_attention_suspect",
+        "sc_narrative_strength",
+        "sc_manipulation_ord",
+        "sc_lifecycle_late",
+        "sc_channels_n"
+       ],
+       "kind": "logit",
+       "rows": [
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      }
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 24,
+     "kind": "S1_SC_LOGIT",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "S1_SC_LOGIT:price_path_target_before_invalidation_24h",
+     "model_sha": "6a884b5555dd4580659b0a203c734bf948055ca6602386c65090824e7da3fd15",
+     "n_train": 104,
+     "n_used": 98,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    },
+    "S2_SC_LOGIT_B2": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect",
+        "sc_narrative_strength",
+        "sc_manipulation_ord",
+        "sc_lifecycle_late",
+        "sc_channels_n"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      }
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 24,
+     "kind": "S2_SC_LOGIT_B2",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "S2_SC_LOGIT_B2:price_path_target_before_invalidation_24h",
+     "model_sha": "fecfb8670ed4316f7d73979a8f3c9828b7ee581ae400b06d7cf8c7460e53d8ad",
+     "n_train": 104,
+     "n_used": 98,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    },
+    "S3_SC_LOGIT_TREND": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect",
+        "sc_narrative_strength",
+        "sc_manipulation_ord",
+        "sc_lifecycle_late",
+        "sc_channels_n",
+        "sc_d_attention_trend",
+        "sc_attention_reversal"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      }
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 25,
+     "k_used": 24,
+     "kind": "S3_SC_LOGIT_TREND",
+     "label_mode": "provider",
+     "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791801479.0,
+     "model_id": "S3_SC_LOGIT_TREND:price_path_target_before_invalidation_24h",
+     "model_sha": "45ffd6a244a74b5bd1e75635deebcfa6441034150356dbfe9dfd1bb3e15ca930",
+     "n_train": 104,
+     "n_used": 98,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791849600.0,
+     "training_cutoff_utc": "2026-10-13T00:00:00Z"
+    }
+   },
+   "cutoff_utc": "2026-10-13T00:00:00Z",
+   "fold": 0
+  },
+  {
+   "cards": {
+    "A2_SC_B2_TC": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.406401288090763,
+        -0.24746556676470996,
+        -0.10953326793619189,
+        -0.2796537293398358,
+        -1.0916897253524627
+       ],
+       "intercept": -1.3942862206306366,
+       "n_iter": 7
+      },
+      "prep": {
+       "ind": [],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4
+       ],
+       "med": [
+        12.36315799,
+        15.01998582,
+        13.69554285,
+        1.0,
+        2.6690614980695364
+       ],
+       "mu": [
+        12.048714060714286,
+        15.058391377971427,
+        13.867156979333332,
+        0.5047619047619047,
+        2.871676947828591
+       ],
+       "n_in": 5,
+       "sd": [
+        2.032738305013847,
+        2.8193471741195113,
+        1.6128075476446482,
+        0.4999773237488262,
+        2.029140712623986
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      },
+      "train_prediction_sd": 0.13253696677203974
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "38a247b86ca777cfaf712d87e56946b160208a1a5e176c28d333428772861a2e",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 25,
+     "kind": "A2_SC_B2_TC",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "A2_SC_B2_TC:price_path_target_before_invalidation_24h",
+     "model_sha": "7462a3ad7ba53a92f638f8c98c814645ddc6c7d6f37d723ba3a7b74819dd9321",
+     "n_train": 112,
+     "n_used": 105,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "G1_SC_STUMPS_B2": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "prep": {
+       "ind": [],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+       ],
+       "med": [
+        12.36315799,
+        15.01998582,
+        13.69554285,
+        1.0,
+        2.6690614980695364,
+        1.0,
+        0.0,
+        0.63,
+        1.0,
+        0.0,
+        1.0
+       ],
+       "mu": [
+        12.048714060714286,
+        15.058391377971427,
+        13.867156979333332,
+        0.5047619047619047,
+        2.871676947828591,
+        0.9238095238095239,
+        0.45714285714285713,
+        0.5983809523809525,
+        1.380952380952381,
+        0.3619047619047619,
+        1.0571428571428572
+       ],
+       "n_in": 11,
+       "sd": [
+        2.032738305013847,
+        2.8193471741195113,
+        1.6128075476446482,
+        0.4999773237488262,
+        2.029140712623986,
+        0.7520795056152242,
+        0.4981598792617912,
+        0.24030981514752126,
+        0.7352479644045251,
+        0.4805514594873472,
+        0.9136902823018253
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect",
+        "sc_narrative_strength",
+        "sc_manipulation_ord",
+        "sc_lifecycle_late",
+        "sc_channels_n"
+       ],
+       "kind": "stumps",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      },
+      "stumps": {
+       "init": -1.1631508098056809,
+       "lr": 0.1,
+       "min_leaf": 10,
+       "rounds": 100,
+       "trees": [
+        [
+         4,
+         0.10253347067173091,
+         0.7087500000000001,
+         -0.9450000000000004
+        ],
+        [
+         4,
+         0.10253347067173091,
+         0.613932183718472,
+         -0.897556467797554
+        ],
+        [
+         4,
+         0.10253347067173091,
+         0.5353927397391923,
+         -0.8527569790574224
+        ],
+        [
+         4,
+         0.029075866357948017,
+         0.5113266914337306,
+         -0.7395259876314375
+        ],
+        [
+         4,
+         0.10253347067173091,
+         0.41796486579677855,
+         -0.7727761482580242
+        ],
+        [
+         4,
+         0.5668610043443649,
+         0.2602150712979634,
+         -1.2051708221432573
+        ],
+        [
+         4,
+         0.029075866357948017,
+         0.36986025044597626,
+         -0.639526902261114
+        ],
+        [
+         4,
+         0.5668610043443649,
+         0.21818459654713998,
+         -1.1706087867069925
+        ],
+        [
+         4,
+         0.5668610043443649,
+         0.1943779598672234,
+         -1.1517618111395536
+        ],
+        [
+         4,
+         0.029075866357948017,
+         0.2817144449016179,
+         -0.5601156727222125
+        ],
+        [
+         2,
+         -0.29412624589096403,
+         -0.4510709363568936,
+         0.2903805398638792
+        ],
+        [
+         4,
+         0.5668610043443649,
+         0.16647573767694557,
+         -1.129018299983335
+        ],
+        [
+         5,
+         -0.5635169162904321,
+         -0.5679989061106675,
+         0.22393894758596108
+        ],
+        [
+         2,
+         -0.29412624589096403,
+         -0.42859830357553486,
+         0.2705506982295856
+        ],
+        [
+         4,
+         0.10253347067173091,
+         0.22124604294954198,
+         -0.579283452985457
+        ],
+        [
+         4,
+         -1.0524639716328301,
+         -0.6175679836738588,
+         0.1417866888348011
+        ],
+        [
+         2,
+         1.3192800181112971,
+         0.10160535059588897,
+         -1.2897660650099727
+        ],
+        [
+         2,
+         -0.29412624589096403,
+         -0.4037012172142819,
+         0.25117576238509814
+        ],
+        [
+         4,
+         -0.2871912773834766,
+         0.291564550883724,
+         -0.34168964606220825
+        ],
+        [
+         7,
+         1.234319319986823,
+         0.13597945445201343,
+         -0.5933285010453927
+        ],
+        [
+         2,
+         -0.29412624589096403,
+         -0.3896749583489057,
+         0.2401787544481525
+        ],
+        [
+         1,
+         0.00741035627692695,
+         0.2637913905284501,
+         -0.3829201766155453
+        ],
+        [
+         4,
+         -1.0524639716328301,
+         -0.581644966931858,
+         0.13291634984145198
+        ],
+        [
+         5,
+         -0.5635169162904321,
+         -0.5120590269613802,
+         0.19299123984537386
+        ],
+        [
+         4,
+         0.5668610043443649,
+         0.13837624934876352,
+         -1.105477197026907
+        ],
+        [
+         2,
+         -0.29412624589096403,
+         -0.37775284268851717,
+         0.23195584012003467
+        ],
+        [
+         7,
+         1.234319319986823,
+         0.1372966127997052,
+         -0.5916682132560529
+        ],
+        [
+         1,
+         0.00741035627692695,
+         0.23661798245814908,
+         -0.3547886367727622
+        ],
+        [
+         2,
+         -0.29412624589096403,
+         -0.37117388256265016,
+         0.22768079082184955
+        ],
+        [
+         7,
+         1.234319319986823,
+         0.12897587293801602,
+         -0.5647720423164998
+        ],
+        [
+         7,
+         0.4436732954648409,
+         -0.1923207829945899,
+         0.3808045122438866
+        ],
+        [
+         4,
+         -1.1527907306731933,
+         -0.6383715221831414,
+         0.10175554399639274
+        ],
+        [
+         4,
+         -0.2871912773834766,
+         0.258287603213984,
+         -0.3110638351780019
+        ],
+        [
+         7,
+         1.234319319986823,
+         0.12653267647693411,
+         -0.5537633538678766
+        ],
+        [
+         2,
+         1.3192800181112971,
+         0.08751275557725698,
+         -1.245624425916251
+        ],
+        [
+         2,
+         -0.29412624589096403,
+         -0.35388893612525585,
+         0.21591014619151255
+        ],
+        [
+         8,
+         -1.198170445348817,
+         -1.2277119407210595,
+         0.08271177696100705
+        ],
+        [
+         4,
+         -1.0524639716328301,
+         -0.5200425013878668,
+         0.11690438277041598
+        ],
+        [
+         1,
+         0.00741035627692695,
+         0.22441638250209936,
+         -0.33951728152012606
+        ],
+        [
+         4,
+         0.5668610043443649,
+         0.12059728191159691,
+         -1.0927434519503303
+        ],
+        [
+         7,
+         1.234319319986823,
+         0.11899441146656595,
+         -0.5275422866722567
+        ],
+        [
+         2,
+         -0.29412624589096403,
+         -0.3445292297812462,
+         0.2089566637695697
+        ],
+        [
+         5,
+         -0.5635169162904321,
+         -0.4604743544567424,
+         0.16624766417457895
+        ],
+        [
+         0,
+         0.7207377608185204,
+         -0.12300049089268973,
+         0.737695447583506
+        ],
+        [
+         4,
+         -0.2871912773834766,
+         0.22892472746392092,
+         -0.28504291838085705
+        ],
+        [
+         4,
+         -1.1527907306731933,
+         -0.5917006439194663,
+         0.09350261390442424
+        ],
+        [
+         7,
+         0.4436732954648409,
+         -0.17426035652224725,
+         0.3363470723773781
+        ],
+        [
+         7,
+         1.234319319986823,
+         0.11990590387119045,
+         -0.5251448268457702
+        ],
+        [
+         1,
+         0.00741035627692695,
+         0.2051991716580696,
+         -0.31805508954400113
+        ],
+        [
+         0,
+         0.7207377608185204,
+         -0.11868704642662774,
+         0.6992901228086545
+        ],
+        [
+         7,
+         0.4436732954648409,
+         -0.1685576098914638,
+         0.3249345827529508
+        ],
+        [
+         7,
+         1.234319319986823,
+         0.115136662123838,
+         -0.5079170173624112
+        ],
+        [
+         4,
+         0.5668610043443649,
+         0.11280629873462049,
+         -1.0866239634576829
+        ],
+        [
+         4,
+         -1.0524639716328301,
+         -0.4717750292098929,
+         0.1051634347192345
+        ],
+        [
+         4,
+         -0.9032096922502215,
+         0.34126291902557526,
+         -0.1599609328887999
+        ],
+        [
+         2,
+         -0.29412624589096403,
+         -0.31080199070843956,
+         0.1851944011171864
+        ],
+        [
+         7,
+         1.234319319986823,
+         0.11008706711103873,
+         -0.48799079900923037
+        ],
+        [
+         1,
+         0.00741035627692695,
+         0.20068340161875264,
+         -0.3136250728045616
+        ],
+        [
+         0,
+         0.7207377608185204,
+         -0.11372208919837182,
+         0.6610803505505904
+        ],
+        [
+         2,
+         1.3192800181112971,
+         0.0763020176603119,
+         -1.2049858465772783
+        ],
+        [
+         7,
+         0.4436732954648409,
+         -0.1650294220166182,
+         0.31729509426944685
+        ],
+        [
+         4,
+         -1.1527907306731933,
+         -0.5490871311547325,
+         0.08562214883130408
+        ],
+        [
+         4,
+         -0.9032096922502215,
+         0.3403588260796237,
+         -0.1591772893823451
+        ],
+        [
+         1,
+         0.00741035627692695,
+         0.1894296031597906,
+         -0.3007629035097985
+        ],
+        [
+         4,
+         -1.0524639716328301,
+         -0.45640792529070634,
+         0.10222176339212202
+        ],
+        [
+         4,
+         -0.9032096922502215,
+         0.3240085546517035,
+         -0.1528295952833965
+        ],
+        [
+         0,
+         0.7207377608185204,
+         -0.11133683179122233,
+         0.6464197852223194
+        ],
+        [
+         2,
+         0.7093393829520525,
+         0.12628131666477624,
+         -0.4990290352238327
+        ],
+        [
+         2,
+         -0.29412624589096403,
+         -0.30124076371351854,
+         0.18056906239055354
+        ],
+        [
+         1,
+         -1.3668488678322928,
+         0.5829447601132849,
+         -0.07937784547061166
+        ],
+        [
+         4,
+         -1.0524639716328301,
+         -0.44961331876264915,
+         0.10059354811519078
+        ],
+        [
+         4,
+         -0.9032096922502215,
+         0.3098612421016737,
+         -0.14628741509825194
+        ],
+        [
+         7,
+         0.4436732954648409,
+         -0.1548431212887014,
+         0.29449833595784125
+        ],
+        [
+         7,
+         1.234319319986823,
+         0.10596638613183294,
+         -0.46813026105672984
+        ],
+        [
+         4,
+         -1.1527907306731933,
+         -0.5253864446249438,
+         0.08184155964418265
+        ],
+        [
+         1,
+         0.00741035627692695,
+         0.18368544339857007,
+         -0.29267695123796106
+        ],
+        [
+         0,
+         0.7207377608185204,
+         -0.10807702946895156,
+         0.6199645961976324
+        ],
+        [
+         4,
+         -0.9032096922502215,
+         0.30200993556414063,
+         -0.14294894452493567
+        ],
+        [
+         2,
+         -0.4104439338097543,
+         -0.35573483141244544,
+         0.1426398599964579
+        ],
+        [
+         2,
+         0.7093393829520525,
+         0.12117597257962266,
+         -0.4807449051327904
+        ],
+        [
+         7,
+         0.4436732954648409,
+         -0.15122682951335126,
+         0.28815685784282713
+        ],
+        [
+         7,
+         1.234319319986823,
+         0.10012066504665093,
+         -0.44681101019322983
+        ],
+        [
+         1,
+         -1.3668488678322928,
+         0.5351485552279482,
+         -0.07449795142903022
+        ],
+        [
+         4,
+         -1.0524639716328301,
+         -0.444159486020794,
+         0.10017158732607659
+        ],
+        [
+         7,
+         0.4436732954648409,
+         -0.1486868036759526,
+         0.2843902604904476
+        ],
+        [
+         7,
+         -1.345683496874381,
+         0.6049609763082945,
+         -0.0761011407937572
+        ],
+        [
+         7,
+         -0.3469727290571406,
+         -0.4149279818758931,
+         0.12881379382668617
+        ],
+        [
+         7,
+         1.234319319986823,
+         0.09643257176880964,
+         -0.4320361579614909
+        ],
+        [
+         4,
+         0.5668610043443649,
+         0.09762667335942447,
+         -1.0763319555997288
+        ],
+        [
+         0,
+         0.7207377608185204,
+         -0.10497254853195309,
+         0.5979116642307386
+        ],
+        [
+         1,
+         0.00741035627692695,
+         0.17481465353283923,
+         -0.2837124718184382
+        ],
+        [
+         2,
+         -0.4104439338097543,
+         -0.34316564912932357,
+         0.13750371479974058
+        ],
+        [
+         1,
+         -1.3668488678322928,
+         0.5230666688643733,
+         -0.07399743173662349
+        ],
+        [
+         4,
+         -1.1527907306731933,
+         -0.5129318611959629,
+         0.08005407836773461
+        ],
+        [
+         7,
+         -1.345683496874381,
+         0.6004542179901221,
+         -0.07601267518741305
+        ],
+        [
+         5,
+         -0.5635169162904321,
+         -0.39053698110337315,
+         0.13374940733857024
+        ],
+        [
+         0,
+         -0.1413359826031952,
+         -0.21518668537974578,
+         0.2012448317727981
+        ],
+        [
+         1,
+         -1.3668488678322928,
+         0.5140634754466015,
+         -0.07297836218725744
+        ],
+        [
+         2,
+         -0.4104439338097543,
+         -0.3327035181290235,
+         0.13238875508644668
+        ],
+        [
+         1,
+         0.00741035627692695,
+         0.17376779778707566,
+         -0.28239815210031277
+        ]
+       ]
+      },
+      "train_prediction_sd": 0.15478878985209935
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "38a247b86ca777cfaf712d87e56946b160208a1a5e176c28d333428772861a2e",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 25,
+     "kind": "G1_SC_STUMPS_B2",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "G1_SC_STUMPS_B2:price_path_target_before_invalidation_24h",
+     "model_sha": "5b577b5debb23d2ce4fb7c91a3ad2a46ce5cd6fb053e1f677e4699e75075c554",
+     "n_train": 112,
+     "n_used": 105,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "R2_SC_RULE": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "b0": 0.23214285714285715,
+      "cells": {
+       "T0S0": {
+        "k": 2,
+        "n": 14,
+        "p": 0.1953781512605042
+       },
+       "T0S1": {
+        "k": 2,
+        "n": 20,
+        "p": 0.1660714285714286
+       },
+       "T1S0": {
+        "k": 8,
+        "n": 27,
+        "p": 0.26899696048632216
+       },
+       "T1S1": {
+        "k": 6,
+        "n": 18,
+        "p": 0.2800751879699248
+       },
+       "T2S0": {
+        "k": 3,
+        "n": 16,
+        "p": 0.21230158730158732
+       },
+       "T2S1": {
+        "k": 4,
+        "n": 10,
+        "p": 0.28809523809523807
+       }
+      },
+      "m": 20.0,
+      "spec": {
+       "columns": [
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ],
+       "kind": "rule",
+       "rows": []
+      }
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "38a247b86ca777cfaf712d87e56946b160208a1a5e176c28d333428772861a2e",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 26,
+     "kind": "R2_SC_RULE",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "R2_SC_RULE:price_path_target_before_invalidation_24h",
+     "model_sha": "a59910f689743eaff6eaa62d5931b3cc861a8159e4b451b8b61534eb30c56dfa",
+     "n_train": 112,
+     "n_used": 112,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "S1_SC_LOGIT": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.021512826484740573,
+        -0.2016366653273397,
+        0.2355391494718076,
+        0.32159709621624616,
+        -0.520394747073277,
+        -0.2773266910232822
+       ],
+       "intercept": -1.2954021589895661,
+       "n_iter": 7
+      },
+      "prep": {
+       "ind": [],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "med": [
+        1.0,
+        0.0,
+        0.63,
+        1.0,
+        0.0,
+        1.0
+       ],
+       "mu": [
+        0.9238095238095239,
+        0.45714285714285713,
+        0.5983809523809525,
+        1.380952380952381,
+        0.3619047619047619,
+        1.0571428571428572
+       ],
+       "n_in": 6,
+       "sd": [
+        0.7520795056152242,
+        0.4981598792617912,
+        0.24030981514752126,
+        0.7352479644045251,
+        0.4805514594873472,
+        0.9136902823018253
+       ]
+      },
+      "spec": {
+       "columns": [
+        "sc_attention_trend_ord",
+        "sc_attention_suspect",
+        "sc_narrative_strength",
+        "sc_manipulation_ord",
+        "sc_lifecycle_late",
+        "sc_channels_n"
+       ],
+       "kind": "logit",
+       "rows": [
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      },
+      "train_prediction_sd": 0.11406925956955376
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "38a247b86ca777cfaf712d87e56946b160208a1a5e176c28d333428772861a2e",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 25,
+     "kind": "S1_SC_LOGIT",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "S1_SC_LOGIT:price_path_target_before_invalidation_24h",
+     "model_sha": "57cfba7879f6164dd94a262ce6e404a736ea6ae5414184676d422eb45d68d831",
+     "n_train": 112,
+     "n_used": 105,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "S2_SC_LOGIT_B2": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.45108138511143564,
+        -0.32271754982234463,
+        -0.046423834336192626,
+        -0.4030491876276568,
+        -0.9434151838340904,
+        0.01053516293825115,
+        -0.30398073031582307,
+        0.08716828596131808,
+        0.17106247110718975,
+        -0.4022862658703237,
+        -0.26823238420835077
+       ],
+       "intercept": -1.4579231118074034,
+       "n_iter": 7
+      },
+      "prep": {
+       "ind": [],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+       ],
+       "med": [
+        12.36315799,
+        15.01998582,
+        13.69554285,
+        1.0,
+        2.6690614980695364,
+        1.0,
+        0.0,
+        0.63,
+        1.0,
+        0.0,
+        1.0
+       ],
+       "mu": [
+        12.048714060714286,
+        15.058391377971427,
+        13.867156979333332,
+        0.5047619047619047,
+        2.871676947828591,
+        0.9238095238095239,
+        0.45714285714285713,
+        0.5983809523809525,
+        1.380952380952381,
+        0.3619047619047619,
+        1.0571428571428572
+       ],
+       "n_in": 11,
+       "sd": [
+        2.032738305013847,
+        2.8193471741195113,
+        1.6128075476446482,
+        0.4999773237488262,
+        2.029140712623986,
+        0.7520795056152242,
+        0.4981598792617912,
+        0.24030981514752126,
+        0.7352479644045251,
+        0.4805514594873472,
+        0.9136902823018253
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect",
+        "sc_narrative_strength",
+        "sc_manipulation_ord",
+        "sc_lifecycle_late",
+        "sc_channels_n"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      },
+      "train_prediction_sd": 0.15648668739460792
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "38a247b86ca777cfaf712d87e56946b160208a1a5e176c28d333428772861a2e",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 25,
+     "kind": "S2_SC_LOGIT_B2",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "S2_SC_LOGIT_B2:price_path_target_before_invalidation_24h",
+     "model_sha": "879d2ae94f3021321e760fb8ea79bfb04e017ca1cb600b70bfdd0e5ed11118b6",
+     "n_train": 112,
+     "n_used": 105,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "S3_SC_LOGIT_TREND": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.511090139114844,
+        -0.3291569857310031,
+        -0.05296082351360566,
+        -0.41139434162836996,
+        -0.9754027757138738,
+        0.015110289466120726,
+        -0.3717091735463068,
+        0.09365665421941333,
+        0.16048437844783606,
+        -0.25923326910743755,
+        -0.2577326806935045,
+        0.029782265821650805,
+        0.4576679568841417,
+        0.28110448838624263,
+        0.28110448838624263
+       ],
+       "intercept": -1.5286087902356111,
+       "n_iter": 7
+      },
+      "prep": {
+       "ind": [
+        11,
+        12
+       ],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+       ],
+       "med": [
+        12.36315799,
+        15.01998582,
+        13.69554285,
+        1.0,
+        2.6690614980695364,
+        1.0,
+        0.0,
+        0.63,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+       ],
+       "mu": [
+        12.048714060714286,
+        15.058391377971427,
+        13.867156979333332,
+        0.5047619047619047,
+        2.871676947828591,
+        0.9238095238095239,
+        0.45714285714285713,
+        0.5983809523809525,
+        1.380952380952381,
+        0.3619047619047619,
+        1.0571428571428572,
+        -0.0380952380952381,
+        0.0380952380952381,
+        0.7619047619047619,
+        0.7619047619047619
+       ],
+       "n_in": 13,
+       "sd": [
+        2.032738305013847,
+        2.8193471741195113,
+        1.6128075476446482,
+        0.4999773237488262,
+        2.029140712623986,
+        0.7520795056152242,
+        0.4981598792617912,
+        0.24030981514752126,
+        0.7352479644045251,
+        0.4805514594873472,
+        0.9136902823018253,
+        0.23599069892121652,
+        0.19142620230706459,
+        0.4259177099999599,
+        0.4259177099999599
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect",
+        "sc_narrative_strength",
+        "sc_manipulation_ord",
+        "sc_lifecycle_late",
+        "sc_channels_n",
+        "sc_d_attention_trend",
+        "sc_attention_reversal"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      },
+      "train_prediction_sd": 0.1679125815356396
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "38a247b86ca777cfaf712d87e56946b160208a1a5e176c28d333428772861a2e",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 26,
+     "k_used": 25,
+     "kind": "S3_SC_LOGIT_TREND",
+     "label_mode": "provider",
+     "label_set_sha": "76cecff5f89f7f15c46a979a0b7a4c012b4cfadeb26815f23042065ccdbf790f",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791800317.0,
+     "max_train_label_matures_at": 1791887917.0,
+     "model_id": "S3_SC_LOGIT_TREND:price_path_target_before_invalidation_24h",
+     "model_sha": "e513e3b74edc37796a8fdc92a12d3d54489e360318b3d3fc68f044edb4bd423d",
+     "n_train": 112,
+     "n_used": 105,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    }
+   },
+   "cutoff_utc": "2026-10-14T00:00:00Z",
+   "fold": 1
+  },
+  {
+   "cards": {
+    "A2_SC_B2_TC": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.44898344253812483,
+        -0.1389160861336777,
+        -0.41011816281006613,
+        -0.3580484795307154,
+        -1.1712003268182274
+       ],
+       "intercept": -1.3339260574872682,
+       "n_iter": 7
+      },
+      "prep": {
+       "ind": [],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4
+       ],
+       "med": [
+        12.360887649999999,
+        14.936292845,
+        13.68726056,
+        1.0,
+        2.6141129069716236
+       ],
+       "mu": [
+        12.05452189836207,
+        15.022685956698275,
+        13.793632256715517,
+        0.5172413793103449,
+        2.8853171385384875
+       ],
+       "n_in": 5,
+       "sd": [
+        1.9949435255299766,
+        2.806810987105593,
+        1.6325893678263816,
+        0.4997026464203254,
+        1.9997144058560838
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      },
+      "train_prediction_sd": 0.1461447158759471
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "50214639e44119acafe137510e160ddfb57f5c5fc2800da5e015a8822007fd87",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 29,
+     "kind": "A2_SC_B2_TC",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "A2_SC_B2_TC:price_path_target_before_invalidation_24h",
+     "model_sha": "8ead85c87f62ca4519144d83d73206aeaa013546d72ea0823647e3a4f42f5406",
+     "n_train": 123,
+     "n_used": 116,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    },
+    "G1_SC_STUMPS_B2": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "prep": {
+       "ind": [],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+       ],
+       "med": [
+        12.360887649999999,
+        14.936292845,
+        13.68726056,
+        1.0,
+        2.6141129069716236,
+        1.0,
+        0.0,
+        0.62,
+        1.0,
+        0.0,
+        1.0
+       ],
+       "mu": [
+        12.05452189836207,
+        15.022685956698275,
+        13.793632256715517,
+        0.5172413793103449,
+        2.8853171385384875,
+        0.9224137931034483,
+        0.4396551724137931,
+        0.5850862068965518,
+        1.3448275862068966,
+        0.3706896551724138,
+        1.0948275862068966
+       ],
+       "n_in": 11,
+       "sd": [
+        1.9949435255299766,
+        2.806810987105593,
+        1.6325893678263816,
+        0.4997026464203254,
+        1.9997144058560838,
+        0.7445301928636691,
+        0.49634514380982,
+        0.24411520630161762,
+        0.7204338764060751,
+        0.48298947682177373,
+        0.9095134003663154
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect",
+        "sc_narrative_strength",
+        "sc_manipulation_ord",
+        "sc_lifecycle_late",
+        "sc_channels_n"
+       ],
+       "kind": "stumps",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      },
+      "stumps": {
+       "init": -1.0986122886681098,
+       "lr": 0.1,
+       "min_leaf": 10,
+       "rounds": 100,
+       "trees": [
+        [
+         4,
+         0.09722120742212723,
+         0.736318407960199,
+         -1.0068027210884354
+        ],
+        [
+         4,
+         0.09722120742212723,
+         0.6380913797712972,
+         -0.9573761596345558
+        ],
+        [
+         4,
+         0.022682655752740734,
+         0.6005720178262395,
+         -0.8424790893935372
+        ],
+        [
+         4,
+         0.09722120742212723,
+         0.493340651596206,
+         -0.8707116636443805
+        ],
+        [
+         4,
+         0.022682655752740734,
+         0.46638886873004864,
+         -0.7593017441197178
+        ],
+        [
+         4,
+         0.09722120742212723,
+         0.38828829458299147,
+         -0.7921096462277143
+        ],
+        [
+         4,
+         0.5683814390073338,
+         0.23688119987288533,
+         -1.1976039723115968
+        ],
+        [
+         4,
+         0.022682655752740734,
+         0.3405279238731086,
+         -0.6596925421914944
+        ],
+        [
+         4,
+         0.5683814390073338,
+         0.1989806324542389,
+         -1.1641097213022913
+        ],
+        [
+         5,
+         -0.5673561625200557,
+         -0.675177721507803,
+         0.2642020420701651
+        ],
+        [
+         4,
+         0.09722120742212723,
+         0.2578125156934412,
+         -0.6637454389834929
+        ],
+        [
+         5,
+         -0.5673561625200557,
+         -0.6259287118556739,
+         0.23042611299295615
+        ],
+        [
+         4,
+         0.5683814390073338,
+         0.1646949120260226,
+         -1.134422657636207
+        ],
+        [
+         4,
+         -1.0747723163998075,
+         -0.6980666136857173,
+         0.14243922157761227
+        ],
+        [
+         5,
+         -0.5673561625200557,
+         -0.5816957574603859,
+         0.20422251679029502
+        ],
+        [
+         2,
+         -0.24552671640217683,
+         -0.3921119052541364,
+         0.2647958806182556
+        ],
+        [
+         4,
+         0.5683814390073338,
+         0.1501925856821023,
+         -1.1222734128867242
+        ],
+        [
+         7,
+         1.2695390745979704,
+         0.14066233498108233,
+         -0.6635287437149444
+        ],
+        [
+         4,
+         -1.0747723163998075,
+         -0.6454699350251285,
+         0.12962984751289744
+        ],
+        [
+         4,
+         -0.2968440021638303,
+         0.2845017281560015,
+         -0.34577073895579746
+        ],
+        [
+         2,
+         -0.24552671640217683,
+         -0.3759377027531928,
+         0.25179534420869165
+        ],
+        [
+         7,
+         1.2695390745979704,
+         0.13357857843199503,
+         -0.6358536575177667
+        ],
+        [
+         4,
+         0.09722120742212723,
+         0.2000412347217389,
+         -0.5831017478703961
+        ],
+        [
+         4,
+         -1.0747723163998075,
+         -0.6215565659603932,
+         0.12552640166779214
+        ],
+        [
+         2,
+         -0.24552671640217683,
+         -0.3571497557353689,
+         0.23668710569044085
+        ],
+        [
+         5,
+         -0.5673561625200557,
+         -0.5423513809178514,
+         0.1854684353838825
+        ],
+        [
+         7,
+         1.2695390745979704,
+         0.12736868441900082,
+         -0.6109933054977575
+        ],
+        [
+         4,
+         0.5683814390073338,
+         0.13520634577283283,
+         -1.1083832616884144
+        ],
+        [
+         2,
+         -0.24552671640217683,
+         -0.3491913717305043,
+         0.23043500561297803
+        ],
+        [
+         7,
+         1.2695390745979704,
+         0.12272110619212877,
+         -0.5922812646031339
+        ],
+        [
+         4,
+         -0.2968440021638303,
+         0.24800131553913704,
+         -0.31287684056224674
+        ],
+        [
+         4,
+         -1.0747723163998075,
+         -0.5845670578226098,
+         0.11736015234577961
+        ],
+        [
+         0,
+         0.7314810659866984,
+         -0.13019409170828622,
+         0.7653594407345343
+        ],
+        [
+         4,
+         0.5683814390073338,
+         0.1257656058377729,
+         -1.100504056335577
+        ],
+        [
+         5,
+         -0.5673561625200557,
+         -0.49970077339479113,
+         0.16459110396272042
+        ],
+        [
+         2,
+         -0.24552671640217683,
+         -0.3306742760041521,
+         0.215801050232765
+        ],
+        [
+         1,
+         -1.3441941491717335,
+         0.6960218321061857,
+         -0.09540987679320607
+        ],
+        [
+         4,
+         -1.0747723163998075,
+         -0.5536949224959763,
+         0.10998435341289678
+        ],
+        [
+         7,
+         1.2695390745979704,
+         0.11619045389816535,
+         -0.5621714745134622
+        ],
+        [
+         4,
+         -0.2968440021638303,
+         0.23350642973766658,
+         -0.29814663220093857
+        ],
+        [
+         2,
+         -0.24552671640217683,
+         -0.32358065263825914,
+         0.2109919068068016
+        ],
+        [
+         1,
+         -1.3441941491717335,
+         0.6456514334554743,
+         -0.08977773355023838
+        ],
+        [
+         4,
+         -1.0747723163998075,
+         -0.5409965406389884,
+         0.1076799356732637
+        ],
+        [
+         4,
+         0.09722120742212723,
+         0.16346257535137249,
+         -0.5179632438632256
+        ],
+        [
+         0,
+         0.7314810659866984,
+         -0.12394188697141674,
+         0.72609768018117
+        ],
+        [
+         7,
+         1.2695390745979704,
+         0.10957488963826435,
+         -0.534558584229561
+        ],
+        [
+         4,
+         0.5683814390073338,
+         0.11332004072899701,
+         -1.0907801460835311
+        ],
+        [
+         2,
+         -0.24552671640217683,
+         -0.3120414264126848,
+         0.2020308575410908
+        ],
+        [
+         1,
+         -1.3441941491717335,
+         0.6108873743899608,
+         -0.08680294670080824
+        ],
+        [
+         4,
+         -1.0747723163998075,
+         -0.522773987820773,
+         0.10396218255931303
+        ],
+        [
+         5,
+         -0.5673561625200557,
+         -0.47030725572976406,
+         0.15249984393124813
+        ],
+        [
+         1,
+         -1.3441941491717335,
+         0.5800151899015353,
+         -0.08298001603659182
+        ],
+        [
+         2,
+         -0.24552671640217683,
+         -0.3051609953156247,
+         0.19682596567855995
+        ],
+        [
+         7,
+         1.2695390745979704,
+         0.10618030432505897,
+         -0.51797325909097
+        ],
+        [
+         1,
+         0.02016444590025225,
+         0.19139213604895475,
+         -0.3204183356761631
+        ],
+        [
+         0,
+         0.7314810659866984,
+         -0.1171380720890395,
+         0.6789527698413775
+        ],
+        [
+         4,
+         -1.1765754092505916,
+         -0.5837153114589186,
+         0.08147245171302553
+        ],
+        [
+         4,
+         -0.2968440021638303,
+         0.20781123421120176,
+         -0.27235949764545864
+        ],
+        [
+         2,
+         1.348330165971397,
+         0.0716048390555995,
+         -1.202440953721984
+        ],
+        [
+         2,
+         -0.24552671640217683,
+         -0.2973085796452513,
+         0.19182265980124028
+        ],
+        [
+         1,
+         -1.3441941491717335,
+         0.549752911583554,
+         -0.07968558093782313
+        ],
+        [
+         4,
+         -1.0747723163998075,
+         -0.4892552010710026,
+         0.0963629319900243
+        ],
+        [
+         1,
+         0.02016444590025225,
+         0.1826711327004009,
+         -0.3090372854561859
+        ],
+        [
+         0,
+         0.7314810659866984,
+         -0.11294851986429055,
+         0.6493378936855522
+        ],
+        [
+         4,
+         0.5683814390073338,
+         0.10302096377820667,
+         -1.0839643936874657
+        ],
+        [
+         7,
+         1.2695390745979704,
+         0.09787682563246858,
+         -0.48419257636621077
+        ],
+        [
+         2,
+         -0.24552671640217683,
+         -0.291097946342746,
+         0.18735058699760385
+        ],
+        [
+         1,
+         0.02016444590025225,
+         0.17766813213035745,
+         -0.3046086368388473
+        ],
+        [
+         0,
+         0.7314810659866984,
+         -0.10860963804328741,
+         0.6195768337675406
+        ],
+        [
+         7,
+         -1.2702453550289015,
+         0.6258257235142797,
+         -0.08310003850864196
+        ],
+        [
+         1,
+         0.02016444590025225,
+         0.17295095520666837,
+         -0.2995142927648121
+        ],
+        [
+         2,
+         -0.24552671640217683,
+         -0.28327826818844826,
+         0.1825877790677241
+        ],
+        [
+         1,
+         -1.3441941491717335,
+         0.5091678285150748,
+         -0.07542135536271961
+        ],
+        [
+         4,
+         -1.1765754092505916,
+         -0.5481055079071664,
+         0.07638578824014812
+        ],
+        [
+         5,
+         -0.5673561625200557,
+         -0.42219391466016376,
+         0.13227493480423375
+        ],
+        [
+         2,
+         -0.24552671640217683,
+         -0.26826642164618947,
+         0.17099653852868635
+        ],
+        [
+         7,
+         1.2695390745979704,
+         0.09629976966189507,
+         -0.474592621773378
+        ],
+        [
+         7,
+         0.4912180397123158,
+         -0.14023511276523618,
+         0.3101075065690438
+        ],
+        [
+         7,
+         -1.2702453550289015,
+         0.6011387386661733,
+         -0.07973253757882101
+        ],
+        [
+         1,
+         -1.3441941491717335,
+         0.4968769675039939,
+         -0.07378070868444805
+        ],
+        [
+         4,
+         -1.0747723163998075,
+         -0.4429866007602559,
+         0.08660240262294724
+        ],
+        [
+         4,
+         0.5683814390073338,
+         0.09590902730278111,
+         -1.0785600991914273
+        ],
+        [
+         0,
+         0.7314810659866984,
+         -0.10336089607161186,
+         0.5883860764898103
+        ],
+        [
+         1,
+         0.02016444590025225,
+         0.17069825944765088,
+         -0.2988986317869161
+        ],
+        [
+         7,
+         1.2695390745979704,
+         0.09215915278142335,
+         -0.45630082908369024
+        ],
+        [
+         7,
+         0.4912180397123158,
+         -0.1394859845016298,
+         0.30699478116599016
+        ],
+        [
+         3,
+         -0.034503277967117774,
+         0.24689010341530315,
+         -0.1802599750843031
+        ],
+        [
+         2,
+         0.7457800824132061,
+         0.10555834084953652,
+         -0.49417207416865977
+        ],
+        [
+         0,
+         0.7314810659866984,
+         -0.09956611302105733,
+         0.563818273043159
+        ],
+        [
+         1,
+         0.02016444590025225,
+         0.16629046438405776,
+         -0.293143554106947
+        ],
+        [
+         2,
+         -0.24552671640217683,
+         -0.25204689296017985,
+         0.1610816024422185
+        ],
+        [
+         1,
+         -1.3441941491717335,
+         0.48106768510424525,
+         -0.0724898404450014
+        ],
+        [
+         7,
+         -1.2702453550289015,
+         0.5494575851363435,
+         -0.07394936897918822
+        ],
+        [
+         7,
+         0.1225396547664798,
+         -0.23028406494337994,
+         0.1876392122000238
+        ],
+        [
+         7,
+         1.2695390745979704,
+         0.09026476495897871,
+         -0.4468623673134678
+        ],
+        [
+         9,
+         0.2677291142624678,
+         0.1321423447202156,
+         -0.3603723610739125
+        ],
+        [
+         0,
+         0.7314810659866984,
+         -0.09665752244863464,
+         0.5449665643820155
+        ],
+        [
+         1,
+         0.02016444590025225,
+         0.15577057945697495,
+         -0.27957270590714883
+        ],
+        [
+         0,
+         -0.1469249127161149,
+         -0.20664083592216026,
+         0.19971179696107214
+        ],
+        [
+         1,
+         -1.3441941491717335,
+         0.44540303158170064,
+         -0.0681635535711272
+        ]
+       ]
+      },
+      "train_prediction_sd": 0.16652422680789394
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "50214639e44119acafe137510e160ddfb57f5c5fc2800da5e015a8822007fd87",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 29,
+     "kind": "G1_SC_STUMPS_B2",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "G1_SC_STUMPS_B2:price_path_target_before_invalidation_24h",
+     "model_sha": "a60205b7ab507c05aaa2ab2cc686ee623804007fd6eabc69de61b0cabe44f731",
+     "n_train": 123,
+     "n_used": 116,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    },
+    "R2_SC_RULE": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "b0": 0.24390243902439024,
+      "cells": {
+       "T0S0": {
+        "k": 2,
+        "n": 17,
+        "p": 0.18589321028345418
+       },
+       "T0S1": {
+        "k": 2,
+        "n": 20,
+        "p": 0.1719512195121951
+       },
+       "T1S0": {
+        "k": 9,
+        "n": 31,
+        "p": 0.2721186035389766
+       },
+       "T1S1": {
+        "k": 7,
+        "n": 20,
+        "p": 0.29695121951219516
+       },
+       "T2S0": {
+        "k": 4,
+        "n": 17,
+        "p": 0.23994726433750826
+       },
+       "T2S1": {
+        "k": 5,
+        "n": 11,
+        "p": 0.31864673485444533
+       }
+      },
+      "m": 20.0,
+      "spec": {
+       "columns": [
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ],
+       "kind": "rule",
+       "rows": []
+      }
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "50214639e44119acafe137510e160ddfb57f5c5fc2800da5e015a8822007fd87",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 30,
+     "kind": "R2_SC_RULE",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "R2_SC_RULE:price_path_target_before_invalidation_24h",
+     "model_sha": "3c76c58eea6be59de30a28f78e9a31181fb60677606804a46ce8fe4d77d984c5",
+     "n_train": 123,
+     "n_used": 123,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    },
+    "S1_SC_LOGIT": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.20234169479943245,
+        0.1994401062710109,
+        0.0700335689805244,
+        -0.09492877624295132,
+        -0.4491455403241685,
+        -0.11804472241644473
+       ],
+       "intercept": -1.205259355435307,
+       "n_iter": 6
+      },
+      "prep": {
+       "ind": [],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "med": [
+        1.0,
+        0.0,
+        0.62,
+        1.0,
+        0.0,
+        1.0
+       ],
+       "mu": [
+        0.9224137931034483,
+        0.4396551724137931,
+        0.5850862068965518,
+        1.3448275862068966,
+        0.3706896551724138,
+        1.0948275862068966
+       ],
+       "n_in": 6,
+       "sd": [
+        0.7445301928636691,
+        0.49634514380982,
+        0.24411520630161762,
+        0.7204338764060751,
+        0.48298947682177373,
+        0.9095134003663154
+       ]
+      },
+      "spec": {
+       "columns": [
+        "sc_attention_trend_ord",
+        "sc_attention_suspect",
+        "sc_narrative_strength",
+        "sc_manipulation_ord",
+        "sc_lifecycle_late",
+        "sc_channels_n"
+       ],
+       "kind": "logit",
+       "rows": [
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      },
+      "train_prediction_sd": 0.10822842412071021
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "50214639e44119acafe137510e160ddfb57f5c5fc2800da5e015a8822007fd87",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 29,
+     "kind": "S1_SC_LOGIT",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "S1_SC_LOGIT:price_path_target_before_invalidation_24h",
+     "model_sha": "8e5d2e659c4ffd70ee0b222d44395ab8ae59e66b041ac0f35ac2882684896e86",
+     "n_train": 123,
+     "n_used": 116,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    },
+    "S2_SC_LOGIT_B2": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.39323033878356367,
+        -0.1834690271087736,
+        -0.38087030805638344,
+        -0.4540168160601141,
+        -1.0989498291827848,
+        0.13622080219603086,
+        0.10047719280593802,
+        0.09679164614153556,
+        -0.26882408854887785,
+        -0.28732867445482296,
+        -0.0682777127898643
+       ],
+       "intercept": -1.403924558093193,
+       "n_iter": 7
+      },
+      "prep": {
+       "ind": [],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+       ],
+       "med": [
+        12.360887649999999,
+        14.936292845,
+        13.68726056,
+        1.0,
+        2.6141129069716236,
+        1.0,
+        0.0,
+        0.62,
+        1.0,
+        0.0,
+        1.0
+       ],
+       "mu": [
+        12.05452189836207,
+        15.022685956698275,
+        13.793632256715517,
+        0.5172413793103449,
+        2.8853171385384875,
+        0.9224137931034483,
+        0.4396551724137931,
+        0.5850862068965518,
+        1.3448275862068966,
+        0.3706896551724138,
+        1.0948275862068966
+       ],
+       "n_in": 11,
+       "sd": [
+        1.9949435255299766,
+        2.806810987105593,
+        1.6325893678263816,
+        0.4997026464203254,
+        1.9997144058560838,
+        0.7445301928636691,
+        0.49634514380982,
+        0.24411520630161762,
+        0.7204338764060751,
+        0.48298947682177373,
+        0.9095134003663154
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect",
+        "sc_narrative_strength",
+        "sc_manipulation_ord",
+        "sc_lifecycle_late",
+        "sc_channels_n"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      },
+      "train_prediction_sd": 0.16400498457929893
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "50214639e44119acafe137510e160ddfb57f5c5fc2800da5e015a8822007fd87",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 29,
+     "kind": "S2_SC_LOGIT_B2",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "S2_SC_LOGIT_B2:price_path_target_before_invalidation_24h",
+     "model_sha": "d6ededb0388894c7b268e82251aab52b6882b60656c829a53500bd9130bb30fe",
+     "n_train": 123,
+     "n_used": 116,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    },
+    "S3_SC_LOGIT_TREND": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "logistic": {
+       "C": 1.0,
+       "coef": [
+        0.38354977637158866,
+        -0.17512569522489377,
+        -0.3769340266756815,
+        -0.47600980793102077,
+        -1.112075036574707,
+        0.16497562238516644,
+        0.07928307559279411,
+        0.11503703579017009,
+        -0.28412731928571666,
+        -0.22717826671452912,
+        -0.053161506221341547,
+        -0.3401667324172871,
+        0.11076997155892342,
+        0.13723544761387532,
+        0.13723544761387532
+       ],
+       "intercept": -1.450874102021295,
+       "n_iter": 7
+      },
+      "prep": {
+       "ind": [
+        11,
+        12
+       ],
+       "keep": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+       ],
+       "med": [
+        12.360887649999999,
+        14.936292845,
+        13.68726056,
+        1.0,
+        2.6141129069716236,
+        1.0,
+        0.0,
+        0.62,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+       ],
+       "mu": [
+        12.05452189836207,
+        15.022685956698275,
+        13.793632256715517,
+        0.5172413793103449,
+        2.8853171385384875,
+        0.9224137931034483,
+        0.4396551724137931,
+        0.5850862068965518,
+        1.3448275862068966,
+        0.3706896551724138,
+        1.0948275862068966,
+        -0.034482758620689655,
+        0.034482758620689655,
+        0.75,
+        0.75
+       ],
+       "n_in": 13,
+       "sd": [
+        1.9949435255299766,
+        2.806810987105593,
+        1.6325893678263816,
+        0.4997026464203254,
+        1.9997144058560838,
+        0.7445301928636691,
+        0.49634514380982,
+        0.24411520630161762,
+        0.7204338764060751,
+        0.48298947682177373,
+        0.9095134003663154,
+        0.26033911845761204,
+        0.18246560765962697,
+        0.4330127018922193,
+        0.4330127018922193
+       ]
+      },
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect",
+        "sc_narrative_strength",
+        "sc_manipulation_ord",
+        "sc_lifecycle_late",
+        "sc_channels_n",
+        "sc_d_attention_trend",
+        "sc_attention_reversal"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      },
+      "train_prediction_sd": 0.1733756136267548
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "50214639e44119acafe137510e160ddfb57f5c5fc2800da5e015a8822007fd87",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 30,
+     "k_used": 29,
+     "kind": "S3_SC_LOGIT_TREND",
+     "label_mode": "provider",
+     "label_set_sha": "c638e98467ced3c9f0432a13ec7fa61d34cf7936c55a93e8b72693770a629526",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791886823.0,
+     "max_train_label_matures_at": 1791974423.0,
+     "model_id": "S3_SC_LOGIT_TREND:price_path_target_before_invalidation_24h",
+     "model_sha": "b6c08c5971e3986ff17796f2167e75f06f8f0c56605d6ad9658e5e6e8410c89e",
+     "n_train": 123,
+     "n_used": 116,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_target_before_invalidation_24h": "1"
+     },
+     "targets": [
+      "price_path_target_before_invalidation_24h"
+     ],
+     "training_cutoff": 1792022400.0,
+     "training_cutoff_utc": "2026-10-15T00:00:00Z"
+    }
+   },
+   "cutoff_utc": "2026-10-15T00:00:00Z",
+   "fold": 2
+  }
+ ],
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "target": "price_path_target_before_invalidation_24h"
+}

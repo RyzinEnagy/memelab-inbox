@@ -843,3 +843,22 @@ def test_no_other_module_imports_the_phase_10_code():
         if p.name == "socialcat.py":
             continue
         assert not any(i.endswith("socialcat") for i in _imports(p)) and "socialcat" not in p.read_text(), p
+
+
+# ---------------------------------------------------------------- committed outputs (added with them)
+def test_search_ledger_holds_phase_09_rows_then_every_registered_phase_10_configuration():
+    import csv
+    p10 = ROOT / "audits/predictive-intelligence/phase_10/experiments"
+    led = list(csv.DictReader(open(p10 / "SEARCH_LEDGER.csv")))
+    prior = list(csv.DictReader(open(ROOT / "audits/predictive-intelligence/phase_09/experiments/SEARCH_LEDGER.csv")))
+    assert led[:len(prior)] == prior
+    ids = {r["experiment_id"] for r in led[len(prior):]}
+    reg = [r["experiment_id"] for r in csv.DictReader(open(p10 / "EXPERIMENT_REGISTRY.csv"))]
+    traps = {"NC2SC", "P13SC", "P36SC", "P04SC", "CX10"}
+    assert [x for x in reg if x.split(":")[-1] not in traps and x not in ids] == []
+    assert sum(1 for r in led[len(prior):] if r["kind"] == "DEBUG_RUN_REAL_DATA") == 1
+    metrics = list(csv.DictReader(open(p10 / "SOCIAL_METRICS.csv")))
+    assert all(r["verdict"] in ("INSUFFICIENT_DAYS", "INSUFFICIENT_EVENTS", "INSUFFICIENT_HISTORY") for r in metrics)
+    assert all(r["status"] == B.PROVISIONAL and r["revision_check_claimed"] == "False" for r in metrics)
+    abl = list(csv.DictReader(open(p10 / "ABLATION.csv")))
+    assert abl and all(r["incremental_value_claimed"] == "False" for r in abl)

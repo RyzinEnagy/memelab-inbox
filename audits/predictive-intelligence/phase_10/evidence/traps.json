@@ -1,0 +1,62 @@
+{
+ "CX10": {
+  "decisions": 925,
+  "later_differences": {
+   "narrative_tag_only_in_newest": 20,
+   "sc_channels_n_differs": 74,
+   "twitter_only_in_newest": 4,
+   "website_only_in_newest": 74
+  },
+  "newest_export_commit": "e245d91cc5f56060ba8e1aa7182c846c77d1526c",
+  "pass": true,
+  "token_row_differs_from_own_export": 0,
+  "token_row_equals_own_export": 925
+ },
+ "NC2SC": {
+  "accepted": 0,
+  "labelled_decisions": 240,
+  "min_trap_delay_s": 72.0,
+  "pass": true,
+  "refused_by_allowlist": 156,
+  "refused_by_validate_rows": 156,
+  "with_a_later_decision_of_the_mint": 156
+ },
+ "P04SC": {
+  "accepted": 0,
+  "labelled_decisions_tried": 240,
+  "pass": true,
+  "refused": 240
+ },
+ "P13SC": {
+  "pass": true,
+  "results": {
+   "T1_24h:A2_SC_B2_TC": "REFUSED",
+   "T1_24h:G1_SC_STUMPS_B2": "REFUSED",
+   "T1_24h:R2_SC_RULE": "REFUSED",
+   "T1_24h:S1_SC_LOGIT": "REFUSED",
+   "T1_24h:S2_SC_LOGIT_B2": "REFUSED",
+   "T1_24h:S3_SC_LOGIT_TREND": "REFUSED",
+   "T1b_6h:A2_SC_B2_TC": "REFUSED",
+   "T1b_6h:G1_SC_STUMPS_B2": "REFUSED",
+   "T1b_6h:R2_SC_RULE": "REFUSED",
+   "T1b_6h:S1_SC_LOGIT": "REFUSED",
+   "T1b_6h:S2_SC_LOGIT_B2": "REFUSED",
+   "T1b_6h:S3_SC_LOGIT_TREND": "REFUSED",
+   "T2_24h:A2_SC_B2_TC": "REFUSED",
+   "T2_24h:G1_SC_STUMPS_B2": "REFUSED",
+   "T2_24h:R2_SC_RULE": "REFUSED",
+   "T2_24h:S1_SC_LOGIT": "REFUSED",
+   "T2_24h:S2_SC_LOGIT_B2": "REFUSED",
+   "T2_24h:S3_SC_LOGIT_TREND": "REFUSED"
+  }
+ },
+ "P36SC": {
+  "decision_key": "29c621774bb63c563e34f1b6aaa75bcbbef466711576010c1d65daa3d3e812a0",
+  "pass": true,
+  "reasons": {
+   "INCONSISTENT_TIME": 19
+  },
+  "values_with_a_number": 0
+ },
+ "registry_rows_missing_from_ledger": []
+}

@@ -1,0 +1,703 @@
+{
+ "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+ "chain": "solana",
+ "decision_key": "4b33b36c051d59016f7826b9d7fb62a92fdb179e79b4a5f97faf783de95f0917",
+ "decision_time": 1791886823.0,
+ "decision_time_basis": "EXPORT_COMMIT",
+ "decision_time_utc": "2026-10-13T10:20:23Z",
+ "event_without_post_event_text": {
+  "later_decisions_of_this_mint_in_the_store": 2,
+  "next_export_commit": "45a28eedc942220d245d8de8707fcb8f4d713da7",
+  "next_export_context": "REFUSED: narrative tables of commit 45a28eedc9 are not the decision's export 698f73b854 at T (P04, CX-10)",
+  "pass": true,
+  "truncated_store_snapshot_equal": true
+ },
+ "export_blob": "bd7edbd49e9a2736c876f82752d71fda9bf2ce34",
+ "export_commit": "698f73b854567ce60b56ce275b5ab6822a9d5f60",
+ "fold": 0,
+ "fold_cutoff_utc": "2026-10-13T00:00:00Z",
+ "invalid_inputs": {
+  "holdout_start_card_on_this_development_decision": "REFUSED: card S2_SC_LOGIT_B2:price_path_target_before_invalidation_24h trained to 2026-10-17T00:00:00Z cannot score 1 earlier decision(s) (P13, RETROSPECTIVE_MODEL_NOT_AVAILABLE_AS_OF)",
+  "next_decision_value_used": "REFUSED: row 0: sc_attention_trend_ord__available_at 1792406045.0 is after the decision 1791886823.0 (future feature, P36)",
+  "next_export_narrative_tables": "REFUSED: narrative tables of commit 45a28eedc9 are not the decision's export 698f73b854 at T (P04, CX-10)",
+  "non_finite_value": "REFUSED: value nan is not finite (P38)",
+  "view_row_available_after_T": "REFUSED: decision record available at 1791886824.0 reached a strategy at cutoff 1791886823.0"
+ },
+ "invalid_inputs_all_rejected": true,
+ "lab_event_classes": [],
+ "label_y": 1,
+ "latency_s_median_of_20": 0.0005,
+ "mint": "5Upkgkqx9nZJGDCz4Kgo8tiT995Gu1PiF7AGMQbBxEg",
+ "model_inputs": {
+  "log1p_token_age_days": 2.289644079225823,
+  "sc_attention_suspect": 1.0,
+  "sc_attention_trend_ord": 1.0,
+  "sc_channels_n": 2.0,
+  "sc_lifecycle_late": 1.0,
+  "sc_manipulation_ord": 0.0,
+  "sc_narrative_strength": 0.0,
+  "thesis_fatal_present": 1.0,
+  "thesis_log1p_liquidity_usd": 8.162361475,
+  "thesis_log1p_mcap_usd": 11.07197207,
+  "thesis_log1p_vol_24h_usd": 8.317439909
+ },
+ "models": {
+  "A2_SC_B2_TC": {
+   "abstain": "INSUFFICIENT_HISTORY",
+   "card": {
+    "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+    "body": {
+     "abstain": "INSUFFICIENT_HISTORY",
+     "spec": {
+      "columns": [
+       "thesis_log1p_liquidity_usd",
+       "thesis_log1p_mcap_usd",
+       "thesis_log1p_vol_24h_usd",
+       "thesis_fatal_present",
+       "log1p_token_age_days"
+      ],
+      "kind": "logit",
+      "rows": [
+       "thesis_log1p_liquidity_usd",
+       "thesis_log1p_mcap_usd",
+       "thesis_log1p_vol_24h_usd",
+       "thesis_fatal_present",
+       "sc_attention_trend_ord",
+       "sc_attention_suspect"
+      ]
+     }
+    },
+    "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+    "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+    "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+    "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+    "feature_version": "2",
+    "k_train": 25,
+    "k_used": 24,
+    "kind": "A2_SC_B2_TC",
+    "label_mode": "provider",
+    "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+    "labels_version": "labels-1",
+    "llm_used": false,
+    "max_train_decision_time": 1791713879.0,
+    "max_train_label_matures_at": 1791801479.0,
+    "model_id": "A2_SC_B2_TC:price_path_target_before_invalidation_24h",
+    "model_sha": "1ac21646485c56e6f8aaee87f8ae61a4541c1f33d05c045386765db9412c2612",
+    "n_train": 104,
+    "n_used": 98,
+    "phase": "10",
+    "promotion": "MODEL_NOT_PROMOTED",
+    "publishable": false,
+    "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+    "revision_check_claimed": false,
+    "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+    "socialcat_version": "socialcat-1",
+    "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+    "store_schema": "memelab.predictive.store/1",
+    "target_version": {
+     "price_path_target_before_invalidation_24h": "1"
+    },
+    "targets": [
+     "price_path_target_before_invalidation_24h"
+    ],
+    "training_cutoff": 1791849600.0,
+    "training_cutoff_utc": "2026-10-13T00:00:00Z"
+   },
+   "card_model_sha": "1ac21646485c56e6f8aaee87f8ae61a4541c1f33d05c045386765db9412c2612",
+   "number": null,
+   "training_cutoff_utc": "2026-10-13T00:00:00Z"
+  },
+  "B0": {
+   "abstain": null,
+   "card": {
+    "body": {
+     "p": 0.2403846153846154
+    },
+    "data_snapshot_sha": "ddd67d96c9c1fa68b1884f22ae1a8c8d9f762ed08c85558fcee079e00fe445e8",
+    "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+    "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+    "feature_version": "2",
+    "k_train": 25,
+    "k_used": 25,
+    "kind": "B0",
+    "label_mode": "provider",
+    "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+    "label_store_migration": 2,
+    "labels_version": "labels-1",
+    "max_train_decision_time": 1791713879.0,
+    "max_train_label_matures_at": 1791801479.0,
+    "model_id": "B0:price_path_target_before_invalidation_24h",
+    "model_sha": "5f0659ee7ec23b12472908b640e786fc4d47c168a8aabb1266f79ce79c1a2eca",
+    "n_train": 104,
+    "n_used": 104,
+    "phase": "07",
+    "publishable": false,
+    "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+    "revision_check_claimed": false,
+    "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+    "store_schema": "memelab.predictive.store/1",
+    "target_version": {
+     "price_path_target_before_invalidation_24h": "1"
+    },
+    "targets": [
+     "price_path_target_before_invalidation_24h"
+    ],
+    "training_cutoff": 1791849600.0,
+    "training_cutoff_utc": "2026-10-13T00:00:00Z"
+   },
+   "card_model_sha": "5f0659ee7ec23b12472908b640e786fc4d47c168a8aabb1266f79ce79c1a2eca",
+   "number": 0.2403846153846154,
+   "training_cutoff_utc": "2026-10-13T00:00:00Z"
+  },
+  "B2": {
+   "abstain": null,
+   "card": {
+    "body": {
+     "columns": [
+      "thesis_log1p_liquidity_usd",
+      "thesis_log1p_mcap_usd",
+      "thesis_log1p_vol_24h_usd",
+      "thesis_fatal_present",
+      "log1p_token_age_days"
+     ],
+     "logistic": {
+      "C": 1.0,
+      "coef": [
+       0.4416907041747248,
+       -0.17908848080132803,
+       0.01481300684509097,
+       -0.17973841368813193,
+       -1.0452771147959485
+      ],
+      "intercept": -1.3916125206481844,
+      "n_iter": 7
+     },
+     "prep": {
+      "ind": [],
+      "keep": [
+       0,
+       1,
+       2,
+       3,
+       4
+      ],
+      "med": [
+       12.222486804999999,
+       15.135674615,
+       13.68726056,
+       1.0,
+       2.6141129069716236
+      ],
+      "mu": [
+       11.71747570839423,
+       15.139161210365385,
+       13.736981649259615,
+       0.5384615384615384,
+       2.809831316510275
+      ],
+      "n_in": 5,
+      "sd": [
+       2.5393545803725246,
+       2.9216447008973163,
+       1.8635258260294145,
+       0.4985185152621431,
+       2.0006542484006977
+      ]
+     },
+     "required": [
+      "thesis_log1p_liquidity_usd",
+      "thesis_log1p_mcap_usd",
+      "thesis_log1p_vol_24h_usd",
+      "thesis_fatal_present"
+     ]
+    },
+    "data_snapshot_sha": "ddd67d96c9c1fa68b1884f22ae1a8c8d9f762ed08c85558fcee079e00fe445e8",
+    "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+    "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+    "feature_version": "2",
+    "k_train": 25,
+    "k_used": 25,
+    "kind": "B2",
+    "label_mode": "provider",
+    "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+    "label_store_migration": 2,
+    "labels_version": "labels-1",
+    "max_train_decision_time": 1791713879.0,
+    "max_train_label_matures_at": 1791801479.0,
+    "model_id": "B2:price_path_target_before_invalidation_24h",
+    "model_sha": "934181f497edcfc990d8d55cab81c2ac7e7278cac4e3f8b76a28846033fe173c",
+    "n_train": 104,
+    "n_used": 104,
+    "phase": "07",
+    "publishable": false,
+    "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+    "revision_check_claimed": false,
+    "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+    "store_schema": "memelab.predictive.store/1",
+    "target_version": {
+     "price_path_target_before_invalidation_24h": "1"
+    },
+    "targets": [
+     "price_path_target_before_invalidation_24h"
+    ],
+    "training_cutoff": 1791849600.0,
+    "training_cutoff_utc": "2026-10-13T00:00:00Z"
+   },
+   "card_model_sha": "934181f497edcfc990d8d55cab81c2ac7e7278cac4e3f8b76a28846033fe173c",
+   "number": 0.15467703961967175,
+   "training_cutoff_utc": "2026-10-13T00:00:00Z"
+  },
+  "G1_SC_STUMPS_B2": {
+   "abstain": "INSUFFICIENT_HISTORY",
+   "card": {
+    "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+    "body": {
+     "abstain": "INSUFFICIENT_HISTORY",
+     "spec": {
+      "columns": [
+       "thesis_log1p_liquidity_usd",
+       "thesis_log1p_mcap_usd",
+       "thesis_log1p_vol_24h_usd",
+       "thesis_fatal_present",
+       "log1p_token_age_days",
+       "sc_attention_trend_ord",
+       "sc_attention_suspect",
+       "sc_narrative_strength",
+       "sc_manipulation_ord",
+       "sc_lifecycle_late",
+       "sc_channels_n"
+      ],
+      "kind": "stumps",
+      "rows": [
+       "thesis_log1p_liquidity_usd",
+       "thesis_log1p_mcap_usd",
+       "thesis_log1p_vol_24h_usd",
+       "thesis_fatal_present",
+       "sc_attention_trend_ord",
+       "sc_attention_suspect"
+      ]
+     }
+    },
+    "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+    "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+    "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+    "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+    "feature_version": "2",
+    "k_train": 25,
+    "k_used": 24,
+    "kind": "G1_SC_STUMPS_B2",
+    "label_mode": "provider",
+    "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+    "labels_version": "labels-1",
+    "llm_used": false,
+    "max_train_decision_time": 1791713879.0,
+    "max_train_label_matures_at": 1791801479.0,
+    "model_id": "G1_SC_STUMPS_B2:price_path_target_before_invalidation_24h",
+    "model_sha": "a3671f4872fe9caba27c6c5dfad5ed91859992734ec661066742fb13f116cd67",
+    "n_train": 104,
+    "n_used": 98,
+    "phase": "10",
+    "promotion": "MODEL_NOT_PROMOTED",
+    "publishable": false,
+    "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+    "revision_check_claimed": false,
+    "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+    "socialcat_version": "socialcat-1",
+    "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+    "store_schema": "memelab.predictive.store/1",
+    "target_version": {
+     "price_path_target_before_invalidation_24h": "1"
+    },
+    "targets": [
+     "price_path_target_before_invalidation_24h"
+    ],
+    "training_cutoff": 1791849600.0,
+    "training_cutoff_utc": "2026-10-13T00:00:00Z"
+   },
+   "card_model_sha": "a3671f4872fe9caba27c6c5dfad5ed91859992734ec661066742fb13f116cd67",
+   "number": null,
+   "training_cutoff_utc": "2026-10-13T00:00:00Z"
+  },
+  "R2_SC_RULE": {
+   "abstain": null,
+   "card": {
+    "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+    "body": {
+     "b0": 0.2403846153846154,
+     "cells": {
+      "T0S0": {
+       "k": 2,
+       "n": 13,
+       "p": 0.20629370629370627
+      },
+      "T0S1": {
+       "k": 2,
+       "n": 20,
+       "p": 0.1701923076923077
+      },
+      "T1S0": {
+       "k": 7,
+       "n": 23,
+       "p": 0.27459749552772805
+      },
+      "T1S1": {
+       "k": 6,
+       "n": 18,
+       "p": 0.28441295546558704
+      },
+      "T2S0": {
+       "k": 3,
+       "n": 14,
+       "p": 0.22963800904977374
+      },
+      "T2S1": {
+       "k": 4,
+       "n": 10,
+       "p": 0.29358974358974355
+      }
+     },
+     "m": 20.0,
+     "spec": {
+      "columns": [
+       "sc_attention_trend_ord",
+       "sc_attention_suspect"
+      ],
+      "kind": "rule",
+      "rows": []
+     }
+    },
+    "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+    "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+    "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+    "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+    "feature_version": "2",
+    "k_train": 25,
+    "k_used": 25,
+    "kind": "R2_SC_RULE",
+    "label_mode": "provider",
+    "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+    "labels_version": "labels-1",
+    "llm_used": false,
+    "max_train_decision_time": 1791713879.0,
+    "max_train_label_matures_at": 1791801479.0,
+    "model_id": "R2_SC_RULE:price_path_target_before_invalidation_24h",
+    "model_sha": "cfbf72072fbfdc143f2386421d3bd22a85298e60fcb6b404ba6c0c7af0bf7801",
+    "n_train": 104,
+    "n_used": 104,
+    "phase": "10",
+    "promotion": "MODEL_NOT_PROMOTED",
+    "publishable": false,
+    "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+    "revision_check_claimed": false,
+    "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+    "socialcat_version": "socialcat-1",
+    "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+    "store_schema": "memelab.predictive.store/1",
+    "target_version": {
+     "price_path_target_before_invalidation_24h": "1"
+    },
+    "targets": [
+     "price_path_target_before_invalidation_24h"
+    ],
+    "training_cutoff": 1791849600.0,
+    "training_cutoff_utc": "2026-10-13T00:00:00Z"
+   },
+   "card_model_sha": "cfbf72072fbfdc143f2386421d3bd22a85298e60fcb6b404ba6c0c7af0bf7801",
+   "number": 0.28441295546558704,
+   "training_cutoff_utc": "2026-10-13T00:00:00Z"
+  },
+  "S1_SC_LOGIT": {
+   "abstain": "INSUFFICIENT_HISTORY",
+   "card": {
+    "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+    "body": {
+     "abstain": "INSUFFICIENT_HISTORY",
+     "spec": {
+      "columns": [
+       "sc_attention_trend_ord",
+       "sc_attention_suspect",
+       "sc_narrative_strength",
+       "sc_manipulation_ord",
+       "sc_lifecycle_late",
+       "sc_channels_n"
+      ],
+      "kind": "logit",
+      "rows": [
+       "sc_attention_trend_ord",
+       "sc_attention_suspect"
+      ]
+     }
+    },
+    "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+    "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+    "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+    "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+    "feature_version": "2",
+    "k_train": 25,
+    "k_used": 24,
+    "kind": "S1_SC_LOGIT",
+    "label_mode": "provider",
+    "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+    "labels_version": "labels-1",
+    "llm_used": false,
+    "max_train_decision_time": 1791713879.0,
+    "max_train_label_matures_at": 1791801479.0,
+    "model_id": "S1_SC_LOGIT:price_path_target_before_invalidation_24h",
+    "model_sha": "6a884b5555dd4580659b0a203c734bf948055ca6602386c65090824e7da3fd15",
+    "n_train": 104,
+    "n_used": 98,
+    "phase": "10",
+    "promotion": "MODEL_NOT_PROMOTED",
+    "publishable": false,
+    "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+    "revision_check_claimed": false,
+    "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+    "socialcat_version": "socialcat-1",
+    "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+    "store_schema": "memelab.predictive.store/1",
+    "target_version": {
+     "price_path_target_before_invalidation_24h": "1"
+    },
+    "targets": [
+     "price_path_target_before_invalidation_24h"
+    ],
+    "training_cutoff": 1791849600.0,
+    "training_cutoff_utc": "2026-10-13T00:00:00Z"
+   },
+   "card_model_sha": "6a884b5555dd4580659b0a203c734bf948055ca6602386c65090824e7da3fd15",
+   "number": null,
+   "training_cutoff_utc": "2026-10-13T00:00:00Z"
+  },
+  "S2_SC_LOGIT_B2": {
+   "abstain": "INSUFFICIENT_HISTORY",
+   "card": {
+    "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+    "body": {
+     "abstain": "INSUFFICIENT_HISTORY",
+     "spec": {
+      "columns": [
+       "thesis_log1p_liquidity_usd",
+       "thesis_log1p_mcap_usd",
+       "thesis_log1p_vol_24h_usd",
+       "thesis_fatal_present",
+       "log1p_token_age_days",
+       "sc_attention_trend_ord",
+       "sc_attention_suspect",
+       "sc_narrative_strength",
+       "sc_manipulation_ord",
+       "sc_lifecycle_late",
+       "sc_channels_n"
+      ],
+      "kind": "logit",
+      "rows": [
+       "thesis_log1p_liquidity_usd",
+       "thesis_log1p_mcap_usd",
+       "thesis_log1p_vol_24h_usd",
+       "thesis_fatal_present",
+       "sc_attention_trend_ord",
+       "sc_attention_suspect"
+      ]
+     }
+    },
+    "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+    "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+    "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+    "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+    "feature_version": "2",
+    "k_train": 25,
+    "k_used": 24,
+    "kind": "S2_SC_LOGIT_B2",
+    "label_mode": "provider",
+    "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+    "labels_version": "labels-1",
+    "llm_used": false,
+    "max_train_decision_time": 1791713879.0,
+    "max_train_label_matures_at": 1791801479.0,
+    "model_id": "S2_SC_LOGIT_B2:price_path_target_before_invalidation_24h",
+    "model_sha": "fecfb8670ed4316f7d73979a8f3c9828b7ee581ae400b06d7cf8c7460e53d8ad",
+    "n_train": 104,
+    "n_used": 98,
+    "phase": "10",
+    "promotion": "MODEL_NOT_PROMOTED",
+    "publishable": false,
+    "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+    "revision_check_claimed": false,
+    "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+    "socialcat_version": "socialcat-1",
+    "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+    "store_schema": "memelab.predictive.store/1",
+    "target_version": {
+     "price_path_target_before_invalidation_24h": "1"
+    },
+    "targets": [
+     "price_path_target_before_invalidation_24h"
+    ],
+    "training_cutoff": 1791849600.0,
+    "training_cutoff_utc": "2026-10-13T00:00:00Z"
+   },
+   "card_model_sha": "fecfb8670ed4316f7d73979a8f3c9828b7ee581ae400b06d7cf8c7460e53d8ad",
+   "number": null,
+   "training_cutoff_utc": "2026-10-13T00:00:00Z"
+  },
+  "S3_SC_LOGIT_TREND": {
+   "abstain": "INSUFFICIENT_HISTORY",
+   "card": {
+    "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+    "body": {
+     "abstain": "INSUFFICIENT_HISTORY",
+     "spec": {
+      "columns": [
+       "thesis_log1p_liquidity_usd",
+       "thesis_log1p_mcap_usd",
+       "thesis_log1p_vol_24h_usd",
+       "thesis_fatal_present",
+       "log1p_token_age_days",
+       "sc_attention_trend_ord",
+       "sc_attention_suspect",
+       "sc_narrative_strength",
+       "sc_manipulation_ord",
+       "sc_lifecycle_late",
+       "sc_channels_n",
+       "sc_d_attention_trend",
+       "sc_attention_reversal"
+      ],
+      "kind": "logit",
+      "rows": [
+       "thesis_log1p_liquidity_usd",
+       "thesis_log1p_mcap_usd",
+       "thesis_log1p_vol_24h_usd",
+       "thesis_fatal_present",
+       "sc_attention_trend_ord",
+       "sc_attention_suspect"
+      ]
+     }
+    },
+    "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+    "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+    "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+    "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+    "feature_version": "2",
+    "k_train": 25,
+    "k_used": 24,
+    "kind": "S3_SC_LOGIT_TREND",
+    "label_mode": "provider",
+    "label_set_sha": "4c580a5f2c526b033db3a038bf83e9d2777bfc9f57f50a3d9b6bfb2dcbb43d2b",
+    "labels_version": "labels-1",
+    "llm_used": false,
+    "max_train_decision_time": 1791713879.0,
+    "max_train_label_matures_at": 1791801479.0,
+    "model_id": "S3_SC_LOGIT_TREND:price_path_target_before_invalidation_24h",
+    "model_sha": "45ffd6a244a74b5bd1e75635deebcfa6441034150356dbfe9dfd1bb3e15ca930",
+    "n_train": 104,
+    "n_used": 98,
+    "phase": "10",
+    "promotion": "MODEL_NOT_PROMOTED",
+    "publishable": false,
+    "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+    "revision_check_claimed": false,
+    "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+    "socialcat_version": "socialcat-1",
+    "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+    "store_schema": "memelab.predictive.store/1",
+    "target_version": {
+     "price_path_target_before_invalidation_24h": "1"
+    },
+    "targets": [
+     "price_path_target_before_invalidation_24h"
+    ],
+    "training_cutoff": 1791849600.0,
+    "training_cutoff_utc": "2026-10-13T00:00:00Z"
+   },
+   "card_model_sha": "45ffd6a244a74b5bd1e75635deebcfa6441034150356dbfe9dfd1bb3e15ca930",
+   "number": null,
+   "training_cutoff_utc": "2026-10-13T00:00:00Z"
+  }
+ },
+ "prior_decision": null,
+ "rationale": {
+  "attention_narrative": [
+   "attention trend STABILITY",
+   "narrative strength 0.00",
+   "attention paid/boosted"
+  ],
+  "demand_order_flow": [
+   "net buyers 24h +4",
+   "buy/sell volume ratio 0.07",
+   "UNKNOWN: organic volume share missing",
+   "manipulation screen MOSTLY ORGANIC / wash LOW"
+  ],
+  "lifecycle_relative_strength": [
+   "lifecycle BREAKDOWN (confidence MODERATE)",
+   "UNKNOWN: relative strength labels missing"
+  ]
+ },
+ "row_sha256": "c914fcbd9f8567182f66046e94f5e1ffe8a3069501fb5c9a7fa34145fb0fd42c",
+ "sc_available_at": {
+  "sc_attention_paid": 1791886823.0,
+  "sc_attention_reversal": null,
+  "sc_attention_suspect": 1791886823.0,
+  "sc_attention_trend_ord": 1791886823.0,
+  "sc_channel_search_url": 1791886823.0,
+  "sc_channels_n": 1791886823.0,
+  "sc_d_attention_trend": null,
+  "sc_d_narrative_strength": null,
+  "sc_lifecycle_conf_ord": 1791886823.0,
+  "sc_lifecycle_late": 1791886823.0,
+  "sc_manipulation_ord": 1791886823.0,
+  "sc_narrative_age_h": null,
+  "sc_narrative_catalyst_kw_7d": null,
+  "sc_narrative_lifecycle_ord": null,
+  "sc_narrative_mcap_chg_24h_pct": null,
+  "sc_narrative_snapshot_age_h": null,
+  "sc_narrative_strength": 1791886823.0,
+  "sc_narrative_tagged": 1791886823.0,
+  "sc_organic_acceleration": 1791886823.0
+ },
+ "sc_reasons": {
+  "sc_attention_reversal": "NO_PRIOR_DECISION",
+  "sc_d_attention_trend": "NO_PRIOR_DECISION",
+  "sc_d_narrative_strength": "NO_PRIOR_DECISION",
+  "sc_narrative_age_h": "NO_NARRATIVE_TAG",
+  "sc_narrative_catalyst_kw_7d": "NO_NARRATIVE_TAG",
+  "sc_narrative_lifecycle_ord": "NO_NARRATIVE_TAG",
+  "sc_narrative_mcap_chg_24h_pct": "NO_NARRATIVE_TAG",
+  "sc_narrative_snapshot_age_h": "NO_NARRATIVE_TAG"
+ },
+ "sc_snapshot_recomputed_equal": true,
+ "sc_snapshot_sha": "2955e33dc520026ff2a5038a3cd50f65ace6f8a9b3b26268da4dd45894cfc56f",
+ "sc_values": {
+  "sc_attention_paid": 1.0,
+  "sc_attention_reversal": null,
+  "sc_attention_suspect": 1.0,
+  "sc_attention_trend_ord": 1.0,
+  "sc_channel_search_url": 0.0,
+  "sc_channels_n": 2.0,
+  "sc_d_attention_trend": null,
+  "sc_d_narrative_strength": null,
+  "sc_lifecycle_conf_ord": 1.0,
+  "sc_lifecycle_late": 1.0,
+  "sc_manipulation_ord": 0.0,
+  "sc_narrative_age_h": null,
+  "sc_narrative_catalyst_kw_7d": null,
+  "sc_narrative_lifecycle_ord": null,
+  "sc_narrative_mcap_chg_24h_pct": null,
+  "sc_narrative_snapshot_age_h": null,
+  "sc_narrative_strength": 0.0,
+  "sc_narrative_tagged": 0.0,
+  "sc_organic_acceleration": 0.0
+ },
+ "selection_rule": "earliest out-of-sample row of T1 (then T2, T1b) by decision time then mint with every required S2 input",
+ "snapshot_fields": {
+  "attention": "STABILITY",
+  "lifecycle": "BREAKDOWN",
+  "t": 1791886774.0650861
+ },
+ "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+ "target": "price_path_target_before_invalidation_24h",
+ "token_row": {
+  "narrative_id": null,
+  "telegram": null,
+  "twitter": "https://x.com/nearlytrade",
+  "website": "https://nearly.trade"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "T1_24h": {
+  "b0_b2_differences_at_6_decimals": 0,
+  "oos_rows": 24,
+  "split_fingerprint_equal": true
+ },
+ "T1b_6h": {
+  "b0_b2_differences_at_6_decimals": 0,
+  "oos_rows": 44,
+  "split_fingerprint_equal": true
+ },
+ "T2_24h": {
+  "b0_b2_differences_at_6_decimals": 0,
+  "oos_rows": 8,
+  "split_fingerprint_equal": true
+ }
+}

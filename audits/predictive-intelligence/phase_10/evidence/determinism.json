@@ -1,0 +1,23 @@
+{
+ "differing": [
+  "evidence/trace/FORECAST_TRACE.json"
+ ],
+ "latency_s": [
+  0.0005,
+  0.0006
+ ],
+ "note": "run 1 wrote into the phase folder, so its run log also lists the pre-existing probes and documents of that folder; every file both runs wrote is compared",
+ "outputs_compared": 37,
+ "pass": true,
+ "run1": {
+  "dir": "audits/predictive-intelligence/phase_10",
+  "head": "0784a9a7d4e06d7188bff437559d950a7fdaa682",
+  "start_utc": "2026-10-26T00:20:50Z"
+ },
+ "run2": {
+  "dir": "/home/claude/pi_orchestration/phase10/run2 (outside the repository)",
+  "head": "0784a9a7d4e06d7188bff437559d950a7fdaa682",
+  "start_utc": "2026-10-26T00:22:22Z"
+ },
+ "trace_equal_without_latency": true
+}

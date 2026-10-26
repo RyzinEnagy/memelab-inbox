@@ -1,0 +1,406 @@
+{
+ "folds": [
+  {
+   "cards": {
+    "A2_SC_B2_TC": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      }
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 27,
+     "k_used": 25,
+     "kind": "A2_SC_B2_TC",
+     "label_mode": "provider",
+     "label_set_sha": "51b4d85c2b5d947408eb9f0137ca5ca6af99db2ca6c3f0f75853d2c46ad33c82",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791887879.0,
+     "model_id": "A2_SC_B2_TC:price_path_severe_drawdown_or_halt_24h",
+     "model_sha": "79f40eca0114b2496e732ff2257387733c301368a8c0092e6c1fb4cd11a5f9fc",
+     "n_train": 104,
+     "n_used": 98,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_severe_drawdown_or_halt_24h": "1"
+     },
+     "targets": [
+      "price_path_severe_drawdown_or_halt_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "G1_SC_STUMPS_B2": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect",
+        "sc_narrative_strength",
+        "sc_manipulation_ord",
+        "sc_lifecycle_late",
+        "sc_channels_n"
+       ],
+       "kind": "stumps",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      }
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 27,
+     "k_used": 25,
+     "kind": "G1_SC_STUMPS_B2",
+     "label_mode": "provider",
+     "label_set_sha": "51b4d85c2b5d947408eb9f0137ca5ca6af99db2ca6c3f0f75853d2c46ad33c82",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791887879.0,
+     "model_id": "G1_SC_STUMPS_B2:price_path_severe_drawdown_or_halt_24h",
+     "model_sha": "697accb02292b12b1bf2b34ef3c1d7f4ff59b28600223dfe10d570299a158020",
+     "n_train": 104,
+     "n_used": 98,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_severe_drawdown_or_halt_24h": "1"
+     },
+     "targets": [
+      "price_path_severe_drawdown_or_halt_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "R2_SC_RULE": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "b0": 0.25961538461538464,
+      "cells": {
+       "T0S0": {
+        "k": 1,
+        "n": 13,
+        "p": 0.18764568764568765
+       },
+       "T0S1": {
+        "k": 4,
+        "n": 20,
+        "p": 0.22980769230769232
+       },
+       "T1S0": {
+        "k": 3,
+        "n": 23,
+        "p": 0.19051878354203938
+       },
+       "T1S1": {
+        "k": 7,
+        "n": 18,
+        "p": 0.3208502024291498
+       },
+       "T2S0": {
+        "k": 1,
+        "n": 14,
+        "p": 0.1821266968325792
+       },
+       "T2S1": {
+        "k": 9,
+        "n": 10,
+        "p": 0.4730769230769231
+       }
+      },
+      "m": 20.0,
+      "spec": {
+       "columns": [
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ],
+       "kind": "rule",
+       "rows": []
+      }
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 27,
+     "k_used": 27,
+     "kind": "R2_SC_RULE",
+     "label_mode": "provider",
+     "label_set_sha": "51b4d85c2b5d947408eb9f0137ca5ca6af99db2ca6c3f0f75853d2c46ad33c82",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791887879.0,
+     "model_id": "R2_SC_RULE:price_path_severe_drawdown_or_halt_24h",
+     "model_sha": "f803d8cdfde4a819f272496a7f62b93e1be52cb5af2373932ddc34adbf1d10b7",
+     "n_train": 104,
+     "n_used": 104,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_severe_drawdown_or_halt_24h": "1"
+     },
+     "targets": [
+      "price_path_severe_drawdown_or_halt_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "S1_SC_LOGIT": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "sc_attention_trend_ord",
+        "sc_attention_suspect",
+        "sc_narrative_strength",
+        "sc_manipulation_ord",
+        "sc_lifecycle_late",
+        "sc_channels_n"
+       ],
+       "kind": "logit",
+       "rows": [
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      }
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 27,
+     "k_used": 25,
+     "kind": "S1_SC_LOGIT",
+     "label_mode": "provider",
+     "label_set_sha": "51b4d85c2b5d947408eb9f0137ca5ca6af99db2ca6c3f0f75853d2c46ad33c82",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791887879.0,
+     "model_id": "S1_SC_LOGIT:price_path_severe_drawdown_or_halt_24h",
+     "model_sha": "df80638affa70e61351033cd2285b06809077654e9e6c3c12f297d7fcc3b6f8a",
+     "n_train": 104,
+     "n_used": 98,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_severe_drawdown_or_halt_24h": "1"
+     },
+     "targets": [
+      "price_path_severe_drawdown_or_halt_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "S2_SC_LOGIT_B2": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect",
+        "sc_narrative_strength",
+        "sc_manipulation_ord",
+        "sc_lifecycle_late",
+        "sc_channels_n"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      }
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 27,
+     "k_used": 25,
+     "kind": "S2_SC_LOGIT_B2",
+     "label_mode": "provider",
+     "label_set_sha": "51b4d85c2b5d947408eb9f0137ca5ca6af99db2ca6c3f0f75853d2c46ad33c82",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791887879.0,
+     "model_id": "S2_SC_LOGIT_B2:price_path_severe_drawdown_or_halt_24h",
+     "model_sha": "a67bfdb7427a36052359ebd2e64e8061f2a79fd6b3c681a8869bf9bbb152ddc5",
+     "n_train": 104,
+     "n_used": 98,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_severe_drawdown_or_halt_24h": "1"
+     },
+     "targets": [
+      "price_path_severe_drawdown_or_halt_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    },
+    "S3_SC_LOGIT_TREND": {
+     "base_feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+     "body": {
+      "abstain": "INSUFFICIENT_HISTORY",
+      "spec": {
+       "columns": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "log1p_token_age_days",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect",
+        "sc_narrative_strength",
+        "sc_manipulation_ord",
+        "sc_lifecycle_late",
+        "sc_channels_n",
+        "sc_d_attention_trend",
+        "sc_attention_reversal"
+       ],
+       "kind": "logit",
+       "rows": [
+        "thesis_log1p_liquidity_usd",
+        "thesis_log1p_mcap_usd",
+        "thesis_log1p_vol_24h_usd",
+        "thesis_fatal_present",
+        "sc_attention_trend_ord",
+        "sc_attention_suspect"
+       ]
+      }
+     },
+     "catalyst_state": "CATALYST_TABLES_NOT_EXPORTED",
+     "data_snapshot_sha": "1bb31003385ac66ddc12849ecf85e7aa766a2c58499bacc5a083ae1bc0ab7e70",
+     "evidence_class": "DEVELOPMENT_RETROSPECTIVE_PROVIDER_MODE",
+     "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+     "feature_version": "2",
+     "k_train": 27,
+     "k_used": 25,
+     "kind": "S3_SC_LOGIT_TREND",
+     "label_mode": "provider",
+     "label_set_sha": "51b4d85c2b5d947408eb9f0137ca5ca6af99db2ca6c3f0f75853d2c46ad33c82",
+     "labels_version": "labels-1",
+     "llm_used": false,
+     "max_train_decision_time": 1791713879.0,
+     "max_train_label_matures_at": 1791887879.0,
+     "model_id": "S3_SC_LOGIT_TREND:price_path_severe_drawdown_or_halt_24h",
+     "model_sha": "d85b46ff1ad5c112573d99cc9136f3d6372f72b564d62e310cb17a8995c4ed76",
+     "n_train": 104,
+     "n_used": 98,
+     "phase": "10",
+     "promotion": "MODEL_NOT_PROMOTED",
+     "publishable": false,
+     "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+     "revision_check_claimed": false,
+     "social_state": "SOCIAL_TABLES_NOT_EXPORTED",
+     "socialcat_version": "socialcat-1",
+     "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+     "store_schema": "memelab.predictive.store/1",
+     "target_version": {
+      "price_path_severe_drawdown_or_halt_24h": "1"
+     },
+     "targets": [
+      "price_path_severe_drawdown_or_halt_24h"
+     ],
+     "training_cutoff": 1791936000.0,
+     "training_cutoff_utc": "2026-10-14T00:00:00Z"
+    }
+   },
+   "cutoff_utc": "2026-10-14T00:00:00Z",
+   "fold": 0
+  }
+ ],
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "target": "price_path_severe_drawdown_or_halt_24h"
+}
