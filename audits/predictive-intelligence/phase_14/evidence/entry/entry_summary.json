@@ -1,0 +1,42 @@
+{
+ "head": "2fd0aaed8d44bc1bbbd3b634b82d92e3c79534e9",
+ "branch": "feature/predictive-intelligence",
+ "suite_started_utc": "2026-10-26T22:11:55Z",
+ "suite_command": "python -m pytest tests -q -p no:cacheprovider",
+ "suite_result": "1 failed, 1596 passed, 1 warning in 190.45s (0:03:10)",
+ "suite_exit": 1,
+ "suite_failures": [
+  "FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As..."
+ ],
+ "strays_removed_by_hand": [
+  "data/reports/20261026_2212_BRETT_0x532f.md",
+  "data/memelab.sqlite-shm",
+  "data/memelab.sqlite-wal (if present)"
+ ],
+ "seal_check": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py: exit 0, problems []",
+ "phase13_key_tests": "python -m pytest tests/test_predictive_calibration.py tests/test_predictive_abstention.py tests/test_predictive_phase13_outputs.py tests/test_predictive_runtime.py -q: 276 passed",
+ "phase13_runner_rerun": {
+  "command": "python -B audits/predictive-intelligence/phase_13/probes/run_calibration.py <scratch>",
+  "exit": 0,
+  "wall_s": 10.71,
+  "byte_equal_files": 22,
+  "differing_files": [
+   "calibration/POST_OPENING_LOG.json",
+   "evidence/run_log.json"
+  ],
+  "difference": "head, head_code and timestamps only (rerun at 2fd0aae, recorded at 075026d)"
+ },
+ "phase13_results_status": "PASS",
+ "lab_db_sha256": "068287c0d7e454361eb42f54b2f90e49e4075ae3a962a3c57867165ab6a679ca",
+ "python": "3.13.17",
+ "package_checksums": "sha256sum -c SHA256SUMS.txt: 41 OK, 0 failed",
+ "mirofish_pin_recheck": {
+  "clone": "/home/claude/pi_research/src/666ghj__MiroFish",
+  "head": "7657031ac01184afe2cb220f5ee3545573b5e843",
+  "clean": true,
+  "license_sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+  "requires_python": ">=3.11,<3.13 (backend/pyproject.toml:5)",
+  "keys_required": "backend/app/config.py validate(): LLM_API_KEY and ZEP_API_KEY required, ZEP_API_URL refused",
+  "upstream_head": "git ls-remote https://github.com/666ghj/MiroFish HEAD -> 7657031ac01184afe2cb220f5ee3545573b5e843 (equal to the pin, 2026-10-26)"
+ }
+}
