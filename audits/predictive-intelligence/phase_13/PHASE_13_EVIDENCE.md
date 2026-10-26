@@ -154,3 +154,16 @@ G7 (PI-D-071): stays "failed as registered"; closed because the numpy Platt equa
 ## Skeptic's counterexample CX-S13 and what catches it now
 
 The phase's own fixture with every prospective evidence score set to one value: on the first-pass code the card became CALIBRATED (each bin's mean inside its Wilson interval trivially) and forecasts were published at scores the evidence never exercised. Now: `_evidence` records the evidence degeneracy and refuses a pass on flat evidence (card UNCALIBRATED, DEGENERATE_FLAT_PREDICTIONS), `verify_card` refuses any card marking flat evidence passed, and request scores outside the evidence range abstain. Caught by `tests/test_predictive_abstention.py::test_rp2_m4_cx_s13_flat_evidence_never_calibrates_and_scores_outside_the_evidence_abstain` and mutations R8, R9, R15.
+
+## Post-commit results (repair pass 2, at `bdcdf3e`)
+
+| Command | Result | Exit |
+|---|---|---|
+| `python -m pytest tests -q -p no:cacheprovider` (22:02:29Z) | `1 failed, 1596 passed, 1 warning in 184.00s`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` | 1 |
+| strays removed by hand | `data/reports/20261026_2202_BRETT_0x532f.md`, `data/memelab.sqlite-shm`, `-wal` | |
+| `python -m memelab social guard` | 0 violations | 0 |
+| `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | `"problems": []` | 0 |
+| `python tools/release_audit.py --history` on a single-branch clone at `bdcdf3e` | "Needs action: no." | 0 |
+| `git status --short` | clean | 0 |
+
+Files: `postcommit/repair2_*`.

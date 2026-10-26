@@ -40,7 +40,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 ## Phase 13 commits
 
 - First pass: HEAD before `6f4f8ea`; pre-registration `0fdf698` (20:21:18Z); frozen code `5a3c582` (20:52:33Z); recorded run `9cd5288`; self-review code `2e1488a`; records `9f95b71`; post-commit record `08faa99` (pushed). Post-commit at `9f95b71`: suite `1 failed, 1579 passed`.
-- Repair pass 2: code `075026d` (21:58:24Z), outputs and records on top, post-commit record after it (local only; the orchestrator pushes). Post-commit results: `phase_13/PHASE_13_EVIDENCE.md`, "Post-commit results (repair pass 2)".
+- Repair pass 2: code `075026d` (21:58:24Z), outputs and records on top, records `bdcdf3e`, post-commit record on top (local only; the orchestrator pushes). Post-commit at `bdcdf3e`: suite `1 failed, 1596 passed` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no.", `git status` clean.
 
 ## Waiting on Elving
 

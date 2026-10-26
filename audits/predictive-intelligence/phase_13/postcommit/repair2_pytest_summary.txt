@@ -1,0 +1,4 @@
+repair pass 2: python -m pytest tests -q -p no:cacheprovider at bdcdf3e (started 2026-10-26T22:02:29Z): exit 1
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+1 failed, 1596 passed, 1 warning in 184.00s (0:03:04)
+only the known clock-dependent failure; strays removed by hand: data/reports/20261026_2202_BRETT_0x532f.md, data/memelab.sqlite-shm, data/memelab.sqlite-wal
