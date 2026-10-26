@@ -1,0 +1,60 @@
+{
+ "old_unexplained": [
+  [
+   "audits/predictive-intelligence/phase_14/ACCEPTANCE_CHECKLIST.md",
+   23,
+   "exec:mnemonic"
+  ],
+  [
+   "audits/predictive-intelligence/phase_14/ACCEPTANCE_CHECKLIST.md",
+   23,
+   "exec:seed phrase"
+  ],
+  [
+   "memelab/predictive/behavioral.py",
+   128,
+   "exec:mnemonic"
+  ],
+  [
+   "tests/test_predictive_behavioral.py",
+   420,
+   "exec:seed phrase"
+  ],
+  [
+   "tests/test_predictive_behavioral.py",
+   420,
+   "exec:seed phrase"
+  ]
+ ],
+ "new_unexplained": [],
+ "old_reviewed_outside_phase14": 63,
+ "new_reviewed_outside_phase14": 63,
+ "reviewed_equal_outside_phase14": true,
+ "new_reviewed_phase14": [
+  [
+   "audits/predictive-intelligence/phase_14/ACCEPTANCE_CHECKLIST.md",
+   23,
+   "exec:mnemonic"
+  ],
+  [
+   "audits/predictive-intelligence/phase_14/ACCEPTANCE_CHECKLIST.md",
+   23,
+   "exec:seed phrase"
+  ],
+  [
+   "memelab/predictive/behavioral.py",
+   128,
+   "exec:mnemonic"
+  ],
+  [
+   "tests/test_predictive_behavioral.py",
+   420,
+   "exec:seed phrase"
+  ],
+  [
+   "tests/test_predictive_behavioral.py",
+   420,
+   "exec:seed phrase"
+  ]
+ ]
+}

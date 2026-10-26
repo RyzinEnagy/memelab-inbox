@@ -1,0 +1,516 @@
+{
+ "$id": "memelab.predictive.behavioral_scenario/1",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "additionalProperties": false,
+ "description": "behavioral-1 (Phase 14). Structure only; memelab.predictive.behavioral.validate_scenario adds grounding, window, sha and the no-number rules (only cost fields are floats; no probability-like key anywhere).",
+ "properties": {
+  "behavioral_version": {
+   "const": "behavioral-1"
+  },
+  "contamination_flags": {
+   "items": {
+    "enum": [
+     "LLM_PRETRAINING_CONTAMINATION_RISK",
+     "EXPLORATORY_NOT_AS_OF"
+    ]
+   },
+   "type": "array"
+  },
+  "cost": {
+   "additionalProperties": false,
+   "properties": {
+    "calls_refused": {
+     "minimum": 0,
+     "type": "integer"
+    },
+    "cap_usd": {
+     "minimum": 0,
+     "type": "number"
+    },
+    "est_cost_usd": {
+     "minimum": 0,
+     "type": "number"
+    },
+    "llm_calls": {
+     "minimum": 0,
+     "type": "integer"
+    },
+    "prompt_chars": {
+     "minimum": 0,
+     "type": "integer"
+    },
+    "wall_s": {
+     "minimum": 0,
+     "type": "number"
+    }
+   },
+   "required": [
+    "llm_calls",
+    "prompt_chars",
+    "calls_refused",
+    "est_cost_usd",
+    "cap_usd",
+    "wall_s"
+   ],
+   "type": "object"
+  },
+  "doc_sha256": {
+   "pattern": "^[0-9a-f]{64}$",
+   "type": "string"
+  },
+  "engine": {
+   "additionalProperties": false,
+   "properties": {
+    "agents": {
+     "minimum": 0,
+     "type": "integer"
+    },
+    "instruction_template_sha256": {
+     "type": "string"
+    },
+    "mode": {
+     "enum": [
+      "RULE_BASED",
+      "MOCK_SIMULATOR",
+      "EXTERNAL_SIMULATOR"
+     ]
+    },
+    "model_id": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "model_training_cutoff_utc": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "name": {
+     "type": "string"
+    },
+    "paid": {
+     "type": "boolean"
+    },
+    "persona_sets": {
+     "items": {
+      "minimum": 0,
+      "type": "integer"
+     },
+     "type": "array"
+    },
+    "pin": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "rounds": {
+     "minimum": 0,
+     "type": "integer"
+    },
+    "run_seeds": {
+     "items": {
+      "minimum": 0,
+      "type": "integer"
+     },
+     "type": "array"
+    },
+    "transport": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "name",
+    "mode",
+    "pin",
+    "model_id",
+    "model_training_cutoff_utc",
+    "instruction_template_sha256",
+    "run_seeds",
+    "persona_sets"
+   ],
+   "type": "object"
+  },
+  "fiction_notice": {
+   "const": "Fictional behavioral hypothesis from simulated or rule-based participants. Not a forecast, not a likelihood, not observed news, not advice."
+  },
+  "fictional": {
+   "const": true
+  },
+  "hypotheses": {
+   "items": {
+    "additionalProperties": false,
+    "properties": {
+     "assumptions": {
+      "items": {
+       "additionalProperties": false,
+       "properties": {
+        "code": {
+         "enum": [
+          "ATTENTION_DECAYS",
+          "CATALYST_DRAWS_NEW_BUYERS",
+          "CITES_OBSERVATION",
+          "HOLDERS_TAKE_PROFIT",
+          "INSIDER_INTENT_TO_HOLD",
+          "INSIDER_INTENT_TO_SELL",
+          "LATE_BUYERS_EXIT",
+          "MOMENTUM_BUYERS_ENTER",
+          "NO_NEW_BUYERS",
+          "PAID_PROMOTION_ENDS",
+          "RUMOR_NOT_CONFIRMED"
+         ]
+        },
+        "kind": {
+         "enum": [
+          "OBSERVED_FACT",
+          "SYNTHETIC_PERSONA_BEHAVIOR",
+          "SYNTHETIC_SPECULATION"
+         ]
+        },
+        "source_refs": {
+         "items": {
+          "type": "string"
+         },
+         "type": "array"
+        }
+       },
+       "required": [
+        "kind",
+        "code",
+        "source_refs"
+       ],
+       "type": "object"
+      },
+      "type": "array"
+     },
+     "hypothesis_id": {
+      "pattern": "^h-[0-9a-f]{16}$",
+      "type": "string"
+     },
+     "label": {
+      "enum": [
+       "ATTENTION_EXHAUSTION",
+       "CATALYST_FOLLOW_THROUGH",
+       "MANUFACTURED_ATTENTION_DUMP",
+       "NO_GROUNDED_SCENARIO",
+       "ORGANIC_ATTENTION_CONTINUATION",
+       "RUMOR_FADE"
+      ]
+     },
+     "monitor": {
+      "oneOf": [
+       {
+        "additionalProperties": false,
+        "properties": {
+         "data_source": {
+          "type": "string"
+         },
+         "expect": {
+          "enum": [
+           "ACCELERATION",
+           "EVENT",
+           "EXHAUSTION",
+           "NO",
+           "NO_EVENT",
+           "STABILITY",
+           "YES"
+          ]
+         },
+         "metric": {
+          "enum": [
+           "ATTENTION_TREND_AT_NEXT_DECISION",
+           "CATALYST_VERIFIED_BY_WINDOW_END",
+           "price_path_severe_drawdown_or_halt_24h",
+           "price_path_target_before_invalidation_24h",
+           "price_path_target_before_invalidation_6h"
+          ]
+         },
+         "window_end_utc": {
+          "pattern": "^20[0-9]{2}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+          "type": "string"
+         },
+         "window_start_utc": {
+          "pattern": "^20[0-9]{2}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+          "type": "string"
+         }
+        },
+        "required": [
+         "metric",
+         "expect",
+         "window_start_utc",
+         "window_end_utc",
+         "data_source"
+        ],
+        "type": "object"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "source_refs": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "synthetic": {
+      "const": true
+     }
+    },
+    "required": [
+     "hypothesis_id",
+     "label",
+     "assumptions",
+     "source_refs",
+     "monitor",
+     "synthetic"
+    ],
+    "type": "object"
+   },
+   "type": "array"
+  },
+  "kind": {
+   "const": "BEHAVIORAL_HYPOTHESIS_NOT_A_FORECAST"
+  },
+  "llm_actions": {
+   "minimum": 0,
+   "type": "integer"
+  },
+  "provenance": {
+   "additionalProperties": false,
+   "properties": {
+    "adapter": {
+     "type": "string"
+    },
+    "created_at_utc": {
+     "pattern": "^20[0-9]{2}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+     "type": "string"
+    },
+    "response_sha256": {
+     "items": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "run_ids": {
+     "items": {
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "trace_sha256": {
+     "items": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "adapter",
+    "created_at_utc",
+    "run_ids",
+    "response_sha256",
+    "trace_sha256"
+   ],
+   "type": "object"
+  },
+  "reasons": {
+   "items": {
+    "pattern": "^[A-Z][A-Z0-9_]*$",
+    "type": "string"
+   },
+   "type": "array"
+  },
+  "refused_claims": {
+   "additionalProperties": false,
+   "properties": {
+    "IDENTITY_LINK": {
+     "minimum": 0,
+     "type": "integer"
+    },
+    "INSIDER_INTENT_KEPT_AS_SPECULATION": {
+     "minimum": 0,
+     "type": "integer"
+    },
+    "UNKNOWN_CLAIM": {
+     "minimum": 0,
+     "type": "integer"
+    },
+    "WALLET_CONTROL": {
+     "minimum": 0,
+     "type": "integer"
+    }
+   },
+   "required": [
+    "WALLET_CONTROL",
+    "IDENTITY_LINK",
+    "UNKNOWN_CLAIM",
+    "INSIDER_INTENT_KEPT_AS_SPECULATION"
+   ],
+   "type": "object"
+  },
+  "schema": {
+   "const": "memelab.predictive.behavioral_scenario/1"
+  },
+  "seed": {
+   "additionalProperties": false,
+   "properties": {
+    "cutoff_utc": {
+     "pattern": "^20[0-9]{2}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+     "type": "string"
+    },
+    "observations": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "kind": {
+        "enum": [
+         "LAB_ATTENTION_PROXY",
+         "CATALYST_EVENT",
+         "SOURCE_STATE",
+         "QUOTED_PUBLIC_TEXT"
+        ]
+       },
+       "obs_id": {
+        "pattern": "^obs-[0-9a-f]{16}$",
+        "type": "string"
+       },
+       "state": {
+        "oneOf": [
+         {
+          "enum": [
+           "VERIFIED",
+           "UNVERIFIED_EVENT",
+           "IDENTITY_UNVERIFIED"
+          ]
+         },
+         {
+          "type": "null"
+         }
+        ]
+       }
+      },
+      "required": [
+       "obs_id",
+       "kind",
+       "state"
+      ],
+      "type": "object"
+     },
+     "type": "array"
+    },
+    "seed_sha256": {
+     "pattern": "^[0-9a-f]{64}$",
+     "type": "string"
+    }
+   },
+   "required": [
+    "seed_sha256",
+    "cutoff_utc",
+    "observations"
+   ],
+   "type": "object"
+  },
+  "stability": {
+   "additionalProperties": false,
+   "properties": {
+    "distinct_label_sets": {
+     "minimum": 0,
+     "type": "integer"
+    },
+    "evidence_sensitive": {
+     "type": "boolean"
+    },
+    "flags": {
+     "items": {
+      "pattern": "^[A-Z][A-Z0-9_]*$",
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "repeat_identical": {
+     "type": "boolean"
+    },
+    "runs": {
+     "minimum": 0,
+     "type": "integer"
+    },
+    "status": {
+     "enum": [
+      "STABLE",
+      "UNSTABLE",
+      "NOT_ASSESSED",
+      "DETERMINISTIC_RULES"
+     ]
+    }
+   },
+   "required": [
+    "status",
+    "flags"
+   ],
+   "type": "object"
+  },
+  "status": {
+   "enum": [
+    "SIMULATION_RAN",
+    "RULES_RAN",
+    "SIMULATION_NOT_AVAILABLE",
+    "NOT_SUPPORTED",
+    "SEED_REFUSED"
+   ]
+  },
+  "subject": {
+   "additionalProperties": false,
+   "properties": {
+    "chain": {
+     "type": "string"
+    },
+    "decision_time_utc": {
+     "pattern": "^20[0-9]{2}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+     "type": "string"
+    },
+    "mint_address": {
+     "type": "string"
+    },
+    "snapshot_hash": {
+     "pattern": "^[0-9a-f]{64}$",
+     "type": "string"
+    }
+   },
+   "required": [
+    "chain",
+    "mint_address",
+    "snapshot_hash",
+    "decision_time_utc"
+   ],
+   "type": "object"
+  }
+ },
+ "required": [
+  "schema",
+  "behavioral_version",
+  "kind",
+  "fictional",
+  "fiction_notice",
+  "status",
+  "reasons",
+  "subject",
+  "seed",
+  "engine",
+  "hypotheses",
+  "stability",
+  "contamination_flags",
+  "cost",
+  "provenance",
+  "refused_claims",
+  "llm_actions",
+  "doc_sha256"
+ ],
+ "title": "Behavioral scenario (fictional hypothesis, never a forecast)",
+ "type": "object"
+}

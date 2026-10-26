@@ -58,6 +58,9 @@ EXPLAINED = [
     (r"^memelab/social/sigverify\.py$", r"exec:.*", "verify-only signature check, no signing code (D-059)"),
     (r"^tests/test_social_wallets\.py$", r"exec:.*", "tests that signing material is refused"),
     (r"^memelab/social/(content_guard|ingest|registry_import|alerts_core|outcomes_core|replay_core|research_core)\.py$", r"exec:.*", "refusal lists: keys or words the lab rejects"),
+    (r"^memelab/predictive/behavioral\.py$", r"exec:(mnemonic|seed phrase)", "refusal list: behavioral seeds and responses naming key material are refused (PI-D-074)"),
+    (r"^tests/test_predictive_behavioral\.py$", r"exec:(mnemonic|seed phrase)", "tests that such behavioral seeds are refused (PI-D-074)"),
+    (r"^audits/predictive-intelligence/phase_14/.*\.md$", r"exec:(mnemonic|seed phrase)", "the Phase 14 refusal rule text (PI-D-074)"),
 ]
 
 SOCIAL_LOGIN_HOSTS = re.compile(r"(api\.x\.com|api\.twitter\.com|api\.telegram\.org|api\.anthropic\.com|smtp\.|oauth\.reddit\.com|www\.reddit\.com|discord\.com/api|www\.googleapis\.com/youtube|api\.firecrawl\.dev)")
