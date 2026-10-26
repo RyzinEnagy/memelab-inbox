@@ -1,12 +1,12 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-058). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_10/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-059). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_10/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
 ## Position on 2026-10-26
 
-- Phases 00 to 05: PASS. Phase 06: NEEDS_REVIEW, one item open (the frozen 48 h revision re-read, not before 2026-10-26T13:49Z). Phases 07 to 09: PASS, PROVISIONAL under PI-D-046.
-- Phase 10 (social and catalyst outcome forecasts): NEEDS_REVIEW after the first pass; the orchestrator's independent skeptic (PI-D-013) is next, then a repair pass. PROVISIONAL under PI-D-046. TEST_ONLY parts: the catalyst classifier, the social evidence adapter and the catalyst target proposals (no catalyst or social row exists for any decision). Commits (local only; the orchestrator pushes): pre-registration `c3f04c8`, code `0784a9a`, outputs and records `f4b3a89`, post-commit records on top. Post-commit at `f4b3a89`: suite `1 failed, 1330 passed` (known failure only), guard 0 violations, seal check 0 problems, single-branch release audit exit 0.
-- Spend: 0 Firecrawl credits, no vendor, crawler or language-model call; one `git fetch` of `origin/main`.
+- Phases 00 to 09: PASS. Phase 06 became PASS on 2026-10-26 when the frozen 48 h revision re-read ran (PI-D-059): 16 of 16 sampled reads re-read 48.0 to 48.9 h later, 12,617 candle positions compared, 0 changed (0 close, 0 volume, 0 open, high or low), 0 appeared or vanished; 44 development labels re-derived, 0 changed, no revision row; an independent comparison without the lab's code agrees. 20 free GeckoTerminal calls (4 HTTP 429 retried), at most 6 a minute. No rerun of Phases 07 to 10 is owed; PI-D-046's provisional condition is lifted for the revision check (outputs not rewritten). Commit: see "Phase 06 re-read commits" below.
+- Phase 10 (social and catalyst outcome forecasts): NEEDS_REVIEW after the first pass; the orchestrator's independent skeptic (PI-D-013) is next, then a repair pass. Its PI-D-046 condition is lifted for the revision check (PI-D-059); its own review is still open. TEST_ONLY parts: the catalyst classifier, the social evidence adapter and the catalyst target proposals (no catalyst or social row exists for any decision). Commits (local only; the orchestrator pushes): pre-registration `c3f04c8`, code `0784a9a`, outputs and records `f4b3a89`, post-commit records on top. Post-commit at `f4b3a89`: suite `1 failed, 1330 passed` (known failure only), guard 0 violations, seal check 0 problems, single-branch release audit exit 0.
+- Spend: 0 Firecrawl credits; Phase 10 made no vendor, crawler or language-model call (one `git fetch` of `origin/main`); the Phase 06 re-read made 20 free GeckoTerminal calls (COST_LEDGER.md).
 
 ## What Phase 10 found
 
@@ -21,14 +21,18 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 - Targets frozen before any price data was read (Phase 01): T1 +25% before -15% within 24 h; T1b the same within 6 h; T2 half the reference price or a trading halt within 24 h. Price-path labels only, no fill, size, depth or profit claims.
 - Code (flag OFF, imported by no existing module): `memelab/predictive/` contract, decisions, runtime, store, sources, features, labels, stats, baselines, technical, onchain, depth_adapter, socialcat, with `tests/test_predictive_*.py`.
-- Data: point-in-time feature store (1,500 decisions, 3,000 snapshots), development labels (T1 136 with 34 positive, T1b 224 with 26, T2 131 with 28), holdout labels sealed in `phase_06/sealed/` (open only in Phase 12 after `check_seal.py`). Frozen cards for Phase 12: `phase_07/artifacts/`, `phase_08/artifacts/`, `phase_09/artifacts/`, `phase_10/artifacts/`.
+- Data: point-in-time feature store (1,500 decisions, 3,000 snapshots), development labels (T1 136 with 34 positive, T1b 224 with 26, T2 131 with 28; frozen 48 h revision check passed, PI-D-059), holdout labels sealed in `phase_06/sealed/` (open only in Phase 12 after `check_seal.py`). Frozen cards for Phase 12: `phase_07/artifacts/`, `phase_08/artifacts/`, `phase_09/artifacts/`, `phase_10/artifacts/`.
 
 ## Open items, in order
 
 1. Phase 10 independent skeptic and repair pass (orchestrator, PI-D-013): `audits/predictive-intelligence/phase_10/SKEPTIC_PACKET.md`.
-2. Phase 06 48 h revision re-read: `python -B audits/predictive-intelligence/phase_06/probes/make_labels.py reread48`, at or after 2026-10-26T13:49Z. If any development label changes: rerun `phase_07/probes/run_baselines.py` at `f977aab`, `phase_08/probes/run_technical.py` at `e81ee46`, `phase_09/probes/run_onchain.py` at `e306d43` and `phase_10/probes/run_social.py` at `0784a9a` (or later), commit the superseding outputs and record it.
-3. Phase 11 is eligible only after the orchestrator records Phase 10 PASS (provisional under PI-D-046).
-4. Collector deployment on Elving's computer (backtesting RUNBOOK); forward social and catalyst collection would need new approvals (credentials, consent, scheduled jobs).
+2. Phase 11 is eligible only after the orchestrator records Phase 10 PASS.
+3. Collector deployment on Elving's computer (backtesting RUNBOOK); forward social and catalyst collection would need new approvals (credentials, consent, scheduled jobs).
+
+## Phase 06 re-read commits
+
+- HEAD before: `564be76` (pushed). Re-read commit and its post-commit results: recorded in `audits/predictive-intelligence/phase_06/PHASE_06_EVIDENCE.md` (section "48 h revision re-read" and the post-commit block after it) and in `PHASE_06_RESULTS.json`. Local only; the orchestrator pushes.
+- The development store `/home/claude/pi_research/p06/dev_store.sqlite` now also holds the 16 second reads (raw rows only, no label rows added); a copy taken before the re-read is in `/home/claude/pi_research/p06/backup_pre_reread48/`. The second bodies are committed in `phase_06/raw_reread48/`.
 
 ## Waiting on Elving
 

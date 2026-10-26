@@ -1,6 +1,6 @@
 # Phase 06 evidence: outcome label registry and censoring
 
-Status: NEEDS_REVIEW after repair pass 2 (2026-10-25), with one item open: the frozen 48 h revision re-read, which cannot run before 2026-10-26T13:49Z for all 16 sampled reads. Every other gate item holds; the independent skeptic is folded in (section "Repair pass 2").
+Status: PASS (2026-10-26). The last open item, the frozen 48 h revision re-read, ran on 2026-10-26 from 13:50Z: 0 of 12,617 candle positions changed, 0 of 44 labels changed (section "48 h revision re-read", PI-D-059). Before that: NEEDS_REVIEW after repair pass 2 (2026-10-25) with that one item open; the independent skeptic is folded in (section "Repair pass 2").
 
 | Item | Value |
 |---|---|
@@ -88,7 +88,7 @@ Post-commit results are recorded in the section below, after the commit.
 | A4 | pass: `token=<mint>` on every OHLCV URL, identity checked, boundary drop, pacing at most 6 per 60 s, cap and breaker through `CallGuard`, archive 8.2 MB with sha256 manifests, COST_LEDGER row |
 | A5 | pass: every one of 1,518 events has one state per target; per-target totals 1,518 (`labels_run.json`, `coverage.json`) |
 | A6 to A9, A11 to A13, A15, A16 | pass by tests and the mutation check (above) |
-| A10 | partly: code and tests pass; real comparisons at 0.5 to 2.6 h gaps show no close, volume or label change; the frozen 48 h re-read is open (from 2026-10-26T13:05Z) |
+| A10 | pass (2026-10-26): code and tests pass; real comparisons at 0.5 to 2.6 h gaps show no close, volume or label change; the frozen 48 h re-read of the 16 sampled reads (48.0 to 48.9 h) shows 0 changes in 12,617 positions and 0 label changes (section "48 h revision re-read") |
 | A14 | pass: sealed file and 98 other sealed files hashed, `check_seal.py` exit 0, holdout printed as counts and censoring only, the training path never reads `sealed/` (test) |
 | A17 | pass: 0 violations in development and holdout; CX-06 tests |
 | A18 | pass: COVERAGE_CENSORED_REPORT.md, coverage_tables.md; rebuild from the archive 0 differences |
@@ -138,7 +138,7 @@ First-pass values; the current hashes after repair pass 2 are in PHASE_06_RESULT
 
 ## Limitations
 
-- The frozen 48 h revision re-read (PI-D-018) has not run; earliest 2026-10-26T13:05Z (`make_labels.py reread48`). Shorter-gap evidence only.
+- The frozen 48 h revision re-read (PI-D-018) covers 16 of 151 development label reads (the frozen 10% sample) at 48.0 to 48.9 h; it says nothing about revisions later than that or about holdout reads (not re-read, by design).
 - TRADING_HALT never occurs in development; the halt path is proven on fixtures and by one real reference-pool halt kept as a flag.
 - Development has 9 (T1), 10 (T1b) and 8 (T2) decision days from one market regime; the CURRENT_VENDOR_LIST route is censored much more often than PIT_RECORDED.
 - Provider-lag availability is a HEURISTIC reconstruction; `label_observed_at` is a 2026-10-24 retrieval time, never historical availability.
@@ -185,4 +185,37 @@ Repair pass 2, run by the phase agent on the committed tree at `2f4b53e40300fe29
 - `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py`: exit 0, `"problems": []` (seal digest and SEAL.json sha256 found in DECISIONS.md).
 - `git status --short`: clean after removing the stray.
 
-Phase 06 stays NEEDS_REVIEW with one item open: the frozen 48 h revision re-read (`make_labels.py reread48`, not before 2026-10-26T13:49Z for all 16 sampled reads).
+Phase 06 stayed NEEDS_REVIEW at that point with one item open: the frozen 48 h revision re-read (`make_labels.py reread48`, not before 2026-10-26T13:49Z for all 16 sampled reads). It ran on 2026-10-26; see the next section.
+
+## 48 h revision re-read (2026-10-26)
+
+Closes PI-D-041 item 5 and PI-D-045 item 8 (decision PI-D-059). HEAD before: `564be76` on `feature/predictive-intelligence` (pushed). Work window 13:39Z to about 14:30Z. Probe, sample and lab code unchanged since `2f4b53e` (`probes/make_labels.py` sha256 `0a335778f409a6344c88077cc66ece991669e6188b71e69fa51ec7e18c733391`, `data/revision_sample.json` `581fa61a73bed0e4bb9a016458eab7b2f2151c9d8dac7d79a7394b48a93356e5`). The frozen rule: re-read the same 16 request URLs at least 48 h (172,800 s, ACCEPTANCE `revision_reread_min_gap_s`) after each first read, compare candle positions that ended at least 48 h before the second read, and re-derive every development label whose read is in the sample; a changed class or reference price is stored as a new row with `revision_of`, never an edit (PI-D-041).
+
+| Step | Command | Exit | Result |
+|---|---|---:|---|
+| Store check before use | `cd audits/predictive-intelligence/phase_06/probes && python -B make_labels.py rebuild` | 0 | `{"archive_files": 256, "development_records": 3888, "stored_records": 3888, "differences": 0, "labeled": 491}`; `evidence/rebuild_from_archive.json` byte-identical; `PRAGMA integrity_check` ok; 3,888 development label rows, none with `revision_of`; the 16 sampled first reads in the store match the sample's URLs and retrieval times (16 of 16). Store copied to `/home/claude/pi_research/p06/backup_pre_reread48/` first (sha256 `58213988...`) |
+| Wait | `date -u` | 0 | started at 2026-10-26T13:50:00Z, after 13:49:09Z, the latest of the 16 earliest times (the probe fixes `now` once and refuses the whole run if any read is too early) |
+| Frozen re-read | `python -B audits/predictive-intelligence/phase_06/probes/make_labels.py reread48` | 0 | `{"reads": 16, "gap_s_min": 172916.3, "gap_s_max": 175869.7, "frozen_48h_checks": 16, "candles_compared": 12617, "candles_changed": 0, "appeared": 0, "vanished": 0, "labels_checked": 44, "labels_revised": 0}` in 7 min 27 s; `evidence/revision_reread_48h.json` |
+| Calls | `evidence/label_calls.json` entries 280 to 299 | | 20 GeckoTerminal OHLCV calls from 13:50:04Z to 13:57:05Z: 16 HTTP 200, 4 HTTP 429 retried after 60 s; at most 6 in any 60 s window by send time and by arrival time; every URL carries `token=<mint>`; entries 0 to 279 unchanged; COST_LEDGER.md row; 0 Firecrawl credits; no holdout read |
+| Archive of the second reads | `python -B probes/reread48_archive.py archive` | 0 | 16 bodies, gzip mtime 0, 470,987 bytes, `raw_reread48/MANIFEST.csv` (no network; read from the development store) |
+| Independent comparison | `python -I -B probes/reread48_archive.py check` | 0 | standard library only, no lab module: both archived bodies of each pair, candles ending after the boundary dropped, mint is base in both: `{"pairs": 16, "positions_compared": 12617, "positions_changed": 0, "close_changed": 0, "volume_changed": 0, "open_high_low_changed": 0, "only_in_one": 0, "all_gaps_at_least_48h": true}`; `evidence/revision_reread_48h_independent.json` |
+| Seal check | `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | 0 | `"problems": []` (sealed folder not touched) |
+| Label and contract tests | `MEMELAB_DB=<tmp> python -m pytest tests/test_predictive_labels.py tests/test_predictive_contract.py -q -p no:cacheprovider` | 0 | `124 passed` |
+
+Comparison as the frozen rule says:
+
+- Close revisions: 0. Volume revisions: 0. Open, high or low revisions: 0. Positions present in one read only: 0. All 16 gaps are frozen checks (48.0 to 48.9 h), and every compared position ended more than 48 h before the second read (12,617 of 12,617).
+- Development labels: 44 labels (decision and target pairs) whose read is in the sample were re-derived from the second read; 0 changed class or reference price, so no revision row was written and every development label stands (T1 136 with 34 positive, T1b 224 with 26, T2 131 with 28).
+- Consequence (PI-D-046): no rerun of Phases 07 to 10 is owed; their provisional condition is lifted for the revision check (PI-D-059). Their outputs are not rewritten.
+
+Gate: every Phase 06 gate item now holds (A1 to A22 as recorded above, A10 completed here). Phase 06 is PASS.
+
+| Artifact | sha256 |
+|---|---|
+| `evidence/revision_reread_48h.json` | `76b50514e0d2ef06ffa16c975a20b2c17628c69102ba8ee8970696a14f639004` |
+| `evidence/revision_reread_48h_independent.json` | `8987ac9e449912b22d2a5e5cb69d7bba7eb899484dbe2556aa323c405d46d1f1` |
+| `evidence/label_calls.json` (300 entries) | `4326fe1823eb30e5ce7928008725952f4558797bc67c736b7571495f3598f8ad` |
+| `raw_reread48/MANIFEST.csv` | `9a81a40b463f09176b3a5b2d840a996b02deafe8e34b2ad85c8e527b43873fc0` |
+| `probes/reread48_archive.py` | `7a5815d7212c8290c32ba0d17c3cf673177f2fda458be8d6114fa0d5c2fb6279` |
+
+Post-commit results for this step are recorded below.

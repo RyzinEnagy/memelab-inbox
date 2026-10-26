@@ -1,0 +1,191 @@
+{
+ "method": "Phase 06, 48 h revision re-read: archive the 16 second reads and check them independently (2026-10-26).",
+ "pairs": [
+  {
+   "close_changed": 0,
+   "gap_at_least_48h": true,
+   "gap_s": 172916.3,
+   "only_in_one_read_in_overlap": 0,
+   "open_high_low_changed": 0,
+   "pool": "zxTpi4BtaWX3mgdAPoezkMD1hxx8CdeCfrqXMWvSCLX",
+   "positions_changed": 0,
+   "positions_compared": 998,
+   "volume_changed": 0
+  },
+  {
+   "close_changed": 0,
+   "gap_at_least_48h": true,
+   "gap_s": 175272.0,
+   "only_in_one_read_in_overlap": 0,
+   "open_high_low_changed": 0,
+   "pool": "6FBnZzRtdMrjxEPdLK4UGP9Xm2hsYwLY3xp6EWB1e2md",
+   "positions_changed": 0,
+   "positions_compared": 999,
+   "volume_changed": 0
+  },
+  {
+   "close_changed": 0,
+   "gap_at_least_48h": true,
+   "gap_s": 175442.3,
+   "only_in_one_read_in_overlap": 0,
+   "open_high_low_changed": 0,
+   "pool": "4xp7kN4nVt19caq4kM629vL8vJEqpSFVdZAh27wvYPh8",
+   "positions_changed": 0,
+   "positions_compared": 999,
+   "volume_changed": 0
+  },
+  {
+   "close_changed": 0,
+   "gap_at_least_48h": true,
+   "gap_s": 173325.7,
+   "only_in_one_read_in_overlap": 0,
+   "open_high_low_changed": 0,
+   "pool": "HGLSAK3nVLzAZPBMiqrkV52cmZhNVrwVQuzpSnCSYAkw",
+   "positions_changed": 0,
+   "positions_compared": 572,
+   "volume_changed": 0
+  },
+  {
+   "close_changed": 0,
+   "gap_at_least_48h": true,
+   "gap_s": 174271.1,
+   "only_in_one_read_in_overlap": 0,
+   "open_high_low_changed": 0,
+   "pool": "Cprsvqk2riV3WmTewKK9m6cm62zaAqLDArAbBmN3pe4f",
+   "positions_changed": 0,
+   "positions_compared": 998,
+   "volume_changed": 0
+  },
+  {
+   "close_changed": 0,
+   "gap_at_least_48h": true,
+   "gap_s": 175067.0,
+   "only_in_one_read_in_overlap": 0,
+   "open_high_low_changed": 0,
+   "pool": "7HNBrAqWdM6978EYTJR2kcnZV3NHQ1YpaAhvBCC8Q3fR",
+   "positions_changed": 0,
+   "positions_compared": 998,
+   "volume_changed": 0
+  },
+  {
+   "close_changed": 0,
+   "gap_at_least_48h": true,
+   "gap_s": 175571.4,
+   "only_in_one_read_in_overlap": 0,
+   "open_high_low_changed": 0,
+   "pool": "4wbt5gf46kCt9dhzNFVtAEn5PnFr56U5HTpw27TVytvV",
+   "positions_changed": 0,
+   "positions_compared": 998,
+   "volume_changed": 0
+  },
+  {
+   "close_changed": 0,
+   "gap_at_least_48h": true,
+   "gap_s": 174687.6,
+   "only_in_one_read_in_overlap": 0,
+   "open_high_low_changed": 0,
+   "pool": "BUVzsLLLG7GWoyJVoU31pXiBveazA6GXTavZ9VD3CwS9",
+   "positions_changed": 0,
+   "positions_compared": 1000,
+   "volume_changed": 0
+  },
+  {
+   "close_changed": 0,
+   "gap_at_least_48h": true,
+   "gap_s": 174445.6,
+   "only_in_one_read_in_overlap": 0,
+   "open_high_low_changed": 0,
+   "pool": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+   "positions_changed": 0,
+   "positions_compared": 998,
+   "volume_changed": 0
+  },
+  {
+   "close_changed": 0,
+   "gap_at_least_48h": true,
+   "gap_s": 174177.9,
+   "only_in_one_read_in_overlap": 0,
+   "open_high_low_changed": 0,
+   "pool": "DA4pM4xSDY4M9V4CgAKKBVH1pw1yscTQQa5nEkGHuKpt",
+   "positions_changed": 0,
+   "positions_compared": 998,
+   "volume_changed": 0
+  },
+  {
+   "close_changed": 0,
+   "gap_at_least_48h": true,
+   "gap_s": 175275.2,
+   "only_in_one_read_in_overlap": 0,
+   "open_high_low_changed": 0,
+   "pool": "6fqyYM1WgA1SvTwidAnaFme9ATEHBbk1c666STUapHEd",
+   "positions_changed": 0,
+   "positions_compared": 379,
+   "volume_changed": 0
+  },
+  {
+   "close_changed": 0,
+   "gap_at_least_48h": true,
+   "gap_s": 174905.1,
+   "only_in_one_read_in_overlap": 0,
+   "open_high_low_changed": 0,
+   "pool": "9c4ELYhnsYNCCiQdAmDDZHbdrw5dRsuQGz8RdruRwGs2",
+   "positions_changed": 0,
+   "positions_compared": 173,
+   "volume_changed": 0
+  },
+  {
+   "close_changed": 0,
+   "gap_at_least_48h": true,
+   "gap_s": 174931.6,
+   "only_in_one_read_in_overlap": 0,
+   "open_high_low_changed": 0,
+   "pool": "AALoAMF7sUGQK11Q33FuMU3KaDDpVbaGAfAMpp8YQb1M",
+   "positions_changed": 0,
+   "positions_compared": 735,
+   "volume_changed": 0
+  },
+  {
+   "close_changed": 0,
+   "gap_at_least_48h": true,
+   "gap_s": 173458.7,
+   "only_in_one_read_in_overlap": 0,
+   "open_high_low_changed": 0,
+   "pool": "bgoWxfmZAmWFmEPWLaSfY4VtqwoZKc3kLzmy4J6kq1g",
+   "positions_changed": 0,
+   "positions_compared": 401,
+   "volume_changed": 0
+  },
+  {
+   "close_changed": 0,
+   "gap_at_least_48h": true,
+   "gap_s": 175869.7,
+   "only_in_one_read_in_overlap": 0,
+   "open_high_low_changed": 0,
+   "pool": "4R8CiMnJWDNoes3fQi1ccPFJygPXazaHaWpHrN3rZeNj",
+   "positions_changed": 0,
+   "positions_compared": 999,
+   "volume_changed": 0
+  },
+  {
+   "close_changed": 0,
+   "gap_at_least_48h": true,
+   "gap_s": 174236.7,
+   "only_in_one_read_in_overlap": 0,
+   "open_high_low_changed": 0,
+   "pool": "EozBrsBqcmuNuZNFxiugHbrPxaq6g8jW1Hr3XHWsBcMp",
+   "positions_changed": 0,
+   "positions_compared": 372,
+   "volume_changed": 0
+  }
+ ],
+ "summary": {
+  "all_gaps_at_least_48h": true,
+  "close_changed": 0,
+  "only_in_one": 0,
+  "open_high_low_changed": 0,
+  "pairs": 16,
+  "positions_changed": 0,
+  "positions_compared": 12617,
+  "volume_changed": 0
+ }
+}

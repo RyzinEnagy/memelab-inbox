@@ -1,11 +1,32 @@
 {
  "phase": "06",
- "status": "NEEDS_REVIEW",
- "open_items": [
-  "frozen 48 h revision re-read (PI-D-018), not before 2026-10-26T13:49Z"
- ],
+ "status": "PASS",
+ "open_items": [],
  "head_before": "ed82f3a9d89b091579bd4ed43646acf14e355d64",
  "repair_pass_2_head_before": "121384bf25adbe4dd004d4d9da2a2069e9af64a8",
+ "reread48_head_before": "564be76",
+ "reread48_run": {
+  "started_at": "2026-10-26T13:50:00Z",
+  "command": "python -B audits/predictive-intelligence/phase_06/probes/make_labels.py reread48",
+  "exit_code": 0,
+  "summary": {
+   "appeared": 0,
+   "candles_changed": 0,
+   "candles_compared": 12617,
+   "frozen_48h_checks": 16,
+   "gap_s_max": 175869.7,
+   "gap_s_min": 172916.3,
+   "labels_checked": 44,
+   "labels_revised": 0,
+   "reads": 16,
+   "vanished": 0
+  },
+  "close_revisions": 0,
+  "volume_revisions": 0,
+  "development_labels_changed": 0,
+  "revision_rows_written": 0,
+  "decision": "PI-D-059"
+ },
  "head_after": "2f4b53e40300fe298a6c199456cb5f63c6106771",
  "registry_sha256": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
  "holdout_labels_sha256": "e695500d01014936cf4a4a46f9975dcf9a9ca1351fe067f28ec36117cb82682b",
@@ -217,9 +238,10 @@
   },
   {
    "name": "frozen 48 h revision re-read (PI-D-018)",
-   "command": "python -B probes/make_labels.py reread48",
-   "result": "NOT RUN: earliest 2026-10-26T13:05Z to 13:49Z for the 16 sampled reads",
-   "pass": false
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/make_labels.py reread48",
+   "result": "2026-10-26 from 13:50:00Z: 16 of 16 reads at 48.0 to 48.9 h, 12,617 candle positions compared, 0 changed (0 close, 0 volume), 0 appeared, 0 vanished; 44 development labels re-derived, 0 changed, no revision row",
+   "pass": true,
+   "exit_code": 0
   },
   {
    "name": "pacing",
@@ -253,6 +275,40 @@
    "command": "python -B probes/check_seal.py",
    "exit_code": 0,
    "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "development store matches the committed archive before the re-read",
+   "command": "python -B make_labels.py rebuild",
+   "exit_code": 0,
+   "result": "3888 development records, 0 differences, 491 labelled; 16 of 16 sampled first reads match the sample file",
+   "pass": true
+  },
+  {
+   "name": "48 h re-read pacing",
+   "input": "evidence/label_calls.json entries 280 to 299",
+   "result": "20 GeckoTerminal calls (16 HTTP 200, 4 HTTP 429 retried), at most 6 in any 60 s window by send and arrival time, token=<mint> on every URL, 0 Firecrawl credits",
+   "pass": true
+  },
+  {
+   "name": "48 h re-read independent comparison (no lab module)",
+   "command": "python -I -B probes/reread48_archive.py check",
+   "exit_code": 0,
+   "result": "16 pairs, 12617 positions compared, 0 changed, 0 close, 0 volume, 0 open/high/low, 0 only in one read",
+   "pass": true
+  },
+  {
+   "name": "seal check after the re-read (pre-commit)",
+   "command": "python -B probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "label and contract tests after the re-read (pre-commit)",
+   "command": "python -m pytest tests/test_predictive_labels.py tests/test_predictive_contract.py -q",
+   "exit_code": 0,
+   "result": "124 passed",
    "pass": true
   }
  ],
@@ -311,7 +367,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_06/PHASE_06_EVIDENCE.md",
-   "sha256": "5299b820db1aa469687d82a81ab1c5775b0605d4277b0f0412ebc222c3b1a67b"
+   "sha256": "dc40286ba102ebfc9cbfdc5aaf1daa341ce0f55f4fa9fb5b68fcd49cb536fa5a"
   },
   {
    "path": "audits/predictive-intelligence/phase_06/sealed/SEAL.json",
@@ -339,7 +395,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_06/evidence/label_calls.json",
-   "sha256": "a37b09f0a61aa2e81bba3b6de139fcb522dd2f2d63b47935954dc43803eed02f"
+   "sha256": "4326fe1823eb30e5ce7928008725952f4558797bc67c736b7571495f3598f8ad"
   },
   {
    "path": "audits/predictive-intelligence/phase_06/evidence/labels_run.json",
@@ -420,21 +476,35 @@
   {
    "path": "audits/predictive-intelligence/phase_05/data/FEATURE_STORE_CONTRACT.md",
    "sha256": "7f0d13192114348d700c66896d58309293d5cf13ea3edecd9784fe5042c4a77b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/evidence/revision_reread_48h.json",
+   "sha256": "76b50514e0d2ef06ffa16c975a20b2c17628c69102ba8ee8970696a14f639004"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/evidence/revision_reread_48h_independent.json",
+   "sha256": "8987ac9e449912b22d2a5e5cb69d7bba7eb899484dbe2556aa323c405d46d1f1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/raw_reread48/MANIFEST.csv",
+   "sha256": "9a81a40b463f09176b3a5b2d840a996b02deafe8e34b2ad85c8e527b43873fc0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_06/probes/reread48_archive.py",
+   "sha256": "7a5815d7212c8290c32ba0d17c3cf673177f2fda458be8d6114fa0d5c2fb6279"
   }
  ],
  "limitations": [
   "first-pass public records stated holdout call counts that may bound the number of holdout T2 decisions needing other pools (m8, PI-D-045 item 6); removed from current records, history not rewritten",
   "CC-03 pre-registration is consistent with file times but not provable from git (m5, PI-D-045 item 5)",
-  "the frozen 48 h revision re-read (PI-D-018) has not run; earliest 2026-10-26T13:05Z",
   "TRADING_HALT does not occur in development; the halt path is shown on fixtures and as one real reference-pool flag",
   "development spans 9 (T1), 10 (T1b) and 8 (T2) decision days of one regime",
   "CURRENT_VENDOR_LIST decisions are censored far more often than PIT_RECORDED ones (39 of 274 against 2 of 521)",
   "provider-lag availability is a HEURISTIC reconstruction; label_observed_at is a 2026-10-24 retrieval time",
-  "price-path labels only: no fill, size, depth or proceeds"
+  "price-path labels only: no fill, size, depth or proceeds",
+  "the frozen 48 h revision re-read covers the frozen 10% sample (16 of 151 development label reads) at 48.0 to 48.9 h; later revisions and holdout reads are not measured"
  ],
- "blockers": [
-  "time: the 48 h revision re-read cannot run before 2026-10-26T13:49Z for all 16 sampled reads (PI-D-041 item 5, PI-D-045 item 8); the only open gate item"
- ],
+ "blockers": [],
  "approvals_needed": [],
- "next_eligible_phase": "none until the 48 h revision re-read has run (or its timing is decided by a recorded decision); then 07"
+ "next_eligible_phase": "Phase 06 no longer blocks any phase; Phases 07 to 09 stand as PASS with the PI-D-046 condition lifted (PI-D-059); Phase 11 is eligible after the orchestrator records Phase 10 PASS"
 }
