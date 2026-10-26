@@ -1,0 +1,29 @@
+{
+ "note": "the repair adds functions only; every recorded output is reproduced byte for byte at the repair commit",
+ "open_reproduction_19_47_09Z_to_19_57_46Z": {
+  "CALIBRATION_BINS.csv": true,
+  "FULL_EXPERIMENT_LEDGER.csv": true,
+  "FULL_LEDGER_TOTALS.json": true,
+  "HOLDOUT_COUNTS.json": true,
+  "HOLDOUT_METRICS.csv": true,
+  "HOLDOUT_NEGATIVE_CONTROLS.json": true,
+  "HOLDOUT_SCORED.csv": true,
+  "PRIMARY_RESULTS.json": true,
+  "SENSITIVITY.csv": true,
+  "SHIFT_BREAKDOWN.csv": true
+ },
+ "plan_predict_rerun": {
+  "CANDIDATES.json": true,
+  "HOLDOUT_DECISIONS.csv": true,
+  "HOLDOUT_PREDICTIONS.csv": true,
+  "LEDGER_TOTALS.json": true,
+  "PREOPEN_MANIFEST.json": true,
+  "PREOPEN_TRAPS.json": true,
+  "REPLAY_AUDIT.json": true
+ },
+ "post_opening_twin": {
+  "FULL_EXPERIMENT_LEDGER_CORRECTED.csv": true,
+  "POST_OPENING_CORRECTIONS.csv": true
+ },
+ "repair_commit": "e7f0b6c"
+}

@@ -1,6 +1,6 @@
 # Phase 12 evidence: out-of-sample evaluation discipline and the single opening of the retrospective holdout
 
-Status: NEEDS_REVIEW, pending the orchestrator's independent skeptic (PI-D-013). Every gate item below was run and holds on this first pass; the attack step below is the phase agent's own and is not independent.
+Status: PASS after repair pass 2 (the orchestrator's independent skeptic: no material failure, 5 minor, counterexample CX-S12; each verified and repaired or recorded, see "Independent skeptic and repair pass 2"; PI-D-066). The sections before that one describe the first pass; no recorded number, verdict or output changed in the repair.
 
 - Branch `feature/predictive-intelligence`; HEAD before `63076ad`; pre-registration `79d30f5` (2026-10-26T16:41:13Z); frozen code `3ea7030` (17:32:01Z); pre-opening outputs `d58de61` (17:33:19Z); opening outputs `de7ac77` (17:47:49Z); results, evidence and records in the commit that carries this file (hash in HANDOFF.md and `PHASE_12_RESULTS.json` after the post-commit records commit).
 - Package: `sha256sum -c SHA256SUMS.txt` 41 OK, 0 failed.
@@ -110,3 +110,35 @@ sha256 of every Phase 12 file is in `PHASE_12_RESULTS.json` (`artifacts`).
 | `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | `"problems": []` (`postcommit/seal_check.json`) | 0 |
 | `python tools/release_audit.py --history` on a single-branch clone at `c549748` | "Needs action: no." (`postcommit/release_audit_history.summary.txt`) | 0 |
 | `git status --short` | clean | 0 |
+
+## Independent skeptic and repair pass 2 (PI-D-066)
+
+Review: `skeptic/PHASE_12_SKEPTIC.md` with the reviewer's scripts `skeptic/p12_*.py` and outputs, at `ae911ac`. Verdict: no material failure; every primary number, the NC1 shares, the max-T and Holm values, the manifest and opening-log hashes, the frozen cards and both reproductions confirmed independently. Each finding verified against the code first:
+
+| Finding | Verified | Disposition |
+|---|---|---|
+| CX-S12 and m5: `p_max_t` is None for every row against B2 and the claim rule needs it, so no card could be shown to beat B2 after correction | yes (`run_holdout.py` secondary loop; 63 rows against B2) | `evaluation.selection_status` (CORRECTION_NOT_COMPUTED is never a pass or a fail); max-T against B2 computed POST_OPENING: 51 cards, smallest p 0.638; all 129 rows now fully corrected: 13 FAIL, 116 no uncorrected skill, 0 survive, 0 not computed (`validation/POST_OPENING_CORRECTIONS.csv`) |
+| m1: skill-sounding Holm-only verdict in `HOLDOUT_METRICS.csv` and `FULL_EXPERIMENT_LEDGER.csv` (T1 B1 against B0) | yes | recorded files kept byte-equal (hashes in the opening log); `validation/FULL_EXPERIMENT_LEDGER_CORRECTED.csv` adds `selection_status` and `claim` (that row: FAILS, NOT_A_CLAIM_VERDICT_IS_HOLM_ONLY) and is the cumulative ledger from here on; results, PI-D-065 and PI-D-066, HANDOFF reworded |
+| m2: five mutations of `max_t` and `champion` survived the tests | yes (rerun of the reviewer's probe) | tests: a plain restatement of the max-T on two targets with ties and undefined replicates, ties, the +1, undefined replicates, the cross-target family, champion with NOT_DISTINGUISHABLE and WORSE rows; mutation probe 63 of 63 (44 first pass + 12 skeptic + 7 new) |
+| m3: N_search leaves out 9 non-probability rule configurations | yes (`evaluation.rule_configurations` = 9) | POST_OPENING sensitivity N 127; B1's Bonferroni 0.032; same outcome (fails max-T) |
+| m4: the seal is procedural | yes | stated plainly as honour-based in the results, PI-D-066 and HANDOFF; Phase 19 must keep prospective labels out of any file the runner can read until its plan and predictions are committed |
+
+Rule for anything computed on holdout outcomes after the opening: labelled POST_OPENING, logged in `validation/POST_OPENING_LOG.json`, computed from committed outputs only (the sealed folder is not read), and combined with the recorded state by `evaluation.conservative_status`, which can only make a result more conservative and never creates a claim, a candidate or a champion.
+
+| Command (repair pass 2) | Result | Exit |
+|---|---|---|
+| reviewer's 12 mutations against the first-pass tests (from the review, `skeptic/p12_skeptic_mut.json`) | 7 caught, 5 survived (S1 to S4, S8); now rows of the phase probe, all caught | |
+| new tests against the first-pass `evaluation.py` (scratch copy) | 3 failed (CX-S12 state, conservative combination, rule count), 47 passed | 1 |
+| commit `e7f0b6c` (repair code, review copied) | before any post-opening computation | |
+| `python -m pytest tests/test_predictive_evaluation.py tests/test_predictive_phase12_outputs.py -q` | `57 passed` | 0 |
+| `python -B probes/mutation_evaluation.py evidence/mutation_evaluation_repair2.json` | 63 of 63 caught | 0 |
+| `python -B probes/cx_s12_check.py evidence/cx_s12_check.json` (SYNTHETIC, 20,000 replicates) | first-pass rule reports X against B2 as not surviving on all three targets; repaired status CORRECTION_NOT_COMPUTED as recorded, SURVIVES with a max-T against B2 | 0 |
+| `run_holdout.py plan` and `predict` at `e7f0b6c` into scratch | 7 of 7 byte-equal (`evidence/frozen_code_rerun_repair2.json`) | 0 |
+| `run_holdout.py open SCRATCH --reproduction` at `e7f0b6c` (19:47:09Z to 19:57:46Z; a logged holdout read, `evidence/reproduction_open_log_repair2.json`) | 10 of 10 byte-equal | 0 |
+| `python -B probes/post_opening_corrections.py validation` (19:49:31Z, POST_OPENING) and a twin into scratch | N 127; max-T against B2 51 cards, 0 below 0.05, smallest 0.638; status 13 FAILS, 116 NO_UNCORRECTED_SKILL; recorded outputs unchanged; twin identical | 0 |
+
+Holdout reads after the first opening, all logged: the first-pass REPRODUCTION and independent label check, the reviewer's REPRODUCTION and recomputation (named in the review) plus one EXPLORATORY T1-only max-T and a T2 state count by the reviewer, the repair REPRODUCTION, and the POST_OPENING corrections (from `HOLDOUT_SCORED.csv`). None changed a verdict, a champion or a promotion.
+
+## Counterexample CX-S12 and what catches it now
+
+The reviewer's: "0 of 129 secondary comparisons survive the selection correction" read as "no frozen card beats B2 after correction", although the first-pass rule could not report any comparison against B2 as surviving. Now caught by `tests/test_predictive_evaluation.py::test_cx_s12_a_correction_that_was_not_computed_is_never_read_as_did_not_survive` (fails on the first-pass module), by `probes/cx_s12_check.py` on the reviewer's synthetic data, and on the real holdout by the POST_OPENING max-T against B2 (all 129 rows corrected, 0 not computed; `tests/test_predictive_phase12_outputs.py` asserts no row is CORRECTION_NOT_COMPUTED or a survivor).

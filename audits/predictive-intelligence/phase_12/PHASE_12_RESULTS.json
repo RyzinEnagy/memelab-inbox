@@ -1,13 +1,16 @@
 {
  "phase": "12",
- "status": "NEEDS_REVIEW",
+ "status": "PASS",
  "head_before": "63076adb7a42ac7f7c2cc271d535d8e7a6947d0e",
- "head_after": "c54974863c88d4cba95a7ea9e2e31632f98648ca",
+ "head_after": null,
  "commits": {
   "pre_registration": "79d30f5",
   "frozen_code": "3ea7030",
   "pre_opening_outputs": "d58de61",
-  "opening_outputs": "de7ac77"
+  "opening_outputs": "de7ac77",
+  "first_pass_results": "c549748",
+  "first_pass_postcommit": "ae911ac",
+  "repair_code": "e7f0b6c"
  },
  "holdout_opening": "2026-10-26T17:33:27Z",
  "result": {
@@ -218,39 +221,46 @@
    "pass": true
   },
   {
-   "name": "G23 full suite after the commit",
-   "command": "python -m pytest tests -q -p no:cacheprovider at c549748",
-   "result": "1 failed, 1445 passed in 199.06s (known test_dedup_corroboration_resurface_denial only); strays removed by hand",
-   "exit_code": 1,
-   "pass": true
-  },
-  {
-   "name": "G23 social guard after the commit",
-   "command": "python -m memelab social guard",
-   "result": "0 violations",
+   "name": "R1 CX-S12 caught",
+   "command": "pytest test_cx_s12_*; probes/cx_s12_check.py",
+   "result": "the new tests fail on the first-pass module (3 failed); synthetic check: first-pass rule hides X against B2, repaired status CORRECTION_NOT_COMPUTED",
    "exit_code": 0,
    "pass": true
   },
   {
-   "name": "G23 seal check after the commit",
-   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
-   "result": "problems [] with the three pinned hashes (the opening changed no sealed file)",
+   "name": "R2 POST_OPENING corrections",
+   "command": "python -B probes/post_opening_corrections.py validation (twice)",
+   "result": "max-T against B2 51 cards, 0 below 0.05 (smallest 0.638); N 127; 129 rows: 13 FAILS, 116 NO_UNCORRECTED_SKILL, 0 survive, 0 not computed; recorded outputs unchanged; twin identical",
    "exit_code": 0,
    "pass": true
   },
   {
-   "name": "G23 single-branch release audit",
-   "command": "python tools/release_audit.py --history on a single-branch clone at c549748",
-   "result": "Needs action: no.",
+   "name": "R3 tests and mutation probe after repair",
+   "command": "pytest tests/test_predictive_evaluation.py tests/test_predictive_phase12_outputs.py; mutation_evaluation.py",
+   "result": "57 passed; 63 of 63 caught (44 first pass, 12 skeptic, 7 new)",
    "exit_code": 0,
    "pass": true
   },
   {
-   "name": "G23 git status",
-   "command": "git status --short",
-   "result": "clean after removing the strays",
+   "name": "R4 frozen-code rerun at e7f0b6c",
+   "command": "run_holdout.py plan, predict; open --reproduction",
+   "result": "7 of 7 and 10 of 10 files byte-equal (evidence/frozen_code_rerun_repair2.json)",
    "exit_code": 0,
    "pass": true
+  },
+  {
+   "name": "R5 G13 missing correction",
+   "command": "POST_OPENING_CORRECTIONS.csv",
+   "result": "every secondary row has Holm, max-T and Bonferroni (the B2 max-T post-opening, disclosed)",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G23 suite, guard, seal check, release audit after the commit",
+   "command": "see the post-commit records commit",
+   "result": "pending",
+   "exit_code": null,
+   "pass": null
   }
  ],
  "artifacts": [
@@ -260,11 +270,15 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_12/PHASE_12_EVIDENCE.md",
-   "sha256": "ab177d03241b9fefd4846117d865054a9527c9f4789c75824dbb88a4cbe135b5"
+   "sha256": "ee8a2f647a339d844cf7d4a3a0d82612b50ad61b6be25e3e341a345faa6e852a"
   },
   {
    "path": "audits/predictive-intelligence/phase_12/SKEPTIC_PACKET.md",
    "sha256": "7b6f5761574e94d1ef3f53bbc0fe33d2c5e4d8ed5d4f9987d2b6c39bada3676c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/evidence/cx_s12_check.json",
+   "sha256": "a592c3bfef7561bd705988c6cc8b1aa3a8059aaf9486e21ed166be7d9add8a55"
   },
   {
    "path": "audits/predictive-intelligence/phase_12/evidence/determinism_predict.json",
@@ -275,6 +289,10 @@
    "sha256": "5694a14e7b98179dd1c70f8b6222d5b75d11ffe7a27727ef71edb276f821a9d8"
   },
   {
+   "path": "audits/predictive-intelligence/phase_12/evidence/frozen_code_rerun_repair2.json",
+   "sha256": "faad657d3193b10a520fab38235590a7ae5a7a9598f911df6f3ab9a085b3b5d7"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_12/evidence/independent_label_check.json",
    "sha256": "f6edd704eb7a3df0495407c7b52d78bb3870eda2a7d79ffd601a60c543ed6de8"
   },
@@ -283,12 +301,20 @@
    "sha256": "6cbec3b59a46027a0282d262c7665534bab97552e1e1c7d396e351e1368e9cfc"
   },
   {
+   "path": "audits/predictive-intelligence/phase_12/evidence/mutation_evaluation_repair2.json",
+   "sha256": "421f1ba604efa81d1037f7cd6404574b44b1ad6297943dd1273903a31b96318b"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_12/evidence/postopen_seal.json",
    "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
   },
   {
    "path": "audits/predictive-intelligence/phase_12/evidence/reproduction_open_log.json",
    "sha256": "50b4e47b8b4f738e485c09131707e401a0c36c762e5c9969f015d75434dcad30"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/evidence/reproduction_open_log_repair2.json",
+   "sha256": "82a1787177def977ccce7f14b37981a2161ed3adaf74cf1e3ac3938291a18092"
   },
   {
    "path": "audits/predictive-intelligence/phase_12/evidence/sklearn_crosscheck.json",
@@ -315,12 +341,20 @@
    "sha256": "266992a151cb199b7c3629c1833f0376f3f3ba63aaefc4d72811227c0cb9ef5c"
   },
   {
+   "path": "audits/predictive-intelligence/phase_12/probes/cx_s12_check.py",
+   "sha256": "2c773c956af2aca953df7b91cad098c62a73242764cc387a622d643ade60f977"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_12/probes/independent_label_check.py",
    "sha256": "8d0e6768afb752000841824a5452e092ed68b9f85c282551cad00e9010b0ea3d"
   },
   {
    "path": "audits/predictive-intelligence/phase_12/probes/mutation_evaluation.py",
-   "sha256": "8f9b92d4ca5a15f67090d50105f42d636f848b476d9c8061805e42d32c916a24"
+   "sha256": "e0f57bf942d993e6a3a024713f73abe8a6ed62227e083228b8c6f3cd7945d1cf"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/probes/post_opening_corrections.py",
+   "sha256": "3452bc07bfe9809f73ecbf17a0f599d508dc14a82ffb07bde428509eec92e195"
   },
   {
    "path": "audits/predictive-intelligence/phase_12/probes/run_holdout.py",
@@ -332,7 +366,43 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_12/probes/write_results.py",
-   "sha256": "ef8a24bbf112c527ce6c44f72bd352bffe9c352f26fa0de7ec86d3773d2668b4"
+   "sha256": "65c7ab728d86fb6fd46a345e2651e314ba80d73665cb2a1b51696f851a63dce5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/skeptic/PHASE_12_SKEPTIC.md",
+   "sha256": "d9d91ecb2c27a831e36b1565591fcaf7d2060f26b4fbf10c28adb9043af98d60"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/skeptic/p12_cx_s12.py",
+   "sha256": "b1a35c850d394ee6843924afe1b2daedd353338731e2038fd41156fd100a1ae8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/skeptic/p12_maxt.py",
+   "sha256": "85c03edd32a56c38f8de0e8c095e3c249c676941d4af0971de8dfe67fe3b7d6d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/skeptic/p12_maxt_T1only_exploratory.py",
+   "sha256": "5f4e1533e7fd131f0b047b21d8d416f837b736ef127f08ea870df9c2a72eaac3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/skeptic/p12_mut.json",
+   "sha256": "6cbec3b59a46027a0282d262c7665534bab97552e1e1c7d396e351e1368e9cfc"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/skeptic/p12_recompute.py",
+   "sha256": "b0955dc5718563410e48b7c7163a92f91a84b31e749597a6482cfa0929129b0f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/skeptic/p12_reproduction_log.json",
+   "sha256": "a9917a544aded51dd2be99b57b060f0b9b2821adbac053c929d4af06e8ed2765"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/skeptic/p12_skeptic_mut.json",
+   "sha256": "8aae57824074d224a54ce7c7478d447f524aa2e6cff7be4b01cd494f24ea416b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/skeptic/p12_skeptic_mutations.py",
+   "sha256": "2081f50837fa9593c2a5de5bbd21342b3c02ffdad15b2b450ec0d006c2f853d4"
   },
   {
    "path": "audits/predictive-intelligence/phase_12/validation/CALIBRATION_BINS.csv",
@@ -344,11 +414,15 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_12/validation/FINAL_HOLDOUT_RESULTS.md",
-   "sha256": "87b1edfdd7f6736110cc8d8977f6ae6a2bf5b702bb91bf79c814918b3af27ab7"
+   "sha256": "0cfadc2d586e83b51f221d50c3ff3bee46a812068fbe7893a0aff2d16ba0051b"
   },
   {
    "path": "audits/predictive-intelligence/phase_12/validation/FULL_EXPERIMENT_LEDGER.csv",
    "sha256": "e2deeee4a826221472315ad23761d23ae40941189886242f3bfc5258c90e6607"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/FULL_EXPERIMENT_LEDGER_CORRECTED.csv",
+   "sha256": "bd6309adcbb0ba0484c821e7bd3bdd3de2d6036816241de46a8d5d0281d2b1c8"
   },
   {
    "path": "audits/predictive-intelligence/phase_12/validation/FULL_LEDGER_TOTALS.json",
@@ -385,6 +459,14 @@
   {
    "path": "audits/predictive-intelligence/phase_12/validation/OPENING_LOG.json",
    "sha256": "ed392a484870f581b874eb7cbe700fb3dc69bb21a6b2b03ce9c1e9be0eb7f0f4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/POST_OPENING_CORRECTIONS.csv",
+   "sha256": "bb42bb7f5a1ea37df5c524ecbd1d9cd3c9e4e3fbb8095318e58b23833ec3c408"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/POST_OPENING_LOG.json",
+   "sha256": "18624b56b407978fb572693f25531fd6ad830ae2eb1b23983726d209307222b9"
   },
   {
    "path": "audits/predictive-intelligence/phase_12/validation/PREOPEN_MANIFEST.json",
@@ -428,18 +510,21 @@
   },
   {
    "path": "memelab/predictive/evaluation.py",
-   "sha256": "da41c738e8574f1d10dcd2d115d5168b1890764c8e8db6159b232bab1b030036"
+   "sha256": "cad98f43f5a0b92629b24b88cf44bea383485d809bc0b6edbab872ed5578caa7"
   },
   {
    "path": "tests/test_predictive_evaluation.py",
-   "sha256": "7100899c79af695a2d25a11f179587fa9a921edc099df0c0e9e54cbbf067efb5"
+   "sha256": "42876b41540dae1438eaa051bc6ff8f1118a91b84b1cc165d8b3ab8ea5237f45"
   },
   {
    "path": "tests/test_predictive_phase12_outputs.py",
-   "sha256": "f12caa4197783ffd6498413f495e78024240f0a44c6958264a88c2d9fd426278"
+   "sha256": "54ebd34ee9df7edbdb063d34481e032a3241b0a8c7d4cf353d4dadeb870a2d36"
   }
  ],
  "limitations": [
+  "The seal was honour-based: the sealed label file is tracked and public; the single-opening claim rests on commit order and honesty (PI-D-066 item 6).",
+  "The max-T against B2 and N 127 were computed after the opening (POST_OPENING); they can only make results more conservative and changed none.",
+  "HOLDOUT_METRICS.csv and FULL_EXPERIMENT_LEDGER.csv keep a Holm-only SKILL verdict on the T1 B1-against-B0 row as written; FULL_EXPERIMENT_LEDGER_CORRECTED.csv marks it FAILS and NOT_A_CLAIM.",
   "The retrospective holdout is opened and spent; any further use is EXPLORATORY (PI-D-065).",
   "7 decision days with one export batch each; the day bootstrap resamples 7 groups.",
   "tech-1 cards have no holdout inputs (NOT_FETCHED_SEALED, no pool) and were not evaluated; no candle was read.",
@@ -452,5 +537,6 @@
  ],
  "blockers": [],
  "approvals_needed": [],
- "next_eligible_phase": "13, once the orchestrator's independent skeptic and the repair pass give Phase 12 PASS"
+ "next_eligible_phase": "13, once the orchestrator records Phase 12 PASS",
+ "repair_pass_2": "Independent skeptic: no material failure, 5 minor, CX-S12. Repair: selection_status with CORRECTION_NOT_COMPUTED; max-T against B2 computed POST_OPENING (51 cards, smallest p 0.638); N 127 with the 9 rule configurations (POST_OPENING); corrected ledger with selection_status and claim; tests for the skeptic's 5 surviving mutations; honour-based seal stated. No recorded output, number or verdict changed (PI-D-066)."
 }

@@ -57,3 +57,29 @@ def test_the_full_ledger_keeps_the_search_size_and_adds_only_evaluations_control
     with open(VAL / "FULL_EXPERIMENT_LEDGER.csv") as f:
         rows = list(csv.DictReader(f))
     assert E.ledger_totals(rows) == tot
+
+
+def test_post_opening_corrections_are_logged_left_the_recorded_outputs_alone_and_only_made_results_more_conservative():
+    log = json.loads((VAL / "POST_OPENING_LOG.json").read_text())
+    assert log["label"] == "POST_OPENING" and log["recorded_outputs_unchanged"] and not log["sealed_folder_read"]
+    for name, h in log["outputs_sha256"].items():
+        assert sha(VAL / name) == h, name
+    assert log["n_search_post_opening"] == 127 and log["max_t_vs_b2_family"] == 51
+    with open(VAL / "POST_OPENING_CORRECTIONS.csv") as f:
+        rows = list(csv.DictReader(f))
+    assert len(rows) == 129
+    assert not any(r["selection_status_final"] in (E.SURVIVES, E.NOT_COMPUTED, E.POST_OPENING_NOT_A_CLAIM) for r in rows)
+    assert all(r["p_max_t_vs_b2_post_opening"] for r in rows if r["reference"] == "P07_B2" and r["bss"])
+
+
+def test_the_corrected_ledger_keeps_every_recorded_row_and_no_holm_only_verdict_reads_as_a_claim():
+    with open(VAL / "FULL_EXPERIMENT_LEDGER.csv") as f:
+        rec = list(csv.DictReader(f))
+    with open(VAL / "FULL_EXPERIMENT_LEDGER_CORRECTED.csv") as f:
+        cor = list(csv.DictReader(f))
+    assert [{k: r[k] for k in rec[0]} for r in cor[:len(rec)]] == rec
+    for r in cor:
+        if r["verdict"] == E.HOLDOUT_SKILL:
+            assert r["claim"] == "NOT_A_CLAIM_VERDICT_IS_HOLM_ONLY" and r["selection_status"] == E.FAILS
+        assert r["claim"] != "CLAIM_SKILL_AFTER_SELECTION_CORRECTION"
+    assert all(r["kind"] == "POST_OPENING_CHECK" for r in cor[len(rec):]) and len(cor) == len(rec) + 3

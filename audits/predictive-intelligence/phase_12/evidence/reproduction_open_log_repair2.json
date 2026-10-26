@@ -1,0 +1,30 @@
+{
+ "end_utc": "2026-10-26T19:57:46Z",
+ "eval_version": "evaluation-1",
+ "failures": [],
+ "head": "e7f0b6ca653eee884d8836fc41732c0426551565",
+ "label_file": "audits/predictive-intelligence/phase_06/sealed/holdout_labels.jsonl.gz",
+ "label_file_sha256_read": "e695500d01014936cf4a4a46f9975dcf9a9ca1351fe067f28ec36117cb82682b",
+ "mode": "REPRODUCTION",
+ "outputs_sha256": {
+  "CALIBRATION_BINS.csv": "6220f72d5bf81881815fea9a703c9064ced73f111ac30f51971a5459ae215990",
+  "FULL_EXPERIMENT_LEDGER.csv": "e2deeee4a826221472315ad23761d23ae40941189886242f3bfc5258c90e6607",
+  "FULL_LEDGER_TOTALS.json": "d0c03b83746b511e600f0e8efb3a398f7a7a36d01ebb68d8293954d5ca502c4a",
+  "HOLDOUT_COUNTS.json": "daa5eebaeb347e7480772b678bb667fcde207d2e394f8135e01b3f4308c1d26a",
+  "HOLDOUT_METRICS.csv": "365fa345986e76abd087a145842431f0deb795109764e34713c5ba6253253726",
+  "HOLDOUT_NEGATIVE_CONTROLS.json": "5879581facaa995728b103169e450c668c2309131819dc6b465796304704c70c",
+  "HOLDOUT_SCORED.csv": "d4c35253e6879d915dd31b6fdd6428d588c0e25e53d9e9895ad2531a771f08d6",
+  "PRIMARY_RESULTS.json": "30b6423153c734cfcdd2b0813760d49e9c818278bd56a9e3276ce39be84363dc",
+  "SENSITIVITY.csv": "efea86cf99540c3064fe47b91e98094e4febe399bd1ad082300baa1ab39772f9",
+  "SHIFT_BREAKDOWN.csv": "14f6ef4d40829d022e47e5bdfa8fff77ac366a5f97e7a07812362d769c758d04"
+ },
+ "prediction_manifest_sha256": "3f19686b52d71d2040eb765dc56f18f1b98caee7235bdd07351071466e2b5681",
+ "purpose": "REPRODUCTION of the committed Phase 12 program on the same inputs (no new analysis)",
+ "seal_problems": [],
+ "seal_report": {
+  "holdout_labels_sha256": "e695500d01014936cf4a4a46f9975dcf9a9ca1351fe067f28ec36117cb82682b",
+  "seal_json_sha256": "f362ca127baf20e8c3036eca3e11e6d6df4f69b0e0741a4f1b914ada7b2706c2",
+  "seal_sha256": "d5059baeb07099d5d73d74249d4487e362cb38b2e1dafe974139d2d4d0d25390"
+ },
+ "time_utc": "2026-10-26T19:47:09Z"
+}

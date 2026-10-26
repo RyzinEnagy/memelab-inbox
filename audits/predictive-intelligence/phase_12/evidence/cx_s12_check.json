@@ -1,0 +1,67 @@
+{
+ "data": "SYNTHETIC",
+ "first_pass_hides_b2_rows_as_not_surviving": true,
+ "reps": 20000,
+ "rows": [
+  {
+   "bonferroni_118": 0.0058997050147492625,
+   "first_pass_skill_after_correction": true,
+   "holm": 0.0002999850007499625,
+   "p": 4.999750012499375e-05,
+   "reference": "B0",
+   "repaired_status_as_recorded": "SURVIVES_SELECTION_CORRECTION",
+   "repaired_status_with_max_t_vs_b2": "SURVIVES_SELECTION_CORRECTION",
+   "target": "T1_24h"
+  },
+  {
+   "bonferroni_118": 0.0058997050147492625,
+   "first_pass_skill_after_correction": false,
+   "holm": 0.0002999850007499625,
+   "p": 4.999750012499375e-05,
+   "reference": "B2",
+   "repaired_status_as_recorded": "CORRECTION_NOT_COMPUTED",
+   "repaired_status_with_max_t_vs_b2": "SURVIVES_SELECTION_CORRECTION",
+   "target": "T1_24h"
+  },
+  {
+   "bonferroni_118": 0.0058997050147492625,
+   "first_pass_skill_after_correction": true,
+   "holm": 0.0002999850007499625,
+   "p": 4.999750012499375e-05,
+   "reference": "B0",
+   "repaired_status_as_recorded": "SURVIVES_SELECTION_CORRECTION",
+   "repaired_status_with_max_t_vs_b2": "SURVIVES_SELECTION_CORRECTION",
+   "target": "T1b_6h"
+  },
+  {
+   "bonferroni_118": 0.0058997050147492625,
+   "first_pass_skill_after_correction": false,
+   "holm": 0.0002999850007499625,
+   "p": 4.999750012499375e-05,
+   "reference": "B2",
+   "repaired_status_as_recorded": "CORRECTION_NOT_COMPUTED",
+   "repaired_status_with_max_t_vs_b2": "SURVIVES_SELECTION_CORRECTION",
+   "target": "T1b_6h"
+  },
+  {
+   "bonferroni_118": 0.0058997050147492625,
+   "first_pass_skill_after_correction": true,
+   "holm": 0.0002999850007499625,
+   "p": 4.999750012499375e-05,
+   "reference": "B0",
+   "repaired_status_as_recorded": "SURVIVES_SELECTION_CORRECTION",
+   "repaired_status_with_max_t_vs_b2": "SURVIVES_SELECTION_CORRECTION",
+   "target": "T2_24h"
+  },
+  {
+   "bonferroni_118": 0.0058997050147492625,
+   "first_pass_skill_after_correction": false,
+   "holm": 0.0002999850007499625,
+   "p": 4.999750012499375e-05,
+   "reference": "B2",
+   "repaired_status_as_recorded": "CORRECTION_NOT_COMPUTED",
+   "repaired_status_with_max_t_vs_b2": "SURVIVES_SELECTION_CORRECTION",
+   "target": "T2_24h"
+  }
+ ]
+}

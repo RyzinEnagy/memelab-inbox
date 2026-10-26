@@ -1,0 +1,30 @@
+{
+ "decision": "PI-D-066",
+ "head": "e7f0b6ca653eee884d8836fc41732c0426551565",
+ "inputs_sha256": {
+  "CANDIDATES.json": "5fd37b64e6bcb20f16897b1b76b14fc4e048f9c17c5b908fefb490232cc955c4",
+  "FULL_EXPERIMENT_LEDGER.csv": "e2deeee4a826221472315ad23761d23ae40941189886242f3bfc5258c90e6607",
+  "HOLDOUT_METRICS.csv": "365fa345986e76abd087a145842431f0deb795109764e34713c5ba6253253726",
+  "HOLDOUT_SCORED.csv": "d4c35253e6879d915dd31b6fdd6428d588c0e25e53d9e9895ad2531a771f08d6",
+  "OPENING_LOG.json": "ed392a484870f581b874eb7cbe700fb3dc69bb21a6b2b03ce9c1e9be0eb7f0f4"
+ },
+ "label": "POST_OPENING",
+ "max_t_vs_b2_below_alpha": 0,
+ "max_t_vs_b2_family": 51,
+ "min_p_max_t_vs_b2": 0.6376181190940453,
+ "n_search": 118,
+ "n_search_post_opening": 127,
+ "outputs_sha256": {
+  "FULL_EXPERIMENT_LEDGER_CORRECTED.csv": "bd6309adcbb0ba0484c821e7bd3bdd3de2d6036816241de46a8d5d0281d2b1c8",
+  "POST_OPENING_CORRECTIONS.csv": "bb42bb7f5a1ea37df5c524ecbd1d9cd3c9e4e3fbb8095318e58b23833ec3c408"
+ },
+ "recorded_outputs_unchanged": true,
+ "rule": "may only make results more conservative; never changes the champion, adds a candidate or creates a claim",
+ "rule_configurations": 9,
+ "sealed_folder_read": false,
+ "status_counts": {
+  "FAILS_SELECTION_CORRECTION": 13,
+  "NO_UNCORRECTED_SKILL": 116
+ },
+ "time_utc": "2026-10-26T19:49:31Z"
+}
