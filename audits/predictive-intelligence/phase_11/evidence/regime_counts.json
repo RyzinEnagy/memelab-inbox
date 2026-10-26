@@ -1,0 +1,45 @@
+{
+ "by_day": {
+  "2026-10-07": {
+   "WARMUP": 2
+  },
+  "2026-10-08": {
+   "QUIET/RISK_OFF": 9,
+   "QUIET/RISK_ON": 14,
+   "WARMUP": 3
+  },
+  "2026-10-09": {
+   "ACTIVE/RISK_ON": 3,
+   "QUIET/RISK_OFF": 3,
+   "QUIET/RISK_ON": 17
+  },
+  "2026-10-10": {
+   "QUIET/RISK_OFF": 13,
+   "QUIET/RISK_ON": 8
+  },
+  "2026-10-11": {
+   "QUIET/RISK_OFF": 2
+  },
+  "2026-10-12": {
+   "QUIET/RISK_ON": 1
+  },
+  "2026-10-13": {
+   "QUIET/RISK_OFF": 1
+  },
+  "2026-10-14": {
+   "QUIET/RISK_OFF": 1
+  },
+  "2026-10-15": {
+   "QUIET/RISK_OFF": 1
+  },
+  "2026-10-16": {
+   "QUIET/RISK_OFF": 1
+  }
+ },
+ "labels": {
+  "ACTIVE/RISK_ON": 3,
+  "QUIET/RISK_OFF": 31,
+  "QUIET/RISK_ON": 40,
+  "WARMUP": 5
+ }
+}

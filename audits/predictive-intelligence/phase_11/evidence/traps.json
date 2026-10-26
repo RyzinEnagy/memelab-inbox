@@ -1,0 +1,67 @@
+{
+ "CROSS_PHASE_JOIN": {
+  "b0_disagree": 0,
+  "missing": 0,
+  "pass": true,
+  "rows_joined": 228,
+  "y_disagree": 0
+ },
+ "CX11": {
+  "as_of_series_not_equal_to_truncated_recomputation": 0,
+  "full_sample_label_differs": 32,
+  "full_sample_variant_not_truncation_invariant_at": 37,
+  "instants": 79,
+  "non_warmup_instants": 74,
+  "pass": true
+ },
+ "FUTURE_ISSUED_TOKENS": {
+  "T1_24h_max_first_seen_le_cutoff": 1,
+  "T1b_6h_max_first_seen_le_cutoff": 1,
+  "T2_24h_max_first_seen_le_cutoff": 1,
+  "description": "development mints first decided at or after each target's first cutoff",
+  "excluded": 106,
+  "pass": true
+ },
+ "NC2_AC": {
+  "description": "real rows decided before the first fold cutoff with labels maturing after it, added to the pool",
+  "pass": true,
+  "refused": 27
+ },
+ "P09_SURVIVORSHIP": {
+  "analog_rows": 2220,
+  "analog_rows_mint_absent_from_newest_export": 0,
+  "main_ref": "e245d91cc5f56060ba8e1aa7182c846c77d1526c",
+  "newest_export_tokens": 1056
+ },
+ "P13_AC": {
+  "pass": true,
+  "refused": 9
+ },
+ "P14_AC": {
+  "AC2_KNN_answers_with_same_creator_rows": 9,
+  "AC2_KNN_same_creator_rows": 42,
+  "AC3_KNN_REGIME_answers_with_same_creator_rows": 9,
+  "AC3_KNN_REGIME_same_creator_rows": 42,
+  "pass": true
+ },
+ "P36_AC": {
+  "pass": true,
+  "refused": 28
+ },
+ "P43_AC": {
+  "description": "real rows decided at or after the first fold cutoff, added to the pool",
+  "pass": true,
+  "refused": 76
+ },
+ "PHASE07_EQUALITY": {
+  "b0_diff": 0,
+  "b2_diff": 0,
+  "pass": true,
+  "rows": 76,
+  "split_equal": {
+   "T1_24h": true,
+   "T1b_6h": true,
+   "T2_24h": true
+  }
+ }
+}

@@ -1,0 +1,24 @@
+{
+ "differs_only": "evidence/run_log.json (times)",
+ "outputs_compared": 28,
+ "outputs_identical": true,
+ "recorded_run": {
+  "end_utc": "2026-10-26T15:27:03Z",
+  "head": "ff98b8df877fad909c13427d50f8087c837bf146",
+  "start_utc": "2026-10-26T15:26:22Z",
+  "wall_s": 40.58
+ },
+ "superseded_run_1": {
+  "files_that_differ_from_the_recorded_run": [
+   "experiments/SEARCH_LEDGER.csv"
+  ],
+  "head": "0482a6017d62d32f35f86a2111f3f569096063b4",
+  "start_utc": "2026-10-26T15:20:26Z"
+ },
+ "twin": {
+  "end_utc": "2026-10-26T15:27:44Z",
+  "head": "ff98b8df877fad909c13427d50f8087c837bf146",
+  "start_utc": "2026-10-26T15:27:03Z",
+  "wall_s": 41.18
+ }
+}

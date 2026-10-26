@@ -585,3 +585,23 @@ def test_tone_is_the_share_of_constructive_lab_statuses():
     rows = [rr(T0 + i * 3600.0, s, 10.0) for i, s in enumerate(["WATCH", "REJECTED", "DISTRIBUTION RISK", "NEAR ENTRY"])]
     rec = A.regime_as_of(rows, T0 + 3 * 3600.0)
     assert rec["tone_constructive_share"] == 0.5 and rec["window_decisions"] == 4
+
+
+# ---------------------------------------------------------------- committed outputs (added with them)
+def test_committed_outputs_ledger_registry_verdicts_and_traps():
+    import csv
+    p11 = ROOT / "audits/predictive-intelligence/phase_11"
+    led = list(csv.DictReader(open(p11 / "experiments/SEARCH_LEDGER.csv")))
+    prior = list(csv.DictReader(open(ROOT / "audits/predictive-intelligence/phase_10/experiments/SEARCH_LEDGER.csv")))
+    assert led[:len(prior)] == prior
+    ids = {r["experiment_id"] for r in led[len(prior):]}
+    reg = [r["experiment_id"] for r in csv.DictReader(open(p11 / "experiments/EXPERIMENT_REGISTRY.csv"))]
+    traps = {"NC2AC", "P13AC", "P36AC", "P43AC", "P14AC", "CX11"}
+    missing = [x for x in reg if x.split(":")[-1] not in traps and not any(i.startswith(x) for i in ids)]
+    assert missing == []
+    assert sum(1 for r in led[len(prior):] if r["kind"] == "DEBUG_RUN_REAL_DATA") == 2
+    metrics = list(csv.DictReader(open(p11 / "experiments/ANALOG_METRICS.csv")))
+    assert all(r["verdict"] in ("INSUFFICIENT_DAYS", "INSUFFICIENT_EVENTS", "INSUFFICIENT_HISTORY") for r in metrics)
+    assert all(r["promotion"] == "MODEL_NOT_PROMOTED" for r in metrics)
+    t = json.loads((p11 / "evidence/traps.json").read_text())
+    assert all(v.get("pass") is not False for v in t.values()) and t["CX11"]["full_sample_label_differs"] == 32

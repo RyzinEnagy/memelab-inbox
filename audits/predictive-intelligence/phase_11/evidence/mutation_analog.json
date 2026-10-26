@@ -1,0 +1,339 @@
+{
+ "applied": 47,
+ "caught": 47,
+ "equivalent": [],
+ "mutations": 47,
+ "not_applied": [],
+ "results": [
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_pool_row_decided_at_or_after_the_cohort_time_is_refused",
+   "mutation": "pool row decided at as_of accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_pool_label_maturing_after_the_cohort_time_is_refused_nc2",
+   "mutation": "label maturity check removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_future_issued_token_is_refused_p43",
+   "mutation": "future-issued token accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_a_pool_row_with_an_input_available_after_its_own_decision_is_refused_p36",
+   "mutation": "pool availability check removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_target_input_available_after_its_decision_is_refused_p36",
+   "mutation": "target availability check removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_a_cohort_as_of_after_the_decision_is_refused",
+   "mutation": "cohort after the decision accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_a_column_outside_the_allowlist_never_reaches_a_cohort_nc2",
+   "mutation": "allowlist removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_future_issued_token_is_refused_p43",
+   "mutation": "select skips the checks"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_the_same_mint_is_token_history_never_an_analog_p01",
+   "mutation": "same mint kept as an analog"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_the_same_creator_is_excluded_p14",
+   "mutation": "same creator kept (P14)"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_leave_one_campaign_out_excludes_the_same_narrative",
+   "mutation": "campaign kept in LOCO"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_cluster_is_the_creator_when_known_else_the_mint",
+   "mutation": "cluster by mint only"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_the_same_mint_is_token_history_never_an_analog_p01",
+   "mutation": "token history by any mint"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_one_analog_per_cluster_so_duplicate_windows_count_once",
+   "mutation": "AC1 keeps every row of a cluster"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_one_analog_per_cluster_so_duplicate_windows_count_once",
+   "mutation": "AC1 keeps the oldest row"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_analogs_too_few_below_g_20 - ass...",
+   "mutation": "G minimum lowered"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_analogs_too_few_below_5_days - a...",
+   "mutation": "days minimum removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_a_pool_below_the_training_gate_gives_insufficient_history",
+   "mutation": "training gate skipped"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_far_from_analogs_is_out_of_distribution",
+   "mutation": "OOD rule removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_ood_threshold_is_the_95th_percentile_of_kth_other_cluster_distances",
+   "mutation": "OOD quantile 0.99"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_a_missing_target_input_is_out_of_distribution_not_imputed",
+   "mutation": "missing target input imputed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_a_missing_target_input_is_out_of_distribution_not_imputed",
+   "mutation": "unknown cell accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_an_unseen_cell_is_out_of_distribution",
+   "mutation": "empty cell not OOD"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_regime_warmup_abstains_and_an_unseen_regime_is_ood",
+   "mutation": "regime filter removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_regime_warmup_abstains_and_an_unseen_regime_is_ood",
+   "mutation": "warmup regime accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_time_change_sensitivity_flags_an_unstable_cohort",
+   "mutation": "K = 20"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_categorical_mismatch_adds_one_to_the_squared_distance",
+   "mutation": "categorical mismatch ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_scale_uses_the_population_sd_and_distances_equal_the_brute_force",
+   "mutation": "sample sd instead of population"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_ood_threshold_is_the_95th_percentile_of_kth_other_cluster_distances",
+   "mutation": "own cluster kept in the threshold"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_ties_inside_a_cluster_go_to_the_smaller_decision_key_whatever_the_order",
+   "mutation": "ties broken by position"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_number_is_shrunk_to_the_pool_prevalence_with_a_wilson_interval_on_g",
+   "mutation": "no shrinkage"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_time_change_sensitivity_flags_an_unstable_cohort",
+   "mutation": "time instability never flagged"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_regime_as_of_refuses_a_later_row_cx11",
+   "mutation": "regime reads later rows"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_regime_warmup_below_five_earlier_instants",
+   "mutation": "regime uses instants at T too"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_regime_warmup_below_five_earlier_instants",
+   "mutation": "regime warmup 3"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_regime_series_equals_regime_as_of_on_truncated_rows_at_every_instant",
+   "mutation": "regime series uses every instant"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_regime_as_of_refuses_a_later_row_cx11",
+   "mutation": "availability after T accepted in regime"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_tone_is_the_share_of_constructive_lab_statuses",
+   "mutation": "tone counts every status"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_token_history_is_used_only_with_twenty_matured_rows_of_the_exact_mint",
+   "mutation": "token history at 1 row"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_a_position_size_gives_execution_data_missing_p44",
+   "mutation": "execution data never missing"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_divergence_flags_stay_beside_a_number_step5",
+   "mutation": "divergence flags dropped"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_divergence_flags_stay_beside_a_number_step5",
+   "mutation": "authority differs never flagged"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_divergence_flags_stay_beside_a_number_step5",
+   "mutation": "unknown authority not flagged"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_card_roundtrip_tamper_and_trained_after_decision_p13",
+   "mutation": "P13 check removed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_card_roundtrip_tamper_and_trained_after_decision_p13",
+   "mutation": "card hash not verified"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_fit_refuses_a_pool_row_from_after_the_cutoff",
+   "mutation": "fit accepts a later pool row"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/analog.py",
+   "first_failure": "FAILED tests/test_predictive_analog.py::test_state_vocabulary_and_contract_mapping",
+   "mutation": "contract mapping accepts unknown"
+  }
+ ],
+ "survived": []
+}

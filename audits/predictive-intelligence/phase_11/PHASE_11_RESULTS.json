@@ -1,0 +1,386 @@
+{
+ "phase": "11",
+ "status": "NEEDS_REVIEW",
+ "head_before": "aae7a55860cee7b3ab1b1866bb5179f4ae83530b",
+ "head_after": null,
+ "commits": {
+  "pre_registration": "46afc85",
+  "frozen_code": "0482a60",
+  "ledger_repair": "ff98b8d"
+ },
+ "checks": [
+  {
+   "name": "G1 package checksums",
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "result": "41 OK, 0 failed",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G2 entry suite at aae7a55",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "result": "1 failed, 1335 passed in 238.57s (known test_dedup_corroboration_resurface_denial only)",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "G2 seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "result": "problems []",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G2 Phase 10 key check",
+   "command": "python -B audits/predictive-intelligence/phase_10/probes/recompute_oos_social.py",
+   "result": "326 numbers, 0 differences",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G3 pre-registration before any run",
+   "input": "46afc85 at 2026-10-26T15:04:46Z; features-only probe 15:14:33Z; recorded runs from 15:20:26Z",
+   "result": "ordered",
+   "pass": true
+  },
+  {
+   "name": "G4 tests",
+   "command": "python -m pytest tests/test_predictive_analog.py -q",
+   "result": "51 passed",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G5 as-of pool traps",
+   "input": "evidence/traps.json",
+   "result": "NC2-AC 27 refused, P43-AC 76 refused, future-issued mints 106 excluded, 0 in a pool",
+   "pass": true
+  },
+  {
+   "name": "G6 same folds and B0/B2 as Phase 07",
+   "input": "evidence/traps.json PHASE07_EQUALITY",
+   "result": "3 split fingerprints equal, 76 rows 0 differences",
+   "pass": true
+  },
+  {
+   "name": "G7 identity and groups",
+   "input": "evidence/traps.json P14_AC; tests P01, P14",
+   "result": "0 same-creator analogs, 42 rows excluded",
+   "pass": true
+  },
+  {
+   "name": "G8 minimums and states",
+   "input": "experiments/COHORT_COVERAGE.csv",
+   "result": "no number below G 20 or 5 days (test and walk-forward fixture)",
+   "pass": true
+  },
+  {
+   "name": "G9 regime as of T and CX-11",
+   "input": "evidence/traps.json CX11",
+   "result": "79/79 instants truncation-invariant; full-sample relabels 32 of 74, fails truncation at 37",
+   "pass": true
+  },
+  {
+   "name": "G10 metrics and verdicts",
+   "input": "experiments/ANALOG_METRICS.csv",
+   "result": "132 rows: INSUFFICIENT_DAYS 76, INSUFFICIENT_HISTORY 40, INSUFFICIENT_EVENTS 16; no claim",
+   "pass": true
+  },
+  {
+   "name": "G11 regime breakdown",
+   "input": "experiments/REGIME_BREAKDOWN.csv",
+   "result": "all INSUFFICIENT",
+   "pass": true
+  },
+  {
+   "name": "G12 cross-phase join",
+   "input": "evidence/traps.json CROSS_PHASE_JOIN",
+   "result": "228 rows, 0 y or B0 disagreements",
+   "pass": true
+  },
+  {
+   "name": "G13 coverage and missing data",
+   "input": "experiments/COHORT_COVERAGE.csv, evidence/folds.json pool_missing_data",
+   "result": "written",
+   "pass": true
+  },
+  {
+   "name": "G14 divergence flags",
+   "input": "experiments/DIVERGENCE_FLAGS.csv; test_divergence_flags_stay_beside_a_number_step5",
+   "result": "kept beside numbers",
+   "pass": true
+  },
+  {
+   "name": "G15 traps P13 P36",
+   "input": "evidence/traps.json",
+   "result": "P13-AC 9 refused, P36-AC 28 refused; NC1-AC INSUFFICIENT",
+   "pass": true
+  },
+  {
+   "name": "G16 artifacts",
+   "input": "evidence/serialization_smoke.json, evidence/postrun_checks.json",
+   "result": "9 holdout cards round trip, tamper refused; 27 fold card headers verify",
+   "pass": true
+  },
+  {
+   "name": "G17 contract",
+   "input": "evidence/serialization_smoke.json contract",
+   "result": "ABSTAIN valid, FORECAST refused, 3 of 3 targets",
+   "pass": true
+  },
+  {
+   "name": "G18 oracle",
+   "command": "p04_bundle/bin/python -B probes/sklearn_crosscheck_analog.py",
+   "result": "148 real + 5 synthetic queries equal, distances within 3.9e-15",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G19 determinism and isolation",
+   "input": "evidence/determinism.json, evidence/run_log.json",
+   "result": "28/28 outputs identical; 0 socket events; stores unchanged",
+   "pass": true
+  },
+  {
+   "name": "G20 trace and cohort query",
+   "command": "python -B probes/verify_trace_analog.py; python -B probes/postrun_checks.py",
+   "result": "0 differences, 6/6 invalid inputs rejected; cohort query reproduces trace and 93 numbers",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G21 search ledger",
+   "input": "experiments/SEARCH_LEDGER.csv",
+   "result": "Phase 10 ledger plus every Phase 11 configuration (after the ledger repair ff98b8d), 2 debug runs",
+   "pass": true
+  },
+  {
+   "name": "G22 mutation probe",
+   "command": "python -B probes/mutation_analog.py",
+   "result": "47 of 47 caught",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G23 flag, imports, registry",
+   "input": "tests isolation, test_predictive_contract.py",
+   "result": "flag OFF, analog imported by no module, fingerprint 4b4aabce unchanged",
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/phase_11/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "bf05e6ca0b3b082e078560c06bb65b88d66627b555197063ad1821d5fe90fdf9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/PHASE_11_EVIDENCE.md",
+   "sha256": "ce0a1010ec2e973197f625a95ce229c0313767f4888a42cb421dd0e847cfaa91"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/SKEPTIC_PACKET.md",
+   "sha256": "286a31c1a430735bfc24e42ded33d30a85117c5986edd95ddd7e88a736829ee1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/artifacts/T1_24h/AC1_STRATA.json",
+   "sha256": "ff657d2869aee9dab35a8df29073ac5efa1d18e776e5165903efb210e8c0a89a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/artifacts/T1_24h/AC2_KNN.json",
+   "sha256": "1ebc195e18bba71a27bf31b589ae200bc40a25c24026be7c6db28acd76e801cb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/artifacts/T1_24h/AC3_KNN_REGIME.json",
+   "sha256": "a0883471abaeaed5c34c71a764135c9f7c5c44b0917aa168217f48b579baf861"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/artifacts/T1b_6h/AC1_STRATA.json",
+   "sha256": "59b3cfb0c222cb12c0a49eb56179f4c9005302f98870c749249069e805062161"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/artifacts/T1b_6h/AC2_KNN.json",
+   "sha256": "58e3f54eab7ad49b28ba846e9fa8acf02d4c702fd8dbbe04f58af44a98b320f8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/artifacts/T1b_6h/AC3_KNN_REGIME.json",
+   "sha256": "662c82fcc8c5a4354c91ebd152c714ba235395bf7fb324d84a2383e758cb7da4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/artifacts/T2_24h/AC1_STRATA.json",
+   "sha256": "15a7241f306fa261bdb9e174a668f5379b1dc339d2e4b3a08740a4211669f669"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/artifacts/T2_24h/AC2_KNN.json",
+   "sha256": "698971bc99948ea2b94b6b49e85cc6fa08a9e8e1f35107aa6718be76a11708d7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/artifacts/T2_24h/AC3_KNN_REGIME.json",
+   "sha256": "64f9b9438b353adf3913a6341c09f6e40dfbef7e77e984f7e5e59aee118d235c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/artifacts/folds/T1_24h.json",
+   "sha256": "379a86d57d687685128a5232506e133c7cf587c64c2af4767393a8477f3d4aee"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/artifacts/folds/T1b_6h.json",
+   "sha256": "4e367360139505421fe4f7ec5a099cc2cb5ba08c1cb254562c2c553e6fad2508"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/artifacts/folds/T2_24h.json",
+   "sha256": "495385ad2b58f2b0d91aad10626fd1801f109beefe9d818244270ad2ab1adbdf"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/evidence/determinism.json",
+   "sha256": "8b432044654dda049234f1abde3d0a2faca5a58aa304093fa87d1c7d65ab48d3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/evidence/entry/entry_phase10_recompute.json",
+   "sha256": "ac9b455a6b645a33189f54fe01db4ef0bb6ebd594d3078941f374efa7720f756"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/evidence/entry/entry_seal.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/evidence/entry/entry_suite_summary.txt",
+   "sha256": "10bf9eeae123b73de4c3da90b09cc5c1695cd19d03280160d1b66604951d1335"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/evidence/folds.json",
+   "sha256": "bb67f041469dcb811a027b31175e9183d3c03acd906d8224301ba8980d1fdde9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/evidence/label_sets.json",
+   "sha256": "c05a5d0d5b903bbc5243756700288a53a5b636b383fc8cf1809ae99eae5b6d07"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/evidence/mutation_analog.json",
+   "sha256": "1e8aeef6a84e611d730f3194f9fa54421ce517436279cb3f947727ef78958a2e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/evidence/postrun_checks.json",
+   "sha256": "606fd1ef9dc04c8a13906e579eca96d4f0bf27619a23841293f7986bbc09ca0f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/evidence/regime_counts.json",
+   "sha256": "bf4d69975d3b08baffc7cfaf1713f40b1be702e0775581f35b015b9fb0775e5d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/evidence/run_log.json",
+   "sha256": "bb973d18927555a918cef77e85455a1bf51f7f88b6d1759f8ea146467fed4853"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/evidence/serialization_smoke.json",
+   "sha256": "445d2695f3dabca7fb25dd85a804585992804812ff7f9750563ba4d678230159"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/evidence/sklearn_crosscheck.json",
+   "sha256": "e65606c63cf8d0adb6cbed5bfd9b0a7498235a9b671936ed43b4278a30a6ffab"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/evidence/trace/trace.json",
+   "sha256": "1b1fd94ca24fbe546c82af44cf62f62af1fdc08b98c83d45e97da54be6c8bd8d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/evidence/trace/verify_trace.json",
+   "sha256": "fef49097b5af855d9e56881e24da99ab926f6894d2ac9cfc3445d84cf3586e57"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/evidence/traps.json",
+   "sha256": "53d498af2fbe33b1341d3cc2b0ccac0d6de86d4ee8ac987d666a23b200ff46c5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/experiments/ANALOG_METRICS.csv",
+   "sha256": "d538c68b6ea554d35506ea4e6788d9fda4765f0d4a6493a2e06422f424724ac5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/experiments/COHORT_COVERAGE.csv",
+   "sha256": "d0f0e303c1e8d882d8574337ddc9de04021e327c0cee622d254fefc74bb7bf7b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/experiments/CROSS_PHASE_COMPARISON.csv",
+   "sha256": "7c604a8a959492fa4001b7690cf3a764f898f3bd74fec7970283f40dbc251f2c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/experiments/DIVERGENCE_FLAGS.csv",
+   "sha256": "1729b666cdababbee0d4c15d785a79d605678e2184375e601fee46bf28443454"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/experiments/EXPERIMENT_REGISTRY.csv",
+   "sha256": "abf93c84b94980a8392eb2bd999252ad5783eebbe345350c8f01ab45d69e998c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/experiments/LOCO_SENSITIVITY.csv",
+   "sha256": "da29d5a8fb96954a08aeb031e7163029e74943b334339f2dfae1c913a1d1d3d2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/experiments/NC1AC_SEEDS.csv",
+   "sha256": "f3a01de5750534293930090b97545a5b73220c8850a6f730eca5cc0525b75e4d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/experiments/OOS_PREDICTIONS.csv",
+   "sha256": "38b64b7847abfff994e6d5910be958cf204d25b63d67846095ead03b9c8a81f2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/experiments/REGIME_BREAKDOWN.csv",
+   "sha256": "f280c5f6f1c6fdbcb1306dd023e4421fab39b9351ee7da0ab348a739c33a173a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/experiments/REGIME_SERIES.csv",
+   "sha256": "8e16217aca5641f38741b7f22e5696a049a916363f97cac234f18dac83dd69af"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/experiments/SEARCH_LEDGER.csv",
+   "sha256": "07689ed928d7b72adc673bb682fc01124c1f50bc2ee0e31c34ff3862520ab17b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/models/ANALOG_MATCHING_SPEC.md",
+   "sha256": "8df4d7b7bce3176aaf6169754f8013e2a538fc894af25375189b02110f998a73"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/probes/cohort_query.py",
+   "sha256": "6132ddcf5795004d787ecdbc1a8b5ce98fdea0390199ee814c074921381eabff"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/probes/mutation_analog.py",
+   "sha256": "227dc27a78d7a8c9db5fc0e3beba3084b224f954edd1f94a116cc1d1f2969206"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/probes/postrun_checks.py",
+   "sha256": "96633e035ba7db6e3ad9b5d6ebd05cce2f69fe7521ed05ba89ee7164b4811d38"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/probes/run_analog.py",
+   "sha256": "90c35c20285631ea5cddc2a383843a1f77a4aac742d6e0a4a23fd5646e18c556"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/probes/sklearn_crosscheck_analog.py",
+   "sha256": "bfd5a3c171365c603ea546c460bbb4e86abdef96dae543d31d6880c05f0fd020"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/probes/verify_trace_analog.py",
+   "sha256": "a88c3fa84e2ae6d8335a523eff005450e033aa8c6353f3245f897acfb566578e"
+  },
+  {
+   "path": "memelab/predictive/analog.py",
+   "sha256": "4d15a8565bd1e2b8e1b2526a9a8eb3ed354423b347469c60f2201dd1e670484f"
+  },
+  {
+   "path": "tests/test_predictive_analog.py",
+   "sha256": "8a50b105e12e645b0afffcdc5ba9624948909b48a0782fc5b34df65251b23de2"
+  }
+ ],
+ "limitations": [
+  "Development has 9 to 10 decision days and one out-of-sample regime label: every comparison and the regime breakdown are INSUFFICIENT_DAYS, INSUFFICIENT_HISTORY or INSUFFICIENT_EVENTS; no analog model is promoted.",
+  "Day dependence: 59 of 93 cohort numbers have a day Kish ESS below 5 (largest single-day share 63%); the frozen rule counts days, so G overstates independence on batched export days.",
+  "115 of 925 Solana decisions lack a creator; their cluster is the mint, so an unrecorded common deployer is not caught; dev wallets not used.",
+  "Regime labels describe the lab's exported universe (24 h volume, constructive statuses), not chain-wide conditions; no catalyst category exists (CATALYST_TABLES_NOT_EXPORTED).",
+  "The survivorship count against the newest export cannot discriminate (the lab never drops a token row); the guard is by construction and by tests.",
+  "No historical executable depth: every answer carries NO_HISTORICAL_EXECUTABLE_DEPTH; a size gives EXECUTION_DATA_MISSING.",
+  "Recorded run 1 lacked the B0 and AC3_LOCO ledger rows; repaired at ff98b8d and rerun with every other output byte-equal.",
+  "The independent skeptic (PI-D-013) has not run yet."
+ ],
+ "blockers": [],
+ "approvals_needed": [],
+ "next_eligible_phase": "none until the orchestrator's independent skeptic and the repair pass make Phase 11 PASS; then 12"
+}

@@ -17,7 +17,12 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[4]
 AP = "memelab/predictive/analog.py"
 TEST = "tests/test_predictive_analog.py"
-EXTRA = [AP, TEST]
+EXTRA = [AP, TEST,
+         "audits/predictive-intelligence/phase_10/experiments/SEARCH_LEDGER.csv",
+         "audits/predictive-intelligence/phase_11/experiments/SEARCH_LEDGER.csv",
+         "audits/predictive-intelligence/phase_11/experiments/EXPERIMENT_REGISTRY.csv",
+         "audits/predictive-intelligence/phase_11/experiments/ANALOG_METRICS.csv",
+         "audits/predictive-intelligence/phase_11/evidence/traps.json"]
 
 MUTATIONS = [
     # the as-of pool (P43, NC2-AC, P36)

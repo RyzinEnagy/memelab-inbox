@@ -1,0 +1,154 @@
+{
+ "T1_24h": {
+  "AC1_STRATA": {
+   "abstain": null,
+   "file_sha256": "ff657d2869aee9dab35a8df29073ac5efa1d18e776e5165903efb210e8c0a89a",
+   "k_train": 34,
+   "max_train_label_matures_at": 1792146828.0,
+   "model_sha": "748310757e52694ccd9e3ab7789ebca1d8baeb498ef4e52f0da8ecfe18645a4a",
+   "n_train": 136,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "AC2_KNN": {
+   "abstain": null,
+   "file_sha256": "1ebc195e18bba71a27bf31b589ae200bc40a25c24026be7c6db28acd76e801cb",
+   "k_train": 34,
+   "max_train_label_matures_at": 1792146828.0,
+   "model_sha": "ede1a5df7d44c76ca061f72c9aea661d372ec5c67cf33d8fbf2d671155337dc6",
+   "n_train": 136,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "AC3_KNN_REGIME": {
+   "abstain": null,
+   "file_sha256": "a0883471abaeaed5c34c71a764135c9f7c5c44b0917aa168217f48b579baf861",
+   "k_train": 34,
+   "max_train_label_matures_at": 1792146828.0,
+   "model_sha": "1a9a62570399d255712a6d70cf51780510eeb8a4d151baab43eb2b6714560633",
+   "n_train": 136,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "contract": {
+   "abstain_errors": [],
+   "abstain_valid": true,
+   "cohort_field": {
+    "G": 30,
+    "analog_days": 7,
+    "analog_version": "analog-1",
+    "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
+    "model": "AC3_KNN_REGIME",
+    "new_mint": false,
+    "regime": "QUIET/RISK_OFF",
+    "states": []
+   },
+   "forecast_refused": true
+  }
+ },
+ "T1b_6h": {
+  "AC1_STRATA": {
+   "abstain": null,
+   "file_sha256": "59b3cfb0c222cb12c0a49eb56179f4c9005302f98870c749249069e805062161",
+   "k_train": 26,
+   "max_train_label_matures_at": 1792170126.0,
+   "model_sha": "610499da578a95afc22d9e3c1174f5e5d60dc42f334e5b1944ba1553f8be4856",
+   "n_train": 224,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "AC2_KNN": {
+   "abstain": null,
+   "file_sha256": "58e3f54eab7ad49b28ba846e9fa8acf02d4c702fd8dbbe04f58af44a98b320f8",
+   "k_train": 26,
+   "max_train_label_matures_at": 1792170126.0,
+   "model_sha": "3aac237b117da81ecc389acc903380fc3ea6b54d6f8c95bf5e7ce65c539f98b5",
+   "n_train": 224,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "AC3_KNN_REGIME": {
+   "abstain": null,
+   "file_sha256": "662c82fcc8c5a4354c91ebd152c714ba235395bf7fb324d84a2383e758cb7da4",
+   "k_train": 26,
+   "max_train_label_matures_at": 1792170126.0,
+   "model_sha": "212d47116c9352ff7ec3a1b5316f4fba93bf2296e5400ffa79bc6d6cd330e885",
+   "n_train": 224,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "contract": {
+   "abstain_errors": [],
+   "abstain_valid": true,
+   "cohort_field": {
+    "G": 30,
+    "analog_days": 8,
+    "analog_version": "analog-1",
+    "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
+    "model": "AC3_KNN_REGIME",
+    "new_mint": false,
+    "regime": "QUIET/RISK_OFF",
+    "states": [
+     "OUT_OF_DISTRIBUTION:FAR_FROM_ANALOGS"
+    ]
+   },
+   "forecast_refused": true
+  }
+ },
+ "T2_24h": {
+  "AC1_STRATA": {
+   "abstain": null,
+   "file_sha256": "15a7241f306fa261bdb9e174a668f5379b1dc339d2e4b3a08740a4211669f669",
+   "k_train": 28,
+   "max_train_label_matures_at": 1792147063.0,
+   "model_sha": "d9016c8157529c2767bfbd2d726ecc06ab6844eefca413968fc5145ab37e64b1",
+   "n_train": 131,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "AC2_KNN": {
+   "abstain": null,
+   "file_sha256": "698971bc99948ea2b94b6b49e85cc6fa08a9e8e1f35107aa6718be76a11708d7",
+   "k_train": 28,
+   "max_train_label_matures_at": 1792147063.0,
+   "model_sha": "ad809d4a8ba9c2d0d7ba8420f94e47b5641bc70f6becc49ba9f40a670acb07a5",
+   "n_train": 131,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "AC3_KNN_REGIME": {
+   "abstain": null,
+   "file_sha256": "64f9b9438b353adf3913a6341c09f6e40dfbef7e77e984f7e5e59aee118d235c",
+   "k_train": 28,
+   "max_train_label_matures_at": 1792147063.0,
+   "model_sha": "c1371c10921d5faec24112c7978d401023e7cfa1989ba32450c6ae54d65d6836",
+   "n_train": 131,
+   "pickle_used": false,
+   "roundtrip_identical": true,
+   "tamper_refused": true
+  },
+  "contract": {
+   "abstain_errors": [],
+   "abstain_valid": true,
+   "cohort_field": {
+    "G": 30,
+    "analog_days": 5,
+    "analog_version": "analog-1",
+    "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
+    "model": "AC3_KNN_REGIME",
+    "new_mint": false,
+    "regime": "QUIET/RISK_OFF",
+    "states": []
+   },
+   "forecast_refused": true
+  }
+ }
+}

@@ -1,0 +1,3741 @@
+[
+ {
+  "answers": {
+   "AC1_STRATA": {
+    "G": 7,
+    "analog_days": 6,
+    "analog_mints": 6,
+    "analogs": [
+     {
+      "cluster": "mint:solana:6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "day": "2026-10-07",
+      "decision_key": "890568ea68c73b91e762bfe4885807d14eabf17bb4a747d4ce2f16b08d4d6de2",
+      "distance": null,
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "day": "2026-10-08",
+      "decision_key": "0ada51f42f6d28b0c653eb63300afb4d8b7bf8ab66818fa97d507bb6dcd84fb1",
+      "distance": null,
+      "mint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+      "day": "2026-10-08",
+      "decision_key": "c69b5d5fe795785b35b9b9f33b42b57b7855e86fc641d7cc7604d5b9167dde67",
+      "distance": null,
+      "mint": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+      "y": 0
+     },
+     {
+      "cluster": "creator:5e2qRc1DNEXmyxP8qwPwJhRWjef7usLyi7v5xjqLr5G7",
+      "day": "2026-10-10",
+      "decision_key": "2eccf63571757d286da47fe780d475f7f659241ad002641feab67e0f49be09ff",
+      "distance": null,
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "y": 0
+     },
+     {
+      "cluster": "creator:GziA3ZgkmnUcK9vuscnDpzLTcpHTSnmyQ6JwPKP5oSkR",
+      "day": "2026-10-11",
+      "decision_key": "047c511d9d5089358ad9a3e5c1b1c1e06becb33501371e57b4bddfd18d866afc",
+      "distance": null,
+      "mint": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+      "y": 0
+     },
+     {
+      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "day": "2026-10-12",
+      "decision_key": "44abdc7df1c1819615a001d0598954efd79e08a450ab6d12efe91d44f425c04d",
+      "distance": null,
+      "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:BxgkvRwqzYFWuDbRjfTYfgTtb41NaFw1aQ3129F79eBT",
+      "day": "2026-10-13",
+      "decision_key": "8087dec44b53cac461bde3870abb934c0aac3cdc6134e860a7ab677ba0d04d5d",
+      "distance": null,
+      "mint": "METAwkXcqyXKy1AtsSgJ8JiUHwGCafnZL38n3vYmeta",
+      "y": 0
+     }
+    ],
+    "as_of": 1792022400.0,
+    "b0": 0.24390243902439024,
+    "cell": [
+     "ge_30d",
+     "ge_1m"
+    ],
+    "day_kish_ess": 5.444444444444445,
+    "decision_key": "f86ab79bcc1ac13ea6d4adadc1df5106c634e3de6bc99f9c4f745374e87c18a5",
+    "decision_time": 1792059228.0,
+    "excluded": {
+     "same_campaign": 0,
+     "same_creator": 1,
+     "same_mint": 3
+    },
+    "flags": [
+     "NO_HISTORICAL_EXECUTABLE_DEPTH",
+     "PRICE_PATH_NOT_PROCEEDS"
+    ],
+    "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
+    "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+    "model": "AC1_STRATA",
+    "new_mint": false,
+    "number": null,
+    "pool_n": 123,
+    "pool_positives": 30,
+    "positives": 0,
+    "publishable": false,
+    "raw_rate": 0.0,
+    "reasons": [
+     "ANALOGS_TOO_FEW:G_BELOW_MIN"
+    ],
+    "regime": "QUIET/RISK_OFF",
+    "shrunk_number": 0.18066847335140018,
+    "time_sensitivity": {
+     "newer_n": 4,
+     "newer_rate": 0.0,
+     "newer_wilson": [
+      0.0,
+      0.4898908364545973
+     ],
+     "older_n": 3,
+     "older_rate": 0.0,
+     "older_wilson": [
+      5.551115123125783e-17,
+      0.5614970317550454
+     ],
+     "split_time": 1791628305.0,
+     "time_unstable": false
+    },
+    "wilson": [
+     5.551115123125783e-17,
+     0.35433043506668743
+    ]
+   },
+   "AC2_KNN": {
+    "G": 30,
+    "analog_days": 7,
+    "analog_mints": 28,
+    "analogs": [
+     {
+      "cluster": "creator:GziA3ZgkmnUcK9vuscnDpzLTcpHTSnmyQ6JwPKP5oSkR",
+      "day": "2026-10-08",
+      "decision_key": "76bc7baa8425056cdce41e07ed26661994998879a6368905ad57d94ee5f47104",
+      "distance": 1.2674010481796154,
+      "mint": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "day": "2026-10-08",
+      "decision_key": "0ada51f42f6d28b0c653eb63300afb4d8b7bf8ab66818fa97d507bb6dcd84fb1",
+      "distance": 1.3440276716915351,
+      "mint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "day": "2026-10-07",
+      "decision_key": "890568ea68c73b91e762bfe4885807d14eabf17bb4a747d4ce2f16b08d4d6de2",
+      "distance": 1.556698138289584,
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "y": 0
+     },
+     {
+      "cluster": "creator:5e2qRc1DNEXmyxP8qwPwJhRWjef7usLyi7v5xjqLr5G7",
+      "day": "2026-10-10",
+      "decision_key": "2eccf63571757d286da47fe780d475f7f659241ad002641feab67e0f49be09ff",
+      "distance": 1.5890702853425076,
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "y": 0
+     },
+     {
+      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "day": "2026-10-12",
+      "decision_key": "44abdc7df1c1819615a001d0598954efd79e08a450ab6d12efe91d44f425c04d",
+      "distance": 1.6274822527027728,
+      "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+      "day": "2026-10-08",
+      "decision_key": "c69b5d5fe795785b35b9b9f33b42b57b7855e86fc641d7cc7604d5b9167dde67",
+      "distance": 1.6814267461605605,
+      "mint": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+      "y": 0
+     },
+     {
+      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "day": "2026-10-08",
+      "decision_key": "fa458de1dec6b0180e2bcb66ad2fb66d8089fde0b98edc7002e129d35480955b",
+      "distance": 1.7184379814758008,
+      "mint": "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+      "y": 1
+     },
+     {
+      "cluster": "mint:solana:nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+      "day": "2026-10-09",
+      "decision_key": "bf652e17f02ac91d46a72f7c4f9cdcf0830c27aea3e297f7cd60bbb1a69b6ad0",
+      "distance": 1.8083493192063682,
+      "mint": "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+      "y": 0
+     },
+     {
+      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "day": "2026-10-08",
+      "decision_key": "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
+      "distance": 1.8123981076154614,
+      "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+      "y": 0
+     },
+     {
+      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "day": "2026-10-10",
+      "decision_key": "c8d4cd7ee702168311a2782d20de184fc4770aa0a90ab07bcb68160e459132c7",
+      "distance": 1.8777100933059483,
+      "mint": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:Hok9nbV89yBSKCttxe3goqajwbiqQa9mtHvQBsbJH3Np",
+      "day": "2026-10-08",
+      "decision_key": "01f6e0af42de4459c70fc91793824829bc645151e001752fd8342029c0882917",
+      "distance": 2.0153451771603357,
+      "mint": "ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg",
+      "y": 1
+     },
+     {
+      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "day": "2026-10-07",
+      "decision_key": "bcc8f42cdb5bff89ba45958ce9114f3be0e4d9ca2e8d068331dcf15a24692fee",
+      "distance": 2.0405277713756615,
+      "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:52T4zD6pQ9LuMeLgcmzH61RBMTP3ywCCLnq3caKkxyvJ",
+      "day": "2026-10-12",
+      "decision_key": "efa03ae4fa14ee4d6825f87cc4015ef2cc9c5ffd80226944db9bac72899cc426",
+      "distance": 2.1629701844716784,
+      "mint": "1zJX5gRnjLgmTpq5sVwkq69mNDQkCemqoasyjaPW6jm",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6SJHhnhrmRUGn7tLPW8n23XmoHASRzvo9xeYk7UQYL6L",
+      "day": "2026-10-09",
+      "decision_key": "96a3993868007a6f1f2b3ddb20d0ed956b6fb091f9b109944ceb0499aa485822",
+      "distance": 2.1709684240593425,
+      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
+      "day": "2026-10-11",
+      "decision_key": "dfe400dcca348f53c3737da35a5a559b963a1d8fa3001ab9ac5e82a71fb96d00",
+      "distance": 2.1993629992115467,
+      "mint": "HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
+      "y": 0
+     },
+     {
+      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "day": "2026-10-11",
+      "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
+      "distance": 2.2383195231560404,
+      "mint": "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+      "y": 0
+     },
+     {
+      "cluster": "creator:BxgkvRwqzYFWuDbRjfTYfgTtb41NaFw1aQ3129F79eBT",
+      "day": "2026-10-13",
+      "decision_key": "8087dec44b53cac461bde3870abb934c0aac3cdc6134e860a7ab677ba0d04d5d",
+      "distance": 2.2911193506549945,
+      "mint": "METAwkXcqyXKy1AtsSgJ8JiUHwGCafnZL38n3vYmeta",
+      "y": 0
+     },
+     {
+      "cluster": "creator:5xsibKwtiN6ruxsYrEyWVpV3KcwuzSPbQd1n28a7spEd",
+      "day": "2026-10-12",
+      "decision_key": "57507d51778c5339375908434b0cef012a3942a8b5d36b80fe071a022f894e47",
+      "distance": 2.311617119589832,
+      "mint": "6Mix12LiHrQFojaQEnfPUC65Qkwd6X4Y5Qg93oFbordr",
+      "y": 1
+     },
+     {
+      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "day": "2026-10-08",
+      "decision_key": "4609064b63d2bbe7826c498958e4b4e1e9bfc0f96ed9709f708c87b39c05ef85",
+      "distance": 2.328075708992042,
+      "mint": "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:EhwA3ymE7ZSwDmVs1eErB4JRhg7721ARL6LthocjdTBb",
+      "day": "2026-10-13",
+      "decision_key": "b3900a65df7687424cbe2628e6ac35a723d620153758cb308afa6635a2fc0fc2",
+      "distance": 2.370484058334719,
+      "mint": "Cy1GS2FqefgaMbi45UunrUzin1rfEmTUYnomddzBpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "day": "2026-10-09",
+      "decision_key": "f94e8926676295a610c2864653161ec2c9218c490cda084f895512e91e576e0e",
+      "distance": 2.3883259672678916,
+      "mint": "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:3pbJPnxQZpQvTrfjt9a7hbDnfeiaXMHocpJgoaRvRP7U",
+      "day": "2026-10-11",
+      "decision_key": "7dbf3d7b3a5c7fe0c6783706d6964ee35c4f69ed699280e6d0398a3c72f3eb4a",
+      "distance": 2.3885832786731647,
+      "mint": "9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+      "day": "2026-10-10",
+      "decision_key": "ea25cd11736e788ab866e91bab56e6745458c910a4965cedd7d6ce3295d0fd70",
+      "distance": 2.4016905537808815,
+      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:8HCj9vivAFwE1YcKPH1mrFDvsfErX2orEAgdMLim6zDf",
+      "day": "2026-10-13",
+      "decision_key": "77af704887d2e26a9d44a07bcc348859ac005b08412df9d363be4ef197e99c0a",
+      "distance": 2.5375976617729923,
+      "mint": "u7XNK4pbxXgWzBwqidDV2TtsXwLqqxtjmGfw1H8pump",
+      "y": 1
+     },
+     {
+      "cluster": "mint:solana:39ahtL8ynzE4amH26J29C93PA5172V3ft9UuUcqQS8fz",
+      "day": "2026-10-07",
+      "decision_key": "29c621774bb63c563e34f1b6aaa75bcbbef466711576010c1d65daa3d3e812a0",
+      "distance": 2.5405393554209184,
+      "mint": "39ahtL8ynzE4amH26J29C93PA5172V3ft9UuUcqQS8fz",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+      "day": "2026-10-07",
+      "decision_key": "d53cf36c858abac6389483f1bb87e331fcb973c6f4a42faa36f48516a9c4b855",
+      "distance": 2.560801673881892,
+      "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+      "y": 1
+     },
+     {
+      "cluster": "creator:DAR7byxGpLWWdWUkRYM7Lqycvk5KGXMwoHkUJcD4se4r",
+      "day": "2026-10-07",
+      "decision_key": "f2a709cb1be8e692fa3585785278837256975e0ae627d6e6034cb3e4906a8525",
+      "distance": 2.5646672840803393,
+      "mint": "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:3p7f4xNVj7nGcmXe1J1vxt1fvqcY3k8aMwM72PKFN42q",
+      "day": "2026-10-07",
+      "decision_key": "ee1e0cc17d1bc117166664bd54e44dad7d171ef7e6a6cb57215112b5b70607f1",
+      "distance": 2.607555650803372,
+      "mint": "55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
+      "y": 1
+     },
+     {
+      "cluster": "creator:cWKFaakqsCJ8efDYHsTAAe8RAf8a4UQVacfmnKnLEZL",
+      "day": "2026-10-10",
+      "decision_key": "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17",
+      "distance": 2.622817304781981,
+      "mint": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "day": "2026-10-10",
+      "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
+      "distance": 2.7855622014468358,
+      "mint": "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+      "y": 1
+     }
+    ],
+    "as_of": 1792022400.0,
+    "b0": 0.24390243902439024,
+    "day_kish_ess": 6.164383561643835,
+    "decision_key": "f86ab79bcc1ac13ea6d4adadc1df5106c634e3de6bc99f9c4f745374e87c18a5",
+    "decision_time": 1792059228.0,
+    "excluded": {
+     "same_campaign": 0,
+     "same_creator": 1,
+     "same_mint": 3
+    },
+    "flags": [
+     "NO_HISTORICAL_EXECUTABLE_DEPTH",
+     "PRICE_PATH_NOT_PROCEEDS"
+    ],
+    "kth_distance": 2.7855622014468358,
+    "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
+    "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+    "model": "AC2_KNN",
+    "new_mint": false,
+    "number": 0.2575609756097561,
+    "ood_threshold": 3.8419346809405677,
+    "pool_n": 123,
+    "pool_positives": 30,
+    "positives": 8,
+    "publishable": false,
+    "raw_rate": 0.26666666666666666,
+    "reasons": [],
+    "ref_n": 122,
+    "regime": "QUIET/RISK_OFF",
+    "scale": {
+     "mean": [
+      11.786659196459018,
+      15.088735330475409,
+      13.652141330016393,
+      2.8922395633566715
+     ],
+     "sd": [
+      2.4225872622825224,
+      2.844256872659615,
+      1.813337886479032,
+      1.974242889455452
+     ]
+    },
+    "shrunk_number": 0.2575609756097561,
+    "time_sensitivity": {
+     "newer_n": 15,
+     "newer_rate": 0.26666666666666666,
+     "newer_wilson": [
+      0.10897453325692374,
+      0.5195043405598057
+     ],
+     "older_n": 15,
+     "older_rate": 0.26666666666666666,
+     "older_wilson": [
+      0.10897453325692374,
+      0.5195043405598057
+     ],
+     "split_time": 1791544898.0,
+     "time_unstable": false
+    },
+    "wilson": [
+     0.14182663319596317,
+     0.4444796169518888
+    ]
+   },
+   "AC3_KNN_REGIME": {
+    "G": 30,
+    "analog_days": 5,
+    "analog_mints": 30,
+    "analogs": [
+     {
+      "cluster": "mint:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "day": "2026-10-08",
+      "decision_key": "0ada51f42f6d28b0c653eb63300afb4d8b7bf8ab66818fa97d507bb6dcd84fb1",
+      "distance": 1.385310647024493,
+      "mint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "y": 0
+     },
+     {
+      "cluster": "creator:GziA3ZgkmnUcK9vuscnDpzLTcpHTSnmyQ6JwPKP5oSkR",
+      "day": "2026-10-11",
+      "decision_key": "047c511d9d5089358ad9a3e5c1b1c1e06becb33501371e57b4bddfd18d866afc",
+      "distance": 1.4493849255740683,
+      "mint": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+      "y": 0
+     },
+     {
+      "cluster": "creator:5e2qRc1DNEXmyxP8qwPwJhRWjef7usLyi7v5xjqLr5G7",
+      "day": "2026-10-10",
+      "decision_key": "2eccf63571757d286da47fe780d475f7f659241ad002641feab67e0f49be09ff",
+      "distance": 1.5978710945830161,
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+      "day": "2026-10-08",
+      "decision_key": "c69b5d5fe795785b35b9b9f33b42b57b7855e86fc641d7cc7604d5b9167dde67",
+      "distance": 1.774795979878756,
+      "mint": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+      "y": 0
+     },
+     {
+      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "day": "2026-10-08",
+      "decision_key": "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
+      "distance": 1.791762904467621,
+      "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+      "y": 0
+     },
+     {
+      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "day": "2026-10-09",
+      "decision_key": "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
+      "distance": 1.8247711252453171,
+      "mint": "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+      "day": "2026-10-08",
+      "decision_key": "9bd332f01ceedf04af712e099a28ddd18135b94f83ab65ad0ab6c731c9767da2",
+      "distance": 1.8938010969534498,
+      "mint": "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+      "y": 0
+     },
+     {
+      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "day": "2026-10-10",
+      "decision_key": "c8d4cd7ee702168311a2782d20de184fc4770aa0a90ab07bcb68160e459132c7",
+      "distance": 1.9013690532408891,
+      "mint": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "day": "2026-10-11",
+      "decision_key": "a4c4f406e5d565b94eed1445d18c00d5bb3004099be9167d639305aaba8395cf",
+      "distance": 1.9593407257438193,
+      "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+      "y": 1
+     },
+     {
+      "cluster": "mint:solana:HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
+      "day": "2026-10-11",
+      "decision_key": "dfe400dcca348f53c3737da35a5a559b963a1d8fa3001ab9ac5e82a71fb96d00",
+      "distance": 2.1651622351010857,
+      "mint": "HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
+      "y": 0
+     },
+     {
+      "cluster": "creator:BxgkvRwqzYFWuDbRjfTYfgTtb41NaFw1aQ3129F79eBT",
+      "day": "2026-10-13",
+      "decision_key": "8087dec44b53cac461bde3870abb934c0aac3cdc6134e860a7ab677ba0d04d5d",
+      "distance": 2.1804421223255637,
+      "mint": "METAwkXcqyXKy1AtsSgJ8JiUHwGCafnZL38n3vYmeta",
+      "y": 0
+     },
+     {
+      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "day": "2026-10-11",
+      "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
+      "distance": 2.2772990439018677,
+      "mint": "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "day": "2026-10-13",
+      "decision_key": "314ab615f744a86317bb583db137cd46ed6bfdb0a7b31a0e8a8fb8beb8b2f36a",
+      "distance": 2.2906457347501346,
+      "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+      "day": "2026-10-10",
+      "decision_key": "ea25cd11736e788ab866e91bab56e6745458c910a4965cedd7d6ce3295d0fd70",
+      "distance": 2.3588020368251312,
+      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:3pbJPnxQZpQvTrfjt9a7hbDnfeiaXMHocpJgoaRvRP7U",
+      "day": "2026-10-11",
+      "decision_key": "7dbf3d7b3a5c7fe0c6783706d6964ee35c4f69ed699280e6d0398a3c72f3eb4a",
+      "distance": 2.376707370507415,
+      "mint": "9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:EhwA3ymE7ZSwDmVs1eErB4JRhg7721ARL6LthocjdTBb",
+      "day": "2026-10-13",
+      "decision_key": "b3900a65df7687424cbe2628e6ac35a723d620153758cb308afa6635a2fc0fc2",
+      "distance": 2.3826827020864667,
+      "mint": "Cy1GS2FqefgaMbi45UunrUzin1rfEmTUYnomddzBpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "day": "2026-10-10",
+      "decision_key": "e31e5965247f03929d5711cef1b77f9d1400566bbbc8974e6fd486a142e0ee10",
+      "distance": 2.4656294582105067,
+      "mint": "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "day": "2026-10-13",
+      "decision_key": "aa0ffbf981d4f46e743ba454ec6ad1695fbc918847cb815262337424b13c92e3",
+      "distance": 2.554935430001009,
+      "mint": "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:cWKFaakqsCJ8efDYHsTAAe8RAf8a4UQVacfmnKnLEZL",
+      "day": "2026-10-10",
+      "decision_key": "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17",
+      "distance": 2.555719842104836,
+      "mint": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:8HCj9vivAFwE1YcKPH1mrFDvsfErX2orEAgdMLim6zDf",
+      "day": "2026-10-13",
+      "decision_key": "77af704887d2e26a9d44a07bcc348859ac005b08412df9d363be4ef197e99c0a",
+      "distance": 2.573622764864127,
+      "mint": "u7XNK4pbxXgWzBwqidDV2TtsXwLqqxtjmGfw1H8pump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "day": "2026-10-10",
+      "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
+      "distance": 2.7411715489085227,
+      "mint": "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+      "y": 1
+     },
+     {
+      "cluster": "mint:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "day": "2026-10-11",
+      "decision_key": "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
+      "distance": 2.888661827200829,
+      "mint": "HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "y": 0
+     },
+     {
+      "cluster": "creator:DDDw9AgUrPJxGxAZNC6DPEpyQv5Jd1wfiGzwVza2v2fb",
+      "day": "2026-10-11",
+      "decision_key": "06a18bd40785c9b511cd2308a51e807323fb8428c9001e246bf14c4daab1a7ae",
+      "distance": 2.9981369256851447,
+      "mint": "6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
+      "y": 0
+     },
+     {
+      "cluster": "creator:5mawG9WZxT2xmeuijSS7XxigNcr7Wv8d9Umx2t2RxmAi",
+      "day": "2026-10-13",
+      "decision_key": "0290434ab2ede41be7172d281027de4cd36e855f6c61a5c978ddba0ca22edcbb",
+      "distance": 3.0167622899201665,
+      "mint": "HTmQz7My6MehV7bjhJ6jde8nDND1yvsz68d24LP7YgUQ",
+      "y": 0
+     },
+     {
+      "cluster": "creator:CVop2LAjqx77Lacg9wFN8vm4jhUugAW8wjS1PiYYWY97",
+      "day": "2026-10-10",
+      "decision_key": "cd2ec28f9818dcd3396374be4131d350e84b42b8b456fabfa57f140be4835c35",
+      "distance": 3.0467830763642536,
+      "mint": "8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
+      "y": 0
+     },
+     {
+      "cluster": "creator:3kg6tMZhcsd3vxHEJVrY4MdyQxFDLp2MCW4vBF2YSJ6L",
+      "day": "2026-10-08",
+      "decision_key": "c3d393f2a8263c41fb5504de2beea920acbb35fa0ef05179f78c4e010cea4aa4",
+      "distance": 3.0858440999702705,
+      "mint": "6XhzSy3VTTkwqMUSQsStM3ncGy6ozcPnzLVmv4HZ64cC",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "day": "2026-10-08",
+      "decision_key": "ddd4f6f1356e1f275defbe9242a903a0b01660477fc46b2858576836f1dddfe3",
+      "distance": 3.0966049277574252,
+      "mint": "7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "y": 0
+     },
+     {
+      "cluster": "creator:E7JzWSx2XVaWFaQRbd9K5Yani9Q3aZfC3AwExU1T4m5G",
+      "day": "2026-10-10",
+      "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
+      "distance": 3.1049496490671227,
+      "mint": "BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:HuthLMyzfAdwVVqHvpr28pziyL1uXyYyZshi3y9F9Svo",
+      "day": "2026-10-11",
+      "decision_key": "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
+      "distance": 3.124406425488087,
+      "mint": "EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "day": "2026-10-08",
+      "decision_key": "b10e9ef1f318464f792bf7e606bb0b09715cf4d49be25a325b0378318beb3554",
+      "distance": 3.1404020750940305,
+      "mint": "9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "y": 0
+     }
+    ],
+    "as_of": 1792022400.0,
+    "b0": 0.24390243902439024,
+    "day_kish_ess": 4.205607476635514,
+    "decision_key": "f86ab79bcc1ac13ea6d4adadc1df5106c634e3de6bc99f9c4f745374e87c18a5",
+    "decision_time": 1792059228.0,
+    "excluded": {
+     "same_campaign": 0,
+     "same_creator": 1,
+     "same_mint": 3
+    },
+    "flags": [
+     "NO_HISTORICAL_EXECUTABLE_DEPTH",
+     "PRICE_PATH_NOT_PROCEEDS"
+    ],
+    "kth_distance": 3.1404020750940305,
+    "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
+    "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+    "model": "AC3_KNN_REGIME",
+    "new_mint": false,
+    "number": 0.1975609756097561,
+    "ood_threshold": 4.478198036841491,
+    "pool_n": 123,
+    "pool_positives": 30,
+    "positives": 5,
+    "publishable": false,
+    "raw_rate": 0.16666666666666666,
+    "reasons": [],
+    "ref_n": 55,
+    "regime": "QUIET/RISK_OFF",
+    "scale": {
+     "mean": [
+      11.5546984038,
+      15.432074375781818,
+      13.21848479452727,
+      3.4293728336170375
+     ],
+     "sd": [
+      2.681963366926499,
+      2.5851549181202587,
+      1.982289970126303,
+      1.8664511766545553
+     ]
+    },
+    "shrunk_number": 0.1975609756097561,
+    "time_sensitivity": {
+     "newer_n": 15,
+     "newer_rate": 0.2,
+     "newer_wilson": [
+      0.07047549346981563,
+      0.45185448715169363
+     ],
+     "older_n": 15,
+     "older_rate": 0.13333333333333333,
+     "older_wilson": [
+      0.03736125910306537,
+      0.37881982832322364
+     ],
+     "split_time": 1791630471.0,
+     "time_unstable": false
+    },
+    "wilson": [
+     0.0733654237184855,
+     0.3356435050641603
+    ]
+   },
+   "AC3_LOCO": {
+    "G": 30,
+    "analog_days": 5,
+    "analog_mints": 30,
+    "analogs": [
+     {
+      "cluster": "mint:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "day": "2026-10-08",
+      "decision_key": "0ada51f42f6d28b0c653eb63300afb4d8b7bf8ab66818fa97d507bb6dcd84fb1",
+      "distance": 1.385310647024493,
+      "mint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "y": 0
+     },
+     {
+      "cluster": "creator:GziA3ZgkmnUcK9vuscnDpzLTcpHTSnmyQ6JwPKP5oSkR",
+      "day": "2026-10-11",
+      "decision_key": "047c511d9d5089358ad9a3e5c1b1c1e06becb33501371e57b4bddfd18d866afc",
+      "distance": 1.4493849255740683,
+      "mint": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+      "y": 0
+     },
+     {
+      "cluster": "creator:5e2qRc1DNEXmyxP8qwPwJhRWjef7usLyi7v5xjqLr5G7",
+      "day": "2026-10-10",
+      "decision_key": "2eccf63571757d286da47fe780d475f7f659241ad002641feab67e0f49be09ff",
+      "distance": 1.5978710945830161,
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+      "day": "2026-10-08",
+      "decision_key": "c69b5d5fe795785b35b9b9f33b42b57b7855e86fc641d7cc7604d5b9167dde67",
+      "distance": 1.774795979878756,
+      "mint": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+      "y": 0
+     },
+     {
+      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "day": "2026-10-08",
+      "decision_key": "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
+      "distance": 1.791762904467621,
+      "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+      "y": 0
+     },
+     {
+      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "day": "2026-10-09",
+      "decision_key": "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
+      "distance": 1.8247711252453171,
+      "mint": "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+      "day": "2026-10-08",
+      "decision_key": "9bd332f01ceedf04af712e099a28ddd18135b94f83ab65ad0ab6c731c9767da2",
+      "distance": 1.8938010969534498,
+      "mint": "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+      "y": 0
+     },
+     {
+      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "day": "2026-10-10",
+      "decision_key": "c8d4cd7ee702168311a2782d20de184fc4770aa0a90ab07bcb68160e459132c7",
+      "distance": 1.9013690532408891,
+      "mint": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "day": "2026-10-11",
+      "decision_key": "a4c4f406e5d565b94eed1445d18c00d5bb3004099be9167d639305aaba8395cf",
+      "distance": 1.9593407257438193,
+      "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+      "y": 1
+     },
+     {
+      "cluster": "mint:solana:HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
+      "day": "2026-10-11",
+      "decision_key": "dfe400dcca348f53c3737da35a5a559b963a1d8fa3001ab9ac5e82a71fb96d00",
+      "distance": 2.1651622351010857,
+      "mint": "HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
+      "y": 0
+     },
+     {
+      "cluster": "creator:BxgkvRwqzYFWuDbRjfTYfgTtb41NaFw1aQ3129F79eBT",
+      "day": "2026-10-13",
+      "decision_key": "8087dec44b53cac461bde3870abb934c0aac3cdc6134e860a7ab677ba0d04d5d",
+      "distance": 2.1804421223255637,
+      "mint": "METAwkXcqyXKy1AtsSgJ8JiUHwGCafnZL38n3vYmeta",
+      "y": 0
+     },
+     {
+      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "day": "2026-10-11",
+      "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
+      "distance": 2.2772990439018677,
+      "mint": "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "day": "2026-10-13",
+      "decision_key": "314ab615f744a86317bb583db137cd46ed6bfdb0a7b31a0e8a8fb8beb8b2f36a",
+      "distance": 2.2906457347501346,
+      "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+      "day": "2026-10-10",
+      "decision_key": "ea25cd11736e788ab866e91bab56e6745458c910a4965cedd7d6ce3295d0fd70",
+      "distance": 2.3588020368251312,
+      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:3pbJPnxQZpQvTrfjt9a7hbDnfeiaXMHocpJgoaRvRP7U",
+      "day": "2026-10-11",
+      "decision_key": "7dbf3d7b3a5c7fe0c6783706d6964ee35c4f69ed699280e6d0398a3c72f3eb4a",
+      "distance": 2.376707370507415,
+      "mint": "9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:EhwA3ymE7ZSwDmVs1eErB4JRhg7721ARL6LthocjdTBb",
+      "day": "2026-10-13",
+      "decision_key": "b3900a65df7687424cbe2628e6ac35a723d620153758cb308afa6635a2fc0fc2",
+      "distance": 2.3826827020864667,
+      "mint": "Cy1GS2FqefgaMbi45UunrUzin1rfEmTUYnomddzBpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "day": "2026-10-10",
+      "decision_key": "e31e5965247f03929d5711cef1b77f9d1400566bbbc8974e6fd486a142e0ee10",
+      "distance": 2.4656294582105067,
+      "mint": "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "day": "2026-10-13",
+      "decision_key": "aa0ffbf981d4f46e743ba454ec6ad1695fbc918847cb815262337424b13c92e3",
+      "distance": 2.554935430001009,
+      "mint": "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:cWKFaakqsCJ8efDYHsTAAe8RAf8a4UQVacfmnKnLEZL",
+      "day": "2026-10-10",
+      "decision_key": "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17",
+      "distance": 2.555719842104836,
+      "mint": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:8HCj9vivAFwE1YcKPH1mrFDvsfErX2orEAgdMLim6zDf",
+      "day": "2026-10-13",
+      "decision_key": "77af704887d2e26a9d44a07bcc348859ac005b08412df9d363be4ef197e99c0a",
+      "distance": 2.573622764864127,
+      "mint": "u7XNK4pbxXgWzBwqidDV2TtsXwLqqxtjmGfw1H8pump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "day": "2026-10-10",
+      "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
+      "distance": 2.7411715489085227,
+      "mint": "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+      "y": 1
+     },
+     {
+      "cluster": "mint:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "day": "2026-10-11",
+      "decision_key": "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
+      "distance": 2.888661827200829,
+      "mint": "HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "y": 0
+     },
+     {
+      "cluster": "creator:DDDw9AgUrPJxGxAZNC6DPEpyQv5Jd1wfiGzwVza2v2fb",
+      "day": "2026-10-11",
+      "decision_key": "06a18bd40785c9b511cd2308a51e807323fb8428c9001e246bf14c4daab1a7ae",
+      "distance": 2.9981369256851447,
+      "mint": "6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
+      "y": 0
+     },
+     {
+      "cluster": "creator:5mawG9WZxT2xmeuijSS7XxigNcr7Wv8d9Umx2t2RxmAi",
+      "day": "2026-10-13",
+      "decision_key": "0290434ab2ede41be7172d281027de4cd36e855f6c61a5c978ddba0ca22edcbb",
+      "distance": 3.0167622899201665,
+      "mint": "HTmQz7My6MehV7bjhJ6jde8nDND1yvsz68d24LP7YgUQ",
+      "y": 0
+     },
+     {
+      "cluster": "creator:CVop2LAjqx77Lacg9wFN8vm4jhUugAW8wjS1PiYYWY97",
+      "day": "2026-10-10",
+      "decision_key": "cd2ec28f9818dcd3396374be4131d350e84b42b8b456fabfa57f140be4835c35",
+      "distance": 3.0467830763642536,
+      "mint": "8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
+      "y": 0
+     },
+     {
+      "cluster": "creator:3kg6tMZhcsd3vxHEJVrY4MdyQxFDLp2MCW4vBF2YSJ6L",
+      "day": "2026-10-08",
+      "decision_key": "c3d393f2a8263c41fb5504de2beea920acbb35fa0ef05179f78c4e010cea4aa4",
+      "distance": 3.0858440999702705,
+      "mint": "6XhzSy3VTTkwqMUSQsStM3ncGy6ozcPnzLVmv4HZ64cC",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "day": "2026-10-08",
+      "decision_key": "ddd4f6f1356e1f275defbe9242a903a0b01660477fc46b2858576836f1dddfe3",
+      "distance": 3.0966049277574252,
+      "mint": "7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "y": 0
+     },
+     {
+      "cluster": "creator:E7JzWSx2XVaWFaQRbd9K5Yani9Q3aZfC3AwExU1T4m5G",
+      "day": "2026-10-10",
+      "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
+      "distance": 3.1049496490671227,
+      "mint": "BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:HuthLMyzfAdwVVqHvpr28pziyL1uXyYyZshi3y9F9Svo",
+      "day": "2026-10-11",
+      "decision_key": "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
+      "distance": 3.124406425488087,
+      "mint": "EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "day": "2026-10-08",
+      "decision_key": "b10e9ef1f318464f792bf7e606bb0b09715cf4d49be25a325b0378318beb3554",
+      "distance": 3.1404020750940305,
+      "mint": "9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "y": 0
+     }
+    ],
+    "as_of": 1792022400.0,
+    "b0": 0.24390243902439024,
+    "day_kish_ess": 4.205607476635514,
+    "decision_key": "f86ab79bcc1ac13ea6d4adadc1df5106c634e3de6bc99f9c4f745374e87c18a5",
+    "decision_time": 1792059228.0,
+    "excluded": {
+     "same_campaign": 0,
+     "same_creator": 1,
+     "same_mint": 3
+    },
+    "flags": [
+     "NO_HISTORICAL_EXECUTABLE_DEPTH",
+     "PRICE_PATH_NOT_PROCEEDS"
+    ],
+    "kth_distance": 3.1404020750940305,
+    "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
+    "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+    "model": "AC3_KNN_REGIME_LOCO",
+    "new_mint": false,
+    "number": 0.1975609756097561,
+    "ood_threshold": 4.478198036841491,
+    "pool_n": 123,
+    "pool_positives": 30,
+    "positives": 5,
+    "publishable": false,
+    "raw_rate": 0.16666666666666666,
+    "reasons": [],
+    "ref_n": 55,
+    "regime": "QUIET/RISK_OFF",
+    "scale": {
+     "mean": [
+      11.5546984038,
+      15.432074375781818,
+      13.21848479452727,
+      3.4293728336170375
+     ],
+     "sd": [
+      2.681963366926499,
+      2.5851549181202587,
+      1.982289970126303,
+      1.8664511766545553
+     ]
+    },
+    "shrunk_number": 0.1975609756097561,
+    "time_sensitivity": {
+     "newer_n": 15,
+     "newer_rate": 0.2,
+     "newer_wilson": [
+      0.07047549346981563,
+      0.45185448715169363
+     ],
+     "older_n": 15,
+     "older_rate": 0.13333333333333333,
+     "older_wilson": [
+      0.03736125910306537,
+      0.37881982832322364
+     ],
+     "split_time": 1791630471.0,
+     "time_unstable": false
+    },
+    "wilson": [
+     0.0733654237184855,
+     0.3356435050641603
+    ]
+   }
+  },
+  "cell": [
+   "ge_30d",
+   "ge_1m"
+  ],
+  "creator": "5CEbueQnq1Ym2uSSx2xXds3jQAqT1BDnkA59RZobSPAG",
+  "cutoff": 1792022400.0,
+  "decision_key": "f86ab79bcc1ac13ea6d4adadc1df5106c634e3de6bc99f9c4f745374e87c18a5",
+  "decision_time": 1792059228.0,
+  "inputs": {
+   "ac_launchpad_class": 2.0,
+   "log1p_token_age_days": 4.4382859416992115,
+   "oc_token2022": 0.0,
+   "thesis_log1p_liquidity_usd": 14.85588275,
+   "thesis_log1p_mcap_usd": 18.19279214,
+   "thesis_log1p_vol_24h_usd": 16.20664448
+  },
+  "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+  "pool_keys": [
+   "01f6e0af42de4459c70fc91793824829bc645151e001752fd8342029c0882917",
+   "0290434ab2ede41be7172d281027de4cd36e855f6c61a5c978ddba0ca22edcbb",
+   "047c511d9d5089358ad9a3e5c1b1c1e06becb33501371e57b4bddfd18d866afc",
+   "06a18bd40785c9b511cd2308a51e807323fb8428c9001e246bf14c4daab1a7ae",
+   "08a223736858cc7fa45d8e66b07d94a808ab666b5958027c01408f152065126d",
+   "09bfee4e93ff88aeb629e8e1723a4a9b4b5c8a2dc8b74c53d587210331555d05",
+   "0ada51f42f6d28b0c653eb63300afb4d8b7bf8ab66818fa97d507bb6dcd84fb1",
+   "127dc358b74e36906c0b918c048b63c36af26ee5ebadcc488ff436b443d31a7e",
+   "164f7e743514aacc7db62ff5d44feb25d7e6b4b3f9882f6b922df07063d45cc5",
+   "19ddfd5de2a026e432008e1b1b893c091b8bb4faf92b85a1cb4d984812a1e292",
+   "1d2ce2503a6bfd64db30421d01cade089e2b2222d70fe04deba013c4e16a4279",
+   "1d889a5ab9f8e7cc1d1e8befa633e82cea83337889c5c2037266882a96932e0a",
+   "1ec073a4ab8b9f8dddaa78dcbf44b6b4979c1900e596ecd08b213826d860e63f",
+   "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
+   "248557a701f4bb14f56902cc7a3d528c515153b34efa83d418b268479d38a50e",
+   "29c621774bb63c563e34f1b6aaa75bcbbef466711576010c1d65daa3d3e812a0",
+   "2a982bd53a6d431472e6dfa1f15d24812c8d85f549007468226c41f79cd7c60b",
+   "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
+   "2eccf63571757d286da47fe780d475f7f659241ad002641feab67e0f49be09ff",
+   "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
+   "31142a33d46053a611c0fc845591b6d457c8b4b0ff2932c0db1780c1ae7fedca",
+   "314ab615f744a86317bb583db137cd46ed6bfdb0a7b31a0e8a8fb8beb8b2f36a",
+   "358a97cfcf638a73c4d40df91d36934da1f2e9393825054afea48c9fef8b7321",
+   "37bb74585b03f3f03c5043658e1910e54f000b2bde87d3ef714b39d4c7481080",
+   "39a1c4f7e028d0d93c0ab7f0ba61fc13e6cdcc54934657ed99574c0796b5091e",
+   "3aa19f76ab711047aece3944c52059ce500f145ce319c45390d3f2a6eacae104",
+   "3c3a5cca4295037495878bae7249ce541943a993a7d69ec244a78c13be289725",
+   "40c9f4fe5e315983358f1effbd4da9f482965bd23bf29d8f5c8031459559dbdc",
+   "4465ff1ce51d4dc8dbaecee02100f861c1e6f214cda57a84aafc2e98530b1aff",
+   "44abdc7df1c1819615a001d0598954efd79e08a450ab6d12efe91d44f425c04d",
+   "44b8fbbfd788c48c7904992903ddeae8af82c518eb1726721a68997ad547085a",
+   "4609064b63d2bbe7826c498958e4b4e1e9bfc0f96ed9709f708c87b39c05ef85",
+   "4843684ae9a3e65ce12d2a47d90aa383b2ea7c70cc07e0f05625085ed719e462",
+   "49ddc4bd84b2290af91c20a10d83b96006df23d3e7b920aef5c627e2ce0b06dd",
+   "4b33b36c051d59016f7826b9d7fb62a92fdb179e79b4a5f97faf783de95f0917",
+   "4df5c9017fb4a8d4365de29ee4bf8d674b42f33c69ba4acac1381cf56dbeb62b",
+   "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
+   "57507d51778c5339375908434b0cef012a3942a8b5d36b80fe071a022f894e47",
+   "5c881e3466928992948f13debaf6a3cc829f0a6d6b8d96b136f16b196b10d784",
+   "615afbdf23daef264aaf3a28cf74d13fe85b3a96841bdc9c0bdbafce328d764b",
+   "6398161774ee9003a267a0ab5eb49cd4041c8efc4f1c47a39139bd0b5e42e7e9",
+   "6828ce213b00690d37994854643d8c2499e3a2a24a373b8e5ec88aa066605224",
+   "69ebb2b8cf74041e91f116bf5378d3d2b9b196fb7cee5d3074683c480c36370f",
+   "7174d94c01624ee5fe6a8d1e76012a9e83effbbfd296e6081a66fd3cc650fc04",
+   "720d5590630864095eff60394c041bc47974fd34e50ed0731ae4c6dc8f41717d",
+   "73976cedd12a1982414c9cb87d6b5fb46541033669e34283c902e146bb3b2a76",
+   "742780f582621cdfba75f568e8803f3caa84d73e46c80073f9f9efa0cbd32063",
+   "74582082349ad2000840fe65a96662ab6dfa2febf73c2e333aa94c62f648c640",
+   "74a8083ad04f3f2a29c12de63349a5e12f7611972152f7ef92da6d1df171e84c",
+   "76bc7baa8425056cdce41e07ed26661994998879a6368905ad57d94ee5f47104",
+   "77af704887d2e26a9d44a07bcc348859ac005b08412df9d363be4ef197e99c0a",
+   "7823c065d9d68719b7ac13a57a5a98e66cb09eebe2464b061b3def3c8d05d249",
+   "79ce584dee22376567dcc7d81484aafb3a9bae9249c6d1eb707d9b34bc358f15",
+   "7b01e6ca83b65ff199b2b43151b3d01a683d67db1d41541a4c0b7ad096e68175",
+   "7dbf3d7b3a5c7fe0c6783706d6964ee35c4f69ed699280e6d0398a3c72f3eb4a",
+   "7fe99e47eeb5cbb76a4516ae8a28373f39481232fbee2a2902dfb74f15377c2a",
+   "8087dec44b53cac461bde3870abb934c0aac3cdc6134e860a7ab677ba0d04d5d",
+   "813221ba77d4bcae64664e1328cdb3c9622c9723e53395830b6030183f90a8f7",
+   "825ad9aa2ba4d9efb97bd26f89581dadedd7978ba7faf2cab03e6b47b52e71cb",
+   "83b6ea620fee50541d7f2ce14b1d9ffc74d8e249ff9c658d9a4bc6176b9dbdea",
+   "8650a6464a7fedce32d62f148bf6bfc31620b468441b8d19a85470453e513ba3",
+   "88099b59881501352f41c7310ee45c9d45399cd4112c851181eb509ccd7daa10",
+   "890568ea68c73b91e762bfe4885807d14eabf17bb4a747d4ce2f16b08d4d6de2",
+   "8c42f733faf2620bd22dc644cd3dee86164669ed294dd086401683984dfeefbb",
+   "8d78dc1d787cc7480abe3eb12555965d6d81366d13013b058d4670c55a0a4079",
+   "8e8c0826813f0ffba439113bf94dc7b8e6b06f42bcf4501194e3580ce4d3e6e6",
+   "8fe539bd60dd0b346db5db50310c79192ca8f8d23cfeee62eb1d81dcc666f178",
+   "8ff1f5a3b3cea39a0fadfdd589c7176efcf4c6253e31fba29787452c9eb10ca2",
+   "96a3993868007a6f1f2b3ddb20d0ed956b6fb091f9b109944ceb0499aa485822",
+   "96ba81cb7967c34e9b00527bae608609533f0193af8faaaec94a2f1047c9c789",
+   "9a5f7f746b0126f949bcb06a4852a2a024b3dfce5c2bc7ef53510136ac85d2fe",
+   "9bd332f01ceedf04af712e099a28ddd18135b94f83ab65ad0ab6c731c9767da2",
+   "9ea5cdce825e91b0a05c9db0b2cb7492920a95afdadb40dada09d24bfd4fb40d",
+   "a0a22e40117e15d922112320678407f203e360b0486b860bf520d755f1a3bfcd",
+   "a1d2a3c8638c1eb260bd4237d67b0fe997cdd9674c3d5ce805295649cd37c218",
+   "a4c4f406e5d565b94eed1445d18c00d5bb3004099be9167d639305aaba8395cf",
+   "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
+   "a8299cda76821713abdabb730d056f6e307a4696d7e18711d59d88c48c46211b",
+   "aa0ffbf981d4f46e743ba454ec6ad1695fbc918847cb815262337424b13c92e3",
+   "ac1436e8b026f63fdcff2c524f14941193c57553c677ee7755703b3f4f3f0ee6",
+   "ac1be05dbd88a7da84d168880ce1a01a4f3abffdb0e694b5350311320e39ec9d",
+   "ae5873864b7ee614ca7e01d875431c734f00c0b186e12b34bf124c5e3a97bcea",
+   "b10e9ef1f318464f792bf7e606bb0b09715cf4d49be25a325b0378318beb3554",
+   "b1a24869bd60c2420a15bc73654ce65789aa01a674e8e7aa9dc0988963c55170",
+   "b1df8c0418b2c85d55511be0f2a5fd2edff7f8fde1aa252655ca47fec387765e",
+   "b3900a65df7687424cbe2628e6ac35a723d620153758cb308afa6635a2fc0fc2",
+   "b4ad12fbcd12130c6ce0415169183fdada65e28b393f5de9c825f468315b4f61",
+   "b5ddb6ad15aa67ea8d65afdc71b58d2e39ea51378fcf3ad87b3fe1bb4950e8a4",
+   "bcc8f42cdb5bff89ba45958ce9114f3be0e4d9ca2e8d068331dcf15a24692fee",
+   "bd9562043a777073d9cdb8dd5fb4b65e013e5beb6ddbe15a0e7d6b263f3d8f1f",
+   "beb1b5cdb3e549aac0f446c774801790150c0db77c6fe1104e6ff28efd07cd4a",
+   "bee8c1456657cff1f403b73097025b41e2e3155cf65b01aeba1b236713907cd8",
+   "bf652e17f02ac91d46a72f7c4f9cdcf0830c27aea3e297f7cd60bbb1a69b6ad0",
+   "bfde5772d7cd4d49e894a95e57dfa937ab34d2d8b93e5e85ce6188e5cd5ecbce",
+   "c283f6bc648b42a35c28967a11b9d2a9e4c09ea751b8bc1cc463a305b0372ec3",
+   "c3d393f2a8263c41fb5504de2beea920acbb35fa0ef05179f78c4e010cea4aa4",
+   "c69b5d5fe795785b35b9b9f33b42b57b7855e86fc641d7cc7604d5b9167dde67",
+   "c8d4cd7ee702168311a2782d20de184fc4770aa0a90ab07bcb68160e459132c7",
+   "cb2d1994ed8ac733183554793ba4e45f143f808c3f2ce0010787bfa1c067212c",
+   "cd2ec28f9818dcd3396374be4131d350e84b42b8b456fabfa57f140be4835c35",
+   "d341725365eaec03a2fbc4f722dbb36233d1dc5616f02adc641965c3148f5133",
+   "d53cf36c858abac6389483f1bb87e331fcb973c6f4a42faa36f48516a9c4b855",
+   "da64a9d95b19fc0004aa868a493eec4accb6e595fa3fd160bcbcbc849742a56c",
+   "dc0d298f82c04221e1371f498b7a3faa5ac0c7494f599473f7f63a81ae01866a",
+   "ddd4f6f1356e1f275defbe9242a903a0b01660477fc46b2858576836f1dddfe3",
+   "dfe400dcca348f53c3737da35a5a559b963a1d8fa3001ab9ac5e82a71fb96d00",
+   "e0ac032f2af8ba7182e77afdd6f0dd781b03880270159b72f6d2c49d1c4c0eec",
+   "e31e5965247f03929d5711cef1b77f9d1400566bbbc8974e6fd486a142e0ee10",
+   "e92f86dd49618974e2a0e0c667c6435bc27f13a6c136c2126561bcdb4c6b9029",
+   "ea25cd11736e788ab866e91bab56e6745458c910a4965cedd7d6ce3295d0fd70",
+   "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
+   "ed0aed48ed9cb867d0fbb12cfcdad74a86349367a65072f3d3b5003dd384a014",
+   "ee1e0cc17d1bc117166664bd54e44dad7d171ef7e6a6cb57215112b5b70607f1",
+   "efa03ae4fa14ee4d6825f87cc4015ef2cc9c5ffd80226944db9bac72899cc426",
+   "f2a709cb1be8e692fa3585785278837256975e0ae627d6e6034cb3e4906a8525",
+   "f3c2dd156072a9770a46995a6717060d2f8899c3248f2c900937ce1310a27175",
+   "f6887280c240a824e6485c856ae15d86afe505c51ff77efc6f668cdd61bedc62",
+   "f6ecc6afefa38a1b87a638a489e7a4b527cf8f31747799aa31051773fca1f886",
+   "f94e8926676295a610c2864653161ec2c9218c490cda084f895512e91e576e0e",
+   "fa458de1dec6b0180e2bcb66ad2fb66d8089fde0b98edc7002e129d35480955b",
+   "fb814c71793a5b957bf7fa82785a2a47438307f68dc1efd1c859be3f1826c091",
+   "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
+   "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17"
+  ],
+  "regime_record": {
+   "T": 1792059228.0,
+   "activity_median_log1p_vol": 13.28145938,
+   "catalyst_category": "CATALYST_TABLES_NOT_EXPORTED",
+   "chain_wide_state": "CHAIN_WIDE_DATA_NOT_AVAILABLE",
+   "label": "QUIET/RISK_OFF",
+   "past_activity_median": 14.46658403,
+   "past_tone_median": 0.29444444444444445,
+   "prior_instants": 77,
+   "tone_constructive_share": 0.11538461538461539,
+   "window_decisions": 26
+  },
+  "target": "price_path_target_before_invalidation_24h",
+  "target_short": "T1_24h",
+  "y": 0
+ },
+ {
+  "answers": {
+   "AC1_STRATA": {
+    "G": 10,
+    "analog_days": 5,
+    "analog_mints": 10,
+    "analogs": [
+     {
+      "cluster": "creator:3p7f4xNVj7nGcmXe1J1vxt1fvqcY3k8aMwM72PKFN42q",
+      "day": "2026-10-07",
+      "decision_key": "ee1e0cc17d1bc117166664bd54e44dad7d171ef7e6a6cb57215112b5b70607f1",
+      "distance": null,
+      "mint": "55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
+      "y": 1
+     },
+     {
+      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "day": "2026-10-08",
+      "decision_key": "4609064b63d2bbe7826c498958e4b4e1e9bfc0f96ed9709f708c87b39c05ef85",
+      "distance": null,
+      "mint": "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "day": "2026-10-08",
+      "decision_key": "cb2d1994ed8ac733183554793ba4e45f143f808c3f2ce0010787bfa1c067212c",
+      "distance": null,
+      "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:BEyyzsG2GR1eyvhTo83E7yg6jHU6fDypzvA4yRL5yBhx",
+      "day": "2026-10-09",
+      "decision_key": "7823c065d9d68719b7ac13a57a5a98e66cb09eebe2464b061b3def3c8d05d249",
+      "distance": null,
+      "mint": "8k4sBtEeK4pf26noKqApv8NBTnuSJcbdwpKYknk5PbAA",
+      "y": 1
+     },
+     {
+      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "day": "2026-10-09",
+      "decision_key": "c283f6bc648b42a35c28967a11b9d2a9e4c09ea751b8bc1cc463a305b0372ec3",
+      "distance": null,
+      "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+      "y": 0
+     },
+     {
+      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "day": "2026-10-10",
+      "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
+      "distance": null,
+      "mint": "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+      "y": 0
+     },
+     {
+      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "day": "2026-10-10",
+      "decision_key": "c8d4cd7ee702168311a2782d20de184fc4770aa0a90ab07bcb68160e459132c7",
+      "distance": null,
+      "mint": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "day": "2026-10-10",
+      "decision_key": "beb1b5cdb3e549aac0f446c774801790150c0db77c6fe1104e6ff28efd07cd4a",
+      "distance": null,
+      "mint": "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "day": "2026-10-11",
+      "decision_key": "7fe99e47eeb5cbb76a4516ae8a28373f39481232fbee2a2902dfb74f15377c2a",
+      "distance": null,
+      "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "day": "2026-10-11",
+      "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
+      "distance": null,
+      "mint": "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+      "y": 0
+     }
+    ],
+    "as_of": 1791936000.0,
+    "b0": 0.25961538461538464,
+    "cell": [
+     "7d_30d",
+     "100k_1m"
+    ],
+    "day_kish_ess": 4.545454545454546,
+    "decision_key": "6070e73636132d818acc46fe134dd097aadbac0bed79ff8de90a0e44ebf74f9e",
+    "decision_time": 1791973063.0,
+    "excluded": {
+     "same_campaign": 0,
+     "same_creator": 0,
+     "same_mint": 1
+    },
+    "flags": [
+     "NO_HISTORICAL_EXECUTABLE_DEPTH",
+     "PRICE_PATH_NOT_PROCEEDS"
+    ],
+    "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
+    "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+    "model": "AC1_STRATA",
+    "new_mint": false,
+    "number": null,
+    "pool_n": 104,
+    "pool_positives": 27,
+    "positives": 2,
+    "publishable": false,
+    "raw_rate": 0.2,
+    "reasons": [
+     "ANALOGS_TOO_FEW:G_BELOW_MIN"
+    ],
+    "regime": "QUIET/RISK_OFF",
+    "shrunk_number": 0.23974358974358975,
+    "time_sensitivity": {
+     "newer_n": 5,
+     "newer_rate": 0.0,
+     "newer_wilson": [
+      0.0,
+      0.43448246478317476
+     ],
+     "older_n": 5,
+     "older_rate": 0.4,
+     "older_wilson": [
+      0.11762077423264783,
+      0.769275718723987
+     ],
+     "split_time": 1791628305.0,
+     "time_unstable": false
+    },
+    "wilson": [
+     0.05668215145437519,
+     0.5098375284633583
+    ]
+   },
+   "AC2_KNN": {
+    "G": 30,
+    "analog_days": 5,
+    "analog_mints": 29,
+    "analogs": [
+     {
+      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "day": "2026-10-11",
+      "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
+      "distance": 0.19753858659520507,
+      "mint": "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+      "y": 0
+     },
+     {
+      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "day": "2026-10-08",
+      "decision_key": "4609064b63d2bbe7826c498958e4b4e1e9bfc0f96ed9709f708c87b39c05ef85",
+      "distance": 0.35716737147954425,
+      "mint": "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "day": "2026-10-09",
+      "decision_key": "69ebb2b8cf74041e91f116bf5378d3d2b9b196fb7cee5d3074683c480c36370f",
+      "distance": 0.5059233371870901,
+      "mint": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "day": "2026-10-07",
+      "decision_key": "bcc8f42cdb5bff89ba45958ce9114f3be0e4d9ca2e8d068331dcf15a24692fee",
+      "distance": 0.5517502456725171,
+      "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "day": "2026-10-07",
+      "decision_key": "83b6ea620fee50541d7f2ce14b1d9ffc74d8e249ff9c658d9a4bc6176b9dbdea",
+      "distance": 0.6803589705380968,
+      "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:DAR7byxGpLWWdWUkRYM7Lqycvk5KGXMwoHkUJcD4se4r",
+      "day": "2026-10-07",
+      "decision_key": "f2a709cb1be8e692fa3585785278837256975e0ae627d6e6034cb3e4906a8525",
+      "distance": 0.7329334777019115,
+      "mint": "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:6SJHhnhrmRUGn7tLPW8n23XmoHASRzvo9xeYk7UQYL6L",
+      "day": "2026-10-09",
+      "decision_key": "96a3993868007a6f1f2b3ddb20d0ed956b6fb091f9b109944ceb0499aa485822",
+      "distance": 0.942263692654264,
+      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:7dRdgoX3yDm4ySJ3x4qpcEj7QQDB2UDNT8rScF2h7P2d",
+      "day": "2026-10-07",
+      "decision_key": "7174d94c01624ee5fe6a8d1e76012a9e83effbbfd296e6081a66fd3cc650fc04",
+      "distance": 0.9520127405124453,
+      "mint": "5VnbrKp28Qs9CAH6PyZdxBNvLxZcbeX3YBsozgWnpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:6nm7Vsepvzv9jsYiJS8HfrQRGSCCiZ9L5DgwhdDgsi8z",
+      "day": "2026-10-07",
+      "decision_key": "742780f582621cdfba75f568e8803f3caa84d73e46c80073f9f9efa0cbd32063",
+      "distance": 0.9656973440689354,
+      "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:3p7f4xNVj7nGcmXe1J1vxt1fvqcY3k8aMwM72PKFN42q",
+      "day": "2026-10-07",
+      "decision_key": "ee1e0cc17d1bc117166664bd54e44dad7d171ef7e6a6cb57215112b5b70607f1",
+      "distance": 0.9960449086968534,
+      "mint": "55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
+      "y": 1
+     },
+     {
+      "cluster": "mint:solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+      "day": "2026-10-07",
+      "decision_key": "d53cf36c858abac6389483f1bb87e331fcb973c6f4a42faa36f48516a9c4b855",
+      "distance": 1.1342912312370241,
+      "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+      "y": 0
+     },
+     {
+      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "day": "2026-10-09",
+      "decision_key": "f94e8926676295a610c2864653161ec2c9218c490cda084f895512e91e576e0e",
+      "distance": 1.155893234568469,
+      "mint": "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:E7JzWSx2XVaWFaQRbd9K5Yani9Q3aZfC3AwExU1T4m5G",
+      "day": "2026-10-10",
+      "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
+      "distance": 1.159408926570125,
+      "mint": "BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "day": "2026-10-10",
+      "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
+      "distance": 1.1595175647856841,
+      "mint": "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+      "y": 0
+     },
+     {
+      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+      "day": "2026-10-10",
+      "decision_key": "ea25cd11736e788ab866e91bab56e6745458c910a4965cedd7d6ce3295d0fd70",
+      "distance": 1.1690212226695667,
+      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:4MvWfNVdFmM1UkopeRRChT7GMnJzi4jCLC4YReusZyQu",
+      "day": "2026-10-07",
+      "decision_key": "1d2ce2503a6bfd64db30421d01cade089e2b2222d70fe04deba013c4e16a4279",
+      "distance": 1.2453618884115212,
+      "mint": "EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR",
+      "y": 1
+     },
+     {
+      "cluster": "mint:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "day": "2026-10-11",
+      "decision_key": "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
+      "distance": 1.258030720412887,
+      "mint": "HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "y": 1
+     },
+     {
+      "cluster": "creator:4m4cnkT3vqHez5hKHRy3Wt3Fr8JmTowG5LARa8fd8YAx",
+      "day": "2026-10-08",
+      "decision_key": "96ba81cb7967c34e9b00527bae608609533f0193af8faaaec94a2f1047c9c789",
+      "distance": 1.2736522645234778,
+      "mint": "5YLCp1XSRpGevfKBoSJvs7fSv6fSgbTDe3XB3dLfpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:BEyyzsG2GR1eyvhTo83E7yg6jHU6fDypzvA4yRL5yBhx",
+      "day": "2026-10-09",
+      "decision_key": "7823c065d9d68719b7ac13a57a5a98e66cb09eebe2464b061b3def3c8d05d249",
+      "distance": 1.4232470672705602,
+      "mint": "8k4sBtEeK4pf26noKqApv8NBTnuSJcbdwpKYknk5PbAA",
+      "y": 1
+     },
+     {
+      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "day": "2026-10-09",
+      "decision_key": "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
+      "distance": 1.4313011627219046,
+      "mint": "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+      "y": 0
+     },
+     {
+      "cluster": "creator:HuthLMyzfAdwVVqHvpr28pziyL1uXyYyZshi3y9F9Svo",
+      "day": "2026-10-11",
+      "decision_key": "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
+      "distance": 1.4741396996222316,
+      "mint": "EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:A4emsn3r9pEypNJBniEgxotx4mU6cEXZx74DvkXSx24e",
+      "day": "2026-10-09",
+      "decision_key": "164f7e743514aacc7db62ff5d44feb25d7e6b4b3f9882f6b922df07063d45cc5",
+      "distance": 1.4833457867437572,
+      "mint": "3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:4jew14MJcHNQkxaNp75eFFCkK2QfGvWi3ZdmCu4QD5xa",
+      "day": "2026-10-08",
+      "decision_key": "9a5f7f746b0126f949bcb06a4852a2a024b3dfce5c2bc7ef53510136ac85d2fe",
+      "distance": 1.4904586082159894,
+      "mint": "AQ7A9nsCcrfbftRq2kfFjCkaG6NicixZ1Vy4RZ4Hpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:B7y8AXyWtst2JsAx9zYTP8ZhUbxYRBC8heUMMFPbAHSn",
+      "day": "2026-10-09",
+      "decision_key": "615afbdf23daef264aaf3a28cf74d13fe85b3a96841bdc9c0bdbafce328d764b",
+      "distance": 1.5020280827937065,
+      "mint": "7Xgc5RacHtGzfhw2HukUBk5V986yBbvshr7rrCoopump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:5CEbueQnq1Ym2uSSx2xXds3jQAqT1BDnkA59RZobSPAG",
+      "day": "2026-10-07",
+      "decision_key": "5c881e3466928992948f13debaf6a3cc829f0a6d6b8d96b136f16b196b10d784",
+      "distance": 1.5054255307024151,
+      "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+      "y": 0
+     },
+     {
+      "cluster": "creator:B9Zbs2W9VK22AHnCWiK4PqBueDFzN17RNAFu5uFozLMJ",
+      "day": "2026-10-08",
+      "decision_key": "bd9562043a777073d9cdb8dd5fb4b65e013e5beb6ddbe15a0e7d6b263f3d8f1f",
+      "distance": 1.520454837303725,
+      "mint": "68AGsjomsgTtiTaDhF6XGCeVJDnFeh415ngYYgVxGzns",
+      "y": 0
+     },
+     {
+      "cluster": "creator:J8PmdBcNNYCvPz5Y9dvNJbVZLhNenQqn1g9GAswCVr62",
+      "day": "2026-10-08",
+      "decision_key": "9ea5cdce825e91b0a05c9db0b2cb7492920a95afdadb40dada09d24bfd4fb40d",
+      "distance": 1.5411413301430137,
+      "mint": "H4KUxsEgCp2yDpFvyDuGM5k6XevSKKrrKUxZ3Zr6nyJc",
+      "y": 1
+     },
+     {
+      "cluster": "creator:5QdvNDBSjyFRMzxPxU8ZKJkwBm2u9XqPFqspSC1uUVbY",
+      "day": "2026-10-08",
+      "decision_key": "b5ddb6ad15aa67ea8d65afdc71b58d2e39ea51378fcf3ad87b3fe1bb4950e8a4",
+      "distance": 1.552548055474449,
+      "mint": "C3AEVqFnCYh2q4VAE1jeUVxHQNQLGVFDGrjqfboEpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:BrPvZR3KVpkAi4tJBw2hGZtcPaaqMQmAeYzYXiW1hHS9",
+      "day": "2026-10-08",
+      "decision_key": "74582082349ad2000840fe65a96662ab6dfa2febf73c2e333aa94c62f648c640",
+      "distance": 1.5810643381051184,
+      "mint": "Goh59QCfoX53RgJa615vzXx4swR3mv51VgvAN6ZCpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "day": "2026-10-08",
+      "decision_key": "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
+      "distance": 1.6083015163320176,
+      "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+      "y": 0
+     }
+    ],
+    "as_of": 1791936000.0,
+    "b0": 0.25961538461538464,
+    "day_kish_ess": 4.245283018867925,
+    "decision_key": "6070e73636132d818acc46fe134dd097aadbac0bed79ff8de90a0e44ebf74f9e",
+    "decision_time": 1791973063.0,
+    "excluded": {
+     "same_campaign": 0,
+     "same_creator": 0,
+     "same_mint": 1
+    },
+    "flags": [
+     "NO_HISTORICAL_EXECUTABLE_DEPTH",
+     "PRICE_PATH_NOT_PROCEEDS"
+    ],
+    "kth_distance": 1.6083015163320176,
+    "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
+    "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+    "model": "AC2_KNN",
+    "new_mint": false,
+    "number": 0.3838461538461539,
+    "ood_threshold": 3.8930544211197846,
+    "pool_n": 104,
+    "pool_positives": 27,
+    "positives": 14,
+    "publishable": false,
+    "raw_rate": 0.4666666666666667,
+    "reasons": [],
+    "ref_n": 103,
+    "regime": "QUIET/RISK_OFF",
+    "scale": {
+     "mean": [
+      11.71160944061165,
+      15.122316341339808,
+      13.718678717796113,
+      2.8296461135012345
+     ],
+     "sd": [
+      2.550950369489767,
+      2.930762982623025,
+      1.8632242473152234,
+      2.000161159072495
+     ]
+    },
+    "shrunk_number": 0.3838461538461539,
+    "time_sensitivity": {
+     "newer_n": 15,
+     "newer_rate": 0.4,
+     "newer_wilson": [
+      0.1982449614134158,
+      0.6425316987937539
+     ],
+     "older_n": 15,
+     "older_rate": 0.5333333333333333,
+     "older_wilson": [
+      0.30116980025498397,
+      0.7519046463426261
+     ],
+     "split_time": 1791487731.0,
+     "time_unstable": false
+    },
+    "wilson": [
+     0.30232388907699753,
+     0.638577003801267
+    ]
+   },
+   "AC3_KNN_REGIME": {
+    "G": 30,
+    "analog_days": 4,
+    "analog_mints": 30,
+    "analogs": [
+     {
+      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "day": "2026-10-11",
+      "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
+      "distance": 0.19651571809834234,
+      "mint": "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+      "y": 0
+     },
+     {
+      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "day": "2026-10-10",
+      "decision_key": "c8d4cd7ee702168311a2782d20de184fc4770aa0a90ab07bcb68160e459132c7",
+      "distance": 0.5407811612124749,
+      "mint": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "day": "2026-10-11",
+      "decision_key": "7fe99e47eeb5cbb76a4516ae8a28373f39481232fbee2a2902dfb74f15377c2a",
+      "distance": 0.8048208465474704,
+      "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "day": "2026-10-11",
+      "decision_key": "a4c4f406e5d565b94eed1445d18c00d5bb3004099be9167d639305aaba8395cf",
+      "distance": 0.8701887061535328,
+      "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "day": "2026-10-10",
+      "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
+      "distance": 1.0787063313675296,
+      "mint": "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+      "y": 0
+     },
+     {
+      "cluster": "creator:E7JzWSx2XVaWFaQRbd9K5Yani9Q3aZfC3AwExU1T4m5G",
+      "day": "2026-10-10",
+      "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
+      "distance": 1.1449851061255063,
+      "mint": "BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+      "day": "2026-10-10",
+      "decision_key": "ea25cd11736e788ab866e91bab56e6745458c910a4965cedd7d6ce3295d0fd70",
+      "distance": 1.153676384261442,
+      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "day": "2026-10-11",
+      "decision_key": "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
+      "distance": 1.2599480410461157,
+      "mint": "HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "y": 1
+     },
+     {
+      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "day": "2026-10-10",
+      "decision_key": "e31e5965247f03929d5711cef1b77f9d1400566bbbc8974e6fd486a142e0ee10",
+      "distance": 1.2881435416735316,
+      "mint": "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6nm7Vsepvzv9jsYiJS8HfrQRGSCCiZ9L5DgwhdDgsi8z",
+      "day": "2026-10-10",
+      "decision_key": "8fe539bd60dd0b346db5db50310c79192ca8f8d23cfeee62eb1d81dcc666f178",
+      "distance": 1.3328451680856281,
+      "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:HuthLMyzfAdwVVqHvpr28pziyL1uXyYyZshi3y9F9Svo",
+      "day": "2026-10-11",
+      "decision_key": "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
+      "distance": 1.4121629489968046,
+      "mint": "EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "day": "2026-10-09",
+      "decision_key": "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
+      "distance": 1.4328120244000389,
+      "mint": "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+      "y": 0
+     },
+     {
+      "cluster": "creator:cWKFaakqsCJ8efDYHsTAAe8RAf8a4UQVacfmnKnLEZL",
+      "day": "2026-10-10",
+      "decision_key": "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17",
+      "distance": 1.6129447392528882,
+      "mint": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "day": "2026-10-08",
+      "decision_key": "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
+      "distance": 1.6142936285608822,
+      "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
+      "day": "2026-10-08",
+      "decision_key": "248557a701f4bb14f56902cc7a3d528c515153b34efa83d418b268479d38a50e",
+      "distance": 1.7631448236250815,
+      "mint": "2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
+      "y": 0
+     },
+     {
+      "cluster": "creator:3kg6tMZhcsd3vxHEJVrY4MdyQxFDLp2MCW4vBF2YSJ6L",
+      "day": "2026-10-08",
+      "decision_key": "c3d393f2a8263c41fb5504de2beea920acbb35fa0ef05179f78c4e010cea4aa4",
+      "distance": 1.7640272197166023,
+      "mint": "6XhzSy3VTTkwqMUSQsStM3ncGy6ozcPnzLVmv4HZ64cC",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "day": "2026-10-08",
+      "decision_key": "ddd4f6f1356e1f275defbe9242a903a0b01660477fc46b2858576836f1dddfe3",
+      "distance": 1.8276976704115473,
+      "mint": "7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "day": "2026-10-08",
+      "decision_key": "b10e9ef1f318464f792bf7e606bb0b09715cf4d49be25a325b0378318beb3554",
+      "distance": 1.8673258651696247,
+      "mint": "9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
+      "day": "2026-10-11",
+      "decision_key": "b1df8c0418b2c85d55511be0f2a5fd2edff7f8fde1aa252655ca47fec387765e",
+      "distance": 1.8945534011039886,
+      "mint": "85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
+      "y": 0
+     },
+     {
+      "cluster": "creator:DDDw9AgUrPJxGxAZNC6DPEpyQv5Jd1wfiGzwVza2v2fb",
+      "day": "2026-10-11",
+      "decision_key": "06a18bd40785c9b511cd2308a51e807323fb8428c9001e246bf14c4daab1a7ae",
+      "distance": 2.0098769745829554,
+      "mint": "6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
+      "y": 0
+     },
+     {
+      "cluster": "creator:9w77zeGGmtNxH5yShwr1XYRRoCBqYdCdqgDG7pyLQQ6",
+      "day": "2026-10-10",
+      "decision_key": "8c42f733faf2620bd22dc644cd3dee86164669ed294dd086401683984dfeefbb",
+      "distance": 2.1435290276095107,
+      "mint": "6zzzG49KX5nksnqfogs31dwoMYSHaJXkropKbv1QZVga",
+      "y": 0
+     },
+     {
+      "cluster": "creator:8F9qf3MLLaGaw71TyYTzsJEL6szVDGJwDQaPAZJH4AS1",
+      "day": "2026-10-10",
+      "decision_key": "4df5c9017fb4a8d4365de29ee4bf8d674b42f33c69ba4acac1381cf56dbeb62b",
+      "distance": 2.2957386091693,
+      "mint": "ArenDYANqFNkp8ZqAXt69vT5Dz7WD4zDfSpVw6oPpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:8mQgJk3qST37qQd312PhAnGP7M1dPYvDFb4rTrnWBSbW",
+      "day": "2026-10-11",
+      "decision_key": "37bb74585b03f3f03c5043658e1910e54f000b2bde87d3ef714b39d4c7481080",
+      "distance": 2.336553128608121,
+      "mint": "7vMkPxLwaH26qSZ2CgHhzvrgz9wUWMvT256vbUWfarm",
+      "y": 1
+     },
+     {
+      "cluster": "creator:3pbJPnxQZpQvTrfjt9a7hbDnfeiaXMHocpJgoaRvRP7U",
+      "day": "2026-10-11",
+      "decision_key": "7dbf3d7b3a5c7fe0c6783706d6964ee35c4f69ed699280e6d0398a3c72f3eb4a",
+      "distance": 2.404432824395119,
+      "mint": "9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6cehGGyvZf7qhGa1Hrx5HXsFNaJWegd9kxj2eujHdD5f",
+      "day": "2026-10-08",
+      "decision_key": "1d889a5ab9f8e7cc1d1e8befa633e82cea83337889c5c2037266882a96932e0a",
+      "distance": 2.477970932513664,
+      "mint": "4rLgnFcuADTS2VD7sGxQjoiajbZjYZ411nF7gm7kpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:CVop2LAjqx77Lacg9wFN8vm4jhUugAW8wjS1PiYYWY97",
+      "day": "2026-10-10",
+      "decision_key": "cd2ec28f9818dcd3396374be4131d350e84b42b8b456fabfa57f140be4835c35",
+      "distance": 2.508449494823084,
+      "mint": "8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:DZQbBPFpTeeyGyvCwXxYQDZFGGHad2bY6sWZuviuX8MN",
+      "day": "2026-10-10",
+      "decision_key": "358a97cfcf638a73c4d40df91d36934da1f2e9393825054afea48c9fef8b7321",
+      "distance": 2.5470565267693615,
+      "mint": "DZQbBPFpTeeyGyvCwXxYQDZFGGHad2bY6sWZuviuX8MN",
+      "y": 0
+     },
+     {
+      "cluster": "creator:3ibF99etfSPk9m7AshDWUYFTeY2qtfFZ4oQsXZUMzHnH",
+      "day": "2026-10-08",
+      "decision_key": "825ad9aa2ba4d9efb97bd26f89581dadedd7978ba7faf2cab03e6b47b52e71cb",
+      "distance": 2.7963449713932933,
+      "mint": "9oXA1VWKNiYDYa6VKHBFFBBvZdvuhw1b2eD5Aka7YrVt",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+      "day": "2026-10-08",
+      "decision_key": "9bd332f01ceedf04af712e099a28ddd18135b94f83ab65ad0ab6c731c9767da2",
+      "distance": 3.0646826564942287,
+      "mint": "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "day": "2026-10-08",
+      "decision_key": "0ada51f42f6d28b0c653eb63300afb4d8b7bf8ab66818fa97d507bb6dcd84fb1",
+      "distance": 3.2391679742129833,
+      "mint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "y": 0
+     }
+    ],
+    "as_of": 1791936000.0,
+    "b0": 0.25961538461538464,
+    "day_kish_ess": 3.1690140845070425,
+    "decision_key": "6070e73636132d818acc46fe134dd097aadbac0bed79ff8de90a0e44ebf74f9e",
+    "decision_time": 1791973063.0,
+    "excluded": {
+     "same_campaign": 0,
+     "same_creator": 0,
+     "same_mint": 1
+    },
+    "flags": [
+     "NO_HISTORICAL_EXECUTABLE_DEPTH",
+     "PRICE_PATH_NOT_PROCEEDS"
+    ],
+    "kth_distance": 3.2391679742129833,
+    "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
+    "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+    "model": "AC3_KNN_REGIME",
+    "new_mint": false,
+    "number": null,
+    "ood_threshold": 4.793820651272783,
+    "pool_n": 104,
+    "pool_positives": 27,
+    "positives": 3,
+    "publishable": false,
+    "raw_rate": 0.1,
+    "reasons": [
+     "ANALOGS_TOO_FEW:DAYS_BELOW_MIN"
+    ],
+    "ref_n": 44,
+    "regime": "QUIET/RISK_OFF",
+    "scale": {
+     "mean": [
+      11.415882917590908,
+      15.619627599500001,
+      13.25015465340909,
+      3.532836302283514
+     ],
+     "sd": [
+      2.8747129673881147,
+      2.5315506396625844,
+      2.0550733429252395,
+      1.894441336517508
+     ]
+    },
+    "shrunk_number": 0.16384615384615386,
+    "time_sensitivity": {
+     "newer_n": 15,
+     "newer_rate": 0.13333333333333333,
+     "newer_wilson": [
+      0.03736125910306537,
+      0.37881982832322364
+     ],
+     "older_n": 15,
+     "older_rate": 0.06666666666666667,
+     "older_wilson": [
+      0.011866895493268553,
+      0.2981652987378003
+     ],
+     "split_time": 1791628305.0,
+     "time_unstable": false
+    },
+    "wilson": [
+     0.03459988874733419,
+     0.25621082579184085
+    ]
+   },
+   "AC3_LOCO": {
+    "G": 30,
+    "analog_days": 4,
+    "analog_mints": 30,
+    "analogs": [
+     {
+      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "day": "2026-10-11",
+      "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
+      "distance": 0.19651571809834234,
+      "mint": "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+      "y": 0
+     },
+     {
+      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "day": "2026-10-10",
+      "decision_key": "c8d4cd7ee702168311a2782d20de184fc4770aa0a90ab07bcb68160e459132c7",
+      "distance": 0.5407811612124749,
+      "mint": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "day": "2026-10-11",
+      "decision_key": "7fe99e47eeb5cbb76a4516ae8a28373f39481232fbee2a2902dfb74f15377c2a",
+      "distance": 0.8048208465474704,
+      "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "day": "2026-10-11",
+      "decision_key": "a4c4f406e5d565b94eed1445d18c00d5bb3004099be9167d639305aaba8395cf",
+      "distance": 0.8701887061535328,
+      "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "day": "2026-10-10",
+      "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
+      "distance": 1.0787063313675296,
+      "mint": "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+      "y": 0
+     },
+     {
+      "cluster": "creator:E7JzWSx2XVaWFaQRbd9K5Yani9Q3aZfC3AwExU1T4m5G",
+      "day": "2026-10-10",
+      "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
+      "distance": 1.1449851061255063,
+      "mint": "BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+      "day": "2026-10-10",
+      "decision_key": "ea25cd11736e788ab866e91bab56e6745458c910a4965cedd7d6ce3295d0fd70",
+      "distance": 1.153676384261442,
+      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "day": "2026-10-11",
+      "decision_key": "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
+      "distance": 1.2599480410461157,
+      "mint": "HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "y": 1
+     },
+     {
+      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "day": "2026-10-10",
+      "decision_key": "e31e5965247f03929d5711cef1b77f9d1400566bbbc8974e6fd486a142e0ee10",
+      "distance": 1.2881435416735316,
+      "mint": "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6nm7Vsepvzv9jsYiJS8HfrQRGSCCiZ9L5DgwhdDgsi8z",
+      "day": "2026-10-10",
+      "decision_key": "8fe539bd60dd0b346db5db50310c79192ca8f8d23cfeee62eb1d81dcc666f178",
+      "distance": 1.3328451680856281,
+      "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:HuthLMyzfAdwVVqHvpr28pziyL1uXyYyZshi3y9F9Svo",
+      "day": "2026-10-11",
+      "decision_key": "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
+      "distance": 1.4121629489968046,
+      "mint": "EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "day": "2026-10-09",
+      "decision_key": "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
+      "distance": 1.4328120244000389,
+      "mint": "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+      "y": 0
+     },
+     {
+      "cluster": "creator:cWKFaakqsCJ8efDYHsTAAe8RAf8a4UQVacfmnKnLEZL",
+      "day": "2026-10-10",
+      "decision_key": "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17",
+      "distance": 1.6129447392528882,
+      "mint": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "day": "2026-10-08",
+      "decision_key": "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
+      "distance": 1.6142936285608822,
+      "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
+      "day": "2026-10-08",
+      "decision_key": "248557a701f4bb14f56902cc7a3d528c515153b34efa83d418b268479d38a50e",
+      "distance": 1.7631448236250815,
+      "mint": "2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
+      "y": 0
+     },
+     {
+      "cluster": "creator:3kg6tMZhcsd3vxHEJVrY4MdyQxFDLp2MCW4vBF2YSJ6L",
+      "day": "2026-10-08",
+      "decision_key": "c3d393f2a8263c41fb5504de2beea920acbb35fa0ef05179f78c4e010cea4aa4",
+      "distance": 1.7640272197166023,
+      "mint": "6XhzSy3VTTkwqMUSQsStM3ncGy6ozcPnzLVmv4HZ64cC",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "day": "2026-10-08",
+      "decision_key": "ddd4f6f1356e1f275defbe9242a903a0b01660477fc46b2858576836f1dddfe3",
+      "distance": 1.8276976704115473,
+      "mint": "7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "day": "2026-10-08",
+      "decision_key": "b10e9ef1f318464f792bf7e606bb0b09715cf4d49be25a325b0378318beb3554",
+      "distance": 1.8673258651696247,
+      "mint": "9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
+      "day": "2026-10-11",
+      "decision_key": "b1df8c0418b2c85d55511be0f2a5fd2edff7f8fde1aa252655ca47fec387765e",
+      "distance": 1.8945534011039886,
+      "mint": "85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
+      "y": 0
+     },
+     {
+      "cluster": "creator:DDDw9AgUrPJxGxAZNC6DPEpyQv5Jd1wfiGzwVza2v2fb",
+      "day": "2026-10-11",
+      "decision_key": "06a18bd40785c9b511cd2308a51e807323fb8428c9001e246bf14c4daab1a7ae",
+      "distance": 2.0098769745829554,
+      "mint": "6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
+      "y": 0
+     },
+     {
+      "cluster": "creator:9w77zeGGmtNxH5yShwr1XYRRoCBqYdCdqgDG7pyLQQ6",
+      "day": "2026-10-10",
+      "decision_key": "8c42f733faf2620bd22dc644cd3dee86164669ed294dd086401683984dfeefbb",
+      "distance": 2.1435290276095107,
+      "mint": "6zzzG49KX5nksnqfogs31dwoMYSHaJXkropKbv1QZVga",
+      "y": 0
+     },
+     {
+      "cluster": "creator:8F9qf3MLLaGaw71TyYTzsJEL6szVDGJwDQaPAZJH4AS1",
+      "day": "2026-10-10",
+      "decision_key": "4df5c9017fb4a8d4365de29ee4bf8d674b42f33c69ba4acac1381cf56dbeb62b",
+      "distance": 2.2957386091693,
+      "mint": "ArenDYANqFNkp8ZqAXt69vT5Dz7WD4zDfSpVw6oPpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:8mQgJk3qST37qQd312PhAnGP7M1dPYvDFb4rTrnWBSbW",
+      "day": "2026-10-11",
+      "decision_key": "37bb74585b03f3f03c5043658e1910e54f000b2bde87d3ef714b39d4c7481080",
+      "distance": 2.336553128608121,
+      "mint": "7vMkPxLwaH26qSZ2CgHhzvrgz9wUWMvT256vbUWfarm",
+      "y": 1
+     },
+     {
+      "cluster": "creator:3pbJPnxQZpQvTrfjt9a7hbDnfeiaXMHocpJgoaRvRP7U",
+      "day": "2026-10-11",
+      "decision_key": "7dbf3d7b3a5c7fe0c6783706d6964ee35c4f69ed699280e6d0398a3c72f3eb4a",
+      "distance": 2.404432824395119,
+      "mint": "9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6cehGGyvZf7qhGa1Hrx5HXsFNaJWegd9kxj2eujHdD5f",
+      "day": "2026-10-08",
+      "decision_key": "1d889a5ab9f8e7cc1d1e8befa633e82cea83337889c5c2037266882a96932e0a",
+      "distance": 2.477970932513664,
+      "mint": "4rLgnFcuADTS2VD7sGxQjoiajbZjYZ411nF7gm7kpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:CVop2LAjqx77Lacg9wFN8vm4jhUugAW8wjS1PiYYWY97",
+      "day": "2026-10-10",
+      "decision_key": "cd2ec28f9818dcd3396374be4131d350e84b42b8b456fabfa57f140be4835c35",
+      "distance": 2.508449494823084,
+      "mint": "8SnedPft1eMMMaDYjYiFZk36nP8xkS7S687Aeqp6Bp71",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:DZQbBPFpTeeyGyvCwXxYQDZFGGHad2bY6sWZuviuX8MN",
+      "day": "2026-10-10",
+      "decision_key": "358a97cfcf638a73c4d40df91d36934da1f2e9393825054afea48c9fef8b7321",
+      "distance": 2.5470565267693615,
+      "mint": "DZQbBPFpTeeyGyvCwXxYQDZFGGHad2bY6sWZuviuX8MN",
+      "y": 0
+     },
+     {
+      "cluster": "creator:3ibF99etfSPk9m7AshDWUYFTeY2qtfFZ4oQsXZUMzHnH",
+      "day": "2026-10-08",
+      "decision_key": "825ad9aa2ba4d9efb97bd26f89581dadedd7978ba7faf2cab03e6b47b52e71cb",
+      "distance": 2.7963449713932933,
+      "mint": "9oXA1VWKNiYDYa6VKHBFFBBvZdvuhw1b2eD5Aka7YrVt",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+      "day": "2026-10-08",
+      "decision_key": "9bd332f01ceedf04af712e099a28ddd18135b94f83ab65ad0ab6c731c9767da2",
+      "distance": 3.0646826564942287,
+      "mint": "nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "day": "2026-10-08",
+      "decision_key": "0ada51f42f6d28b0c653eb63300afb4d8b7bf8ab66818fa97d507bb6dcd84fb1",
+      "distance": 3.2391679742129833,
+      "mint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+      "y": 0
+     }
+    ],
+    "as_of": 1791936000.0,
+    "b0": 0.25961538461538464,
+    "day_kish_ess": 3.1690140845070425,
+    "decision_key": "6070e73636132d818acc46fe134dd097aadbac0bed79ff8de90a0e44ebf74f9e",
+    "decision_time": 1791973063.0,
+    "excluded": {
+     "same_campaign": 0,
+     "same_creator": 0,
+     "same_mint": 1
+    },
+    "flags": [
+     "NO_HISTORICAL_EXECUTABLE_DEPTH",
+     "PRICE_PATH_NOT_PROCEEDS"
+    ],
+    "kth_distance": 3.2391679742129833,
+    "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
+    "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+    "model": "AC3_KNN_REGIME_LOCO",
+    "new_mint": false,
+    "number": null,
+    "ood_threshold": 4.793820651272783,
+    "pool_n": 104,
+    "pool_positives": 27,
+    "positives": 3,
+    "publishable": false,
+    "raw_rate": 0.1,
+    "reasons": [
+     "ANALOGS_TOO_FEW:DAYS_BELOW_MIN"
+    ],
+    "ref_n": 44,
+    "regime": "QUIET/RISK_OFF",
+    "scale": {
+     "mean": [
+      11.415882917590908,
+      15.619627599500001,
+      13.25015465340909,
+      3.532836302283514
+     ],
+     "sd": [
+      2.8747129673881147,
+      2.5315506396625844,
+      2.0550733429252395,
+      1.894441336517508
+     ]
+    },
+    "shrunk_number": 0.16384615384615386,
+    "time_sensitivity": {
+     "newer_n": 15,
+     "newer_rate": 0.13333333333333333,
+     "newer_wilson": [
+      0.03736125910306537,
+      0.37881982832322364
+     ],
+     "older_n": 15,
+     "older_rate": 0.06666666666666667,
+     "older_wilson": [
+      0.011866895493268553,
+      0.2981652987378003
+     ],
+     "split_time": 1791628305.0,
+     "time_unstable": false
+    },
+    "wilson": [
+     0.03459988874733419,
+     0.25621082579184085
+    ]
+   }
+  },
+  "cell": [
+   "7d_30d",
+   "100k_1m"
+  ],
+  "creator": "DRqWUscn7tCkNCjuSrAEqaT2crKgsoePcPxHV569uii7",
+  "cutoff": 1791936000.0,
+  "decision_key": "6070e73636132d818acc46fe134dd097aadbac0bed79ff8de90a0e44ebf74f9e",
+  "decision_time": 1791973063.0,
+  "inputs": {
+   "ac_launchpad_class": 0.0,
+   "log1p_token_age_days": 2.1236466957454527,
+   "oc_token2022": 1.0,
+   "thesis_log1p_liquidity_usd": 13.45678085,
+   "thesis_log1p_mcap_usd": 15.64176668,
+   "thesis_log1p_vol_24h_usd": 15.13816445
+  },
+  "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+  "pool_keys": [
+   "01f6e0af42de4459c70fc91793824829bc645151e001752fd8342029c0882917",
+   "047c511d9d5089358ad9a3e5c1b1c1e06becb33501371e57b4bddfd18d866afc",
+   "06a18bd40785c9b511cd2308a51e807323fb8428c9001e246bf14c4daab1a7ae",
+   "09bfee4e93ff88aeb629e8e1723a4a9b4b5c8a2dc8b74c53d587210331555d05",
+   "0ada51f42f6d28b0c653eb63300afb4d8b7bf8ab66818fa97d507bb6dcd84fb1",
+   "164f7e743514aacc7db62ff5d44feb25d7e6b4b3f9882f6b922df07063d45cc5",
+   "19ddfd5de2a026e432008e1b1b893c091b8bb4faf92b85a1cb4d984812a1e292",
+   "1d2ce2503a6bfd64db30421d01cade089e2b2222d70fe04deba013c4e16a4279",
+   "1d889a5ab9f8e7cc1d1e8befa633e82cea83337889c5c2037266882a96932e0a",
+   "1ec073a4ab8b9f8dddaa78dcbf44b6b4979c1900e596ecd08b213826d860e63f",
+   "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
+   "248557a701f4bb14f56902cc7a3d528c515153b34efa83d418b268479d38a50e",
+   "29c621774bb63c563e34f1b6aaa75bcbbef466711576010c1d65daa3d3e812a0",
+   "2a982bd53a6d431472e6dfa1f15d24812c8d85f549007468226c41f79cd7c60b",
+   "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
+   "2eccf63571757d286da47fe780d475f7f659241ad002641feab67e0f49be09ff",
+   "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
+   "31142a33d46053a611c0fc845591b6d457c8b4b0ff2932c0db1780c1ae7fedca",
+   "358a97cfcf638a73c4d40df91d36934da1f2e9393825054afea48c9fef8b7321",
+   "37bb74585b03f3f03c5043658e1910e54f000b2bde87d3ef714b39d4c7481080",
+   "39a1c4f7e028d0d93c0ab7f0ba61fc13e6cdcc54934657ed99574c0796b5091e",
+   "3aa19f76ab711047aece3944c52059ce500f145ce319c45390d3f2a6eacae104",
+   "3c3a5cca4295037495878bae7249ce541943a993a7d69ec244a78c13be289725",
+   "4465ff1ce51d4dc8dbaecee02100f861c1e6f214cda57a84aafc2e98530b1aff",
+   "4609064b63d2bbe7826c498958e4b4e1e9bfc0f96ed9709f708c87b39c05ef85",
+   "4843684ae9a3e65ce12d2a47d90aa383b2ea7c70cc07e0f05625085ed719e462",
+   "4df5c9017fb4a8d4365de29ee4bf8d674b42f33c69ba4acac1381cf56dbeb62b",
+   "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
+   "5c881e3466928992948f13debaf6a3cc829f0a6d6b8d96b136f16b196b10d784",
+   "615afbdf23daef264aaf3a28cf74d13fe85b3a96841bdc9c0bdbafce328d764b",
+   "6828ce213b00690d37994854643d8c2499e3a2a24a373b8e5ec88aa066605224",
+   "69ebb2b8cf74041e91f116bf5378d3d2b9b196fb7cee5d3074683c480c36370f",
+   "7174d94c01624ee5fe6a8d1e76012a9e83effbbfd296e6081a66fd3cc650fc04",
+   "720d5590630864095eff60394c041bc47974fd34e50ed0731ae4c6dc8f41717d",
+   "73976cedd12a1982414c9cb87d6b5fb46541033669e34283c902e146bb3b2a76",
+   "742780f582621cdfba75f568e8803f3caa84d73e46c80073f9f9efa0cbd32063",
+   "74582082349ad2000840fe65a96662ab6dfa2febf73c2e333aa94c62f648c640",
+   "74a8083ad04f3f2a29c12de63349a5e12f7611972152f7ef92da6d1df171e84c",
+   "76bc7baa8425056cdce41e07ed26661994998879a6368905ad57d94ee5f47104",
+   "7823c065d9d68719b7ac13a57a5a98e66cb09eebe2464b061b3def3c8d05d249",
+   "79ce584dee22376567dcc7d81484aafb3a9bae9249c6d1eb707d9b34bc358f15",
+   "7dbf3d7b3a5c7fe0c6783706d6964ee35c4f69ed699280e6d0398a3c72f3eb4a",
+   "7fe99e47eeb5cbb76a4516ae8a28373f39481232fbee2a2902dfb74f15377c2a",
+   "813221ba77d4bcae64664e1328cdb3c9622c9723e53395830b6030183f90a8f7",
+   "825ad9aa2ba4d9efb97bd26f89581dadedd7978ba7faf2cab03e6b47b52e71cb",
+   "83b6ea620fee50541d7f2ce14b1d9ffc74d8e249ff9c658d9a4bc6176b9dbdea",
+   "8650a6464a7fedce32d62f148bf6bfc31620b468441b8d19a85470453e513ba3",
+   "88099b59881501352f41c7310ee45c9d45399cd4112c851181eb509ccd7daa10",
+   "890568ea68c73b91e762bfe4885807d14eabf17bb4a747d4ce2f16b08d4d6de2",
+   "8c42f733faf2620bd22dc644cd3dee86164669ed294dd086401683984dfeefbb",
+   "8d78dc1d787cc7480abe3eb12555965d6d81366d13013b058d4670c55a0a4079",
+   "8e8c0826813f0ffba439113bf94dc7b8e6b06f42bcf4501194e3580ce4d3e6e6",
+   "8fe539bd60dd0b346db5db50310c79192ca8f8d23cfeee62eb1d81dcc666f178",
+   "8ff1f5a3b3cea39a0fadfdd589c7176efcf4c6253e31fba29787452c9eb10ca2",
+   "96a3993868007a6f1f2b3ddb20d0ed956b6fb091f9b109944ceb0499aa485822",
+   "96ba81cb7967c34e9b00527bae608609533f0193af8faaaec94a2f1047c9c789",
+   "9a5f7f746b0126f949bcb06a4852a2a024b3dfce5c2bc7ef53510136ac85d2fe",
+   "9bd332f01ceedf04af712e099a28ddd18135b94f83ab65ad0ab6c731c9767da2",
+   "9ea5cdce825e91b0a05c9db0b2cb7492920a95afdadb40dada09d24bfd4fb40d",
+   "a0a22e40117e15d922112320678407f203e360b0486b860bf520d755f1a3bfcd",
+   "a1d2a3c8638c1eb260bd4237d67b0fe997cdd9674c3d5ce805295649cd37c218",
+   "a4c4f406e5d565b94eed1445d18c00d5bb3004099be9167d639305aaba8395cf",
+   "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
+   "a8299cda76821713abdabb730d056f6e307a4696d7e18711d59d88c48c46211b",
+   "ac1436e8b026f63fdcff2c524f14941193c57553c677ee7755703b3f4f3f0ee6",
+   "ac1be05dbd88a7da84d168880ce1a01a4f3abffdb0e694b5350311320e39ec9d",
+   "ae5873864b7ee614ca7e01d875431c734f00c0b186e12b34bf124c5e3a97bcea",
+   "b10e9ef1f318464f792bf7e606bb0b09715cf4d49be25a325b0378318beb3554",
+   "b1a24869bd60c2420a15bc73654ce65789aa01a674e8e7aa9dc0988963c55170",
+   "b1df8c0418b2c85d55511be0f2a5fd2edff7f8fde1aa252655ca47fec387765e",
+   "b4ad12fbcd12130c6ce0415169183fdada65e28b393f5de9c825f468315b4f61",
+   "b5ddb6ad15aa67ea8d65afdc71b58d2e39ea51378fcf3ad87b3fe1bb4950e8a4",
+   "bcc8f42cdb5bff89ba45958ce9114f3be0e4d9ca2e8d068331dcf15a24692fee",
+   "bd9562043a777073d9cdb8dd5fb4b65e013e5beb6ddbe15a0e7d6b263f3d8f1f",
+   "beb1b5cdb3e549aac0f446c774801790150c0db77c6fe1104e6ff28efd07cd4a",
+   "bee8c1456657cff1f403b73097025b41e2e3155cf65b01aeba1b236713907cd8",
+   "bf652e17f02ac91d46a72f7c4f9cdcf0830c27aea3e297f7cd60bbb1a69b6ad0",
+   "bfde5772d7cd4d49e894a95e57dfa937ab34d2d8b93e5e85ce6188e5cd5ecbce",
+   "c283f6bc648b42a35c28967a11b9d2a9e4c09ea751b8bc1cc463a305b0372ec3",
+   "c3d393f2a8263c41fb5504de2beea920acbb35fa0ef05179f78c4e010cea4aa4",
+   "c69b5d5fe795785b35b9b9f33b42b57b7855e86fc641d7cc7604d5b9167dde67",
+   "c8d4cd7ee702168311a2782d20de184fc4770aa0a90ab07bcb68160e459132c7",
+   "cb2d1994ed8ac733183554793ba4e45f143f808c3f2ce0010787bfa1c067212c",
+   "cd2ec28f9818dcd3396374be4131d350e84b42b8b456fabfa57f140be4835c35",
+   "d341725365eaec03a2fbc4f722dbb36233d1dc5616f02adc641965c3148f5133",
+   "d53cf36c858abac6389483f1bb87e331fcb973c6f4a42faa36f48516a9c4b855",
+   "da64a9d95b19fc0004aa868a493eec4accb6e595fa3fd160bcbcbc849742a56c",
+   "dc0d298f82c04221e1371f498b7a3faa5ac0c7494f599473f7f63a81ae01866a",
+   "ddd4f6f1356e1f275defbe9242a903a0b01660477fc46b2858576836f1dddfe3",
+   "dfe400dcca348f53c3737da35a5a559b963a1d8fa3001ab9ac5e82a71fb96d00",
+   "e0ac032f2af8ba7182e77afdd6f0dd781b03880270159b72f6d2c49d1c4c0eec",
+   "e31e5965247f03929d5711cef1b77f9d1400566bbbc8974e6fd486a142e0ee10",
+   "e92f86dd49618974e2a0e0c667c6435bc27f13a6c136c2126561bcdb4c6b9029",
+   "ea25cd11736e788ab866e91bab56e6745458c910a4965cedd7d6ce3295d0fd70",
+   "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
+   "ed0aed48ed9cb867d0fbb12cfcdad74a86349367a65072f3d3b5003dd384a014",
+   "ee1e0cc17d1bc117166664bd54e44dad7d171ef7e6a6cb57215112b5b70607f1",
+   "f2a709cb1be8e692fa3585785278837256975e0ae627d6e6034cb3e4906a8525",
+   "f6ecc6afefa38a1b87a638a489e7a4b527cf8f31747799aa31051773fca1f886",
+   "f94e8926676295a610c2864653161ec2c9218c490cda084f895512e91e576e0e",
+   "fa458de1dec6b0180e2bcb66ad2fb66d8089fde0b98edc7002e129d35480955b",
+   "fb814c71793a5b957bf7fa82785a2a47438307f68dc1efd1c859be3f1826c091",
+   "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
+   "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17"
+  ],
+  "regime_record": {
+   "T": 1791973063.0,
+   "activity_median_log1p_vol": 13.34805956,
+   "catalyst_category": "CATALYST_TABLES_NOT_EXPORTED",
+   "chain_wide_state": "CHAIN_WIDE_DATA_NOT_AVAILABLE",
+   "label": "QUIET/RISK_OFF",
+   "past_activity_median": 14.46658403,
+   "past_tone_median": 0.2945251267865376,
+   "prior_instants": 76,
+   "tone_constructive_share": 0.16,
+   "window_decisions": 25
+  },
+  "target": "price_path_severe_drawdown_or_halt_24h",
+  "target_short": "T2_24h",
+  "y": 1
+ },
+ {
+  "answers": {
+   "AC1_STRATA": {
+    "G": 10,
+    "analog_days": 6,
+    "analog_mints": 10,
+    "analogs": [
+     {
+      "cluster": "creator:3p7f4xNVj7nGcmXe1J1vxt1fvqcY3k8aMwM72PKFN42q",
+      "day": "2026-10-07",
+      "decision_key": "ee1e0cc17d1bc117166664bd54e44dad7d171ef7e6a6cb57215112b5b70607f1",
+      "distance": null,
+      "mint": "55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
+      "y": 1
+     },
+     {
+      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "day": "2026-10-08",
+      "decision_key": "9578a21bb38544ce438f5cb5f25eebe742c652c6a91967375bf033cb61410ed6",
+      "distance": null,
+      "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:BEyyzsG2GR1eyvhTo83E7yg6jHU6fDypzvA4yRL5yBhx",
+      "day": "2026-10-09",
+      "decision_key": "7823c065d9d68719b7ac13a57a5a98e66cb09eebe2464b061b3def3c8d05d249",
+      "distance": null,
+      "mint": "8k4sBtEeK4pf26noKqApv8NBTnuSJcbdwpKYknk5PbAA",
+      "y": 0
+     },
+     {
+      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "day": "2026-10-09",
+      "decision_key": "86ceaa8fb73556114ff2756f06f78f6908772b3dc2f8e5501161111e33340103",
+      "distance": null,
+      "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+      "y": 0
+     },
+     {
+      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "day": "2026-10-10",
+      "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
+      "distance": null,
+      "mint": "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+      "y": 1
+     },
+     {
+      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "day": "2026-10-10",
+      "decision_key": "35aa378b59abd7ca37e93cd1f88472a86e3be9fee9b37e071f74f171b3f6256b",
+      "distance": null,
+      "mint": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "day": "2026-10-10",
+      "decision_key": "38e97913e0b1329de062291c85417a6c16a3e69c602414b32c083c6f023529e4",
+      "distance": null,
+      "mint": "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+      "y": 0
+     },
+     {
+      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "day": "2026-10-11",
+      "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
+      "distance": null,
+      "mint": "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "day": "2026-10-13",
+      "decision_key": "314ab615f744a86317bb583db137cd46ed6bfdb0a7b31a0e8a8fb8beb8b2f36a",
+      "distance": null,
+      "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "day": "2026-10-13",
+      "decision_key": "aa0ffbf981d4f46e743ba454ec6ad1695fbc918847cb815262337424b13c92e3",
+      "distance": null,
+      "mint": "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
+      "y": 0
+     }
+    ],
+    "as_of": 1791936000.0,
+    "b0": 0.12562814070351758,
+    "cell": [
+     "7d_30d",
+     "100k_1m"
+    ],
+    "day_kish_ess": 5.0,
+    "decision_key": "6070e73636132d818acc46fe134dd097aadbac0bed79ff8de90a0e44ebf74f9e",
+    "decision_time": 1791973063.0,
+    "excluded": {
+     "same_campaign": 0,
+     "same_creator": 0,
+     "same_mint": 1
+    },
+    "flags": [
+     "NO_HISTORICAL_EXECUTABLE_DEPTH",
+     "PRICE_PATH_NOT_PROCEEDS"
+    ],
+    "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
+    "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+    "model": "AC1_STRATA",
+    "new_mint": false,
+    "number": null,
+    "pool_n": 199,
+    "pool_positives": 25,
+    "positives": 3,
+    "publishable": false,
+    "raw_rate": 0.3,
+    "reasons": [
+     "ANALOGS_TOO_FEW:G_BELOW_MIN"
+    ],
+    "regime": "QUIET/RISK_OFF",
+    "shrunk_number": 0.18375209380234506,
+    "time_sensitivity": {
+     "newer_n": 5,
+     "newer_rate": 0.0,
+     "newer_wilson": [
+      0.0,
+      0.43448246478317476
+     ],
+     "older_n": 5,
+     "older_rate": 0.6,
+     "older_wilson": [
+      0.2307242812760128,
+      0.882379225767352
+     ],
+     "split_time": 1791670389.0,
+     "time_unstable": false
+    },
+    "wilson": [
+     0.10779126740630099,
+     0.6032218525388546
+    ]
+   },
+   "AC2_KNN": {
+    "G": 30,
+    "analog_days": 7,
+    "analog_mints": 29,
+    "analogs": [
+     {
+      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "day": "2026-10-11",
+      "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
+      "distance": 0.21925146060898248,
+      "mint": "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+      "y": 0
+     },
+     {
+      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "day": "2026-10-08",
+      "decision_key": "4609064b63d2bbe7826c498958e4b4e1e9bfc0f96ed9709f708c87b39c05ef85",
+      "distance": 0.39787141482354715,
+      "mint": "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "day": "2026-10-09",
+      "decision_key": "69ebb2b8cf74041e91f116bf5378d3d2b9b196fb7cee5d3074683c480c36370f",
+      "distance": 0.5328269107318553,
+      "mint": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "day": "2026-10-07",
+      "decision_key": "bcc8f42cdb5bff89ba45958ce9114f3be0e4d9ca2e8d068331dcf15a24692fee",
+      "distance": 0.5812650985538343,
+      "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "day": "2026-10-08",
+      "decision_key": "9578a21bb38544ce438f5cb5f25eebe742c652c6a91967375bf033cb61410ed6",
+      "distance": 0.702386040560484,
+      "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:DAR7byxGpLWWdWUkRYM7Lqycvk5KGXMwoHkUJcD4se4r",
+      "day": "2026-10-07",
+      "decision_key": "f2a709cb1be8e692fa3585785278837256975e0ae627d6e6034cb3e4906a8525",
+      "distance": 0.8088621772854501,
+      "mint": "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6SJHhnhrmRUGn7tLPW8n23XmoHASRzvo9xeYk7UQYL6L",
+      "day": "2026-10-09",
+      "decision_key": "96a3993868007a6f1f2b3ddb20d0ed956b6fb091f9b109944ceb0499aa485822",
+      "distance": 0.997475027324225,
+      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:7dRdgoX3yDm4ySJ3x4qpcEj7QQDB2UDNT8rScF2h7P2d",
+      "day": "2026-10-07",
+      "decision_key": "7174d94c01624ee5fe6a8d1e76012a9e83effbbfd296e6081a66fd3cc650fc04",
+      "distance": 1.0735137353421154,
+      "mint": "5VnbrKp28Qs9CAH6PyZdxBNvLxZcbeX3YBsozgWnpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6nm7Vsepvzv9jsYiJS8HfrQRGSCCiZ9L5DgwhdDgsi8z",
+      "day": "2026-10-07",
+      "decision_key": "742780f582621cdfba75f568e8803f3caa84d73e46c80073f9f9efa0cbd32063",
+      "distance": 1.0834423022265542,
+      "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:3p7f4xNVj7nGcmXe1J1vxt1fvqcY3k8aMwM72PKFN42q",
+      "day": "2026-10-07",
+      "decision_key": "ee1e0cc17d1bc117166664bd54e44dad7d171ef7e6a6cb57215112b5b70607f1",
+      "distance": 1.1229999122395586,
+      "mint": "55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW",
+      "y": 1
+     },
+     {
+      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+      "day": "2026-10-10",
+      "decision_key": "d175a7eb960e5cb5fbc01bf0f4c79ddc63fbbeac2abb131ad1a55aa7e7ce27c5",
+      "distance": 1.1355308994435582,
+      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+      "day": "2026-10-07",
+      "decision_key": "d53cf36c858abac6389483f1bb87e331fcb973c6f4a42faa36f48516a9c4b855",
+      "distance": 1.170551248542684,
+      "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+      "y": 1
+     },
+     {
+      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "day": "2026-10-09",
+      "decision_key": "f94e8926676295a610c2864653161ec2c9218c490cda084f895512e91e576e0e",
+      "distance": 1.2446736142227885,
+      "mint": "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:E7JzWSx2XVaWFaQRbd9K5Yani9Q3aZfC3AwExU1T4m5G",
+      "day": "2026-10-10",
+      "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
+      "distance": 1.2641105873744523,
+      "mint": "BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "day": "2026-10-10",
+      "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
+      "distance": 1.2909946038858808,
+      "mint": "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+      "y": 1
+     },
+     {
+      "cluster": "creator:6sq1bQoYVqP2jC3RA72WoLx5VRCiSLUxeouHohJubEQN",
+      "day": "2026-10-13",
+      "decision_key": "f6887280c240a824e6485c856ae15d86afe505c51ff77efc6f668cdd61bedc62",
+      "distance": 1.2943762869379518,
+      "mint": "DzMwArmdzPqcqgvyqAmTxy79XdA9NwK9mMteqWLJpump",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "day": "2026-10-11",
+      "decision_key": "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
+      "distance": 1.3032003219083677,
+      "mint": "HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "y": 0
+     },
+     {
+      "cluster": "creator:4MvWfNVdFmM1UkopeRRChT7GMnJzi4jCLC4YReusZyQu",
+      "day": "2026-10-07",
+      "decision_key": "1d2ce2503a6bfd64db30421d01cade089e2b2222d70fe04deba013c4e16a4279",
+      "distance": 1.3714179655394447,
+      "mint": "EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR",
+      "y": 0
+     },
+     {
+      "cluster": "creator:4m4cnkT3vqHez5hKHRy3Wt3Fr8JmTowG5LARa8fd8YAx",
+      "day": "2026-10-08",
+      "decision_key": "96ba81cb7967c34e9b00527bae608609533f0193af8faaaec94a2f1047c9c789",
+      "distance": 1.4049973296087643,
+      "mint": "5YLCp1XSRpGevfKBoSJvs7fSv6fSgbTDe3XB3dLfpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "day": "2026-10-09",
+      "decision_key": "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
+      "distance": 1.4338584961290999,
+      "mint": "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+      "y": 0
+     },
+     {
+      "cluster": "creator:5xsibKwtiN6ruxsYrEyWVpV3KcwuzSPbQd1n28a7spEd",
+      "day": "2026-10-12",
+      "decision_key": "57507d51778c5339375908434b0cef012a3942a8b5d36b80fe071a022f894e47",
+      "distance": 1.4787005721384285,
+      "mint": "6Mix12LiHrQFojaQEnfPUC65Qkwd6X4Y5Qg93oFbordr",
+      "y": 1
+     },
+     {
+      "cluster": "creator:5CEbueQnq1Ym2uSSx2xXds3jQAqT1BDnkA59RZobSPAG",
+      "day": "2026-10-08",
+      "decision_key": "1e3c0e5b504a364b8acbbf15f7f3cbce448fb052aca20f2f4bcf111d986dcc3c",
+      "distance": 1.5535960763674406,
+      "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+      "y": 0
+     },
+     {
+      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "day": "2026-10-08",
+      "decision_key": "b7d182d1314b5f008d3885852a371994b714329453fa0aecc5d27a039a12e8ea",
+      "distance": 1.5815585838105328,
+      "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+      "y": 0
+     },
+     {
+      "cluster": "creator:BEyyzsG2GR1eyvhTo83E7yg6jHU6fDypzvA4yRL5yBhx",
+      "day": "2026-10-09",
+      "decision_key": "7823c065d9d68719b7ac13a57a5a98e66cb09eebe2464b061b3def3c8d05d249",
+      "distance": 1.5816601238105648,
+      "mint": "8k4sBtEeK4pf26noKqApv8NBTnuSJcbdwpKYknk5PbAA",
+      "y": 0
+     },
+     {
+      "cluster": "creator:4jew14MJcHNQkxaNp75eFFCkK2QfGvWi3ZdmCu4QD5xa",
+      "day": "2026-10-09",
+      "decision_key": "7a0cf5efaa0a16dd23386a7b20ea1bb2f05648ee622f01a69ba8ce031e1d0010",
+      "distance": 1.621576061161352,
+      "mint": "AQ7A9nsCcrfbftRq2kfFjCkaG6NicixZ1Vy4RZ4Hpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:B9Zbs2W9VK22AHnCWiK4PqBueDFzN17RNAFu5uFozLMJ",
+      "day": "2026-10-08",
+      "decision_key": "bd9562043a777073d9cdb8dd5fb4b65e013e5beb6ddbe15a0e7d6b263f3d8f1f",
+      "distance": 1.6329320224432007,
+      "mint": "68AGsjomsgTtiTaDhF6XGCeVJDnFeh415ngYYgVxGzns",
+      "y": 0
+     },
+     {
+      "cluster": "creator:A4emsn3r9pEypNJBniEgxotx4mU6cEXZx74DvkXSx24e",
+      "day": "2026-10-09",
+      "decision_key": "164f7e743514aacc7db62ff5d44feb25d7e6b4b3f9882f6b922df07063d45cc5",
+      "distance": 1.6401028109888423,
+      "mint": "3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:HuthLMyzfAdwVVqHvpr28pziyL1uXyYyZshi3y9F9Svo",
+      "day": "2026-10-11",
+      "decision_key": "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
+      "distance": 1.6631047030344441,
+      "mint": "EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:B7y8AXyWtst2JsAx9zYTP8ZhUbxYRBC8heUMMFPbAHSn",
+      "day": "2026-10-09",
+      "decision_key": "615afbdf23daef264aaf3a28cf74d13fe85b3a96841bdc9c0bdbafce328d764b",
+      "distance": 1.6933975959403818,
+      "mint": "7Xgc5RacHtGzfhw2HukUBk5V986yBbvshr7rrCoopump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:5QdvNDBSjyFRMzxPxU8ZKJkwBm2u9XqPFqspSC1uUVbY",
+      "day": "2026-10-08",
+      "decision_key": "b5ddb6ad15aa67ea8d65afdc71b58d2e39ea51378fcf3ad87b3fe1bb4950e8a4",
+      "distance": 1.6982948092076606,
+      "mint": "C3AEVqFnCYh2q4VAE1jeUVxHQNQLGVFDGrjqfboEpump",
+      "y": 0
+     }
+    ],
+    "as_of": 1791936000.0,
+    "b0": 0.12562814070351758,
+    "day_kish_ess": 4.945054945054945,
+    "decision_key": "6070e73636132d818acc46fe134dd097aadbac0bed79ff8de90a0e44ebf74f9e",
+    "decision_time": 1791973063.0,
+    "excluded": {
+     "same_campaign": 0,
+     "same_creator": 0,
+     "same_mint": 1
+    },
+    "flags": [
+     "NO_HISTORICAL_EXECUTABLE_DEPTH",
+     "PRICE_PATH_NOT_PROCEEDS"
+    ],
+    "kth_distance": 1.6982948092076606,
+    "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
+    "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+    "model": "AC2_KNN",
+    "new_mint": false,
+    "number": 0.19025125628140704,
+    "ood_threshold": 3.7995079575736757,
+    "pool_n": 199,
+    "pool_positives": 25,
+    "positives": 7,
+    "publishable": false,
+    "raw_rate": 0.23333333333333334,
+    "reasons": [],
+    "ref_n": 198,
+    "regime": "QUIET/RISK_OFF",
+    "scale": {
+     "mean": [
+      12.470451861070709,
+      15.74254255337374,
+      14.020479993949493,
+      3.344274466475095
+     ],
+     "sd": [
+      2.207718171457072,
+      2.6353766922372475,
+      1.6745220319420866,
+      1.9271834619043715
+     ]
+    },
+    "shrunk_number": 0.19025125628140704,
+    "time_sensitivity": {
+     "newer_n": 15,
+     "newer_rate": 0.2,
+     "newer_wilson": [
+      0.07047549346981563,
+      0.45185448715169363
+     ],
+     "older_n": 15,
+     "older_rate": 0.26666666666666666,
+     "older_wilson": [
+      0.10897453325692374,
+      0.5195043405598057
+     ],
+     "split_time": 1791541429.0,
+     "time_unstable": false
+    },
+    "wilson": [
+     0.11792388144489496,
+     0.40928326158122164
+    ]
+   },
+   "AC3_KNN_REGIME": {
+    "G": 30,
+    "analog_days": 5,
+    "analog_mints": 29,
+    "analogs": [
+     {
+      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "day": "2026-10-11",
+      "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
+      "distance": 0.21187679406539303,
+      "mint": "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+      "y": 0
+     },
+     {
+      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "day": "2026-10-10",
+      "decision_key": "b38e8374c31aa13ea0a166d3649101867f0fa0542ff1adaa105f9dc43fb7b5c6",
+      "distance": 0.5803822718654057,
+      "mint": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "day": "2026-10-08",
+      "decision_key": "cf95bc578a908792277841eef6e270624002fdb46555d90861431fafd8b0ad6e",
+      "distance": 0.7734052691460499,
+      "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "day": "2026-10-08",
+      "decision_key": "06c52604ac9ce8c862383b3dd6b6c488ba5f24fe76df31e11c3e65edc609d5ac",
+      "distance": 0.7905898230598779,
+      "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "day": "2026-10-13",
+      "decision_key": "aa0ffbf981d4f46e743ba454ec6ad1695fbc918847cb815262337424b13c92e3",
+      "distance": 0.9741228045968173,
+      "mint": "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6SJHhnhrmRUGn7tLPW8n23XmoHASRzvo9xeYk7UQYL6L",
+      "day": "2026-10-09",
+      "decision_key": "15e5b5576aa2af102fd7768f2069034505b2effe2ecc26771dbbb9f259ab5b5f",
+      "distance": 1.05364760243663,
+      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "day": "2026-10-10",
+      "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
+      "distance": 1.193118965201842,
+      "mint": "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+      "y": 1
+     },
+     {
+      "cluster": "creator:E7JzWSx2XVaWFaQRbd9K5Yani9Q3aZfC3AwExU1T4m5G",
+      "day": "2026-10-10",
+      "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
+      "distance": 1.2393549061699374,
+      "mint": "BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "day": "2026-10-09",
+      "decision_key": "88eea8894153efdeec3973590391e218a55e9e494baede0478cdb38271fbef35",
+      "distance": 1.2469973005186419,
+      "mint": "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+      "day": "2026-10-10",
+      "decision_key": "74a8b1d4a8593ca61ffc5f089abce608072c567952412d82381f3afc2415c111",
+      "distance": 1.2717966786936212,
+      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6sq1bQoYVqP2jC3RA72WoLx5VRCiSLUxeouHohJubEQN",
+      "day": "2026-10-13",
+      "decision_key": "f6887280c240a824e6485c856ae15d86afe505c51ff77efc6f668cdd61bedc62",
+      "distance": 1.2737404146105284,
+      "mint": "DzMwArmdzPqcqgvyqAmTxy79XdA9NwK9mMteqWLJpump",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+      "day": "2026-10-08",
+      "decision_key": "f544ca8e1085c3e71fa8269b78d49aa1b3defc419c565cc0679f270dd3cff9c9",
+      "distance": 1.2802924172284442,
+      "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "day": "2026-10-11",
+      "decision_key": "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
+      "distance": 1.2953961158390508,
+      "mint": "HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "y": 0
+     },
+     {
+      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "day": "2026-10-09",
+      "decision_key": "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
+      "distance": 1.4350553046244823,
+      "mint": "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6nm7Vsepvzv9jsYiJS8HfrQRGSCCiZ9L5DgwhdDgsi8z",
+      "day": "2026-10-10",
+      "decision_key": "8fe539bd60dd0b346db5db50310c79192ca8f8d23cfeee62eb1d81dcc666f178",
+      "distance": 1.4624336038009165,
+      "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:HuthLMyzfAdwVVqHvpr28pziyL1uXyYyZshi3y9F9Svo",
+      "day": "2026-10-11",
+      "decision_key": "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
+      "distance": 1.5438988792568582,
+      "mint": "EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:5CEbueQnq1Ym2uSSx2xXds3jQAqT1BDnkA59RZobSPAG",
+      "day": "2026-10-08",
+      "decision_key": "1e3c0e5b504a364b8acbbf15f7f3cbce448fb052aca20f2f4bcf111d986dcc3c",
+      "distance": 1.5930843424335244,
+      "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+      "y": 0
+     },
+     {
+      "cluster": "creator:DAR7byxGpLWWdWUkRYM7Lqycvk5KGXMwoHkUJcD4se4r",
+      "day": "2026-10-13",
+      "decision_key": "40c9f4fe5e315983358f1effbd4da9f482965bd23bf29d8f5c8031459559dbdc",
+      "distance": 1.6021330324351106,
+      "mint": "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "day": "2026-10-08",
+      "decision_key": "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
+      "distance": 1.6410465155633003,
+      "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+      "y": 0
+     },
+     {
+      "cluster": "creator:cWKFaakqsCJ8efDYHsTAAe8RAf8a4UQVacfmnKnLEZL",
+      "day": "2026-10-10",
+      "decision_key": "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17",
+      "distance": 1.7412830186933888,
+      "mint": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
+      "day": "2026-10-08",
+      "decision_key": "248557a701f4bb14f56902cc7a3d528c515153b34efa83d418b268479d38a50e",
+      "distance": 1.86796754112958,
+      "mint": "2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
+      "y": 1
+     },
+     {
+      "cluster": "creator:3kg6tMZhcsd3vxHEJVrY4MdyQxFDLp2MCW4vBF2YSJ6L",
+      "day": "2026-10-08",
+      "decision_key": "c3d393f2a8263c41fb5504de2beea920acbb35fa0ef05179f78c4e010cea4aa4",
+      "distance": 1.8988152459348588,
+      "mint": "6XhzSy3VTTkwqMUSQsStM3ncGy6ozcPnzLVmv4HZ64cC",
+      "y": 0
+     },
+     {
+      "cluster": "creator:EUmh5o7E7dfskre5nCDCnegA3Sz2Cpiss7HZJhAWUq8p",
+      "day": "2026-10-13",
+      "decision_key": "49ddc4bd84b2290af91c20a10d83b96006df23d3e7b920aef5c627e2ce0b06dd",
+      "distance": 1.9119344280999186,
+      "mint": "RACEyWiM2ztEZcJx2AHXU2eWjhxU57x3vXn92b39dLD",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "day": "2026-10-08",
+      "decision_key": "ddd4f6f1356e1f275defbe9242a903a0b01660477fc46b2858576836f1dddfe3",
+      "distance": 1.9595390919193563,
+      "mint": "7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "day": "2026-10-08",
+      "decision_key": "b10e9ef1f318464f792bf7e606bb0b09715cf4d49be25a325b0378318beb3554",
+      "distance": 1.999846901001932,
+      "mint": "9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
+      "day": "2026-10-11",
+      "decision_key": "b1df8c0418b2c85d55511be0f2a5fd2edff7f8fde1aa252655ca47fec387765e",
+      "distance": 2.016652393063893,
+      "mint": "85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
+      "y": 1
+     },
+     {
+      "cluster": "creator:NTRNDMczz1bzzB3eYk5VdMdovbf223wFuq57FEjqkoA",
+      "day": "2026-10-13",
+      "decision_key": "127dc358b74e36906c0b918c048b63c36af26ee5ebadcc488ff436b443d31a7e",
+      "distance": 2.0578326483656317,
+      "mint": "NTRNDMqQSiwEC2jJs3wJiZS6bpGYQJtMNQJgiX3WyV6",
+      "y": 1
+     },
+     {
+      "cluster": "creator:5mawG9WZxT2xmeuijSS7XxigNcr7Wv8d9Umx2t2RxmAi",
+      "day": "2026-10-13",
+      "decision_key": "0290434ab2ede41be7172d281027de4cd36e855f6c61a5c978ddba0ca22edcbb",
+      "distance": 2.098722973199713,
+      "mint": "HTmQz7My6MehV7bjhJ6jde8nDND1yvsz68d24LP7YgUQ",
+      "y": 0
+     },
+     {
+      "cluster": "creator:8HCj9vivAFwE1YcKPH1mrFDvsfErX2orEAgdMLim6zDf",
+      "day": "2026-10-13",
+      "decision_key": "77af704887d2e26a9d44a07bcc348859ac005b08412df9d363be4ef197e99c0a",
+      "distance": 2.131924300653544,
+      "mint": "u7XNK4pbxXgWzBwqidDV2TtsXwLqqxtjmGfw1H8pump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:DDDw9AgUrPJxGxAZNC6DPEpyQv5Jd1wfiGzwVza2v2fb",
+      "day": "2026-10-11",
+      "decision_key": "06a18bd40785c9b511cd2308a51e807323fb8428c9001e246bf14c4daab1a7ae",
+      "distance": 2.158746476065246,
+      "mint": "6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
+      "y": 0
+     }
+    ],
+    "as_of": 1791936000.0,
+    "b0": 0.12562814070351758,
+    "day_kish_ess": 4.5,
+    "decision_key": "6070e73636132d818acc46fe134dd097aadbac0bed79ff8de90a0e44ebf74f9e",
+    "decision_time": 1791973063.0,
+    "excluded": {
+     "same_campaign": 0,
+     "same_creator": 0,
+     "same_mint": 1
+    },
+    "flags": [
+     "NO_HISTORICAL_EXECUTABLE_DEPTH",
+     "PRICE_PATH_NOT_PROCEEDS"
+    ],
+    "kth_distance": 2.158746476065246,
+    "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
+    "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+    "model": "AC3_KNN_REGIME",
+    "new_mint": false,
+    "number": 0.15025125628140704,
+    "ood_threshold": 4.436090805753605,
+    "pool_n": 199,
+    "pool_positives": 25,
+    "positives": 5,
+    "publishable": false,
+    "raw_rate": 0.16666666666666666,
+    "reasons": [],
+    "ref_n": 84,
+    "regime": "QUIET/RISK_OFF",
+    "scale": {
+     "mean": [
+      12.269393613369045,
+      15.944970816404764,
+      13.617218554869051,
+      3.7252315232486124
+     ],
+     "sd": [
+      2.5392019488918254,
+      2.486114066854223,
+      1.8388700040984276,
+      1.7947901356379155
+     ]
+    },
+    "shrunk_number": 0.15025125628140704,
+    "time_sensitivity": {
+     "newer_n": 15,
+     "newer_rate": 0.2,
+     "newer_wilson": [
+      0.07047549346981563,
+      0.45185448715169363
+     ],
+     "older_n": 15,
+     "older_rate": 0.13333333333333333,
+     "older_wilson": [
+      0.03736125910306537,
+      0.37881982832322364
+     ],
+     "split_time": 1791628305.0,
+     "time_unstable": false
+    },
+    "wilson": [
+     0.0733654237184855,
+     0.3356435050641603
+    ]
+   },
+   "AC3_LOCO": {
+    "G": 30,
+    "analog_days": 5,
+    "analog_mints": 29,
+    "analogs": [
+     {
+      "cluster": "creator:21GML1ieck3tVVM1J5N6GsXh51rTrzVF55tbgdcvPAex",
+      "day": "2026-10-11",
+      "decision_key": "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
+      "distance": 0.21187679406539303,
+      "mint": "8nnaeWCw8mUypcGAgbmSuzAT85uWx4UN12adDrMhXrGF",
+      "y": 0
+     },
+     {
+      "cluster": "creator:9ckEvvCMzfAy1eBfYUno48wv4xtrt7KneyXB1XiuvXPT",
+      "day": "2026-10-10",
+      "decision_key": "b38e8374c31aa13ea0a166d3649101867f0fa0542ff1adaa105f9dc43fb7b5c6",
+      "distance": 0.5803822718654057,
+      "mint": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+      "y": 1
+     },
+     {
+      "cluster": "creator:CZqfz7EdR1bBz8Av6psui1P7Rq7tEQ6Wjos8NJMHCSdr",
+      "day": "2026-10-08",
+      "decision_key": "cf95bc578a908792277841eef6e270624002fdb46555d90861431fafd8b0ad6e",
+      "distance": 0.7734052691460499,
+      "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6RKsroTt2NgJvyUyhUcKqANrpHwDw6eE52X9TMBsQ7WC",
+      "day": "2026-10-08",
+      "decision_key": "06c52604ac9ce8c862383b3dd6b6c488ba5f24fe76df31e11c3e65edc609d5ac",
+      "distance": 0.7905898230598779,
+      "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:7naFFwuEJWeWwWYQUkgAWHsxYKg3KctEuUj42JdAMidP",
+      "day": "2026-10-13",
+      "decision_key": "aa0ffbf981d4f46e743ba454ec6ad1695fbc918847cb815262337424b13c92e3",
+      "distance": 0.9741228045968173,
+      "mint": "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6SJHhnhrmRUGn7tLPW8n23XmoHASRzvo9xeYk7UQYL6L",
+      "day": "2026-10-09",
+      "decision_key": "15e5b5576aa2af102fd7768f2069034505b2effe2ecc26771dbbb9f259ab5b5f",
+      "distance": 1.05364760243663,
+      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:FauKh2enCxjqMDaEEmo3qMmA9toxyZPFvPhGEZNMzChr",
+      "day": "2026-10-10",
+      "decision_key": "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
+      "distance": 1.193118965201842,
+      "mint": "BZFYNPeQAEW3HWQ4DNsTVahC1n4ZjTgn6jB2nnBbB96W",
+      "y": 1
+     },
+     {
+      "cluster": "creator:E7JzWSx2XVaWFaQRbd9K5Yani9Q3aZfC3AwExU1T4m5G",
+      "day": "2026-10-10",
+      "decision_key": "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
+      "distance": 1.2393549061699374,
+      "mint": "BQAeeSowpwEx8Km8GcporcbuLKq4a7EQceH3F2qZpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:EZ56n6ouqcHe7dbC9pU4qPLEyQXurp5uSEnGNYEpopAq",
+      "day": "2026-10-09",
+      "decision_key": "88eea8894153efdeec3973590391e218a55e9e494baede0478cdb38271fbef35",
+      "distance": 1.2469973005186419,
+      "mint": "CTPoyCwkjMvoJwU4xvZZqoD8tiYk6yDchySiN5gGpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:Ex48bNSQ4qh2xEVXmN3iNqP36ZLojckSHoWnnqfdVxC",
+      "day": "2026-10-10",
+      "decision_key": "74a8b1d4a8593ca61ffc5f089abce608072c567952412d82381f3afc2415c111",
+      "distance": 1.2717966786936212,
+      "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6sq1bQoYVqP2jC3RA72WoLx5VRCiSLUxeouHohJubEQN",
+      "day": "2026-10-13",
+      "decision_key": "f6887280c240a824e6485c856ae15d86afe505c51ff77efc6f668cdd61bedc62",
+      "distance": 1.2737404146105284,
+      "mint": "DzMwArmdzPqcqgvyqAmTxy79XdA9NwK9mMteqWLJpump",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+      "day": "2026-10-08",
+      "decision_key": "f544ca8e1085c3e71fa8269b78d49aa1b3defc419c565cc0679f270dd3cff9c9",
+      "distance": 1.2802924172284442,
+      "mint": "7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "day": "2026-10-11",
+      "decision_key": "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
+      "distance": 1.2953961158390508,
+      "mint": "HwJyyniKKDRLXxjRSzyLtpvxzqecqrhrbcSbKRm7STNK",
+      "y": 0
+     },
+     {
+      "cluster": "creator:Dpmutmc4ZLqvJwHbwabvKYeFJ9zkQ86nutUAUviRrXG2",
+      "day": "2026-10-09",
+      "decision_key": "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
+      "distance": 1.4350553046244823,
+      "mint": "C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE",
+      "y": 0
+     },
+     {
+      "cluster": "creator:6nm7Vsepvzv9jsYiJS8HfrQRGSCCiZ9L5DgwhdDgsi8z",
+      "day": "2026-10-10",
+      "decision_key": "8fe539bd60dd0b346db5db50310c79192ca8f8d23cfeee62eb1d81dcc666f178",
+      "distance": 1.4624336038009165,
+      "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:HuthLMyzfAdwVVqHvpr28pziyL1uXyYyZshi3y9F9Svo",
+      "day": "2026-10-11",
+      "decision_key": "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
+      "distance": 1.5438988792568582,
+      "mint": "EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:5CEbueQnq1Ym2uSSx2xXds3jQAqT1BDnkA59RZobSPAG",
+      "day": "2026-10-08",
+      "decision_key": "1e3c0e5b504a364b8acbbf15f7f3cbce448fb052aca20f2f4bcf111d986dcc3c",
+      "distance": 1.5930843424335244,
+      "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+      "y": 0
+     },
+     {
+      "cluster": "creator:DAR7byxGpLWWdWUkRYM7Lqycvk5KGXMwoHkUJcD4se4r",
+      "day": "2026-10-13",
+      "decision_key": "40c9f4fe5e315983358f1effbd4da9f482965bd23bf29d8f5c8031459559dbdc",
+      "distance": 1.6021330324351106,
+      "mint": "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:GZjYfGyUNQfDChcQ66Gc3ZMcQqPEisyRYe1nPyQhP9bp",
+      "day": "2026-10-08",
+      "decision_key": "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
+      "distance": 1.6410465155633003,
+      "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
+      "y": 0
+     },
+     {
+      "cluster": "creator:cWKFaakqsCJ8efDYHsTAAe8RAf8a4UQVacfmnKnLEZL",
+      "day": "2026-10-10",
+      "decision_key": "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17",
+      "distance": 1.7412830186933888,
+      "mint": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
+      "day": "2026-10-08",
+      "decision_key": "248557a701f4bb14f56902cc7a3d528c515153b34efa83d418b268479d38a50e",
+      "distance": 1.86796754112958,
+      "mint": "2GYMvnSv37djKecDshE8bYe2sRypcETeAF8G9h6un4J2",
+      "y": 1
+     },
+     {
+      "cluster": "creator:3kg6tMZhcsd3vxHEJVrY4MdyQxFDLp2MCW4vBF2YSJ6L",
+      "day": "2026-10-08",
+      "decision_key": "c3d393f2a8263c41fb5504de2beea920acbb35fa0ef05179f78c4e010cea4aa4",
+      "distance": 1.8988152459348588,
+      "mint": "6XhzSy3VTTkwqMUSQsStM3ncGy6ozcPnzLVmv4HZ64cC",
+      "y": 0
+     },
+     {
+      "cluster": "creator:EUmh5o7E7dfskre5nCDCnegA3Sz2Cpiss7HZJhAWUq8p",
+      "day": "2026-10-13",
+      "decision_key": "49ddc4bd84b2290af91c20a10d83b96006df23d3e7b920aef5c627e2ce0b06dd",
+      "distance": 1.9119344280999186,
+      "mint": "RACEyWiM2ztEZcJx2AHXU2eWjhxU57x3vXn92b39dLD",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "day": "2026-10-08",
+      "decision_key": "ddd4f6f1356e1f275defbe9242a903a0b01660477fc46b2858576836f1dddfe3",
+      "distance": 1.9595390919193563,
+      "mint": "7ypCq2CJ4fnbtS3z2B1W1UT2he5E3u7Md6Gy1ri7uGrQ",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "day": "2026-10-08",
+      "decision_key": "b10e9ef1f318464f792bf7e606bb0b09715cf4d49be25a325b0378318beb3554",
+      "distance": 1.999846901001932,
+      "mint": "9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+      "y": 0
+     },
+     {
+      "cluster": "mint:solana:85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
+      "day": "2026-10-11",
+      "decision_key": "b1df8c0418b2c85d55511be0f2a5fd2edff7f8fde1aa252655ca47fec387765e",
+      "distance": 2.016652393063893,
+      "mint": "85Mo19cmRzg89Vz1niSw7jRZtrtfvCrkEwFSW1CBaQcg",
+      "y": 1
+     },
+     {
+      "cluster": "creator:NTRNDMczz1bzzB3eYk5VdMdovbf223wFuq57FEjqkoA",
+      "day": "2026-10-13",
+      "decision_key": "127dc358b74e36906c0b918c048b63c36af26ee5ebadcc488ff436b443d31a7e",
+      "distance": 2.0578326483656317,
+      "mint": "NTRNDMqQSiwEC2jJs3wJiZS6bpGYQJtMNQJgiX3WyV6",
+      "y": 1
+     },
+     {
+      "cluster": "creator:5mawG9WZxT2xmeuijSS7XxigNcr7Wv8d9Umx2t2RxmAi",
+      "day": "2026-10-13",
+      "decision_key": "0290434ab2ede41be7172d281027de4cd36e855f6c61a5c978ddba0ca22edcbb",
+      "distance": 2.098722973199713,
+      "mint": "HTmQz7My6MehV7bjhJ6jde8nDND1yvsz68d24LP7YgUQ",
+      "y": 0
+     },
+     {
+      "cluster": "creator:8HCj9vivAFwE1YcKPH1mrFDvsfErX2orEAgdMLim6zDf",
+      "day": "2026-10-13",
+      "decision_key": "77af704887d2e26a9d44a07bcc348859ac005b08412df9d363be4ef197e99c0a",
+      "distance": 2.131924300653544,
+      "mint": "u7XNK4pbxXgWzBwqidDV2TtsXwLqqxtjmGfw1H8pump",
+      "y": 0
+     },
+     {
+      "cluster": "creator:DDDw9AgUrPJxGxAZNC6DPEpyQv5Jd1wfiGzwVza2v2fb",
+      "day": "2026-10-11",
+      "decision_key": "06a18bd40785c9b511cd2308a51e807323fb8428c9001e246bf14c4daab1a7ae",
+      "distance": 2.158746476065246,
+      "mint": "6GGY8GViCR5v4xR4Lxb4nfiAJsEoJua5Gj6YecxbJ4BQ",
+      "y": 0
+     }
+    ],
+    "as_of": 1791936000.0,
+    "b0": 0.12562814070351758,
+    "day_kish_ess": 4.5,
+    "decision_key": "6070e73636132d818acc46fe134dd097aadbac0bed79ff8de90a0e44ebf74f9e",
+    "decision_time": 1791973063.0,
+    "excluded": {
+     "same_campaign": 0,
+     "same_creator": 0,
+     "same_mint": 1
+    },
+    "flags": [
+     "NO_HISTORICAL_EXECUTABLE_DEPTH",
+     "PRICE_PATH_NOT_PROCEEDS"
+    ],
+    "kth_distance": 2.158746476065246,
+    "label": "COHORT_ESTIMATE_NOT_TOKEN_HISTORY",
+    "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+    "model": "AC3_KNN_REGIME_LOCO",
+    "new_mint": false,
+    "number": 0.15025125628140704,
+    "ood_threshold": 4.436090805753605,
+    "pool_n": 199,
+    "pool_positives": 25,
+    "positives": 5,
+    "publishable": false,
+    "raw_rate": 0.16666666666666666,
+    "reasons": [],
+    "ref_n": 84,
+    "regime": "QUIET/RISK_OFF",
+    "scale": {
+     "mean": [
+      12.269393613369045,
+      15.944970816404764,
+      13.617218554869051,
+      3.7252315232486124
+     ],
+     "sd": [
+      2.5392019488918254,
+      2.486114066854223,
+      1.8388700040984276,
+      1.7947901356379155
+     ]
+    },
+    "shrunk_number": 0.15025125628140704,
+    "time_sensitivity": {
+     "newer_n": 15,
+     "newer_rate": 0.2,
+     "newer_wilson": [
+      0.07047549346981563,
+      0.45185448715169363
+     ],
+     "older_n": 15,
+     "older_rate": 0.13333333333333333,
+     "older_wilson": [
+      0.03736125910306537,
+      0.37881982832322364
+     ],
+     "split_time": 1791628305.0,
+     "time_unstable": false
+    },
+    "wilson": [
+     0.0733654237184855,
+     0.3356435050641603
+    ]
+   }
+  },
+  "cell": [
+   "7d_30d",
+   "100k_1m"
+  ],
+  "creator": "DRqWUscn7tCkNCjuSrAEqaT2crKgsoePcPxHV569uii7",
+  "cutoff": 1791936000.0,
+  "decision_key": "6070e73636132d818acc46fe134dd097aadbac0bed79ff8de90a0e44ebf74f9e",
+  "decision_time": 1791973063.0,
+  "inputs": {
+   "ac_launchpad_class": 0.0,
+   "log1p_token_age_days": 2.1236466957454527,
+   "oc_token2022": 1.0,
+   "thesis_log1p_liquidity_usd": 13.45678085,
+   "thesis_log1p_mcap_usd": 15.64176668,
+   "thesis_log1p_vol_24h_usd": 15.13816445
+  },
+  "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+  "pool_keys": [
+   "01f6e0af42de4459c70fc91793824829bc645151e001752fd8342029c0882917",
+   "0290434ab2ede41be7172d281027de4cd36e855f6c61a5c978ddba0ca22edcbb",
+   "047c511d9d5089358ad9a3e5c1b1c1e06becb33501371e57b4bddfd18d866afc",
+   "06a18bd40785c9b511cd2308a51e807323fb8428c9001e246bf14c4daab1a7ae",
+   "06c52604ac9ce8c862383b3dd6b6c488ba5f24fe76df31e11c3e65edc609d5ac",
+   "08a223736858cc7fa45d8e66b07d94a808ab666b5958027c01408f152065126d",
+   "08dd5a7fe37be2b2b43ff137a23388375f0089ae1c2e3e0b01b65d4f43ffb426",
+   "09bfee4e93ff88aeb629e8e1723a4a9b4b5c8a2dc8b74c53d587210331555d05",
+   "0ada51f42f6d28b0c653eb63300afb4d8b7bf8ab66818fa97d507bb6dcd84fb1",
+   "0f27310ecfc600bf4259ed7c57c1488217979171ffb9929bfe40b1672d2231a5",
+   "127dc358b74e36906c0b918c048b63c36af26ee5ebadcc488ff436b443d31a7e",
+   "15e5b5576aa2af102fd7768f2069034505b2effe2ecc26771dbbb9f259ab5b5f",
+   "164f7e743514aacc7db62ff5d44feb25d7e6b4b3f9882f6b922df07063d45cc5",
+   "1802ebbb2ed5bb6e33e1808de1dbd70010969398491460085d2dff17a77dc567",
+   "19ddfd5de2a026e432008e1b1b893c091b8bb4faf92b85a1cb4d984812a1e292",
+   "19f607fe354e8e1bda7fe5417860d678451f7c2e0e135bbab14932d2189de09d",
+   "1d2ce2503a6bfd64db30421d01cade089e2b2222d70fe04deba013c4e16a4279",
+   "1d889a5ab9f8e7cc1d1e8befa633e82cea83337889c5c2037266882a96932e0a",
+   "1e07d255ce45abb14b7e308a25facf2188e3f3b6c9910c975f7a2edd9293138e",
+   "1e2fbaddf8bcee85756a3c16b5f50edc4f6afcd29f081e77a554f3ccca84fb35",
+   "1e3c0e5b504a364b8acbbf15f7f3cbce448fb052aca20f2f4bcf111d986dcc3c",
+   "1ec073a4ab8b9f8dddaa78dcbf44b6b4979c1900e596ecd08b213826d860e63f",
+   "22a8490f25d3481414023417430cd0a06b653709883cb4bb5a3a9e8368505096",
+   "22f8bdf7d98d02a6778dc095b85804996791f3baaf2089cbce4f081bf03c51a9",
+   "248557a701f4bb14f56902cc7a3d528c515153b34efa83d418b268479d38a50e",
+   "25feba9d672517722034cda1b871057283241fd5abaa00e9166472e76fac1665",
+   "262811984f1999693b85ee42d2ff81aca205917269fc7de3480d01e434e0d651",
+   "284aa8be87d47a669894021117b16e7bacb60a4a90a1d9890461636d9e387ef0",
+   "29c621774bb63c563e34f1b6aaa75bcbbef466711576010c1d65daa3d3e812a0",
+   "2c818ec733e7dd8a299ad95a47f0f15fa693bfb97de191f8c663663ed5f11b30",
+   "2d2bc052e00a1fe8061b6e7fef95be6558dcdbaeb482317eff81d4abb81fc370",
+   "2e269f2d82b4f4c7302282e8c1451c92b3c2622d8fb6163beb51ef66a380c438",
+   "2eccf63571757d286da47fe780d475f7f659241ad002641feab67e0f49be09ff",
+   "2f146ad69293140463fe184d53323c072e913adcea55ed6a20abebd954ceb527",
+   "2f989dd518bedbf0df4cb512e3f65289d592419e83e211b911738b9266cb5afc",
+   "309ccc939d757ca0bd2fa72c7aea0c002cb95da9a0c43c9553403fb49432b14b",
+   "30c5d49dcf4bb962a3dbf632620cd628b39e0f3c8d9c4ace3b8fcb6987da2320",
+   "31142a33d46053a611c0fc845591b6d457c8b4b0ff2932c0db1780c1ae7fedca",
+   "314ab615f744a86317bb583db137cd46ed6bfdb0a7b31a0e8a8fb8beb8b2f36a",
+   "3290351e6b7de4a3b4a420843044bf14eb59e75a27b1580dc17e3086a71e63fb",
+   "34b8a8e8fdca22ac58910195a033de271398a75f000e8296089b2299a8cad6ca",
+   "358a97cfcf638a73c4d40df91d36934da1f2e9393825054afea48c9fef8b7321",
+   "35aa378b59abd7ca37e93cd1f88472a86e3be9fee9b37e071f74f171b3f6256b",
+   "360c9b2bf23f2e2a12b7e7533cc41c04d9d174e116bd5d58e45de2ee19b7963e",
+   "36322ba66dba08341ffaae8d209b3491736cc7900d33cc275693f5e4167b32b6",
+   "37bb74585b03f3f03c5043658e1910e54f000b2bde87d3ef714b39d4c7481080",
+   "38e97913e0b1329de062291c85417a6c16a3e69c602414b32c083c6f023529e4",
+   "39a1c4f7e028d0d93c0ab7f0ba61fc13e6cdcc54934657ed99574c0796b5091e",
+   "3aa19f76ab711047aece3944c52059ce500f145ce319c45390d3f2a6eacae104",
+   "3b4bb57962e7170ffbe5b28e0427a9092c2ed4660074a956482bc22c1fafbd97",
+   "3c3a5cca4295037495878bae7249ce541943a993a7d69ec244a78c13be289725",
+   "400d2b647c940a9961e23cb1ed9ac39df688295ac47f090b081e52df4e004468",
+   "40c9f4fe5e315983358f1effbd4da9f482965bd23bf29d8f5c8031459559dbdc",
+   "4229692a4745e3dba2485f973e8b2689e455468396289402689dd434b0094ec9",
+   "42d06e05bcd6027105577a54a78e59ccf962a8b76de33b85e5b0ce31d6c113b9",
+   "4465ff1ce51d4dc8dbaecee02100f861c1e6f214cda57a84aafc2e98530b1aff",
+   "44abdc7df1c1819615a001d0598954efd79e08a450ab6d12efe91d44f425c04d",
+   "44b8fbbfd788c48c7904992903ddeae8af82c518eb1726721a68997ad547085a",
+   "450a9a8ccf2cf9d4b6bdb1538fa3bd91d6f46215706207ff38a5fd872003ba31",
+   "4609064b63d2bbe7826c498958e4b4e1e9bfc0f96ed9709f708c87b39c05ef85",
+   "48a7b86c6a9ae978247e0374066ab4035c4c4f757c73389b762f217a821d9072",
+   "4993cdfa8e2c8817babe133ad714f05f12664472c76efcb314b80b953ad6cde3",
+   "49ddc4bd84b2290af91c20a10d83b96006df23d3e7b920aef5c627e2ce0b06dd",
+   "49ed0c231bbd89f0e52d46a9e3ff124cc1d7f4207da1cdd4fdc6d80d5c7c6663",
+   "4b33b36c051d59016f7826b9d7fb62a92fdb179e79b4a5f97faf783de95f0917",
+   "4dce29848277b6fbb28d043a63740aaac270b14d8d78c4270bbbb5eca5ff39a0",
+   "4df5c9017fb4a8d4365de29ee4bf8d674b42f33c69ba4acac1381cf56dbeb62b",
+   "4f0b07c881cabbc1eb062a899c5db359c8c6e0c38feba668d033610e72a7e5d7",
+   "4ffde3371c89437462d5a654247b41c06eed33a5b63a6d54a531568fa2f4c091",
+   "5208bbb443ee0ab316bc12bed5673323d1ee21a408af696014d372feaaa2c2a7",
+   "55257a0b646ec341fef1f4759ddc3b680ce7c5f0d7a0c2df294a32b460e17701",
+   "571be4e02fc923c3e39d05a139f87b2d9f8238a15190681988098d7cdca16b2b",
+   "57507d51778c5339375908434b0cef012a3942a8b5d36b80fe071a022f894e47",
+   "59a3a56be0bf8ce0ea711c586fcc96fce45874b6a9fb115d15c80deb43684b57",
+   "5b6b5656ace8b220668527728c00bf18e968bcb5ad5e38e2bfeb496a94520629",
+   "5c04c4e050b145d5cd88f74bba7735ed993fe6a9aeac36d9795154bfe19adadd",
+   "5c1bc1de790dbf154347ba7cd464912d79fe1169ef0e06125f0d2873f0dbe178",
+   "5c881e3466928992948f13debaf6a3cc829f0a6d6b8d96b136f16b196b10d784",
+   "5c8d10c931ae2f999c29c2bbab3e0947be6b5e7d9c5b02b8982ff61e95c3c6ff",
+   "5e9125b48e78d5b23615f27da8295da8696e945c7eb087e963cecdf75961c866",
+   "5eff0201255bb69a8b1ef62ee7627b6cb10fdc500e2241b670ff8c91818dab1d",
+   "615afbdf23daef264aaf3a28cf74d13fe85b3a96841bdc9c0bdbafce328d764b",
+   "6398161774ee9003a267a0ab5eb49cd4041c8efc4f1c47a39139bd0b5e42e7e9",
+   "6538fe3f8cb34127fe6446717041795c03ac9048385799e0104212730c836b9c",
+   "678f28b92f44c024dffd6c65877297a7997878e5c8d0110be87286644d4af493",
+   "6828ce213b00690d37994854643d8c2499e3a2a24a373b8e5ec88aa066605224",
+   "69ebb2b8cf74041e91f116bf5378d3d2b9b196fb7cee5d3074683c480c36370f",
+   "6aa63ae534d434ef2bef787cee6870d9e10181277858538ac22402a50c09a91d",
+   "6aa70e3f356de2d235f17741cde08dafa780eb3edcfc88116b6261f9daf522a7",
+   "6e7a77e13300ce4b27bae56a871765b3914d7c6d54e62d041b9304b0b9bacb52",
+   "6e9cc8cb71723455acb74fb0551189732a5c880b010ea12103f5af9095908267",
+   "70ed29aa4941433bd4db884757d32d50cf39ee536405b134266329adc18c43b3",
+   "7174d94c01624ee5fe6a8d1e76012a9e83effbbfd296e6081a66fd3cc650fc04",
+   "720d5590630864095eff60394c041bc47974fd34e50ed0731ae4c6dc8f41717d",
+   "72d306aa011a5e5e606b698ed05f82d7d4a441173bd6ee4f85ee51ba01cc51a8",
+   "736c236eb148245c42f33da3092a1ece60da02f1a1e4fbaa59f6b8e548f24731",
+   "73976cedd12a1982414c9cb87d6b5fb46541033669e34283c902e146bb3b2a76",
+   "742780f582621cdfba75f568e8803f3caa84d73e46c80073f9f9efa0cbd32063",
+   "74582082349ad2000840fe65a96662ab6dfa2febf73c2e333aa94c62f648c640",
+   "74a8083ad04f3f2a29c12de63349a5e12f7611972152f7ef92da6d1df171e84c",
+   "74a8b1d4a8593ca61ffc5f089abce608072c567952412d82381f3afc2415c111",
+   "77af704887d2e26a9d44a07bcc348859ac005b08412df9d363be4ef197e99c0a",
+   "78109c233136e97a9802e19688bc4923a8024702794ce59348760034e9f7b8c1",
+   "7823c065d9d68719b7ac13a57a5a98e66cb09eebe2464b061b3def3c8d05d249",
+   "79b7f63e98b0ee00055a6d35e17d0c618779fd8d12d9633980fdcecaa160561a",
+   "7a0cf5efaa0a16dd23386a7b20ea1bb2f05648ee622f01a69ba8ce031e1d0010",
+   "7b01e6ca83b65ff199b2b43151b3d01a683d67db1d41541a4c0b7ad096e68175",
+   "7dbf3d7b3a5c7fe0c6783706d6964ee35c4f69ed699280e6d0398a3c72f3eb4a",
+   "7efe8b687e1545a2e5a6646a13d5c7042c7d4421a7314095d9ad5b53ee0a4482",
+   "7fe99e47eeb5cbb76a4516ae8a28373f39481232fbee2a2902dfb74f15377c2a",
+   "8054ab99100c05d583bcc45209d4476c17ed07ceb895beb89a5c638fb49a9b84",
+   "8087dec44b53cac461bde3870abb934c0aac3cdc6134e860a7ab677ba0d04d5d",
+   "813221ba77d4bcae64664e1328cdb3c9622c9723e53395830b6030183f90a8f7",
+   "81612e522da42e409a9e047fc05fccae8ba8f5e9eb2363bffe1c7c6253247ab5",
+   "825ad9aa2ba4d9efb97bd26f89581dadedd7978ba7faf2cab03e6b47b52e71cb",
+   "83b6ea620fee50541d7f2ce14b1d9ffc74d8e249ff9c658d9a4bc6176b9dbdea",
+   "86ceaa8fb73556114ff2756f06f78f6908772b3dc2f8e5501161111e33340103",
+   "873d7b4cc8a5e946e1bf2bae5aaa0aa21fd26e292fe722e2e96a6eb2d4445ce2",
+   "88099b59881501352f41c7310ee45c9d45399cd4112c851181eb509ccd7daa10",
+   "88eea8894153efdeec3973590391e218a55e9e494baede0478cdb38271fbef35",
+   "890568ea68c73b91e762bfe4885807d14eabf17bb4a747d4ce2f16b08d4d6de2",
+   "8c42f733faf2620bd22dc644cd3dee86164669ed294dd086401683984dfeefbb",
+   "8d78dc1d787cc7480abe3eb12555965d6d81366d13013b058d4670c55a0a4079",
+   "8dd8f63d02867bd8dc0038c025f1bfe99c14dbd9823a5ffd65578c924c003b5c",
+   "8e8c0826813f0ffba439113bf94dc7b8e6b06f42bcf4501194e3580ce4d3e6e6",
+   "8fe539bd60dd0b346db5db50310c79192ca8f8d23cfeee62eb1d81dcc666f178",
+   "8ff1f5a3b3cea39a0fadfdd589c7176efcf4c6253e31fba29787452c9eb10ca2",
+   "915c9f7e3220e59e8e491d32ffe047ba5487b2be9c2e71c63f4f3693d2d5dc01",
+   "9578a21bb38544ce438f5cb5f25eebe742c652c6a91967375bf033cb61410ed6",
+   "95c69eae655e0839699e8ef69ec7c0995660f1e0f04912700120aaeef6c19bfc",
+   "96a3993868007a6f1f2b3ddb20d0ed956b6fb091f9b109944ceb0499aa485822",
+   "96ba81cb7967c34e9b00527bae608609533f0193af8faaaec94a2f1047c9c789",
+   "9722f54f91b070d7478cbdfd81bca6d3acea4adf0cb14a1a23ac27b0a455df5f",
+   "9a5f7f746b0126f949bcb06a4852a2a024b3dfce5c2bc7ef53510136ac85d2fe",
+   "9bd332f01ceedf04af712e099a28ddd18135b94f83ab65ad0ab6c731c9767da2",
+   "9e45f84266360fb41591818e4afb1f7109bb50e3a737a2e6245a45879a8190a3",
+   "9ea5cdce825e91b0a05c9db0b2cb7492920a95afdadb40dada09d24bfd4fb40d",
+   "9f6e49fe2ed5e6a33bf57a0f2a255029bdd4e90fec47c0fb85ebeb7ea0cc9d90",
+   "a0a22e40117e15d922112320678407f203e360b0486b860bf520d755f1a3bfcd",
+   "a1d2a3c8638c1eb260bd4237d67b0fe997cdd9674c3d5ce805295649cd37c218",
+   "a4c4f406e5d565b94eed1445d18c00d5bb3004099be9167d639305aaba8395cf",
+   "a7cd68dfe325c52e46cc4c2830e8c159fb3fc0d91c5262bee4381cfd300cdb60",
+   "a8299cda76821713abdabb730d056f6e307a4696d7e18711d59d88c48c46211b",
+   "aa0ffbf981d4f46e743ba454ec6ad1695fbc918847cb815262337424b13c92e3",
+   "ac1be05dbd88a7da84d168880ce1a01a4f3abffdb0e694b5350311320e39ec9d",
+   "af289ddbae54b11571b13248559c221b2b4b9a7018951fd2b76e13c3d4759a54",
+   "b10e9ef1f318464f792bf7e606bb0b09715cf4d49be25a325b0378318beb3554",
+   "b1df8c0418b2c85d55511be0f2a5fd2edff7f8fde1aa252655ca47fec387765e",
+   "b38e8374c31aa13ea0a166d3649101867f0fa0542ff1adaa105f9dc43fb7b5c6",
+   "b3900a65df7687424cbe2628e6ac35a723d620153758cb308afa6635a2fc0fc2",
+   "b4ad12fbcd12130c6ce0415169183fdada65e28b393f5de9c825f468315b4f61",
+   "b5ddb6ad15aa67ea8d65afdc71b58d2e39ea51378fcf3ad87b3fe1bb4950e8a4",
+   "b7d182d1314b5f008d3885852a371994b714329453fa0aecc5d27a039a12e8ea",
+   "bcc8f42cdb5bff89ba45958ce9114f3be0e4d9ca2e8d068331dcf15a24692fee",
+   "bd9562043a777073d9cdb8dd5fb4b65e013e5beb6ddbe15a0e7d6b263f3d8f1f",
+   "bee8c1456657cff1f403b73097025b41e2e3155cf65b01aeba1b236713907cd8",
+   "bf2594b3dff092e732903bf6538b53a362848cd6d6103567bed3367530e7ecff",
+   "bf74a446159887f2705aa29647ad7cc3a85fdb0ed1365aa70d54c10430e25d5f",
+   "bfde5772d7cd4d49e894a95e57dfa937ab34d2d8b93e5e85ce6188e5cd5ecbce",
+   "c185b56f0325d9fff0d9bcab41a2db10d61bdace342fdb6b7724f943311a491b",
+   "c3d393f2a8263c41fb5504de2beea920acbb35fa0ef05179f78c4e010cea4aa4",
+   "c61368c053f713673756d256f34533b13f69df97f11b8ace5f9a4712ac193e95",
+   "c69b5d5fe795785b35b9b9f33b42b57b7855e86fc641d7cc7604d5b9167dde67",
+   "c881b79070ad6fe432865ee3c35854d8cb2ee3d5ac6254a096d159f9ace2bb36",
+   "cd2ec28f9818dcd3396374be4131d350e84b42b8b456fabfa57f140be4835c35",
+   "cf95bc578a908792277841eef6e270624002fdb46555d90861431fafd8b0ad6e",
+   "d175a7eb960e5cb5fbc01bf0f4c79ddc63fbbeac2abb131ad1a55aa7e7ce27c5",
+   "d341725365eaec03a2fbc4f722dbb36233d1dc5616f02adc641965c3148f5133",
+   "d53cf36c858abac6389483f1bb87e331fcb973c6f4a42faa36f48516a9c4b855",
+   "da64a9d95b19fc0004aa868a493eec4accb6e595fa3fd160bcbcbc849742a56c",
+   "ddd4f6f1356e1f275defbe9242a903a0b01660477fc46b2858576836f1dddfe3",
+   "dfe400dcca348f53c3737da35a5a559b963a1d8fa3001ab9ac5e82a71fb96d00",
+   "e0ac032f2af8ba7182e77afdd6f0dd781b03880270159b72f6d2c49d1c4c0eec",
+   "e3aa5157cae2d8aa09effa999ccf830bb4ee9f2b2b03242f7eb72f7e8a8cce46",
+   "e4eddf37d2378dddd924b17ee948f3ae817e6c2deb768f18a6b11ebe16e64594",
+   "e637cefc4d886c52a4e574a53630da22a22110bb80753179f2e769936a6914f7",
+   "e92c2da2bd5194df515d5f96fb05da77b6a2b18c64b314d221d59ac92a2e8348",
+   "e92f86dd49618974e2a0e0c667c6435bc27f13a6c136c2126561bcdb4c6b9029",
+   "ec180843fc7ec4d7fce29216c54ddba1e3977b701f58ae2e6a11c615709cbc9e",
+   "ed0aed48ed9cb867d0fbb12cfcdad74a86349367a65072f3d3b5003dd384a014",
+   "ed6bb23645b99168dd7dae6fa53e8cb3c26398dd611e40b4df9857687233b09b",
+   "ee1e0cc17d1bc117166664bd54e44dad7d171ef7e6a6cb57215112b5b70607f1",
+   "efa03ae4fa14ee4d6825f87cc4015ef2cc9c5ffd80226944db9bac72899cc426",
+   "f2a709cb1be8e692fa3585785278837256975e0ae627d6e6034cb3e4906a8525",
+   "f3c2dd156072a9770a46995a6717060d2f8899c3248f2c900937ce1310a27175",
+   "f544ca8e1085c3e71fa8269b78d49aa1b3defc419c565cc0679f270dd3cff9c9",
+   "f6887280c240a824e6485c856ae15d86afe505c51ff77efc6f668cdd61bedc62",
+   "f6ecc6afefa38a1b87a638a489e7a4b527cf8f31747799aa31051773fca1f886",
+   "f8a981622dd43c21c9767f29449a4a38d63d4568ccc7beb8ebfd53b583267d1a",
+   "f94e8926676295a610c2864653161ec2c9218c490cda084f895512e91e576e0e",
+   "fa458de1dec6b0180e2bcb66ad2fb66d8089fde0b98edc7002e129d35480955b",
+   "face82e6c8cb83d088535a06f2d86f85566d9a62e93ffdaaf0c975a8f535caed",
+   "fb27c41c78854974fc9385c2253bbdb6297cf98bfcf3c1fdad9b69fa1af732ec",
+   "fb814c71793a5b957bf7fa82785a2a47438307f68dc1efd1c859be3f1826c091",
+   "fbbc89c719c365028685e36ee5eedbfd95e038dea69afd71662d7c35111f6903",
+   "fdca1916ebf9eb182deb4890121b2c9d9ee8ac30d84557dbefa34c8fb22b6c17",
+   "fe5e007fa4bbf30297e132ad3cbfe0a3c3fb42e4dea7edf6bba014dec0801cb3",
+   "fe8ce64a37ba13e2032dd919582997000d21b4cfd6c0e1af1cbd1fbb4686a044",
+   "fff7c687482194fcfce078cffae6fa27b0fe824b982bbc68b2fb5127e1b15a1c"
+  ],
+  "regime_record": {
+   "T": 1791973063.0,
+   "activity_median_log1p_vol": 13.34805956,
+   "catalyst_category": "CATALYST_TABLES_NOT_EXPORTED",
+   "chain_wide_state": "CHAIN_WIDE_DATA_NOT_AVAILABLE",
+   "label": "QUIET/RISK_OFF",
+   "past_activity_median": 14.46658403,
+   "past_tone_median": 0.2945251267865376,
+   "prior_instants": 76,
+   "tone_constructive_share": 0.16,
+   "window_decisions": 25
+  },
+  "target": "price_path_target_before_invalidation_6h",
+  "target_short": "T1b_6h",
+  "y": 0
+ }
+]
