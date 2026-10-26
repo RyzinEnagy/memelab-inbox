@@ -1,0 +1,412 @@
+{
+ "phase": "12",
+ "status": "NEEDS_REVIEW",
+ "head_before": "63076adb7a42ac7f7c2cc271d535d8e7a6947d0e",
+ "head_after": null,
+ "commits": {
+  "pre_registration": "79d30f5",
+  "frozen_code": "3ea7030",
+  "pre_opening_outputs": "d58de61",
+  "opening_outputs": "de7ac77"
+ },
+ "holdout_opening": "2026-10-26T17:33:27Z",
+ "result": {
+  "T1_24h": {
+   "champion": "P07_B2",
+   "n": 66,
+   "positives": 15,
+   "bss": -0.02417436068288259,
+   "governing_ci": [
+    -0.15594405364506064,
+    0.13392227387028927
+   ],
+   "p_holm": 1.0,
+   "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+  },
+  "T1b_6h": {
+   "champion": "P07_B2",
+   "n": 68,
+   "positives": 12,
+   "bss": -0.08331454692882057,
+   "governing_ci": [
+    -0.1675279835602911,
+    0.0024233425585239244
+   ],
+   "p_holm": 1.0,
+   "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+  },
+  "T2_24h": {
+   "champion": "P07_B2",
+   "n": 59,
+   "positives": 7,
+   "bss": 0.2924500626026405,
+   "governing_ci": [
+    -0.025757509880623752,
+    0.6740492845660988
+   ],
+   "p_holm": 0.10034498275086245,
+   "verdict": "INSUFFICIENT_EVENTS"
+  }
+ },
+ "checks": [
+  {
+   "name": "G1 package checksums",
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "result": "41 OK, 0 failed",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G2 entry suite at 63076ad",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "result": "1 failed, 1398 passed in 251.15s (known test_dedup_corroboration_resurface_denial only)",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "G2 entry seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "result": "problems [] with the three pinned hashes",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G2 Phase 11 key check",
+   "command": "python -B audits/predictive-intelligence/phase_11/probes/verify_trace_analog.py audits/predictive-intelligence/phase_11",
+   "result": "0 differences",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G3 pre-registration first",
+   "command": "git log",
+   "result": "79d30f5 (16:41:13Z) before the first code commit 3ea7030 (17:32:01Z); debug runs without holdout labels logged",
+   "exit_code": null,
+   "pass": true
+  },
+  {
+   "name": "G4 frozen code before the recorded runs",
+   "command": "git log",
+   "result": "plan and predict at 3ea7030, open at d58de61 (code unchanged since 3ea7030)",
+   "exit_code": null,
+   "pass": true
+  },
+  {
+   "name": "G5 candidates and cards",
+   "command": "run_holdout.py plan",
+   "result": "69 cards verified by their family loaders, cutoff 2026-10-17T00:00Z, training rows inside the cutoff",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G6 champion before the opening",
+   "command": "evaluation.champion on committed development metric files",
+   "result": "P07_B2 for T1, T1b, T2 (no development skill row)",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G7 ledger totals",
+   "command": "evaluation.ledger_totals",
+   "result": "2896 rows, 87 candidates, 31 bake-off, 306 controls, 15 debug runs, N_search 118",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G8 predictions before the opening",
+   "command": "run_holdout.py predict (twice)",
+   "result": "12255 rows, 95 decisions, 0 labels read, committed in d58de61 with PREOPEN_MANIFEST.json; twin identical",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G9 seal check and pins",
+   "command": "check_seal.py inside run_holdout.py open",
+   "result": "exit 0, problems [], hashes equal DECISIONS and evaluation.SEAL_PINS; bytes hashed on read",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G10 opening once, logged",
+   "command": "validation/OPENING_LOG.json",
+   "result": "one FIRST_OPENING entry (2026-10-26T17:33:27Z, head d58de61); later reads are a REPRODUCTION run and an independent label check",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G11 holdout set",
+   "command": "evaluation.holdout_rows",
+   "result": "66, 68, 59 scorable; 1 labelled contacted decision excluded per target; 5 censored and 7 T2 pending counted, not scored",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G12 primary result",
+   "command": "run_holdout.py open",
+   "result": "T1_24h 66 events (15 positive) BSS -0.024 NOT_DISTINGUISHABLE_FROM_BASE_RATE; T1b_6h 68 events (12 positive) BSS -0.083 NOT_DISTINGUISHABLE_FROM_BASE_RATE; T2_24h 59 events (7 positive) BSS 0.292 INSUFFICIENT_EVENTS",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G13 secondary family and selection correction",
+   "command": "HOLDOUT_METRICS.csv",
+   "result": "129 rows with Holm, max-T, full-search Bonferroni; 0 survive all three",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G14 negative controls",
+   "command": "PREOPEN_TRAPS.json, HOLDOUT_NEGATIVE_CONTROLS.json",
+   "result": "NC1 20 seeds per target; NC2 1425 of 1425 and 15 of 15 refused; NC3 22 of 22 refused",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G15 replay discipline",
+   "command": "REPLAY_AUDIT.json, P13 traps",
+   "result": "0 violations over 380 development OOS rows and 12255 holdout rows; P13 69 of 69 twice; training label after cutoff 69 of 69",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G16 sensitivities and dataset shift",
+   "command": "SENSITIVITY.csv, SHIFT_BREAKDOWN.csv",
+   "result": "7 views, 8 breakdowns and prior shift; T2 rows carry the PI-D-045 note",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G17 empirical apart from engineering",
+   "command": "FINAL_HOLDOUT_RESULTS.md",
+   "result": "stated separately; nothing promoted; base rate or abstention",
+   "exit_code": null,
+   "pass": true
+  },
+  {
+   "name": "G18 oracle",
+   "command": "p04_bundle/bin/python -B probes/sklearn_crosscheck_holdout.py validation evidence/sklearn_crosscheck.json",
+   "result": "572 values within 1.1e-16 (scikit-learn 1.9.1)",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G19 determinism and isolation",
+   "command": "predict twin; open --reproduction; independent_label_check.py",
+   "result": "7 of 7 and 10 of 10 files byte-equal; 0 label mismatches; 0 network calls; stores and seal unchanged",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G20 tests and mutation probe",
+   "command": "pytest tests/test_predictive_evaluation.py tests/test_predictive_phase12_outputs.py; mutation_evaluation.py",
+   "result": "47 passed; 44 of 44 mutations caught at 3ea7030",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G21 full experiment ledger",
+   "command": "FULL_EXPERIMENT_LEDGER.csv",
+   "result": "3145 rows (Phase 12: 249)",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G22 flag, imports, registry",
+   "command": "tests",
+   "result": "flag OFF; no existing module imports evaluation; fingerprint 4b4aabce and ACCEPTANCE unchanged",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G23 suite, guard, seal check, release audit after the commit",
+   "command": "see the post-commit records commit",
+   "result": "pending",
+   "exit_code": null,
+   "pass": null
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/phase_12/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "20b4dda58c791b03dce369c541503fd3ef480f76e1d2bdcdbaaddb1ebcc49350"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/PHASE_12_EVIDENCE.md",
+   "sha256": "e26625d84e61df2e63bb1f3064371c2dd62ae436177f8e72bae1a7577de8b2aa"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/SKEPTIC_PACKET.md",
+   "sha256": "7b6f5761574e94d1ef3f53bbc0fe33d2c5e4d8ed5d4f9987d2b6c39bada3676c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/evidence/determinism_predict.json",
+   "sha256": "1c32987b7ff33484040259f2d043b2abddca1280a9af430c3f23a37afd6c7c58"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/evidence/entry/entry_suite_summary.txt",
+   "sha256": "5694a14e7b98179dd1c70f8b6222d5b75d11ffe7a27727ef71edb276f821a9d8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/evidence/independent_label_check.json",
+   "sha256": "f6edd704eb7a3df0495407c7b52d78bb3870eda2a7d79ffd601a60c543ed6de8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/evidence/mutation_evaluation.json",
+   "sha256": "6cbec3b59a46027a0282d262c7665534bab97552e1e1c7d396e351e1368e9cfc"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/evidence/postopen_seal.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/evidence/reproduction_open_log.json",
+   "sha256": "50b4e47b8b4f738e485c09131707e401a0c36c762e5c9969f015d75434dcad30"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/evidence/sklearn_crosscheck.json",
+   "sha256": "d993bcba653664949a8b92d81c1864b41a32712c819f26290ed0d6a244a7be45"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/experiments/EXPERIMENT_REGISTRY.csv",
+   "sha256": "7ec244f3e7f6b6cd38947c4436fb7e369c892ae4707cfd135b17bd7c76ae74b1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/probes/independent_label_check.py",
+   "sha256": "8d0e6768afb752000841824a5452e092ed68b9f85c282551cad00e9010b0ea3d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/probes/mutation_evaluation.py",
+   "sha256": "8f9b92d4ca5a15f67090d50105f42d636f848b476d9c8061805e42d32c916a24"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/probes/run_holdout.py",
+   "sha256": "a593b35b625287ecbb13aac310988734a56532013ac8e85d284b441d0c641455"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/probes/sklearn_crosscheck_holdout.py",
+   "sha256": "2d9669f0e58378bd170f4e54d15e835176721c078a8dd1453ddba5a4b2fab2af"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/probes/write_results.py",
+   "sha256": "ef8a24bbf112c527ce6c44f72bd352bffe9c352f26fa0de7ec86d3773d2668b4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/CALIBRATION_BINS.csv",
+   "sha256": "6220f72d5bf81881815fea9a703c9064ced73f111ac30f51971a5459ae215990"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/CANDIDATES.json",
+   "sha256": "5fd37b64e6bcb20f16897b1b76b14fc4e048f9c17c5b908fefb490232cc955c4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/FINAL_HOLDOUT_RESULTS.md",
+   "sha256": "87b1edfdd7f6736110cc8d8977f6ae6a2bf5b702bb91bf79c814918b3af27ab7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/FULL_EXPERIMENT_LEDGER.csv",
+   "sha256": "e2deeee4a826221472315ad23761d23ae40941189886242f3bfc5258c90e6607"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/FULL_LEDGER_TOTALS.json",
+   "sha256": "d0c03b83746b511e600f0e8efb3a398f7a7a36d01ebb68d8293954d5ca502c4a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_COUNTS.json",
+   "sha256": "daa5eebaeb347e7480772b678bb667fcde207d2e394f8135e01b3f4308c1d26a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_DECISIONS.csv",
+   "sha256": "3d33cdf4bfa2a2241ca3666d662cc778c23d86d80b08e6c61fe29f5ec59b7983"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_METRICS.csv",
+   "sha256": "365fa345986e76abd087a145842431f0deb795109764e34713c5ba6253253726"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_NEGATIVE_CONTROLS.json",
+   "sha256": "5879581facaa995728b103169e450c668c2309131819dc6b465796304704c70c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_SCORED.csv",
+   "sha256": "d4c35253e6879d915dd31b6fdd6428d588c0e25e53d9e9895ad2531a771f08d6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/LEDGER_TOTALS.json",
+   "sha256": "444babf763f51be2408a5c75913bb860ef8c2b2db1fec56cb9542f92361d6380"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/OPENING_LOG.json",
+   "sha256": "ed392a484870f581b874eb7cbe700fb3dc69bb21a6b2b03ce9c1e9be0eb7f0f4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/PREOPEN_MANIFEST.json",
+   "sha256": "3f19686b52d71d2040eb765dc56f18f1b98caee7235bdd07351071466e2b5681"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/PREOPEN_TRAPS.json",
+   "sha256": "8f47f96fd121b5c079db7915b3d64c536c625d29b9f78b12bfd16e5144798f5c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/PRIMARY_RESULTS.json",
+   "sha256": "30b6423153c734cfcdd2b0813760d49e9c818278bd56a9e3276ce39be84363dc"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/REPLAY_AUDIT.json",
+   "sha256": "2737f3f833cac6e74957877c65a178028c1fa90c3f31990120d129cddc6dbfdd"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/SENSITIVITY.csv",
+   "sha256": "efea86cf99540c3064fe47b91e98094e4febe399bd1ad082300baa1ab39772f9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/SHIFT_BREAKDOWN.csv",
+   "sha256": "14f6ef4d40829d022e47e5bdfa8fff77ac366a5f97e7a07812362d769c758d04"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/WALK_FORWARD_PROTOCOL.md",
+   "sha256": "bd4d8aebd810c353a72e570b74cef104a4788773969527362362d8817be71d50"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/run_log_open.json",
+   "sha256": "ef92f65f117a765a080ebd10aeade0c7b2a3b633c4eff5f27b61578d7da21bc7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/run_log_plan.json",
+   "sha256": "672467101ed1c22815576acc5d5743921fe4a34481b23cf3854eae223285db8b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/validation/run_log_predict.json",
+   "sha256": "bc14eca3a0e5a7407dc907afdbe50804043464fba9535a709f5cdae0378acf88"
+  },
+  {
+   "path": "memelab/predictive/evaluation.py",
+   "sha256": "da41c738e8574f1d10dcd2d115d5168b1890764c8e8db6159b232bab1b030036"
+  },
+  {
+   "path": "tests/test_predictive_evaluation.py",
+   "sha256": "7100899c79af695a2d25a11f179587fa9a921edc099df0c0e9e54cbbf067efb5"
+  },
+  {
+   "path": "tests/test_predictive_phase12_outputs.py",
+   "sha256": "f12caa4197783ffd6498413f495e78024240f0a44c6958264a88c2d9fd426278"
+  }
+ ],
+ "limitations": [
+  "The retrospective holdout is opened and spent; any further use is EXPLORATORY (PI-D-065).",
+  "7 decision days with one export batch each; the day bootstrap resamples 7 groups.",
+  "tech-1 cards have no holdout inputs (NOT_FETCHED_SEALED, no pool) and were not evaluated; no candle was read.",
+  "The max-T correction is centred, not studentized (conservative against low-variance candidates).",
+  "The secondary verdict column applies Holm only; the claim rule is skill_after_selection_correction (0 everywhere).",
+  "CALIBRATION_BINS.csv repeats the champion's bins (primary and secondary rows), identical copies.",
+  "Regime and crash-day shift untestable (one regime label QUIET/RISK_OFF, no crash day).",
+  "T2: possible partial contact with the holdout (PI-D-045 item 6); T2 is INSUFFICIENT_EVENTS anyway.",
+  "Price-path targets only: no fill, depth or proceeds; no trading claim."
+ ],
+ "blockers": [],
+ "approvals_needed": [],
+ "next_eligible_phase": "13, once the orchestrator's independent skeptic and the repair pass give Phase 12 PASS"
+}

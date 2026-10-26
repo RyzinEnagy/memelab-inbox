@@ -1,0 +1,5 @@
+=========================== short test summary info ============================
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+1 failed, 1398 passed in 251.15s (0:04:11)
+EXIT=1
+stray removed by hand: data/reports/20261026_1630_BRETT_0x532f.md, data/memelab.sqlite-shm, data/memelab.sqlite-wal

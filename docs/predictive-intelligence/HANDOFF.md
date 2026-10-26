@@ -1,45 +1,36 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-063). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_11/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-065). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_12/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
 ## Position on 2026-10-26
 
-- Phases 00 to 10: PASS (Phase 06 since the frozen 48 h re-read, PI-D-059; Phase 10 after repair pass 2, PI-D-060, with TEST_ONLY parts).
-- Phase 11 (analog cohorts and regime handling): PASS on 2026-10-26 after repair pass 2 (PI-D-063). The orchestrator's independent skeptic found 1 MATERIAL (CX-S11: clusters keyed by each row's own creator field, so a mint whose creator value differs between decisions counted as two analogs; 98 of 152 first-pass answers; carried into the frozen cards) and 7 minor. Repaired at `b0fbf80`, recorded run repeated, cards refrozen; no verdict changed. Commits: pre-registration `46afc85`, first-pass code `0482a60`, ledger repair `ff98b8d`, first-pass outputs `208cdc1` (pushed with `fcb76be`), repair code `b0fbf80`, repair outputs and records on top (see "Phase 11 commits").
-- Spend: 0 Firecrawl credits, 0 vendor calls, 0 language-model calls, no network use in Phase 11 (COST_LEDGER.md).
+- Phases 00 to 11: PASS (Phase 06 since the frozen 48 h re-read, PI-D-059; Phase 10 with TEST_ONLY parts; Phase 11 after repair pass 2, PI-D-063).
+- Phase 12 (walk-forward discipline, search discipline and the single evaluation of the sealed retrospective holdout): NEEDS_REVIEW, first pass done, awaiting the orchestrator's independent skeptic (PI-D-013). Commits: pre-registration `79d30f5`, frozen code `3ea7030`, pre-opening predictions `d58de61`, opening outputs `de7ac77`, results and records on top (see "Phase 12 commits").
+- Spend: 0 Firecrawl credits, 0 vendor calls, 0 language-model calls, no network use in Phase 12.
 
-## What the Phase 11 repair changed (PI-D-063)
+## What Phase 12 did (PI-D-064, PI-D-065)
 
-- Independence unit: a group is a connected component over (chain, mint) and every creator wallet recorded for that mint in the pool (`analog.groups`); one analog per group; every row in a group holding the target's mint or creator is excluded (P14). No answer now holds a mint twice; G equals the analog mint count.
-- G is "distinct groups", not an effective N; each answer adds the pool's day ICC, the design-effect N and a Wilson interval on it (descriptive, no gate). 8 of 92 numbers have an ICC N below 20 (T1b AC2, minimum 15.7); 58 of 92 a day Kish ESS below 5.
-- `new_mint` means no earlier decision visible at T; a `claim` column on every metric row; the unlabelled pre-registration looks are a ledger debug run; tests for the skeptic's 9 surviving mutations (63 tests, mutation probe 61 of 61).
-- Effect: 12 AC2 and 1 AC3 numbers changed (largest 0.040), AC3 T1b 21 to 20 numbers; verdicts unchanged (132 rows, all INSUFFICIENT).
-- Recorded, not repaired (m2): the regime label's activity half also moves with the lab's decision mix; ACTIVE/QUIET and RISK_ON/RISK_OFF are lab-universe names, not market risk appetite. Renaming or new inputs are change control in Phase 12 or 13.
+- Plan frozen before any code, prediction or opening (`phase_12/validation/WALK_FORWARD_PROTOCOL.md`): the 69 frozen holdout-start cards of Phases 07 to 11 as candidates (no refit, no tuning); champion per target by a rule on committed development verdicts (B2 unless a card earned `champion_over_B2`; none did, so B2 by default); primary B2 against B0, Brier skill with day and mint bootstrap (20,000 replicates, wider governs), Holm across the three targets, Phase 07's frozen verdict and the 50-event, 10-per-class gate; secondary family with Holm, a max-T day-block correction and a full-search Bonferroni (N_search 118 = 87 development configurations + 31 Phase 04 bake-off configurations); NC1, NC2, NC3 and P13 traps; sensitivities and dataset-shift breakdowns.
+- `memelab/predictive/evaluation.py` (evaluation-1, numpy and the standard library, flag OFF, imported by no other module): seal-report check against the pins, `open_holdout` (logs the opening before decompressing; refuses a second first opening), `holdout_rows`, identity join, `check_card_time` and `score` (RETROSPECTIVE_MODEL_NOT_AVAILABLE_AS_OF, MODEL_STALE), `champion`, `holdout_verdict`, `max_t`, `bonferroni`, `ledger_totals`, `shadow_criteria`. 42 tests plus 5 output tests; mutation probe 44 of 44.
+- Every holdout prediction (12,255 rows: 69 cards and 60 NC1 controls over the 95 Solana holdout decisions) was computed with no label and committed with its sha256 before the opening. The tech-1 cards have no inputs on the holdout (NOT_FETCHED_SEALED, no pool) and abstain.
+- The seal was opened once (2026-10-26T17:33:27Z at `d58de61`, `OPENING_LOG.json`); a REPRODUCTION gave byte-equal outputs; scikit-learn recomputed 572 metric values within 1.1e-16; an independent check without the lab's code found the same 66, 68, 59 scored rows and labels.
 
-## What Phase 11 built and found (first pass; numbers as repaired)
+## Result (empirical)
 
-- `memelab/predictive/analog.py` (analog-1, numpy and the standard library, flag OFF, imported by no other module): analog pools only from `labels.training_labels` at the cohort time and checked row by row (decided before, matured by, token first seen by it; inputs available at each decision); the same mint is token history and never an analog; the same creator wallet is excluded; one analog per mint and creator group (as repaired); G = distinct groups, a number needs G >= 20 and 5 analog days; AC1 strata (launch age, liquidity), AC2 30 nearest clusters (liquidity, market cap, 24 h volume, token age, launchpad class, token program) with an out-of-distribution rule, AC3 (primary) AC2 restricted to the target's regime label; the as-of regime label (median 24 h volume and constructive-status share of the lab's visible decisions against the past median of earlier export instants, WARMUP below 5); the router (TOKEN_HISTORY, COHORT_ESTIMATE_NOT_TOKEN_HISTORY or ABSTAIN with reasons); divergence flags for authority, fee, token program, exit-capacity share and friction; EXECUTION_DATA_MISSING with a size.
-- Result on development data: same folds and B0/B2 as Phase 07. AC3 numbers 2 of 24 (T1), 0 of 8 (T2), 20 of 44 (T1b) and abstains otherwise, almost always because its regime-matched analogs fall on fewer than 5 days (the out-of-sample days are QUIET/RISK_OFF; the regime rule refuses to copy the busier 2026-10-08 to 10-10 period). AC2 numbers 70 of 76, AC1 none. 132 metric rows, all INSUFFICIENT_DAYS, INSUFFICIENT_HISTORY or INSUFFICIENT_EVENTS, including the regime breakdown (P21) and the comparisons with the frozen primaries of Phases 08 to 10; all MODEL_NOT_PROMOTED.
-- Leakage and identity on the real history: NC2-AC 27 of 27 refused, P43-AC 76 of 76, P13-AC 9 of 9, P36-AC 28 of 28; 106 mints first decided after a first cutoff never in a pool; 0 same-creator analogs and 0 answers with a mint twice; CX-11 (full-sample regime medians) relabels 32 of 74 instants and fails the truncation check, the as-of series is truncation-invariant at 79 of 79 instants.
-- Checks: 63 tests; mutation probe 61 of 61; scikit-learn NearestNeighbors oracle on 148 real queries (distances within 3.9e-15); trace recomputed from plain SQL without the module (0 differences); the cohort query reproduces the trace and all 92 AC2 and AC3 numbers; two runs identical.
-- Limitation to watch: 58 of 92 cohort numbers have a day Kish ESS below 5 (largest single-day share 63%); G overstates independence on batched export days. Any rule on it is a change control.
-
-## What exists now
-
-- Targets frozen before any price data was read (Phase 01): T1 +25% before -15% within 24 h; T1b the same within 6 h; T2 half the reference price or a trading halt within 24 h. Price-path labels only, no fill, size, depth or profit claims.
-- Code (flag OFF, imported by no existing module): `memelab/predictive/` contract, decisions, runtime, store, sources, features, labels, stats, baselines, technical, onchain, depth_adapter, socialcat, analog, with `tests/test_predictive_*.py`.
-- Data: point-in-time feature store (1,500 decisions, 3,000 snapshots), development labels (T1 136 with 34 positive, T1b 224 with 26, T2 131 with 28; frozen 48 h revision check passed, PI-D-059), holdout labels sealed in `phase_06/sealed/` (open only in Phase 12 after `check_seal.py`). Frozen cards for Phase 12: `phase_07/artifacts/` to `phase_11/artifacts/`.
+- T1 24 h: 66 events (15 positive), BSS of B2 against B0 -0.024, governing mint interval -0.156 to 0.134, Holm p 1.0: NOT_DISTINGUISHABLE_FROM_BASE_RATE.
+- T1b 6 h: 68 (12), BSS -0.083, day interval -0.174 to -0.020, governing mint interval -0.168 to 0.002, Holm p 1.0: NOT_DISTINGUISHABLE_FROM_BASE_RATE; calibration in the large failed (mean 0.082, observed 0.176); WORSE_THAN_BASE_RATE in two sensitivities (contacted included, point-in-time route).
+- T2 24 h: 59 (7), BSS +0.292 (mostly a lower holdout prevalence, 0.119 against 0.214): INSUFFICIENT_EVENTS; possible partial contact (PI-D-045 item 6).
+- 0 of 129 secondary comparisons survive the selection correction; shuffled-label B2 matches the real B2 in 45% (T1) and 85% (T1b) of seeds. No model shows out-of-sample value; base rate or abstention; every complex model MODEL_NOT_PROMOTED; nothing reaches SHADOW. This is the outcome Phase 01 stated in advance.
 
 ## Open items, in order
 
-1. The orchestrator re-verifies Phase 11 and pushes; Phase 12 (walk-forward, tuning and falsification, first opening of the sealed holdout) is eligible once it records Phase 11 PASS.
-2. Residual risks for Phase 12: the day dependence of cohort numbers (ICC N beside G, no gate); creator missing for 115 of 925 Solana decisions (a deployer never recorded is not caught); regime labels describe the lab's exported universe and decision mix, not chain-wide conditions or market risk appetite.
-3. Carried: catalyst source roles and event categories have no time in the lab schema; replayed social bot shares are lower bounds; collector deployment on Elving's computer (backtesting RUNBOOK); forward social and catalyst collection needs new approvals.
+1. The orchestrator runs the independent skeptic on Phase 12 (`phase_12/SKEPTIC_PACKET.md`), then a repair pass folds it in; only then can Phase 12 be PASS and Phase 13 start.
+2. For Phase 13 and later: the retrospective holdout is spent (any reuse is EXPLORATORY); calibration work uses development data only and cannot claim holdout calibration; only the prospective holdout (Phase 19) can support a promotion. tech-1 has no holdout evaluation. The max-T correction is centred, not studentized (change control before any prospective read if changed).
+3. Carried: catalyst source roles and event categories have no time in the lab schema; replayed social bot shares are lower bounds; collector deployment on Elving's computer (backtesting RUNBOOK); forward social and catalyst collection needs new approvals; regime labels are lab-universe proxies.
 
-## Phase 11 commits
+## Phase 12 commits
 
-- First pass: HEAD before `aae7a55`; pre-registration `46afc85`, code `0482a60`, ledger repair `ff98b8d`, outputs and records `208cdc1`, post-commit record `fcb76be` (pushed). Post-commit at `208cdc1`: suite `1 failed, 1386 passed`.
-- Repair pass 2: code `b0fbf80` (2026-10-26T16:08:21Z), outputs and records `555edd4` (16:17:00Z), and this post-commit record on top (local only; the orchestrator pushes). Post-commit at `555edd4`: suite `1 failed, 1398 passed` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no.", `git status` clean.
+- HEAD before `63076ad`; pre-registration `79d30f5` (16:41:13Z); frozen code `3ea7030` (17:32:01Z); pre-opening outputs `d58de61` (17:33:19Z); opening outputs `de7ac77` (17:47:49Z); results, evidence and records in the next commit, then a post-commit records commit (hashes in `PHASE_12_RESULTS.json`). Local only; the orchestrator pushes.
 
 ## Waiting on Elving
 
@@ -61,7 +52,7 @@ git checkout feature/predictive-intelligence && git log -8 --oneline
 pip install pytest
 python -B audits/predictive-intelligence/phase_06/probes/check_seal.py
 python -m pytest tests -q
-python -B audits/predictive-intelligence/phase_11/probes/verify_trace_analog.py audits/predictive-intelligence/phase_11
+python -m pytest tests/test_predictive_evaluation.py tests/test_predictive_phase12_outputs.py -q
 ```
 
-Expect `"problems": []` from the seal check and `1 failed, 1398 passed` from the suite (only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`, a known clock-dependent failure). Then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. The Phase 07 to 11 runners need the two private stores under `/home/claude/pi_research/` (rebuild them from the committed archives if the workspace was reclaimed: `phase_05/data/FEATURE_STORE_CONTRACT.md`, `phase_06/labels/TARGET_SCHEMA.md`); the Phase 10 and 11 runners also read the `origin/main` commit `e245d91`.
+Expect `"problems": []` from the seal check (the opening did not change the sealed files) and only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` failing in the suite. Then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. A REPRODUCTION of the opening (`python -B audits/predictive-intelligence/phase_12/probes/run_holdout.py open OUT --reproduction`, about 11 min) needs the two private stores under `/home/claude/pi_research/` (rebuild them from the committed archives if the workspace was reclaimed: `phase_05/data/FEATURE_STORE_CONTRACT.md`, `phase_06/labels/TARGET_SCHEMA.md`) and the git objects of the holdout decisions' export commits.

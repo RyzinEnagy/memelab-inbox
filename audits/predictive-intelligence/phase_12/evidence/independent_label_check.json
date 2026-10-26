@@ -1,0 +1,24 @@
+{
+ "label_mismatches": [],
+ "mode": "REPRODUCTION read (independent of memelab)",
+ "per_target": {
+  "T1_24h": {
+   "scored": 66,
+   "sealed_positives": 15,
+   "sealed_scorable": 66
+  },
+  "T1b_6h": {
+   "scored": 68,
+   "sealed_positives": 12,
+   "sealed_scorable": 68
+  },
+  "T2_24h": {
+   "scored": 59,
+   "sealed_positives": 7,
+   "sealed_scorable": 59
+  }
+ },
+ "sealed_rows_not_scored": [],
+ "sha256_equals_pin": true,
+ "time_utc": "2026-10-26T17:59:27Z"
+}
