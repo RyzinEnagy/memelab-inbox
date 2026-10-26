@@ -1,0 +1,19 @@
+experiment_id,subject,kind,data,run_kind,labels_read,scored,added_to_n_search,note
+P14:RULES_1_DEV_SEEDS,behavioral-rules-1,RULE_BASED_SCENARIO,830 development seeds,RUN_UNSCORED,no,no,0,Phase 15 comparator A; adds to the cumulative ledger when Phase 15 scores it
+P14:MOCK_GRID:fictional:STABLE,lab mock service,MOCK_SIMULATOR,"1 seed, frozen grid (10 runs)",FIXTURE_RUN,no,no,0,"stability check of the boundary, not a model"
+P14:MOCK_GRID:fictional:SEED_SENSITIVE,lab mock service,MOCK_SIMULATOR,"1 seed, frozen grid (10 runs)",FIXTURE_RUN,no,no,0,"stability check of the boundary, not a model"
+P14:MOCK_GRID:fictional:PERSONA_SENSITIVE,lab mock service,MOCK_SIMULATOR,"1 seed, frozen grid (10 runs)",FIXTURE_RUN,no,no,0,"stability check of the boundary, not a model"
+P14:MOCK_GRID:fictional:NONREPRODUCIBLE,lab mock service,MOCK_SIMULATOR,"1 seed, frozen grid (10 runs)",FIXTURE_RUN,no,no,0,"stability check of the boundary, not a model"
+P14:MOCK_GRID:fictional:EVIDENCE_BLIND,lab mock service,MOCK_SIMULATOR,"1 seed, frozen grid (10 runs)",FIXTURE_RUN,no,no,0,"stability check of the boundary, not a model"
+P14:MOCK_GRID:real_development_seed:STABLE,lab mock service,MOCK_SIMULATOR,"1 seed, frozen grid (10 runs)",FIXTURE_RUN,no,no,0,"stability check of the boundary, not a model"
+P14:MOCK_GRID:real_development_seed:SEED_SENSITIVE,lab mock service,MOCK_SIMULATOR,"1 seed, frozen grid (10 runs)",FIXTURE_RUN,no,no,0,"stability check of the boundary, not a model"
+P14:MOCK_GRID:real_development_seed:PERSONA_SENSITIVE,lab mock service,MOCK_SIMULATOR,"1 seed, frozen grid (10 runs)",FIXTURE_RUN,no,no,0,"stability check of the boundary, not a model"
+P14:MOCK_GRID:real_development_seed:NONREPRODUCIBLE,lab mock service,MOCK_SIMULATOR,"1 seed, frozen grid (10 runs)",FIXTURE_RUN,no,no,0,"stability check of the boundary, not a model"
+P14:MOCK_GRID:real_development_seed:EVIDENCE_BLIND,lab mock service,MOCK_SIMULATOR,"1 seed, frozen grid (10 runs)",FIXTURE_RUN,no,no,0,"stability check of the boundary, not a model"
+P14:MIROFISH:meter_cap_high,MiroFish 7657031a script,EXTERNAL_SIMULATOR_MOCK_LLM,"fictional seed, 4 agents, 4 rounds",FIXTURE_RUN,no,no,0,boundary check; NOT_CODABLE output
+P14:MIROFISH:meter_cap_high_repeat,MiroFish 7657031a script,EXTERNAL_SIMULATOR_MOCK_LLM,"fictional seed, 4 agents, 4 rounds",FIXTURE_RUN,no,no,0,boundary check; NOT_CODABLE output
+P14:MIROFISH:meter_cap_low,MiroFish 7657031a script,EXTERNAL_SIMULATOR_MOCK_LLM,"fictional seed, 4 agents, 4 rounds",FIXTURE_RUN,no,no,0,boundary check; NOT_CODABLE output
+P14:MIROFISH:llm_down,MiroFish 7657031a script,EXTERNAL_SIMULATOR_MOCK_LLM,"fictional seed, 4 agents, 4 rounds",FIXTURE_RUN,no,no,0,boundary check; NOT_CODABLE output
+P14:MIROFISH:config_cap_below_worst_case,MiroFish 7657031a script,EXTERNAL_SIMULATOR_MOCK_LLM,"fictional seed, 4 agents, 4 rounds",FIXTURE_RUN,no,no,0,boundary check; NOT_CODABLE output
+P14:P30_MATRIX,adapters,MOCK_SIMULATOR,39 failure and gate cases,FIXTURE_RUN,no,no,0,failure states
+P14:CORE_UNAFFECTED,Phase 13 runner,REGRESSION,Phase 13 inputs,RERUN_OF_RECORDED_PHASE_13,Phase 13's own reads,no,0,byte-equal except run logs

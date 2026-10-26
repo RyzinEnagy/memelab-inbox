@@ -1,0 +1,374 @@
+{
+ "phase": "14",
+ "status": "NEEDS_REVIEW",
+ "status_expected_after_review": "TEST_ONLY",
+ "gate": {
+  "MIROFISH_GATE": "BLOCKED",
+  "simulator_path": "TEST_ONLY",
+  "rule_based_generator": "REAL_SEEDS_UNSCORED",
+  "statistical_engine": "UNAFFECTED"
+ },
+ "head_before": "2fd0aae",
+ "head_after": "872578d",
+ "commits": {
+  "pre_registration": "9ed8377",
+  "frozen_code": "c59c494",
+  "recorded_run": "872578d"
+ },
+ "result": {
+  "development_seeds": 830,
+  "rule_labels": {
+   "ATTENTION_EXHAUSTION": 309,
+   "MANUFACTURED_ATTENTION_DUMP": 313,
+   "NO_GROUNDED_SCENARIO": 227,
+   "ORGANIC_ATTENTION_CONTINUATION": 66
+  },
+  "catalyst_hypotheses": 0,
+  "mirofish": {
+   "config_cap_below_worst_case": "SIMULATION_NOT_AVAILABLE",
+   "llm_down": "SIMULATION_NOT_AVAILABLE",
+   "meter_cap_high": "SIMULATION_RAN",
+   "meter_cap_high_repeat": "SIMULATION_RAN",
+   "meter_cap_low": "SIMULATION_NOT_AVAILABLE"
+  },
+  "spend_usd": 0,
+  "language_model_calls": 0,
+  "labels_read_by_phase_14_code": 0
+ },
+ "checks": [
+  {
+   "name": "G1 package checksums",
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "result": "41 OK, 0 failed",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G2 entry suite at 2fd0aae",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "result": "1 failed, 1596 passed in 190.45s (known test_dedup_corroboration_resurface_denial only)",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "G2 entry seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "result": "problems []",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G2 Phase 13 key tests",
+   "command": "pytest test_predictive_calibration, _abstention, _phase13_outputs, _runtime",
+   "result": "276 passed",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G2 Phase 13 runner rerun",
+   "command": "python -B audits/predictive-intelligence/phase_13/probes/run_calibration.py <scratch>",
+   "result": "22 of 24 files byte-equal; the 2 run logs differ in head and time",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G3 MiroFish pin recheck",
+   "command": "git rev-parse HEAD; sha256sum LICENSE; git ls-remote .../MiroFish HEAD",
+   "result": "7657031a clean; LICENSE 8486a10c...; upstream HEAD equal; Python <3.13; LLM and Zep keys required",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G4 to G15, G19 unit tests",
+   "command": "python -m pytest tests/test_predictive_behavioral.py -q",
+   "result": "170 passed, 1 skipped (no IPv6 loopback in the sandbox)",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G16 seeds",
+   "command": "python -B probes/build_seeds.py <scratch>",
+   "result": "830 seeds, 0 refused, label calls 0, socket events 0",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G16 rules on real seeds",
+   "command": "python -B probes/run_behavioral.py <scratch> (part A)",
+   "result": "labels {'ATTENTION_EXHAUSTION': 309, 'MANUFACTURED_ATTENTION_DUMP': 313, 'NO_GROUNDED_SCENARIO': 227, 'ORGANIC_ATTENTION_CONTINUATION': 66}; catalyst hypotheses 0; twin byte-equal True; validation errors 0; unscored",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G10 stability grids",
+   "command": "run_behavioral.py part B",
+   "result": {
+    "fictional:EVIDENCE_BLIND": "UNSTABLE",
+    "fictional:NONREPRODUCIBLE": "UNSTABLE",
+    "fictional:PERSONA_SENSITIVE": "UNSTABLE",
+    "fictional:SEED_SENSITIVE": "UNSTABLE",
+    "fictional:STABLE": "STABLE",
+    "real_development_seed:EVIDENCE_BLIND": "UNSTABLE",
+    "real_development_seed:NONREPRODUCIBLE": "UNSTABLE",
+    "real_development_seed:PERSONA_SENSITIVE": "UNSTABLE",
+    "real_development_seed:SEED_SENSITIVE": "UNSTABLE",
+    "real_development_seed:STABLE": "STABLE"
+   },
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G12 failure matrix",
+   "command": "run_behavioral.py part C",
+   "result": "39 cases; simulation_state agrees on every case",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G13 cost caps",
+   "command": "run_behavioral.py part D",
+   "result": "worst-case requests 0; meter charged 9709 of 10000 micro-USD; breaker [500, 500, 500, 500, 500, 503, 503]",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G17 MiroFish through the boundary",
+   "command": "run_behavioral.py part E",
+   "result": {
+    "config_cap_below_worst_case": [
+     "SIMULATION_NOT_AVAILABLE",
+     [
+      "COST_CAP_REACHED"
+     ]
+    ],
+    "llm_down": [
+     "SIMULATION_NOT_AVAILABLE",
+     [
+      "NO_LLM_ACTIONS"
+     ]
+    ],
+    "meter_cap_high": [
+     "SIMULATION_RAN",
+     [
+      "NOT_CODABLE"
+     ]
+    ],
+    "meter_cap_high_repeat": [
+     "SIMULATION_RAN",
+     [
+      "NOT_CODABLE"
+     ]
+    ],
+    "meter_cap_low": [
+     "SIMULATION_NOT_AVAILABLE",
+     [
+      "COST_CAP_REACHED"
+     ]
+    ],
+    "same_seed_trace_identical": false
+   },
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G18 core unaffected",
+   "command": "python -B -c BLOCKER audits/predictive-intelligence/phase_13/probes/run_calibration.py TMP",
+   "result": "blocker BLOCKER_OK; 22 byte-equal; differ ['calibration/POST_OPENING_LOG.json', 'evidence/run_log.json']",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G6 loopback only in the recorded run",
+   "command": "audit hook in run_behavioral.py",
+   "result": "211 connects, hosts ['127.0.0.1']",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G19 mutation probe",
+   "command": "python -B probes/mutation_behavioral.py OUT",
+   "result": "63 of 63 caught",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G8 schema oracle",
+   "command": "python -B probes/oracle_schema.py OUT",
+   "result": "jsonschema 4.26.0: 0 errors on 830 documents",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "PI-D-074 release audit entries",
+   "command": "python -B probes/release_exempt_compare.py 2fd0aae",
+   "result": "findings outside the Phase 14 files equal (63 reviewed, 0 unexplained)",
+   "exit_code": 0,
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "memelab/predictive/behavioral.py",
+   "sha256": "c2da788fd7c0b348fde18269671c7729d8deecc638846f68805623808cd5a9ee"
+  },
+  {
+   "path": "tests/test_predictive_behavioral.py",
+   "sha256": "8c693ff4a0f106a948fb0c44cbdd4cd9af85e5032066ff2851618aa4d9fe5826"
+  },
+  {
+   "path": "tests/test_predictive_phase14_outputs.py",
+   "sha256": "a1e5f15012655928bf1106235fc5a5107fb57c3728082e9d105ec24ce1461139"
+  },
+  {
+   "path": "tests/fixtures/predictive/behavioral_mock.py",
+   "sha256": "30af30241d56e0b148e8b3368f1b5eab7c5f5af8a55a75fe56ae671d53ec5aac"
+  },
+  {
+   "path": "tools/release_audit.py",
+   "sha256": "0d10aec3f8ccf1ad38a975dd6f1e92423ffc0ec57b10efe11e34d48d090aebc2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "7920cdc0129eff836f7742a77a9d40fda4934c67045c2fe4cd0e69cd98edb5f4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/PHASE_14_EVIDENCE.md",
+   "sha256": "112ebec470c13929d5d5d0891c5f52e1666de053ad20e77b6fb2a083ff4f913a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/SKEPTIC_PACKET.md",
+   "sha256": "d7b2a6c688dc7f304810604ffac8923f3ab234b5b8a18acaa544b0ee00ea38d2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/behavioral/CORE_UNAFFECTED.json",
+   "sha256": "dea41481ebbdcb6663ff43a6f2a0c6e052cef7b9e055ed941a4890767a5bac6a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/behavioral/COST_CAP.json",
+   "sha256": "8cff7d08921ac22c11c7ee7cbc470195fe99b8bf4b47cbe2df6ec8b2db58e235"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/behavioral/MIROFISH_INTERFACE.md",
+   "sha256": "cd860ab667daebb4d395c352c9ca6b2598a248d12e898adacc73c3fe59e5365a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/behavioral/MIROFISH_PROBE.json",
+   "sha256": "cb17b844017d54ec9d63b4e266688b1190c7a9775417565f3e18dae0ee5f51d5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/behavioral/MOCK_GRID_RUNS.json",
+   "sha256": "34f9906d0b5c715b676f16fbb6b4998505126996596d037f1c3641493ecf38d6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/behavioral/P30_MATRIX.csv",
+   "sha256": "b928fbb073e6e7431f6bca3b18d59ee24df36f6a0fef1285c07dbdf359fb0851"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/behavioral/RULE_COUNTS.json",
+   "sha256": "0fe08f3050acc42482accba739a3db27f9b4b0565409b4e3710091434b96c453"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/behavioral/RULE_SCENARIOS_DEV.jsonl",
+   "sha256": "1e4ad4bb0527263c89dbb11499bb8cfaad5851a88262f50ed83a634101dcbeb4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/behavioral/SCENARIO_SCHEMA.json",
+   "sha256": "ddd010355a20c4445946475a26b57d7ae4150a2c77ce9160d35f694c0d79b539"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/behavioral/SEEDS_DEV.jsonl",
+   "sha256": "a0c618177503013016f0043356ff5d99ec85e55c872c097ddc87c0f57d26a0c1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/behavioral/SEEDS_DEV_LOG.json",
+   "sha256": "50ff246048b1423e5f2bfef03ad47cefec37a063289bb148dfb85e4bcdd0e76c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/evidence/entry/entry_summary.json",
+   "sha256": "7f2fa567e9f5b5ded4ad0a252e01e62719f4ead346c1e6fd85d305b2e98de53b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/evidence/entry/seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/evidence/mutation_behavioral.json",
+   "sha256": "ee4a0c0bd412e19b6efaaeed2e76ed1e8b10dceee99bc77df841a7f429b3fb7b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/evidence/oracle_jsonschema.json",
+   "sha256": "d46a9f32b448ad050aa87f538c76b5e0c250ff2c14eea2dee902df901d31d933"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/evidence/release_exempt_compare.json",
+   "sha256": "6a03e9a22f0ed0e06dae725120c435bab23dec26d37d96cbec3e93789e95687f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/evidence/run_log.json",
+   "sha256": "27a7a1776c0e85036906a9f1f68d3d5b43c9058bf49dda45748ac2cf1ef2b583"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/experiments/EXPERIMENT_REGISTRY.csv",
+   "sha256": "8a8f2a3667df6d85d96ba85ded153b37873190930b3fe38b96d1b4b7a8ff487a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/experiments/SEARCH_LEDGER.csv",
+   "sha256": "cdfbb5b8b10aeb508a2cef011914b16f3194312ea27ab88beb932ea4c8d9b592"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/probes/__pycache__/seed_convert.cpython-313.pyc",
+   "sha256": "08684273950d2668dd7741d6ba7e92565c0d81830e5983753df9e0750f14c3d3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/probes/build_seeds.py",
+   "sha256": "18a906b0fe742e8c9a25c2d90178a4233fe3b1d4738ea5871d784406a953f22f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/probes/mirofish_runner.py",
+   "sha256": "43dc085c49ecff7fd653e47e4af8f5b953d41e146dd7d93061bb600732e98760"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/probes/mutation_behavioral.py",
+   "sha256": "a1ac7604a856a60fbe5741c09b9f284e2b94e984c501840a6f0ac37d363e4c25"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/probes/oracle_schema.py",
+   "sha256": "038e8c3c66d4fab1e304e1f6643df64aad98afefc18049348cb3e70a03cfc789"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/probes/release_exempt_compare.py",
+   "sha256": "639921abd5ee1d01a193b1af0ef125df9b73f88e7ec801ff73adfea12874542a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/probes/run_behavioral.py",
+   "sha256": "7a417e79bdff28243a1aab933865c481d62a46a879792c779cca93a7c3c7e135"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/probes/seed_convert.py",
+   "sha256": "525eb6213e9c9a35e12e22b1c4fde3948f9af450f635decc8e028c4e502ac643"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_14/probes/write_results.py",
+   "sha256": "9771ee4eb4fc4fc0870bf79c6338b12ebd43a67ca2dc757a46039857966671b5"
+  }
+ ],
+ "limitations": [
+  "Simulator path is TEST_ONLY: proved on the lab's mocks, fictional seeds and MiroFish's script against a canned mock LLM; no live LLM exists on the path.",
+  "MiroFish output on the script path is free text and NOT_CODABLE; coding it needs the paid ReportAgent or blind coders (Phase 15 protocol).",
+  "MiroFish is not reproducible for a fixed seed (traces differ), so its scenarios are UNSTABLE under the frozen grid without many repetitions.",
+  "Grounding is checked by observation kind and state, not by value; stability compares label sets only; injection patterns are a heuristic.",
+  "unshare -n isolates the network, not the filesystem; a live run would need a separate container or user with only the request mounted.",
+  "The meter's cap holds for one meter lifetime; a live route also needs a persistent spend ledger across runs.",
+  "The rule-based generator is unscored; its label counts say how often each rule fires, not whether any scenario happened.",
+  "No catalyst or social rows are exported, so no real seed holds a catalyst event and catalyst rules never fired on real data.",
+  "The core-unaffected check re-executes Phase 13's runner, which reads what Phase 13 read; Phase 14's own code reads no label.",
+  "IPv6 loopback could not be tested in this sandbox (one test skipped)."
+ ],
+ "blockers": [
+  "Live MiroFish or any LLM simulation: no approved LLM, Zep or other paid spend and no API key (PI-D-005)."
+ ],
+ "approvals_needed": [
+  "Elving: an LLM budget (max_cost_usd) and a named upstream, plus change control, before any live behavioral simulation; an LLM with a declared training cutoff before the evaluated events; filesystem isolation for the engine."
+ ],
+ "next_eligible_phase": "15, once the orchestrator's skeptic review is folded in and the orchestrator records Phase 14's final status (the package's entry gate asks for PASS; a TEST_ONLY predecessor is the orchestrator's decision)"
+}
