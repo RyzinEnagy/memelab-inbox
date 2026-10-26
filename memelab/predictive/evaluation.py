@@ -60,7 +60,15 @@ CONTROL_KINDS = frozenset({"NEGATIVE_CONTROL"})
 DEBUG_KINDS = frozenset({"DEBUG_RUN_REAL_DATA"})
 OTHER_KINDS = frozenset({"DESCRIPTION_ONLY", "VETO_ALARM_COUNTS_ONLY", "AMPLIFICATION_ALARM_COUNTS_ONLY"})
 # Phase 12 rows: evaluations of existing frozen configurations, never new candidates
-HOLDOUT_KINDS = frozenset({"PRIMARY_HOLDOUT", "SECONDARY_HOLDOUT", "SENSITIVITY", "DATASET_SHIFT_DESCRIPTIVE", "TRAP_OR_CHECK"})
+HOLDOUT_KINDS = frozenset({"PRIMARY_HOLDOUT", "SECONDARY_HOLDOUT", "SENSITIVITY", "DATASET_SHIFT_DESCRIPTIVE", "TRAP_OR_CHECK",
+                           "POST_OPENING_CHECK"})
+# selection-correction states of one secondary result (repair pass 2, skeptic CX-S12): a correction that was not computed is
+# never read as "did not survive" or as "survived"
+NO_UNCORRECTED_SKILL = "NO_UNCORRECTED_SKILL"
+SURVIVES = "SURVIVES_SELECTION_CORRECTION"
+FAILS = "FAILS_SELECTION_CORRECTION"
+NOT_COMPUTED = "CORRECTION_NOT_COMPUTED"
+POST_OPENING_NOT_A_CLAIM = "SURVIVES_POST_OPENING_ONLY_NOT_A_CLAIM"
 
 
 class EvaluationError(ValueError):
@@ -339,6 +347,34 @@ def max_t(days: dict[str, Sequence[str]], y: dict[str, Any], ref: dict[str, Any]
     return {key: {"bss": obs[key], "p_max_t": ((1 + exceed[key]) / (reps + 1)) if key in defined else None} for key in keys}
 
 
+def selection_status(own_verdict: str | None, p_holm: float | None, p_max_t: float | None, p_bonferroni: float | None,
+                     *, alpha: float = ALPHA) -> str:
+    """The frozen claim rule of protocol 7 as a state (skeptic CX-S12): a result needs an uncorrected skill verdict and all three
+    corrections below alpha. Any computed correction at or above alpha FAILS; otherwise a missing one is CORRECTION_NOT_COMPUTED
+    (unknown, never a pass and never a proof that nothing survives); only all three computed and below alpha SURVIVES."""
+    if own_verdict != HOLDOUT_SKILL:
+        return NO_UNCORRECTED_SKILL
+    ps = [p_holm, p_max_t, p_bonferroni]
+    known = [p for p in ps if p is not None and math.isfinite(p)]
+    if any(p >= alpha for p in known):
+        return FAILS
+    if len(known) < len(ps):
+        return NOT_COMPUTED
+    return SURVIVES
+
+
+def conservative_status(recorded: str, post_opening: str) -> str:
+    """Combine the recorded state with a state computed after the holdout was opened: the later computation may only make the
+    result more conservative (PI-D-066). A post-opening FAILS overrides; a post-opening pass never creates a claim."""
+    if FAILS in (recorded, post_opening):
+        return FAILS
+    if recorded == SURVIVES:
+        return SURVIVES
+    if post_opening == SURVIVES:
+        return POST_OPENING_NOT_A_CLAIM
+    return recorded
+
+
 # ---------------------------------------------------------------- the search ledger (P22)
 def ledger_totals(rows: Sequence[dict]) -> dict:
     """Totals of the cumulative search ledger as fixed in the protocol (7): candidate model configurations are distinct
@@ -367,6 +403,13 @@ def ledger_totals(rows: Sequence[dict]) -> dict:
     return {"rows": len(rows), "rows_by_phase": dict(sorted(by_phase.items())), "candidate_configurations": len(cand),
             "bakeoff_configurations": bake, "negative_control_fits": len(ctrl), "debug_runs": debug, "other_rows": other,
             "holdout_evaluation_rows": holdout, "n_search": len(cand) + bake}
+
+
+def rule_configurations(rows: Sequence[dict]) -> int:
+    """Distinct (target, candidate) pairs of the non-probability rules and descriptions scored on real development data (B4C, the
+    veto and amplification alarms; kinds in OTHER_KINDS). Not candidates under protocol 7; counted for the post-opening
+    sensitivity N_search + rules (skeptic m3)."""
+    return len({(r["target"], r["candidate"]) for r in rows if r["kind"] in OTHER_KINDS})
 
 
 # ---------------------------------------------------------------- small helpers for the report

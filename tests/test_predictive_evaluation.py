@@ -412,3 +412,123 @@ def test_a_censored_or_pending_row_that_carries_a_label_value_is_still_never_sco
     gap["label"] = 0                                           # the conservative lens value written into the label column
     got, cnt = E.holdout_rows([cen, pen, gap, hrow("ok", t + 3)], L.T1, as_of=AS_OF)
     assert [r["decision_key"] for r in got] == ["ok"] and cnt["censored"] == 2
+
+
+# ---------------------------------------------------------------- repair pass 2 (skeptic m2, CX-S12, m3)
+def _reference_max_t(days, y, ref, preds, reps, seed):
+    """Plain re-statement of the frozen max-T (protocol 7): the same days for every target, centred BSS, ties count, an undefined
+    replicate counts as an exceedance, p = (1 + exceedances) / (reps + 1)."""
+    allday = sorted({d for t in days for d in days[t]})
+    obs = {}
+    for k, p in preds.items():
+        t = k[0]
+        m = np.isfinite(p) & np.isfinite(ref[t])
+        obs[k] = K.brier_skill(y[t][m], p[m], ref[t][m])
+    rng = np.random.default_rng(seed)
+    exc = {k: 0 for k in preds}
+    for _ in range(reps):
+        pick = rng.integers(0, len(allday), size=len(allday))
+        stats = []
+        for k, p in preds.items():
+            t = k[0]
+            i = np.concatenate([[j for j, d in enumerate(days[t]) if d == allday[q]] for q in pick]).astype(int)
+            i = i[np.isfinite(p[i]) & np.isfinite(ref[t][i])]
+            den = float(np.sum((ref[t][i] - y[t][i]) ** 2)) if i.size else 0.0
+            if i.size and den > 0:
+                stats.append(1.0 - float(np.sum((p[i] - y[t][i]) ** 2)) / den - obs[k])
+        mx = max(stats) if stats else None
+        for k in preds:
+            if mx is None or mx >= obs[k]:
+                exc[k] += 1
+    return {k: (1 + exc[k]) / (reps + 1) for k in preds}
+
+
+def _two_target_fixture():
+    rng = np.random.default_rng(21)
+    days, y, ref, preds = {}, {}, {}, {}
+    for t, n_days in (("A", 3), ("B", 3)):
+        d = [f"d{i % n_days}" for i in range(30)]
+        yy = (rng.random(30) < 0.3).astype(float)
+        r = np.full(30, 0.3)
+        if t == "A":
+            r[[i for i, z in enumerate(d) if z == "d0"]] = yy[[i for i, z in enumerate(d) if z == "d0"]]   # zero reference error on d0
+            yy[[i for i, z in enumerate(d) if z == "d0"]] = 0.0
+            r[[i for i, z in enumerate(d) if z == "d0"]] = 0.0
+        days[t], y[t], ref[t] = d, yy, r
+        preds[(t, "strong")] = np.where(yy == 1, 0.95, 0.02)
+        preds[(t, "noisy")] = np.clip(0.3 + rng.normal(0, 0.25, 30), 0.01, 0.99)
+        preds[(t, "same_as_ref")] = r.copy()
+    return days, y, ref, preds
+
+
+def test_m2_max_t_equals_a_plain_restatement_of_the_frozen_rule_on_two_targets_with_ties_and_undefined_replicates():
+    days, y, ref, preds = _two_target_fixture()
+    got = E.max_t(days, y, ref, preds, reps=300, seed=3)
+    want = _reference_max_t(days, y, ref, preds, 300, 3)
+    for k in preds:
+        if math.isfinite(got[k]["bss"]):
+            assert got[k]["p_max_t"] == pytest.approx(want[k], abs=1e-12), k
+
+
+def test_m2_ties_count_as_exceedances_and_the_plus_one_is_kept():
+    days, y, ref, preds = _two_target_fixture()
+    got = E.max_t(days, y, ref, preds, reps=300, seed=3)
+    assert got[("B", "same_as_ref")]["bss"] == 0.0
+    assert got[("B", "same_as_ref")]["p_max_t"] == 1.0                  # its own centred statistic is 0 in every replicate
+    strong = got[("B", "strong")]["p_max_t"]
+    assert strong >= 1 / 301 and strong < 0.05
+
+
+def test_m2_a_replicate_where_no_statistic_is_defined_is_an_exceedance():
+    days = {"A": ["d0"] * 6 + ["d1"] * 6}
+    y = {"A": np.array([0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0], float)}
+    ref = {"A": np.array([0] * 6 + [0.5] * 6, float)}                    # no reference error on d0
+    preds = {("A", "x"): np.array([0] * 6 + [0.9, 0.1, 0.9, 0.1, 0.9, 0.1], float)}
+    reps = 400
+    got = E.max_t(days, y, ref, preds, reps=reps, seed=7)
+    rng = np.random.default_rng(7)
+    only_d0 = sum(1 for _ in range(reps) if set(rng.integers(0, 2, size=2).tolist()) == {0})
+    assert only_d0 > 0
+    assert got[("A", "x")]["p_max_t"] == pytest.approx((1 + only_d0) / (reps + 1))
+
+
+def test_m2_the_max_t_family_spans_every_target():
+    days, y, ref, preds = _two_target_fixture()
+    both = E.max_t(days, y, ref, preds, reps=300, seed=3)
+    one = E.max_t({"A": days["A"]}, {"A": y["A"]}, {"A": ref["A"]}, {k: v for k, v in preds.items() if k[0] == "A"}, reps=300, seed=3)
+    assert any(both[k]["p_max_t"] != one[k]["p_max_t"] for k in one if one[k]["p_max_t"] is not None)
+
+
+def test_m2_the_champion_rule_ignores_every_development_verdict_but_skill_against_b2():
+    fitted = {"P07_B2": True, "P09_X": True, "P10_Y": True}
+    rows = [dev(L.T1, "P09_X", "NOT_DISTINGUISHABLE_FROM_BASE_RATE", brier="0.01"), dev(L.T1, "P10_Y", "WORSE_THAN_BASE_RATE", brier="0.02"),
+            dev(L.T1, "P09_X", "REFERENCE"), dev(L.T1, "P10_Y", "DESCRIPTION_ONLY_NOT_AS_OF")]
+    assert E.champion(L.T1, rows, fitted)["champion"] == "P07_B2"
+
+
+def test_cx_s12_a_correction_that_was_not_computed_is_never_read_as_did_not_survive():
+    # the first-pass runner rule: skill after correction only if every p is present and below 0.05; a vs-B2 row had no max-T,
+    # so it read as "does not survive" whatever the data (CX-S12)
+    assert E.selection_status(E.HOLDOUT_SKILL, 0.001, None, 0.01) == E.NOT_COMPUTED
+    assert E.selection_status(E.HOLDOUT_SKILL, 0.001, 0.002, 0.01) == E.SURVIVES
+    assert E.selection_status(E.HOLDOUT_SKILL, 0.2, None, 0.01) == E.FAILS          # a computed failure is enough
+    assert E.selection_status(E.HOLDOUT_SKILL, 0.01, 0.991, 0.03) == E.FAILS        # the T1 B1 row
+    assert E.selection_status(E.HOLDOUT_SKILL, 0.01, 0.01, None) == E.NOT_COMPUTED
+    assert E.selection_status("NOT_DISTINGUISHABLE_FROM_BASE_RATE", 0.001, 0.001, 0.001) == E.NO_UNCORRECTED_SKILL
+    assert E.selection_status(E.HOLDOUT_SKILL, 0.05, 0.01, 0.01) == E.FAILS          # alpha itself fails
+
+
+def test_a_post_opening_computation_can_only_make_a_result_more_conservative():
+    assert E.conservative_status(E.NOT_COMPUTED, E.FAILS) == E.FAILS
+    assert E.conservative_status(E.SURVIVES, E.FAILS) == E.FAILS
+    assert E.conservative_status(E.NOT_COMPUTED, E.SURVIVES) == E.POST_OPENING_NOT_A_CLAIM
+    assert E.conservative_status(E.FAILS, E.SURVIVES) == E.FAILS
+    assert E.conservative_status(E.NO_UNCORRECTED_SKILL, E.NO_UNCORRECTED_SKILL) == E.NO_UNCORRECTED_SKILL
+    assert E.conservative_status(E.SURVIVES, E.SURVIVES) == E.SURVIVES
+
+
+def test_m3_rule_configurations_count_the_non_probability_rules_once_per_target():
+    with open(ROOT / "audits/predictive-intelligence/phase_11/experiments/SEARCH_LEDGER.csv") as f:
+        rows = list(csv.DictReader(f))
+    assert E.rule_configurations(rows) == 9
+    assert E.ledger_totals(rows)["n_search"] + E.rule_configurations(rows) == 127

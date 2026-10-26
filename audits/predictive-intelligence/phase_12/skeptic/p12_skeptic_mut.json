@@ -1,0 +1,100 @@
+{
+ "applied": 12,
+ "caught": 7,
+ "equivalent": [],
+ "mutations": 12,
+ "not_applied": [],
+ "results": [
+  {
+   "applied": true,
+   "caught": false,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "",
+   "mutation": "S1 max-T strict exceedance"
+  },
+  {
+   "applied": true,
+   "caught": false,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "",
+   "mutation": "S2 max-T undefined replicate not an exceedance"
+  },
+  {
+   "applied": true,
+   "caught": false,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "",
+   "mutation": "S3 max-T only over the candidate's own target"
+  },
+  {
+   "applied": true,
+   "caught": false,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "",
+   "mutation": "S4 max-T p without the +1"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_ledger_totals_reproduce_the_frozen_plan_on_the_committed_ledger",
+   "mutation": "S5 candidates keyed by name only (target dropped)"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_ledger_totals_refuse_an_unclassified_kind_and_keep_holdout_rows_apart",
+   "mutation": "S6 holdout rows counted as candidates"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_decision_past_the_model_age_gets_model_stale_and_no_number",
+   "mutation": "S7 stale age doubled"
+  },
+  {
+   "applied": true,
+   "caught": false,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "",
+   "mutation": "S8 champion accepts any non-insufficient verdict"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_shadow_criteria_need_counts_calibration_and_a_non_negative_skill",
+   "mutation": "S9 shadow bss point allows -0.05"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_p13_a_card_trained_after_a_decision_raises_with_the_explicit_status",
+   "mutation": "S10 card cutoff check uses <="
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_bonferroni_over_the_search_and_holm_count_undefined_tests",
+   "mutation": "S11 Bonferroni with n-1"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_ledger_totals_reproduce_the_frozen_plan_on_the_committed_ledger",
+   "mutation": "S12 debug runs counted as candidates"
+  }
+ ],
+ "survived": [
+  "S1 max-T strict exceedance",
+  "S2 max-T undefined replicate not an exceedance",
+  "S3 max-T only over the candidate's own target",
+  "S4 max-T p without the +1",
+  "S8 champion accepts any non-insufficient verdict"
+ ]
+}

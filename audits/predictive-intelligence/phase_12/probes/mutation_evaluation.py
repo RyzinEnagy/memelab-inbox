@@ -75,6 +75,28 @@ MUTATIONS = [
     (EP, "shadow ignores calibration", '    cal_ok = bool(cal.get("in_the_large_ok")) and cal.get("every_bin_ok") in (True, None)', "    cal_ok = True"),
     (EP, "shadow ignores per-class minimum", '    counts = n >= a["min_holdout_events"] and k >= a["min_holdout_per_class"] and n - k >= a["min_holdout_per_class"]',
      '    counts = n >= a["min_holdout_events"]'),
+    # repair pass 2: the skeptic's 12 mutations (5 survived the first-pass tests), then the new correction states
+    (EP, "S1 max-T strict exceedance", "            if mx == -math.inf or mx >= obs[key]:", "            if mx == -math.inf or mx > obs[key]:"),
+    (EP, "S2 max-T undefined replicate not an exceedance", "            if mx == -math.inf or mx >= obs[key]:", "            if mx != -math.inf and mx >= obs[key]:"),
+    (EP, "S3 max-T only over the candidate's own target", "        for key in defined:\n            t = key[0]\n            i = rows[t][masks[key][rows[t]]]",
+     "        for key in [k for k in defined if k[0] == defined[0][0]]:\n            t = key[0]\n            i = rows[t][masks[key][rows[t]]]"),
+    (EP, "S4 max-T p without the +1", "    return {key: {\"bss\": obs[key], \"p_max_t\": ((1 + exceed[key]) / (reps + 1))", "    return {key: {\"bss\": obs[key], \"p_max_t\": ((exceed[key]) / (reps + 1))"),
+    (EP, "S5 candidates keyed by name only (target dropped)", '            cand.add((r["target"], r["candidate"]))', '            cand.add(r["candidate"])'),
+    (EP, "S6 holdout rows counted as candidates", "        if k in HOLDOUT_KINDS:\n            holdout += 1\n        elif k in CANDIDATE_KINDS:", "        if k in HOLDOUT_KINDS or k in CANDIDATE_KINDS:"),
+    (EP, "S7 stale age doubled", "    return [STALE if float(t) - cut > age else None for t in decision_times]", "    return [STALE if float(t) - cut > 2 * age else None for t in decision_times]"),
+    (EP, "S8 champion accepts any non-insufficient verdict", '        if r.get("target") != target or r.get("view") != "ALL" or r.get("reference") != "B2" or r.get("verdict") != DEV_SKILL:',
+     '        if r.get("target") != target or r.get("view") != "ALL" or r.get("reference") != "B2" or str(r.get("verdict")).startswith("INSUFFICIENT"):'),
+    (EP, "S9 shadow bss point allows -0.05", '    bss_ok = bss is not None and math.isfinite(bss) and bss >= a["promotion"]["SHADOW"]["bss_point_min"]', '    bss_ok = bss is not None and math.isfinite(bss) and bss >= a["promotion"]["SHADOW"]["bss_point_min"] - 0.05'),
+    (EP, "S10 card cutoff check uses <=", "    early = [t for t in decision_times if float(t) < cut]", "    early = [t for t in decision_times if float(t) < cut - 3600]"),
+    (EP, "S11 Bonferroni with n-1", "    return min(1.0, p * n)", "    return min(1.0, p * max(1, n - 1))"),
+    (EP, "S12 debug runs counted as candidates", "        elif k in DEBUG_KINDS:\n            debug += 1", "        elif k in DEBUG_KINDS:\n            cand.add((r['phase'], r['experiment_id']))"),
+    (EP, "R1 missing correction read as a fail", "    if len(known) < len(ps):\n        return NOT_COMPUTED", "    if len(known) < len(ps):\n        return FAILS"),
+    (EP, "R2 missing correction read as a pass", "    if len(known) < len(ps):\n        return NOT_COMPUTED", "    if False:\n        return NOT_COMPUTED"),
+    (EP, "R3 alpha itself passes", "    if any(p >= alpha for p in known):", "    if any(p > alpha for p in known):"),
+    (EP, "R4 skill needed before correction dropped", "    if own_verdict != HOLDOUT_SKILL:\n        return NO_UNCORRECTED_SKILL", "    if False:\n        return NO_UNCORRECTED_SKILL"),
+    (EP, "R5 post-opening pass creates a claim", "    if post_opening == SURVIVES:\n        return POST_OPENING_NOT_A_CLAIM", "    if post_opening == SURVIVES:\n        return SURVIVES"),
+    (EP, "R6 post-opening fail ignored", "    if FAILS in (recorded, post_opening):", "    if recorded == FAILS:"),
+    (EP, "R7 rules counted by name only", '    return len({(r["target"], r["candidate"]) for r in rows if r["kind"] in OTHER_KINDS})', '    return len({r["candidate"] for r in rows if r["kind"] in OTHER_KINDS})'),
 ]
 EQUIVALENT: list[tuple] = []
 

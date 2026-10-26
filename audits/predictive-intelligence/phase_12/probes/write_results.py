@@ -19,6 +19,8 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--head-after", default=None)
     ap.add_argument("--post", default=None)
+    ap.add_argument("--status", default="NEEDS_REVIEW")
+    ap.add_argument("--repair", default=None, help="JSON file with repair-pass checks, limitations and commits")
     a = ap.parse_args()
     prim = json.loads((PH / "validation/PRIMARY_RESULTS.json").read_text())["primary"]
     checks = [
@@ -47,6 +49,10 @@ def main() -> None:
         ("G21 full experiment ledger", "FULL_EXPERIMENT_LEDGER.csv", "3145 rows (Phase 12: 249)", 0, True),
         ("G22 flag, imports, registry", "tests", "flag OFF; no existing module imports evaluation; fingerprint 4b4aabce and ACCEPTANCE unchanged", 0, True),
     ]
+    rep = json.loads(Path(a.repair).read_text()) if a.repair else None
+    if rep:
+        for c in rep["checks"]:
+            checks.append((c["name"], c["command"], c["result"], c["exit_code"], c["pass"]))
     post = json.loads(Path(a.post).read_text()) if a.post else None
     if post:
         for c in post["checks"]:
@@ -57,7 +63,7 @@ def main() -> None:
     files += [REPO / "memelab/predictive/evaluation.py", REPO / "tests/test_predictive_evaluation.py",
               REPO / "tests/test_predictive_phase12_outputs.py"]
     res = {
-        "phase": "12", "status": "NEEDS_REVIEW", "head_before": "63076adb7a42ac7f7c2cc271d535d8e7a6947d0e", "head_after": a.head_after,
+        "phase": "12", "status": a.status, "head_before": "63076adb7a42ac7f7c2cc271d535d8e7a6947d0e", "head_after": a.head_after,
         "commits": {"pre_registration": "79d30f5", "frozen_code": "3ea7030", "pre_opening_outputs": "d58de61", "opening_outputs": "de7ac77"},
         "holdout_opening": json.loads((PH / "validation/OPENING_LOG.json").read_text())["entries"][0]["time_utc"],
         "result": {s: {"champion": v["champion"], "n": v["metric"]["n_with_number"], "positives": v["metric"]["positives"],
@@ -81,6 +87,11 @@ def main() -> None:
         "approvals_needed": [],
         "next_eligible_phase": "13, once the orchestrator's independent skeptic and the repair pass give Phase 12 PASS",
     }
+    if rep:
+        res["commits"].update(rep.get("commits", {}))
+        res["limitations"] = rep.get("limitations", []) + res["limitations"]
+        res["next_eligible_phase"] = rep.get("next_eligible_phase", res["next_eligible_phase"])
+        res["repair_pass_2"] = rep.get("summary")
     (PH / "PHASE_12_RESULTS.json").write_text(json.dumps(res, indent=1, sort_keys=False) + "\n")
     print(json.dumps(res["result"]))
 

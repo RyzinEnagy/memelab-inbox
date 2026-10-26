@@ -1,0 +1,318 @@
+{
+ "applied": 44,
+ "caught": 44,
+ "equivalent": [],
+ "mutations": 44,
+ "not_applied": [],
+ "results": [
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_failed_seal_check_exit_or_an_unrecorded_pin_is_refused",
+   "mutation": "seal check exit ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_seal_report_with_a_problem_or_another_hash_is_refused[change0]",
+   "mutation": "seal problems ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_seal_report_with_a_problem_or_another_hash_is_refused[change1]",
+   "mutation": "pinned hash not compared"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_failed_seal_check_exit_or_an_unrecorded_pin_is_refused",
+   "mutation": "pin not required in DECISIONS"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_the_opener_refuses_another_folder_a_missing_record_field_a_reproduction_without_log_and_an_unknown_mode",
+   "mutation": "any folder accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_the_first_opening_logs_before_it_reads_and_a_second_first_opening_is_refused",
+   "mutation": "second first opening accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_the_opener_refuses_another_folder_a_missing_record_field_a_reproduction_without_log_and_an_unknown_mode",
+   "mutation": "reproduction without a log accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_bytes_that_are_not_the_sealed_file_are_refused",
+   "mutation": "bytes read not hashed against the pin"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_the_log_exists_even_when_the_label_bytes_cannot_be_decompressed",
+   "mutation": "log written after decompressing"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_the_opener_refuses_another_folder_a_missing_record_field_a_reproduction_without_log_and_an_unknown_mode",
+   "mutation": "record fields not required"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_row_that_disagrees_with_the_registry_stops_the_evaluation[change0-split]",
+   "mutation": "stored split trusted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_row_that_disagrees_with_the_registry_stops_the_evaluation[change3-maturity]",
+   "mutation": "maturity not recomputed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_row_that_disagrees_with_the_registry_stops_the_evaluation[change4-version]",
+   "mutation": "version not checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_row_that_disagrees_with_the_registry_stops_the_evaluation[change6-registry]",
+   "mutation": "registry not checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_contacted_flag_that_disagrees_with_acceptance_stops_the_evaluation",
+   "mutation": "contacted flag not cross-checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_the_two_contacted_decisions_are_excluded_and_kept_only_as_a_sensitivity",
+   "mutation": "contacted kept"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_censored_or_pending_row_that_carries_a_label_value_is_still_never_scored",
+   "mutation": "censored scored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_censored_or_pending_row_that_carries_a_label_value_is_still_never_scored",
+   "mutation": "pending scored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_p05_a_labelled_row_read_before_its_maturity_or_not_matured_at_as_of_is_refused",
+   "mutation": "observed before maturity accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_p05_a_labelled_row_read_before_its_maturity_or_not_matured_at_as_of_is_refused",
+   "mutation": "assert_scorable skipped"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_key_conflict_rows_leave_only_in_that_sensitivity_and_a_duplicate_decision_stops",
+   "mutation": "key conflict view ignored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_key_conflict_rows_leave_only_in_that_sensitivity_and_a_duplicate_decision_stops",
+   "mutation": "duplicates accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_label_joins_a_prediction_of_the_same_decision_only_p01",
+   "mutation": "identity by time not checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_label_joins_a_prediction_of_the_same_decision_only_p01",
+   "mutation": "identity by mint not checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_p13_a_card_trained_after_a_decision_raises_with_the_explicit_status",
+   "mutation": "future-trained card accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_card_whose_training_rows_break_its_cutoff_is_refused",
+   "mutation": "training decision at cutoff accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_card_whose_training_rows_break_its_cutoff_is_refused",
+   "mutation": "training maturity after cutoff accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_decision_past_the_model_age_gets_model_stale_and_no_number",
+   "mutation": "stale decisions scored"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_score_refuses_a_wrong_row_count_or_a_probability_outside_0_1",
+   "mutation": "row count not checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_score_refuses_a_wrong_row_count_or_a_probability_outside_0_1",
+   "mutation": "probabilities not checked"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_the_champion_is_b2_by_default_and_never_from_a_holdout_number",
+   "mutation": "champion from any view"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_the_champion_is_b2_by_default_and_never_from_a_holdout_number",
+   "mutation": "champion against any reference"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_candidate_with_development_skill_over_b2_replaces_it_lowest_brier_first_and_only_if_fitted",
+   "mutation": "abstaining champion accepted"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_a_candidate_with_development_skill_over_b2_replaces_it_lowest_brier_first_and_only_if_fitted",
+   "mutation": "highest brier champion"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_no_champion_when_b2_abstains",
+   "mutation": "champion when B2 abstains"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_the_holdout_skill_verdict_carries_the_holdout_name_and_the_gates_are_phase_07s",
+   "mutation": "skill verdict not renamed"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_max_t_keeps_a_strong_candidate_and_is_deterministic",
+   "mutation": "max-T not centred"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_cx12_the_best_of_63_no_skill_candidates_looks_good_uncorrected_but_not_after_max_t",
+   "mutation": "max-T compares own statistic only"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_bonferroni_over_the_search_and_holm_count_undefined_tests",
+   "mutation": "Bonferroni not multiplied"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_ledger_totals_refuse_an_unclassified_kind_and_keep_holdout_rows_apart",
+   "mutation": "unknown ledger kind dropped"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_ledger_totals_reproduce_the_frozen_plan_on_the_committed_ledger",
+   "mutation": "controls counted by row"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_ledger_totals_reproduce_the_frozen_plan_on_the_committed_ledger",
+   "mutation": "bake-off left out of N_search"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_shadow_criteria_need_counts_calibration_and_a_non_negative_skill",
+   "mutation": "shadow ignores calibration"
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "file": "memelab/predictive/evaluation.py",
+   "first_failure": "FAILED tests/test_predictive_evaluation.py::test_shadow_criteria_need_counts_calibration_and_a_non_negative_skill",
+   "mutation": "shadow ignores per-class minimum"
+  }
+ ],
+ "survived": []
+}
