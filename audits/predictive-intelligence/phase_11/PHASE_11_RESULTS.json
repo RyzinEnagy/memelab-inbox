@@ -2,7 +2,7 @@
  "phase": "11",
  "status": "PASS",
  "head_before": "aae7a55860cee7b3ab1b1866bb5179f4ae83530b",
- "head_after": null,
+ "head_after": "555edd42df9ea26b7462d9d801d6f37f969e5fb1",
  "commits": {
   "pre_registration": "46afc85",
   "frozen_code": "0482a60",
@@ -188,6 +188,34 @@
    "input": "evidence/determinism.json",
    "result": "28/28 identical at b0fbf80; 24 files changed against the first pass, 4 equal; no verdict changed",
    "pass": true
+  },
+  {
+   "name": "G24 repair post-commit suite at 555edd4",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "result": "1 failed, 1398 passed in 232.82s (known failure only)",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "G24 repair social guard",
+   "command": "python -m memelab social guard",
+   "result": "0 violations",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G24 repair seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "result": "problems []",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G24 repair release audit",
+   "command": "python tools/release_audit.py --history (single-branch clone at 555edd4)",
+   "result": "Needs action: no.",
+   "exit_code": 0,
+   "pass": true
   }
  ],
  "artifacts": [
@@ -197,7 +225,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_11/PHASE_11_EVIDENCE.md",
-   "sha256": "6d659e07cb41dbcdd58401a3b4fff491204cfc4a25fb6fd5083b6ad42b49fccf"
+   "sha256": "a911a594272e0ce34038a237f5e3fde80e2e772a95be506b482648a64e79e720"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/SKEPTIC_PACKET.md",
@@ -370,6 +398,22 @@
   {
    "path": "audits/predictive-intelligence/phase_11/postcommit/release_audit_history.summary.txt",
    "sha256": "fcc6802f37ea9842a1daa6f01954019bc5317637a34af2a616295e040071f1b4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/postcommit/repair2_pytest_summary.txt",
+   "sha256": "1fe584d2584c7ac4faee0ab06d8293e72e1cc8fe0d43f6fec26f0747f4acf90e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/postcommit/repair2_release_audit_history.summary.txt",
+   "sha256": "6e6c441d8aa814c2629308e6c443c827f1b9a3338b4d4ffcfb14da5d4015f2bf"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/postcommit/repair2_seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/postcommit/repair2_social_guard.out.txt",
+   "sha256": "7c94464f8e213d9187f94793e9a7e60cb010b7a4560e3c077e1a227e75fe534a"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/postcommit/seal_check.json",

@@ -39,7 +39,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 ## Phase 11 commits
 
 - First pass: HEAD before `aae7a55`; pre-registration `46afc85`, code `0482a60`, ledger repair `ff98b8d`, outputs and records `208cdc1`, post-commit record `fcb76be` (pushed). Post-commit at `208cdc1`: suite `1 failed, 1386 passed`.
-- Repair pass 2: code `b0fbf80` (2026-10-26T16:08:21Z), outputs and records in the next commit, post-commit record on top (local only; the orchestrator pushes). Post-commit results: `phase_11/postcommit/repair2_*` and `PHASE_11_RESULTS.json`.
+- Repair pass 2: code `b0fbf80` (2026-10-26T16:08:21Z), outputs and records `555edd4` (16:17:00Z), and this post-commit record on top (local only; the orchestrator pushes). Post-commit at `555edd4`: suite `1 failed, 1398 passed` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no.", `git status` clean.
 
 ## Waiting on Elving
 
