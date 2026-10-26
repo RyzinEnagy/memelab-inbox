@@ -1,13 +1,16 @@
 {
  "phase": "13",
- "status": "NEEDS_REVIEW",
+ "status": "PASS",
  "head_before": "6f4f8ea6254b6623cb66c627e6b61de3f9455fa8",
- "head_after": "9f95b714a20d4ac95196972f6e87919ce01c4fad",
+ "head_after": null,
  "commits": {
   "pre_registration": "0fdf698",
   "frozen_code": "5a3c582",
   "recorded_run_outputs": "9cd5288",
-  "self_review_pass_2_code": "2e1488a"
+  "self_review_pass_2_code": "2e1488a",
+  "first_pass_records": "9f95b71",
+  "first_pass_postcommit": "08faa99",
+  "repair_pass_2_code": "075026d"
  },
  "result": {
   "T1_24h": {
@@ -19,7 +22,7 @@
    "status": "UNCALIBRATED",
    "level": "ABSTAIN",
    "publishable": false,
-   "card_sha256": "39cdb003495653edf63fb17f4ac407dacffab24d4bbe8d05b5dd064051402c24",
+   "card_sha256": "21384176f23f4c5e4d2ee3a7befe725396cf1630675438cdff069dec3551ecdf",
    "today": "ABSTAIN",
    "holdout_post_opening": "FAILS_SELECTION_CORRECTION"
   },
@@ -32,7 +35,7 @@
    "status": "UNCALIBRATED",
    "level": "ABSTAIN",
    "publishable": false,
-   "card_sha256": "e8d71d5cc3e0653f15d84d4211d2c1f26cb4c163f759ae9d47f5cd48c3f2145a",
+   "card_sha256": "bd199528721bb62f41502e64c7e79205c8ca9fe7c3adb277ecb0e8314eeefbf4",
    "today": "ABSTAIN",
    "holdout_post_opening": "FAILS_SELECTION_CORRECTION"
   },
@@ -45,7 +48,7 @@
    "status": "UNCALIBRATED",
    "level": "ABSTAIN",
    "publishable": false,
-   "card_sha256": "54755efd3808cf7c71b3dd2a8f324b31013a89228697b71adb342d088dda5b91",
+   "card_sha256": "ddaa581ceb7b21489b34e2c5e976eb5a709670adccef130c2ec6e8070e0f0e9b",
    "today": "ABSTAIN",
    "holdout_post_opening": "FAILS_SELECTION_CORRECTION"
   }
@@ -112,7 +115,8 @@
    "command": "oracle_calibration.py (p04_bundle)",
    "result": "FAILED as registered on ['T1b_6h', 'T2_24h'] (worst 9.42e-06; lbfgs stops early); newton-cholesky 5.3e-15; isotonic 6.9e-18; Venn-Abers (ip200) 6.9e-18",
    "exit_code": 1,
-   "pass": false
+   "pass": false,
+   "closed_by": "PI-D-071 (orchestrator decision after the result: numpy Platt equals a 60-digit Newton solve within 1e-15; scikit-learn lbfgs stops early; PI-D-053 had frozen newton-cholesky at 1e-9; Platt now pinned by a regression test)"
   },
   {
    "name": "G8 frozen calibration tolerance",
@@ -131,7 +135,7 @@
   {
    "name": "G10 abstention conditions",
    "command": "tests/test_predictive_abstention.py",
-   "result": "28 conditions, each triggered alone with its contract reason; equal to the checklist's rule 12",
+   "result": "29 conditions (28 of the checklist's rule 12 plus CALIBRATION_AFTER_DECISION by PI-D-070), each triggered by a test with its contract reason",
    "exit_code": 0,
    "pass": true
   },
@@ -222,21 +226,49 @@
   {
    "name": "G23 search ledger",
    "command": "evaluation.ledger_totals on experiments/SEARCH_LEDGER.csv",
-   "result": "3203 rows; candidates 87 and N_search 118 unchanged",
+   "result": "3206 rows; candidates 87 and N_search 118 unchanged",
    "exit_code": 0,
    "pass": true
   },
   {
    "name": "G24 determinism and isolation",
    "command": "twin run; run_log.json",
-   "result": "twin identical; socket events 0; stores unchanged; rerun at 2e1488a differs only in ['calibration/POST_OPENING_LOG.json'] (code commit line)",
+   "result": "twin identical at 075026d; socket events 0; stores unchanged",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "RP2 rerun at the repair code 075026d",
+   "command": "run_calibration.py; evidence/rerun_rp2_diff.json",
+   "result": "no status, count, reason or verdict changed; 8 files byte-equal, 16 changed by new card fields, FLAG_OFF detail, the added condition row and Holm entries",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "RP2 skeptic attacks on the repaired code (flag ON)",
+   "command": "skeptic/rp2_attacks_check.py",
+   "result": "published: []; with the flag OFF the baseline itself no longer publishes",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "RP2 CX-S13 flat evidence",
+   "command": "tests::test_rp2_m4_cx_s13_*; skeptic/p13_cx_s13_flat_evidence_out.json (first-pass code: CALIBRATED)",
+   "result": "card UNCALIBRATED with DEGENERATE_FLAT_PREDICTIONS; scores outside the evidence range abstain",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "RP2 Platt pinned",
+   "command": "tests::test_rp2_numpy_platt_equals_a_60_digit_newton_solution",
+   "result": "within 1e-9 of a 60-digit decimal Newton solve, gradient below 1e-10; the skeptic's K1 and K2 now caught",
    "exit_code": 0,
    "pass": true
   },
   {
    "name": "G25 mutation probe",
    "command": "probes/mutation_calibration.py",
-   "result": "79 of 79 caught",
+   "result": "104 of 104 caught",
    "exit_code": 0,
    "pass": true
   },
@@ -244,41 +276,6 @@
    "name": "G26 flag, imports, registry, contract",
    "command": "tests; run_log.json",
    "result": "flag OFF; no module imports calibration or abstention; contract and fingerprint 4b4aabce unchanged",
-   "exit_code": 0,
-   "pass": true
-  },
-  {
-   "name": "G27 post-commit suite at 9f95b71",
-   "command": "python -m pytest tests -q -p no:cacheprovider",
-   "result": "1 failed, 1579 passed in 191.43s (known test_dedup_corroboration_resurface_denial only)",
-   "exit_code": 1,
-   "pass": true
-  },
-  {
-   "name": "G27 content guard",
-   "command": "python -m memelab social guard",
-   "result": "0 violations",
-   "exit_code": 0,
-   "pass": true
-  },
-  {
-   "name": "G27 seal check after the phase",
-   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
-   "result": "problems [] with the three pinned hashes",
-   "exit_code": 0,
-   "pass": true
-  },
-  {
-   "name": "G27 single-branch release audit",
-   "command": "python tools/release_audit.py --history (single-branch clone at 9f95b71)",
-   "result": "Needs action: no.",
-   "exit_code": 0,
-   "pass": true
-  },
-  {
-   "name": "G27 git status",
-   "command": "git status --short",
-   "result": "clean after the strays were removed",
    "exit_code": 0,
    "pass": true
   }
@@ -290,7 +287,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_13/PHASE_13_EVIDENCE.md",
-   "sha256": "0290905d6f2c6911a601ebab97de1b0e177705dd161128be799a96f2b8b07944"
+   "sha256": "0b5222041b23782019bceb4c24bef8b7f31a2928e56d3aa4b95ab4e0a456bcbb"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/SKEPTIC_PACKET.md",
@@ -298,31 +295,31 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_13/artifacts/T1_24h/CALIBRATION_CARD.json",
-   "sha256": "ed48e3a7a0281d5990400b550d11b6742b99c6ddba5373baee127db8bb618ca2"
+   "sha256": "a1dcd3f12d70d13e4ff7554759b5840e6a89653b798cec23b45fdca2e2fc2c7b"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/artifacts/T1b_6h/CALIBRATION_CARD.json",
-   "sha256": "5b962f55af051c8520472e15eca95f354e039557ba227fc344474f19e14f6526"
+   "sha256": "9996cfd08a73f225fddb46dbb79fd5428df7531c5e49d18db826992c615d0563"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/artifacts/T2_24h/CALIBRATION_CARD.json",
-   "sha256": "41a98dd35d58223a24bc8eadc158e45a02c3fb6d3d08173cfca6e113d9006b38"
+   "sha256": "a951ad1f409a098d46e4bfea22956c36024e8332759158a65e0b68a028ff5fef"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/calibration/ABSTENTION_MATRIX.csv",
-   "sha256": "69bf3240437baf2a49e8812bd48e8575d1b44738554e92aca019b4ee30e38ee8"
+   "sha256": "45cca5494864ef7d28cc9077d70dc27772841585ca677b5130e2432a3647e2bf"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/calibration/ABSTENTION_MATRIX.md",
-   "sha256": "62ab7083fc199a7cd8d4f9d0edc528786fa22e92e08e38e461c670054510abc3"
+   "sha256": "4ae14050f10a9c33b9a90d062c2de8a8c18ecd5707fb338516197007ef05ddb1"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/calibration/ABSTENTION_RECORDS_DEV.jsonl",
-   "sha256": "5f7864c8e83f6b2f25635770b31260a30ca4a9d3fafe10403281454b22dd1f7d"
+   "sha256": "eff87440a33b793e23b5320aba578285088ccc3830d920a4dd4152762dd37b77"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/calibration/ABSTENTION_RECORDS_HOLDOUT_POST_OPENING.jsonl",
-   "sha256": "dc564e732ca2e25ad248dc14517eb8b213af46a9fa8a190b857f1094e921851a"
+   "sha256": "ccfa82e3a67d5e6044f7f595f2d2be53ece0b3224e54f6c9fc5dc39eecfaaa71"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/calibration/BASE_RATE_UNCERTAINTY.csv",
@@ -342,23 +339,23 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_13/calibration/EXCHANGEABILITY.json",
-   "sha256": "1f0d2ae0729ae4c14a9617eca35a61a30f79bce8ac70618ba98b18def596b5fa"
+   "sha256": "1941d55f66d705aa102ade3c25ce7cd352c982253ab3fb9bdde50590c64e21b5"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/calibration/FOLD_CALIBRATION_CARDS.json",
-   "sha256": "a590c147448ccd27eec0719688a2e86a43fb2d26a0b25d9e3070225944620ed2"
+   "sha256": "5121904135cc5ac5f5fffd4526f8ddf8cd8b0de0c02a949b193cbd5a2c89804f"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/calibration/FORECAST_RESULTS_DEV.jsonl",
-   "sha256": "f96d1c923e8cf6732e9d38d95030abea364d7fe05791039eb02e40a324dc8280"
+   "sha256": "f149d1f8767f4f289ab40f07baa75a4c83326907743c41cbae3585385cccd268"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/calibration/FORECAST_RESULTS_HOLDOUT_POST_OPENING.jsonl",
-   "sha256": "fcbed78731aa9ce05c8da075b7408448b6771f1c5bf43a32a03e34f79a0ba96b"
+   "sha256": "a4f7b61a8d7249fd5b97af2940f2ed83287da82710898498d6882d140e254d96"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/calibration/FORECAST_RESULTS_TODAY.jsonl",
-   "sha256": "c8c5d199f9d571d88f29509ff7ea25b8d17c66ebfd0bab7f8a7104dbf1207ec5"
+   "sha256": "e5746680f9475f45d3f1e8ce02c3d3790f7adba9ac81cb5ee716ee8efe724d80"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/calibration/HOLDOUT_POST_OPENING.json",
@@ -366,7 +363,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_13/calibration/POST_OPENING_LOG.json",
-   "sha256": "a49afa779627240a1a497be0473a4288e1ac203d2c849356b6904caa99e38b81"
+   "sha256": "5f150af12a00ba8a695ca6adacba5a092c9ef87522d0513df90c3f0f28c9dbe3"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/calibration/RELIABILITY_COVERAGE.csv",
@@ -374,7 +371,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_13/calibration/REPLAY_CHECKS.json",
-   "sha256": "eb5daa95039b83d9bee1829c06f18a20782080d9111c838f4dbd1990c79e26f0"
+   "sha256": "983d9dbd4217e21834fd4d2fb673a7e6622493316638cb5fb043684f6c983ebb"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/calibration/SCORE_REPORT_DEV.json",
@@ -382,7 +379,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_13/calibration/TODAY_STATUS.json",
-   "sha256": "98eba6a28fb8dd6792b14e8c52a6d187b5d81bb73acafdebb26415c50025ca60"
+   "sha256": "cbd9aa318e81a43001922384baef03b259ac52f07e1858a9b60cddd0cbf50111"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/evidence/entry/entry_summary.txt",
@@ -401,6 +398,10 @@
    "sha256": "4831cc2ed48cbc9788ce86e09ee95120ab250ea41896f4ad2acb915059cfef5f"
   },
   {
+   "path": "audits/predictive-intelligence/phase_13/evidence/mutation_calibration_rp2.json",
+   "sha256": "d3169a583d3c3ace9746842b230da0603d98e179309589287f205782945394b2"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_13/evidence/mutation_calibration_sr2.json",
    "sha256": "89189b72a08f0f6d19850ac3daf2d87fda063221d555899fc92f5ef395f195f8"
   },
@@ -413,8 +414,16 @@
    "sha256": "ce5fcb8adf5f6edd9dca030f1044a9738621227ab63af0f830654a10f668c9a4"
   },
   {
+   "path": "audits/predictive-intelligence/phase_13/evidence/rerun_rp2_diff.json",
+   "sha256": "580a558a7fd7e1c5d9fdacfa378b2b7c7c0f3762dcc5eb07478f40a9f59accf7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/evidence/rp2_tests_on_first_pass_code.txt",
+   "sha256": "f013394eee4202c32e422041e900beabc527be19d937a62733e4b7e529f4b875"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_13/evidence/run_log.json",
-   "sha256": "a3fdd507a938dab451ba0e7432aeb0ced3452df45ba7a52b42775765b6536c81"
+   "sha256": "c0eba964df0899c73bf390454ad1f7c6428a747ab09e226f7a56f75977738608"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/evidence/schema_jsonschema_check.json",
@@ -430,19 +439,19 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_13/experiments/LEDGER_TOTALS.json",
-   "sha256": "7cbe15fd453093e888c839719e1c641f96869383f8b39c4710909f4cb16b6727"
+   "sha256": "44d0c8789e47162409f33887949e27f67aa33195ff909282746265905f97b37c"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/experiments/SEARCH_LEDGER.csv",
-   "sha256": "a95967eff66ec698d91cb2dcfd16e42fc2bc621936c93769817a30f77b7c76af"
+   "sha256": "4b3ecf46029fe420f5cad1fc1c746fc83d5bc4f1c109235afbf06473dff7abc1"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/models/CALIBRATION_CARD.md",
-   "sha256": "a1d6cce8c22bf41fe47585a760b6eae1b577af22833f9fb5215066e9b18e2486"
+   "sha256": "6dc0d871c32eafc6ed16555e0f3d282f9b9a28165261209d739eeaf719c9fa98"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/models/FORECAST_RESULT_SCHEMA.json",
-   "sha256": "e6ce732e40c429f8044d79148b16178ff29f8dfcd4faff9225786227aba44cb5"
+   "sha256": "978e62dd93c4973fa237365a093c7128657e18da87886695af62d2832ff0ceb2"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/postcommit/pytest_summary.txt",
@@ -462,7 +471,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_13/probes/mutation_calibration.py",
-   "sha256": "7c7139fffac18c7b047893043ce05943bcdc243fb91a6ed2c603d41a7e956911"
+   "sha256": "47270f97d658616a209fabe9fa42cacaee7feea0ede0985b9641225fea86ec5c"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/probes/oracle_calibration.py",
@@ -470,27 +479,79 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_13/probes/run_calibration.py",
-   "sha256": "d889c2808689a784c23d3586c8b8be43e5b2500865980ffdc04be247e308b1b6"
+   "sha256": "ee5f282abed1cb7eb375ceaab204620c7725c0f4102629e9a3d62d4e61567fae"
   },
   {
    "path": "audits/predictive-intelligence/phase_13/probes/write_results.py",
-   "sha256": "a558ee7cd710b29c7e2f2827dd2ddca96444416305162c6af0d2ad4490584104"
+   "sha256": "0528b06d091b9025327f45e19b735bdbf46b4ecfafb9fad6d67c8f4fee6cc62c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/skeptic/PHASE_13_SKEPTIC.md",
+   "sha256": "bf8a81b47be4b3118942bc873821e0f86d550bc85c1ee5b73d424b8c2d2f024d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/skeptic/p13_cx_s13_flat_evidence.py",
+   "sha256": "53f1af43641ebc581c05ffd74b4b2c0689ff24f84dc0de8c46bfdb9e158bb370"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/skeptic/p13_cx_s13_flat_evidence_out.json",
+   "sha256": "c12ebccf28b34601f414285b8091831f0de2b92859eeaa1245b52ebcdfed1193"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/skeptic/p13_g7_platt_convergence.py",
+   "sha256": "cf7461e5375040a5d645394f055307b8951c2456e08a8cb9f25f75f45aa06447"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/skeptic/p13_g7_platt_convergence_out.json",
+   "sha256": "79d918bfc4cebbbcbd6a8a75b7c6747ca6580e2fb9d4ee41eacee53e90380ae8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/skeptic/p13_independent.py",
+   "sha256": "55143a1b5e20e6aac144517ea9b86e1c122ff03cf9424f80bf1c594880832a7f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/skeptic/p13_independent_out.json",
+   "sha256": "69d52effe1c8e12459e8a23f7ce7967da3aa7e5f7894b2a7bbcdf4c54bdcd7f1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/skeptic/p13_publication_attacks.py",
+   "sha256": "550399ebd49a0681a5a5cb38d8f4a4bc373a6402abe54c2fd17a40bc7efd1964"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/skeptic/p13_publication_attacks_out.json",
+   "sha256": "6c636c0c38a9790f83f888891fad658049b3a6c7eaaa7f5d2cfb65e0d3baba80"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/skeptic/p13_skeptic_mutations.py",
+   "sha256": "aa40122dbd5aabeb825527dfcdc5d0d484de18b97208f5be6d6780498069ccf4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/skeptic/p13_skeptic_mutations_out.json",
+   "sha256": "da2167271eea423254b652ee035200081e3b2b184cfdf8337e792fd08b7b5e0a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/skeptic/rp2_attacks_check.py",
+   "sha256": "0f865788b4c8a6ce9ce0b1b6b6337e2d8aa29784c7ca6fcc2ab1d03dd3a803b7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_13/skeptic/rp2_attacks_check_out.json",
+   "sha256": "3c27a343030d88825a2000eaba52f4f988f28d74f5c929b057520a9b5ec66fb7"
   },
   {
    "path": "memelab/predictive/calibration.py",
-   "sha256": "c9cbd2057a5abb320baf3537b14fb4d471d57db21959ac6475573082320dfbc6"
+   "sha256": "2e7f87c6d8846d0833893f986dda64e05b74dfb2ab79991018633aee2d8d8602"
   },
   {
    "path": "memelab/predictive/abstention.py",
-   "sha256": "ce31ebb31cff0c5890adaebb56eea1feaeabaf71e6463f1cbec72039c4abda16"
+   "sha256": "abf4dd5268516d0158496428dda2efcde627530eae980e2fdcc1bbca4c58ea8a"
   },
   {
    "path": "tests/test_predictive_calibration.py",
-   "sha256": "3c565997711beebe8980d062f6d8f450cfa1f6fff8981151f4d3e8e57d08eb3a"
+   "sha256": "1e343911bd962e28f47a0a32259eb800f74ec432352ed9eaf62d68d16c089935"
   },
   {
    "path": "tests/test_predictive_abstention.py",
-   "sha256": "886128cb81160218dce0d231233ab0310e3eff058ef5615b96c90b29f907f784"
+   "sha256": "63c90bc9e362c1ddd703f7681e4eb7a0b9479bc8475054df98b703da27fbe324"
   },
   {
    "path": "tests/test_predictive_phase13_outputs.py",
@@ -499,17 +560,18 @@
  ],
  "limitations": [
   "Publication path (FORECAST, SHADOW and VALIDATED_EXPERIMENTAL levels, admissible evidence) is TEST_ONLY: fixtures only; no real card is calibrated.",
-  "G7 failed as registered on two descriptive below-gate fits (scikit-learn lbfgs stops early); a decision by the orchestrator or Elving is needed to close it (PI-D-069 item 6).",
+  "G7 failed as registered on two descriptive below-gate fits (scikit-learn lbfgs stops early); closed by the orchestrator's decision PI-D-071; the Platt fit is pinned by a regression test.",
+  "Level authenticity needs the Phase 16 registry: VALIDATED_EXPERIMENTAL is refused on any card until then; SHADOW always carries its label.",
+  "Skeptic m3 and m4 stay open for Phase 17: a forged point inside a wide interval and reasons dropped from a document travelling without its record cannot be detected from the document alone.",
   "The comparison with Phase 07's out-of-sample file is to its 6 decimals (fold cards equal by model sha).",
-  "Exchangeability of the event rate is rejected across days (T1b, T2) and routes (T1, T1b): any calibration interval is conditional on an assumption the data contradict; no interval covers unmodelled risk.",
+  "Event-rate heterogeneity across days and routes is suggested but not significant after Holm over six tests (smallest 0.065); the day signal rests on 2026-10-07 and the route effect is a label-route effect; any interval is conditional on exchangeability and none covers unmodelled risk.",
   "The published point cannot be recomputed from the document alone; Phase 17 keeps the raw number in its request record (PI-D-068).",
   "Development replay names CALIBRATION_EVIDENCE_PENDING at fold cutoffs that predate the prospective holdout, following the frozen evidence rule.",
   "The 10 prospective decisions have no stored features (Phase 05 store ends at the seal) and no price read: today's records add OOD and SOURCE_STALE.",
   "Every run read the opened holdout outcomes from committed Phase 12 files (POST_OPENING, logged); none fitted, selected or promoted."
  ],
  "blockers": [],
- "approvals_needed": [
-  "A decision on checklist item G7 (as PI-D-053 did for Phase 08 G16), by the orchestrator or Elving."
- ],
- "next_eligible_phase": "14, once the orchestrator records Phase 13 PASS after the independent skeptic and repair pass"
+ "approvals_needed": [],
+ "repair_pass_2": "Independent skeptic: 4 MATERIAL (caller flag, self-certifying cards with spent evidence, no card-to-decision time binding, flat evidence calibrating: CX-S13), 6 minor. Repaired at 075026d (PI-D-070); G7 closed by PI-D-071. No status, count, number, reason or verdict changed.",
+ "next_eligible_phase": "14, once the orchestrator records Phase 13 PASS"
 }

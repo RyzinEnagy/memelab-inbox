@@ -1,0 +1,196 @@
+{
+ "cx_s13": "stops: TypeError: main.<locals>.patched() takes 3 positional arguments but 4 were given",
+ "flag_in_this_checkout": false,
+ "flag_off_run": "stops: TypeError: 'NoneType' object is not subscriptable (the legitimate fixture no longer publishes with the flag OFF)",
+ "flag_on_run": {
+  "A1_flag_off_in_config_request_says_on": {
+   "PUBLISHED": true,
+   "interval": [
+    0.16666666666666669,
+    0.47637381158245135
+   ],
+   "note": "C.enabled() is True; neither evaluate nor validate_publication reads it",
+   "probability": 0.20454545454545456,
+   "reasons": [],
+   "status": "FORECAST",
+   "validator_errors": []
+  },
+  "A2_forged_card_24_rows_spent_holdout_evidence": {
+   "PUBLISHED": false,
+   "interval": null,
+   "probability": null,
+   "reasons": [
+    "INSUFFICIENT_HISTORY",
+    "UNCALIBRATED"
+   ],
+   "status": "ABSTAIN",
+   "validator_errors": []
+  },
+  "A2_original_small_card": {
+   "calibration_set_n": 24,
+   "details": [
+    "NO_CALIBRATOR",
+    "CALIBRATION_SET_TOO_SMALL"
+   ],
+   "fit_gate": {
+    "passed": false,
+    "rule": {
+     "min_days": 5,
+     "min_events": 100,
+     "min_per_class": 20
+    },
+    "shortfalls": [
+     "events 24 < 100",
+     "per class 11 < 20",
+     "decision days 1 < 5"
+    ]
+   },
+   "status": "UNCALIBRATED"
+  },
+  "A2_verify_card_accepts_forged": "refused evidence source 'RETROSPECTIVE_HOLDOUT' refused: spent or unknown evidence (PI-D-065)",
+  "A2b_evidence_k2_hand_built_doc_validator_errors": [
+   "calibration card refused: evidence marked passed without a passing check on its own rows"
+  ],
+  "A2b_evidence_k2_via_forecast_result": {
+   "PUBLISHED": false,
+   "interval": null,
+   "probability": null,
+   "reasons": [
+    "INSUFFICIENT_HISTORY",
+    "UNCALIBRATED"
+   ],
+   "status": "ABSTAIN",
+   "validator_errors": []
+  },
+  "A2c_card_claims_holdout_window_rows": {
+   "PUBLISHED": false,
+   "interval": null,
+   "probability": null,
+   "reasons": [
+    "INSUFFICIENT_HISTORY",
+    "UNCALIBRATED"
+   ],
+   "status": "ABSTAIN",
+   "validator_errors": []
+  },
+  "A3_card_whose_evidence_matured_after_the_decision": {
+   "PUBLISHED": false,
+   "card_stores_evidence_cutoff": false,
+   "decision_utc": "2026-10-24T12:00:00Z",
+   "evidence_cutoff_utc": "2026-10-29T00:00:00Z",
+   "interval": null,
+   "probability": null,
+   "reasons": [
+    "UNCALIBRATED"
+   ],
+   "status": "ABSTAIN",
+   "validator_errors": []
+  },
+  "A4_stale_model_validator_errors": [
+   "MODEL_STALE: training cutoff more than 1209600 s before the decision"
+  ],
+  "A5_refused": {
+   "base_rate_nan": true,
+   "big": true,
+   "bool": true,
+   "inf": true,
+   "interval_nan": true,
+   "nan": true,
+   "neg": true,
+   "np_nan": true,
+   "str": true,
+   "tiny": true
+  },
+  "A5b_point_moved_to_interval_edge_validator_errors": [],
+  "A5b_point_true_vs_forged": [
+   0.20454545454545456,
+   0.47637381158245135
+  ],
+  "A6_flat_evidence_card": {
+   "calibration_set_flat": false,
+   "details": [
+    "NO_CALIBRATOR",
+    "DEGENERATE_FLAT_PREDICTIONS"
+   ],
+   "evidence_passed": false,
+   "status": "UNCALIBRATED"
+  },
+  "A6_flat_evidence_publish": {
+   "PUBLISHED": false,
+   "interval": null,
+   "probability": null,
+   "reasons": [
+    "UNCALIBRATED"
+   ],
+   "status": "ABSTAIN",
+   "validator_errors": []
+  },
+  "A7_shadow_label_missing_refused": true,
+  "A7b_card_level_relabelled_validated": {
+   "PUBLISHED": false,
+   "interval": null,
+   "probability": null,
+   "reasons": [
+    "INSUFFICIENT_HISTORY",
+    "UNCALIBRATED"
+   ],
+   "shadow_caveat_present": false,
+   "status": "ABSTAIN",
+   "validator_errors": []
+  },
+  "A8_original_reasons": [
+   "EXECUTION_DATA_MISSING",
+   "MODEL_NOT_SELECTED",
+   "FLAG_OFF"
+  ],
+  "A8_reasons_cut_no_record_errors": [],
+  "A8_reasons_cut_with_record_errors": [
+   "the document's reasons differ from the persisted conditions (hidden or invented reason)"
+  ],
+  "A8_reasons_cut_with_resealed_record_errors": [],
+  "A9_interval_width_by_support": [
+   [
+    20,
+    0.3568391762110783
+   ],
+   [
+    40,
+    0.26006842781671724
+   ],
+   [
+    80,
+    0.18678442761691594
+   ],
+   [
+    160,
+    0.1331242930333678
+   ],
+   [
+    320,
+    0.09450818391291363
+   ],
+   [
+    640,
+    0.08198878772690046
+   ]
+  ],
+  "A9_non_increasing": true,
+  "A9_point_far_from_bin_rate": [
+   0.23403302377747973,
+   0.95
+  ],
+  "baseline_legit_fixture": {
+   "PUBLISHED": true,
+   "interval": [
+    0.16666666666666669,
+    0.47637381158245135
+   ],
+   "probability": 0.20454545454545456,
+   "reasons": [],
+   "status": "FORECAST",
+   "validator_errors": []
+  },
+  "flag_enabled_in_this_checkout": true
+ },
+ "published_with_flag_on": []
+}

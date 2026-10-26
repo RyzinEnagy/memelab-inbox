@@ -1,0 +1,16 @@
+        c["fit_gate"]["passed"] = True
+        c["evidence"] = {"status": "ADMISSIBLE", "n": 66, "k": 15, "check": None, "passed": True, "source": "RETROSPECTIVE_HOLDOUT",
+>       assert card["status"] == CAL.UNCALIBRATED and card["evidence"]["passed"] is False
+FAILED tests/test_predictive_abstention.py::test_rp2_m1_the_flag_is_read_from_the_config_never_from_the_caller
+FAILED tests/test_predictive_abstention.py::test_rp2_m2_a_card_cannot_claim_more_than_its_counts_and_never_uses_spent_evidence
+FAILED tests/test_predictive_abstention.py::test_rp2_m3_a_calibration_learned_after_the_decision_never_publishes
+FAILED tests/test_predictive_abstention.py::test_rp2_m4_cx_s13_flat_evidence_never_calibrates_and_scores_outside_the_evidence_abstain
+FAILED tests/test_predictive_abstention.py::test_rp2_m5_validator_constants_and_record_conditions
+FAILED tests/test_predictive_abstention.py::test_rp2_token_history_minimum_is_20_rows[19-True]
+FAILED tests/test_predictive_abstention.py::test_rp2_token_history_minimum_is_20_rows[20-False]
+FAILED tests/test_predictive_abstention.py::test_rp2_a_score_outside_the_calibration_bins_abstains_without_evidence
+FAILED tests/test_predictive_abstention.py::test_rp2_a_below_gate_card_cannot_carry_a_calibrator
+FAILED tests/test_predictive_abstention.py::test_rp2_a_card_cannot_relabel_its_own_times_or_level
+FAILED tests/test_predictive_calibration.py::test_rp2_evidence_from_another_source_is_refused_at_build
+FAILED tests/test_predictive_calibration.py::test_rp2_cards_record_their_availability
+12 failed, 5 passed, 117 deselected in 1.32s

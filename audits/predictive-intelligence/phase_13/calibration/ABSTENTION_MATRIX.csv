@@ -27,6 +27,7 @@ CALIBRATION_EVIDENCE_TOO_SMALL,INSUFFICIENT_HISTORY,too few independent outcomes
 LOW_SUPPORT,INSUFFICIENT_HISTORY,too few calibration outcomes near this model number,24,28,8,4,2,59
 CALIBRATION_EVIDENCE_PENDING,NOT_YET_MATURED,the outcomes that would check the calibration have not matured,24,44,8,66,68,59
 DRIFT,DRIFT_ALERT,the model's recent errors drifted upward,0,0,0,0,0,0
+CALIBRATION_AFTER_DECISION,UNCALIBRATED,the calibration or its evidence was not available at the decision,0,0,0,0,0,0
 COVERAGE_REQUESTS,,dev: requests,24,44,8,,,
 COVERAGE_FORECAST,,dev: forecast,0,0,0,,,
 COVERAGE_RAW_NUMBER,,dev: raw_number,24,44,8,,,

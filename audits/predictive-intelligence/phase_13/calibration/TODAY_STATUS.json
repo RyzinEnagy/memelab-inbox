@@ -4,7 +4,7 @@
  "note": "prospective decisions of the development store; their features are not in the Phase 05 store (sealed by design) and no price was read, so inputs are missing and eligibility is unknown; no label of them is read",
  "targets": {
   "T1_24h": {
-   "calibration_card_sha": "39cdb003495653edf63fb17f4ac407dacffab24d4bbe8d05b5dd064051402c24",
+   "calibration_card_sha": "21384176f23f4c5e4d2ee3a7befe725396cf1630675438cdff069dec3551ecdf",
    "calibration_status": "UNCALIBRATED",
    "champion": "B2:price_path_target_before_invalidation_24h",
    "champion_model_sha": "e04172636be8263ff89a36af82a1148555c521c1443f4ce3e9e214253ac24470",
@@ -24,7 +24,7 @@
    "standing_conditions": [
     {
      "code": "FLAG_OFF",
-     "detail": "",
+     "detail": "predictive.enabled is not true in the config",
      "reason": "FLAG_OFF"
     },
     {
@@ -62,7 +62,7 @@
    ]
   },
   "T1b_6h": {
-   "calibration_card_sha": "e8d71d5cc3e0653f15d84d4211d2c1f26cb4c163f759ae9d47f5cd48c3f2145a",
+   "calibration_card_sha": "bd199528721bb62f41502e64c7e79205c8ca9fe7c3adb277ecb0e8314eeefbf4",
    "calibration_status": "UNCALIBRATED",
    "champion": "B2:price_path_target_before_invalidation_6h",
    "champion_model_sha": "440927a9afea1ec9f3aa95315583111f25589351d62964057f29d510887e57b7",
@@ -82,7 +82,7 @@
    "standing_conditions": [
     {
      "code": "FLAG_OFF",
-     "detail": "",
+     "detail": "predictive.enabled is not true in the config",
      "reason": "FLAG_OFF"
     },
     {
@@ -120,7 +120,7 @@
    ]
   },
   "T2_24h": {
-   "calibration_card_sha": "54755efd3808cf7c71b3dd2a8f324b31013a89228697b71adb342d088dda5b91",
+   "calibration_card_sha": "ddaa581ceb7b21489b34e2c5e976eb5a709670adccef130c2ec6e8070e0f0e9b",
    "calibration_status": "UNCALIBRATED",
    "champion": "B2:price_path_severe_drawdown_or_halt_24h",
    "champion_model_sha": "d045d9d7a40947f9a7af108c01f0217440d3e19a16fc5d12328dc57d73ad4aaf",
@@ -140,7 +140,7 @@
    "standing_conditions": [
     {
      "code": "FLAG_OFF",
-     "detail": "",
+     "detail": "predictive.enabled is not true in the config",
      "reason": "FLAG_OFF"
     },
     {

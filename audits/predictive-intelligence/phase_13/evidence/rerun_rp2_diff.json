@@ -1,0 +1,253 @@
+{
+ "byte_equal": [
+  "calibration/ABSTENTION_MATRIX.md",
+  "calibration/BASE_RATE_UNCERTAINTY.csv",
+  "calibration/BELOW_GATE_DESCRIPTIVE.json",
+  "calibration/CALIBRATION_SETS.csv",
+  "calibration/DRIFT_DEV.json",
+  "calibration/HOLDOUT_POST_OPENING.json",
+  "calibration/RELIABILITY_COVERAGE.csv",
+  "calibration/SCORE_REPORT_DEV.json"
+ ],
+ "cards": {
+  "T1_24h": {
+   "calibration_set_counts_equal": true,
+   "calibration_set_keys_added": [
+    "last_decision_time",
+    "last_label_matures_at"
+   ],
+   "card_sha": [
+    "39cdb003495653edf63fb17f4ac407dacffab24d4bbe8d05b5dd064051402c24",
+    "21384176f23f4c5e4d2ee3a7befe725396cf1630675438cdff069dec3551ecdf"
+   ],
+   "details_equal": true,
+   "evidence_keys_added": [
+    "as_of",
+    "as_of_utc",
+    "degeneracy",
+    "score_range"
+   ],
+   "keys_added": [
+    "available_at"
+   ],
+   "status": [
+    "UNCALIBRATED",
+    "UNCALIBRATED"
+   ]
+  },
+  "T1b_6h": {
+   "calibration_set_counts_equal": true,
+   "calibration_set_keys_added": [
+    "last_decision_time",
+    "last_label_matures_at"
+   ],
+   "card_sha": [
+    "e8d71d5cc3e0653f15d84d4211d2c1f26cb4c163f759ae9d47f5cd48c3f2145a",
+    "bd199528721bb62f41502e64c7e79205c8ca9fe7c3adb277ecb0e8314eeefbf4"
+   ],
+   "details_equal": true,
+   "evidence_keys_added": [
+    "as_of",
+    "as_of_utc",
+    "degeneracy",
+    "score_range"
+   ],
+   "keys_added": [
+    "available_at"
+   ],
+   "status": [
+    "UNCALIBRATED",
+    "UNCALIBRATED"
+   ]
+  },
+  "T2_24h": {
+   "calibration_set_counts_equal": true,
+   "calibration_set_keys_added": [
+    "last_decision_time",
+    "last_label_matures_at"
+   ],
+   "card_sha": [
+    "54755efd3808cf7c71b3dd2a8f324b31013a89228697b71adb342d088dda5b91",
+    "ddaa581ceb7b21489b34e2c5e976eb5a709670adccef130c2ec6e8070e0f0e9b"
+   ],
+   "details_equal": true,
+   "evidence_keys_added": [
+    "as_of",
+    "as_of_utc",
+    "degeneracy",
+    "score_range"
+   ],
+   "keys_added": [
+    "available_at"
+   ],
+   "status": [
+    "UNCALIBRATED",
+    "UNCALIBRATED"
+   ]
+  }
+ },
+ "differs": [
+  "artifacts/T1_24h/CALIBRATION_CARD.json",
+  "artifacts/T1b_6h/CALIBRATION_CARD.json",
+  "artifacts/T2_24h/CALIBRATION_CARD.json",
+  "calibration/ABSTENTION_MATRIX.csv",
+  "calibration/ABSTENTION_RECORDS_DEV.jsonl",
+  "calibration/ABSTENTION_RECORDS_HOLDOUT_POST_OPENING.jsonl",
+  "calibration/EXCHANGEABILITY.json",
+  "calibration/FOLD_CALIBRATION_CARDS.json",
+  "calibration/FORECAST_RESULTS_DEV.jsonl",
+  "calibration/FORECAST_RESULTS_HOLDOUT_POST_OPENING.jsonl",
+  "calibration/FORECAST_RESULTS_TODAY.jsonl",
+  "calibration/POST_OPENING_LOG.json",
+  "calibration/REPLAY_CHECKS.json",
+  "calibration/TODAY_STATUS.json",
+  "experiments/LEDGER_TOTALS.json",
+  "experiments/SEARCH_LEDGER.csv"
+ ],
+ "exchangeability": {
+  "T1_24h": {
+   "days_without_first_day_p": 0.40027998600069997,
+   "dropped_day": "2026-10-07",
+   "holm_days": 0.3048847557622119,
+   "holm_route": 0.09824508774561272,
+   "p_days_equal": true,
+   "p_route_equal": true,
+   "route_rates": {
+    "CURRENT_VENDOR_LIST": {
+     "n": 34,
+     "positives": 3
+    },
+    "PIT_RECORDED": {
+     "n": 102,
+     "positives": 31
+    }
+   }
+  },
+  "T1b_6h": {
+   "days_without_first_day_p": 0.9489525523723814,
+   "dropped_day": "2026-10-07",
+   "holm_days": 0.09824508774561272,
+   "holm_route": 0.06509674516274186,
+   "p_days_equal": true,
+   "p_route_equal": true,
+   "route_rates": {
+    "CURRENT_VENDOR_LIST": {
+     "n": 65,
+     "positives": 2
+    },
+    "PIT_RECORDED": {
+     "n": 159,
+     "positives": 24
+    }
+   }
+  },
+  "T2_24h": {
+   "days_without_first_day_p": 0.18779061046947654,
+   "dropped_day": "2026-10-07",
+   "holm_days": 0.09824508774561272,
+   "holm_route": 0.3048847557622119,
+   "p_days_equal": true,
+   "p_route_equal": true,
+   "route_rates": {
+    "CURRENT_VENDOR_LIST": {
+     "n": 33,
+     "positives": 4
+    },
+    "PIT_RECORDED": {
+     "n": 98,
+     "positives": 24
+    }
+   }
+  }
+ },
+ "files": {
+  "artifacts/T1_24h/CALIBRATION_CARD.json": "differs",
+  "artifacts/T1b_6h/CALIBRATION_CARD.json": "differs",
+  "artifacts/T2_24h/CALIBRATION_CARD.json": "differs",
+  "calibration/ABSTENTION_MATRIX.csv": "differs",
+  "calibration/ABSTENTION_MATRIX.md": "byte_equal",
+  "calibration/ABSTENTION_RECORDS_DEV.jsonl": "differs",
+  "calibration/ABSTENTION_RECORDS_HOLDOUT_POST_OPENING.jsonl": "differs",
+  "calibration/BASE_RATE_UNCERTAINTY.csv": "byte_equal",
+  "calibration/BELOW_GATE_DESCRIPTIVE.json": "byte_equal",
+  "calibration/CALIBRATION_SETS.csv": "byte_equal",
+  "calibration/DRIFT_DEV.json": "byte_equal",
+  "calibration/EXCHANGEABILITY.json": "differs",
+  "calibration/FOLD_CALIBRATION_CARDS.json": "differs",
+  "calibration/FORECAST_RESULTS_DEV.jsonl": "differs",
+  "calibration/FORECAST_RESULTS_HOLDOUT_POST_OPENING.jsonl": "differs",
+  "calibration/FORECAST_RESULTS_TODAY.jsonl": "differs",
+  "calibration/HOLDOUT_POST_OPENING.json": "byte_equal",
+  "calibration/POST_OPENING_LOG.json": "differs",
+  "calibration/RELIABILITY_COVERAGE.csv": "byte_equal",
+  "calibration/REPLAY_CHECKS.json": "differs",
+  "calibration/SCORE_REPORT_DEV.json": "byte_equal",
+  "calibration/TODAY_STATUS.json": "differs",
+  "experiments/LEDGER_TOTALS.json": "differs",
+  "experiments/SEARCH_LEDGER.csv": "differs"
+ },
+ "matrix": {
+  "added": [
+   {
+    "condition": "CALIBRATION_AFTER_DECISION",
+    "contract_reason": "UNCALIBRATED",
+    "dev_T1_24h": "0",
+    "dev_T1b_6h": "0",
+    "dev_T2_24h": "0",
+    "explanation": "the calibration or its evidence was not available at the decision",
+    "holdout_post_opening_T1_24h": "0",
+    "holdout_post_opening_T1b_6h": "0",
+    "holdout_post_opening_T2_24h": "0"
+   }
+  ],
+  "all_old_rows_equal": true,
+  "rows_new": 37,
+  "rows_old": 36
+ },
+ "new_code": "075026d",
+ "old_outputs_commit": "08faa99",
+ "results": {
+  "calibration/FORECAST_RESULTS_DEV.jsonl": {
+   "detail_changes": [
+    [
+     "FLAG_OFF",
+     "",
+     "predictive.enabled is not true in the config"
+    ]
+   ],
+   "pairs": [
+    76,
+    76
+   ],
+   "same_status_reasons_and_codes": 76
+  },
+  "calibration/FORECAST_RESULTS_HOLDOUT_POST_OPENING.jsonl": {
+   "detail_changes": [
+    [
+     "FLAG_OFF",
+     "",
+     "predictive.enabled is not true in the config"
+    ]
+   ],
+   "pairs": [
+    193,
+    193
+   ],
+   "same_status_reasons_and_codes": 193
+  },
+  "calibration/FORECAST_RESULTS_TODAY.jsonl": {
+   "detail_changes": [
+    [
+     "FLAG_OFF",
+     "",
+     "predictive.enabled is not true in the config"
+    ]
+   ],
+   "pairs": [
+    30,
+    30
+   ],
+   "same_status_reasons_and_codes": 30
+  }
+ }
+}

@@ -1,9 +1,12 @@
 {
+ "available_at": 1792195200.0,
  "calibration_set": {
   "days": 5,
   "first_decision_utc": "2026-10-12T10:18:37Z",
   "k": 3,
+  "last_decision_time": 1792147326.0,
   "last_decision_utc": "2026-10-16T10:42:06Z",
+  "last_label_matures_at": 1792170126.0,
   "n": 44,
   "negatives": 41,
   "rows_sha": "c17cba5953d8b587124ee52f860841c20653ff621cb651dfc1be04505e9abda8",
@@ -11,7 +14,7 @@
  },
  "calibration_version": "calibration-1",
  "calibrator": null,
- "card_sha": "e8d71d5cc3e0653f15d84d4211d2c1f26cb4c163f759ae9d47f5cd48c3f2145a",
+ "card_sha": "bd199528721bb62f41502e64c7e79205c8ca9fe7c3adb277ecb0e8314eeefbf4",
  "champion_kind": "B2",
  "champion_model_id": "B2:price_path_target_before_invalidation_6h",
  "champion_model_sha": "440927a9afea1ec9f3aa95315583111f25589351d62964057f29d510887e57b7",
@@ -30,10 +33,14 @@
   "CALIBRATION_SET_TOO_SMALL"
  ],
  "evidence": {
+  "as_of": null,
+  "as_of_utc": null,
   "check": null,
+  "degeneracy": null,
   "k": 0,
   "n": 0,
   "passed": false,
+  "score_range": null,
   "source": "PROSPECTIVE_HOLDOUT",
   "status": "NOT_YET_MATURED"
  },

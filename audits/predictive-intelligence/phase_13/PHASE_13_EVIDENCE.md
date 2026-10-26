@@ -1,6 +1,6 @@
 # Phase 13 evidence: calibration, uncertainty and abstention
 
-Status: NEEDS_REVIEW (first pass with a self-review pass 2; awaiting the orchestrator's independent skeptic, PI-D-013). Branch `feature/predictive-intelligence`; HEAD before `6f4f8ea`; commits listed below; HEAD after: see `PHASE_13_RESULTS.json` and HANDOFF.md. Agent session 2026-10-26 from 20:12Z.
+Status: PASS after repair pass 2 (PI-D-070), with G7 failed as registered and closed by the orchestrator's decision PI-D-071. The first-pass text below is kept as it was; the repair is in the last sections. Branch `feature/predictive-intelligence`; HEAD before `6f4f8ea`; commits listed below; HEAD after: see `PHASE_13_RESULTS.json` and HANDOFF.md. Agent session 2026-10-26 from 20:12Z.
 
 ## Entry gate (G1, G2)
 
@@ -117,3 +117,40 @@ Every run of the runner reads the opened holdout outcomes from committed Phase 1
 | `git status --short` | clean | 0 |
 
 Files: `postcommit/`. The one warning is the expected RuntimeWarning of `test_a_calibrator_that_returns_a_non_finite_number_is_refused` (a NaN Platt parameter, refused).
+
+
+## Repair pass 2 after the independent skeptic (PI-D-070, PI-D-071)
+
+Review: `skeptic/PHASE_13_SKEPTIC.md` with its scripts and outputs (copied from the orchestrator's folder). Verdict: material failures, all in the TEST_ONLY publication path; the empirical result reproduced exactly (every recorded number re-derived by the skeptic's own code). Each finding was verified first: the skeptic's attack script published a probability on the first-pass code in A1 (flag OFF in the config), A2 (a 24-row card with spent holdout evidence, resealed), A2b, A2c, A3 (evidence matured after the decision), A7b (level relabelled) and CX-S13 (flat evidence: card CALIBRATED).
+
+| Finding | Repair | Caught by |
+|---|---|---|
+| M1 caller-supplied flag | `evaluate` and `validate_publication` read `contract.enabled(config_path)` | `test_rp2_m1_*`; mutations R1, R2 |
+| M2 self-certifying cards | `calibration.decide` recomputed by `verify_card`; spent evidence, holdout-window rows (float and text times), inconsistent counts, extra calibrator, pair counts, availability and a self-given VALIDATED_EXPERIMENTAL refused; validator evidence gate | `test_rp2_m2_*`, `test_rp2_a_card_cannot_relabel_*`, `test_rp2_a_below_gate_card_*`; mutations R3 to R12, R17, R18, E5, E6, E9, E10 |
+| M3 no time binding | cards carry `evidence.as_of` and `available_at`; condition CALIBRATION_AFTER_DECISION (UNCALIBRATED); validator refuses a card available after the decision | `test_rp2_m3_*`; mutations R13, R14 |
+| M4 and CX-S13 flat evidence | evidence degeneracy and score range on the card; flat evidence never passes; request scores outside the evidence range abstain | `test_rp2_m4_cx_s13_*`, `test_rp2_a_score_outside_the_calibration_bins_*`; mutations R8, R9, R15 |
+| m1 Platt not pinned | regression test against an independent 60-digit decimal Newton solve (the recorded T2 set and two synthetic sets) | `test_rp2_numpy_platt_*`; the skeptic's K1, K2 now caught |
+| m2 wording | Holm over six tests (smallest 0.065), first-day drop, route rates in `EXCHANGEABILITY.json`; card, PI-D-069 (amended by PI-D-070), ROADMAP and HANDOFF corrected | `evidence/rerun_rp2_diff.json` |
+| m5 untested constants | tests for support ties, alpha 0.05, registry check, validator display range and support minimum, token-history minimum 20, FORECAST record with conditions | the skeptic's M5, M6, M11, M13, M14, M17, M18 now caught |
+| m3, m4 | recorded for Phase 17 (recompute the point from the kept raw number; validate every document with its record) | not repairable from the document alone |
+| m6 | description, unchanged | |
+
+Commands and results:
+
+| Command | Result | Exit |
+|---|---|---|
+| repair code committed | `075026d` (21:58:24Z) | |
+| `python -B probes/run_calibration.py audits/predictive-intelligence/phase_13` at `075026d` | failures []; UNCALIBRATED x3; 76, 193, 30 requests all ABSTAIN | 0 |
+| twin into the scratchpad | every file under `calibration/`, `artifacts/`, `experiments/` identical | 0 |
+| comparison with the first-pass outputs (`evidence/rerun_rp2_diff.json`) | statuses, counts, condition codes and reasons equal for all 299 results; card sha256 changed (new fields); FLAG_OFF detail names the config; one matrix row added (0 everywhere); Holm, first-day and route-rate entries added; 8 files byte-equal | |
+| `python -B probes/mutation_calibration.py evidence/mutation_calibration_rp2.json` | 104 of 104 caught; 1 equivalent mutation recorded (R16, the validator's evidence gate behind `verify_card`) | 0 |
+| repair tests on the first-pass modules (`evidence/rp2_tests_on_first_pass_code.txt`) | 12 failed, 5 passed (the 5 pin behaviour that was already right: Platt accuracy, support ties, alpha, registry check, Platt synthetic). The whole test module passes `config_path`, so on the old code most failures are TypeErrors; the skeptic's own scripts on `08faa99` are the behavioural proof (attacks published, CX-S13 CALIBRATED) | 1 (expected) |
+| `python -B skeptic/rp2_attacks_check.py . skeptic/rp2_attacks_check_out.json` | flag OFF: the legitimate fixture no longer publishes; flag ON (stubbed): none of the skeptic's attacks publishes | 0 |
+| `python -m pytest tests/test_predictive_calibration.py tests/test_predictive_abstention.py tests/test_predictive_phase13_outputs.py -q` | `141 passed` | 0 |
+| oracles | not rerun: the calibrators are unchanged and their inputs (`CALIBRATION_SETS.csv`, `BELOW_GATE_DESCRIPTIVE.json`) are byte-equal | |
+
+G7 (PI-D-071): stays "failed as registered"; closed because the numpy Platt equals a 60-digit Newton solution within 1e-15, scikit-learn with tight tolerances converges to it, and PI-D-053 had already frozen newton-cholesky (5.3e-15 here) as the reference; the regression test above is the condition.
+
+## Skeptic's counterexample CX-S13 and what catches it now
+
+The phase's own fixture with every prospective evidence score set to one value: on the first-pass code the card became CALIBRATED (each bin's mean inside its Wilson interval trivially) and forecasts were published at scores the evidence never exercised. Now: `_evidence` records the evidence degeneracy and refuses a pass on flat evidence (card UNCALIBRATED, DEGENERATE_FLAT_PREDICTIONS), `verify_card` refuses any card marking flat evidence passed, and request scores outside the evidence range abstain. Caught by `tests/test_predictive_abstention.py::test_rp2_m4_cx_s13_flat_evidence_never_calibrates_and_scores_outside_the_evidence_abstain` and mutations R8, R9, R15.

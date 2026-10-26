@@ -4,7 +4,7 @@
  "targets": {
   "T1_24h": {
    "calibration_rows": 24,
-   "card_at_H": "39cdb003495653edf63fb17f4ac407dacffab24d4bbe8d05b5dd064051402c24",
+   "card_at_H": "21384176f23f4c5e4d2ee3a7befe725396cf1630675438cdff069dec3551ecdf",
    "card_time_cross_check_equal": true,
    "committed_rows": 24,
    "equal_within_rounding": true,
@@ -16,7 +16,7 @@
   },
   "T1b_6h": {
    "calibration_rows": 44,
-   "card_at_H": "e8d71d5cc3e0653f15d84d4211d2c1f26cb4c163f759ae9d47f5cd48c3f2145a",
+   "card_at_H": "bd199528721bb62f41502e64c7e79205c8ca9fe7c3adb277ecb0e8314eeefbf4",
    "card_time_cross_check_equal": true,
    "committed_rows": 44,
    "equal_within_rounding": true,
@@ -28,7 +28,7 @@
   },
   "T2_24h": {
    "calibration_rows": 8,
-   "card_at_H": "54755efd3808cf7c71b3dd2a8f324b31013a89228697b71adb342d088dda5b91",
+   "card_at_H": "ddaa581ceb7b21489b34e2c5e976eb5a709670adccef130c2ec6e8070e0f0e9b",
    "card_time_cross_check_equal": true,
    "committed_rows": 8,
    "equal_within_rounding": true,

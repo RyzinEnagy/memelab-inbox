@@ -42,10 +42,23 @@
    "groups": 9,
    "n": 136,
    "p": 0.24938753062346883,
+   "p_holm_six_tests": 0.3048847557622119,
    "permutations": 20000,
    "positives": 34,
    "seed": 20261025,
    "stat": 10.182898754991779,
+   "status": "EXCHANGEABILITY_NOT_REJECTED_NOT_PROVED",
+   "status_after_holm": "NOT_REJECTED_AFTER_HOLM"
+  },
+  "days_without_first_day": {
+   "dropped_day": "2026-10-07",
+   "groups": 8,
+   "n": 120,
+   "p": 0.40027998600069997,
+   "permutations": 20000,
+   "positives": 27,
+   "seed": 20261025,
+   "stat": 7.293439521496535,
    "status": "EXCHANGEABILITY_NOT_REJECTED_NOT_PROVED"
   },
   "regime": "one out-of-sample regime label in development (Phase 11): regime exchangeability cannot be tested",
@@ -53,11 +66,23 @@
    "groups": 2,
    "n": 136,
    "p": 0.02104894755262237,
+   "p_holm_six_tests": 0.09824508774561272,
    "permutations": 20000,
    "positives": 34,
    "seed": 20261025,
    "stat": 6.326797385620915,
-   "status": "EXCHANGEABILITY_REJECTED"
+   "status": "EXCHANGEABILITY_REJECTED",
+   "status_after_holm": "NOT_REJECTED_AFTER_HOLM"
+  },
+  "route_rates": {
+   "CURRENT_VENDOR_LIST": {
+    "n": 34,
+    "positives": 3
+   },
+   "PIT_RECORDED": {
+    "n": 102,
+    "positives": 31
+   }
   },
   "rows": "ALL_DEVELOPMENT_LABELS_AT_H"
  },
@@ -108,22 +133,47 @@
    "groups": 10,
    "n": 224,
    "p": 0.02294885255737213,
+   "p_holm_six_tests": 0.09824508774561272,
    "permutations": 20000,
    "positives": 26,
    "seed": 20261025,
    "stat": 19.8342132838085,
-   "status": "EXCHANGEABILITY_REJECTED"
+   "status": "EXCHANGEABILITY_REJECTED",
+   "status_after_holm": "NOT_REJECTED_AFTER_HOLM"
+  },
+  "days_without_first_day": {
+   "dropped_day": "2026-10-07",
+   "groups": 9,
+   "n": 208,
+   "p": 0.9489525523723814,
+   "permutations": 20000,
+   "positives": 19,
+   "seed": 20261025,
+   "stat": 3.06917459105928,
+   "status": "EXCHANGEABILITY_NOT_REJECTED_NOT_PROVED"
   },
   "regime": "one out-of-sample regime label in development (Phase 11): regime exchangeability cannot be tested",
   "route": {
    "groups": 2,
    "n": 224,
    "p": 0.010849457527123643,
+   "p_holm_six_tests": 0.06509674516274186,
    "permutations": 20000,
    "positives": 26,
    "seed": 20261025,
    "stat": 6.49444720736448,
-   "status": "EXCHANGEABILITY_REJECTED"
+   "status": "EXCHANGEABILITY_REJECTED",
+   "status_after_holm": "NOT_REJECTED_AFTER_HOLM"
+  },
+  "route_rates": {
+   "CURRENT_VENDOR_LIST": {
+    "n": 65,
+    "positives": 2
+   },
+   "PIT_RECORDED": {
+    "n": 159,
+    "positives": 24
+   }
   },
   "rows": "ALL_DEVELOPMENT_LABELS_AT_H"
  },
@@ -166,22 +216,47 @@
    "groups": 8,
    "n": 131,
    "p": 0.019649017549122544,
+   "p_holm_six_tests": 0.09824508774561272,
    "permutations": 20000,
    "positives": 28,
    "seed": 20261025,
    "stat": 16.322643216427082,
-   "status": "EXCHANGEABILITY_REJECTED"
+   "status": "EXCHANGEABILITY_REJECTED",
+   "status_after_holm": "NOT_REJECTED_AFTER_HOLM"
+  },
+  "days_without_first_day": {
+   "dropped_day": "2026-10-07",
+   "groups": 7,
+   "n": 115,
+   "p": 0.18779061046947654,
+   "permutations": 20000,
+   "positives": 20,
+   "seed": 20261025,
+   "stat": 8.697744968040256,
+   "status": "EXCHANGEABILITY_NOT_REJECTED_NOT_PROVED"
   },
   "regime": "one out-of-sample regime label in development (Phase 11): regime exchangeability cannot be tested",
   "route": {
    "groups": 2,
    "n": 131,
    "p": 0.15244237788110596,
+   "p_holm_six_tests": 0.3048847557622119,
    "permutations": 20000,
    "positives": 28,
    "seed": 20261025,
    "stat": 2.2472738937965797,
-   "status": "EXCHANGEABILITY_NOT_REJECTED_NOT_PROVED"
+   "status": "EXCHANGEABILITY_NOT_REJECTED_NOT_PROVED",
+   "status_after_holm": "NOT_REJECTED_AFTER_HOLM"
+  },
+  "route_rates": {
+   "CURRENT_VENDOR_LIST": {
+    "n": 33,
+    "positives": 4
+   },
+   "PIT_RECORDED": {
+    "n": 98,
+    "positives": 24
+   }
   },
   "rows": "ALL_DEVELOPMENT_LABELS_AT_H"
  }

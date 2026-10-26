@@ -1,8 +1,8 @@
 # Abstention matrix (Phase 13, abstention-1)
 
-Source: `ABSTENTION_MATRIX.csv`, written by `probes/run_calibration.py` (run at `2e1488a`). Each of the 28 conditions maps to one reason of the frozen contract (`contract.ABSTAIN_REASONS`, unchanged); every condition is evaluated for every request, so a request is counted under each condition that holds. Development: the champion B2's out-of-sample rows with the fold card and the calibration card as of each fold cutoff. Holdout: the scored retrospective-holdout rows, POST_OPENING description only (PI-D-066). Tests are in `tests/test_predictive_abstention.py`.
+Source: `ABSTENTION_MATRIX.csv`, written by `probes/run_calibration.py` (run at `075026d`, repair pass 2). Each condition maps to one reason of the frozen contract (`contract.ABSTAIN_REASONS`, unchanged): the 28 of the pre-registration plus CALIBRATION_AFTER_DECISION, added by change control PI-D-070 (skeptic M3). Every condition is evaluated for every request, so a request is counted under each condition that holds; FLAG_OFF is read from the config by the layer itself (PI-D-070, skeptic M1). Development: the champion B2's out-of-sample rows with the fold card and the calibration card as of each fold cutoff. Holdout: the scored retrospective-holdout rows, POST_OPENING description only (PI-D-066). Tests are in `tests/test_predictive_abstention.py`.
 
-| Condition | Contract reason | Dev T1 | Dev T1b | Dev T2 | Holdout T1 | Holdout T1b | Holdout T2 | Test that triggers it alone |
+| Condition | Contract reason | Dev T1 | Dev T1b | Dev T2 | Holdout T1 | Holdout T1b | Holdout T2 | Test that triggers it |
 |---|---|---|---|---|---|---|---|---|
 | FLAG_OFF | FLAG_OFF | 24 | 44 | 8 | 66 | 68 | 59 | `test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[FLAG_OFF]` |
 | CHAIN_OUT_OF_SCOPE | OUT_OF_SCOPE_CHAIN | 0 | 0 | 0 | 0 | 0 | 0 | `test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[CHAIN_OUT_OF_SCOPE]` |
@@ -32,6 +32,7 @@ Source: `ABSTENTION_MATRIX.csv`, written by `probes/run_calibration.py` (run at 
 | LOW_SUPPORT | INSUFFICIENT_HISTORY | 24 | 28 | 8 | 4 | 2 | 59 | `test_display_range_and_support_conditions[LOW_SUPPORT-patch1]` |
 | CALIBRATION_EVIDENCE_PENDING | NOT_YET_MATURED | 24 | 44 | 8 | 66 | 68 | 59 | `test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[CALIBRATION_EVIDENCE_PENDING]` |
 | DRIFT | DRIFT_ALERT | 0 | 0 | 0 | 0 | 0 | 0 | `test_each_condition_alone_turns_the_forecast_into_an_abstention_with_its_reason[DRIFT]` |
+| CALIBRATION_AFTER_DECISION | UNCALIBRATED | 0 | 0 | 0 | 0 | 0 | 0 | `test_rp2_m3_a_calibration_learned_after_the_decision_never_publishes` |
 
 ## Coverage
 

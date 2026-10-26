@@ -6,8 +6,8 @@
   "holdout_evaluation_rows": 208,
   "n_search": 118,
   "negative_control_fits": 366,
-  "other_rows": 87,
-  "rows": 3203,
+  "other_rows": 90,
+  "rows": 3206,
   "rows_by_phase": {
    "04": 31,
    "07": 488,
@@ -16,7 +16,7 @@
    "10": 703,
    "11": 388,
    "12": 252,
-   "13": 55
+   "13": 58
   }
  },
  "before_phase_13": {

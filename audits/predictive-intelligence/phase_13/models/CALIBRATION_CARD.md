@@ -1,6 +1,6 @@
 # Calibration card (Phase 13, calibration-1 and abstention-1)
 
-Rules: `ACCEPTANCE_CHECKLIST.md` (frozen before any code, commit `0fdf698`) and PI-D-067; self-review repair PI-D-068. Code: `memelab/predictive/calibration.py`, `memelab/predictive/abstention.py`. Run: `probes/run_calibration.py` at `2e1488a` (outputs byte-equal to the first recorded run at `5a3c582` except the code commit named in `POST_OPENING_LOG.json`). Machine-readable artifacts: `artifacts/<target>/CALIBRATION_CARD.json`.
+Rules: `ACCEPTANCE_CHECKLIST.md` (frozen before any code, commit `0fdf698`) and PI-D-067; self-review repair PI-D-068; repair pass 2 after the independent skeptic PI-D-070; G7 decision PI-D-071. Code: `memelab/predictive/calibration.py`, `memelab/predictive/abstention.py`. Run: `probes/run_calibration.py` at `075026d` (repair pass 2). Against the first recorded run (`5a3c582`, `2e1488a`) no status, count, number, reason or verdict changed: the cards gained availability and evidence fields (new card sha256), every FLAG_OFF condition now names the config, the matrix gained the CALIBRATION_AFTER_DECISION row (0 everywhere) and `EXCHANGEABILITY.json` gained Holm, first-day and route-rate entries (`evidence/rerun_rp2_diff.json`). Machine-readable artifacts: `artifacts/<target>/CALIBRATION_CARD.json`.
 
 Format note: a calibration card says whether a probability may be published and why. It is not a claim of predictive skill.
 
@@ -12,9 +12,9 @@ No primary target can be calibrated: the only chronologically valid calibration 
 
 | Target | Calibration set (n, positives, days) | Fit gate shortfalls | Calibrator | Evidence | Status | Level | Card sha256 |
 |---|---|---|---|---|---|---|---|
-| T1 24 h (`price_path_target_before_invalidation_24h`) | 24, 8, 3 | events 24 < 100; per class 8 < 20; days 3 < 5 | none | prospective holdout, NOT_YET_MATURED | UNCALIBRATED | ABSTAIN | `39cdb003...` |
-| T1b 6 h (`price_path_target_before_invalidation_6h`) | 44, 3, 5 | events 44 < 100; per class 3 < 20 | none | prospective holdout, NOT_YET_MATURED | UNCALIBRATED | ABSTAIN | `e8d71d5c...` |
-| T2 24 h (`price_path_severe_drawdown_or_halt_24h`) | 8, 1, 1 | events 8 < 100; per class 1 < 20; days 1 < 5 | none | prospective holdout, NOT_YET_MATURED | UNCALIBRATED | ABSTAIN | `54755efd...` |
+| T1 24 h (`price_path_target_before_invalidation_24h`) | 24, 8, 3 | events 24 < 100; per class 8 < 20; days 3 < 5 | none | prospective holdout, NOT_YET_MATURED | UNCALIBRATED | ABSTAIN | `21384176...` |
+| T1b 6 h (`price_path_target_before_invalidation_6h`) | 44, 3, 5 | events 44 < 100; per class 3 < 20 | none | prospective holdout, NOT_YET_MATURED | UNCALIBRATED | ABSTAIN | `bd199528...` |
+| T2 24 h (`price_path_severe_drawdown_or_halt_24h`) | 8, 1, 1 | events 8 < 100; per class 1 < 20; days 1 < 5 | none | prospective holdout, NOT_YET_MATURED | UNCALIBRATED | ABSTAIN | `ddaa581c...` |
 
 Each card names its champion (the frozen Phase 07 B2 card at 2026-10-17T00:00Z, by default and not by evidence, PI-D-064), the calibration rows (sha), the fit gate, the method rule (Venn-Abers from 200 events with 40 per class, else Platt, else none), the support bins, the degeneracy check (no target is flat), the evidence rule (50 events, 10 per class, prospective only) and the interval rule. No larger valid calibration set exists: the first fold needs 100 training events, so at most 36 (T1), 124 (T1b) and 31 (T2) development rows could ever be scored out of sample, and T1b has only 26 positives in all of development. Even a gate at the holdout minimums (50 events, 10 per class) would fail for all three.
 
@@ -52,13 +52,13 @@ No AUC or average precision is reported (fewer than 10 per class everywhere). T2
 
 `calibration/BASE_RATE_UNCERTAINTY.csv` (all development labels at H, 20,000 replicates) and `calibration/EXCHANGEABILITY.json` (20,000 label permutations):
 
-| Target | Base rate (n) | Wilson | Day block | Mint block | Governing width / Wilson | Day heterogeneity p | Route heterogeneity p |
-|---|---|---|---|---|---|---|---|
-| T1 | 0.250 (136) | 0.185 to 0.329 | 0.187 to 0.333 | 0.178 to 0.329 | 1.04 | 0.249 (not rejected) | 0.021 (rejected) |
-| T1b | 0.116 (224) | 0.080 to 0.165 | 0.075 to 0.191 | 0.068 to 0.172 | 1.38 | 0.023 (rejected) | 0.011 (rejected) |
-| T2 | 0.214 (131) | 0.152 to 0.292 | 0.095 to 0.306 | 0.144 to 0.295 | 1.51 | 0.020 (rejected) | 0.152 (not rejected) |
+| Target | Base rate (n) | Wilson | Day block | Mint block | Governing width / Wilson | Day heterogeneity p (Holm of 6) | Without 2026-10-07 | Route heterogeneity p (Holm of 6) | Event rate PIT_RECORDED / CURRENT_VENDOR_LIST |
+|---|---|---|---|---|---|---|---|---|---|
+| T1 | 0.250 (136) | 0.185 to 0.329 | 0.187 to 0.333 | 0.178 to 0.329 | 1.04 | 0.249 (0.305) | 0.400 | 0.021 (0.098) | 31/102, 3/34 |
+| T1b | 0.116 (224) | 0.080 to 0.165 | 0.075 to 0.191 | 0.068 to 0.172 | 1.38 | 0.023 (0.098) | 0.949 | 0.011 (0.065) | 24/159, 2/65 |
+| T2 | 0.214 (131) | 0.152 to 0.292 | 0.095 to 0.306 | 0.144 to 0.295 | 1.51 | 0.020 (0.098) | 0.188 | 0.152 (0.305) | 24/98, 4/33 |
 
-Exchangeability of the event rate across decision days is rejected for T1b and T2 and across label routes (PIT_RECORDED against CURRENT_VENDOR_LIST) for T1 and T1b. Venn-Abers validity and any conformal guarantee assume that calibration and future rows are exchangeable; on this data that assumption fails or cannot be tested (one out-of-sample regime label in development, Phase 11). So every interval this layer could produce is conditional on an assumption the data contradicts, and the block intervals of the base rate are 1.04 to 1.51 times as wide as the independent-row Wilson interval. A regime or batch change moves the event rate by more than the iid interval admits.
+Reading, corrected in repair pass 2 (PI-D-070, skeptic m2): heterogeneity of the event rate is suggested but not significant after Holm over the six tests (smallest adjusted p 0.065). The day signal rests on the first decision day, 2026-10-07: without it T1b's day p is 0.95 and T2's 0.19; the skeptic also found T1b's day effect gone under a mint-cluster permutation (p 0.15) while T2's stayed (p 0.014). The route effect is a label-route effect, not a time trend: decisions labelled on the CURRENT_VENDOR_LIST route (no point-in-time pool) have much lower event rates (T1 3/34, T1b 2/65) than PIT_RECORDED ones (31/102, 24/159), and both routes span every day. So exchangeability is neither established nor clearly refuted: Venn-Abers validity and any conformal guarantee assume it, it cannot be tested across regimes (one out-of-sample regime label in development, Phase 11), and the block intervals of the base rate are 1.04 to 1.51 times the independent-row Wilson width. This is a reason for caution, not a finding to build on; no later phase should treat it as a regime claim.
 
 ## What an interval would look like at today's support (P23, P24; descriptive, below the gate)
 
@@ -76,7 +76,7 @@ The holdout is spent (PI-D-065). `calibration/HOLDOUT_POST_OPENING.json` is comp
 
 ## Abstention and coverage
 
-`calibration/ABSTENTION_MATRIX.csv` (and `.md`) lists all 28 conditions with their contract reason and counts. Development (76 requests): every request has FLAG_OFF, MODEL_NOT_PROMOTED, NO_CALIBRATOR, CALIBRATION_SET_TOO_SMALL, CALIBRATION_EVIDENCE_TOO_SMALL and CALIBRATION_EVIDENCE_PENDING; also POOL_NOT_POINT_IN_TIME on 17 (the CURRENT_VENDOR_LIST route), LOW_SUPPORT on 60, SCORE_OUTSIDE_CALIBRATION_RANGE on 4 and FEATURE_OUT_OF_RANGE on 1. Holdout POST_OPENING (193 requests) the same standing conditions, plus POOL_NOT_POINT_IN_TIME on 37, SCORE_OUTSIDE_CALIBRATION_RANGE on 16 and LOW_SUPPORT on 65. Coverage: raw model number 100% of requests, calibrated number 0%, published probability 0%.
+`calibration/ABSTENTION_MATRIX.csv` (and `.md`) lists all 29 conditions (28 pre-registered, 1 added by PI-D-070) with their contract reason and counts. Development (76 requests): every request has FLAG_OFF, MODEL_NOT_PROMOTED, NO_CALIBRATOR, CALIBRATION_SET_TOO_SMALL, CALIBRATION_EVIDENCE_TOO_SMALL and CALIBRATION_EVIDENCE_PENDING; also POOL_NOT_POINT_IN_TIME on 17 (the CURRENT_VENDOR_LIST route), LOW_SUPPORT on 60, SCORE_OUTSIDE_CALIBRATION_RANGE on 4 and FEATURE_OUT_OF_RANGE on 1. Holdout POST_OPENING (193 requests) the same standing conditions, plus POOL_NOT_POINT_IN_TIME on 37, SCORE_OUTSIDE_CALIBRATION_RANGE on 16 and LOW_SUPPORT on 65. Coverage: raw model number 100% of requests, calibrated number 0%, published probability 0%.
 
 Today (`calibration/TODAY_STATUS.json`, as of 2026-10-26T20:00:00Z): every target is ABSTAIN with FLAG_OFF, MODEL_NOT_SELECTED, UNCALIBRATED, INSUFFICIENT_HISTORY and NOT_YET_MATURED. The 10 prospective decisions in the development store also carry OOD (their features are not in the Phase 05 store) and SOURCE_STALE (no price read); one carries TARGET_NOT_FEASIBLE (no point-in-time pool). No label of them was read. The champion cards are MODEL_STALE for decisions after 2026-10-31T00:00:00Z.
 
@@ -84,6 +84,7 @@ Today (`calibration/TODAY_STATUS.json`, as of 2026-10-26T20:00:00Z): every targe
 
 - Calibration rows that are in sample, decided at or after the cutoff, immature, from the holdout window (also when relabelled as development) or non-finite; evidence that is not prospective, overlaps the fit set or is immature; a behavioral simulation as a calibration source (P27). CX-13 (Platt fitted and checked on the spent holdout, then published) is refused at every step, on fixtures and on the real holdout rows (`calibration/REPLAY_CHECKS.json`).
 - Non-finite or out-of-range raw or calibrated numbers (P38); flat predictions (P11); a 0.9 model on a 2% class; an always-negative model on a 1% event (P10); a confident number on a 30-event set (P24).
+- With the flag OFF in the config, any FORECAST, whatever the caller says (PI-D-070, M1). A calibration card whose recorded gate, method, evidence, status, details or availability is not what its own counts allow, whose evidence is not the prospective holdout, whose rows lie in the holdout window, or which gives itself VALIDATED_EXPERIMENTAL (M2; the skeptic's forged cards A2, A2b, A2c, A7b). A calibration card or evidence available after the decision (CALIBRATION_AFTER_DECISION, M3). Flat evidence, and request scores outside the evidence's score range (M4, CX-S13).
 - A FORECAST whose `calibration_reference` has a key outside the allowlist, a number that differs from the stored card, a support that is not a stored bin, an interval narrower than the support's Wilson interval, a base rate other than the card's, a level other than SHADOW or VALIDATED_EXPERIMENTAL, a missing SHADOW_RESEARCH_ONLY, INTERVAL_EXCLUDES_UNMODELED_RISK or COHORT_ESTIMATE_NOT_TOKEN_HISTORY caveat, or any probability-like number in scenarios or cohort (P27).
 
 ## What any interval leaves out
@@ -93,6 +94,8 @@ Execution (no historical executable depth, size gives EXECUTION_DATA_MISSING), f
 ## Limits and what later phases must do
 
 - The publication path (FORECAST) is TEST_ONLY: it is proved on fixtures; no real card is calibrated.
-- G7 failed as registered: scikit-learn `_sigmoid_calibration` differs from the numpy Platt by 1.5e-6 (T1b) and 9.4e-6 (T2) on the descriptive sets; the gradient at the numpy solution is below 1e-15 and at scikit-learn's up to 5.7e-7 (lbfgs stops early), and the PI-D-053 reference (newton-cholesky) agrees within 5.3e-15. No output depends on these fits.
+- G7 failed as registered and stays recorded so: scikit-learn `_sigmoid_calibration` differs from the numpy Platt by 1.5e-6 (T1b) and 9.4e-6 (T2) on the descriptive sets because its lbfgs stops early. Closed by the orchestrator's decision PI-D-071: the numpy Platt equals a 60-digit Newton solution within 1e-15 (skeptic), scikit-learn with tight tolerances converges to it, and PI-D-053 had already frozen newton-cholesky (5.3e-15 here) as the reference; the Platt fit is now pinned by `test_rp2_numpy_platt_equals_a_60_digit_newton_solution` (within 1e-9 of an independent decimal Newton solve, gradient below 1e-10). No output depends on these fits.
+- Level authenticity needs the Phase 16 registry: a card cannot give itself VALIDATED_EXPERIMENTAL (refused until then), and SHADOW always carries SHADOW_RESEARCH_ONLY.
+- Open for Phase 17 (skeptic m3, m4): a forged point inside a wide interval and reasons dropped from a document that travels without its record cannot be detected from the document alone; Phase 17 recomputes the point from the raw number it keeps and validates every document with its persisted record.
 - The document alone cannot prove the published point equals the calibrator's output for the raw number (the contract has no raw-number field); Phase 17 keeps the raw number in its request record and recomputes the point before publishing.
 - Only the prospective holdout (Phase 19, at least 50 matured events and 10 per class per target, not the fit set) can be calibration evidence; Phase 16 decides levels; a card reaches publication only through both.
