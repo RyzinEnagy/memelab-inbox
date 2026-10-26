@@ -30,7 +30,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Phase 12 commits
 
-- HEAD before `63076ad`; pre-registration `79d30f5` (16:41:13Z); frozen code `3ea7030` (17:32:01Z); pre-opening outputs `d58de61` (17:33:19Z); opening outputs `de7ac77` (17:47:49Z); results, evidence and records in the next commit, then a post-commit records commit (hashes in `PHASE_12_RESULTS.json`). Local only; the orchestrator pushes.
+- HEAD before `63076ad`; pre-registration `79d30f5` (16:41:13Z); frozen code `3ea7030` (17:32:01Z); pre-opening outputs `d58de61` (17:33:19Z); opening outputs `de7ac77` (17:47:49Z); results, evidence and records `c549748` (18:04:05Z); this post-commit records commit on top. Post-commit at `c549748`: suite `1 failed, 1445 passed` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no.", `git status` clean. Local only; the orchestrator pushes.
 
 ## Waiting on Elving
 

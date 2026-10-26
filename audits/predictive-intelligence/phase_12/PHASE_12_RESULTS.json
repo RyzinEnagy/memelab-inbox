@@ -2,7 +2,7 @@
  "phase": "12",
  "status": "NEEDS_REVIEW",
  "head_before": "63076adb7a42ac7f7c2cc271d535d8e7a6947d0e",
- "head_after": null,
+ "head_after": "c54974863c88d4cba95a7ea9e2e31632f98648ca",
  "commits": {
   "pre_registration": "79d30f5",
   "frozen_code": "3ea7030",
@@ -218,11 +218,39 @@
    "pass": true
   },
   {
-   "name": "G23 suite, guard, seal check, release audit after the commit",
-   "command": "see the post-commit records commit",
-   "result": "pending",
-   "exit_code": null,
-   "pass": null
+   "name": "G23 full suite after the commit",
+   "command": "python -m pytest tests -q -p no:cacheprovider at c549748",
+   "result": "1 failed, 1445 passed in 199.06s (known test_dedup_corroboration_resurface_denial only); strays removed by hand",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "G23 social guard after the commit",
+   "command": "python -m memelab social guard",
+   "result": "0 violations",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G23 seal check after the commit",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "result": "problems [] with the three pinned hashes (the opening changed no sealed file)",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G23 single-branch release audit",
+   "command": "python tools/release_audit.py --history on a single-branch clone at c549748",
+   "result": "Needs action: no.",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G23 git status",
+   "command": "git status --short",
+   "result": "clean after removing the strays",
+   "exit_code": 0,
+   "pass": true
   }
  ],
  "artifacts": [
@@ -232,7 +260,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_12/PHASE_12_EVIDENCE.md",
-   "sha256": "e26625d84e61df2e63bb1f3064371c2dd62ae436177f8e72bae1a7577de8b2aa"
+   "sha256": "ab177d03241b9fefd4846117d865054a9527c9f4789c75824dbb88a4cbe135b5"
   },
   {
    "path": "audits/predictive-intelligence/phase_12/SKEPTIC_PACKET.md",
@@ -269,6 +297,22 @@
   {
    "path": "audits/predictive-intelligence/phase_12/experiments/EXPERIMENT_REGISTRY.csv",
    "sha256": "7ec244f3e7f6b6cd38947c4436fb7e369c892ae4707cfd135b17bd7c76ae74b1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/postcommit/pytest_summary.txt",
+   "sha256": "efd3c664a7e330e38a4758d630622aab0d9f04e275a3a931b161ca58ab0b5e9f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/postcommit/release_audit_history.summary.txt",
+   "sha256": "a38fafb25b4ead133f2ed54e8b36d0ed2a3ae926ff7aaecbc75a572141b4312e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/postcommit/seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/postcommit/social_guard.out.txt",
+   "sha256": "266992a151cb199b7c3629c1833f0376f3f3ba63aaefc4d72811227c0cb9ef5c"
   },
   {
    "path": "audits/predictive-intelligence/phase_12/probes/independent_label_check.py",

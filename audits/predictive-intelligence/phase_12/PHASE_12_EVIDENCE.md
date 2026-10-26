@@ -44,7 +44,7 @@ Status: NEEDS_REVIEW, pending the orchestrator's independent skeptic (PI-D-013).
 | `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` after the opening | `"problems": []` | 0 |
 | `python -m pytest tests/test_predictive_evaluation.py tests/test_predictive_phase12_outputs.py -q` | `47 passed` | 0 |
 
-Post-commit suite, guard, seal check and single-branch release audit: see "Post-commit results" (added by the records commit).
+Post-commit suite, guard, seal check and single-branch release audit: see "Post-commit results" below.
 
 ## Checklist results
 
@@ -72,7 +72,7 @@ Post-commit suite, guard, seal check and single-branch release audit: see "Post-
 | G20 | 42 + 5 tests; mutation probe 44 of 44 at `3ea7030` |
 | G21 | `FULL_EXPERIMENT_LEDGER.csv` 3,145 rows (Phase 12: 249 = 186 holdout evaluation, trap and check rows, 60 NC1 controls, 3 debug runs); `FULL_LEDGER_TOTALS.json` |
 | G22 | flag OFF; tests show no existing module imports `evaluation` and only it names the holdout label file; registry fingerprint `4b4aabce...` and ACCEPTANCE unchanged (contract tests pass) |
-| G23 | see "Post-commit results" |
+| G23 | holds (see "Post-commit results") |
 
 ## Results (summary; detail in `validation/FINAL_HOLDOUT_RESULTS.md`)
 
@@ -100,3 +100,13 @@ Stated before building in `ACCEPTANCE_CHECKLIST.md`: scoring every card on the h
 ## Artifacts
 
 sha256 of every Phase 12 file is in `PHASE_12_RESULTS.json` (`artifacts`).
+
+## Post-commit results (at `c549748`, the results and records commit)
+
+| Command | Result | Exit |
+|---|---|---|
+| `python -m pytest tests -q -p no:cacheprovider` (from 18:04:12Z) | `1 failed, 1445 passed in 199.06s`; only the known `test_dedup_corroboration_resurface_denial`; stray `data/reports/20261026_1804_BRETT_0x532f.md` and `data/memelab.sqlite-shm`, `-wal` removed by hand; `data/memelab.sqlite` sha256 `068287c0...` unchanged (`postcommit/pytest_summary.txt`) | 1 |
+| `python -m memelab social guard` | 0 violations (`postcommit/social_guard.out.txt`) | 0 |
+| `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | `"problems": []` (`postcommit/seal_check.json`) | 0 |
+| `python tools/release_audit.py --history` on a single-branch clone at `c549748` | "Needs action: no." (`postcommit/release_audit_history.summary.txt`) | 0 |
+| `git status --short` | clean | 0 |
