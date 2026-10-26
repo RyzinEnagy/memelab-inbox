@@ -30,7 +30,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Phase 11 commits
 
-- HEAD before: `aae7a55` (pushed). Pre-registration `46afc85` (2026-10-26T15:04:46Z), frozen code `0482a60` (15:20:20Z), ledger repair `ff98b8d` (15:26:22Z), outputs and records in the next commit, post-commit results in a follow-up commit (local only; the orchestrator pushes). Post-commit suite, guard, seal check and single-branch release audit: `phase_11/postcommit/` and `PHASE_11_RESULTS.json`.
+- HEAD before: `aae7a55` (pushed). Pre-registration `46afc85` (2026-10-26T15:04:46Z), frozen code `0482a60` (15:20:20Z), ledger repair `ff98b8d` (15:26:22Z), outputs and records `208cdc1` (15:33:04Z), and this post-commit record on top (local only; the orchestrator pushes). Post-commit at `208cdc1`: suite `1 failed, 1386 passed` (known failure only; stray BRETT report and sqlite -shm, -wal removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no.", `git status` clean.
 
 ## Waiting on Elving
 

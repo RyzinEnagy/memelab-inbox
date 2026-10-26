@@ -2,7 +2,7 @@
  "phase": "11",
  "status": "NEEDS_REVIEW",
  "head_before": "aae7a55860cee7b3ab1b1866bb5179f4ae83530b",
- "head_after": null,
+ "head_after": "208cdc1192fed58fad1d40d3766da22226a0c524",
  "commits": {
   "pre_registration": "46afc85",
   "frozen_code": "0482a60",
@@ -166,6 +166,34 @@
    "input": "tests isolation, test_predictive_contract.py",
    "result": "flag OFF, analog imported by no module, fingerprint 4b4aabce unchanged",
    "pass": true
+  },
+  {
+   "name": "G24 post-commit suite at 208cdc1",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "result": "1 failed, 1386 passed in 277.33s (known failure only)",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "G24 social guard",
+   "command": "python -m memelab social guard",
+   "result": "0 violations",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G24 seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "result": "problems []",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G24 release audit",
+   "command": "python tools/release_audit.py --history (single-branch clone at 208cdc1)",
+   "result": "Needs action: no.",
+   "exit_code": 0,
+   "pass": true
   }
  ],
  "artifacts": [
@@ -175,7 +203,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_11/PHASE_11_EVIDENCE.md",
-   "sha256": "ce0a1010ec2e973197f625a95ce229c0313767f4888a42cb421dd0e847cfaa91"
+   "sha256": "365b9b512e29c56a66ee2c45c790658a95c90830a25e655a4ec709296df2f19a"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/SKEPTIC_PACKET.md",
@@ -336,6 +364,22 @@
   {
    "path": "audits/predictive-intelligence/phase_11/models/ANALOG_MATCHING_SPEC.md",
    "sha256": "8df4d7b7bce3176aaf6169754f8013e2a538fc894af25375189b02110f998a73"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/postcommit/pytest_summary.txt",
+   "sha256": "75c309b9b6a94726131ed488e6c3b8b8756122e01e80fae09326dd8df0184fa5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/postcommit/release_audit_history.summary.txt",
+   "sha256": "fcc6802f37ea9842a1daa6f01954019bc5317637a34af2a616295e040071f1b4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/postcommit/seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_11/postcommit/social_guard.out.txt",
+   "sha256": "afe79a3b185f52265bf3afcfefdca74473a24499cb8dd1549fb76e5ed0c02cb8"
   },
   {
    "path": "audits/predictive-intelligence/phase_11/probes/cohort_query.py",

@@ -40,6 +40,18 @@ Status: NEEDS_REVIEW (every gate item reproduced by the phase agent; the orchest
 | `python -B probes/mutation_analog.py evidence/mutation_analog.json` | 47 of 47 caught, 0 survived | 0 |
 | `python -m memelab social guard` | 0 violations | 0 |
 
+## Post-commit results at `208cdc1` (outputs and records commit)
+
+| Command | Result | Exit |
+|---|---|---|
+| `python -m pytest tests -q -p no:cacheprovider` | `1 failed, 1386 passed in 277.33s`; only the known `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial`; strays removed by hand; `data/memelab.sqlite` sha256 unchanged | 1 |
+| `python -m memelab social guard` | 0 violations | 0 |
+| `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | `"problems": []` | 0 |
+| `python tools/release_audit.py --history` on a single-branch clone at `208cdc1` | `Needs action: no.` | 0 |
+| `git status --short` | clean after the stray removal | |
+
+Files: `postcommit/pytest_summary.txt`, `social_guard.out.txt`, `seal_check.json`, `release_audit_history.summary.txt`.
+
 ## What was built
 
 - `memelab/predictive/analog.py` (analog-1; numpy, the standard library, the predictive package and `memelab.social.replay_core.LeakageError`; flag OFF; imported by no other module, tested): the as-of pool checks, AC1 strata, AC2 neighbours, AC3 regime-matched neighbours, LOCO, one analog per cluster, effective N and states, the as-of regime label and the CX-11 trap, the router, the divergence flags, cards and the walk-forward on Phase 07's folds.
