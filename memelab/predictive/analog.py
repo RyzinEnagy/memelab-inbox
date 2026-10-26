@@ -8,8 +8,11 @@ PI-D-061 (committed before any cohort on a labelled decision). Rules enforced he
     `as_of`), checked again row by row: a row decided at or after `as_of`, a label maturing after it or a token first seen after
     it is refused (FutureUniverseError, P43, NC2-AC). Nothing in this module reads a current token list or a later export (P09);
   - a pool row of the same chain and exact mint is token history, never an analog (P01: similarity is never identity); the same
-    creator wallet is excluded (P14); one analog per cluster (creator, else mint), so duplicate windows count once;
-  - effective N is the number of clusters G; a number needs G >= 20 and 5 analog days (ACCEPTANCE min_bin_events and
+    creator wallet is excluded (P14); one analog per group, where a group is a connected component over mints and every
+    creator wallet recorded for them in the pool (repair pass 2, CX-S11: a mint whose rows carry different creator values is one
+    group, never two), so duplicate windows of one token or one deployer count once;
+  - G is the number of distinct groups among the analogs (not an effective sample size); the day-ICC design-effect N
+    (`n_eff_icc`) and its Wilson interval are reported beside it; a number needs G >= 20 and 5 analog days (ACCEPTANCE min_bin_events and
     min_effective_days) and a pool that passes the training gate; else ANALOGS_TOO_FEW or INSUFFICIENT_HISTORY. A target outside
     the pool's support is OUT_OF_DISTRIBUTION with a sub-reason;
   - the regime label at T uses only decisions at or before T and compares with earlier export instants only (no full-sample
@@ -101,7 +104,60 @@ def launchpad_class(token: dict | None) -> str:
 
 
 def cluster_of(chain: str, mint: str, creator: str | None) -> str:
+    """The row-level key (first pass). Cohorts use `groups` instead, which merges every row of one mint and every creator ever
+    recorded for it in the pool (CX-S11)."""
     return f"creator:{creator}" if isinstance(creator, str) and creator else f"mint:{chain}:{mint}"
+
+
+def groups(pool: Sequence[B.Example]) -> tuple[dict[str, str], dict]:
+    """Connected components over the nodes (chain, mint) and creator wallet: each pool row joins its mint and its own creator,
+    so one mint with rows under no creator and under one or more wallets is one group, and two mints of one wallet are one group
+    (union-find; P14, CX-S11). Returns decision_key -> group id ("group:" + the smallest member mint) and the node -> root map."""
+    parent: dict[tuple, tuple] = {}
+
+    def find(x):
+        parent.setdefault(x, x)
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(a, b):
+        ra, rb = find(a), find(b)
+        if ra != rb:
+            parent[max(ra, rb)] = min(ra, rb)
+    for r in pool:
+        m = ("m", r.chain, r.mint)
+        find(m)
+        if isinstance(r.creator, str) and r.creator:
+            union(m, ("c", r.creator))
+    label: dict[tuple, str] = {}
+    for node in sorted(parent):
+        if node[0] == "m":
+            label.setdefault(find(node), f"group:{node[1]}:{node[2]}")
+    return {r.decision_key: label[find(("m", r.chain, r.mint))] for r in pool}, {n: find(n) for n in parent}
+
+
+def regroup(pool: Sequence[AExample]) -> list:
+    """The pool with every row's cluster set to its group (repair pass 2, CX-S11)."""
+    g, _ = groups(pool)
+    return [r if r.cluster == g[r.decision_key] else AExample(**{**r.__dict__, "cluster": g[r.decision_key]}) for r in pool]
+
+
+def day_icc(rows: Sequence[B.Example]) -> float:
+    """One-way ANOVA intraclass correlation of the labels by decision day, clipped to [0, 1]; 0 when undefined."""
+    by: dict[str, list[int]] = {}
+    for r in rows:
+        by.setdefault(r.day, []).append(int(r.y))
+    k, N = len(by), sum(len(v) for v in by.values())
+    if k < 2 or N - k < 1:
+        return 0.0
+    ybar = sum(sum(v) for v in by.values()) / N
+    msb = sum(len(v) * (sum(v) / len(v) - ybar) ** 2 for v in by.values()) / (k - 1)
+    msw = sum(sum((y - sum(v) / len(v)) ** 2 for y in v) for v in by.values()) / (N - k)
+    n0 = (N - sum(len(v) ** 2 for v in by.values()) / N) / (k - 1)
+    den = msb + (n0 - 1) * msw
+    return float(min(1.0, max(0.0, (msb - msw) / den))) if den > 0 else 0.0
 
 
 # ---------------------------------------------------------------- examples
@@ -286,12 +342,16 @@ def truncation_invariant(fn: Callable[[Sequence[RegimeRow], float], dict], rows:
 
 # ---------------------------------------------------------------- cohort selection
 def _excluded(target: AExample, pool: Sequence[AExample], *, loco: bool) -> tuple[list[AExample], dict]:
+    """Rows of the target's mint (token history), then every row in a group that holds the target's mint or the target's own
+    creator wallet (P14 over every creator ever recorded for the mint in the pool, CX-S11), then the LOCO campaign."""
+    _, root = groups(pool)
+    banned = {root[n] for n in (("m", target.chain, target.mint), ("c", target.creator)) if n in root}
     out, ex = [], {"same_mint": 0, "same_creator": 0, "same_campaign": 0}
     for r in pool:
         if r.chain == target.chain and r.mint == target.mint:
             ex["same_mint"] += 1
             continue
-        if target.creator and r.creator == target.creator:
+        if root[("m", r.chain, r.mint)] in banned:
             ex["same_creator"] += 1
             continue
         if loco and target.narrative and r.narrative == target.narrative:
@@ -373,13 +433,24 @@ def _kish(labels: Sequence[str]) -> float:
     return float(c.sum() ** 2 / np.sum(c ** 2))
 
 
-def _summary(analogs: Sequence[AExample], b0: float) -> dict:
+def n_eff_icc(G: int, kish: float, icc: float) -> float | None:
+    """Design-effect effective N of G analogs grouped by day: G / (1 + (G / day Kish ESS - 1) x day ICC)."""
+    if not G or not kish:
+        return None
+    return float(G / (1.0 + (G / kish - 1.0) * icc))
+
+
+def _summary(analogs: Sequence[AExample], b0: float, icc: float = 0.0) -> dict:
     G = len(analogs)
     k = int(sum(r.y for r in analogs))
     days = _days(analogs)
-    out = {"G": G, "positives": k, "analog_mints": len({r.mint for r in analogs}), "analog_days": len(set(days)),
-           "day_kish_ess": _kish(days), "raw_rate": (k / G) if G else None,
-           "wilson": list(K.wilson(k, G)) if G else None,
+    kish = _kish(days)
+    ne = n_eff_icc(G, kish, icc)
+    out = {"G": G, "G_meaning": "distinct groups (mint and creator components), not an effective sample size",
+           "positives": k, "analog_mints": len({r.mint for r in analogs}), "analog_days": len(set(days)),
+           "day_kish_ess": kish, "pool_day_icc": icc, "n_eff_icc": ne, "raw_rate": (k / G) if G else None,
+           "wilson": list(K.wilson(k, G)) if G else None, "wilson_assumes_independent_analogs": True,
+           "wilson_icc": list(K.wilson(k / G * ne, ne)) if G and ne else None,
            "shrunk_number": (k + M_SHRINK * b0) / (G + M_SHRINK) if G else None}
     srt = sorted(analogs, key=lambda r: (r.decision_time, r.decision_key))
     h = G // 2
@@ -404,12 +475,21 @@ def select(model: str, target: AExample, pool: Sequence[AExample], *, as_of: flo
     if check:
         check_target(target, as_of)
         check_pool(pool, as_of)
+    gk = ("groups", id(pool))
+    gp = cache.get(gk) if cache is not None else None
+    if gp is None:
+        gp = (regroup(pool), day_icc(pool))
+        if cache is not None:
+            cache[gk] = gp
+    pool, icc = gp
     y = B.labels_of(pool)
     b0 = float(y.mean()) if len(pool) else float("nan")
     ans: dict[str, Any] = {"model": model + ("_LOCO" if loco else ""), "decision_key": target.decision_key, "mint": target.mint,
                            "decision_time": target.decision_time, "as_of": float(as_of), "regime": target.regime,
                            "pool_n": len(pool), "pool_positives": int(y.sum()) if len(pool) else 0, "b0": b0,
-                           "new_mint": not any(r.chain == target.chain and r.mint == target.mint for r in pool),
+                           "no_matured_token_rows": not any(r.chain == target.chain and r.mint == target.mint for r in pool),
+                           "no_prior_decision": (None if target.hist_prior is None or not math.isfinite(B._num(target.hist_prior))
+                                                 else bool(target.hist_prior == 0)),
                            "label": COHORT_LABEL, "publishable": False, "flags": list(DEPTH_FLAGS), "reasons": [],
                            "analogs": [], "number": None}
     g = B.gate(len(pool), int(y.sum()) if len(pool) else 0)
@@ -472,7 +552,8 @@ def select(model: str, target: AExample, pool: Sequence[AExample], *, as_of: flo
             elif not (math.isfinite(thr) and kth <= thr):
                 reasons.append("OUT_OF_DISTRIBUTION:FAR_FROM_ANALOGS")
         ans["ref_n"] = len(ref)
-    ans.update(_summary(analogs, b0))
+    ans["new_mint"] = ans["no_prior_decision"] if ans["no_prior_decision"] is not None else ans["no_matured_token_rows"]
+    ans.update(_summary(analogs, b0, icc))
     if analogs or not reasons:
         if ans["G"] < MIN_G:
             reasons.append("ANALOGS_TOO_FEW:G_BELOW_MIN")
@@ -607,6 +688,7 @@ def fit(model_id: str, target: str, pool: Sequence[AExample], cutoff: float, *, 
         yy = np.asarray(y_override, float)
         pool = [AExample(**{**e.__dict__, "y": int(v)}) for e, v in zip(pool, yy)]
     check_pool(pool, cutoff)
+    pool = regroup(pool)
     y = B.labels_of(pool)
     g = B.gate(len(pool), int(y.sum()) if len(pool) else 0)
     body = {"spec": {"model": model_id, "definitions_sha": feature_set_sha()}, "pool": _pool_rows(pool)}

@@ -37,7 +37,7 @@ MUTATIONS = [
     # identity and groups (P01, P14)
     (AP, "same mint kept as an analog", '        if r.chain == target.chain and r.mint == target.mint:\n            ex["same_mint"] += 1\n            continue',
      '        if False:\n            continue'),
-    (AP, "same creator kept (P14)", "        if target.creator and r.creator == target.creator:", "        if False:"),
+    (AP, "same creator kept (P14)", "        if root[(\"m\", r.chain, r.mint)] in banned:", "        if False:"),
     (AP, "campaign kept in LOCO", "        if loco and target.narrative and r.narrative == target.narrative:", "        if False:"),
     (AP, "cluster by mint only", 'return f"creator:{creator}" if isinstance(creator, str) and creator else f"mint:{chain}:{mint}"',
      'return f"mint:{chain}:{mint}"'),
@@ -82,7 +82,22 @@ MUTATIONS = [
     (AP, "unknown authority not flagged", '            flags.append(f"{a.upper()}_UNKNOWN")\n            continue', "            continue"),
     (AP, "P13 check removed", "    early = [e for e in examples if e.decision_time < float(card[\"training_cutoff\"])]", "    early = []"),
     (AP, "card hash not verified", "    if card.get(\"model_sha\") != want:", "    if False:"),
-    (AP, "fit accepts a later pool row", "    check_pool(pool, cutoff)\n    y = B.labels_of(pool)", "    y = B.labels_of(pool)"),
+    (AP, "fit accepts a later pool row", "    check_pool(pool, cutoff)\n    pool = regroup(pool)", "    pool = regroup(pool)"),
+    # repair pass 2: CX-S11 and the skeptic's surviving mutations (m3)
+    (AP, "CX-S11 first-pass clusters (row creator, no grouping)", "    pool, icc = gp\n", "    pool, icc = gp[0], gp[1]\n    pool = [AExample(**{**r.__dict__, \"cluster\": cluster_of(r.chain, r.mint, r.creator)}) for r in pool]\n"),
+    (AP, "groups ignore the creator link", "            union(m, (\"c\", r.creator))", "            find((\"c\", r.creator))"),
+    (AP, "P14 exclusion by the target's own creator field only", "        if root[(\"m\", r.chain, r.mint)] in banned:", "        if target.creator and r.creator == target.creator:"),
+    (AP, "ICC ignored in n_eff", "    ne = n_eff_icc(G, kish, icc)", "    ne = n_eff_icc(G, kish, 0.0)"),
+    (AP, "new_mint from the matured pool only", '    ans["new_mint"] = ans["no_prior_decision"] if ans["no_prior_decision"] is not None else ans["no_matured_token_rows"]', '    ans["new_mint"] = ans["no_matured_token_rows"]'),
+    (AP, "index cache ignores the regime", '            ck = (model, target.regime if model == "AC3_KNN_REGIME" else None, id(pool))', "            ck = (model, None, id(pool))"),
+    (AP, "router uses the regime-blind cohort", "        a = select(PRIMARY, target, pool, as_of=as_of, check=False)", '        a = select("AC2_KNN", target, pool, as_of=as_of, check=False)'),
+    (AP, "ACTIVE when equal to the past median", '    return ("ACTIVE" if a > ma else "QUIET")', '    return ("ACTIVE" if a >= ma else "QUIET")'),
+    (AP, "regime window 48 h", "REGIME_WINDOW_S = 86400.0", "REGIME_WINDOW_S = 172800.0"),
+    (AP, "day Kish ESS reported as the day count", "    return float(c.sum() ** 2 / np.sum(c ** 2))", "    return float(len(c))"),
+    (AP, "depth band widened to min..max", "            lo, hi = np.quantile(np.array(known, float), [0.1, 0.9])", "            lo, hi = np.quantile(np.array(known, float), [0.0, 1.0])"),
+    (AP, "NC1 permutation with a fixed seed", "                yy = np.random.default_rng(s).permutation(B.labels_of(train))", "                yy = np.random.default_rng(0).permutation(B.labels_of(train))"),
+    (AP, "degenerate never flagged", "    return bool(q.size > 1 and np.ptp(q) == 0)", "    return False"),
+    (AP, "pool rows with a missing input used as candidates", "        ref = [r for r in pool if complete(r)]", "        ref = [r for r in pool if complete(r, NUMERIC[:1])]"),
     (AP, "contract mapping accepts unknown", "        if c is None:\n            raise AnalogError", "        if c is None:\n            continue\n            raise AnalogError"),
 ]
 

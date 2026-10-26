@@ -126,10 +126,10 @@ def test_a_token_that_later_died_stays_in_the_pool_survivorship_p09():
 # ---------------------------------------------------------------- identity and groups (P01, P14)
 def test_the_same_mint_is_token_history_never_an_analog_p01():
     pool = pool_fixture()
-    t = target(mint="M0003", creator="NEWC")
+    t = target(mint="M0003", creator="NEWC", hist_prior=1.0)
     a = A.select("AC2_KNN", t, pool, as_of=AS_OF)
     assert "M0003" not in {x["mint"] for x in a["analogs"]}
-    assert a["excluded"]["same_mint"] == 1 and a["new_mint"] is False
+    assert a["excluded"]["same_mint"] == 1 and a["new_mint"] is False and a["no_matured_token_rows"] is False
     assert [r.mint for r in A.token_history(t, pool)] == ["M0003"]
 
 
@@ -151,7 +151,8 @@ def test_the_same_creator_is_excluded_p14():
     t = target(creator="DEPLOYER")
     a = A.select("AC2_KNN", t, pool, as_of=AS_OF)
     assert a["excluded"]["same_creator"] == 10
-    assert not any(x["cluster"] == "creator:DEPLOYER" for x in a["analogs"])
+    deployer = {r.mint for r in pool[:10]}
+    assert not any(x["mint"] in deployer for x in a["analogs"])
 
 
 def test_one_analog_per_cluster_so_duplicate_windows_count_once():
@@ -159,9 +160,9 @@ def test_one_analog_per_cluster_so_duplicate_windows_count_once():
     dup = [ex(f"d{i}", "DUPMINT", T0 + i * DAY + 30.0, 1, creator=None, liq=10.0, mcap=12.0, vol=9.0, age=1.0) for i in range(6)]
     a = A.select("AC2_KNN", target(), pool + dup, as_of=AS_OF)
     clusters = [x["cluster"] for x in a["analogs"]]
-    assert len(clusters) == len(set(clusters)) and clusters.count("mint:solana:DUPMINT") == 1
+    assert len(clusters) == len(set(clusters)) and clusters.count("group:solana:DUPMINT") == 1
     s = A.select("AC1_STRATA", target(), pool + dup, as_of=AS_OF)
-    assert [x["cluster"] for x in s["analogs"]].count("mint:solana:DUPMINT") == 1
+    assert [x["cluster"] for x in s["analogs"]].count("group:solana:DUPMINT") == 1
     assert [x for x in s["analogs"] if x["mint"] == "DUPMINT"][0]["decision_key"] == "d5"      # the newest row of the cluster
 
 
@@ -170,7 +171,7 @@ def test_creator_cluster_merges_two_mints_of_one_deployer():
     pool[1].creator = pool[2].creator = "SAME"
     pool[1].cluster = pool[2].cluster = A.cluster_of("solana", pool[1].mint, "SAME")
     a = A.select("AC2_KNN", target(), pool, as_of=AS_OF)
-    assert sum(1 for x in a["analogs"] if x["cluster"] == "creator:SAME") <= 1
+    assert sum(1 for x in a["analogs"] if x["mint"] in (pool[1].mint, pool[2].mint)) <= 1
 
 
 # ---------------------------------------------------------------- minimums and states
@@ -605,3 +606,124 @@ def test_committed_outputs_ledger_registry_verdicts_and_traps():
     assert all(r["promotion"] == "MODEL_NOT_PROMOTED" for r in metrics)
     t = json.loads((p11 / "evidence/traps.json").read_text())
     assert all(v.get("pass") is not False for v in t.values()) and t["CX11"]["full_sample_label_differs"] == 32
+
+
+
+# ---------------------------------------------------------------- repair pass 2 (CX-S11 and the minor findings)
+def test_cx_s11_one_mint_under_two_creator_values_is_one_analog():
+    pool = pool_fixture()
+    twin_a = ex("dupA", "DUPMINT", T0 + 1 * DAY, 1, creator=None, liq=10.0, mcap=12.0, vol=9.0, age=1.0)
+    twin_b = ex("dupB", "DUPMINT", T0 + 2 * DAY, 1, creator="WALLET_X", liq=10.0, mcap=12.0, vol=9.0, age=1.0)
+    twin_c = ex("dupC", "DUPMINT", T0 + 3 * DAY, 1, creator="WALLET_Y", liq=10.0, mcap=12.0, vol=9.0, age=1.0)
+    for m in ("AC2_KNN", "AC3_KNN_REGIME", "AC1_STRATA"):
+        a = A.select(m, target(), pool + [twin_a, twin_b, twin_c], as_of=AS_OF)
+        mints = [x["mint"] for x in a["analogs"]]
+        assert mints.count("DUPMINT") == 1 and a["G"] == a["analog_mints"] == len(set(mints)), m
+
+
+def test_groups_join_a_mint_and_every_creator_ever_recorded_for_it():
+    rows = [ex("a1", "MA", T0, 0, creator=None), ex("a2", "MA", T0 + DAY, 0, creator="W1"), ex("b1", "MB", T0, 1, creator="W1"),
+            ex("c1", "MC", T0, 1, creator="W2"), ex("a3", "MA", T0 + 2 * DAY, 1, creator="W3"), ex("d1", "MD", T0, 0, creator="W3")]
+    g, _ = A.groups(rows)
+    assert g["a1"] == g["a2"] == g["a3"] == g["b1"] == g["d1"] == "group:solana:MA" and g["c1"] == "group:solana:MC"
+    assert {r.cluster for r in A.regroup(rows)} == {"group:solana:MA", "group:solana:MC"}
+
+
+def test_a_target_whose_mint_had_another_creator_excludes_that_deployers_other_mints_p14():
+    pool = pool_fixture()
+    pool.append(ex("old", "TARGETMINT", T0 + DAY, 1, creator="EARLIER_WALLET"))
+    pool.append(ex("sib", "SIBLING", T0 + 2 * DAY, 1, creator="EARLIER_WALLET", liq=10.0, mcap=12.0, vol=9.0, age=1.0))
+    a = A.select("AC2_KNN", target(creator="NEW_WALLET"), pool, as_of=AS_OF)
+    assert "SIBLING" not in {x["mint"] for x in a["analogs"]} and a["excluded"]["same_creator"] == 1
+
+
+def test_g_is_distinct_groups_and_the_icc_n_is_reported_beside_it_m1():
+    pool = pool_fixture()
+    for r in pool:
+        r.y = 1 if r.day in (pool[0].day, pool[1].day) else 0       # outcomes clustered by day
+    a = A.select("AC2_KNN", target(), pool, as_of=AS_OF)
+    icc = A.day_icc(pool)
+    assert icc > 0.5 and a["pool_day_icc"] == icc and a["wilson_assumes_independent_analogs"] is True
+    assert math.isclose(a["n_eff_icc"], a["G"] / (1 + (a["G"] / a["day_kish_ess"] - 1) * icc))
+    assert a["n_eff_icc"] < a["G"] and a["wilson_icc"][1] - a["wilson_icc"][0] > a["wilson"][1] - a["wilson"][0]
+    assert A.day_icc([ex("x", "X", T0, 1)]) == 0.0 and "not an effective sample size" in a["G_meaning"]
+
+
+def test_day_kish_ess_value():
+    pool = pool_fixture(days=6)
+    a = A.select("AC2_KNN", target(), pool, as_of=AS_OF)
+    c = {}
+    for x in a["analogs"]:
+        c[x["day"]] = c.get(x["day"], 0) + 1
+    v = np.array(list(c.values()), float)
+    assert math.isclose(a["day_kish_ess"], v.sum() ** 2 / np.sum(v ** 2)) and a["day_kish_ess"] <= a["analog_days"]
+    assert A._kish(["a"] * 3 + ["b"]) == 16 / 10
+
+
+def test_new_mint_means_no_earlier_decision_not_no_matured_row_m4():
+    pool = pool_fixture()
+    t = target(hist_prior=2.0)                 # decided before, but no matured labelled row yet
+    a = A.select("AC2_KNN", t, pool, as_of=AS_OF)
+    assert a["new_mint"] is False and a["no_matured_token_rows"] is True and a["no_prior_decision"] is False
+    t2 = target()
+    t2.hist_prior = None
+    assert A.select("AC2_KNN", t2, pool, as_of=AS_OF)["new_mint"] is True
+
+
+def test_the_router_uses_the_regime_matched_cohort():
+    pool = pool_fixture()
+    t = target()
+    t.regime = "ACTIVE/RISK_ON"                # AC2 would give a number; AC3 has no analog in this regime
+    assert A.select("AC2_KNN", t, pool, as_of=AS_OF)["number"] is not None
+    f = A.cohort_forecast(t, pool, as_of=AS_OF)
+    assert f["path"] == "ABSTAIN" and "OUT_OF_DISTRIBUTION:REGIME_UNSEEN" in f["reasons"]
+
+
+def test_the_index_cache_is_kept_apart_by_regime():
+    pool = pool_fixture(n=200)
+    for r in pool[:100]:
+        r.regime = "QUIET/RISK_ON"
+    card = A.fit("AC3_KNN_REGIME", L.T1, pool, AS_OF)
+    t1, t2 = target(), target()
+    t2.decision_key, t2.regime = "TGT2", "QUIET/RISK_ON"
+    _, _, ans = A.predict(card, [t1, t2])
+    keys = {r.decision_key: r.regime for r in pool}
+    assert all(keys[x["decision_key"]] == "QUIET/RISK_OFF" for x in ans[0]["analogs"])
+    assert all(keys[x["decision_key"]] == "QUIET/RISK_ON" for x in ans[1]["analogs"])
+
+
+def test_regime_equality_is_quiet_and_the_window_is_24_hours():
+    rows = [rr(T0 + i * 3600.0, "WATCH", 10.0) for i in range(6)]
+    rec = A.regime_as_of(rows, T0 + 5 * 3600.0)
+    assert rec["label"].startswith("QUIET")          # equal to the past median is not ACTIVE
+    rows2 = [rr(T0, "WATCH", 50.0)] + [rr(T0 + 30 * 3600.0 + i * 60.0, "WATCH", 10.0) for i in range(6)]
+    rec2 = A.regime_as_of(rows2, T0 + 30 * 3600.0 + 300.0)
+    assert rec2["window_decisions"] == 6 and rec2["activity_median_log1p_vol"] == 10.0
+
+
+def test_depth_band_is_the_10th_to_90th_percentile():
+    pool = pool_fixture(n=100)
+    for i, r in enumerate(pool):
+        r.oc["oc_exit_cap_share"] = i / 100.0
+    t = target()
+    t.oc["oc_exit_cap_share"] = 0.02                # inside min..max, below the 10th percentile
+    assert "EXIT_CAP_SHARE_DIFFERS" in A.divergence_flags(t, pool)
+    t.oc["oc_exit_cap_share"] = 0.5
+    assert "EXIT_CAP_SHARE_DIFFERS" not in A.divergence_flags(t, pool)
+
+
+def test_nc1_seeds_differ_and_degenerate_flag():
+    dev = wf_fixture()
+    res = A.walk_forward(L.T1, dev, lambda c: [e for e in dev if e.decision_time < c and e.label_matures_at <= c],
+                         nc1_seeds=range(2), is_fixture=True)
+    v0 = [r["NC1AC_0"] for r in res["oos"] if math.isfinite(r["NC1AC_0"])]
+    v1 = [r["NC1AC_1"] for r in res["oos"] if math.isfinite(r["NC1AC_1"])]
+    assert v0 and v0 != v1
+    assert A.degenerate([0.3, 0.3, 0.3]) is True and A.degenerate([0.3, 0.4]) is False and A.degenerate([0.3]) is False
+
+
+def test_pool_rows_with_a_missing_input_are_never_neighbour_candidates():
+    pool = pool_fixture()
+    near = ex("nanrow", "NANMINT", T0 + DAY, 1, creator="CN", liq=10.0, mcap=12.0, vol=9.0, age=float("nan"))
+    a = A.select("AC2_KNN", target(), pool + [near], as_of=AS_OF)
+    assert "NANMINT" not in {x["mint"] for x in a["analogs"]} and all(math.isfinite(x["distance"]) for x in a["analogs"])

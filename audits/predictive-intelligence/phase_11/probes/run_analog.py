@@ -81,12 +81,18 @@ KIND = {"B2": "REFERENCE_PHASE07", "AC1_STRATA": "ANALOG_COHORT", "AC2_KNN": "AN
         "AC3_KNN_REGIME": "ANALOG_COHORT_PRIMARY", A.LOCO: "SENSITIVITY_LEAVE_ONE_CAMPAIGN_OUT"}
 # real-data runs before the recorded run (P22): appended before the recorded run, never removed
 DEBUG_RUNS: list[str] = [
+    "unlabelled looks before the pre-registration (2026-10-26 15:00Z to 15:03Z, ad hoc scripts in the session scratchpad, not kept): "
+    "decision counts, median 24 h volume and constructive share per export instant over the 830 Solana development decisions, "
+    "regime labels past-only and full-sample (count-based 20 flips, volume-based 32), launchpads, token programs and creators; "
+    "no label read; the volume-based activity was chosen after seeing them (repair pass 2, skeptic m6)",
     "features-only probe after the pre-registration commit 46afc85 (15:14:33Z to 15:14:37Z on 2026-10-26): regime series, CX-11 "
     "flip count (32) and analog-1 inputs (launchpad class, token program, regime per decision) over the 830 Solana development "
     "decisions of the Phase 05 store; no label read, no cohort, no metric",
     "recorded run 1 at 0482a60 (15:20:26Z to 15:21:09Z) and its determinism twin (15:21:30Z to 15:22:15Z): every output equal to "
     "the run at the ledger-repair commit except SEARCH_LEDGER.csv, which lacked the B0 and AC3_LOCO rows (found by the committed-"
     "outputs test); superseded by the run at the ledger-repair commit",
+    "recorded run at ff98b8d (15:26:22Z to 15:27:03Z) and its twin: the first-pass outputs committed in 208cdc1, superseded by the "
+    "run at the repair-pass-2 commit (CX-S11 groups, ICC N, new_mint, claim column; PI-D-063)",
 ]
 STATUS = A.STATUS
 
@@ -195,7 +201,10 @@ def metric_row(target, view, ev, *, model, reference, kind, extra):
             "governing": ev.get("governing") or ("UNDEFINED" if ev.get("n_with_number") else ""),
             "p_one_sided": ev.get("p_one_sided"), "p_holm": extra.get("p_holm"), "ess_day": ev.get("ess_day"), "ess_mint": ev.get("ess_mint"),
             "cal_mean_pred": cal.get("mean_pred"), "cal_observed": cal.get("observed"), "ece": cal.get("ece"),
-            "degenerate": extra.get("degenerate"), "verdict": ev.get("verdict"), "promotion": "MODEL_NOT_PROMOTED",
+            "degenerate": extra.get("degenerate"), "verdict": ev.get("verdict"),
+            "claim": ("none: below the frozen minimums; the skill and interval columns are descriptive only"
+                      if (ev.get("verdict") or "").startswith("INSUFFICIENT") else "see verdict"),
+            "promotion": "MODEL_NOT_PROMOTED",
             "status": STATUS, "revision_check_claimed": True,
             **{k: v for k, v in extra.items() if k not in ("p_holm", "degenerate")}}
 
@@ -297,10 +306,15 @@ def traps(dev, frows, snaps, info, extras, decs, series, rrows, res_by_target, c
                 ex = r["answers"][m].get("excluded") or {}
                 p14[f"{m}_same_creator_rows"] += ex.get("same_creator", 0)
                 p14[f"{m}_answers_with_same_creator_rows"] += int(ex.get("same_creator", 0) > 0)
-                keys = {a["cluster"] for a in r["answers"][m]["analogs"]}
-                if r["example"].creator and f"creator:{r['example'].creator}" in keys:
+                ms = [a["mint"] for a in r["answers"][m]["analogs"]]
+                p14["answers_with_a_mint_twice"] += int(len(ms) != len(set(ms)))
+                if r["example"].creator and r["example"].creator in {decs[a["decision_key"]]["token"].get("creator") for a in r["answers"][m]["analogs"]}:
                     p14["same_creator_analog_selected"] += 1
-    out["P14_AC"] = {**dict(p14), "pass": p14["same_creator_analog_selected"] == 0}
+    cr: dict = {}
+    for d in decs.values():
+        cr.setdefault(d["mint"], set()).add(d["token"].get("creator") or None)
+    p14["development_mints_with_several_creator_values"] = sum(1 for v in cr.values() if len(v) > 1)
+    out["P14_AC"] = {**dict(p14), "pass": p14["same_creator_analog_selected"] == 0 and p14["answers_with_a_mint_twice"] == 0}
     # CX-11: full-sample regime medians against the as-of labels, and truncation invariance at every instant
     inst = sorted(series)
     flips = [T for T in inst if series[T]["label"] not in (A.WARMUP, A.UNKNOWN) and A.regime_full_sample(rrows, T)["label"] != series[T]["label"]]
@@ -338,6 +352,8 @@ def oracle_arrays(npz: dict, tag: str, e: A.AExample, pool: list, ans: dict, mod
         ref = [r for r in ref if r.regime == e.regime]
     if not ref or not ans.get("analogs"):
         return
+    keep, _ = A._excluded(e, pool, loco=False)
+    keep = {r.decision_key for r in keep}
     npz[tag + "_Xn"] = np.array([[r.x[c] for c in A.NUMERIC] for r in ref], float)
     npz[tag + "_Xc"] = np.array([[r.x[c] for c in A.CATEGORICAL] for r in ref], float)
     npz[tag + "_qn"] = np.array([e.x[c] for c in A.NUMERIC], float)
@@ -345,8 +361,7 @@ def oracle_arrays(npz: dict, tag: str, e: A.AExample, pool: list, ans: dict, mod
     names = sorted({r.cluster for r in ref})
     npz[tag + "_cid"] = np.array([names.index(r.cluster) for r in ref], int)
     npz[tag + "_keyrank"] = np.argsort(np.argsort(np.array([r.decision_key for r in ref])))
-    excl = {r.decision_key for r in pool if r.mint == e.mint or (e.creator and r.creator == e.creator)}
-    npz[tag + "_allowed"] = np.array([r.decision_key not in excl for r in ref], bool)
+    npz[tag + "_allowed"] = np.array([r.decision_key in keep for r in ref], bool)
     pos = {r.decision_key: i for i, r in enumerate(ref)}
     npz[tag + "_sel"] = np.array([pos[a["decision_key"]] for a in ans["analogs"]], int)
     npz[tag + "_seld"] = np.array([a["distance"] for a in ans["analogs"]], float)
@@ -508,6 +523,10 @@ def main() -> int:
                              "median_G": float(np.median(Gs)) if Gs else None, "min_G": min(Gs) if Gs else None,
                              "median_analog_days": float(np.median([x["analog_days"] for x in ans if x.get("G")])) if Gs else None,
                              "median_day_kish_ess": float(np.median([x["day_kish_ess"] for x in ans if x.get("G")])) if Gs else None,
+                             "median_n_eff_icc_numbers": float(np.median([x["n_eff_icc"] for x in nums])) if nums else None,
+                             "min_n_eff_icc_numbers": min((x["n_eff_icc"] for x in nums), default=None),
+                             "numbers_with_n_eff_icc_below_20": sum(1 for x in nums if x["n_eff_icc"] < A.MIN_G),
+                             "answers_with_a_mint_twice": sum(1 for x in ans if x.get("G") and x["G"] != x["analog_mints"]),
                              "pool_n": ";".join(sorted({str(x.get("pool_n")) for x in ans})),
                              "new_mint_rows": sum(1 for r in res["oos"] if r["new_mint"]),
                              "no_prior_decision_rows": sum(1 for r in res["oos"] if r["no_prior_decision"]),
@@ -526,6 +545,11 @@ def main() -> int:
                 row[m] = r[m]
                 row[m + "_why"] = ";".join(x.get("reasons") or [])
                 row[m + "_G"] = x.get("G")
+                row[m + "_analog_mints"] = x.get("analog_mints")
+                row[m + "_pool_day_icc"] = x.get("pool_day_icc")
+                row[m + "_n_eff_icc"] = x.get("n_eff_icc")
+                wi = x.get("wilson_icc") or [None, None]
+                row[m + "_wilson_icc_lo"], row[m + "_wilson_icc_hi"] = wi[0], wi[1]
                 row[m + "_days"] = x.get("analog_days")
                 row[m + "_raw_rate"] = x.get("raw_rate")
                 w = x.get("wilson") or [None, None]
@@ -629,7 +653,7 @@ def main() -> int:
                 x = r["answers"][m]
                 if x.get("analogs"):
                     if pool is None:
-                        pool = aex_at(dev, target, r["cutoff"], frows, snaps, info, extras)[0]
+                        pool = A.regroup(aex_at(dev, target, r["cutoff"], frows, snaps, info, extras)[0])
                     oracle_arrays(npz, f"{s}_{r['example'].decision_key[:12]}_{m}", r["example"], pool, x, m)
     trace = []
     for target in TARGET_ORDER:

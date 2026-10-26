@@ -1,6 +1,6 @@
 """Phase 11 independent trace check. Uses neither analog.py nor features.py nor baselines.py: recomputes, for each traced decision,
 the regime label at T, the analog inputs of the target and of every pool row, the z-scores, the distances, one analog per cluster,
-the 30 nearest clusters, the out-of-distribution threshold and the cohort number, from plain SQL over the Phase 05 store (version 2
+the 30 nearest groups (repair pass 2: connected components over mints and creators), the out-of-distribution threshold and the cohort number, from plain SQL over the Phase 05 store (version 2
 values, decision rows and token rows) and the pool labels of the committed fold artifact, and compares with the trace.
 
     python -B verify_trace_analog.py [OUTDIR] [--feature-store PATH]
@@ -80,9 +80,24 @@ def quantile(v, q):
 
 def cohort(model, tgt, pool, decs, regimes):
     """pool: list of (key, y). Returns the selected keys with distances, the threshold and the number (or None)."""
+    # groups: connected components over mints and every creator recorded for them in the pool (repair pass 2, CX-S11)
+    par = {}
+
+    def find(x):
+        par.setdefault(x, x)
+        while par[x] != x:
+            x = par[x]
+        return x
+    for k, _ in pool:
+        a = ("m", decs[k]["mint"])
+        find(a)
+        if decs[k]["creator"]:
+            ra, rb = find(a), find(("c", decs[k]["creator"]))
+            if ra != rb:
+                par[max(ra, rb)] = min(ra, rb)
+
     def cl(k):
-        c = decs[k]["creator"]
-        return "creator:" + c if c else "mint:solana:" + decs[k]["mint"]
+        return find(("m", decs[k]["mint"]))
     b0 = sum(y for _, y in pool) / len(pool)
     complete = [(k, y) for k, y in pool if None not in decs[k]["x"] and decs[k]["t22"] is not None]
     ref = complete
@@ -111,7 +126,8 @@ def cohort(model, tgt, pool, decs, regimes):
                 best[c] = (d, k, y)
         return sorted(best.values())
     tm, tc = decs[tgt]["mint"], decs[tgt]["creator"]
-    cands = [(k, y) for k, y in ref if decs[k]["mint"] != tm and not (tc and decs[k]["creator"] == tc)]
+    banned = {find(n) for n in (("m", tm), ("c", tc)) if n in par}
+    cands = [(k, y) for k, y in ref if decs[k]["mint"] != tm and cl(k) not in banned]
     nn = nearest(tgt, cands)[:K]
     kth = []
     for k, _ in ref:
