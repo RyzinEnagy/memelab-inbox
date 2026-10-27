@@ -1,0 +1,47 @@
+{
+ "command": "unshare -n python -B audits/predictive-intelligence/phase_17/probes/run_integration.py replay SCRATCH/replay (at 4b07b0d)",
+ "documents_sha256": "9b839e76b7a334847911b6d5ad1f81044e17da47a09354dd3efd70fdbc0c77d0",
+ "equal_to_phase_18_real": {
+  "attempted_events": true,
+  "check_state_problems": true,
+  "documents": true,
+  "every_document_has_its_record": true,
+  "forecast_documents": true,
+  "probabilities_published": true,
+  "reason_counts": true,
+  "records": true,
+  "round_1_events": true,
+  "round_2_documents": true,
+  "window_commits": true,
+  "window_decision_events": true
+ },
+ "exit_code": 0,
+ "phase_18_documents_sha256": "9b839e76b7a334847911b6d5ad1f81044e17da47a09354dd3efd70fdbc0c77d0",
+ "phase_18_records_sha256": "a8114c19f9ac506b0a809a6f9e1bf1b70ada6e049c693debc1d102294bb5accc",
+ "records_sha256": "a8114c19f9ac506b0a809a6f9e1bf1b70ada6e049c693debc1d102294bb5accc",
+ "requests_and_passes_differ_only_by": "latency and wall-clock fields (the documents and records are byte-equal)",
+ "values": {
+  "attempted_events": 52,
+  "check_state_problems": [],
+  "documents": 156,
+  "every_document_has_its_record": true,
+  "forecast_documents": 0,
+  "probabilities_published": 0,
+  "reason_counts": {
+   "INSUFFICIENT_HISTORY": 156,
+   "MODEL_NOT_SELECTED": 156,
+   "OUT_OF_SCOPE_CHAIN": 57,
+   "SOURCE_STALE": 156,
+   "TARGET_NOT_FEASIBLE": 21,
+   "UNCALIBRATED": 156
+  },
+  "records": 156,
+  "round_1_events": {
+   "DISCOVERY": 47,
+   "MATERIAL_CHANGE": 5
+  },
+  "round_2_documents": 0,
+  "window_commits": 3,
+  "window_decision_events": 52
+ }
+}

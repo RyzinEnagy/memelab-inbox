@@ -1,0 +1,27 @@
+{
+ "note": "metadata only: no body was decompressed and no label or price was computed",
+ "phase18_measured_change_mints6": [
+  "7M3gDR"
+ ],
+ "phase18_report_measured_change_lines": 2,
+ "prospective_events": 52,
+ "raw_reads_after_a_prospective_entry": [
+  {
+   "boundary_utc": "2026-10-24T10:25:00Z",
+   "decision_time_utc": "2026-10-24T10:11:50Z",
+   "manifest": "audits/predictive-intelligence/phase_06/sealed/raw/MANIFEST.csv",
+   "mint6": "MukLDt",
+   "minutes_after_entry": 8.2
+  },
+  {
+   "boundary_utc": "2026-10-24T10:30:00Z",
+   "decision_time_utc": "2026-10-24T10:11:50Z",
+   "manifest": "audits/predictive-intelligence/phase_06/sealed/raw/MANIFEST.csv",
+   "mint6": "nxPqZ4",
+   "minutes_after_entry": 13.2
+  }
+ ],
+ "ref": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+ "solana_events": 33,
+ "solana_mints": 30
+}
