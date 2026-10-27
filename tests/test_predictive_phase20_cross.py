@@ -2,9 +2,11 @@
 ACCEPTANCE_CHECKLIST.md; X06 added before the frozen audit code, see the evidence file). Each scenario runs one path through at
 least three components with one planted defect, beside a positive control on the same path.
 
-A scenario whose expected behaviour does not hold at the audited code is marked xfail(strict=True) with its finding id, so the
-suite records the open defect without failing, and a repair that fixes it turns the xfail into an error until the marker is
-removed. Temp folders, fixed clocks, no network (an audit hook refuses sockets). Every FORECAST here is a fixture."""
+A scenario whose expected behaviour does not hold at the code is marked xfail(strict=True) with its finding id, so the suite
+records the open defect without failing, and a repair that fixes it turns the xfail into an error until the marker is removed.
+At the audited code 0d66379, X02, the X03 run_pass case, X06 and the carried Phase 18 minor 5 were such markers; change control
+CP20-1 (PI-D-110) repaired them and removed the markers. X04 stays marked (F20-04 waits for G25). Temp folders, fixed clocks, no
+network (an audit hook refuses sockets). Every FORECAST here is a fixture."""
 from __future__ import annotations
 
 import copy
@@ -32,6 +34,7 @@ from memelab.predictive import evaluation as E  # noqa: E402
 from memelab.predictive import integration as I  # noqa: E402
 from memelab.predictive import labels as L  # noqa: E402
 from memelab.predictive import monitoring as M  # noqa: E402
+from memelab.predictive import registry as R  # noqa: E402
 from memelab.predictive import reports as RP  # noqa: E402
 
 DAY = 86400.0
@@ -115,25 +118,38 @@ def test_x02_control_the_decisions_own_token_row_gives_the_fixture_forecast(lab)
     assert s["metrics"]["completed_forecasts"] == 1 and reads == [TI.POOL1]
 
 
-@pytest.mark.xfail(strict=True, reason="F20-02 open: integration-1 does not check that a replayed token row is the decision's identity")
-def test_x02_a_token_row_of_another_mint_is_refused_and_its_pool_never_read_or_recorded(lab):
+def test_x02_a_token_row_of_another_mint_is_refused_and_its_pool_never_read_or_recorded(lab):     # F20-02, CP20-1
     w = TI.fixture_world(lab)
     s, reads = _replay(lab, w, "other", "st_other")
     req = _lines(lab, "requests", "st_other")[-1]
-    assert TI.POOL2 not in reads
-    assert (req.get("material") or {}).get("pool") != TI.POOL2
-    assert req["event"] in ("NOT_EXACT_IDENTITY", "ERROR") and s["metrics"]["completed_forecasts"] == 0
+    assert reads == [] and TI.POOL2 not in json.dumps(req)
+    assert req["event"] == "NOT_EXACT_IDENTITY" and req["detail"].startswith("TOKEN_ROW_OF_ANOTHER_IDENTITY")
+    assert s["metrics"]["completed_forecasts"] == 0 and _lines(lab, "documents", "st_other") == []
+
+
+def test_x02_a_token_row_of_another_chain_is_refused(lab):
+    w = TI.fixture_world(lab)
+    r = TI.persist(TI.result("FXA", TI.M1, T_FX - 600), lab)
+    con = sqlite3.connect(db.DB_PATH)
+    con.row_factory = sqlite3.Row
+    row = dict(con.execute("SELECT * FROM theses WHERE mint=? ORDER BY id DESC", (TI.M1,)).fetchone())
+    own = dict(con.execute("SELECT * FROM tokens WHERE mint=?", (TI.M1,)).fetchone())
+    con.close()
+    s = I.run_pass([r], capture_time=T_FX, state_dir=lab / "st_chain", config_path=TI.cfg(lab),
+                   decision_rows=[{"row": row, "token": dict(own, chain="base"), "decision_time": T_FX, "basis": "EXPORT_COMMIT"}],
+                   **TI.fx_kw(w, lab))
+    assert s["metrics"]["event_counts"] == {"NOT_EXACT_IDENTITY": 1} and s["metrics"]["documents"] == 0
 
 
 # ---------------------------------------------------------------- X03 millisecond clock
-def test_x03_a_millisecond_capture_time_persists_nothing_and_the_hooks_show_a_failure(lab):
+def test_x03_a_millisecond_capture_time_persists_nothing_and_the_hooks_show_the_refusal(lab):
     w = TI.fixture_world(lab)
     r = TI.persist(TI.result("FXA", TI.M1, T_FX - 600), lab)
     sec = I.scout_section([r], capture_time=T_FX * 1000, config_path=TI.cfg(lab), state_dir=lab / "st_ms", lab_db=db.DB_PATH,
                           registry_dir=w["registry_dir"], allow_fixture=True, extra_cal_cards=w["extra"], reader=TI.candles_ok)
-    assert sec is not None and "Failed" in sec and "No forecast in this run" in sec
+    assert sec is not None and "CAPTURE_TIME_REFUSED" in sec and "Nothing was assessed or written" in sec    # was "Failed" at 0d66379
     line = I.analyze_line(r, capture_time=T_FX * 1000, config_path=TI.cfg(lab), state_dir=lab / "st_ms", lab_db=db.DB_PATH)
-    assert line.startswith("predictive: failed")
+    assert line.startswith("predictive: CAPTURE_TIME_REFUSED") and "nothing assessed" in line
     assert not (lab / "st_ms").exists()
 
 
@@ -145,13 +161,14 @@ def test_x03_a_millisecond_observed_time_is_an_error_event_with_no_document(lab)
     assert _lines(lab, "documents") == []
 
 
-@pytest.mark.xfail(strict=True, reason="F20-03 open (MINOR): run_pass raises on a millisecond capture time although its docstring "
-                                        "says it never raises; the hooks contain it")
-def test_x03_run_pass_itself_returns_a_visible_state_for_a_millisecond_capture_time(lab):
+def test_x03_run_pass_itself_returns_a_visible_state_for_a_millisecond_capture_time(lab):      # F20-03, CP20-1
     w = TI.fixture_world(lab)
     r = TI.persist(TI.result("FXA", TI.M1, T_FX - 600), lab)
-    s = _pass(lab, w, [r], T=T_FX * 1000)
-    assert s is not None and s.get("metrics", {}).get("documents", 0) == 0
+    for bad in (T_FX * 1000, "2026-10-29T00:00:00Z", float("nan")):
+        s = _pass(lab, w, [r], T=bad)
+        assert s is not None and s["state"] == "CAPTURE_TIME_REFUSED" and s["events"] == []
+        assert "CAPTURE_TIME_REFUSED" in I.render(s)
+    assert not (lab / "state").exists()
 
 
 # ---------------------------------------------------------------- X04 a label read of another mint reaching the outcome ledger
@@ -245,20 +262,49 @@ def _leaky_world(tmp, monkeypatch):
 
 
 def test_x06_control_the_replay_guard_refuses_the_leaky_card(lab, monkeypatch):
-    w = _leaky_world(lab, monkeypatch)
+    w = _leaky_world_pinned_by_hand(lab, monkeypatch)
     assert w["card"]["max_train_label_matures_at"] > w["card"]["training_cutoff"]
     with pytest.raises(E.TrainingAfterCutoff):
         E.check_card_time(w["card"], [T_FX])
 
 
-@pytest.mark.xfail(strict=True, reason="F20-06 open: the serving path (registry.serve, abstention.evaluate, integration) does not "
-                                        "re-check that a champion card's training labels matured by its cutoff")
+def test_x06_the_registry_refuses_to_pin_the_leaky_card(lab, monkeypatch):                  # F20-06, CP20-1
+    with pytest.raises(R.PinRefused, match=R.TRAINING_AFTER_CUTOFF):
+        _leaky_world(lab, monkeypatch)
+
+
+def _leaky_world_pinned_by_hand(tmp, monkeypatch):
+    """The leaky champion pinned as an older registry or a hand-written log line would have pinned it (the pin check is skipped
+    while the world is written); the serving path runs with the real code."""
+    real = R.training_after_cutoff
+    monkeypatch.setattr(R, "training_after_cutoff", lambda e: None)
+    w = _leaky_world(tmp, monkeypatch)
+    monkeypatch.setattr(R, "training_after_cutoff", real)
+    return w
+
+
 def test_x06_a_champion_card_whose_training_labels_matured_after_its_cutoff_never_publishes(lab, monkeypatch):
-    w = _leaky_world(lab, monkeypatch)
+    w = _leaky_world_pinned_by_hand(lab, monkeypatch)
+    assert any(x["state"] == R.TRAINING_AFTER_CUTOFF for x in R.status_at(w["b2"], T_FX))
     s = _pass(lab, w, [TI.persist(TI.result("FXA", TI.M1, T_FX - 600), lab)])
     assert s["metrics"]["completed_forecasts"] == 0
+    req = _lines(lab, "requests")[-1]
+    assert all(R.TRAINING_AFTER_CUTOFF in t["registry"]["blocking"] for t in req["targets"] if t["target"] == TI.T1)
     v, _ = _report(lab, w)
     assert _numbers(v) == []
+
+
+def test_x06_control_the_fixture_champion_keeps_its_cutoff_and_is_pinned(lab):
+    w = TI.fixture_world(lab)
+    assert R.training_after_cutoff(w["b2"]) is None
+    assert not any(x["state"] == R.TRAINING_AFTER_CUTOFF for x in R.status_at(w["b2"], T_FX))
+
+
+def test_x06_a_training_decision_at_the_cutoff_is_refused_too():
+    e = {"training_cutoff": 100.0, "training_cutoff_utc": "x", "max_train_decision_time": 100.0, "max_train_label_matures_at": 50.0}
+    assert "P43" in R.training_after_cutoff(e)
+    assert R.training_after_cutoff(dict(e, max_train_decision_time=99.0)) is None
+    assert "P05" in R.training_after_cutoff(dict(e, max_train_decision_time=99.0, max_train_label_matures_at=100.5))
 
 
 # ---------------------------------------------------------------- carried Phase 18 minor 5 (not one of the new scenarios)
@@ -293,9 +339,7 @@ def test_carried_control_a_point_moved_outside_the_wilson_band_is_already_refuse
     assert v["counts"]["probabilities_shown"] == 0
 
 
-@pytest.mark.xfail(strict=True, reason="F20-08 (Phase 18 minor 5, carried): the reader does not recompute the published point from the stored "
-                                        "raw number, so a point moved inside its interval in the document and the request record is shown")
-def test_carried_a_point_rewritten_in_the_document_and_the_request_record_is_refused(lab):
+def test_carried_a_point_rewritten_in_the_document_and_the_request_record_is_refused(lab):     # F20-08, CP20-1
     d = TRP.world_forecast(lab)
     v0, _ = TRP.report(d)
     shown = [t["number"]["probability"] for o in v0["opportunities"] for t in o["targets"] if t["number"]]
@@ -303,3 +347,37 @@ def test_carried_a_point_rewritten_in_the_document_and_the_request_record_is_ref
     v, _ = TRP.report(d)
     forged = [t["number"]["probability"] for o in v["opportunities"] for t in o["targets"] if t["number"]]
     assert shown and forged == []
+
+
+def _forge_raw(lines: dict) -> None:
+    """The stored raw number moved (and nothing else): the card recomputes another raw number from the stored inputs."""
+    for r in lines["requests"]:
+        for t in r.get("targets") or []:
+            if t.get("prediction_status") == "FORECAST":
+                t["raw_number"] = round(float(t["raw_number"]) + 0.01, 9)
+                return
+    raise AssertionError("no FORECAST to forge")
+
+
+def _forge_inputs(lines: dict) -> None:
+    for r in lines["requests"]:
+        for t in r.get("targets") or []:
+            if t.get("prediction_status") == "FORECAST":
+                k = sorted(k for k, v in t["inputs"].items() if v is not None)[0]
+                t["inputs"][k] = float(t["inputs"][k]) + 1.0
+                return
+    raise AssertionError("no FORECAST to forge")
+
+
+@pytest.mark.parametrize("forge", [_forge_raw, _forge_inputs])
+def test_carried_a_stored_raw_number_or_input_that_the_card_does_not_reproduce_is_refused(lab, forge):
+    d = TRP.world_forecast(lab)
+    TRP.reseal(d["state_dir"], forge)
+    v, _ = TRP.report(d)
+    assert v["counts"]["probabilities_shown"] == 0
+
+
+def test_carried_control_recompute_point_holds_on_the_unforged_forecast(lab):
+    d = TRP.world_forecast(lab)
+    v, _ = TRP.report(d)
+    assert v["counts"]["probabilities_shown"] == 1

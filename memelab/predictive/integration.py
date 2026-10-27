@@ -444,6 +444,42 @@ def verify_point(doc: dict, target_rec: dict, *, req: dict, card: dict | None, l
     return errs
 
 
+def recompute_point(trec: dict, *, req: dict, card: dict | None, cal_card: dict | None) -> list[str]:
+    """CP20-1 (F20-08, the carried Phase 18 minor 5): before a reader shows a FORECAST, recompute its raw number from the inputs
+    kept in the request record with the registry-resolved card (the card's own predict), then its calibrated point and interval
+    from that raw number with the calibration card, as `abstention.evaluate` computes them. Any difference from the stored raw
+    number, point or interval refuses the document. A rewrite of the inputs, the raw number, the point and the document together
+    is not caught here (that needs a signature, PI-D-005)."""
+    if trec.get("prediction_status") != "FORECAST":
+        return []
+    inputs, raw = trec.get("inputs"), trec.get("raw_number")
+    if card is None or cal_card is None or not isinstance(inputs, dict) or not inputs or not _fin(raw):
+        return ["FORECAST without the inputs, raw number and cards it came from"]
+    try:
+        T = C.parse_utc(req["decision_time_utc"])
+        x = {str(k): (float(v) if _fin(v) else math.nan) for k, v in inputs.items()}
+        ex = B.Example(decision_key=str(req.get("snapshot_hash")), chain=req.get("chain"), mint=req.get("mint"), decision_time=T,
+                       label_matures_at=T + C.TARGETS[trec["target"]]["horizon_s"], y=-1, x=x, avail={k: T for k in x},
+                       status=(req.get("material") or {}).get("status"))
+        p, _ = B.predict(card, [ex])
+        got = float(p[0])
+        errs = []
+        if not (math.isfinite(got) and abs(got - float(raw)) <= 1e-12):
+            errs.append(f"raw number {raw!r} is not the card's recomputed {got!r}")
+        pt, lo, hi = CAL.apply_calibrator(cal_card["calibrator"], [float(raw)])
+        sup = CAL.support_of(cal_card.get("support_bins") or [], float(raw))
+        iv = CAL.interval(float(lo[0]), float(hi[0]), int(sup["n"]), int(sup["k"])) if sup is not None else None
+        if not (_fin(trec.get("calibrated_point")) and abs(float(trec["calibrated_point"]) - float(pt[0])) <= 1e-12):
+            errs.append(f"stored point {trec.get('calibrated_point')!r} is not the recomputed {float(pt[0])!r}")
+        siv = trec.get("interval")
+        if iv is None or not (isinstance(siv, list) and len(siv) == 2 and all(_fin(a) and abs(float(a) - float(b)) <= 1e-12
+                                                                            for a, b in zip(siv, iv))):
+            errs.append(f"stored interval {siv!r} is not the recomputed {None if iv is None else list(iv)!r}")
+        return errs
+    except Exception as e:  # noqa: BLE001
+        return [f"the point could not be recomputed ({type(e).__name__})"]
+
+
 # ---------------------------------------------------------------- one pass (rules 2 to 16)
 def trigger_of(r: dict, *, source: str, position: int) -> dict:
     b = r.get("bundle") if isinstance(r, dict) else None
@@ -492,6 +528,11 @@ def run_pass(results: Sequence[dict], *, capture_time: float, source: str = "sco
     cfg = config(config_path)
     if not cfg["enabled"]:
         return None
+    try:                                     # CP20-1 (F20-03): a capture time not in UTC epoch seconds refuses the pass visibly
+        S.epoch_seconds(capture_time, "capture_time")
+    except Exception as e:  # noqa: BLE001
+        return {"integration_version": INTEGRATION_VERSION, "source": source, "state": "CAPTURE_TIME_REFUSED",
+                "detail": f"{type(e).__name__}: {str(e)[:200]}", "events": [], "errors": []}
     t_start = clock()
     root = Path(root) if root is not None else ROOT
     mode = mode if mode in MODES else cfg["mode"]
@@ -682,6 +723,10 @@ def _process(tr: dict, base: dict, *, state: dict, newest: dict, attempted: int,
         shown.append(dict(view, event="DEFERRED_LATENCY_BUDGET"))
         return _not_attempted(base, "DEFERRED_LATENCY_BUDGET", detail=f"pass budget {FROZEN['pass_budget_s']} s used")
     tok = tr["token"] or {}
+    if tok and (tok.get("mint") != tr["mint"] or tok.get("chain", tr["chain"]) != tr["chain"]):     # CP20-1 (F20-02, P01)
+        shown.append(dict(view, event="NOT_EXACT_IDENTITY"))
+        return _not_attempted(base, "NOT_EXACT_IDENTITY",
+                              detail="TOKEN_ROW_OF_ANOTHER_IDENTITY: the token row names another chain or mint than the decision (P01)")
     pool = (tok.get("primary_pool") or tok.get("graduated_pool")) if tok.get("chain", tr["chain"]) == tr["chain"] else None
     cat = catalyst_state(lab, tr["chain"], tr["mint"], T)
     # ---- serve every primary target as of the decision (rule 7)
@@ -1008,7 +1053,7 @@ def render(summary: dict) -> str:
     L_ = ["## Predictive research section (flag on, research only)", "",
           "This section is separate from the opportunity score. It does not change the 100-point score, the fatal flags, the status, "
           "the watchlist or the lists above, and it is not advice.", ""]
-    if summary.get("state") in ("STATE_TAMPERED", "STATE_DIR_REFUSED"):
+    if summary.get("state") in ("STATE_TAMPERED", "STATE_DIR_REFUSED", "CAPTURE_TIME_REFUSED"):
         L_ += [f"- State refused: {summary.get('state')} ({summary.get('detail')}). Nothing was assessed or written; every "
                f"opportunity above has no forecast in this run.", ""]
         return "\n".join(L_)
@@ -1111,7 +1156,7 @@ def analyze_line(r: dict, *, capture_time: float | None = None, lab_db: str | Pa
         s = run_pass([r], capture_time=cap, source="analyze", lab_db=lab_db, config_path=config_path, **kw)
         if s is None:
             return None
-        if s.get("state") in ("STATE_TAMPERED", "STATE_DIR_REFUSED"):
+        if s.get("state") in ("STATE_TAMPERED", "STATE_DIR_REFUSED", "CAPTURE_TIME_REFUSED"):
             return f"predictive: {s.get('state')} ({s.get('detail')}); nothing assessed | research only"
         ev = (s.get("events") or [{}])[0]
         recs = ev.get("records") or []

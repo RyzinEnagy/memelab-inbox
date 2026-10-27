@@ -358,6 +358,7 @@ def _target_view(req: dict, trec: dict, dline: dict | None, rec: dict | None, *,
             fail.append(f"cards: {why}")
         else:
             fail += I.check_document(doc, rec, config_path=config_path, model_card=card, calibration_card=cal)
+            fail += I.recompute_point(trec, req=req, card=card, cal_card=cal)      # CP20-1 (F20-08)
     if fail:
         tv.update(status="DOCUMENT_REFUSED", number=None)
         return tv

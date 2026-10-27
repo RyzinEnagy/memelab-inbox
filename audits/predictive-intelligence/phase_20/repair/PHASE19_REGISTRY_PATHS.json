@@ -1,0 +1,16 @@
+{
+ "what": "Phase 19 steps that import registry-1, rerun with the CP20-1 registry and integration code (uncommitted working tree on top of 67acbc3) and compared with the committed Phase 19 outputs",
+ "commands": [
+  "python -B audits/predictive-intelligence/phase_19/probes/run_prospective.py rollback OUT",
+  "python -B audits/predictive-intelligence/phase_19/probes/run_prospective.py drift OUT"
+ ],
+ "ROLLBACK_DEMO.json": {
+  "rerun_sha256": "f73ee715f139d5d2320659a42ef3870acfd12dcc127c091fa91819a9136e4daa",
+  "committed_sha256": "f73ee715f139d5d2320659a42ef3870acfd12dcc127c091fa91819a9136e4daa"
+ },
+ "DRIFT_REPORT.json": {
+  "rerun_sha256": "5ae707e59609eec848aaf1ebb2333895742ad765af5dfe43ac880391cc30fb3b",
+  "committed_sha256": "5ae707e59609eec848aaf1ebb2333895742ad765af5dfe43ac880391cc30fb3b"
+ },
+ "byte_equal": true
+}

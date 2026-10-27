@@ -74,6 +74,7 @@ INFERENCE_NOT_CHECKED = "INFERENCE_NOT_CHECKED"
 FIXTURE_IN_REAL_REGISTRY = "FIXTURE_IN_REAL_REGISTRY"
 FACTS_CHECKED = "REBUILT_FROM_COMMITTED_FILES"
 FIXTURE_FACTS_NOT_CHECKED = "FIXTURE_FACTS_NOT_CHECKED"
+TRAINING_AFTER_CUTOFF = "TRAINING_ROWS_AFTER_CUTOFF"   # CP20-1 (F20-06): the replay guard's rule, on the serving path too
 THRESHOLDS = {
     MODEL_STALE: {"max_model_age_s": ACC["max_model_age_s"], "rule": "decision time minus training cutoff above max_model_age_s",
                   "contract_reason": "MODEL_STALE"},
@@ -774,10 +775,25 @@ def stale_after(entry: dict) -> float:
     return float(entry["training_cutoff"]) + float(ACC["max_model_age_s"])
 
 
+def training_after_cutoff(entry: dict) -> str | None:
+    """The rule of `evaluation.check_card_time` on an entry's own record (P05, P43): a training decision at or after the
+    training cutoff, or a training label maturing after it. None when the record keeps its cutoff (CP20-1, F20-06)."""
+    cut = float(entry["training_cutoff"])
+    mt, mm = entry.get("max_train_decision_time"), entry.get("max_train_label_matures_at")
+    if mt is not None and float(mt) >= cut:
+        return f"a training decision at or after the cutoff {entry['training_cutoff_utc']} (P43)"
+    if mm is not None and float(mm) > cut:
+        return f"a training label maturing after the cutoff {entry['training_cutoff_utc']} (P05)"
+    return None
+
+
 def status_at(entry: dict, decision_time: float, *, drift_alarms: Sequence[float] = ()) -> list[dict]:
     T = float(decision_time)
     cut = float(entry["training_cutoff"])
     out = []
+    leak = training_after_cutoff(entry)
+    if leak:
+        out.append({"state": TRAINING_AFTER_CUTOFF, "detail": leak})
     if T < cut:
         out.append({"state": NOT_AVAILABLE_AS_OF, "detail": f"trained to {entry['training_cutoff_utc']}"})
     elif T - cut > float(ACC["max_model_age_s"]):
@@ -912,6 +928,9 @@ def pin_event(entries: dict[str, dict], target: str, *, mode: str, champion: str
             raise PinRefused("champion of another target")
         if e["promotion"]["level"] not in PUBLISHABLE_LEVELS:
             raise PinRefused(f"champion level {e['promotion']['level']}: a champion needs SHADOW or VALIDATED_EXPERIMENTAL")
+        leak = training_after_cutoff(e)
+        if leak:
+            raise PinRefused(f"champion card: {leak} ({TRAINING_AFTER_CUTOFF})")
         if e["is_fixture"] and not allow_fixture:
             raise PinRefused("a fixture entry is never pinned in a real registry")
         if e["is_fixture"]:

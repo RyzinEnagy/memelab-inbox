@@ -1,0 +1,21 @@
+{
+ "command": "registry.training_after_cutoff over every committed entry of audits/predictive-intelligence/phase_16/registry/entries",
+ "entries": 69,
+ "affected": [],
+ "min_seconds_between_last_training_maturity_or_decision_and_cutoff": 25074.0,
+ "log_events": 75,
+ "pins": [
+  {
+   "target": "price_path_target_before_invalidation_24h",
+   "mode": "NO_VIABLE_CHAMPION"
+  },
+  {
+   "target": "price_path_target_before_invalidation_6h",
+   "mode": "NO_VIABLE_CHAMPION"
+  },
+  {
+   "target": "price_path_severe_drawdown_or_halt_24h",
+   "mode": "NO_VIABLE_CHAMPION"
+  }
+ ]
+}
