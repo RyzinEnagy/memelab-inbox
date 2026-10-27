@@ -205,6 +205,9 @@ def cmd_analyze(a):
     r = pipeline.analyze_token(a.mint, bodies, observed_at=t, sol_price=sol, benchmarks=_benchmarks(bodies, (s1 or {}).get("survivors")), account=account,
                                discovery_signals=disc, persist=not a.no_persist)
     print(f"{r['bundle']['identity'].get('symbol')} score {r['score']['total']} status {r['status']['status']} -> {r.get('report_path')}")
+    pline = _predictive_line(r)                       # Phase 17 (PI-D-017): None unless predictive.enabled is true; prints nothing then
+    if pline:
+        print(pline)
     if a.print:
         print(r["report_md"])
 
@@ -279,9 +282,31 @@ def cmd_scout(a):
     social = social_section(a, results, serious, t, prior)
     md = report.render_scout_report(env, serious, near, rejected, when=t, social=social)
     path = (report_dir or (db.DATA_DIR / "reports")) / f"{time.strftime('%Y%m%d_%H%M', time.gmtime(t))}_SCOUT.md"
+    pred = _predictive_section(results, s2, t, path)  # Phase 17 (PI-D-017): None unless predictive.enabled is true; appended, body unchanged
+    if pred is not None:
+        md += "\n" + pred
     path.write_text(md)
     print(md)
     print(f"\n-> {path}")
+
+
+def _predictive_section(results: list[dict], s2: dict, t: float, path: Path) -> str | None:
+    """Phase 17, opt-in (data/config.json predictive.enabled true). A separate research section after the unchanged scout body;
+    it never changes a score, fatal flag, status, list, watchlist row or report above it. None when off."""
+    try:
+        from .predictive import integration
+    except ImportError:
+        return None
+    return integration.scout_section(results, stage2=s2, scout_time=t, report_path=path)
+
+
+def _predictive_line(r: dict) -> str | None:
+    """Phase 17, opt-in: one research line after `analyze`. None when off."""
+    try:
+        from .predictive import integration
+    except ImportError:
+        return None
+    return integration.analyze_line(r)
 
 
 def _median(xs):

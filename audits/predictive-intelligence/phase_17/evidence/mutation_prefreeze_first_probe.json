@@ -1,0 +1,354 @@
+{
+ "modules": [
+  "memelab/predictive/integration.py",
+  "memelab/predictive/bt_adapter.py",
+  "memelab/cli.py"
+ ],
+ "tests": "tests/test_predictive_integration.py",
+ "mutations": 56,
+ "caught": 53,
+ "survivors": [
+  "T2 staleness also for export decisions",
+  "C2 later links visible",
+  "D2 reasons not compared"
+ ],
+ "results": [
+  {
+   "mutation": "F1 flag ignored by the pass",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_p40_malformed_or_non_true_flag_is_off_and_writes_nothing"
+  },
+  {
+   "mutation": "H1 section replaces the body",
+   "file": "memelab/cli.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g4_flag_on_appends_a_section_and_changes_no_result_list_or_table"
+  },
+  {
+   "mutation": "H2 analyze line not printed",
+   "file": "memelab/cli.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g3_flag_off_analyze_output_is_unchanged"
+  },
+  {
+   "mutation": "S1 snapshot hash of the row with its id",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g5_snapshot_hash_is_the_row_sha_a_state_export_of_the_same_row_carries"
+  },
+  {
+   "mutation": "S2 oldest row of a shared key",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_two_rows_sharing_a_key_use_the_one_just_persisted"
+  },
+  {
+   "mutation": "S3 capture before the row accepted",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_a_capture_before_the_row_existed_is_an_error"
+  },
+  {
+   "mutation": "S4 row and result not compared",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_a_row_that_differs_from_its_result_is_an_error_not_an_attempt"
+  },
+  {
+   "mutation": "S5 identity check bypassed",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g5_every_trigger_gets_exactly_one_request_and_every_attempt_three_documents_with_records"
+  },
+  {
+   "mutation": "S6 default chain",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_a_result_without_a_chain_is_not_an_exact_identity_no_default_chain"
+  },
+  {
+   "mutation": "X1 duplicate check removed",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g6_the_same_snapshot_again_is_a_duplicate_with_no_new_document"
+  },
+  {
+   "mutation": "X2 non-primary targets not listed",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g5_every_trigger_gets_exactly_one_request_and_every_attempt_three_documents_with_records"
+  },
+  {
+   "mutation": "G1 score threshold 6",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g7_each_material_trigger_and_each_non_trigger[change8-True]"
+  },
+  {
+   "mutation": "G2 relative bound strict",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g7_each_material_trigger_and_each_non_trigger[change2-True]"
+  },
+  {
+   "mutation": "G3 served pin not in the key (CX-17)",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g7_each_material_trigger_and_each_non_trigger[change14-True]"
+  },
+  {
+   "mutation": "G4 catalyst not in the key",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g7_each_material_trigger_and_each_non_trigger[change13-True]"
+  },
+  {
+   "mutation": "G5 age trigger removed",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g7_age_triggers_after_an_hour_and_unchanged_names_its_covering_forecasts"
+  },
+  {
+   "mutation": "G6 previous attempt not as of the capture",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_the_gate_compares_with_the_last_attempt_at_or_before_the_capture_so_a_replay_is_idempotent"
+  },
+  {
+   "mutation": "G7 became known or unknown ignored",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g7_each_material_trigger_and_each_non_trigger[change16-True]"
+  },
+  {
+   "mutation": "G8 price bound 0.2",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g7_each_material_trigger_and_each_non_trigger[change1-True]"
+  },
+  {
+   "mutation": "Q1 queue cap removed",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g8_more_than_64_new_mints_in_one_pass_defer_the_rest_visibly"
+  },
+  {
+   "mutation": "Q2 per-mint supersede removed",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g8_a_storm_of_updates_gives_one_attempt_per_mint_and_linear_work"
+  },
+  {
+   "mutation": "Q3 oldest snapshot kept",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g8_a_storm_of_updates_gives_one_attempt_per_mint_and_linear_work"
+  },
+  {
+   "mutation": "Q4 pass budget removed",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g9_the_pass_budget_defers_events_reached_after_30_seconds"
+  },
+  {
+   "mutation": "N1 cost cap lifted",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g9_a_priced_reader_is_refused_before_any_call_and_the_breaker_opens_after_five_failures"
+  },
+  {
+   "mutation": "N2 reader without a champion",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g9_the_integration_module_has_no_network_import_and_the_real_pass_makes_no_call"
+  },
+  {
+   "mutation": "N3 breaker lifted",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g9_a_priced_reader_is_refused_before_any_call_and_the_breaker_opens_after_five_failures"
+  },
+  {
+   "mutation": "N4 reader timeout ignored",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_a_slow_reader_is_a_source_gap"
+  },
+  {
+   "mutation": "R1 registry outage not visible",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g10_an_unreadable_or_tampered_registry_abstains_visibly"
+  },
+  {
+   "mutation": "R2 fixture champion outside a fixture run",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_a_fixture_champion_is_never_served_outside_a_fixture_run"
+  },
+  {
+   "mutation": "R3 drift alarms dropped",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g19_a_drift_alarm_degrades_a_fixture_forecast_and_earlier_records_are_never_rewritten"
+  },
+  {
+   "mutation": "T1 stale bound inverted",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g9_a_priced_reader_is_refused_before_any_call_and_the_breaker_opens_after_five_failures"
+  },
+  {
+   "mutation": "T2 staleness also for export decisions",
+   "file": "memelab/predictive/integration.py",
+   "caught": false,
+   "first_failure": "88 passed in 24.53s"
+  },
+  {
+   "mutation": "C1 any link type counts",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g18_only_exact_address_links_count_and_one_event_counts_once"
+  },
+  {
+   "mutation": "C2 later links visible",
+   "file": "memelab/predictive/integration.py",
+   "caught": false,
+   "first_failure": "88 passed in 23.85s"
+  },
+  {
+   "mutation": "C3 catalyst pass rate limit removed",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_the_catalyst_pass_is_rate_limited_per_mint_and_never_requests_twice_for_one_event"
+  },
+  {
+   "mutation": "C4 catalyst pass dedup removed",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_the_catalyst_pass_is_rate_limited_per_mint_and_never_requests_twice_for_one_event"
+  },
+  {
+   "mutation": "C5 ticker links refresh",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g18_a_catalyst_change_is_material_and_the_catalyst_pass_requests_a_refresh_once"
+  },
+  {
+   "mutation": "V1 backtest veto dropped",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g13_a_fatal_flag_and_a_lost_route_stay_vetoes_beside_a_forecast"
+  },
+  {
+   "mutation": "V2 max loss changed",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_frozen_constants_are_the_preregistered_ones"
+  },
+  {
+   "mutation": "D1 document without record accepted",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g15_phase13_m4_a_document_never_travels_without_its_record"
+  },
+  {
+   "mutation": "D2 reasons not compared",
+   "file": "memelab/predictive/integration.py",
+   "caught": false,
+   "first_failure": "88 passed in 24.68s"
+  },
+  {
+   "mutation": "D3 point tolerance wide",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g14_phase13_m3_a_forged_point_inside_the_interval_is_refused_by_verify_point"
+  },
+  {
+   "mutation": "D4 interval not compared",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g14_phase13_m3_a_forged_point_inside_the_interval_is_refused_by_verify_point"
+  },
+  {
+   "mutation": "D5 raw number not required",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g14_phase13_m3_a_forged_point_inside_the_interval_is_refused_by_verify_point"
+  },
+  {
+   "mutation": "P1 record id not checked",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g10_a_tampered_state_file_refuses_the_pass_and_writes_nothing"
+  },
+  {
+   "mutation": "P2 file sha not checked",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g10_a_tampered_state_file_refuses_the_pass_and_writes_nothing"
+  },
+  {
+   "mutation": "P3 pass chain not checked",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_a_dropped_pass_line_breaks_the_pass_chain"
+  },
+  {
+   "mutation": "W1 trading words allowed",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g20_the_section_and_line_carry_the_metrics_and_no_trading_word"
+  },
+  {
+   "mutation": "W2 veto line hidden",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g4_flag_on_appends_a_section_and_changes_no_result_list_or_table"
+  },
+  {
+   "mutation": "O1 duplicates miscounted",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g20_the_cli_prints_metrics_checks_the_state_and_runs_a_catalyst_pass"
+  },
+  {
+   "mutation": "B1 identity unchecked",
+   "file": "memelab/predictive/bt_adapter.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g12_the_adapter_refuses_identity_time_and_vocabulary_problems[kw0-IDENTITY_MISMATCH]"
+  },
+  {
+   "mutation": "B2 later assessment accepted",
+   "file": "memelab/predictive/bt_adapter.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g12_the_adapter_refuses_identity_time_and_vocabulary_problems[kw2-AFTER_DECISION]"
+  },
+  {
+   "mutation": "B3 no-trade not a veto",
+   "file": "memelab/predictive/bt_adapter.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g12_a_fatal_or_untradeable_assessment_is_a_veto_and_nothing_clears_one[kw2-True]"
+  },
+  {
+   "mutation": "B4 table time filter removed",
+   "file": "memelab/predictive/bt_adapter.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g12_the_table_reader_is_read_only_takes_the_newest_assessment_at_or_before_the_decision_and_checks_the_schema"
+  },
+  {
+   "mutation": "B5 schema unchecked",
+   "file": "memelab/predictive/bt_adapter.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g12_the_table_reader_is_read_only_takes_the_newest_assessment_at_or_before_the_decision_and_checks_the_schema"
+  },
+  {
+   "mutation": "B6 unknown stress decision accepted",
+   "file": "memelab/predictive/bt_adapter.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g12_the_adapter_refuses_identity_time_and_vocabulary_problems[kw5-UNKNOWN_STRESS_DECISION]"
+  }
+ ],
+ "wall_s": 809.1
+}

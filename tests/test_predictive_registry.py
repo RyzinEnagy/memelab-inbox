@@ -153,11 +153,20 @@ def test_no_other_module_imports_the_registry():
     for p in (ROOT / "memelab").rglob("*.py"):
         if p.name == "registry.py" and p.parent.name == "predictive":
             continue
+        if p.name == "integration.py" and p.parent.name == "predictive":       # Phase 17 seam (PI-D-093 item 7): the one allowed importer
+            assert "from . import registry as R" in p.read_text()
+            continue
         imps = _imports(p)
         assert not any(i.endswith("predictive.registry") or i == "..predictive.registry" for i in imps), p
         if p.parent.name == "predictive":                    # memelab/social has a registry of its own; only this package matters
             assert ".registry" not in imps and "from . import registry" not in p.read_text(), p
             assert "predictive.registry" not in p.read_text(), p
+
+
+def test_the_registry_seam_names_only_the_integration_module():
+    allowed = [p for p in (ROOT / "memelab").rglob("*.py") if p.parent.name == "predictive" and p.name not in ("registry.py",)
+               and ("from . import registry" in p.read_text() or ".registry import" in p.read_text())]
+    assert [p.name for p in allowed] == ["integration.py"]
 
 
 # ---------------------------------------------------------------- promotion (G7, CX-16, P22, P24)

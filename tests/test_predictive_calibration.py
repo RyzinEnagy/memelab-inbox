@@ -438,12 +438,19 @@ def test_the_phase_13_modules_use_numpy_and_the_standard_library_only_and_nothin
         txt = p.read_text()
         assert "sklearn" not in txt and "phase_06/sealed" not in txt and "predictive.evaluation" not in txt
         assert "import pickle" not in txt and "pickle.load" not in txt
+    seam = []
     for p in (ROOT / "memelab").rglob("*.py"):
         if p.name in ("calibration.py", "abstention.py"):
             continue
+        if p.name == "integration.py" and p.parent.name == "predictive":       # Phase 17 seam (PI-D-093 item 7): the one allowed importer
+            seam.append(p.name)
+            continue
         imps = _imports(p)
+        rel = {a.name for n in ast.walk(ast.parse(p.read_text())) if isinstance(n, ast.ImportFrom) and n.level == 1 for a in n.names}
         assert not any(i.endswith("calibration") or i.endswith("abstention") for i in imps), p
+        assert not ({"calibration", "abstention"} & rel), p
         assert "predictive.calibration" not in p.read_text() and "predictive.abstention" not in p.read_text(), p
+    assert seam == ["integration.py"]
 
 
 # ---------------------------------------------------------------- added after the first mutation probe (8 survivors)

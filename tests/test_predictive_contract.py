@@ -414,6 +414,29 @@ def _imports_predictive(src: str) -> list[str]:
     return hits
 
 
+# Phase 17 (PI-D-093 item 7): the only seam is memelab/cli.py, whose two helpers import memelab.predictive.integration lazily
+SEAMS = {"memelab/cli.py": [".predictive", ".predictive"]}
+SEAM_FUNCTIONS = ("_predictive_section", "_predictive_line")
+
+
+def _seam_violations(src: str) -> list[str]:
+    """Every predictive import in a seam module must be `from .predictive import integration` inside one of the two helpers."""
+    tree = ast.parse(src)
+    ok_nodes = set()
+    for f in tree.body:
+        if isinstance(f, ast.FunctionDef) and f.name in SEAM_FUNCTIONS:
+            for n in ast.walk(f):
+                if isinstance(n, ast.ImportFrom) and n.level == 1 and n.module == "predictive" and [a.name for a in n.names] == ["integration"]:
+                    ok_nodes.add(id(n))
+    bad = []
+    for n in ast.walk(tree):
+        if isinstance(n, (ast.Import, ast.ImportFrom)) and _imports_predictive(ast.unparse(n)) and id(n) not in ok_nodes:
+            bad.append(ast.unparse(n))
+        elif isinstance(n, ast.Constant) and isinstance(n.value, str) and " " not in n.value and _DOTTED.search(n.value):
+            bad.append(repr(n.value))
+    return bad
+
+
 def test_no_existing_module_imports_the_predictive_package():
     hits = {}
     for p in (ROOT / "memelab").rglob("*.py"):
@@ -422,7 +445,18 @@ def test_no_existing_module_imports_the_predictive_package():
         h = _imports_predictive(p.read_text())
         if h:
             hits[str(p.relative_to(ROOT))] = h
-    assert hits == {}
+    assert hits == SEAMS
+    assert _seam_violations((ROOT / "memelab/cli.py").read_text()) == []
+
+
+@pytest.mark.parametrize("src", ["from .predictive import integration",                      # at module level
+                                 "def _predictive_section():\n    from .predictive import contract",
+                                 "def _predictive_line():\n    from .predictive import integration, registry",
+                                 "def other():\n    from .predictive import integration",
+                                 "def _predictive_line():\n    import importlib\n    importlib.import_module('memelab.predictive.integration')"])
+def test_the_seam_allows_nothing_but_the_lazy_integration_import(src):
+    assert _seam_violations(src)
+    assert not _seam_violations("def _predictive_section():\n    from .predictive import integration")
 
 
 @pytest.mark.parametrize("src", ["from memelab import predictive", "from . import predictive", "from .predictive import contract",

@@ -792,12 +792,21 @@ def test_imports_numpy_and_standard_library_only_and_never_the_backtesting_packa
 
 
 def test_no_other_module_imports_the_phase_09_code():
+    seam = []
     for p in (ROOT / "memelab").rglob("*.py"):
         if p.name in ("onchain.py", "depth_adapter.py"):
             continue
+        if p.name == "integration.py" and p.parent.name == "predictive":       # Phase 17 seam (PI-D-093 item 7): the one allowed importer
+            seam.append(p.name)
+            continue
+        rel = {a.name for n in ast.walk(ast.parse(p.read_text())) if isinstance(n, ast.ImportFrom) and n.level == 1 for a in n.names}
+        # Phase 17 found that the checks below do not see a relative import: analog.py (Phase 11) imports onchain lazily for its
+        # divergence attributes (PI-D-061 item 1). Recorded and pinned here, not changed (PI-D-093); nothing else may.
+        assert not ({"onchain", "depth_adapter"} & rel) or (p.name == "analog.py" and rel & {"onchain", "depth_adapter"} == {"onchain"}), p
         txt = p.read_text()
         assert "onchain" not in _imports(p) and "depth_adapter" not in txt, p
         assert not any(i.endswith("onchain") or i.endswith("depth_adapter") for i in _imports(p)), p
+    assert seam == ["integration.py"]
 
 
 # ---------------------------------------------------------------- committed outputs (added with them)
