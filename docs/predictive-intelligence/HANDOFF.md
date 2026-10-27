@@ -31,7 +31,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Phase 16 commits
 
-HEAD before `576f99d`; pre-registration `8af3cd4`; frozen code `d2038a7`; first recorded run `9eebb8d`; change control CP16-0 `8cd19bd`; repeated recorded run `72488dd`; records `ffcedb4`; change control CP16-1 `d74a16f` (the post-commit suite found the content guard's social-only key `members` in two output files, PI-D-088); repeat `b669615`; records update and post-commit record on top (`postcommit/`). Local only; the orchestrator pushes.
+HEAD before `576f99d`; pre-registration `8af3cd4`; frozen code `d2038a7`; first recorded run `9eebb8d`; change control CP16-0 `8cd19bd`; repeated recorded run `72488dd`; records `ffcedb4`; change control CP16-1 `d74a16f` (the post-commit suite found the content guard's social-only key `members` in two output files, PI-D-088); repeat `b669615`; records update `2f81759`; post-commit at `2f81759`: suite `1 failed, 1911 passed, 1 skipped` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no." (`phase_16/postcommit/`); the post-commit record commit on top. Local only; the orchestrator pushes.
 
 ## Waiting on Elving
 

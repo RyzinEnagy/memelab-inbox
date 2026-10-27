@@ -73,7 +73,7 @@ Each run: no socket (audit hook), 3 `training_labels` calls (development labels,
 | G24 determinism and isolation | repeats, run log | see above; 0 network calls; stores and sealed folder unchanged |
 | G25 tests and mutation probe | `evidence/mutation_registry.json` (73 of 73 at `9eebb8d`), `evidence/mutation_registry_cp16_0.json` (81 mutations at `8cd19bd`) | every listed mutation caught; four survivors of the first probe (E1, C2, R4, N4) were closed by tests before the frozen code |
 | G26 isolation and contract | unit tests | `registry.py` imports numpy, the standard library, `contract` and `stats`; no other lab module imports it; contract, ACCEPTANCE, the registry fingerprint and every earlier module unchanged |
-| G27 post-commit | `postcommit/` | first attempt at `ffcedb4` failed (CP16-1); redone after the records update, see `postcommit/` |
+| G27 post-commit | `postcommit/` | first attempt at `ffcedb4` failed (CP16-1); at `2f81759`: suite `1 failed, 1911 passed, 1 skipped in 283.32s` (known failure only, strays removed by hand), guard 0 violations, seal `"problems": []`, single-branch release audit exit 0 "Needs action: no." |
 
 ## Numbers behind the policy (from committed files, not recomputed)
 

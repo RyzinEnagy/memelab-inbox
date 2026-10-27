@@ -24,7 +24,7 @@
   "promotion_path": "closed under the frozen ACCEPTANCE promotion table (needs a change control)"
  },
  "head_before": "576f99d",
- "head_after": "records commit (see HANDOFF)",
+ "head_after": "2f81759 (records) plus the post-commit record commit on top",
  "commits": {
   "pre_registration": "8af3cd4",
   "frozen_code": "d2038a7",
@@ -250,9 +250,10 @@
   },
   {
    "name": "G27 post-commit suite, guard, seal, release audit",
-   "command": "see postcommit/",
-   "result": "recorded in the follow-up commit",
-   "pass": null
+   "command": "python -m pytest tests -q; python -m memelab social guard; check_seal.py; release_audit.py --history (single-branch clone)",
+   "result": "at 2f81759: suite 1 failed, 1911 passed, 1 skipped (known failure only); guard 0 violations; seal problems []; release audit exit 0, Needs action: no (postcommit/)",
+   "pass": true,
+   "exit_code": 0
   },
   {
    "name": "content guard on every Phase 16 JSON (CP16-1)",
