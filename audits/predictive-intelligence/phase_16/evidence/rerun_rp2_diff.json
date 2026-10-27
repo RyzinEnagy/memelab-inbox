@@ -1,0 +1,90 @@
+{
+ "entry_keys_changed_summary": {
+  "code,facts,inference,retrain_policy,thresholds": 3,
+  "code,inference,retrain_policy,thresholds": 66
+ },
+ "facts_changed": [
+  {
+   "entry": "price_path_target_before_invalidation_24h:P07_B2",
+   "keys": [
+    "retrospective"
+   ],
+   "retrospective_after": {
+    "kind": "PRIMARY_HOLDOUT",
+    "p_holm": 1.0
+   },
+   "retrospective_before": {
+    "kind": "SECONDARY_HOLDOUT",
+    "p_holm": 1.0
+   }
+  },
+  {
+   "entry": "price_path_target_before_invalidation_6h:P07_B2",
+   "keys": [
+    "retrospective"
+   ],
+   "retrospective_after": {
+    "kind": "PRIMARY_HOLDOUT",
+    "p_holm": 1.0
+   },
+   "retrospective_before": {
+    "kind": "SECONDARY_HOLDOUT",
+    "p_holm": 1.0
+   }
+  },
+  {
+   "entry": "price_path_severe_drawdown_or_halt_24h:P07_B2",
+   "keys": [
+    "retrospective"
+   ],
+   "retrospective_after": {
+    "kind": "PRIMARY_HOLDOUT",
+    "p_holm": 0.10034498275086245
+   },
+   "retrospective_before": {
+    "kind": "SECONDARY_HOLDOUT",
+    "p_holm": 1.0
+   }
+  }
+ ],
+ "levels_statuses_publishable_inference_and_model_shas_equal": true,
+ "other_files": {
+  "PHASE_16_RESULTS.json": "BYTE_EQUAL",
+  "ensemble/ENSEMBLE_ABLATION.csv": "BYTE_EQUAL",
+  "ensemble/ENSEMBLE_ABLATION.json": "BYTE_EQUAL",
+  "ensemble/LATENCY.json": "DIFFERENT",
+  "ensemble/POST_OPENING_LOG.json": "BYTE_EQUAL",
+  "ensemble/STABILITY.json": "BYTE_EQUAL",
+  "evidence/COMPATIBILITY_P46.json": "BYTE_EQUAL",
+  "evidence/INFERENCE_CHECK.json": "DIFFERENT",
+  "evidence/ROLLBACK_TEST.json": "BYTE_EQUAL",
+  "evidence/determinism_repeat.json": "BYTE_EQUAL",
+  "evidence/entry/entry_suite_summary.txt": "BYTE_EQUAL",
+  "evidence/entry/seal_check.json": "BYTE_EQUAL",
+  "evidence/mutation_registry.json": "BYTE_EQUAL",
+  "evidence/mutation_registry_cp16_0.json": "BYTE_EQUAL",
+  "evidence/rerun_cp16_0_diff.json": "BYTE_EQUAL",
+  "evidence/rerun_cp16_1_diff.json": "BYTE_EQUAL",
+  "evidence/rp2_tests_on_first_pass_code.txt": "BYTE_EQUAL",
+  "evidence/run_log.json": "DIFFERENT",
+  "experiments/EXPERIMENT_REGISTRY.csv": "BYTE_EQUAL",
+  "experiments/LEDGER_TOTALS.json": "DIFFERENT",
+  "experiments/SEARCH_LEDGER.csv": "DIFFERENT",
+  "postcommit/pytest_summary.txt": "BYTE_EQUAL",
+  "postcommit/release_audit_history.summary.txt": "BYTE_EQUAL",
+  "postcommit/seal_check.json": "BYTE_EQUAL",
+  "postcommit/social_guard.out.txt": "BYTE_EQUAL",
+  "registry/REGISTRY_INDEX.json": "DIFFERENT",
+  "registry/REGISTRY_LOG.jsonl": "DIFFERENT",
+  "registry/TODAY_RECORDS.jsonl": "BYTE_EQUAL",
+  "registry/TODAY_RESULTS.jsonl": "BYTE_EQUAL",
+  "registry/TODAY_STATUS.json": "DIFFERENT"
+ },
+ "pins_and_ensemble_decisions_equal_modes": true,
+ "previous": "HEAD outputs b669615 (code d74a16f)",
+ "reason": "every entry gains the code key (CP16-2 item 5), the retrain policy gains three triggers and the thresholds three states, so every entry id changes; the three B2 entries' retrospective facts now come from the PRIMARY_HOLDOUT row (kind, and Holm p T2 0.1003 instead of 1.0; T1 and T1b 1.0 either way); the inference record states the 95 Solana decisions; the ledger gains 7 reproduction rows; pins gain facts_check; levels, statuses, publishable flags, inference hashes, model shas, modes and decisions are equal",
+ "repeat": "code b4bb03b (CP16-2, CP12-2)",
+ "second_repeat_byte_equal_except_run_log_and_latency": true,
+ "second_repeat_files": 83,
+ "today_documents_equal": true
+}

@@ -1,0 +1,40 @@
+{
+ "change_control": "CP12-2, PI-D-090",
+ "code_commit": "b4bb03b",
+ "note": "run_holdout.py card_paths keeps the card families of Phases 07 to 11; nothing else changed",
+ "open_reproduction": {
+  "CALIBRATION_BINS.csv": true,
+  "FULL_EXPERIMENT_LEDGER.csv": true,
+  "FULL_LEDGER_TOTALS.json": true,
+  "HOLDOUT_COUNTS.json": true,
+  "HOLDOUT_METRICS.csv": true,
+  "HOLDOUT_NEGATIVE_CONTROLS.json": true,
+  "HOLDOUT_SCORED.csv": true,
+  "PRIMARY_RESULTS.json": true,
+  "SENSITIVITY.csv": true,
+  "SHIFT_BREAKDOWN.csv": true
+ },
+ "open_reproduction_equal": 10,
+ "open_reproduction_window_utc": [
+  "2026-10-27T04:52:43Z",
+  "2026-10-27T05:06:55Z"
+ ],
+ "plan_predict_equal": 7,
+ "plan_predict_rerun": {
+  "CANDIDATES.json": true,
+  "HOLDOUT_DECISIONS.csv": true,
+  "HOLDOUT_PREDICTIONS.csv": true,
+  "LEDGER_TOTALS.json": true,
+  "PREOPEN_MANIFEST.json": true,
+  "PREOPEN_TRAPS.json": true,
+  "REPLAY_AUDIT.json": true
+ },
+ "reproduction_log": {
+  "failures": [],
+  "head": "b4bb03bbb4cdceb0f935696d0e48f7b9ae7a9094",
+  "label_file_sha256_read": "e695500d01014936cf4a4a46f9975dcf9a9ca1351fe067f28ec36117cb82682b",
+  "mode": "REPRODUCTION",
+  "purpose": "REPRODUCTION of the committed Phase 12 program on the same inputs (no new analysis)"
+ },
+ "run_logs_not_compared": true
+}

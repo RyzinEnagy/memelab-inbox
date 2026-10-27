@@ -190,7 +190,7 @@
    },
    "references": {
     "base_rate": {
-     "entry_id": "dc7958018c4906320e95798dbe41d28c27647a719a11986a0387ca0fcda1888c",
+     "entry_id": "f978a5319f0d5f07141740edaf2e0396ec4278290ec22048fe60e5ed0bf855d9",
      "level": "ABSTAIN",
      "model_id": "B0:price_path_target_before_invalidation_24h",
      "published": false,
@@ -208,7 +208,7 @@
      ]
     },
     "simple_model": {
-     "entry_id": "1a823a2de7366ddbf1bf298f498c37119a3315b4a2c20a8fe3f45325724c937f",
+     "entry_id": "333291f5e685db7db3d707752e4c1b35218262ee77df548b0e72e6250eda5ef1",
      "level": "ABSTAIN",
      "model_id": "B2:price_path_target_before_invalidation_24h",
      "published": false,
@@ -250,7 +250,7 @@
    },
    "references": {
     "base_rate": {
-     "entry_id": "4308b4301ca580287797a60209450ad764337a941cc6d6e81416b162699daf73",
+     "entry_id": "5378f638b370b5411082dee6ddf56b3d660dd6b6b6d9da3effa0b274e71e6805",
      "level": "ABSTAIN",
      "model_id": "B0:price_path_target_before_invalidation_6h",
      "published": false,
@@ -268,7 +268,7 @@
      ]
     },
     "simple_model": {
-     "entry_id": "59fe06ff8bfbe5b0897333c12ebcad7a13bbdc4d85b1f7dbbe712e56033ec590",
+     "entry_id": "fc83c5ffbb1282c8673f5f9638cfd0a4fdd5309502114238ad77cdbb03c38241",
      "level": "ABSTAIN",
      "model_id": "B2:price_path_target_before_invalidation_6h",
      "published": false,
@@ -310,7 +310,7 @@
    },
    "references": {
     "base_rate": {
-     "entry_id": "30ddd95b159b393b14b25521ce8c9306ee1534b229f9fc0bcf38484d2bba3f95",
+     "entry_id": "12b01de6d51bce08a9a966c20e8a1fc9f03d1a16bdca8fb51a658bac8c7fa0aa",
      "level": "ABSTAIN",
      "model_id": "B0:price_path_severe_drawdown_or_halt_24h",
      "published": false,
@@ -328,7 +328,7 @@
      ]
     },
     "simple_model": {
-     "entry_id": "e1dc8034580013a157b31e4828c35ac262fb958c086a9d145f270172a14d115a",
+     "entry_id": "95659b5df22bd0cff453c3e26407d6137e5fdfbc35630f5883b0b4c282ec1346",
      "level": "ABSTAIN",
      "model_id": "B2:price_path_severe_drawdown_or_halt_24h",
      "published": false,
