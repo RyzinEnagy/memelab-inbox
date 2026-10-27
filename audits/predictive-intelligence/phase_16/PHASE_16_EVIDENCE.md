@@ -161,4 +161,6 @@ Orchestrator decision (PI-D-091): no change to ACCEPTANCE; SHADOW is unreachable
 
 Recorded run repeated at `b4bb03b` (outputs `0e71f55`): what changed is in `evidence/rerun_rp2_diff.json` (every entry: the `code` key, the retrain policy and thresholds; the three B2 entries' retrospective kind and Holm p; pins gain `facts_check`; the ledger gains 7 reproduction rows). Levels, statuses, publishable flags, inference hashes, model shas, modes, ensemble decisions and today's documents are equal; a second repeat is byte-equal except the run log and latency.
 
+Post-commit at `1d76ce1`: suite `1 failed, 1925 passed, 1 skipped in 385.29s` (known failure only; strays removed by hand), guard 0 violations, seal check `"problems": []`, single-branch release audit exit 0 "Needs action: no." (`postcommit/rp2_*`).
+
 PHASE 16: PASS (TEST_ONLY part: the promotion branch on fixtures). STOP.

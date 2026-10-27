@@ -24,7 +24,7 @@
   "promotion_path": "closed under the frozen ACCEPTANCE promotion table; orchestrator decision PI-D-091: no change now, Elving decides, prospective holdout (Phase 19) is the honest route"
  },
  "head_before": "576f99d",
- "head_after": "2f81759 (records) plus the post-commit record commit on top",
+ "head_after": "1d76ce1 (repair pass 2 records) plus the post-commit record commit on top",
  "commits": {
   "pre_registration": "8af3cd4",
   "frozen_code": "d2038a7",
@@ -301,8 +301,9 @@
   {
    "name": "G27 post-commit suite, guard, seal, release audit",
    "command": "see postcommit/rp2_*",
-   "result": "recorded in the post-commit record commit",
-   "pass": null
+   "result": "at 1d76ce1: suite 1 failed, 1925 passed, 1 skipped in 385.29s (known failure only); guard 0 violations; seal problems []; single-branch release audit exit 0, Needs action: no (postcommit/rp2_*)",
+   "pass": true,
+   "exit_code": 0
   }
  ],
  "artifacts": [

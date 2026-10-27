@@ -1,0 +1,4 @@
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+1 failed, 1925 passed, 1 skipped, 1 warning in 385.29s (0:06:25)
+exit 1
+at 1d76ce1 (repair pass 2); strays data/reports/<stamp>_BRETT_0x532f.md, data/memelab.sqlite-shm and -wal removed by hand

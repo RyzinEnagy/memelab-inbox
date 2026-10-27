@@ -32,7 +32,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Phase 16 commits
 
-HEAD before `576f99d`; pre-registration `8af3cd4`; frozen code `d2038a7`; first recorded run `9eebb8d`; CP16-0 `8cd19bd`, repeat `72488dd`; records `ffcedb4`; CP16-1 `d74a16f`, repeat `b669615`; records `2f81759`; post-commit `35758c9` (pushed, reviewed by the skeptic). Repair pass 2: code `b4bb03b` (CP16-2, CP12-2), recorded run `0e71f55`, records and post-commit record on top (`phase_16/postcommit/rp2_*`). Local only; the orchestrator pushes.
+HEAD before `576f99d`; pre-registration `8af3cd4`; frozen code `d2038a7`; first recorded run `9eebb8d`; CP16-0 `8cd19bd`, repeat `72488dd`; records `ffcedb4`; CP16-1 `d74a16f`, repeat `b669615`; records `2f81759`; post-commit `35758c9` (pushed, reviewed by the skeptic). Repair pass 2: code `b4bb03b` (CP16-2, CP12-2), recorded run `0e71f55`, records `1d76ce1`; post-commit at `1d76ce1`: suite `1 failed, 1925 passed, 1 skipped` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no." (`phase_16/postcommit/rp2_*`); the post-commit record commit on top. Local only; the orchestrator pushes.
 
 ## Waiting on Elving
 

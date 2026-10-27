@@ -1,0 +1,6 @@
+ ],
+ "files_scanned": 2590,
+ "json_files": 800,
+ "sqlite_files": 1,
+ "violations": []
+}
