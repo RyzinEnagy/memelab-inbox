@@ -156,6 +156,14 @@ def _status_text(status: Any) -> tuple[str, str]:
     return I._ident(status), "UNKNOWN"
 
 
+def _code(x: Any) -> str:
+    """A lab code (fatal-flag name, backtest veto reason, depth state, error label) as a code: upper-case letters, digits and
+    underscore, at most 40 characters, never withheld (CP18-0, PI-D-099). Codes come from the lab's fixed vocabularies, not
+    from token text; the whole-report trading-word check still runs on them."""
+    c = re.sub(r"[^A-Z0-9_]", "", str(x if x is not None else "").upper())[:40]
+    return c or "UNKNOWN_CODE"
+
+
 def _plain(text: str) -> bool:
     low = text.lower()
     return I._plain_ok(text) and not any(re.search(r"(?<![a-z])" + re.escape(w) + r"(?![a-z])", low) for w in EXTRA_WORDS)
@@ -436,7 +444,7 @@ def build(state_dir: str | Path | None = None, *, config_path: str | Path | None
             view["not_attempted"].append({"event": r.get("event"), "chain": I._ident(r.get("chain")), "mint": I._mint_text(r.get("chain"), r.get("mint")),
                                           "capture_time_utc": r.get("capture_time_utc"), "request_record_id": r.get("record_id"),
                                           "covered_by_report": (r.get("chain"), r.get("mint")) in covered,
-                                          "errors": [I._ident(str(e).split(":")[0], 40) for e in r.get("errors") or []]})
+                                          "errors": [_code(str(e).split(":")[0]) for e in r.get("errors") or []]})
     finally:
         if lab is not None:
             lab.close()
@@ -491,7 +499,7 @@ def _opportunity(rv: dict) -> dict:
                       "capture_time_utc": req.get("capture_time_utc"), "observed_at_utc": stale.get("observed_at_utc"),
                       "age_at_capture_s": stale.get("age_s"), "input_state": stale.get("state"), "lab_state": lab["state"],
                       "lab_detail": lab.get("detail"), "token_age_s": age, "first_pool_at": _iso(first_pool) if first_pool else None},
-         "structural": {"score": mat.get("score"), "fatal_flags": [I._ident(f, 40) for f in mat.get("fatal") or []], "status": status,
+         "structural": {"score": mat.get("score"), "fatal_flags": [_code(f) for f in mat.get("fatal") or []], "status": status,
                         "status_bucket": status_bucket, "veto_state": sv.get("state")},
          "technical": ({"lifecycle": I._ident(row.get("lifecycle")), "structure": I._ident(row.get("structure"))}
                        if lab["state"] == "SNAPSHOT_VERIFIED" else None),
@@ -499,12 +507,12 @@ def _opportunity(rv: dict) -> dict:
          "targets": [], "not_attempted_targets": [{"target": p.get("target"), "status": p.get("status"), "reasons": p.get("reasons")}
                                                   for p in req.get("not_attempted_targets") or []],
          "execution": {"structural_veto": bool(sv.get("veto")), "veto_unknown": bool(ds.get("veto_unknown")),
-                       "fatal_flags": [I._ident(f, 40) for f in sv.get("flags") or []],
+                       "fatal_flags": [_code(f) for f in sv.get("flags") or []],
                        "backtest_veto": (ds.get("backtest_veto") or {}).get("veto"),
-                       "backtest_veto_reasons": [I._ident(x, 40) for x in (ds.get("backtest_veto") or {}).get("reasons") or []],
+                       "backtest_veto_reasons": [_code(x) for x in (ds.get("backtest_veto") or {}).get("reasons") or []],
                        "veto": bool(ds.get("veto")) or bool(ds.get("veto_unknown")),
                        "size_basis": (ds.get("size_cap") or {}).get("basis"), "size_cap_usd": (ds.get("size_cap") or {}).get("size_cap_usd"),
-                       "depth_state": I._ident(ds.get("depth_state"), 40), "position_usd_from_forecast": ds.get("position_usd_from_forecast"),
+                       "depth_state": _code(ds.get("depth_state")), "position_usd_from_forecast": ds.get("position_usd_from_forecast"),
                        "backtest_result": bt.get("result"), "backtest_installed": bt.get("installed_status")},
          "eligibility": (req.get("eligibility") or {}).get("state"),
          "ids": {"request_record_id": req.get("record_id"), "pass_id": req.get("pass_id"), "request_seq": req.get("seq"),
@@ -687,7 +695,7 @@ def _opportunity_lines(o: dict) -> list[str]:
         else:
             d["unknowns"].append("token age (no vendor first pool time in the verified token row)")
     else:
-        d["unknowns"].append(f"token age, symbol and lab labels: SNAPSHOT_NOT_VERIFIED ({I._ident(sn.get('lab_detail') or 'no detail', 60)})")
+        d["unknowns"].append(f"token age, symbol and lab labels: SNAPSHOT_NOT_VERIFIED ({sn.get('lab_detail') or 'no detail'})")
     if sn["input_state"] == I.INPUT_STALE:
         d["unknowns"].append("current market state: the inputs were stale at the capture (INPUT_STALE), so every target abstains SOURCE_STALE")
     L += ["### Identity and snapshot", "", _ev(d).rstrip(), ""]
@@ -1153,7 +1161,7 @@ def _new_request_views(state_dir: Any, *, config_path: Any, registry_dir: Any, r
         if lab is not None:
             lab.close()
     errs = [{"record_id": r.get("record_id"), "pass_id": r.get("pass_id"), "capture_time_utc": r.get("capture_time_utc"),
-             "errors": [I._ident(str(x).split(":")[0], 40) for x in r.get("errors") or []]}
+             "errors": [_code(str(x).split(":")[0]) for x in r.get("errors") or []]}
             for r in st["lines"]["requests"] if r.get("event") == "ERROR" and pass_seq.get(r["pass_id"], -1) >= first_pass_seq]
     return out, errs
 

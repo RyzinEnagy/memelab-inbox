@@ -960,3 +960,27 @@ def test_g7_a_state_problem_that_names_no_document_refuses_every_document(lab):
     v, text = report(d)
     assert v["state"] == "STATE_CHECK_FAILED" and v["counts"]["probabilities_shown"] == 0
     assert all(t["status"] == "DOCUMENT_REFUSED" for o in v["opportunities"] for t in o["targets"])
+
+
+# ---------------------------------------------------------------- CP18-0 (PI-D-099): lab codes as codes, own details readable
+def test_cp18_0_a_fatal_flag_whose_words_include_a_trade_word_is_shown_by_its_code_never_withheld(lab):
+    rs = [TI.persist(TI.result("ABC", M1, T_TODAY - 600, fatal=("NO_SELL_ROUTE", "CANNOT_EXIT_5K"), status="REJECTED", score=0), lab)]
+    _pass(rs, T_TODAY, lab)
+    d = {"state_dir": lab / "state", "config": TI.cfg(lab), "lab_db": db.DB_PATH, "registry_dir": None, "extra": None, "now": T_TODAY + 60}
+    v, text = report(d)
+    o = v["opportunities"][0]
+    assert sorted(o["execution"]["fatal_flags"]) == ["CANNOT_EXIT_5K", "NO_SELL_ROUTE"] and "withheld" not in json.dumps(o["execution"])
+    assert "NO_SELL_ROUTE" in text.split("## At a glance")[1].split("## System status")[0]
+    assert "fatal-flag veto: CANNOT_EXIT_5K, NO_SELL_ROUTE; no forecast clears it" in text or \
+           "fatal-flag veto: NO_SELL_ROUTE, CANNOT_EXIT_5K; no forecast clears it" in text
+    a = _arun(d, lab, d["now"], fixture_run=False)
+    txt = next((lab / "al" / "outbox" / "preview").glob("alert_*.txt")).read_text()
+    assert [x["policy"] for x in a["evaluation"]["alerts"]] == ["risk_override"] and "NO_SELL_ROUTE" in txt and "withheld" not in txt
+
+
+def test_cp18_0_codes_keep_only_code_characters_and_own_details_stay_readable(lab):
+    assert RP._code("NO_SELL_ROUTE") == "NO_SELL_ROUTE" and RP._code("a|b\n## x") == "ABX" and RP._code(None) == "UNKNOWN_CODE"
+    assert len(RP._code("X" * 99)) == 40
+    d = world_abstain(lab)
+    _, text = report(d, lab_db=None)
+    assert "SNAPSHOT_NOT_VERIFIED (no lab database given)" in text

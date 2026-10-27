@@ -1,0 +1,10 @@
+{
+ "failing_on_old_code": [
+  "test_cp18_0_a_fatal_flag_whose_words_include_a_trade_word_is_shown_by_its_code_never_withheld",
+  "test_cp18_0_codes_keep_only_code_characters_and_own_details_stay_readable"
+ ],
+ "old_code": "96c4445",
+ "on_new_code": "2 passed, 61 deselected in 2.06s",
+ "on_old_code": "2 failed, 61 deselected in 2.09s",
+ "tests": "-k cp18_0"
+}
