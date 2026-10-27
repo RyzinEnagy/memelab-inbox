@@ -21,13 +21,13 @@ Dry run: previews only. Nothing was sent.
 ----- alert_000001.txt
 memelab predictive research alert, WARNING: risk override
 symbol not verified on bsc (0x389cb330e4eaa0cce969759f01a416448fed6666)
-Why: Risk flag on this snapshot: fatal flags TRANSFER_FEE_GT_5PCT, withheld. No forecast clears it; the lab's fatal-flag override applies unchanged.
+Why: Risk flag on this snapshot: fatal flags TRANSFER_FEE_GT_5PCT, NO_SELL_ROUTE. No forecast clears it; the lab's fatal-flag override applies unchanged.
 Evidence bucket: FACT
 Forecasts on this snapshot: T1 24 h ABSTAIN; T1b 6 h ABSTAIN; T2 24 h ABSTAIN
 Freshness: inputs observed 2026-10-26 06:09 EDT (2026-10-26 10:09 UTC), captured 2026-10-26 06:23 EDT (2026-10-26 10:23 UTC)
 Contract: bsc:0x389cb330e4eaa0cce969759f01a416448fed6666
-Sources: request a9980357187c, pass 9eb1f4ee36d1, snapshot 7c33bbc1b861a53f, records 5af891ad2ab5, ad11332004ef, 7ca6cf6e9919
-Alert 1, dedupe bee36d8ccdfa, policy predictive-alerts-policy-1 d2629eb52b37, rules alerts-rules-1
+Sources: request 49514096805e, pass 9eb1f4ee36d1, snapshot 7c33bbc1b861a53f, records 5af891ad2ab5, ad11332004ef, 7ca6cf6e9919
+Alert 1, dedupe a0cc13bfc0b0, policy predictive-alerts-policy-1 d2629eb52b37, rules alerts-rules-1
 Research only. Not a trade instruction, not a score, not a watchlist change.
 ----- alert_000002.txt
 memelab predictive research alert, WARNING: risk override
@@ -37,7 +37,7 @@ Evidence bucket: FACT
 Forecasts on this snapshot: T1 24 h ABSTAIN; T1b 6 h ABSTAIN; T2 24 h ABSTAIN
 Freshness: inputs observed 2026-10-26 06:06 EDT (2026-10-26 10:06 UTC), captured 2026-10-26 06:23 EDT (2026-10-26 10:23 UTC)
 Contract: bsc:0x5f6a1ce1733fc4834a526798c0e8cf85137effff
-Sources: request 5eb74744507d, pass 9eb1f4ee36d1, snapshot 0c50c89141f6c78b, records 26e6b48500ac, 4cea15121e3d, 359ee598f829
+Sources: request 0127d6b3f190, pass 9eb1f4ee36d1, snapshot 0c50c89141f6c78b, records 26e6b48500ac, 4cea15121e3d, 359ee598f829
 Alert 2, dedupe 8c65d4baffd1, policy predictive-alerts-policy-1 d2629eb52b37, rules alerts-rules-1
 Research only. Not a trade instruction, not a score, not a watchlist change.
 ----- alert_000003.txt
@@ -48,7 +48,7 @@ Evidence bucket: FACT
 Forecasts on this snapshot: T1 24 h ABSTAIN; T1b 6 h ABSTAIN; T2 24 h ABSTAIN
 Freshness: inputs observed 2026-10-26 06:10 EDT (2026-10-26 10:10 UTC), captured 2026-10-26 06:23 EDT (2026-10-26 10:23 UTC)
 Contract: ethereum:0x4e67db19044549ff420860834c91b45bad298722
-Sources: request 8f3d8dadc8b8, pass 9eb1f4ee36d1, snapshot 9c39d49a0d6b5bd0, records c00f044fdea5, ff517730168f, ee1cbde30882
+Sources: request 29aab811f921, pass 9eb1f4ee36d1, snapshot 9c39d49a0d6b5bd0, records c00f044fdea5, ff517730168f, ee1cbde30882
 Alert 3, dedupe aaa6814bdb13, policy predictive-alerts-policy-1 d2629eb52b37, rules alerts-rules-1
 Research only. Not a trade instruction, not a score, not a watchlist change.
 ----- alert_000004.txt
@@ -59,7 +59,7 @@ Evidence bucket: FACT
 Forecasts on this snapshot: T1 24 h ABSTAIN; T1b 6 h ABSTAIN; T2 24 h ABSTAIN
 Freshness: inputs observed 2026-10-26 05:54 EDT (2026-10-26 09:54 UTC), captured 2026-10-26 06:23 EDT (2026-10-26 10:23 UTC)
 Contract: solana:5Aa378KvCX3bz2dJ3YncoXijBBVvgvipQAXHWaBNNHRw
-Sources: request 5221066f05d2, pass 9eb1f4ee36d1, snapshot c197f16633f7fd59, records 2bc1f3d79393, c6551b96effb, 7532543f43be
+Sources: request d9b18fcc0ab4, pass 9eb1f4ee36d1, snapshot c197f16633f7fd59, records 2bc1f3d79393, c6551b96effb, 7532543f43be
 Alert 4, dedupe 7cab6afd6adf, policy predictive-alerts-policy-1 d2629eb52b37, rules alerts-rules-1
 Research only. Not a trade instruction, not a score, not a watchlist change.
 ----- alert_000005.txt
@@ -70,7 +70,7 @@ Evidence bucket: FACT
 Forecasts on this snapshot: T1 24 h ABSTAIN; T1b 6 h ABSTAIN; T2 24 h ABSTAIN
 Freshness: inputs observed 2026-10-26 05:57 EDT (2026-10-26 09:57 UTC), captured 2026-10-26 06:23 EDT (2026-10-26 10:23 UTC)
 Contract: solana:8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS
-Sources: request 00d13d603716, pass 9eb1f4ee36d1, snapshot eed18fb4e39773c1, records 079a642b30e3, 820e70e847f9, 592774327261
+Sources: request f60cc2a980c6, pass 9eb1f4ee36d1, snapshot eed18fb4e39773c1, records 079a642b30e3, 820e70e847f9, 592774327261
 Alert 5, dedupe a60818b7f226, policy predictive-alerts-policy-1 d2629eb52b37, rules alerts-rules-1
 Research only. Not a trade instruction, not a score, not a watchlist change.
 ----- alert_000006.txt
@@ -81,7 +81,7 @@ Evidence bucket: FACT
 Forecasts on this snapshot: T1 24 h ABSTAIN; T1b 6 h ABSTAIN; T2 24 h ABSTAIN
 Freshness: inputs observed 2026-10-26 05:57 EDT (2026-10-26 09:57 UTC), captured 2026-10-26 06:23 EDT (2026-10-26 10:23 UTC)
 Contract: solana:8idEA8QovsZJka6d9Z35fejE5MbL37BJxvw5k5r6pump
-Sources: request 830706706920, pass 9eb1f4ee36d1, snapshot b9cc468eba30df0d, records 2dd7d9c1f7e1, 1ebc8ffd0b4c, 49a43d835b45
+Sources: request 203b66f65930, pass 9eb1f4ee36d1, snapshot b9cc468eba30df0d, records 2dd7d9c1f7e1, 1ebc8ffd0b4c, 49a43d835b45
 Alert 6, dedupe 58d4ff61b8cd, policy predictive-alerts-policy-1 d2629eb52b37, rules alerts-rules-1
 Research only. Not a trade instruction, not a score, not a watchlist change.
 ----- alert_000007.txt
@@ -92,7 +92,7 @@ Evidence bucket: FACT
 Forecasts on this snapshot: T1 24 h ABSTAIN; T1b 6 h ABSTAIN; T2 24 h ABSTAIN
 Freshness: inputs observed 2026-10-26 05:54 EDT (2026-10-26 09:54 UTC), captured 2026-10-26 06:23 EDT (2026-10-26 10:23 UTC)
 Contract: solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147
-Sources: request ef1b40b5dcbf, pass 9eb1f4ee36d1, snapshot d940521b8b901e54, records 385fa7c39988, 927bd2eda0b2, b7feb1bece8a
+Sources: request 6c89fb8a5a82, pass 9eb1f4ee36d1, snapshot d940521b8b901e54, records 385fa7c39988, 927bd2eda0b2, b7feb1bece8a
 Alert 7, dedupe 782c26df15d6, policy predictive-alerts-policy-1 d2629eb52b37, rules alerts-rules-1
 Research only. Not a trade instruction, not a score, not a watchlist change.
 ----- alert_000008.txt
@@ -103,6 +103,6 @@ Evidence bucket: FACT
 Forecasts on this snapshot: T1 24 h ABSTAIN; T1b 6 h ABSTAIN; T2 24 h ABSTAIN
 Freshness: inputs observed 2026-10-26 05:54 EDT (2026-10-26 09:54 UTC), captured 2026-10-26 06:23 EDT (2026-10-26 10:23 UTC)
 Contract: solana:CokrQHPjaWjyXyU15LiN9rb62tgBuFiU78KD7fKiZtu1
-Sources: request 18ca61315e30, pass 9eb1f4ee36d1, snapshot 8429d574def681cb, records 865360a9e0bc, 492022494eb1, 3907dcf42c25
+Sources: request ab9c1ddd11cf, pass 9eb1f4ee36d1, snapshot 8429d574def681cb, records 865360a9e0bc, 492022494eb1, 3907dcf42c25
 Alert 8, dedupe d0637e468ef8, policy predictive-alerts-policy-1 d2629eb52b37, rules alerts-rules-1
 Research only. Not a trade instruction, not a score, not a watchlist change.

@@ -97,7 +97,7 @@
    "TARGET_NOT_FEASIBLE": 21,
    "UNCALIBRATED": 141
   },
-  "sha256": "ce68cad62d6ee0f57698f71bca0338ea1037adfd4442287651ec7e512e34e2de",
+  "sha256": "241150179a671abb131ae65db312d19d6d366350ee144def796c0f36d17bf617",
   "simulation_lines": 49,
   "state": "OK",
   "statuses": {
@@ -110,8 +110,8 @@
    "CLUSTER_OWNERSHIP_GT_25PCT",
    "INSIDER_DISTRIBUTION",
    "LARGEST_HOLDER_GT_15PCT",
-   "TRANSFER_FEE_GT_5PCT",
-   "withheld"
+   "NO_SELL_ROUTE",
+   "TRANSFER_FEE_GT_5PCT"
   ]
  },
  "scout_alerts": {
@@ -121,7 +121,7 @@
   "deduped": 0,
   "ledger": {},
   "new": 0,
-  "now_utc": "2026-10-27T10:28:45Z",
+  "now_utc": "2026-10-27T10:40:55Z",
   "outcome": "evaluated",
   "previews": 0,
   "remote_deliveries_succeeded": 0,
@@ -165,7 +165,7 @@
    "TARGET_NOT_FEASIBLE": 6,
    "UNCALIBRATED": 24
   },
-  "sha256": "1d6702913d90e848412b34f5c8e2705d0d670f019dde8c9d45f05b7ce1f1528e",
+  "sha256": "01aeb647e4ebfdd8f4bd0cbfa6f99061786c9308ee6221280a76c3fe2ed0daf7",
   "simulation_lines": 10,
   "state": "OK",
   "statuses": {
@@ -181,14 +181,14 @@
  "socket_events": 0,
  "state_files_sha256": {
   "replay/DOCUMENTS.jsonl": "9b839e76b7a334847911b6d5ad1f81044e17da47a09354dd3efd70fdbc0c77d0",
-  "replay/PASSES.jsonl": "614c10cb0257190f03d4ac1394bfbbd939616caf87c26c16dbc168e0aa26b0b1",
+  "replay/PASSES.jsonl": "2b0cec04927e22a9fc6071be19cc3f3fb0315fa1756933bb8abae8d5761f32d9",
   "replay/RECORDS.jsonl": "a8114c19f9ac506b0a809a6f9e1bf1b70ada6e049c693debc1d102294bb5accc",
   "replay/REFERENCE_RECORDS.jsonl": null,
-  "replay/REQUESTS.jsonl": "a239ab062ee699320ad712f79d58ed3ff54cc97f611301d8181a26e41a99166d",
-  "smoke/DOCUMENTS.jsonl": "15d82d5a2c79b2e567ac0eab99ffe6b0b8c55663db56251cf970669cf687e20b",
-  "smoke/PASSES.jsonl": "90be66bc3ab87ca091c66475ecc3a9c4604feca414b4ffaabf51dc9635cccec5",
-  "smoke/RECORDS.jsonl": "3035ad300f72791d93d7f3ea7a5a9e4835d26bbf333729c7d60a0a00b919d026",
+  "replay/REQUESTS.jsonl": "f05814f088a8ad4bfab46ba90459b38d755522f4aef5841a872139ae9b52b29a",
+  "smoke/DOCUMENTS.jsonl": "387c4f67b8966b7a7e856f84dca34d0d9304e315e2a1d66cb56b3b1ee455ba8d",
+  "smoke/PASSES.jsonl": "5ff37fac7abd08f31773116a9e3fa85f70573b2c91a7f5c4868efc08d0d2e8f9",
+  "smoke/RECORDS.jsonl": "6ec6246e82302292addcc213c92193dafec37587b1fa418da225f2a6aaf7f017",
   "smoke/REFERENCE_RECORDS.jsonl": null,
-  "smoke/REQUESTS.jsonl": "33799833b12cc1f2d64151e82de6d4617d41338ec91e0654caabbc8955ef11ab"
+  "smoke/REQUESTS.jsonl": "708ed5b5ea23c51db01cebae2433fec128ee652c505de848685adc59bbe6bf72"
  }
 }

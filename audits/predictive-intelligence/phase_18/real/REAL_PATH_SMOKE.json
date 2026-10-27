@@ -49,35 +49,35 @@
   "base_off": {
    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
-   "theses": "8defe7c59435d7b90ff5950af2641d63b80c2446ca01317740e85a25973034d5",
+   "theses": "763e26d9be6dd8afd0f48e5f64e3e0439e454cdc4aea26a971a0ee74ba53c8bb",
    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
   },
   "frozen_off": {
    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
-   "theses": "8defe7c59435d7b90ff5950af2641d63b80c2446ca01317740e85a25973034d5",
+   "theses": "763e26d9be6dd8afd0f48e5f64e3e0439e454cdc4aea26a971a0ee74ba53c8bb",
    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
   },
   "frozen_on": {
    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
-   "theses": "8defe7c59435d7b90ff5950af2641d63b80c2446ca01317740e85a25973034d5",
+   "theses": "763e26d9be6dd8afd0f48e5f64e3e0439e454cdc4aea26a971a0ee74ba53c8bb",
    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
   },
   "rerun": {
    "entries": "017e0845bf2e9751c932188ac79a36986a4da36e14c20013c4dff4ce35a5328a",
    "rejections": "59487067d9d042eabc0dcfc5257c317a03d0b7f5f5f7953ba1d22c6cd6d18465",
-   "theses": "dc7d9baf76bf435e36204e611cac742482142165e59f27fced4a5b6177291c4d",
+   "theses": "3e22ec15111aad02da6fbdc3e884ddc548d3cc9c670ceaba2d863a87add5827f",
    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
   },
   "retry": {
    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
-   "theses": "8defe7c59435d7b90ff5950af2641d63b80c2446ca01317740e85a25973034d5",
+   "theses": "763e26d9be6dd8afd0f48e5f64e3e0439e454cdc4aea26a971a0ee74ba53c8bb",
    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
   }
@@ -99,7 +99,7 @@
  },
  "section_abstain_lines": 24,
  "section_forecast_lines": 0,
- "section_sha256": "2a319486936317a9a97d43b3d1578e329d73c30fa9ceafbdfc2b580941297cf8",
+ "section_sha256": "a33f043da64410d1ecdbc260678e28071eabc31c06538a290daf19869e05115e",
  "states": {
   "state": {
    "abstained": 24,
@@ -115,8 +115,8 @@
     "DUPLICATE": 16
    },
    "events": 24,
-   "latency_ms_max": 7.784,
-   "latency_ms_p50": 0.751,
+   "latency_ms_max": 8.264,
+   "latency_ms_p50": 0.714,
    "models_in_use": [
     "not_selected"
    ],
@@ -146,8 +146,8 @@
     "DISCOVERY": 1
    },
    "events": 1,
-   "latency_ms_max": 5.736,
-   "latency_ms_p50": 5.736,
+   "latency_ms_max": 3.737,
+   "latency_ms_p50": 3.737,
    "models_in_use": [
     "not_selected"
    ],
@@ -176,8 +176,8 @@
     "DISCOVERY": 8
    },
    "events": 8,
-   "latency_ms_max": 16.914,
-   "latency_ms_p50": 16.178,
+   "latency_ms_max": 20.036,
+   "latency_ms_p50": 11.936,
    "models_in_use": [
     "not_selected"
    ],
@@ -208,8 +208,8 @@
     "SUPERSEDED_IN_PASS": 4
    },
    "events": 12,
-   "latency_ms_max": 3.379,
-   "latency_ms_p50": 2.884,
+   "latency_ms_max": 3.821,
+   "latency_ms_p50": 3.11,
    "models_in_use": [
     "not_selected"
    ],
