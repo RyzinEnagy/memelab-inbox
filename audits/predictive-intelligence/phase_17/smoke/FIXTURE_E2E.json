@@ -44,8 +44,8 @@
    "DISCOVERY": 2
   },
   "events": 2,
-  "latency_ms_max": 19.668,
-  "latency_ms_p50": 14.889,
+  "latency_ms_max": 18.591,
+  "latency_ms_p50": 17.808,
   "models_in_use": [
    "B2:price_path_target_before_invalidation_24h",
    "not_selected"

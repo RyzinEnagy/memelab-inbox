@@ -7,23 +7,24 @@
     "first attempt for this chain and mint"
    ],
    "decision_time_basis": "CAPTURE_TIME",
-   "decision_time_utc": "2026-10-27T06:56:53Z",
+   "decision_time_utc": "2026-10-27T08:44:59Z",
    "event": "DISCOVERY",
    "example": "scout ON, PAID",
    "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
    "record_ids_in_section": true,
-   "request_record_id": "e3a43bf7c7e4d01e9758373c5fd822af8f7af0df31872d9800e1f17b2f07395e",
+   "request_record_id": "731fa2dea1b6b9bd890a0ea5d5e8f987f91f17e4dcb7f9ba9e05acc1107ab1e7",
    "request_seq": 0,
+   "row_sha256_recomputed": true,
    "size_basis": "EXECUTION_DATA_MISSING",
-   "snapshot_hash": "ccfbeb99f52dcfdaf67f03dc5849b1f033c81e1b8d9ce7d0264af475bdf9a7fd",
-   "snapshot_hash_equals_row_sha256": true,
+   "snapshot_hash": "744ef961b24239b9b127ad451032f5dfed78bdffa76a933cf4e2fd970f59e481",
+   "snapshot_hash_recomputed_without_report_path": true,
    "source": "python -m memelab scout (sandbox, flag on)",
    "staleness": "INPUT_STALE",
    "targets": [
     {
-     "abstention_record_id": "54f30b627571c5f1fddccf6605f5dc1d3ab50f27c1528b06d8d7d0291634496c",
+     "abstention_record_id": "19005b66614187ccc5635875623bbc6037230852eccf6fb0b3ef75e8805b2b6a",
      "document_checks": [],
-     "forecast_id": "fc_14124e16d781f124db5201e8b7e80263",
+     "forecast_id": "fc_88a159bbca5022c5a4cce38e1f0b1e3e",
      "model_id": "not_selected",
      "pin_reasons": [
       "NO_ENTRY_AT_SHADOW_OR_ABOVE",
@@ -43,9 +44,9 @@
      "target": "price_path_target_before_invalidation_24h"
     },
     {
-     "abstention_record_id": "69051dcb5eade785bda937df1d4b7b5fe265e7a1b731f36de324b7f612afcec7",
+     "abstention_record_id": "fcf000bc5a6583a7e25815af9b6f9b6a773ef97f9f01dde58f85dbcf32ad0f68",
      "document_checks": [],
-     "forecast_id": "fc_6a4014a4ad36d830c1a664fc868104d3",
+     "forecast_id": "fc_056d079872cc2cb85d0811785767c6c0",
      "model_id": "not_selected",
      "pin_reasons": [
       "NO_ENTRY_AT_SHADOW_OR_ABOVE",
@@ -65,9 +66,9 @@
      "target": "price_path_target_before_invalidation_6h"
     },
     {
-     "abstention_record_id": "db6e003f196537b411c694eb844b2a8acd8776f038e14cc8ff1cef5a63e83e9a",
+     "abstention_record_id": "176304691b82b764bc21da7897a41b78e83d7a9400326246c8312df1e3d19d8d",
      "document_checks": [],
-     "forecast_id": "fc_c76a4e6013000cf23aedfd73d22c3203",
+     "forecast_id": "fc_c0a2cacb1684a9071f3b3e5a95697517",
      "model_id": "not_selected",
      "pin_reasons": [
       "NO_ENTRY_AT_SHADOW_OR_ABOVE",
@@ -89,7 +90,7 @@
    ],
    "thesis_row": {
     "created_at_utc": "2026-10-07T00:16:35Z",
-    "row_sha256_recomputed_from_the_lab_database": "ccfbeb99f52dcfdaf67f03dc5849b1f033c81e1b8d9ce7d0264af475bdf9a7fd",
+    "row_sha256_recomputed_from_the_lab_database": "27e38c74f7985467ffb04b97c69ed1e79f7a797536b718d4a242d3883699e731",
     "score": 66,
     "status": "SETUP DEVELOPING"
    },
@@ -109,23 +110,24 @@
     "first attempt for this chain and mint"
    ],
    "decision_time_basis": "CAPTURE_TIME",
-   "decision_time_utc": "2026-10-27T06:56:53Z",
+   "decision_time_utc": "2026-10-27T08:44:59Z",
    "event": "DISCOVERY",
    "example": "scout ON, GOMO",
    "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
    "record_ids_in_section": true,
-   "request_record_id": "51c3c210bc20802f30551a2e9963812de020a95a72391951fdb32c87e75ee169",
+   "request_record_id": "2582436ae1c7dd2925295b619bfcd6f75ef2d58271c87d777f8e0c6f2f8080e0",
    "request_seq": 3,
+   "row_sha256_recomputed": true,
    "size_basis": "EXECUTION_DATA_MISSING",
-   "snapshot_hash": "dc4f43f5bc49e6d2ebde37efa81d98a5f0b608f1560aac7aa6c82c8812139dab",
-   "snapshot_hash_equals_row_sha256": true,
+   "snapshot_hash": "599dbfcdf78eba2e5226fb7a820efe8e3f08d3343205848b68f7ee48f84c5b15",
+   "snapshot_hash_recomputed_without_report_path": true,
    "source": "python -m memelab scout (sandbox, flag on)",
    "staleness": "INPUT_STALE",
    "targets": [
     {
-     "abstention_record_id": "d73cb0efd2c3422f3320ff6eb832e05ce695e42c08af5e1d25725cc8eefcc855",
+     "abstention_record_id": "ee1abea4770ea7ce524c20b4e7320dc184372f4104ccce5c843e9c2ecff19afb",
      "document_checks": [],
-     "forecast_id": "fc_a60358949b7a6e5237582981bec55118",
+     "forecast_id": "fc_662a6b96fbb373e06e52aafcd6f4f1ee",
      "model_id": "not_selected",
      "pin_reasons": [
       "NO_ENTRY_AT_SHADOW_OR_ABOVE",
@@ -145,9 +147,9 @@
      "target": "price_path_target_before_invalidation_24h"
     },
     {
-     "abstention_record_id": "b436154958fa4cc59d9c0b1518d127e02ed1796ecc98fd27ebf17e5630e23493",
+     "abstention_record_id": "2ef507c103bfe4444430cd200a9e7bb6fad02a2008ff000128b541be1f18924e",
      "document_checks": [],
-     "forecast_id": "fc_7d59395457c80f8004b3d52e7fff2d61",
+     "forecast_id": "fc_6282902f34d915a8a8206b7631d395c4",
      "model_id": "not_selected",
      "pin_reasons": [
       "NO_ENTRY_AT_SHADOW_OR_ABOVE",
@@ -167,9 +169,9 @@
      "target": "price_path_target_before_invalidation_6h"
     },
     {
-     "abstention_record_id": "8b76d11354bb29d8be09035886100233c03572f4d103c92453986bbc67079440",
+     "abstention_record_id": "bb83dad2aa8e2b4528dd71e427fdfc06ac52e758e4849659a6b09dad92d8da6c",
      "document_checks": [],
-     "forecast_id": "fc_d2dcb391e3dab8529d89aa68abd650e9",
+     "forecast_id": "fc_bab97c34063a433bdeccf952ad6d8b5b",
      "model_id": "not_selected",
      "pin_reasons": [
       "NO_ENTRY_AT_SHADOW_OR_ABOVE",
@@ -191,7 +193,7 @@
    ],
    "thesis_row": {
     "created_at_utc": "2026-10-07T00:16:35Z",
-    "row_sha256_recomputed_from_the_lab_database": "dc4f43f5bc49e6d2ebde37efa81d98a5f0b608f1560aac7aa6c82c8812139dab",
+    "row_sha256_recomputed_from_the_lab_database": "e776772eb2cb67dde4a63dfeaacc82d3c2ff60556116e8b0c1e2dc7f4c3852c7",
     "score": 62,
     "status": "REJECTED"
    },
@@ -230,17 +232,17 @@
      "event": "DISCOVERY",
      "export_commit": "efdaee91ebbeabf14268d858fa033d36ebd4ca06",
      "mint": "0x3d4f0513e8a29669b960f9dbca61861548a9a760",
-     "request_record_id": "02003ec196c00e785289193677d9b9274f55174498c900db9b6d3b01a13bcac2",
+     "request_record_id": "080c042835ca72082c5589f60e30676e803444d6619d21d3270243a928b9e0bf",
      "request_seq": 1,
      "size_basis": "EXECUTION_DATA_MISSING",
-     "snapshot_hash": "a03034076daef6c5f9d4d460314d50cbdecda43b7043f0d733052c54f7a15263",
+     "snapshot_hash": "253190a40be4c6236fba6e66e9db0aaf3fa1a82ed18b7fbefbf49096ff99153f",
      "snapshot_row_found_in_that_export": true,
      "staleness": "FRESH",
      "targets": [
       {
-       "abstention_record_id": "fb890424ea30961f97c67f067aa3694d9d39874210c2f615f3914c77ec175b11",
+       "abstention_record_id": "d9d2b8746acb2708ce41e10b77e2addb7841082e0820a5f89a0579ad72d31762",
        "document_checks": [],
-       "forecast_id": "fc_d225f6b2776a282ebb7976b7528a4d4d",
+       "forecast_id": "fc_9dec0dd9f2528a9e7bddd58d79bae4ea",
        "model_id": "not_selected",
        "pin_reasons": [
         "NO_PIN"
@@ -258,9 +260,9 @@
        "target": "price_path_target_before_invalidation_24h"
       },
       {
-       "abstention_record_id": "3f6714ac8ac1cb281b43685d273f30f878e31ab1f6299a6505c2a3d38b558eec",
+       "abstention_record_id": "5e132046b4fbdf23b262bda745b7208150673fd209d6de6d0e63c87f691f0577",
        "document_checks": [],
-       "forecast_id": "fc_00b2eb93a35db255d1575b7faad7aba2",
+       "forecast_id": "fc_84f6a8f2cfdf6a09e18f9fc871c70693",
        "model_id": "not_selected",
        "pin_reasons": [
         "NO_PIN"
@@ -278,9 +280,9 @@
        "target": "price_path_target_before_invalidation_6h"
       },
       {
-       "abstention_record_id": "b1809d781d4c98a88bc5dbab483079bf40eaa24acc4e27384e38cefdd3a94556",
+       "abstention_record_id": "e80a458034950780323796294a9dcc96701c4ec7ec9279e7015c9fb834c5083b",
        "document_checks": [],
-       "forecast_id": "fc_9862a775e78fcd882dbc53e3215af751",
+       "forecast_id": "fc_7d436b2c5b6c82c7160c69530965d956",
        "model_id": "not_selected",
        "pin_reasons": [
         "NO_PIN"
@@ -316,17 +318,17 @@
      "event": "MATERIAL_CHANGE",
      "export_commit": "e245d91cc5f56060ba8e1aa7182c846c77d1526c",
      "mint": "0x3d4f0513e8a29669b960f9dbca61861548a9a760",
-     "request_record_id": "5098c3d62a53311284135d73e1907f8f326c9351c03bb71162848c3cd6bfb34a",
+     "request_record_id": "70909739d241d7839642e06de6d7bce5a578b079ca1be0174607b38fbbd4cdea",
      "request_seq": 18,
      "size_basis": "EXECUTION_DATA_MISSING",
-     "snapshot_hash": "a62248cadc32a8e8f182efc747d05546cc559c90b90a2154ecce0535153c1591",
+     "snapshot_hash": "54ce3e848656f48b04e676415da6d8fa695dbd507d255fc199ead4a15f03d8b8",
      "snapshot_row_found_in_that_export": true,
      "staleness": "FRESH",
      "targets": [
       {
-       "abstention_record_id": "42374f92b1c7cbe723fb59c03ddd3ee04ff3e6e06026609ecc1a6e7ec3143eac",
+       "abstention_record_id": "e8c1e3ec7647090a2117c5d60055cd500cfa2a5a3b3f24e38c5900bc8597c3ea",
        "document_checks": [],
-       "forecast_id": "fc_9151fdbfab3a32ce5bea506eafb93f14",
+       "forecast_id": "fc_c37f113c3ff305c9d174cc72b9bea22f",
        "model_id": "not_selected",
        "pin_reasons": [
         "NO_PIN"
@@ -344,9 +346,9 @@
        "target": "price_path_target_before_invalidation_24h"
       },
       {
-       "abstention_record_id": "dbfb09889a53233ff1b5268bc2b46f68aa310e0d345b54bf15196db683a64697",
+       "abstention_record_id": "f4090c1d297503bbae3190f8387aaa8b0c353387d148d42d4ef9c391b28fd4da",
        "document_checks": [],
-       "forecast_id": "fc_9341c5486a8e69eceb7c59a95b6a7152",
+       "forecast_id": "fc_3bdb1a5f83fac759f43e5e7da7fe86e9",
        "model_id": "not_selected",
        "pin_reasons": [
         "NO_PIN"
@@ -364,9 +366,9 @@
        "target": "price_path_target_before_invalidation_6h"
       },
       {
-       "abstention_record_id": "1fa3ad1278376a7b5268940f82bd2275617db0622074622a36dce2030b5a7069",
+       "abstention_record_id": "5820fafcabc510919f9bc41ca462e3d779c12913cd15d3a728b845b5b23c13fa",
        "document_checks": [],
-       "forecast_id": "fc_1db1f504a7d2cb4be9c66089ce7ffc3d",
+       "forecast_id": "fc_b1d8f65610d0ba9cef924df6efd62029",
        "model_id": "not_selected",
        "pin_reasons": [
         "NO_PIN"
@@ -403,17 +405,17 @@
      "event": "MATERIAL_CHANGE",
      "export_commit": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
      "mint": "0x3d4f0513e8a29669b960f9dbca61861548a9a760",
-     "request_record_id": "1f296c43743bee6f8d3fa948033ad539d2f0b4321857f8bb74872d488128f57f",
+     "request_record_id": "3358edb8321cf7ed968fbdc8707030aac8055d0b99fcac982c473adec8cc5cc3",
      "request_seq": 40,
      "size_basis": "EXECUTION_DATA_MISSING",
-     "snapshot_hash": "136d3f9e61aa6d6a94915e806e2f7308426fc40498af70ecd6af175910fef1d6",
+     "snapshot_hash": "a1d8ed17c7ac683308a41d3120ba795ead859f88813334a8eee591f9a5a8ec3f",
      "snapshot_row_found_in_that_export": true,
      "staleness": "FRESH",
      "targets": [
       {
-       "abstention_record_id": "6e33c3af5b402676b1cc806ccc843eb8f23af785c9b302b19cd513442c14fbe8",
+       "abstention_record_id": "19226e45931a2a49bb2ddf136aeee52798553967b1063a4849baf2072ecd649f",
        "document_checks": [],
-       "forecast_id": "fc_242826286c30ce80cec94c84e1c2de14",
+       "forecast_id": "fc_2afd3e6897ab774e49053416ab6e5815",
        "model_id": "not_selected",
        "pin_reasons": [
         "NO_PIN"
@@ -431,9 +433,9 @@
        "target": "price_path_target_before_invalidation_24h"
       },
       {
-       "abstention_record_id": "85e0c3a9c4767a62814e8620b7780f9dffb9da9bb487ba7ac14e878dc957d003",
+       "abstention_record_id": "0ecb16d7ec7c31eb38584c512fe4906ab3791de043acf3971aac13c5cfdb553f",
        "document_checks": [],
-       "forecast_id": "fc_ab9f51fd4c1a849c3bc3d85d719b783f",
+       "forecast_id": "fc_6d09e5fb288b7058ca2ad2fb1a349231",
        "model_id": "not_selected",
        "pin_reasons": [
         "NO_PIN"
@@ -451,9 +453,9 @@
        "target": "price_path_target_before_invalidation_6h"
       },
       {
-       "abstention_record_id": "94bfe20bc3dd57254a45f57144749874ec68422bf1f06eb550a099f070dbee21",
+       "abstention_record_id": "2b8216542c86e8f5c537f7705d59066a12ba1d2fe609a560910ede1f6a9ff510",
        "document_checks": [],
-       "forecast_id": "fc_ff2cf45a111154594ba1b7c599c85ce6",
+       "forecast_id": "fc_28f10dccc4c325108b20cf28d4f1ae4c",
        "model_id": "not_selected",
        "pin_reasons": [
         "NO_PIN"

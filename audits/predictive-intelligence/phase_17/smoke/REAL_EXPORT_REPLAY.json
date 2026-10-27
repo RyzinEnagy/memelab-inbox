@@ -14,15 +14,15 @@
   "CAPTURE_SINGLE_ROW"
  ],
  "files_sha256": {
-  "documents": "b3c8f1b4a06c51c2ea571f7461d0ab558629fd988559f42764dd03f524ae5139",
-  "passes": "3328bd101d363a9322a1557be4d185923b3300d09cecee3b19ef89efadf9a595",
-  "records": "e4eb4babe381aea18593ccc1cafe699511076298486420626559c973c91d866c",
+  "documents": "9b839e76b7a334847911b6d5ad1f81044e17da47a09354dd3efd70fdbc0c77d0",
+  "passes": "1f9c1ca8341f2047871db7ce4cffa29566d971dc9f41869c95c588f29554d233",
+  "records": "a8114c19f9ac506b0a809a6f9e1bf1b70ada6e049c693debc1d102294bb5accc",
   "references": null,
-  "requests": "c07e6836544cb2a0a9d70df43a592eeef80179a86c1f46914a7fdfddbe01e857"
+  "requests": "a7160402891f480f6392d018d4adc38000a6b6a58bad8bf039116b269b5f70a3"
  },
  "forecast_documents": 0,
- "latency_ms_max": 17.604,
- "latency_ms_p50": 1.065,
+ "latency_ms_max": 14.506,
+ "latency_ms_p50": 0.825,
  "model_ids": [
   "not_selected"
  ],
@@ -106,7 +106,7 @@
  },
  "socket_events": 0,
  "unique_forecast_ids": true,
- "wall_s": 16.67,
+ "wall_s": 14.02,
  "window_commits": 3,
  "window_decision_events": 52,
  "window_from_utc": "2026-10-24T00:00:00Z"

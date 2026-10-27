@@ -5,8 +5,8 @@
   "memelab/cli.py"
  ],
  "tests": "tests/test_predictive_integration.py",
- "mutations": 59,
- "caught": 59,
+ "mutations": 73,
+ "caught": 73,
  "survivors": [],
  "results": [
   {
@@ -362,7 +362,91 @@
    "file": "memelab/predictive/bt_adapter.py",
    "caught": true,
    "first_failure": "tests/test_predictive_integration.py::test_g12_the_adapter_refuses_identity_time_and_vocabulary_problems[kw5-UNKNOWN_STRESS_DECISION]"
+  },
+  {
+   "mutation": "Y1 check_document call removed (skeptic M2)",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_cp17_0_a_state_directory_inside_the_repository_but_outside_data_private_is_refused"
+  },
+  {
+   "mutation": "Y2 verify_point call removed (skeptic M2)",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_cp17_0_a_state_directory_inside_the_repository_but_outside_data_private_is_refused"
+  },
+  {
+   "mutation": "Y3 backtest table opened writable (skeptic m5)",
+   "file": "memelab/predictive/bt_adapter.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_cp17_0_a_state_directory_inside_the_repository_but_outside_data_private_is_refused"
+  },
+  {
+   "mutation": "A1 a failed event keeps its earlier targets (skeptic M1)",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_cp17_0_a_state_directory_inside_the_repository_but_outside_data_private_is_refused"
+  },
+  {
+   "mutation": "A2 partial attempted event accepted (skeptic M1)",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_cp17_0_a_state_directory_inside_the_repository_but_outside_data_private_is_refused"
+  },
+  {
+   "mutation": "A3 check_state ownership unchecked (skeptic M1)",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_cp17_0_a_state_directory_inside_the_repository_but_outside_data_private_is_refused"
+  },
+  {
+   "mutation": "A4 a failed token hidden in the section (skeptic M1)",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_cp17_0_a_state_directory_inside_the_repository_but_outside_data_private_is_refused"
+  },
+  {
+   "mutation": "I1 identity text unsanitized (skeptic m3)",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_cp17_0_a_state_directory_inside_the_repository_but_outside_data_private_is_refused"
+  },
+  {
+   "mutation": "I2 forecast words in a symbol allowed (skeptic m3)",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_cp17_0_a_state_directory_inside_the_repository_but_outside_data_private_is_refused"
+  },
+  {
+   "mutation": "Z1 snapshot hash with the report path (skeptic m7)",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g5_snapshot_hash_is_the_row_sha_a_state_export_of_the_same_row_carries"
+  },
+  {
+   "mutation": "L1 token report path in the section (skeptic m8)",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_cp17_0_a_state_directory_inside_the_repository_but_outside_data_private_is_refused"
+  },
+  {
+   "mutation": "E1 flag read through the package (skeptic m1, m6)",
+   "file": "memelab/cli.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g2_cli_differs_from_the_pre_phase17_copy_only_by_the_hook"
+  },
+  {
+   "mutation": "E2 flag truthy instead of true (skeptic m1)",
+   "file": "memelab/cli.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_cp17_0_a_state_directory_inside_the_repository_but_outside_data_private_is_refused"
+  },
+  {
+   "mutation": "E3 broken package silent with the flag on (skeptic m2)",
+   "file": "memelab/cli.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_g2_cli_differs_from_the_pre_phase17_copy_only_by_the_hook"
   }
  ],
- "wall_s": 954.2
+ "wall_s": 1395.9
 }

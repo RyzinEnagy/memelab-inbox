@@ -1,15 +1,15 @@
 {
- "added_rows": 14,
+ "added_rows": 34,
  "after": {
   "bakeoff_configurations": 31,
   "candidate_configurations": 99,
   "debug_runs": 35,
-  "holdout_evaluation_rows": 261,
+  "holdout_evaluation_rows": 281,
   "n_search": 130,
   "n_search_sensitivity": 169,
   "negative_control_fits": 373,
   "other_rows": 102,
-  "rows": 3308,
+  "rows": 3328,
   "rows_by_phase": {
    "04": 31,
    "07": 488,
@@ -21,7 +21,7 @@
    "13": 58,
    "15": 53,
    "16": 35,
-   "17": 14
+   "17": 34
   }
  },
  "before": {

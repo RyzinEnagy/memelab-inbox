@@ -33,7 +33,7 @@ RECORDED = ["P17:REAL_SCOUT_OFF_BASE", "P17:REAL_SCOUT_OFF_FROZEN", "P17:REAL_SC
             "P17:REAL_EXPORT_REPLAY:ROUND_2"]
 
 REPEATS = [("CP17_0", "6172b49", "PI-D-094, evidence/rerun_cp17_0_diff.json; rows added late, in the CP17-1 repair"),
-           ("CP17_1", "the CP17-1 code commit", "PI-D-096, evidence/rerun_rp2_diff.json")]
+           ("CP17_1", "148e3da", "PI-D-096, evidence/rerun_rp2_diff.json")]
 
 
 def main(out: Path) -> int:

@@ -1,0 +1,101 @@
+{
+ "mutations": 15,
+ "caught": 14,
+ "survivors": [],
+ "known_limit_survivors": [
+  "pipeline_concat_string"
+ ],
+ "results": {
+  "report_lazy_integration": {
+   "file": "memelab/report.py",
+   "caught": true,
+   "known_limit": false,
+   "first_failure": "tests/test_predictive_contract.py::test_no_existing_module_imports_the_predictive_package"
+  },
+  "pipeline_import_module_string": {
+   "file": "memelab/pipeline.py",
+   "caught": true,
+   "known_limit": false,
+   "first_failure": "tests/test_predictive_contract.py::test_no_existing_module_imports_the_predictive_package"
+  },
+  "pipeline_concat_string": {
+   "file": "memelab/pipeline.py",
+   "caught": false,
+   "known_limit": true,
+   "first_failure": "247 passed, 1 warning in 16.92s"
+  },
+  "farm_imports_cli_helper": {
+   "file": "memelab/farm.py",
+   "caught": true,
+   "known_limit": false,
+   "first_failure": "tests/test_predictive_integration.py::test_rp2_m4_no_lab_module_names_the_cli_helpers_and_no_lab_import_loads_the_package"
+  },
+  "labels_from_dot_import_stats_registry": {
+   "file": "memelab/predictive/labels.py",
+   "caught": true,
+   "known_limit": false,
+   "first_failure": "tests/test_predictive_registry.py::test_the_registry_seam_names_only_the_integration_module"
+  },
+  "labels_from_dot_import_registry_alias": {
+   "file": "memelab/predictive/labels.py",
+   "caught": true,
+   "known_limit": false,
+   "first_failure": "tests/test_predictive_registry.py::test_no_other_module_imports_the_registry"
+  },
+  "features_from_dot_import_onchain": {
+   "file": "memelab/predictive/features.py",
+   "caught": true,
+   "known_limit": false,
+   "first_failure": "tests/test_predictive_onchain.py::test_no_other_module_imports_the_phase_09_code"
+  },
+  "features_from_onchain_import_name": {
+   "file": "memelab/predictive/features.py",
+   "caught": true,
+   "known_limit": false,
+   "first_failure": "tests/test_predictive_onchain.py::test_no_other_module_imports_the_phase_09_code"
+  },
+  "stats_from_dot_import_abstention": {
+   "file": "memelab/predictive/stats.py",
+   "caught": true,
+   "known_limit": false,
+   "first_failure": "tests/test_predictive_calibration.py::test_the_phase_13_modules_use_numpy_and_the_standard_library_only_and_nothing_imports_them"
+  },
+  "stats_from_dot_import_integration": {
+   "file": "memelab/predictive/stats.py",
+   "caught": true,
+   "known_limit": false,
+   "first_failure": "tests/test_predictive_contract.py::test_no_predictive_module_imports_the_integration_module"
+  },
+  "analog_also_depth_adapter": {
+   "file": "memelab/predictive/analog.py",
+   "caught": true,
+   "known_limit": false,
+   "first_failure": "tests/test_predictive_onchain.py::test_no_other_module_imports_the_phase_09_code"
+  },
+  "social_imports_predictive": {
+   "file": "memelab/social/research_store.py",
+   "caught": true,
+   "known_limit": false,
+   "first_failure": "tests/test_predictive_contract.py::test_no_existing_module_imports_the_predictive_package"
+  },
+  "cli_helper_imports_registry_too": {
+   "file": "memelab/cli.py",
+   "caught": true,
+   "known_limit": false,
+   "first_failure": "tests/test_predictive_contract.py::test_no_existing_module_imports_the_predictive_package"
+  },
+  "cli_module_level_import": {
+   "file": "memelab/cli.py",
+   "caught": true,
+   "known_limit": false,
+   "first_failure": "tests/test_predictive_contract.py::test_no_existing_module_imports_the_predictive_package"
+  },
+  "module_level_import_loads_the_package": {
+   "file": "memelab/report.py",
+   "caught": true,
+   "known_limit": false,
+   "first_failure": "tests/test_predictive_integration.py::test_rp2_m4_no_lab_module_names_the_cli_helpers_and_no_lab_import_loads_the_package"
+  }
+ },
+ "known_limit_note": "an importlib call on a string built at run time inside a function no test calls is invisible to the AST and constant scans; the same string at module level is caught by the import-every-module subprocess test"
+}

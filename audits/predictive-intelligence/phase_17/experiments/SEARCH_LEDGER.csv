@@ -3307,3 +3307,23 @@ phase,experiment_id,target,candidate,kind,view,seed,folds,n_rows,n_with_number,v
 17,P17:REAL_ANALYZE_ON,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,recorded run at the frozen code (smoke/),,,INTEGRATION_RUN_NOT_A_CONFIGURATION
 17,P17:REAL_EXPORT_REPLAY:ROUND_1,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,recorded run at the frozen code (smoke/),,,INTEGRATION_RUN_NOT_A_CONFIGURATION
 17,P17:REAL_EXPORT_REPLAY:ROUND_2,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,recorded run at the frozen code (smoke/),,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_0:REAL_SCOUT_OFF_BASE,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 6172b49 (PI-D-094, evidence/rerun_cp17_0_diff.json; rows added late, in the CP17-1 repair)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_0:REAL_SCOUT_OFF_FROZEN,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 6172b49 (PI-D-094, evidence/rerun_cp17_0_diff.json; rows added late, in the CP17-1 repair)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_0:REAL_SCOUT_ON,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 6172b49 (PI-D-094, evidence/rerun_cp17_0_diff.json; rows added late, in the CP17-1 repair)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_0:REAL_SCOUT_RERUN,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 6172b49 (PI-D-094, evidence/rerun_cp17_0_diff.json; rows added late, in the CP17-1 repair)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_0:REAL_SCOUT_RETRY,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 6172b49 (PI-D-094, evidence/rerun_cp17_0_diff.json; rows added late, in the CP17-1 repair)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_0:REAL_SCOUT_STORM,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 6172b49 (PI-D-094, evidence/rerun_cp17_0_diff.json; rows added late, in the CP17-1 repair)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_0:REAL_SCOUT_RESEARCH,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 6172b49 (PI-D-094, evidence/rerun_cp17_0_diff.json; rows added late, in the CP17-1 repair)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_0:REAL_ANALYZE_ON,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 6172b49 (PI-D-094, evidence/rerun_cp17_0_diff.json; rows added late, in the CP17-1 repair)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_0:REAL_EXPORT_REPLAY:ROUND_1,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 6172b49 (PI-D-094, evidence/rerun_cp17_0_diff.json; rows added late, in the CP17-1 repair)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_0:REAL_EXPORT_REPLAY:ROUND_2,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 6172b49 (PI-D-094, evidence/rerun_cp17_0_diff.json; rows added late, in the CP17-1 repair)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_1:REAL_SCOUT_OFF_BASE,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 148e3da (PI-D-096, evidence/rerun_rp2_diff.json)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_1:REAL_SCOUT_OFF_FROZEN,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 148e3da (PI-D-096, evidence/rerun_rp2_diff.json)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_1:REAL_SCOUT_ON,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 148e3da (PI-D-096, evidence/rerun_rp2_diff.json)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_1:REAL_SCOUT_RERUN,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 148e3da (PI-D-096, evidence/rerun_rp2_diff.json)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_1:REAL_SCOUT_RETRY,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 148e3da (PI-D-096, evidence/rerun_rp2_diff.json)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_1:REAL_SCOUT_STORM,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 148e3da (PI-D-096, evidence/rerun_rp2_diff.json)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_1:REAL_SCOUT_RESEARCH,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 148e3da (PI-D-096, evidence/rerun_rp2_diff.json)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_1:REAL_ANALYZE_ON,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 148e3da (PI-D-096, evidence/rerun_rp2_diff.json)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_1:REAL_EXPORT_REPLAY:ROUND_1,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 148e3da (PI-D-096, evidence/rerun_rp2_diff.json)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION
+17,P17:CP17_1:REAL_EXPORT_REPLAY:ROUND_2,,P17_INTEGRATION,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 148e3da (PI-D-096, evidence/rerun_rp2_diff.json)",,,INTEGRATION_RUN_NOT_A_CONFIGURATION

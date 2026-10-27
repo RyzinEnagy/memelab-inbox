@@ -1,0 +1,48 @@
+{
+ "requests": [
+  [
+   "ERROR",
+   [
+    "IntegrationError: T1b_6h: document refused: [\"the document's reasons differ from its record\", \"the document's reasons differ from the persisted conditions (hidden or invented reason)\"]"
+   ]
+  ],
+  [
+   "DISCOVERY",
+   []
+  ]
+ ],
+ "documents": [
+  [
+   "price_path_target_before_invalidation_24h",
+   "FORECAST",
+   0.3538461538461539
+  ],
+  [
+   "price_path_target_before_invalidation_6h",
+   "ABSTAIN",
+   null
+  ],
+  [
+   "price_path_severe_drawdown_or_halt_24h",
+   "ABSTAIN",
+   null
+  ]
+ ],
+ "metrics": {
+  "attempted": 1,
+  "documents": 3,
+  "completed_forecasts": 1,
+  "errors": 1
+ },
+ "check_state": {
+  "documents": 3,
+  "problems": []
+ },
+ "pass1_section_names_FXA": true,
+ "pass1_section_FORECAST_lines": 0,
+ "pass2_section_FXA_line": [
+  "- Counts: 1 events, 1 attempted, 1 published, 2 abstentions, 0 unchanged, 0 duplicates, 0 superseded, 0 deferred, 0 not attempted, 0 errors; latency p50 16.119 ms, max 16.119 ms; models in use: B2:price_path_target_before_invalidation_24h, not_selected",
+  "### FXA `solana:Ebjh5RZR799aVdZR9yePMNmEVmGibvjM3Zqr4kEegSbS`",
+  "- Snapshot cd817ba60561e451; event DISCOVERY (first attempt for this chain and mint)"
+ ]
+}
