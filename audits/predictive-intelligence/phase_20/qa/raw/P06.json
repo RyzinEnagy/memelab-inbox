@@ -1,0 +1,40 @@
+{
+ "scenario": "P06",
+ "check": "probes/scenarios.py P06",
+ "doc": "A candle that closes after the signal: no same-candle entry and no look-ahead reference price.",
+ "assertions": [
+  {
+   "assert": "reference price is the newest candle served by the decision",
+   "pass": true,
+   "gate": true,
+   "observed": "[1791999000, 1.0, 1.0, 1.0, 0.9, 1000.0]",
+   "expect": null
+  },
+  {
+   "assert": "only future candles give no reference price",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "the candle holding t_entry is never on the path",
+   "pass": true,
+   "gate": true,
+   "observed": 1792000500,
+   "expect": null
+  },
+  {
+   "assert": "eligibility from future candles only is not ELIGIBLE",
+   "pass": true,
+   "gate": true,
+   "observed": "VENDOR_OR_ROUTE_GAP",
+   "expect": null
+  }
+ ],
+ "passed": 4,
+ "total": 4,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

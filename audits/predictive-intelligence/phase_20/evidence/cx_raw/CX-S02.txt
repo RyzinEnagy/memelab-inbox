@@ -1,0 +1,34 @@
+unmutated copy: exit 0 (pass)
+duplicate candidate                           exit 1 caught
+fork counted (suspicious fork)                exit 1 caught
+pin not a SHA                                 exit 1 caught
+unknown need                                  exit 1 caught
+need cites a VERIFIED_PRESENT cell            exit 1 caught
+needs edited after the queries                exit 1 caught
+README as code evidence (P42)                 exit 1 caught
+code evidence not found at the pin            exit 1 caught
+shortlisted with no code evidence (P42)       exit 1 caught
+crawler as candidate                          exit 1 caught
+vanished repository counted                   exit 1 caught
+shortlist row not a candidate                 exit 1 caught
+no provenance                                 exit 1 caught
+invented query id                             exit 1 caught
+invented fork chain                           exit 1 caught
+mirror with shared history                    exit 1 caught
+fewer than 45                                 exit 1 caught
+score column in shortlist                     exit 1 caught
+behavioral family below 3                     exit 1 caught
+MiroFish missing                              exit 1 caught
+README-only repository as candidate (P42)     exit 1 caught
+license from README                           exit 1 caught
+provenance audit failed                       exit 1 caught
+screened repository dropped from exclusions   exit 1 caught
+not shortlisted without a reason              exit 1 caught
+pre-transfer path, successor never tried (skeptic B) exit 1 caught
+known pre-transfer path back as a candidate   exit 1 caught
+archived flag lost after a transfer           exit 1 caught
+event-time family dropped (skeptic C)         exit 1 caught
+family relabelled in the shortlist (skeptic D) exit 1 caught
+inactive repository shortlisted               exit 1 caught
+copyleft library shortlisted in-process       exit 1 caught
+cases 32 not caught 0

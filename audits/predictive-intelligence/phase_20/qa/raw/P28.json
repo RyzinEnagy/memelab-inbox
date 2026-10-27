@@ -1,0 +1,40 @@
+{
+ "scenario": "P28",
+ "check": "probes/scenarios.py P28",
+ "doc": "MiroFish seeded with post-event detail: the contaminated seed is rejected.",
+ "assertions": [
+  {
+   "assert": "an observation available one second after the decision is refused",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"OBSERVATION_AFTER_DECISION\", \"POST_DECISION_DATE\"]",
+   "expect": null
+  },
+  {
+   "assert": "quoted text naming a later date is refused",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"POST_DECISION_DATE\"]",
+   "expect": null
+  },
+  {
+   "assert": "an outcome-named field is refused",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"POST_DECISION_FIELD\"]",
+   "expect": null
+  },
+  {
+   "assert": "a refused seed yields no hypothesis",
+   "pass": true,
+   "gate": true,
+   "observed": "SEED_REFUSED",
+   "expect": null
+  }
+ ],
+ "passed": 4,
+ "total": 4,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

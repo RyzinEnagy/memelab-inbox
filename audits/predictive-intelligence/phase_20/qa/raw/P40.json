@@ -1,0 +1,61 @@
+{
+ "scenario": "P40",
+ "check": "probes/scenarios.py P40",
+ "doc": "Kill switch off against on: the existing pipeline is preserved.",
+ "assertions": [
+  {
+   "assert": "flag absent: no pass, no section",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "flag malformed: no pass, no section",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "flag string true: no pass, no section",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "flag one: no pass, no section",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "flag false: no pass, no section",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "and nothing was written",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "with the flag off the scout hook returns None and imports nothing of the package",
+   "pass": true,
+   "gate": true,
+   "observed": "None\n[]\n",
+   "expect": null
+  }
+ ],
+ "passed": 7,
+ "total": 7,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

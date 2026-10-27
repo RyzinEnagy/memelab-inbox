@@ -1,0 +1,68 @@
+{
+ "scenario": "P01",
+ "check": "probes/scenarios.py P01",
+ "doc": "Same symbol, different Solana mints: never joined, trained or reported as one token.",
+ "assertions": [
+  {
+   "assert": "two attempted events, one per mint",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"DISCOVERY\", \"DISCOVERY\"]",
+   "expect": null
+  },
+  {
+   "assert": "two snapshot hashes",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "six documents, six distinct forecast ids",
+   "pass": true,
+   "gate": true,
+   "observed": 6,
+   "expect": null
+  },
+  {
+   "assert": "every document names the exact mint of its request",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "no number published (no champion)",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "baselines refuses a symbol join of another mint",
+   "pass": true,
+   "gate": true,
+   "observed": "IdentityJoinError: mint differs: label 'Ebjh5RZR799aVdZR9yePMNmEVmGibvjM3Zqr4kEegSbS' vs features '3p12Jyhm5cW1qgDmmwQAGrUyqPv2YVSWYzDSbbuBLm32' (P01)",
+   "expect": "raises IdentityJoinError"
+  },
+  {
+   "assert": "the contract refuses a ticker as identity",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"mint_address is not an exact solana address: identity is the exact mint, never a ticker (P01)\", \"forecast_id is not derived from its inputs (expected fc_b2b10bc5a855f4aee170c99b79127c48); idempotency key broken (P35)\"]",
+   "expect": null
+  },
+  {
+   "assert": "a vendor read whose base is the other mint gives no candle",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"MINT_NOT_IN_POOL\", 0]",
+   "expect": null
+  }
+ ],
+ "passed": 8,
+ "total": 8,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

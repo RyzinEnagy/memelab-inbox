@@ -1,0 +1,82 @@
+{
+ "scenario": "P32",
+ "check": "probes/scenarios.py P32",
+ "doc": "A poisoned dependency or a destructive install script: inspected in isolation and blocked.",
+ "assertions": [
+  {
+   "assert": "lock line refused: numpy==2.3.4",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"no sha256 hash: numpy==2.3.4\"]",
+   "expect": null
+  },
+  {
+   "assert": "lock line refused: numpy>=2 --hash=sha256:aaaaaaaaaaaaaaaaa",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"not an exact pin: numpy>=2\"]",
+   "expect": null
+  },
+  {
+   "assert": "lock line refused: numpy==2.3.4 --hash=sha256:aaaaaaaaaaaaa",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"only --hash=sha256:<64 hex> may follow a requirement; refused '--global-option=x' in numpy==2.3.4\"]",
+   "expect": null
+  },
+  {
+   "assert": "lock line refused: -e git+https://example.org/evil#egg=evil",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"option not allowed in a lock: -e git+https://example.org/evil#egg=evil\"]",
+   "expect": null
+  },
+  {
+   "assert": "lock line refused: evil==1.0 --hash=sha256:aaaaaaaaaaaaaaaa",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"only --hash=sha256:<64 hex> may follow a requirement; refused '--only-binary=:none:' in evil==1.0\"]",
+   "expect": null
+  },
+  {
+   "assert": "lock line refused: ./setup.py",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"URL, VCS or path requirement: ./setup.py\"]",
+   "expect": null
+  },
+  {
+   "assert": "control: an exact hashed pin is accepted",
+   "pass": true,
+   "gate": true,
+   "observed": "[]",
+   "expect": null
+  },
+  {
+   "assert": "an sdist is refused even with a matching hash",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "install_argv refuses a lock whose hash is not a known wheel",
+   "pass": true,
+   "gate": true,
+   "observed": "InstallRefused: hash ffffffffffff of evil==1.0 is not a known wheel digest",
+   "expect": "raises InstallRefused"
+  },
+  {
+   "assert": "the committed locks are unchanged",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"core-py313.txt\": \"89fe4f4dc37a450ffd2b660eedcff8d4e93a81ac9df2566c21b504ce5a722865\", \"research-py313.txt\": \"1347f84bb2639143e85e8532e09c8513e0ab679b3982ed8ba5d5bf3b45f2ba84\"}",
+   "expect": null
+  }
+ ],
+ "passed": 10,
+ "total": 10,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

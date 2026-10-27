@@ -1,0 +1,232 @@
+{
+ "base": "f99c6c7",
+ "base58_64_byte_secret_shapes_added": [
+  "Mas3nuo1H9..."
+ ],
+ "changed_files_since_base": 2466,
+ "copyleft_gate": [],
+ "credential_shaped_strings_in_diff": [],
+ "dependency_manifests_changed": [],
+ "head": "0d6637913f7da5341f5db86c8f2e83d987819f9c",
+ "key_or_order_patterns_in_changed_code": [
+  {
+   "line": 73,
+   "match": "Jupiter",
+   "path": "audits/predictive-intelligence/phase_01/probes/build_gap_matrix.py",
+   "text": "add(F, \"COST_LATENCY_CONTROL\", \"PARTIAL\", L(\"memelab/bridge/plan.py\", \"self.add(f\\\"jq:BUY\"), \"Jupiter quotes fetched per deep plan; no budget exists for forward"
+  },
+  {
+   "line": 18,
+   "match": "secret_key",
+   "path": "audits/predictive-intelligence/phase_03/research/SMOKES/666ghj__MiroFish/smoke_mf_api.py",
+   "text": "\"secret_key_default\": Config.SECRET_KEY == \"mirofish-secret-key\","
+  },
+  {
+   "line": 415,
+   "match": "SECRET_KEY",
+   "path": "audits/predictive-intelligence/phase_03/research/verify/verify_reviews.py",
+   "text": "@check(\"MI-1\", MI, \"pin\", \"AGPL-3.0 LICENSE sha256 8486a10c...; Flask binds 0.0.0.0; CORS origins '*'; default SECRET_KEY; no random seeding anywhere\")"
+  },
+  {
+   "line": 51,
+   "match": "jupiter",
+   "path": "audits/predictive-intelligence/phase_09/probes/cx_s09_check.py",
+   "text": "con.execute(snap, (\"r\", did, \"solana\", MINT, pool, \"QUOTE\", \"jupiter\", size, t, 200, \"OK\", size * ratio, 0.01, T, f\"s{i}\"))"
+  },
+  {
+   "line": 271,
+   "match": "jupiter",
+   "path": "audits/predictive-intelligence/phase_09/probes/run_onchain.py",
+   "text": "rows.append((snap, (\"run\", 1, \"solana\", e.mint, \"POOLX\", \"QUOTE\", \"jupiter\", 500.0, T + lag + 5, \"OK\", lag + 5, None, 1.0, 470.0, 0.05, T, f\"q{i}\")))"
+  },
+  {
+   "line": 23,
+   "match": "jupiter",
+   "path": "audits/predictive-intelligence/phase_09/skeptic/p09_cx_sizecap.py",
+   "text": "depth._snapshot(con, run_id=f\"r{int(t)}\", dec=dict(dec, id=did, pool_address=pool), kind=\"QUOTE\", provider=\"jupiter\", url=\"u\","
+  },
+  {
+   "line": 8,
+   "match": "private key",
+   "path": "audits/predictive-intelligence/phase_20/probes/threat_scan.py",
+   "text": "2. keys, signing and orders: patterns for private keys, recovery words, signing, wallet connection, transaction sending and order"
+  },
+  {
+   "line": 50,
+   "match": "PRIVATE KEY",
+   "path": "audits/predictive-intelligence/phase_20/probes/threat_scan.py",
+   "text": "r\"-----BEGIN [A-Z ]*PRIVATE KEY-----|fc-[0-9a-f]{32}\")"
+  },
+  {
+   "line": 473,
+   "match": "seed phrase",
+   "path": "tests/test_predictive_behavioral.py",
+   "text": "(\"seed phrase\", lambda: seed_of(quote(\"send your seed phrase\")), \"PROMPT_INJECTION_SUSPECTED\"),"
+  },
+  {
+   "line": 633,
+   "match": "jupiter",
+   "path": "tests/test_predictive_onchain.py",
+   "text": "con.execute(SNAP_SQL, (\"run\", 1, \"solana\", s.get(\"mint\", mint), s.get(\"pool\", \"POOL1\"), s.get(\"kind\", \"QUOTE\"), \"jupiter\","
+  },
+  {
+   "line": 38,
+   "match": "private_key",
+   "path": "tools/release_audit.py",
+   "text": "\"pem_private_key\": re.compile(rb\"-----BEGIN [A-Z ]*PRIVATE KEY-----\"),"
+  },
+  {
+   "line": 41,
+   "match": "keypair",
+   "path": "tools/release_audit.py",
+   "text": "\"solana_keypair_array\": re.compile(rb\"\\[\\s*(?:\\d{1,3}\\s*,\\s*){63}\\d{1,3}\\s*\\]\"),"
+  },
+  {
+   "line": 42,
+   "match": "privateKey",
+   "path": "tools/release_audit.py",
+   "text": "\"key_material_field\": re.compile(rb\"\"\"[\"'](?:private_?key|secret_?key|privateKey|secretKey|mnemonic|seed_?phrase|seedPhrase)[\"']\\s*[:=]\\s*[\"'][^\"']{16,}[\"']\"\"\")"
+  },
+  {
+   "line": 46,
+   "match": "sendTransaction",
+   "path": "tools/release_audit.py",
+   "text": "EXEC = re.compile(r\"sendTransaction|sendRawTransaction|signTransaction|signAllTransactions|eth_sendRawTransaction|\""
+  },
+  {
+   "line": 47,
+   "match": "SendTransaction",
+   "path": "tools/release_audit.py",
+   "text": "r\"signAndSendTransaction|Keypair\\b|from_secret_key|fromSecretKey|ethers\\.Wallet|nacl\\.sign\\(|\""
+  },
+  {
+   "line": 49,
+   "match": "mnemonic",
+   "path": "tools/release_audit.py",
+   "text": "r\"create_?order|submit_?order|executeSwap|execute_swap|mnemonic|seed phrase\", re.I)"
+  },
+  {
+   "line": 57,
+   "match": "mnemonic",
+   "path": "tools/release_audit.py",
+   "text": "(r\"^(README\\.md|docs/.*\\.md|skills/.*\\.md)$\", r\"exec:(mnemonic|seed phrase|place_?order|create_?order)\", \"the hard rules text (never handle a seed phrase, never"
+  },
+  {
+   "line": 61,
+   "match": "mnemonic",
+   "path": "tools/release_audit.py",
+   "text": "(r\"^memelab/predictive/behavioral\\.py$\", r\"exec:(mnemonic|seed phrase)\", \"refusal list: behavioral seeds and responses naming key material are refused (PI-D-074"
+  },
+  {
+   "line": 62,
+   "match": "mnemonic",
+   "path": "tools/release_audit.py",
+   "text": "(r\"^tests/test_predictive_behavioral\\.py$\", r\"exec:(mnemonic|seed phrase)\", \"tests that such behavioral seeds are refused (PI-D-074)\"),"
+  },
+  {
+   "line": 63,
+   "match": "mnemonic",
+   "path": "tools/release_audit.py",
+   "text": "(r\"^audits/predictive-intelligence/phase_14/.*\\.md$\", r\"exec:(mnemonic|seed phrase)\", \"the Phase 14 refusal rule text (PI-D-074)\"),"
+  },
+  {
+   "line": 186,
+   "match": "secret_key",
+   "path": "tools/release_audit.py",
+   "text": "\"holds_secret_key\": bool(re.search(r'\"(token|api_key|password|secret|bearer)\"\\s*:', flat, re.I))}"
+  },
+  {
+   "line": 277,
+   "match": "secret_key",
+   "path": "tools/release_audit.py",
+   "text": "or any(v[\"allow_billable_true\"] or v[\"send_enabled_true\"] or v[\"holds_secret_key\"] for v in res[\"example_config_defaults\"].values())"
+  },
+  {
+   "line": 309,
+   "match": "secret key",
+   "path": "tools/release_audit.py",
+   "text": "L += [\"\", \"## Example config defaults\", \"\", \"| File | allow_billable true | send or opt-in true | holds a secret key |\", \"|---|---|---|---|\"]"
+  },
+  {
+   "line": 310,
+   "match": "secret_key",
+   "path": "tools/release_audit.py",
+   "text": "L += [f\"| `{k}` | {v['allow_billable_true']} | {v['send_enabled_true']} | {v['holds_secret_key']} |\" for k, v in r[\"example_config_defaults\"].items()]"
+  }
+ ],
+ "key_or_order_patterns_in_package": [
+  {
+   "line": 138,
+   "match": "PRIVATE KEY",
+   "path": "memelab/predictive/behavioral.py",
+   "text": "r\"\\bpassword\\b|\\bsk-[A-Za-z0-9_-]{8,}|BEGIN [A-Z ]*PRIVATE KEY|seed\\s+phrase|\\bmnemonic\\b|private\\s+key|[a-z]+://|\\bwww\\.|\""
+  },
+  {
+   "line": 50,
+   "match": "private_key",
+   "path": "memelab/predictive/contract.py",
+   "text": "FORBIDDEN_KEYS = (\"score\", \"rank\", \"signal\", \"bullish\", \"bearish\", \"buy\", \"sell\", \"order\", \"wallet\", \"private_key\", \"confidence\")"
+  },
+  {
+   "line": 6,
+   "match": "Jupiter",
+   "path": "memelab/predictive/depth_adapter.py",
+   "text": "sizes (Jupiter), in three append-only tables of its schema migration 2: `bt_depth_decisions`, `bt_depth_pool_lookups` and"
+  }
+ ],
+ "license_title_hits": {
+  "code": [
+   {
+    "line": 60,
+    "match": "AFFERO GENERAL PUBLIC",
+    "path": "audits/predictive-intelligence/phase_02/probes/verify_repos.py",
+    "text": "if \"GNU AFFERO GENERAL PUBLIC LICENSE\" in head:"
+   },
+   {
+    "line": 62,
+    "match": "GNU LESSER GENERAL",
+    "path": "audits/predictive-intelligence/phase_02/probes/verify_repos.py",
+    "text": "elif \"GNU LESSER GENERAL PUBLIC LICENSE\" in head:"
+   },
+   {
+    "line": 64,
+    "match": "GNU GENERAL PUBLIC",
+    "path": "audits/predictive-intelligence/phase_02/probes/verify_repos.py",
+    "text": "elif \"GNU GENERAL PUBLIC LICENSE\" in head:"
+   },
+   {
+    "line": 54,
+    "match": "GNU GENERAL PUBLIC",
+    "path": "audits/predictive-intelligence/phase_03/research/verify/verify_generic.py",
+    "text": "if \"GNU GENERAL PUBLIC LICENSE\" in t.upper():"
+   }
+  ],
+  "records_and_data": [
+   "audits/predictive-intelligence/phase_02/research/PYPI_LOOKUPS.jsonl"
+  ]
+ },
+ "license_title_hits_in_code_explained": true,
+ "locks_pinned": true,
+ "locks_sha256": {
+  "core-py313.txt": "89fe4f4dc37a450ffd2b660eedcff8d4e93a81ac9df2566c21b504ce5a722865",
+  "research-py313.txt": "1347f84bb2639143e85e8532e09c8513e0ab679b3982ed8ba5d5bf3b45f2ba84"
+ },
+ "network_or_process_capable_imports": {
+  "memelab/predictive/behavioral.py": [
+   "http.client",
+   "http.server",
+   "socket",
+   "subprocess",
+   "urllib.parse"
+  ],
+  "memelab/predictive/sources.py": [
+   "subprocess"
+  ],
+  "memelab/predictive/store.py": [
+   "urllib.parse"
+  ]
+ },
+ "schedule_or_workflow_files_changed": [],
+ "scheduler_imports_in_package": [],
+ "third_party_imports_beyond_numpy": {}
+}

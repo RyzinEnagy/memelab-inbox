@@ -1,0 +1,40 @@
+{
+ "scenario": "P12",
+ "check": "probes/scenarios.py P12",
+ "doc": "No history or a new mint: abstain, or a cohort-supported estimate explicitly labelled.",
+ "assertions": [
+  {
+   "assert": "a first sighting is DISCOVERY with new_mint true",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"DISCOVERY\", true]",
+   "expect": null
+  },
+  {
+   "assert": "every target abstains with a named reason",
+   "pass": true,
+   "gate": true,
+   "observed": "[[\"INSUFFICIENT_HISTORY\", \"UNCALIBRATED\", \"SOURCE_STALE\", \"MODEL_NOT_SELECTED\"], [\"INSUFFICIENT_HISTORY\", \"UNCALIBRATED\", \"SOURCE_STALE\", \"MODEL_NOT_SELECTED\"], [\"INSUFFICIENT_HISTORY\", \"UNCALIBRATED\", \"SOURCE_STALE\", \"MODEL_NOT_SELECTED\"]]",
+   "expect": null
+  },
+  {
+   "assert": "a cross-sectional fixture forecast on a new mint carries the new-mint label",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"FORECAST\", [\"PRICE_PATH_NOT_PROCEEDS\", \"NO_HISTORICAL_EXECUTABLE_DEPTH\", \"INTERVAL_EXCLUDES_UNMODELED_RISK\", \"SHADOW_RESEARCH_ONLY\", \"COHORT_ESTIMATE_NOT_TOKEN_HISTORY\"]]",
+   "expect": null
+  },
+  {
+   "assert": "removing the new-mint label is refused",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"new-mint forecast without COHORT_ESTIMATE_NOT_TOKEN_HISTORY (P12)\"]",
+   "expect": null
+  }
+ ],
+ "passed": 4,
+ "total": 4,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

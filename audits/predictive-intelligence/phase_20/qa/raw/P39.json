@@ -1,0 +1,54 @@
+{
+ "scenario": "P39",
+ "check": "probes/scenarios.py P39",
+ "doc": "Model drift after launch: degrade, shadow or abstain; the previous audit trail is preserved.",
+ "assertions": [
+  {
+   "assert": "a validated champion that drifts is degraded to shadow",
+   "pass": true,
+   "gate": true,
+   "observed": "DEGRADE_TO_SHADOW",
+   "expect": null
+  },
+  {
+   "assert": "a shadow champion that drifts is rolled back to abstain",
+   "pass": true,
+   "gate": true,
+   "observed": "ROLLBACK_TO_ABSTAIN",
+   "expect": null
+  },
+  {
+   "assert": "no automatic retrain and earlier records unchanged",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "a decision after the alarm abstains DRIFT_ALERT",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"DRIFT_ALERT\"]",
+   "expect": null
+  },
+  {
+   "assert": "through the integration: a later decision after the alarm gets no number",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"DISCOVERY\": 1}",
+   "expect": null
+  },
+  {
+   "assert": "the earlier FORECAST document is preserved byte for byte",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  }
+ ],
+ "passed": 6,
+ "total": 6,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

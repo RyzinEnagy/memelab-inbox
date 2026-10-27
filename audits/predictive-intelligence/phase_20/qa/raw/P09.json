@@ -1,0 +1,54 @@
+{
+ "scenario": "P09",
+ "check": "probes/scenarios.py P09",
+ "doc": "A rugged or delisted token drops out of vendor history: censored and counted, never dropped; no survivorship.",
+ "assertions": [
+  {
+   "assert": "an empty page (vendor dropped the history) is a censored gap, counted",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"k-DoVA-1791418834\": \"VENDOR_OR_ROUTE_GAP\"}",
+   "expect": null
+  },
+  {
+   "assert": "no label from an empty page",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"VENDOR_OR_ROUTE_GAP\", \"VENDOR_OR_ROUTE_GAP\", \"VENDOR_OR_ROUTE_GAP\"]",
+   "expect": null
+  },
+  {
+   "assert": "a pool the vendor no longer serves is a censored gap",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"k-DoVA-1791418834\": \"VENDOR_OR_ROUTE_GAP\"}",
+   "expect": null
+  },
+  {
+   "assert": "a dead token is kept: T1 and T1b LABELED NO_TRADES_AFTER_ENTRY, a negative",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"price_path_severe_drawdown_or_halt_24h\": [\"NEEDS_OTHER_POOLS\", null, null], \"price_path_target_before_invalidation_24h\": [\"LABELED\", \"NO_TRADES_AFTER_ENTRY\", 0], \"price_path_target_before_invalidation_6h\": [\"LABELED\", \"NO_TRADES_AFTER_ENTRY\", 0]}",
+   "expect": null
+  },
+  {
+   "assert": "T2 halt needs the other pools' evidence before it is a positive",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"NEEDS_OTHER_POOLS\", null, null]",
+   "expect": null
+  },
+  {
+   "assert": "REJECTED and fatal-flag decisions stay in the universe",
+   "pass": true,
+   "gate": true,
+   "observed": "all thesis statuses, REJECTED and fatal-flagged included",
+   "expect": null
+  }
+ ],
+ "passed": 6,
+ "total": 6,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

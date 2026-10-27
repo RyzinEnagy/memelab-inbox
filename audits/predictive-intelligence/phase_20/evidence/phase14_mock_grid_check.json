@@ -1,0 +1,12 @@
+{
+ "check": "Phase 14 MOCK_GRID_RUNS.json of a fresh run at 0d66379 (sandbox, --skip-mirofish) against the committed file",
+ "equal": true,
+ "equal_after_removing": [
+  "created_at_utc",
+  "doc_sha256",
+  "scenario_ref",
+  "wall_s"
+ ],
+ "scenario_refs_compared": 18,
+ "why": "scenario_ref is 'behavioral-1:' plus the doc_sha256 of a rule document that carries its creation time, so it changes with every run (as doc_sha256 does)"
+}

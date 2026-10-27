@@ -1,0 +1,54 @@
+{
+ "scenario": "P27",
+ "check": "probes/scenarios.py P27",
+ "doc": "MiroFish agents agreeing 90% is not a calibrated 90% likelihood.",
+ "assertions": [
+  {
+   "assert": "a scenario carrying an agreement share is refused at publication",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"a behavioral scenario carries a number or a probability-like field: scenario labels only (P27)\"]",
+   "expect": null
+  },
+  {
+   "assert": "the contract refuses a scenario with a probability key",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "an agreement share passed as an input makes the forecast abstain",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"RESTRICTED_SOURCE\"]",
+   "expect": null
+  },
+  {
+   "assert": "a scenario document with a likelihood key fails its own schema",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"probability-like key at agreement_probability: simulated agreement is not a likelihood (P27)\", \"number at agreement_probability: only costs and counts may be numbers (P27)\"]",
+   "expect": null
+  },
+  {
+   "assert": "the registry refuses behavioral facts as a model",
+   "pass": true,
+   "gate": true,
+   "observed": "BehavioralNotAModel: a behavioral simulation is never a registry model (P27, MIROFISH_NO_GO)",
+   "expect": "raises BehavioralNotAModel"
+  },
+  {
+   "assert": "and a vote-share member of an ensemble",
+   "pass": true,
+   "gate": true,
+   "observed": "BehavioralNotAModel: a behavioral output never enters an ensemble (P27)",
+   "expect": "raises BehavioralNotAModel"
+  }
+ ],
+ "passed": 6,
+ "total": 6,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

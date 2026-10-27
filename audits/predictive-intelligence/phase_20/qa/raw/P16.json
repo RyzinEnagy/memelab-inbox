@@ -1,0 +1,33 @@
+{
+ "scenario": "P16",
+ "check": "probes/scenarios.py P16",
+ "doc": "Bot or spam spikes in attention: confidence downgraded, manipulation flagged.",
+ "assertions": [
+  {
+   "assert": "bot posts add no exact mention",
+   "pass": true,
+   "gate": true,
+   "observed": "[3.0, 3.0]",
+   "expect": null
+  },
+  {
+   "assert": "attention confidence LOW under a bot majority",
+   "pass": true,
+   "gate": true,
+   "observed": "LOW",
+   "expect": null
+  },
+  {
+   "assert": "an accelerating spike the lab screens as manufactured is suspect, never organic acceleration",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"sc_attention_suspect\": [1.0, null], \"sc_organic_acceleration\": [0.0, null]}",
+   "expect": null
+  }
+ ],
+ "passed": 3,
+ "total": 3,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

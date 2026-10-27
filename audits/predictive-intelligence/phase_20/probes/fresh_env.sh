@@ -21,7 +21,8 @@ echo "pip exit $?" >> "$OUT/fresh_env.log"
 "$OUT/venv/bin/python" -m pip freeze > "$OUT/pip_freeze.txt"
 "$OUT/venv/bin/python" -c "import sys; print('python', sys.version.split()[0], 'system_site', sys.flags.no_site == 0)" >> "$OUT/fresh_env.log"
 cd "$OUT/clone"
-unshare -m -n sh -c "mount -t tmpfs tmpfs /home/claude/pi_research && '$OUT/venv/bin/python' -m pytest -q -p no:cacheprovider -rs \
+HERE="$(cd "$(dirname "$0")" && pwd)"
+unshare -m -n sh -c "mount -t tmpfs tmpfs /home/claude/pi_research && '$OUT/venv/bin/python' '$HERE/lo_up.py' && '$OUT/venv/bin/python' -m pytest -q -p no:cacheprovider -rs \
   tests/test_predictive_*.py > '$OUT/pytest_predictive.txt' 2>&1; echo \"pytest exit \$?\" >> '$OUT/fresh_env.log'; \
   ls /home/claude/pi_research | wc -l | sed 's/^/stores visible inside: /' >> '$OUT/fresh_env.log'"
 git -C "$OUT/clone" status --porcelain > "$OUT/clone_status.txt"

@@ -34,7 +34,7 @@ NAMED_FIELDS = {"evidence/collector_state.json": {"path"},                 # the
                 # Phase 14 rule documents carry their creation time, so their doc_sha256 changes with every run (Phase 14 rerun_diff.py)
                 "behavioral/RULE_SCENARIOS_DEV.jsonl": {"doc_sha256", "created_at_utc"},
                 "behavioral/RULE_COUNTS.json": {"created_at_utc", "rule_scenarios_sha256"},
-                "behavioral/MOCK_GRID_RUNS.json": {"wall_s", "doc_sha256", "created_at_utc"},
+                "behavioral/MOCK_GRID_RUNS.json": {"wall_s", "doc_sha256", "created_at_utc", "scenario_ref"},
                 "behavioral/COST_CAP.json": {"wall_s"},
                 "behavioral/SEEDS_DEV_LOG.json": {"start_utc", "end_utc", "head", "wall_s"}}
 

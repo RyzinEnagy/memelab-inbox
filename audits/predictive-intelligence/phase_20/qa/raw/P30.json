@@ -1,0 +1,68 @@
+{
+ "scenario": "P30",
+ "check": "probes/scenarios.py P30",
+ "doc": "MiroFish without its Zep key or paid quota: SIMULATION_NOT_AVAILABLE, the core unaffected.",
+ "assertions": [
+  {
+   "assert": "not approved: SIMULATION_NOT_AVAILABLE",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"abstain_reason\": null, \"component\": \"behavioral\", \"detail\": \"NOT_APPROVED\", \"state\": \"SIMULATION_NOT_AVAILABLE\"}",
+   "expect": null
+  },
+  {
+   "assert": "missing key: SIMULATION_NOT_AVAILABLE",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"abstain_reason\": null, \"component\": \"behavioral\", \"detail\": \"ADAPTER_COMPONENT_ERROR:KeyError\", \"state\": \"SIMULATION_NOT_AVAILABLE\"}",
+   "expect": null
+  },
+  {
+   "assert": "quota: SIMULATION_NOT_AVAILABLE",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"abstain_reason\": null, \"component\": \"behavioral\", \"detail\": \"NO_LLM_ACTIONS\", \"state\": \"SIMULATION_NOT_AVAILABLE\"}",
+   "expect": null
+  },
+  {
+   "assert": "sys.exit inside: SIMULATION_NOT_AVAILABLE",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"abstain_reason\": null, \"component\": \"behavioral\", \"detail\": \"ADAPTER_COMPONENT_ERROR:SystemExit\", \"state\": \"SIMULATION_NOT_AVAILABLE\"}",
+   "expect": null
+  },
+  {
+   "assert": "no adapter: SIMULATION_NOT_AVAILABLE",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"abstain_reason\": null, \"component\": \"behavioral\", \"detail\": \"ADAPTER_ABSENT\", \"state\": \"SIMULATION_NOT_AVAILABLE\"}",
+   "expect": null
+  },
+  {
+   "assert": "simulation_state reads no environment variable or key",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "the statistical path runs and its documents carry no scenario",
+   "pass": true,
+   "gate": true,
+   "observed": 3,
+   "expect": null
+  },
+  {
+   "assert": "integration imports nothing behavioral",
+   "pass": true,
+   "gate": true,
+   "observed": "[\":abstention\", \":baselines\", \":bt_adapter\", \":calibration\", \":contract\", \":db\", \":decisions\", \":depth_adapter\", \":features\", \":labels\", \":onchain\", \":registry\", \":runtime\", \":store\", \"__future__:annotations\", \"db:DATA_DIR\", \"pathlib:Path\", \"typing:Any,Callable,Iterable,Sequence\"]",
+   "expect": null
+  }
+ ],
+ "passed": 8,
+ "total": 8,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

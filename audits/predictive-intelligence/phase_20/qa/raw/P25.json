@@ -1,0 +1,54 @@
+{
+ "scenario": "P25",
+ "check": "probes/scenarios.py P25",
+ "doc": "A good-looking chart where costs make the exit impossible: net execution veto, never sized by the forecast.",
+ "assertions": [
+  {
+   "assert": "control: the clean fixture token's FORECAST number is shown (FORMAT-ONLY)",
+   "pass": true,
+   "gate": true,
+   "observed": "FORECAST",
+   "expect": null
+  },
+  {
+   "assert": "the token whose exit is impossible (CANNOT_EXIT_5K) has its FORECAST number withheld",
+   "pass": true,
+   "gate": true,
+   "observed": true,
+   "expect": null
+  },
+  {
+   "assert": "the report says the forecast is overridden by risk",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "the report is watermarked FORMAT-ONLY",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "a 30% exit loss gives a size cap of 0 and no size from the forecast",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"basis\": \"FORWARD_QUOTES_VISIBLE_AT_DECISION\", \"oldest_used_age_s\": 60.0, \"pool_address\": \"P\", \"quotes_used\": 1, \"route_lost_sizes\": [], \"size_cap_usd\": 0.0}",
+   "expect": null
+  },
+  {
+   "assert": "a barrier touch by a tiny candle is flagged WICK_TOUCH (not a fill)",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"WICK_TOUCH\"]",
+   "expect": null
+  }
+ ],
+ "passed": 6,
+ "total": 6,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

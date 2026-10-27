@@ -1,0 +1,6 @@
+{
+ "abstention_flags_created_at_basis": true,
+ "caught": true,
+ "contract_refuses_created_at_basis": true,
+ "store_refuses_decision_before_created_at": true
+}

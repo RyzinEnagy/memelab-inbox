@@ -1,0 +1,5 @@
+..s..........................................................            [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_predictive_behavioral.py:360: could not import 'jsonschema': No module named 'jsonschema'
+SKIPPED [1] tests/test_predictive_behavioral.py:846: no IPv6 loopback in this sandbox
+203 passed, 2 skipped in 25.90s

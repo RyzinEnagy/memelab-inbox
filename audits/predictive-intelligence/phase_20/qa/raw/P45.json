@@ -1,0 +1,26 @@
+{
+ "scenario": "P45",
+ "check": "probes/scenarios.py P45",
+ "doc": "No market movement but one agent invents a catalyst: source-grounded refusal.",
+ "assertions": [
+  {
+   "assert": "an event with no source item seen by T is refused",
+   "pass": true,
+   "gate": true,
+   "observed": "NOT_AVAILABLE_AT_DECISION",
+   "expect": null
+  },
+  {
+   "assert": "an invented catalyst citing no seed observation is refused",
+   "pass": true,
+   "gate": true,
+   "observed": "UNGROUNDED_HYPOTHESIS",
+   "expect": null
+  }
+ ],
+ "passed": 2,
+ "total": 2,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

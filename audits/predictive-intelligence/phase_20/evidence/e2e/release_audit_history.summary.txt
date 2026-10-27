@@ -1,0 +1,1 @@
+python tools/release_audit.py --history on a single-branch clone of feature/predictive-intelligence at 0d66379 (Phase 20 recorded audit run, 2026-10-27T17:17Z to 17:20Z, clone refs 3): exit 0, "Needs action: no." (PI-D-030: the full report quotes rule words and is not committed).

@@ -1,0 +1,33 @@
+{
+ "scenario": "P04",
+ "check": "probes/scenarios.py P04",
+ "doc": "A page crawled today describing an older event is not historical availability.",
+ "assertions": [
+  {
+   "assert": "items first seen after T are not available at T whatever their published_at",
+   "pass": true,
+   "gate": true,
+   "observed": "NOT_AVAILABLE_AT_DECISION",
+   "expect": null
+  },
+  {
+   "assert": "no probability",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "a page fetched one second after T does not supply identity",
+   "pass": true,
+   "gate": true,
+   "observed": "IDENTITY_UNVERIFIED",
+   "expect": null
+  }
+ ],
+ "passed": 3,
+ "total": 3,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

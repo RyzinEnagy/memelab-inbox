@@ -1,0 +1,40 @@
+{
+ "scenario": "P33",
+ "check": "probes/scenarios.py P33",
+ "doc": "A schema migration that touches unrelated backtesting tables: refused or provably untouched; rollback exact.",
+ "assertions": [
+  {
+   "assert": "migration added predictive tables",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "backtesting-like tables untouched after migrate",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"backtest_runs\": [[1, \"m1\", \"UNTRADEABLE\"], [2, \"m2\", \"PASS\"]], \"bt_depth_snapshots\": [[1, \"p\", 0.97]]}",
+   "expect": null
+  },
+  {
+   "assert": "rollback to 0 restores the exact database dump (lab, backtesting-like tables and schema)",
+   "pass": true,
+   "gate": true,
+   "observed": "[2257619, 2257619]",
+   "expect": null
+  },
+  {
+   "assert": "the store refuses the tracked lab database as its own path",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  }
+ ],
+ "passed": 4,
+ "total": 4,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

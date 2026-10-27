@@ -1,0 +1,40 @@
+{
+ "scenario": "P31",
+ "check": "probes/scenarios.py P31",
+ "doc": "Copyleft code copied by mistake: the license gate fails and needs remediation.",
+ "assertions": [
+  {
+   "assert": "a file with a copyleft header is caught",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "no code file in the repository carries a copyleft marker or a MiroFish or black-it fingerprint",
+   "pass": true,
+   "gate": true,
+   "observed": "[]",
+   "expect": null
+  },
+  {
+   "assert": "the scan covered the code files",
+   "pass": true,
+   "gate": true,
+   "observed": 664,
+   "expect": null
+  },
+  {
+   "assert": "positive control: the pinned MiroFish source is caught by its fingerprints",
+   "pass": true,
+   "gate": true,
+   "observed": "[40, 40]",
+   "expect": null
+  }
+ ],
+ "passed": 4,
+ "total": 4,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

@@ -1,0 +1,40 @@
+{
+ "scenario": "P10",
+ "check": "probes/scenarios.py P10",
+ "doc": "A 1% base-rate event and an always-negative model: proper scores and minority metrics show the weakness.",
+ "assertions": [
+  {
+   "assert": "the minority note flags the constant prediction and gives no AUC",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"auc\": null, \"average_precision\": null, \"constant_prediction\": true, \"flags\": [\"CONSTANT_PREDICTION\", \"FEWER_THAN_10_PER_CLASS_OR_CONSTANT\"], \"n\": 2000, \"positives\": 21, \"prevalence\": 0.0105}",
+   "expect": null
+  },
+  {
+   "assert": "prevalence is reported beside the score",
+   "pass": true,
+   "gate": true,
+   "observed": 0.0105,
+   "expect": null
+  },
+  {
+   "assert": "an always-zero forecast is worse than the base rate in Brier",
+   "pass": true,
+   "gate": true,
+   "observed": "[0.0105, 0.01038975]",
+   "expect": null
+  },
+  {
+   "assert": "calibration check fails for the always-negative model",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  }
+ ],
+ "passed": 4,
+ "total": 4,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

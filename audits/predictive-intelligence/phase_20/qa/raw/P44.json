@@ -1,0 +1,56 @@
+{
+ "scenario": "P44",
+ "check": "probes/scenarios.py P44",
+ "doc": "A report claiming profitability on a tiny pool: size-specific execution context or abstention.",
+ "assertions": [
+  {
+   "assert": "a size request on a price-path target abstains (no historical executable depth)",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"SIZE_REQUESTED\"]",
+   "expect": null
+  },
+  {
+   "assert": "a cohort answer for a size is EXECUTION_DATA_MISSING",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "report text with 'guaranteed profit' is refused",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "report text with 'take profit at' is refused",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "probe: report text with a multiplier claim ('100x gain') is refused by the final text check",
+   "pass": false,
+   "gate": false,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "decision support gives no size without depth",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"basis\": \"EXECUTION_DATA_MISSING\", \"pool_address\": \"4DE7eXJcULzPG87VsMzFjAMnPmRv2b2na2sMEgQ2cJ3j\", \"route_lost_sizes\": [], \"size_cap_usd\": null}",
+   "expect": null
+  }
+ ],
+ "passed": 5,
+ "total": 5,
+ "probes_failed": [
+  "probe: report text with a multiplier claim ('100x gain') is refused by the final text check"
+ ],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD_PROBE_FINDING"
+}

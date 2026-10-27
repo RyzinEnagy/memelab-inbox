@@ -1,0 +1,33 @@
+{
+ "scenario": "P15",
+ "check": "probes/scenarios.py P15",
+ "doc": "The same influencer content across sources: deduplicated, never triple counted.",
+ "assertions": [
+  {
+   "assert": "one independent source from four copies",
+   "pass": true,
+   "gate": true,
+   "observed": 1,
+   "expect": null
+  },
+  {
+   "assert": "a single non-official source is never VERIFIED",
+   "pass": true,
+   "gate": true,
+   "observed": "UNVERIFIED_EVENT",
+   "expect": null
+  },
+  {
+   "assert": "the social adapter collapses the cross-platform duplicate",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"account_label_unknown_as_of\": 0, \"bot_or_suspended\": 1, \"deleted_before_t\": 0, \"duplicates_collapsed\": 1, \"edited_without_original\": 0}",
+   "expect": null
+  }
+ ],
+ "passed": 3,
+ "total": 3,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

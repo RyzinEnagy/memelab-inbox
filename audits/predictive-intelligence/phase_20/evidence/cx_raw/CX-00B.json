@@ -1,0 +1,9 @@
+{
+ "availability_is_the_commit": true,
+ "caught": true,
+ "missing_before_the_commit": true,
+ "present_after_the_commit": true,
+ "score_features": [
+  "thesis_score"
+ ]
+}

@@ -1,0 +1,70 @@
+{
+ "scenario": "P41",
+ "check": "probes/scenarios.py P41",
+ "doc": "Malformed crawled HTML carrying a prompt injection: treated as text data, no instruction followed, no secret leaked.",
+ "assertions": [
+  {
+   "assert": "the injected text changes nothing: same state as a neutral text naming the mint",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"VERIFIED\", \"VERIFIED\"]",
+   "expect": null
+  },
+  {
+   "assert": "no field of the result carries the injected words",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "an injected page that does not name the mint in a source is never VERIFIED",
+   "pass": true,
+   "gate": true,
+   "observed": "IDENTITY_UNVERIFIED",
+   "expect": null
+  },
+  {
+   "assert": "an injected quote is refused as a behavioral seed",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"PROMPT_INJECTION_SUSPECTED\"]",
+   "expect": null
+  },
+  {
+   "assert": "token text carrying a command is withheld in reports",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "a report text with a trading word is refused before it is written",
+   "pass": true,
+   "gate": true,
+   "observed": "ReportError: the text would carry a trading word",
+   "expect": "raises ReportError"
+  },
+  {
+   "assert": "the scout section never prints the injected symbol",
+   "pass": true,
+   "gate": true,
+   "observed": "## Predictive research section (flag on, research only)\n\nThis section is separate from the opportunity score. It does not change the 100-point score, the fatal flags, the status, the watchlist or the ",
+   "expect": null
+  },
+  {
+   "assert": "probe: a run-together trading word as a symbol (SELLNOW) is withheld in the Phase 17 scout section as it is in the Phase 18 report",
+   "pass": false,
+   "gate": false,
+   "observed": "[\"### SELLNOW `solana:3p12Jyhm5cW1qgDmmwQAGrUyqPv2YVSWYzDSbbuBLm32`\", \"- Token report: 20261027_0750_SELLNOW_3p12Jy.md\"]",
+   "expect": null
+  }
+ ],
+ "passed": 7,
+ "total": 7,
+ "probes_failed": [
+  "probe: a run-together trading word as a symbol (SELLNOW) is withheld in the Phase 17 scout section as it is in the Phase 18 report"
+ ],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD_PROBE_FINDING"
+}

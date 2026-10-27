@@ -1,0 +1,4 @@
+MAPIE C2 awarded against MA-1/MA-2, ranks rebuilt (MAPIE now rank 6): problems 3
+   ANCHOR: no pinned line, fold audit or quoted token found in a cited raw file ('scikit-learn-contrib/MAPIE', 'C2')
+   verified finding MA-1 vetoes scikit-learn-contrib/MAPIE C2, but it scores 3
+   verified finding MA-2 vetoes scikit-learn-contrib/MAPIE C2, but it scores 3

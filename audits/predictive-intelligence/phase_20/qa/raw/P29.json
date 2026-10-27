@@ -1,0 +1,33 @@
+{
+ "scenario": "P29",
+ "check": "probes/scenarios.py P29",
+ "doc": "A persona or seed change reverses the scenario: instability detected, no confident scenario.",
+ "assertions": [
+  {
+   "assert": "control: identical labels across the grid are STABLE",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "one persona set reversing the label makes it UNSTABLE",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"distinct_label_sets\": 2, \"distinct_scenario_sets\": 2, \"evidence_sensitive\": true, \"flags\": [\"PERSONA_SENSITIVE\", \"SEED_SENSITIVE\"], \"repeat_identical\": true, \"runs\": 8, \"status\": \"UNSTABLE\"}",
+   "expect": null
+  },
+  {
+   "assert": "a reversed monitor with the same label is UNSTABLE (MONITOR_REVERSED)",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"MONITOR_REVERSED\", \"PERSONA_SENSITIVE\", \"SEED_SENSITIVE\"]",
+   "expect": null
+  }
+ ],
+ "passed": 3,
+ "total": 3,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

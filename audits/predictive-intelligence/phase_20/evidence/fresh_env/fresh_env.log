@@ -1,0 +1,8 @@
+clone 0d6637913f7da5341f5db86c8f2e83d987819f9c branches 4
+pip exit 0
+python 3.13.17 system_site True
+pytest exit 1
+stores visible inside: 0
+SKIPPED [1] tests/test_predictive_reproductions.py:76: private research stores absent (rebuild: phase_05 and phase_06 records)
+SKIPPED [1] tests/test_predictive_runtime.py:502: pinned MiroFish clone not present on this machine
+50 failed, 1372 passed, 8 skipped, 6 xfailed, 1 warning in 360.37s (0:06:00)

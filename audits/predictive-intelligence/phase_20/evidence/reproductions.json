@@ -1,0 +1,256 @@
+{
+ "all_reproduced": false,
+ "ref": "0d66379",
+ "sandbox_head": "0d6637913f7da5341f5db86c8f2e83d987819f9c",
+ "steps": {
+  "05_06_sandbox_tracked_changes": {
+   "changed": [
+    " M audits/predictive-intelligence/phase_05/evidence/asof_real_truncation.json"
+   ],
+   "differs_only_in_named_fields": [
+    "audits/predictive-intelligence/phase_05/evidence/asof_real_truncation.json"
+   ],
+   "unexplained": []
+  },
+  "05_asof_fresh": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_05/probes/asof_real_checks.py fresh",
+   "exit": 0,
+   "seconds": 0.9,
+   "stderr_tail": "",
+   "tail": "{\"sample\": 25, \"process_1_equal_stored\": true, \"process_2_equal_stored\": true}"
+  },
+  "05_asof_recompute": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_05/probes/asof_real_checks.py recompute",
+   "exit": 0,
+   "seconds": 20.9,
+   "stderr_tail": "",
+   "tail": "{\"snapshots\": 3000, \"differ\": 0, \"examples\": [], \"verify_problems\": [], \"reread_rows\": 10}"
+  },
+  "05_asof_traps": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_05/probes/asof_real_checks.py traps",
+   "exit": 0,
+   "seconds": 61.0,
+   "stderr_tail": "",
+   "tail": "{\"sample\": 40, \"after_1s_changed\": 0, \"at_decision_changed\": 40}"
+  },
+  "05_asof_truncation": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_05/probes/asof_real_checks.py truncation",
+   "exit": 0,
+   "seconds": 816.9,
+   "stderr_tail": "",
+   "tail": "{\"capture\": {\"checked\": 1500, \"differences\": 0, \"examples\": [], \"seconds\": 67.7}}"
+  },
+  "06_check_seal": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit": 0,
+   "seconds": 0.1,
+   "stderr_tail": "",
+   "tail": "}"
+  },
+  "06_compare05": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_06/probes/make_labels.py compare05",
+   "exit": 0,
+   "seconds": 21.9,
+   "stderr_tail": "",
+   "tail": "{\"comparison\": \"Phase 05 reads (earlier) against Phase 06 label reads (later) of the same pools, 5-minute, both identity-checked\", \"read_pairs\": 182, \"gap_s_min\": 5461.365396261215, \"gap_s_max\": 9213.841935873032, \"positions_compared\": 76120, \"unchanged\": 76019, \"changed_by_fields\": {\"oh\": 26, \"ol\": 21, \"o\": 54}, \"labels_recomputed_from_phase05_read\": 111, \"labels_same\": 111, \"labels_different\": 0"
+  },
+  "07_12_13_16_reproductions_test": {
+   "argv": "/usr/bin/python -m pytest -q -p no:cacheprovider tests/test_predictive_reproductions.py",
+   "exit": 0,
+   "seconds": 151.5,
+   "stderr_tail": "",
+   "tail": "5 passed in 150.90s (0:02:30)"
+  },
+  "08_run_technical.py": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_08/probes/run_technical.py SCRATCH/rec/p20_repro_ome7ikzn/out_08",
+   "compare": {
+    "different": [],
+    "identical": 26,
+    "identical_except_named_fields": [],
+    "not_committed": []
+   },
+   "exit": 0,
+   "seconds": 38.8,
+   "stderr_tail": "",
+   "tail": "{\"targets\": {\"T1_24h\": \"OK\", \"T1b_6h\": \"OK\", \"T2_24h\": \"OK\"}, \"outputs\": 28, \"socket_events\": 0, \"stores_unchanged\": true, \"ledger_missing\": 0}",
+   "trace_and_timing_files_differing": [
+    "evidence/run_log.json",
+    "evidence/trace/FORECAST_TRACE.json",
+    "evidence/trace/second/FORECAST_TRACE.json"
+   ]
+  },
+  "09_run_onchain.py": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_09/probes/run_onchain.py SCRATCH/rec/p20_repro_ome7ikzn/out_09",
+   "compare": {
+    "different": [],
+    "identical": 34,
+    "identical_except_named_fields": [
+     "evidence/collector_state.json (differs only in ['path'])"
+    ],
+    "not_committed": []
+   },
+   "exit": 0,
+   "seconds": 76.3,
+   "stderr_tail": "",
+   "tail": "{\"targets\": {\"T2_24h\": \"OK\", \"T1_24h\": \"OK\", \"T1b_6h\": \"OK\"}, \"outputs\": 36, \"socket_events\": 0, \"stores_unchanged\": true, \"ledger_missing\": 0}",
+   "trace_and_timing_files_differing": [
+    "evidence/run_log.json",
+    "evidence/trace/FORECAST_TRACE.json"
+   ]
+  },
+  "10_run_social.py": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_10/probes/run_social.py SCRATCH/rec/p20_repro_ome7ikzn/out_10",
+   "compare": {
+    "different": [],
+    "identical": 36,
+    "identical_except_named_fields": [],
+    "not_committed": []
+   },
+   "exit": 0,
+   "seconds": 86.6,
+   "stderr_tail": "",
+   "tail": "{\"targets\": {\"T1_24h\": \"OK\", \"T2_24h\": \"OK\", \"T1b_6h\": \"OK\"}, \"outputs\": 37, \"socket_events\": 0, \"stores_unchanged\": true, \"ledger_missing\": 0}",
+   "trace_and_timing_files_differing": [
+    "evidence/run_log.json",
+    "evidence/trace/FORECAST_TRACE.json"
+   ]
+  },
+  "11_run_analog.py": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_11/probes/run_analog.py SCRATCH/rec/p20_repro_ome7ikzn/out_11",
+   "compare": {
+    "different": [],
+    "identical": 27,
+    "identical_except_named_fields": [],
+    "not_committed": []
+   },
+   "exit": 0,
+   "seconds": 54.1,
+   "stderr_tail": "",
+   "tail": "{\"targets\": {\"T1_24h\": \"OK\", \"T2_24h\": \"OK\", \"T1b_6h\": \"OK\"}, \"outputs\": 28, \"failed_traps\": [], \"socket_events\": 0, \"stores_unchanged\": true}",
+   "trace_and_timing_files_differing": [
+    "evidence/run_log.json"
+   ]
+  },
+  "14_build_seeds": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_14/probes/build_seeds.py SCRATCH/rec/p20_repro_ome7ikzn/out_14",
+   "exit": 0,
+   "seconds": 16.6,
+   "stderr_tail": "",
+   "tail": "{\"development_decisions\": 830, \"seeds_refused\": 0, \"label_calls\": [], \"socket_events\": [], \"seeds_sha256\": \"a0c618177503013016f0043356ff5d99ec85e55c872c097ddc87c0f57d26a0c1\"}"
+  },
+  "14_run_behavioral_skip_mirofish": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_14/probes/run_behavioral.py SCRATCH/rec/p20_repro_ome7ikzn/out_14 --skip-mirofish",
+   "compare": {
+    "different": [
+     "behavioral/MOCK_GRID_RUNS.json"
+    ],
+    "identical": 4,
+    "identical_except_named_fields": [
+     "behavioral/COST_CAP.json (differs only in ['wall_s'])",
+     "behavioral/RULE_COUNTS.json (differs only in ['created_at_utc', 'rule_scenarios_sha256'])",
+     "behavioral/RULE_SCENARIOS_DEV.jsonl (differs only in ['created_at_utc', 'doc_sha256'])",
+     "behavioral/SEEDS_DEV_LOG.json (differs only in ['end_utc', 'head', 'start_utc', 'wall_s'])"
+    ],
+    "not_committed": []
+   },
+   "exit": 0,
+   "seconds": 43.8,
+   "stderr_tail": "",
+   "tail": "}"
+  },
+  "15_score_scenarios": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_15/probes/score_scenarios.py SCRATCH/rec/p20_repro_ome7ikzn/out_15",
+   "compare": {
+    "different": [],
+    "identical": 6,
+    "identical_except_named_fields": [],
+    "not_committed": []
+   },
+   "exit": 0,
+   "seconds": 10.1,
+   "stderr_tail": "",
+   "tail": "}"
+  },
+  "17_export_replay": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_17/probes/run_integration.py replay SCRATCH/rec/p20_repro_ome7ikzn/out_17 --ref 71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+   "documents_sha256": "9b839e76b7a334847911b6d5ad1f81044e17da47a09354dd3efd70fdbc0c77d0",
+   "equal_to_phase19_published_copy": {
+    "documents": true,
+    "records": true
+   },
+   "exit": 0,
+   "published_prefixes": {
+    "documents": true,
+    "records": true
+   },
+   "records_sha256": "a8114c19f9ac506b0a809a6f9e1bf1b70ada6e049c693debc1d102294bb5accc",
+   "seconds": 14.1,
+   "stderr_tail": "",
+   "tail": "{\"window_decision_events\": 52, \"round_1_events\": {\"DISCOVERY\": 47, \"MATERIAL_CHANGE\": 5}, \"round_2_events\": {\"DUPLICATE\": 52}, \"round_2_documents\": 0, \"probabilities_published\": 0, \"every_document_has_its_record\": true, \"socket_events\": 0}"
+  },
+  "18_goldens": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_18/probes/run_reports.py goldens SCRATCH/rec/p20_repro_ome7ikzn/out_18",
+   "compare": {
+    "different": [],
+    "identical": 7,
+    "identical_except_named_fields": [],
+    "not_committed": []
+   },
+   "exit": 0,
+   "seconds": 2.8,
+   "stderr_tail": "",
+   "tail": "}"
+  },
+  "19_evaluate": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_19/probes/run_prospective.py evaluate SCRATCH/rec/p20_repro_ome7ikzn/out_19",
+   "compare": {
+    "different": [],
+    "identical": 9,
+    "identical_except_named_fields": [
+     "PRIMARY_RESULTS.json (differs only in ['ledger_head'])"
+    ],
+    "not_committed": [
+     "SEARCH_LEDGER_ROWS.csv"
+    ]
+   },
+   "exit": 0,
+   "seconds": 297.7,
+   "stderr_tail": "",
+   "tail": "{\"T1_24h\": {\"n\": 22, \"positives\": 5, \"days\": 3, \"verdict\": \"INSUFFICIENT_DAYS\"}, \"T1b_6h\": {\"n\": 24, \"positives\": 3, \"days\": 3, \"verdict\": \"INSUFFICIENT_DAYS\"}, \"T2_24h\": {\"n\": 15, \"positives\": 3, \"days\": 2, \"verdict\": \"INSUFFICIENT_DAYS\"}, \"n_search\": 130}"
+  },
+  "19_monitoring_and_outputs_tests": {
+   "argv": "/usr/bin/python -m pytest -q -p no:cacheprovider tests/test_predictive_monitoring.py tests/test_predictive_phase19_outputs.py",
+   "exit": 0,
+   "seconds": 20.7,
+   "stderr_tail": "",
+   "tail": "55 passed in 20.28s"
+  },
+  "19_rebuild_outcomes": {
+   "argv": "/usr/bin/python -B audits/predictive-intelligence/phase_19/probes/rebuild_outcomes.py SCRATCH/rec/p20_repro_ome7ikzn/p19_rebuild.json",
+   "exit": 0,
+   "rebuild": {
+    "archive_files": 40,
+    "as_of_utc": "2026-10-27T14:35:37Z",
+    "difference_keys": [],
+    "differences": 0,
+    "ledger_outcomes": 156,
+    "ohlcv_files": 35,
+    "records": 156,
+    "response_keys_equal": 35,
+    "socket_events": 0,
+    "wall_s": 15.6,
+    "window_decisions": 52
+   },
+   "seconds": 15.9,
+   "stderr_tail": "",
+   "tail": "{\"archive_files\": 40, \"response_keys_equal\": 35, \"ohlcv_files\": 35, \"window_decisions\": 52, \"records\": 156, \"ledger_outcomes\": 156, \"differences\": 0, \"difference_keys\": [], \"as_of_utc\": \"2026-10-27T14:35:37Z\", \"socket_events\": 0, \"wall_s\": 15.6}"
+  },
+  "final_sandbox_tracked_changes": {
+   "changed": [
+    " M audits/predictive-intelligence/phase_05/evidence/asof_real_truncation.json"
+   ],
+   "unexplained": []
+  }
+ },
+ "wall_s": 1752.6
+}

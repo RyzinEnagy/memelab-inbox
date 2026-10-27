@@ -1,0 +1,47 @@
+{
+ "scenario": "P13",
+ "check": "probes/scenarios.py P13",
+ "doc": "A model trained with later tokens applied to an earlier replay: refused by the chronological artifact checks.",
+ "assertions": [
+  {
+   "assert": "control: the fixture champion publishes at T_FX (after its pin and cutoff)",
+   "pass": true,
+   "gate": true,
+   "observed": 1,
+   "expect": null
+  },
+  {
+   "assert": "a decision before the pin gets no champion and no number",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"DISCOVERY\": 1}",
+   "expect": null
+  },
+  {
+   "assert": "a card cannot score a decision before its training cutoff",
+   "pass": true,
+   "gate": true,
+   "observed": "RetrospectiveModelNotAvailable: card B2:price_path_target_before_invalidation_24h trained to 2026-10-17T00:00:00Z cannot score 1 earlier decision(s) (RETROSPECTIVE_MODEL_NOT_AVAILABLE_AS_OF, P",
+   "expect": "raises RetrospectiveModelNotAvailable"
+  },
+  {
+   "assert": "the publication layer abstains MODEL_TRAINED_AFTER_DECISION",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"MODEL_TRAINED_AFTER_DECISION\", \"CALIBRATION_AFTER_DECISION\"]",
+   "expect": null
+  },
+  {
+   "assert": "the contract refuses a training cutoff after the decision",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  }
+ ],
+ "passed": 5,
+ "total": 5,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

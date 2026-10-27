@@ -1,0 +1,75 @@
+{
+ "scenario": "P05",
+ "check": "probes/scenarios.py P05",
+ "doc": "A label not yet matured is pending: never trained on, never scored as a negative.",
+ "assertions": [
+  {
+   "assert": "label state PENDING one second before maturity",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "a pending outcome cannot be scored",
+   "pass": true,
+   "gate": true,
+   "observed": "ContractError: outcome f is PENDING at 1793182805.0: P05, a pending label cannot be scored",
+   "expect": "raises ContractError"
+  },
+  {
+   "assert": "a label read before maturity cannot be scored",
+   "pass": true,
+   "gate": true,
+   "observed": "ContractError: outcome f was read before its label matured",
+   "expect": "raises ContractError"
+  },
+  {
+   "assert": "fit_all refuses training rows maturing after the cutoff",
+   "pass": true,
+   "gate": true,
+   "observed": "AsOfError: row 0: log1p_token_age_days__available_at missing: an unknown availability time is not available",
+   "expect": "raises Exception"
+  },
+  {
+   "assert": "the replay guard refuses a card whose training labels mature after its cutoff",
+   "pass": true,
+   "gate": true,
+   "observed": "TrainingAfterCutoff: card B0:price_path_severe_drawdown_or_halt_24h: a training label maturing after its cutoff (P05)",
+   "expect": "raises TrainingAfterCutoff"
+  },
+  {
+   "assert": "ledger refuses an outcome observed before maturity",
+   "pass": true,
+   "gate": true,
+   "observed": "NOT_YET_MATURED",
+   "expect": null
+  },
+  {
+   "assert": "ledger refuses an outcome recorded before maturity",
+   "pass": true,
+   "gate": true,
+   "observed": "NOT_YET_MATURED",
+   "expect": null
+  },
+  {
+   "assert": "a PENDING outcome carrying a negative label is refused",
+   "pass": true,
+   "gate": true,
+   "observed": "MALFORMED_ENTRY",
+   "expect": null
+  },
+  {
+   "assert": "a PENDING outcome is never scorable",
+   "pass": true,
+   "gate": true,
+   "observed": 0,
+   "expect": null
+  }
+ ],
+ "passed": 9,
+ "total": 9,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

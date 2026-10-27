@@ -1,0 +1,82 @@
+{
+ "scenario": "P38",
+ "check": "probes/scenarios.py P38",
+ "doc": "A model probability outside [0, 1], NaN or with zero variance: refused, publication inhibited.",
+ "assertions": [
+  {
+   "assert": "the contract refuses probability 1.2",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "a raw number 1.2 never publishes",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"SCORE_OUTSIDE_CALIBRATION_RANGE\", \"INVALID_PROBABILITY\", \"LOW_SUPPORT\"]",
+   "expect": null
+  },
+  {
+   "assert": "the contract refuses probability -0.1",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "a raw number -0.1 never publishes",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"SCORE_OUTSIDE_CALIBRATION_RANGE\", \"INVALID_PROBABILITY\", \"LOW_SUPPORT\"]",
+   "expect": null
+  },
+  {
+   "assert": "the contract refuses probability nan",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "a raw number nan never publishes",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"INVALID_PROBABILITY\", \"LOW_SUPPORT\"]",
+   "expect": null
+  },
+  {
+   "assert": "the contract refuses probability inf",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "a raw number inf never publishes",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"INVALID_PROBABILITY\", \"LOW_SUPPORT\"]",
+   "expect": null
+  },
+  {
+   "assert": "a card with a non-finite number cannot be serialised",
+   "pass": true,
+   "gate": true,
+   "observed": "ValueError: Out of range float values are not JSON compliant: nan",
+   "expect": "raises ValueError"
+  },
+  {
+   "assert": "zero-variance predictions are flagged flat",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"flat\": true, \"n\": 50, \"near_flat\": true, \"ptp\": 0.0, \"sd\": 5.551115123125783e-17}",
+   "expect": null
+  }
+ ],
+ "passed": 10,
+ "total": 10,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

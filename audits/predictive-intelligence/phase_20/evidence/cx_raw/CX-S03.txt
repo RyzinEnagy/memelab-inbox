@@ -1,0 +1,32 @@
+m_wrong_criterion_sum        REFUSED  criterion features of scikit-learn/scikit-learn is 3, items sum to 2
+m_wrong_total                REFUSED  total of interpretml/interpret is 53, criteria sum to 50
+m_over_max                   REFUSED  criterion license_security of scikit-learn/scikit-learn outside 0..7
+m_point_without_evidence     REFUSED  point without evidence ('scikit-learn/scikit-learn', 'Q1')
+m_partial_item               REFUSED  partial item value ('scikit-learn/scikit-learn', 'T1')
+m_swapped_ranks              REFUSED  rank of scikit-learn/scikit-learn is 2, the sort gives 1
+m_reject_ranked              REFUSED  REJECT baobach/mlfinpy marked eligible
+m_readme_only_point          REFUSED  P42: README-only evidence ('mesa/mesa', 'T1')
+m_readme_hundred             REFUSED  P42: README-only evidence ('666ghj/MiroFish', 'T1')
+m_agpl_install               REFUSED  P31: strong copyleft 666ghj/MiroFish has in-process decision INSTALL
+m_agpl_l1                    REFUSED  P31: strong copyleft earned L1 ('bancaditalia/black-it', 'L1')
+m_swarm_probability          REFUSED  P27: behavioral simulator earned a probability or calibration point ('mesa/mesa', 'O1')
+m_llm_temporal               REFUSED  P26: LLM agent simulator earned a temporal point ('camel-ai/oasis', 'T6')
+m_chrono_from_prose          REFUSED  P13 guard: chronology item without raw output or re-execution ('lightgbm-org/LightGBM', 'T6')
+m_missing_row                REFUSED  missing SCORE_ITEMS row ip200/venn-abers K4 (unanswered must be an explicit 0)
+m_bad_path                   REFUSED  evidence does not resolve ('online-ml/river', 'Q1'): SMOKES/online-ml__river/does_not_exist.txt 161 
+m_top10_table                REFUSED  RANKED_TOP10.md table differs from the CSV sort: [('2', 'interpretml/interpret', '50'), ('1', 'sciki
+m_weight_changed             REFUSED  RUBRIC_ITEMS for temporal_integrity do not sum to 18
+m_award_against_finding      REFUSED  verified finding MA-1 vetoes scikit-learn-contrib/MAPIE C2, but it scores 3
+m_readme_at_pin              REFUSED  P42 at the pin: documentation file cited as evidence ('mesa/mesa', 'D2'): README.md
+m_docs_at_pin                REFUSED  P42 at the pin: documentation file cited as evidence ('blue-yonder/tsfresh', 'T2'): docs/text/faq.rs
+m_t1_from_prose              REFUSED  P13 guard: chronology item without raw output or re-execution ('mesa/mesa', 'T1')
+m_t3_from_prose              REFUSED  P13 guard: chronology item without raw output or re-execution ('deepcharles/ruptures', 'T3')
+m_fabricated_existing_file   REFUSED  ANCHOR: no pinned line, fold audit or quoted token found in a cited raw file ('probabl-ai/skore', 'C
+m_prose_only_smoke_item      REFUSED  evidence rule: review prose alone for scikit-learn/scikit-learn K1
+m_group_split_empty          REFUSED  FOLD: splitter evidence without a fold audit ('eslazarev/purged-cross-validation', 'O5')
+m_group_split_with_audit     REFUSED  FOLD: purgedcv.PurgedGroupKFold for eslazarev/purged-cross-validation O5: a training fold has 0 rows
+m_future_trained_t2          REFUSED  FOLD: purgedcv.PurgedKFold for eslazarev/purged-cross-validation T2: trains on 2091 rows decided aft
+m_mapie_o1                   REFUSED  verified finding MA-1 vetoes scikit-learn-contrib/MAPIE O1, but it scores 5
+m_wrapper_probability        REFUSED  verified finding ST-4 vetoes sktime/sktime O1, but it scores 5
+m_hazardous_recalibration    REFUSED  verified finding HZ-3 vetoes soda-inria/hazardous C2, but it scores 3
+31 of 31 mutations refused

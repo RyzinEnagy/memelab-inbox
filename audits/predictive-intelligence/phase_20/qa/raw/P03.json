@@ -1,0 +1,33 @@
+{
+ "scenario": "P03",
+ "check": "probes/scenarios.py P03",
+ "doc": "Future-edited social post: the first-known original is used, or the post is excluded.",
+ "assertions": [
+  {
+   "assert": "an edit recorded after T changes nothing at T",
+   "pass": true,
+   "gate": true,
+   "observed": "[3.0, 3.0]",
+   "expect": null
+  },
+  {
+   "assert": "a post known only as an edit is excluded",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"account_label_unknown_as_of\": 0, \"bot_or_suspended\": 1, \"deleted_before_t\": 0, \"duplicates_collapsed\": 1, \"edited_without_original\": 1}",
+   "expect": null
+  },
+  {
+   "assert": "and one fewer exact mention",
+   "pass": true,
+   "gate": true,
+   "observed": "[2.0, 3.0]",
+   "expect": null
+  }
+ ],
+ "passed": 3,
+ "total": 3,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

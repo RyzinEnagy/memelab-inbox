@@ -1,0 +1,49 @@
+{
+ "scenario": "P46",
+ "check": "probes/scenarios.py P46",
+ "doc": "A schema or feature change without a retrain: version compatibility failure.",
+ "assertions": [
+  {
+   "assert": "control: the fixture champion publishes under the running feature set",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "after a feature-set change the champion is incompatible and nothing publishes",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"DISCOVERY\": 1}",
+   "expect": null
+  },
+  {
+   "assert": "the request records the feature schema mismatch",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"FeatureVersionError: FEATURE_SCHEMA_MISMATCH: definitions hash differs from the code's (P46)\", \"None\"]",
+   "expect": null
+  },
+  {
+   "assert": "probe: the blocking state names the incompatibility rather than REGISTRY_UNAVAILABLE",
+   "pass": false,
+   "gate": false,
+   "observed": "[\"REGISTRY_UNAVAILABLE\"]",
+   "expect": null
+  },
+  {
+   "assert": "a labels-version change is incompatible too",
+   "pass": true,
+   "gate": true,
+   "observed": "[{\"detail\": \"labels version changed\", \"state\": \"MODEL_INCOMPATIBLE_RETRAIN_REQUIRED\"}]",
+   "expect": null
+  }
+ ],
+ "passed": 4,
+ "total": 4,
+ "probes_failed": [
+  "probe: the blocking state names the incompatibility rather than REGISTRY_UNAVAILABLE"
+ ],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD_PROBE_FINDING"
+}

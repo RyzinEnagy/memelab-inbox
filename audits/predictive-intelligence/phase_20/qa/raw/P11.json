@@ -1,0 +1,40 @@
+{
+ "scenario": "P11",
+ "check": "probes/scenarios.py P11",
+ "doc": "Flat all-positive predictions: miscalibration and degeneracy detected.",
+ "assertions": [
+  {
+   "assert": "degeneracy flagged",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"flat\": true, \"n\": 200, \"near_flat\": true, \"ptp\": 0.0, \"sd\": 0.0}",
+   "expect": null
+  },
+  {
+   "assert": "calibration fails",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "the constant prediction is flagged by the monitor too",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"CONSTANT_PREDICTION\", \"FEWER_THAN_10_PER_CLASS_OR_CONSTANT\"]",
+   "expect": null
+  },
+  {
+   "assert": "a calibration card built on flat scores never publishes",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"INSUFFICIENT_HISTORY\", \"UNCALIBRATED\", \"OOD\"]",
+   "expect": null
+  }
+ ],
+ "passed": 4,
+ "total": 4,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

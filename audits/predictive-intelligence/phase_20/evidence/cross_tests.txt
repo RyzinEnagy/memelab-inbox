@@ -1,0 +1,9 @@
+...x..x..xx.....x.x                                                      [100%]
+=========================== short test summary info ============================
+XFAIL tests/test_predictive_phase20_cross.py::test_x02_a_token_row_of_another_mint_is_refused_and_its_pool_never_read_or_recorded - F20-02 open: integration-1 does not check that a replayed token row is the decision's identity
+XFAIL tests/test_predictive_phase20_cross.py::test_x03_run_pass_itself_returns_a_visible_state_for_a_millisecond_capture_time - F20-03 open (MINOR): run_pass raises on a millisecond capture time although its docstring says it never raises; the hooks contain it
+XFAIL tests/test_predictive_phase20_cross.py::test_x04_the_ledger_refuses_a_labeled_outcome_whose_token_parameter_is_not_exactly_the_mint[prefix_extended_token] - F20-04 open (MINOR): the ledger's identity rule is a substring test on the URL, not the parsed token parameter
+XFAIL tests/test_predictive_phase20_cross.py::test_x04_the_ledger_refuses_a_labeled_outcome_whose_token_parameter_is_not_exactly_the_mint[token_only_in_another_parameter] - F20-04 open (MINOR): the ledger's identity rule is a substring test on the URL, not the parsed token parameter
+XFAIL tests/test_predictive_phase20_cross.py::test_x06_a_champion_card_whose_training_labels_matured_after_its_cutoff_never_publishes - F20-06 open: the serving path (registry.serve, abstention.evaluate, integration) does not re-check that a champion card's training labels matured by its cutoff
+XFAIL tests/test_predictive_phase20_cross.py::test_carried_a_point_rewritten_in_the_document_and_the_request_record_is_refused - F20-08 (Phase 18 minor 5, carried): the reader does not recompute the published point from the stored raw number, so a point moved inside its interval in the document and the request record is shown
+13 passed, 6 xfailed in 12.78s
