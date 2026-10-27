@@ -10,7 +10,7 @@
   "safety_items": "PASS"
  },
  "head_before": "2fd0aae",
- "head_after": "69a3584",
+ "head_after": "ef6eecc",
  "commits": {
   "pre_registration": "9ed8377",
   "frozen_code_first_pass": "c59c494",
@@ -241,6 +241,34 @@
    "name": "PI-D-074 release audit entries",
    "command": "python -B probes/release_exempt_compare.py 2fd0aae",
    "result": "findings outside the Phase 14 files equal (63 reviewed, 0 unexplained)",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G20 post-commit suite at ef6eecc (repair pass 2)",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "result": "1 failed, 1807 passed, 1 skipped in 207.73s (known test_dedup_corroboration_resurface_denial only)",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "G20 content guard at ef6eecc",
+   "command": "python -m memelab social guard",
+   "result": "0 violations",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G20 seal check at ef6eecc",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "result": "problems []",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G20 single-branch release audit at ef6eecc",
+   "command": "python tools/release_audit.py --history (single-branch clone)",
+   "result": "Needs action: no.",
    "exit_code": 0,
    "pass": true
   }

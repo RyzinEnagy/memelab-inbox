@@ -34,7 +34,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 ## Phase 14 commits
 
 - First pass: HEAD before `2fd0aae`; pre-registration `9ed8377`; frozen code `c59c494`; recorded run `872578d`; records `bf06b87`; post-commit record `58bee5d` (pushed, reviewed by the skeptic).
-- Repair pass 2: code `69a3584` (frozen before the repeated run), outputs and records on top, post-commit record after that (local only; the orchestrator pushes). Post-commit results: `phase_14/postcommit/rp2_*`.
+- Repair pass 2: code `69a3584` (frozen before the repeated run), outputs and records `ef6eecc`, post-commit record on top (local only; the orchestrator pushes). Post-commit at `ef6eecc`: suite `1 failed, 1807 passed, 1 skipped` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no.", `git status` clean (`phase_14/postcommit/rp2_*`).
 
 ## Waiting on Elving
 
