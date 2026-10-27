@@ -1,0 +1,342 @@
+{
+ "phase": "15",
+ "status": "NEEDS_REVIEW",
+ "status_statement": "NEEDS_REVIEW pending the orchestrator's independent skeptic. The comparison that can be made without spend is valid and the decision is conservative; the simulation comparators were not run (no approved spend, 0 eligible events), so the expected status after review is TEST_ONLY and the result cannot satisfy a live-release prerequisite (PI-D-078).",
+ "decision": {
+  "validation": "INSUFFICIENT_VALIDATION",
+  "mirofish": "MIROFISH_NO_GO",
+  "rules_1": "RULES_NOT_PROMOTED",
+  "reasons": [
+   "ELIGIBLE_EVENTS_BELOW_100",
+   "D_NOT_RUN",
+   "B_NOT_RUN"
+  ],
+  "eligible_events": 0,
+  "min_events": 100,
+  "comparators": {
+   "A": "RAN",
+   "B": "BLOCKED_NO_APPROVED_LLM_SPEND",
+   "C": "NO_CALIBRATED_CLASSIFIER_UNCALIBRATED_STAND_INS_ONLY",
+   "D": "BLOCKED_NO_APPROVED_LLM_OR_ZEP_SPEND"
+  },
+  "probability_created": false,
+  "live_capability_created": false
+ },
+ "head_before": "b0243b4",
+ "head_after": "3135060",
+ "commits": {
+  "pre_registration": "b274cbc",
+  "frozen_coding_code": "9ab0160",
+  "recorded_coding_run": "7b787bf",
+  "frozen_scoring_code": "0abffd5",
+  "recorded_scoring_run_first": "01e535d",
+  "change_control_cp15_0": "de41d26",
+  "recorded_scoring_run_repeat": "3135060"
+ },
+ "result": {
+  "eligible_catalyst_events": 0,
+  "E1_A_WARN": {
+   "T1_24h": "INSUFFICIENT_DAYS / NO_UNCORRECTED_SKILL",
+   "T1b_6h": "INSUFFICIENT_EVENTS / NO_UNCORRECTED_SKILL",
+   "T2_24h": "INSUFFICIENT_DAYS / NO_UNCORRECTED_SKILL"
+  },
+  "E2": {
+   "T1_24h": "NO_WARNINGS",
+   "T1b_6h": "DESCRIPTIVE_NOT_DISTINGUISHABLE",
+   "T2_24h": "DESCRIPTIVE_NOT_DISTINGUISHABLE"
+  },
+  "E3_POST_OPENING": {
+   "T1_24h": "NO_UNCORRECTED_SKILL",
+   "T1b_6h": "NO_UNCORRECTED_SKILL",
+   "T2_24h": "NO_UNCORRECTED_SKILL"
+  },
+  "ncb_verified_flagged": false,
+  "n_search": 121,
+  "cost_usd": 0.0,
+  "llm_calls": 0,
+  "decisions": [
+   "PI-D-078",
+   "PI-D-079",
+   "PI-D-080",
+   "PI-D-081"
+  ]
+ },
+ "checks": [
+  {
+   "name": "G1 package checksums",
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "result": "41 OK, 0 failed",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G2 entry suite at b0243b4",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "result": "1 failed, 1807 passed, 1 skipped, 1 warning in 211.13s (known test_dedup_corroboration_resurface_denial only)",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "G2 entry seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "result": "problems []",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G2 Phase 14 key tests",
+   "command": "python -m pytest tests/test_predictive_behavioral.py tests/test_predictive_phase14_outputs.py -q -p no:cacheprovider",
+   "result": "211 passed, 1 skipped",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G2 Phase 14 seed rebuild",
+   "command": "python -B audits/predictive-intelligence/phase_14/probes/build_seeds.py <scratchpad>/entry_p14",
+   "result": "SEEDS_DEV.jsonl byte-equal, 830 seeds, 0 refused",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G3 pre-registration and freeze order",
+   "command": "git show --name-only b274cbc 9ab0160 7b787bf 0abffd5 01e535d de41d26 3135060",
+   "result": "protocol, checklist, registry, PI-D-078, PI-D-079 before code; coding code frozen before coding run; coding outputs before scoring code; scoring code frozen before each recorded scoring run; scenario_eval.py unchanged since 9ab0160",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G4 isolation",
+   "command": "tests test_scenario_eval_imports_numpy_stdlib_and_lab_predictive_modules_only, test_no_other_memelab_module_imports_scenario_eval",
+   "result": "passed",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G5 event count",
+   "input": "behavioral/EVENT_SET.csv",
+   "result": "eligible independently dated catalyst events 0 of 100 required (27 candidate items not eligible)",
+   "pass": true
+  },
+  {
+   "name": "G6 blind coding",
+   "input": "behavioral/CODING_LOG.json",
+   "result": "label_calls [], forbidden_opens [], socket_events []; coding outputs equal their logged hashes (4 of 4)",
+   "pass": true
+  },
+  {
+   "name": "G7, G9, G11, G16 unit tests",
+   "command": "python -m pytest tests/test_predictive_scenario_eval.py tests/test_predictive_phase15_outputs.py -q -p no:cacheprovider",
+   "result": "39 passed in 11.48s",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G8 rules reproduce",
+   "input": "CODING_LOG.json development_recompute_differences, documents_with_validation_errors",
+   "result": "0 and 0; twin coding runs byte-equal",
+   "pass": true
+  },
+  {
+   "name": "G10 E1 restated numbers equal Phase 10",
+   "input": "INCREMENTAL_VALUE_RESULTS.json E1_restated_equal_to_phase10",
+   "result": "9 of 9 equal",
+   "pass": true
+  },
+  {
+   "name": "G12 controls",
+   "input": "INCREMENTAL_VALUE_RESULTS.json controls, controls_coding",
+   "result": "NCB VERIFIED not flagged (Holm 0.096); NCB UNVERIFIED 426 of 426 unscorable; P28 830 of 830 refused for both traps",
+   "pass": true
+  },
+  {
+   "name": "G13 E3 POST_OPENING",
+   "input": "behavioral/POST_OPENING_LOG.json",
+   "result": "NO_UNCORRECTED_SKILL on every target; sealed folder not opened",
+   "pass": true
+  },
+  {
+   "name": "G17 mutation probe",
+   "input": "evidence/mutation_scenario_eval.json",
+   "result": "45 of 45 caught, survivors []",
+   "pass": true
+  },
+  {
+   "name": "oracle recompute",
+   "input": "evidence/oracle_recompute.json",
+   "result": "differences [], warning_mismatches 0",
+   "pass": true
+  },
+  {
+   "name": "rerun after CP15-0",
+   "input": "evidence/rerun_cp15_0_diff.json",
+   "result": "ok true; every first-run value equal; only CP15-0 keys and three ledger rows added",
+   "pass": true
+  },
+  {
+   "name": "scoring outputs equal their logged hashes",
+   "input": "evidence/score_run_log.json outputs_sha256",
+   "result": "6 of 6 equal",
+   "pass": true
+  },
+  {
+   "name": "G18 ledger",
+   "input": "experiments/SEARCH_LEDGER.csv, LEDGER_TOTALS.json",
+   "result": "Phase 13 rows unchanged at the head; 33 Phase 15 rows; N_search 121; every search-kind registry row present; six non-configuration registry rows (COUNT, BLIND_CODING x2, NOT_RUN x2, DECISION) have no ledger row (wording note in evidence)",
+   "pass": true
+  },
+  {
+   "name": "G19 deliverables",
+   "input": "behavioral/EXPERIMENT_PROTOCOL.md, EVENT_SET.csv, SCENARIO_CODING.csv, INCREMENTAL_VALUE_RESULTS.md, GO_NO_GO.md",
+   "result": "present",
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "memelab/predictive/scenario_eval.py",
+   "sha256": "a699a21d1edff1fa051bca5a7d20951dc778b74194b85ff39787520482589406"
+  },
+  {
+   "path": "tests/test_predictive_scenario_eval.py",
+   "sha256": "c230348cb4817b3bedb48074551f466d1fdd4c83059fdaabda9beb26e819c456"
+  },
+  {
+   "path": "tests/test_predictive_phase15_outputs.py",
+   "sha256": "91b83ce00d0f6465b8ea67e27c5399ef3ce7a191119f045d6a7cd884fd76e36b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "f0918747f2ba1137aed08d342b8d7b9e84be30ed916e197d26227fccef3400bc"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/PHASE_15_EVIDENCE.md",
+   "sha256": "f5eee5c23721ce50f86cff9ee35088aa6df5d5d2d7fe7aed95ab7f7e1491566f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/SKEPTIC_PACKET.md",
+   "sha256": "0564d83811b4f7daa80cc8dabb6a4c81dd11fb1a100cd5383791c53f6470fe05"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/behavioral/CODING_LOG.json",
+   "sha256": "1dd9ef640d85bbe4b9d6e8480b644668e503741e63e41f4cdb76d94884da854b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/behavioral/CONTROL_CODING.csv",
+   "sha256": "2398080ce516458d5b942590e55a0e789bf78c4e1bc1350d00b923ffb2e45a7f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/behavioral/E1_OOS_ROWS.csv",
+   "sha256": "a06c20b68c2fa96262f3b6041aa886b89e4acedfd3e1299647864dd3c517c6c2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/behavioral/E2_SCORED_ROWS.csv",
+   "sha256": "7d7945c66a60e450c4f5818ce6979a3b95e419b0f112146ac1f4fe9f5e34df9b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/behavioral/EVENT_SET.csv",
+   "sha256": "1491bb0e2f623fd722ac86bc341cd83f60a4f497efba5c10d443834d75da9f89"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/behavioral/EXPERIMENT_PROTOCOL.md",
+   "sha256": "4290b369ce8b004717c4f36dd00c57f5bb98a79a1a52ceeb850697aec3d6b06c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/behavioral/GO_NO_GO.md",
+   "sha256": "838c1c4435a65900789bb451a3617735b08202260d9608998acd39838d36caf4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/behavioral/HOLDOUT_RULE_SCENARIOS.jsonl",
+   "sha256": "6e8f333360db4a2be6283cbed08c6a8405f769d5b6033b08e0bd4fad6a34a65b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/behavioral/INCREMENTAL_VALUE_RESULTS.json",
+   "sha256": "9d993f308b6274abe83b75b91b5ea1c38602836599dd8119f746e0bc31a42672"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/behavioral/INCREMENTAL_VALUE_RESULTS.md",
+   "sha256": "07e95b3f7a5439222b1805a43720e4a236c601ed6bcc48e1af7fcb12d4d84442"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/behavioral/POST_OPENING_LOG.json",
+   "sha256": "d35456ee2e62ec32c2a47fc95115ad5679ea4573d5503cd464e5ac5f009cde64"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/behavioral/SCENARIO_CODING.csv",
+   "sha256": "21a0d9e2e3f774c4435e5948abdefa5105f912133de2c9b4083ca5ebc4e4a69e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/evidence/entry/entry_summary.json",
+   "sha256": "7d027b78ef9c58eebe05af22a94e96848be5eba623d48ac2b307558934725d5d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/evidence/entry/seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/evidence/mutation_scenario_eval.json",
+   "sha256": "143af42651395ccfefc4dcf8a1a6fddbf26916dc66a27cf4f29e153914e792c6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/evidence/oracle_recompute.json",
+   "sha256": "7d083c7e1ccf46b4aad2ac019f428b831cadd0355b14626a351137a02776f383"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/evidence/rerun_cp15_0_diff.json",
+   "sha256": "e7a9c732e61706e415b79abec5e8a2dde6891cd1d3e605875ae14f47c5250a31"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/evidence/score_run_log.json",
+   "sha256": "01ad4789788b5b0626f07fe1d1c9d1afc7d4e6488aee12aa0ad3e4d45c7b8149"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/experiments/EXPERIMENT_REGISTRY.csv",
+   "sha256": "f33d14ab26ad2e38837758ef92b3c33771633a4a5104beb5c588e1152fd0223d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/experiments/LEDGER_TOTALS.json",
+   "sha256": "331c34e9141d6cd8b1fedb5b0d5201f7a7fe42451f5a1e8a6fb7529f4a81a7d1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/experiments/SEARCH_LEDGER.csv",
+   "sha256": "59ac4e88577e60a8e8372be08d333d8bcf2375c21ad7a26d03b54a418e6bfd4c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/probes/code_scenarios.py",
+   "sha256": "bf1fa359734141445cc7774db6079e9d648dc449346b527fe90b11f9d36cada6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/probes/mutation_scenario_eval.py",
+   "sha256": "73c9db48103d8592fbee3dfe46a4cbc02077272555678d5c89a85aa0a5f7a3db"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/probes/oracle_recompute.py",
+   "sha256": "058ee6869a209354f57c0566f1eee0c66319823f42877c55fc3098a7d366180b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/probes/rerun_diff.py",
+   "sha256": "168db9b805b480f9b9f8440f31915e20dfbb9d1dae4b31e09ef3ceb9bb0a8701"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/probes/score_scenarios.py",
+   "sha256": "f62ed428dce063315b4b7570d6a4b1edc824c6c5db46924498206c2cc11807c1"
+  }
+ ],
+ "limitations": [
+  "0 eligible independently dated catalyst events exist (catalyst and social tables are not exported); the simulation question is not answered.",
+  "B (evidence-only LLM) and D (MiroFish) were not run: no approved spend; a retrospective run on these dates would be EXPLORATORY_NOT_AS_OF (P26) whatever it scored.",
+  "C has no calibrated classifier (Phase 13); uncalibrated stand-ins from Phase 10 are restated.",
+  "E2 is descriptive only: the rule table was written after summaries of the same inputs were public.",
+  "The day-stratified permutation exchanges decisions, not mints, so its p values are optimistic where mints repeat (T1b 96 rows share a mint and a day).",
+  "E3 uses the spent retrospective holdout and is a POST_OPENING description only.",
+  "Net decision utility NOT_COMPUTABLE (no historical executable depth, no execution data, no backtest).",
+  "The records were finished by a second agent after the first session ended; no recorded step was rerun in that pass.",
+  "Checklist G18 says every registry row is in the ledger; six non-configuration rows are not (see evidence)."
+ ],
+ "blockers": [
+  "Any MiroFish or evidence-only LLM trial: no approved LLM, Zep or other paid spend and no key (PI-D-005, PI-D-078); and no eligible event set (0 of 100)."
+ ],
+ "approvals_needed": [
+  "Elving: catalyst and social collection into a store this engine can read, until at least 100 eligible prospective events exist; then an LLM budget with the Phase 14 conditions, a pre-registered coder and a fresh protocol before any simulation trial."
+ ],
+ "next_eligible_phase": "16, after the orchestrator's skeptic and repair pass for Phase 15 (MIROFISH_NO_GO does not block the statistical system)"
+}

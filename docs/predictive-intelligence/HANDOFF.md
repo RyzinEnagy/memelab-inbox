@@ -1,44 +1,41 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-077). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_14/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-081). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_15/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
 ## Position on 2026-10-27
 
-- Phases 00 to 13: PASS (Phase 13 after repair pass 2, PI-D-070; G7 closed by PI-D-071).
-- Phase 14 (isolated behavioral-simulation interface): **TEST_ONLY** after repair pass 2 (PI-D-076, PI-D-077). MIROFISH_GATE BLOCKED for live use until Elving approves LLM spend. The orchestrator's independent skeptic found 5 MATERIAL findings and 6 minor (counterexample CX-S14, a monitor that reverses with the seed while the label stays); all repaired at `69a3584` with tests that fail on the first-pass code; the recorded run was repeated with no status, rule count or verdict change. The statistical-engine-unaffected item and the safety items PASS.
-- Spend: 0 Firecrawl credits, 0 vendor calls, 0 language-model calls, no key. Network: one `git ls-remote` of MiroFish; every other socket was loopback.
+- Phases 00 to 13: PASS. Phase 14 (isolated behavioral-simulation interface): TEST_ONLY (PI-D-077), MIROFISH_GATE BLOCKED for live use.
+- Phase 15 (incremental value of behavioral simulation): **NEEDS_REVIEW**, first pass complete, pending the orchestrator's independent skeptic (`audits/predictive-intelligence/phase_15/SKEPTIC_PACKET.md`). Decision: **INSUFFICIENT_VALIDATION**, **MIROFISH_NO_GO**, **RULES_NOT_PROMOTED** (PI-D-081). Expected status after review: TEST_ONLY.
+- Admission: the orchestrator started Phase 15 with Phase 14 at TEST_ONLY because the behavioral module is optional and flag OFF, a MiroFish NO_GO does not block the statistical system, and no LLM spend is approved (PI-D-078, PI-D-081 item 1). Phase 15 could not have been validated with spend either: 0 of the 100 required eligible dated catalyst events exist.
+- Spend: 0 Firecrawl credits, 0 vendor calls, 0 language-model calls, no socket in the Phase 15 probes, no key.
 
-## What Phase 14 did (PI-D-072 to PI-D-077)
+## What Phase 15 did (PI-D-078 to PI-D-081)
 
-- Rules frozen before any code or real seed (`phase_14/ACCEPTANCE_CHECKLIST.md`, `9ed8377`), then two recorded stricter changes before the frozen code: the meter charges call body bytes (characters / 4 would undercount MiroFish's Chinese prompts) and external engines run only in a network namespace (PI-D-073); the seed converter moved out of `memelab/` and three narrow release-audit entries were added for the refusal words, with unchanged findings elsewhere (PI-D-074).
-- `memelab/predictive/behavioral.py` (behavioral-1, standard library, flag OFF, imported by no other module): loopback-only `ServiceAdapter` and `SubprocessAdapter` (environment from scratch, always inside `unshare -n`, timeouts, retries, breaker), approval plus `ON_DEMAND_LOCAL` plus kill switch, `check_seed` (post-decision detail, outcome fields, dates, injection, secrets, URLs, behavioral feedback), `code_response` (vocabulary codes only, grounding, wallet and identity claims dropped and counted), the fictional `behavioral_scenario/1` document and `validate_scenario` (no probability-like key, floats only in cost fields), `stability` (frozen grid of 3 seeds by 2 persona sets, repeat, degraded and no-evidence runs), `cost_plan` and `LLMMeter` (pre-call ceiling, cap, max_tokens, prompt and body caps, call cap, breaker, kill switch, fail closed on usage above charge), `forecast_entries` (strings only) and `rule_scenarios` (behavioral-rules-1).
-- Repair pass 2 (PI-D-076): capped, refused and tripped runs carry `llm_actions` 0 (never AVAILABLE); the meter refuses `n`, `stream` and keys outside an allowlist, meters usage per call and stops without usage; one hypothesis per label; every subprocess inside `unshare -n`; stability on label plus monitor direction (MONITOR_REVERSED); wider date, wording and normalized injection checks; fixed vocabularies for reasons, flags and claim keys.
-- Tests: `tests/test_predictive_behavioral.py` (204 passed, 1 skipped for IPv6) and `tests/test_predictive_phase14_outputs.py` (7); mutation probe 83 of 83 at the repair code.
+- Pre-registered the question, event population, coding rules, comparators, measures, controls, examples rule and decision rule before any code, coding or label read (`b274cbc`).
+- `memelab/predictive/scenario_eval.py` (scenario-eval-1, numpy, flag OFF, imported by no other module): blind mechanical coder, warning metrics with a day-stratified permutation, Holm, A_WARN, selection status, `decide`. 34 unit tests plus 5 output tests; mutation probe 45 of 45; standard-library oracle recompute 0 differences.
+- Blind coding of the 830 development and 95 holdout-window rule documents, committed before any scoring (`7b787bf`); scoring run, self-review CP15-0 (PI-D-080, outputs added only), repeated run with every first-run value equal (`3135060`).
+- The first agent's session ended while writing the records; a second agent finished them from the committed outputs without rerunning any recorded step.
 
 ## Result
 
-- Rules on 830 development seeds: ATTENTION_EXHAUSTION 309, MANUFACTURED_ATTENTION_DUMP 313, ORGANIC_ATTENTION_CONTINUATION 66, NO_GROUNDED_SCENARIO 227; 0 catalyst hypotheses (no catalyst rows exported); deterministic; unscored.
-- Mock grids: STABLE mode STABLE; seed-sensitive, persona-sensitive, non-reproducible, evidence-blind and monitor-reversal (CX-S14) modes UNSTABLE with their flags, on a fictional and on a real seed.
-- 45-case failure matrix: AVAILABLE exactly when SIMULATION_RAN; every failure with its reason; gates make no request. Subprocess children in their own namespace reached nothing (`NETNS_EGRESS.json`).
-- Cost: worst case refused with 0 calls; meter stops at its cap; breaker after 5 upstream failures; `n`, `stream` and unlisted keys refused with nothing forwarded.
-- MiroFish 7657031a through the boundary: SIMULATION_RAN but NOT_CODABLE (free text), stopped by a low meter cap, NO_LLM_ACTIONS when its LLM is down (exit 0), same-seed traces differ.
-- Core: Phase 13's runner unchanged with the behavioral module blocked.
+- Eligible independently dated catalyst events: 0 of 100 (`behavioral/EVENT_SET.csv`).
+- A (behavioral-rules-1, as A_WARN) out of sample: INSUFFICIENT_DAYS on T1 and T2, INSUFFICIENT_EVENTS on T1b, NO_UNCORRECTED_SKILL everywhere. Descriptive warnings: not distinguishable from chance after Holm. Bogus catalyst control not flagged after Holm (raw p 0.032). Holdout (POST_OPENING): the T2 subgroup reverses.
+- B (evidence-only LLM) and D (MiroFish): BLOCKED, no approved spend; P26 makes any retrospective run on these dates EXPLORATORY_NOT_AS_OF. C: no calibrated classifier (Phase 13).
+- N_search 121; cumulative ledger `phase_15/experiments/SEARCH_LEDGER.csv`.
 
 ## Open items, in order
 
-1. The orchestrator re-verifies Phase 14 (TEST_ONLY) and pushes.
-2. Phase 15 entry: its gate asks for PASS from Phase 14; with a TEST_ONLY Phase 14 the orchestrator or Elving decides. Phase 15 has comparator A (`behavioral.rule_scenarios`, real seeds in `phase_14/behavioral/SEEDS_DEV.jsonl`), B and D BLOCKED without spend, C UNCALIBRATED; expect INSUFFICIENT_VALIDATION or BLOCKED for the simulation question.
-3. Before any live behavioral run (Elving): a budget, a named upstream for the meter only with change control, an LLM with a declared training cutoff before the evaluated events, filesystem isolation for the engine, a persistent spend ledger, a pre-registered coder for free text.
-4. Carried from Phase 13: Phase 16 sets levels and cannot promote from the retrospective holdout; Phase 17 calls `abstention.forecast_result` and `validate_publication`, keeps the raw model number, recomputes the published point and validates every document with its record; Phase 19 supplies prospective evidence; champion cards MODEL_STALE after 2026-10-31; catalyst and social tables are not exported; forward depth collection approved but not deployed (PI-D-044).
+1. The orchestrator runs the independent skeptic on Phase 15, sends the review for a repair pass, re-verifies and pushes.
+2. Phase 16 (champion selection): nothing behavioral enters selection; count searches from Phase 15's ledger; it cannot promote from the retrospective holdout.
+3. Carried: Phase 17 calls `abstention.forecast_result` and `validate_publication` and validates every document with its record; Phase 19 supplies prospective evidence; champion cards MODEL_STALE after 2026-10-31; catalyst and social tables are not exported; forward depth collection approved but not deployed (PI-D-044).
 
-## Phase 14 commits
+## Phase 15 commits
 
-- First pass: HEAD before `2fd0aae`; pre-registration `9ed8377`; frozen code `c59c494`; recorded run `872578d`; records `bf06b87`; post-commit record `58bee5d` (pushed, reviewed by the skeptic).
-- Repair pass 2: code `69a3584` (frozen before the repeated run), outputs and records `ef6eecc`, post-commit record on top (local only; the orchestrator pushes). Post-commit at `ef6eecc`: suite `1 failed, 1807 passed, 1 skipped` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no.", `git status` clean (`phase_14/postcommit/rp2_*`).
+HEAD before `b0243b4`; pre-registration `b274cbc`; frozen coding code `9ab0160`; blind coding run `7b787bf`; frozen scoring code `0abffd5`; first scoring run `01e535d`; change control CP15-0 `de41d26`; repeated scoring run `3135060`; records commit and post-commit record on top (hashes in `phase_15/PHASE_15_RESULTS.json` and `phase_15/postcommit/`). Local only; the orchestrator pushes.
 
 ## Waiting on Elving
 
-- Any paid data, LLM, Zep or MiroFish use (the Phase 14 boundary is ready for a mock-only protocol); social API credentials or consent; scheduled catalyst or social collection into a store this engine can read; research packages in the lab's runtime; a merge into `main`; deploying the forward depth collector (approved, PI-D-044; not yet done).
+- Any paid data, LLM, Zep or MiroFish use; scheduled catalyst or social collection into a store this engine can read (needed before the simulation question can ever be tested, on prospective events only); social API credentials or consent; research packages in the lab's runtime; a merge into `main`; deploying the forward depth collector (approved, PI-D-044; not yet done).
 
 ## Note outside this branch
 
@@ -56,9 +53,9 @@ git checkout feature/predictive-intelligence && git log -12 --oneline
 pip install pytest
 python -B audits/predictive-intelligence/phase_06/probes/check_seal.py
 python -m pytest tests -q
-python -m pytest tests/test_predictive_behavioral.py tests/test_predictive_phase14_outputs.py -q
-python -B audits/predictive-intelligence/phase_14/probes/build_seeds.py /tmp/p14
-python -B audits/predictive-intelligence/phase_14/probes/run_behavioral.py /tmp/p14 --skip-mirofish
+python -m pytest tests/test_predictive_scenario_eval.py tests/test_predictive_phase15_outputs.py -q
+python -B audits/predictive-intelligence/phase_15/probes/code_scenarios.py /tmp/p15c
+python -B audits/predictive-intelligence/phase_15/probes/score_scenarios.py /tmp/p15s
 ```
 
-Expect `"problems": []` from the seal check and only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` failing in the suite; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. The seed builder needs the Phase 05 store under `/home/claude/pi_research/` (rebuild it from the committed archives if the workspace was reclaimed: `phase_05/data/FEATURE_STORE_CONTRACT.md`); the MiroFish part of the runner needs root, the MiroFish venv and clone, and a tokenizer cache.
+Expect `"problems": []` from the seal check and only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` failing in the suite; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. The coding probe needs the Phase 05 store and the scoring probe the Phase 06 development store under `/home/claude/pi_research/` (rebuild recipes: `phase_05/data/FEATURE_STORE_CONTRACT.md` and the Phase 06 records).
