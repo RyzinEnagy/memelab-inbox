@@ -1,0 +1,32 @@
+{
+ "debug_runs": [
+  [
+   "P15:DEBUG:SCORING:0",
+   "scoring step sdbg1 2026-10-27T01:03:08Z to 01:03:15Z at uncommitted code into the scratchpad, after the coding outputs were committed (7b787bf): every output written; the restated-number check compared Phase 10's 6-decimal CSV values with a 5e-7 tolerance and reported 3 false differences (rounding); tolerance set to 1e-6; no rule, threshold, gate or output definition changed"
+  ],
+  [
+   "P15:DEBUG:SCORING:1",
+   "scoring step sdbg2 at 01:03:53Z after that fix: one difference left, T2 B2 skill -0.196928 against Phase 10's -0.196927 (1.1e-6), because the restated numbers are recomputed from predictions written to 6 decimals; tolerance set to 1e-5 with that reason; same verdicts, no other change"
+  ],
+  [
+   "P15:DEBUG:SCORING:2",
+   "scoring step sdbg3 after the second tolerance fix; restated numbers equal"
+  ]
+ ],
+ "dev_store_sha256": "d2a5a7c67afb82da79c4c957ba3b32576963bc4d96bf61ca14fa81b2b5b6e8db",
+ "end_utc": "2026-10-27T01:08:33Z",
+ "head": "0abffd5b428f2277134d827a5e5a5bf4e149342d",
+ "outputs_sha256": {
+  "behavioral/E1_OOS_ROWS.csv": "a06c20b68c2fa96262f3b6041aa886b89e4acedfd3e1299647864dd3c517c6c2",
+  "behavioral/E2_SCORED_ROWS.csv": "7d7945c66a60e450c4f5818ce6979a3b95e419b0f112146ac1f4fe9f5e34df9b",
+  "behavioral/INCREMENTAL_VALUE_RESULTS.json": "63ffa83b5b9df61c99505eb2a46663d79eb37f82b34afd18e43314d9b54b23c0",
+  "behavioral/POST_OPENING_LOG.json": "2eac2424d84230ea0a4b31fbc49df417c262f80d7dc8a191c19b55f9c901fb9e",
+  "experiments/LEDGER_TOTALS.json": "241e32928fde5fd5df1c80403aff68407324389264b79577e0afd18b8859d435",
+  "experiments/SEARCH_LEDGER.csv": "69827164f99e0bca1a0deb93582aee46267827249440c72960ea5a50601371fa"
+ },
+ "reps": 2000,
+ "script": "audits/predictive-intelligence/phase_15/probes/score_scenarios.py",
+ "sealed_opens": [],
+ "sockets": [],
+ "start_utc": "2026-10-27T01:08:27Z"
+}

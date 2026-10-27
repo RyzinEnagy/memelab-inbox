@@ -1,0 +1,16 @@
+{
+ "combined_status": {
+  "T1_24h": "NO_UNCORRECTED_SKILL",
+  "T1b_6h": "NO_UNCORRECTED_SKILL",
+  "T2_24h": "NO_UNCORRECTED_SKILL"
+ },
+ "computed": [
+  "rule warnings on the holdout-window documents",
+  "A_WARN fitted at the holdout start on development labels"
+ ],
+ "label": "POST_OPENING",
+ "rule": "PI-D-066: description only, more conservative only",
+ "sealed_folder_opened": false,
+ "source": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_SCORED.csv",
+ "source_sha256": "d4c35253e6879d915dd31b6fdd6428d588c0e25e53d9e9895ad2531a771f08d6"
+}

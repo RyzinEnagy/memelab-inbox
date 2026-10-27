@@ -1,0 +1,45 @@
+{
+ "after": {
+  "bakeoff_configurations": 31,
+  "candidate_configurations": 90,
+  "debug_runs": 26,
+  "holdout_evaluation_rows": 217,
+  "n_search": 121,
+  "negative_control_fits": 370,
+  "other_rows": 96,
+  "rows": 3236,
+  "rows_by_phase": {
+   "04": 31,
+   "07": 488,
+   "08": 616,
+   "09": 670,
+   "10": 703,
+   "11": 388,
+   "12": 252,
+   "13": 58,
+   "15": 30
+  }
+ },
+ "before": {
+  "bakeoff_configurations": 31,
+  "candidate_configurations": 87,
+  "debug_runs": 21,
+  "holdout_evaluation_rows": 208,
+  "n_search": 118,
+  "negative_control_fits": 366,
+  "other_rows": 90,
+  "rows": 3206,
+  "rows_by_phase": {
+   "04": 31,
+   "07": 488,
+   "08": 616,
+   "09": 670,
+   "10": 703,
+   "11": 388,
+   "12": 252,
+   "13": 58
+  }
+ },
+ "phase15_rows": 30,
+ "rule_configurations_after": 39
+}
