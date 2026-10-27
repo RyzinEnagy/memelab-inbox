@@ -33,7 +33,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Phase 19 commits
 
-HEAD before `4b07b0d`; pre-registration `5ffa5cf`; frozen code `fce102e`; predictions `765eadb`; reads, outcomes and outputs `b1a18f7`; records and post-commit checks after it (this file's commit and the post-commit record commit). Local only; the orchestrator pushes.
+HEAD before `4b07b0d`; pre-registration `5ffa5cf`; frozen code `fce102e`; predictions `765eadb`; reads, outcomes and outputs `b1a18f7`; records `aefbea6`; post-commit at `aefbea6`: suite `2 failed, 2182 passed, 1 skipped` (the two known clock-dependent failures only), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no." (`phase_19/postcommit/`); the post-commit record commit on top. Local only; the orchestrator pushes.
 
 ## Waiting on Elving
 

@@ -91,7 +91,7 @@ Prospective window: 52 decisions (33 Solana, 30 mints; 19 EVM out of scope), dec
 | G19 | held: 46 of 46 |
 | G20 | held: 3,573 ledger rows (217 for Phase 19), N_search 130 (169); the outputs commit message said 3,544 rows, which was wrong |
 | G21 | held: cost ledger row, spend 0 |
-| G22 | recorded after the records commit (`postcommit/`) |
+| G22 | held at the records commit `aefbea6`: suite `2 failed, 2182 passed, 1 skipped in 472.06s` (the two known clock-dependent failures only; strays removed by hand), guard exit 0 with 0 violations over 2,828 files, seal check exit 0 with `"problems": []`, single-branch release audit exit 0 "Needs action: no." (`postcommit/`) |
 | G23 | held: 0 prospective rows in `training_labels` |
 | G24 | held |
 
@@ -112,7 +112,7 @@ A backdated prediction appended after its outcome with an early time claim. Caug
 1. Pass 1 (13:05Z to 13:30Z): entry gate, contact scan, feasibility of the input build (scratch, recorded as a debug row), pre-registration.
 2. Pass 2 (13:30Z to 13:57Z): code and tests; debug runs on real data without labels (two input builds: a contact-check error fixed; two predict runs: a document-record link fixed); a synthetic dry run of evaluate, drift, rollback and report with random SYNTHETIC outcomes (D6 separated from drift, `load` made strict); mutation probe 41 of 46, five survivors killed by new tests, 46 of 46; frozen at `fce102e`.
 3. Pass 3 (13:57Z to 14:44Z): recorded inputs and predictions, commit, opening, reads, outcomes, evaluation, drift, rollback, audit, report, offline rebuild, outputs test, commit `b1a18f7`.
-4. Pass 4: records and post-commit checks (this file, RESULTS.json, ROADMAP, DECISIONS, HANDOFF).
+4. Pass 4: records `aefbea6` and post-commit checks (suite, guard, seal, single-branch release audit), recorded in the commit after it.
 
 ## Artifacts (sha256)
 

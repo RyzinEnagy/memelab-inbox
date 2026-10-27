@@ -2,7 +2,7 @@
  "phase": "19",
  "status": "NEEDS_REVIEW",
  "head_before": "4b07b0d2b906a719ae6bd948ae86d5a20282b753",
- "head_after": "recorded in HANDOFF.md (records commit)",
+ "head_after": "aefbea6 (records); the post-commit record commit follows it",
  "checks": [
   {
    "name": "entry full suite at 4b07b0d",
@@ -124,6 +124,34 @@
    "name": "G23 no prospective row in training_labels",
    "input": "evidence/outcomes_runs.json",
    "result": "0, 0, 0",
+   "pass": true
+  },
+  {
+   "name": "G22 post-commit full suite at aefbea6",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "2 failed, 2182 passed, 1 skipped (the two known clock-dependent tests only)",
+   "pass": true
+  },
+  {
+   "name": "G22 social guard",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "0 violations over 2,828 files",
+   "pass": true
+  },
+  {
+   "name": "G22 seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "G22 single-branch release audit",
+   "command": "python tools/release_audit.py --history (single-branch clone at aefbea6)",
+   "exit_code": 0,
+   "result": "Needs action: no.",
    "pass": true
   }
  ],
