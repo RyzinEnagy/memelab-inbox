@@ -718,3 +718,14 @@ The phase agent's own adversarial pass on the recorded runs at `3d2089b` (output
 2. The material key held each target's served model sha and pin event, but not its serve state. A pinned champion that became MODEL_STALE, drifted (DRIFT_ALERT) or stopped verifying within the hour would have left an unchanged snapshot UNCHANGED, covered by an assessment made under the earlier state. Now the sorted blocking states of each primary target are part of the served signature, so a state change is MATERIAL (an extension of CX-17).
 3. `memelab/cli.py`'s helpers caught only ImportError: any other failure while importing the package (a syntax error, a missing numpy) would have broken the scout with the flag off. They now catch every exception and return None.
 4. Frozen-code discipline: the change and its tests (each failing on the `3d2089b` code, shown in a temporary copy by `probes/cp17_0_old_code_check.py`) are committed before the recorded runs are repeated; `evidence/rerun_cp17_0_diff.json` lists what changed (expected: every count, event, reason and boolean equal; request records differ by the added blocking lists, the capture times, pass ids and latency).
+
+## PI-D-095 Phase 17 result: every eligible discovery attempted exactly once, every real request ABSTAIN, flag-off output unchanged (ADOPTED, 2026-10-27, Phase 17 first pass with CP17-0; NEEDS_REVIEW until the independent skeptic)
+
+Recorded with `audits/predictive-intelligence/phase_17/PHASE_17_EVIDENCE.md`, `integration/REQUEST_FLOW.md` and `smoke/` at the CP17-0 code `6172b49`. The contract, ACCEPTANCE, the registry fingerprint (`4b4aabce...`) and every Phase 05 to 16 module are unchanged; spend 0; no network.
+
+1. The hook of PI-D-093 is in force; flag off, the real scout's 9 reports and the lab tables are byte-equal to `b0fad12`; flag on, the body is unchanged and the section is appended.
+2. On real data every request is ABSTAIN with named reasons (MODEL_NOT_SELECTED and UNCALIBRATED always; INSUFFICIENT_HISTORY; SOURCE_STALE; TARGET_NOT_FEASIBLE without a point-in-time pool; OUT_OF_SCOPE_CHAIN on EVM chains); 0 probabilities; the registry's NO_VIABLE_CHAMPION and Phase 13's UNCALIBRATED are named per target; BACKTEST_NOT_AVAILABLE; collector depth not available, so sizes are EXECUTION_DATA_MISSING.
+3. Exactly once and bounded: reruns, retries and replays give DUPLICATE with 0 new documents; repeated mints in one pass give one attempt; work is linear (three serves per attempt).
+4. Phase 13 items m3 and m4 are closed by `verify_point` and `check_document` (tests that show `validate_publication` alone accepting the forged point and the record-less document).
+5. TEST_ONLY parts: the FORECAST path on a fixture champion, the reader path, the backtest adapter, collector depth and catalyst-triggered refreshes.
+6. Status: NEEDS_REVIEW until the orchestrator's skeptic; Phase 18 is eligible only after the orchestrator records a PASS.

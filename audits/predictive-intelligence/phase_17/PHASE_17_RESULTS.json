@@ -1,0 +1,281 @@
+{
+ "phase": "17",
+ "status": "NEEDS_REVIEW",
+ "status_note": "every gate item holds on the agent's own checks; the orchestrator's independent skeptic has not run (PI-D-013); TEST_ONLY parts: the FORECAST path on a fixture champion, the reader path, the backtest adapter, collector depth and catalyst-triggered refreshes",
+ "head_before": "b0fad12",
+ "head_after": "30be448",
+ "commits": {
+  "pre_registration": "7f7bc28",
+  "frozen_code": "3d2089b",
+  "recorded_outputs": "6f4e8f7",
+  "cp17_0_code": "6172b49"
+ },
+ "checks": [
+  {
+   "name": "entry gate full suite",
+   "command": "MEMELAB_DB=<tmp> python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 1925 passed, 1 skipped (known failure only)",
+   "pass": true
+  },
+  {
+   "name": "entry gate seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "entry gate Phase 16 rebuild",
+   "command": "python -B audits/predictive-intelligence/phase_16/probes/build_registry.py <tmp>",
+   "exit_code": 0,
+   "result": "69 entries, log, index and TODAY files byte-equal to the committed ones",
+   "pass": true
+  },
+  {
+   "name": "pre-freeze suite",
+   "command": "python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "1 failed, 2019 passed, 1 skipped (known failure only)",
+   "pass": true
+  },
+  {
+   "name": "G2 only memelab/cli.py changes among existing files",
+   "command": "git diff --stat b0fad12 HEAD -- memelab",
+   "result": "memelab/cli.py plus the two new modules",
+   "pass": true
+  },
+  {
+   "name": "G3 flag off byte-identical (real sandbox)",
+   "input": "smoke/REAL_PATH_SMOKE.json",
+   "result": "base_vs_frozen_off_all_reports_byte_equal True over 9 reports; lab tables equal True",
+   "pass": true
+  },
+  {
+   "name": "G4 flag on appends only",
+   "input": "smoke/REAL_PATH_SMOKE.json",
+   "result": "scout = base + section True; token reports equal True",
+   "pass": true
+  },
+  {
+   "name": "real-path exit codes",
+   "input": "smoke/real_path_runs.txt",
+   "result": "16 commands, exits [0]",
+   "pass": true
+  },
+  {
+   "name": "G5 G6 G8 real states",
+   "input": "smoke/REAL_PATH_SMOKE.json states",
+   "result": "{\"state\": {\"DISCOVERY\": 8, \"DUPLICATE\": 16}, \"state_analyze\": {\"DISCOVERY\": 1}, \"state_research\": {\"DISCOVERY\": 8}, \"state_storm\": {\"DISCOVERY\": 8, \"SUPERSEDED_IN_PASS\": 4}}",
+   "pass": true
+  },
+  {
+   "name": "G11 every real request ABSTAIN",
+   "input": "smoke and replay",
+   "result": "section ABSTAIN lines 24, FORECAST lines 0; replay documents 156, probabilities 0",
+   "pass": true
+  },
+  {
+   "name": "G6 export replay idempotent",
+   "input": "smoke/REAL_EXPORT_REPLAY.json",
+   "result": "round 1 {'DISCOVERY': 47, 'MATERIAL_CHANGE': 5}, round 2 {'DUPLICATE': 52}, round 2 documents 0",
+   "pass": true
+  },
+  {
+   "name": "three traced examples",
+   "input": "smoke/TRACE_EXAMPLES.json",
+   "result": "3 examples",
+   "pass": true
+  },
+  {
+   "name": "G16 fixture FORECAST path (TEST_ONLY)",
+   "input": "smoke/FIXTURE_E2E.json",
+   "result": "2 fixture forecasts, 4 abstentions, veto shown True",
+   "pass": true
+  },
+  {
+   "name": "G24 mutation probe",
+   "command": "python -B audits/predictive-intelligence/phase_17/probes/mutation_integration.py OUT",
+   "exit_code": 0,
+   "result": "59 of 59",
+   "pass": true
+  },
+  {
+   "name": "CP17-0 tests fail on the first-pass code",
+   "command": "python -B audits/predictive-intelligence/phase_17/probes/cp17_0_old_code_check.py OUT",
+   "exit_code": 0,
+   "result": "all fail on 3d2089b: True",
+   "pass": true
+  },
+  {
+   "name": "G26 ledger",
+   "input": "experiments/LEDGER_TOTALS.json",
+   "result": "3308 rows, N_search 130, sensitivity 169",
+   "pass": true
+  },
+  {
+   "name": "socket events",
+   "input": "replay, fixture, tests",
+   "result": "replay 0, fixture 0",
+   "pass": true
+  },
+  {
+   "name": "checkout untouched by the sandbox runs",
+   "input": "smoke/REAL_PATH_SMOKE.json checkout_status",
+   "result": "[]",
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/phase_17/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "7f8d24c80f1aecf77b7dd34ce38f869c0c22ee458956092e832a09859f56b1fd"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/PHASE_17_EVIDENCE.md",
+   "sha256": "8d5ea75bfd6c2347708e3dd9f67752229b02c1570faaf1c1736dfa7f309ddec1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/SKEPTIC_PACKET.md",
+   "sha256": "7c9414064de63e06ea4e9933945d1017271b72143274671173096dc06f6bfd8e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/evidence/cp17_0_old_code_check.json",
+   "sha256": "7936c69a3429260e5360f63fe331ca314b2c2cded5189556db573b9857206e18"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/evidence/entry/entry_suite_tail.txt",
+   "sha256": "f0f5326df8bffcc42afcfdfc87fe9131fdc9542d212cc94e3b4a3d32afdb2ac3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/evidence/entry/phase16_rebuild_summary.json",
+   "sha256": "af9ad3abc8439ecf4e0e223191f28f11ac917f97fd714409e8afda9d87436b27"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/evidence/entry/seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/evidence/mutation_integration.json",
+   "sha256": "41832e33a8b004a4a8354055099a489fa6a5bd1580196b613174ea18bcdb2496"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/evidence/mutation_prefreeze_first_probe.json",
+   "sha256": "550bc4ba403ddb7735e6e7660817e8c2095488e8c7b16cd4aefbfa322aefdd69"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/evidence/prefreeze_suite_tail.txt",
+   "sha256": "e42bd275cd93725d6d615f3c7f551f7d81757727ebb71b98f56935d5372d145f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/evidence/replay_repeat_diff.json",
+   "sha256": "0bd974ff77f1f9f4ab006d82484eb161864bd3b00787c8b29527e7f723f2c255"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/evidence/rerun_cp17_0_diff.json",
+   "sha256": "07f6810f3797e3d60e6b3736f9203f18a84d2f93a3b2f0bc19644944e10f08e7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/experiments/EXPERIMENT_REGISTRY.csv",
+   "sha256": "e66f8f34c4d89a2dc7a1c88774c38ec43df5e63e70ca35f2f33877c5ef947321"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/experiments/LEDGER_TOTALS.json",
+   "sha256": "dba122a553c1637828b15e7c42b9ebfe33cbf97d93d9f3c331d9ee171233ee0c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/experiments/SEARCH_LEDGER.csv",
+   "sha256": "823e7eb9c554456af360286f0e0b60ecd6bb749cec1ab0b10344197bec05900b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/integration/REQUEST_FLOW.md",
+   "sha256": "beed0300cc4e2823f45796254512e380a52d53731edc8a3e621d87df1226ed16"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/probes/cp17_0_old_code_check.py",
+   "sha256": "b9d81b91ac0dadd1571d2a4b58f23d0e376bf0edacee27850482fd705bebca7f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/probes/ledger.py",
+   "sha256": "aa8ebd3d95d8a17cdb32b4cf3132f95a899b87a27d86984271f2e460c0ce02d8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/probes/mutation_integration.py",
+   "sha256": "8528a3eb0ead49cc29c708f99281105f429d1ab67d4914fa4a99126569e95b12"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/probes/real_path_smoke.sh",
+   "sha256": "85c8929300906493b4e99b3c8fcdcca733a5b36a3e047380d1599147cc4bc27b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/probes/run_integration.py",
+   "sha256": "31da48561e8ac62f054361fa86b993bce9959e93c7904454983972bcd311cc0b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/smoke/FIXTURE_E2E.json",
+   "sha256": "62040f1ab61ecaf94e4d5a3865e9593e2227807c15d5381d9e57375f78416a25"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/smoke/REAL_EXPORT_REPLAY.json",
+   "sha256": "fb95d2e0b71e6b05405a48ab5389bf6797272da7f259b4d8ed73178c43686927"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/smoke/REAL_PATH_SMOKE.json",
+   "sha256": "4a93b91bc1d6102977fa4b2cf174be40a8bef952544fa84133b1951923ef9c56"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/smoke/REAL_SCOUT_SECTION.md",
+   "sha256": "778db6a95145d28a1c3706d780031d470f72720da455f514114f9cdbc899829c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/smoke/TRACE_EXAMPLES.json",
+   "sha256": "c30eaaad66fd6d57660cbdbb85f416e13c74b6447843450360f2709b2bb8c673"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/smoke/real_path_runs.txt",
+   "sha256": "85ce462934d6921fb8466b8c8ecf4c649c87adc783f1b1a42aaeb6a6e107d073"
+  },
+  {
+   "path": "memelab/predictive/integration.py",
+   "sha256": "855c510d4a5399c56de27fd0c7bb1f4e279f457810e3a76787e6b728e3c4eec2"
+  },
+  {
+   "path": "memelab/predictive/bt_adapter.py",
+   "sha256": "79e22cb865deda1630b778fd587b6cb75e37c55c20552567c55fe2310ffa5d95"
+  },
+  {
+   "path": "memelab/cli.py",
+   "sha256": "1a47707caa7a796dede17323fa2df18b228e7e919ad2bc51ccc81a9db905ca1c"
+  },
+  {
+   "path": "tests/test_predictive_integration.py",
+   "sha256": "142309a5b897b0d70b3460044c9c674f28965e7d531a7002b5c716911b617177"
+  },
+  {
+   "path": "tests/test_predictive_phase17_outputs.py",
+   "sha256": "52b96adae809cae52b4701d447607a95f48779f159368ce7dd109c45e33e5efb"
+  },
+  {
+   "path": "tests/fixtures/predictive/cli_before_phase17.py.txt",
+   "sha256": "12f95f3af9bdb8f00b6974c27ee6ab2cb0341e6f2806d87ec9d565ef676b4348"
+  }
+ ],
+ "limitations": [
+  "no probability can be published today (Phase 16 NO_VIABLE_CHAMPION, Phase 13 UNCALIBRATED); the FORECAST path exists on fixtures only",
+  "integration-1 builds features for family 07 only and gives a real champion inference=None (INFERENCE_NOT_CHECKED): fail closed",
+  "capture features hold only the decision row and its token row",
+  "the committed inbox bodies are from 2026-10-06 and 2026-10-07, so every real scout request is INPUT_STALE",
+  "no catalyst event or link exists in the imported export: catalyst changes exercised on fixtures only",
+  "thesis rows store the report path, so the same analysis in another report folder is another snapshot",
+  "a crash between appends leaves the state refused until repaired; no scheduler",
+  "BACKTEST_NOT_AVAILABLE on this branch; bt_adapter TEST_ONLY; merge of PR #4 is Elving's decision",
+  "the Phase 09 isolation test cannot see relative imports; analog.py's lazy onchain import is pinned"
+ ],
+ "blockers": [],
+ "approvals_needed": [
+  "a merge of the backtesting PR #4 into this line (Elving)",
+  "turning predictive.enabled on outside a sandbox (Elving)",
+  "the promotion change control of PI-D-091 (Elving)"
+ ],
+ "next_eligible_phase": "18 after the orchestrator's independent skeptic and a recorded PASS"
+}

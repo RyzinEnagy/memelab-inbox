@@ -1,42 +1,42 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-092). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_16/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-095). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_17/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
 ## Position on 2026-10-27
 
-- Phases 00 to 13: PASS. Phase 14: TEST_ONLY (PI-D-077). Phase 15: TEST_ONLY, INSUFFICIENT_VALIDATION, MIROFISH_NO_GO, RULES_NOT_PROMOTED (PI-D-083).
-- Phase 16 (champion selection, ensemble, model registry): **PASS** after repair pass 2 (PI-D-089 to PI-D-092). The independent skeptic found no material failure, 9 minor findings and CX-S16 (a forged-facts entry pinned and served at SHADOW through a caller-supplied check); all fixed. TEST_ONLY part: the promotion branch on fixtures. The orchestrator admitted the phase with Phase 15 at TEST_ONLY (PI-D-084) and decided not to change the promotion table now (PI-D-091).
-- Spend: 0 Firecrawl credits, 0 vendor calls, 0 language-model calls, no socket in the Phase 16 runner, no key.
+- Phases 00 to 13 and 16: PASS. Phases 14 and 15: TEST_ONLY (behavioral path, optional, OFF).
+- Phase 17 (discovery and catalyst changes connected to a forecast or a visible abstention): **NEEDS_REVIEW**, first pass plus the self-review change control CP17-0 (PI-D-093 to PI-D-095). Every gate item holds on the agent's own checks; the orchestrator's independent skeptic has not run yet (`phase_17/SKEPTIC_PACKET.md`).
+- Spend: 0 Firecrawl credits, 0 vendor calls, 0 language-model calls; every real-data command ran inside `unshare -n` or under a socket-refusing audit hook.
 
-## The state the registry records (PI-D-087, PI-D-092)
+## What Phase 17 built
 
-- **No champion for any target.** T1 24 h, T1b 6 h and T2 24 h are pinned NO_VIABLE_CHAMPION: every request abstains, every document says model `not_selected`, no probability is published.
-- B0 (base rate) and B2 (simple model) are pinned beside each target as references for the prospective comparison. They are ABSTAIN, REFERENCE_ONLY_NEVER_PUBLISHED, and B2 is not a champion: Phase 12 named it only by default (T1 BSS -0.024, T1b -0.083 with calibration in the large failed, T2 7 positives, INSUFFICIENT_EVENTS; Phase 13 UNCALIBRATED everywhere).
-- 69 immutable entries (one per frozen card): ABSTAIN 6, NO_GO 63, 0 SHADOW, 0 VALIDATED_EXPERIMENTAL, 0 publishable. Identical inference 69 of 69 equal to the committed Phase 12 predictions.
-- NO_ENSEMBLE on every target: development out-of-fold rows give no verdict (INSUFFICIENT_DAYS or INSUFFICIENT_EVENTS), the chronological stack never clears its gate, and the combinations of B2 with the onchain-1 models count the lab's fatal flags twice (refused).
-- The promotion path is closed under the frozen ACCEPTANCE table (the retrospective holdout is spent). Orchestrator decision PI-D-091: no change now; changing it is Elving's decision; the honest route is the prospective holdout of Phase 19.
+- The first change to existing lab code: `memelab/cli.py` gets `_predictive_section` (called in `cmd_scout` after the unchanged report body, before the file is written) and `_predictive_line` (after `cmd_analyze`'s line). Each imports `memelab.predictive.integration` lazily and returns None on any import failure. Flag `predictive.enabled` in `data/config.json` (gitignored) is off unless it is the JSON value true; off means nothing is read but the config, nothing is written, and the output is byte-identical (P40).
+- `memelab/predictive/integration.py` (integration-1): one request record per trigger (DISCOVERY, MATERIAL_CHANGE, UNCHANGED, DUPLICATE, SUPERSEDED_IN_PASS, DEFERRED_*, NO_DECISION_SNAPSHOT, NOT_EXACT_IDENTITY, ERROR, CATALYST_REFRESH_REQUESTED); three documents and abstention-1 records per attempt with `contract.forecast_id`; `snapshot_hash` = the persisted thesis row's `row_sha256`; capture time as the decision time; the frozen material gate as of the capture (with each target's served model, pin and serve state); one attempt per mint and 64 per pass; 30 s budget; no socket; reads only for a served champion through `CallGuard` with cost cap 0; INPUT_STALE after 7,200 s; capture-store features; `registry.serve` then `abstention.forecast_result`; `check_document` and `verify_point` (Phase 13 m4 and m3 closed); decision support with every lab fatal flag and a backtest fatal or untradeable assessment as vetoes, no size from a forecast; append-only sha-checked state in `data/private/predictive/` (a state directory inside the repository elsewhere is refused); section; ops metrics; `python -m memelab.predictive.integration status|check|catalyst-pass`.
+- `memelab/predictive/bt_adapter.py` (bt-adapter-1): read-only interface to the backtesting branch's assessment record and `bt_assessments` table (`origin/feature/backtesting` at `69bc5c3`), fixtures only.
+- Isolation tests of Phases 01, 09, 13 and 16 amended to exactly the two seams, with negative cases. Found: the Phase 09 test cannot see relative imports, and `analog.py` imports `onchain` lazily (Phase 11 design); pinned, not changed.
+- Tests: `tests/test_predictive_integration.py` (91), `tests/test_predictive_phase17_outputs.py` (9); mutation probe 59 of 59.
 
-## What Phase 16 built (PI-D-085, PI-D-086, PI-D-089)
+## Results (PI-D-095)
 
-- `memelab/predictive/registry.py` (registry-1; numpy, the standard library, `contract`, `stats`; flag OFF; imported by no other module): hash-addressed immutable entries; levels recomputed from facts (`promotion_decision`); facts rebuilt by the registry itself from the committed Phase 12 and 13 files (`facts_from_repo`, `check_facts`, PRIMARY rows first via `metric_rows`), run inside `pin_event`, `rollback_event` and `serve` with no caller-supplied verifier; code files hashed per entry (`code_of`, `code_changes`); nested agent fields refused; append-only sha-chained log with REGISTER, PIN, ROLLBACK, ENSEMBLE_DECISION; `resolve` as of a decision time; `compatibility` (P46); `status_at` (MODEL_STALE, RETROSPECTIVE_MODEL_NOT_AVAILABLE_AS_OF, DRIFT_ALERT, MODEL_NOT_PROMOTED) with retrain requirements; identical-inference hashes; `rollback_event`; `serve` (the only source of card, level and calibration card for the publication path); `select_champion` (refuses holdout rows); ensemble rules; `target_plan`; internal `reference_record`.
-- 55 unit tests, 12 output tests, `tests/test_predictive_reproductions.py` (Phases 07, 12, 13, 16 reproduce their committed outputs), a synthetic probe fixture; mutation probe 96 of 96; the runner `phase_16/probes/build_registry.py`.
-- CP12-2 (PI-D-090): the Phase 12 runner's card glob is narrowed to Phases 07 to 11; plan and predict 7 of 7 and the opening REPRODUCTION 10 of 10 byte-equal.
+- Real scout in a sandbox (committed inbox bodies, the `71fc50e` export imported into a temporary lab database): flag off byte-identical to `b0fad12`; flag on, the body unchanged plus the section; 8 attempts, 24 documents all ABSTAIN (MODEL_NOT_SELECTED, UNCALIBRATED, INSUFFICIENT_HISTORY, SOURCE_STALE; inputs INPUT_STALE because the bodies are from 2026-10-07); rerun and retry 16 DUPLICATE and no new document; storm one attempt per mint; research mode 48 internal reference records.
+- Export replay of the 52 prospective-window decision events (from 2026-10-24): 156 abstentions, the replay again 52 DUPLICATE and 0 documents.
+- Three traced examples (PAID, GOMO with a CANNOT_EXIT_5K veto, a BSC token across three exports) and the fixture FORECAST path (TEST_ONLY).
 
 ## Open items, in order
 
-1. The orchestrator re-verifies Phase 16 (PASS) and pushes.
-2. Phase 17 (after a PASS): every request goes through `registry.serve(..., root=<repository>, inference=<recomputed probe rows>)` then `abstention.forecast_result(...)` with `serve`'s `forecast_inputs`, and `validate_publication` with the persisted record; keep the raw model number in the request record (PI-D-068); show `onchain.decision_support` beside any forecast; the CURRENT_VENDOR_LIST route abstains.
-3. If Elving wants a promotion path: a change control to ACCEPTANCE `promotion` (PI-D-091), registered before prospective labels are read; then Phase 19 supplies admissible prospective evidence (at least 50 matured events and 10 per class per target) and the lift of `calibration.verify_card`'s VALIDATED_EXPERIMENTAL refusal tied to a registry entry.
-4. Frozen cards are MODEL_STALE after 2026-10-31T00:00:00Z; Phase 19's reference comparison after that needs retrained reference cards from a committed plan.
-5. Carried: catalyst and social tables are not exported; forward depth collection approved but not deployed (PI-D-044); keep `tests/test_predictive_reproductions.py` green; the registry's internal row key `members` must be renamed before any JSON write (content guard, PI-D-088).
+1. The orchestrator runs the independent skeptic on Phase 17; the phase agent folds the review in (repair pass), then the orchestrator records the status and pushes.
+2. Phase 18 (after a PASS): reports, CLI and alerts read the persisted state only through document and record pairs; keep the flag-off byte equality and the trading-word checks; show decision support and the registry and calibration states beside any document.
+3. If Elving wants a promotion path: the change control to ACCEPTANCE `promotion` (PI-D-091), registered before prospective labels are read; then Phase 19's prospective evidence. A promoted champion would still abstain in integration-1 (family 07 only; INFERENCE_NOT_CHECKED for a real champion) until a change control adds its feature builder and probe inputs.
+4. Frozen cards are MODEL_STALE after 2026-10-31T00:00:00Z; the internal reference records stop being current then.
+5. Carried: catalyst and social tables are not exported (catalyst-triggered refreshes are exercised on fixtures only); forward depth collection approved but not deployed (PI-D-044); keep `tests/test_predictive_reproductions.py` green; a merge of the backtesting PR #4 needs the steps in `phase_17/integration/REQUEST_FLOW.md`.
 
-## Phase 16 commits
+## Phase 17 commits
 
-HEAD before `576f99d`; pre-registration `8af3cd4`; frozen code `d2038a7`; first recorded run `9eebb8d`; CP16-0 `8cd19bd`, repeat `72488dd`; records `ffcedb4`; CP16-1 `d74a16f`, repeat `b669615`; records `2f81759`; post-commit `35758c9` (pushed, reviewed by the skeptic). Repair pass 2: code `b4bb03b` (CP16-2, CP12-2), recorded run `0e71f55`, records `1d76ce1`; post-commit at `1d76ce1`: suite `1 failed, 1925 passed, 1 skipped` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no." (`phase_16/postcommit/rp2_*`); the post-commit record commit on top. Local only; the orchestrator pushes.
+HEAD before `b0fad12`; pre-registration `7f7bc28`; frozen code `3d2089b`; recorded outputs `6f4e8f7`; CP17-0 code `6172b49`; repeated outputs `30be448`; records after it; post-commit checks recorded in `phase_17/postcommit/` and in the commit that adds them. Local only; the orchestrator pushes.
 
 ## Waiting on Elving
 
-- The change control that could reopen promotion (ACCEPTANCE `promotion`), any paid data, LLM, Zep or MiroFish use, scheduled catalyst or social collection into a store this engine can read, social API credentials or consent, research packages in the lab's runtime, a merge into `main`, deploying the forward depth collector (approved, PI-D-044; not yet done).
+- The change control that could reopen promotion (ACCEPTANCE `promotion`), any paid data, LLM, Zep or MiroFish use, scheduled catalyst or social collection into a store this engine can read, a merge of the backtesting PR #4 into this line, a merge into `main` (only then do the scheduled runs see the hook, and only with the flag on), deploying the forward depth collector (approved, PI-D-044; not yet done), and turning the flag on anywhere outside a sandbox.
 
 ## Note outside this branch
 
@@ -44,7 +44,7 @@ The release audit on a full local clone flags a history blob reachable only from
 
 ## Lab rules that still bind
 
-Research only: no trades, no wallets with signing authority, no seed phrases or private keys, no credentials printed or committed. No change under `inbox/`, `state/` or `data/` on this branch. Existing 100-point score and fatal-flag overrides unchanged. Forecasts stay a separate evidence section with the flag OFF. No raw social content in the repository. Behavioral output is fictional, never a probability. References are never forecasts.
+Research only: no trades, no wallets with signing authority, no seed phrases or private keys, no credentials printed or committed. No change under `inbox/`, `state/` or `data/` on this branch. Existing 100-point score and fatal-flag overrides unchanged. Forecasts stay a separate evidence section with the flag OFF by default. No raw social content in the repository. Behavioral output is fictional, never a probability. References are never forecasts.
 
 ## Exact next commands
 
@@ -54,10 +54,11 @@ git checkout feature/predictive-intelligence && git log -12 --oneline
 pip install pytest
 python -B audits/predictive-intelligence/phase_06/probes/check_seal.py
 python -m pytest tests -q
-python -m pytest tests/test_predictive_registry.py tests/test_predictive_phase16_outputs.py -q
-python -B audits/predictive-intelligence/phase_16/probes/build_registry.py /tmp/p16
-python -B audits/predictive-intelligence/phase_16/probes/mutation_registry.py /tmp/p16_mut.json
-python -m pytest tests/test_predictive_reproductions.py -q
+python -m pytest tests/test_predictive_integration.py tests/test_predictive_phase17_outputs.py -q
+bash audits/predictive-intelligence/phase_17/probes/real_path_smoke.sh $(git rev-parse HEAD) /tmp/p17_smoke
+python -B audits/predictive-intelligence/phase_17/probes/run_integration.py smoke /tmp/p17_smoke /tmp/p17_smoke/REAL_PATH_SMOKE.json
+python -B audits/predictive-intelligence/phase_17/probes/run_integration.py replay /tmp/p17_replay
+python -B audits/predictive-intelligence/phase_17/probes/mutation_integration.py /tmp/p17_mut.json
 ```
 
-Use a full clone: the Phase 15 and 16 commit-order tests fail on a shallow one by design. Expect `"problems": []` from the seal check and only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` failing in the suite; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. The runner needs the Phase 05 feature store and the Phase 06 development store under `/home/claude/pi_research/` (rebuild recipes: `phase_05/data/FEATURE_STORE_CONTRACT.md` and the Phase 06 records).
+Use a full clone (the commit-order tests of Phases 15 to 17 fail on a shallow one by design) and fetch `origin/main` so `71fc50e` exists. Expect `"problems": []` from the seal check and only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` failing in the suite; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. The smoke script needs `unshare -n`.
