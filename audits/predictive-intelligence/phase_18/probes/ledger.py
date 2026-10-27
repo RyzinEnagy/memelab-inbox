@@ -27,6 +27,7 @@ DEBUG = [   # every Phase 18 run on real data before the frozen code (P22), all 
 ]
 RECORDED = ["P18:REAL_SCOUT_SMOKE", "P18:REAL_SCOUT_REPORT", "P18:REAL_SCOUT_ALERTS", "P18:REAL_REPLAY", "P18:REAL_REPLAY_REPORT",
             "P18:REAL_REPLAY_ALERTS"]
+REPEATS = [("CP18_0", "0127d2e", "PI-D-099, evidence/rerun_cp18_0_diff.json")]
 
 
 def main(out: Path) -> int:
@@ -38,7 +39,12 @@ def main(out: Path) -> int:
                                             "view": "ALL", "verdict": what, "claim": CLAIM})
     for eid in RECORDED:
         new.append({c: "" for c in cols} | {"phase": "18", "experiment_id": eid, "candidate": "P18_REPORTS", "kind": "TRAP_OR_CHECK",
-                                            "view": "ALL", "verdict": "recorded run at the frozen code (real/)", "claim": CLAIM})
+                                            "view": "ALL", "verdict": "recorded run at the frozen code 96c4445 (real/ at 3601881)", "claim": CLAIM})
+    for cp, code, why in REPEATS:   # the recorded runs repeated at each change-control commit are runs on real data too (P22)
+        for eid in RECORDED:
+            new.append({c: "" for c in cols} | {"phase": "18", "experiment_id": eid.replace("P18:", f"P18:{cp}:"), "candidate": "P18_REPORTS",
+                                                "kind": "TRAP_OR_CHECK", "view": "ALL", "verdict": f"recorded run repeated at {code} ({why})",
+                                                "claim": CLAIM})
     rows = base + new
     with open(out / "experiments/SEARCH_LEDGER.csv", "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=cols)

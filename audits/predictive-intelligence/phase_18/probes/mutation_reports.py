@@ -71,6 +71,9 @@ MUTATIONS = [
     ("C1 fatal-flag codes withheld again", '                       "fatal_flags": [_code(f) for f in sv.get("flags") or []],',
      '                       "fatal_flags": [I._ident(f, 40) for f in sv.get("flags") or []],'),
     ("C2 own detail text stripped", "SNAPSHOT_NOT_VERIFIED ({sn.get('lab_detail') or 'no detail'})", "SNAPSHOT_NOT_VERIFIED ({I._ident(sn.get('lab_detail') or 'no detail', 60)})"),
+    # CP18-1 (PI-D-100)
+    ("C3 measured changes unlabelled", '''                   + (f" ({MEASURED_LABEL}: {'; '.join(o['changes'])})" if measured else''',
+     '''                   + (f" ({'; '.join(o['changes'])})" if measured else'''),
     # rule 8: watermark
     ("W1 watermark flag never set", '    view["format_only"] = any(t.get("is_fixture") for t in docs)', '    view["format_only"] = False'),
     ("W2 render guard removed", '    if fixture and not view.get("format_only"):', '    if False:'),

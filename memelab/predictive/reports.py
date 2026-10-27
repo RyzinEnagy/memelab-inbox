@@ -48,6 +48,7 @@ SIMULATION_WHY = ("MIROFISH_NO_GO (PI-D-081, PI-D-083): the behavioral module is
 BACKTEST_UNBLOCK = ("the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; "
                     "until then no execution or stress assessment exists")
 PRICE_PATH_LINE = "price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS)"
+MEASURED_LABEL = "measured market changes since the previous attempt, not probabilities"      # CP18-1, PI-D-100
 LAB_STATUSES = ("REJECTED", "RESEARCH REQUIRED", "WATCH", "SETUP DEVELOPING", "NEAR ENTRY", "ENTRY CONDITIONS MET", "OVEREXTENDED",
                 "DISTRIBUTION RISK", "THESIS DETERIORATING", "THESIS INVALIDATED")   # m24 STATUSES (pinned by a test)
 SHORT_HEAD = {"T1_24h": "T1 24 h", "T1b_6h": "T1b 6 h", "T2_24h": "T2 24 h"}
@@ -681,8 +682,10 @@ def _opportunity_lines(o: dict) -> list[str]:
     name = o["symbol"] or "symbol not verified"
     L = [f"## {name} `{o['chain_text']}:{o['mint_text']}`", ""]
     # (a) identity and snapshot
+    measured = any("%" in str(c) for c in o["changes"])
     d = {"facts": [f"exact identity {o['chain_text']}:{o['mint_text']}; event {o['event']}"
-                   + (f" ({'; '.join(o['changes'])})" if o["changes"] else ""),
+                   + (f" ({MEASURED_LABEL}: {'; '.join(o['changes'])})" if measured else
+                      (f" ({'; '.join(o['changes'])})" if o["changes"] else "")),
                    f"snapshot {_short(sn['snapshot_hash'], 16)}, row sha256 {_short(sn['row_sha256'], 16)}",
                    f"decision time {sn['decision_time_utc']} ({sn['decision_time_basis']}); capture {sn['capture_time_utc']}",
                    f"inputs observed {sn['observed_at_utc']} (collector-run start, PI-D-011); age at capture {_age(sn['age_at_capture_s'])}: "
@@ -752,7 +755,7 @@ def _opportunity_lines(o: dict) -> list[str]:
     for t in o["targets"]:
         head = f"- {SHORT_HEAD.get(t['short'], t['short'])} ({I.TARGET_WORDS.get(t['target'], t['target'])})"
         if t["status"] == "DOCUMENT_REFUSED":
-            L.append(f"{head}: DOCUMENT_REFUSED. {STATE_TEXT['DOCUMENT_REFUSED']} Failed checks: {'; '.join(t['checks'])}.")
+            L.append(f"{head}: DOCUMENT_REFUSED: {STATE_TEXT['DOCUMENT_REFUSED']}. Failed checks: {'; '.join(t['checks'])}.")
             continue
         if t["status"] == "ABSTAIN":
             continue
@@ -844,7 +847,8 @@ def _not_attempted_lines(view: dict) -> list[str]:
 def _units_lines() -> list[str]:
     return ["## Units and times", "",
             "- Times are UTC in ISO 8601 with Z. Ages are in minutes, hours or days as written. Horizons are in hours. Amounts are USD.",
-            "- Percentages appear only in target definitions (barriers) and in a verified FORECAST (point and interval, whole percents).",
+            "- Percentages appear only in target definitions (barriers), in measured market changes between two attempts of a token "
+            f"(the event line, labelled \"{MEASURED_LABEL}\"), and in a verified FORECAST (point and interval, whole percents).",
             "- Ids: forecast ids `fc_...` in full; record, request, pass and registry ids as their first 12 characters (the JSON view "
             "has them in full).", "- Buckets: FACT (read from a record), INFERENCE (drawn from records), HEURISTIC (a rule label), "
             "UNKNOWN (missing; earns nothing).", ""]

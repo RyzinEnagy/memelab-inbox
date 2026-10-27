@@ -178,7 +178,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
   - INSUFFICIENT_HISTORY: at least 50 matured prospective outcomes with 10 per class for this target (Phase 19), never the fit set.
   - UNCALIBRATED: a CALIBRATED Phase 13 card for the selected model, from out-of-sample prospective evidence.
   - MODEL_NOT_SELECTED: a champion pinned at SHADOW or VALIDATED_EXPERIMENTAL in the Phase 16 registry; that needs the ACCEPTANCE promotion change control (PI-D-091, Elving's decision) and admissible prospective evidence.
-- T1 24 h (24 hours, +25% before -15%): DOCUMENT_REFUSED. the document failed a check: it is not shown and no number is shown Failed checks: probability differs from the point stored with the raw number.
+- T1 24 h (24 hours, +25% before -15%): DOCUMENT_REFUSED: the document failed a check: it is not shown and no number is shown. Failed checks: probability differs from the point stored with the raw number.
 
 ### Historical prediction and its out-of-sample record
 
@@ -219,7 +219,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 ## Units and times
 
 - Times are UTC in ISO 8601 with Z. Ages are in minutes, hours or days as written. Horizons are in hours. Amounts are USD.
-- Percentages appear only in target definitions (barriers) and in a verified FORECAST (point and interval, whole percents).
+- Percentages appear only in target definitions (barriers), in measured market changes between two attempts of a token (the event line, labelled "measured market changes since the previous attempt, not probabilities"), and in a verified FORECAST (point and interval, whole percents).
 - Ids: forecast ids `fc_...` in full; record, request, pass and registry ids as their first 12 characters (the JSON view has them in full).
 - Buckets: FACT (read from a record), INFERENCE (drawn from records), HEURISTIC (a rule label), UNKNOWN (missing; earns nothing).
 

@@ -1,0 +1,10 @@
+{
+ "failing_on_old_code": [
+  "test_cp18_1_a_refused_target_line_reads_cleanly",
+  "test_cp18_1_measured_market_changes_are_labelled_and_the_units_line_says_so"
+ ],
+ "old_code": "0127d2e",
+ "on_new_code": "2 passed, 63 deselected in 2.43s",
+ "on_old_code": "2 failed, 63 deselected in 2.69s",
+ "tests": "-k cp18_1"
+}

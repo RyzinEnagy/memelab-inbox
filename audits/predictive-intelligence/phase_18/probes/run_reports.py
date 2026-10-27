@@ -73,10 +73,15 @@ def _newest_capture(state: Path) -> float:
     return max(json.loads(x)["capture_time"] for x in (state / I.FILES["requests"]).read_text().splitlines())
 
 
+MEASURED = re.compile(re.escape(RP.MEASURED_LABEL) + r": [^)]*\)")
+
+
 def _checks(view: dict, text: str) -> dict:
     t = text.replace("rises 25% before it falls 15%", "")
     for o in view["opportunities"]:
         t = t.replace(o["mint"], "")
+    measured = sum(len(PCT.findall(m.group(0))) for m in MEASURED.finditer(t))
+    t = MEASURED.sub("", t)                               # CP18-1 (PI-D-100): labelled measured changes are counted apart
     reasons = Counter(r for o in view["opportunities"] for x in o["targets"] for r in x.get("reasons") or [])
     return {"state": view["state"], "counts": view["counts"], "format_only": view["format_only"],
             "reason_counts": dict(sorted(reasons.items())),
@@ -88,6 +93,7 @@ def _checks(view: dict, text: str) -> dict:
             "backtest_results": sorted({o["execution"]["backtest_result"] for o in view["opportunities"]}),
             "not_attempted_events": dict(Counter(r["event"] for r in view["not_attempted"])),
             "percent_or_fraction_outside_definitions": len(PCT.findall(t)) + len(re.findall(r"(?<![\w.])0\.\d+", t)),
+            "measured_change_percents": measured,
             "simulation_lines": text.count("SIMULATION_NOT_AVAILABLE"),
             "backtest_not_available_lines": text.count("BACKTEST_NOT_AVAILABLE"),
             "local_path": bool(RP.LOCAL_PATH.search(t)),

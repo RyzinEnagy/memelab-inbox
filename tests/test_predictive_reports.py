@@ -984,3 +984,22 @@ def test_cp18_0_codes_keep_only_code_characters_and_own_details_stay_readable(la
     d = world_abstain(lab)
     _, text = report(d, lab_db=None)
     assert "SNAPSHOT_NOT_VERIFIED (no lab database given)" in text
+
+
+# ---------------------------------------------------------------- CP18-1 (PI-D-100): measured changes labelled; refused line
+def test_cp18_1_measured_market_changes_are_labelled_and_the_units_line_says_so(lab):
+    d = world_abstain(lab)
+    _pass([TI.persist(TI.result("ABC", M1, T_TODAY + 3000, liq=30000.0), lab)], T_TODAY + 3600, lab)    # liquidity -38.8%
+    v, text = report(d)
+    line = next(l for l in text.splitlines() if l.startswith("- FACT: exact identity") and M1 in l)
+    assert "MATERIAL_CHANGE (measured market changes since the previous attempt, not probabilities: " in line and "liquidity -38.8%" in line
+    assert "in measured market changes between two attempts of a token" in text
+    t = re.sub(re.escape(RP.MEASURED_LABEL) + r": [^)]*\)", "", text)
+    assert _numbers_outside_definitions(t) == []
+
+
+def test_cp18_1_a_refused_target_line_reads_cleanly(lab):
+    d = world_forecast(lab)
+    reseal(d["state_dir"], forge_probability)
+    _, text = report(d)
+    assert "DOCUMENT_REFUSED: the document failed a check: it is not shown and no number is shown. Failed checks: probability differs" in text
