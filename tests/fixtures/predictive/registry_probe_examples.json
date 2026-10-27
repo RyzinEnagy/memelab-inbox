@@ -1,0 +1,374 @@
+{
+ "fixture": "registry-1 synthetic probe set (no real data, no label)",
+ "is_fixture": true,
+ "rows": [
+  {
+   "avail": {
+    "log1p_token_age_days": 1792281000.0,
+    "thesis_fatal_present": 1792281000.0,
+    "thesis_log1p_liquidity_usd": 1792281000.0,
+    "thesis_log1p_mcap_usd": 1792281000.0,
+    "thesis_log1p_vol_24h_usd": 1792281000.0,
+    "thesis_score": 1792281000.0
+   },
+   "chain": "solana",
+   "decision_key": "synthetic-probe-00",
+   "decision_time": 1792281600.0,
+   "mint": "SyntheticProbeMint00",
+   "status": "REJECTED",
+   "x": {
+    "log1p_token_age_days": 2.215669,
+    "thesis_fatal_present": 1.0,
+    "thesis_log1p_liquidity_usd": 14.429012,
+    "thesis_log1p_mcap_usd": 17.735809,
+    "thesis_log1p_vol_24h_usd": 8.270942,
+    "thesis_score": 40.663
+   }
+  },
+  {
+   "avail": {
+    "log1p_token_age_days": 1792306200.0,
+    "thesis_fatal_present": 1792306200.0,
+    "thesis_log1p_liquidity_usd": 1792306200.0,
+    "thesis_log1p_mcap_usd": 1792306200.0,
+    "thesis_log1p_vol_24h_usd": 1792306200.0,
+    "thesis_score": 1792306200.0
+   },
+   "chain": "solana",
+   "decision_key": "synthetic-probe-01",
+   "decision_time": 1792306800.0,
+   "mint": "SyntheticProbeMint01",
+   "status": "WATCH",
+   "x": {
+    "log1p_token_age_days": 1.400835,
+    "thesis_fatal_present": 0.0,
+    "thesis_log1p_liquidity_usd": 9.780371,
+    "thesis_log1p_mcap_usd": 12.593325,
+    "thesis_log1p_vol_24h_usd": 10.836564,
+    "thesis_score": 26.273
+   }
+  },
+  {
+   "avail": {
+    "log1p_token_age_days": 1792331400.0,
+    "thesis_fatal_present": 1792331400.0,
+    "thesis_log1p_liquidity_usd": 1792331400.0,
+    "thesis_log1p_mcap_usd": 1792331400.0,
+    "thesis_log1p_vol_24h_usd": 1792331400.0,
+    "thesis_score": 1792331400.0
+   },
+   "chain": "solana",
+   "decision_key": "synthetic-probe-02",
+   "decision_time": 1792332000.0,
+   "mint": "SyntheticProbeMint02",
+   "status": "CANDIDATE",
+   "x": {
+    "log1p_token_age_days": 4.183115,
+    "thesis_fatal_present": 0.0,
+    "thesis_log1p_liquidity_usd": 11.713067,
+    "thesis_log1p_mcap_usd": 12.738222,
+    "thesis_log1p_vol_24h_usd": 9.250634,
+    "thesis_score": 79.63
+   }
+  },
+  {
+   "avail": {
+    "log1p_token_age_days": 1792356600.0,
+    "thesis_fatal_present": 1792356600.0,
+    "thesis_log1p_liquidity_usd": 1792356600.0,
+    "thesis_log1p_mcap_usd": 1792356600.0,
+    "thesis_log1p_vol_24h_usd": 1792356600.0,
+    "thesis_score": 1792356600.0
+   },
+   "chain": "solana",
+   "decision_key": "synthetic-probe-03",
+   "decision_time": 1792357200.0,
+   "mint": "SyntheticProbeMint03",
+   "status": null,
+   "x": {
+    "log1p_token_age_days": 3.661023,
+    "thesis_fatal_present": 1.0,
+    "thesis_log1p_liquidity_usd": 13.491652,
+    "thesis_log1p_mcap_usd": 11.913672,
+    "thesis_log1p_vol_24h_usd": 8.191815,
+    "thesis_score": 56.174
+   }
+  },
+  {
+   "avail": {
+    "log1p_token_age_days": 1792381800.0,
+    "thesis_fatal_present": 1792381800.0,
+    "thesis_log1p_liquidity_usd": 1792381800.0,
+    "thesis_log1p_mcap_usd": 1792381800.0,
+    "thesis_log1p_vol_24h_usd": 1792381800.0,
+    "thesis_score": 1792381800.0
+   },
+   "chain": "solana",
+   "decision_key": "synthetic-probe-04",
+   "decision_time": 1792382400.0,
+   "mint": "SyntheticProbeMint04",
+   "status": "AVOID",
+   "x": {
+    "log1p_token_age_days": 4.746065,
+    "thesis_fatal_present": 0.0,
+    "thesis_log1p_liquidity_usd": 10.787475,
+    "thesis_log1p_mcap_usd": 13.555657,
+    "thesis_log1p_vol_24h_usd": null,
+    "thesis_score": 38.737
+   }
+  },
+  {
+   "avail": {
+    "log1p_token_age_days": 1792407000.0,
+    "thesis_fatal_present": 1792407000.0,
+    "thesis_log1p_liquidity_usd": 1792407000.0,
+    "thesis_log1p_mcap_usd": 1792407000.0,
+    "thesis_log1p_vol_24h_usd": 1792407000.0,
+    "thesis_score": 1792407000.0
+   },
+   "chain": "solana",
+   "decision_key": "synthetic-probe-05",
+   "decision_time": 1792407600.0,
+   "mint": "SyntheticProbeMint05",
+   "status": "MONITOR",
+   "x": {
+    "log1p_token_age_days": 3.20039,
+    "thesis_fatal_present": 0.0,
+    "thesis_log1p_liquidity_usd": 9.259954,
+    "thesis_log1p_mcap_usd": 17.335845,
+    "thesis_log1p_vol_24h_usd": 11.11884,
+    "thesis_score": 50.374
+   }
+  },
+  {
+   "avail": {
+    "log1p_token_age_days": 1792432200.0,
+    "thesis_fatal_present": 1792432200.0,
+    "thesis_log1p_liquidity_usd": 1792432200.0,
+    "thesis_log1p_mcap_usd": 1792432200.0,
+    "thesis_log1p_vol_24h_usd": 1792432200.0,
+    "thesis_score": 1792432200.0
+   },
+   "chain": "solana",
+   "decision_key": "synthetic-probe-06",
+   "decision_time": 1792432800.0,
+   "mint": "SyntheticProbeMint06",
+   "status": "REJECTED",
+   "x": {
+    "log1p_token_age_days": 3.367133,
+    "thesis_fatal_present": 1.0,
+    "thesis_log1p_liquidity_usd": 10.586171,
+    "thesis_log1p_mcap_usd": 16.126502,
+    "thesis_log1p_vol_24h_usd": 11.994927,
+    "thesis_score": 80.306
+   }
+  },
+  {
+   "avail": {
+    "log1p_token_age_days": 1792457400.0,
+    "thesis_fatal_present": 1792457400.0,
+    "thesis_log1p_liquidity_usd": 1792457400.0,
+    "thesis_log1p_mcap_usd": 1792457400.0,
+    "thesis_log1p_vol_24h_usd": 1792457400.0,
+    "thesis_score": 1792457400.0
+   },
+   "chain": "solana",
+   "decision_key": "synthetic-probe-07",
+   "decision_time": 1792458000.0,
+   "mint": "SyntheticProbeMint07",
+   "status": "WATCH",
+   "x": {
+    "log1p_token_age_days": 2.838688,
+    "thesis_fatal_present": 0.0,
+    "thesis_log1p_liquidity_usd": 13.662983,
+    "thesis_log1p_mcap_usd": 17.926377,
+    "thesis_log1p_vol_24h_usd": 9.699166,
+    "thesis_score": null
+   }
+  },
+  {
+   "avail": {
+    "log1p_token_age_days": 1792482600.0,
+    "thesis_fatal_present": 1792482600.0,
+    "thesis_log1p_liquidity_usd": 1792482600.0,
+    "thesis_log1p_mcap_usd": 1792482600.0,
+    "thesis_log1p_vol_24h_usd": 1792482600.0,
+    "thesis_score": 1792482600.0
+   },
+   "chain": "solana",
+   "decision_key": "synthetic-probe-08",
+   "decision_time": 1792483200.0,
+   "mint": "SyntheticProbeMint08",
+   "status": "CANDIDATE",
+   "x": {
+    "log1p_token_age_days": 4.571811,
+    "thesis_fatal_present": 0.0,
+    "thesis_log1p_liquidity_usd": 12.764725,
+    "thesis_log1p_mcap_usd": 14.599156,
+    "thesis_log1p_vol_24h_usd": 15.043436,
+    "thesis_score": 74.337
+   }
+  },
+  {
+   "avail": {
+    "log1p_token_age_days": 1792507800.0,
+    "thesis_fatal_present": 1792507800.0,
+    "thesis_log1p_liquidity_usd": 1792507800.0,
+    "thesis_log1p_mcap_usd": 1792507800.0,
+    "thesis_log1p_vol_24h_usd": 1792507800.0,
+    "thesis_score": 1792507800.0
+   },
+   "chain": "solana",
+   "decision_key": "synthetic-probe-09",
+   "decision_time": 1792508400.0,
+   "mint": "SyntheticProbeMint09",
+   "status": null,
+   "x": {
+    "log1p_token_age_days": 4.40706,
+    "thesis_fatal_present": 1.0,
+    "thesis_log1p_liquidity_usd": 10.113585,
+    "thesis_log1p_mcap_usd": 11.074484,
+    "thesis_log1p_vol_24h_usd": 11.953972,
+    "thesis_score": 86.703
+   }
+  },
+  {
+   "avail": {
+    "log1p_token_age_days": 1792533000.0,
+    "thesis_fatal_present": 1792533000.0,
+    "thesis_log1p_liquidity_usd": 1792533000.0,
+    "thesis_log1p_mcap_usd": 1792533000.0,
+    "thesis_log1p_vol_24h_usd": 1792533000.0,
+    "thesis_score": 1792533000.0
+   },
+   "chain": "solana",
+   "decision_key": "synthetic-probe-10",
+   "decision_time": 1792533600.0,
+   "mint": "SyntheticProbeMint10",
+   "status": "AVOID",
+   "x": {
+    "log1p_token_age_days": 4.989187,
+    "thesis_fatal_present": 0.0,
+    "thesis_log1p_liquidity_usd": 9.294343,
+    "thesis_log1p_mcap_usd": 16.654527,
+    "thesis_log1p_vol_24h_usd": 11.102528,
+    "thesis_score": 13.574
+   }
+  },
+  {
+   "avail": {
+    "log1p_token_age_days": 1792558200.0,
+    "thesis_fatal_present": 1792558200.0,
+    "thesis_log1p_liquidity_usd": 1792558200.0,
+    "thesis_log1p_mcap_usd": 1792558200.0,
+    "thesis_log1p_vol_24h_usd": 1792558200.0,
+    "thesis_score": 1792558200.0
+   },
+   "chain": "solana",
+   "decision_key": "synthetic-probe-11",
+   "decision_time": 1792558800.0,
+   "mint": "SyntheticProbeMint11",
+   "status": "MONITOR",
+   "x": {
+    "log1p_token_age_days": 3.654461,
+    "thesis_fatal_present": 0.0,
+    "thesis_log1p_liquidity_usd": 13.679636,
+    "thesis_log1p_mcap_usd": 16.303566,
+    "thesis_log1p_vol_24h_usd": null,
+    "thesis_score": 10.745
+   }
+  },
+  {
+   "avail": {
+    "log1p_token_age_days": 1792583400.0,
+    "thesis_fatal_present": 1792583400.0,
+    "thesis_log1p_liquidity_usd": 1792583400.0,
+    "thesis_log1p_mcap_usd": 1792583400.0,
+    "thesis_log1p_vol_24h_usd": 1792583400.0,
+    "thesis_score": 1792583400.0
+   },
+   "chain": "solana",
+   "decision_key": "synthetic-probe-12",
+   "decision_time": 1792584000.0,
+   "mint": "SyntheticProbeMint12",
+   "status": "REJECTED",
+   "x": {
+    "log1p_token_age_days": 1.552168,
+    "thesis_fatal_present": 1.0,
+    "thesis_log1p_liquidity_usd": 14.333537,
+    "thesis_log1p_mcap_usd": 13.638327,
+    "thesis_log1p_vol_24h_usd": 14.786178,
+    "thesis_score": 49.098
+   }
+  },
+  {
+   "avail": {
+    "log1p_token_age_days": 1792608600.0,
+    "thesis_fatal_present": 1792608600.0,
+    "thesis_log1p_liquidity_usd": 1792608600.0,
+    "thesis_log1p_mcap_usd": 1792608600.0,
+    "thesis_log1p_vol_24h_usd": 1792608600.0,
+    "thesis_score": 1792608600.0
+   },
+   "chain": "solana",
+   "decision_key": "synthetic-probe-13",
+   "decision_time": 1792609200.0,
+   "mint": "SyntheticProbeMint13",
+   "status": "WATCH",
+   "x": {
+    "log1p_token_age_days": 2.598012,
+    "thesis_fatal_present": 0.0,
+    "thesis_log1p_liquidity_usd": 9.370327,
+    "thesis_log1p_mcap_usd": 14.974303,
+    "thesis_log1p_vol_24h_usd": 9.087166,
+    "thesis_score": 75.479
+   }
+  },
+  {
+   "avail": {
+    "log1p_token_age_days": 1792633800.0,
+    "thesis_fatal_present": 1792633800.0,
+    "thesis_log1p_liquidity_usd": 1792633800.0,
+    "thesis_log1p_mcap_usd": 1792633800.0,
+    "thesis_log1p_vol_24h_usd": 1792633800.0,
+    "thesis_score": 1792633800.0
+   },
+   "chain": "solana",
+   "decision_key": "synthetic-probe-14",
+   "decision_time": 1792634400.0,
+   "mint": "SyntheticProbeMint14",
+   "status": "CANDIDATE",
+   "x": {
+    "log1p_token_age_days": 4.581893,
+    "thesis_fatal_present": 0.0,
+    "thesis_log1p_liquidity_usd": 9.656332,
+    "thesis_log1p_mcap_usd": 11.438769,
+    "thesis_log1p_vol_24h_usd": 10.879912,
+    "thesis_score": 81.883
+   }
+  },
+  {
+   "avail": {
+    "log1p_token_age_days": 1792659000.0,
+    "thesis_fatal_present": 1792659000.0,
+    "thesis_log1p_liquidity_usd": 1792659000.0,
+    "thesis_log1p_mcap_usd": 1792659000.0,
+    "thesis_log1p_vol_24h_usd": 1792659000.0,
+    "thesis_score": 1792659000.0
+   },
+   "chain": "solana",
+   "decision_key": "synthetic-probe-15",
+   "decision_time": 1792659600.0,
+   "mint": "SyntheticProbeMint15",
+   "status": null,
+   "x": {
+    "log1p_token_age_days": 3.677164,
+    "thesis_fatal_present": 1.0,
+    "thesis_log1p_liquidity_usd": 9.403541,
+    "thesis_log1p_mcap_usd": 17.970368,
+    "thesis_log1p_vol_24h_usd": 11.608361,
+    "thesis_score": 60.309
+   }
+  }
+ ]
+}
