@@ -1,0 +1,6 @@
+start 2026-10-27T09:36:17Z
+command: python -m pytest tests -q -p no:cacheprovider (HEAD 4ebccc3f43a583880bf5288d8314cd79183a0187)
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+FAILED tests/test_catalyst_firecrawl.py::test_page_history_and_spend_survive_a_new_session_through_the_state_export
+2 failed, 2050 passed, 1 skipped, 1 warning in 447.20s (0:07:27)
+EXIT 1
