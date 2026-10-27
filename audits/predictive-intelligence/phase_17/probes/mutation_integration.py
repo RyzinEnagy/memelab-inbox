@@ -29,7 +29,7 @@ MUTATIONS = [
     ("H1 section replaces the body", CLI, '        md += "\\n" + pred', '        md = pred'),
     ("H2 analyze line not printed", CLI, '    if pline:\n        print(pline)', '    if False:\n        print(pline)'),
     # rule 2: the decision snapshot
-    ("S1 snapshot hash of the row with its id", INT, '    tr["snapshot_hash"] = D.row_sha256(tr["row"]) if tr["row"] else None', '    tr["snapshot_hash"] = sha(tr["row"]) if tr["row"] else None'),
+    ("S1 snapshot hash of the row with its id", INT, '        tr["snapshot_hash"] = snapshot_sha(tr["row"]) if tr["row"] else None', '        tr["snapshot_hash"] = sha(tr["row"]) if tr["row"] else None'),
     ("S2 oldest row of a shared key", INT, 'created_at=? ORDER BY id DESC"', 'created_at=? ORDER BY id ASC"'),
     ("S3 capture before the row accepted", INT, '    if T < float(row["created_at"]):', '    if False:'),
     ("S4 row and result not compared", INT, '    if row.get("mint") != tr["mint"] or row.get("status") != tr["status"] or row.get("score") != tr["score"]:', '    if False:'),
@@ -91,14 +91,29 @@ MUTATIONS = [
     # CP17-0 (PI-D-094)
     ("K1 state directory guard removed", INT, '    refusal = state_dir_refusal(sdir)\n    if refusal:', '    refusal = None\n    if refusal:'),
     ("K2 serve state not in the key", INT, '"states": sorted({b["state"] for b in served[t]["blocking"]})}', '"states": []}'),
-    ("K3 cli catches only ImportError", CLI, '    except Exception:                                 # any import failure', '    except ImportError:                               # any import failure'),
+    ("K3 cli catches only ImportError", CLI, '    except Exception as e:                            # flag on but the package cannot load', '    except ImportError as e:                          # flag on but the package cannot load'),
     # bt-adapter-1
-    ("B1 identity unchecked", BTA, '    if rec.get("chain", "solana") != chain or rec.get("mint") != mint:', '    if False:'),
+    ("B1 identity unchecked", BTA, '    if rec.get("chain") != chain or rec.get("mint") != mint:', '    if False:'),
     ("B2 later assessment accepted", BTA, '    elif float(rec["as_of"]) > float(decision_time):', '    elif False:'),
     ("B3 no-trade not a veto", BTA, 'VETO_DECISIONS = ("RISK_FATAL_FLAW", "STRUCTURALLY_UNTRADEABLE", "NO_TRADE")', 'VETO_DECISIONS = ("RISK_FATAL_FLAW", "STRUCTURALLY_UNTRADEABLE")'),
     ("B4 table time filter removed", BTA, "stage='FAST' AND as_of <= ? \"", "stage='FAST' AND ? IS NOT NULL \""),
     ("B5 schema unchecked", BTA, '    if tuple(cols) != EXPECTED_COLUMNS:', '    if False:'),
     ("B6 unknown stress decision accepted", BTA, '    if dec is not None and dec not in STRESS_DECISIONS:', '    if False:'),
+    # CP17-1 (PI-D-096), the skeptic's review of ea73cfb
+    ("Y1 check_document call removed (skeptic M2)", INT, '        errs = check_document(doc, arec, config_path=config_path, model_card=card, calibration_card=cal)', '        errs = []'),
+    ("Y2 verify_point call removed (skeptic M2)", INT, '        errs += verify_point(doc, trec, req=req, card=card, level=level, cal_card=cal, config_path=config_path)', '        pass'),
+    ("Y3 backtest table opened writable (skeptic m5)", BTA, '    con = sqlite3.connect(f"file:{p}?mode=ro", uri=True)', '    con = sqlite3.connect(str(p))'),
+    ("A1 a failed event keeps its earlier targets (skeptic M1)", INT, '            ev_docs, ev_recs, ev_refs = [], [], []\n            ev_shown = [', '            ev_shown = ['),
+    ("A2 partial attempted event accepted (skeptic M1)", INT, '            if rec["event"] in ATTEMPTED and not (len(ev_docs)', '            if False and not (len(ev_docs)'),
+    ("A3 check_state ownership unchecked (skeptic M1)", INT, '        if r is None or r.get("event") not in ATTEMPTED or d["forecast_id"] not in', '        if False and d["forecast_id"] not in'),
+    ("A4 a failed token hidden in the section (skeptic M1)", INT, '"event": "ERROR", "errors": [err]}]', '"event": "UNCHANGED", "errors": [err]}]'),
+    ("I1 identity text unsanitized (skeptic m3)", INT, '    full = re.sub(r"[^A-Za-z0-9._-]", "", raw)', '    full = raw'),
+    ("I2 forecast words in a symbol allowed (skeptic m3)", INT, 'or any(w in low for w in FORECAST_WORDS):\n        return "withheld"', 'or False:\n        return "withheld"'),
+    ("Z1 snapshot hash with the report path (skeptic m7)", INT, 'SNAPSHOT_EXCLUDE = ("report_path",)', 'SNAPSHOT_EXCLUDE = ()'),
+    ("L1 token report path in the section (skeptic m8)", INT, "            L_.append(f\"- Token report: {_ident(Path(str(ev['report_path'])).name, 80)}\")", "            L_.append(f\"- Token report: {ev['report_path']}\")"),
+    ("E1 flag read through the package (skeptic m1, m6)", CLI, '    if not _predictive_enabled():\n        return None\n    try:\n        from .predictive import integration\n    except Exception as e:                            # flag on', '    from .predictive import contract\n    if not contract.enabled():\n        return None\n    try:\n        from .predictive import integration\n    except Exception as e:                            # flag on'),
+    ("E2 flag truthy instead of true (skeptic m1)", CLI, '        return isinstance(sect, dict) and sect.get("enabled") is True', '        return isinstance(sect, dict) and bool(sect.get("enabled"))'),
+    ("E3 broken package silent with the flag on (skeptic m2)", CLI, '    except Exception as e:\n        return f"predictive: not available', '    except Exception as e:\n        return None\n        return f"predictive: not available'),
 ]
 
 

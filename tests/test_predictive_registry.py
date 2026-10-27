@@ -167,6 +167,14 @@ def test_the_registry_seam_names_only_the_integration_module():
     allowed = [p for p in (ROOT / "memelab").rglob("*.py") if p.parent.name == "predictive" and p.name not in ("registry.py",)
                and ("from . import registry" in p.read_text() or ".registry import" in p.read_text())]
     assert [p.name for p in allowed] == ["integration.py"]
+    # CP17-1 (skeptic m4): relative imports read from the AST, so `from . import stats, registry` is seen too
+    users = []
+    for p in (ROOT / "memelab/predictive").glob("*.py"):
+        tree = ast.parse(p.read_text())
+        if any(isinstance(n, ast.ImportFrom) and n.level == 1 and ((n.module or "") == "registry" or any(a.name == "registry" for a in n.names))
+               for n in ast.walk(tree)):
+            users.append(p.name)
+    assert users == ["integration.py"]
 
 
 # ---------------------------------------------------------------- promotion (G7, CX-16, P22, P24)

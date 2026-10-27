@@ -272,7 +272,8 @@ def trace(smoke_out: Path, replay_out: Path, outjson: Path) -> dict:
         t.update(example=f"scout ON, {sym}", source="python -m memelab scout (sandbox, flag on)",
                  thesis_row={"created_at_utc": I._iso(row["created_at"]), "status": row["status"], "score": row["score"],
                              "row_sha256_recomputed_from_the_lab_database": D.row_sha256(row)},
-                 snapshot_hash_equals_row_sha256=D.row_sha256(row) == r["snapshot_hash"],
+                 snapshot_hash_recomputed_without_report_path=I.snapshot_sha(row) == r["snapshot_hash"],   # CP17-1 (skeptic m7)
+                 row_sha256_recomputed=D.row_sha256(row) == r["row_sha256"],
                  token_report=Path(r["report_refs"]["token_report"]).name,
                  token_report_named_in_section=Path(r["report_refs"]["token_report"]).name in scout_md,
                  record_ids_in_section=all(x["abstention_record_id"][:12] in scout_md for x in t["targets"]))
@@ -288,7 +289,8 @@ def trace(smoke_out: Path, replay_out: Path, outjson: Path) -> dict:
         commit = x["report_refs"]["export_commit"]
         doc = json.loads(SRC._git(REPO, "show", f"{commit}:data/state/latest.json"))
         th = D.export_from_doc(commit, 0, doc)["theses"]
-        hit = [D.row_sha256(rw) for rw in th if rw["mint"] == x["mint"] and D.row_sha256(rw) == x["snapshot_hash"]]
+        hit = [D.row_sha256(rw) for rw in th if rw["mint"] == x["mint"] and I.snapshot_sha(rw) == x["snapshot_hash"]
+               and D.row_sha256(rw) == x["row_sha256"]]
         t = _trace_request(x, docs, recs)
         t.update(export_commit=commit, snapshot_row_found_in_that_export=bool(hit))
         rows.append(t)

@@ -1,0 +1,67 @@
+{
+ "A_symbol_injection": {
+  "section_has_forged_FORECAST_line": true,
+  "section_has_probability_0.91": true,
+  "section_has_trading_word_buy": true,
+  "section_failed": false,
+  "persisted_documents_FORECAST": 0,
+  "check_state_problems": []
+ },
+ "A2_analyze_line": "predictive: DISCOVERY ABSTAIN (INSUFFICIENT_HISTORY, MODEL_NOT_SELECTED, SOURCE_STALE, UNCALIBRATED) | snapshot 7166ba4068e7 | research only, not advice",
+ "B_crash_after_docs_buffered": {
+  "events": [
+   "ERROR",
+   "DUPLICATE",
+   "DUPLICATE"
+  ],
+  "documents": 3,
+  "documents_whose_request_is_attempted": 0,
+  "metrics_attempted": 0,
+  "metrics_abstained": 3,
+  "check_state_problems": [],
+  "pass1_section_mentions_error": false
+ },
+ "C_crash_on_third_target": {
+  "events": [
+   "ERROR",
+   "ERROR",
+   "ERROR"
+  ],
+  "errors": [
+   [
+    "RuntimeError: skeptic: third target fails"
+   ],
+   [
+    "some but not all forecast ids of this snapshot exist"
+   ],
+   [
+    "some but not all forecast ids of this snapshot exist"
+   ]
+  ],
+  "documents": 2,
+  "targets_with_document": [
+   "price_path_target_before_invalidation_24h",
+   "price_path_target_before_invalidation_6h"
+  ],
+  "check_state_problems": []
+ },
+ "D_fatal_with_fixture_champion": {
+  "statuses": [
+   "FORECAST",
+   "ABSTAIN",
+   "ABSTAIN"
+  ],
+  "probabilities": [
+   0.23404255319148934,
+   null,
+   null
+  ],
+  "veto_line": true,
+  "FORECAST_lines_in_section": 1,
+  "is_fixture": [
+   true,
+   true,
+   true
+  ]
+ }
+}

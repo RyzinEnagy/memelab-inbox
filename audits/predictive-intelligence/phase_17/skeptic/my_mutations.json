@@ -1,0 +1,62 @@
+{
+ "Y1 check_document not called": {
+  "killed": false,
+  "by": [
+   "100 passed in 28.20s"
+  ]
+ },
+ "Y2 verify_point not called": {
+  "killed": false,
+  "by": [
+   "100 passed in 30.04s"
+  ]
+ },
+ "Y3 adapter opens read-write": {
+  "killed": false,
+  "by": [
+   "100 passed in 33.01s"
+  ]
+ },
+ "Y4 lab db opened read-write": {
+  "killed": true,
+  "by": [
+   "FAILED tests/test_predictive_integration.py::test_the_pass_never_writes_the_lab_database"
+  ]
+ },
+ "Y5 fatal flags not passed to decision support": {
+  "killed": true,
+  "by": [
+   "FAILED tests/test_predictive_integration.py::test_g4_flag_on_appends_a_section_and_changes_no_result_list_or_table"
+  ]
+ },
+ "Y6 state dir guard allows all of data/": {
+  "killed": true,
+  "by": [
+   "FAILED tests/test_predictive_integration.py::test_cp17_0_a_state_directory_inside_the_repository_but_outside_data_private_is_refused"
+  ]
+ },
+ "Y7 append without expected sha": {
+  "killed": true,
+  "by": [
+   "FAILED tests/test_predictive_integration.py::test_g6_the_same_snapshot_again_is_a_duplicate_with_no_new_document"
+  ]
+ },
+ "Y8 cli helper without try": {
+  "killed": true,
+  "by": [
+   "FAILED tests/test_predictive_integration.py::test_g2_cli_differs_from_the_pre_phase17_copy_only_by_the_hook"
+  ]
+ },
+ "Y9 fatal list dropped from trigger": {
+  "killed": true,
+  "by": [
+   "FAILED tests/test_predictive_integration.py::test_g4_flag_on_appends_a_section_and_changes_no_result_list_or_table"
+  ]
+ },
+ "Y10 attempted count not incremented": {
+  "killed": true,
+  "by": [
+   "FAILED tests/test_predictive_integration.py::test_g8_more_than_64_new_mints_in_one_pass_defer_the_rest_visibly"
+  ]
+ }
+}

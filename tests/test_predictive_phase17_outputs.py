@@ -57,7 +57,7 @@ def test_the_section_names_the_registry_calibration_backtest_staleness_and_carri
     from memelab.predictive import abstention as AB
     body = re.sub(r"`[^`]*`", "", sec)
     assert not any(re.search(r"\b" + re.escape(w) + r"\b", body.lower()) for w in AB.TRADING_WORDS)
-    assert "/tmp/" not in sec and "OUTDIR/state" in sec
+    assert "/tmp/" not in sec and "OUTDIR" not in sec and "state directory" in sec                         # CP17-1 (skeptic m8)
 
 
 def test_the_export_replay_abstains_everywhere_and_is_idempotent():
@@ -77,7 +77,8 @@ def test_three_traceable_real_examples_and_the_fixture_forecast_path():
     t = _j("TRACE_EXAMPLES.json")["examples"]
     assert [e["example"].split(",")[0] for e in t] == ["scout ON", "scout ON", "export replay"]
     for e in t[:2]:
-        assert e["snapshot_hash_equals_row_sha256"] and e["token_report_named_in_section"] and e["record_ids_in_section"]
+        assert e["snapshot_hash_recomputed_without_report_path"] and e["row_sha256_recomputed"]          # CP17-1 (skeptic m7)
+        assert e["token_report_named_in_section"] and e["record_ids_in_section"]
         assert all(x["prediction_status"] == "ABSTAIN" and x["probability"] is None and x["document_checks"] == [] for x in e["targets"])
     assert t[1]["veto"]["veto"] is True and t[1]["veto"]["flags"] == ["CANNOT_EXIT_5K"]
     rep = t[2]["requests"]
@@ -95,7 +96,7 @@ def test_the_search_ledger_extends_phase_16_with_runs_that_are_not_configuration
     led = list(csv.DictReader(open(P17 / "experiments/SEARCH_LEDGER.csv")))
     assert led[:len(base)] == base
     new = led[len(base):]
-    assert Counter(r["kind"] for r in new) == Counter({"DEBUG_RUN_REAL_DATA": 4, "TRAP_OR_CHECK": 10})
+    assert Counter(r["kind"] for r in new) == Counter({"DEBUG_RUN_REAL_DATA": 4, "TRAP_OR_CHECK": 30})         # CP17-1: two repeats
     assert all(r["claim"] == "INTEGRATION_RUN_NOT_A_CONFIGURATION" and r["phase"] == "17" for r in new)
     tot = E.ledger_totals(led)
     assert tot["n_search"] == 130 and tot["n_search"] + E.rule_configurations(led) == 169
@@ -103,7 +104,12 @@ def test_the_search_ledger_extends_phase_16_with_runs_that_are_not_configuration
 
 def test_the_mutation_probe_at_the_frozen_code_caught_every_mutation():
     d = json.loads((P17 / "evidence/mutation_integration.json").read_text())
-    assert d["mutations"] == 59 and d["caught"] == 59 and d["survivors"] == []
+    assert d["mutations"] == 73 and d["caught"] == 73 and d["survivors"] == []                              # CP17-1: 14 more
+    iso = json.loads((P17 / "evidence/rp2_isolation_mutations.json").read_text())
+    assert iso["survivors"] == [] and iso["known_limit_survivors"] == ["pipeline_concat_string"]
+    old = json.loads((P17 / "evidence/rp2_old_code_check.json").read_text())
+    assert old["old_code"] == "ea73cfb" and old["all_fail_on_old_code"] is True and len(old["tests"]) == 10
+    assert all(old["pinning_tests_pass_on_old_code"].values()) and len(old["pinning_tests_pass_on_old_code"]) == 4
 
 
 def test_pre_registration_was_committed_before_the_integration_code():

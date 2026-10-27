@@ -87,6 +87,16 @@ def sha(o: Any) -> str:
     return AB.sha(o)
 
 
+SNAPSHOT_EXCLUDE = ("report_path",)
+
+
+def snapshot_sha(row: dict) -> str:
+    """The decision snapshot hash: `decisions.row_sha256` of the thesis row without `report_path` (CP17-1, skeptic m7), so the same
+    analysis written into another report folder is the same snapshot. The full row sha256 (the value a state export carries,
+    PI-D-022) is kept in the request record as `row_sha256`."""
+    return D.row_sha256({k: v for k, v in row.items() if k not in SNAPSHOT_EXCLUDE})
+
+
 def _iso(t: float) -> str:
     return AB._iso(t)
 
@@ -556,7 +566,8 @@ def run_pass(results: Sequence[dict], *, capture_time: float, source: str = "sco
                     tr["row"], tr["token"], tr["sharing"], tr["earlier"] = decision_row(lab, tr["mint"], float(tr["observed_at"]))
                 except Exception as e:  # noqa: BLE001
                     tr["error"] = f"decision row: {type(e).__name__}"
-        tr["snapshot_hash"] = D.row_sha256(tr["row"]) if tr["row"] else None
+        tr["snapshot_hash"] = snapshot_sha(tr["row"]) if tr["row"] else None
+        tr["row_sha256"] = D.row_sha256(tr["row"]) if tr["row"] else None
         trigs.append(tr)
     newest: dict[tuple[str, str], int] = {}
     for tr in trigs:
@@ -570,21 +581,32 @@ def run_pass(results: Sequence[dict], *, capture_time: float, source: str = "sco
     for tr in trigs:
         t0 = clock()
         base = {"record_version": "integration-request-1", "pass_id": pass_id, "seq": seq0 + len(new_req), "source": source,
-                "chain": tr["chain"], "mint": tr["mint"], "snapshot_hash": tr["snapshot_hash"],
+                "chain": tr["chain"], "mint": tr["mint"], "snapshot_hash": tr["snapshot_hash"], "row_sha256": tr["row_sha256"],
                 "decision_time_utc": _iso(tr["decision_time"]), "decision_time_basis": tr["basis"],
                 "capture_time_utc": _iso(capture_time), "capture_time": float(capture_time),
                 "integration_version": INTEGRATION_VERSION, "mode": mode,
                 "report_refs": {"token_report": tr["report_path"], **(report_refs or {})}, "errors": []}
         rec = None
+        ev_docs, ev_recs, ev_refs, ev_shown = [], [], [], []      # all or nothing per event (CP17-1, skeptic M1)
         try:
             rec = _process(tr, base, state=state, newest=newest, attempted=attempted, t_start=t_start, clock=clock, reg=reg,
                            rt=rt, root=root, lab=lab, reader=reader, guard=guard, reads=reads, mode=mode,
                            allow_fixture=allow_fixture, extra_cal_cards=extra_cal_cards, drift_alarms=drift_alarms,
                            config_path=config_path, depth_db=depth_db, depth=depth, backtest_db=backtest_db,
-                           bt_installed=bt_installed, cal_status=cal_status, out_docs=new_docs, out_recs=new_recs,
-                           out_refs=new_refs, shown=shown)
-        except Exception as e:  # noqa: BLE001  a failure is a visible ERROR event, never a crash of the scout
-            rec = dict(base, event="ERROR", errors=[f"{type(e).__name__}: {str(e)[:200]}"], targets=[])
+                           bt_installed=bt_installed, cal_status=cal_status, out_docs=ev_docs, out_recs=ev_recs,
+                           out_refs=ev_refs, shown=ev_shown)
+            if rec["event"] in ATTEMPTED and not (len(ev_docs) == len(ev_recs) == len(PRIMARY) == len(rec.get("targets") or [])):
+                raise IntegrationError("an attempted event without exactly one document and record per primary target")
+        except Exception as e:  # noqa: BLE001  a failure is a visible ERROR event with nothing persisted, never a crash
+            err = f"{type(e).__name__}: {str(e)[:200]}"
+            rec = dict(base, event="ERROR", errors=[err], targets=[])
+            ev_docs, ev_recs, ev_refs = [], [], []
+            ev_shown = [{"symbol": tr["symbol"], "chain": tr["chain"], "mint": tr["mint"], "snapshot_hash": tr["snapshot_hash"],
+                         "report_path": tr["report_path"], "fatal_flags": tr["fatal_flags"], "event": "ERROR", "errors": [err]}]
+        new_docs.extend(ev_docs)
+        new_recs.extend(ev_recs)
+        new_refs.extend(ev_refs)
+        shown.extend(ev_shown)
         if rec["event"] in ATTEMPTED:
             attempted += 1
             state["last_attempt"][(tr["chain"], tr["mint"])] = rec
@@ -958,6 +980,29 @@ def _plain_ok(text: str) -> bool:
     return not any(re.search(r"\b" + re.escape(w) + r"\b", low) for w in TRADING)
 
 
+FORECAST_WORDS = ("forecast", "probab", "interval", "percent", "chance", "odds", "likely", "advice", "abstain", "record")
+
+
+def _ident(x: Any, cap: int = 24) -> str:
+    """An identity string from a token (symbol, name, chain) as plain text: letters, digits, dot, dash and underscore only, capped;
+    'withheld' when it would carry a trading or a forecast word (CP17-1, skeptic m3). It can never start a line or a list item."""
+    import re
+    raw = str(x if x is not None else "")
+    full = re.sub(r"[^A-Za-z0-9._-]", "", raw)
+    low = re.sub(r"[^a-z]", "", raw.lower())                            # the words are checked on the whole string, before the cap
+    if not full or not _plain_ok(re.sub(r"[^A-Za-z0-9]+", " ", raw)) or any(w in low for w in FORECAST_WORDS):
+        return "withheld"
+    return full[:cap]
+
+
+def _mint_text(chain: Any, mint: Any) -> str:
+    try:
+        S.check_address(chain, mint)
+        return str(mint)
+    except Exception:  # noqa: BLE001
+        return "not-an-exact-address"
+
+
 def render(summary: dict) -> str:
     """Plain-language section; reasons and explanations from each document's own record (rule 11)."""
     L_ = ["## Predictive research section (flag on, research only)", "",
@@ -982,14 +1027,17 @@ def render(summary: dict) -> str:
               f"{m.get('superseded')} superseded, {m.get('deferred')} deferred, {m.get('not_attempted')} not attempted, "
               f"{m.get('errors')} errors; latency p50 {m.get('latency_ms_p50')} ms, max {m.get('latency_ms_max')} ms; "
               f"models in use: {', '.join(m.get('models_in_use') or []) or 'none'}")
-    if summary.get("errors"):
-        L_.append(f"- Errors: {'; '.join(summary['errors'])}")
-    L_.append(f"- Records: {summary.get('state_dir')}")
+    if summary.get("errors"):                                     # labels only: an error text can hold a local path (CP17-1, m8)
+        L_.append(f"- Errors: {len(summary['errors'])} ({', '.join(_ident(e.split(':')[0], 40) for e in summary['errors'])})")
+    L_.append("- Records: the predictive state directory (`python -m memelab.predictive.integration status`)")
     L_.append("")
     for ev in summary.get("events") or []:
-        L_.append(f"### {ev.get('symbol')} `{ev.get('chain')}:{ev.get('mint')}`")
+        L_.append(f"### {_ident(ev.get('symbol'))} `{_ident(ev.get('chain'))}:{_mint_text(ev.get('chain'), ev.get('mint'))}`")
         L_.append(f"- Snapshot {str(ev.get('snapshot_hash'))[:16]}; event {ev.get('event')}"
                   + (f" ({'; '.join(ev.get('changes') or [])})" if ev.get("changes") else ""))
+        if ev.get("errors"):
+            L_.append(f"- Failed: {_ident(ev['errors'][0].split(':')[0])}; nothing was saved for this token in this run and the next "
+                      f"pass attempts it again")
         if ev.get("covered_by"):
             L_.append(f"- Covered by the earlier assessment: {', '.join(c[:15] for c in ev['covered_by'])}"
                       + (f" (measured: {'; '.join(ev.get('measured') or [])})" if ev.get("measured") else ""))
@@ -1014,13 +1062,12 @@ def render(summary: dict) -> str:
                 L_.append(f"- {words}: FORECAST; record {rec['record_id'][:12]}")
             L_.append(f"  - {AB.describe(doc, rec)}")
         if ev.get("report_path"):
-            L_.append(f"- Token report: {ev['report_path']}")
+            L_.append(f"- Token report: {_ident(Path(str(ev['report_path'])).name, 80)}")
         L_.append("")
     out = "\n".join(L_)
     ident = out
-    for ev in summary.get("events") or []:
-        for s in (str(ev.get("symbol")), str(ev.get("mint")), str(ev.get("report_path"))):
-            ident = ident.replace(s, "")
+    for ev in summary.get("events") or []:                         # exact addresses only: base58 or hex, never a word
+        ident = ident.replace(_mint_text(ev.get("chain"), ev.get("mint")), "")
     if not _plain_ok(ident):
         raise IntegrationError("the section would carry a trading word")
     return out
@@ -1118,6 +1165,17 @@ def check_state(state_dir: str | Path, *, config_path: str | Path | None = None)
     ids = [d["forecast_id"] for d in st["lines"]["documents"]]
     if len(ids) != len(set(ids)):
         probs.append("a forecast id appears twice")
+    owners: dict[tuple[str, int], dict] = {(r["pass_id"], r["seq"]): r for r in st["lines"]["requests"]}
+    owned: dict[tuple[str, int], list[str]] = {}
+    for d in st["lines"]["documents"]:
+        r = owners.get((d.get("pass_id"), d.get("request_seq")))
+        if r is None or r.get("event") not in ATTEMPTED or d["forecast_id"] not in [t["forecast_id"] for t in r.get("targets") or []]:
+            probs.append(f"{d['forecast_id']}: no attempted request of its pass lists this document (CP17-1, skeptic M1)")
+        else:
+            owned.setdefault((r["pass_id"], r["seq"]), []).append(d["forecast_id"])
+    for k, r in owners.items():
+        if r.get("event") in ATTEMPTED and sorted(owned.get(k, [])) != sorted(t["forecast_id"] for t in r.get("targets") or []):
+            probs.append(f"request {r['seq']}: an attempted request without exactly its documents")
     for d in st["lines"]["documents"]:
         doc = d["document"]
         rec = st["records"].get(d["abstention_record_id"])

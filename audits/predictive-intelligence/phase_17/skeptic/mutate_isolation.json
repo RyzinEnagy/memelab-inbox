@@ -1,0 +1,142 @@
+{
+ "report_lazy_integration": {
+  "changed": [
+   "memelab/report.py | 5 +++++"
+  ],
+  "exit": 1,
+  "caught": true,
+  "first_failure": [
+   "FAILED tests/test_predictive_contract.py::test_no_existing_module_imports_the_predictive_package"
+  ]
+ },
+ "pipeline_import_module_string": {
+  "changed": [
+   "memelab/pipeline.py | 5 +++++"
+  ],
+  "exit": 1,
+  "caught": true,
+  "first_failure": [
+   "FAILED tests/test_predictive_contract.py::test_no_existing_module_imports_the_predictive_package"
+  ]
+ },
+ "pipeline_concat_string": {
+  "changed": [
+   "memelab/pipeline.py | 5 +++++"
+  ],
+  "exit": 0,
+  "caught": false,
+  "first_failure": [
+   "239 passed, 1 warning in 22.90s"
+  ]
+ },
+ "farm_imports_cli_helper": {
+  "changed": [
+   "memelab/farm.py | 5 +++++"
+  ],
+  "exit": 0,
+  "caught": false,
+  "first_failure": [
+   "239 passed, 1 warning in 19.37s"
+  ]
+ },
+ "labels_from_dot_import_stats_registry": {
+  "changed": [
+   "memelab/predictive/labels.py | 5 +++++"
+  ],
+  "exit": 0,
+  "caught": false,
+  "first_failure": [
+   "239 passed, 1 warning in 17.77s"
+  ]
+ },
+ "labels_from_dot_import_registry_alias": {
+  "changed": [
+   "memelab/predictive/labels.py | 5 +++++"
+  ],
+  "exit": 1,
+  "caught": true,
+  "first_failure": [
+   "FAILED tests/test_predictive_registry.py::test_no_other_module_imports_the_registry"
+  ]
+ },
+ "features_from_dot_import_onchain": {
+  "changed": [
+   "memelab/predictive/features.py | 5 +++++"
+  ],
+  "exit": 1,
+  "caught": true,
+  "first_failure": [
+   "FAILED tests/test_predictive_onchain.py::test_no_other_module_imports_the_phase_09_code"
+  ]
+ },
+ "features_from_onchain_import_name": {
+  "changed": [
+   "memelab/predictive/features.py | 5 +++++"
+  ],
+  "exit": 1,
+  "caught": true,
+  "first_failure": [
+   "FAILED tests/test_predictive_onchain.py::test_no_other_module_imports_the_phase_09_code"
+  ]
+ },
+ "stats_from_dot_import_abstention": {
+  "changed": [
+   "memelab/predictive/stats.py | 5 +++++"
+  ],
+  "exit": 1,
+  "caught": true,
+  "first_failure": [
+   "FAILED tests/test_predictive_calibration.py::test_the_phase_13_modules_use_numpy_and_the_standard_library_only_and_nothing_imports_them"
+  ]
+ },
+ "stats_from_dot_import_integration": {
+  "changed": [
+   "memelab/predictive/stats.py | 5 +++++"
+  ],
+  "exit": 0,
+  "caught": false,
+  "first_failure": [
+   "239 passed, 1 warning in 18.64s"
+  ]
+ },
+ "analog_also_depth_adapter": {
+  "changed": [
+   "memelab/predictive/analog.py | 5 +++++"
+  ],
+  "exit": 1,
+  "caught": true,
+  "first_failure": [
+   "FAILED tests/test_predictive_onchain.py::test_no_other_module_imports_the_phase_09_code"
+  ]
+ },
+ "social_imports_predictive": {
+  "changed": [
+   "memelab/social/research_store.py | 5 +++++"
+  ],
+  "exit": 1,
+  "caught": true,
+  "first_failure": [
+   "FAILED tests/test_predictive_contract.py::test_no_existing_module_imports_the_predictive_package"
+  ]
+ },
+ "cli_helper_imports_registry_too": {
+  "changed": [
+   "memelab/cli.py | 2 +-"
+  ],
+  "exit": 1,
+  "caught": true,
+  "first_failure": [
+   "FAILED tests/test_predictive_contract.py::test_no_existing_module_imports_the_predictive_package"
+  ]
+ },
+ "cli_module_level_import": {
+  "changed": [
+   "memelab/cli.py | 6 ++++++"
+  ],
+  "exit": 1,
+  "caught": true,
+  "first_failure": [
+   "FAILED tests/test_predictive_contract.py::test_no_existing_module_imports_the_predictive_package"
+  ]
+ }
+}

@@ -415,8 +415,9 @@ def _imports_predictive(src: str) -> list[str]:
 
 
 # Phase 17 (PI-D-093 item 7): the only seam is memelab/cli.py, whose two helpers import memelab.predictive.integration lazily
-SEAMS = {"memelab/cli.py": [".predictive", ".predictive"]}
+SEAMS = {"memelab/cli.py": [".predictive", ".predictive", "predictive"]}    # CP17-1: the config key, read by _predictive_enabled
 SEAM_FUNCTIONS = ("_predictive_section", "_predictive_line")
+FLAG_READER = "_predictive_enabled"
 
 
 def _seam_violations(src: str) -> list[str]:
@@ -424,6 +425,12 @@ def _seam_violations(src: str) -> list[str]:
     tree = ast.parse(src)
     ok_nodes = set()
     for f in tree.body:
+        if isinstance(f, ast.FunctionDef) and f.name == FLAG_READER:      # only the bare config key, as a string, in the flag reader
+            for n in ast.walk(f):
+                if isinstance(n, ast.Constant) and n.value == "predictive":
+                    ok_nodes.add(id(n))
+                if isinstance(n, (ast.Import, ast.ImportFrom)):
+                    ok_nodes.discard(id(n))
         if isinstance(f, ast.FunctionDef) and f.name in SEAM_FUNCTIONS:
             for n in ast.walk(f):
                 if isinstance(n, ast.ImportFrom) and n.level == 1 and n.module == "predictive" and [a.name for a in n.names] == ["integration"]:
@@ -432,7 +439,8 @@ def _seam_violations(src: str) -> list[str]:
     for n in ast.walk(tree):
         if isinstance(n, (ast.Import, ast.ImportFrom)) and _imports_predictive(ast.unparse(n)) and id(n) not in ok_nodes:
             bad.append(ast.unparse(n))
-        elif isinstance(n, ast.Constant) and isinstance(n.value, str) and " " not in n.value and _DOTTED.search(n.value):
+        elif isinstance(n, ast.Constant) and isinstance(n.value, str) and " " not in n.value and _DOTTED.search(n.value) \
+                and id(n) not in ok_nodes:
             bad.append(repr(n.value))
     return bad
 
@@ -449,11 +457,31 @@ def test_no_existing_module_imports_the_predictive_package():
     assert _seam_violations((ROOT / "memelab/cli.py").read_text()) == []
 
 
+def _relative_users(src: str, target: str) -> bool:
+    """CP17-1 (skeptic m4): a relative import of a sibling module, read from the AST, in every form: `from . import a, target`,
+    `from . import target as T`, `from .target import name`."""
+    return any(isinstance(n, ast.ImportFrom) and n.level == 1 and ((n.module or "") == target or (n.module is None and any(a.name == target for a in n.names)))
+               for n in ast.walk(ast.parse(src)))
+
+
+def test_no_predictive_module_imports_the_integration_module():
+    users = [p.name for p in (ROOT / "memelab/predictive").glob("*.py") if _relative_users(p.read_text(), "integration")]
+    assert users == []                                   # the integration is a leaf: it is imported only by the cli helpers
+
+
+@pytest.mark.parametrize("src", ["from . import stats, integration", "from . import integration as II", "from .integration import run_pass"])
+def test_the_relative_import_scan_sees_every_form(src):
+    assert _relative_users(src, "integration") and not _relative_users("from . import stats", "integration")
+
+
 @pytest.mark.parametrize("src", ["from .predictive import integration",                      # at module level
                                  "def _predictive_section():\n    from .predictive import contract",
                                  "def _predictive_line():\n    from .predictive import integration, registry",
                                  "def other():\n    from .predictive import integration",
-                                 "def _predictive_line():\n    import importlib\n    importlib.import_module('memelab.predictive.integration')"])
+                                 "def _predictive_line():\n    import importlib\n    importlib.import_module('memelab.predictive.integration')",
+                                 "def _predictive_enabled():\n    return 'memelab.predictive'",
+                                 "def _predictive_enabled():\n    from .predictive import contract",
+                                 "def other():\n    return {}.get('predictive')"])
 def test_the_seam_allows_nothing_but_the_lazy_integration_import(src):
     assert _seam_violations(src)
     assert not _seam_violations("def _predictive_section():\n    from .predictive import integration")

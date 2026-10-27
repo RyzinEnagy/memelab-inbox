@@ -32,6 +32,9 @@ RECORDED = ["P17:REAL_SCOUT_OFF_BASE", "P17:REAL_SCOUT_OFF_FROZEN", "P17:REAL_SC
             "P17:REAL_SCOUT_STORM", "P17:REAL_SCOUT_RESEARCH", "P17:REAL_ANALYZE_ON", "P17:REAL_EXPORT_REPLAY:ROUND_1",
             "P17:REAL_EXPORT_REPLAY:ROUND_2"]
 
+REPEATS = [("CP17_0", "6172b49", "PI-D-094, evidence/rerun_cp17_0_diff.json; rows added late, in the CP17-1 repair"),
+           ("CP17_1", "the CP17-1 code commit", "PI-D-096, evidence/rerun_rp2_diff.json")]
+
 
 def main(out: Path) -> int:
     base = list(csv.DictReader(open(AUD / "phase_16/experiments/SEARCH_LEDGER.csv")))
@@ -43,6 +46,11 @@ def main(out: Path) -> int:
     for eid in RECORDED:
         new.append({c: "" for c in cols} | {"phase": "17", "experiment_id": eid, "candidate": "P17_INTEGRATION", "kind": "TRAP_OR_CHECK",
                                             "view": "ALL", "verdict": "recorded run at the frozen code (smoke/)", "claim": CLAIM})
+    for cp, code, why in REPEATS:   # CP17-1: the recorded runs repeated at each change-control commit are runs on real data too (P22)
+        for eid in RECORDED:
+            new.append({c: "" for c in cols} | {"phase": "17", "experiment_id": eid.replace("P17:", f"P17:{cp}:"), "candidate": "P17_INTEGRATION",
+                                                "kind": "TRAP_OR_CHECK", "view": "ALL", "verdict": f"recorded run repeated at {code} ({why})",
+                                                "claim": CLAIM})
     rows = base + new
     with open(out / "experiments/SEARCH_LEDGER.csv", "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=cols)

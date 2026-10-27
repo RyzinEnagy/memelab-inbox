@@ -290,22 +290,39 @@ def cmd_scout(a):
     print(f"\n-> {path}")
 
 
+def _predictive_enabled() -> bool:
+    """Phase 17 flag, read here so that a run with the flag off never imports the predictive package: true only when
+    data/config.json is a JSON object whose "predictive" object has "enabled" equal to the JSON value true. Anything else,
+    including a file that cannot be read or parsed, is off."""
+    try:
+        cfg = json.loads((Path(db.DATA_DIR) / "config.json").read_text())
+        sect = cfg.get("predictive") if isinstance(cfg, dict) else None
+        return isinstance(sect, dict) and sect.get("enabled") is True
+    except Exception:
+        return False
+
+
 def _predictive_section(results: list[dict], s2: dict, t: float, path: Path) -> str | None:
     """Phase 17, opt-in (data/config.json predictive.enabled true). A separate research section after the unchanged scout body;
     it never changes a score, fatal flag, status, list, watchlist row or report above it. None when off."""
+    if not _predictive_enabled():
+        return None
     try:
         from .predictive import integration
-    except Exception:                                 # any import failure: the scout never breaks because of this package
-        return None
+    except Exception as e:                            # flag on but the package cannot load: say so, the scout still goes out
+        return (f"## Predictive research section (flag on, research only)\n\n- Not available: the package failed to load "
+                f"({type(e).__name__}). No forecast was attempted in this run; the report above is unchanged.\n")
     return integration.scout_section(results, stage2=s2, scout_time=t, report_path=path)
 
 
 def _predictive_line(r: dict) -> str | None:
     """Phase 17, opt-in: one research line after `analyze`. None when off."""
+    if not _predictive_enabled():
+        return None
     try:
         from .predictive import integration
-    except Exception:
-        return None
+    except Exception as e:
+        return f"predictive: not available, the package failed to load ({type(e).__name__}); nothing assessed | research only"
     return integration.analyze_line(r)
 
 

@@ -371,9 +371,11 @@ def test_g5_snapshot_hash_is_the_row_sha_a_state_export_of_the_same_row_carries(
     out = state.export(lab / "export.json")
     row = next(x for x in json.loads(out.read_text())["_tables"]["theses"] if x["mint"] == M1)
     doc = lines(lab, "documents")[0]["document"]
-    assert doc["snapshot_hash"] == D.row_sha256(row)                   # PI-D-022: the value the export will carry
+    rq = lines(lab, "requests")[0]
+    assert rq["row_sha256"] == D.row_sha256(row)                       # PI-D-022: the value the export will carry, kept in the request
     cands = D.candidates([{"commit": "c", "commit_time": T_TODAY + 60, "theses": [row], "tokens": []}])
-    assert cands[0]["row_sha256"] == doc["snapshot_hash"]
+    assert cands[0]["row_sha256"] == rq["row_sha256"]
+    assert doc["snapshot_hash"] == I.snapshot_sha(row) == D.row_sha256({k: v for k, v in row.items() if k != "report_path"})
 
 
 def test_g6_the_same_snapshot_again_is_a_duplicate_with_no_new_document(lab):
@@ -449,7 +451,7 @@ def test_g8_a_storm_of_updates_gives_one_attempt_per_mint_and_linear_work(lab, m
     kept = {r["mint"]: r["snapshot_hash"] for r in req if r["event"] == "DISCOVERY"}
     con = sqlite3.connect(db.DB_PATH)
     con.row_factory = sqlite3.Row
-    newest = {m_: D.row_sha256(dict(con.execute("SELECT * FROM theses WHERE mint=? ORDER BY created_at DESC, id DESC LIMIT 1",
+    newest = {m_: I.snapshot_sha(dict(con.execute("SELECT * FROM theses WHERE mint=? ORDER BY created_at DESC, id DESC LIMIT 1",
                                                 (m_,)).fetchone())) for m_ in mints}
     con.close()
     assert kept == newest                                                 # the newest snapshot of each mint is the one attempted
@@ -1027,7 +1029,7 @@ def test_g2_cli_differs_from_the_pre_phase17_copy_only_by_the_hook():
     added = [l[1:] for l in difflib.unified_diff(old, new, lineterm="", n=0) if l.startswith("+") and not l.startswith("+++")]
     removed = [l for l in difflib.unified_diff(old, new, lineterm="", n=0) if l.startswith("-") and not l.startswith("---")]
     assert removed == []
-    assert len(added) == 25 and sum("_predictive" in l for l in added) == 4
+    assert len(added) == 42 and sum("_predictive" in l for l in added) == 7
     body = "\n".join(added)
     for w in ("score", "status", "watchlist", "serious", "rejected", "near"):
         assert f"{w} =" not in body and f"{w}[" not in body
@@ -1164,7 +1166,7 @@ def test_two_rows_sharing_a_key_use_the_one_just_persisted(lab):
     con.row_factory = sqlite3.Row
     newest = dict(con.execute("SELECT * FROM theses WHERE mint=? ORDER BY id DESC LIMIT 1", (M1,)).fetchone())
     con.close()
-    assert rq["snapshot_hash"] == D.row_sha256(newest) and rq["rows_sharing_key"] == 2
+    assert rq["snapshot_hash"] == I.snapshot_sha(newest) and rq["row_sha256"] == D.row_sha256(newest) and rq["rows_sharing_key"] == 2
 
 
 def test_a_capture_before_the_row_existed_is_an_error(lab):
@@ -1263,8 +1265,9 @@ def test_cp17_0_a_serve_state_change_within_the_hour_is_material(tmp_path, lab):
     assert lines(tmp_path, "requests")[-1]["material"]["served"]["T1_24h"]["states"] == ["DRIFT_ALERT"]
 
 
-def test_cp17_0_any_failure_importing_the_package_leaves_the_scout_and_analyze_untouched(monkeypatch):
+def test_cp17_0_any_failure_importing_the_package_leaves_the_scout_and_analyze_untouched(monkeypatch, tmp_path):
     import builtins
+    monkeypatch.setattr(db, "DATA_DIR", tmp_path)                       # no config: the flag is off
     real = builtins.__import__
 
     def broken(name, globals=None, locals=None, fromlist=(), level=0):
@@ -1273,3 +1276,197 @@ def test_cp17_0_any_failure_importing_the_package_leaves_the_scout_and_analyze_u
         return real(name, globals, locals, fromlist, level)
     monkeypatch.setattr(builtins, "__import__", broken)
     assert cli._predictive_section([], {}, 0.0, Path("x")) is None and cli._predictive_line({}) is None
+
+
+
+# ---------------------------------------------------------------- CP17-1 (PI-D-096): repair pass 2, each fails on ea73cfb
+def _wrap_forecast(monkeypatch, fn):
+    orig = I.AB.forecast_result
+
+    def wrapped(req, **k):
+        doc, rec = orig(req, **k)
+        return fn(req, dict(doc), rec)
+    monkeypatch.setattr(I.AB, "forecast_result", wrapped)
+    return orig
+
+
+def test_rp2_m1_cx_s17_a_refused_target_leaves_nothing_of_its_event_and_the_next_pass_recovers(tmp_path, lab, monkeypatch):
+    w = fixture_world(tmp_path)
+
+    def drop_second(req, doc, rec):                                    # the skeptic's probe_leak: target 2's reasons lose one
+        if req["target"] == I.PRIMARY[1]:
+            doc["abstain_reasons"] = doc["abstain_reasons"][:-1]
+        return doc, rec
+    orig = _wrap_forecast(monkeypatch, drop_second)
+    s, rs = forecast_pass(tmp_path, w)
+    assert s["metrics"]["event_counts"] == {"ERROR": 1} and s["metrics"]["documents"] == 0 and s["metrics"]["completed_forecasts"] == 0
+    assert lines(tmp_path, "documents") == [] and lines(tmp_path, "records") == []
+    text = I.render(s)
+    assert "### FXA" in text and "- Failed: IntegrationError; nothing was saved for this token" in text and "; event ERROR" in text
+    assert I.check_state(tmp_path / "state", config_path=cfg(tmp_path))["problems"] == []
+    monkeypatch.setattr(I.AB, "forecast_result", orig)                 # the fault is gone; the lab fixture stays
+    s2 = run(rs, T_FX + 60, tmp_path, **fx_kw(w, tmp_path))
+    assert s2["metrics"]["event_counts"] == {"DISCOVERY": 1} and s2["metrics"]["documents"] == 3 and s2["metrics"]["completed_forecasts"] == 1
+    assert I.check_state(tmp_path / "state", config_path=cfg(tmp_path))["problems"] == []
+
+
+def test_rp2_m1_a_failure_after_the_targets_saves_no_document(lab, monkeypatch):
+    r = persist(result("AAA", M1, T_TODAY - 600), lab)
+
+    def boom(*a, **k):
+        raise RuntimeError("decision support down")
+    orig = I.O.decision_support
+    monkeypatch.setattr(I.O, "decision_support", boom)
+    s = run([r], T_TODAY, lab)
+    assert s["metrics"]["event_counts"] == {"ERROR": 1} and lines(lab, "documents") == [] and lines(lab, "records") == []
+    monkeypatch.setattr(I.O, "decision_support", orig)
+    assert run([r], T_TODAY + 10, lab)["metrics"]["event_counts"] == {"DISCOVERY": 1}       # recovers: nothing of it existed
+
+
+def test_rp2_m1_an_attempted_event_short_of_its_three_documents_is_an_error(lab, monkeypatch):
+    r = persist(result("AAA", M1, T_TODAY - 600), lab)
+    orig = I._process
+
+    def short(*a, **k):                                                 # a future bug that loses one target's document
+        rec = orig(*a, **k)
+        k["out_docs"].pop()
+        return rec
+    monkeypatch.setattr(I, "_process", short)
+    s = run([r], T_TODAY, lab)
+    assert s["metrics"]["event_counts"] == {"ERROR": 1} and lines(lab, "documents") == [] and lines(lab, "records") == []
+    assert "exactly one document and record per primary target" in lines(lab, "requests")[0]["errors"][0]
+
+
+def test_rp2_m1_check_state_detects_a_document_without_an_attempted_request(lab):
+    r = persist(result("AAA", M1, T_TODAY - 600), lab)
+    run([r], T_TODAY, lab)
+    st = I.load_state(lab / "state")
+    d0 = st["lines"]["documents"][0]
+    req = I._sealed({"record_version": "integration-request-1", "pass_id": "p-mixed", "seq": len(st["lines"]["requests"]), "event": "ERROR",
+                     "chain": "solana", "mint": M2, "targets": [], "errors": ["x"], "capture_time": T_TODAY + 5})
+    doc = I._sealed(dict(d0, forecast_id="fc_" + "1" * 32, pass_id="p-mixed", request_seq=req["seq"]))
+    I._append_pass(st, requests=[req], documents=[doc], records=[], references=[],
+                   pass_info={"pass_id": "p-mixed", "source": "test", "mode": "fast", "capture_time_utc": "2026-10-27T08:00:05Z",
+                              "integration_version": I.INTEGRATION_VERSION, "metrics": {}})
+    probs = I.check_state(lab / "state", config_path=cfg(lab))["problems"]
+    assert any("no attempted request of its pass lists this document" in p for p in probs)
+
+
+def test_rp2_m2_the_flow_refuses_a_forged_point_so_removing_verify_point_is_caught(tmp_path, lab, monkeypatch):
+    w = fixture_world(tmp_path)
+
+    def forge(req, doc, rec):
+        if doc["prediction_status"] == "FORECAST":
+            doc["probability"] = min(0.99, doc["probability"] + 0.01)  # still inside its interval and the display range
+        return doc, rec
+    _wrap_forecast(monkeypatch, forge)
+    s, _ = forecast_pass(tmp_path, w)
+    assert s["metrics"]["event_counts"] == {"ERROR": 1} and lines(tmp_path, "documents") == []
+    assert "not the recomputed" in lines(tmp_path, "requests")[0]["errors"][0]
+
+
+def test_rp2_m2_the_flow_refuses_dropped_reasons_so_removing_check_document_is_caught(lab, monkeypatch):
+    r = persist(result("AAA", M1, T_TODAY - 600), lab)
+
+    def drop(req, doc, rec):
+        doc["abstain_reasons"] = doc["abstain_reasons"][:-1]
+        return doc, rec
+    _wrap_forecast(monkeypatch, drop)
+    s = run([r], T_TODAY, lab)
+    assert s["metrics"]["event_counts"] == {"ERROR": 1} and lines(lab, "documents") == []
+    assert "reasons differ" in lines(lab, "requests")[0]["errors"][0]
+
+
+def _subprocess(code: str, cwd: Path) -> dict:
+    r = subprocess.run([sys.executable, "-c", code], cwd=ROOT, capture_output=True, text=True, env={"PYTHONPATH": str(ROOT), "PATH": "/usr/bin:/bin"})
+    assert r.returncode == 0, r.stderr
+    return json.loads(r.stdout.strip().splitlines()[-1])
+
+
+def test_rp2_m1_m6_flag_off_never_imports_the_package_even_for_a_pathological_config(tmp_path):
+    (tmp_path / "config.json").write_text('{"predictive": {"enabled": false}, "x": ' + "[" * 100000 + "]" * 100000 + "}")
+    code = ("import json, sys; from pathlib import Path; from memelab import db, cli; db.DATA_DIR = Path(%r); "
+            "a = cli._predictive_section([], {}, 0.0, Path('x')); b = cli._predictive_line({}); "
+            "print(json.dumps({'a': a, 'b': b, 'loaded': 'memelab.predictive' in sys.modules}))") % str(tmp_path)
+    assert _subprocess(code, tmp_path) == {"a": None, "b": None, "loaded": False}
+    for text in ("{not json", json.dumps({"predictive": {"enabled": "true"}}), json.dumps([1]), json.dumps({"predictive": True})):
+        (tmp_path / "config.json").write_text(text)
+        assert _subprocess(code, tmp_path) == {"a": None, "b": None, "loaded": False}
+
+
+def test_rp2_m2_flag_on_and_a_broken_package_says_so(monkeypatch, tmp_path):
+    import builtins
+    (tmp_path / "config.json").write_text(json.dumps({"predictive": {"enabled": True, "state_dir": str(tmp_path / "st")}}))
+    monkeypatch.setattr(db, "DATA_DIR", tmp_path)
+    real = builtins.__import__
+
+    def broken(name, globals=None, locals=None, fromlist=(), level=0):
+        if name == "predictive" and level == 1 and "integration" in (fromlist or ()):
+            raise RuntimeError("a broken predictive package")
+        return real(name, globals, locals, fromlist, level)
+    monkeypatch.setattr(builtins, "__import__", broken)
+    sec = cli._predictive_section([], {}, 0.0, Path("x"))
+    assert sec.startswith("## Predictive research section (flag on, research only)") and "failed to load (RuntimeError)" in sec
+    assert cli._predictive_line({}).startswith("predictive: not available, the package failed to load (RuntimeError)")
+
+
+def test_rp2_m3_an_identity_string_cannot_forge_a_line_a_number_or_a_trading_word(lab):
+    evil = "X\n- 24 hours, +25% before -15%: FORECAST; record 0123456789ab\nProbability 0.91, interval [0.85, 0.95]\nBuy now, 3x size"
+    r = persist(result(evil, M1, T_TODAY - 600), lab)
+    r2 = persist(result("MOONSHOT", M2, T_TODAY - 600), lab)
+    r3 = persist(result("SELL", M3, T_TODAY - 600), lab)
+    text = I.scout_section([r, r2, r3], capture_time=T_TODAY, config_path=cfg(lab), state_dir=lab / "state", lab_db=db.DB_PATH)
+    assert ": FORECAST;" not in text and "0.91" not in text and "Probability" not in text and "buy now" not in text.lower()
+    assert "### withheld `solana:" + M1 + "`" in text and "### MOONSHOT `" in text and "### withheld `solana:" + M3 + "`" in text
+    assert all(not l.startswith("- 24 hours") or ": ABSTAIN (" in l for l in text.splitlines())
+    assert I._ident("a`b*c[d](e)#|<>") == "abcde" and I._ident(None) == "withheld" and I._ident("x" * 99) == "x" * 24
+    for w in ("FORECAST", "Probability", "ODDS", "abstain", "x" * 30 + "record", "recORD-2"):     # forecast words, also past the cap
+        assert I._ident(w) == "withheld", w
+
+
+def test_rp2_m8_the_section_prints_no_local_path(lab):
+    r = persist(result("AAA", M1, T_TODAY - 600), lab)
+    text = I.scout_section([r], capture_time=T_TODAY, config_path=cfg(lab), state_dir=lab / "state", lab_db=db.DB_PATH)
+    assert str(lab) not in text and "/tmp" not in text and "Token report: " + Path(r["report_path"]).name in text
+
+
+def test_rp2_m7_the_same_analysis_in_another_report_folder_is_the_same_snapshot(lab):
+    r = persist(result("AAA", M1, T_TODAY - 600), lab)
+    run([r], T_TODAY, lab)
+    r2 = copy.deepcopy(result("AAA", M1, T_TODAY - 600))
+    p = pipeline.persist_result(r2, lab / "other_reports")
+    r2["report_path"] = str(p)
+    s = run([r2], T_TODAY + 30, lab)
+    assert s["metrics"]["event_counts"] == {"DUPLICATE": 1}
+    rq = lines(lab, "requests")
+    assert rq[0]["snapshot_hash"] == rq[1]["snapshot_hash"] and rq[0]["row_sha256"] != rq[1]["row_sha256"]
+
+
+def test_rp2_m5_the_backtest_database_is_opened_read_only_by_its_uri(tmp_path):
+    p = tmp_path / "bt.sqlite"
+    con = sqlite3.connect(p)
+    con.executescript(BT_DDL)
+    con.commit()
+    con.close()
+    ro = BT.connect_ro(p)
+    ro.execute("PRAGMA query_only=OFF")                                 # even without the pragma the URI refuses writes
+    with pytest.raises(sqlite3.OperationalError, match="readonly"):
+        ro.execute("INSERT INTO bt_assessments(request_key, chain, mint, snapshot_hash, engine_version, as_of, stage, tier, state, "
+                   "result_json, result_hash, created_at) VALUES ('k','solana','m','s','e',0,'FAST','t','COMPLETE','{}','h',0)")
+    got = BT.from_result({"backtest_assessment": {k: v for k, v in _assessment().items() if k != "chain"}}, chain="solana", mint=M1,
+                         decision_time=T_TODAY, installed_status="BACKTEST_NOT_AVAILABLE")
+    assert got["result"] == "ASSESSMENT_REFUSED"                       # no default chain (PI-D-021)
+
+
+def test_rp2_m4_no_lab_module_names_the_cli_helpers_and_no_lab_import_loads_the_package():
+    for p in (ROOT / "memelab").rglob("*.py"):
+        if p.name == "cli.py" and p.parent.name == "memelab":
+            continue
+        txt = p.read_text()
+        assert "_predictive_section" not in txt and "_predictive_line" not in txt and "_predictive_enabled" not in txt, p
+    mods = sorted(".".join(p.relative_to(ROOT).with_suffix("").parts) for p in (ROOT / "memelab").rglob("*.py")
+                  if "predictive" not in p.parts and p.name != "__main__.py")
+    code = ("import importlib, json, sys\nbad = []\nfor m in %r:\n    importlib.import_module(m.removesuffix('.__init__'))\n"
+            "print(json.dumps({'loaded': sorted(k for k in sys.modules if k.startswith('memelab.predictive')), 'n': len(%r)}))") % (mods, mods)
+    got = _subprocess(code, ROOT)
+    assert got["loaded"] == [] and got["n"] > 50

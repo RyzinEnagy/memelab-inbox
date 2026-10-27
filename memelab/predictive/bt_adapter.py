@@ -54,7 +54,7 @@ def check_record(rec: Any, *, chain: str, mint: str, decision_time: float) -> li
     if not isinstance(rec, dict):
         return ["not an assessment record"]
     out = []
-    if rec.get("chain", "solana") != chain or rec.get("mint") != mint:
+    if rec.get("chain") != chain or rec.get("mint") != mint:               # no default chain (PI-D-021, CP17-1)
         out.append("IDENTITY_MISMATCH: the assessment is about another chain or mint (P01)")
     if rec.get("state") not in STATES:
         out.append(f"UNKNOWN_STATE {rec.get('state')!r}")

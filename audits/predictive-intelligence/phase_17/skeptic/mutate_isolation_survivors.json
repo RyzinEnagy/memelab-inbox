@@ -1,0 +1,42 @@
+{
+ "pipeline_concat_string": {
+  "changed": [
+   "memelab/pipeline.py | 5 +++++"
+  ],
+  "exit": 0,
+  "caught": false,
+  "first_failure": [
+   "339 passed, 1 warning in 44.61s"
+  ]
+ },
+ "farm_imports_cli_helper": {
+  "changed": [
+   "memelab/farm.py | 5 +++++"
+  ],
+  "exit": 0,
+  "caught": false,
+  "first_failure": [
+   "339 passed, 1 warning in 41.60s"
+  ]
+ },
+ "labels_from_dot_import_stats_registry": {
+  "changed": [
+   "memelab/predictive/labels.py | 5 +++++"
+  ],
+  "exit": 1,
+  "caught": true,
+  "first_failure": [
+   "FAILED tests/test_predictive_integration.py::test_g22_every_registry_entry_still_sees_its_code_files_unchanged"
+  ]
+ },
+ "stats_from_dot_import_integration": {
+  "changed": [
+   "memelab/predictive/stats.py | 5 +++++"
+  ],
+  "exit": 1,
+  "caught": true,
+  "first_failure": [
+   "FAILED tests/test_predictive_integration.py::test_g22_every_registry_entry_still_sees_its_code_files_unchanged"
+  ]
+ }
+}
