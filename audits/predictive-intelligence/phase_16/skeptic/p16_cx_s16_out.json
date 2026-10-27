@@ -1,0 +1,38 @@
+{
+ "forged_level": "SHADOW",
+ "forged_publishable_flag": true,
+ "verify_entry_passes": true,
+ "verify_sources_passes": [
+  "audits/predictive-intelligence/phase_07/artifacts/T1_24h/B2.json",
+  "audits/predictive-intelligence/phase_13/artifacts/T1_24h/CALIBRATION_CARD.json",
+  "audits/predictive-intelligence/phase_12/validation/CANDIDATES.json",
+  "audits/predictive-intelligence/phase_12/validation/HOLDOUT_METRICS.csv",
+  "audits/predictive-intelligence/phase_12/validation/POST_OPENING_CORRECTIONS.csv"
+ ],
+ "pinned_mode": "CHAMPION",
+ "served": {
+  "use_champion": true,
+  "level": "SHADOW",
+  "blocking": []
+ },
+ "document": {
+  "status": "ABSTAIN",
+  "probability": null,
+  "reasons": [
+   "INSUFFICIENT_HISTORY",
+   "NOT_YET_MATURED",
+   "UNCALIBRATED",
+   "RESTRICTED_SOURCE",
+   "MODEL_NOT_SELECTED"
+  ],
+  "model_not_promoted_condition": []
+ },
+ "committed_copy_output_tests": [
+  "FAILED tests/test_predictive_phase16_outputs.py::test_sixty_nine_immutable_entries_one_per_frozen_card_with_their_cards_and_calibration",
+  "FAILED tests/test_predictive_phase16_outputs.py::test_levels_are_abstain_for_the_references_and_no_go_for_everything_else_and_nothing_is_publishable",
+  "FAILED tests/test_predictive_phase16_outputs.py::test_every_target_is_pinned_no_viable_champion_with_its_own_references",
+  "FAILED tests/test_predictive_phase16_outputs.py::test_identical_inference_reproduced_every_recorded_prediction_and_the_synthetic_hashes_recompute",
+  "FAILED tests/test_predictive_phase16_outputs.py::test_cp16_0_every_entry_s_facts_rebuild_from_the_committed_files_and_every_source_hash_holds",
+  "5 failed, 7 passed in 0.81s"
+ ]
+}

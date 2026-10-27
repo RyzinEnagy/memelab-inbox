@@ -1,0 +1,235 @@
+{
+ "A0_forged_b2_passes_verify_entry": {
+  "accepted": true,
+  "detail": true
+ },
+ "A10_every_bin_None_at_66_events_level": "SHADOW",
+ "A1_pin_NO_GO_B1_as_champion": {
+  "accepted": false,
+  "detail": "champion level NO_GO: a champion needs SHADOW or VALIDATED_EXPERIMENTAL",
+  "refused_by": "PinRefused"
+ },
+ "A1b_pin_real_B2_ABSTAIN_as_champion": {
+  "accepted": false,
+  "detail": "champion level ABSTAIN: a champion needs SHADOW or VALIDATED_EXPERIMENTAL",
+  "refused_by": "PinRefused"
+ },
+ "A2_NO_GO_B1_as_reference": {
+  "accepted": false,
+  "detail": "reference base_rate is not the base_rate baseline of price_path_target_before_invalidation_24h",
+  "refused_by": "PinRefused"
+ },
+ "A2b_T1b_B2_as_T1_reference": {
+  "accepted": false,
+  "detail": "reference simple_model is not the simple_model baseline of price_path_target_before_invalidation_24h",
+  "refused_by": "PinRefused"
+ },
+ "A3a_forged_pin_no_verify": {
+  "accepted": false,
+  "detail": "a champion is pinned only after its facts are checked against their sources (verify_facts)",
+  "refused_by": "PinRefused"
+ },
+ "A3b_forged_pin_verify_is_verify_entry": {
+  "accepted": true,
+  "detail": "CHAMPION"
+ },
+ "A3c_forged_served_with_verify_entry": {
+  "accepted": true,
+  "detail": {
+   "blocking": [],
+   "forecast_inputs": {
+    "calibration_card_sha": "21384176f23f4c5e4d2ee3a7befe725396cf1630675438cdff069dec3551ecdf",
+    "card_entry": "017d8e389b3ca01af129219257be48b6ce5c8c9cc0e30d7f408e6284a44cb28b",
+    "level": "SHADOW",
+    "model_id": "B2:price_path_target_before_invalidation_24h"
+   },
+   "use_champion": true
+  }
+ },
+ "A3d_forged_champion_to_document_flag_on": {
+  "accepted": true,
+  "detail": {
+   "probability": null,
+   "reasons": [
+    "INSUFFICIENT_HISTORY",
+    "NOT_YET_MATURED",
+    "UNCALIBRATED",
+    "RESTRICTED_SOURCE",
+    "MODEL_NOT_SELECTED"
+   ],
+   "status": "ABSTAIN"
+  }
+ },
+ "A4_edited_log_champion_NO_GO": {
+  "accepted": false,
+  "detail": "pinned champion is below SHADOW",
+  "refused_by": "PinRefused"
+ },
+ "A4b_rewritten_last_pin_line": {
+  "accepted": false,
+  "detail": "line 74: chain broken (changed, dropped or reordered event)",
+  "refused_by": "LogError"
+ },
+ "A5_direct_level_edit_rehashed": {
+  "accepted": false,
+  "detail": "entry B2:price_path_target_before_invalidation_24h: stored level SHADOW is not what its facts give (ABSTAIN)",
+  "refused_by": "LevelMismatch"
+ },
+ "A6_fixture_champion_served_at_2026-10-31T00:00:00Z": {
+  "blocking": [],
+  "use_champion": true
+ },
+ "A6_fixture_champion_served_at_2026-10-31T00:00:01Z": {
+  "blocking": [
+   "MODEL_STALE"
+  ],
+  "use_champion": false
+ },
+ "A6_fixture_champion_served_at_2026-12-01T00:00:00Z": {
+  "blocking": [
+   "MODEL_STALE"
+  ],
+  "use_champion": false
+ },
+ "A6b_stale_reference_record": {
+  "is_document": false,
+  "published": false,
+  "states": [
+   "MODEL_STALE"
+  ]
+ },
+ "A7_compatibility_states_after_code_change": {
+  "10fcced679bc3b26f213f7ec5777d7ba58585d1fe5c775ce305b55aa27c5ba3a": [],
+  "121aa4a8dfb53b92b30d4b20b4aae1f08cc2291f8e39e3cca0ea8fc5506e39b0": [],
+  "18952ccfb60e89ab3e2d685c9c31bfab671ed68c1697acf7c805e3a081c4bc76": []
+ },
+ "A7_fixture_champion_served_after_transform_change_without_inference": {
+  "blocking": [],
+  "use_champion": true
+ },
+ "A7_transform_code_change_runtime_equal": true,
+ "A8_inference_bool": {
+  "accepted": false,
+  "detail": "k: number True is not finite (P38)",
+  "refused_by": "MalformedScore"
+ },
+ "A8_inference_inf": {
+  "accepted": false,
+  "detail": "k: number inf is not finite (P38)",
+  "refused_by": "MalformedScore"
+ },
+ "A8_inference_nan_no_reason": {
+  "accepted": false,
+  "detail": "k: no number and no reason",
+  "refused_by": "MalformedScore"
+ },
+ "A8_inference_nan_with_reason": {
+  "accepted": true,
+  "detail": [
+   [
+    "k",
+    null,
+    "OOD"
+   ]
+  ]
+ },
+ "A8_inference_neg": {
+  "accepted": false,
+  "detail": "k: number -0.1 outside [0, 1] (P38)",
+  "refused_by": "MalformedScore"
+ },
+ "A8_inference_neg_zero": {
+  "accepted": true,
+  "detail": [
+   [
+    "k",
+    -0.0,
+    ""
+   ]
+  ]
+ },
+ "A8_inference_none_with_number_reason": {
+  "accepted": true,
+  "detail": [
+   [
+    "k",
+    null,
+    "x"
+   ]
+  ]
+ },
+ "A8_inference_np32_nan": {
+  "accepted": false,
+  "detail": "k: number np.float32(nan) is not finite (P38)",
+  "refused_by": "MalformedScore"
+ },
+ "A8_inference_np_float_over": {
+  "accepted": false,
+  "detail": "k: number 1.0000001 outside [0, 1] (P38)",
+  "refused_by": "MalformedScore"
+ },
+ "A8_inference_np_int": {
+  "accepted": false,
+  "detail": "k: number np.int64(1) is not finite (P38)",
+  "refused_by": "MalformedScore"
+ },
+ "A8_inference_over": {
+  "accepted": false,
+  "detail": "k: number 1.1 outside [0, 1] (P38)",
+  "refused_by": "MalformedScore"
+ },
+ "A8_inference_string": {
+  "accepted": false,
+  "detail": "k: number '0.5' is not finite (P38)",
+  "refused_by": "MalformedScore"
+ },
+ "A8b_reference_record_1.5": {
+  "accepted": false,
+  "detail": "k: number 1.5 outside [0, 1] (P38)",
+  "refused_by": "MalformedScore"
+ },
+ "A8c_nan_in_facts": {
+  "accepted": false,
+  "detail": "Out of range float values are not JSON compliant: nan",
+  "refused_by": "ValueError"
+ },
+ "A9_agent_field_in_evidence": {
+  "accepted": true,
+  "detail": {
+   "level": "ABSTAIN",
+   "publishable": false
+  }
+ },
+ "A9_agent_field_in_facts": {
+  "accepted": true,
+  "detail": {
+   "level": "ABSTAIN",
+   "publishable": false
+  }
+ },
+ "A9_agent_field_in_model_id_alias": {
+  "accepted": true,
+  "detail": {
+   "level": "ABSTAIN",
+   "publishable": false
+  }
+ },
+ "A9_agent_field_in_risk": {
+  "accepted": true,
+  "detail": {
+   "level": "ABSTAIN",
+   "publishable": false
+  }
+ },
+ "A9b_member_column_agent_share": {
+  "accepted": false,
+  "detail": "column 'agent_vote_share' has no declared evidence source",
+  "refused_by": "UndeclaredColumn"
+ },
+ "A9c_member_named_mirofish": {
+  "accepted": false,
+  "detail": "a behavioral output never enters an ensemble (P27)",
+  "refused_by": "BehavioralNotAModel"
+ },
+ "forged_b2_level": "SHADOW"
+}

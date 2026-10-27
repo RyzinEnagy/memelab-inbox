@@ -19,8 +19,10 @@ MP = "memelab/predictive/registry.py"
 TEST = "tests/test_predictive_registry.py"
 A = "audits/predictive-intelligence"
 EXTRA_DIRS = [f"{A}/phase_07/artifacts/T1_24h", f"{A}/phase_09/artifacts/T1_24h", f"{A}/phase_10/artifacts/T1_24h",
-              f"{A}/phase_13/artifacts/T1_24h", f"{A}/phase_13/artifacts/T2_24h", f"{A}/phase_07/artifacts/T1b_6h"]
-EXTRA_FILES = [f"{A}/phase_12/validation/HOLDOUT_METRICS.csv", f"{A}/phase_12/validation/POST_OPENING_CORRECTIONS.csv"]
+              f"{A}/phase_13/artifacts/T1_24h", f"{A}/phase_13/artifacts/T2_24h", f"{A}/phase_13/artifacts/T1b_6h",
+              f"{A}/phase_07/artifacts/T1b_6h", f"{A}/phase_07/artifacts/T2_24h"]
+EXTRA_FILES = [f"{A}/phase_12/validation/{f}" for f in ("HOLDOUT_METRICS.csv", "POST_OPENING_CORRECTIONS.csv", "CANDIDATES.json",
+                                                        "PREOPEN_TRAPS.json", "REPLAY_AUDIT.json")]
 
 MUTATIONS = [
     # promotion (rule 3)
@@ -29,7 +31,7 @@ MUTATIONS = [
     ("P3 evidence source unchecked", '            and cal.get("evidence_source") == "PROSPECTIVE_HOLDOUT"):', "            ):"),
     ("P4 post-opening may promote", '    if ret.get("evaluation") != FIRST_OPENING:', '    if ret.get("evaluation") not in (FIRST_OPENING, "POST_OPENING"):'),
     ("P5 retrospective counts unchecked", '            reasons.append("RETROSPECTIVE_BELOW_MINIMUM")', "            pass"),
-    ("P6 failed bins ignored", 'calibration_every_bin_ok") in (True, None))', 'calibration_every_bin_ok") in (True, None, False))'),
+    ("P6 failed bins ignored", 'bins_ok = ret.get("calibration_every_bin_ok") is True or (', 'bins_ok = ret.get("calibration_every_bin_ok") in (True, False) or ('),
     ("P7 selection correction ignored", '            ve_reasons.append("SELECTION_CORRECTION_NOT_SURVIVED")', "            pass"),
     ("P8 B2 comparison skipped", '        if facts.get("kind") != "B2":', "        if False:"),
     ("P9 prospective bound unchecked", '            ve_reasons.append("PROSPECTIVE_LOWER_BOUND_NOT_ABOVE_0")', "            pass"),
@@ -108,12 +110,29 @@ MUTATIONS = [
     # CP16-0: facts against their sources
     ("G1 facts not compared", '    if canon(want) != canon(entry["facts"]):', "    if False:"),
     ("G2 sources not hashed", "        if sha_bytes(read(path)) != want:", "        if False:"),
-    ("G3 pin without a source check", '        if verify is None:\n            raise PinRefused("a champion is pinned only after', '        if False:\n            raise PinRefused("a champion is pinned only after'),
-    ("G4 serve without a source check", '        if verify is None:\n            blocking.append({"state": FACTS_NOT_VERIFIED', '        if False:\n            blocking.append({"state": FACTS_NOT_VERIFIED'),
-    ("G5 rollback drops the source check", "                        allow_fixture=allow_fixture, verify=verify)", "                        allow_fixture=allow_fixture, verify=lambda e: None)"),
-    ("G6 serve ignores a failed source check", '            except RegistryError as err:\n                blocking.append({"state": FACTS_MISMATCH, "detail": f"{type(err).__name__}: {err}"})', "            except RegistryError as err:\n                pass"),
     ("G7 verify_facts takes any card", '    card = sources.pop("card")\n    if card.get("model_sha") != entry["model_sha"] or card_sha_of(card) != entry["model_sha"]:', '    card = sources.pop("card")\n    if False:'),
-    ("G8 pin ignores a failed source check", '        try:\n            verify(e)\n        except RegistryError as err:\n            raise PinRefused', '        try:\n            verify(e)\n        except ZeroDivisionError as err:\n            raise PinRefused'),
+    # repair pass 2 (CP16-2): the registry's own rebuild, code files, inference rows, PRIMARY rows, every-bin, agent fields
+    ("K1 pin skips the own rebuild", "            try:\n                check_facts(e, root)\n            except (RegistryError, OSError, ValueError, KeyError) as err:\n                raise PinRefused", "            try:\n                pass\n            except (RegistryError, OSError, ValueError, KeyError) as err:\n                raise PinRefused"),
+    ("K2 pin without root accepted", '            if root is None:\n                raise PinRefused("a champion is pinned only after the registry rebuilds', '            if False:\n                raise PinRefused("a champion is pinned only after the registry rebuilds'),
+    ("K3 serve skips the rebuild", '                check_facts(e, root)\n            except (RegistryError, OSError, ValueError, KeyError) as err:\n                blocking.append({"state": FACTS_MISMATCH', '                pass\n            except (RegistryError, OSError, ValueError, KeyError) as err:\n                blocking.append({"state": FACTS_MISMATCH'),
+    ("K4 serve without root accepted", '        elif root is None:\n            blocking.append({"state": FACTS_NOT_VERIFIED', '        elif False:\n            blocking.append({"state": FACTS_NOT_VERIFIED'),
+    ("K5 serve without inference accepted", '        if inference is None:\n            blocking.append({"state": INFERENCE_NOT_CHECKED', '        if False:\n            blocking.append({"state": INFERENCE_NOT_CHECKED'),
+    ("K6 code changes ignored", "            blocking += code_changes(e, root)", "            pass"),
+    ("K7 code hash compare skipped", '        if got != want:\n            out.append({"state": INCOMPATIBLE, "detail": f"{p} changed', '        if False:\n            out.append({"state": INCOMPATIBLE, "detail": f"{p} changed'),
+    ("K8 fixture served in a real run", '            if not allow_fixture:\n                blocking.append({"state": FIXTURE_IN_REAL_REGISTRY', '            if False:\n                blocking.append({"state": FIXTURE_IN_REAL_REGISTRY'),
+    ("K9 primary row not preferred", '        elif ROW_KIND_ORDER.index(r["kind"]) < ROW_KIND_ORDER.index(old["kind"]):\n            out[k] = r', "        else:\n            out[k] = r"),
+    ("K10 duplicate rows accepted", '        elif old["kind"] == r["kind"]:\n            raise RegistryError', "        elif False:\n            raise RegistryError"),
+    ("K11 every bin missing passes at any size", 'ret.get("calibration_every_bin_ok") is None and _int(ret.get("n")) < ACC["calibration"]["in_the_large_only_below_events"])', 'ret.get("calibration_every_bin_ok") is None)'),
+    ("K12 agent fields ignored", '    if bad:\n        raise BehavioralNotAModel(f"agent or simulation', '    if False:\n        raise BehavioralNotAModel(f"agent or simulation'),
+    ("K13 agent fields not walked into dicts", "            out += agent_fields(v, here)", "            pass"),
+    ("K14 check_facts compares nothing", '    if canon(facts) != canon(entry["facts"]):\n        diff = sorted(k for k in set(facts)', '    if False:\n        diff = sorted(k for k in set(facts)'),
+    ("K15 check_facts skips the evidence hashes", "    verify_sources(entry, lambda p: (Path(root) / p).read_bytes())\n    return entry", "    return entry"),
+    ("K16 code files may omit features.py", '    if not paths or "memelab/predictive/features.py" not in paths:', "    if not paths:"),
+    # the skeptic's four surviving mutations (m4)
+    ("M1 family version unchecked", '    if (runtime.get("family_version") or {}).get(ph) != entry["family_version"]:', "    if False:"),
+    ("M2 request feature version unchecked", '        if request.get("feature_version") is not None and request.get("feature_version") != entry["feature_version"]:', "        if False:"),
+    ("M3 verify_entry skips the card feature set", '("feature_set_sha", "feature_set_sha"), ("training_cutoff_utc", "training_cutoff_utc"),', '("training_cutoff_utc", "training_cutoff_utc"),'),
+    ("M4 VE retrospective Holm unchecked", 'and _fin(ret.get("p_holm"))\n                and float(ret["p_holm"]) < ALPHA):', "):"),
     ("F2 candidates scored as references", '    if entry["role"] != "REFERENCE_BASELINE":\n        raise RegistryError("only a reference', '    if False:\n        raise RegistryError("only a reference'),
 ]
 

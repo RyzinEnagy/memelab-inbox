@@ -28,10 +28,13 @@ AS_OF = "2026-10-27T00:00:00Z"
 CUT = C.parse_utc("2026-10-17T00:00:00Z")
 
 
-def FX_VERIFY(entry: dict) -> None:
-    """Fixture facts have no committed sources; the fixture check accepts fixture entries only."""
-    if not entry["is_fixture"]:
-        raise R.FactsMismatchError("the fixture check is for fixture entries only")
+BASE_CODE = ["memelab/predictive/features.py", "memelab/predictive/baselines.py", "memelab/predictive/stats.py",
+             "memelab/predictive/contract.py", "memelab/predictive/labels.py"]
+
+
+def code_for(phase: str) -> dict:
+    extra = {"07": [], "08": ["memelab/predictive/technical.py"], "09": ["memelab/predictive/onchain.py"]}[phase]
+    return R.code_of(BASE_CODE + extra, ROOT)
 
 
 # ---------------------------------------------------------------- fixture builders (also used by the recorded run's rollback test)
@@ -85,7 +88,7 @@ def make(phase: str, kind: str, f: dict, *, fixture: bool = True, calibration: d
                         card=card,
                         card_path=f"fixture/{kind}.json", card_file_sha256="c" * 64, calibration=calibration, facts=f,
                         evidence={"fixture": True}, risk_flags=["FIXTURE"], inference=inf_for(card, phase),
-                        registered_as_of_utc=AS_OF, is_fixture=fixture)
+                        registered_as_of_utc=AS_OF, is_fixture=fixture, code=code_for(phase))
 
 
 def fixture_registry() -> tuple[dict, dict]:
@@ -100,9 +103,9 @@ def fixture_registry() -> tuple[dict, dict]:
     t1, t2 = "2026-10-20T00:00:00Z", "2026-10-22T00:00:00Z"
     initial = [R.register_event(e, as_of_utc=t1) for e in (b0, b2, m)]
     initial.append(R.pin_event(ents, FX_TARGET, mode="CHAMPION", champion=b2["entry_id"], references=refs,
-                               reasons=["FIXTURE_BASELINE_CHAMPION"], as_of_utc=t1, allow_fixture=True, verify=FX_VERIFY))
+                               reasons=["FIXTURE_BASELINE_CHAMPION"], as_of_utc=t1, allow_fixture=True))
     initial.append(R.pin_event(ents, FX_TARGET, mode="CHAMPION", champion=m["entry_id"], references=refs,
-                               reasons=["FIXTURE_MODEL_CHAMPION"], as_of_utc=t2, allow_fixture=True, verify=FX_VERIFY))
+                               reasons=["FIXTURE_MODEL_CHAMPION"], as_of_utc=t2, allow_fixture=True))
     return ents, {"initial": initial, "t_baseline_pin": t1, "t_model_pin": t2, "t_drift": "2026-10-24T00:00:00Z",
                   "t_mismatch": "2026-10-25T00:00:00Z", "b0": b0["entry_id"], "b2": b2["entry_id"], "model": m["entry_id"]}
 
@@ -133,7 +136,7 @@ def _imports(p: Path) -> set[str]:
 # ---------------------------------------------------------------- isolation (G26)
 def test_registry_imports_numpy_stdlib_contract_and_stats_only():
     p = ROOT / "memelab/predictive/registry.py"
-    std = {"__future__", "hashlib", "json", "math", "pathlib", "typing", "datetime"}
+    std = {"__future__", "csv", "hashlib", "io", "json", "math", "pathlib", "re", "typing", "datetime"}
     got = _imports(p)
     assert got <= std | {"numpy", "."}, got
     txt = p.read_text()
@@ -349,7 +352,7 @@ def test_verify_entry_checks_the_card_its_bytes_and_its_calibration_card():
                                                "module_version": R.PHASE07_FAMILY_VERSION}, card=card,
                      card_path="audits/predictive-intelligence/phase_07/artifacts/T1_24h/B2.json",
                      card_file_sha256=R.sha_bytes(bytes_), calibration=calref, facts=facts("B2"), evidence={}, risk_flags=[],
-                     inference=inf_for(card, "07"), registered_as_of_utc=AS_OF)
+                     inference=inf_for(card, "07"), registered_as_of_utc=AS_OF, code=code_for("07"))
     R.verify_entry(e, card=card, card_bytes=bytes_, cal_card=cal)
     bad = copy.deepcopy(card)
     bad["body"]["logistic"]["coef"][0] += 1e-9
@@ -488,13 +491,13 @@ def test_rollback_goes_to_the_baseline_then_to_abstention_and_keeps_history(tmp_
     old = p.read_text()
     events = R.read_log(old)
     rb = R.rollback_event(events, ents, FX_TARGET, reason="DRIFT_ALERT", as_of_utc=steps["t_drift"], usable=lambda e: True,
-                          allow_fixture=True, verify=FX_VERIFY)
+                          allow_fixture=True)
     assert rb["kind"] == "ROLLBACK" and rb["mode"] == "CHAMPION" and rb["champion"] == steps["b2"] and rb["from"] == steps["model"]
     sha_, _ = R.append_events(p, [rb], expect_sha=sha_)
     events = R.read_log(p.read_text())
     assert R.resolve(events, ents, FX_TARGET, C.parse_utc(steps["t_drift"]))["champion"] == steps["b2"]
     rb2 = R.rollback_event(events, ents, FX_TARGET, reason=R.INFERENCE_MISMATCH, as_of_utc=steps["t_mismatch"],
-                           usable=lambda e: True, allow_fixture=True, verify=FX_VERIFY)
+                           usable=lambda e: True, allow_fixture=True)
     assert rb2["mode"] == "NO_VIABLE_CHAMPION" and rb2["champion"] is None
     R.append_events(p, [rb2], expect_sha=sha_)
     events = R.read_log(p.read_text())
@@ -507,7 +510,7 @@ def test_rollback_skips_an_earlier_champion_that_is_no_longer_usable():
     ents, steps = fixture_registry()
     events = R.chain_events(steps["initial"])
     rb = R.rollback_event(events, ents, FX_TARGET, reason="DRIFT_ALERT", as_of_utc=steps["t_drift"],
-                          usable=lambda e: e["entry_id"] != steps["b2"], allow_fixture=True, verify=FX_VERIFY)
+                          usable=lambda e: e["entry_id"] != steps["b2"], allow_fixture=True)
     assert rb["mode"] == "NO_VIABLE_CHAMPION"
 
 
@@ -529,21 +532,22 @@ def test_serve_uses_a_pinned_champion_only_while_every_check_holds():
     rt = runtime()
     T = C.parse_utc("2026-10-23T00:00:00Z")
     rows = [(f"fx-{i}", 0.2 + 0.01 * i, "") for i in range(5)]
-    ok = R.serve(events, ents, FX_TARGET, T, runtime=rt, inference=rows, verify=FX_VERIFY)
+    kw = {"root": ROOT, "allow_fixture": True}
+    ok = R.serve(events, ents, FX_TARGET, T, runtime=rt, inference=rows, **kw)
     assert ok["use_champion"] and ok["forecast_inputs"]["card_entry"] == steps["model"]
     assert ok["forecast_inputs"]["level"] == "VALIDATED_EXPERIMENTAL"
-    stale = R.serve(events, ents, FX_TARGET, CUT + C.ACCEPTANCE["max_model_age_s"] + 1, runtime=rt, verify=FX_VERIFY)
+    stale = R.serve(events, ents, FX_TARGET, CUT + C.ACCEPTANCE["max_model_age_s"] + 1, runtime=rt, inference=rows, **kw)
     assert not stale["use_champion"] and stale["rollback_required"] and stale["blocking"][0]["state"] == R.MODEL_STALE
     assert stale["forecast_inputs"]["model_id"] == R.NOT_SELECTED and stale["forecast_inputs"]["level"] == "ABSTAIN"
-    drift = R.serve(events, ents, FX_TARGET, T, runtime=rt, drift_alarms=[T - 10], verify=FX_VERIFY)
+    drift = R.serve(events, ents, FX_TARGET, T, runtime=rt, drift_alarms=[T - 10], inference=rows, **kw)
     assert any(b["state"] == R.DRIFT_ALERT for b in drift["blocking"]) and drift["retrain"]
-    mism = R.serve(events, ents, FX_TARGET, T, runtime=rt, inference=rows[:4], verify=FX_VERIFY)
+    mism = R.serve(events, ents, FX_TARGET, T, runtime=rt, inference=rows[:4], **kw)
     assert any(b["state"] == R.INFERENCE_MISMATCH for b in mism["blocking"])
     rt2 = copy.deepcopy(rt)
     rt2["feature_set_sha"]["09"] = "f" * 64
-    inc = R.serve(events, ents, FX_TARGET, T, runtime=rt2, verify=FX_VERIFY)
+    inc = R.serve(events, ents, FX_TARGET, T, runtime=rt2, inference=rows, **kw)
     assert any(b["state"] == R.INCOMPATIBLE for b in inc["blocking"]) and not inc["use_champion"]
-    req = R.serve(events, ents, FX_TARGET, T, runtime=rt, request={"feature_set_sha": "d" * 64}, verify=FX_VERIFY)
+    req = R.serve(events, ents, FX_TARGET, T, runtime=rt, request={"feature_set_sha": "d" * 64}, inference=rows, **kw)
     assert any(b["state"] == R.FEATURE_SCHEMA_MISMATCH for b in req["blocking"])
 
 
@@ -756,7 +760,7 @@ def test_publishable_needs_the_level_and_a_calibrated_card_of_that_level():
 def test_make_entry_refuses_facts_of_another_kind_a_target_mismatch_and_a_missing_module_version():
     card = fixture_card("07", "B2")
     base = dict(target=FX_TARGET, card=card, card_path="x", card_file_sha256="c" * 64, calibration=None, evidence={}, risk_flags=[],
-                inference=inf_for(card, "07"), registered_as_of_utc=AS_OF, is_fixture=True)
+                inference=inf_for(card, "07"), registered_as_of_utc=AS_OF, is_fixture=True, code=code_for("07"))
     fam = {"phase": "07", "kind": "B2", "candidate": "P07_B2", "module_version": R.PHASE07_FAMILY_VERSION}
     with pytest.raises(R.RegistryError):
         R.make_entry(family=fam, facts=facts("B0"), **base)
@@ -806,61 +810,40 @@ def test_a_stacking_fit_row_that_is_also_an_evaluation_row_is_refused_even_when_
 
 
 
-# ---------------------------------------------------------------- CP16-0: facts are only as true as their committed sources
+# ---------------------------------------------------------------- CP16-0 and CP16-2: the registry rebuilds the facts itself
 import csv as _csv
+import inspect as _inspect
+import shutil as _shutil
+
+B2_T1_PATH = "audits/predictive-intelligence/phase_07/artifacts/T1_24h/B2.json"
 
 
 def _p12_rows(model: str, short: str = FX_SHORT) -> tuple[dict | None, dict | None, dict]:
-    m = {(r["target_short"], r["model"], r["reference"]): r
-         for r in _csv.DictReader(open(ART / "phase_12/validation/HOLDOUT_METRICS.csv"))}
-    post = {}
-    for r in _csv.DictReader(open(ART / "phase_12/validation/POST_OPENING_CORRECTIONS.csv")):
-        if r["target_short"] == short and r["model"] == model:
-            post[r["reference"]] = r["selection_status_final"]
-    return m.get((short, model, "P07_B0")), m.get((short, model, "P07_B2")), post
+    """The card's committed rows, read the way the registry reads them (PRIMARY row first; skeptic m2)."""
+    m = R.metric_rows((ART / "phase_12/validation/HOLDOUT_METRICS.csv").read_text())
+    post = R.post_states_of((ART / "phase_12/validation/POST_OPENING_CORRECTIONS.csv").read_text())
+    return m.get((short, model, "P07_B0")), m.get((short, model, "P07_B2")), post.get((short, model), {})
 
 
-TESTS_OK = {"leakage": True, "provenance": True, "contract": True, "basis": "test"}
-
-
-def _real_b2_entry():
-    card = real_card("07", "B2")
-    cal = json.loads((ART / "phase_13/artifacts/T1_24h/CALIBRATION_CARD.json").read_text())
-    m0, m2, post = _p12_rows("P07_B2")
-    f = R.derive_facts(candidate="P07_B2", phase="07", card=card, tests=TESTS_OK, m_b0=m0, m_b2=m2, post_states=post, cal_card=cal)
-    calref = {"path": "audits/predictive-intelligence/phase_13/artifacts/T1_24h/CALIBRATION_CARD.json", "card_sha": cal["card_sha"],
-              "file_sha256": R.sha_bytes((ART / "phase_13/artifacts/T1_24h/CALIBRATION_CARD.json").read_bytes()),
+def _real_b2_entry(short: str = FX_SHORT):
+    path = f"audits/predictive-intelligence/phase_07/artifacts/{short}/B2.json"
+    f, ctx = R.facts_from_repo(path, ROOT)
+    card, cal = ctx["card"], ctx["cal_card"]
+    calref = {"path": ctx["cal_path"], "card_sha": cal["card_sha"], "file_sha256": R.sha_bytes((ROOT / ctx["cal_path"]).read_bytes()),
               "status": cal["status"], "level": cal["level"], "details": cal["details"]}
-    e = R.make_entry(target=FX_TARGET, family={"phase": "07", "kind": "B2", "candidate": "P07_B2",
-                                               "module_version": R.PHASE07_FAMILY_VERSION}, card=card,
-                     card_path="audits/predictive-intelligence/phase_07/artifacts/T1_24h/B2.json",
-                     card_file_sha256=R.sha_bytes((ART / "phase_07/artifacts/T1_24h/B2.json").read_bytes()), calibration=calref,
-                     facts=f, evidence={"x": {"file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_METRICS.csv",
-                                              "sha256": R.sha_bytes((ART / "phase_12/validation/HOLDOUT_METRICS.csv").read_bytes())}},
-                     risk_flags=[], inference=inf_for(card, "07"), registered_as_of_utc=AS_OF)
-    src = dict(card=card, tests=TESTS_OK, m_b0=m0, m_b2=m2, post_states=post, cal_card=cal)
+    target = card["targets"][0]
+    e = R.make_entry(target=target, family={"phase": "07", "kind": "B2", "candidate": "P07_B2",
+                                            "module_version": R.PHASE07_FAMILY_VERSION}, card=card, card_path=path,
+                     card_file_sha256=R.sha_bytes(ctx["card_bytes"]), calibration=calref, facts=f,
+                     evidence={"x": {"file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_METRICS.csv",
+                                     "sha256": R.sha_bytes((ART / "phase_12/validation/HOLDOUT_METRICS.csv").read_bytes())}},
+                     risk_flags=[], inference=inf_for(card, "07"), registered_as_of_utc=AS_OF, code=code_for("07"))
+    m0, m2, post = _p12_rows("P07_B2", short)
+    src = dict(card=card, tests=f["tests"], m_b0=m0, m_b2=m2, post_states=post, cal_card=cal)
     return e, src
 
 
-def test_derive_facts_rebuilds_the_t1_b2_facts_from_the_committed_files():
-    e, src = _real_b2_entry()
-    assert e["facts"]["retrospective"]["evaluation"] == R.FIRST_OPENING and e["facts"]["retrospective"]["n"] == 66
-    assert e["facts"]["calibration"]["status"] == "UNCALIBRATED" and e["promotion"]["level"] == "ABSTAIN"
-    R.verify_facts(e, **dict(src))
-    assert set(R.verify_sources(e, lambda p: (ROOT / p).read_bytes())) == {
-        e["card_path"], e["calibration"]["path"], "audits/predictive-intelligence/phase_12/validation/HOLDOUT_METRICS.csv"}
-    with pytest.raises(R.EntryHashMismatch):
-        R.verify_sources(e, lambda p: (ROOT / p).read_bytes() + b" ")
-    with pytest.raises(R.RegistryError):
-        R.derive_facts(candidate="P07_B2", phase="07", card=src["card"], tests=TESTS_OK, m_b0=src["m_b0"], m_b2=src["m_b2"],
-                       post_states=src["post_states"], cal_card=None)
-    with pytest.raises(R.RegistryError):
-        R.derive_facts(candidate="P07_B1", phase="07", card=real_card("07", "B1"), tests=TESTS_OK, m_b0=None, m_b2=None,
-                       post_states={}, cal_card=src["cal_card"])
-
-
-def test_cp16_0_forged_facts_pass_verify_entry_but_are_refused_against_their_sources_and_never_pinned():
-    e, src = _real_b2_entry()
+def _forge(e: dict) -> dict:
     forged = copy.deepcopy(e)
     forged["facts"]["retrospective"].update({"bss": 0.05, "calibration_in_the_large_ok": True, "calibration_every_bin_ok": True})
     forged["facts"]["calibration"] = {"status": "CALIBRATED", "evidence_n": 60, "evidence_k": 12, "evidence_source": "PROSPECTIVE_HOLDOUT",
@@ -870,35 +853,144 @@ def test_cp16_0_forged_facts_pass_verify_entry_but_are_refused_against_their_sou
     forged["registry_status"] = R.registry_status(forged["promotion"]["level"], forged["role"])
     forged["publishable"] = R.publishable(forged)
     forged["entry_id"] = R.sha({k: v for k, v in forged.items() if k != "entry_id"})
+    return forged
+
+
+def test_derive_facts_rebuilds_the_t1_b2_facts_from_the_committed_files():
+    e, src = _real_b2_entry()
+    ret = e["facts"]["retrospective"]
+    assert ret["evaluation"] == R.FIRST_OPENING and ret["n"] == 66 and ret["kind"] == "PRIMARY_HOLDOUT"
+    assert e["facts"]["calibration"]["status"] == "UNCALIBRATED" and e["promotion"]["level"] == "ABSTAIN"
+    assert e["facts"]["tests"] == {"leakage": True, "provenance": True, "contract": True, "basis": R.TESTS_BASIS}
+    R.verify_facts(e, **dict(src))
+    R.check_facts(e, ROOT)
+    assert set(R.verify_sources(e, lambda p: (ROOT / p).read_bytes())) == {
+        e["card_path"], e["calibration"]["path"], "audits/predictive-intelligence/phase_12/validation/HOLDOUT_METRICS.csv"}
+    with pytest.raises(R.EntryHashMismatch):
+        R.verify_sources(e, lambda p: (ROOT / p).read_bytes() + b" ")
+    with pytest.raises(R.RegistryError):
+        R.derive_facts(candidate="P07_B2", phase="07", card=src["card"], tests=src["tests"], m_b0=src["m_b0"], m_b2=src["m_b2"],
+                       post_states=src["post_states"], cal_card=None)
+    with pytest.raises(R.RegistryError):
+        R.derive_facts(candidate="P07_B1", phase="07", card=real_card("07", "B1"), tests=src["tests"], m_b0=None, m_b2=None,
+                       post_states={}, cal_card=src["cal_card"])
+
+
+def test_m2_b2_facts_come_from_the_primary_holdout_row_and_t2_holm_p_is_0_100():
+    for short, holm in (("T1_24h", 1.0), ("T1b_6h", 1.0), ("T2_24h", 0.10034498275086245)):
+        e, _ = _real_b2_entry(short)
+        assert e["facts"]["retrospective"]["kind"] == "PRIMARY_HOLDOUT" and e["facts"]["retrospective"]["p_holm"] == pytest.approx(holm)
+    rows = (ART / "phase_12/validation/HOLDOUT_METRICS.csv").read_text()
+    m = R.metric_rows(rows)
+    assert m[("T2_24h", "P07_B2", "P07_B0")]["kind"] == "PRIMARY_HOLDOUT"
+    lines = rows.splitlines(keepends=True)
+    dup = lines[0] + lines[1] + lines[1]
+    with pytest.raises(R.RegistryError, match="two PRIMARY_HOLDOUT"):
+        R.metric_rows(dup)
+    # the order of the rows does not decide (a last-wins dictionary did)
+    m2 = R.metric_rows(lines[0] + "".join(reversed(lines[1:])))
+    assert m2[("T2_24h", "P07_B2", "P07_B0")]["kind"] == "PRIMARY_HOLDOUT"
+
+
+def _pin_kwargs():
+    """CX-S16 on either code: the first pass took a caller verifier (the plausible wrong one checks file hashes only); the
+    repaired registry takes the repository root and rebuilds the facts itself."""
+    sig = _inspect.signature(R.pin_event).parameters
+    if "verify" in sig:
+        return {"verify": lambda e: R.verify_sources(e, lambda p: (ROOT / p).read_bytes())}
+    return {"root": ROOT}
+
+
+def _serve_kwargs():
+    sig = _inspect.signature(R.serve).parameters
+    if "verify" in sig:
+        return {"verify": lambda e: R.verify_sources(e, lambda p: (ROOT / p).read_bytes())}
+    return {"root": ROOT}
+
+
+def test_cx_s16_a_forged_facts_entry_is_never_pinned_or_served_whatever_the_caller_checks():
+    e, src = _real_b2_entry()
+    forged = _forge(e)
     assert forged["promotion"]["level"] == "SHADOW" and forged["publishable"]
-    R.verify_entry(forged)                                  # the entry is self-consistent: the hole CP16-0 closes
-    with pytest.raises(R.FactsMismatchError, match="calibration|retrospective"):
-        R.verify_facts(forged, **dict(src))
+    R.verify_entry(forged)                                         # self-consistent
+    assert R.verify_sources(forged, lambda p: (ROOT / p).read_bytes())   # every file it names is genuine
     b0 = make("07", "B0", facts("B0"), fixture=False)
-    ents = {x["entry_id"]: x for x in (forged, b0)}
-    refs = {"base_rate": b0["entry_id"], "simple_model": forged["entry_id"]}
-    with pytest.raises(R.PinRefused, match="facts are checked"):
+    ents = {x["entry_id"]: x for x in (forged, b0, e)}
+    refs = {"base_rate": b0["entry_id"], "simple_model": e["entry_id"]}
+    with pytest.raises(R.PinRefused):
+        R.pin_event(ents, FX_TARGET, mode="CHAMPION", champion=forged["entry_id"], references=refs, reasons=["CX-S16"],
+                    as_of_utc=AS_OF, **_pin_kwargs())
+    # a hand-written CHAMPION pin of the forged entry in the log is not served either
+    bad = {"kind": "PIN", "as_of_utc": AS_OF, "target": FX_TARGET, "mode": "CHAMPION", "champion": forged["entry_id"],
+           "champion_inference_sha": forged["inference"]["outputs_sha"], "references": refs, "reasons": ["CX-S16"]}
+    events = R.chain_events([bad])
+    rows = [(f"fx-{i}", 0.2 + 0.01 * i, "") for i in range(5)]
+    got = R.serve(events, ents, FX_TARGET, C.parse_utc(AS_OF) + 60, runtime=runtime(), inference=rows, **_serve_kwargs())
+    assert not got["use_champion"] and got["forecast_inputs"]["level"] == "ABSTAIN"
+
+
+def test_cp16_2_pin_and_serve_need_the_registry_s_own_rebuild():
+    e, _ = _real_b2_entry()
+    forged = _forge(e)
+    b0 = make("07", "B0", facts("B0"), fixture=False)
+    ents = {x["entry_id"]: x for x in (forged, b0, e)}
+    refs = {"base_rate": b0["entry_id"], "simple_model": e["entry_id"]}
+    assert "verify" not in _inspect.signature(R.pin_event).parameters and "verify" not in _inspect.signature(R.serve).parameters
+    with pytest.raises(R.PinRefused, match="root"):
         R.pin_event(ents, FX_TARGET, mode="CHAMPION", champion=forged["entry_id"], references=refs, reasons=[], as_of_utc=AS_OF)
     with pytest.raises(R.PinRefused, match="facts refused"):
         R.pin_event(ents, FX_TARGET, mode="CHAMPION", champion=forged["entry_id"], references=refs, reasons=[], as_of_utc=AS_OF,
-                    verify=lambda x: R.verify_facts(x, **dict(src)))
+                    root=ROOT)
+    with pytest.raises(R.FactsMismatchError, match="calibration|retrospective"):
+        R.check_facts(forged, ROOT)
+    bad = {"kind": "PIN", "as_of_utc": AS_OF, "target": FX_TARGET, "mode": "CHAMPION", "champion": forged["entry_id"],
+           "champion_inference_sha": forged["inference"]["outputs_sha"], "references": refs, "reasons": ["forged"]}
+    events = R.chain_events([bad])
+    rows = [(f"fx-{i}", 0.2 + 0.01 * i, "") for i in range(5)]
+    T = C.parse_utc(AS_OF) + 60
+    none = R.serve(events, ents, FX_TARGET, T, runtime=runtime(), inference=rows)
+    assert R.FACTS_NOT_VERIFIED in [b["state"] for b in none["blocking"]] and not none["use_champion"]
+    got = R.serve(events, ents, FX_TARGET, T, runtime=runtime(), inference=rows, root=ROOT)
+    assert R.FACTS_MISMATCH in [b["state"] for b in got["blocking"]] and got["rollback_required"]
 
 
-def test_serve_needs_the_source_check_of_a_champion():
+def test_serve_refuses_a_fixture_champion_outside_a_fixture_run_and_needs_inference_rows():
     ents, steps = fixture_registry()
     events = R.chain_events(steps["initial"])
     T = C.parse_utc("2026-10-23T00:00:00Z")
-    rt = runtime()
-    none = R.serve(events, ents, FX_TARGET, T, runtime=rt)
-    assert not none["use_champion"] and [b["state"] for b in none["blocking"]] == [R.FACTS_NOT_VERIFIED]
+    rows = [(f"fx-{i}", 0.2 + 0.01 * i, "") for i in range(5)]
+    real = R.serve(events, ents, FX_TARGET, T, runtime=runtime(), inference=rows, root=ROOT)
+    assert [b["state"] for b in real["blocking"]] == [R.FIXTURE_IN_REAL_REGISTRY]
+    noinf = R.serve(events, ents, FX_TARGET, T, runtime=runtime(), root=ROOT, allow_fixture=True)
+    assert [b["state"] for b in noinf["blocking"]] == [R.INFERENCE_NOT_CHECKED] and not noinf["use_champion"]
+    noroot = R.serve(events, ents, FX_TARGET, T, runtime=runtime(), inference=rows, allow_fixture=True)
+    assert [b["state"] for b in noroot["blocking"]] == [R.INCOMPATIBLE]
+    assert R.pin_event(ents, FX_TARGET, mode="CHAMPION", champion=steps["model"], references={"base_rate": steps["b0"],
+                       "simple_model": steps["b2"]}, reasons=[], as_of_utc=AS_OF, allow_fixture=True)["facts_check"] == \
+        R.FIXTURE_FACTS_NOT_CHECKED
 
-    def bad(e):
-        raise R.FactsMismatchError("forged")
-    got = R.serve(events, ents, FX_TARGET, T, runtime=rt, verify=bad)
-    assert not got["use_champion"] and got["rollback_required"] and [b["state"] for b in got["blocking"]] == [R.FACTS_MISMATCH]
-    with pytest.raises(R.PinRefused, match="facts"):
-        R.rollback_event(events, ents, FX_TARGET, reason="DRIFT_ALERT", as_of_utc=steps["t_drift"], usable=lambda e: True,
-                         allow_fixture=True)
+
+def test_m5_a_transform_code_change_without_a_version_bump_is_incompatible(tmp_path):
+    ents, steps = fixture_registry()
+    events = R.chain_events(steps["initial"])
+    T = C.parse_utc("2026-10-23T00:00:00Z")
+    rows = [(f"fx-{i}", 0.2 + 0.01 * i, "") for i in range(5)]
+    for f in ents[steps["model"]]["code"]["files"]:
+        (tmp_path / f).parent.mkdir(parents=True, exist_ok=True)
+        _shutil.copy2(ROOT / f, tmp_path / f)
+    ok = R.serve(events, ents, FX_TARGET, T, runtime=runtime(), inference=rows, root=tmp_path, allow_fixture=True)
+    assert ok["use_champion"]
+    p = tmp_path / "memelab/predictive/features.py"
+    p.write_text(p.read_text().replace("return float(f\"{x:.{SIG}g}\")", "return float(f\"{x:.{SIG}g}\") * 1.0001"))
+    assert R.sha_bytes(p.read_bytes()) != R.sha_bytes((ROOT / "memelab/predictive/features.py").read_bytes())
+    got = R.serve(events, ents, FX_TARGET, T, runtime=runtime(), inference=rows, root=tmp_path, allow_fixture=True)
+    assert not got["use_champion"] and [b["state"] for b in got["blocking"]] == [R.INCOMPATIBLE]
+    assert "features.py changed" in got["blocking"][0]["detail"]
+    assert R.compatibility(ents[steps["model"]], runtime=runtime()) == []          # the declarations alone did not see it
+    (tmp_path / "memelab/predictive/stats.py").unlink()
+    assert any("stats.py" in c["detail"] for c in R.code_changes(ents[steps["model"]], tmp_path))
+    with pytest.raises(R.RegistryError):
+        R.code_of(["memelab/predictive/stats.py"], ROOT)
 
 
 def test_verify_facts_refuses_another_card():
@@ -907,3 +999,96 @@ def test_verify_facts_refuses_another_card():
     other["card"] = real_card("07", "B2", "T1b_6h")
     with pytest.raises(R.EntryHashMismatch):
         R.verify_facts(e, **other)
+    bad = copy.deepcopy(e)
+    bad["card_path"] = "audits/predictive-intelligence/phase_07/artifacts/T1_24h/B1.json"
+    bad["entry_id"] = R.sha({k: v for k, v in bad.items() if k != "entry_id"})
+    with pytest.raises(R.FactsMismatchError):
+        R.check_facts(bad, ROOT)
+
+
+# ---------------------------------------------------------------- repair pass 2: skeptic m3, m4, m6
+def test_m3_a_missing_every_bin_result_fails_from_40_events():
+    for n, ok in ((39, True), (40, False), (66, False)):
+        f = facts("B2", level="SHADOW")
+        f["retrospective"].update({"n": n, "k": 12, "calibration_every_bin_ok": None})
+        got = R.promotion_decision(f)
+        assert ("RETROSPECTIVE_CALIBRATION_FAILED" not in got["reasons"]) is ok, (n, got)
+
+
+def test_m4_family_version_request_feature_version_card_feature_set_and_the_ve_holm_condition():
+    e = make("07", "B2", facts("B2"), fixture=False)
+    rt = runtime()
+    rt["family_version"]["07"] = "baselines-phase07-changed"
+    got = R.compatibility(e, runtime=rt)
+    assert [s["state"] for s in got] == [R.INCOMPATIBLE] and "family module version" in got[0]["detail"]
+    got = R.compatibility(e, runtime=runtime(), request={"feature_set_sha": e["feature_set_sha"], "feature_version": "3"})
+    assert [s["state"] for s in got] == [R.FEATURE_SCHEMA_MISMATCH] and "feature version" in got[0]["detail"]
+    card = real_card("07", "B2")
+    other = copy.deepcopy(card)
+    other["feature_set_sha"] = "0" * 64
+    other["model_sha"] = R.card_sha_of(other)
+    e2 = R.make_entry(target=FX_TARGET, family={"phase": "07", "kind": "B2", "candidate": "P07_B2",
+                                                "module_version": R.PHASE07_FAMILY_VERSION}, card=card, card_path="x",
+                      card_file_sha256="c" * 64, calibration=None, facts=facts("B2"), evidence={}, risk_flags=[],
+                      inference=inf_for(card, "07"), registered_as_of_utc=AS_OF, code=code_for("07"))
+    e2b = copy.deepcopy(e2)
+    e2b["model_sha"] = other["model_sha"]
+    e2b["entry_id"] = R.sha({k: v for k, v in e2b.items() if k != "entry_id"})
+    with pytest.raises(R.EntryHashMismatch, match="feature_set_sha"):
+        R.verify_entry(e2b, card=other)
+    f = facts("M2_OC_LOGIT_B2", level="VALIDATED_EXPERIMENTAL")
+    f["retrospective"]["p_holm"] = 0.2                          # lower bound above 0 but Holm not below 0.05
+    got = R.promotion_decision(f)
+    assert got["level"] == "SHADOW" and "RETROSPECTIVE_LOWER_BOUND_NOT_ABOVE_0" in got["reasons"]
+
+
+def test_m6_nested_agent_agreement_fields_are_refused_anywhere_in_an_entry():
+    for where in ("facts", "evidence", "risk_flags", "inference"):
+        f = facts("B2")
+        kw = {}
+        if where == "facts":
+            f["retrospective"] = {"evaluation": None, "agent_agreement_share": 0.9}
+        card = fixture_card("07", "B2")
+        base = dict(target=FX_TARGET, family={"phase": "07", "kind": "B2", "candidate": "P07_B2",
+                                              "module_version": R.PHASE07_FAMILY_VERSION}, card=card, card_path="x",
+                    card_file_sha256="c" * 64, calibration=None, facts=f, evidence={}, risk_flags=[],
+                    inference=inf_for(card, "07"), registered_as_of_utc=AS_OF, code=code_for("07"), is_fixture=True)
+        if where == "evidence":
+            base["evidence"] = {"x": {"agent_vote_share": 0.8}}
+        if where == "risk_flags":
+            base["risk_flags"] = ["MIROFISH_CONSENSUS_HIGH"]
+        if where == "inference":
+            base["inference"] = {**base["inference"], "note": "swarm agreement 90 percent"}
+        with pytest.raises(R.BehavioralNotAModel):
+            R.make_entry(**base)
+    e = make("07", "B2", facts("B2"))
+    bad = copy.deepcopy(e)
+    bad["evidence"]["nested"] = [{"persona_votes": 3}]
+    bad["entry_id"] = R.sha({k: v for k, v in bad.items() if k != "entry_id"})
+    with pytest.raises(R.BehavioralNotAModel):
+        R.verify_entry(bad)
+
+
+def test_check_facts_also_checks_every_evidence_file_hash():
+    e, _ = _real_b2_entry()
+    bad = copy.deepcopy(e)
+    bad["evidence"]["x"]["sha256"] = "0" * 64
+    bad["entry_id"] = R.sha({k: v for k, v in bad.items() if k != "entry_id"})
+    with pytest.raises(R.EntryHashMismatch):
+        R.check_facts(bad, ROOT)
+
+
+# ---------------------------------------------------------------- added after the repair-pass-2 mutation probe (2 survivors)
+def test_verify_facts_refuses_forged_facts_given_the_committed_records():
+    e, src = _real_b2_entry()
+    with pytest.raises(R.FactsMismatchError, match="calibration|retrospective"):
+        R.verify_facts(_forge(e), **dict(src))
+
+
+def test_an_entry_whose_own_source_is_not_a_statistical_model_is_refused():
+    e = make("07", "B2", facts("B2"))
+    bad = copy.deepcopy(e)
+    bad["source"] = "SCENARIO_ENGINE"                    # facts unchanged, only the entry's own source field differs
+    bad["entry_id"] = R.sha({k: v for k, v in bad.items() if k != "entry_id"})
+    with pytest.raises(R.BehavioralNotAModel):
+        R.verify_entry(bad)

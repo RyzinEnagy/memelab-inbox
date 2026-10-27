@@ -1,0 +1,143 @@
+{
+ "mutations": 26,
+ "caught": 22,
+ "survivors": [
+  "C2 family version unchecked",
+  "C3 request feature version unchecked",
+  "E1 verify_entry skips card feature set",
+  "F1 VE retrospective Holm unchecked"
+ ],
+ "errors": [],
+ "results": [
+  {
+   "mutation": "S1 stale at the edge",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_serve_uses_a_pinned_champion_only_while_every_check_holds"
+  },
+  {
+   "mutation": "S2 serve ignores staleness",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_serve_uses_a_pinned_champion_only_while_every_check_holds"
+  },
+  {
+   "mutation": "S3 drift alarm after the decision counts only",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_serve_uses_a_pinned_champion_only_while_every_check_holds"
+  },
+  {
+   "mutation": "R1 range up to 1.5",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_p38_non_finite_facts_and_malformed_inference_outputs_are_refused"
+  },
+  {
+   "mutation": "R2 duplicate decisions allowed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_p38_non_finite_facts_and_malformed_inference_outputs_are_refused"
+  },
+  {
+   "mutation": "L1 resolve uses a later pin",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_resolve_uses_the_pin_in_force_at_the_decision_time"
+  },
+  {
+   "mutation": "L2 log time order unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_the_log_is_chained_and_refuses_changed_dropped_reordered_or_partial_lines"
+  },
+  {
+   "mutation": "L3 append ignores expect_sha",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_append_refuses_a_log_changed_since_the_last_append_and_keeps_earlier_lines"
+  },
+  {
+   "mutation": "L4 resolve ignores champion level",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_cx16_a_forged_champion_level_is_refused_everywhere"
+  },
+  {
+   "mutation": "C1 labels version unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_p46_a_feature_or_schema_change_without_retrain_fails_compatibility"
+  },
+  {
+   "mutation": "C2 family version unchecked",
+   "caught": false,
+   "first_failure": "58 passed in 3.01s"
+  },
+  {
+   "mutation": "C3 request feature version unchecked",
+   "caught": false,
+   "first_failure": "58 passed in 2.61s"
+  },
+  {
+   "mutation": "E1 verify_entry skips card feature set",
+   "caught": false,
+   "first_failure": "58 passed in 2.90s"
+  },
+  {
+   "mutation": "E2 publishable ignores the card level",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_publishable_needs_the_level_and_a_calibrated_card_of_that_level"
+  },
+  {
+   "mutation": "E3 per-class count one-sided",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_holdout_and_calibration_count_boundaries"
+  },
+  {
+   "mutation": "E4 every-bin missing passes even above 40",
+   "caught": true,
+   "first_failure": "tests/test_predictive_phase16_outputs.py::test_cp16_0_every_entry_s_facts_rebuild_from_the_committed_files_and_every_source_hash_holds"
+  },
+  {
+   "mutation": "E5 pin_event accepts fixtures",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_pins_refuse_fixtures_in_a_real_registry_and_references_of_another_kind_or_target"
+  },
+  {
+   "mutation": "E6 references of another target",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_pins_refuse_fixtures_in_a_real_registry_and_references_of_another_kind_or_target"
+  },
+  {
+   "mutation": "E7 rollback forgets earlier rollbacks",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_rollback_goes_to_the_baseline_then_to_abstention_and_keeps_history"
+  },
+  {
+   "mutation": "O1 out-of-fold allows a day in sample",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_out_of_fold_rows_refuse_in_sample_rows_and_members_from_other_folds"
+  },
+  {
+   "mutation": "O2 stack fit rows need not be matured",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_stacking_is_chronological_gated_and_never_in_sample"
+  },
+  {
+   "mutation": "O3 undeclared columns pass",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_members_may_not_share_an_evidence_source_and_every_column_is_declared"
+  },
+  {
+   "mutation": "O4 agent marker dropped",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_p27_behavioral_sources_and_simulation_models_are_refused"
+  },
+  {
+   "mutation": "H1 champion rule takes holdout rows",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_select_champion_refuses_holdout_or_post_opening_rows_and_delegates_the_rule"
+  },
+  {
+   "mutation": "H2 stack gate days",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_stacking_is_chronological_gated_and_never_in_sample"
+  },
+  {
+   "mutation": "F1 VE retrospective Holm unchecked",
+   "caught": false,
+   "first_failure": "58 passed in 2.74s"
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+# Phase 16 independent skeptic review
+
+Reviewer: independent skeptic (orchestrator-launched), 2026-10-27. Branch `feature/predictive-intelligence`, tip `35758c9`. Own clone `/home/claude/pi_orchestration/skeptic_16` (plus throwaway copies `skeptic_16_mut`, `skeptic_16_old`, `skeptic_16_sb`); nothing written into `/home/claude/memelab-inbox` (its `git status` is clean, HEAD `35758c9`). Temp `MEMELAB_DB` under the scratchpad. No network call, no Firecrawl.
+
+Scripts and outputs next to this file:
+
+- `p16_own_inference.py`, `p16_own_inference_out.json`: own-code inference reproduction
+- `p16_attacks.py`, `p16_attacks_out.json`: attempts to pin, serve or publish a champion, P38, P27, P46, staleness
+- `p16_own_mutations.py`, `p16_own_mutations_out.json`: 26 new mutations of `registry.py`
+- `p16_cx_s16.py`, `p16_cx_s16_out.json`: the counterexample CX-S16
+
+## Verdict
+
+No material failure found. The phase result (every target NO_VIABLE_CHAMPION, B0 and B2 pinned as references and never published, 69 entries ABSTAIN 6 / NO_GO 63 / publishable 0, NO_ENSEMBLE x3, N_search 130 and 169) reproduces exactly, and no real entry could be pinned, served or published as a champion or with a probability. Nine minor findings, the most important being that the champion source check in `pin_event` and `serve` is only as good as the callback the caller passes (CX-S16): with `verify_sources` as the callback, a forged-facts entry is pinned and served at SHADOW. Only the Phase 13 publication layer then stops it.
+
+## Checks
+
+| # | Check | Command or input | Result |
+|---|---|---|---|
+| 1 | Package checksums | `sha256sum -c SHA256SUMS.txt` in the package folder | 41 OK, 0 not OK |
+| 2 | Seal | `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | exit 0, `"problems": []` |
+| 3 | Phase 16 tests | `python -m pytest tests/test_predictive_registry.py tests/test_predictive_phase16_outputs.py -q` | `58 passed in 5.21s` |
+| 4 | Recorded run reproduces | `python -B audits/predictive-intelligence/phase_16/probes/build_registry.py <scratch>/p16_out` | exit 0, `entries 69, ABSTAIN 6, NO_GO 63, events 75, inference_equal 69, NO_ENSEMBLE x3, n_search 130, failures [], stores_unchanged true`; 83 of 85 output files byte-equal to the committed ones, the other two are `ensemble/LATENCY.json` and `evidence/run_log.json` (as claimed) |
+| 5 | Own-code inference, all 69 entries | `p16_own_inference.py`: own canonical JSON and sha256 of the `HOLDOUT_PREDICTIONS.csv` rows of each entry | 69 of 69 equal to each entry's `outputs_sha`; every entry file name equals its recomputed content hash |
+| 6 | Own-code inference, 9 cards | same script: B0, B1, B2 for T1, T1b, T2 recomputed with my own arithmetic from the card body (prevalence, status groups with shrinkage, median fill, missing indicator, standardisation, logistic) on the Phase 12 inputs (inputs only, no label) | B0 and B1: 95 of 95 per target, difference 0; B2: 85 numbers and 10 OOD reasons per target, max difference 5.6e-17 (summation order), 0 mismatches |
+| 7 | NO_ENSEMBLE evidence | own recomputation of ENS_MEAN_B0_B2 from `phase_07/experiments/OOS_PREDICTIONS.csv` | T1 24 rows, 8 pos, 3 days, Brier 0.234454 (B0 0.229726, B2 0.244867); T1b 44, 3 pos, 5 days, 0.061522; T2 8, 1 pos, 1 day, 0.125868; equal to `ENSEMBLE_ABLATION.json`; 0 rows decided before their fold cutoff; so INSUFFICIENT_DAYS (T1, T2) and INSUFFICIENT_EVENTS (T1b) are right; the stack has 0 fitted folds (fit rows at most 18 against 100) |
+| 8 | The three traps | `ENSEMBLE_ABLATION.json` traps and attack A9b/A9c | TRAP_ENS_MEAN_B2_M1_S1 and TRAP_ENS_MEAN_B2_M2_S2 refused (DOUBLE_COUNTED_EVIDENCE through LAB_FATAL_FLAGS), TRAP_STACK_IN_SAMPLE refused (IN_SAMPLE_STACKING) for every target; an undeclared column and a MiroFish-named member are refused |
+| 9 | N_search | own count over `phase_16/experiments/SEARCH_LEDGER.csv` (distinct candidate pairs plus bake-off rows; rule pairs for the sensitivity) | 130 and 169; the first 3,259 rows equal Phase 15's two ledgers; Phase 16 adds 9 ABLATION pairs (3 configurations x 3 targets), 9 TRAP_OR_CHECK, 6 POST_OPENING_CHECK, 4 debug runs |
+| 10 | CP16-0 honestly recorded | entries at `9eebb8d` against HEAD (git show) | only `entry_id` and `retrain_policy` differ (the FACTS_MISMATCH trigger was added); facts, levels, inference, pins identical, as PI-D-086 and `rerun_cp16_0_diff.json` say |
+| 11 | CP16-1 honestly recorded | `pytest tests/test_content_guard.py` at `ffcedb4` | `test_tracked_repo_is_clean` fails at `ffcedb4` and passes at HEAD; the outputs carrying `members` were committed at `9eebb8d`, so the suite was red between `9eebb8d` and `d74a16f`, which PI-D-088 states (check order wrong) |
+| 12 | Full suite (post-commit) | `python -m pytest tests -q` | `1 failed, 1911 passed, 1 skipped, 1 warning in 293.38s`, only the known catalyst failure; stray `data/reports/<stamp>_BRETT_0x532f.md` removed by hand, as recorded |
+| 13 | Guard | `python -m memelab social guard` | exit 0, `"violations": []` |
+| 14 | Release audit | `python tools/release_audit.py --history` | full clone with every ref: exit 1, the hit is a blob on another branch (`audits/backtesting/research/smoke/...`); single-branch clone: exit 0, `Needs action: no.` (as recorded) |
+| 15 | Mutation probe can fail | `p16_own_mutations.py` (26 new mutations, both Phase 16 test files) | 22 caught, 4 survive (finding m4); the phase's probe exits 1 on any survivor, so it can fail |
+| 16 | Phase 12 reproduction (carried regression) | `run_holdout.py plan` and `predict` | both exit 1, `KeyError: '13'` in `load_cards`; broken since the Phase 13 recorded run `9cd5288` added `phase_13/artifacts/T*/CALIBRATION_CARD.json`. With the glob narrowed to phases 07 to 11 in a throwaway copy: plan exit 0 (69 cards, B2 x3, n_search 118), predict exit 0, 7 of 7 files byte-equal to `phase_12/validation/` (only the two run logs differ) |
+| 17 | Phase 07 reproduction | `run_baselines.py <scratch>/p07_out --dev-store <copy> --feature-store <copy> --npz ...` | exit 0; 33 of 33 hashes equal to `phase_07/evidence/determinism.json`; only `evidence/run_log.json` differs from the committed file |
+| 18 | Phase 13 reproduction | `run_calibration.py <scratch>/p13_out` | exit 0, UNCALIBRATED x3; 22 files byte-equal; `calibration/POST_OPENING_LOG.json` differs only by `head_code`, plus the run log |
+| 19 | Today documents | `registry/TODAY_RESULTS.jsonl` | 30 of 30 ABSTAIN, `not_selected`, probability, base rate, interval and calibration reference null; no float anywhere in `TODAY_STATUS.json` or `REGISTRY_INDEX.json`; the log has 69 REGISTER, 3 ENSEMBLE_DECISION and 3 PIN events, all NO_VIABLE_CHAMPION |
+
+## Attempts to get an entry pinned, served or published (p16_attacks.py)
+
+| Attempt | Result |
+|---|---|
+| Pin real NO_GO B1, or the real ABSTAIN B2, as champion | refused (PinRefused: level below SHADOW) |
+| Swap a NO_GO card in as a reference; another target's B2 as reference | refused |
+| Change the stored level and recompute the id | refused (LevelMismatch, the level is recomputed from facts) |
+| Forge the facts (retrospective BSS 0.05, calibration CALIBRATED on 60 prospective events) and recompute the id | `verify_entry` accepts it at SHADOW, publishable true (expected; CP16-0's hole) |
+| Pin the forged entry with no `verify` | refused |
+| Pin and serve it with `verify=R.verify_entry` or `verify=lambda e: R.verify_sources(e, read)` | accepted: pinned CHAMPION, `serve` gives `use_champion: true`, level SHADOW, no blocking state (finding m1, CX-S16) |
+| Take that served champion to a document with the flag ON (temp config) | ABSTAIN, probability null: `abstention` refuses because the requested level SHADOW differs from the real Phase 13 card's ABSTAIN (MODEL_NOT_PROMOTED) |
+| Append a CHAMPION pin for B1 to a copy of the real log with a valid chain | `resolve` refuses (champion below SHADOW) |
+| Rewrite the last pin line | refused (chain broken) |
+| Stale replay of a fixture champion | 2026-10-31T00:00:00Z used (edge, by design "strictly after"); 00:00:01Z and 2026-12-01 blocked MODEL_STALE; a stale reference record carries MODEL_STALE, `published: false`, no document key |
+| P38: NaN without reason, inf, -0.1, 1.1, 1.0000001, float32 NaN, string, bool, numpy int; 1.5 in a reference record; NaN in facts | all refused; -0.0 and NaN-with-reason accepted (harmless) |
+| P27: `agent_agreement_share: 0.9` in facts, `agent_vote_share` in evidence, an agent risk flag | accepted by `verify_entry`, level unchanged ABSTAIN, publishable false (finding m6) |
+| P46: transform code change (`features._num_field` log1p result scaled) with definitions unchanged | runtime facts unchanged, `compatibility` empty for every entry, a fixture champion is served with no blocking state when no inference rows are passed (finding m5); the same change in code is caught by `tests/test_predictive_asof_fixture.py::test_pinned_snapshots`, not by the registry |
+| `calibration_every_bin_ok: None` at 66 retrospective events | SHADOW criteria met (finding m3) |
+
+## Findings
+
+All MINOR. None changes a level, a pin, a document, a count or the phase result.
+
+- m1 (most important, latent). `pin_event` and `serve` check only that a `verify` callable was given and that it did not raise. CHAMPION_POLICY rule 5 says a champion is pinned and used "only after its facts are rebuilt from the committed Phase 12 and 13 files and match (`verify_facts`, `verify_sources`; CP16-0)". `verify_sources` alone, or `verify_entry`, raises nothing on forged facts, so the forged entry is pinned and served at SHADOW (CX-S16). Today only the Phase 13 layer stops publication, because the real calibration cards are ABSTAIN. Once Phase 19 produces a CALIBRATED card at SHADOW for a model whose real retrospective facts fail, that backstop is gone. Suggested fix before Phase 17 wires `serve`: the callback must return the rebuilt facts (or their sha) and `pin_event` and `serve` compare it with `canon(entry["facts"])`, refusing None; the policy text should name `verify_facts` as the required check and `verify_sources` as an addition.
+- m2. The B2 entries' retrospective facts come from the SECONDARY_HOLDOUT row of `HOLDOUT_METRICS.csv`, not the PRIMARY_HOLDOUT row. `build_registry.py` builds `metrics` as a dict keyed (target, model, reference) without the row kind, and for P07_B2 against P07_B0 both rows exist; the later (secondary) row wins. The entries record `kind: SECONDARY_HOLDOUT` and `p_holm: 1.0`; for T2 the primary Holm p is 0.100 (the value CHAMPION_POLICY.md quotes). Direction is conservative and no level changes. `verify_facts` cannot notice: the unit test helper `_p12_rows` uses the same last-wins dict, so the "source check" confirms the same selection.
+- m3. `promotion_decision` accepts `calibration_every_bin_ok` None at any size, but ACCEPTANCE requires the every-bin check from 40 events (`in_the_large_only_below_events`), and SHADOW needs 50. Not reachable on today's data (every row with 40 or more numbers has 0 or 1), but a missing field would pass the frozen bin check silently.
+- m4. Four of my 26 new mutations survive both test files: the family module version check in `compatibility` removed (no test changes a family version), the request feature version check removed, `verify_entry` no longer comparing the card's `feature_set_sha` with the entry's, and the VALIDATED_EXPERIMENTAL retrospective Holm condition removed. The phase's own probe is 81 of 81 on its list; these are gaps in the list.
+- m5. P46 compatibility is declaration-based (`feature_set_definitions`, `TRANSFORM_REVISION`, version strings). A transform code change without a revision bump passes `compatibility`, and `serve` runs the identical-inference check only when the caller passes outputs. The suite catches this particular change through Phase 05's pinned snapshots, but the registry does not. Suggest `serve` require inference rows (a recomputed probe hash) before `use_champion` can be true.
+- m6. G17 says "an agent-share field in an entry is refused"; only names (kind, model id, candidate) are screened. Agent-agreement fields nested in facts, evidence or risk flags are accepted. No effect today (levels ignore unknown keys, nothing publishes), but the claim is wider than the code.
+- m7. Wording: checklist rule 7 says "the 176 Solana retrospective-holdout decisions per target" and ENSEMBLE_ABLATION.md says "the 176 holdout decisions' inputs"; the probe set is the 95 Solana decisions of the 176 (85 with a B2 number). "A model trained after 2026-10-17 has that window inside its training data" is not necessarily so (a later plan could keep the 10-17 cutoff); the conclusion still holds because the window is spent.
+- m8. The repeated recorded runs at the CP16-0 and CP16-1 code (four runs on real data) are recorded in evidence diffs but not as ledger rows; N_search is unaffected (they are reproductions, not configurations). Phase 12 logged such runs as REPRODUCTION; doing the same keeps the search history complete.
+- m9. Carried regression confirmed (check 16): `run_holdout.py plan` and `predict` have failed since `9cd5288` (Phase 13), and the Phase 13, 14 and 15 records did not notice; Phase 16 found and recorded it. A narrowed glob restores a byte-equal reproduction (7 of 7), so the Phase 12 results are unaffected, but the documented Phase 12 reproduction command does not run as written. Phase 07 and Phase 13 reproduction commands run and reproduce.
+
+## Judgement on "no model can ever reach SHADOW under the frozen promotion table"
+
+Correct reading. The fingerprinted ACCEPTANCE dict does not name a holdout for SHADOW, but the frozen prose of `phase_01/architecture/ACCEPTANCE_METRICS.md` (line 68) does: "calibration tolerance met on the retrospective holdout", and ACCEPTANCE fixes that holdout's window (2026-10-17 to 2026-10-24) and says reuse voids it. The 69 frozen cards were evaluated once and fail (B2: BSS below 0 on T1 and T1b, calibration in the large failed on T1b, 7 positives on T2), and any new card has no unopened retrospective holdout. Registry-1 adds a CALIBRATED prospective card (PI-D-065, PI-D-069), which is stricter, not looser. The recommendation is framed as a change control to ACCEPTANCE `promotion` decided by Elving or the orchestrator before any prospective label is read; the example (a second untouched prospective window in place of the retrospective one) replaces an untouched holdout with another untouched holdout. Nothing is loosened quietly. Whoever writes that change control should keep the rest of the SHADOW conjunction (counts, calibration, BSS point at least 0, prospective calibration) and note that the frozen cards are stale after 2026-10-31, so it applies to new cards only.
+
+## Counterexample CX-S16 (new)
+
+A Phase 17 integrator reads CHAMPION_POLICY rule 5 ("verify_facts, verify_sources") and wires `serve(..., verify=lambda e: registry.verify_sources(e, read))`, the function whose name says "source check". Someone (or a buggy writer) produces a B2 T1 entry whose facts claim retrospective BSS +0.05 with calibration passed and a CALIBRATED card on 60 prospective events, recomputes `promotion`, `publishable` and `entry_id`, and pins it. `verify_entry` accepts it (level SHADOW, recomputed from the forged facts), `verify_sources` accepts it (every file it names is genuine and unchanged), `pin_event` writes a CHAMPION pin and `serve` returns `use_champion: true` at SHADOW with no blocking state. What catches it: nothing in `registry.py`; the Phase 16 output tests catch it only if the forged entry is committed into `registry/entries/` (5 of 12 output tests fail in a throwaway copy); the document is stopped only by `abstention` (MODEL_NOT_PROMOTED: requested SHADOW differs from the real calibration card's ABSTAIN). Script: `p16_cx_s16.py`, output `p16_cx_s16_out.json`.

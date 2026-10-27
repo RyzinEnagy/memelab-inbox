@@ -64,7 +64,8 @@ def test_cx16_t2_b2_has_a_positive_point_but_stays_an_abstain_reference(entries)
     b2 = [e for e in entries.values() if e["target"] == "price_path_severe_drawdown_or_halt_24h" and e["family"]["kind"] == "B2"
           and e["family"]["phase"] == "07"][0]
     ret = b2["facts"]["retrospective"]
-    assert ret["evaluation"] == R.FIRST_OPENING and ret["bss"] > 0.25 and ret["k"] == 7
+    assert ret["evaluation"] == R.FIRST_OPENING and ret["bss"] > 0.25 and ret["k"] == 7 and ret["kind"] == "PRIMARY_HOLDOUT"
+    assert abs(ret["p_holm"] - 0.10034498275086245) < 1e-12
     assert b2["promotion"]["level"] == "ABSTAIN" and "RETROSPECTIVE_BELOW_MINIMUM" in b2["promotion"]["reasons"]
     assert b2["calibration"]["status"] == "UNCALIBRATED" and b2["registry_status"] == "REFERENCE_ONLY_NEVER_PUBLISHED"
 
@@ -173,7 +174,8 @@ def test_the_search_ledger_extends_phase_15_and_counts_the_ensembles():
     tot = E.ledger_totals(led)
     assert tot["n_search"] == 130 and tot["n_search"] + E.rule_configurations(led) == 169
     new = led[len(base):]
-    assert Counter(r["kind"] for r in new) == Counter({"ABLATION": 9, "TRAP_OR_CHECK": 9, "POST_OPENING_CHECK": 6, "DEBUG_RUN_REAL_DATA": 4})
+    assert Counter(r["kind"] for r in new) == Counter({"ABLATION": 9, "TRAP_OR_CHECK": 16, "POST_OPENING_CHECK": 6, "DEBUG_RUN_REAL_DATA": 4})
+    assert sum(1 for r in new if r["claim"] == "REPRODUCTION_NOT_A_CONFIGURATION") == 7
     reg = [r["experiment_id"] for r in csv.DictReader(open(P16 / "experiments/EXPERIMENT_REGISTRY.csv"))]
     ids = {r["experiment_id"] for r in new}
     for x in reg:
@@ -194,21 +196,14 @@ def test_pre_registration_was_committed_before_the_registry_code():
     assert r.returncode == 0
 
 
-def test_cp16_0_every_entry_s_facts_rebuild_from_the_committed_files_and_every_source_hash_holds(entries):
-    import csv as _csv
-    m = {(r["target_short"], r["model"], r["reference"]): r for r in _csv.DictReader(open(AUD / "phase_12/validation/HOLDOUT_METRICS.csv"))}
-    post = {}
-    for r in _csv.DictReader(open(AUD / "phase_12/validation/POST_OPENING_CORRECTIONS.csv")):
-        post.setdefault((r["target_short"], r["model"]), {})[r["reference"]] = r["selection_status_final"]
+def test_cp16_2_every_entry_s_facts_are_rebuilt_by_the_registry_and_its_code_files_are_unchanged(entries):
     for e in entries.values():
-        s = SHORT[e["target"]]
-        cid = e["family"]["candidate"]
-        card = json.loads((ROOT / e["card_path"]).read_text())
-        cal = json.loads((ROOT / e["calibration"]["path"]).read_text()) if e["calibration"] else None
-        R.verify_facts(e, card=card, tests=e["facts"]["tests"], m_b0=m.get((s, cid, "P07_B0")), m_b2=m.get((s, cid, "P07_B2")),
-                       post_states=post.get((s, cid), {}), cal_card=cal)
+        R.check_facts(e, ROOT)
+        assert R.code_changes(e, ROOT) == []
         assert e["facts"]["tests"]["leakage"] and e["facts"]["tests"]["provenance"] and e["facts"]["tests"]["contract"]
         assert len(R.verify_sources(e, lambda p: (ROOT / p).read_bytes())) >= 4
+        if e["family"]["candidate"] in ("P07_B2", "P07_B1"):
+            assert e["facts"]["retrospective"]["kind"] == ("PRIMARY_HOLDOUT" if e["family"]["candidate"] == "P07_B2" else "SECONDARY_HOLDOUT")
 
 
 def test_cp16_1_every_phase_16_json_passes_the_content_guard_tracked_or_not():

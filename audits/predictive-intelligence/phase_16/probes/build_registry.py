@@ -111,6 +111,15 @@ DEBUG_RUNS: list[str] = [           # every run of this file on real data before
     "no failure; used to check the outputs; then tests were added for four surviving mutations (registry.py unchanged by them)",
 ]
 LABEL_CALLS = [0]
+REPRODUCTIONS: list[str] = [         # repeated runs of the recorded run (skeptic m8): reproductions, not configurations
+    "determinism repeat of the first recorded run at d2038a7 into the scratchpad (2026-10-27T03:22Z): 82 of 85 files byte-equal, the rest run log, latency and CPU-time fields",
+    "CP16-0 repeat at 8cd19bd into the scratchpad (2026-10-27T03:37Z)",
+    "CP16-0 recorded repeat at 8cd19bd into the phase folder (2026-10-27T03:37:43Z to 03:38:05Z, outputs 72488dd)",
+    "CP16-1 repeat at d74a16f into the scratchpad (2026-10-27T03:51Z)",
+    "CP16-1 recorded repeat at d74a16f into the phase folder (2026-10-27T03:51:18Z to 03:51:41Z, outputs b669615)",
+    "CP16-2 repair-pass-2 recorded repeat into the phase folder (this run's outputs)",
+    "CP16-2 repair-pass-2 determinism repeat into the scratchpad (compared in evidence/rerun_rp2_diff.json)",
+]
 CANDIDATE_ROWS: list[dict] = []
 ENS_LATENCY: dict[str, dict] = {}
 
@@ -236,7 +245,8 @@ def inference_check(cards: dict, dev_path: str, fs_path: str) -> tuple[dict, dic
                 PREDICT[v["phase"]](v["card"], fam_ex[v["phase"]])
             latency[f"{s}:{cid}"] = {"cpu_us_per_decision": 1e6 * (time.process_time() - c0) / (reps * max(1, len(ex))),
                                      "decisions": len(ex)}
-            out[(s, cid)] = {"probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+            out[(s, cid)] = {"probe_set": f"the {len(ex)} Solana decisions of the retrospective holdout per target (of 176 holdout "
+                                          "decisions), inputs only (run_holdout.Inputs), no label",
                              "probe_set_sha": probe_sha, "rows": len(rows),
                              "numbers": sum(1 for r in rows if r[1] is not None),
                              "abstentions": dict(sorted(Counter(r[2] for r in rows if r[1] is None).items())),
@@ -263,19 +273,18 @@ def synthetic_hash(card: dict) -> str:
 
 # ---------------------------------------------------------------- facts and entries (rules 3 and 4)
 def facts_for(s: str, cid: str, v: dict, metrics: dict, post: dict, cal_cards: dict, tests: dict) -> dict:
-    """The entry's facts through `registry.derive_facts` (CP16-0), so any verifier rebuilds them the same way."""
-    return R.derive_facts(candidate=cid, phase=v["phase"], card=v["card"], tests=tests_for(v, tests),
-                          m_b0=metrics.get((s, cid, "P07_B0")), m_b2=metrics.get((s, cid, "P07_B2")), post_states=post.get((s, cid), {}),
-                          cal_card=cal_cards[s] if cid == "P07_B2" else None)
+    """The entry's facts as the registry itself rebuilds them from the committed files (`registry.facts_from_repo`, CP16-2), so
+    the runner and every later check read the records the same way (the PRIMARY row of B2, skeptic m2)."""
+    facts, ctx = R.facts_from_repo(v["path"], REPO)
+    if ctx["candidate"]["candidate"] != cid or ctx["candidate"]["target_short"] != s:
+        raise SystemExit(f"{cid}: CANDIDATES.json row disagrees")
+    return facts
 
 
-def tests_for(v: dict, tests: dict) -> dict:
-    """Pre-opening checks per card (CP16-0): leakage from Phase 12's traps and replay audit; provenance from the card's own file
-    and model hashes; contract from its registry fingerprint."""
-    c = next(x for x in CANDIDATE_ROWS if x["path"] == v["path"])
-    prov = R.sha_bytes((REPO / v["path"]).read_bytes()) == c["file_sha256"] and R.card_sha_of(v["card"]) == v["card"]["model_sha"] == c["model_sha"]
-    return {"leakage": tests["leakage"], "provenance": prov, "contract": v["card"]["registry_sha"] == C.registry_sha256(),
-            "basis": tests["basis"]}
+BASE_CODE = ["memelab/predictive/features.py", "memelab/predictive/baselines.py", "memelab/predictive/stats.py",
+             "memelab/predictive/contract.py", "memelab/predictive/labels.py"]
+FAMILY_CODE = {"07": [], "08": ["memelab/predictive/technical.py"], "09": ["memelab/predictive/onchain.py"],
+               "10": ["memelab/predictive/socialcat.py"], "11": ["memelab/predictive/analog.py"]}
 
 
 def risk_flags(s: str, cid: str, v: dict, facts: dict) -> list[str]:
@@ -327,7 +336,8 @@ def build_entries(cards, inference, metrics, post, cal_cards, cal_paths, tests, 
         e = R.make_entry(target=LONG[s], family={"phase": v["phase"], "kind": card["kind"], "candidate": cid,
                                                  "module_version": module_version(card, v["phase"])}, card=card,
                          card_path=v["path"], card_file_sha256=fsha(REPO / v["path"]), calibration=cal, facts=facts, evidence=ev,
-                         risk_flags=risk_flags(s, cid, v, facts), inference=inf, registered_as_of_utc=REGISTERED_AS_OF)
+                         risk_flags=risk_flags(s, cid, v, facts), inference=inf, registered_as_of_utc=REGISTERED_AS_OF,
+                         code=R.code_of(BASE_CODE + FAMILY_CODE[v["phase"]], REPO))
         R.verify_entry(e, card=card, card_bytes=(REPO / v["path"]).read_bytes(), cal_card=cal_cards[s] if cid == "P07_B2" else None)
         entries[e["entry_id"]] = e
     return entries
@@ -601,13 +611,13 @@ def fixture_rollback(real_entries: dict) -> dict:
         t_mid = C.parse_utc(steps["t_model_pin"]) + 60
         before_rb = R.resolve(events, ents, TR.FX_TARGET, t_mid)
         rb1 = R.rollback_event(events, ents, TR.FX_TARGET, reason="DRIFT_ALERT", as_of_utc=steps["t_drift"],
-                               usable=lambda e: True, allow_fixture=True, verify=TR.FX_VERIFY)
+                               usable=lambda e: True, allow_fixture=True)
         old = log.read_text()
         sha_, _ = R.append_events(log, [rb1], expect_sha=sha_)
         events = R.read_log(log.read_text())
         after1 = R.resolve(events, ents, TR.FX_TARGET, C.parse_utc(steps["t_drift"]))
         rb2 = R.rollback_event(events, ents, TR.FX_TARGET, reason=R.INFERENCE_MISMATCH, as_of_utc=steps["t_mismatch"],
-                               usable=lambda e: True, allow_fixture=True, verify=TR.FX_VERIFY)
+                               usable=lambda e: True, allow_fixture=True)
         sha_, _ = R.append_events(log, [rb2], expect_sha=sha_)
         events = R.read_log(log.read_text())
         after2 = R.resolve(events, ents, TR.FX_TARGET, C.parse_utc(steps["t_mismatch"]))
@@ -703,14 +713,19 @@ def ledger(new_rows: list[dict]) -> tuple[list[dict], dict]:
     debug = [{"phase": "16", "experiment_id": f"P16:DEBUG:{i}", "target": "", "candidate": "", "kind": "DEBUG_RUN_REAL_DATA",
               "view": "ALL", "seed": "", "folds": "", "n_rows": "", "n_with_number": "", "verdict": txt, "split_fingerprint": "",
               "selection_status": "", "claim": ""} for i, txt in enumerate(DEBUG_RUNS)]
-    rows = base + [{c: r.get(c, "") for c in cols} for r in new_rows + debug]
+    repro = [{"phase": "16", "experiment_id": f"P16:REPRODUCTION:{i}", "target": "", "candidate": "P16_REPRODUCTION",
+              "kind": "TRAP_OR_CHECK", "view": "ALL", "seed": "", "folds": "", "n_rows": "", "n_with_number": "", "verdict": txt,
+              "split_fingerprint": "", "selection_status": "", "claim": "REPRODUCTION_NOT_A_CONFIGURATION"}
+             for i, txt in enumerate(REPRODUCTIONS)]
+    rows = base + [{c: r.get(c, "") for c in cols} for r in new_rows + debug + repro]
     tot = E.ledger_totals(rows)
     rules = E.rule_configurations(rows)
     totals = {"sources": ["audits/predictive-intelligence/phase_15/experiments/SEARCH_LEDGER.csv",
                           "audits/predictive-intelligence/phase_15/experiments/SEARCH_LEDGER_RP2_ADDITION.csv", "Phase 16 rows"],
               "before": {**before, "rule_configurations": before_rules, "n_search_sensitivity": before["n_search"] + before_rules},
               "after": {**tot, "rule_configurations": rules, "n_search_sensitivity": tot["n_search"] + rules},
-              "phase16_rows": len(new_rows) + len(debug), "phase16_debug_runs": len(debug)}
+              "phase16_rows": len(new_rows) + len(debug) + len(repro), "phase16_debug_runs": len(debug),
+              "phase16_reproductions": len(repro)}
     if (before["n_search"], tot["n_search"], before["n_search"] + before_rules, tot["n_search"] + rules) != \
             (EXPECTED_N_SEARCH["before"], EXPECTED_N_SEARCH["after"], EXPECTED_N_SEARCH["sensitivity_before"], EXPECTED_N_SEARCH["sensitivity_after"]):
         raise SystemExit(f"ledger totals differ from the plan: {totals}")
@@ -748,7 +763,7 @@ def main() -> int:
         if got != cand["champions"][s]:
             failures.append(f"{s}: restated champion differs from CANDIDATES.json")
     # committed evaluation facts
-    metrics = {(r["target_short"], r["model"], r["reference"]): r for r in read_csv(P12V / "HOLDOUT_METRICS.csv")}
+    metrics = R.metric_rows((P12V / "HOLDOUT_METRICS.csv").read_text())      # PRIMARY row first (CP16-2, m2)
     post = {}
     for r in read_csv(P12V / "POST_OPENING_CORRECTIONS.csv"):
         post.setdefault((r["target_short"], r["model"]), {})[r["reference"]] = r["selection_status_final"]
@@ -778,13 +793,9 @@ def main() -> int:
         failures.append("entries read back differ")
     fact_checks = 0
     for e in back.values():                      # CP16-0: every entry's facts rebuilt from the committed files, every source hashed
-        s_ = SHORT[e["target"]]
-        cid = e["family"]["candidate"]
-        v = cards[(s_, cid)]
-        R.verify_facts(e, card=v["card"], tests=tests_for(v, tests), m_b0=metrics.get((s_, cid, "P07_B0")),
-                       m_b2=metrics.get((s_, cid, "P07_B2")), post_states=post.get((s_, cid), {}),
-                       cal_card=cal_cards[s_] if cid == "P07_B2" else None)
-        R.verify_sources(e, lambda path: (REPO / path).read_bytes())
+        R.check_facts(e, REPO)                   # CP16-2: the registry's own rebuild, the same one pin_event and serve run
+        if R.code_changes(e, REPO):
+            failures.append(f"{e['model_id']}: code files differ right after registration")
         fact_checks += 1
 
     ens, ens_csv, ens_ledger, post_log = ensembles(dev, cards, fam_cache, latency)

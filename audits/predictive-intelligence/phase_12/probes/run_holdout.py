@@ -162,7 +162,10 @@ def run_log(out: Path, name: str, t0: float, c0: float, extra: dict) -> None:
 
 # ---------------------------------------------------------------- cards
 def card_paths() -> list[Path]:
-    return [Path(p) for p in sorted(glob.glob(str(AUD / "phase_*/artifacts/T*/*.json")))]
+    # only the card families of Phases 07 to 11 (the phases LOADERS names): since the Phase 13 recorded run the glob also met
+    # phase_13/artifacts/T*/CALIBRATION_CARD.json (KeyError '13'); change control CP12-2, PI-D-090
+    return [Path(p) for p in sorted(glob.glob(str(AUD / "phase_*/artifacts/T*/*.json")))
+            if Path(p).parts[-4].split("_")[1] in LOADERS]
 
 
 def load_cards() -> dict[tuple[str, str], dict]:
