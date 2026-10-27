@@ -1,0 +1,43 @@
+{
+ "command": "unshare -n python -B probes/run_prospective.py predict SCRATCH/det (second run at fce102e)",
+ "compared_to": "monitoring/ (recorded run at fce102e)",
+ "files": {
+  "OUTCOME_LEDGER.jsonl": {
+   "equal": true,
+   "sha256": "fcbcc320393e45daca9dc0db04e9b375bdb9b914c81a6abeccbb1ed12eb76ddd"
+  },
+  "P12_STEP_MANIFEST.json": {
+   "equal": true,
+   "sha256": "52883752ebd0fda7e814bf9c5bf19ce62dcbb7f788b3b6f9ce1d8c109d7f42cc"
+  },
+  "PREOPEN_TRAPS.json": {
+   "equal": true,
+   "sha256": "acddbb98703c5002feb2c0f85123d36d64d5a04b59cd528ae5a565df7d412b5d"
+  },
+  "PREREG_MANIFEST.json": {
+   "equal": false,
+   "sha256": "fbdc025cdcb570d4d60423415b47f704460e576c8d0f301574214cbe74393012"
+  },
+  "PROSPECTIVE_DECISIONS.csv": {
+   "equal": true,
+   "sha256": "c8d8f8a18282e9583d00fa7b3103047a6774c3ab399686c194f4d523b10df4ab"
+  },
+  "PROSPECTIVE_PREDICTIONS.csv": {
+   "equal": true,
+   "sha256": "b0c2722afba20b15ffb82cd0d9d07f8f370144f0f5a9e8ba779fbb6d2c2b67d0"
+  },
+  "REPLAY_AUDIT.json": {
+   "equal": true,
+   "sha256": "232734e3c0d31d3445c0119f52881c489c82946702d2bdf8a2487e36a7a0026d"
+  },
+  "published/DOCUMENTS.jsonl": {
+   "equal": true,
+   "sha256": "9b839e76b7a334847911b6d5ad1f81044e17da47a09354dd3efd70fdbc0c77d0"
+  },
+  "published/RECORDS.jsonl": {
+   "equal": true,
+   "sha256": "a8114c19f9ac506b0a809a6f9e1bf1b70ada6e049c693debc1d102294bb5accc"
+  }
+ },
+ "note": "PREREG_MANIFEST.json differs only because the committed folder also holds PROSPECTIVE_PLAN.md (a pre-registration file), which the manifest lists"
+}

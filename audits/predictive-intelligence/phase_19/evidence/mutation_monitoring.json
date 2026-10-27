@@ -1,0 +1,240 @@
+{
+ "module": "memelab/predictive/monitoring.py",
+ "tests": "tests/test_predictive_monitoring.py",
+ "mutations": 46,
+ "caught": 46,
+ "survivors": [],
+ "results": [
+  {
+   "mutation": "L1 prev not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_negative_a_prediction_line_edited_in_place_breaks_the_chain"
+  },
+  {
+   "mutation": "L2 sha not recomputed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_negative_a_prediction_line_edited_in_place_breaks_the_chain"
+  },
+  {
+   "mutation": "L3 sequence not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_negative_a_removed_or_reordered_line_is_tampering"
+  },
+  {
+   "mutation": "L4 is_append_only ignores the prefix",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_is_append_only"
+  },
+  {
+   "mutation": "R1 edit of a prediction accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_negative_a_prediction_id_reappended_with_another_number_is_refused_identical_is_a_noop"
+  },
+  {
+   "mutation": "R2 late prediction accepted (CX-19)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_cx19_a_backdated_prediction_after_its_outcome_is_refused_whatever_time_it_claims"
+  },
+  {
+   "mutation": "R3 late prediction set accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_cx19_a_backdated_prediction_after_its_outcome_is_refused_whatever_time_it_claims"
+  },
+  {
+   "mutation": "R4 maturity of the read not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_p05_a_label_read_or_recorded_before_maturity_is_refused_and_pending_carries_no_label"
+  },
+  {
+   "mutation": "R5 maturity of the record time not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_p05_a_label_read_or_recorded_before_maturity_is_refused_and_pending_carries_no_label"
+  },
+  {
+   "mutation": "R6 a pending outcome may carry a label",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_p05_a_label_read_or_recorded_before_maturity_is_refused_and_pending_carries_no_label"
+  },
+  {
+   "mutation": "R7 censored bit not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_a_forged_censored_labeled_outcome_is_never_scored_even_in_an_unchecked_index"
+  },
+  {
+   "mutation": "R8 outcome identity not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_p01_outcome_identity_must_equal_the_prediction_set_and_needs_one"
+  },
+  {
+   "mutation": "R9 token parameter not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_p01_outcome_identity_must_equal_the_prediction_set_and_needs_one"
+  },
+  {
+   "mutation": "R10 final outcome replaced",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_a_final_outcome_is_revised_only_with_revision_of_and_both_versions_stay"
+  },
+  {
+   "mutation": "R11 pending superseded without naming it",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_p05_pending_is_never_scored_or_counted_negative_and_is_superseded_by_naming_it"
+  },
+  {
+   "mutation": "R12 concurrent writer accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_a_concurrent_writer_and_a_prediction_out_of_range_are_refused"
+  },
+  {
+   "mutation": "R13 number range not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_a_concurrent_writer_and_a_prediction_out_of_range_are_refused"
+  },
+  {
+   "mutation": "R14 verify does not replay the rules",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_cx19_a_backdated_prediction_after_its_outcome_is_refused_whatever_time_it_claims"
+  },
+  {
+   "mutation": "R15 outcome without prediction set",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_p01_outcome_identity_must_equal_the_prediction_set_and_needs_one"
+  },
+  {
+   "mutation": "S1 censored scored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_a_forged_censored_labeled_outcome_is_never_scored_even_in_an_unchecked_index"
+  },
+  {
+   "mutation": "S2 unmatured scored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_p05_pending_is_never_scored_or_counted_negative_and_is_superseded_by_naming_it"
+  },
+  {
+   "mutation": "S3 revised flag dropped",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_a_final_outcome_is_revised_only_with_revision_of_and_both_versions_stay"
+  },
+  {
+   "mutation": "P1 read before maturity classified",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_prospective_records_classify_with_the_frozen_rule_pending_before_maturity_and_gaps_censored"
+  },
+  {
+   "mutation": "P2 no pool counted as not read",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_prospective_records_classify_with_the_frozen_rule_pending_before_maturity_and_gaps_censored"
+  },
+  {
+   "mutation": "P3 unread matured counted as pending",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_prospective_records_classify_with_the_frozen_rule_pending_before_maturity_and_gaps_censored"
+  },
+  {
+   "mutation": "P4 supersede chain broken",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_outcome_payloads_enter_the_ledger_and_later_reads_supersede_or_revise"
+  },
+  {
+   "mutation": "D1 PSI alert threshold moved",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_d1_psi_is_near_zero_for_the_same_distribution_and_alerts_on_a_shift"
+  },
+  {
+   "mutation": "D1b missingness ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_d1_psi_is_near_zero_for_the_same_distribution_and_alerts_on_a_shift"
+  },
+  {
+   "mutation": "D1c PSI floor removed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_d1_psi_is_near_zero_for_the_same_distribution_and_alerts_on_a_shift"
+  },
+  {
+   "mutation": "D1d unseen category dropped",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_d1_psi_is_near_zero_for_the_same_distribution_and_alerts_on_a_shift"
+  },
+  {
+   "mutation": "D2 Wilson check inverted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_d2_label_rate_drift"
+  },
+  {
+   "mutation": "D3 calibration failure ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_d3_calibration_drift_and_page_hinkley"
+  },
+  {
+   "mutation": "D3b Page-Hinkley alarm dropped",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_d3_calibration_drift_and_page_hinkley"
+  },
+  {
+   "mutation": "D3c Page-Hinkley minimum ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_d3_calibration_drift_and_page_hinkley"
+  },
+  {
+   "mutation": "D4 coverage alert removed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_d4_d5_d6_d7_d8"
+  },
+  {
+   "mutation": "D6 stale export not reported",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_d4_d5_d6_d7_d8"
+  },
+  {
+   "mutation": "D6b source problem reported as drift",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_d4_d5_d6_d7_d8"
+  },
+  {
+   "mutation": "D7 regime alert removed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_d4_d5_d6_d7_d8"
+  },
+  {
+   "mutation": "D8 model age never stale",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_d4_d5_d6_d7_d8"
+  },
+  {
+   "mutation": "M1 constant prediction not flagged",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_p10_an_always_negative_model_on_a_rare_event_has_a_good_brier_and_no_minority_metric"
+  },
+  {
+   "mutation": "A1 drift on a champion kept",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_response_policy_table_never_retrains"
+  },
+  {
+   "mutation": "A2 validated champion rolled back instead of demoted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_response_policy_table_never_retrains"
+  },
+  {
+   "mutation": "A3 source problem ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_response_policy_table_never_retrains"
+  },
+  {
+   "mutation": "A4 trading word check off",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_notice_text_is_plain_and_refuses_trading_words"
+  },
+  {
+   "mutation": "A5 automatic retrain flag",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_response_policy_table_never_retrains"
+  },
+  {
+   "mutation": "A6 status codes not collected",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_p47_source_outage_keeps_abstaining_with_a_visible_status"
+  }
+ ],
+ "wall_s": 56.4
+}

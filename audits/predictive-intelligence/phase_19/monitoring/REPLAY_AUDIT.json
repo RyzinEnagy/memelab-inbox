@@ -1,0 +1,45 @@
+{
+ "development": {
+  "07": {
+   "rows": 76,
+   "violations": 0
+  },
+  "08": {
+   "rows": 76,
+   "violations": 0
+  },
+  "09": {
+   "rows": 76,
+   "violations": 0
+  },
+  "10": {
+   "rows": 76,
+   "violations": 0
+  },
+  "11": {
+   "rows": 76,
+   "violations": 0
+  }
+ },
+ "holdout": {
+  "T1_24h": {
+   "card_cutoff_utc": "2026-10-17T00:00:00Z",
+   "max_age_days": 9.432685185185186,
+   "rows": 1419,
+   "violations": 0
+  },
+  "T1b_6h": {
+   "card_cutoff_utc": "2026-10-17T00:00:00Z",
+   "max_age_days": 9.432685185185186,
+   "rows": 1419,
+   "violations": 0
+  },
+  "T2_24h": {
+   "card_cutoff_utc": "2026-10-17T00:00:00Z",
+   "max_age_days": 9.432685185185186,
+   "rows": 1419,
+   "violations": 0
+  }
+ },
+ "ok": true
+}

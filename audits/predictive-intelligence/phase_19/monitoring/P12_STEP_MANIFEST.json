@@ -1,0 +1,12 @@
+{
+ "decisions": 33,
+ "files": {
+  "PREOPEN_TRAPS.json": "acddbb98703c5002feb2c0f85123d36d64d5a04b59cd528ae5a565df7d412b5d",
+  "PROSPECTIVE_DECISIONS.csv": "c8d8f8a18282e9583d00fa7b3103047a6774c3ab399686c194f4d523b10df4ab",
+  "PROSPECTIVE_PREDICTIONS.csv": "b0c2722afba20b15ffb82cd0d9d07f8f370144f0f5a9e8ba779fbb6d2c2b67d0",
+  "REPLAY_AUDIT.json": "232734e3c0d31d3445c0119f52881c489c82946702d2bdf8a2487e36a7a0026d"
+ },
+ "labels_read": 0,
+ "prediction_rows": 4257,
+ "rule": "every holdout prediction is fixed here, before the seal is opened; the opener checks these sha256"
+}

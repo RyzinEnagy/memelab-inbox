@@ -1,0 +1,51 @@
+{
+ "documents": 156,
+ "documents_unmatched": 0,
+ "files": {
+  "OUTCOME_LEDGER.jsonl": "fcbcc320393e45daca9dc0db04e9b375bdb9b914c81a6abeccbb1ed12eb76ddd",
+  "P12_STEP_MANIFEST.json": "52883752ebd0fda7e814bf9c5bf19ce62dcbb7f788b3b6f9ce1d8c109d7f42cc",
+  "PREOPEN_TRAPS.json": "acddbb98703c5002feb2c0f85123d36d64d5a04b59cd528ae5a565df7d412b5d",
+  "PROSPECTIVE_DECISIONS.csv": "c8d8f8a18282e9583d00fa7b3103047a6774c3ab399686c194f4d523b10df4ab",
+  "PROSPECTIVE_PLAN.md": "710e46e20bd7215a87ea908aa307a278a4333900a2d54ee40e49207ddb78dc1d",
+  "PROSPECTIVE_PREDICTIONS.csv": "b0c2722afba20b15ffb82cd0d9d07f8f370144f0f5a9e8ba779fbb6d2c2b67d0",
+  "REPLAY_AUDIT.json": "232734e3c0d31d3445c0119f52881c489c82946702d2bdf8a2487e36a7a0026d",
+  "published/DOCUMENTS.jsonl": "9b839e76b7a334847911b6d5ad1f81044e17da47a09354dd3efd70fdbc0c77d0",
+  "published/RECORDS.jsonl": "a8114c19f9ac506b0a809a6f9e1bf1b70ada6e049c693debc1d102294bb5accc"
+ },
+ "labels_read": 0,
+ "ledger": {
+  "appended": 356,
+  "duplicates": 0,
+  "entries": 356,
+  "head": "498bd938de37ac98c08549b6a6f9c5913edae5f90399a7e900919d53c29d3147"
+ },
+ "ledger_verify": {
+  "entries": 356,
+  "head": "498bd938de37ac98c08549b6a6f9c5913edae5f90399a7e900919d53c29d3147",
+  "ok": true,
+  "problems": []
+ },
+ "p46_feature_versions": {
+  "equal": true,
+  "reference_card_versions": [
+   [
+    "2",
+    "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b"
+   ]
+  ],
+  "window_snapshot_versions": [
+   [
+    "2",
+    "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b"
+   ]
+  ]
+ },
+ "prediction_rows": 4257,
+ "ref": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+ "replay_round_2_documents": 0,
+ "rule": "every prospective prediction and system document is fixed here, before any label read (checklist rule 1); the reader checks these sha256 against HEAD",
+ "solana_decisions": 33,
+ "window_decisions": 52,
+ "window_from_utc": "2026-10-24T00:00:00Z",
+ "window_to_utc": "2026-10-26T10:23:05Z"
+}

@@ -1,0 +1,64 @@
+{
+ "contact": {
+  "problems": [],
+  "window_solana_decisions_checked": 66
+ },
+ "exports": 92,
+ "network_calls": 0,
+ "ref": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+ "snapshots": {
+  "capture": {
+   "added": 52,
+   "skipped": 0
+  },
+  "provider": {
+   "added": 52,
+   "skipped": 0
+  }
+ },
+ "stores": {
+  "dev": {
+   "after_sha256": "4ae883994b1ea8ca5857f2b0cb8ec4518a18222207844a1bacb5b3c5f4413a39",
+   "ingest": {
+    "decision_events": 1553,
+    "decisions_added": 34,
+    "exports": 92,
+    "refused": 1,
+    "responses_added": 2
+   },
+   "refused": [
+    {
+     "decision_time": "1791596069.0",
+     "mint": "MukLDtJ8Cx9DxLbeyLRWPSposTMWuwHANbuaudpump",
+     "reason": "mint 'MukLDtJ8Cx9DxLbeyLRWPSposTMWuwHANbuaudpump' does not decode to 32 bytes: n"
+    }
+   ],
+   "source": "/home/claude/pi_research/p06/dev_store.sqlite",
+   "source_sha256": "d2a5a7c67afb82da79c4c957ba3b32576963bc4d96bf61ca14fa81b2b5b6e8db"
+  },
+  "fs": {
+   "after_sha256": "c4c635eb0d8b1cca847e55f2d63aa32137a892e3c17d8bff6004ff82204fd88a",
+   "ingest": {
+    "decision_events": 1553,
+    "decisions_added": 52,
+    "exports": 92,
+    "refused": 1,
+    "responses_added": 3
+   },
+   "refused": [
+    {
+     "decision_time": "1791596069.0",
+     "mint": "MukLDtJ8Cx9DxLbeyLRWPSposTMWuwHANbuaudpump",
+     "reason": "mint 'MukLDtJ8Cx9DxLbeyLRWPSposTMWuwHANbuaudpump' does not decode to 32 bytes: n"
+    }
+   ],
+   "source": "/home/claude/pi_research/p05/predictive_store.sqlite",
+   "source_sha256": "2525f0c4a7b2662713d07e99acd1a371c33aa5082994f5f552aba477f98dd8de"
+  }
+ },
+ "wall_s": 40.2,
+ "window": {
+  "from_utc": "2026-10-24T00:00:00Z",
+  "to_utc": "2026-10-26T10:23:05Z"
+ }
+}

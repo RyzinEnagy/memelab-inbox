@@ -1,0 +1,14 @@
+{
+ "end_utc": "2026-10-27T13:58:10Z",
+ "head": "fce102e301bdfd391f7310b43c740085f8ccc6a2",
+ "monitoring_sha256": "4de67f8560e2117fdaaadae0b7950f5fc7bec8a4cf1bfa94f57d508f4a35c16b",
+ "network_calls": 0,
+ "numpy": "2.5.3",
+ "p12_step_exit": 0,
+ "python": "3.13.17",
+ "replay_socket_events": 0,
+ "runner_sha256": "2b42c837c44b62299aa05c994c5ddb8974c568d43e81e9b6eb349aed6ea018fd",
+ "start_utc": "2026-10-27T13:57:49Z",
+ "step": "predict",
+ "wall_s": 20.885
+}
