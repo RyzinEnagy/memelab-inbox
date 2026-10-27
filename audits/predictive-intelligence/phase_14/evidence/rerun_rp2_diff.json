@@ -1,0 +1,37 @@
+{
+ "files": {
+  "behavioral/CORE_UNAFFECTED.json": "BYTE_EQUAL",
+  "behavioral/COST_CAP.json": "DIFFERS",
+  "behavioral/MIROFISH_PROBE.json": "DIFFERS",
+  "behavioral/MOCK_GRID_RUNS.json": "DIFFERS",
+  "behavioral/NETNS_EGRESS.json": "NEW",
+  "behavioral/P30_MATRIX.csv": "DIFFERS",
+  "behavioral/RULE_COUNTS.json": "DIFFERS",
+  "behavioral/RULE_SCENARIOS_DEV.jsonl": "DIFFERS",
+  "behavioral/SEEDS_DEV.jsonl": "BYTE_EQUAL",
+  "behavioral/SEEDS_DEV_LOG.json": "DIFFERS",
+  "evidence/run_log.json": "DIFFERS"
+ },
+ "first_pass": "872578d",
+ "rule_counts_equal_except_time_and_sha": {
+  "catalyst_hypotheses": true,
+  "documents_with_validation_errors": true,
+  "label_combinations": true,
+  "labels": true,
+  "outcomes_read": true,
+  "real_seed_mutations": true,
+  "rules_sha256": true,
+  "scored": true,
+  "seed_check_recomputed_differs": true,
+  "seeds": true,
+  "statuses": true,
+  "twin_byte_equal": true
+ },
+ "rule_documents": {
+  "count_new": 830,
+  "count_old": 830,
+  "equal_after_removing_doc_sha_created_at_and_llm_actions_observed": 830,
+  "hypotheses_equal": 830
+ },
+ "seeds_byte_equal": true
+}

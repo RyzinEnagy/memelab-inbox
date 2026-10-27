@@ -1,6 +1,6 @@
 {
  "catalyst_hypotheses": 0,
- "created_at_utc": "2026-10-26T23:09:12Z",
+ "created_at_utc": "2026-10-27T00:15:55Z",
  "documents_with_validation_errors": 0,
  "label_combinations": {
   "ATTENTION_EXHAUSTION": 224,
@@ -40,7 +40,7 @@
    "rule_status": "SEED_REFUSED"
   }
  },
- "rule_scenarios_sha256": "1e4ad4bb0527263c89dbb11499bb8cfaad5851a88262f50ed83a634101dcbeb4",
+ "rule_scenarios_sha256": "15ccd5f183e4e00ce5b52a6e1876732e16a8a86941b97bd55ea74ee180cc8e40",
  "rules_sha256": "557ef8780869b939b21185370c0baf484fdd9603da42618f75d981512828fc19",
  "scored": false,
  "seed_check_recomputed_differs": 0,

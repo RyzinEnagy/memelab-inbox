@@ -1,6 +1,6 @@
 # Phase 14 evidence: isolated behavioral-simulation hypothesis interface
 
-Status: **NEEDS_REVIEW** pending the orchestrator's independent skeptic. Expected after review: TEST_ONLY for the simulator path (fixtures, the lab's mocks and MiroFish's script against a canned mock LLM only); MIROFISH_GATE BLOCKED for live use until Elving approves LLM spend. The rule-based generator is real code run on real point-in-time seeds and is unscored.
+Status: **TEST_ONLY** after repair pass 2 (PI-D-076, PI-D-077): the simulator path is proved only on fixtures, the lab's mocks and MiroFish's script against a canned mock LLM; MIROFISH_GATE BLOCKED for live use until Elving approves LLM spend. The statistical-engine-unaffected item and the safety items hold under the independent skeptic's attacks. The first-pass sections below are kept as recorded; the repair pass section at the end supersedes their numbers where they differ.
 
 - Branch `feature/predictive-intelligence`; HEAD before `2fd0aae` (Phase 13 PASS); pre-registration `9ed8377` (2026-10-26T22:21:08Z); frozen code `c59c494` (23:08:49Z); recorded run outputs `872578d` (23:18:04Z); records on top.
 - Machine: Linux, Python 3.13.17 (lab), Python 3.12.3 (MiroFish venv `/home/claude/pi_research/venvs/p04_mirofish`), root (for `unshare -n`).
@@ -124,4 +124,37 @@ Packet: `SKEPTIC_PACKET.md`. The independent review and its counterexample are f
 | `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | 0 | `"problems": []` |
 | `python tools/release_audit.py --history` on a single-branch clone | 0 | "Needs action: no." |
 | `git status --short` | 0 | clean after the post-commit record |
+
+## Repair pass 2 (after the independent skeptic, PI-D-076)
+
+Review: `skeptic/PHASE_14_SKEPTIC.md` (at `58bee5d`; 5 MATERIAL, 6 minor, CX-S14) with its scripts copied beside it; `skeptic/p14_attacks_rp2.py` is the skeptic's attack script with one change (the publication baseline is defined before A2, because its A3 branch raised NameError once A2 is refused). Every finding was verified against the first-pass code before any change (`skeptic/rp2_recheck.py`, `skeptic/rp2_recheck.json`):
+
+| Finding | First-pass code `c59c494` | Repaired code `69a3584` | Test that fails on the first pass |
+|---|---|---|---|
+| M1 capped run AVAILABLE | A1 NOT CAUGHT (llm_actions 16, AVAILABLE); MiroFish low cap had 3 actions | llm_actions 0 unless SIMULATION_RAN; AVAILABLE exactly when RAN on all 45 matrix rows | `test_m1_no_capped_refused_or_tripped_run_is_ever_available`, `test_a_meter_block_at_its_cap_refuses_the_run` |
+| M2 meter not a ceiling | `n` 8 with stream: 42 calls, bill 6.90 times the cap; `n` 64: 55.07 times | 0 forwarded for every multiplying parameter; usage metered per call; stop on missing usage | `test_m2_*` (12 cases) |
+| M3 agreement as multiplicity | A2 NOT CAUGHT (8 and 2 entries published) | RESPONSE_REFUSED_REPEATED_LABEL; validator and projection refuse repeated labels | `test_m3_repeated_labels_never_reach_a_document` |
+| M4 subprocess egress | E3 and E4 delivered the 2,192-byte request to 10.99.0.1 | SCRIPT_EXIT_1, nothing received; children in their own namespace | `test_every_subprocess_runs_in_its_own_network_namespace`, `test_a_subprocess_cannot_reach_a_listener_of_the_parent` |
+| M5 and CX-S14 | STABLE, both opposite hypotheses published | UNSTABLE, MONITOR_REVERSED, one hypothesis | `test_cx_s14_a_seed_reversed_monitor_is_unstable`, `test_stability_rules_directly` |
+| m1 P28 shapes | slash, month-name, wording, outcome name passed | refused (POST_DECISION_DATE, POST_DECISION_WORDING, POST_DECISION_FIELD) | `test_minor_m1_m2_wider_seed_checks` |
+| m2 P41 shapes | four wordings and unicode tricks passed | refused after NFKC and invisible-character removal, seeds and responses | same, `test_minor_m4_response_size_cap_and_normalized_response_scan` |
+| m3 free strings | A3 NOT CAUGHT | refused (vocabularies, claim keys) | `test_minor_m3_flags_reasons_and_claim_keys_come_from_the_vocabulary` |
+| m4 test gaps | X2, X4, X5 survived the suite | caught (mutations G17, P11, P12); X3 equivalent | mutation probe |
+| m5 meter details | last-entry usage; re-serialized body uncharged | per-entry usage; larger body charged | `test_m2_charge_covers_the_forwarded_body_not_only_the_received_one` |
+| m6 copyleft scope | probes not scanned | probes scanned | `test_new_files_carry_no_copyleft_marker_or_fingerprint` |
+
+Disagreements, recorded: the skeptic's A5 "future unix time as a number value" uses 1790000000 (2026-09-21T14:13:20Z), which is before the decision (2026-10-12T05:00:00Z); accepting it is correct, and a value after the decision is refused. X3 (IP check removed) is equivalent, as the skeptic says.
+
+Commands and results at the repair:
+
+| Command | Exit | Result |
+|---|---|---|
+| pre-freeze `python -m pytest tests -q -p no:cacheprovider --deselect tests/test_predictive_phase14_outputs.py` | 1 | `1 failed, 1800 passed, 1 skipped, 7 deselected` (known failure only; output tests deselected until the outputs were regenerated) |
+| `python -B probes/build_seeds.py <scratch>/rec2` (from 00:15:43Z, 2026-10-27) | 0 | 830 seeds, 0 refused, head `69a3584`, seeds byte-equal to the first pass |
+| `python -B probes/run_behavioral.py <scratch>/rec2` (00:15:55Z to 00:17:58Z) | 0 | head `69a3584`, dirty code none, 259 connects all to 127.0.0.1, 0 label calls |
+| `python -B probes/mutation_behavioral.py <scratch>/rec2_mutation.json` | 0 | 83 mutations, 83 caught, 0 survivors, 705 s (63 first-pass mutations, fragments updated, plus 20 for the repair) |
+| `python -B probes/oracle_schema.py evidence/oracle_jsonschema.json` | 0 | 0 errors on 830 documents |
+| `python -B probes/rerun_diff.py <scratch>/rec2 evidence/rerun_rp2_diff.json` | 0 | see below |
+
+What changed in the outputs and why (`evidence/rerun_rp2_diff.json`): `SEEDS_DEV.jsonl` and `CORE_UNAFFECTED.json` byte-equal; `RULE_COUNTS.json` equal in every count and verdict (labels 309, 313, 227, 66; 0 catalyst), different only in creation time and documents digest; `RULE_SCENARIOS_DEV.jsonl` 830 of 830 documents equal after removing the new `cost.llm_actions_observed`, the creation time and the digest, every hypothesis set equal; `P30_MATRIX.csv` 39 to 45 rows (new rows, `subprocess:external_without_netns` replaced by `subprocess:meter_outside_namespace` since every subprocess now runs in a namespace); `MOCK_GRID_RUNS.json` gains MONITOR_REVERSAL grids (UNSTABLE) and the scenario-set counts; `COST_CAP.json` gains the multiplying-parameter and missing-usage cases, the cap run's numbers unchanged (9,709 of 10,000); `MIROFISH_PROBE.json` is a new run of a non-reproducible engine (actions 10 and 9, low cap 3 observed with top-level 0, statuses unchanged); `NETNS_EGRESS.json` new. No status, rule count or verdict changed.
 

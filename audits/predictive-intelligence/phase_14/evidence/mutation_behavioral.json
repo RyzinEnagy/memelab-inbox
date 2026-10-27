@@ -1,8 +1,8 @@
 {
  "module": "memelab/predictive/behavioral.py",
  "tests": "tests/test_predictive_behavioral.py",
- "mutations": 63,
- "caught": 63,
+ "mutations": 83,
+ "caught": 83,
  "survivors": [],
  "results": [
   {
@@ -83,7 +83,7 @@
   {
    "mutation": "S16 url allowed",
    "caught": true,
-   "first_failure": "tests/test_predictive_behavioral.py::test_check_seed_refuses[url-<lambda>-PROMPT_INJECTION_SUSPECTED]"
+   "first_failure": "tests/test_predictive_behavioral.py::test_failure_states[URL_IN_CODE-RESPONSE_REFUSED_INJECTION-1]"
   },
   {
    "mutation": "R1 probability key accepted",
@@ -278,7 +278,7 @@
   {
    "mutation": "G13 key-like env allowed",
    "caught": true,
-   "first_failure": "tests/test_predictive_behavioral.py::test_subprocess_gates[env0-eng0-False-KEY_NOT_APPROVED]"
+   "first_failure": "tests/test_predictive_behavioral.py::test_subprocess_gates[env0-eng0-KEY_NOT_APPROVED]"
   },
   {
    "mutation": "G14 parent environment inherited",
@@ -296,14 +296,114 @@
    "first_failure": "tests/test_predictive_behavioral.py::test_failure_states[KEY_MISSING-KEY_MISSING-1]"
   },
   {
-   "mutation": "G17 netns not required",
+   "mutation": "G17 unshare prefix dropped (skeptic X2)",
    "caught": true,
-   "first_failure": "tests/test_predictive_behavioral.py::test_subprocess_gates[env4-eng4-False-NETNS_REQUIRED]"
+   "first_failure": "tests/test_predictive_behavioral.py::test_every_subprocess_runs_in_its_own_network_namespace"
   },
   {
    "mutation": "G18 cost setting nan accepted",
    "caught": true,
    "first_failure": "tests/test_predictive_behavioral.py::test_worst_case_refusal_makes_no_call"
+  },
+  {
+   "mutation": "P1 capped run counts its actions (M1)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_a_meter_block_at_its_cap_refuses_the_run"
+  },
+  {
+   "mutation": "P2 validator ignores llm_actions on a refused run",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_m1_no_capped_refused_or_tripped_run_is_ever_available"
+  },
+  {
+   "mutation": "P3 n and stream forwarded (M2)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_m2_meter_refuses_parameters_that_multiply_the_bill[extra0]"
+  },
+  {
+   "mutation": "P4 unknown call keys forwarded (M2)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_m2_meter_refuses_parameters_that_multiply_the_bill[extra5]"
+  },
+  {
+   "mutation": "P5 missing usage tolerated (M2)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_m2_meter_accepts_n1_and_stream_false_meters_usage_and_stops_without_usage"
+  },
+  {
+   "mutation": "P6 charge on the received body only (m5)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_m2_charge_covers_the_forwarded_body_not_only_the_received_one"
+  },
+  {
+   "mutation": "P7 repeated labels accepted (M3)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_m3_repeated_labels_never_reach_a_document"
+  },
+  {
+   "mutation": "P8 validator allows repeated labels (M3)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_m3_repeated_labels_never_reach_a_document"
+  },
+  {
+   "mutation": "P9 stability on labels only (M5, CX-S14)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_stability_rules_directly"
+  },
+  {
+   "mutation": "P10 monitor reversal flag dropped",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_stability_rules_directly"
+  },
+  {
+   "mutation": "P11 seed sensitivity under persona set 1 only (skeptic X5)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_stability_rules_directly"
+  },
+  {
+   "mutation": "P12 service response size cap off (skeptic X4)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_minor_m4_response_size_cap_and_normalized_response_scan[HUGE-BAD_RESPONSE]"
+  },
+  {
+   "mutation": "P13 no unicode normalization (m2)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_minor_m1_m2_wider_seed_checks[zero"
+  },
+  {
+   "mutation": "P14 numeric times ignored (m1)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_minor_m1_m2_wider_seed_checks[numeric"
+  },
+  {
+   "mutation": "P15 relative wording ignored (m1)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_minor_m1_m2_wider_seed_checks[relative"
+  },
+  {
+   "mutation": "P16 slash dates ignored (m1)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_minor_m1_m2_wider_seed_checks[slash"
+  },
+  {
+   "mutation": "P17 free stability flags (m3)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_minor_m3_flags_reasons_and_claim_keys_come_from_the_vocabulary"
+  },
+  {
+   "mutation": "P18 free reasons (m3)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_minor_m3_flags_reasons_and_claim_keys_come_from_the_vocabulary"
+  },
+  {
+   "mutation": "P19 extra refused_claims keys (m3)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_minor_m3_flags_reasons_and_claim_keys_come_from_the_vocabulary"
+  },
+  {
+   "mutation": "P20 unreachable meter accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_behavioral.py::test_subprocess_refuses_a_meter_it_could_not_reach"
   },
   {
    "mutation": "U1 rule R5 dropped",
@@ -321,5 +421,5 @@
    "first_failure": "tests/test_predictive_behavioral.py::test_forecast_entries_are_strings_and_pass_the_publication_validator"
   }
  ],
- "wall_s": 340.6
+ "wall_s": 704.6
 }

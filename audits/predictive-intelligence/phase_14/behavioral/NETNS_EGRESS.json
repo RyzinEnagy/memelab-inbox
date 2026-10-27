@@ -1,0 +1,17 @@
+{
+ "EXTERNAL_SIMULATOR": {
+  "reasons": [],
+  "received_so_far": 0,
+  "status": "SIMULATION_RAN",
+  "transport": "SUBPROCESS_NETNS"
+ },
+ "MOCK_SIMULATOR": {
+  "reasons": [],
+  "received_so_far": 0,
+  "status": "SIMULATION_RAN",
+  "transport": "SUBPROCESS_NETNS"
+ },
+ "netns_available": true,
+ "positive_control_from_parent_received": true,
+ "received_from_children": 0
+}

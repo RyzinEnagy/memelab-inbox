@@ -1,4 +1,4 @@
-"""Phase 14 committed outputs (added with them, after the recorded run at the frozen code c59c494): the recorded run's log, the
+"""Phase 14 committed outputs (repair pass 2: the recorded run repeated at the repair frozen code, PI-D-076): the recorded run's log, the
 rule-based scenarios on the 830 development seeds (re-derived here, byte-equal), the mock grids, the failure matrix, the cost
 caps, the MiroFish boundary probe, the core-unaffected check and the mutation probe. No network, no store, no label."""
 from __future__ import annotations
@@ -12,7 +12,7 @@ from memelab.predictive import behavioral as B
 
 ROOT = Path(__file__).resolve().parents[1]
 P14 = ROOT / "audits/predictive-intelligence/phase_14"
-FROZEN = "c59c494ae5b6c91ddca89916a799aed03a6a7960"
+FROZEN = "69a3584fdb37eb3604496ec73233a945c4ce292b"      # repair pass 2 frozen code (first pass c59c494)
 
 
 def j(rel):
@@ -60,18 +60,23 @@ def test_mock_grids_and_failure_matrix():
     for seed in ("fictional", "real_development_seed"):
         assert g[f"{seed}:STABLE"]["stability"]["status"] == B.STABLE
         for mode, flag in (("SEED_SENSITIVE", "SEED_SENSITIVE"), ("PERSONA_SENSITIVE", "PERSONA_SENSITIVE"),
-                           ("NONREPRODUCIBLE", "NOT_REPRODUCIBLE"), ("EVIDENCE_BLIND", "NOT_SOURCE_GROUNDED")):
+                           ("NONREPRODUCIBLE", "NOT_REPRODUCIBLE"), ("EVIDENCE_BLIND", "NOT_SOURCE_GROUNDED"),
+                           ("MONITOR_REVERSAL", "MONITOR_REVERSED")):
             r = g[f"{seed}:{mode}"]
             assert r["stability"]["status"] == B.UNSTABLE and flag in r["stability"]["flags"] and "UNSTABLE_EXPLORATORY" in r["reasons"]
         assert all(v["valid"] for k, v in g.items())
     rows = list(csv.DictReader(open(P14 / "behavioral/P30_MATRIX.csv")))
-    assert len(rows) == 39
+    assert len(rows) == 45
     for r in rows:
         ran = r["case"] in ("service:STABLE", "service:WALLET_CLAIM", "subprocess:STABLE")
         assert r["simulation_state"] == ("AVAILABLE" if ran else "SIMULATION_NOT_AVAILABLE"), r
+        assert (r["status"] == "SIMULATION_RAN") == ran, r                       # skeptic M1: state agrees with the adapter
         assert r["abstain_reason"] == "" and r["valid_document"] == "True"
         if r["case"].startswith(("gate:", "egress:")):
             assert r["service_requests"] == "0"
+    by = {r["case"]: r for r in rows}
+    assert by["service:METER_CAP"]["reasons"] == "COST_CAP_REACHED" and by["service:ERROR_THEN_CIRCUIT_OPEN"]["reasons"] == "CIRCUIT_OPEN"
+    assert by["service:SEED_REFUSED"]["status"] == "SEED_REFUSED" and by["service:REPEATED_LABEL"]["reasons"] == "RESPONSE_REFUSED_REPEATED_LABEL"
 
 
 def test_cost_caps_and_breakers():
@@ -84,6 +89,10 @@ def test_cost_caps_and_breakers():
     assert c["upstream_breaker"]["codes"] == [500] * 5 + [503, 503] and c["upstream_breaker"]["upstream_calls"] == 5
     assert c["prompt_call_kill"]["prompt_over_cap"] == 413 and c["prompt_call_kill"]["four_calls_cap_three"] == [200, 200, 200, 429]
     assert c["prompt_call_kill"]["after_kill"] == 503
+    mp = c["multiplying_parameters"]
+    assert all(v == 400 for k, v in mp["codes"].items() if k not in ("{}", '{"n": 1, "stream": false}'))
+    assert mp["codes"]["{}"] == mp["codes"]['{"n": 1, "stream": false}'] == 200 and mp["upstream_calls"] == 2 and mp["usage_not_above_charge"]
+    assert c["usage_missing"]["codes"] == [200, 503, 503] and c["usage_missing"]["upstream_calls"] == 1
 
 
 def test_mirofish_probe_through_the_boundary():
@@ -94,6 +103,7 @@ def test_mirofish_probe_through_the_boundary():
         assert r[k]["status"] == B.SIMULATION_RAN and r[k]["reasons"] == ["NOT_CODABLE"] and r[k]["llm_actions"] > 0 and r[k]["labels"] == []
     assert r["meter_cap_low"]["reasons"] == ["COST_CAP_REACHED"] and r["meter_cap_low"]["cost"]["est_cost_usd"] <= 0.03
     assert r["meter_cap_low"]["cost"]["calls_refused"] > 0
+    assert r["meter_cap_low"]["llm_actions"] == 0 and r["meter_cap_low"]["cost"]["llm_actions_observed"] > 0     # skeptic M1, real engine
     assert r["llm_down"]["reasons"] == ["NO_LLM_ACTIONS"] and r["llm_down"]["runner_side"]["script_exit_code"] == 0
     assert r["llm_down"]["runner_side"]["meter_breaker_open"] is True
     assert r["config_cap_below_worst_case"]["reasons"] == ["COST_CAP_REACHED"] and r["config_cap_below_worst_case"]["runner_side"] is None
@@ -101,10 +111,16 @@ def test_mirofish_probe_through_the_boundary():
     assert all(v["contamination_flags"] == list(B.P26_FLAGS) and v["valid"] for v in r.values())
 
 
+def test_netns_children_cannot_reach_the_parent():
+    n = j("behavioral/NETNS_EGRESS.json")
+    assert n["netns_available"] and n["received_from_children"] == 0 and n["positive_control_from_parent_received"]
+    assert n["MOCK_SIMULATOR"]["transport"] == n["EXTERNAL_SIMULATOR"]["transport"] == "SUBPROCESS_NETNS"
+
+
 def test_core_unaffected_and_mutation_probe():
     c = j("behavioral/CORE_UNAFFECTED.json")
     assert c["pass"] and c["blocker"] == "BLOCKER_OK" and c["byte_equal"] == 22 and c["new"] == []
     mut = j("evidence/mutation_behavioral.json")
-    assert mut["mutations"] == mut["caught"] >= 60 and mut["survivors"] == []
+    assert mut["mutations"] == mut["caught"] >= 83 and mut["survivors"] == []
     o = j("evidence/oracle_jsonschema.json")
     assert o["documents"] == 830 and o["schema_errors"] == 0 and o["lab_validator_errors"] == 0

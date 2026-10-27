@@ -6,9 +6,10 @@
     "calls_refused": 9,
     "cap_usd": 0.01,
     "est_cost_usd": 0.009709,
+    "llm_actions_observed": 7,
     "llm_calls": 7,
     "prompt_chars": 1505,
-    "wall_s": 0.416
+    "wall_s": 0.391
    },
    "reasons": [
     "COST_CAP_REACHED"
@@ -27,16 +28,19 @@
    "charged_microusd": 9709,
    "killed": false,
    "prompt_chars": 1505,
-   "usage_above_charge": 0
+   "usage_above_charge": 0,
+   "usage_microusd": 21,
+   "usage_missing": 0
   },
   "second_run": {
    "cost": {
     "calls_refused": 16,
     "cap_usd": 0.01,
     "est_cost_usd": 0.0,
+    "llm_actions_observed": 0,
     "llm_calls": 0,
     "prompt_chars": 0,
-    "wall_s": 0.401
+    "wall_s": 0.398
    },
    "reasons": [
     "COST_CAP_REACHED"
@@ -45,6 +49,33 @@
   },
   "upstream_calls": 7,
   "upstream_calls_after_first_run": 7
+ },
+ "multiplying_parameters": {
+  "codes": {
+   "{\"best_of\": 4}": 400,
+   "{\"logprobs\": true}": 400,
+   "{\"n\": 1, \"stream\": false}": 200,
+   "{\"n\": 64, \"stream\": true}": 400,
+   "{\"n\": 8, \"stream\": true}": 400,
+   "{\"n\": 8}": 400,
+   "{\"stream\": true}": 400,
+   "{}": 200
+  },
+  "meter": {
+   "breaker_open": false,
+   "calls_forwarded": 2,
+   "calls_refused": 6,
+   "cap_microusd": 50000000,
+   "cap_reached": false,
+   "charged_microusd": 2338000,
+   "killed": false,
+   "prompt_chars": 4,
+   "usage_above_charge": 0,
+   "usage_microusd": 6000,
+   "usage_missing": 0
+  },
+  "upstream_calls": 2,
+  "usage_not_above_charge": true
  },
  "prompt_call_kill": {
   "after_kill": 503,
@@ -83,9 +114,32 @@
    "charged_microusd": 0,
    "killed": false,
    "prompt_chars": 10,
-   "usage_above_charge": 0
+   "usage_above_charge": 0,
+   "usage_microusd": 0,
+   "usage_missing": 0
   },
   "upstream_calls": 5
+ },
+ "usage_missing": {
+  "codes": [
+   200,
+   503,
+   503
+  ],
+  "meter": {
+   "breaker_open": false,
+   "calls_forwarded": 1,
+   "calls_refused": 2,
+   "cap_microusd": 1000000,
+   "cap_reached": false,
+   "charged_microusd": 0,
+   "killed": true,
+   "prompt_chars": 2,
+   "usage_above_charge": 0,
+   "usage_microusd": 0,
+   "usage_missing": 1
+  },
+  "upstream_calls": 1
  },
  "worst_case_refusal": {
   "plan": {
