@@ -1,0 +1,54 @@
+{
+ "git_status": "clean",
+ "head": "b0243b4eec96c18bd3c87db6ccb12d37976e51f9",
+ "lab_db_sha256": "068287c0d7e454361eb42f54b2f90e49e4075ae3a962a3c57867165ab6a679ca",
+ "numpy": "2.5.3",
+ "origin_head": "b0243b4eec96c18bd3c87db6ccb12d37976e51f9",
+ "package_checksums": {
+  "command": "sha256sum -c SHA256SUMS.txt",
+  "failed": 0,
+  "ok": 41
+ },
+ "phase": "15",
+ "phase14_key_tests": {
+  "command": "python -m pytest tests/test_predictive_behavioral.py tests/test_predictive_phase14_outputs.py -q -p no:cacheprovider",
+  "exit_code": 0,
+  "result": "211 passed, 1 skipped"
+ },
+ "phase14_results_status": "TEST_ONLY",
+ "phase14_seed_rebuild": {
+  "byte_equal_to_committed": true,
+  "command": "python -B audits/predictive-intelligence/phase_14/probes/build_seeds.py <scratchpad>/entry_p14",
+  "development_decisions": 830,
+  "label_calls": [],
+  "seeds_refused": 0,
+  "seeds_sha256": "a0c618177503013016f0043356ff5d99ec85e55c872c097ddc87c0f57d26a0c1",
+  "socket_events": []
+ },
+ "python": "3.13.17",
+ "seal_check": {
+  "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+  "exit_code": 0,
+  "problems": []
+ },
+ "snapshot_counts_read_without_labels": {
+  "development": 830,
+  "holdout_scored_decisions": 68,
+  "holdout_scored_decisions_with_snapshot": 68,
+  "holdout_window": 95,
+  "prospective": 0,
+  "snapshots": 925
+ },
+ "suite": {
+  "command": "python -m pytest tests -q -p no:cacheprovider",
+  "exit_code": 1,
+  "failed": [
+   "tests/test_catalyst.py::test_dedup_corroboration_resurface_denial"
+  ],
+  "result": "1 failed, 1807 passed, 1 skipped, 1 warning in 211.13s",
+  "start_utc": "2026-10-27T00:41:31Z",
+  "strays_removed": [
+   "data/reports/20261027_0041_BRETT_0x532f.md"
+  ]
+ }
+}
