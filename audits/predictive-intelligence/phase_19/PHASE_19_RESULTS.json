@@ -2,7 +2,7 @@
  "phase": "19",
  "status": "NEEDS_REVIEW",
  "head_before": "4b07b0d2b906a719ae6bd948ae86d5a20282b753",
- "head_after": "recorded in HANDOFF.md (repair records commit and the post-commit record commit after bb2639a)",
+ "head_after": "afb024d (repair records); the post-commit record commit follows it",
  "checks": [
   {
    "name": "entry full suite at 4b07b0d",
@@ -199,6 +199,20 @@
    "exit_code": 1,
    "result": "refused: too early (sample reads re-readable from 2026-10-29T14:14:24Z to 14:26:44Z); OPEN",
    "pass": false
+  },
+  {
+   "name": "RP2 post-commit full suite at afb024d",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "2 failed, 2200 passed, 1 skipped (the two known clock-dependent tests only)",
+   "pass": true
+  },
+  {
+   "name": "RP2 guard, seal, single-branch release audit at afb024d",
+   "command": "python -m memelab social guard; check_seal.py; release_audit.py --history",
+   "exit_code": 0,
+   "result": "0 violations over 2,850 files; problems []; Needs action: no.",
+   "pass": true
   }
  ],
  "artifacts": [

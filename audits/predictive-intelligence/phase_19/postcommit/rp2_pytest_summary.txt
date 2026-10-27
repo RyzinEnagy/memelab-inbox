@@ -1,0 +1,6 @@
+command: python -m pytest tests -q -p no:cacheprovider at afb024d (repair pass 2)
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+FAILED tests/test_catalyst_firecrawl.py::test_page_history_and_spend_survive_a_new_session_through_the_state_export
+2 failed, 2200 passed, 1 skipped, 1 warning in 503.48s (0:08:23)
+exit 1
+strays removed by hand: data/reports/20261027_1542_BRETT_0x532f.md, data/memelab.sqlite-shm, data/memelab.sqlite-wal

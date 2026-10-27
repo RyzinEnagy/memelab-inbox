@@ -180,4 +180,4 @@ Counterexample CX-SK19 (skeptic): a revision of a final LABELED outcome appended
 
 Disagreements: none with the findings. The skeptic offered two remedies for M1; the orchestrator chose (b) as PI-D-106. The A3 and A4 attacks are not refused by the module itself (a consistent rewrite is indistinguishable from a ledger without history); they are caught by history (git) and by the rebuild, which is what the tests now check.
 
-Remaining open item: G25 (PI-D-106). Post-commit checks of the repair: `postcommit/rp2_*`.
+Remaining open item: G25 (PI-D-106). Post-commit checks at the repair records commit `afb024d`: suite `2 failed, 2200 passed, 1 skipped in 503.48s` (the two known clock-dependent failures only; strays removed by hand), guard 0 violations over 2,850 files, seal check 0 problems, single-branch release audit exit 0 "Needs action: no." (`postcommit/rp2_*`).
