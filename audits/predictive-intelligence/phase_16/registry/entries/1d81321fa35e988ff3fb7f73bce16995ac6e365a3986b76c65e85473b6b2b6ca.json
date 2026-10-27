@@ -1,0 +1,233 @@
+{
+ "abstain_reason": null,
+ "calibration": null,
+ "card_file_sha256": "76b04ac3bb45baeea855cd223073db0915c16e85b489e8a8affd1b61e4207e23",
+ "card_path": "audits/predictive-intelligence/phase_10/artifacts/T1b_6h/S1_SC_LOGIT.json",
+ "data_snapshot_sha": "90a00c7ba0a66fbc2cfc7c3f98232fe46ee2a3f6d22f5ff885a7310bb3d0d28a",
+ "entry_id": "1d81321fa35e988ff3fb7f73bce16995ac6e365a3986b76c65e85473b6b2b6ca",
+ "entry_kind": "MODEL",
+ "evidence": {
+  "candidates": {
+   "file": "audits/predictive-intelligence/phase_12/validation/CANDIDATES.json",
+   "sha256": "5fd37b64e6bcb20f16897b1b76b14fc4e048f9c17c5b908fefb490232cc955c4"
+  },
+  "development": [
+   {
+    "decision_days": 5,
+    "n_with_number": 37,
+    "positives": 3,
+    "reference": "B0",
+    "verdict": "INSUFFICIENT_EVENTS"
+   },
+   {
+    "decision_days": 5,
+    "n_with_number": 37,
+    "positives": 3,
+    "reference": "R2_SC_RULE",
+    "verdict": "INSUFFICIENT_EVENTS"
+   }
+  ],
+  "prospective": {
+   "status": "NOT_YET_MATURED"
+  },
+  "retrospective_first_opening": {
+   "file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_METRICS.csv",
+   "opening_log_sha256": "ed392a484870f581b874eb7cbe700fb3dc69bb21a6b2b03ce9c1e9be0eb7f0f4",
+   "primary_results_sha256": "30b6423153c734cfcdd2b0813760d49e9c818278bd56a9e3276ce39be84363dc",
+   "sha256": "365fa345986e76abd087a145842431f0deb795109764e34713c5ba6253253726"
+  },
+  "selection_corrections": {
+   "file": "audits/predictive-intelligence/phase_12/validation/POST_OPENING_CORRECTIONS.csv",
+   "label": "POST_OPENING (more conservative only)",
+   "sha256": "bb42bb7f5a1ea37df5c524ecbd1d9cd3c9e4e3fbb8095318e58b23833ec3c408"
+  }
+ },
+ "facts": {
+  "calibration": {
+   "note": "no calibration card (Phase 13 calibrated the champion only)",
+   "status": null
+  },
+  "fitted": true,
+  "kind": "S1_SC_LOGIT",
+  "model_id": "S1_SC_LOGIT:price_path_target_before_invalidation_6h",
+  "post_opening_states": [
+   "NO_UNCORRECTED_SKILL",
+   "NO_UNCORRECTED_SKILL"
+  ],
+  "prospective": {
+   "note": "Phase 19 evaluates the prospective holdout",
+   "status": "NOT_YET_MATURED"
+  },
+  "retrospective": {
+   "bss": -0.06554773879050613,
+   "bss_lo": -0.22684192613169474,
+   "calibration_every_bin_ok": false,
+   "calibration_in_the_large_ok": true,
+   "days": 7,
+   "evaluation": "FIRST_OPENING",
+   "governing": "mint",
+   "k": 10,
+   "kind": "SECONDARY_HOLDOUT",
+   "n": 57,
+   "p_holm": 1.0,
+   "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+  },
+  "role": "CANDIDATE",
+  "selection_status": "NO_UNCORRECTED_SKILL",
+  "source": "STATISTICAL_MODEL",
+  "tests": {
+   "basis": "phase_12 PREOPEN_TRAPS.json failures [] and REPLAY_AUDIT ok; cards load with their hashes; registry fingerprint",
+   "contract": true,
+   "leakage": true,
+   "provenance": true
+  },
+  "training": {
+   "k": 26,
+   "n": 224
+  },
+  "vs_b2": {
+   "brier_minus_b2": -6.0005224946729774e-05,
+   "lower_bound_b2_minus_brier": -0.1278556102864557,
+   "note": "sign of the lower bound of the BSS against B2 (B2 Brier minus model Brier, over B2 Brier)"
+  }
+ },
+ "family": {
+  "candidate": "P10_S1_SC_LOGIT",
+  "kind": "S1_SC_LOGIT",
+  "module_version": "socialcat-1",
+  "phase": "10"
+ },
+ "family_version": "socialcat-1",
+ "feature_set_sha": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+ "feature_version": "2",
+ "fitted": true,
+ "inference": {
+  "abstentions": {
+   "OOD": 34
+  },
+  "differences": 0,
+  "equal_to_recorded": true,
+  "numbers": 61,
+  "outputs_sha": "8b7a4a8b8048db4296daea7e78235143687e84e774f99296ee59c848ef73e1f6",
+  "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+  "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+  "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+  "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+  "rows": 95
+ },
+ "is_fixture": false,
+ "k_train": 26,
+ "label_set_sha": "c03969674ec67e932be2f8ac0c34f6797008428fcf1ab9871feba52e99306618",
+ "labels_version": "labels-1",
+ "max_train_decision_time": 1792147326.0,
+ "max_train_label_matures_at": 1792170126.0,
+ "min_support": {
+  "bin_events": 20,
+  "effective_days": 5,
+  "holdout_events": 50,
+  "holdout_per_class": 10,
+  "prospective_events": 50,
+  "train_events": 100,
+  "train_per_class": 20
+ },
+ "model_id": "S1_SC_LOGIT:price_path_target_before_invalidation_6h",
+ "model_sha": "bcf39870ecbf3960d31e58c935bb703c74db921d47f4edbbdc174ba5c73943e5",
+ "n_train": 224,
+ "promotion": {
+  "level": "NO_GO",
+  "reasons": [
+   "RETROSPECTIVE_CALIBRATION_FAILED",
+   "RETROSPECTIVE_BSS_BELOW_0",
+   "NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION",
+   "NO_INCREMENTAL_PREDICTIVE_EDGE"
+  ],
+  "rule": "ACCEPTANCE promotion + PI-D-065 + PI-D-069 (registry-1)",
+  "shadow_reached": false
+ },
+ "publishable": false,
+ "registered_as_of_utc": "2026-10-27T00:00:00Z",
+ "registry_status": "NO_GO",
+ "registry_version": "registry-1",
+ "retrain_policy": {
+  "automatic": false,
+  "inherits_level": false,
+  "max_model_age_s": 1209600,
+  "new_entry_level": "ABSTAIN",
+  "reason": "no scheduled job is approved (PI-D-005); a retrain is a phase step with a plan",
+  "rollback": "previous pinned champion whose checks hold, else NO_VIABLE_CHAMPION",
+  "triggers": {
+   "DRIFT_ALERT": "RETRAIN_AND_HUMAN_REVIEW: the model is not used until a reviewed retrain is registered",
+   "FACTS_MISMATCH": "ROLLBACK_AND_INVESTIGATE: the entry's facts are not what its committed sources say",
+   "FEATURE_SCHEMA_MISMATCH": "REQUEST_REFUSED: recompute the inputs with the model's feature set, or retrain",
+   "INFERENCE_MISMATCH": "ROLLBACK_AND_INVESTIGATE: the model no longer gives its recorded outputs",
+   "MODEL_INCOMPATIBLE_RETRAIN_REQUIRED": "RETRAIN_REQUIRED_BEFORE_ANY_USE: the code changed under the model",
+   "MODEL_STALE": "RETRAIN_PLAN_REQUIRED: a new frozen card from a plan committed before its evaluation data are read",
+   "TARGET_OR_LABEL_VERSION_CHANGE": "RETRAIN_AND_REEVALUATE: a new target or label version is a new model"
+  }
+ },
+ "risk_flags": [
+  "BACKTEST_NOT_AVAILABLE",
+  "CATALYST_TABLES_NOT_EXPORTED",
+  "CURRENT_VENDOR_LIST_ROUTE_ABSTAINS",
+  "MODEL_STALE_AFTER_2026-10-31",
+  "NO_HISTORICAL_EXECUTABLE_DEPTH",
+  "NO_NET_TRADING_EDGE_CLAIMABLE",
+  "PRICE_PATH_NOT_PROCEEDS",
+  "RETROSPECTIVE_HOLDOUT_SPENT",
+  "SOCIAL_TABLES_NOT_EXPORTED",
+  "UNCALIBRATED"
+ ],
+ "role": "CANDIDATE",
+ "source": "STATISTICAL_MODEL",
+ "target": "price_path_target_before_invalidation_6h",
+ "target_registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "target_version": "1",
+ "thresholds": {
+  "DRIFT_ALERT": {
+   "contract_reason": "DRIFT_ALERT",
+   "delta": 0.005,
+   "detector": "Page-Hinkley on matured champion Brier loss minus B0 loss, in maturity order",
+   "min_obs": 30,
+   "rule": "an alarm at or before the decision",
+   "threshold": 2.0,
+   "two_sided": false
+  },
+  "FEATURE_SCHEMA_MISMATCH": {
+   "contract_reason": "FEATURE_SCHEMA_MISMATCH",
+   "rule": "the request's feature set sha or version differs from the entry's"
+  },
+  "INFERENCE_MISMATCH": {
+   "contract_reason": "MODEL_NOT_SELECTED",
+   "rule": "the recomputed identical-inference hash differs from the pinned one"
+  },
+  "MODEL_INCOMPATIBLE_RETRAIN_REQUIRED": {
+   "contract_reason": "FEATURE_SCHEMA_MISMATCH",
+   "rule": "the running code's feature set, family version, target registry or labels version differs from the entry's (a change without retrain, P46)"
+  },
+  "MODEL_NOT_PROMOTED": {
+   "contract_reason": "MODEL_NOT_SELECTED",
+   "rule": "registry level not SHADOW or VALIDATED_EXPERIMENTAL"
+  },
+  "MODEL_STALE": {
+   "contract_reason": "MODEL_STALE",
+   "max_model_age_s": 1209600,
+   "rule": "decision time minus training cutoff above max_model_age_s"
+  },
+  "OUT_OF_DISTRIBUTION": {
+   "conditions": [
+    "MISSING_REQUIRED_INPUT",
+    "FEATURE_OUT_OF_RANGE",
+    "SCORE_OUTSIDE_CALIBRATION_RANGE"
+   ],
+   "contract_reason": "OOD",
+   "feature_z_max": 4.0,
+   "rule": "per request, through abstention-1"
+  },
+  "RETROSPECTIVE_MODEL_NOT_AVAILABLE_AS_OF": {
+   "contract_reason": "MODEL_NOT_SELECTED",
+   "rule": "decision time before the training cutoff"
+  }
+ },
+ "training_cutoff": 1792195200.0,
+ "training_cutoff_utc": "2026-10-17T00:00:00Z"
+}

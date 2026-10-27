@@ -1,7 +1,7 @@
 {
  "code_sha256": {
   "audits/predictive-intelligence/phase_12/probes/run_holdout.py": "a593b35b625287ecbb13aac310988734a56532013ac8e85d284b441d0c641455",
-  "audits/predictive-intelligence/phase_16/probes/build_registry.py": "a3b75305fdd271711460172eacb19258d8c0d096a1484220d906dd96f9b0af5e",
+  "audits/predictive-intelligence/phase_16/probes/build_registry.py": "fc50e7d4ecfc21d3718b829c78a0836c730c8d5c14c645dfff938df27cd2c555",
   "memelab/predictive/abstention.py": "abf4dd5268516d0158496428dda2efcde627530eae980e2fdcc1bbca4c58ea8a",
   "memelab/predictive/baselines.py": "3be1306a4137b7db6bdffac9541278c1703843fe1ccb75c58b99be35d6858b71",
   "memelab/predictive/calibration.py": "2e7f87c6d8846d0833893f986dda64e05b74dfb2ab79991018633aee2d8d8602",
@@ -9,27 +9,28 @@
   "memelab/predictive/evaluation.py": "cad98f43f5a0b92629b24b88cf44bea383485d809bc0b6edbab872ed5578caa7",
   "memelab/predictive/features.py": "6a66f93bd6fd753aaa989a5ea9e89878e16698f3e6ea8bf95a847f33b4eae3b3",
   "memelab/predictive/labels.py": "f50620c37129c6434a7fa9f58ff8e0733438b950ac86cc7f81eb596da41059ef",
-  "memelab/predictive/registry.py": "b2ffb52659e691321b8f8c9528e84a60dba04d141bff68cde883826dc237c27d",
+  "memelab/predictive/registry.py": "ab6d71bc315397a68ee2fddef60adec084053ecc29711166b520acff22b87f43",
   "memelab/predictive/stats.py": "e249d9d99e0d69e3f55d80e9a3d42b3a4efaf44c6488c04c4f318d576895096a"
  },
- "cpu_s": 21.601,
+ "cpu_s": 21.462,
  "debug_runs_before_frozen_code": [
   "dbg1 2026-10-27T03:02:24Z at uncommitted code: stopped while taking the before-state of phase_06/sealed/ (IsADirectoryError on raw/); it had computed the sha256 of the bytes of SEAL.json, holdout_labels.jsonl.gz, label_calls.json and others_summary.json (the same hashes check_seal.py computes; nothing decompressed, parsed, printed or stored); the before and after state is now size and mtime only, the sealed files are never opened",
   "dbg2 2026-10-27T03:02:36Z: stopped in run_holdout.load_cards (its glob of phase_*/artifacts/T*/*.json meets the Phase 13 calibration cards, KeyError '13'); cards are now loaded from the paths in CANDIDATES.json",
   "dbg3 2026-10-27T03:02:53Z: ran through the inference check and the ensemble step, stopped at the T2 in-sample stacking trap (no T2 row has both B2 and S1, so the trap had no rows); the trap now uses the B0 and B2 out-of-fold rows, which exist on every target; no rule, threshold, configuration or output definition changed",
   "dbg4 2026-10-27T03:03:25Z: complete, 69 entries (ABSTAIN 6, NO_GO 63), 69 of 69 inference equal, NO_ENSEMBLE x3, N_search 130, no failure; used to check the outputs; then tests were added for four surviving mutations (registry.py unchanged by them)"
  ],
- "end_utc": "2026-10-27T03:22:13Z",
+ "end_utc": "2026-10-27T03:38:05Z",
+ "facts_and_sources_verified": 69,
  "failures": [],
  "firecrawl_credits": 0,
- "head": "d2038a70d2a1f48c1a04ed72165975a60ed033c6",
+ "head": "8cd19bdd44bf9da67e05a585e1d508dc92222de3",
  "llm_calls": 0,
  "network_calls": 0,
  "numpy": "2.5.3",
  "python": "3.13.17",
  "sealed_folder_unchanged": true,
  "socket_events": [],
- "start_utc": "2026-10-27T03:21:51Z",
+ "start_utc": "2026-10-27T03:37:43Z",
  "stores_after": {
   "/home/claude/memelab-inbox/data/memelab.sqlite": "068287c0d7e454361eb42f54b2f90e49e4075ae3a962a3c57867165ab6a679ca",
   "/home/claude/pi_research/p05/predictive_store.sqlite": "2525f0c4a7b2662713d07e99acd1a371c33aa5082994f5f552aba477f98dd8de",

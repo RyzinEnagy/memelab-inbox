@@ -1,0 +1,45 @@
+{
+ "ensemble_ablation_equal_without_cpu_fields": true,
+ "entries_matched": 69,
+ "entry_keys_changed_summary": {
+  "retrain_policy": 69
+ },
+ "facts_levels_statuses_inference_and_model_shas_equal": true,
+ "first_run": "9eebb8d (code d2038a7)",
+ "other_files": {
+  "ACCEPTANCE_CHECKLIST.md": "BYTE_EQUAL",
+  "ensemble/ENSEMBLE_ABLATION.csv": "BYTE_EQUAL",
+  "ensemble/ENSEMBLE_ABLATION.json": "DIFFERENT",
+  "ensemble/LATENCY.json": "DIFFERENT",
+  "ensemble/POST_OPENING_LOG.json": "BYTE_EQUAL",
+  "ensemble/STABILITY.json": "BYTE_EQUAL",
+  "evidence/COMPATIBILITY_P46.json": "BYTE_EQUAL",
+  "evidence/INFERENCE_CHECK.json": "BYTE_EQUAL",
+  "evidence/ROLLBACK_TEST.json": "BYTE_EQUAL",
+  "evidence/determinism_repeat.json": "BYTE_EQUAL",
+  "evidence/entry/entry_suite_summary.txt": "BYTE_EQUAL",
+  "evidence/entry/seal_check.json": "BYTE_EQUAL",
+  "evidence/mutation_registry.json": "BYTE_EQUAL",
+  "evidence/run_log.json": "DIFFERENT",
+  "experiments/EXPERIMENT_REGISTRY.csv": "BYTE_EQUAL",
+  "experiments/LEDGER_TOTALS.json": "BYTE_EQUAL",
+  "experiments/SEARCH_LEDGER.csv": "BYTE_EQUAL",
+  "probes/build_registry.py": "DIFFERENT",
+  "probes/mutation_registry.py": "DIFFERENT",
+  "registry/REGISTRY_INDEX.json": "DIFFERENT",
+  "registry/REGISTRY_LOG.jsonl": "DIFFERENT",
+  "registry/TODAY_RECORDS.jsonl": "BYTE_EQUAL",
+  "registry/TODAY_RESULTS.jsonl": "BYTE_EQUAL",
+  "registry/TODAY_STATUS.json": "DIFFERENT"
+ },
+ "pins_and_ensemble_decisions_equal": true,
+ "reason": "RETRAIN gained the FACTS_MISMATCH trigger (CP16-0 item 2) and every entry embeds the retrain policy, so every entry's bytes and id change; the log, index and today files change with the ids; ENSEMBLE_ABLATION.json loses its CPU-time fields (item 4); facts, levels, statuses, publishable flags, inference hashes, model shas, pins, ensemble decisions and today's documents' statuses and reasons are equal",
+ "repeat": "working tree (code 8cd19bd, CP16-0)",
+ "repeat_equals_a_second_repeat_except_run_log_and_latency": true,
+ "retrain_triggers_added": [
+  "FACTS_MISMATCH"
+ ],
+ "second_repeat_files_compared": 83,
+ "thresholds_changed": false,
+ "today_documents_equal_except_ids": true
+}

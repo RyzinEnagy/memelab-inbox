@@ -4,139 +4,139 @@
   "T1_24h": [
    {
     "candidate": "P07_B0",
-    "entry_id": "dc5347a39cbeb2e93e1bbeee1036fb73061de1572881ede0afc426d5261a888e",
+    "entry_id": "dc7958018c4906320e95798dbe41d28c27647a719a11986a0387ca0fcda1888c",
     "level": "ABSTAIN",
     "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED"
    },
    {
     "candidate": "P07_B1",
-    "entry_id": "fae2c79da9d0f3d5f3de7310f26f7be1b7787d6cce86c2f2d813a0e977a57c40",
+    "entry_id": "949f0b5bbc9fdae3e6afa0412534d62d7d48314060cea93ea71438c3ce700118",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P07_B2",
-    "entry_id": "d2efa26b370403540494a2c49e300ec00cf6b2ed8720df08940641d53552f2e7",
+    "entry_id": "1a823a2de7366ddbf1bf298f498c37119a3315b4a2c20a8fe3f45325724c937f",
     "level": "ABSTAIN",
     "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED"
    },
    {
     "candidate": "P07_B3",
-    "entry_id": "a852cfcabd30c3794034b0c5777b50b1dcd8f288943879b299d2690464b98a19",
+    "entry_id": "7c7163955f2be5076dff5c4f6383756245c8c0c8b0a33b1255a80adcdb58eaa2",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P07_B3F",
-    "entry_id": "4f5a17cbb40fe324d717e612ec82d6548b81ded96b3f1fd7fb34e4aedcfcdd3e",
+    "entry_id": "e67a1a704ac5686922ae60290af17447cb4753c866ff88709e6a36c3d98a7536",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P07_B4",
-    "entry_id": "b8837cb5a41968a32ca825e908753e1b093cdf3504b8f35712b66364a632ec86",
+    "entry_id": "22fead1909400366272bab7601998109e744203458827ac0267ad824bf2e4349",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P08_M1_T_LOGIT",
-    "entry_id": "0fe35cb8f11969186ef45032cd2097bc8a1593305c088aa69c45cf58862a9e5a",
+    "entry_id": "375d7738ca76d553569ea8ba73ca79c3ae0cdf9c470c8317a263bcc52317d103",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P08_M2_T_LOGIT_B2",
-    "entry_id": "74bc7918b0b8d4130516df0adc3a706aff450e44a34feaed6b264225992eeac6",
+    "entry_id": "ff27e056cd7e4cee096c56416f77afe22c10856b0ccbd7a5658b3e0b5ac10f8b",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P08_M3_T_STUMPS",
-    "entry_id": "4347ac7ca5754ea24051fc4140e5d1766cbe5ac6061aac217a388ac6f5c98e3c",
+    "entry_id": "7d8a734aafc63d2f396e8dd053e92c285b284fb1a6f3b9a4fe22736c1be82deb",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P09_A1_OC_B2_TC",
-    "entry_id": "0d067a60ee9a633486c80dd1dde9faaaa64de7043ed551d891b3118718b6aacd",
+    "entry_id": "d965ce71b9a9a0db39f883b9661b2408c7c6d5dbe5944ded0362f121a446ec66",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P09_M1_OC_LOGIT",
-    "entry_id": "5705b1c1522e9c695d11b433a790ca5e8b18c8b7bf5f638ed2b0b2a3e9b654f0",
+    "entry_id": "d0e000b8f28a71ff982460a7f5db20be81e4f341b5918311996627729f49bd5b",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P09_M2_OC_LOGIT_B2",
-    "entry_id": "1799e0e17bb6aee309ff6d29c1d6c2b84b65ba9866457cbd0e1e52ed529ae3f3",
+    "entry_id": "7c389eeb7810b265715d2175b02bf60ab2df582ddf750f8e9753fc0899858879",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P09_M3_OC_LOGIT_TREND",
-    "entry_id": "2e87db844d5c47b1e68d019e65caf08bfca4dad726b49155788b6ab55a3be006",
+    "entry_id": "4bef4e58d0f2a4d0a9178832f6856b44efb890a29ad83c9f65aa6df7fb004016",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P09_R1_OC_RULE",
-    "entry_id": "69105a6fdfd9970d3386a4a076484249ccf81eff4ad987c44ebed8d3d08e625e",
+    "entry_id": "5a3312207fc6ae24f156b0a34fb453ee73bb54000647ad88b164119353a0462d",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_A2_SC_B2_TC",
-    "entry_id": "d6e338d667797cf071f6c2aa1b4030a13edc24a51d0d1d1b3a6a481332844052",
+    "entry_id": "195e727091be5fda96719b924db09889121d344d65c895e09cf899cff79b8baa",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_G1_SC_STUMPS_B2",
-    "entry_id": "4cc59c4e793381e5e25d8162174c29ea3376e3d7fece7144b059da11ce9b943b",
+    "entry_id": "1fcfb41a0d1805f63589ad46aba4bfa3a1df0afb40802e97ac207f5135813ccf",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_R2_SC_RULE",
-    "entry_id": "fcf9f4ccbaa10f0c0bb2c187688e9f470085519954eef67405b8273ff1b3d019",
+    "entry_id": "ed370a01eaa0b99c8025e353c495126f100ac8a996cf5139713e1181a921a97a",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_S1_SC_LOGIT",
-    "entry_id": "b2d2753f1f26c0660d3e4bafc8b9b113ec5a2aaf9c3b6501c9f7a1dc94518934",
+    "entry_id": "bdf4e3826c12c9ee0a7592566d80a813a45b7e7ee9698b935e91f4f9693ae8fa",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_S2_SC_LOGIT_B2",
-    "entry_id": "75ba2d7c0577cffad7c8e76ef227ecb71b5ec95f5ff46117d3bce428b959eb10",
+    "entry_id": "3878794c230d2f96bb63f06590c4c2e62271cfd2f1a71952bf323805e9d21d1b",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_S3_SC_LOGIT_TREND",
-    "entry_id": "938c171d52ffacf611c2eae2ca5ff03041630d2f24abc2a84cbe17ca70c7a8f0",
+    "entry_id": "5f02587de38308850dd76144c3545d89e1dec72280230ab9d2964778da84ad95",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P11_AC1_STRATA",
-    "entry_id": "49e8a5683b573ee1dcb8238bd8e9c0ccb3685bd63c4979bb34cb656b86bb310c",
+    "entry_id": "35ea3b6a243d1054cc99447a95ccb8fde61823d34723853dab4275609446b711",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P11_AC2_KNN",
-    "entry_id": "40f81797d159f8e53f5e1983024d6804b34fcea62c5373b1c17648673512a0dd",
+    "entry_id": "cadc4bbe75f27ad537d208dca49db338df77c452e82432485b1f5aae0950157d",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P11_AC3_KNN_REGIME",
-    "entry_id": "b89bcff7cdd6e22bd17cfb4d4747ceba0ec39b6fb91d4e1a0a8902cf9bf9f6cc",
+    "entry_id": "5f2d158c0dd0426688020a9ea2837b31ea0ee577be1ad9cd5fbaa1056f04ceb7",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    }
@@ -144,139 +144,139 @@
   "T1b_6h": [
    {
     "candidate": "P07_B0",
-    "entry_id": "daecc5b0476679bd86d2c6c6a1b2305ba57e79f601870a86e9e3654a91d94ea2",
+    "entry_id": "4308b4301ca580287797a60209450ad764337a941cc6d6e81416b162699daf73",
     "level": "ABSTAIN",
     "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED"
    },
    {
     "candidate": "P07_B1",
-    "entry_id": "e8a5c5708cfe5e40dad335f496989476aec2bd47d6ec9c43aac19a78ff6d95fc",
+    "entry_id": "a7c9cc842c7d6fedc78a17bf746fecd8441dc344968c800c46d884353ce8bf6f",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P07_B2",
-    "entry_id": "fd4420656a1392a01176956075b09d1b29da7fc5db95481f09c0179530f1b668",
+    "entry_id": "59fe06ff8bfbe5b0897333c12ebcad7a13bbdc4d85b1f7dbbe712e56033ec590",
     "level": "ABSTAIN",
     "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED"
    },
    {
     "candidate": "P07_B3",
-    "entry_id": "8a462f665e162b2b4be5f6dc0919af631f8950a74d73682f33fa0b29f9849bde",
+    "entry_id": "b2f12839389297322a3e3eed5993fbbb900a5e2e3af632d8c74d4461e69d8cc0",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P07_B3F",
-    "entry_id": "fa6828246f6c33ce373f66c86315c1e055033e721e1d51f851bacfd16e6aef2c",
+    "entry_id": "31e9ae9c343bfc560d9a9901549a61b815731ed9c47d8227ca86c41a872f41eb",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P07_B4",
-    "entry_id": "3c20692828eb1bb75d107f8f52a34299086d1d98c3f063c9bd0eaefd2ec8db98",
+    "entry_id": "8f1a87ebfba9b6b14cfe0d646424beec061fac24b1daa76b7ebee798e9f88374",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P08_M1_T_LOGIT",
-    "entry_id": "05ea9e3396c180fa073690b558a2405abfb68149803b7493393c0384e33ad6cd",
+    "entry_id": "9f698ecf876adec304449a25de0b74da4136691f4267fe1c732d9868dc807a2c",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P08_M2_T_LOGIT_B2",
-    "entry_id": "266ff524c24d45f80f45e3e1b576ad5443f1ad2e4920913b315dfc88ac97a359",
+    "entry_id": "4fc843000f8dfa814ed7abd00a1069a55c35dfd6a3cc0bc6e38173b95ff5ee33",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P08_M3_T_STUMPS",
-    "entry_id": "79096f57ea291160932886fc0b100232e3022a5d2cb36ff5f59dbf5e8bc9f3b9",
+    "entry_id": "28413dee1b46111281041f0dddef531467062e5e5f3945f0057da96ba9f37bdb",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P09_A1_OC_B2_TC",
-    "entry_id": "46316fa0795d9a21f25d96c6776af187117a437e248d8ad87cedd8aa30903873",
+    "entry_id": "252ccab947fac1f86184ce3519bbeee219d4fb3f30fce9d8e2fb0b280b21d6b0",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P09_M1_OC_LOGIT",
-    "entry_id": "0af436349d5ea3ff78644f7d9603d04808b807590fa9c52a1c5998b9f14c700f",
+    "entry_id": "121aa4a8dfb53b92b30d4b20b4aae1f08cc2291f8e39e3cca0ea8fc5506e39b0",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P09_M2_OC_LOGIT_B2",
-    "entry_id": "8644a26ce9096e3997552d04abb3e39394076bbb9d46d36fc24546e416b92d87",
+    "entry_id": "fb6927014201fd7e904751966c5dc046c75e5ff1a331f62eb84791bb5b53a25a",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P09_M3_OC_LOGIT_TREND",
-    "entry_id": "4bc325da1ae1d45203c269c5750b7d0017964c108061906e8bb91f31b6654e27",
+    "entry_id": "84b952cd9e91b3f78fc41e5436d344699261395e1a8e88f9c52bc4f6f02d1358",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P09_R1_OC_RULE",
-    "entry_id": "db7e29f3b636cd19dd05528eabc49b211ca85c1e65031e68ac3db963a1ba6071",
+    "entry_id": "58d63f09447a91ad28a640a5a22123d54eb8d470235557eae9b139f9e5915495",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_A2_SC_B2_TC",
-    "entry_id": "919334cff7b52bfe68e78ebc289b7790a49f87ce1023a9f6987d9818d8537734",
+    "entry_id": "e84e11a953afb09dfb6ab7a30840554287826c94ccadac179d3dd2998d9350c3",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_G1_SC_STUMPS_B2",
-    "entry_id": "1affaae7e81a8815bf6e6d2cc2639937907cd6afed8b11c40effa230e2dbd63b",
+    "entry_id": "c63ae3cd38083042ce9b9000977e3cc0524eff2d6776f06f2512af12694060e3",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_R2_SC_RULE",
-    "entry_id": "4a3297fcf08e12a93ebc235fdd4c17decdefd7d7a2161da811f036ae20f1bb01",
+    "entry_id": "e0d499e177fd71bcc5165279a4af0d19f8a218f2de4557ef4a0b1a54302eb9c3",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_S1_SC_LOGIT",
-    "entry_id": "c6429e3cb40ac8e6482057977a23714eca33457edf01318884bf3bcceef31727",
+    "entry_id": "1d81321fa35e988ff3fb7f73bce16995ac6e365a3986b76c65e85473b6b2b6ca",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_S2_SC_LOGIT_B2",
-    "entry_id": "5a0d7289f8497662556b4563fd8e326cb04fc13769c816682d7a7a285d372921",
+    "entry_id": "27d98003abb81f5103b569f1d47fb204bb8185783c9cad6a204ec6066778228c",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_S3_SC_LOGIT_TREND",
-    "entry_id": "4300d3f50619bd3ec36245a216b84ac40933478f109af262826ccbfefdb1a74a",
+    "entry_id": "cd4461479253dc5edc26fcedf6b61ab5b6a8d7ce2773b98492c17551153f578b",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P11_AC1_STRATA",
-    "entry_id": "1e4e364cc5b1f11048d6957d2c210586264fa67a7c5fcd39dc43d98e9b8aa69b",
+    "entry_id": "60906642cab19eb5ff456f1b45a9326a0b2974f2512911d76d8a581b7151944d",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P11_AC2_KNN",
-    "entry_id": "3b17bfa5a1d9aefbe0166da921fc016c39f21c23bfb17f25306722b96c7ffac4",
+    "entry_id": "b6c0bb0b5aa501865440558f1de65028e607591f334c05a24d810472a3e3f5a3",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P11_AC3_KNN_REGIME",
-    "entry_id": "e85737f0a7193176c0bf2aaf274ebd7104eb69a1eed6e1a50fee7c27090464d0",
+    "entry_id": "7fd3818dfe783b56ea6414404bd3217426d86bf068d063a340b6ea75e2c08ada",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    }
@@ -284,139 +284,139 @@
   "T2_24h": [
    {
     "candidate": "P07_B0",
-    "entry_id": "8ad8ce7e5c6a4c5240293710c265aa0f7adb650c3a2dd28d6c1c6166f8794a43",
+    "entry_id": "30ddd95b159b393b14b25521ce8c9306ee1534b229f9fc0bcf38484d2bba3f95",
     "level": "ABSTAIN",
     "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED"
    },
    {
     "candidate": "P07_B1",
-    "entry_id": "1a559d8c836430712089b88d4dd9d3dc23df05415c68cef6e6b6b26822f3aaec",
+    "entry_id": "8561a9d5e675ea91bfe77faac6680eaf027e2e69feec422c6de2959c8d0e7b08",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P07_B2",
-    "entry_id": "0b9b34b4cd9c2d4345dc1b323d5cdd21b495ed9690d1cb25ed95f2fd8fe0f28a",
+    "entry_id": "e1dc8034580013a157b31e4828c35ac262fb958c086a9d145f270172a14d115a",
     "level": "ABSTAIN",
     "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED"
    },
    {
     "candidate": "P07_B3",
-    "entry_id": "29b734ca9d8c7a70cb4bbaa439247f0dc14b1840d7462bb91f2d82982fdbe484",
+    "entry_id": "f45f5828b07a858594530770e00b66cf103384c049615da33bd354d3a813b21f",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P07_B3F",
-    "entry_id": "b74035fef9ced9bdb02eb2e7b7f34113a7983b6136acee433aba908c87d2db44",
+    "entry_id": "5531fc528c667857577be5a0e14974fed68368e7c9cb5b1bac923cd2016c963e",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P07_B4",
-    "entry_id": "7bc9a1f8a48fff88587f2b5e74603894d8e49676831158aa10e55f2d61d50dad",
+    "entry_id": "18952ccfb60e89ab3e2d685c9c31bfab671ed68c1697acf7c805e3a081c4bc76",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P08_M1_T_LOGIT",
-    "entry_id": "01b15bc866f07f59fd26a61240ecdbde466e5f50b0561e37b4c1688787e30c13",
+    "entry_id": "854928bd77bf93e7c2606d83dd23f471797850117f4e446f52b3760eba9f1689",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P08_M2_T_LOGIT_B2",
-    "entry_id": "8ce1f9fb0907420b94f93cb540214e2f2822d62c59617edbfd8ee04362746e31",
+    "entry_id": "10fcced679bc3b26f213f7ec5777d7ba58585d1fe5c775ce305b55aa27c5ba3a",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P08_M3_T_STUMPS",
-    "entry_id": "9a95fe74664bb4ef50ab0499ddfec71d4043e482be3e320f23da271a8b77ce50",
+    "entry_id": "1c5433dbaca8fe6bcbd80cee45d455f0528df8f102cde376fdb9f169725affd2",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P09_A1_OC_B2_TC",
-    "entry_id": "fe68b82d0be100e46a6668d476109871412466187123391058de7f3cd2f4e90e",
+    "entry_id": "b81928efcecb5be68022e265b0f5c49620fab068c203270fb09bec8175c6daef",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P09_M1_OC_LOGIT",
-    "entry_id": "18fd19d0ab8f1564d836eccd73ee846a740be8cb6200e1e412be209231ea7355",
+    "entry_id": "c770682cc3cfdb9f0cbe9009de1c7370e96b9b43afca8a48dc44ef4b8e335642",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P09_M2_OC_LOGIT_B2",
-    "entry_id": "0c7559332793119308ce733f527e685759c8fb9471e29d3a9b92cc67ca922e8c",
+    "entry_id": "3d8fb195ec6b9fb6c8564d529a11d93630e31482d26a49c0eeedad13bf5049d8",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P09_M3_OC_LOGIT_TREND",
-    "entry_id": "6c4cf46610b7451babbf525837abb0e03a32b3b72f1b7144f5ff16c02322e62a",
+    "entry_id": "79c93bf22f23858ce19818aa853ced5e29a86b9b8e6978bdc3cf5b33bc172f3e",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P09_R1_OC_RULE",
-    "entry_id": "ca8e81233c944b80c928f22435b9009b5eebcb2c7cdb377dde010640732729cb",
+    "entry_id": "a19d044e502b0f514e9b53c858673962c5574f7a5ada8963ec704d9aaeaa4a0a",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_A2_SC_B2_TC",
-    "entry_id": "8fde517fa5c65aa2664983f170ea63bca35836542010c8a7a5d94efb30f318e9",
+    "entry_id": "67ab5fb4669e58f30a338c1219df62e8bb869aa784603da98b00dfc9cf3af341",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_G1_SC_STUMPS_B2",
-    "entry_id": "8f314c6195796b45ccdc8712cce4091f74b7dcff82a0f88f836dcddb4f8d64b3",
+    "entry_id": "e12e45b6c2e407669504b00b3f8d18ee9004701f0892a785291a3ea4e58f519d",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_R2_SC_RULE",
-    "entry_id": "037164f979ac9b11da5da6f8ccb9d86d7afd2cd41bf58bc632786d5d1fe23adc",
+    "entry_id": "ab96db97ab1fd2645c99b0218482e6c18627c53c70aa4ead989ff2e15595d974",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_S1_SC_LOGIT",
-    "entry_id": "d59e461545a5b82154c699d1f5d77792636799750bf336fdcb980df592964ced",
+    "entry_id": "c8b8b19adaa444965863e1395cd0546fbeee5bd9315aef1fa88f118fc7225019",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_S2_SC_LOGIT_B2",
-    "entry_id": "74dc0ac4847694960150b37697d9a886ce27fa82360ec5cda5f1b39688b732f7",
+    "entry_id": "24ba5af37388e64f9aca0176b9d09c9103327e0ce25eadc9dd678726ecde6227",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P10_S3_SC_LOGIT_TREND",
-    "entry_id": "3598aca1381887e6d30aa15d606077ed12f68db61a3649505a447ac4f928790a",
+    "entry_id": "68bf394192cfe4c627f66d29861d6a123aa4b38d0394f036ab79e73ebbc31617",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P11_AC1_STRATA",
-    "entry_id": "619ade0c59576156b8399b88ac06668a0e2290f7159824a7a12dcaeb7706b380",
+    "entry_id": "fa4c0adb0aafa039f475575d6649ab3ff6bc5cefa5b55a8b14bfb44362faa3ea",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P11_AC2_KNN",
-    "entry_id": "c81dd5c0612dfe13491a3e4d61bf5c8516fe3f04754d55c3c4a374ec38d048ca",
+    "entry_id": "3263aa7887699fb2a2fb8acdc1ba0b1d7774833e7a3d25943525b030f77a9f2f",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    },
    {
     "candidate": "P11_AC3_KNN_REGIME",
-    "entry_id": "4f45f0f7dba77648f9e3ecfff3978ff24a738484219e52012b58184889fc7b56",
+    "entry_id": "b27aeb8671bd3223bc2e4b145ddef954fa0769b07f72596ae974f369892606e7",
     "level": "NO_GO",
     "registry_status": "NO_GO"
    }
@@ -428,7 +428,7 @@
   "NO_GO": 63
  },
  "log": "registry/REGISTRY_LOG.jsonl",
- "log_sha256": "ee5089a8b5d7bf937dfe121300cd54ef5cdd35879c8f645809a85d04f8a4fd09",
+ "log_sha256": "6ee9226fc49bbdece175114d26fec968042ab637d3b3e07a9834b973f9d494b0",
  "promotion_path": "closed under the frozen ACCEPTANCE promotion table: the retrospective holdout is spent and any model trained after 2026-10-17 has it inside its training window; a change control to ACCEPTANCE promotion (Elving or the orchestrator) is needed before any model can reach SHADOW",
  "publishable": 0,
  "registered_as_of_utc": "2026-10-27T00:00:00Z",
@@ -443,7 +443,7 @@
    "as_of_utc": "2026-10-27T00:00:00Z",
    "champion": null,
    "ensemble": "NO_ENSEMBLE",
-   "event_id": "5edf8fbef7b3d3e5dc987c20eb929480257d6f8df873e5f8f100394b5e36f1ab",
+   "event_id": "855f3a01d9d19b6576fae7a14af0a92d47ca587dd152271dc83f6d5ff67cf6f5",
    "mode": "NO_VIABLE_CHAMPION",
    "phase12_champion_basis": "default: no candidate earned champion_over_B2 on development data",
    "phase12_champion_restated": "P07_B2",
@@ -458,8 +458,8 @@
     "simple_model": "B2:price_path_target_before_invalidation_24h"
    },
    "references": {
-    "base_rate": "dc5347a39cbeb2e93e1bbeee1036fb73061de1572881ede0afc426d5261a888e",
-    "simple_model": "d2efa26b370403540494a2c49e300ec00cf6b2ed8720df08940641d53552f2e7"
+    "base_rate": "dc7958018c4906320e95798dbe41d28c27647a719a11986a0387ca0fcda1888c",
+    "simple_model": "1a823a2de7366ddbf1bf298f498c37119a3315b4a2c20a8fe3f45325724c937f"
    },
    "target": "price_path_target_before_invalidation_24h"
   },
@@ -467,7 +467,7 @@
    "as_of_utc": "2026-10-27T00:00:00Z",
    "champion": null,
    "ensemble": "NO_ENSEMBLE",
-   "event_id": "81649dc84f8e150fac44004f252d4ee0d02d26d48210cef7d8889585574dbc38",
+   "event_id": "c1b96fb182a83d526bfd194e3314f70544317a7032e4a785944b8d0013da54c2",
    "mode": "NO_VIABLE_CHAMPION",
    "phase12_champion_basis": "default: no candidate earned champion_over_B2 on development data",
    "phase12_champion_restated": "P07_B2",
@@ -482,8 +482,8 @@
     "simple_model": "B2:price_path_target_before_invalidation_6h"
    },
    "references": {
-    "base_rate": "daecc5b0476679bd86d2c6c6a1b2305ba57e79f601870a86e9e3654a91d94ea2",
-    "simple_model": "fd4420656a1392a01176956075b09d1b29da7fc5db95481f09c0179530f1b668"
+    "base_rate": "4308b4301ca580287797a60209450ad764337a941cc6d6e81416b162699daf73",
+    "simple_model": "59fe06ff8bfbe5b0897333c12ebcad7a13bbdc4d85b1f7dbbe712e56033ec590"
    },
    "target": "price_path_target_before_invalidation_6h"
   },
@@ -491,7 +491,7 @@
    "as_of_utc": "2026-10-27T00:00:00Z",
    "champion": null,
    "ensemble": "NO_ENSEMBLE",
-   "event_id": "b6929238d46bb7b26c1a2129b105ae32b46f24f4e5422af8639ea1820534ffb0",
+   "event_id": "bf7ca35a9b94266e5d5d9e07e93ac9e8c560be09ee3d262e1222bf0f115a2e73",
    "mode": "NO_VIABLE_CHAMPION",
    "phase12_champion_basis": "default: no candidate earned champion_over_B2 on development data",
    "phase12_champion_restated": "P07_B2",
@@ -506,8 +506,8 @@
     "simple_model": "B2:price_path_severe_drawdown_or_halt_24h"
    },
    "references": {
-    "base_rate": "8ad8ce7e5c6a4c5240293710c265aa0f7adb650c3a2dd28d6c1c6166f8794a43",
-    "simple_model": "0b9b34b4cd9c2d4345dc1b323d5cdd21b495ed9690d1cb25ed95f2fd8fe0f28a"
+    "base_rate": "30ddd95b159b393b14b25521ce8c9306ee1534b229f9fc0bcf38484d2bba3f95",
+    "simple_model": "e1dc8034580013a157b31e4828c35ac262fb958c086a9d145f270172a14d115a"
    },
    "target": "price_path_severe_drawdown_or_halt_24h"
   }

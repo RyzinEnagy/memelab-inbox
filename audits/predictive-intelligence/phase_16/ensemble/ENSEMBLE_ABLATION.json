@@ -9,13 +9,13 @@
   "T1_24h": {
    "complexity": {
     "ENS_MEAN_B0_B2": {
-     "cpu_us_per_decision_sum_of_members": 14.778823157895268,
+     "cpu_time": "ensemble/LATENCY.json",
      "extra_parameters": 0,
      "member_parameters": 7,
      "members": 2
     },
     "ENS_MEAN_B2_S1": {
-     "cpu_us_per_decision_sum_of_members": 19.14720210526498,
+     "cpu_time": "ensemble/LATENCY.json",
      "extra_parameters": 0,
      "member_parameters": 13,
      "members": 2
@@ -208,11 +208,6 @@
      "verdict": "INSUFFICIENT_HISTORY"
     }
    },
-   "member_latency_cpu_us_per_decision": {
-    "B0": 5.027547368420552,
-    "B2": 9.751275789474715,
-    "S1": 9.395926315790268
-   },
    "post_opening": {
     "ENS_MEAN_B0_B2": {
      "vs_B0": {
@@ -329,13 +324,13 @@
   "T1b_6h": {
    "complexity": {
     "ENS_MEAN_B0_B2": {
-     "cpu_us_per_decision_sum_of_members": 14.361044210525694,
+     "cpu_time": "ensemble/LATENCY.json",
      "extra_parameters": 0,
      "member_parameters": 7,
      "members": 2
     },
     "ENS_MEAN_B2_S1": {
-     "cpu_us_per_decision_sum_of_members": 19.052033684210144,
+     "cpu_time": "ensemble/LATENCY.json",
      "extra_parameters": 0,
      "member_parameters": 13,
      "members": 2
@@ -583,11 +578,6 @@
      "verdict": "INSUFFICIENT_HISTORY"
     }
    },
-   "member_latency_cpu_us_per_decision": {
-    "B0": 4.514050526315086,
-    "B2": 9.84699368421061,
-    "S1": 9.205039999999535
-   },
    "post_opening": {
     "ENS_MEAN_B0_B2": {
      "vs_B0": {
@@ -704,13 +694,13 @@
   "T2_24h": {
    "complexity": {
     "ENS_MEAN_B0_B2": {
-     "cpu_us_per_decision_sum_of_members": 14.147898947366631,
+     "cpu_time": "ensemble/LATENCY.json",
      "extra_parameters": 0,
      "member_parameters": 7,
      "members": 2
     },
     "ENS_MEAN_B2_S1": {
-     "cpu_us_per_decision_sum_of_members": 17.615924210523147,
+     "cpu_time": "ensemble/LATENCY.json",
      "extra_parameters": 0,
      "member_parameters": 13,
      "members": 2
@@ -871,11 +861,6 @@
      ],
      "verdict": "INSUFFICIENT_HISTORY"
     }
-   },
-   "member_latency_cpu_us_per_decision": {
-    "B0": 4.819877894737607,
-    "B2": 9.328021052629024,
-    "S1": 8.287903157894124
    },
    "post_opening": {
     "ENS_MEAN_B0_B2": {
