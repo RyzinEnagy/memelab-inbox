@@ -1,16 +1,16 @@
 {
  "phase": "17",
- "status": "NEEDS_REVIEW",
- "status_note": "every gate item holds on the agent's own checks; the orchestrator's independent skeptic has not run (PI-D-013); TEST_ONLY parts: the FORECAST path on a fixture champion, the reader path, the backtest adapter, collector depth and catalyst-triggered refreshes",
+ "status": "PASS",
+ "status_note": "after repair pass 2 (CP17-1, PI-D-096) of the independent skeptic's 2 MATERIAL (latent) and 8 minor findings at ea73cfb; every gate item holds; TEST_ONLY parts: the FORECAST path on a fixture champion, the reader path, the backtest adapter, collector depth and catalyst-triggered refreshes",
  "head_before": "b0fad12",
- "head_after": "c25ce00 (records) plus the post-commit record commit on top",
+ "head_after": "8b7a1c2",
  "commits": {
   "pre_registration": "7f7bc28",
   "frozen_code": "3d2089b",
   "recorded_outputs": "6f4e8f7",
   "cp17_0_code": "6172b49",
-  "repeated_outputs": "30be448",
-  "records": "c25ce00"
+  "skeptic_reviewed": "ea73cfb",
+  "cp17_1_code": "148e3da"
  },
  "checks": [
   {
@@ -99,7 +99,7 @@
    "name": "G24 mutation probe",
    "command": "python -B audits/predictive-intelligence/phase_17/probes/mutation_integration.py OUT",
    "exit_code": 0,
-   "result": "59 of 59",
+   "result": "73 of 73",
    "pass": true
   },
   {
@@ -110,9 +110,42 @@
    "pass": true
   },
   {
+   "name": "CP17-1 pre-freeze suite",
+   "command": "MEMELAB_DB=<tmp> python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "6 failed, 2046 passed, 1 skipped: the known catalyst test, test_catalyst_firecrawl page_history (real clock, fails the same way on ea73cfb), 4 outputs tests waiting for the repeated runs",
+   "pass": true
+  },
+  {
+   "name": "CP17-1 repair tests fail on ea73cfb",
+   "command": "python -B audits/predictive-intelligence/phase_17/probes/rp2_old_code_check.py OUT",
+   "exit_code": 0,
+   "result": "10 of 10 fail; pinning tests pass there by design: 4",
+   "pass": true
+  },
+  {
+   "name": "CP17-1 isolation mutations (skeptic m4)",
+   "command": "python -B audits/predictive-intelligence/phase_17/probes/rp2_isolation_mutations.py OUT",
+   "exit_code": 0,
+   "result": "14 of 15; known static-scan limit: ['pipeline_concat_string']",
+   "pass": true
+  },
+  {
+   "name": "CP17-1 counterexample CX-S17 on the repaired code",
+   "command": "python -B audits/predictive-intelligence/phase_17/skeptic/probe_leak.py REPO",
+   "result": "pass 1 ERROR with nothing persisted, pass 2 DISCOVERY, documents 3, check_state problems []",
+   "pass": true
+  },
+  {
+   "name": "CP17-1 recorded runs repeated",
+   "input": "evidence/rerun_rp2_diff.json",
+   "result": "no count, event, reason, verdict or boolean changed; snapshot hashes, ids and the two path lines changed as explained",
+   "pass": true
+  },
+  {
    "name": "G26 ledger",
    "input": "experiments/LEDGER_TOTALS.json",
-   "result": "3308 rows, N_search 130, sensitivity 169",
+   "result": "3328 rows, N_search 130, sensitivity 169",
    "pass": true
   },
   {
@@ -126,34 +159,6 @@
    "input": "smoke/REAL_PATH_SMOKE.json checkout_status",
    "result": "[]",
    "pass": true
-  },
-  {
-   "name": "G23 post-commit full suite",
-   "command": "MEMELAB_DB=<tmp> python -m pytest tests -q (at c25ce00)",
-   "exit_code": 1,
-   "result": "1 failed, 2031 passed, 1 skipped in 425.14s (known failure only; stray removed by hand)",
-   "pass": true
-  },
-  {
-   "name": "G23 post-commit social guard",
-   "command": "python -m memelab social guard",
-   "exit_code": 0,
-   "result": "violations []",
-   "pass": true
-  },
-  {
-   "name": "G23 post-commit seal check",
-   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
-   "exit_code": 0,
-   "result": "problems []",
-   "pass": true
-  },
-  {
-   "name": "G23 post-commit single-branch release audit",
-   "command": "python tools/release_audit.py --history (single-branch clone at c25ce00)",
-   "exit_code": 0,
-   "result": "Needs action: no.",
-   "pass": true
   }
  ],
  "artifacts": [
@@ -163,7 +168,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_17/PHASE_17_EVIDENCE.md",
-   "sha256": "64ab9af473762b8e2a8c86bd2b2ebc111c3c701a3585598093e8ed8f764010ba"
+   "sha256": "e36b5217abc67b37bb93e47ff3f6e625d5f344a4d3ea8e9a869a960500152040"
   },
   {
    "path": "audits/predictive-intelligence/phase_17/SKEPTIC_PACKET.md",
@@ -187,7 +192,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_17/evidence/mutation_integration.json",
-   "sha256": "41832e33a8b004a4a8354055099a489fa6a5bd1580196b613174ea18bcdb2496"
+   "sha256": "5fe42c10e6c5777b70137619a9d050250d354aadbd41a3cc25bdd8d624c1cc81"
   },
   {
    "path": "audits/predictive-intelligence/phase_17/evidence/mutation_prefreeze_first_probe.json",
@@ -206,16 +211,32 @@
    "sha256": "07f6810f3797e3d60e6b3736f9203f18a84d2f93a3b2f0bc19644944e10f08e7"
   },
   {
+   "path": "audits/predictive-intelligence/phase_17/evidence/rerun_rp2_diff.json",
+   "sha256": "249e1b16255450a9bddcf23d07864cb84ce97445d635f033fb23f43e392795f3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/evidence/rp2_isolation_mutations.json",
+   "sha256": "5d76c0644e38ee75f5ec40412fba235092b5b935127858a431e38db1276e9a7a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/evidence/rp2_old_code_check.json",
+   "sha256": "f6960228d055fc7d71a0b6e4d348e2c1223353fc034eb55461cf03b37ac4ef33"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/evidence/rp2_probe_leak_repaired.json",
+   "sha256": "f0862af1992b398090ad0377243512a3bf239d29de73e0918ff63900cfb056fe"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_17/experiments/EXPERIMENT_REGISTRY.csv",
    "sha256": "e66f8f34c4d89a2dc7a1c88774c38ec43df5e63e70ca35f2f33877c5ef947321"
   },
   {
    "path": "audits/predictive-intelligence/phase_17/experiments/LEDGER_TOTALS.json",
-   "sha256": "dba122a553c1637828b15e7c42b9ebfe33cbf97d93d9f3c331d9ee171233ee0c"
+   "sha256": "d0a9d6f1615711f55eb9da1197cb1416940e4b167e411276610f2b8a61231776"
   },
   {
    "path": "audits/predictive-intelligence/phase_17/experiments/SEARCH_LEDGER.csv",
-   "sha256": "823e7eb9c554456af360286f0e0b60ecd6bb749cec1ab0b10344197bec05900b"
+   "sha256": "ddb94aebc5a2ae9ef5bdc9686d58b24973914ec455305da2e9d11b2ca7667aa5"
   },
   {
    "path": "audits/predictive-intelligence/phase_17/integration/REQUEST_FLOW.md",
@@ -243,63 +264,167 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_17/probes/ledger.py",
-   "sha256": "aa8ebd3d95d8a17cdb32b4cf3132f95a899b87a27d86984271f2e460c0ce02d8"
+   "sha256": "d3d1d256ea1ea0560fc606f6723d3aab55f9556d4ab30b13f0f429b32cca5252"
   },
   {
    "path": "audits/predictive-intelligence/phase_17/probes/mutation_integration.py",
-   "sha256": "8528a3eb0ead49cc29c708f99281105f429d1ab67d4914fa4a99126569e95b12"
+   "sha256": "775c9d0481c949841f69f88ba3ac62bd32532f9a6a40fcff61bf857a78814894"
   },
   {
    "path": "audits/predictive-intelligence/phase_17/probes/real_path_smoke.sh",
    "sha256": "85c8929300906493b4e99b3c8fcdcca733a5b36a3e047380d1599147cc4bc27b"
   },
   {
+   "path": "audits/predictive-intelligence/phase_17/probes/rerun_diff.py",
+   "sha256": "35c9a953a44aac193549857eced3c5f7ce7eede7897f3cd4d3d4827f500bcd9d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/probes/rp2_isolation_mutations.py",
+   "sha256": "a2544390d61571782dd28a52647dbe29584d2214b2cc1297d8b5cb3b3bfbe410"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/probes/rp2_old_code_check.py",
+   "sha256": "7288e2043eb817e1a0e12627370ee975bd0bb58f20d557107457fddaad04d5e8"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_17/probes/run_integration.py",
-   "sha256": "31da48561e8ac62f054361fa86b993bce9959e93c7904454983972bcd311cc0b"
+   "sha256": "fa638a5c0edfec12d12d2f230a346e932549d2a9b5ed3d884c536605476a172e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/PHASE_17_SKEPTIC.md",
+   "sha256": "7330045af72bbadf4703f3ac0b5d1aee02dad687e7085ba21a3779eb42705722"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/cp17_0_check.json",
+   "sha256": "0a2d5f1b2ec5bcfa3628eb3f480d5bf3784067109149ae1fa3c5074223dd73ab"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/dbcompare.py",
+   "sha256": "c3e447e2598cdf2d2a240451af84d25c4b432b180367aac3e1e59d9b083c3d80"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/flagoff_compare.sh",
+   "sha256": "cd17fb66d4751648f18aec949d0605d4fe0c284ef723528dcfd509d71022b5bb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/flagoff_summary.json",
+   "sha256": "3fb952d97dd2879b2869db282cacfec2fff5438c179ce9c3dd02252e10ea1e57"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/flagon_compare.sh",
+   "sha256": "9e93279e5b436d45dbc1d4d4d212e9c1bcf1616daea903239a382346852d6d9f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/lo_up_exec.py",
+   "sha256": "05bf9c6adcd35ce92814b2e890b24c74b3379401a30727219e26fb9bd653834b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/mutate_isolation.json",
+   "sha256": "a7a2e091f5f1433838bb70adcb60107cebb0e572aa7d6d13c045ac1d6fcd3e55"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/mutate_isolation.py",
+   "sha256": "a446da9a11a0d64ab7703ff76399e1b6512c961c2e5c4d34a13a19661e28c0fe"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/mutate_isolation_survivors.json",
+   "sha256": "23546feaf6278864b9b58cac79181a223c14023d1158b05a103dd6fe36e14fe3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/mutate_isolation_survivors.py",
+   "sha256": "2b095cdae52be98e72f26205b31c8da718ca103c2f32368665d8cfd1ba640e5c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/my_mutations.json",
+   "sha256": "9c0527ff2f7c48046335374c67ac3a956671296a7853f7ce296cb3064711f5af"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/my_mutations.py",
+   "sha256": "e70a9e8e8c16080137862df506c78559367564638d3e76dbc29f6ed736f2c62f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/probe_b_section.py",
+   "sha256": "3dd36d472d92b5c8c5a823bfb064257f0dde8e42dc2055d0c67a829da91555b5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/probe_bt.py",
+   "sha256": "0f689dcf8c92b9261465a261ad4af495332e28fe50eb1423b4ca1816cff28de8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/probe_flagon.json",
+   "sha256": "8eaa943298b91d885df486410a3a3c9ab311f445d88b38b52688fe3167c62308"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/probe_flagon.py",
+   "sha256": "31b176d696981b62823df7383589c0a2841c5a2e62c2468af4655f76bb8b20aa"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/probe_forged_point.py",
+   "sha256": "b8b9f3eb49e6cd1614a2547777f054c31da218c1d68307a98e952792bc5574eb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/probe_leak.py",
+   "sha256": "a06157766f718a9c37e6268ac6e68db1b376f547e1657d362dbda97ae4eab25e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/probe_outage.py",
+   "sha256": "64c863234aa8611f7878b7d7d7fd9da10c24a591c0e710db3f7fc3ff20e67a85"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/skeptic/their_mutation.json",
+   "sha256": "52d80e8e402d898a0bb56223bdee72899a1134d9f9a429476b782b4d200590a3"
   },
   {
    "path": "audits/predictive-intelligence/phase_17/smoke/FIXTURE_E2E.json",
-   "sha256": "62040f1ab61ecaf94e4d5a3865e9593e2227807c15d5381d9e57375f78416a25"
+   "sha256": "baba7c7fdeb3fd3fa1dcb05fa8387f175cbdf732e038183fb6a4ad7e77697467"
   },
   {
    "path": "audits/predictive-intelligence/phase_17/smoke/REAL_EXPORT_REPLAY.json",
-   "sha256": "fb95d2e0b71e6b05405a48ab5389bf6797272da7f259b4d8ed73178c43686927"
+   "sha256": "90966c45ffb0e1fcf6000c4dbf93405e9ab46506c348abe1d6d0bf9ac076a156"
   },
   {
    "path": "audits/predictive-intelligence/phase_17/smoke/REAL_PATH_SMOKE.json",
-   "sha256": "4a93b91bc1d6102977fa4b2cf174be40a8bef952544fa84133b1951923ef9c56"
+   "sha256": "fbfc321017fed6154e60e1f2e2ab7de37c3048253991396ea220ed0ec57bad8e"
   },
   {
    "path": "audits/predictive-intelligence/phase_17/smoke/REAL_SCOUT_SECTION.md",
-   "sha256": "778db6a95145d28a1c3706d780031d470f72720da455f514114f9cdbc899829c"
+   "sha256": "8305418dabc1c0c37dbfa9ad68e04f93eb9c53aef029b7e35e5e875664cf099f"
   },
   {
    "path": "audits/predictive-intelligence/phase_17/smoke/TRACE_EXAMPLES.json",
-   "sha256": "c30eaaad66fd6d57660cbdbb85f416e13c74b6447843450360f2709b2bb8c673"
+   "sha256": "ad771e20f31c8ef40e041a928ea3ac890acef10cf9d571e2a70c11d44c708bac"
   },
   {
    "path": "audits/predictive-intelligence/phase_17/smoke/real_path_runs.txt",
-   "sha256": "85ce462934d6921fb8466b8c8ecf4c649c87adc783f1b1a42aaeb6a6e107d073"
+   "sha256": "27a9fa03c0ac4ee471306567721573d605d9072fdc3131323405ab3ff4b2ddca"
   },
   {
    "path": "memelab/predictive/integration.py",
-   "sha256": "855c510d4a5399c56de27fd0c7bb1f4e279f457810e3a76787e6b728e3c4eec2"
+   "sha256": "d94e6dca142d45a3b07349217300ac00e3a73622a74b2e6d85a31cfff054dad1"
   },
   {
    "path": "memelab/predictive/bt_adapter.py",
-   "sha256": "79e22cb865deda1630b778fd587b6cb75e37c55c20552567c55fe2310ffa5d95"
+   "sha256": "e1284eb8e040a685fe4a3ad1e3afe61922ddaaac8fd58c03568168ca0db17793"
   },
   {
    "path": "memelab/cli.py",
-   "sha256": "1a47707caa7a796dede17323fa2df18b228e7e919ad2bc51ccc81a9db905ca1c"
+   "sha256": "17804d77c3760659521b53b039d10e5779cb2a6dedb2fe0c30e91af5ff23873c"
   },
   {
    "path": "tests/test_predictive_integration.py",
-   "sha256": "142309a5b897b0d70b3460044c9c674f28965e7d531a7002b5c716911b617177"
+   "sha256": "05764f7fb3bcfea1f5b8f4b90d642e18c2caba2f11179207aac23c93f65bc78c"
   },
   {
    "path": "tests/test_predictive_phase17_outputs.py",
-   "sha256": "52b96adae809cae52b4701d447607a95f48779f159368ce7dd109c45e33e5efb"
+   "sha256": "7365174a8adbc776572441a4d1fcb9889272efa6c550540e58215c0b341e68fe"
+  },
+  {
+   "path": "tests/test_predictive_contract.py",
+   "sha256": "add1ee2be444063c79c727b38e92b46238f8970771b5725ae53954da34e212b1"
+  },
+  {
+   "path": "tests/test_predictive_registry.py",
+   "sha256": "d23056f271a96d703cec3cd9724f95361afef32c5009cc3ba2bb7a32794b87d0"
   },
   {
    "path": "tests/fixtures/predictive/cli_before_phase17.py.txt",
@@ -312,10 +437,10 @@
   "capture features hold only the decision row and its token row",
   "the committed inbox bodies are from 2026-10-06 and 2026-10-07, so every real scout request is INPUT_STALE",
   "no catalyst event or link exists in the imported export: catalyst changes exercised on fixtures only",
-  "thesis rows store the report path, so the same analysis in another report folder is another snapshot",
   "a crash between appends leaves the state refused until repaired; no scheduler",
   "BACKTEST_NOT_AVAILABLE on this branch; bt_adapter TEST_ONLY; merge of PR #4 is Elving's decision",
-  "the Phase 09 isolation test cannot see relative imports; analog.py's lazy onchain import is pinned"
+  "the Phase 09 isolation test cannot see relative imports; analog.py's lazy onchain import is pinned; an import_module call on a string built at run time inside an uncalled function is invisible to every static scan",
+  "a FORECAST document's backtest veto lives in its request record: a later consumer must read the request records"
  ],
  "blockers": [],
  "approvals_needed": [
@@ -323,5 +448,5 @@
   "turning predictive.enabled on outside a sandbox (Elving)",
   "the promotion change control of PI-D-091 (Elving)"
  ],
- "next_eligible_phase": "18 after the orchestrator's independent skeptic and a recorded PASS"
+ "next_eligible_phase": "18"
 }
