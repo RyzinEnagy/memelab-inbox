@@ -59,6 +59,7 @@ DEBUG_RUNS = (("P15:DEBUG:SCORING:0", "scoring step sdbg1 2026-10-27T01:03:08Z t
                "Phase 10's -0.196927 (1.1e-6), because the restated numbers are recomputed from predictions written to 6 decimals; "
                "tolerance set to 1e-5 with that reason; same verdicts, no other change"),
               ("P15:DEBUG:SCORING:2", "scoring step sdbg3 after the second tolerance fix; restated numbers equal"))
+# the recorded scoring run at 0abffd5 (2026-10-27T01:08:26Z) is not a debug run; its rerun at the CP15-0 code adds outputs only
 SOCKETS: list[str] = []
 SEALED: list[str] = []
 COMPARATORS = {"A": S.RAN, "B": "BLOCKED_NO_APPROVED_LLM_SPEND", "C": "NO_CALIBRATED_CLASSIFIER_UNCALIBRATED_STAND_INS_ONLY",
@@ -276,6 +277,16 @@ def restated_match(e1_out) -> dict:
 
 
 # ---------------------------------------------------------------- E2 and controls
+def independence(rows) -> dict:
+    """Self-review CP15-0 (PI-D-080): how far the decision-level null is from independent units: distinct mints, the largest
+    number of decisions of one mint, and the share of rows whose mint has another decision on the same day."""
+    per_mint = Counter(r["mint"] for r in rows)
+    per_mint_day = Counter((r["mint"], r["day"]) for r in rows)
+    return {"rows": len(rows), "mints": len(per_mint), "max_decisions_per_mint": max(per_mint.values()) if per_mint else 0,
+            "rows_sharing_mint_and_day": sum(1 for r in rows if per_mint_day[(r["mint"], r["day"])] > 1),
+            "warned_mints": len({r["mint"] for r in rows if r["warning"] == S.WARN_EVENT})}
+
+
 def e2(coding, ctrl, lab_h, reps):
     out, rows_out, per_label = {}, [], {}
     for target in S.PRIMARY:
@@ -283,6 +294,7 @@ def e2(coding, ctrl, lab_h, reps):
         res = S.warning_metrics(rows, reps=reps, seed=SEED)
         res["labelled_rows"] = len(lab_h[target])
         res["missing_seed"] = miss
+        res["independence"] = independence(rows)
         out[target] = res
         for r in rows:
             rows_out.append({"target_short": SHORT[target], "decision_key": r["decision_key"], "day": r["day"], "y": r["y"],
@@ -345,7 +357,25 @@ def e3(dev, coding, lab_h, reps):
     hb = S.holm_by_target({t: out[t]["warning_metrics"] for t in out})
     for t in out:
         out[t]["warning_metrics"].update(hb[t])
-    return out, log
+    # self-review CP15-0 (PI-D-080): the per-label E2 descriptions on the spent holdout, so that a development subgroup is never
+    # read without its holdout counterpart; POST_OPENING, description only
+    per_label = {}
+    for lab, target in (("ATTENTION_EXHAUSTION", L.T2), ("MANUFACTURED_ATTENTION_DUMP", L.T2), ("ORGANIC_ATTENTION_CONTINUATION", L.T1B)):
+        wrows = []
+        for r in (x for x in hs if x["target_short"] == SHORT[target]):
+            c = coding.get(("HOLDOUT_WINDOW", r["decision_key"], target))
+            if c is None:
+                continue
+            w = c["warning"]
+            if w == S.WARN_EVENT and lab not in c["labels"].split("|"):
+                w = S.WARN_NONE
+            wrows.append({"y": int(r["y"]), "day": r["day"], "warning": w, "lead_s": None})
+        m = S.warning_metrics(wrows, reps=reps, seed=SEED)
+        m["verdict"] = m["gate"] or "SECONDARY_DESCRIPTION_NO_VERDICT"
+        per_label[f"{SHORT[target]}:{lab}"] = m
+    log["computed"] = ["rule warnings on the holdout-window documents", "A_WARN fitted at the holdout start on development labels",
+                       "per-label warnings on the holdout-window documents (self-review CP15-0, PI-D-080)"]
+    return out, per_label, log
 
 
 # ---------------------------------------------------------------- protocol 9 examples
@@ -381,7 +411,7 @@ def examples(e2_rows, coding):
 
 
 # ---------------------------------------------------------------- ledger (P22)
-def ledger_rows(e1_out, e2_out, per_label, ctrl, e3_out, coding_log) -> list[dict]:
+def ledger_rows(e1_out, e2_out, per_label, ctrl, e3_out, coding_log, e3_per_label) -> list[dict]:
     rows = []
 
     def add(eid, target, cand, kind, view="ALL", seed="", folds="", n_rows="", n_num="", verdict="", fp="", sel="", claim=""):
@@ -415,6 +445,11 @@ def ledger_rows(e1_out, e2_out, per_label, ctrl, e3_out, coding_log) -> list[dic
         ts, lab = key.split(":")
         add(f"P15:E2:{LONG[ts]}:LABEL_{lab}", LONG[ts], f"P15_RULES_1_LABEL_{lab}", "DESCRIPTION_ONLY", view="DEVELOPMENT_ALL_LABELS",
             seed=SEED, n_rows=r["n_rows"], n_num=r["n_scored"], verdict=r["verdict"], claim="SECONDARY_DESCRIPTION")
+    for key, r in e3_per_label.items():
+        ts, lab = key.split(":")
+        add(f"P15:E3:{LONG[ts]}:LABEL_{lab}_POST_OPENING", LONG[ts], f"P15_RULES_1_LABEL_{lab}", "POST_OPENING_CHECK",
+            view="RETROSPECTIVE_HOLDOUT_SPENT", seed=SEED, n_rows=r["n_rows"], n_num=r["n_scored"], verdict=r["verdict"],
+            claim="POST_OPENING_NOT_A_CLAIM_SELF_REVIEW_CP15_0")
     nc = ctrl["NCB_VERIFIED_T1"]
     add(f"P15:NCB:{L.T1}:BOGUS_VERIFIED", L.T1, "P15_NCB_BOGUS_VERIFIED", "NEGATIVE_CONTROL", view="DEVELOPMENT_ALL_LABELS", seed=SEED,
         n_rows=nc["n_rows"], n_num=nc["n_scored"], verdict=nc["verdict"], claim="CONTROL_FAILED" if nc["ncb_failed"] else "CONTROL")
@@ -454,7 +489,7 @@ def main() -> int:
     e1_out, e1_rows, e1_cards = e1(dev, coding, lab_h, a.reps, n_search)
     restated = restated_match(e1_out)
     e2_out, e2_rows, per_label, ctrl_out = e2(coding, ctrl, lab_h, a.reps)
-    e3_out, po_log = e3(dev, coding, lab_h, a.reps)
+    e3_out, e3_per_label, po_log = e3(dev, coding, lab_h, a.reps)
     ex = examples(e2_rows, coding)
     a_warn = {SHORT[t]: {"verdict": e1_out[t]["A_WARN_vs_B0"]["verdict_with_holm"],
                          "selection_status": e1_out[t]["A_WARN_vs_B0"]["selection_status"],
@@ -464,8 +499,7 @@ def main() -> int:
     combined = {SHORT[t]: E.conservative_status(e1_out[t]["A_WARN_vs_B0"]["selection_status"], e3_out[t]["post_opening_status"])
                 for t in S.PRIMARY}
     po_log["combined_status"] = combined
-    po_log["computed"] = ["rule warnings on the holdout-window documents", "A_WARN fitted at the holdout start on development labels"]
-    led = ledger_rows(e1_out, e2_out, per_label, ctrl_out, e3_out, coding_log)
+    led = ledger_rows(e1_out, e2_out, per_label, ctrl_out, e3_out, coding_log, e3_per_label)
     full = prior + led
     after = E.ledger_totals(full)
     results = {"phase": "15", "scenario_eval_version": S.SCENARIO_EVAL_VERSION, "coding_commit": CODING_COMMIT,
@@ -474,6 +508,7 @@ def main() -> int:
                "E1": {SHORT[t]: e1_out[t] for t in S.PRIMARY}, "E1_restated_equal_to_phase10": restated, "E1_cards": e1_cards,
                "E2": {SHORT[t]: e2_out[t] for t in S.PRIMARY}, "E2_per_label": per_label, "controls": ctrl_out,
                "controls_coding": coding_log["controls"], "E3_POST_OPENING": {SHORT[t]: e3_out[t] for t in S.PRIMARY},
+               "E3_POST_OPENING_per_label": e3_per_label,
                "examples": ex, "decision": decision, "comparators": COMPARATORS,
                "not_compared": {"B": "evidence-only LLM: no approved LLM spend (PI-D-005, PI-D-078); P26 would make a retrospective run EXPLORATORY_NOT_AS_OF",
                                 "D": "MiroFish: no approved LLM or Zep spend, no key; MIROFISH_GATE BLOCKED (PI-D-077); non-reproducible for a fixed seed and NOT_CODABLE free text on its script path (Phase 14); P26",
