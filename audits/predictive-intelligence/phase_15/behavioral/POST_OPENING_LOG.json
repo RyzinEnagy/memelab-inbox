@@ -6,7 +6,8 @@
  },
  "computed": [
   "rule warnings on the holdout-window documents",
-  "A_WARN fitted at the holdout start on development labels"
+  "A_WARN fitted at the holdout start on development labels",
+  "per-label warnings on the holdout-window documents (self-review CP15-0, PI-D-080)"
  ],
  "label": "POST_OPENING",
  "rule": "PI-D-066: description only, more conservative only",

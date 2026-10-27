@@ -3,11 +3,11 @@
   "bakeoff_configurations": 31,
   "candidate_configurations": 90,
   "debug_runs": 26,
-  "holdout_evaluation_rows": 217,
+  "holdout_evaluation_rows": 220,
   "n_search": 121,
   "negative_control_fits": 370,
   "other_rows": 96,
-  "rows": 3236,
+  "rows": 3239,
   "rows_by_phase": {
    "04": 31,
    "07": 488,
@@ -17,7 +17,7 @@
    "11": 388,
    "12": 252,
    "13": 58,
-   "15": 30
+   "15": 33
   }
  },
  "before": {
@@ -40,6 +40,6 @@
    "13": 58
   }
  },
- "phase15_rows": 30,
+ "phase15_rows": 33,
  "rule_configurations_after": 39
 }

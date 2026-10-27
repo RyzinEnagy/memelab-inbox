@@ -1725,6 +1725,13 @@
    },
    "gate": "NO_WARNINGS",
    "hits": 0,
+   "independence": {
+    "max_decisions_per_mint": 5,
+    "mints": 99,
+    "rows": 136,
+    "rows_sharing_mint_and_day": 0,
+    "warned_mints": 0
+   },
    "labelled_rows": 136,
    "lead_time_h": null,
    "lift": null,
@@ -1756,6 +1763,13 @@
    },
    "gate": null,
    "hits": 4,
+   "independence": {
+    "max_decisions_per_mint": 13,
+    "mints": 104,
+    "rows": 224,
+    "rows_sharing_mint_and_day": 96,
+    "warned_mints": 22
+   },
    "labelled_rows": 224,
    "lead_time_h": {
     "max": 2.6777777777777776,
@@ -1804,6 +1818,13 @@
    },
    "gate": null,
    "hits": 22,
+   "independence": {
+    "max_decisions_per_mint": 5,
+    "mints": 96,
+    "rows": 131,
+    "rows_sharing_mint_and_day": 0,
+    "warned_mints": 60
+   },
    "labelled_rows": 131,
    "lead_time_h": {
     "max": 21.398611111111112,
@@ -2699,6 +2720,125 @@
    }
   }
  },
+ "E3_POST_OPENING_per_label": {
+  "T1b_6h:ORGANIC_ATTENTION_CONTINUATION": {
+   "coverage": 0.11764705882352941,
+   "days": 7,
+   "excluded": {
+    "CONFLICT": 0,
+    "NOT_CODABLE": 0
+   },
+   "gate": "INSUFFICIENT_WARNINGS",
+   "hits": 4,
+   "lead_time_h": null,
+   "lift": 0.32352941176470584,
+   "n_rows": 68,
+   "n_scored": 68,
+   "no_event_statements": 0,
+   "permutation": {
+    "null_max": 6,
+    "null_mean_hits": 1.2785,
+    "null_min": 0,
+    "observed_hits": 4,
+    "p_down": 0.9970014992503748,
+    "p_up": 0.025987006496751622,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "positives": 12,
+   "precision": 0.5,
+   "precision_wilson": [
+    0.21521606221387757,
+    0.7847839377861224
+   ],
+   "prevalence": 0.17647058823529413,
+   "prevalence_wilson": [
+    0.10393587249437691,
+    0.2836044040774335
+   ],
+   "recall": 0.3333333333333333,
+   "verdict": "INSUFFICIENT_WARNINGS",
+   "warned": 8
+  },
+  "T2_24h:ATTENTION_EXHAUSTION": {
+   "coverage": 0.2711864406779661,
+   "days": 6,
+   "excluded": {
+    "CONFLICT": 0,
+    "NOT_CODABLE": 0
+   },
+   "gate": "INSUFFICIENT_EVENTS",
+   "hits": 0,
+   "lead_time_h": null,
+   "lift": -0.11864406779661017,
+   "n_rows": 59,
+   "n_scored": 59,
+   "no_event_statements": 0,
+   "permutation": {
+    "null_max": 5,
+    "null_mean_hits": 1.7295,
+    "null_min": 0,
+    "observed_hits": 0,
+    "p_down": 0.09545227386306847,
+    "p_up": 1.0,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "positives": 7,
+   "precision": 0.0,
+   "precision_wilson": [
+    0.0,
+    0.1936076805344365
+   ],
+   "prevalence": 0.11864406779661017,
+   "prevalence_wilson": [
+    0.05867582775790306,
+    0.22523640399981695
+   ],
+   "recall": 0.0,
+   "verdict": "INSUFFICIENT_EVENTS",
+   "warned": 16
+  },
+  "T2_24h:MANUFACTURED_ATTENTION_DUMP": {
+   "coverage": 0.23728813559322035,
+   "days": 6,
+   "excluded": {
+    "CONFLICT": 0,
+    "NOT_CODABLE": 0
+   },
+   "gate": "INSUFFICIENT_EVENTS",
+   "hits": 1,
+   "lead_time_h": null,
+   "lift": -0.04721549636803875,
+   "n_rows": 59,
+   "n_scored": 59,
+   "no_event_statements": 0,
+   "permutation": {
+    "null_max": 5,
+    "null_mean_hits": 1.455,
+    "null_min": 0,
+    "observed_hits": 1,
+    "p_down": 0.544727636181909,
+    "p_up": 0.8350824587706147,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "positives": 7,
+   "precision": 0.07142857142857142,
+   "precision_wilson": [
+    0.012722215247890939,
+    0.31468704424151117
+   ],
+   "prevalence": 0.11864406779661017,
+   "prevalence_wilson": [
+    0.05867582775790306,
+    0.22523640399981695
+   ],
+   "recall": 0.14285714285714285,
+   "verdict": "INSUFFICIENT_EVENTS",
+   "warned": 14
+  }
+ },
  "coding_commit": "7b787bf",
  "coding_outputs_sha256": {
   "behavioral/CONTROL_CODING.csv": "2398080ce516458d5b942590e55a0e789bf78c4e1bc1350d00b923ffb2e45a7f",
@@ -2924,11 +3064,11 @@
    "bakeoff_configurations": 31,
    "candidate_configurations": 90,
    "debug_runs": 26,
-   "holdout_evaluation_rows": 217,
+   "holdout_evaluation_rows": 220,
    "n_search": 121,
    "negative_control_fits": 370,
    "other_rows": 96,
-   "rows": 3236,
+   "rows": 3239,
    "rows_by_phase": {
     "04": 31,
     "07": 488,
@@ -2938,7 +3078,7 @@
     "11": 388,
     "12": 252,
     "13": 58,
-    "15": 30
+    "15": 33
    }
   },
   "before": {
@@ -2961,7 +3101,7 @@
     "13": 58
    }
   },
-  "phase15_rows": 30,
+  "phase15_rows": 33,
   "rule_configurations_after": 39
  },
  "llm_calls": 0,

@@ -14,19 +14,19 @@
   ]
  ],
  "dev_store_sha256": "d2a5a7c67afb82da79c4c957ba3b32576963bc4d96bf61ca14fa81b2b5b6e8db",
- "end_utc": "2026-10-27T01:08:33Z",
- "head": "0abffd5b428f2277134d827a5e5a5bf4e149342d",
+ "end_utc": "2026-10-27T01:12:48Z",
+ "head": "de41d261b09484222e325c82e580ccbd87abd625",
  "outputs_sha256": {
   "behavioral/E1_OOS_ROWS.csv": "a06c20b68c2fa96262f3b6041aa886b89e4acedfd3e1299647864dd3c517c6c2",
   "behavioral/E2_SCORED_ROWS.csv": "7d7945c66a60e450c4f5818ce6979a3b95e419b0f112146ac1f4fe9f5e34df9b",
-  "behavioral/INCREMENTAL_VALUE_RESULTS.json": "63ffa83b5b9df61c99505eb2a46663d79eb37f82b34afd18e43314d9b54b23c0",
-  "behavioral/POST_OPENING_LOG.json": "2eac2424d84230ea0a4b31fbc49df417c262f80d7dc8a191c19b55f9c901fb9e",
-  "experiments/LEDGER_TOTALS.json": "241e32928fde5fd5df1c80403aff68407324389264b79577e0afd18b8859d435",
-  "experiments/SEARCH_LEDGER.csv": "69827164f99e0bca1a0deb93582aee46267827249440c72960ea5a50601371fa"
+  "behavioral/INCREMENTAL_VALUE_RESULTS.json": "9d993f308b6274abe83b75b91b5ea1c38602836599dd8119f746e0bc31a42672",
+  "behavioral/POST_OPENING_LOG.json": "d35456ee2e62ec32c2a47fc95115ad5679ea4573d5503cd464e5ac5f009cde64",
+  "experiments/LEDGER_TOTALS.json": "331c34e9141d6cd8b1fedb5b0d5201f7a7fe42451f5a1e8a6fb7529f4a81a7d1",
+  "experiments/SEARCH_LEDGER.csv": "59ac4e88577e60a8e8372be08d333d8bcf2375c21ad7a26d03b54a418e6bfd4c"
  },
  "reps": 2000,
  "script": "audits/predictive-intelligence/phase_15/probes/score_scenarios.py",
  "sealed_opens": [],
  "sockets": [],
- "start_utc": "2026-10-27T01:08:27Z"
+ "start_utc": "2026-10-27T01:12:41Z"
 }

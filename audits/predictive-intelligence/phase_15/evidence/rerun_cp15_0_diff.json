@@ -1,0 +1,65 @@
+{
+ "files": {
+  "behavioral/E1_OOS_ROWS.csv": {
+   "byte_equal": true,
+   "sha256": "a06c20b68c2fa96262f3b6041aa886b89e4acedfd3e1299647864dd3c517c6c2"
+  },
+  "behavioral/E2_SCORED_ROWS.csv": {
+   "byte_equal": true,
+   "sha256": "7d7945c66a60e450c4f5818ce6979a3b95e419b0f112146ac1f4fe9f5e34df9b"
+  },
+  "behavioral/INCREMENTAL_VALUE_RESULTS.json": {
+   "added_keys": 102,
+   "added_prefixes": [
+    "E2.T1_24h",
+    "E2.T1b_6h",
+    "E2.T2_24h",
+    "E3_POST_OPENING_per_label.T1b_6h:ORGANIC_ATTENTION_CONTINUATION",
+    "E3_POST_OPENING_per_label.T2_24h:ATTENTION_EXHAUSTION",
+    "E3_POST_OPENING_per_label.T2_24h:MANUFACTURED_ATTENTION_DUMP"
+   ],
+   "changed": [],
+   "changed_explained_by_added_ledger_rows": [
+    "ledger.after.holdout_evaluation_rows",
+    "ledger.after.rows",
+    "ledger.after.rows_by_phase.15",
+    "ledger.phase15_rows"
+   ],
+   "first_values": 2054,
+   "removed": []
+  },
+  "behavioral/POST_OPENING_LOG.json": {
+   "added_keys": 1,
+   "added_prefixes": [
+    "computed[2]"
+   ],
+   "changed": [],
+   "first_values": 10,
+   "removed": []
+  },
+  "experiments/LEDGER_TOTALS.json": {
+   "added_keys": 0,
+   "added_prefixes": [],
+   "changed": [],
+   "changed_explained_by_added_ledger_rows": [
+    "after.holdout_evaluation_rows",
+    "after.rows",
+    "after.rows_by_phase.15",
+    "phase15_rows"
+   ],
+   "first_values": 35,
+   "removed": []
+  },
+  "experiments/SEARCH_LEDGER.csv": {
+   "added": [
+    "P15:E3:price_path_severe_drawdown_or_halt_24h:LABEL_ATTENTION_EXHAUSTION_POST_OPENING",
+    "P15:E3:price_path_severe_drawdown_or_halt_24h:LABEL_MANUFACTURED_ATTENTION_DUMP_POST_OPENING",
+    "P15:E3:price_path_target_before_invalidation_6h:LABEL_ORGANIC_ATTENTION_CONTINUATION_POST_OPENING"
+   ],
+   "first_rows": 3236,
+   "first_rows_kept_in_order": true,
+   "second_rows": 3239
+  }
+ },
+ "ok": true
+}
