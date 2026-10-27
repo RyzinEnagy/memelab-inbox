@@ -19,7 +19,8 @@ MP = "memelab/predictive/registry.py"
 TEST = "tests/test_predictive_registry.py"
 A = "audits/predictive-intelligence"
 EXTRA_DIRS = [f"{A}/phase_07/artifacts/T1_24h", f"{A}/phase_09/artifacts/T1_24h", f"{A}/phase_10/artifacts/T1_24h",
-              f"{A}/phase_13/artifacts/T1_24h", f"{A}/phase_13/artifacts/T2_24h"]
+              f"{A}/phase_13/artifacts/T1_24h", f"{A}/phase_13/artifacts/T2_24h", f"{A}/phase_07/artifacts/T1b_6h"]
+EXTRA_FILES = [f"{A}/phase_12/validation/HOLDOUT_METRICS.csv", f"{A}/phase_12/validation/POST_OPENING_CORRECTIONS.csv"]
 
 MUTATIONS = [
     # promotion (rule 3)
@@ -104,6 +105,15 @@ MUTATIONS = [
     ("T1 deferred targets attempted", '        if reg["status"] != "PRIMARY":', "        if False:"),
     ("T2 chain unchecked", '        elif opportunity.get("chain") != reg.get("scope_chain", "solana"):', "        elif False:"),
     ("F1 reference record published", '"published": False,\n           "purpose"', '"published": True,\n           "purpose"'),
+    # CP16-0: facts against their sources
+    ("G1 facts not compared", '    if canon(want) != canon(entry["facts"]):', "    if False:"),
+    ("G2 sources not hashed", "        if sha_bytes(read(path)) != want:", "        if False:"),
+    ("G3 pin without a source check", '        if verify is None:\n            raise PinRefused("a champion is pinned only after', '        if False:\n            raise PinRefused("a champion is pinned only after'),
+    ("G4 serve without a source check", '        if verify is None:\n            blocking.append({"state": FACTS_NOT_VERIFIED', '        if False:\n            blocking.append({"state": FACTS_NOT_VERIFIED'),
+    ("G5 rollback drops the source check", "                        allow_fixture=allow_fixture, verify=verify)", "                        allow_fixture=allow_fixture, verify=lambda e: None)"),
+    ("G6 serve ignores a failed source check", '            except RegistryError as err:\n                blocking.append({"state": FACTS_MISMATCH, "detail": f"{type(err).__name__}: {err}"})', "            except RegistryError as err:\n                pass"),
+    ("G7 verify_facts takes any card", '    card = sources.pop("card")\n    if card.get("model_sha") != entry["model_sha"] or card_sha_of(card) != entry["model_sha"]:', '    card = sources.pop("card")\n    if False:'),
+    ("G8 pin ignores a failed source check", '        try:\n            verify(e)\n        except RegistryError as err:\n            raise PinRefused', '        try:\n            verify(e)\n        except ZeroDivisionError as err:\n            raise PinRefused'),
     ("F2 candidates scored as references", '    if entry["role"] != "REFERENCE_BASELINE":\n        raise RegistryError("only a reference', '    if False:\n        raise RegistryError("only a reference'),
 ]
 
@@ -121,6 +131,9 @@ def main(out: str) -> int:
             shutil.copytree(REPO / d, root / d, ignore=shutil.ignore_patterns("__pycache__"))
         for d in EXTRA_DIRS:
             shutil.copytree(REPO / d, root / d)
+        for f in EXTRA_FILES:
+            (root / f).parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(REPO / f, root / f)
         cmd = [sys.executable, "-B", "-m", "pytest", TEST, "-q", "-x", "-p", "no:cacheprovider"]
         base = subprocess.run(cmd, cwd=root, capture_output=True, text=True)
         if base.returncode != 0:

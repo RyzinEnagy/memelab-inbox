@@ -192,3 +192,20 @@ def test_pre_registration_was_committed_before_the_registry_code():
     assert pre != code
     r = subprocess.run(["git", "-C", str(ROOT), "merge-base", "--is-ancestor", pre, code])
     assert r.returncode == 0
+
+
+def test_cp16_0_every_entry_s_facts_rebuild_from_the_committed_files_and_every_source_hash_holds(entries):
+    import csv as _csv
+    m = {(r["target_short"], r["model"], r["reference"]): r for r in _csv.DictReader(open(AUD / "phase_12/validation/HOLDOUT_METRICS.csv"))}
+    post = {}
+    for r in _csv.DictReader(open(AUD / "phase_12/validation/POST_OPENING_CORRECTIONS.csv")):
+        post.setdefault((r["target_short"], r["model"]), {})[r["reference"]] = r["selection_status_final"]
+    for e in entries.values():
+        s = SHORT[e["target"]]
+        cid = e["family"]["candidate"]
+        card = json.loads((ROOT / e["card_path"]).read_text())
+        cal = json.loads((ROOT / e["calibration"]["path"]).read_text()) if e["calibration"] else None
+        R.verify_facts(e, card=card, tests=e["facts"]["tests"], m_b0=m.get((s, cid, "P07_B0")), m_b2=m.get((s, cid, "P07_B2")),
+                       post_states=post.get((s, cid), {}), cal_card=cal)
+        assert e["facts"]["tests"]["leakage"] and e["facts"]["tests"]["provenance"] and e["facts"]["tests"]["contract"]
+        assert len(R.verify_sources(e, lambda p: (ROOT / p).read_bytes())) >= 4

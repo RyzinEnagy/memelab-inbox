@@ -28,6 +28,12 @@ AS_OF = "2026-10-27T00:00:00Z"
 CUT = C.parse_utc("2026-10-17T00:00:00Z")
 
 
+def FX_VERIFY(entry: dict) -> None:
+    """Fixture facts have no committed sources; the fixture check accepts fixture entries only."""
+    if not entry["is_fixture"]:
+        raise R.FactsMismatchError("the fixture check is for fixture entries only")
+
+
 # ---------------------------------------------------------------- fixture builders (also used by the recorded run's rollback test)
 def real_card(phase: str, kind: str, short: str = FX_SHORT) -> dict:
     return json.loads((ART / f"phase_{phase}/artifacts/{short}/{kind}.json").read_text())
@@ -94,9 +100,9 @@ def fixture_registry() -> tuple[dict, dict]:
     t1, t2 = "2026-10-20T00:00:00Z", "2026-10-22T00:00:00Z"
     initial = [R.register_event(e, as_of_utc=t1) for e in (b0, b2, m)]
     initial.append(R.pin_event(ents, FX_TARGET, mode="CHAMPION", champion=b2["entry_id"], references=refs,
-                               reasons=["FIXTURE_BASELINE_CHAMPION"], as_of_utc=t1, allow_fixture=True))
+                               reasons=["FIXTURE_BASELINE_CHAMPION"], as_of_utc=t1, allow_fixture=True, verify=FX_VERIFY))
     initial.append(R.pin_event(ents, FX_TARGET, mode="CHAMPION", champion=m["entry_id"], references=refs,
-                               reasons=["FIXTURE_MODEL_CHAMPION"], as_of_utc=t2, allow_fixture=True))
+                               reasons=["FIXTURE_MODEL_CHAMPION"], as_of_utc=t2, allow_fixture=True, verify=FX_VERIFY))
     return ents, {"initial": initial, "t_baseline_pin": t1, "t_model_pin": t2, "t_drift": "2026-10-24T00:00:00Z",
                   "t_mismatch": "2026-10-25T00:00:00Z", "b0": b0["entry_id"], "b2": b2["entry_id"], "model": m["entry_id"]}
 
@@ -482,13 +488,13 @@ def test_rollback_goes_to_the_baseline_then_to_abstention_and_keeps_history(tmp_
     old = p.read_text()
     events = R.read_log(old)
     rb = R.rollback_event(events, ents, FX_TARGET, reason="DRIFT_ALERT", as_of_utc=steps["t_drift"], usable=lambda e: True,
-                          allow_fixture=True)
+                          allow_fixture=True, verify=FX_VERIFY)
     assert rb["kind"] == "ROLLBACK" and rb["mode"] == "CHAMPION" and rb["champion"] == steps["b2"] and rb["from"] == steps["model"]
     sha_, _ = R.append_events(p, [rb], expect_sha=sha_)
     events = R.read_log(p.read_text())
     assert R.resolve(events, ents, FX_TARGET, C.parse_utc(steps["t_drift"]))["champion"] == steps["b2"]
     rb2 = R.rollback_event(events, ents, FX_TARGET, reason=R.INFERENCE_MISMATCH, as_of_utc=steps["t_mismatch"],
-                           usable=lambda e: True, allow_fixture=True)
+                           usable=lambda e: True, allow_fixture=True, verify=FX_VERIFY)
     assert rb2["mode"] == "NO_VIABLE_CHAMPION" and rb2["champion"] is None
     R.append_events(p, [rb2], expect_sha=sha_)
     events = R.read_log(p.read_text())
@@ -501,7 +507,7 @@ def test_rollback_skips_an_earlier_champion_that_is_no_longer_usable():
     ents, steps = fixture_registry()
     events = R.chain_events(steps["initial"])
     rb = R.rollback_event(events, ents, FX_TARGET, reason="DRIFT_ALERT", as_of_utc=steps["t_drift"],
-                          usable=lambda e: e["entry_id"] != steps["b2"], allow_fixture=True)
+                          usable=lambda e: e["entry_id"] != steps["b2"], allow_fixture=True, verify=FX_VERIFY)
     assert rb["mode"] == "NO_VIABLE_CHAMPION"
 
 
@@ -523,21 +529,21 @@ def test_serve_uses_a_pinned_champion_only_while_every_check_holds():
     rt = runtime()
     T = C.parse_utc("2026-10-23T00:00:00Z")
     rows = [(f"fx-{i}", 0.2 + 0.01 * i, "") for i in range(5)]
-    ok = R.serve(events, ents, FX_TARGET, T, runtime=rt, inference=rows)
+    ok = R.serve(events, ents, FX_TARGET, T, runtime=rt, inference=rows, verify=FX_VERIFY)
     assert ok["use_champion"] and ok["forecast_inputs"]["card_entry"] == steps["model"]
     assert ok["forecast_inputs"]["level"] == "VALIDATED_EXPERIMENTAL"
-    stale = R.serve(events, ents, FX_TARGET, CUT + C.ACCEPTANCE["max_model_age_s"] + 1, runtime=rt)
+    stale = R.serve(events, ents, FX_TARGET, CUT + C.ACCEPTANCE["max_model_age_s"] + 1, runtime=rt, verify=FX_VERIFY)
     assert not stale["use_champion"] and stale["rollback_required"] and stale["blocking"][0]["state"] == R.MODEL_STALE
     assert stale["forecast_inputs"]["model_id"] == R.NOT_SELECTED and stale["forecast_inputs"]["level"] == "ABSTAIN"
-    drift = R.serve(events, ents, FX_TARGET, T, runtime=rt, drift_alarms=[T - 10])
+    drift = R.serve(events, ents, FX_TARGET, T, runtime=rt, drift_alarms=[T - 10], verify=FX_VERIFY)
     assert any(b["state"] == R.DRIFT_ALERT for b in drift["blocking"]) and drift["retrain"]
-    mism = R.serve(events, ents, FX_TARGET, T, runtime=rt, inference=rows[:4])
+    mism = R.serve(events, ents, FX_TARGET, T, runtime=rt, inference=rows[:4], verify=FX_VERIFY)
     assert any(b["state"] == R.INFERENCE_MISMATCH for b in mism["blocking"])
     rt2 = copy.deepcopy(rt)
     rt2["feature_set_sha"]["09"] = "f" * 64
-    inc = R.serve(events, ents, FX_TARGET, T, runtime=rt2)
+    inc = R.serve(events, ents, FX_TARGET, T, runtime=rt2, verify=FX_VERIFY)
     assert any(b["state"] == R.INCOMPATIBLE for b in inc["blocking"]) and not inc["use_champion"]
-    req = R.serve(events, ents, FX_TARGET, T, runtime=rt, request={"feature_set_sha": "d" * 64})
+    req = R.serve(events, ents, FX_TARGET, T, runtime=rt, request={"feature_set_sha": "d" * 64}, verify=FX_VERIFY)
     assert any(b["state"] == R.FEATURE_SCHEMA_MISMATCH for b in req["blocking"])
 
 
@@ -797,3 +803,107 @@ def test_a_stacking_fit_row_that_is_also_an_evaluation_row_is_refused_even_when_
     fit = [{"decision_key": "k1", "decision_time": 100.0, "label_matures_at": 110.0, "cutoff": 0.0, "y": 1, "members": {}}]
     with pytest.raises(R.InSampleStacking, match="also an evaluation row"):
         R.check_stack_rows(fit, ev)
+
+
+
+# ---------------------------------------------------------------- CP16-0: facts are only as true as their committed sources
+import csv as _csv
+
+
+def _p12_rows(model: str, short: str = FX_SHORT) -> tuple[dict | None, dict | None, dict]:
+    m = {(r["target_short"], r["model"], r["reference"]): r
+         for r in _csv.DictReader(open(ART / "phase_12/validation/HOLDOUT_METRICS.csv"))}
+    post = {}
+    for r in _csv.DictReader(open(ART / "phase_12/validation/POST_OPENING_CORRECTIONS.csv")):
+        if r["target_short"] == short and r["model"] == model:
+            post[r["reference"]] = r["selection_status_final"]
+    return m.get((short, model, "P07_B0")), m.get((short, model, "P07_B2")), post
+
+
+TESTS_OK = {"leakage": True, "provenance": True, "contract": True, "basis": "test"}
+
+
+def _real_b2_entry():
+    card = real_card("07", "B2")
+    cal = json.loads((ART / "phase_13/artifacts/T1_24h/CALIBRATION_CARD.json").read_text())
+    m0, m2, post = _p12_rows("P07_B2")
+    f = R.derive_facts(candidate="P07_B2", phase="07", card=card, tests=TESTS_OK, m_b0=m0, m_b2=m2, post_states=post, cal_card=cal)
+    calref = {"path": "audits/predictive-intelligence/phase_13/artifacts/T1_24h/CALIBRATION_CARD.json", "card_sha": cal["card_sha"],
+              "file_sha256": R.sha_bytes((ART / "phase_13/artifacts/T1_24h/CALIBRATION_CARD.json").read_bytes()),
+              "status": cal["status"], "level": cal["level"], "details": cal["details"]}
+    e = R.make_entry(target=FX_TARGET, family={"phase": "07", "kind": "B2", "candidate": "P07_B2",
+                                               "module_version": R.PHASE07_FAMILY_VERSION}, card=card,
+                     card_path="audits/predictive-intelligence/phase_07/artifacts/T1_24h/B2.json",
+                     card_file_sha256=R.sha_bytes((ART / "phase_07/artifacts/T1_24h/B2.json").read_bytes()), calibration=calref,
+                     facts=f, evidence={"x": {"file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_METRICS.csv",
+                                              "sha256": R.sha_bytes((ART / "phase_12/validation/HOLDOUT_METRICS.csv").read_bytes())}},
+                     risk_flags=[], inference=inf_for(card, "07"), registered_as_of_utc=AS_OF)
+    src = dict(card=card, tests=TESTS_OK, m_b0=m0, m_b2=m2, post_states=post, cal_card=cal)
+    return e, src
+
+
+def test_derive_facts_rebuilds_the_t1_b2_facts_from_the_committed_files():
+    e, src = _real_b2_entry()
+    assert e["facts"]["retrospective"]["evaluation"] == R.FIRST_OPENING and e["facts"]["retrospective"]["n"] == 66
+    assert e["facts"]["calibration"]["status"] == "UNCALIBRATED" and e["promotion"]["level"] == "ABSTAIN"
+    R.verify_facts(e, **dict(src))
+    assert set(R.verify_sources(e, lambda p: (ROOT / p).read_bytes())) == {
+        e["card_path"], e["calibration"]["path"], "audits/predictive-intelligence/phase_12/validation/HOLDOUT_METRICS.csv"}
+    with pytest.raises(R.EntryHashMismatch):
+        R.verify_sources(e, lambda p: (ROOT / p).read_bytes() + b" ")
+    with pytest.raises(R.RegistryError):
+        R.derive_facts(candidate="P07_B2", phase="07", card=src["card"], tests=TESTS_OK, m_b0=src["m_b0"], m_b2=src["m_b2"],
+                       post_states=src["post_states"], cal_card=None)
+    with pytest.raises(R.RegistryError):
+        R.derive_facts(candidate="P07_B1", phase="07", card=real_card("07", "B1"), tests=TESTS_OK, m_b0=None, m_b2=None,
+                       post_states={}, cal_card=src["cal_card"])
+
+
+def test_cp16_0_forged_facts_pass_verify_entry_but_are_refused_against_their_sources_and_never_pinned():
+    e, src = _real_b2_entry()
+    forged = copy.deepcopy(e)
+    forged["facts"]["retrospective"].update({"bss": 0.05, "calibration_in_the_large_ok": True, "calibration_every_bin_ok": True})
+    forged["facts"]["calibration"] = {"status": "CALIBRATED", "evidence_n": 60, "evidence_k": 12, "evidence_source": "PROSPECTIVE_HOLDOUT",
+                                      "evidence_status": "ADMISSIBLE"}
+    forged["calibration"] = {**forged["calibration"], "status": "CALIBRATED", "level": "SHADOW"}
+    forged["promotion"] = R.promotion_decision(forged["facts"])
+    forged["registry_status"] = R.registry_status(forged["promotion"]["level"], forged["role"])
+    forged["publishable"] = R.publishable(forged)
+    forged["entry_id"] = R.sha({k: v for k, v in forged.items() if k != "entry_id"})
+    assert forged["promotion"]["level"] == "SHADOW" and forged["publishable"]
+    R.verify_entry(forged)                                  # the entry is self-consistent: the hole CP16-0 closes
+    with pytest.raises(R.FactsMismatchError, match="calibration|retrospective"):
+        R.verify_facts(forged, **dict(src))
+    b0 = make("07", "B0", facts("B0"), fixture=False)
+    ents = {x["entry_id"]: x for x in (forged, b0)}
+    refs = {"base_rate": b0["entry_id"], "simple_model": forged["entry_id"]}
+    with pytest.raises(R.PinRefused, match="facts are checked"):
+        R.pin_event(ents, FX_TARGET, mode="CHAMPION", champion=forged["entry_id"], references=refs, reasons=[], as_of_utc=AS_OF)
+    with pytest.raises(R.PinRefused, match="facts refused"):
+        R.pin_event(ents, FX_TARGET, mode="CHAMPION", champion=forged["entry_id"], references=refs, reasons=[], as_of_utc=AS_OF,
+                    verify=lambda x: R.verify_facts(x, **dict(src)))
+
+
+def test_serve_needs_the_source_check_of_a_champion():
+    ents, steps = fixture_registry()
+    events = R.chain_events(steps["initial"])
+    T = C.parse_utc("2026-10-23T00:00:00Z")
+    rt = runtime()
+    none = R.serve(events, ents, FX_TARGET, T, runtime=rt)
+    assert not none["use_champion"] and [b["state"] for b in none["blocking"]] == [R.FACTS_NOT_VERIFIED]
+
+    def bad(e):
+        raise R.FactsMismatchError("forged")
+    got = R.serve(events, ents, FX_TARGET, T, runtime=rt, verify=bad)
+    assert not got["use_champion"] and got["rollback_required"] and [b["state"] for b in got["blocking"]] == [R.FACTS_MISMATCH]
+    with pytest.raises(R.PinRefused, match="facts"):
+        R.rollback_event(events, ents, FX_TARGET, reason="DRIFT_ALERT", as_of_utc=steps["t_drift"], usable=lambda e: True,
+                         allow_fixture=True)
+
+
+def test_verify_facts_refuses_another_card():
+    e, src = _real_b2_entry()
+    other = dict(src)
+    other["card"] = real_card("07", "B2", "T1b_6h")
+    with pytest.raises(R.EntryHashMismatch):
+        R.verify_facts(e, **other)

@@ -65,6 +65,8 @@ FEATURE_SCHEMA_MISMATCH = "FEATURE_SCHEMA_MISMATCH"
 INCOMPATIBLE = "MODEL_INCOMPATIBLE_RETRAIN_REQUIRED"
 INFERENCE_MISMATCH = "INFERENCE_MISMATCH"
 ENTRY_REFUSED = "ENTRY_REFUSED"
+FACTS_MISMATCH = "FACTS_MISMATCH"
+FACTS_NOT_VERIFIED = "FACTS_NOT_VERIFIED"
 THRESHOLDS = {
     MODEL_STALE: {"max_model_age_s": ACC["max_model_age_s"], "rule": "decision time minus training cutoff above max_model_age_s",
                   "contract_reason": "MODEL_STALE"},
@@ -87,6 +89,7 @@ RETRAIN = {
     INCOMPATIBLE: "RETRAIN_REQUIRED_BEFORE_ANY_USE: the code changed under the model",
     FEATURE_SCHEMA_MISMATCH: "REQUEST_REFUSED: recompute the inputs with the model's feature set, or retrain",
     INFERENCE_MISMATCH: "ROLLBACK_AND_INVESTIGATE: the model no longer gives its recorded outputs",
+    FACTS_MISMATCH: "ROLLBACK_AND_INVESTIGATE: the entry's facts are not what its committed sources say",
     "TARGET_OR_LABEL_VERSION_CHANGE": "RETRAIN_AND_REEVALUATE: a new target or label version is a new model",
 }
 RETRAIN_POLICY = {"automatic": False, "reason": "no scheduled job is approved (PI-D-005); a retrain is a phase step with a plan",
@@ -149,6 +152,10 @@ class MalformedScore(RegistryError):
 
 class InferenceMismatchError(RegistryError):
     status = INFERENCE_MISMATCH
+
+
+class FactsMismatchError(RegistryError):
+    status = FACTS_MISMATCH
 
 
 class LogError(RegistryError):
@@ -299,6 +306,100 @@ def registry_status(level: str, role: str) -> str:
 
 def role_of(phase: str, kind: str) -> str:
     return "REFERENCE_BASELINE" if phase == "07" and kind in REFERENCE_KINDS else "CANDIDATE"
+
+
+# ---------------------------------------------------------------- facts from their committed sources (CP16-0)
+FACTS_VERSION = "facts-1"
+
+
+def _f(x: Any) -> float | None:
+    try:
+        v = float(x)
+    except (TypeError, ValueError):
+        return None
+    return v if math.isfinite(v) else None
+
+
+def _n(x: Any) -> int:
+    v = _f(x)
+    return int(v) if v is not None else 0
+
+
+def derive_facts(*, candidate: str, phase: str, card: dict, tests: dict, m_b0: dict | None, m_b2: dict | None,
+                 post_states: dict[str, str], cal_card: dict | None) -> dict:
+    """An entry's facts from the committed records: `m_b0` and `m_b2` are the card's rows of the Phase 12 HOLDOUT_METRICS.csv
+    against B0 and B2 (as read from the CSV, strings), `post_states` its POST_OPENING_CORRECTIONS.csv selection states by
+    reference, `cal_card` the Phase 13 calibration card of B2 (None for every other card), `tests` the pre-opening checks."""
+    kind = card["kind"]
+    role = role_of(phase, kind)
+    f = {"role": role, "kind": kind, "model_id": card["model_id"], "source": SOURCE, "fitted": "abstain" not in card["body"],
+         "tests": tests, "training": {"n": card.get("n_train"), "k": card.get("k_train")}}
+    if candidate == "P07_B0":
+        f["retrospective"] = {"evaluation": None, "note": "B0 is the reference of the skill score"}
+    elif m_b0 is None or not _n(m_b0.get("n_with_number")):
+        f["retrospective"] = {"evaluation": None, "note": "no holdout number (no inputs under the Phase 05 seal, or not fitted)",
+                              "verdict": m_b0["verdict"] if m_b0 else None}
+    else:
+        gov = m_b0["governing"]
+        f["retrospective"] = {"evaluation": FIRST_OPENING, "kind": m_b0["kind"], "n": _n(m_b0["n_with_number"]),
+                              "k": _n(m_b0["positives"]), "days": _n(m_b0["days"]),
+                              "calibration_in_the_large_ok": m_b0["cal_in_the_large_ok"] == "1",
+                              "calibration_every_bin_ok": None if m_b0["cal_every_bin_ok"] == "" else m_b0["cal_every_bin_ok"] == "1",
+                              "bss": _f(m_b0["bss"]), "bss_lo": _f(m_b0[f"bss_ci_{gov}_lo"]) if gov in ("day", "mint") else None,
+                              "governing": gov, "p_holm": _f(m_b0["p_holm"]) if m_b0["p_holm"] else None, "verdict": m_b0["verdict"]}
+    f["post_opening_states"] = sorted(post_states.values())
+    f["selection_status"] = post_states.get("P07_B0") or ("NO_UNCORRECTED_SKILL" if candidate != "P07_B0" else None)
+    if m_b2 is not None and _n(m_b2.get("n_with_number")):
+        gov = m_b2["governing"]
+        b, br = _f(m_b2["brier"]), _f(m_b2["brier_ref"])
+        f["vs_b2"] = {"brier_minus_b2": (b - br) if b is not None and br is not None else None,
+                      "lower_bound_b2_minus_brier": _f(m_b2[f"bss_ci_{gov}_lo"]) if gov in ("day", "mint") else None,
+                      "note": "sign of the lower bound of the BSS against B2 (B2 Brier minus model Brier, over B2 Brier)"}
+    else:
+        f["vs_b2"] = None
+    if candidate == "P07_B2":
+        if cal_card is None:
+            raise RegistryError("B2 needs its calibration card")
+        f["calibration"] = {"status": cal_card["status"], "evidence_n": cal_card["evidence"]["n"], "evidence_k": cal_card["evidence"]["k"],
+                            "evidence_source": cal_card["evidence"]["source"], "evidence_status": cal_card["evidence"]["status"]}
+    else:
+        if cal_card is not None:
+            raise RegistryError("only B2 carries a calibration card")
+        f["calibration"] = {"status": None, "note": "no calibration card (Phase 13 calibrated the champion only)"}
+    f["prospective"] = {"status": "NOT_YET_MATURED", "note": "Phase 19 evaluates the prospective holdout"}
+    return f
+
+
+def verify_facts(entry: dict, **sources: Any) -> dict:
+    """Recompute an entry's facts from the committed records (`derive_facts` arguments other than the candidate, phase and
+    card, which come from the entry and `card`) and refuse any difference: a level can only be as true as its facts."""
+    card = sources.pop("card")
+    if card.get("model_sha") != entry["model_sha"] or card_sha_of(card) != entry["model_sha"]:
+        raise EntryHashMismatch("card is not the one the entry names (model sha)")
+    want = derive_facts(candidate=entry["family"]["candidate"], phase=entry["family"]["phase"], card=card, **sources)
+    if canon(want) != canon(entry["facts"]):
+        diff = sorted(k for k in set(want) | set(entry["facts"]) if canon(want.get(k)) != canon(entry["facts"].get(k)))
+        raise FactsMismatchError(f"entry {entry['model_id']}: facts differ from their committed sources in {diff}")
+    return entry
+
+
+def verify_sources(entry: dict, read: Callable[[str], bytes]) -> list[str]:
+    """Check the sha256 of every committed file the entry names (card, calibration card, evidence files); returns the paths."""
+    checked = []
+
+    def one(path: str | None, want: str | None) -> None:
+        if not path or not want:
+            return
+        if sha_bytes(read(path)) != want:
+            raise EntryHashMismatch(f"{path}: bytes differ from the sha256 the entry records")
+        checked.append(path)
+    one(entry["card_path"], entry["card_file_sha256"])
+    cal = entry.get("calibration") or {}
+    one(cal.get("path"), cal.get("file_sha256"))
+    for v in (entry.get("evidence") or {}).values():
+        if isinstance(v, dict):
+            one(v.get("file"), v.get("sha256"))
+    return checked
 
 
 # ---------------------------------------------------------------- entries (rule 4)
@@ -635,9 +736,10 @@ def _references_ok(entries: dict[str, dict], target: str, references: dict) -> N
 
 
 def pin_event(entries: dict[str, dict], target: str, *, mode: str, champion: str | None, references: dict, reasons: Sequence[str],
-              as_of_utc: str, allow_fixture: bool = False) -> dict:
+              as_of_utc: str, allow_fixture: bool = False, verify: Callable[[dict], Any] | None = None) -> dict:
     """A pin of the deployed mode of one target. CHAMPION only for an entry whose recomputed level is SHADOW or
-    VALIDATED_EXPERIMENTAL (no champion that implies skill it does not have); NO_VIABLE_CHAMPION names no champion."""
+    VALIDATED_EXPERIMENTAL (no champion that implies skill it does not have) and whose facts the caller checked against their
+    committed sources with `verify` (it must raise on a mismatch; CP16-0); NO_VIABLE_CHAMPION names no champion."""
     if mode not in MODES:
         raise PinRefused(f"mode {mode!r} is not one of {MODES}")
     _references_ok(entries, target, references)
@@ -653,6 +755,12 @@ def pin_event(entries: dict[str, dict], target: str, *, mode: str, champion: str
             raise PinRefused(f"champion level {e['promotion']['level']}: a champion needs SHADOW or VALIDATED_EXPERIMENTAL")
         if e["is_fixture"] and not allow_fixture:
             raise PinRefused("a fixture entry is never pinned in a real registry")
+        if verify is None:
+            raise PinRefused("a champion is pinned only after its facts are checked against their sources (verify_facts)")
+        try:
+            verify(e)
+        except RegistryError as err:
+            raise PinRefused(f"champion facts refused: {type(err).__name__}: {err}")
         inf_sha = e["inference"]["outputs_sha"]
     elif champion is not None:
         raise PinRefused("NO_VIABLE_CHAMPION names no champion")
@@ -684,7 +792,7 @@ def resolve(events: Sequence[dict], entries: dict[str, dict], target: str, decis
 
 
 def rollback_event(events: Sequence[dict], entries: dict[str, dict], target: str, *, reason: str, as_of_utc: str,
-                   usable: Callable[[dict], bool], allow_fixture: bool = False) -> dict:
+                   usable: Callable[[dict], bool], allow_fixture: bool = False, verify: Callable[[dict], Any] | None = None) -> dict:
     """Fall back from the pin in force: to the most recent earlier CHAMPION pin of another entry that is still usable, else to
     NO_VIABLE_CHAMPION with the current references. Earlier events are never touched (P39)."""
     T = C.parse_utc(as_of_utc)
@@ -707,7 +815,7 @@ def rollback_event(events: Sequence[dict], entries: dict[str, dict], target: str
     if pick is not None:
         pin = pin_event(entries, target, mode="CHAMPION", champion=pick["champion"], references=refs,
                         reasons=[reason, f"rolled back to the champion pinned at {pick['as_of_utc']}"], as_of_utc=as_of_utc,
-                        allow_fixture=allow_fixture)
+                        allow_fixture=allow_fixture, verify=verify)
     else:
         pin = pin_event(entries, target, mode="NO_VIABLE_CHAMPION", champion=None, references=refs,
                         reasons=[reason, "no earlier usable champion: abstain with the references"], as_of_utc=as_of_utc,
@@ -716,10 +824,12 @@ def rollback_event(events: Sequence[dict], entries: dict[str, dict], target: str
 
 
 def serve(events: Sequence[dict], entries: dict[str, dict], target: str, decision_time: float, *, runtime: dict,
-          request: dict | None = None, drift_alarms: Sequence[float] = (), inference: Sequence[Sequence[Any]] | None = None) -> dict:
-    """What the publication path may use for one request: the pinned champion only when its entry verifies, is compatible,
-    current, not drifting and (when outputs are given) gives its pinned inference hash; otherwise NO_VIABLE_CHAMPION with the
-    blocking states, and `rollback_required` when a pinned champion failed. `forecast_inputs` is what abstention-1 gets."""
+          request: dict | None = None, drift_alarms: Sequence[float] = (), inference: Sequence[Sequence[Any]] | None = None,
+          verify: Callable[[dict], Any] | None = None) -> dict:
+    """What the publication path may use for one request: the pinned champion only when its entry verifies, its facts pass the
+    caller's source check `verify` (FACTS_NOT_VERIFIED without one, CP16-0), it is compatible, current, not drifting and (when
+    outputs are given) gives its pinned inference hash; otherwise NO_VIABLE_CHAMPION with the blocking states, and
+    `rollback_required` when a pinned champion failed. `forecast_inputs` is what abstention-1 gets."""
     res = resolve(events, entries, target, decision_time)
     blocking: list[dict] = []
     if res["mode"] == "CHAMPION":
@@ -728,6 +838,13 @@ def serve(events: Sequence[dict], entries: dict[str, dict], target: str, decisio
             verify_entry(e)
         except RegistryError as err:
             blocking.append({"state": ENTRY_REFUSED, "detail": f"{type(err).__name__}"})
+        if verify is None:
+            blocking.append({"state": FACTS_NOT_VERIFIED, "detail": "no source check of the champion's facts was run"})
+        else:
+            try:
+                verify(e)
+            except RegistryError as err:
+                blocking.append({"state": FACTS_MISMATCH, "detail": f"{type(err).__name__}: {err}"})
         blocking += compatibility(e, runtime=runtime, request=request)
         blocking += [s for s in status_at(e, decision_time, drift_alarms=drift_alarms) if s["state"] != MODEL_NOT_PROMOTED]
         if inference is not None:

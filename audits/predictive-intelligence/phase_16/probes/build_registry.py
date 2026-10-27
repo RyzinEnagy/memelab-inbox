@@ -111,6 +111,8 @@ DEBUG_RUNS: list[str] = [           # every run of this file on real data before
     "no failure; used to check the outputs; then tests were added for four surviving mutations (registry.py unchanged by them)",
 ]
 LABEL_CALLS = [0]
+CANDIDATE_ROWS: list[dict] = []
+ENS_LATENCY: dict[str, dict] = {}
 
 
 def fsha(p) -> str:
@@ -167,6 +169,7 @@ def runtime_facts() -> dict:
 
 def load_candidates() -> tuple[dict, dict]:
     cand = json.loads((P12V / "CANDIDATES.json").read_text())
+    CANDIDATE_ROWS[:] = cand["candidates"]
     # driven by CANDIDATES.json, not by a glob: `run_holdout.load_cards` globs phase_*/artifacts/T*/*.json and since Phase 13
     # also meets the calibration cards (KeyError '13'), so the Phase 12 plan step no longer reruns as committed (recorded)
     cards = {}
@@ -260,48 +263,19 @@ def synthetic_hash(card: dict) -> str:
 
 # ---------------------------------------------------------------- facts and entries (rules 3 and 4)
 def facts_for(s: str, cid: str, v: dict, metrics: dict, post: dict, cal_cards: dict, tests: dict) -> dict:
-    card = v["card"]
-    kind = card["kind"]
-    ph = v["phase"]
-    role = R.role_of(ph, kind)
-    f = {"role": role, "kind": kind, "model_id": card["model_id"], "source": R.SOURCE, "fitted": "abstain" not in card["body"],
-         "tests": tests, "training": {"n": card.get("n_train"), "k": card.get("k_train")}}
-    m0 = metrics.get((s, cid, "P07_B0"))
-    if cid == "P07_B0":
-        f["retrospective"] = {"evaluation": None, "note": "B0 is the reference of the skill score"}
-    elif m0 is None or not int(fnum(m0["n_with_number"]) if m0["n_with_number"] else 0):
-        f["retrospective"] = {"evaluation": None, "note": "no holdout number (no inputs under the Phase 05 seal, or not fitted)",
-                              "verdict": m0["verdict"] if m0 else None}
-    else:
-        gov = m0["governing"]
-        f["retrospective"] = {"evaluation": R.FIRST_OPENING, "kind": m0["kind"], "n": int(fnum(m0["n_with_number"])),
-                              "k": int(fnum(m0["positives"])), "days": int(fnum(m0["days"])),
-                              "calibration_in_the_large_ok": m0["cal_in_the_large_ok"] == "1",
-                              "calibration_every_bin_ok": None if m0["cal_every_bin_ok"] == "" else m0["cal_every_bin_ok"] == "1",
-                              "bss": fnum(m0["bss"]), "bss_lo": fnum(m0[f"bss_ci_{gov}_lo"]) if gov in ("day", "mint") else None,
-                              "governing": gov, "p_holm": fnum(m0["p_holm"]) if m0["p_holm"] else None, "verdict": m0["verdict"]}
-        for k in ("bss", "bss_lo", "p_holm"):
-            if isinstance(f["retrospective"][k], float) and not math.isfinite(f["retrospective"][k]):
-                f["retrospective"][k] = None
-    f["post_opening_states"] = sorted(post.get((s, cid), {}).values())
-    f["selection_status"] = post.get((s, cid), {}).get("P07_B0") or ("NO_UNCORRECTED_SKILL" if cid != "P07_B0" else None)
-    m2 = metrics.get((s, cid, "P07_B2"))
-    if m2 is not None and m2["n_with_number"] and int(fnum(m2["n_with_number"])):
-        gov = m2["governing"]
-        lo = fnum(m2[f"bss_ci_{gov}_lo"]) if gov in ("day", "mint") else float("nan")
-        f["vs_b2"] = {"brier_minus_b2": fnum(m2["brier"]) - fnum(m2["brier_ref"]),
-                      "lower_bound_b2_minus_brier": lo if math.isfinite(lo) else None,
-                      "note": "sign of the lower bound of the BSS against B2 (B2 Brier minus model Brier, over B2 Brier)"}
-    else:
-        f["vs_b2"] = None
-    if cid == "P07_B2":
-        cc = cal_cards[s]
-        f["calibration"] = {"status": cc["status"], "evidence_n": cc["evidence"]["n"], "evidence_k": cc["evidence"]["k"],
-                            "evidence_source": cc["evidence"]["source"], "evidence_status": cc["evidence"]["status"]}
-    else:
-        f["calibration"] = {"status": None, "note": "no calibration card (Phase 13 calibrated the champion only)"}
-    f["prospective"] = {"status": "NOT_YET_MATURED", "note": "Phase 19 evaluates the prospective holdout"}
-    return f
+    """The entry's facts through `registry.derive_facts` (CP16-0), so any verifier rebuilds them the same way."""
+    return R.derive_facts(candidate=cid, phase=v["phase"], card=v["card"], tests=tests_for(v, tests),
+                          m_b0=metrics.get((s, cid, "P07_B0")), m_b2=metrics.get((s, cid, "P07_B2")), post_states=post.get((s, cid), {}),
+                          cal_card=cal_cards[s] if cid == "P07_B2" else None)
+
+
+def tests_for(v: dict, tests: dict) -> dict:
+    """Pre-opening checks per card (CP16-0): leakage from Phase 12's traps and replay audit; provenance from the card's own file
+    and model hashes; contract from its registry fingerprint."""
+    c = next(x for x in CANDIDATE_ROWS if x["path"] == v["path"])
+    prov = R.sha_bytes((REPO / v["path"]).read_bytes()) == c["file_sha256"] and R.card_sha_of(v["card"]) == v["card"]["model_sha"] == c["model_sha"]
+    return {"leakage": tests["leakage"], "provenance": prov, "contract": v["card"]["registry_sha"] == C.registry_sha256(),
+            "basis": tests["basis"]}
 
 
 def risk_flags(s: str, cid: str, v: dict, facts: dict) -> list[str]:
@@ -513,16 +487,16 @@ def ensembles(dev, cards: dict, fam_cache: dict, latency: dict) -> tuple[dict, l
                 raise SystemExit(f"{s}: trap {trap} was not refused")
         dec = R.ensemble_decision(LONG[s], results)
         lat = {m: latency[f"{s}:{cid}"]["cpu_us_per_decision"] for m, cid in (("B0", "P07_B0"), ("B2", "P07_B2"), ("S1", "P10_S1_SC_LOGIT"))}
+        ENS_LATENCY[s] = {"ENS_MEAN_B0_B2": lat["B0"] + lat["B2"], "ENS_MEAN_B2_S1": lat["B2"] + lat["S1"], "members": lat}
         comp = {"ENS_MEAN_B0_B2": {"members": 2, "extra_parameters": 0, "member_parameters": 1 + 6,
-                                   "cpu_us_per_decision_sum_of_members": lat["B0"] + lat["B2"]},
+                                   "cpu_time": "ensemble/LATENCY.json"},
                 "ENS_MEAN_B2_S1": {"members": 2, "extra_parameters": 0,
                                    "member_parameters": 6 + len(cards[(s, "P10_S1_SC_LOGIT")]["card"]["body"]["logistic"]["coef"]) + 1,
-                                   "cpu_us_per_decision_sum_of_members": lat["B2"] + lat["S1"]},
+                                   "cpu_time": "ensemble/LATENCY.json"},
                 "STACK_CHRONO_B2_S1": {"members": 2, "extra_parameters": 3, "fitted": False}}
         out[s] = {"target": LONG[s], "development": {cfg: ({k: (summarize(v) if k.startswith("vs_") else v) for k, v in cf[cfg].items()})
                                                       for cfg in cf},
-                  "traps": dev_res[s]["traps"], "post_opening": post[s], "decision": dec, "complexity": comp,
-                  "member_latency_cpu_us_per_decision": lat}
+                  "traps": dev_res[s]["traps"], "post_opening": post[s], "decision": dec, "complexity": comp}
         for cfg in ("ENS_MEAN_B0_B2", "ENS_MEAN_B2_S1"):
             for refk in ("vs_B0", "vs_B2"):
                 d = cf[cfg][refk]
@@ -627,13 +601,13 @@ def fixture_rollback(real_entries: dict) -> dict:
         t_mid = C.parse_utc(steps["t_model_pin"]) + 60
         before_rb = R.resolve(events, ents, TR.FX_TARGET, t_mid)
         rb1 = R.rollback_event(events, ents, TR.FX_TARGET, reason="DRIFT_ALERT", as_of_utc=steps["t_drift"],
-                               usable=lambda e: True, allow_fixture=True)
+                               usable=lambda e: True, allow_fixture=True, verify=TR.FX_VERIFY)
         old = log.read_text()
         sha_, _ = R.append_events(log, [rb1], expect_sha=sha_)
         events = R.read_log(log.read_text())
         after1 = R.resolve(events, ents, TR.FX_TARGET, C.parse_utc(steps["t_drift"]))
         rb2 = R.rollback_event(events, ents, TR.FX_TARGET, reason=R.INFERENCE_MISMATCH, as_of_utc=steps["t_mismatch"],
-                               usable=lambda e: True, allow_fixture=True)
+                               usable=lambda e: True, allow_fixture=True, verify=TR.FX_VERIFY)
         sha_, _ = R.append_events(log, [rb2], expect_sha=sha_)
         events = R.read_log(log.read_text())
         after2 = R.resolve(events, ents, TR.FX_TARGET, C.parse_utc(steps["t_mismatch"]))
@@ -800,6 +774,16 @@ def main() -> int:
     back = R.read_entries(ent_dir)
     if set(back) != set(entries):
         failures.append("entries read back differ")
+    fact_checks = 0
+    for e in back.values():                      # CP16-0: every entry's facts rebuilt from the committed files, every source hashed
+        s_ = SHORT[e["target"]]
+        cid = e["family"]["candidate"]
+        v = cards[(s_, cid)]
+        R.verify_facts(e, card=v["card"], tests=tests_for(v, tests), m_b0=metrics.get((s_, cid, "P07_B0")),
+                       m_b2=metrics.get((s_, cid, "P07_B2")), post_states=post.get((s_, cid), {}),
+                       cal_card=cal_cards[s_] if cid == "P07_B2" else None)
+        R.verify_sources(e, lambda path: (REPO / path).read_bytes())
+        fact_checks += 1
 
     ens, ens_csv, ens_ledger, post_log = ensembles(dev, cards, fam_cache, latency)
     stab = stability(cards, fam_cache)
@@ -871,7 +855,7 @@ def main() -> int:
     write_json(out / "ensemble/POST_OPENING_LOG.json", post_log)
     write_json(out / "ensemble/LATENCY.json", {"note": "CPU time per decision of each card's predict on the probe set; machine "
                                                        "dependent, descriptive, excluded from the determinism comparison",
-                                               "cards": latency})
+                                               "cards": latency, "ensembles_sum_of_members": ENS_LATENCY})
     write_json(out / "evidence/INFERENCE_CHECK.json", {"cards": len(inference), "equal_to_recorded": sum(1 for v in inference.values() if v["equal_to_recorded"]),
                                                        "differences": {f"{k[0]}:{k[1]}": v["differences"] for k, v in inference.items() if v["differences"]},
                                                        "by_card": {f"{k[0]}:{k[1]}": {kk: vv for kk, vv in v.items()} for k, v in sorted(inference.items())}})
@@ -887,7 +871,7 @@ def main() -> int:
         "start_utc": iso(t0), "end_utc": iso(time.time()), "cpu_s": round(time.process_time() - c0, 3), "head": git("rev-parse", "HEAD").strip(),
         "code_sha256": {c: fsha(REPO / c) for c in CODE}, "stores_before": before, "stores_after": after,
         "stores_unchanged": before == after, "sealed_folder_unchanged": seal_before == seal_after, "socket_events": SOCKET_EVENTS,
-        "network_calls": len(SOCKET_EVENTS), "training_labels_calls": LABEL_CALLS[0], "firecrawl_credits": 0, "llm_calls": 0,
+        "network_calls": len(SOCKET_EVENTS), "training_labels_calls": LABEL_CALLS[0], "facts_and_sources_verified": fact_checks, "firecrawl_credits": 0, "llm_calls": 0,
         "debug_runs_before_frozen_code": DEBUG_RUNS, "failures": failures, "python": sys.version.split()[0], "numpy": np.__version__})
     print(json.dumps({"entries": len(entries), "levels": dict(levels), "events": len(events), "inference_equal": len(inference) - len(bad_inf),
                       "ensemble": {s: v["decision"]["decision"] for s, v in ens.items()}, "n_search": totals["after"]["n_search"],
