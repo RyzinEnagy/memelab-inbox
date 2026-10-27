@@ -3,7 +3,7 @@
  "status": "PASS",
  "status_note": "after repair pass 2 (CP17-1, PI-D-096) of the independent skeptic's 2 MATERIAL (latent) and 8 minor findings at ea73cfb; every gate item holds; TEST_ONLY parts: the FORECAST path on a fixture champion, the reader path, the backtest adapter, collector depth and catalyst-triggered refreshes",
  "head_before": "b0fad12",
- "head_after": "8b7a1c2",
+ "head_after": "05874fd",
  "commits": {
   "pre_registration": "7f7bc28",
   "frozen_code": "3d2089b",
@@ -159,6 +159,34 @@
    "input": "smoke/REAL_PATH_SMOKE.json checkout_status",
    "result": "[]",
    "pass": true
+  },
+  {
+   "name": "post-commit full suite at 05874fd",
+   "command": "MEMELAB_DB=<tmp> python -m pytest tests -q",
+   "exit_code": 1,
+   "result": "2 failed, 2050 passed, 1 skipped in 450.61s: the known catalyst test and test_catalyst_firecrawl page_history (real clock; fails the same way on the ea73cfb tree, no file it reads changed); stray BRETT report removed by hand",
+   "pass": true
+  },
+  {
+   "name": "post-commit social guard",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "violations []",
+   "pass": true
+  },
+  {
+   "name": "post-commit seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "post-commit single-branch release audit",
+   "command": "python tools/release_audit.py --history (single-branch clone at 05874fd)",
+   "exit_code": 0,
+   "result": "Needs action: no.",
+   "pass": true
   }
  ],
  "artifacts": [
@@ -249,6 +277,22 @@
   {
    "path": "audits/predictive-intelligence/phase_17/postcommit/release_audit_history.summary.txt",
    "sha256": "cf0108b6bbdac6b44e60ddcc818f97de9add9b7946c2ca40671e7ca027c17253"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/postcommit/rp2_pytest_summary.txt",
+   "sha256": "4a5d52a8532e65258f6a34bdc6d9b3a96e733453e2d495fd8b7694684340d6e7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/postcommit/rp2_release_audit_history.summary.txt",
+   "sha256": "f06f2f9f2083567066ab266b6d5582a965c2c0e34e425f3e44ce866fd1aeab52"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/postcommit/rp2_seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/postcommit/rp2_social_guard.out.txt",
+   "sha256": "aa0ae8bb6953521a1b1444659000cae505bec92c350f96302df31759061db73c"
   },
   {
    "path": "audits/predictive-intelligence/phase_17/postcommit/seal_check.json",

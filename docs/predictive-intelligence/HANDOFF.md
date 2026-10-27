@@ -32,7 +32,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Phase 17 commits
 
-HEAD before `b0fad12`; pre-registration `7f7bc28`; frozen code `3d2089b`; recorded outputs `6f4e8f7`; CP17-0 code `6172b49`; repeated outputs `30be448`; first-pass records `c25ce00` and `ea73cfb` (reviewed); CP17-1 repair code `148e3da`, repeated outputs and records after it (post-commit results in `phase_17/postcommit/rp2_*`); first-pass post-commit at `c25ce00`: suite `1 failed, 2031 passed, 1 skipped` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no." (`phase_17/postcommit/`); the post-commit record commit on top. Local only; the orchestrator pushes.
+HEAD before `b0fad12`; pre-registration `7f7bc28`; frozen code `3d2089b`; recorded outputs `6f4e8f7`; CP17-0 code `6172b49`; repeated outputs `30be448`; first-pass records `c25ce00` and `ea73cfb` (reviewed); CP17-1 repair code `148e3da`, repeated outputs and records after it (repeated outputs `8b7a1c2`, records `05874fd`; post-commit at `05874fd`: suite `2 failed, 2050 passed, 1 skipped` (the known catalyst test and the real-clock firecrawl test, which fails the same way on `ea73cfb`), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no.", `phase_17/postcommit/rp2_*`); first-pass post-commit at `c25ce00`: suite `1 failed, 2031 passed, 1 skipped` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no." (`phase_17/postcommit/`); the post-commit record commit on top. Local only; the orchestrator pushes.
 
 ## Waiting on Elving
 

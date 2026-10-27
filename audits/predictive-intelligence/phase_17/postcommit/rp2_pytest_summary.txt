@@ -1,0 +1,5 @@
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+FAILED tests/test_catalyst_firecrawl.py::test_page_history_and_spend_survive_a_new_session_through_the_state_export
+2 failed, 2050 passed, 1 skipped, 1 warning in 450.61s (0:07:30)
+exit 1
+at 05874fd; stray data/reports/20261027_0919_BRETT_0x532f.md removed by hand; test_catalyst_firecrawl page_history uses the real clock and fails the same way on the ea73cfb tree (no file it reads changed between ea73cfb and 05874fd)

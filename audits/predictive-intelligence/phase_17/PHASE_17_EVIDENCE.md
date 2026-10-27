@@ -87,7 +87,7 @@ Fixture path (`smoke/FIXTURE_E2E.json`, TEST_ONLY): a fixture B2 champion pinned
 | G20 | yes | `test_g20_*` |
 | G21 | yes | `test_g21_*`, amended isolation tests |
 | G22 | yes | `test_g22_*`; `tests/test_predictive_reproductions.py` green in the suite |
-| G23 | yes | post-commit at `c25ce00`: suite `1 failed, 2031 passed, 1 skipped in 425.14s` (known failure only; stray removed by hand), guard 0 violations, seal `"problems": []`, single-branch release audit exit 0 "Needs action: no." (`postcommit/`) |
+| G23 | yes | post-commit after repair pass 2 at `05874fd`: suite `2 failed, 2050 passed, 1 skipped in 450.61s` (the known catalyst test and `test_catalyst_firecrawl` page_history, which uses the real clock and fails the same way on the `ea73cfb` tree; stray removed by hand), guard 0 violations, seal `"problems": []`, single-branch release audit exit 0 "Needs action: no." (`postcommit/rp2_*`). First pass, post-commit at `c25ce00`: suite `1 failed, 2031 passed, 1 skipped in 425.14s` (known failure only; stray removed by hand), guard 0 violations, seal `"problems": []`, single-branch release audit exit 0 "Needs action: no." (`postcommit/`) |
 | G24 | yes | 73 of 73 at `148e3da`. Corrected wording (skeptic M2): the first pass's "59 of 59" was every mutation of the probe's own set, which did not delete the integration's calls to `check_document` or `verify_point`; the skeptic's deletions Y1 and Y2 left every test green. Both are now in the set and caught by the flow tests |
 | G25 | yes | social guard 0 violations; content-guard test; trading-word checks |
 | G26 | yes | `test_the_search_ledger_extends_phase_16_*` |
