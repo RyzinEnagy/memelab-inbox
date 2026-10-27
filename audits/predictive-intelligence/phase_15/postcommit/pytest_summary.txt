@@ -1,0 +1,4 @@
+python -m pytest tests -q -p no:cacheprovider at cda97c3 (started 2026-10-27T01:26:34Z): exit 1
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+1 failed, 1846 passed, 1 skipped, 1 warning in 292.16s (0:04:52)
+only the known clock-dependent failure; strays removed by hand: data/reports/20261027_0126_BRETT_0x532f.md, data/memelab.sqlite-shm, data/memelab.sqlite-wal

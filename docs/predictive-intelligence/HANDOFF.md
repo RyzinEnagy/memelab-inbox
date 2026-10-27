@@ -31,7 +31,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Phase 15 commits
 
-HEAD before `b0243b4`; pre-registration `b274cbc`; frozen coding code `9ab0160`; blind coding run `7b787bf`; frozen scoring code `0abffd5`; first scoring run `01e535d`; change control CP15-0 `de41d26`; repeated scoring run `3135060`; records commit and post-commit record on top (hashes in `phase_15/PHASE_15_RESULTS.json` and `phase_15/postcommit/`). Local only; the orchestrator pushes.
+HEAD before `b0243b4`; pre-registration `b274cbc`; frozen coding code `9ab0160`; blind coding run `7b787bf`; frozen scoring code `0abffd5`; first scoring run `01e535d`; change control CP15-0 `de41d26`; repeated scoring run `3135060`; records `cda97c3`; post-commit record on top. Post-commit at `cda97c3`: suite `1 failed, 1846 passed, 1 skipped` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no.", `git status` clean (`phase_15/postcommit/`). Local only; the orchestrator pushes.
 
 ## Waiting on Elving
 

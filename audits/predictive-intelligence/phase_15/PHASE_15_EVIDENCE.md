@@ -116,6 +116,13 @@ Full sha256 digests in `PHASE_15_RESULTS.json`.
 
 Pending: the orchestrator runs the independent skeptic on `SKEPTIC_PACKET.md`.
 
-## Post-commit at the records commit
+## Post-commit at the records commit `cda97c3`
 
-Recorded in the follow-up commit (`postcommit/`).
+| Check | Command | Exit | Result |
+|---|---|---|---|
+| full suite | `python -m pytest tests -q -p no:cacheprovider` (from 01:26:34Z) | 1 | `1 failed, 1846 passed, 1 skipped, 1 warning in 292.16s`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (1807 at entry plus the 39 Phase 15 tests); strays `data/reports/20261027_0126_BRETT_0x532f.md`, `data/memelab.sqlite-shm`, `-wal` removed by hand |
+| social guard | `python -m memelab social guard` | 0 | `"violations": []`, 2,440 files scanned |
+| seal check | `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | 0 | `"problems": []` |
+| release audit | `python tools/release_audit.py --history` on a single-branch clone at `cda97c3` | 0 | "Needs action: no." |
+
+Files: `postcommit/pytest_summary.txt`, `social_guard.out.txt`, `seal_check.json`, `release_audit_history.summary.txt`. `git status` clean after the follow-up commit that records them.
