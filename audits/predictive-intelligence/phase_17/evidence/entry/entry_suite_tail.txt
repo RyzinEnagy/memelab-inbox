@@ -1,0 +1,4 @@
+=========================== short test summary info ============================
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+1 failed, 1925 passed, 1 skipped, 1 warning in 365.52s (0:06:05)
+exit 1
