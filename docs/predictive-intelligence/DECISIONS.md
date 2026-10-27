@@ -786,3 +786,13 @@ Found while checking the recorded outputs repeated at `0127d2e` (committed at `4
 2. The report labels the event line when it carries a measured change, and its units section says the same. The probe's percent check counts the labelled measured changes separately and still requires 0 percents elsewhere outside the target definitions.
 3. Cosmetic, folded in because the golden files change anyway: a refused target's line reads "DOCUMENT_REFUSED: the document failed a check: ... . Failed checks: ...".
 4. Frozen-code discipline as in PI-D-099: tests that fail on `0127d2e` (`probes/cp18_1_old_code_check.py`), the golden files regenerated and reviewed, the recorded runs repeated (`evidence/rerun_cp18_1_diff.json`), ledger rows `P18:CP18_1:*`.
+
+## PI-D-101 Phase 18 result: readable abstentions, no unverified number, dry-run alerts (ADOPTED, 2026-10-27, Phase 18 first pass with CP18-0 and CP18-1; NEEDS_REVIEW until the independent skeptic)
+
+Recorded with `audits/predictive-intelligence/phase_18/PHASE_18_EVIDENCE.md`, `ui/`, `real/` and `evidence/` at the CP18-1 code `ea799da`. The contract, ACCEPTANCE, the registry fingerprint (`4b4aabce...`) and every existing lab module (pinned at `4ebccc3`) are unchanged; spend 0; no network.
+
+1. report-1 and alerts-rules-1 are in force (PI-D-098, amended by PI-D-099 and PI-D-100). With the flag off nothing is read or written, and the real scout with the flag off is byte-identical to `b0fad12` at every Phase 18 code commit.
+2. On real data every target abstains and the reports show no number: the sandbox scout report (8 opportunities, 24 targets, 8 of 8 snapshots verified, 3 fatal-flag vetoes: CANNOT_EXIT_5K on GOMO and WASH_TRADING_HIGH on HIGGS and slopcannon; the pre-registered expectation named only GOMO, an incomplete statement, not a changed result) and the export-replay report (47 opportunities, 141 targets, 22 with a veto, snapshots not verified without a lab database) each name MODEL_NOT_SELECTED, UNCALIBRATED, INSUFFICIENT_HISTORY and SOURCE_STALE for every target, with BACKTEST_NOT_AVAILABLE and SIMULATION_NOT_AVAILABLE.
+3. Dry-run alerts on real data: 0 on the scout state (3 risk_override candidates suppressed SOURCE_STALE: the inputs are from 2026-10-07); 8 risk_override previews on the replay state at its newest capture plus 60 s (15 suppressed SOURCE_STALE); no reevaluate, forecast_withdrawn or abstention alert; nothing sent.
+4. TEST_ONLY parts: the FORECAST display path, the reevaluate and forecast_withdrawn alerts (no real FORECAST exists); the fixture examples are format-only and watermarked.
+5. Status: NEEDS_REVIEW until the orchestrator's skeptic; Phase 19 is eligible only after the orchestrator records a PASS.

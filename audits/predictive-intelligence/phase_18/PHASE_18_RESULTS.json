@@ -1,0 +1,337 @@
+{
+ "phase": "18",
+ "status": "NEEDS_REVIEW",
+ "status_note": "first pass with the self-review change controls CP18-0 (PI-D-099) and CP18-1 (PI-D-100); every gate item reproduced by the phase agent except G21 (post-commit run, recorded after the records commit); PASS only after the orchestrator's independent skeptic and the repair pass (PI-D-013)",
+ "head_before": "4ebccc3f43a583880bf5288d8314cd79183a0187",
+ "head_after": "100d262666a30839990a54b1979b33a108218256",
+ "commits": {
+  "pre_registration": "ebb7059",
+  "frozen_code": "96c4445",
+  "recorded_outputs": "3601881",
+  "cp18_0_code": "0127d2e",
+  "cp18_0_outputs": "44118a1",
+  "cp18_1_code": "ea799da",
+  "cp18_1_outputs": "100d262"
+ },
+ "checks": [
+  {
+   "name": "package checksums",
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "exit_code": 0,
+   "result": "41 of 41 OK",
+   "pass": true
+  },
+  {
+   "name": "entry gate full suite",
+   "command": "python -m pytest tests -q -p no:cacheprovider (at 4ebccc3)",
+   "exit_code": 1,
+   "result": "2 failed, 2050 passed, 1 skipped in 447.20s (the two known clock-dependent failures only)",
+   "pass": true
+  },
+  {
+   "name": "entry gate seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "entry gate Phase 17 real-path smoke",
+   "command": "bash audits/predictive-intelligence/phase_17/probes/real_path_smoke.sh 4ebccc3 <scratch>; run_integration.py smoke",
+   "exit_code": 0,
+   "result": "16 runs exit 0; flag off byte-equal to b0fad12; flag on body plus section; 24 ABSTAIN, 0 FORECAST",
+   "pass": true
+  },
+  {
+   "name": "G2 no existing file changed except the rule-14 test",
+   "command": "git diff --stat 4ebccc3 HEAD -- memelab tests; test_g2 (164 pinned lab modules)",
+   "exit_code": 0,
+   "result": "reports.py, new tests and fixtures, tests/test_predictive_contract.py (4 lines)",
+   "pass": true
+  },
+  {
+   "name": "Phase 18 tests",
+   "command": "python -m pytest tests/test_predictive_reports.py tests/test_predictive_phase18_outputs.py -q",
+   "exit_code": 0,
+   "result": "72 passed (65 plus 7)",
+   "pass": true
+  },
+  {
+   "name": "golden stability",
+   "command": "python -B probes/run_reports.py goldens <scratch> (twice)",
+   "exit_code": 0,
+   "result": "7 texts, identical sha256",
+   "pass": true
+  },
+  {
+   "name": "G3 flag off at every Phase 18 code commit",
+   "command": "real_path_smoke.sh at 96c4445, 0127d2e, ea799da",
+   "exit_code": 0,
+   "result": "base_off vs frozen_off byte-equal over 9 reports and the lab tables each time",
+   "pass": true
+  },
+  {
+   "name": "G16 real scout report",
+   "command": "unshare -n python -B probes/run_reports.py real <smoke> <replay> real/ (at ea799da)",
+   "exit_code": 0,
+   "result": "8 opportunities, 24 targets, 0 probabilities, 24 ABSTAIN, 8 of 8 snapshots verified, 3 vetoes, 0 percents outside definitions, no trading word, no local path",
+   "pass": true
+  },
+  {
+   "name": "G17 real replay report and dry-run alerts",
+   "input": "real/REAL_RUN_CHECKS.json",
+   "result": "replay 47 opportunities, 141 targets, 0 probabilities; alerts scout 0 (3 SOURCE_STALE), replay 8 risk_override previews (15 SOURCE_STALE); 0 deliveries",
+   "pass": true
+  },
+  {
+   "name": "CP18-0 tests fail on 96c4445",
+   "command": "python -B probes/cp18_0_old_code_check.py",
+   "exit_code": 0,
+   "result": "2 of 2 fail on the old code",
+   "pass": true
+  },
+  {
+   "name": "CP18-1 tests fail on 0127d2e",
+   "command": "python -B probes/cp18_1_old_code_check.py",
+   "exit_code": 0,
+   "result": "2 of 2 fail on the old code",
+   "pass": true
+  },
+  {
+   "name": "rerun diffs",
+   "input": "evidence/rerun_cp18_0_diff.json, evidence/rerun_cp18_1_diff.json",
+   "result": "no count, status, reason or alert decision changed except the fixed displays",
+   "pass": true
+  },
+  {
+   "name": "G22 mutation probe at ea799da",
+   "command": "python -B probes/mutation_reports.py",
+   "exit_code": 0,
+   "result": "49 of 49 caught",
+   "pass": true
+  },
+  {
+   "name": "G23 ledger",
+   "command": "python -B probes/ledger.py audits/predictive-intelligence/phase_18",
+   "exit_code": 0,
+   "result": "3,350 rows, 22 added, N_search 130, sensitivity 169",
+   "pass": true
+  },
+  {
+   "name": "G18 socket events",
+   "input": "tests and probes (audit hooks)",
+   "result": "0",
+   "pass": true
+  },
+  {
+   "name": "suite before the records commit",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "2 failed, 2122 passed, 1 skipped in 544.49s (the two known failures only)",
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/phase_18/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "1d14bad729f0ec05e1e992b93c38f52a366ff3db559e6da4da57e53ac4e534f6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/PHASE_18_EVIDENCE.md",
+   "sha256": "71a290a51844d93a1eaddb72f740fd19acf48aa5c76c01f2d434e8c940c7aff6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/SKEPTIC_PACKET.md",
+   "sha256": "23898ab8ac59ea7410a6d67fab7796de999f74fb11f9081a95e767d12b4a4cd4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/evidence/cp18_0_old_code_check.json",
+   "sha256": "10e3b3bd552edf2dbd2c7e919d21bbd7b0e2ba2517eb4e5246117b3a165dc18b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/evidence/cp18_1_old_code_check.json",
+   "sha256": "51d231d46005b4eca6905dcf028aa320140d17c3e6638d9589aaaf2daf2acd37"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/evidence/entry/entry_seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/evidence/entry/entry_suite_summary.txt",
+   "sha256": "c474a93d02e6c7279be5b00a5bfec8484d698e6aa8eaeda59a2c3ff4f88559e5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/evidence/entry/p17_real_path_runs_at_head.txt",
+   "sha256": "afd354382566b5352e34ff1a2fdf920024da31ccd9e54408a555a29dabc16833"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/evidence/entry/p17_real_path_smoke_at_head.json",
+   "sha256": "5a6153f2bc3579be757606d2fa253a0744992e8e2751d2d838561c836280d544"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/evidence/mutation_prefreeze_first_probe.json",
+   "sha256": "690127781ecbd277d5c12c70289b5838177bd486fa6971d3c75b87a045859b3b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/evidence/mutation_reports.json",
+   "sha256": "5161a1f06a21db309bf1b14f2a66f0b555aa0bde5d707a5fda92caccb02c5590"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/evidence/mutation_reports_frozen_96c4445.json",
+   "sha256": "5398678d88f30170e98e96d751938d97301ad8e074dcd44ebb41e9bd947eed12"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/evidence/rerun_cp18_0_diff.json",
+   "sha256": "ebef3685d9015e055d027c1a6761857249ff75576b6d1082821375fa3055a1b9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/evidence/rerun_cp18_1_diff.json",
+   "sha256": "29cf120b1603d6bff10a95c76612b2057528e3cdce31f286d541c5242eec76a8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/experiments/EXPERIMENT_REGISTRY.csv",
+   "sha256": "692c8b466d8ea13cfc4a0b2632458e6b003e66ef73e66131b51916e74831bc67"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/experiments/LEDGER_TOTALS.json",
+   "sha256": "faf6a6552f7f566e2a6a70b9e1b17fd60902616f2442bb01b218238b7719b79f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/experiments/SEARCH_LEDGER.csv",
+   "sha256": "8331d1012765294eed0c59476b2004460327d7ac8996cd7ad02568e1f01741b2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/probes/cp18_0_old_code_check.py",
+   "sha256": "a3a35b706091e21c4f10c3431efb6c2b97121cf42c5e6dc593501bdd4939033f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/probes/cp18_1_old_code_check.py",
+   "sha256": "2611a0bd96510e70ed36463e7f9461908f74df7fc5502f146faa7cbbda1d3a72"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/probes/ledger.py",
+   "sha256": "1704a4fc3d80d412e82de7702315a43cec99f65911b1a61a6fc84db71839a44b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/probes/make_examples_doc.py",
+   "sha256": "ad0e0b6aeed3b94584349c052756a8626bff0e0add4e70ef907e6ea8181e04f8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/probes/mutation_reports.py",
+   "sha256": "a74eea16d8bace941b832f6934a9485cd97318865b726dae3a7a570357279c7a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/probes/rerun_diff.py",
+   "sha256": "73838cdff95b17e0e1b248d78529657411abc735f1d8e14ab003fca724c849b3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/probes/run_reports.py",
+   "sha256": "152027ce86b4636d656b24920706e42265236121c4202d2348d0e346a3b38ca2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/real/REAL_ALERTS_REPLAY_DRY_RUN.txt",
+   "sha256": "45467fc981207c78278f73b2934e899be4589cd2ff2ff8c042bdf7862c6f54c4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/real/REAL_ALERTS_SCOUT_DRY_RUN.txt",
+   "sha256": "35f30313a7e8f089480002e50583966af96c5ae69cf9e33085fede06a7a6986a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/real/REAL_EXPORT_REPLAY.json",
+   "sha256": "9bb98769c5f8583170c0d49cd933058402d2447b0108dfd597ed459b3fd26430"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/real/REAL_PATH_SMOKE.json",
+   "sha256": "96667914ae0db31cdf60270867e48d27a938a57b22e4281edcdaf3824f8e595a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/real/REAL_REPLAY_REPORT.md",
+   "sha256": "88db1b07b25f2662a8c2e2848e78f4ca6913a02f79cce522368c311fdcff756f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/real/REAL_RUN_CHECKS.json",
+   "sha256": "0ebf0f19c489e6d61b6208c91089c3ef60358768f16b347da5dcfe2618db7609"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/real/REAL_SCOUT_REPORT.md",
+   "sha256": "40b248d8f13bf21e058fef55423a8dd83815b55d0e276ea3e36489b57af9529f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/real/real_path_runs.txt",
+   "sha256": "c6689f12f06477f2380ea04ee89a2ff8bc41ae3a8726658d57317d3be6a3db16"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/ui/ALERT_RULE_MATRIX.md",
+   "sha256": "e9ae531f5da753b428649dfd61c5724f975f83f68f86cec6414859aa251935fc"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/ui/EXAMPLE_REPORTS.md",
+   "sha256": "b3b0c50a81d5b25ffa0b46315a73b797aa6f4b5bb0d6180308a99542c35295d0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/ui/MISSING_DATA_UX.md",
+   "sha256": "cfd7e5ac41b7e83155e73db13e7c6d7425beebed4d0e518e49bb2c01b449007f"
+  },
+  {
+   "path": "memelab/predictive/reports.py",
+   "sha256": "c0b62c8749fa00a52943ca10baf7dae29ca1603b8b231708bb17ead8954403c9"
+  },
+  {
+   "path": "tests/test_predictive_reports.py",
+   "sha256": "ebeff478d7155e439ef3f5b4236f630e3cd3f834d4a4f902012d0e04d23423f5"
+  },
+  {
+   "path": "tests/test_predictive_phase18_outputs.py",
+   "sha256": "18e1bbe835a3ab7ac733de98d3548858100e564e012b0bc9d60b1534c1f5174f"
+  },
+  {
+   "path": "tests/fixtures/predictive/phase18/PINNED_SHA256.json",
+   "sha256": "9ca374749fb476c25e3f5cf7b99eb47cbff45dc00c98ad379338ffcc97f74330"
+  },
+  {
+   "path": "tests/fixtures/predictive/phase18/golden/alerts_forecast_format_only.txt",
+   "sha256": "3221d4861e7bdf767e82bb2742725ad7119c13f5e1ca9e45264df5f2bcfa89c7"
+  },
+  {
+   "path": "tests/fixtures/predictive/phase18/golden/alerts_withdrawn_format_only.txt",
+   "sha256": "01a30e1a1f7181ad30fe68f845b9a8d593720855e611c56309615e221d2d50a6"
+  },
+  {
+   "path": "tests/fixtures/predictive/phase18/golden/report_abstain.md",
+   "sha256": "88b04abb54b8abbf2d94b9f0afac1d7012a5ca4da3d171c482662d10b565732a"
+  },
+  {
+   "path": "tests/fixtures/predictive/phase18/golden/report_forecast_format_only.md",
+   "sha256": "b4fb7ee2b4e0aad2a329512b60f2a0d18a12b8844d166d3a4f3d1f5b26c06706"
+  },
+  {
+   "path": "tests/fixtures/predictive/phase18/golden/report_forged_refused.md",
+   "sha256": "6241ae8858ed7c6ff587bc17f10a867bbd719541fe4580415166daabeb41a9e5"
+  },
+  {
+   "path": "tests/fixtures/predictive/phase18/golden/report_injection.md",
+   "sha256": "0dce64157f95900e69501f9378c4dcbecd7a5a82372f27dc6269d86f11b16a6e"
+  },
+  {
+   "path": "tests/fixtures/predictive/phase18/golden/report_withdrawn_format_only.md",
+   "sha256": "257007264a7126fd3887c73244fbb097964d149dee14f88bb43122bb39d4fd5c"
+  }
+ ],
+ "limitations": [
+  "no real probability exists (Phase 16 NO_VIABLE_CHAMPION, Phase 13 UNCALIBRATED): the FORECAST display path, reevaluate and forecast_withdrawn alerts are TEST_ONLY, shown on watermarked format-only fixtures",
+  "a report cannot re-run verify_point (the request record keeps no feature availabilities); a FORECAST number is tied to the point stored with the raw number at publication, the hash-chained state and the registry-resolved cards; the state is hash-chained, not signed",
+  "the replay report has no lab database: snapshots not verified, lab facts UNKNOWN",
+  "codes such as NO_ENTRY_AT_SHADOW_OR_ABOVE, NO_TRADES_AFTER_ENTRY and NO_SELL_ROUTE contain trade words inside a code and pass the whole-word check by design",
+  "the Phase 18 report is a separate command; the scout report keeps the Phase 17 section unchanged",
+  "the daily cap was not reached on real data; cap, cooldown, dedupe and quiet hours are proven on fixtures",
+  "the independent skeptic has not run yet"
+ ],
+ "blockers": [],
+ "approvals_needed": [
+  "any external alert delivery (Telegram, email) needs Elving's approval and its own phase (PI-D-005)",
+  "turning predictive.enabled on outside a sandbox (Elving)",
+  "the promotion change control of PI-D-091 (Elving)",
+  "a merge of the backtesting PR #4 into this line (Elving)"
+ ],
+ "next_eligible_phase": "18 repair pass after the orchestrator's skeptic; Phase 19 only after the orchestrator records Phase 18 PASS"
+}
