@@ -1,0 +1,68 @@
+{
+ "abstentions": 4,
+ "check_state": {
+  "documents": 6,
+  "problems": []
+ },
+ "evidence_class": "TEST_ONLY",
+ "forecast_documents": [
+  {
+   "caveats": [
+    "PRICE_PATH_NOT_PROCEEDS",
+    "NO_HISTORICAL_EXECUTABLE_DEPTH",
+    "INTERVAL_EXCLUDES_UNMODELED_RISK",
+    "SHADOW_RESEARCH_ONLY",
+    "COHORT_ESTIMATE_NOT_TOKEN_HISTORY"
+   ],
+   "is_fixture": true,
+   "mint": "Ebjh5RZR",
+   "target": "price_path_target_before_invalidation_24h"
+  },
+  {
+   "caveats": [
+    "PRICE_PATH_NOT_PROCEEDS",
+    "NO_HISTORICAL_EXECUTABLE_DEPTH",
+    "INTERVAL_EXCLUDES_UNMODELED_RISK",
+    "SHADOW_RESEARCH_ONLY",
+    "COHORT_ESTIMATE_NOT_TOKEN_HISTORY"
+   ],
+   "is_fixture": true,
+   "mint": "3p12Jyhm",
+   "target": "price_path_target_before_invalidation_24h"
+  }
+ ],
+ "metrics": {
+  "abstained": 4,
+  "attempted": 2,
+  "catalyst_refreshes": 0,
+  "completed_forecasts": 2,
+  "deferred": 0,
+  "documents": 6,
+  "duplicates": 0,
+  "errors": 0,
+  "event_counts": {
+   "DISCOVERY": 2
+  },
+  "events": 2,
+  "latency_ms_max": 23.951,
+  "latency_ms_p50": 18.567,
+  "models_in_use": [
+   "B2:price_path_target_before_invalidation_24h",
+   "not_selected"
+  ],
+  "passes": 1,
+  "reason_counts": {
+   "INSUFFICIENT_HISTORY": 4,
+   "MODEL_NOT_SELECTED": 4,
+   "UNCALIBRATED": 4
+  },
+  "records": 6,
+  "reference_records": 0,
+  "superseded": 0,
+  "unchanged_cache_hits": 0
+ },
+ "probe": "run_integration.py fixture",
+ "section_has_record_ids": true,
+ "section_has_veto": true,
+ "socket_events": 0
+}

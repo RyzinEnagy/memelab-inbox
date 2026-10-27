@@ -1,0 +1,486 @@
+{
+ "examples": [
+  {
+   "backtest": "BACKTEST_NOT_AVAILABLE",
+   "chain": "solana",
+   "changes": [
+    "first attempt for this chain and mint"
+   ],
+   "decision_time_basis": "CAPTURE_TIME",
+   "decision_time_utc": "2026-10-27T06:38:23Z",
+   "event": "DISCOVERY",
+   "example": "scout ON, PAID",
+   "mint": "98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump",
+   "record_ids_in_section": true,
+   "request_record_id": "c58c4055a14145f96ccd72def5bf7c6b4ef290b9db284b9ef30b1fb73d916c1a",
+   "request_seq": 0,
+   "size_basis": "EXECUTION_DATA_MISSING",
+   "snapshot_hash": "1274c59c1f2f3b4b82784e2867640ef0b1e923c4f3e9b3fb5bcc87f5e69ab360",
+   "snapshot_hash_equals_row_sha256": true,
+   "source": "python -m memelab scout (sandbox, flag on)",
+   "staleness": "INPUT_STALE",
+   "targets": [
+    {
+     "abstention_record_id": "a05a5f795ba164c2ad636aba8994285c56aa19fe99cc7b381523c91dde6f3d72",
+     "document_checks": [],
+     "forecast_id": "fc_4b09f69211968afd6d9f1fd923b8202b",
+     "model_id": "not_selected",
+     "pin_reasons": [
+      "NO_ENTRY_AT_SHADOW_OR_ABOVE",
+      "PHASE_12_CHAMPION_B2_BY_DEFAULT_NOT_BY_EVIDENCE",
+      "B2_RETROSPECTIVE_BSS_BELOW_0+NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION",
+      "NO_ENSEMBLE"
+     ],
+     "prediction_status": "ABSTAIN",
+     "probability": null,
+     "reasons": [
+      "INSUFFICIENT_HISTORY",
+      "UNCALIBRATED",
+      "SOURCE_STALE",
+      "MODEL_NOT_SELECTED"
+     ],
+     "registry_mode": "NO_VIABLE_CHAMPION",
+     "target": "price_path_target_before_invalidation_24h"
+    },
+    {
+     "abstention_record_id": "4d38f3162942ebb50b06357ade254cab1ecfca9b43fe20ed8115acd2cec4b2b5",
+     "document_checks": [],
+     "forecast_id": "fc_373ec56d51110c6f8f41dfa4693a2aa4",
+     "model_id": "not_selected",
+     "pin_reasons": [
+      "NO_ENTRY_AT_SHADOW_OR_ABOVE",
+      "PHASE_12_CHAMPION_B2_BY_DEFAULT_NOT_BY_EVIDENCE",
+      "B2_RETROSPECTIVE_CALIBRATION_FAILED+RETROSPECTIVE_BSS_BELOW_0+NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION",
+      "NO_ENSEMBLE"
+     ],
+     "prediction_status": "ABSTAIN",
+     "probability": null,
+     "reasons": [
+      "INSUFFICIENT_HISTORY",
+      "UNCALIBRATED",
+      "SOURCE_STALE",
+      "MODEL_NOT_SELECTED"
+     ],
+     "registry_mode": "NO_VIABLE_CHAMPION",
+     "target": "price_path_target_before_invalidation_6h"
+    },
+    {
+     "abstention_record_id": "0c7944e1a3bccfdebd47bafcd4e29b78a368b4b78ad1085ebe817b8697692e01",
+     "document_checks": [],
+     "forecast_id": "fc_192a1adb5b2e9d4c1524822adac820b9",
+     "model_id": "not_selected",
+     "pin_reasons": [
+      "NO_ENTRY_AT_SHADOW_OR_ABOVE",
+      "PHASE_12_CHAMPION_B2_BY_DEFAULT_NOT_BY_EVIDENCE",
+      "B2_RETROSPECTIVE_BELOW_MINIMUM+NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION",
+      "NO_ENSEMBLE"
+     ],
+     "prediction_status": "ABSTAIN",
+     "probability": null,
+     "reasons": [
+      "INSUFFICIENT_HISTORY",
+      "UNCALIBRATED",
+      "SOURCE_STALE",
+      "MODEL_NOT_SELECTED"
+     ],
+     "registry_mode": "NO_VIABLE_CHAMPION",
+     "target": "price_path_severe_drawdown_or_halt_24h"
+    }
+   ],
+   "thesis_row": {
+    "created_at_utc": "2026-10-07T00:16:35Z",
+    "row_sha256_recomputed_from_the_lab_database": "1274c59c1f2f3b4b82784e2867640ef0b1e923c4f3e9b3fb5bcc87f5e69ab360",
+    "score": 66,
+    "status": "SETUP DEVELOPING"
+   },
+   "token_report": "20261007_0016_PAID_98kfF7.md",
+   "token_report_named_in_section": true,
+   "veto": {
+    "flags": [],
+    "state": "NO_FATAL_FLAG",
+    "structural": [],
+    "veto": false
+   }
+  },
+  {
+   "backtest": "BACKTEST_NOT_AVAILABLE",
+   "chain": "solana",
+   "changes": [
+    "first attempt for this chain and mint"
+   ],
+   "decision_time_basis": "CAPTURE_TIME",
+   "decision_time_utc": "2026-10-27T06:38:23Z",
+   "event": "DISCOVERY",
+   "example": "scout ON, GOMO",
+   "mint": "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump",
+   "record_ids_in_section": true,
+   "request_record_id": "80e0162615bd85ac6aa9bf31b5628fe3f8a9897cbe4ac24e254c58aab3f129df",
+   "request_seq": 3,
+   "size_basis": "EXECUTION_DATA_MISSING",
+   "snapshot_hash": "c1f3d8e09db98608879764a9d358caee9fd2c75baf958c2d3f9c340de6ca4d27",
+   "snapshot_hash_equals_row_sha256": true,
+   "source": "python -m memelab scout (sandbox, flag on)",
+   "staleness": "INPUT_STALE",
+   "targets": [
+    {
+     "abstention_record_id": "9d1eb1107bebd363f23fc4544ee120b3363ddd5d59c958b205a65a950b63c2c4",
+     "document_checks": [],
+     "forecast_id": "fc_c851dd12ddf180443c14908817af4ea4",
+     "model_id": "not_selected",
+     "pin_reasons": [
+      "NO_ENTRY_AT_SHADOW_OR_ABOVE",
+      "PHASE_12_CHAMPION_B2_BY_DEFAULT_NOT_BY_EVIDENCE",
+      "B2_RETROSPECTIVE_BSS_BELOW_0+NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION",
+      "NO_ENSEMBLE"
+     ],
+     "prediction_status": "ABSTAIN",
+     "probability": null,
+     "reasons": [
+      "INSUFFICIENT_HISTORY",
+      "UNCALIBRATED",
+      "SOURCE_STALE",
+      "MODEL_NOT_SELECTED"
+     ],
+     "registry_mode": "NO_VIABLE_CHAMPION",
+     "target": "price_path_target_before_invalidation_24h"
+    },
+    {
+     "abstention_record_id": "92776015268d0869f5b07745a59fd9a4e4b1b7a654130aafe886f0b4a7e30700",
+     "document_checks": [],
+     "forecast_id": "fc_25ffb4280e7aa83af060b9c0728c922a",
+     "model_id": "not_selected",
+     "pin_reasons": [
+      "NO_ENTRY_AT_SHADOW_OR_ABOVE",
+      "PHASE_12_CHAMPION_B2_BY_DEFAULT_NOT_BY_EVIDENCE",
+      "B2_RETROSPECTIVE_CALIBRATION_FAILED+RETROSPECTIVE_BSS_BELOW_0+NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION",
+      "NO_ENSEMBLE"
+     ],
+     "prediction_status": "ABSTAIN",
+     "probability": null,
+     "reasons": [
+      "INSUFFICIENT_HISTORY",
+      "UNCALIBRATED",
+      "SOURCE_STALE",
+      "MODEL_NOT_SELECTED"
+     ],
+     "registry_mode": "NO_VIABLE_CHAMPION",
+     "target": "price_path_target_before_invalidation_6h"
+    },
+    {
+     "abstention_record_id": "1fdb6ee50a6c341278420ea23e9d08ce1a3b368bf12402f398f70487bcbc048a",
+     "document_checks": [],
+     "forecast_id": "fc_4a68b86d998637b1d60554e158816c8f",
+     "model_id": "not_selected",
+     "pin_reasons": [
+      "NO_ENTRY_AT_SHADOW_OR_ABOVE",
+      "PHASE_12_CHAMPION_B2_BY_DEFAULT_NOT_BY_EVIDENCE",
+      "B2_RETROSPECTIVE_BELOW_MINIMUM+NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION",
+      "NO_ENSEMBLE"
+     ],
+     "prediction_status": "ABSTAIN",
+     "probability": null,
+     "reasons": [
+      "INSUFFICIENT_HISTORY",
+      "UNCALIBRATED",
+      "SOURCE_STALE",
+      "MODEL_NOT_SELECTED"
+     ],
+     "registry_mode": "NO_VIABLE_CHAMPION",
+     "target": "price_path_severe_drawdown_or_halt_24h"
+    }
+   ],
+   "thesis_row": {
+    "created_at_utc": "2026-10-07T00:16:35Z",
+    "row_sha256_recomputed_from_the_lab_database": "c1f3d8e09db98608879764a9d358caee9fd2c75baf958c2d3f9c340de6ca4d27",
+    "score": 62,
+    "status": "REJECTED"
+   },
+   "token_report": "20261007_0016_GOMO_9XKzy4.md",
+   "token_report_named_in_section": true,
+   "veto": {
+    "flags": [
+     "CANNOT_EXIT_5K"
+    ],
+    "state": "VETO",
+    "structural": [
+     "CANNOT_EXIT_5K"
+    ],
+    "veto": true
+   }
+  },
+  {
+   "events_all_rounds": [
+    "DISCOVERY",
+    "MATERIAL_CHANGE",
+    "MATERIAL_CHANGE",
+    "DUPLICATE",
+    "DUPLICATE",
+    "DUPLICATE"
+   ],
+   "example": "export replay, bsc 0x3d4f0513e8a29669b960f9dbca61861548a9a760",
+   "requests": [
+    {
+     "backtest": "BACKTEST_NOT_AVAILABLE",
+     "chain": "bsc",
+     "changes": [
+      "first attempt for this chain and mint"
+     ],
+     "decision_time_basis": "EXPORT_COMMIT",
+     "decision_time_utc": "2026-10-24T10:11:50Z",
+     "event": "DISCOVERY",
+     "export_commit": "efdaee91ebbeabf14268d858fa033d36ebd4ca06",
+     "mint": "0x3d4f0513e8a29669b960f9dbca61861548a9a760",
+     "request_record_id": "81445c45caa7400aace26776f4c3dec964e97cef28ec0645693716df35f29469",
+     "request_seq": 1,
+     "size_basis": "EXECUTION_DATA_MISSING",
+     "snapshot_hash": "a03034076daef6c5f9d4d460314d50cbdecda43b7043f0d733052c54f7a15263",
+     "snapshot_row_found_in_that_export": true,
+     "staleness": "FRESH",
+     "targets": [
+      {
+       "abstention_record_id": "fb890424ea30961f97c67f067aa3694d9d39874210c2f615f3914c77ec175b11",
+       "document_checks": [],
+       "forecast_id": "fc_d225f6b2776a282ebb7976b7528a4d4d",
+       "model_id": "not_selected",
+       "pin_reasons": [
+        "NO_PIN"
+       ],
+       "prediction_status": "ABSTAIN",
+       "probability": null,
+       "reasons": [
+        "INSUFFICIENT_HISTORY",
+        "UNCALIBRATED",
+        "OUT_OF_SCOPE_CHAIN",
+        "SOURCE_STALE",
+        "MODEL_NOT_SELECTED"
+       ],
+       "registry_mode": "NO_VIABLE_CHAMPION",
+       "target": "price_path_target_before_invalidation_24h"
+      },
+      {
+       "abstention_record_id": "3f6714ac8ac1cb281b43685d273f30f878e31ab1f6299a6505c2a3d38b558eec",
+       "document_checks": [],
+       "forecast_id": "fc_00b2eb93a35db255d1575b7faad7aba2",
+       "model_id": "not_selected",
+       "pin_reasons": [
+        "NO_PIN"
+       ],
+       "prediction_status": "ABSTAIN",
+       "probability": null,
+       "reasons": [
+        "INSUFFICIENT_HISTORY",
+        "UNCALIBRATED",
+        "OUT_OF_SCOPE_CHAIN",
+        "SOURCE_STALE",
+        "MODEL_NOT_SELECTED"
+       ],
+       "registry_mode": "NO_VIABLE_CHAMPION",
+       "target": "price_path_target_before_invalidation_6h"
+      },
+      {
+       "abstention_record_id": "b1809d781d4c98a88bc5dbab483079bf40eaa24acc4e27384e38cefdd3a94556",
+       "document_checks": [],
+       "forecast_id": "fc_9862a775e78fcd882dbc53e3215af751",
+       "model_id": "not_selected",
+       "pin_reasons": [
+        "NO_PIN"
+       ],
+       "prediction_status": "ABSTAIN",
+       "probability": null,
+       "reasons": [
+        "INSUFFICIENT_HISTORY",
+        "UNCALIBRATED",
+        "OUT_OF_SCOPE_CHAIN",
+        "SOURCE_STALE",
+        "MODEL_NOT_SELECTED"
+       ],
+       "registry_mode": "NO_VIABLE_CHAMPION",
+       "target": "price_path_severe_drawdown_or_halt_24h"
+      }
+     ],
+     "veto": {
+      "flags": [],
+      "state": "NO_FATAL_FLAG",
+      "structural": [],
+      "veto": false
+     }
+    },
+    {
+     "backtest": "BACKTEST_NOT_AVAILABLE",
+     "chain": "bsc",
+     "changes": [
+      "last attempt 86292 s ago"
+     ],
+     "decision_time_basis": "EXPORT_COMMIT",
+     "decision_time_utc": "2026-10-25T10:10:02Z",
+     "event": "MATERIAL_CHANGE",
+     "export_commit": "e245d91cc5f56060ba8e1aa7182c846c77d1526c",
+     "mint": "0x3d4f0513e8a29669b960f9dbca61861548a9a760",
+     "request_record_id": "318c4116cd9ca572040660fbc6f9f0243f5de99677fae7e7e86316cee4073430",
+     "request_seq": 18,
+     "size_basis": "EXECUTION_DATA_MISSING",
+     "snapshot_hash": "a62248cadc32a8e8f182efc747d05546cc559c90b90a2154ecce0535153c1591",
+     "snapshot_row_found_in_that_export": true,
+     "staleness": "FRESH",
+     "targets": [
+      {
+       "abstention_record_id": "42374f92b1c7cbe723fb59c03ddd3ee04ff3e6e06026609ecc1a6e7ec3143eac",
+       "document_checks": [],
+       "forecast_id": "fc_9151fdbfab3a32ce5bea506eafb93f14",
+       "model_id": "not_selected",
+       "pin_reasons": [
+        "NO_PIN"
+       ],
+       "prediction_status": "ABSTAIN",
+       "probability": null,
+       "reasons": [
+        "INSUFFICIENT_HISTORY",
+        "UNCALIBRATED",
+        "OUT_OF_SCOPE_CHAIN",
+        "SOURCE_STALE",
+        "MODEL_NOT_SELECTED"
+       ],
+       "registry_mode": "NO_VIABLE_CHAMPION",
+       "target": "price_path_target_before_invalidation_24h"
+      },
+      {
+       "abstention_record_id": "dbfb09889a53233ff1b5268bc2b46f68aa310e0d345b54bf15196db683a64697",
+       "document_checks": [],
+       "forecast_id": "fc_9341c5486a8e69eceb7c59a95b6a7152",
+       "model_id": "not_selected",
+       "pin_reasons": [
+        "NO_PIN"
+       ],
+       "prediction_status": "ABSTAIN",
+       "probability": null,
+       "reasons": [
+        "INSUFFICIENT_HISTORY",
+        "UNCALIBRATED",
+        "OUT_OF_SCOPE_CHAIN",
+        "SOURCE_STALE",
+        "MODEL_NOT_SELECTED"
+       ],
+       "registry_mode": "NO_VIABLE_CHAMPION",
+       "target": "price_path_target_before_invalidation_6h"
+      },
+      {
+       "abstention_record_id": "1fa3ad1278376a7b5268940f82bd2275617db0622074622a36dce2030b5a7069",
+       "document_checks": [],
+       "forecast_id": "fc_1db1f504a7d2cb4be9c66089ce7ffc3d",
+       "model_id": "not_selected",
+       "pin_reasons": [
+        "NO_PIN"
+       ],
+       "prediction_status": "ABSTAIN",
+       "probability": null,
+       "reasons": [
+        "INSUFFICIENT_HISTORY",
+        "UNCALIBRATED",
+        "OUT_OF_SCOPE_CHAIN",
+        "SOURCE_STALE",
+        "MODEL_NOT_SELECTED"
+       ],
+       "registry_mode": "NO_VIABLE_CHAMPION",
+       "target": "price_path_severe_drawdown_or_halt_24h"
+      }
+     ],
+     "veto": {
+      "flags": [],
+      "state": "NO_FATAL_FLAG",
+      "structural": [],
+      "veto": false
+     }
+    },
+    {
+     "backtest": "BACKTEST_NOT_AVAILABLE",
+     "chain": "bsc",
+     "changes": [
+      "status changed",
+      "last attempt 87182 s ago"
+     ],
+     "decision_time_basis": "EXPORT_COMMIT",
+     "decision_time_utc": "2026-10-26T10:23:04Z",
+     "event": "MATERIAL_CHANGE",
+     "export_commit": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+     "mint": "0x3d4f0513e8a29669b960f9dbca61861548a9a760",
+     "request_record_id": "bae52956079ca00e98b8202390c41642fce2dc085c77eca741695793a1da0738",
+     "request_seq": 40,
+     "size_basis": "EXECUTION_DATA_MISSING",
+     "snapshot_hash": "136d3f9e61aa6d6a94915e806e2f7308426fc40498af70ecd6af175910fef1d6",
+     "snapshot_row_found_in_that_export": true,
+     "staleness": "FRESH",
+     "targets": [
+      {
+       "abstention_record_id": "6e33c3af5b402676b1cc806ccc843eb8f23af785c9b302b19cd513442c14fbe8",
+       "document_checks": [],
+       "forecast_id": "fc_242826286c30ce80cec94c84e1c2de14",
+       "model_id": "not_selected",
+       "pin_reasons": [
+        "NO_PIN"
+       ],
+       "prediction_status": "ABSTAIN",
+       "probability": null,
+       "reasons": [
+        "INSUFFICIENT_HISTORY",
+        "UNCALIBRATED",
+        "OUT_OF_SCOPE_CHAIN",
+        "SOURCE_STALE",
+        "MODEL_NOT_SELECTED"
+       ],
+       "registry_mode": "NO_VIABLE_CHAMPION",
+       "target": "price_path_target_before_invalidation_24h"
+      },
+      {
+       "abstention_record_id": "85e0c3a9c4767a62814e8620b7780f9dffb9da9bb487ba7ac14e878dc957d003",
+       "document_checks": [],
+       "forecast_id": "fc_ab9f51fd4c1a849c3bc3d85d719b783f",
+       "model_id": "not_selected",
+       "pin_reasons": [
+        "NO_PIN"
+       ],
+       "prediction_status": "ABSTAIN",
+       "probability": null,
+       "reasons": [
+        "INSUFFICIENT_HISTORY",
+        "UNCALIBRATED",
+        "OUT_OF_SCOPE_CHAIN",
+        "SOURCE_STALE",
+        "MODEL_NOT_SELECTED"
+       ],
+       "registry_mode": "NO_VIABLE_CHAMPION",
+       "target": "price_path_target_before_invalidation_6h"
+      },
+      {
+       "abstention_record_id": "94bfe20bc3dd57254a45f57144749874ec68422bf1f06eb550a099f070dbee21",
+       "document_checks": [],
+       "forecast_id": "fc_ff2cf45a111154594ba1b7c599c85ce6",
+       "model_id": "not_selected",
+       "pin_reasons": [
+        "NO_PIN"
+       ],
+       "prediction_status": "ABSTAIN",
+       "probability": null,
+       "reasons": [
+        "INSUFFICIENT_HISTORY",
+        "UNCALIBRATED",
+        "OUT_OF_SCOPE_CHAIN",
+        "SOURCE_STALE",
+        "MODEL_NOT_SELECTED"
+       ],
+       "registry_mode": "NO_VIABLE_CHAMPION",
+       "target": "price_path_severe_drawdown_or_halt_24h"
+      }
+     ],
+     "veto": {
+      "flags": [],
+      "state": "NO_FATAL_FLAG",
+      "structural": [],
+      "veto": false
+     }
+    }
+   ],
+   "source": "run_integration.py replay"
+  }
+ ],
+ "note": "real data; every target abstains; probabilities are null by contract"
+}

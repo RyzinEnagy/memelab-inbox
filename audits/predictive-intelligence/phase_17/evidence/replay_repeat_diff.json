@@ -1,0 +1,11 @@
+{
+ "differing_keys": [
+  "files_sha256",
+  "latency_ms_max",
+  "latency_ms_p50",
+  "wall_s"
+ ],
+ "equal_keys": 34,
+ "note": "files_sha256 differ only because request records carry measured latency; every count, event, reason and hash of reference numbers is equal",
+ "run": "replay repeated into the scratchpad at 3d2089b"
+}
