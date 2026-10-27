@@ -1,5 +1,7 @@
 # Phase 18 skeptic packet
 
+Used for the independent review of the first pass at `e77d62e`; the review and its scripts are in `skeptic/`, and the repair (CP18-2, PI-D-102) is in `PHASE_18_EVIDENCE.md`, section "Repair pass 2". The text below is the packet as given.
+
 Task for the independent reviewer: try to falsify Phase 18 ("expose explainable calibrated predictions and scenarios through reports, CLI and alerts without trading directives"). The phase's own conclusions are claims to test. Work in your own clone (`git clone -q /home/claude/memelab-inbox <dir> && git checkout -q feature/predictive-intelligence`), a temporary `MEMELAB_DB`, no network (none is needed).
 
 ## Read first

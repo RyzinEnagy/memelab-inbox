@@ -1,0 +1,20 @@
+{
+ "module": "memelab/predictive/reports.py",
+ "tests": "tests/test_predictive_reports.py",
+ "mutations": 2,
+ "caught": 2,
+ "survivors": [],
+ "results": [
+  {
+   "mutation": "X3 unknown check not shown in the risk column",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_rp2_minor6_x3_x10_unknown_veto_and_backtest_veto_reasons_are_shown"
+  },
+  {
+   "mutation": "X10 backtest-veto reasons dropped from the execution section",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_rp2_minor6_x3_x10_unknown_veto_and_backtest_veto_reasons_are_shown"
+  }
+ ],
+ "wall_s": 91.9
+}

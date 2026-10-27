@@ -33,7 +33,8 @@ def test_the_real_scout_report_shows_every_target_abstaining_with_its_reasons_an
     c = _j(REAL / "REAL_RUN_CHECKS.json")["scout_report"]
     assert c["state"] == "OK" and c["format_only"] is False
     assert c["counts"]["opportunities"] == 8 and c["counts"]["targets"] == 24 and c["counts"]["probabilities_shown"] == 0
-    assert c["statuses"] == {"ABSTAIN": 24} and c["counts"]["refused"] == 0
+    assert c["statuses"] == {"ABSTAIN": 24} and c["counts"]["refused"] == 0 and c["counts"]["overridden"] == 0
+    assert c["counts"]["with_risk"] == c["counts"]["vetoes"] == 3
     assert c["reason_counts"]["MODEL_NOT_SELECTED"] == 24 and c["reason_counts"]["UNCALIBRATED"] == 24
     assert c["input_states"] == {"INPUT_STALE": 8} and c["lab_states"] == {"SNAPSHOT_VERIFIED": 8}
     assert c["backtest_results"] == ["BACKTEST_NOT_AVAILABLE"] and c["simulation_lines"] >= 10
@@ -71,7 +72,7 @@ def test_the_mutation_probe_caught_every_mutation():
 def test_the_ledger_adds_rows_but_no_configuration():
     t = _j(P18 / "experiments/LEDGER_TOTALS.json")
     assert t["after"]["n_search"] == t["before"]["n_search"] == 130
-    assert t["after"]["n_search_sensitivity"] == 169 and t["added_rows"] == 22 and t["claim"] == "REPORT_RUN_NOT_A_CONFIGURATION"
+    assert t["after"]["n_search_sensitivity"] == 169 and t["added_rows"] == 28 and t["claim"] == "REPORT_RUN_NOT_A_CONFIGURATION"
 
 
 def test_every_phase18_json_passes_the_content_guard():

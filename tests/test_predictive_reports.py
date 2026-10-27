@@ -1179,7 +1179,10 @@ def test_rp2_minor6_x3_x10_unknown_veto_and_backtest_veto_reasons_are_shown(lab)
     v, text = report(d)
     row = next(l for l in text.splitlines() if l.startswith("| ABC"))
     assert "unknown" in row and "backtest veto" in row
-    assert "backtest veto UNTRADEABLE" in text.split("## ABC")[1].split("### Behavioral")[0]
+    sec = text.split("## ABC")[1].split("### Behavioral")[0]
+    assert "backtest veto UNTRADEABLE" in sec
+    # the backtest line itself names the reasons, not only the risk list (X10 after CP18-2)
+    assert any("backtest:" in l and "; backtest veto UNTRADEABLE" in l for l in sec.splitlines()), sec
 
 
 def test_rp2_minor6_x4_x5_a_status_outside_the_vocabulary_and_a_raw_change_string_are_reduced(lab):

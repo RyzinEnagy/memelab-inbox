@@ -1,8 +1,8 @@
 {
  "module": "memelab/predictive/reports.py",
  "tests": "tests/test_predictive_reports.py",
- "mutations": 49,
- "caught": 49,
+ "mutations": 73,
+ "caught": 73,
  "survivors": [],
  "results": [
   {
@@ -71,11 +71,6 @@
    "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[report_abstain.md]"
   },
   {
-   "mutation": "S2 veto override line removed",
-   "caught": true,
-   "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[report_forecast_format_only.md]"
-  },
-  {
    "mutation": "S3 not-attempted events dropped",
    "caught": true,
    "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[report_abstain.md]"
@@ -111,16 +106,6 @@
    "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[report_abstain.md]"
   },
   {
-   "mutation": "Z4 symbol unsanitized",
-   "caught": true,
-   "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[report_abstain.md]"
-  },
-  {
-   "mutation": "Z5 token report path printed",
-   "caught": true,
-   "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[report_abstain.md]"
-  },
-  {
    "mutation": "Z6 inexact mint text printed",
    "caught": true,
    "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[report_abstain.md]"
@@ -151,11 +136,6 @@
    "first_failure": "tests/test_predictive_reports.py::test_g12_a_fixture_report_is_watermarked_first_last_and_on_every_forecast_row"
   },
   {
-   "mutation": "W3 forecast row unwatermarked",
-   "caught": true,
-   "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[report_forecast_format_only.md]"
-  },
-  {
    "mutation": "W4 fixture in a live alert run allowed",
    "caught": true,
    "first_failure": "tests/test_predictive_reports.py::test_g12_a_fixture_document_in_a_live_alert_run_is_suppressed"
@@ -176,17 +156,7 @@
    "first_failure": "tests/test_predictive_reports.py::test_g13_a_cooldown_inside_six_hours_suppresses_the_second_warning"
   },
   {
-   "mutation": "A4 daily cap removed",
-   "caught": true,
-   "first_failure": "tests/test_predictive_reports.py::test_g13_cooldown_per_policy_and_key_and_a_daily_cap_that_takes_warnings_first"
-  },
-  {
    "mutation": "A5 notices first under the cap",
-   "caught": true,
-   "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[alerts_forecast_format_only.txt]"
-  },
-  {
-   "mutation": "A6 veto does not override a forecast (CX-18)",
    "caught": true,
    "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[alerts_forecast_format_only.txt]"
   },
@@ -194,31 +164,6 @@
    "mutation": "A7 stale inputs alert",
    "caught": true,
    "first_failure": "tests/test_predictive_reports.py::test_g14_suppression_reasons_stale_fixture_and_identity"
-  },
-  {
-   "mutation": "A8 liquidity bound strict",
-   "caught": true,
-   "first_failure": "tests/test_predictive_reports.py::test_g14_risk_override_triggers_and_non_triggers[kw4-True]"
-  },
-  {
-   "mutation": "A9 withdrawn never detected",
-   "caught": true,
-   "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[alerts_withdrawn_format_only.txt]"
-  },
-  {
-   "mutation": "A10 every pass evaluated again",
-   "caught": true,
-   "first_failure": "tests/test_predictive_reports.py::test_g13_dedupe_new_passes_only_too_soon_and_the_ledger"
-  },
-  {
-   "mutation": "A11 too_soon removed",
-   "caught": true,
-   "first_failure": "tests/test_predictive_reports.py::test_g13_dedupe_new_passes_only_too_soon_and_the_ledger"
-  },
-  {
-   "mutation": "A12 no_new_upstream_data removed",
-   "caught": true,
-   "first_failure": "tests/test_predictive_reports.py::test_g13_dedupe_new_passes_only_too_soon_and_the_ledger"
   },
   {
    "mutation": "A13 outbox inside the repository allowed",
@@ -246,10 +191,185 @@
    "first_failure": "tests/test_predictive_reports.py::test_g3_flag_off_builds_nothing_and_the_commands_write_nothing"
   },
   {
-   "mutation": "A18 risk alert ignores the backtest veto",
+   "mutation": "S2 risk-overridden number shown",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py"
+  },
+  {
+   "mutation": "Z4 symbol unsanitized",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[report_abstain.md]"
+  },
+  {
+   "mutation": "Z5 token report path printed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[report_abstain.md]"
+  },
+  {
+   "mutation": "W3 forecast row unwatermarked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[report_forecast_format_only.md]"
+  },
+  {
+   "mutation": "A4 daily caps removed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g13_cp18_2_notices_and_warnings_have_separate_daily_caps_so_a_warning_is_never_crowded_out"
+  },
+  {
+   "mutation": "A6 risk does not suppress reevaluate (CX-18, M1)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[alerts_forecast_format_only.txt]"
+  },
+  {
+   "mutation": "A8 liquidity bound strict",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g14_risk_override_triggers_and_non_triggers[kw4-True]"
+  },
+  {
+   "mutation": "A9 withdrawn never detected",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[alerts_withdrawn_format_only.txt]"
+  },
+  {
+   "mutation": "A10 every pass evaluated again",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g13_dedupe_new_passes_only_too_soon_and_the_ledger"
+  },
+  {
+   "mutation": "A11 too_soon removed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g13_dedupe_new_passes_only_too_soon_and_the_ledger"
+  },
+  {
+   "mutation": "A12 no_new_upstream_data removed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g13_dedupe_new_passes_only_too_soon_and_the_ledger"
+  },
+  {
+   "mutation": "A18 the backtest veto is no risk",
    "caught": true,
    "first_failure": "tests/test_predictive_reports.py::test_g14_risk_override_triggers_and_non_triggers[kw2-True]"
+  },
+  {
+   "mutation": "M1 liquidity fall no risk",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g14_risk_override_triggers_and_non_triggers[kw3-True]"
+  },
+  {
+   "mutation": "M2 feed check removed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_rp2_m2_a_reset_state_on_a_shared_alert_database_is_detected_reported_and_evaluated"
+  },
+  {
+   "mutation": "M3a newer snapshot not attached",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_rp2_m3_a_deferred_newer_snapshot_with_a_new_fatal_flag_is_shown_and_alerted_never_covered"
+  },
+  {
+   "mutation": "M3b newer snapshot never alerted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py"
+  },
+  {
+   "mutation": "M3c any event counted as covered",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[report_abstain.md]"
+  },
+  {
+   "mutation": "M4 run-together trade words allowed (CX-SK18)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_rp2_m4_cx_sk18_run_together_trade_words_in_token_text_are_withheld[SELLNOW]"
+  },
+  {
+   "mutation": "m7 only opportunity mints removed before the check",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_rp2_minor7_a_vanity_mint_with_a_trade_word_never_blocks_the_report"
+  },
+  {
+   "mutation": "m8 clock behind is too_soon",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_rp2_minor8_a_clock_behind_the_last_evaluation_is_said_and_not_too_soon"
+  },
+  {
+   "mutation": "m9 unknown liquidity no risk",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_rp2_minor9_liquidity_that_became_unknown_is_a_risk"
+  },
+  {
+   "mutation": "m10 alert database not restricted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_rp2_minor10_the_alert_database_is_never_a_lab_database"
+  },
+  {
+   "mutation": "m11a one cap for every severity",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g13_cp18_2_notices_and_warnings_have_separate_daily_caps_so_a_warning_is_never_crowded_out"
+  },
+  {
+   "mutation": "m11b notices use the warnings' room",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g13_cp18_2_notices_and_warnings_have_separate_daily_caps_so_a_warning_is_never_crowded_out"
+  },
+  {
+   "mutation": "X1 token row of another chain used",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_rp2_minor6_x1_a_token_row_of_another_chain_is_not_used"
+  },
+  {
+   "mutation": "X2 request capture age ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g14_suppression_reasons_stale_fixture_and_identity"
+  },
+  {
+   "mutation": "X3 unknown check not shown in the risk column",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_rp2_minor6_x3_x10_unknown_veto_and_backtest_veto_reasons_are_shown"
+  },
+  {
+   "mutation": "X4 unknown lab status printed raw",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_rp2_minor6_x4_x5_a_status_outside_the_vocabulary_and_a_raw_change_string_are_reduced"
+  },
+  {
+   "mutation": "X5 non-matching change strings printed raw",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_rp2_minor6_x4_x5_a_status_outside_the_vocabulary_and_a_raw_change_string_are_reduced"
+  },
+  {
+   "mutation": "X6 served MODEL_STALE/DRIFT pipeline alert removed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g14_forecast_withdrawn_and_pipeline_health"
+  },
+  {
+   "mutation": "X7 ERROR events give no pipeline alert",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g14_forecast_withdrawn_and_pipeline_health"
+  },
+  {
+   "mutation": "X8 reevaluate ignores the base rate",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g13_dedupe_new_passes_only_too_soon_and_the_ledger"
+  },
+  {
+   "mutation": "X9 unknown check not a risk",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g14_risk_override_triggers_and_non_triggers[kw1-True]"
+  },
+  {
+   "mutation": "X10 backtest-veto reasons dropped from the execution section",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_rp2_minor6_x3_x10_unknown_veto_and_backtest_veto_reasons_are_shown"
+  },
+  {
+   "mutation": "X11 SIMULATION_NOT_AVAILABLE dropped from at a glance",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[report_abstain.md]"
+  },
+  {
+   "mutation": "X12 target definitions horizon dropped",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py"
   }
  ],
- "wall_s": 703.2
+ "wall_s": 1092.2
 }

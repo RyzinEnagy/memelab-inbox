@@ -37,7 +37,7 @@ inj_status = [l for l in inj if "kept in the lab's token report" in l][:1]
 def block(ls): return ["```text"] + clean(ls) + ["```"]
 out = []
 out += ["# Example reports (Phase 18, report-1 and alerts-rules-1)", "",
-        "Two kinds of example are here. The real ones come from the recorded runs at the CP18-1 code `ea799da` on real data in a sandbox "
+        "Two kinds of example are here. The real ones come from the recorded runs at the repair code `31ada29` (CP18-2) on real data in a sandbox "
         "(the committed inbox bodies, the `71fc50e` state export, `unshare -n`): every real target abstains, so the real report shows no "
         "probability. The format-only ones come from fixture worlds (a fixture champion with a fixture calibration card, fixed clocks) and "
         "exist only to show the layout of a validated forecast; every one of them carries the line \"FORMAT-ONLY FIXTURE: invented data, not a "
@@ -79,13 +79,14 @@ out += ["## Real dry-run alerts", "",
 out += ["On the export-replay state, at its newest capture plus 60 s: 8 risk_override previews and 15 candidates suppressed "
         "SOURCE_STALE; no other policy fired because no target has a verified forecast. One preview:", ""] + block(one_alert) + [""]
 out += ["## Format-only: a hypothetical validated forecast and a strong forecast with an impossible exit", "",
-        "FXA is clean; FXC carries the fatal flag CANNOT_EXIT_5K. Both T1 forecasts come from a fixture champion with a fixture SHADOW "
-        "calibration card; the other targets abstain.", ""] + block(fx_glance) + [""]
+        "FXA is clean; FXC carries the fatal flag CANNOT_EXIT_5K. Both T1 attempts come from a fixture champion with a fixture SHADOW "
+        "calibration card; the other targets abstain. FXA shows its fixture number; FXC shows FORECAST OVERRIDDEN and no number, "
+        "because any risk flag (a veto, a liquidity fall of 20% or more, or liquidity that became unknown) overrides an estimate.", ""] + block(fx_glance) + [""]
 out += ["FXA, predictive research:", ""] + block(fxa_pred) + [""]
-out += ["FXC, predictive research and execution: the veto overrides the estimate, and the price path is not proceeds.", ""] + \
+out += ["FXC, predictive research and execution: the veto overrides the estimate, the number is withheld, and the price path is not proceeds.", ""] + \
        block(fxc_pred + fxc_exec) + [""]
 out += ["FXC and FXA, dry-run alerts in a fixture run: the warning comes first; the re-evaluation notice for FXC is suppressed "
-        "VETO_OVERRIDES_FORECAST; FXA gets a notice that may prompt re-evaluation only.", ""] + block(al) + [""]
+        "RISK_OVERRIDES_FORECAST; FXA gets a notice that may prompt re-evaluation only.", ""] + block(al) + [""]
 out += ["## Format-only: a withdrawn forecast", "",
         "The fixture champion is rolled back; the next attempt of FXA abstains, and the alert says the earlier estimate is withdrawn.", ""] + \
        block(wd_one) + [""]
@@ -96,6 +97,6 @@ out += ["## Format-only: a forged number is refused", "",
 out += ["## Format-only: token text that tries to inject", "",
         "Symbols BUY-NOW, \"## 99% chance\", a|b|c, a symbol with a line break, a local path, a script tag and pump.fun; the first token's lab "
         "status is NEAR ENTRY. Symbols with a trading or forecast word are withheld; the rest are reduced to letters, digits, dot, dash and "
-        "underscore; the lab status with trade wording is not printed.", ""] + block(inj_glance + inj_status) + [""]
+        "underscore; the lab status with trade wording is not printed. Since CP18-2 the check runs on the joined letters of the token text, so run-together forms such as SELLNOW, BUYNOW, TAKEPROFIT and 100X are withheld too (tests m4 in tests/test_predictive_reports.py).", ""] + block(inj_glance + inj_status) + [""]
 Path("audits/predictive-intelligence/phase_18/ui/EXAMPLE_REPORTS.md").write_text("\n".join(out))
 print(len(out))

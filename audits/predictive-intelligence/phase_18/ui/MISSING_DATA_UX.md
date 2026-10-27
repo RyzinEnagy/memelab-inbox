@@ -1,6 +1,6 @@
 # Missing-data UX (report-1, Phase 18)
 
-What a reader sees when a number, a source or a check is missing, and what would unblock it. Every line below is rendered by `memelab/predictive/reports.py` from the persisted state (the request record, the document and its abstention record); nothing is inferred from memory of a run. Tests: `tests/test_predictive_reports.py` (G10, G7, G15). The text in the third column is the report's own wording (`UNBLOCK` and `STATE_TEXT` in the code).
+What a reader sees when a number, a source or a check is missing, and what would unblock it. Every line below is rendered by `memelab/predictive/reports.py` from the persisted state (the request record, the document and its abstention record); nothing is inferred from memory of a run. Tests: `tests/test_predictive_reports.py` (G10, G7, G15, and the repair-pass-2 tests `test_rp2_*`). The text in the third column is the report's own wording (`UNBLOCK` and `STATE_TEXT` in the code).
 
 ## Abstention reasons (one per contract reason, `contract.ABSTAIN_REASONS`)
 
@@ -35,6 +35,10 @@ Every abstaining target shows "ABSTAIN (no number)" in the at-a-glance table and
 | BACKTEST_NOT_AVAILABLE | at a glance, system status, execution and stress | the backtesting module is not installed on this line; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase |
 | CATALYST_SOURCE_NOT_AVAILABLE | catalyst evidence section | the catalyst tables were not available to the pass |
 | SIMULATION_NOT_AVAILABLE | at a glance, system status, every opportunity | MIROFISH_NO_GO (PI-D-081, PI-D-083): the behavioral module is off and research-optional; no paid language model or Zep use is approved, so no simulation runs |
-| Events not attempted (UNCHANGED, DUPLICATE, SUPERSEDED_IN_PASS, DEFERRED_QUEUE_FULL, DEFERRED_LATENCY_BUDGET, NO_DECISION_SNAPSHOT, NOT_EXACT_IDENTITY, ERROR) | the "Events not attempted" table, with whether a report above covers the token | never dropped; an inexact mint is printed as "not-an-exact-address" |
+| Events not attempted (UNCHANGED, DUPLICATE, SUPERSEDED_IN_PASS, DEFERRED_QUEUE_FULL, DEFERRED_LATENCY_BUDGET, NO_DECISION_SNAPSHOT, NOT_EXACT_IDENTITY, ERROR) | the "Events not attempted" table, with whether a report above covers the snapshot and the event's fatal flags | never dropped; an inexact mint is printed as "not-an-exact-address"; "covered" only for UNCHANGED or DUPLICATE with the covering request named (CP18-2) |
+| NEWER_SNAPSHOT_NOT_ASSESSED | at a glance (Inputs column, and the vetoes column when it carries flags), identity section, the not-attempted row, a risk_override alert | a newer snapshot of the token was deferred or failed; its fatal flags are shown from the request material or the lab row, and an unknown check counts as not cleared (CP18-2) |
+| FORECAST OVERRIDDEN by risk (number withheld) | the target's cell and row; execution section lists the risks | a verified estimate exists for this snapshot, but an item of the risk list overrides it: no number is shown (CP18-2) |
+| LIQUIDITY_FALL_20PCT_OR_MORE, LIQUIDITY_BECAME_UNKNOWN | vetoes and risk flags column; execution section; risk_override alert | the measured value is only on the labelled event line (CP18-2) |
 | Lab status with trade wording (NEAR ENTRY, ENTRY CONDITIONS MET) | structural research section, UNKNOWN bucket | kept in the lab's token report (its label uses trade wording) |
-| Token text carrying a trading or forecast word | wherever the symbol, chain, labels or file name appear | withheld |
+| Token text carrying a trading or forecast word | wherever the symbol, chain, labels, scenario labels or file name appear, and in alert labels | withheld; checked on the joined letters, so SELLNOW, BUYNOW, TAKEPROFIT and 100X are withheld too (CP18-2) |
+| A vanity mint whose letters contain a checked word | identity and not-attempted rows | printed as the exact mint; the word check skips exact mints, so it never blocks the report (CP18-2) |

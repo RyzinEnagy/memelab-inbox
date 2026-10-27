@@ -1,9 +1,9 @@
 {
  "phase": "18",
- "status": "NEEDS_REVIEW",
- "status_note": "first pass with the self-review change controls CP18-0 (PI-D-099) and CP18-1 (PI-D-100); every gate item reproduced by the phase agent, G21 post-commit at ac19668; PASS only after the orchestrator's independent skeptic and the repair pass (PI-D-013)",
+ "status": "PASS",
+ "status_note": "PASS after repair pass 2 (CP18-2, PI-D-102; result PI-D-103): the orchestrator's independent skeptic at e77d62e found 4 MATERIAL, 9 minor and CX-SK18; all reproduced; MATERIAL fixed with tests that fail on e77d62e; minors fixed except minor 5 (the recompute claim removed, recorded limitation); every gate item G1 to G24 holds as amended; G21 after the repair commits. First pass: NEEDS_REVIEW with CP18-0 (PI-D-099) and CP18-1 (PI-D-100)",
  "head_before": "4ebccc3f43a583880bf5288d8314cd79183a0187",
- "head_after": "ac19668b0f1e737bfc3fde3c48c8b2fe8e65219a",
+ "head_after": "c157903ef85380897aa8d233927bac03287fec56",
  "commits": {
   "pre_registration": "ebb7059",
   "frozen_code": "96c4445",
@@ -12,7 +12,10 @@
   "cp18_0_outputs": "44118a1",
   "cp18_1_code": "ea799da",
   "cp18_1_outputs": "100d262",
-  "records": "ac19668"
+  "records": "ac19668",
+  "first_pass_postcommit_record": "e77d62e",
+  "cp18_2_code": "31ada29",
+  "cp18_2_outputs": "c157903"
  },
  "checks": [
   {
@@ -158,20 +161,62 @@
    "exit_code": 0,
    "result": "Needs action: no.",
    "pass": true
+  },
+  {
+   "name": "skeptic findings reproduced on e77d62e",
+   "command": "P18_CLONE at e77d62e: pytest skeptic/PHASE_18_attacks.py; skeptic/PHASE_18_extra_mutations.py",
+   "exit_code": 0,
+   "result": "9 attacks pass (each asserts the first-pass behavior); 5 of 12 extra mutations survive",
+   "pass": true
+  },
+  {
+   "name": "repair tests fail on e77d62e",
+   "command": "python -B probes/rp2_old_code_check.py",
+   "exit_code": 0,
+   "result": "20 failed, 3 passed on e77d62e (the 3 minor-6 tests pin first-pass behavior by design); 23 passed on 31ada29",
+   "pass": true
+  },
+  {
+   "name": "skeptic attacks on the repaired code",
+   "command": "P18_CLONE=this checkout: pytest skeptic/PHASE_18_attacks.py at 31ada29",
+   "exit_code": 1,
+   "result": "7 failed (A1, A2, A4, A5, A6, A8, A9 no longer hold), 2 passed (A3 minor 5, recorded limitation; A7 correct behavior)",
+   "pass": true
+  },
+  {
+   "name": "CP18-2 rerun diff",
+   "command": "real_path_smoke.sh 31ada29; run_integration.py replay; run_reports.py real; probes/rerun_diff.py (against 100d262)",
+   "exit_code": 0,
+   "result": "every exit 0; flag off byte-identical to b0fad12; only the new count keys overridden (0) and with_risk (3, 22) differ; no count, status, reason, verdict or alert decision changed",
+   "pass": true
+  },
+  {
+   "name": "G22 mutation probe after repair pass 2",
+   "command": "python -B probes/mutation_reports.py",
+   "exit_code": 0,
+   "result": "73 of 73 caught, survivors [] (first probe at 31ada29: 72 of 73, X10 survived, test sharpened, X10 caught)",
+   "pass": true
+  },
+  {
+   "name": "G23 ledger after repair pass 2",
+   "command": "python -B probes/ledger.py audits/predictive-intelligence/phase_18",
+   "exit_code": 0,
+   "result": "3,356 rows, 28 added (6 for CP18-2), N_search 130, sensitivity 169",
+   "pass": true
   }
  ],
  "artifacts": [
   {
    "path": "audits/predictive-intelligence/phase_18/ACCEPTANCE_CHECKLIST.md",
-   "sha256": "1d14bad729f0ec05e1e992b93c38f52a366ff3db559e6da4da57e53ac4e534f6"
+   "sha256": "1d2925b3fa389972c7026b41d48c750a68da14e6d8b69d7308822924ab4520f7"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/PHASE_18_EVIDENCE.md",
-   "sha256": "326eed05e928b0582b506feb6faf52eae82420b408a2640158772b3d5220bd3b"
+   "sha256": "10be1d58c7fbb52f0607f6865fd88ff7ba7ea719b3d8b21ec0a125a76390a81d"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/SKEPTIC_PACKET.md",
-   "sha256": "23898ab8ac59ea7410a6d67fab7796de999f74fb11f9081a95e767d12b4a4cd4"
+   "sha256": "c41657ecb95df366a71849c4cf5b8138c4c71dca89f1b7fc1bb8188ece138e21"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/evidence/cp18_0_old_code_check.json",
@@ -203,7 +248,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_18/evidence/mutation_reports.json",
-   "sha256": "5161a1f06a21db309bf1b14f2a66f0b555aa0bde5d707a5fda92caccb02c5590"
+   "sha256": "83b57d40f006a3cd95205e05b39b4ddc769e71efa428df9b9aac71786fe277fa"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/evidence/mutation_reports_frozen_96c4445.json",
@@ -223,11 +268,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_18/experiments/LEDGER_TOTALS.json",
-   "sha256": "faf6a6552f7f566e2a6a70b9e1b17fd60902616f2442bb01b218238b7719b79f"
+   "sha256": "64559cab7ea254c112265b7f376332a66a34f21539369e0f3f9dd6ba6af33c98"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/experiments/SEARCH_LEDGER.csv",
-   "sha256": "8331d1012765294eed0c59476b2004460327d7ac8996cd7ad02568e1f01741b2"
+   "sha256": "251963fe5864d0ca1a96bce80bcc9b1866b0d87ea35f7a8e658bc21f01df1572"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/probes/cp18_0_old_code_check.py",
@@ -239,15 +284,15 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_18/probes/ledger.py",
-   "sha256": "1704a4fc3d80d412e82de7702315a43cec99f65911b1a61a6fc84db71839a44b"
+   "sha256": "dc964bd400070801a44d619b81463ee6eb5ea844cbcd26a1b39a70f488084bd5"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/probes/make_examples_doc.py",
-   "sha256": "ad0e0b6aeed3b94584349c052756a8626bff0e0add4e70ef907e6ea8181e04f8"
+   "sha256": "0974e000c15f5cacd695ee8f1d877edcd2d660179d58754525f46d133c972019"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/probes/mutation_reports.py",
-   "sha256": "a74eea16d8bace941b832f6934a9485cd97318865b726dae3a7a570357279c7a"
+   "sha256": "0d6eb7d365e8ffb18f0587ca39d152843f32c51984570a9c50d8904661d920a0"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/probes/rerun_diff.py",
@@ -259,59 +304,59 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_18/real/REAL_ALERTS_REPLAY_DRY_RUN.txt",
-   "sha256": "45467fc981207c78278f73b2934e899be4589cd2ff2ff8c042bdf7862c6f54c4"
+   "sha256": "5f0e57e6141b08abbb423bf082a546de2f7f18dbc1fb07b22c4fc8fde83cd63e"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/real/REAL_ALERTS_SCOUT_DRY_RUN.txt",
-   "sha256": "35f30313a7e8f089480002e50583966af96c5ae69cf9e33085fede06a7a6986a"
+   "sha256": "04f898de9d17bb75af7c1f8cd1c4abc46ed357d7be87812e9884f99a07bbae43"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/real/REAL_EXPORT_REPLAY.json",
-   "sha256": "9bb98769c5f8583170c0d49cd933058402d2447b0108dfd597ed459b3fd26430"
+   "sha256": "cfe5d2fe3c332f12349ea7a0446132d990553a9022803dd68c3c36f81038f6d3"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/real/REAL_PATH_SMOKE.json",
-   "sha256": "96667914ae0db31cdf60270867e48d27a938a57b22e4281edcdaf3824f8e595a"
+   "sha256": "978ee1f36bf276064d05994129ebe8c91e5398876816a70d11a7d09367ec68db"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/real/REAL_REPLAY_REPORT.md",
-   "sha256": "88db1b07b25f2662a8c2e2848e78f4ca6913a02f79cce522368c311fdcff756f"
+   "sha256": "9b3d1079bfbb6774b6fc1c18f1fc78b30e8acec36a41762f50f9fcaf324b2ddc"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/real/REAL_RUN_CHECKS.json",
-   "sha256": "0ebf0f19c489e6d61b6208c91089c3ef60358768f16b347da5dcfe2618db7609"
+   "sha256": "de7d21f32ca9fe1dfe8aa0fd58fbaf5fe83b6cd5f06990750843392037c75962"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/real/REAL_SCOUT_REPORT.md",
-   "sha256": "40b248d8f13bf21e058fef55423a8dd83815b55d0e276ea3e36489b57af9529f"
+   "sha256": "b00b6ff17e4ac124f53361ae1cb327e4a80f886dbb6e3de53791cc761929ff73"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/real/real_path_runs.txt",
-   "sha256": "c6689f12f06477f2380ea04ee89a2ff8bc41ae3a8726658d57317d3be6a3db16"
+   "sha256": "73435d8b24b28b995133bab4e7f37913615e7a8b35d4aaa4b78a1c8429995de0"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/ui/ALERT_RULE_MATRIX.md",
-   "sha256": "e9ae531f5da753b428649dfd61c5724f975f83f68f86cec6414859aa251935fc"
+   "sha256": "2427d05a8aac21ede3c11b278b3f7fb69321573089d91d27a8e9b54a320831c0"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/ui/EXAMPLE_REPORTS.md",
-   "sha256": "b3b0c50a81d5b25ffa0b46315a73b797aa6f4b5bb0d6180308a99542c35295d0"
+   "sha256": "40eaab35686a8335fc6d350c2adcf82206ca5ca6989c87ca113610ec1eb3839b"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/ui/MISSING_DATA_UX.md",
-   "sha256": "cfd7e5ac41b7e83155e73db13e7c6d7425beebed4d0e518e49bb2c01b449007f"
+   "sha256": "5d985deb66f6909e17e4ee768b52b2ceb22a61a37237713087eb7d915d8a6525"
   },
   {
    "path": "memelab/predictive/reports.py",
-   "sha256": "c0b62c8749fa00a52943ca10baf7dae29ca1603b8b231708bb17ead8954403c9"
+   "sha256": "3e5a8d28481079d02df07b518e5d3bba73fdc166e506fcb8aef76ad12c36e998"
   },
   {
    "path": "tests/test_predictive_reports.py",
-   "sha256": "ebeff478d7155e439ef3f5b4236f630e3cd3f834d4a4f902012d0e04d23423f5"
+   "sha256": "20a280c9cc5e172295b584c61b8fce9704094f921585a0c78a21d1c40b92eb44"
   },
   {
    "path": "tests/test_predictive_phase18_outputs.py",
-   "sha256": "18e1bbe835a3ab7ac733de98d3548858100e564e012b0bc9d60b1534c1f5174f"
+   "sha256": "74d83c3b248ddd4da27223deefb76b2d6f04de50af369c09f3f9a787ad94eff7"
   },
   {
    "path": "tests/fixtures/predictive/phase18/PINNED_SHA256.json",
@@ -319,31 +364,31 @@
   },
   {
    "path": "tests/fixtures/predictive/phase18/golden/alerts_forecast_format_only.txt",
-   "sha256": "3221d4861e7bdf767e82bb2742725ad7119c13f5e1ca9e45264df5f2bcfa89c7"
+   "sha256": "5b08265292d8c94f6867a3fa4ed123cb8b802d4e85410625ab97b8f5820cbc90"
   },
   {
    "path": "tests/fixtures/predictive/phase18/golden/alerts_withdrawn_format_only.txt",
-   "sha256": "01a30e1a1f7181ad30fe68f845b9a8d593720855e611c56309615e221d2d50a6"
+   "sha256": "0cf99ff34bde6a0380901438a21f4ff05c3e9b737d233e92f39776fb72599c3e"
   },
   {
    "path": "tests/fixtures/predictive/phase18/golden/report_abstain.md",
-   "sha256": "88b04abb54b8abbf2d94b9f0afac1d7012a5ca4da3d171c482662d10b565732a"
+   "sha256": "405843c32e879d6ca4c2292a32294f86ba817f5788dc2fd5a05988eaad340960"
   },
   {
    "path": "tests/fixtures/predictive/phase18/golden/report_forecast_format_only.md",
-   "sha256": "b4fb7ee2b4e0aad2a329512b60f2a0d18a12b8844d166d3a4f3d1f5b26c06706"
+   "sha256": "210a3d1825fe9455c88687b37942563521d1f592b32f3017c9097c7ee257b836"
   },
   {
    "path": "tests/fixtures/predictive/phase18/golden/report_forged_refused.md",
-   "sha256": "6241ae8858ed7c6ff587bc17f10a867bbd719541fe4580415166daabeb41a9e5"
+   "sha256": "4de3e775044651de1bd073a84f9e0152726d2ebb8d05d9f4381b056ab9b799cc"
   },
   {
    "path": "tests/fixtures/predictive/phase18/golden/report_injection.md",
-   "sha256": "0dce64157f95900e69501f9378c4dcbecd7a5a82372f27dc6269d86f11b16a6e"
+   "sha256": "1b04ac0ad26db82388bc582eaf65ac81350669e51d9a3b6c6c1b3791713e87f3"
   },
   {
    "path": "tests/fixtures/predictive/phase18/golden/report_withdrawn_format_only.md",
-   "sha256": "257007264a7126fd3887c73244fbb097964d149dee14f88bb43122bb39d4fd5c"
+   "sha256": "2e7683725b6d6a3765a5e4083b728fba61f1c0714a79b751b6ce5c6c1d74afb4"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/postcommit/pytest_summary.txt",
@@ -360,16 +405,53 @@
   {
    "path": "audits/predictive-intelligence/phase_18/postcommit/social_guard.out.txt",
    "sha256": "e0402cc9fef557c35276b60e8819dd5e7163b6ba69964e9d1afa713a08d4aa32"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/skeptic/PHASE_18_SKEPTIC.md",
+   "sha256": "2436dc13ab22a4de9d0e7522ef85366c9d49d74c0a5859e6d714a13c501754db"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/skeptic/PHASE_18_attacks.py",
+   "sha256": "e584eccb55e8c434ff147bc112c073e70fa2c12add9484086dfa82156e9587bb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/skeptic/PHASE_18_extra_mutations.py",
+   "sha256": "207705758f7ed4e2c77a97aaaafae724cc474a2fd0dbf3c8d95addb9ef6287db"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/evidence/rerun_rp2_diff.json",
+   "sha256": "eac1ac8b15285ffabffcb7e5ad2540d3ca406f10d43ee92d9eeb617286f97fc4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/evidence/rp2_old_code_check.json",
+   "sha256": "65ee5d9b0b60c8fe14fdd6a763f7c31c3b608b3e9745824a42fcb1f47c462ccc"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/evidence/rp2_skeptic_attacks_after.json",
+   "sha256": "08db39466e435474803ba248d915aa7fcfdb6d8ef765667a71d38bc8782ad122"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/evidence/mutation_rp2_first_probe_31ada29.json",
+   "sha256": "d67bb399e1a4d5e834372b31ccc5f8aea2aca1fe2290dfa3a85b89e69de9c57f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/evidence/mutation_rp2_x10_rerun.json",
+   "sha256": "61db66220e1813b2bc778543a87c0ab5adddd4ffd1bab4e350857f24c33a087a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/probes/rp2_old_code_check.py",
+   "sha256": "209db83257cc831c077efb14dadfb86042080ce2881b7f8d5c93063655992781"
   }
  ],
  "limitations": [
   "no real probability exists (Phase 16 NO_VIABLE_CHAMPION, Phase 13 UNCALIBRATED): the FORECAST display path, reevaluate and forecast_withdrawn alerts are TEST_ONLY, shown on watermarked format-only fixtures",
-  "a report cannot re-run verify_point (the request record keeps no feature availabilities); a FORECAST number is tied to the point stored with the raw number at publication, the hash-chained state and the registry-resolved cards; the state is hash-chained, not signed",
+  "a report cannot re-run verify_point (no feature availabilities in the request record; rule 14 keeps calibration out of the reader): a consistent reseal of document and request point is not caught (skeptic minor 5, attack A3); the report no longer claims a recomputation; carried to Phase 19 or 20",
   "the replay report has no lab database: snapshots not verified, lab facts UNKNOWN",
   "codes such as NO_ENTRY_AT_SHADOW_OR_ABOVE, NO_TRADES_AFTER_ENTRY and NO_SELL_ROUTE contain trade words inside a code and pass the whole-word check by design",
   "the Phase 18 report is a separate command; the scout report keeps the Phase 17 section unchanged",
-  "the daily cap was not reached on real data; cap, cooldown, dedupe and quiet hours are proven on fixtures",
-  "the independent skeptic has not run yet"
+  "the daily caps (separate for notices and warnings since CP18-2) were not reached on real data; caps, cooldown, dedupe and quiet hours are proven on fixtures",
+  "the liquidity and newer-snapshot risk items (CP18-2) and FEED_CHANGED, CLOCK_BEHIND are shown on fixtures only; no real snapshot has them",
+  "token text is withheld when its joined letters contain a trading word, so some harmless symbols are withheld too; the exact mint identifies the token"
  ],
  "blockers": [],
  "approvals_needed": [
@@ -378,5 +460,5 @@
   "the promotion change control of PI-D-091 (Elving)",
   "a merge of the backtesting PR #4 into this line (Elving)"
  ],
- "next_eligible_phase": "18 repair pass after the orchestrator's skeptic; Phase 19 only after the orchestrator records Phase 18 PASS"
+ "next_eligible_phase": "19, once the orchestrator records Phase 18 PASS and pushes"
 }
