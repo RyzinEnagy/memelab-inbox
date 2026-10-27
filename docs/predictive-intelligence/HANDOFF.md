@@ -32,7 +32,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Phase 17 commits
 
-HEAD before `b0fad12`; pre-registration `7f7bc28`; frozen code `3d2089b`; recorded outputs `6f4e8f7`; CP17-0 code `6172b49`; repeated outputs `30be448`; records after it; post-commit checks recorded in `phase_17/postcommit/` and in the commit that adds them. Local only; the orchestrator pushes.
+HEAD before `b0fad12`; pre-registration `7f7bc28`; frozen code `3d2089b`; recorded outputs `6f4e8f7`; CP17-0 code `6172b49`; repeated outputs `30be448`; records after it; post-commit at `c25ce00`: suite `1 failed, 2031 passed, 1 skipped` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no." (`phase_17/postcommit/`); the post-commit record commit on top. Local only; the orchestrator pushes.
 
 ## Waiting on Elving
 

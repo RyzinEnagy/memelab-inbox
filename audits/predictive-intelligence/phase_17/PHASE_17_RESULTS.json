@@ -3,12 +3,14 @@
  "status": "NEEDS_REVIEW",
  "status_note": "every gate item holds on the agent's own checks; the orchestrator's independent skeptic has not run (PI-D-013); TEST_ONLY parts: the FORECAST path on a fixture champion, the reader path, the backtest adapter, collector depth and catalyst-triggered refreshes",
  "head_before": "b0fad12",
- "head_after": "30be448",
+ "head_after": "c25ce00 (records) plus the post-commit record commit on top",
  "commits": {
   "pre_registration": "7f7bc28",
   "frozen_code": "3d2089b",
   "recorded_outputs": "6f4e8f7",
-  "cp17_0_code": "6172b49"
+  "cp17_0_code": "6172b49",
+  "repeated_outputs": "30be448",
+  "records": "c25ce00"
  },
  "checks": [
   {
@@ -124,6 +126,34 @@
    "input": "smoke/REAL_PATH_SMOKE.json checkout_status",
    "result": "[]",
    "pass": true
+  },
+  {
+   "name": "G23 post-commit full suite",
+   "command": "MEMELAB_DB=<tmp> python -m pytest tests -q (at c25ce00)",
+   "exit_code": 1,
+   "result": "1 failed, 2031 passed, 1 skipped in 425.14s (known failure only; stray removed by hand)",
+   "pass": true
+  },
+  {
+   "name": "G23 post-commit social guard",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "violations []",
+   "pass": true
+  },
+  {
+   "name": "G23 post-commit seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "G23 post-commit single-branch release audit",
+   "command": "python tools/release_audit.py --history (single-branch clone at c25ce00)",
+   "exit_code": 0,
+   "result": "Needs action: no.",
+   "pass": true
   }
  ],
  "artifacts": [
@@ -133,7 +163,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_17/PHASE_17_EVIDENCE.md",
-   "sha256": "8d5ea75bfd6c2347708e3dd9f67752229b02c1570faaf1c1736dfa7f309ddec1"
+   "sha256": "64ab9af473762b8e2a8c86bd2b2ebc111c3c701a3585598093e8ed8f764010ba"
   },
   {
    "path": "audits/predictive-intelligence/phase_17/SKEPTIC_PACKET.md",
@@ -190,6 +220,22 @@
   {
    "path": "audits/predictive-intelligence/phase_17/integration/REQUEST_FLOW.md",
    "sha256": "beed0300cc4e2823f45796254512e380a52d53731edc8a3e621d87df1226ed16"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/postcommit/pytest_summary.txt",
+   "sha256": "b6b70464031d8e944af9b4623b7d1a868daf1c4a3490dfa96de7ea2a098219c5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/postcommit/release_audit_history.summary.txt",
+   "sha256": "cf0108b6bbdac6b44e60ddcc818f97de9add9b7946c2ca40671e7ca027c17253"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/postcommit/seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_17/postcommit/social_guard.out.txt",
+   "sha256": "e303fddbc5842bec799044a73599297ab30dbe187a50a5acc1733624129d586c"
   },
   {
    "path": "audits/predictive-intelligence/phase_17/probes/cp17_0_old_code_check.py",

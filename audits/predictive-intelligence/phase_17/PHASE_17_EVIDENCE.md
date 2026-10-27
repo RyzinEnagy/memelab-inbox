@@ -82,7 +82,7 @@ Fixture path (`smoke/FIXTURE_E2E.json`, TEST_ONLY): a fixture B2 champion pinned
 | G20 | yes | `test_g20_*` |
 | G21 | yes | `test_g21_*`, amended isolation tests |
 | G22 | yes | `test_g22_*`; `tests/test_predictive_reproductions.py` green in the suite |
-| G23 | after the post-commit checks | `postcommit/` |
+| G23 | yes | post-commit at `c25ce00`: suite `1 failed, 2031 passed, 1 skipped in 425.14s` (known failure only; stray removed by hand), guard 0 violations, seal `"problems": []`, single-branch release audit exit 0 "Needs action: no." (`postcommit/`) |
 | G24 | yes | 59 of 59 |
 | G25 | yes | social guard 0 violations; content-guard test; trading-word checks |
 | G26 | yes | `test_the_search_ledger_extends_phase_16_*` |

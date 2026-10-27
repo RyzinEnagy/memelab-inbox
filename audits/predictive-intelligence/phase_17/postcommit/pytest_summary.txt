@@ -1,0 +1,4 @@
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+1 failed, 2031 passed, 1 skipped, 1 warning in 425.14s (0:07:05)
+exit 1
+at c25ce00; stray data/reports/20261027_0714_BRETT_0x532f.md removed by hand
