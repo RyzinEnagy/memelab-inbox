@@ -400,3 +400,90 @@ def test_a_small_p_with_the_wrong_sign_is_not_a_lift():
     assert S.descriptive_verdict({"gate": None, "lift": 0.1}, 0.9, 0.01) == S.NOT_DISTINGUISHABLE
     assert S.descriptive_verdict({"gate": None, "lift": -0.1}, 0.9, 0.01) == S.WORSE
     assert S.descriptive_verdict({"gate": S.INSUFFICIENT_DAYS, "lift": 0.5}, 0.0001, 0.9) == S.INSUFFICIENT_DAYS
+
+
+# ---------------------------------------------------------------- repair pass 2 (PI-D-082)
+def test_blind_check_is_case_insensitive_and_covers_every_listed_key():
+    """Skeptic m5 (own mutations X2, X3): an upper-case outcome key and label_observed_at are refused."""
+    d, errs = doc_of(seed_of(obs_att("sc_organic_acceleration", 1.0)))
+    for key in ("Y", "OUTCOME_24H", "Label_Matures_At", "label_observed_at", "LABEL_OBSERVED_AT", "Event_Observed", "HIT"):
+        bad = copy.deepcopy(d)
+        bad["hypotheses"][0]["monitor"][key] = 1
+        with pytest.raises(S.BlindingError):
+            S.code_document(bad, [])
+
+
+def test_labels_by_target_lists_event_statements_only():
+    """Skeptic m5 (own mutation X13): a NO_EVENT statement never enters a per-label list."""
+    d, _ = doc_of(seed_of(obs_att("sc_organic_acceleration", 1.0)))
+    h = copy.deepcopy(d["hypotheses"][0])
+    h["monitor"]["expect"] = "NO_EVENT"
+    h["hypothesis_id"] = "h-other"
+    coded = S.code_document({**d, "hypotheses": [h]}, [])
+    assert S.warnings_of(coded)[T1B] == S.WARN_NO_EVENT
+    assert S.labels_by_target(coded)[T1B] == []
+    coded = S.code_document(d, [])
+    assert S.labels_by_target(coded)[T1B] == [d["hypotheses"][0]["label"]]
+
+
+def _clustered_fixture(seed=7, mints=60, per=4, days=5):
+    rng = np.random.default_rng(seed)
+    rows = []
+    for m in range(mints):
+        p = 0.6 if rng.random() < 0.3 else 0.05          # a persistent mint effect: repeated decisions share outcomes
+        d0 = int(rng.integers(days))
+        for j in range(per):
+            rows.append({"mint": f"m{m}", "day": f"d{(d0 + j // 2) % days}", "y": int(rng.random() < p), "lead_s": None})
+    return rows
+
+
+def test_cx_s15_mint_planted_null_warnings_fool_the_decision_null_not_the_mint_block_null():
+    """CX-S15: an outcome-independent warning assigned per mint, on outcomes that cluster by mint. The decision-level
+    permutation rejects far more often than its level; the conservative mint-block p stays at or below it."""
+    rows = _clustered_fixture()
+    rng = np.random.default_rng(11)
+    salts, dec, cons = 300, [0, 0], [0, 0]
+    for s in range(salts):
+        warned = {f"m{m}" for m in range(60) if rng.random() < 0.5}
+        c = S.clustered_metrics([{**r, "warning": "EVENT" if r["mint"] in warned else "NONE"} for r in rows], reps=200, seed=s)
+        dec[0] += c["decision"]["p_up"] < 0.05
+        dec[1] += c["decision"]["p_down"] < 0.05
+        cons[0] += c["p_up_conservative"] < 0.05
+        cons[1] += c["p_down_conservative"] < 0.05
+        assert c["p_up_conservative"] >= c["decision"]["p_up"] and c["p_down_conservative"] >= c["decision"]["p_down"]
+    assert min(dec) / salts > 0.09                      # about twice the 0.05 level
+    assert max(cons) / salts <= 0.075                   # 0.05 plus two Monte Carlo standard errors at 300 salts
+
+
+def test_mint_block_null_keeps_the_warned_count_and_reduces_to_the_decision_null_for_singletons():
+    rng = np.random.default_rng(3)
+    n = 200
+    y = (rng.random(n) < 0.3).astype(int)
+    w = rng.random(n) < 0.4
+    days = [f"d{i % 5}" for i in range(n)]
+    single = S.mint_block_permutation(w, y, days, [f"m{i}" for i in range(n)], reps=4000, seed=1)
+    dec = S.day_permutation(w, y, days, reps=4000, seed=1)
+    assert abs(single["p_up"] - dec["p_up"]) < 0.03 and abs(single["null_mean_hits"] - dec["null_mean_hits"]) < 0.3
+    assert single == S.mint_block_permutation(w, y, days, [f"m{i}" for i in range(n)], reps=4000, seed=1)
+    # every replicate warns exactly the observed count per group: with all rows positive the null is a single value
+    allpos = S.mint_block_permutation(w, np.ones(n, int), days, [f"m{i // 3}" for i in range(n)], reps=200, seed=2)
+    assert allpos["null_min"] == allpos["null_max"] == int(w.sum())
+    # a block warned only in part contributes a random subset: 4 of 10 rows with 5 positives give 2 hits on average
+    part = S.mint_block_permutation(np.arange(10) < 4, np.arange(10) % 2, ["d"] * 10, ["m"] * 10, reps=4000, seed=5)
+    assert abs(part["null_mean_hits"] - 2.0) < 0.1 and part["null_min"] < part["null_max"]
+    with pytest.raises(S.ScenarioEvalError):
+        S.mint_block_permutation(w, y, days, ["m"] * (n - 1), reps=10, seed=1)
+    with pytest.raises(S.ScenarioEvalError):
+        S.clustered_metrics([{"warning": "EVENT", "y": 1, "day": "d"}], reps=10)
+
+
+def test_more_conservative_verdicts_and_padded_holm():
+    LS, WO, ND = S.LIFT_SUGGESTED, S.WORSE, S.NOT_DISTINGUISHABLE
+    assert S.more_conservative(LS, LS) == LS and S.more_conservative(LS, ND) == ND and S.more_conservative(WO, LS) == ND
+    assert S.more_conservative(ND, LS) == ND and S.more_conservative(S.INSUFFICIENT_EVENTS, LS) == S.INSUFFICIENT_EVENTS
+    res = {T1: {"gate": None, "lift": 0.1, "verdict": ND}}
+    out = S.conservative_holm_by_target(res, {T1: {"p_up_conservative": 0.02, "p_down_conservative": 0.9}})
+    assert out[T1]["p_up_holm_conservative"] == pytest.approx(0.06)      # an absent target counts as p 1 in the family of three
+    assert out[T1]["verdict_conservative"] == ND
+    assert S.control_own_level(0.06, 0.032, 0.99) == "FLAGGED" and S.control_own_level(0.06, 0.2, 0.9) == "NOT_FLAGGED"
+    assert S.control_own_level(-0.1, 0.99, 0.01) == "FLAGGED" and S.control_own_level(None, None, None) == "NOT_TESTABLE"

@@ -20,6 +20,19 @@ TEST = "tests/test_predictive_scenario_eval.py"
 EXTRA = ["audits/predictive-intelligence/phase_14/behavioral/MIROFISH_PROBE.json"]
 
 MUTATIONS = [
+    # repair pass 2 (PI-D-082): the skeptic's three surviving mutations X2, X3, X13 and the mint-block null
+    ("X2 blind check case sensitive", 'r"label_observed_at|event_observed)$", re.I)', 'r"label_observed_at|event_observed)$")'),
+    ("X3 label_observed_at accepted", 'r"label_observed_at|event_observed)$"', 'r"event_observed)$"'),
+    ("X13 NO_EVENT labels in per-label", 'if s["expect"] == "EVENT" and s["label"] not in', 'if s["label"] not in'),
+    ("R1 mint blocks not shuffled", "            o = rng.permutation(len(sizes))", "            o = np.arange(len(sizes))"),
+    ("R2 partial block dropped", "            if rest > 0:", "            if False:"),
+    ("R3 partial block all hits", "                h += int(rng.hypergeometric(int(pos[b]), int(sizes[b] - pos[b]), rest))",
+     "                h += int(min(rest, pos[b]))"),
+    ("R4 conservative p is the smallest", "        out[f\"{d}_conservative\"] = max(", "        out[f\"{d}_conservative\"] = min("),
+    ("R5 whole-sample null left out", 'for k in ("decision", "mint_within_day", "mint_whole_sample"))', 'for k in ("decision", "mint_within_day"))'),
+    ("R6 combined verdict takes the other", "    return v_decision if v_other == v_decision else NOT_DISTINGUISHABLE", "    return v_other"),
+    ("R7 control ignores the sign", "    if (lift > 0 and p_up < ALPHA) or (lift < 0 and p_down < ALPHA):", "    if p_up < ALPHA:"),
+    ("R8 mint missing allowed", '    if any("mint" not in r for r in use):', "    if False:"),
     # blindness
     ("B1 outcome key accepted", "            if isinstance(k, str) and OUTCOME_KEY.match(k):", "            if False:"),
     ("B2 nested keys not walked", "            check_blind(v, f\"{path}.{k}\" if path else str(k))", "            pass"),

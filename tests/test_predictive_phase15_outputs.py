@@ -33,10 +33,13 @@ def test_coding_was_committed_before_the_scoring_code_and_outputs():
     def first(path):
         out = subprocess.run(["git", "-C", str(ROOT), "log", "--diff-filter=A", "--format=%H", "--", path], capture_output=True, text=True)
         return out.stdout.split()[-1] if out.returncode == 0 and out.stdout.split() else None
+    # repair pass 2 (skeptic m5): a shallow or exported tree cannot show the order, so the test fails instead of passing
+    shallow = subprocess.run(["git", "-C", str(ROOT), "rev-parse", "--is-shallow-repository"], capture_output=True, text=True)
+    assert shallow.returncode == 0 and shallow.stdout.strip() == "false", "the order check needs the full git history"
     coding = first("audits/predictive-intelligence/phase_15/behavioral/SCENARIO_CODING.csv")
     scorer = first("audits/predictive-intelligence/phase_15/probes/score_scenarios.py")
-    if not coding or not scorer:          # shallow or exported tree: nothing to order
-        return
+    assert coding and scorer, "the order check needs the commits that added the coding outputs and the scorer"
+    assert coding.startswith("7b787bf") and scorer.startswith("0abffd5"), (coding, scorer)
     anc = subprocess.run(["git", "-C", str(ROOT), "merge-base", "--is-ancestor", coding, scorer])
     assert anc.returncode == 0 and coding != scorer
 

@@ -434,3 +434,111 @@ def summarize_rows(rows: Iterable[dict]) -> dict:
     rows = list(rows)
     return {"rows": len(rows), "mints": len({r["mint"] for r in rows}), "days": len({str(r["decision_time_utc"])[:10] for r in rows}),
             "export_commits": len({r["export_commit"] for r in rows})}
+
+
+# ---------------------------------------------------------------- mint-block nulls (repair pass 2, PI-D-082, CX-S15)
+MINT_NULL_VERSION = "mint-block-null-1"
+
+
+def mint_block_permutation(w: Any, y: Any, groups: Sequence[str], mints: Sequence[str], *, reps: int, seed: int) -> dict:
+    """Null of the warned hit count when warnings go to whole mints (CX-S15: rule warnings follow a mint's persistent attention
+    proxies, so the decision-level permutation is optimistic). Within each group (a UTC day, or one group for the whole sample)
+    the rows of one mint form a block; each replicate warns whole blocks in a random order until the group's observed warned
+    count is reached, the last block only in part (a random subset, its hits drawn hypergeometric). With one decision per mint
+    this is the decision-level permutation. Integer comparison, +1 rule."""
+    w = np.asarray(w, bool)
+    y = np.asarray(y, int)
+    if not (len(w) == len(y) == len(groups) == len(mints)):
+        raise ScenarioEvalError("warnings, labels, groups and mints must have one entry per row")
+    obs = int(np.sum(w & (y == 1)))
+    by: dict[str, dict[str, list[int]]] = {}
+    for i, (g, m) in enumerate(zip(groups, mints)):
+        by.setdefault(str(g), {}).setdefault(str(m), []).append(i)
+    struct = []
+    for g in sorted(by):
+        blocks = [np.array(by[g][m]) for m in sorted(by[g])]
+        sizes = np.array([len(b) for b in blocks], int)
+        pos = np.array([int(y[b].sum()) for b in blocks], int)
+        struct.append((sizes, pos, int(sum(int(w[b].sum()) for b in blocks))))
+    rng = np.random.default_rng(seed)
+    null = np.empty(reps, int)
+    for r in range(reps):
+        h = 0
+        for sizes, pos, m in struct:
+            if m == 0:
+                continue
+            o = rng.permutation(len(sizes))
+            cs = np.cumsum(sizes[o])
+            full = int(np.searchsorted(cs, m, side="right"))
+            h += int(pos[o[:full]].sum())
+            rest = m - (int(cs[full - 1]) if full else 0)
+            if rest > 0:
+                b = o[full]
+                h += int(rng.hypergeometric(int(pos[b]), int(sizes[b] - pos[b]), rest))
+        null[r] = h
+    n_ge, n_le = int(np.sum(null >= obs)), int(np.sum(null <= obs))
+    return {"observed_hits": obs, "p_up": (n_ge + 1) / (reps + 1), "p_down": (n_le + 1) / (reps + 1),
+            "null_mean_hits": float(null.mean()), "null_min": int(null.min()), "null_max": int(null.max()), "reps": reps,
+            "seed": seed, "groups": len(struct), "blocks": int(sum(len(s) for s, _, _ in struct))}
+
+
+def clustered_metrics(rows: Sequence[dict], *, reps: int = 2000, seed: int = 20261025) -> dict:
+    """The decision-level null beside the two mint-block nulls (mints within each day; whole mints over the whole sample) for
+    rows with warning, y, day and mint. The conservative p of each direction is the largest of the three, so it is never
+    smaller than the decision-level p of `warning_metrics` (same seed)."""
+    use, _ = _scored(rows)
+    if any("mint" not in r for r in use):
+        raise ScenarioEvalError("the mint-block null needs the mint of every scored row")
+    n = len(use)
+    y = np.array([r["y"] for r in use], int)
+    w = np.array([r["warning"] == WARN_EVENT for r in use], bool)
+    days = [str(r["day"]) for r in use]
+    mints = [str(r["mint"]) for r in use]
+    out: dict[str, Any] = {"version": MINT_NULL_VERSION, "n_scored": n, "warned": int(w.sum()),
+                           "lift": None, "decision": None, "mint_within_day": None, "mint_whole_sample": None,
+                           "p_up_conservative": None, "p_down_conservative": None}
+    if n and int(y.sum()) and int(w.sum()):
+        out["lift"] = float(np.sum(w & (y == 1)) / w.sum() - y.mean())
+    if not (int(w.sum()) and int(w.sum()) < n):
+        return out
+    out["decision"] = day_permutation(w, y, days, reps=reps, seed=seed)
+    out["mint_within_day"] = mint_block_permutation(w, y, days, mints, reps=reps, seed=seed)
+    out["mint_whole_sample"] = mint_block_permutation(w, y, ["ALL"] * n, mints, reps=reps, seed=seed)
+    for d in ("p_up", "p_down"):
+        out[f"{d}_conservative"] = max(out[k][d] for k in ("decision", "mint_within_day", "mint_whole_sample"))
+    return out
+
+
+def more_conservative(v_decision: str | None, v_other: str | None) -> str | None:
+    """Combine two descriptive verdicts so the result is never less conservative than the first: a gate stays; a lift or a
+    worse-than-prevalence verdict survives only when both say it."""
+    if v_decision not in (LIFT_SUGGESTED, WORSE, NOT_DISTINGUISHABLE):
+        return v_decision
+    return v_decision if v_other == v_decision else NOT_DISTINGUISHABLE
+
+
+def conservative_holm_by_target(results: dict[str, dict], clustered: dict[str, dict]) -> dict[str, dict]:
+    """Holm over the three primary targets on the conservative (mint-block) p values; an absent target counts as p 1. The
+    verdict is `more_conservative` of the recorded decision-level verdict and the one from these p values."""
+    pu = K.holm([(clustered.get(t) or {}).get("p_up_conservative") for t in PRIMARY])
+    pd = K.holm([(clustered.get(t) or {}).get("p_down_conservative") for t in PRIMARY])
+    out = {}
+    for i, t in enumerate(PRIMARY):
+        r = results.get(t)
+        if r is None:
+            continue
+        a = pu[i] if math.isfinite(pu[i]) else None
+        b = pd[i] if math.isfinite(pd[i]) else None
+        out[t] = {"p_up_holm_conservative": a, "p_down_holm_conservative": b,
+                  "verdict_conservative": more_conservative(r.get("verdict"), descriptive_verdict(r, a, b))}
+    return out
+
+
+def control_own_level(lift: float | None, p_up: float | None, p_down: float | None) -> str:
+    """A pre-registered negative control judged as the single test it is, at ALPHA, with no family padding (skeptic m2):
+    FLAGGED when its p in the direction of its lift is below ALPHA, else NOT_FLAGGED; NOT_TESTABLE without a p value."""
+    if lift is None or p_up is None or p_down is None:
+        return "NOT_TESTABLE"
+    if (lift > 0 and p_up < ALPHA) or (lift < 0 and p_down < ALPHA):
+        return "FLAGGED"
+    return "NOT_FLAGGED"
