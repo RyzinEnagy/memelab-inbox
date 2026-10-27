@@ -1,7 +1,7 @@
 {
  "phase": "15",
- "status": "NEEDS_REVIEW",
- "status_statement": "NEEDS_REVIEW pending the orchestrator's independent skeptic. The comparison that can be made without spend is valid and the decision is conservative; the simulation comparators were not run (no approved spend, 0 eligible events), so the expected status after review is TEST_ONLY and the result cannot satisfy a live-release prerequisite (PI-D-078).",
+ "status": "TEST_ONLY",
+ "status_statement": "TEST_ONLY after repair pass 2 (PI-D-082, PI-D-083): every gate item holds; the comparison that can be made without spend is valid and the decision conservative, but the simulation comparators were never run live (no approved spend, 0 of 100 eligible events), so the phase is not a release-complete PASS and cannot satisfy a live-release prerequisite (PI-D-078).",
  "decision": {
   "validation": "INSUFFICIENT_VALIDATION",
   "mirofish": "MIROFISH_NO_GO",
@@ -23,7 +23,7 @@
   "live_capability_created": false
  },
  "head_before": "b0243b4",
- "head_after": "cda97c3",
+ "head_after": "aea95f0",
  "commits": {
   "pre_registration": "b274cbc",
   "frozen_coding_code": "9ab0160",
@@ -31,7 +31,11 @@
   "frozen_scoring_code": "0abffd5",
   "recorded_scoring_run_first": "01e535d",
   "change_control_cp15_0": "de41d26",
-  "recorded_scoring_run_repeat": "3135060"
+  "recorded_scoring_run_repeat": "3135060",
+  "records_first_pass": "cda97c3",
+  "skeptic_reviewed_at": "08e8670",
+  "frozen_code_repair_pass_2": "869d597",
+  "recorded_addition_repair_pass_2": "aea95f0"
  },
  "result": {
   "eligible_catalyst_events": 0,
@@ -58,8 +62,37 @@
    "PI-D-078",
    "PI-D-079",
    "PI-D-080",
-   "PI-D-081"
-  ]
+   "PI-D-081",
+   "PI-D-082",
+   "PI-D-083"
+  ],
+  "n_search_sensitivity": 160,
+  "mint_null": {
+   "E2_conservative_holm_p_up": {
+    "T1_24h": null,
+    "T1b_6h": 0.7326336831584208,
+    "T2_24h": 0.19790104947526238
+   },
+   "E2_verdicts": {
+    "T1_24h": "NO_WARNINGS",
+    "T1b_6h": "DESCRIPTIVE_NOT_DISTINGUISHABLE",
+    "T2_24h": "DESCRIPTIVE_NOT_DISTINGUISHABLE"
+   },
+   "ncb_recorded_own_level": {
+    "decision": "FLAGGED",
+    "conservative": "NOT_FLAGGED"
+   },
+   "ncb_mint_planted_failed": {
+    "T1_24h": false,
+    "T1b_6h": false,
+    "T2_24h": false
+   },
+   "calibration": {
+    "T1_24h": "CALIBRATION_HOLDS",
+    "T1b_6h": "CALIBRATION_HOLDS",
+    "T2_24h": "CALIBRATION_HOLDS"
+   }
+  }
  },
  "checks": [
   {
@@ -145,7 +178,7 @@
   {
    "name": "G12 controls",
    "input": "INCREMENTAL_VALUE_RESULTS.json controls, controls_coding",
-   "result": "NCB VERIFIED not flagged (Holm 0.096); NCB UNVERIFIED 426 of 426 unscorable; P28 830 of 830 refused for both traps",
+   "result": "NCB VERIFIED raw p 0.032: not flagged only through a padded Holm family; judged alone FLAGGED by the decision null, NOT_FLAGGED by the conservative mint-block p (0.120); per-mint bogus control NOT_FLAGGED on every target; NCB UNVERIFIED 426 of 426 unscorable; P28 830 of 830 refused for both traps",
    "pass": true
   },
   {
@@ -181,7 +214,7 @@
   {
    "name": "G18 ledger",
    "input": "experiments/SEARCH_LEDGER.csv, LEDGER_TOTALS.json",
-   "result": "Phase 13 rows unchanged at the head; 33 Phase 15 rows; N_search 121; every search-kind registry row present; six non-configuration registry rows (COUNT, BLIND_CODING x2, NOT_RUN x2, DECISION) have no ledger row (wording note in evidence)",
+   "result": "Phase 13 rows unchanged; 33 Phase 15 rows plus 20 in the addition; N_search 121; REGISTRY_LEDGER_MAP.csv maps all 47 registry rows and all 53 ledger rows (repair pass 2)",
    "pass": true
   },
   {
@@ -198,39 +231,93 @@
    "pass": true
   },
   {
-   "name": "G20 post-commit social guard",
+   "name": "G20 post-commit social guard (first pass, at cda97c3)",
    "command": "python -m memelab social guard",
    "result": "violations [], 2440 files scanned",
    "exit_code": 0,
    "pass": true
   },
   {
-   "name": "G20 post-commit seal check",
+   "name": "G20 post-commit seal check (first pass, at cda97c3)",
    "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
    "result": "problems []",
    "exit_code": 0,
    "pass": true
   },
   {
-   "name": "G20 post-commit single-branch release audit",
+   "name": "G20 post-commit single-branch release audit (first pass, at cda97c3)",
    "command": "python tools/release_audit.py --history (single-branch clone at cda97c3)",
    "result": "Needs action: no.",
    "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "RP2 CX-S15 unit test",
+   "command": "python -m pytest tests/test_predictive_scenario_eval.py -q -p no:cacheprovider -k cx_s15",
+   "result": "passes at 869d597; fails on the first-pass code (no mint-block null)",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "RP2 recorded addition",
+   "command": "python -B audits/predictive-intelligence/phase_15/probes/mint_null.py audits/predictive-intelligence/phase_15",
+   "result": "exit 0 at 869d597; every decision-level p equal to the recorded one; verdicts unchanged",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "RP2 calibration (CX-S15 on real data)",
+   "input": "behavioral/MINT_CLUSTERED_NULL.json CALIBRATION_MINT_PLANTED",
+   "result": "T1_24h: decision 0.04/0.0325, conservative 0.02/0.0225, CALIBRATION_HOLDS; T1b_6h: decision 0.06/0.0975, conservative 0.03/0.0375, CALIBRATION_HOLDS; T2_24h: decision 0.0475/0.025, conservative 0.0375/0.005, CALIBRATION_HOLDS; bound 0.0718",
+   "pass": true
+  },
+  {
+   "name": "RP2 reruns at 869d597",
+   "command": "python -B audits/predictive-intelligence/phase_15/probes/rerun_rp2_diff.py <rp2c> <rp2s> <twin> evidence/rerun_rp2_diff.json",
+   "result": "coding, scoring and the addition twin byte-equal; logs differ only in times and head",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "RP2 mutation probe",
+   "command": "python -B audits/predictive-intelligence/phase_15/probes/mutation_scenario_eval.py evidence/mutation_scenario_eval_rp2.json",
+   "result": "56 of 56 caught",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "RP2 skeptic own mutations rerun",
+   "command": "python -I audits/predictive-intelligence/phase_15/skeptic/p15_own_mutations.py /home/claude/memelab-inbox OUT",
+   "result": "14 of 14 caught (first pass 11)",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "RP2 Phase 15 tests",
+   "command": "python -m pytest tests/test_predictive_scenario_eval.py tests/test_predictive_phase15_outputs.py -q -p no:cacheprovider",
+   "result": "46 passed",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "RP2 order test on a shallow clone",
+   "input": "git clone --depth 1, tests/test_predictive_phase15_outputs.py",
+   "result": "fails as intended (1 failed, 4 passed before the addition tests)",
    "pass": true
   }
  ],
  "artifacts": [
   {
    "path": "memelab/predictive/scenario_eval.py",
-   "sha256": "a699a21d1edff1fa051bca5a7d20951dc778b74194b85ff39787520482589406"
+   "sha256": "3dcccfbf106757d4b7ce2c67d5db049560215baf18b994579c11011fc1946ef6"
   },
   {
    "path": "tests/test_predictive_scenario_eval.py",
-   "sha256": "c230348cb4817b3bedb48074551f466d1fdd4c83059fdaabda9beb26e819c456"
+   "sha256": "5ac653e378aa63710f5359ada4b0be1039bcae341c80457b31678775fe288843"
   },
   {
    "path": "tests/test_predictive_phase15_outputs.py",
-   "sha256": "91b83ce00d0f6465b8ea67e27c5399ef3ce7a191119f045d6a7cd884fd76e36b"
+   "sha256": "a7eaf0588f79c998c1fc5f487ec925fbfa7f99444f0b58800edd06583f1b0543"
   },
   {
    "path": "audits/predictive-intelligence/phase_15/ACCEPTANCE_CHECKLIST.md",
@@ -238,7 +325,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_15/PHASE_15_EVIDENCE.md",
-   "sha256": "4531652253e6f04b35dbc0fdb19af8bdf978b7611ab7c250a98e2ffaaaf3a53a"
+   "sha256": "2fe60f63c803d03fab5d89d734c44aa4850a09af013a5790df672d50ed446dc7"
   },
   {
    "path": "audits/predictive-intelligence/phase_15/SKEPTIC_PACKET.md",
@@ -270,7 +357,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_15/behavioral/GO_NO_GO.md",
-   "sha256": "838c1c4435a65900789bb451a3617735b08202260d9608998acd39838d36caf4"
+   "sha256": "74e4209599228de6ff04180115ad604b74e391c89c0cc5bcada70c8b26219c4d"
   },
   {
    "path": "audits/predictive-intelligence/phase_15/behavioral/HOLDOUT_RULE_SCENARIOS.jsonl",
@@ -282,7 +369,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_15/behavioral/INCREMENTAL_VALUE_RESULTS.md",
-   "sha256": "07e95b3f7a5439222b1805a43720e4a236c601ed6bcc48e1af7fcb12d4d84442"
+   "sha256": "55432d0d446f96c18b19fef1fac1623b424d38565d839d316e55f6708816fd88"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/behavioral/MINT_CLUSTERED_NULL.json",
+   "sha256": "0dd4f3bf22085852917a690545a8f825b1e8f3684da29778d291d7482807d097"
   },
   {
    "path": "audits/predictive-intelligence/phase_15/behavioral/POST_OPENING_LOG.json",
@@ -301,8 +392,16 @@
    "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
   },
   {
+   "path": "audits/predictive-intelligence/phase_15/evidence/mint_null_run_log.json",
+   "sha256": "ddf527bb929d0be6ebb48eb39e264612a79ac8d10ad18fb7dddd5d52b22b8194"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_15/evidence/mutation_scenario_eval.json",
    "sha256": "143af42651395ccfefc4dcf8a1a6fddbf26916dc66a27cf4f29e153914e792c6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/evidence/mutation_scenario_eval_rp2.json",
+   "sha256": "a3200e527065469d3cf0c0969809fc78ecaf121bf50ba6dec0f34d4bad7e2402"
   },
   {
    "path": "audits/predictive-intelligence/phase_15/evidence/oracle_recompute.json",
@@ -313,6 +412,10 @@
    "sha256": "e7a9c732e61706e415b79abec5e8a2dde6891cd1d3e605875ae14f47c5250a31"
   },
   {
+   "path": "audits/predictive-intelligence/phase_15/evidence/rerun_rp2_diff.json",
+   "sha256": "ac8ef96908433e760d9ee805fbb2a85a88662632d56c6c4c12b91242666dae35"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_15/evidence/score_run_log.json",
    "sha256": "01ad4789788b5b0626f07fe1d1c9d1afc7d4e6488aee12aa0ad3e4d45c7b8149"
   },
@@ -321,12 +424,24 @@
    "sha256": "f33d14ab26ad2e38837758ef92b3c33771633a4a5104beb5c588e1152fd0223d"
   },
   {
+   "path": "audits/predictive-intelligence/phase_15/experiments/EXPERIMENT_REGISTRY_RP2.csv",
+   "sha256": "d32f9b18e6cf5fcca85d314a24937a9910d2e310b5c9605aa41b2c30a39c848f"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_15/experiments/LEDGER_TOTALS.json",
    "sha256": "331c34e9141d6cd8b1fedb5b0d5201f7a7fe42451f5a1e8a6fb7529f4a81a7d1"
   },
   {
+   "path": "audits/predictive-intelligence/phase_15/experiments/REGISTRY_LEDGER_MAP.csv",
+   "sha256": "b627e715b29229e50e080ed79b9ed0c1c1e30da4758878f3560bfb0bd2459af2"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_15/experiments/SEARCH_LEDGER.csv",
    "sha256": "59ac4e88577e60a8e8372be08d333d8bcf2375c21ad7a26d03b54a418e6bfd4c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/experiments/SEARCH_LEDGER_RP2_ADDITION.csv",
+   "sha256": "3a7326ad733e63b9c4f5f98ae395a11cf1930284759d336d198d2da705cb542c"
   },
   {
    "path": "audits/predictive-intelligence/phase_15/postcommit/pytest_summary.txt",
@@ -349,8 +464,12 @@
    "sha256": "bf1fa359734141445cc7774db6079e9d648dc449346b527fe90b11f9d36cada6"
   },
   {
+   "path": "audits/predictive-intelligence/phase_15/probes/mint_null.py",
+   "sha256": "d339e61dcba6856682e9b527f4166e6fae4a1015a891ce2392b42f01bfa7e844"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_15/probes/mutation_scenario_eval.py",
-   "sha256": "73c9db48103d8592fbee3dfe46a4cbc02077272555678d5c89a85aa0a5f7a3db"
+   "sha256": "16d944902cb705efa5e7ab2d3b97509db698fed7d29ad60edb33a1fab131d02b"
   },
   {
    "path": "audits/predictive-intelligence/phase_15/probes/oracle_recompute.py",
@@ -361,8 +480,44 @@
    "sha256": "168db9b805b480f9b9f8440f31915e20dfbb9d1dae4b31e09ef3ceb9bb0a8701"
   },
   {
+   "path": "audits/predictive-intelligence/phase_15/probes/rerun_rp2_diff.py",
+   "sha256": "4886b2d9a0952fc88a2a1b505d831a577717431428102d136eba63b33fde2295"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_15/probes/score_scenarios.py",
    "sha256": "f62ed428dce063315b4b7570d6a4b1edc824c6c5db46924498206c2cc11807c1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/skeptic/PHASE_15_SKEPTIC.md",
+   "sha256": "f56ce08177f6d7c4920e672c76c4ba998f679129b17d56fc9efe5fa0dcba4aaf"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/skeptic/p15_awarn_recompute.py",
+   "sha256": "2a3acf59f262efb9fd7afebd323ec630e5fc0480cfa2322d203ab3195735bf47"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/skeptic/p15_cx_mint_clustered_null.py",
+   "sha256": "d7c276ddc8f3f0d25d6951f6c46c367d01afe65c7bef5ae721172bdaa607fff9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/skeptic/p15_cx_mint_clustered_null_out.json",
+   "sha256": "b7585afe4d21fb9a51ebb3ebba591d073fa3e004521ba2ec8a608e36409e89e2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/skeptic/p15_e2_recompute.py",
+   "sha256": "7372a8e1ede16625c3cf4344eead401e28ea28b552be439c57d3265b867fd4ff"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/skeptic/p15_own_mutations.json",
+   "sha256": "ac98fe4e40639fc0d1f58c60497616f12969b1bfc125645fb3c6b788aef2a4a6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/skeptic/p15_own_mutations.py",
+   "sha256": "bedeef2342b9e4f9dc82a678babc81617159bd1c60b51d805832d5b13e616fdb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/skeptic/rp2_own_mutations_recheck.json",
+   "sha256": "7d443f6cfb62658afe4d5c2dc7a8ac5b46548f027ac66d55dc5c23d65e22873c"
   }
  ],
  "limitations": [
@@ -370,11 +525,13 @@
   "B (evidence-only LLM) and D (MiroFish) were not run: no approved spend; a retrospective run on these dates would be EXPLORATORY_NOT_AS_OF (P26) whatever it scored.",
   "C has no calibrated classifier (Phase 13); uncalibrated stand-ins from Phase 10 are restated.",
   "E2 is descriptive only: the rule table was written after summaries of the same inputs were public.",
-  "The day-stratified permutation exchanges decisions, not mints, so its p values are optimistic where mints repeat (T1b 96 rows share a mint and a day).",
   "E3 uses the spent retrospective holdout and is a POST_OPENING description only.",
   "Net decision utility NOT_COMPUTABLE (no historical executable depth, no execution data, no backtest).",
   "The records were finished by a second agent after the first session ended; no recorded step was rerun in that pass.",
-  "Checklist G18 says every registry row is in the ledger; six non-configuration rows are not (see evidence)."
+  "The recorded decision-level permutation exchanges decisions, not mints, and is optimistic for rule warnings (CX-S15); the conservative mint-block p is recorded beside it and changes no verdict.",
+  "The mint-block null fills whole mint blocks up to the observed warned count; it is calibrated empirically (400 salts per target), not proved exact.",
+  "Blindness of the coding rests on the code path, the seed contents and equality with Phase 14's documents; the coding guard does not block the Phase 05 feature store or the lab DB.",
+  "RULES_CANDIDATE is unreachable from the recorded scorer (no max-T p); stricter than protocol 6 and carried to any later promotion."
  ],
  "blockers": [
   "Any MiroFish or evidence-only LLM trial: no approved LLM, Zep or other paid spend and no key (PI-D-005, PI-D-078); and no eligible event set (0 of 100)."
@@ -382,5 +539,24 @@
  "approvals_needed": [
   "Elving: catalyst and social collection into a store this engine can read, until at least 100 eligible prospective events exist; then an LLM budget with the Phase 14 conditions, a pre-registered coder and a fresh protocol before any simulation trial."
  ],
- "next_eligible_phase": "16, after the orchestrator's skeptic and repair pass for Phase 15 (MIROFISH_NO_GO does not block the statistical system)"
+ "next_eligible_phase": "16 (MIROFISH_NO_GO does not block the statistical system; the behavioral module stays OFF)",
+ "repair_pass_2": {
+  "skeptic": "skeptic/PHASE_15_SKEPTIC.md",
+  "material": 0,
+  "minor": 7,
+  "counterexample": "CX-S15 per-mint warnings and the decision-level permutation",
+  "caught_by": [
+   "tests/test_predictive_scenario_eval.py::test_cx_s15_mint_planted_null_warnings_fool_the_decision_null_not_the_mint_block_null",
+   "tests/test_predictive_phase15_outputs.py::test_mint_clustered_null_addition_is_more_conservative_and_calibrated"
+  ],
+  "decision": "PI-D-082",
+  "final_status_decision": "PI-D-083",
+  "numbers_or_verdicts_changed": false,
+  "disagreements": [
+   "None on substance. CX-S15's 13.6% is the either-side share against a nominal 10%; the one-sided shares (7.3% up, 6.3% down) are the inflation against 5%."
+  ],
+  "left_and_carried": [
+   "m6: RULES_CANDIDATE needs a max-T p the scorer never computes (stricter than protocol 6); any later phase that could promote a rule computes max-T first."
+  ]
+ }
 }

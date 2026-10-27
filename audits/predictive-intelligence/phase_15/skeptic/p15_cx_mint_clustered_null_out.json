@@ -1,0 +1,49 @@
+{
+ "reps_per_salt": 500,
+ "results": {
+  "T1_24h": {
+   "DECISION": {
+    "salts": 1000,
+    "share_p_up_below_0.05": 0.024,
+    "share_p_down_below_0.05": 0.029,
+    "share_either_below_0.05": 0.053
+   },
+   "MINT": {
+    "salts": 1000,
+    "share_p_up_below_0.05": 0.044,
+    "share_p_down_below_0.05": 0.032,
+    "share_either_below_0.05": 0.076
+   }
+  },
+  "T1b_6h": {
+   "DECISION": {
+    "salts": 1000,
+    "share_p_up_below_0.05": 0.03,
+    "share_p_down_below_0.05": 0.024,
+    "share_either_below_0.05": 0.054
+   },
+   "MINT": {
+    "salts": 1000,
+    "share_p_up_below_0.05": 0.073,
+    "share_p_down_below_0.05": 0.063,
+    "share_either_below_0.05": 0.136
+   }
+  },
+  "T2_24h": {
+   "DECISION": {
+    "salts": 1000,
+    "share_p_up_below_0.05": 0.043,
+    "share_p_down_below_0.05": 0.025,
+    "share_either_below_0.05": 0.068
+   },
+   "MINT": {
+    "salts": 1000,
+    "share_p_up_below_0.05": 0.051,
+    "share_p_down_below_0.05": 0.031,
+    "share_either_below_0.05": 0.082
+   }
+  }
+ },
+ "nominal_one_sided": 0.05,
+ "nominal_either": 0.1
+}

@@ -1,0 +1,77 @@
+{
+ "mutations": 14,
+ "caught": 14,
+ "survivors": [],
+ "results": [
+  {
+   "mutation": "X1 event minimum 100 -> 99",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_go_candidate_needs_every_condition"
+  },
+  {
+   "mutation": "X2 blind check case sensitive",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_blind_check_is_case_insensitive_and_covers_every_listed_key"
+  },
+  {
+   "mutation": "X3 label_observed_at accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_blind_check_is_case_insensitive_and_covers_every_listed_key"
+  },
+  {
+   "mutation": "X4 SIMULATION_NOT_AVAILABLE codable",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_documents_that_cannot_be_coded_are_not_codable[<lambda>-STATUS_SIMULATION_NOT_AVAILABLE]"
+  },
+  {
+   "mutation": "X5 warned minimum 20 -> 10",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_gate_order"
+  },
+  {
+   "mutation": "X6 p_down uses >=",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_worse_than_prevalence_and_holm_counts_missing_targets_as_one"
+  },
+  {
+   "mutation": "X7 days gate <=",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_gate_order"
+  },
+  {
+   "mutation": "X8 lead time in minutes",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_warning_metrics_by_hand"
+  },
+  {
+   "mutation": "X9 WORSE without sign",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_a_small_p_with_the_wrong_sign_is_not_a_lift"
+  },
+  {
+   "mutation": "X10 shrink toward 0.5",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_fit_warn_shrinks_each_stratum_toward_the_training_prevalence"
+  },
+  {
+   "mutation": "X11 unseen stratum gets 0.5",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_fit_warn_shrinks_each_stratum_toward_the_training_prevalence"
+  },
+  {
+   "mutation": "X12 correction at alpha passes",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_selection_status_on_development_verdicts"
+  },
+  {
+   "mutation": "X13 NO_EVENT labels in per-label",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_labels_by_target_lists_event_statements_only"
+  },
+  {
+   "mutation": "X14 rules beat B2 by 0.05 slack",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_rules_candidate_needs_a_surviving_skill_not_worse_than_b2"
+  }
+ ]
+}

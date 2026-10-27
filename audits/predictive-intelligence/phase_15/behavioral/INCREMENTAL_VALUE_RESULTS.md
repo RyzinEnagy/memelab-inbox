@@ -41,7 +41,7 @@ A_WARN is the training-only event rate of the warned and the not-warned stratum,
 | T1b 6 h | 44 (3, 5) | 0.066494 | 0.066669 | 0.059460 | 0.070635 | 0.066415 (37 rows) | +0.0026, interval -0.019 to 0.027 | -0.118 | INSUFFICIENT_EVENTS |
 | T2 24 h | 8 (1, 1) | 0.138842 | 0.127496 | 0.152604 | 0.123434 | no number | -0.089 | +0.090 | INSUFFICIENT_DAYS |
 
-Holm over the three targets (an undefined test counts as p 1): T1b 1.0. Bonferroni at N_search 121: 1.0. Selection status NO_UNCORRECTED_SKILL on every target. Shuffled-seed control (warnings permuted within day): skill 0 (T1), -0.017 (T1b), -0.011 (T2). Rule statements in the out-of-sample rows: T1 0, T1b 6, T2 3.
+Holm over the three targets: T1b 1.0 (T1 and T2 have no defined test and enter the family of three as p 1, `stats.holm`). Bonferroni at N_search 121: 1.0. Selection status NO_UNCORRECTED_SKILL on every target. Shuffled-seed control (warnings permuted within day): skill 0 (T1), -0.017 (T1b), -0.011 (T2). Rule statements in the out-of-sample rows: T1 0, T1b 6, T2 3.
 
 ## E2: rule warnings on every development label (descriptive only)
 
@@ -65,19 +65,19 @@ Per label (secondary, no verdict beyond the gates):
 | T2 ATTENTION_EXHAUSTION | 32 | 2 | 0.063 | 0.214 | 0.9995 | 16, 0, 0 against 0.119 (INSUFFICIENT_EVENTS) |
 | T2 MANUFACTURED_ATTENTION_DUMP | 58 | 22 | 0.379 | 0.214 | 0.0045 | 14, 1, 0.071 against 0.119 (INSUFFICIENT_EVENTS) |
 
-The one development subgroup with a small raw p (MANUFACTURED_ATTENTION_DUMP on T2, the lab's suspect-attention flag) is one of three uncorrected secondary rows. It reads the same input (`sc_attention_suspect`) that Phase 10's R2 rule and S models already used, so it is not new information from a behavioral scenario. On the opened holdout it goes the other way (1 hit in 14). It is not a finding.
+All three per-label rows are uncorrected secondary descriptions, and all three read as noise. MANUFACTURED_ATTENTION_DUMP on T2 (the lab's suspect-attention flag) has a small raw p on development (0.0045; 0.0045 under the mint-block nulls too, repair pass 2) but reads the same input (`sc_attention_suspect`) that Phase 10's R2 rule and S models already used, so it is not new information from a behavioral scenario, and on the opened holdout it does not replicate: 1 hit in 14 against a prevalence of 0.119, below the event gate and indistinguishable from the prevalence (which is not the same as reversing). ORGANIC_ATTENTION_CONTINUATION on T1b looks favourable on the holdout (4 of 8 against 0.176, raw permutation p 0.026, also 0.026 under the mint-block nulls) but sits below the warning gate of 20. ATTENTION_EXHAUSTION on T2 points the wrong way on development (2 of 32 against 0.214, raw p down 0.0115, 0.014 under the mint-block nulls). None is a finding.
 
 ## Controls
 
 | Control | Result | Expected |
 |---|---|---|
-| NCB, bogus VERIFIED catalyst planted on an outcome-independent half (426 of 830) | T1: 65 of 136 labelled warned, 20 hits, precision 0.308 against 0.250, lift +0.058, raw p up 0.032, Holm 0.096: DESCRIPTIVE_NOT_DISTINGUISHABLE; control not flagged | not flagged |
+| NCB, bogus VERIFIED catalyst planted on an outcome-independent half of the decisions (426 of 830) | T1: 65 of 136 labelled warned, 20 hits, precision 0.308 against 0.250, lift +0.058, raw p up 0.032. Recorded verdict DESCRIPTIVE_NOT_DISTINGUISHABLE only through Holm over a family of three padded with two absent targets at p 1 (0.096). Judged as the single test it is (repair pass 2): FLAGGED by the decision-level null at 0.05; NOT_FLAGGED by the conservative mint-block p (0.120) | not flagged |
 | NCB, bogus UNVERIFIED_EVENT catalyst | 426 RUMOR_FADE statements, all UNSCORABLE_NO_OUTCOME_SOURCE; 0 T1 warnings | all unscorable |
 | NCS, shuffled seeds | E1 skill 0, -0.017, -0.011; E2 null is the permutation | no skill |
 | P28, observation available 1 s after the decision | 830 of 830 seeds refused (OBSERVATION_AFTER_DECISION, POST_DECISION_DATE), 0 statements | all refused |
 | P28, quoted text holding the T2 window end date | 830 of 830 refused (POST_DECISION_DATE), 0 statements | all refused |
 
-The bogus control's raw p of 0.032 matters: a planted catalyst that by construction knows nothing about outcomes reaches a raw p below 0.05 on these data. Raw permutation p values on this sample are not evidence; only the Holm-adjusted ones are used, and they stay above 0.05 everywhere.
+The bogus control's raw p of 0.032 matters: a planted catalyst that by construction knows nothing about outcomes reaches a raw p below 0.05 on these data, so the decision-level permutation is not shown to be calibrated here. Raw decision-level p values on this sample are not evidence. The repair pass 2 addition below shows why (CX-S15) and gives a null that passes the same kind of check.
 
 ## E3: the opened holdout (POST_OPENING description only)
 
@@ -89,13 +89,13 @@ Seeds for the 95 holdout-window decisions were built and coded blind with the de
 | T1b 6 h | 68 (12, 7) | 8 | 4 | 0.500 | 0.176 | INSUFFICIENT_WARNINGS | +0.015 (-0.004 to 0.036), +0.091 | NO_UNCORRECTED_SKILL |
 | T2 24 h | 59 (7, 6) | 26 | 1 | 0.038 | 0.119 | INSUFFICIENT_EVENTS | -0.106, -0.564 | NO_UNCORRECTED_SKILL |
 
-The T2 warnings that looked slightly favourable on development data are below the prevalence on the holdout. Combined status with E1: NO_UNCORRECTED_SKILL on every target; nothing becomes a claim.
+The T2 warnings that looked slightly favourable on development data are below the prevalence on the holdout (1 of 26, below the event gate). Combined status with E1: NO_UNCORRECTED_SKILL on every target; nothing becomes a claim.
 
 ## Other measures of comparator A
 
 | Measure | A (behavioral-rules-1) |
 |---|---|
-| Hindsight contamination | 0 of 830 development and 0 of 95 holdout-window seeds refused; no post-decision content (the P28 traps show the checks fire); P26 NOT_APPLICABLE (no model) |
+| Hindsight contamination | 0 of 830 development and 0 of 95 holdout-window seeds refused; no post-decision content (the P28 traps show the checks fire); P26 NOT_APPLICABLE (no model). Blinding basis, stated as it is (skeptic m3): the coding probe's guard makes `training_labels`, the label stores, the sealed folder and the prediction files raise, but it does not block the Phase 05 feature store (which holds post-decision candles) or `data/memelab.sqlite`. Blindness rests on the code path (the coder reads only the rule documents, whose seeds carry socialcat-1 proxies available at each decision, 0 late observations in 925 seeds) and, for the 830 development documents, on their equality with Phase 14's committed documents, not on the guard alone |
 | Variance | deterministic: the 830 documents recomputed equal to Phase 14's; coding and scoring twins byte-equal; no seed or persona grid applies |
 | Hallucinations | 0 statements citing a non-seed observation (the validator), 0 ungrounded catalysts on real seeds, 0 refused claims |
 | Ambiguous or vague | 227 development documents NO_GROUNDED_SCENARIO (no statement); 0 CONFLICT, 0 NOT_CODABLE, 0 REFUSED_WINDOW |
@@ -110,7 +110,7 @@ The T2 warnings that looked slightly favourable on development data are below th
 | P28 leaked future event | the two traps on every development seed | 830 of 830 refused for each, 0 statements |
 | P29 seed reversal | Phase 14 stability (MONITOR_REVERSED, CX-S14); A is deterministic (twin runs byte-equal) | A has no seed; D not run, UNSTABLE under the frozen grid per Phase 14 |
 | P30 unavailable provider | Phase 14 failure matrix; `decide` with D or B not run (test `test_decision_with_no_events_and_blocked_comparators_is_insufficient_and_no_go`) | B and D BLOCKED, reasons D_NOT_RUN and B_NOT_RUN, decision INSUFFICIENT_VALIDATION |
-| P45 invented catalyst | NCB VERIFIED and UNVERIFIED_EVENT controls | VERIFIED not flagged after Holm (raw p 0.032); UNVERIFIED 426 of 426 unscorable |
+| P45 invented catalyst | NCB VERIFIED and UNVERIFIED_EVENT controls; repair pass 2 per-mint bogus control | VERIFIED: raw p 0.032, FLAGGED by the decision null as a single test, NOT_FLAGGED by the conservative p (0.120); per-mint bogus warning NOT_FLAGGED on every target; UNVERIFIED 426 of 426 unscorable |
 
 ## Examples chosen by the frozen rule (not cherry-picked)
 
@@ -119,6 +119,22 @@ The T2 warnings that looked slightly favourable on development data are below th
 - A cannot be scored: `3aa19f76...` (mint `8nnaeWCw...`, same export), NO_GROUNDED_SCENARIO, no statement on any target; and every NCB UNVERIFIED_EVENT statement (RUMOR_FADE, unscorable catalyst monitor).
 - D (MiroFish): correct NOT_AVAILABLE, fails NOT_AVAILABLE; cannot be scored: the Phase 14 probe run `meter_cap_high` (SIMULATION_RAN, NOT_CODABLE free text on a fictional seed with a canned mock LLM), which `scenario_eval.code_document` refuses (test).
 
+## Repair pass 2 addition: mint-block nulls (PI-D-082, skeptic CX-S15)
+
+The rule warnings follow a mint's persistent attention proxies, so they cluster by mint, while the recorded permutation exchanges decisions within a day. `../probes/mint_null.py` at the frozen code `869d597` writes `MINT_CLUSTERED_NULL.json` beside the recorded outputs (which it does not change): two mint-block nulls (mints within each day; whole mints over the whole sample) and a conservative p, the largest of the three. Every decision-level p it recomputes equals the recorded one.
+
+| Check | Decision-level null | Conservative p (mint-block) |
+|---|---|---|
+| E2 T1b, Holm p up | 0.382 | 0.733 |
+| E2 T2, Holm p up | 0.198 | 0.198 |
+| E2 verdicts | DESCRIPTIVE_NOT_DISTINGUISHABLE (T1b, T2), NO_WARNINGS (T1) | unchanged |
+| E3 verdicts (POST_OPENING) | NO_WARNINGS, INSUFFICIENT_WARNINGS, INSUFFICIENT_EVENTS | unchanged |
+| Recorded NCB VERIFIED on T1, single test at 0.05 | FLAGGED (raw p 0.032) | NOT_FLAGGED (0.120) |
+| Bogus warning planted per mint, single test at 0.05 (T1, T1b, T2) | NOT_FLAGGED on each | NOT_FLAGGED on each |
+| Calibration: share of 400 salts of a per-mint outcome-independent warning with p < 0.05 (up, down), bound 0.0718 | T1 0.040, 0.0325; T1b 0.060, **0.0975**; T2 0.0475, 0.025 | T1 0.020, 0.0225; T1b 0.030, 0.0375; T2 0.0375, 0.005: CALIBRATION_HOLDS |
+
+CX-S15 holds on the real data: on T1b the decision-level null rejects a per-mint bogus warning on the low side in 9.75% of salts against a level of 5%. The conservative p stays within its bound on every target. No verdict changes and the decision does not change; the addition only removes any reading of the raw decision-level p values as evidence.
+
 ## Search ledger
 
-`../experiments/SEARCH_LEDGER.csv`: Phase 13's 3,206 rows unchanged at the head, then 33 Phase 15 rows (A_WARN on three targets as SIMPLE_ATTENTION_RULE, controls, descriptions, POST_OPENING checks, traps, 5 debug runs). N_search 118 to 121; rule configurations 39; holdout evaluation rows 220 (`LEDGER_TOTALS.json`).
+`../experiments/SEARCH_LEDGER.csv`: Phase 13's 3,206 rows unchanged at the head, then 33 Phase 15 rows (A_WARN on three targets as SIMPLE_ATTENTION_RULE, controls, descriptions, POST_OPENING checks, traps, 5 debug runs). N_search 118 to 121 (primary, protocol 11); rule configurations 39, so the sensitivity N_search is 160, the like-for-like of Phase 12's post-opening 127 (PI-D-066 item 4); A_WARN's Bonferroni is 1.0 at either N; holdout evaluation rows 220 (`LEDGER_TOTALS.json`). The repair pass 2 addition adds 20 rows in `../experiments/SEARCH_LEDGER_RP2_ADDITION.csv` (descriptions, POST_OPENING checks, controls, calibration checks, one debug run) under the same candidate names, so neither count changes. `../experiments/REGISTRY_LEDGER_MAP.csv` maps every registry row to its ledger row or to the record that holds it, and every ledger row to its registry row or its basis (checklist G18, skeptic m7).

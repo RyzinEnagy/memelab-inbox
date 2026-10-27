@@ -2,7 +2,7 @@
 
 - Branch `feature/predictive-intelligence`; HEAD before `b0243b4` (Phase 14 TEST_ONLY, equal to origin); Phase 15 commits `b274cbc` to `3135060`, then the records commit and a post-commit record on top (hashes in `PHASE_15_RESULTS.json` and HANDOFF).
 - Work 2026-10-27 from 00:41Z (entry suite) to the post-commit record. The first Phase 15 agent's session ended while it was writing the records (after `3135060`, with `SKEPTIC_PACKET.md`, `GO_NO_GO.md` and `INCREMENTAL_VALUE_RESULTS.md` uncommitted). A second agent finished the records from 01:22Z without rerunning or changing any frozen code or recorded output: it checked the three documents against the committed outputs (every number matched; one section on the named adversarial tests was added to `INCREMENTAL_VALUE_RESULTS.md`), then wrote this file, RESULTS.json and the records.
-- Status: **NEEDS_REVIEW**, pending the orchestrator's independent skeptic. Decision: **INSUFFICIENT_VALIDATION**, **MIROFISH_NO_GO**, **RULES_NOT_PROMOTED**. Expected status after review: TEST_ONLY (checklist status rule, protocol 12, PI-D-078).
+- Status: **TEST_ONLY** after repair pass 2 (PI-D-082, PI-D-083): the comparison that can be made without spend is valid and the decision conservative, but the simulation path was never tested live, so the phase cannot be a release-complete PASS. Decision: **INSUFFICIENT_VALIDATION**, **MIROFISH_NO_GO**, **RULES_NOT_PROMOTED**, unchanged by the repair. First pass NEEDS_REVIEW at `08e8670` (pushed); the independent skeptic found no material failure, 7 minor findings and CX-S15.
 
 ## Entry gate (G1, G2), at `b0243b4`
 
@@ -61,10 +61,10 @@ Phase 14 is TEST_ONLY, not PASS. The orchestrator admitted Phase 15 anyway (PI-D
 - Eligible independently dated catalyst events: **0** of 100 (`EVENT_SET.csv`: 925 decision snapshots with CATALYST_TABLES_NOT_EXPORTED; 27 inbox candidate items, none eligible: 1 listing state, 1 paid-boost list, 25 ticker or name searches, all read once before the first decision export).
 - Comparators: A RAN; B BLOCKED_NO_APPROVED_LLM_SPEND; C NO_CALIBRATED_CLASSIFIER (uncalibrated stand-ins B2, R2_SC_RULE, S2_SC_LOGIT_B2 restated equal to Phase 10); D BLOCKED_NO_APPROVED_LLM_OR_ZEP_SPEND.
 - E1 (as-of, out of sample): A_WARN INSUFFICIENT_DAYS (T1 24 rows, equal to B0; T2 8 rows) and INSUFFICIENT_EVENTS (T1b 44 rows, skill vs B0 +0.0026, interval -0.019 to 0.027, Holm 1.0); NO_UNCORRECTED_SKILL on every target.
-- E2 (descriptive only): T1 NO_WARNINGS; T1b 24 warned, 4 hits, precision 0.167 against 0.116, Holm p 0.382; T2 75 warned, 22 hits, 0.293 against 0.214, Holm p 0.198; both DESCRIPTIVE_NOT_DISTINGUISHABLE. The per-label subgroup MANUFACTURED_ATTENTION_DUMP on T2 (raw p 0.0045) gives 1 hit in 14 on the opened holdout.
-- Controls: NCB VERIFIED not flagged (raw p 0.032, Holm 0.096); NCB UNVERIFIED 426 of 426 unscorable; NCS skill 0, -0.017, -0.011; P28 830 of 830 refused for both traps.
+- E2 (descriptive only): T1 NO_WARNINGS; T1b 24 warned, 4 hits, precision 0.167 against 0.116, Holm p 0.382; T2 75 warned, 22 hits, 0.293 against 0.214, Holm p 0.198; both DESCRIPTIVE_NOT_DISTINGUISHABLE. The per-label rows are noise: MANUFACTURED_ATTENTION_DUMP on T2 (raw p 0.0045) does not replicate on the opened holdout (1 hit in 14, indistinguishable from the prevalence of 0.119); ORGANIC on T1b looks favourable on the holdout (4 of 8 against 0.176) below the warning gate; ATTENTION_EXHAUSTION on T2 points the wrong way on development (2 of 32 against 0.214).
+- Controls: NCB VERIFIED raw p 0.032, not flagged only through a padded Holm family of three (0.096); judged alone (repair pass 2) FLAGGED by the decision null, NOT_FLAGGED by the conservative mint-block p (0.120); NCB UNVERIFIED 426 of 426 unscorable; NCS skill 0, -0.017, -0.011; P28 830 of 830 refused for both traps.
 - E3 (POST_OPENING): NO_UNCORRECTED_SKILL on every target; sealed folder not opened.
-- Cost 0 USD, 0 LLM calls, no socket. Ledger N_search 118 to 121.
+- Cost 0 USD, 0 LLM calls, no socket. Ledger N_search 118 to 121 (primary); sensitivity 160 (121 plus 39 rule and description configurations).
 - Decision by `scenario_eval.decide`: validation INSUFFICIENT_VALIDATION, MiroFish MIROFISH_NO_GO, rules RULES_NOT_PROMOTED, reasons ELIGIBLE_EVENTS_BELOW_100, D_NOT_RUN, B_NOT_RUN; no probability, no live capability.
 
 Details: `behavioral/INCREMENTAL_VALUE_RESULTS.md`, `behavioral/GO_NO_GO.md`.
@@ -90,9 +90,9 @@ Details: `behavioral/INCREMENTAL_VALUE_RESULTS.md`, `behavioral/GO_NO_GO.md`.
 | G15 examples | holds | `examples`, from the frozen rule (protocol 9) |
 | G16 decision | holds | `decision`; tests for the no-event branch, the GO-candidate fixture and every NO_GO reason |
 | G17 tests bite | holds | 45 of 45 |
-| G18 ledger | holds, with a wording note | Phase 13 rows unchanged; every registry row of a search kind (SIMPLE_ATTENTION_RULE, DESCRIPTION_ONLY, NEGATIVE_CONTROL, POST_OPENING_CHECK, TRAP_OR_CHECK) is in the ledger and totals equal `ledger_totals`. Six registry rows are not search configurations and have no ledger row: P15:EVENT_COUNT (COUNT), P15:CODING_DEV and P15:CODING_HOLDOUT (BLIND_CODING), P15:B_EVIDENCE_ONLY_LLM and P15:D_MIROFISH (NOT_RUN), P15:DECISION (DECISION). The checklist says "every registry row present"; the protocol 11 list of ledger kinds and the output test read it as every configuration row. Flagged for the skeptic |
+| G18 ledger | holds (closed by a recorded mapping in repair pass 2) | Phase 13 rows unchanged; totals equal `ledger_totals`. `experiments/REGISTRY_LEDGER_MAP.csv` maps all 47 registry rows (28 plus 19 of the addition): 41 to the same ledger id, 6 non-configuration rows (COUNT, BLIND_CODING x2, NOT_RUN x2, DECISION) to the record that holds them; and all 53 Phase 15 ledger rows (33 plus 20): 41 to the same registry id, 3 A_WARN_H_POST_OPENING to protocol 6, 3 per-label POST_OPENING to PI-D-080, 6 debug runs as logged runs (test `test_registry_and_ledger_map_covers_both_directions`) |
 | G19 deliverables | holds after this commit | the five named files, this file, RESULTS.json, skeptic packet, ROADMAP, DECISIONS (PI-D-081), HANDOFF |
-| G20 post-commit | recorded below | `postcommit/` |
+| G20 post-commit | recorded below | `postcommit/` (first pass and repair pass 2) |
 
 ## Iteration log (bounded loop, not independent)
 
@@ -105,7 +105,7 @@ Details: `behavioral/INCREMENTAL_VALUE_RESULTS.md`, `behavioral/GO_NO_GO.md`.
 
 - CX-15 (named in the checklist before any code): a scorer that counts a bogus planted catalyst's statements as hits when T1 is positive and reports recall as accuracy. Caught: precision is always shown with the prevalence of the same rows and the day-stratified permutation; NCB VERIFIED reaches recall 0.588 and raw p 0.032 but is not flagged after Holm (0.096); recall is printed beside coverage (0.478).
 - The bogus control's raw p below 0.05 shows that raw permutation p values on this sample are not evidence on their own.
-- The T2 subgroup MANUFACTURED_ATTENTION_DUMP reads `sc_attention_suspect`, the input Phase 10's R2 and S models already used; it reverses on the holdout.
+- The T2 subgroup MANUFACTURED_ATTENTION_DUMP reads `sc_attention_suspect`, the input Phase 10's R2 and S models already used; it does not replicate on the holdout.
 - The permutation exchanges decisions, not mints: T1b has 96 rows sharing a mint and a day, so its p values are optimistic; none is used for a verdict.
 
 ## Artifacts
@@ -114,9 +114,11 @@ Full sha256 digests in `PHASE_15_RESULTS.json`.
 
 ## Skeptic
 
-Pending: the orchestrator runs the independent skeptic on `SKEPTIC_PACKET.md`.
+The orchestrator's independent skeptic reviewed `08e8670` (`skeptic/PHASE_15_SKEPTIC.md`, scripts beside it): no material failure; the decision reproduced; coding and scoring reruns byte-equal; own A_WARN, E2 and E3 recomputes equal; 7 minor findings (m1 to m7) and the counterexample **CX-S15**: an outcome-independent warning assigned per mint, scored with the frozen decision-level permutation, rejects at p < 0.05 (either side) in 13.6% of 1,000 salts on T1b against 5.4% for the same warning assigned per decision (one-sided up to 7.3%). Nothing in the first pass caught it, because the bogus control was planted per decision.
 
-## Post-commit at the records commit `cda97c3`
+What catches CX-S15 now: `tests/test_predictive_scenario_eval.py::test_cx_s15_mint_planted_null_warnings_fool_the_decision_null_not_the_mint_block_null` (fails on the first-pass code: the mint-block null does not exist there), and on the real data the recorded calibration check in `behavioral/MINT_CLUSTERED_NULL.json` with `tests/test_predictive_phase15_outputs.py::test_mint_clustered_null_addition_is_more_conservative_and_calibrated` (fails on the first-pass outputs: the file does not exist). The decision-level null exceeds its bound on T1b (p down share 0.0975 against 0.0718 at 400 salts), which reproduces CX-S15; the conservative p holds on every target.
+
+## Post-commit at the first-pass records commit `cda97c3`
 
 | Check | Command | Exit | Result |
 |---|---|---|---|
@@ -126,3 +128,35 @@ Pending: the orchestrator runs the independent skeptic on `SKEPTIC_PACKET.md`.
 | release audit | `python tools/release_audit.py --history` on a single-branch clone at `cda97c3` | 0 | "Needs action: no." |
 
 Files: `postcommit/pytest_summary.txt`, `social_guard.out.txt`, `seal_check.json`, `release_audit_history.summary.txt`. `git status` clean after the follow-up commit that records them.
+
+## Repair pass 2 (after the independent skeptic, PI-D-082, PI-D-083)
+
+Every finding was checked against the code first: the skeptic's CX-S15 output and own-mutation results were read, and a scratchpad prototype on a synthetic clustered fixture showed the same pattern before any repair code was written.
+
+| Finding | What was done | Where |
+|---|---|---|
+| m1, CX-S15 (decision null optimistic for mint-level warnings) | mint-block nulls (`mint_block_permutation`, `clustered_metrics`; conservative p = largest of the decision, mint-within-day and whole-sample p), recorded as an addition beside the frozen outputs; calibration on 400 per-mint salts per target; unit test on a synthetic clustered fixture | `behavioral/MINT_CLUSTERED_NULL.json`, `probes/mint_null.py` |
+| m2 (NCB passes through a padded Holm family) | controls judged as single tests (`control_own_level`); the recorded control is FLAGGED by the decision null and NOT_FLAGGED by the conservative p; a per-mint bogus control on each target is NOT_FLAGGED by both | same file; prose in `INCREMENTAL_VALUE_RESULTS.md` |
+| m3 (blindness guard narrower than the wording) | blinding basis stated as it is (code path, seed contents, equality with Phase 14's documents; the guard does not block the Phase 05 feature store or the lab DB) | `INCREMENTAL_VALUE_RESULTS.md`, PI-D-082 item 7 |
+| m4 (one-sided subgroup prose) | "does not replicate" instead of "reverses"; ORGANIC 4 of 8 on the holdout and ATTENTION_EXHAUSTION 2 of 32 on development named, all three as noise | `INCREMENTAL_VALUE_RESULTS.md`, `GO_NO_GO.md`, this file, ROADMAP |
+| m5 (three surviving mutations; order test passes on a shallow tree) | tests for X2, X3, X13; the order test checks `--is-shallow-repository` and the pinned commits and fails on a depth-1 clone (checked); mutation probe 56 of 56; the skeptic's own 14 mutations rerun: 14 of 14 caught | `evidence/mutation_scenario_eval_rp2.json`, `skeptic/rp2_own_mutations_recheck.json` |
+| m6 (RULES_CANDIDATE unreachable; sensitivity N not stated) | N_search primary 121 and sensitivity 160 stated; the scorer's missing max-T p is stricter than protocol 6 and is left, carried to any later phase that could promote a rule | `MINT_CLUSTERED_NULL.json` `n_search`, PI-D-082 item 5 |
+| m7 and G18 (registry and ledger gaps both ways) | recorded mapping in both directions, with an output test | `experiments/REGISTRY_LEDGER_MAP.csv` |
+
+Commits: repair code `869d597` (frozen before the recorded run of the addition; one debug run logged, `P15:DEBUG:RP2:0`), recorded addition `aea95f0`, records on top.
+
+| Check at `869d597` | Command | Exit | Result |
+|---|---|---|---|
+| addition | `python -B audits/predictive-intelligence/phase_15/probes/mint_null.py audits/predictive-intelligence/phase_15` (02:14:36Z to 02:16:50Z) | 0 | every decision-level p equal to the recorded one; no socket, no sealed open |
+| twin | same into the scratchpad | 0 | three outputs byte-equal; log differs only in `end_utc` |
+| coding repeated | `python -B .../probes/code_scenarios.py <scratchpad>/rp2c` | 0 | four coding outputs byte-equal; log differs only in times and head |
+| scoring repeated | `python -B .../probes/score_scenarios.py <scratchpad>/rp2s` | 0 | six scoring outputs byte-equal; log differs only in times and head |
+| comparison | `python -B .../probes/rerun_rp2_diff.py <rp2c> <rp2s> <twin> .../evidence/rerun_rp2_diff.json` | 0 | `"ok": true` |
+| mutation probe | `python -B .../probes/mutation_scenario_eval.py .../evidence/mutation_scenario_eval_rp2.json` | 0 | 56 of 56 caught |
+| skeptic's own mutations | `python -I .../skeptic/p15_own_mutations.py /home/claude/memelab-inbox <scratchpad>/sk_own_mut_rp2.json` | 0 | 14 of 14 caught (first pass: 11) |
+| Phase 15 tests | `python -m pytest tests/test_predictive_scenario_eval.py tests/test_predictive_phase15_outputs.py -q -p no:cacheprovider` | 0 | 46 passed (39 and 7) |
+| shallow clone | the order test on a `--depth 1` clone | 1 | fails as intended |
+
+No number, verdict or decision changed. The only status change is NEEDS_REVIEW to TEST_ONLY.
+
+Disagreements with the skeptic: none on substance. One precision: CX-S15's 13.6% is the either-side share against a nominal 10% for two one-sided tests at 0.05; the one-sided shares (7.3% up, 6.3% down at 1,000 salts) are the inflation against 5%. Both readings show the decision null is optimistic; the conclusion is the same.
