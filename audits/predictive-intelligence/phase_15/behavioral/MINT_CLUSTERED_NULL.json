@@ -1,0 +1,751 @@
+{
+ "CALIBRATION_MINT_PLANTED": {
+  "T1_24h": {
+   "alpha": 0.05,
+   "bound": 0.07179449471770337,
+   "conservative": {
+    "share_p_down_below_alpha": 0.0225,
+    "share_p_up_below_alpha": 0.02
+   },
+   "decision": {
+    "share_p_down_below_alpha": 0.0325,
+    "share_p_up_below_alpha": 0.04
+   },
+   "decision_null_above_bound": false,
+   "reps_per_salt": 500,
+   "salts": 400,
+   "verdict": "CALIBRATION_HOLDS"
+  },
+  "T1b_6h": {
+   "alpha": 0.05,
+   "bound": 0.07179449471770337,
+   "conservative": {
+    "share_p_down_below_alpha": 0.0375,
+    "share_p_up_below_alpha": 0.03
+   },
+   "decision": {
+    "share_p_down_below_alpha": 0.0975,
+    "share_p_up_below_alpha": 0.06
+   },
+   "decision_null_above_bound": true,
+   "reps_per_salt": 500,
+   "salts": 400,
+   "verdict": "CALIBRATION_HOLDS"
+  },
+  "T2_24h": {
+   "alpha": 0.05,
+   "bound": 0.07179449471770337,
+   "conservative": {
+    "share_p_down_below_alpha": 0.005,
+    "share_p_up_below_alpha": 0.0375
+   },
+   "decision": {
+    "share_p_down_below_alpha": 0.025,
+    "share_p_up_below_alpha": 0.0475
+   },
+   "decision_null_above_bound": false,
+   "reps_per_salt": 500,
+   "salts": 400,
+   "verdict": "CALIBRATION_HOLDS"
+  }
+ },
+ "E2": {
+  "T1_24h": {
+   "decision": null,
+   "lift": null,
+   "mint_whole_sample": null,
+   "mint_within_day": null,
+   "n_scored": 136,
+   "p_down_conservative": null,
+   "p_down_holm_conservative": null,
+   "p_up_conservative": null,
+   "p_up_holm_conservative": null,
+   "verdict_conservative": "NO_WARNINGS",
+   "verdict_recorded": "NO_WARNINGS",
+   "version": "mint-block-null-1",
+   "warned": 0
+  },
+  "T1b_6h": {
+   "decision": {
+    "null_max": 8,
+    "null_mean_hits": 2.3225,
+    "null_min": 0,
+    "observed_hits": 4,
+    "p_down": 0.9390304847576212,
+    "p_up": 0.19090454772613694,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "lift": 0.05059523809523808,
+   "mint_whole_sample": {
+    "blocks": 104,
+    "groups": 1,
+    "null_max": 9,
+    "null_mean_hits": 2.9275,
+    "null_min": 0,
+    "observed_hits": 4,
+    "p_down": 0.8025987006496752,
+    "p_up": 0.3663168415792104,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "mint_within_day": {
+    "blocks": 160,
+    "groups": 10,
+    "null_max": 8,
+    "null_mean_hits": 2.4235,
+    "null_min": 0,
+    "observed_hits": 4,
+    "p_down": 0.927536231884058,
+    "p_up": 0.20589705147426288,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "n_scored": 224,
+   "p_down_conservative": 0.9390304847576212,
+   "p_down_holm_conservative": 1.0,
+   "p_up_conservative": 0.3663168415792104,
+   "p_up_holm_conservative": 0.7326336831584208,
+   "verdict_conservative": "DESCRIPTIVE_NOT_DISTINGUISHABLE",
+   "verdict_recorded": "DESCRIPTIVE_NOT_DISTINGUISHABLE",
+   "version": "mint-block-null-1",
+   "warned": 24
+  },
+  "T2_24h": {
+   "decision": {
+    "null_max": 26,
+    "null_mean_hits": 18.2695,
+    "null_min": 11,
+    "observed_hits": 22,
+    "p_down": 0.9780109945027486,
+    "p_up": 0.06596701649175413,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "lift": 0.07959287531806616,
+   "mint_whole_sample": {
+    "blocks": 96,
+    "groups": 1,
+    "null_max": 25,
+    "null_mean_hits": 15.972,
+    "null_min": 7,
+    "observed_hits": 22,
+    "p_down": 0.9970014992503748,
+    "p_up": 0.010994502748625687,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "mint_within_day": {
+    "blocks": 131,
+    "groups": 8,
+    "null_max": 26,
+    "null_mean_hits": 18.2775,
+    "null_min": 11,
+    "observed_hits": 22,
+    "p_down": 0.9805097451274363,
+    "p_up": 0.06196901549225387,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "n_scored": 131,
+   "p_down_conservative": 0.9970014992503748,
+   "p_down_holm_conservative": 1.0,
+   "p_up_conservative": 0.06596701649175413,
+   "p_up_holm_conservative": 0.19790104947526238,
+   "verdict_conservative": "DESCRIPTIVE_NOT_DISTINGUISHABLE",
+   "verdict_recorded": "DESCRIPTIVE_NOT_DISTINGUISHABLE",
+   "version": "mint-block-null-1",
+   "warned": 75
+  }
+ },
+ "E2_per_label": {
+  "T1b_6h:ORGANIC_ATTENTION_CONTINUATION": {
+   "decision": {
+    "null_max": 8,
+    "null_mean_hits": 2.3225,
+    "null_min": 0,
+    "observed_hits": 4,
+    "p_down": 0.9390304847576212,
+    "p_up": 0.19090454772613694,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "lift": 0.05059523809523808,
+   "mint_whole_sample": {
+    "blocks": 104,
+    "groups": 1,
+    "null_max": 9,
+    "null_mean_hits": 2.9275,
+    "null_min": 0,
+    "observed_hits": 4,
+    "p_down": 0.8025987006496752,
+    "p_up": 0.3663168415792104,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "mint_within_day": {
+    "blocks": 160,
+    "groups": 10,
+    "null_max": 8,
+    "null_mean_hits": 2.4235,
+    "null_min": 0,
+    "observed_hits": 4,
+    "p_down": 0.927536231884058,
+    "p_up": 0.20589705147426288,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "n_scored": 224,
+   "p_down_conservative": 0.9390304847576212,
+   "p_up_conservative": 0.3663168415792104,
+   "verdict": "SECONDARY_DESCRIPTION_NO_VERDICT",
+   "version": "mint-block-null-1",
+   "warned": 24
+  },
+  "T2_24h:ATTENTION_EXHAUSTION": {
+   "decision": {
+    "null_max": 14,
+    "null_mean_hits": 6.6495,
+    "null_min": 1,
+    "observed_hits": 2,
+    "p_down": 0.011494252873563218,
+    "p_up": 0.9995002498750625,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "lift": -0.15124045801526717,
+   "mint_whole_sample": {
+    "blocks": 96,
+    "groups": 1,
+    "null_max": 14,
+    "null_mean_hits": 6.9405,
+    "null_min": 1,
+    "observed_hits": 2,
+    "p_down": 0.013993003498250875,
+    "p_up": 0.9975012493753124,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "mint_within_day": {
+    "blocks": 131,
+    "groups": 8,
+    "null_max": 14,
+    "null_mean_hits": 6.693,
+    "null_min": 1,
+    "observed_hits": 2,
+    "p_down": 0.009995002498750625,
+    "p_up": 0.999000499750125,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "n_scored": 131,
+   "p_down_conservative": 0.013993003498250875,
+   "p_up_conservative": 0.9995002498750625,
+   "verdict": "SECONDARY_DESCRIPTION_NO_VERDICT",
+   "version": "mint-block-null-1",
+   "warned": 32
+  },
+  "T2_24h:MANUFACTURED_ATTENTION_DUMP": {
+   "decision": {
+    "null_max": 23,
+    "null_mean_hits": 15.5195,
+    "null_min": 8,
+    "observed_hits": 22,
+    "p_down": 0.999000499750125,
+    "p_up": 0.004497751124437781,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "lift": 0.16556988681231902,
+   "mint_whole_sample": {
+    "blocks": 96,
+    "groups": 1,
+    "null_max": 21,
+    "null_mean_hits": 12.38,
+    "null_min": 5,
+    "observed_hits": 22,
+    "p_down": 1.0,
+    "p_up": 0.0004997501249375312,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "mint_within_day": {
+    "blocks": 131,
+    "groups": 8,
+    "null_max": 22,
+    "null_mean_hits": 15.431,
+    "null_min": 9,
+    "observed_hits": 22,
+    "p_down": 1.0,
+    "p_up": 0.0024987506246876563,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "n_scored": 131,
+   "p_down_conservative": 1.0,
+   "p_up_conservative": 0.004497751124437781,
+   "verdict": "SECONDARY_DESCRIPTION_NO_VERDICT",
+   "version": "mint-block-null-1",
+   "warned": 58
+  }
+ },
+ "E3_POST_OPENING": {
+  "T1_24h": {
+   "decision": null,
+   "lift": null,
+   "mint_whole_sample": null,
+   "mint_within_day": null,
+   "n_scored": 66,
+   "p_down_conservative": null,
+   "p_down_holm_conservative": null,
+   "p_up_conservative": null,
+   "p_up_holm_conservative": null,
+   "verdict_conservative": "NO_WARNINGS",
+   "verdict_recorded": "NO_WARNINGS",
+   "version": "mint-block-null-1",
+   "warned": 0
+  },
+  "T1b_6h": {
+   "decision": {
+    "null_max": 6,
+    "null_mean_hits": 1.2785,
+    "null_min": 0,
+    "observed_hits": 4,
+    "p_down": 0.9970014992503748,
+    "p_up": 0.025987006496751622,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "lift": 0.32352941176470584,
+   "mint_whole_sample": {
+    "blocks": 57,
+    "groups": 1,
+    "null_max": 6,
+    "null_mean_hits": 1.4425,
+    "null_min": 0,
+    "observed_hits": 4,
+    "p_down": 0.9965017491254373,
+    "p_up": 0.02348825587206397,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "mint_within_day": {
+    "blocks": 68,
+    "groups": 7,
+    "null_max": 5,
+    "null_mean_hits": 1.2265,
+    "null_min": 0,
+    "observed_hits": 4,
+    "p_down": 0.9995002498750625,
+    "p_up": 0.015992003998001,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "n_scored": 68,
+   "p_down_conservative": 0.9995002498750625,
+   "p_down_holm_conservative": 1.0,
+   "p_up_conservative": 0.025987006496751622,
+   "p_up_holm_conservative": 0.07796101949025487,
+   "verdict_conservative": "INSUFFICIENT_WARNINGS",
+   "verdict_recorded": "INSUFFICIENT_WARNINGS",
+   "version": "mint-block-null-1",
+   "warned": 8
+  },
+  "T2_24h": {
+   "decision": {
+    "null_max": 6,
+    "null_mean_hits": 2.825,
+    "null_min": 0,
+    "observed_hits": 1,
+    "p_down": 0.12593703148425786,
+    "p_up": 0.9855072463768116,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "lift": -0.08018252933507171,
+   "mint_whole_sample": {
+    "blocks": 52,
+    "groups": 1,
+    "null_max": 7,
+    "null_mean_hits": 3.0735,
+    "null_min": 0,
+    "observed_hits": 1,
+    "p_down": 0.09945027486256872,
+    "p_up": 0.9860069965017492,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "mint_within_day": {
+    "blocks": 59,
+    "groups": 6,
+    "null_max": 6,
+    "null_mean_hits": 2.846,
+    "null_min": 0,
+    "observed_hits": 1,
+    "p_down": 0.10994502748625687,
+    "p_up": 0.9850074962518741,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "n_scored": 59,
+   "p_down_conservative": 0.12593703148425786,
+   "p_down_holm_conservative": 0.3778110944527736,
+   "p_up_conservative": 0.9860069965017492,
+   "p_up_holm_conservative": 1.0,
+   "verdict_conservative": "INSUFFICIENT_EVENTS",
+   "verdict_recorded": "INSUFFICIENT_EVENTS",
+   "version": "mint-block-null-1",
+   "warned": 26
+  }
+ },
+ "E3_POST_OPENING_per_label": {
+  "T1b_6h:ORGANIC_ATTENTION_CONTINUATION": {
+   "decision": {
+    "null_max": 6,
+    "null_mean_hits": 1.2785,
+    "null_min": 0,
+    "observed_hits": 4,
+    "p_down": 0.9970014992503748,
+    "p_up": 0.025987006496751622,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "lift": 0.32352941176470584,
+   "mint_whole_sample": {
+    "blocks": 57,
+    "groups": 1,
+    "null_max": 6,
+    "null_mean_hits": 1.4425,
+    "null_min": 0,
+    "observed_hits": 4,
+    "p_down": 0.9965017491254373,
+    "p_up": 0.02348825587206397,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "mint_within_day": {
+    "blocks": 68,
+    "groups": 7,
+    "null_max": 5,
+    "null_mean_hits": 1.2265,
+    "null_min": 0,
+    "observed_hits": 4,
+    "p_down": 0.9995002498750625,
+    "p_up": 0.015992003998001,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "n_scored": 68,
+   "p_down_conservative": 0.9995002498750625,
+   "p_up_conservative": 0.025987006496751622,
+   "verdict": "INSUFFICIENT_WARNINGS",
+   "version": "mint-block-null-1",
+   "warned": 8
+  },
+  "T2_24h:ATTENTION_EXHAUSTION": {
+   "decision": {
+    "null_max": 5,
+    "null_mean_hits": 1.7295,
+    "null_min": 0,
+    "observed_hits": 0,
+    "p_down": 0.09545227386306847,
+    "p_up": 1.0,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "lift": -0.11864406779661017,
+   "mint_whole_sample": {
+    "blocks": 52,
+    "groups": 1,
+    "null_max": 6,
+    "null_mean_hits": 1.9035,
+    "null_min": 0,
+    "observed_hits": 0,
+    "p_down": 0.09845077461269365,
+    "p_up": 1.0,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "mint_within_day": {
+    "blocks": 59,
+    "groups": 6,
+    "null_max": 5,
+    "null_mean_hits": 1.7265,
+    "null_min": 0,
+    "observed_hits": 0,
+    "p_down": 0.09845077461269365,
+    "p_up": 1.0,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "n_scored": 59,
+   "p_down_conservative": 0.09845077461269365,
+   "p_up_conservative": 1.0,
+   "verdict": "INSUFFICIENT_EVENTS",
+   "version": "mint-block-null-1",
+   "warned": 16
+  },
+  "T2_24h:MANUFACTURED_ATTENTION_DUMP": {
+   "decision": {
+    "null_max": 5,
+    "null_mean_hits": 1.455,
+    "null_min": 0,
+    "observed_hits": 1,
+    "p_down": 0.544727636181909,
+    "p_up": 0.8350824587706147,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "lift": -0.04721549636803875,
+   "mint_whole_sample": {
+    "blocks": 52,
+    "groups": 1,
+    "null_max": 6,
+    "null_mean_hits": 1.663,
+    "null_min": 0,
+    "observed_hits": 1,
+    "p_down": 0.456271864067966,
+    "p_up": 0.8660669665167416,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "mint_within_day": {
+    "blocks": 59,
+    "groups": 6,
+    "null_max": 5,
+    "null_mean_hits": 1.446,
+    "null_min": 0,
+    "observed_hits": 1,
+    "p_down": 0.5422288855572214,
+    "p_up": 0.8315842078960519,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "n_scored": 59,
+   "p_down_conservative": 0.544727636181909,
+   "p_up_conservative": 0.8660669665167416,
+   "verdict": "INSUFFICIENT_EVENTS",
+   "version": "mint-block-null-1",
+   "warned": 14
+  }
+ },
+ "NCB_MINT_PLANTED": {
+  "T1_24h": {
+   "conservative_own_level": "NOT_FLAGGED",
+   "decision": {
+    "null_max": 24,
+    "null_mean_hits": 16.326,
+    "null_min": 8,
+    "observed_hits": 16,
+    "p_down": 0.5367316341829086,
+    "p_up": 0.6166916541729135,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "decision_null_own_level": "NOT_FLAGGED",
+   "lift": -0.0038461538461538325,
+   "mint_whole_sample": {
+    "blocks": 99,
+    "groups": 1,
+    "null_max": 25,
+    "null_mean_hits": 16.2915,
+    "null_min": 7,
+    "observed_hits": 16,
+    "p_down": 0.5407296351824088,
+    "p_up": 0.6106946526736632,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "mint_within_day": {
+    "blocks": 136,
+    "groups": 9,
+    "null_max": 26,
+    "null_mean_hits": 16.3235,
+    "null_min": 8,
+    "observed_hits": 16,
+    "p_down": 0.5287356321839081,
+    "p_up": 0.6301849075462269,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "n_scored": 136,
+   "ncb_mint_failed": false,
+   "p_down_conservative": 0.5407296351824088,
+   "p_up_conservative": 0.6301849075462269,
+   "planted_mints": 44,
+   "version": "mint-block-null-1",
+   "warned": 65
+  },
+  "T1b_6h": {
+   "conservative_own_level": "NOT_FLAGGED",
+   "decision": {
+    "null_max": 20,
+    "null_mean_hits": 12.5435,
+    "null_min": 5,
+    "observed_hits": 13,
+    "p_down": 0.6621689155422289,
+    "p_up": 0.5062468765617192,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "decision_null_own_level": "NOT_FLAGGED",
+   "lift": 0.002110389610389604,
+   "mint_whole_sample": {
+    "blocks": 104,
+    "groups": 1,
+    "null_max": 22,
+    "null_mean_hits": 12.658,
+    "null_min": 3,
+    "observed_hits": 13,
+    "p_down": 0.6201899050474763,
+    "p_up": 0.5167416291854073,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "mint_within_day": {
+    "blocks": 160,
+    "groups": 10,
+    "null_max": 21,
+    "null_mean_hits": 12.6045,
+    "null_min": 5,
+    "observed_hits": 13,
+    "p_down": 0.6451774112943528,
+    "p_up": 0.5007496251874063,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "n_scored": 224,
+   "ncb_mint_failed": false,
+   "p_down_conservative": 0.6621689155422289,
+   "p_up_conservative": 0.5167416291854073,
+   "planted_mints": 47,
+   "version": "mint-block-null-1",
+   "warned": 110
+  },
+  "T2_24h": {
+   "conservative_own_level": "NOT_FLAGGED",
+   "decision": {
+    "null_max": 21,
+    "null_mean_hits": 13.2885,
+    "null_min": 6,
+    "observed_hits": 10,
+    "p_down": 0.10494752623688156,
+    "p_up": 0.9485257371314343,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "decision_null_own_level": "NOT_FLAGGED",
+   "lift": -0.05501029928510845,
+   "mint_whole_sample": {
+    "blocks": 96,
+    "groups": 1,
+    "null_max": 22,
+    "null_mean_hits": 13.44,
+    "null_min": 6,
+    "observed_hits": 10,
+    "p_down": 0.12543728135932034,
+    "p_up": 0.9330334832583708,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "mint_within_day": {
+    "blocks": 131,
+    "groups": 8,
+    "null_max": 21,
+    "null_mean_hits": 13.3795,
+    "null_min": 6,
+    "observed_hits": 10,
+    "p_down": 0.09945027486256872,
+    "p_up": 0.9580209895052474,
+    "reps": 2000,
+    "seed": 20261025
+   },
+   "n_scored": 131,
+   "ncb_mint_failed": false,
+   "p_down_conservative": 0.12543728135932034,
+   "p_up_conservative": 0.9580209895052474,
+   "planted_mints": 43,
+   "version": "mint-block-null-1",
+   "warned": 63
+  }
+ },
+ "NCB_VERIFIED_T1_own_level": {
+  "conservative_own_level": "NOT_FLAGGED",
+  "decision": {
+   "null_max": 22,
+   "null_mean_hits": 15.172,
+   "null_min": 5,
+   "observed_hits": 20,
+   "p_down": 0.9905047476261869,
+   "p_up": 0.031984007996002,
+   "reps": 2000,
+   "seed": 20261025
+  },
+  "decision_null_own_level": "FLAGGED",
+  "lift": 0.05769230769230771,
+  "mint_whole_sample": {
+   "blocks": 99,
+   "groups": 1,
+   "null_max": 25,
+   "null_mean_hits": 16.2915,
+   "null_min": 7,
+   "observed_hits": 20,
+   "p_down": 0.9400299850074962,
+   "p_up": 0.12043978010994502,
+   "reps": 2000,
+   "seed": 20261025
+  },
+  "mint_within_day": {
+   "blocks": 136,
+   "groups": 9,
+   "null_max": 25,
+   "null_mean_hits": 15.3065,
+   "null_min": 8,
+   "observed_hits": 20,
+   "p_down": 0.9825087456271864,
+   "p_up": 0.04547726136931534,
+   "reps": 2000,
+   "seed": 20261025
+  },
+  "n_scored": 136,
+  "p_down_conservative": 0.9905047476261869,
+  "p_up_conservative": 0.12043978010994502,
+  "recorded_verdict_through_padded_holm": "DESCRIPTIVE_NOT_DISTINGUISHABLE",
+  "version": "mint-block-null-1",
+  "warned": 65
+ },
+ "addition": "repair pass 2 (PI-D-082)",
+ "ledger_after_addition": {
+  "bakeoff_configurations": 31,
+  "candidate_configurations": 90,
+  "debug_runs": 27,
+  "holdout_evaluation_rows": 229,
+  "n_search": 121,
+  "negative_control_fits": 374,
+  "other_rows": 102,
+  "rows": 3259,
+  "rows_by_phase": {
+   "04": 31,
+   "07": 488,
+   "08": 616,
+   "09": 670,
+   "10": 703,
+   "11": 388,
+   "12": 252,
+   "13": 58,
+   "15": 53
+  }
+ },
+ "n_search": {
+  "note": "primary = protocol 11 (118 + A_WARN on three targets); sensitivity = primary + non-probability rule and description configurations, the like-for-like of Phase 12's post-opening 127 (PI-D-066 item 4)",
+  "primary": 121,
+  "rule_configurations": 39,
+  "sensitivity": 160
+ },
+ "phase": "15",
+ "recorded_results_sha256": "9d993f308b6274abe83b75b91b5ea1c38602836599dd8119f746e0bc31a42672",
+ "reps": 2000,
+ "rule": "more conservative only: conservative p = largest of the decision, mint-within-day and whole-sample mint nulls",
+ "seed": 20261025,
+ "version": "mint-block-null-1"
+}

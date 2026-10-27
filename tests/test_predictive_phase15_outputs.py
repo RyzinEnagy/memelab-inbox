@@ -81,3 +81,59 @@ def test_cumulative_ledger_keeps_phase_13_rows_and_every_registered_configuratio
     tot = E.ledger_totals(led)
     assert tot["n_search"] == 121 and tot == _load("experiments/LEDGER_TOTALS.json")["after"]
     assert sum(r["kind"] == "DEBUG_RUN_REAL_DATA" for r in new) == 5
+
+
+# ---------------------------------------------------------------- repair pass 2 (PI-D-082): the recorded addition
+def test_mint_clustered_null_addition_is_more_conservative_and_calibrated():
+    """CX-S15 as a check on the recorded outputs: every recorded decision-level p sits beside its mint-block p, the conservative
+    p is never smaller, no verdict becomes less conservative, the conservative p passes the per-mint calibration on every
+    target, and the bogus controls are judged as single tests."""
+    rec = _load("behavioral/INCREMENTAL_VALUE_RESULTS.json")
+    add = _load("behavioral/MINT_CLUSTERED_NULL.json")
+    assert add["recorded_results_sha256"] == hashlib.sha256((P15 / "behavioral/INCREMENTAL_VALUE_RESULTS.json").read_bytes()).hexdigest()
+    pairs = [(add["E2"][t], rec["E2"][t]["permutation"]) for t in rec["E2"]]
+    pairs += [(add["E2_per_label"][k], rec["E2_per_label"][k]["permutation"]) for k in rec["E2_per_label"]]
+    pairs += [(add["E3_POST_OPENING"][t], rec["E3_POST_OPENING"][t]["warning_metrics"]["permutation"]) for t in rec["E3_POST_OPENING"]]
+    pairs += [(add["E3_POST_OPENING_per_label"][k], rec["E3_POST_OPENING_per_label"][k]["permutation"]) for k in rec["E3_POST_OPENING_per_label"]]
+    for a, r in pairs:
+        if r is None:
+            assert a["decision"] is None
+            continue
+        assert a["decision"]["p_up"] == r["p_up"] and a["decision"]["p_down"] == r["p_down"]
+        assert a["p_up_conservative"] >= r["p_up"] and a["p_down_conservative"] >= r["p_down"]
+        assert a["mint_within_day"] and a["mint_whole_sample"]
+    for t, a in list(add["E2"].items()) + list(add["E3_POST_OPENING"].items()):
+        assert a["verdict_conservative"] == S.more_conservative(a["verdict_recorded"], a["verdict_conservative"])
+        assert a["verdict_conservative"] not in (S.LIFT_SUGGESTED, S.WORSE)
+    for t, c in add["CALIBRATION_MINT_PLANTED"].items():
+        assert c["salts"] == 400 and c["verdict"] == "CALIBRATION_HOLDS", t
+        assert max(c["conservative"].values()) <= c["bound"]
+    assert any(c["decision_null_above_bound"] for c in add["CALIBRATION_MINT_PLANTED"].values())   # CX-S15 on the real data
+    assert add["NCB_VERIFIED_T1_own_level"]["decision_null_own_level"] == "FLAGGED"                 # raw p 0.032, no padding
+    assert all(not v["ncb_mint_failed"] for v in add["NCB_MINT_PLANTED"].values())
+    assert add["n_search"]["primary"] == 121 and add["n_search"]["sensitivity"] == 160
+    assert rec["decision"]["validation"] == S.INSUFFICIENT_VALIDATION and rec["decision"]["mirofish"] == S.MIROFISH_NO_GO
+
+
+def test_registry_and_ledger_map_covers_both_directions():
+    """Skeptic m7 and checklist G18: every registry row (Phase 15 and the addition) and every Phase 15 ledger row (cumulative
+    ledger and the addition) has a mapped counterpart or a stated basis."""
+    reg = list(csv.DictReader(open(P15 / "experiments/EXPERIMENT_REGISTRY.csv")))
+    reg += list(csv.DictReader(open(P15 / "experiments/EXPERIMENT_REGISTRY_RP2.csv")))
+    led = [r for r in csv.DictReader(open(P15 / "experiments/SEARCH_LEDGER.csv")) if r["phase"] == "15"]
+    addl = list(csv.DictReader(open(P15 / "experiments/SEARCH_LEDGER_RP2_ADDITION.csv")))
+    mp = list(csv.DictReader(open(P15 / "experiments/REGISTRY_LEDGER_MAP.csv")))
+    r2l = {m["registry_id"]: m for m in mp if m["direction"] == "REGISTRY_TO_LEDGER"}
+    l2r = {m["ledger_id"]: m for m in mp if m["direction"] == "LEDGER_TO_REGISTRY"}
+    assert set(r2l) == {r["experiment_id"] for r in reg} and len(r2l) == len(reg) == 47
+    assert set(l2r) == {r["experiment_id"] for r in led + addl} and len(l2r) == len(led) + len(addl) == 53
+    ids = {r["experiment_id"] for r in led + addl}
+    for m in mp:
+        assert m["basis"]
+        if m["basis"] == "SAME_ID":
+            assert m["registry_id"] == m["ledger_id"] and m["ledger_id"] in ids
+    assert sum(not m["ledger_id"] for m in r2l.values()) == 6
+    rp2 = {r["experiment_id"] for r in csv.DictReader(open(P15 / "experiments/EXPERIMENT_REGISTRY_RP2.csv"))}
+    assert {r["experiment_id"] for r in addl if r["kind"] != "DEBUG_RUN_REAL_DATA"} == rp2
+    tot = E.ledger_totals(list(csv.DictReader(open(P15 / "experiments/SEARCH_LEDGER.csv"))) + addl)
+    assert tot["n_search"] == 121

@@ -1,0 +1,290 @@
+{
+ "module": "memelab/predictive/scenario_eval.py",
+ "tests": "tests/test_predictive_scenario_eval.py",
+ "mutations": 56,
+ "caught": 56,
+ "survivors": [],
+ "results": [
+  {
+   "mutation": "X2 blind check case sensitive",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_blind_check_is_case_insensitive_and_covers_every_listed_key"
+  },
+  {
+   "mutation": "X3 label_observed_at accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_blind_check_is_case_insensitive_and_covers_every_listed_key"
+  },
+  {
+   "mutation": "X13 NO_EVENT labels in per-label",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_labels_by_target_lists_event_statements_only"
+  },
+  {
+   "mutation": "R1 mint blocks not shuffled",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_cx_s15_mint_planted_null_warnings_fool_the_decision_null_not_the_mint_block_null"
+  },
+  {
+   "mutation": "R2 partial block dropped",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_mint_block_null_keeps_the_warned_count_and_reduces_to_the_decision_null_for_singletons"
+  },
+  {
+   "mutation": "R3 partial block all hits",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_mint_block_null_keeps_the_warned_count_and_reduces_to_the_decision_null_for_singletons"
+  },
+  {
+   "mutation": "R4 conservative p is the smallest",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_cx_s15_mint_planted_null_warnings_fool_the_decision_null_not_the_mint_block_null"
+  },
+  {
+   "mutation": "R5 whole-sample null left out",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_cx_s15_mint_planted_null_warnings_fool_the_decision_null_not_the_mint_block_null"
+  },
+  {
+   "mutation": "R6 combined verdict takes the other",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_more_conservative_verdicts_and_padded_holm"
+  },
+  {
+   "mutation": "R7 control ignores the sign",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_more_conservative_verdicts_and_padded_holm"
+  },
+  {
+   "mutation": "R8 mint missing allowed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_mint_block_null_keeps_the_warned_count_and_reduces_to_the_decision_null_for_singletons"
+  },
+  {
+   "mutation": "B1 outcome key accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_coder_refuses_outcome_like_keys_at_any_depth_and_allows_hypothesis_labels"
+  },
+  {
+   "mutation": "B2 nested keys not walked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_coder_refuses_outcome_like_keys_at_any_depth_and_allows_hypothesis_labels"
+  },
+  {
+   "mutation": "B3 lists not walked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_coder_refuses_outcome_like_keys_at_any_depth_and_allows_hypothesis_labels"
+  },
+  {
+   "mutation": "B4 file hash not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_verify_file_refuses_a_file_that_is_not_the_committed_one"
+  },
+  {
+   "mutation": "K1 validation errors ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_validation_errors_make_a_document_not_codable"
+  },
+  {
+   "mutation": "K2 kind not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_documents_that_cannot_be_coded_are_not_codable[<lambda>-NOT_A_BEHAVIORAL_DOCUMENT]"
+  },
+  {
+   "mutation": "K3 status not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_documents_that_cannot_be_coded_are_not_codable[<lambda>-STATUS_SIMULATION_NOT_AVAILABLE]"
+  },
+  {
+   "mutation": "K4 empty hypotheses coded",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_documents_that_cannot_be_coded_are_not_codable[<lambda>-FREE_TEXT_OR_NO_HYPOTHESIS]"
+  },
+  {
+   "mutation": "K5 secondary monitors scored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_catalyst_monitors_without_an_outcome_source_are_unscorable_and_verified_bogus_gives_a_t1_statement"
+  },
+  {
+   "mutation": "K6 any expectation accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_an_expectation_outside_the_vocabulary_is_refused"
+  },
+  {
+   "mutation": "K7 window start unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_a_window_that_is_not_decision_to_horizon_is_refused"
+  },
+  {
+   "mutation": "K8 window end unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_a_window_that_is_not_decision_to_horizon_is_refused"
+  },
+  {
+   "mutation": "K9 no-statement not counted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_no_grounded_scenario_is_no_statement"
+  },
+  {
+   "mutation": "W1 conflict read as event",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_conflict_and_no_event_warnings"
+  },
+  {
+   "mutation": "W2 not codable read as none",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_documents_that_cannot_be_coded_are_not_codable[<lambda>-NOT_A_DOCUMENT]"
+  },
+  {
+   "mutation": "W3 no-event read as none",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_conflict_and_no_event_warnings"
+  },
+  {
+   "mutation": "M1 excluded rows scored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_warning_metrics_by_hand"
+  },
+  {
+   "mutation": "M2 precision over all rows",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_warning_metrics_by_hand"
+  },
+  {
+   "mutation": "M3 lift without prevalence",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_warning_metrics_by_hand"
+  },
+  {
+   "mutation": "M4 permutation across days",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_permutation_is_within_day_and_reproducible"
+  },
+  {
+   "mutation": "M5 p without +1",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_permutation_p_uses_the_plus_one_rule"
+  },
+  {
+   "mutation": "M6 days gate off",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_warning_metrics_by_hand"
+  },
+  {
+   "mutation": "M7 per-class gate off",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_gate_order"
+  },
+  {
+   "mutation": "M8 warned gate off",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_gate_order"
+  },
+  {
+   "mutation": "M9 raw p instead of Holm",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_holm_is_applied_before_a_descriptive_verdict"
+  },
+  {
+   "mutation": "M10 lift sign ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_a_small_p_with_the_wrong_sign_is_not_a_lift"
+  },
+  {
+   "mutation": "M11 lead times of misses",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_warning_metrics_by_hand"
+  },
+  {
+   "mutation": "A1 unmatured training rows",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_fit_warn_refuses_rows_not_decided_before_and_matured_by_the_cutoff"
+  },
+  {
+   "mutation": "A2 later decisions in training",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_fit_warn_refuses_rows_not_decided_before_and_matured_by_the_cutoff"
+  },
+  {
+   "mutation": "A3 training gate off",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_fit_warn_abstains_below_the_training_gate_and_predict_refuses_earlier_decisions"
+  },
+  {
+   "mutation": "A4 no shrinkage",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_fit_warn_shrinks_each_stratum_toward_the_training_prevalence"
+  },
+  {
+   "mutation": "A5 earlier decisions scored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_fit_warn_abstains_below_the_training_gate_and_predict_refuses_earlier_decisions"
+  },
+  {
+   "mutation": "A6 card hash unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_fit_warn_abstains_below_the_training_gate_and_predict_refuses_earlier_decisions"
+  },
+  {
+   "mutation": "A7 ambiguous rows get a number",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_fit_warn_shrinks_each_stratum_toward_the_training_prevalence"
+  },
+  {
+   "mutation": "A8 dev selection without max-T",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_selection_status_on_development_verdicts"
+  },
+  {
+   "mutation": "A9 dev selection ignores failures",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_selection_status_on_development_verdicts"
+  },
+  {
+   "mutation": "D1 event minimum off",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_go_candidate_needs_every_condition"
+  },
+  {
+   "mutation": "D2 D not required",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_decision_with_no_events_and_blocked_comparators_is_insufficient_and_no_go"
+  },
+  {
+   "mutation": "D3 B not required",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_decision_with_no_events_and_blocked_comparators_is_insufficient_and_no_go"
+  },
+  {
+   "mutation": "D4 stability not required",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_go_candidate_needs_every_condition"
+  },
+  {
+   "mutation": "D5 P26 not required",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_go_candidate_needs_every_condition"
+  },
+  {
+   "mutation": "D6 budget not required",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_go_candidate_needs_every_condition"
+  },
+  {
+   "mutation": "D7 GO on evaluable alone",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_go_candidate_needs_every_condition"
+  },
+  {
+   "mutation": "D8 rules promoted without B2",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_rules_candidate_needs_a_surviving_skill_not_worse_than_b2"
+  },
+  {
+   "mutation": "D9 rules promoted without correction",
+   "caught": true,
+   "first_failure": "tests/test_predictive_scenario_eval.py::test_rules_candidate_needs_a_surviving_skill_not_worse_than_b2"
+  }
+ ],
+ "wall_s": 188.6
+}
