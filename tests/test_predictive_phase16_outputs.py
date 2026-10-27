@@ -209,3 +209,11 @@ def test_cp16_0_every_entry_s_facts_rebuild_from_the_committed_files_and_every_s
                        post_states=post.get((s, cid), {}), cal_card=cal)
         assert e["facts"]["tests"]["leakage"] and e["facts"]["tests"]["provenance"] and e["facts"]["tests"]["contract"]
         assert len(R.verify_sources(e, lambda p: (ROOT / p).read_bytes())) >= 4
+
+
+def test_cp16_1_every_phase_16_json_passes_the_content_guard_tracked_or_not():
+    from memelab.social import content_guard as G
+    paths = sorted(p.relative_to(ROOT).as_posix() for p in P16.rglob("*.json"))
+    assert len(paths) > 69
+    out = G.scan(ROOT, paths)
+    assert out["violations"] == [], out["violations"][:3]

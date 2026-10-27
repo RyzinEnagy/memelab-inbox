@@ -403,7 +403,7 @@ def ensembles(dev, cards: dict, fam_cache: dict, latency: dict) -> tuple[dict, l
             er = eval_rows(oof, cfg, nums, refs)
             v0 = B.evaluate(er, cfg, reference="B0", reps=REPS, seed=SEED)
             v2 = B.evaluate(er, cfg, reference="B2", reps=REPS, seed=SEED)
-            res_t[cfg] = {"members": list(mem), "sources": chk["sources"], "oof_rows": len(oof),
+            res_t[cfg] = {"member_models": list(mem), "sources": chk["sources"], "oof_rows": len(oof),
                           "rows_with_number": int(sum(1 for n in nums if math.isfinite(n))),
                           "folds": sorted({r["fold"] for r in oof}), "vs_B0": v0, "vs_B2": v2}
         # chronological stack: fit on earlier folds' out-of-fold rows, gated
@@ -426,7 +426,7 @@ def ensembles(dev, cards: dict, fam_cache: dict, latency: dict) -> tuple[dict, l
             traps["TRAP_STACK_IN_SAMPLE"] = {"refused": False}
         except R.InSampleStacking as err:
             traps["TRAP_STACK_IN_SAMPLE"] = {"refused": True, "status": err.status, "detail": str(err)}
-        res_t["STACK_CHRONO_B2_S1"] = {"members": list(mem), "folds": stack_folds,
+        res_t["STACK_CHRONO_B2_S1"] = {"member_models": list(mem), "folds": stack_folds,
                                        "fitted_folds": sum(1 for f in stack_folds if f["fitted"]),
                                        "verdict": "INSUFFICIENT_HISTORY" if not any(f["fitted"] for f in stack_folds) else "FITTED"}
         if any(f["fitted"] for f in stack_folds):
@@ -487,13 +487,13 @@ def ensembles(dev, cards: dict, fam_cache: dict, latency: dict) -> tuple[dict, l
                 raise SystemExit(f"{s}: trap {trap} was not refused")
         dec = R.ensemble_decision(LONG[s], results)
         lat = {m: latency[f"{s}:{cid}"]["cpu_us_per_decision"] for m, cid in (("B0", "P07_B0"), ("B2", "P07_B2"), ("S1", "P10_S1_SC_LOGIT"))}
-        ENS_LATENCY[s] = {"ENS_MEAN_B0_B2": lat["B0"] + lat["B2"], "ENS_MEAN_B2_S1": lat["B2"] + lat["S1"], "members": lat}
-        comp = {"ENS_MEAN_B0_B2": {"members": 2, "extra_parameters": 0, "member_parameters": 1 + 6,
+        ENS_LATENCY[s] = {"ENS_MEAN_B0_B2": lat["B0"] + lat["B2"], "ENS_MEAN_B2_S1": lat["B2"] + lat["S1"], "member_models": lat}
+        comp = {"ENS_MEAN_B0_B2": {"member_count": 2, "extra_parameters": 0, "member_parameters": 1 + 6,
                                    "cpu_time": "ensemble/LATENCY.json"},
-                "ENS_MEAN_B2_S1": {"members": 2, "extra_parameters": 0,
+                "ENS_MEAN_B2_S1": {"member_count": 2, "extra_parameters": 0,
                                    "member_parameters": 6 + len(cards[(s, "P10_S1_SC_LOGIT")]["card"]["body"]["logistic"]["coef"]) + 1,
                                    "cpu_time": "ensemble/LATENCY.json"},
-                "STACK_CHRONO_B2_S1": {"members": 2, "extra_parameters": 3, "fitted": False}}
+                "STACK_CHRONO_B2_S1": {"member_count": 2, "extra_parameters": 3, "fitted": False}}
         out[s] = {"target": LONG[s], "development": {cfg: ({k: (summarize(v) if k.startswith("vs_") else v) for k, v in cf[cfg].items()})
                                                       for cfg in cf},
                   "traps": dev_res[s]["traps"], "post_opening": post[s], "decision": dec, "complexity": comp}
@@ -718,6 +718,8 @@ def ledger(new_rows: list[dict]) -> tuple[list[dict], dict]:
 
 
 # ---------------------------------------------------------------- main
+# Output keys avoid the content guard's social-only keys (memelab/social/content_guard.py SOCIAL_ONLY_KEYS, e.g. "members"):
+# CP16-1, PI-D-088.
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("out")
