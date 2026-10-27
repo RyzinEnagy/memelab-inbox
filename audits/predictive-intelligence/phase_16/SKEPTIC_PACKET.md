@@ -5,10 +5,10 @@ Task for the independent reviewer: falsify Phase 16 (select trustworthy champion
 ## Artifacts
 
 - Pre-registration (committed first, `8af3cd4`): `ACCEPTANCE_CHECKLIST.md`, `experiments/EXPERIMENT_REGISTRY.csv`, `docs/predictive-intelligence/DECISIONS.md` PI-D-084 and PI-D-085.
-- Change control after the first recorded run: PI-D-086 (CP16-0, self-review).
+- Change controls after the first recorded run: PI-D-086 (CP16-0, self-review) and PI-D-088 (CP16-1, found by the post-commit suite).
 - Registry: `registry/entries/*.json` (69), `registry/REGISTRY_LOG.jsonl`, `registry/REGISTRY_INDEX.json`, `registry/TODAY_STATUS.json`, `registry/TODAY_RESULTS.jsonl`, `registry/TODAY_RECORDS.jsonl`.
 - Ensemble: `ensemble/ENSEMBLE_ABLATION.json` and `.csv`, `ensemble/STABILITY.json`, `ensemble/LATENCY.json`, `ensemble/POST_OPENING_LOG.json`.
-- Evidence: `evidence/INFERENCE_CHECK.json`, `evidence/COMPATIBILITY_P46.json`, `evidence/ROLLBACK_TEST.json`, `evidence/determinism_repeat.json` (first run), `evidence/rerun_cp16_0_diff.json` (first run against the repeat), `evidence/mutation_registry.json` and `evidence/mutation_registry_cp16_0.json`, `evidence/run_log.json`, `evidence/entry/`.
+- Evidence: `evidence/INFERENCE_CHECK.json`, `evidence/COMPATIBILITY_P46.json`, `evidence/ROLLBACK_TEST.json`, `evidence/determinism_repeat.json` (first run), `evidence/rerun_cp16_0_diff.json` (first run against the CP16-0 repeat), `evidence/rerun_cp16_1_diff.json` (CP16-1 repeat), `evidence/mutation_registry.json` and `evidence/mutation_registry_cp16_0.json`, `evidence/run_log.json`, `evidence/entry/`.
 - Ledger: `experiments/SEARCH_LEDGER.csv`, `experiments/LEDGER_TOTALS.json`.
 - Policy and schema: `models/CHAMPION_POLICY.md`, `models/REGISTRY_SCHEMA.md`, `models/ENSEMBLE_ABLATION.md`.
 - Inputs it relies on: `phase_12/validation/CANDIDATES.json`, `HOLDOUT_METRICS.csv`, `PRIMARY_RESULTS.json`, `POST_OPENING_CORRECTIONS.csv`, `HOLDOUT_PREDICTIONS.csv`, `HOLDOUT_SCORED.csv`, `PREOPEN_TRAPS.json`, `REPLAY_AUDIT.json`; `phase_13/artifacts/*/CALIBRATION_CARD.json`; `phase_07` and `phase_10` `OOS_PREDICTIONS.csv` and fold cards; `phase_15/experiments/SEARCH_LEDGER.csv` and `SEARCH_LEDGER_RP2_ADDITION.csv`.

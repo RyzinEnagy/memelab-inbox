@@ -1,6 +1,6 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-087). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_16/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-088). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_16/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
 ## Position on 2026-10-27
 
@@ -31,7 +31,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Phase 16 commits
 
-HEAD before `576f99d`; pre-registration `8af3cd4`; frozen code `d2038a7`; first recorded run `9eebb8d`; change control CP16-0 `8cd19bd`; repeated recorded run `72488dd`; records commit and post-commit record on top (hashes in the post-commit record). Local only; the orchestrator pushes.
+HEAD before `576f99d`; pre-registration `8af3cd4`; frozen code `d2038a7`; first recorded run `9eebb8d`; change control CP16-0 `8cd19bd`; repeated recorded run `72488dd`; records `ffcedb4`; change control CP16-1 `d74a16f` (the post-commit suite found the content guard's social-only key `members` in two output files, PI-D-088); repeat `b669615`; records update and post-commit record on top (`postcommit/`). Local only; the orchestrator pushes.
 
 ## Waiting on Elving
 

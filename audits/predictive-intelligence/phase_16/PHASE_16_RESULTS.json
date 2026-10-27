@@ -30,7 +30,10 @@
   "frozen_code": "d2038a7",
   "first_recorded_run": "9eebb8d",
   "cp16_0_code": "8cd19bd",
-  "repeated_recorded_run": "72488dd"
+  "repeated_recorded_run": "72488dd",
+  "records": "ffcedb4",
+  "cp16_1_code": "d74a16f",
+  "repeated_recorded_run_cp16_1": "b669615"
  },
  "result": {
   "entries": 69,
@@ -102,6 +105,13 @@
    "name": "recorded run (repeat at CP16-0 code 8cd19bd)",
    "command": "same",
    "result": "same line; facts and sources verified for 69 of 69 entries; rerun diff: only the embedded retrain policy changed (entry ids with it); facts, levels, hashes, pins, decisions equal",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "recorded run (repeat at CP16-1 code d74a16f)",
+   "command": "same",
+   "result": "same line; only ENSEMBLE_ABLATION.json and LATENCY.json changed (renamed keys, equal after renaming back) and the run log",
    "exit_code": 0,
    "pass": true
   },
@@ -243,6 +253,13 @@
    "command": "see postcommit/",
    "result": "recorded in the follow-up commit",
    "pass": null
+  },
+  {
+   "name": "content guard on every Phase 16 JSON (CP16-1)",
+   "command": "python -m memelab social guard; tests/test_predictive_phase16_outputs.py::test_cp16_1_every_phase_16_json_passes_the_content_guard_tracked_or_not",
+   "result": "0 violations at b669615 (21 at ffcedb4 before CP16-1)",
+   "exit_code": 0,
+   "pass": true
   }
  ],
  "artifacts": [
@@ -288,7 +305,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_16/ensemble/ENSEMBLE_ABLATION.json",
-   "sha256": "ff8aee85462b8bad7d74384364180b2e4753e11e48b9bd2f1f10cfc77377abbc"
+   "sha256": "7c0b19f51fff1ad0f17381d46dda779e2fd0034acfed6c09ea93e0425ce4e87a"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/ensemble/ENSEMBLE_ABLATION.csv",
@@ -304,7 +321,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_16/ensemble/LATENCY.json",
-   "sha256": "c4363f06beab8078b0b075ef77be1e96868e817c3a2cd2c11a451eb9991a3aed"
+   "sha256": "74efb6a613c4fda690bf743fd66e8cf0af1bb8230d2bdbbacb17c5a1cde79b46"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/evidence/INFERENCE_CHECK.json",
@@ -336,7 +353,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_16/evidence/run_log.json",
-   "sha256": "b70274e12954c36a3198c439ef88065bf2dbce7cf8caa126f92a8018a023121c"
+   "sha256": "e6e0113c9140255053a2934101019fb8238d55b56e6a75370337b6e106de1de7"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/experiments/SEARCH_LEDGER.csv",
@@ -348,7 +365,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_16/probes/build_registry.py",
-   "sha256": "fc50e7d4ecfc21d3718b829c78a0836c730c8d5c14c645dfff938df27cd2c555"
+   "sha256": "43843e050fd188d11de1aaeb1d1a5cc70685e83dbf9ed073b547e9247068200a"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/probes/mutation_registry.py",
@@ -356,7 +373,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_16/SKEPTIC_PACKET.md",
-   "sha256": "ecd749c951c80323cf8c466cb5c879ab69ed5bfdef1dd5355ba5f18e5d40268d"
+   "sha256": "c00b5b61d7b1f76123895d2378b06f9aa5bd05dc621a3a27b8c2cebec8b625b5"
   },
   {
    "path": "memelab/predictive/registry.py",
@@ -368,11 +385,15 @@
   },
   {
    "path": "tests/test_predictive_phase16_outputs.py",
-   "sha256": "81722dd39b93cbb76c885ad204c76aa2b8784a214dde1996d7c1f3d7d6183fb2"
+   "sha256": "66de07df2f40da40b9769a1d0fdfcca98f46175a7d0a400700b39f0258633a5d"
   },
   {
    "path": "tests/fixtures/predictive/registry_probe_examples.json",
    "sha256": "14747120abedf808c9e1647ff159ee0d38c73596a2ad727fc075f34aff79712c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/evidence/rerun_cp16_1_diff.json",
+   "sha256": "835c5298af7166470c9c35f8849d979f8c8d2022280291eb9387bedaae5e971e"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/registry/entries/",
@@ -388,7 +409,9 @@
   "evidence-source map of the ensemble rule assumes the lab's derived classifiers are distinct sources",
   "pre-opening test flags in the facts come from Phase 12's committed trap results, not rerun",
   "the pre-registered expectation that the CP16-0 repeat leaves every entry byte-equal was wrong (embedded retrain policy changed); recorded",
-  "no internal reference score was written (no prospective decision has features)"
+  "no internal reference score was written (no prospective decision has features)",
+  "the registry core's internal row key 'members' is a content-guard key; never written by the runner; rename before writing to JSON (PI-D-088)",
+  "first post-commit attempt at ffcedb4 failed on the content guard; the release audit report of that attempt was lost from the scratchpad before it was read"
  ],
  "blockers": [],
  "approvals_needed": [

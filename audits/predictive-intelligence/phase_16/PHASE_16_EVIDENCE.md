@@ -25,7 +25,10 @@ There is no champion for any target. All three primary targets are pinned NO_VIA
 | `9eebb8d` | first recorded run at `d2038a7`, output tests, determinism repeat, mutation probe 73 of 73 |
 | `8cd19bd` | change control CP16-0 (PI-D-086, self-review): facts tied to their sources; frozen before the repeat |
 | `72488dd` | recorded run repeated at `8cd19bd`; `evidence/rerun_cp16_0_diff.json` |
-| records commit | this file, RESULTS.json, SKEPTIC_PACKET.md, the three model documents, ROADMAP, DECISIONS (PI-D-087), HANDOFF, cost ledger row |
+| `ffcedb4` | records: this file, RESULTS.json, SKEPTIC_PACKET.md, the three model documents, ROADMAP, DECISIONS (PI-D-087), HANDOFF, cost ledger row |
+| `d74a16f` | change control CP16-1 (PI-D-088): the post-commit suite at `ffcedb4` found the content guard's social-only key `members` in two output files; the runner writes `member_models` and `member_count` |
+| `b669615` | recorded run repeated at `d74a16f`; `evidence/rerun_cp16_1_diff.json` |
+| records update and post-commit record | this update; post-commit checks recorded in `postcommit/` |
 
 ## Recorded runs
 
@@ -35,6 +38,7 @@ There is no champion for any target. All three primary targets are pinned NO_VIA
 | determinism repeat into the scratchpad, same code | same with a scratch folder | 0 | 82 of 85 files byte-equal; run log and latency skipped; `ENSEMBLE_ABLATION.json` differed only in CPU-time fields (`evidence/determinism_repeat.json`) |
 | repeat at the CP16-0 code `8cd19bd`, 2026-10-27T03:37:43Z to 03:38:05Z | same | 0 | same line; facts and sources verified for 69 of 69 entries (`run_log.json`) |
 | second repeat at `8cd19bd` into the scratchpad | same | 0 | 83 of 83 compared files byte-equal (run log and latency excluded) |
+| repeat at the CP16-1 code `d74a16f`, 2026-10-27T03:51:18Z to 03:51:41Z, and a second repeat into the scratchpad | same | 0 | same line; only `ENSEMBLE_ABLATION.json` and `LATENCY.json` changed (renamed keys; equal after renaming back) and the run log; second repeat 83 of 83 byte-equal |
 
 Debug runs on real data before the frozen code, all into the scratchpad and listed in the runner and the ledger (4): dbg1 stopped while taking the before-state of `phase_06/sealed/` (it had computed the sha256 of four sealed-folder files, as `check_seal.py` does; nothing decompressed, parsed, printed or stored; replaced by size and mtime); dbg2 stopped in `run_holdout.load_cards`; dbg3 stopped at the T2 in-sample stacking trap (no rows); dbg4 complete.
 
@@ -69,7 +73,7 @@ Each run: no socket (audit hook), 3 `training_labels` calls (development labels,
 | G24 determinism and isolation | repeats, run log | see above; 0 network calls; stores and sealed folder unchanged |
 | G25 tests and mutation probe | `evidence/mutation_registry.json` (73 of 73 at `9eebb8d`), `evidence/mutation_registry_cp16_0.json` (81 mutations at `8cd19bd`) | every listed mutation caught; four survivors of the first probe (E1, C2, R4, N4) were closed by tests before the frozen code |
 | G26 isolation and contract | unit tests | `registry.py` imports numpy, the standard library, `contract` and `stats`; no other lab module imports it; contract, ACCEPTANCE, the registry fingerprint and every earlier module unchanged |
-| G27 post-commit | `postcommit/` | recorded after the records commit |
+| G27 post-commit | `postcommit/` | first attempt at `ffcedb4` failed (CP16-1); redone after the records update, see `postcommit/` |
 
 ## Numbers behind the policy (from committed files, not recomputed)
 
@@ -84,7 +88,8 @@ Each run: no socket (audit hook), 3 `training_labels` calls (development labels,
 1. Inspect: package, records PI-D-001 to PI-D-083, Phase 12, 13, 15 outputs, the frozen cards' columns, the module isolation tests (the registry core may not import evaluation, calibration, abstention or the family modules, and may not name the Phase 10 module), the backtesting branch (`memelab/backtest/strategies/registry.py` is a strategy registry, not a model registry: no duplicate). Pre-registration committed.
 2. Build and check: `registry.py`, 42 tests; the isolation test caught a card key name that names the Phase 10 module, so module versions are passed by the caller; the first mutation probe left 4 survivors, closed by 4 tests; pre-freeze suite; frozen code; recorded run; determinism repeat; mutation probe 73 of 73.
 3. Attack (self-review, not independent): a forged entry with edited facts and a recomputed id passed `verify_entry` and could have been pinned as a champion, because levels were recomputed from stored facts that nothing tied to their sources (Phase 13 had left calibration-fact authenticity to this registry). Fixed as CP16-0 (PI-D-086): `derive_facts`, `verify_facts`, `verify_sources`, source checks required by pins, rollbacks and `serve`; 81 mutations caught. The pre-registered expectation that the repeat would leave every entry byte-equal was wrong: the embedded retrain policy gained a trigger, so every entry id changed while every fact, level, hash, pin and decision stayed equal (`evidence/rerun_cp16_0_diff.json`).
-4. Repeat at `8cd19bd`; second repeat byte-equal; records.
+4. Repeat at `8cd19bd`; second repeat byte-equal; records (`ffcedb4`).
+5. Post-commit suite at `ffcedb4`: 4 failed (the known one plus three content-guard tests): `ENSEMBLE_ABLATION.json` and `LATENCY.json` used the JSON key `members`, which the content guard reserves for social content. The guard run before the outputs commit had passed only because it scans tracked files and the outputs were untracked then. Fixed as CP16-1 (PI-D-088): renamed keys, an output test that runs the guard on every Phase 16 JSON file tracked or not; repeat at `d74a16f`; post-commit checks redone.
 
 ## Counterexamples
 
@@ -102,6 +107,8 @@ Each run: no socket (audit hook), 3 `training_labels` calls (development labels,
 - The evidence-source map of the ensemble rule is an assumption about the lab's derived classifiers (lifecycle, manipulation, narrative strength).
 - The pre-opening test flags in the facts are taken from Phase 12's committed trap results and the cards' own hashes, not rerun here.
 - Internal reference scores (shadow baseline mode) are defined and tested on fixtures; none were written (no prospective decision has features).
+- The registry core's internal row key `members` (`out_of_fold_rows`, `fit_stack`) is a content-guard key; it is never written by the runner, and any later phase that writes those structures to JSON must rename it (PI-D-088).
+- The release audit's report from the first post-commit attempt (exit 1 at `ffcedb4`, while the guard violations were present) was lost from the scratchpad before it was read; the attempt at `b669615` exits 0, "Needs action: no."
 
 ## Artifacts (sha256 at the records commit)
 
@@ -114,7 +121,7 @@ Each run: no socket (audit hook), 3 `training_labels` calls (development labels,
 | registry/TODAY_STATUS.json | b24bd229bf91d6a42fafaf7640b6f1ec71e67eb4861d56a034278e1705956ff3 |
 | registry/TODAY_RESULTS.jsonl | 47a2a34666599f0cb8f5a25d37a0c5e2ded394c2de74b8263745fba50057b3bb |
 | registry/TODAY_RECORDS.jsonl | 66dcf22346e0ef8167439e86be3050b244ffcddd471c0d5cb5f4ad5b317b89df |
-| ensemble/ENSEMBLE_ABLATION.json | ff8aee85462b8bad7d74384364180b2e4753e11e48b9bd2f1f10cfc77377abbc |
+| ensemble/ENSEMBLE_ABLATION.json | see RESULTS.json (rewritten by CP16-1) |
 | ensemble/ENSEMBLE_ABLATION.csv | 0a8bcb5ef0bad0b5f3aaed18d0ce4d6ea85f516784a1ccaeeba0a842939cff42 |
 | ensemble/STABILITY.json | 34b97dd5c7a03c6d8d49ac048a2378de30f6611f91b217226afad5cf298931da |
 | ensemble/POST_OPENING_LOG.json | 39ecb7fecad1735ce6a4dad4d6082b4acabc4090518d98e65310f04a2516af68 |
@@ -122,12 +129,13 @@ Each run: no socket (audit hook), 3 `training_labels` calls (development labels,
 | evidence/COMPATIBILITY_P46.json | b1311ef0595a95ac8fd162a15e5f2981c2ea7f53262dd0e71f800144d6b1be2a |
 | evidence/ROLLBACK_TEST.json | a63ea6fdaa886d7c5be55e06dab3d345fca217ef685dde22e68d4d5aa36d1e60 |
 | evidence/rerun_cp16_0_diff.json | b9abac04b380771ff4c418887188717ba7f42382d569fcac8774f87197eca12e |
+| evidence/rerun_cp16_1_diff.json | see RESULTS.json |
 | experiments/SEARCH_LEDGER.csv | c0bac44e26a709c84651ca3114f2c9421cb2dc484bedf6bd93ae052d01cab42a |
 | experiments/LEDGER_TOTALS.json | 2e68d0f7522a155e0cffda6d7c649f8fa829b1fabaf7516a6f974c943fb55e30 |
 | memelab/predictive/registry.py | ab6d71bc315397a68ee2fddef60adec084053ecc29711166b520acff22b87f43 |
 | tests/test_predictive_registry.py | e4cc82683ac1591812aabd0e6e7c9d6b2610cd19cecd85caa45f1a36ca140d0d |
-| tests/test_predictive_phase16_outputs.py | 81722dd39b93cbb76c885ad204c76aa2b8784a214dde1996d7c1f3d7d6183fb2 |
-| probes/build_registry.py | fc50e7d4ecfc21d3718b829c78a0836c730c8d5c14c645dfff938df27cd2c555 |
+| tests/test_predictive_phase16_outputs.py | see RESULTS.json (CP16-1 added a test) |
+| probes/build_registry.py | see RESULTS.json (changed by CP16-1) |
 
 The model documents' hashes are in RESULTS.json. Sources: no external source was read in this phase; every input is a committed file of this repository or a private store listed in the run log.
 
