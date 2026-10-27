@@ -1,0 +1,277 @@
+{
+ "phase": "19",
+ "status": "NEEDS_REVIEW",
+ "head_before": "4b07b0d2b906a719ae6bd948ae86d5a20282b753",
+ "head_after": "recorded in HANDOFF.md (records commit)",
+ "checks": [
+  {
+   "name": "entry full suite at 4b07b0d",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "2 failed, 2145 passed, 1 skipped (the two known clock-dependent tests only)",
+   "pass": true
+  },
+  {
+   "name": "entry seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "predecessor key check: Phase 17 export replay byte-equal to the Phase 18 published run",
+   "command": "unshare -n python -B audits/predictive-intelligence/phase_17/probes/run_integration.py replay",
+   "exit_code": 0,
+   "result": "documents 9b839e76..., records a8114c19...",
+   "pass": true
+  },
+  {
+   "name": "G2 pre-registration before code, predictions and reads",
+   "input": "5ffa5cf 13:30:09Z < fce102e 13:57:02Z < 765eadb 14:00:20Z < first call 14:00:26Z",
+   "result": "order held",
+   "pass": true
+  },
+  {
+   "name": "G4 inputs and contact check",
+   "command": "unshare -n python -B probes/run_prospective.py inputs",
+   "exit_code": 0,
+   "result": "52 decisions added, 0 contact problems",
+   "pass": true
+  },
+  {
+   "name": "G5 predictions, traps and replay audit",
+   "command": "unshare -n python -B probes/run_prospective.py predict monitoring",
+   "exit_code": 0,
+   "result": "4257 rows, traps 0 failures, replay audit ok, P46 equal",
+   "pass": true
+  },
+  {
+   "name": "G5 determinism",
+   "input": "second predict run",
+   "result": "byte-equal except the manifest listing the plan file",
+   "pass": true
+  },
+  {
+   "name": "G6 documents byte-equal to the published run, ledger before reads",
+   "input": "monitoring/PREREG_MANIFEST.json",
+   "result": "156 documents, 356 entries, no OUTCOME",
+   "pass": true
+  },
+  {
+   "name": "G7 opening and paced reads",
+   "command": "python -B probes/fetch_labels.py open|lists|fetch|others|reread|archive",
+   "exit_code": 0,
+   "result": "44 calls, at most 5 in any 60 s, token=<mint> in every OHLCV URL",
+   "pass": true
+  },
+  {
+   "name": "G8 outcomes through labels-1",
+   "command": "unshare -n python -B probes/run_prospective.py outcomes",
+   "exit_code": 0,
+   "result": "156 outcomes; cross-target violations 0",
+   "pass": true
+  },
+  {
+   "name": "G8 offline rebuild from the archive",
+   "command": "unshare -n python -B probes/rebuild_outcomes.py",
+   "exit_code": 0,
+   "result": "156 of 156 equal",
+   "pass": true
+  },
+  {
+   "name": "G9 ledger verify and negative tests (CX-19)",
+   "command": "python -m pytest tests/test_predictive_monitoring.py tests/test_predictive_phase19_outputs.py -q",
+   "exit_code": 0,
+   "result": "37 passed",
+   "pass": true
+  },
+  {
+   "name": "G10 evaluation as pre-registered",
+   "command": "unshare -n python -B probes/run_prospective.py evaluate monitoring",
+   "exit_code": 0,
+   "result": "every verdict INSUFFICIENT_DAYS; N_search 130",
+   "pass": true
+  },
+  {
+   "name": "G12 drift monitors on real data",
+   "command": "unshare -n python -B probes/run_prospective.py drift monitoring",
+   "exit_code": 0,
+   "result": "SUPPORT_BELOW_MINIMUM, SOURCE_FAILURE, COLLECTOR_NOT_DEPLOYED; response KEEP_ABSTAIN_SOURCE",
+   "pass": true
+  },
+  {
+   "name": "G13 rollback demo (fixtures, TEST_ONLY)",
+   "command": "unshare -n python -B probes/run_prospective.py rollback monitoring",
+   "exit_code": 0,
+   "result": "DEGRADE_TO_SHADOW then ROLLBACK_TO_ABSTAIN; history unchanged",
+   "pass": true
+  },
+  {
+   "name": "G14 feedback and selection audit",
+   "command": "unshare -n python -B probes/run_prospective.py audit monitoring",
+   "exit_code": 0,
+   "result": "F1 ok, F3 156 of 156, F4 ok, order ok",
+   "pass": true
+  },
+  {
+   "name": "G19 mutation probe",
+   "command": "python -B probes/mutation_monitoring.py evidence/mutation_monitoring.json",
+   "exit_code": 0,
+   "result": "46 of 46 caught",
+   "pass": true
+  },
+  {
+   "name": "G23 no prospective row in training_labels",
+   "input": "evidence/outcomes_runs.json",
+   "result": "0, 0, 0",
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "memelab/predictive/monitoring.py",
+   "sha256": "4de67f8560e2117fdaaadae0b7950f5fc7bec8a4cf1bfa94f57d508f4a35c16b"
+  },
+  {
+   "path": "tests/test_predictive_monitoring.py",
+   "sha256": "d2876e9ca919794efd56bac8232704b22d2af6425d0b02fa3b7c88aafb4c1e76"
+  },
+  {
+   "path": "tests/test_predictive_phase19_outputs.py",
+   "sha256": "544daf9995ca5fd7b17d330b83bde3aecf07828704786745220f6b0618d25e91"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "e59dfe79cfa3b82ba818303332ee16862fd5119188fcce4c6a9d91ffb9fdf7a1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/experiments/EXPERIMENT_REGISTRY.csv",
+   "sha256": "96e707be6f6bcbf6051e06199e0793ccd7146548755ddfa55b7809a171a13d91"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/monitoring/PROSPECTIVE_PLAN.md",
+   "sha256": "710e46e20bd7215a87ea908aa307a278a4333900a2d54ee40e49207ddb78dc1d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/monitoring/OUTCOME_LEDGER.jsonl",
+   "sha256": "c36128466eef09d6204520b1f66cf0c38d752e22f7ac4fb3749ace3eef0c4e6b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/monitoring/OUTCOME_LEDGER.md",
+   "sha256": "b7d48b987817d017e7389291ea416d3eb6d80229928b18de39bbd4e008a604b2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/monitoring/PROSPECTIVE_REPORT.md",
+   "sha256": "1589d42ba8d1c973139ee1f5749b162458b1e0aa7fe9b81e27340382c276835a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/monitoring/PROSPECTIVE_PREDICTIONS.csv",
+   "sha256": "b0c2722afba20b15ffb82cd0d9d07f8f370144f0f5a9e8ba779fbb6d2c2b67d0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/monitoring/PREREG_MANIFEST.json",
+   "sha256": "fbdc025cdcb570d4d60423415b47f704460e576c8d0f301574214cbe74393012"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/monitoring/DRIFT_REPORT.json",
+   "sha256": "ff3ed09513178bf6870695cb6bb38b7254da6c9096dc2692d740186758a838aa"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/monitoring/ROLLBACK_DEMO.json",
+   "sha256": "f73ee715f139d5d2320659a42ef3870acfd12dcc127c091fa91819a9136e4daa"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/monitoring/FEEDBACK_AUDIT.json",
+   "sha256": "a108d56a8bc973b479e26980cc74e775ae7d2063ef939f55a351e8dc15a81eae"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/monitoring/MISSES.csv",
+   "sha256": "83c0f230314a5de10a95060d42637f0e3f43eefef034849fbd08e66e359c5224"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/monitoring/PROSPECTIVE_METRICS.csv",
+   "sha256": "0a5db128466b7a3a59274a626e419d1ce0e5d26767bef52fb896041bdb03a1cd"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/monitoring/PRIMARY_RESULTS.json",
+   "sha256": "55ecd43f8ef911304eb5aa17e135b013b0cfe5288d50afbff487e104d5332bf1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/monitoring/OPENING_LOG.json",
+   "sha256": "ff497505e767868c0eed489fbd66bdc584e5540a81bcd2f9bdfed0b5c44400ab"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/evidence/label_calls.json",
+   "sha256": "7b000569ff92cc2dd6d5b05170200c98d7c991071908c0e8c946aa5767159eda"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/raw/MANIFEST.csv",
+   "sha256": "b9b10f9cc614f7356594fd2cbcaddd980bab984773f745449f7960660b01f92f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/experiments/SEARCH_LEDGER.csv",
+   "sha256": "ad4498b75e75e76cc22d64575246b023070198afdecad05d6554f6d6cd3995b9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/evidence/rebuild_outcomes.json",
+   "sha256": "26dbe6d31e8dad33f2bdbc20b53c2093e9cf81b20d12c037795b707bf608048c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/evidence/mutation_monitoring.json",
+   "sha256": "45f5f1e6f11eac2521a3e7e7980990d99b8b927f60b20957acba7e9d0cafbd03"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/PHASE_19_EVIDENCE.md",
+   "sha256": "df1e0686c422a4fa9a3887d1ab422f74265a713acf57b6adbceb0a1b7fdd9cda"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/SKEPTIC_PACKET.md",
+   "sha256": "d070ebfaca02b1d63f0500a3214ca519376b89ace98a9d2f55e8298cc9e5113d"
+  }
+ ],
+ "results": {
+  "window": "exports to 71fc50e, decisions from 2026-10-24T00:00:00Z: 52 (33 Solana)",
+  "labelled": {
+   "T1_24h": [
+    22,
+    5
+   ],
+   "T1b_6h": [
+    24,
+    3
+   ],
+   "T2_24h": [
+    15,
+    3
+   ]
+  },
+  "pending": {
+   "T2_24h": 7
+  },
+  "verdicts": "INSUFFICIENT_DAYS for every primary, secondary, sensitivity and NC1 row",
+  "bss_b2_vs_b0_descriptive": {
+   "T1_24h": 0.264,
+   "T1b_6h": 0.033,
+   "T2_24h": 0.419
+  },
+  "publication_coverage": 0.0,
+  "response": "KEEP_ABSTAIN_SOURCE for every target",
+  "n_search": 130,
+  "n_search_sensitivity": 169,
+  "spend": "0 credits; 44 free GeckoTerminal calls"
+ },
+ "limitations": [
+  "3 decision days and at most 24 labelled events per target: INSUFFICIENT_DAYS everywhere; the B2 point estimates are descriptive only",
+  "frozen cards MODEL_STALE after 2026-10-31; T2 of 2026-10-26 pending until 2026-10-28; the frozen 48 h re-read is owed from 2026-10-29",
+  "self-review SR-1: D6 counts failed attempts (11 of 39) although every decision was read; SR-2: D1's overall state is the worst column state, one OK column over four INSUFFICIENT_DATA",
+  "drift response on a pinned champion and the rollback are fixtures only (no champion exists); no FORECAST outcome exists to track",
+  "Phase 18 minor 5 (recompute a FORECAST point in a reader or sign the state) carried to Phase 20",
+  "depth, liquidity, catalyst and distribution outcomes not reconciled: forward depth collector not deployed (D-BT-034, D-BT-035), no depth snapshot"
+ ],
+ "blockers": [],
+ "approvals_needed": [
+  "a change control to ACCEPTANCE promotion if Elving wants a promotion path (PI-D-091)",
+  "deploying the forward depth collector (approved PI-D-044, not done)"
+ ],
+ "next_eligible_phase": "20, once the orchestrator's independent skeptic review is folded in and the orchestrator records a PASS"
+}
