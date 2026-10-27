@@ -1,9 +1,9 @@
 {
  "phase": "18",
  "status": "NEEDS_REVIEW",
- "status_note": "first pass with the self-review change controls CP18-0 (PI-D-099) and CP18-1 (PI-D-100); every gate item reproduced by the phase agent except G21 (post-commit run, recorded after the records commit); PASS only after the orchestrator's independent skeptic and the repair pass (PI-D-013)",
+ "status_note": "first pass with the self-review change controls CP18-0 (PI-D-099) and CP18-1 (PI-D-100); every gate item reproduced by the phase agent, G21 post-commit at ac19668; PASS only after the orchestrator's independent skeptic and the repair pass (PI-D-013)",
  "head_before": "4ebccc3f43a583880bf5288d8314cd79183a0187",
- "head_after": "100d262666a30839990a54b1979b33a108218256",
+ "head_after": "ac19668b0f1e737bfc3fde3c48c8b2fe8e65219a",
  "commits": {
   "pre_registration": "ebb7059",
   "frozen_code": "96c4445",
@@ -11,7 +11,8 @@
   "cp18_0_code": "0127d2e",
   "cp18_0_outputs": "44118a1",
   "cp18_1_code": "ea799da",
-  "cp18_1_outputs": "100d262"
+  "cp18_1_outputs": "100d262",
+  "records": "ac19668"
  },
  "checks": [
   {
@@ -129,6 +130,34 @@
    "exit_code": 1,
    "result": "2 failed, 2122 passed, 1 skipped in 544.49s (the two known failures only)",
    "pass": true
+  },
+  {
+   "name": "post-commit full suite at ac19668",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "2 failed, 2122 passed, 1 skipped in 490.69s (the two known clock-dependent failures only); strays removed by hand",
+   "pass": true
+  },
+  {
+   "name": "post-commit social guard",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "violations [] (2,710 files)",
+   "pass": true
+  },
+  {
+   "name": "post-commit seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "post-commit single-branch release audit",
+   "command": "python tools/release_audit.py --history (single-branch clone at ac19668)",
+   "exit_code": 0,
+   "result": "Needs action: no.",
+   "pass": true
   }
  ],
  "artifacts": [
@@ -138,7 +167,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_18/PHASE_18_EVIDENCE.md",
-   "sha256": "71a290a51844d93a1eaddb72f740fd19acf48aa5c76c01f2d434e8c940c7aff6"
+   "sha256": "326eed05e928b0582b506feb6faf52eae82420b408a2640158772b3d5220bd3b"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/SKEPTIC_PACKET.md",
@@ -315,6 +344,22 @@
   {
    "path": "tests/fixtures/predictive/phase18/golden/report_withdrawn_format_only.md",
    "sha256": "257007264a7126fd3887c73244fbb097964d149dee14f88bb43122bb39d4fd5c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/postcommit/pytest_summary.txt",
+   "sha256": "a4b13a7d154ad8524d75c20e13596daf9047acab5cc83ea9cc88bf07fe999d6f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/postcommit/release_audit_history.summary.txt",
+   "sha256": "536f540f7538825c0395f2763cf011979bab722bbca15e5bbbfb9a23380dd48d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/postcommit/seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/postcommit/social_guard.out.txt",
+   "sha256": "e0402cc9fef557c35276b60e8819dd5e7163b6ba69964e9d1afa713a08d4aa32"
   }
  ],
  "limitations": [

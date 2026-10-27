@@ -1,6 +1,6 @@
 # Phase 18 evidence: reports, CLI and alerts without trading directives
 
-Status: **NEEDS_REVIEW** (first pass, with two self-review change controls CP18-0 and CP18-1; the orchestrator's independent skeptic has not run yet). Every gate item below was reproduced by the phase agent; the attack step is not independent until the orchestrator's skeptic reports (PI-D-013). TEST_ONLY parts: the FORECAST display path and the reevaluate and forecast_withdrawn alerts (no real FORECAST exists; shown on watermarked format-only fixtures).
+Status: **NEEDS_REVIEW** (first pass, with two self-review change controls CP18-0 and CP18-1; the orchestrator's independent skeptic has not run yet). Every gate item below was reproduced by the phase agent, G21 after the records commit `ac19668`; the attack step is not independent until the orchestrator's skeptic reports (PI-D-013). TEST_ONLY parts: the FORECAST display path and the reevaluate and forecast_withdrawn alerts (no real FORECAST exists; shown on watermarked format-only fixtures).
 
 - Branch `feature/predictive-intelligence`; HEAD before `4ebccc3`. Commits (UTC): pre-registration `ebb7059` (09:49:07Z), frozen code `96c4445` (10:27:14Z), recorded runs `3601881` (10:38:02Z), CP18-0 code `0127d2e` (10:39:31Z), repeated runs `44118a1` (10:53:24Z), CP18-1 code `ea799da` (10:54:50Z), repeated runs and these records after it (hashes in HANDOFF.md).
 - Date 2026-10-27, UTC 09:36Z (entry suite start) to about 11:30Z. Python 3.13, numpy only in the lab runtime. Spend: 0 Firecrawl credits, 0 vendor calls, 0 language-model calls, no network use at all; every real-data command ran inside `unshare -n`, and every probe and test refuses sockets (0 events).
@@ -46,6 +46,7 @@ Evidence: `evidence/entry/`.
 | Repeat at `ea799da` | smoke (10:55:03Z to 10:55:30Z), replay, real (to 10:55:49Z) | exit 0; flag off byte-identical to `b0fad12`; `evidence/rerun_cp18_1_diff.json`: only `replay_report.percent_or_fraction_outside_definitions` changes (1 to 0, the measured change now labelled and counted apart as 1); text differences after masking ids and times: the labelled event line and the units line |
 | Mutation probe at `ea799da` | `python -B probes/mutation_reports.py` | exit 0, 49 of 49 (`evidence/mutation_reports.json`) |
 | Ledger | `python -B probes/ledger.py audits/predictive-intelligence/phase_18` | 3,350 rows (3,328 plus 4 debug runs, 6 recorded runs and 6 for each of the two repeats), N_search 130, sensitivity 169 |
+| Post-commit at `ac19668` | `python -m pytest tests -q -p no:cacheprovider`; `python -m memelab social guard`; `check_seal.py`; `python tools/release_audit.py --history` on a single-branch clone | suite exit 1, `2 failed, 2122 passed, 1 skipped in 490.69s` (known failures only); guard exit 0, `"violations": []` over 2,710 files; seal exit 0, `"problems": []`; audit exit 0, "Needs action: no." |
 | Suite before the records commit | `python -m pytest tests -q -p no:cacheprovider` | exit 1, `2 failed, 2122 passed, 1 skipped in 544.49s` (the two known failures only); strays removed by hand |
 
 ## Results on real data (TEST_ONLY parts excluded)
@@ -86,7 +87,7 @@ Flag off: the real scout with the flag off is byte-identical to `b0fad12` (9 rep
 | G18 | held: 0 socket events | audit hooks in tests and probes; `unshare -n` |
 | G19 | held | `test_g19_*`; the Phase 01 to 17 isolation tests pass |
 | G20 | held | `test_g20_*` |
-| G21 | pending the post-commit run (recorded in `postcommit/` and HANDOFF.md) | |
+| G21 | held at `ac19668`: suite `2 failed, 2122 passed, 1 skipped in 490.69s` (the two known failures only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no." | `postcommit/` |
 | G22 | held: 49 of 49 at `ea799da` | `evidence/mutation_reports.json` |
 | G23 | held: 22 rows added, N_search 130 (169); content guard on every Phase 18 JSON (test) | `experiments/`, outputs test |
 | G24 | held: CX-18 caught | below |
