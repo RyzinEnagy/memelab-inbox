@@ -1,7 +1,7 @@
 {
  "phase": "16",
- "status": "NEEDS_REVIEW",
- "status_statement": "First pass complete; every gate item checked by the phase agent holds; the orchestrator's independent skeptic has not reviewed it yet. Expected final status after review: PASS if every gate item holds, with the promotion branch (SHADOW, VALIDATED_EXPERIMENTAL, CHAMPION pins and rollback from a champion) recorded as a TEST_ONLY part.",
+ "status": "PASS",
+ "status_statement": "PASS after repair pass 2: the independent skeptic found no material failure, 9 minor findings and CX-S16; every finding is fixed (CP16-2, PI-D-089; CP12-2, PI-D-090) and every gate item holds. TEST_ONLY part: the promotion branch (SHADOW, VALIDATED_EXPERIMENTAL, CHAMPION pins, their use in serve and rollback from a champion) exists only on fixtures; no real entry can reach it under the frozen table (PI-D-091).",
  "decision": {
   "champion": {
    "T1_24h": "NO_VIABLE_CHAMPION",
@@ -21,7 +21,7 @@
    "T1b_6h": "NO_ENSEMBLE",
    "T2_24h": "NO_ENSEMBLE"
   },
-  "promotion_path": "closed under the frozen ACCEPTANCE promotion table (needs a change control)"
+  "promotion_path": "closed under the frozen ACCEPTANCE promotion table; orchestrator decision PI-D-091: no change now, Elving decides, prospective holdout (Phase 19) is the honest route"
  },
  "head_before": "576f99d",
  "head_after": "2f81759 (records) plus the post-commit record commit on top",
@@ -33,7 +33,11 @@
   "repeated_recorded_run": "72488dd",
   "records": "ffcedb4",
   "cp16_1_code": "d74a16f",
-  "repeated_recorded_run_cp16_1": "b669615"
+  "repeated_recorded_run_cp16_1": "b669615",
+  "records_cp16_1": "2f81759",
+  "postcommit_first": "35758c9",
+  "rp2_code": "b4bb03b",
+  "rp2_recorded_run": "0e71f55"
  },
  "result": {
   "entries": 69,
@@ -249,18 +253,56 @@
    "pass": true
   },
   {
-   "name": "G27 post-commit suite, guard, seal, release audit",
-   "command": "python -m pytest tests -q; python -m memelab social guard; check_seal.py; release_audit.py --history (single-branch clone)",
-   "result": "at 2f81759: suite 1 failed, 1911 passed, 1 skipped (known failure only); guard 0 violations; seal problems []; release audit exit 0, Needs action: no (postcommit/)",
-   "pass": true,
-   "exit_code": 0
-  },
-  {
    "name": "content guard on every Phase 16 JSON (CP16-1)",
    "command": "python -m memelab social guard; tests/test_predictive_phase16_outputs.py::test_cp16_1_every_phase_16_json_passes_the_content_guard_tracked_or_not",
    "result": "0 violations at b669615 (21 at ffcedb4 before CP16-1)",
    "exit_code": 0,
    "pass": true
+  },
+  {
+   "name": "RP2 CX-S16 and repair tests on the first-pass code",
+   "command": "pytest -k repair tests with registry.py from 35758c9",
+   "result": "8 failed (each repair test fails on the first-pass code)",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "RP2 recorded run at b4bb03b",
+   "command": "python -B audits/predictive-intelligence/phase_16/probes/build_registry.py audits/predictive-intelligence/phase_16",
+   "result": "69 entries, ABSTAIN 6, NO_GO 63, inference 69 of 69, NO_ENSEMBLE x3, N_search 130, failures []; facts rebuilt by check_facts 69 of 69",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "RP2 determinism",
+   "input": "evidence/rerun_rp2_diff.json",
+   "result": "second repeat 83 of 83 byte-equal (run log and latency excluded)",
+   "pass": true
+  },
+  {
+   "name": "RP2 mutation probe",
+   "command": "python -B audits/predictive-intelligence/phase_16/probes/mutation_registry.py OUT.json",
+   "result": "96 of 96",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "CP12-2 Phase 12 reproduction",
+   "input": "evidence/cp12_2_phase12_reproduction.json",
+   "result": "plan and predict 7 of 7, opening REPRODUCTION 10 of 10 byte-equal",
+   "pass": true
+  },
+  {
+   "name": "cross-phase reproduction test",
+   "command": "python -m pytest tests/test_predictive_reproductions.py -q",
+   "result": "Phases 07, 12, 13, 16 reproduce their committed outputs",
+   "pass": true
+  },
+  {
+   "name": "G27 post-commit suite, guard, seal, release audit",
+   "command": "see postcommit/rp2_*",
+   "result": "recorded in the post-commit record commit",
+   "pass": null
   }
  ],
  "artifacts": [
@@ -274,27 +316,27 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_16/models/CHAMPION_POLICY.md",
-   "sha256": "4a8ff2ad275250d5e1bef60dcb1982674c090b4e0f7c7d1ffd2a5a16b54d24e1"
+   "sha256": "0abf5228ce2f6c7da9cd12ec6f6223827b93a359bddce8d552b85e99098226cf"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/models/REGISTRY_SCHEMA.md",
-   "sha256": "0cee0889a7961b9542a315b076a4c05c0ce4cfce29ac177f0f771d6815bc9031"
+   "sha256": "bb248d491f52a25d71ff3d65bd992e541ccc0ade91fdf22d2ffb798cfa385ef8"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/models/ENSEMBLE_ABLATION.md",
-   "sha256": "6efb26ab2acebe8e5e2f260211e07f514d12a083c90570fc5bd6cbdfaed7b835"
+   "sha256": "b8f12fa1bb386df6a2f69f341debef6d32d31b733a6ae4707210a08aca75c83e"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/registry/REGISTRY_LOG.jsonl",
-   "sha256": "6ee9226fc49bbdece175114d26fec968042ab637d3b3e07a9834b973f9d494b0"
+   "sha256": "f02548bd8470b4814a26cb6a687b12f9c594f4b57c0d4bf6e8b852d7b736381d"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/registry/REGISTRY_INDEX.json",
-   "sha256": "551870baf698c8c0b001497d7872a9dccf2dfbfef8ce961f33a27d693a806697"
+   "sha256": "fc134769fc8a5846360b29eb096163ca9f6ae41fb942c98485b729f89e295fe3"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/registry/TODAY_STATUS.json",
-   "sha256": "b24bd229bf91d6a42fafaf7640b6f1ec71e67eb4861d56a034278e1705956ff3"
+   "sha256": "209265570af5d7d33bd88c4f7fb073ae4f64bb3ff79ab2d5c2d623ce90c142fd"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/registry/TODAY_RESULTS.jsonl",
@@ -322,11 +364,11 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_16/ensemble/LATENCY.json",
-   "sha256": "74efb6a613c4fda690bf743fd66e8cf0af1bb8230d2bdbbacb17c5a1cde79b46"
+   "sha256": "84bee7bec08fc1236ecbcce57a0b301b0b5a0d5653fc5d488dc851fe01c6a938"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/evidence/INFERENCE_CHECK.json",
-   "sha256": "d8723a28b04420112bef94dfc783526d81b32f00940f80e420ee11d33f914629"
+   "sha256": "dafb375e94a21571d912b6be72f943a16313f335728e48a2ece53ea97d9fedbe"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/evidence/COMPATIBILITY_P46.json",
@@ -354,23 +396,23 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_16/evidence/run_log.json",
-   "sha256": "e6e0113c9140255053a2934101019fb8238d55b56e6a75370337b6e106de1de7"
+   "sha256": "e300eb9d2414bf4614e88a1429d47f98cbfa82f86465359b507e11ad1407fc9a"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/experiments/SEARCH_LEDGER.csv",
-   "sha256": "c0bac44e26a709c84651ca3114f2c9421cb2dc484bedf6bd93ae052d01cab42a"
+   "sha256": "a1760ced701f321c85de46d4fe06f4695a5d0c2e3e1c7d1a20f64a2767a21f77"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/experiments/LEDGER_TOTALS.json",
-   "sha256": "2e68d0f7522a155e0cffda6d7c649f8fa829b1fabaf7516a6f974c943fb55e30"
+   "sha256": "d05e12c4de721ec344bd0e9bdb21de3127e66f3be2aa44ea32c5eaded6cd9eee"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/probes/build_registry.py",
-   "sha256": "43843e050fd188d11de1aaeb1d1a5cc70685e83dbf9ed073b547e9247068200a"
+   "sha256": "1f373812299c788e15d2bce79c3ebda85f75ef15e09d5f320773e2b06f5bab91"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/probes/mutation_registry.py",
-   "sha256": "c18356f527b897e2e3ab0fc743ee4a6c8543303f4f43ccf8d625e7daf78ecbff"
+   "sha256": "bfcf3478087d191415255ed683eeddfbdf8f602145c87c1163971495f00a1dbf"
   },
   {
    "path": "audits/predictive-intelligence/phase_16/SKEPTIC_PACKET.md",
@@ -378,15 +420,15 @@
   },
   {
    "path": "memelab/predictive/registry.py",
-   "sha256": "ab6d71bc315397a68ee2fddef60adec084053ecc29711166b520acff22b87f43"
+   "sha256": "5d181b890febc64d942cc44a27412e05045d1a89e6c154e8efeabe6a5028ccdc"
   },
   {
    "path": "tests/test_predictive_registry.py",
-   "sha256": "e4cc82683ac1591812aabd0e6e7c9d6b2610cd19cecd85caa45f1a36ca140d0d"
+   "sha256": "ebd3e73068c5bb42e35e6e4ef25e540d2d8e4d07f9c4cc2183be14f77d2c9523"
   },
   {
    "path": "tests/test_predictive_phase16_outputs.py",
-   "sha256": "66de07df2f40da40b9769a1d0fdfcca98f46175a7d0a400700b39f0258633a5d"
+   "sha256": "91b309cd5e2b5dbbb93149b68fba726d5239afff1879cb152765a80c39a1be75"
   },
   {
    "path": "tests/fixtures/predictive/registry_probe_examples.json",
@@ -397,8 +439,36 @@
    "sha256": "835c5298af7166470c9c35f8849d979f8c8d2022280291eb9387bedaae5e971e"
   },
   {
+   "path": "audits/predictive-intelligence/phase_16/evidence/rerun_rp2_diff.json",
+   "sha256": "2edbf6b174eeac2c320c42695e08d96b3df9c7a2adb8d25cadc2ef0084803b7e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/evidence/cp12_2_phase12_reproduction.json",
+   "sha256": "c1f068213b9c6ac0d9fbb37576614d0efb8c398ead85d96a71da44e6671fb31c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/evidence/mutation_registry_rp2.json",
+   "sha256": "93ef3e9d068f532358a9d4e280cdc0a6fac1980f46b4caba12f84fa47446626a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/evidence/rp2_tests_on_first_pass_code.txt",
+   "sha256": "8982770dfe13ced6f684bfa793cd058c3b4849084ba9281145b3e2293f4df80d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/skeptic/PHASE_16_SKEPTIC.md",
+   "sha256": "3307b60c93a82e31c8ce0bb3b6642e4d070bbde7ec10dfbd5b121828fbf0c63b"
+  },
+  {
+   "path": "tests/test_predictive_reproductions.py",
+   "sha256": "b6d0722642002c0c489b409be08b817704a8e19c3d55a440deeaf8a1e003bd2b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_12/probes/run_holdout.py",
+   "sha256": "d0149710a6558dbea70cece565fa75d150ddf335c7e7d8e4dfeeed565e08881f"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_16/registry/entries/",
-   "sha256": "69 files, each named by its own entry id (sha256 of its canonical content)"
+   "sha256": "69 files, each named by its own entry id"
   }
  ],
  "limitations": [
@@ -406,17 +476,31 @@
   "no model can reach SHADOW or VALIDATED_EXPERIMENTAL under the frozen promotion table after the retrospective holdout was opened",
   "calibration.verify_card still refuses VALIDATED_EXPERIMENTAL; lifting it must depend on a registry entry at that level",
   "frozen cards MODEL_STALE after 2026-10-31T00:00:00Z; prospective reference comparison after that needs retrained reference cards",
-  "phase_12 run_holdout.py plan and predict no longer run as committed since Phase 13 (load_cards glob meets the calibration cards)",
   "evidence-source map of the ensemble rule assumes the lab's derived classifiers are distinct sources",
   "pre-opening test flags in the facts come from Phase 12's committed trap results, not rerun",
   "the pre-registered expectation that the CP16-0 repeat leaves every entry byte-equal was wrong (embedded retrain policy changed); recorded",
   "no internal reference score was written (no prospective decision has features)",
   "the registry core's internal row key 'members' is a content-guard key; never written by the runner; rename before writing to JSON (PI-D-088)",
-  "first post-commit attempt at ffcedb4 failed on the content guard; the release audit report of that attempt was lost from the scratchpad before it was read"
+  "first post-commit attempt at ffcedb4 failed on the content guard; the release audit report of that attempt was lost from the scratchpad before it was read",
+  "the registry's fact rebuild trusts the repository root it is given (a forged repository copy is out of scope)",
+  "the code-file check is strict: any edit of features, baselines, stats, contract, labels or a family module makes every affected entry incompatible until re-registered",
+  "checklist rule 7 wording ('the 176 Solana decisions') is corrected in the records, not in the pre-registration"
  ],
  "blockers": [],
  "approvals_needed": [
   "a change control to ACCEPTANCE promotion (Elving or the orchestrator) before any model can be promoted; any paid data or LLM spend; deployment of the forward depth collector (approved, not done)"
  ],
- "next_eligible_phase": "17 after the orchestrator's independent review and a PASS"
+ "next_eligible_phase": "17 once the orchestrator records this PASS",
+ "repair_pass_2": {
+  "skeptic": "skeptic/PHASE_16_SKEPTIC.md (no material failure, 9 minor, CX-S16)",
+  "counterexample": "CX-S16 forged-facts entry pinned and served at SHADOW via verify=verify_sources; now refused by the registry's own rebuild inside pin_event and serve",
+  "number_changes": {
+   "B2 retrospective fact kind": "SECONDARY_HOLDOUT -> PRIMARY_HOLDOUT",
+   "B2 T2 Holm p": "1.0 -> 0.10034498275086245",
+   "levels": "unchanged"
+  },
+  "phase_12_regression": "fixed by CP12-2: plan and predict 7 of 7, opening REPRODUCTION 10 of 10 byte-equal",
+  "mutation_probe": "96 of 96",
+  "tests_fail_on_first_pass_code": "8 of 8"
+ }
 }

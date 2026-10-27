@@ -12,7 +12,7 @@ There is no champion for any target. Every primary target (T1 24 h, T1b 6 h, T2 
 |---|---|---|---|
 | T1 24 h | 66 events, 15 positive, BSS -0.024 (governing mint interval -0.156 to +0.134), NOT_DISTINGUISHABLE_FROM_BASE_RATE; calibration bins passed | UNCALIBRATED: 24 calibration rows, 8 positive, 3 days against 100, 20, 5 | ABSTAIN: RETROSPECTIVE_BSS_BELOW_0, NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION |
 | T1b 6 h | 68 events, 12 positive, BSS -0.083 (day interval -0.174 to -0.020, governing mint interval to +0.002), NOT_DISTINGUISHABLE_FROM_BASE_RATE; calibration in the large failed (mean 0.082 against 0.176) | UNCALIBRATED: 44 rows, 3 positive, 5 days | ABSTAIN: RETROSPECTIVE_CALIBRATION_FAILED, RETROSPECTIVE_BSS_BELOW_0, NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION |
-| T2 24 h | 59 events, 7 positive: INSUFFICIENT_EVENTS (minimum 10 per class); the BSS point +0.292 is not evidence of skill (interval to -0.026, Holm p 0.100, possible partial T2 contact PI-D-045) | UNCALIBRATED: 8 rows, 1 positive, 1 day | ABSTAIN: RETROSPECTIVE_BELOW_MINIMUM, NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION |
+| T2 24 h | 59 events, 7 positive: INSUFFICIENT_EVENTS (minimum 10 per class); the BSS point +0.292 is not evidence of skill (interval to -0.026, Holm p 0.1003 on the primary family (the entry's facts read the PRIMARY_HOLDOUT row since CP16-2; before it they had kept the secondary row's 1.0), possible partial T2 contact PI-D-045) | UNCALIBRATED: 8 rows, 1 positive, 1 day | ABSTAIN: RETROSPECTIVE_BELOW_MINIMUM, NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION |
 
 The other 63 entries per the three targets (B1, B3, B3F, B4, the tech-1, onchain-1, socialcat-1 and analog-1 cards) are NO_GO with NO_INCREMENTAL_PREDICTIVE_EDGE: none reaches the SHADOW criteria on the first-opening evaluation, none has a calibration card, none survives the selection correction (Phase 12: 116 rows NO_UNCORRECTED_SKILL, 13 FAILS_SELECTION_CORRECTION, 0 survive; the smallest max-T p against B2 is 0.638). Six tech-1 cards are not fitted (INSUFFICIENT_HISTORY) and three have no holdout evaluation (no candles under the Phase 05 seal).
 
@@ -25,7 +25,7 @@ The other 63 entries per the three targets (B1, B3, B3F, B4, the tech-1, onchain
    - VALIDATED_EXPERIMENTAL: SHADOW plus a BSS lower 95% bound above 0 after Holm on the retrospective and on the prospective holdout (at least 50 events), Brier not worse than B2, selection status SURVIVES_SELECTION_CORRECTION over the cumulative search (N_search 130, 169 in the sensitivity count); a model other than B2 also needs the lower bound of its improvement over B2 above 0.
    - Otherwise ABSTAIN for B0 and B2 (references) and NO_GO for every other candidate.
 4. A target's deployed mode is CHAMPION only for an entry at SHADOW or VALIDATED_EXPERIMENTAL; otherwise NO_VIABLE_CHAMPION with the two references. A pin of a lower entry is refused when it is written and when it is resolved.
-5. A champion is pinned and used only after its facts are rebuilt from the committed Phase 12 and 13 files and match (`verify_facts`, `verify_sources`; CP16-0), and only when `serve` finds no blocking state (below); a champion that fails is rolled back.
+5. A champion is pinned and used only after the registry itself rebuilds its facts from the committed Phase 12 and 13 files and finds them equal (`check_facts`, run inside `pin_event`, `rollback_event` and `serve`; CP16-2, no caller-supplied verifier), its recorded code files are unchanged, the caller's recomputed inference rows give its pinned hash, and `serve` finds no other blocking state (below); a champion that fails is rolled back.
 6. Probabilities come only from promoted, calibrated models through `abstention.forecast_result` and `validate_publication`; with NO_VIABLE_CHAMPION the document is ABSTAIN with MODEL_NOT_SELECTED. A backtest reference appears only when backtesting is VERIFIED (today BACKTEST_NOT_AVAILABLE). Behavioral scenarios stay in their own list, empty while MIROFISH_NO_GO.
 
 ## Target selection per opportunity
@@ -50,7 +50,10 @@ The other 63 entries per the three targets (B1, B3, B3F, B4, the tech-1, onchain
 | FEATURE_SCHEMA_MISMATCH | the request's feature set sha or version differs from the model's | that request abstains | recompute the inputs or retrain |
 | MODEL_INCOMPATIBLE_RETRAIN_REQUIRED | the running code's feature set, family version, target registry or labels version differs from the entry's | not used; rollback | RETRAIN_REQUIRED_BEFORE_ANY_USE |
 | INFERENCE_MISMATCH | the recomputed identical-inference hash differs from the pinned one | not used; rollback | ROLLBACK_AND_INVESTIGATE |
-| FACTS_NOT_VERIFIED, FACTS_MISMATCH | no source check was run, or the entry's facts differ from what the committed files give | not used; rollback | ROLLBACK_AND_INVESTIGATE |
+| INFERENCE_NOT_CHECKED | `serve` was given no recomputed inference rows | that request abstains | recompute the probe outputs |
+| MODEL_INCOMPATIBLE_RETRAIN_REQUIRED (code) | a recorded code file (features, baselines, stats, contract, labels, family module) changed, even without a version bump | not used; rollback | retrain or re-register after review |
+| FIXTURE_IN_REAL_REGISTRY | a fixture champion outside a fixture run | not used | ROLLBACK_AND_INVESTIGATE |
+| FACTS_NOT_VERIFIED, FACTS_MISMATCH | `serve` was given no repository root, or the registry's own rebuild of the facts from the committed files differs | not used; rollback | ROLLBACK_AND_INVESTIGATE |
 
 Retraining is never automatic: no scheduled job is approved (PI-D-005). A retrained card is a new entry that starts at ABSTAIN and inherits no level.
 
@@ -64,7 +67,7 @@ NO_ENSEMBLE for every target (`ENSEMBLE_ABLATION.md`): nothing beats the base ra
 
 ## What would change the state, and what cannot
 
-- The frozen promotion table asks for a FIRST_OPENING retrospective evaluation. The retrospective holdout (2026-10-17 to 2026-10-24) is spent, and a model trained after 2026-10-17 has that window inside its training data, so under the frozen table no model can reach SHADOW or VALIDATED_EXPERIMENTAL. Opening the promotion path needs a change control to ACCEPTANCE `promotion` (for example a second, untouched prospective window in place of the retrospective one), decided by Elving or the orchestrator before any prospective label is read.
+- The frozen promotion table asks for a FIRST_OPENING retrospective evaluation. The retrospective holdout (2026-10-17 to 2026-10-24) is spent: a model with a later cutoff has that window inside its training data, and a model that keeps the 2026-10-17 cutoff meets the same spent evaluation, so under the frozen table no model can reach SHADOW or VALIDATED_EXPERIMENTAL. Orchestrator decision (PI-D-091): no change to ACCEPTANCE now; changing the table is Elving's decision, and the honest route is the prospective holdout of Phase 19 (an untouched prospective window in place of the spent retrospective one, registered before any prospective label is read, with the rest of the SHADOW conjunction kept).
 - Even then a promotion needs admissible prospective evidence: at least 50 matured events and 10 per class per target, not the fit set (Phase 19), a CALIBRATED card, and for VALIDATED_EXPERIMENTAL the selection correction over the whole search.
 - `calibration.verify_card` keeps refusing a self-given VALIDATED_EXPERIMENTAL card. The change control that lifts it must make it depend on a registry entry whose recomputed level is VALIDATED_EXPERIMENTAL.
 - The frozen cards are MODEL_STALE for decisions after 2026-10-31T00:00:00Z, so Phase 19's prospective comparison of the references needs retrained reference cards (a new plan) for decisions after that date.

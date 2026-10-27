@@ -45,7 +45,7 @@ The mean of B0 and B2 sits between its two members, as any average with the base
 | CPU per decision, sum of members (descriptive, this machine) | about 14 to 15 microseconds | about 18 to 19 microseconds | not fitted |
 | External calls, spend | 0 | 0 | 0 |
 
-The analog cards cost about 0.7 to 1.5 ms per decision and the logistic and rule cards about 4 to 21 microseconds (`LATENCY.json`, machine dependent). Stability of the members (`STABILITY.json`, fold cards against the frozen card on the 176 holdout decisions' inputs): T1 B2 numbers move by up to 0.43 (median 0.02 to 0.04) between training cutoffs one to four days apart (104 to 123 training rows); T1b B2 up to 0.08 (median 0.003 to 0.009); T1 S1 up to 0.19; T1b S1 up to 0.04. With so few training days, the simplest models are themselves unstable on T1, so a more complex combination has nothing stable to build on.
+The analog cards cost about 0.7 to 1.5 ms per decision and the logistic and rule cards about 4 to 21 microseconds (`LATENCY.json`, machine dependent). Stability of the members (`STABILITY.json`, fold cards against the frozen card on the inputs of the 95 Solana decisions of the 176 retrospective-holdout decisions per target): T1 B2 numbers move by up to 0.43 (median 0.02 to 0.04) between training cutoffs one to four days apart (104 to 123 training rows); T1b B2 up to 0.08 (median 0.003 to 0.009); T1 S1 up to 0.19; T1b S1 up to 0.04. With so few training days, the simplest models are themselves unstable on T1, so a more complex combination has nothing stable to build on.
 
 ## Limitations
 

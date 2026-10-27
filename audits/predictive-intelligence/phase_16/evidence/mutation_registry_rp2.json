@@ -1,0 +1,490 @@
+{
+ "module": "memelab/predictive/registry.py",
+ "tests": "tests/test_predictive_registry.py",
+ "mutations": 96,
+ "caught": 96,
+ "survivors": [],
+ "results": [
+  {
+   "mutation": "P1 SHADOW bss bound strict",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_shadow_needs_every_criterion_and_prospective_calibration"
+  },
+  {
+   "mutation": "P2 prospective calibration not required",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_cx16_a_positive_t2_point_on_seven_positives_and_no_calibration_stays_abstain"
+  },
+  {
+   "mutation": "P3 evidence source unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_holdout_and_calibration_count_boundaries"
+  },
+  {
+   "mutation": "P4 post-opening may promote",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_post_opening_evaluations_cannot_promote_and_a_post_opening_failure_blocks"
+  },
+  {
+   "mutation": "P5 retrospective counts unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_cx16_a_positive_t2_point_on_seven_positives_and_no_calibration_stays_abstain"
+  },
+  {
+   "mutation": "P6 failed bins ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_shadow_needs_every_criterion_and_prospective_calibration"
+  },
+  {
+   "mutation": "P7 selection correction ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_validated_experimental_needs_both_holdouts_b2_and_the_selection_correction"
+  },
+  {
+   "mutation": "P8 B2 comparison skipped",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_validated_experimental_needs_both_holdouts_b2_and_the_selection_correction"
+  },
+  {
+   "mutation": "P9 prospective bound unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_validated_experimental_needs_both_holdouts_b2_and_the_selection_correction"
+  },
+  {
+   "mutation": "P10 candidates abstain instead of no-go",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_a_reference_baseline_without_evidence_is_abstain_and_a_candidate_is_no_go"
+  },
+  {
+   "mutation": "P11 post-opening failure ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_post_opening_evaluations_cannot_promote_and_a_post_opening_failure_blocks"
+  },
+  {
+   "mutation": "P12 training counts unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_shadow_needs_every_criterion_and_prospective_calibration"
+  },
+  {
+   "mutation": "P13 test flags unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_shadow_needs_every_criterion_and_prospective_calibration"
+  },
+  {
+   "mutation": "P14 behavioral facts accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_p27_behavioral_sources_and_simulation_models_are_refused"
+  },
+  {
+   "mutation": "P15 retrospective bound unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_validated_experimental_needs_both_holdouts_b2_and_the_selection_correction"
+  },
+  {
+   "mutation": "P16 alpha not exact",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_validated_experimental_needs_both_holdouts_b2_and_the_selection_correction"
+  },
+  {
+   "mutation": "E1 level not recomputed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_any_change_to_the_stored_promotion_is_refused_even_at_the_same_level"
+  },
+  {
+   "mutation": "E2 entry id not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_entry_id_is_the_content_hash_and_one_changed_byte_refuses_it"
+  },
+  {
+   "mutation": "E3 card content unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_verify_entry_checks_the_card_its_bytes_and_its_calibration_card"
+  },
+  {
+   "mutation": "E4 card bytes unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_verify_entry_checks_the_card_its_bytes_and_its_calibration_card"
+  },
+  {
+   "mutation": "E5 calibration card hash unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_verify_entry_checks_the_card_its_bytes_and_its_calibration_card"
+  },
+  {
+   "mutation": "E6 overwrite allowed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_write_entry_refuses_to_overwrite_an_entry_with_other_content"
+  },
+  {
+   "mutation": "E7 file name unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_entry_id_is_the_content_hash_and_one_changed_byte_refuses_it"
+  },
+  {
+   "mutation": "E8 publishable ignores calibration",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_publishable_needs_the_level_and_a_calibrated_card_of_that_level"
+  },
+  {
+   "mutation": "E9 publishable flag unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_publishable_needs_the_level_and_a_calibrated_card_of_that_level"
+  },
+  {
+   "mutation": "E10 behavioral entry accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_an_entry_whose_own_source_is_not_a_statistical_model_is_refused"
+  },
+  {
+   "mutation": "E11 facts kind unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_make_entry_refuses_facts_of_another_kind_a_target_mismatch_and_a_missing_module_version"
+  },
+  {
+   "mutation": "I1 no number and no reason",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_p38_non_finite_facts_and_malformed_inference_outputs_are_refused"
+  },
+  {
+   "mutation": "I2 range unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_p38_non_finite_facts_and_malformed_inference_outputs_are_refused"
+  },
+  {
+   "mutation": "I3 duplicates allowed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_p38_non_finite_facts_and_malformed_inference_outputs_are_refused"
+  },
+  {
+   "mutation": "I4 inference compare skipped",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_identical_inference_hash_detects_any_change_of_output"
+  },
+  {
+   "mutation": "I5 non-finite accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_p38_non_finite_facts_and_malformed_inference_outputs_are_refused"
+  },
+  {
+   "mutation": "C1 runtime feature set unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_serve_uses_a_pinned_champion_only_while_every_check_holds"
+  },
+  {
+   "mutation": "C2 feature version unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_a_feature_version_change_alone_is_incompatible"
+  },
+  {
+   "mutation": "C3 request feature set unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_serve_uses_a_pinned_champion_only_while_every_check_holds"
+  },
+  {
+   "mutation": "C4 registry fingerprint unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_p46_a_feature_or_schema_change_without_retrain_fails_compatibility"
+  },
+  {
+   "mutation": "C5 labels version unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_p46_a_feature_or_schema_change_without_retrain_fails_compatibility"
+  },
+  {
+   "mutation": "S1 stale at the edge",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_staleness_and_availability_thresholds_are_exact"
+  },
+  {
+   "mutation": "S2 later alarms counted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_staleness_and_availability_thresholds_are_exact"
+  },
+  {
+   "mutation": "S3 earlier decision accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_staleness_and_availability_thresholds_are_exact"
+  },
+  {
+   "mutation": "L1 chain not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_the_log_is_chained_and_refuses_changed_dropped_reordered_or_partial_lines"
+  },
+  {
+   "mutation": "L2 canonical form unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_the_log_is_chained_and_refuses_changed_dropped_reordered_or_partial_lines"
+  },
+  {
+   "mutation": "L3 time order unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_the_log_is_chained_and_refuses_changed_dropped_reordered_or_partial_lines"
+  },
+  {
+   "mutation": "L4 append ignores a changed file",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_append_refuses_a_log_changed_since_the_last_append_and_keeps_earlier_lines"
+  },
+  {
+   "mutation": "L5 partial write accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_the_log_is_chained_and_refuses_changed_dropped_reordered_or_partial_lines"
+  },
+  {
+   "mutation": "L6 unknown event kind accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_the_log_is_chained_and_refuses_changed_dropped_reordered_or_partial_lines"
+  },
+  {
+   "mutation": "R1 resolve ignores time",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_resolve_uses_the_pin_in_force_at_the_decision_time"
+  },
+  {
+   "mutation": "R2 resolve accepts a low champion",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_cx16_a_forged_champion_level_is_refused_everywhere"
+  },
+  {
+   "mutation": "R3 pin accepts any level",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_cx16_a_forged_champion_level_is_refused_everywhere"
+  },
+  {
+   "mutation": "R4 pin accepts a fixture champion",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_a_fixture_champion_is_refused_beside_real_references"
+  },
+  {
+   "mutation": "R5 references unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_pins_refuse_fixtures_in_a_real_registry_and_references_of_another_kind_or_target"
+  },
+  {
+   "mutation": "R6 rollback reuses the failed champion",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_rollback_goes_to_the_baseline_then_to_abstention_and_keeps_history"
+  },
+  {
+   "mutation": "R7 rollback ignores usability",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_rollback_skips_an_earlier_champion_that_is_no_longer_usable"
+  },
+  {
+   "mutation": "R8 unknown entries accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_resolve_uses_the_pin_in_force_at_the_decision_time"
+  },
+  {
+   "mutation": "R9 fixture references accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_pins_refuse_fixtures_in_a_real_registry_and_references_of_another_kind_or_target"
+  },
+  {
+   "mutation": "V1 serve ignores status",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_serve_uses_a_pinned_champion_only_while_every_check_holds"
+  },
+  {
+   "mutation": "V2 serve ignores compatibility",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_serve_uses_a_pinned_champion_only_while_every_check_holds"
+  },
+  {
+   "mutation": "V3 serve ignores inference",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_serve_uses_a_pinned_champion_only_while_every_check_holds"
+  },
+  {
+   "mutation": "H1 holdout rows accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_select_champion_refuses_holdout_or_post_opening_rows_and_delegates_the_rule"
+  },
+  {
+   "mutation": "N1 shared sources accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_members_may_not_share_an_evidence_source_and_every_column_is_declared"
+  },
+  {
+   "mutation": "N2 in-sample row accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_out_of_fold_rows_refuse_in_sample_rows_and_members_from_other_folds"
+  },
+  {
+   "mutation": "N3 fold disagreement accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_out_of_fold_rows_refuse_in_sample_rows_and_members_from_other_folds"
+  },
+  {
+   "mutation": "N4 stack overlap allowed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_a_stacking_fit_row_that_is_also_an_evaluation_row_is_refused_even_when_it_looks_earlier"
+  },
+  {
+   "mutation": "N5 stack chronology unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_stacking_is_chronological_gated_and_never_in_sample"
+  },
+  {
+   "mutation": "N6 stack gate days ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_stacking_is_chronological_gated_and_never_in_sample"
+  },
+  {
+   "mutation": "N7 fit_stack ignores the gate",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_stacking_is_chronological_gated_and_never_in_sample"
+  },
+  {
+   "mutation": "N8 ensemble decision ignores the correction",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_ensemble_decision_needs_skill_over_b2_the_correction_and_a_reachable_level"
+  },
+  {
+   "mutation": "N9 behavioral member accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_p27_behavioral_sources_and_simulation_models_are_refused"
+  },
+  {
+   "mutation": "N10 single member accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_members_may_not_share_an_evidence_source_and_every_column_is_declared"
+  },
+  {
+   "mutation": "T1 deferred targets attempted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_no_viable_champion_gives_abstain_documents_with_model_not_selected_that_validate"
+  },
+  {
+   "mutation": "T2 chain unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_no_viable_champion_gives_abstain_documents_with_model_not_selected_that_validate"
+  },
+  {
+   "mutation": "F1 reference record published",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_shadow_baseline_mode_records_are_internal_and_never_documents"
+  },
+  {
+   "mutation": "G1 facts not compared",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_verify_facts_refuses_forged_facts_given_the_committed_records"
+  },
+  {
+   "mutation": "G2 sources not hashed",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_derive_facts_rebuilds_the_t1_b2_facts_from_the_committed_files"
+  },
+  {
+   "mutation": "G7 verify_facts takes any card",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_verify_facts_refuses_another_card"
+  },
+  {
+   "mutation": "K1 pin skips the own rebuild",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_cx_s16_a_forged_facts_entry_is_never_pinned_or_served_whatever_the_caller_checks"
+  },
+  {
+   "mutation": "K2 pin without root accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_cp16_2_pin_and_serve_need_the_registry_s_own_rebuild"
+  },
+  {
+   "mutation": "K3 serve skips the rebuild",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_cx_s16_a_forged_facts_entry_is_never_pinned_or_served_whatever_the_caller_checks"
+  },
+  {
+   "mutation": "K4 serve without root accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_cp16_2_pin_and_serve_need_the_registry_s_own_rebuild"
+  },
+  {
+   "mutation": "K5 serve without inference accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_serve_refuses_a_fixture_champion_outside_a_fixture_run_and_needs_inference_rows"
+  },
+  {
+   "mutation": "K6 code changes ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_m5_a_transform_code_change_without_a_version_bump_is_incompatible"
+  },
+  {
+   "mutation": "K7 code hash compare skipped",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_m5_a_transform_code_change_without_a_version_bump_is_incompatible"
+  },
+  {
+   "mutation": "K8 fixture served in a real run",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_serve_refuses_a_fixture_champion_outside_a_fixture_run_and_needs_inference_rows"
+  },
+  {
+   "mutation": "K9 primary row not preferred",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_derive_facts_rebuilds_the_t1_b2_facts_from_the_committed_files"
+  },
+  {
+   "mutation": "K10 duplicate rows accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_m2_b2_facts_come_from_the_primary_holdout_row_and_t2_holm_p_is_0_100"
+  },
+  {
+   "mutation": "K11 every bin missing passes at any size",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_m3_a_missing_every_bin_result_fails_from_40_events"
+  },
+  {
+   "mutation": "K12 agent fields ignored",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_m6_nested_agent_agreement_fields_are_refused_anywhere_in_an_entry"
+  },
+  {
+   "mutation": "K13 agent fields not walked into dicts",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_m6_nested_agent_agreement_fields_are_refused_anywhere_in_an_entry"
+  },
+  {
+   "mutation": "K14 check_facts compares nothing",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_cp16_2_pin_and_serve_need_the_registry_s_own_rebuild"
+  },
+  {
+   "mutation": "K15 check_facts skips the evidence hashes",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_check_facts_also_checks_every_evidence_file_hash"
+  },
+  {
+   "mutation": "K16 code files may omit features.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_m5_a_transform_code_change_without_a_version_bump_is_incompatible"
+  },
+  {
+   "mutation": "M1 family version unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_m4_family_version_request_feature_version_card_feature_set_and_the_ve_holm_condition"
+  },
+  {
+   "mutation": "M2 request feature version unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_m4_family_version_request_feature_version_card_feature_set_and_the_ve_holm_condition"
+  },
+  {
+   "mutation": "M3 verify_entry skips the card feature set",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_m4_family_version_request_feature_version_card_feature_set_and_the_ve_holm_condition"
+  },
+  {
+   "mutation": "M4 VE retrospective Holm unchecked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_m4_family_version_request_feature_version_card_feature_set_and_the_ve_holm_condition"
+  },
+  {
+   "mutation": "F2 candidates scored as references",
+   "caught": true,
+   "first_failure": "tests/test_predictive_registry.py::test_shadow_baseline_mode_records_are_internal_and_never_documents"
+  }
+ ],
+ "wall_s": 257.6
+}

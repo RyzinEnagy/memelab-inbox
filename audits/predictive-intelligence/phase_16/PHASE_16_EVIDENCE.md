@@ -1,6 +1,6 @@
 # Phase 16 evidence: champion selection, ensemble decision and model registry
 
-Status: **NEEDS_REVIEW** (first pass complete; the orchestrator's independent skeptic has not reviewed it yet). Branch `feature/predictive-intelligence`; HEAD before `576f99d`; work 2026-10-27 from 02:38Z. Package 41 of 41 checksums OK. Spend 0 (no vendor, Firecrawl, WebSearch, WebFetch or language-model call; audit hook, 0 socket events).
+Status: **PASS** after repair pass 2 (the orchestrator's independent skeptic found no material failure, 9 minor findings and CX-S16; all handled, see "Repair pass 2"). TEST_ONLY part: the promotion branch (SHADOW, VALIDATED_EXPERIMENTAL, a pinned champion, its use and its rollback) exists only on fixtures. Branch `feature/predictive-intelligence`; HEAD before `576f99d`; work 2026-10-27 from 02:38Z. Package 41 of 41 checksums OK. Spend 0 (no vendor, Firecrawl, WebSearch, WebFetch or language-model call; audit hook, 0 socket events).
 
 ## Result in plain words
 
@@ -95,7 +95,7 @@ Each run: no socket (audit hook), 3 `training_labels` calls (development labels,
 
 - CX-16 (named before building): a registry that copies Phase 12's `champion: P07_B2` into the deployed slot and shows T2 B2's +0.29 BSS point as skill. Caught by `promotion_decision` (RETROSPECTIVE_BELOW_MINIMUM, NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION), `pin_event` (a champion needs SHADOW or VALIDATED_EXPERIMENTAL), `resolve` (a hand-written CHAMPION pin of an ABSTAIN entry is refused), `verify_entry` (a forged level is refused) and the output tests (`test_cx16_t2_b2_has_a_positive_point_but_stays_an_abstain_reference`, `test_every_target_is_pinned_no_viable_champion_with_its_own_references`).
 - CX-16b (self-review, CP16-0): forged facts with a recomputed id. Caught by `verify_facts` against the committed files and by `pin_event` and `serve` needing that check (`test_cp16_0_forged_facts_pass_verify_entry_but_are_refused_against_their_sources_and_never_pinned`).
-- The independent skeptic's counterexample: pending (orchestrator).
+- CX-S16 (independent skeptic): a forged-facts B2 entry pinned and served at SHADOW through a plausible but wrong caller check (`verify=verify_sources`). Caught now by the registry's own rebuild inside `pin_event` and `serve` (no caller verifier exists): `test_cx_s16_a_forged_facts_entry_is_never_pinned_or_served_whatever_the_caller_checks` (fails on the first-pass code, `evidence/rp2_tests_on_first_pass_code.txt`) and `test_cp16_2_pin_and_serve_need_the_registry_s_own_rebuild`.
 
 ## Findings and limitations
 
@@ -139,4 +139,26 @@ Each run: no socket (audit hook), 3 `training_labels` calls (development labels,
 
 The model documents' hashes are in RESULTS.json. Sources: no external source was read in this phase; every input is a committed file of this repository or a private store listed in the run log.
 
-PHASE 16: NEEDS_REVIEW (pending the orchestrator's independent skeptic). STOP.
+## Repair pass 2 (PI-D-089 to PI-D-092)
+
+The review is in `skeptic/PHASE_16_SKEPTIC.md` with its scripts and outputs. Each finding was checked against the code first; the skeptic's CX-S16 output shows the first-pass `pin_event` writing a CHAMPION pin and `serve` returning `use_champion: true` at SHADOW for the forged entry.
+
+| Finding | What changed | Caught by |
+|---|---|---|
+| m1, CX-S16 | `verify` callbacks removed; `check_facts(entry, root)` (the registry's own rebuild from fixed committed paths plus every recorded sha256) runs inside `pin_event`, `rollback_event` and `serve`; fixture champions need `allow_fixture` | `test_cx_s16_...`, `test_cp16_2_...`, `test_serve_refuses_a_fixture_champion_outside_a_fixture_run_and_needs_inference_rows`; mutations K1 to K4, K14, K15 |
+| m2 | `metric_rows` takes the PRIMARY_HOLDOUT row first and refuses two rows of a kind; the test helper uses it. B2 facts: kind PRIMARY_HOLDOUT; Holm p T1 1.0, T1b 1.0, T2 0.1003 (was 1.0, the secondary family); no level changes | `test_m2_b2_facts_come_from_the_primary_holdout_row_and_t2_holm_p_is_0_100`, output tests; mutations K9, K10 |
+| m3 | a missing every-bin result fails from 40 events | `test_m3_...`; mutation K11 |
+| m4 | tests for the four survivors | `test_m4_...`; mutations M1 to M4 |
+| m5 | entries record the sha256 of their code files; `serve` checks them (a transform change without a version bump is MODEL_INCOMPATIBLE_RETRAIN_REQUIRED) and needs recomputed inference rows (INFERENCE_NOT_CHECKED) | `test_m5_a_transform_code_change_without_a_version_bump_is_incompatible`; mutations K5 to K7, K16 |
+| m6 | `agent_fields` refuses agent, vote, agreement, consensus, persona, swarm or simulation keys and strings at any depth | `test_m6_...`; mutations K12, K13 |
+| m7 | wording: the probe set is the 95 Solana decisions of the 176 per target (85 with a B2 number); the inference record says so; a model that keeps the 2026-10-17 cutoff meets the same spent evaluation (CHAMPION_POLICY, ENSEMBLE_ABLATION; the checklist is pre-registration and stays as written) | records |
+| m8 | 7 reproduction rows (TRAP_OR_CHECK, claim REPRODUCTION_NOT_A_CONFIGURATION); N_search 130 and 169 unchanged | output test |
+| m9 | CP12-2 (PI-D-090): Phase 12 `card_paths` keeps Phases 07 to 11; `plan` and `predict` 7 of 7 and the opening REPRODUCTION 10 of 10 byte-equal at `b4bb03b` (`evidence/cp12_2_phase12_reproduction.json`; one logged REPRODUCTION read of the sealed label file, 2026-10-27T04:52:43Z to 05:06:55Z); `tests/test_predictive_reproductions.py` runs the Phase 07, 12 (plan, predict), 13 and 16 entry points and compares their committed outputs | the new test (5 passed) |
+
+Two more mutations survived the repair-pass-2 probe (E10, an entry's own source field; G1, `verify_facts` comparing nothing) and were closed by two tests; the probe is 96 of 96 at `b4bb03b` (`evidence/mutation_registry_rp2.json`). The repair tests fail on the first-pass code (8 of 8, `evidence/rp2_tests_on_first_pass_code.txt`).
+
+Orchestrator decision (PI-D-091): no change to ACCEPTANCE; SHADOW is unreachable under the frozen table; changing it is Elving's decision, and the prospective holdout (Phase 19) is the honest route.
+
+Recorded run repeated at `b4bb03b` (outputs `0e71f55`): what changed is in `evidence/rerun_rp2_diff.json` (every entry: the `code` key, the retrain policy and thresholds; the three B2 entries' retrospective kind and Holm p; pins gain `facts_check`; the ledger gains 7 reproduction rows). Levels, statuses, publishable flags, inference hashes, model shas, modes, ensemble decisions and today's documents are equal; a second repeat is byte-equal except the run log and latency.
+
+PHASE 16: PASS (TEST_ONLY part: the promotion branch on fixtures). STOP.
