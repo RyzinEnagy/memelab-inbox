@@ -197,7 +197,7 @@ def rows_of(w, y, days, leads=None):
 def test_warning_metrics_by_hand():
     w = ["EVENT", "EVENT", "NONE", "NONE", "CONFLICT", "NOT_CODABLE", "EVENT"]
     y = [1, 0, 1, 0, 1, 1, 1]
-    r = S.warning_metrics(rows_of(w, y, ["d1"] * 7, [3600.0, None, None, None, None, None, 7200.0]), reps=50, seed=1)
+    r = S.warning_metrics(rows_of(w, y, ["d1"] * 7, [3600.0, None, 36000.0, None, None, None, 7200.0]), reps=50, seed=1)
     assert r["excluded"] == {"CONFLICT": 1, "NOT_CODABLE": 1} and r["n_scored"] == 5 and r["positives"] == 3
     assert r["warned"] == 3 and r["hits"] == 2 and r["precision"] == pytest.approx(2 / 3)
     assert r["prevalence"] == pytest.approx(3 / 5) and r["lift"] == pytest.approx(2 / 3 - 3 / 5)
@@ -373,3 +373,30 @@ def test_summarize_rows_counts_independence_units():
             {"mint": "a", "decision_time_utc": "2026-10-06T05:00:00Z", "export_commit": "c1"},
             {"mint": "b", "decision_time_utc": "2026-10-07T01:00:00Z", "export_commit": "c2"}]
     assert S.summarize_rows(rows) == {"rows": 3, "mints": 2, "days": 2, "export_commits": 2}
+
+
+def test_permutation_p_uses_the_plus_one_rule():
+    # two warned decisions on the only two positives among 40 of one day: a permutation reaches 2 hits with chance 1/780
+    w = np.zeros(40, bool)
+    w[[3, 17]] = True
+    y = np.zeros(40, int)
+    y[[3, 17]] = 1
+    p = S.day_permutation(w, y, ["d"] * 40, reps=99, seed=2)
+    assert p["observed_hits"] == 2 and p["p_up"] >= 1 / 100 and abs(p["p_up"] * 100 - round(p["p_up"] * 100)) < 1e-9
+    assert p["p_down"] == 1.0
+
+
+def test_holm_is_applied_before_a_descriptive_verdict():
+    res = {T1: {"gate": None, "lift": 0.1, "permutation": {"p_up": 0.03, "p_down": 0.9}},
+           T2: {"gate": None, "lift": 0.1, "permutation": {"p_up": 0.04, "p_down": 0.9}}}
+    hb = S.holm_by_target(res)
+    assert hb[T1]["p_up_holm"] == pytest.approx(0.09) and hb[T2]["p_up_holm"] == pytest.approx(0.09)
+    assert hb[T1]["verdict"] == hb[T2]["verdict"] == S.NOT_DISTINGUISHABLE
+    assert S.holm_by_target({T1: {**res[T1], "permutation": {"p_up": 0.01, "p_down": 0.9}}})[T1]["verdict"] == S.LIFT_SUGGESTED
+
+
+def test_a_small_p_with_the_wrong_sign_is_not_a_lift():
+    assert S.descriptive_verdict({"gate": None, "lift": -0.1}, 0.01, 0.9) == S.NOT_DISTINGUISHABLE
+    assert S.descriptive_verdict({"gate": None, "lift": 0.1}, 0.9, 0.01) == S.NOT_DISTINGUISHABLE
+    assert S.descriptive_verdict({"gate": None, "lift": -0.1}, 0.9, 0.01) == S.WORSE
+    assert S.descriptive_verdict({"gate": S.INSUFFICIENT_DAYS, "lift": 0.5}, 0.0001, 0.9) == S.INSUFFICIENT_DAYS
