@@ -103,7 +103,7 @@ def test_the_search_ledger_extends_phase_16_with_runs_that_are_not_configuration
 
 def test_the_mutation_probe_at_the_frozen_code_caught_every_mutation():
     d = json.loads((P17 / "evidence/mutation_integration.json").read_text())
-    assert d["mutations"] == 56 and d["caught"] == 56 and d["survivors"] == []
+    assert d["mutations"] == 59 and d["caught"] == 59 and d["survivors"] == []
 
 
 def test_pre_registration_was_committed_before_the_integration_code():

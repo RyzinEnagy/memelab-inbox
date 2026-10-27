@@ -295,7 +295,7 @@ def _predictive_section(results: list[dict], s2: dict, t: float, path: Path) -> 
     it never changes a score, fatal flag, status, list, watchlist row or report above it. None when off."""
     try:
         from .predictive import integration
-    except ImportError:
+    except Exception:                                 # any import failure: the scout never breaks because of this package
         return None
     return integration.scout_section(results, stage2=s2, scout_time=t, report_path=path)
 
@@ -304,7 +304,7 @@ def _predictive_line(r: dict) -> str | None:
     """Phase 17, opt-in: one research line after `analyze`. None when off."""
     try:
         from .predictive import integration
-    except ImportError:
+    except Exception:
         return None
     return integration.analyze_line(r)
 

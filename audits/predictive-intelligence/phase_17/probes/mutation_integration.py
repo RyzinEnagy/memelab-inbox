@@ -88,6 +88,10 @@ MUTATIONS = [
     ("W2 veto line hidden", INT, '                L_.append(f"- Fatal-flag veto: {\', \'.join(sv[\'flags\'])}; no forecast clears it")', '                pass'),
     # rule 16: metrics
     ("O1 duplicates miscounted", INT, '"unchanged_cache_hits": ev.count("UNCHANGED"), "duplicates": ev.count("DUPLICATE"),', '"unchanged_cache_hits": ev.count("UNCHANGED"), "duplicates": 0,'),
+    # CP17-0 (PI-D-094)
+    ("K1 state directory guard removed", INT, '    refusal = state_dir_refusal(sdir)\n    if refusal:', '    refusal = None\n    if refusal:'),
+    ("K2 serve state not in the key", INT, '"states": sorted({b["state"] for b in served[t]["blocking"]})}', '"states": []}'),
+    ("K3 cli catches only ImportError", CLI, '    except Exception:                                 # any import failure', '    except ImportError:                               # any import failure'),
     # bt-adapter-1
     ("B1 identity unchecked", BTA, '    if rec.get("chain", "solana") != chain or rec.get("mint") != mint:', '    if False:'),
     ("B2 later assessment accepted", BTA, '    elif float(rec["as_of"]) > float(decision_time):', '    elif False:'),

@@ -1235,3 +1235,41 @@ def test_a_dropped_pass_line_breaks_the_pass_chain(lab):
     p.write_text("\n".join(p.read_text().splitlines()[1:]) + "\n")
     s = run([persist(result("CCC", M3, T_TODAY - 400), lab)], T_TODAY + 20, lab)
     assert s["state"] == "STATE_TAMPERED" and "chain broken" in s["detail"]
+
+
+# ---------------------------------------------------------------- CP17-0 (PI-D-094): self-review pass 2, each fails on 3d2089b
+def test_cp17_0_a_state_directory_inside_the_repository_but_outside_data_private_is_refused(lab):
+    r = persist(result("AAA", M1, T_TODAY - 600), lab)
+    for rel in ("data/state/p17_must_not_exist", "inbox/p17_must_not_exist", "p17_must_not_exist"):
+        target = ROOT / rel
+        assert not target.exists()
+        s = run([r], T_TODAY, lab, state_dir=target)
+        assert s["state"] == "STATE_DIR_REFUSED" and not target.exists(), rel
+        assert "State refused: STATE_DIR_REFUSED" in I.render(s)
+    assert I.state_dir_refusal(ROOT / "data/private/predictive") is None and I.state_dir_refusal(lab / "state") is None
+    line = I.analyze_line(r, capture_time=T_TODAY, config_path=cfg(lab), state_dir=ROOT / "state/p17_x", lab_db=db.DB_PATH)
+    assert line.startswith("predictive: STATE_DIR_REFUSED") and not (ROOT / "state/p17_x").exists()
+
+
+def test_cp17_0_a_serve_state_change_within_the_hour_is_material(tmp_path, lab):
+    w = fixture_world(tmp_path)
+    forecast_pass(tmp_path, w)
+    assert lines(tmp_path, "documents")[0]["document"]["prediction_status"] == "FORECAST"
+    r2 = persist(result("FXA", M1, T_FX - 300), tmp_path)                   # same content, 5 minutes later
+    s = run([r2], T_FX + 300, tmp_path, **fx_kw(w, tmp_path, drift_alarms=[T_FX + 60]))
+    assert s["metrics"]["event_counts"] == {"MATERIAL_CHANGE": 1} and lines(tmp_path, "requests")[-1]["changes"] == ["served changed"]
+    t1 = next(t for t in lines(tmp_path, "requests")[-1]["targets"] if t["target"] == T1)
+    assert t1["prediction_status"] == "ABSTAIN" and "DRIFT_ALERT" in t1["registry"]["blocking"]
+    assert lines(tmp_path, "requests")[-1]["material"]["served"]["T1_24h"]["states"] == ["DRIFT_ALERT"]
+
+
+def test_cp17_0_any_failure_importing_the_package_leaves_the_scout_and_analyze_untouched(monkeypatch):
+    import builtins
+    real = builtins.__import__
+
+    def broken(name, globals=None, locals=None, fromlist=(), level=0):
+        if (name == "predictive" and level == 1 and "integration" in (fromlist or ())) or name.endswith("predictive.integration"):
+            raise RuntimeError("a broken predictive package")
+        return real(name, globals, locals, fromlist, level)
+    monkeypatch.setattr(builtins, "__import__", broken)
+    assert cli._predictive_section([], {}, 0.0, Path("x")) is None and cli._predictive_line({}) is None

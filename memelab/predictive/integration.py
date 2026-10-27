@@ -132,6 +132,17 @@ def default_state_dir() -> Path:
     return Path(DATA_DIR) / "private" / "predictive"
 
 
+def state_dir_refusal(state_dir: str | Path, root: Path = ROOT) -> str | None:
+    """A state directory inside the repository is allowed only under data/private/ (gitignored): the pass never appends to a
+    tracked path (CP17-0, PI-D-094). Outside the repository (a scratch folder) is allowed."""
+    p, r = Path(state_dir).resolve(), Path(root).resolve()
+    if p == r or r in p.parents:
+        priv = (r / "data" / "private").resolve()
+        if not (p == priv or priv in p.parents):
+            return f"state directory {p} is inside the repository and not under data/private/"
+    return None
+
+
 # ---------------------------------------------------------------- state: append-only, sha-checked files (rule 14)
 def _read_lines(p: Path) -> list[dict]:
     if not p.exists():
@@ -479,6 +490,10 @@ def run_pass(results: Sequence[dict], *, capture_time: float, source: str = "sco
     backtest_db = backtest_db if backtest_db is not None else cfg["backtest_db"]
     summary: dict[str, Any] = {"integration_version": INTEGRATION_VERSION, "mode": mode, "source": source,
                                "capture_time_utc": _iso(capture_time), "state_dir": str(sdir), "errors": []}
+    refusal = state_dir_refusal(sdir)
+    if refusal:
+        summary.update(state="STATE_DIR_REFUSED", detail=refusal, events=[])
+        return summary
     try:
         state = load_state(sdir)
     except Exception as e:  # noqa: BLE001  a tampered state refuses the pass: nothing is written (rule 14)
@@ -651,7 +666,8 @@ def _process(tr: dict, base: dict, *, state: dict, newest: dict, attempted: int,
     served: dict[str, dict] = {}
     for t in PRIMARY:
         served[t] = _serve(t, T, reg=reg, rt=rt, root=root, allow_fixture=allow_fixture, drift_alarms=drift_alarms)
-    sig = {SHORT[t]: {"model_sha": served[t]["model_sha"], "pin": served[t]["pin_event_id"]} for t in PRIMARY}
+    sig = {SHORT[t]: {"model_sha": served[t]["model_sha"], "pin": served[t]["pin_event_id"],
+                      "states": sorted({b["state"] for b in served[t]["blocking"]})} for t in PRIMARY}     # CP17-0: serve state too
     fids = {t: C.forecast_id(tr["chain"], tr["mint"], tr["snapshot_hash"], t, C.TARGETS[t]["version"], C.TARGETS[t]["horizon_s"],
                              served[t]["model_sha"]) for t in PRIMARY}
     material = material_of(tr, pool, cat, sig)
@@ -947,9 +963,9 @@ def render(summary: dict) -> str:
     L_ = ["## Predictive research section (flag on, research only)", "",
           "This section is separate from the opportunity score. It does not change the 100-point score, the fatal flags, the status, "
           "the watchlist or the lists above, and it is not advice.", ""]
-    if summary.get("state") == "STATE_TAMPERED":
-        L_ += [f"- State refused: STATE_TAMPERED ({summary.get('detail')}). Nothing was assessed or written; every opportunity "
-               f"above has no forecast in this run.", ""]
+    if summary.get("state") in ("STATE_TAMPERED", "STATE_DIR_REFUSED"):
+        L_ += [f"- State refused: {summary.get('state')} ({summary.get('detail')}). Nothing was assessed or written; every "
+               f"opportunity above has no forecast in this run.", ""]
         return "\n".join(L_)
     reg = summary.get("registry") or {}
     m = summary.get("metrics") or {}
@@ -1048,8 +1064,8 @@ def analyze_line(r: dict, *, capture_time: float | None = None, lab_db: str | Pa
         s = run_pass([r], capture_time=cap, source="analyze", lab_db=lab_db, config_path=config_path, **kw)
         if s is None:
             return None
-        if s.get("state") == "STATE_TAMPERED":
-            return f"predictive: STATE_TAMPERED ({s.get('detail')}); nothing assessed | research only"
+        if s.get("state") in ("STATE_TAMPERED", "STATE_DIR_REFUSED"):
+            return f"predictive: {s.get('state')} ({s.get('detail')}); nothing assessed | research only"
         ev = (s.get("events") or [{}])[0]
         recs = ev.get("records") or []
         st = ", ".join(sorted({x["prediction_status"] for x in (ev.get("documents") or [])})) or ev.get("event")
