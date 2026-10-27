@@ -22,7 +22,9 @@ Window: decisions from 2026-10-24T00:00:00Z to 2026-10-26T10:23:05Z (exports up 
 
 Primary pair: P07_B2 against P07_B0 per target (the registry's references; no viable champion exists), Holm across the three targets, frozen verdict order (fewer than 5 decision days: INSUFFICIENT_DAYS; fewer than 50 events or 10 per class: INSUFFICIENT_EVENTS).
 
-| Target | Scorable | Positives | Days | Mints | Brier B2 | Brier B0 | BSS | Log loss B2 | Log loss B0 | Mint interval | Verdict |
+Descriptive only (CP19-1, skeptic m6): no claim. With fewer than 5 decision days no governing interval exists and the p values are undefined; the mint interval is not the governing interval and is not a test; every count is far below 50 events with 10 per class. Every number below is PROVISIONAL_PENDING_REVISION_REREAD until the frozen 48 h re-read has run (PI-D-106).
+
+| Target | Scorable | Positives | Days | Mints | Brier B2 | Brier B0 | BSS (descriptive only) | Log loss B2 | Log loss B0 | Mint interval (not governing) | Verdict |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|
 | T1_24h | 22 | 5 | 3 | 21 | 0.1296 | 0.1761 | 0.264 | 0.4162 | 0.5374 | 0.036 to 0.498 | INSUFFICIENT_DAYS |
 | T1b_6h | 24 | 3 | 3 | 21 | 0.1058 | 0.1095 | 0.033 | 0.3353 | 0.3772 | -0.052 to 0.201 | INSUFFICIENT_DAYS |
@@ -50,25 +52,25 @@ Secondary family: 105 card comparisons against B0 and B2; verdicts INSUFFICIENT_
 
 NC1 (training-only shuffled B2): T1_24h mean BSS -0.041, INSUFFICIENT_DAYS; T1b_6h mean BSS -0.029, INSUFFICIENT_DAYS; T2_24h mean BSS -0.069, INSUFFICIENT_DAYS.
 
-Sensitivities of the primary pair: T1_24h CONSERVATIVE_LENS n 23 INSUFFICIENT_DAYS; T1_24h NO_KEY_CONFLICT n 22 INSUFFICIENT_DAYS; T1_24h PIT_ONLY n 20 INSUFFICIENT_DAYS; T1_24h NEW_MINTS n 13 INSUFFICIENT_DAYS; T1_24h CONTACT_EXCLUDED n 18 INSUFFICIENT_DAYS; T1b_6h CONSERVATIVE_LENS n 25 INSUFFICIENT_DAYS; T1b_6h NO_KEY_CONFLICT n 24 INSUFFICIENT_DAYS; T1b_6h PIT_ONLY n 22 INSUFFICIENT_DAYS; T1b_6h NEW_MINTS n 15 INSUFFICIENT_DAYS; T1b_6h CONTACT_EXCLUDED n 19 INSUFFICIENT_DAYS; T2_24h CONSERVATIVE_LENS n 16 INSUFFICIENT_DAYS; T2_24h NO_KEY_CONFLICT n 15 INSUFFICIENT_DAYS; T2_24h PIT_ONLY n 14 INSUFFICIENT_DAYS; T2_24h NEW_MINTS n 9 INSUFFICIENT_DAYS; T2_24h CONTACT_EXCLUDED n 12 INSUFFICIENT_DAYS.
+Sensitivities of the primary pair: T1_24h CONSERVATIVE_LENS n 23 INSUFFICIENT_DAYS; T1_24h NO_KEY_CONFLICT n 22 INSUFFICIENT_DAYS; T1_24h PIT_ONLY n 20 INSUFFICIENT_DAYS; T1_24h NEW_MINTS n 13 INSUFFICIENT_DAYS; T1_24h CONTACT_EXCLUDED n 17 INSUFFICIENT_DAYS; T1b_6h CONSERVATIVE_LENS n 25 INSUFFICIENT_DAYS; T1b_6h NO_KEY_CONFLICT n 24 INSUFFICIENT_DAYS; T1b_6h PIT_ONLY n 22 INSUFFICIENT_DAYS; T1b_6h NEW_MINTS n 15 INSUFFICIENT_DAYS; T1b_6h CONTACT_EXCLUDED n 17 INSUFFICIENT_DAYS; T2_24h CONSERVATIVE_LENS n 16 INSUFFICIENT_DAYS; T2_24h NO_KEY_CONFLICT n 15 INSUFFICIENT_DAYS; T2_24h PIT_ONLY n 14 INSUFFICIENT_DAYS; T2_24h NEW_MINTS n 9 INSUFFICIENT_DAYS; T2_24h CONTACT_EXCLUDED n 11 INSUFFICIENT_DAYS.
 
 Breakdowns (P21, descriptive, no rate claimed below 20): 44 rows in SHIFT_BREAKDOWN.csv by day, route, regime, liquidity, launch age and status group.
 
 ## 4. Drift monitors and response
 
-- D1 feature drift: OK (log1p_token_age_days INSUFFICIENT_DATA, thesis_fatal_present OK PSI 0.066, thesis_log1p_liquidity_usd INSUFFICIENT_DATA, thesis_log1p_mcap_usd INSUFFICIENT_DATA, thesis_log1p_vol_24h_usd INSUFFICIENT_DATA)
-- D4 prediction rate: OK; D6 sources: SOURCE_FAILURE, COLLECTOR_NOT_DEPLOYED; D7 regime: OK; D8 model age: OK, stale after 2026-10-31T00:00:00Z.
-- T1_24h: D2 OK, D3 OK (B0) and OK (B2), Page-Hinkley INSUFFICIENT_DATA, D5 SUPPORT_BELOW_MINIMUM; pin NO_VIABLE_CHAMPION; action KEEP_ABSTAIN_SOURCE.
-- T1b_6h: D2 OK, D3 OK (B0) and OK (B2), Page-Hinkley INSUFFICIENT_DATA, D5 SUPPORT_BELOW_MINIMUM; pin NO_VIABLE_CHAMPION; action KEEP_ABSTAIN_SOURCE.
-- T2_24h: D2 INSUFFICIENT_DATA, D3 INSUFFICIENT_DATA (B0) and INSUFFICIENT_DATA (B2), Page-Hinkley INSUFFICIENT_DATA, D5 SUPPORT_BELOW_MINIMUM; pin NO_VIABLE_CHAMPION; action KEEP_ABSTAIN_SOURCE.
+- D1 feature drift: INSUFFICIENT_DATA (log1p_token_age_days INSUFFICIENT_DATA, thesis_fatal_present OK PSI 0.066, thesis_log1p_liquidity_usd INSUFFICIENT_DATA, thesis_log1p_mcap_usd INSUFFICIENT_DATA, thesis_log1p_vol_24h_usd INSUFFICIENT_DATA)
+- D4 prediction rate: OK; D6 sources: COLLECTOR_NOT_DEPLOYED; D7 regime: OK; D8 model age: OK, stale after 2026-10-31T00:00:00Z.
+- T1_24h: D2 OK, D3 OK (B0) and OK (B2), Page-Hinkley INSUFFICIENT_DATA, D5 SUPPORT_BELOW_MINIMUM; pin NO_VIABLE_CHAMPION; action KEEP_ABSTAIN.
+- T1b_6h: D2 OK, D3 OK (B0) and OK (B2), Page-Hinkley INSUFFICIENT_DATA, D5 SUPPORT_BELOW_MINIMUM; pin NO_VIABLE_CHAMPION; action KEEP_ABSTAIN.
+- T2_24h: D2 INSUFFICIENT_DATA, D3 INSUFFICIENT_DATA (B0) and INSUFFICIENT_DATA (B2), Page-Hinkley INSUFFICIENT_DATA, D5 SUPPORT_BELOW_MINIMUM; pin NO_VIABLE_CHAMPION; action KEEP_ABSTAIN.
 
 Notices (plain text, dry run, nothing sent):
 
-> T1 (24 hours, +25% before -15%): COLLECTOR_NOT_DEPLOYED, SOURCE_FAILURE, SUPPORT_BELOW_MINIMUM. 22 matured labelled events with 5 positive (minimum 50 and 10 per class); label-rate monitor OK; calibration monitors OK (B0) and OK (B2); feature monitor OK; regime monitor OK. Action: the system keeps abstaining and shows the source status; earlier research stays. No model is retrained automatically; a person may review the monitor report and decide on a retrain plan.
+> T1 (24 hours, +25% before -15%): COLLECTOR_NOT_DEPLOYED, SUPPORT_BELOW_MINIMUM. 22 matured labelled events with 5 positive (minimum 50 and 10 per class); label-rate monitor OK; calibration monitors OK (B0) and OK (B2); feature monitor INSUFFICIENT_DATA (OK on 1 of 5 columns, 4 not measurable); regime monitor OK; label reads: 0 of 28 planned decisions without a usable read (11 of 39 attempts retried). Action: the system keeps abstaining for this target; earlier records stay. No model is retrained automatically; a person may review the monitor report and decide on a retrain plan.
 
-> T1b (6 hours, +25% before -15%): COLLECTOR_NOT_DEPLOYED, SOURCE_FAILURE, SUPPORT_BELOW_MINIMUM. 24 matured labelled events with 3 positive (minimum 50 and 10 per class); label-rate monitor OK; calibration monitors OK (B0) and OK (B2); feature monitor OK; regime monitor OK. Action: the system keeps abstaining and shows the source status; earlier research stays. No model is retrained automatically; a person may review the monitor report and decide on a retrain plan.
+> T1b (6 hours, +25% before -15%): COLLECTOR_NOT_DEPLOYED, SUPPORT_BELOW_MINIMUM. 24 matured labelled events with 3 positive (minimum 50 and 10 per class); label-rate monitor OK; calibration monitors OK (B0) and OK (B2); feature monitor INSUFFICIENT_DATA (OK on 1 of 5 columns, 4 not measurable); regime monitor OK; label reads: 0 of 28 planned decisions without a usable read (11 of 39 attempts retried). Action: the system keeps abstaining for this target; earlier records stay. No model is retrained automatically; a person may review the monitor report and decide on a retrain plan.
 
-> T2 (24 hours, halving or halt): COLLECTOR_NOT_DEPLOYED, SOURCE_FAILURE, SUPPORT_BELOW_MINIMUM. 15 matured labelled events with 3 positive (minimum 50 and 10 per class); label-rate monitor INSUFFICIENT_DATA; calibration monitors INSUFFICIENT_DATA (B0) and INSUFFICIENT_DATA (B2); feature monitor OK; regime monitor OK. Action: the system keeps abstaining and shows the source status; earlier research stays. No model is retrained automatically; a person may review the monitor report and decide on a retrain plan.
+> T2 (24 hours, halving or halt): COLLECTOR_NOT_DEPLOYED, SUPPORT_BELOW_MINIMUM. 15 matured labelled events with 3 positive (minimum 50 and 10 per class); label-rate monitor INSUFFICIENT_DATA; calibration monitors INSUFFICIENT_DATA (B0) and INSUFFICIENT_DATA (B2); feature monitor INSUFFICIENT_DATA (OK on 1 of 5 columns, 4 not measurable); regime monitor OK; label reads: 0 of 28 planned decisions without a usable read (11 of 39 attempts retried). Action: the system keeps abstaining for this target; earlier records stay. No model is retrained automatically; a person may review the monitor report and decide on a retrain plan.
 
 Rollback demo (fixtures, TEST_ONLY): drift on a pinned VALIDATED_EXPERIMENTAL fixture champion gives DEGRADE_TO_SHADOW (rolled back to the earlier SHADOW pin: True); a second alarm gives ROLLBACK_TO_ABSTAIN (NO_VIABLE_CHAMPION); earlier pins unchanged: True; log append-only: True.
 

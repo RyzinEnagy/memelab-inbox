@@ -1,0 +1,150 @@
+{
+ "compared_with": "b1a18f7 (first-pass outputs)",
+ "drift": {
+  "D1_state": [
+   "OK",
+   "INSUFFICIENT_DATA"
+  ],
+  "D6_attempts": [
+   11,
+   39
+  ],
+  "D6_codes": [
+   [
+    "SOURCE_FAILURE",
+    "COLLECTOR_NOT_DEPLOYED"
+   ],
+   [
+    "COLLECTOR_NOT_DEPLOYED"
+   ]
+  ],
+  "D6_final_reads": [
+   0,
+   28
+  ],
+  "actions": {
+   "T1_24h": [
+    "KEEP_ABSTAIN_SOURCE",
+    "KEEP_ABSTAIN"
+   ],
+   "T1b_6h": [
+    "KEEP_ABSTAIN_SOURCE",
+    "KEEP_ABSTAIN"
+   ],
+   "T2_24h": [
+    "KEEP_ABSTAIN_SOURCE",
+    "KEEP_ABSTAIN"
+   ]
+  },
+  "states": {
+   "T1_24h": [
+    [
+     "COLLECTOR_NOT_DEPLOYED",
+     "SOURCE_FAILURE",
+     "SUPPORT_BELOW_MINIMUM"
+    ],
+    [
+     "COLLECTOR_NOT_DEPLOYED",
+     "SUPPORT_BELOW_MINIMUM"
+    ]
+   ],
+   "T1b_6h": [
+    [
+     "COLLECTOR_NOT_DEPLOYED",
+     "SOURCE_FAILURE",
+     "SUPPORT_BELOW_MINIMUM"
+    ],
+    [
+     "COLLECTOR_NOT_DEPLOYED",
+     "SUPPORT_BELOW_MINIMUM"
+    ]
+   ],
+   "T2_24h": [
+    [
+     "COLLECTOR_NOT_DEPLOYED",
+     "SOURCE_FAILURE",
+     "SUPPORT_BELOW_MINIMUM"
+    ],
+    [
+     "COLLECTOR_NOT_DEPLOYED",
+     "SUPPORT_BELOW_MINIMUM"
+    ]
+   ]
+  }
+ },
+ "files": {
+  "experiments/SEARCH_LEDGER.csv": "CHANGED",
+  "monitoring/CALIBRATION_BINS.csv": "EQUAL",
+  "monitoring/COUNTS.json": "EQUAL",
+  "monitoring/DRIFT_REPORT.json": "CHANGED",
+  "monitoring/FEEDBACK_AUDIT.json": "CHANGED",
+  "monitoring/LEDGER_TOTALS.json": "CHANGED",
+  "monitoring/MISSES.csv": "EQUAL",
+  "monitoring/NEGATIVE_CONTROLS.json": "EQUAL",
+  "monitoring/OPENING_LOG.json": "EQUAL",
+  "monitoring/OUTCOME_LEDGER.jsonl": "CHANGED",
+  "monitoring/OUTCOME_LEDGER.md": "CHANGED",
+  "monitoring/P12_STEP_MANIFEST.json": "EQUAL",
+  "monitoring/PREOPEN_TRAPS.json": "EQUAL",
+  "monitoring/PREREG_MANIFEST.json": "EQUAL",
+  "monitoring/PRIMARY_RESULTS.json": "CHANGED",
+  "monitoring/PROSPECTIVE_DECISIONS.csv": "EQUAL",
+  "monitoring/PROSPECTIVE_METRICS.csv": "EQUAL",
+  "monitoring/PROSPECTIVE_PLAN.md": "EQUAL",
+  "monitoring/PROSPECTIVE_PREDICTIONS.csv": "EQUAL",
+  "monitoring/PROSPECTIVE_REPORT.md": "CHANGED",
+  "monitoring/PROSPECTIVE_SCORED.csv": "EQUAL",
+  "monitoring/REPLAY_AUDIT.json": "EQUAL",
+  "monitoring/ROLLBACK_DEMO.json": "EQUAL",
+  "monitoring/SENSITIVITY.csv": "CHANGED",
+  "monitoring/SHIFT_BREAKDOWN.csv": "EQUAL",
+  "monitoring/published/DOCUMENTS.jsonl": "EQUAL",
+  "monitoring/published/RECORDS.jsonl": "EQUAL"
+ },
+ "ledger": "append-only: the first 516 entries are the b1a18f7 ledger byte for byte; the drift rerun appended a second MONITOR entry and 3 RESPONSE entries; outcomes rerun appended 0",
+ "ledger_prefix_equal": true,
+ "primary_metrics_equal": {
+  "T1_24h": true,
+  "T1b_6h": true,
+  "T2_24h": true
+ },
+ "repair_code": "7c177de",
+ "sensitivity_rows_changed": [
+  {
+   "bss_after": "0.24069",
+   "bss_before": "0.24244",
+   "n_after": "17",
+   "n_before": "18",
+   "target": "T1_24h",
+   "verdict_after": "INSUFFICIENT_DAYS",
+   "view": "CONTACT_EXCLUDED"
+  },
+  {
+   "bss_after": "0.00626",
+   "bss_before": "0.01555",
+   "n_after": "17",
+   "n_before": "19",
+   "target": "T1b_6h",
+   "verdict_after": "INSUFFICIENT_DAYS",
+   "view": "CONTACT_EXCLUDED"
+  },
+  {
+   "bss_after": "0.39788",
+   "bss_before": "0.40974",
+   "n_after": "11",
+   "n_before": "12",
+   "target": "T2_24h",
+   "verdict_after": "INSUFFICIENT_DAYS",
+   "view": "CONTACT_EXCLUDED"
+  }
+ ],
+ "why": {
+  "DRIFT_REPORT.json": "D1 overall INSUFFICIENT_DATA (m3); D6 alarms on final reads 0 of 28, attempts 11 of 39 reported (m4); responses KEEP_ABSTAIN",
+  "FEEDBACK_AUDIT.json": "ledger_verify entries and head only (the ledger grew); every check equal",
+  "LEDGER_TOTALS.json / SEARCH_LEDGER.csv": "5 CP19-1 reproduction rows; N_search 130 unchanged",
+  "OUTCOME_LEDGER.md": "entry counts and head after the appended MONITOR and RESPONSE entries",
+  "PRIMARY_RESULTS.json": "ledger_head field only (the ledger grew); every metric equal",
+  "PROSPECTIVE_REPORT.md": "descriptive-only and provisional sentence and headers (m6); drift lines and notices follow the drift changes",
+  "SENSITIVITY.csv": "CONTACT_EXCLUDED reads the extended contact scan (adds 9aqmJj, skeptic m7)"
+ }
+}

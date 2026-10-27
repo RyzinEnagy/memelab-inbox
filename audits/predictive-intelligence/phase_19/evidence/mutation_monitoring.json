@@ -1,8 +1,8 @@
 {
  "module": "memelab/predictive/monitoring.py",
  "tests": "tests/test_predictive_monitoring.py",
- "mutations": 46,
- "caught": 46,
+ "mutations": 71,
+ "caught": 71,
  "survivors": [],
  "results": [
   {
@@ -234,7 +234,132 @@
    "mutation": "A6 status codes not collected",
    "caught": true,
    "first_failure": "tests/test_predictive_monitoring.py::test_p47_source_outage_keeps_abstaining_with_a_visible_status"
+  },
+  {
+   "mutation": "K2 current outcome is the first, not the newest",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_p05_pending_is_never_scored_or_counted_negative_and_is_superseded_by_naming_it"
+  },
+  {
+   "mutation": "K3 scorable ignores the read time",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_k3_k4_scorable_is_as_of_the_record_and_read_times_even_on_an_unchecked_index"
+  },
+  {
+   "mutation": "K4 scorable ignores the record time",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_k3_k4_scorable_is_as_of_the_record_and_read_times_even_on_an_unchecked_index"
+  },
+  {
+   "mutation": "K5 D1 minimum 30 becomes 29",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_d1_psi_is_near_zero_for_the_same_distribution_and_alerts_on_a_shift"
+  },
+  {
+   "mutation": "K6 champion without states abstains",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_response_policy_table_never_retrains"
+  },
+  {
+   "mutation": "K7 D6 failure share at the threshold alerts",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_k7_m4_d6_alerts_above_the_share_of_final_reads_and_reports_retries_apart"
+  },
+  {
+   "mutation": "K8 a class change with the same state is not a revision",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_k8_a_later_read_that_changes_the_class_but_not_the_state_is_recorded_as_a_revision"
+  },
+  {
+   "mutation": "K9 revision without a reason accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_k9_a_revision_without_a_reason_is_refused"
+  },
+  {
+   "mutation": "K11 prediction identity not checked",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_k11_a_prediction_for_an_unknown_decision_or_another_mint_is_refused"
+  },
+  {
+   "mutation": "K12 load accepts duplicate entries",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_k12_load_refuses_a_duplicated_entry_even_with_a_valid_chain"
+  },
+  {
+   "mutation": "K13 misses never flags an unmatured label",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_k13_misses_mark_a_label_not_matured_at_the_evaluation_time"
+  },
+  {
+   "mutation": "K15 prediction set key reuse accepted",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_k15_a_prediction_set_reusing_a_decision_key_with_another_identity_is_refused"
+  },
+  {
+   "mutation": "K16 PENDING outcomes treated as final",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_p05_pending_is_never_scored_or_counted_negative_and_is_superseded_by_naming_it"
+  },
+  {
+   "mutation": "K17 Page-Hinkley stream not time ordered",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_k17_page_hinkley_orders_the_stream_by_time"
+  },
+  {
+   "mutation": "X1 revision may cite no read",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_cx_sk19_a_revision_citing_the_read_it_revises_or_no_read_is_refused"
+  },
+  {
+   "mutation": "X2 revision may cite the read it replaces (CX-SK19)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_cx_sk19_a_revision_citing_the_read_it_revises_or_no_read_is_refused"
+  },
+  {
+   "mutation": "X3 revision may cite an earlier read",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_cx_sk19_a_revision_citing_the_read_it_revises_or_no_read_is_refused"
+  },
+  {
+   "mutation": "X4 revision read without token",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_x4_a_revision_read_must_carry_the_token_of_its_mint"
+  },
+  {
+   "mutation": "X5 supersede never checks a read",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_cx_sk19_a_pending_is_superseded_only_by_a_later_read_or_an_unread_gap_after_maturity"
+  },
+  {
+   "mutation": "X6 unread gap allowed before maturity",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_cx_sk19_a_pending_is_superseded_only_by_a_later_read_or_an_unread_gap_after_maturity"
+  },
+  {
+   "mutation": "X7 revision of a final outcome never checks a read",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_cx_sk19_a_revision_citing_the_read_it_revises_or_no_read_is_refused"
+  },
+  {
+   "mutation": "X8 next_outcomes does not cite the read on a revision",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_x8_a_revision_to_a_state_without_a_label_still_cites_its_later_read"
+  },
+  {
+   "mutation": "X9 short boundary classified",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_a_read_whose_boundary_stops_before_a_matured_window_is_a_visible_plan_gap"
+  },
+  {
+   "mutation": "X10 D1 overall ignores unmeasurable columns",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_d1_psi_is_near_zero_for_the_same_distribution_and_alerts_on_a_shift"
+  },
+  {
+   "mutation": "X11 champion below the support minimum unchanged",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_m5_a_pinned_champion_below_the_support_minimum_keeps_abstaining"
   }
  ],
- "wall_s": 56.4
+ "wall_s": 174.8
 }

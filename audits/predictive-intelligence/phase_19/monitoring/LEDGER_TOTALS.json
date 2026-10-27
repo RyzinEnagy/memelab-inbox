@@ -2,11 +2,11 @@
  "bakeoff_configurations": 31,
  "candidate_configurations": 99,
  "debug_runs": 44,
- "holdout_evaluation_rows": 457,
+ "holdout_evaluation_rows": 462,
  "n_search": 130,
  "negative_control_fits": 433,
  "other_rows": 102,
- "rows": 3573,
+ "rows": 3578,
  "rows_by_phase": {
   "04": 31,
   "07": 488,
@@ -20,6 +20,6 @@
   "16": 35,
   "17": 34,
   "18": 28,
-  "19": 217
+  "19": 222
  }
 }

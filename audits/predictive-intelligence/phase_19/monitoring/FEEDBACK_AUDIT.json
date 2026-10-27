@@ -39,8 +39,8 @@
   "vanished": 0
  },
  "ledger_verify": {
-  "entries": 516,
-  "head": "09b31f52c2fdcb7db6daba9b09d007432bcbf4ab721db577c619ae1eb90b08ca",
+  "entries": 520,
+  "head": "fbcea491b3edad60307e33ba8ea4027496085cb366f6104fbb7ec4a41784ccc3",
   "ok": true,
   "problems": []
  },

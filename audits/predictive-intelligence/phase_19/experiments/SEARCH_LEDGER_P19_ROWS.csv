@@ -15,3 +15,8 @@ phase,experiment_id,target,candidate,kind,view,seed,folds,n_rows,n_with_number,v
 19,P19:ROLLBACK_DEMO,all three,P19_ROLLBACK,TRAP_OR_CHECK,PROSPECTIVE,,PROSPECTIVE,,,"fixture rollback demo through the registry (monitoring/ROLLBACK_DEMO.json); fixture only, TEST_ONLY",,,PROSPECTIVE_RUN_NOT_A_CONFIGURATION
 19,P19:AUDIT,all three,P19_AUDIT,TRAP_OR_CHECK,PROSPECTIVE,,PROSPECTIVE,,,F1 to F5 and the git order of the predictions commit and the first label call (monitoring/FEEDBACK_AUDIT.json),,,PROSPECTIVE_RUN_NOT_A_CONFIGURATION
 19,P19:REPORT,all three,P19_REPORT,TRAP_OR_CHECK,PROSPECTIVE,,PROSPECTIVE,,,PROSPECTIVE_REPORT.md and OUTCOME_LEDGER.md from the committed outputs,,,PROSPECTIVE_RUN_NOT_A_CONFIGURATION
+19,P19:CP19_1:PREDICT,all three,P19_CP19_1,TRAP_OR_CHECK,PROSPECTIVE,,PROSPECTIVE,,,predict repeated at the CP19-1 code 7c177de into the scratchpad (evidence/rerun_cp19_1_diff.json),,,REPRODUCTION_NOT_A_CONFIGURATION
+19,P19:CP19_1:OUTCOMES,all three,P19_CP19_1,TRAP_OR_CHECK,PROSPECTIVE,,PROSPECTIVE,,,outcomes repeated at 7c177de on the committed ledger (no network; expected 0 new entries),,,REPRODUCTION_NOT_A_CONFIGURATION
+19,P19:CP19_1:EVALUATE,all three,P19_CP19_1,TRAP_OR_CHECK,PROSPECTIVE,,PROSPECTIVE,,,evaluate repeated at 7c177de into monitoring/ (CONTACT_EXCLUDED now reads the extended contact scan),,,REPRODUCTION_NOT_A_CONFIGURATION
+19,P19:CP19_1:DRIFT,all three,P19_CP19_1,TRAP_OR_CHECK,PROSPECTIVE,,PROSPECTIVE,,,drift repeated at 7c177de (D1 and D6 rules of CP19-1; a second MONITOR entry and new RESPONSE entries),,,REPRODUCTION_NOT_A_CONFIGURATION
+19,P19:CP19_1:ROLLBACK_AUDIT_REPORT,all three,P19_CP19_1,TRAP_OR_CHECK,PROSPECTIVE,,PROSPECTIVE,,,"rollback demo, audit and report repeated at 7c177de",,,REPRODUCTION_NOT_A_CONFIGURATION

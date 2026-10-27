@@ -2,7 +2,7 @@
 
 The machine record is `OUTCOME_LEDGER.jsonl` in this folder: one canonical JSON line per entry with `seq`, `prev` (the previous line's sha256) and `sha`. `memelab.predictive.monitoring.verify` rechecks the chain and replays every append rule. Rules (checklist rule 4): append only; a prediction or document is written once and never after its outcome; a LABELED outcome only at or after maturity with its read (URL with token=<mint>, response key, body sha256); PENDING and censored outcomes carry no label and are never scored; a final outcome is revised only by a new entry with `revision_of`, both kept.
 
-Entries 516, head `09b31f52c2fdcb7db6daba9b09d007432bcbf4ab721db577c619ae1eb90b08ca`, verify ok. By kind: DOCUMENT 156, MONITOR 1, OUTCOME 156, PLAN 1, PREDICTION 198, PREDICTION_SET 1, RESPONSE 3.
+Entries 520, head `fbcea491b3edad60307e33ba8ea4027496085cb366f6104fbb7ec4a41784ccc3`, verify ok. By kind: DOCUMENT 156, MONITOR 2, OUTCOME 156, PLAN 1, PREDICTION 198, PREDICTION_SET 1, RESPONSE 6.
 
 | Decision (UTC) | Chain | Mint | Target | Document | Outcome | Class | Flags |
 |---|---|---|---|---|---|---|---|

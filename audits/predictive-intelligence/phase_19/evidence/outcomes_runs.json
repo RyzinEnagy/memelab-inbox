@@ -42,5 +42,49 @@
    "T1b_6h": 0,
    "T2_24h": 0
   }
+ },
+ {
+  "as_of_utc": "2026-10-27T15:30:35Z",
+  "cross_target_violations": 0,
+  "label_rows_added": 0,
+  "ledger": {
+   "appended": 0,
+   "duplicates": 0,
+   "entries": 516,
+   "head": "09b31f52c2fdcb7db6daba9b09d007432bcbf4ab721db577c619ae1eb90b08ca"
+  },
+  "ledger_verify": {
+   "entries": 516,
+   "head": "09b31f52c2fdcb7db6daba9b09d007432bcbf4ab721db577c619ae1eb90b08ca",
+   "ok": true,
+   "problems": []
+  },
+  "network_calls": 0,
+  "records": 156,
+  "states": {
+   "T1_24h:LABELED": 22,
+   "T1_24h:MARKET_INACTIVE": 3,
+   "T1_24h:NO_SNAPSHOT_PRICE": 5,
+   "T1_24h:OUT_OF_SCOPE_CHAIN": 19,
+   "T1_24h:THINNED": 2,
+   "T1_24h:VENDOR_OR_ROUTE_GAP": 1,
+   "T1b_6h:LABELED": 24,
+   "T1b_6h:MARKET_INACTIVE": 3,
+   "T1b_6h:NO_SNAPSHOT_PRICE": 5,
+   "T1b_6h:OUT_OF_SCOPE_CHAIN": 19,
+   "T1b_6h:VENDOR_OR_ROUTE_GAP": 1,
+   "T2_24h:LABELED": 15,
+   "T2_24h:MARKET_INACTIVE": 3,
+   "T2_24h:NO_SNAPSHOT_PRICE": 5,
+   "T2_24h:OUT_OF_SCOPE_CHAIN": 19,
+   "T2_24h:PENDING": 7,
+   "T2_24h:THINNED": 2,
+   "T2_24h:VENDOR_OR_ROUTE_GAP": 1
+  },
+  "training_gate_prospective_rows": {
+   "T1_24h": 0,
+   "T1b_6h": 0,
+   "T2_24h": 0
+  }
  }
 ]

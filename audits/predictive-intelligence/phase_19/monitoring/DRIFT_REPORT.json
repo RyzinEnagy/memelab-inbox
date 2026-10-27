@@ -68,8 +68,11 @@
     "state": "INSUFFICIENT_DATA"
    }
   },
+  "columns_insufficient": 4,
+  "columns_ok": 1,
+  "columns_total": 5,
   "monitor": "D1_FEATURE_DRIFT",
-  "state": "OK"
+  "state": "INSUFFICIENT_DATA"
  },
  "D4_prediction_rate": {
   "coverage": 1.0,
@@ -91,18 +94,19 @@
   }
  },
  "D6_sources": {
+  "attempts_failed": 11,
+  "attempts_total": 39,
   "codes": [
-   "SOURCE_FAILURE",
    "COLLECTOR_NOT_DEPLOYED"
   ],
   "depth_note": "forward depth collector (feature/backtesting D-BT-034, D-BT-035) built and pushed, not deployed on Elving's computer; the hourly task runs four steps without collect: no depth snapshot exists for the window",
   "depth_rows": 0,
   "export_age_s": 101553.42429685593,
   "monitor": "D6_SOURCES",
-  "read_failure_share": 0.28205128205128205,
-  "reads_failed": 11,
-  "reads_total": 39,
-  "state": "SOURCE_PROBLEM"
+  "read_failure_share": 0.0,
+  "reads_failed": 0,
+  "reads_total": 28,
+  "state": "OK"
  },
  "D7_regime": {
   "current_labels": [
@@ -207,10 +211,10 @@
     "positives": 5,
     "state": "SUPPORT_BELOW_MINIMUM"
    },
-   "notice": "T1 (24 hours, +25% before -15%): COLLECTOR_NOT_DEPLOYED, SOURCE_FAILURE, SUPPORT_BELOW_MINIMUM. 22 matured labelled events with 5 positive (minimum 50 and 10 per class); label-rate monitor OK; calibration monitors OK (B0) and OK (B2); feature monitor OK; regime monitor OK. Action: the system keeps abstaining and shows the source status; earlier research stays. No model is retrained automatically; a person may review the monitor report and decide on a retrain plan.",
+   "notice": "T1 (24 hours, +25% before -15%): COLLECTOR_NOT_DEPLOYED, SUPPORT_BELOW_MINIMUM. 22 matured labelled events with 5 positive (minimum 50 and 10 per class); label-rate monitor OK; calibration monitors OK (B0) and OK (B2); feature monitor INSUFFICIENT_DATA (OK on 1 of 5 columns, 4 not measurable); regime monitor OK; label reads: 0 of 28 planned decisions without a usable read (11 of 39 attempts retried). Action: the system keeps abstaining for this target; earlier records stay. No model is retrained automatically; a person may review the monitor report and decide on a retrain plan.",
    "pin": "NO_VIABLE_CHAMPION",
    "response": {
-    "action": "KEEP_ABSTAIN_SOURCE",
+    "action": "KEEP_ABSTAIN",
     "automatic_retrain": false,
     "earlier_records": "UNCHANGED",
     "level": null,
@@ -218,13 +222,11 @@
     "retrain": "a plan committed before its evaluation data and a human-reviewed registry promotion (PI-D-091); never automatic",
     "states": [
      "COLLECTOR_NOT_DEPLOYED",
-     "SOURCE_FAILURE",
      "SUPPORT_BELOW_MINIMUM"
     ]
    },
    "states": [
     "COLLECTOR_NOT_DEPLOYED",
-    "SOURCE_FAILURE",
     "SUPPORT_BELOW_MINIMUM"
    ]
   },
@@ -307,10 +309,10 @@
     "positives": 3,
     "state": "SUPPORT_BELOW_MINIMUM"
    },
-   "notice": "T1b (6 hours, +25% before -15%): COLLECTOR_NOT_DEPLOYED, SOURCE_FAILURE, SUPPORT_BELOW_MINIMUM. 24 matured labelled events with 3 positive (minimum 50 and 10 per class); label-rate monitor OK; calibration monitors OK (B0) and OK (B2); feature monitor OK; regime monitor OK. Action: the system keeps abstaining and shows the source status; earlier research stays. No model is retrained automatically; a person may review the monitor report and decide on a retrain plan.",
+   "notice": "T1b (6 hours, +25% before -15%): COLLECTOR_NOT_DEPLOYED, SUPPORT_BELOW_MINIMUM. 24 matured labelled events with 3 positive (minimum 50 and 10 per class); label-rate monitor OK; calibration monitors OK (B0) and OK (B2); feature monitor INSUFFICIENT_DATA (OK on 1 of 5 columns, 4 not measurable); regime monitor OK; label reads: 0 of 28 planned decisions without a usable read (11 of 39 attempts retried). Action: the system keeps abstaining for this target; earlier records stay. No model is retrained automatically; a person may review the monitor report and decide on a retrain plan.",
    "pin": "NO_VIABLE_CHAMPION",
    "response": {
-    "action": "KEEP_ABSTAIN_SOURCE",
+    "action": "KEEP_ABSTAIN",
     "automatic_retrain": false,
     "earlier_records": "UNCHANGED",
     "level": null,
@@ -318,13 +320,11 @@
     "retrain": "a plan committed before its evaluation data and a human-reviewed registry promotion (PI-D-091); never automatic",
     "states": [
      "COLLECTOR_NOT_DEPLOYED",
-     "SOURCE_FAILURE",
      "SUPPORT_BELOW_MINIMUM"
     ]
    },
    "states": [
     "COLLECTOR_NOT_DEPLOYED",
-    "SOURCE_FAILURE",
     "SUPPORT_BELOW_MINIMUM"
    ]
   },
@@ -378,10 +378,10 @@
     "positives": 3,
     "state": "SUPPORT_BELOW_MINIMUM"
    },
-   "notice": "T2 (24 hours, halving or halt): COLLECTOR_NOT_DEPLOYED, SOURCE_FAILURE, SUPPORT_BELOW_MINIMUM. 15 matured labelled events with 3 positive (minimum 50 and 10 per class); label-rate monitor INSUFFICIENT_DATA; calibration monitors INSUFFICIENT_DATA (B0) and INSUFFICIENT_DATA (B2); feature monitor OK; regime monitor OK. Action: the system keeps abstaining and shows the source status; earlier research stays. No model is retrained automatically; a person may review the monitor report and decide on a retrain plan.",
+   "notice": "T2 (24 hours, halving or halt): COLLECTOR_NOT_DEPLOYED, SUPPORT_BELOW_MINIMUM. 15 matured labelled events with 3 positive (minimum 50 and 10 per class); label-rate monitor INSUFFICIENT_DATA; calibration monitors INSUFFICIENT_DATA (B0) and INSUFFICIENT_DATA (B2); feature monitor INSUFFICIENT_DATA (OK on 1 of 5 columns, 4 not measurable); regime monitor OK; label reads: 0 of 28 planned decisions without a usable read (11 of 39 attempts retried). Action: the system keeps abstaining for this target; earlier records stay. No model is retrained automatically; a person may review the monitor report and decide on a retrain plan.",
    "pin": "NO_VIABLE_CHAMPION",
    "response": {
-    "action": "KEEP_ABSTAIN_SOURCE",
+    "action": "KEEP_ABSTAIN",
     "automatic_retrain": false,
     "earlier_records": "UNCHANGED",
     "level": null,
@@ -389,13 +389,11 @@
     "retrain": "a plan committed before its evaluation data and a human-reviewed registry promotion (PI-D-091); never automatic",
     "states": [
      "COLLECTOR_NOT_DEPLOYED",
-     "SOURCE_FAILURE",
      "SUPPORT_BELOW_MINIMUM"
     ]
    },
    "states": [
     "COLLECTOR_NOT_DEPLOYED",
-    "SOURCE_FAILURE",
     "SUPPORT_BELOW_MINIMUM"
    ]
   }

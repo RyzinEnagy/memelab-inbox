@@ -1,0 +1,65 @@
+{
+ "attacks": {
+  "A1_append": {
+   "accepted": false,
+   "code": "LATE_PREDICTION_REFUSED"
+  },
+  "A1_around_append_verify": {
+   "ok": false,
+   "problems": [
+    "seq 520: LATE_PREDICTION_REFUSED: PREDICTION for d6dce4b2f78f price_path_target_before_invalidation_24h after its outcome"
+   ]
+  },
+  "A2_edit_in_place_verify": {
+   "ok": false,
+   "problems": [
+    "LEDGER_TAMPERED: line 2: content differs from its sha256"
+   ]
+  },
+  "A3_consistent_rewrite_verify": {
+   "head_changed": true,
+   "ok": true,
+   "problems": []
+  },
+  "A4_truncate_reappend": {
+   "accepted": true,
+   "appended": 164,
+   "entries": 520,
+   "is_append_only_vs_committed": false,
+   "prefix_head_equal": true,
+   "verify_ok": true
+  },
+  "A5_same_read_revision": {
+   "accepted": false,
+   "code": "REVISION_NEEDS_A_LATER_READ"
+  },
+  "A6_revise_to_censored_no_read": {
+   "accepted": false,
+   "code": "REVISION_NEEDS_A_LATER_READ"
+  },
+  "A7_pending_censored_before_maturity": {
+   "accepted": false,
+   "code": "REVISION_NEEDS_A_LATER_READ",
+   "recorded_before_maturity": true
+  },
+  "A8_labeled_recorded_before_maturity": {
+   "accepted": false,
+   "code": "NOT_YET_MATURED"
+  },
+  "A8b_labeled_claimed_times_after_maturity_fake_read": {
+   "accepted": true,
+   "appended": 1
+  },
+  "A9_set_reuses_key_other_mint": {
+   "accepted": false,
+   "code": "IDENTITY_MISMATCH"
+  }
+ },
+ "cx_sk19_same_read_revision": "refused: REVISION_NEEDS_A_LATER_READ (the cited read is the read being replaced)",
+ "run": "the skeptic's p19_ledger_attacks.py and p19_cx_sk19_same_read_revision.py on a clone at 7c177de with the current ledger (temporary copies)",
+ "what_catches_the_rest": {
+  "A3_consistent_rewrite": "tests/test_predictive_phase19_outputs.py::test_m2 (765eadb ledger prefix and manifest anchored in git)",
+  "A4_truncate_reappend": "test_m2 (not an append of the committed versions) and test_m1 (rebuild finds the flipped label); both fail on the A4-tampered clone",
+  "A8b_fake_read": "test_m1 (offline rebuild from the archive: the named read does not exist)"
+ }
+}
