@@ -1,0 +1,994 @@
+{
+ "ensemble_decision": {
+  "T1_24h": "NO_ENSEMBLE",
+  "T1b_6h": "NO_ENSEMBLE",
+  "T2_24h": "NO_ENSEMBLE"
+ },
+ "rule": "ACCEPTANCE_CHECKLIST.md rule 12",
+ "targets": {
+  "T1_24h": {
+   "complexity": {
+    "ENS_MEAN_B0_B2": {
+     "cpu_us_per_decision_sum_of_members": 14.778823157895268,
+     "extra_parameters": 0,
+     "member_parameters": 7,
+     "members": 2
+    },
+    "ENS_MEAN_B2_S1": {
+     "cpu_us_per_decision_sum_of_members": 19.14720210526498,
+     "extra_parameters": 0,
+     "member_parameters": 13,
+     "members": 2
+    },
+    "STACK_CHRONO_B2_S1": {
+     "extra_parameters": 3,
+     "fitted": false,
+     "members": 2
+    }
+   },
+   "decision": {
+    "configuration": null,
+    "decision": "NO_ENSEMBLE",
+    "evidence": [
+     {
+      "configuration": "ENS_MEAN_B0_B2",
+      "reason": "no retrospective first-opening evaluation and no calibration",
+      "selection_status": "NO_UNCORRECTED_SKILL",
+      "status": "EVALUATED_DEVELOPMENT",
+      "verdict_vs_b0": "INSUFFICIENT_DAYS",
+      "verdict_vs_b2": "INSUFFICIENT_DAYS"
+     },
+     {
+      "configuration": "ENS_MEAN_B2_S1",
+      "reason": "no retrospective first-opening evaluation and no calibration",
+      "selection_status": "NO_UNCORRECTED_SKILL",
+      "status": "EVALUATED_DEVELOPMENT",
+      "verdict_vs_b0": "INSUFFICIENT_DAYS",
+      "verdict_vs_b2": "INSUFFICIENT_DAYS"
+     },
+     {
+      "configuration": "STACK_CHRONO_B2_S1",
+      "reason": "events 0 < 100; per class 0 < 20; decision days 0 < 5",
+      "selection_status": "NO_UNCORRECTED_SKILL",
+      "status": "NOT_FITTED_BELOW_GATE",
+      "verdict_vs_b0": "INSUFFICIENT_HISTORY",
+      "verdict_vs_b2": "INSUFFICIENT_HISTORY"
+     }
+    ],
+    "kind": "ENSEMBLE_DECISION",
+    "reasons": [
+     "NO_ENSEMBLE_EARNED_SKILL_OVER_B2",
+     "NOTHING_BEATS_THE_BASE_RATE"
+    ],
+    "target": "price_path_target_before_invalidation_24h"
+   },
+   "development": {
+    "ENS_MEAN_B0_B2": {
+     "folds": [
+      "0",
+      "1",
+      "2"
+     ],
+     "members": [
+      "B0",
+      "B2"
+     ],
+     "oof_rows": 24,
+     "rows_with_number": 24,
+     "sources": {
+      "LAB_FATAL_FLAGS": "B2",
+      "LAB_THESIS_MARKET_ROW": "B2",
+      "LAB_TOKEN_AGE": "B2"
+     },
+     "vs_B0": {
+      "brier": 0.23445413836175,
+      "brier_ref": 0.22972584742029167,
+      "bss": -0.020582320163598178,
+      "days": 3,
+      "gov_ci": null,
+      "governing": null,
+      "log_loss": 0.6708357986957768,
+      "log_loss_ref": 0.6553440707463726,
+      "mints": 24,
+      "n_rows": 24,
+      "n_with_number": 24,
+      "p_one_sided": null,
+      "positives": 8,
+      "prevalence": 0.3333333333333333,
+      "verdict": "INSUFFICIENT_DAYS"
+     },
+     "vs_B2": {
+      "brier": 0.23445413836175,
+      "brier_ref": 0.24486657501087503,
+      "bss": 0.04252289904680773,
+      "days": 3,
+      "gov_ci": null,
+      "governing": null,
+      "log_loss": 0.6708357986957768,
+      "log_loss_ref": 0.7188366164671143,
+      "mints": 24,
+      "n_rows": 24,
+      "n_with_number": 24,
+      "p_one_sided": null,
+      "positives": 8,
+      "prevalence": 0.3333333333333333,
+      "verdict": "INSUFFICIENT_DAYS"
+     }
+    },
+    "ENS_MEAN_B2_S1": {
+     "folds": [
+      "0",
+      "1",
+      "2"
+     ],
+     "members": [
+      "B2",
+      "S1"
+     ],
+     "oof_rows": 24,
+     "rows_with_number": 13,
+     "sources": {
+      "LAB_ATTENTION_PROXIES": "S1",
+      "LAB_CHANNEL_LINKS": "S1",
+      "LAB_FATAL_FLAGS": "B2",
+      "LAB_LIFECYCLE_CLASSIFIER": "S1",
+      "LAB_MANIPULATION_SCREEN": "S1",
+      "LAB_THESIS_MARKET_ROW": "B2",
+      "LAB_TOKEN_AGE": "B2"
+     },
+     "vs_B0": {
+      "brier": 0.25058629679298083,
+      "brier_ref": 0.21545122366246156,
+      "bss": -0.16307669333808894,
+      "days": 2,
+      "gov_ci": null,
+      "governing": null,
+      "log_loss": 0.723046346893011,
+      "log_loss_ref": 0.6231999176761522,
+      "mints": 13,
+      "n_rows": 24,
+      "n_with_number": 13,
+      "p_one_sided": null,
+      "positives": 4,
+      "prevalence": 0.3076923076923077,
+      "verdict": "INSUFFICIENT_DAYS"
+     },
+     "vs_B2": {
+      "brier": 0.25058629679298083,
+      "brier_ref": 0.26301856692669234,
+      "bss": 0.04726765216227713,
+      "days": 2,
+      "gov_ci": null,
+      "governing": null,
+      "log_loss": 0.723046346893011,
+      "log_loss_ref": 0.7972052254264563,
+      "mints": 13,
+      "n_rows": 24,
+      "n_with_number": 13,
+      "p_one_sided": null,
+      "positives": 4,
+      "prevalence": 0.3076923076923077,
+      "verdict": "INSUFFICIENT_DAYS"
+     }
+    },
+    "STACK_CHRONO_B2_S1": {
+     "fitted_folds": 0,
+     "folds": [
+      {
+       "cutoff_utc": "2026-10-14T00:00:00Z",
+       "eval_rows": 8,
+       "fit_positives": 0,
+       "fit_rows": 0,
+       "fitted": false,
+       "fold": "1",
+       "gate_shortfalls": [
+        "events 0 < 100",
+        "per class 0 < 20",
+        "decision days 0 < 5"
+       ]
+      },
+      {
+       "cutoff_utc": "2026-10-15T00:00:00Z",
+       "eval_rows": 5,
+       "fit_positives": 0,
+       "fit_rows": 0,
+       "fitted": false,
+       "fold": "2",
+       "gate_shortfalls": [
+        "events 0 < 100",
+        "per class 0 < 20",
+        "decision days 0 < 5"
+       ]
+      }
+     ],
+     "members": [
+      "B2",
+      "S1"
+     ],
+     "verdict": "INSUFFICIENT_HISTORY"
+    }
+   },
+   "member_latency_cpu_us_per_decision": {
+    "B0": 5.027547368420552,
+    "B2": 9.751275789474715,
+    "S1": 9.395926315790268
+   },
+   "post_opening": {
+    "ENS_MEAN_B0_B2": {
+     "vs_B0": {
+      "brier": 0.17440221305747072,
+      "brier_ref": 0.17613636363636365,
+      "bss": 0.009845500060811307,
+      "claim": "NOT_A_CLAIM_POST_OPENING",
+      "days": 7,
+      "gov_ci": [
+       -0.059536313669271555,
+       0.09402084194423217
+      ],
+      "governing": "mint",
+      "log_loss": 0.5333558107342138,
+      "log_loss_ref": 0.5373666835127148,
+      "mints": 57,
+      "n_rows": 66,
+      "n_with_number": 66,
+      "p_one_sided": 0.39580209895052476,
+      "positives": 15,
+      "post_opening_state": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+      "prevalence": 0.22727272727272727,
+      "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+     },
+     "vs_B2": {
+      "brier": 0.17440221305747072,
+      "brier_ref": 0.18039434762028045,
+      "bss": 0.033216864285697145,
+      "claim": "NOT_A_CLAIM_POST_OPENING",
+      "days": 7,
+      "gov_ci": [
+       -0.042092683006386404,
+       0.08601140571344788
+      ],
+      "governing": "mint",
+      "log_loss": 0.5333558107342138,
+      "log_loss_ref": 0.5632554991922296,
+      "mints": 57,
+      "n_rows": 66,
+      "n_with_number": 66,
+      "p_one_sided": 0.1729135432283858,
+      "positives": 15,
+      "post_opening_state": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+      "prevalence": 0.22727272727272727,
+      "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+     }
+    },
+    "ENS_MEAN_B2_S1": {
+     "vs_B0": {
+      "brier": 0.17571880526386938,
+      "brier_ref": 0.17857142857142858,
+      "bss": 0.01597469052233147,
+      "claim": "NOT_A_CLAIM_POST_OPENING",
+      "days": 7,
+      "gov_ci": [
+       -0.11570886070881259,
+       0.14498222598822252
+      ],
+      "governing": "day",
+      "log_loss": 0.5396987604708013,
+      "log_loss_ref": 0.5427170680354492,
+      "mints": 51,
+      "n_rows": 66,
+      "n_with_number": 56,
+      "p_one_sided": 0.4267866066966517,
+      "positives": 13,
+      "post_opening_state": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+      "prevalence": 0.23214285714285715,
+      "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+     },
+     "vs_B2": {
+      "brier": 0.17571880526386938,
+      "brier_ref": 0.18523643950438157,
+      "bss": 0.051381004007513775,
+      "claim": "NOT_A_CLAIM_POST_OPENING",
+      "days": 7,
+      "gov_ci": [
+       -0.023457635058940357,
+       0.10932889373128446
+      ],
+      "governing": "mint",
+      "log_loss": 0.5396987604708013,
+      "log_loss_ref": 0.5797200041947322,
+      "mints": 51,
+      "n_rows": 66,
+      "n_with_number": 56,
+      "p_one_sided": 0.08095952023988005,
+      "positives": 13,
+      "post_opening_state": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+      "prevalence": 0.23214285714285715,
+      "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+     }
+    }
+   },
+   "target": "price_path_target_before_invalidation_24h",
+   "traps": {
+    "TRAP_ENS_MEAN_B2_M1_S1": {
+     "detail": "M1 and B2 both read LAB_FATAL_FLAGS",
+     "refused": true,
+     "status": "DOUBLE_COUNTED_EVIDENCE"
+    },
+    "TRAP_ENS_MEAN_B2_M2_S2": {
+     "detail": "M2 and B2 both read LAB_FATAL_FLAGS",
+     "refused": true,
+     "status": "DOUBLE_COUNTED_EVIDENCE"
+    },
+    "TRAP_STACK_IN_SAMPLE": {
+     "detail": "a stacking fit row is also an evaluation row",
+     "refused": true,
+     "status": "IN_SAMPLE_STACKING"
+    }
+   }
+  },
+  "T1b_6h": {
+   "complexity": {
+    "ENS_MEAN_B0_B2": {
+     "cpu_us_per_decision_sum_of_members": 14.361044210525694,
+     "extra_parameters": 0,
+     "member_parameters": 7,
+     "members": 2
+    },
+    "ENS_MEAN_B2_S1": {
+     "cpu_us_per_decision_sum_of_members": 19.052033684210144,
+     "extra_parameters": 0,
+     "member_parameters": 13,
+     "members": 2
+    },
+    "STACK_CHRONO_B2_S1": {
+     "extra_parameters": 3,
+     "fitted": false,
+     "members": 2
+    }
+   },
+   "decision": {
+    "configuration": null,
+    "decision": "NO_ENSEMBLE",
+    "evidence": [
+     {
+      "configuration": "ENS_MEAN_B0_B2",
+      "reason": "no retrospective first-opening evaluation and no calibration",
+      "selection_status": "NO_UNCORRECTED_SKILL",
+      "status": "EVALUATED_DEVELOPMENT",
+      "verdict_vs_b0": "INSUFFICIENT_EVENTS",
+      "verdict_vs_b2": "INSUFFICIENT_EVENTS"
+     },
+     {
+      "configuration": "ENS_MEAN_B2_S1",
+      "reason": "no retrospective first-opening evaluation and no calibration",
+      "selection_status": "NO_UNCORRECTED_SKILL",
+      "status": "EVALUATED_DEVELOPMENT",
+      "verdict_vs_b0": "INSUFFICIENT_EVENTS",
+      "verdict_vs_b2": "INSUFFICIENT_EVENTS"
+     },
+     {
+      "configuration": "STACK_CHRONO_B2_S1",
+      "reason": "events 33 < 100; per class 3 < 20; decision days 4 < 5",
+      "selection_status": "NO_UNCORRECTED_SKILL",
+      "status": "NOT_FITTED_BELOW_GATE",
+      "verdict_vs_b0": "INSUFFICIENT_HISTORY",
+      "verdict_vs_b2": "INSUFFICIENT_HISTORY"
+     }
+    ],
+    "kind": "ENSEMBLE_DECISION",
+    "reasons": [
+     "NO_ENSEMBLE_EARNED_SKILL_OVER_B2",
+     "NOTHING_BEATS_THE_BASE_RATE"
+    ],
+    "target": "price_path_target_before_invalidation_6h"
+   },
+   "development": {
+    "ENS_MEAN_B0_B2": {
+     "folds": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "members": [
+      "B0",
+      "B2"
+     ],
+     "oof_rows": 44,
+     "rows_with_number": 44,
+     "sources": {
+      "LAB_FATAL_FLAGS": "B2",
+      "LAB_THESIS_MARKET_ROW": "B2",
+      "LAB_TOKEN_AGE": "B2"
+     },
+     "vs_B0": {
+      "brier": 0.06152203015333524,
+      "brier_ref": 0.06666899767947726,
+      "bss": 0.07720181351588584,
+      "days": 5,
+      "gov_ci": [
+       -0.004214294869630824,
+       0.15060065901067313
+      ],
+      "governing": "mint",
+      "log_loss": 0.2385889409894901,
+      "log_loss_ref": 0.26577346065299784,
+      "mints": 37,
+      "n_rows": 44,
+      "n_with_number": 44,
+      "p_one_sided": 0.027486256871564217,
+      "positives": 3,
+      "prevalence": 0.06818181818181818,
+      "verdict": "INSUFFICIENT_EVENTS"
+     },
+     "vs_B2": {
+      "brier": 0.06152203015333524,
+      "brier_ref": 0.059459905859545456,
+      "bss": -0.03468092093285313,
+      "days": 5,
+      "gov_ci": [
+       -0.09942938039858075,
+       0.11631136415111981
+      ],
+      "governing": "mint",
+      "log_loss": 0.2385889409894901,
+      "log_loss_ref": 0.21699755088013903,
+      "mints": 37,
+      "n_rows": 44,
+      "n_with_number": 44,
+      "p_one_sided": 0.777111444277861,
+      "positives": 3,
+      "prevalence": 0.06818181818181818,
+      "verdict": "INSUFFICIENT_EVENTS"
+     }
+    },
+    "ENS_MEAN_B2_S1": {
+     "folds": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "members": [
+      "B2",
+      "S1"
+     ],
+     "oof_rows": 44,
+     "rows_with_number": 37,
+     "sources": {
+      "LAB_ATTENTION_PROXIES": "S1",
+      "LAB_CHANNEL_LINKS": "S1",
+      "LAB_FATAL_FLAGS": "B2",
+      "LAB_LIFECYCLE_CLASSIFIER": "S1",
+      "LAB_MANIPULATION_SCREEN": "S1",
+      "LAB_THESIS_MARKET_ROW": "B2",
+      "LAB_TOKEN_AGE": "B2"
+     },
+     "vs_B0": {
+      "brier": 0.06911274113006759,
+      "brier_ref": 0.07644709379629729,
+      "bss": 0.09594024183277627,
+      "days": 5,
+      "gov_ci": [
+       -0.29395398655116217,
+       0.24072367317698623
+      ],
+      "governing": "mint",
+      "log_loss": 0.24718081440881318,
+      "log_loss_ref": 0.2913545645757736,
+      "mints": 32,
+      "n_rows": 44,
+      "n_with_number": 37,
+      "p_one_sided": 0.21189405297351324,
+      "positives": 3,
+      "prevalence": 0.08108108108108109,
+      "verdict": "INSUFFICIENT_EVENTS"
+     },
+     "vs_B2": {
+      "brier": 0.06911274113006759,
+      "brier_ref": 0.06993507972372971,
+      "bss": 0.011758599502719957,
+      "days": 5,
+      "gov_ci": [
+       -0.1563949691899922,
+       0.134145435927966
+      ],
+      "governing": "mint",
+      "log_loss": 0.24718081440881318,
+      "log_loss_ref": 0.24693585684668595,
+      "mints": 32,
+      "n_rows": 44,
+      "n_with_number": 37,
+      "p_one_sided": 0.4512743628185907,
+      "positives": 3,
+      "prevalence": 0.08108108108108109,
+      "verdict": "INSUFFICIENT_EVENTS"
+     }
+    },
+    "STACK_CHRONO_B2_S1": {
+     "fitted_folds": 0,
+     "folds": [
+      {
+       "cutoff_utc": "2026-10-12T00:00:00Z",
+       "eval_rows": 7,
+       "fit_positives": 0,
+       "fit_rows": 0,
+       "fitted": false,
+       "fold": "0",
+       "gate_shortfalls": [
+        "events 0 < 100",
+        "per class 0 < 20",
+        "decision days 0 < 5"
+       ]
+      },
+      {
+       "cutoff_utc": "2026-10-13T00:00:00Z",
+       "eval_rows": 11,
+       "fit_positives": 1,
+       "fit_rows": 7,
+       "fitted": false,
+       "fold": "1",
+       "gate_shortfalls": [
+        "events 7 < 100",
+        "per class 1 < 20",
+        "decision days 1 < 5"
+       ]
+      },
+      {
+       "cutoff_utc": "2026-10-14T00:00:00Z",
+       "eval_rows": 8,
+       "fit_positives": 2,
+       "fit_rows": 18,
+       "fitted": false,
+       "fold": "2",
+       "gate_shortfalls": [
+        "events 18 < 100",
+        "per class 2 < 20",
+        "decision days 2 < 5"
+       ]
+      },
+      {
+       "cutoff_utc": "2026-10-15T00:00:00Z",
+       "eval_rows": 7,
+       "fit_positives": 2,
+       "fit_rows": 26,
+       "fitted": false,
+       "fold": "3",
+       "gate_shortfalls": [
+        "events 26 < 100",
+        "per class 2 < 20",
+        "decision days 3 < 5"
+       ]
+      },
+      {
+       "cutoff_utc": "2026-10-16T00:00:00Z",
+       "eval_rows": 4,
+       "fit_positives": 3,
+       "fit_rows": 33,
+       "fitted": false,
+       "fold": "4",
+       "gate_shortfalls": [
+        "events 33 < 100",
+        "per class 3 < 20",
+        "decision days 4 < 5"
+       ]
+      }
+     ],
+     "members": [
+      "B2",
+      "S1"
+     ],
+     "verdict": "INSUFFICIENT_HISTORY"
+    }
+   },
+   "member_latency_cpu_us_per_decision": {
+    "B0": 4.514050526315086,
+    "B2": 9.84699368421061,
+    "S1": 9.205039999999535
+   },
+   "post_opening": {
+    "ENS_MEAN_B0_B2": {
+     "vs_B0": {
+      "brier": 0.15341056567416836,
+      "brier_ref": 0.14897677821128452,
+      "bss": -0.02976160121140281,
+      "claim": "NOT_A_CLAIM_POST_OPENING",
+      "days": 7,
+      "gov_ci": [
+       -0.06706327356667888,
+       0.013903562132976176
+      ],
+      "governing": "mint",
+      "log_loss": 0.5050028132924008,
+      "log_loss_ref": 0.48164440222045535,
+      "mints": 57,
+      "n_rows": 68,
+      "n_with_number": 68,
+      "p_one_sided": 0.9135432283858071,
+      "positives": 12,
+      "post_opening_state": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+      "prevalence": 0.17647058823529413,
+      "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+     },
+     "vs_B2": {
+      "brier": 0.15341056567416836,
+      "brier_ref": 0.1613887109908731,
+      "bss": 0.049434345610182784,
+      "claim": "NOT_A_CLAIM_POST_OPENING",
+      "days": 7,
+      "gov_ci": [
+       0.00954636917748744,
+       0.0869622889006275
+      ],
+      "governing": "mint",
+      "log_loss": 0.5050028132924008,
+      "log_loss_ref": 0.578104473021638,
+      "mints": 57,
+      "n_rows": 68,
+      "n_with_number": 68,
+      "p_one_sided": 0.008995502248875561,
+      "positives": 12,
+      "post_opening_state": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+      "prevalence": 0.17647058823529413,
+      "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+     }
+    },
+    "ENS_MEAN_B2_S1": {
+     "vs_B0": {
+      "brier": 0.15568921413348538,
+      "brier_ref": 0.14818435597923385,
+      "bss": -0.05064541465701855,
+      "claim": "NOT_A_CLAIM_POST_OPENING",
+      "days": 7,
+      "gov_ci": [
+       -0.1513438753904616,
+       0.046682645799446525
+      ],
+      "governing": "mint",
+      "log_loss": 0.5295629181456943,
+      "log_loss_ref": 0.4795492830329702,
+      "mints": 51,
+      "n_rows": 68,
+      "n_with_number": 57,
+      "p_one_sided": 0.8360819590204898,
+      "positives": 10,
+      "post_opening_state": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+      "prevalence": 0.17543859649122806,
+      "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+     },
+     "vs_B2": {
+      "brier": 0.15568921413348538,
+      "brier_ref": 0.15795751066274677,
+      "bss": 0.014360168881772273,
+      "claim": "NOT_A_CLAIM_POST_OPENING",
+      "days": 7,
+      "gov_ci": [
+       -0.0311407449806122,
+       0.05588866496226686
+      ],
+      "governing": "mint",
+      "log_loss": 0.5295629181456943,
+      "log_loss_ref": 0.5342246338367898,
+      "mints": 51,
+      "n_rows": 68,
+      "n_with_number": 57,
+      "p_one_sided": 0.25537231384307846,
+      "positives": 10,
+      "post_opening_state": "NOT_DISTINGUISHABLE_FROM_BASE_RATE",
+      "prevalence": 0.17543859649122806,
+      "verdict": "NOT_DISTINGUISHABLE_FROM_BASE_RATE"
+     }
+    }
+   },
+   "target": "price_path_target_before_invalidation_6h",
+   "traps": {
+    "TRAP_ENS_MEAN_B2_M1_S1": {
+     "detail": "M1 and B2 both read LAB_FATAL_FLAGS",
+     "refused": true,
+     "status": "DOUBLE_COUNTED_EVIDENCE"
+    },
+    "TRAP_ENS_MEAN_B2_M2_S2": {
+     "detail": "M2 and B2 both read LAB_FATAL_FLAGS",
+     "refused": true,
+     "status": "DOUBLE_COUNTED_EVIDENCE"
+    },
+    "TRAP_STACK_IN_SAMPLE": {
+     "detail": "a stacking fit row is also an evaluation row",
+     "refused": true,
+     "status": "IN_SAMPLE_STACKING"
+    }
+   }
+  },
+  "T2_24h": {
+   "complexity": {
+    "ENS_MEAN_B0_B2": {
+     "cpu_us_per_decision_sum_of_members": 14.147898947366631,
+     "extra_parameters": 0,
+     "member_parameters": 7,
+     "members": 2
+    },
+    "ENS_MEAN_B2_S1": {
+     "cpu_us_per_decision_sum_of_members": 17.615924210523147,
+     "extra_parameters": 0,
+     "member_parameters": 13,
+     "members": 2
+    },
+    "STACK_CHRONO_B2_S1": {
+     "extra_parameters": 3,
+     "fitted": false,
+     "members": 2
+    }
+   },
+   "decision": {
+    "configuration": null,
+    "decision": "NO_ENSEMBLE",
+    "evidence": [
+     {
+      "configuration": "ENS_MEAN_B0_B2",
+      "reason": "no retrospective first-opening evaluation and no calibration",
+      "selection_status": "NO_UNCORRECTED_SKILL",
+      "status": "EVALUATED_DEVELOPMENT",
+      "verdict_vs_b0": "INSUFFICIENT_DAYS",
+      "verdict_vs_b2": "INSUFFICIENT_DAYS"
+     },
+     {
+      "configuration": "ENS_MEAN_B2_S1",
+      "reason": "no retrospective first-opening evaluation and no calibration",
+      "selection_status": "NO_UNCORRECTED_SKILL",
+      "status": "EVALUATED_DEVELOPMENT",
+      "verdict_vs_b0": "INSUFFICIENT_HISTORY",
+      "verdict_vs_b2": "INSUFFICIENT_HISTORY"
+     },
+     {
+      "configuration": "STACK_CHRONO_B2_S1",
+      "reason": "no rows",
+      "selection_status": "NO_UNCORRECTED_SKILL",
+      "status": "NOT_FITTED_BELOW_GATE",
+      "verdict_vs_b0": "INSUFFICIENT_HISTORY",
+      "verdict_vs_b2": "INSUFFICIENT_HISTORY"
+     }
+    ],
+    "kind": "ENSEMBLE_DECISION",
+    "reasons": [
+     "NO_ENSEMBLE_EARNED_SKILL_OVER_B2",
+     "NOTHING_BEATS_THE_BASE_RATE"
+    ],
+    "target": "price_path_severe_drawdown_or_halt_24h"
+   },
+   "development": {
+    "ENS_MEAN_B0_B2": {
+     "folds": [
+      "0"
+     ],
+     "members": [
+      "B0",
+      "B2"
+     ],
+     "oof_rows": 8,
+     "rows_with_number": 8,
+     "sources": {
+      "LAB_FATAL_FLAGS": "B2",
+      "LAB_THESIS_MARKET_ROW": "B2",
+      "LAB_TOKEN_AGE": "B2"
+     },
+     "vs_B0": {
+      "brier": 0.12586769996181252,
+      "brier_ref": 0.127496198225,
+      "bss": 0.012772916258362188,
+      "days": 1,
+      "gov_ci": null,
+      "governing": null,
+      "log_loss": 0.40496004757297466,
+      "log_loss_ref": 0.4315812774088439,
+      "mints": 8,
+      "n_rows": 8,
+      "n_with_number": 8,
+      "p_one_sided": null,
+      "positives": 1,
+      "prevalence": 0.125,
+      "verdict": "INSUFFICIENT_DAYS"
+     },
+     "vs_B2": {
+      "brier": 0.12586769996181252,
+      "brier_ref": 0.15260378035474997,
+      "bss": 0.1751993320924652,
+      "days": 1,
+      "gov_ci": null,
+      "governing": null,
+      "log_loss": 0.40496004757297466,
+      "log_loss_ref": 0.4191887452715327,
+      "mints": 8,
+      "n_rows": 8,
+      "n_with_number": 8,
+      "p_one_sided": null,
+      "positives": 1,
+      "prevalence": 0.125,
+      "verdict": "INSUFFICIENT_DAYS"
+     }
+    },
+    "ENS_MEAN_B2_S1": {
+     "folds": [
+      "0"
+     ],
+     "members": [
+      "B2",
+      "S1"
+     ],
+     "oof_rows": 8,
+     "rows_with_number": 0,
+     "sources": {
+      "LAB_ATTENTION_PROXIES": "S1",
+      "LAB_CHANNEL_LINKS": "S1",
+      "LAB_FATAL_FLAGS": "B2",
+      "LAB_LIFECYCLE_CLASSIFIER": "S1",
+      "LAB_MANIPULATION_SCREEN": "S1",
+      "LAB_THESIS_MARKET_ROW": "B2",
+      "LAB_TOKEN_AGE": "B2"
+     },
+     "vs_B0": {
+      "brier": null,
+      "brier_ref": null,
+      "bss": null,
+      "days": null,
+      "gov_ci": null,
+      "governing": null,
+      "log_loss": null,
+      "log_loss_ref": null,
+      "mints": null,
+      "n_rows": 8,
+      "n_with_number": 0,
+      "p_one_sided": null,
+      "positives": null,
+      "prevalence": null,
+      "verdict": "INSUFFICIENT_HISTORY"
+     },
+     "vs_B2": {
+      "brier": null,
+      "brier_ref": null,
+      "bss": null,
+      "days": null,
+      "gov_ci": null,
+      "governing": null,
+      "log_loss": null,
+      "log_loss_ref": null,
+      "mints": null,
+      "n_rows": 8,
+      "n_with_number": 0,
+      "p_one_sided": null,
+      "positives": null,
+      "prevalence": null,
+      "verdict": "INSUFFICIENT_HISTORY"
+     }
+    },
+    "STACK_CHRONO_B2_S1": {
+     "fitted_folds": 0,
+     "folds": [],
+     "members": [
+      "B2",
+      "S1"
+     ],
+     "verdict": "INSUFFICIENT_HISTORY"
+    }
+   },
+   "member_latency_cpu_us_per_decision": {
+    "B0": 4.819877894737607,
+    "B2": 9.328021052629024,
+    "S1": 8.287903157894124
+   },
+   "post_opening": {
+    "ENS_MEAN_B0_B2": {
+     "vs_B0": {
+      "brier": 0.08610385658289914,
+      "brier_ref": 0.11361097640590262,
+      "bss": 0.2421167451701819,
+      "claim": "NOT_A_CLAIM_POST_OPENING",
+      "days": 6,
+      "gov_ci": [
+       0.07130057434536072,
+       0.4560362380912325
+      ],
+      "governing": "day",
+      "log_loss": 0.30524726961501414,
+      "log_loss_ref": 0.39500513745255017,
+      "mints": 52,
+      "n_rows": 59,
+      "n_with_number": 59,
+      "p_one_sided": 0.004997501249375313,
+      "positives": 7,
+      "post_opening_state": "INSUFFICIENT_EVENTS",
+      "prevalence": 0.11864406779661017,
+      "verdict": "INSUFFICIENT_EVENTS"
+     },
+     "vs_B2": {
+      "brier": 0.08610385658289914,
+      "brier_ref": 0.08038543924364928,
+      "bss": -0.07113747704876339,
+      "claim": "NOT_A_CLAIM_POST_OPENING",
+      "days": 6,
+      "gov_ci": [
+       -0.6486414167429067,
+       0.1072146587794206
+      ],
+      "governing": "day",
+      "log_loss": 0.30524726961501414,
+      "log_loss_ref": 0.2617162086400819,
+      "mints": 52,
+      "n_rows": 59,
+      "n_with_number": 59,
+      "p_one_sided": 0.7646176911544228,
+      "positives": 7,
+      "post_opening_state": "INSUFFICIENT_EVENTS",
+      "prevalence": 0.11864406779661017,
+      "verdict": "INSUFFICIENT_EVENTS"
+     }
+    },
+    "ENS_MEAN_B2_S1": {
+     "vs_B0": {
+      "brier": 0.10376310974396419,
+      "brier_ref": 0.12275486008077346,
+      "bss": 0.15471281808567572,
+      "claim": "NOT_A_CLAIM_POST_OPENING",
+      "days": 6,
+      "gov_ci": [
+       -0.14633366421575444,
+       0.5219794814172904
+      ],
+      "governing": "day",
+      "log_loss": 0.3228420531351901,
+      "log_loss_ref": 0.4158081685557663,
+      "mints": 47,
+      "n_rows": 59,
+      "n_with_number": 52,
+      "p_one_sided": 0.16141929035482258,
+      "positives": 7,
+      "post_opening_state": "INSUFFICIENT_EVENTS",
+      "prevalence": 0.1346153846153846,
+      "verdict": "INSUFFICIENT_EVENTS"
+     },
+     "vs_B2": {
+      "brier": 0.10376310974396419,
+      "brier_ref": 0.09073772485550916,
+      "bss": -0.14354982901760738,
+      "claim": "NOT_A_CLAIM_POST_OPENING",
+      "days": 6,
+      "gov_ci": [
+       -0.4039028148777486,
+       0.04120153415412179
+      ],
+      "governing": "mint",
+      "log_loss": 0.3228420531351901,
+      "log_loss_ref": 0.2905608699237191,
+      "mints": 47,
+      "n_rows": 59,
+      "n_with_number": 52,
+      "p_one_sided": 0.9365317341329336,
+      "positives": 7,
+      "post_opening_state": "INSUFFICIENT_EVENTS",
+      "prevalence": 0.1346153846153846,
+      "verdict": "INSUFFICIENT_EVENTS"
+     }
+    }
+   },
+   "target": "price_path_severe_drawdown_or_halt_24h",
+   "traps": {
+    "TRAP_ENS_MEAN_B2_M1_S1": {
+     "detail": "M1 and B2 both read LAB_FATAL_FLAGS",
+     "refused": true,
+     "status": "DOUBLE_COUNTED_EVIDENCE"
+    },
+    "TRAP_ENS_MEAN_B2_M2_S2": {
+     "detail": "M2 and B2 both read LAB_FATAL_FLAGS",
+     "refused": true,
+     "status": "DOUBLE_COUNTED_EVIDENCE"
+    },
+    "TRAP_STACK_IN_SAMPLE": {
+     "detail": "a stacking fit row is also an evaluation row",
+     "refused": true,
+     "status": "IN_SAMPLE_STACKING"
+    }
+   }
+  }
+ }
+}

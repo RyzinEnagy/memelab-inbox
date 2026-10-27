@@ -1,0 +1,352 @@
+{
+ "as_of_utc": "2026-10-27T00:00:00Z",
+ "decisions": 10,
+ "drift_demonstration": {
+  "T1_24h": [
+   "DRIFT_ALERT",
+   "MODEL_NOT_PROMOTED"
+  ],
+  "T1b_6h": [
+   "DRIFT_ALERT",
+   "MODEL_NOT_PROMOTED"
+  ],
+  "T2_24h": [
+   "DRIFT_ALERT",
+   "MODEL_NOT_PROMOTED"
+  ]
+ },
+ "drift_demonstration_note": "a synthetic alarm time, to show the state; no drift stream exists before Phase 19",
+ "failures": [],
+ "note": "prospective decisions of the development store; their features are not in the Phase 05 store (sealed by design), so inputs are missing; no label of them is read",
+ "statement": "No champion for any target. B0 and B2 are references, not forecasts. No probability is published.",
+ "target_plan_example": {
+  "decision_key": "fedb3a2a02bb6c44a46afce8dfcd846a8fb949ac8c2bc7944bfb7bb3fb2030c4",
+  "plan": [
+   {
+    "attempted": true,
+    "backtest_assessment_ref": null,
+    "behavioral_scenarios": [],
+    "forecast_inputs": {
+     "calibration_card_sha": null,
+     "card_entry": null,
+     "level": "ABSTAIN",
+     "model_id": "not_selected"
+    },
+    "horizon_seconds": 86400,
+    "reasons": [
+     "MODEL_NOT_SELECTED"
+    ],
+    "references_scored_internally": [
+     "base_rate",
+     "simple_model"
+    ],
+    "status": "PRIMARY",
+    "target": "price_path_target_before_invalidation_24h",
+    "target_version": "1"
+   },
+   {
+    "attempted": true,
+    "backtest_assessment_ref": null,
+    "behavioral_scenarios": [],
+    "forecast_inputs": {
+     "calibration_card_sha": null,
+     "card_entry": null,
+     "level": "ABSTAIN",
+     "model_id": "not_selected"
+    },
+    "horizon_seconds": 21600,
+    "reasons": [
+     "MODEL_NOT_SELECTED"
+    ],
+    "references_scored_internally": [
+     "base_rate",
+     "simple_model"
+    ],
+    "status": "PRIMARY",
+    "target": "price_path_target_before_invalidation_6h",
+    "target_version": "1"
+   },
+   {
+    "attempted": true,
+    "backtest_assessment_ref": null,
+    "behavioral_scenarios": [],
+    "forecast_inputs": {
+     "calibration_card_sha": null,
+     "card_entry": null,
+     "level": "ABSTAIN",
+     "model_id": "not_selected"
+    },
+    "horizon_seconds": 86400,
+    "reasons": [
+     "MODEL_NOT_SELECTED"
+    ],
+    "references_scored_internally": [
+     "base_rate",
+     "simple_model"
+    ],
+    "status": "PRIMARY",
+    "target": "price_path_severe_drawdown_or_halt_24h",
+    "target_version": "1"
+   },
+   {
+    "attempted": false,
+    "forecast_inputs": null,
+    "horizon_seconds": 86400,
+    "reasons": [
+     "TARGET_NOT_FEASIBLE"
+    ],
+    "status": "BLOCKED_NO_HISTORICAL_DEPTH",
+    "target": "exit_adjusted_target_before_invalidation_24h",
+    "target_version": "0"
+   },
+   {
+    "attempted": false,
+    "forecast_inputs": null,
+    "horizon_seconds": 86400,
+    "reasons": [
+     "TARGET_NOT_FEASIBLE"
+    ],
+    "status": "DEFERRED_FORWARD_COLLECTION",
+    "target": "liquidity_degradation_24h",
+    "target_version": "0"
+   },
+   {
+    "attempted": false,
+    "forecast_inputs": null,
+    "horizon_seconds": 21600,
+    "reasons": [
+     "TARGET_NOT_FEASIBLE"
+    ],
+    "status": "DEFERRED_PHASE_08",
+    "target": "failed_breakout_6h",
+    "target_version": "0"
+   },
+   {
+    "attempted": false,
+    "forecast_inputs": null,
+    "horizon_seconds": 86400,
+    "reasons": [
+     "TARGET_NOT_FEASIBLE"
+    ],
+    "status": "BLOCKED_NO_DATA",
+    "target": "catalyst_followthrough_24h_7d",
+    "target_version": "0"
+   },
+   {
+    "attempted": false,
+    "forecast_inputs": null,
+    "horizon_seconds": 86400,
+    "reasons": [
+     "TARGET_NOT_FEASIBLE"
+    ],
+    "status": "BLOCKED_NO_DATA",
+    "target": "distribution_event_24h",
+    "target_version": "0"
+   },
+   {
+    "attempted": false,
+    "forecast_inputs": null,
+    "horizon_seconds": 604800,
+    "reasons": [
+     "TARGET_NOT_FEASIBLE"
+    ],
+    "status": "EXPLORATORY",
+    "target": "price_path_target_before_invalidation_7d",
+    "target_version": "0"
+   },
+   {
+    "attempted": false,
+    "forecast_inputs": null,
+    "horizon_seconds": 86400,
+    "reasons": [
+     "TARGET_NOT_FEASIBLE"
+    ],
+    "status": "EXPLORATORY",
+    "target": "launch_cohort_collapse_24h",
+    "target_version": "0"
+   }
+  ]
+ },
+ "targets": {
+  "T1_24h": {
+   "champion": null,
+   "documents": 10,
+   "mode": "NO_VIABLE_CHAMPION",
+   "model_id_in_documents": "not_selected",
+   "pin_reasons": [
+    "NO_ENTRY_AT_SHADOW_OR_ABOVE",
+    "PHASE_12_CHAMPION_B2_BY_DEFAULT_NOT_BY_EVIDENCE",
+    "B2_RETROSPECTIVE_BSS_BELOW_0+NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION",
+    "NO_ENSEMBLE"
+   ],
+   "prediction_status": "ABSTAIN",
+   "reason_counts": {
+    "FLAG_OFF": 10,
+    "INSUFFICIENT_HISTORY": 10,
+    "MODEL_NOT_SELECTED": 10,
+    "SOURCE_STALE": 10,
+    "TARGET_NOT_FEASIBLE": 1,
+    "UNCALIBRATED": 10
+   },
+   "references": {
+    "base_rate": {
+     "entry_id": "dc5347a39cbeb2e93e1bbeee1036fb73061de1572881ede0afc426d5261a888e",
+     "level": "ABSTAIN",
+     "model_id": "B0:price_path_target_before_invalidation_24h",
+     "published": false,
+     "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED",
+     "stale_after_utc": "2026-10-31T00:00:00Z",
+     "states_at_2026-10-31T00:00:00Z": [
+      "MODEL_NOT_PROMOTED"
+     ],
+     "states_at_2026-10-31T00:00:01Z": [
+      "MODEL_STALE",
+      "MODEL_NOT_PROMOTED"
+     ],
+     "states_today": [
+      "MODEL_NOT_PROMOTED"
+     ]
+    },
+    "simple_model": {
+     "entry_id": "d2efa26b370403540494a2c49e300ec00cf6b2ed8720df08940641d53552f2e7",
+     "level": "ABSTAIN",
+     "model_id": "B2:price_path_target_before_invalidation_24h",
+     "published": false,
+     "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED",
+     "stale_after_utc": "2026-10-31T00:00:00Z",
+     "states_at_2026-10-31T00:00:00Z": [
+      "MODEL_NOT_PROMOTED"
+     ],
+     "states_at_2026-10-31T00:00:01Z": [
+      "MODEL_STALE",
+      "MODEL_NOT_PROMOTED"
+     ],
+     "states_today": [
+      "MODEL_NOT_PROMOTED"
+     ]
+    }
+   },
+   "target_plan": null
+  },
+  "T1b_6h": {
+   "champion": null,
+   "documents": 10,
+   "mode": "NO_VIABLE_CHAMPION",
+   "model_id_in_documents": "not_selected",
+   "pin_reasons": [
+    "NO_ENTRY_AT_SHADOW_OR_ABOVE",
+    "PHASE_12_CHAMPION_B2_BY_DEFAULT_NOT_BY_EVIDENCE",
+    "B2_RETROSPECTIVE_CALIBRATION_FAILED+RETROSPECTIVE_BSS_BELOW_0+NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION",
+    "NO_ENSEMBLE"
+   ],
+   "prediction_status": "ABSTAIN",
+   "reason_counts": {
+    "FLAG_OFF": 10,
+    "INSUFFICIENT_HISTORY": 10,
+    "MODEL_NOT_SELECTED": 10,
+    "SOURCE_STALE": 10,
+    "TARGET_NOT_FEASIBLE": 1,
+    "UNCALIBRATED": 10
+   },
+   "references": {
+    "base_rate": {
+     "entry_id": "daecc5b0476679bd86d2c6c6a1b2305ba57e79f601870a86e9e3654a91d94ea2",
+     "level": "ABSTAIN",
+     "model_id": "B0:price_path_target_before_invalidation_6h",
+     "published": false,
+     "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED",
+     "stale_after_utc": "2026-10-31T00:00:00Z",
+     "states_at_2026-10-31T00:00:00Z": [
+      "MODEL_NOT_PROMOTED"
+     ],
+     "states_at_2026-10-31T00:00:01Z": [
+      "MODEL_STALE",
+      "MODEL_NOT_PROMOTED"
+     ],
+     "states_today": [
+      "MODEL_NOT_PROMOTED"
+     ]
+    },
+    "simple_model": {
+     "entry_id": "fd4420656a1392a01176956075b09d1b29da7fc5db95481f09c0179530f1b668",
+     "level": "ABSTAIN",
+     "model_id": "B2:price_path_target_before_invalidation_6h",
+     "published": false,
+     "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED",
+     "stale_after_utc": "2026-10-31T00:00:00Z",
+     "states_at_2026-10-31T00:00:00Z": [
+      "MODEL_NOT_PROMOTED"
+     ],
+     "states_at_2026-10-31T00:00:01Z": [
+      "MODEL_STALE",
+      "MODEL_NOT_PROMOTED"
+     ],
+     "states_today": [
+      "MODEL_NOT_PROMOTED"
+     ]
+    }
+   },
+   "target_plan": null
+  },
+  "T2_24h": {
+   "champion": null,
+   "documents": 10,
+   "mode": "NO_VIABLE_CHAMPION",
+   "model_id_in_documents": "not_selected",
+   "pin_reasons": [
+    "NO_ENTRY_AT_SHADOW_OR_ABOVE",
+    "PHASE_12_CHAMPION_B2_BY_DEFAULT_NOT_BY_EVIDENCE",
+    "B2_RETROSPECTIVE_BELOW_MINIMUM+NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION",
+    "NO_ENSEMBLE"
+   ],
+   "prediction_status": "ABSTAIN",
+   "reason_counts": {
+    "FLAG_OFF": 10,
+    "INSUFFICIENT_HISTORY": 10,
+    "MODEL_NOT_SELECTED": 10,
+    "SOURCE_STALE": 10,
+    "TARGET_NOT_FEASIBLE": 1,
+    "UNCALIBRATED": 10
+   },
+   "references": {
+    "base_rate": {
+     "entry_id": "8ad8ce7e5c6a4c5240293710c265aa0f7adb650c3a2dd28d6c1c6166f8794a43",
+     "level": "ABSTAIN",
+     "model_id": "B0:price_path_severe_drawdown_or_halt_24h",
+     "published": false,
+     "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED",
+     "stale_after_utc": "2026-10-31T00:00:00Z",
+     "states_at_2026-10-31T00:00:00Z": [
+      "MODEL_NOT_PROMOTED"
+     ],
+     "states_at_2026-10-31T00:00:01Z": [
+      "MODEL_STALE",
+      "MODEL_NOT_PROMOTED"
+     ],
+     "states_today": [
+      "MODEL_NOT_PROMOTED"
+     ]
+    },
+    "simple_model": {
+     "entry_id": "0b9b34b4cd9c2d4345dc1b323d5cdd21b495ed9690d1cb25ed95f2fd8fe0f28a",
+     "level": "ABSTAIN",
+     "model_id": "B2:price_path_severe_drawdown_or_halt_24h",
+     "published": false,
+     "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED",
+     "stale_after_utc": "2026-10-31T00:00:00Z",
+     "states_at_2026-10-31T00:00:00Z": [
+      "MODEL_NOT_PROMOTED"
+     ],
+     "states_at_2026-10-31T00:00:01Z": [
+      "MODEL_STALE",
+      "MODEL_NOT_PROMOTED"
+     ],
+     "states_today": [
+      "MODEL_NOT_PROMOTED"
+     ]
+    }
+   },
+   "target_plan": null
+  }
+ }
+}

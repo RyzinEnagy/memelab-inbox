@@ -1,0 +1,515 @@
+{
+ "entries": 69,
+ "entries_by_target": {
+  "T1_24h": [
+   {
+    "candidate": "P07_B0",
+    "entry_id": "dc5347a39cbeb2e93e1bbeee1036fb73061de1572881ede0afc426d5261a888e",
+    "level": "ABSTAIN",
+    "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED"
+   },
+   {
+    "candidate": "P07_B1",
+    "entry_id": "fae2c79da9d0f3d5f3de7310f26f7be1b7787d6cce86c2f2d813a0e977a57c40",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P07_B2",
+    "entry_id": "d2efa26b370403540494a2c49e300ec00cf6b2ed8720df08940641d53552f2e7",
+    "level": "ABSTAIN",
+    "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED"
+   },
+   {
+    "candidate": "P07_B3",
+    "entry_id": "a852cfcabd30c3794034b0c5777b50b1dcd8f288943879b299d2690464b98a19",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P07_B3F",
+    "entry_id": "4f5a17cbb40fe324d717e612ec82d6548b81ded96b3f1fd7fb34e4aedcfcdd3e",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P07_B4",
+    "entry_id": "b8837cb5a41968a32ca825e908753e1b093cdf3504b8f35712b66364a632ec86",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P08_M1_T_LOGIT",
+    "entry_id": "0fe35cb8f11969186ef45032cd2097bc8a1593305c088aa69c45cf58862a9e5a",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P08_M2_T_LOGIT_B2",
+    "entry_id": "74bc7918b0b8d4130516df0adc3a706aff450e44a34feaed6b264225992eeac6",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P08_M3_T_STUMPS",
+    "entry_id": "4347ac7ca5754ea24051fc4140e5d1766cbe5ac6061aac217a388ac6f5c98e3c",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P09_A1_OC_B2_TC",
+    "entry_id": "0d067a60ee9a633486c80dd1dde9faaaa64de7043ed551d891b3118718b6aacd",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P09_M1_OC_LOGIT",
+    "entry_id": "5705b1c1522e9c695d11b433a790ca5e8b18c8b7bf5f638ed2b0b2a3e9b654f0",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P09_M2_OC_LOGIT_B2",
+    "entry_id": "1799e0e17bb6aee309ff6d29c1d6c2b84b65ba9866457cbd0e1e52ed529ae3f3",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P09_M3_OC_LOGIT_TREND",
+    "entry_id": "2e87db844d5c47b1e68d019e65caf08bfca4dad726b49155788b6ab55a3be006",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P09_R1_OC_RULE",
+    "entry_id": "69105a6fdfd9970d3386a4a076484249ccf81eff4ad987c44ebed8d3d08e625e",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_A2_SC_B2_TC",
+    "entry_id": "d6e338d667797cf071f6c2aa1b4030a13edc24a51d0d1d1b3a6a481332844052",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_G1_SC_STUMPS_B2",
+    "entry_id": "4cc59c4e793381e5e25d8162174c29ea3376e3d7fece7144b059da11ce9b943b",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_R2_SC_RULE",
+    "entry_id": "fcf9f4ccbaa10f0c0bb2c187688e9f470085519954eef67405b8273ff1b3d019",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_S1_SC_LOGIT",
+    "entry_id": "b2d2753f1f26c0660d3e4bafc8b9b113ec5a2aaf9c3b6501c9f7a1dc94518934",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_S2_SC_LOGIT_B2",
+    "entry_id": "75ba2d7c0577cffad7c8e76ef227ecb71b5ec95f5ff46117d3bce428b959eb10",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_S3_SC_LOGIT_TREND",
+    "entry_id": "938c171d52ffacf611c2eae2ca5ff03041630d2f24abc2a84cbe17ca70c7a8f0",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P11_AC1_STRATA",
+    "entry_id": "49e8a5683b573ee1dcb8238bd8e9c0ccb3685bd63c4979bb34cb656b86bb310c",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P11_AC2_KNN",
+    "entry_id": "40f81797d159f8e53f5e1983024d6804b34fcea62c5373b1c17648673512a0dd",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P11_AC3_KNN_REGIME",
+    "entry_id": "b89bcff7cdd6e22bd17cfb4d4747ceba0ec39b6fb91d4e1a0a8902cf9bf9f6cc",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   }
+  ],
+  "T1b_6h": [
+   {
+    "candidate": "P07_B0",
+    "entry_id": "daecc5b0476679bd86d2c6c6a1b2305ba57e79f601870a86e9e3654a91d94ea2",
+    "level": "ABSTAIN",
+    "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED"
+   },
+   {
+    "candidate": "P07_B1",
+    "entry_id": "e8a5c5708cfe5e40dad335f496989476aec2bd47d6ec9c43aac19a78ff6d95fc",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P07_B2",
+    "entry_id": "fd4420656a1392a01176956075b09d1b29da7fc5db95481f09c0179530f1b668",
+    "level": "ABSTAIN",
+    "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED"
+   },
+   {
+    "candidate": "P07_B3",
+    "entry_id": "8a462f665e162b2b4be5f6dc0919af631f8950a74d73682f33fa0b29f9849bde",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P07_B3F",
+    "entry_id": "fa6828246f6c33ce373f66c86315c1e055033e721e1d51f851bacfd16e6aef2c",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P07_B4",
+    "entry_id": "3c20692828eb1bb75d107f8f52a34299086d1d98c3f063c9bd0eaefd2ec8db98",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P08_M1_T_LOGIT",
+    "entry_id": "05ea9e3396c180fa073690b558a2405abfb68149803b7493393c0384e33ad6cd",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P08_M2_T_LOGIT_B2",
+    "entry_id": "266ff524c24d45f80f45e3e1b576ad5443f1ad2e4920913b315dfc88ac97a359",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P08_M3_T_STUMPS",
+    "entry_id": "79096f57ea291160932886fc0b100232e3022a5d2cb36ff5f59dbf5e8bc9f3b9",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P09_A1_OC_B2_TC",
+    "entry_id": "46316fa0795d9a21f25d96c6776af187117a437e248d8ad87cedd8aa30903873",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P09_M1_OC_LOGIT",
+    "entry_id": "0af436349d5ea3ff78644f7d9603d04808b807590fa9c52a1c5998b9f14c700f",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P09_M2_OC_LOGIT_B2",
+    "entry_id": "8644a26ce9096e3997552d04abb3e39394076bbb9d46d36fc24546e416b92d87",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P09_M3_OC_LOGIT_TREND",
+    "entry_id": "4bc325da1ae1d45203c269c5750b7d0017964c108061906e8bb91f31b6654e27",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P09_R1_OC_RULE",
+    "entry_id": "db7e29f3b636cd19dd05528eabc49b211ca85c1e65031e68ac3db963a1ba6071",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_A2_SC_B2_TC",
+    "entry_id": "919334cff7b52bfe68e78ebc289b7790a49f87ce1023a9f6987d9818d8537734",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_G1_SC_STUMPS_B2",
+    "entry_id": "1affaae7e81a8815bf6e6d2cc2639937907cd6afed8b11c40effa230e2dbd63b",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_R2_SC_RULE",
+    "entry_id": "4a3297fcf08e12a93ebc235fdd4c17decdefd7d7a2161da811f036ae20f1bb01",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_S1_SC_LOGIT",
+    "entry_id": "c6429e3cb40ac8e6482057977a23714eca33457edf01318884bf3bcceef31727",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_S2_SC_LOGIT_B2",
+    "entry_id": "5a0d7289f8497662556b4563fd8e326cb04fc13769c816682d7a7a285d372921",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_S3_SC_LOGIT_TREND",
+    "entry_id": "4300d3f50619bd3ec36245a216b84ac40933478f109af262826ccbfefdb1a74a",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P11_AC1_STRATA",
+    "entry_id": "1e4e364cc5b1f11048d6957d2c210586264fa67a7c5fcd39dc43d98e9b8aa69b",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P11_AC2_KNN",
+    "entry_id": "3b17bfa5a1d9aefbe0166da921fc016c39f21c23bfb17f25306722b96c7ffac4",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P11_AC3_KNN_REGIME",
+    "entry_id": "e85737f0a7193176c0bf2aaf274ebd7104eb69a1eed6e1a50fee7c27090464d0",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   }
+  ],
+  "T2_24h": [
+   {
+    "candidate": "P07_B0",
+    "entry_id": "8ad8ce7e5c6a4c5240293710c265aa0f7adb650c3a2dd28d6c1c6166f8794a43",
+    "level": "ABSTAIN",
+    "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED"
+   },
+   {
+    "candidate": "P07_B1",
+    "entry_id": "1a559d8c836430712089b88d4dd9d3dc23df05415c68cef6e6b6b26822f3aaec",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P07_B2",
+    "entry_id": "0b9b34b4cd9c2d4345dc1b323d5cdd21b495ed9690d1cb25ed95f2fd8fe0f28a",
+    "level": "ABSTAIN",
+    "registry_status": "REFERENCE_ONLY_NEVER_PUBLISHED"
+   },
+   {
+    "candidate": "P07_B3",
+    "entry_id": "29b734ca9d8c7a70cb4bbaa439247f0dc14b1840d7462bb91f2d82982fdbe484",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P07_B3F",
+    "entry_id": "b74035fef9ced9bdb02eb2e7b7f34113a7983b6136acee433aba908c87d2db44",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P07_B4",
+    "entry_id": "7bc9a1f8a48fff88587f2b5e74603894d8e49676831158aa10e55f2d61d50dad",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P08_M1_T_LOGIT",
+    "entry_id": "01b15bc866f07f59fd26a61240ecdbde466e5f50b0561e37b4c1688787e30c13",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P08_M2_T_LOGIT_B2",
+    "entry_id": "8ce1f9fb0907420b94f93cb540214e2f2822d62c59617edbfd8ee04362746e31",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P08_M3_T_STUMPS",
+    "entry_id": "9a95fe74664bb4ef50ab0499ddfec71d4043e482be3e320f23da271a8b77ce50",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P09_A1_OC_B2_TC",
+    "entry_id": "fe68b82d0be100e46a6668d476109871412466187123391058de7f3cd2f4e90e",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P09_M1_OC_LOGIT",
+    "entry_id": "18fd19d0ab8f1564d836eccd73ee846a740be8cb6200e1e412be209231ea7355",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P09_M2_OC_LOGIT_B2",
+    "entry_id": "0c7559332793119308ce733f527e685759c8fb9471e29d3a9b92cc67ca922e8c",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P09_M3_OC_LOGIT_TREND",
+    "entry_id": "6c4cf46610b7451babbf525837abb0e03a32b3b72f1b7144f5ff16c02322e62a",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P09_R1_OC_RULE",
+    "entry_id": "ca8e81233c944b80c928f22435b9009b5eebcb2c7cdb377dde010640732729cb",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_A2_SC_B2_TC",
+    "entry_id": "8fde517fa5c65aa2664983f170ea63bca35836542010c8a7a5d94efb30f318e9",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_G1_SC_STUMPS_B2",
+    "entry_id": "8f314c6195796b45ccdc8712cce4091f74b7dcff82a0f88f836dcddb4f8d64b3",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_R2_SC_RULE",
+    "entry_id": "037164f979ac9b11da5da6f8ccb9d86d7afd2cd41bf58bc632786d5d1fe23adc",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_S1_SC_LOGIT",
+    "entry_id": "d59e461545a5b82154c699d1f5d77792636799750bf336fdcb980df592964ced",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_S2_SC_LOGIT_B2",
+    "entry_id": "74dc0ac4847694960150b37697d9a886ce27fa82360ec5cda5f1b39688b732f7",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P10_S3_SC_LOGIT_TREND",
+    "entry_id": "3598aca1381887e6d30aa15d606077ed12f68db61a3649505a447ac4f928790a",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P11_AC1_STRATA",
+    "entry_id": "619ade0c59576156b8399b88ac06668a0e2290f7159824a7a12dcaeb7706b380",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P11_AC2_KNN",
+    "entry_id": "c81dd5c0612dfe13491a3e4d61bf5c8516fe3f04754d55c3c4a374ec38d048ca",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   },
+   {
+    "candidate": "P11_AC3_KNN_REGIME",
+    "entry_id": "4f45f0f7dba77648f9e3ecfff3978ff24a738484219e52012b58184889fc7b56",
+    "level": "NO_GO",
+    "registry_status": "NO_GO"
+   }
+  ]
+ },
+ "events": 75,
+ "levels": {
+  "ABSTAIN": 6,
+  "NO_GO": 63
+ },
+ "log": "registry/REGISTRY_LOG.jsonl",
+ "log_sha256": "ee5089a8b5d7bf937dfe121300cd54ef5cdd35879c8f645809a85d04f8a4fd09",
+ "promotion_path": "closed under the frozen ACCEPTANCE promotion table: the retrospective holdout is spent and any model trained after 2026-10-17 has it inside its training window; a change control to ACCEPTANCE promotion (Elving or the orchestrator) is needed before any model can reach SHADOW",
+ "publishable": 0,
+ "registered_as_of_utc": "2026-10-27T00:00:00Z",
+ "registry_statuses": {
+  "NO_GO": 63,
+  "REFERENCE_ONLY_NEVER_PUBLISHED": 6
+ },
+ "registry_version": "registry-1",
+ "statement": "No champion for any target: every target is NO_VIABLE_CHAMPION and abstains. B0 (base rate) and B2 (simple model) are pinned as references for the prospective comparison; they are not forecasts and are never published as a probability. No model shows skill over the base rate (Phase 12) and none is calibrated (Phase 13).",
+ "targets": {
+  "T1_24h": {
+   "as_of_utc": "2026-10-27T00:00:00Z",
+   "champion": null,
+   "ensemble": "NO_ENSEMBLE",
+   "event_id": "5edf8fbef7b3d3e5dc987c20eb929480257d6f8df873e5f8f100394b5e36f1ab",
+   "mode": "NO_VIABLE_CHAMPION",
+   "phase12_champion_basis": "default: no candidate earned champion_over_B2 on development data",
+   "phase12_champion_restated": "P07_B2",
+   "reasons": [
+    "NO_ENTRY_AT_SHADOW_OR_ABOVE",
+    "PHASE_12_CHAMPION_B2_BY_DEFAULT_NOT_BY_EVIDENCE",
+    "B2_RETROSPECTIVE_BSS_BELOW_0+NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION",
+    "NO_ENSEMBLE"
+   ],
+   "reference_models": {
+    "base_rate": "B0:price_path_target_before_invalidation_24h",
+    "simple_model": "B2:price_path_target_before_invalidation_24h"
+   },
+   "references": {
+    "base_rate": "dc5347a39cbeb2e93e1bbeee1036fb73061de1572881ede0afc426d5261a888e",
+    "simple_model": "d2efa26b370403540494a2c49e300ec00cf6b2ed8720df08940641d53552f2e7"
+   },
+   "target": "price_path_target_before_invalidation_24h"
+  },
+  "T1b_6h": {
+   "as_of_utc": "2026-10-27T00:00:00Z",
+   "champion": null,
+   "ensemble": "NO_ENSEMBLE",
+   "event_id": "81649dc84f8e150fac44004f252d4ee0d02d26d48210cef7d8889585574dbc38",
+   "mode": "NO_VIABLE_CHAMPION",
+   "phase12_champion_basis": "default: no candidate earned champion_over_B2 on development data",
+   "phase12_champion_restated": "P07_B2",
+   "reasons": [
+    "NO_ENTRY_AT_SHADOW_OR_ABOVE",
+    "PHASE_12_CHAMPION_B2_BY_DEFAULT_NOT_BY_EVIDENCE",
+    "B2_RETROSPECTIVE_CALIBRATION_FAILED+RETROSPECTIVE_BSS_BELOW_0+NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION",
+    "NO_ENSEMBLE"
+   ],
+   "reference_models": {
+    "base_rate": "B0:price_path_target_before_invalidation_6h",
+    "simple_model": "B2:price_path_target_before_invalidation_6h"
+   },
+   "references": {
+    "base_rate": "daecc5b0476679bd86d2c6c6a1b2305ba57e79f601870a86e9e3654a91d94ea2",
+    "simple_model": "fd4420656a1392a01176956075b09d1b29da7fc5db95481f09c0179530f1b668"
+   },
+   "target": "price_path_target_before_invalidation_6h"
+  },
+  "T2_24h": {
+   "as_of_utc": "2026-10-27T00:00:00Z",
+   "champion": null,
+   "ensemble": "NO_ENSEMBLE",
+   "event_id": "b6929238d46bb7b26c1a2129b105ae32b46f24f4e5422af8639ea1820534ffb0",
+   "mode": "NO_VIABLE_CHAMPION",
+   "phase12_champion_basis": "default: no candidate earned champion_over_B2 on development data",
+   "phase12_champion_restated": "P07_B2",
+   "reasons": [
+    "NO_ENTRY_AT_SHADOW_OR_ABOVE",
+    "PHASE_12_CHAMPION_B2_BY_DEFAULT_NOT_BY_EVIDENCE",
+    "B2_RETROSPECTIVE_BELOW_MINIMUM+NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION",
+    "NO_ENSEMBLE"
+   ],
+   "reference_models": {
+    "base_rate": "B0:price_path_severe_drawdown_or_halt_24h",
+    "simple_model": "B2:price_path_severe_drawdown_or_halt_24h"
+   },
+   "references": {
+    "base_rate": "8ad8ce7e5c6a4c5240293710c265aa0f7adb650c3a2dd28d6c1c6166f8794a43",
+    "simple_model": "0b9b34b4cd9c2d4345dc1b323d5cdd21b495ed9690d1cb25ed95f2fd8fe0f28a"
+   },
+   "target": "price_path_severe_drawdown_or_halt_24h"
+  }
+ }
+}

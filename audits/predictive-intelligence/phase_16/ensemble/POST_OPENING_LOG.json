@@ -1,0 +1,56 @@
+[
+ {
+  "configuration": "ENS_MEAN_B0_B2",
+  "label": "POST_OPENING",
+  "sealed_folder_read": false,
+  "source": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_SCORED.csv",
+  "source_sha256": "d4c35253e6879d915dd31b6fdd6428d588c0e25e53d9e9895ad2531a771f08d6",
+  "target": "T1_24h",
+  "use": "description only; never a selection, never a claim (PI-D-066)"
+ },
+ {
+  "configuration": "ENS_MEAN_B2_S1",
+  "label": "POST_OPENING",
+  "sealed_folder_read": false,
+  "source": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_SCORED.csv",
+  "source_sha256": "d4c35253e6879d915dd31b6fdd6428d588c0e25e53d9e9895ad2531a771f08d6",
+  "target": "T1_24h",
+  "use": "description only; never a selection, never a claim (PI-D-066)"
+ },
+ {
+  "configuration": "ENS_MEAN_B0_B2",
+  "label": "POST_OPENING",
+  "sealed_folder_read": false,
+  "source": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_SCORED.csv",
+  "source_sha256": "d4c35253e6879d915dd31b6fdd6428d588c0e25e53d9e9895ad2531a771f08d6",
+  "target": "T1b_6h",
+  "use": "description only; never a selection, never a claim (PI-D-066)"
+ },
+ {
+  "configuration": "ENS_MEAN_B2_S1",
+  "label": "POST_OPENING",
+  "sealed_folder_read": false,
+  "source": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_SCORED.csv",
+  "source_sha256": "d4c35253e6879d915dd31b6fdd6428d588c0e25e53d9e9895ad2531a771f08d6",
+  "target": "T1b_6h",
+  "use": "description only; never a selection, never a claim (PI-D-066)"
+ },
+ {
+  "configuration": "ENS_MEAN_B0_B2",
+  "label": "POST_OPENING",
+  "sealed_folder_read": false,
+  "source": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_SCORED.csv",
+  "source_sha256": "d4c35253e6879d915dd31b6fdd6428d588c0e25e53d9e9895ad2531a771f08d6",
+  "target": "T2_24h",
+  "use": "description only; never a selection, never a claim (PI-D-066)"
+ },
+ {
+  "configuration": "ENS_MEAN_B2_S1",
+  "label": "POST_OPENING",
+  "sealed_folder_read": false,
+  "source": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_SCORED.csv",
+  "source_sha256": "d4c35253e6879d915dd31b6fdd6428d588c0e25e53d9e9895ad2531a771f08d6",
+  "target": "T2_24h",
+  "use": "description only; never a selection, never a claim (PI-D-066)"
+ }
+]

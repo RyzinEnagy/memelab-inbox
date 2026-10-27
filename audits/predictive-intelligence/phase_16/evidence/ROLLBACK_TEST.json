@@ -1,0 +1,35 @@
+{
+ "fixture": {
+  "after_drift_rollback": {
+   "champion_model": "B2:price_path_target_before_invalidation_24h",
+   "mode": "CHAMPION"
+  },
+  "after_inference_mismatch_rollback": {
+   "champion": null,
+   "mode": "NO_VIABLE_CHAMPION"
+  },
+  "events": 7,
+  "history_preserved": true,
+  "is_fixture": true,
+  "pinned_before_rollback": {
+   "champion_model": "M2_OC_LOGIT_B2:price_path_target_before_invalidation_24h",
+   "mode": "CHAMPION"
+  },
+  "status": "TEST_ONLY"
+ },
+ "real_log_copy": {
+  "T1_24h": {
+   "champion_after": null,
+   "mode_after": "NO_VIABLE_CHAMPION"
+  },
+  "T1b_6h": {
+   "champion_after": null,
+   "mode_after": "NO_VIABLE_CHAMPION"
+  },
+  "T2_24h": {
+   "champion_after": null,
+   "mode_after": "NO_VIABLE_CHAMPION"
+  },
+  "original_prefix_kept": true
+ }
+}

@@ -1,0 +1,37 @@
+{
+ "feature_version_bumped": {
+  "affected": 69,
+  "entries": 69
+ },
+ "phase07_feature_definitions_changed": {
+  "affected": 18,
+  "phase07_entries": 18
+ },
+ "real_runtime_incompatible_entries": 0,
+ "request_with_another_feature_set": {
+  "affected": 69
+ },
+ "rule": "a schema or feature change without retrain fails every affected entry (P46)",
+ "runtime": {
+  "family_version": {
+   "07": "baselines-phase07",
+   "08": "tech-1",
+   "09": "onchain-1",
+   "10": "socialcat-1",
+   "11": "analog-1"
+  },
+  "feature_set_sha": {
+   "07": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+   "08": "8c18262b0bd90e3aaa49017e14dfec13ae05dceda478867b05a25d961ec30188",
+   "09": "0bf102a02094d0121896f52b31269152e4863a30fd4b9834bfef940f945cab27",
+   "10": "ba9846740f8c39f76fcd303a16159ea8346ae60dde0bc3048b891e6e2ce6c5eb",
+   "11": "241dd859182970a496c1fdc49de3c9608d8730090c52f5e8513313e63d5f8d13"
+  },
+  "feature_version": "2",
+  "labels_version": "labels-1",
+  "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896"
+ },
+ "target_registry_changed": {
+  "affected": 69
+ }
+}

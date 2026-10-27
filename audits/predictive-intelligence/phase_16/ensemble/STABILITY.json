@@ -1,0 +1,180 @@
+{
+ "T1_24h": {
+  "P07_B2": {
+   "folds": [
+    {
+     "fitted": true,
+     "fold_cutoff_utc": "2026-10-13T00:00:00Z",
+     "max_abs_diff": 0.3895497401125252,
+     "median_abs_diff": 0.026918332741283024,
+     "n_train": 104,
+     "rows_compared": 85
+    },
+    {
+     "fitted": true,
+     "fold_cutoff_utc": "2026-10-14T00:00:00Z",
+     "max_abs_diff": 0.43348378679791977,
+     "median_abs_diff": 0.040460335966243016,
+     "n_train": 112,
+     "rows_compared": 85
+    },
+    {
+     "fitted": true,
+     "fold_cutoff_utc": "2026-10-15T00:00:00Z",
+     "max_abs_diff": 0.10486369040522248,
+     "median_abs_diff": 0.01748630852214339,
+     "n_train": 123,
+     "rows_compared": 85
+    }
+   ],
+   "frozen_abstains": false,
+   "frozen_cutoff_utc": "2026-10-17T00:00:00Z"
+  },
+  "P10_S1_SC_LOGIT": {
+   "folds": [
+    {
+     "fitted": false,
+     "fold_cutoff_utc": "2026-10-13T00:00:00Z"
+    },
+    {
+     "fitted": true,
+     "fold_cutoff_utc": "2026-10-14T00:00:00Z",
+     "max_abs_diff": 0.18587284523346717,
+     "median_abs_diff": 0.04542988021601849,
+     "n_train": 112,
+     "rows_compared": 61
+    },
+    {
+     "fitted": true,
+     "fold_cutoff_utc": "2026-10-15T00:00:00Z",
+     "max_abs_diff": 0.09972692362874763,
+     "median_abs_diff": 0.026052815871693738,
+     "n_train": 123,
+     "rows_compared": 61
+    }
+   ],
+   "frozen_abstains": false,
+   "frozen_cutoff_utc": "2026-10-17T00:00:00Z"
+  }
+ },
+ "T1b_6h": {
+  "P07_B2": {
+   "folds": [
+    {
+     "fitted": true,
+     "fold_cutoff_utc": "2026-10-12T00:00:00Z",
+     "max_abs_diff": 0.07987737359414147,
+     "median_abs_diff": 0.009296782395023184,
+     "n_train": 180,
+     "rows_compared": 85
+    },
+    {
+     "fitted": true,
+     "fold_cutoff_utc": "2026-10-13T00:00:00Z",
+     "max_abs_diff": 0.0708494851443869,
+     "median_abs_diff": 0.0034732498203449945,
+     "n_train": 188,
+     "rows_compared": 85
+    },
+    {
+     "fitted": true,
+     "fold_cutoff_utc": "2026-10-14T00:00:00Z",
+     "max_abs_diff": 0.07107504906220412,
+     "median_abs_diff": 0.0033389026463382654,
+     "n_train": 199,
+     "rows_compared": 85
+    },
+    {
+     "fitted": true,
+     "fold_cutoff_utc": "2026-10-15T00:00:00Z",
+     "max_abs_diff": 0.06988676220953849,
+     "median_abs_diff": 0.0018020301455570174,
+     "n_train": 207,
+     "rows_compared": 85
+    },
+    {
+     "fitted": true,
+     "fold_cutoff_utc": "2026-10-16T00:00:00Z",
+     "max_abs_diff": 0.07553583877524342,
+     "median_abs_diff": 0.0032286577824426205,
+     "n_train": 214,
+     "rows_compared": 85
+    }
+   ],
+   "frozen_abstains": false,
+   "frozen_cutoff_utc": "2026-10-17T00:00:00Z"
+  },
+  "P10_S1_SC_LOGIT": {
+   "folds": [
+    {
+     "fitted": true,
+     "fold_cutoff_utc": "2026-10-12T00:00:00Z",
+     "max_abs_diff": 0.03949954258656521,
+     "median_abs_diff": 0.00860326091539778,
+     "n_train": 180,
+     "rows_compared": 61
+    },
+    {
+     "fitted": true,
+     "fold_cutoff_utc": "2026-10-13T00:00:00Z",
+     "max_abs_diff": 0.035904902053992854,
+     "median_abs_diff": 0.007207884846366308,
+     "n_train": 188,
+     "rows_compared": 61
+    },
+    {
+     "fitted": true,
+     "fold_cutoff_utc": "2026-10-14T00:00:00Z",
+     "max_abs_diff": 0.04319345112218448,
+     "median_abs_diff": 0.005868951479650442,
+     "n_train": 199,
+     "rows_compared": 61
+    },
+    {
+     "fitted": true,
+     "fold_cutoff_utc": "2026-10-15T00:00:00Z",
+     "max_abs_diff": 0.03394983701941642,
+     "median_abs_diff": 0.0030927014469872005,
+     "n_train": 207,
+     "rows_compared": 61
+    },
+    {
+     "fitted": true,
+     "fold_cutoff_utc": "2026-10-16T00:00:00Z",
+     "max_abs_diff": 0.02318479456364808,
+     "median_abs_diff": 0.0014641691690053804,
+     "n_train": 214,
+     "rows_compared": 61
+    }
+   ],
+   "frozen_abstains": false,
+   "frozen_cutoff_utc": "2026-10-17T00:00:00Z"
+  }
+ },
+ "T2_24h": {
+  "P07_B2": {
+   "folds": [
+    {
+     "fitted": true,
+     "fold_cutoff_utc": "2026-10-14T00:00:00Z",
+     "max_abs_diff": 0.13795257864341298,
+     "median_abs_diff": 0.006328251071494175,
+     "n_train": 104,
+     "rows_compared": 85
+    }
+   ],
+   "frozen_abstains": false,
+   "frozen_cutoff_utc": "2026-10-17T00:00:00Z"
+  },
+  "P10_S1_SC_LOGIT": {
+   "folds": [
+    {
+     "fitted": false,
+     "fold_cutoff_utc": "2026-10-14T00:00:00Z"
+    }
+   ],
+   "frozen_abstains": false,
+   "frozen_cutoff_utc": "2026-10-17T00:00:00Z"
+  }
+ }
+}

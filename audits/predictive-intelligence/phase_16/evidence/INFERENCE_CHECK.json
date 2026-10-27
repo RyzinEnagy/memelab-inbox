@@ -1,0 +1,937 @@
+{
+ "by_card": {
+  "T1_24h:P07_B0": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "4a48481a313d0a293fcbce079025706b643106d4055fb318f5591088719d7712",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P07_B1": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "1de451543950eb6ad7a983c17815f9f051f4cb75a0dd6255a17804cb77ac1661",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P07_B2": {
+   "abstentions": {
+    "OOD": 10
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 85,
+   "outputs_sha": "59b44007ff9a07d3fbf3da1b74dd145fe8a056397962c280535fee5e30505840",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P07_B3": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "bef485283daa308b0f83b6e6ab819ed27598e2b6f8949b26a61ca6105552ce35",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P07_B3F": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "4a48481a313d0a293fcbce079025706b643106d4055fb318f5591088719d7712",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P07_B4": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "6d39c52acdcdd6872d204bca8cb40365197aac2ed643038ba4c998eaa3cf0b93",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P08_M1_T_LOGIT": {
+   "abstentions": {
+    "INSUFFICIENT_HISTORY": 95
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 0,
+   "outputs_sha": "ae49f5564ff7d7bfa4fffceb811702af642254ee3faeb176a2a41ed60977af3d",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P08_M2_T_LOGIT_B2": {
+   "abstentions": {
+    "INSUFFICIENT_HISTORY": 95
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 0,
+   "outputs_sha": "ae49f5564ff7d7bfa4fffceb811702af642254ee3faeb176a2a41ed60977af3d",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P08_M3_T_STUMPS": {
+   "abstentions": {
+    "INSUFFICIENT_HISTORY": 95
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 0,
+   "outputs_sha": "ae49f5564ff7d7bfa4fffceb811702af642254ee3faeb176a2a41ed60977af3d",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P09_A1_OC_B2_TC": {
+   "abstentions": {
+    "OOD": 10
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 85,
+   "outputs_sha": "59b44007ff9a07d3fbf3da1b74dd145fe8a056397962c280535fee5e30505840",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P09_M1_OC_LOGIT": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "24332b158cf87af149d48d8640693644dc9d49ecee123fac61fe054042780bd4",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P09_M2_OC_LOGIT_B2": {
+   "abstentions": {
+    "OOD": 10
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 85,
+   "outputs_sha": "ec8dfabdc28d34081e3fae8bb440e97816cfbd0735da9b346e09bc018e807f60",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P09_M3_OC_LOGIT_TREND": {
+   "abstentions": {
+    "OOD": 10
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 85,
+   "outputs_sha": "d627505d12157ea0e4f70f842fa6abb25162f942cec5124e365c7731e7ea4e04",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P09_R1_OC_RULE": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "285f8e702846c4bfee81c862eba95248810eb01ba4b21d9d4546cb900f682988",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P10_A2_SC_B2_TC": {
+   "abstentions": {
+    "OOD": 34
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 61,
+   "outputs_sha": "b5dd6d528952de579ff08a28c000c4891fddf19f60e476965944b3cce118f76b",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P10_G1_SC_STUMPS_B2": {
+   "abstentions": {
+    "OOD": 34
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 61,
+   "outputs_sha": "9bd84b8dbfef1f59a82bb34046cfa48dcbca0044bf190446a4b551e7b402d616",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P10_R2_SC_RULE": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "b706c8ed7e11d69198419e6feb159f65becf00ca6e3ae5c854f8eb4b505bb838",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P10_S1_SC_LOGIT": {
+   "abstentions": {
+    "OOD": 34
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 61,
+   "outputs_sha": "fefb685b2dad1334df5d0fce7ea23ec9a31a2ea99ebafe34dc16310b88eb3a03",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P10_S2_SC_LOGIT_B2": {
+   "abstentions": {
+    "OOD": 34
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 61,
+   "outputs_sha": "f609127b299f5e676790a51fbc14cf5d1a151da5dd3f1085060904a40469485a",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P10_S3_SC_LOGIT_TREND": {
+   "abstentions": {
+    "OOD": 34
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 61,
+   "outputs_sha": "3305e453c9f21d906327b011573446f9908d1129228c4e3ea2165562375f78ac",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P11_AC1_STRATA": {
+   "abstentions": {
+    "ANALOGS_TOO_FEW:G_BELOW_MIN": 85,
+    "OUT_OF_DISTRIBUTION:MISSING_INPUT": 10
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 0,
+   "outputs_sha": "0bdea47f179ef09effeef84ca7f427d493a8ed5d5e22d6bde759ccc971cf1923",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P11_AC2_KNN": {
+   "abstentions": {
+    "OUT_OF_DISTRIBUTION:FAR_FROM_ANALOGS": 16,
+    "OUT_OF_DISTRIBUTION:MISSING_INPUT": 13
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 66,
+   "outputs_sha": "02a1add00bcc4a9188c78551b229beb39b0eea568699c6045df4b729445c0eb7",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1_24h:P11_AC3_KNN_REGIME": {
+   "abstentions": {
+    "OUT_OF_DISTRIBUTION:FAR_FROM_ANALOGS": 17,
+    "OUT_OF_DISTRIBUTION:MISSING_INPUT": 13
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 65,
+   "outputs_sha": "aab4525fe596fdeefc633be736a857b0edf25dbee74400c4fe70d78e6a95c9e7",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P07_B0": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "aa761f4933478c6fe0b370644498122245ff67eb2aa7c1f40c6817e11e8f2d5f",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P07_B1": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "15cfa4d32b86b7de2ce1f489fb9038f8be0d247eff5c4cc9418ff95e2b5c87e6",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P07_B2": {
+   "abstentions": {
+    "OOD": 10
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 85,
+   "outputs_sha": "7d74cf0e7beb38f26936396263929c7f0cd84756017a6c3e4bf4c4d3691f82ae",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P07_B3": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "fa1f4171bc1c000c32da06635f7ea3adbc62e5bb3e41d2d6f058e14c23a42e8e",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P07_B3F": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "558daeffb5e2d7bf3b912e54f43eb07b7aacd076acb63b2f31691fefaaa4402b",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P07_B4": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "7bd6081096460e2d23db2515bf369857d37718a1fb31649abe0b71045d4da8eb",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P08_M1_T_LOGIT": {
+   "abstentions": {
+    "CENSORED_RETRIEVAL": 62,
+    "OOD": 33
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 0,
+   "outputs_sha": "dec6a77953ff8f56c909e6d3ae939d3a7b88c39ad9a01a1c8b7a6c1ea7a852c7",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P08_M2_T_LOGIT_B2": {
+   "abstentions": {
+    "CENSORED_RETRIEVAL": 62,
+    "OOD": 33
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 0,
+   "outputs_sha": "dec6a77953ff8f56c909e6d3ae939d3a7b88c39ad9a01a1c8b7a6c1ea7a852c7",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P08_M3_T_STUMPS": {
+   "abstentions": {
+    "CENSORED_RETRIEVAL": 62,
+    "OOD": 33
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 0,
+   "outputs_sha": "dec6a77953ff8f56c909e6d3ae939d3a7b88c39ad9a01a1c8b7a6c1ea7a852c7",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P09_A1_OC_B2_TC": {
+   "abstentions": {
+    "OOD": 10
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 85,
+   "outputs_sha": "7d74cf0e7beb38f26936396263929c7f0cd84756017a6c3e4bf4c4d3691f82ae",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P09_M1_OC_LOGIT": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "da73174f499a91008cb7c5d2f5af909a8a48e78d8bb397df09c989733f965dc3",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P09_M2_OC_LOGIT_B2": {
+   "abstentions": {
+    "OOD": 10
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 85,
+   "outputs_sha": "966f182ff11319fa01b6f2f5e21de7ed609411a8324eb1516edffa18b3c74035",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P09_M3_OC_LOGIT_TREND": {
+   "abstentions": {
+    "OOD": 10
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 85,
+   "outputs_sha": "04912a714aabfbc51c97d1ac932efceb9830e373c2d633ab6205eefcf05bd0ab",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P09_R1_OC_RULE": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "7151e1e65a07b25a861cb40a7ba26a01c1c981d882e265062f63ccf1b9931b0b",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P10_A2_SC_B2_TC": {
+   "abstentions": {
+    "OOD": 34
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 61,
+   "outputs_sha": "84821d1e39630dc2aa849bb09b5c8c2873f3b250b2944f0b65677a58e8ec0814",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P10_G1_SC_STUMPS_B2": {
+   "abstentions": {
+    "OOD": 34
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 61,
+   "outputs_sha": "44269a2efc990be768e24da1ba280ca07b3c0724f4f91eb9850e488e6a86a883",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P10_R2_SC_RULE": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "8b72a0869db319cd02f693984e348d650985ac4da739409bed8dab21e170128c",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P10_S1_SC_LOGIT": {
+   "abstentions": {
+    "OOD": 34
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 61,
+   "outputs_sha": "8b7a4a8b8048db4296daea7e78235143687e84e774f99296ee59c848ef73e1f6",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P10_S2_SC_LOGIT_B2": {
+   "abstentions": {
+    "OOD": 34
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 61,
+   "outputs_sha": "83897b0450d9ee4d3da5eaebf368fe59f4252c3e50504444fe175cbcfea806c2",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P10_S3_SC_LOGIT_TREND": {
+   "abstentions": {
+    "OOD": 34
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 61,
+   "outputs_sha": "5adb84c49b3a4302f1d439fb9892b18db6a2a74fcab93cd3b95af74d8c6e173b",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P11_AC1_STRATA": {
+   "abstentions": {
+    "ANALOGS_TOO_FEW:G_BELOW_MIN": 85,
+    "OUT_OF_DISTRIBUTION:MISSING_INPUT": 10
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 0,
+   "outputs_sha": "0bdea47f179ef09effeef84ca7f427d493a8ed5d5e22d6bde759ccc971cf1923",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P11_AC2_KNN": {
+   "abstentions": {
+    "OUT_OF_DISTRIBUTION:FAR_FROM_ANALOGS": 16,
+    "OUT_OF_DISTRIBUTION:MISSING_INPUT": 13
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 66,
+   "outputs_sha": "4efd735d69a533e42c3109dc80f31f4ac5694b65ef78d072dc09e9195c32827d",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T1b_6h:P11_AC3_KNN_REGIME": {
+   "abstentions": {
+    "OUT_OF_DISTRIBUTION:FAR_FROM_ANALOGS": 15,
+    "OUT_OF_DISTRIBUTION:MISSING_INPUT": 13
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 67,
+   "outputs_sha": "28f716db0316816ca2e8a7481ef7a58b0af16d045437b21b221f84aae0852eea",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P07_B0": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "899021af572952f8c7cd34a67669e831101f67f60aca4d9465665fa7e866922c",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P07_B1": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "1679e34fbb5cd5380db82d63cc383c6b003b686cfecaec86b279b0bd4419e187",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P07_B2": {
+   "abstentions": {
+    "OOD": 10
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 85,
+   "outputs_sha": "9dcd47d00c353555454384cb6f249191a38c75155ba803ac46c352d657dc5221",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P07_B3": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "9b19e9081a0caaf6596f715c25321a4b8736e10c5c8b951702b343afcb4dc820",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P07_B3F": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "ec8164e29372d211aa45525602ed584fcfd7c227d5cde8dc5e1c5136e4ffed31",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P07_B4": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "ac0b5648bec3246ea1455e7d26755a0d2f4e930ff980e5b09a02b9f43e359ab2",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P08_M1_T_LOGIT": {
+   "abstentions": {
+    "INSUFFICIENT_HISTORY": 95
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 0,
+   "outputs_sha": "ae49f5564ff7d7bfa4fffceb811702af642254ee3faeb176a2a41ed60977af3d",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P08_M2_T_LOGIT_B2": {
+   "abstentions": {
+    "INSUFFICIENT_HISTORY": 95
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 0,
+   "outputs_sha": "ae49f5564ff7d7bfa4fffceb811702af642254ee3faeb176a2a41ed60977af3d",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P08_M3_T_STUMPS": {
+   "abstentions": {
+    "INSUFFICIENT_HISTORY": 95
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 0,
+   "outputs_sha": "ae49f5564ff7d7bfa4fffceb811702af642254ee3faeb176a2a41ed60977af3d",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P09_A1_OC_B2_TC": {
+   "abstentions": {
+    "OOD": 10
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 85,
+   "outputs_sha": "9dcd47d00c353555454384cb6f249191a38c75155ba803ac46c352d657dc5221",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P09_M1_OC_LOGIT": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "543e527cb6caf5cc802db4b6897ee67b6df5ec49dc727f648300031804ab4b37",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P09_M2_OC_LOGIT_B2": {
+   "abstentions": {
+    "OOD": 10
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 85,
+   "outputs_sha": "b469a2b6a1031078678ac0dda867e558a84fab1fe1ed70d712c42ee66f68bc01",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P09_M3_OC_LOGIT_TREND": {
+   "abstentions": {
+    "OOD": 10
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 85,
+   "outputs_sha": "1906347444361ed5a593b23567ad8c849cc971258662018c981ce0c5d6e8802b",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P09_R1_OC_RULE": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "655e2776832c1f256fd70cd8c7fd820e3a3ed46b92cf68c46aaf1f5bc2bf5ea0",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P10_A2_SC_B2_TC": {
+   "abstentions": {
+    "OOD": 34
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 61,
+   "outputs_sha": "dfeb985f50a3456fbb00dd8f69d5b7012769011ec4a5fb0a30d075ab3d07d295",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P10_G1_SC_STUMPS_B2": {
+   "abstentions": {
+    "OOD": 34
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 61,
+   "outputs_sha": "6afcf4a89842fc06ddf644e738d4c67784388cd61b7d1ad03d49d03c271bf3be",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P10_R2_SC_RULE": {
+   "abstentions": {},
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 95,
+   "outputs_sha": "efe9fecba84c4d93f04719edbfd611b119f0d22e2a2c3a90e496c0588dd643cc",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P10_S1_SC_LOGIT": {
+   "abstentions": {
+    "OOD": 34
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 61,
+   "outputs_sha": "f4a17b8f9aa43f3f7f3161cf8f4350c968648e2f98dd0330fd8f10b973d1d943",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P10_S2_SC_LOGIT_B2": {
+   "abstentions": {
+    "OOD": 34
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 61,
+   "outputs_sha": "d474f6d1a00f3ca1edec99b7d3d2c4fc02a00f397a9a0fc5a096670f615564c6",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P10_S3_SC_LOGIT_TREND": {
+   "abstentions": {
+    "OOD": 34
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 61,
+   "outputs_sha": "52f6395a1c0f9e13db314e1d0cb8e85632a1856ff21359d4f04d54cc3199e31d",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P11_AC1_STRATA": {
+   "abstentions": {
+    "ANALOGS_TOO_FEW:G_BELOW_MIN": 85,
+    "OUT_OF_DISTRIBUTION:MISSING_INPUT": 10
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 0,
+   "outputs_sha": "0bdea47f179ef09effeef84ca7f427d493a8ed5d5e22d6bde759ccc971cf1923",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P11_AC2_KNN": {
+   "abstentions": {
+    "OUT_OF_DISTRIBUTION:FAR_FROM_ANALOGS": 15,
+    "OUT_OF_DISTRIBUTION:MISSING_INPUT": 13
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 67,
+   "outputs_sha": "d4d4bfa8ac6198f0067f19a872360623c289117a939058dc4fe7f0b48264ec0d",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  },
+  "T2_24h:P11_AC3_KNN_REGIME": {
+   "abstentions": {
+    "OUT_OF_DISTRIBUTION:FAR_FROM_ANALOGS": 16,
+    "OUT_OF_DISTRIBUTION:MISSING_INPUT": 13
+   },
+   "differences": 0,
+   "equal_to_recorded": true,
+   "numbers": 66,
+   "outputs_sha": "6d187d5cd5a08b8f014e5afac97b5995da6e1ce7b6bf5544536f69a7d1dc908b",
+   "probe_set": "phase_12 Solana holdout decisions, inputs only (run_holdout.Inputs), no label",
+   "probe_set_sha": "f01ea986178c26954c5fc03d4d0c4fba7650202b1b4d9f43a9bed41be5af6d16",
+   "recorded_predictions_file": "audits/predictive-intelligence/phase_12/validation/HOLDOUT_PREDICTIONS.csv",
+   "recorded_predictions_sha256": "86f3ce773aa1caeceb68645843dc15c24c3cfa740b74980f22fae7ba08ef914b",
+   "rows": 95
+  }
+ },
+ "cards": 69,
+ "differences": {},
+ "equal_to_recorded": 69
+}
