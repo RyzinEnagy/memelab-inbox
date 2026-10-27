@@ -1,0 +1,53 @@
+{
+ "added_rows": 22,
+ "after": {
+  "bakeoff_configurations": 31,
+  "candidate_configurations": 99,
+  "debug_runs": 39,
+  "holdout_evaluation_rows": 299,
+  "n_search": 130,
+  "n_search_sensitivity": 169,
+  "negative_control_fits": 373,
+  "other_rows": 102,
+  "rows": 3350,
+  "rows_by_phase": {
+   "04": 31,
+   "07": 488,
+   "08": 616,
+   "09": 670,
+   "10": 703,
+   "11": 388,
+   "12": 252,
+   "13": 58,
+   "15": 53,
+   "16": 35,
+   "17": 34,
+   "18": 22
+  }
+ },
+ "before": {
+  "bakeoff_configurations": 31,
+  "candidate_configurations": 99,
+  "debug_runs": 35,
+  "holdout_evaluation_rows": 281,
+  "n_search": 130,
+  "n_search_sensitivity": 169,
+  "negative_control_fits": 373,
+  "other_rows": 102,
+  "rows": 3328,
+  "rows_by_phase": {
+   "04": 31,
+   "07": 488,
+   "08": 616,
+   "09": 670,
+   "10": 703,
+   "11": 388,
+   "12": 252,
+   "13": 58,
+   "15": 53,
+   "16": 35,
+   "17": 34
+  }
+ },
+ "claim": "REPORT_RUN_NOT_A_CONFIGURATION"
+}

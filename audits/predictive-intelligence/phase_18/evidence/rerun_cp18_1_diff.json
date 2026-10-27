@@ -1,0 +1,186 @@
+{
+ "fields": {
+  "replay_alerts.alert_policies": {
+   "equal": true
+  },
+  "replay_alerts.candidates": {
+   "equal": true
+  },
+  "replay_alerts.deduped": {
+   "equal": true
+  },
+  "replay_alerts.ledger": {
+   "equal": true
+  },
+  "replay_alerts.new": {
+   "equal": true
+  },
+  "replay_alerts.outcome": {
+   "equal": true
+  },
+  "replay_alerts.previews": {
+   "equal": true
+  },
+  "replay_alerts.remote_deliveries_succeeded": {
+   "equal": true
+  },
+  "replay_alerts.sent_folder_exists": {
+   "equal": true
+  },
+  "replay_alerts.suppressed": {
+   "equal": true
+  },
+  "replay_report.backtest_results": {
+   "equal": true
+  },
+  "replay_report.counts": {
+   "equal": true
+  },
+  "replay_report.input_states": {
+   "equal": true
+  },
+  "replay_report.lab_states": {
+   "equal": true
+  },
+  "replay_report.local_path": {
+   "equal": true
+  },
+  "replay_report.not_attempted_events": {
+   "equal": true
+  },
+  "replay_report.percent_or_fraction_outside_definitions": {
+   "equal": false,
+   "new": 0,
+   "old": 1
+  },
+  "replay_report.reason_counts": {
+   "equal": true
+  },
+  "replay_report.state": {
+   "equal": true
+  },
+  "replay_report.statuses": {
+   "equal": true
+  },
+  "replay_report.trading_word": {
+   "equal": true
+  },
+  "replay_report.veto_opportunities": {
+   "equal": true
+  },
+  "replay_report.vetoes": {
+   "equal": true
+  },
+  "scout_alerts.alert_policies": {
+   "equal": true
+  },
+  "scout_alerts.candidates": {
+   "equal": true
+  },
+  "scout_alerts.deduped": {
+   "equal": true
+  },
+  "scout_alerts.ledger": {
+   "equal": true
+  },
+  "scout_alerts.new": {
+   "equal": true
+  },
+  "scout_alerts.outcome": {
+   "equal": true
+  },
+  "scout_alerts.previews": {
+   "equal": true
+  },
+  "scout_alerts.remote_deliveries_succeeded": {
+   "equal": true
+  },
+  "scout_alerts.sent_folder_exists": {
+   "equal": true
+  },
+  "scout_alerts.suppressed": {
+   "equal": true
+  },
+  "scout_report.backtest_results": {
+   "equal": true
+  },
+  "scout_report.counts": {
+   "equal": true
+  },
+  "scout_report.input_states": {
+   "equal": true
+  },
+  "scout_report.lab_states": {
+   "equal": true
+  },
+  "scout_report.local_path": {
+   "equal": true
+  },
+  "scout_report.not_attempted_events": {
+   "equal": true
+  },
+  "scout_report.percent_or_fraction_outside_definitions": {
+   "equal": true
+  },
+  "scout_report.reason_counts": {
+   "equal": true
+  },
+  "scout_report.state": {
+   "equal": true
+  },
+  "scout_report.statuses": {
+   "equal": true
+  },
+  "scout_report.trading_word": {
+   "equal": true
+  },
+  "scout_report.veto_opportunities": {
+   "equal": true
+  },
+  "scout_report.vetoes": {
+   "equal": true
+  }
+ },
+ "fields_not_equal": [
+  "replay_report.percent_or_fraction_outside_definitions"
+ ],
+ "old_commit": "44118a1",
+ "texts": {
+  "REAL_ALERTS_REPLAY_DRY_RUN.txt": {
+   "changed_after_masking_ids_and_times": 0,
+   "changed_lines": 16,
+   "lines_new": 108,
+   "lines_old": 108,
+   "remaining_differences": []
+  },
+  "REAL_ALERTS_SCOUT_DRY_RUN.txt": {
+   "changed_after_masking_ids_and_times": 0,
+   "changed_lines": 2,
+   "lines_new": 10,
+   "lines_old": 10,
+   "remaining_differences": []
+  },
+  "REAL_REPLAY_REPORT.md": {
+   "changed_after_masking_ids_and_times": 4,
+   "changed_lines": 202,
+   "lines_new": 3626,
+   "lines_old": 3626,
+   "remaining_differences": [
+    "+- FACT: exact identity solana:7M3gDRgozcumFsiTeXwjB8cYxpg7Q9R7rH7rkw2Fpump; event MATERIAL_CHANGE (measured market changes since the previous attempt, not probabilities: status changed; vol_24h -78.6%; last attempt 87182 s ago)",
+    "+- Percentages appear only in target definitions (barriers), in measured market changes between two attempts of a token (the event line, labelled \"measured market changes since the previous attempt, not probabilities\"), and in a verified FORECAST (point and interval, whole percents).",
+    "-- FACT: exact identity solana:7M3gDRgozcumFsiTeXwjB8cYxpg7Q9R7rH7rkw2Fpump; event MATERIAL_CHANGE (status changed; vol_24h -78.6%; last attempt 87182 s ago)",
+    "-- Percentages appear only in target definitions (barriers) and in a verified FORECAST (point and interval, whole percents)."
+   ]
+  },
+  "REAL_SCOUT_REPORT.md": {
+   "changed_after_masking_ids_and_times": 2,
+   "changed_lines": 180,
+   "lines_new": 722,
+   "lines_old": 722,
+   "remaining_differences": [
+    "+- Percentages appear only in target definitions (barriers), in measured market changes between two attempts of a token (the event line, labelled \"measured market changes since the previous attempt, not probabilities\"), and in a verified FORECAST (point and interval, whole percents).",
+    "-- Percentages appear only in target definitions (barriers) and in a verified FORECAST (point and interval, whole percents)."
+   ]
+  }
+ }
+}

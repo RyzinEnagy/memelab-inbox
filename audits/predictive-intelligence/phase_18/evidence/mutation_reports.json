@@ -1,8 +1,8 @@
 {
  "module": "memelab/predictive/reports.py",
  "tests": "tests/test_predictive_reports.py",
- "mutations": 48,
- "caught": 48,
+ "mutations": 49,
+ "caught": 49,
  "survivors": [],
  "results": [
   {
@@ -136,6 +136,11 @@
    "first_failure": "tests/test_predictive_reports.py::test_cp18_0_codes_keep_only_code_characters_and_own_details_stay_readable"
   },
   {
+   "mutation": "C3 measured changes unlabelled",
+   "caught": true,
+   "first_failure": "tests/test_predictive_reports.py::test_cp18_1_measured_market_changes_are_labelled_and_the_units_line_says_so"
+  },
+  {
    "mutation": "W1 watermark flag never set",
    "caught": true,
    "first_failure": "tests/test_predictive_reports.py::test_g4_golden_files_are_reproduced_byte_for_byte[report_abstain.md]"
@@ -246,5 +251,5 @@
    "first_failure": "tests/test_predictive_reports.py::test_g14_risk_override_triggers_and_non_triggers[kw2-True]"
   }
  ],
- "wall_s": 610.7
+ "wall_s": 703.2
 }
