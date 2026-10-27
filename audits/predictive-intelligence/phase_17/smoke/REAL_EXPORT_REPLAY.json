@@ -15,14 +15,14 @@
  ],
  "files_sha256": {
   "documents": "b3c8f1b4a06c51c2ea571f7461d0ab558629fd988559f42764dd03f524ae5139",
-  "passes": "10c02a99c0da6952ac9b25e4f2ec11d2e55be5cd64df9de6bbdefe6f3db8a88b",
+  "passes": "3328bd101d363a9322a1557be4d185923b3300d09cecee3b19ef89efadf9a595",
   "records": "e4eb4babe381aea18593ccc1cafe699511076298486420626559c973c91d866c",
   "references": null,
-  "requests": "b2c0699d58e1e9611ac332edaa88bd5a90ae177bb088bf827be522612e7db27b"
+  "requests": "c07e6836544cb2a0a9d70df43a592eeef80179a86c1f46914a7fdfddbe01e857"
  },
  "forecast_documents": 0,
- "latency_ms_max": 16.005,
- "latency_ms_p50": 0.594,
+ "latency_ms_max": 17.604,
+ "latency_ms_p50": 1.065,
  "model_ids": [
   "not_selected"
  ],
@@ -106,7 +106,7 @@
  },
  "socket_events": 0,
  "unique_forecast_ids": true,
- "wall_s": 15.37,
+ "wall_s": 16.67,
  "window_commits": 3,
  "window_decision_events": 52,
  "window_from_utc": "2026-10-24T00:00:00Z"

@@ -1,0 +1,69 @@
+{
+ "explanation": {
+  "every_boolean_count_event_and_reason": "equal",
+  "replay_request_record_ids": "CP17-0 adds each target's serve states to the material key stored in the request records, so their record ids change; every count, event, reason, document, forecast id and record id of the replay documents is equal (REAL_EXPORT_REPLAY.json has no non-volatile difference)",
+  "theses_table_hashes_and_snapshot_hashes": "each thesis row stores report_path, which names the run's output folder (rec_smoke at 3d2089b, cp0_smoke at the CP17-0 code); inside one smoke run base_off, frozen_off and frozen_on tables are equal (lab_tables_equal_base_off_frozen_off_frozen_on true in both runs); so snapshot hashes, forecast ids and record ids of the scout examples and the analyze line differ between the two runs",
+  "volatile": "capture times, pass ids, pass record ids, measured latency, wall time and file hashes that include them"
+ },
+ "files": {
+  "FIXTURE_E2E.json": {
+   "byte_equal": false,
+   "non_volatile_differences": [],
+   "volatile_differences": 2
+  },
+  "REAL_EXPORT_REPLAY.json": {
+   "byte_equal": false,
+   "non_volatile_differences": [],
+   "volatile_differences": 4
+  },
+  "REAL_PATH_SMOKE.json": {
+   "byte_equal": false,
+   "non_volatile_differences": [
+    "/analyze_line[0]",
+    "/lab_tables_sha256/base_off/theses",
+    "/lab_tables_sha256/frozen_off/theses",
+    "/lab_tables_sha256/frozen_on/theses",
+    "/lab_tables_sha256/rerun/theses",
+    "/lab_tables_sha256/retry/theses"
+   ],
+   "volatile_differences": 9
+  },
+  "REAL_SCOUT_SECTION.md": {
+   "byte_equal": false
+  },
+  "TRACE_EXAMPLES.json": {
+   "byte_equal": false,
+   "non_volatile_differences": [
+    "/examples[0]/decision_time_utc",
+    "/examples[0]/request_record_id",
+    "/examples[0]/snapshot_hash",
+    "/examples[0]/targets[0]/abstention_record_id",
+    "/examples[0]/targets[0]/forecast_id",
+    "/examples[0]/targets[1]/abstention_record_id",
+    "/examples[0]/targets[1]/forecast_id",
+    "/examples[0]/targets[2]/abstention_record_id",
+    "/examples[0]/targets[2]/forecast_id",
+    "/examples[0]/thesis_row/row_sha256_recomputed_from_the_lab_database",
+    "/examples[1]/decision_time_utc",
+    "/examples[1]/request_record_id",
+    "/examples[1]/snapshot_hash",
+    "/examples[1]/targets[0]/abstention_record_id",
+    "/examples[1]/targets[0]/forecast_id",
+    "/examples[1]/targets[1]/abstention_record_id",
+    "/examples[1]/targets[1]/forecast_id",
+    "/examples[1]/targets[2]/abstention_record_id",
+    "/examples[1]/targets[2]/forecast_id",
+    "/examples[1]/thesis_row/row_sha256_recomputed_from_the_lab_database",
+    "/examples[2]/requests[0]/request_record_id",
+    "/examples[2]/requests[1]/request_record_id",
+    "/examples[2]/requests[2]/request_record_id"
+   ],
+   "volatile_differences": 0
+  },
+  "real_path_runs.txt": {
+   "byte_equal": false
+  }
+ },
+ "new_code": "6172b49",
+ "old_code": "3d2089b"
+}

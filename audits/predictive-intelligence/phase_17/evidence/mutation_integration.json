@@ -5,8 +5,8 @@
   "memelab/cli.py"
  ],
  "tests": "tests/test_predictive_integration.py",
- "mutations": 56,
- "caught": 56,
+ "mutations": 59,
+ "caught": 59,
  "survivors": [],
  "results": [
   {
@@ -310,6 +310,24 @@
    "first_failure": "tests/test_predictive_integration.py::test_g20_the_cli_prints_metrics_checks_the_state_and_runs_a_catalyst_pass"
   },
   {
+   "mutation": "K1 state directory guard removed",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_cp17_0_a_state_directory_inside_the_repository_but_outside_data_private_is_refused"
+  },
+  {
+   "mutation": "K2 serve state not in the key",
+   "file": "memelab/predictive/integration.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_cp17_0_a_state_directory_inside_the_repository_but_outside_data_private_is_refused"
+  },
+  {
+   "mutation": "K3 cli catches only ImportError",
+   "file": "memelab/cli.py",
+   "caught": true,
+   "first_failure": "tests/test_predictive_integration.py::test_cp17_0_a_state_directory_inside_the_repository_but_outside_data_private_is_refused"
+  },
+  {
    "mutation": "B1 identity unchecked",
    "file": "memelab/predictive/bt_adapter.py",
    "caught": true,
@@ -346,5 +364,5 @@
    "first_failure": "tests/test_predictive_integration.py::test_g12_the_adapter_refuses_identity_time_and_vocabulary_problems[kw5-UNKNOWN_STRESS_DECISION]"
   }
  ],
- "wall_s": 859.4
+ "wall_s": 954.2
 }
