@@ -1,0 +1,63 @@
+{
+ "A1_append": {
+  "accepted": false,
+  "code": "LATE_PREDICTION_REFUSED"
+ },
+ "A1_around_append_verify": {
+  "ok": false,
+  "problems": [
+   "seq 516: LATE_PREDICTION_REFUSED: PREDICTION for d6dce4b2f78f price_path_target_before_invalidation_24h after its outcome"
+  ]
+ },
+ "A2_edit_in_place_verify": {
+  "ok": false,
+  "problems": [
+   "LEDGER_TAMPERED: line 2: content differs from its sha256"
+  ]
+ },
+ "A3_consistent_rewrite_verify": {
+  "head_changed": true,
+  "ok": true,
+  "problems": []
+ },
+ "A4_truncate_reappend": {
+  "accepted": true,
+  "appended": 160,
+  "entries": 516,
+  "is_append_only_vs_committed": false,
+  "prefix_head_equal": true,
+  "verify_ok": true
+ },
+ "A5_same_read_revision": {
+  "accepted": true,
+  "appended": 1,
+  "current_label": 0,
+  "flags": [
+   "REVISED"
+  ],
+  "same_response_key": true,
+  "verify_ok": true
+ },
+ "A6_revise_to_censored_no_read": {
+  "accepted": true,
+  "appended": 1,
+  "still_scorable": false
+ },
+ "A7_pending_censored_before_maturity": {
+  "accepted": true,
+  "appended": 1,
+  "recorded_before_maturity": true
+ },
+ "A8_labeled_recorded_before_maturity": {
+  "accepted": false,
+  "code": "NOT_YET_MATURED"
+ },
+ "A8b_labeled_claimed_times_after_maturity_fake_read": {
+  "accepted": true,
+  "appended": 1
+ },
+ "A9_set_reuses_key_other_mint": {
+  "accepted": false,
+  "code": "IDENTITY_MISMATCH"
+ }
+}

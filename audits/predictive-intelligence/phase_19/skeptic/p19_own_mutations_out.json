@@ -1,0 +1,91 @@
+{
+ "module": "memelab/predictive/monitoring.py",
+ "tests": "tests/test_predictive_monitoring.py",
+ "mutations": 14,
+ "caught": 4,
+ "survivors": [
+  "K3 scorable ignores the read time",
+  "K4 scorable ignores the record time",
+  "K7 D6 failure share at the threshold alerts",
+  "K8 a class change with the same state is not a revision",
+  "K9 revision without a reason accepted",
+  "K11 prediction identity not checked",
+  "K12 load accepts duplicate entries",
+  "K13 misses never flags an unmatured label",
+  "K15 prediction set key reuse accepted",
+  "K17 Page-Hinkley stream not time ordered"
+ ],
+ "results": [
+  {
+   "mutation": "K2 current outcome is the first, not the newest",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_p05_pending_is_never_scored_or_counted_negative_and_is_superseded_by_naming_it"
+  },
+  {
+   "mutation": "K3 scorable ignores the read time",
+   "caught": false,
+   "first_failure": "30 passed in 5.29s"
+  },
+  {
+   "mutation": "K4 scorable ignores the record time",
+   "caught": false,
+   "first_failure": "30 passed in 4.85s"
+  },
+  {
+   "mutation": "K5 D1 minimum 30 becomes 29",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_d1_psi_is_near_zero_for_the_same_distribution_and_alerts_on_a_shift"
+  },
+  {
+   "mutation": "K6 champion with low support abstains (rule 10 literal)",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_response_policy_table_never_retrains"
+  },
+  {
+   "mutation": "K7 D6 failure share at the threshold alerts",
+   "caught": false,
+   "first_failure": "30 passed in 5.08s"
+  },
+  {
+   "mutation": "K8 a class change with the same state is not a revision",
+   "caught": false,
+   "first_failure": "30 passed in 4.48s"
+  },
+  {
+   "mutation": "K9 revision without a reason accepted",
+   "caught": false,
+   "first_failure": "30 passed in 6.53s"
+  },
+  {
+   "mutation": "K11 prediction identity not checked",
+   "caught": false,
+   "first_failure": "30 passed in 6.04s"
+  },
+  {
+   "mutation": "K12 load accepts duplicate entries",
+   "caught": false,
+   "first_failure": "30 passed in 5.41s"
+  },
+  {
+   "mutation": "K13 misses never flags an unmatured label",
+   "caught": false,
+   "first_failure": "30 passed in 4.97s"
+  },
+  {
+   "mutation": "K15 prediction set key reuse accepted",
+   "caught": false,
+   "first_failure": "30 passed in 5.23s"
+  },
+  {
+   "mutation": "K16 PENDING outcomes treated as final",
+   "caught": true,
+   "first_failure": "tests/test_predictive_monitoring.py::test_p05_pending_is_never_scored_or_counted_negative_and_is_superseded_by_naming_it"
+  },
+  {
+   "mutation": "K17 Page-Hinkley stream not time ordered",
+   "caught": false,
+   "first_failure": "30 passed in 4.47s"
+  }
+ ],
+ "wall_s": 67.8
+}

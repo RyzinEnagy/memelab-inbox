@@ -1,0 +1,84 @@
+{
+ "bss": {
+  "T1_24h": {
+   "brier_b0": 0.1761,
+   "brier_b2": 0.1296,
+   "bss": 0.264,
+   "days": 3,
+   "n": 22,
+   "pos": 5
+  },
+  "T1b_6h": {
+   "brier_b0": 0.1095,
+   "brier_b2": 0.1058,
+   "bss": 0.033,
+   "days": 3,
+   "n": 24,
+   "pos": 3
+  },
+  "T2_24h": {
+   "brier_b0": 0.1602,
+   "brier_b2": 0.0931,
+   "bss": 0.419,
+   "days": 2,
+   "n": 15,
+   "pos": 3
+  }
+ },
+ "by_target": {
+  "T1_24h": [
+   22,
+   5
+  ],
+  "T1b_6h": [
+   24,
+   3
+  ],
+  "T2_24h": [
+   15,
+   3
+  ]
+ },
+ "checks": {
+  "body_sha_equal_ledger": 61,
+  "maturity_equal": 61,
+  "meta_base_is_mint": 61,
+  "read_after_maturity": 61,
+  "scored_set_equal_T1_24h": 1,
+  "scored_set_equal_T1b_6h": 1,
+  "scored_set_equal_T2_24h": 1,
+  "token_param_in_url": 61
+ },
+ "compared": 61,
+ "diffs": [],
+ "equal": 61,
+ "non_labeled_with_label": 0,
+ "pending": {
+  "any_pending_matured_before_reads": false,
+  "matures_utc_min": 1793184184.0,
+  "n": 7,
+  "targets": [
+   "T2_24h"
+  ]
+ },
+ "states": {
+  "T1_24h:LABELED": 22,
+  "T1_24h:MARKET_INACTIVE": 3,
+  "T1_24h:NO_SNAPSHOT_PRICE": 5,
+  "T1_24h:OUT_OF_SCOPE_CHAIN": 19,
+  "T1_24h:THINNED": 2,
+  "T1_24h:VENDOR_OR_ROUTE_GAP": 1,
+  "T1b_6h:LABELED": 24,
+  "T1b_6h:MARKET_INACTIVE": 3,
+  "T1b_6h:NO_SNAPSHOT_PRICE": 5,
+  "T1b_6h:OUT_OF_SCOPE_CHAIN": 19,
+  "T1b_6h:VENDOR_OR_ROUTE_GAP": 1,
+  "T2_24h:LABELED": 15,
+  "T2_24h:MARKET_INACTIVE": 3,
+  "T2_24h:NO_SNAPSHOT_PRICE": 5,
+  "T2_24h:OUT_OF_SCOPE_CHAIN": 19,
+  "T2_24h:PENDING": 7,
+  "T2_24h:THINNED": 2,
+  "T2_24h:VENDOR_OR_ROUTE_GAP": 1
+ }
+}

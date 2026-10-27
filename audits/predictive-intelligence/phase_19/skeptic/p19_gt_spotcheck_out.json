@@ -1,0 +1,24 @@
+[
+ {
+  "pool6": "4FoNNN",
+  "first_read": "2026-10-27T14:07:56Z",
+  "second_read_t": 1793114042.0754273,
+  "http": "200",
+  "n_first": 999,
+  "n_second": 999,
+  "common": 999,
+  "changed": 0,
+  "changed_ohlc_only": 0
+ },
+ {
+  "pool6": "G2UuRb",
+  "first_read": "2026-10-27T14:28:33Z",
+  "second_read_t": 1793114057.8553915,
+  "http": "200",
+  "n_first": 1000,
+  "n_second": 1000,
+  "common": 1000,
+  "changed": 0,
+  "changed_ohlc_only": 0
+ }
+]
