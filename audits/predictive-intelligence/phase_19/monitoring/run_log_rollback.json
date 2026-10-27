@@ -1,0 +1,12 @@
+{
+ "end_utc": "2026-10-27T14:41:26Z",
+ "head": "765eadbbe8b2c6bbb1bd8c152588582c03235ae7",
+ "monitoring_sha256": "4de67f8560e2117fdaaadae0b7950f5fc7bec8a4cf1bfa94f57d508f4a35c16b",
+ "network_calls": 0,
+ "numpy": "2.5.3",
+ "python": "3.13.17",
+ "runner_sha256": "2b42c837c44b62299aa05c994c5ddb8974c568d43e81e9b6eb349aed6ea018fd",
+ "start_utc": "2026-10-27T14:41:26Z",
+ "step": "rollback",
+ "wall_s": 0.2
+}

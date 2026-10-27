@@ -1,0 +1,46 @@
+{
+ "reads": [
+  {
+   "appeared": 0,
+   "changed": [],
+   "compared": 998,
+   "first": "d0b3db4a34bd2f7b32f386d2b55b5bbd8aebb9895dac078105efb4dd0029137c",
+   "gap_s": 426.6,
+   "pool6": "DA4pM4",
+   "second": "284e35eacdc56d81a5ddef9e05fcaa87566656c1ff88f190db0efbab8273fde4",
+   "vanished": 0
+  },
+  {
+   "appeared": 0,
+   "changed": [],
+   "compared": 999,
+   "first": "6e57db26d3f0aebb58ab23a3bb7af79dd039bd5772b9f40bf7d86f913d8ed37c",
+   "gap_s": 1239.8,
+   "pool6": "6KGbV6",
+   "second": "aff3e2ef51dcf357387eb7022a33dddb0ff0f30e9410488df4d3ce25eb25a969",
+   "vanished": 0
+  },
+  {
+   "appeared": 0,
+   "changed": [],
+   "compared": 999,
+   "first": "c1690b8fe66d579f5668aa9f2fcad8213ec228448409d15b663e2bdc6c7d9eb2",
+   "gap_s": 702.4,
+   "pool6": "C7r9jX",
+   "second": "86bd82abd1384f81da0e4cddc4e8f05667aced3677840b393a51ae3a55d329a7",
+   "vanished": 0
+  }
+ ],
+ "rule": "lowest ceil(10%) of the OK label reads by sha256 of the request URL; same-session gap (short)",
+ "summary": {
+  "appeared": 0,
+  "candles_changed": 0,
+  "candles_compared": 2996,
+  "frozen_48h_reread": "owed: not before 48 h after the first reads (PI-D-018)",
+  "gap_s_max": 1239.8,
+  "gap_s_min": 426.6,
+  "label_reads_ok": 25,
+  "reads": 3,
+  "vanished": 0
+ }
+}

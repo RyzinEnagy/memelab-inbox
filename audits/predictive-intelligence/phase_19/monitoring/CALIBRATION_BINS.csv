@@ -1,0 +1,4 @@
+target_short,view,model,bin,n,positives,mean_pred,observed,wilson_lo,wilson_hi,ok,note
+T1_24h,PRIMARY,P07_B2,IN_THE_LARGE,22,,0.23663914570503852,0.22727272727272727,0.10123039985248516,0.43439953175221713,1,fewer than 40 events: calibration in the large only
+T1b_6h,PRIMARY,P07_B2,IN_THE_LARGE,24,,0.082455560765790678,0.125,0.043443340801234437,0.31003881270500067,1,fewer than 40 events: calibration in the large only
+T2_24h,PRIMARY,P07_B2,IN_THE_LARGE,15,,0.12537167187372694,0.20000000000000001,0.070475493469815631,0.45185448715169363,1,fewer than 40 events: calibration in the large only

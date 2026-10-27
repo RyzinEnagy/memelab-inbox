@@ -1,0 +1,14 @@
+{
+ "entries": [
+  {
+   "calls_before": 0,
+   "head": "765eadbbe8b2c6bbb1bd8c152588582c03235ae7",
+   "ledger_entries": 356,
+   "ledger_head": "498bd938de37ac98c08549b6a6f9c5913edae5f90399a7e900919d53c29d3147",
+   "manifest_sha256": "fbdc025cdcb570d4d60423415b47f704460e576c8d0f301574214cbe74393012",
+   "mode": "FIRST_OPENING",
+   "time_utc": "2026-10-27T14:00:26Z"
+  }
+ ],
+ "rule": "checklist rule 1: label reads only after the predictions commit"
+}

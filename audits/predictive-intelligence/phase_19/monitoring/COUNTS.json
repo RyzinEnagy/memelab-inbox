@@ -1,0 +1,52 @@
+{
+ "T1_24h": {
+  "days": [
+   "2026-10-24",
+   "2026-10-25",
+   "2026-10-26"
+  ],
+  "mints": 21,
+  "positives": 5,
+  "scorable": 22,
+  "states_solana": {
+   "LABELED": 22,
+   "MARKET_INACTIVE": 3,
+   "NO_SNAPSHOT_PRICE": 5,
+   "THINNED": 2,
+   "VENDOR_OR_ROUTE_GAP": 1
+  }
+ },
+ "T1b_6h": {
+  "days": [
+   "2026-10-24",
+   "2026-10-25",
+   "2026-10-26"
+  ],
+  "mints": 21,
+  "positives": 3,
+  "scorable": 24,
+  "states_solana": {
+   "LABELED": 24,
+   "MARKET_INACTIVE": 3,
+   "NO_SNAPSHOT_PRICE": 5,
+   "VENDOR_OR_ROUTE_GAP": 1
+  }
+ },
+ "T2_24h": {
+  "days": [
+   "2026-10-24",
+   "2026-10-25"
+  ],
+  "mints": 15,
+  "positives": 3,
+  "scorable": 15,
+  "states_solana": {
+   "LABELED": 15,
+   "MARKET_INACTIVE": 3,
+   "NO_SNAPSHOT_PRICE": 5,
+   "PENDING": 7,
+   "THINNED": 2,
+   "VENDOR_OR_ROUTE_GAP": 1
+  }
+ }
+}

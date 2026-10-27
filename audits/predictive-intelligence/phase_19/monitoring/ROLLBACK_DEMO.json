@@ -1,0 +1,60 @@
+{
+ "b2_alarm_utc": "2026-10-23T10:50:00Z",
+ "earlier_pin_unchanged": true,
+ "evidence_class": "FIXTURE_TEST_ONLY",
+ "log_append_only": true,
+ "log_events": 7,
+ "model_alarm_utc": "2026-10-23T05:00:00Z",
+ "notice": "T1 fixture (24 hours, +25% before -15%): DRIFT_ALERT. Page-Hinkley alarm at 2026-10-23T05:00:00Z on 80 matured pairs. Action: the model is shown as research only (shadow) and keeps every earlier record. No model is retrained automatically; a person may review the monitor report and decide on a retrain plan.",
+ "response_1": {
+  "action": "DEGRADE_TO_SHADOW",
+  "automatic_retrain": false,
+  "earlier_records": "UNCHANGED",
+  "level": "VALIDATED_EXPERIMENTAL",
+  "pin_mode": "CHAMPION",
+  "retrain": "a plan committed before its evaluation data and a human-reviewed registry promotion (PI-D-091); never automatic",
+  "states": [
+   "DRIFT_ALERT"
+  ]
+ },
+ "response_2": {
+  "action": "ROLLBACK_TO_ABSTAIN",
+  "automatic_retrain": false,
+  "earlier_records": "UNCHANGED",
+  "level": "SHADOW",
+  "pin_mode": "CHAMPION",
+  "retrain": "a plan committed before its evaluation data and a human-reviewed registry promotion (PI-D-091); never automatic",
+  "states": [
+   "DRIFT_ALERT"
+  ]
+ },
+ "rollback_1": {
+  "champion_is_b2": true,
+  "mode": "CHAMPION",
+  "reasons": [
+   "DRIFT_ALERT",
+   "rolled back to the champion pinned at 2026-10-20T00:00:00Z"
+  ]
+ },
+ "rollback_2": {
+  "mode": "NO_VIABLE_CHAMPION",
+  "reasons": [
+   "DRIFT_ALERT",
+   "no earlier usable champion: abstain with the references"
+  ]
+ },
+ "serve_after_rollback_1": {
+  "blocking": [],
+  "use_champion": true
+ },
+ "serve_at_alarm": {
+  "blocking": [
+   "DRIFT_ALERT"
+  ],
+  "retrain": [
+   "RETRAIN_AND_HUMAN_REVIEW: the model is not used until a reviewed retrain is registered"
+  ],
+  "rollback_required": true,
+  "use_champion": false
+ }
+}

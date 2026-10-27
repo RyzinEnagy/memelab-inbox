@@ -1,0 +1,46 @@
+[
+ {
+  "as_of_utc": "2026-10-27T14:35:37Z",
+  "cross_target_violations": 0,
+  "label_rows_added": 123,
+  "ledger": {
+   "appended": 156,
+   "duplicates": 0,
+   "entries": 512,
+   "head": "6216f7b7b2e0e87b1361ba466870d3a533febd3c65055c1b60f722a1958751f4"
+  },
+  "ledger_verify": {
+   "entries": 512,
+   "head": "6216f7b7b2e0e87b1361ba466870d3a533febd3c65055c1b60f722a1958751f4",
+   "ok": true,
+   "problems": []
+  },
+  "network_calls": 0,
+  "records": 156,
+  "states": {
+   "T1_24h:LABELED": 22,
+   "T1_24h:MARKET_INACTIVE": 3,
+   "T1_24h:NO_SNAPSHOT_PRICE": 5,
+   "T1_24h:OUT_OF_SCOPE_CHAIN": 19,
+   "T1_24h:THINNED": 2,
+   "T1_24h:VENDOR_OR_ROUTE_GAP": 1,
+   "T1b_6h:LABELED": 24,
+   "T1b_6h:MARKET_INACTIVE": 3,
+   "T1b_6h:NO_SNAPSHOT_PRICE": 5,
+   "T1b_6h:OUT_OF_SCOPE_CHAIN": 19,
+   "T1b_6h:VENDOR_OR_ROUTE_GAP": 1,
+   "T2_24h:LABELED": 15,
+   "T2_24h:MARKET_INACTIVE": 3,
+   "T2_24h:NO_SNAPSHOT_PRICE": 5,
+   "T2_24h:OUT_OF_SCOPE_CHAIN": 19,
+   "T2_24h:PENDING": 7,
+   "T2_24h:THINNED": 2,
+   "T2_24h:VENDOR_OR_ROUTE_GAP": 1
+  },
+  "training_gate_prospective_rows": {
+   "T1_24h": 0,
+   "T1b_6h": 0,
+   "T2_24h": 0
+  }
+ }
+]

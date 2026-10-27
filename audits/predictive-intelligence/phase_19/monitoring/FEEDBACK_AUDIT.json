@@ -1,0 +1,60 @@
+{
+ "F1_forecast_independent_watchlist": {
+  "ok": true,
+  "ref_has_data_config": false,
+  "ref_has_predictive_package": false
+ },
+ "F2_alert_selection": {
+  "evaluated_pairs_are_all_scorable": true,
+  "rule": "the evaluation uses every scorable decision; the Phase 18 dry-run alert previews are never a selection"
+ },
+ "F3_survivorship": {
+  "ok": true,
+  "pairs_expected": 156,
+  "pairs_with_outcome": 156,
+  "states": {
+   "LABELED": 61,
+   "MARKET_INACTIVE": 9,
+   "NO_SNAPSHOT_PRICE": 15,
+   "OUT_OF_SCOPE_CHAIN": 57,
+   "PENDING": 7,
+   "THINNED": 4,
+   "VENDOR_OR_ROUTE_GAP": 3
+  }
+ },
+ "F4_publication_revision": {
+  "documents_sha256": "9b839e76b7a334847911b6d5ad1f81044e17da47a09354dd3efd70fdbc0c77d0",
+  "ok": true,
+  "records_sha256": "a8114c19f9ac506b0a809a6f9e1bf1b70ada6e049c693debc1d102294bb5accc"
+ },
+ "F5_vendor_revision_short_gap": {
+  "appeared": 0,
+  "candles_changed": 0,
+  "candles_compared": 2996,
+  "frozen_48h_reread": "owed: not before 48 h after the first reads (PI-D-018)",
+  "gap_s_max": 1239.8,
+  "gap_s_min": 426.6,
+  "label_reads_ok": 25,
+  "reads": 3,
+  "vanished": 0
+ },
+ "ledger_verify": {
+  "entries": 516,
+  "head": "09b31f52c2fdcb7db6daba9b09d007432bcbf4ab721db577c619ae1eb90b08ca",
+  "ok": true,
+  "problems": []
+ },
+ "order": {
+  "commit_before_first_call": true,
+  "first_label_call_utc": "2026-10-27T14:00:26Z",
+  "ledger_at_that_commit_kinds": {
+   "DOCUMENT": 156,
+   "PLAN": 1,
+   "PREDICTION": 198,
+   "PREDICTION_SET": 1
+  },
+  "no_outcome_at_that_commit": true,
+  "predictions_commit": "765eadbbe8b2c6bbb1bd8c152588582c03235ae7",
+  "predictions_commit_time_utc": "2026-10-27T14:00:20Z"
+ }
+}
