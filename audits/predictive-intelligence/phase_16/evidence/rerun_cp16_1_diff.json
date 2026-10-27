@@ -1,0 +1,15 @@
+{
+ "different": [
+  "ensemble/ENSEMBLE_ABLATION.json",
+  "ensemble/LATENCY.json",
+  "evidence/run_log.json"
+ ],
+ "ensemble_ablation_equal_after_renaming_keys_back": true,
+ "files_compared": 99,
+ "latency_structure_equal_after_renaming_keys_back": true,
+ "note": "LATENCY.json and run_log.json also differ by run (CPU time, timestamps, code sha); every other output file is byte-equal",
+ "previous": "72488dd outputs (code 8cd19bd)",
+ "repeat": "code d74a16f (CP16-1)",
+ "second_repeat_byte_equal_except_run_log_and_latency": true,
+ "second_repeat_files": 83
+}

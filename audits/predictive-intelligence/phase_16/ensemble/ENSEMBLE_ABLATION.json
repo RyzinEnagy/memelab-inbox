@@ -11,19 +11,19 @@
     "ENS_MEAN_B0_B2": {
      "cpu_time": "ensemble/LATENCY.json",
      "extra_parameters": 0,
-     "member_parameters": 7,
-     "members": 2
+     "member_count": 2,
+     "member_parameters": 7
     },
     "ENS_MEAN_B2_S1": {
      "cpu_time": "ensemble/LATENCY.json",
      "extra_parameters": 0,
-     "member_parameters": 13,
-     "members": 2
+     "member_count": 2,
+     "member_parameters": 13
     },
     "STACK_CHRONO_B2_S1": {
      "extra_parameters": 3,
      "fitted": false,
-     "members": 2
+     "member_count": 2
     }
    },
    "decision": {
@@ -69,7 +69,7 @@
       "1",
       "2"
      ],
-     "members": [
+     "member_models": [
       "B0",
       "B2"
      ],
@@ -121,7 +121,7 @@
       "1",
       "2"
      ],
-     "members": [
+     "member_models": [
       "B2",
       "S1"
      ],
@@ -201,7 +201,7 @@
        ]
       }
      ],
-     "members": [
+     "member_models": [
       "B2",
       "S1"
      ],
@@ -326,19 +326,19 @@
     "ENS_MEAN_B0_B2": {
      "cpu_time": "ensemble/LATENCY.json",
      "extra_parameters": 0,
-     "member_parameters": 7,
-     "members": 2
+     "member_count": 2,
+     "member_parameters": 7
     },
     "ENS_MEAN_B2_S1": {
      "cpu_time": "ensemble/LATENCY.json",
      "extra_parameters": 0,
-     "member_parameters": 13,
-     "members": 2
+     "member_count": 2,
+     "member_parameters": 13
     },
     "STACK_CHRONO_B2_S1": {
      "extra_parameters": 3,
      "fitted": false,
-     "members": 2
+     "member_count": 2
     }
    },
    "decision": {
@@ -386,7 +386,7 @@
       "3",
       "4"
      ],
-     "members": [
+     "member_models": [
       "B0",
       "B2"
      ],
@@ -446,7 +446,7 @@
       "3",
       "4"
      ],
-     "members": [
+     "member_models": [
       "B2",
       "S1"
      ],
@@ -571,7 +571,7 @@
        ]
       }
      ],
-     "members": [
+     "member_models": [
       "B2",
       "S1"
      ],
@@ -696,19 +696,19 @@
     "ENS_MEAN_B0_B2": {
      "cpu_time": "ensemble/LATENCY.json",
      "extra_parameters": 0,
-     "member_parameters": 7,
-     "members": 2
+     "member_count": 2,
+     "member_parameters": 7
     },
     "ENS_MEAN_B2_S1": {
      "cpu_time": "ensemble/LATENCY.json",
      "extra_parameters": 0,
-     "member_parameters": 13,
-     "members": 2
+     "member_count": 2,
+     "member_parameters": 13
     },
     "STACK_CHRONO_B2_S1": {
      "extra_parameters": 3,
      "fitted": false,
-     "members": 2
+     "member_count": 2
     }
    },
    "decision": {
@@ -752,7 +752,7 @@
      "folds": [
       "0"
      ],
-     "members": [
+     "member_models": [
       "B0",
       "B2"
      ],
@@ -802,7 +802,7 @@
      "folds": [
       "0"
      ],
-     "members": [
+     "member_models": [
       "B2",
       "S1"
      ],
@@ -855,7 +855,7 @@
     "STACK_CHRONO_B2_S1": {
      "fitted_folds": 0,
      "folds": [],
-     "members": [
+     "member_models": [
       "B2",
       "S1"
      ],

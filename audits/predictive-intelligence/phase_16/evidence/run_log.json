@@ -1,7 +1,7 @@
 {
  "code_sha256": {
   "audits/predictive-intelligence/phase_12/probes/run_holdout.py": "a593b35b625287ecbb13aac310988734a56532013ac8e85d284b441d0c641455",
-  "audits/predictive-intelligence/phase_16/probes/build_registry.py": "fc50e7d4ecfc21d3718b829c78a0836c730c8d5c14c645dfff938df27cd2c555",
+  "audits/predictive-intelligence/phase_16/probes/build_registry.py": "43843e050fd188d11de1aaeb1d1a5cc70685e83dbf9ed073b547e9247068200a",
   "memelab/predictive/abstention.py": "abf4dd5268516d0158496428dda2efcde627530eae980e2fdcc1bbca4c58ea8a",
   "memelab/predictive/baselines.py": "3be1306a4137b7db6bdffac9541278c1703843fe1ccb75c58b99be35d6858b71",
   "memelab/predictive/calibration.py": "2e7f87c6d8846d0833893f986dda64e05b74dfb2ab79991018633aee2d8d8602",
@@ -12,25 +12,25 @@
   "memelab/predictive/registry.py": "ab6d71bc315397a68ee2fddef60adec084053ecc29711166b520acff22b87f43",
   "memelab/predictive/stats.py": "e249d9d99e0d69e3f55d80e9a3d42b3a4efaf44c6488c04c4f318d576895096a"
  },
- "cpu_s": 21.462,
+ "cpu_s": 21.545,
  "debug_runs_before_frozen_code": [
   "dbg1 2026-10-27T03:02:24Z at uncommitted code: stopped while taking the before-state of phase_06/sealed/ (IsADirectoryError on raw/); it had computed the sha256 of the bytes of SEAL.json, holdout_labels.jsonl.gz, label_calls.json and others_summary.json (the same hashes check_seal.py computes; nothing decompressed, parsed, printed or stored); the before and after state is now size and mtime only, the sealed files are never opened",
   "dbg2 2026-10-27T03:02:36Z: stopped in run_holdout.load_cards (its glob of phase_*/artifacts/T*/*.json meets the Phase 13 calibration cards, KeyError '13'); cards are now loaded from the paths in CANDIDATES.json",
   "dbg3 2026-10-27T03:02:53Z: ran through the inference check and the ensemble step, stopped at the T2 in-sample stacking trap (no T2 row has both B2 and S1, so the trap had no rows); the trap now uses the B0 and B2 out-of-fold rows, which exist on every target; no rule, threshold, configuration or output definition changed",
   "dbg4 2026-10-27T03:03:25Z: complete, 69 entries (ABSTAIN 6, NO_GO 63), 69 of 69 inference equal, NO_ENSEMBLE x3, N_search 130, no failure; used to check the outputs; then tests were added for four surviving mutations (registry.py unchanged by them)"
  ],
- "end_utc": "2026-10-27T03:38:05Z",
+ "end_utc": "2026-10-27T03:51:41Z",
  "facts_and_sources_verified": 69,
  "failures": [],
  "firecrawl_credits": 0,
- "head": "8cd19bdd44bf9da67e05a585e1d508dc92222de3",
+ "head": "d74a16faefefcf119c0c36741d36aa614dcfef0f",
  "llm_calls": 0,
  "network_calls": 0,
  "numpy": "2.5.3",
  "python": "3.13.17",
  "sealed_folder_unchanged": true,
  "socket_events": [],
- "start_utc": "2026-10-27T03:37:43Z",
+ "start_utc": "2026-10-27T03:51:18Z",
  "stores_after": {
   "/home/claude/memelab-inbox/data/memelab.sqlite": "068287c0d7e454361eb42f54b2f90e49e4075ae3a962a3c57867165ab6a679ca",
   "/home/claude/pi_research/p05/predictive_store.sqlite": "2525f0c4a7b2662713d07e99acd1a371c33aa5082994f5f552aba477f98dd8de",

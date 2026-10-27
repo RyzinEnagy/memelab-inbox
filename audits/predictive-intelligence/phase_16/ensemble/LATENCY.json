@@ -1,308 +1,308 @@
 {
  "cards": {
   "T1_24h:P07_B0": {
-   "cpu_us_per_decision": 5.520416842105422,
+   "cpu_us_per_decision": 4.790383157895249,
    "decisions": 95
   },
   "T1_24h:P07_B1": {
-   "cpu_us_per_decision": 5.994200000001632,
+   "cpu_us_per_decision": 5.434673684210473,
    "decisions": 95
   },
   "T1_24h:P07_B2": {
-   "cpu_us_per_decision": 9.54449894736791,
+   "cpu_us_per_decision": 9.863509473683957,
    "decisions": 95
   },
   "T1_24h:P07_B3": {
-   "cpu_us_per_decision": 18.99231999999903,
+   "cpu_us_per_decision": 18.767541052631707,
    "decisions": 95
   },
   "T1_24h:P07_B3F": {
-   "cpu_us_per_decision": 5.80339157894671,
+   "cpu_us_per_decision": 5.299477894736077,
    "decisions": 95
   },
   "T1_24h:P07_B4": {
-   "cpu_us_per_decision": 73.81055789473685,
+   "cpu_us_per_decision": 79.79045684210536,
    "decisions": 95
   },
   "T1_24h:P08_M1_T_LOGIT": {
-   "cpu_us_per_decision": 8.845246315789417,
+   "cpu_us_per_decision": 8.812587368422585,
    "decisions": 95
   },
   "T1_24h:P08_M2_T_LOGIT_B2": {
-   "cpu_us_per_decision": 11.602178947367598,
+   "cpu_us_per_decision": 11.464406315789763,
    "decisions": 95
   },
   "T1_24h:P08_M3_T_STUMPS": {
-   "cpu_us_per_decision": 8.468374736843032,
+   "cpu_us_per_decision": 8.698831578947656,
    "decisions": 95
   },
   "T1_24h:P09_A1_OC_B2_TC": {
-   "cpu_us_per_decision": 10.81972421052656,
+   "cpu_us_per_decision": 10.557334736841097,
    "decisions": 95
   },
   "T1_24h:P09_M1_OC_LOGIT": {
-   "cpu_us_per_decision": 11.254197894737747,
+   "cpu_us_per_decision": 11.127879999999903,
    "decisions": 95
   },
   "T1_24h:P09_M2_OC_LOGIT_B2": {
-   "cpu_us_per_decision": 16.07932421052657,
+   "cpu_us_per_decision": 15.922524210525891,
    "decisions": 95
   },
   "T1_24h:P09_M3_OC_LOGIT_TREND": {
-   "cpu_us_per_decision": 19.17162315789586,
+   "cpu_us_per_decision": 19.16577263158029,
    "decisions": 95
   },
   "T1_24h:P09_R1_OC_RULE": {
-   "cpu_us_per_decision": 4.1327473684211515,
+   "cpu_us_per_decision": 3.980610526315855,
    "decisions": 95
   },
   "T1_24h:P10_A2_SC_B2_TC": {
-   "cpu_us_per_decision": 10.414406315789313,
+   "cpu_us_per_decision": 10.297635789473398,
    "decisions": 95
   },
   "T1_24h:P10_G1_SC_STUMPS_B2": {
-   "cpu_us_per_decision": 19.05429473684182,
+   "cpu_us_per_decision": 19.101027368420596,
    "decisions": 95
   },
   "T1_24h:P10_R2_SC_RULE": {
-   "cpu_us_per_decision": 3.719202105262741,
+   "cpu_us_per_decision": 3.5914021052643883,
    "decisions": 95
   },
   "T1_24h:P10_S1_SC_LOGIT": {
-   "cpu_us_per_decision": 8.56577052631436,
+   "cpu_us_per_decision": 9.019671578945957,
    "decisions": 95
   },
   "T1_24h:P10_S2_SC_LOGIT_B2": {
-   "cpu_us_per_decision": 12.906941052631508,
+   "cpu_us_per_decision": 13.57405052631652,
    "decisions": 95
   },
   "T1_24h:P10_S3_SC_LOGIT_TREND": {
-   "cpu_us_per_decision": 15.036705263158836,
+   "cpu_us_per_decision": 15.601890526315437,
    "decisions": 95
   },
   "T1_24h:P11_AC1_STRATA": {
-   "cpu_us_per_decision": 703.4712526315782,
+   "cpu_us_per_decision": 694.1821726315791,
    "decisions": 95
   },
   "T1_24h:P11_AC2_KNN": {
-   "cpu_us_per_decision": 1467.552808421053,
+   "cpu_us_per_decision": 1441.7690210526314,
    "decisions": 95
   },
   "T1_24h:P11_AC3_KNN_REGIME": {
-   "cpu_us_per_decision": 1398.6890442105255,
+   "cpu_us_per_decision": 1394.9053073684195,
    "decisions": 95
   },
   "T1b_6h:P07_B0": {
-   "cpu_us_per_decision": 4.553785263157662,
+   "cpu_us_per_decision": 4.809530526314931,
    "decisions": 95
   },
   "T1b_6h:P07_B1": {
-   "cpu_us_per_decision": 5.148416842105593,
+   "cpu_us_per_decision": 4.994749473683151,
    "decisions": 95
   },
   "T1b_6h:P07_B2": {
-   "cpu_us_per_decision": 10.300458947369863,
+   "cpu_us_per_decision": 9.750949473682548,
    "decisions": 95
   },
   "T1b_6h:P07_B3": {
-   "cpu_us_per_decision": 18.4746400000005,
+   "cpu_us_per_decision": 19.981412631580042,
    "decisions": 95
   },
   "T1b_6h:P07_B3F": {
-   "cpu_us_per_decision": 5.550094736842713,
+   "cpu_us_per_decision": 5.443730526315293,
    "decisions": 95
   },
   "T1b_6h:P07_B4": {
-   "cpu_us_per_decision": 115.82777684210448,
+   "cpu_us_per_decision": 113.13844421052497,
    "decisions": 95
   },
   "T1b_6h:P08_M1_T_LOGIT": {
-   "cpu_us_per_decision": 9.903096842106377,
+   "cpu_us_per_decision": 10.08829052631648,
    "decisions": 95
   },
   "T1b_6h:P08_M2_T_LOGIT_B2": {
-   "cpu_us_per_decision": 14.22415368421108,
+   "cpu_us_per_decision": 14.865176842106035,
    "decisions": 95
   },
   "T1b_6h:P08_M3_T_STUMPS": {
-   "cpu_us_per_decision": 10.379176842103426,
+   "cpu_us_per_decision": 10.031679999998818,
    "decisions": 95
   },
   "T1b_6h:P09_A1_OC_B2_TC": {
-   "cpu_us_per_decision": 12.090242105263595,
+   "cpu_us_per_decision": 11.644688421051871,
    "decisions": 95
   },
   "T1b_6h:P09_M1_OC_LOGIT": {
-   "cpu_us_per_decision": 12.207021052630969,
+   "cpu_us_per_decision": 11.806981052631585,
    "decisions": 95
   },
   "T1b_6h:P09_M2_OC_LOGIT_B2": {
-   "cpu_us_per_decision": 16.953562105263057,
+   "cpu_us_per_decision": 16.88406105263072,
    "decisions": 95
   },
   "T1b_6h:P09_M3_OC_LOGIT_TREND": {
-   "cpu_us_per_decision": 20.02454947368305,
+   "cpu_us_per_decision": 19.220861052632262,
    "decisions": 95
   },
   "T1b_6h:P09_R1_OC_RULE": {
-   "cpu_us_per_decision": 3.999389473684208,
+   "cpu_us_per_decision": 3.9223957894737724,
    "decisions": 95
   },
   "T1b_6h:P10_A2_SC_B2_TC": {
-   "cpu_us_per_decision": 10.284726315788737,
+   "cpu_us_per_decision": 10.215698947368722,
    "decisions": 95
   },
   "T1b_6h:P10_G1_SC_STUMPS_B2": {
-   "cpu_us_per_decision": 21.1055305263149,
+   "cpu_us_per_decision": 19.34538526315702,
    "decisions": 95
   },
   "T1b_6h:P10_R2_SC_RULE": {
-   "cpu_us_per_decision": 3.872526315788231,
+   "cpu_us_per_decision": 3.5079284210525725,
    "decisions": 95
   },
   "T1b_6h:P10_S1_SC_LOGIT": {
-   "cpu_us_per_decision": 8.538818947367737,
+   "cpu_us_per_decision": 11.112698947368777,
    "decisions": 95
   },
   "T1b_6h:P10_S2_SC_LOGIT_B2": {
-   "cpu_us_per_decision": 13.201846315788439,
+   "cpu_us_per_decision": 17.595200000000496,
    "decisions": 95
   },
   "T1b_6h:P10_S3_SC_LOGIT_TREND": {
-   "cpu_us_per_decision": 15.591612631578979,
+   "cpu_us_per_decision": 16.821536842105,
    "decisions": 95
   },
   "T1b_6h:P11_AC1_STRATA": {
-   "cpu_us_per_decision": 994.3772126315802,
+   "cpu_us_per_decision": 1011.251501052631,
    "decisions": 95
   },
   "T1b_6h:P11_AC2_KNN": {
-   "cpu_us_per_decision": 2011.7868989473693,
+   "cpu_us_per_decision": 2005.6368610526333,
    "decisions": 95
   },
   "T1b_6h:P11_AC3_KNN_REGIME": {
-   "cpu_us_per_decision": 1908.9183431578954,
+   "cpu_us_per_decision": 1885.107595789475,
    "decisions": 95
   },
   "T2_24h:P07_B0": {
-   "cpu_us_per_decision": 4.814562105261637,
+   "cpu_us_per_decision": 5.595631578949834,
    "decisions": 95
   },
   "T2_24h:P07_B1": {
-   "cpu_us_per_decision": 5.163197894737281,
+   "cpu_us_per_decision": 6.218572631579521,
    "decisions": 95
   },
   "T2_24h:P07_B2": {
-   "cpu_us_per_decision": 9.356134736839595,
+   "cpu_us_per_decision": 9.73265684210464,
    "decisions": 95
   },
   "T2_24h:P07_B3": {
-   "cpu_us_per_decision": 19.04086736842047,
+   "cpu_us_per_decision": 19.416924210526524,
    "decisions": 95
   },
   "T2_24h:P07_B3F": {
-   "cpu_us_per_decision": 5.364896842107813,
+   "cpu_us_per_decision": 5.8487410526303645,
    "decisions": 95
   },
   "T2_24h:P07_B4": {
-   "cpu_us_per_decision": 70.18092421052371,
+   "cpu_us_per_decision": 74.31532000000112,
    "decisions": 95
   },
   "T2_24h:P08_M1_T_LOGIT": {
-   "cpu_us_per_decision": 8.873621052630728,
+   "cpu_us_per_decision": 8.655067368422172,
    "decisions": 95
   },
   "T2_24h:P08_M2_T_LOGIT_B2": {
-   "cpu_us_per_decision": 11.526014736844559,
+   "cpu_us_per_decision": 12.010724210525543,
    "decisions": 95
   },
   "T2_24h:P08_M3_T_STUMPS": {
-   "cpu_us_per_decision": 8.428277894739123,
+   "cpu_us_per_decision": 8.743644210526506,
    "decisions": 95
   },
   "T2_24h:P09_A1_OC_B2_TC": {
-   "cpu_us_per_decision": 10.597086315790332,
+   "cpu_us_per_decision": 10.530237894733911,
    "decisions": 95
   },
   "T2_24h:P09_M1_OC_LOGIT": {
-   "cpu_us_per_decision": 11.703941052632528,
+   "cpu_us_per_decision": 11.904048421054892,
    "decisions": 95
   },
   "T2_24h:P09_M2_OC_LOGIT_B2": {
-   "cpu_us_per_decision": 15.961951578948163,
+   "cpu_us_per_decision": 16.601787368419185,
    "decisions": 95
   },
   "T2_24h:P09_M3_OC_LOGIT_TREND": {
-   "cpu_us_per_decision": 18.797164210526102,
+   "cpu_us_per_decision": 18.920762105265144,
    "decisions": 95
   },
   "T2_24h:P09_R1_OC_RULE": {
-   "cpu_us_per_decision": 3.7570799999997457,
+   "cpu_us_per_decision": 4.034248421053564,
    "decisions": 95
   },
   "T2_24h:P10_A2_SC_B2_TC": {
-   "cpu_us_per_decision": 10.738240000000886,
+   "cpu_us_per_decision": 10.23364000000009,
    "decisions": 95
   },
   "T2_24h:P10_G1_SC_STUMPS_B2": {
-   "cpu_us_per_decision": 18.516326315791115,
+   "cpu_us_per_decision": 19.32166105263296,
    "decisions": 95
   },
   "T2_24h:P10_R2_SC_RULE": {
-   "cpu_us_per_decision": 3.4664736842079207,
+   "cpu_us_per_decision": 4.378741052631977,
    "decisions": 95
   },
   "T2_24h:P10_S1_SC_LOGIT": {
-   "cpu_us_per_decision": 8.427747368424313,
+   "cpu_us_per_decision": 8.984566315791055,
    "decisions": 95
   },
   "T2_24h:P10_S2_SC_LOGIT_B2": {
-   "cpu_us_per_decision": 13.158833684208933,
+   "cpu_us_per_decision": 14.34683789473692,
    "decisions": 95
   },
   "T2_24h:P10_S3_SC_LOGIT_TREND": {
-   "cpu_us_per_decision": 15.080006315790529,
+   "cpu_us_per_decision": 15.902039999998788,
    "decisions": 95
   },
   "T2_24h:P11_AC1_STRATA": {
-   "cpu_us_per_decision": 681.9605052631584,
+   "cpu_us_per_decision": 687.2963621052644,
    "decisions": 95
   },
   "T2_24h:P11_AC2_KNN": {
-   "cpu_us_per_decision": 1549.2741494736867,
+   "cpu_us_per_decision": 1491.8621452631585,
    "decisions": 95
   },
   "T2_24h:P11_AC3_KNN_REGIME": {
-   "cpu_us_per_decision": 1369.0715305263157,
+   "cpu_us_per_decision": 1390.9076673684203,
    "decisions": 95
   }
  },
  "ensembles_sum_of_members": {
   "T1_24h": {
-   "ENS_MEAN_B0_B2": 15.064915789473332,
-   "ENS_MEAN_B2_S1": 18.11026947368227,
-   "members": {
-    "B0": 5.520416842105422,
-    "B2": 9.54449894736791,
-    "S1": 8.56577052631436
+   "ENS_MEAN_B0_B2": 14.653892631579206,
+   "ENS_MEAN_B2_S1": 18.883181052629915,
+   "member_models": {
+    "B0": 4.790383157895249,
+    "B2": 9.863509473683957,
+    "S1": 9.019671578945957
    }
   },
   "T1b_6h": {
-   "ENS_MEAN_B0_B2": 14.854244210527526,
-   "ENS_MEAN_B2_S1": 18.8392778947376,
-   "members": {
-    "B0": 4.553785263157662,
-    "B2": 10.300458947369863,
-    "S1": 8.538818947367737
+   "ENS_MEAN_B0_B2": 14.56047999999748,
+   "ENS_MEAN_B2_S1": 20.863648421051323,
+   "member_models": {
+    "B0": 4.809530526314931,
+    "B2": 9.750949473682548,
+    "S1": 11.112698947368777
    }
   },
   "T2_24h": {
-   "ENS_MEAN_B0_B2": 14.170696842101233,
-   "ENS_MEAN_B2_S1": 17.783882105263906,
-   "members": {
-    "B0": 4.814562105261637,
-    "B2": 9.356134736839595,
-    "S1": 8.427747368424313
+   "ENS_MEAN_B0_B2": 15.328288421054474,
+   "ENS_MEAN_B2_S1": 18.717223157895695,
+   "member_models": {
+    "B0": 5.595631578949834,
+    "B2": 9.73265684210464,
+    "S1": 8.984566315791055
    }
   }
  },
