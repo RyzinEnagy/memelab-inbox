@@ -466,7 +466,9 @@ def _relative_users(src: str, target: str) -> bool:
 
 def test_no_predictive_module_imports_the_integration_module():
     users = [p.name for p in (ROOT / "memelab/predictive").glob("*.py") if _relative_users(p.read_text(), "integration")]
-    assert users == []                                   # the integration is a leaf: it is imported only by the cli helpers
+    # the integration is a leaf for every module but the Phase 18 reader (PI-D-098 item 8, checklist rule 14): reports.py reads
+    # the persisted state through it and is itself imported by nothing (tests/test_predictive_reports.py)
+    assert users == ["reports.py"]                       # exact: any other importer still fails (negative case below)
 
 
 @pytest.mark.parametrize("src", ["from . import stats, integration", "from . import integration as II", "from .integration import run_pass"])
