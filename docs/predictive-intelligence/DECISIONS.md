@@ -656,3 +656,13 @@ The phase agent's own adversarial pass on the recorded run at `d2038a7` (outputs
 3. The provenance flag of the facts is computed per card (file sha256 equal to CANDIDATES.json and model sha recomputed) instead of being set once for all cards.
 4. CPU-time fields leave `ENSEMBLE_ABLATION.json` (they stay in `LATENCY.json`, with the per-ensemble sums), so the ablation file is reproducible byte for byte.
 5. Frozen-code discipline: the change is committed before the recorded run is repeated; the outputs of the repeat are compared with the committed ones in `phase_16/evidence/rerun_cp16_0_diff.json` (expected: every entry, the log, the index and every decision byte-equal; the ablation file differs only by the removed CPU-time fields; the run log differs).
+
+## PI-D-087 Phase 16 result: no viable champion, references pinned, no ensemble, registry-1 in force (ADOPTED, 2026-10-27, Phase 16 first pass; NEEDS_REVIEW until the independent skeptic)
+
+Recorded with `audits/predictive-intelligence/phase_16/models/CHAMPION_POLICY.md`, `REGISTRY_SCHEMA.md`, `ENSEMBLE_ABLATION.md` and the registry at the CP16-0 code `8cd19bd` (outputs `72488dd`). The contract, ACCEPTANCE, the registry fingerprint (`4b4aabce...`) and every Phase 07 to 15 module are unchanged; spend 0.
+
+1. Champion: none. Every primary target is pinned NO_VIABLE_CHAMPION; B0 and B2 are pinned as references (ABSTAIN), never published and never shown as a champion. Phase 12's B2 champion was a default, not evidence: T1 BSS -0.024 and T1b -0.083 against B0 on the first opening (T1b calibration in the large failed), T2 7 positives (INSUFFICIENT_EVENTS), and no calibration card is CALIBRATED. The other 63 entries are NO_GO (NO_INCREMENTAL_PREDICTIVE_EDGE). Nothing was re-selected on the opened holdout.
+2. Ensemble: NO_ENSEMBLE for every target; the evidence is in `ensemble/ENSEMBLE_ABLATION.json`.
+3. Registry: 69 immutable entries, an append-only log (69 REGISTER, 3 ENSEMBLE_DECISION, 3 PIN), identical-inference hashes equal to the committed Phase 12 predictions for 69 of 69 cards, compatibility (P46), staleness and drift states (P39), rollback (fixtures), and facts tied to their sources (CP16-0). Phase 17 uses `registry.serve` as the only source of card, level and calibration card.
+4. The pre-registered expectation of PI-D-086 item 5 (every entry byte-equal after the repeat) was wrong: the retrain policy each entry embeds gained the FACTS_MISMATCH trigger, so every entry id changed; every fact, level, status, hash, pin and decision is equal (`evidence/rerun_cp16_0_diff.json`).
+5. Status: NEEDS_REVIEW until the orchestrator's skeptic; the promotion branch is a TEST_ONLY part. Phase 17 is eligible only after the orchestrator records a PASS.

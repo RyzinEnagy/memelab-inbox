@@ -1,42 +1,41 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-083). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_15/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-087). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_16/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
 ## Position on 2026-10-27
 
-- Phases 00 to 13: PASS. Phase 14 (isolated behavioral-simulation interface): TEST_ONLY (PI-D-077), MIROFISH_GATE BLOCKED for live use.
-- Phase 15 (incremental value of behavioral simulation): **TEST_ONLY** after repair pass 2 (PI-D-082, PI-D-083). Decision: **INSUFFICIENT_VALIDATION**, **MIROFISH_NO_GO**, **RULES_NOT_PROMOTED** (PI-D-081), unchanged by the repair. The independent skeptic found no material failure, 7 minor findings and CX-S15 (rule warnings cluster by mint, so the decision-level permutation is optimistic); all handled by a recorded addition at `869d597` that can only make statements more conservative.
-- Admission: the orchestrator started Phase 15 with Phase 14 at TEST_ONLY because the behavioral module is optional and flag OFF, a MiroFish NO_GO does not block the statistical system, and no LLM spend is approved (PI-D-078, PI-D-081 item 1). Phase 15 could not have been validated with spend either: 0 of the 100 required eligible dated catalyst events exist.
-- Spend: 0 Firecrawl credits, 0 vendor calls, 0 language-model calls, no socket in the Phase 15 probes, no key.
+- Phases 00 to 13: PASS. Phase 14: TEST_ONLY (PI-D-077). Phase 15: TEST_ONLY, INSUFFICIENT_VALIDATION, MIROFISH_NO_GO, RULES_NOT_PROMOTED (PI-D-083).
+- Phase 16 (champion selection, ensemble, model registry): **NEEDS_REVIEW**, first pass complete, pending the orchestrator's independent skeptic. The orchestrator admitted it with Phase 15 at TEST_ONLY because the behavioral path is optional and flag OFF (PI-D-084).
+- Spend: 0 Firecrawl credits, 0 vendor calls, 0 language-model calls, no socket in the Phase 16 runner, no key.
 
-## What Phase 15 did (PI-D-078 to PI-D-081)
+## The state the registry records (PI-D-087)
 
-- Pre-registered the question, event population, coding rules, comparators, measures, controls, examples rule and decision rule before any code, coding or label read (`b274cbc`).
-- `memelab/predictive/scenario_eval.py` (scenario-eval-1, numpy, flag OFF, imported by no other module): blind mechanical coder, warning metrics with a day-stratified permutation, Holm, A_WARN, selection status, `decide`. 34 unit tests plus 5 output tests; mutation probe 45 of 45; standard-library oracle recompute 0 differences.
-- Blind coding of the 830 development and 95 holdout-window rule documents, committed before any scoring (`7b787bf`); scoring run, self-review CP15-0 (PI-D-080, outputs added only), repeated run with every first-run value equal (`3135060`).
-- The first agent's session ended while writing the records; a second agent finished them from the committed outputs without rerunning any recorded step.
-- Repair pass 2 (PI-D-082): mint-block nulls (`mint_block_permutation`, `clustered_metrics`, conservative p = largest of three nulls) recorded beside the frozen outputs in `phase_15/behavioral/MINT_CLUSTERED_NULL.json`; calibration on 400 per-mint salts per target (decision null 0.0975 low-side rejections on T1b against a bound of 0.0718; conservative p holds everywhere); controls judged as single tests (the recorded bogus control is FLAGGED by the decision null, raw p 0.032, NOT_FLAGGED by the conservative p, 0.120; a per-mint bogus control is NOT_FLAGGED on every target); registry-ledger map both ways (`experiments/REGISTRY_LEDGER_MAP.csv`); tests for the skeptic's surviving mutations; the order test fails on a shallow clone; mutation probe 56 of 56; wording fixed (blinding basis, "does not replicate" instead of "reverses", all three per-label rows named as noise).
+- **No champion for any target.** T1 24 h, T1b 6 h and T2 24 h are pinned NO_VIABLE_CHAMPION: every request abstains, every document says model `not_selected`, no probability is published.
+- B0 (base rate) and B2 (simple model) are pinned beside each target as references for the prospective comparison. They are ABSTAIN, REFERENCE_ONLY_NEVER_PUBLISHED, and B2 is not a champion: Phase 12 named it only by default (T1 BSS -0.024, T1b -0.083 with calibration in the large failed, T2 7 positives, INSUFFICIENT_EVENTS; Phase 13 UNCALIBRATED everywhere).
+- 69 immutable entries (one per frozen card): ABSTAIN 6, NO_GO 63, 0 SHADOW, 0 VALIDATED_EXPERIMENTAL, 0 publishable. Identical inference 69 of 69 equal to the committed Phase 12 predictions.
+- NO_ENSEMBLE on every target: development out-of-fold rows give no verdict (INSUFFICIENT_DAYS or INSUFFICIENT_EVENTS), the chronological stack never clears its gate, and the combinations of B2 with the onchain-1 models count the lab's fatal flags twice (refused).
+- The promotion path is closed under the frozen ACCEPTANCE table (the retrospective holdout is spent and inside the training window of any later model). Reopening it is a change control for Elving or the orchestrator.
 
-## Result
+## What Phase 16 built (PI-D-085, PI-D-086)
 
-- Eligible independently dated catalyst events: 0 of 100 (`behavioral/EVENT_SET.csv`).
-- A (behavioral-rules-1, as A_WARN) out of sample: INSUFFICIENT_DAYS on T1 and T2, INSUFFICIENT_EVENTS on T1b, NO_UNCORRECTED_SKILL everywhere. Descriptive warnings: not distinguishable from chance after Holm. Bogus catalyst control not flagged after Holm (raw p 0.032). Holdout (POST_OPENING): the T2 subgroup reverses.
-- B (evidence-only LLM) and D (MiroFish): BLOCKED, no approved spend; P26 makes any retrospective run on these dates EXPLORATORY_NOT_AS_OF. C: no calibrated classifier (Phase 13).
-- N_search primary 121, sensitivity 160; cumulative ledger `phase_15/experiments/SEARCH_LEDGER.csv` plus `SEARCH_LEDGER_RP2_ADDITION.csv`.
+- `memelab/predictive/registry.py` (registry-1; numpy, the standard library, `contract`, `stats`; flag OFF; imported by no other module): hash-addressed immutable entries; levels recomputed from facts (`promotion_decision`); facts rebuilt from the committed Phase 12 and 13 files (`derive_facts`, `verify_facts`, `verify_sources`); append-only sha-chained log with REGISTER, PIN, ROLLBACK, ENSEMBLE_DECISION; `resolve` as of a decision time; `compatibility` (P46); `status_at` (MODEL_STALE, RETROSPECTIVE_MODEL_NOT_AVAILABLE_AS_OF, DRIFT_ALERT, MODEL_NOT_PROMOTED) with retrain requirements; identical-inference hashes; `rollback_event`; `serve` (the only source of card, level and calibration card for the publication path); `select_champion` (refuses holdout rows); ensemble rules; `target_plan`; internal `reference_record`.
+- 46 unit tests, 11 output tests, a synthetic probe fixture; mutation probe 81 of 81; the runner `phase_16/probes/build_registry.py`.
 
 ## Open items, in order
 
-1. The orchestrator re-verifies Phase 15 (TEST_ONLY) and pushes.
-2. Phase 16 (champion selection): nothing behavioral enters selection; count searches from Phase 15's ledger and its addition; it cannot promote from the retrospective holdout; any warning p value uses the conservative mint-block null; any rule promotion needs the max-T correction first (PI-D-082 item 5).
-3. Carried: Phase 17 calls `abstention.forecast_result` and `validate_publication` and validates every document with its record; Phase 19 supplies prospective evidence; champion cards MODEL_STALE after 2026-10-31; catalyst and social tables are not exported; forward depth collection approved but not deployed (PI-D-044).
+1. The orchestrator runs the independent skeptic on Phase 16 and returns its review for a repair pass.
+2. Phase 17 (after a PASS): every request goes through `registry.serve(...)` then `abstention.forecast_result(...)` with `serve`'s `forecast_inputs`, and `validate_publication` with the persisted record; pass `verify=` (facts against their sources) for any champion; keep the raw model number in the request record (PI-D-068); show `onchain.decision_support` beside any forecast; the CURRENT_VENDOR_LIST route abstains.
+3. A change control to ACCEPTANCE `promotion` before any promotion can happen, registered before prospective labels are read; then Phase 19 supplies admissible prospective evidence (at least 50 matured events and 10 per class per target) and the lift of `calibration.verify_card`'s VALIDATED_EXPERIMENTAL refusal tied to a registry entry.
+4. Frozen cards are MODEL_STALE after 2026-10-31T00:00:00Z; Phase 19's reference comparison after that needs retrained reference cards from a committed plan.
+5. Carried: catalyst and social tables are not exported; forward depth collection approved but not deployed (PI-D-044); `phase_12/probes/run_holdout.py plan` and `predict` no longer run as committed (card glob meets the Phase 13 calibration cards).
 
-## Phase 15 commits
+## Phase 16 commits
 
-HEAD before `b0243b4`; pre-registration `b274cbc`; frozen coding code `9ab0160`; blind coding run `7b787bf`; frozen scoring code `0abffd5`; first scoring run `01e535d`; change control CP15-0 `de41d26`; repeated scoring run `3135060`; records `cda97c3`; post-commit record `08e8670` (pushed, reviewed by the skeptic). Repair pass 2: code `869d597` (frozen before the recorded addition), recorded addition `aea95f0`, records `e59d9d9`, post-commit record on top. Post-commit at `e59d9d9`: suite `1 failed, 1853 passed, 1 skipped` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no." (`phase_15/postcommit/rp2_*`). First-pass post-commit at `cda97c3`: suite `1 failed, 1846 passed, 1 skipped` (known failure only; strays removed by hand), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no.", `git status` clean (`phase_15/postcommit/`). Local only; the orchestrator pushes.
+HEAD before `576f99d`; pre-registration `8af3cd4`; frozen code `d2038a7`; first recorded run `9eebb8d`; change control CP16-0 `8cd19bd`; repeated recorded run `72488dd`; records commit and post-commit record on top (hashes in the post-commit record). Local only; the orchestrator pushes.
 
 ## Waiting on Elving
 
-- Any paid data, LLM, Zep or MiroFish use; scheduled catalyst or social collection into a store this engine can read (needed before the simulation question can ever be tested, on prospective events only); social API credentials or consent; research packages in the lab's runtime; a merge into `main`; deploying the forward depth collector (approved, PI-D-044; not yet done).
+- The change control that could reopen promotion (ACCEPTANCE `promotion`), any paid data, LLM, Zep or MiroFish use, scheduled catalyst or social collection into a store this engine can read, social API credentials or consent, research packages in the lab's runtime, a merge into `main`, deploying the forward depth collector (approved, PI-D-044; not yet done).
 
 ## Note outside this branch
 
@@ -44,7 +43,7 @@ The release audit on a full local clone flags a history blob reachable only from
 
 ## Lab rules that still bind
 
-Research only: no trades, no wallets with signing authority, no seed phrases or private keys, no credentials printed or committed. No change under `inbox/`, `state/` or `data/` on this branch. Existing 100-point score and fatal-flag overrides unchanged. Forecasts stay a separate evidence section with the flag OFF. No raw social content in the repository. Behavioral output is fictional, never a probability.
+Research only: no trades, no wallets with signing authority, no seed phrases or private keys, no credentials printed or committed. No change under `inbox/`, `state/` or `data/` on this branch. Existing 100-point score and fatal-flag overrides unchanged. Forecasts stay a separate evidence section with the flag OFF. No raw social content in the repository. Behavioral output is fictional, never a probability. References are never forecasts.
 
 ## Exact next commands
 
@@ -54,10 +53,9 @@ git checkout feature/predictive-intelligence && git log -12 --oneline
 pip install pytest
 python -B audits/predictive-intelligence/phase_06/probes/check_seal.py
 python -m pytest tests -q
-python -m pytest tests/test_predictive_scenario_eval.py tests/test_predictive_phase15_outputs.py -q
-python -B audits/predictive-intelligence/phase_15/probes/mint_null.py /tmp/p15m
-python -B audits/predictive-intelligence/phase_15/probes/code_scenarios.py /tmp/p15c
-python -B audits/predictive-intelligence/phase_15/probes/score_scenarios.py /tmp/p15s
+python -m pytest tests/test_predictive_registry.py tests/test_predictive_phase16_outputs.py -q
+python -B audits/predictive-intelligence/phase_16/probes/build_registry.py /tmp/p16
+python -B audits/predictive-intelligence/phase_16/probes/mutation_registry.py /tmp/p16_mut.json
 ```
 
-Use a full clone: the Phase 15 commit-order test fails on a shallow one by design. Expect `"problems": []` from the seal check and only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` failing in the suite; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. The coding probe needs the Phase 05 store and the scoring and mint-null probes the Phase 06 development store under `/home/claude/pi_research/` (rebuild recipes: `phase_05/data/FEATURE_STORE_CONTRACT.md` and the Phase 06 records).
+Use a full clone: the Phase 15 and 16 commit-order tests fail on a shallow one by design. Expect `"problems": []` from the seal check and only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` failing in the suite; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. The runner needs the Phase 05 feature store and the Phase 06 development store under `/home/claude/pi_research/` (rebuild recipes: `phase_05/data/FEATURE_STORE_CONTRACT.md` and the Phase 06 records).

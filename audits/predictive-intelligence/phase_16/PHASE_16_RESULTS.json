@@ -1,0 +1,398 @@
+{
+ "phase": "16",
+ "status": "NEEDS_REVIEW",
+ "status_statement": "First pass complete; every gate item checked by the phase agent holds; the orchestrator's independent skeptic has not reviewed it yet. Expected final status after review: PASS if every gate item holds, with the promotion branch (SHADOW, VALIDATED_EXPERIMENTAL, CHAMPION pins and rollback from a champion) recorded as a TEST_ONLY part.",
+ "decision": {
+  "champion": {
+   "T1_24h": "NO_VIABLE_CHAMPION",
+   "T1b_6h": "NO_VIABLE_CHAMPION",
+   "T2_24h": "NO_VIABLE_CHAMPION"
+  },
+  "references": "B0 (base rate) and B2 (simple model) pinned per target, ABSTAIN, never published",
+  "levels": {
+   "ABSTAIN": 6,
+   "NO_GO": 63,
+   "SHADOW": 0,
+   "VALIDATED_EXPERIMENTAL": 0
+  },
+  "publishable": 0,
+  "ensemble": {
+   "T1_24h": "NO_ENSEMBLE",
+   "T1b_6h": "NO_ENSEMBLE",
+   "T2_24h": "NO_ENSEMBLE"
+  },
+  "promotion_path": "closed under the frozen ACCEPTANCE promotion table (needs a change control)"
+ },
+ "head_before": "576f99d",
+ "head_after": "records commit (see HANDOFF)",
+ "commits": {
+  "pre_registration": "8af3cd4",
+  "frozen_code": "d2038a7",
+  "first_recorded_run": "9eebb8d",
+  "cp16_0_code": "8cd19bd",
+  "repeated_recorded_run": "72488dd"
+ },
+ "result": {
+  "entries": 69,
+  "events": 75,
+  "inference_equal": 69,
+  "n_search": 130,
+  "n_search_sensitivity": 169,
+  "today_documents": 30,
+  "today_forecasts": 0
+ },
+ "checks": [
+  {
+   "name": "G1 package checksums",
+   "command": "sha256sum -c SHA256SUMS.txt",
+   "result": "41 OK, 0 failed",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G2 entry suite at 576f99d",
+   "command": "MEMELAB_DB=<tmp> python -m pytest tests -q -p no:cacheprovider",
+   "result": "1 failed, 1853 passed, 1 skipped, 1 warning in 265.03s (known test_dedup_corroboration_resurface_denial only)",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "G2 seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "result": "problems []",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G2 Phase 15 key tests",
+   "command": "python -m pytest tests/test_predictive_scenario_eval.py tests/test_predictive_phase15_outputs.py -q",
+   "result": "46 passed",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G3 pre-registration first",
+   "command": "git log",
+   "result": "8af3cd4 (checklist, registry, PI-D-084, PI-D-085) before d2038a7 (code)",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G4 frozen code before the recorded runs",
+   "command": "run_log head",
+   "result": "first run at d2038a7, repeat at 8cd19bd; 4 debug runs logged",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "pre-freeze suite",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "result": "1 failed, 1895 passed, 1 skipped in 283.56s (known failure only)",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "recorded run (first)",
+   "command": "python -B audits/predictive-intelligence/phase_16/probes/build_registry.py audits/predictive-intelligence/phase_16",
+   "result": "69 entries, ABSTAIN 6, NO_GO 63, 75 events, inference 69 of 69 equal, NO_ENSEMBLE x3, N_search 130, failures []",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "recorded run (repeat at CP16-0 code 8cd19bd)",
+   "command": "same",
+   "result": "same line; facts and sources verified for 69 of 69 entries; rerun diff: only the embedded retrain policy changed (entry ids with it); facts, levels, hashes, pins, decisions equal",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G5 candidates as committed",
+   "input": "CANDIDATES.json",
+   "result": "69 of 69 file sha256 and model sha equal",
+   "pass": true
+  },
+  {
+   "name": "G6 no re-selection on the opened holdout",
+   "input": "select_champion with evaluation.champion",
+   "result": "B2 by default on all three, equal to CANDIDATES.json; holdout rows refused (test)",
+   "pass": true
+  },
+  {
+   "name": "G7 honest levels",
+   "input": "entries",
+   "result": "ABSTAIN 6, NO_GO 63, SHADOW 0, VALIDATED_EXPERIMENTAL 0, publishable 0",
+   "pass": true
+  },
+  {
+   "name": "G8 no champion that implies skill",
+   "input": "log, index, today",
+   "result": "3 pins NO_VIABLE_CHAMPION; 30 documents ABSTAIN with model not_selected",
+   "pass": true
+  },
+  {
+   "name": "G9 immutable entries",
+   "input": "tests",
+   "result": "one-byte change refused; file name = id",
+   "pass": true
+  },
+  {
+   "name": "G10 log and pinning",
+   "input": "tests",
+   "result": "chain, canonical form, order and time enforced; as-of resolution",
+   "pass": true
+  },
+  {
+   "name": "G11 identical inference",
+   "input": "evidence/INFERENCE_CHECK.json",
+   "result": "69 of 69 equal to HOLDOUT_PREDICTIONS.csv; 18 synthetic hashes recomputed",
+   "pass": true
+  },
+  {
+   "name": "G12 P46",
+   "input": "evidence/COMPATIBILITY_P46.json",
+   "result": "18 of 18 (Phase 07 definitions), 69 of 69 (feature version, registry, request) refused",
+   "pass": true
+  },
+  {
+   "name": "G13 P39 and staleness",
+   "input": "TODAY_STATUS.json, tests",
+   "result": "MODEL_STALE strictly after 2026-10-31T00:00:00Z; DRIFT_ALERT at or before the decision",
+   "pass": true
+  },
+  {
+   "name": "G14 rollback to baseline",
+   "input": "evidence/ROLLBACK_TEST.json",
+   "result": "fixture: model to fixture B2 to NO_VIABLE_CHAMPION, history preserved (TEST_ONLY); real copy stays NO_VIABLE_CHAMPION",
+   "pass": true
+  },
+  {
+   "name": "G15 P22",
+   "input": "tests, ledger",
+   "result": "lucky winner of 1,000 nulls never VALIDATED_EXPERIMENTAL; N_search 130, sensitivity 169",
+   "pass": true
+  },
+  {
+   "name": "G16 P24",
+   "input": "tests",
+   "result": "30-event calibration cannot reach SHADOW; document abstains",
+   "pass": true
+  },
+  {
+   "name": "G17 P27",
+   "input": "tests",
+   "result": "behavioral sources and members refused",
+   "pass": true
+  },
+  {
+   "name": "G18 P38",
+   "input": "tests",
+   "result": "malformed outputs and non-finite facts refused",
+   "pass": true
+  },
+  {
+   "name": "G19 ensemble rule",
+   "input": "ensemble/",
+   "result": "traps refused x9, stack never fitted, no development verdict, NO_ENSEMBLE x3",
+   "pass": true
+  },
+  {
+   "name": "G20 publication path",
+   "input": "today documents",
+   "result": "validate_publication returns no error for 30 of 30; no FORECAST possible",
+   "pass": true
+  },
+  {
+   "name": "G21 holdout description only",
+   "input": "ensemble/POST_OPENING_LOG.json",
+   "result": "6 POST_OPENING rows, never a choice",
+   "pass": true
+  },
+  {
+   "name": "G22 today",
+   "input": "registry/TODAY_STATUS.json",
+   "result": "ABSTAIN for every target with named reasons",
+   "pass": true
+  },
+  {
+   "name": "G23 search ledger",
+   "input": "experiments/LEDGER_TOTALS.json",
+   "result": "3,287 rows, N_search 130, sensitivity 169",
+   "pass": true
+  },
+  {
+   "name": "G24 determinism and isolation",
+   "input": "determinism_repeat.json, rerun_cp16_0_diff.json, run_log.json",
+   "result": "repeat byte-equal except run log and latency (CPU-time fields in the first-run ablation file); 0 network calls; stores and sealed folder unchanged",
+   "pass": true
+  },
+  {
+   "name": "G25 mutation probe",
+   "command": "python -B audits/predictive-intelligence/phase_16/probes/mutation_registry.py OUT.json",
+   "result": "73 of 73 at 9eebb8d; 81 of 81 at 8cd19bd",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "G26 imports, flag, contract",
+   "input": "tests",
+   "result": "registry.py imports numpy, stdlib, contract, stats; imported by no other module; contract and earlier modules unchanged",
+   "pass": true
+  },
+  {
+   "name": "G27 post-commit suite, guard, seal, release audit",
+   "command": "see postcommit/",
+   "result": "recorded in the follow-up commit",
+   "pass": null
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/phase_16/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "482462e39e69b5f6169a4f2c5666093057f1d0ee7db7cd8bfe3ef91339e52b60"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/experiments/EXPERIMENT_REGISTRY.csv",
+   "sha256": "6aad91816603be894d76d3ade7ec652c9a2cecfa9e6bee290ae4c3526ef114a0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/models/CHAMPION_POLICY.md",
+   "sha256": "4a8ff2ad275250d5e1bef60dcb1982674c090b4e0f7c7d1ffd2a5a16b54d24e1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/models/REGISTRY_SCHEMA.md",
+   "sha256": "0cee0889a7961b9542a315b076a4c05c0ce4cfce29ac177f0f771d6815bc9031"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/models/ENSEMBLE_ABLATION.md",
+   "sha256": "6efb26ab2acebe8e5e2f260211e07f514d12a083c90570fc5bd6cbdfaed7b835"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/registry/REGISTRY_LOG.jsonl",
+   "sha256": "6ee9226fc49bbdece175114d26fec968042ab637d3b3e07a9834b973f9d494b0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/registry/REGISTRY_INDEX.json",
+   "sha256": "551870baf698c8c0b001497d7872a9dccf2dfbfef8ce961f33a27d693a806697"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/registry/TODAY_STATUS.json",
+   "sha256": "b24bd229bf91d6a42fafaf7640b6f1ec71e67eb4861d56a034278e1705956ff3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/registry/TODAY_RESULTS.jsonl",
+   "sha256": "47a2a34666599f0cb8f5a25d37a0c5e2ded394c2de74b8263745fba50057b3bb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/registry/TODAY_RECORDS.jsonl",
+   "sha256": "66dcf22346e0ef8167439e86be3050b244ffcddd471c0d5cb5f4ad5b317b89df"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/ensemble/ENSEMBLE_ABLATION.json",
+   "sha256": "ff8aee85462b8bad7d74384364180b2e4753e11e48b9bd2f1f10cfc77377abbc"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/ensemble/ENSEMBLE_ABLATION.csv",
+   "sha256": "0a8bcb5ef0bad0b5f3aaed18d0ce4d6ea85f516784a1ccaeeba0a842939cff42"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/ensemble/STABILITY.json",
+   "sha256": "34b97dd5c7a03c6d8d49ac048a2378de30f6611f91b217226afad5cf298931da"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/ensemble/POST_OPENING_LOG.json",
+   "sha256": "39ecb7fecad1735ce6a4dad4d6082b4acabc4090518d98e65310f04a2516af68"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/ensemble/LATENCY.json",
+   "sha256": "c4363f06beab8078b0b075ef77be1e96868e817c3a2cd2c11a451eb9991a3aed"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/evidence/INFERENCE_CHECK.json",
+   "sha256": "d8723a28b04420112bef94dfc783526d81b32f00940f80e420ee11d33f914629"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/evidence/COMPATIBILITY_P46.json",
+   "sha256": "b1311ef0595a95ac8fd162a15e5f2981c2ea7f53262dd0e71f800144d6b1be2a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/evidence/ROLLBACK_TEST.json",
+   "sha256": "a63ea6fdaa886d7c5be55e06dab3d345fca217ef685dde22e68d4d5aa36d1e60"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/evidence/determinism_repeat.json",
+   "sha256": "8292d7c80e455ad981661bfef44331e3ad1905de73d751104bd055c2253b8b04"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/evidence/rerun_cp16_0_diff.json",
+   "sha256": "b9abac04b380771ff4c418887188717ba7f42382d569fcac8774f87197eca12e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/evidence/mutation_registry.json",
+   "sha256": "d296d59c70508ee8f3075942c436343ae0e5c3df3772e2c661057ac0d9a17dfa"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/evidence/mutation_registry_cp16_0.json",
+   "sha256": "05b58dbc4ac4a7f246f4fb8e7aa88c195831d271003b4478453d14d536e1c6ee"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/evidence/run_log.json",
+   "sha256": "b70274e12954c36a3198c439ef88065bf2dbce7cf8caa126f92a8018a023121c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/experiments/SEARCH_LEDGER.csv",
+   "sha256": "c0bac44e26a709c84651ca3114f2c9421cb2dc484bedf6bd93ae052d01cab42a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/experiments/LEDGER_TOTALS.json",
+   "sha256": "2e68d0f7522a155e0cffda6d7c649f8fa829b1fabaf7516a6f974c943fb55e30"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/probes/build_registry.py",
+   "sha256": "fc50e7d4ecfc21d3718b829c78a0836c730c8d5c14c645dfff938df27cd2c555"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/probes/mutation_registry.py",
+   "sha256": "c18356f527b897e2e3ab0fc743ee4a6c8543303f4f43ccf8d625e7daf78ecbff"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/SKEPTIC_PACKET.md",
+   "sha256": "ecd749c951c80323cf8c466cb5c879ab69ed5bfdef1dd5355ba5f18e5d40268d"
+  },
+  {
+   "path": "memelab/predictive/registry.py",
+   "sha256": "ab6d71bc315397a68ee2fddef60adec084053ecc29711166b520acff22b87f43"
+  },
+  {
+   "path": "tests/test_predictive_registry.py",
+   "sha256": "e4cc82683ac1591812aabd0e6e7c9d6b2610cd19cecd85caa45f1a36ca140d0d"
+  },
+  {
+   "path": "tests/test_predictive_phase16_outputs.py",
+   "sha256": "81722dd39b93cbb76c885ad204c76aa2b8784a214dde1996d7c1f3d7d6183fb2"
+  },
+  {
+   "path": "tests/fixtures/predictive/registry_probe_examples.json",
+   "sha256": "14747120abedf808c9e1647ff159ee0d38c73596a2ad727fc075f34aff79712c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_16/registry/entries/",
+   "sha256": "69 files, each named by its own entry id (sha256 of its canonical content)"
+  }
+ ],
+ "limitations": [
+  "promotion branch exists only on fixtures (TEST_ONLY part)",
+  "no model can reach SHADOW or VALIDATED_EXPERIMENTAL under the frozen promotion table after the retrospective holdout was opened",
+  "calibration.verify_card still refuses VALIDATED_EXPERIMENTAL; lifting it must depend on a registry entry at that level",
+  "frozen cards MODEL_STALE after 2026-10-31T00:00:00Z; prospective reference comparison after that needs retrained reference cards",
+  "phase_12 run_holdout.py plan and predict no longer run as committed since Phase 13 (load_cards glob meets the calibration cards)",
+  "evidence-source map of the ensemble rule assumes the lab's derived classifiers are distinct sources",
+  "pre-opening test flags in the facts come from Phase 12's committed trap results, not rerun",
+  "the pre-registered expectation that the CP16-0 repeat leaves every entry byte-equal was wrong (embedded retrain policy changed); recorded",
+  "no internal reference score was written (no prospective decision has features)"
+ ],
+ "blockers": [],
+ "approvals_needed": [
+  "a change control to ACCEPTANCE promotion (Elving or the orchestrator) before any model can be promoted; any paid data or LLM spend; deployment of the forward depth collector (approved, not done)"
+ ],
+ "next_eligible_phase": "17 after the orchestrator's independent review and a PASS"
+}
