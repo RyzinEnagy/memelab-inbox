@@ -27,7 +27,8 @@ DEBUG = [   # every Phase 18 run on real data before the frozen code (P22), all 
 ]
 RECORDED = ["P18:REAL_SCOUT_SMOKE", "P18:REAL_SCOUT_REPORT", "P18:REAL_SCOUT_ALERTS", "P18:REAL_REPLAY", "P18:REAL_REPLAY_REPORT",
             "P18:REAL_REPLAY_ALERTS"]
-REPEATS = [("CP18_0", "0127d2e", "PI-D-099, evidence/rerun_cp18_0_diff.json"), ("CP18_1", "ea799da", "PI-D-100, evidence/rerun_cp18_1_diff.json")]
+REPEATS = [("CP18_0", "0127d2e", "PI-D-099, evidence/rerun_cp18_0_diff.json"), ("CP18_1", "ea799da", "PI-D-100, evidence/rerun_cp18_1_diff.json"),
+           ("CP18_2", "31ada29", "PI-D-102, repair pass 2, evidence/rerun_rp2_diff.json")]
 
 
 def main(out: Path) -> int:

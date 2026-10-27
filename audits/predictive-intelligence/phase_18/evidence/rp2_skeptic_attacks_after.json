@@ -1,0 +1,18 @@
+{
+ "code": "31ada29",
+ "command": "python -m pytest -q -p no:cacheprovider -rA audits/predictive-intelligence/phase_18/skeptic/PHASE_18_attacks.py --rootdir . (with P18_CLONE set to this checkout and MEMELAB_DB to a temporary file)",
+ "note": "each attack asserts the first-pass behavior, so FAILED means the finding no longer holds; A3 (minor 5, consistent reseal) is a recorded limitation and A7 (send refused) documents correct behavior",
+ "on_e77d62e": "9 passed (the skeptic's run, PHASE_18_SKEPTIC.md)",
+ "results": {
+  "test_a1_liquidity_collapse_does_not_override_an_optimistic_forecast": "FAILED",
+  "test_a2_an_uncovered_vanity_mint_with_a_digit_bounded_trading_word_breaks_the_whole_report": "FAILED",
+  "test_a3_consistent_reseal_of_document_and_request_point_shows_an_unrecomputed_number": "PASSED",
+  "test_a4_a_reset_state_sharing_the_alert_db_silently_evaluates_nothing": "FAILED",
+  "test_a5_a_clock_that_goes_back_keeps_alerts_too_soon_until_it_catches_up": "FAILED",
+  "test_a6_liquidity_that_becomes_unknown_never_triggers_the_liquidity_rule": "FAILED",
+  "test_a7_send_is_refused_before_anything_is_written": "PASSED",
+  "test_a8_a_deferred_event_that_adds_a_fatal_flag_is_shown_as_covered_with_no_veto": "FAILED",
+  "test_a9_concatenated_trade_words_in_a_symbol_reach_the_report_and_the_alert": "FAILED"
+ },
+ "summary": "7 failed, 2 passed in 5.42s"
+}

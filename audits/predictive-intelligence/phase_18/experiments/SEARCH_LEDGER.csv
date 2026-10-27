@@ -3349,3 +3349,9 @@ phase,experiment_id,target,candidate,kind,view,seed,folds,n_rows,n_with_number,v
 18,P18:CP18_1:REAL_REPLAY,,P18_REPORTS,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at ea799da (PI-D-100, evidence/rerun_cp18_1_diff.json)",,,REPORT_RUN_NOT_A_CONFIGURATION
 18,P18:CP18_1:REAL_REPLAY_REPORT,,P18_REPORTS,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at ea799da (PI-D-100, evidence/rerun_cp18_1_diff.json)",,,REPORT_RUN_NOT_A_CONFIGURATION
 18,P18:CP18_1:REAL_REPLAY_ALERTS,,P18_REPORTS,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at ea799da (PI-D-100, evidence/rerun_cp18_1_diff.json)",,,REPORT_RUN_NOT_A_CONFIGURATION
+18,P18:CP18_2:REAL_SCOUT_SMOKE,,P18_REPORTS,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 31ada29 (PI-D-102, repair pass 2, evidence/rerun_rp2_diff.json)",,,REPORT_RUN_NOT_A_CONFIGURATION
+18,P18:CP18_2:REAL_SCOUT_REPORT,,P18_REPORTS,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 31ada29 (PI-D-102, repair pass 2, evidence/rerun_rp2_diff.json)",,,REPORT_RUN_NOT_A_CONFIGURATION
+18,P18:CP18_2:REAL_SCOUT_ALERTS,,P18_REPORTS,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 31ada29 (PI-D-102, repair pass 2, evidence/rerun_rp2_diff.json)",,,REPORT_RUN_NOT_A_CONFIGURATION
+18,P18:CP18_2:REAL_REPLAY,,P18_REPORTS,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 31ada29 (PI-D-102, repair pass 2, evidence/rerun_rp2_diff.json)",,,REPORT_RUN_NOT_A_CONFIGURATION
+18,P18:CP18_2:REAL_REPLAY_REPORT,,P18_REPORTS,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 31ada29 (PI-D-102, repair pass 2, evidence/rerun_rp2_diff.json)",,,REPORT_RUN_NOT_A_CONFIGURATION
+18,P18:CP18_2:REAL_REPLAY_ALERTS,,P18_REPORTS,TRAP_OR_CHECK,ALL,,,,,"recorded run repeated at 31ada29 (PI-D-102, repair pass 2, evidence/rerun_rp2_diff.json)",,,REPORT_RUN_NOT_A_CONFIGURATION

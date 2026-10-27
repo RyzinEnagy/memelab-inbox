@@ -13,7 +13,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - Backtesting: BACKTEST_NOT_AVAILABLE. Behavioral simulation: SIMULATION_NOT_AVAILABLE.
 - Opportunities: 47; with a veto: 22; snapshots verified against the lab database: 0 of 47; events not attempted: 52.
 
-| Opportunity | Exact chain:mint | Inputs observed (UTC) | T1 24 h | T1b 6 h | T2 24 h | Vetoes | Inputs |
+| Opportunity | Exact chain:mint | Inputs observed (UTC) | T1 24 h | T1b 6 h | T2 24 h | Vetoes and risk flags | Inputs |
 |---|---|---|---|---|---|---|---|
 | symbol not verified | `bsc:0x12bfe0251eb64c6e26d1a264673593d6164ca213` | 2026-10-26T10:06:59Z | ABSTAIN (no number) | ABSTAIN (no number) | ABSTAIN (no number) | none | FRESH |
 | symbol not verified | `bsc:0x389cb330e4eaa0cce969759f01a416448fed6666` | 2026-10-26T10:09:38Z | ABSTAIN (no number) | ABSTAIN (no number) | ABSTAIN (no number) | TRANSFER_FEE_GT_5PCT, NO_SELL_ROUTE | FRESH |
@@ -99,10 +99,11 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 - FACT: no number is shown for an abstention; a probability needs a SHADOW or VALIDATED_EXPERIMENTAL model with a CALIBRATED Phase 13 card, enough support and a point inside the display range (Phase 13 rule 12)
 - FACT: a document is never shown without its abstention record and its request record (Phase 13 m4, PI-D-068)
-- FACT: a FORECAST's number must equal the point recomputed from the raw number kept in the request record (Phase 13 m3, verify_point) and its cards must resolve from the registry
+- FACT: a FORECAST's number was recomputed from the raw number when the document was written (Phase 13 m3, verify_point); this report checks it against the point stored with the raw number and the registry-resolved cards, without recomputing it
+- FACT: any risk on a snapshot (a fatal flag, an unknown flag check, a backtest veto, a liquidity fall or loss, a newer snapshot not assessed) overrides its forecast: the number is withheld (PI-D-102)
 - FACT: a calibration available after the decision abstains (CALIBRATION_AFTER_DECISION, PI-D-070)
 - FACT: the retrospective holdout is spent: its results are exploratory and can only make a statement more conservative
-- FACT: token text (symbol, chain, labels, file names) is shown as letters, digits, dot, dash and underscore, at most 24 characters, and withheld when it carries a trading or forecast word (Phase 17 m3); no local path is shown (m8)
+- FACT: token text (symbol, chain, labels, file names) is shown as letters, digits, dot, dash and underscore, at most 24 characters, and withheld when it carries a trading or forecast word, also run together (Phase 17 m3, PI-D-102); no local path is shown (m8)
 - INFERENCE: any interval is conditional on exchangeability of the event rate, which is neither established nor refuted (PI-D-070)
 - HEURISTIC: CURRENT_VENDOR_LIST decisions abstain (no point-in-time pool); a live capture records its pool
 
@@ -168,7 +169,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record f0c1a7f78156 (request 38, pass 9eb1f4ee36d1)
+- Request record 1f872c9c05eb (request 38, pass 9eb1f4ee36d1)
 - T1 24 h: forecast `fc_ed43063480ed248a9711fc28a60d6e93`, record 3d8d09de7504, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_0c4bc780f117b28494be75020f0869fa`, record 393acfe02f36, registry pin none, data none, features none
 - T2 24 h: forecast `fc_36a6845f0844282144f751f41fa6c2f0`, record fec6405934fb, registry pin none, data none, features none
@@ -232,6 +233,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags TRANSFER_FEE_GT_5PCT, NO_SELL_ROUTE
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -242,7 +244,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 9cd60faf5071 (request 39, pass 9eb1f4ee36d1)
+- Request record d49b96e187e7 (request 39, pass 9eb1f4ee36d1)
 - T1 24 h: forecast `fc_e0f29fca699585094562ffac9adba233`, record 5af891ad2ab5, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_e72dfcea52f7d717ebebdf88443509e6`, record ad11332004ef, registry pin none, data none, features none
 - T2 24 h: forecast `fc_6a09539f0dc74f13c7a37c7f5e47306e`, record 7ca6cf6e9919, registry pin none, data none, features none
@@ -316,7 +318,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record badc20bb3662 (request 40, pass 9eb1f4ee36d1); previous attempt b264c9eadad1
+- Request record e75d03aed665 (request 40, pass 9eb1f4ee36d1); previous attempt a9ba2a329107
 - T1 24 h: forecast `fc_2afd3e6897ab774e49053416ab6e5815`, record 19226e45931a, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_6d09e5fb288b7058ca2ad2fb1a349231`, record 0ecb16d7ec7c, registry pin none, data none, features none
 - T2 24 h: forecast `fc_28f10dccc4c325108b20cf28d4f1ae4c`, record 2b8216542c86, registry pin none, data none, features none
@@ -380,6 +382,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -390,7 +393,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 6a9e91dd75cf (request 43, pass 9eb1f4ee36d1)
+- Request record a2006ad0ae0b (request 43, pass 9eb1f4ee36d1)
 - T1 24 h: forecast `fc_06cdfb99bf8de80d7b026f0b91c5a4cf`, record 26e6b48500ac, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_a8f82a18b206b343c14d448439337159`, record 4cea15121e3d, registry pin none, data none, features none
 - T2 24 h: forecast `fc_73928698534a9847d0b3d1fcede82d1a`, record 359ee598f829, registry pin none, data none, features none
@@ -464,7 +467,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record fb76c1edcaf4 (request 37, pass 9eb1f4ee36d1)
+- Request record 77bf5220566c (request 37, pass 9eb1f4ee36d1)
 - T1 24 h: forecast `fc_423ef8aed9353470da773eacc7657159`, record 9f4c80ce24b8, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_f7467636fce4ba65f0c94c0546c64c6a`, record 304d9fbe429c, registry pin none, data none, features none
 - T2 24 h: forecast `fc_b30f9c21e15fcefde18bdff16a080962`, record 1de51eb46dfc, registry pin none, data none, features none
@@ -528,6 +531,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags LARGEST_HOLDER_GT_15PCT
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -538,7 +542,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 00b04360392b (request 41, pass 9eb1f4ee36d1)
+- Request record 3b7d2361bb6d (request 41, pass 9eb1f4ee36d1)
 - T1 24 h: forecast `fc_99327eeeb68d058740c8e390ecd38700`, record c00f044fdea5, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_21968fba3952b951e0162e72838e99bf`, record ff517730168f, registry pin none, data none, features none
 - T2 24 h: forecast `fc_0c4efcdb321fe261dd1b2c4cb7c529d5`, record ee1cbde30882, registry pin none, data none, features none
@@ -612,7 +616,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 0f3b6efee6f0 (request 42, pass 9eb1f4ee36d1)
+- Request record f0a2acbce22e (request 42, pass 9eb1f4ee36d1)
 - T1 24 h: forecast `fc_64735137a1b803aa28d489c8a50b25d8`, record 3a7d6f56f571, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_1be5438d2624d14efec60ba0cdbefbef`, record 78bfc9a32863, registry pin none, data none, features none
 - T2 24 h: forecast `fc_a5314d2e55d120443eb9f3724d52bc7f`, record d0968948ac24, registry pin none, data none, features none
@@ -686,7 +690,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 9822665827f5 (request 44, pass 9eb1f4ee36d1)
+- Request record 4c3d947df958 (request 44, pass 9eb1f4ee36d1)
 - T1 24 h: forecast `fc_7a2e008cf4aa24945f35ebbfe546ace8`, record e191247f9796, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_259b9899725fff378e7468d187efc49e`, record c7d11dc00463, registry pin none, data none, features none
 - T2 24 h: forecast `fc_121d506f24a1102430c7ce4e466374f4`, record ce948f6462f0, registry pin none, data none, features none
@@ -749,6 +753,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -759,7 +764,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record c2fd78120c6a (request 45, pass 9eb1f4ee36d1)
+- Request record 014e0f845512 (request 45, pass 9eb1f4ee36d1)
 - T1 24 h: forecast `fc_e18a6e987267d09d1310b0609ef47f1d`, record 2bc1f3d79393, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_5177cc5889c3e59fd2921e4a6a25bdb7`, record c6551b96effb, registry pin none, data none, features none
 - T2 24 h: forecast `fc_66c87849d641df0e6dac255dab572658`, record 7532543f43be, registry pin none, data none, features none
@@ -832,7 +837,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 6ea5bb79436b (request 46, pass 9eb1f4ee36d1); previous attempt 9617ba9b8998
+- Request record ab2c35420ced (request 46, pass 9eb1f4ee36d1); previous attempt 55ae58aaa707
 - T1 24 h: forecast `fc_b17ba61d65c6773cb629b217917c82b1`, record 4e90e78e5a92, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_90d936eb2ab202f5c01d2d86f6e553dd`, record ce02c23cc84c, registry pin none, data none, features none
 - T2 24 h: forecast `fc_13929a88cbb4c116fc08d67b36d6fb7b`, record e8408a409c35, registry pin none, data none, features none
@@ -895,6 +900,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -905,7 +911,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record f6ca0a05566b (request 47, pass 9eb1f4ee36d1)
+- Request record 15d3ec8d1e85 (request 47, pass 9eb1f4ee36d1)
 - T1 24 h: forecast `fc_15651e79604edfe17978d5630c657bb8`, record 079a642b30e3, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_320f1cf41e84af660f445553c4065226`, record 820e70e847f9, registry pin none, data none, features none
 - T2 24 h: forecast `fc_a3ac53ec6ac3e0735abc3a2a9c1485a9`, record 592774327261, registry pin none, data none, features none
@@ -968,6 +974,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CLUSTER_OWNERSHIP_GT_25PCT, CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -978,7 +985,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record f7307f8c1c2c (request 48, pass 9eb1f4ee36d1)
+- Request record b998b82de5e6 (request 48, pass 9eb1f4ee36d1)
 - T1 24 h: forecast `fc_d17365195b445ec30130ec67fa9d0dfc`, record 2dd7d9c1f7e1, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_c5fed03b268a572a8e1ebbf25a50276f`, record 1ebc8ffd0b4c, registry pin none, data none, features none
 - T2 24 h: forecast `fc_e77fbab826f2f2e1b27081ce06f19232`, record 49a43d835b45, registry pin none, data none, features none
@@ -1041,6 +1048,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -1051,7 +1059,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record f417773e74a5 (request 49, pass 9eb1f4ee36d1)
+- Request record 1b97332ac465 (request 49, pass 9eb1f4ee36d1)
 - T1 24 h: forecast `fc_3b5efa33df965cafb9734529ae73c204`, record 385fa7c39988, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_7cea556d553c5b5d470c98358123713d`, record 927bd2eda0b2, registry pin none, data none, features none
 - T2 24 h: forecast `fc_3d424469346de6c6b433ff9b546563f1`, record b7feb1bece8a, registry pin none, data none, features none
@@ -1114,6 +1122,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CLUSTER_OWNERSHIP_GT_25PCT, CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -1124,7 +1133,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 34d1447cd60f (request 50, pass 9eb1f4ee36d1)
+- Request record 112041fd69cb (request 50, pass 9eb1f4ee36d1)
 - T1 24 h: forecast `fc_08e275d4847d32c30f2fbab99b8bf511`, record 865360a9e0bc, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_3494ce6a6779f31f233784a576aa2b75`, record 492022494eb1, registry pin none, data none, features none
 - T2 24 h: forecast `fc_3877cbdcef4a89d4a2474979044aff63`, record 3907dcf42c25, registry pin none, data none, features none
@@ -1198,7 +1207,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 03c12ffc2d06 (request 51, pass 9eb1f4ee36d1)
+- Request record f39441fe1158 (request 51, pass 9eb1f4ee36d1)
 - T1 24 h: forecast `fc_504e8791bde557019186ebada2e7a5fd`, record a6f6f08b91ff, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_3f5355548f1e2e1ee724617e55bd8d31`, record 182a49b7b8f8, registry pin none, data none, features none
 - T2 24 h: forecast `fc_4f675143016112624241847805cede61`, record 7896d305e11d, registry pin none, data none, features none
@@ -1272,7 +1281,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 78845c5a66f4 (request 19, pass 201f82110ab1)
+- Request record af50de49751d (request 19, pass 201f82110ab1)
 - T1 24 h: forecast `fc_98582a3f9b5da680a25189ba348cd382`, record 85a4d3e0765f, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_2e79e2f6d1bbfb69a38267ea1ba9993d`, record ac434e6c56ea, registry pin none, data none, features none
 - T2 24 h: forecast `fc_3c987b801f4fe8b00e478b3b3aefdffa`, record 8b301d225e13, registry pin none, data none, features none
@@ -1346,7 +1355,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 3767715eed1b (request 20, pass 201f82110ab1)
+- Request record 53bf565ac4e0 (request 20, pass 201f82110ab1)
 - T1 24 h: forecast `fc_d2f67dc7ce48592502d377e5c210082d`, record 7bb2cc6cf6ed, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_fc1087b3c2d19324a607747c83baf82c`, record 6e203a70d60f, registry pin none, data none, features none
 - T2 24 h: forecast `fc_890ef02bbc81290629997a6a916277fe`, record 1e35f3cb2071, registry pin none, data none, features none
@@ -1420,7 +1429,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record cfb91b6f8b64 (request 21, pass 201f82110ab1)
+- Request record 971a9bc96077 (request 21, pass 201f82110ab1)
 - T1 24 h: forecast `fc_9c2bd5ef115a2efbbded7b3875e53713`, record cfb7ed98546a, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_cbcfa113697bd69bbf05818319231fd0`, record 32aef583f6bc, registry pin none, data none, features none
 - T2 24 h: forecast `fc_42c9f3cd2c32035b3fb7205f461084dc`, record 77ba0e56ab99, registry pin none, data none, features none
@@ -1493,7 +1502,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record a131b32c3826 (request 22, pass 201f82110ab1)
+- Request record 86224b28f177 (request 22, pass 201f82110ab1)
 - T1 24 h: forecast `fc_0278186dd087198058d047c4f3a3d108`, record 60a56ebc46b1, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_671ce745ae49d558667d0c089ac29148`, record d266a92247af, registry pin none, data none, features none
 - T2 24 h: forecast `fc_7b1d61e27d41636d42f73d8c751b5b66`, record badd680a137d, registry pin none, data none, features none
@@ -1567,7 +1576,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record a41cd8bbbc05 (request 23, pass 201f82110ab1)
+- Request record 1ce7967cdb10 (request 23, pass 201f82110ab1)
 - T1 24 h: forecast `fc_679c030443237a7ade54002b65e56f20`, record 9fe13884c319, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_801165fbfde8c8a3c2e624e6464da81e`, record 27045f5c5be4, registry pin none, data none, features none
 - T2 24 h: forecast `fc_9089e862e8300a0172f893447b77ab2c`, record ab6f31ca5264, registry pin none, data none, features none
@@ -1641,7 +1650,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 349b93ff05e1 (request 24, pass 201f82110ab1)
+- Request record d8475f3d2f84 (request 24, pass 201f82110ab1)
 - T1 24 h: forecast `fc_daa9abb49e0dcfc5b5bfdf39fb99ed34`, record 92cf30a98019, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_175a8738e7b4ad5a0e0ba6ab4f5519a8`, record 812251ac62cd, registry pin none, data none, features none
 - T2 24 h: forecast `fc_f720f64696fcf136e25f5b91891f604b`, record 6b169e4e5b2d, registry pin none, data none, features none
@@ -1715,7 +1724,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 2386ab3ad46a (request 25, pass 201f82110ab1)
+- Request record d2f1d21c6349 (request 25, pass 201f82110ab1)
 - T1 24 h: forecast `fc_cd83b074af9c36f0f6fdc24834ba6ed5`, record fca47bdc9804, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_4ca6a6d6691cb9591295c7775fc69a02`, record aec75f9ca354, registry pin none, data none, features none
 - T2 24 h: forecast `fc_9ba420852315bcd64af3fe8af71905dc`, record 4cd3846fcdc5, registry pin none, data none, features none
@@ -1778,6 +1787,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -1788,7 +1798,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 06ef00535a19 (request 27, pass 201f82110ab1)
+- Request record 025530b6fc98 (request 27, pass 201f82110ab1)
 - T1 24 h: forecast `fc_2a786a1f1963611dbfb2851175f4caef`, record d08af782f028, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_b0d55c0d6815d36fd138835f8faed593`, record 7c2a4710030b, registry pin none, data none, features none
 - T2 24 h: forecast `fc_fba2d8b851ceef074b69333d2f2a8874`, record 3214d8dcb987, registry pin none, data none, features none
@@ -1851,6 +1861,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -1861,7 +1872,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 26d2b30193a1 (request 28, pass 201f82110ab1)
+- Request record 3d894c8c6397 (request 28, pass 201f82110ab1)
 - T1 24 h: forecast `fc_a81f2b9ab926b4940a3c0d53fc3e3679`, record 9dd3ce78b629, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_c9779f72c1ab9dcca4bee45612c6432d`, record 94f6199b003f, registry pin none, data none, features none
 - T2 24 h: forecast `fc_21647af0eb6d663fccaa145e5e5801e9`, record a89b48ce233d, registry pin none, data none, features none
@@ -1934,7 +1945,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 377628e538e7 (request 29, pass 201f82110ab1)
+- Request record 570186be2316 (request 29, pass 201f82110ab1)
 - T1 24 h: forecast `fc_12fc8eec3d4ea2cd42be7b805b386670`, record d6805cc6a276, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_a1b7e12a179768a19ce3d0a211915dab`, record de641e411996, registry pin none, data none, features none
 - T2 24 h: forecast `fc_8ab6760a0edf998c463cad75704f92bf`, record 42391a078aac, registry pin none, data none, features none
@@ -1997,6 +2008,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CLUSTER_OWNERSHIP_GT_25PCT
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -2007,7 +2019,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 8f6f33a167d5 (request 30, pass 201f82110ab1); previous attempt ae4c3dca17d6
+- Request record 91b0e556429f (request 30, pass 201f82110ab1); previous attempt 22ecf4ba98e9
 - T1 24 h: forecast `fc_7cb9a54b10831f1e7ab8fb541bef5436`, record 3ee6217e1e6b, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_46995b0735395d1164b2eb2cb35f9293`, record 98b879a8cffc, registry pin none, data none, features none
 - T2 24 h: forecast `fc_51042751911e0b29cfa4377e4858375d`, record 9bfaca9f1456, registry pin none, data none, features none
@@ -2080,7 +2092,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 91ae56e81ec9 (request 31, pass 201f82110ab1)
+- Request record b12c3f465c97 (request 31, pass 201f82110ab1)
 - T1 24 h: forecast `fc_95d2509574831ef31a7ec86e40ce76df`, record 4cbdbde4f851, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_8d2773617157099b1cd76da65037c119`, record 979cc93e4707, registry pin none, data none, features none
 - T2 24 h: forecast `fc_f1dc6ed62598bd2d3c090d2f7fe5d002`, record e68877d176f6, registry pin none, data none, features none
@@ -2143,6 +2155,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -2153,7 +2166,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 368611dee559 (request 32, pass 201f82110ab1)
+- Request record 4577efd8dc20 (request 32, pass 201f82110ab1)
 - T1 24 h: forecast `fc_254a7856b1279290eda4566c77a2e80f`, record 8420ec22d261, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_a704006fb94d4dd7e4ba82da5ef7d984`, record 4c17a243f97a, registry pin none, data none, features none
 - T2 24 h: forecast `fc_7ce95c8226dc175cafbe5dbe3bddec4e`, record 2a4cee5aab83, registry pin none, data none, features none
@@ -2216,6 +2229,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -2226,7 +2240,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 570ac994dabd (request 33, pass 201f82110ab1)
+- Request record 5895a3f99b9f (request 33, pass 201f82110ab1)
 - T1 24 h: forecast `fc_0689f57764d44085ea5b335230c5f647`, record ec26e0e9d256, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_3a22486a72dd5ea84ea63fa3589ecf42`, record 8cf00549242e, registry pin none, data none, features none
 - T2 24 h: forecast `fc_2171a5fb57302f4b9924b147992ab6cf`, record 1408b9049c98, registry pin none, data none, features none
@@ -2289,6 +2303,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -2299,7 +2314,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 0890d4247970 (request 34, pass 201f82110ab1)
+- Request record e82f0ad3c1c6 (request 34, pass 201f82110ab1)
 - T1 24 h: forecast `fc_40fbc5efc2d28e740e54bf96c2e33032`, record 6809475af034, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_59dc916db99544c7e00f5ce6453a5033`, record 549b5e85c0c0, registry pin none, data none, features none
 - T2 24 h: forecast `fc_4922d15e2d242abf70f04723bb03185e`, record 8f48b26b6270, registry pin none, data none, features none
@@ -2373,7 +2388,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 284a0118cde8 (request 35, pass 201f82110ab1)
+- Request record d9c7976542fc (request 35, pass 201f82110ab1)
 - T1 24 h: forecast `fc_f3587af54ad021487ecab775b3e1f866`, record 3fdb893568ba, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_e573fbd49832602b3d0a375a84759803`, record eace403cbbd9, registry pin none, data none, features none
 - T2 24 h: forecast `fc_93951e04af49c12dee7c7708049d4d07`, record 782e1c6d4b91, registry pin none, data none, features none
@@ -2446,7 +2461,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 6dc8c26bce1a (request 36, pass 201f82110ab1)
+- Request record 2acedadfb7cb (request 36, pass 201f82110ab1)
 - T1 24 h: forecast `fc_6e00d66b0efa49dce5b0a06e6bcef427`, record 8a262763e098, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_c60e446aeebafb998c8536ef53494546`, record de1a114e3a16, registry pin none, data none, features none
 - T2 24 h: forecast `fc_1a5a16e8e2dcb168f21bf244ab2b8a76`, record 78afd55fe105, registry pin none, data none, features none
@@ -2510,6 +2525,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags INSIDER_DISTRIBUTION
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -2520,7 +2536,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 8732a726f0a9 (request 2, pass 978d134afc6b)
+- Request record 15000262e8e9 (request 2, pass 978d134afc6b)
 - T1 24 h: forecast `fc_8d9d3faf566bd47048b8e539f29b6ec7`, record 3681bcbca7d3, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_8b8b53a511a82e6e46a5e93c20f91871`, record 58928565d561, registry pin none, data none, features none
 - T2 24 h: forecast `fc_a6bae078ccc640b5c11d8e46a8ce2806`, record 5c6aee04b44b, registry pin none, data none, features none
@@ -2584,6 +2600,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -2594,7 +2611,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 21aa3ebb5df6 (request 3, pass 978d134afc6b)
+- Request record 5806db5d7750 (request 3, pass 978d134afc6b)
 - T1 24 h: forecast `fc_152e667433602c863d10557ee63c3cfa`, record 58644aabcf56, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_cbf410d85a8f7d394d1c968f7f6a40ce`, record 5cf1385df4d3, registry pin none, data none, features none
 - T2 24 h: forecast `fc_5cc5d06569c395227feb97f5601da22c`, record 10ae8f8a7059, registry pin none, data none, features none
@@ -2668,7 +2685,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 30de11932f4a (request 0, pass 978d134afc6b)
+- Request record 1aa6043fe639 (request 0, pass 978d134afc6b)
 - T1 24 h: forecast `fc_c88a613a860584d0d2284eecc221a9fc`, record a6e890454840, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_e4d86e606603ea694541c47ee62abad2`, record 58a7f5da2772, registry pin none, data none, features none
 - T2 24 h: forecast `fc_cb5237468d0081560910be43deb35108`, record 6572a79a4a7f, registry pin none, data none, features none
@@ -2732,6 +2749,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K, INSIDER_DISTRIBUTION
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -2742,7 +2760,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record a691f4a94581 (request 4, pass 978d134afc6b)
+- Request record 79a74afef20c (request 4, pass 978d134afc6b)
 - T1 24 h: forecast `fc_44c146ff29cf23707905528bda07b99e`, record 67f512e7b2a5, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_52022fb609b5bf29473cc110e1ed7ef6`, record e668d0bdc799, registry pin none, data none, features none
 - T2 24 h: forecast `fc_ebdd8b0da265adf82f743a835f3efe14`, record 6e872e820d52, registry pin none, data none, features none
@@ -2816,7 +2834,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record e58cfff06d27 (request 5, pass 978d134afc6b)
+- Request record 33df9d99b23b (request 5, pass 978d134afc6b)
 - T1 24 h: forecast `fc_3c3279c1b060072b1e2371412f15266c`, record 553b8ef5b728, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_c9965e5afe78409dce018ddf8b6f6223`, record 25c7978613e0, registry pin none, data none, features none
 - T2 24 h: forecast `fc_0f1e47d050abbf5a42d532c4e5833e46`, record f1d476c9ab0d, registry pin none, data none, features none
@@ -2880,6 +2898,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -2890,7 +2909,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record f42e794fa119 (request 6, pass 978d134afc6b)
+- Request record aeedd0105532 (request 6, pass 978d134afc6b)
 - T1 24 h: forecast `fc_842815a8610857b40e6a45f03e04906a`, record 3dd91a8cf36d, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_a045a49012764aaef8bf044ea85f8f25`, record 75473002407c, registry pin none, data none, features none
 - T2 24 h: forecast `fc_37e6dd73ee171de0010520e1a191bc74`, record 62cb5fdb9c5b, registry pin none, data none, features none
@@ -2964,7 +2983,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record b7769ba36dde (request 7, pass 978d134afc6b)
+- Request record a45e265e05e9 (request 7, pass 978d134afc6b)
 - T1 24 h: forecast `fc_41b969c4776be27e5c6499cd88844cce`, record dbf3fa9a3708, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_99019169cb82bc4bd4222adf681761af`, record d11ac17c8579, registry pin none, data none, features none
 - T2 24 h: forecast `fc_7d288e27a469786d3cf90a2e01ed9042`, record 70dee5f8e7e1, registry pin none, data none, features none
@@ -3037,7 +3056,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record b976673f12ac (request 8, pass 978d134afc6b)
+- Request record 6101b6c28ab2 (request 8, pass 978d134afc6b)
 - T1 24 h: forecast `fc_bb304617c943c3bcfe61002ba2d65bbf`, record 76a305a923ef, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_258023a41ef5db4a766a75c7764b148a`, record 2369783440b2, registry pin none, data none, features none
 - T2 24 h: forecast `fc_1e7d72fbc1aa20ef895dac2f0b648df5`, record 234cf0724960, registry pin none, data none, features none
@@ -3100,6 +3119,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -3110,7 +3130,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 98a48493ec5c (request 9, pass 978d134afc6b)
+- Request record c2584540d04a (request 9, pass 978d134afc6b)
 - T1 24 h: forecast `fc_877305174bf8ae326f166d2dc94b8199`, record 238f404c0ab4, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_af88a4d2762773eb73dc5c18a050877f`, record 6557793b164b, registry pin none, data none, features none
 - T2 24 h: forecast `fc_d59d42b0146a848750888944a53f6a64`, record 911a067ed127, registry pin none, data none, features none
@@ -3173,6 +3193,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -3183,7 +3204,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 5afacc6d21a0 (request 10, pass 978d134afc6b)
+- Request record e3ce4c1b47ae (request 10, pass 978d134afc6b)
 - T1 24 h: forecast `fc_6d6e49c86b0741b67c1922f1077066ea`, record cb08e22dc064, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_c67321f35deababbb1e4877237f05067`, record ef4c660b881b, registry pin none, data none, features none
 - T2 24 h: forecast `fc_9c7cf1f62d6b2ae76a0a5be679e1c0d5`, record 7760cce6fdaa, registry pin none, data none, features none
@@ -3256,7 +3277,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 4a68355087fa (request 12, pass 978d134afc6b)
+- Request record 5a2e5ea91eea (request 12, pass 978d134afc6b)
 - T1 24 h: forecast `fc_48a008ddfd92570a913b74bca9f06e4e`, record 4ab5e1779af6, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_3bedd1361c306408cdf3512e1d505905`, record 625c788d96d0, registry pin none, data none, features none
 - T2 24 h: forecast `fc_92feba1229bdd22486b8f25ce3fc12e3`, record b201741314e1, registry pin none, data none, features none
@@ -3330,7 +3351,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 2a31e5a0e6c5 (request 14, pass 978d134afc6b)
+- Request record b0b3fd5b8e04 (request 14, pass 978d134afc6b)
 - T1 24 h: forecast `fc_e6f80f6a89beb71ac88c1b3f48b3bd95`, record 6a127450dfbb, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_1f7f6f977c6354063836e9c3667730bd`, record d2f3b70e11e6, registry pin none, data none, features none
 - T2 24 h: forecast `fc_aea56a7b10317aff715e5bf4f370b869`, record 7399dd92fa04, registry pin none, data none, features none
@@ -3393,6 +3414,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -3403,7 +3425,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record a9981fd7f10a (request 15, pass 978d134afc6b)
+- Request record 6d793bf1aa75 (request 15, pass 978d134afc6b)
 - T1 24 h: forecast `fc_da1ca0c0cda070cacaa9fd2537562213`, record 68a83eac4895, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_d2d571af9a4d83131828fedb933ecb98`, record 968e08649e43, registry pin none, data none, features none
 - T2 24 h: forecast `fc_364eebaf83cda1dac954ccd0b5f307f5`, record e87b1ae8827d, registry pin none, data none, features none
@@ -3476,7 +3498,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 61b84efccb32 (request 16, pass 978d134afc6b)
+- Request record 8af64f038309 (request 16, pass 978d134afc6b)
 - T1 24 h: forecast `fc_7caaeba0abff420c9a4bb5dfc9fb9a80`, record 4ab42ae4264b, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_d25c6cce05fc742e4391a674003f072d`, record 8c0dfed80e6c, registry pin none, data none, features none
 - T2 24 h: forecast `fc_0ed2e2ad75afccbf8a805ff399c62cd1`, record 5d57c178e8fb, registry pin none, data none, features none
@@ -3539,6 +3561,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CLUSTER_OWNERSHIP_GT_25PCT
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -3549,7 +3572,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 365d758b66a5 (request 17, pass 978d134afc6b)
+- Request record df078ba4cd5c (request 17, pass 978d134afc6b)
 - T1 24 h: forecast `fc_ef677416a4019a1cc548c366fe818fe5`, record c8399820ff14, registry pin none, data none, features none
 - T1b 6 h: forecast `fc_a90318045f4f47ac574a7b24045e2ed9`, record f3152d43d224, registry pin none, data none, features none
 - T2 24 h: forecast `fc_4a94222ff69288f4766148321aac5d61`, record 649b2e18c16f, registry pin none, data none, features none
@@ -3565,58 +3588,58 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 | Event | Exact chain:mint | Capture (UTC) | Covered by a report above | Request | Detail |
 |---|---|---|---|---|---|
-| DUPLICATE | `bsc:0x0c6302401aa5325c2e36f170f52c00b1d220b405` | 2026-10-24T10:11:50Z | yes | 762e7d953b26 | none |
-| DUPLICATE | `bsc:0x3d4f0513e8a29669b960f9dbca61861548a9a760` | 2026-10-24T10:11:50Z | yes | 9d2a0d345896 | none |
-| DUPLICATE | `base:0x3ec2156d4c0a9cbdab4a016633b7bcf6a8d68ea2` | 2026-10-24T10:11:50Z | yes | ae56002974c4 | none |
-| DUPLICATE | `base:0x6bd83abc39391af1e24826e90237c4bd3468b5d2` | 2026-10-24T10:11:50Z | yes | 04f53f1c2148 | none |
-| DUPLICATE | `bsc:0x7d0443cddfc8e11af105f4fe44dd28c630237777` | 2026-10-24T10:11:50Z | yes | 2bff13767977 | none |
-| DUPLICATE | `bsc:0xc9882def23bc42d53895b8361d0b1edc7570bc6a` | 2026-10-24T10:11:50Z | yes | 6d3a5030dc15 | none |
-| DUPLICATE | `bsc:0xe55296ff1ccf6f6136cf00e552e46ef69e30a3e2` | 2026-10-24T10:11:50Z | yes | 344d8d7a67fb | none |
-| DUPLICATE | `bsc:0xfa6d9b504848606eb9aec04ccc161d169b3f2159` | 2026-10-24T10:11:50Z | yes | 4e6024852065 | none |
-| DUPLICATE | `solana:33jENUQnjoitkMFpvNJcSHyLAHFWJuHwT6E3E8CNpump` | 2026-10-24T10:11:50Z | yes | cb16e97e9925 | none |
-| DUPLICATE | `solana:3w67qwokqjcS6KbZhzNonhmFNGjYbWneB7g5HTXwpump` | 2026-10-24T10:11:50Z | yes | c7eed9926ec4 | none |
-| DUPLICATE | `solana:79hQSeQtMsVLFH8vCT8LysFnJDqiwSxQyTA7cMVgyaHB` | 2026-10-24T10:11:50Z | yes | 03790902286c | none |
-| DUPLICATE | `solana:7M3gDRgozcumFsiTeXwjB8cYxpg7Q9R7rH7rkw2Fpump` | 2026-10-24T10:11:50Z | yes | cde4b7a68cf6 | none |
-| DUPLICATE | `solana:9E4d5MUKxJb6cYKjA2uETKv66bU1uzchiY6x5AeGpump` | 2026-10-24T10:11:50Z | yes | a661443f620c | none |
-| DUPLICATE | `solana:9aqmJjCnnMQv42TXLk921ceUkN35nea2QP969n1caqjj` | 2026-10-24T10:11:50Z | yes | 359f9c2bb7cc | none |
-| DUPLICATE | `solana:ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg` | 2026-10-24T10:11:50Z | yes | 1c29b337fcf7 | none |
-| DUPLICATE | `solana:C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE` | 2026-10-24T10:11:50Z | yes | 64a0a1047544 | none |
-| DUPLICATE | `solana:MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump` | 2026-10-24T10:11:50Z | yes | 13b81367f1e1 | none |
-| DUPLICATE | `solana:nxPqZ4F7ux8Vph5NFu25rEP6Kx9Gr1U6Fmj36Rjpump` | 2026-10-24T10:11:50Z | yes | ee9247665375 | none |
-| DUPLICATE | `bsc:0x3d4f0513e8a29669b960f9dbca61861548a9a760` | 2026-10-25T10:10:02Z | yes | 1e97f67c2987 | none |
-| DUPLICATE | `base:0x532f27101965dd16442e59d40670faf5ebb142e4` | 2026-10-25T10:10:02Z | yes | 47262dda8523 | none |
-| DUPLICATE | `bsc:0x6ec90334d89dbdc89e08a133271be3d104128edb` | 2026-10-25T10:10:02Z | yes | d7b5b81f8516 | none |
-| DUPLICATE | `solana:2SESmE4AN8KSKu3MUtF6QJTFC5LT6WzodGW7JMQRyxvP` | 2026-10-25T10:10:02Z | yes | 36bd25e08bac | none |
-| DUPLICATE | `solana:3vZY2MKBzRMoT4nGUCWYzXPTES2jLaLNMV8Fn5cKpump` | 2026-10-25T10:10:02Z | yes | 4575f081e1fa | none |
-| DUPLICATE | `solana:43N5UGr3mnfhJFzpBPNM7ZdnobghiYBtHTaQfZQv65mh` | 2026-10-25T10:10:02Z | yes | f71b236fb5c1 | none |
-| DUPLICATE | `solana:4Hcm1TfA1MvVhCQHvJCcKL7ymUhJZAV7P439H5ZHnKRh` | 2026-10-25T10:10:02Z | yes | abf9bbbd3182 | none |
-| DUPLICATE | `solana:6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx` | 2026-10-25T10:10:02Z | yes | 0392ba49fa31 | none |
-| DUPLICATE | `solana:7M3gDRgozcumFsiTeXwjB8cYxpg7Q9R7rH7rkw2Fpump` | 2026-10-25T10:10:02Z | yes | 00bd588d56f6 | none |
-| DUPLICATE | `solana:7SL2VnfYsChvog5oQY9Nmtqu1wceaMiQzWoqoLQpump` | 2026-10-25T10:10:02Z | yes | b0b3ca36c91d | none |
-| DUPLICATE | `solana:7VertkgF9KLhxxJXHX6uaWuoYZTP9LdGj2bWmVXVpump` | 2026-10-25T10:10:02Z | yes | 35200243f0a0 | none |
-| DUPLICATE | `solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump` | 2026-10-25T10:10:02Z | yes | 9aa41175cd5a | none |
-| DUPLICATE | `solana:9aqmJjCnnMQv42TXLk921ceUkN35nea2QP969n1caqjj` | 2026-10-25T10:10:02Z | yes | e887243121bd | none |
-| DUPLICATE | `solana:9k6gfTLbDaUpx635kQaGTeDvzYs7hWdDW1MerpjYpump` | 2026-10-25T10:10:02Z | yes | 51270c9786d8 | none |
-| DUPLICATE | `solana:AKotzk1dhcNangAJBtvNKtT9bhbSVZc2mMhRFgkFpump` | 2026-10-25T10:10:02Z | yes | dec4a38e4bec | none |
-| DUPLICATE | `solana:EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR` | 2026-10-25T10:10:02Z | yes | 56bdb413e43a | none |
-| DUPLICATE | `solana:NTRNDMqQSiwEC2jJs3wJiZS6bpGYQJtMNQJgiX3WyV6` | 2026-10-25T10:10:02Z | yes | 10879bb762fe | none |
-| DUPLICATE | `solana:PonziBtgwfemdft5ch9Rj9pKcSPSx5cJbgPiGJNAxz7` | 2026-10-25T10:10:02Z | yes | 21d3a7510ff2 | none |
-| DUPLICATE | `solana:kLqMvUm1p4pRbxU4r8kWCTVAuWMJLtcTJqGb4b5pump` | 2026-10-25T10:10:02Z | yes | f0c1aa5b7fcd | none |
-| DUPLICATE | `ethereum:0x0d8775f648430679a709e98d2b0cb6250d2887ef` | 2026-10-26T10:23:04Z | yes | 0e2b717d7df1 | none |
-| DUPLICATE | `bsc:0x12bfe0251eb64c6e26d1a264673593d6164ca213` | 2026-10-26T10:23:04Z | yes | 51acc851359d | none |
-| DUPLICATE | `bsc:0x389cb330e4eaa0cce969759f01a416448fed6666` | 2026-10-26T10:23:04Z | yes | c1f55c51dff9 | none |
-| DUPLICATE | `bsc:0x3d4f0513e8a29669b960f9dbca61861548a9a760` | 2026-10-26T10:23:04Z | yes | 159d3b235932 | none |
-| DUPLICATE | `ethereum:0x4e67db19044549ff420860834c91b45bad298722` | 2026-10-26T10:23:04Z | yes | 04b68a2555c4 | none |
-| DUPLICATE | `ethereum:0x54ce4b27caabba24926865f035d432dbde2901f7` | 2026-10-26T10:23:04Z | yes | 8f699e04760d | none |
-| DUPLICATE | `bsc:0x5f6a1ce1733fc4834a526798c0e8cf85137effff` | 2026-10-26T10:23:04Z | yes | 723c17800744 | none |
-| DUPLICATE | `ethereum:0x6982508145454ce325ddbe47a25d4ec3d2311933` | 2026-10-26T10:23:04Z | yes | 93b133c3b7bc | none |
-| DUPLICATE | `solana:5Aa378KvCX3bz2dJ3YncoXijBBVvgvipQAXHWaBNNHRw` | 2026-10-26T10:23:04Z | yes | 4a896f7757cf | none |
-| DUPLICATE | `solana:7M3gDRgozcumFsiTeXwjB8cYxpg7Q9R7rH7rkw2Fpump` | 2026-10-26T10:23:04Z | yes | 4728732e526e | none |
-| DUPLICATE | `solana:8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS` | 2026-10-26T10:23:04Z | yes | b5cd751669d9 | none |
-| DUPLICATE | `solana:8idEA8QovsZJka6d9Z35fejE5MbL37BJxvw5k5r6pump` | 2026-10-26T10:23:04Z | yes | 778adc447b66 | none |
-| DUPLICATE | `solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147` | 2026-10-26T10:23:04Z | yes | 0edb5d9acc1c | none |
-| DUPLICATE | `solana:CokrQHPjaWjyXyU15LiN9rb62tgBuFiU78KD7fKiZtu1` | 2026-10-26T10:23:04Z | yes | 9fba2213bcb5 | none |
-| DUPLICATE | `solana:HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR` | 2026-10-26T10:23:04Z | yes | 1b9c620872b9 | none |
+| DUPLICATE | `bsc:0x0c6302401aa5325c2e36f170f52c00b1d220b405` | 2026-10-24T10:11:50Z | yes | f5fc2697f0fa | none |
+| DUPLICATE | `bsc:0x3d4f0513e8a29669b960f9dbca61861548a9a760` | 2026-10-24T10:11:50Z | yes | d4ee925fc9c6 | none |
+| DUPLICATE | `base:0x3ec2156d4c0a9cbdab4a016633b7bcf6a8d68ea2` | 2026-10-24T10:11:50Z | yes | 5bed2b205665 | none |
+| DUPLICATE | `base:0x6bd83abc39391af1e24826e90237c4bd3468b5d2` | 2026-10-24T10:11:50Z | yes | 90170df9e67a | none |
+| DUPLICATE | `bsc:0x7d0443cddfc8e11af105f4fe44dd28c630237777` | 2026-10-24T10:11:50Z | yes | 946555b9d9a1 | none |
+| DUPLICATE | `bsc:0xc9882def23bc42d53895b8361d0b1edc7570bc6a` | 2026-10-24T10:11:50Z | yes | 2f1e60756473 | none |
+| DUPLICATE | `bsc:0xe55296ff1ccf6f6136cf00e552e46ef69e30a3e2` | 2026-10-24T10:11:50Z | yes | 1f58e7a0d925 | none |
+| DUPLICATE | `bsc:0xfa6d9b504848606eb9aec04ccc161d169b3f2159` | 2026-10-24T10:11:50Z | yes | 20054827381e | none |
+| DUPLICATE | `solana:33jENUQnjoitkMFpvNJcSHyLAHFWJuHwT6E3E8CNpump` | 2026-10-24T10:11:50Z | yes | b56e2451a8e3 | none |
+| DUPLICATE | `solana:3w67qwokqjcS6KbZhzNonhmFNGjYbWneB7g5HTXwpump` | 2026-10-24T10:11:50Z | yes | 0476400581a8 | none |
+| DUPLICATE | `solana:79hQSeQtMsVLFH8vCT8LysFnJDqiwSxQyTA7cMVgyaHB` | 2026-10-24T10:11:50Z | yes | 6f8d7c7d511d | none |
+| DUPLICATE | `solana:7M3gDRgozcumFsiTeXwjB8cYxpg7Q9R7rH7rkw2Fpump` | 2026-10-24T10:11:50Z | yes | 43f5fa12e6cc | none |
+| DUPLICATE | `solana:9E4d5MUKxJb6cYKjA2uETKv66bU1uzchiY6x5AeGpump` | 2026-10-24T10:11:50Z | yes | db14d2a528ec | none |
+| DUPLICATE | `solana:9aqmJjCnnMQv42TXLk921ceUkN35nea2QP969n1caqjj` | 2026-10-24T10:11:50Z | yes | 79125baae138 | none |
+| DUPLICATE | `solana:ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg` | 2026-10-24T10:11:50Z | yes | e72a368a2002 | none |
+| DUPLICATE | `solana:C1mBfBoDkwWfd6uTFZp62ARHLjeVp3bDpCDMfMZtPngE` | 2026-10-24T10:11:50Z | yes | ee0b10216b13 | none |
+| DUPLICATE | `solana:MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump` | 2026-10-24T10:11:50Z | yes | c42557a6eb83 | none |
+| DUPLICATE | `solana:nxPqZ4F7ux8Vph5NFu25rEP6Kx9Gr1U6Fmj36Rjpump` | 2026-10-24T10:11:50Z | yes | c6a810ce8da4 | none |
+| DUPLICATE | `bsc:0x3d4f0513e8a29669b960f9dbca61861548a9a760` | 2026-10-25T10:10:02Z | yes | 862c2e23cbc5 | none |
+| DUPLICATE | `base:0x532f27101965dd16442e59d40670faf5ebb142e4` | 2026-10-25T10:10:02Z | yes | c85d78f854c9 | none |
+| DUPLICATE | `bsc:0x6ec90334d89dbdc89e08a133271be3d104128edb` | 2026-10-25T10:10:02Z | yes | f27220a6417d | none |
+| DUPLICATE | `solana:2SESmE4AN8KSKu3MUtF6QJTFC5LT6WzodGW7JMQRyxvP` | 2026-10-25T10:10:02Z | yes | dc54c02632b4 | none |
+| DUPLICATE | `solana:3vZY2MKBzRMoT4nGUCWYzXPTES2jLaLNMV8Fn5cKpump` | 2026-10-25T10:10:02Z | yes | 51c6d3c161d4 | none |
+| DUPLICATE | `solana:43N5UGr3mnfhJFzpBPNM7ZdnobghiYBtHTaQfZQv65mh` | 2026-10-25T10:10:02Z | yes | e2d37ad13e2b | none |
+| DUPLICATE | `solana:4Hcm1TfA1MvVhCQHvJCcKL7ymUhJZAV7P439H5ZHnKRh` | 2026-10-25T10:10:02Z | yes | 7514e553c4e5 | none |
+| DUPLICATE | `solana:6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx` | 2026-10-25T10:10:02Z | yes | 37f9c9c36ae0 | none |
+| DUPLICATE | `solana:7M3gDRgozcumFsiTeXwjB8cYxpg7Q9R7rH7rkw2Fpump` | 2026-10-25T10:10:02Z | yes | 5d75bbdf9bc4 | none |
+| DUPLICATE | `solana:7SL2VnfYsChvog5oQY9Nmtqu1wceaMiQzWoqoLQpump` | 2026-10-25T10:10:02Z | yes | 4b0f0f4a332a | none |
+| DUPLICATE | `solana:7VertkgF9KLhxxJXHX6uaWuoYZTP9LdGj2bWmVXVpump` | 2026-10-25T10:10:02Z | yes | b2394dffc29d | none |
+| DUPLICATE | `solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump` | 2026-10-25T10:10:02Z | yes | 4d63576f7652 | none |
+| DUPLICATE | `solana:9aqmJjCnnMQv42TXLk921ceUkN35nea2QP969n1caqjj` | 2026-10-25T10:10:02Z | yes | 40a9019cd0c0 | none |
+| DUPLICATE | `solana:9k6gfTLbDaUpx635kQaGTeDvzYs7hWdDW1MerpjYpump` | 2026-10-25T10:10:02Z | yes | 1583e6a15c1e | none |
+| DUPLICATE | `solana:AKotzk1dhcNangAJBtvNKtT9bhbSVZc2mMhRFgkFpump` | 2026-10-25T10:10:02Z | yes | 2a187c8dc548 | none |
+| DUPLICATE | `solana:EFn88CiiFHhihqdr1Y11XBDxbbYarBf1ij92DsrigYwR` | 2026-10-25T10:10:02Z | yes | 45dbf74b92e0 | none |
+| DUPLICATE | `solana:NTRNDMqQSiwEC2jJs3wJiZS6bpGYQJtMNQJgiX3WyV6` | 2026-10-25T10:10:02Z | yes | f3d19935a813 | none |
+| DUPLICATE | `solana:PonziBtgwfemdft5ch9Rj9pKcSPSx5cJbgPiGJNAxz7` | 2026-10-25T10:10:02Z | yes | f198ed99739a | none |
+| DUPLICATE | `solana:kLqMvUm1p4pRbxU4r8kWCTVAuWMJLtcTJqGb4b5pump` | 2026-10-25T10:10:02Z | yes | e5a418a46fbd | none |
+| DUPLICATE | `ethereum:0x0d8775f648430679a709e98d2b0cb6250d2887ef` | 2026-10-26T10:23:04Z | yes | 77fc77ced013 | none |
+| DUPLICATE | `bsc:0x12bfe0251eb64c6e26d1a264673593d6164ca213` | 2026-10-26T10:23:04Z | yes | 2062118a14bf | none |
+| DUPLICATE | `bsc:0x389cb330e4eaa0cce969759f01a416448fed6666` | 2026-10-26T10:23:04Z | yes | 2eb1563c267f | none |
+| DUPLICATE | `bsc:0x3d4f0513e8a29669b960f9dbca61861548a9a760` | 2026-10-26T10:23:04Z | yes | 41db991ff8ad | none |
+| DUPLICATE | `ethereum:0x4e67db19044549ff420860834c91b45bad298722` | 2026-10-26T10:23:04Z | yes | 68decf4e2f04 | none |
+| DUPLICATE | `ethereum:0x54ce4b27caabba24926865f035d432dbde2901f7` | 2026-10-26T10:23:04Z | yes | c918e59c6910 | none |
+| DUPLICATE | `bsc:0x5f6a1ce1733fc4834a526798c0e8cf85137effff` | 2026-10-26T10:23:04Z | yes | 3abd5bf0f763 | none |
+| DUPLICATE | `ethereum:0x6982508145454ce325ddbe47a25d4ec3d2311933` | 2026-10-26T10:23:04Z | yes | 37cab6bdb053 | none |
+| DUPLICATE | `solana:5Aa378KvCX3bz2dJ3YncoXijBBVvgvipQAXHWaBNNHRw` | 2026-10-26T10:23:04Z | yes | 28b65edc60f0 | none |
+| DUPLICATE | `solana:7M3gDRgozcumFsiTeXwjB8cYxpg7Q9R7rH7rkw2Fpump` | 2026-10-26T10:23:04Z | yes | 045dadd101b3 | none |
+| DUPLICATE | `solana:8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS` | 2026-10-26T10:23:04Z | yes | 9e4a2e65f08f | none |
+| DUPLICATE | `solana:8idEA8QovsZJka6d9Z35fejE5MbL37BJxvw5k5r6pump` | 2026-10-26T10:23:04Z | yes | efd6f73b20aa | none |
+| DUPLICATE | `solana:9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147` | 2026-10-26T10:23:04Z | yes | a98699176040 | none |
+| DUPLICATE | `solana:CokrQHPjaWjyXyU15LiN9rb62tgBuFiU78KD7fKiZtu1` | 2026-10-26T10:23:04Z | yes | dd485a70dc81 | none |
+| DUPLICATE | `solana:HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR` | 2026-10-26T10:23:04Z | yes | 2a1ef2371be2 | none |
 
 ## Units and times
 

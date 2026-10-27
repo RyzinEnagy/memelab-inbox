@@ -3,12 +3,7 @@
   "predictive: DISCOVERY ABSTAIN (INSUFFICIENT_HISTORY, MODEL_NOT_SELECTED, SOURCE_STALE, UNCALIBRATED) | snapshot 744ef961b242 | research only, not advice"
  ],
  "base_vs_frozen_off_all_reports_byte_equal": true,
- "checkout_status": [
-  "?? audits/predictive-intelligence/phase_18/experiments/LEDGER_TOTALS.json",
-  "?? audits/predictive-intelligence/phase_18/experiments/SEARCH_LEDGER.csv",
-  "?? audits/predictive-intelligence/phase_18/ui/EXAMPLE_REPORTS.md",
-  "?? tests/test_predictive_phase18_outputs.py"
- ],
+ "checkout_status": [],
  "checks": {
   "state": {
    "documents": 24,
@@ -52,35 +47,35 @@
   "base_off": {
    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
-   "theses": "a04f0e401269b304efd211b2bf3aaf6128bb30d2a6e5940b56a82b2f3db28116",
+   "theses": "c7bcee74f82d0a45973af0a33afe01bd1e21f511a4513de48dd92f00a69c19b8",
    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
   },
   "frozen_off": {
    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
-   "theses": "a04f0e401269b304efd211b2bf3aaf6128bb30d2a6e5940b56a82b2f3db28116",
+   "theses": "c7bcee74f82d0a45973af0a33afe01bd1e21f511a4513de48dd92f00a69c19b8",
    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
   },
   "frozen_on": {
    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
-   "theses": "a04f0e401269b304efd211b2bf3aaf6128bb30d2a6e5940b56a82b2f3db28116",
+   "theses": "c7bcee74f82d0a45973af0a33afe01bd1e21f511a4513de48dd92f00a69c19b8",
    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
   },
   "rerun": {
    "entries": "017e0845bf2e9751c932188ac79a36986a4da36e14c20013c4dff4ce35a5328a",
    "rejections": "59487067d9d042eabc0dcfc5257c317a03d0b7f5f5f7953ba1d22c6cd6d18465",
-   "theses": "7b3cad08788e8dec0f0ae3001ed7bb54f6b4fd169f2bef49230e8d485c7451fd",
+   "theses": "be27e4c236238f62f890cbff964aad51330930edfb5f76623f496c4c5991b264",
    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
   },
   "retry": {
    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
-   "theses": "a04f0e401269b304efd211b2bf3aaf6128bb30d2a6e5940b56a82b2f3db28116",
+   "theses": "c7bcee74f82d0a45973af0a33afe01bd1e21f511a4513de48dd92f00a69c19b8",
    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
   }
@@ -102,7 +97,7 @@
  },
  "section_abstain_lines": 24,
  "section_forecast_lines": 0,
- "section_sha256": "3b7cba89170401cc747f3f028b82332460c1bf081a01ed08a0460c18777ba258",
+ "section_sha256": "251d3437de629ce3fda9e3844130a210a9cc9e2bc9eecf584ef1c96119827e7d",
  "states": {
   "state": {
    "abstained": 24,
@@ -118,8 +113,8 @@
     "DUPLICATE": 16
    },
    "events": 24,
-   "latency_ms_max": 5.785,
-   "latency_ms_p50": 0.737,
+   "latency_ms_max": 4.399,
+   "latency_ms_p50": 1.144,
    "models_in_use": [
     "not_selected"
    ],
@@ -149,8 +144,8 @@
     "DISCOVERY": 1
    },
    "events": 1,
-   "latency_ms_max": 4.319,
-   "latency_ms_p50": 4.319,
+   "latency_ms_max": 5.709,
+   "latency_ms_p50": 5.709,
    "models_in_use": [
     "not_selected"
    ],
@@ -179,8 +174,8 @@
     "DISCOVERY": 8
    },
    "events": 8,
-   "latency_ms_max": 11.328,
-   "latency_ms_p50": 11.107,
+   "latency_ms_max": 26.791,
+   "latency_ms_p50": 23.158,
    "models_in_use": [
     "not_selected"
    ],
@@ -211,8 +206,8 @@
     "SUPERSEDED_IN_PASS": 4
    },
    "events": 12,
-   "latency_ms_max": 3.857,
-   "latency_ms_p50": 3.03,
+   "latency_ms_max": 6.011,
+   "latency_ms_p50": 2.889,
    "models_in_use": [
     "not_selected"
    ],

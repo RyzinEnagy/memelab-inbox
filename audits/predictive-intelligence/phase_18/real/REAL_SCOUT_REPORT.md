@@ -13,7 +13,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - Backtesting: BACKTEST_NOT_AVAILABLE. Behavioral simulation: SIMULATION_NOT_AVAILABLE.
 - Opportunities: 8; with a veto: 3; snapshots verified against the lab database: 8 of 8; events not attempted: 16.
 
-| Opportunity | Exact chain:mint | Inputs observed (UTC) | T1 24 h | T1b 6 h | T2 24 h | Vetoes | Inputs |
+| Opportunity | Exact chain:mint | Inputs observed (UTC) | T1 24 h | T1b 6 h | T2 24 h | Vetoes and risk flags | Inputs |
 |---|---|---|---|---|---|---|---|
 | slopcannon | `solana:55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW` | 2026-10-07T00:16:35Z | ABSTAIN (no number) | ABSTAIN (no number) | ABSTAIN (no number) | WASH_TRADING_HIGH | INPUT_STALE |
 | STONK | `solana:6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx` | 2026-10-07T00:16:35Z | ABSTAIN (no number) | ABSTAIN (no number) | ABSTAIN (no number) | none | INPUT_STALE |
@@ -26,7 +26,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ## System status
 
-- FACT: predictive flag on; integration version integration-1; report version report-1; passes in the state: 3, last pass 3ddbe562fa1f
+- FACT: predictive flag on; integration version integration-1; report version report-1; passes in the state: 3, last pass ac4b0dca6fcf
 - FACT: model registry OK, log sha256 f02548bd8470
 - FACT: backtesting BACKTEST_NOT_AVAILABLE: the backtesting module is not installed on this line; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - FACT: behavioral simulation SIMULATION_NOT_AVAILABLE: MIROFISH_NO_GO (PI-D-081, PI-D-083): the behavioral module is off and research-optional; no paid language model or Zep use is approved, so no simulation runs
@@ -60,10 +60,11 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 - FACT: no number is shown for an abstention; a probability needs a SHADOW or VALIDATED_EXPERIMENTAL model with a CALIBRATED Phase 13 card, enough support and a point inside the display range (Phase 13 rule 12)
 - FACT: a document is never shown without its abstention record and its request record (Phase 13 m4, PI-D-068)
-- FACT: a FORECAST's number must equal the point recomputed from the raw number kept in the request record (Phase 13 m3, verify_point) and its cards must resolve from the registry
+- FACT: a FORECAST's number was recomputed from the raw number when the document was written (Phase 13 m3, verify_point); this report checks it against the point stored with the raw number and the registry-resolved cards, without recomputing it
+- FACT: any risk on a snapshot (a fatal flag, an unknown flag check, a backtest veto, a liquidity fall or loss, a newer snapshot not assessed) overrides its forecast: the number is withheld (PI-D-102)
 - FACT: a calibration available after the decision abstains (CALIBRATION_AFTER_DECISION, PI-D-070)
 - FACT: the retrospective holdout is spent: its results are exploratory and can only make a statement more conservative
-- FACT: token text (symbol, chain, labels, file names) is shown as letters, digits, dot, dash and underscore, at most 24 characters, and withheld when it carries a trading or forecast word (Phase 17 m3); no local path is shown (m8)
+- FACT: token text (symbol, chain, labels, file names) is shown as letters, digits, dot, dash and underscore, at most 24 characters, and withheld when it carries a trading or forecast word, also run together (Phase 17 m3, PI-D-102); no local path is shown (m8)
 - INFERENCE: any interval is conditional on exchangeability of the event rate, which is neither established nor refuted (PI-D-070)
 - HEURISTIC: CURRENT_VENDOR_LIST decisions abstain (no point-in-time pool); a live capture records its pool
 
@@ -72,9 +73,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 ### Identity and snapshot
 
 - FACT: exact identity solana:55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW; event DISCOVERY (first attempt for this chain and mint)
-- FACT: snapshot b6f9f499178e9563, row sha256 978c3c05fca9eff2
-- FACT: decision time 2026-10-27T10:55:11Z (CAPTURE_TIME); capture 2026-10-27T10:55:11Z
-- FACT: inputs observed 2026-10-07T00:16:35Z (collector-run start, PI-D-011); age at capture 20.4 days: INPUT_STALE
+- FACT: snapshot b6f9f499178e9563, row sha256 d0b6e052ee3a51cb
+- FACT: decision time 2026-10-27T12:00:47Z (CAPTURE_TIME); capture 2026-10-27T12:00:47Z
+- FACT: inputs observed 2026-10-07T00:16:35Z (collector-run start, PI-D-011); age at capture 20.5 days: INPUT_STALE
 - FACT: the lab database row of this snapshot was found and its hash matches (SNAPSHOT_VERIFIED)
 - HEURISTIC: token age at the snapshot 10.7 days (vendor's first pool time 2026-09-26T07:43:08Z)
 - UNKNOWN: current market state: the inputs were stale at the capture (INPUT_STALE), so every target abstains SOURCE_STALE
@@ -99,9 +100,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 | Target | Horizon | Status | Reasons | Cohort N and base rate | Model | Training as of | Record |
 |---|---|---|---|---|---|---|---|
-| T1 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | d5c78fb92d02 |
-| T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 581082d198f6 |
-| T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 130966f86954 |
+| T1 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | bd7a14a4f648 |
+| T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 49a8aed32493 |
+| T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | eb6a9596b424 |
 
 - No probability for T1 24 h, T1b 6 h, T2 24 h, from the abstention records: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
 - What would unblock each named reason:
@@ -123,6 +124,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags WASH_TRADING_HIGH
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -133,10 +135,10 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 4f5ea09bf3c0 (request 7, pass bd2a690ce0e9)
-- T1 24 h: forecast `fc_1d986e48f143c75857ce3c7d4db96fdb`, record d5c78fb92d02, registry pin 7cb1c8b292f8, data none, features none
-- T1b 6 h: forecast `fc_c8af13e622bd29d7818d5360482c5388`, record 581082d198f6, registry pin 4efd53b196ee, data none, features none
-- T2 24 h: forecast `fc_c83b9de1fc29b09355baadb7c5c0fc04`, record 130966f86954, registry pin b9e82db1db19, data none, features none
+- Request record f736ca832730 (request 7, pass 052397e9f83d)
+- T1 24 h: forecast `fc_1d986e48f143c75857ce3c7d4db96fdb`, record bd7a14a4f648, registry pin 7cb1c8b292f8, data none, features none
+- T1b 6 h: forecast `fc_c8af13e622bd29d7818d5360482c5388`, record 49a8aed32493, registry pin 4efd53b196ee, data none, features none
+- T2 24 h: forecast `fc_c83b9de1fc29b09355baadb7c5c0fc04`, record eb6a9596b424, registry pin b9e82db1db19, data none, features none
 - Token report: 20261007_0016_slopcannon_55Vr2V.md (the lab's report of this snapshot; its sections are unchanged)
 
 ### Limitations
@@ -150,9 +152,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 ### Identity and snapshot
 
 - FACT: exact identity solana:6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx; event DISCOVERY (first attempt for this chain and mint)
-- FACT: snapshot 771e6521fb6cef2b, row sha256 0853054f53b1f308
-- FACT: decision time 2026-10-27T10:55:11Z (CAPTURE_TIME); capture 2026-10-27T10:55:11Z
-- FACT: inputs observed 2026-10-07T00:16:35Z (collector-run start, PI-D-011); age at capture 20.4 days: INPUT_STALE
+- FACT: snapshot 771e6521fb6cef2b, row sha256 bdca63da0a624e43
+- FACT: decision time 2026-10-27T12:00:47Z (CAPTURE_TIME); capture 2026-10-27T12:00:47Z
+- FACT: inputs observed 2026-10-07T00:16:35Z (collector-run start, PI-D-011); age at capture 20.5 days: INPUT_STALE
 - FACT: the lab database row of this snapshot was found and its hash matches (SNAPSHOT_VERIFIED)
 - HEURISTIC: token age at the snapshot 75.2 days (vendor's first pool time 2026-07-23T19:06:57Z)
 - UNKNOWN: current market state: the inputs were stale at the capture (INPUT_STALE), so every target abstains SOURCE_STALE
@@ -177,9 +179,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 | Target | Horizon | Status | Reasons | Cohort N and base rate | Model | Training as of | Record |
 |---|---|---|---|---|---|---|---|
-| T1 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 53b18c8d0184 |
-| T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 0b2220cf3c2b |
-| T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | ba043a620e1c |
+| T1 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 82ef952ad950 |
+| T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | c458f4121063 |
+| T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 6357e5426790 |
 
 - No probability for T1 24 h, T1b 6 h, T2 24 h, from the abstention records: no point-in-time pool on the registered price route at the decision; the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
 - What would unblock each named reason:
@@ -212,10 +214,10 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record ceb63252c89c (request 1, pass bd2a690ce0e9)
-- T1 24 h: forecast `fc_ccad62cc1909943bea081a7182205f0d`, record 53b18c8d0184, registry pin 7cb1c8b292f8, data none, features none
-- T1b 6 h: forecast `fc_64d9ab982b777c44c0797b201a92e23e`, record 0b2220cf3c2b, registry pin 4efd53b196ee, data none, features none
-- T2 24 h: forecast `fc_a5a434fe440da22b3a98b099c2dca931`, record ba043a620e1c, registry pin b9e82db1db19, data none, features none
+- Request record e9afcc24bf09 (request 1, pass 052397e9f83d)
+- T1 24 h: forecast `fc_ccad62cc1909943bea081a7182205f0d`, record 82ef952ad950, registry pin 7cb1c8b292f8, data none, features none
+- T1b 6 h: forecast `fc_64d9ab982b777c44c0797b201a92e23e`, record c458f4121063, registry pin 4efd53b196ee, data none, features none
+- T2 24 h: forecast `fc_a5a434fe440da22b3a98b099c2dca931`, record 6357e5426790, registry pin b9e82db1db19, data none, features none
 - Token report: 20261007_0016_STONK_6GmAFS.md (the lab's report of this snapshot; its sections are unchanged)
 
 ### Limitations
@@ -229,9 +231,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 ### Identity and snapshot
 
 - FACT: exact identity solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3; event DISCOVERY (first attempt for this chain and mint)
-- FACT: snapshot c1c7dae80d324251, row sha256 1886e557d8d7319e
-- FACT: decision time 2026-10-27T10:55:11Z (CAPTURE_TIME); capture 2026-10-27T10:55:11Z
-- FACT: inputs observed 2026-10-07T00:16:35Z (collector-run start, PI-D-011); age at capture 20.4 days: INPUT_STALE
+- FACT: snapshot c1c7dae80d324251, row sha256 591096542dc9b6c7
+- FACT: decision time 2026-10-27T12:00:47Z (CAPTURE_TIME); capture 2026-10-27T12:00:47Z
+- FACT: inputs observed 2026-10-07T00:16:35Z (collector-run start, PI-D-011); age at capture 20.5 days: INPUT_STALE
 - FACT: the lab database row of this snapshot was found and its hash matches (SNAPSHOT_VERIFIED)
 - HEURISTIC: token age at the snapshot 5.3 days (vendor's first pool time 2026-10-01T17:36:20Z)
 - UNKNOWN: current market state: the inputs were stale at the capture (INPUT_STALE), so every target abstains SOURCE_STALE
@@ -256,9 +258,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 | Target | Horizon | Status | Reasons | Cohort N and base rate | Model | Training as of | Record |
 |---|---|---|---|---|---|---|---|
-| T1 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | d2ee6a8e3316 |
-| T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | bab344f1da51 |
-| T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 0ba68468ecc0 |
+| T1 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 398a87393094 |
+| T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 88cd623624b0 |
+| T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | b433d83ffe98 |
 
 - No probability for T1 24 h, T1b 6 h, T2 24 h, from the abstention records: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
 - What would unblock each named reason:
@@ -290,10 +292,10 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 1ae1bd034e17 (request 2, pass bd2a690ce0e9)
-- T1 24 h: forecast `fc_d622d750d9386d58aa66e07ea295ef22`, record d2ee6a8e3316, registry pin 7cb1c8b292f8, data none, features none
-- T1b 6 h: forecast `fc_ac281f4480875a7b8e8501a27f19e4aa`, record bab344f1da51, registry pin 4efd53b196ee, data none, features none
-- T2 24 h: forecast `fc_2f23b8eca7ec4d60eb26d5a6955dd836`, record 0ba68468ecc0, registry pin b9e82db1db19, data none, features none
+- Request record f0175681de80 (request 2, pass 052397e9f83d)
+- T1 24 h: forecast `fc_d622d750d9386d58aa66e07ea295ef22`, record 398a87393094, registry pin 7cb1c8b292f8, data none, features none
+- T1b 6 h: forecast `fc_ac281f4480875a7b8e8501a27f19e4aa`, record 88cd623624b0, registry pin 4efd53b196ee, data none, features none
+- T2 24 h: forecast `fc_2f23b8eca7ec4d60eb26d5a6955dd836`, record b433d83ffe98, registry pin b9e82db1db19, data none, features none
 - Token report: 20261007_0016_DARK_7KEPAp.md (the lab's report of this snapshot; its sections are unchanged)
 
 ### Limitations
@@ -307,9 +309,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 ### Identity and snapshot
 
 - FACT: exact identity solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump; event DISCOVERY (first attempt for this chain and mint)
-- FACT: snapshot 744ef961b24239b9, row sha256 b946038cd2e57a25
-- FACT: decision time 2026-10-27T10:55:11Z (CAPTURE_TIME); capture 2026-10-27T10:55:11Z
-- FACT: inputs observed 2026-10-07T00:16:35Z (collector-run start, PI-D-011); age at capture 20.4 days: INPUT_STALE
+- FACT: snapshot 744ef961b24239b9, row sha256 e90a4b0c76102401
+- FACT: decision time 2026-10-27T12:00:47Z (CAPTURE_TIME); capture 2026-10-27T12:00:47Z
+- FACT: inputs observed 2026-10-07T00:16:35Z (collector-run start, PI-D-011); age at capture 20.5 days: INPUT_STALE
 - FACT: the lab database row of this snapshot was found and its hash matches (SNAPSHOT_VERIFIED)
 - HEURISTIC: token age at the snapshot 21.2 days (vendor's first pool time 2026-09-15T19:20:20Z)
 - UNKNOWN: current market state: the inputs were stale at the capture (INPUT_STALE), so every target abstains SOURCE_STALE
@@ -334,9 +336,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 | Target | Horizon | Status | Reasons | Cohort N and base rate | Model | Training as of | Record |
 |---|---|---|---|---|---|---|---|
-| T1 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 412c1c434479 |
-| T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | d23cabf45e22 |
-| T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | e88d5417b6a2 |
+| T1 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 008979f4660f |
+| T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 1b4a1261d256 |
+| T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 60d9dfcdb464 |
 
 - No probability for T1 24 h, T1b 6 h, T2 24 h, from the abstention records: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
 - What would unblock each named reason:
@@ -368,10 +370,10 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 26001417c31a (request 0, pass bd2a690ce0e9)
-- T1 24 h: forecast `fc_88a159bbca5022c5a4cce38e1f0b1e3e`, record 412c1c434479, registry pin 7cb1c8b292f8, data none, features none
-- T1b 6 h: forecast `fc_056d079872cc2cb85d0811785767c6c0`, record d23cabf45e22, registry pin 4efd53b196ee, data none, features none
-- T2 24 h: forecast `fc_c0a2cacb1684a9071f3b3e5a95697517`, record e88d5417b6a2, registry pin b9e82db1db19, data none, features none
+- Request record c8e830e6252a (request 0, pass 052397e9f83d)
+- T1 24 h: forecast `fc_88a159bbca5022c5a4cce38e1f0b1e3e`, record 008979f4660f, registry pin 7cb1c8b292f8, data none, features none
+- T1b 6 h: forecast `fc_056d079872cc2cb85d0811785767c6c0`, record 1b4a1261d256, registry pin 4efd53b196ee, data none, features none
+- T2 24 h: forecast `fc_c0a2cacb1684a9071f3b3e5a95697517`, record 60d9dfcdb464, registry pin b9e82db1db19, data none, features none
 - Token report: 20261007_0016_PAID_98kfF7.md (the lab's report of this snapshot; its sections are unchanged)
 
 ### Limitations
@@ -385,9 +387,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 ### Identity and snapshot
 
 - FACT: exact identity solana:9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump; event DISCOVERY (first attempt for this chain and mint)
-- FACT: snapshot 599dbfcdf78eba2e, row sha256 2c218374c14e5593
-- FACT: decision time 2026-10-27T10:55:11Z (CAPTURE_TIME); capture 2026-10-27T10:55:11Z
-- FACT: inputs observed 2026-10-07T00:16:35Z (collector-run start, PI-D-011); age at capture 20.4 days: INPUT_STALE
+- FACT: snapshot 599dbfcdf78eba2e, row sha256 cffc92fbd52b2549
+- FACT: decision time 2026-10-27T12:00:47Z (CAPTURE_TIME); capture 2026-10-27T12:00:47Z
+- FACT: inputs observed 2026-10-07T00:16:35Z (collector-run start, PI-D-011); age at capture 20.5 days: INPUT_STALE
 - FACT: the lab database row of this snapshot was found and its hash matches (SNAPSHOT_VERIFIED)
 - HEURISTIC: token age at the snapshot 2.1 days (vendor's first pool time 2026-10-04T21:47:51Z)
 - UNKNOWN: current market state: the inputs were stale at the capture (INPUT_STALE), so every target abstains SOURCE_STALE
@@ -412,9 +414,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 | Target | Horizon | Status | Reasons | Cohort N and base rate | Model | Training as of | Record |
 |---|---|---|---|---|---|---|---|
-| T1 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 3cf842f32a9d |
-| T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 84dc59df170f |
-| T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 8024830c1353 |
+| T1 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 6ad536e47156 |
+| T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | dbc74ce04462 |
+| T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | a399486d4dc7 |
 
 - No probability for T1 24 h, T1b 6 h, T2 24 h, from the abstention records: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
 - What would unblock each named reason:
@@ -436,6 +438,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -446,10 +449,10 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 8f33f274a98b (request 3, pass bd2a690ce0e9)
-- T1 24 h: forecast `fc_662a6b96fbb373e06e52aafcd6f4f1ee`, record 3cf842f32a9d, registry pin 7cb1c8b292f8, data none, features none
-- T1b 6 h: forecast `fc_6282902f34d915a8a8206b7631d395c4`, record 84dc59df170f, registry pin 4efd53b196ee, data none, features none
-- T2 24 h: forecast `fc_bab97c34063a433bdeccf952ad6d8b5b`, record 8024830c1353, registry pin b9e82db1db19, data none, features none
+- Request record eb0b6d4a0d5e (request 3, pass 052397e9f83d)
+- T1 24 h: forecast `fc_662a6b96fbb373e06e52aafcd6f4f1ee`, record 6ad536e47156, registry pin 7cb1c8b292f8, data none, features none
+- T1b 6 h: forecast `fc_6282902f34d915a8a8206b7631d395c4`, record dbc74ce04462, registry pin 4efd53b196ee, data none, features none
+- T2 24 h: forecast `fc_bab97c34063a433bdeccf952ad6d8b5b`, record a399486d4dc7, registry pin b9e82db1db19, data none, features none
 - Token report: 20261007_0016_GOMO_9XKzy4.md (the lab's report of this snapshot; its sections are unchanged)
 
 ### Limitations
@@ -463,9 +466,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 ### Identity and snapshot
 
 - FACT: exact identity solana:DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump; event DISCOVERY (first attempt for this chain and mint)
-- FACT: snapshot 94125012eafce70e, row sha256 dcee372cac9ef857
-- FACT: decision time 2026-10-27T10:55:11Z (CAPTURE_TIME); capture 2026-10-27T10:55:11Z
-- FACT: inputs observed 2026-10-07T00:16:35Z (collector-run start, PI-D-011); age at capture 20.4 days: INPUT_STALE
+- FACT: snapshot 94125012eafce70e, row sha256 25d97d71ff393085
+- FACT: decision time 2026-10-27T12:00:47Z (CAPTURE_TIME); capture 2026-10-27T12:00:47Z
+- FACT: inputs observed 2026-10-07T00:16:35Z (collector-run start, PI-D-011); age at capture 20.5 days: INPUT_STALE
 - FACT: the lab database row of this snapshot was found and its hash matches (SNAPSHOT_VERIFIED)
 - HEURISTIC: token age at the snapshot 2.5 days (vendor's first pool time 2026-10-04T12:26:34Z)
 - UNKNOWN: current market state: the inputs were stale at the capture (INPUT_STALE), so every target abstains SOURCE_STALE
@@ -490,9 +493,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 | Target | Horizon | Status | Reasons | Cohort N and base rate | Model | Training as of | Record |
 |---|---|---|---|---|---|---|---|
-| T1 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 54bc5526899d |
-| T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 5ec0611d2f1f |
-| T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 42fba5d382f4 |
+| T1 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | bc187ddc3590 |
+| T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 88e1676ab2f8 |
+| T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | f32a84aa00eb |
 
 - No probability for T1 24 h, T1b 6 h, T2 24 h, from the abstention records: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
 - What would unblock each named reason:
@@ -514,6 +517,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags WASH_TRADING_HIGH
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
@@ -524,10 +528,10 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 579ff2e6f867 (request 4, pass bd2a690ce0e9)
-- T1 24 h: forecast `fc_1ac9dc27b46f32451b78402401dab3a3`, record 54bc5526899d, registry pin 7cb1c8b292f8, data none, features none
-- T1b 6 h: forecast `fc_c5946a0b85e3602099b2afe53109056a`, record 5ec0611d2f1f, registry pin 4efd53b196ee, data none, features none
-- T2 24 h: forecast `fc_4ae10a38a1bdf144edd4f6e2bc260735`, record 42fba5d382f4, registry pin b9e82db1db19, data none, features none
+- Request record a9868f3e06b9 (request 4, pass 052397e9f83d)
+- T1 24 h: forecast `fc_1ac9dc27b46f32451b78402401dab3a3`, record bc187ddc3590, registry pin 7cb1c8b292f8, data none, features none
+- T1b 6 h: forecast `fc_c5946a0b85e3602099b2afe53109056a`, record 88e1676ab2f8, registry pin 4efd53b196ee, data none, features none
+- T2 24 h: forecast `fc_4ae10a38a1bdf144edd4f6e2bc260735`, record f32a84aa00eb, registry pin b9e82db1db19, data none, features none
 - Token report: 20261007_0016_HIGGS_DoVAVz.md (the lab's report of this snapshot; its sections are unchanged)
 
 ### Limitations
@@ -541,9 +545,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 ### Identity and snapshot
 
 - FACT: exact identity solana:HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR; event DISCOVERY (first attempt for this chain and mint)
-- FACT: snapshot 7b982f14be1d1a8b, row sha256 2e027cb991764de2
-- FACT: decision time 2026-10-27T10:55:11Z (CAPTURE_TIME); capture 2026-10-27T10:55:11Z
-- FACT: inputs observed 2026-10-07T00:16:35Z (collector-run start, PI-D-011); age at capture 20.4 days: INPUT_STALE
+- FACT: snapshot 7b982f14be1d1a8b, row sha256 ea0d2a1d148b44c7
+- FACT: decision time 2026-10-27T12:00:47Z (CAPTURE_TIME); capture 2026-10-27T12:00:47Z
+- FACT: inputs observed 2026-10-07T00:16:35Z (collector-run start, PI-D-011); age at capture 20.5 days: INPUT_STALE
 - FACT: the lab database row of this snapshot was found and its hash matches (SNAPSHOT_VERIFIED)
 - HEURISTIC: token age at the snapshot 37.0 days (vendor's first pool time 2026-08-30T23:29:55Z)
 - UNKNOWN: current market state: the inputs were stale at the capture (INPUT_STALE), so every target abstains SOURCE_STALE
@@ -568,9 +572,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 | Target | Horizon | Status | Reasons | Cohort N and base rate | Model | Training as of | Record |
 |---|---|---|---|---|---|---|---|
-| T1 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 307a3968ecb0 |
-| T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | c6ca9fecd5e4 |
-| T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 82f50e30893e |
+| T1 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | f29f2309b39c |
+| T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | a15582fbb97e |
+| T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 2de3a67c09a7 |
 
 - No probability for T1 24 h, T1b 6 h, T2 24 h, from the abstention records: no point-in-time pool on the registered price route at the decision; the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
 - What would unblock each named reason:
@@ -603,10 +607,10 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record fb9106a032ff (request 5, pass bd2a690ce0e9)
-- T1 24 h: forecast `fc_e14bd8825239a14190a449287b0fcd9e`, record 307a3968ecb0, registry pin 7cb1c8b292f8, data none, features none
-- T1b 6 h: forecast `fc_68f5014d8ac20e437e99f92cb071bce8`, record c6ca9fecd5e4, registry pin 4efd53b196ee, data none, features none
-- T2 24 h: forecast `fc_f9d4454c77be985fad29f6b5520fa04b`, record 82f50e30893e, registry pin b9e82db1db19, data none, features none
+- Request record 322d9ce47dcf (request 5, pass 052397e9f83d)
+- T1 24 h: forecast `fc_e14bd8825239a14190a449287b0fcd9e`, record f29f2309b39c, registry pin 7cb1c8b292f8, data none, features none
+- T1b 6 h: forecast `fc_68f5014d8ac20e437e99f92cb071bce8`, record a15582fbb97e, registry pin 4efd53b196ee, data none, features none
+- T2 24 h: forecast `fc_f9d4454c77be985fad29f6b5520fa04b`, record 2de3a67c09a7, registry pin b9e82db1db19, data none, features none
 - Token report: 20261007_0016_ZCAT_HcRLc9.md (the lab's report of this snapshot; its sections are unchanged)
 
 ### Limitations
@@ -620,9 +624,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 ### Identity and snapshot
 
 - FACT: exact identity solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump; event DISCOVERY (first attempt for this chain and mint)
-- FACT: snapshot 3299be006a2bb1ac, row sha256 6cfe7f1d94e88b10
-- FACT: decision time 2026-10-27T10:55:11Z (CAPTURE_TIME); capture 2026-10-27T10:55:11Z
-- FACT: inputs observed 2026-10-07T00:16:35Z (collector-run start, PI-D-011); age at capture 20.4 days: INPUT_STALE
+- FACT: snapshot 3299be006a2bb1ac, row sha256 32eeecc2f044fe4f
+- FACT: decision time 2026-10-27T12:00:47Z (CAPTURE_TIME); capture 2026-10-27T12:00:47Z
+- FACT: inputs observed 2026-10-07T00:16:35Z (collector-run start, PI-D-011); age at capture 20.5 days: INPUT_STALE
 - FACT: the lab database row of this snapshot was found and its hash matches (SNAPSHOT_VERIFIED)
 - HEURISTIC: token age at the snapshot 27.2 days (vendor's first pool time 2026-09-09T20:32:11Z)
 - UNKNOWN: current market state: the inputs were stale at the capture (INPUT_STALE), so every target abstains SOURCE_STALE
@@ -647,9 +651,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 | Target | Horizon | Status | Reasons | Cohort N and base rate | Model | Training as of | Record |
 |---|---|---|---|---|---|---|---|
-| T1 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | d22c26ab0428 |
-| T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | da246b973e6e |
-| T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 6bee7fc6866d |
+| T1 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 9682cbb1c6d0 |
+| T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 173321e6ac9e |
+| T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 2015da261018 |
 
 - No probability for T1 24 h, T1b 6 h, T2 24 h, from the abstention records: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
 - What would unblock each named reason:
@@ -681,10 +685,10 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ### Sources and ids
 
-- Request record 7f10f2d6e64a (request 6, pass bd2a690ce0e9)
-- T1 24 h: forecast `fc_85d9c112b8a290bfe1d59a4d49f2f6b9`, record d22c26ab0428, registry pin 7cb1c8b292f8, data none, features none
-- T1b 6 h: forecast `fc_6401689109b32e408eddf9028c5f6589`, record da246b973e6e, registry pin 4efd53b196ee, data none, features none
-- T2 24 h: forecast `fc_f508499212bdcdfc84ead6a4199d95be`, record 6bee7fc6866d, registry pin b9e82db1db19, data none, features none
+- Request record a372347427b1 (request 6, pass 052397e9f83d)
+- T1 24 h: forecast `fc_85d9c112b8a290bfe1d59a4d49f2f6b9`, record 9682cbb1c6d0, registry pin 7cb1c8b292f8, data none, features none
+- T1b 6 h: forecast `fc_6401689109b32e408eddf9028c5f6589`, record 173321e6ac9e, registry pin 4efd53b196ee, data none, features none
+- T2 24 h: forecast `fc_f508499212bdcdfc84ead6a4199d95be`, record 2015da261018, registry pin b9e82db1db19, data none, features none
 - Token report: 20261007_0016_baton_Hg5Ja5.md (the lab's report of this snapshot; its sections are unchanged)
 
 ### Limitations
@@ -697,22 +701,22 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 | Event | Exact chain:mint | Capture (UTC) | Covered by a report above | Request | Detail |
 |---|---|---|---|---|---|
-| DUPLICATE | `solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump` | 2026-10-27T10:55:13Z | yes | 0cc1e9ef85a4 | none |
-| DUPLICATE | `solana:6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx` | 2026-10-27T10:55:13Z | yes | 30dff435e4f7 | none |
-| DUPLICATE | `solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3` | 2026-10-27T10:55:13Z | yes | aa5f05054871 | none |
-| DUPLICATE | `solana:9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump` | 2026-10-27T10:55:13Z | yes | 72156c6e3e7b | none |
-| DUPLICATE | `solana:DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump` | 2026-10-27T10:55:13Z | yes | fe25133bd9cc | none |
-| DUPLICATE | `solana:HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR` | 2026-10-27T10:55:13Z | yes | 6463658bd84e | none |
-| DUPLICATE | `solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump` | 2026-10-27T10:55:13Z | yes | 7237ef198694 | none |
-| DUPLICATE | `solana:55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW` | 2026-10-27T10:55:13Z | yes | 950dabae2bad | none |
-| DUPLICATE | `solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump` | 2026-10-27T10:55:17Z | yes | d59a6340fed8 | none |
-| DUPLICATE | `solana:6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx` | 2026-10-27T10:55:17Z | yes | edff17fe0fb4 | none |
-| DUPLICATE | `solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3` | 2026-10-27T10:55:17Z | yes | 41c136f17a14 | none |
-| DUPLICATE | `solana:9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump` | 2026-10-27T10:55:17Z | yes | bcb2ce5a2792 | none |
-| DUPLICATE | `solana:DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump` | 2026-10-27T10:55:17Z | yes | cf4781c76667 | none |
-| DUPLICATE | `solana:HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR` | 2026-10-27T10:55:17Z | yes | af33a8bfbe71 | none |
-| DUPLICATE | `solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump` | 2026-10-27T10:55:17Z | yes | 7a6c63f726af | none |
-| DUPLICATE | `solana:55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW` | 2026-10-27T10:55:17Z | yes | 3bdbab1dfb7e | none |
+| DUPLICATE | `solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump` | 2026-10-27T12:00:49Z | yes | a20d76467c85 | none |
+| DUPLICATE | `solana:6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx` | 2026-10-27T12:00:49Z | yes | 377792c96637 | none |
+| DUPLICATE | `solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3` | 2026-10-27T12:00:49Z | yes | 6b9a37b7b376 | none |
+| DUPLICATE | `solana:9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump` | 2026-10-27T12:00:49Z | yes | bd84282f77d4 | none |
+| DUPLICATE | `solana:DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump` | 2026-10-27T12:00:49Z | yes | c79fcc6a04da | none |
+| DUPLICATE | `solana:HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR` | 2026-10-27T12:00:49Z | yes | b9b5f3a274c9 | none |
+| DUPLICATE | `solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump` | 2026-10-27T12:00:49Z | yes | 4aaebe9c1e3b | none |
+| DUPLICATE | `solana:55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW` | 2026-10-27T12:00:49Z | yes | daf99e9e0694 | none |
+| DUPLICATE | `solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump` | 2026-10-27T12:00:54Z | yes | fca04da79ead | none |
+| DUPLICATE | `solana:6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx` | 2026-10-27T12:00:54Z | yes | f0d0ab7f03e1 | none |
+| DUPLICATE | `solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3` | 2026-10-27T12:00:54Z | yes | 4f1f363bc4e0 | none |
+| DUPLICATE | `solana:9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump` | 2026-10-27T12:00:54Z | yes | d84cd4e2c2ed | none |
+| DUPLICATE | `solana:DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump` | 2026-10-27T12:00:54Z | yes | 1acbc1af0429 | none |
+| DUPLICATE | `solana:HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR` | 2026-10-27T12:00:54Z | yes | 96b9a80842b2 | none |
+| DUPLICATE | `solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump` | 2026-10-27T12:00:54Z | yes | 60ad121f3a7b | none |
+| DUPLICATE | `solana:55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW` | 2026-10-27T12:00:54Z | yes | 67136c2db4a9 | none |
 
 ## Units and times
 

@@ -1,0 +1,246 @@
+{
+ "fields": {
+  "replay_alerts.alert_policies": {
+   "equal": true
+  },
+  "replay_alerts.candidates": {
+   "equal": true
+  },
+  "replay_alerts.deduped": {
+   "equal": true
+  },
+  "replay_alerts.ledger": {
+   "equal": true
+  },
+  "replay_alerts.new": {
+   "equal": true
+  },
+  "replay_alerts.outcome": {
+   "equal": true
+  },
+  "replay_alerts.previews": {
+   "equal": true
+  },
+  "replay_alerts.remote_deliveries_succeeded": {
+   "equal": true
+  },
+  "replay_alerts.sent_folder_exists": {
+   "equal": true
+  },
+  "replay_alerts.suppressed": {
+   "equal": true
+  },
+  "replay_report.backtest_results": {
+   "equal": true
+  },
+  "replay_report.counts": {
+   "equal": false,
+   "new": {
+    "abstained": 141,
+    "not_attempted_events": 52,
+    "opportunities": 47,
+    "overridden": 0,
+    "probabilities_shown": 0,
+    "refused": 0,
+    "snapshots_verified": 0,
+    "targets": 141,
+    "vetoes": 22,
+    "with_risk": 22
+   },
+   "old": {
+    "abstained": 141,
+    "not_attempted_events": 52,
+    "opportunities": 47,
+    "probabilities_shown": 0,
+    "refused": 0,
+    "snapshots_verified": 0,
+    "targets": 141,
+    "vetoes": 22
+   }
+  },
+  "replay_report.input_states": {
+   "equal": true
+  },
+  "replay_report.lab_states": {
+   "equal": true
+  },
+  "replay_report.local_path": {
+   "equal": true
+  },
+  "replay_report.not_attempted_events": {
+   "equal": true
+  },
+  "replay_report.percent_or_fraction_outside_definitions": {
+   "equal": true
+  },
+  "replay_report.reason_counts": {
+   "equal": true
+  },
+  "replay_report.state": {
+   "equal": true
+  },
+  "replay_report.statuses": {
+   "equal": true
+  },
+  "replay_report.trading_word": {
+   "equal": true
+  },
+  "replay_report.veto_opportunities": {
+   "equal": true
+  },
+  "replay_report.vetoes": {
+   "equal": true
+  },
+  "scout_alerts.alert_policies": {
+   "equal": true
+  },
+  "scout_alerts.candidates": {
+   "equal": true
+  },
+  "scout_alerts.deduped": {
+   "equal": true
+  },
+  "scout_alerts.ledger": {
+   "equal": true
+  },
+  "scout_alerts.new": {
+   "equal": true
+  },
+  "scout_alerts.outcome": {
+   "equal": true
+  },
+  "scout_alerts.previews": {
+   "equal": true
+  },
+  "scout_alerts.remote_deliveries_succeeded": {
+   "equal": true
+  },
+  "scout_alerts.sent_folder_exists": {
+   "equal": true
+  },
+  "scout_alerts.suppressed": {
+   "equal": true
+  },
+  "scout_report.backtest_results": {
+   "equal": true
+  },
+  "scout_report.counts": {
+   "equal": false,
+   "new": {
+    "abstained": 24,
+    "not_attempted_events": 16,
+    "opportunities": 8,
+    "overridden": 0,
+    "probabilities_shown": 0,
+    "refused": 0,
+    "snapshots_verified": 8,
+    "targets": 24,
+    "vetoes": 3,
+    "with_risk": 3
+   },
+   "old": {
+    "abstained": 24,
+    "not_attempted_events": 16,
+    "opportunities": 8,
+    "probabilities_shown": 0,
+    "refused": 0,
+    "snapshots_verified": 8,
+    "targets": 24,
+    "vetoes": 3
+   }
+  },
+  "scout_report.input_states": {
+   "equal": true
+  },
+  "scout_report.lab_states": {
+   "equal": true
+  },
+  "scout_report.local_path": {
+   "equal": true
+  },
+  "scout_report.not_attempted_events": {
+   "equal": true
+  },
+  "scout_report.percent_or_fraction_outside_definitions": {
+   "equal": true
+  },
+  "scout_report.reason_counts": {
+   "equal": true
+  },
+  "scout_report.state": {
+   "equal": true
+  },
+  "scout_report.statuses": {
+   "equal": true
+  },
+  "scout_report.trading_word": {
+   "equal": true
+  },
+  "scout_report.veto_opportunities": {
+   "equal": true
+  },
+  "scout_report.vetoes": {
+   "equal": true
+  }
+ },
+ "fields_not_equal": [
+  "replay_report.counts",
+  "scout_report.counts"
+ ],
+ "old_commit": "100d262",
+ "texts": {
+  "REAL_ALERTS_REPLAY_DRY_RUN.txt": {
+   "changed_after_masking_ids_and_times": 0,
+   "changed_lines": 34,
+   "lines_new": 108,
+   "lines_old": 108,
+   "remaining_differences": []
+  },
+  "REAL_ALERTS_SCOUT_DRY_RUN.txt": {
+   "changed_after_masking_ids_and_times": 0,
+   "changed_lines": 2,
+   "lines_new": 10,
+   "lines_old": 10,
+   "remaining_differences": []
+  },
+  "REAL_REPLAY_REPORT.md": {
+   "changed_after_masking_ids_and_times": 29,
+   "changed_lines": 667,
+   "lines_new": 3649,
+   "lines_old": 3626,
+   "remaining_differences": [
+    "+- FACT: a FORECAST's number was recomputed from the raw number when the document was written (Phase 13 m3, verify_point); this report checks it against the point stored with the raw number and the registry-resolved cards, without recomputing it",
+    "+- FACT: any risk on a snapshot (a fatal flag, an unknown flag check, a backtest veto, a liquidity fall or loss, a newer snapshot not assessed) overrides its forecast: the number is withheld (PI-D-102)",
+    "+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K",
+    "+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K, INSIDER_DISTRIBUTION",
+    "+- FACT: risks that override any forecast on this snapshot: fatal flags CLUSTER_OWNERSHIP_GT_25PCT",
+    "+- FACT: risks that override any forecast on this snapshot: fatal flags CLUSTER_OWNERSHIP_GT_25PCT, CANNOT_EXIT_5K",
+    "+- FACT: risks that override any forecast on this snapshot: fatal flags INSIDER_DISTRIBUTION",
+    "+- FACT: risks that override any forecast on this snapshot: fatal flags LARGEST_HOLDER_GT_15PCT",
+    "+- FACT: risks that override any forecast on this snapshot: fatal flags TRANSFER_FEE_GT_5PCT, NO_SELL_ROUTE",
+    "+- FACT: token text (symbol, chain, labels, file names) is shown as letters, digits, dot, dash and underscore, at most 24 characters, and withheld when it carries a trading or forecast word, also run together (Phase 17 m3, PI-D-102); no local path is shown (m8)",
+    "+| Opportunity | Exact chain:mint | Inputs observed (UTC) | T1 24 h | T1b 6 h | T2 24 h | Vetoes and risk flags | Inputs |",
+    "-- FACT: a FORECAST's number must equal the point recomputed from the raw number kept in the request record (Phase 13 m3, verify_point) and its cards must resolve from the registry",
+    "-- FACT: token text (symbol, chain, labels, file names) is shown as letters, digits, dot, dash and underscore, at most 24 characters, and withheld when it carries a trading or forecast word (Phase 17 m3); no local path is shown (m8)",
+    "-| Opportunity | Exact chain:mint | Inputs observed (UTC) | T1 24 h | T1b 6 h | T2 24 h | Vetoes | Inputs |"
+   ]
+  },
+  "REAL_SCOUT_REPORT.md": {
+   "changed_after_masking_ids_and_times": 10,
+   "changed_lines": 204,
+   "lines_new": 726,
+   "lines_old": 722,
+   "remaining_differences": [
+    "+- FACT: a FORECAST's number was recomputed from the raw number when the document was written (Phase 13 m3, verify_point); this report checks it against the point stored with the raw number and the registry-resolved cards, without recomputing it",
+    "+- FACT: any risk on a snapshot (a fatal flag, an unknown flag check, a backtest veto, a liquidity fall or loss, a newer snapshot not assessed) overrides its forecast: the number is withheld (PI-D-102)",
+    "+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K",
+    "+- FACT: risks that override any forecast on this snapshot: fatal flags WASH_TRADING_HIGH",
+    "+- FACT: token text (symbol, chain, labels, file names) is shown as letters, digits, dot, dash and underscore, at most 24 characters, and withheld when it carries a trading or forecast word, also run together (Phase 17 m3, PI-D-102); no local path is shown (m8)",
+    "+| Opportunity | Exact chain:mint | Inputs observed (UTC) | T1 24 h | T1b 6 h | T2 24 h | Vetoes and risk flags | Inputs |",
+    "-- FACT: a FORECAST's number must equal the point recomputed from the raw number kept in the request record (Phase 13 m3, verify_point) and its cards must resolve from the registry",
+    "-- FACT: token text (symbol, chain, labels, file names) is shown as letters, digits, dot, dash and underscore, at most 24 characters, and withheld when it carries a trading or forecast word (Phase 17 m3); no local path is shown (m8)",
+    "-| Opportunity | Exact chain:mint | Inputs observed (UTC) | T1 24 h | T1b 6 h | T2 24 h | Vetoes | Inputs |"
+   ]
+  }
+ }
+}
