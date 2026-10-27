@@ -1,0 +1,128 @@
+{
+ "coding_status": {
+  "DEVELOPMENT:CODED": 830,
+  "HOLDOUT_WINDOW:CODED": 95
+ },
+ "coding_version": "scenario-coding-1",
+ "controls": {
+  "NCB_UNVERIFIED": {
+   "planted": 426,
+   "planted_unscorable_rumor_fade": 426,
+   "seed_refused": 0,
+   "t1_event_warnings": 0,
+   "unscorable_statements": 426
+  },
+  "NCB_VERIFIED": {
+   "planted": 426,
+   "planted_unscorable_rumor_fade": 0,
+   "seed_refused": 0,
+   "t1_event_warnings": 426,
+   "unscorable_statements": 0
+  },
+  "P28_AFTER_DECISION_OBSERVATION": {
+   "code:OBSERVATION_AFTER_DECISION": 830,
+   "code:POST_DECISION_DATE": 830,
+   "refused": 830,
+   "seeds": 830,
+   "statements": 0
+  },
+  "P28_POST_DECISION_DATE_TEXT": {
+   "code:POST_DECISION_DATE": 830,
+   "refused": 830,
+   "seeds": 830,
+   "statements": 0
+  }
+ },
+ "debug_runs": [
+  "2026-10-27T00:56:59Z to 00:57:41Z at uncommitted code into the session scratchpad (dbg1): every output written; one log field was rewritten for readability before the run, nothing after it; no label, outcome or prediction file opened",
+  "00:58Z twin (dbg2): every coding output byte-equal to dbg1, the log equal except its times"
+ ],
+ "development_documents": 830,
+ "development_recompute_differences": 0,
+ "documents_with_validation_errors": 0,
+ "end_utc": "2026-10-27T00:59:46Z",
+ "event_count": {
+  "candidate_items_not_eligible": 27,
+  "catalyst_event_observations_in_dev_seeds": 0,
+  "data_private_exists": false,
+  "decision_snapshots": {
+   "DEVELOPMENT": {
+    "days": 10,
+    "export_commits": 79,
+    "mints": 148,
+    "rows": 830
+   },
+   "HOLDOUT_WINDOW": {
+    "days": 7,
+    "export_commits": 7,
+    "mints": 81,
+    "rows": 95
+   }
+  },
+  "development_export_commits": 79,
+  "eligible_catalyst_events": 0,
+  "export_catalyst_or_social_table_rows": {},
+  "export_table_names": {
+   "benchmark_baskets": 78,
+   "chain_scores": 78,
+   "chain_snapshots": 78,
+   "chains": 78,
+   "ecosystem_alerts": 78,
+   "entries": 78,
+   "launch_alerts": 66,
+   "launch_cohort": 66,
+   "launch_monitor": 66,
+   "launch_rejections": 66,
+   "launch_transitions": 66,
+   "market_snapshots": 1,
+   "narrative_snapshots": 78,
+   "narratives": 78,
+   "pools": 1,
+   "regime_snapshots": 78,
+   "rejections": 79,
+   "theses": 79,
+   "tokens": 79,
+   "upcoming_launches": 66,
+   "watchlist": 79
+  },
+  "phase10_real_catalyst_rows": 0,
+  "phase10_real_social_rows": 0,
+  "required": 100,
+  "tracked_lab_db_tables": {
+   "social_snapshots": 99
+  }
+ },
+ "feature_store_sha256_after": "2525f0c4a7b2662713d07e99acd1a371c33aa5082994f5f552aba477f98dd8de",
+ "feature_store_sha256_before": "2525f0c4a7b2662713d07e99acd1a371c33aa5082994f5f552aba477f98dd8de",
+ "forbidden_opens": [],
+ "head": "9ab0160789ec26bedc0ec47bc484760ce27da168",
+ "holdout_window_decisions": 95,
+ "holdout_window_seeds_refused": 0,
+ "label_calls": [],
+ "main_ref": "e245d91cc5f56060ba8e1aa7182c846c77d1526c",
+ "outputs_sha256": {
+  "behavioral/CONTROL_CODING.csv": "2398080ce516458d5b942590e55a0e789bf78c4e1bc1350d00b923ffb2e45a7f",
+  "behavioral/EVENT_SET.csv": "1491bb0e2f623fd722ac86bc341cd83f60a4f497efba5c10d443834d75da9f89",
+  "behavioral/HOLDOUT_RULE_SCENARIOS.jsonl": "6e8f333360db4a2be6283cbed08c6a8405f769d5b6033b08e0bd4fad6a34a65b",
+  "behavioral/SCENARIO_CODING.csv": "21a0d9e2e3f774c4435e5948abdefa5105f912133de2c9b4083ca5ebc4e4a69e"
+ },
+ "phase14_rule_documents_sha256": "15ccd5f183e4e00ce5b52a6e1876732e16a8a86941b97bd55ea74ee180cc8e40",
+ "phase14_seeds_sha256": "a0c618177503013016f0043356ff5d99ec85e55c872c097ddc87c0f57d26a0c1",
+ "rules_sha256": "557ef8780869b939b21185370c0baf484fdd9603da42618f75d981512828fc19",
+ "scenario_eval_version": "scenario-eval-1",
+ "script": "audits/predictive-intelligence/phase_15/probes/code_scenarios.py",
+ "socket_events": [],
+ "start_utc": "2026-10-27T00:59:06Z",
+ "warnings": {
+  "DEVELOPMENT:T1_24h:NONE": 830,
+  "DEVELOPMENT:T1b_6h:EVENT": 66,
+  "DEVELOPMENT:T1b_6h:NONE": 764,
+  "DEVELOPMENT:T2_24h:EVENT": 537,
+  "DEVELOPMENT:T2_24h:NONE": 293,
+  "HOLDOUT_WINDOW:T1_24h:NONE": 95,
+  "HOLDOUT_WINDOW:T1b_6h:EVENT": 8,
+  "HOLDOUT_WINDOW:T1b_6h:NONE": 87,
+  "HOLDOUT_WINDOW:T2_24h:EVENT": 45,
+  "HOLDOUT_WINDOW:T2_24h:NONE": 50
+ }
+}
