@@ -1,0 +1,5 @@
+..........xx..............                                               [100%]
+=========================== short test summary info ============================
+XFAIL tests/test_predictive_phase20_cross.py::test_x04_the_ledger_refuses_a_labeled_outcome_whose_token_parameter_is_not_exactly_the_mint[prefix_extended_token] - F20-04 open (MINOR): the ledger's identity rule is a substring test on the URL, not the parsed token parameter
+XFAIL tests/test_predictive_phase20_cross.py::test_x04_the_ledger_refuses_a_labeled_outcome_whose_token_parameter_is_not_exactly_the_mint[token_only_in_another_parameter] - F20-04 open (MINOR): the ledger's identity rule is a substring test on the URL, not the parsed token parameter
+24 passed, 2 xfailed in 11.94s

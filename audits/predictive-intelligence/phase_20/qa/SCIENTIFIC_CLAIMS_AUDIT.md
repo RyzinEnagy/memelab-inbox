@@ -62,7 +62,7 @@ Answers to the prompt's list:
 | Source and decision time | CX-00A, CX-00B, CX-S1 (decision time is the first export commit, never `created_at`); recalculation (c): 28 of 28 decision keys rebuilt from the exact export rows | refused or equal |
 | Feature | P36, CX-10, CX-08, the Phase 05 truncation proof re-run (1,500 decisions, 0 differences in both modes, G5) | refused or equal |
 | Target | P05, P06, P37, CX-06, CX-S06; recalculation (a) 61 of 61 prospective labels and (b) 40 of 40 development labels re-derived from the raw vendor bodies with own code | refused or equal |
-| Model training | P13, P43, CX-07, CX-12; X06 shows the serving path itself does not re-check a card's training maturity (finding F20-06) | the replay guard refuses it; the serving path did not at the audited code |
-| Report or reader | P27, P41, P44, CX-18, CX-SK18, X01, X05; the carried Phase 18 minor 5 (F20-08) | refused, except the carried forged-point case |
+| Model training | P13, P43, CX-07, CX-12; X06 shows the serving path itself did not re-check a card's training maturity (finding F20-06) | the replay guard refuses it; the serving path did not at the audited code; repaired at `5ebce8a` (pin refused, serve blocks) |
+| Report or reader | P27, P41, P44, CX-18, CX-SK18, X01, X05; the carried Phase 18 minor 5 (F20-08) | refused, except the carried forged-point case at the audited code; repaired at `5ebce8a` (the reader recomputes the raw number, point and interval) |
 
-The leakage gate holds on every real path at the audited code: no real champion exists, so F20-06 and F20-08 are latent and reachable only through fixture champions today; both are classified in `INDEPENDENT_FINDINGS.md`.
+The leakage gate holds on every real path at the audited code: no real champion exists, so F20-06 and F20-08 were latent and reachable only through fixture champions; both are classified in `INDEPENDENT_FINDINGS.md` and repaired at `5ebce8a` under CP20-1, with the scenario matrix, counterexamples, reproductions, smoke and flag-off identity rerun there. No number in this file changes with the repair (the repair touches only paths that no real target reaches).

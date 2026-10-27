@@ -1,0 +1,788 @@
+{
+ "all_identical": true,
+ "checkout_status": [],
+ "comparisons": {
+  "frozen_false_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "exit": 0,
+   "exit_equal": true,
+   "lab_tables_equal": true,
+   "no_predictive_import": true,
+   "no_private_dir": true,
+   "no_tracked_change": true,
+   "reports": 9,
+   "reports_byte_equal": true,
+   "stdout_byte_equal": true
+  },
+  "frozen_false_efdaee9": {
+   "exit": 0,
+   "exit_equal": true,
+   "lab_tables_equal": true,
+   "no_predictive_import": true,
+   "no_private_dir": true,
+   "no_tracked_change": true,
+   "reports": 9,
+   "reports_byte_equal": true,
+   "stdout_byte_equal": true
+  },
+  "frozen_malformed_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "exit": 1,
+   "exit_equal": true,
+   "lab_tables_equal": true,
+   "no_predictive_import": true,
+   "no_private_dir": true,
+   "no_tracked_change": true,
+   "reports": 8,
+   "reports_byte_equal": true,
+   "stdout_byte_equal": true
+  },
+  "frozen_malformed_efdaee9": {
+   "exit": 1,
+   "exit_equal": true,
+   "lab_tables_equal": true,
+   "no_predictive_import": true,
+   "no_private_dir": true,
+   "no_tracked_change": true,
+   "reports": 8,
+   "reports_byte_equal": true,
+   "stdout_byte_equal": true
+  },
+  "frozen_none_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "exit": 0,
+   "exit_equal": true,
+   "lab_tables_equal": true,
+   "no_predictive_import": true,
+   "no_private_dir": true,
+   "no_tracked_change": true,
+   "reports": 9,
+   "reports_byte_equal": true,
+   "stdout_byte_equal": true
+  },
+  "frozen_none_efdaee9": {
+   "exit": 0,
+   "exit_equal": true,
+   "lab_tables_equal": true,
+   "no_predictive_import": true,
+   "no_private_dir": true,
+   "no_tracked_change": true,
+   "reports": 9,
+   "reports_byte_equal": true,
+   "stdout_byte_equal": true
+  },
+  "frozen_one_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "exit": 0,
+   "exit_equal": true,
+   "lab_tables_equal": true,
+   "no_predictive_import": true,
+   "no_private_dir": true,
+   "no_tracked_change": true,
+   "reports": 9,
+   "reports_byte_equal": true,
+   "stdout_byte_equal": true
+  },
+  "frozen_one_efdaee9": {
+   "exit": 0,
+   "exit_equal": true,
+   "lab_tables_equal": true,
+   "no_predictive_import": true,
+   "no_private_dir": true,
+   "no_tracked_change": true,
+   "reports": 9,
+   "reports_byte_equal": true,
+   "stdout_byte_equal": true
+  },
+  "frozen_section_true_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "exit": 0,
+   "exit_equal": true,
+   "lab_tables_equal": true,
+   "no_predictive_import": true,
+   "no_private_dir": true,
+   "no_tracked_change": true,
+   "reports": 9,
+   "reports_byte_equal": true,
+   "stdout_byte_equal": true
+  },
+  "frozen_section_true_efdaee9": {
+   "exit": 0,
+   "exit_equal": true,
+   "lab_tables_equal": true,
+   "no_predictive_import": true,
+   "no_private_dir": true,
+   "no_tracked_change": true,
+   "reports": 9,
+   "reports_byte_equal": true,
+   "stdout_byte_equal": true
+  },
+  "frozen_string_true_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "exit": 0,
+   "exit_equal": true,
+   "lab_tables_equal": true,
+   "no_predictive_import": true,
+   "no_private_dir": true,
+   "no_tracked_change": true,
+   "reports": 9,
+   "reports_byte_equal": true,
+   "stdout_byte_equal": true
+  },
+  "frozen_string_true_efdaee9": {
+   "exit": 0,
+   "exit_equal": true,
+   "lab_tables_equal": true,
+   "no_predictive_import": true,
+   "no_private_dir": true,
+   "no_tracked_change": true,
+   "reports": 9,
+   "reports_byte_equal": true,
+   "stdout_byte_equal": true
+  }
+ },
+ "exports_sha256": [
+  "3f44234ef1db0ceb8605d06266e194f9216d1f97a1b85325be42022400677fdd",
+  "3f6d20a3a44d3e59b958040274d01513404c7ce0e383c4a9a950e83eb53331f7"
+ ],
+ "runs": {
+  "base_false_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "commit": "b0fad12",
+   "exit": 0,
+   "export": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "aa96650bb5a7c240f64d30c2194326cf2be833fc87d43f0f57d26e1a57b02768",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "b23dbc50bf6f17f9c141c5a48768664de1b6000f60c66a5afcc2b86a3b92cf7d",
+    "20261007_0016_ZCAT_HcRLc9.md": "f0db18aa521836bc26592af44ae2ffe87d89c67be976b13141aa8c1fd9f4edeb",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
+    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
+    "theses": "286f2fc3df2d03dbb29891d7fb0b32206485abe0694a6fff50b0f13746585252",
+    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
+    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
+   }
+  },
+  "base_false_efdaee9": {
+   "commit": "b0fad12",
+   "exit": 0,
+   "export": "efdaee9",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "adef07b20f290e647692edc7149c4bfa7e1f2b99bff93ea25440a18ce8d0ba89",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "a5d0b8cc27559d736c7e09d0063b6bff48c65831501de315e7deb875d924438b",
+    "20261007_0016_ZCAT_HcRLc9.md": "cfb4c33d7cad90838bcab728113946acacfbd3217017a16f0be9a69d391fc309",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "26a62538aade80be3a493558c62e7e3d2ce792ce37d148b8486b7223b6672acc",
+    "rejections": "5586a3440f01054588c9a74e1c6da3bda21e37fd19d071d96f2973af39e47ec6",
+    "theses": "44756796f4e6ef5f3ec436102daf8c7d9dc45d1b22ea0ad3a87abfe8e78210e1",
+    "tokens": "92388fa8b22a8114bbf012103a3187e43681a231088de427099f67bf372e9d8d",
+    "watchlist": "e728b02047e7386ed003f6da3fd8dbbb65186212af798a65cff2ef93ecb74cd5"
+   }
+  },
+  "base_malformed_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "commit": "b0fad12",
+   "exit": 1,
+   "export": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "aa96650bb5a7c240f64d30c2194326cf2be833fc87d43f0f57d26e1a57b02768",
+    "20261007_0016_STONK_6GmAFS.md": "b23dbc50bf6f17f9c141c5a48768664de1b6000f60c66a5afcc2b86a3b92cf7d",
+    "20261007_0016_ZCAT_HcRLc9.md": "f0db18aa521836bc26592af44ae2ffe87d89c67be976b13141aa8c1fd9f4edeb",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "tables": {
+    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
+    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
+    "theses": "286f2fc3df2d03dbb29891d7fb0b32206485abe0694a6fff50b0f13746585252",
+    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
+    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
+   }
+  },
+  "base_malformed_efdaee9": {
+   "commit": "b0fad12",
+   "exit": 1,
+   "export": "efdaee9",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "adef07b20f290e647692edc7149c4bfa7e1f2b99bff93ea25440a18ce8d0ba89",
+    "20261007_0016_STONK_6GmAFS.md": "a5d0b8cc27559d736c7e09d0063b6bff48c65831501de315e7deb875d924438b",
+    "20261007_0016_ZCAT_HcRLc9.md": "cfb4c33d7cad90838bcab728113946acacfbd3217017a16f0be9a69d391fc309",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "tables": {
+    "entries": "26a62538aade80be3a493558c62e7e3d2ce792ce37d148b8486b7223b6672acc",
+    "rejections": "5586a3440f01054588c9a74e1c6da3bda21e37fd19d071d96f2973af39e47ec6",
+    "theses": "44756796f4e6ef5f3ec436102daf8c7d9dc45d1b22ea0ad3a87abfe8e78210e1",
+    "tokens": "92388fa8b22a8114bbf012103a3187e43681a231088de427099f67bf372e9d8d",
+    "watchlist": "e728b02047e7386ed003f6da3fd8dbbb65186212af798a65cff2ef93ecb74cd5"
+   }
+  },
+  "base_none_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "commit": "b0fad12",
+   "exit": 0,
+   "export": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "aa96650bb5a7c240f64d30c2194326cf2be833fc87d43f0f57d26e1a57b02768",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "b23dbc50bf6f17f9c141c5a48768664de1b6000f60c66a5afcc2b86a3b92cf7d",
+    "20261007_0016_ZCAT_HcRLc9.md": "f0db18aa521836bc26592af44ae2ffe87d89c67be976b13141aa8c1fd9f4edeb",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
+    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
+    "theses": "286f2fc3df2d03dbb29891d7fb0b32206485abe0694a6fff50b0f13746585252",
+    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
+    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
+   }
+  },
+  "base_none_efdaee9": {
+   "commit": "b0fad12",
+   "exit": 0,
+   "export": "efdaee9",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "adef07b20f290e647692edc7149c4bfa7e1f2b99bff93ea25440a18ce8d0ba89",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "a5d0b8cc27559d736c7e09d0063b6bff48c65831501de315e7deb875d924438b",
+    "20261007_0016_ZCAT_HcRLc9.md": "cfb4c33d7cad90838bcab728113946acacfbd3217017a16f0be9a69d391fc309",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "26a62538aade80be3a493558c62e7e3d2ce792ce37d148b8486b7223b6672acc",
+    "rejections": "5586a3440f01054588c9a74e1c6da3bda21e37fd19d071d96f2973af39e47ec6",
+    "theses": "44756796f4e6ef5f3ec436102daf8c7d9dc45d1b22ea0ad3a87abfe8e78210e1",
+    "tokens": "92388fa8b22a8114bbf012103a3187e43681a231088de427099f67bf372e9d8d",
+    "watchlist": "e728b02047e7386ed003f6da3fd8dbbb65186212af798a65cff2ef93ecb74cd5"
+   }
+  },
+  "base_one_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "commit": "b0fad12",
+   "exit": 0,
+   "export": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "aa96650bb5a7c240f64d30c2194326cf2be833fc87d43f0f57d26e1a57b02768",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "b23dbc50bf6f17f9c141c5a48768664de1b6000f60c66a5afcc2b86a3b92cf7d",
+    "20261007_0016_ZCAT_HcRLc9.md": "f0db18aa521836bc26592af44ae2ffe87d89c67be976b13141aa8c1fd9f4edeb",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
+    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
+    "theses": "286f2fc3df2d03dbb29891d7fb0b32206485abe0694a6fff50b0f13746585252",
+    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
+    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
+   }
+  },
+  "base_one_efdaee9": {
+   "commit": "b0fad12",
+   "exit": 0,
+   "export": "efdaee9",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "adef07b20f290e647692edc7149c4bfa7e1f2b99bff93ea25440a18ce8d0ba89",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "a5d0b8cc27559d736c7e09d0063b6bff48c65831501de315e7deb875d924438b",
+    "20261007_0016_ZCAT_HcRLc9.md": "cfb4c33d7cad90838bcab728113946acacfbd3217017a16f0be9a69d391fc309",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "26a62538aade80be3a493558c62e7e3d2ce792ce37d148b8486b7223b6672acc",
+    "rejections": "5586a3440f01054588c9a74e1c6da3bda21e37fd19d071d96f2973af39e47ec6",
+    "theses": "44756796f4e6ef5f3ec436102daf8c7d9dc45d1b22ea0ad3a87abfe8e78210e1",
+    "tokens": "92388fa8b22a8114bbf012103a3187e43681a231088de427099f67bf372e9d8d",
+    "watchlist": "e728b02047e7386ed003f6da3fd8dbbb65186212af798a65cff2ef93ecb74cd5"
+   }
+  },
+  "base_section_true_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "commit": "b0fad12",
+   "exit": 0,
+   "export": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "aa96650bb5a7c240f64d30c2194326cf2be833fc87d43f0f57d26e1a57b02768",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "b23dbc50bf6f17f9c141c5a48768664de1b6000f60c66a5afcc2b86a3b92cf7d",
+    "20261007_0016_ZCAT_HcRLc9.md": "f0db18aa521836bc26592af44ae2ffe87d89c67be976b13141aa8c1fd9f4edeb",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
+    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
+    "theses": "286f2fc3df2d03dbb29891d7fb0b32206485abe0694a6fff50b0f13746585252",
+    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
+    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
+   }
+  },
+  "base_section_true_efdaee9": {
+   "commit": "b0fad12",
+   "exit": 0,
+   "export": "efdaee9",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "adef07b20f290e647692edc7149c4bfa7e1f2b99bff93ea25440a18ce8d0ba89",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "a5d0b8cc27559d736c7e09d0063b6bff48c65831501de315e7deb875d924438b",
+    "20261007_0016_ZCAT_HcRLc9.md": "cfb4c33d7cad90838bcab728113946acacfbd3217017a16f0be9a69d391fc309",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "26a62538aade80be3a493558c62e7e3d2ce792ce37d148b8486b7223b6672acc",
+    "rejections": "5586a3440f01054588c9a74e1c6da3bda21e37fd19d071d96f2973af39e47ec6",
+    "theses": "44756796f4e6ef5f3ec436102daf8c7d9dc45d1b22ea0ad3a87abfe8e78210e1",
+    "tokens": "92388fa8b22a8114bbf012103a3187e43681a231088de427099f67bf372e9d8d",
+    "watchlist": "e728b02047e7386ed003f6da3fd8dbbb65186212af798a65cff2ef93ecb74cd5"
+   }
+  },
+  "base_string_true_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "commit": "b0fad12",
+   "exit": 0,
+   "export": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "aa96650bb5a7c240f64d30c2194326cf2be833fc87d43f0f57d26e1a57b02768",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "b23dbc50bf6f17f9c141c5a48768664de1b6000f60c66a5afcc2b86a3b92cf7d",
+    "20261007_0016_ZCAT_HcRLc9.md": "f0db18aa521836bc26592af44ae2ffe87d89c67be976b13141aa8c1fd9f4edeb",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
+    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
+    "theses": "286f2fc3df2d03dbb29891d7fb0b32206485abe0694a6fff50b0f13746585252",
+    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
+    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
+   }
+  },
+  "base_string_true_efdaee9": {
+   "commit": "b0fad12",
+   "exit": 0,
+   "export": "efdaee9",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "adef07b20f290e647692edc7149c4bfa7e1f2b99bff93ea25440a18ce8d0ba89",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "a5d0b8cc27559d736c7e09d0063b6bff48c65831501de315e7deb875d924438b",
+    "20261007_0016_ZCAT_HcRLc9.md": "cfb4c33d7cad90838bcab728113946acacfbd3217017a16f0be9a69d391fc309",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "26a62538aade80be3a493558c62e7e3d2ce792ce37d148b8486b7223b6672acc",
+    "rejections": "5586a3440f01054588c9a74e1c6da3bda21e37fd19d071d96f2973af39e47ec6",
+    "theses": "44756796f4e6ef5f3ec436102daf8c7d9dc45d1b22ea0ad3a87abfe8e78210e1",
+    "tokens": "92388fa8b22a8114bbf012103a3187e43681a231088de427099f67bf372e9d8d",
+    "watchlist": "e728b02047e7386ed003f6da3fd8dbbb65186212af798a65cff2ef93ecb74cd5"
+   }
+  },
+  "frozen_false_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "commit": "5ebce8a",
+   "exit": 0,
+   "export": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "aa96650bb5a7c240f64d30c2194326cf2be833fc87d43f0f57d26e1a57b02768",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "b23dbc50bf6f17f9c141c5a48768664de1b6000f60c66a5afcc2b86a3b92cf7d",
+    "20261007_0016_ZCAT_HcRLc9.md": "f0db18aa521836bc26592af44ae2ffe87d89c67be976b13141aa8c1fd9f4edeb",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
+    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
+    "theses": "286f2fc3df2d03dbb29891d7fb0b32206485abe0694a6fff50b0f13746585252",
+    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
+    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
+   }
+  },
+  "frozen_false_efdaee9": {
+   "commit": "5ebce8a",
+   "exit": 0,
+   "export": "efdaee9",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "adef07b20f290e647692edc7149c4bfa7e1f2b99bff93ea25440a18ce8d0ba89",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "a5d0b8cc27559d736c7e09d0063b6bff48c65831501de315e7deb875d924438b",
+    "20261007_0016_ZCAT_HcRLc9.md": "cfb4c33d7cad90838bcab728113946acacfbd3217017a16f0be9a69d391fc309",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "26a62538aade80be3a493558c62e7e3d2ce792ce37d148b8486b7223b6672acc",
+    "rejections": "5586a3440f01054588c9a74e1c6da3bda21e37fd19d071d96f2973af39e47ec6",
+    "theses": "44756796f4e6ef5f3ec436102daf8c7d9dc45d1b22ea0ad3a87abfe8e78210e1",
+    "tokens": "92388fa8b22a8114bbf012103a3187e43681a231088de427099f67bf372e9d8d",
+    "watchlist": "e728b02047e7386ed003f6da3fd8dbbb65186212af798a65cff2ef93ecb74cd5"
+   }
+  },
+  "frozen_malformed_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "commit": "5ebce8a",
+   "exit": 1,
+   "export": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "aa96650bb5a7c240f64d30c2194326cf2be833fc87d43f0f57d26e1a57b02768",
+    "20261007_0016_STONK_6GmAFS.md": "b23dbc50bf6f17f9c141c5a48768664de1b6000f60c66a5afcc2b86a3b92cf7d",
+    "20261007_0016_ZCAT_HcRLc9.md": "f0db18aa521836bc26592af44ae2ffe87d89c67be976b13141aa8c1fd9f4edeb",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "tables": {
+    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
+    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
+    "theses": "286f2fc3df2d03dbb29891d7fb0b32206485abe0694a6fff50b0f13746585252",
+    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
+    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
+   }
+  },
+  "frozen_malformed_efdaee9": {
+   "commit": "5ebce8a",
+   "exit": 1,
+   "export": "efdaee9",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "adef07b20f290e647692edc7149c4bfa7e1f2b99bff93ea25440a18ce8d0ba89",
+    "20261007_0016_STONK_6GmAFS.md": "a5d0b8cc27559d736c7e09d0063b6bff48c65831501de315e7deb875d924438b",
+    "20261007_0016_ZCAT_HcRLc9.md": "cfb4c33d7cad90838bcab728113946acacfbd3217017a16f0be9a69d391fc309",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "tables": {
+    "entries": "26a62538aade80be3a493558c62e7e3d2ce792ce37d148b8486b7223b6672acc",
+    "rejections": "5586a3440f01054588c9a74e1c6da3bda21e37fd19d071d96f2973af39e47ec6",
+    "theses": "44756796f4e6ef5f3ec436102daf8c7d9dc45d1b22ea0ad3a87abfe8e78210e1",
+    "tokens": "92388fa8b22a8114bbf012103a3187e43681a231088de427099f67bf372e9d8d",
+    "watchlist": "e728b02047e7386ed003f6da3fd8dbbb65186212af798a65cff2ef93ecb74cd5"
+   }
+  },
+  "frozen_none_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "commit": "5ebce8a",
+   "exit": 0,
+   "export": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "aa96650bb5a7c240f64d30c2194326cf2be833fc87d43f0f57d26e1a57b02768",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "b23dbc50bf6f17f9c141c5a48768664de1b6000f60c66a5afcc2b86a3b92cf7d",
+    "20261007_0016_ZCAT_HcRLc9.md": "f0db18aa521836bc26592af44ae2ffe87d89c67be976b13141aa8c1fd9f4edeb",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
+    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
+    "theses": "286f2fc3df2d03dbb29891d7fb0b32206485abe0694a6fff50b0f13746585252",
+    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
+    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
+   }
+  },
+  "frozen_none_efdaee9": {
+   "commit": "5ebce8a",
+   "exit": 0,
+   "export": "efdaee9",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "adef07b20f290e647692edc7149c4bfa7e1f2b99bff93ea25440a18ce8d0ba89",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "a5d0b8cc27559d736c7e09d0063b6bff48c65831501de315e7deb875d924438b",
+    "20261007_0016_ZCAT_HcRLc9.md": "cfb4c33d7cad90838bcab728113946acacfbd3217017a16f0be9a69d391fc309",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "26a62538aade80be3a493558c62e7e3d2ce792ce37d148b8486b7223b6672acc",
+    "rejections": "5586a3440f01054588c9a74e1c6da3bda21e37fd19d071d96f2973af39e47ec6",
+    "theses": "44756796f4e6ef5f3ec436102daf8c7d9dc45d1b22ea0ad3a87abfe8e78210e1",
+    "tokens": "92388fa8b22a8114bbf012103a3187e43681a231088de427099f67bf372e9d8d",
+    "watchlist": "e728b02047e7386ed003f6da3fd8dbbb65186212af798a65cff2ef93ecb74cd5"
+   }
+  },
+  "frozen_one_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "commit": "5ebce8a",
+   "exit": 0,
+   "export": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "aa96650bb5a7c240f64d30c2194326cf2be833fc87d43f0f57d26e1a57b02768",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "b23dbc50bf6f17f9c141c5a48768664de1b6000f60c66a5afcc2b86a3b92cf7d",
+    "20261007_0016_ZCAT_HcRLc9.md": "f0db18aa521836bc26592af44ae2ffe87d89c67be976b13141aa8c1fd9f4edeb",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
+    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
+    "theses": "286f2fc3df2d03dbb29891d7fb0b32206485abe0694a6fff50b0f13746585252",
+    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
+    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
+   }
+  },
+  "frozen_one_efdaee9": {
+   "commit": "5ebce8a",
+   "exit": 0,
+   "export": "efdaee9",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "adef07b20f290e647692edc7149c4bfa7e1f2b99bff93ea25440a18ce8d0ba89",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "a5d0b8cc27559d736c7e09d0063b6bff48c65831501de315e7deb875d924438b",
+    "20261007_0016_ZCAT_HcRLc9.md": "cfb4c33d7cad90838bcab728113946acacfbd3217017a16f0be9a69d391fc309",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "26a62538aade80be3a493558c62e7e3d2ce792ce37d148b8486b7223b6672acc",
+    "rejections": "5586a3440f01054588c9a74e1c6da3bda21e37fd19d071d96f2973af39e47ec6",
+    "theses": "44756796f4e6ef5f3ec436102daf8c7d9dc45d1b22ea0ad3a87abfe8e78210e1",
+    "tokens": "92388fa8b22a8114bbf012103a3187e43681a231088de427099f67bf372e9d8d",
+    "watchlist": "e728b02047e7386ed003f6da3fd8dbbb65186212af798a65cff2ef93ecb74cd5"
+   }
+  },
+  "frozen_section_true_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "commit": "5ebce8a",
+   "exit": 0,
+   "export": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "aa96650bb5a7c240f64d30c2194326cf2be833fc87d43f0f57d26e1a57b02768",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "b23dbc50bf6f17f9c141c5a48768664de1b6000f60c66a5afcc2b86a3b92cf7d",
+    "20261007_0016_ZCAT_HcRLc9.md": "f0db18aa521836bc26592af44ae2ffe87d89c67be976b13141aa8c1fd9f4edeb",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
+    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
+    "theses": "286f2fc3df2d03dbb29891d7fb0b32206485abe0694a6fff50b0f13746585252",
+    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
+    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
+   }
+  },
+  "frozen_section_true_efdaee9": {
+   "commit": "5ebce8a",
+   "exit": 0,
+   "export": "efdaee9",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "adef07b20f290e647692edc7149c4bfa7e1f2b99bff93ea25440a18ce8d0ba89",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "a5d0b8cc27559d736c7e09d0063b6bff48c65831501de315e7deb875d924438b",
+    "20261007_0016_ZCAT_HcRLc9.md": "cfb4c33d7cad90838bcab728113946acacfbd3217017a16f0be9a69d391fc309",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "26a62538aade80be3a493558c62e7e3d2ce792ce37d148b8486b7223b6672acc",
+    "rejections": "5586a3440f01054588c9a74e1c6da3bda21e37fd19d071d96f2973af39e47ec6",
+    "theses": "44756796f4e6ef5f3ec436102daf8c7d9dc45d1b22ea0ad3a87abfe8e78210e1",
+    "tokens": "92388fa8b22a8114bbf012103a3187e43681a231088de427099f67bf372e9d8d",
+    "watchlist": "e728b02047e7386ed003f6da3fd8dbbb65186212af798a65cff2ef93ecb74cd5"
+   }
+  },
+  "frozen_string_true_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0": {
+   "commit": "5ebce8a",
+   "exit": 0,
+   "export": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "aa96650bb5a7c240f64d30c2194326cf2be833fc87d43f0f57d26e1a57b02768",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "b23dbc50bf6f17f9c141c5a48768664de1b6000f60c66a5afcc2b86a3b92cf7d",
+    "20261007_0016_ZCAT_HcRLc9.md": "f0db18aa521836bc26592af44ae2ffe87d89c67be976b13141aa8c1fd9f4edeb",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "ae7e63d64ee55dc2f8453dc191b1b1abab38aef4e64939bd272c8dfdd5c2bbe2",
+    "rejections": "f50474afaa78a8a6679f51a5b395e1bdba996d1b772fac80e0ea8f6be6b354a9",
+    "theses": "286f2fc3df2d03dbb29891d7fb0b32206485abe0694a6fff50b0f13746585252",
+    "tokens": "2c36fcd4ce069d4bb2eb647e141026718a9bdc4279d99e93ba82c73689624572",
+    "watchlist": "e2988dbe4dec083003ebe75cc698879bcdd718849e1aaf1fabe7b73bc51b6ea5"
+   }
+  },
+  "frozen_string_true_efdaee9": {
+   "commit": "5ebce8a",
+   "exit": 0,
+   "export": "efdaee9",
+   "predictive_modules_imported": [],
+   "private_dir": "no",
+   "reports": {
+    "20261007_0016_DARK_7KEPAp.md": "4de8d3d9e6e200247a96d1683070aaae5293547a8be94aaa49fc9a5430f190b6",
+    "20261007_0016_GOMO_9XKzy4.md": "8863b465f0deb9c19d4a46f101f028f25e2343d2b104f75fb4b84f9b43f86144",
+    "20261007_0016_HIGGS_DoVAVz.md": "891c76a9f5e626427b8b29354ed39c894487fee1e8d65c9dae7915056c465032",
+    "20261007_0016_PAID_98kfF7.md": "adef07b20f290e647692edc7149c4bfa7e1f2b99bff93ea25440a18ce8d0ba89",
+    "20261007_0016_SCOUT.md": "7324d23c3fd1906dfb74576c00e29d0f296d9f7c9fac564eb070a8f86481823b",
+    "20261007_0016_STONK_6GmAFS.md": "a5d0b8cc27559d736c7e09d0063b6bff48c65831501de315e7deb875d924438b",
+    "20261007_0016_ZCAT_HcRLc9.md": "cfb4c33d7cad90838bcab728113946acacfbd3217017a16f0be9a69d391fc309",
+    "20261007_0016_baton_Hg5Ja5.md": "34302bf291242ceea3a2e5054f9d33976867243e6d41c411bd206373cdc04e89",
+    "20261007_0016_slopcannon_55Vr2V.md": "6614b1f22ba750dc4a07af8b2d8f2ca2f43830ee2e11337c59b12a67e0c1cfe8"
+   },
+   "sandbox_tracked_changes": [],
+   "stdout_sha256": "8f60c6737e5f5148d727fcf66d9bdc6936d692ba399cd9ff17271cf854f9c1a1",
+   "tables": {
+    "entries": "26a62538aade80be3a493558c62e7e3d2ce792ce37d148b8486b7223b6672acc",
+    "rejections": "5586a3440f01054588c9a74e1c6da3bda21e37fd19d071d96f2973af39e47ec6",
+    "theses": "44756796f4e6ef5f3ec436102daf8c7d9dc45d1b22ea0ad3a87abfe8e78210e1",
+    "tokens": "92388fa8b22a8114bbf012103a3187e43681a231088de427099f67bf372e9d8d",
+    "watchlist": "e728b02047e7386ed003f6da3fd8dbbb65186212af798a65cff2ef93ecb74cd5"
+   }
+  }
+ }
+}

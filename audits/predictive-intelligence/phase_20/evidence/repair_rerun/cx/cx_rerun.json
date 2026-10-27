@@ -1,0 +1,594 @@
+{
+ "caught": 39,
+ "counterexamples": 39,
+ "not_caught": [],
+ "pytest_exit": 0,
+ "pytest_tail": "85 passed in 22.00s",
+ "rows": [
+  {
+   "command": {
+    "command": "python -B audits/predictive-intelligence/phase_20/probes/cx_rerun.py (own check CX-00A)",
+    "exit": 0,
+    "expected": 0
+   },
+   "counterexample": "theses.created_at taken as the decision or availability time (write lag hidden)",
+   "id": "CX-00A",
+   "origin": "skeptic",
+   "phase": "00",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [],
+   "tests": []
+  },
+  {
+   "command": {
+    "command": "python -B audits/predictive-intelligence/phase_20/probes/cx_rerun.py (own check CX-00B)",
+    "exit": 0,
+    "expected": 0
+   },
+   "counterexample": "a stored thesis score used as an as-of feature at created_at",
+   "id": "CX-00B",
+   "origin": "skeptic",
+   "phase": "00",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [],
+   "tests": []
+  },
+  {
+   "command": null,
+   "counterexample": "a row first exported later inherits its key's earlier decision time",
+   "id": "CX-S1",
+   "origin": "skeptic",
+   "phase": "01",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_decisions.py::test_cx_s1_a_row_first_exported_later_never_inherits_its_key_time"
+   ]
+  },
+  {
+   "command": {
+    "command": "python -B audits/predictive-intelligence/phase_02/probes/check_candidates_negative.py audits/predictive-intelligence/phase_02 audits/predictive-intelligence/phase_01/architecture/GAP_MATRIX.csv",
+    "exit": 0,
+    "expected": 0,
+    "tail": [
+     "cases 32 not caught 0"
+    ]
+   },
+   "counterexample": "a shortlisted repository under its pre-transfer path passes the candidate checker",
+   "id": "CX-S02",
+   "origin": "skeptic",
+   "phase": "02",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [],
+   "tests": []
+  },
+  {
+   "command": {
+    "command": "python -B audits/predictive-intelligence/phase_03/research/verify/check_scorecard_negative.py",
+    "exit": 0,
+    "expected": 0,
+    "tail": [
+     "31 of 31 mutations refused"
+    ]
+   },
+   "counterexample": "PurgedGroupKFold and CPCV credited as leak-free while training folds are empty or on later rows",
+   "id": "CX-S03",
+   "origin": "skeptic",
+   "phase": "03",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [],
+   "tests": []
+  },
+  {
+   "command": {
+    "command": "python -B audits/predictive-intelligence/phase_03/research/verify/counterexample_lead.py",
+    "exit": 0,
+    "expected": 0,
+    "tail": [
+     "   verified finding MA-2 vetoes scikit-learn-contrib/MAPIE C2, but it scores 3"
+    ]
+   },
+   "counterexample": "a consistent author awards MAPIE C2 with a resolvable but false evidence line",
+   "id": "CX-03L",
+   "origin": "own",
+   "phase": "03",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [],
+   "tests": []
+  },
+  {
+   "command": null,
+   "counterexample": "a walk-forward trained on rows before a midnight cutoff records the midnight as its training cutoff",
+   "id": "CX-04",
+   "origin": "own",
+   "phase": "04",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed",
+    "passed",
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_stats.py::test_nan_maturity_on_leaking_rows_makes_the_audit_invalid",
+    "tests/test_predictive_stats.py::test_a_cutoff_after_the_test_start_is_invalid",
+    "tests/test_predictive_stats.py::test_lab_rule_is_valid_and_the_purge_mutation_is_refused"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a lock line with a per-line --only-binary=:none: option runs an sdist setup.py",
+   "id": "CX-S04",
+   "origin": "skeptic",
+   "phase": "04",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed",
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_runtime.py::test_p32_lock_guard_refuses_anything_but_hashed_exact_pins",
+    "tests/test_predictive_runtime.py::test_p32_install_argv_is_the_only_route_and_carries_the_flags"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a recorded vendor token that the URL did not send",
+   "id": "CX-05",
+   "origin": "own",
+   "phase": "05",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_asof_store.py::test_cx05_a_recorded_token_that_the_url_did_not_send_is_refused"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "targets built from different reads of one decision",
+   "id": "CX-06",
+   "origin": "own",
+   "phase": "06",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed",
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_labels.py::test_cx06_targets_from_one_read_satisfy_the_cross_target_invariants",
+    "tests/test_predictive_labels.py::test_cx06_a_label_built_from_another_read_breaks_an_invariant"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a token=<mint> body that keeps the other token as base",
+   "id": "CX-S06",
+   "origin": "skeptic",
+   "phase": "06",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_labels.py::test_cx_s06_a_token_read_whose_body_keeps_the_other_token_as_base_gives_no_candle"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a join by mint with its latest snapshot",
+   "id": "CX-07",
+   "origin": "own",
+   "phase": "07",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_baselines.py::test_cx07_join_by_mint_with_its_latest_snapshot_is_refused"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "one positive over five days earning a skill verdict",
+   "id": "CX-S07",
+   "origin": "skeptic",
+   "phase": "07",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_baselines.py::test_cx_s07_one_positive_over_five_days_never_earns_a_skill_verdict"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "window-dependent opens, highs and lows changing a feature",
+   "id": "CX-08",
+   "origin": "own",
+   "phase": "08",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed",
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_technical.py::test_cx08_opens_highs_and_lows_never_change_a_feature",
+    "tests/test_predictive_technical.py::test_cx08_a_later_read_that_only_moves_opens_highs_and_lows_changes_nothing"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a number that depends on the other rows scored with it",
+   "id": "CX-S08",
+   "origin": "skeptic",
+   "phase": "08",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_technical.py::test_cx_s08_a_number_does_not_depend_on_the_other_rows_scored_with_it"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a post-decision collector read used as depth at the decision",
+   "id": "CX-09",
+   "origin": "own",
+   "phase": "09",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_onchain.py::test_cx09_a_post_decision_read_is_never_depth_at_the_decision"
+   ]
+  },
+  {
+   "command": {
+    "command": "python -B audits/predictive-intelligence/phase_09/probes/cx_s09_check.py OUTDIR/cx_raw/CX-S09.json",
+    "exit": 0,
+    "expected": 0,
+    "tail": [
+     "{\"first_pass_wrong\": true, \"repaired_as_of\": true, \"pass\": true}"
+    ]
+   },
+   "counterexample": "a size cap from an old quote on another pool and a read after the decision",
+   "id": "CX-S09",
+   "origin": "skeptic",
+   "phase": "09",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_onchain.py::test_cx_s09_size_cap_uses_only_the_newest_visible_reads_of_the_decision_pool"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "the newest export's token row used for an earlier decision",
+   "id": "CX-10",
+   "origin": "own",
+   "phase": "10",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_social.py::test_cx10_the_token_row_and_narrative_tables_come_from_the_decisions_own_export"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a VERIFIED catalyst available from first sighting, before its last condition held",
+   "id": "CX-10b-A",
+   "origin": "skeptic",
+   "phase": "10",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_social.py::test_cx10b_a_verified_availability_is_when_the_last_condition_held_and_follow_through_starts_at_the_decision"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a later suspension or untimed bot label applied at an earlier decision",
+   "id": "CX-10b-B",
+   "origin": "skeptic",
+   "phase": "10",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_social.py::test_cx10b_b_a_suspension_or_bot_label_recorded_after_t_is_not_applied_at_t"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a full-sample regime label used at an earlier decision",
+   "id": "CX-11",
+   "origin": "own",
+   "phase": "11",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed",
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_analog.py::test_regime_as_of_refuses_a_later_row_cx11",
+    "tests/test_predictive_analog.py::test_full_sample_regime_trap_is_caught_by_the_truncation_check_cx11"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "one mint under two creator values counted as two analogs",
+   "id": "CX-S11",
+   "origin": "skeptic",
+   "phase": "11",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_analog.py::test_cx_s11_one_mint_under_two_creator_values_is_one_analog"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "the best of 63 no-skill candidates looking good without correction",
+   "id": "CX-12",
+   "origin": "own",
+   "phase": "12",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_evaluation.py::test_cx12_the_best_of_63_no_skill_candidates_looks_good_uncorrected_but_not_after_max_t"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a correction that was never computed read as did-not-survive",
+   "id": "CX-S12",
+   "origin": "skeptic",
+   "phase": "12",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_evaluation.py::test_cx_s12_a_correction_that_was_not_computed_is_never_read_as_did_not_survive"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "Platt fitted and checked on the spent holdout",
+   "id": "CX-13",
+   "origin": "own",
+   "phase": "13",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed",
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_calibration.py::test_cx13_platt_fitted_and_checked_on_the_spent_holdout_is_refused_at_every_step",
+    "tests/test_predictive_phase13_outputs.py::test_the_replay_was_rederived_exactly_and_the_cx13_traps_refused_real_holdout_rows"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "flat evidence calibrating",
+   "id": "CX-S13",
+   "origin": "skeptic",
+   "phase": "13",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_abstention.py::test_rp2_m4_cx_s13_flat_evidence_never_calibrates_and_scores_outside_the_evidence_abstain"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "agent agreement smuggled as a code or a nested fraction",
+   "id": "CX-14",
+   "origin": "own",
+   "phase": "14",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_behavioral.py::test_agreement_never_becomes_a_number"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a seed-reversed monitor under a stable label",
+   "id": "CX-S14",
+   "origin": "skeptic",
+   "phase": "14",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_behavioral.py::test_cx_s14_a_seed_reversed_monitor_is_unstable"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a planted catalyst's statements counted as hits and recall reported as accuracy",
+   "id": "CX-15",
+   "origin": "own",
+   "phase": "15",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_scenario_eval.py::test_permutation_flags_a_real_signal_and_not_an_outcome_independent_planted_half"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "per-mint warnings fooling the decision-level permutation",
+   "id": "CX-S15",
+   "origin": "skeptic",
+   "phase": "15",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_scenario_eval.py::test_cx_s15_mint_planted_null_warnings_fool_the_decision_null_not_the_mint_block_null"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a positive T2 point on seven positives without calibration, and a forged champion level",
+   "id": "CX-16",
+   "origin": "own",
+   "phase": "16",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed",
+    "passed",
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_registry.py::test_cx16_a_positive_t2_point_on_seven_positives_and_no_calibration_stays_abstain",
+    "tests/test_predictive_registry.py::test_cx16_a_forged_champion_level_is_refused_everywhere",
+    "tests/test_predictive_phase16_outputs.py::test_cx16_t2_b2_has_a_positive_point_but_stays_an_abstain_reference"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "forged facts with a recomputed id",
+   "id": "CX-16b",
+   "origin": "own",
+   "phase": "16",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_registry.py::test_verify_facts_refuses_forged_facts_given_the_committed_records"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a forged-facts entry pinned and served through a caller-supplied check",
+   "id": "CX-S16",
+   "origin": "skeptic",
+   "phase": "16",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_registry.py::test_cx_s16_a_forged_facts_entry_is_never_pinned_or_served_whatever_the_caller_checks"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a rollback leaving an unchanged snapshot's withdrawn forecast in place",
+   "id": "CX-17",
+   "origin": "own",
+   "phase": "17",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_integration.py::test_cx17_a_rollback_makes_an_unchanged_snapshot_material_so_the_withdrawn_forecast_is_not_kept"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a refused target leaving its siblings' documents persisted",
+   "id": "CX-S17",
+   "origin": "skeptic",
+   "phase": "17",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_integration.py::test_rp2_m1_cx_s17_a_refused_target_leaves_nothing_of_its_event_and_the_next_pass_recovers"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a forged probability in a resealed state",
+   "id": "CX-18",
+   "origin": "own",
+   "phase": "18",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_reports.py::test_g7_cx18_a_forged_probability_in_a_resealed_state_is_refused_and_shows_no_number"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "run-together trading words in token text",
+   "id": "CX-SK18",
+   "origin": "skeptic",
+   "phase": "18",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed",
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_reports.py::test_rp2_m4_cx_sk18_run_together_trade_words_in_token_text_are_withheld",
+    "tests/test_predictive_reports.py::test_rp2_m4_cx_sk18_the_report_and_the_alert_never_print_a_run_together_trade_word"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a backdated prediction added after its outcome",
+   "id": "CX-19",
+   "origin": "own",
+   "phase": "19",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_monitoring.py::test_cx19_a_backdated_prediction_after_its_outcome_is_refused_whatever_time_it_claims"
+   ]
+  },
+  {
+   "command": null,
+   "counterexample": "a revision citing the read it revises",
+   "id": "CX-SK19",
+   "origin": "skeptic",
+   "phase": "19",
+   "result": "REFUSED_OR_CAUGHT",
+   "test_outcomes": [
+    "passed",
+    "passed"
+   ],
+   "tests": [
+    "tests/test_predictive_monitoring.py::test_cx_sk19_a_revision_citing_the_read_it_revises_or_no_read_is_refused",
+    "tests/test_predictive_monitoring.py::test_cx_sk19_a_pending_is_superseded_only_by_a_later_read_or_an_unread_gap_after_maturity"
+   ]
+  }
+ ],
+ "wall_s": 30.7
+}

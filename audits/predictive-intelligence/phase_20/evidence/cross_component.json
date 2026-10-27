@@ -1,0 +1,19 @@
+{
+ "test_file": "tests/test_predictive_phase20_cross.py",
+ "method": "each scenario runs one path through at least three components with one planted defect, beside a positive control on the same path; fixtures, temp folders, fixed clocks, sockets refused",
+ "runs": {
+  "0d66379": {"command": "python -m pytest -q -p no:cacheprovider -rxX tests/test_predictive_phase20_cross.py", "result": "13 passed, 6 xfailed", "raw": "evidence/cross_tests.txt"},
+  "5ebce8a": {"command": "python -m pytest -q -p no:cacheprovider -rxX tests/test_predictive_phase20_cross.py", "result": "24 passed, 2 xfailed", "raw": "evidence/repair_rerun/cross_tests.txt"},
+  "old_code_check": {"command": "the 5ebce8a test file run against 0d66379 in a detached worktree", "result": "12 failed, 12 passed, 2 xfailed", "raw": "repair/OLD_CODE_CHECK.txt"}
+ },
+ "scenarios": [
+  {"id": "X01", "path": "vendor candle reader -> integration eligibility -> abstention -> state -> reports", "planted_defect": "candles closing at or after the decision minus the lag", "control": "served reference candle gives the fixture forecast and the report shows it", "at_0d66379": "expected behaviour observed (no number)", "finding": null},
+  {"id": "X02", "path": "export decision rows -> integration identity -> pool -> reader -> request record", "planted_defect": "a token row of another mint (and, after the repair, of another chain)", "control": "the decision's own token row gives the fixture forecast", "at_0d66379": "not observed: the other mint's pool was read and recorded", "finding": "F20-02 MATERIAL", "at_5ebce8a": "NOT_EXACT_IDENTITY, TOKEN_ROW_OF_ANOTHER_IDENTITY, no read, no document"},
+  {"id": "X03", "path": "scout or analyze hook -> run_pass -> store time units -> state", "planted_defect": "capture time and observed time in milliseconds", "control": "the observed-time case is an ERROR event with no document", "at_0d66379": "hooks contained it as a failure; run_pass raised", "finding": "F20-03 MINOR", "at_5ebce8a": "CAPTURE_TIME_REFUSED returned and shown, nothing written"},
+  {"id": "X04", "path": "labels.read_from_body -> labels.build -> monitoring ledger", "planted_defect": "a body whose base token is another mint; a URL whose token parameter is not exactly the mint", "control": "an identity-checked LABELED outcome appends and verifies", "at_0d66379": "labels refuse the body; the ledger's own rule is a substring test", "finding": "F20-04 MINOR (open, after G25)", "at_5ebce8a": "unchanged (monitoring.py not touched)"},
+  {"id": "X05", "path": "calibration card -> registry -> integration -> abstention -> reports", "planted_defect": "a calibration card whose evidence is the spent retrospective holdout, re-hashed or not", "control": "the admissible fixture card publishes", "at_0d66379": "expected behaviour observed (refused, no number)", "finding": null},
+  {"id": "X06", "path": "baselines fit -> card -> registry pin and serve -> abstention -> integration -> reports", "planted_defect": "a card whose training labels mature five days after its cutoff", "control": "the replay guard check_card_time refuses the card", "at_0d66379": "not observed: the card was pinned, served and published a FORECAST", "finding": "F20-06 MATERIAL", "at_5ebce8a": "pin refused (TRAINING_ROWS_AFTER_CUTOFF); a hand-written pin is blocked by serve, no number"},
+  {"id": "carried Phase 18 minor 5", "path": "state request record and document -> reports reader", "planted_defect": "a point moved inside its interval in the document and the request record, resealed; a stored raw number or input moved", "control": "a point moved outside the Wilson band is refused", "at_0d66379": "not observed: the forged point was shown", "finding": "F20-08 MINOR", "at_5ebce8a": "refused by integration.recompute_point"}
+ ],
+ "new_and_cross_component": ["X01", "X02", "X03", "X04", "X05", "X06"]
+}

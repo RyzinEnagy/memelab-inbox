@@ -1,0 +1,108 @@
+{
+ "source": "evidence/independent_recalc.json key g11_traces (the same run, extracted to the pre-registered path)",
+ "g11_traces": {
+  "events": [
+   {
+    "all_links_hold": true,
+    "b2_recorded": 0.23273937408999917,
+    "b2_t1": 0.23273937388251673,
+    "decision_time_utc": "2026-10-25T10:10:02+00:00",
+    "document": {
+     "abstain_reasons": [
+      "INSUFFICIENT_HISTORY",
+      "UNCALIBRATED",
+      "SOURCE_STALE",
+      "MODEL_NOT_SELECTED"
+     ],
+     "forecast_id": "fc_254a7856b1279290eda4566c77a2e80f",
+     "model_id": "not_selected",
+     "prediction_status": "ABSTAIN"
+    },
+    "export_commit": "e245d91cc5f56060ba8e1aa7182c846c77d1526c",
+    "inputs": {
+     "log1p_token_age_days": 2.385703194995971,
+     "thesis_fatal_present": 1.0,
+     "thesis_log1p_liquidity_usd": 12.030541505854266,
+     "thesis_log1p_mcap_usd": 14.227947763530713,
+     "thesis_log1p_vol_24h_usd": 13.399223042945241
+    },
+    "links": {
+     "b2_reference_number_recomputed": true,
+     "decision_key_from_export_row": true,
+     "document_abstains_with_reasons_and_no_number": true,
+     "document_snapshot_hash_is_the_row_without_id_and_report_path": true,
+     "outcome_read_identity_and_label_recomputed": true,
+     "read_after_maturity": true,
+     "record_matches_document": true
+    },
+    "mint": "AKotzk1dhcNangAJBtvNKtT9bhbSVZc2mMhRFgkFpump",
+    "outcome": {
+     "label": 1,
+     "label_class": "TARGET_FIRST",
+     "label_observed_at": 1793110076.4718075,
+     "response_key": "7b24c02b2bc3167a77c7ea0ab8a5620a35287ae10829d289c7f74a4ed5ab1ceb",
+     "state": "LABELED"
+    },
+    "recomputed_label": {
+     "label": 1,
+     "label_class": "TARGET_FIRST",
+     "p0": 0.0015760436496370205,
+     "state": "LABELED"
+    },
+    "row_sha256": "39e2343da0b82e1beaa64f1cc5ca8a293877b9944ec1f3796ac97301e163f0b6",
+    "snapshot_hash": "f1c5249ad00146f73d5465bcd0a5ca301d81a6424f506a6401334f3ba51366f7"
+   },
+   {
+    "all_links_hold": true,
+    "b2_recorded": 0.20619086324854205,
+    "b2_t1": 0.20619086329041153,
+    "decision_time_utc": "2026-10-24T10:11:50+00:00",
+    "document": {
+     "abstain_reasons": [
+      "INSUFFICIENT_HISTORY",
+      "UNCALIBRATED",
+      "SOURCE_STALE",
+      "MODEL_NOT_SELECTED"
+     ],
+     "forecast_id": "fc_7caaeba0abff420c9a4bb5dfc9fb9a80",
+     "model_id": "not_selected",
+     "prediction_status": "ABSTAIN"
+    },
+    "export_commit": "efdaee91ebbeabf14268d858fa033d36ebd4ca06",
+    "inputs": {
+     "log1p_token_age_days": 4.058049903499292,
+     "thesis_fatal_present": 0.0,
+     "thesis_log1p_liquidity_usd": 13.061237711497212,
+     "thesis_log1p_mcap_usd": 15.578720957023085,
+     "thesis_log1p_vol_24h_usd": 13.100997001308096
+    },
+    "links": {
+     "b2_reference_number_recomputed": true,
+     "decision_key_from_export_row": true,
+     "document_abstains_with_reasons_and_no_number": true,
+     "document_snapshot_hash_is_the_row_without_id_and_report_path": true,
+     "outcome_read_identity_and_label_recomputed": true,
+     "read_after_maturity": true,
+     "record_matches_document": true
+    },
+    "mint": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
+    "outcome": {
+     "label": 0,
+     "label_class": "INVALIDATION_FIRST",
+     "label_observed_at": 1793111204.9428625,
+     "response_key": "d0b3db4a34bd2f7b32f386d2b55b5bbd8aebb9895dac078105efb4dd0029137c",
+     "state": "LABELED"
+    },
+    "recomputed_label": {
+     "label": 0,
+     "label_class": "INVALIDATION_FIRST",
+     "p0": 0.009095289593994511,
+     "state": "LABELED"
+    },
+    "row_sha256": "e7651ff536915a6008fbbcb138f628482c3dce7f784b6b06fc6854fe30e1feee",
+    "snapshot_hash": "acfff7d762694c05e3a5f518ce378637d00245c8f4ad08adb937de42da7741cc"
+   }
+  ],
+  "marker": "PROVISIONAL_PENDING_REVISION_REREAD"
+ }
+}

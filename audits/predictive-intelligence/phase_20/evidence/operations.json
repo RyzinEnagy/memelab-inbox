@@ -1,0 +1,151 @@
+{
+ "what": "G14 operations items, each pointed at the scenario assertions that test it (one process per scenario, sockets refused); all at the frozen audit code 0d66379, and the matrix rerun at 5ebce8a gives the same results",
+ "backtesting_not_available_shown": [
+  {
+   "scenario": "P34",
+   "assert": "a prompt ZIP is not an engine: BACKTEST_NOT_AVAILABLE",
+   "pass": true,
+   "observed": "BACKTEST_NOT_AVAILABLE"
+  },
+  {
+   "scenario": "P34",
+   "assert": "the request record states BACKTEST_NOT_AVAILABLE",
+   "pass": true,
+   "observed": "BACKTEST_NOT_AVAILABLE"
+  }
+ ],
+ "cold_start_on_an_empty_state": {
+  "note": "every scenario pass and every smoke run starts on a new, empty state folder; the real-path smoke's first run attempted 8 decisions and wrote 24 ABSTAIN documents (evidence/e2e/REAL_PATH_SMOKE.json)",
+  "asserts": [
+   {
+    "scenario": "P35",
+    "assert": "three reruns add no document",
+    "pass": true,
+    "observed": 3
+   }
+  ]
+ },
+ "reader_failure": [
+  {
+   "scenario": "P47",
+   "assert": "a vendor outage makes the eligibility a visible gap",
+   "pass": true,
+   "observed": "{\"detail\": \"reader NETWORK_UNAVAILABLE: ConnectionError\", \"state\": \"VENDOR_OR_ROUTE_GAP\"}"
+  },
+  {
+   "scenario": "P47",
+   "assert": "and the documents abstain SOURCE_STALE",
+   "pass": true,
+   "observed": "[[\"SOURCE_STALE\"], [\"INSUFFICIENT_HISTORY\", \"UNCALIBRATED\", \"SOURCE_STALE\", \"MODEL_NOT_SELECTED\"], [\"INSUFFICIENT_HISTORY\", \"UNCALIBRATED\", \"SOURCE_STALE\", \"MODEL_NOT_SELECTED\"]]"
+  },
+  {
+   "scenario": "P47",
+   "assert": "the monitor shows SOURCE_STALE, SOURCE_FAILURE and COLLECTOR_NOT_DEPLOYED",
+   "pass": true,
+   "observed": "[\"SOURCE_STALE\", \"SOURCE_FAILURE\", \"COLLECTOR_NOT_DEPLOYED\"]"
+  }
+ ],
+ "registry_missing": [
+  {
+   "scenario": "P47",
+   "assert": "a missing registry is REGISTRY_UNAVAILABLE and every target abstains",
+   "pass": true,
+   "observed": "REGISTRY_UNAVAILABLE"
+  }
+ ],
+ "migration_and_rollback": [
+  {
+   "scenario": "P33",
+   "assert": "migration added predictive tables",
+   "pass": true,
+   "observed": null
+  },
+  {
+   "scenario": "P33",
+   "assert": "rollback to 0 restores the exact database dump (lab, backtesting-like tables and schema)",
+   "pass": true,
+   "observed": "[2257619, 2257619]"
+  }
+ ],
+ "load_64_attempts_rest_deferred": [
+  {
+   "scenario": "P35",
+   "assert": "a pass attempts at most 64 and defers the rest visibly",
+   "pass": true,
+   "observed": "{\"DEFERRED_QUEUE_FULL\": 6, \"DISCOVERY\": 64}"
+  },
+  {
+   "scenario": "P48",
+   "assert": "frozen integration limits: 64 attempts and 64 calls a pass, 6 a minute, cost cap 0",
+   "pass": true,
+   "observed": null
+  }
+ ],
+ "repeated_forecast_idempotence": [
+  {
+   "scenario": "P35",
+   "assert": "a rerun of the same snapshot is DUPLICATE and names the covering ids",
+   "pass": true,
+   "observed": "DUPLICATE"
+  },
+  {
+   "scenario": "P35",
+   "assert": "the forecast id is a pure function of its inputs",
+   "pass": true,
+   "observed": null
+  }
+ ],
+ "earlier_records_preserved": [
+  {
+   "scenario": "P47",
+   "assert": "earlier state lines are preserved (append only)",
+   "pass": true,
+   "observed": null
+  }
+ ],
+ "flag_off_writes_nothing": [
+  {
+   "scenario": "P40",
+   "assert": "flag absent: no pass, no section",
+   "pass": true,
+   "observed": null
+  },
+  {
+   "scenario": "P40",
+   "assert": "flag malformed: no pass, no section",
+   "pass": true,
+   "observed": null
+  },
+  {
+   "scenario": "P40",
+   "assert": "flag string true: no pass, no section",
+   "pass": true,
+   "observed": null
+  },
+  {
+   "scenario": "P40",
+   "assert": "flag one: no pass, no section",
+   "pass": true,
+   "observed": null
+  },
+  {
+   "scenario": "P40",
+   "assert": "flag false: no pass, no section",
+   "pass": true,
+   "observed": null
+  },
+  {
+   "scenario": "P40",
+   "assert": "and nothing was written",
+   "pass": true,
+   "observed": null
+  },
+  {
+   "scenario": "P40",
+   "assert": "with the flag off the scout hook returns None and imports nothing of the package",
+   "pass": true,
+   "observed": "None\n[]\n"
+  }
+ ],
+ "all_pass": true
+}

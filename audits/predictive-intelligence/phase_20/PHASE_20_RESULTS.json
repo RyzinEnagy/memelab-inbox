@@ -1,0 +1,334 @@
+{
+ "phase": "20",
+ "status": "NEEDS_REVIEW",
+ "head_before": "e0bc906",
+ "head_after": "the records commit on top of 5ebce8a (CP20-1 code); the post-commit record commit follows it",
+ "checks": [
+  {
+   "name": "G1 entry gate at e0bc906",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "2 failed (the two known clock-dependent tests), 2200 passed, 1 skipped; Phase 19 ledger verify ok, rebuild 0 differences, seal 0 problems",
+   "pass": true
+  },
+  {
+   "name": "G2 scenario matrix P01 to P48 at 0d66379",
+   "command": "python -B audits/predictive-intelligence/phase_20/probes/run_matrix.py OUT",
+   "exit_code": 0,
+   "result": "48 of 48 checks exit 0; 229 of 229 gating assertions; PASS 23, TEST_ONLY 12, PASS_EXPECTED_ERROR 10, PASS_WITH_PROBE_FINDING 3; mapped tests 232 passed",
+   "pass": true
+  },
+  {
+   "name": "G2 scenario matrix rerun at 5ebce8a",
+   "command": "python -B audits/predictive-intelligence/phase_20/probes/run_matrix.py OUT",
+   "exit_code": 0,
+   "result": "identical to the recorded matrix (0 row differences); mapped tests 232 passed",
+   "pass": true
+  },
+  {
+   "name": "G3 counterexamples at 0d66379 and 5ebce8a",
+   "command": "python -B audits/predictive-intelligence/phase_20/probes/cx_rerun.py OUT",
+   "exit_code": 0,
+   "result": "39 of 39 caught both times; 85 passed",
+   "pass": true
+  },
+  {
+   "name": "G4 cross-component scenarios at 0d66379",
+   "command": "python -m pytest -q -p no:cacheprovider -rxX tests/test_predictive_phase20_cross.py",
+   "exit_code": 0,
+   "result": "13 passed, 6 xfailed (open findings F20-02, F20-03, F20-04 twice, F20-06, F20-08)",
+   "pass": false
+  },
+  {
+   "name": "G4 cross-component scenarios at 5ebce8a",
+   "command": "python -m pytest -q -p no:cacheprovider -rxX tests/test_predictive_phase20_cross.py",
+   "exit_code": 0,
+   "result": "24 passed, 2 xfailed (F20-04, waiting for G25)",
+   "pass": true
+  },
+  {
+   "name": "CP20-1 old-code check",
+   "input": "the 5ebce8a cross-test file against 0d66379 in a detached worktree",
+   "result": "12 failed, 12 passed, 2 xfailed",
+   "pass": true
+  },
+  {
+   "name": "G5 reproductions at 0d66379",
+   "command": "python -B audits/predictive-intelligence/phase_20/probes/reproductions.py 0d66379 OUT",
+   "exit_code": 1,
+   "result": "every step exit 0; differences only in named time fields, Phase 14 scenario_ref (named after the run, checked by hand) and the F20-10 absolute path",
+   "pass": true
+  },
+  {
+   "name": "G5 reproductions at 5ebce8a",
+   "command": "python -B audits/predictive-intelligence/phase_20/probes/reproductions.py 5ebce8a OUT",
+   "exit_code": 0,
+   "result": "all_reproduced true: every entry point exit 0; differences only in named time fields and the F20-10 absolute path; Phase 17 replay equal to the Phase 19 published copy",
+   "pass": true
+  },
+  {
+   "name": "G6 release_e2e at 0d66379 and 5ebce8a",
+   "command": "bash audits/predictive-intelligence/phase_20/probes/e2e.sh REF OUT (stage 1)",
+   "exit_code": 0,
+   "result": "78 of 78 stages, 0 network attempts, both times",
+   "pass": true
+  },
+  {
+   "name": "G6 real-path smoke under unshare -n at 0d66379 and 5ebce8a",
+   "command": "bash audits/predictive-intelligence/phase_20/probes/e2e.sh REF OUT (stage 2)",
+   "exit_code": 0,
+   "result": "every exit 0; flag-off byte-equal to b0fad12; flag-on equals base plus the section; 24 ABSTAIN, 0 FORECAST; rerun and retry DUPLICATE; storm one attempt per mint",
+   "pass": true
+  },
+  {
+   "name": "G7 flag-off identity against b0fad12",
+   "command": "bash audits/predictive-intelligence/phase_20/probes/flag_off_identity.sh REF OUT; python -B audits/predictive-intelligence/phase_20/probes/flag_off_summary.py OUT OUT.json",
+   "exit_code": 0,
+   "result": "12 of 12 comparisons identical at 0d66379 and at 5ebce8a (second rerun with a clean checkout)",
+   "pass": true
+  },
+  {
+   "name": "G8 fresh environment",
+   "command": "bash audits/predictive-intelligence/phase_20/probes/fresh_env.sh 0d66379 OUT",
+   "exit_code": 0,
+   "result": "1372 passed, 8 skipped with reasons, 6 xfailed, 50 behavioral failures from a down loopback; with loopback up 203 passed, 2 skipped (F20-11)",
+   "pass": true
+  },
+  {
+   "name": "G9 release audit with history, single-branch clone",
+   "command": "python tools/release_audit.py --history",
+   "exit_code": 0,
+   "result": "Needs action: no. at 0d66379 and at 5ebce8a",
+   "pass": true
+  },
+  {
+   "name": "G10 independent recalculation",
+   "command": "python -B audits/predictive-intelligence/phase_20/probes/recalc.py OUT",
+   "exit_code": 0,
+   "result": "61 of 61 prospective labels, 40 of 40 development labels, 28 decision keys, 168 of 168 numbers",
+   "pass": true
+  },
+  {
+   "name": "G11 two real event traces",
+   "input": "evidence/real_event_traces.json",
+   "result": "every link holds",
+   "pass": true
+  },
+  {
+   "name": "G12 claims and sensitivity",
+   "command": "python -B audits/predictive-intelligence/phase_20/probes/oos_sensitivity.py OUT",
+   "exit_code": 0,
+   "result": "no claim without its evidence class; no verdict changes",
+   "pass": true
+  },
+  {
+   "name": "G13 threat scan",
+   "command": "python -B audits/predictive-intelligence/phase_20/probes/threat_scan.py OUT",
+   "exit_code": 0,
+   "result": "0 copyleft findings, every hit explained, 0 credentials, no schedule, numpy only, locks pinned",
+   "pass": true
+  },
+  {
+   "name": "G14 operations",
+   "input": "P33, P34, P35, P40, P46, P47, P48 and evidence/operations.json",
+   "result": "all assertions hold",
+   "pass": true
+  },
+  {
+   "name": "G15 defect ledger",
+   "input": "qa/INDEPENDENT_FINDINGS.md",
+   "result": "0 CRITICAL; MATERIAL F20-02 and F20-06 repaired (CP20-1); 12 MINOR",
+   "pass": true
+  },
+  {
+   "name": "G16 package checklist",
+   "input": "qa/COMPLETION_CHECKLIST_AUDIT.md",
+   "result": "20 items with evidence: 15 MET, 2 MET_WITH_LIMIT, 2 MET_TEST_ONLY, 1 NOT_MET (Phase 21 release memo)",
+   "pass": true
+  },
+  {
+   "name": "G17 search ledger",
+   "command": "python -B audits/predictive-intelligence/phase_20/probes/ledger.py audits/predictive-intelligence/phase_20 0d66379 5ebce8a",
+   "exit_code": 0,
+   "result": "N_search 130, sensitivity 169 unchanged",
+   "pass": true
+  },
+  {
+   "name": "CP20-1 suite before the commit",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "2 failed (the two known clock-dependent tests), 2224 passed, 1 skipped, 2 xfailed",
+   "pass": true
+  },
+  {
+   "name": "CP20-1 Phase 19 registry paths",
+   "command": "run_prospective.py rollback OUT; run_prospective.py drift OUT",
+   "exit_code": 0,
+   "result": "ROLLBACK_DEMO.json and DRIFT_REPORT.json byte-equal to the committed outputs",
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "memelab/predictive/registry.py",
+   "sha256": "f50d2b8e1fd32545b67aada467ad245d188ccb5dbaaf110116cb73102a9af8b1"
+  },
+  {
+   "path": "memelab/predictive/integration.py",
+   "sha256": "905fdd1e9aa70f073c6cc2e2ea2130f1c0d481ea2352fa72a28b8d0e5b48b051"
+  },
+  {
+   "path": "memelab/predictive/reports.py",
+   "sha256": "dfd995ced42721920e812dd7da566bce3e5b832bed02ca31e9981037bf476028"
+  },
+  {
+   "path": "tests/test_predictive_phase20_cross.py",
+   "sha256": "a6170090ea41de022e0898f27afe57dc51a85fd19a174e9edcf9417a87a28bd1"
+  },
+  {
+   "path": "tests/fixtures/predictive/phase18/PINNED_SHA256.json",
+   "sha256": "f8ddf4faa625386800b61699d7974824a04cec6bf8fc24fea28c674ee0a0247c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "e6a34263885bf6a222b0bb8831623968eacd601dd31b115f641a672e9c48117e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/experiments/EXPERIMENT_REGISTRY.csv",
+   "sha256": "1f9d9b8c1743367fcde6b78449b7a7132732d5e46e2452251d25f2dd76b663d0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/experiments/SEARCH_LEDGER.csv",
+   "sha256": "6e77f4b6e0ddd4e0d3ac87e14eeebd9e568e3c330c73b523c85f138bbf0d222b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/experiments/LEDGER_TOTALS.json",
+   "sha256": "e272149d9bbd59787b3149334d6641dc9a0b69c8b3b5bd94dd7d770ef3b62541"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/qa/INDEPENDENT_FINDINGS.md",
+   "sha256": "d1874fefc348ec1a68abc971312a70b99a70ae80b39250a000a0a985977f3e4d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/qa/SCENARIO_MATRIX.csv",
+   "sha256": "fe513d357ee93b962e834842083b90578490831486234c187722b83edb62c486"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/qa/COUNTEREXAMPLES.csv",
+   "sha256": "f21c53986094807e1352010bd1457d5537b560f7b21054dbd826225b723c7515"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/qa/FULL_E2E_LOG.md",
+   "sha256": "c229311dd068c7ef88099ef29b84085c2a546fd5d3cfbb4fbc2c6d7b782d46e2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/qa/SCIENTIFIC_CLAIMS_AUDIT.md",
+   "sha256": "9ff5bdf29ffce5a8b44e710a832108fbd36e6185b82cfaff633b4fcfc5a238d1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/qa/COMPLETION_CHECKLIST_AUDIT.md",
+   "sha256": "637cb18400744eed051bfd0201898074c15fdfe3edc76da6f4755cae7958d974"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/evidence/independent_recalc.json",
+   "sha256": "ca8fb43aa96a7b14a3691cee0e10772d31e641ff25a7dda35c221f70e554468c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/evidence/flag_off_identity.json",
+   "sha256": "4739125787039408d2a6947d4845fe130ef6749c73b9f85af79d9f04876583c3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/evidence/reproductions.json",
+   "sha256": "5441319c11f478059a2ba67d76525ab7fd5244360113a0b68985a5611c1c154d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/evidence/threat_scan.json",
+   "sha256": "437e51c137f98ae98759826e227b90e1ade876b744a0bd4d9ec8ae3fccf70cfa"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/evidence/oos_sensitivity.json",
+   "sha256": "22d0d6e56c3d2451ac5e6566f3058078a423f7dc34f723819d14ee030040c641"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/evidence/cross_component.json",
+   "sha256": "31518229dbd80955a5bf606638a96fc720b1a857b78615dac1e267bc4555d0ce"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/evidence/operations.json",
+   "sha256": "a1a1d4483b7beb5d5dd67a215873c883c14f8235720625a7bdf9633ef634923b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/evidence/real_event_traces.json",
+   "sha256": "eef5cc017029aac9715bb504eabacd21bbcf2330c84671d5831c7bce6f21f388"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/evidence/fresh_env.json",
+   "sha256": "04e6ebc41e1bfbf6ee52198c48bd4c52abf71f26d6dc54fc0cc61bc6cec14ed5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/evidence/repair_rerun/reproductions.json",
+   "sha256": "08d8a4c83f045d95375c7d4843ff76e3302b83d4246887e46beacf2c7d444583"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/evidence/repair_rerun/flag_off_identity.json",
+   "sha256": "ad7ba95a401820c86ce7a09e37ab7cc470c7297fda936e1e3dfbfe5f366d2fc6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/repair/OLD_CODE_CHECK.txt",
+   "sha256": "d4fb19a09c9d54eb255ae081851362e44d50398a324d0571b3580586066036f7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/repair/REAL_ENTRIES_SCAN.json",
+   "sha256": "d76932eb006e9f48b1fde6e3a8cf1399e34f364764e08435171245f21134f87f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/repair/PHASE19_REGISTRY_PATHS.json",
+   "sha256": "89b2f315da4b9d19ea2704ce7e3e21049e426551c180dccba016829a8d037b56"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/PHASE_20_EVIDENCE.md",
+   "sha256": "94249811839e475b76e8044bcc99061b5c3ff3d8010d1613b7f8f5cec6a93205"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_20/SKEPTIC_PACKET.md",
+   "sha256": "1f31ffb8c93e72818b1790d567d4f1e3fe42450baff1022e6dfb2706a2dfba40"
+  }
+ ],
+ "limitations": [
+  "no champion, calibrated card or real FORECAST exists; every FORECAST in the audit is a fixture (TEST_ONLY)",
+  "the auditor is an agent of the same family that built the pathway; the orchestrator's skeptic is the independent check",
+  "Phase 19 results are PROVISIONAL_PENDING_REVISION_REREAD until G25 (from 2026-10-29T14:35Z)",
+  "store-dependent reproductions need the private stores of Phases 05 and 06",
+  "F20-08 residual: a coordinated rewrite of inputs, raw number, point and document with a reseal needs a signature (no key approved)"
+ ],
+ "blockers": [
+  "the orchestrator's independent skeptic of Phase 20 has not run (PI-D-013)"
+ ],
+ "approvals_needed": [
+  "none for Phase 20; carried: promotion change control, paid data or LLM, alert delivery, flag on outside a sandbox, merges, a signing key"
+ ],
+ "findings": {
+  "CRITICAL": [],
+  "MATERIAL_repaired": [
+   "F20-02",
+   "F20-06"
+  ],
+  "MINOR_repaired": [
+   "F20-03",
+   "F20-08"
+  ],
+  "MINOR_open": [
+   "F20-01",
+   "F20-04",
+   "F20-05",
+   "F20-07",
+   "F20-09",
+   "F20-10",
+   "F20-11",
+   "F20-12",
+   "F20-13",
+   "F20-14"
+  ]
+ },
+ "next_eligible_phase": "21 after the Phase 20 skeptic; Phase 19 G25 still owed"
+}

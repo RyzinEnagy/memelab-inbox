@@ -1,0 +1,9 @@
+repair rerun at 5ebce8a start 2026-10-27T17:59:47Z
+cross start 2026-10-27T17:59:47Z end 2026-10-27T18:00:00Z exit 0
+matrix start 2026-10-27T18:00:00Z end 2026-10-27T18:01:19Z exit 0
+cx_rerun start 2026-10-27T18:01:19Z end 2026-10-27T18:01:50Z exit 0
+flag_off start 2026-10-27T17:59:47Z end 2026-10-27T18:01:57Z script_exit 0 summary_exit 1
+e2e start 2026-10-27T18:01:57Z end 2026-10-27T18:07:00Z exit 0
+flag_off (second run, checkout clean) start 2026-10-27T18:07:37Z end 2026-10-27T18:09:13Z script_exit 0 summary_exit 0
+reproductions start 2026-10-27T17:59:47Z end 2026-10-27T18:26:48Z exit 0
+all done 2026-10-27T18:26:48Z

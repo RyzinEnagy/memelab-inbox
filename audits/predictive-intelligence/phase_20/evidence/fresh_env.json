@@ -1,0 +1,12 @@
+{
+ "commit": "0d66379",
+ "command": "bash audits/predictive-intelligence/phase_20/probes/fresh_env.sh 0d66379 OUT",
+ "run_utc": ["2026-10-27T17:11:31Z", "2026-10-27T17:18:36Z"],
+ "venv": {"packages": "evidence/fresh_env/pip_freeze.txt (numpy 2.5.3, pytest 9.1.1 and their 4 dependencies)", "isolated": "sys.prefix differs from sys.base_prefix and SciPy is not importable in the venv; the log line system_site True reads sys.flags.no_site and is wrong"},
+ "namespace": "unshare -m -n, private research stores hidden by a tmpfs (0 visible)",
+ "predictive_tests": {"passed": 1372, "skipped": 8, "xfailed": 6, "failed": 50, "tail": "evidence/fresh_env/pytest_predictive_tail.txt"},
+ "skips_with_reasons": "private research stores absent (store-dependent reproductions); pinned MiroFish clone not present",
+ "failures": {"count": 50, "all_in": "tests/test_predictive_behavioral.py", "cause": "loopback interface down in a new network namespace (finding F20-11)", "list": "evidence/fresh_env/failing_in_namespace_without_loopback.txt",
+              "supplement": {"command": "the behavioral test file inside unshare -m -n with loopback raised by probes/lo_up.py", "result": "203 passed, 2 skipped (no jsonschema, no IPv6 loopback)", "tail": "evidence/fresh_env/pytest_behavioral_loopback_tail.txt"}},
+ "after_the_run": "probes/fresh_env.sh raises loopback with probes/lo_up.py before the tests (edited after the recorded run, stated in PHASE_20_EVIDENCE.md)"
+}

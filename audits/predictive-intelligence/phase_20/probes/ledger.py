@@ -1,7 +1,9 @@
 """Phase 20 search ledger: the Phase 19 cumulative ledger plus one row per Phase 20 audit run (debug runs before the frozen audit
 code and the recorded runs). No row is a candidate configuration: N_search stays 130 (169 with the rule configurations).
 
-    python -B ledger.py PHASE20_DIR
+    python -B ledger.py PHASE20_DIR FROZEN_COMMIT [REPAIR_COMMIT]
+
+With REPAIR_COMMIT, one row per touched path rerun after change control CP20-1 (PI-D-110) is added as well.
 """
 from __future__ import annotations
 
@@ -33,20 +35,29 @@ DEBUG = [
     ("P20:DEBUG:9", "DEBUG_RUN_REAL_DATA", "threat scan and counterexample rerun at uncommitted audit code"),
 ]
 RECORDED = ["P20:SCENARIOS", "P20:MAPPED_TESTS", "P20:CX_RERUN", "P20:CROSS", "P20:REPRO", "P20:E2E", "P20:SMOKE", "P20:FLAG_OFF",
-            "P20:FRESH_ENV", "P20:RELEASE_AUDIT", "P20:RECALC", "P20:OOS_SENSITIVITY", "P20:THREATS", "P20:OPERATIONS"]
+            "P20:FRESH_ENV", "P20:RELEASE_AUDIT", "P20:RECALC", "P20:OOS_SENSITIVITY", "P20:THREATS", "P20:OPERATIONS", "P20:CROSS_X06"]
+REPAIR = ["P20:CP20_1:SUITE", "P20:CP20_1:OLD_CODE_CHECK", "P20:CP20_1:PHASE19_REGISTRY_PATHS", "P20:CP20_1:CROSS",
+          "P20:CP20_1:SCENARIOS", "P20:CP20_1:CX_RERUN", "P20:CP20_1:REPRO", "P20:CP20_1:E2E", "P20:CP20_1:SMOKE",
+          "P20:CP20_1:FLAG_OFF", "P20:CP20_1:RELEASE_AUDIT"]
 
 
-def main(out: Path, frozen: str) -> int:
+def main(out: Path, frozen: str, repair: str | None = None) -> int:
     base = list(csv.DictReader(open(AUD / "phase_19/experiments/SEARCH_LEDGER.csv")))
     cols = list(base[0].keys())
     new = []
+    # evaluation.ledger_totals classifies every kind (P22); a fixture debug run is recorded as a check (TRAP_OR_CHECK) and the
+    # post-opening sensitivity as SENSITIVITY, with the registry's own kind kept at the start of the verdict
     for eid, kind, what in DEBUG:
-        new.append({c: "" for c in cols} | {"phase": "20", "experiment_id": eid, "candidate": "P20_DEBUG", "kind": kind, "view": "ALL",
-                                            "verdict": what, "claim": CLAIM})
+        k = kind if kind in E.DEBUG_KINDS else "TRAP_OR_CHECK"
+        new.append({c: "" for c in cols} | {"phase": "20", "experiment_id": eid, "candidate": "P20_DEBUG", "kind": k, "view": "ALL",
+                                            "verdict": f"{kind}: {what}", "claim": CLAIM})
     for eid in RECORDED:
-        kind = "POST_OPENING_DESCRIPTIVE" if eid == "P20:OOS_SENSITIVITY" else "TRAP_OR_CHECK"
+        kind = "SENSITIVITY" if eid == "P20:OOS_SENSITIVITY" else "TRAP_OR_CHECK"
         new.append({c: "" for c in cols} | {"phase": "20", "experiment_id": eid, "candidate": "P20_AUDIT", "kind": kind, "view": "ALL",
                                             "verdict": f"recorded audit run at the frozen audit code {frozen}", "claim": CLAIM})
+    for eid in REPAIR if repair else []:
+        new.append({c: "" for c in cols} | {"phase": "20", "experiment_id": eid, "candidate": "P20_AUDIT", "kind": "TRAP_OR_CHECK",
+                                            "view": "ALL", "verdict": f"rerun after change control CP20-1 at {repair}", "claim": CLAIM})
     rows = base + new
     (out / "experiments").mkdir(parents=True, exist_ok=True)
     with open(out / "experiments/SEARCH_LEDGER.csv", "w", newline="") as f:
@@ -63,4 +74,4 @@ def main(out: Path, frozen: str) -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main(Path(sys.argv[1]), sys.argv[2]))
+    sys.exit(main(Path(sys.argv[1]), sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else None))
