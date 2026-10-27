@@ -2,7 +2,7 @@
  "$id": "memelab.predictive.behavioral_scenario/1",
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "additionalProperties": false,
- "description": "behavioral-1 (Phase 14). Structure only; memelab.predictive.behavioral.validate_scenario adds grounding, window, sha and the no-number rules (only cost fields are floats; no probability-like key anywhere).",
+ "description": "behavioral-1 (Phase 14). Structure only; memelab.predictive.behavioral.validate_scenario adds grounding, window, sha and the no-number rules (only cost fields are floats; no probability-like key anywhere). Repair pass 2 (PI-D-076): one hypothesis per label, reasons and flags from the fixed vocabulary, llm_actions 0 unless SIMULATION_RAN (the observed count is cost.llm_actions_observed).",
  "properties": {
   "behavioral_version": {
    "const": "behavioral-1"
@@ -31,6 +31,10 @@
      "minimum": 0,
      "type": "number"
     },
+    "llm_actions_observed": {
+     "minimum": 0,
+     "type": "integer"
+    },
     "llm_calls": {
      "minimum": 0,
      "type": "integer"
@@ -50,7 +54,8 @@
     "calls_refused",
     "est_cost_usd",
     "cap_usd",
-    "wall_s"
+    "wall_s",
+    "llm_actions_observed"
    ],
    "type": "object"
   },
@@ -423,13 +428,26 @@
      "minimum": 0,
      "type": "integer"
     },
+    "distinct_scenario_sets": {
+     "minimum": 0,
+     "type": "integer"
+    },
     "evidence_sensitive": {
      "type": "boolean"
     },
     "flags": {
      "items": {
-      "pattern": "^[A-Z][A-Z0-9_]*$",
-      "type": "string"
+      "enum": [
+       "DEGRADED_SOURCE_CHANGES",
+       "GRID_INCOMPLETE",
+       "MONITOR_REVERSED",
+       "NOT_REPRODUCIBLE",
+       "NOT_SOURCE_GROUNDED",
+       "NO_EVIDENCE_RUN_MISSING",
+       "PERSONA_SENSITIVE",
+       "SEED_SENSITIVE",
+       "SINGLE_RUN"
+      ]
      },
      "type": "array"
     },

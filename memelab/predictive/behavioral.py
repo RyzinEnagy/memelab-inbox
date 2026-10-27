@@ -2,7 +2,8 @@
 
 Standard library only (plus the stdlib-only `contract` and `runtime` modules of this package). Nothing here forecasts, trains,
 reads a label or fetches anything. A live simulator run is BLOCKED (no LLM, Zep or other paid spend is approved, PI-D-005,
-PI-D-072): every endpoint must be a loopback IP literal, so no byte of lab data can leave the machine from this code.
+PI-D-072): a service endpoint must be a loopback IP literal and every subprocess engine runs inside `unshare -n` (loopback only),
+so no byte of lab data can leave the machine from this code (PI-D-076; the filesystem is not isolated).
 
 What it provides (package MIROFISH_EVALUATION.md; ADVERSARIAL_SCENARIOS P26 to P31, P41, P45, P48; phase_14 ACCEPTANCE_CHECKLIST):
   - the scenario document `memelab.predictive.behavioral_scenario/1`: explicitly fictional hypotheses with named assumptions,
@@ -35,6 +36,7 @@ import subprocess
 import tempfile
 import threading
 import time
+import unicodedata
 import urllib.parse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -102,6 +104,7 @@ ASSUMPTION_CODES = {
     SYN_SPECULATION: ("INSIDER_INTENT_TO_SELL", "INSIDER_INTENT_TO_HOLD"),
 }
 REFUSED_CLAIM_KINDS = ("WALLET_CONTROL", "IDENTITY_LINK")      # never one real person behind related wallets, never identity
+REFUSED_CLAIM_KEYS = ("WALLET_CONTROL", "IDENTITY_LINK", "UNKNOWN_CLAIM", "INSIDER_INTENT_KEPT_AS_SPECULATION")
 SPECULATION_CLAIM_KIND = "INSIDER_INTENT"                        # kept only as SYNTHETIC_SPECULATION
 PERSONA_ARCHETYPES = ("MOMENTUM_TRADER", "CONTRARIAN", "NOISE_TRADER", "TAKE_PROFIT_EXITER", "NARRATIVE_FOLLOWER", "SKEPTIC")
 
@@ -116,20 +119,56 @@ REQUEST_TIMEOUT_S, RUN_TIMEOUT_S, MAX_RETRIES = 30.0, 900.0, 2
 METER_DEFAULTS = {"max_calls": 200, "max_prompt_chars": 16000, "max_tokens": 512, "breaker": 5, "timeout_s": 30.0}
 MAX_CALL_BODY_BYTES = 64 * 1024          # a metered call's whole JSON body; the input-token charge is its byte count (PI-D-073)
 TOKEN_OVERHEAD = 64                      # added to every call's byte count for wrapper tokens
+# top-level keys a metered chat call may carry; n (only 1) and stream (only false) are dropped before forwarding (PI-D-076)
+CALL_KEYS = frozenset({"model", "messages", "max_tokens", "max_completion_tokens", "temperature", "top_p", "tools", "tool_choice",
+                       "response_format", "stop", "seed", "presence_penalty", "frequency_penalty", "user", "parallel_tool_calls", "n",
+                       "stream"})
 MOCK_KEY = "mock-not-a-key"
 
 # patterns (PROB_LIKE equals abstention.PROB_LIKE, pinned by a test; this module stays free of numpy)
 PROB_LIKE = re.compile(r"prob|likel|confid|share|vote|agree|pct|percent|odds|chance|consensus|certain", re.I)
-OUTCOME_KEY = re.compile(r"label|outcome|matur|realiz|future|after_decision|post_decision|peak|max_price|min_price|drawdown|pnl|"
-                         r"profit|first_touch|touch|(?:^|_)ath(?:$|_)", re.I)
+OUTCOME_KEY = re.compile(r"label|outcome|matur|realiz|realis|future|after_decision|post_decision|peak|max_price|min_price|drawdown|pnl|"
+                         r"profit|first_touch|touch|(?:^|_)ath(?:$|_)|t_plus|plus_\d|(?:^|_)after(?:$|_)|close_price|price_change|"
+                         r"return|result|eventual|(?:^|_)final(?:$|_)|(?:^|_)exit_", re.I)
 INJECTION = re.compile(
-    r"ignore\s+(?:all\s+|any\s+|the\s+)?(?:previous|prior|above|earlier)\s+(?:instructions?|prompts?|rules?)|\bsystem\s*:|"
-    r"\bassistant\s*:|you\s+are\s+now\b|\bdisregard\b|api[\s_-]?key|\bsecret\b|\bpassword\b|\bsk-[A-Za-z0-9_-]{8,}|"
-    r"BEGIN [A-Z ]*PRIVATE KEY|seed\s+phrase|\bmnemonic\b|private\s+key|https?://|\bwww\.|\bcurl\s|\bwget\s|<\s*script", re.I)
+    r"ignore\s+(?:all\s+|any\s+|the\s+|your\s+|these\s+|those\s+|my\s+)?(?:previous\s+|prior\s+|above\s+|earlier\s+|system\s+)?"
+    r"(?:instructions?|prompts?|rules?|directions?|messages?|context)|forget\s+(?:all|any|your|the|previous|prior|everything|what)|"
+    r"new\s+(?:task|instructions?|role|rules?)\s*:|\boverride\b|\bjailbreak|\bact\s+as\b|pretend\s+(?:to\s+be|you)|do\s+anything\s+now|"
+    r"\bsystem\s*:|\bsystem\s+prompt|\bassistant\s*:|you\s+are\s+now\b|from\s+now\s+on\b|\bdisregard\b|api[\s_-]?key|\bsecret\b|"
+    r"\bpassword\b|\bsk-[A-Za-z0-9_-]{8,}|BEGIN [A-Z ]*PRIVATE KEY|seed\s+phrase|\bmnemonic\b|private\s+key|[a-z]+://|\bwww\.|"
+    r"\.(?:com|io|xyz|org|net|dev|ai)\b/|\bcurl\s|\bwget\s|<\s*script", re.I)
 ISO_DT = re.compile(r"(?<![0-9])(20\d\d)-(\d\d)-(\d\d)(?:[T ](\d\d):(\d\d)(?::(\d\d))?)?")
-UNIX_TS = re.compile(r"(?<![0-9A-Za-z.])(1[6-9]\d{8}|2[01]\d{8})(?![0-9A-Za-z])")
+SLASH_YMD = re.compile(r"(?<![0-9])(20\d\d)[/.](\d{1,2})[/.](\d{1,2})(?![0-9])")
+SLASH_DMY = re.compile(r"(?<![0-9])(\d{1,2})[/.](\d{1,2})[/.](20\d\d)(?![0-9])")
+_MON = r"(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?"
+MONTH_MDY = re.compile(_MON + r"\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(20\d\d)", re.I)
+MONTH_DMY = re.compile(r"(?<![0-9])(\d{1,2})(?:st|nd|rd|th)?\s+" + _MON + r",?\s+(20\d\d)", re.I)
+MONTHS = {m: i + 1 for i, m in enumerate(("jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"))}
+UNIX_TS = re.compile(r"(?<![0-9A-Za-z.])(1[6-9]\d{8}|2[01]\d{8})(?:\d{3})?(?![0-9A-Za-z])")
+AFTER_WORDING = re.compile(r"\b(?:the\s+)?next\s+(?:day|morning|evening|night|week|hour|session)\b|\b(?:minutes?|hours?|days?|weeks?)\s+later\b|"
+                           r"\blater\s+(?:that|the\s+same)\s+(?:day|night|week)\b|\bafterwards?\b|\bsubsequently\b|\bwent\s+on\s+to\b|"
+                           r"\bended\s+up\b|\bin\s+hindsight\b|\brugged\b|\bdumped\s+to\b|\bwent\s+to\s+zero\b", re.I)
+_INVISIBLE = re.compile("[\u00ad\u034f\u061c\u115f\u1160\u17b4\u17b5\u180b-\u180f\u200b-\u200f\u202a-\u202e\u2060-\u206f\u3164\ufe00-\ufe0f\ufeff\uffa0]")
 CODE = re.compile(r"^[A-Z][A-Z_]*[A-Z]$")                 # vocabulary codes carry no digits (CX-14)
 REASON = re.compile(r"^[A-Z][A-Z0-9_]*$")
+STABILITY_FLAGS = frozenset({"GRID_INCOMPLETE", "SEED_SENSITIVE", "PERSONA_SENSITIVE", "NOT_REPRODUCIBLE", "MONITOR_REVERSED",
+                             "NOT_SOURCE_GROUNDED", "NO_EVIDENCE_RUN_MISSING", "DEGRADED_SOURCE_CHANGES", "SINGLE_RUN"})
+SEED_CODES = frozenset({"SEED_SCHEMA", "MINT_NOT_VERIFIED", "SNAPSHOT_HASH", "DECISION_TIME", "SEED_SHA_MISMATCH", "OBSERVATIONS",
+                        "TOO_MANY_OBSERVATIONS", "OBSERVATION_KIND", "OBSERVATION_TIME_MISSING", "OBSERVATION_AFTER_DECISION",
+                        "UNVERIFIED_SOURCE", "OBSERVATION_SHA_MISMATCH", "CATALYST_STATE", "QUOTE_REFUSED", "OBSERVATION_VALUE",
+                        "POST_DECISION_FIELD", "BEHAVIORAL_FEEDBACK", "PROMPT_INJECTION_SUSPECTED", "POST_DECISION_DATE",
+                        "POST_DECISION_WORDING"})
+RUN_REASONS = frozenset({"NOT_APPROVED", "KILL_SWITCH", "MODE_NOT_ON_DEMAND_LOCAL", "EGRESS_NOT_APPROVED", "ENGINE_MODE",
+                         "PAID_ENGINE_NOT_APPROVED", "BOUNDS", "COST_CAP_REACHED", "KEY_MISSING", "QUOTA_EXHAUSTED", "SERVICE_ERROR",
+                         "SERVICE_DOWN", "TIMEOUT", "TIMEOUT_KILLED", "BAD_RESPONSE", "CIRCUIT_OPEN", "RESPONSE_REFUSED_PROBABILITY",
+                         "RESPONSE_REFUSED_INJECTION", "RESPONSE_REFUSED_REPEATED_LABEL", "UNGROUNDED_CATALYST", "UNGROUNDED_HYPOTHESIS",
+                         "NO_LLM_ACTIONS", "NOT_CODABLE", "UNSTABLE_EXPLORATORY", "KEY_NOT_APPROVED", "BAD_ENVIRONMENT",
+                         "NETNS_UNAVAILABLE", "NETNS_REQUIRED", "METER_OUTSIDE_NAMESPACE", "NO_OUTPUT"})
+_EXIT_REASON = re.compile(r"^(?:SCRIPT_EXIT|SCRIPT_SIGNAL)_\d{1,3}$|^ADAPTER_[A-Z_]+$")
+
+
+def reason_ok(r: Any) -> bool:
+    return isinstance(r, str) and (r in RUN_REASONS or r in SEED_CODES or bool(_EXIT_REASON.fullmatch(r)))
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 SECRET_ENV = re.compile(r"KEY|TOKEN|SECRET|PASS|CRED", re.I)
 BEHAVIORAL_MARK = re.compile(r"BEHAVIORAL|behavioral-|" + KIND)
@@ -173,12 +212,26 @@ def _walk(o: Any, path: str = ""):
                 yield item
 
 
+def norm_text(s: str) -> str:
+    """NFKC (fullwidth and compatibility forms to plain), invisible and format characters removed, whitespace collapsed: the form
+    every pattern is matched against (skeptic m2)."""
+    t = unicodedata.normalize("NFKC", s)
+    t = _INVISIBLE.sub("", "".join(ch for ch in t if unicodedata.category(ch) != "Cf"))
+    return re.sub(r"\s+", " ", t)
+
+
 def _strings(o: Any) -> Iterable[str]:
     for _, k, v in _walk(o):
         if k is not None:
-            yield str(k)
+            yield norm_text(str(k))
         if isinstance(v, str):
-            yield v
+            yield norm_text(v)
+
+
+def _day_after(y: int, mo: int, d: int, day_cut: tuple) -> bool:
+    if not (1 <= mo <= 12 and 1 <= d <= 31):
+        return False
+    return (y, mo, d) > day_cut
 
 
 def _dates_after(text: str, cutoff: float) -> list[str]:
@@ -197,10 +250,36 @@ def _dates_after(text: str, cutoff: float) -> list[str]:
             continue
         if t > cutoff:
             out.append(m.group(0))
+    dc = tuple(int(x) for x in day_cut.split("-"))
+    for m in SLASH_YMD.finditer(text):
+        if _day_after(int(m.group(1)), int(m.group(2)), int(m.group(3)), dc):
+            out.append(m.group(0))
+    for m in SLASH_DMY.finditer(text):        # day and month order unknown: after under either reading counts (conservative)
+        a, b, y = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        if _day_after(y, b, a, dc) or _day_after(y, a, b, dc):
+            out.append(m.group(0))
+    for m in MONTH_MDY.finditer(text):
+        if _day_after(int(m.group(3)), MONTHS[m.group(1).lower()[:3]], int(m.group(2)), dc):
+            out.append(m.group(0))
+    for m in MONTH_DMY.finditer(text):
+        if _day_after(int(m.group(3)), MONTHS[m.group(2).lower()[:3]], int(m.group(1)), dc):
+            out.append(m.group(0))
     for m in UNIX_TS.finditer(text):
-        if float(m.group(1)) > cutoff:
-            out.append(m.group(1))
+        v = float(m.group(0))
+        if (v / 1000.0 if v > 1e11 else v) > cutoff:
+            out.append(m.group(0))
     return out
+
+
+def _number_after(v: Any, cutoff: float) -> bool:
+    """A numeric value that reads as a unix time in seconds or milliseconds after the cutoff (skeptic m1)."""
+    if isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v):
+        return False
+    if 1.6e9 <= v < 2.2e9:
+        return v > cutoff
+    if 1.6e12 <= v < 2.2e12:
+        return v / 1000.0 > cutoff
+    return False
 
 
 # ---------------------------------------------------------------- seeds (checklist rules 7, 16)
@@ -284,18 +363,22 @@ def check_seed(seed: Any) -> list[str]:
         v = o.get("value")
         if not (v is None or isinstance(v, str) or (isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v))):
             errs.add("OBSERVATION_VALUE")
-        if isinstance(o.get("name"), str) and OUTCOME_KEY.search(o["name"]):
+        if isinstance(o.get("name"), str) and OUTCOME_KEY.search(norm_text(o["name"])):
             errs.add("POST_DECISION_FIELD")
         if any(BEHAVIORAL_MARK.search(str(x)) for x in (o.get("source_ref"), o.get("kind"), o.get("name"), o.get("evidence_class"))):
             errs.add("BEHAVIORAL_FEEDBACK")
     for _, k, v in _walk(seed):
         if k is not None and OUTCOME_KEY.search(str(k)):
             errs.add("POST_DECISION_FIELD")
+        if _number_after(v, T):
+            errs.add("POST_DECISION_DATE")
     for s in _strings(seed):
         if INJECTION.search(s):
             errs.add("PROMPT_INJECTION_SUSPECTED")
         if _dates_after(s, T):
             errs.add("POST_DECISION_DATE")
+        if AFTER_WORDING.search(s):
+            errs.add("POST_DECISION_WORDING")
         if KIND in s:
             errs.add("BEHAVIORAL_FEEDBACK")
     return sorted(errs)
@@ -420,9 +503,10 @@ def code_response(resp: Any, seed: dict) -> dict:
             m = monitor(mon["metric"], mon["expect"], T)
         hy = {"label": lab, "assumptions": sorted(asms, key=canon), "source_refs": sorted(set(refs)), "monitor": m, "synthetic": True}
         hy["hypothesis_id"] = "h-" + sha(hy)[:16]
-        if hy["hypothesis_id"] not in seen:
-            seen.add(hy["hypothesis_id"])
-            hyps.append(hy)
+        if lab in seen:            # a repeated label could carry a count of agreeing agents (skeptic M3): refused whole
+            raise ResponseRefused("RESPONSE_REFUSED_REPEATED_LABEL", lab)
+        seen.add(lab)
+        hyps.append(hy)
     refused = {k: 0 for k in (*REFUSED_CLAIM_KINDS, "UNKNOWN_CLAIM")}
     kept_spec = 0
     for c in resp.get("claims") or []:
@@ -447,8 +531,8 @@ def monitor(metric: str, expect: str, T: float) -> dict:
 
 # ---------------------------------------------------------------- the scenario document (checklist rules 4, 6, 13)
 _FLOAT_PATHS = {"cost.est_cost_usd", "cost.cap_usd", "cost.wall_s"}
-_INT_PATHS = {"llm_actions", "cost.llm_calls", "cost.prompt_chars", "cost.calls_refused", "stability.runs",
-              "stability.distinct_label_sets", "engine.run_seeds[*]", "engine.persona_sets[*]", "engine.agents", "engine.rounds"}
+_INT_PATHS = {"llm_actions", "cost.llm_actions_observed", "cost.llm_calls", "cost.prompt_chars", "cost.calls_refused", "stability.runs",
+              "stability.distinct_label_sets", "stability.distinct_scenario_sets", "engine.run_seeds[*]", "engine.persona_sets[*]", "engine.agents", "engine.rounds"}
 _DOC_KEYS = ("schema", "behavioral_version", "kind", "fictional", "fiction_notice", "status", "reasons", "subject", "seed", "engine",
              "hypotheses", "stability", "contamination_flags", "cost", "provenance", "refused_claims", "llm_actions", "doc_sha256")
 
@@ -477,8 +561,9 @@ def scenario_doc(seed: dict, *, status: str, reasons: Sequence[str], engine: dic
          "engine": dict(engine), "hypotheses": list(hypotheses) if status in (SIMULATION_RAN, RULES_RAN) else [],
          "stability": dict(stability), "contamination_flags": contamination(engine, str(seed.get("decision_time_utc"))),
          "cost": dict(cost), "provenance": dict(provenance),
-         "refused_claims": dict(refused_claims or {k: 0 for k in (*REFUSED_CLAIM_KINDS, "UNKNOWN_CLAIM", "INSIDER_INTENT_KEPT_AS_SPECULATION")}),
-         "llm_actions": int(llm_actions)}
+         "refused_claims": dict(refused_claims or {k: 0 for k in REFUSED_CLAIM_KEYS}),
+         "llm_actions": int(llm_actions) if status == SIMULATION_RAN else 0}
+    d["cost"]["llm_actions_observed"] = int(llm_actions)
     d["doc_sha256"] = sha(d)
     return d
 
@@ -511,8 +596,15 @@ def validate_scenario(doc: Any) -> list[str]:
         errs.append("a scenario is explicitly fictional and carries the fixed notice")
     if doc["status"] not in STATUSES:
         errs.append(f"status {doc['status']!r}")
-    if not isinstance(doc["reasons"], list) or not all(isinstance(r, str) and REASON.fullmatch(r) for r in doc["reasons"]):
-        errs.append("reasons must be codes")
+    if not isinstance(doc["reasons"], list) or not all(reason_ok(r) for r in doc["reasons"]):
+        errs.append("reasons must be codes from the fixed vocabulary (skeptic m3)")
+    if not isinstance(doc["refused_claims"], dict) or tuple(sorted(doc["refused_claims"])) != tuple(sorted(REFUSED_CLAIM_KEYS)):
+        errs.append("refused_claims keys differ from the schema (skeptic m3)")
+    cst = doc["cost"] if isinstance(doc["cost"], dict) else {}
+    if doc["status"] != SIMULATION_RAN and doc["llm_actions"] != 0:
+        errs.append("llm_actions is 0 unless the run is SIMULATION_RAN: a capped or refused run is never available (skeptic M1)")
+    if doc["status"] == SIMULATION_RAN and doc["llm_actions"] != cst.get("llm_actions_observed"):
+        errs.append("llm_actions differs from cost.llm_actions_observed")
     sub = doc["subject"] if isinstance(doc["subject"], dict) else {}
     if not C._address_ok(sub.get("chain"), sub.get("mint_address")):
         errs.append("subject mint is not an exact address (P01)")
@@ -544,6 +636,9 @@ def validate_scenario(doc: Any) -> list[str]:
         return errs + ["hypotheses"]
     if doc["status"] not in (SIMULATION_RAN, RULES_RAN) and hyps:
         errs.append("hypotheses on a run that did not run")
+    labs = [h.get("label") for h in hyps if isinstance(h, dict)]
+    if len(labs) != len(set(labs)):
+        errs.append("one hypothesis per label: a repeated label could encode agreement as a count (P27, skeptic M3)")
     for h in hyps:
         if not isinstance(h, dict) or set(h) != {"hypothesis_id", "label", "assumptions", "source_refs", "monitor", "synthetic"}:
             errs.append("hypothesis keys")
@@ -584,6 +679,8 @@ def validate_scenario(doc: Any) -> list[str]:
     st = doc["stability"] if isinstance(doc["stability"], dict) else {}
     if st.get("status") not in STABILITY_STATUSES:
         errs.append("stability status")
+    if not isinstance(st.get("flags", []), list) or any(f not in STABILITY_FLAGS for f in st.get("flags", [])):
+        errs.append("stability flags must come from the fixed vocabulary (skeptic m3)")
     if eng.get("mode") == RULE_BASED and st.get("status") != DETERMINISTIC_RULES:
         errs.append("rule-based documents are DETERMINISTIC_RULES")
     if eng.get("mode") != RULE_BASED and st.get("status") == DETERMINISTIC_RULES:
@@ -591,7 +688,7 @@ def validate_scenario(doc: Any) -> list[str]:
     for kreq in ("adapter", "created_at_utc", "run_ids", "response_sha256", "trace_sha256"):
         if kreq not in (doc["provenance"] if isinstance(doc["provenance"], dict) else {}):
             errs.append(f"provenance.{kreq} missing")
-    for kreq in ("llm_calls", "prompt_chars", "est_cost_usd", "cap_usd", "wall_s"):
+    for kreq in ("llm_calls", "prompt_chars", "est_cost_usd", "cap_usd", "wall_s", "llm_actions_observed"):
         if kreq not in (doc["cost"] if isinstance(doc["cost"], dict) else {}):
             errs.append(f"cost.{kreq} missing")
     if doc["doc_sha256"] != _try_sha({k: v for k, v in doc.items() if k != "doc_sha256"}):
@@ -618,30 +715,44 @@ def forecast_entries(doc: dict) -> list[dict]:
 
 
 # ---------------------------------------------------------------- stability (checklist rule 14)
+def scenario_keys(hypotheses: Sequence[dict]) -> list[str]:
+    """What a run says: each label with the direction of its falsifiable monitor (CX-S14, PI-D-076)."""
+    out = []
+    for h in hypotheses:
+        m = h.get("monitor") or {}
+        out.append(f"{h['label']}|{m.get('metric', 'NONE')}|{m.get('expect', 'NONE')}")
+    return sorted(out)
+
+
 def stability(runs: Sequence[dict], *, deterministic: bool) -> dict:
-    """runs: {"cell": GRID | REPEAT | DEGRADED:<kind> | NO_EVIDENCE, "run_seed", "persona_set", "ok", "labels", "response_sha256",
-    "refused_reason"}. STABLE only on identical label sets across the full grid and the repeat; never from a share of runs."""
+    """runs: {"cell": GRID | REPEAT | DEGRADED:<kind> | NO_EVIDENCE, "run_seed", "persona_set", "ok", "labels", "scenarios",
+    "response_sha256", "refused_reason"}. STABLE only on identical scenario sets (label, monitor metric and expectation) across the
+    full grid and the repeat; never from a share of runs. A label that keeps its name while its monitor flips is MONITOR_REVERSED."""
     grid = {(r["run_seed"], r["persona_set"]): r for r in runs if r["cell"] == "GRID"}
     rep = [r for r in runs if r["cell"] == "REPEAT"]
     flags: set[str] = set()
     want = {(s, p) for s in GRID_SEEDS for p in GRID_PERSONAS}
     complete = set(grid) == want and all(r["ok"] for r in grid.values()) and len(rep) == 1 and rep[0]["ok"]
-    sets = {tuple(r["labels"]) for r in grid.values() if r["ok"]}
+    sets = {tuple(r["scenarios"]) for r in grid.values() if r["ok"]}
+    label_sets = {tuple(r["labels"]) for r in grid.values() if r["ok"]}
     if not complete:
         flags.add("GRID_INCOMPLETE")
         status = NOT_ASSESSED
         rep_same = False
     else:
         first = grid[(GRID_SEEDS[0], GRID_PERSONAS[0])]
-        rep_same = tuple(rep[0]["labels"]) == tuple(first["labels"]) and (not deterministic or rep[0]["response_sha256"] == first["response_sha256"])
+        rep_same = tuple(rep[0]["scenarios"]) == tuple(first["scenarios"]) and (not deterministic or rep[0]["response_sha256"] == first["response_sha256"])
         for p in GRID_PERSONAS:
-            if len({tuple(grid[(s, p)]["labels"]) for s in GRID_SEEDS}) > 1:
+            if len({tuple(grid[(s, p)]["scenarios"]) for s in GRID_SEEDS}) > 1:
                 flags.add("SEED_SENSITIVE")
         for s in GRID_SEEDS:
-            if len({tuple(grid[(s, p)]["labels"]) for p in GRID_PERSONAS}) > 1:
+            if len({tuple(grid[(s, p)]["scenarios"]) for p in GRID_PERSONAS}) > 1:
                 flags.add("PERSONA_SENSITIVE")
         if not rep_same:
             flags.add("NOT_REPRODUCIBLE")
+        all_sets = sets | {tuple(rep[0]["scenarios"])}
+        if len(all_sets) > 1 and len(label_sets | {tuple(rep[0]["labels"])}) == 1:
+            flags.add("MONITOR_REVERSED")
         status = STABLE if (len(sets) == 1 and rep_same) else UNSTABLE
     full = grid.get((GRID_SEEDS[0], GRID_PERSONAS[0]))
     full_labels = tuple(full["labels"]) if full and full["ok"] else ()
@@ -660,8 +771,8 @@ def stability(runs: Sequence[dict], *, deterministic: bool) -> dict:
         flags.add("DEGRADED_SOURCE_CHANGES")
     if "NOT_SOURCE_GROUNDED" in flags and status == STABLE:
         status = UNSTABLE
-    return {"status": status, "runs": len(runs), "distinct_label_sets": len(sets), "repeat_identical": bool(rep_same),
-            "evidence_sensitive": evidence_sensitive, "flags": sorted(flags)}
+    return {"status": status, "runs": len(runs), "distinct_label_sets": len(label_sets), "distinct_scenario_sets": len(sets),
+            "repeat_identical": bool(rep_same), "evidence_sensitive": evidence_sensitive, "flags": sorted(flags)}
 
 
 # ---------------------------------------------------------------- configuration, egress and cost (checklist rules 2, 3, 12)
@@ -880,7 +991,8 @@ class _Adapter:
         raise NotImplementedError
 
     def run(self) -> dict:
-        """For runtime.simulation_state: one run on the adapter's seed (the document carries llm_actions)."""
+        """For runtime.simulation_state: one run on the adapter's seed. The document's top-level llm_actions is 0 unless the run is
+        SIMULATION_RAN, so a capped, refused or partial run is never AVAILABLE (skeptic M1)."""
         return self.run_once()
 
     def run_grid(self, seed: dict | None = None) -> dict:
@@ -897,6 +1009,7 @@ class _Adapter:
             docs.append((cell, d))
             ok = d["status"] == SIMULATION_RAN
             runs.append({"cell": cell, "run_seed": s, "persona_set": p, "ok": ok, "labels": sorted({h["label"] for h in d["hypotheses"]}),
+                         "scenarios": scenario_keys(d["hypotheses"]),
                          "response_sha256": (d["provenance"]["response_sha256"] or [None])[0],
                          "refused_reason": None if ok else (d["reasons"] or [None])[0]})
             if d["status"] in (NOT_SUPPORTED, SEED_REFUSED) or (cell == "GRID" and d["reasons"] and d["reasons"][0] in
@@ -905,10 +1018,10 @@ class _Adapter:
         stab = stability(runs, deterministic=bool(self.engine.get("deterministic")))
         main = docs[0][1]
         grid_docs = [d for c, d in docs if c in ("GRID", "REPEAT") and d["status"] == SIMULATION_RAN]
-        hyps = {}
-        for d in grid_docs:
+        hyps: dict[str, dict] = {}
+        for d in grid_docs:          # one hypothesis per label, the first in grid order; never a count across runs (M3)
             for h in d["hypotheses"]:
-                hyps[h["hypothesis_id"]] = h
+                hyps.setdefault(h["label"], h)
         eng = dict(main["engine"])
         eng["run_seeds"], eng["persona_sets"] = list(GRID_SEEDS), list(GRID_PERSONAS)
         total = {"llm_calls": 0, "prompt_chars": 0, "calls_refused": 0, "est_cost_usd": 0.0, "cap_usd": main["cost"]["cap_usd"], "wall_s": 0.0}
@@ -930,7 +1043,7 @@ class _Adapter:
         sd = seed if isinstance(seed, dict) else {}
         return scenario_doc(sd, status=status, reasons=reasons, engine=eng, hypotheses=sorted(hyps.values(), key=lambda h: h["hypothesis_id"]),
                             stability=stab, cost=total, provenance=prov, refused_claims=refused,
-                            llm_actions=sum(d["llm_actions"] for _, d in docs))
+                            llm_actions=sum(d["cost"].get("llm_actions_observed", 0) for _, d in docs))
 
 
 class ServiceAdapter(_Adapter):
@@ -976,20 +1089,37 @@ class ServiceAdapter(_Adapter):
         return None, data
 
 
-class SubprocessAdapter(_Adapter):
-    """A separate process given `{request}` and `{response}` file paths in argv. The environment is built from scratch: PATH,
-    HOME (the run's temporary directory), LANG, PYTHONHASHSEED and only the caller's `extra_env`; a variable whose name looks like
-    a key or token is accepted only with the literal mock value. The process group is killed on timeout."""
+UNSHARE = "/usr/bin/unshare"
+_NETNS: list[bool] = []
 
-    transport = "SUBPROCESS"
+
+def netns_available() -> bool:
+    """Whether `unshare -n` works here (it needs root or user namespaces); probed once per process."""
+    if not _NETNS:
+        try:
+            ok = Path(UNSHARE).exists() and subprocess.run([UNSHARE, "-n", "/bin/true"], capture_output=True, timeout=10).returncode == 0
+        except (OSError, subprocess.SubprocessError):
+            ok = False
+        _NETNS.append(ok)
+    return _NETNS[0]
+
+
+class SubprocessAdapter(_Adapter):
+    """A separate process given `{request}` and `{response}` file paths in argv, always run as `/usr/bin/unshare -n <argv>`: a
+    network namespace whose only interface is loopback (down until the child raises it), whatever kind the engine declares
+    (skeptic M4, PI-D-076). The environment is built from scratch: PATH, HOME (the run's temporary directory), LANG,
+    PYTHONHASHSEED and only the caller's `extra_env`; a variable whose name looks like a key or token is accepted only with the
+    literal mock value. The process group is killed on timeout. A metering proxy for the child must run inside the namespace
+    (as `phase_14/probes/mirofish_runner.py` does); one given here would be unreachable, so it is refused."""
+
+    transport = "SUBPROCESS_NETNS"
 
     def __init__(self, config: Any, engine: dict, argv: Sequence[str], *, extra_env: dict | None = None,
-                 timeout_s: float = RUN_TIMEOUT_S, netns: bool = False, **kw: Any):
+                 timeout_s: float = RUN_TIMEOUT_S, **kw: Any):
         super().__init__(config, engine, **kw)
-        self.argv, self.extra_env, self.timeout, self.netns = list(argv), dict(extra_env or {}), float(timeout_s), bool(netns)
+        self.argv, self.extra_env, self.timeout = list(argv), dict(extra_env or {}), float(timeout_s)
 
     def _extra_gate(self) -> str | None:
-        """An engine the lab did not write runs only inside a network namespace with loopback alone (unshare -n)."""
         for k, v in self.extra_env.items():
             if not isinstance(k, str) or not isinstance(v, str):
                 return "BAD_ENVIRONMENT"
@@ -997,15 +1127,15 @@ class SubprocessAdapter(_Adapter):
                 return "KEY_NOT_APPROVED"
             if ("://" in v or "www." in v.lower()) and loopback_endpoint(v) is None:
                 return "EGRESS_NOT_APPROVED"
-        if self.engine.get("mode") == EXTERNAL_SIMULATOR and not self.netns:
-            return "NETNS_REQUIRED"
-        if self.netns and not Path("/usr/bin/unshare").exists():
+        if self.meter is not None:
+            return "METER_OUTSIDE_NAMESPACE"
+        if not netns_available():
             return "NETNS_UNAVAILABLE"
         return None
 
     def child_env(self, home: str) -> dict:
         env = {"PATH": "/usr/bin:/bin", "HOME": home, "LANG": "C.UTF-8", "PYTHONHASHSEED": "0"}
-        if self._extra_gate() not in (None, "NETNS_REQUIRED", "NETNS_UNAVAILABLE"):
+        if self._extra_gate() is not None:
             raise BehavioralError("extra_env refused")
         env.update(self.extra_env)
         return env
@@ -1015,8 +1145,7 @@ class SubprocessAdapter(_Adapter):
             rq, rs = Path(td) / "request.json", Path(td) / "response.json"
             rq.write_text(canon(req))
             argv = [a.replace("{request}", str(rq)).replace("{response}", str(rs)) for a in self.argv]
-            if self.netns:
-                argv = ["/usr/bin/unshare", "-n", *argv]
+            argv = [UNSHARE, "-n", *argv]
             try:
                 env = self.child_env(td)
             except BehavioralError:
@@ -1045,9 +1174,11 @@ class SubprocessAdapter(_Adapter):
 # ---------------------------------------------------------------- the metering proxy (checklist rule 12)
 class LLMMeter:
     """Loopback OpenAI-compatible metering proxy between a simulator and its LLM. Every forwarded call is charged its pre-call
-    ceiling (the JSON body's bytes plus TOKEN_OVERHEAD at the input price, the forced max_tokens at the output price), so the total
-    charge can never pass the cap; if the upstream ever reports more tokens than were charged, the meter stops forwarding (fail
-    closed). Logs sizes and hashes only, never content."""
+    ceiling (the larger of the received and forwarded JSON body's bytes plus TOKEN_OVERHEAD at the input price, the forced
+    max_tokens at the output price), so the total charge can never pass the cap. Parameters that multiply the bill (`n` other than
+    1, `stream` true, any key outside CALL_KEYS) are refused. The upstream's own usage is metered per call; a 200 answer without
+    integer usage, or with more tokens than were charged, stops forwarding (fail closed). Logs sizes, hashes and refused key
+    names only, never content."""
 
     def __init__(self, upstream: str, *, max_cost_usd: float = 0.0, price_in_per_1k_tokens_usd: float = 0.0,
                  price_out_per_1k_tokens_usd: float = 0.0, max_calls: int = METER_DEFAULTS["max_calls"],
@@ -1065,6 +1196,7 @@ class LLMMeter:
         self.lock = threading.Lock()
         self.ledger: list[dict] = []
         self.forwarded = self.refused = self.charged = self.failures = self.prompt_chars = self.usage_above_charge = 0
+        self.usage_missing = self.usage_total = 0
         self.cap_reached = self.killed = False
         self.server: ThreadingHTTPServer | None = None
         self.url = ""
@@ -1073,22 +1205,31 @@ class LLMMeter:
         with self.lock:
             return {"calls_forwarded": self.forwarded, "calls_refused": self.refused, "charged_microusd": self.charged,
                     "cap_microusd": self.cap or 0, "cap_reached": self.cap_reached, "prompt_chars": self.prompt_chars,
-                    "breaker_open": self.failures >= self.breaker, "killed": self.killed, "usage_above_charge": self.usage_above_charge}
+                    "breaker_open": self.failures >= self.breaker, "killed": self.killed, "usage_above_charge": self.usage_above_charge,
+                    "usage_missing": self.usage_missing, "usage_microusd": self.usage_total}
 
     def kill(self) -> None:
         with self.lock:
             self.killed = True
 
-    def _decide(self, req: dict, raw: bytes) -> tuple[int, str, dict | None]:
+    def _decide(self, req: dict, raw: bytes) -> tuple[int, str, bytes | None, dict | None]:
+        """(HTTP code, ledger status, body to forward or None, ledger entry). Every parameter that could multiply the upstream's
+        bill is refused: `n` other than 1, `stream` true, and any top-level key outside CALL_KEYS (PI-D-076, skeptic M2)."""
         msgs = req.get("messages") if isinstance(req.get("messages"), list) else []
         chars = sum(len(str(m.get("content") or "")) if isinstance(m, dict) else len(str(m)) for m in msgs)
         chars += len(canon(req.get("tools"))) if req.get("tools") else 0
+        bad_keys = sorted(str(k) for k in req if k not in CALL_KEYS)
+        multiplies = ("n" in req and (type(req["n"]) is not int or req["n"] != 1)) or ("stream" in req and req["stream"] is not False)
         with self.lock:
-            entry = {"n": len(self.ledger) + 1, "prompt_chars": chars, "req_sha256": hashlib.sha256(raw).hexdigest(), "charged_microusd": 0}
+            entry = {"n": len(self.ledger) + 1, "prompt_chars": chars, "req_sha256": hashlib.sha256(raw).hexdigest(), "charged_microusd": 0,
+                     "usage_microusd": None}
             if self.killed:
                 why, code = "KILLED", 503
             elif not self.cost_ok:
                 why, code = "COST_SETTING_INVALID", 429
+            elif bad_keys or multiplies:
+                why, code = "PARAMETER_REFUSED", 400
+                entry["refused_keys"] = bad_keys + (["n_or_stream"] if multiplies else [])
             elif self.failures >= self.breaker:
                 why, code = "CIRCUIT_OPEN", 503
             elif self.forwarded >= self.max_calls:
@@ -1098,7 +1239,13 @@ class LLMMeter:
             else:
                 mt = req.get("max_tokens") or req.get("max_completion_tokens") or self.max_tokens
                 mt = min(int(mt), self.max_tokens) if isinstance(mt, int) and not isinstance(mt, bool) and mt > 0 else self.max_tokens
-                charge = per_call_ceiling_micro(self.pin, self.pout, max_tokens=mt, body_bytes=len(raw))
+                fwd = dict(req)
+                fwd.pop("max_completion_tokens", None)
+                fwd.pop("n", None)
+                fwd.pop("stream", None)
+                fwd["max_tokens"] = mt
+                body = canon(fwd).encode()
+                charge = per_call_ceiling_micro(self.pin, self.pout, max_tokens=mt, body_bytes=max(len(raw), len(body)))
                 if self.charged + charge > self.cap:
                     self.cap_reached = True
                     why, code = "COST_CAP", 429
@@ -1106,37 +1253,42 @@ class LLMMeter:
                     self.charged += charge
                     self.forwarded += 1
                     self.prompt_chars += chars
-                    entry.update({"charged_microusd": charge, "max_tokens": mt})
-                    fwd = dict(req)
-                    fwd.pop("max_completion_tokens", None)
-                    fwd["max_tokens"] = mt
-                    self.ledger.append({**entry, "status": "FORWARDED"})
-                    return 200, "FORWARDED", fwd
+                    entry.update({"charged_microusd": charge, "max_tokens": mt, "status": "FORWARDED"})
+                    self.ledger.append(entry)
+                    return 200, "FORWARDED", body, entry
             self.refused += 1
-            self.ledger.append({**entry, "status": why})
-            return code, why, None
+            entry["status"] = why
+            self.ledger.append(entry)
+            return code, why, None, entry
 
-    def _check_usage(self, body: bytes, fwd: dict) -> None:
-        """If the upstream reports more tokens than were charged, the bound failed: stop forwarding (fail closed)."""
+    def _check_usage(self, status: int, body: bytes, entry: dict) -> None:
+        """Meter the upstream's own usage for this call. A 200 answer without integer usage, or with more tokens than were charged,
+        means the bound cannot be shown: stop forwarding (fail closed)."""
+        if status != 200:
+            return
         try:
             u = json.loads(body).get("usage") or {}
             pt, ct = u.get("prompt_tokens"), u.get("completion_tokens")
         except (ValueError, AttributeError):
-            return
-        if not (type(pt) is int and type(ct) is int):
-            return
-        used = -(-(pt * self.pin + ct * self.pout) // 1000)
+            pt = ct = None
         with self.lock:
-            last = next((e for e in reversed(self.ledger) if e["status"] == "FORWARDED"), None)
-            if last is not None and used > last["charged_microusd"]:
+            if not (type(pt) is int and type(ct) is int and pt >= 0 and ct >= 0):
+                self.usage_missing += 1
+                self.killed = True
+                entry["status"] = "USAGE_MISSING"
+                return
+            used = -(-(pt * self.pin + ct * self.pout) // 1000)
+            entry["usage_microusd"] = used
+            self.usage_total += used
+            if used > entry["charged_microusd"]:
                 self.usage_above_charge += 1
                 self.killed = True
-                last["status"] = "USAGE_ABOVE_CHARGE"
+                entry["status"] = "USAGE_ABOVE_CHARGE"
 
-    def _forward(self, path: str, fwd: dict) -> tuple[int, bytes]:
+    def _forward(self, path: str, body: bytes) -> tuple[int, bytes]:
         conn = http.client.HTTPConnection(self.upstream[0], self.upstream[1], timeout=self.timeout)
         try:
-            conn.request("POST", path, body=canon(fwd).encode(), headers={"Content-Type": "application/json"})
+            conn.request("POST", path, body=body, headers={"Content-Type": "application/json"})
             r = conn.getresponse()
             return r.status, r.read(MAX_RESPONSE_BYTES)
         finally:
@@ -1174,7 +1326,7 @@ class LLMMeter:
                 except (ValueError, AssertionError):
                     self._send(400, b'{"error":"bad json"}')
                     return
-                code, why, fwd = meter._decide(req, raw)
+                code, why, fwd, entry = meter._decide(req, raw)
                 if fwd is None:
                     self._send(code, canon({"error": {"message": why, "type": why}}).encode())
                     return
@@ -1184,7 +1336,7 @@ class LLMMeter:
                     status, body = 502, b'{"error":"upstream"}'
                 with meter.lock:
                     meter.failures = meter.failures + 1 if status >= 500 else 0
-                meter._check_usage(body, fwd)
+                meter._check_usage(status, body, entry)
                 self._send(status, body)
 
         return H

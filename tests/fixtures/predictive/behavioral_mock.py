@@ -18,6 +18,8 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 PROTOCOL = "memelab.behavioral_service/1"
 T1, T1B, T2 = ("price_path_target_before_invalidation_24h", "price_path_target_before_invalidation_6h",
                "price_path_severe_drawdown_or_halt_24h")
+ASSUMPTION_BEHAVIOR = ("MOMENTUM_BUYERS_ENTER", "HOLDERS_TAKE_PROFIT", "ATTENTION_DECAYS", "PAID_PROMOTION_ENDS", "LATE_BUYERS_EXIT",
+                       "RUMOR_NOT_CONFIRMED", "CATALYST_DRAWS_NEW_BUYERS", "NO_NEW_BUYERS")
 HTTP_CODES = {"KEY_MISSING": 401, "FORBIDDEN": 403, "QUOTA": 429, "PAYMENT": 402, "ERROR": 500, "TEAPOT": 418}
 
 
@@ -72,7 +74,7 @@ def respond(req: dict, mode: str, state: dict) -> tuple[int, object]:
     att = _att(req)
     ids = [e["obs_id"] for e in att]
     if mode in ("STABLE", "SLOW", "SILENT", "PROBABILITY", "NESTED_FRACTION", "COUNT_CODE", "COUNT_WORDS", "INJECTION", "URL_IN_CODE",
-                "WALLET_CLAIM", "INSIDER_CODE_DIGITS", "METER_CAP"):
+                "WALLET_CLAIM", "INSIDER_CODE_DIGITS", "METER_CAP", "HUGE", "FULLWIDTH_INJECTION", "PHONE_HOME", "NETNS_ID"):
         hyps = _stable_hyps(req)
     elif mode == "SEED_SENSITIVE":
         hyps = [_h("ORGANIC_ATTENTION_CONTINUATION" if run["run_seed"] % 2 else "ATTENTION_EXHAUSTION", ids[:1], T1B, "EVENT")] if ids else []
@@ -84,6 +86,14 @@ def respond(req: dict, mode: str, state: dict) -> tuple[int, object]:
         hyps = [_h("ORGANIC_ATTENTION_CONTINUATION", ids or ["obs-0000000000000000"], T1B, "EVENT")]
     elif mode == "INVENTED_CATALYST":
         hyps = [_h("CATALYST_FOLLOW_THROUGH", ids[:1], T1, "EVENT", code="CATALYST_DRAWS_NEW_BUYERS")]
+    elif mode == "REPEATED_LABEL":       # skeptic M3: 8 agreeing and 2 dissenting agents encoded as hypothesis multiplicity
+        codes = list(ASSUMPTION_BEHAVIOR)
+        hyps = ([_h("ORGANIC_ATTENTION_CONTINUATION", ids[:1], T1B, "EVENT", code=codes[i]) for i in range(8)]
+                + [_h("MANUFACTURED_ATTENTION_DUMP", ids[:1], T2, "EVENT", code=codes[i]) for i in range(2)]) if ids else []
+    elif mode == "MONITOR_REVERSAL":     # CX-S14: same label, monitor reversed by the run seed
+        up = run["run_seed"] != 202
+        hyps = [_h("ORGANIC_ATTENTION_CONTINUATION", ids[:1], T1B, "EVENT" if up else "NO_EVENT",
+                   code="MOMENTUM_BUYERS_ENTER" if up else "NO_NEW_BUYERS")] if ids else []
     else:
         return 500, {"error": "unknown mode"}
     n = int(state.get("llm_calls_per_run", run["agents"] * run["rounds"]))
@@ -92,6 +102,10 @@ def respond(req: dict, mode: str, state: dict) -> tuple[int, object]:
                                        sort_keys=True).encode()).hexdigest()
     resp = {"protocol": PROTOCOL, "status": "OK", "llm_actions": 0 if mode == "SILENT" else ok, "llm_calls": made,
             "trace_sha256": digest, "hypotheses": hyps, "claims": []}
+    if mode == "HUGE":                  # valid JSON followed by 300 KB of whitespace: only the size cap refuses it
+        return 200, json.dumps(resp).encode() + b" " * 300_000
+    if mode == "FULLWIDTH_INJECTION":
+        resp["claims"] = [{"kind": "IDENTITY_LINK", "code": "ｈｔｔｐｓ://evil.example"}]
     if mode == "PROBABILITY":
         resp["hypotheses"][0]["likelihood"] = 0.8
     elif mode == "NESTED_FRACTION":
@@ -175,6 +189,8 @@ class MockLLM(_Server):
                     owner.seen.append({"max_tokens": req.get("max_tokens"), "n_messages": len(req.get("messages") or [])})
                     if owner.mode == "ERROR":
                         code, body = 500, {"error": "mock failure"}
+                    elif owner.mode == "NOUSAGE":
+                        code, body = 200, {"id": "mock", "object": "chat.completion", "choices": []}
                     elif owner.mode == "OVERUSAGE":
                         code, body = 200, {"id": "mock", "object": "chat.completion", "choices": [], "usage": {
                             "prompt_tokens": 1000000, "completion_tokens": 1, "total_tokens": 1000001}}
@@ -194,7 +210,7 @@ class MockLLM(_Server):
 
 def main(argv: list[str]) -> int:
     _, mode, req_path, resp_path, *rest = argv
-    if rest:
+    if rest and mode != "NETNS_ID":
         import os
         with open(rest[0], "w") as f:
             json.dump(sorted(os.environ), f)
@@ -205,6 +221,20 @@ def main(argv: list[str]) -> int:
     req = json.loads(open(req_path).read())
     if mode == "NO_OUTPUT":
         return 0
+    if mode == "PHONE_HOME":             # skeptic M4: try to reach a listener of the parent, given without a scheme
+        import os
+        import socket
+        host, port = os.environ.get("PHONE_HOME", "127.0.0.1:9").rsplit(":", 1)
+        try:
+            with socket.create_connection((host, int(port)), timeout=2) as c:
+                c.sendall(open(req_path, "rb").read())
+        except OSError:
+            pass
+    if mode == "NETNS_ID" and rest:
+        import os
+        with open(rest[0], "w") as f:
+            json.dump({"net_ns": os.readlink("/proc/self/ns/net")}, f)
+        rest = []
     code, body = respond(req, mode, {})
     if code != 200:
         return 2

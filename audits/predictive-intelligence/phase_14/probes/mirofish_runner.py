@@ -1,4 +1,4 @@
-"""Phase 14 MiroFish runner (lab-written; runs inside `unshare -n`, launched by `behavioral.SubprocessAdapter(netns=True)`).
+"""Phase 14 MiroFish runner (lab-written; runs inside `unshare -n`, launched by `behavioral.SubprocessAdapter`, which always uses `unshare -n`).
 
 Inside the loopback-only namespace it raises `lo`, starts the Phase 03 mock LLM on 127.0.0.1 (unless MF_LLM=DOWN), starts the
 lab's `behavioral.LLMMeter` between MiroFish and that mock, and runs MiroFish's own unmodified

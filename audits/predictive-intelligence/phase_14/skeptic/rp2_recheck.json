@@ -1,0 +1,96 @@
+{
+ "first_pass_c59c494": {
+  "cx14_monitor_reversal": {
+   "exit": 1,
+   "lines": [
+    "{",
+    "CX-S14 NOT CAUGHT: a seed-reversed scenario is published as STABLE"
+   ]
+  },
+  "attacks_rp2": {
+   "exit": 0,
+   "lines": [
+    "ATTACK A1 cost-cap run reported AVAILABLE by runtime.simulation_state: NOT_CAUGHT | doc status=SIMULATION_NOT_AVAILABLE reasons=['COST_CAP_REACHED'] llm_actions=16; simulation_state=AVAILABLE",
+    "ATTACK A2 agreement as hypothesis multiplicity (8 vs 2): NOT_CAUGHT | validate_scenario=[]; published entries per label={'ORGANIC_ATTENTION_CONTINUATION': 8, 'MANUFACTURED_ATTENTION_DUMP': 2}; publication errors added=[]",
+    "ATTACK A3 share in stability.flags / reasons / refused_claims ints: NOT_CAUGHT | validate_scenario=[]; projected flags=['AGENTS_80_OF_100_SAY_PUMP']; publication errors added=[]",
+    "ATTACK A4 monitor expectation reversed by run seed, same label: NOT_CAUGHT | stability=STABLE flags=['DEGRADED_SOURCE_CHANGES'] hypotheses expect=['EVENT', 'NO_EVENT'] status=SIMULATION_RAN reasons=[]",
+    "ATTACK A5 P28 future unix time as a number value: NOT_CAUGHT | []",
+    "ATTACK A5 P28 slash date: NOT_CAUGHT | []",
+    "ATTACK A5 P28 written-out date: NOT_CAUGHT | []",
+    "ATTACK A5 P28 relative after-the-fact text: NOT_CAUGHT | []",
+    "ATTACK A5 P28 outcome name not in regex: NOT_CAUGHT | []",
+    "ATTACK A5 P28 ISO date (control): CAUGHT | ['POST_DECISION_DATE']",
+    "ATTACK A6 P41 instructions above: NOT_CAUGHT | []",
+    "ATTACK A6 P41 forget rules: NOT_CAUGHT | []",
+    "ATTACK A6 P41 zero width: NOT_CAUGHT | []",
+    "ATTACK A6 P41 fullwidth url: NOT_CAUGHT | []",
+    "ATTACK A6 P41 control: CAUGHT | ['PROMPT_INJECTION_SUSPECTED']"
+   ]
+  },
+  "meter": {
+   "exit": 0,
+   "lines": [
+    "{}                           forwarded=43 charged=49493000 cap=50000000 upstream_bill=44892000 bill/cap=0.90 killed=False usage_above_charge=0",
+    "{\"n\": 8}                     forwarded= 1 charged=1159000 cap=50000000 upstream_bill=8214000 bill/cap=0.16 killed=True usage_above_charge=1",
+    "{\"n\": 8, \"stream\": true}     forwarded=42 charged=49350000 cap=50000000 upstream_bill=345156000 bill/cap=6.90 killed=False usage_above_charge=0",
+    "{\"n\": 64, \"stream\": true}    forwarded=42 charged=49392000 cap=50000000 upstream_bill=2753604000 bill/cap=55.07 killed=False usage_above_charge=0"
+   ]
+  },
+  "egress_in_netns": {
+   "exit": 0,
+   "lines": [
+    "E1 ServiceAdapter non-loopback: NOT_SUPPORTED ['EGRESS_NOT_APPROVED'] received []",
+    "E2 meter refused: EGRESS_NOT_APPROVED: the metering proxy forwards only to a l",
+    "E3 SubprocessAdapter MOCK_SIMULATOR, argv names 10.99.0.1: SIMULATION_RAN [] received [('10.99.0.1', 2192, True, False)]",
+    "E4 SubprocessAdapter, destination via extra_env without scheme: SIMULATION_RAN [] received [('10.99.0.1', 2192, True, False)]"
+   ]
+  }
+ },
+ "repaired_working_tree": {
+  "cx14_monitor_reversal": {
+   "exit": 0,
+   "lines": [
+    "{",
+    "CX-S14 CAUGHT"
+   ]
+  },
+  "attacks_rp2": {
+   "exit": 0,
+   "lines": [
+    "ATTACK A1 cost-cap run reported AVAILABLE by runtime.simulation_state: CAUGHT | doc status=SIMULATION_NOT_AVAILABLE reasons=['COST_CAP_REACHED'] llm_actions=0; simulation_state=SIMULATION_NOT_AVAILABLE",
+    "ATTACK A2 agreement as hypothesis multiplicity (8 vs 2): CAUGHT | refused RESPONSE_REFUSED_REPEATED_LABEL",
+    "ATTACK A3 share in stability.flags / reasons / refused_claims ints: CAUGHT | validate_scenario=['reasons must be codes from the fixed vocabulary (skeptic m3)', 'refused_claims keys differ from the schema (skeptic m3)', 'stability flags must",
+    "ATTACK A4 monitor expectation reversed by run seed, same label: CAUGHT | stability=UNSTABLE flags=['DEGRADED_SOURCE_CHANGES', 'MONITOR_REVERSED', 'SEED_SENSITIVE'] hypotheses expect=['EVENT'] status=SIMULATION_RAN reasons=['UNSTABLE_EXPLORA",
+    "ATTACK A5 P28 future unix time as a number value: NOT_CAUGHT | []",
+    "ATTACK A5 P28 slash date: CAUGHT | ['POST_DECISION_DATE']",
+    "ATTACK A5 P28 written-out date: CAUGHT | ['POST_DECISION_DATE']",
+    "ATTACK A5 P28 relative after-the-fact text: CAUGHT | ['POST_DECISION_WORDING']",
+    "ATTACK A5 P28 outcome name not in regex: CAUGHT | ['POST_DECISION_FIELD']",
+    "ATTACK A5 P28 ISO date (control): CAUGHT | ['POST_DECISION_DATE']",
+    "ATTACK A6 P41 instructions above: CAUGHT | ['PROMPT_INJECTION_SUSPECTED']",
+    "ATTACK A6 P41 forget rules: CAUGHT | ['PROMPT_INJECTION_SUSPECTED']",
+    "ATTACK A6 P41 zero width: CAUGHT | ['PROMPT_INJECTION_SUSPECTED']",
+    "ATTACK A6 P41 fullwidth url: CAUGHT | ['PROMPT_INJECTION_SUSPECTED']",
+    "ATTACK A6 P41 control: CAUGHT | ['PROMPT_INJECTION_SUSPECTED']"
+   ]
+  },
+  "meter": {
+   "exit": 0,
+   "lines": [
+    "{}                           forwarded=43 charged=49966000 cap=50000000 upstream_bill=44892000 bill/cap=0.90 killed=False usage_above_charge=0",
+    "{\"n\": 8}                     forwarded= 0 charged=     0 cap=50000000 upstream_bill=     0 bill/cap=0.00 killed=False usage_above_charge=0",
+    "{\"n\": 8, \"stream\": true}     forwarded= 0 charged=     0 cap=50000000 upstream_bill=     0 bill/cap=0.00 killed=False usage_above_charge=0",
+    "{\"n\": 64, \"stream\": true}    forwarded= 0 charged=     0 cap=50000000 upstream_bill=     0 bill/cap=0.00 killed=False usage_above_charge=0"
+   ]
+  },
+  "egress_in_netns": {
+   "exit": 0,
+   "lines": [
+    "E1 ServiceAdapter non-loopback: NOT_SUPPORTED ['EGRESS_NOT_APPROVED'] received []",
+    "E2 meter refused: EGRESS_NOT_APPROVED: the metering proxy forwards only to a l",
+    "E3 SubprocessAdapter MOCK_SIMULATOR, argv names 10.99.0.1: SIMULATION_NOT_AVAILABLE ['SCRIPT_EXIT_1'] received []",
+    "E4 SubprocessAdapter, destination via extra_env without scheme: SIMULATION_NOT_AVAILABLE ['SCRIPT_EXIT_1'] received []"
+   ]
+  }
+ }
+}
