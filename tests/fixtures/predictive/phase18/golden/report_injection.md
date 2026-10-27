@@ -13,7 +13,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - Backtesting: BACKTEST_NOT_AVAILABLE. Behavioral simulation: SIMULATION_NOT_AVAILABLE.
 - Opportunities: 7; with a veto: 0; snapshots verified against the lab database: 7 of 7; events not attempted: 0.
 
-| Opportunity | Exact chain:mint | Inputs observed (UTC) | T1 24 h | T1b 6 h | T2 24 h | Vetoes | Inputs |
+| Opportunity | Exact chain:mint | Inputs observed (UTC) | T1 24 h | T1b 6 h | T2 24 h | Vetoes and risk flags | Inputs |
 |---|---|---|---|---|---|---|---|
 | tmpevilpath | `solana:38ihiGtLeQoTqTGHbosHcWftMxpeP88saUmFScXqJWZf` | 2026-10-27T07:50:00Z | ABSTAIN (no number) | ABSTAIN (no number) | ABSTAIN (no number) | none | FRESH |
 | withheld | `solana:6pi28KYmyz5GvN5WSo91ugA8JqMhWXVwK2ktjXxho4Qa` | 2026-10-27T07:50:00Z | ABSTAIN (no number) | ABSTAIN (no number) | ABSTAIN (no number) | none | FRESH |
@@ -59,10 +59,11 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 - FACT: no number is shown for an abstention; a probability needs a SHADOW or VALIDATED_EXPERIMENTAL model with a CALIBRATED Phase 13 card, enough support and a point inside the display range (Phase 13 rule 12)
 - FACT: a document is never shown without its abstention record and its request record (Phase 13 m4, PI-D-068)
-- FACT: a FORECAST's number must equal the point recomputed from the raw number kept in the request record (Phase 13 m3, verify_point) and its cards must resolve from the registry
+- FACT: a FORECAST's number was recomputed from the raw number when the document was written (Phase 13 m3, verify_point); this report checks it against the point stored with the raw number and the registry-resolved cards, without recomputing it
+- FACT: any risk on a snapshot (a fatal flag, an unknown flag check, a backtest veto, a liquidity fall or loss, a newer snapshot not assessed) overrides its forecast: the number is withheld (PI-D-102)
 - FACT: a calibration available after the decision abstains (CALIBRATION_AFTER_DECISION, PI-D-070)
 - FACT: the retrospective holdout is spent: its results are exploratory and can only make a statement more conservative
-- FACT: token text (symbol, chain, labels, file names) is shown as letters, digits, dot, dash and underscore, at most 24 characters, and withheld when it carries a trading or forecast word (Phase 17 m3); no local path is shown (m8)
+- FACT: token text (symbol, chain, labels, file names) is shown as letters, digits, dot, dash and underscore, at most 24 characters, and withheld when it carries a trading or forecast word, also run together (Phase 17 m3, PI-D-102); no local path is shown (m8)
 - INFERENCE: any interval is conditional on exchangeability of the event rate, which is neither established nor refuted (PI-D-070)
 - HEURISTIC: CURRENT_VENDOR_LIST decisions abstain (no point-in-time pool); a live capture records its pool
 

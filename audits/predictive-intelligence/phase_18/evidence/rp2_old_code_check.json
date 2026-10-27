@@ -1,0 +1,29 @@
+{
+ "failing_on_old_code": [
+  "test_rp2_m1_a_liquidity_fall_overrides_an_optimistic_forecast_in_the_report_and_the_alerts",
+  "test_rp2_m2_a_reset_state_on_a_shared_alert_database_is_detected_reported_and_evaluated",
+  "test_rp2_m3_a_deferred_newer_snapshot_with_a_new_fatal_flag_is_shown_and_alerted_never_covered",
+  "test_rp2_m4_cx_sk18_run_together_trade_words_in_token_text_are_withheld[100X]",
+  "test_rp2_m4_cx_sk18_run_together_trade_words_in_token_text_are_withheld[APEIN]",
+  "test_rp2_m4_cx_sk18_run_together_trade_words_in_token_text_are_withheld[BUYNOW]",
+  "test_rp2_m4_cx_sk18_run_together_trade_words_in_token_text_are_withheld[EXITNOW]",
+  "test_rp2_m4_cx_sk18_run_together_trade_words_in_token_text_are_withheld[LONGNOW]",
+  "test_rp2_m4_cx_sk18_run_together_trade_words_in_token_text_are_withheld[MOONSHOT]",
+  "test_rp2_m4_cx_sk18_run_together_trade_words_in_token_text_are_withheld[PUMPIT]",
+  "test_rp2_m4_cx_sk18_run_together_trade_words_in_token_text_are_withheld[SELLNOW]",
+  "test_rp2_m4_cx_sk18_run_together_trade_words_in_token_text_are_withheld[StopLossCat]",
+  "test_rp2_m4_cx_sk18_run_together_trade_words_in_token_text_are_withheld[TAKEPROFIT]",
+  "test_rp2_m4_cx_sk18_run_together_trade_words_in_token_text_are_withheld[x1000]",
+  "test_rp2_m4_cx_sk18_the_report_and_the_alert_never_print_a_run_together_trade_word",
+  "test_rp2_minor10_the_alert_database_is_never_a_lab_database",
+  "test_rp2_minor5_the_report_no_longer_claims_it_recomputes_the_point",
+  "test_rp2_minor7_a_vanity_mint_with_a_trade_word_never_blocks_the_report",
+  "test_rp2_minor8_a_clock_behind_the_last_evaluation_is_said_and_not_too_soon",
+  "test_rp2_minor9_liquidity_that_became_unknown_is_a_risk"
+ ],
+ "old_code": "e77d62e",
+ "on_new_code": "23 passed, 65 deselected in 8.13s",
+ "on_old_code": "20 failed, 3 passed, 65 deselected in 9.53s",
+ "passing_on_old_code_by_design": "the minor6 tests pin behavior the first-pass code already had (they kill the skeptic's surviving mutations)",
+ "tests": "-k rp2"
+}

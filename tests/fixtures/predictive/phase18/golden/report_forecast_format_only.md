@@ -6,7 +6,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 ## At a glance
 
-- Probabilities shown: 2 of 6 target forecasts; abstentions 4; refused documents 0.
+- Probabilities shown: 1 of 6 target forecasts; abstentions 4; refused documents 0.
 - Reasons named across the targets: INSUFFICIENT_HISTORY 4, UNCALIBRATED 4, MODEL_NOT_SELECTED 4.
 - T1 24 h: registry CHAMPION, committed Phase 13 calibration UNCALIBRATED.
 - T1b 6 h: registry NO_VIABLE_CHAMPION, committed Phase 13 calibration UNCALIBRATED.
@@ -14,9 +14,9 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - Backtesting: BACKTEST_NOT_AVAILABLE. Behavioral simulation: SIMULATION_NOT_AVAILABLE.
 - Opportunities: 2; with a veto: 1; snapshots verified against the lab database: 2 of 2; events not attempted: 0.
 
-| Opportunity | Exact chain:mint | Inputs observed (UTC) | T1 24 h | T1b 6 h | T2 24 h | Vetoes | Inputs |
+| Opportunity | Exact chain:mint | Inputs observed (UTC) | T1 24 h | T1b 6 h | T2 24 h | Vetoes and risk flags | Inputs |
 |---|---|---|---|---|---|---|---|
-| FXC | `solana:3p12Jyhm5cW1qgDmmwQAGrUyqPv2YVSWYzDSbbuBLm32` | 2026-10-29T23:50:00Z | FORECAST 83% (41% to 100%) FORMAT-ONLY FIXTURE overridden by veto | ABSTAIN (no number) | ABSTAIN (no number) | CANNOT_EXIT_5K | FRESH |
+| FXC | `solana:3p12Jyhm5cW1qgDmmwQAGrUyqPv2YVSWYzDSbbuBLm32` | 2026-10-29T23:50:00Z | FORECAST OVERRIDDEN by risk (number withheld) FORMAT-ONLY FIXTURE | ABSTAIN (no number) | ABSTAIN (no number) | CANNOT_EXIT_5K | FRESH |
 | FXA | `solana:Ebjh5RZR799aVdZR9yePMNmEVmGibvjM3Zqr4kEegSbS` | 2026-10-29T23:50:00Z | FORECAST 47% (41% to 65%) FORMAT-ONLY FIXTURE | ABSTAIN (no number) | ABSTAIN (no number) | none | FRESH |
 
 ## System status
@@ -55,10 +55,11 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 - FACT: no number is shown for an abstention; a probability needs a SHADOW or VALIDATED_EXPERIMENTAL model with a CALIBRATED Phase 13 card, enough support and a point inside the display range (Phase 13 rule 12)
 - FACT: a document is never shown without its abstention record and its request record (Phase 13 m4, PI-D-068)
-- FACT: a FORECAST's number must equal the point recomputed from the raw number kept in the request record (Phase 13 m3, verify_point) and its cards must resolve from the registry
+- FACT: a FORECAST's number was recomputed from the raw number when the document was written (Phase 13 m3, verify_point); this report checks it against the point stored with the raw number and the registry-resolved cards, without recomputing it
+- FACT: any risk on a snapshot (a fatal flag, an unknown flag check, a backtest veto, a liquidity fall or loss, a newer snapshot not assessed) overrides its forecast: the number is withheld (PI-D-102)
 - FACT: a calibration available after the decision abstains (CALIBRATION_AFTER_DECISION, PI-D-070)
 - FACT: the retrospective holdout is spent: its results are exploratory and can only make a statement more conservative
-- FACT: token text (symbol, chain, labels, file names) is shown as letters, digits, dot, dash and underscore, at most 24 characters, and withheld when it carries a trading or forecast word (Phase 17 m3); no local path is shown (m8)
+- FACT: token text (symbol, chain, labels, file names) is shown as letters, digits, dot, dash and underscore, at most 24 characters, and withheld when it carries a trading or forecast word, also run together (Phase 17 m3, PI-D-102); no local path is shown (m8)
 - INFERENCE: any interval is conditional on exchangeability of the event rate, which is neither established nor refuted (PI-D-070)
 - HEURISTIC: CURRENT_VENDOR_LIST decisions abstain (no point-in-time pool); a live capture records its pool
 
@@ -93,7 +94,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 | Target | Horizon | Status | Reasons | Cohort N and base rate | Model | Training as of | Record |
 |---|---|---|---|---|---|---|---|
-| T1 24 h | 24 hours | FORECAST 83% (41% to 100%) FORMAT-ONLY FIXTURE overridden by veto | none | support 60 calibration events (32 positive); base rate 29% | B2:price_path_target_before_invalidation_24h (sha 79cc70276e3d) | 2026-10-17T00:00:00Z | 069a84021b5f |
+| T1 24 h | 24 hours | FORECAST OVERRIDDEN by risk (number withheld) FORMAT-ONLY FIXTURE | none | withheld: overridden by risk | B2:price_path_target_before_invalidation_24h (sha 79cc70276e3d) | 2026-10-17T00:00:00Z | 069a84021b5f |
 | T1b 6 h | 6 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | 1177d10dd9b9 |
 | T2 24 h | 24 hours | ABSTAIN (no number) | INSUFFICIENT_HISTORY, UNCALIBRATED, MODEL_NOT_SELECTED | not shown: no model selected | not_selected (sha none) | none | e05eeadef4d0 |
 
@@ -102,8 +103,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
   - INSUFFICIENT_HISTORY: at least 50 matured prospective outcomes with 10 per class for this target (Phase 19), never the fit set.
   - UNCALIBRATED: a CALIBRATED Phase 13 card for the selected model, from out-of-sample prospective evidence.
   - MODEL_NOT_SELECTED: a champion pinned at SHADOW or VALIDATED_EXPERIMENTAL in the Phase 16 registry; that needs the ACCEPTANCE promotion change control (PI-D-091, Elving's decision) and admissible prospective evidence.
-- T1 24 h (24 hours, +25% before -15%): research estimate at level SHADOW (VENN_ABERS), 83% with interval 41% to 100%; base rate 29%; support 60 calibration events; calibration card de11c57f1781; price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS). FORMAT-ONLY FIXTURE: invented data, not a forecast.
-  - Overridden: this snapshot carries a veto (below); the lab's fatal-flag override applies unchanged and the estimate is not usable for any decision on it.
+- T1 24 h (24 hours, +25% before -15%): a verified research estimate exists for this snapshot (level SHADOW), but a risk overrides it (fatal flags CANNOT_EXIT_5K); the number is withheld and the lab's fatal-flag override applies unchanged. FORMAT-ONLY FIXTURE: invented data, not a forecast.
   - Caveats: PRICE_PATH_NOT_PROCEEDS, NO_HISTORICAL_EXECUTABLE_DEPTH, INTERVAL_EXCLUDES_UNMODELED_RISK, SHADOW_RESEARCH_ONLY, COHORT_ESTIMATE_NOT_TOKEN_HISTORY.
 
 ### Historical prediction and its out-of-sample record
@@ -116,6 +116,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
+- FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
 - UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 

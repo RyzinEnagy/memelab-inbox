@@ -8,7 +8,7 @@ Forecasts on this snapshot: T1 24 h FORECAST; T1b 6 h ABSTAIN; T2 24 h ABSTAIN
 Freshness: inputs observed 2026-10-29 19:50 EDT (2026-10-29 23:50 UTC), captured 2026-10-29 20:00 EDT (2026-10-30 00:00 UTC)
 Contract: solana:3p12Jyhm5cW1qgDmmwQAGrUyqPv2YVSWYzDSbbuBLm32
 Sources: request <varies>, pass 1a5e8693623a, snapshot cc7aac863600b9c0, records 069a84021b5f, 1177d10dd9b9, e05eeadef4d0
-Alert 1, dedupe 2d31d9709707, policy predictive-alerts-policy-1 d2629eb52b37, rules alerts-rules-1
+Alert 1, dedupe 2d31d9709707, policy predictive-alerts-policy-1 e2a17738fc6c, rules alerts-rules-1
 Research only. Not a trade instruction, not a score, not a watchlist change.
 FORMAT-ONLY FIXTURE: invented data, not a forecast; not a live alert.
 ----- alert_000002.txt
@@ -21,12 +21,12 @@ Forecasts on this snapshot: T1 24 h FORECAST; T1b 6 h ABSTAIN; T2 24 h ABSTAIN
 Freshness: inputs observed 2026-10-29 19:50 EDT (2026-10-29 23:50 UTC), captured 2026-10-29 20:00 EDT (2026-10-30 00:00 UTC)
 Contract: solana:Ebjh5RZR799aVdZR9yePMNmEVmGibvjM3Zqr4kEegSbS
 Sources: request <varies>, pass 1a5e8693623a, snapshot fe7ebe35903b3f49, records 2486c8e2362b, 8d74b7461dd8, ea91e94aee17
-Alert 2, dedupe 1a3f8c86765d, policy predictive-alerts-policy-1 d2629eb52b37, rules alerts-rules-1
+Alert 2, dedupe 1a3f8c86765d, policy predictive-alerts-policy-1 e2a17738fc6c, rules alerts-rules-1
 Research only. Not a trade instruction, not a score, not a watchlist change.
 FORMAT-ONLY FIXTURE: invented data, not a forecast; not a live alert.
-Alert run 1 (dry_run), 2026-10-29 20:01 EDT (2026-10-30 00:01 UTC), policy predictive-alerts-policy-1 d2629eb52b37
+Alert run 1 (dry_run), 2026-10-29 20:01 EDT (2026-10-30 00:01 UTC), policy predictive-alerts-policy-1 e2a17738fc6c
 FIXTURE DEMO: invented data, not live alerts.
 Outcome: evaluated
 Candidates 2, new alerts 2, deduped 0, suppressed 1
-  suppressed reevaluate FXC on solana (3p12Jyhm5cW1qgDmmwQAGrUyqPv2YVSWYzDSbbuBLm32): VETO_OVERRIDES_FORECAST (the snapshot carries a veto: the risk warning stands instead)
+  suppressed reevaluate FXC on solana (3p12Jyhm5cW1qgDmmwQAGrUyqPv2YVSWYzDSbbuBLm32): RISK_OVERRIDES_FORECAST (the snapshot carries a risk: the risk warning stands instead)
 Dry run: previews only. Nothing was sent.

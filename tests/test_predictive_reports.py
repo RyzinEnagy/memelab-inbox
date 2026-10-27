@@ -373,14 +373,14 @@ def test_g6_no_text_says_a_forecast_changes_the_score(lab):
 def test_g7_cx18_a_forged_probability_in_a_resealed_state_is_refused_and_shows_no_number(lab):
     d = world_forecast(lab)
     v0, t0 = report(d)
-    assert v0["counts"]["probabilities_shown"] == 2
+    assert v0["counts"]["probabilities_shown"] == 1 and v0["counts"]["overridden"] == 1      # FXC: its risk withholds the number
     reseal(d["state_dir"], forge_probability)
     assert I.check_state(d["state_dir"], config_path=d["config"])["problems"] == []          # the adversary kept the state consistent
     v, text = report(d)
     t1 = [t for o in v["opportunities"] for t in o["targets"] if t["short"] == "T1_24h"]
     refused = [t for t in t1 if t["status"] == "DOCUMENT_REFUSED"]
     assert len(refused) == 1 and "probability differs from the point stored with the raw number" in refused[0]["checks"]
-    assert refused[0]["number"] is None and v["counts"]["probabilities_shown"] == 1
+    assert refused[0]["number"] is None and v["counts"]["probabilities_shown"] == 0
     assert "REFUSED (no number)" in text
 
 
@@ -456,10 +456,11 @@ def test_g8_the_impossible_exit_shows_the_veto_and_the_alerts_override_the_forec
     by = {o["symbol"]: o for o in v["opportunities"]}
     fxc = by["FXC"]
     t1 = next(t for t in fxc["targets"] if t["short"] == "T1_24h")
-    assert t1["status"] == "FORECAST" and t1["number"]["interval"][0] > t1["number"]["base_rate"] and t1["number"]["probability"] > 0.8
-    assert fxc["execution"]["veto"] and fxc["execution"]["fatal_flags"] == ["CANNOT_EXIT_5K"]
+    assert t1["status"] == "FORECAST" and t1["overridden"] and t1["number"] is None and t1["overridden_level"] == "SHADOW"
+    assert fxc["execution"]["veto"] and fxc["execution"]["fatal_flags"] == ["CANNOT_EXIT_5K"] and "83%" not in text
     sec = text.split("## FXC")[1].split("\n## ")[0]
-    assert "overridden by veto" in sec and "CANNOT_EXIT_5K; no forecast clears it" in sec and "Overridden: this snapshot carries a veto" in sec
+    assert "FORECAST OVERRIDDEN by risk (number withheld)" in sec and "CANNOT_EXIT_5K; no forecast clears it" in sec
+    assert "a verified research estimate exists for this snapshot (level SHADOW), but a risk overrides it" in sec
     assert "PRICE_PATH_NOT_PROCEEDS" in sec and "EXECUTION_DATA_MISSING" in sec
     out = RP.alert_run(d["state_dir"], config_path=d["config"], alert_db=lab / "al" / "a.sqlite", now=d["now"], fixture_run=True,
                        registry_dir=d["registry_dir"], extra_cal_cards=d["extra"], lab_db=d["lab_db"])
@@ -467,7 +468,7 @@ def test_g8_the_impossible_exit_shows_the_veto_and_the_alerts_override_the_forec
     assert pol[0] == ("risk_override", "FXC")                                          # warnings first
     assert ("reevaluate", "FXA") in pol and ("reevaluate", "FXC") not in pol
     sup = [(s["policy"], s["reason_code"]) for s in out["evaluation"]["suppressed"] if "FXC" in s["label"]]
-    assert ("reevaluate", "VETO_OVERRIDES_FORECAST") in sup
+    assert ("reevaluate", "RISK_OVERRIDES_FORECAST") in sup
     risk = next((lab / "al" / "outbox" / "preview").glob(f"alert_{out['evaluation']['alerts'][0]['alert_id']:06d}.txt")).read_text()
     assert "The research estimate on this snapshot is overridden." in risk and RP.WATERMARK in risk.splitlines()[0]
 
@@ -621,12 +622,29 @@ def test_g13_dedupe_new_passes_only_too_soon_and_the_ledger(lab):
     assert e["outcome"] == "evaluated" and e["evaluation"]["new"] == [] and e["evaluation"]["deduped"] == 2
 
 
-def test_g13_cooldown_per_policy_and_key_and_a_daily_cap_that_takes_warnings_first(lab):
+def test_g13_cp18_2_notices_and_warnings_have_separate_daily_caps_so_a_warning_is_never_crowded_out(lab):
     d = world_forecast(lab)
-    pol = RP.make_alert_policy({"daily_cap": 1})
-    a = _arun(d, lab, d["now"], policy=pol)
+    a = _arun(d, lab, d["now"], policy=RP.make_alert_policy({"daily_cap": 0}))
     assert [x["policy"] for x in a["evaluation"]["alerts"]] == ["risk_override"]
     assert ("reevaluate", "daily_cap") in {(s["policy"], s["reason_code"]) for s in a["evaluation"]["suppressed"]}
+    d2 = world_forecast(lab / "b") if (lab / "b").mkdir() is None else None
+    b = RP.alert_run(d2["state_dir"], config_path=d2["config"], alert_db=lab / "al2" / "a.sqlite", now=d2["now"], fixture_run=True,
+                     registry_dir=d2["registry_dir"], extra_cal_cards=d2["extra"], policy=RP.make_alert_policy({"daily_cap_warning": 0}))
+    assert [x["policy"] for x in b["evaluation"]["alerts"]] == ["reevaluate"]
+    assert ("risk_override", "daily_cap") in {(s["policy"], s["reason_code"]) for s in b["evaluation"]["suppressed"]}
+    # notices from earlier runs of the day never use the warnings' room
+    con = AE.connect(lab / "al" / "a.sqlite")
+    for i in range(10):
+        con.execute("INSERT INTO alert_events(mode, dedupe_key, cooldown_key, policy, severity, item_id, label, created_at, local_day, status, "
+                    "fixture, transports_json, alert_json, run_id) VALUES ('dry_run',?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    (f"n{i}", f"c{i}", "reevaluate", "notice", "x", "x", d["now"], RP.AC.local_day(d["now"] + 7300, "America/New_York"),
+                     "PREVIEW", 1, "[]", "{}", 1))
+    con.commit()
+    con.close()
+    r = TI.persist(TI.result("NEWV", M3, T_FX + 7000, fatal=("NO_SELL_ROUTE",), status="REJECTED", score=0), lab)
+    _pass([r], T_FX + 7200, lab, **TI.fx_kw(d["world"], lab, sleep=lambda s: None))
+    c = _arun(d, lab, d["now"] + 7300)
+    assert ("risk_override", "warning") in {(x["policy"], x["severity"]) for x in c["evaluation"]["alerts"]}
 
 
 def test_g13_the_policy_is_validated_like_the_social_policy():
@@ -735,7 +753,7 @@ def test_g14_reevaluate_only_for_a_verified_estimate_above_its_base_rate_and_nev
     assert _cands([_opp(targets=[_forecast_target(0.25, 0.29)])])[0] == []
     assert _cands([_opp(targets=[_forecast_target(0.41, 0.29, level="ABSTAIN")])])[0] == []
     c, s = _cands([_opp(targets=[_forecast_target(0.41, 0.29)], execution={"structural_veto": True, "fatal_flags": ["CANNOT_EXIT_5K"], "veto": True})])
-    assert [x["policy"] for x in c] == ["risk_override"] and [x["reason_code"] for x in s] == ["VETO_OVERRIDES_FORECAST"]
+    assert [x["policy"] for x in c] == ["risk_override"] and [x["reason_code"] for x in s] == ["RISK_OVERRIDES_FORECAST"]
     assert "overridden" in c[0]["reason"]
     c, _ = _cands([_opp(targets=[_forecast_target(0.41, 0.29, target=TI.T2, short="T2_24h")])])
     assert c[0]["severity"] == "warning"                               # an elevated drawdown estimate is a warning
@@ -930,7 +948,7 @@ def test_g7_a_wider_forged_interval_is_refused_even_though_it_still_holds_the_su
     assert I.check_state(d["state_dir"], config_path=d["config"])["problems"] == []
     v, _ = report(d)
     ref = [t for o in v["opportunities"] for t in o["targets"] if t["status"] == "DOCUMENT_REFUSED"]
-    assert len(ref) == 1 and "interval differs from the one stored with the raw number" in ref[0]["checks"] and v["counts"]["probabilities_shown"] == 1
+    assert len(ref) == 1 and "interval differs from the one stored with the raw number" in ref[0]["checks"] and v["counts"]["probabilities_shown"] == 0
 
 
 def test_g7_a_document_moved_to_another_request_is_refused(lab):
@@ -1003,3 +1021,175 @@ def test_cp18_1_a_refused_target_line_reads_cleanly(lab):
     reseal(d["state_dir"], forge_probability)
     _, text = report(d)
     assert "DOCUMENT_REFUSED: the document failed a check: it is not shown and no number is shown. Failed checks: probability differs" in text
+
+
+# ---------------------------------------------------------------- repair pass 2 (CP18-2, PI-D-102): the skeptic's findings
+def _vanity(word: str) -> str:
+    base = TI.b58("vanity")
+    m = "2" + base[1:20] + word + base[20 + len(word):]
+    I.S.check_address("solana", m)
+    return m
+
+
+def test_rp2_m1_a_liquidity_fall_overrides_an_optimistic_forecast_in_the_report_and_the_alerts(lab):
+    d = world_forecast(lab)
+    _arun(d, lab, T_FX + 60)
+    T2 = T_FX + 13 * 3600
+    r2 = TI.persist(TI.result("FXA", M1, T2 - 600, liq=100000.0, mcap=3.0e6, vol=3.0e5), lab)        # liquidity -33%, no fatal flag
+    _pass([r2], T2, lab, **TI.fx_kw(d["world"], lab, sleep=lambda s: None))
+    v, text = report(d)
+    fxa = next(o for o in v["opportunities"] if o["mint"] == M1)
+    assert [r["code"] for r in fxa["risks"]] == [RP.LIQUIDITY_FALL] and not fxa["execution"]["veto"]
+    row = next(l for l in text.splitlines() if M1 in l and l.startswith("| FXA"))
+    assert "FORECAST OVERRIDDEN by risk (number withheld)" in row and RP.LIQUIDITY_FALL in row and "47%" not in row
+    assert all(t["number"] is None for t in fxa["targets"])
+    out = _arun(d, lab, T2 + 60)
+    got = [(a["policy"], a["label"].split(" ")[0]) for a in out["evaluation"]["alerts"]]
+    assert ("risk_override", "FXA") in got and ("reevaluate", "FXA") not in got
+    assert ("reevaluate", "RISK_OVERRIDES_FORECAST") in {(s["policy"], s["reason_code"]) for s in out["evaluation"]["suppressed"]}
+    txt = "".join(p.read_text() for p in (lab / "al" / "outbox" / "preview").glob("alert_*.txt"))
+    assert "-33%" not in txt and f"{RP.LIQUIDITY_FALL} since the previous attempt" in txt          # minor 13: a code, no percent
+
+
+def test_rp2_m2_a_reset_state_on_a_shared_alert_database_is_detected_reported_and_evaluated(lab):
+    import shutil
+    T = T_TODAY
+    _pass([TI.persist(TI.result("ABC", M1, T - 600), lab)], T, lab)
+    _pass([TI.persist(TI.result("ABC", M1, T + 2 * 3600 - 600, price=2.0), lab)], T + 2 * 3600, lab)
+    _pass([TI.persist(TI.result("ABC", M1, T + 4 * 3600 - 600, price=4.0), lab)], T + 4 * 3600, lab)
+    adb = lab / "al" / "a.sqlite"
+    assert RP.alert_run(lab / "state", config_path=TI.cfg(lab), alert_db=adb, now=T + 4 * 3600 + 60)["outcome"] == "evaluated"
+    shutil.rmtree(lab / "state")
+    r = TI.persist(TI.result("GOMOX", M2, T + 6 * 3600 - 600, fatal=("CANNOT_EXIT_5K",), status="REJECTED", score=0), lab)
+    _pass([r], T + 6 * 3600, lab)
+    a = RP.alert_run(lab / "state", config_path=TI.cfg(lab), alert_db=adb, now=T + 6 * 3600 + 60)
+    assert a["outcome"] == "evaluated" and "FEED_CHANGED" in a["reason"]
+    pol = {(x["policy"], x["severity"]) for x in a["evaluation"]["alerts"]}
+    assert ("risk_override", "warning") in pol and ("pipeline_health", "notice") in pol
+    b = RP.alert_run(lab / "state", config_path=TI.cfg(lab), alert_db=adb, now=T + 8 * 3600)
+    assert b["outcome"] == "no_new_upstream_data"                          # the feed is bound again
+
+
+def test_rp2_m3_a_deferred_newer_snapshot_with_a_new_fatal_flag_is_shown_and_alerted_never_covered(lab):
+    T = T_TODAY
+    _pass([TI.persist(TI.result("ABC", M1, T - 600), lab)], T, lab)
+    rs = [TI.persist(TI.result(f"Q{i}", TI.b58(f"q{i}"), T + 2 * 3600 - 600), lab) for i in range(3)]
+    rs.append(TI.persist(TI.result("ABC", M1, T + 2 * 3600 - 600, fatal=("CANNOT_EXIT_5K",), status="REJECTED", score=0), lab))
+    tick = iter(range(0, 10_000, 11))
+    _pass(rs, T + 2 * 3600, lab, clock=lambda: float(next(tick)))
+    v, text = report({"state_dir": lab / "state", "config": TI.cfg(lab), "lab_db": db.DB_PATH, "registry_dir": None, "extra": None})
+    abc = next(o for o in v["opportunities"] if o["mint"] == M1)
+    assert abc["newer_not_assessed"] and abc["newer_not_assessed"][0]["fatal_flags"] == ["CANNOT_EXIT_5K"]
+    assert "CANNOT_EXIT_5K (newer)" in next(l for l in text.splitlines() if l.startswith("| ABC"))
+    rows = [l for l in text.splitlines() if M1 in l and "DEFERRED" in l]
+    assert rows and all("| yes |" not in r for r in rows) and all(RP.NEWER_NOT_ASSESSED in r for r in rows)
+    out = RP.alert_run(lab / "state", config_path=TI.cfg(lab), alert_db=lab / "al" / "a.sqlite", now=T + 2 * 3600 + 60, lab_db=db.DB_PATH)
+    assert any(a["policy"] == "risk_override" and a["label"].startswith("ABC") for a in out["evaluation"]["alerts"])
+    # without the lab database the newer snapshot's flags are unknown and still alerted
+    out2 = RP.alert_run(lab / "state", config_path=TI.cfg(lab), alert_db=lab / "al2" / "a.sqlite", now=T + 2 * 3600 + 60)
+    assert any(a["policy"] == "risk_override" and M1 in a["label"] for a in out2["evaluation"]["alerts"])
+
+
+@pytest.mark.parametrize("sym", ["SELLNOW", "BUYNOW", "TAKEPROFIT", "APEIN", "LONGNOW", "EXITNOW", "MOONSHOT", "PUMPIT", "100X",
+                                 "StopLossCat", "x1000"])
+def test_rp2_m4_cx_sk18_run_together_trade_words_in_token_text_are_withheld(sym):
+    assert RP._token_text(sym) == "withheld"
+
+
+def test_rp2_m4_cx_sk18_the_report_and_the_alert_never_print_a_run_together_trade_word(lab):
+    syms = ["SELLNOW", "BUYNOW", "TAKEPROFIT", "APEIN"]
+    rs = [TI.persist(TI.result(s, TI.b58(f"cx{i}"), T_TODAY - 600, fatal=("CANNOT_EXIT_5K",) if i == 0 else (),
+                               status="REJECTED" if i == 0 else "WATCH"), lab) for i, s in enumerate(syms)]
+    _pass(rs, T_TODAY, lab)
+    v, text = report({"state_dir": lab / "state", "config": TI.cfg(lab), "lab_db": db.DB_PATH, "registry_dir": None, "extra": None})
+    for s in syms:
+        assert s not in text and s.lower() not in text.lower().replace("withheld", "")
+    RP.alert_run(lab / "state", config_path=TI.cfg(lab), alert_db=lab / "al" / "a.sqlite", now=T_TODAY + 60, lab_db=db.DB_PATH)
+    txt = "".join(p.read_text() for p in (lab / "al" / "outbox" / "preview").glob("alert_*.txt"))
+    assert "SELLNOW" not in txt and "withheld on solana" in txt
+    assert RP._token_text("ABC") == "ABC" and RP._token_text("PEPE") == "PEPE"
+
+
+def test_rp2_minor7_a_vanity_mint_with_a_trade_word_never_blocks_the_report(lab):
+    m = _vanity("1profit2")
+    _pass([TI.persist(TI.result("ABC", M1, T_TODAY - 600), lab), TI.result("VAN", m, T_TODAY - 600)], T_TODAY, lab)
+    v = RP.build(lab / "state", config_path=TI.cfg(lab), lab_db=db.DB_PATH)
+    text = RP.render(v)
+    assert m in text
+
+
+def test_rp2_minor8_a_clock_behind_the_last_evaluation_is_said_and_not_too_soon(lab):
+    d = world_abstain(lab)
+    adb = lab / "al" / "a.sqlite"
+    assert RP.alert_run(d["state_dir"], config_path=d["config"], alert_db=adb, now=d["now"] + DAY)["outcome"] == "evaluated"
+    b = RP.alert_run(d["state_dir"], config_path=d["config"], alert_db=adb, now=d["now"])
+    assert b["outcome"] == "no_new_upstream_data" and "CLOCK_BEHIND" in b["reason"]
+
+
+def test_rp2_minor9_liquidity_that_became_unknown_is_a_risk(lab):
+    T = T_TODAY
+    _pass([TI.persist(TI.result("ABC", M1, T - 600), lab)], T, lab)
+    _pass([TI.persist(TI.result("ABC", M1, T + 2 * 3600 - 600, liq=None), lab)], T + 2 * 3600, lab)
+    out = RP.alert_run(lab / "state", config_path=TI.cfg(lab), alert_db=lab / "al" / "a.sqlite", now=T + 2 * 3600 + 60)
+    assert any(a["policy"] == "risk_override" for a in out["evaluation"]["alerts"])
+    v, text = report({"state_dir": lab / "state", "config": TI.cfg(lab), "lab_db": db.DB_PATH, "registry_dir": None, "extra": None})
+    assert RP.LIQUIDITY_UNKNOWN in next(l for l in text.splitlines() if l.startswith("| ABC"))
+
+
+def test_rp2_minor10_the_alert_database_is_never_a_lab_database(lab):
+    d = world_abstain(lab)
+    for bad in (db.DB_PATH, lab / "copy.sqlite"):
+        if bad != db.DB_PATH:
+            import shutil
+            shutil.copy(db.DB_PATH, bad)
+        with pytest.raises(RP.AlertRefused):
+            RP.alert_run(d["state_dir"], config_path=d["config"], alert_db=bad, now=d["now"], lab_db=bad)
+    with pytest.raises(RP.AlertRefused, match="other tables"):
+        RP.alert_run(d["state_dir"], config_path=d["config"], alert_db=lab / "copy.sqlite", now=d["now"])
+
+
+def test_rp2_minor5_the_report_no_longer_claims_it_recomputes_the_point(lab):
+    _, text = report(world_abstain(lab))
+    assert "must equal the point recomputed" not in text and "without recomputing it" in text
+
+
+def test_rp2_minor6_x1_a_token_row_of_another_chain_is_not_used(lab):
+    d = world_abstain(lab)
+    con = sqlite3.connect(db.DB_PATH)
+    con.execute("UPDATE tokens SET chain='bsc' WHERE mint=?", (M1,))
+    con.commit()
+    con.close()
+    v, _ = report(d)
+    o = next(o for o in v["opportunities"] if o["mint"] == M1)
+    assert o["symbol"] is None and o["snapshot"]["token_age_s"] is None
+
+
+def test_rp2_minor6_x3_x10_unknown_veto_and_backtest_veto_reasons_are_shown(lab):
+    d = world_abstain(lab)
+
+    def edit(lines):
+        for r in lines["requests"]:
+            if r.get("event") == "DISCOVERY" and r["mint"] == M1:
+                ds = r["decision_support"]
+                ds["veto_unknown"] = True
+                ds["backtest_veto"] = {"veto": True, "reasons": ["UNTRADEABLE"]}
+                ds["veto"] = True
+                ds["structural_veto"] = dict(ds["structural_veto"], veto=None)
+    reseal(d["state_dir"], edit)
+    v, text = report(d)
+    row = next(l for l in text.splitlines() if l.startswith("| ABC"))
+    assert "unknown" in row and "backtest veto" in row
+    assert "backtest veto UNTRADEABLE" in text.split("## ABC")[1].split("### Behavioral")[0]
+
+
+def test_rp2_minor6_x4_x5_a_status_outside_the_vocabulary_and_a_raw_change_string_are_reduced(lab):
+    d = world_abstain(lab)
+
+    def edit(lines):
+        for r in lines["requests"]:
+            if r.get("event") == "DISCOVERY" and r["mint"] == M1:
+                r["material"]["status"] = "MOON|SOON"
+                r["changes"] = ["## injected | cell"]
+    reseal(d["state_dir"], edit)
+    _, text = report(d)
+    assert "MOON|SOON" not in text and "## injected" not in text and "| cell" not in text

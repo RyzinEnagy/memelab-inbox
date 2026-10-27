@@ -154,7 +154,27 @@ def _status_text(status: Any) -> tuple[str, str]:
         if _plain(status):
             return status, "FACT"
         return "kept in the lab's token report (its label uses trade wording)", "UNKNOWN"
-    return I._ident(status), "UNKNOWN"
+    return _token_text(status), "UNKNOWN"
+
+
+# CP18-2 (PI-D-102 item 4, CX-SK18): trading words matched as substrings of the letters of token text, like FORECAST_WORDS
+TOKEN_WORDS = ("buy", "sell", "long", "short", "entry", "exitnow", "moon", "pump", "guaranteed", "signal", "targethit", "targetprice",
+               "pricetarget", "takeprofit", "stoploss", "positionsize", "allin", "loadup", "apein", "accumulate", "profit")
+_MULTIPLIER = re.compile(r"(?<![0-9a-z])\d+\s*x(?![0-9a-z])|(?<![0-9a-z])x\s*\d+(?![0-9a-z])")    # 100X, x1000; never 0x2a9f
+
+
+def _token_text(x: Any, cap: int = 24) -> str:
+    """Token or third-party text (symbol, chain, labels, file names): the Phase 17 helper, then withheld when its letters joined
+    and lower-cased contain a trading word, or it carries a multiplier such as 100X. Over-withholding is accepted: the exact mint
+    always identifies the token."""
+    t = I._ident(x, cap)
+    if t == "withheld":
+        return t
+    raw = str(x if x is not None else "")
+    letters = re.sub(r"[^a-z]", "", raw.lower())
+    if any(w in letters for w in TOKEN_WORDS) or _MULTIPLIER.search(raw.lower()):
+        return "withheld"
+    return t
 
 
 def _code(x: Any) -> str:
@@ -437,14 +457,19 @@ def build(state_dir: str | Path | None = None, *, config_path: str | Path | None
             lst = att[key]
             rv = _request_view(st, lst[-1], prev=lst[-2] if len(lst) > 1 else None, refused_ids=refused_ids, refused_seqs=refused_seqs,
                                reg=reg, regfacts=regfacts, lab=lab, root=root, extra=extra_cal_cards, config_path=config_path)
-            view["opportunities"].append(_opportunity(rv))
-        covered = {(o["chain"], o["mint"]) for o in view["opportunities"]}
+            view["opportunities"].append(_opportunity(rv, newer=_newer(st, key, lst[-1], lab)))
+        attempted_ids = {t["forecast_id"] for r in st["lines"]["requests"] if r.get("event") in I.ATTEMPTED for t in r.get("targets") or []}
+        newer_ids = {n["request_record_id"] for o in view["opportunities"] for n in o["newer_not_assessed"]}
         for r in st["lines"]["requests"]:
             if r.get("event") in I.ATTEMPTED or (mint is not None and r.get("mint") != mint):
                 continue
-            view["not_attempted"].append({"event": r.get("event"), "chain": I._ident(r.get("chain")), "mint": I._mint_text(r.get("chain"), r.get("mint")),
+            cov = r.get("event") in ("UNCHANGED", "DUPLICATE") and bool(r.get("covered_by")) and set(r["covered_by"]) <= attempted_ids
+            fl, src = _event_flags(r, lab) if r.get("event") in NEWER_EVENTS else (None, "NOT_READ")
+            view["not_attempted"].append({"event": r.get("event"), "chain": _token_text(r.get("chain")), "mint": I._mint_text(r.get("chain"), r.get("mint")),
+                                          "exact_mint": r.get("mint") if I._mint_text(r.get("chain"), r.get("mint")) == r.get("mint") else None,
                                           "capture_time_utc": r.get("capture_time_utc"), "request_record_id": r.get("record_id"),
-                                          "covered_by_report": (r.get("chain"), r.get("mint")) in covered,
+                                          "covered_by_report": cov, "newer_snapshot_not_assessed": r.get("record_id") in newer_ids,
+                                          "fatal_flags": fl, "flags_source": src,
                                           "errors": [_code(str(e).split(":")[0]) for e in r.get("errors") or []]})
     finally:
         if lab is not None:
@@ -453,12 +478,89 @@ def build(state_dir: str | Path | None = None, *, config_path: str | Path | None
     view["format_only"] = any(t.get("is_fixture") for t in docs)
     view["counts"] = {"opportunities": len(view["opportunities"]), "targets": len(docs),
                       "probabilities_shown": sum(1 for t in docs if t.get("number")),
+                      "overridden": sum(1 for t in docs if t.get("overridden")),
                       "abstained": sum(1 for t in docs if t["status"] == "ABSTAIN"),
                       "refused": sum(1 for t in docs if t["status"] == "DOCUMENT_REFUSED"),
                       "not_attempted_events": len(view["not_attempted"]),
                       "vetoes": sum(1 for o in view["opportunities"] if o["execution"]["veto"]),
+                      "with_risk": sum(1 for o in view["opportunities"] if o["risks"]),
                       "snapshots_verified": sum(1 for o in view["opportunities"] if o["snapshot"]["lab_state"] == "SNAPSHOT_VERIFIED")}
     return view
+
+
+NEWER_EVENTS = ("DEFERRED_QUEUE_FULL", "DEFERRED_LATENCY_BUDGET", "ERROR")
+LIQUIDITY_FALL = "LIQUIDITY_FALL_20PCT_OR_MORE"
+LIQUIDITY_UNKNOWN = "LIQUIDITY_BECAME_UNKNOWN"
+NEWER_NOT_ASSESSED = "NEWER_SNAPSHOT_NOT_ASSESSED"
+
+
+def _row_flags(row: dict | None) -> list[str] | None:
+    if not row:
+        return None
+    try:
+        ff = json.loads(row.get("fatal_flags_json") or "null")
+    except (TypeError, ValueError):
+        return None
+    if not isinstance(ff, list):
+        return None
+    return sorted({_code(f.get("flag") if isinstance(f, dict) else f) for f in ff})
+
+
+def _event_flags(r: dict, lab: sqlite3.Connection | None) -> tuple[list[str] | None, str]:
+    """The fatal flags of a not-attempted event's snapshot: from its request's material when recorded, else from the lab row with
+    that snapshot hash, else unknown (None), which counts as not cleared (CP18-2 item 3)."""
+    mat = r.get("material")
+    if isinstance(mat, dict) and isinstance(mat.get("fatal"), list):
+        return sorted(_code(f) for f in mat["fatal"]), "REQUEST_MATERIAL"
+    if r.get("snapshot_hash") and lab is not None:
+        ls = _lab_snapshot(lab, r.get("chain"), r.get("mint"), r.get("snapshot_hash"))
+        fl = _row_flags(ls.get("row"))
+        if fl is not None:
+            return fl, "LAB_ROW"
+    return None, "UNKNOWN"
+
+
+def _newer(st: dict, key: tuple[str, str], newest: dict | None, lab: sqlite3.Connection | None) -> list[dict]:
+    """Events of the mint after its newest attempted request whose snapshot was not assessed (deferred or failed)."""
+    out = []
+    for r in st["lines"]["requests"]:
+        if (r.get("chain"), r.get("mint")) != key or r.get("event") not in NEWER_EVENTS:
+            continue
+        if newest is not None and ((float(r["capture_time"]), int(r["seq"])) <= (float(newest["capture_time"]), int(newest["seq"]))
+                                   or (r.get("snapshot_hash") and r.get("snapshot_hash") == newest.get("snapshot_hash"))):
+            continue
+        fl, src = _event_flags(r, lab)
+        out.append({"event": r.get("event"), "capture_time_utc": r.get("capture_time_utc"), "request_record_id": r.get("record_id"),
+                    "pass_id": r.get("pass_id"), "snapshot_hash": r.get("snapshot_hash"), "fatal_flags": fl, "flags_source": src})
+    return out
+
+
+def _risks(o: dict, lim: float = 0.20) -> list[dict]:
+    """Every risk that overrides a forecast on this snapshot (CP18-2 item 1): lab fatal flags, an unknown fatal-flag check, a backtest
+    veto, a liquidity fall of 20% or more since the previous attempt, liquidity that became unknown, and a newer snapshot that was
+    not assessed with fatal flags or with an unknown check."""
+    ex = o["execution"]
+    out = []
+    if ex["structural_veto"]:
+        out.append({"code": "FATAL_FLAGS", "text": f"fatal flags {', '.join(ex['fatal_flags'])}", "short": ex["fatal_flags"]})
+    if ex["veto_unknown"]:
+        out.append({"code": "FATAL_CHECK_UNKNOWN", "text": "fatal-flag check unknown", "short": ["unknown"]})
+    if ex["backtest_veto"] is True:
+        out.append({"code": "BACKTEST_VETO", "text": f"backtest veto {', '.join(ex['backtest_veto_reasons'])}", "short": ["backtest veto"]})
+    fall = _liquidity_fall(o.get("changes") or [])
+    if fall is not None and fall <= -lim + 1e-12:
+        out.append({"code": LIQUIDITY_FALL, "text": f"{LIQUIDITY_FALL} since the previous attempt (measured value on the event line)",
+                    "short": [LIQUIDITY_FALL]})
+    if any(str(c) == "liquidity became unknown" for c in o.get("changes") or []):
+        out.append({"code": LIQUIDITY_UNKNOWN, "text": f"{LIQUIDITY_UNKNOWN} since the previous attempt", "short": [LIQUIDITY_UNKNOWN]})
+    for n in o.get("newer_not_assessed") or []:
+        if n["fatal_flags"] is None:
+            out.append({"code": NEWER_NOT_ASSESSED, "text": f"{NEWER_NOT_ASSESSED} ({n['event']} at {n['capture_time_utc']}), fatal-flag check "
+                                                             "unknown, treated as not cleared", "short": [f"{NEWER_NOT_ASSESSED} unknown"]})
+        elif n["fatal_flags"]:
+            out.append({"code": NEWER_NOT_ASSESSED, "text": f"{NEWER_NOT_ASSESSED} ({n['event']} at {n['capture_time_utc']}) with fatal flags "
+                                                             f"{', '.join(n['fatal_flags'])}", "short": [f"{f} (newer)" for f in n["fatal_flags"]]})
+    return out
 
 
 def _target_definitions() -> list[dict]:
@@ -478,7 +580,7 @@ def _target_definitions() -> list[dict]:
     return out
 
 
-def _opportunity(rv: dict) -> dict:
+def _opportunity(rv: dict, newer: list[dict] | None = None) -> dict:
     req, lab = rv["request"], rv["lab"]
     row, tok = lab.get("row") or {}, lab.get("token") or {}
     mat = req.get("material") or {}
@@ -490,9 +592,9 @@ def _opportunity(rv: dict) -> dict:
     first_pool = _vendor_time(tok.get("first_pool_at")) if lab["state"] == "SNAPSHOT_VERIFIED" else None
     age = (obs - first_pool) if (obs is not None and first_pool is not None) else None
     status, status_bucket = _status_text(mat.get("status"))
-    o = {"chain": req.get("chain"), "mint": req.get("mint"), "chain_text": I._ident(req.get("chain")),
+    o = {"chain": req.get("chain"), "mint": req.get("mint"), "chain_text": _token_text(req.get("chain")),
          "mint_text": I._mint_text(req.get("chain"), req.get("mint")),
-         "symbol": I._ident(tok.get("symbol")) if lab["state"] == "SNAPSHOT_VERIFIED" and tok.get("symbol") else None,
+         "symbol": _token_text(tok.get("symbol")) if lab["state"] == "SNAPSHOT_VERIFIED" and tok.get("symbol") else None,
          "event": req.get("event"), "changes": [I._ident(c, 60) if not re.fullmatch(r"[A-Za-z0-9_ .:%+-]+", str(c)) else str(c)
                                                  for c in req.get("changes") or []],
          "snapshot": {"snapshot_hash": req.get("snapshot_hash"), "row_sha256": req.get("row_sha256"),
@@ -502,7 +604,7 @@ def _opportunity(rv: dict) -> dict:
                       "lab_detail": lab.get("detail"), "token_age_s": age, "first_pool_at": _iso(first_pool) if first_pool else None},
          "structural": {"score": mat.get("score"), "fatal_flags": [_code(f) for f in mat.get("fatal") or []], "status": status,
                         "status_bucket": status_bucket, "veto_state": sv.get("state")},
-         "technical": ({"lifecycle": I._ident(row.get("lifecycle")), "structure": I._ident(row.get("structure"))}
+         "technical": ({"lifecycle": _token_text(row.get("lifecycle")), "structure": _token_text(row.get("structure"))}
                        if lab["state"] == "SNAPSHOT_VERIFIED" else None),
          "catalyst": dict(req.get("catalyst") or {}),
          "targets": [], "not_attempted_targets": [{"target": p.get("target"), "status": p.get("status"), "reasons": p.get("reasons")}
@@ -517,31 +619,49 @@ def _opportunity(rv: dict) -> dict:
                        "backtest_result": bt.get("result"), "backtest_installed": bt.get("installed_status")},
          "eligibility": (req.get("eligibility") or {}).get("state"),
          "ids": {"request_record_id": req.get("record_id"), "pass_id": req.get("pass_id"), "request_seq": req.get("seq"),
-                 "token_report": I._ident(Path(str((req.get("report_refs") or {}).get("token_report") or "")).name, 80)
+                 "token_report": _token_text(Path(str((req.get("report_refs") or {}).get("token_report") or "")).name, 80)
                  if (req.get("report_refs") or {}).get("token_report") else None},
-         "registry_facts": rv["registry_facts"], "previous_request_record_id": (rv["previous"] or {}).get("record_id")}
+         "registry_facts": rv["registry_facts"], "previous_request_record_id": (rv["previous"] or {}).get("record_id"),
+         "newer_not_assessed": list(newer or [])}
+    o["risks"] = _risks(o)
+    o["execution"]["overridden"] = bool(o["risks"])
     for tv in rv["targets"]:
         x = {k: v for k, v in tv.items() if k not in ("document", "record")}
         x["registry"] = {"mode": tv["registry"].get("mode"), "pin_event_id": tv["registry"].get("pin_event_id"),
                          "pin_reasons": list(tv["registry"].get("pin_reasons") or []), "blocking": list(tv["registry"].get("blocking") or []),
                          "state": tv["registry"].get("state")}
-        x["scenarios"] = [I._ident((s or {}).get("label") or (s or {}).get("code") or "scenario", 40) for s in tv.get("scenarios") or []]
+        x["scenarios"] = [_token_text((s or {}).get("label") or (s or {}).get("code") or "scenario", 40) for s in tv.get("scenarios") or []]
+        x["overridden"] = bool(x.get("number")) and o["execution"]["overridden"]
+        if x["overridden"]:                               # CP18-2 item 1: the number never travels beside a risk
+            x["overridden_level"] = x["number"].get("level")
+            x["number"] = None
         o["targets"].append(x)
     o["previous_targets"] = {}
     return o
 
 
 # ---------------------------------------------------------------- rendering (rules 5 to 8, 13)
-def _row_status(t: dict, veto: bool) -> str:
+def _row_status(t: dict) -> str:
     if t["status"] == "DOCUMENT_REFUSED":
         return "REFUSED (no number)"
     if t["status"] == "ABSTAIN":
         return "ABSTAIN (no number)"
+    fx = " FORMAT-ONLY FIXTURE" if t.get("is_fixture") else ""
+    if t.get("overridden"):                               # CP18-2 item 1: the override, never the number
+        return "FORECAST OVERRIDDEN by risk (number withheld)" + fx
     n = t["number"]
-    s = f"FORECAST {_pct(n['probability'])} ({_pct(n['interval'][0])} to {_pct(n['interval'][1])})"
-    if t.get("is_fixture"):
-        s += " FORMAT-ONLY FIXTURE"
-    return s + (" overridden by veto" if veto else "")
+    return f"FORECAST {_pct(n['probability'])} ({_pct(n['interval'][0])} to {_pct(n['interval'][1])})" + fx
+
+
+def _risk_cell(o: dict) -> str:
+    return ", ".join(x for r in o["risks"] for x in r["short"]) or "none"
+
+
+def _mints(view: dict) -> list[str]:
+    """Every exact mint the view shows (CP18-2 item 7): removed before the trading-word check."""
+    out = [o["mint"] for o in view.get("opportunities") or []]
+    out += [r["exact_mint"] for r in view.get("not_attempted") or [] if r.get("exact_mint")]
+    return out
 
 
 def render(view: dict) -> str:
@@ -590,15 +710,14 @@ def render(view: dict) -> str:
         L.append(f"- State check: {len(view.get('state_check_problems') or [])} problems; the documents they name are refused.")
     L.append("")
     if view["opportunities"]:
-        L.append("| Opportunity | Exact chain:mint | Inputs observed (UTC) | T1 24 h | T1b 6 h | T2 24 h | Vetoes | Inputs |")
+        L.append("| Opportunity | Exact chain:mint | Inputs observed (UTC) | T1 24 h | T1b 6 h | T2 24 h | Vetoes and risk flags | Inputs |")
         L.append("|---|---|---|---|---|---|---|---|")
         for o in view["opportunities"]:
             by = {t["short"]: t for t in o["targets"]}
-            cells = [_row_status(by[s], o["execution"]["veto"]) if s in by else "not attempted" for s in ("T1_24h", "T1b_6h", "T2_24h")]
-            vet = ", ".join(o["execution"]["fatal_flags"] + (["backtest veto"] if o["execution"]["backtest_veto"] else [])
-                            + (["unknown"] if o["execution"]["veto_unknown"] else [])) or "none"
+            cells = [_row_status(by[s]) if s in by else "not attempted" for s in ("T1_24h", "T1b_6h", "T2_24h")]
+            inp = str(o["snapshot"]["input_state"]) + (f", {NEWER_NOT_ASSESSED}" if o["newer_not_assessed"] else "")
             L.append(f"| {o['symbol'] or 'symbol not verified'} | `{o['chain_text']}:{o['mint_text']}` | {o['snapshot']['observed_at_utc']} | "
-                     + " | ".join(cells) + f" | {vet} | {o['snapshot']['input_state']} |")
+                     + " | ".join(cells) + f" | {_risk_cell(o)} | {inp} |")
         L.append("")
     L += _system_lines(view)
     L += _definition_lines(view)
@@ -610,7 +729,7 @@ def render(view: dict) -> str:
     if view.get("format_only"):
         L += [WATERMARK, ""]
     text = "\n".join(L)
-    check_text(text, [o["mint"] for o in view["opportunities"]])
+    check_text(text, _mints(view))
     return text
 
 
@@ -664,12 +783,16 @@ def _carried_lines() -> list[str]:
     d = {"facts": ["no number is shown for an abstention; a probability needs a SHADOW or VALIDATED_EXPERIMENTAL model with a "
                    "CALIBRATED Phase 13 card, enough support and a point inside the display range (Phase 13 rule 12)",
                    "a document is never shown without its abstention record and its request record (Phase 13 m4, PI-D-068)",
-                   "a FORECAST's number must equal the point recomputed from the raw number kept in the request record "
-                   "(Phase 13 m3, verify_point) and its cards must resolve from the registry",
+                   "a FORECAST's number was recomputed from the raw number when the document was written (Phase 13 m3, verify_point); "
+                   "this report checks it against the point stored with the raw number and the registry-resolved cards, without "
+                   "recomputing it",
+                   "any risk on a snapshot (a fatal flag, an unknown flag check, a backtest veto, a liquidity fall or loss, a newer "
+                   "snapshot not assessed) overrides its forecast: the number is withheld (PI-D-102)",
                    "a calibration available after the decision abstains (CALIBRATION_AFTER_DECISION, PI-D-070)",
                    "the retrospective holdout is spent: its results are exploratory and can only make a statement more conservative",
                    "token text (symbol, chain, labels, file names) is shown as letters, digits, dot, dash and underscore, at most "
-                   "24 characters, and withheld when it carries a trading or forecast word (Phase 17 m3); no local path is shown (m8)"],
+                   "24 characters, and withheld when it carries a trading or forecast word, also run together (Phase 17 m3, PI-D-102); "
+                   "no local path is shown (m8)"],
          "inferences": ["any interval is conditional on exchangeability of the event rate, which is neither established nor "
                         "refuted (PI-D-070)"],
          "heuristics": ["CURRENT_VENDOR_LIST decisions abstain (no point-in-time pool); a live capture records its pool"],
@@ -701,6 +824,12 @@ def _opportunity_lines(o: dict) -> list[str]:
         d["unknowns"].append(f"token age, symbol and lab labels: SNAPSHOT_NOT_VERIFIED ({sn.get('lab_detail') or 'no detail'})")
     if sn["input_state"] == I.INPUT_STALE:
         d["unknowns"].append("current market state: the inputs were stale at the capture (INPUT_STALE), so every target abstains SOURCE_STALE")
+    for n in o["newer_not_assessed"]:                     # CP18-2 item 3: a newer snapshot is never covered silently
+        fl = ("fatal flags unknown, treated as not cleared" if n["fatal_flags"] is None else
+              (f"fatal flags {', '.join(n['fatal_flags'])} ({n['flags_source']})" if n["fatal_flags"] else f"no fatal flag ({n['flags_source']})"))
+        (d["unknowns"] if n["fatal_flags"] is None else d["facts"]).append(
+            f"{NEWER_NOT_ASSESSED}: a newer snapshot ({_short(n['snapshot_hash'], 16)}, event {n['event']} at {n['capture_time_utc']}) was not "
+            f"assessed; {fl}; this block shows the older attempt")
     L += ["### Identity and snapshot", "", _ev(d).rstrip(), ""]
     # (b) structural research
     d = {"facts": [f"the lab's 100-point score at this snapshot: {st['score']}; fatal flags: {', '.join(st['fatal_flags']) or 'none'}"
@@ -738,8 +867,8 @@ def _opportunity_lines(o: dict) -> list[str]:
             continue
         n = t.get("number")
         coh = (f"support {n['support_n']} calibration events ({n['support_k']} positive); base rate {_pct(n['base_rate'])}"
-               if n and _fin(n.get("base_rate")) else "not shown: no model selected")
-        L.append(f"| {SHORT_HEAD.get(t['short'], t['short'])} | {hz} | {_row_status(t, ex['veto'])} | {', '.join(t['reasons']) or 'none'} | "
+               if n and _fin(n.get("base_rate")) else ("withheld: overridden by risk" if t.get("overridden") else "not shown: no model selected"))
+        L.append(f"| {SHORT_HEAD.get(t['short'], t['short'])} | {hz} | {_row_status(t)} | {', '.join(t['reasons']) or 'none'} | "
                  f"{coh} | {t['model_id']} (sha {_short(t['model_sha'])}) | {t['training_cutoff_utc'] or 'none'} | {_short(t['record_id'])} |")
     L.append("")
     abst = [t for t in o["targets"] if t["status"] == "ABSTAIN"]
@@ -759,14 +888,17 @@ def _opportunity_lines(o: dict) -> list[str]:
             continue
         if t["status"] == "ABSTAIN":
             continue
+        if t.get("overridden"):
+            L.append(f"{head}: a verified research estimate exists for this snapshot (level {t.get('overridden_level')}), but a risk "
+                     f"overrides it ({'; '.join(r['text'] for r in o['risks'])}); the number is withheld and the lab's fatal-flag "
+                     "override applies unchanged." + (f" {WATERMARK}." if t.get("is_fixture") else ""))
+            L.append(f"  - Caveats: {', '.join(t['caveats'])}.")
+            continue
         n = t["number"]
         L.append(f"{head}: research estimate at level {n['level']} ({n['method']}), {_pct(n['probability'])} with interval "
                  f"{_pct(n['interval'][0])} to {_pct(n['interval'][1])}; base rate {_pct(n['base_rate'])}; support {n['support_n']} "
                  f"calibration events; calibration card {_short(n['calibration_card_sha'])}; {PRICE_PATH_LINE}."
                  + (f" {WATERMARK}." if t.get("is_fixture") else ""))
-        if ex["veto"]:
-            L.append("  - Overridden: this snapshot carries a veto (below); the lab's fatal-flag override applies unchanged and the "
-                     "estimate is not usable for any decision on it.")
         L.append(f"  - Caveats: {', '.join(t['caveats'])}.")
     L.append("")
     # (f) historical prediction and its out-of-sample record
@@ -798,6 +930,8 @@ def _opportunity_lines(o: dict) -> list[str]:
          "inferences": [], "heuristics": [], "unknowns": []}
     if ex["veto_unknown"]:
         d["unknowns"].append("fatal-flag check unknown (no readable flag list), treated as not cleared")
+    if o["risks"]:
+        d["facts"].append("risks that override any forecast on this snapshot: " + "; ".join(r["text"] for r in o["risks"]))
     if ex["backtest_result"] in (C.BACKTEST_NOT_AVAILABLE, "UNTESTED", None):
         d["unknowns"].append(f"execution and stress assessment: {C.BACKTEST_NOT_AVAILABLE}; unblocked by {BACKTEST_UNBLOCK}")
     if ex["size_basis"] == "EXECUTION_DATA_MISSING":
@@ -831,6 +965,17 @@ def _opportunity_lines(o: dict) -> list[str]:
     return L
 
 
+def _covered(r: dict) -> str:
+    if r["covered_by_report"]:
+        return "yes"
+    if r.get("newer_snapshot_not_assessed"):
+        return f"no: {NEWER_NOT_ASSESSED}, see the opportunity above"
+    if r["event"] in NEWER_EVENTS:
+        fl = r.get("fatal_flags")
+        return "no: fatal flags " + ("unknown" if fl is None else (", ".join(fl) or "none recorded"))
+    return "no"
+
+
 def _not_attempted_lines(view: dict) -> list[str]:
     na = view["not_attempted"]
     L = ["## Events not attempted", ""]
@@ -839,7 +984,7 @@ def _not_attempted_lines(view: dict) -> list[str]:
     L.append("| Event | Exact chain:mint | Capture (UTC) | Covered by a report above | Request | Detail |")
     L.append("|---|---|---|---|---|---|")
     for r in na:
-        L.append(f"| {r['event']} | `{r['chain']}:{r['mint']}` | {r['capture_time_utc']} | {'yes' if r['covered_by_report'] else 'no'} | "
+        L.append(f"| {r['event']} | `{r['chain']}:{r['mint']}` | {r['capture_time_utc']} | {_covered(r)} | "
                  f"{_short(r['request_record_id'])} | {', '.join(r['errors']) or 'none'} |")
     return L + [""]
 
@@ -860,7 +1005,7 @@ ALERT_SCHEMA = "memelab.predictive.alert/1"
 POLICIES = ("risk_override", "reevaluate", "forecast_withdrawn", "pipeline_health")
 DEFAULT_ALERT_POLICY: dict[str, Any] = {
     "schema": ALERT_POLICY_SCHEMA, "version": "predictive-alerts-policy-1", "rules_version": ALERT_RULES_VERSION,
-    "tz": "America/New_York", "quiet_hours": {"start": "22:00", "end": "07:00"}, "quiet_hours_bypass": [], "daily_cap": 8,
+    "tz": "America/New_York", "quiet_hours": {"start": "22:00", "end": "07:00"}, "quiet_hours_bypass": [], "daily_cap": 8, "daily_cap_warning": 8,
     "min_interval_minutes": 60, "source_max_age_hours": 24.0, "hold_max_hours": 14.0, "dedupe_retention_days": 30,
     "delivery": "file_sink_dry_run_only", "trade_execution_impact": "none",
     "policies": {"risk_override": {"severity": "warning", "cooldown_hours": 6.0, "liquidity_fall_rel": 0.20},
@@ -881,8 +1026,9 @@ def make_alert_policy(overrides: dict | None = None) -> dict:
     AC.zone(p["tz"])
     AC._hhmm(p["quiet_hours"]["start"])
     AC._hhmm(p["quiet_hours"]["end"])
-    if not 0 <= int(p["daily_cap"]) <= 50:
-        raise AC.AlertError("daily_cap must be between 0 and 50")
+    for k in ("daily_cap", "daily_cap_warning"):
+        if not 0 <= int(p[k]) <= 50:
+            raise AC.AlertError(f"{k} must be between 0 and 50")
     if float(p["min_interval_minutes"]) < 60:
         raise AC.AlertError("min_interval_minutes below 60")
     for s in p.get("quiet_hours_bypass") or []:
@@ -915,7 +1061,7 @@ def _liquidity_fall(changes: Sequence[str]) -> float | None:
 
 
 def alert_candidates(view: dict, requests: Sequence[dict], *, policy: dict, now: float, fixture_run: bool = False,
-                     errors: Sequence[dict] = ()) -> tuple[list[dict], list[dict]]:
+                     errors: Sequence[dict] = (), newer: Sequence[dict] = (), feed_changed: str | None = None) -> tuple[list[dict], list[dict]]:
     """Candidates and suppressions for the given request views (each a `_opportunity` dict with its request record), under the
     frozen policies of rule 10. Pure: no I/O, no clock."""
     cands: list[dict] = []
@@ -947,6 +1093,34 @@ def alert_candidates(view: dict, requests: Sequence[dict], *, policy: dict, now:
              "pass_id": (view.get("system") or {}).get("last_pass_id"), "records": [], "forecasts": []}
         cands.append(cand(b, fingerprint=[st, view.get("state_check_problems")], reason=f"{st}: {STATE_TEXT.get(st, '')}",
                           bucket="FACT", cooldown_key=f"pipeline_health:{st}"))
+    if feed_changed:                                       # CP18-2 item 2
+        b = {"policy": "pipeline_health", "severity": pol["pipeline_health"]["severity"], "item_id": "pipeline",
+             "label": "predictive alert feed", "chain": None, "contract": None, "mint": None, "fixture": bool(fixture_run),
+             "observed_at_utc": None, "capture_time_utc": None, "snapshot_hash": None, "request_record_id": None,
+             "pass_id": (view.get("system") or {}).get("last_pass_id"), "records": [], "forecasts": []}
+        cands.append(cand(b, fingerprint=["FEED_CHANGED", (view.get("system") or {}).get("last_pass_record_id")], bucket="FACT",
+                          cooldown_key="pipeline_health:FEED_CHANGED", reason=f"FEED_CHANGED: {feed_changed}"))
+    for n in newer:                                        # CP18-2 item 3: a newer snapshot not assessed
+        if n["fatal_flags"] == []:
+            continue
+        if n["mint_text"] == "not-an-exact-address":
+            continue
+        fl = "fatal-flag check unknown, treated as not cleared" if n["fatal_flags"] is None else f"fatal flags {', '.join(n['fatal_flags'])}"
+        cap = _parse(n.get("capture_time_utc"))
+        lbl = f"{n.get('symbol') or 'symbol not verified'} on {n['chain_text']} ({n['mint_text']})"
+        if cap is None or now - cap > float(policy["source_max_age_hours"]) * 3600:
+            supp.append({"policy": "risk_override", "item_id": f"{n['chain']}:{n['mint']}", "label": lbl, "reason_code": "SOURCE_STALE",
+                         "reason": "the newer snapshot is too old for an alert; the report still shows it"})
+            continue
+        b = {"policy": "risk_override", "severity": pol["risk_override"]["severity"], "item_id": f"{n['chain']}:{n['mint']}", "label": lbl,
+             "chain": n["chain_text"], "contract": n["mint_text"], "mint": n["mint"], "fixture": bool(fixture_run),
+             "observed_at_utc": None, "capture_time_utc": n.get("capture_time_utc"), "snapshot_hash": n.get("snapshot_hash"),
+             "request_record_id": n.get("request_record_id"), "pass_id": n.get("pass_id"), "records": [],
+             "forecasts": ["not assessed"]}
+        cands.append(cand(b, fingerprint=[n.get("snapshot_hash") or n.get("request_record_id"), fl], bucket="FACT",
+                          cooldown_key=f"risk_override:{n['chain']}:{n['mint']}",
+                          reason=(f"Risk flag: {NEWER_NOT_ASSESSED} ({n['event']}); {fl}. No forecast clears it; the lab's fatal-flag "
+                                  "override applies unchanged.")))
     for e in errors:
         b = {"policy": "pipeline_health", "severity": pol["pipeline_health"]["severity"], "item_id": "pipeline",
              "label": "predictive pass", "chain": None, "contract": None, "mint": None, "fixture": bool(fixture_run),
@@ -975,23 +1149,14 @@ def alert_candidates(view: dict, requests: Sequence[dict], *, policy: dict, now:
                     cands.append(cand(b, fingerprint=[b_, t["short"], o["ids"]["pass_id"]], bucket="FACT",
                                       reason=f"{SHORT_HEAD.get(t['short'], t['short'])}: {b_} among the served model's blocking states; "
                                              "the target abstains", cooldown_key=f"pipeline_health:{b_}"))
-        # risk_override
-        fall = _liquidity_fall(o.get("changes") or [])
-        lim = float(pol["risk_override"]["liquidity_fall_rel"])
-        risky = ex["structural_veto"] or ex["veto_unknown"] or ex["backtest_veto"] is True or (fall is not None and fall <= -lim + 1e-12)
-        if risky:
-            parts = []
-            if ex["structural_veto"]:
-                parts.append(f"fatal flags {', '.join(ex['fatal_flags'])}")
-            if ex["veto_unknown"]:
-                parts.append("fatal-flag check unknown")
-            if ex["backtest_veto"] is True:
-                parts.append(f"backtest veto {', '.join(ex['backtest_veto_reasons'])}")
-            if fall is not None and fall <= -lim + 1e-12:
-                parts.append(f"liquidity {fall:+.0%} since the previous attempt")
+        # risk_override: one risk list per snapshot (CP18-2 item 1)
+        risks = _risks(o, float(pol["risk_override"]["liquidity_fall_rel"]))
+        withheld = [t for t in o["targets"] if t.get("overridden")]
+        if risks:
+            parts = [r["text"] for r in risks]
             why = ("Risk flag on this snapshot: " + "; ".join(parts) + ". No forecast clears it; the lab's fatal-flag override "
                    "applies unchanged.")
-            if verified:
+            if verified or withheld:
                 why += " The research estimate on this snapshot is overridden."
             if stale:
                 sup(o, "risk_override", "SOURCE_STALE", "the inputs or the request are too old for an alert; the report still shows the flag")
@@ -999,13 +1164,15 @@ def alert_candidates(view: dict, requests: Sequence[dict], *, policy: dict, now:
                 b = base(o, "risk_override", pol["risk_override"]["severity"])
                 cands.append(cand(b, fingerprint=[o["snapshot"]["snapshot_hash"], sorted(parts)], reason=why, bucket="FACT",
                                   cooldown_key=f"risk_override:{o['chain']}:{o['mint']}"))
+        for t in withheld:
+            sup(o, "reevaluate", "RISK_OVERRIDES_FORECAST", "the snapshot carries a risk: the risk warning stands instead")
         # reevaluate
         for t in verified:
             n = t["number"]
             if n.get("level") not in pol["reevaluate"]["levels"] or not (_fin(n.get("base_rate")) and n["interval"][0] > float(n["base_rate"]) + _TOL):
                 continue
-            if ex["veto"] or ex["backtest_veto"] is True:
-                sup(o, "reevaluate", "VETO_OVERRIDES_FORECAST", "the snapshot carries a veto: the risk warning stands instead")
+            if risks:                                     # never reached: a risk withholds the number (defense in depth)
+                sup(o, "reevaluate", "RISK_OVERRIDES_FORECAST", "the snapshot carries a risk: the risk warning stands instead")
                 continue
             if stale:
                 sup(o, "reevaluate", "SOURCE_STALE", "the inputs or the request are too old for an alert")
@@ -1020,7 +1187,7 @@ def alert_candidates(view: dict, requests: Sequence[dict], *, policy: dict, now:
         # forecast_withdrawn
         for short, prev in (o.get("previous_targets") or {}).items():
             cur = next((t for t in o["targets"] if t["short"] == short), None)
-            if prev and cur is not None and cur["status"] != "FORECAST":
+            if prev and cur is not None and cur["status"] != "FORECAST" and not cur.get("overridden"):
                 if stale:
                     sup(o, "forecast_withdrawn", "SOURCE_STALE", "the inputs or the request are too old for an alert")
                     continue
@@ -1066,6 +1233,46 @@ def _refuse_path(p: Path, what: str) -> None:
         raise AlertRefused(f"{what}: {why}")
 
 
+ALERT_TABLES = {"alert_meta", "alert_runs", "alert_events", "alert_suppressions", "alert_baseline", "alert_deliveries",
+                "alert_cooldown_resets", "alert_slots", "sqlite_sequence"}
+
+
+def _refuse_alert_db(p: Path, lab_db: Any) -> None:
+    """CP18-2 item 9: never the lab database (MEMELAB_DB or the --lab-db given), never an existing SQLite file that holds any table
+    outside the alert schema."""
+    from .. import db
+    bad = {Path(db.DB_PATH).resolve()} | ({Path(lab_db).resolve()} if lab_db is not None else set())
+    if p.resolve() in bad:
+        raise AlertRefused("alert database: it is the lab database")
+    if p.exists():
+        try:
+            con = sqlite3.connect(f"file:{p}?mode=ro", uri=True)
+            try:
+                names = {r[0] for r in con.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+            finally:
+                con.close()
+        except sqlite3.DatabaseError:
+            raise AlertRefused("alert database: an existing file that is not an alert database")
+        if names - ALERT_TABLES:
+            raise AlertRefused(f"alert database: an existing database with other tables ({len(names - ALERT_TABLES)})")
+
+
+def _feed_check(state_dir: Any, config_path: Any, prev: Any) -> str | None:
+    """CP18-2 item 2: the state's pass at the sequence last evaluated must still carry the pass record id stored then."""
+    if prev is None or prev["snapshot_run_id"] is None:
+        return None
+    cfg = I.config(config_path)
+    passes = I.load_state(Path(state_dir or cfg["state_dir"] or I.default_state_dir()))["lines"]["passes"]
+    k = int(prev["snapshot_run_id"])
+    if k >= len(passes):
+        return (f"this alert database last evaluated pass {k}, but the state has {len(passes)} passes (a reset state or a second "
+                "state on the same alert database); every pass of this state is evaluated")
+    if passes[k]["record_id"] != prev["feed_sha256"]:
+        return (f"pass {k} of the state is not the one this alert database evaluated (a reset state or a second state on the same "
+                "alert database); every pass of this state is evaluated")
+    return None
+
+
 def alert_run(state_dir: str | Path | None = None, *, config_path: str | Path | None = None, alert_db: str | Path | None = None,
               outbox: str | Path | None = None, now: float | None = None, policy: dict | None = None, send: bool = False,
               fixture_run: bool = False, registry_dir: str | Path | None = None, root: str | Path | None = None,
@@ -1081,6 +1288,7 @@ def alert_run(state_dir: str | Path | None = None, *, config_path: str | Path | 
     box = Path(outbox) if outbox is not None else dbp.parent / "outbox"
     _refuse_path(dbp, "alert database")
     _refuse_path(box, "alert outbox")
+    _refuse_alert_db(dbp, lab_db)
     view = build(state_dir, config_path=config_path, registry_dir=registry_dir, root=root, extra_cal_cards=extra_cal_cards)
     con = AE.connect(dbp)
     mode = "dry_run"
@@ -1095,27 +1303,37 @@ def alert_run(state_dir: str | Path | None = None, *, config_path: str | Path | 
         run_id = cur.lastrowid
         out["run_id"] = run_id
         AE.purge(con, policy=pol, now=now)
-        prev = con.execute("SELECT started_at, snapshot_run_id, fixture FROM alert_runs WHERE mode=? AND outcome='evaluated' AND run_id<>? "
-                           "ORDER BY started_at DESC, run_id DESC LIMIT 1", (mode, run_id)).fetchone()
+        prev = con.execute("SELECT started_at, snapshot_run_id, fixture, feed_sha256 FROM alert_runs WHERE mode=? AND outcome='evaluated' "
+                           "AND run_id<>? ORDER BY run_id DESC LIMIT 1", (mode, run_id)).fetchone()     # newest by run id (CP18-2 item 8)
         ev: dict[str, Any] = {"candidates": 0, "new": [], "deduped": 0, "suppressed": [], "quiet_hours": AC.in_quiet_hours(now, pol)}
         if view.get("state") in ("FLAG_OFF", "NO_STATE", "STATE_TAMPERED", "STATE_DIR_REFUSED"):
             outcome = "feed_unavailable"
             out["reason"] = f"{view.get('state')}: {STATE_TEXT.get(view.get('state'), '')}"
             if view.get("state") == "STATE_TAMPERED":
                 ev = _evaluate(con, run_id=run_id, view=view, requests=[], policy=pol, now=now, outbox=box, fixture_run=fixture_run)
-        elif prev is not None and now - prev["started_at"] < float(pol["min_interval_minutes"]) * 60:
+        elif prev is not None and 0 <= now - prev["started_at"] < float(pol["min_interval_minutes"]) * 60:
             outcome = "too_soon"
             out["reason"] = f"last evaluation {round((now - prev['started_at']) / 60)} min ago; policy interval {pol['min_interval_minutes']} min"
-        elif prev is not None and prev["snapshot_run_id"] == seq and bool(prev["fixture"]) == bool(fixture_run):
-            outcome = "no_new_upstream_data"
-            out["reason"] = f"pass {seq} was already evaluated"
         else:
-            outcome = "evaluated"
-            first = (prev["snapshot_run_id"] + 1) if prev is not None and prev["snapshot_run_id"] is not None else 0
-            reqs, errs = _new_request_views(state_dir, config_path=config_path, registry_dir=registry_dir, root=root,
-                                            extra_cal_cards=extra_cal_cards, first_pass_seq=first, lab_db=lab_db)
-            ev = _evaluate(con, run_id=run_id, view=view, requests=reqs, policy=pol, now=now, outbox=box, fixture_run=fixture_run,
-                           errors=errs)
+            changed = _feed_check(state_dir, config_path, prev)
+            notes = []
+            if prev is not None and now < prev["started_at"]:
+                notes.append(f"CLOCK_BEHIND: this run is {round((prev['started_at'] - now) / 60)} min before the last evaluation")
+            if changed:
+                notes.append(f"FEED_CHANGED: {changed}")
+            if (not changed and prev is not None and prev["snapshot_run_id"] == seq and prev["feed_sha256"] == sysv.get("last_pass_record_id")
+                    and bool(prev["fixture"]) == bool(fixture_run)):
+                outcome = "no_new_upstream_data"
+                out["reason"] = f"pass {seq} was already evaluated" + (f"; {notes[0]}" if notes else "")
+            else:
+                outcome = "evaluated"
+                first = 0 if (changed or prev is None or prev["snapshot_run_id"] is None) else prev["snapshot_run_id"] + 1
+                reqs, errs, newer = _new_request_views(state_dir, config_path=config_path, registry_dir=registry_dir, root=root,
+                                                       extra_cal_cards=extra_cal_cards, first_pass_seq=first, lab_db=lab_db)
+                ev = _evaluate(con, run_id=run_id, view=view, requests=reqs, policy=pol, now=now, outbox=box, fixture_run=fixture_run,
+                               errors=errs, newer=newer, feed_changed=changed)
+                if notes:
+                    out["reason"] = "; ".join(notes)
         out.update({"outcome": outcome, "evaluation": ev, "delivery": {"processed": list(ev["new"]), "released": [], "expired": []}})
         summary = {"candidates": ev["candidates"], "new": ev["new"], "deduped": ev["deduped"], "suppressed": len(ev["suppressed"]),
                    "reason": out.get("reason")}
@@ -1127,7 +1345,7 @@ def alert_run(state_dir: str | Path | None = None, *, config_path: str | Path | 
 
 
 def _new_request_views(state_dir: Any, *, config_path: Any, registry_dir: Any, root: Any, extra_cal_cards: dict | None,
-                       first_pass_seq: int, lab_db: Any = None) -> tuple[list[dict], list[dict]]:
+                       first_pass_seq: int, lab_db: Any = None) -> tuple[list[dict], list[dict], list[dict]]:
     """Every attempted request of the passes from `first_pass_seq` on, each as an opportunity view with its previous attempt's
     verified forecasts (for forecast_withdrawn)."""
     cfg = I.config(config_path)
@@ -1161,21 +1379,38 @@ def _new_request_views(state_dir: Any, *, config_path: Any, registry_dir: Any, r
                     po = _opportunity(_request_view(st, prev, prev=None, **kw))
                     o["previous_targets"] = {t["short"]: t["forecast_id"] for t in po["targets"] if t.get("number")}
                 out.append(o)
+        newer = []
+        for key in sorted({(r["chain"], r["mint"]) for r in st["lines"]["requests"] if r.get("event") in NEWER_EVENTS and r.get("chain")}):
+            lst = att.get(key) or []
+            tok = None
+            if lab is not None:
+                try:
+                    t_ = lab.execute("SELECT symbol, chain FROM tokens WHERE mint=?", (key[1],)).fetchone()
+                    tok = t_[0] if t_ and t_[1] == key[0] else None
+                except Exception:  # noqa: BLE001
+                    tok = None
+            for n in _newer(st, key, lst[-1] if lst else None, lab):
+                if pass_seq.get(n["pass_id"], -1) < first_pass_seq:
+                    continue
+                newer.append(dict(n, chain=key[0], mint=key[1], chain_text=_token_text(key[0]), mint_text=I._mint_text(key[0], key[1]),
+                                  symbol=_token_text(tok) if tok else None))
     finally:
         if lab is not None:
             lab.close()
     errs = [{"record_id": r.get("record_id"), "pass_id": r.get("pass_id"), "capture_time_utc": r.get("capture_time_utc"),
              "errors": [_code(str(x).split(":")[0]) for x in r.get("errors") or []]}
             for r in st["lines"]["requests"] if r.get("event") == "ERROR" and pass_seq.get(r["pass_id"], -1) >= first_pass_seq]
-    return out, errs
+    return out, errs, newer
 
 
 def _evaluate(con: sqlite3.Connection, *, run_id: int, view: dict, requests: list[dict], policy: dict, now: float, outbox: Path,
-              fixture_run: bool, errors: Sequence[dict] = ()) -> dict:
+              fixture_run: bool, errors: Sequence[dict] = (), newer: Sequence[dict] = (), feed_changed: str | None = None) -> dict:
     tz = policy["tz"]
-    cands, supp = alert_candidates(view, requests, policy=policy, now=now, fixture_run=fixture_run, errors=errors)
+    cands, supp = alert_candidates(view, requests, policy=policy, now=now, fixture_run=fixture_run, errors=errors, newer=newer,
+                                   feed_changed=feed_changed)
     day = AC.local_day(now, tz)
-    used = con.execute("SELECT COUNT(*) FROM alert_events WHERE mode='dry_run' AND local_day=?", (day,)).fetchone()[0]
+    used_w = con.execute("SELECT COUNT(*) FROM alert_events WHERE mode='dry_run' AND local_day=? AND severity='warning'", (day,)).fetchone()[0]
+    used_n = con.execute("SELECT COUNT(*) FROM alert_events WHERE mode='dry_run' AND local_day=? AND severity<>'warning'", (day,)).fetchone()[0]
     quiet = AC.in_quiet_hours(now, policy)
     sink = AT.FileSink(outbox)
     new, deduped = [], 0
@@ -1188,9 +1423,11 @@ def _evaluate(con: sqlite3.Connection, *, run_id: int, view: dict, requests: lis
             supp.append({"policy": c["policy"], "item_id": c["item_id"], "label": c["label"], "reason_code": "cooldown",
                          "reason": f"an alert for this went out less than {cfg['cooldown_hours']:g} h ago"})
             continue
-        if used >= int(policy["daily_cap"]):
+        warn = c["severity"] == "warning"                 # CP18-2 item 10: separate caps, a warning is never crowded out
+        cap_n = int(policy["daily_cap_warning"] if warn else policy["daily_cap"])
+        if (used_w if warn else used_n) >= cap_n:
             supp.append({"policy": c["policy"], "item_id": c["item_id"], "label": c["label"], "reason_code": "daily_cap",
-                         "reason": f"daily cap of {policy['daily_cap']} alerts reached for {day} ({tz})"})
+                         "reason": f"daily cap of {cap_n} {'warnings' if warn else 'notices'} reached for {day} ({tz})"})
             continue
         a = {**c, "schema": ALERT_SCHEMA, "policy_version": policy["version"], "policy_sha256": policy["policy_sha256"],
              "created_at": now, "created_text": AC.local_text(now, tz), "mode": "dry_run", "quiet_hours": quiet,
@@ -1207,7 +1444,10 @@ def _evaluate(con: sqlite3.Connection, *, run_id: int, view: dict, requests: lis
                     "VALUES (?,?,?,?,?,?,?,?,?)", (a["alert_id"], "dry_run", "file", AT.dest_ref("file", sink.destination()), 1,
                                                    "dry_run_preview", now, now,
                                                    "preview file written; nothing sent" if res.ok else (res.error or "preview failed")))
-        used += 1
+        if warn:
+            used_w += 1
+        else:
+            used_n += 1
         new.append(a)
     for s in supp:
         con.execute("INSERT INTO alert_suppressions(run_id, policy, item_id, reason_code, reason) VALUES (?,?,?,?,?)",
