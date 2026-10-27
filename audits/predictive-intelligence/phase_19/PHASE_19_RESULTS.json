@@ -2,7 +2,7 @@
  "phase": "19",
  "status": "NEEDS_REVIEW",
  "head_before": "4b07b0d2b906a719ae6bd948ae86d5a20282b753",
- "head_after": "aefbea6 (records); the post-commit record commit follows it",
+ "head_after": "recorded in HANDOFF.md (repair records commit and the post-commit record commit after bb2639a)",
  "checks": [
   {
    "name": "entry full suite at 4b07b0d",
@@ -153,20 +153,66 @@
    "exit_code": 0,
    "result": "Needs action: no.",
    "pass": true
+  },
+  {
+   "name": "RP2 G19 mutation probe with the skeptic's 14 and 11 repair mutations",
+   "command": "python -B probes/mutation_monitoring.py evidence/mutation_monitoring.json",
+   "exit_code": 0,
+   "result": "71 of 71 caught",
+   "pass": true
+  },
+  {
+   "name": "RP2 CX-SK19 refused",
+   "input": "skeptic p19_cx_sk19_same_read_revision.py on a clone at 7c177de",
+   "result": "REVISION_NEEDS_A_LATER_READ",
+   "pass": true
+  },
+  {
+   "name": "RP2 skeptic ledger attacks",
+   "input": "skeptic p19_ledger_attacks.py",
+   "result": "A5, A6, A7 refused; A3, A4, A8b caught by the git-anchor and rebuild outputs tests (2 failed on an A4 clone)",
+   "pass": true
+  },
+  {
+   "name": "RP2 repair tests fail on the first-pass module",
+   "command": "python -B probes/cp19_1_old_code_check.py",
+   "exit_code": 0,
+   "result": "8 of 16 fail on fce102e; 8 pin correct behaviour",
+   "pass": true
+  },
+  {
+   "name": "RP2 repeated runs at 7c177de",
+   "input": "evidence/rerun_cp19_1_diff.json",
+   "result": "no primary metric, count or verdict changed; CONTACT_EXCLUDED, D1, D6 and responses changed as listed",
+   "pass": true
+  },
+  {
+   "name": "RP2 monitoring and outputs tests",
+   "command": "python -m pytest tests/test_predictive_monitoring.py tests/test_predictive_phase19_outputs.py -q",
+   "exit_code": 0,
+   "result": "55 passed",
+   "pass": true
+  },
+  {
+   "name": "G25 frozen 48 h revision re-read (PI-D-106)",
+   "command": "python -B probes/fetch_labels.py reread48",
+   "exit_code": 1,
+   "result": "refused: too early (sample reads re-readable from 2026-10-29T14:14:24Z to 14:26:44Z); OPEN",
+   "pass": false
   }
  ],
  "artifacts": [
   {
    "path": "memelab/predictive/monitoring.py",
-   "sha256": "4de67f8560e2117fdaaadae0b7950f5fc7bec8a4cf1bfa94f57d508f4a35c16b"
+   "sha256": "476b596172b5ec6d6bd1ae611bb03a14ccd2806731a810a491437f1628bfaa84"
   },
   {
    "path": "tests/test_predictive_monitoring.py",
-   "sha256": "d2876e9ca919794efd56bac8232704b22d2af6425d0b02fa3b7c88aafb4c1e76"
+   "sha256": "66c5aa9afb24943c1ae7a78e05f857997245ecc3ebb1cc3b86ed11a4ac7c1890"
   },
   {
    "path": "tests/test_predictive_phase19_outputs.py",
-   "sha256": "544daf9995ca5fd7b17d330b83bde3aecf07828704786745220f6b0618d25e91"
+   "sha256": "a95169e36d378ecb79cc556030dba04fcc9830658a3e415765e38ca14f4c695c"
   },
   {
    "path": "audits/predictive-intelligence/phase_19/ACCEPTANCE_CHECKLIST.md",
@@ -182,15 +228,15 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_19/monitoring/OUTCOME_LEDGER.jsonl",
-   "sha256": "c36128466eef09d6204520b1f66cf0c38d752e22f7ac4fb3749ace3eef0c4e6b"
+   "sha256": "9fb0c023d29ea9ae26f5466d5a5d19784818226846a9c8abc236dd4ba91af96d"
   },
   {
    "path": "audits/predictive-intelligence/phase_19/monitoring/OUTCOME_LEDGER.md",
-   "sha256": "b7d48b987817d017e7389291ea416d3eb6d80229928b18de39bbd4e008a604b2"
+   "sha256": "41d73ffba02a3fd083e869429e2d39d01ff3c1e167b11a735e483bb4d9fe3ff7"
   },
   {
    "path": "audits/predictive-intelligence/phase_19/monitoring/PROSPECTIVE_REPORT.md",
-   "sha256": "1589d42ba8d1c973139ee1f5749b162458b1e0aa7fe9b81e27340382c276835a"
+   "sha256": "2155d0fd71b8a48f421bdb0f6f46bd9f073bed4763dd5df9252fb22deb20abea"
   },
   {
    "path": "audits/predictive-intelligence/phase_19/monitoring/PROSPECTIVE_PREDICTIONS.csv",
@@ -202,7 +248,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_19/monitoring/DRIFT_REPORT.json",
-   "sha256": "ff3ed09513178bf6870695cb6bb38b7254da6c9096dc2692d740186758a838aa"
+   "sha256": "5ae707e59609eec848aaf1ebb2333895742ad765af5dfe43ac880391cc30fb3b"
   },
   {
    "path": "audits/predictive-intelligence/phase_19/monitoring/ROLLBACK_DEMO.json",
@@ -210,7 +256,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_19/monitoring/FEEDBACK_AUDIT.json",
-   "sha256": "a108d56a8bc973b479e26980cc74e775ae7d2063ef939f55a351e8dc15a81eae"
+   "sha256": "9a1d081c02f3ec5a1723c55ebdfcb4d2929de9e1eae597ce8277dd234d6d45c5"
   },
   {
    "path": "audits/predictive-intelligence/phase_19/monitoring/MISSES.csv",
@@ -222,7 +268,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_19/monitoring/PRIMARY_RESULTS.json",
-   "sha256": "55ecd43f8ef911304eb5aa17e135b013b0cfe5288d50afbff487e104d5332bf1"
+   "sha256": "1cffa41ecb932653e8ce529fc81401c2aa8246f895111394e87b476a6d714f10"
   },
   {
    "path": "audits/predictive-intelligence/phase_19/monitoring/OPENING_LOG.json",
@@ -238,7 +284,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_19/experiments/SEARCH_LEDGER.csv",
-   "sha256": "ad4498b75e75e76cc22d64575246b023070198afdecad05d6554f6d6cd3995b9"
+   "sha256": "c8e7cb15a9705278e8736640efbeb90dde6930fb050fa40c64b322e74202d01c"
   },
   {
    "path": "audits/predictive-intelligence/phase_19/evidence/rebuild_outcomes.json",
@@ -246,15 +292,39 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_19/evidence/mutation_monitoring.json",
-   "sha256": "45f5f1e6f11eac2521a3e7e7980990d99b8b927f60b20957acba7e9d0cafbd03"
+   "sha256": "7bb7b8ee20b9d85c86b040208e0c95db2f876628ca171330b8cfc988edb5cddb"
   },
   {
    "path": "audits/predictive-intelligence/phase_19/PHASE_19_EVIDENCE.md",
-   "sha256": "df1e0686c422a4fa9a3887d1ab422f74265a713acf57b6adbceb0a1b7fdd9cda"
+   "sha256": "f094573f3384e059ceeef16fa1327a2cb7b11ee04756287b649435e4982f124e"
   },
   {
    "path": "audits/predictive-intelligence/phase_19/SKEPTIC_PACKET.md",
    "sha256": "d070ebfaca02b1d63f0500a3214ca519376b89ace98a9d2f55e8298cc9e5113d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/data/revision_sample.json",
+   "sha256": "11874dd9c4719662e07b8e8eabc5e7209aca6016fd4cec27a748da6212fb61fe"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/evidence/rerun_cp19_1_diff.json",
+   "sha256": "0e97a343b50bafe92abdc7b999c116c8335f538641f25fb42fcefb95d7244895"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/evidence/rp2_skeptic_attacks.json",
+   "sha256": "fe44de067eece1bc015e3685fb50c780a8d9d0525c6fbb624785d0b99a9fc81c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/evidence/cp19_1_old_code_check.json",
+   "sha256": "544c4c5b23e095d6a3aa6c18c73cc56c838e5c4d75423c16e1e3b8a5b7be65a4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/evidence/prospective_contact_scan_cp19_1.json",
+   "sha256": "4ac436d6aa12b32dbb19c071d85fc7d9e19df760fbf211953ba4084d24670df2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/skeptic/PHASE_19_SKEPTIC.md",
+   "sha256": "455033b89f1b9e6d3910f1262853619019027cd3e301ec1a9d49f51e3d0dd7b7"
   }
  ],
  "results": {
@@ -283,23 +353,41 @@
    "T2_24h": 0.419
   },
   "publication_coverage": 0.0,
-  "response": "KEEP_ABSTAIN_SOURCE for every target",
+  "response": "KEEP_ABSTAIN for every target (after repair pass 2)",
   "n_search": 130,
   "n_search_sensitivity": 169,
-  "spend": "0 credits; 44 free GeckoTerminal calls"
+  "spend": "0 credits; 44 free GeckoTerminal calls",
+  "drift_after_repair": "D1 INSUFFICIENT_DATA (1 of 5 columns measurable), D6 COLLECTOR_NOT_DEPLOYED (0 of 28 final reads failed; 11 of 39 attempts retried), SUPPORT_BELOW_MINIMUM; response KEEP_ABSTAIN",
+  "contact_excluded_after_repair": {
+   "n": [
+    17,
+    17,
+    11
+   ],
+   "bss": [
+    0.241,
+    0.006,
+    0.398
+   ],
+   "verdict": "INSUFFICIENT_DAYS"
+  },
+  "provisional": "PROVISIONAL_PENDING_REVISION_REREAD (PI-D-106)"
  },
  "limitations": [
   "3 decision days and at most 24 labelled events per target: INSUFFICIENT_DAYS everywhere; the B2 point estimates are descriptive only",
   "frozen cards MODEL_STALE after 2026-10-31; T2 of 2026-10-26 pending until 2026-10-28; the frozen 48 h re-read is owed from 2026-10-29",
-  "self-review SR-1: D6 counts failed attempts (11 of 39) although every decision was read; SR-2: D1's overall state is the worst column state, one OK column over four INSUFFICIENT_DATA",
   "drift response on a pinned champion and the rollback are fixtures only (no champion exists); no FORECAST outcome exists to track",
   "Phase 18 minor 5 (recompute a FORECAST point in a reader or sign the state) carried to Phase 20",
-  "depth, liquidity, catalyst and distribution outcomes not reconciled: forward depth collector not deployed (D-BT-034, D-BT-035), no depth snapshot"
+  "depth, liquidity, catalyst and distribution outcomes not reconciled: forward depth collector not deployed (D-BT-034, D-BT-035), no depth snapshot",
+  "the module does not refuse a consistent rewrite of its own history (A3) or a truncate and re-append (A4); git history and the offline rebuild catch them (outputs tests, full clone needed)"
  ],
- "blockers": [],
+ "blockers": [
+  "G25: the frozen 48 h revision re-read cannot run before 2026-10-29T14:14Z to 14:27Z (one per sample read); the orchestrator runs it"
+ ],
  "approvals_needed": [
   "a change control to ACCEPTANCE promotion if Elving wants a promotion path (PI-D-091)",
   "deploying the forward depth collector (approved PI-D-044, not done)"
  ],
- "next_eligible_phase": "20, once the orchestrator's independent skeptic review is folded in and the orchestrator records a PASS"
+ "next_eligible_phase": "20 (allowed to proceed by PI-D-106 item 3 with Phase 19 results provisional); Phase 19 PASS after G25 runs",
+ "status_detail": "after repair pass 2 (PI-D-106 to PI-D-108): every gate item holds except G25, the frozen 48 h revision re-read (due from 2026-10-29T14:35Z, run by the orchestrator); every Phase 19 result is PROVISIONAL_PENDING_REVISION_REREAD; Phases 20 and 21 may proceed (PI-D-106 item 3)"
 }

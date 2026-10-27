@@ -1,11 +1,12 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-105). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_19/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-108). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_19/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
 ## Position on 2026-10-27
 
 - Phases 00 to 13 and 16 to 18: PASS. Phases 14 and 15: TEST_ONLY (behavioral path, optional, OFF).
-- Phase 19 (outcome tracking, prospective replay and drift): **NEEDS_REVIEW**, first pass (PI-D-104 rules, PI-D-105 result), waiting for the orchestrator's independent skeptic (`phase_19/SKEPTIC_PACKET.md`).
+- Phase 19 (outcome tracking, prospective replay and drift): **NEEDS_REVIEW** after repair pass 2 (CP19-1 PI-D-107, result PI-D-108) with one open gate item, G25: the frozen 48 h revision re-read (PI-D-106), due from 2026-10-29T14:35Z and run by the orchestrator. Every Phase 19 outcome and number is PROVISIONAL_PENDING_REVISION_REREAD. Phases 20 and 21 may proceed on Elving's instruction (PI-D-106 item 3).
+- The independent skeptic (`phase_19/skeptic/PHASE_19_SKEPTIC.md`) found 2 MATERIAL (M1 the re-read scoped out of the gate; M2 nine non-equivalent mutation survivors), 7 minor and CX-SK19 (a revision citing the read it revises); all reproduced and repaired at `7c177de`; no primary number or verdict changed.
 - Spend: 0 Firecrawl credits, 0 language-model calls; 44 free GeckoTerminal calls, all after the predictions commit.
 
 ## What Phase 19 built
@@ -19,13 +20,14 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 - Window: exports to `71fc50e`, 52 decisions from 2026-10-24T00:00Z, 33 Solana. Predictions (69 frozen cards and 20 NC1 seeds per target, 4,257 rows) and the 156 ABSTAIN documents committed at `765eadb` before any read; the documents are byte-equal to the Phase 18 published run.
 - Outcomes: T1 22 labelled (5 positive), T1b 24 (3), T2 15 (3); T2 of the 2026-10-26 decisions PENDING (7, mature 2026-10-28 about 10:28Z); offline rebuild equal for 156 of 156.
 - Every verdict INSUFFICIENT_DAYS (3 decision days, 2 for T2; minimum 5) and below 50 events: no claim, no promotion, no calibration. The B2 against B0 point estimates (BSS T1 +0.264, T1b +0.033, T2 +0.419) are descriptive only.
-- Drift: SUPPORT_BELOW_MINIMUM for every target; SOURCE_FAILURE (11 of 39 read attempts failed and were retried; every decision was read); COLLECTOR_NOT_DEPLOYED; the rest OK or INSUFFICIENT_DATA. Response KEEP_ABSTAIN_SOURCE everywhere. The champion drift response and rollback are fixtures only (TEST_ONLY).
+- Drift (after CP19-1): SUPPORT_BELOW_MINIMUM for every target; D1 INSUFFICIENT_DATA (1 of 5 columns measurable); D6 COLLECTOR_NOT_DEPLOYED (0 of 28 planned decisions without a usable read; 11 of 39 attempts retried, reported); the rest OK or INSUFFICIENT_DATA. Response KEEP_ABSTAIN everywhere (first pass: KEEP_ABSTAIN_SOURCE from the attempt-based D6). CONTACT_EXCLUDED now also drops 9aqmJj (n 17, 17, 11). The champion drift response and rollback are fixtures only (TEST_ONLY).
+- CP19-1 rules: a revision or supersede must cite a later, different read (REVISION_NEEDS_A_LATER_READ, in `append`, `load` and `verify`); the outputs tests anchor the ledger and manifest in git history and rebuild the outcomes from the archive; mutation probe 71 of 71.
 - Forward depth collector (feature/backtesting D-BT-034, D-BT-035): not deployed on Elving's computer; no depth snapshot exists, so depth, liquidity, catalyst and distribution outcomes are not reconciled.
 
 ## Open items, in order
 
-1. The orchestrator runs the independent skeptic on Phase 19 and returns the review for a repair pass (self-review notes SR-1 and SR-2 in the evidence are for that pass).
-2. After 2026-10-28 10:30Z: a maturity run of `run_prospective.py outcomes` supersedes the 7 PENDING T2 outcomes (append only); from 2026-10-29 14:35Z the frozen 48 h re-read of at least 10% of the Phase 19 reads is owed.
+1. G25 (PI-D-106): from 2026-10-29T14:35Z the orchestrator runs `python -B audits/predictive-intelligence/phase_19/probes/fetch_labels.py reread48` (network, 3 calls; refuses earlier). No label change: record it, lift PROVISIONAL_PENDING_REVISION_REREAD and set Phase 19 PASS. A label change: the revisions are appended by the command, then `run_prospective.py evaluate|drift|report audits/predictive-intelligence/phase_19/monitoring/after_reread48` under `unshare -n`, and record the result.
+2. After 2026-10-28 10:30Z: a maturity run supersedes the 7 PENDING T2 outcomes (append only, citing the new read): `fetch_labels.py open`, `fetch` (it plans the T2 boundary), `archive`, then `run_prospective.py outcomes`.
 3. Decisions from the 2026-10-27 to 2026-10-30 exports can still be scored by the frozen cards (stale after 2026-10-31) only with their own predictions commit before their reads (`monitoring/PROSPECTIVE_PLAN.md`).
 4. Carried to Phase 20: Phase 18 minor 5 (recompute a FORECAST point in a reader allowed to import the calibration module, or sign the state).
 5. If Elving wants a promotion path: the change control to ACCEPTANCE `promotion` (PI-D-091), registered before the prospective labels it would use are read.
@@ -33,7 +35,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Phase 19 commits
 
-HEAD before `4b07b0d`; pre-registration `5ffa5cf`; frozen code `fce102e`; predictions `765eadb`; reads, outcomes and outputs `b1a18f7`; records `aefbea6`; post-commit at `aefbea6`: suite `2 failed, 2182 passed, 1 skipped` (the two known clock-dependent failures only), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no." (`phase_19/postcommit/`); the post-commit record commit on top. Local only; the orchestrator pushes.
+HEAD before `4b07b0d`; pre-registration `5ffa5cf`; frozen code `fce102e`; predictions `765eadb`; reads, outcomes and outputs `b1a18f7`; records `aefbea6`; post-commit at `aefbea6`: suite `2 failed, 2182 passed, 1 skipped` (the two known clock-dependent failures only), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no." (`phase_19/postcommit/`); post-commit record `6258fc0` (pushed). Repair pass 2: decisions and frozen sample `c7e3c25`, CP19-1 code `7c177de`, repeated runs `bb2639a`, records and the post-commit record after them (`phase_19/postcommit/rp2_*`). Local only; the orchestrator pushes.
 
 ## Waiting on Elving
 

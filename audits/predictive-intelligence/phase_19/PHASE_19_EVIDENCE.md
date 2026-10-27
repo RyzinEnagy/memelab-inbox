@@ -1,6 +1,6 @@
 # Phase 19 evidence: outcome tracking, prospective replay and model drift
 
-Status: **NEEDS_REVIEW** (first pass; the orchestrator's independent skeptic is next, PI-D-013). Branch `feature/predictive-intelligence`; HEAD before `4b07b0d`; work 2026-10-27 13:05Z to about 14:55Z. Decisions PI-D-104 (rules) and PI-D-105 (result).
+Status: **NEEDS_REVIEW** after repair pass 2, with one open gate item (G25, the frozen 48 h revision re-read, due from 2026-10-29T14:35Z, PI-D-106). Every Phase 19 outcome and number is PROVISIONAL_PENDING_REVISION_REREAD. The first-pass sections below are kept as written; the repair pass is the last section. Branch `feature/predictive-intelligence`; HEAD before `4b07b0d`; work 2026-10-27 13:05Z to about 14:55Z. Decisions PI-D-104 (rules) and PI-D-105 (result).
 
 ## Entry gate
 
@@ -151,3 +151,33 @@ A backdated prediction appended after its outcome with an early time claim. Caug
 - T2 of the 2026-10-26 decisions pending; the frozen 48 h re-read owed.
 - Self-review notes SR-1 and SR-2; the champion drift response and rollback are fixtures only (no champion exists); no FORECAST outcome can be tracked because none exists.
 - Depth, liquidity, catalyst and distribution outcomes unavailable (collector not deployed; tables not exported).
+
+## Repair pass 2 (CP19-1, PI-D-106 to PI-D-108)
+
+The orchestrator's independent skeptic (`skeptic/PHASE_19_SKEPTIC.md`, at `6258fc0`; scripts beside it) found 2 MATERIAL, 7 minor and counterexample CX-SK19. Each was reproduced on `fce102e` before any change (CX-SK19 appended and verified; attacks A3, A4, A5, A6, A7 and A8b accepted; 10 of 14 own mutations surviving).
+
+| Finding | Verified | Repair | What catches it now |
+|---|---|---|---|
+| M1 frozen 48 h re-read scoped out of the gate | yes: no gate item, no frozen command, no sample | orchestrator decision PI-D-106: gate item G25, frozen command `fetch_labels.py reread48` (refuses before 48 h after each first read), frozen sample `data/revision_sample.json` (sha256 `11874dd9...`, 3 of 25 OK reads, 8 LABELED outcomes, earliest 2026-10-29T14:14:24Z to 14:26:44Z), results PROVISIONAL_PENDING_REVISION_REREAD, a changed label reruns the scoring from frozen code | the command refused at 15:2xZ before any call ("too early"); an offline simulation on scratch copies gave 0 revisions with unchanged bodies and 1 revision (citing the new read, ledger verifying) with halved lows. G25 stays open |
+| M2 9 non-equivalent mutation survivors | yes (10 of 14 survive on `fce102e`) | 16 repair tests; the skeptic's 14 mutations and 11 repair mutations join the probe | `evidence/mutation_monitoring.json`: 71 of 71 caught (K3 is pinned on an index built without the rules) |
+| CX-SK19 and m1 revision citing the read it revises, or no read | yes | rule 4(e) enforced: a revision or supersede cites a read with another response key and body sha256, captured later, token URL; an unread gap only at or after maturity | `test_cx_sk19_*` (fail on `fce102e`); the skeptic's script now raises REVISION_NEEDS_A_LATER_READ; A5, A6, A7 refused (`evidence/rp2_skeptic_attacks.json`) |
+| m2 no external anchor | yes (A3, A4 pass the 37 first-pass tests) | `test_m2_the_ledger_and_the_manifest_are_anchored_in_git_history`, `test_m1_the_outcomes_rebuild_from_the_archive_alone` | both fail on a clone with A4 applied; A8b (a fake read) is caught by the rebuild |
+| m3 D1 OK with 4 of 5 columns unmeasurable | yes | overall INSUFFICIENT_DATA unless every column is measurable; notice names the counts | D1 now INSUFFICIENT_DATA (1 of 5 OK); test and mutation X10 |
+| m4 D6 counted retried attempts | yes (11 of 39 attempts, 0 of 25 final reads) | alarm on final reads of the planned decisions; attempts reported | D6 now 0 of 28 planned decisions without a usable read, attempts 11 of 39; SOURCE_FAILURE removed; test and mutation K7 |
+| m5 champion with SUPPORT_BELOW_MINIMUM gave NO_CHANGE | yes | KEEP_ABSTAIN (rule 10 literal) | test m5, mutation X11 |
+| m6 report table without "descriptive only" | yes | header and sentence (descriptive only, mint interval not governing, provisional) | `PROSPECTIVE_REPORT.md` section 3 |
+| m7 contact scan missed repeat-mint export rows | yes (9aqmJj 23.9 h after its entry; 7M3gDR already listed) | `contact_scan.py` lists repeat-mint rows after an entry; CONTACT_EXCLUDED reads `evidence/prospective_contact_scan_cp19_1.json` | CONTACT_EXCLUDED rerun: n 17, 17, 11; BSS 0.241, 0.006, 0.398 (the skeptic's re-derivation), INSUFFICIENT_DAYS |
+
+Also changed (PI-D-107 item 3): a read whose boundary stops before a matured target's window end is NOT_READ with READ_BOUNDARY_BEFORE_WINDOW_END instead of raising (needed by the re-read and later maturity runs); `run_prospective.py` writes a rerun's evaluation into its own folder without touching the cumulative ledger, and the report reads prediction-time files from `monitoring/`.
+
+Commits: decisions and frozen sample `c7e3c25` (before any code change), repair code `7c177de`, repeated runs `bb2639a`, these records and the post-commit record after them.
+
+Repeated runs at `7c177de` (`evidence/rerun_cp19_1_diff.json` against `b1a18f7`): predictions into the scratchpad byte-equal (the manifest differs only by the plan file of the committed folder, as in the first pass); `outcomes` on the committed ledger appended 0 entries (0 prospective rows in `training_labels`, 0 cross-target violations); every primary metric, count, verdict, scored row, calibration bin, breakdown, negative control and miss equal; changed: SENSITIVITY (CONTACT_EXCLUDED), DRIFT_REPORT (D1, D6, KEEP_ABSTAIN), PROSPECTIVE_REPORT, OUTCOME_LEDGER.md, PRIMARY_RESULTS and FEEDBACK_AUDIT (ledger head and size only), LEDGER_TOTALS and SEARCH_LEDGER (5 reproduction rows, 3,578 rows, N_search 130). The ledger's first 516 entries are byte-equal to `b1a18f7`'s; the drift rerun appended a second MONITOR entry and 3 RESPONSE entries.
+
+Old-code check (`probes/cp19_1_old_code_check.py`, `evidence/cp19_1_old_code_check.json`): 8 of 16 repair tests fail on the `fce102e` module (CX-SK19 twice, the boundary gap, D6 final reads, D1 overall, m5, X4, X8); the other 8 pass there by design: they pin first-pass behaviour that was correct but unpinned (K3/K4, K8, K9, K11, K12, K13, K15, K17), shown by the mutations.
+
+Counterexample CX-SK19 (skeptic): a revision of a final LABELED outcome appended through `append` citing the same read with the class flipped. Caught now by `monitoring._later_read` inside `check_payload` (used by `append`, `load` and `verify`); tests `test_cx_sk19_a_revision_citing_the_read_it_revises_or_no_read_is_refused` and `test_cx_sk19_a_pending_is_superseded_only_by_a_later_read_or_an_unread_gap_after_maturity`; mutations X1 to X7.
+
+Disagreements: none with the findings. The skeptic offered two remedies for M1; the orchestrator chose (b) as PI-D-106. The A3 and A4 attacks are not refused by the module itself (a consistent rewrite is indistinguishable from a ledger without history); they are caught by history (git) and by the rebuild, which is what the tests now check.
+
+Remaining open item: G25 (PI-D-106). Post-commit checks of the repair: `postcommit/rp2_*`.
