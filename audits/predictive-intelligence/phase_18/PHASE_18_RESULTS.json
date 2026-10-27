@@ -3,7 +3,7 @@
  "status": "PASS",
  "status_note": "PASS after repair pass 2 (CP18-2, PI-D-102; result PI-D-103): the orchestrator's independent skeptic at e77d62e found 4 MATERIAL, 9 minor and CX-SK18; all reproduced; MATERIAL fixed with tests that fail on e77d62e; minors fixed except minor 5 (the recompute claim removed, recorded limitation); every gate item G1 to G24 holds as amended; G21 after the repair commits. First pass: NEEDS_REVIEW with CP18-0 (PI-D-099) and CP18-1 (PI-D-100)",
  "head_before": "4ebccc3f43a583880bf5288d8314cd79183a0187",
- "head_after": "c157903ef85380897aa8d233927bac03287fec56",
+ "head_after": "62c7f7e72363ebbfaf3bea30704853fb4d9136e7",
  "commits": {
   "pre_registration": "ebb7059",
   "frozen_code": "96c4445",
@@ -15,7 +15,8 @@
   "records": "ac19668",
   "first_pass_postcommit_record": "e77d62e",
   "cp18_2_code": "31ada29",
-  "cp18_2_outputs": "c157903"
+  "cp18_2_outputs": "c157903",
+  "cp18_2_records": "62c7f7e"
  },
  "checks": [
   {
@@ -203,6 +204,34 @@
    "exit_code": 0,
    "result": "3,356 rows, 28 added (6 for CP18-2), N_search 130, sensitivity 169",
    "pass": true
+  },
+  {
+   "name": "post-commit full suite after repair pass 2",
+   "command": "python -m pytest tests -q -p no:cacheprovider (at 62c7f7e)",
+   "exit_code": 1,
+   "result": "2 failed, 2145 passed, 1 skipped in 465.12s (the two known clock-dependent failures only; strays removed by hand)",
+   "pass": true
+  },
+  {
+   "name": "post-commit social guard after repair pass 2",
+   "command": "python -m memelab social guard (at 62c7f7e)",
+   "exit_code": 0,
+   "result": "violations [] over 2,723 files (848 JSON)",
+   "pass": true
+  },
+  {
+   "name": "post-commit seal check after repair pass 2",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py (at 62c7f7e)",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "post-commit single-branch release audit after repair pass 2",
+   "command": "python tools/release_audit.py --history on a single-branch clone at 62c7f7e",
+   "exit_code": 0,
+   "result": "Needs action: no.",
+   "pass": true
   }
  ],
  "artifacts": [
@@ -212,7 +241,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_18/PHASE_18_EVIDENCE.md",
-   "sha256": "10be1d58c7fbb52f0607f6865fd88ff7ba7ea719b3d8b21ec0a125a76390a81d"
+   "sha256": "717b395500d17b6ba6466cc8d05a2aea226ced72309ee2715b9b90ad90d3cffa"
   },
   {
    "path": "audits/predictive-intelligence/phase_18/SKEPTIC_PACKET.md",
@@ -441,6 +470,22 @@
   {
    "path": "audits/predictive-intelligence/phase_18/probes/rp2_old_code_check.py",
    "sha256": "209db83257cc831c077efb14dadfb86042080ce2881b7f8d5c93063655992781"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/postcommit/rp2_pytest_summary.txt",
+   "sha256": "1c64d4b2121e09e7a1ee0f0cc2fe90b97f80bb7cdaa31c6ab43a2fb1ddb0346a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/postcommit/rp2_release_audit_history.summary.txt",
+   "sha256": "5e8ac7cfc1a269c46ac4ad5267364017e570f2482f7533d86d60ffb61ce61148"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/postcommit/rp2_seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_18/postcommit/rp2_social_guard.out.txt",
+   "sha256": "e5b13a80013a17bc2fa84ee5b19e9d35505138b8a50f39af526c9815ec35cd6b"
   }
  ],
  "limitations": [

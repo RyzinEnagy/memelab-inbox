@@ -1,0 +1,5 @@
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+FAILED tests/test_catalyst_firecrawl.py::test_page_history_and_spend_survive_a_new_session_through_the_state_export
+2 failed, 2145 passed, 1 skipped, 1 warning in 465.12s (0:07:45)
+EXIT 1
+at 62c7f7e (repair pass 2); strays data/reports/20261027_1249_BRETT_0x532f.md, data/memelab.sqlite-shm and -wal removed by hand; the two failures are the known clock-dependent tests; a first attempt of this run stopped on a full scratch disk (errors from 70%), the scratch was cleared and the suite was run again from the start

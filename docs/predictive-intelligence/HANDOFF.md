@@ -33,7 +33,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Phase 18 commits
 
-HEAD before `4ebccc3`; pre-registration `ebb7059`; frozen code `96c4445`; recorded outputs `3601881`; CP18-0 code `0127d2e`; repeated outputs `44118a1`; CP18-1 code `ea799da`; repeated outputs `100d262`; records `ac19668`; post-commit at `ac19668`: suite `2 failed, 2122 passed, 1 skipped` (the two known clock-dependent failures only), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no." (`phase_18/postcommit/`); post-commit record `e77d62e` (pushed). Repair pass 2: CP18-2 code `31ada29`; repeated outputs and records on top; post-commit checks after them in `phase_18/postcommit/rp2_*` and the post-commit record commit on top. Local only; the orchestrator pushes.
+HEAD before `4ebccc3`; pre-registration `ebb7059`; frozen code `96c4445`; recorded outputs `3601881`; CP18-0 code `0127d2e`; repeated outputs `44118a1`; CP18-1 code `ea799da`; repeated outputs `100d262`; records `ac19668`; post-commit at `ac19668`: suite `2 failed, 2122 passed, 1 skipped` (the two known clock-dependent failures only), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no." (`phase_18/postcommit/`); post-commit record `e77d62e` (pushed). Repair pass 2: CP18-2 code `31ada29`; repeated outputs `c157903`; records `62c7f7e`; post-commit at `62c7f7e`: suite `2 failed, 2145 passed, 1 skipped` (the two known clock-dependent failures only), guard 0 violations, seal check 0 problems, single-branch release audit exit 0 "Needs action: no." (`phase_18/postcommit/rp2_*`); the post-commit record commit on top. Local only; the orchestrator pushes.
 
 ## Waiting on Elving
 
