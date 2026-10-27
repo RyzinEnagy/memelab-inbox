@@ -160,3 +160,14 @@ Commits: repair code `869d597` (frozen before the recorded run of the addition; 
 No number, verdict or decision changed. The only status change is NEEDS_REVIEW to TEST_ONLY.
 
 Disagreements with the skeptic: none on substance. One precision: CX-S15's 13.6% is the either-side share against a nominal 10% for two one-sided tests at 0.05; the one-sided shares (7.3% up, 6.3% down at 1,000 salts) are the inflation against 5%. Both readings show the decision null is optimistic; the conclusion is the same.
+
+## Post-commit at the repair pass 2 records commit `e59d9d9`
+
+| Check | Command | Exit | Result |
+|---|---|---|---|
+| full suite | `python -m pytest tests -q -p no:cacheprovider` | 1 | `1 failed, 1853 passed, 1 skipped, 1 warning in 267.69s`, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` (1846 plus the 7 repair tests); strays `data/reports/20261027_0225_BRETT_0x532f.md`, `data/memelab.sqlite-shm`, `-wal` removed by hand |
+| social guard | `python -m memelab social guard` | 0 | `"violations": []`, 2,461 files scanned |
+| seal check | `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | 0 | `"problems": []` |
+| release audit | `python tools/release_audit.py --history` on a single-branch clone at `e59d9d9` | 0 | "Needs action: no." |
+
+Files: `postcommit/rp2_pytest_summary.txt`, `rp2_social_guard.out.txt`, `rp2_seal_check.json`, `rp2_release_audit_history.summary.txt`. `git status` clean after the follow-up commit that records them.

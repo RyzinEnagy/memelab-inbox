@@ -23,7 +23,7 @@
   "live_capability_created": false
  },
  "head_before": "b0243b4",
- "head_after": "aea95f0",
+ "head_after": "e59d9d9",
  "commits": {
   "pre_registration": "b274cbc",
   "frozen_coding_code": "9ab0160",
@@ -304,6 +304,34 @@
    "input": "git clone --depth 1, tests/test_predictive_phase15_outputs.py",
    "result": "fails as intended (1 failed, 4 passed before the addition tests)",
    "pass": true
+  },
+  {
+   "name": "RP2 G20 post-commit full suite at e59d9d9",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "result": "1 failed, 1853 passed, 1 skipped, 1 warning in 267.69s (known test_dedup_corroboration_resurface_denial only; strays removed by hand)",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "RP2 G20 post-commit social guard at e59d9d9",
+   "command": "python -m memelab social guard",
+   "result": "violations [], 2461 files scanned",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "RP2 G20 post-commit seal check at e59d9d9",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "result": "problems []",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "RP2 G20 post-commit single-branch release audit at e59d9d9",
+   "command": "python tools/release_audit.py --history (single-branch clone)",
+   "result": "Needs action: no.",
+   "exit_code": 0,
+   "pass": true
   }
  ],
  "artifacts": [
@@ -325,7 +353,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_15/PHASE_15_EVIDENCE.md",
-   "sha256": "2fe60f63c803d03fab5d89d734c44aa4850a09af013a5790df672d50ed446dc7"
+   "sha256": "44398b525813992ff6a047f483e74126bc6b263d82eff32000ddf6fdfc7ea89b"
   },
   {
    "path": "audits/predictive-intelligence/phase_15/SKEPTIC_PACKET.md",
@@ -452,6 +480,22 @@
    "sha256": "18362b9855e3973b74407ae27190cba96a584ad5cf5bbab933050ac63170c7dc"
   },
   {
+   "path": "audits/predictive-intelligence/phase_15/postcommit/rp2_pytest_summary.txt",
+   "sha256": "0468eda6cf1d80af93e5ece7b9c6ce0e21ad10dfa10daca2bdbf44c680994750"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/postcommit/rp2_release_audit_history.summary.txt",
+   "sha256": "7670cd1d8fb879deed7bb21e07471f8e897878c4933a796a66814336e2bcb26d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/postcommit/rp2_seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_15/postcommit/rp2_social_guard.out.txt",
+   "sha256": "ab1df64af5c8955260a7af0141329f2567c37f2428f51093bd626b1b65572469"
+  },
+  {
    "path": "audits/predictive-intelligence/phase_15/postcommit/seal_check.json",
    "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
   },
@@ -528,6 +572,10 @@
   "E3 uses the spent retrospective holdout and is a POST_OPENING description only.",
   "Net decision utility NOT_COMPUTABLE (no historical executable depth, no execution data, no backtest).",
   "The records were finished by a second agent after the first session ended; no recorded step was rerun in that pass.",
+  "The recorded decision-level permutation exchanges decisions, not mints, and is optimistic for rule warnings (CX-S15); the conservative mint-block p is recorded beside it and changes no verdict.",
+  "The mint-block null fills whole mint blocks up to the observed warned count; it is calibrated empirically (400 salts per target), not proved exact.",
+  "Blindness of the coding rests on the code path, the seed contents and equality with Phase 14's documents; the coding guard does not block the Phase 05 feature store or the lab DB.",
+  "RULES_CANDIDATE is unreachable from the recorded scorer (no max-T p); stricter than protocol 6 and carried to any later promotion.",
   "The recorded decision-level permutation exchanges decisions, not mints, and is optimistic for rule warnings (CX-S15); the conservative mint-block p is recorded beside it and changes no verdict.",
   "The mint-block null fills whole mint blocks up to the observed warned count; it is calibrated empirically (400 salts per target), not proved exact.",
   "Blindness of the coding rests on the code path, the seed contents and equality with Phase 14's documents; the coding guard does not block the Phase 05 feature store or the lab DB.",
