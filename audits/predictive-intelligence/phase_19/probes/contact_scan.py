@@ -5,7 +5,10 @@
 Lists (1) every committed raw GeckoTerminal read of Phases 04 to 06 whose pool or mint is a prospective Solana decision's and
 whose boundary is after that decision's entry (manifest columns only: pool, mint, boundary); (2) the measured market changes
 between two attempts that the Phase 18 replay report printed for prospective mints (the line text is not copied, only the
-count and the mints' first six characters). Decisions come from the state exports in git at REF through decisions.py.
+count and the mints' first six characters); (3) since CP19-1 (PI-D-107, skeptic m7) every later export row of a repeat mint whose
+decision time falls after an earlier window decision's entry and before that decision's last label window end (the lab's own
+later snapshot of the same mint, visible to anyone reading the exports). `contact_mints6` is the union, read by the
+CONTACT_EXCLUDED sensitivity. Decisions come from the state exports in git at REF through decisions.py.
 """
 from __future__ import annotations
 
@@ -46,6 +49,14 @@ def main(out: Path) -> int:
                     reads.append({"manifest": Path(man).relative_to(REPO).as_posix(), "mint6": e["mint"][:6],
                                   "decision_time_utc": L._iso(e["decision_time"]), "boundary_utc": b,
                                   "minutes_after_entry": round((bt - L.t_entry(e["decision_time"])) / 60, 1)})
+    repeat = []
+    for e in sol:
+        te, end = L.t_entry(e["decision_time"]), L.window_end(L.T2, e["decision_time"])
+        for f in evs:
+            if f["mint"] == e["mint"] and te < f["decision_time"] <= end:
+                repeat.append({"mint6": e["mint"][:6], "decision_time_utc": L._iso(e["decision_time"]),
+                               "later_row_decision_time_utc": L._iso(f["decision_time"]),
+                               "hours_after_entry": round((f["decision_time"] - te) / 3600, 2)})
     rep = (REPO / "audits/predictive-intelligence/phase_18/real/REAL_REPLAY_REPORT.md").read_text()
     lines = [x for x in rep.splitlines() if "measured market changes since the previous attempt" in x]
     mints = sorted({e["mint"] for e in sol})
@@ -53,6 +64,8 @@ def main(out: Path) -> int:
     res = {"ref": REF, "prospective_events": len(evs), "solana_events": len(sol), "solana_mints": len(mints),
            "raw_reads_after_a_prospective_entry": reads,
            "phase18_report_measured_change_lines": len(lines), "phase18_measured_change_mints6": printed,
+           "repeat_mint_rows_after_an_entry": repeat,
+           "contact_mints6": sorted({r["mint6"] for r in reads} | set(printed) | {r["mint6"] for r in repeat}),
            "note": "metadata only: no body was decompressed and no label or price was computed"}
     out.write_text(json.dumps(res, indent=1, sort_keys=True) + "\n")
     print(json.dumps({k: (len(v) if isinstance(v, list) else v) for k, v in res.items()}))

@@ -7,6 +7,8 @@
     python -B fetch_labels.py others     # up to 3 other vendor pools for T2 records that need them (an evidenced reference halt)
     python -B fetch_labels.py reread     # same-session re-read of the lowest 10% of read URLs by sha256 (short-gap revision check)
     python -B fetch_labels.py archive    # raw/ gzip bodies and raw/MANIFEST.csv of every Phase 19 response, lists included
+    python -B fetch_labels.py reread48   # the frozen 48 h re-read of data/revision_sample.json (PI-D-018, PI-D-106); refuses before
+                                         # 48 h after each sample read; changed labels become revision entries citing the new read
 
 Every call goes through runtime.CallGuard at 5.7 a minute (the frozen limit is 6), at most 300 calls for the phase, breaker after 5
 consecutive failures, HTTP 429 back-off of 60 s; each call is logged in evidence/label_calls.json with its request window. Every
@@ -46,6 +48,9 @@ CALLS = PH / "evidence/label_calls.json"
 LISTS, READMAP, OTHERS = WORK / "vendor_lists.json", WORK / "read_map.json", WORK / "other_pool_reads.json"
 PLAN = WORK / "read_plan.json"
 REREAD = PH / "evidence/revision_reread.json"
+REREAD48 = PH / "evidence/revision_reread_48h.json"
+SAMPLE = PH / "data/revision_sample.json"
+SAMPLE_SHA256 = "11874dd9c4719662e07b8e8eabc5e7209aca6016fd4cec27a748da6212fb61fe"     # PI-D-106 item 2
 PER_MIN, MAX_CALLS = 5.7, 300
 LIST_URL = "https://api.geckoterminal.com/api/v2/networks/solana/tokens/{mint}/pools?page=1"
 COLLECTOR = "phase_19/fetch_labels.py"
@@ -339,6 +344,66 @@ def cmd_reread():
                       "vanished": sum(x["vanished"] for x in rs),
                       "frozen_48h_reread": "owed: not before 48 h after the first reads (PI-D-018)"}
     jsave(REREAD, res)
+    print(json.dumps(res["summary"]))
+
+
+def cmd_reread48():
+    """PI-D-106: re-read each frozen sample read at least 48 h after its first retrieval (refuses otherwise, before any call),
+    measure revisions with the frozen check (labels.revision_changes defaults: 48 h gap, candles 48 h old), then recompute the
+    outcomes of the window with the re-read in place of each sample read and append every changed LABELED outcome as a revision
+    citing the new read (monitoring.next_outcomes; both versions kept). Writes evidence/revision_reread_48h.json. If a label
+    changed, the scoring is rerun from the frozen code into monitoring/after_reread48/ (evaluate, drift, report)."""
+    require_opening()
+    if RP.fsha(SAMPLE) != SAMPLE_SHA256:
+        raise SystemExit("the frozen sample file differs from its recorded sha256")
+    smp = json.loads(SAMPLE.read_text())
+    now = time.time()
+    early = [s for s in smp["sample"] if now - float(s["first_retrieved_at"]) < smp["min_gap_s"]]
+    if early:
+        raise SystemExit("too early: " + ", ".join(f"{s['response_key'][:12]} from {s['earliest_48h_reread']}" for s in early))
+    c = con()
+    res = jload(REREAD48, {"rule": smp["rule"], "sample_sha256": SAMPLE_SHA256, "reads": []})
+    done = {x["first"]: x["second"] for x in res["reads"]}
+    second_of = {}
+    for it in smp["sample"]:
+        first = L.read_from_store(c, it["response_key"])
+        if first.url != it["url"] or first.body_sha256 != it["body_sha256"]:
+            raise SystemExit("a sample read differs from the frozen sample")
+        if it["response_key"] in done:
+            second_of[it["response_key"]] = done[it["response_key"]]
+            continue
+        code, body, req, got = http(first.url, kind="ohlcv_reread48")
+        rk = ingest(c, first.url, code, body, req, got, mint=first.mint, pool=first.pool, boundary=first.boundary, window=(None, None))
+        second = L.read_from_store(c, rk)
+        ch = L.revision_changes(first, second)
+        res["reads"].append({"first": first.response_key, "second": rk, "http": code, "gap_s": round(second.retrieved_at - first.retrieved_at, 1),
+                             "frozen_check": ch["frozen_check"], "compared_older_than_48h": ch["compared"], "changed": ch["changed"],
+                             "appeared": len(ch["appeared"]), "vanished": len(ch["vanished"])})
+        jsave(REREAD48, res)
+        if second.ok:
+            second_of[it["response_key"]] = rk
+    # outcomes with the re-read in place of each sample read; only pairs whose current LABELED outcome used a sample read
+    u, _ = RP.universe(now)
+    for k, rd in list(u.read_of.items()):
+        if rd.response_key in second_of:
+            u.read_of[k] = L.read_from_store(c, second_of[rd.response_key])
+    idx = M.load(RP.LEDGER)
+    cur = M.current_outcomes(idx)
+    recs = [r for r in M.prospective_records(u)
+            if (cur.get((r["decision_key"], r["target"])) or {}).get("state") == "LABELED"
+            and cur[(r["decision_key"], r["target"])]["response_key"] in second_of]
+    revs = M.next_outcomes(idx, recs, recorded_at=now, reason="REREAD_48H")
+    led = M.append(RP.LEDGER, revs, expect_sha=M.head_sha(idx.entries)) if revs else {"appended": 0}
+    res["labels_checked"] = len(recs)
+    res["labels_revised"] = [{"decision_key": r["decision_key"][:16], "target": r["target"], "state": r["state"],
+                              "label_class": r["label_class"]} for r in revs]
+    res["summary"] = {"reads": len(res["reads"]), "frozen_48h_checks": sum(1 for x in res["reads"] if x["frozen_check"]),
+                      "candles_compared": sum(x["compared_older_than_48h"] for x in res["reads"]),
+                      "candles_changed": sum(len(x["changed"]) for x in res["reads"]), "labels_checked": len(recs),
+                      "labels_revised": len(revs), "ledger": led,
+                      "next": ("rerun run_prospective.py evaluate, drift and report into monitoring/after_reread48/ (PI-D-106 item 4)"
+                               if revs else "no label changed: the Phase 19 outputs stand; record it and lift the provisional marker")}
+    jsave(REREAD48, res)
     print(json.dumps(res["summary"]))
 
 

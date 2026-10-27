@@ -114,3 +114,47 @@ def test_the_drift_report_and_responses_follow_the_frozen_policy():
         assert M.plain_ok(v["notice"])
     rb = json.loads((MON / "ROLLBACK_DEMO.json").read_text())
     assert rb["evidence_class"] == "FIXTURE_TEST_ONLY" and rb["earlier_pin_unchanged"] and rb["log_append_only"]
+
+
+def _git(*a: str) -> str:
+    return subprocess.run(["git", "-C", str(ROOT), *a], check=True, capture_output=True, text=True).stdout
+
+
+def test_m2_the_ledger_and_the_manifest_are_anchored_in_git_history():
+    """CP19-1 (skeptic m2): the predictions commit's manifest equals the current one, its ledger is the prefix of the current ledger,
+    and every committed version of the ledger is an append of the version before it (a consistent rewrite or a truncate and
+    re-append is caught by history, not only by a human)."""
+    rel = "audits/predictive-intelligence/phase_19/monitoring/"
+    try:
+        man0 = _git("show", f"{PRED_COMMIT}:{rel}PREREG_MANIFEST.json")
+        led0 = _git("show", f"{PRED_COMMIT}:{rel}OUTCOME_LEDGER.jsonl")
+        revs = _git("log", "--format=%H", "--reverse", "--", rel + "OUTCOME_LEDGER.jsonl").split()
+    except subprocess.CalledProcessError:
+        pytest.skip("the predictions commit is not in this clone's history (shallow clone)")
+    if not revs:
+        pytest.skip("no ledger history in this clone")
+    assert man0 == (MON / "PREREG_MANIFEST.json").read_text()
+    cur = LEDGER.read_text()
+    assert cur.startswith(led0) and M.is_append_only(led0, cur)
+    prev = ""
+    for h in revs:
+        txt = _git("show", f"{h}:{rel}OUTCOME_LEDGER.jsonl")
+        assert M.is_append_only(prev, txt), h[:7]
+        prev = txt
+    assert M.is_append_only(prev, cur)
+
+
+def test_m1_the_outcomes_rebuild_from_the_archive_alone(tmp_path):
+    """CP19-1 (skeptic m1): every current outcome equals labels-1 recomputed from the committed raw bodies, lists and read map
+    (catches a LABELED outcome naming a read that does not exist, or a class not supported by its read)."""
+    try:
+        _git("cat-file", "-e", "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0^{commit}")
+    except subprocess.CalledProcessError:
+        pytest.skip("the state exports up to 71fc50e are not in this clone (git fetch origin main)")
+    import sys
+    out = tmp_path / "rebuild.json"
+    r = subprocess.run([sys.executable, "-B", str(PH / "probes/rebuild_outcomes.py"), str(out)], capture_output=True, text=True,
+                       env={**__import__("os").environ, "TMPDIR": str(tmp_path)})
+    assert r.returncode == 0, r.stdout[-800:] + r.stderr[-800:]
+    res = json.loads(out.read_text())
+    assert res["differences"] == 0 and res["records"] == res["ledger_outcomes"] and res["socket_events"] == 0

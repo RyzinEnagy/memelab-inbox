@@ -71,7 +71,11 @@ PRED_FILE, DEC_FILE = "PROSPECTIVE_PREDICTIONS.csv", "PROSPECTIVE_DECISIONS.csv"
 REFS = ("P07_B0", "P07_B2")
 REPS, SEED = E.REPS, E.SEED
 N_SEARCH, N_SEARCH_SENS = 130, 169
-CONTACT_MINT6 = ("MukLDt", "nxPqZ4", "7M3gDR")      # evidence/entry/prospective_contact_scan.json
+CONTACT_SCAN = PH / "evidence/prospective_contact_scan_cp19_1.json"   # CP19-1 (skeptic m7): the scan names the contacted mints
+
+
+def contact_mints6() -> tuple[str, ...]:
+    return tuple(json.loads(CONTACT_SCAN.read_text())["contact_mints6"])
 
 
 def _hook(event, args):
@@ -591,7 +595,10 @@ def cmd_evaluate(out: Path) -> int:
         nc1[s] = {"seeds": seeds, "mean_bss": mean, "champion_reference_bss": prim[s].get("bss"),
                   "verdict": B.nc1_verdict(len(use), int(sum(r["y"] for r in use)), len({r["example"].day for r in use}), mean)}
     # sensitivities and breakdowns of the primary pair
-    contact = {o["mint"] for o in cur.values() if any(o["mint"].startswith(m6) for m6 in CONTACT_MINT6)}
+    c6 = contact_mints6()
+    contact = {o["mint"] for o in cur.values() if any(o["mint"].startswith(m6) for m6 in c6)}
+    if len(contact) != len(c6):
+        raise SystemExit("a contact prefix matches no window mint or several")
     for t in TARGETS:
         s = SHORT[t]
         views = {}
@@ -636,7 +643,10 @@ def cmd_evaluate(out: Path) -> int:
     pre = PH / "experiments/SEARCH_LEDGER_P19_ROWS.csv"
     pre_rows = list(csv.DictReader(open(pre))) if pre.exists() else []
     full = led_prev + pre_rows + ledger
-    write_csv(PH / "experiments/SEARCH_LEDGER.csv", full)
+    if out.resolve() == MON.resolve():
+        write_csv(PH / "experiments/SEARCH_LEDGER.csv", full)
+    else:                                  # a rerun into its own folder (PI-D-106 item 4) never touches the cumulative ledger
+        write_csv(out / "SEARCH_LEDGER_ROWS.csv", ledger)
     tot = E.ledger_totals(full)
     jsave(out / "LEDGER_TOTALS.json", tot)
     run_log(out, "evaluate", t0, {"as_of_utc": iso(as_of), "ledger_verify": ver})
@@ -679,8 +689,18 @@ def cmd_drift(out: Path) -> int:
     # D6 and D8
     calls = json.loads((PH / "evidence/label_calls.json").read_text()) if (PH / "evidence/label_calls.json").exists() else []
     ohlcv = [c for c in calls if c["kind"].startswith("ohlcv")]
-    d6 = M.source_state(newest_export_time=REF_TIME, now=as_of, reads_total=len(ohlcv),
-                        reads_failed=sum(1 for c in ohlcv if c["http"] != 200), depth_rows=0)
+    # CP19-1 (m4): the alarm counts final reads of the planned decisions; attempts and retries are reported beside it
+    plan = json.loads((WORK / "read_plan.json").read_text())["decisions"] if (WORK / "read_plan.json").exists() else []
+    rmap = json.loads((WORK / "read_map.json").read_text()) if (WORK / "read_map.json").exists() else {}
+    con = L.connect(DEV_STORE)
+    final_failed = 0
+    for pd in plan:
+        rk = rmap.get(pd["decision_key"])
+        if rk is None or not L.read_from_store(con, rk).ok:
+            final_failed += 1
+    con.close()
+    d6 = M.source_state(newest_export_time=REF_TIME, now=as_of, reads_total=len(plan), reads_failed=final_failed, depth_rows=0,
+                        attempts_total=len(ohlcv), attempts_failed=sum(1 for c in ohlcv if c["http"] != 200))
     d6["depth_note"] = ("forward depth collector (feature/backtesting D-BT-034, D-BT-035) built and pushed, not deployed on Elving's "
                         "computer; the hourly task runs four steps without collect: no depth snapshot exists for the window")
     d8 = M.model_age(as_of, H, [float(inp.hold[k]["decision_time"]) for k in inp.keys])
@@ -709,7 +729,10 @@ def cmd_drift(out: Path) -> int:
         act = M.response(states, pin_mode=pin["mode"], level=None)
         facts = [f"{len(y)} matured labelled events with {sum(y)} positive (minimum 50 and 10 per class)",
                  f"label-rate monitor {d2['state']}", f"calibration monitors {d3a[0]['state']} (B0) and {d3a[1]['state']} (B2)",
-                 f"feature monitor {d1['state']}", f"regime monitor {d7['state']}"]
+                 f"feature monitor {d1['state']} (OK on {d1['columns_ok']} of {d1['columns_total']} columns, "
+                 f"{d1['columns_insufficient']} not measurable)", f"regime monitor {d7['state']}",
+                 f"label reads: {d6['reads_failed']} of {d6['reads_total']} planned decisions without a usable read "
+                 f"({d6['attempts_failed']} of {d6['attempts_total']} attempts retried)"]
         txt = M.notice(words[t], states, act, facts)
         per_target[s] = {"D2": d2, "D3_calibration": d3a, "D3_page_hinkley": d3b, "D5": d5, "states": states, "pin": pin["mode"],
                          "response": act, "notice": txt}
@@ -870,9 +893,9 @@ def cmd_report(out: Path) -> int:
     nc = json.loads((out / "NEGATIVE_CONTROLS.json").read_text())["NC1"]
     rb = json.loads((out / "ROLLBACK_DEMO.json").read_text())
     fa = json.loads((out / "FEEDBACK_AUDIT.json").read_text()) if (out / "FEEDBACK_AUDIT.json").exists() else None
-    man = json.loads((out / "PREREG_MANIFEST.json").read_text())
-    traps = json.loads((out / "PREOPEN_TRAPS.json").read_text())
-    rep = json.loads((out / "REPLAY_AUDIT.json").read_text())
+    man = json.loads((MON / "PREREG_MANIFEST.json").read_text())        # prediction-time files always come from the committed folder
+    traps = json.loads((MON / "PREOPEN_TRAPS.json").read_text())
+    rep = json.loads((MON / "REPLAY_AUDIT.json").read_text())
     metrics = list(csv.DictReader(open(out / "PROSPECTIVE_METRICS.csv")))
     sens = list(csv.DictReader(open(out / "SENSITIVITY.csv")))
     shift = list(csv.DictReader(open(out / "SHIFT_BREAKDOWN.csv")))
@@ -913,7 +936,12 @@ def cmd_report(out: Path) -> int:
       "three targets, frozen verdict order (fewer than 5 decision days: INSUFFICIENT_DAYS; fewer than 50 events or 10 per class: "
       "INSUFFICIENT_EVENTS).")
     w("")
-    w("| Target | Scorable | Positives | Days | Mints | Brier B2 | Brier B0 | BSS | Log loss B2 | Log loss B0 | Mint interval | Verdict |")
+    w("Descriptive only (CP19-1, skeptic m6): no claim. With fewer than 5 decision days no governing interval exists and the p values "
+      "are undefined; the mint interval is not the governing interval and is not a test; every count is far below 50 events with 10 per "
+      "class. Every number below is PROVISIONAL_PENDING_REVISION_REREAD until the frozen 48 h re-read has run (PI-D-106).")
+    w("")
+    w("| Target | Scorable | Positives | Days | Mints | Brier B2 | Brier B0 | BSS (descriptive only) | Log loss B2 | Log loss B0 | "
+      "Mint interval (not governing) | Verdict |")
     w("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|")
     for t in TARGETS:
         s = SHORT[t]

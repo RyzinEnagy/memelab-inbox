@@ -61,7 +61,8 @@ def doc(key=KEY, mint=MINT, target=L.T1, fid="fc_1", set_id="ps_1"):
             "row_sha256": "0" * 64, "published": True}
 
 
-def outcome(key=KEY, mint=MINT, target=L.T1, state="LABELED", label=1, cls="TARGET_FIRST", observed=None, recorded=None, **kw):
+def outcome(key=KEY, mint=MINT, target=L.T1, state="LABELED", label=1, cls="TARGET_FIRST", observed=None, recorded=None, rk="rk",
+            body="b" * 64, **kw):
     mat = C.label_matures_at(target, DT)
     lab = state == "LABELED"
     p = {"kind": "OUTCOME", "decision_key": key, "chain": "solana", "mint": mint, "decision_time": DT, "target": target,
@@ -69,8 +70,8 @@ def outcome(key=KEY, mint=MINT, target=L.T1, state="LABELED", label=1, cls="TARG
          "label": label if lab else None, "label_class": cls if lab else None, "censored": 1 if state in M.CENSORED else 0,
          "eligibility": "ELIGIBLE", "flags": [], "label_matures_at": mat,
          "label_observed_at": (mat + 60 if observed is None else observed) if lab else None,
-         "response_key": "rk" if lab else None,
-         "request_url": f"https://api.geckoterminal.com/x?token={mint}" if lab else None, "body_sha256": "b" * 64 if lab else None,
+         "response_key": rk if lab else None,
+         "request_url": f"https://api.geckoterminal.com/x?token={mint}" if lab else None, "body_sha256": body if lab else None,
          "detail": None, "supersedes": None, "revision_of": None, "revision_reason": None,
          "recorded_at": mat + 120 if recorded is None else recorded, "conservative_lens": label if lab else None}
     p.update(kw)
@@ -201,7 +202,8 @@ def test_p05_pending_is_never_scored_or_counted_negative_and_is_superseded_by_na
     with pytest.raises(M.LedgerError) as e:
         M.append(led, [outcome()])
     assert e.value.code == "SUPERSEDE_REQUIRED"
-    M.append(led, [outcome(supersedes=p["outcome_id"])])
+    mat = C.label_matures_at(L.T1, DT)
+    M.append(led, [outcome(supersedes=p["outcome_id"], observed=mat + 200, recorded=mat + 300)])
     sc = M.scorable(M.load(led), LATE)
     assert len(sc) == 1 and sc[0]["label"] == 1
     assert M.scorable(M.load(led), C.label_matures_at(L.T1, DT) - 1) == []
@@ -213,7 +215,9 @@ def test_a_final_outcome_is_revised_only_with_revision_of_and_both_versions_stay
     with pytest.raises(M.LedgerError) as e:
         M.append(led, [outcome(label=0, cls="INVALIDATION_FIRST")])
     assert e.value.code == "FINAL_OUTCOME_REPLACED"
-    rev = outcome(label=0, cls="INVALIDATION_FIRST", revision_of=first["outcome_id"], revision_reason="REREAD_48H")
+    mat = C.label_matures_at(L.T1, DT)
+    rev = outcome(label=0, cls="INVALIDATION_FIRST", revision_of=first["outcome_id"], revision_reason="REREAD_48H", rk="rk2",
+                  body="c" * 64, observed=mat + 172860, recorded=mat + 172900)
     M.append(led, [rev])
     idx = M.load(led)
     assert [o["outcome_id"] for o in idx.outcome_pairs[(KEY, L.T1)]] == [first["outcome_id"], rev["outcome_id"]]
@@ -531,3 +535,218 @@ def test_no_module_imports_monitoring():
         rel = {a.name for n in ast.walk(ast.parse(p.read_text())) if isinstance(n, ast.ImportFrom) and n.level >= 1 for a in n.names}
         assert not any(i.endswith("monitoring") for i in imps) and "monitoring" not in rel, p
         assert "predictive.monitoring" not in p.read_text(), p
+
+
+# ---------------------------------------------------------------- repair pass 2 (CP19-1, PI-D-107): CX-SK19, the skeptic's survivors, minors
+def test_cx_sk19_a_revision_citing_the_read_it_revises_or_no_read_is_refused(led):
+    first = outcome(label=1, cls="TARGET_FIRST")
+    M.append(led, [first])
+    mat = C.label_matures_at(L.T1, DT)
+    same = outcome(label=0, cls="INVALIDATION_FIRST", revision_of=first["outcome_id"], revision_reason="LATER_READ",
+                   recorded=mat + 9999)                       # same response key and body sha256: the read being replaced
+    with pytest.raises(M.LedgerError) as e:
+        M.append(led, [same])
+    assert e.value.code == "REVISION_NEEDS_A_LATER_READ"
+    same_body = outcome(label=0, cls="INVALIDATION_FIRST", revision_of=first["outcome_id"], revision_reason="LATER_READ", rk="rk9",
+                        observed=mat + 999, recorded=mat + 9999)   # another key, same body
+    with pytest.raises(M.LedgerError) as e:
+        M.append(led, [same_body])
+    assert e.value.code == "REVISION_NEEDS_A_LATER_READ"
+    earlier = outcome(label=0, cls="INVALIDATION_FIRST", revision_of=first["outcome_id"], revision_reason="LATER_READ", rk="rk9",
+                      body="9" * 64, observed=mat + 30, recorded=mat + 9999)   # captured before the revised read
+    with pytest.raises(M.LedgerError) as e:
+        M.append(led, [earlier])
+    assert e.value.code == "REVISION_NEEDS_A_LATER_READ"
+    no_read = outcome(state="VENDOR_OR_ROUTE_GAP", revision_of=first["outcome_id"], revision_reason="x", recorded=mat + 9999)
+    with pytest.raises(M.LedgerError) as e:                  # skeptic A6: revised to censored without any read
+        M.append(led, [no_read])
+    assert e.value.code == "REVISION_NEEDS_A_LATER_READ"
+    ok = outcome(label=0, cls="INVALIDATION_FIRST", revision_of=first["outcome_id"], revision_reason="REREAD_48H", rk="rk9",
+                 body="9" * 64, observed=mat + 172900, recorded=mat + 173000)
+    assert M.append(led, [ok])["appended"] == 1 and M.verify(led)["ok"]
+    # the same-read revision written around append is caught by verify and refused by load
+    ents = M.read_ledger(led.read_text())
+    sneak = outcome(label=1, cls="TARGET_FIRST", revision_of=ok["outcome_id"], revision_reason="LATER_READ", rk="rk9", body="9" * 64,
+                    observed=mat + 172999, recorded=mat + 174000)
+    led.write_text(led.read_text() + M.canon(M.seal(sneak, seq=len(ents), prev=ents[-1]["sha"])) + "\n")
+    assert not M.verify(led)["ok"]
+    with pytest.raises(M.LedgerError):
+        M.load(led)
+
+
+def test_cx_sk19_a_pending_is_superseded_only_by_a_later_read_or_an_unread_gap_after_maturity(led):
+    mat = C.label_matures_at(L.T1, DT)
+    p = outcome(state="PENDING", recorded=mat - 3600)
+    M.append(led, [p])
+    early_gap = outcome(state="VENDOR_OR_ROUTE_GAP", supersedes=p["outcome_id"], recorded=mat - 60)   # skeptic A7
+    with pytest.raises(M.LedgerError) as e:
+        M.append(led, [early_gap])
+    assert e.value.code == "REVISION_NEEDS_A_LATER_READ"
+    late_gap = outcome(state="VENDOR_OR_ROUTE_GAP", supersedes=p["outcome_id"], recorded=mat + 60)
+    assert M.append(led, [late_gap])["appended"] == 1
+
+
+def test_k9_a_revision_without_a_reason_is_refused(led):
+    first = outcome()
+    M.append(led, [first])
+    mat = C.label_matures_at(L.T1, DT)
+    r = outcome(label=0, cls="INVALIDATION_FIRST", revision_of=first["outcome_id"], revision_reason=None, rk="rk2", body="c" * 64,
+                observed=mat + 9000, recorded=mat + 9100)
+    with pytest.raises(M.LedgerError) as e:
+        M.append(led, [r])
+    assert e.value.code == "FINAL_OUTCOME_REPLACED"
+
+
+def test_k3_k4_scorable_is_as_of_the_record_and_read_times_even_on_an_unchecked_index(led):
+    mat = C.label_matures_at(L.T1, DT)
+    late_rec = outcome(recorded=mat + 5000)
+    M.append(led, [late_rec])
+    idx = M.load(led)
+    assert M.scorable(idx, mat + 4999) == [] and len(M.scorable(idx, mat + 5000)) == 1      # K4: recorded after as_of
+    bad = outcome(key=KEY_B, mint=MINT_B, observed=mat - 10)                                  # K3: read before maturity
+    ents = M.read_ledger(led.read_text())
+    led.write_text(led.read_text() + M.canon(M.seal(bad, seq=len(ents), prev=ents[-1]["sha"])) + "\n")
+    raw = M.Index(M.read_ledger(led.read_text()))
+    assert all(o["decision_key"] != KEY_B for o in M.scorable(raw, LATE))
+
+
+def test_k8_a_later_read_that_changes_the_class_but_not_the_state_is_recorded_as_a_revision(tmp_path):
+    p = tmp_path / "l.jsonl"
+    M.append(p, [pset(decisions=[{"decision_key": KEY, "chain": "solana", "mint": MINT, "decision_time": DT}])])
+    d = dec()
+    b = L.needed_boundary(L.T2, DT)
+    rd1 = mkread(path_rows(up=True), b, LATE)
+    M.append(p, M.next_outcomes(M.load(p), M.prospective_records(L.Universe([d], as_of=LATE, read_of={KEY: rd1})), recorded_at=LATE))
+    rd2 = mkread(path_rows(up=False), b, LATE + 172800)       # a later read whose candles were revised
+    recs2 = M.prospective_records(L.Universe([d], as_of=LATE + 172800, read_of={KEY: rd2}))
+    nxt = M.next_outcomes(M.load(p), recs2, recorded_at=LATE + 172800, reason="REREAD_48H")
+    t1 = [x for x in nxt if x["target"] == L.T1]
+    assert t1 and t1[0]["state"] == "LABELED" and t1[0]["label_class"] == "INVALIDATION_FIRST" and t1[0]["revision_of"]
+    assert t1[0]["response_key"] == rd2.response_key and t1[0]["revision_reason"] == "REREAD_48H"
+    M.append(p, nxt)
+    cur = M.current_outcomes(M.load(p))[(KEY, L.T1)]
+    assert cur["label"] == 0 and "REVISED" in cur["flags"] and M.verify(p)["ok"]
+
+
+def test_a_read_whose_boundary_stops_before_a_matured_window_is_a_visible_plan_gap():
+    rows = path_rows(up=True)
+    rd = mkread(rows, L.needed_boundary(L.T1B, DT), LATE)    # a T1b boundary read long after every maturity
+    recs = {r["target"]: r for r in M.prospective_records(L.Universe([dec()], as_of=LATE, read_of={KEY: rd}))}
+    assert recs[L.T1B]["state"] == "LABELED"
+    assert recs[L.T1]["state"] == "NOT_READ" and recs[L.T1]["detail"] == "READ_BOUNDARY_BEFORE_WINDOW_END" and recs[L.T1]["label"] is None
+
+
+def test_k11_a_prediction_for_an_unknown_decision_or_another_mint_is_refused(led):
+    for bad in (pred(key="k-unknown"), pred(key=KEY_B, mint=MINT)):
+        bad["prediction_id"] = "pr_" + bad["decision_key"] + bad["mint"][:4]
+        with pytest.raises(M.LedgerError) as e:
+            M.append(led, [bad])
+        assert e.value.code == "IDENTITY_MISMATCH"
+    d = doc(key=KEY_B, mint=MINT, fid="fc_wrong")
+    with pytest.raises(M.LedgerError) as e:
+        M.append(led, [d])
+    assert e.value.code == "IDENTITY_MISMATCH"
+
+
+def test_k15_a_prediction_set_reusing_a_decision_key_with_another_identity_is_refused(led):
+    with pytest.raises(M.LedgerError) as e:
+        M.append(led, [pset(set_id="ps_2", decisions=[{"decision_key": KEY, "chain": "solana", "mint": MINT_B, "decision_time": DT}])])
+    assert e.value.code == "IDENTITY_MISMATCH"
+    with pytest.raises(M.LedgerError) as e:
+        M.append(led, [pset(set_id="ps_3", decisions=[{"decision_key": KEY, "chain": "solana", "mint": MINT, "decision_time": DT + 1}])])
+    assert e.value.code == "IDENTITY_MISMATCH"
+    assert M.append(led, [pset(set_id="ps_4", decisions=[{"decision_key": KEY, "chain": "solana", "mint": MINT, "decision_time": DT}])])["appended"] == 1
+
+
+def test_k12_load_refuses_a_duplicated_entry_even_with_a_valid_chain(led):
+    ents = M.read_ledger(led.read_text())
+    dup = ents[2]["payload"]                                  # the first PREDICTION, sealed again at the end
+    led.write_text(led.read_text() + M.canon(M.seal(dup, seq=len(ents), prev=ents[-1]["sha"])) + "\n")
+    M.read_ledger(led.read_text())
+    with pytest.raises(M.LedgerError) as e:
+        M.load(led)
+    assert e.value.code == "DUPLICATE_ENTRY"
+    assert not M.verify(led)["ok"]
+
+
+def test_k13_misses_mark_a_label_not_matured_at_the_evaluation_time(led):
+    M.append(led, [outcome()])
+    mat = C.label_matures_at(L.T1, DT)
+    rows = {(r["decision_key"], r["target"]): r for r in M.misses(M.load(led), as_of=mat - 1)}
+    assert rows[(KEY, L.T1)]["outcome_state"] == "NOT_MATURED_AT_EVALUATION"
+    assert rows[(KEY, L.T1)]["no_score_reason"] == "NOT_MATURED_AT_EVALUATION"
+
+
+def test_k17_page_hinkley_orders_the_stream_by_time():
+    rng = np.random.default_rng(17)
+    jump = [(float(i), float(rng.normal(0, 0.01) + (0.1 if i >= 60 else 0.0))) for i in range(200)]
+    want = M.page_hinkley_alarms(jump)["alarms"]
+    shuffled = list(jump)
+    rng.shuffle(shuffled)
+    assert want and M.page_hinkley_alarms(shuffled)["alarms"] == want
+    assert M.page_hinkley_alarms(list(reversed(jump)))["alarms"] == want
+
+
+def test_k7_m4_d6_alerts_above_the_share_of_final_reads_and_reports_retries_apart():
+    now = P0 + 3 * 86400
+    at = M.source_state(newest_export_time=now, now=now, reads_total=25, reads_failed=5, depth_rows=1, attempts_total=39, attempts_failed=11)
+    assert at["read_failure_share"] == 0.2 and "SOURCE_FAILURE" not in at["codes"] and at["state"] == "OK"
+    assert at["attempts_total"] == 39 and at["attempts_failed"] == 11
+    above = M.source_state(newest_export_time=now, now=now, reads_total=25, reads_failed=6, depth_rows=1)
+    assert "SOURCE_FAILURE" in above["codes"]
+    retried = M.source_state(newest_export_time=now, now=now, reads_total=25, reads_failed=0, depth_rows=0, attempts_total=39, attempts_failed=11)
+    assert retried["codes"] == ["COLLECTOR_NOT_DEPLOYED"]
+
+
+def test_m3_d1_is_insufficient_when_a_column_cannot_be_measured_and_ok_only_when_every_column_is():
+    rng = np.random.default_rng(3)
+    ref = {"a": list(rng.normal(0, 1, 4000)), "b": list(rng.normal(0, 1, 4000))}
+    one_short = M.feature_drift(ref, {"a": list(rng.normal(0, 1, 2000)), "b": list(rng.normal(0, 1, 29))})
+    assert one_short["state"] == "INSUFFICIENT_DATA" and one_short["columns_ok"] == 1 and one_short["columns_insufficient"] == 1
+    both = M.feature_drift(ref, {"a": list(rng.normal(0, 1, 2000)), "b": list(rng.normal(0, 1, 2000))})
+    assert both["state"] == "OK" and both["columns_ok"] == 2
+    alert = M.feature_drift(ref, {"a": list(rng.normal(2, 1, 100)), "b": list(rng.normal(0, 1, 29))})
+    assert alert["state"] == "DRIFT_ALERT"
+
+
+def test_m5_a_pinned_champion_below_the_support_minimum_keeps_abstaining():
+    assert M.response(["SUPPORT_BELOW_MINIMUM"], pin_mode="CHAMPION", level="SHADOW")["action"] == "KEEP_ABSTAIN"
+    assert M.response(["SUPPORT_BELOW_MINIMUM", "DRIFT_ALERT"], pin_mode="CHAMPION", level="SHADOW")["action"] == "ROLLBACK_TO_ABSTAIN"
+
+
+def test_x4_a_revision_read_must_carry_the_token_of_its_mint(led):
+    first = outcome()
+    M.append(led, [first])
+    mat = C.label_matures_at(L.T1, DT)
+    r = outcome(label=0, cls="INVALIDATION_FIRST", revision_of=first["outcome_id"], revision_reason="REREAD_48H", rk="rk2", body="c" * 64,
+                observed=mat + 9000, recorded=mat + 9100)
+    r["request_url"] = "https://api.geckoterminal.com/x?token=" + MINT_B
+    with pytest.raises(M.LedgerError) as e:
+        M.append(led, [r])
+    assert e.value.code == "IDENTITY_MISMATCH"
+    u = outcome(state="UNVERIFIABLE_NO_VENDOR_HISTORY", revision_of=first["outcome_id"], revision_reason="REREAD_48H",
+                recorded=mat + 9100, conservative_lens=0)
+    u.update(response_key="rk3", body_sha256="d" * 64, label_observed_at=mat + 9000,
+             request_url="https://api.geckoterminal.com/x?token=" + MINT_B)       # a censored revision citing another mint's read
+    with pytest.raises(M.LedgerError) as e:
+        M.append(led, [u])
+    assert e.value.code == "IDENTITY_MISMATCH"
+    u["request_url"] = "https://api.geckoterminal.com/x?token=" + MINT
+    assert M.append(led, [u])["appended"] == 1
+
+
+def test_x8_a_revision_to_a_state_without_a_label_still_cites_its_later_read(tmp_path):
+    p = tmp_path / "l.jsonl"
+    M.append(p, [pset(decisions=[{"decision_key": KEY, "chain": "solana", "mint": MINT, "decision_time": DT}])])
+    d = dec()
+    b = L.needed_boundary(L.T2, DT)
+    rd1 = mkread(path_rows(up=True), b, LATE)
+    M.append(p, M.next_outcomes(M.load(p), M.prospective_records(L.Universe([d], as_of=LATE, read_of={KEY: rd1})), recorded_at=LATE))
+    s0 = int(L.ceil_grid(TE))
+    rd2 = mkread([H.candle(s, c=1.0) for s in range(s0, int(TE + 2 * 86400 + 600), 300)], b, LATE + 172800)   # no reference candle now
+    recs2 = M.prospective_records(L.Universe([d], as_of=LATE + 172800, read_of={KEY: rd2}))
+    nxt = M.next_outcomes(M.load(p), recs2, recorded_at=LATE + 172800, reason="REREAD_48H")
+    assert nxt and all(x["state"] != "LABELED" and x["label"] is None for x in nxt)
+    assert all(x["response_key"] == rd2.response_key and x["body_sha256"] == rd2.body_sha256 for x in nxt)
+    M.append(p, nxt)
+    assert M.verify(p)["ok"] and M.scorable(M.load(p), LATE + 172800) == []

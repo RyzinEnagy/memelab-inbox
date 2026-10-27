@@ -178,6 +178,20 @@ def _id_of(p: dict) -> str:
     return p["prediction_id"] if p["kind"] == "PREDICTION" else p["forecast_id"] if p["kind"] == "DOCUMENT" else p.get("outcome_id")
 
 
+def _later_read(p: dict, cur: dict) -> None:
+    """Rule 4(e) as enforced by CP19-1 (CX-SK19): a revision or a supersede cites a read (response key, body sha256, request URL
+    with token=<mint>, capture time) that is another read than the one it replaces and was captured later."""
+    if not (p.get("response_key") and p.get("body_sha256") and p.get("request_url") and _fin(p.get("label_observed_at"))):
+        raise LedgerError("REVISION_NEEDS_A_LATER_READ", "a revision or supersede cites its read (response key, body sha256, URL, time)")
+    if "token=" + p["mint"] not in p["request_url"]:
+        raise LedgerError("IDENTITY_MISMATCH", "the read must carry token=<mint> (PI-D-038)")
+    if p["response_key"] == cur.get("response_key") or p["body_sha256"] == cur.get("body_sha256"):
+        raise LedgerError("REVISION_NEEDS_A_LATER_READ", "the cited read is the read being replaced")
+    before = cur.get("label_observed_at") if _fin(cur.get("label_observed_at")) else cur.get("recorded_at")
+    if float(p["label_observed_at"]) <= float(before):
+        raise LedgerError("REVISION_NEEDS_A_LATER_READ", "the cited read was not captured after the one it replaces")
+
+
 PREDICTION_FIELDS = ("prediction_id", "set_id", "decision_key", "chain", "mint", "decision_time", "target", "candidate", "number",
                      "why", "card_file_sha256", "model_sha", "training_cutoff_utc", "label_matures_at", "published", "role")
 DOCUMENT_FIELDS = ("forecast_id", "record_id", "set_id", "decision_key", "chain", "mint", "decision_time", "target",
@@ -257,11 +271,15 @@ def check_payload(idx: Index, p: dict) -> str:
             if p["supersedes"] or p["revision_of"]:
                 raise LedgerError("MALFORMED_ENTRY", "the first outcome of a pair supersedes nothing")
         elif cur["state"] in NON_FINAL:
-            if p["supersedes"] != cur["outcome_id"]:
+            if p["supersedes"] != cur["outcome_id"] or p["revision_of"]:
                 raise LedgerError("SUPERSEDE_REQUIRED", "a PENDING or NOT_READ outcome is superseded by naming it")
+            no_read_ok = p["state"] in ("VENDOR_OR_ROUTE_GAP", "NOT_READ") and float(p["recorded_at"]) >= mat and not p["response_key"]
+            if not no_read_ok:
+                _later_read(p, cur)
         else:
-            if p["revision_of"] != cur["outcome_id"] or not p["revision_reason"]:
+            if p["revision_of"] != cur["outcome_id"] or not p["revision_reason"] or p["supersedes"]:
                 raise LedgerError("FINAL_OUTCOME_REPLACED", "a final outcome is revised only with revision_of and a reason")
+            _later_read(p, cur)
         return "APPEND"
     if k == "PREDICTION_SET":
         if not p.get("set_id") or not isinstance(p.get("decisions"), list) or not p.get("sha256"):
@@ -393,6 +411,8 @@ def prospective_records(u: L.Universe) -> list[dict]:
                 rd = u.read_of[k]
                 if rd.retrieved_at < rec["label_matures_at"]:
                     rec["state"] = "PENDING"
+                elif rd.boundary < L.needed_boundary(t, d["decision_time"]):
+                    rec["state"], rec["detail"] = "NOT_READ", "READ_BOUNDARY_BEFORE_WINDOW_END"     # a plan gap, never a class
                 else:
                     rec.update(L.classify(t, d["decision_time"], rd, u.other_reads.get(k) if t == L.T2 else None))
                     sp = L.snapshot_price(d)
@@ -404,12 +424,13 @@ def prospective_records(u: L.Universe) -> list[dict]:
 
 
 def outcome_payload(rec: dict, *, recorded_at: float, supersedes: str | None = None, revision_of: str | None = None,
-                    revision_reason: str | None = None) -> dict:
+                    revision_reason: str | None = None, cite_read: bool = False) -> dict:
     """The OUTCOME entry of one prospective label record (a NEEDS_OTHER_POOLS record is refused: fetch the other pools first)."""
     if rec["state"] == L.NEEDS_OTHER_POOLS:
         raise LedgerError("NEEDS_OTHER_POOLS", "a T2 halt candidate needs its other pools before it has an outcome")
     d, rd = rec["decision"], rec.get("read")
     lab = rec["state"] == "LABELED"
+    cite = rd is not None and (lab or cite_read)
     flags = sorted(set(rec.get("flags") or []) | ({"KEY_CONFLICT"} if "KEY_CONFLICT" in (d.get("flags") or []) else set())
                    | ({"CURRENT_VENDOR_LIST"} if d.get("route") == "CURRENT_VENDOR_LIST" else set()))
     p = {"kind": "OUTCOME", "decision_key": rec["decision_key"], "chain": d["chain"], "mint": d["mint"],
@@ -418,10 +439,10 @@ def outcome_payload(rec: dict, *, recorded_at: float, supersedes: str | None = N
          "label": rec.get("label") if lab else None, "label_class": rec.get("label_class") if lab else None,
          "censored": int(rec["censored"]), "eligibility": rec["eligibility"], "flags": flags,
          "label_matures_at": float(rec["label_matures_at"]),
-         "label_observed_at": float(rd.retrieved_at) if (rd is not None and lab) else None,
-         "response_key": rd.response_key if (rd is not None and lab) else None,
-         "request_url": rd.url if (rd is not None and lab) else None,
-         "body_sha256": rd.body_sha256 if (rd is not None and lab) else None,
+         "label_observed_at": float(rd.retrieved_at) if cite else None,
+         "response_key": rd.response_key if cite else None,
+         "request_url": rd.url if cite else None,
+         "body_sha256": rd.body_sha256 if cite else None,
          "detail": rec.get("detail") or (rec.get("thinned_by")[:16] if rec.get("thinned_by") else None),
          "supersedes": supersedes, "revision_of": revision_of, "revision_reason": revision_reason, "recorded_at": float(recorded_at),
          "conservative_lens": (CONSERVATIVE_LENS[rec["target"]] if rec["censored"] else (rec.get("label") if lab else None))}
@@ -444,9 +465,10 @@ def next_outcomes(idx: Index, recs: Sequence[dict], *, recorded_at: float, reaso
         if same:
             continue
         if cur["state"] in NON_FINAL:
-            out.append(outcome_payload(rec, recorded_at=recorded_at, supersedes=cur["outcome_id"]))
+            out.append(outcome_payload(rec, recorded_at=recorded_at, supersedes=cur["outcome_id"], cite_read=True))
         else:
-            out.append(outcome_payload(rec, recorded_at=recorded_at, revision_of=cur["outcome_id"], revision_reason=reason))
+            out.append(outcome_payload(rec, recorded_at=recorded_at, revision_of=cur["outcome_id"], revision_reason=reason,
+                                       cite_read=True))
     return out
 
 
@@ -518,7 +540,15 @@ def feature_drift(ref: dict[str, Sequence[Any]], cur: dict[str, Sequence[Any]]) 
             states.append(st)
         row["state"] = _worst(states)
         cols[name] = row
-    return {"monitor": "D1_FEATURE_DRIFT", "columns": cols, "state": _worst(r["state"] for r in cols.values())}
+    sts = [r["state"] for r in cols.values()]
+    if "DRIFT_ALERT" in sts or "WATCH" in sts:
+        overall = _worst(sts)
+    elif "INSUFFICIENT_DATA" in sts or not sts:
+        overall = "INSUFFICIENT_DATA"            # CP19-1 (m3): OK only when every column is measurable and OK
+    else:
+        overall = "OK"
+    return {"monitor": "D1_FEATURE_DRIFT", "columns": cols, "state": overall, "columns_total": len(sts),
+            "columns_ok": sts.count("OK"), "columns_insufficient": sts.count("INSUFFICIENT_DATA")}
 
 
 def label_rate_drift(train_prevalence: float, y: Sequence[int]) -> dict:
@@ -575,9 +605,12 @@ def support_state(n: int, k: int) -> dict:
             "state": "SUPPORT_BELOW_MINIMUM" if gate else "OK"}
 
 
-def source_state(*, newest_export_time: float | None, now: float, reads_total: int, reads_failed: int, depth_rows: int) -> dict:
+def source_state(*, newest_export_time: float | None, now: float, reads_total: int, reads_failed: int, depth_rows: int,
+                 attempts_total: int | None = None, attempts_failed: int | None = None) -> dict:
     """D6 (P47): stale exports, failing label reads and the forward depth collector, as visible status codes. A source problem is
-    not a model drift: its state is SOURCE_PROBLEM and the response keeps abstaining with the status (never a rollback)."""
+    not a model drift: its state is SOURCE_PROBLEM and the response keeps abstaining with the status (never a rollback).
+    CP19-1 (m4): `reads_total` and `reads_failed` are final reads (a planned decision whose final read failed or that has no read);
+    retried attempts are reported beside them, never as the alarm."""
     codes = []
     age = None if newest_export_time is None else float(now) - float(newest_export_time)
     if age is None or age > SOURCE_MAX_AGE_S:
@@ -588,7 +621,8 @@ def source_state(*, newest_export_time: float | None, now: float, reads_total: i
     if depth_rows == 0:
         codes.append("COLLECTOR_NOT_DEPLOYED")
     return {"monitor": "D6_SOURCES", "export_age_s": age, "reads_total": reads_total, "reads_failed": reads_failed,
-            "read_failure_share": share, "depth_rows": depth_rows, "codes": codes,
+            "read_failure_share": share, "attempts_total": attempts_total, "attempts_failed": attempts_failed,
+            "depth_rows": depth_rows, "codes": codes,
             "state": "SOURCE_PROBLEM" if ({"SOURCE_STALE", "SOURCE_FAILURE"} & set(codes)) else "OK"}
 
 
@@ -656,6 +690,8 @@ def response(states: Sequence[str], *, pin_mode: str, level: str | None) -> dict
         act = "DEGRADE_TO_SHADOW" if level == "VALIDATED_EXPERIMENTAL" else "ROLLBACK_TO_ABSTAIN"
     elif source_problem:
         act = "KEEP_ABSTAIN_SOURCE"
+    elif "SUPPORT_BELOW_MINIMUM" in s:
+        act = "KEEP_ABSTAIN"                      # rule 10, also for a pinned champion (CP19-1, m5)
     elif pin_mode == "CHAMPION":
         act = "NO_CHANGE"
     else:

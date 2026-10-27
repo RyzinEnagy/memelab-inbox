@@ -1,5 +1,6 @@
 """Phase 19 mutation probe: each mutation of memelab/predictive/monitoring.py must make tests/test_predictive_monitoring.py fail.
 Works on a temporary copy of the tracked memelab and tests trees plus the files the tests read (the checkout is never edited).
+Since CP19-1 (PI-D-107) the list holds the independent skeptic's 14 mutations (K2 to K17) and 11 repair mutations (X1 to X11).
 Each original fragment must occur exactly once. Writes a JSON report.
 
     python -B mutation_monitoring.py OUT.json [--only NAME_PREFIX ...]
@@ -43,8 +44,8 @@ MUTATIONS = [
     ("R8 outcome identity not checked", 'd["chain"] != p["chain"] or d["mint"] != p["mint"] or float(d["decision_time"]) != float(p["decision_time"]):\n            raise LedgerError("IDENTITY_MISMATCH", "chain, mint',
      'False:\n            raise LedgerError("IDENTITY_MISMATCH", "chain, mint'),
     ("R9 token parameter not checked", '            if "token=" + p["mint"] not in p["request_url"]:', '            if False:'),
-    ("R10 final outcome replaced", '            if p["revision_of"] != cur["outcome_id"] or not p["revision_reason"]:', '            if False:'),
-    ("R11 pending superseded without naming it", '            if p["supersedes"] != cur["outcome_id"]:', '            if False:'),
+    ("R10 final outcome replaced", '            if p["revision_of"] != cur["outcome_id"] or not p["revision_reason"] or p["supersedes"]:', '            if False:'),
+    ("R11 pending superseded without naming it", '            if p["supersedes"] != cur["outcome_id"] or p["revision_of"]:', '            if False:'),
     ("R12 concurrent writer accepted", '    if expect_sha is not None and head_sha(entries) != expect_sha:', '    if False:'),
     ("R13 number range not checked", 'if p["number"] is not None and not (_fin(p["number"]) and 0.0 <= float(p["number"]) <= 1.0):', 'if False:'),
     ("R14 verify does not replay the rules", '            if check_payload(idx, e["payload"]) == "DUPLICATE":', '            if False:'),
@@ -58,8 +59,8 @@ MUTATIONS = [
      '                if False:\n                    rec["state"] = "PENDING"'),
     ("P2 no pool counted as not read", '                    rec["state"] = "VENDOR_OR_ROUTE_GAP" if mature else "PENDING"', '                    rec["state"] = "NOT_READ" if mature else "PENDING"'),
     ("P3 unread matured counted as pending", '                    rec["state"] = "NOT_READ" if mature else "PENDING"', '                    rec["state"] = "PENDING"'),
-    ("P4 supersede chain broken", '            out.append(outcome_payload(rec, recorded_at=recorded_at, supersedes=cur["outcome_id"]))',
-     '            out.append(outcome_payload(rec, recorded_at=recorded_at))'),
+    ("P4 supersede chain broken", '            out.append(outcome_payload(rec, recorded_at=recorded_at, supersedes=cur["outcome_id"], cite_read=True))',
+     '            out.append(outcome_payload(rec, recorded_at=recorded_at, cite_read=True))'),
     # monitors
     ("D1 PSI alert threshold moved", 'st = "DRIFT_ALERT" if pr["psi"] >= PSI_ALERT else', 'st = "DRIFT_ALERT" if pr["psi"] >= 10 * PSI_ALERT else'),
     ("D1b missingness ignored", '        if cv and miss_r is not None and miss_c - miss_r > MISSING_SHARE_ALERT:', '        if False:'),
@@ -82,6 +83,40 @@ MUTATIONS = [
     ("A4 trading word check off", '    if not plain_ok(txt):', '    if False:'),
     ("A5 automatic retrain flag", '"automatic_retrain": False,', '"automatic_retrain": True,'),
     ("A6 status codes not collected", '        for c in m.get("codes") or []:', '        for c in []:'),
+    # the independent skeptic's own mutations (phase_19/skeptic/p19_own_mutations.py), adapted to the CP19-1 code where a line moved
+    ("K2 current outcome is the first, not the newest", "        cur = dict(xs[-1])", "        cur = dict(xs[0])"),
+    ("K3 scorable ignores the read time", ' or float(o["label_observed_at"]) < mat:\n            continue', ":\n            continue"),
+    ("K4 scorable ignores the record time", 'if mat > as_of or float(o["recorded_at"]) > as_of or', "if mat > as_of or"),
+    ("K5 D1 minimum 30 becomes 29", "        if cf.size < MIN_FEATURE_VALUES:", "        if cf.size < MIN_FEATURE_VALUES - 1:"),
+    ("K6 champion without states abstains", '    elif pin_mode == "CHAMPION":\n        act = "NO_CHANGE"', '    elif pin_mode == "CHAMPION":\n        act = "KEEP_ABSTAIN"'),
+    ("K7 D6 failure share at the threshold alerts", "if share is not None and share > READ_FAILURE_SHARE_ALERT:",
+     "if share is not None and share >= READ_FAILURE_SHARE_ALERT:"),
+    ("K8 a class change with the same state is not a revision",
+     'same = (cur["state"] == rec["state"] and cur["label_class"] == (rec.get("label_class") if rec["state"] == "LABELED" else None))',
+     'same = cur["state"] == rec["state"]'),
+    ("K9 revision without a reason accepted", 'if p["revision_of"] != cur["outcome_id"] or not p["revision_reason"] or p["supersedes"]:',
+     'if p["revision_of"] != cur["outcome_id"] or p["supersedes"]:'),
+    ("K11 prediction identity not checked",
+     'raise LedgerError("IDENTITY_MISMATCH", "decision key, chain, mint and time must equal the prediction set\'s (P01)")', 'pass'),
+    ("K12 load accepts duplicate entries", '            raise LedgerError("DUPLICATE_ENTRY", f"seq {e[\'seq\']}")', "            pass"),
+    ("K13 misses never flags an unmatured label", '            st = "NOT_MATURED_AT_EVALUATION"', "            pass"),
+    ("K15 prediction set key reuse accepted", 'raise LedgerError("IDENTITY_MISMATCH", "a decision key reused with another identity")', "pass"),
+    ("K16 PENDING outcomes treated as final", 'NON_FINAL = ("PENDING", "NOT_READ")', 'NON_FINAL = ("NOT_READ",)'),
+    ("K17 Page-Hinkley stream not time ordered", "for t, v in sorted(stream, key=lambda tv: tv[0]) if", "for t, v in stream if"),
+    # CP19-1 repair (PI-D-107)
+    ("X1 revision may cite no read", '    if not (p.get("response_key") and p.get("body_sha256") and p.get("request_url") and _fin(p.get("label_observed_at"))):\n        raise LedgerError("REVISION_NEEDS_A_LATER_READ"',
+     '    if False:\n        raise LedgerError("REVISION_NEEDS_A_LATER_READ"'),
+    ("X2 revision may cite the read it replaces (CX-SK19)", '    if p["response_key"] == cur.get("response_key") or p["body_sha256"] == cur.get("body_sha256"):', '    if False:'),
+    ("X3 revision may cite an earlier read", '    if float(p["label_observed_at"]) <= float(before):', '    if False:'),
+    ("X4 revision read without token", '    if "token=" + p["mint"] not in p["request_url"]:\n        raise LedgerError("IDENTITY_MISMATCH", "the read must carry', '    if False:\n        raise LedgerError("IDENTITY_MISMATCH", "the read must carry'),
+    ("X5 supersede never checks a read", '            if not no_read_ok:\n                _later_read(p, cur)', '            if False:\n                _later_read(p, cur)'),
+    ("X6 unread gap allowed before maturity", 'and float(p["recorded_at"]) >= mat and not p["response_key"]', 'and not p["response_key"]'),
+    ("X7 revision of a final outcome never checks a read", '                raise LedgerError("FINAL_OUTCOME_REPLACED", "a final outcome is revised only with revision_of and a reason")\n            _later_read(p, cur)',
+     '                raise LedgerError("FINAL_OUTCOME_REPLACED", "a final outcome is revised only with revision_of and a reason")'),
+    ("X8 next_outcomes does not cite the read on a revision", 'revision_reason=reason,\n                                       cite_read=True))', 'revision_reason=reason))'),
+    ("X9 short boundary classified", '                elif rd.boundary < L.needed_boundary(t, d["decision_time"]):', '                elif False:'),
+    ("X10 D1 overall ignores unmeasurable columns", '    elif "INSUFFICIENT_DATA" in sts or not sts:', '    elif not sts:'),
+    ("X11 champion below the support minimum unchanged", '    elif "SUPPORT_BELOW_MINIMUM" in s:\n        act = "KEEP_ABSTAIN"', '    elif False:\n        act = "KEEP_ABSTAIN"'),
 ]
 
 
