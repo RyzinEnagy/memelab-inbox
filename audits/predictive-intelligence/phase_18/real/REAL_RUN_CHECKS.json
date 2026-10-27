@@ -1,0 +1,194 @@
+{
+ "probe": "run_reports.py real",
+ "replay_alerts": {
+  "alert_policies": {
+   "risk_override": 8
+  },
+  "alerts": [
+   {
+    "fixture": false,
+    "policy": "risk_override",
+    "severity": "warning"
+   },
+   {
+    "fixture": false,
+    "policy": "risk_override",
+    "severity": "warning"
+   },
+   {
+    "fixture": false,
+    "policy": "risk_override",
+    "severity": "warning"
+   },
+   {
+    "fixture": false,
+    "policy": "risk_override",
+    "severity": "warning"
+   },
+   {
+    "fixture": false,
+    "policy": "risk_override",
+    "severity": "warning"
+   },
+   {
+    "fixture": false,
+    "policy": "risk_override",
+    "severity": "warning"
+   },
+   {
+    "fixture": false,
+    "policy": "risk_override",
+    "severity": "warning"
+   },
+   {
+    "fixture": false,
+    "policy": "risk_override",
+    "severity": "warning"
+   }
+  ],
+  "candidates": 8,
+  "deduped": 0,
+  "ledger": {
+   "file:dry_run_preview": 8
+  },
+  "new": 8,
+  "now_utc": "2026-10-26T10:24:04Z",
+  "outcome": "evaluated",
+  "previews": 8,
+  "remote_deliveries_succeeded": 0,
+  "sent_folder_exists": false,
+  "suppressed": {
+   "risk_override:SOURCE_STALE": 15
+  }
+ },
+ "replay_report": {
+  "backtest_not_available_lines": 143,
+  "backtest_results": [
+   "BACKTEST_NOT_AVAILABLE"
+  ],
+  "counts": {
+   "abstained": 141,
+   "not_attempted_events": 52,
+   "opportunities": 47,
+   "probabilities_shown": 0,
+   "refused": 0,
+   "snapshots_verified": 0,
+   "targets": 141,
+   "vetoes": 22
+  },
+  "format_only": false,
+  "input_states": {
+   "FRESH": 47
+  },
+  "lab_states": {
+   "SNAPSHOT_NOT_VERIFIED": 47
+  },
+  "lines": 3626,
+  "local_path": false,
+  "not_attempted_events": {
+   "DUPLICATE": 52
+  },
+  "percent_or_fraction_outside_definitions": 1,
+  "reason_counts": {
+   "INSUFFICIENT_HISTORY": 141,
+   "MODEL_NOT_SELECTED": 141,
+   "OUT_OF_SCOPE_CHAIN": 51,
+   "SOURCE_STALE": 141,
+   "TARGET_NOT_FEASIBLE": 21,
+   "UNCALIBRATED": 141
+  },
+  "sha256": "ce68cad62d6ee0f57698f71bca0338ea1037adfd4442287651ec7e512e34e2de",
+  "simulation_lines": 49,
+  "state": "OK",
+  "statuses": {
+   "ABSTAIN": 141
+  },
+  "trading_word": false,
+  "veto_opportunities": 22,
+  "vetoes": [
+   "CANNOT_EXIT_5K",
+   "CLUSTER_OWNERSHIP_GT_25PCT",
+   "INSIDER_DISTRIBUTION",
+   "LARGEST_HOLDER_GT_15PCT",
+   "TRANSFER_FEE_GT_5PCT",
+   "withheld"
+  ]
+ },
+ "scout_alerts": {
+  "alert_policies": {},
+  "alerts": [],
+  "candidates": 0,
+  "deduped": 0,
+  "ledger": {},
+  "new": 0,
+  "now_utc": "2026-10-27T10:28:45Z",
+  "outcome": "evaluated",
+  "previews": 0,
+  "remote_deliveries_succeeded": 0,
+  "sent_folder_exists": false,
+  "suppressed": {
+   "risk_override:SOURCE_STALE": 3
+  }
+ },
+ "scout_report": {
+  "backtest_not_available_lines": 26,
+  "backtest_results": [
+   "BACKTEST_NOT_AVAILABLE"
+  ],
+  "counts": {
+   "abstained": 24,
+   "not_attempted_events": 16,
+   "opportunities": 8,
+   "probabilities_shown": 0,
+   "refused": 0,
+   "snapshots_verified": 8,
+   "targets": 24,
+   "vetoes": 3
+  },
+  "format_only": false,
+  "input_states": {
+   "INPUT_STALE": 8
+  },
+  "lab_states": {
+   "SNAPSHOT_VERIFIED": 8
+  },
+  "lines": 722,
+  "local_path": false,
+  "not_attempted_events": {
+   "DUPLICATE": 16
+  },
+  "percent_or_fraction_outside_definitions": 0,
+  "reason_counts": {
+   "INSUFFICIENT_HISTORY": 24,
+   "MODEL_NOT_SELECTED": 24,
+   "SOURCE_STALE": 24,
+   "TARGET_NOT_FEASIBLE": 6,
+   "UNCALIBRATED": 24
+  },
+  "sha256": "1d6702913d90e848412b34f5c8e2705d0d670f019dde8c9d45f05b7ce1f1528e",
+  "simulation_lines": 10,
+  "state": "OK",
+  "statuses": {
+   "ABSTAIN": 24
+  },
+  "trading_word": false,
+  "veto_opportunities": 3,
+  "vetoes": [
+   "CANNOT_EXIT_5K",
+   "WASH_TRADING_HIGH"
+  ]
+ },
+ "socket_events": 0,
+ "state_files_sha256": {
+  "replay/DOCUMENTS.jsonl": "9b839e76b7a334847911b6d5ad1f81044e17da47a09354dd3efd70fdbc0c77d0",
+  "replay/PASSES.jsonl": "614c10cb0257190f03d4ac1394bfbbd939616caf87c26c16dbc168e0aa26b0b1",
+  "replay/RECORDS.jsonl": "a8114c19f9ac506b0a809a6f9e1bf1b70ada6e049c693debc1d102294bb5accc",
+  "replay/REFERENCE_RECORDS.jsonl": null,
+  "replay/REQUESTS.jsonl": "a239ab062ee699320ad712f79d58ed3ff54cc97f611301d8181a26e41a99166d",
+  "smoke/DOCUMENTS.jsonl": "15d82d5a2c79b2e567ac0eab99ffe6b0b8c55663db56251cf970669cf687e20b",
+  "smoke/PASSES.jsonl": "90be66bc3ab87ca091c66475ecc3a9c4604feca414b4ffaabf51dc9635cccec5",
+  "smoke/RECORDS.jsonl": "3035ad300f72791d93d7f3ea7a5a9e4835d26bbf333729c7d60a0a00b919d026",
+  "smoke/REFERENCE_RECORDS.jsonl": null,
+  "smoke/REQUESTS.jsonl": "33799833b12cc1f2d64151e82de6d4617d41338ec91e0654caabbc8955ef11ab"
+ }
+}

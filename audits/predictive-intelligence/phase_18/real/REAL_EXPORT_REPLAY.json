@@ -1,0 +1,113 @@
+{
+ "attempted_events": 52,
+ "attempted_mints": 47,
+ "backtest_status": [
+  "BACKTEST_NOT_AVAILABLE"
+ ],
+ "check_state_problems": [],
+ "decision_events_total": 1553,
+ "documents": 156,
+ "documents_equal_three_per_attempt": true,
+ "every_document_has_its_record": true,
+ "exports_read": 92,
+ "feature_scope": [
+  "CAPTURE_SINGLE_ROW"
+ ],
+ "files_sha256": {
+  "documents": "9b839e76b7a334847911b6d5ad1f81044e17da47a09354dd3efd70fdbc0c77d0",
+  "passes": "614c10cb0257190f03d4ac1394bfbbd939616caf87c26c16dbc168e0aa26b0b1",
+  "records": "a8114c19f9ac506b0a809a6f9e1bf1b70ada6e049c693debc1d102294bb5accc",
+  "references": null,
+  "requests": "a239ab062ee699320ad712f79d58ed3ff54cc97f611301d8181a26e41a99166d"
+ },
+ "forecast_documents": 0,
+ "latency_ms_max": 10.226,
+ "latency_ms_p50": 2.675,
+ "model_ids": [
+  "not_selected"
+ ],
+ "passes_round_1": [
+  {
+   "commit": "efdaee91ebbe",
+   "decision_time_utc": "2026-10-24T10:11:50Z",
+   "documents": 54,
+   "event_counts": {
+    "DISCOVERY": 18
+   },
+   "events": 18,
+   "forecasts": 0,
+   "references": 0,
+   "registry_modes": [
+    "NO_VIABLE_CHAMPION"
+   ]
+  },
+  {
+   "commit": "e245d91cc5f5",
+   "decision_time_utc": "2026-10-25T10:10:02Z",
+   "documents": 57,
+   "event_counts": {
+    "DISCOVERY": 16,
+    "MATERIAL_CHANGE": 3
+   },
+   "events": 19,
+   "forecasts": 0,
+   "references": 0,
+   "registry_modes": [
+    "NO_VIABLE_CHAMPION"
+   ]
+  },
+  {
+   "commit": "71fc50e1eb86",
+   "decision_time_utc": "2026-10-26T10:23:04Z",
+   "documents": 45,
+   "event_counts": {
+    "DISCOVERY": 13,
+    "MATERIAL_CHANGE": 2
+   },
+   "events": 15,
+   "forecasts": 0,
+   "references": 0,
+   "registry_modes": [
+    "NO_VIABLE_CHAMPION"
+   ]
+  }
+ ],
+ "pin_reasons_seen": [
+  "NO_PIN"
+ ],
+ "probabilities_published": 0,
+ "probe": "run_integration.py replay",
+ "reason_counts": {
+  "INSUFFICIENT_HISTORY": 156,
+  "MODEL_NOT_SELECTED": 156,
+  "OUT_OF_SCOPE_CHAIN": 57,
+  "SOURCE_STALE": 156,
+  "TARGET_NOT_FEASIBLE": 21,
+  "UNCALIBRATED": 156
+ },
+ "records": 156,
+ "ref": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+ "reference_numbers_note": "B0 and B2 raw numbers are internal records for the Phase 19 comparison; only their hash is kept here",
+ "reference_numbers_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+ "reference_records": 0,
+ "references_are_internal": true,
+ "registry_modes": [
+  "NO_VIABLE_CHAMPION"
+ ],
+ "requests": 104,
+ "round_1_documents": 156,
+ "round_1_events": {
+  "DISCOVERY": 47,
+  "MATERIAL_CHANGE": 5
+ },
+ "round_2_documents": 0,
+ "round_2_events": {
+  "DUPLICATE": 52
+ },
+ "socket_events": 0,
+ "unique_forecast_ids": true,
+ "wall_s": 15.14,
+ "window_commits": 3,
+ "window_decision_events": 52,
+ "window_from_utc": "2026-10-24T00:00:00Z"
+}
