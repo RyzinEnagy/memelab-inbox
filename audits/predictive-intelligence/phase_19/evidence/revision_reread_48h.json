@@ -1,0 +1,53 @@
+{
+ "labels_checked": 8,
+ "labels_revised": [],
+ "reads": [
+  {
+   "appeared": 0,
+   "changed": [],
+   "compared_older_than_48h": 998,
+   "first": "d0b3db4a34bd2f7b32f386d2b55b5bbd8aebb9895dac078105efb4dd0029137c",
+   "frozen_check": true,
+   "gap_s": 174113.3,
+   "http": 200,
+   "second": "22dbb08a71a53a486b495f3a5e435ee9f62808e906e34682417b1ab68e756fb1",
+   "vanished": 0
+  },
+  {
+   "appeared": 0,
+   "changed": [],
+   "compared_older_than_48h": 999,
+   "first": "6e57db26d3f0aebb58ab23a3bb7af79dd039bd5772b9f40bf7d86f913d8ed37c",
+   "frozen_check": true,
+   "gap_s": 174865.4,
+   "http": 200,
+   "second": "101bfbbfba4e4da14f41611b05e9317d0a3679f692c8659da3a0a475d991eee1",
+   "vanished": 0
+  },
+  {
+   "appeared": 0,
+   "changed": [],
+   "compared_older_than_48h": 999,
+   "first": "c1690b8fe66d579f5668aa9f2fcad8213ec228448409d15b663e2bdc6c7d9eb2",
+   "frozen_check": true,
+   "gap_s": 174327.8,
+   "http": 200,
+   "second": "2229c3a56c1f65e84edb20ff57c7f425a91d3aa7aac73ed2f0556928412699a4",
+   "vanished": 0
+  }
+ ],
+ "rule": "OK label reads of the Phase 19 read map (distinct response keys whose read is OK), ordered by sha256 of the request URL, lowest ceil(10%) (PI-D-018, PI-D-106); frozen before the re-read",
+ "sample_sha256": "11874dd9c4719662e07b8e8eabc5e7209aca6016fd4cec27a748da6212fb61fe",
+ "summary": {
+  "candles_changed": 0,
+  "candles_compared": 2996,
+  "frozen_48h_checks": 3,
+  "labels_checked": 8,
+  "labels_revised": 0,
+  "ledger": {
+   "appended": 0
+  },
+  "next": "no label changed: the Phase 19 outputs stand; record it and lift the provisional marker",
+  "reads": 3
+ }
+}

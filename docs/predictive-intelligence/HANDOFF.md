@@ -1,11 +1,11 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-111). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_20/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-112). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_20/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
 
-## Position on 2026-10-27
+## Position on 2026-10-29
 
 - Phases 00 to 13 and 16 to 18: PASS. Phases 14 and 15: TEST_ONLY (behavioral path, optional, OFF).
-- Phase 19: NEEDS_REVIEW with one open gate item, G25, the frozen 48 h revision re-read (PI-D-106), due from 2026-10-29T14:35Z and run by the orchestrator. Every Phase 19 outcome and number is PROVISIONAL_PENDING_REVISION_REREAD.
+- Phase 19: PASS (2026-10-29). G25, the frozen 48 h revision re-read, ran with 0 revisions and 0 label changes; the provisional marking of PI-D-106 is lifted (PI-D-112).
 - Phase 20 (independent adversarial integration and scientific audit): **NEEDS_REVIEW**, pending the orchestrator's independent skeptic (PI-D-013). No CRITICAL finding; the two MATERIAL findings are repaired (CP20-1, PI-D-110); result PI-D-111.
 - Spend: 0. No vendor or language-model call in Phase 20; free PyPI downloads for the fresh-environment check only.
 
@@ -27,7 +27,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 ## Open items, in order
 
 1. The orchestrator's independent skeptic of Phase 20 (`phase_20/SKEPTIC_PACKET.md`). Phase 20 stays NEEDS_REVIEW until it has run and its findings are handled.
-2. G25 of Phase 19 (PI-D-106): from 2026-10-29T14:35Z `python -B audits/predictive-intelligence/phase_19/probes/fetch_labels.py reread48`; then record the result as PI-D-106 item 4 says. After it: F20-04 (parse the token parameter in `monitoring.check_payload`) under its own change control.
+2. Done 2026-10-29: G25 of Phase 19 (0 revisions, PI-D-112). Next for that line: F20-04 (parse the token parameter in `monitoring.check_payload`) under its own change control.
 3. After 2026-10-28 10:30Z: the maturity run for the 7 PENDING T2 outcomes (Phase 19 HANDOFF steps in `phase_19/monitoring/PROSPECTIVE_PLAN.md`).
 4. Phase 21 (research-only release or explicit NO-GO): the honest classification on the evidence is a research-only abstention engine, no validated or shadow model; carry F20-11 (loopback) and F20-14 (drift appends to the ledger) into the install runbook; F20-01, F20-05, F20-07 need a change control that reruns the Phase 17 smoke and the Phase 18 goldens if they are to be closed.
 5. Carried: catalyst and social tables are not exported; forward depth collection approved but not deployed (PI-D-044); keep `tests/test_predictive_reproductions.py` green; a merge of the backtesting PR #4 needs the steps in `phase_17/integration/REQUEST_FLOW.md`; any external alert delivery needs Elving's approval.

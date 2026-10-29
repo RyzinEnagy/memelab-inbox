@@ -1,6 +1,6 @@
 {
  "phase": "19",
- "status": "NEEDS_REVIEW",
+ "status": "PASS",
  "head_before": "4b07b0d2b906a719ae6bd948ae86d5a20282b753",
  "head_after": "afb024d (repair records); the post-commit record commit follows it",
  "checks": [
@@ -196,9 +196,9 @@
   {
    "name": "G25 frozen 48 h revision re-read (PI-D-106)",
    "command": "python -B probes/fetch_labels.py reread48",
-   "exit_code": 1,
-   "result": "refused: too early (sample reads re-readable from 2026-10-29T14:14:24Z to 14:26:44Z); OPEN",
-   "pass": false
+   "exit_code": 0,
+   "result": "run 2026-10-29T14:48:32Z by the orchestrator: 3 of 3 frozen 48 h checks (gaps 48.4 to 48.6 h), 2,996 candles compared, 0 changed, 0 appeared or vanished; 8 labels checked, 0 revised; ledger appended 0 (evidence/revision_reread_48h.json)",
+   "pass": true
   },
   {
    "name": "RP2 post-commit full suite at afb024d",
@@ -290,7 +290,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_19/evidence/label_calls.json",
-   "sha256": "7b000569ff92cc2dd6d5b05170200c98d7c991071908c0e8c946aa5767159eda"
+   "sha256": "d4b986a69e5db85b09766c72ef3176759b97e95b04407468aa4cd91ce841ca21"
   },
   {
    "path": "audits/predictive-intelligence/phase_19/raw/MANIFEST.csv",
@@ -310,7 +310,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_19/PHASE_19_EVIDENCE.md",
-   "sha256": "f094573f3384e059ceeef16fa1327a2cb7b11ee04756287b649435e4982f124e"
+   "sha256": "53d7524bba67ae590d68c2bf727b1054284bf3dc6147f118a65a79259d5ab5a1"
   },
   {
    "path": "audits/predictive-intelligence/phase_19/SKEPTIC_PACKET.md",
@@ -339,6 +339,10 @@
   {
    "path": "audits/predictive-intelligence/phase_19/skeptic/PHASE_19_SKEPTIC.md",
    "sha256": "455033b89f1b9e6d3910f1262853619019027cd3e301ec1a9d49f51e3d0dd7b7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/evidence/revision_reread_48h.json",
+   "sha256": "7672535669d30dc9988bbeca3f53a81fd6f2d17d12b85c97fd8c773ff818b803"
   }
  ],
  "results": {
@@ -395,13 +399,11 @@
   "depth, liquidity, catalyst and distribution outcomes not reconciled: forward depth collector not deployed (D-BT-034, D-BT-035), no depth snapshot",
   "the module does not refuse a consistent rewrite of its own history (A3) or a truncate and re-append (A4); git history and the offline rebuild catch them (outputs tests, full clone needed)"
  ],
- "blockers": [
-  "G25: the frozen 48 h revision re-read cannot run before 2026-10-29T14:14Z to 14:27Z (one per sample read); the orchestrator runs it"
- ],
+ "blockers": [],
  "approvals_needed": [
   "a change control to ACCEPTANCE promotion if Elving wants a promotion path (PI-D-091)",
   "deploying the forward depth collector (approved PI-D-044, not done)"
  ],
- "next_eligible_phase": "20 (allowed to proceed by PI-D-106 item 3 with Phase 19 results provisional); Phase 19 PASS after G25 runs",
- "status_detail": "after repair pass 2 (PI-D-106 to PI-D-108): every gate item holds except G25, the frozen 48 h revision re-read (due from 2026-10-29T14:35Z, run by the orchestrator); every Phase 19 result is PROVISIONAL_PENDING_REVISION_REREAD; Phases 20 and 21 may proceed (PI-D-106 item 3)"
+ "next_eligible_phase": "20 (NEEDS_REVIEW pending the orchestrator's skeptic)",
+ "status_detail": "PASS: G25 ran on 2026-10-29 with 0 revisions and 0 label changes; PI-D-106 provisional marking lifted by PI-D-112; every other gate item held after repair pass 2 (PI-D-108)."
 }

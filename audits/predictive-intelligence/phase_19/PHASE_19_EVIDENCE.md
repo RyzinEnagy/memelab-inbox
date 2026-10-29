@@ -1,6 +1,6 @@
 # Phase 19 evidence: outcome tracking, prospective replay and model drift
 
-Status: **NEEDS_REVIEW** after repair pass 2, with one open gate item (G25, the frozen 48 h revision re-read, due from 2026-10-29T14:35Z, PI-D-106). Every Phase 19 outcome and number is PROVISIONAL_PENDING_REVISION_REREAD. The first-pass sections below are kept as written; the repair pass is the last section. Branch `feature/predictive-intelligence`; HEAD before `4b07b0d`; work 2026-10-27 13:05Z to about 14:55Z. Decisions PI-D-104 (rules) and PI-D-105 (result).
+Status: **PASS** (2026-10-29). G25, the frozen 48 h revision re-read, ran with 0 revisions and 0 label changes, and the provisional marking of PI-D-106 is lifted (PI-D-112; section "G25 frozen 48 h re-read" at the end). It was NEEDS_REVIEW after repair pass 2 with G25 open. The first-pass sections below are kept as written; the repair pass is the last section. Branch `feature/predictive-intelligence`; HEAD before `4b07b0d`; work 2026-10-27 13:05Z to about 14:55Z. Decisions PI-D-104 (rules) and PI-D-105 (result).
 
 ## Entry gate
 
@@ -181,3 +181,11 @@ Counterexample CX-SK19 (skeptic): a revision of a final LABELED outcome appended
 Disagreements: none with the findings. The skeptic offered two remedies for M1; the orchestrator chose (b) as PI-D-106. The A3 and A4 attacks are not refused by the module itself (a consistent rewrite is indistinguishable from a ledger without history); they are caught by history (git) and by the rebuild, which is what the tests now check.
 
 Remaining open item: G25 (PI-D-106). Post-commit checks at the repair records commit `afb024d`: suite `2 failed, 2200 passed, 1 skipped in 503.48s` (the two known clock-dependent failures only; strays removed by hand), guard 0 violations over 2,850 files, seal check 0 problems, single-branch release audit exit 0 "Needs action: no." (`postcommit/rp2_*`).
+
+## G25 frozen 48 h re-read (2026-10-29, orchestrator)
+
+- Command, unchanged since PI-D-106: `python -B audits/predictive-intelligence/phase_19/probes/fetch_labels.py reread48`, started 2026-10-29T14:48:32Z at `0b24539` (the frozen code and sample of PI-D-106; sample sha256 `11874dd9...` unchanged). Exit 0.
+- Result (`evidence/revision_reread_48h.json`): 3 of 3 sample reads were frozen 48 h checks (gaps 174,113 s, 174,328 s and 174,865 s); 2,996 candle positions compared, 0 changed, 0 appeared, 0 vanished; 8 LABELED outcomes re-derived, 0 revised; the outcome ledger appended 0 entries.
+- Calls: 3 free GeckoTerminal OHLCV calls with `token=<mint>`, all HTTP 200, appended to `evidence/label_calls.json` and to COST_LEDGER.md. The re-read bodies are kept by sha256 in the result file, not archived as files.
+- Consequence (PI-D-106 item 4, PI-D-112): no rerun is owed; the Phase 19 outputs stand and are no longer PROVISIONAL_PENDING_REVISION_REREAD. Statements in Phases 20 and 21 that rest on Phase 19 outcomes are no longer provisional for the revision check.
+
