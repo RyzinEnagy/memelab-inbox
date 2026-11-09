@@ -14,7 +14,8 @@
 # Nothing is written in this checkout; everything is under OUTDIR.
 set -u
 PUSHED="$1"
-FROZEN="$2"
+LOCAL0="$(cd "$(dirname "$0")/../../../.." && pwd)"
+FROZEN="$(git -C "$LOCAL0" rev-parse --verify "$2^{commit}")" || { echo "cannot resolve $2" >&2; exit 2; }   # a full sha: git fetch by short sha fails
 OUT="$3"
 LOCAL="$(cd "$(dirname "$0")/../../../.." && pwd)"
 URL=https://github.com/RyzinEnagy/memelab-inbox.git
@@ -36,9 +37,10 @@ git -C "$C" checkout -q "$BR"
 GOT="$(git -C "$C" rev-parse HEAD)"
 log "clone HEAD $GOT expected $PUSHED"
 [ "$GOT" = "$(git -C "$LOCAL" rev-parse "$PUSHED")" ] || { log "STOP: the remote branch is not at the pushed head"; exit 3; }
-git -C "$C" fetch -q "$LOCAL" "$FROZEN"
-git -C "$C" merge -q --ff-only FETCH_HEAD
-log "fast-forward to $(git -C "$C" rev-parse HEAD) exit $?"
+git -C "$C" fetch -q "$LOCAL" "$FROZEN" || { log "STOP: fetch of $FROZEN failed"; exit 3; }
+git -C "$C" merge -q --ff-only FETCH_HEAD || { log "STOP: not a fast-forward"; exit 3; }
+log "fast-forward to $(git -C "$C" rev-parse HEAD)"
+[ "$(git -C "$C" rev-parse HEAD)" = "$FROZEN" ] || { log "STOP: clone not at $FROZEN"; exit 3; }
 git -C "$C" diff --name-only "$GOT" HEAD > "$OUT/logs/changed_since_pushed.txt"
 log "paths changed since the pushed head: $(wc -l < "$OUT/logs/changed_since_pushed.txt"), outside phase_21: $(grep -vc "^$A/phase_21/" "$OUT/logs/changed_since_pushed.txt")"
 git -C "$C" log -1 --format=%cI origin/main > "$OUT/logs/origin_main_date.txt"
