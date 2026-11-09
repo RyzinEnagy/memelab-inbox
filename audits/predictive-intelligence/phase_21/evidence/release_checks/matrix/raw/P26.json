@@ -1,0 +1,47 @@
+{
+ "scenario": "P26",
+ "check": "probes/scenarios.py P26",
+ "doc": "A language model that already knows a historical headline: contamination flagged, no as-of claim.",
+ "assertions": [
+  {
+   "assert": "an engine trained after the decision is flagged",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"LLM_PRETRAINING_CONTAMINATION_RISK\", \"EXPLORATORY_NOT_AS_OF\"]",
+   "expect": null
+  },
+  {
+   "assert": "an engine with an unknown cutoff is flagged",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "model-extracted claims are excluded from features",
+   "pass": true,
+   "gate": true,
+   "observed": 1.0,
+   "expect": null
+  },
+  {
+   "assert": "no language-model output is a feature of the served family",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "the behavioral trial records retrospective LLM runs as exploratory, not as-of",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  }
+ ],
+ "passed": 5,
+ "total": 5,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

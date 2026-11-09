@@ -1,0 +1,33 @@
+{
+ "scenario": "P43",
+ "check": "probes/scenarios.py P43",
+ "doc": "Training across token creation times mixed into an earlier decision: the future-universe check fails.",
+ "assertions": [
+  {
+   "assert": "a pool row whose token was first seen after the cohort time is refused",
+   "pass": true,
+   "gate": true,
+   "observed": "FutureUniverseError: pool row late has a label maturing after the cohort time (P05, NC2-AC)",
+   "expect": "raises FutureUniverseError"
+  },
+  {
+   "assert": "a card fit refuses a row decided after its cutoff (named P43)",
+   "pass": true,
+   "gate": true,
+   "observed": "AsOfError: row 184: decided at 1791867912.7052279, after the training as-of 1791763200.0 (P13, P43)",
+   "expect": "raises Exception with 'P43'"
+  },
+  {
+   "assert": "prospective LABELED rows stored in the label store never reach training_labels",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"stored\": 3, \"training_rows\": {\"price_path_severe_drawdown_or_halt_24h\": 0, \"price_path_target_before_invalidation_24h\": 0, \"price_path_target_before_invalidation_6h\": 0}}",
+   "expect": null
+  }
+ ],
+ "passed": 3,
+ "total": 3,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

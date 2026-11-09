@@ -1,0 +1,26 @@
+{
+ "scenario": "P42",
+ "check": "probes/scenarios.py P42",
+ "doc": "A candidate scored 100 from its README alone: the unverified rubric entries are refused.",
+ "assertions": [
+  {
+   "assert": "control: the committed scorecard passes its checker",
+   "pass": true,
+   "gate": true,
+   "observed": "[0, \"checks done, problems 0\\n\"]",
+   "expect": null
+  },
+  {
+   "assert": "README-only full marks are refused by the checker",
+   "pass": true,
+   "gate": true,
+   "observed": "[1, 50, \"terion integration_fit of 666ghj/MiroFish is 0, items sum to 8\\nFAIL criterion reproducibility of 666ghj/MiroFish is 1, items sum to 8\\nFAIL criterion cost_latency of 666ghj/MiroFish is 0, items sum to 5\\nFAIL criterion license_security of 666ghj/MiroFish is 2, items sum to 7\\nchecks done, problems 151\\n\"]",
+   "expect": null
+  }
+ ],
+ "passed": 2,
+ "total": 2,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

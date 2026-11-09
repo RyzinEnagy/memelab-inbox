@@ -1,0 +1,40 @@
+{
+ "scenario": "P24",
+ "check": "probes/scenarios.py P24",
+ "doc": "A small calibration set behind a confident 95% forecast: explicit uncertainty or abstention.",
+ "assertions": [
+  {
+   "assert": "40 events, 6 positives, 3 days fail the frozen calibration fit gate",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"events 40 < 100\", \"per class 6 < 20\", \"decision days 3 < 5\"]",
+   "expect": null
+  },
+  {
+   "assert": "a forecast behind that set abstains",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"INSUFFICIENT_HISTORY\", \"UNCALIBRATED\"]",
+   "expect": null
+  },
+  {
+   "assert": "with a named reason",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"NO_CALIBRATOR\", \"CALIBRATION_SET_TOO_SMALL\"]",
+   "expect": null
+  },
+  {
+   "assert": "every real calibration card is UNCALIBRATED and not publishable",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"T1_24h\": \"UNCALIBRATED\", \"T1b_6h\": \"UNCALIBRATED\", \"T2_24h\": \"UNCALIBRATED\"}",
+   "expect": null
+  }
+ ],
+ "passed": 4,
+ "total": 4,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

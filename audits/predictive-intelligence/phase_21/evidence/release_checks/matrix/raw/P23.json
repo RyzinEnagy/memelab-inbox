@@ -1,0 +1,33 @@
+{
+ "scenario": "P23",
+ "check": "probes/scenarios.py P23",
+ "doc": "Brier and log loss conflict on a sparse cohort: both reported with counts and uncertainty.",
+ "assertions": [
+  {
+   "assert": "the conflict is flagged",
+   "pass": true,
+   "gate": true,
+   "observed": "[0.07131249500000027, 0.12749999999999997, 0.5347576642854807, 0.42270908780599104]",
+   "expect": null
+  },
+  {
+   "assert": "both scores and the counts are reported",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "an interval is given per resampling unit with the wider one governing",
+   "pass": true,
+   "gate": true,
+   "observed": "mint",
+   "expect": null
+  }
+ ],
+ "passed": 3,
+ "total": 3,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

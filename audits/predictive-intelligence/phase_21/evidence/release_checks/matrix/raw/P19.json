@@ -1,0 +1,33 @@
+{
+ "scenario": "P19",
+ "check": "probes/scenarios.py P19",
+ "doc": "An exchange or custody wallet tagged as an insider: classified as custody or unknown.",
+ "assertions": [
+  {
+   "assert": "a creator address that is a known custody wallet is CUSTODY_OR_EXCHANGE, not an insider",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"basis\": \"LABELLED\", \"insider\": false, \"label\": null, \"role\": \"CUSTODY_OR_EXCHANGE\"}",
+   "expect": null
+  },
+  {
+   "assert": "its sale is not insider distribution",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"class\": \"SALE\", \"counts_as_inferred_distribution\": false, \"counts_as_insider_distribution\": false, \"is_sale\": true, \"note\": null}",
+   "expect": null
+  },
+  {
+   "assert": "an unlabelled wallet is UNKNOWN, insider None",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"basis\": \"UNKNOWN\", \"insider\": null, \"label\": null, \"role\": \"UNKNOWN\"}",
+   "expect": null
+  }
+ ],
+ "passed": 3,
+ "total": 3,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

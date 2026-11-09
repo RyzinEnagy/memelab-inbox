@@ -1,0 +1,47 @@
+{
+ "scenario": "P14",
+ "check": "probes/scenarios.py P14",
+ "doc": "A hidden related token or deployer across train and test: grouped, purged, sensitivity reported.",
+ "assertions": [
+  {
+   "assert": "analogs sharing the target's deployer are excluded",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"same_campaign\": 0, \"same_creator\": 8, \"same_mint\": 0}",
+   "expect": null
+  },
+  {
+   "assert": "none of them is an analog",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "a mint seen under two creators links them into one group",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"group:solana:M0000\", \"group:solana:M0000\"]",
+   "expect": null
+  },
+  {
+   "assert": "an unrelated row stays in its own group",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"group:solana:M0005\", \"group:solana:M0000\"]",
+   "expect": null
+  },
+  {
+   "assert": "label group keys are the exact mint and the creator wallet",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"creator\": \"CreatorY\", \"mint\": \"MintX\"}",
+   "expect": null
+  }
+ ],
+ "passed": 5,
+ "total": 5,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

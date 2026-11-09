@@ -1,0 +1,9 @@
+Alert run 1 (dry_run), 2026-11-09 17:33 EST (2026-11-09 22:33 UTC), policy predictive-alerts-policy-1 e2a17738fc6c
+Outcome: evaluated
+Candidates 0, new alerts 0, deduped 0, suppressed 3
+No alerts today.
+  suppressed risk_override slopcannon on solana (55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW): SOURCE_STALE (the inputs or the request are too old for an alert; the report still shows the flag)
+  suppressed risk_override GOMO on solana (9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump): SOURCE_STALE (the inputs or the request are too old for an alert; the report still shows the flag)
+  suppressed risk_override HIGGS on solana (DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump): SOURCE_STALE (the inputs or the request are too old for an alert; the report still shows the flag)
+Dry run: previews only. Nothing was sent.
+Delivery: previews in the local outbox only (dry run); nothing was sent to any device.

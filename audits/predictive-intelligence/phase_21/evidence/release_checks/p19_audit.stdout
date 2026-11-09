@@ -1,0 +1,1 @@
+{"ok": true, "F3": {"pairs_expected": 156, "pairs_with_outcome": 156, "states": {"LABELED": 61, "MARKET_INACTIVE": 9, "NO_SNAPSHOT_PRICE": 15, "OUT_OF_SCOPE_CHAIN": 57, "PENDING": 7, "THINNED": 4, "VENDOR_OR_ROUTE_GAP": 3}, "ok": true}, "order": {"commit_before_first_call": true, "no_outcome_at_that_commit": true}}

@@ -1,0 +1,54 @@
+{
+ "scenario": "P02",
+ "check": "probes/scenarios.py P02",
+ "doc": "One mint on several pools or venues: one identity, per-venue evidence kept.",
+ "assertions": [
+  {
+   "assert": "one attempt per chain and mint in a pass, the other visible",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"SUPERSEDED_IN_PASS\", \"DISCOVERY\"]",
+   "expect": null
+  },
+  {
+   "assert": "the attempted snapshot is the newer one",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"catalyst\": null, \"chain\": \"solana\", \"fatal\": [], \"liquidity\": 90000.0, \"mint\": \"Ebjh5RZR799aVdZR9yePMNmEVmGibvjM3Zqr4kEegSbS\", \"pool\": \"BwA1pwyyVgG58mGo3GvsCt4jm5x1ns5sggD5FrtRtkqC\", \"price\": 1.0, \"score\": 60, \"served\": {\"T1_24h\": {\"model_sha\": null, \"pin\": \"7cb1c8b292f8a30984926b87d6598bffcca6822c067038b90e297c8e8d5c2b13\", \"states\": []}, \"T1b_6h\": {\"model_sha\": null, \"pin\": \"4efd53b196ee31a4...",
+   "expect": null
+  },
+  {
+   "assert": "one label record per target for the one decision",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"price_path_target_before_invalidation_24h\", \"price_path_target_before_invalidation_6h\", \"price_path_severe_drawdown_or_halt_24h\"]",
+   "expect": null
+  },
+  {
+   "assert": "each record's read is the decision's own pool and mint",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"DQyGMAGx8nB6ykixotLNFC6eVVQjrMqz7AkRyinNkEm1\", \"DQyGMAGx8nB6ykixotLNFC6eVVQjrMqz7AkRyinNkEm1\", \"DQyGMAGx8nB6ykixotLNFC6eVVQjrMqz7AkRyinNkEm1\"]",
+   "expect": null
+  },
+  {
+   "assert": "a revision check across two pools of one mint is refused (per-venue evidence)",
+   "pass": true,
+   "gate": true,
+   "observed": "LabelError: a revision compares two reads of the same pool and mint (P02)",
+   "expect": "raises LabelError with 'P02'"
+  },
+  {
+   "assert": "depth on another pool never sizes this decision",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"basis\": \"EXECUTION_DATA_MISSING\", \"pool_address\": \"PoolDecision\", \"route_lost_sizes\": [], \"size_cap_usd\": null}",
+   "expect": null
+  }
+ ],
+ "passed": 6,
+ "total": 6,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

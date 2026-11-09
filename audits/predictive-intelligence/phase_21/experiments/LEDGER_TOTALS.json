@@ -1,0 +1,9 @@
+{
+ "added_rows": 26,
+ "after_rows": 3650,
+ "before_rows": 3624,
+ "candidate_configurations_added": 0,
+ "n_search": 130,
+ "n_search_sensitivity": 169,
+ "what": "Phase 21 adds audit rows only (AUDIT_RUN_NOT_A_CONFIGURATION); the cumulative ledger is phase_20/experiments/SEARCH_LEDGER.csv plus SEARCH_LEDGER_P21_ROWS.csv"
+}

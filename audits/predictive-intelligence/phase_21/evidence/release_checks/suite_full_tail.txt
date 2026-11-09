@@ -1,0 +1,6 @@
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+FAILED tests/test_catalyst_firecrawl.py::test_page_history_and_spend_survive_a_new_session_through_the_state_export
+=========================== short test summary info ============================
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+FAILED tests/test_catalyst_firecrawl.py::test_page_history_and_spend_survive_a_new_session_through_the_state_export
+2 failed, 2239 passed, 5 skipped, 1 warning in 258.76s (0:04:18)

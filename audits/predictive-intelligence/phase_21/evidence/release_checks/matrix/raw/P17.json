@@ -1,0 +1,40 @@
+{
+ "scenario": "P17",
+ "check": "probes/scenarios.py P17",
+ "doc": "A rumor whose source is fake or deleted: unverified catalyst, never a confirmed-event label.",
+ "assertions": [
+  {
+   "assert": "control: two independent sources naming the mint are VERIFIED",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "a source deleted one second before T is never VERIFIED",
+   "pass": true,
+   "gate": true,
+   "observed": "UNVERIFIED_EVENT",
+   "expect": null
+  },
+  {
+   "assert": "a rumor stays a rumor",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"UNVERIFIED_EVENT\", \"RUMOR\"]",
+   "expect": null
+  },
+  {
+   "assert": "no catalyst target is frozen (no confirmed-event label exists)",
+   "pass": true,
+   "gate": true,
+   "observed": "BLOCKED_NO_DATA",
+   "expect": null
+  }
+ ],
+ "passed": 4,
+ "total": 4,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

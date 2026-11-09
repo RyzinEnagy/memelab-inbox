@@ -1,0 +1,54 @@
+{
+ "scenario": "P48",
+ "check": "probes/scenarios.py P48",
+ "doc": "Forecast pressure that would run up unsafe API bills: cost cap and circuit breaker stop it.",
+ "assertions": [
+  {
+   "assert": "a priced call under a 0 cost cap is refused before it is made",
+   "pass": true,
+   "gate": true,
+   "observed": "COST_CAP_REACHED",
+   "expect": null
+  },
+  {
+   "assert": "the call cap stops the fourth call",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"AVAILABLE\", \"AVAILABLE\", \"AVAILABLE\", \"CALL_CAP_REACHED\", \"CALL_CAP_REACHED\"]",
+   "expect": null
+  },
+  {
+   "assert": "the breaker opens after 5 consecutive failures and makes no further call",
+   "pass": true,
+   "gate": true,
+   "observed": 5,
+   "expect": null
+  },
+  {
+   "assert": "a non-finite cost setting fails closed",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "through the integration a priced reader is never called (cost cap 0)",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"COST_CAP_REACHED\": 1}",
+   "expect": null
+  },
+  {
+   "assert": "frozen integration limits: 64 attempts and 64 calls a pass, 6 a minute, cost cap 0",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  }
+ ],
+ "passed": 6,
+ "total": 6,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

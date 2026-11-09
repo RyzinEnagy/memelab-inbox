@@ -1,0 +1,106 @@
+{
+ "commands": [
+  {
+   "command": "python -B audits/predictive-intelligence/phase_19/probes/fetch_labels.py fetch",
+   "exit": 0,
+   "result": "mapped 28, planned 28, no_snapshot_price 5; 0 vendor calls (every planned decision already mapped)"
+  },
+  {
+   "command": "python -B audits/predictive-intelligence/phase_19/probes/run_prospective.py outcomes",
+   "exit": 0,
+   "result": "T2_24h PENDING 7, label_rows_added 0, ledger appended 0, entries 520, verify ok, network_calls 0"
+  },
+  {
+   "command": "unshare -n python -B audits/predictive-intelligence/phase_19/probes/run_prospective.py evaluate SCRATCH/evaluate",
+   "exit": 0,
+   "result": "every output file byte-equal to the committed monitoring/ file except PRIMARY_RESULTS.json (only ledger_head differs: the ledger gained the G25 and drift entries after that file was written) and run_log_evaluate.json; SEARCH_LEDGER_ROWS.csv is written by the step and not compared"
+  }
+ ],
+ "drift_not_run": "run_prospective.py drift appends to the committed ledger (F20-14); not part of the maturity rule",
+ "files_changed": {
+  "private_store": [
+   "/home/claude/pi_research/p19/read_plan.json (rewritten by fetch: made_at and 7 boundaries)",
+   "/home/claude/pi_research/p19/dev_store.sqlite (one predictive_label_runs row added by outcomes; no label row)"
+  ],
+  "tracked": [
+   "audits/predictive-intelligence/phase_19/evidence/outcomes_runs.json (one run record appended by the frozen outcomes step; earlier records byte-equal)"
+  ]
+ },
+ "head": "b048aacf25f3b8445a6b3a88ca88e67e74220676",
+ "ledger": {
+  "appended": 0,
+  "sha256_before_after_equal": true
+ },
+ "plan_change": {
+  "all_already_mapped": true,
+  "decisions_whose_needed_boundary_moved_to_T2": 7,
+  "rows": [
+   {
+    "already_mapped": true,
+    "decision_key": "58e073ea742c7f26d15b098ced48adc412f4cc2b73e6fd7ef7e0faf48fb4854e",
+    "new_boundary": 1793183400.0,
+    "old_boundary": 1793097000.0
+   },
+   {
+    "already_mapped": true,
+    "decision_key": "605d6025d6cf85b3af77368269defc2bb9cb824054039aff2f44e83e056e8208",
+    "new_boundary": 1793183400.0,
+    "old_boundary": 1793097000.0
+   },
+   {
+    "already_mapped": true,
+    "decision_key": "88f7a089aedc06e542b73f2cc49ba7bc6b0859686929c60cc689f4702af1fca0",
+    "new_boundary": 1793183400.0,
+    "old_boundary": 1793097000.0
+   },
+   {
+    "already_mapped": true,
+    "decision_key": "9b6acf9bc092b2875acbfd013b5b7baea9df1a5d477c79502b1a23edee37ce75",
+    "new_boundary": 1793183400.0,
+    "old_boundary": 1793097000.0
+   },
+   {
+    "already_mapped": true,
+    "decision_key": "9c554ae09c79729cdaf6759fdde4b9c8c03285982b691e9392676283cff8ca4a",
+    "new_boundary": 1793183400.0,
+    "old_boundary": 1793097000.0
+   },
+   {
+    "already_mapped": true,
+    "decision_key": "cc8577a48bbae0c34016a40ecc576982cc4756fdedf84de2026308bde2c5128e",
+    "new_boundary": 1793183400.0,
+    "old_boundary": 1793097000.0
+   },
+   {
+    "already_mapped": true,
+    "decision_key": "cf613876c9f61a64b9cb380b557d7be504e5edbcdb94523b34300524f8e2b24b",
+    "new_boundary": 1793183400.0,
+    "old_boundary": 1793097000.0
+   }
+  ]
+ },
+ "spend": 0,
+ "verdicts": {
+  "T1_24h": {
+   "committed": "INSUFFICIENT_DAYS",
+   "n_committed": 22,
+   "n_rerun": 22,
+   "rerun": "INSUFFICIENT_DAYS"
+  },
+  "T1b_6h": {
+   "committed": "INSUFFICIENT_DAYS",
+   "n_committed": 24,
+   "n_rerun": 24,
+   "rerun": "INSUFFICIENT_DAYS"
+  },
+  "T2_24h": {
+   "committed": "INSUFFICIENT_DAYS",
+   "n_committed": 15,
+   "n_rerun": 15,
+   "rerun": "INSUFFICIENT_DAYS"
+  }
+ },
+ "verdicts_changed": false,
+ "what": "Phase 19 maturity step for the 7 PENDING T2 outcomes, frozen commands only (checklist G8)",
+ "why_no_outcome_matured": "fetch_labels.cmd_fetch skips every decision already in read_map.json; the 7 decisions were mapped to reads ending at the T1 boundary (2026-10-27T10:30Z), and T2 needs a read to 2026-10-28T10:30Z. Maturing them needs a code change (OI21-1), not made."
+}

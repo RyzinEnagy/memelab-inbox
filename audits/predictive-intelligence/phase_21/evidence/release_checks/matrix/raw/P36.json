@@ -1,0 +1,33 @@
+{
+ "scenario": "P36",
+ "check": "probes/scenarios.py P36",
+ "doc": "A feature that uses an observation after its available_at: the strict as-of validation fails.",
+ "assertions": [
+  {
+   "assert": "a feature available one second after the decision is refused",
+   "pass": true,
+   "gate": true,
+   "observed": "AsOfError: row 0: f__available_at 1792000001.0 is after the decision 1792000000.0 (future feature, P36)",
+   "expect": "raises AsOfError with 'P36'"
+  },
+  {
+   "assert": "the publication layer abstains when one input is late",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"DISALLOWED_INPUT\"]",
+   "expect": null
+  },
+  {
+   "assert": "a training row with a late input is refused at fit time",
+   "pass": true,
+   "gate": true,
+   "observed": "AsOfError: row 0: thesis_log1p_liquidity_usd__available_at 1792000005.0 is after the decision 1792000000.0 (future feature, P36)",
+   "expect": "raises AsOfError"
+  }
+ ],
+ "passed": 3,
+ "total": 3,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

@@ -1,0 +1,47 @@
+{
+ "scenario": "P37",
+ "check": "probes/scenarios.py P37",
+ "doc": "An outcome label missing because the exchange stopped quoting: censored, unknown or ruin, never a favourable fill.",
+ "assertions": [
+  {
+   "assert": "T1: no barrier touched while quoted is NEITHER, a negative, never a target fill",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"LABELED\", \"NEITHER\"]",
+   "expect": null
+  },
+  {
+   "assert": "T2: a quote stop evidenced on every pool is TRADING_HALT, a positive (ruin)",
+   "pass": true,
+   "gate": true,
+   "observed": "TRADING_HALT",
+   "expect": null
+  },
+  {
+   "assert": "T2: without the other pools' evidence it is censored, not a label",
+   "pass": true,
+   "gate": true,
+   "observed": "UNVERIFIABLE_NO_VENDOR_HISTORY",
+   "expect": null
+  },
+  {
+   "assert": "a censored outcome is never scored",
+   "pass": true,
+   "gate": true,
+   "observed": 0,
+   "expect": null
+  },
+  {
+   "assert": "the conservative lens is frozen: gaps count T1 negative and T2 positive",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  }
+ ],
+ "passed": 5,
+ "total": 5,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

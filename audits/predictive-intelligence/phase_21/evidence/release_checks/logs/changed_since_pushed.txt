@@ -1,0 +1,5 @@
+audits/predictive-intelligence/phase_21/ACCEPTANCE_CHECKLIST.md
+audits/predictive-intelligence/phase_21/experiments/EXPERIMENT_REGISTRY.csv
+audits/predictive-intelligence/phase_21/probes/chronology_audit.py
+audits/predictive-intelligence/phase_21/probes/measure.py
+audits/predictive-intelligence/phase_21/probes/release_checks.sh

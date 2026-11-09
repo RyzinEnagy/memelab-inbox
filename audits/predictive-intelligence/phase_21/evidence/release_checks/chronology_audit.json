@@ -1,0 +1,155 @@
+{
+ "C1_registry": {
+  "age_states_at_as_of": {
+   "MODEL_STALE": 69
+  },
+  "entries": 69,
+  "log_events": 75,
+  "modes_at_as_of": {
+   "price_path_severe_drawdown_or_halt_24h": "NO_VIABLE_CHAMPION",
+   "price_path_target_before_invalidation_24h": "NO_VIABLE_CHAMPION",
+   "price_path_target_before_invalidation_6h": "NO_VIABLE_CHAMPION"
+  },
+  "ok": true,
+  "training_after_cutoff": {}
+ },
+ "C2_predictions": {
+  "cutoff_not_before_decision": [],
+  "ok": true,
+  "predictions": 198
+ },
+ "C3_outcomes": {
+  "labeled_before_maturity": [],
+  "ok": true,
+  "outcome_before_its_prediction_set": [],
+  "outcome_states": {
+   "LABELED": 61,
+   "MARKET_INACTIVE": 9,
+   "NO_SNAPSHOT_PRICE": 15,
+   "OUT_OF_SCOPE_CHAIN": 57,
+   "PENDING": 7,
+   "THINNED": 4,
+   "VENDOR_OR_ROUTE_GAP": 3
+  },
+  "pending_recorded_after_maturity": [],
+  "verify": {
+   "entries": 520,
+   "head": "fbcea491b3edad60307e33ba8ea4027496085cb366f6104fbb7ec4a41784ccc3",
+   "ok": true,
+   "problems": []
+  }
+ },
+ "C4_git_order": {
+  "ok": true,
+  "phases": [
+   {
+    "checklist_commit": "b4baa78",
+    "checklist_not_after_results": true,
+    "phase": "05",
+    "results_commit": "b4baa78"
+   },
+   {
+    "checklist_commit": "4565e0b",
+    "checklist_not_after_results": true,
+    "phase": "06",
+    "results_commit": "4565e0b"
+   },
+   {
+    "checklist_commit": "74183c9",
+    "checklist_not_after_results": true,
+    "phase": "07",
+    "results_commit": "ccee7ad"
+   },
+   {
+    "checklist_commit": "8599318",
+    "checklist_not_after_results": true,
+    "phase": "08",
+    "results_commit": "fc6b990"
+   },
+   {
+    "checklist_commit": "3079af1",
+    "checklist_not_after_results": true,
+    "phase": "09",
+    "results_commit": "934d2d4"
+   },
+   {
+    "checklist_commit": "c3f04c8",
+    "checklist_not_after_results": true,
+    "phase": "10",
+    "results_commit": "f4b3a89"
+   },
+   {
+    "checklist_commit": "46afc85",
+    "checklist_not_after_results": true,
+    "phase": "11",
+    "results_commit": "208cdc1"
+   },
+   {
+    "checklist_commit": "79d30f5",
+    "checklist_not_after_results": true,
+    "phase": "12",
+    "results_commit": "c549748"
+   },
+   {
+    "checklist_commit": "0fdf698",
+    "checklist_not_after_results": true,
+    "phase": "13",
+    "results_commit": "9f95b71"
+   },
+   {
+    "checklist_commit": "9ed8377",
+    "checklist_not_after_results": true,
+    "phase": "14",
+    "results_commit": "bf06b87"
+   },
+   {
+    "checklist_commit": "b274cbc",
+    "checklist_not_after_results": true,
+    "phase": "15",
+    "results_commit": "cda97c3"
+   },
+   {
+    "checklist_commit": "8af3cd4",
+    "checklist_not_after_results": true,
+    "phase": "16",
+    "results_commit": "ffcedb4"
+   },
+   {
+    "checklist_commit": "7f7bc28",
+    "checklist_not_after_results": true,
+    "phase": "17",
+    "results_commit": "c25ce00"
+   },
+   {
+    "checklist_commit": "ebb7059",
+    "checklist_not_after_results": true,
+    "phase": "18",
+    "results_commit": "ac19668"
+   },
+   {
+    "checklist_commit": "5ffa5cf",
+    "checklist_not_after_results": true,
+    "phase": "19",
+    "results_commit": "aefbea6"
+   },
+   {
+    "checklist_commit": "9e1f29d",
+    "checklist_not_after_results": true,
+    "phase": "20",
+    "results_commit": "0b24539"
+   }
+  ]
+ },
+ "as_of_utc": "2026-11-09T00:00:00Z",
+ "head": "b048aacf25f3b8445a6b3a88ca88e67e74220676",
+ "negative_controls": {
+  "all_caught": true,
+  "labeled_recorded_before_maturity": true,
+  "outcome_before_prediction_set": true,
+  "pending_recorded_after_maturity": true,
+  "prediction_card_cutoff_after_decision": true,
+  "registry_training_row_at_cutoff": true
+ },
+ "network_events": 0,
+ "ok": true
+}

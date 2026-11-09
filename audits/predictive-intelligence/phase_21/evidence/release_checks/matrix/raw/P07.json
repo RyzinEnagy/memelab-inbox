@@ -1,0 +1,33 @@
+{
+ "scenario": "P07",
+ "check": "probes/scenarios.py P07",
+ "doc": "A vendor that silently backfills: revisions detected, both versions kept, label changed only through its own read.",
+ "assertions": [
+  {
+   "assert": "the revision check counts the changed candle under the frozen 48 h rule",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"changed\": [{\"fields\": \"hc\", \"start\": 1791422400.0}], \"frozen_check\": true}",
+   "expect": null
+  },
+  {
+   "assert": "a revision keeps the first record and cites it (or None when nothing changed)",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"label_class\": \"TARGET_FIRST\", \"revision_of\": null, \"revision_reason\": \"REVISION_48H\"}",
+   "expect": null
+  },
+  {
+   "assert": "a revision that changes the class is a new record; the original record is unchanged",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"NEITHER\", \"TARGET_FIRST\"]",
+   "expect": null
+  }
+ ],
+ "passed": 3,
+ "total": 3,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

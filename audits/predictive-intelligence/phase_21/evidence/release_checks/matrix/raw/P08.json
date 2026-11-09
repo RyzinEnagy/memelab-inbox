@@ -1,0 +1,40 @@
+{
+ "scenario": "P08",
+ "check": "probes/scenarios.py P08",
+ "doc": "High reported TVL with an awful sell quote: a price forecast is never a profit claim.",
+ "assertions": [
+  {
+   "assert": "the exit-adjusted target cannot be forecast",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"target exit_adjusted_target_before_invalidation_24h is BLOCKED_NO_HISTORICAL_DEPTH: it cannot be forecast (P08 when blocked by missing historical depth)\", \"chain 'solana' is outside the target's scope None\", \"model card does not cover this target and version (P46)\"]",
+   "expect": null
+  },
+  {
+   "assert": "a price-path forecast with a position size is refused",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "the price-path caveat is on the forecast",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"PRICE_PATH_NOT_PROCEEDS\", \"NO_HISTORICAL_EXECUTABLE_DEPTH\", \"INTERVAL_EXCLUDES_UNMODELED_RISK\", \"SHADOW_RESEARCH_ONLY\"]",
+   "expect": null
+  },
+  {
+   "assert": "a 45% loss quote caps the size at 0 whatever the reserve",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"basis\": \"FORWARD_QUOTES_VISIBLE_AT_DECISION\", \"oldest_used_age_s\": 60.0, \"pool_address\": \"P\", \"quotes_used\": 1, \"route_lost_sizes\": [], \"size_cap_usd\": 0.0}",
+   "expect": null
+  }
+ ],
+ "passed": 4,
+ "total": 4,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

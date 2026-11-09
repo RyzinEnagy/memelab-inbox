@@ -1,0 +1,7 @@
+SKIPPED [1] tests/test_social_ingest.py:373: node not installed
+SKIPPED [2] tests/test_catalyst_xprofile.py:24: node not installed
+SKIPPED [1] tests/test_predictive_behavioral.py:360: could not import 'jsonschema': No module named 'jsonschema'
+SKIPPED [1] tests/test_predictive_behavioral.py:846: no IPv6 loopback in this sandbox
+SKIPPED [1] tests/test_predictive_behavioral.py:360: could not import 'jsonschema': No module named 'jsonschema'
+SKIPPED [1] tests/test_predictive_behavioral.py:846: no IPv6 loopback in this sandbox
+400 passed, 5 skipped in 61.67s (0:01:01)

@@ -1,0 +1,54 @@
+{
+ "scenario": "P22",
+ "check": "probes/scenarios.py P22",
+ "doc": "One lucky top model among 1,000 fits: selection correction and an untouched holdout.",
+ "assertions": [
+  {
+   "assert": "the best of 1,000 null models looks skilled on the searched rows",
+   "pass": true,
+   "gate": true,
+   "observed": 0.0229,
+   "expect": null
+  },
+  {
+   "assert": "and is not skilled on the untouched half",
+   "pass": true,
+   "gate": true,
+   "observed": -0.0051,
+   "expect": null
+  },
+  {
+   "assert": "Bonferroni over 1,000 kills an uncorrected p of 0.004",
+   "pass": true,
+   "gate": true,
+   "observed": 1.0,
+   "expect": null
+  },
+  {
+   "assert": "selection status is not SURVIVES",
+   "pass": true,
+   "gate": true,
+   "observed": "FAILS_SELECTION_CORRECTION",
+   "expect": null
+  },
+  {
+   "assert": "the registry refuses VALIDATED_EXPERIMENTAL without surviving the correction",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"level\": \"SHADOW\", \"reasons\": [\"SELECTION_CORRECTION_NOT_SURVIVED\"], \"rule\": \"ACCEPTANCE promotion + PI-D-065 + PI-D-069 (registry-1)\", \"shadow_reached\": true}",
+   "expect": null
+  },
+  {
+   "assert": "the cumulative search ledger recomputes to N_search 130 and sensitivity 169",
+   "pass": true,
+   "gate": true,
+   "observed": "[130, 39]",
+   "expect": null
+  }
+ ],
+ "passed": 6,
+ "total": 6,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

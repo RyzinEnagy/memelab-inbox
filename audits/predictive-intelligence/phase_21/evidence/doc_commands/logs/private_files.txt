@@ -1,0 +1,3 @@
+OUTDIR/private:
+alerts.sqlite
+report.md

@@ -1,0 +1,33 @@
+{
+ "scenario": "P21",
+ "check": "probes/scenarios.py P21",
+ "doc": "A model that wins only in a bull mania: regime breakdown, no universal claim.",
+ "assertions": [
+  {
+   "assert": "the bull-only cohort (12 events) is below the frozen out-of-sample minimum and gets no verdict",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"BULL\": \"INSUFFICIENT_EVENTS\", \"QUIET\": \"INSUFFICIENT_EVENTS\"}",
+   "expect": null
+  },
+  {
+   "assert": "the prospective regime monitor reports its state instead of a claim",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "the holdout record states the regime breakdown could not be tested",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  }
+ ],
+ "passed": 3,
+ "total": 3,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

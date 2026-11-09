@@ -1,0 +1,40 @@
+{
+ "scenario": "P34",
+ "check": "probes/scenarios.py P34",
+ "doc": "A backtesting package that exists only as a ZIP: integration reported unavailable, never claimed.",
+ "assertions": [
+  {
+   "assert": "a prompt ZIP is not an engine: BACKTEST_NOT_AVAILABLE",
+   "pass": true,
+   "gate": true,
+   "observed": "BACKTEST_NOT_AVAILABLE",
+   "expect": null
+  },
+  {
+   "assert": "no backtesting module is importable on this branch",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "a document citing a backtest assessment is refused",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "the request record states BACKTEST_NOT_AVAILABLE",
+   "pass": true,
+   "gate": true,
+   "observed": "BACKTEST_NOT_AVAILABLE",
+   "expect": null
+  }
+ ],
+ "passed": 4,
+ "total": 4,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

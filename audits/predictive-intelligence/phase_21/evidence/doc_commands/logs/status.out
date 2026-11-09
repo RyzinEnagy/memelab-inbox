@@ -1,0 +1,36 @@
+{
+ "flag": true,
+ "metrics": {
+  "abstained": 24,
+  "attempted": 8,
+  "catalyst_refreshes": 0,
+  "completed_forecasts": 0,
+  "deferred": 0,
+  "documents": 24,
+  "duplicates": 16,
+  "errors": 0,
+  "event_counts": {
+   "DISCOVERY": 8,
+   "DUPLICATE": 16
+  },
+  "events": 24,
+  "latency_ms_max": 1.96,
+  "latency_ms_p50": 0.327,
+  "models_in_use": [
+   "not_selected"
+  ],
+  "passes": 3,
+  "reason_counts": {
+   "INSUFFICIENT_HISTORY": 24,
+   "MODEL_NOT_SELECTED": 24,
+   "SOURCE_STALE": 24,
+   "TARGET_NOT_FEASIBLE": 6,
+   "UNCALIBRATED": 24
+  },
+  "records": 24,
+  "reference_records": 0,
+  "superseded": 0,
+  "unchanged_cache_hits": 0
+ },
+ "state_dir": "OUTDIR/state"
+}

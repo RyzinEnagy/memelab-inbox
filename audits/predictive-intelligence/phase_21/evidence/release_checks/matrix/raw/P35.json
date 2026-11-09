@@ -1,0 +1,47 @@
+{
+ "scenario": "P35",
+ "check": "probes/scenarios.py P35",
+ "doc": "Duplicate discovery or catalyst update storms: idempotent forecast ids, bounded jobs.",
+ "assertions": [
+  {
+   "assert": "six copies in one pass: one attempt, five superseded",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"DISCOVERY\": 1, \"SUPERSEDED_IN_PASS\": 5}",
+   "expect": null
+  },
+  {
+   "assert": "three reruns add no document",
+   "pass": true,
+   "gate": true,
+   "observed": 3,
+   "expect": null
+  },
+  {
+   "assert": "a rerun of the same snapshot is DUPLICATE and names the covering ids",
+   "pass": true,
+   "gate": true,
+   "observed": "DUPLICATE",
+   "expect": null
+  },
+  {
+   "assert": "the forecast id is a pure function of its inputs",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "a pass attempts at most 64 and defers the rest visibly",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"DEFERRED_QUEUE_FULL\": 6, \"DISCOVERY\": 64}",
+   "expect": null
+  }
+ ],
+ "passed": 5,
+ "total": 5,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

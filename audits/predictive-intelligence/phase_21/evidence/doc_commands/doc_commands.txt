@@ -1,0 +1,11 @@
+status exit 0 :: python -B -m memelab.predictive.integration status --state-dir OUTDIR/state --config OUTDIR/cfg_on.json
+check exit 0 :: python -B -m memelab.predictive.integration check --state-dir OUTDIR/state --config OUTDIR/cfg_on.json
+report_on exit 0 :: python -B -m memelab.predictive.reports report --state-dir OUTDIR/state --config OUTDIR/cfg_on.json --lab-db OUTDIR/lab.sqlite --registry-dir OUTDIR/sandbox/audits/predictive-intelligence/phase_16/registry --out OUTDIR/private/report.md
+report_off exit 0 :: python -B -m memelab.predictive.reports report --state-dir OUTDIR/state --config OUTDIR/cfg_off.json
+alerts_dry exit 0 :: python -B -m memelab.predictive.reports alerts --state-dir OUTDIR/state --config OUTDIR/cfg_on.json --alert-db OUTDIR/private/alerts.sqlite --outbox OUTDIR/private/outbox --lab-db OUTDIR/lab.sqlite --registry-dir OUTDIR/sandbox/audits/predictive-intelligence/phase_16/registry
+alerts_state exit 0 :: python -B -m memelab.predictive.reports alerts-state --alert-db OUTDIR/private/alerts.sqlite --config OUTDIR/cfg_on.json
+alerts_off exit 0 :: python -B -m memelab.predictive.reports alerts --state-dir OUTDIR/state --config OUTDIR/cfg_off.json
+seal exit 0 :: python -B audits/predictive-intelligence/phase_06/probes/check_seal.py
+docs_demo exit 0 :: python -B audits/predictive-intelligence/phase_21/probes/docs_demo.py 2026-11-09T00:00:00Z OUTDIR/docs_demo.json
+tampered DOCUMENTS.jsonl
+check_tampered exit 2 :: python -B -m memelab.predictive.integration check --state-dir OUTDIR/state_tampered --config OUTDIR/cfg_on.json

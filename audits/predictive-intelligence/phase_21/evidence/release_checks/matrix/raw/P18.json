@@ -1,0 +1,33 @@
+{
+ "scenario": "P18",
+ "check": "probes/scenarios.py P18",
+ "doc": "A whale transfer that is not a sale: never labelled distribution.",
+ "assertions": [
+  {
+   "assert": "a 20% supply transfer by the developer is MOVEMENT_NOT_SALE",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"class\": \"MOVEMENT_NOT_SALE\", \"counts_as_inferred_distribution\": false, \"counts_as_insider_distribution\": false, \"is_sale\": false, \"note\": null}",
+   "expect": null
+  },
+  {
+   "assert": "a swap not against a pool is not an observed sale",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"class\": \"UNKNOWN_MOVEMENT\", \"counts_as_inferred_distribution\": false, \"counts_as_insider_distribution\": false, \"is_sale\": false, \"note\": null}",
+   "expect": null
+  },
+  {
+   "assert": "the distribution target is not frozen",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  }
+ ],
+ "passed": 3,
+ "total": 3,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

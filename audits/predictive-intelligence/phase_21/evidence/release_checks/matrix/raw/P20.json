@@ -1,0 +1,40 @@
+{
+ "scenario": "P20",
+ "check": "probes/scenarios.py P20",
+ "doc": "24 h and 7 d horizons overlapping validation: purge and embargo.",
+ "assertions": [
+  {
+   "assert": "a development decision whose 24 h label matures after the holdout start is PURGED",
+   "pass": true,
+   "gate": true,
+   "observed": "PURGED",
+   "expect": null
+  },
+  {
+   "assert": "one whose label matures before it is DEVELOPMENT",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "the fold audit refuses 6 h maturities given for a 24 h target",
+   "pass": true,
+   "gate": true,
+   "observed": "BaselineError: price_path_target_before_invalidation_24h: fold audit failed: ['fold 0: maturity_shorter_than_target 364', 'fold 1: maturity_shorter_than_target 400', 'fold 2: ",
+   "expect": "raises BaselineError with 'fold audit'"
+  },
+  {
+   "assert": "thinning keeps label windows apart per mint",
+   "pass": true,
+   "gate": true,
+   "observed": "[0.0, 86400.0]",
+   "expect": null
+  }
+ ],
+ "passed": 4,
+ "total": 4,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

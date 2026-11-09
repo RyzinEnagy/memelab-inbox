@@ -1,0 +1,54 @@
+{
+ "scenario": "P47",
+ "check": "probes/scenarios.py P47",
+ "doc": "A source provider outage: visible stale status, existing research preserved.",
+ "assertions": [
+  {
+   "assert": "a vendor outage makes the eligibility a visible gap",
+   "pass": true,
+   "gate": true,
+   "observed": "{\"detail\": \"reader NETWORK_UNAVAILABLE: ConnectionError\", \"state\": \"VENDOR_OR_ROUTE_GAP\"}",
+   "expect": null
+  },
+  {
+   "assert": "and the documents abstain SOURCE_STALE",
+   "pass": true,
+   "gate": true,
+   "observed": "[[\"SOURCE_STALE\"], [\"INSUFFICIENT_HISTORY\", \"UNCALIBRATED\", \"SOURCE_STALE\", \"MODEL_NOT_SELECTED\"], [\"INSUFFICIENT_HISTORY\", \"UNCALIBRATED\", \"SOURCE_STALE\", \"MODEL_NOT_SELECTED\"]]",
+   "expect": null
+  },
+  {
+   "assert": "earlier state lines are preserved (append only)",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  },
+  {
+   "assert": "a missing registry is REGISTRY_UNAVAILABLE and every target abstains",
+   "pass": true,
+   "gate": true,
+   "observed": "REGISTRY_UNAVAILABLE",
+   "expect": null
+  },
+  {
+   "assert": "the monitor shows SOURCE_STALE, SOURCE_FAILURE and COLLECTOR_NOT_DEPLOYED",
+   "pass": true,
+   "gate": true,
+   "observed": "[\"SOURCE_STALE\", \"SOURCE_FAILURE\", \"COLLECTOR_NOT_DEPLOYED\"]",
+   "expect": null
+  },
+  {
+   "assert": "and the response keeps abstaining with the status",
+   "pass": true,
+   "gate": true,
+   "observed": null,
+   "expect": null
+  }
+ ],
+ "passed": 6,
+ "total": 6,
+ "probes_failed": [],
+ "sockets": [],
+ "result": "ASSERTIONS_HOLD"
+}

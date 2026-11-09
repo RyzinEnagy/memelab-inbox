@@ -1,0 +1,2 @@
+{"T1_24h": {"n": 22, "positives": 5, "days": 3, "verdict": "INSUFFICIENT_DAYS"}, "T1b_6h": {"n": 24, "positives": 3, "days": 3, "verdict": "INSUFFICIENT_DAYS"}, "T2_24h": {"n": 15, "positives": 3, "days": 2, "verdict": "INSUFFICIENT_DAYS"}, "n_search": 130}
+exit 0

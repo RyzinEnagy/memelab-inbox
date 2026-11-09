@@ -1,0 +1,11 @@
+SKIPPED [1] tests/test_predictive_behavioral.py:360: could not import 'jsonschema': No module named 'jsonschema'
+SKIPPED [1] tests/test_predictive_behavioral.py:846: no IPv6 loopback in this sandbox
+SKIPPED [1] tests/test_predictive_reproductions.py:49: private research stores absent (rebuild: phase_05 and phase_06 records)
+SKIPPED [1] tests/test_predictive_reproductions.py:58: private research stores absent (rebuild: phase_05 and phase_06 records)
+SKIPPED [1] tests/test_predictive_reproductions.py:66: private research stores absent (rebuild: phase_05 and phase_06 records)
+SKIPPED [1] tests/test_predictive_reproductions.py:76: private research stores absent (rebuild: phase_05 and phase_06 records)
+SKIPPED [1] tests/test_predictive_runtime.py:502: pinned MiroFish clone not present on this machine
+SKIPPED [1] tests/test_predictive_reproductions.py:66: private research stores absent (rebuild: phase_05 and phase_06 records)
+SKIPPED [1] tests/test_predictive_reproductions.py:76: private research stores absent (rebuild: phase_05 and phase_06 records)
+SKIPPED [1] tests/test_predictive_runtime.py:502: pinned MiroFish clone not present on this machine
+1453 passed, 7 skipped, 1 warning in 95.11s (0:01:35)
