@@ -32,7 +32,7 @@ Maintenance owner: Elving (ED-11). Promotion change control (PI-D-091); any LLM,
 
 ## Phase 21 commits
 
-HEAD before `90e4c6f`; `0bb361e` pre-registration; `2a29c68` frozen probes; `b048aac` probe fix; `24c02a6` doc probes; `67f1f7d` recorded runs and documents; `6fafc1d` records; `51db1f6` post-commit record (pushed); repair: `da0ae96` change control, `a767710` CP21-1 code and documents, then the repair records commit and its post-commit record (`phase_21/postcommit/`, see RESULTS `head_after`). Local only; the orchestrator pushes.
+HEAD before `90e4c6f`; `0bb361e` pre-registration; `2a29c68` frozen probes; `b048aac` probe fix; `24c02a6` doc probes; `67f1f7d` recorded runs and documents; `6fafc1d` records; `51db1f6` post-commit record (pushed); repair: `da0ae96` change control, `a767710` CP21-1 code and documents, `881643f` repair records, then the post-commit record (`phase_21/postcommit_repair/`: suite 2 failed, the two known, 2,245 passed, 1 skipped; guard 0 violations; seal 0 problems; single-branch release audit exit 0). Local only; the orchestrator pushes.
 
 ## Note outside this branch
 
