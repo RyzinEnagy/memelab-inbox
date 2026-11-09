@@ -32,7 +32,7 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Phase 20 commits
 
-HEAD before `e0bc906`; pre-registration `9e1f29d`; frozen audit code `0d66379`; recorded runs `67acbc3`; CP20-1 code `5ebce8a`; first-pass records `0b24539`; Phase 19 G25 `b4d4768`; CP20-2 change control `f5a174b`; CP20-2 code `243cd32`; repair pass 2 records and the post-commit record after it (`phase_20/postcommit/`). Local only; the orchestrator pushes.
+HEAD before `e0bc906`; pre-registration `9e1f29d`; frozen audit code `0d66379`; recorded runs `67acbc3`; CP20-1 code `5ebce8a`; first-pass records `0b24539`; Phase 19 G25 `b4d4768`; CP20-2 change control `f5a174b`; CP20-2 code `243cd32`; repair pass 2 records `18b907e`; the post-commit record after it (`phase_20/postcommit/`). Local only; the orchestrator pushes.
 
 ## Waiting on Elving
 

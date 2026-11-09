@@ -19,7 +19,7 @@ The auditor is the Phase 20 agent acting as a reviewer who did not build the pat
 | Orchestrator's independent skeptic of Phase 20 | review at `b4d4768` | 2026-11-09 |
 | Change control CP20-2 written (PI-D-113) | `f5a174b` | 2026-11-09, before the code change |
 | CP20-2 code, tests and probe changes | `243cd32` | 2026-11-09 |
-| Touched paths rerun at `243cd32` | records commit after it | 2026-11-09T21:30:45Z onward (`evidence/repair2_rerun/run_times.txt`) |
+| Touched paths rerun at `243cd32` | records commit `18b907e` | 2026-11-09T21:30:45Z onward (`evidence/repair2_rerun/run_times.txt`) |
 
 No lab or predictive module changed before `5ebce8a`; at `0d66379` every lab and predictive module is byte-identical to `e0bc906`.
 
@@ -87,6 +87,8 @@ Proof:
 - Reproductions at `243cd32` (`evidence/repair2_rerun/reproductions.json`, 21:37:39Z to 21:50:13Z, wall 754.0 s): `all_reproduced` true, 19 entry points exit 0, no differing output apart from the named time fields (Phases 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16, 17 export replay, 18 goldens, 19 rebuild, evaluate and tests). The scratch folder prefix in the copied run records is written as `SCRATCH/`, as in the CP20-1 rerun.
 
 Disagreements with the review: none on substance. On S20-2 the repair is the positive binding the skeptic proposed as an alternative to a reader contract (no reader returns a pool's base token today); the reader contract itself is left to the first real reader.
+
+Post-commit checks at the records commit `18b907e` (`postcommit/`): suite `2 failed, 2243 passed, 1 skipped, 1 warning in 234.19s` (the two known clock-dependent failures only; one stray report removed by hand), social guard exit 0 with 0 violations over 3,010 files, seal check exit 0 with `"problems": []`, single-branch release audit (3 refs) exit 0, "Needs action: no.".
 
 ## Probe edits after the recorded run (stated, not hidden)
 

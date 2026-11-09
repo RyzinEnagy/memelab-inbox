@@ -1,0 +1,6 @@
+command: python -m pytest tests -q -p no:cacheprovider at 18b907e (repair pass 2 records commit), 2026-11-09
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+FAILED tests/test_catalyst_firecrawl.py::test_page_history_and_spend_survive_a_new_session_through_the_state_export
+2 failed, 2243 passed, 1 skipped, 1 warning in 234.19s (0:03:54)
+exit 1
+strays removed by hand afterwards: data/reports/20261109_2158_BRETT_0x532f.md

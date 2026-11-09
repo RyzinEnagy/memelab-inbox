@@ -2,7 +2,7 @@
  "phase": "20",
  "status": "PASS",
  "head_before": "e0bc906",
- "head_after": "243cd32a9c9c129eaaf2a46f78715c8fddb2a86a",
+ "head_after": "18b907ea9ef31eec3449e995e8b421d762abc8e4",
  "checks": [
   {
    "name": "G1 entry gate at e0bc906",
@@ -252,6 +252,13 @@
    "name": "G15 defect ledger after CP20-2",
    "command": "qa/INDEPENDENT_FINDINGS.md",
    "result": "0 CRITICAL; MATERIAL F20-01 (reclassified), F20-02, F20-06, CX-SK20/S20-1, S20-2 all repaired; 0 MATERIAL open",
+   "pass": true
+  },
+  {
+   "name": "G14 post-commit at 18b907e",
+   "command": "python -m pytest tests -q -p no:cacheprovider; python -m memelab social guard; check_seal.py; release_audit.py --history on a single-branch clone",
+   "exit_code": 1,
+   "result": "2 failed (the two known clock-dependent tests), 2243 passed, 1 skipped; guard exit 0, 0 violations over 3,010 files; seal 0 problems; release audit exit 0, Needs action: no. (postcommit/)",
    "pass": true
   }
  ],
