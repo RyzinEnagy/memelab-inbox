@@ -1,42 +1,37 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-114). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_20/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`.
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-116). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_21/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`. Plain-language release summary: [RELEASE.md](RELEASE.md).
 
 ## Position on 2026-11-09
 
-- Phases 00 to 13 and 16 to 20: PASS. Phases 14 and 15: TEST_ONLY (behavioral path, optional, OFF).
-- Phase 19: PASS since 2026-10-29 (G25: 0 revisions, 0 label changes, PI-D-112).
-- Phase 20 (independent adversarial integration and scientific audit): **PASS** after the orchestrator's independent skeptic and repair pass 2 (CP20-2, PI-D-113; result PI-D-114). No CRITICAL finding; no MATERIAL finding open.
-- Next eligible phase: 21 (reproducible research-only release or explicit NO-GO).
-- Spend: 0. No vendor or language-model call in Phase 20 or its repair passes.
+- Phases 00 to 13 and 16 to 20: PASS. Phases 14 and 15: TEST_ONLY (behavioral path, optional, OFF, MIROFISH_NO_GO).
+- Phase 21 (reproducible research-only release or explicit NO-GO): **NEEDS_REVIEW**, pending the orchestrator's independent skeptic. This is the last phase of the package; there is no next phase.
+- Release decision (PI-D-115): GO for a research-only release of the abstention engine with the flag OFF (RESEARCH_BASELINE_ONLY, scoped); NOT_READY and NO-GO for any predictive release. BACKTEST_NOT_AVAILABLE. MIROFISH_NO_GO.
+- Spend: 0. No vendor, model or paid call in Phase 21.
 
-## What Phase 20 did
+## What Phase 21 did
 
-- Pre-registered the audit (`phase_20/ACCEPTANCE_CHECKLIST.md`, G1 to G17) at `9e1f29d`, froze the audit code at `0d66379`, recorded the runs at `67acbc3`, repaired its own MATERIAL findings under CP20-1 at `5ebce8a`.
-- The orchestrator's skeptic (2026-11-09, `phase_20/skeptic/`) found a new variant of the Phase 18 CX-SK18 defect (CX-SK20: run-together multiplier symbols such as 100XGAIN printed in the report, alert and scout section), a bypass of the F20-02 repair through the pool field (S20-2), and F20-01 under-classified (S20-3), plus 9 MINOR items.
-- Repair pass 2: change control PI-D-113 at `f5a174b`, code at `243cd32`: one token-text rule for all rendered token text and a multiplier rule in the report's final text check; the token row's pool bound to the exact mint before any read; fail closed on a fitted card without its maturity record; F20-04 (exact `token` parameter in the outcome ledger); probes P05, P10, P41, P43, P44 strengthened; flag-off script resolves its commit; `unpatched_severity` filled. Old-code check: the new tests fail at `b4d4768` (18 of 21; the 3 controls pass).
-- Reruns at `243cd32` (`phase_20/evidence/repair2_rerun/`): cross tests 43 passed; 39 of 39 counterexamples; 48 scenario checks, 239 of 239 gating assertions; flag-off identity 12 of 12; release_e2e ok; real-path smoke unchanged apart from time fields; single-branch release audit exit 0; reproductions of Phases 05 to 19.
-
-## Findings (`phase_20/qa/INDEPENDENT_FINDINGS.md`)
-
-- CRITICAL: none.
-- MATERIAL, all repaired and all latent (no champion exists): F20-02 and F20-06 (CP20-1); F20-01 (reclassified), CX-SK20 and S20-2 (CP20-2).
-- MINOR repaired: F20-03, F20-08 (CP20-1); F20-04, F20-05, S20-4, S20-5, S20-6, S20-8, S20-10, S20-11 (CP20-2). Recorded: S20-7, S20-12, F20-09, F20-12.
-- MINOR open for Phase 21: F20-07, F20-10, F20-11, F20-13, F20-14.
+- Entry gate at `90e4c6f`: suite 2 failed (the two known clock tests), 2,243 passed, 1 skipped; Phase 20 cross tests 43 passed; seal intact; outcome ledger verifies.
+- Pre-registration `0bb361e` (G1 to G11, classification rules, maturity rule); frozen probes `2a29c68`, fixed `b048aac`; doc probes `24c02a6`; recorded runs, release documents and evidence `67f1f7d`.
+- Release checks from a fresh clone of the pushed branch (`probes/release_checks.sh`): new venv with numpy and pytest only, `env -i`, `unshare -n`. Full suite as expected; predictive tests with the private stores hidden 0 failures; release_e2e 78 of 78; real-path smoke 24 ABSTAIN, 0 forecast lines; chronology audit C1 to C4 true with 5 of 5 planted violations caught; Phase 19 order audit true; 48 scenarios 239 of 239 assertions; 39 of 39 counterexamples; flag-off identity all identical; OOS and recalculation identical to Phase 20; threat scan clean; release audit "Needs action: no."; reproductions all reproduced.
+- Phase 19 maturity step with the frozen commands: 0 reads planned, 0 entries appended, verdicts unchanged; the 7 T2 PENDING outcomes need a `fetch_labels.py` change (OI21-1, PI-D-116).
+- Release documents in `audits/predictive-intelligence/phase_21/release/`: RELEASE_DECISION, INSTALL_RUNBOOK, USER_GUIDE, MODEL_LIMITS, ROLLBACK_PROOF, SMOKE_LOG, OPEN_DECISIONS. Every runbook and guide command was run once (`evidence/doc_commands/`).
+- Deviations stated in the evidence: D21-1 (P04 TEST_ONLY), D21-2 (Pygments comes with pytest 9), D21-3 (doc-command run added with its own frozen commit), D21-4 (checklist header time), D21-5 (fresh-env skips).
 
 ## Open items, in order
 
-1. Phase 21 (research-only release or explicit NO-GO): the honest classification on the evidence is a research-only abstention engine, no validated or shadow model; carry F20-07, F20-10, F20-11 (loopback), F20-13 and F20-14 (drift appends to the ledger) into the install runbook or close them.
-2. After 2026-10-28 10:30Z: the maturity run for the 7 PENDING T2 outcomes (Phase 19 HANDOFF steps in `phase_19/monitoring/PROSPECTIVE_PLAN.md`), if not yet done.
-3. Carried: catalyst and social tables are not exported; forward depth collection approved but not deployed (PI-D-044); keep `tests/test_predictive_reproductions.py` green; a merge of the backtesting PR #4 needs the steps in `phase_17/integration/REQUEST_FLOW.md`; any external alert delivery needs Elving's approval.
+1. The orchestrator's independent skeptic of Phase 21, then a repair pass if needed and the final status.
+2. OI21-1: the `fetch_labels.py` change for the 7 PENDING T2 outcomes (cannot change a verdict).
+3. MINOR items F20-07, F20-10, F20-13, F20-14 with the recommendations in `phase_21/release/OPEN_DECISIONS.md`; F20-11 is closed by the runbook.
+4. Carried: catalyst and social tables are not exported; forward depth collector not deployed (PI-D-044); keep `tests/test_predictive_reproductions.py` green.
 
-## Phase 20 commits
+## Waiting on Elving (`phase_21/release/OPEN_DECISIONS.md`, ED-1 to ED-10)
 
-HEAD before `e0bc906`; pre-registration `9e1f29d`; frozen audit code `0d66379`; recorded runs `67acbc3`; CP20-1 code `5ebce8a`; first-pass records `0b24539`; Phase 19 G25 `b4d4768`; CP20-2 change control `f5a174b`; CP20-2 code `243cd32`; repair pass 2 records `18b907e`; the post-commit record after it (`phase_20/postcommit/`). Local only; the orchestrator pushes.
+Promotion change control (PI-D-091); any LLM, Zep or MiroFish spend; catalyst and social collection into a store this engine reads; deploying the forward depth collector (PI-D-044); merging the backtesting PR #4; any merge into `main`; any external alert delivery; turning the flag on outside a sandbox; a signing key for the private state; retiring or replacing the stale reference cards.
 
-## Waiting on Elving
+## Phase 21 commits
 
-- The change control that could reopen promotion (ACCEPTANCE `promotion`), any paid data, LLM, Zep or MiroFish use, any external alert delivery (Telegram or email), scheduled catalyst or social collection into a store this engine can read, a merge of the backtesting PR #4 into this line, a merge into `main`, deploying the forward depth collector (approved, PI-D-044; not yet done), turning the flag on anywhere outside a sandbox, and a signing key for the private state if the residual of F20-08 is to be closed.
+HEAD before `90e4c6f`; `0bb361e` pre-registration; `2a29c68` frozen probes; `b048aac` probe fix; `24c02a6` doc probes; `67f1f7d` recorded runs and documents; the records commit after it; the post-commit record (`phase_21/postcommit/`). Local only; the orchestrator pushes.
 
 ## Note outside this branch
 
@@ -50,14 +45,13 @@ Research only: no trades, no wallets with signing authority, no recovery words o
 
 ```
 git clone https://github.com/RyzinEnagy/memelab-inbox.git && cd memelab-inbox
-git checkout feature/predictive-intelligence && git fetch origin main && git log -8 --oneline
-pip install pytest
-python -B audits/predictive-intelligence/phase_06/probes/check_seal.py
-python -m pytest tests -q
-python -m pytest tests/test_predictive_phase20_cross.py -q
-python -B audits/predictive-intelligence/phase_20/probes/scenarios.py P01
-python -B audits/predictive-intelligence/phase_20/probes/run_matrix.py /tmp/p20_matrix
-python -B audits/predictive-intelligence/phase_20/probes/cx_rerun.py /tmp/p20_cx
+git checkout feature/predictive-intelligence && git log -8 --oneline
+python3 -m venv .venv && .venv/bin/python -m pip install numpy==2.5.3 pytest==9.1.1
+.venv/bin/python -B audits/predictive-intelligence/phase_06/probes/check_seal.py
+.venv/bin/python -m pytest tests -q
+.venv/bin/python -B audits/predictive-intelligence/phase_21/probes/chronology_audit.py 2026-11-09T00:00:00Z /tmp/p21_chrono.json
+.venv/bin/python -B audits/predictive-intelligence/phase_21/probes/release_docs_check.py /tmp/p21_docs.json --plant
+bash audits/predictive-intelligence/phase_21/probes/release_checks.sh 90e4c6f HEAD /tmp/p21_rc
 ```
 
-Use a full clone (the commit-order tests of Phases 15 to 19 need the history). Expect `"problems": []` from the seal check and, in the suite, only `tests/test_catalyst.py::test_dedup_corroboration_resurface_denial` and `tests/test_catalyst_firecrawl.py::test_page_history_and_spend_survive_a_new_session_through_the_state_export` (real clock) failing; then remove `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm` and `-wal` by hand. The reproductions need the private stores of Phases 05 and 06 under `/home/claude/pi_research/` (rebuildable from the committed archives). The flag-off, smoke and fresh-environment scripts need `unshare`.
+Use a full clone (the commit-order tests need the history). Expect `"problems": []` from the seal check and, in the suite, only the two known clock-dependent failures; then `git clean -fq data/reports` and remove `data/memelab.sqlite-shm` and `-wal`. `release_checks.sh` needs root for `unshare` and the private stores under `/home/claude/pi_research/` for the reproductions.

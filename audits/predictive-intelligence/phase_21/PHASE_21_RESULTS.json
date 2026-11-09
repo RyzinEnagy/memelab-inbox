@@ -1,0 +1,880 @@
+{
+ "phase": "21",
+ "status": "NEEDS_REVIEW",
+ "head_before": "90e4c6fddae267759e67d928d5297726c5910785",
+ "head_after": "see HANDOFF.md (records commit after 67f1f7d)",
+ "release_decision": {
+  "abstention_engine_flag_off": "GO (RESEARCH_BASELINE_ONLY, scoped)",
+  "predictive_release": "NOT_READY / NO-GO",
+  "combined_stress": "BACKTEST_NOT_AVAILABLE",
+  "behavioral": "MIROFISH_NO_GO"
+ },
+ "checks": [
+  {
+   "name": "G1 entry gate at 90e4c6f",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "2 failed (the two known clock-dependent tests), 2243 passed, 1 skipped; Phase 20 cross tests 43 passed; seal problems []; ledger verify ok 520",
+   "pass": true
+  },
+  {
+   "name": "G2 remote at the pushed head",
+   "command": "git ls-remote https://github.com/RyzinEnagy/memelab-inbox.git refs/heads/feature/predictive-intelligence",
+   "exit_code": 0,
+   "result": "90e4c6fddae267759e67d928d5297726c5910785",
+   "pass": true
+  },
+  {
+   "name": "G2 fresh clone fast-forwarded to b048aac",
+   "command": "release_checks.sh 90e4c6f b048aac OUTDIR (setup)",
+   "exit_code": 0,
+   "result": "5 changed paths, 0 outside phase_21/; venv freeze iniconfig numpy packaging pluggy Pygments pytest; env -i names HOME LANG LC_ALL MEMELAB_RELEASE_CHECK PATH",
+   "pass": true
+  },
+  {
+   "name": "G2 full suite in the fresh env",
+   "command": "env -i ... unshare -n sh -c \"lo_up.py && python -m pytest tests -q -p no:cacheprovider\"",
+   "exit_code": 1,
+   "result": "2 failed (the two known), 2239 passed, 5 skipped (node 3, jsonschema 1, IPv6 1)",
+   "pass": true
+  },
+  {
+   "name": "G2 predictive tests with private stores hidden",
+   "command": "unshare -m -n ... pytest tests/test_predictive_*.py -rs",
+   "exit_code": 0,
+   "result": "1453 passed, 7 skipped, 0 failed",
+   "pass": true
+  },
+  {
+   "name": "G2 release_e2e",
+   "command": "e2e.sh b048aac OUTDIR/e2e (tools/release_e2e.py)",
+   "exit_code": 0,
+   "result": "78 of 78 stages ok, 0 network attempts, tracked db unchanged",
+   "pass": true
+  },
+  {
+   "name": "G2 real-path smoke",
+   "command": "phase_17/probes/real_path_smoke.sh via e2e.sh",
+   "exit_code": 0,
+   "result": "flag-off byte-identical to b0fad12; 24 ABSTAIN, 0 forecast lines; duplicates 16; storm one attempt; check_state problems [] x4; reader_calls 0",
+   "pass": true
+  },
+  {
+   "name": "G3 chronology audit",
+   "command": "chronology_audit.py 2026-11-09T00:00:00Z OUTDIR/chronology_audit.json",
+   "exit_code": 0,
+   "result": "C1 69 entries cutoffs ok, 69 MODEL_STALE, no champion; C2 198 predictions ok; C3 ledger ok; C4 phases 05-20 ok; 5 of 5 planted caught",
+   "pass": true
+  },
+  {
+   "name": "G3 Phase 19 order audit",
+   "command": "run_prospective.py audit OUTDIR/p19_audit",
+   "exit_code": 0,
+   "result": "predictions commit 765eadb before the first label call; F1 F3 F4 ok",
+   "pass": true
+  },
+  {
+   "name": "G3 chronology scenarios",
+   "command": "run_matrix.py (P04 P05 P06 P07 P13 P20 P36 P43)",
+   "exit_code": 0,
+   "result": "P05 P13 P20 P36 P43 PASS_EXPECTED_ERROR, P06 P07 PASS, P04 TEST_ONLY (deviation D21-1)",
+   "pass": true
+  },
+  {
+   "name": "G4 cross-component tests",
+   "command": "pytest tests/test_predictive_phase20_cross.py",
+   "exit_code": 0,
+   "result": "43 passed",
+   "pass": true
+  },
+  {
+   "name": "G4 scenario matrix",
+   "command": "run_matrix.py OUTDIR/matrix",
+   "exit_code": 0,
+   "result": "48 scenarios, 239 of 239 assertions; 25 PASS, 10 PASS_EXPECTED_ERROR, 12 TEST_ONLY, 1 PASS_WITH_PROBE_FINDING; equal to Phase 20 repair-pass run",
+   "pass": true
+  },
+  {
+   "name": "G4 counterexamples",
+   "command": "cx_rerun.py OUTDIR/cx",
+   "exit_code": 0,
+   "result": "39 of 39 caught",
+   "pass": true
+  },
+  {
+   "name": "G4 flag-off identity",
+   "command": "flag_off_identity.sh b048aac; flag_off_summary.py",
+   "exit_code": 0,
+   "result": "all_identical true over 2 exports x 6 configs; requested commit not the base; import traces empty",
+   "pass": true
+  },
+  {
+   "name": "G5 OOS sensitivity and recalculation",
+   "command": "oos_sensitivity.py; recalc.py",
+   "exit_code": 0,
+   "result": "0 differences from the committed Phase 20 outputs; no lower bound above 0; recalc 61/61, 40/40, 168/168, 2 traces",
+   "pass": true
+  },
+  {
+   "name": "G6 threat scan",
+   "command": "threat_scan.py",
+   "exit_code": 0,
+   "result": "copyleft [], credential strings [], schedules [], imports beyond numpy {}; equal to Phase 20 apart from head, file count, its own output file",
+   "pass": true
+  },
+  {
+   "name": "G6 release audit with history, single-branch",
+   "command": "tools/release_audit.py --history (via e2e.sh)",
+   "exit_code": 0,
+   "result": "Needs action: no.",
+   "pass": true
+  },
+  {
+   "name": "G6 social guard and seal",
+   "command": "python -m memelab social guard; check_seal.py",
+   "exit_code": 0,
+   "result": "0 violations; problems []",
+   "pass": true
+  },
+  {
+   "name": "G7 reproductions",
+   "command": "reproductions.py b048aac OUTDIR/reproductions.json",
+   "exit_code": 0,
+   "result": "all_reproduced true, 19 runners exit 0, differing {}",
+   "pass": true
+  },
+  {
+   "name": "G8 maturity fetch",
+   "command": "python -B audits/predictive-intelligence/phase_19/probes/fetch_labels.py fetch",
+   "exit_code": 0,
+   "result": "mapped 28, planned 28; 0 vendor calls",
+   "pass": true
+  },
+  {
+   "name": "G8 maturity outcomes",
+   "command": "python -B audits/predictive-intelligence/phase_19/probes/run_prospective.py outcomes",
+   "exit_code": 0,
+   "result": "T2 PENDING 7; appended 0; verify ok; OI21-1 recorded",
+   "pass": true
+  },
+  {
+   "name": "G8 evaluate rerun",
+   "command": "unshare -n python -B .../run_prospective.py evaluate SCRATCH/evaluate",
+   "exit_code": 0,
+   "result": "INSUFFICIENT_DAYS x3 unchanged (n 22, 24, 15)",
+   "pass": true
+  },
+  {
+   "name": "G9 doc commands",
+   "command": "doc_commands.sh OUTDIR/e2e/smoke OUTDIR2",
+   "exit_code": 0,
+   "result": "10 commands: 9 exit 0, damaged-state check exit 2 STATE_TAMPERED as expected",
+   "pass": true
+  },
+  {
+   "name": "G9 G10 release documents check",
+   "command": "release_docs_check.py evidence/release_docs_check.json --plant",
+   "exit_code": 0,
+   "result": "registry levels ABSTAIN, NO_GO; 0 level, path, dash or command problems; 3 of 3 planted caught",
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/phase_21/ACCEPTANCE_CHECKLIST.md",
+   "sha256": "cf0868b29b243955025af2e4f96759d9550bfc2ebbaeaf7c36437b96c172a8e4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/PHASE_21_EVIDENCE.md",
+   "sha256": "dbbc64b27eacdaf9911175866b5252bdefdf1b1c2758a4e9dc2237ec45872cce"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/SKEPTIC_PACKET.md",
+   "sha256": "f18d56f2214be8b3d623000318d0948c3a085769a227edcbba9ea0d3029fd312"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/doc_commands/doc_commands.txt",
+   "sha256": "999eb013236f0b035916e220af1080710f902475c5be4e3e3bab53f4c2376c8f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/doc_commands/docs_demo.json",
+   "sha256": "0572334842ad869d9916f3586927bb5a9dd60ee0f1c0f8b146270e7eaafe46f6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/doc_commands/logs/alerts_dry.out",
+   "sha256": "bf44c54eae42cbbafc55b97a57e4ca1c2fff13964d310897daa21b28a247103f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/doc_commands/logs/alerts_off.out",
+   "sha256": "bb49cd599d89025270b2a8e72e3a1bbaf2ed76de40c3ec0ea8adeaa99da8d885"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/doc_commands/logs/alerts_state.out",
+   "sha256": "75c03770582d77c05446f9eede221db772d577dbedeef9da0d97b64dc60ff53b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/doc_commands/logs/check.out",
+   "sha256": "4ad1f80a103799b1e3e3d3e587b1764f26ebcadf42ff534faf0328530974d77f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/doc_commands/logs/check_tampered.out",
+   "sha256": "45e881c9cdb93bba33651c5dc4d13f904d441c898d188973bea081cb48a40319"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/doc_commands/logs/checkout_status.txt",
+   "sha256": "d0787092a168760f404869a9266d7a5182650ac93dfad79285c0bb23d433ffcc"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/doc_commands/logs/docs_demo.out",
+   "sha256": "db5111d751b5ee857f49cc2ac5de0032e999c6b89a6d688296ef85ab58e1e0b4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/doc_commands/logs/private_files.txt",
+   "sha256": "81ff85b022c2d3bfc9c4391e2ab38e54d128ed28317db897aa25b457c94a4c61"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/doc_commands/logs/report_off.out",
+   "sha256": "7141323f67c2255adc478241c17d65a892f70f08d3335379c9b91fb5d6f820ef"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/doc_commands/logs/report_on.out",
+   "sha256": "689a57dbbbb24188a078a3611127140017e0c27a190470702495c3d7107c60c1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/doc_commands/logs/sandbox_status.txt",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/doc_commands/logs/seal.out",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/doc_commands/logs/status.out",
+   "sha256": "64aab91e7a155b7a5edd60dc9fbefffd7a57a23601279f04df52b629598faef5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/doc_commands/private/report.md",
+   "sha256": "bb7050f73df02a2dc34d04e4b152e634b07e042909a11104a12a81499655ff4a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/maturity/MATURITY_RUN.json",
+   "sha256": "9b376c675590306a2bb2f89ead3974ae06f3632e7a27d791d3307d3e7dfcbf7c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/maturity/evaluate.stdout",
+   "sha256": "5f4f2c4ed84a6889fbc7e63ecbc26fff3ee29fa21259fc87370ee80d3a6f1f2f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/maturity/fetch.stdout",
+   "sha256": "da0af32108c048e676bc0373cd0546c06ce22e4bcde7f74c4c3d9a7ba8044369"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/maturity/outcomes.stdout",
+   "sha256": "fc19129e8ab27a578b20e08c80dab97f23c7dc9edd7b776943a17134509ff983"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/maturity/sha_after.txt",
+   "sha256": "caa2e91ae80a09d00c1f97d8c2fa5664ac0f63839195ef547b79acef49a48e90"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/maturity/sha_before.txt",
+   "sha256": "ac5b6f120dd18e197fe2511ac6b8d096bfa99108f8a934ceb785835ed028062f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/chronology_audit.json",
+   "sha256": "c04f8fdd2ccce2c169740c2e635abd98fd2ad18a916b36411882c3779441c628"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/chronology_audit.stdout",
+   "sha256": "92a94660538c89673a156cbdc9b77d7ca04ec48b2bb44c3a77f5b519d3de6b40"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/cross_component.txt",
+   "sha256": "909de8ab3bea79c15fd22a6d3dfc554e6baa2c49029504acbbce2bbbf0ccf961"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/cx/COUNTEREXAMPLES.csv",
+   "sha256": "600639f74d87cb84e675ddec624f213336ef618cb5a9114f1e60ebf4cb92e8ba"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/cx/cx_rerun.json",
+   "sha256": "e2c5de0d15bdbd0076880f218afd8e36ddda01ff9c074e44b68aba6dcae2fa8e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/cx.stdout",
+   "sha256": "700e23dfe9f19369230c7ce106ae1bd0bee7bd204947c25412023b2ba1b4eea1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/e2e/REAL_SCOUT_SECTION.md",
+   "sha256": "438d7fbb6a80248493e63ac8d14d80b37a5a19d10cba7eefafa2438483a4c6ca"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/e2e/checkout_status.txt",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/e2e/e2e_runs.txt",
+   "sha256": "3cba3259a1b331df807f15df9cc8719c4311e85996073a12a76e650c476cd8d0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/e2e/release_audit_history.txt",
+   "sha256": "a5f6718332574b9a420728a16ec0bf5d0dc3b870361c6ae31809904072ad136c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/e2e/release_e2e.json",
+   "sha256": "ddbeb0b5716612d9795056c21cb03dc060b7a6e133d337462edf76ccda00160a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/e2e/release_e2e.md",
+   "sha256": "4430bf22f858fe037fa8862b3b63e4c34e96d3353121c8419838000839289838"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/e2e/smoke_runs.txt",
+   "sha256": "fcf627623744bd545b4d8d6285f268921d2fcbb60a0da4b5187ea277eb03692e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/e2e/smoke_summary/REAL_PATH_SMOKE.json",
+   "sha256": "0cb0b47fd05cb37afacd765c38d4b8995e1e49d640d47ba85f76d485fd78ce68"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/e2e.stdout",
+   "sha256": "3cba3259a1b331df807f15df9cc8719c4311e85996073a12a76e650c476cd8d0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flag_off_identity.json",
+   "sha256": "a5d2f94d5cca07f6fa33576740b81b960227ddf80caf0585bd512c4d8a717883"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/base_false_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/base_false_efdaee9.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/base_malformed_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/base_malformed_efdaee9.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/base_none_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/base_none_efdaee9.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/base_one_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/base_one_efdaee9.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/base_section_true_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/base_section_true_efdaee9.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/base_string_true_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/base_string_true_efdaee9.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/frozen_false_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/frozen_false_efdaee9.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/frozen_malformed_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/frozen_malformed_efdaee9.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/frozen_none_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/frozen_none_efdaee9.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/frozen_one_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/frozen_one_efdaee9.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/frozen_section_true_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/frozen_section_true_efdaee9.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/frozen_string_true_71fc50e1eb86d916034bb0285a466cf2ec1cc4d0.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/imports/frozen_string_true_efdaee9.imports.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff/runs.txt",
+   "sha256": "af282591e5ad09f1cd75cead3b256f50fb7297222fd8199659d04269abe1fc1b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/flagoff_summary.stdout",
+   "sha256": "a700d50fc4558594a92b63d3cb0160f1b51982656dba1bdce97b62a408b02158"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/independent_recalc.json",
+   "sha256": "ca8fb43aa96a7b14a3691cee0e10772d31e641ff25a7dda35c221f70e554468c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/logs/changed_since_pushed.txt",
+   "sha256": "bd8aec33ebbdabf4726f4fe4dd5773cc1746d0eb82e67f2c95668745b9250e21"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/logs/checkout_status_end.txt",
+   "sha256": "a35951f66a0f9df9e95bec62eb61136a64cf938246d9492b4ecb027df46a65c2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/logs/clone_status_end.txt",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/logs/env_names_inside.txt",
+   "sha256": "1d83a477bd6f9811405ee90d9e77ad5b6bdf1fc9c88128e086891aa830b36ed3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/logs/ls_remote.txt",
+   "sha256": "954e282673c5d3b980f10cf0d206dc7ff04527d5df31fbd88f6c9bcf178395f7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/logs/origin_main_date.txt",
+   "sha256": "bdc033738cce5fb41efbd101fedcead3928007ffcea02caca8042dbc65418fa2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/logs/pip.txt",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/logs/pip_freeze.txt",
+   "sha256": "a1d8464c1061c19b23078d6a066126797d5d7254e917530c769be4b0f784aafd"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/logs/pyvenv.cfg",
+   "sha256": "075f443d7f83cfba259ec61d02bd2712d33cb8e7a1c9aa39459452e4dc103910"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/logs/release_checks.txt",
+   "sha256": "288d201e9f1ebfc5dfc1a5647bd87e2fd6b50cee2fe1333af82eb8827539faad"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/logs/steps.jsonl",
+   "sha256": "2928cbe1f710681d1db9395206a02ea81bffba53f5d30e42f239179867b224fb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/logs/strays_seen.txt",
+   "sha256": "22a5e3f25549bd67cb2ffb6d4c7c8f43dfbc2313c9146aa40903c75c19baa74b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/logs/venv.txt",
+   "sha256": "e0cd4816ebab3d2556beb86d12533ad3c4bb7a066949ed7dc691f43c14c3379f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/SCENARIO_MATRIX.csv",
+   "sha256": "98ad07b599a4aa6cd998e7dda97004613dcae4f925c15d6c3cbbb41d45956d05"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/mapped_tests.txt",
+   "sha256": "0a3987538060ac96a421ab67f8d412ebacbd8202e23ab189890e318d8773eea8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/matrix_run.json",
+   "sha256": "45df50cf2ed60977328b89fefe333d1fe1495e6d39f4c9302030d6aadb39d33c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P01.json",
+   "sha256": "36236868a4efd0f889f7f8c9374fab9590dccec372719033fef8689c5d939304"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P02.json",
+   "sha256": "b0524821336928e4f40b40598811900cc1c08a32579a285f6c61acabc537fdb2"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P03.json",
+   "sha256": "3624e8b5ccf33d37dc1b986090803bc2ed4aa45dd6fd5efdf4ef12fdade70173"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P04.json",
+   "sha256": "9cb7ee746a660a3973ef2c63b662a7f55f2dd743ce2e34b9922cbd611b9f8955"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P05.json",
+   "sha256": "6765e5abfc09cacab352ff03ffc27139226894b2ffd7829483770c8660b53a89"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P06.json",
+   "sha256": "441a0cbf87fd24ed67200b0935d5b19e9ca52aef2ba80ee7eb0d92fefa9084c9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P07.json",
+   "sha256": "ad5051b4a9145a24612c7bdc626c3317cb3b1174fa5dc35feab3b021a8404b1c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P08.json",
+   "sha256": "401f6344ec0d6ba18d409371f5eb54c68f24470657a198884fdeb7cd5c20cec8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P09.json",
+   "sha256": "617cf537ad8dd861fc766eefc31c39a37eb0c2feb80a3972e7f15df4303fd1c8"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P10.json",
+   "sha256": "a81fb832ad91581ae284de124d3ef4bcf70b2d316986cae16f5eb6be0c5fd9a5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P11.json",
+   "sha256": "e0f105e7a38cf9f80b0dceffcabed340a406472f5c3821891f3c3cafe2083509"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P12.json",
+   "sha256": "91304750bccf51fa8bc651258b84d567ce09ea0d6d894f365c425bedc0e80c92"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P13.json",
+   "sha256": "bffc510f8dc54fa37aa70d9fbfda27132ea927d0f0ca721e8f337fb705df164f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P14.json",
+   "sha256": "ead0e382c6e308490d46799dcad795093e6ef41b84ef661ffbab88557d549961"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P15.json",
+   "sha256": "534e0e7b0bad0d45ddd0b92b918237fc5b9fe0214f1911e4ce061cc933b5d4b0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P16.json",
+   "sha256": "784b1c26102046bd561a3ac466d7cc40dcdaf5c169d4a916cc1584b50aab51d7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P17.json",
+   "sha256": "02766985552d2ba5d0a13d504ed07c359a16b06c1a85dd583daa38d0dceb7510"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P18.json",
+   "sha256": "4bb63623fba483e114cff5324eadc1b89b2ec35c3bdd4f7322f391a32f3073df"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P19.json",
+   "sha256": "c4ce14eb179c52c97d11672f956f9f060005d43aa6b1daf07cdcbcb51ac622cd"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P20.json",
+   "sha256": "3a583368f85c228be36f12ab3ffe5da83d2b10232eff1b2300afa92962244983"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P21.json",
+   "sha256": "611ed4503bc7dbf0dc7da020228e0ed2865cff27145169174f8866393aa3a6d6"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P22.json",
+   "sha256": "6b77a26ce416910a8a2c62befcafeadcea6c1f21987298c6849a91b8996484a7"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P23.json",
+   "sha256": "178534e6fb5244feed14a2b693906ed756b89748940524bf9aafbca6cc638eb5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P24.json",
+   "sha256": "0e6bd6607f41c6925b10a55927abb00a14d0b46fe998637baa392e911db2b2ef"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P25.json",
+   "sha256": "061f94ac0e484b0d7f7071bc4e457426eba9b3abaf7eff34b8cb40f6d84fe409"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P26.json",
+   "sha256": "1c738c4735d6b5ad5b9dd0999500b7eeadc83b0072c308bef18995f772f2c053"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P27.json",
+   "sha256": "4d42e672a2a486034d9ce79eaba72f68af42881ac29756fbf104e317ce82ba2f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P28.json",
+   "sha256": "83fced3cf1c9cef88ae3da914b74cf7a110321962ff318d468336000d1135673"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P29.json",
+   "sha256": "3be7fe32a3dba3ca505fa79ea38f76c3fe62f12f9b4f2c3f61aef711df883cab"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P30.json",
+   "sha256": "3501850457144a1d7b1587e79df74e264f77b1bbb6ebd2d224786096fc6835cd"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P31.json",
+   "sha256": "1f79728e404465b0a8893a04429bd662804b44877203d05232ac1008d9c7b88b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P32.json",
+   "sha256": "3ea0d4b8eb10d98b6e8819842844965b688a92ea1a5eb53fc8aac0f877f86d0a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P33.json",
+   "sha256": "680d171837e3672e40e44e9cb35af7e26a26fe105786751a6b405200ebb37fa0"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P34.json",
+   "sha256": "e21d72d316c4a045c1c9719172aff8720d3ef0c152069d6136ab963fa49458d3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P35.json",
+   "sha256": "e59a204c27c5c5f405be625e82c2187a9299947148fffdc419fce1fd4f57a6a4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P36.json",
+   "sha256": "37ff095484b6bfbb885a05c008624315320b7250874c6b780722b55a4648bba1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P37.json",
+   "sha256": "09ce066fb80cc37413128097292cf36358844d9aadc0e61a8885cd989eb2a92b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P38.json",
+   "sha256": "b572034f4c9b025ccadde44e0ca84b13be316d212a2696c264afbecba4931c5a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P39.json",
+   "sha256": "275deaf0abe402d4a9454d988f93e48f5afdb6c067809966288a121bf9119c8f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P40.json",
+   "sha256": "a9e2057b515f8b99c43fe66e12a2c580c565a9e3e0b3276eed7d00304e11641d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P41.json",
+   "sha256": "e89be3200f3b162f221a8027fc902fa6f29e033f9926cb2f591a3333b13cbeb4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P42.json",
+   "sha256": "6789d48d85262775b8433ce5214433d636fcf10e5d6fb62f5ff77f3826f4582b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P43.json",
+   "sha256": "2c1311681f7f9a5dbcdd16a76eb863f7281b01ae838aac09466fe7562fb90776"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P44.json",
+   "sha256": "20adce659c0bf477a7934c83691fa4813007d3d319bdf7d0cbd35df065a6dfea"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P45.json",
+   "sha256": "087e445e9a0cda767bc0442c00ea5fa542c401ec4655b3bfd38da1032bf3e063"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P46.json",
+   "sha256": "d3ec247f433958943e269a408984b9c23226cb4bb3131515c6e346fa9d195783"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P47.json",
+   "sha256": "6d91eba6439cbd12f52e3239bdbff0aa3488e350c05619a6d1d11e6b106c82ec"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix/raw/P48.json",
+   "sha256": "b4e9015354d54a82b853aaf81c4b01b71982854e274fdf9d6e3c03bd01558eaf"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/matrix.stdout",
+   "sha256": "3780663256a323f81c707e83862aa4be1a9a70e6485cce7fb23ca58f92f2b29a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/oos_sensitivity.json",
+   "sha256": "22d0d6e56c3d2451ac5e6566f3058078a423f7dc34f723819d14ee030040c641"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/p19_audit/FEEDBACK_AUDIT.json",
+   "sha256": "9a1d081c02f3ec5a1723c55ebdfcb4d2929de9e1eae597ce8277dd234d6d45c5"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/p19_audit.stdout",
+   "sha256": "7df7b74867a6d2367939ccb09bc8b6f1aac5f496e26f5814c351bce4f4aa4723"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/reproductions.json",
+   "sha256": "2ae50a70e0404de5a440dcfdc3b8b26b177a4d59c8b5429e9bdb96377414cca9"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/reproductions.stdout",
+   "sha256": "14fdd42adbe4a7e30383658bb5373b915472f362f8d6c980d63b6f93abcecbae"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/skip_reasons_full_suite_files.txt",
+   "sha256": "a7d027d3c383ad56bd99f5f0d11cbcb73ae551dc7c16d08a592759da5324dc4d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/social_guard.txt",
+   "sha256": "8107a85a9a6dd5b553961613f340f10e349f2c475492202ba16b2f3b00b9c44b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/suite_full_tail.txt",
+   "sha256": "29d43068de5f2c9cc8588e3f19a9244d1fa518e476b4f952c4af51258edf3e5b"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/suite_predictive_no_stores_tail.txt",
+   "sha256": "5ece93917fcaa90db160af91f92c3a7cb32ce97ce4a1806c3df553a14008c95f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_checks/threat_scan.json",
+   "sha256": "f389a7ba72734857b83ca6dc888f5b4bcd8133885fb70094c62cb955258b43e4"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/evidence/release_docs_check.json",
+   "sha256": "a0750a8a5250f536934f476803932bdc185d31040dabb8bd5a0bf79881869ffb"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/experiments/EXPERIMENT_REGISTRY.csv",
+   "sha256": "5654bf3e124a24e52622f44a5819996fe93e298f4a941ed8a4b572eb15120198"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/experiments/LEDGER_TOTALS.json",
+   "sha256": "627b4930e6967a5d947300b9dd255a53e43e880c9ceb09988d2716f2cb30e85c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/experiments/SEARCH_LEDGER_P21_ROWS.csv",
+   "sha256": "ffdc8b2b2f1668f89676e2d4cad9e19952fa2efa570c34e52209e3090bc61a81"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/probes/chronology_audit.py",
+   "sha256": "89840c0b7e23c79e1057d3cc95e09ad666c4cf9d23b17b7da4778a8dc5ab72af"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/probes/doc_commands.sh",
+   "sha256": "08128dc6c260cfe9f03a1306f1abdf41827ae104c40f1fb17b8858fe917f7c0e"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/probes/docs_demo.py",
+   "sha256": "01e9647637bb5b32bdd5091a26c123c917a47efa8fae8ae1bf37ad51878a6b79"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/probes/measure.py",
+   "sha256": "dead8499152953b8205d8f5295e63dcef8b848b011244d449e31b3d57f18bf8f"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/probes/release_checks.sh",
+   "sha256": "efd42918de9a67dd155bd3e24279ecb1f5a0f180637fe22d6ef438a77014aff1"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/probes/release_docs_check.py",
+   "sha256": "d805f801b95211ce94dbcd09159b0510dcac6d6e50ec141c09b4605b7400be09"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/release/INSTALL_RUNBOOK.md",
+   "sha256": "a9b45a72f2e37e0c0a146cf9bf0198f831337e0e5b846c91b3a003d6f46f3dde"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/release/MODEL_LIMITS.md",
+   "sha256": "59e071516be9c3f2debd982b47c98db9bc472fdf8cc2103dd545046c1fb084b3"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/release/OPEN_DECISIONS.md",
+   "sha256": "694fb1f044f8de18fee4fabed3e961b00cb50fa67b7b34d84ac0530540a3569a"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/release/RELEASE_DECISION.md",
+   "sha256": "f6320f5c2cfd8154ed9e9c439188d7acfb5930dbd1e80284c1d7c8f9beca1e0d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/release/ROLLBACK_PROOF.md",
+   "sha256": "c603d6492bb45fa3a5dc74cdc95f523cbaa1476e91a2bc525840fb4fe6687c14"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/release/SMOKE_LOG.md",
+   "sha256": "820eabb002d1a3345f92cc35dff0cc2ad316a507e1f1cb1a31556d86c65b6690"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/release/USER_GUIDE.md",
+   "sha256": "8c9a538008196e75bf671c800d51d00a5c4c2ddfd51e09c1214a7a1513c1cbe3"
+  },
+  {
+   "path": "docs/predictive-intelligence/RELEASE.md",
+   "sha256": "8c3569130e146280e19f450f72005d3a195cb2de8756dce3a743fdd23fdf9a3d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_19/evidence/outcomes_runs.json",
+   "sha256": "2dbeee552a01923b21caca65208f2ba60aedf3340e29833b96572b2065e43fe5"
+  }
+ ],
+ "deviations": [
+  "D21-1 P04 TEST_ONLY (no crawl source feeds the engine)",
+  "D21-2 Pygments installed with pytest 9",
+  "D21-3 doc-command run added after pre-registration with its own frozen commit 24c02a6",
+  "D21-4 checklist header time estimate",
+  "D21-5 fresh-env skips (node, jsonschema, IPv6)"
+ ],
+ "limitations": [
+  "no champion, calibrated card or real FORECAST exists; every forecast is ABSTAIN",
+  "3 prospective decision days; frozen cards MODEL_STALE since 2026-10-31",
+  "the 7 PENDING T2 outcomes cannot mature through the frozen commands (OI21-1)",
+  "reproductions need the private stores under /home/claude/pi_research/",
+  "the release checks reuse Phase 20 probes written by an agent of the same family; the orchestrator skeptic is the independent check",
+  "state hash-chained, not signed"
+ ],
+ "blockers": [
+  "predictive release: no registry entry at SHADOW or above (PI-D-091), no calibration, too little prospective evidence"
+ ],
+ "approvals_needed": [
+  "ED-1 promotion change control (PI-D-091)",
+  "ED-2 LLM, Zep or MiroFish spend",
+  "ED-3 catalyst and social collection into a readable store",
+  "ED-4 deploy the forward depth collector (PI-D-044)",
+  "ED-5 merge backtesting PR #4",
+  "ED-6 any merge into main",
+  "ED-7 external alert delivery",
+  "ED-8 flag on outside a sandbox",
+  "ED-9 signing key for the private state",
+  "ED-10 retire or replace stale reference cards"
+ ],
+ "findings": {
+  "open_minor": [
+   "F20-07",
+   "F20-10",
+   "F20-13",
+   "F20-14",
+   "OI21-1"
+  ],
+  "closed_by_documentation": [
+   "F20-11"
+  ]
+ },
+ "next_eligible_phase": "none (Phase 21 is the last phase); after the skeptic: Elving decisions in OPEN_DECISIONS.md",
+ "skeptic_counterexample": "pending (orchestrator); own counterexample: a GO row naming SHADOW_ONLY with no SHADOW entry, caught by release_docs_check.py"
+}
