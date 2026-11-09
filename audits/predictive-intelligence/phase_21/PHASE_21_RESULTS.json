@@ -2,7 +2,7 @@
  "phase": "21",
  "status": "NEEDS_REVIEW",
  "head_before": "90e4c6fddae267759e67d928d5297726c5910785",
- "head_after": "see HANDOFF.md (records commit after 67f1f7d)",
+ "head_after": "6fafc1d83ce51797015e75d6ee673a0b986748fb",
  "release_decision": {
   "abstention_engine_flag_off": "GO (RESEARCH_BASELINE_ONLY, scoped)",
   "predictive_release": "NOT_READY / NO-GO",
@@ -177,6 +177,34 @@
    "exit_code": 0,
    "result": "registry levels ABSTAIN, NO_GO; 0 level, path, dash or command problems; 3 of 3 planted caught",
    "pass": true
+  },
+  {
+   "name": "post-commit full suite",
+   "command": "python -m pytest tests -q -p no:cacheprovider",
+   "exit_code": 1,
+   "result": "2 failed (the two known clock-dependent tests), 2243 passed, 1 skipped",
+   "pass": true
+  },
+  {
+   "name": "post-commit social guard",
+   "command": "python -m memelab social guard",
+   "exit_code": 0,
+   "result": "0 violations, 3177 files scanned",
+   "pass": true
+  },
+  {
+   "name": "post-commit seal check",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "post-commit release audit, single-branch clone",
+   "command": "python -B tools/release_audit.py --history",
+   "exit_code": 0,
+   "result": "Needs action: no.",
+   "pass": true
   }
  ],
  "artifacts": [
@@ -186,7 +214,7 @@
   },
   {
    "path": "audits/predictive-intelligence/phase_21/PHASE_21_EVIDENCE.md",
-   "sha256": "dbbc64b27eacdaf9911175866b5252bdefdf1b1c2758a4e9dc2237ec45872cce"
+   "sha256": "e9375e6fa33c16a1fc9473a67432a972481d0be2745466c54ba05d18dc5c5e3c"
   },
   {
    "path": "audits/predictive-intelligence/phase_21/SKEPTIC_PACKET.md",
@@ -771,6 +799,22 @@
   {
    "path": "audits/predictive-intelligence/phase_21/experiments/SEARCH_LEDGER_P21_ROWS.csv",
    "sha256": "ffdc8b2b2f1668f89676e2d4cad9e19952fa2efa570c34e52209e3090bc61a81"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/postcommit/pytest_summary.txt",
+   "sha256": "91f40b323f6253213f71423eb2a08cd94b422fe495fd584e15f361de62f4910c"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/postcommit/release_audit_history.summary.txt",
+   "sha256": "564e1c7c4954b5e4e62201fdd3d75924999ae5eb84def00397aaedd02acf6e22"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/postcommit/seal_check.json",
+   "sha256": "6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d"
+  },
+  {
+   "path": "audits/predictive-intelligence/phase_21/postcommit/social_guard.out.txt",
+   "sha256": "3693c53b2c7997a2a64b8f6bbe884182afb71f63f5d936e5165c0cc6ac25f595"
   },
   {
    "path": "audits/predictive-intelligence/phase_21/probes/chronology_audit.py",

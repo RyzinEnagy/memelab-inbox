@@ -1,6 +1,6 @@
 # Phase 21 evidence: reproducible research-only release or explicit NO-GO
 
-- Branch `feature/predictive-intelligence`. HEAD before `90e4c6f` (pushed, orchestrator-verified). Pre-registration `0bb361e`; frozen release-check probes `2a29c68`, fixed `b048aac`; frozen doc-command probes `24c02a6`; recorded runs, release documents and evidence `67f1f7d`; records commit after it (hash in HANDOFF.md).
+- Branch `feature/predictive-intelligence`. HEAD before `90e4c6f` (pushed, orchestrator-verified). Pre-registration `0bb361e`; frozen release-check probes `2a29c68`, fixed `b048aac`; frozen doc-command probes `24c02a6`; recorded runs, release documents and evidence `67f1f7d`; records commit `6fafc1d`; post-commit checks in `postcommit/` (suite 2 failed, the two known, 2,243 passed, 1 skipped; guard 0 violations; seal 0 problems; single-branch release audit exit 0, "Needs action: no.").
 - Work from 2026-11-09T22:10Z to about 23:10Z. Package checksums: `sha256sum -c SHA256SUMS.txt` all OK.
 - Status: **NEEDS_REVIEW** (every gate item holds on this agent's evidence, with deviations D21-1 to D21-5 stated below; the orchestrator's independent skeptic has not run yet, PI-D-013).
 - Decision: GO for a research-only release of the abstention engine with the flag OFF (classification RESEARCH_BASELINE_ONLY, scoped); NOT_READY and NO-GO for any predictive release (`release/RELEASE_DECISION.md`, PI-D-115).

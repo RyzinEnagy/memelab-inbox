@@ -1,0 +1,7 @@
+commit 6fafc1d83ce51797015e75d6ee673a0b986748fb
+command: python -m pytest tests -q -p no:cacheprovider (2026-11-09T22:50:54Z to 2026-11-09T22:54:45Z)
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+FAILED tests/test_catalyst_firecrawl.py::test_page_history_and_spend_survive_a_new_session_through_the_state_export
+2 failed, 2243 passed, 1 skipped, 1 warning in 230.54s (0:03:50)
+exit 1
+strays removed by hand: data/reports/20261109_2250_BRETT_0x532f.md
