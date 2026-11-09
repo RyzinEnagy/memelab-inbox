@@ -12,9 +12,11 @@
 # and result files). Recorded: every report's sha256, the lab tables' sha256 (tokens without the two wall-clock columns),
 # whether data/private exists afterwards, the memelab.predictive modules imported (cli_import_trace.py), git status of the sandbox.
 set -u
-FROZEN="$1"
 OUT="$2"
 REPO="$(cd "$(dirname "$0")/../../../.." && pwd)"
+# CP20-2 (S20-4): resolve the argument (HEAD, a branch, a short sha) in the checkout before the sandbox clone; resolved inside the
+# sandbox after `git checkout b0fad12`, HEAD named the base itself and the comparison was base against base
+FROZEN="$(git -C "$REPO" rev-parse --verify "$1^{commit}")" || { echo "cannot resolve $1" >&2; exit 2; }
 HERE="$(cd "$(dirname "$0")" && pwd)"
 BASE=b0fad12e529ef9687fcd3c1dae96e208f7b3e3c6
 EXPORTS="71fc50e1eb86d916034bb0285a466cf2ec1cc4d0 efdaee9"
@@ -26,6 +28,7 @@ rm -rf "$SB"
 git clone -q "$REPO" "$SB"
 cp "$HERE/cli_import_trace.py" "$OUT/cli_import_trace.py"
 : > "$OUT/logs/runs.txt"
+echo "$FROZEN" > "$OUT/logs/requested_commit.txt"
 
 config() {   # $1: none | malformed | string_true | section_true | false | one
   rm -f "$SB/data/config.json"

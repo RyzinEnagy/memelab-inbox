@@ -290,7 +290,16 @@ def p05(c: Check):
              C.ContractError)
     ex = [B.Example(decision_key=f"k{i}", chain="solana", mint=_ti().b58(f"p05{i}"), decision_time=T - 3 * DAY + i * 60.0,
                     label_matures_at=T + DAY, y=0, x={}, avail={}) for i in range(5)]
-    c.raises("fit_all refuses training rows maturing after the cutoff", lambda: B.fit_all(tgt, ex, T), Exception)
+    # CP20-2 (S20-5): rows with complete availability times, so only the maturity rule can refuse them, and the refusal must name
+    # P05 (an availability error no longer counts)
+    BT_ = __import__("test_predictive_baselines")
+    full = BT_.make(n=40, seed=5)
+    cut = max(e.decision_time for e in full) + 60.0
+    late = [B.Example(**{**e.__dict__, "label_matures_at": cut + DAY}) for e in full]
+    c.ok("control: the same rows matured by the cutoff are accepted by fit_all", _accepted(lambda: B.fit_all(L.T1, [
+        B.Example(**{**e.__dict__, "label_matures_at": cut - 1.0}) for e in full], cut)))
+    c.raises("fit_all refuses training rows maturing after the cutoff (P05, not an availability error)",
+             lambda: B.fit_all(L.T1, late, cut), Exception, match="P05")
     card = B.fit_b0(tgt, ex, T)              # a single fitter has no maturity check of its own (see X06)
     c.raises("the replay guard refuses a card whose training labels mature after its cutoff",
              lambda: E.check_card_time(card, [T + DAY]), E.TrainingAfterCutoff)
@@ -416,9 +425,10 @@ def p10(c: Check):
     c.ok("the minority note flags the constant prediction and gives no AUC", "CONSTANT_PREDICTION" in note["flags"] and note["auc"] is None,
          note)
     c.ok("prevalence is reported beside the score", abs(note["prevalence"] - y.mean()) < 1e-12, note["prevalence"])
-    b_model = float(np.mean((p - y) ** 2))
-    b_base = float(np.mean((np.full(2000, y.mean()) - y) ** 2))
-    c.ok("an always-zero forecast is worse than the base rate in Brier", b_model > b_base, (b_model, b_base))
+    b_model = ST.brier(y, p)                                       # CP20-2 (S20-6): the lab's own scoring code, not probe arithmetic
+    b_base = ST.brier(y, np.full(2000, y.mean()))
+    c.ok("an always-zero forecast is worse than the base rate in Brier (stats.brier, stats.brier_skill below 0)",
+         b_model > b_base and ST.brier_skill(y, p, np.full(2000, y.mean())) < 0, (b_model, b_base))
     rep = CAL.reliability(y, np.full(2000, 1e-6))
     c.ok("calibration check fails for the always-negative model", not CAL.check_passed(rep), rep.get("checks") if isinstance(rep, dict) else rep)
 
@@ -1120,8 +1130,25 @@ def p41(c: Check):
     d2 = lab_env("p41b")
     r2 = TI.persist(TI.result("SELLNOW", TI.M2, Tn - 600), d2)
     sec2 = I.scout_section([r2], capture_time=Tn, config_path=on_cfg(d2), state_dir=d2 / "state", lab_db=db.DB_PATH) or ""
-    c.ok("probe: a run-together trading word as a symbol (SELLNOW) is withheld in the Phase 17 scout section as it is in the "
-         "Phase 18 report", "SELLNOW" not in sec2, [ln for ln in sec2.splitlines() if "SELLNOW" in ln][:2], gate=False)
+    c.ok("a run-together trading word as a symbol (SELLNOW) is withheld in the Phase 17 scout section as it is in the Phase 18 "
+         "report (CP20-2, F20-01; a probe at 0d66379)", "SELLNOW" not in sec2, [ln for ln in sec2.splitlines() if "SELLNOW" in ln][:2])
+    # CP20-2 (CX-SK20): run-together multiplier symbols in the report, the alert and the scout section
+    TRP = __import__("test_predictive_reports")
+    d3 = lab_env("p41c")
+    syms = ["100XGAIN", "1000XGEM", "GAIN100X"]
+    rs = [TI.persist(TI.result(sy, TI.b58(f"p41x{i}"), Tn - 600, fatal=("CANNOT_EXIT_5K",) if i == 0 else (),
+                               status="REJECTED" if i == 0 else "WATCH"), d3) for i, sy in enumerate(syms)]
+    TRP._pass(rs, Tn, d3)
+    text = RP.render(RP.build(d3 / "state", config_path=on_cfg(d3), lab_db=db.DB_PATH))
+    RP.alert_run(d3 / "state", config_path=on_cfg(d3), alert_db=d3 / "al" / "a.sqlite", now=Tn + 60, lab_db=db.DB_PATH)
+    alerts = "".join(x.read_text() for x in sorted((d3 / "al" / "outbox" / "preview").glob("alert_*.txt")))
+    sec3 = I.scout_section([TI.persist(TI.result("100XGAIN", TI.b58("p41xs"), Tn - 600), d3)], capture_time=Tn,
+                           config_path=on_cfg(d3), state_dir=d3 / "state_sec", lab_db=db.DB_PATH) or ""
+    c.ok("run-together multiplier symbols (100XGAIN, 1000XGEM, GAIN100X) are withheld in the Phase 18 report", bool(text) and
+         not any(sy in text for sy in syms), [ln for ln in text.splitlines() if any(sy in ln for sy in syms)][:3])
+    c.ok("and in its dry-run alerts", bool(alerts) and not any(sy in alerts for sy in syms),
+         [ln for ln in alerts.splitlines() if any(sy in ln for sy in syms)][:3])
+    c.ok("and in the Phase 17 scout section", bool(sec3) and "100XGAIN" not in sec3, [ln for ln in sec3.splitlines() if "100X" in ln][:2])
 
 
 def p42(c: Check):
@@ -1166,10 +1193,18 @@ def p43(c: Check):
     cut = C.parse_utc("2026-10-12T00:00:00Z")
     train = BT_.gate_like(dev)(cut)
     after = [e for e in dev if e.decision_time >= cut][0]
-    c.raises("a card fit refuses a row decided after its cutoff", lambda: B.fit_all(L.T1, train + [after], cut), Exception)
+    c.raises("a card fit refuses a row decided after its cutoff (named P43)", lambda: B.fit_all(L.T1, train + [after], cut), Exception,
+             match="P43")
+    # CP20-2 (S20-6): the training gate itself is called on stored PROSPECTIVE LABELED rows (was a hasattr on a test name)
     TM = __import__("test_predictive_monitoring")
-    c.ok("prospective label rows never reach the training gate (Phase 19 test present)",
-         hasattr(TM, "test_p43_prospective_label_rows_never_enter_the_training_gate"))
+    con = L.connect(tmpdir("p43") / "s.sqlite")
+    rd = TM.mkread(TM.path_rows(), L.needed_boundary(L.T2, TM.DT), TM.LATE)
+    recs = M.prospective_records(L.Universe([TM.dec()], as_of=TM.LATE, read_of={TM.KEY: rd}))
+    L.store_labels(con, recs, export_ref="x", params={}, now=TM.LATE)
+    n_stored = con.execute("SELECT count(*) FROM predictive_labels WHERE split='PROSPECTIVE' AND state='LABELED'").fetchone()[0]
+    got = {t: len(L.training_labels(con, TM.LATE + 365 * DAY, t)) for t in L.TARGETS}
+    c.ok("prospective LABELED rows stored in the label store never reach training_labels", n_stored > 0 and not any(got.values()),
+         {"stored": n_stored, "training_rows": got})
 
 
 def p44(c: Check):
@@ -1185,8 +1220,11 @@ def p44(c: Check):
     c.ok("a cohort answer for a size is EXECUTION_DATA_MISSING", "EXECUTION_DATA_MISSING" in json.dumps(f), None)
     for word in ("guaranteed profit", "take profit at"):
         c.ok(f"report text with {word!r} is refused", _refused(lambda: RP.check_text(f"this pool shows {word}")), None)
-    c.ok("probe: report text with a multiplier claim ('100x gain') is refused by the final text check", _refused(
-        lambda: RP.check_text("this pool shows a 100x gain")), None, gate=False)
+    for claim in ("a 100x gain", "100XGAIN", "1000XGEM", "GAIN100X"):             # CP20-2 (F20-05, CX-SK20); a probe at 0d66379
+        c.ok(f"report text with a multiplier claim ({claim!r}) is refused by the final text check", _refused(
+            lambda: RP.check_text(f"this pool shows {claim}")), None)
+    c.ok("control: an EVM address prefix in a file name is not a multiplier claim", not _refused(
+        lambda: RP.check_text("token report 20261109_2108_BRETT_0x532f.md")), None)
     TI = _ti()
     d = lab_env("p44")
     T = C.parse_utc("2026-10-27T08:00:00Z")
@@ -1194,6 +1232,10 @@ def p44(c: Check):
     q = read_jsonl(d / "state" / I.FILES["requests"])[-1]
     c.ok("decision support gives no size without depth", q["decision_support"]["size_cap"]["basis"] == "EXECUTION_DATA_MISSING" and
          q["decision_support"]["position_usd_from_forecast"] is None, q["decision_support"]["size_cap"])
+
+
+def _accepted(fn) -> bool:
+    return not _refused(fn)
 
 
 def _refused(fn) -> bool:

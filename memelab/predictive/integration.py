@@ -21,6 +21,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import re
 import sqlite3
 import sys
 import time
@@ -609,6 +610,8 @@ def run_pass(results: Sequence[dict], *, capture_time: float, source: str = "sco
                     tr["error"] = f"decision row: {type(e).__name__}"
         tr["snapshot_hash"] = snapshot_sha(tr["row"]) if tr["row"] else None
         tr["row_sha256"] = D.row_sha256(tr["row"]) if tr["row"] else None
+        tr["token_source"] = "DECISION_ROWS" if decision_rows is not None else "LAB"            # CP20-2 (S20-2)
+        tr["result_pools"] = _result_pools(r)
         trigs.append(tr)
     newest: dict[tuple[str, str], int] = {}
     for tr in trigs:
@@ -687,6 +690,34 @@ def run_pass(results: Sequence[dict], *, capture_time: float, source: str = "sco
     return summary
 
 
+def _result_pools(r: Any) -> set[str]:
+    """The pools the scout result of this decision names for its own token (identity primary and graduated pool)."""
+    ident = ((r.get("bundle") or {}).get("identity") or {}) if isinstance(r, dict) else {}
+    ident = ident if isinstance(ident, dict) else {}
+    return {str(ident[k]) for k in ("primary_pool", "graduated_pool") if ident.get(k)}
+
+
+def _pool_owners(con: sqlite3.Connection | None, pool: str, *, own: str | None = None) -> set[str]:
+    """Mints the lab store records for a pool: the `pools` table and `tokens` rows naming it as primary or graduated pool. With
+    `own`, only that mint's records (a positive binding, CP20-2). Empty without a lab store. Not used to refuse a pool shared
+    with another mint: the lab's `pools` table keeps the first token a pair was seen under, quote side included."""
+    if con is None:
+        return set()
+    out: set[str] = set()
+    try:
+        tabs = _tables(con)
+        if "pools" in tabs:
+            out |= {r[0] for r in con.execute("SELECT mint FROM pools WHERE pool_address=?", (pool,))}
+        if "tokens" in tabs:
+            cols = {r[1] for r in con.execute("PRAGMA table_info(tokens)")}
+            for c in ("primary_pool", "graduated_pool"):
+                if c in cols:
+                    out |= {r[0] for r in con.execute(f"SELECT mint FROM tokens WHERE {c}=?", (pool,))}
+    except sqlite3.Error:
+        return set()
+    return {m for m in out if own is None or m == own}
+
+
 def _not_attempted(base: dict, event: str, **kw) -> dict:
     return dict(base, event=event, targets=[], **kw)
 
@@ -728,6 +759,14 @@ def _process(tr: dict, base: dict, *, state: dict, newest: dict, attempted: int,
         return _not_attempted(base, "NOT_EXACT_IDENTITY",
                               detail="TOKEN_ROW_OF_ANOTHER_IDENTITY: the token row names another chain or mint than the decision (P01)")
     pool = (tok.get("primary_pool") or tok.get("graduated_pool")) if tok.get("chain", tr["chain"]) == tr["chain"] else None
+    pool_bound = True
+    if pool is not None:                                                                       # CP20-2 (S20-2, P01)
+        if tr["result_pools"] and pool not in tr["result_pools"]:
+            shown.append(dict(view, event="NOT_EXACT_IDENTITY"))
+            return _not_attempted(base, "NOT_EXACT_IDENTITY",
+                                  detail="POOL_OF_ANOTHER_TOKEN: the token row names another pool than the decision's own "
+                                         "result (P01)")
+        pool_bound = (tr["token_source"] == "LAB" or pool in tr["result_pools"] or tr["mint"] in _pool_owners(lab, pool, own=tr["mint"]))
     cat = catalyst_state(lab, tr["chain"], tr["mint"], T)
     # ---- serve every primary target as of the decision (rule 7)
     served: dict[str, dict] = {}
@@ -774,7 +813,7 @@ def _process(tr: dict, base: dict, *, state: dict, newest: dict, attempted: int,
         feats = val if st["state"] == RT.AVAILABLE else {"x": {}, "avail": {}, "summary": {"state": st["state"], "detail": st["detail"]}}
     elig, elig_detail = (INPUT_STALE, "inputs older than 7,200 s at the capture") if stale else (NOT_ASSESSED, "no champion served")
     if not stale and any(served[t]["use_champion"] for t in PRIMARY):
-        elig, elig_detail = _eligibility(reader, guard, reads, pool, tr, T, clock)
+        elig, elig_detail = _eligibility(reader, guard, reads, pool, tr, T, clock, pool_bound=pool_bound)
     new_mint = tr["earlier"] == 0
     # ---- per target: document and record (rules 3, 7, 11, 12)
     targets = []
@@ -899,10 +938,13 @@ def _serve(t: str, T: float, *, reg: dict, rt: dict, root: Path, allow_fixture: 
 
 
 def _eligibility(reader: Callable | None, guard: RT.CallGuard, reads: dict, pool: str | None, tr: dict, T: float,
-                 clock: Callable[[], float]) -> tuple[str, str]:
-    """One reference-price read per decision for a served champion (rule 6), through the guard; registry eligibility rule."""
+                 clock: Callable[[], float], *, pool_bound: bool = True) -> tuple[str, str]:
+    """One reference-price read per decision for a served champion (rule 6), through the guard; registry eligibility rule. A pool
+    bound to the mint by nothing but a replayed token row is never read (CP20-2, S20-2)."""
     if pool is None:
         return "VENDOR_OR_ROUTE_GAP", "no point-in-time pool"
+    if not pool_bound:
+        return "VENDOR_OR_ROUTE_GAP", "POOL_NOT_BOUND_TO_MINT: no lab record or result of this decision names this pool for the mint"
     if reader is None:
         return NOT_ASSESSED, "no reader configured: no reference-price read"
     t0 = clock()
@@ -1028,16 +1070,48 @@ def _plain_ok(text: str) -> bool:
 FORECAST_WORDS = ("forecast", "probab", "interval", "percent", "chance", "odds", "likely", "advice", "abstain", "record")
 
 
-def _ident(x: Any, cap: int = 24) -> str:
+# CP18-2 (PI-D-102 item 4, CX-SK18) moved here by CP20-2 (PI-D-113 item 2, F20-01): trading words matched as substrings of the
+# letters of token text, like FORECAST_WORDS, in every rendered piece of token text (scout section, report, alert)
+TOKEN_WORDS = ("buy", "sell", "long", "short", "entry", "exitnow", "moon", "pump", "guaranteed", "signal", "targethit", "targetprice",
+               "pricetarget", "takeprofit", "stoploss", "positionsize", "allin", "loadup", "apein", "accumulate", "profit")
+_HEX_RUN = re.compile(r"(?<![0-9a-z])0x[0-9a-f]+")                  # an EVM address or its prefix, never a multiplier
+_JOINED_MULTIPLIER = re.compile(r"\d+x|x\d+")                       # on the text with separators removed: 100XGAIN, GAIN100X, X 100
+
+
+def has_multiplier(raw: Any, exempt: Sequence[str] = ()) -> bool:
+    """A multiplier claim in token text (CP20-2, CX-SK20): a digit run joined to an x on either side once separators are removed,
+    after removing 0x hex runs and the exact strings in `exempt` (the mint and its six-character file-name prefix)."""
+    low = str(raw if raw is not None else "").lower()
+    for e in sorted({str(e).lower() for e in exempt if e}, key=len, reverse=True):
+        low = low.replace(e, " ")
+    low = _HEX_RUN.sub(" ", low)
+    return bool(_JOINED_MULTIPLIER.search(re.sub(r"[^a-z0-9]+", "", low)))
+
+
+def unsafe_token_text(raw: Any, exempt: Sequence[str] = ()) -> bool:
+    """True when token text carries a trading word (spaced or run together), a forecast word or a multiplier claim."""
+    s = str(raw if raw is not None else "")
+    letters = re.sub(r"[^a-z]", "", s.lower())
+    return (not _plain_ok(re.sub(r"[^A-Za-z0-9]+", " ", s)) or any(w in letters for w in FORECAST_WORDS)
+            or any(w in letters for w in TOKEN_WORDS) or has_multiplier(s, exempt))
+
+
+def _ident(x: Any, cap: int = 24, exempt: Sequence[str] = ()) -> str:
     """An identity string from a token (symbol, name, chain) as plain text: letters, digits, dot, dash and underscore only, capped;
-    'withheld' when it would carry a trading or a forecast word (CP17-1, skeptic m3). It can never start a line or a list item."""
-    import re
+    'withheld' when it would carry a trading word (spaced or run together), a forecast word or a multiplier claim (CP17-1,
+    skeptic m3; CP20-2, F20-01 and CX-SK20). Checked on the whole string, before the cap. It can never start a line or a list
+    item. `exempt`: exact strings ignored by the multiplier rule (the token's own mint and its file-name prefix)."""
     raw = str(x if x is not None else "")
     full = re.sub(r"[^A-Za-z0-9._-]", "", raw)
-    low = re.sub(r"[^a-z]", "", raw.lower())                            # the words are checked on the whole string, before the cap
-    if not full or not _plain_ok(re.sub(r"[^A-Za-z0-9]+", " ", raw)) or any(w in low for w in FORECAST_WORDS):
+    if not full or unsafe_token_text(raw, exempt):
         return "withheld"
     return full[:cap]
+
+
+def _mint_exempt(mint: Any) -> tuple[str, ...]:
+    """The exact mint and the six-character prefix the lab puts in a token report's file name (pipeline.persist_result)."""
+    m = str(mint or "")
+    return (m, m[:6]) if m else ()
 
 
 def _mint_text(chain: Any, mint: Any) -> str:
@@ -1107,7 +1181,7 @@ def render(summary: dict) -> str:
                 L_.append(f"- {words}: FORECAST; record {rec['record_id'][:12]}")
             L_.append(f"  - {AB.describe(doc, rec)}")
         if ev.get("report_path"):
-            L_.append(f"- Token report: {_ident(Path(str(ev['report_path'])).name, 80)}")
+            L_.append(f"- Token report: {_ident(Path(str(ev['report_path'])).name, 80, _mint_exempt(ev.get('mint')))}")
         L_.append("")
     out = "\n".join(L_)
     ident = out

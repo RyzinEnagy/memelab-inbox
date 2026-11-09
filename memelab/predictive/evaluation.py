@@ -240,6 +240,9 @@ def check_card_time(card: dict, decision_times: Sequence[float], *, max_age_s: f
         raise RetrospectiveModelNotAvailable(f"card {card.get('model_id')} trained to {card.get('training_cutoff_utc')} cannot "
                                              f"score {len(early)} earlier decision(s) ({REPLAY_STATUS}, P13)")
     mt, mm = card.get("max_train_decision_time"), card.get("max_train_label_matures_at")
+    n = card.get("n_train")
+    if (n is None or float(n) > 0) and (mt is None or mm is None):                   # CP20-2 (S20-8): fail closed
+        raise TrainingAfterCutoff(f"card {card.get('model_id')}: a fitted card without its training maturity record (P05, P43)")
     if mt is not None and float(mt) >= cut:
         raise TrainingAfterCutoff(f"card {card.get('model_id')}: a training decision at or after its cutoff (P43)")
     if mm is not None and float(mm) > cut:

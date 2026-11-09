@@ -202,6 +202,15 @@ OUTCOME_FIELDS = ("outcome_id", "decision_key", "chain", "mint", "decision_time"
                   "revision_reason", "recorded_at", "conservative_lens")
 
 
+def _token_param_is(url: Any, mint: str) -> bool:
+    """The request URL's query has exactly one `token` parameter and its raw value equals the mint byte for byte (CP20-2,
+    F20-04). Parsed by hand (no URL library in this module): the query is the text after the first '?' up to any '#', split on
+    '&'; nothing is percent-decoded, so an encoded mint is refused (fail closed)."""
+    query = str(url).split("#", 1)[0].partition("?")[2]
+    vals = [v for k, _, v in (kv.partition("=") for kv in query.split("&") if kv) if k == "token"]
+    return vals == [str(mint)]
+
+
 def check_payload(idx: Index, p: dict) -> str:
     """'APPEND' or 'DUPLICATE' (identical content already present); raises LedgerError with the rule's code otherwise."""
     k = p.get("kind")
@@ -262,8 +271,8 @@ def check_payload(idx: Index, p: dict) -> str:
                 raise LedgerError("NOT_YET_MATURED", "a label read or recorded before label_matures_at is PENDING (P05)")
             if not (p["response_key"] and p["request_url"] and p["body_sha256"]):
                 raise LedgerError("MALFORMED_ENTRY", "a LABELED outcome names its read (url, response key, body sha256)")
-            if "token=" + p["mint"] not in p["request_url"]:
-                raise LedgerError("IDENTITY_MISMATCH", "the label read must carry token=<mint> (PI-D-038)")
+            if not _token_param_is(p["request_url"], p["mint"]):                       # CP20-2 (F20-04): parsed, exact
+                raise LedgerError("IDENTITY_MISMATCH", "the label read must carry exactly one token=<mint> parameter (PI-D-038)")
         elif p["label"] is not None or p["label_class"] is not None:
             raise LedgerError("MALFORMED_ENTRY", "only a LABELED outcome carries a label (P05, P37)")
         cur = idx.current(_pair(p))

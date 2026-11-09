@@ -50,9 +50,18 @@ def main(out: Path, outjson: Path) -> int:
         res["comparisons"][name] = cmp
         ok = ok and all(cmp[k] for k in cmp if k not in ("reports", "exit"))
     res["checkout_status"] = (out / "logs" / "checkout_git_status.txt").read_text().splitlines()
-    res["all_identical"] = ok and res["checkout_status"] == []
+    # CP20-2 (S20-4): every frozen run must be at the requested commit, and that commit must not be the base
+    req_p = out / "logs" / "requested_commit.txt"
+    requested = req_p.read_text().strip() if req_p.exists() else ""
+    base_short = {r["commit"] for n, r in runs.items() if n.startswith("base_")}
+    frozen_short = {r["commit"] for n, r in runs.items() if n.startswith("frozen_")}
+    commit_ok = bool(requested) and len(frozen_short) == 1 and requested.startswith(next(iter(frozen_short))) and \
+        not (frozen_short & base_short) and not requested.startswith("b0fad12")
+    res["requested_commit"], res["frozen_commits"], res["base_commits"] = requested, sorted(frozen_short), sorted(base_short)
+    res["frozen_commit_is_the_requested_one_and_not_the_base"] = commit_ok
+    res["all_identical"] = ok and res["checkout_status"] == [] and commit_ok
     outjson.write_text(json.dumps(res, indent=1, sort_keys=True) + "\n")
-    print(json.dumps({"all_identical": res["all_identical"], "runs": len(runs),
+    print(json.dumps({"all_identical": res["all_identical"], "runs": len(runs), "commit_check": commit_ok,
                       "failing": {k: [x for x, v in c.items() if v is False] for k, c in res["comparisons"].items() if not all(
                           v for x, v in c.items() if x not in ("reports", "exit"))},
                       "frozen_exits": {k: c["exit"] for k, c in res["comparisons"].items()}}))

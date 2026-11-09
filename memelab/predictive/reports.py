@@ -157,24 +157,16 @@ def _status_text(status: Any) -> tuple[str, str]:
     return _token_text(status), "UNKNOWN"
 
 
-# CP18-2 (PI-D-102 item 4, CX-SK18): trading words matched as substrings of the letters of token text, like FORECAST_WORDS
-TOKEN_WORDS = ("buy", "sell", "long", "short", "entry", "exitnow", "moon", "pump", "guaranteed", "signal", "targethit", "targetprice",
-               "pricetarget", "takeprofit", "stoploss", "positionsize", "allin", "loadup", "apein", "accumulate", "profit")
-_MULTIPLIER = re.compile(r"(?<![0-9a-z])\d+\s*x(?![0-9a-z])|(?<![0-9a-z])x\s*\d+(?![0-9a-z])")    # 100X, x1000; never 0x2a9f
+# CP18-2 (PI-D-102 item 4, CX-SK18), moved into integration by CP20-2 (PI-D-113 item 2): one rule for all rendered token text
+TOKEN_WORDS = I.TOKEN_WORDS
 
 
-def _token_text(x: Any, cap: int = 24) -> str:
-    """Token or third-party text (symbol, chain, labels, file names): the Phase 17 helper, then withheld when its letters joined
-    and lower-cased contain a trading word, or it carries a multiplier such as 100X. Over-withholding is accepted: the exact mint
-    always identifies the token."""
-    t = I._ident(x, cap)
-    if t == "withheld":
-        return t
-    raw = str(x if x is not None else "")
-    letters = re.sub(r"[^a-z]", "", raw.lower())
-    if any(w in letters for w in TOKEN_WORDS) or _MULTIPLIER.search(raw.lower()):
-        return "withheld"
-    return t
+def _token_text(x: Any, cap: int = 24, exempt: Sequence[str] = ()) -> str:
+    """Token or third-party text (symbol, chain, labels, file names): the Phase 17 helper, which withholds text whose letters
+    joined and lower-cased contain a trading word, or which carries a multiplier claim such as 100X, 100XGAIN or GAIN100X
+    (CP20-2, CX-SK20). Over-withholding is accepted: the exact mint always identifies the token. `exempt`: the token's own mint
+    and its file-name prefix, ignored by the multiplier rule."""
+    return I._ident(x, cap, exempt)
 
 
 def _code(x: Any) -> str:
@@ -193,13 +185,31 @@ def _plain(text: str) -> bool:
 LOCAL_PATH = re.compile(r"(/tmp/|/home/|/Users/|/root/|/var/|/mnt/|[A-Za-z]:\\)")
 
 
+_BASE58_RUN = re.compile(r"[1-9A-HJ-NP-Za-km-z]{32,}")               # a Solana address or pool, never prose
+_TEXT_MULTIPLIER = re.compile(r"\d+x|x\d+|(?<![0-9a-z])\d+\s+x(?![0-9a-z])|(?<![0-9a-z])x\s+\d+(?![0-9a-z])")
+
+
+def text_multiplier(text: str, mints: Sequence[str] = ()) -> bool:
+    """A multiplier claim in report or alert text (CP20-2, F20-05, CX-SK20): digits joined to an x on either side, or a bounded
+    spaced form ("100 x"), after removing the exact mints, their six-character file-name prefixes, base58 address runs and 0x
+    hex runs."""
+    t = text
+    for m in sorted({m for m in mints if m} | {m[:6] for m in mints if m}, key=len, reverse=True):
+        t = t.replace(m, " ")
+    t = I._HEX_RUN.sub(" ", _BASE58_RUN.sub(" ", t).lower())
+    return bool(_TEXT_MULTIPLIER.search(t))
+
+
 def check_text(text: str, mints: Sequence[str] = ()) -> None:
-    """Rule 7: the text, without the exact mints, carries no trading word and no local path; raises otherwise."""
+    """Rule 7: the text, without the exact mints, carries no trading word, no multiplier claim (CP20-2) and no local path;
+    raises otherwise."""
     t = text
     for m in sorted({m for m in mints if m}, key=len, reverse=True):
         t = t.replace(m, "")
     if not _plain(t):
         raise ReportError("the text would carry a trading word")
+    if text_multiplier(text, mints):
+        raise ReportError("the text would carry a multiplier claim")
     if LOCAL_PATH.search(t):
         raise ReportError("the text would carry a local path")
 
@@ -620,7 +630,8 @@ def _opportunity(rv: dict, newer: list[dict] | None = None) -> dict:
                        "backtest_result": bt.get("result"), "backtest_installed": bt.get("installed_status")},
          "eligibility": (req.get("eligibility") or {}).get("state"),
          "ids": {"request_record_id": req.get("record_id"), "pass_id": req.get("pass_id"), "request_seq": req.get("seq"),
-                 "token_report": _token_text(Path(str((req.get("report_refs") or {}).get("token_report") or "")).name, 80)
+                 "token_report": _token_text(Path(str((req.get("report_refs") or {}).get("token_report") or "")).name, 80,
+                                             I._mint_exempt(req.get("mint")))
                  if (req.get("report_refs") or {}).get("token_report") else None},
          "registry_facts": rv["registry_facts"], "previous_request_record_id": (rv["previous"] or {}).get("record_id"),
          "newer_not_assessed": list(newer or [])}

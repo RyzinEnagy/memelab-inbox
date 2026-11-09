@@ -5,7 +5,8 @@ least three components with one planted defect, beside a positive control on the
 A scenario whose expected behaviour does not hold at the code is marked xfail(strict=True) with its finding id, so the suite
 records the open defect without failing, and a repair that fixes it turns the xfail into an error until the marker is removed.
 At the audited code 0d66379, X02, the X03 run_pass case, X06 and the carried Phase 18 minor 5 were such markers; change control
-CP20-1 (PI-D-110) repaired them and removed the markers. X04 stays marked (F20-04 waits for G25). Temp folders, fixed clocks, no
+CP20-1 (PI-D-110) repaired them and removed the markers. X04 stays marked (F20-04 waits for G25). Repair pass 2 (CP20-2, PI-D-113) repaired F20-04 after G25 and
+removed the X04 markers, and added the S20-2 pool binding and the CX-SK20 token-text tests. Temp folders, fixed clocks, no
 network (an audit hook refuses sockets). Every FORECAST here is a fixture."""
 from __future__ import annotations
 
@@ -196,13 +197,13 @@ def test_x04_a_body_whose_base_is_another_mint_gives_no_labeled_outcome():
     assert set(elig.values()) == {"VENDOR_OR_ROUTE_GAP"}
 
 
-@pytest.mark.parametrize("case", ["prefix_extended_token", "token_only_in_another_parameter"])
-@pytest.mark.xfail(strict=True, reason="F20-04 open (MINOR): the ledger's identity rule is a substring test on the URL, not the parsed "
-                                        "token parameter")
+@pytest.mark.parametrize("case", ["prefix_extended_token", "token_only_in_another_parameter", "token_twice", "token_after_fragment"])
 def test_x04_the_ledger_refuses_a_labeled_outcome_whose_token_parameter_is_not_exactly_the_mint(tmp_path, case):
     p = _ledger(tmp_path)
     url = {"prefix_extended_token": f"https://api.geckoterminal.com/x?token={TM.MINT}Z",
-           "token_only_in_another_parameter": f"https://api.geckoterminal.com/x?ref=token={TM.MINT}&token={TM.MINT_B}"}[case]
+           "token_only_in_another_parameter": f"https://api.geckoterminal.com/x?ref=token={TM.MINT}&token={TM.MINT_B}",
+           "token_twice": f"https://api.geckoterminal.com/x?token={TM.MINT}&token={TM.MINT_B}",
+           "token_after_fragment": f"https://api.geckoterminal.com/x?a=1#&token={TM.MINT}"}[case]
     with pytest.raises(M.LedgerError) as e:
         M.append(p, [TM.outcome(request_url=url)])
     assert e.value.code == "IDENTITY_MISMATCH"
@@ -381,3 +382,118 @@ def test_carried_control_recompute_point_holds_on_the_unforged_forecast(lab):
     d = TRP.world_forecast(lab)
     v, _ = TRP.report(d)
     assert v["counts"]["probabilities_shown"] == 1
+
+
+# ---------------------------------------------------------------- repair pass 2 (CP20-2, PI-D-113): the skeptic's attacks
+def _replay_with(lab, w, token_of, state, *, result_pool=TI.POOL1):
+    r = TI.persist(TI.result("FXA", TI.M1, T_FX - 600, pool=result_pool), lab)
+    con = sqlite3.connect(db.DB_PATH)
+    con.row_factory = sqlite3.Row
+    row = dict(con.execute("SELECT * FROM theses WHERE mint=? ORDER BY id DESC", (TI.M1,)).fetchone())
+    own = dict(con.execute("SELECT * FROM tokens WHERE mint=?", (TI.M1,)).fetchone())
+    con.close()
+    reads = []
+
+    def reader(pool, mint, T):
+        reads.append(pool)
+        return TI.candles_ok(pool, mint, T)
+    s = I.run_pass([r], capture_time=T_FX, state_dir=lab / state, config_path=TI.cfg(lab),
+                   decision_rows=[{"row": row, "token": token_of(own), "decision_time": T_FX, "basis": "EXPORT_COMMIT"}],
+                   **TI.fx_kw(w, lab, reader=reader))
+    return s, reads
+
+
+def test_s20_2_a_token_row_with_the_right_mint_but_another_tokens_pool_is_refused_before_any_read(lab):
+    """The skeptic's bypass of the F20-02 repair (p20_cp20_attacks.py::test_a2): mint kept, POOL2 named. At b4d4768 POOL2 was read
+    and a fixture FORECAST published."""
+    w = TI.fixture_world(lab)
+    s, reads = _replay_with(lab, w, lambda own: dict(own, primary_pool=TI.POOL2), "st_pool")
+    req = _lines(lab, "requests", "st_pool")[-1]
+    assert reads == [] and TI.POOL2 not in json.dumps(req)
+    assert req["event"] == "NOT_EXACT_IDENTITY" and req["detail"].startswith("POOL_OF_ANOTHER_TOKEN")
+    assert s["metrics"]["completed_forecasts"] == 0
+
+
+def test_s20_2_a_pool_bound_by_nothing_but_the_replayed_token_row_is_never_read(lab):
+    """The result names no pool and no lab store is given: the token row alone cannot bind its pool to the mint."""
+    w = TI.fixture_world(lab)
+    s, reads = _replay_with(lab, w, lambda own: dict(own, primary_pool=TI.POOL2), "st_unbound", result_pool=None)
+    req = _lines(lab, "requests", "st_unbound")[-1]
+    assert reads == [] and s["metrics"]["completed_forecasts"] == 0
+    assert "POOL_NOT_BOUND_TO_MINT" in json.dumps(req)
+
+
+def test_s20_2_control_the_decisions_own_pool_is_read_once(lab):
+    w = TI.fixture_world(lab)
+    s, reads = _replay_with(lab, w, lambda own: own, "st_pool_own")
+    assert reads == [TI.POOL1] and s["metrics"]["completed_forecasts"] == 1
+
+
+def _leaky_without_fields(tmp, monkeypatch):
+    real = B.fit_b2
+
+    def leaky(target, train, cutoff, **kw):
+        card = real(target, [B.Example(**{**e.__dict__, "label_matures_at": cutoff + 5 * DAY}) for e in train], cutoff, **kw)
+        card["max_train_decision_time"] = None
+        card["max_train_label_matures_at"] = None
+        card["model_sha"] = B.sha({k: v for k, v in card.items() if k != "model_sha"})
+        return card
+    monkeypatch.setattr(B, "fit_b2", leaky)
+    try:
+        return TI.fixture_world(tmp)
+    finally:
+        monkeypatch.setattr(B, "fit_b2", real)
+
+
+def test_s20_8_a_fitted_card_without_its_maturity_record_is_not_pinned(lab, monkeypatch):
+    with pytest.raises(R.PinRefused):
+        _leaky_without_fields(lab, monkeypatch)
+
+
+def test_s20_8_the_replay_guard_refuses_a_fitted_card_without_its_maturity_record():
+    card = {"model_id": "x", "training_cutoff": 100.0, "training_cutoff_utc": "x", "n_train": 300,
+            "max_train_decision_time": None, "max_train_label_matures_at": None}
+    with pytest.raises(E.TrainingAfterCutoff):
+        E.check_card_time(card, [200.0])
+    assert R.training_after_cutoff(card) is not None
+    assert R.training_after_cutoff(dict(card, max_train_decision_time=50.0, max_train_label_matures_at=90.0)) is None
+
+
+RUN_TOGETHER = ["100XGAIN", "1000XGEM", "GAIN100X", "10XPLAY", "100 X GAIN", "X100COIN", "SELLNOW", "PUMP100X"]
+
+
+@pytest.mark.parametrize("sym", RUN_TOGETHER)
+def test_cx_sk20_token_text_helpers_withhold_run_together_multipliers_and_trading_words(sym):
+    assert I._ident(sym) == "withheld" and RP._token_text(sym) == "withheld"
+
+
+def test_cx_sk20_control_hex_addresses_and_the_tokens_own_file_name_prefix_are_not_multipliers():
+    assert I._ident("BRETT") == "BRETT" and I._ident("base") == "base"
+    assert I._ident("20261109_2108_BRETT_0x532f.md", 80) == "20261109_2108_BRETT_0x532f.md"
+    m = "9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump"
+    assert I._ident("20261006_2359_GOMO_9XKzy4.md", 80, I._mint_exempt(m)) == "20261006_2359_GOMO_9XKzy4.md"
+    assert I._ident("20261006_2359_GOMO_9XKzy4.md", 80) == "withheld"           # without the exact mint it is withheld
+    RP.check_text(f"token {m} report 20261006_2359_GOMO_9XKzy4.md at 0x532f", [m])
+    for t in ("a 100x gain", "100XGAIN", "GAIN100X", "up 10 x"):
+        with pytest.raises(RP.ReportError):
+            RP.check_text(f"this pool shows {t}")
+
+
+def test_cx_sk20_a_run_together_multiplier_symbol_is_withheld_in_report_alert_and_section(lab):
+    """CX-SK20 (the skeptic's p20_cp20_attacks.py::test_cx_sk20): at b4d4768 the report printed `## 1000XGEM`, the row
+    `| 100XGAIN | ... | CANNOT_EXIT_5K |` and the alert line "100XGAIN on solana", and the scout section printed 100XGAIN."""
+    T = TI.T_TODAY
+    syms = ["100XGAIN", "1000XGEM", "GAIN100X"]
+    rs = [TI.persist(TI.result(s, TI.b58(f"sk20{i}"), T - 600, fatal=("CANNOT_EXIT_5K",) if i == 0 else (),
+                               status="REJECTED" if i == 0 else "WATCH"), lab) for i, s in enumerate(syms)]
+    TRP._pass(rs, T, lab)
+    v = RP.build(lab / "state", config_path=TI.cfg(lab), lab_db=db.DB_PATH)
+    text = RP.render(v)
+    RP.alert_run(lab / "state", config_path=TI.cfg(lab), alert_db=lab / "al" / "a.sqlite", now=T + 60, lab_db=db.DB_PATH)
+    alerts = "".join(p.read_text() for p in sorted((lab / "al" / "outbox" / "preview").glob("alert_*.txt")))
+    sec = I.scout_section([TI.persist(TI.result("100XGAIN", TI.b58("sk20s"), T - 600), lab)], capture_time=T,
+                          config_path=TI.cfg(lab), state_dir=lab / "state_sec", lab_db=db.DB_PATH) or ""
+    assert alerts and "withheld" in text
+    for s in syms:
+        assert s not in text and s not in alerts, s
+    assert "100XGAIN" not in sec and "withheld" in sec

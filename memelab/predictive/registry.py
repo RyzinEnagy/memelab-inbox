@@ -777,9 +777,13 @@ def stale_after(entry: dict) -> float:
 
 def training_after_cutoff(entry: dict) -> str | None:
     """The rule of `evaluation.check_card_time` on an entry's own record (P05, P43): a training decision at or after the
-    training cutoff, or a training label maturing after it. None when the record keeps its cutoff (CP20-1, F20-06)."""
+    training cutoff, or a training label maturing after it, or a fitted card (n_train absent or above 0) that does not record
+    both maxima (CP20-2, S20-8). None when the record keeps its cutoff (CP20-1, F20-06)."""
     cut = float(entry["training_cutoff"])
     mt, mm = entry.get("max_train_decision_time"), entry.get("max_train_label_matures_at")
+    n = entry.get("n_train")
+    if (n is None or float(n) > 0) and (mt is None or mm is None):                   # CP20-2 (S20-8): fail closed
+        return f"a fitted card without its training maturity record (cutoff {entry.get('training_cutoff_utc')}, P05, P43)"
     if mt is not None and float(mt) >= cut:
         return f"a training decision at or after the cutoff {entry['training_cutoff_utc']} (P43)"
     if mm is not None and float(mm) > cut:

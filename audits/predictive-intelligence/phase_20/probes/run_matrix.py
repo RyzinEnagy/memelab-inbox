@@ -91,6 +91,62 @@ def mapped_tests() -> dict[str, list[str]]:
     return out
 
 
+# CP20-2 (S20-11): the PI-D-109 severity class the scenario's trap would have if its required behaviour did not hold in the
+# code (CRITICAL: a leak into a published number or training row, a number where the contract abstains, a quote or size from a
+# forecast, copyleft code, a trade, key or exfiltration path, an unbounded spend path, a changed flag-off lab output; MATERIAL
+# otherwise). Fixed before the CP20-2 rerun; it does not depend on the run's result.
+UNPATCHED_SEVERITY = {
+    "P01": "CRITICAL",
+    "P02": "MATERIAL",
+    "P03": "CRITICAL",
+    "P04": "CRITICAL",
+    "P05": "CRITICAL",
+    "P06": "CRITICAL",
+    "P07": "CRITICAL",
+    "P08": "CRITICAL",
+    "P09": "MATERIAL",
+    "P10": "MATERIAL",
+    "P11": "CRITICAL",
+    "P12": "CRITICAL",
+    "P13": "CRITICAL",
+    "P14": "MATERIAL",
+    "P15": "MATERIAL",
+    "P16": "MATERIAL",
+    "P17": "MATERIAL",
+    "P18": "MATERIAL",
+    "P19": "MATERIAL",
+    "P20": "CRITICAL",
+    "P21": "MATERIAL",
+    "P22": "MATERIAL",
+    "P23": "MATERIAL",
+    "P24": "CRITICAL",
+    "P25": "CRITICAL",
+    "P26": "CRITICAL",
+    "P27": "CRITICAL",
+    "P28": "CRITICAL",
+    "P29": "MATERIAL",
+    "P30": "MATERIAL",
+    "P31": "CRITICAL",
+    "P32": "CRITICAL",
+    "P33": "MATERIAL",
+    "P34": "MATERIAL",
+    "P35": "MATERIAL",
+    "P36": "CRITICAL",
+    "P37": "MATERIAL",
+    "P38": "CRITICAL",
+    "P39": "CRITICAL",
+    "P40": "CRITICAL",
+    "P41": "CRITICAL",
+    "P42": "MATERIAL",
+    "P43": "CRITICAL",
+    "P44": "CRITICAL",
+    "P45": "MATERIAL",
+    "P46": "MATERIAL",
+    "P47": "MATERIAL",
+    "P48": "CRITICAL",
+}
+
+
 def main(outdir: Path) -> int:
     outdir.mkdir(parents=True, exist_ok=True)
     raw = outdir / "raw"
@@ -145,7 +201,7 @@ def main(outdir: Path) -> int:
             w.writerow([sid, table[sid]["trap"], table[sid]["required"], comp, f"python -B audits/predictive-intelligence/phase_20/probes/scenarios.py {sid}",
                         code, res.get("passed"), res.get("total"), "; ".join(res.get("probes_failed") or []), result, " ".join(tests),
                         " ".join(f"{o}" for o in outs) if tests else "none mapped (own check only)",
-                        "" if result != "FAIL" else "SEE_FINDINGS", f"qa/raw/{sid}.json"])
+                        UNPATCHED_SEVERITY[sid], f"qa/raw/{sid}.json"])
     summary = {"scenarios": len(rows), "exit_codes": {k: v["exit"] for k, v in runs.items()},
                "results": {sid: r["result"] for sid, r in runs.items()}, "mapped_tests": len(node_ids),
                "mapped_tests_exit": pt.returncode, "mapped_tests_tail": pt.stdout.strip().splitlines()[-1] if pt.stdout.strip() else "",

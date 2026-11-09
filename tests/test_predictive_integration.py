@@ -1417,7 +1417,8 @@ def test_rp2_m3_an_identity_string_cannot_forge_a_line_a_number_or_a_trading_wor
     r3 = persist(result("SELL", M3, T_TODAY - 600), lab)
     text = I.scout_section([r, r2, r3], capture_time=T_TODAY, config_path=cfg(lab), state_dir=lab / "state", lab_db=db.DB_PATH)
     assert ": FORECAST;" not in text and "0.91" not in text and "Probability" not in text and "buy now" not in text.lower()
-    assert "### withheld `solana:" + M1 + "`" in text and "### MOONSHOT `" in text and "### withheld `solana:" + M3 + "`" in text
+    # CP20-2 (PI-D-113, F20-01): a run-together trading word (MOON in MOONSHOT) is withheld here as in the Phase 18 report
+    assert "### withheld `solana:" + M1 + "`" in text and "### withheld `solana:" + M2 + "`" in text and "### withheld `solana:" + M3 + "`" in text
     assert all(not l.startswith("- 24 hours") or ": ABSTAIN (" in l for l in text.splitlines())
     assert I._ident("a`b*c[d](e)#|<>") == "abcde" and I._ident(None) == "withheld" and I._ident("x" * 99) == "x" * 24
     for w in ("FORECAST", "Probability", "ODDS", "abstain", "x" * 30 + "record", "recORD-2"):     # forecast words, also past the cap
