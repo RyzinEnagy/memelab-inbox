@@ -1,0 +1,14 @@
+1 exit 0 :: git clone https://github.com/RyzinEnagy/memelab-inbox.git OUTDIR/pi_sandbox && cd OUTDIR/pi_sandbox
+2 exit 0 :: git checkout feature/predictive-intelligence
+3 exit 0 :: git show 71fc50e1eb86d916034bb0285a466cf2ec1cc4d0:data/state/latest.json > OUTDIR/pi_export.json
+4 exit 0 :: printf '{"predictive": {"enabled": true, "state_dir": "OUTDIR/pi_state", "mode": "fast"}}\n' > data/config.json
+5 exit 0 :: python -c "import json; json.load(open('data/config.json'))"
+6 exit 0 :: MEMELAB_DB=OUTDIR/pi_lab.sqlite python -B -m memelab init
+7 exit 0 :: MEMELAB_DB=OUTDIR/pi_lab.sqlite python -B -m memelab.state import OUTDIR/pi_export.json
+8 exit 0 :: MEMELAB_DB=OUTDIR/pi_lab.sqlite python -B -m memelab scout --mints 98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump 6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx 7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3 9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump 55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW --results disc01 s2_01 deep01a deep02 deep03 deep04 forensics01 --stage1 disc01 --report-dir OUTDIR/pi_reports
+9 exit 0 :: MEMELAB_DB=OUTDIR/pi_lab.sqlite python -B -m memelab analyze 98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump --results disc01 s2_01 deep01a deep02 deep03 deep04 forensics01 --stage1 disc01
+10 exit 0 :: python -B -m memelab.predictive.integration status --state-dir OUTDIR/pi_state --config data/config.json
+11 exit 0 :: python -B -m memelab.predictive.integration check --state-dir OUTDIR/pi_state --config data/config.json
+12 exit 0 :: python -B -m memelab.predictive.reports report --state-dir OUTDIR/pi_state --config data/config.json --lab-db OUTDIR/pi_lab.sqlite --registry-dir audits/predictive-intelligence/phase_16/registry --out OUTDIR/pi_private/report.md
+13 exit 0 :: python -B -m memelab.predictive.reports alerts --state-dir OUTDIR/pi_state --config data/config.json --alert-db OUTDIR/pi_private/alerts.sqlite --outbox OUTDIR/pi_private/outbox --lab-db OUTDIR/pi_lab.sqlite --registry-dir audits/predictive-intelligence/phase_16/registry
+14 exit 0 :: python -B -m memelab.predictive.reports alerts-state --alert-db OUTDIR/pi_private/alerts.sqlite --config data/config.json

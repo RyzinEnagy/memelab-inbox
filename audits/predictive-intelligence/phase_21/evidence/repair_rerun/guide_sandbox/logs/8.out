@@ -1,0 +1,188 @@
+# Opportunity Scout report — 2026-10-07 00:16 UTC
+
+## Market environment
+
+- SOL: $120.80 (-0.1% 24h)
+- BTC: $85,505 (-0.6% 24h)
+- Discovery universe: 362 mints, 18 stage-1 survivors, 8 deep candidates
+- Peer median 24h change: +16.6% (n=18)
+- Best token vs best trade: STONK is both the best token and the best trade.
+
+## #1 STONK — STONK
+
+- Contract: `6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx`
+- Why it surfaced: surfaced on gt:trending, gt:trending24, jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:24h, jup:trending:6h; 6h volume pace 1.17x the 24h average; net buyers 24h 3394 of 13782 traders; holder change 24h +0.482%; organic volume share 10%
+- Lifecycle: BROAD_ATTENTION (MODERATE)
+- Market cap: $168,221,930; liquidity: $5,331,790
+- Executable depth: sell ~$100,000 at 3%, ~$100,000 at 10%
+- Ownership: adjusted top-10 19.9%, largest unexplained 5.03%
+- Notable wallet behavior: UNKNOWN / None
+- Price structure: UPTREND / EARLY_BREAKOUT_ATTEMPT
+- Attention quality: MIXED / UNCERTAIN; trend STABILITY
+- Entry condition: resting bid inside 0.2048-0.2095 (15-minute support, 8 touches) while price is above the zone; fill only if a 15-minute candle trades into the zone without closing below 0.2048
+- Invalidation concept: a 15-minute close below 0.2048 (zone low). That would mean the buyers who defended this level 8 time(s) have been absorbed and the level has flipped; the rotation thesis is wrong.
+- Primary risk: demand_order_flow (4.5/10)
+- Score: 68/100
+- Status: SETUP DEVELOPING
+- Report: OUTDIR/pi_reports/20261007_0016_STONK_6GmAFS.md
+
+## #2 PAID — Paid
+
+- Contract: `98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump`
+- Why it surfaced: surfaced on gt:trending, gt:trending24, jup:organic:1h, jup:organic:24h, jup:organic:6h, jup:traded:24h, jup:trending:1h, jup:trending:24h, jup:trending:6h; 6h volume pace 2.05x the 24h average; net buyers 24h 1665 of 3795 traders; holder change 24h +1.25%; organic volume share 13%
+- Lifecycle: BROAD_ATTENTION (MODERATE)
+- Market cap: $4,909,865; liquidity: $460,014
+- Executable depth: sell ~$10,938 at 3%, ~$48,872 at 10%
+- Ownership: adjusted top-10 19.8%, largest unexplained 4.00%
+- Notable wallet behavior: HOLDING / CONSTRUCTIVE
+- Price structure: TRANSITION / EARLY_BREAKOUT_ATTEMPT
+- Attention quality: LIKELY MANUFACTURED; trend STABILITY
+- Entry condition: resting bid inside 0.004132-0.004188 (15-minute support, 5 touches) while price is above the zone; fill only if a 15-minute candle trades into the zone without closing below 0.004132
+- Invalidation concept: a 15-minute close below 0.004132 (zone low). That would mean the buyers who defended this level 5 time(s) have been absorbed and the level has flipped; the rotation thesis is wrong.
+- Primary risk: demand_order_flow (4.5/10)
+- Score: 66/100
+- Status: SETUP DEVELOPING
+- Report: OUTDIR/pi_reports/20261007_0016_PAID_98kfF7.md
+
+## Near misses
+
+- DARK `7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3`: score 67, status OVEREXTENDED — breakout module flags chase risk (price extended from base)
+- ZCAT `HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR`: score 50, status DISTRIBUTION RISK — Large holders SCALING_OUT; lifecycle DISTRIBUTION
+- baton `Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump`: score 66, status THESIS INVALIDATED — price 0.00949946 is below the previously stated invalidation 0.0120493
+
+## Rejected after due diligence
+
+- GOMO `9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump`: Fatal flag(s): CANNOT_EXIT_5K; fatal: CANNOT_EXIT_5K
+- HIGGS `DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump`: Fatal flag(s): WASH_TRADING_HIGH; fatal: WASH_TRADING_HIGH
+- slopcannon `55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW`: Fatal flag(s): WASH_TRADING_HIGH; fatal: WASH_TRADING_HIGH
+- ONDO `ondohH8Vssxiqcy5u6Efi4AYN17KZrzQtv2a91dnrgW`: stage-2 structural: mint authority active
+- CARDS `CARDSccUMFKoPRZxt5vt3ksUbxEFEcnZ3H2pd3dKxYjp`: stage-2 structural: largest non-pool holder 54.7%; adjusted top-10 73.0%
+- ANTHROPIC `Pren1FvFX6J3E4kXhJuCiAD5aDmGEb7qJRncwA8Lkhw`: stage-2 structural: mint authority active; freeze authority active; dangerous Token-2022 extension: permanentDelegate,transferHook; largest non-pool holder 19.2%; adjusted top-10 53.4%
+- ANSEM `9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump`: stage-2 structural: largest non-pool holder 49.2%; adjusted top-10 64.9%
+- MASK `HuAXPyDWDaMYFKuwQHpqL1oPnj93zdzWmtvFGzCeCUa7`: stage-2 structural: largest non-pool holder 39.1%; adjusted top-10 55.0%
+- GRIFFAIN `KENJSUYLASHUMfHyy5o4Hp2FdNqZg1AsUPhfH2kYvEP`: stage-2 structural: largest non-pool holder 21.0%; adjusted top-10 51.1%
+- SPCX `SPCXxcqXj6e5dJDVNovHN8744zkbhM2bYudU45BimGb`: stage-2 structural: mint authority active; freeze authority active; dangerous Token-2022 extension: permanentDelegate,transferHook
+- Frank `HbPDWSqu8hpVMX6gMjwMDGe5rVgicWo3Qh3Jaojypump`: stage-2 structural: liquidity $20562 < $30000
+
+## Predictive research section (flag on, research only)
+
+This section is separate from the opportunity score. It does not change the 100-point score, the fatal flags, the status, the watchlist or the lists above, and it is not advice.
+
+- Integration: integration-1, mode fast, capture 2026-11-09T23:21:23Z, pass 1f884cbcc0cf
+- Backtesting: BACKTEST_NOT_AVAILABLE
+- Model registry: OK
+  - T1_24h: NO_VIABLE_CHAMPION (NO_ENTRY_AT_SHADOW_OR_ABOVE, PHASE_12_CHAMPION_B2_BY_DEFAULT_NOT_BY_EVIDENCE, B2_RETROSPECTIVE_BSS_BELOW_0+NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION, NO_ENSEMBLE); calibration UNCALIBRATED
+  - T1b_6h: NO_VIABLE_CHAMPION (NO_ENTRY_AT_SHADOW_OR_ABOVE, PHASE_12_CHAMPION_B2_BY_DEFAULT_NOT_BY_EVIDENCE, B2_RETROSPECTIVE_CALIBRATION_FAILED+RETROSPECTIVE_BSS_BELOW_0+NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION, NO_ENSEMBLE); calibration UNCALIBRATED
+  - T2_24h: NO_VIABLE_CHAMPION (NO_ENTRY_AT_SHADOW_OR_ABOVE, PHASE_12_CHAMPION_B2_BY_DEFAULT_NOT_BY_EVIDENCE, B2_RETROSPECTIVE_BELOW_MINIMUM+NO_ADMISSIBLE_PROSPECTIVE_CALIBRATION, NO_ENSEMBLE); calibration UNCALIBRATED
+- Depth collector: COLLECTOR_NOT_AVAILABLE
+- Counts: 8 events, 8 attempted, 0 published, 24 abstentions, 0 unchanged, 0 duplicates, 0 superseded, 0 deferred, 0 not attempted, 0 errors; latency p50 2.825 ms, max 3.245 ms; models in use: not_selected
+- Records: the predictive state directory (`python -m memelab.predictive.integration status`)
+
+### PAID `solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump`
+- Snapshot 744ef961b24239b9; event DISCOVERY (first attempt for this chain and mint)
+- Fatal-flag veto: none recorded by the lab
+- Size: EXECUTION_DATA_MISSING; no position size comes from a forecast
+- Inputs: INPUT_STALE; reference price INPUT_STALE; backtest BACKTEST_NOT_AVAILABLE
+- 24 hours, +25% before -15%: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record 18bbc97a19b0
+  - No probability for whether the price rises 25 percent before it falls 15 percent within 24 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- 6 hours, +25% before -15%: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record d14ed8170d9d
+  - No probability for whether the price rises 25 percent before it falls 15 percent within 6 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- 24 hours, halving or halt: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record 4989abd6db3e
+  - No probability for whether the price halves or trading halts within 24 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- Token report: 20261007_0016_PAID_98kfF7.md
+
+### STONK `solana:6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx`
+- Snapshot 771e6521fb6cef2b; event DISCOVERY (first attempt for this chain and mint)
+- Fatal-flag veto: none recorded by the lab
+- Size: EXECUTION_DATA_MISSING; no position size comes from a forecast
+- Inputs: INPUT_STALE; reference price INPUT_STALE; backtest BACKTEST_NOT_AVAILABLE
+- 24 hours, +25% before -15%: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED); record 5abed7a3e616
+  - No probability for whether the price rises 25 percent before it falls 15 percent within 24 hours: no point-in-time pool on the registered price route at the decision; the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- 6 hours, +25% before -15%: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED); record 294a251e6e56
+  - No probability for whether the price rises 25 percent before it falls 15 percent within 6 hours: no point-in-time pool on the registered price route at the decision; the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- 24 hours, halving or halt: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED); record 263c6b4ac756
+  - No probability for whether the price halves or trading halts within 24 hours: no point-in-time pool on the registered price route at the decision; the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- Token report: 20261007_0016_STONK_6GmAFS.md
+
+### DARK `solana:7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3`
+- Snapshot c1c7dae80d324251; event DISCOVERY (first attempt for this chain and mint)
+- Fatal-flag veto: none recorded by the lab
+- Size: EXECUTION_DATA_MISSING; no position size comes from a forecast
+- Inputs: INPUT_STALE; reference price INPUT_STALE; backtest BACKTEST_NOT_AVAILABLE
+- 24 hours, +25% before -15%: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record 777c7aa73c28
+  - No probability for whether the price rises 25 percent before it falls 15 percent within 24 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- 6 hours, +25% before -15%: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record 6de712085aff
+  - No probability for whether the price rises 25 percent before it falls 15 percent within 6 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- 24 hours, halving or halt: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record cc6ef7f91cfc
+  - No probability for whether the price halves or trading halts within 24 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- Token report: 20261007_0016_DARK_7KEPAp.md
+
+### GOMO `solana:9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump`
+- Snapshot 599dbfcdf78eba2e; event DISCOVERY (first attempt for this chain and mint)
+- Fatal-flag veto: CANNOT_EXIT_5K; no forecast clears it
+- Size: EXECUTION_DATA_MISSING; no position size comes from a forecast
+- Inputs: INPUT_STALE; reference price INPUT_STALE; backtest BACKTEST_NOT_AVAILABLE
+- 24 hours, +25% before -15%: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record fc6a716d4083
+  - No probability for whether the price rises 25 percent before it falls 15 percent within 24 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- 6 hours, +25% before -15%: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record c12c000ac8b0
+  - No probability for whether the price rises 25 percent before it falls 15 percent within 6 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- 24 hours, halving or halt: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record 6863fabe071e
+  - No probability for whether the price halves or trading halts within 24 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- Token report: 20261007_0016_GOMO_9XKzy4.md
+
+### HIGGS `solana:DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump`
+- Snapshot 94125012eafce70e; event DISCOVERY (first attempt for this chain and mint)
+- Fatal-flag veto: WASH_TRADING_HIGH; no forecast clears it
+- Size: EXECUTION_DATA_MISSING; no position size comes from a forecast
+- Inputs: INPUT_STALE; reference price INPUT_STALE; backtest BACKTEST_NOT_AVAILABLE
+- 24 hours, +25% before -15%: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record 3ebf9fa98a6e
+  - No probability for whether the price rises 25 percent before it falls 15 percent within 24 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- 6 hours, +25% before -15%: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record bb8903a4f401
+  - No probability for whether the price rises 25 percent before it falls 15 percent within 6 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- 24 hours, halving or halt: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record b3c8b6c59858
+  - No probability for whether the price halves or trading halts within 24 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- Token report: 20261007_0016_HIGGS_DoVAVz.md
+
+### ZCAT `solana:HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR`
+- Snapshot 7b982f14be1d1a8b; event DISCOVERY (first attempt for this chain and mint)
+- Fatal-flag veto: none recorded by the lab
+- Size: EXECUTION_DATA_MISSING; no position size comes from a forecast
+- Inputs: INPUT_STALE; reference price INPUT_STALE; backtest BACKTEST_NOT_AVAILABLE
+- 24 hours, +25% before -15%: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED); record 0d2db28b548d
+  - No probability for whether the price rises 25 percent before it falls 15 percent within 24 hours: no point-in-time pool on the registered price route at the decision; the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- 6 hours, +25% before -15%: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED); record d4cd7119552b
+  - No probability for whether the price rises 25 percent before it falls 15 percent within 6 hours: no point-in-time pool on the registered price route at the decision; the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- 24 hours, halving or halt: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, TARGET_NOT_FEASIBLE, SOURCE_STALE, MODEL_NOT_SELECTED); record f4856aff6857
+  - No probability for whether the price halves or trading halts within 24 hours: no point-in-time pool on the registered price route at the decision; the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- Token report: 20261007_0016_ZCAT_HcRLc9.md
+
+### baton `solana:Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump`
+- Snapshot 3299be006a2bb1ac; event DISCOVERY (first attempt for this chain and mint)
+- Fatal-flag veto: none recorded by the lab
+- Size: EXECUTION_DATA_MISSING; no position size comes from a forecast
+- Inputs: INPUT_STALE; reference price INPUT_STALE; backtest BACKTEST_NOT_AVAILABLE
+- 24 hours, +25% before -15%: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record b10e6f4e79d8
+  - No probability for whether the price rises 25 percent before it falls 15 percent within 24 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- 6 hours, +25% before -15%: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record e955661741a4
+  - No probability for whether the price rises 25 percent before it falls 15 percent within 6 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- 24 hours, halving or halt: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record 77668d42b1ae
+  - No probability for whether the price halves or trading halts within 24 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- Token report: 20261007_0016_baton_Hg5Ja5.md
+
+### slopcannon `solana:55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW`
+- Snapshot b6f9f499178e9563; event DISCOVERY (first attempt for this chain and mint)
+- Fatal-flag veto: WASH_TRADING_HIGH; no forecast clears it
+- Size: EXECUTION_DATA_MISSING; no position size comes from a forecast
+- Inputs: INPUT_STALE; reference price INPUT_STALE; backtest BACKTEST_NOT_AVAILABLE
+- 24 hours, +25% before -15%: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record 9e727be812bf
+  - No probability for whether the price rises 25 percent before it falls 15 percent within 24 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- 6 hours, +25% before -15%: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record 5a28a7677ff7
+  - No probability for whether the price rises 25 percent before it falls 15 percent within 6 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- 24 hours, halving or halt: ABSTAIN (INSUFFICIENT_HISTORY, UNCALIBRATED, SOURCE_STALE, MODEL_NOT_SELECTED); record c2eb6623968e
+  - No probability for whether the price halves or trading halts within 24 hours: the price source or route failed or is unknown at the decision; the model has not reached SHADOW or VALIDATED_EXPERIMENTAL; no champion model exists for this target; no calibration of this model has passed the frozen check; too few out-of-sample outcomes to fit a calibration; too few independent outcomes to check a calibration; too few calibration outcomes near this model number.
+- Token report: 20261007_0016_slopcannon_55Vr2V.md
+
+- Stage-2 structural rejects (8) are not decisions (no thesis row) and get no forecast attempt.
+
+
+-> OUTDIR/pi_reports/20261007_0016_SCOUT.md

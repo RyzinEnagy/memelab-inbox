@@ -1,8 +1,8 @@
 # Phase 21 evidence: reproducible research-only release or explicit NO-GO
 
 - Branch `feature/predictive-intelligence`. HEAD before `90e4c6f` (pushed, orchestrator-verified). Pre-registration `0bb361e`; frozen release-check probes `2a29c68`, fixed `b048aac`; frozen doc-command probes `24c02a6`; recorded runs, release documents and evidence `67f1f7d`; records commit `6fafc1d`; post-commit checks in `postcommit/` (suite 2 failed, the two known, 2,243 passed, 1 skipped; guard 0 violations; seal 0 problems; single-branch release audit exit 0, "Needs action: no.").
-- Work from 2026-11-09T22:10Z to about 23:10Z. Package checksums: `sha256sum -c SHA256SUMS.txt` all OK.
-- Status: **NEEDS_REVIEW** (every gate item holds on this agent's evidence, with deviations D21-1 to D21-5 stated below; the orchestrator's independent skeptic has not run yet, PI-D-013).
+- Work from 2026-11-09T22:10Z; first-pass records committed 22:50:40Z (corrected by CP21-1, skeptic F4: first written "to about 23:10Z"); repair pass from about 23:05Z. Package checksums: `sha256sum -c SHA256SUMS.txt` all OK.
+- Status: **PASS** after the orchestrator's independent skeptic (no material finding, eight minor findings, counterexample CX-S21) and repair pass CP21-1 (PI-D-117, PI-D-118); see "Repair pass" below.
 - Decision: GO for a research-only release of the abstention engine with the flag OFF (classification RESEARCH_BASELINE_ONLY, scoped); NOT_READY and NO-GO for any predictive release (`release/RELEASE_DECISION.md`, PI-D-115).
 
 ## Entry gate (G1)
@@ -44,7 +44,7 @@ Clone `git status` clean at the end (one test stray removed, `logs/strays_seen.t
 
 ## Maturity step (G8), `evidence/maturity/MATURITY_RUN.json`
 
-| Command (checkout at `24c02a6`) | Result | Exit |
+| Command (checkout at `b048aac`, 22:21Z to 22:26Z; corrected by CP21-1, skeptic F4: first written as `24c02a6`) | Result | Exit |
 |---|---|---|
 | `python -B audits/predictive-intelligence/phase_19/probes/fetch_labels.py fetch` | `{"mapped": 28, "planned": 28, "counts": {"planned": 28, "no_snapshot_price": 5}}`; 0 vendor calls | 0 |
 | `python -B audits/predictive-intelligence/phase_19/probes/run_prospective.py outcomes` | T2 PENDING 7; label rows added 0; ledger appended 0, 520 entries, verify ok; network 0 | 0 |
@@ -70,7 +70,7 @@ Wrong but plausible: a release memo that marks SHADOW_ONLY (or VALIDATED_EXPERIM
 
 ## Deviations from the pre-registration
 
-- D21-1: G3 asked the chronology scenarios P04, P05, P06, P07, P13, P20, P36, P43 to be PASS or PASS_EXPECTED_ERROR. P04 (a page crawled today describing an older event) is TEST_ONLY, as it was in Phase 20: no crawl source feeds the engine, so its guard is shown on fixtures only (3 of 3 assertions). The checklist row did not look up P04's class. Recorded, not reclassified; for the skeptic.
+- D21-1 (withdrawn: replaced by amendment A1 of G3, PI-D-117, orchestrator ruling on skeptic F1): G3 asked the chronology scenarios P04, P05, P06, P07, P13, P20, P36, P43 to be PASS or PASS_EXPECTED_ERROR. P04 (a page crawled today describing an older event) is TEST_ONLY, as it was in Phase 20: no crawl source feeds the engine, so its guard is shown on fixtures only (3 of 3 assertions). The checklist row did not look up P04's class. Recorded, not reclassified; for the skeptic.
 - D21-2: G2 said "pytest's three dependencies"; pytest 9.1.1 also installs Pygments, so the venv holds four. Still numpy and pytest only.
 - D21-3: the doc-command run (G9) was not in the experiment registry at pre-registration; it got its own frozen commit `24c02a6` before its run and a registry row marked as added.
 - D21-4: the checklist header says it was written "from 22:20Z"; its commit time is 22:18:42Z. The header time was an estimate; nothing else differs.
@@ -82,4 +82,21 @@ sha256 of every Phase 21 file: `PHASE_21_RESULTS.json` `artifacts`.
 
 ## Skeptic
 
-Pending (orchestrator). `SKEPTIC_PACKET.md` lists the task, artifacts, code paths and commands.
+Review: `skeptic/PHASE_21_SKEPTIC.md` (independent, fresh clone from GitHub at `51db1f6`, 2026-11-09 22:58Z to about 23:30Z), with its counterexample script `skeptic/p21_cx_early_censor.py` and output. No material failure; the release decision is supported item by item. Eight MINOR findings (F1 to F8) and counterexample CX-S21.
+
+CX-S21 (wrong but plausible): a T2 decision recorded as VENDOR_OR_ROUTE_GAP (censored, final) before its label matures, because the vendor pool list was empty at that moment; for T2 a vanished pool is the likeliest positive, so an early censor drops it from every later evaluation. At `51db1f6` the ledger appended it and `verify` passed, and chronology C3 passed. Caught now (CP21-1): `monitoring.check_payload` refuses VENDOR_OR_ROUTE_GAP, UNVERIFIABLE_NO_VENDOR_HISTORY and NOT_READ with `recorded_at` before `label_matures_at` (NOT_YET_MATURED), `verify` replays it, chronology C3 refuses it and plants it as a sixth violation. Proof: `repair/CX_S21_AT_REPAIR_CODE.json` (the skeptic's script on the repair code: C3 not ok, append refused), `repair/OLD_CODE_CHECK.txt` (the new refusal test fails at `51db1f6`, the positive control passes on both), `tests/test_predictive_monitoring.py::test_cx_s21_*`.
+
+## Repair pass (CP21-1, PI-D-118; G3 amendment PI-D-117)
+
+| Finding | Verified | Repair |
+|---|---|---|
+| F1 G3 fail condition literally met by P04 | yes | amendment A1 (PI-D-117): P04 was TEST_ONLY in Phase 20 before the checklist; the row now requires P04 TEST_ONLY with all assertions; G3 passes as amended |
+| F2 C4 by timestamps; 05 and 06 same commit; RELEASE.md overstated | yes (05 `b4baa78`, 06 `4565e0b`) | C4 by `git merge-base --is-ancestor`: STRICT_ANCESTOR for 07 to 20, SAME_COMMIT named for 05 and 06; RELEASE.md and the memo say so |
+| F3 / CX-S21 early censored state | yes | code above, with a test failing on the old code |
+| F4 maturity commit cited as `24c02a6` | yes (the run was at `b048aac`, 22:21Z) | corrected in the G8 table, PI-D-116 and the evidence header times |
+| F5 RELEASE.md "all handled" | yes | says 12 scenarios TEST_ONLY and F20-07 open |
+| F6 placeholders, hard-coded store path, macOS, checker scope | yes | USER_GUIDE section 1 uses the smoke's real values and was run literally (`probes/guide_sandbox.sh`, 14 lines, all exit 0); `PI_RESEARCH_DIR` for the Phase 19 runner and the reproduction test, rebuild route documented and the rest carried as OI21-2; runbook states the Linux-only isolation and what to do on macOS, and "12 comparisons over 24 runs"; `release_docs_check.py` checks every run command of the runbook and guide against the recorded runs (it found one more error: result files live under `data/inbox/`, fixed) |
+| F7 paid data, maintenance owner, PI-D-020 status | yes | ED-2 adds any paid data; ED-11 maintenance owner Elving; PI-D-020 marked SUPERSEDED by PI-D-044 |
+| F8 completion checklist not re-marked | yes | `qa/COMPLETION_CHECKLIST_PHASE21.md` (item 20 MET, item 10 note updated) |
+
+Rerun from the repair commit (`release_checks.sh 51db1f6 a767710`, fresh GitHub clone of the pushed `51db1f6`, 20 changed paths, 7 outside `phase_21/`: the CP21-1 code, tests and decisions), outputs in `evidence/repair_rerun/`: full suite 2 failed (the two known), 2,241 passed (the 2 new tests), 5 skipped; predictive tests with stores hidden 1,455 passed, 7 skipped; cross 43 passed; seal and guard 0; chronology ok with 6 of 6 planted; Phase 19 order audit ok; matrix rows identical to the first pass; 39 of 39 counterexamples; OOS and recalculation 0 differences; threat scan equal apart from head and file count; release_e2e 78 of 78, smoke unchanged checks (24 ABSTAIN, 0 forecast lines), release audit "Needs action: no."; flag-off all identical; reproductions all reproduced (19 runners exit 0, 0 differing files). Doc commands rerun: same exits. No number or verdict changed; the only changed outputs are the chronology audit fields added by CP21-1 (C3 window rule, C4 relation per phase, the sixth planted violation).

@@ -1,8 +1,8 @@
 {
  "phase": "21",
- "status": "NEEDS_REVIEW",
+ "status": "PASS",
  "head_before": "90e4c6fddae267759e67d928d5297726c5910785",
- "head_after": "6fafc1d83ce51797015e75d6ee673a0b986748fb",
+ "head_after": "see HANDOFF.md and the post-commit commit (repair records commit after a767710)",
  "release_decision": {
   "abstention_engine_flag_off": "GO (RESEARCH_BASELINE_ONLY, scoped)",
   "predictive_release": "NOT_READY / NO-GO",
@@ -77,7 +77,7 @@
    "name": "G3 chronology scenarios",
    "command": "run_matrix.py (P04 P05 P06 P07 P13 P20 P36 P43)",
    "exit_code": 0,
-   "result": "P05 P13 P20 P36 P43 PASS_EXPECTED_ERROR, P06 P07 PASS, P04 TEST_ONLY (deviation D21-1)",
+   "result": "P05 P13 P20 P36 P43 PASS_EXPECTED_ERROR, P06 P07 PASS, P04 TEST_ONLY (deviation D21-1); G3 amended by PI-D-117 (P04 required TEST_ONLY with all assertions): passes as amended",
    "pass": true
   },
   {
@@ -204,6 +204,55 @@
    "command": "python -B tools/release_audit.py --history",
    "exit_code": 0,
    "result": "Needs action: no.",
+   "pass": true
+  },
+  {
+   "name": "CP21-1 old-code check (CX-S21)",
+   "command": "pytest tests/test_predictive_monitoring.py -k cx_s21 at 51db1f6 with the new tests",
+   "exit_code": 1,
+   "result": "the refusal test fails on the old code, the positive control passes (repair/OLD_CODE_CHECK.txt)",
+   "pass": true
+  },
+  {
+   "name": "CP21-1 CX-S21 at the repair code",
+   "command": "python -B skeptic/p21_cx_early_censor.py REPO OUT",
+   "exit_code": 0,
+   "result": "chronology C3 not ok and append refused NOT_YET_MATURED for an early VENDOR_OR_ROUTE_GAP (repair/CX_S21_AT_REPAIR_CODE.json)",
+   "pass": true
+  },
+  {
+   "name": "CP21-1 Phase 19 ledger under the new rule",
+   "command": "monitoring.verify(OUTCOME_LEDGER.jsonl)",
+   "exit_code": 0,
+   "result": "ok, 520 entries",
+   "pass": true
+  },
+  {
+   "name": "repair rerun: release checks from the pushed 51db1f6 at a767710",
+   "command": "release_checks.sh 51db1f6 a767710 OUTDIR",
+   "exit_code": 0,
+   "result": "suite 2 failed (known), 2241 passed, 5 skipped; stores hidden 1455 passed; cross 43; chronology ok, 6 of 6 planted; matrix rows identical; 39/39 cx; OOS and recalc 0 differences; release_e2e 78/78; smoke 24 ABSTAIN 0 forecast; release audit Needs action no; flag-off identical; reproductions all reproduced",
+   "pass": true
+  },
+  {
+   "name": "repair rerun: guide section 1 literally",
+   "command": "guide_sandbox.sh OUTDIR",
+   "exit_code": 0,
+   "result": "14 of 14 lines exit 0; 24 ABSTAIN lines",
+   "pass": true
+  },
+  {
+   "name": "repair rerun: doc commands",
+   "command": "doc_commands.sh OUTDIR/e2e/smoke OUTDIR2",
+   "exit_code": 0,
+   "result": "9 exit 0, damaged state exit 2 as expected",
+   "pass": true
+  },
+  {
+   "name": "repair rerun: documents check incl. run commands",
+   "command": "release_docs_check.py evidence/repair_rerun/release_docs_check.json --plant",
+   "exit_code": 0,
+   "result": "0 problems; 4 of 4 planted caught",
    "pass": true
   }
  ],
@@ -878,7 +927,7 @@
   }
  ],
  "deviations": [
-  "D21-1 P04 TEST_ONLY (no crawl source feeds the engine)",
+  "D21-1 withdrawn, replaced by G3 amendment A1 (PI-D-117)",
   "D21-2 Pygments installed with pytest 9",
   "D21-3 doc-command run added after pre-registration with its own frozen commit 24c02a6",
   "D21-4 checklist header time estimate",
@@ -889,15 +938,16 @@
   "3 prospective decision days; frozen cards MODEL_STALE since 2026-10-31",
   "the 7 PENDING T2 outcomes cannot mature through the frozen commands (OI21-1)",
   "reproductions need the private stores under /home/claude/pi_research/",
-  "the release checks reuse Phase 20 probes written by an agent of the same family; the orchestrator skeptic is the independent check",
-  "state hash-chained, not signed"
+  "state hash-chained, not signed",
+  "private stores portable only through a documented, untried rebuild; about 70 earlier probes still use /home/claude/pi_research (OI21-2)",
+  "the network-isolated checks need Linux with unshare"
  ],
  "blockers": [
   "predictive release: no registry entry at SHADOW or above (PI-D-091), no calibration, too little prospective evidence"
  ],
  "approvals_needed": [
   "ED-1 promotion change control (PI-D-091)",
-  "ED-2 LLM, Zep or MiroFish spend",
+  "ED-2 LLM, Zep or MiroFish spend and any paid data",
   "ED-3 catalyst and social collection into a readable store",
   "ED-4 deploy the forward depth collector (PI-D-044)",
   "ED-5 merge backtesting PR #4",
@@ -905,20 +955,23 @@
   "ED-7 external alert delivery",
   "ED-8 flag on outside a sandbox",
   "ED-9 signing key for the private state",
-  "ED-10 retire or replace stale reference cards"
+  "ED-10 retire or replace stale reference cards",
+  "ED-11 maintenance owner: Elving (recorded)"
  ],
  "findings": {
+  "skeptic": "no MATERIAL; F1 to F8 MINOR, repaired or recorded; CX-S21 repaired (CP21-1)",
   "open_minor": [
    "F20-07",
    "F20-10",
    "F20-13",
    "F20-14",
-   "OI21-1"
+   "OI21-1",
+   "OI21-2"
   ],
   "closed_by_documentation": [
    "F20-11"
   ]
  },
- "next_eligible_phase": "none (Phase 21 is the last phase); after the skeptic: Elving decisions in OPEN_DECISIONS.md",
- "skeptic_counterexample": "pending (orchestrator); own counterexample: a GO row naming SHADOW_ONLY with no SHADOW entry, caught by release_docs_check.py"
+ "next_eligible_phase": "none (Phase 21 is the last phase); remaining work is Elving decisions ED-1 to ED-11 and open items OI21-1, OI21-2",
+ "skeptic_counterexample": "CX-S21: a window-dependent censored state (VENDOR_OR_ROUTE_GAP) recorded before label maturity; caught now by monitoring.check_payload/verify (NOT_YET_MATURED) and chronology C3 (sixth planted violation); test fails on 51db1f6"
 }

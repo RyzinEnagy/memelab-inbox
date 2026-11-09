@@ -1,0 +1,31 @@
+{
+ "documents": [
+  "INSTALL_RUNBOOK.md",
+  "MODEL_LIMITS.md",
+  "OPEN_DECISIONS.md",
+  "RELEASE.md",
+  "RELEASE_DECISION.md",
+  "ROLLBACK_PROOF.md",
+  "SMOKE_LOG.md",
+  "USER_GUIDE.md"
+ ],
+ "ok": true,
+ "planted_caught": {
+  "command_never_run": true,
+  "em_dash": true,
+  "go_row_above_registry": true,
+  "missing_path": true
+ },
+ "real": {
+  "commands": [],
+  "dashes": [],
+  "level": [],
+  "ok": true,
+  "paths": [],
+  "run_commands": []
+ },
+ "registry_levels": [
+  "ABSTAIN",
+  "NO_GO"
+ ]
+}

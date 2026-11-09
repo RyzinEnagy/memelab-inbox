@@ -67,3 +67,7 @@ Repeatability: the section equals the Phase 20 repair-pass smoke section apart f
 - External services at run time: none. Needed only for the clone and the pip install.
 - Caching: a repeated scout on the same snapshot writes nothing new (DUPLICATE); `unchanged_cache_hits` 0 in the smoke because each run used a fresh database.
 - Skipped tasks: none of the checks skipped; test skips are listed above with their reasons.
+
+## Rerun after the skeptic (CP21-1, PI-D-118)
+
+`bash audits/predictive-intelligence/phase_21/probes/release_checks.sh 51db1f6 a767710 OUTDIR` from a fresh clone of the pushed `51db1f6`: same steps, same exits; full suite 2 failed (the two known), 2,241 passed (two new CX-S21 tests), 5 skipped; predictive tests with the stores hidden 1,455 passed, 7 skipped; smoke, flag-off identity, matrix, counterexamples, OOS and recalculation unchanged; chronology audit with the CP21-1 rule and 6 of 6 planted violations. `probes/guide_sandbox.sh` ran USER_GUIDE section 1 literally (clone from GitHub, then 13 lines inside `unshare -n`): 14 of 14 exit 0, 24 ABSTAIN lines in the scout section. Raw outputs: `evidence/repair_rerun/`.

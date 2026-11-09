@@ -1,0 +1,59 @@
+{
+ "as_of_utc": "2026-11-09T00:00:00Z",
+ "committed_log_unchanged": true,
+ "entries": 69,
+ "ok": true,
+ "retire_by_empty_references": {
+  "reason": "references must be ['base_rate', 'simple_model']",
+  "refused": true
+ },
+ "rollback_without_champion": {
+  "copy_events_after": 76,
+  "copy_events_before": 75,
+  "event_kind": "ROLLBACK",
+  "mode": "NO_VIABLE_CHAMPION",
+  "references_kept": [
+   "base_rate",
+   "simple_model"
+  ],
+  "resolved_after": "NO_VIABLE_CHAMPION"
+ },
+ "serve": {
+  "price_path_severe_drawdown_or_halt_24h": {
+   "level": "ABSTAIN",
+   "mode": "NO_VIABLE_CHAMPION",
+   "model_id": "not_selected",
+   "reference_names": [
+    "base_rate",
+    "simple_model"
+   ],
+   "use_champion": false
+  },
+  "price_path_target_before_invalidation_24h": {
+   "level": "ABSTAIN",
+   "mode": "NO_VIABLE_CHAMPION",
+   "model_id": "not_selected",
+   "reference_names": [
+    "base_rate",
+    "simple_model"
+   ],
+   "use_champion": false
+  },
+  "price_path_target_before_invalidation_6h": {
+   "level": "ABSTAIN",
+   "mode": "NO_VIABLE_CHAMPION",
+   "model_id": "not_selected",
+   "reference_names": [
+    "base_rate",
+    "simple_model"
+   ],
+   "use_champion": false
+  }
+ },
+ "stale_after_utc": [
+  "2026-10-31T00:00:00Z"
+ ],
+ "status_at_as_of": {
+  "MODEL_STALE": 69
+ }
+}

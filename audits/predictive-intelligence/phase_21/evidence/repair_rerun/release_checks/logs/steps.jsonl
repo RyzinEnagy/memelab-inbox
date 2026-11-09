@@ -1,0 +1,16 @@
+{"exit": 1, "peak_rss_mib_children": 986.9, "seconds": 239.1, "start_utc": "2026-11-09T23:20:43Z", "step": "suite_full"}
+{"exit": 0, "peak_rss_mib_children": 278.5, "seconds": 79.4, "start_utc": "2026-11-09T23:24:42Z", "step": "suite_predictive_no_private_stores"}
+{"exit": 0, "peak_rss_mib_children": 71.2, "seconds": 3.8, "start_utc": "2026-11-09T23:26:02Z", "step": "cross_component"}
+{"exit": 0, "peak_rss_mib_children": 18.8, "seconds": 0.1, "start_utc": "2026-11-09T23:26:05Z", "step": "seal_check"}
+{"exit": 0, "peak_rss_mib_children": 76.8, "seconds": 0.7, "start_utc": "2026-11-09T23:26:06Z", "step": "social_guard"}
+{"exit": 0, "peak_rss_mib_children": 46.2, "seconds": 0.5, "start_utc": "2026-11-09T23:26:06Z", "step": "chronology_audit"}
+{"exit": 0, "peak_rss_mib_children": 51.1, "seconds": 0.2, "start_utc": "2026-11-09T23:26:07Z", "step": "p19_feedback_audit"}
+{"exit": 0, "peak_rss_mib_children": 93.1, "seconds": 24.8, "start_utc": "2026-11-09T23:26:07Z", "step": "scenario_matrix"}
+{"exit": 0, "peak_rss_mib_children": 86.0, "seconds": 9.7, "start_utc": "2026-11-09T23:26:32Z", "step": "counterexamples"}
+{"exit": 0, "peak_rss_mib_children": 44.0, "seconds": 20.2, "start_utc": "2026-11-09T23:26:42Z", "step": "oos_sensitivity"}
+{"exit": 0, "peak_rss_mib_children": 87.8, "seconds": 3.9, "start_utc": "2026-11-09T23:27:02Z", "step": "independent_recalc"}
+{"exit": 0, "peak_rss_mib_children": 321.1, "seconds": 6.8, "start_utc": "2026-11-09T23:27:06Z", "step": "threat_scan"}
+{"exit": 0, "peak_rss_mib_children": 900.7, "seconds": 156.2, "start_utc": "2026-11-09T23:27:13Z", "step": "e2e"}
+{"exit": 0, "peak_rss_mib_children": 77.9, "seconds": 47.7, "start_utc": "2026-11-09T23:29:49Z", "step": "flag_off_identity"}
+{"exit": 0, "peak_rss_mib_children": 50.0, "seconds": 1.7, "start_utc": "2026-11-09T23:30:36Z", "step": "flag_off_summary"}
+{"exit": 0, "peak_rss_mib_children": 919.6, "seconds": 723.2, "start_utc": "2026-11-09T23:30:38Z", "step": "reproductions"}
