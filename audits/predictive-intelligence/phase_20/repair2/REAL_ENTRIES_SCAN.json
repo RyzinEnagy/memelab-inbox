@@ -1,0 +1,6 @@
+{
+ "commit": "243cd32",
+ "rule": "registry.training_after_cutoff after CP20-2 (fitted card without its maturity record refused)",
+ "entry_files": 69,
+ "affected": []
+}

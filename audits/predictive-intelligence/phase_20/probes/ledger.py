@@ -1,9 +1,10 @@
 """Phase 20 search ledger: the Phase 19 cumulative ledger plus one row per Phase 20 audit run (debug runs before the frozen audit
 code and the recorded runs). No row is a candidate configuration: N_search stays 130 (169 with the rule configurations).
 
-    python -B ledger.py PHASE20_DIR FROZEN_COMMIT [REPAIR_COMMIT]
+    python -B ledger.py PHASE20_DIR FROZEN_COMMIT [REPAIR_COMMIT [REPAIR2_COMMIT]]
 
-With REPAIR_COMMIT, one row per touched path rerun after change control CP20-1 (PI-D-110) is added as well.
+With REPAIR_COMMIT, one row per touched path rerun after change control CP20-1 (PI-D-110) is added as well; with REPAIR2_COMMIT,
+one row per rerun and check after change control CP20-2 (PI-D-113, repair pass 2 after the orchestrator's skeptic).
 """
 from __future__ import annotations
 
@@ -41,7 +42,12 @@ REPAIR = ["P20:CP20_1:SUITE", "P20:CP20_1:OLD_CODE_CHECK", "P20:CP20_1:PHASE19_R
           "P20:CP20_1:FLAG_OFF", "P20:CP20_1:RELEASE_AUDIT"]
 
 
-def main(out: Path, frozen: str, repair: str | None = None) -> int:
+REPAIR2 = ["P20:CP20_2:CROSS", "P20:CP20_2:SCENARIOS", "P20:CP20_2:CX_RERUN", "P20:CP20_2:REPRO", "P20:CP20_2:E2E", "P20:CP20_2:SMOKE",
+           "P20:CP20_2:FLAG_OFF", "P20:CP20_2:RELEASE_AUDIT", "P20:CP20_2:OLD_CODE_CHECK", "P20:CP20_2:SKEPTIC_ATTACKS",
+           "P20:CP20_2:PROBE_MUTANTS"]
+
+
+def main(out: Path, frozen: str, repair: str | None = None, repair2: str | None = None) -> int:
     base = list(csv.DictReader(open(AUD / "phase_19/experiments/SEARCH_LEDGER.csv")))
     cols = list(base[0].keys())
     new = []
@@ -58,6 +64,10 @@ def main(out: Path, frozen: str, repair: str | None = None) -> int:
     for eid in REPAIR if repair else []:
         new.append({c: "" for c in cols} | {"phase": "20", "experiment_id": eid, "candidate": "P20_AUDIT", "kind": "TRAP_OR_CHECK",
                                             "view": "ALL", "verdict": f"rerun after change control CP20-1 at {repair}", "claim": CLAIM})
+    for eid in REPAIR2 if repair2 else []:
+        new.append({c: "" for c in cols} | {"phase": "20", "experiment_id": eid, "candidate": "P20_AUDIT", "kind": "TRAP_OR_CHECK",
+                                            "view": "ALL", "verdict": f"rerun or check after change control CP20-2 at {repair2}",
+                                            "claim": CLAIM})
     rows = base + new
     (out / "experiments").mkdir(parents=True, exist_ok=True)
     with open(out / "experiments/SEARCH_LEDGER.csv", "w", newline="") as f:
@@ -74,4 +84,4 @@ def main(out: Path, frozen: str, repair: str | None = None) -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main(Path(sys.argv[1]), sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else None))
+    sys.exit(main(Path(sys.argv[1]), sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else None, sys.argv[4] if len(sys.argv) > 4 else None))

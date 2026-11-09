@@ -1,0 +1,12 @@
+{
+ "commit": "243cd32",
+ "rule": "monitoring.check_payload with the parsed token parameter (CP20-2, F20-04)",
+ "ledger": "phase_19/monitoring/OUTCOME_LEDGER.jsonl",
+ "verify": {
+  "ok": true,
+  "problems": [],
+  "entries": 520,
+  "head": "fbcea491b3edad60307e33ba8ea4027496085cb366f6104fbb7ec4a41784ccc3"
+ },
+ "labeled_outcomes_with_exactly_one_token_parameter_equal_to_the_mint": 61
+}

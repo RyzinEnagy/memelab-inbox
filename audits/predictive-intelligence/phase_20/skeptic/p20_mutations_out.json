@@ -1,0 +1,168 @@
+{
+ "worktree_head": "b4d47683a8f5724e1435290e6278919ad6ea53f8",
+ "mutations": [
+  {
+   "id": "M01 reference candle ignores provider lag",
+   "file": "memelab/predictive/contract.py",
+   "occurrences": 1,
+   "exits": {
+    "P06": 1
+   },
+   "killed": true
+  },
+  {
+   "id": "M02 path keeps the candle holding t_entry",
+   "file": "memelab/predictive/contract.py",
+   "occurrences": 1,
+   "exits": {
+    "P06": 1
+   },
+   "killed": true
+  },
+  {
+   "id": "M03 label_state always MATURED",
+   "file": "memelab/predictive/contract.py",
+   "occurrences": 1,
+   "exits": {
+    "P05": 1
+   },
+   "killed": true
+  },
+  {
+   "id": "M04 new-mint caveat not required",
+   "file": "memelab/predictive/abstention.py",
+   "occurrences": 1,
+   "exits": {
+    "P12": 1
+   },
+   "killed": true
+  },
+  {
+   "id": "M05 degeneracy never flat",
+   "file": "memelab/predictive/calibration.py",
+   "occurrences": 1,
+   "exits": {
+    "P11": 1
+   },
+   "killed": true
+  },
+  {
+   "id": "M06 minority note never flags a constant",
+   "file": "memelab/predictive/monitoring.py",
+   "occurrences": 1,
+   "exits": {
+    "P10": 1,
+    "P11": 1
+   },
+   "killed": true
+  },
+  {
+   "id": "M07 cost cap not enforced",
+   "file": "memelab/predictive/runtime.py",
+   "occurrences": 1,
+   "exits": {
+    "P48": 1
+   },
+   "killed": true
+  },
+  {
+   "id": "M08 vendor identity check off",
+   "file": "memelab/predictive/labels.py",
+   "occurrences": 1,
+   "exits": {
+    "P01": 1
+   },
+   "killed": true
+  },
+  {
+   "id": "M09 model staleness off",
+   "file": "memelab/predictive/registry.py",
+   "occurrences": 1,
+   "exits": {
+    "P39": 0,
+    "P46": 0
+   },
+   "killed": false
+  },
+  {
+   "id": "M10 drift alarm off",
+   "file": "memelab/predictive/registry.py",
+   "occurrences": 1,
+   "exits": {
+    "P39": 0
+   },
+   "killed": false
+  },
+  {
+   "id": "M11 report text check off",
+   "file": "memelab/predictive/reports.py",
+   "occurrences": 1,
+   "exits": {
+    "P41": 1,
+    "P44": 1
+   },
+   "killed": true
+  },
+  {
+   "id": "M12 CP20-1 training_after_cutoff off",
+   "file": "memelab/predictive/registry.py",
+   "occurrences": 1,
+   "exits": {
+    "P05": 0,
+    "P43": 0,
+    "pytest:x06": 1
+   },
+   "killed": true
+  },
+  {
+   "id": "M13 CP20-1 token identity check off",
+   "file": "memelab/predictive/integration.py",
+   "occurrences": 1,
+   "exits": {
+    "P01": 0,
+    "pytest:x02": 1
+   },
+   "killed": true
+  },
+  {
+   "id": "M14 CP20-1 capture time check off",
+   "file": "memelab/predictive/integration.py",
+   "occurrences": 1,
+   "exits": {
+    "pytest:x03": 1
+   },
+   "killed": true
+  },
+  {
+   "id": "M15 CP20-1 recompute_point off",
+   "file": "memelab/predictive/integration.py",
+   "occurrences": 1,
+   "exits": {
+    "pytest:carried": 1
+   },
+   "killed": true
+  },
+  {
+   "id": "M16 fit_all maturity check off",
+   "file": "memelab/predictive/baselines.py",
+   "occurrences": 1,
+   "exits": {
+    "P05": 0,
+    "P43": 0
+   },
+   "killed": false
+  },
+  {
+   "id": "M17 dedup off (P35)",
+   "file": "memelab/predictive/integration.py",
+   "occurrences": 1,
+   "exits": {
+    "P35": 1
+   },
+   "killed": true
+  }
+ ],
+ "killed": 14,
+ "total": 17,
+ "git_status_after": ""
+}

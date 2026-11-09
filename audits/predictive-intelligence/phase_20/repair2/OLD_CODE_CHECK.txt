@@ -1,0 +1,30 @@
+CP20-2 old-code check, 2026-11-09. Clone of this checkout at b4d4768 (the code the skeptic reviewed); the CP20-2 cross-test file
+(tests/test_predictive_phase20_cross.py at 243cd32) and probes/scenarios.py copied in; run offline (unshare -n, temp MEMELAB_DB).
+
+Command: python -B -m pytest tests/test_predictive_phase20_cross.py -q -p no:cacheprovider -k 's20_ or cx_sk20 or x04'
+FAILED tests/test_predictive_phase20_cross.py::test_x04_the_ledger_refuses_a_labeled_outcome_whose_token_parameter_is_not_exactly_the_mint[prefix_extended_token]
+FAILED tests/test_predictive_phase20_cross.py::test_x04_the_ledger_refuses_a_labeled_outcome_whose_token_parameter_is_not_exactly_the_mint[token_only_in_another_parameter]
+FAILED tests/test_predictive_phase20_cross.py::test_x04_the_ledger_refuses_a_labeled_outcome_whose_token_parameter_is_not_exactly_the_mint[token_twice]
+FAILED tests/test_predictive_phase20_cross.py::test_x04_the_ledger_refuses_a_labeled_outcome_whose_token_parameter_is_not_exactly_the_mint[token_after_fragment]
+FAILED tests/test_predictive_phase20_cross.py::test_s20_2_a_token_row_with_the_right_mint_but_another_tokens_pool_is_refused_before_any_read
+FAILED tests/test_predictive_phase20_cross.py::test_s20_2_a_pool_bound_by_nothing_but_the_replayed_token_row_is_never_read
+FAILED tests/test_predictive_phase20_cross.py::test_s20_8_a_fitted_card_without_its_maturity_record_is_not_pinned
+FAILED tests/test_predictive_phase20_cross.py::test_s20_8_the_replay_guard_refuses_a_fitted_card_without_its_maturity_record
+FAILED tests/test_predictive_phase20_cross.py::test_cx_sk20_token_text_helpers_withhold_run_together_multipliers_and_trading_words[100XGAIN]
+FAILED tests/test_predictive_phase20_cross.py::test_cx_sk20_token_text_helpers_withhold_run_together_multipliers_and_trading_words[1000XGEM]
+FAILED tests/test_predictive_phase20_cross.py::test_cx_sk20_token_text_helpers_withhold_run_together_multipliers_and_trading_words[GAIN100X]
+FAILED tests/test_predictive_phase20_cross.py::test_cx_sk20_token_text_helpers_withhold_run_together_multipliers_and_trading_words[10XPLAY]
+FAILED tests/test_predictive_phase20_cross.py::test_cx_sk20_token_text_helpers_withhold_run_together_multipliers_and_trading_words[100 X GAIN]
+FAILED tests/test_predictive_phase20_cross.py::test_cx_sk20_token_text_helpers_withhold_run_together_multipliers_and_trading_words[X100COIN]
+FAILED tests/test_predictive_phase20_cross.py::test_cx_sk20_token_text_helpers_withhold_run_together_multipliers_and_trading_words[SELLNOW]
+FAILED tests/test_predictive_phase20_cross.py::test_cx_sk20_token_text_helpers_withhold_run_together_multipliers_and_trading_words[PUMP100X]
+FAILED tests/test_predictive_phase20_cross.py::test_cx_sk20_control_hex_addresses_and_the_tokens_own_file_name_prefix_are_not_multipliers
+FAILED tests/test_predictive_phase20_cross.py::test_cx_sk20_a_run_together_multiplier_symbol_is_withheld_in_report_alert_and_section
+18 failed, 3 passed, 22 deselected in 2.32s
+
+The 3 passing are the X04 control, X04's body-base test and the S20-2 control (all hold at b4d4768 by design).
+The CX-SK20 control (hex and file-name prefix) fails at b4d4768 by AttributeError (integration._mint_exempt is new), not by behaviour.
+
+Probes at b4d4768 with the CP20-2 scenarios.py: P05 exit 0 (b4d4768 has both maturity checks), P41 exit 1, P44 exit 1.
+P41 fails on SELLNOW in the scout section and on 100XGAIN/1000XGEM/GAIN100X in the report, alert and section;
+P44 fails on the four multiplier claims in check_text.

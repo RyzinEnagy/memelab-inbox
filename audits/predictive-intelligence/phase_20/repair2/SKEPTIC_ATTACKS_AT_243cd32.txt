@@ -1,0 +1,20 @@
+Skeptic's p20_cp20_attacks.py (skeptic/p20_cp20_attacks.py) at 243cd32, offline: python -B -m pytest -q -p no:cacheprovider -rA p20_cp20_attacks.py
+At b4d4768 the skeptic recorded 4 defeats (A1 x3, A2) and CX-SK20 failing; at 243cd32:
+PASSED p20_cp20_attacks.py::test_a1_a_leaky_card_without_maturity_fields_is_refused_at_pin
+PASSED p20_cp20_attacks.py::test_a1b_and_the_replay_guard_refuses_it_too
+PASSED p20_cp20_attacks.py::test_a1c_a_leaky_card_without_fields_publishes_no_number
+PASSED p20_cp20_attacks.py::test_a2_a_token_row_with_the_right_mint_but_another_tokens_pool_is_refused
+PASSED p20_cp20_attacks.py::test_a2b_a_token_row_whose_mint_differs_only_by_case_is_refused
+PASSED p20_cp20_attacks.py::test_a2c_a_token_row_without_a_mint_column_is_refused
+PASSED p20_cp20_attacks.py::test_a3_a_capture_time_not_in_epoch_seconds_is_refused_visibly[True]
+PASSED p20_cp20_attacks.py::test_a3_a_capture_time_not_in_epoch_seconds_is_refused_visibly[nan]
+PASSED p20_cp20_attacks.py::test_a3_a_capture_time_not_in_epoch_seconds_is_refused_visibly[inf]
+PASSED p20_cp20_attacks.py::test_a3_a_capture_time_not_in_epoch_seconds_is_refused_visibly[1793000000]
+PASSED p20_cp20_attacks.py::test_a3_a_capture_time_not_in_epoch_seconds_is_refused_visibly[1793318400000.0]
+PASSED p20_cp20_attacks.py::test_a3_a_capture_time_not_in_epoch_seconds_is_refused_visibly[999999999.0]
+PASSED p20_cp20_attacks.py::test_a3_a_capture_time_not_in_epoch_seconds_is_refused_visibly[-1793318400.0]
+PASSED p20_cp20_attacks.py::test_a3_a_capture_time_not_in_epoch_seconds_is_refused_visibly[None]
+PASSED p20_cp20_attacks.py::test_a3b_a_numpy_capture_time_in_seconds_is_accepted
+PASSED p20_cp20_attacks.py::test_a3c_a_capture_time_before_the_observation_gives_no_number
+PASSED p20_cp20_attacks.py::test_cx_sk20_a_run_together_multiplier_symbol_is_withheld_in_report_alert_and_section
+17 passed in 3.22s

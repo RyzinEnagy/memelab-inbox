@@ -2,6 +2,10 @@
 
 For the orchestrator's independent skeptic (PI-D-013). This packet lists the task, the artifacts, the code and the commands. It holds no conclusions; the phase's claims are in `PHASE_20_EVIDENCE.md` and `qa/` and are to be tested, not trusted.
 
+## Status of this packet
+
+The orchestrator's skeptic ran on 2026-11-09 against `b4d4768` (`skeptic/PHASE_20_SKEPTIC.md`). Repair pass 2 (CP20-2, PI-D-113, code `243cd32`) answered it; outputs in `repair2/` and `evidence/repair2_rerun/`. The commands below are corrected for S20-4 (the flag-off script was given the literal `HEAD`, which resolved to the base inside its sandbox). A further review would start from `243cd32`: the CX-SK20 and S20-2 tests in `tests/test_predictive_phase20_cross.py` and `skeptic/p20_cp20_attacks.py`.
+
 ## Task
 
 Phase 20 of the package: the independent adversarial integration and scientific audit of the completed pathway. Try to falsify: that every one of P01 to P48 has an own executable check whose assertions prove the required behaviour (positive passes and expected error states alike); that every recorded counterexample is still refused at the audited code and at the repair; that the cross-component scenarios X01 to X06 are new and reach at least three components each; that no CRITICAL defect exists (a leak into a published number or training row, a number where the contract abstains, a quote or size from a forecast, copyleft code, a trade or key path, an unbounded spend path, a changed flag-off lab output, a write under tracked `inbox/`, `state/` or `data/`); that the flag-off lab output is byte-identical to `b0fad12`; that the independent recalculation really is independent; that no record claims skill, edge, calibration or profit beyond its evidence; that the CP20-1 repairs close F20-02, F20-03, F20-06 and F20-08 without changing any recorded real output; that the severity of every finding is right (in particular F20-04, F20-01, F20-05 and F20-07 left open).
@@ -34,9 +38,10 @@ python -B audits/predictive-intelligence/phase_20/probes/cx_rerun.py /tmp/p20_cx
 python -B audits/predictive-intelligence/phase_20/probes/recalc.py /tmp/p20_recalc.json
 python -B audits/predictive-intelligence/phase_20/probes/oos_sensitivity.py /tmp/p20_oos.json
 python -B audits/predictive-intelligence/phase_20/probes/threat_scan.py /tmp/p20_threat.json
-bash audits/predictive-intelligence/phase_20/probes/flag_off_identity.sh HEAD /tmp/p20_flagoff && python -B audits/predictive-intelligence/phase_20/probes/flag_off_summary.py /tmp/p20_flagoff /tmp/p20_flagoff.json
-bash audits/predictive-intelligence/phase_20/probes/e2e.sh HEAD /tmp/p20_e2e
-python -B audits/predictive-intelligence/phase_20/probes/reproductions.py HEAD /tmp/p20_repro.json
+F=$(git rev-parse HEAD)     # pass a resolved commit (S20-4); flag_off_identity.sh now also resolves its argument before cloning
+bash audits/predictive-intelligence/phase_20/probes/flag_off_identity.sh $F /tmp/p20_flagoff && python -B audits/predictive-intelligence/phase_20/probes/flag_off_summary.py /tmp/p20_flagoff /tmp/p20_flagoff.json
+bash audits/predictive-intelligence/phase_20/probes/e2e.sh $F /tmp/p20_e2e
+python -B audits/predictive-intelligence/phase_20/probes/reproductions.py $F /tmp/p20_repro.json
 # old-code check: the current cross-test file against the audited code
 git worktree add --detach /tmp/p20_old 0d66379 && cp tests/test_predictive_phase20_cross.py /tmp/p20_old/tests/ && (cd /tmp/p20_old && python -m pytest -q tests/test_predictive_phase20_cross.py)
 ```

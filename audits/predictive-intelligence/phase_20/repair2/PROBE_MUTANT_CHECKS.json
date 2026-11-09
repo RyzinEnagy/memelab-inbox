@@ -1,0 +1,13 @@
+{
+ "commit": "243cd32",
+ "purpose": "S20-5 and S20-6: the strengthened P05, P10 and P43 assertions fail when the code they name is broken (clone at 243cd32, one mutant at a time, offline, reverted after each)",
+ "checks": [
+  {"scenario": "P05", "mutant": "double mutant: baselines.fit_all maturity check and features.validate_rows maturity raise both removed (the skeptic's check 4)", "exit": 1,
+   "failing_assertion": "fit_all refuses training rows maturing after the cutoff (P05, not an availability error)", "observed": "no exception"},
+  {"scenario": "P43", "mutant": "labels.training_labels keeps PROSPECTIVE rows (split filter removed)", "exit": 1,
+   "failing_assertion": "prospective LABELED rows stored in the label store never reach training_labels"},
+  {"scenario": "P10", "mutant": "stats.brier returns 0.0", "exit": 1,
+   "failing_assertion": "an always-zero forecast is worse than the base rate in Brier (stats.brier, stats.brier_skill below 0)"}
+ ],
+ "unmutated": {"P05": 0, "P10": 0, "P43": 0}
+}
