@@ -12,13 +12,17 @@ AS_OF_UTC is a fixed instant (for example 2026-11-09T00:00:00Z) so the result ne
   C3 outcomes: the ledger verifies (monitoring.verify); every OUTCOME comes after the PREDICTION_SET that holds its decision (ledger
      order); a LABELED outcome was recorded at or after its label_matures_at and observed at or after it; a PENDING outcome was
      recorded before its maturity.
-  C4 git order: in each phase 05 to 20 the acceptance checklist (pre-registration) was added in a commit no later than the commit
-     that added the phase's RESULTS.json; the Phase 19 predictions commit precedes its first label call
+  C4 git order (CP21-1, by ancestry): in each phase 05 to 20 the commit that added the acceptance checklist is a strict ancestor
+     of the commit that added RESULTS.json (STRICT_ANCESTOR) or the same commit (SAME_COMMIT, named in the output: no git proof of
+     order for those phases); anything else fails; the Phase 19 predictions commit precedes its first label call
      (run_prospective.py audit, run separately).
   C5 seal: phase_06/probes/check_seal.py exit 0 (run separately and recorded beside this file).
-  Negative controls: five planted violations on in-memory copies (a LABELED outcome recorded before maturity, a prediction card
+  C3 also refuses a window-dependent state (VENDOR_OR_ROUTE_GAP, UNVERIFIABLE_NO_VENDOR_HISTORY, NOT_READ) recorded before its
+  label matures (CP21-1, CX-S21).
+  Negative controls: six planted violations on in-memory copies (a LABELED outcome recorded before maturity, a prediction card
   cut off after its decision, a PENDING outcome recorded after maturity, an outcome placed before its prediction set, a registry
-  entry with a training decision at its cutoff); each must be caught.
+  entry with a training decision at its cutoff, and since CP21-1 a VENDOR_OR_ROUTE_GAP recorded before maturity); each must be
+  caught.
 
 Exit 0 when every check holds, else 1.
 """
@@ -40,6 +44,7 @@ from memelab.predictive import registry as R  # noqa: E402
 
 AUD = REPO / "audits/predictive-intelligence"
 SOCKETS: list[str] = []
+WINDOW_STATES = ("VENDOR_OR_ROUTE_GAP", "UNVERIFIABLE_NO_VENDOR_HISTORY", "NOT_READ")   # CP21-1: as monitoring.WINDOW_STATES
 
 
 def _hook(event, args):
@@ -88,7 +93,7 @@ def c2_c3(seqs: list[int], pays: list[dict], verify: dict) -> tuple[dict, dict]:
         if p["kind"] == "PREDICTION_SET":
             for d in p["decisions"]:
                 set_seq.setdefault(d["decision_key"], s)
-    order_bad, mature_bad, pending_bad, states = [], [], [], Counter()
+    order_bad, mature_bad, pending_bad, window_bad, states = [], [], [], [], Counter()
     for s, p in zip(seqs, pays):
         if p["kind"] != "OUTCOME":
             continue
@@ -101,22 +106,39 @@ def c2_c3(seqs: list[int], pays: list[dict], verify: dict) -> tuple[dict, dict]:
                 mature_bad.append(p["outcome_id"])
         if p["state"] == "PENDING" and float(p["recorded_at"]) >= float(p["label_matures_at"]):
             pending_bad.append(p["outcome_id"])
+        if p["state"] in WINDOW_STATES and float(p["recorded_at"]) < float(p["label_matures_at"]):   # CP21-1 (CX-S21)
+            window_bad.append(p["outcome_id"])
     c2 = {"predictions": n_pred, "cutoff_not_before_decision": bad_pred, "ok": n_pred > 0 and not bad_pred}
     c3 = {"verify": verify, "outcome_states": dict(states),
           "outcome_before_its_prediction_set": order_bad, "labeled_before_maturity": mature_bad,
-          "pending_recorded_after_maturity": pending_bad}
-    c3["ok"] = c3["verify"]["ok"] and not order_bad and not mature_bad and not pending_bad
+          "pending_recorded_after_maturity": pending_bad, "window_state_recorded_before_maturity": window_bad}
+    c3["ok"] = c3["verify"]["ok"] and not order_bad and not mature_bad and not pending_bad and not window_bad
     return c2, c3
 
 
+def is_ancestor(a: str, b: str) -> bool:
+    return subprocess.run(["git", "-C", str(REPO), "merge-base", "--is-ancestor", a, b], capture_output=True).returncode == 0
+
+
 def c4() -> dict:
+    """CP21-1 (F2): by ancestry, not timestamps. STRICT_ANCESTOR: the checklist commit is an ancestor of, and differs from, the
+    RESULTS commit; SAME_COMMIT: both were added in one commit (no git proof that the rules came first); anything else fails."""
     rows = []
     for n in range(5, 21):
         ph = f"audits/predictive-intelligence/phase_{n:02d}"
         a, r = first_add(f"{ph}/ACCEPTANCE_CHECKLIST.md"), first_add(f"{ph}/PHASE_{n:02d}_RESULTS.json")
-        rows.append({"phase": f"{n:02d}", "checklist_commit": a and a[0][:7], "results_commit": r and r[0][:7],
-                     "checklist_not_after_results": bool(a and r and a[1] <= r[1])})
-    return {"phases": rows, "ok": all(x["checklist_not_after_results"] for x in rows)}
+        if not (a and r):
+            rel = "MISSING"
+        elif a[0] == r[0]:
+            rel = "SAME_COMMIT"
+        elif is_ancestor(a[0], r[0]):
+            rel = "STRICT_ANCESTOR"
+        else:
+            rel = "NOT_AN_ANCESTOR"
+        rows.append({"phase": f"{n:02d}", "checklist_commit": a and a[0][:7], "results_commit": r and r[0][:7], "relation": rel})
+    same = [x["phase"] for x in rows if x["relation"] == "SAME_COMMIT"]
+    return {"phases": rows, "same_commit_phases": same, "strict_ancestor_phases": [x["phase"] for x in rows if x["relation"] == "STRICT_ANCESTOR"],
+            "ok": all(x["relation"] in ("STRICT_ANCESTOR", "SAME_COMMIT") for x in rows)}
 
 
 def negative_controls(seqs: list[int], pays: list[dict], verify: dict, entries: dict) -> dict:
@@ -147,6 +169,11 @@ def negative_controls(seqs: list[int], pays: list[dict], verify: dict, entries: 
     res["prediction_card_cutoff_after_decision"] = not run(late_cut)[0]["ok"]
     res["pending_recorded_after_maturity"] = not run(late_pending)[1]["ok"]
     res["outcome_before_prediction_set"] = not run(outcome_first)[1]["ok"]
+    gap = next(i for i, p in enumerate(pays) if p["kind"] == "OUTCOME" and p["state"] == "VENDOR_OR_ROUTE_GAP")
+
+    def early_gap(q, s):                                     # CP21-1 (CX-S21)
+        q[gap]["recorded_at"] = float(q[gap]["label_matures_at"]) - 3600.0
+    res["window_state_recorded_before_maturity"] = not run(early_gap)[1]["ok"]
     e = copy.deepcopy(next(iter(entries.values())))
     e["max_train_decision_time"] = float(e["training_cutoff"])
     res["registry_training_row_at_cutoff"] = R.training_after_cutoff(e) is not None

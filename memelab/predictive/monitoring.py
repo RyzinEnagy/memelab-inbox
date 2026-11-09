@@ -38,6 +38,9 @@ KINDS = ("PLAN", "PREDICTION_SET", "PREDICTION", "DOCUMENT", "OUTCOME", "MONITOR
 OUTCOME_STATES = ("LABELED", "PENDING", "NOT_READ", "THINNED", "MARKET_INACTIVE", "VENDOR_OR_ROUTE_GAP",
                   "UNVERIFIABLE_NO_VENDOR_HISTORY", "NO_SNAPSHOT_PRICE", "OUT_OF_SCOPE_CHAIN")
 NON_FINAL = ("PENDING", "NOT_READ")
+# CP21-1 (PI-D-118, CX-S21): states that depend on reads of the label window; recorded only at or after label_matures_at.
+# Decision-time states (THINNED, MARKET_INACTIVE, NO_SNAPSHOT_PRICE, OUT_OF_SCOPE_CHAIN) may be recorded earlier.
+WINDOW_STATES = ("VENDOR_OR_ROUTE_GAP", "UNVERIFIABLE_NO_VENDOR_HISTORY", "NOT_READ")
 CENSORED = tuple(L.CENSORED)
 CONSERVATIVE_LENS = {L.T1: 0, L.T1B: 0, L.T2: 1}      # censored counted T1 and T1b negative, T2 positive (ACCEPTANCE)
 
@@ -289,6 +292,10 @@ def check_payload(idx: Index, p: dict) -> str:
             if p["revision_of"] != cur["outcome_id"] or not p["revision_reason"] or p["supersedes"]:
                 raise LedgerError("FINAL_OUTCOME_REPLACED", "a final outcome is revised only with revision_of and a reason")
             _later_read(p, cur)
+        # CP21-1 (CX-S21): checked after the supersede and revision rules so that their codes stay as they were
+        if p["state"] in WINDOW_STATES and float(p["recorded_at"]) < mat:              # CP21-1 (CX-S21)
+            raise LedgerError("NOT_YET_MATURED", f"{p['state']} depends on the label window and is recorded only at or after "
+                                                 "label_matures_at; before it the outcome is PENDING (P05)")
         return "APPEND"
     if k == "PREDICTION_SET":
         if not p.get("set_id") or not isinstance(p.get("decisions"), list) or not p.get("sha256"):

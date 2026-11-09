@@ -1,0 +1,14 @@
+{
+ "A_chronology_C3_ok_with_early_VENDOR_OR_ROUTE_GAP": true,
+ "C_control_chronology_C3_ok_with_early_LABELED": false,
+ "B_monitoring_append_early_VENDOR_OR_ROUTE_GAP": {
+  "appended": true,
+  "verify_ok": true
+ },
+ "C_control_monitoring_append_early_LABELED": {
+  "appended": false,
+  "refused": "NOT_YET_MATURED: a label read or recorded before label_matures_at is PENDING (P05)"
+ },
+ "target_of_planted_outcome": "price_path_severe_drawdown_or_halt_24h",
+ "caught_by_anything": false
+}

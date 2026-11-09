@@ -35,3 +35,7 @@ Before this file, three debug runs were made (logged in the search ledger as DEB
 ## Status rule
 
 PASS needs G1 to G11. A check that cannot run for a reason outside the code (for example the remote unreachable) makes the phase BLOCKED, not PASS. NEEDS_REVIEW until the orchestrator's independent skeptic has run (PI-D-013).
+
+## Amendment A1 to G3 (PI-D-117, 2026-11-09, after the orchestrator's skeptic, orchestrator ruling on F1)
+
+The G3 row above is kept as committed at `0bb361e`. Its fail condition named P04 among the scenarios that had to be PASS or PASS_EXPECTED_ERROR. P04 was already TEST_ONLY in Phase 20's matrix before this checklist was written (no crawl source feeds the engine), so that was a drafting error. Amended row: P04 must be TEST_ONLY with every assertion holding; P05, P06, P07, P13, P20, P36, P43 must be PASS or PASS_EXPECTED_ERROR. Since CP21-1 (PI-D-118), C3 also refuses a window-dependent state recorded before maturity and C4 is judged by ancestry (STRICT_ANCESTOR or SAME_COMMIT, the same-commit phases named).

@@ -4,15 +4,14 @@ Every command here was run in Phase 21, either by `probes/release_checks.sh` (fr
 
 ## What you get
 
-A predictive research engine that sits beside the lab, imported by nothing but two helpers in `memelab/cli.py`, OFF by default. With the flag OFF the lab behaves byte for byte as before (flag-off identity, 12 of 12 runs). With the flag ON in a sandbox, it appends a research section to the scout report in which every target ABSTAINS with named reasons. It never trades, signs, reads a key, sends an alert or calls a paid service.
+A predictive research engine that sits beside the lab, imported by nothing but two helpers in `memelab/cli.py`, OFF by default. With the flag OFF the lab behaves byte for byte as before (flag-off identity: 12 comparisons over 24 runs, two real exports and six settings files). With the flag ON in a sandbox, it appends a research section to the scout report in which every target ABSTAINS with named reasons. It never trades, signs, reads a key, sends an alert or calls a paid service.
 
 ## Requirements
 
-- Linux or macOS with Python 3.13 and git. The release checks used Python 3.13.17.
+- Python 3.13 and git. The release checks used Python 3.13.17 on Linux. The recommended no-network runs (step 4, the smoke, the flag-off check, `release_checks.sh`) need Linux with `unshare` (util-linux) and root, and `lo_up.py` is a Linux call. On macOS (Elving's Mac) use the plain `pytest` line of step 4 and skip the `unshare` scripts; the suite and the engine run the same, only the network isolation of the checks is missing.
 - Runtime dependency: numpy 2.5.3 only. Tests: pytest 9.1.1 (it brings iniconfig 2.3.1, packaging 26.3, pluggy 1.7.0 and Pygments 2.21.0). Nothing else is needed; scikit-learn and the other research libraries were used only as oracles in separate research venvs.
 - A full clone (not single-branch) when you run the whole suite: the commit-order tests of Phases 15 to 19 read the history of `origin/main`.
 - A loopback interface for the Phase 14 tests (finding F20-11). A normal machine has one. Inside a network namespace made with `unshare -n` it starts down; raise it with `python -B audits/predictive-intelligence/phase_20/probes/lo_up.py` (an ioctl, no network) before running the tests there.
-- Optional, for the real-path smoke and the flag-off check: `unshare` (util-linux) and root, so that every lab command runs without network.
 
 ## Steps
 
@@ -62,8 +61,14 @@ A predictive research engine that sits beside the lab, imported by nothing but t
 ## Rules for running the checks yourself
 
 - Run any Phase 19 or 20 check that writes outputs in a sandbox clone. `audits/predictive-intelligence/phase_19/probes/run_prospective.py drift OUT` appends MONITOR and RESPONSE entries to the committed outcome ledger whatever OUT is (finding F20-14); in the working checkout that changes a tracked file. Use it there only in a planned maturity run whose result you commit.
-- The reproduction scripts need the private research stores under `/home/claude/pi_research/` (rebuildable from the committed archives under `phase_05/raw/` and `phase_06/raw/` and the lock files in `docs/predictive-intelligence/locks/`). Without them those parts skip with that reason (the release checks ran the predictive tests with the stores hidden: 0 failures).
+- The reproduction scripts and the Phase 19 maturity commands need the private research stores (see "Private research stores" below). Without them the store-dependent tests skip with that reason (the release checks ran the predictive tests with the stores hidden: 0 failures).
 - Do not edit the checkout while `flag_off_identity.sh` runs: its summary compares the checkout's `git status` and the commit of every run.
+
+## Private research stores
+
+- What they are: SQLite stores built in Phases 05, 06 and 19 (p05/predictive_store.sqlite, p06/dev_store.sqlite and the p19 folder), outside the repository. They hold vendor candles, labels and the Phase 19 read map.
+- Where: the folder in the environment variable `PI_RESEARCH_DIR` for the Phase 19 runner (`run_prospective.py`, `fetch_labels.py`) and `tests/test_predictive_reproductions.py`; default `/home/claude/pi_research`. The other phase probes that `reproductions.py` calls still use `/home/claude/pi_research` directly (about 70 scripts written in earlier phases); on another machine make that path a link to your folder (`sudo ln -s /your/folder /home/claude/pi_research`, Linux) or run them on the Linux session that holds the stores.
+- Rebuild route (not run in Phase 21, so not proven end to end): Phase 05's `audits/predictive-intelligence/phase_05/probes/build_store.py` steps `exports`, `plan`, `rebuild`, `snapshots` from the committed raw bodies in `phase_05/raw/` and the git history of `origin/main`, then Phase 06's `phase_06/probes/build_labels.py` from `phase_06/raw/`, then `run_prospective.py inputs` for Phase 19. The commands and their recorded results are in `phase_05/PHASE_05_EVIDENCE.md` and `phase_06/PHASE_06_EVIDENCE.md`. An offline rebuild on a new machine is open item OI21-2.
 
 ## What was measured (release checks, fresh clone, 2026-11-09)
 

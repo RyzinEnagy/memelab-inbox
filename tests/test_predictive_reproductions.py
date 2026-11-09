@@ -8,14 +8,16 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+import os
 from pathlib import Path
 
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 AUD = ROOT / "audits/predictive-intelligence"
-DEV = Path("/home/claude/pi_research/p06/dev_store.sqlite")
-FS = Path("/home/claude/pi_research/p05/predictive_store.sqlite")
+RESEARCH = Path(os.environ.get("PI_RESEARCH_DIR") or "/home/claude/pi_research")   # CP21-1 (PI-D-118, F6)
+DEV = RESEARCH / "p06/dev_store.sqlite"
+FS = RESEARCH / "p05/predictive_store.sqlite"
 STORES = DEV.is_file() and FS.is_file()
 needs_stores = pytest.mark.skipif(not STORES, reason="private research stores absent (rebuild: phase_05 and phase_06 records)")
 

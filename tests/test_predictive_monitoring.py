@@ -194,6 +194,31 @@ def test_p37_censored_outcomes_carry_no_label_and_are_never_scored(led):
         M.append(led, [cc])
 
 
+def test_cx_s21_a_window_dependent_censored_state_recorded_before_maturity_is_refused_first_of_pair_or_not(led):
+    """CP21-1 (PI-D-118): VENDOR_OR_ROUTE_GAP, UNVERIFIABLE_NO_VENDOR_HISTORY and NOT_READ depend on the label window; recorded
+    before label_matures_at they would drop a likely T2 positive early. Refused by append and by verify; decision-time states
+    may still be recorded early, and the same states at or after maturity are accepted (positive controls)."""
+    mat = C.label_matures_at(L.T2, DT)
+    for st in ("VENDOR_OR_ROUTE_GAP", "UNVERIFIABLE_NO_VENDOR_HISTORY", "NOT_READ"):
+        with pytest.raises(M.LedgerError) as e:
+            M.append(led, [outcome(target=L.T2, state=st, recorded=mat - 3600)])
+        assert e.value.code == "NOT_YET_MATURED"
+    # a ledger written around append is caught by verify
+    ents = M.read_ledger(led.read_text())
+    bad = outcome(target=L.T2, state="VENDOR_OR_ROUTE_GAP", recorded=mat - 3600)
+    with open(led, "a") as f:
+        f.write(M.canon(M.seal(bad, seq=len(ents), prev=ents[-1]["sha"])) + "\n")
+    v = M.verify(led)
+    assert not v["ok"] and any("NOT_YET_MATURED" in x for x in v["problems"])
+
+
+def test_cx_s21_positive_controls_decision_time_states_early_and_window_states_after_maturity(led):
+    mat = C.label_matures_at(L.T2, DT)
+    M.append(led, [outcome(target=L.T2, state="OUT_OF_SCOPE_CHAIN", recorded=DT + 60),
+                   outcome(key=KEY_B, mint=MINT_B, target=L.T2, state="VENDOR_OR_ROUTE_GAP", recorded=mat)])
+    assert M.verify(led)["ok"]
+
+
 def test_p05_pending_is_never_scored_or_counted_negative_and_is_superseded_by_naming_it(led):
     p = outcome(state="PENDING")
     M.append(led, [p])

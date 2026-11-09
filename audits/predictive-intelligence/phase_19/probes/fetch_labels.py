@@ -13,7 +13,7 @@
 Every call goes through runtime.CallGuard at 5.7 a minute (the frozen limit is 6), at most 300 calls for the phase, breaker after 5
 consecutive failures, HTTP 429 back-off of 60 s; each call is logged in evidence/label_calls.json with its request window. Every
 OHLCV URL carries token=<mint>; candles ending after the boundary are dropped by store.ingest_gt_response (PI-D-034). Labels and
-bodies stay in the private store /home/claude/pi_research/p19/dev_store.sqlite until the archive step.
+bodies stay in the private store $PI_RESEARCH_DIR/p19/dev_store.sqlite (default /home/claude/pi_research) until the archive step.
 """
 from __future__ import annotations
 

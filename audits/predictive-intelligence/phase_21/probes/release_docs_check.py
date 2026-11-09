@@ -9,8 +9,12 @@
 3. Style: no em dash or en dash in the release documents and docs/predictive-intelligence/RELEASE.md.
 4. Commands: every `python -B -m memelab.predictive...` command of USER_GUIDE.md has its module and subcommand in the doc-command
    log (evidence/doc_commands/doc_commands.txt).
-With --plant, three planted defects on in-memory copies (a GO row naming SHADOW_ONLY, a missing path, an em dash) must each be
-caught; the result is recorded beside the real one.
+5. Run commands (CP21-1, skeptic F6): every command line in a fenced block of INSTALL_RUNBOOK.md and USER_GUIDE.md has its
+   signature (module and subcommand, script and subcommand, or git/pip verb) in the scripts or logs of the recorded runs
+   (release_checks.sh, doc_commands.sh, guide_sandbox.sh, e2e.sh, real_path_smoke.sh, the doc-command and guide logs, the
+   maturity record), or in RUN_ELSEWHERE with the evidence of the earlier run.
+With --plant, four planted defects on in-memory copies (a GO row naming SHADOW_ONLY, a missing path, an em dash, a runbook
+command that no recorded run executed) must each be caught; the result is recorded beside the real one.
 Exit 0 when the real documents pass (and, with --plant, every planted defect is caught).
 """
 from __future__ import annotations
@@ -58,6 +62,7 @@ def names_index() -> set[str]:
 
 
 NAMES: set[str] = set()
+CORPUS: list[str] = []
 
 
 def resolve(p: str, doc: Path) -> bool:
@@ -99,9 +104,58 @@ def command_problems(guide: str, log: str) -> list[str]:
     return sorted(set(out))
 
 
+RUN_ELSEWHERE = {"fetch_labels.py reread48": "phase_19/evidence/revision_reread_48h.json (orchestrator, 2026-10-29, PI-D-112)"}
+SKIP_PREFIXES = ("cd ", "printf ", "python -c ")
+
+
+def signature(cmd: str) -> str | None:
+    toks = cmd.replace(".venv/bin/", "").split()
+    while toks and "=" in toks[0] and not toks[0].startswith("-"):
+        toks = toks[1:]                                      # environment assignments
+    line = " ".join(toks)
+    if not toks or line.startswith(SKIP_PREFIXES):
+        return None
+    bare = lambda t: re.fullmatch(r"[a-z][a-z0-9_-]*", t) is not None     # noqa: E731
+    if "-m" in toks:
+        i = toks.index("-m")
+        mod = toks[i + 1] if i + 1 < len(toks) else ""
+        nxt = toks[i + 2] if i + 2 < len(toks) and bare(toks[i + 2]) else ""
+        return f"-m {mod} {nxt}".strip()
+    for i, t in enumerate(toks):
+        if t.endswith((".py", ".sh")):
+            nxt = toks[i + 1] if i + 1 < len(toks) and bare(toks[i + 1]) else ""
+            return f"{Path(t).name} {nxt}".strip()
+    if toks[0] in ("git", "pip") and len(toks) > 1:
+        return f"{toks[0]} {toks[1]}"
+    return line
+
+
+def corpus_text() -> str:
+    files = [P21 / "probes/release_checks.sh", P21 / "probes/doc_commands.sh", P21 / "probes/guide_sandbox.sh",
+             AUD / "phase_20/probes/e2e.sh", AUD / "phase_17/probes/real_path_smoke.sh",
+             P21 / "evidence/doc_commands/doc_commands.txt", P21 / "evidence/maturity/MATURITY_RUN.json"]
+    files += sorted(P21.glob("evidence/repair_rerun/**/guide_sandbox.txt"))
+    return "\n".join(f.read_text() for f in files if f.exists())
+
+
+def run_command_problems(texts: dict[str, str], corpus: str) -> list[str]:
+    out = []
+    norm = re.sub(r"\s+", " ", corpus.replace(".venv/bin/", "").replace("$OUT/venv/bin/", ""))
+    norm = re.sub(r"git -C \S+ ", "git ", norm)              # `git -C "$C" checkout` runs `git checkout`
+    for name in ("INSTALL_RUNBOOK.md", "USER_GUIDE.md"):
+        for block in texts.get(name, "").split("```")[1::2]:
+            for raw in block.splitlines():
+                for part in raw.strip().split("&&"):
+                    sig = signature(part.strip())
+                    if sig and sig not in norm and sig not in RUN_ELSEWHERE:
+                        out.append(f"{name}: {sig}")
+    return sorted(set(out))
+
+
 def run(texts: dict[str, str], paths: dict[str, Path], levels: set[str], log: str) -> dict:
     res = {"level": level_problems(texts, levels), "paths": path_problems(texts, paths), "dashes": dash_problems(texts),
-           "commands": command_problems(texts.get("USER_GUIDE.md", ""), log)}
+           "commands": command_problems(texts.get("USER_GUIDE.md", ""), log),
+           "run_commands": run_command_problems(texts, CORPUS[0] if CORPUS else "")}
     res["ok"] = not any(res.values())
     return res
 
@@ -109,6 +163,7 @@ def run(texts: dict[str, str], paths: dict[str, Path], levels: set[str], log: st
 def main() -> int:
     out = Path(sys.argv[1])
     NAMES.update(names_index())
+    CORPUS.append(corpus_text())
     texts = {d.name: d.read_text() for d in DOCS}
     paths = {d.name: d for d in DOCS}
     levels = top_level()
@@ -123,7 +178,10 @@ def main() -> int:
         t2["MODEL_LIMITS.md"] += "\nSee `phase_12/validation/NO_SUCH_FILE.json`.\n"
         t3 = dict(texts)
         t3["RELEASE.md"] += "\nA planted — dash.\n"
+        t4 = dict(texts)
+        t4["INSTALL_RUNBOOK.md"] += "\n```\npython -B audits/predictive-intelligence/phase_19/probes/run_prospective.py never_run\n```\n"
         planted = {"go_row_above_registry": bool(run(t1, paths, levels, log)["level"]),
+                   "command_never_run": bool(run(t4, paths, levels, log)["run_commands"]),
                    "missing_path": bool(run(t2, paths, levels, log)["paths"]),
                    "em_dash": bool(run(t3, paths, levels, log)["dashes"])}
         res["planted_caught"] = planted

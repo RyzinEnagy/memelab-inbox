@@ -1,0 +1,6 @@
+Old-code check for CP21-1 (CX-S21): the new tests of tests/test_predictive_monitoring.py run against memelab/predictive/monitoring.py at 51db1f6 (a local clone checked out at 51db1f6 with only the new test file copied in).
+command: python -m pytest tests/test_predictive_monitoring.py -q -p no:cacheprovider -k cx_s21
+=========================== short test summary info ============================
+FAILED tests/test_predictive_monitoring.py::test_cx_s21_a_window_dependent_censored_state_recorded_before_maturity_is_refused_first_of_pair_or_not
+1 failed, 1 passed, 46 deselected in 0.11s
+Expected: the refusal test fails on the old code (an early VENDOR_OR_ROUTE_GAP is appended), the positive-control test passes on both.

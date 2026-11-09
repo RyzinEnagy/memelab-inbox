@@ -6,17 +6,23 @@ The predictive engine is a research tool. It never places an order, signs anythi
 
 Never in your working checkout. Make a sandbox clone, a lab database outside the repository, and a state folder outside the repository (or under `data/private/`; anything else is refused, STATE_DIR_REFUSED).
 
+Linux only as written: the release checks ran every lab command inside `unshare -n` (no network). On macOS there is no `unshare`; run the same commands without it in a throwaway copy, and note that the hooks make no vendor call anyway (below).
+
+The example values are the ones the smoke used: the 2026-10-26 state export from the history of `main`, eight Solana mints, and the committed browser results under `data/inbox/` (`data/inbox/disc01.result.json`, `data/inbox/disc01.stage1.json` and the result files of s2_01, deep01a to deep04 and forensics01; a result id is the file name before `.result.json`).
+
 ```
-git clone /path/to/memelab-inbox /tmp/pi_sandbox && cd /tmp/pi_sandbox
+git clone https://github.com/RyzinEnagy/memelab-inbox.git /tmp/pi_sandbox && cd /tmp/pi_sandbox
 git checkout feature/predictive-intelligence
+git show 71fc50e1eb86d916034bb0285a466cf2ec1cc4d0:data/state/latest.json > /tmp/pi_export.json
 printf '{"predictive": {"enabled": true, "state_dir": "/tmp/pi_state", "mode": "fast"}}\n' > data/config.json
 python -c "import json; json.load(open('data/config.json'))"
 MEMELAB_DB=/tmp/pi_lab.sqlite python -B -m memelab init
-MEMELAB_DB=/tmp/pi_lab.sqlite python -B -m memelab.state import /path/to/latest_export.json
-MEMELAB_DB=/tmp/pi_lab.sqlite python -B -m memelab scout --mints MINT1 MINT2 --results RESULT_IDS --stage1 disc01 --report-dir /tmp/pi_reports
+MEMELAB_DB=/tmp/pi_lab.sqlite python -B -m memelab.state import /tmp/pi_export.json
+MEMELAB_DB=/tmp/pi_lab.sqlite python -B -m memelab scout --mints 98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump 6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx 7KEPApdbBMByrmqihz3bht2uMhFQcatjfSFQCKq66kH3 9XKzy4KahcZaGJPJtz1PtqGPB3CiseoBrx7TcQhEpump DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump 55Vr2VpSwxsDkB6uGGHAvRv86K6zax2Zb4TT8ivwDEzW --results disc01 s2_01 deep01a deep02 deep03 deep04 forensics01 --stage1 disc01 --report-dir /tmp/pi_reports
+MEMELAB_DB=/tmp/pi_lab.sqlite python -B -m memelab analyze 98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump --results disc01 s2_01 deep01a deep02 deep03 deep04 forensics01 --stage1 disc01
 ```
 
-This is the sequence of the real-path smoke (`phase_17/probes/real_path_smoke.sh`, run in Phase 21 on the 71fc50e export, 8 mints): the scout report body is byte-identical to the flag-off run and a section "Predictive research section" is appended in which every target ABSTAINS with its reasons. `analyze MINT` prints one extra line, for example `predictive: DISCOVERY ABSTAIN (INSUFFICIENT_HISTORY, MODEL_NOT_SELECTED, SOURCE_STALE, UNCALIBRATED) | snapshot ... | research only, not advice`. `mode` `research` also writes internal B0 and B2 reference records (never shown as documents).
+This is the sequence of the real-path smoke (`phase_17/probes/real_path_smoke.sh`, run in Phase 21 on the 71fc50e export, 8 mints): the scout report body is byte-identical to the flag-off run and a section "Predictive research section" is appended in which every target ABSTAINS with its reasons. `analyze MINT` prints one extra line, for example `predictive: DISCOVERY ABSTAIN (INSUFFICIENT_HISTORY, MODEL_NOT_SELECTED, SOURCE_STALE, UNCALIBRATED) | snapshot ... | research only, not advice`. `analyze` has no report folder option: it writes its token report under the sandbox's `data/reports/` (another reason to use a throwaway clone). `mode` `research` also writes internal B0 and B2 reference records (never shown as documents).
 
 With the flag on, no vendor call is made: the engine reads a reference price only for a served champion (none exists), and the scout and analyze hooks pass no reader. Eligibility shows NOT_ASSESSED, or INPUT_STALE when the scout's inputs are older than 2 hours (as in the smoke, which replays October bodies).
 
@@ -52,7 +58,7 @@ Turning it off: delete `data/config.json` in the sandbox (or set `enabled` to fa
 
 The outcome ledger is `audits/predictive-intelligence/phase_19/monitoring/OUTCOME_LEDGER.jsonl`, append-only, read and written only through `memelab/predictive/monitoring.py`. The plan is `phase_19/monitoring/PROSPECTIVE_PLAN.md`.
 
-Maturity run for already predicted decisions (in the working checkout; it appends only):
+Maturity run for already predicted decisions (in the working checkout; it appends only). The runner reads its private stores from `$PI_RESEARCH_DIR` (default `/home/claude/pi_research`; subfolders `p05`, `p06`, `p19`). On another machine set `PI_RESEARCH_DIR` to a folder holding those stores; see INSTALL_RUNBOOK.md "Private research stores" for what exists and what does not:
 
 ```
 python -B audits/predictive-intelligence/phase_19/probes/fetch_labels.py fetch
@@ -60,7 +66,7 @@ python -B audits/predictive-intelligence/phase_19/probes/run_prospective.py outc
 python -B audits/predictive-intelligence/phase_19/probes/run_prospective.py evaluate OUTDIR
 ```
 
-`fetch` uses free GeckoTerminal reads at no more than 5.7 a minute (at most 300 for the phase), every read logged. `outcomes` appends OUTCOME entries that supersede PENDING ones; it never edits a line. Write `evaluate` output to a new dated folder, never over the committed one, and commit it with the ledger. Run on 2026-11-09: 0 reads planned, 0 entries appended, verdicts unchanged (`evidence/maturity/`). Known gap OI21-1: the 7 T2 outcomes of 2026-10-26 stay PENDING because `fetch` skips decisions that already have a read; maturing them needs a change control to `fetch_labels.py`.
+`fetch` uses free GeckoTerminal reads at no more than 5.7 a minute (at most 300 for the phase), every read logged. `outcomes` appends OUTCOME entries that supersede PENDING ones; it never edits a line. Write `evaluate` output to a new dated folder, never over the committed one, and commit it with the ledger. Run on 2026-11-09 at `b048aac`: 0 reads planned, 0 entries appended, verdicts unchanged (`evidence/maturity/`). Known gap OI21-1: the 7 T2 outcomes of 2026-10-26 stay PENDING because `fetch` skips decisions that already have a read; maturing them needs a change control to `fetch_labels.py`.
 
 `drift` (`run_prospective.py drift OUTDIR`) appends MONITOR and RESPONSE entries to the committed ledger whatever OUTDIR is (F20-14): run it in a sandbox clone unless the run is a planned maturity run you commit.
 

@@ -1,7 +1,7 @@
 """Phase 19 runner (monitoring-1, PI-D-104; rules in ../ACCEPTANCE_CHECKLIST.md). Research only; never writes a tracked file
 outside audits/predictive-intelligence/phase_19/.
 
-    python -B run_prospective.py inputs               store copies under /home/claude/pi_research/p19/ extended at REF (exports
+    python -B run_prospective.py inputs               store copies under $PI_RESEARCH_DIR/p19/ extended at REF (exports
                                                       and version 2 snapshots only; no network, no candle, no label)
     python -B run_prospective.py predict OUTDIR       the Phase 12 predict step, unchanged, on the prospective window (every frozen
                                                       card and NC1 seed, the pre-opening traps, the replay audit), the integration-1
@@ -25,6 +25,7 @@ import hashlib
 import importlib.util
 import json
 import math
+import os
 import shutil
 import subprocess
 import sys
@@ -52,11 +53,12 @@ AUD = REPO / "audits/predictive-intelligence"
 PH = AUD / "phase_19"
 MON = PH / "monitoring"
 LEDGER = MON / "OUTCOME_LEDGER.jsonl"
-WORK = Path("/home/claude/pi_research/p19")
+RESEARCH = Path(os.environ.get("PI_RESEARCH_DIR") or "/home/claude/pi_research")   # CP21-1 (PI-D-118, F6): research stores
+WORK = RESEARCH / "p19"
 FS_STORE, DEV_STORE = WORK / "fs_store.sqlite", WORK / "dev_store.sqlite"
-SRC_STORES = {"fs": (Path("/home/claude/pi_research/p05/predictive_store.sqlite"),
+SRC_STORES = {"fs": (RESEARCH / "p05/predictive_store.sqlite",
                      "2525f0c4a7b2662713d07e99acd1a371c33aa5082994f5f552aba477f98dd8de"),
-              "dev": (Path("/home/claude/pi_research/p06/dev_store.sqlite"),
+              "dev": (RESEARCH / "p06/dev_store.sqlite",
                       "d2a5a7c67afb82da79c4c957ba3b32576963bc4d96bf61ca14fa81b2b5b6e8db")}
 REF = "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0"
 REF_TIME = C.parse_utc("2026-10-26T10:23:04Z")
