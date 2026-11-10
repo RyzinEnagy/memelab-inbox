@@ -1,0 +1,29 @@
+{
+ "recipe_id": "R-CM2-1",
+ "decision": "PI-D-122",
+ "frozen_by": "the commit that adds this file (its commit time is the recipe freeze; a prospective window for this recipe starts strictly after it)",
+ "kinds": {
+  "B0": {"ledger_configuration": "P07_B0", "fitter": "memelab.predictive.baselines.fit_b0", "settings": "training prevalence", "role": "REFERENCE_BASELINE"},
+  "B2": {"ledger_configuration": "P07_B2", "fitter": "memelab.predictive.baselines.fit_b2",
+         "settings": "L2 logistic, numpy Newton, C = 1, intercept unpenalised; required thesis_log1p_liquidity_usd, thesis_log1p_mcap_usd, thesis_log1p_vol_24h_usd, thesis_fatal_present; optional log1p token age in days; training-only preprocessing (stats.Prep)",
+         "role": "REFERENCE_BASELINE"}
+ },
+ "targets": ["price_path_target_before_invalidation_24h", "price_path_target_before_invalidation_6h", "price_path_severe_drawdown_or_halt_24h"],
+ "new_configurations": 0,
+ "n_search_cumulative": 130,
+ "training": {
+  "labels": "labels.training_labels(con, cutoff, target, mode='provider', splits=('DEVELOPMENT', 'HOLDOUT', 'PROSPECTIVE'), spent_holdout_rows=<the Phase 06 sealed rows, verified against the Phase 12 seal pins>)",
+  "features": "features.training_view(con, as_of=cutoff, feature_version=2, mode='provider') on a store built by store.ingest_exports and features.build_snapshots from the state exports on origin/main (exports only, no candle)",
+  "join": "baselines.join (decision_key, chain, mint and decision time equal)",
+  "cutoff": "the largest label_matures_at among the LABELED, uncensored rows available when the card is fitted",
+  "check": "baselines.fit_all's rule: every training row decided before and matured by the cutoff"
+ },
+ "cadence": {
+  "max_model_age_s": 1209600,
+  "retrain_when": "the newest version's age (now minus its cutoff) is 604800 s (7 days) or more and at least one LABELED row matured after its cutoff",
+  "if_no_new_labels": "no retrain; the alert names NO_NEW_MATURED_LABELS; the version goes MODEL_STALE at cutoff + 14 days and its predictions abstain",
+  "same_recipe": "a retrain is a new version of this recipe (same kinds, settings and targets); it adds no configuration and no row to N_search; prospective evidence pools across versions"
+ },
+ "serving_rule": "a decision is predicted by the newest version registered (its REGISTER event time) at or before the decision time whose cutoff is before the decision time and that is not stale at the decision time; otherwise the prediction abstains with the reason",
+ "promotion_rule": "contract.PROMOTION_CM2 (fingerprint contract.promotion_rule_sha256())"
+}
