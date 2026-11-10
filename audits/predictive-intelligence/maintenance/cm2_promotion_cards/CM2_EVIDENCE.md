@@ -152,3 +152,17 @@ At the post-commit record (the SKEPTIC_PACKET and records hashes are of the file
 | `tests/test_predictive_promotion.py` | `c2800cad7df34b6e3283af78a1fff4006a2c220ec3712123514a77743969489e` |
 | `tests/test_predictive_reproductions.py` | `da24b7b355d18940632bf9c4d09b49dca300649d93c22d4f506b9745b327b785` |
 | `audits/predictive-intelligence/maintenance/cm2_promotion_cards/raw/` | 7 gzip bodies, each sha256 in `evidence/t2_reads.json` |
+
+## Repair pass (PI-D-140), after the skeptic review of `cdff266`
+
+Review and scripts: `skeptic/` (the review kept as `.txt`). Verdict: no material failure; six minor findings; counterexample CX-CM2-1. Response per finding: `skeptic/REPAIR_RESPONSE.md`. Order: change control `833b2f6` before the code `fdc0f24`; mutations added `1818db3`.
+
+| Check | Command | Exit | Result |
+|---|---|---|---|
+| CX-CM2-1 at `cdff266` | `python -B skeptic/cm2_counterexample.py REPO SCRATCH` | 0 | "COUNTEREXAMPLE HOLDS" |
+| CX-CM2-1 at `fdc0f24` | same | 1 | no anchor for line 0 (KeyError on `ct[0]`): a rewritten history gives no anchor (`evidence/cx_cm2_1_after_repair.txt`); the test version asserts 2 admissibility problems |
+| repair tests on the new code | `python -m pytest -q tests/test_predictive_promotion.py tests/test_predictive_cm2_guards.py tests/test_predictive_daily.py tests/test_predictive_contract.py` | 0 | 128 passed |
+| repair tests on the code before the repair | `bash probes/old_code_probe_repair.sh REPO OUT` (against `833b2f6`) | 0 | 14 failed, 34 passed (`evidence/old_code_probe_repair.txt`); the negative-class test passes there by design (the guard existed, only the test was missing) |
+| fresh-clone daily runs from the repair code | `bash probes/fresh_clone_daily.sh REPO OUT` at `1818db3`, push remote a local bare repository | 0 | runs exit 0 and 0; alerts equal to the frozen record apart from the date; the push remote ends at the clone's HEAD (`evidence/daily_fresh_clone_pi_d_140.json`) |
+
+Outputs that changed: none of the cards, registry entries, labels, levels or numbers (no refit, no registry event). New: the daily run pushes, and its exit codes 12 and 13. The recorded fresh-clone run adds the push remote; its alerts are unchanged.

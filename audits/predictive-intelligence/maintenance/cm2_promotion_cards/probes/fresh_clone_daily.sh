@@ -10,12 +10,14 @@ C="$OUT/clone"
 git clone -q --no-local --branch feature/predictive-intelligence "$REPO" "$C" || exit 20
 git -C "$C" remote set-url origin https://github.com/RyzinEnagy/memelab-inbox.git
 git -C "$C" remote set-url --push origin DISABLED_NO_PUSH
+# PI-D-140: a run pushes before any read and at the end; here to a local bare repository, never to GitHub
+git init -q --bare "$OUT/anchor.git" && git -C "$C" remote add anchor "$OUT/anchor.git"
 git -C "$C" rev-parse HEAD > "$OUT/head_before.txt"
 list() { (cd "$C" && find . -path ./.git -prune -o -type f -print | LC_ALL=C sort | xargs sha256sum); }
 list > "$OUT/files_before.txt"
 for i in 1 2; do
   t0=$SECONDS
-  ( cd "$C" && python3 -B audits/predictive-intelligence/daily/predictive_daily.py run \
+  ( cd "$C" && python3 -B audits/predictive-intelligence/daily/predictive_daily.py run --push-remote anchor \
       > "$OUT/run${i}_stdout.txt" 2> "$OUT/run${i}_stderr.txt" ); echo $? > "$OUT/run${i}_exit.txt"
   echo $((SECONDS - t0)) > "$OUT/run${i}_wall.txt"
   list > "$OUT/files_after_run${i}.txt"
@@ -25,5 +27,7 @@ done
 git -C "$C" log --format='%H %ct %s' "$(cat "$OUT/head_before.txt")"..HEAD > "$OUT/clone_commits.txt"
 git -C "$C" diff --name-only "$(cat "$OUT/head_before.txt")" HEAD > "$OUT/committed_paths.txt"
 git -C "$C" rev-parse origin/main > "$OUT/origin_main.txt"
+git -C "$OUT/anchor.git" rev-parse refs/heads/feature/predictive-intelligence > "$OUT/anchor_head.txt" 2>&1
+git -C "$C" rev-parse HEAD > "$OUT/head_after.txt"
 ( cd "$C" && python3 -B audits/predictive-intelligence/daily/predictive_daily.py verify ) > "$OUT/verify.txt"; echo $? >> "$OUT/verify.txt"
 echo done

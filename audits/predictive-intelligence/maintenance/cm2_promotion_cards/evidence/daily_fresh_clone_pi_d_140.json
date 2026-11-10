@@ -1,0 +1,66 @@
+{
+ "changed_files_run1": [
+  "./audits/predictive-intelligence/daily/ALERT_SUMMARY.txt",
+  "./audits/predictive-intelligence/daily/RUNS.jsonl",
+  "./audits/predictive-intelligence/daily/STATUS.json",
+  "./data/private/predictive_daily/labels.sqlite",
+  "./data/private/predictive_daily/store.json",
+  "./data/private/predictive_daily/store.sqlite"
+ ],
+ "changed_files_run2": [
+  "./audits/predictive-intelligence/daily/RUNS.jsonl",
+  "./data/private/predictive_daily/labels.sqlite"
+ ],
+ "changed_from_the_frozen_record": "alerts identical apart from the date line; new: each run pushes (the push remote ends at the clone's HEAD); run 1 took 47 s here against 23 s (the store rebuild ran beside the mutation probe); no card, registry entry, label or level changed",
+ "clone_commits": [
+  "4f4ae426fe5f1d76e14c510e209bc8fb20120aad 1794280555 predictive-intel daily: 2026-11-10 OK",
+  "e83c472677be73cbb0c47679d967695a5793c26d 1794280553 predictive-intel daily: 2026-11-10 OK"
+ ],
+ "clone_head": "1818db3e1c08c24931fbc34a8741184d9de80703",
+ "committed_paths": [
+  "audits/predictive-intelligence/daily/ALERT_SUMMARY.txt",
+  "audits/predictive-intelligence/daily/RUNS.jsonl",
+  "audits/predictive-intelligence/daily/STATUS.json"
+ ],
+ "head_after": "4f4ae426fe5f1d76e14c510e209bc8fb20120aad",
+ "origin_main_after": "71fc50e1eb86d916034bb0285a466cf2ec1cc4d0",
+ "probe": "probes/fresh_clone_daily.sh (PI-D-140: push remote = a local bare repository)",
+ "push_remote_head_after": "4f4ae426fe5f1d76e14c510e209bc8fb20120aad",
+ "runs": [
+  {
+   "alert": [
+    "memelab predictive daily 2026-11-10: OK",
+    "exports: newest 2026-10-26T10:23:04Z (71fc50e); new decisions after the freeze: 0",
+    "predictions appended: 0; label calls: 0; outcomes appended: 0",
+    "cards: R-CM2-1 v1, cutoff 2026-10-28T10:43:04Z, stale after 2026-11-11T10:43:04Z",
+    "windows: T2_24h B2 ABSTAIN (windows 0, open 0/50 events, 0/5 days); T1_24h B2 ABSTAIN (windows 0, open 0/50 events, 0/5 days); T1b_6h B2 ABSTAIN (windows 0, open 0/50 events, 0/5 days); B0 ABSTAIN (reference)",
+    "note: NO_NEW_EXPORTS: the newest state export on origin/main is 2026-10-26",
+    "note: NO_NEW_MATURED_LABELS: no retrain; the newest version goes MODEL_STALE at cutoff + 14 days",
+    "nothing is published, traded or sent; levels are research states only"
+   ],
+   "exit": 0,
+   "stderr": "",
+   "wall_s": 47
+  },
+  {
+   "alert": [
+    "memelab predictive daily 2026-11-10: OK",
+    "exports: newest 2026-10-26T10:23:04Z (71fc50e); new decisions after the freeze: 0",
+    "predictions appended: 0; label calls: 0; outcomes appended: 0",
+    "cards: R-CM2-1 v1, cutoff 2026-10-28T10:43:04Z, stale after 2026-11-11T10:43:04Z",
+    "windows: T2_24h B2 ABSTAIN (windows 0, open 0/50 events, 0/5 days); T1_24h B2 ABSTAIN (windows 0, open 0/50 events, 0/5 days); T1b_6h B2 ABSTAIN (windows 0, open 0/50 events, 0/5 days); B0 ABSTAIN (reference)",
+    "note: NO_NEW_EXPORTS: the newest state export on origin/main is 2026-10-26",
+    "note: NO_NEW_MATURED_LABELS: no retrain; the newest version goes MODEL_STALE at cutoff + 14 days",
+    "nothing is published, traded or sent; levels are research states only"
+   ],
+   "exit": 0,
+   "stderr": "",
+   "wall_s": 1
+  }
+ ],
+ "status_after_run2": "",
+ "verify": [
+  "{\"ok\": true, \"problems\": []}",
+  "0"
+ ]
+}

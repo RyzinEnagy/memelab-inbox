@@ -1,0 +1,20 @@
+old_code_probe_repair.sh: repair tests of 1818db3 against 833b2f6 (code before the repair), 2026-11-10T03:14:59Z
+        # PI-D-140: a passed window promotes a CANDIDATE; a reference stays ABSTAIN and only counts the passed window
+>       assert ref["level"] == "ABSTAIN" and ref["passed_windows"] == 1 and "REFERENCE_BASELINE_NEVER_PUBLISHED" in ref["reasons"]
+_ test_predictions_are_pushed_before_any_read_and_a_failed_push_stops_the_reads _
+    def test_predictions_are_pushed_before_any_read_and_a_failed_push_stops_the_reads(clone, tmp_path):  # noqa: F811
+FAILED tests/test_predictive_promotion.py::test_a_skilled_calibrated_window_passes_and_gives_shadow
+FAILED tests/test_predictive_promotion.py::test_validated_experimental_needs_a_second_later_window_and_b2_parity
+FAILED tests/test_predictive_daily.py::test_out_of_bounds_limits_are_refused_with_a_named_reason[argv1]
+FAILED tests/test_predictive_daily.py::test_e2e_predictions_are_committed_before_any_read_and_a_second_run_adds_nothing
+FAILED tests/test_predictive_daily.py::test_e2e_no_commit_mode_refuses_label_reads_and_a_tampered_ledger_stops_the_run
+FAILED tests/test_predictive_cm2_guards.py::test_no_commit_mode_refuses_a_planned_label_read_without_calling
+FAILED tests/test_predictive_cm2_guards.py::test_a_run_that_stops_on_a_broken_working_ledger_does_not_commit_it
+FAILED tests/test_predictive_cm2_guards.py::test_cx_cm2_1_a_ledger_rewritten_in_a_later_commit_gives_no_anchor_and_every_window_is_inadmissible
+FAILED tests/test_predictive_cm2_guards.py::test_an_append_only_history_anchors_each_line_by_its_content
+FAILED tests/test_predictive_cm2_guards.py::test_window_results_belong_to_one_recipe
+FAILED tests/test_predictive_cm2_guards.py::test_a_candidate_can_be_promoted_and_pinned_champion_but_a_reference_never
+FAILED tests/test_predictive_cm2_guards.py::test_now_is_refused_outside_tests_and_max_calls_is_capped_at_60
+FAILED tests/test_predictive_cm2_guards.py::test_a_run_refuses_a_head_that_is_not_the_branch
+FAILED tests/test_predictive_cm2_guards.py::test_predictions_are_pushed_before_any_read_and_a_failed_push_stops_the_reads
+14 failed, 34 passed in 56.58s

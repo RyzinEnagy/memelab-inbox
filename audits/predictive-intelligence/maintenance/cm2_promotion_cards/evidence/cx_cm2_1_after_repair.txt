@@ -1,0 +1,5 @@
+skeptic/cm2_counterexample.py against fdc0f24 (repair code), 2026-11-10T03:14:59Z
+    "prediction_committed_at": ct[i], "label_observed_at": T_READ, "version_registered_at": 0.0, "version_stale": False}
+                               ~~^^^
+KeyError: 0
+exit: commit_times() returns no anchor for a history that is not append-only (KeyError on ct[0]); tests/test_predictive_cm2_guards.py::test_cx_cm2_1_... asserts the same with ct.get and 2 admissibility problems
