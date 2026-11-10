@@ -5,6 +5,7 @@ and always runs; the steps that need the private research stores (rebuild recipe
 with that reason when the stores are absent. Every runner refuses network calls and leaves the stores unchanged."""
 from __future__ import annotations
 
+import hashlib
 import json
 import subprocess
 import sys
@@ -103,5 +104,22 @@ def test_the_reproduction_runner_hides_the_backtesting_package_and_only_that(tmp
 
 @needs_stores
 def test_phase_16_registry_reproduces_its_committed_files(tmp_path):
-    run(["audits/predictive-intelligence/phase_16/probes/build_registry.py", str(tmp_path)])
-    assert differing(tmp_path, AUD / "phase_16", {"ensemble/LATENCY.json"}) == []
+    # PI-D-129 (CM-2): the Phase 16 entries record the sha256 of their code files, and CM-2 changed contract.py and labels.py
+    # (PI-D-122, re-pinned by PI-D-123). As with the backtesting package (PI-D-120), the builder reruns in the state of its own
+    # commit for those two files only: a scratch clone of HEAD with each of them restored to the bytes of its PI-D-123 "was" pin.
+    pin = json.loads((ROOT / "tests/fixtures/predictive/phase18/PINNED_SHA256_PI-D-123.json").read_text())["files"]
+    head = subprocess.run(["git", "-C", str(ROOT), "rev-parse", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
+    tree = tmp_path / "tree"
+    subprocess.run(["git", "clone", "-q", "--no-local", "--no-checkout", str(ROOT), str(tree)], check=True, capture_output=True)
+    subprocess.run(["git", "-C", str(tree), "checkout", "-q", head], check=True, capture_output=True)
+    for f, v in pin.items():
+        old = subprocess.run(["git", "-C", str(ROOT), "show", f"ed85b2c:{f}"], capture_output=True, check=True).stdout
+        assert hashlib.sha256(old).hexdigest() == v["was"], f
+        (tree / f).write_bytes(old)
+    if (ROOT / "data/memelab.sqlite").is_file():                     # git-ignored; the builder checks it is left unchanged
+        (tree / "data/memelab.sqlite").write_bytes((ROOT / "data/memelab.sqlite").read_bytes())
+    out = tmp_path / "out"
+    r = subprocess.run([sys.executable, "-B", "-c", HIDE_BACKTEST, str(tree / "audits/predictive-intelligence/phase_16/probes/build_registry.py"),
+                        str(out)], cwd=tree, capture_output=True, text=True, timeout=900)
+    assert r.returncode == 0, (r.stdout[-1500:], r.stderr[-1500:])
+    assert differing(out, AUD / "phase_16", {"ensemble/LATENCY.json"}) == []

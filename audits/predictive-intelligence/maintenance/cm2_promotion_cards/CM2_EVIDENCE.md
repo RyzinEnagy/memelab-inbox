@@ -17,7 +17,8 @@ Branch `feature/predictive-intelligence`. Approved by Elving on 2026-11-09 (ED-1
 | | `43a485b` | PI-D-124, test fixture; probes |
 | | `b7aabe3`, `07a815e` | PI-D-126 tests; `daily/PROCEDURE.md` (PI-D-125) |
 | | `a8c96d7` | PI-D-128, the one change to frozen cycle code |
-| | `2f72034`, `4e020cb` | PI-D-129, mutation probe offline |
+| | `2f72034`, `4e020cb` | PI-D-129 item 1, mutation probe offline |
+| | `f403b1b` | records; the full suite after it found 3 more failures (PI-D-129 item 2) |
 
 ## Acceptance checklist (from `CHANGE_CONTROL.md`)
 
@@ -63,7 +64,7 @@ Earlier runs, kept: run 1 at `43a485b` (34 applied, 23 caught; 6 untested guards
 
 ## Change controls after the freeze
 
-PI-D-124 (test fixture), PI-D-126 (tests for untested guards), PI-D-128 (a failed run never commits a ledger that does not verify; test fails on the frozen script), PI-D-129 (probe offline; 63 free calls a mutant made are logged). `memelab/predictive/*` and `build_cm2.py` are unchanged since `e79d846`; `predictive_daily.py` changed only by PI-D-128.
+PI-D-124 (test fixture), PI-D-126 (tests for untested guards), PI-D-128 (a failed run never commits a ledger that does not verify; test fails on the frozen script), PI-D-129 (probe offline; 63 free calls a mutant made are logged; three Phase 16 tests the frozen code broke, found by the full suite after the records commit `f403b1b`: 5 failed, 2,565 passed, 1 skipped, the two known plus these three). `memelab/predictive/*` and `build_cm2.py` are unchanged since `e79d846`; `predictive_daily.py` changed only by PI-D-128.
 
 ## Deviations
 

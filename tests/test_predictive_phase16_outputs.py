@@ -197,9 +197,12 @@ def test_pre_registration_was_committed_before_the_registry_code():
 
 
 def test_cp16_2_every_entry_s_facts_are_rebuilt_by_the_registry_and_its_code_files_are_unchanged(entries):
+    # PI-D-129 (CM-2): the two files re-pinned by PI-D-123 are the only code changes the entries see (P46), each from its old pin
+    pin = json.loads((ROOT / "tests/fixtures/predictive/phase18/PINNED_SHA256_PI-D-123.json").read_text())["files"]
     for e in entries.values():
         R.check_facts(e, ROOT)
-        assert R.code_changes(e, ROOT) == []
+        changed = {c["detail"].split(" changed since registration")[0] for c in R.code_changes(e, ROOT)}
+        assert changed == set(pin) & set(e["code"]["files"]) and all(e["code"]["files"][f] == pin[f]["was"] for f in changed)
         assert e["facts"]["tests"]["leakage"] and e["facts"]["tests"]["provenance"] and e["facts"]["tests"]["contract"]
         assert len(R.verify_sources(e, lambda p: (ROOT / p).read_bytes())) >= 4
         if e["family"]["candidate"] in ("P07_B2", "P07_B1"):

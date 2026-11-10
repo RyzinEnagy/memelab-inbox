@@ -1147,7 +1147,16 @@ def test_g2_cli_differs_from_the_pre_phase17_copy_only_by_the_hook():
 def test_g22_every_registry_entry_still_sees_its_code_files_unchanged():
     reg = I.load_registry(ROOT / I.REGISTRY_DIR)
     assert reg["state"] == "OK"
-    assert all(R.code_changes(e, ROOT) == [] for e in reg["entries"].values())
+    # PI-D-129 (CM-2): contract.py and labels.py changed under PI-D-122 and were re-pinned by PI-D-123, so the Phase 16 entries
+    # (retired by CM-2, still read by integration-1) see exactly those two files changed (P46: MODEL_INCOMPATIBLE_RETRAIN_REQUIRED)
+    # and nothing else; each recorded hash is the PI-D-123 "was" pin and each current file its new pin.
+    pin = json.loads((ROOT / "tests/fixtures/predictive/phase18/PINNED_SHA256_PI-D-123.json").read_text())["files"]
+    for e in reg["entries"].values():
+        changed = {c["detail"].split(" changed since registration")[0] for c in R.code_changes(e, ROOT)}
+        assert changed == set(pin) & set(e["code"]["files"]) and changed
+        for f in changed:
+            assert e["code"]["files"][f] == pin[f]["was"]
+            assert hashlib.sha256((ROOT / f).read_bytes()).hexdigest() == pin[f]["sha256"]
 
 
 # ---------------------------------------------------------------- research mode, references and the append-only files
