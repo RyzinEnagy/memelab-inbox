@@ -1020,3 +1020,28 @@ CHANGE_CONTROL.md item 3. Signature over the pass chain tip with a key from `MEM
 ## PI-D-133 Change control CM-3 item 4 (ED-8 preparation): what turning the flag on means (ADOPTED, 2026-11-09, maintenance; written before the code)
 
 CHANGE_CONTROL.md item 4. A document of the flag-on effects and a test on rows of the real export that a flag-on scout keeps the 100-point score, fatal flags, statuses and lists unchanged. No scheduled task changes; turning the flag on stays Elving's decision.
+
+## PI-D-134 Result of CM-3 (ED-3, ED-7, ED-9 done; ED-8 prepared) (ADOPTED, 2026-11-09, maintenance)
+
+Code `b99e139`, repair `e822887` after a session restart, records in the following commit; evidence
+`audits/predictive-intelligence/maintenance/cm3_spend_free/CM3_EVIDENCE.md`. With every switch off the lab's outputs are as at
+`60eb729`: the state export byte identical to the `60eb729` exporter on three databases; with the export switch on, the file
+gains exactly one `_catsoc` member. Suite 2 failed (the two known clock-dependent tests), 2,571 passed, 1 skipped; guard 0
+violations; seal 0 problems; release_e2e 78 of 78; reproductions 6 passed; 7 of 7 mutations caught. Real exports carry no
+section yet (78 versions, 4,878 pairs TABLES_NOT_EXPORTED). Status NEEDS_REVIEW until the orchestrator's skeptic.
+
+## PI-D-135 Trader source ids leave the database hashed; refs are pseudonymous (ADOPTED, 2026-11-09, maintenance)
+
+The catalyst registry keys trader research rows `trader:x:<handle>`. The exporter writes them as `trader:` plus the salted sha256
+prefix in every table, so the promise of PI-D-130 (no handle) holds and joins still work. The salt is public, so every ref in the
+section is pseudonymous: a candidate value can be confirmed, never read back. A secret salt (a key in every scheduled session)
+is open item OI-CM3-1, not part of CM-3.
+
+## PI-D-136 Flag-on procedure for the scheduled runs, and where the signing key lives (ADOPTED, 2026-11-09, maintenance)
+
+`FLAG_ON.md` "Exact steps for a scheduled run": merge `predictive.enabled` true, `predictive.state_dir`
+`~/mnt/memelab/predictive_state` (expanded) and `state_export.catalyst_social` true into `data/config.json`; prefix every memelab
+command with `MEMELAB_PREDICTIVE_STATE_KEY_FILE=$HOME/mnt/memelab/predictive_state.key`; check `sign-status`; run alerts with
+`--send push_file` and a persistent `--alert-db`, send each push line, move the file to `sent/`. The key is
+`predictive_state.key` in the connected memelab folder (`C:\Users\<you>\memelab\` on the computer), outside any git checkout,
+gitignored by name. Applying the steps needs the merge into `main` first (ED-6); both are the orchestrator's last steps.

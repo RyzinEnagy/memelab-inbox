@@ -1,0 +1,161 @@
+{
+ "phase": "maintenance CM-3",
+ "status": "NEEDS_REVIEW",
+ "head_before": "60eb729",
+ "head_after": "records commit on maint/catalyst-export (see HANDOFF.md)",
+ "checks": [
+  {
+   "name": "CM-3 tests",
+   "command": "python -m pytest tests/test_predictive_cm3.py -q",
+   "result": "46 passed",
+   "pass": true
+  },
+  {
+   "name": "full suite",
+   "command": "python -m pytest tests -q",
+   "result": "2 failed (the two known clock-dependent catalyst tests), 2571 passed, 1 skipped",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "flag-off identity",
+   "command": "probes/flag_off_identity.py",
+   "exit_code": 0,
+   "result": "all_identical true on 3 databases",
+   "pass": true
+  },
+  {
+   "name": "real exports and reader",
+   "command": "probes/real_export_check.py",
+   "exit_code": 0,
+   "result": "78 versions, 4878 pairs all TABLES_NOT_EXPORTED; 3 exports check/import/guard exit 0; clone release audit exit 0",
+   "pass": true
+  },
+  {
+   "name": "content guard",
+   "command": "python -B -m memelab social guard",
+   "exit_code": 0,
+   "result": "0 violations, 3895 files",
+   "pass": true
+  },
+  {
+   "name": "seal",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "release e2e",
+   "command": "python -B tools/release_e2e.py",
+   "exit_code": 0,
+   "result": "78 of 78, 0 network attempts",
+   "pass": true
+  },
+  {
+   "name": "reproductions",
+   "command": "python -m pytest tests/test_predictive_reproductions.py -q",
+   "result": "6 passed",
+   "pass": true
+  },
+  {
+   "name": "mutations",
+   "command": "7 mutations of CM-3 code",
+   "result": "7 of 7 caught",
+   "pass": true
+  },
+  {
+   "name": "post-commit single-branch release audit",
+   "command": "tools/release_audit.py --history on a --single-branch clone",
+   "result": "in postcommit/",
+   "pass": null
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/CHANGE_CONTROL.md",
+   "sha256": "049edbcfb188fbc988738628485adfaad970410c3a4430e0722e3d7f58675413"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/EXPORT.md",
+   "sha256": "131a0a7038312ff190e0a9ce02e37c45eb30f477743d66ce8df86a375f718dc3"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/FLAG_ON.md",
+   "sha256": "60dfdfe8e6ef44e07dd7332fc2f2412e08bc47be049efde666f3641575d51fba"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/PUSH_DELIVERY.md",
+   "sha256": "36ad78c53e99ff34c19f4450c7b75d5ef3a19c8d170563b0ddf7fde53a108e95"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/SIGNING.md",
+   "sha256": "bfb356c273eb7414dbac52e54fcab87e27a4fc10639728dd83d97f251fd09e05"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/CM3_EVIDENCE.md",
+   "sha256": "cb568af2ba9bcb117553032adbf255233a75c6abd0ce7fd48889dcf6ce800549"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/SKEPTIC_PACKET.md",
+   "sha256": "46174d019d98cb34e79e038b0c8de68bf255a66bda0f744914508a22ebf8ff71"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/evidence/flag_off_identity.json",
+   "sha256": "0427a0f73d0323891e658748a2606e8f86948abea0cde69f88fb667f70b58b49"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/evidence/real_export_check.json",
+   "sha256": "2d7b2fae25cc7474abdab799f6a89f95d74ca69cd1c1199b05469ccdeb69f403"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/probes/flag_off_identity.py",
+   "sha256": "48adb9649deb054b8ae47984f2192318494e3598b8ee763d2e5b05acc617c741"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/probes/real_export_check.py",
+   "sha256": "99a6dad0a7aabb9c1c7e63c0c3aba657fd69f071eb0db3211eb4ee4107026443"
+  },
+  {
+   "path": "memelab/catsoc_export.py",
+   "sha256": "486185d4d54fb4edd1096ee7ce345dbdbab6a81157aa66cb6e51413650f82887"
+  },
+  {
+   "path": "memelab/state.py",
+   "sha256": "9877a0af2ee37cf3850d821363834e1b184a68720b233f875b641bf154f0d084"
+  },
+  {
+   "path": "memelab/predictive/catsoc_adapter.py",
+   "sha256": "1718bec5dcd34680d451c7dd8879ff181508e0fd34d6a50c78573b457c615120"
+  },
+  {
+   "path": "memelab/predictive/reports.py",
+   "sha256": "508618b37b777194eef15998f19515200c622d845cdddac16960a6c4d02b07bc"
+  },
+  {
+   "path": "memelab/predictive/integration.py",
+   "sha256": "7891545fd513e3e02f308fc25cb09c30a2056d36c0558cc10dfb4f535f83e21e"
+  },
+  {
+   "path": "tests/test_predictive_cm3.py",
+   "sha256": "1f17ba80afefb58e73572b32ccb41ea3ad2fe6c1aab71f6386c366b7ac47a501"
+  },
+  {
+   "path": ".gitignore",
+   "sha256": "9feda23c9c8317396300e3664fb4fca9c742bf34a367e2854da685942f283ac7"
+  }
+ ],
+ "limitations": [
+  "no real catalyst or social rows exist in any available database; real-data evidence is the empty case",
+  "salted refs are pseudonymous (public salt), OI-CM3-1",
+  "a bare handle without @ inside a lab summary is not detected",
+  "scheduled-run steps run in a scratch clone only; no scheduled task created or changed"
+ ],
+ "blockers": [],
+ "approvals_needed": [
+  "ED-6 merge into main and ED-8 scheduled-task change (orchestrator, last)",
+  "Elving creates the key file (SIGNING.md)",
+  "OI-CM3-1 secret salt, optional"
+ ],
+ "next_eligible_phase": null
+}
