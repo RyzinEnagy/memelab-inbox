@@ -1,0 +1,109 @@
+{
+ "body": {
+  "columns": [
+   "thesis_log1p_liquidity_usd",
+   "thesis_log1p_mcap_usd",
+   "thesis_log1p_vol_24h_usd",
+   "thesis_fatal_present",
+   "log1p_token_age_days"
+  ],
+  "logistic": {
+   "C": 1.0,
+   "coef": [
+    0.3550576624434666,
+    -0.10099926525394838,
+    -0.3019465075243862,
+    -0.02811935530402565,
+    -0.816956735859506,
+    0.5596331223122133
+   ],
+   "intercept": -1.257755142940375,
+   "n_iter": 8
+  },
+  "prep": {
+   "ind": [
+    4
+   ],
+   "keep": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "med": [
+    12.13192454,
+    14.81991871,
+    13.32036866,
+    1.0,
+    3.07135221024069
+   ],
+   "mu": [
+    11.939487841417778,
+    14.98815915449778,
+    13.358393728542222,
+    0.5244444444444445,
+    3.1581924075201964,
+    0.013333333333333334
+   ],
+   "n_in": 5,
+   "sd": [
+    2.0618681755574073,
+    2.5239193377878064,
+    1.821396586875738,
+    0.4994021116653418,
+    1.88576221976763,
+    0.11469767022723505
+   ]
+  },
+  "required": [
+   "thesis_log1p_liquidity_usd",
+   "thesis_log1p_mcap_usd",
+   "thesis_log1p_vol_24h_usd",
+   "thesis_fatal_present"
+  ]
+ },
+ "data_snapshot_sha": "cd559a2a3b49a6a4e88a29862d10b272e96c826ce742873c7426dd555a76178d",
+ "evidence_class": "CM2_ALL_MATURED_PROVIDER_MODE",
+ "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "feature_version": "2",
+ "k_train": 55,
+ "k_used": 55,
+ "kind": "B2",
+ "label_mode": "provider",
+ "label_set_sha": "856f0f061a3c73afc5e6f25958f982e5be1aa1bcc4111148d7b48d6878973f14",
+ "label_store_migration": 2,
+ "labels_version": "labels-1",
+ "max_train_decision_time": 1793010184.0,
+ "max_train_label_matures_at": 1793097784.0,
+ "model_id": "B2:price_path_target_before_invalidation_24h",
+ "model_sha": "323a47f778dcabefce4c57f2c410ff5f8ca5d8b121758535b5dc7b04a74ff748",
+ "n_train": 225,
+ "n_used": 225,
+ "phase": "CM2",
+ "publishable": false,
+ "recipe_id": "R-CM2-1",
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "revision_check_claimed": false,
+ "split_counts": {
+  "DEVELOPMENT": 136,
+  "HOLDOUT": 67,
+  "PROSPECTIVE": 22
+ },
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "store_schema": "memelab.predictive.store/1",
+ "target_version": {
+  "price_path_target_before_invalidation_24h": "1"
+ },
+ "targets": [
+  "price_path_target_before_invalidation_24h"
+ ],
+ "training_cutoff": 1793184184.0,
+ "training_cutoff_utc": "2026-10-28T10:43:04Z",
+ "training_splits": [
+  "DEVELOPMENT",
+  "HOLDOUT",
+  "PROSPECTIVE"
+ ],
+ "version": 1
+}

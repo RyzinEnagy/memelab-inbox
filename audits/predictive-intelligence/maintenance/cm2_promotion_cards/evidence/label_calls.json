@@ -1,0 +1,91 @@
+[
+ {
+  "attempt": 0,
+  "bytes": 118917,
+  "http": 200,
+  "kind": "ohlcv",
+  "reconstructed_from": "evidence/t2_reads.json reads[0] (made before the 2026-11-10 01:25 UTC session restart; fetch_t2 logs calls only at its end)",
+  "retrieved_t": 1794273946.2124803,
+  "sent_t": 1794273945.2910502,
+  "sent_utc": "2026-11-10T01:25:45Z",
+  "sha256": "d8514e8cef151d0aeeb007fc1292ab4375b1ca36f2035e3848c34e4f9372319f",
+  "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/HSJ3UmgN1HpVVhY3kQi1V3kmASxFDSGeVVWSxp5MAJzw/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1793183400&currency=usd&token=9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147"
+ },
+ {
+  "attempt": 0,
+  "bytes": 272,
+  "http": 429,
+  "kind": "ohlcv",
+  "retrieved_t": 1794274110.6150212,
+  "sent_t": 1794274107.5394242,
+  "sent_utc": "2026-11-10T01:28:27Z",
+  "sha256": "fe01ad53fdd7d0cfad305454076eac66eb2621cb75eea3d52130e35f2b7a2542",
+  "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/5ZdDcSxL6ogbg2cQrCNUjpMg3jb1ZYvMWTPpmffhTnHk/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1793183400&currency=usd&token=CokrQHPjaWjyXyU15LiN9rb62tgBuFiU78KD7fKiZtu1"
+ },
+ {
+  "attempt": 1,
+  "bytes": 121672,
+  "http": 200,
+  "kind": "ohlcv",
+  "retrieved_t": 1794274171.4761453,
+  "sent_t": 1794274170.615533,
+  "sent_utc": "2026-11-10T01:29:30Z",
+  "sha256": "661e976ef768e312852ca29690f62f8f36a6f0616d899305e5b97566599d9753",
+  "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/5ZdDcSxL6ogbg2cQrCNUjpMg3jb1ZYvMWTPpmffhTnHk/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1793183400&currency=usd&token=CokrQHPjaWjyXyU15LiN9rb62tgBuFiU78KD7fKiZtu1"
+ },
+ {
+  "attempt": 0,
+  "bytes": 116981,
+  "http": 200,
+  "kind": "ohlcv",
+  "retrieved_t": 1794274182.75605,
+  "sent_t": 1794274182.0026295,
+  "sent_utc": "2026-11-10T01:29:42Z",
+  "sha256": "ebf5982fd10a455e71c9a7862b29fd4859ea80ee3a8c8230d04c3bea91d8203c",
+  "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/BUVzsLLLG7GWoyJVoU31pXiBveazA6GXTavZ9VD3CwS9/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1793183400&currency=usd&token=8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS"
+ },
+ {
+  "attempt": 0,
+  "bytes": 117538,
+  "http": 200,
+  "kind": "ohlcv",
+  "retrieved_t": 1794274194.1685455,
+  "sent_t": 1794274193.2826264,
+  "sent_utc": "2026-11-10T01:29:53Z",
+  "sha256": "5b382df304cbb6ae458c45e7177ab5a840b616f28b2634b13bc74bff3bb72b4e",
+  "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/FVq2chsiAcPqwL9L3zafF8juQHb7mui6LWMuE8g5L4K4/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1793183400&currency=usd&token=7M3gDRgozcumFsiTeXwjB8cYxpg7Q9R7rH7rkw2Fpump"
+ },
+ {
+  "attempt": 0,
+  "bytes": 112602,
+  "http": 200,
+  "kind": "ohlcv",
+  "retrieved_t": 1794274205.6407268,
+  "sent_t": 1794274204.6980412,
+  "sent_utc": "2026-11-10T01:30:04Z",
+  "sha256": "60afa8dce58263c1a1ab5bff120da9ccf2c15d508816ad31673f812984fff351",
+  "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/BTccxxTFi7a9xJTE1exKn38Jgie35s6gNeRxd8DM61Rc/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1793183400&currency=usd&token=HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR"
+ },
+ {
+  "attempt": 0,
+  "bytes": 53402,
+  "http": 200,
+  "kind": "ohlcv",
+  "retrieved_t": 1794274216.9633675,
+  "sent_t": 1794274216.1671655,
+  "sent_utc": "2026-11-10T01:30:16Z",
+  "sha256": "1f0141526f4ed21570f2f67a61699ef928d5b0e38bb95799af32741c72e04877",
+  "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/BqDAoudSEa3qaLiJfxzBRdH4Sjy9VYMy29E7fvoEfdH3/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1793183400&currency=usd&token=5Aa378KvCX3bz2dJ3YncoXijBBVvgvipQAXHWaBNNHRw"
+ },
+ {
+  "attempt": 0,
+  "bytes": 120892,
+  "http": 200,
+  "kind": "ohlcv",
+  "retrieved_t": 1794274228.2341623,
+  "sent_t": 1794274227.489886,
+  "sent_utc": "2026-11-10T01:30:27Z",
+  "sha256": "53aeba1a39e1c0b24d504c818b8c8f66c375c4ea28c6a8de429cd8d0c9b724e1",
+  "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/6KGbV6LxuATyk32jUaRuujgW63jmEJLezgyUxMqFWER7/ohlcv/minute?aggregate=5&limit=1000&before_timestamp=1793183400&currency=usd&token=8idEA8QovsZJka6d9Z35fejE5MbL37BJxvw5k5r6pump"
+ }
+]

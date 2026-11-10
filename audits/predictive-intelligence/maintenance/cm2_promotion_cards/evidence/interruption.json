@@ -1,0 +1,30 @@
+{
+ "all_consistent": true,
+ "checks": [
+  {
+   "body_sha256_ok": true,
+   "boundary_is_t2_window_end": true,
+   "consistent": true,
+   "decision_key": "58e073ea742c7f26d15b098ced48adc412f4cc2b73e6fd7ef7e0faf48fb4854e",
+   "file_sha256_ok": true,
+   "http": 200,
+   "is_next_in_frozen_order": true,
+   "is_pending_t2": true,
+   "matured_before_read": true,
+   "pool_is_decision_pool": true,
+   "token_is_mint": true,
+   "url_is_frozen_url": true
+  }
+ ],
+ "head_at_check": "e79d846202a5f93a9531a26d8a8ef4a242530742",
+ "label_calls_json_present": false,
+ "note": "fetch_t2 writes t2_reads.json after each read but writes label_calls.json only at its end, so the call log of the read made before the restart is missing; that call is reconstructed from its t2_reads record (one call, attempt 0, http 200) and added by the resume step as a separate, labelled entry",
+ "others_before_restart": 0,
+ "pending_t2": 7,
+ "reads_before_restart": 1,
+ "untracked_at_check": [
+  "audits/predictive-intelligence/maintenance/cm2_promotion_cards/evidence/t2_reads.json",
+  "audits/predictive-intelligence/maintenance/cm2_promotion_cards/probes/check_partial_reads.py",
+  "audits/predictive-intelligence/maintenance/cm2_promotion_cards/raw/gt_e670c5ad101d102f_d8514e8c.json.gz"
+ ]
+}

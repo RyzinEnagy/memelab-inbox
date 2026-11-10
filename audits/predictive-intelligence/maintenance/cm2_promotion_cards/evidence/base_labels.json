@@ -1,0 +1,18 @@
+{
+ "base_lines": 4161,
+ "base_only_are_the_cm2_t2": true,
+ "base_only_pairs": 7,
+ "base_prospective_labeled": 68,
+ "cm2_t2_rows": 7,
+ "cm2_t2_states": {
+  "LABELED:DRAWDOWN_50": 2,
+  "LABELED:NO_SEVERE_EVENT": 5
+ },
+ "file_sha256": "80b0d04e35bed473fa446b3bffd2e935c35c8cb539a120b3a9b78b119dbd7af3",
+ "from_phase19_store": 4153,
+ "ledger_pairs_equal": 61,
+ "ledger_pairs_missing": 0,
+ "other_pairs_different": 0,
+ "other_pairs_reproduced": 149,
+ "phase19_ledger_labeled": 61
+}

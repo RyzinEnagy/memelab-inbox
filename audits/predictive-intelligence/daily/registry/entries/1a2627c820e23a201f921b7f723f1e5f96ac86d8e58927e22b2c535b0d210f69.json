@@ -1,0 +1,34 @@
+{
+ "card_file_sha256": "9354df7a5eff4bf8b1ce43a9effb20d0990f31bade46aa24675bf14dd82d2a93",
+ "card_path": "audits/predictive-intelligence/daily/cards/R-CM2-1_v1_B2_T1b_6h.json",
+ "data_snapshot_sha": "b28a0f03982ce16b7bd7d7683778e06ed92d5538d2272948b36b38470d3cfd96",
+ "entry_id": "1a2627c820e23a201f921b7f723f1e5f96ac86d8e58927e22b2c535b0d210f69",
+ "entry_kind": "CM2_CARD",
+ "governing_sha": "b88f0058a3c86301d5c44ef1115a62ee1477971f733d7d3abbe25a3d7141e032",
+ "is_fixture": false,
+ "k_train": 42,
+ "k_used": 42,
+ "kind": "B2",
+ "label_set_sha": "9781302d57565c8153af9b5906fe62a9b457375bb0e4b2abd97b36b9e74edf19",
+ "level": "ABSTAIN",
+ "level_reasons": [
+  "NO_PROSPECTIVE_WINDOW_CLOSED",
+  "REFERENCE_BASELINE_NEVER_PUBLISHED"
+ ],
+ "model_id": "B2:price_path_target_before_invalidation_6h",
+ "model_sha": "3b424e07aeb64ab667999830db1e1ad204cf9f62c62a34b7632cc7f75cd4bb0b",
+ "n_train": 317,
+ "n_used": 317,
+ "recipe_id": "R-CM2-1",
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "role": "REFERENCE_BASELINE",
+ "target": "price_path_target_before_invalidation_6h",
+ "tests": {
+  "contract": true,
+  "leakage": true,
+  "provenance": true
+ },
+ "training_cutoff": 1793184184.0,
+ "training_cutoff_utc": "2026-10-28T10:43:04Z",
+ "version": 1
+}

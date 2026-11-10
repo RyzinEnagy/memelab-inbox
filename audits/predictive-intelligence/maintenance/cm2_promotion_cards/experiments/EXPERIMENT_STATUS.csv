@@ -1,0 +1,7 @@
+experiment_id,status,run_by,note
+CM2:LABELS_T2_PENDING,DONE,probes/build_cm2.py fetch_t2 at e79d846,"the plan named probes/fetch_pending_t2.py; the frozen code put the step in build_cm2.py as the fetch_t2 subcommand (same step, name only); 1 read before the 2026-11-10 01:25 UTC session restart, checked consistent (evidence/interruption.json), then 6 reads; 7 LABELED"
+CM2:BASE_LABELS,DONE,probes/build_cm2.py labels at e79d846,"plan name probes/build_cards.py labels; checks in evidence/base_labels.json"
+CM2:R-CM2-1:B0,DONE,probes/build_cm2.py cards at e79d846,"plan name probes/build_cards.py fit; 3 cards, second fit byte-identical"
+CM2:R-CM2-1:B2,DONE,probes/build_cm2.py cards at e79d846,"3 cards, second fit byte-identical; B2 inputs equal those of the Phase 19 feature store for all 333 training decisions"
+CM2:REGISTRY,DONE,probes/build_cm2.py cards at e79d846,"1 RETIRE event naming the 69 Phase 16 entry ids, 6 REGISTER, 3 PIN"
+CM2:DAILY_FRESH_CLONE,DONE,probes/fresh_clone_daily.sh,"evidence/daily_fresh_clone.json"

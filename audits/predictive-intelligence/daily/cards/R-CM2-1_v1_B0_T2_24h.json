@@ -1,0 +1,48 @@
+{
+ "body": {
+  "p": 0.18779342723004694
+ },
+ "data_snapshot_sha": "5d68529b767b93fa4c3df6d6985fc418e4ab6cea44695f6456a2704153a535d4",
+ "evidence_class": "CM2_ALL_MATURED_PROVIDER_MODE",
+ "feature_set_sha": "90781ad72ac1ab81d3e52882c22e4c89214e5d6cba0e3f843042fe8dc8c2848b",
+ "feature_version": "2",
+ "k_train": 40,
+ "k_used": 40,
+ "kind": "B0",
+ "label_mode": "provider",
+ "label_set_sha": "b0ae18bdeb1e6b8a988ab605f27ee91556bf239480ec52713bdc8bafcdbde55f",
+ "label_store_migration": 2,
+ "labels_version": "labels-1",
+ "max_train_decision_time": 1793010184.0,
+ "max_train_label_matures_at": 1793184184.0,
+ "model_id": "B0:price_path_severe_drawdown_or_halt_24h",
+ "model_sha": "90951a86e8a96c83d63b52148c020fb4456eba3e31a484e712c28571bfc00dea",
+ "n_train": 213,
+ "n_used": 213,
+ "phase": "CM2",
+ "publishable": false,
+ "recipe_id": "R-CM2-1",
+ "registry_sha": "4b4aabce77a5a6f9214c4cfdddf5223f410ed6126410cf4b213b3c80b035f896",
+ "revision_check_claimed": false,
+ "split_counts": {
+  "DEVELOPMENT": 131,
+  "HOLDOUT": 60,
+  "PROSPECTIVE": 22
+ },
+ "status": "PROVISIONAL_PENDING_REVISION_REREAD",
+ "store_schema": "memelab.predictive.store/1",
+ "target_version": {
+  "price_path_severe_drawdown_or_halt_24h": "1"
+ },
+ "targets": [
+  "price_path_severe_drawdown_or_halt_24h"
+ ],
+ "training_cutoff": 1793184184.0,
+ "training_cutoff_utc": "2026-10-28T10:43:04Z",
+ "training_splits": [
+  "DEVELOPMENT",
+  "HOLDOUT",
+  "PROSPECTIVE"
+ ],
+ "version": 1
+}

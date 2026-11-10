@@ -1,0 +1,93 @@
+{
+ "b2_inputs_differing_from_phase19_store": 0,
+ "cards": {
+  "B0_T1_24h": {
+   "abstain": null,
+   "b0_p": 0.24444444444444444,
+   "k_used": 55,
+   "model_sha": "7f7981e5ec0b151d9701810ac9c21cc613344dad0abaada35edf3f406ba5dc3e",
+   "n_used": 225
+  },
+  "B0_T1b_6h": {
+   "abstain": null,
+   "b0_p": 0.13249211356466878,
+   "k_used": 42,
+   "model_sha": "f2e46aaf338b5d54d9b8e6e4f33c8bb4d899b5528cacfa4692acc55f45c690d8",
+   "n_used": 317
+  },
+  "B0_T2_24h": {
+   "abstain": null,
+   "b0_p": 0.18779342723004694,
+   "k_used": 40,
+   "model_sha": "90951a86e8a96c83d63b52148c020fb4456eba3e31a484e712c28571bfc00dea",
+   "n_used": 213
+  },
+  "B2_T1_24h": {
+   "abstain": null,
+   "b0_p": null,
+   "k_used": 55,
+   "model_sha": "323a47f778dcabefce4c57f2c410ff5f8ca5d8b121758535b5dc7b04a74ff748",
+   "n_used": 225
+  },
+  "B2_T1b_6h": {
+   "abstain": null,
+   "b0_p": null,
+   "k_used": 42,
+   "model_sha": "3b424e07aeb64ab667999830db1e1ad204cf9f62c62a34b7632cc7f75cd4bb0b",
+   "n_used": 317
+  },
+  "B2_T2_24h": {
+   "abstain": null,
+   "b0_p": null,
+   "k_used": 40,
+   "model_sha": "d8c88b8b467216d4081c2fc15ad3454598fe61f0ddb0f9e53e1c0591849f4140",
+   "n_used": 213
+  }
+ },
+ "cutoff_utc": "2026-10-28T10:43:04Z",
+ "events": {
+  "PIN": 3,
+  "REGISTER": 6,
+  "RETIRE": 1
+ },
+ "label_sets": {
+  "T1_24h": {
+   "days": 19,
+   "k": 55,
+   "mints": 145,
+   "n": 225,
+   "splits": {
+    "DEVELOPMENT": 136,
+    "HOLDOUT": 67,
+    "PROSPECTIVE": 22
+   }
+  },
+  "T1b_6h": {
+   "days": 20,
+   "k": 42,
+   "mints": 149,
+   "n": 317,
+   "splits": {
+    "DEVELOPMENT": 224,
+    "HOLDOUT": 69,
+    "PROSPECTIVE": 24
+   }
+  },
+  "T2_24h": {
+   "days": 17,
+   "k": 40,
+   "mints": 138,
+   "n": 213,
+   "splits": {
+    "DEVELOPMENT": 131,
+    "HOLDOUT": 60,
+    "PROSPECTIVE": 22
+   }
+  }
+ },
+ "registered_at_utc": "2026-11-10T01:30:46Z",
+ "retired": 69,
+ "second_fit_identical": true,
+ "stale_after_utc": "2026-11-11T10:43:04Z",
+ "training_decisions": 333
+}
