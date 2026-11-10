@@ -144,11 +144,12 @@ def clone(tmp_path_factory):
     freeze = float(_git(c, "log", "--diff-filter=A", "--format=%ct", "--", "audits/predictive-intelligence/daily/RECIPE.json").split()[-1])
     # a synthetic state export one hour after the recipe freeze: one Solana thesis row of 71fc50e with a newer created_at
     doc = json.loads(_git(c, "show", f"{REF71}:data/state/latest.json"))
-    sol = {t["mint"] for t in doc["tokens"] if t.get("chain") == "solana" and (t.get("primary_pool") or t.get("graduated_pool"))}
-    row = next(r for r in sorted(doc["theses"], key=lambda r: -float(r["created_at"])) if r["mint"] in sol)
+    tab = doc["_tables"]     # PI-D-124: the export keeps its tables under "_tables" (the frozen fixture read doc["tokens"])
+    sol = {t["mint"] for t in tab["tokens"] if t.get("chain") == "solana" and (t.get("primary_pool") or t.get("graduated_pool"))}
+    row = next(r for r in sorted(tab["theses"], key=lambda r: -float(r["created_at"])) if r["mint"] in sol)
     new = dict(row, created_at=float(row["created_at"]) + 1.0)
     new.pop("id", None)
-    doc["theses"] = list(doc["theses"]) + [new]
+    tab["theses"] = list(tab["theses"]) + [new]
     work = base / "w"
     subprocess.run(["git", "clone", "-q", "--no-checkout", str(c), str(work)], check=True, capture_output=True)
     _git(work, "checkout", "-q", "-b", "fake", REF71)
@@ -173,7 +174,12 @@ def test_e2e_predictions_are_committed_before_any_read_and_a_second_run_adds_not
     assert r.returncode == 0, r.stderr[-1500:]
     ents = M.read_ledger(led.read_text())
     kinds = [e["payload"]["kind"] for e in ents]
-    assert kinds[0] == "PREDICTION_SET" and kinds.count("PREDICTION") == 6 and "OUTCOME" not in kinds
+    assert kinds[0] == "PREDICTION_SET" and kinds.count("PREDICTION") == 6
+    # PI-D-124: the frozen check said no OUTCOME at all; the cycle appends PENDING outcomes (no label, no read) after the
+    # prediction commit, as Phase 19 did. What must hold: every outcome comes after every prediction and none carries a label.
+    outs = [e for e in ents if e["payload"]["kind"] == "OUTCOME"]
+    assert all(e["payload"]["state"] == "PENDING" and e["payload"]["label"] is None for e in outs)
+    assert all(o["seq"] > max(e["seq"] for e in ents if e["payload"]["kind"] == "PREDICTION") for o in outs)
     preds = [e["payload"] for e in ents if e["payload"]["kind"] == "PREDICTION"]
     assert {p["mint"] for p in preds} == {clone["mint"]} and all(p["published"] is False for p in preds)
     assert all(p["number"] is None or 0 <= p["number"] <= 1 for p in preds)
@@ -193,7 +199,14 @@ def test_e2e_predictions_are_committed_before_any_read_and_a_second_run_adds_not
     r3 = _run(clone, "--now", str(clone["t_exp"] + 7 * 3600), "--max-calls", "0")
     assert r3.returncode == 0, r3.stderr[-1500:]
     assert "LABEL_READS_STOPPED_CALL_CAP_REACHED" in (c / "audits/predictive-intelligence/daily/ALERT_SUMMARY.txt").read_text()
-    assert led.read_text() == first and _git(c, "status", "--porcelain") == ""
+    # PI-D-124: the frozen check said the ledger is unchanged; the matured T1b outcome is appended as NOT_READ (no read, no
+    # label), a non-final state, as monitoring.next_outcomes records a planned read that was not made. The prefix is unchanged.
+    now_txt = led.read_text()
+    assert now_txt.startswith(first) and _git(c, "status", "--porcelain") == ""
+    added = M.read_ledger(now_txt)[len(M.read_ledger(first)):]
+    assert added and all(e["payload"]["kind"] == "OUTCOME" and e["payload"]["eligibility"] == "NOT_READ"
+                         and e["payload"]["label"] is None for e in added)
+    assert {e["payload"]["target"] for e in added} == {L.T1B}
 
 
 def test_e2e_no_commit_mode_refuses_label_reads_and_a_tampered_ledger_stops_the_run(clone, tmp_path):
