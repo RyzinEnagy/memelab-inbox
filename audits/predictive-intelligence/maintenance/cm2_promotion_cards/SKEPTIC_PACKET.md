@@ -8,14 +8,14 @@ Try to show that CM-2 (PI-D-122 to PI-D-127) does any of the following:
 
 1. Loosens a frozen minimum or correction of ACCEPTANCE, or lets anything other than an admissible prospective window promote (compare `contract.PROMOTION_CM2` with `ACCEPTANCE`; read `promotion.py` against the table in `CHANGE_CONTROL.md` Part A).
 2. Lets a prediction be scored when it was not committed to git before its outcome was read, or when the card version was registered after, or stale at, the decision.
-3. Changed frozen code after the freeze without a recorded change control: the code commit is `e79d846`, made before any label read or fit. Check that `memelab/`, `predictive_daily.py` and `build_cm2.py` are unchanged since then, and that every later test change has a change control (PI-D-124, PI-D-126).
+3. Changed frozen code after the freeze without a recorded change control: the code commit is `e79d846`, made before any label read or fit. Check that `memelab/` and `build_cm2.py` are unchanged since then, that `predictive_daily.py` changed only by PI-D-128, and that every later test or probe change has a change control (PI-D-124, PI-D-126, PI-D-129).
 4. Read labels against the frozen rules: not `token=<mint>`, a wrong boundary (T2 window end on the candle grid), more than 6 calls in any 60 s, a paid route, or an unlogged call. One read happened before a session restart; check `evidence/interruption.json` against the raw body and the plan.
 5. Fitted the fresh cards on something other than what `RECIPE.json` names (splits, cutoff, configurations), searched (N_search must stay 130), or produced cards that a second fit does not reproduce byte for byte.
 6. Deleted or edited a Phase 16 registry entry or log, or registered a fresh card at a level other than ABSTAIN, or pinned anything other than NO_VIABLE_CHAMPION.
 7. Lets the daily cycle write outside its allowed paths, make a call in `--no-commit` mode, append on a second run with nothing new, or pass with a tampered ledger.
 8. States anything in the records (HANDOFF, ROADMAP, DECISIONS, RELEASE.md, OPEN_DECISIONS, PROCEDURE.md) that the evidence does not support.
 
-Known weak points worth a look (stated, not judged): the commit-time anchor is the committer clock of the machine that commits (`PROCEDURE.md` "Why the commits must be pushed"); `--now` exists for tests and changes the decision clock of a run; PENDING and NOT_READ outcomes are appended before labels (PI-D-124 changed the test's expectation, not the code); PI-D-123 was used by the pin file at `e79d846` before its DECISIONS entry was written; the experiment registry names probe files that the frozen code merged into `build_cm2.py` subcommands (`experiments/EXPERIMENT_STATUS.csv`); `level()` gives SHADOW to a role REFERENCE_BASELINE when a window passes, while the PIN reasons say references are never published.
+Known weak points worth a look (stated, not judged): the commit-time anchor is the committer clock of the machine that commits (`PROCEDURE.md` "Why the commits must be pushed"); `--now` exists for tests and changes the decision clock of a run; PENDING and NOT_READ outcomes are appended before labels (PI-D-124 changed the test's expectation, not the code); PI-D-123 was used by the pin file at `e79d846` before its DECISIONS entry was written; the experiment registry names probe files that the frozen code merged into `build_cm2.py` subcommands (`experiments/EXPERIMENT_STATUS.csv`); the end-to-end tests do not refuse a network on their own (a mutant made 63 free calls before the probe moved inside `unshare -n`, PI-D-129); `level()` gives SHADOW to a role REFERENCE_BASELINE when a window passes, while the PIN reasons say references are never published.
 
 ## Artifacts
 
@@ -32,7 +32,10 @@ Known weak points worth a look (stated, not judged): the commit-time anchor is t
 | `evidence/base_labels.json`, `evidence/cards.json` | label set and fit results |
 | `evidence/daily_fresh_clone.json` | two runs of the daily command in a fresh clone |
 | `evidence/old_code_probe.txt` | CM-2 tests against `ed85b2c` |
-| `evidence/mutation_probe_run1.json`, `evidence/mutation_probe.json` | first and second mutation runs |
+| `evidence/mutation_probe_run1.json`, `evidence/mutation_probe_run2_partial.log`, `evidence/mutation_probe_run3_partial.log`, `evidence/mutation_probe.json` | first run, two runs stopped by hand during D08, final offline run |
+| `evidence/mutation_probe_network.json` | the 63 free calls mutation D08 made from test clones (PI-D-129) |
+| `evidence/daily_fresh_clone_pi_d_128.json` | the fresh-clone runs repeated at `a8c96d7` |
+| `CHANGE_CONTROL_PI-D-128.md` | the one change to frozen cycle code |
 | `experiments/SEARCH_LEDGER.csv`, `SEARCH_LEDGER_CM2_ROWS.csv`, `LEDGER_TOTALS.json` | cumulative search ledger, N_search |
 | `CM2_EVIDENCE.md` | commands, exit codes, hashes, deviations |
 

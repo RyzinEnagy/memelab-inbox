@@ -1,14 +1,23 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-121). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_21/`, and `maintenance/` for changes after Phase 21. Spend: `audits/predictive-intelligence/COST_LEDGER.md`. Plain-language release summary: [RELEASE.md](RELEASE.md).
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-129). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_21/`, and `maintenance/` for changes after Phase 21. Spend: `audits/predictive-intelligence/COST_LEDGER.md`. Plain-language release summary: [RELEASE.md](RELEASE.md).
 
-## Position on 2026-11-09
+## Position on 2026-11-10
 
 - Phases 00 to 13 and 16 to 20: PASS. Phases 14 and 15: TEST_ONLY (behavioral path, optional, OFF, MIROFISH_NO_GO).
 - Phase 21 (reproducible research-only release or explicit NO-GO): **PASS** after the orchestrator's independent skeptic (no material finding; 8 minor findings and counterexample CX-S21) and repair pass CP21-1 (PI-D-117 G3 amendment, PI-D-118). This is the last phase of the package; there is no next phase. What remains are Elving's decisions.
 - Release decision (PI-D-115): GO for a research-only release of the abstention engine with the flag OFF (RESEARCH_BASELINE_ONLY, scoped); NOT_READY and NO-GO for any predictive release. MIROFISH_NO_GO.
 - Maintenance CM-1 (2026-11-09, Elving's approval; PI-D-120, PI-D-121): the backtesting module (PR #4, `69bc5c3`) is merged into this branch, local only. Backtest status is now UNVERIFIED (was BACKTEST_NOT_AVAILABLE); every forecast still abstains; request records and reports show the real adapter result, which here is BACKTEST_STORE_MISSING (the real store is on Elving's computer).
-- Spend: 0. No vendor, model or paid call in Phase 21 or CM-1.
+- Maintenance CM-2 (approved by Elving on 2026-11-09; PI-D-122 to PI-D-129): ED-1 and ED-10 closed locally. `contract.PROMOTION_CM2` lets a model reach SHADOW only from an admissible prospective window after the recipe freeze (2026-11-10T01:13:46Z), with every frozen minimum and correction kept. The 69 stale Phase 16 cards are retired (kept); 6 fresh R-CM2-1 v1 cards (B0 and B2 by 3 targets, cutoff 2026-10-28T10:43:04Z, stale after 2026-11-11T10:43:04Z) are registered ABSTAIN under NO_VIABLE_CHAMPION pins. The daily cycle is ready, not scheduled. Status NEEDS_REVIEW: the independent skeptic has not yet read `maintenance/cm2_promotion_cards/SKEPTIC_PACKET.md`.
+- Spend: 0. CM-2 made 8 free GeckoTerminal calls for labels, and a mutant of the mutation probe made 63 more from test clones before the probe was moved offline (PI-D-129); no paid, vendor-keyed or model call.
+
+## What CM-2 did
+
+- Change control and recipe first (`ed85b2c`), then the frozen code before any label read or fit (`e79d846`): PROMOTION_CM2 with pinned fingerprints, explicit training splits, `promotion.py`, the daily cycle, the build probe, tests.
+- The previous session was cut off by a restart after the first of the 7 T2 reads. The read was checked against the frozen plan before resuming (`evidence/interruption.json`: all consistent); the resumed `fetch_t2` made 7 calls (one 429 retried), at most 6 in any 60 s. The first call's log entry is reconstructed from its read record and labelled so.
+- `a140986`: 7 T2 labels (2 DRAWDOWN_50, 5 NO_SEVERE_EVENT), base label set (Phase 19 ledger pairs 61 of 61 equal), 6 cards (refit byte-identical), registry (1 RETIRE event for 69 entries, 6 REGISTER, 3 PIN), search ledger rows (N_search 130), cost ledger row.
+- Change controls after the freeze: PI-D-124 (`43a485b`, the daily end-to-end test fixture), PI-D-126 (`b7aabe3`, tests for guards the first mutation probe found untested; the probe now commits each mutation), PI-D-128 (`a8c96d7`, a failed run no longer commits a ledger that does not verify; the only change to frozen cycle code), PI-D-129 (`2f72034`, mutant tests run offline). `07a815e` adds `daily/PROCEDURE.md` (PI-D-125).
+- Checks (`maintenance/cm2_promotion_cards/CM2_EVIDENCE.md`): old-code probe (CM-2 tests fail on `ed85b2c`), mutation probe offline (35 applied, 34 caught, D07 equivalent), two fresh-clone runs of the daily command (exit 0 twice; 0 decisions after the freeze, 0 calls; repeated at `a8c96d7`), full suite, guard, seal, reproductions, single-branch release audit with history.
 
 ## What CM-1 did
 
@@ -28,15 +37,16 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Open items, in order
 
-1. OI21-1: the `fetch_labels.py` change for the 7 PENDING T2 outcomes (cannot change a verdict).
-2. OI21-2: the private stores are portable only through a documented, untried rebuild; about 70 earlier probes still use `/home/claude/pi_research`.
-3. MINOR items F20-07, F20-10, F20-13, F20-14 with the recommendations in `phase_21/release/OPEN_DECISIONS.md`; F20-11 is closed by the runbook.
-4. Carried: catalyst and social tables are not exported; forward depth collector not deployed (PI-D-044); keep `tests/test_predictive_reproductions.py` green.
-5. After CM-1: a phase to verify the installed backtesting engine (needed before any document may carry an assessment reference); the backtesting branch's reviewer set p16r4 fails its own baseline here (5 concurrency tests, same on `69bc5c3`).
+1. Schedule the daily cycle (needs Elving's approval of a scheduled task): once a day, `python -B audits/predictive-intelligence/daily/predictive_daily.py run` in a full clone of this branch, then push the branch fast-forward (PI-D-125). Before that, the orchestrator pushes the CM-1 and CM-2 commits. No window can start until the lab's state exports on `origin/main` resume (none after `71fc50e`, 2026-10-26). (OI21-1 is done for CM-2: the 7 labels are in the CM-2 base set; the Phase 19 ledger stays as recorded.)
+2. Make the daily end-to-end tests refuse a network on their own (today only the mutation probe runs them inside `unshare -n`, PI-D-129); point the scout hook at the CM-2 registry (separate change control).
+3. OI21-2: the private stores are portable only through a documented, untried rebuild; about 70 earlier probes still use `/home/claude/pi_research`.
+4. MINOR items F20-07, F20-10, F20-13, F20-14 with the recommendations in `phase_21/release/OPEN_DECISIONS.md`; F20-11 is closed by the runbook.
+5. Carried: catalyst and social tables are not exported; forward depth collector not deployed (PI-D-044); keep `tests/test_predictive_reproductions.py` green.
+6. After CM-1: a phase to verify the installed backtesting engine (needed before any document may carry an assessment reference); the backtesting branch's reviewer set p16r4 fails its own baseline here (5 concurrency tests, same on `69bc5c3`).
 
 ## Waiting on Elving (`phase_21/release/OPEN_DECISIONS.md`, ED-1 to ED-10)
 
-Maintenance owner: Elving (ED-11). Promotion change control (PI-D-091); any LLM, Zep or MiroFish spend and any paid data; catalyst and social collection into a store this engine reads; deploying the forward depth collector (PI-D-044); pushing the CM-1 merge (done locally on 2026-11-09 with his approval); any merge into `main`; any external alert delivery; turning the flag on outside a sandbox; a signing key for the private state; retiring or replacing the stale reference cards.
+Maintenance owner: Elving (ED-11). ED-1 (promotion) and ED-10 (stale cards) are closed by CM-2. Still waiting: scheduling the daily cycle and letting it push; pointing the scout hook at the CM-2 registry; any LLM, Zep or MiroFish spend and any paid data; catalyst and social collection into a store this engine reads; deploying the forward depth collector (PI-D-044); pushing the CM-1 merge (done locally on 2026-11-09 with his approval); any merge into `main`; any external alert delivery; turning the flag on outside a sandbox; a signing key for the private state.
 
 ## Phase 21 commits
 
@@ -45,6 +55,10 @@ HEAD before `90e4c6f`; `0bb361e` pre-registration; `2a29c68` frozen probes; `b04
 ## CM-1 commits
 
 HEAD before `79bcd7e` (pushed); `445d2d7` change control PI-D-120; `69b7b57` merge; `6ea454d` bt-adapter-2 and tests; `97d094e` records; `1fb1110` audit copy kept as `.txt` (the post-commit audit at `97d094e` flagged the `.md` copy); then the post-commit record (`maintenance/cm1_backtest_merge/postcommit/`: suite 2 failed, the two known, 2,526 passed, 1 skipped; guard 0 violations; seal 0 problems; single-branch release audit with history exit 0). Local only; not pushed.
+
+## CM-2 commits
+
+HEAD before `e79d846` (CM-1 pushed up to `60eb729`); `ed85b2c` change control PI-D-122 and recipe; `e79d846` frozen code; `a140986` reads, labels, cards, registry; `43a485b` PI-D-124; `b7aabe3` PI-D-126; `07a815e` PROCEDURE.md; `a8c96d7` PI-D-128; `2f72034` PI-D-129 (also carried the OPEN_DECISIONS update, the skeptic packet and the second fresh-clone record); then the records commit and its post-commit record (see `CM2_EVIDENCE.md`). Local only; not pushed.
 
 ## The reviewed history blob
 

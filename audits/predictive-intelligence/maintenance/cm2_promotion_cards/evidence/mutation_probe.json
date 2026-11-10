@@ -1,21 +1,24 @@
 {
- "applied": 34,
+ "applied": 35,
  "baseline": {
-  "tests/test_predictive_daily.py": {
+  "tests/test_predictive_daily.py tests/test_predictive_cm2_guards.py": {
    "exit": 0,
    "tail": [
-    "11 passed in 29.18s"
+    "17 passed in 75.67s (0:01:15)"
    ]
   },
-  "tests/test_predictive_promotion.py": {
+  "tests/test_predictive_promotion.py tests/test_predictive_cm2_guards.py": {
    "exit": 0,
    "tail": [
-    "22 passed in 2.68s"
+    "28 passed in 51.54s"
    ]
   }
  },
- "caught": 23,
- "head": "43a485bbfb25b9045fff017defefb13deb0bede7",
+ "caught": 34,
+ "equivalent": {
+  "D07 tampered ledger not refused": "monitoring.is_append_only verifies both chains, so the recovery step refuses a broken working ledger with or without the removed check (CHANGE_CONTROL_PI-D-128.md)"
+ },
+ "head": "4e020cb3699462b223413cabc74d7426acf9996d",
  "mutations": [
   {
    "applied": true,
@@ -24,9 +27,12 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P01 window start not strict",
    "tail": [
-    "1 failed, 3 passed in 0.10s"
+    "1 failed, 3 passed in 0.13s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -35,20 +41,26 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P02 incomplete day does not stop",
    "tail": [
-    "1 failed, 2 passed in 0.10s"
+    "1 failed, 2 passed in 0.12s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
-   "caught": false,
-   "exit": 0,
+   "caught": true,
+   "exit": 1,
    "file": "memelab/predictive/promotion.py",
    "mutation": "P03 events minimum off by one",
    "tail": [
-    "22 passed in 2.83s"
+    "1 failed, 22 passed in 3.27s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -57,9 +69,12 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P04 per-class minimum dropped (window)",
    "tail": [
-    "1 failed, 1 passed in 0.10s"
+    "1 failed, 1 passed in 0.12s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -68,9 +83,12 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P05 day minimum dropped (window)",
    "tail": [
-    "1 failed in 0.09s"
+    "1 failed in 0.12s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -79,9 +97,12 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P06 freeze check removed",
    "tail": [
-    "1 failed, 15 passed in 0.83s"
+    "1 failed, 15 passed in 0.87s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -92,7 +113,10 @@
    "tail": [
     "1 failed, 11 passed in 0.59s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -101,9 +125,12 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P08 commit-before-read check weakened",
    "tail": [
-    "1 failed, 10 passed in 0.54s"
+    "1 failed, 10 passed in 0.55s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -112,9 +139,12 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P09 registration check removed",
    "tail": [
-    "1 failed, 12 passed in 0.64s"
+    "1 failed, 12 passed in 0.67s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -123,9 +153,12 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P10 stale check removed",
    "tail": [
-    "1 failed, 13 passed in 0.73s"
+    "1 failed, 13 passed in 0.80s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -134,9 +167,12 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P11 admissibility not a reason",
    "tail": [
-    "1 failed, 9 passed in 0.47s"
+    "1 failed, 9 passed in 0.52s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -145,31 +181,40 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P12 tests flag ignored",
    "tail": [
-    "1 failed, 16 passed in 0.90s"
+    "1 failed, 16 passed in 0.89s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
-   "caught": false,
-   "exit": 0,
+   "caught": true,
+   "exit": 1,
    "file": "memelab/predictive/promotion.py",
    "mutation": "P13 event minimum dropped (evaluate)",
    "tail": [
-    "22 passed in 2.56s"
+    "1 failed, 23 passed in 4.35s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
-   "caught": false,
-   "exit": 0,
+   "caught": true,
+   "exit": 1,
    "file": "memelab/predictive/promotion.py",
    "mutation": "P14 day minimum dropped (evaluate)",
    "tail": [
-    "22 passed in 2.75s"
+    "1 failed, 23 passed in 5.73s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -178,9 +223,12 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P15 skill bound at or above 0 accepted",
    "tail": [
-    "1 failed, 6 passed in 0.30s"
+    "1 failed, 6 passed in 0.32s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -189,9 +237,12 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P16 no Bonferroni (q = alpha)",
    "tail": [
-    "1 failed, 7 passed in 0.32s"
+    "1 failed, 7 passed in 0.36s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -200,9 +251,12 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P17 windows not counted in correction",
    "tail": [
-    "1 failed, 7 passed in 0.28s"
+    "1 failed, 7 passed in 0.35s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -211,9 +265,12 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P18 governing bound is the max of units",
    "tail": [
-    "1 failed, 7 passed in 0.33s"
+    "1 failed, 7 passed in 0.39s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -222,20 +279,26 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P19 calibration ignored",
    "tail": [
-    "1 failed, 8 passed in 0.40s"
+    "1 failed, 8 passed in 0.46s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
-   "caught": false,
-   "exit": 0,
+   "caught": true,
+   "exit": 1,
    "file": "memelab/predictive/promotion.py",
    "mutation": "P20 undefined replicate counts for skill",
    "tail": [
-    "22 passed in 2.50s"
+    "1 failed, 24 passed in 2.79s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -244,9 +307,12 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P21 VE without a second window",
    "tail": [
-    "1 failed, 4 passed in 0.16s"
+    "1 failed, 4 passed in 0.21s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -257,7 +323,10 @@
    "tail": [
     "1 failed, 17 passed in 1.45s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -266,9 +335,12 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P23 registration at a publishable level allowed",
    "tail": [
-    "1 failed, 20 passed in 1.42s"
+    "1 failed, 20 passed in 1.44s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -277,9 +349,12 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P24 log chain not checked",
    "tail": [
-    "1 failed, 19 passed in 1.46s"
+    "1 failed, 19 passed in 1.41s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -288,31 +363,40 @@
    "file": "memelab/predictive/promotion.py",
    "mutation": "P25 retire twice allowed",
    "tail": [
-    "1 failed, 19 passed in 1.47s"
+    "1 failed, 19 passed in 1.40s"
    ],
-   "tests": "tests/test_predictive_promotion.py"
+   "tests": [
+    "tests/test_predictive_promotion.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
-   "caught": false,
-   "exit": 0,
+   "caught": true,
+   "exit": 1,
    "file": "audits/predictive-intelligence/daily/predictive_daily.py",
    "mutation": "D01 recipe pin not checked",
    "tail": [
-    "11 passed in 29.23s"
+    "1 failed, 14 passed in 28.10s"
    ],
-   "tests": "tests/test_predictive_daily.py"
+   "tests": [
+    "tests/test_predictive_daily.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
-   "caught": false,
-   "exit": 0,
+   "caught": true,
+   "exit": 1,
    "file": "audits/predictive-intelligence/daily/predictive_daily.py",
    "mutation": "D02 governing pin not checked",
    "tail": [
-    "11 passed in 29.91s"
+    "1 failed, 14 passed in 27.74s"
    ],
-   "tests": "tests/test_predictive_daily.py"
+   "tests": [
+    "tests/test_predictive_daily.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -323,7 +407,10 @@
    "tail": [
     "1 failed, 2 passed in 0.13s"
    ],
-   "tests": "tests/test_predictive_daily.py"
+   "tests": [
+    "tests/test_predictive_daily.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -332,31 +419,40 @@
    "file": "audits/predictive-intelligence/daily/predictive_daily.py",
    "mutation": "D04 allowed paths widened",
    "tail": [
-    "1 failed, 3 passed in 0.12s"
+    "1 failed, 3 passed in 0.16s"
    ],
-   "tests": "tests/test_predictive_daily.py"
+   "tests": [
+    "tests/test_predictive_daily.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
-   "caught": false,
-   "exit": 0,
+   "caught": true,
+   "exit": 1,
    "file": "audits/predictive-intelligence/daily/predictive_daily.py",
    "mutation": "D05 no-commit mode reads labels",
    "tail": [
-    "11 passed in 31.38s"
+    "1 failed, 15 passed in 62.47s (0:01:02)"
    ],
-   "tests": "tests/test_predictive_daily.py"
+   "tests": [
+    "tests/test_predictive_daily.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
-   "caught": false,
-   "exit": 0,
+   "caught": true,
+   "exit": 1,
    "file": "audits/predictive-intelligence/daily/predictive_daily.py",
    "mutation": "D06 predictions not committed before reads",
    "tail": [
-    "11 passed in 30.49s"
+    "1 failed, 9 passed in 27.18s"
    ],
-   "tests": "tests/test_predictive_daily.py"
+   "tests": [
+    "tests/test_predictive_daily.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
@@ -365,45 +461,58 @@
    "file": "audits/predictive-intelligence/daily/predictive_daily.py",
    "mutation": "D07 tampered ledger not refused",
    "tail": [
-    "11 passed in 29.05s"
+    "17 passed in 79.56s (0:01:19)"
    ],
-   "tests": "tests/test_predictive_daily.py"
+   "tests": [
+    "tests/test_predictive_daily.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
-   "caught": false,
-   "exit": 0,
+   "caught": true,
+   "exit": 1,
    "file": "audits/predictive-intelligence/daily/predictive_daily.py",
    "mutation": "D08 decisions at the freeze predicted",
    "tail": [
-    "11 passed in 30.27s"
+    "1 failed, 9 passed in 73.57s (0:01:13)"
    ],
-   "tests": "tests/test_predictive_daily.py"
+   "tests": [
+    "tests/test_predictive_daily.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   },
   {
    "applied": true,
-   "caught": false,
-   "exit": 0,
+   "caught": true,
+   "exit": 1,
+   "file": "audits/predictive-intelligence/daily/predictive_daily.py",
+   "mutation": "D10 failed run commits a broken ledger (PI-D-128)",
+   "tail": [
+    "1 failed, 16 passed in 85.79s (0:01:25)"
+   ],
+   "tests": [
+    "tests/test_predictive_daily.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
+  },
+  {
+   "applied": true,
+   "caught": true,
+   "exit": 1,
    "file": "audits/predictive-intelligence/daily/predictive_daily.py",
    "mutation": "D09 label read without token",
    "tail": [
-    "11 passed in 30.72s"
+    "1 failed, 9 passed in 35.87s"
    ],
-   "tests": "tests/test_predictive_daily.py"
+   "tests": [
+    "tests/test_predictive_daily.py",
+    "tests/test_predictive_cm2_guards.py"
+   ]
   }
  ],
  "not_applied": [],
  "survived": [
-  "P03 events minimum off by one",
-  "P13 event minimum dropped (evaluate)",
-  "P14 day minimum dropped (evaluate)",
-  "P20 undefined replicate counts for skill",
-  "D01 recipe pin not checked",
-  "D02 governing pin not checked",
-  "D05 no-commit mode reads labels",
-  "D06 predictions not committed before reads",
-  "D07 tampered ledger not refused",
-  "D08 decisions at the freeze predicted",
-  "D09 label read without token"
+  "D07 tampered ledger not refused"
  ]
 }

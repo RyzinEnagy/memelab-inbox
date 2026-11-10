@@ -269,6 +269,7 @@ Changes after the last phase of the package. Each has its own change control in 
 | Id | Date | Change | Decisions | Status |
 |---|---|---|---|---|
 | CM-1 | 2026-11-09 | Merge of the backtesting module (PR #4, `69bc5c3`) into this line; bt-adapter-2 reads the installed package read-only | PI-D-120, PI-D-121 | DONE locally (merge `69b7b57`, code `6ea454d`), not pushed |
+| CM-2 | 2026-11-09 to 2026-11-10 | Promotion from prospective evidence (`PROMOTION_CM2`, closes ED-1); the 69 stale Phase 16 cards retired and 6 fresh R-CM2-1 cards registered (closes ED-10); the daily cycle `predictive_daily.py run` | PI-D-122 to PI-D-129 | DONE locally (change control `ed85b2c`, frozen code `e79d846`, reads and cards `a140986`), not pushed; NEEDS_REVIEW (skeptic packet written) |
 
 Constraints after CM-1:
 
@@ -277,3 +278,12 @@ Constraints after CM-1:
 - Tests that run a pass set `MEMELAB_BT_DB` to a missing file unless they build a store; reproductions of earlier phases run with the package hidden.
 - `tests/fixtures/predictive/phase18/PINNED_SHA256_PI-D-120.json` re-pins the five files the merge changed; a later change to any of them updates that file under its own change control.
 - The backtesting branch's reviewer mutation set p16r4 does not pass its own baseline in this environment (5 concurrency tests), on its tip as well as here; its builder sets all pass.
+
+Constraints after CM-2:
+
+- Promotion decisions follow `contract.PROMOTION_CM2` (governing fingerprint pinned in `predictive_daily.py` and the contract test). ACCEPTANCE and `registry_sha256()` (`4b4aabce...`) are unchanged. Only an admissible prospective window after the recipe freeze (2026-11-10T01:13:46Z) counts: predictions committed before their outcomes are read, at least 50 events, 10 per class, 5 decision days, a corrected skill lower bound above 0 (N_search 130 times the windows tried) and Wilson calibration. VALIDATED_EXPERIMENTAL needs a second, later window.
+- Recipe R-CM2-1 (`daily/RECIPE.json`, sha256 pinned) is fixed: a change is a new recipe and a new change control; any new configuration counts in N_search.
+- The fresh cards (cutoff 2026-10-28T10:43:04Z) go MODEL_STALE at 2026-11-11T10:43:04Z. No state export exists on `origin/main` after `71fc50e` (2026-10-26), so no window can start until exports resume; the cycle retrains on its own once labels mature after the cutoff.
+- The daily cycle writes only `audits/predictive-intelligence/daily/`, one cost ledger line and the git-ignored `data/private/predictive_daily/`. It is not scheduled. Its task must push the branch it ran on after every run (PI-D-125).
+- The Phase 16 registry and log are kept as history; the scout hook (integration-1) still reads them, and its answers stay ABSTAIN. Pointing it at the CM-2 registry is a separate change control.
+- `tests/fixtures/predictive/phase18/PINNED_SHA256_PI-D-123.json` re-pins `contract.py` and `labels.py`; a later change to either updates that file under its own change control.

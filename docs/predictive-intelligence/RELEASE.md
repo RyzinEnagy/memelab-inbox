@@ -1,6 +1,6 @@
 # Predictive engine: release summary for Elving
 
-Date: 2026-11-09. This is the plain-language version of the Phase 21 release decision. The full memo is `audits/predictive-intelligence/phase_21/release/RELEASE_DECISION.md`.
+Date: 2026-11-09, updated 2026-11-10 (CM-2). This is the plain-language version of the Phase 21 release decision. The full memo is `audits/predictive-intelligence/phase_21/release/RELEASE_DECISION.md`.
 
 ## The short answer
 
@@ -12,8 +12,8 @@ Date: 2026-11-09. This is the plain-language version of the Phase 21 release dec
 
 1. An abstention engine. For each new or changed opportunity it records the exact token (chain plus mint address), the time, and an answer for three questions: does the price touch +25% before -15% within 24 hours, the same within 6 hours, and does it halve or stop trading within 24 hours. Today every answer is ABSTAIN, with reasons such as "no model selected", "not calibrated", "not enough history", "inputs too old".
 2. The flag is OFF. With it off, the lab's reports are byte for byte what they were before this work (checked on two real exports and six kinds of settings file).
-3. Two simple reference models (a base rate and a simple logistic model) are kept for comparison only. They are never shown to you, and since 2026-10-31 they are out of date (MODEL_STALE), so they abstain too.
-4. No validated model, no shadow model, no ensemble.
+3. Two simple reference models (a base rate and a simple logistic model) are kept for comparison only. They are never shown to you. The old ones went out of date on 2026-10-31; on 2026-11-10 they were retired (kept for the record) and replaced by fresh ones trained on every outcome available (cutoff 2026-10-28). The fresh ones go out of date on 2026-11-11 unless new lab data arrives, because the lab's state exports on GitHub stopped on 2026-10-26.
+4. No validated model, no shadow model, no ensemble. Since 2026-11-10 (CM-2, your approval of 2026-11-09) a model can reach "shadow" from new data: it must first commit its predictions to git, then beat the base rate on at least 50 later outcomes over at least 5 days (10 of each kind), after the same strict correction for every model ever tried (130), and be calibrated. A daily command does this bookkeeping; it is ready but not scheduled. Today nothing qualifies: there is no new lab data since 2026-10-26.
 5. MiroFish (the multi-agent simulator): NO-GO. It stays off. There was no dated catalyst data to test it on and no approved budget.
 6. The backtesting engine (PR #4) was merged into this branch on 2026-11-09 with your approval (PI-D-120). It is installed but not verified by a phase, so every answer carries backtest status UNVERIFIED and never uses an assessment as an input. When a backtest store is present (the real one is on your computer, `D:\memelab\backtesting_live`), each opportunity's assessment is read read-only and shown as context, and a fatal or untradeable one is an extra veto; without a store the report says BACKTEST_STORE_MISSING. Answers still all ABSTAIN.
 
@@ -31,7 +31,7 @@ All from a fresh copy of the branch downloaded from GitHub, in a new Python envi
 ## Decisions waiting on you
 
 1. Who maintains it: you are the owner of every decision below; code changes go through a reviewed phase.
-2. Whether to change the promotion rules so a model could ever reach "shadow" from new data (PI-D-091). Without this, no model can be promoted.
+2. Changing the promotion rules so a model could reach "shadow" from new data (PI-D-091): done on 2026-11-10 (CM-2, PI-D-122), not pushed.
 3. Any spend on LLMs, Zep or MiroFish, and any paid data source.
 4. Whether to collect catalyst and social data into a store this engine can read.
 5. Deploying the forward depth collector on your computer (already approved in PI-D-044, not yet running).
@@ -40,12 +40,13 @@ All from a fresh copy of the branch downloaded from GitHub, in a new Python envi
 8. Any real alert delivery (Telegram or email). Today alerts are previews in a local folder only.
 9. Turning the flag on anywhere other than a test copy.
 10. A signing key for the engine's private records (only if you want tampering with a re-seal caught).
-11. Retiring or replacing the out-of-date reference models.
+11. Retiring or replacing the out-of-date reference models: done on 2026-11-10 (CM-2), not pushed.
+12. Scheduling the daily command (a cloud task once a day, free) and letting it push its own records to GitHub: needed before any new data can count.
 
 ## Small open items (no approval needed)
 
 - The private research stores live only on the cloud Linux session; rebuilding them elsewhere is documented but not tried (OI21-2).
-- 7 outcomes from 2026-10-26 are still "pending" because the label script skips tokens it already read once. Fixing it is a small code change; it cannot change any result (there are too few days of data either way).
+- The 7 outcomes from 2026-10-26 that were "pending" were read on 2026-11-10 for the fresh models (2 halved, 5 did not). The Phase 19 record itself is unchanged; its result could not change (too few days).
 - F20-07: one status label could be clearer. F20-10: one evidence file has a full folder path in it. F20-11: the tests need a loopback network interface (now in the install guide). F20-13: a broken `data/config.json` stops the scout (an older lab behaviour, outside this engine). F20-14: one monitoring command writes to a tracked file, so run it in a test copy.
 
 ## Where to read more

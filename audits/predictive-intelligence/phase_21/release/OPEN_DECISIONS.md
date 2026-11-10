@@ -2,7 +2,7 @@
 
 Nothing below has been done. Each item names who decides, what blocks it today and what it would take. Until a decision is recorded in `docs/predictive-intelligence/DECISIONS.md`, the default holds: OFF, not merged, not sent, not spent.
 
-Update 2026-11-10 (maintenance CM-2): Elving approved ED-1 and ED-10 on 2026-11-09. Both are done locally under PI-D-122 to PI-D-127 (`audits/predictive-intelligence/maintenance/cm2_promotion_cards/`); their rows are marked CLOSED and keep their original text for the record. OI21-1 is done for CM-2. Every other row is unchanged.
+Update 2026-11-10 (maintenance CM-2): Elving approved ED-1 and ED-10 on 2026-11-09. Both are done locally under PI-D-122 to PI-D-129 (`audits/predictive-intelligence/maintenance/cm2_promotion_cards/`); their rows are marked CLOSED and keep their original text for the record. OI21-1 is done for CM-2. Every other row is unchanged.
 
 ## Decisions waiting on Elving
 
