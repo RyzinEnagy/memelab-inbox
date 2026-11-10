@@ -209,6 +209,30 @@ def test_the_section_carries_no_text_handle_url_or_bio_and_hashes_third_party_id
     assert subprocess.run([sys.executable, "-m", "memelab.catsoc_export", "check", str(p)], cwd=ROOT).returncode == 0
 
 
+def test_trader_source_ids_carry_no_handle_and_stay_joinable(lab, monkeypatch):
+    """The catalyst registry's trader rows are keyed `trader:x:<handle>`; the export keeps the key joinable but hashed."""
+    build(lab)
+    with db.connect() as con:
+        _ins(con, "catalyst_sources", {"source_id": "trader:x:handle_kept_out", "source_group": "trader", "kind": "html",
+                                       "access_mode": "manual", "tier": "social", "added_at": T0 - DAY})
+        ev = con.execute("SELECT id FROM catalyst_events").fetchone()[0]
+        c = con.execute("INSERT INTO catalyst_items (source_id, item_key, url, body, platform, retrieved_at, first_seen_at, event_id) "
+                        "VALUES (?,?,?,?,?,?,?,?)", ("trader:x:handle_kept_out", "tr:1", "https://x.com/handle_kept_out/status/9",
+                                                     f"post naming {MINT}", "x", T0 + 3, T0 + 3, ev))
+        _ins(con, "catalyst_event_sources", {"event_id": ev, "item_id": c.lastrowid, "role": "REPETITION"})
+        _ins(con, "catalyst_event_revisions", {"event_id": ev, "revised_at": T0 + 12, "kind": "REVISED", "field": "status",
+                                               "old_value": "TRACKED", "new_value": "TRACKED", "source_id": "trader:x:handle_kept_out"})
+    doc, _ = export_doc(lab, monkeypatch, T0 + 100)
+    assert "handle_kept_out" not in json.dumps(doc["_catsoc"]) and CE.problems(doc["_catsoc"]) == []
+    t = doc["_catsoc"]["tables"]
+    h = CE.src("trader:x:handle_kept_out")
+    assert h.startswith("trader:") and h != "trader:x:handle_kept_out"
+    assert [s["source_group"] for s in t["catalyst_sources"] if s["source_id"] == h] == ["trader"]
+    assert [i["mints_in_body"] for i in t["catalyst_items"] if i["source_id"] == h] == [[MINT]]
+    assert [r["source_id"] for r in t["catalyst_event_revisions"] if r["field"] == "status"] == [h]
+    assert {s["source_id"] for s in t["catalyst_sources"]} >= {"exch:alpha", "news:beta", h}      # the lab's own registry keys stay readable
+
+
 @pytest.mark.parametrize("plant", ["extra_column", "bio_key", "markdown_key", "long_summary", "handle_summary"])
 def test_a_planted_violation_withholds_the_section_and_the_export_still_succeeds(lab, monkeypatch, plant):
     build(lab)
@@ -633,6 +657,8 @@ def test_ed8_a_flag_on_scout_on_rows_of_the_real_export_keeps_score_fatal_flags_
     monkeypatch.setattr(I, "scout_section", lambda results, **k: real(results, capture_time=T, **k))
     on, out_on = TI._scout(cli, monkeypatch, don, copy.deepcopy(rs), T - 600)
     assert on.startswith(off) and on != off and on[len(off):].startswith("\n## Predictive research section (flag on, research only)")
+    sect = on[len(off):]
+    assert out_on.count(sect) == 1 and out_on.replace(sect, "", 1) == out_off      # scout stdout: the printed report gains the same section only
     dump_on = TI._lab_dump(don / "lab.sqlite")
     assert dump_on == dump_off                                          # theses (score, fatal flags, status), watchlist, rejections
     for (r, f, _), th in zip(rows, sorted(dump_on["theses"], key=lambda x: [q[0]["mint"] for q in rows].index(x["mint"]))):
@@ -641,3 +667,7 @@ def test_ed8_a_flag_on_scout_on_rows_of_the_real_export_keeps_score_fatal_flags_
     assert "FORECAST" not in tail.replace("FORECAST_", "") and ": ABSTAIN (" in tail
     assert (don / "st" / I.FILES["passes"]).exists() and not (don / "data" / "private").exists()
     assert hashlib.sha256(REAL_EXPORT.read_bytes()).hexdigest() == before
+
+
+def test_the_signing_key_file_name_is_gitignored():
+    assert "predictive_state.key" in (ROOT / ".gitignore").read_text().splitlines()

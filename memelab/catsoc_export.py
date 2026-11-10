@@ -6,7 +6,8 @@
 
 The export is published (the inbox repository is public), so this section carries identifiers, hashes, exact chain plus mint
 links, enum states, times and short own-words summaries only. Every table has an explicit column list; third-party identifiers
-(account ids, item keys, trader ids, registry entity ids) are replaced by a salted sha256 prefix; no title, body, URL, handle,
+(account ids, item keys, trader ids, registry entity ids, trader source ids) are replaced by a salted sha256 prefix
+(pseudonymous: the salt is public, so a candidate value can be confirmed, never read back); no title, body, URL, handle,
 display name, bio, note, label or mention text leaves the database. Database row ids are dropped: a scheduled session starts
 from a fresh database, so rows are linked by stable keys (`event_ref`, `item_ref`, the social tables' own *_key hashes).
 
@@ -67,8 +68,18 @@ class CatsocError(ValueError):
 
 
 def ref(value: Any) -> str | None:
-    """Salted sha256 prefix of a third-party identifier (never reversible to a handle by the reader of the export)."""
+    """Salted sha256 prefix of a third-party identifier. Pseudonymous, not secret: the salt is public, so a reader who already
+    holds a candidate handle or post id can confirm it; the export never states the value itself."""
     return None if value is None else hashlib.sha256(f"{VERSION}:{value}".encode()).hexdigest()[:32]
+
+
+def src(source_id: Any) -> Any:
+    """A catalyst source id as exported. Registry ids are the lab's own keys (news:..., exch:...), except the trader research rows,
+    whose id carries an X handle (`trader:x:<handle>`): those become `trader:` plus the salted sha256 prefix, the same value in
+    every table, so joins and the classifier's source groups still work and no handle leaves the database."""
+    if isinstance(source_id, str) and source_id.startswith("trader:"):
+        return "trader:" + ref(source_id)
+    return source_id
 
 
 def _sha(text: str | None) -> str | None:
@@ -126,7 +137,8 @@ def _catalyst(con: sqlite3.Connection, have: set[str], since: float) -> dict[str
     eref = {e["id"]: ref(e["event_key"]) for e in evs}
     ph, ids = _in(eref)
     for e in evs:
-        out["catalyst_events"].append({"event_ref": eref[e["id"]], **{k: e.get(k) for k in COLUMNS["catalyst_events"][1:]}})
+        out["catalyst_events"].append({"event_ref": eref[e["id"]], **{k: (src(e.get(k)) if k == "original_source_id" else e.get(k))
+                                                                       for k in COLUMNS["catalyst_events"][1:]}})
     links = _rows(con, f"SELECT * FROM catalyst_token_links WHERE event_id IN {ph} ORDER BY id", tuple(ids)) if "catalyst_token_links" in have else []
     mints_of: dict[int, set[str]] = {}
     for k in links:
@@ -139,7 +151,7 @@ def _catalyst(con: sqlite3.Connection, have: set[str], since: float) -> dict[str
             enum = r.get("field") in ENUM_REVISION_FIELDS
             out["catalyst_event_revisions"].append({"event_ref": eref[r["event_id"]], "revised_at": r.get("revised_at"), "kind": r.get("kind"),
                                                     "field": r.get("field"), "old_value": r.get("old_value") if enum else None,
-                                                    "new_value": r.get("new_value") if enum else None, "source_id": r.get("source_id")})
+                                                    "new_value": r.get("new_value") if enum else None, "source_id": src(r.get("source_id"))})
     roles = _rows(con, f"SELECT * FROM catalyst_event_sources WHERE event_id IN {ph}", tuple(ids)) if "catalyst_event_sources" in have else []
     items_ev: dict[int, set[int]] = {}
     for r in roles:
@@ -157,7 +169,7 @@ def _catalyst(con: sqlite3.Connection, have: set[str], since: float) -> dict[str
         mints = set().union(*(mints_of.get(e, set()) for e in evset)) if evset else set()
         url, body = str(it.get("url") or ""), str(it.get("body") or "")
         srcs.add(it.get("source_id"))
-        out["catalyst_items"].append({"item_ref": iref[it["id"]], "source_id": it.get("source_id"), "platform": it.get("platform"),
+        out["catalyst_items"].append({"item_ref": iref[it["id"]], "source_id": src(it.get("source_id")), "platform": it.get("platform"),
                                       "url_sha256": _sha(it.get("url")) if it.get("url") else None,
                                       "body_norm_sha256": _sha(_norm(it.get("body"))),
                                       "mints_in_url": sorted(m for m in mints if m and m in url),
@@ -168,11 +180,12 @@ def _catalyst(con: sqlite3.Connection, have: set[str], since: float) -> dict[str
         if r["item_id"] in iref:
             out["catalyst_event_sources"].append({"event_ref": eref[r["event_id"]], "item_ref": iref[r["item_id"]], "role": r.get("role")})
     out["catalyst_event_sources"].sort(key=lambda r: (r["event_ref"], r["item_ref"]))
-    srcs |= {r.get("source_id") for r in out["catalyst_event_revisions"]}
+    if "catalyst_event_revisions" in have:
+        srcs |= {r.get("source_id") for r in _rows(con, f"SELECT source_id FROM catalyst_event_revisions WHERE event_id IN {ph}", tuple(ids))}
     if "catalyst_sources" in have:
         sph, sids = _in(srcs)
         for s in _rows(con, f"SELECT * FROM catalyst_sources WHERE source_id IN {sph} ORDER BY source_id", tuple(sids)):
-            out["catalyst_sources"].append({k: s.get(k) for k in COLUMNS["catalyst_sources"]})
+            out["catalyst_sources"].append({k: (src(s.get(k)) if k == "source_id" else s.get(k)) for k in COLUMNS["catalyst_sources"]})
     if "catalyst_assessments" in have:
         for a in _rows(con, f"SELECT * FROM catalyst_assessments WHERE event_id IN {ph} ORDER BY id", tuple(ids)):
             out["catalyst_assessments"].append({"event_ref": eref[a["event_id"]], "mint": a.get("mint"), "assessed_at": a.get("assessed_at"),

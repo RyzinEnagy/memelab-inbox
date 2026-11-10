@@ -9,3 +9,5 @@ data/private/
 firecrawl_token.txt
 # backtesting package: local research DB and raw provider shards (public market data, rebuilt by `python -m memelab backtest data`)
 data/backtest/
+# predictive state signing key (CM-3, PI-D-132); the engine refuses a key file inside the repository, this keeps it out of commits too
+predictive_state.key
