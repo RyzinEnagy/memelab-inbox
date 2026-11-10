@@ -1,0 +1,5 @@
+=========================== short test summary info ============================
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+FAILED tests/test_catalyst_firecrawl.py::test_page_history_and_spend_survive_a_new_session_through_the_state_export
+2 failed, 2687 passed, 1 skipped, 1 warning in 359.64s (0:05:59)
+stray removed by hand: data/reports/20261110_0414_BRETT_0x532f.md (the known stray); git diff --quiet -- data exit 0

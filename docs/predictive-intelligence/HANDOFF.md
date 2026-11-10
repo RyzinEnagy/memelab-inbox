@@ -55,7 +55,7 @@ HEAD before `90e4c6f`; `0bb361e` pre-registration; `2a29c68` frozen probes; `b04
 
 ## CM-3 commits
 
-Branch `maint/catalyst-export`, base `60eb729`; `bac9960` change control; `b99e139` code and tests; `e822887` repair after the restart; `6f4aab9` records; `a9ec8e8` post-commit record (reviewed by the skeptic); repair pass 2: `dca558c` change control, `ab286ea` code and tests, `2098808` test fixture, then the records commit and the post-commit record (`maintenance/cm3_spend_free/postcommit_repair/`). Local only; the orchestrator merges into `feature/predictive-intelligence` and `main` (ED-6) and applies the scheduled steps (ED-8) last.
+Branch `maint/catalyst-export`, base `60eb729`; `bac9960` change control; `b99e139` code and tests; `e822887` repair after the restart; `6f4aab9` records; `a9ec8e8` post-commit record (reviewed by the skeptic); repair pass 2: `dca558c` change control, `ab286ea` code and tests, `2098808` test fixture, `d45bbd4` records, then the post-commit record (`maintenance/cm3_spend_free/postcommit_repair/`: suite 2 failed, the two known, 2,687 passed, 1 skipped; guard 0 violations over 3,926 files; seal 0 problems; single-branch release audit with history exit 0, needs_action false). Local only; the orchestrator merges into `feature/predictive-intelligence` and `main` (ED-6) and applies the scheduled steps (ED-8) last.
 
 ## CM-1 commits
 
