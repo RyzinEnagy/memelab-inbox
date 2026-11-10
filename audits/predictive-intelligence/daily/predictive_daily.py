@@ -709,19 +709,29 @@ def outside(paths: set[str]) -> set[str]:
     return {p for p in paths if not any(p == a or p.startswith(a + "/") for a in ALLOWED)}
 
 
-def commit(msg: str, *, reason: str) -> str | None:
+def commit(msg: str, *, reason: str, paths: tuple[str, ...] = ALLOWED) -> str | None:
     if not (porcelain() - outside(porcelain())):
         return None
     ident = []
     if not git("config", "user.email", check=False).strip():
         ident = ["-c", "user.name=memelab predictive daily", "-c", "user.email=predictive-daily@localhost"]
-    r = subprocess.run(["git", "-C", str(REPO), *ident, "add", "--", *ALLOWED], capture_output=True, text=True)
+    r = subprocess.run(["git", "-C", str(REPO), *ident, "add", "--", *paths], capture_output=True, text=True)
     if r.returncode:
         raise Fail(reason, r.stderr.strip()[:200])
-    r = subprocess.run(["git", "-C", str(REPO), *ident, "commit", "-q", "-m", msg, "--", *ALLOWED], capture_output=True, text=True)
+    r = subprocess.run(["git", "-C", str(REPO), *ident, "commit", "-q", "-m", msg, "--", *paths], capture_output=True, text=True)
     if r.returncode:
         raise Fail(reason, (r.stderr or r.stdout).strip()[:200])
     return git("rev-parse", "HEAD").strip()
+
+
+RUN_RECORD = (f"{REL}/RUNS.jsonl", f"{REL}/STATUS.json", f"{REL}/ALERT_SUMMARY.txt")
+
+
+def ledger_committable() -> bool:
+    """PI-D-128: the working ledger may be committed only if it verifies and is an append of the committed one."""
+    if not LEDGER.exists():
+        return True
+    return bool(M.verify(LEDGER)["ok"]) and M.is_append_only(git("show", f"HEAD:{REL}/LEDGER.jsonl", check=False), LEDGER.read_text())
 
 
 def cost_line(day: str, calls: int, http: dict) -> None:
@@ -906,7 +916,10 @@ def run(args) -> int:
         return EXIT["WRITE_OUTSIDE_ALLOWED_PATHS"]
     if not args.no_commit:
         try:
-            commit(f"predictive-intel daily: {st['day']} {st['result']}", reason="COMMIT_FAILED")
+            # PI-D-128: a run that stopped with a working ledger that does not verify, or is not an append of the committed
+            # one, commits only its run record and leaves the ledger in place for a person to look at
+            paths = ALLOWED if ledger_committable() else RUN_RECORD
+            commit(f"predictive-intel daily: {st['day']} {st['result']}", reason="COMMIT_FAILED", paths=paths)
         except Fail as e:
             print(f"FAILED {e.reason}: {e.detail}", file=sys.stderr)
             return EXIT["COMMIT_FAILED"]

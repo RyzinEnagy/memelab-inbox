@@ -49,6 +49,7 @@ M = [
     ("D06 predictions not committed before reads", DAILY, '            commit(f"predictive-intel daily: {len(rows)} decisions predicted ({st[\'day\']})", reason="PREDICTION_COMMIT_FAILED")', '            pass', TD),
     ("D07 tampered ledger not refused", DAILY, '            if LEDGER.exists() and not M.verify(LEDGER)["ok"]:\n                raise Fail("PREFLIGHT_FAILED", "the working ledger does not verify")', '            pass', TD),
     ("D08 decisions at the freeze predicted", DAILY, 'AND decision_time > ? ', 'AND decision_time > ? - 1e10 ', TD),
+    ("D10 failed run commits a broken ledger (PI-D-128)", DAILY, 'paths = ALLOWED if ledger_committable() else RUN_RECORD', 'paths = ALLOWED', TD),
     ("D09 label read without token", DAILY, '        url = SRC.gt_url(d["pool"], b, token=d["mint"])\n        if "token="', '        url = SRC.gt_url(d["pool"], b)\n        if "token="', TD),
 ]
 
@@ -94,7 +95,9 @@ def main(scratch: str) -> None:
     out = {"head": subprocess.run(["git", "-C", str(REPO), "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip(),
            "baseline": base, "mutations": res, "applied": sum(r["applied"] for r in res),
            "caught": sum(r.get("caught", False) for r in res), "survived": [r["mutation"] for r in res if r["applied"] and not r["caught"]],
-           "not_applied": [r["mutation"] for r in res if not r["applied"]]}
+           "not_applied": [r["mutation"] for r in res if not r["applied"]],
+           "equivalent": {"D07 tampered ledger not refused": "monitoring.is_append_only verifies both chains, so the recovery step "
+                          "refuses a broken working ledger with or without the removed check (CHANGE_CONTROL_PI-D-128.md)"}}
     OUT.write_text(json.dumps(out, indent=1, sort_keys=True) + "\n")
     print(json.dumps({k: out[k] for k in ("applied", "caught", "survived", "not_applied", "baseline")}))
 

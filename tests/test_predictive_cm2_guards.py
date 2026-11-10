@@ -91,3 +91,28 @@ def test_no_commit_mode_refuses_a_planned_label_read_without_calling(clone, tmp_
     assert led.read_text() == before
     calls = c2 / "audits/predictive-intelligence/daily/CALLS.jsonl"
     assert not calls.exists() or calls.read_text() == ""
+
+
+# ---------------------------------------------------------------- PI-D-128: a failed run never commits a ledger that fails verify
+def test_a_run_that_stops_on_a_broken_working_ledger_does_not_commit_it(clone, tmp_path):  # noqa: F811
+    import subprocess
+    c3 = tmp_path / "c3"
+    subprocess.run(["git", "clone", "-q", str(clone["c"]), str(c3)], check=True, capture_output=True)
+    _git(c3, "fetch", "-q", str(clone["c"]), "fake:refs/heads/fake")
+    _git(c3, "config", "user.email", "test@localhost")
+    _git(c3, "config", "user.name", "test")
+    cl = dict(clone, c=c3, state=tmp_path / "s3")
+    rel = "audits/predictive-intelligence/daily/LEDGER.jsonl"
+    led = c3 / rel
+    if not led.exists():
+        r = _run(cl, "--now", str(clone["t_exp"] + 600))
+        assert r.returncode == 0, r.stderr[-1500:]
+    committed = _git(c3, "show", f"HEAD:{rel}")
+    broken = committed + committed.splitlines()[-1] + "\n"       # an appended line whose chain does not verify
+    led.write_text(broken)
+    r = _run(cl, "--now", str(clone["t_exp"] + 900))
+    assert r.returncode == D.EXIT["PREFLIGHT_FAILED"] and "PREFLIGHT_FAILED" in r.stderr
+    assert _git(c3, "show", f"HEAD:{rel}") == committed               # the broken ledger is not committed
+    assert led.read_text() == broken                                    # and is left in place for a person to look at
+    head = _git(c3, "show", "HEAD:audits/predictive-intelligence/daily/STATUS.json")
+    assert "PREFLIGHT_FAILED" in head                                   # the failed run's record is committed
