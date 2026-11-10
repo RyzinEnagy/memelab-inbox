@@ -58,6 +58,12 @@ def no_network():
     assert SOCKETS == []
 
 
+@pytest.fixture(autouse=True)
+def no_backtest_store(tmp_path_factory, monkeypatch):
+    """PI-D-120: point the installed backtesting package's default store at a file that does not exist (BACKTEST_STORE_MISSING)."""
+    monkeypatch.setenv("MEMELAB_BT_DB", str(tmp_path_factory.getbasetemp() / "no_backtest_store" / "bt.sqlite"))
+
+
 def _setdb(tmp: Path) -> None:
     db.DB_PATH = tmp / "lab.sqlite"
     db.DATA_DIR = tmp / "data"
@@ -230,6 +236,13 @@ def golden_texts(tmp: Path) -> dict[str, str]:
 # ---------------------------------------------------------------- G2: no existing file changed
 def test_g2_files_phase18_must_not_change_are_byte_identical_to_4ebccc3():
     want = json.loads((GOLDEN.parent / "PINNED_SHA256.json").read_text())
+    # PI-D-120 (merge of the backtesting module): the files that merge changed are re-pinned, each with its reason; the original
+    # pin file is kept as it was, and every other file must still match it
+    amend = json.loads((GOLDEN.parent / "PINNED_SHA256_PI-D-120.json").read_text())
+    assert set(amend["files"]) == {"memelab/cli.py", "memelab/social/alerts_core.py", "memelab/social/alerts_engine.py",
+                                   "memelab/predictive/bt_adapter.py", "memelab/predictive/integration.py"}
+    assert set(amend["files"]) <= set(want) and all(v["reason"] and v["was"] == want[k] for k, v in amend["files"].items())
+    want = {**want, **{k: v["sha256"] for k, v in amend["files"].items()}}
     assert set(want) >= {"memelab/cli.py", "memelab/predictive/integration.py", "memelab/report.py", "memelab/social/alerts_core.py",
                          "memelab/social/alerts_engine.py", "memelab/social/alerts_transport.py", "memelab/predictive/contract.py",
                          "memelab/predictive/abstention.py", "memelab/predictive/registry.py", "memelab/predictive/calibration.py"}
@@ -277,10 +290,13 @@ def test_g3_no_module_imports_reports_so_lab_outputs_cannot_change():
 @pytest.fixture(scope="module")
 def goldens(tmp_path_factory):
     old = (db.DB_PATH, db.DATA_DIR)
+    mp = pytest.MonkeyPatch()
+    mp.setenv("MEMELAB_BT_DB", str(tmp_path_factory.getbasetemp() / "no_backtest_store" / "bt.sqlite"))   # PI-D-120
     try:
         return golden_texts(tmp_path_factory.mktemp("p18_golden"))
     finally:
         db.DB_PATH, db.DATA_DIR = old
+        mp.undo()
 
 
 @pytest.mark.parametrize("name", ["report_abstain.md", "report_forecast_format_only.md", "report_withdrawn_format_only.md",
@@ -513,7 +529,10 @@ def test_g10_each_missing_state_has_a_visible_line(lab):
     assert {"NO_DECISION_SNAPSHOT", "NOT_EXACT_IDENTITY"} <= na and "not-an-exact-address" in text
     evm = [o for o in v["opportunities"] if o["chain"] == "base"]
     assert evm and all("OUT_OF_SCOPE_CHAIN" in t["reasons"] for t in evm[0]["targets"])
-    assert "COLLECTOR_NOT_AVAILABLE" in text and "BACKTEST_NOT_AVAILABLE" in text and "SIMULATION_NOT_AVAILABLE" in text
+    assert "COLLECTOR_NOT_AVAILABLE" in text and "SIMULATION_NOT_AVAILABLE" in text
+    # PI-D-120: the backtesting package is installed (UNVERIFIED) and no store exists in the test, so the missing state is the store
+    assert "backtesting UNVERIFIED" in text and "BACKTEST_STORE_MISSING" in text and "BACKTEST_NOT_AVAILABLE" not in text
+    assert f"execution and stress assessment: BACKTEST_STORE_MISSING; unblocked by {RP.BACKTEST_UNBLOCK_INSTALLED}" in text
     for r in ("TARGET_NOT_FEASIBLE", "SOURCE_STALE", "OUT_OF_SCOPE_CHAIN", "MODEL_NOT_SELECTED", "UNCALIBRATED"):
         assert f"  - {r}: {RP.UNBLOCK[r]}." in text
     v2, t2 = report(d, lab_db=None)

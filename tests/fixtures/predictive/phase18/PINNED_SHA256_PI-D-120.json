@@ -1,0 +1,31 @@
+{
+ "decision": "PI-D-120",
+ "note": "re-pins after the merge of the backtesting module; 'was' is the 4ebccc3 pin",
+ "files": {
+  "memelab/cli.py": {
+   "was": "17804d77c3760659521b53b039d10e5779cb2a6dedb2fe0c30e91af5ff23873c",
+   "sha256": "98de04f079577ea0782dd61ab32c0a48105f240fa01b64e61c6ca902508e7842",
+   "reason": "the backtesting hooks of 69bc5c3 added beside the Phase 17 hooks by the merge (PI-D-120 item 1)"
+  },
+  "memelab/social/alerts_core.py": {
+   "was": "bda1e83d7609a818cd733dccbef5ad20debb2ee3fa92f41a0230db0d3a8347cf",
+   "sha256": "fa525819e57bb26a05005d84b360c07b058469ed4d4c51b6d22e6754576bcc38",
+   "reason": "the backtesting branch's alert line (present only when its policy is on), brought by the merge (PI-D-120)"
+  },
+  "memelab/social/alerts_engine.py": {
+   "was": "d767229cd522ee2ffbe3f706f94721f3d5adad6ffce1c690b6410284ed93145c",
+   "sha256": "0074bf112069585547852d9344bbc82c25d74bc475f543ec3716a48104c704a9",
+   "reason": "the backtesting branch's alert context (None when its policy is off), brought by the merge (PI-D-120)"
+  },
+  "memelab/predictive/bt_adapter.py": {
+   "was": "e1284eb8e040a685fe4a3ad1e3afe61922ddaaac8fd58c03568168ca0db17793",
+   "sha256": "f47918b29e70f498af49fb1a904e56fe54051d4301a8a2d20b5dc4b7ecd0611c",
+   "reason": "bt-adapter-2: reads the installed package read-only, BACKTEST_STORE_MISSING (PI-D-120 item 3)"
+  },
+  "memelab/predictive/integration.py": {
+   "was": "5588f171fef3ec3e8a76b2f513bb38732f8287cc7ec5533eaa52008d93ef1287",
+   "sha256": "ce505ceca8b25da762cd6eb2e2d99ff23b1ea5719e04a25fc4fb2b5bdfc2da7e",
+   "reason": "the default backtest store and its state shown in the section (PI-D-120 item 3)"
+  }
+ }
+}

@@ -47,6 +47,13 @@ SIMULATION_WHY = ("MIROFISH_NO_GO (PI-D-081, PI-D-083): the behavioral module is
                   "model or Zep use is approved, so no simulation runs")
 BACKTEST_UNBLOCK = ("the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; "
                     "until then no execution or stress assessment exists")
+BACKTEST_UNBLOCK_INSTALLED = ("a phase that verifies the installed backtesting engine (merged by PI-D-120, status UNVERIFIED) and "
+                              "a backtest store with an assessment of this token; until then an assessment is context and a veto "
+                              "only, never a forecast input")
+
+
+def _bt_unblock(installed: Any) -> str:
+    return BACKTEST_UNBLOCK if installed in (None, C.BACKTEST_NOT_AVAILABLE) else BACKTEST_UNBLOCK_INSTALLED
 PRICE_PATH_LINE = "price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS)"
 MEASURED_LABEL = "measured market changes since the previous attempt, not probabilities"      # CP18-1, PI-D-100
 LAB_STATUSES = ("REJECTED", "RESEARCH REQUIRED", "WATCH", "SETUP DEVELOPING", "NEAR ENTRY", "ENTRY CONDITIONS MET", "OVEREXTENDED",
@@ -88,6 +95,7 @@ STATE_TEXT = {
     "REGISTRY_INDEX_MISMATCH": "the committed registry index does not match the pin the request recorded",
     "COLLECTOR_NOT_AVAILABLE": "no forward depth collector rows: no size can be supported (EXECUTION_DATA_MISSING)",
     "BACKTEST_NOT_AVAILABLE": "the backtesting module is not installed on this line",
+    "BACKTEST_STORE_MISSING": "the backtesting module is installed but no backtest store was found here (the real store is on Elving's computer): no assessment was read",
     "CATALYST_SOURCE_NOT_AVAILABLE": "the catalyst tables were not available to the pass",
     SIMULATION_STATE: SIMULATION_WHY,
     "DOCUMENT_REFUSED": "the document failed a check: it is not shown and no number is shown",
@@ -752,7 +760,7 @@ def _system_lines(view: dict) -> list[str]:
                    f"model registry {s['registry_state']}" + (f" ({I._ident(str(s.get('registry_detail')).split(':')[0], 40)})" if s.get("registry_detail") else "")
                    + f", log sha256 {_short(s.get('registry_log_sha256'))}",
                    f"backtesting {s['backtest_status']}: {STATE_TEXT['BACKTEST_NOT_AVAILABLE'] if s['backtest_status'] == C.BACKTEST_NOT_AVAILABLE else 'installed but not verified by a phase'}; "
-                   f"unblocked by {BACKTEST_UNBLOCK}",
+                   f"unblocked by {_bt_unblock(s['backtest_status'])}",
                    f"behavioral simulation {SIMULATION_STATE}: {SIMULATION_WHY}",
                    f"state check: {s['state_check_problems']} problems; lab database {view.get('lab_database')}"],
          "inferences": [], "heuristics": [],
@@ -944,8 +952,9 @@ def _opportunity_lines(o: dict) -> list[str]:
         d["unknowns"].append("fatal-flag check unknown (no readable flag list), treated as not cleared")
     if o["risks"]:
         d["facts"].append("risks that override any forecast on this snapshot: " + "; ".join(r["text"] for r in o["risks"]))
-    if ex["backtest_result"] in (C.BACKTEST_NOT_AVAILABLE, "UNTESTED", None):
-        d["unknowns"].append(f"execution and stress assessment: {C.BACKTEST_NOT_AVAILABLE}; unblocked by {BACKTEST_UNBLOCK}")
+    if ex["backtest_result"] in (C.BACKTEST_NOT_AVAILABLE, "BACKTEST_STORE_MISSING", "UNTESTED", None):     # PI-D-120: the real result
+        d["unknowns"].append(f"execution and stress assessment: {ex['backtest_result'] or C.BACKTEST_NOT_AVAILABLE}; "
+                             f"unblocked by {_bt_unblock(ex['backtest_installed'])}")
     if ex["size_basis"] == "EXECUTION_DATA_MISSING":
         d["unknowns"].append(f"exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by {UNBLOCK['EXECUTION_DATA_MISSING']}")
     L += ["### Execution and stress", "", _ev(d).rstrip(), ""]

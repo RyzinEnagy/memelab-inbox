@@ -263,7 +263,11 @@ def test_p34_prompt_package_zip_is_not_an_installed_backtest(tmp_path, monkeypat
         f.writestr("Memecoin_Backtesting_Stress_Testing_Prompt_Package_v1.2/START_HERE.md", "prompts only")
     monkeypatch.syspath_prepend(str(z))
     monkeypatch.syspath_prepend(str(tmp_path))
-    assert C.backtest_status() == NA
+    assert C.backtest_status() == "UNVERIFIED"         # PI-D-120: the merged package is installed here; installed is not verified
+    import importlib.util
+    real = importlib.util.find_spec
+    monkeypatch.setattr(importlib.util, "find_spec", lambda m, *a: None if m == "memelab.backtest" else real(m, *a))
+    assert C.backtest_status() == NA                   # with the package hidden, the ZIP on the path still counts as nothing
     assert C.backtest_status({"memelab.backtest": False}) == NA
     assert C.backtest_status({"memelab.backtest": True}) == "UNVERIFIED"   # importable is not verified
     d = abstain()

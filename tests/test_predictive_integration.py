@@ -68,6 +68,13 @@ def no_network():
     assert SOCKETS == []
 
 
+@pytest.fixture(autouse=True)
+def no_backtest_store(tmp_path_factory, monkeypatch):
+    """PI-D-120: the backtesting package is installed on this line, so a pass would read its default store. Tests point it at a
+    file that does not exist (BACKTEST_STORE_MISSING) unless they build a store themselves; a local store never changes a result."""
+    monkeypatch.setenv("MEMELAB_BT_DB", str(tmp_path_factory.getbasetemp() / "no_backtest_store" / "bt.sqlite"))
+
+
 def b58(seed: str) -> str:
     n = int.from_bytes(hashlib.sha256(seed.encode()).digest(), "big")
     s = ""
@@ -338,7 +345,8 @@ def test_g4_flag_on_appends_a_section_and_changes_no_result_list_or_table(tmp_pa
     assert _lab_dump(don / "lab.sqlite") == dump_off                   # watchlist, rejections, theses as without the flag
     assert "Fatal-flag veto: MINT_AUTHORITY_ACTIVE; no forecast clears it" in tail
     assert tail.count(": ABSTAIN (") == 9 and "FORECAST" not in tail.replace("FORECAST_", "")
-    assert "BACKTEST_NOT_AVAILABLE" in tail and "NO_VIABLE_CHAMPION" in tail
+    assert "Backtesting: UNVERIFIED; store BACKTEST_STORE_MISSING" in tail and "NO_VIABLE_CHAMPION" in tail   # PI-D-120
+    assert "backtest BACKTEST_STORE_MISSING" in tail and "BACKTEST_NOT_AVAILABLE" not in tail
 
 
 # ---------------------------------------------------------------- G5, G6: exactly once, idempotent (P35)
@@ -602,7 +610,7 @@ def test_g11_today_every_request_abstains_with_no_viable_champion_and_uncalibrat
         doc = d["document"]
         assert doc["prediction_status"] == "ABSTAIN" and doc["probability"] is None and doc["model_id"] == "not_selected"
         assert {"MODEL_NOT_SELECTED", "UNCALIBRATED"} <= set(doc["abstain_reasons"])
-        assert doc["backtest_status"] == "BACKTEST_NOT_AVAILABLE" and doc["backtest_assessment_ref"] is None
+        assert doc["backtest_status"] == "UNVERIFIED" and doc["backtest_assessment_ref"] is None      # installed, not verified (PI-D-120)
     for rq in lines(lab, "requests"):
         assert all(t["registry"]["mode"] == "NO_VIABLE_CHAMPION" and t["calibration_status_phase13"] == "UNCALIBRATED"
                    for t in rq["targets"])
@@ -619,16 +627,83 @@ def _assessment(**kw):
     return a
 
 
-def test_g12_backtesting_is_not_installed_here_and_every_document_says_so(lab):
+def test_g12_backtesting_is_installed_but_unverified_and_no_document_carries_an_assessment(lab):
+    # PI-D-120: before the merge this test asserted BACKTEST_NOT_AVAILABLE (the package was not on this line)
     import importlib.util
-    assert importlib.util.find_spec("memelab.backtest") is None and C.backtest_status() == "BACKTEST_NOT_AVAILABLE"
+    assert importlib.util.find_spec("memelab.backtest") is not None and C.backtest_status() == "UNVERIFIED"
     r = persist(result("AAA", M1, T_TODAY - 600), lab)
     r["backtest_assessment"] = _assessment()
-    run([r], T_TODAY, lab)
+    s = run([r], T_TODAY, lab)
+    assert s["backtest_status"] == "UNVERIFIED" and s["backtest_store"] == {"state": "BACKTEST_STORE_MISSING"}
     rq = lines(lab, "requests")[0]
     assert rq["backtest"]["result"] == "ASSESSMENT_UNVERIFIED" and rq["backtest"]["verified"] is False
-    assert all(d["document"]["backtest_assessment_ref"] is None and d["document"]["execution_stress_assessment_ref"] is None
+    assert rq["backtest"]["installed_status"] == "UNVERIFIED"
+    for d in lines(lab, "documents"):
+        doc = d["document"]
+        assert doc["prediction_status"] == "ABSTAIN" and doc["probability"] is None
+        assert doc["backtest_status"] == "UNVERIFIED" and doc["backtest_assessment_ref"] is None
+        assert doc["execution_stress_assessment_ref"] is None
+
+
+def _real_store(path: Path, rows=()) -> Path:
+    """A backtest store built with the installed package's own DDL (migrations 1 and 2) in a temp folder, as the hourly tracker
+    would leave it; nothing in the repository is touched."""
+    from memelab.backtest import schema as BS
+    con = sqlite3.connect(path)
+    BS.migrate(con)
+    for a in rows:
+        con.execute("INSERT INTO bt_assessments(request_key, chain, mint, snapshot_hash, engine_version, as_of, stage, tier, state, "
+                    "result_json, result_hash, created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                    (a["request_key"], a["chain"], a["mint"], "s", a["engine_version"], a["as_of"], "FAST", a["tier"], a["state"],
+                     json.dumps(a), "h", a["as_of"]))
+    con.commit()
+    con.close()
+    return path
+
+
+def test_g12_with_no_store_every_attempt_says_backtest_store_missing(lab):
+    r = persist(result("AAA", M1, T_TODAY - 600), lab)
+    s = run([r], T_TODAY, lab)
+    assert s["backtest_store"]["state"] == "BACKTEST_STORE_MISSING"
+    rq = lines(lab, "requests")[0]
+    assert rq["backtest"]["result"] == "BACKTEST_STORE_MISSING" and rq["backtest"]["assessment"] is None
+    assert rq["backtest"]["veto"] == {"veto": None, "reasons": ["UNTESTED"]}                # missing is never favourable
+
+
+def test_g12_the_default_store_of_the_installed_package_is_read_read_only(lab, monkeypatch):
+    db_ = _real_store(lab / "bt.sqlite", [_assessment(state="RISK_FATAL_FLAW", as_of=T_TODAY - 120)])
+    monkeypatch.setenv("MEMELAB_BT_DB", str(db_))
+    assert BT.default_store() == db_ and BT.installed_columns() == BT.EXPECTED_COLUMNS
+    before = db_.read_bytes()
+    r = persist(result("AAA", M1, T_TODAY - 600), lab)
+    s = run([r], T_TODAY, lab)
+    assert db_.read_bytes() == before and not Path(str(db_) + "-wal").exists()
+    assert s["backtest_store"] == {"state": "OK"}
+    rq = lines(lab, "requests")[0]
+    assert rq["backtest"]["result"] == "ASSESSMENT_UNVERIFIED" and rq["backtest"]["assessment"]["source"] == "TABLE"
+    assert rq["backtest"]["veto"]["veto"] is True and rq["decision_support"]["veto"] is True
+    assert all(d["document"]["prediction_status"] == "ABSTAIN" and d["document"]["backtest_assessment_ref"] is None
                for d in lines(lab, "documents"))
+    other = persist(result("BBB", M2, T_TODAY - 600), lab)                                 # a store with no row for this mint
+    run([other], T_TODAY + 10, lab)
+    assert lines(lab, "requests")[-1]["backtest"]["result"] == "UNTESTED"
+
+
+def test_g12_a_store_whose_schema_left_the_pin_is_schema_mismatch(lab, monkeypatch):
+    db_ = _real_store(lab / "bt.sqlite")
+    con = sqlite3.connect(db_)
+    con.execute("DROP TRIGGER IF EXISTS bt_assessments_no_update")
+    con.execute("ALTER TABLE bt_assessments ADD COLUMN extra TEXT")
+    con.commit()
+    con.close()
+    assert BT.store_state(db_, installed_status="UNVERIFIED")["state"] == "SCHEMA_MISMATCH"
+    monkeypatch.setattr(BT, "installed_columns", lambda: BT.EXPECTED_COLUMNS + ("new",))  # the installed package moved
+    p = lab / "pin.sqlite"
+    c2 = sqlite3.connect(p)
+    c2.executescript(BT_DDL)
+    c2.close()
+    got = BT.from_table(p, chain="solana", mint=M1, decision_time=T_TODAY, installed_status="UNVERIFIED")
+    assert got["result"] == "ASSESSMENT_REFUSED" and "SCHEMA_MISMATCH" in got["refusals"]
 
 
 @pytest.mark.parametrize("kw, why", [({"mint": M2}, "IDENTITY_MISMATCH"), ({"chain": "base"}, "IDENTITY_MISMATCH"),
@@ -682,13 +757,39 @@ def test_g12_the_table_reader_is_read_only_takes_the_newest_assessment_at_or_bef
     assert got["result"] == "ASSESSMENT_REFUSED" and "SCHEMA_MISMATCH" in got["refusals"]
     assert BT.from_table(None, chain="solana", mint=M1, decision_time=T_TODAY,
                          installed_status="BACKTEST_NOT_AVAILABLE")["result"] == "BACKTEST_NOT_AVAILABLE"
+    for where in (None, tmp_path / "absent.sqlite"):                                      # PI-D-120
+        assert BT.from_table(where, chain="solana", mint=M1, decision_time=T_TODAY,
+                             installed_status="UNVERIFIED")["result"] == "BACKTEST_STORE_MISSING"
 
 
-def test_g12_the_adapter_imports_nothing_from_the_backtesting_branch():
+def test_g12_the_adapter_uses_only_the_store_path_and_schema_text_of_the_installed_package():
+    # PI-D-120 item 5: was "imports nothing from the backtesting branch"; now only store and schema, lazily, and nothing that writes
     txt = (ROOT / "memelab/predictive/bt_adapter.py").read_text()
     imps = _imports(ROOT / "memelab/predictive/bt_adapter.py")
-    assert imps <= {"__future__", "json", "math", "sqlite3", "pathlib", "typing"}, imps
+    assert imps <= {"__future__", "importlib", "json", "math", "os", "sqlite3", "pathlib", "typing"}, imps
     assert "import memelab.backtest" not in txt and "from memelab.backtest" not in txt and "from ..backtest" not in txt
+    assert 'PACKAGE + ".schema"' in txt and 'PACKAGE + ".store"' in txt and txt.count("import_module(") == 2
+    for call in (".connect(", "migrate(", "rollback(", "backup_db(", ".attach(", "maybe_assess(", "latest_assessment(", "INSERT", "UPDATE ",
+                 "DELETE", "CREATE TABLE bt_"):
+        assert call not in txt.replace("con.execute", "").replace("sqlite3.connect(", "").replace("never calls `store.connect`", ""), call
+    for p in (ROOT / "memelab/predictive").glob("*.py"):                                  # no other predictive module touches the package
+        if p.name != "bt_adapter.py":
+            imps = _imports(p)
+            assert not any("backtest" in m for m in imps) and "import_module(" not in p.read_text(), p.name
+
+
+def test_g12_the_depth_adapter_pin_equals_the_installed_migration_2():
+    # REQUEST_FLOW item 3 (PI-D-120 item 4): the depth pin of 12f278b against the installed package's migration 2
+    from memelab.backtest import schema as BS
+    def cols(sql):
+        con = sqlite3.connect(":memory:")
+        con.executescript(sql)
+        out = {t: [r[1] for r in con.execute(f"PRAGMA table_info({t})")] for (t,) in
+               con.execute("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'bt_depth_%' ORDER BY name")}
+        con.close()
+        return out
+    pin = cols((ROOT / "tests/fixtures/predictive/bt_depth_schema_v2.sql").read_text())
+    assert pin and pin == cols("\n".join(BS.V2_TABLES.values()))
 
 
 # ---------------------------------------------------------------- the fixture FORECAST path (TEST_ONLY)
@@ -762,7 +863,7 @@ def test_g14_phase13_m3_a_forged_point_inside_the_interval_is_refused_by_verify_
     lo, hi = doc["uncertainty_interval"]
     forged = dict(doc, probability=round((doc["probability"] + hi) / 2, 6))
     assert lo <= forged["probability"] <= hi and forged["probability"] != doc["probability"]
-    kw = dict(model_card=w["card"], calibration_card=w["cal"], record=rec, backtest="BACKTEST_NOT_AVAILABLE", config_path=cfg(tmp_path))
+    kw = dict(model_card=w["card"], calibration_card=w["cal"], record=rec, backtest=C.backtest_status(), config_path=cfg(tmp_path))
     assert AB.validate_publication(forged, **kw) == []                      # what Phase 13 left open: the validator alone accepts it
     req = {"chain": "solana", "mint": M1, "target": T1, "decision_time": T_FX, "decision_time_basis": "CAPTURE_TIME",
            "snapshot_hash": doc["snapshot_hash"], "flag_on": True, "pool_point_in_time": True, "route": "PIT_RECORDED",
@@ -1029,6 +1130,13 @@ def test_g2_cli_differs_from_the_pre_phase17_copy_only_by_the_hook():
     added = [l[1:] for l in difflib.unified_diff(old, new, lineterm="", n=0) if l.startswith("+") and not l.startswith("+++")]
     removed = [l for l in difflib.unified_diff(old, new, lineterm="", n=0) if l.startswith("-") and not l.startswith("---")]
     assert removed == []
+    # PI-D-120: the merge adds the backtesting branch's own hook lines (69bc5c3, kept verbatim); everything else is the Phase 17 hook
+    bt = (ROOT / "tests/fixtures/predictive/cli_backtest_hook_69bc5c3.txt").read_text().splitlines()
+    assert len(bt) == 35 and sum("_bt" in l or "backtest" in l for l in bt) >= 10
+    rest = list(added)
+    for l in bt:
+        rest.remove(l)                                                  # each backtest line present exactly as on its branch
+    added = rest
     assert len(added) == 42 and sum("_predictive" in l for l in added) == 7
     body = "\n".join(added)
     for w in ("score", "status", "watchlist", "serious", "rejected", "near"):

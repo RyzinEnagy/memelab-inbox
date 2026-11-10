@@ -361,7 +361,7 @@ def test_p34_absent_backtest_is_reported_never_claimed(no_keys):
     bt = next(s for s in rep if s["component"] == "backtest")
     assert bt["state"] == C.BACKTEST_NOT_AVAILABLE and bt["abstain_reason"] is None
     assert R.backtest_state({"memelab.backtest": True})["state"] == "UNVERIFIED"       # importable is not verified
-    assert R.backtest_state()["state"] == C.BACKTEST_NOT_AVAILABLE                       # nothing installed in this repository
+    assert R.backtest_state()["state"] == "UNVERIFIED"         # PI-D-120: the merged package is installed here, never VERIFIED by import
 
 
 # ---------- P32: hostile setup ----------

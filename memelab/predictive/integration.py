@@ -540,6 +540,8 @@ def run_pass(results: Sequence[dict], *, capture_time: float, source: str = "sco
     sdir = Path(state_dir or cfg["state_dir"] or default_state_dir())
     depth_db = depth_db if depth_db is not None else cfg["depth_db"]
     backtest_db = backtest_db if backtest_db is not None else cfg["backtest_db"]
+    if backtest_db is None:                           # PI-D-120: the installed package's own store, read-only (None when not installed)
+        backtest_db = BT.default_store()
     summary: dict[str, Any] = {"integration_version": INTEGRATION_VERSION, "mode": mode, "source": source,
                                "capture_time_utc": _iso(capture_time), "state_dir": str(sdir), "errors": []}
     refusal = state_dir_refusal(sdir)
@@ -555,10 +557,12 @@ def run_pass(results: Sequence[dict], *, capture_time: float, source: str = "sco
     cal_status = calibration_status(root)
     rt = runtime_facts()
     bt_installed = C.backtest_status()
+    bt_store = BT.store_state(backtest_db, installed_status=bt_installed)
     depth = DA.status(depth_db)
     summary.update(registry={"state": reg["state"], "detail": reg.get("detail"), "entries": reg.get("entries_n"),
                              "log_sha256": reg.get("log_sha256")},
                    calibration={SHORT[t]: v for t, v in cal_status.items()}, backtest_status=bt_installed,
+                   backtest_store={"state": bt_store["state"]},
                    depth={"state": depth["state"]}, state="OK")
     if reg["state"] == "OK":
         tg = {}
@@ -885,7 +889,7 @@ def _process(tr: dict, base: dict, *, state: dict, newest: dict, attempted: int,
                             tr["fatal_raw"], quotes, decision_time=T, pool_address=pool,
                             max_loss=FROZEN["decision_support"]["max_loss"], max_age_s=FROZEN["decision_support"]["max_age_s"])
     btc = BT.from_result(tr["result"], chain=tr["chain"], mint=tr["mint"], decision_time=T, installed_status=bt_installed)
-    if btc["result"] in ("BACKTEST_NOT_AVAILABLE", "UNTESTED") and backtest_db:
+    if btc["result"] in ("BACKTEST_NOT_AVAILABLE", "UNTESTED"):        # PI-D-120: no store is BACKTEST_STORE_MISSING when installed
         btc = BT.from_table(backtest_db, chain=tr["chain"], mint=tr["mint"], decision_time=T, installed_status=bt_installed)
     veto = ds["veto_overrides_forecast"] or btc["veto"]["veto"] is True
     support = {"structural_veto": ds["structural_veto"], "backtest_veto": btc["veto"], "veto": bool(veto),
@@ -1135,7 +1139,8 @@ def render(summary: dict) -> str:
     m = summary.get("metrics") or {}
     L_.append(f"- Integration: {INTEGRATION_VERSION}, mode {summary.get('mode')}, capture {summary.get('capture_time_utc')}, "
               f"pass {str(summary.get('pass_id'))[:12]}")
-    L_.append(f"- Backtesting: {summary.get('backtest_status')}")
+    bst = (summary.get("backtest_store") or {}).get("state")
+    L_.append(f"- Backtesting: {summary.get('backtest_status')}" + (f"; store {bst}" if bst and bst != C.BACKTEST_NOT_AVAILABLE else ""))
     L_.append(f"- Model registry: {reg.get('state')}" + (f" ({reg.get('detail')})" if reg.get("detail") else ""))
     for k, v in (reg.get("targets") or {}).items():
         L_.append(f"  - {k}: {v['mode']} ({', '.join(v['reasons'])}); calibration "

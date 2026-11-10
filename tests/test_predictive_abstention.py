@@ -26,7 +26,7 @@ H = L.holdout_start()
 P0 = CAL.PROSPECTIVE_START
 DAY = 86400.0
 T1 = L.T1
-BT = C.BACKTEST_NOT_AVAILABLE
+BT = C.backtest_status()          # the installed state (UNVERIFIED since the PI-D-120 merge); documents carry it
 _ALPH = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
 _CFG_DIR = Path(tempfile.mkdtemp(prefix="p13_cfg_"))
 ON_CFG = _CFG_DIR / "config_on.json"

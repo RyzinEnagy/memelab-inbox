@@ -25,6 +25,7 @@ sys.path.insert(0, str(ROOT / "tests" / "fixtures" / "predictive"))
 import test_predictive_integration as TI  # noqa: E402  (fixture champion builders, Phase 17)
 import test_predictive_monitoring as TM  # noqa: E402  (outcome ledger builders, Phase 19)
 import test_predictive_reports as TRP  # noqa: E402  (report helpers, Phase 18)
+from test_predictive_reports import no_backtest_store  # noqa: E402,F401  (PI-D-120: autouse, no local backtest store is read)
 import asof_helpers as H  # noqa: E402
 
 from memelab import db  # noqa: E402

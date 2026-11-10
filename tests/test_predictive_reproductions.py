@@ -22,8 +22,25 @@ STORES = DEV.is_file() and FS.is_file()
 needs_stores = pytest.mark.skipif(not STORES, reason="private research stores absent (rebuild: phase_05 and phase_06 records)")
 
 
+# PI-D-120: the backtesting package was merged into this line after Phases 07 to 16 committed their outputs, and documents carry the
+# installed backtest state (UNVERIFIED now, BACKTEST_NOT_AVAILABLE then). A reproduction reruns a committed entry point in the state
+# of its own commit, so the runners see the package hidden (an import of memelab.backtest fails as it did then); nothing else changes.
+HIDE_BACKTEST = """import os, runpy, sys, importlib.abc
+class _HideBacktest(importlib.abc.MetaPathFinder):
+    def find_spec(self, name, path=None, target=None):
+        if name == "memelab.backtest" or name.startswith("memelab.backtest."):
+            raise ModuleNotFoundError(name)
+        return None
+sys.meta_path.insert(0, _HideBacktest())
+script = sys.argv[1]
+sys.argv = sys.argv[1:]
+sys.path.insert(0, os.path.dirname(os.path.abspath(script)))
+runpy.run_path(script, run_name="__main__")
+"""
+
+
 def run(args, timeout=900):
-    r = subprocess.run([sys.executable, "-B", *args], cwd=ROOT, capture_output=True, text=True, timeout=timeout)
+    r = subprocess.run([sys.executable, "-B", "-c", HIDE_BACKTEST, *args], cwd=ROOT, capture_output=True, text=True, timeout=timeout)
     assert r.returncode == 0, (args[0], r.stdout[-1500:], r.stderr[-1500:])
     return r
 
@@ -73,6 +90,15 @@ def test_phase_13_calibration_reproduces_its_committed_files(tmp_path):
     a = json.loads((tmp_path / "calibration/POST_OPENING_LOG.json").read_text())
     b = json.loads((AUD / "phase_13/calibration/POST_OPENING_LOG.json").read_text())
     assert {k: v for k, v in a.items() if k != "head_code"} == {k: v for k, v in b.items() if k != "head_code"}
+
+
+def test_the_reproduction_runner_hides_the_backtesting_package_and_only_that(tmp_path):
+    probe = tmp_path / "probe.py"
+    probe.write_text("import sys\nfrom memelab.predictive import contract as C\nimport memelab.social\nprint(C.backtest_status(), sys.argv[1:])\n")
+    out = run([str(probe), "x"]).stdout.split()
+    assert out[0] == "BACKTEST_NOT_AVAILABLE" and out[1:] == ["['x']"]
+    from memelab.predictive import contract as C
+    assert C.backtest_status() == "UNVERIFIED"                                   # the suite itself sees the installed package
 
 
 @needs_stores

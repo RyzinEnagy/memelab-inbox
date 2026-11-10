@@ -11,7 +11,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 - T1 24 h: registry CHAMPION, committed Phase 13 calibration UNCALIBRATED.
 - T1b 6 h: registry NO_VIABLE_CHAMPION, committed Phase 13 calibration UNCALIBRATED.
 - T2 24 h: registry NO_VIABLE_CHAMPION, committed Phase 13 calibration UNCALIBRATED.
-- Backtesting: BACKTEST_NOT_AVAILABLE. Behavioral simulation: SIMULATION_NOT_AVAILABLE.
+- Backtesting: UNVERIFIED. Behavioral simulation: SIMULATION_NOT_AVAILABLE.
 - Opportunities: 2; with a veto: 1; snapshots verified against the lab database: 2 of 2; events not attempted: 0.
 
 | Opportunity | Exact chain:mint | Inputs observed (UTC) | T1 24 h | T1b 6 h | T2 24 h | Vetoes and risk flags | Inputs |
@@ -23,7 +23,7 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 
 - FACT: predictive flag on; integration version integration-1; report version report-1; passes in the state: 1, last pass 1a5e8693623a
 - FACT: model registry OK, log sha256 <varies>
-- FACT: backtesting BACKTEST_NOT_AVAILABLE: the backtesting module is not installed on this line; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
+- FACT: backtesting UNVERIFIED: installed but not verified by a phase; unblocked by a phase that verifies the installed backtesting engine (merged by PI-D-120, status UNVERIFIED) and a backtest store with an assessment of this token; until then an assessment is context and a veto only, never a forecast input
 - FACT: behavioral simulation SIMULATION_NOT_AVAILABLE: MIROFISH_NO_GO (PI-D-081, PI-D-083): the behavioral module is off and research-optional; no paid language model or Zep use is approved, so no simulation runs
 - FACT: state check: 0 problems; lab database GIVEN
 - FACT: T1 24 h: registry mode CHAMPION (pin <varies>; FIXTURE_CHAMPION); Phase 13 calibration UNCALIBRATED at level ABSTAIN
@@ -113,11 +113,11 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 ### Execution and stress
 
 - FACT: fatal-flag veto: CANNOT_EXIT_5K; no forecast clears it
-- FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
+- FACT: backtest: BACKTEST_STORE_MISSING (installed state UNVERIFIED)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
 - FACT: risks that override any forecast on this snapshot: fatal flags CANNOT_EXIT_5K
-- UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
+- UNKNOWN: execution and stress assessment: BACKTEST_STORE_MISSING; unblocked by a phase that verifies the installed backtesting engine (merged by PI-D-120, status UNVERIFIED) and a backtest store with an assessment of this token; until then an assessment is context and a veto only, never a forecast input
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
 ### Behavioral scenarios
@@ -189,10 +189,10 @@ Separate from the opportunity score: nothing here changes the 100-point score, t
 ### Execution and stress
 
 - FACT: fatal-flag veto: none recorded by the lab
-- FACT: backtest: BACKTEST_NOT_AVAILABLE (installed state BACKTEST_NOT_AVAILABLE)
+- FACT: backtest: BACKTEST_STORE_MISSING (installed state UNVERIFIED)
 - FACT: size basis EXECUTION_DATA_MISSING; depth COLLECTOR_NOT_AVAILABLE; size taken from a forecast: none
 - FACT: price path only: not proceeds at any size (PRICE_PATH_NOT_PROCEEDS); a predicted price path never shows realizable exit
-- UNKNOWN: execution and stress assessment: BACKTEST_NOT_AVAILABLE; unblocked by the backtesting module merged into this line (pull request 4, Elving's decision) and verified by a phase; until then no execution or stress assessment exists
+- UNKNOWN: execution and stress assessment: BACKTEST_STORE_MISSING; unblocked by a phase that verifies the installed backtesting engine (merged by PI-D-120, status UNVERIFIED) and a backtest store with an assessment of this token; until then an assessment is context and a veto only, never a forecast input
 - UNKNOWN: exit capacity at any size: EXECUTION_DATA_MISSING; unblocked by forward depth and quote collection deployed (approved, PI-D-044, not deployed); sizes need it
 
 ### Behavioral scenarios
