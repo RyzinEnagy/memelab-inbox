@@ -59,7 +59,7 @@ Not run: the backtesting branch's `audits/backtesting/release/p17_clean_install.
 
 ## The reviewed history blob (D-BT-016, PI-D-049 item 6)
 
-Blob `acbc9c9016`, `audits/backtesting/research/smoke/etcherfx__sol-trade/output.txt` line 42, rule key_material_field, is now reachable from this branch (it is also in the tracked tree). It is the environment variable name SOLTRADE_PRIVATE_KEY quoted by a static scan, not a key value. It is handled by the existing EXPLAINED entry of D-BT-016 that the merge brought into `tools/release_audit.py`: listed as reviewed in both the tree and the history sections of the audit (`logs/release_audit_history_single_branch.md`), not suppressed, not removed from history.
+Blob `acbc9c9016`, `audits/backtesting/research/smoke/etcherfx__sol-trade/output.txt` line 42, rule key_material_field, is now reachable from this branch (it is also in the tracked tree). It is the environment variable name SOLTRADE_PRIVATE_KEY quoted by a static scan, not a key value. It is handled by the existing EXPLAINED entry of D-BT-016 that the merge brought into `tools/release_audit.py`: listed as reviewed in both the tree and the history sections of the audit (`logs/release_audit_history_single_branch.txt`), not suppressed, not removed from history.
 
 ## Files
 
