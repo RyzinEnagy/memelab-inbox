@@ -1,0 +1,36 @@
+P01 window start not strict caught
+P02 incomplete day does not stop caught
+P03 events minimum off by one caught
+P04 per-class minimum dropped (window) caught
+P05 day minimum dropped (window) caught
+P06 freeze check removed caught
+P07 ledger order check removed caught
+P08 commit-before-read check weakened caught
+P09 registration check removed caught
+P10 stale check removed caught
+P11 admissibility not a reason caught
+P12 tests flag ignored caught
+P13 event minimum dropped (evaluate) caught
+P14 day minimum dropped (evaluate) caught
+P15 skill bound at or above 0 accepted caught
+P16 no Bonferroni (q = alpha) caught
+P17 windows not counted in correction caught
+P18 governing bound is the max of units caught
+P19 calibration ignored caught
+P20 undefined replicate counts for skill caught
+P21 VE without a second window caught
+P22 VE ignores B2 comparison caught
+P23 registration at a publishable level allowed caught
+P24 log chain not checked caught
+P25 retire twice allowed caught
+D01 recipe pin not checked caught
+D02 governing pin not checked caught
+D03 rate check above 6 a minute caught
+D04 allowed paths widened caught
+D05 no-commit mode reads labels caught
+D06 predictions not committed before reads caught
+D07 tampered ledger not refused caught
+D08 decisions at the freeze predicted caught
+D10 failed run commits a broken ledger (PI-D-128) caught
+D09 label read without token caught
+{"applied": 35, "caught": 35, "survived": [], "not_applied": [], "baseline": {"tests/test_predictive_promotion.py tests/test_predictive_cm2_guards.py": {"exit": 1, "tail": ["26 passed, 1 error in 6.98s"]}, "tests/test_predictive_daily.py tests/test_predictive_cm2_guards.py": {"exit": 1, "tail": ["9 passed, 1 error in 4.47s"]}}}

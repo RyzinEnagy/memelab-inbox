@@ -4,6 +4,7 @@ test file and records whether a test failed (caught). Writes evidence/mutation_p
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -54,13 +55,16 @@ M = [
 ]
 
 
-def sh(cmd, cwd):
-    return subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, timeout=1800)
+def sh(cmd, cwd, env=None):
+    return subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, timeout=1800, env=env)
 
 
 def pytest(args, cwd):
     """PI-D-129: tests of a mutant run without a network namespace, so a mutant that plans label reads cannot reach a vendor."""
-    return sh(["unshare", "-n", sys.executable, "-m", "pytest", "-q", "-x", "-p", "no:cacheprovider", *args], cwd)
+    # this session signs commits through a local service that is unreachable without a network; the tests' own scratch commits
+    # are made unsigned (the repository's commits are not affected)
+    env = {**os.environ, "GIT_CONFIG_PARAMETERS": "'commit.gpgsign'='false'"}
+    return sh(["unshare", "-n", sys.executable, "-m", "pytest", "-q", "-x", "-p", "no:cacheprovider", *args], cwd, env)
 
 
 def main(scratch: str) -> None:
@@ -77,6 +81,9 @@ def main(scratch: str) -> None:
     for t in (TP, TD):
         r = pytest(t, c)
         base[" ".join(t)] = {"exit": r.returncode, "tail": r.stdout.strip().splitlines()[-1:]}
+    if any(v["exit"] != 0 for v in base.values()):      # a failing baseline makes every "caught" meaningless
+        OUT.write_text(json.dumps({"baseline": base, "aborted": "BASELINE_FAILED"}, indent=1, sort_keys=True) + "\n")
+        raise SystemExit(f"baseline failed: {base}")
     res = []
     for name, f, old, new, t in M:
         p = c / f
