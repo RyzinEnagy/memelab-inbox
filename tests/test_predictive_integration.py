@@ -1090,7 +1090,8 @@ def _imports(p: Path) -> set[str]:
 
 def test_g21_integration_imports_only_the_standard_library_and_the_named_package_modules():
     got = _imports(ROOT / "memelab/predictive/integration.py")
-    std = {"__future__", "hashlib", "json", "math", "sqlite3", "sys", "time", "pathlib", "typing", "argparse", "re", "..", "..db"}
+    std = {"__future__", "hashlib", "json", "math", "sqlite3", "sys", "time", "pathlib", "typing", "argparse", "re", "..", "..db",
+           "hmac", "os"}                                                # hmac and os: the state signing of CM-3 (PI-D-132)
     assert got <= std | {"."}, got
     tree = ast.parse((ROOT / "memelab/predictive/integration.py").read_text())
     rel = {a.name for n in ast.walk(tree) if isinstance(n, ast.ImportFrom) and n.level == 1 for a in n.names}

@@ -1,0 +1,16 @@
+{
+ "decision": "PI-D-132",
+ "files": {
+  "memelab/predictive/integration.py": {
+   "reason": "HMAC-SHA256 signing of the pass chain tip, verified in load_state only when a key is configured; sign-status and sign subcommands (CM-3, PI-D-132)",
+   "sha256": "7891545fd513e3e02f308fc25cb09c30a2056d36c0558cc10dfb4f535f83e21e",
+   "was": "ce505ceca8b25da762cd6eb2e2d99ff23b1ea5719e04a25fc4fb2b5bdfc2da7e"
+  },
+  "memelab/state.py": {
+   "reason": "three lines: the opt-in catalyst and social section (catsoc-export-1) when its export flag is on; byte identical when off (CM-3, PI-D-130)",
+   "sha256": "9877a0af2ee37cf3850d821363834e1b184a68720b233f875b641bf154f0d084",
+   "was": "9d2aeead685a0baa71a88030a1563b5c3c9c4455434c057cc74098bbd649dbb8"
+  }
+ },
+ "note": "re-pins after CM-3 (PI-D-130, PI-D-132); 'was' is the pin in force before (PINNED_SHA256.json amended by PI-D-120)"
+}

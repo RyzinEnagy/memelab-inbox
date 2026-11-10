@@ -1,0 +1,304 @@
+{
+ "phase": "maintenance CM-3",
+ "status": "PASS",
+ "head_before": "60eb729",
+ "head_after": "records commit after 2098808 on maint/catalyst-export (see HANDOFF.md)",
+ "checks": [
+  {
+   "name": "CM-3 tests",
+   "command": "python -m pytest tests/test_predictive_cm3.py -q",
+   "result": "46 passed",
+   "pass": true
+  },
+  {
+   "name": "full suite",
+   "command": "python -m pytest tests -q",
+   "result": "2 failed (the two known clock-dependent catalyst tests), 2571 passed, 1 skipped",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "flag-off identity",
+   "command": "probes/flag_off_identity.py",
+   "exit_code": 0,
+   "result": "all_identical true on 3 databases",
+   "pass": true
+  },
+  {
+   "name": "real exports and reader",
+   "command": "probes/real_export_check.py",
+   "exit_code": 0,
+   "result": "78 versions, 4878 pairs all TABLES_NOT_EXPORTED; 3 exports check/import/guard exit 0; clone release audit exit 0",
+   "pass": true
+  },
+  {
+   "name": "content guard",
+   "command": "python -B -m memelab social guard",
+   "exit_code": 0,
+   "result": "0 violations, 3895 files",
+   "pass": true
+  },
+  {
+   "name": "seal",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "exit_code": 0,
+   "result": "problems []",
+   "pass": true
+  },
+  {
+   "name": "release e2e",
+   "command": "python -B tools/release_e2e.py",
+   "exit_code": 0,
+   "result": "78 of 78, 0 network attempts",
+   "pass": true
+  },
+  {
+   "name": "reproductions",
+   "command": "python -m pytest tests/test_predictive_reproductions.py -q",
+   "result": "6 passed",
+   "pass": true
+  },
+  {
+   "name": "mutations",
+   "command": "7 mutations of CM-3 code",
+   "result": "7 of 7 caught",
+   "pass": true
+  },
+  {
+   "name": "post-commit single-branch release audit",
+   "command": "tools/release_audit.py --history on a --single-branch clone",
+   "result": "in postcommit/",
+   "pass": null
+  },
+  {
+   "name": "repair: CM-3 tests",
+   "command": "python -m pytest tests/test_predictive_cm3.py -q",
+   "result": "161 passed",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "repair: new tests against a9ec8e8",
+   "input": "tests of 2098808 in a detached a9ec8e8 worktree",
+   "result": "106 failed, 7 passed (explained in fails_before_a9ec8e8.txt)",
+   "pass": true
+  },
+  {
+   "name": "repair: skeptic rollback test",
+   "command": "PYTHONPATH=.:tests python -m pytest skeptic/test_cm3_skeptic_rollback.py",
+   "result": "1 failed: REFUSED instead of SIGNED_VERIFIED (counterexample closed)",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "repair: mutations",
+   "input": "evidence/logs/mutations_repair.txt",
+   "result": "7 of 7 caught",
+   "pass": true
+  },
+  {
+   "name": "repair: full suite before records",
+   "command": "python -m pytest tests -q",
+   "result": "2 failed (the two known clock-dependent catalyst tests), 2687 passed, 1 skipped",
+   "exit_code": 1,
+   "pass": true
+  },
+  {
+   "name": "repair: flag-off identity",
+   "command": "python -B probes/flag_off_identity.py WORK evidence/flag_off_identity.json",
+   "result": "all_identical true on 3 databases",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "repair: real exports",
+   "command": "python -B probes/real_export_check.py WORK evidence/real_export_check.json",
+   "result": "78 versions, 0 with a section, 4878 pairs TABLES_NOT_EXPORTED; guard 0 on 3 flag-on exports; release audit exit 0",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "repair: scheduled steps",
+   "input": "evidence/logs/flag_on_steps_run.txt",
+   "result": "sign-status EMPTY_STATE key_configured true with the key found in ~/mnt/memelab-key; alerts exit 0; export catsoc-export-2",
+   "pass": true
+  },
+  {
+   "name": "repair: reproductions",
+   "command": "python -m pytest tests/test_predictive_reproductions.py -q",
+   "result": "6 passed",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "repair: release e2e",
+   "command": "python -B tools/release_e2e.py",
+   "result": "PASS, 78 of 78, network attempts 0",
+   "exit_code": 0,
+   "pass": true
+  },
+  {
+   "name": "repair: seal",
+   "command": "python -B audits/predictive-intelligence/phase_06/probes/check_seal.py",
+   "result": "problems []",
+   "exit_code": 0,
+   "pass": true
+  }
+ ],
+ "artifacts": [
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/CHANGE_CONTROL.md",
+   "sha256": "bb7f19f24da135e433950a15b7e52b325705f64231e1bd63d8c2a9572261fc8e"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/EXPORT.md",
+   "sha256": "01f7e0ffa2baadbe8633ed8ffb7ab028fa1fc8e099a98f9c86cde70b4c47611d"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/FLAG_ON.md",
+   "sha256": "2861e4d7791c814db218e049d1ea8377d5339b2d243e42b1a8030598f68a1d61"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/PUSH_DELIVERY.md",
+   "sha256": "b33c2e770bb705fa6904f24388d294ac39ba1dd1bc4b780339379cb82622e861"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/SIGNING.md",
+   "sha256": "f84943a28b2b9f16f593363b27dbd4bd35a770882bcab203870415bf4b752f89"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/CM3_EVIDENCE.md",
+   "sha256": "ca30887d7b0efebf2e4644dfd917ea82eb0476f1678471e97067e3e2d01396e7"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/SKEPTIC_PACKET.md",
+   "sha256": "46174d019d98cb34e79e038b0c8de68bf255a66bda0f744914508a22ebf8ff71"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/evidence/flag_off_identity.json",
+   "sha256": "4bb49534c50edacadfa5a5392b69450b6450d592366a853bafa1114535b8ba36"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/evidence/real_export_check.json",
+   "sha256": "d87498e7f16c742ff25848fcf4ea1cd471c55d2b5f282045103eacfe72813271"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/probes/flag_off_identity.py",
+   "sha256": "eb83b5b5844bcfc12214f49ad1132040b4221d2898be0728a177d0f534f68a35"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/probes/real_export_check.py",
+   "sha256": "1e7b5105582d2c16445139dcdd039e3610074cc39a2ccb48bb7963f4827d6b3d"
+  },
+  {
+   "path": "memelab/catsoc_export.py",
+   "sha256": "b6b89119a488062bd34dc88e55b61496ad1c94a630a96e87d2a56e4b35c49f3e"
+  },
+  {
+   "path": "memelab/state.py",
+   "sha256": "9877a0af2ee37cf3850d821363834e1b184a68720b233f875b641bf154f0d084"
+  },
+  {
+   "path": "memelab/predictive/catsoc_adapter.py",
+   "sha256": "5e744dd689addf9f75a7b50b05de2df0123688c4f3b901b466baac253b497493"
+  },
+  {
+   "path": "memelab/predictive/reports.py",
+   "sha256": "a53aa1f47693209ca67bc286cd6798369a124699d5a7a1ebc4f5294f63829df3"
+  },
+  {
+   "path": "memelab/predictive/integration.py",
+   "sha256": "41cac41ae0df66b736bc7abc1889a078457dfe1e57e37c0ae8af2f1a5f242f25"
+  },
+  {
+   "path": "tests/test_predictive_cm3.py",
+   "sha256": "b33e9111be8c8a304d038b3883199f37b1229ac10996576c22a1b84365c1a727"
+  },
+  {
+   "path": ".gitignore",
+   "sha256": "9feda23c9c8317396300e3664fb4fca9c742bf34a367e2854da685942f283ac7"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/skeptic/CM3_SKEPTIC.md",
+   "sha256": "d6bc30b8b089ede4d3727bfc2f728f8f7102519073749f696916f5e6b03dcb00"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/skeptic/cm3_probe.py",
+   "sha256": "69b82946abc31c38bd64ec4fd65f44e9c557ab63bbabdd798832b8e81e6998e5"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/skeptic/test_cm3_skeptic_rollback.py",
+   "sha256": "2a0216d36beb9f46bb87d25c932426577d6a51ac4832777dc517c500d9c3c46b"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/skeptic/cm3_probe_rerun.py",
+   "sha256": "295ad14a9139c95f8b620a077e143c51cb508adf478d3d1a78bea80fe5c04194"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/evidence/logs/fails_before_a9ec8e8.txt",
+   "sha256": "8e83d13653a98d536e1f332f79dc84f6a0e4261b00be45bfa3552967874f81d5"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/evidence/logs/mutations_repair.txt",
+   "sha256": "9d7f7e7b8825dc5303d18e635525849f1b7c29a127b2d138fbef5231960b982b"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/evidence/logs/flag_on_steps_run.txt",
+   "sha256": "26856999a7267789802648f7f6ddc720f0f3fc0da4926b4d9b302945820b9f95"
+  },
+  {
+   "path": "audits/predictive-intelligence/maintenance/cm3_spend_free/evidence/logs/suite_repair_tail.txt",
+   "sha256": "6d5eb9f7b7cc8f5beba4e29c804bb38f30d8d11132c53f6cec2febaaa376e223"
+  },
+  {
+   "path": "tests/fixtures/predictive/phase18/PINNED_SHA256_PI-D-139.json",
+   "sha256": "602b3c3767a5a5da6fe3bb8630ecb7510ae60253c58cb6c3c2660c8e22c167c2"
+  },
+  {
+   "path": "tests/test_predictive_reports.py",
+   "sha256": "261433232ae15679304cdabe02b5e1c2f99f63c1378181839a00c0d6bb4ccedf"
+  }
+ ],
+ "limitations": [
+  "no real catalyst or social rows exist in any available database; real-data evidence is the empty case",
+  "salted refs are pseudonymous (public salt), OI-CM3-1",
+  "scheduled-run steps run in a scratch clone only; no scheduled task created or changed",
+  "the research report keeps the Phase 17 token-text rule and the lab's scout report prints symbols as before; the strict rule covers the alert label and push line",
+  "whoever can read the key folder (the scheduled session included) can sign and move the counter; deleting the counter re-opens rollback for that holder",
+  "a vocabulary value the lab adds later is exported as null until VOCAB is extended by change control",
+  "the real-data check proves only the absence of the section (skeptic m3)"
+ ],
+ "blockers": [],
+ "approvals_needed": [
+  "ED-6 merge into main and ED-8 scheduled-task change (orchestrator, last)",
+  "Elving creates the key file (SIGNING.md)",
+  "OI-CM3-1 secret salt, optional"
+ ],
+ "next_eligible_phase": null,
+ "repair_pass_2": {
+  "review": "audits/predictive-intelligence/maintenance/cm3_spend_free/skeptic/CM3_SKEPTIC.md",
+  "reviewed_head": "a9ec8e8",
+  "decisions": [
+   "PI-D-137",
+   "PI-D-138",
+   "PI-D-139",
+   "PI-D-150"
+  ],
+  "commits": {
+   "change_control": "dca558c",
+   "code_and_tests": "ab286ea",
+   "fixture_fix": "2098808"
+  },
+  "findings": {
+   "M1": "fixed (allowlist export catsoc-export-2, no summaries)",
+   "M2": "fixed (push line from fixed parts and grammar, strict symbol, prompt treats lines as data, no key path in the prompt)",
+   "m1": "fixed (rollback counter outside the state folder)",
+   "m2": "fixed in SIGNING.md (own key folder, what it protects and what not)",
+   "m3": "stated in EXPORT.md and the probe",
+   "m4": "fixed (non-hex hmac is StateTampered)",
+   "probe_idempotence": "fixed"
+  },
+  "counterexample": "rollback to an older signed snapshot: test_rollback_to_an_older_signed_snapshot_is_refused fails on a9ec8e8, passes now; the skeptic's own test now fails (REFUSED)",
+  "disagreements": []
+ }
+}

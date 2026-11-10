@@ -1,0 +1,11 @@
+{
+ "decision": "PI-D-139",
+ "files": {
+  "memelab/predictive/integration.py": {
+   "reason": "CM-3 repair: rollback counter outside the state folder, default key file found by the engine, non-hex hmac refused as StateTampered (PI-D-138, PI-D-139)",
+   "sha256": "41cac41ae0df66b736bc7abc1889a078457dfe1e57e37c0ae8af2f1a5f242f25",
+   "was": "7891545fd513e3e02f308fc25cb09c30a2056d36c0558cc10dfb4f535f83e21e"
+  }
+ },
+ "note": "re-pin after the CM-3 skeptic repair; 'was' is the pin in force before (PINNED_SHA256_PI-D-132.json)"
+}

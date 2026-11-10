@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/claude/cx-wt/audits/predictive-intelligence/maintenance/cm3_spend_free/skeptic/cm3_probe.py", line 25, in <module>
+    out[s] = {"summary_ok": CE.summary_ok(s), "problems": CE.problems(sec) if "tables" in sec else sec,
+                            ^^^^^^^^^^^^^
+AttributeError: module 'memelab.catsoc_export' has no attribute 'summary_ok'
+exit 1

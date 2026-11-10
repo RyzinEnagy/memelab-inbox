@@ -19,8 +19,10 @@ Pre-registration: audits/predictive-intelligence/phase_17/ACCEPTANCE_CHECKLIST.m
 from __future__ import annotations
 
 import hashlib
+import hmac
 import json
 import math
+import os
 import re
 import sqlite3
 import sys
@@ -173,9 +175,186 @@ def _read_lines(p: Path) -> list[dict]:
     return out
 
 
-def load_state(state_dir: str | Path) -> dict:
+# ---------------------------------------------------------------- signing (CM-3, PI-D-132, ED-9): HMAC-SHA256 over the chain tip
+SIG_FILE = "STATE_SIGNATURE.json"
+SIG_VERSION = "state-sig-1"
+KEY_FILE_ENV = "MEMELAB_PREDICTIVE_STATE_KEY_FILE"
+KEY_ENV = "MEMELAB_PREDICTIVE_STATE_KEY"
+KEY_MIN_BYTES = 32
+DEFAULT_KEY_FILE = "~/mnt/memelab-key/predictive_state.key"   # CM-3 repair (PI-D-138): found by the engine, never named in a prompt
+SEQ_FILE_ENV = "MEMELAB_PREDICTIVE_STATE_SEQ_FILE"
+SEQ_VERSION = "state-seq-1"
+_HEX64 = re.compile(r"[0-9a-f]{64}")
+
+
+class StateKeyError(StateTampered):
+    """A configured signing key that cannot be used. Never carries the key or its bytes."""
+
+
+def _state_key_and_path() -> tuple[bytes | None, Path | None]:
+    """The signing key and the file it came from: the file named by MEMELAB_PREDICTIVE_STATE_KEY_FILE (outside the repository),
+    else the value of MEMELAB_PREDICTIVE_STATE_KEY, else the default key file `~/mnt/memelab-key/predictive_state.key` when it
+    exists (a connected folder of its own in a scheduled session, PI-D-138), else None (unsigned state allowed)."""
+    path, val = os.environ.get(KEY_FILE_ENV), os.environ.get(KEY_ENV)
+    if not path and not val:
+        dflt = Path(DEFAULT_KEY_FILE).expanduser()
+        path = str(dflt) if dflt.is_file() else None
+    if path:
+        p, r = Path(path).expanduser().resolve(), ROOT.resolve()
+        if p == r or r in p.parents:
+            raise StateKeyError("the signing key file is inside the repository; keep it outside")
+        try:
+            k = p.read_bytes().strip()
+        except OSError as e:
+            raise StateKeyError(f"the signing key file cannot be read ({type(e).__name__})") from None
+    elif val:
+        p, k = None, val.encode().strip()
+    else:
+        return None, None
+    if len(k) < KEY_MIN_BYTES:
+        raise StateKeyError(f"the signing key is shorter than {KEY_MIN_BYTES} bytes")
+    return k, p
+
+
+def state_key() -> bytes | None:
+    """The signing key (see `_state_key_and_path`). Never printed, never part of a message."""
+    return _state_key_and_path()[0]
+
+
+def _mac(key: bytes, seq: int, tip: str) -> str:
+    return hmac.new(key, f"memelab-predictive-{SIG_VERSION}|{int(seq)}|{tip}".encode(), hashlib.sha256).hexdigest()
+
+
+def _hex64(x: Any) -> bool:
+    """m4: an hmac field is 64 lower-case hex characters; anything else (non-ASCII included) is refused as StateTampered."""
+    return isinstance(x, str) and bool(_HEX64.fullmatch(x))
+
+
+def _write_signature(d: Path, last_pass: dict, key: bytes) -> None:
+    rec = {"version": SIG_VERSION, "seq": last_pass["seq"], "tip": last_pass["record_id"], "hmac": _mac(key, last_pass["seq"], last_pass["record_id"])}
+    tmp = d / (SIG_FILE + ".tmp")
+    tmp.write_text(AB.canon(rec) + "\n")
+    os.replace(tmp, d / SIG_FILE)
+
+
+def _verify_signature(d: Path, last_pass: dict, key: bytes) -> None:
+    p = d / SIG_FILE
+    if not p.exists():
+        raise StateTampered("the state is unsigned while a signing key is configured")
+    try:
+        rec = json.loads(p.read_text())
+    except (OSError, ValueError):
+        raise StateTampered(f"{SIG_FILE}: not readable")
+    if not isinstance(rec, dict) or rec.get("version") != SIG_VERSION or rec.get("seq") != last_pass["seq"] or rec.get("tip") != last_pass["record_id"]:
+        raise StateTampered(f"{SIG_FILE}: does not name the last pass of the chain")
+    if not _hex64(rec.get("hmac")) or not hmac.compare_digest(rec["hmac"], _mac(key, last_pass["seq"], last_pass["record_id"])):
+        raise StateTampered(f"{SIG_FILE}: signature does not match")
+
+
+# ---------------------------------------------------------------- rollback counter (CM-3 repair m1, PI-D-139)
+def seq_file(state_dir: str | Path, key_path: Path | None = None) -> Path:
+    """Where the last signed seq of a state folder is kept, always outside that folder: MEMELAB_PREDICTIVE_STATE_SEQ_FILE when
+    set, else next to the key file (`<key file>.last_seq.json`), else next to the state folder (`<state folder>.last_seq.json`)."""
+    d = Path(state_dir).resolve()
+    env = os.environ.get(SEQ_FILE_ENV)
+    if env:
+        p = Path(env).expanduser().resolve()
+    elif key_path is not None:
+        p = key_path.with_name(key_path.name + ".last_seq.json")
+    else:
+        p = d.parent / (d.name + ".last_seq.json")
+    if p == d or d in p.parents:
+        raise StateTampered("the signed-seq counter file is inside the state folder; keep it outside")
+    return p
+
+
+def _seq_mac(key: bytes, dir_id: str, seq: int, tip: str) -> str:
+    return hmac.new(key, f"memelab-predictive-{SEQ_VERSION}|{dir_id}|{int(seq)}|{tip}".encode(), hashlib.sha256).hexdigest()
+
+
+def _read_counter(p: Path) -> dict:
+    if not p.exists():
+        return {}
+    try:
+        rec = json.loads(p.read_text())
+    except (OSError, ValueError):
+        raise StateTampered("the signed-seq counter file is not readable") from None
+    if not isinstance(rec, dict) or rec.get("version") != SEQ_VERSION or not isinstance(rec.get("dirs"), dict):
+        raise StateTampered("the signed-seq counter file is not a counter file")
+    return rec["dirs"]
+
+
+def _check_counter(d: Path, last_pass: dict, key: bytes, key_path: Path | None) -> None:
+    """Refuse a state below the last signed seq (a rollback to an older signed snapshot), another pass at that seq, or a counter
+    entry that the key did not write."""
+    dir_id = str(Path(d).resolve())
+    ent = _read_counter(seq_file(d, key_path)).get(dir_id)
+    if ent is None:
+        return
+    if not (isinstance(ent, dict) and isinstance(ent.get("seq"), int) and not isinstance(ent.get("seq"), bool)
+            and isinstance(ent.get("tip"), str) and _hex64(ent.get("hmac"))):
+        raise StateTampered("the signed-seq counter entry is malformed")
+    if not hmac.compare_digest(ent["hmac"], _seq_mac(key, dir_id, ent["seq"], ent["tip"])):
+        raise StateTampered("the signed-seq counter entry does not match the key")
+    if last_pass["seq"] < ent["seq"]:
+        raise StateTampered(f"rollback: the state's last pass is seq {last_pass['seq']}, but seq {ent['seq']} was signed before")
+    if last_pass["seq"] == ent["seq"] and last_pass["record_id"] != ent["tip"]:
+        raise StateTampered(f"rollback: the state's pass at seq {ent['seq']} is not the one that was signed")
+
+
+def _write_counter(d: Path, last_pass: dict, key: bytes, key_path: Path | None) -> None:
+    p = seq_file(d, key_path)
+    dirs = _read_counter(p)
+    dir_id = str(Path(d).resolve())
+    dirs[dir_id] = {"seq": last_pass["seq"], "tip": last_pass["record_id"],
+                    "hmac": _seq_mac(key, dir_id, last_pass["seq"], last_pass["record_id"])}
+    p.parent.mkdir(parents=True, exist_ok=True)
+    tmp = p.with_name(p.name + ".tmp")
+    tmp.write_text(json.dumps({"version": SEQ_VERSION, "dirs": dirs}, sort_keys=True, indent=1) + "\n")
+    os.replace(tmp, p)
+
+
+def signature_status(state_dir: str | Path) -> dict:
+    """UNSIGNED_NO_KEY, SIGNATURE_NOT_VERIFIED_NO_KEY, EMPTY_STATE, SIGNED_VERIFIED or REFUSED (with the reason, never the key)."""
+    d = Path(state_dir)
+    try:
+        key = state_key()
+    except StateKeyError as e:
+        return {"signature": "REFUSED", "detail": str(e)}
+    try:
+        passes = _read_lines(d / FILES["passes"])
+    except StateTampered as e:
+        return {"signature": "REFUSED", "detail": str(e)[:200], "key_configured": key is not None}
+    if not passes:
+        return {"signature": "EMPTY_STATE", "key_configured": key is not None}
+    if key is None:
+        return {"signature": "SIGNATURE_NOT_VERIFIED_NO_KEY" if (d / SIG_FILE).exists() else "UNSIGNED_NO_KEY", "key_configured": False}
+    try:
+        load_state(d)
+    except StateTampered as e:
+        return {"signature": "REFUSED", "detail": str(e)[:200], "key_configured": True}
+    return {"signature": "SIGNED_VERIFIED", "key_configured": True, "seq": passes[-1]["seq"]}
+
+
+def sign_state(state_dir: str | Path) -> dict:
+    """Adopt an existing chain under the configured key: the chain and files are checked first (without the signature), then
+    the tip is signed. Run it only on a state whose `check` passed and that you trust."""
+    key, kpath = _state_key_and_path()
+    if key is None:
+        raise StateKeyError("no signing key is configured")
+    st = load_state(state_dir, verify_signature=False)
+    if st["last_pass"] is None:
+        return {"signature": "EMPTY_STATE"}
+    _check_counter(Path(state_dir), st["last_pass"], key, kpath)        # never adopt a chain below the last signed seq (m1)
+    _write_signature(Path(state_dir), st["last_pass"], key)
+    _write_counter(Path(state_dir), st["last_pass"], key, kpath)
+    return {"signature": "SIGNED", "seq": st["last_pass"]["seq"]}
+
+
+def load_state(state_dir: str | Path, *, verify_signature: bool = True) -> dict:
     """Every file read and checked: each line's record id, the pass chain, and each file's sha256 equal to the one the last pass
-    recorded. Anything else is StateTampered (rule 14)."""
+    recorded. Anything else is StateTampered (rule 14). With a signing key configured, the chain tip must carry a matching
+    signature (CM-3, PI-D-132) and must not be below the last signed seq kept outside the folder (PI-D-139)."""
     d = Path(state_dir)
     lines = {k: _read_lines(d / f) for k, f in FILES.items()}
     prev = GENESIS
@@ -184,6 +363,11 @@ def load_state(state_dir: str | Path) -> dict:
             raise StateTampered(f"PASSES.jsonl line {i}: chain broken")
         prev = p["record_id"]
     last = lines["passes"][-1] if lines["passes"] else None
+    if verify_signature and last is not None:
+        key, kpath = _state_key_and_path()
+        if key is not None:
+            _verify_signature(d, last, key)
+            _check_counter(d, last, key, kpath)
     for k, f in FILES.items():
         if k == "passes":
             continue
@@ -223,6 +407,10 @@ def _append_pass(state: dict, *, requests: list[dict], documents: list[dict], re
     pr = _sealed({"record_version": "integration-pass-1", "seq": seq, "prev": state["prev"], **pass_info, "files_after": after})
     want = AB.file_sha(d / FILES["passes"]) if state["lines"]["passes"] else None
     AB.append(d / FILES["passes"], [pr], expect_sha=want)
+    key, kpath = _state_key_and_path()
+    if key is not None:
+        _write_signature(d, pr, key)
+        _write_counter(d, pr, key, kpath)
     return pr
 
 
@@ -1315,7 +1503,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     import argparse
     ap = argparse.ArgumentParser(prog="python -m memelab.predictive.integration")
     sp = ap.add_subparsers(dest="cmd", required=True)
-    for name in ("status", "check"):
+    for name in ("status", "check", "sign-status", "sign"):
         p = sp.add_parser(name)
         p.add_argument("--state-dir")
         p.add_argument("--config")
@@ -1330,6 +1518,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     try:
         if a.cmd == "status":
             print(json.dumps({"flag": cfg["enabled"], "state_dir": sdir, "metrics": metrics(sdir)}, indent=1, sort_keys=True))
+            return 0
+        if a.cmd == "sign-status":
+            out = signature_status(sdir)
+            print(json.dumps(out, indent=1, sort_keys=True))
+            return 0 if out["signature"] != "REFUSED" else 2
+        if a.cmd == "sign":
+            print(json.dumps(sign_state(sdir), indent=1, sort_keys=True))
             return 0
         if a.cmd == "check":
             out = check_state(sdir, config_path=a.config)

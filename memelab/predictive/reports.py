@@ -1067,8 +1067,30 @@ def make_alert_policy(overrides: dict | None = None) -> dict:
     return p
 
 
+# CM-3 repair M2 (PI-D-138): a token symbol is creator-written text; an alert label or a push line shows it only when the shown text
+# is 1 to 10 ASCII letters or digits and carries no trading word, forecast word, multiplier or instruction word.
+INSTRUCTION_WORDS = ("ignore", "instruct", "prompt", "paste", "send", "key", "secret", "password", "seed", "wallet", "transfer",
+                     "execute", "command", "system", "assistant", "claude", "disregard", "override", "reply", "forward", "delete",
+                     "http", "www", "file")
+_STRICT_SYMBOL = re.compile(r"[A-Za-z0-9]{1,10}")
+
+
+def strict_symbol(x: Any) -> str | None:
+    """The symbol as an alert label or push line may show it, or None (PI-D-138). Over-withholding is accepted: the exact mint
+    always identifies the token."""
+    s = "" if x is None else str(x)
+    if not _STRICT_SYMBOL.fullmatch(s) or s == "withheld":
+        return None
+    low = s.lower()
+    if I.unsafe_token_text(s) or any(w in low for w in INSTRUCTION_WORDS):
+        return None
+    return s
+
+
 def _label(o: dict) -> str:
-    return f"{o.get('symbol') or 'symbol not verified'} on {o['chain_text']} ({o['mint_text']})"
+    sym = o.get("symbol")
+    head = strict_symbol(sym) or ("symbol withheld" if sym else "symbol not verified")
+    return f"{head} on {o['chain_text']} ({o['mint_text']})"
 
 
 def _liquidity_fall(changes: Sequence[str]) -> float | None:
@@ -1128,7 +1150,7 @@ def alert_candidates(view: dict, requests: Sequence[dict], *, policy: dict, now:
             continue
         fl = "fatal-flag check unknown, treated as not cleared" if n["fatal_flags"] is None else f"fatal flags {', '.join(n['fatal_flags'])}"
         cap = _parse(n.get("capture_time_utc"))
-        lbl = f"{n.get('symbol') or 'symbol not verified'} on {n['chain_text']} ({n['mint_text']})"
+        lbl = _label(n)
         if cap is None or now - cap > float(policy["source_max_age_hours"]) * 3600:
             supp.append({"policy": "risk_override", "item_id": f"{n['chain']}:{n['mint']}", "label": lbl, "reason_code": "SOURCE_STALE",
                          "reason": "the newer snapshot is too old for an alert; the report still shows it"})
@@ -1294,12 +1316,80 @@ def _feed_check(state_dir: Any, config_path: Any, prev: Any) -> str | None:
     return None
 
 
+PUSH_CHANNEL = "push_file"                 # CM-3 (PI-D-131, ED-7): the only delivery channel; a scheduled task sends the lines
+PUSH_LINE_MAX = 240
+_PUSH_BLOCKED = re.compile(r"%|probab|estimate|interval|base rate", re.I)
+POLICY_WORDS = {"risk_override": "risk override", "reevaluate": "re-evaluation prompt", "forecast_withdrawn": "research forecast withdrawn",
+                "pipeline_health": "pipeline health"}
+
+
+PIPELINE_PUSH_LABELS = {"predictive state": "the predictive state", "predictive alert feed": "the predictive alert feed",
+                        "predictive pass": "the predictive pass"}
+_PUSH_ADDR = re.compile(r"[1-9A-HJ-NP-Za-km-z]{32,44}|0x[0-9a-fA-F]{40}")
+PUSH_LINE_GRAMMAR = re.compile(
+    r"(FIXTURE, not live: )?memelab research (info|notice|warning): "
+    r"(risk override|re-evaluation prompt|research forecast withdrawn|pipeline health) for "
+    r"(token( [A-Za-z0-9]{1,10})? on ([a-z0-9]{1,16}|chain withheld) ([0-9A-Za-z]{6}\.\.\.[0-9A-Za-z]{4}|without an exact address)"
+    r"|the predictive state|the predictive alert feed|the predictive pass|the pipeline); see local alert [0-9]{1,9}")
+
+
+def _push_identity(a: dict) -> tuple[str, list[str]]:
+    """The token or pipeline part of a push line from fixed parts only (PI-D-138): `token`, the strict symbol when it passes,
+    the chain when it is a short lower-case code, and the exact address shortened to its first 6 and last 4 characters. The
+    alert label text is never copied. Returns the part and the strings the text checks must ignore (the address pieces)."""
+    if not a.get("mint"):
+        return PIPELINE_PUSH_LABELS.get(str(a.get("label")), "the pipeline"), []
+    sym = strict_symbol(str(a.get("label") or "").split(" on ", 1)[0])
+    chain = str(a.get("chain") or "")
+    chain = chain if re.fullmatch(r"[a-z0-9]{1,16}", chain) else "chain withheld"
+    c = str(a.get("contract") or "")
+    if c == a.get("mint") and _PUSH_ADDR.fullmatch(c):
+        where, parts = f"{c[:6]}...{c[-4:]}", [c, c[:6], c[-4:]]
+    else:
+        where, parts = "without an exact address", []
+    return f"token{' ' + sym if sym else ''} on {chain} {where}", parts
+
+
+def push_line(a: dict) -> str:
+    """One short line for a push notification, from fixed parts only: severity, policy in words, the token part (`token`, a
+    strict symbol, chain, shortened exact address) or a fixed pipeline label, and the local alert number. No probability, no
+    percent, no trading word, no local path, no creator-written text (CM-3, PI-D-131, PI-D-138); raises when the line would
+    carry any of them or does not match `PUSH_LINE_GRAMMAR`."""
+    if a.get("policy") not in POLICY_WORDS or a.get("severity") not in AC.SEVERITIES:
+        raise ReportError("a push line needs a policy and a severity of the alert policy file")
+    ident, parts = _push_identity(a)
+    line = f"memelab research {a['severity']}: {POLICY_WORDS[a['policy']]} for {ident}; see local alert {int(a['alert_id'])}"
+    if a.get("fixture"):
+        line = "FIXTURE, not live: " + line
+    check_push_line(line, parts)
+    return line
+
+
+def check_push_line(line: str, mints: Sequence[str] = ()) -> None:
+    check_text(line, mints)
+    t = line
+    for m in sorted({m for m in mints if m}, key=len, reverse=True):
+        t = t.replace(m, "")
+    if "\n" in line or "\r" in line or len(line) > PUSH_LINE_MAX:
+        raise ReportError("a push line is one line of at most 240 characters")
+    if _PUSH_BLOCKED.search(t):
+        raise ReportError("a push line carries no probability, percentage, estimate or interval")
+    if not PUSH_LINE_GRAMMAR.fullmatch(line):
+        raise ReportError("a push line must match the fixed push line grammar")
+
+
+def _send_refused(send: Any) -> bool:
+    return send is not False and send is not None and send != PUSH_CHANNEL
+
+
 def alert_run(state_dir: str | Path | None = None, *, config_path: str | Path | None = None, alert_db: str | Path | None = None,
-              outbox: str | Path | None = None, now: float | None = None, policy: dict | None = None, send: bool = False,
+              outbox: str | Path | None = None, now: float | None = None, policy: dict | None = None, send: bool | str = False,
               fixture_run: bool = False, registry_dir: str | Path | None = None, root: str | Path | None = None,
               extra_cal_cards: dict | None = None, lab_db: str | Path | None = None) -> dict | None:
-    """One dry-run alert evaluation (rules 9 to 11). None when the flag is off (nothing read but the config, nothing written)."""
-    if send:
+    """One dry-run alert evaluation (rules 9 to 11). None when the flag is off (nothing read but the config, nothing written).
+    `send="push_file"` also writes one push line per new alert into `outbox/push/` for a scheduled task to send (CM-3, PI-D-131);
+    any other `send` is refused."""
+    if _send_refused(send):
         raise AlertRefused("--send refused: no external delivery is approved (PI-D-005); alerts are dry run only")
     if not I.config(config_path)["enabled"]:
         return None
@@ -1355,7 +1445,10 @@ def alert_run(state_dir: str | Path | None = None, *, config_path: str | Path | 
                                errors=errs, newer=newer, feed_changed=changed)
                 if notes:
                     out["reason"] = "; ".join(notes)
+        full = ev.pop("alerts_full", [])                # kept out of the run output: the dry run's output is unchanged
         out.update({"outcome": outcome, "evaluation": ev, "delivery": {"processed": list(ev["new"]), "released": [], "expired": []}})
+        if send == PUSH_CHANNEL:
+            out["push"] = _push_file(con, run_id=run_id, alerts=full, outbox=box, now=now)
         summary = {"candidates": ev["candidates"], "new": ev["new"], "deduped": ev["deduped"], "suppressed": len(ev["suppressed"]),
                    "reason": out.get("reason")}
         con.execute("UPDATE alert_runs SET finished_at=?, outcome=?, summary_json=? WHERE run_id=?", (now, outcome, json.dumps(summary, sort_keys=True), run_id))
@@ -1475,7 +1568,26 @@ def _evaluate(con: sqlite3.Connection, *, run_id: int, view: dict, requests: lis
                     (run_id, s["policy"], s.get("item_id"), s["reason_code"], s["reason"]))
     con.commit()
     return {"candidates": len(cands), "new": [a["alert_id"] for a in new], "deduped": deduped, "suppressed": supp, "quiet_hours": quiet,
-            "alerts": [{k: a[k] for k in ("alert_id", "policy", "severity", "label", "dedupe_key", "fixture")} for a in new]}
+            "alerts": [{k: a[k] for k in ("alert_id", "policy", "severity", "label", "dedupe_key", "fixture")} for a in new],
+            "alerts_full": new}
+
+
+def _push_file(con: sqlite3.Connection, *, run_id: int, alerts: list[dict], outbox: Path, now: float) -> dict:
+    """CM-3 (PI-D-131): the push lines of this run's new alerts in `outbox/push/push_run_NNNNNN.txt`, one line each, and one
+    `alert_deliveries` row per alert (transport push_file, status dry_run_preview). Nothing is sent from here."""
+    if not alerts:
+        return {"file": None, "lines": 0}
+    lines = [push_line(a) for a in alerts]
+    d = outbox / "push"
+    d.mkdir(parents=True, exist_ok=True)
+    f = d / f"push_run_{run_id:06d}.txt"
+    f.write_text("\n".join(lines) + "\n")
+    for a in alerts:
+        con.execute("INSERT INTO alert_deliveries(alert_id, mode, transport, dest_ref, attempt, status, started_at, finished_at, error) "
+                    "VALUES (?,?,?,?,?,?,?,?,?)", (a["alert_id"], "dry_run", PUSH_CHANNEL, AT.dest_ref("file", str(d)), 1, "dry_run_preview",
+                                                   now, now, "push line written for the scheduled task; nothing sent by memelab"))
+    con.commit()
+    return {"file": f.name, "lines": len(lines)}
 
 
 # ---------------------------------------------------------------- CLI (rule 12)
@@ -1499,7 +1611,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     for a in ("--state-dir", "--config", "--alert-db", "--outbox", "--registry-dir", "--lab-db"):
         p.add_argument(a)
     p.add_argument("--as-of", type=float)
-    p.add_argument("--send", action="store_true")
+    p.add_argument("--send", nargs="?", const=True, default=False)   # only "push_file" is accepted (CM-3, PI-D-131)
     p.add_argument("--fixture-run", action="store_true")
     p.add_argument("--json", action="store_true")
     p = sp.add_parser("alerts-state")
@@ -1531,6 +1643,9 @@ def main(argv: Sequence[str] | None = None) -> int:
             else:
                 txt = AE.render_run(out, DEFAULT_ALERT_POLICY["tz"])
                 print(txt + "Delivery: previews in the local outbox only (dry run); nothing was sent to any device.")
+                if out.get("push"):
+                    print(f"Push file: {out['push']['lines']} line(s) in {out['push']['file'] or 'no file'} for the scheduled task; "
+                          "nothing sent by memelab.")
             return 0
         if not I.config(a.config)["enabled"]:
             print("predictive: FLAG_OFF; nothing read")

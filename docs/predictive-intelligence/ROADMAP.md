@@ -270,6 +270,7 @@ Changes after the last phase of the package. Each has its own change control in 
 |---|---|---|---|---|
 | CM-1 | 2026-11-09 | Merge of the backtesting module (PR #4, `69bc5c3`) into this line; bt-adapter-2 reads the installed package read-only | PI-D-120, PI-D-121 | DONE locally (merge `69b7b57`, code `6ea454d`), not pushed |
 | CM-2 | 2026-11-09 to 2026-11-10 | Promotion from prospective evidence (`PROMOTION_CM2`, closes ED-1); the 69 stale Phase 16 cards retired and 6 fresh R-CM2-1 cards registered (closes ED-10); the daily cycle `predictive_daily.py run` | PI-D-122 to PI-D-129, PI-D-140 | DONE (change control `ed85b2c`, frozen code `e79d846`, reads and cards `a140986`; pushed to `cdff266`); skeptic: no material failure; repair pass PI-D-140 local, not pushed |
+| CM-3 | 2026-11-09 | Spend-free items: catalyst and social section in the state export and its reader (ED-3), push-file alert delivery (ED-7), HMAC signing of the private state (ED-9), flag-on steps for the scheduled runs (ED-8 preparation); branch `maint/catalyst-export` | PI-D-130 to PI-D-139, PI-D-150 | PASS after the skeptic review and repair pass 2 (allowlist export, push lines from fixed parts, rollback counter); local only, not merged |
 
 Constraints after CM-1:
 

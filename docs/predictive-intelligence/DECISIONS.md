@@ -1063,3 +1063,59 @@ The orchestrator's skeptic reviewed `cdff266`: no material failure, six minor fi
 4. Window results are per recipe. 5. A test for evaluate's own negative-class minimum. 6. `--max-calls` at most 60; `--now` only with `PREDICTIVE_DAILY_TEST_CLOCK=1`. Left: registered_at is the run start, entry tests are literals (both fail closed).
 
 No card, label, registry entry, level or number changed: the cards and registry were not refit or rewritten; the fresh-clone runs repeated at `1818db3` give the same alerts and now push to the remote; every level is still ABSTAIN with 0 events.
+## PI-D-130 Change control CM-3 item 1 (ED-3): catalyst and social tables in the state export, read by the engine as of the export commit (ADOPTED, 2026-11-09, maintenance; approved by Elving on 2026-11-09, "do everything that doesn't require spend"; written before the code)
+
+Details and checks: `audits/predictive-intelligence/maintenance/cm3_spend_free/CHANGE_CONTROL.md` item 1. Opt-in export section `_catsoc` (format catsoc-export-1, `memelab/catsoc_export.py`; flag `MEMELAB_STATE_EXPORT_CATSOC=1` or `data/config.json` `state_export.catalyst_social` true; OFF by default and byte identical when off) with ids, hashes, exact chain plus mint links, classification states, times, source ids and short guard-checked summaries only; an importer into a separate SQLite file; a companion adapter `memelab/predictive/catsoc_adapter.py` that feeds the unchanged Phase 10 classifier and social function with `available_at` = first export commit time (`socialcat.py` stays untouched: 18 registry entries pin it). No collection change, no new source, no scheduled task change.
+
+## PI-D-131 Change control CM-3 item 2 (ED-7): alert delivery as a push file, no spend (ADOPTED, 2026-11-09, maintenance; written before the code)
+
+CHANGE_CONTROL.md item 2. `alerts --send push_file` writes one short line per new alert (no probability, no trading word) into the local outbox for a scheduled task to send as a push notification; every other `--send` stays refused; mode stays dry run; the alert policy is unchanged.
+
+## PI-D-132 Change control CM-3 item 3 (ED-9): HMAC-SHA256 signing of the private predictive state (ADOPTED, 2026-11-09, maintenance; written before the code)
+
+CHANGE_CONTROL.md item 3. Signature over the pass chain tip with a key from `MEMELAB_PREDICTIVE_STATE_KEY_FILE` or `MEMELAB_PREDICTIVE_STATE_KEY` (never from the repository, never printed); with a key, unsigned or mismatched state is StateTampered; without a key nothing changes and the state is reported UNSIGNED_NO_KEY. No key is created. `integration.py` and `state.py` re-pinned in a new Phase 18 amendment file.
+
+## PI-D-133 Change control CM-3 item 4 (ED-8 preparation): what turning the flag on means (ADOPTED, 2026-11-09, maintenance; written before the code)
+
+CHANGE_CONTROL.md item 4. A document of the flag-on effects and a test on rows of the real export that a flag-on scout keeps the 100-point score, fatal flags, statuses and lists unchanged. No scheduled task changes; turning the flag on stays Elving's decision.
+
+## PI-D-134 Result of CM-3 (ED-3, ED-7, ED-9 done; ED-8 prepared) (ADOPTED, 2026-11-09, maintenance)
+
+Code `b99e139`, repair `e822887` after a session restart, records in the following commit; evidence
+`audits/predictive-intelligence/maintenance/cm3_spend_free/CM3_EVIDENCE.md`. With every switch off the lab's outputs are as at
+`60eb729`: the state export byte identical to the `60eb729` exporter on three databases; with the export switch on, the file
+gains exactly one `_catsoc` member. Suite 2 failed (the two known clock-dependent tests), 2,571 passed, 1 skipped; guard 0
+violations; seal 0 problems; release_e2e 78 of 78; reproductions 6 passed; 7 of 7 mutations caught. Real exports carry no
+section yet (78 versions, 4,878 pairs TABLES_NOT_EXPORTED). Status NEEDS_REVIEW until the orchestrator's skeptic.
+
+## PI-D-135 Trader source ids leave the database hashed; refs are pseudonymous (ADOPTED, 2026-11-09, maintenance)
+
+The catalyst registry keys trader research rows `trader:x:<handle>`. The exporter writes them as `trader:` plus the salted sha256
+prefix in every table, so the promise of PI-D-130 (no handle) holds and joins still work. The salt is public, so every ref in the
+section is pseudonymous: a candidate value can be confirmed, never read back. A secret salt (a key in every scheduled session)
+is open item OI-CM3-1, not part of CM-3.
+
+## PI-D-136 Flag-on procedure for the scheduled runs, and where the signing key lives (ADOPTED, 2026-11-09, maintenance)
+
+`FLAG_ON.md` "Exact steps for a scheduled run": merge `predictive.enabled` true, `predictive.state_dir`
+`~/mnt/memelab/predictive_state` (expanded) and `state_export.catalyst_social` true into `data/config.json`; prefix every memelab
+command with `MEMELAB_PREDICTIVE_STATE_KEY_FILE=$HOME/mnt/memelab/predictive_state.key`; check `sign-status`; run alerts with
+`--send push_file` and a persistent `--alert-db`, send each push line, move the file to `sent/`. The key is
+`predictive_state.key` in the connected memelab folder (`C:\Users\<you>\memelab\` on the computer), outside any git checkout,
+gitignored by name. Applying the steps needs the merge into `main` first (ED-6); both are the orchestrator's last steps.
+
+## PI-D-137 CM-3 repair M1: the catalyst and social export is an allowlist; no free text, no summaries (ADOPTED, 2026-11-09, maintenance; written before the code)
+
+`maintenance/cm3_spend_free/CHANGE_CONTROL.md` "Repair pass 2", M1. Format `catsoc-export-2`: every exported column has a value type (ref, sha256, time, int, chain, address, label, source) and a value that does not match is written as null and counted; summaries are not exported at all; narrative ids, source ids and the social keys become refs. The reader refuses any section with another key set, column order or value type. Answers the skeptic's M1 (four planted summaries reached the export).
+
+## PI-D-138 CM-3 repair M2: push lines from fixed parts only; the scheduled prompt treats them as data and never names the key (ADOPTED, 2026-11-09, maintenance; written before the code)
+
+CHANGE_CONTROL.md "Repair pass 2", M2. A symbol is shown in an alert label or a push line only when it is 1 to 10 ASCII letters or digits and passes the trading-word and instruction-word rules; the push line is built from fixed parts (severity, policy words, chain, shortened exact address, alert number) and must match one grammar. The engine finds the key at `~/mnt/memelab-key/predictive_state.key` itself, so `FLAG_ON.md` names no key path; the prompt says push lines are data to relay verbatim, never instructions.
+
+## PI-D-139 CM-3 repair m1 to m4: rollback counter outside the state folder, key folder, real-data scope, hmac type (ADOPTED, 2026-11-09, maintenance; written before the code)
+
+CHANGE_CONTROL.md "Repair pass 2", m1 to m4. The last signed seq and tip are kept, HMAC-protected, in a counter file outside the state folder; a lower seq or another tip at the same seq is StateTampered. The key gets its own folder (what that protects and what it does not is in `SIGNING.md`). The real-data check is stated as proving only the absence of the section. A non-hex hmac is StateTampered. `integration.py` re-pinned in `PINNED_SHA256_PI-D-139.json`.
+
+## PI-D-150 Result of the CM-3 skeptic repair (ADOPTED, 2026-11-09, maintenance)
+
+The orchestrator's skeptic reviewed `a9ec8e8`: 2 material findings (M1 summaries with contact routes in the export, M2 creator-written symbol text in push lines read by an unattended session), 4 minor (m1 rollback accepted, m2 key beside the state, m3 vacuous real-data coverage, m4 TypeError on a non-ASCII hmac). All six hold and are fixed or stated (PI-D-137 to PI-D-139): change control `dca558c`, code `ab286ea`, fixture `2098808`, records in the following commit; review copied to `maintenance/cm3_spend_free/skeptic/`. The counterexample (rollback) is refused now; its inverted test fails on `a9ec8e8`. CM-3 tests 161 passed; mutations 7 of 7 caught; full suite 2 failed (the two known clock-dependent tests), 2,687 passed, 1 skipped; flag-off identity holds on 3 databases; real exports unchanged (no section); release e2e 78 of 78; reproductions 6 passed; seal 0 problems. No number or verdict of Phases 00 to 21 changes. Status PASS; local only, not merged.

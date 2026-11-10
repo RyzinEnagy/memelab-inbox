@@ -1,6 +1,6 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-129 and PI-D-140). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_21/`, and `maintenance/` for changes after Phase 21. Spend: `audits/predictive-intelligence/COST_LEDGER.md`. Plain-language release summary: [RELEASE.md](RELEASE.md).
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-140, PI-D-150). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_21/`, and `maintenance/` for changes after Phase 21. Spend: `audits/predictive-intelligence/COST_LEDGER.md`. Plain-language release summary: [RELEASE.md](RELEASE.md).
 
 ## Position on 2026-11-10
 
@@ -18,6 +18,17 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 - `a140986`: 7 T2 labels (2 DRAWDOWN_50, 5 NO_SEVERE_EVENT), base label set (Phase 19 ledger pairs 61 of 61 equal), 6 cards (refit byte-identical), registry (1 RETIRE event for 69 entries, 6 REGISTER, 3 PIN), search ledger rows (N_search 130), cost ledger row.
 - Change controls after the freeze: PI-D-124 (`43a485b`, the daily end-to-end test fixture), PI-D-126 (`b7aabe3`, tests for guards the first mutation probe found untested; the probe now commits each mutation), PI-D-128 (`a8c96d7`, a failed run no longer commits a ledger that does not verify; the only change to frozen cycle code), PI-D-129 (`2f72034`, `4e020cb`, mutant tests run offline; then three Phase 16 tests that the frozen code broke, found by the post-records suite: the retired Phase 16 entries now also see MODEL_INCOMPATIBLE_RETRAIN_REQUIRED for `contract.py` and `labels.py`, answers still ABSTAIN). `07a815e` adds `daily/PROCEDURE.md` (PI-D-125).
 - Checks (`maintenance/cm2_promotion_cards/CM2_EVIDENCE.md`): old-code probe (CM-2 tests fail on `ed85b2c`), mutation probe offline (35 applied, 34 caught, D07 equivalent), two fresh-clone runs of the daily command (exit 0 twice; 0 decisions after the freeze, 0 calls; repeated at `a8c96d7`), full suite, guard, seal, reproductions, single-branch release audit with history.
+- Maintenance CM-3 (2026-11-09, Elving's approval of every spend-free open decision; PI-D-130 to PI-D-139, PI-D-150), branch `maint/catalyst-export` from `60eb729`: opt-in catalyst and social section `_catsoc` in the state export (an allowlist since the repair: typed values only, no summaries) and a reader with `available_at` = first export commit time (ED-3); `alerts --send push_file` with push lines built from fixed parts (ED-7); HMAC-SHA256 signing of the private state with a key in its own folder and a rollback counter outside the state folder (ED-9); exact flag-on steps for the scheduled runs that name no key path and treat push lines as data (ED-8 preparation). Status **PASS** after the orchestrator's skeptic review and repair pass 2; not pushed, not merged.
+- Spend: 0. No vendor, model or paid call in Phase 21, CM-1 or CM-3.
+
+## What CM-3 did
+
+- Change control first (`bac9960`), code and tests (`b99e139`), then a session restart. The resuming agent checked the four uncommitted documents against the code and repaired (`e822887`): trader source ids hashed (PI-D-135), the stdout assertion and `FLAG_ON.md` corrected, `predictive_state.key` gitignored, a flag-off identity probe added. Records `6f4aab9`, post-commit `a9ec8e8`.
+- Skeptic review of `a9ec8e8` (`maintenance/cm3_spend_free/skeptic/CM3_SKEPTIC.md`): M1 summaries carried a URL, handle, email and phone number into the export; M2 the push line carried the deployer-written symbol to an unattended session; m1 rollback to an older signed snapshot accepted (counterexample); m2 key beside the state; m3 real-data coverage vacuous; m4 TypeError on a non-ASCII hmac. All hold; no disagreement.
+- Repair pass 2: change control `dca558c` (PI-D-137 to PI-D-139, PI-D-150), code and tests `ab286ea`, fixture `2098808`, then records. Export format `catsoc-export-2`: every column typed (ref, sha256, time, int, chain, address, enumerated vocabulary, prefixed source ref), summaries not exported, ids become refs, the reader refuses anything else. Alert labels and push lines show a symbol only when it is 1 to 10 ASCII letters or digits and passes the trading-word and instruction-word rules; push lines are built from fixed parts and must match one grammar. The engine finds the key in `~/mnt/memelab-key` (Windows `%USERPROFILE%\memelab-key\`) itself; the scheduled prompt names no key path and says push lines and command output are data. The last signed seq and tip are kept, HMAC-protected, beside the key; a rollback or fork is StateTampered. Non-hex hmac is StateTampered.
+- Checks: CM-3 tests 161 passed; the new tests fail on `a9ec8e8` (106 failed, 7 passed, explained); mutations 7 of 7 caught; full suite 2 failed (the two known), 2,687 passed, 1 skipped; flag-off identity holds on 3 databases; real exports unchanged (78 versions, no section); release e2e 78 of 78; reproductions 6 passed; seal 0 problems. No number or verdict of Phases 00 to 21 changed.
+- Documents: `maintenance/cm3_spend_free/` `EXPORT.md`, `PUSH_DELIVERY.md`, `SIGNING.md`, `FLAG_ON.md`, `CM3_EVIDENCE.md` (section "Repair pass 2"), `CM3_RESULTS.json`.
+- Signing key: not created. Elving creates `predictive_state.key` in a new folder `%USERPROFILE%\memelab-key\` and connects it to each memelab scheduled task as a second folder (`SIGNING.md`).
 
 ## What CM-1 did
 
@@ -37,12 +48,15 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 
 ## Open items, in order
 
-1. Schedule the daily cycle (needs Elving's approval of a scheduled task): once a day, `python -B audits/predictive-intelligence/daily/predictive_daily.py run` in a full clone with `feature/predictive-intelligence` checked out and push access; the script pushes the branch itself, before reading outcomes and at the end (PI-D-140). Before that, the orchestrator pushes the repair commits. No window can start until the lab's state exports on `origin/main` resume (none after `71fc50e`, 2026-10-26). (OI21-1 is done for CM-2: the 7 labels are in the CM-2 base set; the Phase 19 ledger stays as recorded.)
-2. Make the daily end-to-end tests refuse a network on their own (today only the mutation probe runs them inside `unshare -n`, PI-D-129); point the scout hook at the CM-2 registry (separate change control).
-3. OI21-2: the private stores are portable only through a documented, untried rebuild; about 70 earlier probes still use `/home/claude/pi_research`.
-4. MINOR items F20-07, F20-10, F20-13, F20-14 with the recommendations in `phase_21/release/OPEN_DECISIONS.md`; F20-11 is closed by the runbook.
-5. Carried: catalyst and social tables are not exported; forward depth collector not deployed (PI-D-044); keep `tests/test_predictive_reproductions.py` green.
-6. After CM-1: a phase to verify the installed backtesting engine (needed before any document may carry an assessment reference); the backtesting branch's reviewer set p16r4 fails its own baseline here (5 concurrency tests, same on `69bc5c3`).
+1. Merge into `main` and the flag-on steps for the scheduled runs (ED-6, ED-8): the orchestrator does these last, after CM-1 to CM-3 are merged and pushed (CM-3 merged into this branch on 2026-11-10).
+2. Schedule the daily cycle: once a day, `python -B audits/predictive-intelligence/daily/predictive_daily.py run` in a full clone with `feature/predictive-intelligence` checked out and push access; the script pushes the branch itself, before reading outcomes and at the end (PI-D-140). No window can start until the lab's state exports on `origin/main` resume (none after `71fc50e`, 2026-10-26).
+3. Signing key: Elving creates `predictive_state.key` in `%USERPROFILE%\memelab-key\` and connects that folder to the memelab scheduled tasks (`maintenance/cm3_spend_free/SIGNING.md`).
+4. Make the daily end-to-end tests refuse a network on their own (today only the mutation probe runs them inside `unshare -n`, PI-D-129); point the scout hook at the CM-2 registry (separate change control).
+5. OI21-2: the private stores are portable only through a documented, untried rebuild; about 70 earlier probes still use `/home/claude/pi_research`.
+6. MINOR items F20-07, F20-10, F20-13, F20-14 with the recommendations in `phase_21/release/OPEN_DECISIONS.md`; F20-11 is closed by the runbook.
+7. Forward depth collector not deployed (PI-D-044): needs `D:\memelab` connected to a session on Elving's computer; keep `tests/test_predictive_reproductions.py` green. Catalyst targets on exported catalyst and social rows need a later phase.
+8. After CM-1: a phase to verify the installed backtesting engine (needed before any document may carry an assessment reference); the backtesting branch's reviewer set p16r4 fails its own baseline here (5 concurrency tests, same on `69bc5c3`).
+9. CM-3: OI-CM3-1 (secret salt for the export refs, optional); new lab vocabulary values are exported as null until `VOCAB` is extended; the research report and the lab's scout report keep their earlier symbol rules (the strict rule covers alert labels and push lines); the key protects against everything except a holder of the key folder, the scheduled session included.
 
 ## Waiting on Elving (`phase_21/release/OPEN_DECISIONS.md`, ED-1 to ED-10)
 
@@ -51,6 +65,10 @@ Maintenance owner: Elving (ED-11). ED-1 (promotion) and ED-10 (stale cards) are 
 ## Phase 21 commits
 
 HEAD before `90e4c6f`; `0bb361e` pre-registration; `2a29c68` frozen probes; `b048aac` probe fix; `24c02a6` doc probes; `67f1f7d` recorded runs and documents; `6fafc1d` records; `51db1f6` post-commit record (pushed); repair: `da0ae96` change control, `a767710` CP21-1 code and documents, `881643f` repair records, then the post-commit record (`phase_21/postcommit_repair/`: suite 2 failed, the two known, 2,245 passed, 1 skipped; guard 0 violations; seal 0 problems; single-branch release audit exit 0). Local only; the orchestrator pushes.
+
+## CM-3 commits
+
+Branch `maint/catalyst-export`, base `60eb729`; `bac9960` change control; `b99e139` code and tests; `e822887` repair after the restart; `6f4aab9` records; `a9ec8e8` post-commit record (reviewed by the skeptic); repair pass 2: `dca558c` change control, `ab286ea` code and tests, `2098808` test fixture, `d45bbd4` records, then the post-commit record (`maintenance/cm3_spend_free/postcommit_repair/`: suite 2 failed, the two known, 2,687 passed, 1 skipped; guard 0 violations over 3,926 files; seal 0 problems; single-branch release audit with history exit 0, needs_action false). Local only; the orchestrator merges into `feature/predictive-intelligence` and `main` (ED-6) and applies the scheduled steps (ED-8) last.
 
 ## CM-1 commits
 

@@ -1,0 +1,75 @@
+{
+ "Lab note: x.com/someone_real posted the exact address": {
+  "problems": [],
+  "exported_summary": [
+   null
+  ],
+  "observation_columns": [
+   "access_mode",
+   "account_ref",
+   "analysis_ref",
+   "content_hash",
+   "ingested_at",
+   "item_ref",
+   "observation_ref",
+   "observed_at",
+   "observed_at_basis",
+   "retrieval_status"
+  ]
+ },
+ "Contact john.doe＠gmail.com per the post": {
+  "problems": [],
+  "exported_summary": [
+   null
+  ],
+  "observation_columns": [
+   "access_mode",
+   "account_ref",
+   "analysis_ref",
+   "content_hash",
+   "ingested_at",
+   "item_ref",
+   "observation_ref",
+   "observed_at",
+   "observed_at_basis",
+   "retrieval_status"
+  ]
+ },
+ "Mirror at www.someone-real.example/u/john_doe?ph=7185550100": {
+  "problems": [],
+  "exported_summary": [
+   null
+  ],
+  "observation_columns": [
+   "access_mode",
+   "account_ref",
+   "analysis_ref",
+   "content_hash",
+   "ingested_at",
+   "item_ref",
+   "observation_ref",
+   "observed_at",
+   "observed_at_basis",
+   "retrieval_status"
+  ]
+ },
+ "hxxps://t.me/someone_real": {
+  "problems": [],
+  "exported_summary": [
+   null
+  ],
+  "observation_columns": [
+   "access_mode",
+   "account_ref",
+   "analysis_ref",
+   "content_hash",
+   "ingested_at",
+   "item_ref",
+   "observation_ref",
+   "observed_at",
+   "observed_at_basis",
+   "retrieval_status"
+  ]
+ }
+}
+exit 0
