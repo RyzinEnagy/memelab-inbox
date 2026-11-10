@@ -1,0 +1,123 @@
+{
+ "note": "Live PumpSwap pool state (RPC) and Jupiter quotes restricted to that pool, retrieved 2026-10-23. Present-tense check of the constant-product math; never a historical fill.",
+ "retrieved_at": 1792779349.5628765,
+ "pools": [
+  {
+   "pool": "5wNu5QhdpRGrL37ffcd6TMMqZugQgxwafgz477rShtHy",
+   "base_mint": "Ce2gx9KGXJ6C9Mp5b5x1sn9Mg87JwEbrQby4Zqo3pump",
+   "quote_mint": "So11111111111111111111111111111111111111112",
+   "slot": 460541357,
+   "base_raw": 30219804254733,
+   "quote_vault_raw": 8404531659572,
+   "virtual_quote_raw": -54230560,
+   "quotes": [
+    {
+     "side": "BUY",
+     "in_raw": 50000000,
+     "jup_out_raw": 179247063,
+     "amm_key": "5wNu5QhdpRGrL37ffcd6TMMqZugQgxwafgz477rShtHy",
+     "quote_slot": 460541364
+    },
+    {
+     "side": "BUY",
+     "in_raw": 500000000,
+     "jup_out_raw": 1792375036,
+     "amm_key": "5wNu5QhdpRGrL37ffcd6TMMqZugQgxwafgz477rShtHy",
+     "quote_slot": 460541374
+    },
+    {
+     "side": "BUY",
+     "in_raw": 5000000000,
+     "jup_out_raw": 17914187875,
+     "amm_key": "5wNu5QhdpRGrL37ffcd6TMMqZugQgxwafgz477rShtHy",
+     "quote_slot": 460541385
+    },
+    {
+     "side": "SELL",
+     "in_raw": 1792375036,
+     "jup_out_raw": 496950016,
+     "amm_key": "5wNu5QhdpRGrL37ffcd6TMMqZugQgxwafgz477rShtHy",
+     "quote_slot": 460541395
+    }
+   ]
+  },
+  {
+   "pool": "3KFCgJ5R3zshW8hTDbzjSrrKSRYmKvsMfhc4Vo4iddxD",
+   "base_mint": "J8PSdNP3QewKq2Z1JJJFDMaqF7KcaiJhR7gbr5KZpump",
+   "quote_mint": "So11111111111111111111111111111111111111112",
+   "slot": 460541404,
+   "base_raw": 48700358045807,
+   "quote_vault_raw": 2549524110454,
+   "virtual_quote_raw": -5201251,
+   "quotes": [
+    {
+     "side": "BUY",
+     "in_raw": 50000000,
+     "jup_out_raw": 949846326,
+     "amm_key": "3KFCgJ5R3zshW8hTDbzjSrrKSRYmKvsMfhc4Vo4iddxD",
+     "quote_slot": 460541410
+    },
+    {
+     "side": "BUY",
+     "in_raw": 500000000,
+     "jup_out_raw": 9496796799,
+     "amm_key": "3KFCgJ5R3zshW8hTDbzjSrrKSRYmKvsMfhc4Vo4iddxD",
+     "quote_slot": 460541419
+    },
+    {
+     "side": "BUY",
+     "in_raw": 5000000000,
+     "jup_out_raw": 94801587806,
+     "amm_key": "3KFCgJ5R3zshW8hTDbzjSrrKSRYmKvsMfhc4Vo4iddxD",
+     "quote_slot": 460541430
+    },
+    {
+     "side": "SELL",
+     "in_raw": 9496796799,
+     "jup_out_raw": 494331759,
+     "amm_key": "3KFCgJ5R3zshW8hTDbzjSrrKSRYmKvsMfhc4Vo4iddxD",
+     "quote_slot": 460541440
+    }
+   ]
+  },
+  {
+   "pool": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+   "base_mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+   "quote_mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+   "slot": 460541449,
+   "base_raw": 37751990167109,
+   "quote_vault_raw": 54724102704265,
+   "virtual_quote_raw": 585068882233,
+   "quotes": [
+    {
+     "side": "BUY",
+     "in_raw": 50000,
+     "jup_out_raw": 33705,
+     "amm_key": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+     "quote_slot": 460541456
+    },
+    {
+     "side": "BUY",
+     "in_raw": 500000,
+     "jup_out_raw": 337066,
+     "amm_key": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+     "quote_slot": 460541464
+    },
+    {
+     "side": "BUY",
+     "in_raw": 5000000,
+     "jup_out_raw": 3370679,
+     "amm_key": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+     "quote_slot": 460541474
+    },
+    {
+     "side": "SELL",
+     "in_raw": 337066,
+     "jup_out_raw": 487650,
+     "amm_key": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+     "quote_slot": 460541485
+    }
+   ]
+  }
+ ]
+}

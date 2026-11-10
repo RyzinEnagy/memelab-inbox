@@ -1,0 +1,40 @@
+=== p16r3_n3c_scan.py at c42045b 2026-10-23T23:06:02Z
+{
+ "opportunities": 1023,
+ "by_horizon": {
+  "1h": {
+   "measured": 417,
+   "multi_pool_measured": 74,
+   "two_plus_apart_not_refused": 0,
+   "would_refuse_by_shared_observation_run": 0,
+   "would_refuse_by_third_rule": 0
+  },
+  "6h": {
+   "measured": 449,
+   "multi_pool_measured": 83,
+   "two_plus_apart_not_refused": 0,
+   "would_refuse_by_shared_observation_run": 0,
+   "would_refuse_by_third_rule": 0
+  },
+  "24h": {
+   "measured": 460,
+   "multi_pool_measured": 83,
+   "two_plus_apart_not_refused": 0,
+   "would_refuse_by_shared_observation_run": 0,
+   "would_refuse_by_third_rule": 0
+  },
+  "72h": {
+   "measured": 433,
+   "multi_pool_measured": 88,
+   "two_plus_apart_not_refused": 0,
+   "would_refuse_by_shared_observation_run": 0,
+   "would_refuse_by_third_rule": 0
+  }
+ },
+ "windows": []
+}
+EXIT=0
+=== control: p16r3_n3c_scan.py on the synthetic alternating world
+{"1h": {"measured": 30, "multi_pool_measured": 30, "two_plus_apart_not_refused": 0, "would_refuse_by_shared_observation_run": 0, "would_refuse_by_third_rule": 0}, "6h": {"measured": 30, "multi_pool_measured": 30, "two_plus_apart_not_refused": 0, "would_refuse_by_shared_observation_run": 0, "would_refuse_by_third_rule": 0}, "24h": {"measured": 30, "multi_pool_measured": 30, "two_plus_apart_not_refused": 30, "would_refuse_by_shared_observation_run": 0, "would_refuse_by_third_rule": 30}, "72h": {"measured": 0, "multi_pool_measured": 0, "two_plus_apart_not_refused": 0, "would_refuse_by_shared_observation_run": 0, "would_refuse_by_third_rule": 0}}
+[{'horizon_h': 24, 'mint': 'W00', 'status': 'WATCH', 'decision': '2027-01-15 08:00', 'other_pool': 'RW00', 'shared_hours': 24, 'apart_hours': 10, 'best_run_shared_observations': 1, 'third_rule': True, 'measured_ret': -0.95}]
+EXIT=0

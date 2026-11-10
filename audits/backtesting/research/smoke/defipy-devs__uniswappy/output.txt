@@ -1,0 +1,32 @@
+uniswappy version: 1.7.9 python 3.13.17
+
+[1] DEC mode, reserves 1000/100000, sell 10 token0
+  uniswappy quote          : 987.1580343970613
+  uniswappy Swap().apply   : 987.1580343970613
+  hand exact (rational)    : 987.1580343970613 = 99700000/100997
+  hand Uniswap V2 floor wei: 987158034397061298850
+  uniswappy out in wei     : 987158034397061300000
+  abs diff vs exact        : 0.0
+  reserves after           : 1010.0 99012.84196560294
+  k before / after (human) : 100000000 100002970.38525897
+  RESULT: matches to float precision
+
+[2] GWEI raw-integer mode, reserves 1000/100000 raw units, sell 10 raw units
+  uniswappy out            : 988
+  hand exact (rational)    : 987.1580343970613
+  Uniswap V2 on-chain floor: 987
+  RESULT: rounds UP vs on-chain floor (over-states output)
+
+[3] thin exit: reserves 1,000,000 TKN / 50 SOL, sell 500,000 TKN
+  uniswappy out SOL        : 16.6332999666333
+  hand exact SOL           : 16.6332999666333
+  price impact vs spot     : 0.334668001334668
+
+[4] V2 fee configurability: UniswapExchangeData(fee=2500)
+  quote default            : 987.1580343970613
+  quote with fee=2500      : 987.1580343970613
+  hand exact at 0.25% fee  : 987.648209114087
+  RESULT: fee field IGNORED by V2 (hardcoded 997/1000)
+
+fails: 0
+exit_code=0

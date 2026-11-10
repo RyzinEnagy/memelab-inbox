@@ -1,0 +1,11 @@
+Smoke test NOT RUN for QuantConnect/Lean at f3d841e60dfd010ee5fc293ea893e56952484108.
+Reason: Lean is a C# (.NET 10, Common/QuantConnect.csproj:5) engine; the review instructions say do not build it.
+There is no pip-installable engine (Python algorithms run inside the .NET host via QuantConnect.pythonnet 2.0.66,
+Common/QuantConnect.csproj:38, against Python 3.11 per DockerfileLeanFoundation:27-30), so a Python 3.13 smoke test is impossible.
+Fill timing was established from source instead:
+  Engine/AlgorithmManager.cs:585-601  OnData(slice) then transactions.ProcessSynchronousEvents() in the same time step
+  Engine/TransactionHandlers/BacktestingTransactionHandler.cs:64-80  backtest orders processed synchronously, then brokerage Scan()
+  Common/Orders/Fills/FillModel.cs:282-338  market fill at GetMarketFillPrice = prices.Current (latest bar close), full quantity
+  Common/Orders/Fills/FillModel.cs:1107-1119  bar Open used only if the order was resting before the bar started
+Expected result for the standard 30-bar test: signal on bar k close -> fill at bar k close (same bar, zero latency).
+exit_code=NOT_RUN

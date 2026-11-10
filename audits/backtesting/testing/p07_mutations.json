@@ -1,0 +1,128 @@
+[
+ {
+  "id": "M07-1 swap fee charged twice on a buy",
+  "old": "        base_from_pool = cpmm_out(self.reserve_quote, self.reserve_base, quote_in - swap_fee)",
+  "new": "        base_from_pool = cpmm_out(self.reserve_quote, self.reserve_base, quote_in - 2 * swap_fee)",
+  "file": "memelab/backtest/execution.py",
+  "tests": [
+   "tests/test_backtest_execution.py"
+  ]
+ },
+ {
+  "id": "M07-2 Token-2022 transfer fee ignored on a buy",
+  "old": "        received = base_from_pool - tfee\n",
+  "new": "        received = base_from_pool\n",
+  "file": "memelab/backtest/execution.py",
+  "tests": [
+   "tests/test_backtest_execution.py"
+  ]
+ },
+ {
+  "id": "M07-3 quote from the future accepted",
+  "old": "        if at < self.quote_at:\n",
+  "new": "        if False:\n",
+  "file": "memelab/backtest/execution.py",
+  "tests": [
+   "tests/test_backtest_execution.py"
+  ]
+ },
+ {
+  "id": "M07-4 stale quote accepted",
+  "old": "        if at - self.quote_at > self.ttl_s:\n",
+  "new": "        if False:\n",
+  "file": "memelab/backtest/execution.py",
+  "tests": [
+   "tests/test_backtest_execution.py"
+  ]
+ },
+ {
+  "id": "M07-5 CLMM priced as constant product",
+  "old": "    if pool_type == \"CPMM\" and has_reserves:\n",
+  "new": "    if has_reserves:\n",
+  "file": "memelab/backtest/execution.py",
+  "tests": [
+   "tests/test_backtest_execution.py"
+  ]
+ },
+ {
+  "id": "M07-6 failed legs still counted",
+  "old": "    usable = [p for p, ok in zip(pools, available) if ok]\n",
+  "new": "    usable = list(pools)\n",
+  "file": "memelab/backtest/execution.py",
+  "tests": [
+   "tests/test_backtest_execution.py"
+  ]
+ },
+ {
+  "id": "M07-7 impact cap ignored on exit",
+  "old": "        if max_impact is not None and 1 - (best_fill.out / step) / mid > max_impact:\n",
+  "new": "        if False:\n",
+  "file": "memelab/backtest/execution.py",
+  "tests": [
+   "tests/test_backtest_execution.py"
+  ]
+ },
+ {
+  "id": "M07-8 integer rounding in the user's favor",
+  "old": "    return (reserve_out * net) // (reserve_in + net)\n",
+  "new": "    return -(-(reserve_out * net) // (reserve_in + net))\n",
+  "file": "memelab/backtest/execution.py",
+  "tests": [
+   "tests/test_backtest_execution.py"
+  ]
+ },
+ {
+  "id": "M07-9 state after execution time used",
+  "old": "    vis = [(a, p) for a, p in states if a <= t]\n",
+  "new": "    vis = list(states)\n",
+  "file": "memelab/backtest/execution.py",
+  "tests": [
+   "tests/test_backtest_execution.py"
+  ]
+ },
+ {
+  "id": "M07-10 exit converted at the entry rate",
+  "old": "    proceeds_usd = to_usd(proceeds_quote, quote_asset, rates_exit)\n",
+  "new": "    proceeds_usd = to_usd(proceeds_quote, quote_asset, rates_entry)\n",
+  "file": "memelab/backtest/execution.py",
+  "tests": [
+   "tests/test_backtest_execution.py"
+  ]
+ },
+ {
+  "id": "M07-11 missing USD rate defaults to 1",
+  "old": "        raise KeyError(f\"no as-of USD rate for {asset}\")\n",
+  "new": "        return amount\n",
+  "file": "memelab/backtest/execution.py",
+  "tests": [
+   "tests/test_backtest_execution.py"
+  ]
+ },
+ {
+  "id": "M07-12 quotes extrapolated above the largest quoted size",
+  "old": "        if size_in > pts[-1][0] * (1 + 1e-9):\n",
+  "new": "        if False:\n",
+  "file": "memelab/backtest/execution.py",
+  "tests": [
+   "tests/test_backtest_execution.py"
+  ]
+ },
+ {
+  "id": "M07-13 pumpswap virtual reserves dropped",
+  "old": "    eff = vault_quote + virtual_quote_reserves\n",
+  "new": "    eff = vault_quote\n",
+  "file": "memelab/backtest/execution.py",
+  "tests": [
+   "tests/test_backtest_execution.py"
+  ]
+ },
+ {
+  "id": "M07-14 pumpswap default fee optimistic",
+  "old": "DEX_FEE_DEFAULTS = {\"pumpswap\": (0.0125, \"ASSUMED_UPPER_OBSERVED_TIER\")",
+  "new": "DEX_FEE_DEFAULTS = {\"pumpswap\": (0.0025, \"ASSUMED_UPPER_OBSERVED_TIER\")",
+  "file": "memelab/backtest/execution.py",
+  "tests": [
+   "tests/test_backtest_execution.py"
+  ]
+ }
+]

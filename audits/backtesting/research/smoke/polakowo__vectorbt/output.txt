@@ -1,0 +1,13 @@
+vectorbt 1.2.0
+bar k=10: open=110.0 close=110.5; bar k+1 open=111.0
+
+[1] default from_signals: entry row/price -> [Timestamp('2026-01-01 10:00:00+0000', tz='UTC'), np.float64(110.5)]
+    SAME_BAR_CLOSE_FILL = True
+[2] shifted signals + price=open: entry -> [Timestamp('2026-01-01 11:00:00+0000', tz='UTC'), np.float64(111.0)] NEXT_BAR_OPEN = True
+[3] init_cash=1e+03 slippage=1% -> entry price 111.605000
+[3] init_cash=1e+12 slippage=1% -> entry price 111.605000
+[4] SL 5% (stop level 104.975 ), bar15 low=90 close=95 ->
+                Timestamp Side   Price
+2026-01-01 10:00:00+00:00  Buy 111.605
+2026-01-01 15:00:00+00:00 Sell 104.975
+EXIT_CODE=0

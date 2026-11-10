@@ -1,0 +1,22 @@
+# Reviewer mutation sets rerun by the builder at the Phase 17 release candidate
+
+## p16r4_mutations.json
+baseline (unmutated): exit 0 :: 281 passed in 49.17s
+[R4-1 guard needs half the shared hours apart] CAUGHT :: 1 failed, 254 passed in 37.61s
+[R4-2 a single off-market hour refuses the window] CAUGHT :: 1 failed, 111 passed in 22.96s
+[R4-3 other pools summarized by their highest close] CAUGHT :: 1 failed, 257 passed in 38.70s
+[R4-4 credential values need 24 characters] CAUGHT :: 1 failed, 243 passed in 37.32s
+[R4-5 report drops the NOT point-in-time label] CAUGHT :: 1 failed, 112 passed, 1 warning in 23.31s
+[R4-6 alternates drop the selection-bias line] CAUGHT :: 1 failed, 276 passed in 47.26s
+[R4-7 timestamps no longer exempt after credential words] CAUGHT :: 1 failed, 243 passed in 37.45s
+[R4-8 credential word must touch the value again] CAUGHT :: 1 failed, 262 passed in 38.45s
+[R4-9 cache key ignores the inode] MUTATION NOT APPLICABLE (old text not found)
+RESULT: FAILURE
+
+## p17_mutations.json
+baseline (unmutated): exit 0 :: 1 passed, 1 skipped in 0.52s
+[P17-1 cache key drops the database birth time (builder's C4 test as killer)] CAUGHT :: 1 failed in 0.36s
+[P17-2 cache key drops the database birth time (reviewer's same-inode test as killer)] SURVIVED :: 1 skipped in 0.14s
+RESULT: FAILURE
+
+Notes: R4-9 targets a line replaced by the C4 fix (superseded by R16d-9, R16d-10 and P17-7, all caught). P17-2 is reported SURVIVED because its killer test skipped in the harness copy (it skips when inode reuse cannot be arranged); the same mutation is caught by P17-1 and by P17-7.

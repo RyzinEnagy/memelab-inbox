@@ -1,0 +1,17 @@
+2026-10-23T20:16:05Z
+41488adeb52bb77342ae7a75947568d31c7c3e38
+baseline (unmutated): exit 0 :: 11 passed in 7.48s
+[M09-1 record visible from its claimed publication time] CAUGHT :: 1 failed in 0.06s
+[M09-2 reposts counted as independent origins] CAUGHT :: 1 failed, 1 passed in 0.05s
+[M09-3 wallet transfers treated as sells] CAUGHT :: 1 failed, 2 passed in 0.05s
+[M09-4 attention after the rally treated as prescient] CAUGHT :: 1 failed, 3 passed in 0.05s
+[M09-5 denial ignored] CAUGHT :: 1 failed, 3 passed in 0.05s
+[M09-6 ticker-only record linked to the token] CAUGHT :: 1 failed, 4 passed in 0.05s
+[M09-7 placebo shift does nothing] CAUGHT :: 1 failed, 5 passed in 0.08s
+[M09-8 verified catalyst overrides a fatal flag] CAUGHT :: 1 failed, 8 passed in 0.14s
+[M09-9 bridge counts commentary and syndication as origins] CAUGHT :: 1 failed, 7 passed in 0.11s
+[M09-10 launch record overwritten by later exports] CAUGHT :: 1 failed, 9 passed in 7.39s
+[M09-11 catalyst usable before the lab linked the token] CAUGHT :: 1 failed, 7 passed in 0.12s
+RESULT: all mutations caught
+EXIT=0
+2026-10-23T20:16:25Z

@@ -1,0 +1,368 @@
+=== p16_golden.py at c42045b 2026-10-23T23:00:59Z
+{
+ "comparisons": [
+  {
+   "case": "G09 sell 100k tokens, fee 0.30%",
+   "quantity": "SOL out",
+   "independent": 23.741486879077964,
+   "package": 23.741486879077964,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G09 sell 100k tokens, fee 0.30%",
+   "quantity": "reserve_base after",
+   "independent": 2100000.0,
+   "package": 2100000.0,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G09 sell 100k tokens, fee 0.30%",
+   "quantity": "reserve_quote after",
+   "independent": 476.25851312092203,
+   "package": 476.25851312092203,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G09 sell 100k tokens, fee 0.30%",
+   "quantity": "avg price SOL/token",
+   "independent": 0.00023741486879077963,
+   "package": 0.00023741486879077963,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G09",
+   "quantity": "k grows (fee retained), no negative reserve",
+   "independent": 1.0001428775539363,
+   "package": 1.0001428775539363,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G09 sell with 1% transfer fee",
+   "quantity": "SOL out",
+   "independent": 23.515237744454552,
+   "package": 23.515237744454552,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G09 sell with 1% transfer fee",
+   "quantity": "reserve_base after (pool gets arrived tokens)",
+   "independent": 2099000.0,
+   "package": 2099000.0,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G09 round trip 10 SOL",
+   "quantity": "SOL back",
+   "independent": 9.941257805402198,
+   "package": 9.9412578054022,
+   "abs_diff": 1.7763568394002505e-15,
+   "ok": true
+  },
+  {
+   "case": "G09",
+   "quantity": "round trip returns less than paid",
+   "independent": 9.941257805402198,
+   "package": 9.9412578054022,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G10 buy $1,000 in $20k/side pool",
+   "quantity": "tokens",
+   "independent": 950.1131087034171,
+   "package": 950.1131087034171,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G10 buy $1,000 in $20k/side pool",
+   "quantity": "avg price",
+   "independent": 1.0525062656641604,
+   "package": 1.0525062656641604,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G10 buy $1,000 then sell back",
+   "quantity": "USD back",
+   "independent": 995.242916395893,
+   "package": 995.242916395893,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G10 exit $1,000 marked position",
+   "quantity": "USD proceeds",
+   "independent": 950.1131087034171,
+   "package": 950.1131087034171,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G10 buy $10,000 in $20k/side pool",
+   "quantity": "tokens",
+   "independent": 6655.546288573812,
+   "package": 6655.546288573812,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G10 buy $10,000 in $20k/side pool",
+   "quantity": "avg price",
+   "independent": 1.5025062656641603,
+   "package": 1.5025062656641603,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G10 buy $10,000 then sell back",
+   "quantity": "USD back",
+   "independent": 9966.65282418025,
+   "package": 9966.65282418025,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G10 exit $10,000 marked position",
+   "quantity": "USD proceeds",
+   "independent": 6655.546288573812,
+   "package": 6655.546288573812,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G10 buy $100,000 in $20k/side pool",
+   "quantity": "tokens",
+   "independent": 16659.707724425887,
+   "package": 16659.707724425887,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G10 buy $100,000 in $20k/side pool",
+   "quantity": "avg price",
+   "independent": 6.00250626566416,
+   "package": 6.00250626566416,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G10 buy $100,000 then sell back",
+   "quantity": "USD back",
+   "independent": 99916.4230312603,
+   "package": 99916.42303126029,
+   "abs_diff": 1.4551915228366852e-11,
+   "ok": true
+  },
+  {
+   "case": "G10 exit $100,000 marked position",
+   "quantity": "USD proceeds",
+   "independent": 16659.707724425887,
+   "package": 16659.707724425887,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G10",
+   "quantity": "sale proceeds grow less than size (non-linear worse fills)",
+   "independent": "{\"1000\": {\"entry_avg_price\": 1.0525062656641604, \"entry_impact\": 0.052506265664160404, \"exit_proceeds_per_marked_dollar\": 0.950113108703417}, \"10000\": {\"entry_avg_price\": 1.5025062656641603, \"entry_impact\": 0.5025062656641605, \"exit_proceeds_per_marked_dollar\": 0.6655546288573811}, \"100000\": {\"entry_avg_price\": 6.00250626566416, \"entry_impact\": 5.00250626566416, \"exit_proceeds_per_marked_dollar\": 0.16659707724425887}}",
+   "package": null,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G25 gap at open",
+   "quantity": "exit reason matches",
+   "independent": 1.0,
+   "package": 1.0,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G25 gap at open",
+   "quantity": "exit reference price",
+   "independent": 0.6,
+   "package": 0.6,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G25 gap at open",
+   "quantity": "cost USD",
+   "independent": 500.01575,
+   "package": 500.01575,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G25 gap at open",
+   "quantity": "proceeds USD",
+   "independent": 297.8923555107596,
+   "package": 297.89235551075956,
+   "abs_diff": 5.684341886080802e-14,
+   "ok": true
+  },
+  {
+   "case": "G25 gap at open",
+   "quantity": "pnl USD",
+   "independent": -202.12339448924038,
+   "package": -202.12339448924047,
+   "abs_diff": 8.526512829121202e-14,
+   "ok": true
+  },
+  {
+   "case": "G25 gap at open",
+   "quantity": "final cash = 10,000 + pnl",
+   "independent": 9797.876605510759,
+   "package": 9797.876605510759,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G25 crash inside bar, close below stop",
+   "quantity": "exit reason matches",
+   "independent": 1.0,
+   "package": 1.0,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G25 crash inside bar, close below stop",
+   "quantity": "exit reference price",
+   "independent": 0.5,
+   "package": 0.5,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G25 crash inside bar, close below stop",
+   "quantity": "cost USD",
+   "independent": 500.01575,
+   "package": 500.01575,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G25 crash inside bar, close below stop",
+   "quantity": "proceeds USD",
+   "independent": 248.27182412597875,
+   "package": 248.27182412597872,
+   "abs_diff": 2.842170943040401e-14,
+   "ok": true
+  },
+  {
+   "case": "G25 crash inside bar, close below stop",
+   "quantity": "pnl USD",
+   "independent": -251.74392587402127,
+   "package": -251.7439258740213,
+   "abs_diff": 2.842170943040401e-14,
+   "ok": true
+  },
+  {
+   "case": "G25 crash inside bar, close below stop",
+   "quantity": "final cash = 10,000 + pnl",
+   "independent": 9748.256074125979,
+   "package": 9748.256074125979,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G25 wick 67% below stop, close above stop",
+   "quantity": "exit reason matches",
+   "independent": 1.0,
+   "package": 1.0,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G25 wick 67% below stop, close above stop",
+   "quantity": "exit reference price",
+   "independent": 0.9,
+   "package": 0.9,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G25 wick 67% below stop, close above stop",
+   "quantity": "cost USD",
+   "independent": 500.01575,
+   "package": 500.01575,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G25 wick 67% below stop, close above stop",
+   "quantity": "proceeds USD",
+   "independent": 446.68006538601287,
+   "package": 446.6800653860128,
+   "abs_diff": 5.684341886080802e-14,
+   "ok": true
+  },
+  {
+   "case": "G25 wick 67% below stop, close above stop",
+   "quantity": "pnl USD",
+   "independent": -53.335684613987105,
+   "package": -53.33568461398721,
+   "abs_diff": 1.0658141036401503e-13,
+   "ok": true
+  },
+  {
+   "case": "G25 wick 67% below stop, close above stop",
+   "quantity": "final cash = 10,000 + pnl",
+   "independent": 9946.664315386013,
+   "package": 9946.664315386013,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G25",
+   "quantity": "gap and crash losses exceed the intended stop risk; a recovered wick fills at the stop (optimistic, documented)",
+   "independent": "{\"gap at open\": {\"intended_stop_loss_usd\": 50.0, \"realized_loss_usd\": 202.12339448924038, \"exceeds_intended\": true}, \"crash inside bar, close below stop\": {\"intended_stop_loss_usd\": 50.0, \"realized_loss_usd\": 251.74392587402127, \"exceeds_intended\": true}, \"wick 67% below stop, close above stop\": {\"intended_stop_loss_usd\": 50.0, \"realized_loss_usd\": 53.335684613987105, \"exceeds_intended\": true}}",
+   "package": null,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G24 50 signals, $5k account",
+   "quantity": "entries filled",
+   "independent": 4.0,
+   "package": 4,
+   "abs_diff": 0.0,
+   "ok": true
+  },
+  {
+   "case": "G24 50 signals, $5k account",
+   "quantity": "final cash",
+   "independent": 5036.714321449243,
+   "package": 5036.714321449242,
+   "abs_diff": 9.094947017729282e-13,
+   "ok": true
+  },
+  {
+   "case": "G24 50 signals, $5k account",
+   "quantity": "sum of trade pnl",
+   "independent": 36.71432144924236,
+   "package": 36.71432144924188,
+   "abs_diff": 4.831690603168681e-13,
+   "ok": true
+  },
+  {
+   "case": "G24",
+   "quantity": "cash never negative, entries within 0.5 x equity, cash = start + sum(pnl)",
+   "independent": 5036.714321449243,
+   "package": 5036.714321449242,
+   "abs_diff": 9.094947017729282e-13,
+   "ok": true
+  }
+ ],
+ "failed": 0,
+ "total": 45
+}
+EXIT=0

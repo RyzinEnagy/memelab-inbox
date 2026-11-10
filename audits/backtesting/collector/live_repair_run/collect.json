@@ -1,0 +1,36 @@
+{
+ "run_id": "depth-20261025T14Z",
+ "status": "RAN",
+ "exports": {
+  "status": "OK",
+  "exports": 3,
+  "baseline_commit": "98338a8ba3c5e65c5850933a35c06885b6ef991a",
+  "latest_commit": "e245d91cc5f56060ba8e1aa7182c846c77d1526c",
+  "latest_time": 1792923002.0,
+  "rows_unreadable": 0
+ },
+ "decisions_new": 19,
+ "deadline_hit": true,
+ "lookups": {
+  "OK": 5
+ },
+ "pool_snapshots": {
+  "OK": 18,
+  "HTTP_429": 1
+ },
+ "quotes": {
+  "NO_ROUTE": 3,
+  "PRICE_DISAGREES": 5,
+  "OK": 32,
+  "NOT_ATTEMPTED_DEADLINE": 8,
+  "QUOTE_UNSUPPORTED_CHAIN": 3
+ },
+ "quote_source": "OK",
+ "calls": {
+  "geckoterminal": 6,
+  "jupiter": 40,
+  "retries": 2
+ },
+ "pools_active": 19,
+ "wall_s": 115.0
+}

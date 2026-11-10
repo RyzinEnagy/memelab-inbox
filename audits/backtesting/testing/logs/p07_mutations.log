@@ -1,0 +1,16 @@
+baseline (unmutated): exit 0 :: 15 passed in 0.09s
+[M07-1 swap fee charged twice on a buy] CAUGHT :: 1 failed in 0.03s
+[M07-2 Token-2022 transfer fee ignored on a buy] CAUGHT :: 1 failed, 5 passed in 0.04s
+[M07-3 quote from the future accepted] CAUGHT :: 1 failed, 6 passed in 0.05s
+[M07-4 stale quote accepted] CAUGHT :: 1 failed, 6 passed in 0.04s
+[M07-5 CLMM priced as constant product] CAUGHT :: 1 failed, 2 passed in 0.04s
+[M07-6 failed legs still counted] CAUGHT :: 1 failed, 4 passed in 0.04s
+[M07-7 impact cap ignored on exit] CAUGHT :: 1 failed, 4 passed in 0.04s
+[M07-8 integer rounding in the user's favor] CAUGHT :: 1 failed in 0.04s
+[M07-9 state after execution time used] CAUGHT :: 1 failed, 3 passed in 0.04s
+[M07-10 exit converted at the entry rate] CAUGHT :: 1 failed, 7 passed in 0.05s
+[M07-11 missing USD rate defaults to 1] CAUGHT :: 1 failed, 7 passed in 0.04s
+[M07-12 quotes extrapolated above the largest quoted size] CAUGHT :: 1 failed, 6 passed in 0.05s
+[M07-13 pumpswap virtual reserves dropped] CAUGHT :: 1 failed, 10 passed in 0.05s
+[M07-14 pumpswap default fee optimistic] CAUGHT :: 1 failed, 14 passed in 0.08s
+RESULT: all mutations caught

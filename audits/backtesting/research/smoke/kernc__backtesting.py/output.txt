@@ -1,0 +1,9 @@
+backtesting 0.6.6
+bar k=10: Open=110.0 Close=110.5; bar k+1 Open=111.0
+[1] trade_on_close=False: EntryBar=11 EntryPrice=111.0
+[1] trade_on_close=True: EntryBar=10 EntryPrice=110.5
+[2] SL+TP both inside bar 15: ExitBar=15 ExitPrice=105.0 (SL=105, TP=118)
+[3] gap below SL: ExitBar=15 ExitPrice=90.0 (SL=105, bar15 Open=90)
+[4] size=1 spread=1%: EntryPrice=112.1100
+[4] size=900 spread=1%: EntryPrice=112.1100
+EXIT_CODE=0

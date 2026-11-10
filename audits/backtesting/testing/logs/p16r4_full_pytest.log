@@ -1,0 +1,10 @@
+2026-10-23T23:41:25Z
+7c7b5822b0be1ae24dfed19cc00cf8871aef720f
+E             + REPORTED)
+
+tests/test_catalyst.py:44: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+1 failed, 1023 passed in 187.88s (0:03:07)
+EXIT=1
+2026-10-23T23:44:33Z

@@ -1,0 +1,19 @@
+[1] in-range step vs x*y=k on virtual reserves (same 0.30% fee)
+  clmm step out 99694048.344470  cpmm-virtual out 99694048.344470  rel diff 4.42e-57
+
+[2] size ladder, a_to_b, liquidity drops from 1e12 to 4e11 when crossing tick -200
+  in    100,000,000  out      99,694,048.34  avg-vs-spot impact  0.3099%  fee 300,000  ticks crossed []  unfilled 0
+  in  1,000,000,000  out     996,046,801.88  avg-vs-spot impact  0.3993%  fee 3,000,000  ticks crossed []  unfilled 0
+  in 10,000,000,000  out   9,871,973,262.09  avg-vs-spot impact  1.2842%  fee 30,000,000  ticks crossed []  unfilled 0
+  in 50,000,000,000  out  45,467,209,781.18  avg-vs-spot impact  9.0692%  fee 150,000,000  ticks crossed [-200]  unfilled 0
+
+[3] adaptive fee (adaptive_fee.rs:363-401): fee = static + ceil(ctrl*(va*group)^2/(1e5*1e4*1e4)), cap 10%
+  tick groups from reference  0: volatility_acc      0  total fee 0.3000%
+  tick groups from reference  1: volatility_acc  10000  total fee 0.3052%
+  tick groups from reference  2: volatility_acc  20000  total fee 0.3205%
+  tick groups from reference  4: volatility_acc  40000  total fee 0.3820%
+  tick groups from reference  8: volatility_acc  80000  total fee 0.6277%
+  tick groups from reference 16: volatility_acc 160000  total fee 1.6108%
+
+invariant failures: 0
+exit_code=0

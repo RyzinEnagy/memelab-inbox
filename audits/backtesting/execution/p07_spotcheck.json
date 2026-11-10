@@ -1,0 +1,380 @@
+{
+ "retrieved_at": 1792779349.5628765,
+ "results": [
+  {
+   "state": {
+    "pool": "5wNu5QhdpRGrL37ffcd6TMMqZugQgxwafgz477rShtHy",
+    "owner": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
+    "data_len": 301,
+    "slot": 460541357,
+    "vslot": 460541360,
+    "base_mint": "Ce2gx9KGXJ6C9Mp5b5x1sn9Mg87JwEbrQby4Zqo3pump",
+    "quote_mint": "So11111111111111111111111111111111111111112",
+    "base_vault": "3T2dYJ3mSUaa9Dn3x86PkxZBBSxKGdzu4y9YiN61aa6S",
+    "quote_vault": "AJTtu7ZW3sDiq627cBCkrA9JHxMzFaQZYtCoyZnsgWFB",
+    "vault_mints_ok": true,
+    "base_raw": 30219804254733,
+    "quote_raw": 8404531659572,
+    "base_dec": 6,
+    "quote_dec": 9,
+    "token_program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "mint_extensions": [],
+    "mint_authority": null,
+    "freeze_authority": null,
+    "virtual_quote_raw": -54230560
+   },
+   "quotes": [
+    {
+     "side": "BUY",
+     "in_raw": 50000000,
+     "jup_out_raw": 179247063,
+     "amm_key": "5wNu5QhdpRGrL37ffcd6TMMqZugQgxwafgz477rShtHy",
+     "same_pool": true,
+     "quote_slot": 460541364,
+     "price_impact_pct": "0.0063701530649730320133286822",
+     "error": null,
+     "implied": {
+      "fee_on_input": 0.002980417647250766,
+      "fee_on_top": 0.002989327090464622
+     },
+     "implied_vault_only": {
+      "fee_on_input": 0.0029739842989862098,
+      "fee_on_top": 0.002982855263706563
+     },
+     "model_out_fee_0.0025": 179333433,
+     "rel_err_fee_0.0025": 0.00048184889924818286,
+     "model_out_fee_0.003": 179243542,
+     "rel_err_fee_0.003": -1.964327861814219e-05,
+     "model_out_fee_0.0055": 178794087,
+     "rel_err_fee_0.0055": -0.0025271041679494344,
+     "model_out_fee_0.0125": 177535615,
+     "rel_err_fee_0.0125": -0.009547983500293067
+    },
+    {
+     "side": "BUY",
+     "in_raw": 500000000,
+     "jup_out_raw": 1792375036,
+     "amm_key": "5wNu5QhdpRGrL37ffcd6TMMqZugQgxwafgz477rShtHy",
+     "same_pool": true,
+     "quote_slot": 460541374,
+     "price_impact_pct": "0.0037502154860205069211918181",
+     "error": null,
+     "implied": {
+      "fee_on_input": 0.0029803685061216,
+      "fee_on_top": 0.0029892776551010414
+     },
+     "implied_vault_only": {
+      "fee_on_input": 0.002973935157540075,
+      "fee_on_top": 0.0029828058286620607
+     },
+     "model_out_fee_0.0025": 1793238559,
+     "rel_err_fee_0.0025": 0.0004817758463804278,
+     "model_out_fee_0.003": 1792339745,
+     "rel_err_fee_0.003": -1.9689517702037307e-05,
+     "model_out_fee_0.0055": 1787845679,
+     "rel_err_fee_0.0055": -0.0025270141064384077,
+     "model_out_fee_0.0125": 1775262286,
+     "rel_err_fee_0.0125": -0.009547527529835564
+    },
+    {
+     "side": "BUY",
+     "in_raw": 5000000000,
+     "jup_out_raw": 17914187875,
+     "amm_key": "5wNu5QhdpRGrL37ffcd6TMMqZugQgxwafgz477rShtHy",
+     "same_pool": true,
+     "quote_slot": 460541385,
+     "price_impact_pct": "0.0042399851069437537795952781",
+     "error": null,
+     "implied": {
+      "fee_on_input": 0.0029803610222788324,
+      "fee_on_top": 0.002989270126448673
+     },
+     "implied_vault_only": {
+      "fee_on_input": 0.0029739276736487907,
+      "fee_on_top": 0.0029827983000583203
+     },
+     "model_out_fee_0.0025": 17922813757,
+     "rel_err_fee_0.0025": 0.0004815111943778927,
+     "model_out_fee_0.003": 17913835216,
+     "rel_err_fee_0.003": -1.9686016606512702e-05,
+     "model_out_fee_0.0055": 17868942430,
+     "rel_err_fee_0.0055": -0.002525676593084225,
+     "model_out_fee_0.0125": 17743241921,
+     "rel_err_fee_0.0125": -0.009542489740132831
+    },
+    {
+     "side": "SELL",
+     "in_raw": 1792375036,
+     "jup_out_raw": 496950016,
+     "amm_key": "5wNu5QhdpRGrL37ffcd6TMMqZugQgxwafgz477rShtHy",
+     "same_pool": true,
+     "quote_slot": 460541395,
+     "price_impact_pct": "0.0021742005860657926340733701",
+     "error": null,
+     "implied": {
+      "fee_on_output": 0.003010666445507293,
+      "fee_on_input": 0.0030108444743284224
+     },
+     "implied_vault_only": {
+      "fee_on_output": 0.0030170995570788506,
+      "fee_on_input": 0.003017277965156051
+     },
+     "round_trip_quote_lost_frac": 0.006099968000000011
+    }
+   ],
+   "t": 1792779321.4909265
+  },
+  {
+   "state": {
+    "pool": "3KFCgJ5R3zshW8hTDbzjSrrKSRYmKvsMfhc4Vo4iddxD",
+    "owner": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
+    "data_len": 301,
+    "slot": 460541404,
+    "vslot": 460541407,
+    "base_mint": "J8PSdNP3QewKq2Z1JJJFDMaqF7KcaiJhR7gbr5KZpump",
+    "quote_mint": "So11111111111111111111111111111111111111112",
+    "base_vault": "D3HR3UmnpbFcryUW1xAF1tectFc9zmypJxZAo4CvyG74",
+    "quote_vault": "2rDB8Srhx2DPCCAxgqkS13mu9FeamCuGWgua1KfwQLXX",
+    "vault_mints_ok": true,
+    "base_raw": 48700358045807,
+    "quote_raw": 2549524110454,
+    "base_dec": 6,
+    "quote_dec": 9,
+    "token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+    "mint_extensions": [
+     "metadataPointer",
+     "tokenMetadata"
+    ],
+    "mint_authority": null,
+    "freeze_authority": null,
+    "virtual_quote_raw": -5201251
+   },
+   "quotes": [
+    {
+     "side": "BUY",
+     "in_raw": 50000000,
+     "jup_out_raw": 949846326,
+     "amm_key": "3KFCgJ5R3zshW8hTDbzjSrrKSRYmKvsMfhc4Vo4iddxD",
+     "same_pool": true,
+     "quote_slot": 460541410,
+     "price_impact_pct": "0.0111945200609687659495124107",
+     "error": null,
+     "implied": {
+      "fee_on_input": 0.0054699806393930794,
+      "fee_on_top": 0.005500065893345063
+     },
+     "implied_vault_only": {
+      "fee_on_input": 0.005467951707487817,
+      "fee_on_top": 0.005498014585729738
+     },
+     "model_out_fee_0.0025": 952682811,
+     "rel_err_fee_0.0025": 0.002986256747388838,
+     "model_out_fee_0.003": 952205285,
+     "rel_err_fee_0.003": 0.0024835164756957795,
+     "model_out_fee_0.0055": 949817655,
+     "rel_err_fee_0.0055": -3.0184882770178945e-05,
+     "model_out_fee_0.0125": 943132291,
+     "rel_err_fee_0.0125": -0.007068548686474552
+    },
+    {
+     "side": "BUY",
+     "in_raw": 500000000,
+     "jup_out_raw": 9496796799,
+     "amm_key": "3KFCgJ5R3zshW8hTDbzjSrrKSRYmKvsMfhc4Vo4iddxD",
+     "same_pool": true,
+     "quote_slot": 460541419,
+     "price_impact_pct": "0.0114994939776558770597986466",
+     "error": null,
+     "implied": {
+      "fee_on_input": 0.005469922083076395,
+      "fee_on_top": 0.0055000066911332635
+     },
+     "implied_vault_only": {
+      "fee_on_input": 0.005467893151051784,
+      "fee_on_top": 0.005497955383638731
+     },
+     "model_out_fee_0.0025": 9525151125,
+     "rel_err_fee_0.0025": 0.0029856726009958034,
+     "model_out_fee_0.003": 9520377546,
+     "rel_err_fee_0.003": 0.002483021117444917,
+     "model_out_fee_0.0055": 9496509640,
+     "rel_err_fee_0.0055": -3.0237458595538946e-05,
+     "model_out_fee_0.0125": 9429679377,
+     "rel_err_fee_0.0125": -0.007067374760199918
+    },
+    {
+     "side": "BUY",
+     "in_raw": 5000000000,
+     "jup_out_raw": 94801587806,
+     "amm_key": "3KFCgJ5R3zshW8hTDbzjSrrKSRYmKvsMfhc4Vo4iddxD",
+     "same_pool": true,
+     "quote_slot": 460541430,
+     "price_impact_pct": "0.0132381226130733322557146018",
+     "error": null,
+     "implied": {
+      "fee_on_input": 0.00546991600554203,
+      "fee_on_top": 0.005500000546562189
+     },
+     "implied_vault_only": {
+      "fee_on_input": 0.0054678870735048735,
+      "fee_on_top": 0.005497949239080091
+     },
+     "model_out_fee_0.0025": 95084136363,
+     "rel_err_fee_0.0025": 0.002980420091467151,
+     "model_out_fee_0.003": 95036568150,
+     "rel_err_fee_0.003": 0.0024786540968160242,
+     "model_out_fee_0.0055": 94798725691,
+     "rel_err_fee_0.0055": -3.0190580835642855e-05,
+     "model_out_fee_0.0125": 94132754422,
+     "rel_err_fee_0.0125": -0.007055086306873792
+    },
+    {
+     "side": "SELL",
+     "in_raw": 9496796799,
+     "jup_out_raw": 494331759,
+     "amm_key": "3KFCgJ5R3zshW8hTDbzjSrrKSRYmKvsMfhc4Vo4iddxD",
+     "same_pool": true,
+     "quote_slot": 460541440,
+     "price_impact_pct": "0.0002252749927856673465479594",
+     "error": null,
+     "implied": {
+      "fee_on_output": 0.005511041691611207,
+      "fee_on_input": 0.00551211044667832
+     },
+     "implied_vault_only": {
+      "fee_on_output": 0.00551307053560901,
+      "fee_on_input": 0.005514139681947805
+     },
+     "round_trip_quote_lost_frac": 0.011336482000000037
+    }
+   ],
+   "t": 1792779331.3359904
+  },
+  {
+   "state": {
+    "pool": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+    "owner": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
+    "data_len": 301,
+    "slot": 460541449,
+    "vslot": 460541452,
+    "base_mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+    "quote_mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+    "base_vault": "65w5qCPq6nPMLSzn4ZCK3UYfgtVsXNdZAfUXaD6bT4ci",
+    "quote_vault": "7BzRkishU6Y7tRDM8Fk1upRDghD6nuZLAQ7JdKLGnCnv",
+    "vault_mints_ok": true,
+    "base_raw": 37751990167109,
+    "quote_raw": 54724102704265,
+    "base_dec": 6,
+    "quote_dec": 6,
+    "token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+    "mint_extensions": [
+     "metadataPointer",
+     "tokenMetadata"
+    ],
+    "mint_authority": null,
+    "freeze_authority": null,
+    "virtual_quote_raw": 585068882233
+   },
+   "quotes": [
+    {
+     "side": "BUY",
+     "in_raw": 50000,
+     "jup_out_raw": 33705,
+     "amm_key": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+     "same_pool": true,
+     "quote_slot": 460541456,
+     "price_impact_pct": "0.0005945926933120284116123881",
+     "error": null,
+     "implied": {
+      "fee_on_input": 0.01239875209999941,
+      "fee_on_top": 0.012554411131378895
+     },
+     "implied_vault_only": {
+      "fee_on_input": 0.02284574925484062,
+      "fee_on_top": 0.02337988013398995
+     },
+     "model_out_fee_0.0025": 34042,
+     "rel_err_fee_0.0025": 0.00999851654057271,
+     "model_out_fee_0.003": 34025,
+     "rel_err_fee_0.003": 0.009494140335261747,
+     "model_out_fee_0.0055": 33940,
+     "rel_err_fee_0.0055": 0.006972259308707818,
+     "model_out_fee_0.0125": 33701,
+     "rel_err_fee_0.0125": -0.00011867675419074963
+    },
+    {
+     "side": "BUY",
+     "in_raw": 500000,
+     "jup_out_raw": 337066,
+     "amm_key": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+     "same_pool": true,
+     "quote_slot": 460541464,
+     "price_impact_pct": "0",
+     "error": null,
+     "implied": {
+      "fee_on_input": 0.012351862039410744,
+      "fee_on_top": 0.01250633860852135
+     },
+     "implied_vault_only": {
+      "fee_on_input": 0.022799355204489502,
+      "fee_on_top": 0.02333129365593134
+     },
+     "model_out_fee_0.0025": 340428,
+     "rel_err_fee_0.0025": 0.009974307702349083,
+     "model_out_fee_0.003": 340257,
+     "rel_err_fee_0.003": 0.009466988660974396,
+     "model_out_fee_0.0055": 339404,
+     "rel_err_fee_0.0055": 0.006936327010140353,
+     "model_out_fee_0.0125": 337015,
+     "rel_err_fee_0.0125": -0.00015130567900645264
+    },
+    {
+     "side": "BUY",
+     "in_raw": 5000000,
+     "jup_out_raw": 3370679,
+     "amm_key": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+     "same_pool": true,
+     "quote_slot": 460541474,
+     "price_impact_pct": "0.0000872412038556860934447107",
+     "error": null,
+     "implied": {
+      "fee_on_input": 0.01234621542283909,
+      "fee_on_top": 0.012500549904868485
+     },
+     "implied_vault_only": {
+      "fee_on_input": 0.022793768318692176,
+      "fee_on_top": 0.023325443063819673
+     },
+     "model_out_fee_0.0025": 3404282,
+     "rel_err_fee_0.0025": 0.009969207984503958,
+     "model_out_fee_0.003": 3402575,
+     "rel_err_fee_0.003": 0.009462781831197864,
+     "model_out_fee_0.0055": 3394043,
+     "rel_err_fee_0.0055": 0.006931541093055715,
+     "model_out_fee_0.0125": 3370154,
+     "rel_err_fee_0.0125": -0.00015575496806430333
+    },
+    {
+     "side": "SELL",
+     "in_raw": 337066,
+     "jup_out_raw": 487650,
+     "amm_key": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+     "same_pool": true,
+     "quote_slot": 460541485,
+     "price_impact_pct": "0.0244372480320884958501372261",
+     "error": null,
+     "implied": {
+      "fee_on_output": 0.012502550321505601,
+      "fee_on_input": 0.012502550431738091
+     },
+     "implied_vault_only": {
+      "fee_on_output": 0.0019449714752414193,
+      "fee_on_input": 0.001944971492573222
+     },
+     "round_trip_quote_lost_frac": 0.024700000000000055
+    }
+   ],
+   "t": 1792779341.061979
+  }
+ ]
+}

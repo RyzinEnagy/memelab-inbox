@@ -1,0 +1,19 @@
+2026-10-23T20:28:12Z
+41488adeb52bb77342ae7a75947568d31c7c3e38
+baseline (unmutated): exit 0 :: 119 passed in 16.62s
+[M16-1 future liquidity snapshot used for a fill] CAUGHT :: 1 failed, 14 passed in 0.13s
+[M16-2 stale liquidity snapshot accepted (max age ignored)] CAUGHT :: 1 failed, 6 passed in 0.12s
+[M16-3 liquidity haircut dropped (fake depth)] CAUGHT :: 1 failed, 11 passed in 0.11s
+[M16-4 lab thesis visible a day before it was written] CAUGHT :: 1 failed in 0.14s
+[M16-5 pool basis chosen with all future bars] SURVIVED :: 17 passed in 0.35s
+[M16-6 network fee priced with the latest SOL bar (future price)] CAUGHT :: 1 failed, 1 passed in 0.22s
+[M16-7 launch catalyst usable from its claimed first-trade time] CAUGHT :: 1 failed, 9 passed in 7.08s
+[M16-8 total liquidity across pools used as the main pool depth] CAUGHT :: 1 failed, 18 passed in 0.64s
+[M16-9 delisted token still fillable] SURVIVED :: 31 passed in 6.93s
+[M16-10 non-executable exit valued at the paper price] CAUGHT :: 1 failed, 6 passed in 0.11s
+[M16-11 strategy sees the bar still forming (one bar of future)] CAUGHT :: 1 failed in 0.08s
+[M16-12 dataset hash ignores the sealed-test cutoff] CAUGHT :: 1 failed, 10 passed in 0.26s
+[M16-13 validation windows read past their end (no cutoff)] SURVIVED :: 13 passed in 7.11s
+RESULT: FAILURE
+EXIT=1
+2026-10-23T20:28:57Z

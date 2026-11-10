@@ -1,0 +1,52 @@
+2026-10-23T20:12:50Z
+f99c6c74f00f52fb9e8f1259227a63994a419a5d
+F....................................................................... [  9%]
+........................................................................ [ 18%]
+........................................................................ [ 27%]
+........................................................................ [ 36%]
+........................................................................ [ 45%]
+........................................................................ [ 54%]
+........................................................................ [ 64%]
+........................................................................ [ 73%]
+........................................................................ [ 82%]
+........................................................................ [ 91%]
+..................................................................       [100%]
+=================================== FAILURES ===================================
+__________________ test_dedup_corroboration_resurface_denial ___________________
+
+tmpdb = <module 'memelab.db' from '/tmp/claude-0/-home-claude/ffd12d05-0c7e-5977-aa81-38ffab4f7cfb/scratchpad/base_wt/memelab/db.py'>
+
+    def test_dedup_corroboration_resurface_denial(tmpdb):
+        from memelab.catalyst import ingest as I
+        t0 = time.time()
+        # run 1: two outlets, same story (different domains) + one syndicated copy on the same domain
+        b1 = {
+            "cat:news:cointelegraph": _rss([{"title": "Binance will list Shielded Inu (SHINU) on spot", "link": "https://cointelegraph.com/news/binance-shinu", "pub": "Wed, 07 Oct 2026 01:00:00 +0000", "desc": "Binance announced it will list SHINU on Oct 9."}]),
+            "cat:news:decrypt": {"_cat": "news:decrypt", "s": 200, "body": [{"title": "Binance to list Shielded Inu SHINU on spot market", "link": "https://decrypt.co/binance-shinu", "pub": "Wed, 07 Oct 2026 01:20:00 +0000", "desc": "Binance announced it will list SHINU on Oct 9."}]},
+        }
+        s1 = I.ingest_bodies(b1, retrieved_at=t0)
+        assert s1["items_new"] == 2 and s1["events_new"] == 1 and s1["events_corroborated"] == 1
+        with tmpdb.connect() as con:
+            ev = con.execute("SELECT * FROM catalyst_events").fetchone()
+            assert ev["independent_sources"] == 2 and ev["evidence_status"] == "REPORTED" and ev["category"] == "ACCESS"
+        # run 2: same items again -> idempotent
+        s2 = I.ingest_bodies(b1, retrieved_at=t0 + 60)
+        assert s2["items_new"] == 0 and s2["events_new"] == 0
+        # official source joins -> evidence upgrade to CONFIRMED, recorded as a revision
+        b3 = {"cat:exch:binance:listings": {"_cat": "exch:binance:listings", "s": 200, "body": [{"id": 1, "code": "abc", "title": "Binance Will List Shielded Inu (SHINU) - 2026-10-09", "pub": (t0 + 120) * 1000}]}}
+        I.ingest_bodies(b3, retrieved_at=t0 + 120)
+        with tmpdb.connect() as con:
+            ev = con.execute("SELECT * FROM catalyst_events").fetchone()
+>           assert ev["evidence_status"] == "CONFIRMED" and ev["independent_sources"] == 3 and ev["event_at"] is None  # event_at set only on creation
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AssertionError: assert ('REPORTED' == 'CONFIRMED'
+E             
+E             - CONFIRMED
+E             + REPORTED)
+
+tests/test_catalyst.py:44: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+1 failed, 785 passed in 151.15s (0:02:31)
+EXIT=1
+2026-10-23T20:15:22Z

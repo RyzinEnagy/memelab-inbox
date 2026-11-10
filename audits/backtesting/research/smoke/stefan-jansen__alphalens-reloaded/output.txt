@@ -1,0 +1,9 @@
+alphalens 0.5.0
+Dropped 0.2% entries from factor data: 0.2% in forward returns computation and 0.0% in binning phase (set max_loss=0 to see potentially suppressed Exceptions).
+max_loss is 100.0%, not exceeded: OK!
+[1] fwd '1h' return for T0 at bar k equals close[k+1]/close[k]-1: True => entry assumed at the factor bar's own price (same-bar), unless the caller shifts prices
+Dropped 0.2% entries from factor data: 0.2% in forward returns computation and 0.0% in binning phase (set max_loss=0 to see potentially suppressed Exceptions).
+max_loss is 100.0%, not exceeded: OK!
+[2] T1 +5900% hour, default filter_zscore=20: ROW DROPPED | filter_zscore=None: 59.00
+[3] T2 after pool drained (price NaN from bar 401): fwd return at bar 400 = 0.0 (prices are ffilled)
+EXIT_CODE=0

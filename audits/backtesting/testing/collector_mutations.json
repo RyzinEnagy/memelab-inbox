@@ -1,0 +1,425 @@
+[
+ {
+  "id": "MC-1 baseline rows counted as new decisions",
+  "file": "memelab/backtest/depth.py",
+  "old": "                if i == 0 or ct < now - window_s or ct > now:",
+  "new": "                if ct < now - window_s or ct > now:",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-2 24 h entry window ignored",
+  "file": "memelab/backtest/depth.py",
+  "old": "                if i == 0 or ct < now - window_s or ct > now:",
+  "new": "                if i == 0 or ct > now:",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-3 primary pool of the export ignored",
+  "file": "memelab/backtest/depth.py",
+  "old": "                pool, src = tk.get(\"primary_pool\"), \"EXPORT_PRIMARY_POOL\"",
+  "new": "                pool, src = tk.get(\"graduated_pool\"), \"EXPORT_PRIMARY_POOL\"",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-4 pool identity not checked",
+  "file": "memelab/backtest/depth.py",
+  "old": "    side = \"base\" if _same(chain, base, want) else \"quote\" if _same(chain, quote, want) else None",
+  "new": "    side = \"base\"",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-5 EVM identity compared with case",
+  "file": "memelab/backtest/depth.py",
+  "old": "    return a == b if chain == \"solana\" else a.lower() == b.lower()",
+  "new": "    return a == b",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-6 token amount ignores the mint's decimals",
+  "file": "memelab/backtest/depth.py",
+  "old": "        raw = int(math.floor(amount * 10 ** int(dec)))",
+  "new": "        raw = int(math.floor(amount * 10 ** 9))",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-7 quote identity not checked",
+  "file": "memelab/backtest/depth.py",
+  "old": "            if j.get(\"inputMint\") != p[\"mint\"] or j.get(\"outputMint\") != USDC or str(j.get(\"inAmount\")) != str(raw) or j.get(\"swapMode\") not in (None, \"ExactIn\"):",
+  "new": "            if j.get(\"inputMint\") != p[\"mint\"] or j.get(\"outputMint\") != USDC:",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-8 captured_at is the request start, not the response",
+  "file": "memelab/backtest/depth.py",
+  "old": "            t = self.clock()\n            raw_ref = store.save_raw",
+  "new": "            t = budget._last\n            raw_ref = store.save_raw",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-9 refresh calls not counted in the GeckoTerminal window",
+  "file": "memelab/backtest/depth.py",
+  "old": "        self.gt_stamps = [float(gt_prior_end)] * int(gt_prior_calls) if gt_prior_end is not None else []",
+  "new": "        self.gt_stamps = []",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-10 GeckoTerminal faster than one call per 10 s",
+  "file": "memelab/backtest/depth.py",
+  "old": "GT_SPACING_S = 10.0",
+  "new": "GT_SPACING_S = 3.0",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-11 GeckoTerminal and Jupiter call caps ignored",
+  "file": "memelab/backtest/depth.py",
+  "old": "            if budget.calls >= budget.max_calls:\n                skip = ",
+  "new": "            if False:\n                skip = ",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-12 deadline ignored before a call",
+  "file": "memelab/backtest/depth.py",
+  "old": "            if not self.time_left():\n                skip = ",
+  "new": "            if False:\n                skip = ",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-13 blocked quote source reported as OK",
+  "file": "memelab/backtest/depth.py",
+  "old": "\"QUOTE_SOURCE_BLOCKED\" if blocked and not (q.get(\"OK\") or q.get(\"PRICE_DISAGREES\")) else \"OK\"",
+  "new": "\"OK\"",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-14 decisions followed forever",
+  "file": "memelab/backtest/depth.py",
+  "old": "    return [dict(r) for r in con.execute(\"SELECT * FROM bt_depth_decisions WHERE export_time>=? AND export_time<=? ORDER BY export_time, id\",\n                                         (now - active_s, now))",
+  "new": "    return [dict(r) for r in con.execute(\"SELECT * FROM bt_depth_decisions WHERE export_time>=? AND export_time<=? ORDER BY export_time, id\",\n                                         (now - 10 * active_s, now))",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-15 since_export_s sign",
+  "file": "memelab/backtest/depth.py",
+  "old": "                since_export_s=(captured - dec[\"export_time\"]) if captured is not None else None,",
+  "new": "                since_export_s=(dec[\"export_time\"] - captured) if captured is not None else None,",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-16 depth tables not append-only",
+  "file": "memelab/backtest/schema.py",
+  "old": "V2_UP = \"\\n\".join(V2_TABLES.values()) + \"\\n\" + _triggers(list(V2_TABLES))",
+  "new": "V2_UP = \"\\n\".join(V2_TABLES.values())",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-17 rollback drops a v1 table too",
+  "file": "memelab/backtest/schema.py",
+  "old": "    + [f\"DROP TABLE IF EXISTS {t};\" for t in reversed(list(V2_TABLES))]",
+  "new": "    + [f\"DROP TABLE IF EXISTS {t};\" for t in reversed(list(V2_TABLES) + [\"bt_market_bars\"])]",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MC-18 collect step writes the stored database",
+  "file": "audits/backtesting/release/hourly_shadow.sh",
+  "old": "--db \"$W/bt.sqlite\" > \"$W/collect.json\"",
+  "new": "--db \"$L/bt.sqlite\" > \"$W/collect.json\"",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-1 cap on the retry raises (skeptic M1)",
+  "file": "memelab/backtest/depth.py",
+  "old": "            if budget.calls >= budget.max_calls:\n                skip = ",
+  "new": "            if budget.calls >= budget.max_calls:\n                raise gecko.BudgetExhausted('cap')\n                skip = ",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-2 retry made after the cap (skeptic M1)",
+  "file": "memelab/backtest/depth.py",
+  "old": "and k == 0 and budget.calls < budget.max_calls and self.clock()",
+  "new": "and k == 0 and self.clock()",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-3 no retry at all",
+  "file": "memelab/backtest/depth.py",
+  "old": "            if status in RETRY_STATUS and k == 0 and",
+  "new": "            if False and",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-4 GeckoTerminal 60 s window not enforced (skeptic M2)",
+  "file": "memelab/backtest/depth.py",
+  "old": "        if len(recent) >= GT_WINDOW_MAX:",
+  "new": "        if False:",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-5 quote order by export position (skeptic M3)",
+  "file": "memelab/backtest/depth.py",
+  "old": "        quote_q.sort(key=lambda x: quote_key(x[0]))",
+  "new": "        pass",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-6 skipped quotes leave no row (skeptic M3, minor 2)",
+  "file": "memelab/backtest/depth.py",
+  "old": "            _snapshot(con, run_id=run_id, dec=p, kind=\"QUOTE\", provider=JUP_PROVIDER, url=None, resp=None, state=state, size_usd=s)\n",
+  "new": "            pass\n",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-7 pools not read leave no row",
+  "file": "memelab/backtest/depth.py",
+  "old": "            _snapshot(con, run_id=run_id, dec=p, kind=\"POOL\", provider=gecko.PROVIDER, url=None, resp=None, state=why(R.gt))\n",
+  "new": "            pass\n",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-8 price check removed (skeptic M4)",
+  "file": "memelab/backtest/depth.py",
+  "old": "            if state == \"OK\" and check is not None and abs(check - 1.0) > price_tolerance:",
+  "new": "            if False:",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-9 price source not recorded (skeptic M4)",
+  "file": "memelab/backtest/depth.py",
+  "old": "               \"price_captured_at\": pool_resp.get(\"t\"), \"price_raw_sha256\": pool_resp.get(\"sha\")}",
+  "new": "               }",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-10 same-hour rerun not refused (minor 5)",
+  "file": "memelab/backtest/depth.py",
+  "old": "    if done_before:",
+  "new": "    if False:",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-11 failed pool lookup not recorded (minor 4)",
+  "file": "memelab/backtest/depth.py",
+  "old": "            _lookup_row(con, run_id=run_id, dec=d, url=url if resp.get(\"status\") is not None else None, resp=resp, state=st, pool=pool,",
+  "new": "            if st == 'OK': _lookup_row(con, run_id=run_id, dec=d, url=url if resp.get(\"status\") is not None else None, resp=resp, state=st, pool=pool,",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-12 failed lookups not retried (minor 4)",
+  "file": "memelab/backtest/depth.py",
+  "old": "    return [d for d in active_decisions(con, now) if not d[\"pool_address\"] and _effective_pool(con, d)[0] is None]",
+  "new": "    return [d for d in active_decisions(con, now) if not d[\"pool_address\"] and not con.execute('SELECT 1 FROM bt_depth_pool_lookups WHERE decision_id=?', (d['id'],)).fetchone()]",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-13 one bad row makes the export unreadable (minor 7)",
+  "file": "memelab/backtest/depth.py",
+  "old": "                except Exception:\n                    out[\"rows_unreadable\"] += 1\n                    continue",
+  "new": "                except ZeroDivisionError:\n                    continue",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-14 retry bodies dropped (minor 8)",
+  "file": "memelab/backtest/depth.py",
+  "old": "        resp = dict(final, attempts=attempts if len(attempts) > 1 else [])",
+  "new": "        resp = dict(final, attempts=[])",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-15 script git fetch without a short stop (minor 1)",
+  "file": "audits/backtesting/release/hourly_shadow.sh",
+  "old": "${T:+$T 20} git",
+  "new": "${T:+$T 60} git",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-16 script refresh calls not passed to collect (skeptic M2)",
+  "file": "audits/backtesting/release/hourly_shadow.sh",
+  "old": " --gt-prior-calls \"${PRIOR% *}\" --gt-prior-end \"${PRIOR#* }\"",
+  "new": "",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S3 price always base side",
+  "file": "memelab/backtest/depth.py",
+  "old": "a.get(f\"{side}_token_price_usd\")",
+  "new": "a.get(\"base_token_price_usd\")",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S4 decimals always base token",
+  "file": "memelab/backtest/depth.py",
+  "old": "    tok = included.get(base if side == \"base\" else quote) or {}",
+  "new": "    tok = included.get(base) or {}",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S5 Solana identity case-insensitive",
+  "file": "memelab/backtest/depth.py",
+  "old": "    return a == b if chain == \"solana\" else a.lower() == b.lower()",
+  "new": "    return a.lower() == b.lower()",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S6 future-dated export accepted",
+  "file": "memelab/backtest/depth.py",
+  "old": "                if i == 0 or ct < now - window_s or ct > now:",
+  "new": "                if i == 0 or ct < now - window_s:",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S7 failed pool read dropped",
+  "file": "memelab/backtest/depth.py",
+  "old": "            it = next((v for k, v in items.items() if _same(chain, k, p[\"pool_address\"])), None)",
+  "new": "            it = next((v for k, v in items.items() if _same(chain, k, p[\"pool_address\"])), None)\n            if it is None and state0 == \"OK\":\n                continue",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S8 ExactOut instead of ExactIn",
+  "file": "memelab/backtest/depth.py",
+  "old": "swapMode=ExactIn\"",
+  "new": "swapMode=ExactOut\"",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S9 decision_id points to the oldest decision",
+  "file": "memelab/backtest/depth.py",
+  "old": "            best[(d[\"chain\"], d[\"mint\"], pool)] = dict(d, pool_address=pool, pool_source=src)",
+  "new": "            best.setdefault((d[\"chain\"], d[\"mint\"], pool), dict(d, pool_address=pool, pool_source=src))",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S10 NOT_IN_RESPONSE treated as OK",
+  "file": "memelab/backtest/depth.py",
+  "old": "                state, v = \"NOT_IN_RESPONSE\", {}",
+  "new": "                state, v = \"OK\", {}",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S11 slippage not in the URL",
+  "file": "memelab/backtest/depth.py",
+  "old": "&slippageBps={SLIPPAGE_BPS}",
+  "new": "",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "S12 route not recorded",
+  "file": "memelab/backtest/depth.py",
+  "old": "                        route=[{",
+  "new": "                        route_=[{",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-17 price check on swapUsdValue (it values the output, so real impact reads as a pricing error)",
+  "file": "memelab/backtest/depth.py",
+  "old": "            check = (implied / price) if implied is not None else None",
+  "new": "            check = (swap_usd / size) if swap_usd is not None else None",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-18 quote turns counted on OK quotes only (a pool without a route keeps the front)",
+  "file": "memelab/backtest/depth.py",
+  "old": "        n = con.execute(\"SELECT COUNT(DISTINCT run_id) FROM bt_depth_snapshots WHERE kind='QUOTE' AND http_status IS NOT NULL AND chain=? AND mint=? \"\n                        \"AND pool_address=? AND captured_at>=?\", (p[\"chain\"], p[\"mint\"], p[\"pool_address\"], p[\"export_time\"])).fetchone()[0]\n        last = con.execute(\"SELECT MAX(captured_at) FROM bt_depth_snapshots WHERE kind='QUOTE' AND http_status IS NOT NULL AND chain=? AND mint=? \"\n                           \"AND pool_address=?\", (p[\"chain\"], p[\"mint\"], p[\"pool_address\"])).fetchone()[0]\n",
+  "new": "        n = con.execute(\"SELECT COUNT(DISTINCT run_id) FROM bt_depth_snapshots WHERE kind='QUOTE' AND state='OK' AND chain=? AND mint=? \"\n                        \"AND pool_address=? AND captured_at>=?\", (p[\"chain\"], p[\"mint\"], p[\"pool_address\"], p[\"export_time\"])).fetchone()[0]\n        last = con.execute(\"SELECT MAX(captured_at) FROM bt_depth_snapshots WHERE kind='QUOTE' AND state='OK' AND chain=? AND mint=? \"\n                           \"AND pool_address=?\", (p[\"chain\"], p[\"mint\"], p[\"pool_address\"])).fetchone()[0]\n",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ },
+ {
+  "id": "MR-19 quote order by hash only (no history)",
+  "file": "memelab/backtest/depth.py",
+  "old": "        return (n, -1.0 if last is None else last, _hash_order(",
+  "new": "        return (0, 0.0, _hash_order(",
+  "tests": [
+   "tests/test_backtest_depth.py"
+  ]
+ }
+]

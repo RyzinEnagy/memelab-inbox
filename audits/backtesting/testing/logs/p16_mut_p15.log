@@ -1,0 +1,26 @@
+2026-10-23T20:09:39Z
+baseline (unmutated): exit 0 :: 14 passed in 2.14s
+[M15-1 bars after the window used] CAUGHT :: 1 failed in 0.09s
+[M15-2 outcome reads bars not yet available] CAUGHT :: 1 failed, 2 passed in 0.18s
+[M15-3 unfinished window reported] CAUGHT :: 1 failed in 0.17s
+[M15-4 not-observable outcomes dropped] CAUGHT :: 1 failed, 3 passed in 0.16s
+[M15-5 screened-out tokens left out of the study] CAUGHT :: 1 failed, 3 passed in 0.20s
+[M15-6 rerun appends duplicate rows] CAUGHT :: 1 failed, 1 passed in 0.11s
+[M15-7 revision loses its superseded row link] CAUGHT :: 1 failed, 1 passed in 0.11s
+[M15-8 catalyst list judged by claimed publication time] CAUGHT :: 1 failed, 5 passed in 0.22s
+[M15-9 capture judged by claimed publication time] CAUGHT :: 1 failed, 5 passed in 0.26s
+[M15-10 tracker not rate limited] CAUGHT :: 1 failed, 8 passed in 0.34s
+[M15-11 retry not exponential] CAUGHT :: 1 failed, 8 passed in 0.35s
+[M15-12 daily report reads outcomes after its asof] CAUGHT :: 1 failed, 6 passed in 0.30s
+[M15-13 daily report not ranked by the lab score] CAUGHT :: 1 failed, 6 passed in 0.28s
+[M15-14 censored windows left out of drawdown share] CAUGHT :: 1 failed, 3 passed in 0.16s
+[M15-15 small segments reported as reportable] CAUGHT :: 1 failed, 3 passed in 0.16s
+[M15-16 in-place retune allowed] CAUGHT :: 1 failed, 11 passed in 0.47s
+[M15-17 coverage drift not warned] CAUGHT :: 1 failed, 11 passed in 0.55s
+[M15-18 shadow saved as a run] CAUGHT :: 1 failed, 13 passed in 0.54s
+[M15-19 slippage model not scaled by price] CAUGHT :: 1 failed, 10 passed in 0.45s
+[M15-20 stale pending not warned] CAUGHT :: 1 failed, 12 passed in 0.70s
+[M15-21 stored assessments not tracked] CAUGHT :: 1 failed, 7 passed in 0.40s
+[M15-22 calibration drift not warned] CAUGHT :: 1 failed, 11 passed in 0.66s
+RESULT: all mutations caught
+EXIT=0

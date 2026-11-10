@@ -1,0 +1,11 @@
+# command: unshare -rn timeout 540 /home/claude/ext/venvs/nkaz001__hftbacktest/bin/python -I script.py
+# venv: python 3.13.17; pip install --only-binary=:all: hftbacktest -> hftbacktest 2.4.4 (wheel cp313-cp313-manylinux_2_28_x86_64, built by maturin), pulls numba 0.68, polars 2.0, holoviews, panel, bokeh, matplotlib; install took 2m32s
+# attempt 1: elapse(decision_ts - current_timestamp) before any elapse overflowed (current_timestamp starts at i64::MAX) -> NaN book, exit 0, no error. Fixed with elapse(0) first.
+# attempt 2: passed a temporary ndarray to BacktestAsset.data([...]); the FIRST backtest built in the process read freed memory: NaN book at decision, exec_price=4.6e18, position=1.0, exit 0, no error (use-after-free; lib.rs:206-210 stores a raw pointer). Fixed by holding a reference.
+# run at 2026-10-23T16:04:05Z
+hftbacktest 2.4.4
+bar k=10: book at t10 bid/ask=109.5/110.5 ('close' ~110); jump at t10+500ms to 114.5/115.5; bar k+1 book at t11 bid/ask=110.5/111.5
+entry_latency=0 ms: decided at local_ts=t10+2 ms seeing bid/ask=109.5/110.5 -> status=3 exec_price=110.5 exch_ts=t10+2 ms local_resp_ts=t10+2 ms position=1.0 fee=0.1105
+entry_latency=100 ms: decided at local_ts=t10+2 ms seeing bid/ask=109.5/110.5 -> status=3 exec_price=110.5 exch_ts=t10+102 ms local_resp_ts=t10+2 ms position=1.0 fee=0.1105
+entry_latency=1000 ms: decided at local_ts=t10+2 ms seeing bid/ask=109.5/110.5 -> status=3 exec_price=115.5 exch_ts=t10+1002 ms local_resp_ts=t10+2 ms position=1.0 fee=0.1155
+EXIT_CODE=0

@@ -61,6 +61,11 @@ EXPLAINED = [
     (r"^memelab/predictive/behavioral\.py$", r"exec:(mnemonic|seed phrase)", "refusal list: behavioral seeds and responses naming key material are refused (PI-D-074)"),
     (r"^tests/test_predictive_behavioral\.py$", r"exec:(mnemonic|seed phrase)", "tests that such behavioral seeds are refused (PI-D-074)"),
     (r"^audits/predictive-intelligence/phase_14/.*\.md$", r"exec:(mnemonic|seed phrase)", "the Phase 14 refusal rule text (PI-D-074)"),
+    (r"^audits/backtesting/.*\.md$", r"exec:.*", "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"),
+    (r"^workplans/backtesting/.*\.md$", r"exec:.*", "backtesting prompt package: the hard rules text (D-BT-016)"),
+    (r"^audits/backtesting/research/smoke/.*\.py$", r"exec:.*", "isolated audit smoke scripts: simulated orders inside third-party backtest engines, never imported by the lab (D-BT-016)"),
+    (r"^audits/backtesting/research/smoke/etcherfx__sol-trade/output\.txt$", r"key_material_field", "static-scan output quoting an environment variable name (SOLTRADE_PRIVATE_KEY), not a key value (D-BT-016)"),
+    (r"^tests/test_backtest_[a-z_]+\.py$", r"exec:.*", "refusal lists: strings the backtest package must never contain (D-BT-016)"),
 ]
 
 SOCIAL_LOGIN_HOSTS = re.compile(r"(api\.x\.com|api\.twitter\.com|api\.telegram\.org|api\.anthropic\.com|smtp\.|oauth\.reddit\.com|www\.reddit\.com|discord\.com/api|www\.googleapis\.com/youtube|api\.firecrawl\.dev)")

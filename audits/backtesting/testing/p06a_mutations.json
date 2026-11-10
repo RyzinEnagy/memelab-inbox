@@ -1,0 +1,83 @@
+[
+ {
+  "id": "M06A-1 allowlist not enforced",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "    if not m:\n        raise OffAllowlist",
+  "new": "    if False:\n        raise OffAllowlist",
+  "tests": [
+   "tests/test_backtest_webcapture.py"
+  ]
+ },
+ {
+  "id": "M06A-2 any GitHub owner accepted for releases",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "    if \"repos\" in uc and m.group",
+  "new": "    if False and m.group",
+  "tests": [
+   "tests/test_backtest_webcapture.py"
+  ]
+ },
+ {
+  "id": "M06A-3 redirect target not checked",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "    canon = allowed(use_case, view.get(\"final_url\") or url)",
+  "new": "    canon = allowed(use_case, url)",
+  "tests": [
+   "tests/test_backtest_webcapture.py"
+  ]
+ },
+ {
+  "id": "M06A-4 rendered text date enters record identity",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "HIGH_DATE = (\"META\", \"MACHINE_TIME\")",
+  "new": "HIGH_DATE = (\"META\", \"MACHINE_TIME\", \"RENDERED_TEXT\")",
+  "tests": [
+   "tests/test_backtest_webcapture.py"
+  ]
+ },
+ {
+  "id": "M06A-5 failed fetch still recorded",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "        if res.get(\"status\") != 200 or res.get(\"error\") or not res.get(\"view\"):",
+  "new": "        if not res.get(\"view\"):",
+  "tests": [
+   "tests/test_backtest_webcapture.py"
+  ]
+ },
+ {
+  "id": "M06A-6 no page cap",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "        if i >= cap:",
+  "new": "        if False:",
+  "tests": [
+   "tests/test_backtest_webcapture.py"
+  ]
+ },
+ {
+  "id": "M06A-7 Maxun accepted as runtime collector",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "    if collector in EVIDENCE_ONLY_COLLECTORS and not evidence_only:",
+  "new": "    if False:",
+  "tests": [
+   "tests/test_backtest_webcapture.py"
+  ]
+ },
+ {
+  "id": "M06A-8 schedules approved by default",
+  "file": "memelab/backtest/sources/webcapture.py",
+  "old": "DEFAULT_POLICY = {\"collectors_enabled\": True, \"schedules_approved\": False",
+  "new": "DEFAULT_POLICY = {\"collectors_enabled\": True, \"schedules_approved\": True",
+  "tests": [
+   "tests/test_backtest_webcapture.py"
+  ]
+ },
+ {
+  "id": "M06A-10 capture date taken from the page claim",
+  "file": "memelab/backtest/sources/captures.py",
+  "old": "    first_seen = captured_at if proof_observed_at is None else min(captured_at, utc_ts(proof_observed_at))",
+  "new": "    first_seen = min(captured_at, source_published_at) if source_published_at else captured_at",
+  "tests": [
+   "tests/test_backtest_webcapture.py"
+  ]
+ }
+]

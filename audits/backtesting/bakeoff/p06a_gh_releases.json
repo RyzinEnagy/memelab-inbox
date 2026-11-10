@@ -1,0 +1,220 @@
+{
+ "retrieved_at": 1792775676.8868814,
+ "releases": {
+  "anza-xyz/agave": {
+   "html_url": "https://github.com/anza-xyz/agave/releases/tag/v4.3.2",
+   "tag_name": "v4.3.2",
+   "name": "Release v4.3.2",
+   "published_at": "2026-10-15T22:20:41Z",
+   "created_at": "2026-10-15T22:19:30Z",
+   "prerelease": false,
+   "draft": false,
+   "id": 414328464,
+   "updated_at": "2026-10-21T15:37:03Z"
+  },
+  "solana-foundation/anchor": {
+   "html_url": "https://github.com/otter-sec/anchor/releases/tag/v1.2.1",
+   "tag_name": "v1.2.1",
+   "name": "v1.2.1",
+   "published_at": "2026-10-06T11:04:10Z",
+   "created_at": "2026-10-06T10:52:25Z",
+   "prerelease": false,
+   "draft": false,
+   "id": 404609570,
+   "updated_at": "2026-10-06T11:04:10Z"
+  },
+  "orca-so/whirlpools": {
+   "html_url": "https://github.com/orca-so/whirlpools/releases/tag/v1.0.2",
+   "tag_name": "v1.0.2",
+   "name": "SDK - v1.0.2",
+   "published_at": "2025-01-03T19:40:40Z",
+   "created_at": "2025-01-03T19:15:16Z",
+   "prerelease": false,
+   "draft": false,
+   "id": 193114827,
+   "updated_at": "2025-01-03T19:40:40Z"
+  },
+  "helius-labs/helius-sdk": {
+   "html_url": "https://github.com/helius-labs/helius-sdk/releases/tag/v3.3.0",
+   "tag_name": "v3.3.0",
+   "name": "v3.3.0",
+   "published_at": "2026-10-13T22:21:03Z",
+   "created_at": "2026-10-13T22:09:23Z",
+   "prerelease": false,
+   "draft": false,
+   "id": 412151809,
+   "updated_at": "2026-10-13T22:21:03Z"
+  },
+  "jito-foundation/jito-solana": {
+   "html_url": "https://github.com/jito-foundation/jito-solana/releases/tag/v4.3.2-jito",
+   "tag_name": "v4.3.2-jito",
+   "name": "Mainnet - v4.3.2-jito",
+   "published_at": "2026-10-16T15:18:29Z",
+   "created_at": "2026-10-16T03:55:38Z",
+   "prerelease": false,
+   "draft": false,
+   "id": 414520538,
+   "updated_at": "2026-10-16T17:02:46Z"
+  },
+  "solana-program/token-2022": {
+   "html_url": "https://github.com/solana-program/token-2022/releases/tag/rust-legacy%40v0.20.1",
+   "tag_name": "rust-legacy@v0.20.1",
+   "name": "rust-legacy@v0.20.1",
+   "published_at": "2026-10-23T12:43:51Z",
+   "created_at": "2026-10-23T12:43:34Z",
+   "prerelease": false,
+   "draft": false,
+   "id": 421831130,
+   "updated_at": "2026-10-23T12:43:51Z"
+  },
+  "metaplex-foundation/mpl-token-metadata": {
+   "html_url": "https://github.com/metaplex-foundation/mpl-token-metadata/releases/tag/js%40v3.4.0",
+   "tag_name": "js@v3.4.0",
+   "name": "js@v3.4.0",
+   "published_at": "2025-02-02T23:24:29Z",
+   "created_at": "2025-02-02T23:24:28Z",
+   "prerelease": false,
+   "draft": false,
+   "id": 197999512,
+   "updated_at": "2025-02-02T23:24:29Z"
+  },
+  "anza-xyz/kit": {
+   "html_url": "https://github.com/anza-xyz/kit/releases/tag/v8.5.0",
+   "tag_name": "v8.5.0",
+   "name": "v8.5.0",
+   "published_at": "2026-10-13T12:13:24Z",
+   "created_at": "2026-10-13T11:52:14Z",
+   "prerelease": false,
+   "draft": false,
+   "id": 411637649,
+   "updated_at": "2026-10-13T12:13:24Z"
+  },
+  "raydium-io/raydium-sdk-V2": null,
+  "jup-ag/jupiter-swap-api-client": null,
+  "MeteoraAg/dlmm-sdk": null,
+  "raydium-io/raydium-cp-swap": null,
+  "pyth-network/pyth-crosschain": {
+   "html_url": "https://github.com/pyth-network/pyth-crosschain/releases/tag/pyth-evm-contract-v1.4.6",
+   "tag_name": "pyth-evm-contract-v1.4.6",
+   "name": "pyth-evm-contract-v1.4.6",
+   "published_at": "2026-08-07T17:50:10Z",
+   "created_at": "2026-08-07T17:47:07Z",
+   "prerelease": false,
+   "draft": false,
+   "id": 366919891,
+   "updated_at": "2026-08-07T17:50:10Z"
+  },
+  "solana-foundation/solana-improvement-documents": null,
+  "metaplex-foundation/umi": {
+   "html_url": "https://github.com/metaplex-foundation/umi/releases/tag/v1.6.0",
+   "tag_name": "v1.6.0",
+   "name": "v1.6.0",
+   "published_at": "2026-09-17T20:01:24Z",
+   "created_at": "2026-09-17T19:55:27Z",
+   "prerelease": false,
+   "draft": false,
+   "id": 391022926,
+   "updated_at": "2026-09-17T20:01:24Z"
+  }
+ },
+ "log": [
+  {
+   "url": "https://github.com/robots.txt",
+   "status": 200,
+   "t": 1792775658.870935,
+   "sha256": "b622e2dd9b60e8540ffd1f4b0974c9dbee73bce606f9660c6344d09357889956"
+  },
+  {
+   "url": "https://api.github.com/repos/anza-xyz/agave/releases?per_page=1",
+   "status": 200,
+   "t": 1792775660.6209261,
+   "sha256": "814c1252d18cce1bd9d775c497aec84c1217c667709b2bc096ebacaa88f17afb"
+  },
+  {
+   "url": "https://api.github.com/repos/solana-foundation/anchor/releases?per_page=1",
+   "status": 200,
+   "t": 1792775662.3930314,
+   "sha256": "d6c825a0a1785d3316c8feacd0fb7b9a1ad4150b7181cff24d7c7604eda14ac3"
+  },
+  {
+   "url": "https://api.github.com/repos/orca-so/whirlpools/releases?per_page=1",
+   "status": 200,
+   "t": 1792775664.3147163,
+   "sha256": "2ab579e59c34cff8a70697c5c5904d25827a93ca03ea8ed67e74fefe5aa82b76"
+  },
+  {
+   "url": "https://api.github.com/repos/helius-labs/helius-sdk/releases?per_page=1",
+   "status": 200,
+   "t": 1792775666.044,
+   "sha256": "232204e50ef82d89724d436df0c28811d56624274b62d291f61ec4f5ff3f73a6"
+  },
+  {
+   "url": "https://api.github.com/repos/jito-foundation/jito-solana/releases?per_page=1",
+   "status": 200,
+   "t": 1792775667.880237,
+   "sha256": "1454ea8170c3ddb6c67a996e9151cc106845f98a004c5dd768941779d061daac"
+  },
+  {
+   "url": "https://api.github.com/repos/solana-program/token-2022/releases?per_page=1",
+   "status": 200,
+   "t": 1792775669.6816013,
+   "sha256": "079df5acbb4371ffac8fc23db58e93033ffd873aa8910d779ec67845d08f8237"
+  },
+  {
+   "url": "https://api.github.com/repos/metaplex-foundation/mpl-token-metadata/releases?per_page=1",
+   "status": 200,
+   "t": 1792775671.4311593,
+   "sha256": "adeadf4b45e9ea8da7e77804756854d1d21db2133a741e999bdb3fe5263aeec9"
+  },
+  {
+   "url": "https://api.github.com/repos/anza-xyz/kit/releases?per_page=1",
+   "status": 200,
+   "t": 1792775673.1445918,
+   "sha256": "62247e142fb967160855f275cb0c6fa9ff6fa66f4727428432b550c194d8d941"
+  },
+  {
+   "url": "https://api.github.com/repos/raydium-io/raydium-sdk-V2/releases?per_page=1",
+   "status": 200,
+   "t": 1792775674.9658954,
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "url": "https://api.github.com/repos/jup-ag/jupiter-swap-api-client/releases?per_page=1",
+   "status": 200,
+   "t": 1792775676.643102,
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "url": "https://api.github.com/repos/MeteoraAg/dlmm-sdk/releases?per_page=1",
+   "status": 200,
+   "t": 1792775690.076478,
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "url": "https://api.github.com/repos/raydium-io/raydium-cp-swap/releases?per_page=1",
+   "status": 200,
+   "t": 1792775691.9013064,
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "url": "https://api.github.com/repos/pyth-network/pyth-crosschain/releases?per_page=1",
+   "status": 200,
+   "t": 1792775693.6360576,
+   "sha256": "eb4b3d10650031630c49130329479249ebaf7866081aec9cb961cb41b916a405"
+  },
+  {
+   "url": "https://api.github.com/repos/solana-foundation/solana-improvement-documents/releases?per_page=1",
+   "status": 200,
+   "t": 1792775695.450674,
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "url": "https://api.github.com/repos/metaplex-foundation/umi/releases?per_page=1",
+   "status": 200,
+   "t": 1792775706.5315294,
+   "sha256": "4c14b53ee8a758ff12a58732679865f94f227994050db266ef1b5ee2d23ea5e2"
+  }
+ ],
+ "backup_rule": "replace repos without releases by the first BACKUP repos that have one, in list order",
+ "backup_rule_2": "replace repos without releases by the first BACKUP repos that have one, in list order"
+}

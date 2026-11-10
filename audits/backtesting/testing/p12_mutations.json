@@ -1,0 +1,110 @@
+[
+ {
+  "id": "M12-1 liquidity unchanged when the price falls",
+  "old": "    depth_scale = shock.liquidity_scale * (px / snap.price_usd) ** 0.5\n",
+  "new": "    depth_scale = shock.liquidity_scale\n",
+  "file": "memelab/backtest/stress.py",
+  "tests": [
+   "tests/test_backtest_stress.py"
+  ]
+ },
+ {
+  "id": "M12-2 fatal flag can be overridden",
+  "old": "    if snap.fatal_flags:\n        return \"RISK_FATAL_FLAW\"",
+  "new": "    if False:\n        return \"RISK_FATAL_FLAW\"",
+  "file": "memelab/backtest/stress.py",
+  "tests": [
+   "tests/test_backtest_stress.py"
+  ]
+ },
+ {
+  "id": "M12-3 unknown insider share treated as zero silently",
+  "old": "        out.setdefault(\"notes\", []).append(\"insider share unknown: insider-dump effect not modeled (not assumed zero)\")\n",
+  "new": "        pass\n",
+  "file": "memelab/backtest/stress.py",
+  "tests": [
+   "tests/test_backtest_stress.py"
+  ]
+ },
+ {
+  "id": "M12-4 honeypot still sells",
+  "old": "    if shock.freeze or shock.sell_route_fails or snap.has_sell_route is False:",
+  "new": "    if shock.freeze:",
+  "file": "memelab/backtest/stress.py",
+  "tests": [
+   "tests/test_backtest_stress.py"
+  ]
+ },
+ {
+  "id": "M12-5 observed quotes extrapolated",
+  "old": "    if not pts or size_usd > pts[-1][0] * (1 + 1e-9):\n        return None\n",
+  "new": "    if not pts:\n        return None\n",
+  "file": "memelab/backtest/stress.py",
+  "tests": [
+   "tests/test_backtest_stress.py"
+  ]
+ },
+ {
+  "id": "M12-6 observed quotes scale the model up (both guards removed)",
+  "old": "    ratio = min(1.0, obs / base_sell.out) if (obs is not None and base_sell and base_sell.out > 0) else 1.0\n    if ratio < 1.0:\n",
+  "new": "    ratio = (obs / base_sell.out) if (obs is not None and base_sell and base_sell.out > 0) else 1.0\n    if ratio != 1.0:\n",
+  "file": "memelab/backtest/stress.py",
+  "tests": [
+   "tests/test_backtest_stress.py"
+  ]
+ },
+ {
+  "id": "M12-7 pool fee ignored",
+  "old": "    fees = X.Fees(snap.swap_fee, fee_bps, None, 0.0)",
+  "new": "    fees = X.Fees(0.0025, fee_bps, None, 0.0)",
+  "file": "memelab/backtest/stress.py",
+  "tests": [
+   "tests/test_backtest_stress.py"
+  ]
+ },
+ {
+  "id": "M12-8 probabilities attached to shocks",
+  "old": "            \"probabilities\": \"NOT_ASSIGNED (shocks are hypothetical; see historical_evidence for empirical frequencies when available)\",",
+  "new": "            \"probabilities\": \"LIKELY: 20% chance of the combined worst case\",",
+  "file": "memelab/backtest/stress.py",
+  "tests": [
+   "tests/test_backtest_stress.py"
+  ]
+ },
+ {
+  "id": "M12-9 marked value reported as realizable",
+  "old": "               marked_value_usd=tokens * px, realizable_vs_marked=(max(proceeds, 0.0) / (tokens * px)) if tokens * px > 0 else None,",
+  "new": "               marked_value_usd=max(proceeds, 0.0), realizable_vs_marked=1.0,",
+  "file": "memelab/backtest/stress.py",
+  "tests": [
+   "tests/test_backtest_stress.py"
+  ]
+ },
+ {
+  "id": "M12-10 quote depletion never fails",
+  "old": "    if shock.id == \"QUOTE_DEPLETION\" and size_usd > (_largest_ok_quote(snap) or 0):",
+  "new": "    if False:",
+  "file": "memelab/backtest/stress.py",
+  "tests": [
+   "tests/test_backtest_stress.py"
+  ]
+ },
+ {
+  "id": "M12-11 authority shocks shown for every token",
+  "old": "    if snap.freeze_authority_active:\n        s.append(",
+  "new": "    if True:\n        s.append(",
+  "file": "memelab/backtest/stress.py",
+  "tests": [
+   "tests/test_backtest_stress.py"
+  ]
+ },
+ {
+  "id": "M12-12 cohort percentiles from too few cases",
+  "old": "    if len(rets) < min_n:\n",
+  "new": "    if len(rets) < 1:\n",
+  "file": "memelab/backtest/stress.py",
+  "tests": [
+   "tests/test_backtest_stress.py"
+  ]
+ }
+]

@@ -1,0 +1,19 @@
+PASS proto A_noimpact_1000 proceeds == oracle  [851.581926 vs 851.581926]
+PASS proto A_cpmm_1000 proceeds == oracle  [826.112457 vs 826.112457]
+PASS proto A_cpmm_50000 proceeds == oracle  [16757.465459 vs 16757.465459]
+PASS proto B_noimpact_1000 proceeds == oracle  [1006.875112 vs 1006.875112]
+PASS proto A entry bar/price == oracle
+PASS proto A exit is gap fill at open
+PASS proto B enters at first bar after first_seen_at (bar 8)
+PASS published-time join would enter 2 bars early (leak detected)
+PASS G10: size makes fills non-linearly worse (50k ret << 1k ret)  [-0.1739 vs -0.6649]
+PASS CPMM avg entry above mid for both sizes
+PASS backtesting.py A entry/exit bars and prices == oracle
+PASS backtesting.py A P&L reconciles: integer units, fee on notional both sides  [-148.304700 vs -148.304700]
+PASS backtesting.py B entry bar 8 / exit bar 14
+PASS vectorbt DEFAULT fills on the signal bar close (optimistic, differs from oracle)
+PASS vectorbt ADJUSTED (shift + price=open) matches oracle bars/prices
+PASS vectorbt adjusted P&L reconciles: fee added to entry price  [-148.412752 vs -148.412752]
+
+16/16 checks pass
+exit=0

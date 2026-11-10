@@ -7,3 +7,5 @@ gh_token.txt
 data/private/
 # Firecrawl API key file (catalyst/firecrawl.py); like gh_token.txt it never goes into the repo
 firecrawl_token.txt
+# backtesting package: local research DB and raw provider shards (public market data, rebuilt by `python -m memelab backtest data`)
+data/backtest/

@@ -1,0 +1,8 @@
+{
+ "note": "Real GeckoTerminal public API responses (unmodified bytes) for one token that collapsed about 99.99% within three days of launch. Used to prove re-ingestion is idempotent and point-in-time safe on real data. Not a backtest result.",
+ "mint": "3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump",
+ "files": {
+  "gt_pools_3GVSN8.json": {"url": "https://api.geckoterminal.com/api/v2/networks/solana/tokens/3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump/pools?page=1", "observed_at": 1792774417.4436429, "sha256": "88620704b17e80e7cdc077bbddd18708f14e5134cee23284c03f7fafe6fcb09e"},
+  "gt_ohlcv_3GVSN8.json": {"url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/7AvDaHLbHW6qaMGuHQGpebbbGaV7fRTdFq5T5Vd4vdoH/ohlcv/hour?aggregate=1&limit=1000&currency=usd&token=3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump", "observed_at": 1792774421.6050806, "sha256": "fce0ea426f15301db67812ec90bff8feeb3d0791852788e4140e156a8708dce7"}
+ }
+}

@@ -1,0 +1,94 @@
+7c7b582
+2026-10-23T23:49:19Z
+============================= test session starts ==============================
+platform linux -- Python 3.13.17, pytest-9.1.1, pluggy-1.7.0 -- /usr/bin/python3
+rootdir: /home/claude/work/memelab-inbox
+plugins: platformdirs-4.12.4, anyio-4.15.1
+collecting ... collected 56 items
+
+tests/test_backtest_e2e_audit.py::test_g03_g32_cohort_evidence_uses_only_tokens_known_at_the_assessment PASSED [  1%]
+tests/test_backtest_e2e_audit.py::test_g02_cohort_evidence_never_splices_two_pools_of_one_mint PASSED [  3%]
+tests/test_backtest_e2e_audit.py::test_g17_position_that_cannot_fully_exit_by_end_of_data_is_still_reported PASSED [  5%]
+tests/test_backtest_e2e_audit.py::test_g17_partial_exits_keep_the_original_cost_in_the_trade_return PASSED [  7%]
+tests/test_backtest_e2e_audit.py::test_g24_entry_of_all_remaining_cash_is_rejected_or_paid_never_a_crash PASSED [  8%]
+tests/test_backtest_e2e_audit.py::test_concurrent_first_connect_to_a_new_database_never_crashes PASSED [ 10%]
+tests/test_backtest_e2e_audit.py::test_concurrent_outcome_tracker_skips_or_waits_instead_of_crashing PASSED [ 12%]
+tests/test_backtest_e2e_audit.py::test_g34_locked_research_db_degrades_the_hook_to_an_explicit_error PASSED [ 14%]
+tests/test_backtest_e2e_audit.py::test_g33_unusable_research_db_path_never_raises_into_the_scout PASSED [ 16%]
+tests/test_backtest_e2e_audit.py::test_g31_brand_new_token_never_reads_as_token_specific_even_with_a_cohort PASSED [ 17%]
+tests/test_backtest_e2e_audit.py::test_g39_credential_bearing_urls_are_never_stored PASSED [ 19%]
+tests/test_backtest_e2e_audit.py::test_g39_batch_status_never_echoes_a_credential PASSED [ 21%]
+tests/test_backtest_e2e_audit.py::test_g36_archive_proof_older_than_the_page_itself_is_refused PASSED [ 23%]
+tests/test_backtest_e2e_audit.py::test_g36_injected_or_backdated_date_text_cannot_move_availability PASSED [ 25%]
+tests/test_backtest_e2e_audit.py::test_g37_body_only_retro_edit_is_the_same_record_and_a_title_edit_is_a_new_version PASSED [ 26%]
+tests/test_backtest_e2e_audit.py::test_crawlers_absent_runtime_still_imports_and_has_no_crawler_dependency PASSED [ 28%]
+tests/test_backtest_e2e_audit.py::test_g39_all_sources_down_yields_no_record_and_no_positive_catalyst PASSED [ 30%]
+tests/test_backtest_e2e_audit.py::test_g09_sell_matches_exact_rational_arithmetic PASSED [ 32%]
+tests/test_backtest_e2e_audit.py::test_g25_gap_loss_exceeds_the_intended_stop_with_modeled_exit_liquidity PASSED [ 33%]
+audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_returns_keep_dead_tokens_or_flag_the_bias PASSED [ 35%]
+audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_pool_choice_never_reads_after_the_assessment_time PASSED [ 37%]
+audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_basis_not_steered_by_wash_volume_on_a_thin_pool FAILED [ 39%]
+audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_sixteen_processes_open_a_new_database_at_once PASSED [ 41%]
+audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_concurrent_trackers_with_the_same_now_run_once PASSED [ 42%]
+audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_concurrent_trackers_with_different_now_never_fork_a_window PASSED [ 44%]
+audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_bare_keys_headers_and_path_tokens PASSED [ 46%]
+audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_redaction_covers_query_userinfo_and_common_names PASSED [ 48%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_guard_is_evaded_when_wash_volume_exceeds_twenty_times_the_real_pool PASSED [ 50%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_guard_refuses_the_pass1_wash_world PASSED [ 51%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_guard_does_not_hide_a_rug_below_the_bias_flag PASSED [ 53%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_redaction_catches_bare_short_keys PASSED [ 55%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_redaction_keeps_useful_public_text PASSED [ 57%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_redaction_pass2_claims_hold PASSED [ 58%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_cached_cohort_cannot_be_poisoned_by_a_caller PASSED [ 60%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_cohort_cache_follows_new_bars_universe_rows_and_pool_records PASSED [ 62%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_assessment_cache_never_serves_a_stale_cohort_after_new_pool_records PASSED [ 64%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_steady_divergence_is_refused PASSED [ 66%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_alternating_divergence PASSED [ 67%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_sparse_real_market PASSED [ 69%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_three_pools_real_market_split_across_two_pools PASSED [ 71%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_three_pools_one_off_market_side_pool_is_refused_and_disclosed PASSED [ 73%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_gap_across_a_missing_hour_still_refused PASSED [ 75%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_rug_with_a_two_hour_stale_side_pool_is_disclosed PASSED [ 76%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_report_markdown_discloses_cohort_bias_and_censored_windows PASSED [ 78%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_hex_and_secret_key_shaped_values PASSED [ 80%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_context_word_without_separator PASSED [ 82%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_false_positives_after_credential_words PASSED [ 83%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_keeps_public_identifiers_and_removes_prefixed_keys PASSED [ 85%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_cohort_cache_in_memory_id_reuse PASSED [ 87%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_fresh_database_burst_repeated[0] PASSED [ 89%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_fresh_database_burst_repeated[1] PASSED [ 91%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_fresh_database_burst_repeated[2] PASSED [ 92%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_fresh_database_burst_repeated[3] PASSED [ 94%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_fresh_database_burst_repeated[4] PASSED [ 96%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_connect_to_an_existing_database_is_not_blocked_by_a_writer PASSED [ 98%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_connect_gives_up_on_a_non_lock_error PASSED [100%]
+
+=================================== FAILURES ===================================
+________ test_r1_cohort_basis_not_steered_by_wash_volume_on_a_thin_pool ________
+
+con = <sqlite3.Connection object at 0x7f7082102020>
+
+    def test_r1_cohort_basis_not_steered_by_wash_volume_on_a_thin_pool(con):
+        """Main pool: deep, flat at 1.00, $2k volume an hour. Thin pool of the same mint: $20k of wash volume an hour at a
+        price that drifts to 0.05. Both pools are valid. A cohort measured on the thin pool reports a -95% median for
+        tokens whose main market never moved."""
+        for k in range(30):
+            m = f"WASH{k:02d}"
+            member(con, m, "WATCH", T0)
+            pool(con, m, f"M{m}", T0 - 3 * 86400)
+            pool(con, m, f"W{m}", T0 - 3 * 86400)
+            for i in range(-24, 24):
+                bar(con, m, f"M{m}", T0 + i * H, 1.0, 1.0, 2000.0)
+                px = 1.0 if i < 0 else max(0.05, 1.0 - 0.04 * (i + 1))
+                bar(con, m, f"W{m}", T0 + i * H, 1.0 if i <= 0 else max(0.05, 1.0 - 0.04 * i), px, 20000.0)
+        con.commit()
+        c = S.empirical_cohort(con, "WATCH", min_n=30, asof=T0 + 10 * 86400)
+>       assert c["ret_p10_p50_p90"][1] > -0.5, c
+               ^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'ret_p10_p50_p90'
+
+audits/backtesting/testing/test_p16r1_repair_attacks.py:121: KeyError
+=========================== short test summary info ============================
+FAILED audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_basis_not_steered_by_wash_volume_on_a_thin_pool
+======================== 1 failed, 55 passed in 32.38s =========================
+EXIT=1

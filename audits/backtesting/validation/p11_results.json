@@ -1,0 +1,2894 @@
+{
+ "prereg_sha256": "d0b3686f2d61c72eb85651fac4c9a564ecde9ec119ddd2777ca549c2cba32c16",
+ "dataset_hash": "35f836f372c48dfb6cb5ed7cffb3cac6477571dae6836fb2913f9b44db420b76",
+ "tokens": 256,
+ "plan": {
+  "start": 1791331200.0,
+  "train_end": 1792051200.0,
+  "valid_end": 1792411200.0,
+  "end": 1792771200.0,
+  "embargo_s": 172800.0
+ },
+ "started": 1792781843.6587653,
+ "strategies": {
+  "LAB_STATUS": {
+   "strategy_id": "LAB_STATUS",
+   "plan": {
+    "start": 1791331200.0,
+    "train_end": 1792051200.0,
+    "valid_end": 1792411200.0,
+    "end": 1792771200.0,
+    "embargo_s": 172800.0
+   },
+   "trials": 3,
+   "tuning": [
+    {
+     "params": {
+      "min_score": 55
+     },
+     "train": {
+      "n": 21,
+      "mean_ret": -0.03935126901111671,
+      "median_ret": -0.055362442409503165,
+      "win_rate": 0.3333333333333333,
+      "win_rate_wilson95": [
+       0.17194536432683688,
+       0.5462692434278971
+      ],
+      "profit_factor": 0.5019213185011228,
+      "p05_ret": -0.2983493277550925,
+      "worst_ret": -0.2983493277550925,
+      "best_ret": 0.4000647393533592,
+      "max_drawdown_stakes": 1.1485539222044394,
+      "sum_ret_stakes": -0.826376649233451,
+      "sharpe_per_trade": -0.26110416025100464,
+      "non_executable_exits": 0
+     }
+    },
+    {
+     "params": {
+      "min_score": 65
+     },
+     "train": {
+      "n": 15,
+      "mean_ret": -0.011920751125702508,
+      "median_ret": -0.024135372760872187,
+      "win_rate": 0.4666666666666667,
+      "win_rate_wilson95": [
+       0.24809225259746442,
+       0.6988336984894921
+      ],
+      "profit_factor": 0.8251533858493117,
+      "p05_ret": null,
+      "worst_ret": -0.2983493277550925,
+      "best_ret": 0.4000647393533592,
+      "max_drawdown_stakes": 0.6872150176617676,
+      "sum_ret_stakes": -0.1788112668855376,
+      "sharpe_per_trade": -0.07157748919396392,
+      "non_executable_exits": 0
+     }
+    },
+    {
+     "params": {
+      "min_score": 55,
+      "statuses": [
+       "ENTRY CONDITIONS MET",
+       "NEAR ENTRY"
+      ]
+     },
+     "train": {
+      "n": 7,
+      "mean_ret": -0.07320847501233875,
+      "median_ret": -0.07538496470420164,
+      "win_rate": 0.2857142857142857,
+      "win_rate_wilson95": [
+       0.0822171657090155,
+       0.6410709098517873
+      ],
+      "profit_factor": 0.19112593017162693,
+      "p05_ret": null,
+      "worst_ret": -0.25246883561057765,
+      "best_ret": 0.1061001238271293,
+      "max_drawdown_stakes": 0.5581615219511376,
+      "sum_ret_stakes": -0.5124593250863713,
+      "sharpe_per_trade": -0.6509422680183826,
+      "non_executable_exits": 0
+     }
+    }
+   ],
+   "chosen": {
+    "min_score": 65
+   },
+   "frozen_sha": "683b48261230d6ddc05e1a98d562d69a0f0cd18b3942cbffa9fd1982256c77f1",
+   "validation": {
+    "n": 1,
+    "mean_ret": 0.039894480028557444,
+    "median_ret": 0.039894480028557444,
+    "win_rate": 1.0,
+    "win_rate_wilson95": [
+     0.20654329147389294,
+     1.0
+    ],
+    "profit_factor": null,
+    "p05_ret": null,
+    "worst_ret": 0.039894480028557444,
+    "best_ret": 0.039894480028557444,
+    "max_drawdown_stakes": 0.0,
+    "sum_ret_stakes": 0.039894480028557444,
+    "sharpe_per_trade": null,
+    "non_executable_exits": 0
+   },
+   "test": {
+    "n": 0,
+    "bootstrap95_mean_ret": null,
+    "p_mean_le_0": null
+   },
+   "baselines": {
+    "NO_TRADE": {
+     "n": 0,
+     "bootstrap95_mean_ret": null
+    },
+    "ENTER_AT_DISCOVERY": {
+     "n": 8,
+     "mean_ret": -0.4220229369063827,
+     "median_ret": -0.27048417747339837,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.3244156195108769
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -1.0,
+     "best_ret": -0.10401897517879932,
+     "max_drawdown_stakes": 3.3761834952510617,
+     "sum_ret_stakes": -3.3761834952510617,
+     "sharpe_per_trade": -1.222829509944992,
+     "non_executable_exits": 2,
+     "bootstrap95_mean_ret": null
+    },
+    "RANDOM_ENTRY": {
+     "n": 8,
+     "mean_ret": -0.079213896457405,
+     "median_ret": -0.12524059670933108,
+     "win_rate": 0.25,
+     "win_rate_wilson95": [
+      0.07147768885802763,
+      0.5907301208974108
+     ],
+     "profit_factor": 0.33817445643521193,
+     "p05_ret": null,
+     "worst_ret": -0.32476524114936167,
+     "best_ret": 0.24806755950068315,
+     "max_drawdown_stakes": 0.9575199655272962,
+     "sum_ret_stakes": -0.63371117165924,
+     "sharpe_per_trade": -0.48560818301054814,
+     "non_executable_exits": 0,
+     "bootstrap95_mean_ret": null
+    },
+    "MA_CROSS": {
+     "n": 3,
+     "mean_ret": -0.13515497310772964,
+     "median_ret": -0.15215310223856837,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.5615060804490177
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -0.16707323139529895,
+     "best_ret": -0.08623858568932163,
+     "max_drawdown_stakes": 0.40546491932318895,
+     "sum_ret_stakes": -0.40546491932318895,
+     "sharpe_per_trade": -3.8482299217501454,
+     "non_executable_exits": 0,
+     "bootstrap95_mean_ret": null
+    }
+   },
+   "winners_curse": {
+    "train_mean_ret": -0.011920751125702508,
+    "validation_mean_ret": 0.039894480028557444,
+    "drop": -0.051815231154259955,
+    "overfit_flag": false,
+    "selection_from_trials": 3
+   },
+   "verdict": "INSUFFICIENT_SAMPLE",
+   "notes": [
+    "sealed test has 0 trades < 30; no performance claim"
+   ],
+   "test_regimes": {
+    "SOL_UP_24H": {
+     "n": 0
+    },
+    "SOL_DOWN_24H": {
+     "n": 0
+    },
+    "UNKNOWN": {
+     "n": 0
+    }
+   },
+   "test_ledger_hash": "e478181404b2039728243ddfd41c8d4a038dc3d6acf429a358cc69414a57d062"
+  },
+  "BREAKOUT_CLOSE": {
+   "strategy_id": "BREAKOUT_CLOSE",
+   "plan": {
+    "start": 1791331200.0,
+    "train_end": 1792051200.0,
+    "valid_end": 1792411200.0,
+    "end": 1792771200.0,
+    "embargo_s": 172800.0
+   },
+   "trials": 4,
+   "tuning": [
+    {
+     "params": {
+      "lookback": 12,
+      "vol_mult": 1.0
+     },
+     "train": {
+      "n": 38,
+      "mean_ret": -0.1286274120838444,
+      "median_ret": -0.06459316842726354,
+      "win_rate": 0.3157894736842105,
+      "win_rate_wilson95": [
+       0.1908442002366664,
+       0.47456056439948513
+      ],
+      "profit_factor": 0.3169634502173225,
+      "p05_ret": -1.00001902074568,
+      "worst_ret": -1.00001902074568,
+      "best_ret": 1.016004328140069,
+      "max_drawdown_stakes": 5.3841130706149745,
+      "sum_ret_stakes": -4.887841659186087,
+      "sharpe_per_trade": -0.32097584512731286,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "lookback": 12,
+      "vol_mult": 1.5
+     },
+     "train": {
+      "n": 29,
+      "mean_ret": -0.0693542575773549,
+      "median_ret": -0.06531563189502498,
+      "win_rate": 0.2413793103448276,
+      "win_rate_wilson95": [
+       0.12218268185062131,
+       0.4210795221832869
+      ],
+      "profit_factor": 0.4952034600250134,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 1.016004328140069,
+      "max_drawdown_stakes": 2.50754488117218,
+      "sum_ret_stakes": -2.0112734697432924,
+      "sharpe_per_trade": -0.19818615129670258,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "lookback": 24,
+      "vol_mult": 1.0
+     },
+     "train": {
+      "n": 27,
+      "mean_ret": -0.1323333710710303,
+      "median_ret": -0.041662685133026844,
+      "win_rate": 0.3333333333333333,
+      "win_rate_wilson95": [
+       0.1864305444359335,
+       0.5217558012789452
+      ],
+      "profit_factor": 0.33756333684814616,
+      "p05_ret": -1.00001902074568,
+      "worst_ret": -1.00001902074568,
+      "best_ret": 0.9744248242292797,
+      "max_drawdown_stakes": 4.105718129677037,
+      "sum_ret_stakes": -3.573001018917818,
+      "sharpe_per_trade": -0.31208102395356535,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "lookback": 24,
+      "vol_mult": 1.5
+     },
+     "train": {
+      "n": 22,
+      "mean_ret": -0.08958716057313781,
+      "median_ret": -0.06320021694136457,
+      "win_rate": 0.22727272727272727,
+      "win_rate_wilson95": [
+       0.10122890794820358,
+       0.4344035606295935
+      ],
+      "profit_factor": 0.4365179287106379,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.9744248242292797,
+      "max_drawdown_stakes": 2.340618609316683,
+      "sum_ret_stakes": -1.970917532609032,
+      "sharpe_per_trade": -0.23731464094061408,
+      "non_executable_exits": 2
+     }
+    }
+   ],
+   "chosen": {
+    "lookback": 12,
+    "vol_mult": 1.5
+   },
+   "frozen_sha": "07e09a6f8c43c19393493f6398e0d87bcf6fef19529bbb3b426424c5cdc1298a",
+   "validation": {
+    "n": 16,
+    "mean_ret": -0.06601639739266697,
+    "median_ret": -0.05883036266620406,
+    "win_rate": 0.25,
+    "win_rate_wilson95": [
+     0.10181901984237346,
+     0.49498768929398645
+    ],
+    "profit_factor": 0.1833535311567503,
+    "p05_ret": null,
+    "worst_ret": -0.3560821882178632,
+    "best_ret": 0.15704301115200936,
+    "max_drawdown_stakes": 1.0749696009499619,
+    "sum_ret_stakes": -1.0562623582826716,
+    "sharpe_per_trade": -0.5881627605433761,
+    "non_executable_exits": 0
+   },
+   "test": {
+    "n": 6,
+    "mean_ret": -0.031294165685796994,
+    "median_ret": -0.05275697629607207,
+    "win_rate": 0.16666666666666666,
+    "win_rate_wilson95": [
+     0.03005258587173032,
+     0.563509436563646
+    ],
+    "profit_factor": 0.5469904268022552,
+    "p05_ret": null,
+    "worst_ret": -0.21658571553334038,
+    "best_ret": 0.22671850739131094,
+    "max_drawdown_stakes": 0.4144835015060929,
+    "sum_ret_stakes": -0.18776499411478198,
+    "sharpe_per_trade": -0.23879584243315724,
+    "non_executable_exits": 0,
+    "bootstrap95_mean_ret": null,
+    "p_mean_le_0": null
+   },
+   "baselines": {
+    "NO_TRADE": {
+     "n": 0,
+     "bootstrap95_mean_ret": null
+    },
+    "ENTER_AT_DISCOVERY": {
+     "n": 8,
+     "mean_ret": -0.4220229369063827,
+     "median_ret": -0.27048417747339837,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.3244156195108769
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -1.0,
+     "best_ret": -0.10401897517879932,
+     "max_drawdown_stakes": 3.3761834952510617,
+     "sum_ret_stakes": -3.3761834952510617,
+     "sharpe_per_trade": -1.222829509944992,
+     "non_executable_exits": 2,
+     "bootstrap95_mean_ret": null
+    },
+    "RANDOM_ENTRY": {
+     "n": 8,
+     "mean_ret": -0.079213896457405,
+     "median_ret": -0.12524059670933108,
+     "win_rate": 0.25,
+     "win_rate_wilson95": [
+      0.07147768885802763,
+      0.5907301208974108
+     ],
+     "profit_factor": 0.33817445643521193,
+     "p05_ret": null,
+     "worst_ret": -0.32476524114936167,
+     "best_ret": 0.24806755950068315,
+     "max_drawdown_stakes": 0.9575199655272962,
+     "sum_ret_stakes": -0.63371117165924,
+     "sharpe_per_trade": -0.48560818301054814,
+     "non_executable_exits": 0,
+     "bootstrap95_mean_ret": null
+    },
+    "MA_CROSS": {
+     "n": 3,
+     "mean_ret": -0.13515497310772964,
+     "median_ret": -0.15215310223856837,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.5615060804490177
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -0.16707323139529895,
+     "best_ret": -0.08623858568932163,
+     "max_drawdown_stakes": 0.40546491932318895,
+     "sum_ret_stakes": -0.40546491932318895,
+     "sharpe_per_trade": -3.8482299217501454,
+     "non_executable_exits": 0,
+     "bootstrap95_mean_ret": null
+    }
+   },
+   "winners_curse": {
+    "train_mean_ret": -0.0693542575773549,
+    "validation_mean_ret": -0.06601639739266697,
+    "drop": -0.0033378601846879297,
+    "overfit_flag": false,
+    "selection_from_trials": 4
+   },
+   "verdict": "INSUFFICIENT_SAMPLE",
+   "notes": [
+    "sealed test has 6 trades < 30; no performance claim"
+   ],
+   "test_regimes": {
+    "SOL_UP_24H": {
+     "n": 6,
+     "mean_ret": -0.031294165685796994,
+     "median_ret": -0.05275697629607207,
+     "win_rate": 0.16666666666666666,
+     "win_rate_wilson95": [
+      0.03005258587173032,
+      0.563509436563646
+     ],
+     "profit_factor": 0.5469904268022552,
+     "p05_ret": null,
+     "worst_ret": -0.21658571553334038,
+     "best_ret": 0.22671850739131094,
+     "max_drawdown_stakes": 0.4144835015060929,
+     "sum_ret_stakes": -0.18776499411478198,
+     "sharpe_per_trade": -0.23879584243315724,
+     "non_executable_exits": 0
+    },
+    "SOL_DOWN_24H": {
+     "n": 0
+    },
+    "UNKNOWN": {
+     "n": 0
+    }
+   },
+   "test_ledger_hash": "88ae40542f4bd89e3cffbba11869204dfa05e4a3e4718ec6a4d5480fcb194af1"
+  },
+  "MOMENTUM": {
+   "strategy_id": "MOMENTUM",
+   "plan": {
+    "start": 1791331200.0,
+    "train_end": 1792051200.0,
+    "valid_end": 1792411200.0,
+    "end": 1792771200.0,
+    "embargo_s": 172800.0
+   },
+   "trials": 4,
+   "tuning": [
+    {
+     "params": {
+      "min_roc": 0.05,
+      "min_bar_volume_usd": 2000.0
+     },
+     "train": {
+      "n": 26,
+      "mean_ret": -0.07698934234764289,
+      "median_ret": -0.16190985429273697,
+      "win_rate": 0.2692307692307692,
+      "win_rate_wilson95": [
+       0.13704275525067386,
+       0.46083403419761304
+      ],
+      "profit_factor": 0.6662900269138242,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 1.3144999988354873,
+      "max_drawdown_stakes": 3.115454654963082,
+      "sum_ret_stakes": -2.001722901038715,
+      "sharpe_per_trade": -0.15669149237064592,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "min_roc": 0.05,
+      "min_bar_volume_usd": 10000.0
+     },
+     "train": {
+      "n": 25,
+      "mean_ret": -0.11342172332917824,
+      "median_ret": -0.211778863568027,
+      "win_rate": 0.28,
+      "win_rate_wilson95": [
+       0.1428367383738157,
+       0.47576971896558296
+      ],
+      "profit_factor": 0.5806444553469878,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 1.3144999988354873,
+      "max_drawdown_stakes": 3.9492748371538235,
+      "sum_ret_stakes": -2.8355430832294566,
+      "sharpe_per_trade": -0.21312050178053138,
+      "non_executable_exits": 3
+     }
+    },
+    {
+     "params": {
+      "min_roc": 0.1,
+      "min_bar_volume_usd": 2000.0
+     },
+     "train": {
+      "n": 26,
+      "mean_ret": -0.07895582280237369,
+      "median_ret": -0.16514498653903792,
+      "win_rate": 0.23076923076923078,
+      "win_rate_wilson95": [
+       0.11033699683676687,
+       0.42051925751956787
+      ],
+      "profit_factor": 0.6556760823014702,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 1.3144999988354873,
+      "max_drawdown_stakes": 3.166583146786083,
+      "sum_ret_stakes": -2.052851392861716,
+      "sharpe_per_trade": -0.16192044996277768,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "min_roc": 0.1,
+      "min_bar_volume_usd": 10000.0
+     },
+     "train": {
+      "n": 25,
+      "mean_ret": -0.11498193524728034,
+      "median_ret": -0.1708784721990283,
+      "win_rate": 0.24,
+      "win_rate_wilson95": [
+       0.11496157730326725,
+       0.43430059955238565
+      ],
+      "profit_factor": 0.5762549549677772,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 1.3144999988354873,
+      "max_drawdown_stakes": 3.9882801351063755,
+      "sum_ret_stakes": -2.8745483811820085,
+      "sharpe_per_trade": -0.21720810390068648,
+      "non_executable_exits": 3
+     }
+    }
+   ],
+   "chosen": {
+    "min_roc": 0.05,
+    "min_bar_volume_usd": 2000.0
+   },
+   "frozen_sha": "945b3c8400beb10757db4f84135843aa9decaabbd836918241bd7b295f7db9b1",
+   "validation": {
+    "n": 10,
+    "mean_ret": -0.10469194318920431,
+    "median_ret": -0.1530625640333867,
+    "win_rate": 0.3,
+    "win_rate_wilson95": [
+     0.10778928748621183,
+     0.6032267800204347
+    ],
+    "profit_factor": 0.5091957409441623,
+    "p05_ret": null,
+    "worst_ret": -1.0,
+    "best_ret": 0.5556507918972406,
+    "max_drawdown_stakes": 1.630040140785047,
+    "sum_ret_stakes": -1.0469194318920432,
+    "sharpe_per_trade": -0.26293610846130244,
+    "non_executable_exits": 1
+   },
+   "test": {
+    "n": 7,
+    "mean_ret": -0.2664527747571264,
+    "median_ret": -0.14480116496191986,
+    "win_rate": 0.14285714285714285,
+    "win_rate_wilson95": [
+     0.02567895594897479,
+     0.51313450331903
+    ],
+    "profit_factor": 0.035934214320331184,
+    "p05_ret": null,
+    "worst_ret": -1.0,
+    "best_ret": 0.06952160194476242,
+    "max_drawdown_stakes": 1.8651694232998848,
+    "sum_ret_stakes": -1.8651694232998848,
+    "sharpe_per_trade": -0.8148741638741065,
+    "non_executable_exits": 1,
+    "bootstrap95_mean_ret": null,
+    "p_mean_le_0": null
+   },
+   "baselines": {
+    "NO_TRADE": {
+     "n": 0,
+     "bootstrap95_mean_ret": null
+    },
+    "ENTER_AT_DISCOVERY": {
+     "n": 8,
+     "mean_ret": -0.4220229369063827,
+     "median_ret": -0.27048417747339837,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.3244156195108769
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -1.0,
+     "best_ret": -0.10401897517879932,
+     "max_drawdown_stakes": 3.3761834952510617,
+     "sum_ret_stakes": -3.3761834952510617,
+     "sharpe_per_trade": -1.222829509944992,
+     "non_executable_exits": 2,
+     "bootstrap95_mean_ret": null
+    },
+    "RANDOM_ENTRY": {
+     "n": 8,
+     "mean_ret": -0.079213896457405,
+     "median_ret": -0.12524059670933108,
+     "win_rate": 0.25,
+     "win_rate_wilson95": [
+      0.07147768885802763,
+      0.5907301208974108
+     ],
+     "profit_factor": 0.33817445643521193,
+     "p05_ret": null,
+     "worst_ret": -0.32476524114936167,
+     "best_ret": 0.24806755950068315,
+     "max_drawdown_stakes": 0.9575199655272962,
+     "sum_ret_stakes": -0.63371117165924,
+     "sharpe_per_trade": -0.48560818301054814,
+     "non_executable_exits": 0,
+     "bootstrap95_mean_ret": null
+    },
+    "MA_CROSS": {
+     "n": 3,
+     "mean_ret": -0.13515497310772964,
+     "median_ret": -0.15215310223856837,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.5615060804490177
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -0.16707323139529895,
+     "best_ret": -0.08623858568932163,
+     "max_drawdown_stakes": 0.40546491932318895,
+     "sum_ret_stakes": -0.40546491932318895,
+     "sharpe_per_trade": -3.8482299217501454,
+     "non_executable_exits": 0,
+     "bootstrap95_mean_ret": null
+    }
+   },
+   "winners_curse": {
+    "train_mean_ret": -0.07698934234764289,
+    "validation_mean_ret": -0.10469194318920431,
+    "drop": 0.027702600841561426,
+    "overfit_flag": false,
+    "selection_from_trials": 4
+   },
+   "verdict": "INSUFFICIENT_SAMPLE",
+   "notes": [
+    "sealed test has 7 trades < 30; no performance claim"
+   ],
+   "test_regimes": {
+    "SOL_UP_24H": {
+     "n": 7,
+     "mean_ret": -0.2664527747571264,
+     "median_ret": -0.14480116496191986,
+     "win_rate": 0.14285714285714285,
+     "win_rate_wilson95": [
+      0.02567895594897479,
+      0.51313450331903
+     ],
+     "profit_factor": 0.035934214320331184,
+     "p05_ret": null,
+     "worst_ret": -1.0,
+     "best_ret": 0.06952160194476242,
+     "max_drawdown_stakes": 1.8651694232998848,
+     "sum_ret_stakes": -1.8651694232998848,
+     "sharpe_per_trade": -0.8148741638741065,
+     "non_executable_exits": 1
+    },
+    "SOL_DOWN_24H": {
+     "n": 0
+    },
+    "UNKNOWN": {
+     "n": 0
+    }
+   },
+   "test_ledger_hash": "9b4dde1b857ce5e812dd9e194e8e86ebc525d958aa707e5a88d3b2a93398cd74"
+  },
+  "BREAKOUT_RETEST": {
+   "strategy_id": "BREAKOUT_RETEST",
+   "plan": {
+    "start": 1791331200.0,
+    "train_end": 1792051200.0,
+    "valid_end": 1792411200.0,
+    "end": 1792771200.0,
+    "embargo_s": 172800.0
+   },
+   "trials": 1,
+   "tuning": [
+    {
+     "params": {},
+     "train": {
+      "n": 12,
+      "mean_ret": -0.06138234503626511,
+      "median_ret": -0.08967735085199313,
+      "win_rate": 0.16666666666666666,
+      "win_rate_wilson95": [
+       0.04696414761482223,
+       0.44803635738467273
+      ],
+      "profit_factor": 0.46507026285313685,
+      "p05_ret": null,
+      "worst_ret": -0.32148612837331403,
+      "best_ret": 0.5817548757959428,
+      "max_drawdown_stakes": 1.318343016231124,
+      "sum_ret_stakes": -0.7365881404351813,
+      "sharpe_per_trade": -0.27999697807613805,
+      "non_executable_exits": 0
+     }
+    }
+   ],
+   "chosen": {},
+   "frozen_sha": "cf3c719210fa9123a47765fdeae120492b99a6deedd52eb4efe96cc8fefc5e47",
+   "validation": {
+    "n": 5,
+    "mean_ret": -0.010937323441399438,
+    "median_ret": -0.019822294175009136,
+    "win_rate": 0.4,
+    "win_rate_wilson95": [
+     0.1176182311592533,
+     0.769280067791163
+    ],
+    "profit_factor": 0.8587826026803157,
+    "p05_ret": null,
+    "worst_ret": -0.185930725976722,
+    "best_ret": 0.19721072854646038,
+    "max_drawdown_stakes": 0.3872512753028513,
+    "sum_ret_stakes": -0.05468661720699719,
+    "sharpe_per_trade": -0.06930706935451968,
+    "non_executable_exits": 0
+   },
+   "test": {
+    "n": 6,
+    "mean_ret": 0.03038885122166866,
+    "median_ret": -0.02328454076674913,
+    "win_rate": 0.5,
+    "win_rate_wilson95": [
+     0.18761280689940868,
+     0.8123871931005913
+    ],
+    "profit_factor": 1.660630317402749,
+    "p05_ret": null,
+    "worst_ret": -0.12138938533028487,
+    "best_ret": 0.36412675983951504,
+    "max_drawdown_stakes": 0.27599869779947406,
+    "sum_ret_stakes": 0.18233310733001196,
+    "sharpe_per_trade": 0.18684122979319157,
+    "non_executable_exits": 0,
+    "bootstrap95_mean_ret": null,
+    "p_mean_le_0": null
+   },
+   "baselines": {
+    "NO_TRADE": {
+     "n": 0,
+     "bootstrap95_mean_ret": null
+    },
+    "ENTER_AT_DISCOVERY": {
+     "n": 8,
+     "mean_ret": -0.4220229369063827,
+     "median_ret": -0.27048417747339837,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.3244156195108769
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -1.0,
+     "best_ret": -0.10401897517879932,
+     "max_drawdown_stakes": 3.3761834952510617,
+     "sum_ret_stakes": -3.3761834952510617,
+     "sharpe_per_trade": -1.222829509944992,
+     "non_executable_exits": 2,
+     "bootstrap95_mean_ret": null
+    },
+    "RANDOM_ENTRY": {
+     "n": 8,
+     "mean_ret": -0.079213896457405,
+     "median_ret": -0.12524059670933108,
+     "win_rate": 0.25,
+     "win_rate_wilson95": [
+      0.07147768885802763,
+      0.5907301208974108
+     ],
+     "profit_factor": 0.33817445643521193,
+     "p05_ret": null,
+     "worst_ret": -0.32476524114936167,
+     "best_ret": 0.24806755950068315,
+     "max_drawdown_stakes": 0.9575199655272962,
+     "sum_ret_stakes": -0.63371117165924,
+     "sharpe_per_trade": -0.48560818301054814,
+     "non_executable_exits": 0,
+     "bootstrap95_mean_ret": null
+    },
+    "MA_CROSS": {
+     "n": 3,
+     "mean_ret": -0.13515497310772964,
+     "median_ret": -0.15215310223856837,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.5615060804490177
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -0.16707323139529895,
+     "best_ret": -0.08623858568932163,
+     "max_drawdown_stakes": 0.40546491932318895,
+     "sum_ret_stakes": -0.40546491932318895,
+     "sharpe_per_trade": -3.8482299217501454,
+     "non_executable_exits": 0,
+     "bootstrap95_mean_ret": null
+    }
+   },
+   "winners_curse": {
+    "train_mean_ret": -0.06138234503626511,
+    "validation_mean_ret": -0.010937323441399438,
+    "drop": -0.05044502159486567,
+    "overfit_flag": false,
+    "selection_from_trials": 1
+   },
+   "verdict": "INSUFFICIENT_SAMPLE",
+   "notes": [
+    "sealed test has 6 trades < 30; no performance claim"
+   ],
+   "test_regimes": {
+    "SOL_UP_24H": {
+     "n": 5,
+     "mean_ret": 0.03035917152729064,
+     "median_ret": -0.07710633122705701,
+     "win_rate": 0.4,
+     "win_rate_wilson95": [
+      0.1176182311592533,
+      0.769280067791163
+     ],
+     "profit_factor": 1.5499875863426718,
+     "p05_ret": null,
+     "worst_ret": -0.12138938533028487,
+     "best_ret": 0.36412675983951504,
+     "max_drawdown_stakes": 0.27599869779947406,
+     "sum_ret_stakes": 0.1517958576364532,
+     "sharpe_per_trade": 0.17039535955543603,
+     "non_executable_exits": 0
+    },
+    "SOL_DOWN_24H": {
+     "n": 1,
+     "mean_ret": 0.030537249693558755,
+     "median_ret": 0.030537249693558755,
+     "win_rate": 1.0,
+     "win_rate_wilson95": [
+      0.20654329147389294,
+      1.0
+     ],
+     "profit_factor": null,
+     "p05_ret": null,
+     "worst_ret": 0.030537249693558755,
+     "best_ret": 0.030537249693558755,
+     "max_drawdown_stakes": 0.0,
+     "sum_ret_stakes": 0.030537249693558755,
+     "sharpe_per_trade": null,
+     "non_executable_exits": 0
+    },
+    "UNKNOWN": {
+     "n": 0
+    }
+   },
+   "test_ledger_hash": "5bc825028ed57c2e32011dc8b979a7980b0acb2b3e540fb61870fdecc57e8f41"
+  },
+  "RECLAIM": {
+   "strategy_id": "RECLAIM",
+   "plan": {
+    "start": 1791331200.0,
+    "train_end": 1792051200.0,
+    "valid_end": 1792411200.0,
+    "end": 1792771200.0,
+    "embargo_s": 172800.0
+   },
+   "trials": 1,
+   "tuning": [
+    {
+     "params": {},
+     "train": {
+      "n": 23,
+      "mean_ret": -0.1809638115458382,
+      "median_ret": -0.15388247575057667,
+      "win_rate": 0.2608695652173913,
+      "win_rate_wilson95": [
+       0.1254844588924897,
+       0.4647039054375056
+      ],
+      "profit_factor": 0.1999417021612658,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.6113740300453663,
+      "max_drawdown_stakes": 4.531934840422202,
+      "sum_ret_stakes": -4.1621676655542785,
+      "sharpe_per_trade": -0.5392541255047707,
+      "non_executable_exits": 2
+     }
+    }
+   ],
+   "chosen": {},
+   "frozen_sha": "79c99fd6bf77b4066588182ae04fc21a5623f65d4275776116946166b32b763a",
+   "validation": {
+    "n": 4,
+    "mean_ret": -0.19805430633590201,
+    "median_ret": -0.18142254410592396,
+    "win_rate": 0.0,
+    "win_rate_wilson95": [
+     0.0,
+     0.48990002040399916
+    ],
+    "profit_factor": 0.0,
+    "p05_ret": null,
+    "worst_ret": -0.2983364519992553,
+    "best_ret": -0.13103568513250485,
+    "max_drawdown_stakes": 0.7922172253436081,
+    "sum_ret_stakes": -0.7922172253436081,
+    "sharpe_per_trade": -2.826980897875242,
+    "non_executable_exits": 0
+   },
+   "test": {
+    "n": 4,
+    "mean_ret": -0.08292249193958037,
+    "median_ret": -0.05306582633816759,
+    "win_rate": 0.5,
+    "win_rate_wilson95": [
+     0.15003570882017148,
+     0.8499642911798285
+    ],
+    "profit_factor": 0.18342995103050733,
+    "p05_ret": null,
+    "worst_ret": -0.2725979530261716,
+    "best_ret": 0.04703963794418531,
+    "max_drawdown_stakes": 0.40619903727415985,
+    "sum_ret_stakes": -0.3316899677583215,
+    "sharpe_per_trade": -0.6377632875294433,
+    "non_executable_exits": 0,
+    "bootstrap95_mean_ret": null,
+    "p_mean_le_0": null
+   },
+   "baselines": {
+    "NO_TRADE": {
+     "n": 0,
+     "bootstrap95_mean_ret": null
+    },
+    "ENTER_AT_DISCOVERY": {
+     "n": 8,
+     "mean_ret": -0.4220229369063827,
+     "median_ret": -0.27048417747339837,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.3244156195108769
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -1.0,
+     "best_ret": -0.10401897517879932,
+     "max_drawdown_stakes": 3.3761834952510617,
+     "sum_ret_stakes": -3.3761834952510617,
+     "sharpe_per_trade": -1.222829509944992,
+     "non_executable_exits": 2,
+     "bootstrap95_mean_ret": null
+    },
+    "RANDOM_ENTRY": {
+     "n": 8,
+     "mean_ret": -0.079213896457405,
+     "median_ret": -0.12524059670933108,
+     "win_rate": 0.25,
+     "win_rate_wilson95": [
+      0.07147768885802763,
+      0.5907301208974108
+     ],
+     "profit_factor": 0.33817445643521193,
+     "p05_ret": null,
+     "worst_ret": -0.32476524114936167,
+     "best_ret": 0.24806755950068315,
+     "max_drawdown_stakes": 0.9575199655272962,
+     "sum_ret_stakes": -0.63371117165924,
+     "sharpe_per_trade": -0.48560818301054814,
+     "non_executable_exits": 0,
+     "bootstrap95_mean_ret": null
+    },
+    "MA_CROSS": {
+     "n": 3,
+     "mean_ret": -0.13515497310772964,
+     "median_ret": -0.15215310223856837,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.5615060804490177
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -0.16707323139529895,
+     "best_ret": -0.08623858568932163,
+     "max_drawdown_stakes": 0.40546491932318895,
+     "sum_ret_stakes": -0.40546491932318895,
+     "sharpe_per_trade": -3.8482299217501454,
+     "non_executable_exits": 0,
+     "bootstrap95_mean_ret": null
+    }
+   },
+   "winners_curse": {
+    "train_mean_ret": -0.1809638115458382,
+    "validation_mean_ret": -0.19805430633590201,
+    "drop": 0.017090494790063804,
+    "overfit_flag": false,
+    "selection_from_trials": 1
+   },
+   "verdict": "INSUFFICIENT_SAMPLE",
+   "notes": [
+    "sealed test has 4 trades < 30; no performance claim"
+   ],
+   "test_regimes": {
+    "SOL_UP_24H": {
+     "n": 4,
+     "mean_ret": -0.08292249193958037,
+     "median_ret": -0.05306582633816759,
+     "win_rate": 0.5,
+     "win_rate_wilson95": [
+      0.15003570882017148,
+      0.8499642911798285
+     ],
+     "profit_factor": 0.18342995103050733,
+     "p05_ret": null,
+     "worst_ret": -0.2725979530261716,
+     "best_ret": 0.04703963794418531,
+     "max_drawdown_stakes": 0.40619903727415985,
+     "sum_ret_stakes": -0.3316899677583215,
+     "sharpe_per_trade": -0.6377632875294433,
+     "non_executable_exits": 0
+    },
+    "SOL_DOWN_24H": {
+     "n": 0
+    },
+    "UNKNOWN": {
+     "n": 0
+    }
+   },
+   "test_ledger_hash": "334bf3a33304b893b0c2249a4a232a1e08743cf421e3ef3d53ac41dbec9383e3"
+  },
+  "TREND_HHHL": {
+   "strategy_id": "TREND_HHHL",
+   "plan": {
+    "start": 1791331200.0,
+    "train_end": 1792051200.0,
+    "valid_end": 1792411200.0,
+    "end": 1792771200.0,
+    "embargo_s": 172800.0
+   },
+   "trials": 1,
+   "tuning": [
+    {
+     "params": {},
+     "train": {
+      "n": 8,
+      "mean_ret": -0.3971943911618084,
+      "median_ret": -0.3988479374741405,
+      "win_rate": 0.25,
+      "win_rate_wilson95": [
+       0.07147768885802763,
+       0.5907301208974108
+      ],
+      "profit_factor": 0.2055376621267908,
+      "p05_ret": null,
+      "worst_ret": -1.0,
+      "best_ret": 0.7401242155294354,
+      "max_drawdown_stakes": 3.6010885222916924,
+      "sum_ret_stakes": -3.177555129294467,
+      "sharpe_per_trade": -0.6881938108124737,
+      "non_executable_exits": 3
+     }
+    }
+   ],
+   "chosen": {},
+   "frozen_sha": "1ba2be02948a9aa2a41dcffc705f431108be643130d4e7e4ee6993dd9bb38294",
+   "validation": {
+    "n": 5,
+    "mean_ret": -0.05081347560819736,
+    "median_ret": -0.24981214820688757,
+    "win_rate": 0.2,
+    "win_rate_wilson95": [
+     0.03622316096978745,
+     0.6244717358814613
+    ],
+    "profit_factor": 0.7789967480406939,
+    "p05_ret": null,
+    "worst_ret": -0.46282745461099295,
+    "best_ret": 0.8955418507307638,
+    "max_drawdown_stakes": 1.1496092287717505,
+    "sum_ret_stakes": -0.2540673780409868,
+    "sharpe_per_trade": -0.10515782202607894,
+    "non_executable_exits": 0
+   },
+   "test": {
+    "n": 3,
+    "mean_ret": -0.5456188951505668,
+    "median_ret": -0.44310870280669523,
+    "win_rate": 0.0,
+    "win_rate_wilson95": [
+     0.0,
+     0.5615060804490177
+    ],
+    "profit_factor": 0.0,
+    "p05_ret": null,
+    "worst_ret": -1.0,
+    "best_ret": -0.19374798264500548,
+    "max_drawdown_stakes": 1.6368566854517006,
+    "sum_ret_stakes": -1.6368566854517006,
+    "sharpe_per_trade": -1.6188650356105356,
+    "non_executable_exits": 1,
+    "bootstrap95_mean_ret": null,
+    "p_mean_le_0": null
+   },
+   "baselines": {
+    "NO_TRADE": {
+     "n": 0,
+     "bootstrap95_mean_ret": null
+    },
+    "ENTER_AT_DISCOVERY": {
+     "n": 8,
+     "mean_ret": -0.4220229369063827,
+     "median_ret": -0.27048417747339837,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.3244156195108769
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -1.0,
+     "best_ret": -0.10401897517879932,
+     "max_drawdown_stakes": 3.3761834952510617,
+     "sum_ret_stakes": -3.3761834952510617,
+     "sharpe_per_trade": -1.222829509944992,
+     "non_executable_exits": 2,
+     "bootstrap95_mean_ret": null
+    },
+    "RANDOM_ENTRY": {
+     "n": 8,
+     "mean_ret": -0.079213896457405,
+     "median_ret": -0.12524059670933108,
+     "win_rate": 0.25,
+     "win_rate_wilson95": [
+      0.07147768885802763,
+      0.5907301208974108
+     ],
+     "profit_factor": 0.33817445643521193,
+     "p05_ret": null,
+     "worst_ret": -0.32476524114936167,
+     "best_ret": 0.24806755950068315,
+     "max_drawdown_stakes": 0.9575199655272962,
+     "sum_ret_stakes": -0.63371117165924,
+     "sharpe_per_trade": -0.48560818301054814,
+     "non_executable_exits": 0,
+     "bootstrap95_mean_ret": null
+    },
+    "MA_CROSS": {
+     "n": 3,
+     "mean_ret": -0.13515497310772964,
+     "median_ret": -0.15215310223856837,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.5615060804490177
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -0.16707323139529895,
+     "best_ret": -0.08623858568932163,
+     "max_drawdown_stakes": 0.40546491932318895,
+     "sum_ret_stakes": -0.40546491932318895,
+     "sharpe_per_trade": -3.8482299217501454,
+     "non_executable_exits": 0,
+     "bootstrap95_mean_ret": null
+    }
+   },
+   "winners_curse": {
+    "train_mean_ret": -0.3971943911618084,
+    "validation_mean_ret": -0.05081347560819736,
+    "drop": -0.346380915553611,
+    "overfit_flag": false,
+    "selection_from_trials": 1
+   },
+   "verdict": "INSUFFICIENT_SAMPLE",
+   "notes": [
+    "sealed test has 3 trades < 30; no performance claim"
+   ],
+   "test_regimes": {
+    "SOL_UP_24H": {
+     "n": 3,
+     "mean_ret": -0.5456188951505668,
+     "median_ret": -0.44310870280669523,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.5615060804490177
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -1.0,
+     "best_ret": -0.19374798264500548,
+     "max_drawdown_stakes": 1.6368566854517006,
+     "sum_ret_stakes": -1.6368566854517006,
+     "sharpe_per_trade": -1.6188650356105356,
+     "non_executable_exits": 1
+    },
+    "SOL_DOWN_24H": {
+     "n": 0
+    },
+    "UNKNOWN": {
+     "n": 0
+    }
+   },
+   "test_ledger_hash": "41a90f9762ce49f0eafad5a5e7302c346cdebf15f16bcbf7fb84a09b295d0cea"
+  },
+  "ABSORPTION_BREAK": {
+   "strategy_id": "ABSORPTION_BREAK",
+   "plan": {
+    "start": 1791331200.0,
+    "train_end": 1792051200.0,
+    "valid_end": 1792411200.0,
+    "end": 1792771200.0,
+    "embargo_s": 172800.0
+   },
+   "trials": 1,
+   "tuning": [
+    {
+     "params": {},
+     "train": {
+      "n": 7,
+      "mean_ret": -0.2880486866722766,
+      "median_ret": -0.127848201508731,
+      "win_rate": 0.2857142857142857,
+      "win_rate_wilson95": [
+       0.0822171657090155,
+       0.6410709098517873
+      ],
+      "profit_factor": 0.13488134293777546,
+      "p05_ret": null,
+      "worst_ret": -1.0,
+      "best_ret": 0.17902702162482798,
+      "max_drawdown_stakes": 2.1516830957052493,
+      "sum_ret_stakes": -2.0163408067059363,
+      "sharpe_per_trade": -0.6196942477837237,
+      "non_executable_exits": 2
+     }
+    }
+   ],
+   "chosen": {},
+   "frozen_sha": "48217187e0e693c190f32494c6d58c5e867008472895075edb182fbb41266393",
+   "validation": {
+    "n": 5,
+    "mean_ret": -0.24668607059550762,
+    "median_ret": -0.1076960141412,
+    "win_rate": 0.2,
+    "win_rate_wilson95": [
+     0.03622316096978745,
+     0.6244717358814613
+    ],
+    "profit_factor": 0.09886996450125073,
+    "p05_ret": null,
+    "worst_ret": -1.0,
+    "best_ret": 0.1353292093367624,
+    "max_drawdown_stakes": 1.3687595623143007,
+    "sum_ret_stakes": -1.2334303529775383,
+    "sharpe_per_trade": -0.6310455055670657,
+    "non_executable_exits": 1
+   },
+   "test": {
+    "n": 3,
+    "mean_ret": -0.08483133485529197,
+    "median_ret": -0.0517140737644155,
+    "win_rate": 0.0,
+    "win_rate_wilson95": [
+     0.0,
+     0.5615060804490177
+    ],
+    "profit_factor": 0.0,
+    "p05_ret": null,
+    "worst_ret": -0.17407111883245074,
+    "best_ret": -0.02870881196900965,
+    "max_drawdown_stakes": 0.2544940045658759,
+    "sum_ret_stakes": -0.2544940045658759,
+    "sharpe_per_trade": -1.3297041156177594,
+    "non_executable_exits": 0,
+    "bootstrap95_mean_ret": null,
+    "p_mean_le_0": null
+   },
+   "baselines": {
+    "NO_TRADE": {
+     "n": 0,
+     "bootstrap95_mean_ret": null
+    },
+    "ENTER_AT_DISCOVERY": {
+     "n": 8,
+     "mean_ret": -0.4220229369063827,
+     "median_ret": -0.27048417747339837,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.3244156195108769
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -1.0,
+     "best_ret": -0.10401897517879932,
+     "max_drawdown_stakes": 3.3761834952510617,
+     "sum_ret_stakes": -3.3761834952510617,
+     "sharpe_per_trade": -1.222829509944992,
+     "non_executable_exits": 2,
+     "bootstrap95_mean_ret": null
+    },
+    "RANDOM_ENTRY": {
+     "n": 8,
+     "mean_ret": -0.079213896457405,
+     "median_ret": -0.12524059670933108,
+     "win_rate": 0.25,
+     "win_rate_wilson95": [
+      0.07147768885802763,
+      0.5907301208974108
+     ],
+     "profit_factor": 0.33817445643521193,
+     "p05_ret": null,
+     "worst_ret": -0.32476524114936167,
+     "best_ret": 0.24806755950068315,
+     "max_drawdown_stakes": 0.9575199655272962,
+     "sum_ret_stakes": -0.63371117165924,
+     "sharpe_per_trade": -0.48560818301054814,
+     "non_executable_exits": 0,
+     "bootstrap95_mean_ret": null
+    },
+    "MA_CROSS": {
+     "n": 3,
+     "mean_ret": -0.13515497310772964,
+     "median_ret": -0.15215310223856837,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.5615060804490177
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -0.16707323139529895,
+     "best_ret": -0.08623858568932163,
+     "max_drawdown_stakes": 0.40546491932318895,
+     "sum_ret_stakes": -0.40546491932318895,
+     "sharpe_per_trade": -3.8482299217501454,
+     "non_executable_exits": 0,
+     "bootstrap95_mean_ret": null
+    }
+   },
+   "winners_curse": {
+    "train_mean_ret": -0.2880486866722766,
+    "validation_mean_ret": -0.24668607059550762,
+    "drop": -0.041362616076769,
+    "overfit_flag": false,
+    "selection_from_trials": 1
+   },
+   "verdict": "INSUFFICIENT_SAMPLE",
+   "notes": [
+    "no configuration reached 8 training trades; first grid point frozen without tuning",
+    "sealed test has 3 trades < 30; no performance claim"
+   ],
+   "test_regimes": {
+    "SOL_UP_24H": {
+     "n": 3,
+     "mean_ret": -0.08483133485529197,
+     "median_ret": -0.0517140737644155,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.5615060804490177
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -0.17407111883245074,
+     "best_ret": -0.02870881196900965,
+     "max_drawdown_stakes": 0.2544940045658759,
+     "sum_ret_stakes": -0.2544940045658759,
+     "sharpe_per_trade": -1.3297041156177594,
+     "non_executable_exits": 0
+    },
+    "SOL_DOWN_24H": {
+     "n": 0
+    },
+    "UNKNOWN": {
+     "n": 0
+    }
+   },
+   "test_ledger_hash": "da296ced67d0c3cc87f4dd271c70f599add0e1064ef73c0d5372209b42b01a23"
+  },
+  "RANDOM_ENTRY": {
+   "strategy_id": "RANDOM_ENTRY",
+   "plan": {
+    "start": 1791331200.0,
+    "train_end": 1792051200.0,
+    "valid_end": 1792411200.0,
+    "end": 1792771200.0,
+    "embargo_s": 172800.0
+   },
+   "trials": 40,
+   "tuning": [
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 0
+     },
+     "train": {
+      "n": 31,
+      "mean_ret": -0.010204301451496187,
+      "median_ret": -0.12835359676207114,
+      "win_rate": 0.3870967741935484,
+      "win_rate_wilson95": [
+       0.23732875351271562,
+       0.5617619885886803
+      ],
+      "profit_factor": 0.9172639372003547,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.6192376252236895,
+      "max_drawdown_stakes": 1.5857450504738884,
+      "sum_ret_stakes": -0.316333344996382,
+      "sharpe_per_trade": -0.03328645183369452,
+      "non_executable_exits": 1
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 1
+     },
+     "train": {
+      "n": 33,
+      "mean_ret": -0.19023924054341498,
+      "median_ret": -0.1574216913187788,
+      "win_rate": 0.2727272727272727,
+      "win_rate_wilson95": [
+       0.15067272656322814,
+       0.44217883254386814
+      ],
+      "profit_factor": 0.17535421492087214,
+      "p05_ret": -1.000019275324974,
+      "worst_ret": -1.000019275324974,
+      "best_ret": 0.23936107295766162,
+      "max_drawdown_stakes": 6.299390104204848,
+      "sum_ret_stakes": -6.277894937932694,
+      "sharpe_per_trade": -0.5524860135057705,
+      "non_executable_exits": 3
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 2
+     },
+     "train": {
+      "n": 31,
+      "mean_ret": -0.2507811371201924,
+      "median_ret": -0.19235770274672404,
+      "win_rate": 0.16129032258064516,
+      "win_rate_wilson95": [
+       0.07092519905439934,
+       0.3263470272497887
+      ],
+      "profit_factor": 0.1279441133951512,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.29013421241863746,
+      "max_drawdown_stakes": 7.774215250725965,
+      "sum_ret_stakes": -7.774215250725965,
+      "sharpe_per_trade": -0.680662223537978,
+      "non_executable_exits": 4
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 3
+     },
+     "train": {
+      "n": 28,
+      "mean_ret": -0.28937362399839694,
+      "median_ret": -0.16816097785044082,
+      "win_rate": 0.17857142857142858,
+      "win_rate_wilson95": [
+       0.0787838582943011,
+       0.355917915485911
+      ],
+      "profit_factor": 0.10984630758590205,
+      "p05_ret": -1.0000150778630197,
+      "worst_ret": -1.0000150778630197,
+      "best_ret": 0.31254601163050366,
+      "max_drawdown_stakes": 8.13862950211773,
+      "sum_ret_stakes": -8.102461471955117,
+      "sharpe_per_trade": -0.7138202580389345,
+      "non_executable_exits": 5
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 4
+     },
+     "train": {
+      "n": 35,
+      "mean_ret": -0.25695068843676544,
+      "median_ret": -0.14890695469611948,
+      "win_rate": 0.17142857142857143,
+      "win_rate_wilson95": [
+       0.08102529944856719,
+       0.3268260763958882
+      ],
+      "profit_factor": 0.1169081320877805,
+      "p05_ret": -1.0000006495188,
+      "worst_ret": -1.0000006495188,
+      "best_ret": 0.5186560917308078,
+      "max_drawdown_stakes": 8.99327409528679,
+      "sum_ret_stakes": -8.99327409528679,
+      "sharpe_per_trade": -0.6373628006152636,
+      "non_executable_exits": 5
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 5
+     },
+     "train": {
+      "n": 26,
+      "mean_ret": -0.09771669866289641,
+      "median_ret": -0.13313371638066407,
+      "win_rate": 0.3076923076923077,
+      "win_rate_wilson95": [
+       0.16501120939792674,
+       0.49988611514231246
+      ],
+      "profit_factor": 0.4732937584013013,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.3758577946703767,
+      "max_drawdown_stakes": 3.185194150207384,
+      "sum_ret_stakes": -2.5406341652353066,
+      "sharpe_per_trade": -0.2818936691640587,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 6
+     },
+     "train": {
+      "n": 24,
+      "mean_ret": -0.24163668715242612,
+      "median_ret": -0.170918703405882,
+      "win_rate": 0.20833333333333334,
+      "win_rate_wilson95": [
+       0.0924468910478809,
+       0.40470844485235474
+      ],
+      "profit_factor": 0.1434925395338575,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.31254601163050366,
+      "max_drawdown_stakes": 5.799280491658227,
+      "sum_ret_stakes": -5.799280491658227,
+      "sharpe_per_trade": -0.6472969496862891,
+      "non_executable_exits": 3
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 7
+     },
+     "train": {
+      "n": 28,
+      "mean_ret": -0.19818534273435576,
+      "median_ret": -0.1434432835649987,
+      "win_rate": 0.17857142857142858,
+      "win_rate_wilson95": [
+       0.0787838582943011,
+       0.355917915485911
+      ],
+      "profit_factor": 0.15062430199165133,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.2551426354375175,
+      "max_drawdown_stakes": 5.701225182316882,
+      "sum_ret_stakes": -5.549189596561962,
+      "sharpe_per_trade": -0.561884643000361,
+      "non_executable_exits": 3
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 8
+     },
+     "train": {
+      "n": 23,
+      "mean_ret": -0.24638923742540056,
+      "median_ret": -0.16505760302900352,
+      "win_rate": 0.30434782608695654,
+      "win_rate_wilson95": [
+       0.15603828020972454,
+       0.5086612906057261
+      ],
+      "profit_factor": 0.17881381255658718,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.4159154394930722,
+      "max_drawdown_stakes": 6.162879034380243,
+      "sum_ret_stakes": -5.666952460784213,
+      "sharpe_per_trade": -0.5682277277297597,
+      "non_executable_exits": 5
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 9
+     },
+     "train": {
+      "n": 30,
+      "mean_ret": -0.034285887794646745,
+      "median_ret": -0.05325297039210386,
+      "win_rate": 0.4666666666666667,
+      "win_rate_wilson95": [
+       0.30232127224128236,
+       0.6385798671847496
+      ],
+      "profit_factor": 0.7248460471048629,
+      "p05_ret": -0.9999994761296512,
+      "worst_ret": -0.9999994761296512,
+      "best_ret": 0.3543550806201705,
+      "max_drawdown_stakes": 1.5733523352549197,
+      "sum_ret_stakes": -1.028576633839402,
+      "sharpe_per_trade": -0.1264074382542787,
+      "non_executable_exits": 0
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 10
+     },
+     "train": {
+      "n": 31,
+      "mean_ret": -0.10452683454244929,
+      "median_ret": -0.17049086739934272,
+      "win_rate": 0.3870967741935484,
+      "win_rate_wilson95": [
+       0.23732875351271562,
+       0.5617619885886803
+      ],
+      "profit_factor": 0.49455640152985014,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.7062684133815189,
+      "max_drawdown_stakes": 3.240331870815928,
+      "sum_ret_stakes": -3.240331870815928,
+      "sharpe_per_trade": -0.2659699628200112,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 11
+     },
+     "train": {
+      "n": 34,
+      "mean_ret": -0.1146352053317958,
+      "median_ret": -0.169706599275408,
+      "win_rate": 0.2647058823529412,
+      "win_rate_wilson95": [
+       0.14601027541553796,
+       0.4311746216289845
+      ],
+      "profit_factor": 0.36415702007468326,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.371446616225376,
+      "max_drawdown_stakes": 3.8975969812810574,
+      "sum_ret_stakes": -3.8975969812810574,
+      "sharpe_per_trade": -0.3875428898143716,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 12
+     },
+     "train": {
+      "n": 28,
+      "mean_ret": -0.18808913122600585,
+      "median_ret": -0.18171114384836723,
+      "win_rate": 0.32142857142857145,
+      "win_rate_wilson95": [
+       0.1793304754342074,
+       0.5066149544436882
+      ],
+      "profit_factor": 0.27761762537833606,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.4868132985082272,
+      "max_drawdown_stakes": 5.266495674328164,
+      "sum_ret_stakes": -5.266495674328164,
+      "sharpe_per_trade": -0.4715542185995503,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 13
+     },
+     "train": {
+      "n": 31,
+      "mean_ret": -0.19889985285218206,
+      "median_ret": -0.13685532620083452,
+      "win_rate": 0.2903225806451613,
+      "win_rate_wilson95": [
+       0.1609562071843287,
+       0.4659265995754067
+      ],
+      "profit_factor": 0.2604218574380294,
+      "p05_ret": -1.0000185977839207,
+      "worst_ret": -1.0000185977839207,
+      "best_ret": 0.32880749312910096,
+      "max_drawdown_stakes": 6.165895438417645,
+      "sum_ret_stakes": -6.165895438417645,
+      "sharpe_per_trade": -0.46309319238643587,
+      "non_executable_exits": 3
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 14
+     },
+     "train": {
+      "n": 31,
+      "mean_ret": -0.17364156677073483,
+      "median_ret": -0.15492616097745449,
+      "win_rate": 0.25806451612903225,
+      "win_rate_wilson95": [
+       0.1370154373686976,
+       0.432464724277151
+      ],
+      "profit_factor": 0.21698059892135602,
+      "p05_ret": -1.000018463202205,
+      "worst_ret": -1.000018463202205,
+      "best_ret": 0.701060203071127,
+      "max_drawdown_stakes": 5.382888569892779,
+      "sum_ret_stakes": -5.382888569892779,
+      "sharpe_per_trade": -0.46996820793106114,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 15
+     },
+     "train": {
+      "n": 30,
+      "mean_ret": -0.33977964642833464,
+      "median_ret": -0.19388981793433052,
+      "win_rate": 0.2,
+      "win_rate_wilson95": [
+       0.09504978102401235,
+       0.37306047381027446
+      ],
+      "profit_factor": 0.08953161745764082,
+      "p05_ret": -1.000015278302451,
+      "worst_ret": -1.000015278302451,
+      "best_ret": 0.2637487537412211,
+      "max_drawdown_stakes": 10.193389392850039,
+      "sum_ret_stakes": -10.193389392850039,
+      "sharpe_per_trade": -0.7978943720272094,
+      "non_executable_exits": 6
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 16
+     },
+     "train": {
+      "n": 30,
+      "mean_ret": -0.2297468865393541,
+      "median_ret": -0.1707248430121684,
+      "win_rate": 0.23333333333333334,
+      "win_rate_wilson95": [
+       0.11792239210501232,
+       0.40928672330324267
+      ],
+      "profit_factor": 0.15819992474160532,
+      "p05_ret": -1.000018405203367,
+      "worst_ret": -1.000018405203367,
+      "best_ret": 0.2773558780183927,
+      "max_drawdown_stakes": 6.8924065961806225,
+      "sum_ret_stakes": -6.8924065961806225,
+      "sharpe_per_trade": -0.5988778714176569,
+      "non_executable_exits": 4
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 17
+     },
+     "train": {
+      "n": 30,
+      "mean_ret": -0.029237593843111743,
+      "median_ret": -0.045082479976097156,
+      "win_rate": 0.4666666666666667,
+      "win_rate_wilson95": [
+       0.30232127224128236,
+       0.6385798671847496
+      ],
+      "profit_factor": 0.8091395020607254,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.7024172742753578,
+      "max_drawdown_stakes": 2.4408564166305187,
+      "sum_ret_stakes": -0.8771278152933526,
+      "sharpe_per_trade": -0.08005531793087536,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 18
+     },
+     "train": {
+      "n": 29,
+      "mean_ret": -0.2140479424982403,
+      "median_ret": -0.15232498256275007,
+      "win_rate": 0.1724137931034483,
+      "win_rate_wilson95": [
+       0.07597745271479928,
+       0.34548800572815114
+      ],
+      "profit_factor": 0.18727491706526636,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.3962965558845266,
+      "max_drawdown_stakes": 6.433519511830261,
+      "sum_ret_stakes": -6.207390332448968,
+      "sharpe_per_trade": -0.546983415061902,
+      "non_executable_exits": 3
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 19
+     },
+     "train": {
+      "n": 27,
+      "mean_ret": -0.15151530831488957,
+      "median_ret": -0.1174160141262931,
+      "win_rate": 0.25925925925925924,
+      "win_rate_wilson95": [
+       0.13170208422866778,
+       0.4467893040261568
+      ],
+      "profit_factor": 0.2594075546416672,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.279419885106841,
+      "max_drawdown_stakes": 4.090913324502019,
+      "sum_ret_stakes": -4.090913324502019,
+      "sharpe_per_trade": -0.447253483889589,
+      "non_executable_exits": 1
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 20
+     },
+     "train": {
+      "n": 30,
+      "mean_ret": -0.2618025555206068,
+      "median_ret": -0.1829676858425922,
+      "win_rate": 0.16666666666666666,
+      "win_rate_wilson95": [
+       0.07336434240351683,
+       0.33564705185680177
+      ],
+      "profit_factor": 0.1013970953959122,
+      "p05_ret": -1.0000143092760316,
+      "worst_ret": -1.0000143092760316,
+      "best_ret": 0.34285684617290846,
+      "max_drawdown_stakes": 7.854076665618203,
+      "sum_ret_stakes": -7.854076665618203,
+      "sharpe_per_trade": -0.7213720633222042,
+      "non_executable_exits": 4
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 21
+     },
+     "train": {
+      "n": 33,
+      "mean_ret": -0.17912366257124865,
+      "median_ret": -0.12598680950157426,
+      "win_rate": 0.2727272727272727,
+      "win_rate_wilson95": [
+       0.15067272656322814,
+       0.44217883254386814
+      ],
+      "profit_factor": 0.211062258342027,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.25091336570229417,
+      "max_drawdown_stakes": 5.911080864851207,
+      "sum_ret_stakes": -5.911080864851207,
+      "sharpe_per_trade": -0.5123098835841,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 22
+     },
+     "train": {
+      "n": 27,
+      "mean_ret": -0.21863416825915913,
+      "median_ret": -0.16265877490655656,
+      "win_rate": 0.2222222222222222,
+      "win_rate_wilson95": [
+       0.10607095489408958,
+       0.4075729546307081
+      ],
+      "profit_factor": 0.16901468430433716,
+      "p05_ret": -1.0000188240244186,
+      "worst_ret": -1.0000188240244186,
+      "best_ret": 0.30278694536270545,
+      "max_drawdown_stakes": 5.903122542997297,
+      "sum_ret_stakes": -5.903122542997297,
+      "sharpe_per_trade": -0.5850223124405789,
+      "non_executable_exits": 3
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 23
+     },
+     "train": {
+      "n": 37,
+      "mean_ret": -0.18875343802945965,
+      "median_ret": -0.1605617403867171,
+      "win_rate": 0.35135135135135137,
+      "win_rate_wilson95": [
+       0.2182540663110087,
+       0.5124127048243043
+      ],
+      "profit_factor": 0.2785553073346542,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.3532317873713533,
+      "max_drawdown_stakes": 7.015798250675628,
+      "sum_ret_stakes": -6.983877207090005,
+      "sharpe_per_trade": -0.4394640402504344,
+      "non_executable_exits": 4
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 24
+     },
+     "train": {
+      "n": 30,
+      "mean_ret": -0.2299761480595879,
+      "median_ret": -0.18583470118434692,
+      "win_rate": 0.23333333333333334,
+      "win_rate_wilson95": [
+       0.11792239210501232,
+       0.40928672330324267
+      ],
+      "profit_factor": 0.18826172199408264,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.31254601163050366,
+      "max_drawdown_stakes": 6.899284441787637,
+      "sum_ret_stakes": -6.899284441787637,
+      "sharpe_per_trade": -0.583176568603766,
+      "non_executable_exits": 3
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 25
+     },
+     "train": {
+      "n": 30,
+      "mean_ret": -0.18377943999770785,
+      "median_ret": -0.1746457518831971,
+      "win_rate": 0.23333333333333334,
+      "win_rate_wilson95": [
+       0.11792239210501232,
+       0.40928672330324267
+      ],
+      "profit_factor": 0.2821842938619191,
+      "p05_ret": -1.0000185613944352,
+      "worst_ret": -1.0000185613944352,
+      "best_ret": 0.5186560917308078,
+      "max_drawdown_stakes": 5.513383199931235,
+      "sum_ret_stakes": -5.513383199931235,
+      "sharpe_per_trade": -0.4703245048526002,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 26
+     },
+     "train": {
+      "n": 32,
+      "mean_ret": -0.16068284187729928,
+      "median_ret": -0.1474871001790669,
+      "win_rate": 0.34375,
+      "win_rate_wilson95": [
+       0.20410233354328552,
+       0.5168922649121406
+      ],
+      "profit_factor": 0.33001412318962703,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.5503483734092265,
+      "max_drawdown_stakes": 5.141850940073578,
+      "sum_ret_stakes": -5.141850940073578,
+      "sharpe_per_trade": -0.3874287104531308,
+      "non_executable_exits": 3
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 27
+     },
+     "train": {
+      "n": 29,
+      "mean_ret": -0.18290023709051212,
+      "median_ret": -0.14111268899745266,
+      "win_rate": 0.3103448275862069,
+      "win_rate_wilson95": [
+       0.17275424489768068,
+       0.49230470472718546
+      ],
+      "profit_factor": 0.28548141528193577,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.3874109293865873,
+      "max_drawdown_stakes": 5.441600444718754,
+      "sum_ret_stakes": -5.304106875624852,
+      "sharpe_per_trade": -0.4346161474872865,
+      "non_executable_exits": 4
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 28
+     },
+     "train": {
+      "n": 31,
+      "mean_ret": -0.19616862669621166,
+      "median_ret": -0.14992193568674494,
+      "win_rate": 0.22580645161290322,
+      "win_rate_wilson95": [
+       0.11394991594498799,
+       0.3981276005869738
+      ],
+      "profit_factor": 0.17493819332227842,
+      "p05_ret": -1.0000150778630197,
+      "worst_ret": -1.0000150778630197,
+      "best_ret": 0.5456379017616717,
+      "max_drawdown_stakes": 6.0999995499738215,
+      "sum_ret_stakes": -6.0812274275825615,
+      "sharpe_per_trade": -0.5757321740621206,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 29
+     },
+     "train": {
+      "n": 33,
+      "mean_ret": -0.0628718857514891,
+      "median_ret": -0.04828436258296276,
+      "win_rate": 0.36363636363636365,
+      "win_rate_wilson95": [
+       0.22186966167959873,
+       0.5338412737846591
+      ],
+      "profit_factor": 0.592315365908996,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.6742735262670196,
+      "max_drawdown_stakes": 3.668018279692376,
+      "sum_ret_stakes": -2.07477222979914,
+      "sharpe_per_trade": -0.175088707739995,
+      "non_executable_exits": 3
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 30
+     },
+     "train": {
+      "n": 34,
+      "mean_ret": -0.26666458022559053,
+      "median_ret": -0.13175300062031226,
+      "win_rate": 0.29411764705882354,
+      "win_rate_wilson95": [
+       0.16834452609931952,
+       0.4616922588146376
+      ],
+      "profit_factor": 0.1420470974105571,
+      "p05_ret": -1.0000146713040734,
+      "worst_ret": -1.0000146713040734,
+      "best_ret": 0.25154405473078123,
+      "max_drawdown_stakes": 9.066595727670077,
+      "sum_ret_stakes": -9.066595727670077,
+      "sharpe_per_trade": -0.6100128012830106,
+      "non_executable_exits": 5
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 31
+     },
+     "train": {
+      "n": 24,
+      "mean_ret": -0.16516159573692485,
+      "median_ret": -0.16493056284862362,
+      "win_rate": 0.16666666666666666,
+      "win_rate_wilson95": [
+       0.06678568000728924,
+       0.3585347038786943
+      ],
+      "profit_factor": 0.1981442433480949,
+      "p05_ret": -1.0000145189105303,
+      "worst_ret": -1.0000145189105303,
+      "best_ret": 0.48956595261281755,
+      "max_drawdown_stakes": 3.963878297686197,
+      "sum_ret_stakes": -3.963878297686197,
+      "sharpe_per_trade": -0.5254927225330266,
+      "non_executable_exits": 1
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 32
+     },
+     "train": {
+      "n": 28,
+      "mean_ret": -0.13894682083020013,
+      "median_ret": -0.1667706519778694,
+      "win_rate": 0.2857142857142857,
+      "win_rate_wilson95": [
+       0.15253815848329969,
+       0.470596357370175
+      ],
+      "profit_factor": 0.36243374605346074,
+      "p05_ret": -1.000019275324974,
+      "worst_ret": -1.000019275324974,
+      "best_ret": 0.5114259622099626,
+      "max_drawdown_stakes": 4.132877495954065,
+      "sum_ret_stakes": -3.890510983245603,
+      "sharpe_per_trade": -0.3758182533775329,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 33
+     },
+     "train": {
+      "n": 34,
+      "mean_ret": -0.12510733203805188,
+      "median_ret": -0.11582154298875919,
+      "win_rate": 0.35294117647058826,
+      "win_rate_wilson95": [
+       0.21487714895296073,
+       0.5208634116998658
+      ],
+      "profit_factor": 0.43681529910673517,
+      "p05_ret": -1.0000187415022623,
+      "worst_ret": -1.0000187415022623,
+      "best_ret": 0.7024172742753578,
+      "max_drawdown_stakes": 4.633330490591261,
+      "sum_ret_stakes": -4.253649289293765,
+      "sharpe_per_trade": -0.2900284368443219,
+      "non_executable_exits": 3
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 34
+     },
+     "train": {
+      "n": 30,
+      "mean_ret": -0.16076938769419644,
+      "median_ret": -0.170904314201188,
+      "win_rate": 0.16666666666666666,
+      "win_rate_wilson95": [
+       0.07336434240351683,
+       0.33564705185680177
+      ],
+      "profit_factor": 0.16206733459148523,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.31254601163050366,
+      "max_drawdown_stakes": 4.854070845292828,
+      "sum_ret_stakes": -4.823081630825893,
+      "sharpe_per_trade": -0.5948669355685621,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 35
+     },
+     "train": {
+      "n": 28,
+      "mean_ret": -0.09318181045913797,
+      "median_ret": -0.08320837533162345,
+      "win_rate": 0.32142857142857145,
+      "win_rate_wilson95": [
+       0.1793304754342074,
+       0.5066149544436882
+      ],
+      "profit_factor": 0.3870643023833102,
+      "p05_ret": -1.0000149071471705,
+      "worst_ret": -1.0000149071471705,
+      "best_ret": 0.29166426423532,
+      "max_drawdown_stakes": 2.925938941553358,
+      "sum_ret_stakes": -2.609090692855863,
+      "sharpe_per_trade": -0.31175198665037057,
+      "non_executable_exits": 1
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 36
+     },
+     "train": {
+      "n": 26,
+      "mean_ret": -0.07921357244944408,
+      "median_ret": -0.11073371350386069,
+      "win_rate": 0.23076923076923078,
+      "win_rate_wilson95": [
+       0.11033699683676687,
+       0.42051925751956787
+      ],
+      "profit_factor": 0.4235403103172904,
+      "p05_ret": -0.959374589440836,
+      "worst_ret": -0.959374589440836,
+      "best_ret": 0.4732710203815702,
+      "max_drawdown_stakes": 2.4992285956434626,
+      "sum_ret_stakes": -2.0595528836855466,
+      "sharpe_per_trade": -0.3138385930217129,
+      "non_executable_exits": 0
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 37
+     },
+     "train": {
+      "n": 35,
+      "mean_ret": -0.1801004284815001,
+      "median_ret": -0.16111928021908406,
+      "win_rate": 0.22857142857142856,
+      "win_rate_wilson95": [
+       0.12065736746179101,
+       0.39017637780102
+      ],
+      "profit_factor": 0.22245791057711115,
+      "p05_ret": -1.0000192516560635,
+      "worst_ret": -1.0000192516560635,
+      "best_ret": 0.3874109293865873,
+      "max_drawdown_stakes": 6.303514996852503,
+      "sum_ret_stakes": -6.303514996852503,
+      "sharpe_per_trade": -0.517430682073338,
+      "non_executable_exits": 2
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 38
+     },
+     "train": {
+      "n": 29,
+      "mean_ret": -0.2590967896003084,
+      "median_ret": -0.16112794176140688,
+      "win_rate": 0.2413793103448276,
+      "win_rate_wilson95": [
+       0.12218268185062131,
+       0.4210795221832869
+      ],
+      "profit_factor": 0.13231841444740924,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 0.2650659587880717,
+      "max_drawdown_stakes": 7.513806898408944,
+      "sum_ret_stakes": -7.513806898408944,
+      "sharpe_per_trade": -0.6354859927332158,
+      "non_executable_exits": 5
+     }
+    },
+    {
+     "params": {
+      "p": 0.02,
+      "seed": 39
+     },
+     "train": {
+      "n": 30,
+      "mean_ret": -0.13189770991277217,
+      "median_ret": -0.13588597687864867,
+      "win_rate": 0.3333333333333333,
+      "win_rate_wilson95": [
+       0.19230295526846194,
+       0.5122027418616973
+      ],
+      "profit_factor": 0.36989035184738067,
+      "p05_ret": -1.0,
+      "worst_ret": -1.0,
+      "best_ret": 1.179002300103583,
+      "max_drawdown_stakes": 4.129754254225755,
+      "sum_ret_stakes": -3.9569312973831647,
+      "sharpe_per_trade": -0.3197020557984119,
+      "non_executable_exits": 3
+     }
+    }
+   ],
+   "chosen": {
+    "p": 0.02,
+    "seed": 0
+   },
+   "frozen_sha": "60a3619ab987a7c31da732f141fd7eae75a17d8f2aa2979d28af9fd28e689299",
+   "validation": {
+    "n": 11,
+    "mean_ret": -0.292962698186991,
+    "median_ret": -0.18750807413476345,
+    "win_rate": 0.09090909090909091,
+    "win_rate_wilson95": [
+     0.01623175226282597,
+     0.3773646254862038
+    ],
+    "profit_factor": 0.02502175694810323,
+    "p05_ret": null,
+    "worst_ret": -1.0,
+    "best_ret": 0.08270426165146483,
+    "max_drawdown_stakes": 3.222589680056901,
+    "sum_ret_stakes": -3.222589680056901,
+    "sharpe_per_trade": -0.8511896516756359,
+    "non_executable_exits": 2
+   },
+   "test": {
+    "n": 9,
+    "mean_ret": -0.1757607321193536,
+    "median_ret": -0.17883130114328316,
+    "win_rate": 0.2222222222222222,
+    "win_rate_wilson95": [
+     0.06322376231222723,
+     0.5474166563271946
+    ],
+    "profit_factor": 0.21121877650043835,
+    "p05_ret": null,
+    "worst_ret": -1.0,
+    "best_ret": 0.2910646741397296,
+    "max_drawdown_stakes": 1.5818465890741826,
+    "sum_ret_stakes": -1.5818465890741826,
+    "sharpe_per_trade": -0.5237303103565748,
+    "non_executable_exits": 1,
+    "bootstrap95_mean_ret": null,
+    "p_mean_le_0": null
+   },
+   "baselines": {
+    "NO_TRADE": {
+     "n": 0,
+     "bootstrap95_mean_ret": null
+    },
+    "ENTER_AT_DISCOVERY": {
+     "n": 8,
+     "mean_ret": -0.4220229369063827,
+     "median_ret": -0.27048417747339837,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.3244156195108769
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -1.0,
+     "best_ret": -0.10401897517879932,
+     "max_drawdown_stakes": 3.3761834952510617,
+     "sum_ret_stakes": -3.3761834952510617,
+     "sharpe_per_trade": -1.222829509944992,
+     "non_executable_exits": 2,
+     "bootstrap95_mean_ret": null
+    },
+    "RANDOM_ENTRY": {
+     "n": 8,
+     "mean_ret": -0.079213896457405,
+     "median_ret": -0.12524059670933108,
+     "win_rate": 0.25,
+     "win_rate_wilson95": [
+      0.07147768885802763,
+      0.5907301208974108
+     ],
+     "profit_factor": 0.33817445643521193,
+     "p05_ret": null,
+     "worst_ret": -0.32476524114936167,
+     "best_ret": 0.24806755950068315,
+     "max_drawdown_stakes": 0.9575199655272962,
+     "sum_ret_stakes": -0.63371117165924,
+     "sharpe_per_trade": -0.48560818301054814,
+     "non_executable_exits": 0,
+     "bootstrap95_mean_ret": null
+    },
+    "MA_CROSS": {
+     "n": 3,
+     "mean_ret": -0.13515497310772964,
+     "median_ret": -0.15215310223856837,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.5615060804490177
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -0.16707323139529895,
+     "best_ret": -0.08623858568932163,
+     "max_drawdown_stakes": 0.40546491932318895,
+     "sum_ret_stakes": -0.40546491932318895,
+     "sharpe_per_trade": -3.8482299217501454,
+     "non_executable_exits": 0,
+     "bootstrap95_mean_ret": null
+    }
+   },
+   "winners_curse": {
+    "train_mean_ret": -0.010204301451496187,
+    "validation_mean_ret": -0.292962698186991,
+    "drop": 0.2827583967354948,
+    "overfit_flag": false,
+    "selection_from_trials": 40
+   },
+   "verdict": "INSUFFICIENT_SAMPLE",
+   "notes": [
+    "sealed test has 9 trades < 30; no performance claim"
+   ],
+   "test_regimes": {
+    "SOL_UP_24H": {
+     "n": 8,
+     "mean_ret": -0.17008953966889243,
+     "median_ret": -0.1615865123304676,
+     "win_rate": 0.25,
+     "win_rate_wilson95": [
+      0.07147768885802763,
+      0.5907301208974108
+     ],
+     "profit_factor": 0.23739533726658266,
+     "p05_ret": null,
+     "worst_ret": -1.0,
+     "best_ret": 0.2910646741397296,
+     "max_drawdown_stakes": 1.3607163173511394,
+     "sum_ret_stakes": -1.3607163173511394,
+     "sharpe_per_trade": -0.4783919499855402,
+     "non_executable_exits": 1
+    },
+    "SOL_DOWN_24H": {
+     "n": 1,
+     "mean_ret": -0.22113027172304323,
+     "median_ret": -0.22113027172304323,
+     "win_rate": 0.0,
+     "win_rate_wilson95": [
+      0.0,
+      0.7934567085261071
+     ],
+     "profit_factor": 0.0,
+     "p05_ret": null,
+     "worst_ret": -0.22113027172304323,
+     "best_ret": -0.22113027172304323,
+     "max_drawdown_stakes": 0.22113027172304323,
+     "sum_ret_stakes": -0.22113027172304323,
+     "sharpe_per_trade": null,
+     "non_executable_exits": 0
+    },
+    "UNKNOWN": {
+     "n": 0
+    }
+   },
+   "test_ledger_hash": "2be716c6f17064806811a27a63916870c9b952152b62e10d52a0428abbdfdd31"
+  }
+ },
+ "sensitivity_lab_status_committed": {
+  "strategy_id": "LAB_STATUS",
+  "plan": {
+   "start": 1791331200.0,
+   "train_end": 1792051200.0,
+   "valid_end": 1792411200.0,
+   "end": 1792771200.0,
+   "embargo_s": 172800.0
+  },
+  "trials": 3,
+  "tuning": [
+   {
+    "params": {
+     "min_score": 55
+    },
+    "train": {
+     "n": 22,
+     "mean_ret": -0.013466231676055141,
+     "median_ret": -0.03156918429785477,
+     "win_rate": 0.36363636363636365,
+     "win_rate_wilson95": [
+      0.19732972772607899,
+      0.5704865065628195
+     ],
+     "profit_factor": 0.7483874414089494,
+     "p05_ret": -0.2567696037251296,
+     "worst_ret": -0.2567696037251296,
+     "best_ret": 0.4000647393533592,
+     "max_drawdown_stakes": 0.9394160557840434,
+     "sum_ret_stakes": -0.2962570968732131,
+     "sharpe_per_trade": -0.10209451151956866,
+     "non_executable_exits": 0
+    }
+   },
+   {
+    "params": {
+     "min_score": 65
+    },
+    "train": {
+     "n": 15,
+     "mean_ret": 0.026602058607539645,
+     "median_ret": 0.014969197367301845,
+     "win_rate": 0.5333333333333333,
+     "win_rate_wilson95": [
+      0.3011663015105079,
+      0.7519077474025355
+     ],
+     "profit_factor": 1.6134781301661074,
+     "p05_ret": null,
+     "worst_ret": -0.2567696037251296,
+     "best_ret": 0.4000647393533592,
+     "max_drawdown_stakes": 0.5753362079667718,
+     "sum_ret_stakes": 0.39903087911309465,
+     "sharpe_per_trade": 0.1784654052890865,
+     "non_executable_exits": 0
+    }
+   },
+   {
+    "params": {
+     "min_score": 55,
+     "statuses": [
+      "ENTRY CONDITIONS MET",
+      "NEAR ENTRY"
+     ]
+    },
+    "train": {
+     "n": 7,
+     "mean_ret": 0.004981729927029483,
+     "median_ret": -0.022368764608668767,
+     "win_rate": 0.42857142857142855,
+     "win_rate_wilson95": [
+      0.15821692226262685,
+      0.7495457695909742
+     ],
+     "profit_factor": 1.160290653033788,
+     "p05_ret": null,
+     "worst_ret": -0.09113840164578846,
+     "best_ret": 0.1313582653559089,
+     "max_drawdown_stakes": 0.142170512356932,
+     "sum_ret_stakes": 0.03487210948920638,
+     "sharpe_per_trade": 0.06292560454326857,
+     "non_executable_exits": 0
+    }
+   }
+  ],
+  "chosen": {
+   "min_score": 65
+  },
+  "frozen_sha": "683b48261230d6ddc05e1a98d562d69a0f0cd18b3942cbffa9fd1982256c77f1",
+  "validation": {
+   "n": 1,
+   "mean_ret": 0.017385049590776136,
+   "median_ret": 0.017385049590776136,
+   "win_rate": 1.0,
+   "win_rate_wilson95": [
+    0.20654329147389294,
+    1.0
+   ],
+   "profit_factor": null,
+   "p05_ret": null,
+   "worst_ret": 0.017385049590776136,
+   "best_ret": 0.017385049590776136,
+   "max_drawdown_stakes": 0.0,
+   "sum_ret_stakes": 0.017385049590776136,
+   "sharpe_per_trade": null,
+   "non_executable_exits": 0
+  },
+  "test": {
+   "n": 0,
+   "bootstrap95_mean_ret": null,
+   "p_mean_le_0": null
+  },
+  "baselines": {
+   "NO_TRADE": {
+    "n": 0,
+    "bootstrap95_mean_ret": null
+   },
+   "ENTER_AT_DISCOVERY": {
+    "n": 8,
+    "mean_ret": -0.4220229369063827,
+    "median_ret": -0.27048417747339837,
+    "win_rate": 0.0,
+    "win_rate_wilson95": [
+     0.0,
+     0.3244156195108769
+    ],
+    "profit_factor": 0.0,
+    "p05_ret": null,
+    "worst_ret": -1.0,
+    "best_ret": -0.10401897517879932,
+    "max_drawdown_stakes": 3.3761834952510617,
+    "sum_ret_stakes": -3.3761834952510617,
+    "sharpe_per_trade": -1.222829509944992,
+    "non_executable_exits": 2,
+    "bootstrap95_mean_ret": null
+   },
+   "RANDOM_ENTRY": {
+    "n": 8,
+    "mean_ret": -0.079213896457405,
+    "median_ret": -0.12524059670933108,
+    "win_rate": 0.25,
+    "win_rate_wilson95": [
+     0.07147768885802763,
+     0.5907301208974108
+    ],
+    "profit_factor": 0.33817445643521193,
+    "p05_ret": null,
+    "worst_ret": -0.32476524114936167,
+    "best_ret": 0.24806755950068315,
+    "max_drawdown_stakes": 0.9575199655272962,
+    "sum_ret_stakes": -0.63371117165924,
+    "sharpe_per_trade": -0.48560818301054814,
+    "non_executable_exits": 0,
+    "bootstrap95_mean_ret": null
+   },
+   "MA_CROSS": {
+    "n": 3,
+    "mean_ret": -0.13515497310772964,
+    "median_ret": -0.15215310223856837,
+    "win_rate": 0.0,
+    "win_rate_wilson95": [
+     0.0,
+     0.5615060804490177
+    ],
+    "profit_factor": 0.0,
+    "p05_ret": null,
+    "worst_ret": -0.16707323139529895,
+    "best_ret": -0.08623858568932163,
+    "max_drawdown_stakes": 0.40546491932318895,
+    "sum_ret_stakes": -0.40546491932318895,
+    "sharpe_per_trade": -3.8482299217501454,
+    "non_executable_exits": 0,
+    "bootstrap95_mean_ret": null
+   }
+  },
+  "winners_curse": {
+   "train_mean_ret": 0.026602058607539645,
+   "validation_mean_ret": 0.017385049590776136,
+   "drop": 0.009217009016763509,
+   "overfit_flag": false,
+   "selection_from_trials": 3
+  },
+  "verdict": "INSUFFICIENT_SAMPLE",
+  "notes": [
+   "sealed test has 0 trades < 30; no performance claim"
+  ]
+ },
+ "holm": {
+  "pvalues": {},
+  "holm_reject_h0": {},
+  "alpha": 0.05,
+  "strategies_compared": 8,
+  "not_tested_insufficient_sample": [
+   "ABSORPTION_BREAK",
+   "BREAKOUT_CLOSE",
+   "BREAKOUT_RETEST",
+   "LAB_STATUS",
+   "MOMENTUM",
+   "RANDOM_ENTRY",
+   "RECLAIM",
+   "TREND_HHHL"
+  ]
+ },
+ "total_trials": 55,
+ "walk_forward_breakout_close": {
+  "strategy": "BREAKOUT_CLOSE",
+  "folds": [
+   {
+    "fold": 1,
+    "tune_until": 1791518400.0,
+    "oos_window": [
+     1791691200.0,
+     1792051200.0
+    ],
+    "chosen": {
+     "lookback": 24,
+     "vol_mult": 1.0
+    },
+    "in_sample_mean_ret": 0.06356123574292244,
+    "oos": {
+     "n": 10,
+     "mean_ret": -0.10204363190200616,
+     "median_ret": -0.04315475951982861,
+     "win_rate": 0.4,
+     "win_rate_wilson95": [
+      0.16817758120350967,
+      0.6873304525498135
+     ],
+     "profit_factor": 0.24023801285236088,
+     "p05_ret": null,
+     "worst_ret": -1.0,
+     "best_ret": 0.17686549907745142,
+     "max_drawdown_stakes": 1.2072747053991808,
+     "sum_ret_stakes": -1.0204363190200616,
+     "sharpe_per_trade": -0.3289779622087988,
+     "non_executable_exits": 1
+    }
+   },
+   {
+    "fold": 2,
+    "tune_until": 1791878400.0,
+    "oos_window": [
+     1792051200.0,
+     1792411200.0
+    ],
+    "chosen": {
+     "lookback": 12,
+     "vol_mult": 1.5
+    },
+    "in_sample_mean_ret": -0.0693542575773549,
+    "oos": {
+     "n": 16,
+     "mean_ret": -0.06601639739266697,
+     "median_ret": -0.05883036266620406,
+     "win_rate": 0.25,
+     "win_rate_wilson95": [
+      0.10181901984237346,
+      0.49498768929398645
+     ],
+     "profit_factor": 0.1833535311567503,
+     "p05_ret": null,
+     "worst_ret": -0.3560821882178632,
+     "best_ret": 0.15704301115200936,
+     "max_drawdown_stakes": 1.0749696009499619,
+     "sum_ret_stakes": -1.0562623582826716,
+     "sharpe_per_trade": -0.5881627605433761,
+     "non_executable_exits": 0
+    }
+   },
+   {
+    "fold": 3,
+    "tune_until": 1792238400.0,
+    "oos_window": [
+     1792411200.0,
+     1792771200.0
+    ],
+    "chosen": {
+     "lookback": 12,
+     "vol_mult": 1.5
+    },
+    "in_sample_mean_ret": -0.10349471928153657,
+    "oos": {
+     "n": 6,
+     "mean_ret": -0.031294165685796994,
+     "median_ret": -0.05275697629607207,
+     "win_rate": 0.16666666666666666,
+     "win_rate_wilson95": [
+      0.03005258587173032,
+      0.563509436563646
+     ],
+     "profit_factor": 0.5469904268022552,
+     "p05_ret": null,
+     "worst_ret": -0.21658571553334038,
+     "best_ret": 0.22671850739131094,
+     "max_drawdown_stakes": 0.4144835015060929,
+     "sum_ret_stakes": -0.18776499411478198,
+     "sharpe_per_trade": -0.23879584243315724,
+     "non_executable_exits": 0
+    }
+   }
+  ],
+  "pooled_oos": {
+   "n": 32,
+   "mean_ret": -0.07076448973179734,
+   "median_ret": -0.05883036266620406,
+   "win_rate": 0.28125,
+   "win_rate_wilson95": [
+    0.15564406845647866,
+    0.4537483693811179
+   ],
+   "profit_factor": 0.25779574433888724,
+   "p05_ret": -1.0,
+   "worst_ret": -1.0,
+   "best_ret": 0.22671850739131094,
+   "max_drawdown_stakes": 2.4513020577966342,
+   "sum_ret_stakes": -2.264463671417515,
+   "sharpe_per_trade": -0.35296211636280256,
+   "non_executable_exits": 1
+  },
+  "pooled_oos_bootstrap95": [
+   -0.1352162345551741,
+   -0.017922698872838688
+  ],
+  "trials_per_fold": 4
+ },
+ "finished": 1792781986.6926067
+}

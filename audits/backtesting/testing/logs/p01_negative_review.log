@@ -1,0 +1,12 @@
+7WSRd9ixYP dex=pumpswap      top_pool_created=2026-10-12T08:32:28Z lab_first_obs=2026-10-12T09:51Z -> ok; first_bar=2026-10-12T08:00Z
+7imgnZduzh dex=raydium-clmm  top_pool_created=2026-09-23T20:29:55Z lab_first_obs=2026-10-12T10:14Z -> ok; first_bar=2026-09-23T20:00Z
+JBt6ZaXxJ4 dex=pumpswap      top_pool_created=2026-10-14T09:05:31Z lab_first_obs=2026-10-14T09:52Z -> ok; first_bar=2026-10-14T09:00Z
+6WeFCj96rk dex=pumpswap      top_pool_created=2026-10-16T06:57:01Z lab_first_obs=2026-10-16T09:52Z -> ok; first_bar=2026-10-16T06:00Z
+CoHH4XfCpE dex=pumpswap      top_pool_created=2026-10-15T05:05:16Z lab_first_obs=2026-10-15T09:50Z -> ok; first_bar=2026-10-15T05:00Z
+A2yA6AFtfK dex=pumpswap      top_pool_created=2026-10-14T06:06:30Z lab_first_obs=2026-10-18T09:52Z -> ok; first_bar=2026-10-14T06:00Z
+3iUTyNYW6x dex=pumpswap      top_pool_created=2026-09-27T13:56:05Z lab_first_obs=2026-10-08T15:43Z -> ok; first_bar=2026-09-27T14:00Z
+
+claim 'today's top GeckoTerminal pool is the decision-time pool': contradicted for 0 of 7 probed mints
+
+claim 'the latest export holds the full thesis history': latest has 701 theses; union over 89 commits has 1801; missing from latest: 1100
+rejections union 1014 vs latest 1013

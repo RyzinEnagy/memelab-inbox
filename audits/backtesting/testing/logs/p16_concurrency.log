@@ -1,0 +1,411 @@
+2026-10-23T20:21:44Z
+{
+ "A_fresh_db_race": [
+  [
+   "A",
+   "OK",
+   1
+  ],
+  [
+   "A",
+   "ERROR",
+   "IntegrityError: UNIQUE constraint failed: bt_schema_migrations.version"
+  ],
+  [
+   "A",
+   "ERROR",
+   "IntegrityError: UNIQUE constraint failed: bt_schema_migrations.version"
+  ],
+  [
+   "A",
+   "ERROR",
+   "IntegrityError: UNIQUE constraint failed: bt_schema_migrations.version"
+  ],
+  [
+   "A",
+   "ERROR",
+   "IntegrityError: UNIQUE constraint failed: bt_schema_migrations.version"
+  ],
+  [
+   "A",
+   "ERROR",
+   "IntegrityError: UNIQUE constraint failed: bt_schema_migrations.version"
+  ],
+  [
+   "A",
+   "ERROR",
+   "IntegrityError: UNIQUE constraint failed: bt_schema_migrations.version"
+  ],
+  [
+   "A",
+   "ERROR",
+   "IntegrityError: UNIQUE constraint failed: bt_schema_migrations.version"
+  ]
+ ],
+ "A_migration_rows": 1,
+ "B_assess_burst": [
+  [
+   "B",
+   "OK",
+   {
+    "k": 3,
+    "state": "PARTIAL_WITH_LIMITATIONS",
+    "cache": "MISS",
+    "key": "35cf517401dca8dde337cce4e3840b898dc3f7e4eb55fe5142bce8bbd9630174",
+    "error": null,
+    "wall_s": 0.56
+   }
+  ],
+  [
+   "B",
+   "OK",
+   {
+    "k": 7,
+    "state": "PARTIAL_WITH_LIMITATIONS",
+    "cache": "MISS",
+    "key": "35cf517401dca8dde337cce4e3840b898dc3f7e4eb55fe5142bce8bbd9630174",
+    "error": null,
+    "wall_s": 1.15
+   }
+  ],
+  [
+   "B",
+   "OK",
+   {
+    "k": 10,
+    "state": "PARTIAL_WITH_LIMITATIONS",
+    "cache": "MISS",
+    "key": "851caabf32d193de23a43dae0c30dd05cbf4dbefd73b0c7d68d1e48055e2d8fe",
+    "error": null,
+    "wall_s": 1.73
+   }
+  ],
+  [
+   "B",
+   "OK",
+   {
+    "k": 0,
+    "state": "PARTIAL_WITH_LIMITATIONS",
+    "cache": "MISS",
+    "key": "35cf517401dca8dde337cce4e3840b898dc3f7e4eb55fe5142bce8bbd9630174",
+    "error": null,
+    "wall_s": 2.25
+   }
+  ],
+  [
+   "B",
+   "OK",
+   {
+    "k": 6,
+    "state": "PARTIAL_WITH_LIMITATIONS",
+    "cache": "MISS",
+    "key": "35cf517401dca8dde337cce4e3840b898dc3f7e4eb55fe5142bce8bbd9630174",
+    "error": null,
+    "wall_s": 2.85
+   }
+  ],
+  [
+   "B",
+   "OK",
+   {
+    "k": 1,
+    "state": "PARTIAL_WITH_LIMITATIONS",
+    "cache": "MISS",
+    "key": "35cf517401dca8dde337cce4e3840b898dc3f7e4eb55fe5142bce8bbd9630174",
+    "error": null,
+    "wall_s": 3.51
+   }
+  ],
+  [
+   "B",
+   "OK",
+   {
+    "k": 2,
+    "state": "PARTIAL_WITH_LIMITATIONS",
+    "cache": "MISS",
+    "key": "35cf517401dca8dde337cce4e3840b898dc3f7e4eb55fe5142bce8bbd9630174",
+    "error": null,
+    "wall_s": 4.06
+   }
+  ],
+  [
+   "B",
+   "OK",
+   {
+    "k": 4,
+    "state": "PARTIAL_WITH_LIMITATIONS",
+    "cache": "MISS",
+    "key": "35cf517401dca8dde337cce4e3840b898dc3f7e4eb55fe5142bce8bbd9630174",
+    "error": null,
+    "wall_s": 4.68
+   }
+  ],
+  [
+   "B",
+   "ERROR",
+   {
+    "k": 11,
+    "error": "OperationalError: database is locked",
+    "wall_s": 5.02
+   }
+  ],
+  [
+   "B",
+   "ERROR",
+   {
+    "k": 9,
+    "error": "OperationalError: database is locked",
+    "wall_s": 5.02
+   }
+  ],
+  [
+   "B",
+   "ERROR",
+   {
+    "k": 5,
+    "error": "OperationalError: database is locked",
+    "wall_s": 5.02
+   }
+  ],
+  [
+   "B",
+   "OK",
+   {
+    "k": 8,
+    "state": "PARTIAL_WITH_LIMITATIONS",
+    "cache": "MISS",
+    "key": "e237481fc70be9132bc72d0f253fa197b961cb6c73cfc26ab44191ac9626b7e1",
+    "error": null,
+    "wall_s": 5.43
+   }
+  ]
+ ],
+ "B_fast_rows": [
+  3,
+  3
+ ],
+ "B_dup_keys": 0,
+ "B_events": {
+  "COMPLETED": 9,
+  "QUEUED_DEEP": 9,
+  "REQUESTED": 9
+ },
+ "C_track_burst": [
+  [
+   "C",
+   "ERROR",
+   {
+    "k": 2,
+    "error": "OperationalError: database is locked",
+    "wall_s": 5.1
+   }
+  ],
+  [
+   "C",
+   "ERROR",
+   {
+    "k": 0,
+    "error": "OperationalError: database is locked",
+    "wall_s": 5.1
+   }
+  ],
+  [
+   "C",
+   "OK",
+   {
+    "k": 1,
+    "status": "RAN",
+    "new_rows": 4092,
+    "wall_s": 20.5
+   }
+  ]
+ ],
+ "C_outcome_rows": [
+  4092,
+  4092
+ ],
+ "C_dup_windows": 0,
+ "C_track_run_events": 1,
+ "D_run_burst": [
+  [
+   "D",
+   "OK",
+   {
+    "k": 0,
+    "run_id": "8b4d72498d4b1365fff0e1358ddc019fb597dbdf3d726570bf96f4f284ce61d0",
+    "cache": "MISS",
+    "ledger_hash": "b88184fbaef66686f6fd7fad0307b145ee77b4902946c764e743d134d803e5c4",
+    "wall_s": 15.8
+   }
+  ],
+  [
+   "D",
+   "OK",
+   {
+    "k": 2,
+    "run_id": "8b4d72498d4b1365fff0e1358ddc019fb597dbdf3d726570bf96f4f284ce61d0",
+    "cache": "HIT",
+    "ledger_hash": "b88184fbaef66686f6fd7fad0307b145ee77b4902946c764e743d134d803e5c4",
+    "wall_s": 15.8
+   }
+  ],
+  [
+   "D",
+   "OK",
+   {
+    "k": 1,
+    "run_id": "8b4d72498d4b1365fff0e1358ddc019fb597dbdf3d726570bf96f4f284ce61d0",
+    "cache": "HIT",
+    "ledger_hash": "b88184fbaef66686f6fd7fad0307b145ee77b4902946c764e743d134d803e5c4",
+    "wall_s": 16.1
+   }
+  ]
+ ],
+ "D_result_rows_for_run": [
+  1,
+  1
+ ],
+ "D_ledger_hashes": [
+  "b88184fbaef66686f6fd7fad0307b145ee77b4902946c764e743d134d803e5c4"
+ ],
+ "E_blocked_provider": {
+  "no_router_quotes": {
+   "lab_score": 65,
+   "lab_status": "SETUP DEVELOPING",
+   "state": "PARTIAL_WITH_LIMITATIONS",
+   "tier": "SCENARIO_ONLY",
+   "stress_decision": "RESEARCHABLE",
+   "label": "INCONCLUSIVE",
+   "sell_quotes": [],
+   "report_errors": [],
+   "token_kept": true,
+   "max_size": 599.1106541011145,
+   "base_proceeds": [
+    [
+     250.0,
+     "FILLED",
+     243.31791106471786
+    ],
+    [
+     1000.0,
+     "FILLED",
+     967.8492399598712
+    ],
+    [
+     5000.0,
+     "FILLED",
+     4698.7081761000745
+    ]
+   ]
+  },
+  "no_ohlcv": {
+   "lab_score": 58,
+   "lab_status": "WATCH",
+   "state": "INSUFFICIENT_HISTORY",
+   "tier": "SCENARIO_ONLY",
+   "stress_decision": "INCONCLUSIVE",
+   "label": "INCONCLUSIVE",
+   "sell_quotes": [
+    [
+     500.0,
+     499.8189384752,
+     0.0027235,
+     "OK"
+    ],
+    [
+     1000.0,
+     998.4395765864001,
+     0.00391897,
+     "OK"
+    ],
+    [
+     2500.0,
+     2479.2918705808,
+     0.0106259,
+     "OK"
+    ],
+    [
+     5000.0,
+     4926.4077119152,
+     0.0170481,
+     "OK"
+    ],
+    [
+     10000.0,
+     9751.39988116,
+     0.0271657,
+     "OK"
+    ],
+    [
+     25000.0,
+     23652.4258580816,
+     0.0561399,
+     "OK"
+    ],
+    [
+     50000.0,
+     45031.8239741488,
+     0.101493,
+     "OK"
+    ],
+    [
+     100000.0,
+     81588.0486334304,
+     0.186049,
+     "OK"
+    ]
+   ],
+   "report_errors": [],
+   "token_kept": true,
+   "max_size": 599.1106541011145,
+   "base_proceeds": [
+    [
+     250.0,
+     "FILLED",
+     243.31791106471786
+    ],
+    [
+     1000.0,
+     "FILLED",
+     967.8492399598712
+    ],
+    [
+     5000.0,
+     "FILLED",
+     4698.7081761000745
+    ]
+   ]
+  },
+  "no_quotes_no_ohlcv_no_pools": {
+   "lab_score": 59,
+   "lab_status": "RESEARCH REQUIRED",
+   "state": "INSUFFICIENT_HISTORY",
+   "tier": "SCENARIO_ONLY",
+   "stress_decision": "INCONCLUSIVE",
+   "label": "INCONCLUSIVE",
+   "sell_quotes": [],
+   "report_errors": [],
+   "token_kept": true,
+   "max_size": 599.1106541011145,
+   "base_proceeds": [
+    [
+     250.0,
+     "FILLED",
+     243.31791106471786
+    ],
+    [
+     1000.0,
+     "FILLED",
+     967.8492399598712
+    ],
+    [
+     5000.0,
+     "FILLED",
+     4698.7081761000745
+    ]
+   ]
+  }
+ }
+}
+EXIT=0
+2026-10-23T20:23:09Z

@@ -387,6 +387,9 @@ def render_text(a: dict, tz: str) -> str:
                  f"{','.join(str(x) for x in prov.get('chronology_runs') or []) or 'none'}, feed {str(prov.get('feed_sha256'))[:12]}")
     if ev.get("chronology_run") is not None:
         lines.append(f"Rule: {ev.get('rule')}, chronology run {ev.get('chronology_run')}")
+    if a.get("backtest"):                  # present only when the backtesting policy is on
+        bt = a["backtest"]
+        lines.append(f"Backtest: {bt.get('label')} ({bt.get('why')})" + (f", assessment {str(bt['request_key'])[:12]}" if bt.get("request_key") else ""))
     lines.append(f"Alert {a.get('alert_id', 'new')}, dedupe {a['dedupe_key'][:12]}, policy {a.get('policy_version')}")
     lines.append(DISCLAIMER)
     if a.get("fixture"):

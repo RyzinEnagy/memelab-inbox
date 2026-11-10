@@ -1,0 +1,13 @@
+baseline (unmutated): exit 0 :: 13 passed in 7.23s
+[M11-1 two or three day blocks give an interval] CAUGHT :: 1 failed, 10 passed in 5.05s
+[M11-2 tiny samples enter the Holm comparison] CAUGHT :: 1 failed, 10 passed in 5.33s
+[M11-3 sealed test readable twice] CAUGHT :: 1 failed in 0.07s
+[M11-4 tuning on the validation window] CAUGHT :: 1 failed, 11 passed in 6.51s
+[M11-5 no embargo before window end] CAUGHT :: 1 failed, 1 passed in 0.11s
+[M11-6 verdict ignores the minimum sample] CAUGHT :: 1 failed, 3 passed in 1.70s
+[M11-7 overfit flag never fires] CAUGHT :: 1 failed, 11 passed in 6.83s
+[M11-8 walk-forward tunes on its out-of-sample block] CAUGHT :: 1 failed, 7 passed in 2.47s
+[M11-9 regime labeled with the price after entry] CAUGHT :: 1 failed, 9 passed in 5.41s
+[M11-10 deflated Sharpe on small samples] CAUGHT :: 1 failed, 5 passed in 1.81s
+[M11-11 frozen config can be changed after the test] CAUGHT :: 1 failed in 0.05s
+RESULT: all mutations caught

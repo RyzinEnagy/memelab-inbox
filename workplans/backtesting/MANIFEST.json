@@ -1,0 +1,166 @@
+{
+  "package_version": "1.2",
+  "generated_utc": "2026-10-23",
+  "files": [
+    {
+      "file": "EXECUTION_RULES.md",
+      "bytes": 6465,
+      "sha256": "75921589a310900aa359e1e6e4f07cca2708d559fb2b9daa85c6b5f7508a5663"
+    },
+    {
+      "file": "ORCHESTRATOR.md",
+      "bytes": 3031,
+      "sha256": "1e6bea6997ee4aa2c7171b8db16d1b49d5639f4d880d3605fde2bfe4a4802e6d"
+    },
+    {
+      "file": "PHASE_INDEX.md",
+      "bytes": 1260,
+      "sha256": "c41a3da66ccad9904626ba67a90072aa0e84d876ad0d94d9b95bce7e75cf28ce"
+    },
+    {
+      "file": "START_HERE.md",
+      "bytes": 9512,
+      "sha256": "6265f153f412b57c2b47b21ed645fbeb1c5c01e3e1a6c351e3e3e9e78f091286"
+    },
+    {
+      "file": "phases/PHASE_00_repository_baseline_and_architectural_truth.md",
+      "bytes": 5537,
+      "sha256": "1dc14c8732541327385607e5c713c7ec9c0ef0bef0d7031274b45f0c2755edb0"
+    },
+    {
+      "file": "phases/PHASE_01_gap_to_requirements_and_integration_placement.md",
+      "bytes": 5588,
+      "sha256": "898975a268eb9fd0b88e0a91a767a51caf407ecb375e724cf540ab692a5c2857"
+    },
+    {
+      "file": "phases/PHASE_02_broad_independent_github_discovery.md",
+      "bytes": 5337,
+      "sha256": "ae7d79371553fac698ff0f81e7800980898f75b81fd17833a5ee45e57f3fd0ee"
+    },
+    {
+      "file": "phases/PHASE_03_source_code_due_diligence_and_ranked_top_10.md",
+      "bytes": 5344,
+      "sha256": "8c654bd7f2efea4e9fc23fa840bc62c2103d7faac7d97436cd3fd3c98c907a95"
+    },
+    {
+      "file": "phases/PHASE_04_adoption_bake_off_install_extract_or_fresh_implementation.md",
+      "bytes": 5143,
+      "sha256": "fe4c8833cf3889ccf087c910ce158250af2637269577aafb6a2bf18fa2862621"
+    },
+    {
+      "file": "phases/PHASE_05_chronology_safe_immutable_data_and_experiment_schema.md",
+      "bytes": 4946,
+      "sha256": "e9dce4e397eaabce7fd8b662aeaf56c281d70d3802571424ebed2b680c95acd4"
+    },
+    {
+      "file": "phases/PHASE_06A_maxun_persistent_robots_and_ingestion_bakeoff.md",
+      "bytes": 7386,
+      "sha256": "c1c2d6cb601eabf3bdb6537d0af0a594ac62e50d7c4552e3fe7a204beaab55f8"
+    },
+    {
+      "file": "phases/PHASE_06_historical_data_adapters_and_data_quality_defenses.md",
+      "bytes": 5548,
+      "sha256": "af851ee7d30c83aa2d5950609a5e32695fe01491499c0f846e47b55812f9fae0"
+    },
+    {
+      "file": "phases/PHASE_07_execution_aware_dex_amm_simulation_and_capacity.md",
+      "bytes": 4517,
+      "sha256": "04bb78322d5d9be19d93fa111adc95f0da2e09aa7cdc20d0bb973869f2846913"
+    },
+    {
+      "file": "phases/PHASE_08_point_in_time_technical_analysis_strategy_library.md",
+      "bytes": 4425,
+      "sha256": "3487d7af0d24b6b5abb38fafe09a602f4ea04650db7306e398a75aff8e48ab3e"
+    },
+    {
+      "file": "phases/PHASE_09_catalyst_wallet_and_social_event_driven_strategies.md",
+      "bytes": 5812,
+      "sha256": "076d6b2813e1ed1c06015b8f8f5b06b6b848b75e684007bccc711ead61ed1438"
+    },
+    {
+      "file": "phases/PHASE_10_deterministic_event_and_portfolio_backtesting_core.md",
+      "bytes": 4373,
+      "sha256": "04fb5d3f57b1db908d323c833157a643ee03a79584cd051227885cbadd83c912"
+    },
+    {
+      "file": "phases/PHASE_11_statistical_validation_and_strategy_selection_discipline.md",
+      "bytes": 4546,
+      "sha256": "3ff66abf367875aee0a23bbb6105bbb6e1fe1b53c0ba9f6a2ff60b1f97062431"
+    },
+    {
+      "file": "phases/PHASE_12_adversarial_position_and_opportunity_stress_engine.md",
+      "bytes": 4605,
+      "sha256": "94c9e608d3e8694c5c1b7d5ed20883ae1f1174a183f4b7200d8b35a6a70a1e25"
+    },
+    {
+      "file": "phases/PHASE_13_integrate_per_opportunity_automated_evaluation.md",
+      "bytes": 5109,
+      "sha256": "5dfe58c1b4d34719c15ee5ad2e1122b46e851ce7399a9c932c38c1cd984d4e94"
+    },
+    {
+      "file": "phases/PHASE_14_decision_oriented_reports_cli_alerts_and_apis.md",
+      "bytes": 4962,
+      "sha256": "da8ac7842b655845c95e77ba9d4cb640f8bf1d1b1bf819759e0f307dfb1549f7"
+    },
+    {
+      "file": "phases/PHASE_15_post_discovery_outcomes_calibration_and_drift_checks.md",
+      "bytes": 4769,
+      "sha256": "63d7b670890db4c9cb3f28c59408e7dfad1d7dcdf276a345719293514188adf6"
+    },
+    {
+      "file": "phases/PHASE_16_adversarial_cross_component_and_independent_e2e_audit.md",
+      "bytes": 5523,
+      "sha256": "2330447e0a10ec3f706e4ef16bc6849674393f1e7fb7f64b99b3f930183e77c2"
+    },
+    {
+      "file": "phases/PHASE_17_release_hardening_documentation_and_decision_memo.md",
+      "bytes": 5075,
+      "sha256": "327e552f77a2abd813b815c1d1ee0ce262c521100b7f52567431d3e318c41173"
+    },
+    {
+      "file": "references/ACCEPTANCE_SCENARIOS.md",
+      "bytes": 7380,
+      "sha256": "a46c5a348cf6a5dc92744cc92450189b3711dbb09db8300cf28c08cad7f79e84"
+    },
+    {
+      "file": "references/CANDIDATE_SEEDS.md",
+      "bytes": 3986,
+      "sha256": "3fa1fa5db6a808accbde39806eaf5abf28382f0a3b22d53df34071fe86dd3988"
+    },
+    {
+      "file": "references/COMPLETION_CHECKLIST.md",
+      "bytes": 2714,
+      "sha256": "a0b0b7d072a06ae87d5f485aeefd8ab83848736063793da03f7673e18bcab7d8"
+    },
+    {
+      "file": "references/EXAMPLE_OUTPUT.md",
+      "bytes": 1966,
+      "sha256": "b1caca0d8380354b556dc8a17976c6622c811eab3e659056ef13799a6b134297"
+    },
+    {
+      "file": "references/GRADING_RUBRIC.md",
+      "bytes": 3952,
+      "sha256": "0ca26ba8a425826d763ff2dd07b63b474fd36f14b6a47880327356f0ec5701ef"
+    },
+    {
+      "file": "references/MAXUN_ROBOT_CONTRACT.md",
+      "bytes": 10600,
+      "sha256": "71fc1b234d30378b97dab565d1622052acdfe806a515854f40171089f54193ed"
+    },
+    {
+      "file": "references/REQUIRED_DATA_CONTRACTS.md",
+      "bytes": 4475,
+      "sha256": "c5aed42552ffe288e7104469ac98cd8c5bad57a313621de549bd3d6e8b72e22a"
+    },
+    {
+      "file": "references/RESEARCH_PROTOCOL.md",
+      "bytes": 6050,
+      "sha256": "407a9cb001724168699abbd35e853baf8813dce7af07867fc56e384bfc788a55"
+    },
+    {
+      "file": "references/WEB_RESEARCH_TOOLING.md",
+      "bytes": 8626,
+      "sha256": "af7e2b7a07d87a5adfe2b778c84048555d25f4b42611cfa2ad89bb2ba7a9dbac"
+    }
+  ]
+}

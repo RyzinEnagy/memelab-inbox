@@ -1,0 +1,274 @@
+query,query_total,query_utc,rank,repo,stars,license,pushed,archived,lang,desc
+vectorized backtesting python,92,2026-10-23T15:43:32Z,1,ematvey/pybacktest,825,MIT,2021-11-11,,Python,"Vectorized backtesting framework in Python / pandas, designed to make "
+vectorized backtesting python,92,2026-10-23T15:43:32Z,2,cloudQuant/backtrader,202,GPL-3.0,2026-10-23,,Python,Optimized Python fork of Backtrader for strategy backtesting and live 
+vectorized backtesting python,92,2026-10-23T15:43:32Z,3,tyedem/Machine-Learning-Trader,1,,2022-03-15,,Jupyter Notebook,Backtesting trading strategy performances between actual market return
+vectorized backtesting python,92,2026-10-23T15:43:32Z,4,vdsag/Vectorized-Crypto-Backtester,1,MIT,2025-12-19,,Python,High-performance vectorized backtesting engine for Crypto.
+vectorized backtesting python,92,2026-10-23T15:43:32Z,5,Shreyans-704/Vectorized-Technical-Indicator-Backtesting-Engine,0,MIT,2026-08-31,,Jupyter Notebook,"A from-scratch, fully vectorized Python backtesting engine for technic"
+vectorized backtesting python,92,2026-10-23T15:43:32Z,6,Viprasol-Tech/backtesting-python,0,MIT,2026-08-01,,Python,Vectorized backtesting engine for trading strategies in Python. By Vip
+vectorized backtesting python,92,2026-10-23T15:43:32Z,7,eva-singh1/quant-vectorized-backtester,0,,2026-08-19,,Python,An institutional-grade vectorized backtesting engine implemented in Py
+vectorized backtesting python,92,2026-10-23T15:43:32Z,8,Nileshsan/Project_QuantFlow,3,MIT,2025-11-03,,Python,A professional-grade Python quantitative trading platform for developi
+vectorized backtesting python,92,2026-10-23T15:43:32Z,9,gencersarp/vectorbt-core,0,,2026-02-21,,Python,High-performance vectorized backtesting engine in Python
+vectorized backtesting python,92,2026-10-23T15:43:32Z,10,keithorange/SuperFastBacktest,3,,2025-01-12,,Python,"The #1 FASTEST Backtest software in Python for Stocks, Crypto, etc.! V"
+vectorized backtesting python,92,2026-10-23T15:43:32Z,11,Jad-srifi/vectorized-sma-backtester,0,MIT,2026-08-31,,Python,A fully vectorized Python backtesting engine for financial time-series
+vectorized backtesting python,92,2026-10-23T15:43:32Z,12,Jasmine95229/backtesting-engine,0,MIT,2026-03-16,,Python,Portfolio backtesting engine with vectorized position management
+backtesting framework language:python stars:>200,17,2026-10-23T15:43:40Z,1,kernc/backtesting.py,9117,AGPL-3.0,2026-08-05,,Python,🔎 📈 🐍 💰  Backtest trading strategies in Python.
+backtesting framework language:python stars:>200,17,2026-10-23T15:43:40Z,2,coding-kitties/investing-algorithm-framework,2191,Apache-2.0,2026-10-22,,Python,Framework for quantitative trading. Complete framework for development
+backtesting framework language:python stars:>200,17,2026-10-23T15:43:40Z,3,ematvey/pybacktest,825,MIT,2021-11-11,,Python,"Vectorized backtesting framework in Python / pandas, designed to make "
+backtesting framework language:python stars:>200,17,2026-10-23T15:43:40Z,4,ricequant/rqalpha,6837,NOASSERTION,2026-10-22,,Python,"A extendable, replaceable Python algorithmic backtest && trading frame"
+backtesting framework language:python stars:>200,17,2026-10-23T15:43:40Z,5,QuantMLResearch/pyrust-bt,324,,2026-07-20,,Python,Hybrid Python + Rust backtesting framework 
+backtesting framework language:python stars:>200,17,2026-10-23T15:43:40Z,6,constverum/Quantdom,774,Apache-2.0,2022-07-06,,Python,Python-based framework for backtesting trading strategies & analyzing 
+backtesting framework language:python stars:>200,17,2026-10-23T15:43:40Z,7,llazzaro/analyzer,215,NOASSERTION,2015-12-21,ARCH,Python,:chart: Python framework for real-time financial and backtesting tradi
+backtesting framework language:python stars:>200,17,2026-10-23T15:43:40Z,8,zvtvz/zvt,4316,MIT,2026-07-01,,Python,modular quant framework.
+backtesting framework language:python stars:>200,17,2026-10-23T15:43:40Z,9,whchien/ai-trader,1117,GPL-3.0,2026-03-28,,Python,"Backtrader-powered backtesting framework for algorithmic trading, feat"
+backtesting framework language:python stars:>200,17,2026-10-23T15:43:40Z,10,AmpyFin/ampyfin,427,MIT,2026-08-06,,Python,"End-to-end ensemble trading framework that trains, backtests, and prom"
+backtesting framework language:python stars:>200,17,2026-10-23T15:43:40Z,11,51bitquant/howtrader,965,MIT,2026-06-07,,Python,"Howtrader: A crypto quant framework for developing, backtesting, and e"
+backtesting framework language:python stars:>200,17,2026-10-23T15:43:40Z,12,gbeced/basana,871,NOASSERTION,2026-10-23,,Python,"A Python async and event driven framework for algorithmic trading, wit"
+event-driven backtesting engine,268,2026-10-23T15:43:48Z,1,josephchenhk/qtrader,548,,2026-09-07,,Python,A Light Event-Driven Algorithmic Trading Engine
+event-driven backtesting engine,268,2026-10-23T15:43:48Z,2,MelnikLabs/quant,20,MIT,2024-11-25,ARCH,Jupyter Notebook,event-driven trading and backtesting engine
+event-driven backtesting engine,268,2026-10-23T15:43:48Z,3,nKastelan/Ed,13,MIT,2024-09-17,,C++,Event-driven backtesting engine written in C++
+event-driven backtesting engine,268,2026-10-23T15:43:48Z,4,jbjose/EventDrivenBacktester,3,,2016-07-18,,Python,Backtesting engine described in quantstart.com.
+event-driven backtesting engine,268,2026-10-23T15:43:48Z,5,stanleywu111/QuantStudio,4,,2017-03-19,,C++,An Event-Driven Backtesting Engine Using C++
+event-driven backtesting engine,268,2026-10-23T15:43:48Z,6,BYTEX-TRADE/bytex,276,Apache-2.0,2026-10-02,,C#,Event-driven algorithmic trading engine for .NET. Write a strategy onc
+event-driven backtesting engine,268,2026-10-23T15:43:48Z,7,Rodrigo48025/Autonomous-Quantitative-Trading-Lab,7,MIT,2026-07-13,,Python,An end-to-end autonomous system that discovers alpha in academic paper
+event-driven backtesting engine,268,2026-10-23T15:43:48Z,8,zeo-nyx/event-driven-backtesting-engine,2,,2026-03-02,,Python,
+event-driven backtesting engine,268,2026-10-23T15:43:48Z,9,BobbyAxerol/quantbt,11,MIT,2026-10-22,,Python,"Event-Drivent, Vectorised-Backtest, Explicit-Order, WalkForward-OP SDK"
+event-driven backtesting engine,268,2026-10-23T15:43:48Z,10,shreyanshxt/Backtesting_engine,3,MIT,2026-04-05,,Python,Event-driven backtesting engine for algorithmic trading strategies. Si
+event-driven backtesting engine,268,2026-10-23T15:43:48Z,11,noorxsingh/backtesting-engine,3,MIT,2026-09-24,,C++,"Event-driven quantitative backtesting engine in modern C++, compiled t"
+event-driven backtesting engine,268,2026-10-23T15:43:48Z,12,g18278790880-byte/renaissance-backtest-engine,2,,2026-06-02,,Rust,A Rust/Tokio event-driven quantitative trading backtesting engine.
+event driven trading simulator order book,5,2026-10-23T15:43:55Z,1,seampm/pymatch,1,MIT,2026-09-27,,Python,"Limit order book matching engine, exchange simulator, and event-driven"
+event driven trading simulator order book,5,2026-10-23T15:43:55Z,2,theov07/CPP_Simulated_Trading_Platform,0,,2026-07-03,,C++,"Event-driven C++17 trading simulator with order book reconstruction, s"
+event driven trading simulator order book,5,2026-10-23T15:43:55Z,3,Space-Paragon1/Market-Data-Simulator-Strategy-Sandbox,0,MIT,2026-04-03,,C++,"C++17 event-driven trading simulator with synthetic market data, order"
+event driven trading simulator order book,5,2026-10-23T15:43:55Z,4,aqua-1406/QuantX-HFT-Simulator,0,,2025-10-10,,C++,"Event-driven C++ limit order book simulator with market, limit, stop, "
+event driven trading simulator order book,5,2026-10-23T15:43:55Z,5,emt-Q/lob-market-maker,1,,2026-09-25,,Python,Limit Order Book Market Making & Statistical Arbitrage for Quantitativ
+solana backtest,79,2026-10-23T15:44:03Z,1,Drakkar-Software/OctoBot,6842,GPL-3.0,2026-10-23,,Python,"Free open source crypto trading bot to automate AI, Grid, DCA and Trad"
+solana backtest,79,2026-10-23T15:44:03Z,2,tradingstrategy-ai/getting-started,264,,2026-10-14,,Jupyter Notebook,Start developing and backtesting your own automated trading strategies
+solana backtest,79,2026-10-23T15:44:03Z,3,kennethcudiadev/solana-bot-backtest,8,,2026-05-06,,Rust,
+solana backtest,79,2026-10-23T15:44:03Z,4,cubexch/ai-fund,33,,2026-04-08,,TypeScript,AI trading desk with 42 hedge fund agents for Claude Code. Trade crypt
+solana backtest,79,2026-10-23T15:44:03Z,5,tyler-pruitt/Robinhood-Crypto-Autotrader,10,MIT,2022-11-28,,Python,An automated trader for cryptocurrency implemented in Python for the p
+solana backtest,79,2026-10-23T15:44:03Z,6,ClaudeQuant/claude-hedge,13,NOASSERTION,2026-02-15,,Python,Claude Hedge - The Princeton Anomaly / AI-driven systematic futures tr
+solana backtest,79,2026-10-23T15:44:03Z,7,sohan-shingade/flint,7,MIT,2026-07-18,,Python,"Local-first algorithmic trading, backtesting & MEV research for Solana"
+solana backtest,79,2026-10-23T15:44:03Z,8,amirpraaven/solana-backtest,0,,2025-07-30,,Python,
+solana backtest,79,2026-10-23T15:44:03Z,9,ggiordann/solana,0,,2026-06-02,,Python,Solana SOL/USDC constant-product slippage backtest for a MATH 1020 res
+solana backtest,79,2026-10-23T15:44:03Z,10,nickpismenkov/solana-arb-backtest,0,,2026-08-17,,Rust,
+solana backtest,79,2026-10-23T15:44:03Z,11,nischayhegde/solana-copytrading-backtester,1,,2025-08-25,,Python,Wallet/blockchain analysis scripts. Check for copy traders using heuri
+solana backtest,79,2026-10-23T15:44:03Z,12,mx111-glitch/solana-pivot-backtester,0,,2026-09-23,,,
+solana dex trading bot backtest,1,2026-10-23T15:44:10Z,1,Lotron-Electrical/solana-spread-trader,0,,2026-04-03,,JavaScript,"Browser-based Solana SOL/AUD spread trading bot with paper trading, ba"
+memecoin backtest,17,2026-10-23T15:44:18Z,1,nikkisora/PolarBT,13,MIT,2026-03-14,,Python,Blazingly fast strategy backtest with polars
+memecoin backtest,17,2026-10-23T15:44:18Z,2,JonKater/solana-memecoin-backtesting-engine,0,,2026-03-14,,,"Modulare, Event-Driven Backtesting-Engine für Solana Memecoins – Tick-"
+memecoin backtest,17,2026-10-23T15:44:18Z,3,jaggu26/memecoin-scanner,0,,2026-04-28,,HTML,Real-time memecoin breakout scanner with backtesting
+memecoin backtest,17,2026-10-23T15:44:18Z,4,Rodrigo48025/Backtsting-MemeCoin_Bots-Workflow-Framework-Project,0,,2026-03-09,,TypeScript,Backtesting MemeCoin Bots Workflow Framework Project
+memecoin backtest,17,2026-10-23T15:44:18Z,5,cudam321/signal-backtest-harness,0,MIT,2026-06-26,,Python,Measurement-first backtest harness for evaluating Telegram trading-sig
+memecoin backtest,17,2026-10-23T15:44:18Z,6,Kombucho/memecoin-gamble-research,0,MIT,2026-10-12,,Python,"Backtest of 4,293 pumpdotfun callouts: the math says memecoins are a g"
+memecoin backtest,17,2026-10-23T15:44:18Z,7,onecandlecat/one-more-candle,0,MIT,2026-09-24,,TypeScript,"Solana memecoin fee math: break-even estimator, backtests, paper engin"
+memecoin backtest,17,2026-10-23T15:44:18Z,8,maxmckittrick1-oss/memecoin-paper-bot,0,,2026-10-18,,Python,"Python data pipeline: pulls live Solana market data from 3 APIs, runs "
+memecoin backtest,17,2026-10-23T15:44:18Z,9,JwP-O7O/SolanaTradeAgency,0,,2026-03-31,,JavaScript,Autonomous Solana Memecoin Trading Agency - Multi-Agent System met Bac
+memecoin backtest,17,2026-10-23T15:44:18Z,10,ReapFXS/ReapX-sniper,1,,2026-04-02,,,solana memecoin sniper pump-fun jito geyser kol-tracking conviction-sc
+memecoin backtest,17,2026-10-23T15:44:18Z,11,cavalheiroeth/pumpfun-sniping-lab,0,,2026-09-24,,Python,Does sniping new pump.fun memecoins make money? Solana on-chain collec
+memecoin backtest,17,2026-10-23T15:44:18Z,12,0xsteve-00/trading-agents,0,,2026-06-09,,Python,"🏦 Multi-agent AI trading desk with 4 parallel analysts, Solana memeco"
+pump.fun backtest,14,2026-10-23T15:44:25Z,1,Sorghobrayan-dotcom/solana-sniper-reverse-engineering,2,MIT,2026-08-14,,Python,Reverse-engineering a zero-block pump.fun sniper on Solana: census-sca
+pump.fun backtest,14,2026-10-23T15:44:25Z,2,charllysb/pumpfun-momentum-bot,1,MIT,2026-07-25,,Python,Real-time pump.fun momentum bot with slippage modeling and honest back
+pump.fun backtest,14,2026-10-23T15:44:25Z,3,realdoomsman/pump-sniper,0,,2026-10-23,,Rust,"Rust pump.fun bonding-curve completion sniper with pool watching, scor"
+pump.fun backtest,14,2026-10-23T15:44:25Z,4,ReDV101/pump-fun-copy-trader,0,,2026-09-12,,Python,"Dry-run-first Pump.fun copy-trading bot with paper PnL, backtesting, a"
+pump.fun backtest,14,2026-10-23T15:44:25Z,5,cavalheiroeth/pumpfun-sniping-lab,0,,2026-09-24,,Python,Does sniping new pump.fun memecoins make money? Solana on-chain collec
+pump.fun backtest,14,2026-10-23T15:44:25Z,6,prisyy/pumpsim-api,0,MIT,2026-09-19,,,Simulate pump.fun bonding-curve & PumpSwap trades off-chain. Backtest 
+pump.fun backtest,14,2026-10-23T15:44:25Z,7,austindrew2021-code/nightshift-desk,0,,2026-10-23,,TypeScript,"NIGHTSHIFT — five Grok agents on a paper trading desk. Live backtest, "
+pump.fun backtest,14,2026-10-23T15:44:25Z,8,outs-mcp/outs-mcp,0,MIT,2026-10-22,,JavaScript,"Open-source MCP for trading: live pump.fun calls, paper trades graded "
+pump.fun backtest,14,2026-10-23T15:44:25Z,9,lblommesteyn/slotfish,0,MIT,2026-10-13,,Rust,Deterministic event-driven research engine for Solana pump.fun microst
+pump.fun backtest,14,2026-10-23T15:44:25Z,10,web3daemon/zero-block-sniper-reverse-engineering,1,MIT,2026-08-12,,Python,Reverse-engineering a zero-block pump.fun sniper on Solana: behavioura
+pump.fun backtest,14,2026-10-23T15:44:25Z,11,Foreist/solana-sniper-reverse-engineering,0,,2026-07-29,,Python,Reverse-engineering a live Solana pump.fun sniper bot: behaviour analy
+pump.fun backtest,14,2026-10-23T15:44:25Z,12,yntymacho/polymarket-honest-tools,0,MIT,2026-06-28,,TypeScript,Honest Polymarket & on-chain research tooling: copy-trade validator (r
+uniswap v3 backtest,25,2026-10-23T15:44:48Z,1,DefiLab-xyz/uniswap-v3-backtest,62,,2022-05-27,,JavaScript,Fast and efficient method for testing Uniswap V3 LP Strategies
+uniswap v3 backtest,25,2026-10-23T15:44:48Z,2,revert-finance/revert-backtester,47,MIT,2023-02-03,,Clojure,A fast backtester for Uniswap v3 positions.
+uniswap v3 backtest,25,2026-10-23T15:44:48Z,3,DefiLab-xyz/uniswap-v3-backtest-python,18,,2022-05-14,,Python,
+uniswap v3 backtest,25,2026-10-23T15:44:48Z,4,nguyenhieuec/uniswap_backtester,10,,2021-12-01,,,Strategy backtester for Uniswap V3.
+uniswap v3 backtest,25,2026-10-23T15:44:48Z,5,ilyamk/uniswap-v3-lp-strategy-toolkit,11,,2025-02-26,,Python,A sophisticated toolkit for collecting Uniswap V3 pool data and backte
+uniswap v3 backtest,25,2026-10-23T15:44:48Z,6,zelos-alpha/Backtesting-Uniswap-V3-Strategies,5,MIT,2024-12-10,,Jupyter Notebook,
+uniswap v3 backtest,25,2026-10-23T15:44:48Z,7,AndreyUrus/Uniswap-v3-backtester-Source-code-and-scripts,10,,2024-07-22,,Jupyter Notebook,
+uniswap v3 backtest,25,2026-10-23T15:44:48Z,8,AndreyUrus/backtester_defi,0,,2025-04-04,,Python,Collection of useful functions for Uniswap v3 backtester
+uniswap v3 backtest,25,2026-10-23T15:44:48Z,9,kotik98/my_unisvap_v3_backtest,5,,2022-10-09,,Python,backtester for positions in uniswap v3 pools
+uniswap v3 backtest,25,2026-10-23T15:44:48Z,10,AbderrahimNamouh/Uniswap-v3,1,,2024-11-17,,Jupyter Notebook,Implementing a backtesting environement for the leading decentralized 
+uniswap v3 backtest,25,2026-10-23T15:44:48Z,11,mystmaker33/uniswap_v3_backtest,0,,2023-09-22,,JavaScript,Backtest with Sascha scripts
+uniswap v3 backtest,25,2026-10-23T15:44:48Z,12,reyield-finance/uniswap-v3-smart-vault-backtest,0,,2023-08-28,,JavaScript,
+concentrated liquidity simulator,5,2026-10-23T15:44:55Z,1,archit3ct0x/lp-autopilot,0,,2026-07-13,,TypeScript,Compact mainnet liquidity pool scanner and concentrated-liquidity rang
+concentrated liquidity simulator,5,2026-10-23T15:44:55Z,2,stridr5555/btc-cl-yield-simulator,0,,2026-06-27,,JavaScript,Interactive BTC/stable concentrated liquidity yield farming simulator.
+concentrated liquidity simulator,5,2026-10-23T15:44:55Z,3,Kahnchan/lp-simulator,0,,2026-09-12,,TypeScript,Concentrated liquidity LP simulator with NFT position import and inter
+concentrated liquidity simulator,5,2026-10-23T15:44:55Z,4,marcusblabs/autorange-depth-simulator,0,,2026-06-16,ARCH,HTML,"Compare AutoRange concentrated-liquidity depth vs a full-range pool, w"
+concentrated liquidity simulator,5,2026-10-23T15:44:55Z,5,dalonsodev/defi-scout,0,,2026-09-15,,TypeScript,LP position simulator built from the Uniswap V3 whitepaper. Concentrat
+amm simulation python,17,2026-10-23T15:45:03Z,1,joaquinbejar/py-defi-amm,4,MIT,2026-09-19,,Python,This project implements a Decentralized Finance (DeFi) Automated Marke
+amm simulation python,17,2026-10-23T15:45:03Z,2,lijunnjuer/AMM-simulation,0,,2026-06-08,,Python,基于 Python 与 Flask 的 AMM 去中心化交易所仿真系统，实现恒定乘积模型与流动性机制分析
+amm simulation python,17,2026-10-23T15:45:03Z,3,lings0127/defi-liquidity-pool-simulation,0,,2026-10-23,,,AMM-based DeFi liquidity pool simulation and decision optimization / A
+amm simulation python,17,2026-10-23T15:45:03Z,4,osahonokoro/ammonia-sensor-simulation,1,,2025-07-22,,Python,"A simulated ammonia monitoring system emulating RS-485 sensor output, "
+amm simulation python,17,2026-10-23T15:45:03Z,5,AmirhosseinHonardoust/Defi-Risk-Scenario-Lab,16,MIT,2025-11-25,,Python,A research-grade lab for stress-testing DeFi protocols using Solidity 
+amm simulation python,17,2026-10-23T15:45:03Z,6,fatihsoysalcom/curve-amm-slippage-simulation,0,MIT,2026-10-01,,,This Python script simulates a simplified Automated Market Maker (AMM)
+amm simulation python,17,2026-10-23T15:45:03Z,7,JonnyCerullo/Blockchain_AMM_Project,0,,2026-04-20,,Python,A comprehensive Python-based simulation framework for analyzing and co
+amm simulation python,17,2026-10-23T15:45:03Z,8,wellorzzonnovais-code/ammonia-water-simplified-solver,0,,2026-03-04,,Python,"This repository showcases the ""Most Simple"" version of a simulation fo"
+amm simulation python,17,2026-10-23T15:45:03Z,9,stickermustache-source/Lenia_Ammonia,1,MIT,2025-11-04,,Python,A Lenia based project with an ammonia environment!
+amm simulation python,17,2026-10-23T15:45:03Z,10,oniani1/Token-Economy-Simulation,0,MIT,2026-05-05,,Python,Monte Carlo agent-based simulation of CrowdTrain's Solana DePIN token 
+amm simulation python,17,2026-10-23T15:45:03Z,11,Dallas-Foster/DeFi-Liquidity-Simulation,1,,2025-03-31,,Python,Python-based simulation environment that models a decentralized financ
+amm simulation python,17,2026-10-23T15:45:03Z,12,FrenchFriedCrypto/FYP25,0,MIT,2026-07-15,,JavaScript,Archived final-year research comparing dual-token and multi-token AMM 
+meteora dlmm,266,2026-10-23T15:45:10Z,1,cryptocj520/meteora2,146,,2025-07-25,,TypeScript,dlmm
+meteora dlmm,266,2026-10-23T15:45:10Z,2,MeteoraAg/dlmm-sdk,310,,2026-10-23,,TypeScript,A SDK for building applications on top of Meteora's DLMM
+meteora dlmm,266,2026-10-23T15:45:10Z,3,romankurnovskii/etemaro,47,,2026-10-23,,TypeScript,Auto dlmm Meteora bot system
+meteora dlmm,266,2026-10-23T15:45:10Z,4,GeekLad/meteora-profit-analysis,83,GPL-3.0,2025-09-29,,TypeScript,Analyzes your Meteora DLMM transactions to estimate profitability and 
+meteora dlmm,266,2026-10-23T15:45:10Z,5,mrthomasbigproblem/meteora-dlmm-bot,18,BSD-3-Clause,2025-09-15,,TypeScript,meteora / meteora dlmm / meteora dlmm bot / meteora dlmm copy trade bo
+meteora dlmm,266,2026-10-23T15:45:10Z,6,GeekLad/meteora-dlmm-db,26,GPL-3.0,2025-08-14,,TypeScript,Meteora DLMM Database
+meteora dlmm,266,2026-10-23T15:45:10Z,7,MeteoraAg/meteora-invent,35,MIT,2026-09-20,,TypeScript,Launch anything on Meteora and do any onchain actions with Invent
+meteora dlmm,266,2026-10-23T15:45:10Z,8,irfndi/prism-liquidity-agent,131,MIT,2026-10-20,,TypeScript,Autonomous LP trading agent - auto-rebalancing with backtested strateg
+meteora dlmm,266,2026-10-23T15:45:10Z,9,cryptokvothed/meteora-dlmm-project,18,MIT,2025-05-04,,Python,
+meteora dlmm,266,2026-10-23T15:45:10Z,10,fciaf420/meteora-dlmm-lp-skill,33,,2026-09-24,,,Claude Code skill for Meteora DLMM liquidity provision strategy on Sol
+meteora dlmm,266,2026-10-23T15:45:10Z,11,theISCTeam/meteora_dlmm_ui,16,MIT,2024-05-09,,JavaScript,A web UI that compiles wallet information for the Meteora DLMM Program
+meteora dlmm,266,2026-10-23T15:45:10Z,12,fciaf420/Meteora-DLMM-MCP,13,,2026-03-26,,TypeScript,
+raydium clmm sdk,12,2026-10-23T15:45:18Z,1,jup-ag/raydium-clmm-sdk,21,,2023-09-12,ARCH,TypeScript,
+raydium clmm sdk,12,2026-10-23T15:45:18Z,2,0xfnzero/solana-program-idls,34,MIT,2026-10-22,,,"Solana Program IDL catalog for PumpFun, PumpSwap, Raydium, Meteora, Or"
+raydium clmm sdk,12,2026-10-23T15:45:18Z,3,KevinSheeranxyj/raydium-clmm-zapin,0,MIT,2025-12-25,,JavaScript,calling CPIs from raydium_clmm_sdk to implement zap-in
+raydium clmm sdk,12,2026-10-23T15:45:18Z,4,quickbog/raydium-clmm-monitor,0,,2026-03-06,,JavaScript,"Track pending Raydium CLMM fees directly from on-chain data — no SDK, "
+raydium clmm sdk,12,2026-10-23T15:45:18Z,5,sea-sol/solana-copytrading-bot,2,,2025-10-27,,Rust,Solana bot for copy transaction on raydium Raydium copy trading bot bu
+raydium clmm sdk,12,2026-10-23T15:45:18Z,6,WangYuLue/golang-clmm,0,,2025-12-17,,Go,A CLMM SDK implemented in Go for interacting with the Raydium CLMM pro
+raydium clmm sdk,12,2026-10-23T15:45:18Z,7,fiv3fingers/Solana-Dex-Py_Pumpfun_Raydium_Moonshot,1,,2026-02-03,,Python,Python SDK for Solana DEX trading — Pumpfun SDK (bonding-curve buy/sel
+raydium clmm sdk,12,2026-10-23T15:45:18Z,8,ACNoonan/solana-dlmm-meteora,6,Apache-2.0,2026-07-21,,Rust,"Pure-Rust, no-RPC swap math for the Meteora DLMM (bin-based AMM) on So"
+raydium clmm sdk,12,2026-10-23T15:45:18Z,9,TokensHive/solana-token-market-go,4,MIT,2026-05-15,,Go,On-chain-first Go SDK for deterministic Solana DEX token metrics (pric
+raydium clmm sdk,12,2026-10-23T15:45:18Z,10,alba55simo/Copy-trading-bot,0,,2025-07-05,,Rust,Solana bot for copy transaction on raydium & pump.fun. Raydium copy tr
+raydium clmm sdk,12,2026-10-23T15:45:18Z,11,alba55simo/Solana-volume-bot,0,,2025-07-05,,TypeScript,"PumpSwap Volume Bot, Raydium Volume Bot (clmm, cpmm),   Meteora Volume"
+raydium clmm sdk,12,2026-10-23T15:45:18Z,12,apollotoday/solana-bundler-bot,1,,2025-09-16,,TypeScript,"✅solana bundler bot🔥PumpSwap Volume Bot, Raydium Volume Bot (clmm, cp"
+orca whirlpools,44,2026-10-23T15:45:26Z,1,smolmusk/solana-clamm-core,37,MIT,2025-04-28,,Rust,"CLAMM Core (Similar to Orca (Whirlpools), but inspired from Stryke Pro"
+orca whirlpools,44,2026-10-23T15:45:26Z,2,orca-so/whirlpool-sdk,46,,2022-10-12,ARCH,TypeScript,Typescript library to interact with the Orca concentrated liquidity po
+orca whirlpools,44,2026-10-23T15:45:26Z,3,MadgicDev/solana-trade,61,,2025-11-13,,TypeScript,Trade on all Solana major DEXs. Perfect for trading bots. Supports Pum
+orca whirlpools,44,2026-10-23T15:45:26Z,4,solanabr/position-manager-skill,2,MIT,2026-07-10,,TypeScript,CLMM position manager for Orca Whirlpools / Raydium CLMM / Meteora DLM
+orca whirlpools,44,2026-10-23T15:45:26Z,5,joaquinbejar/CLMM-Liquidity-Provider,12,MIT,2026-10-10,,Rust,ALPHA version!! - A strategy optimization system for liquidity provide
+orca whirlpools,44,2026-10-23T15:45:26Z,6,goblingold/ggoldca,10,MIT,2023-02-16,,Rust,Automated Liquidity Management for Orca Whirlpools
+orca whirlpools,44,2026-10-23T15:45:26Z,7,lingadevaru-hp/foss-token,13,,2026-09-02,,HTML,FOSS Token () — Solana SPL token for funding free and open-source soft
+orca whirlpools,44,2026-10-23T15:45:26Z,8,algo-traders-club/dolphin,4,MIT,2025-06-23,,TypeScript,Dolphin - An autonomous agent for providing and managing liquidity on 
+orca whirlpools,44,2026-10-23T15:45:26Z,9,DFlowProtocol/clearpools,2,NOASSERTION,2026-10-09,,TypeScript,Orca Whirlpools with support for flow segmentation
+orca whirlpools,44,2026-10-23T15:45:26Z,10,leandrosmoreira53/orca-whirlpools-mvp,2,,2025-10-05,,TypeScript,🌊 Orca Whirlpools MVP - Track liquidity positions and fees on Solana 
+orca whirlpools,44,2026-10-23T15:45:26Z,11,DAEcrew/SOL-Arb-Bot,0,,2026-05-24,,,Orca_whirlpool_program
+orca whirlpools,44,2026-10-23T15:45:26Z,12,vycrypto/Orca-Whirlpools,0,,2023-05-24,,Python,
+event study python finance,37,2026-10-23T15:45:41Z,1,tgtads/yahooFinanceEventStudy,0,MIT,2016-05-25,,R,A suite of tools for executing and presenting an event study from the 
+event study python finance,37,2026-10-23T15:45:41Z,2,ma731/major-events-event-study,0,MIT,2026-07-23,,Python,"Cross-country, cross-industry event study (CAPM AR/CAR) of 5 major mac"
+event study python finance,37,2026-10-23T15:45:41Z,3,FReActor/sd_biotech_event_study,0,,2026-09-27,,Python,Event study testing whether markets absorb clinical trial results more
+event study python finance,37,2026-10-23T15:45:41Z,4,yellowbear27/insider_event_study,0,MIT,2026-05-05,,Python,Quantitative event study of congressional and insider trade disclosure
+event study python finance,37,2026-10-23T15:45:41Z,5,ma731/russia-ukraine-event-study,0,MIT,2026-07-23,,Jupyter Notebook,Event-study analysis of the 2022 Russia-Ukraine war across five global
+event study python finance,37,2026-10-23T15:45:41Z,6,yasinlatif22-cpu/payments-earnings-event-study,0,,2026-10-03,,Python,"Python event study of earnings reactions in Visa, Mastercard, AXP, PYP"
+event study python finance,37,2026-10-23T15:45:41Z,7,yashvibhatt/vix-peaks-event-study,0,,2026-03-13,,Jupyter Notebook,Event study analyzing S&P 500 behavior around VIX spikes (2016–present
+event study python finance,37,2026-10-23T15:45:41Z,8,williaminsley/Financial-Event-Study-Engine,0,,2026-01-06,,Jupyter Notebook,Interactive event-study engine analysing sector ETF behaviour around m
+event study python finance,37,2026-10-23T15:45:41Z,9,theshaswat/acc-dividend-event-study,0,MIT,2026-08-14,,Python,Event study of ACC Limited's two consecutive Rs 7.50 dividend disclosu
+event study python finance,37,2026-10-23T15:45:41Z,10,iordanis-iuga/defense-dollars-event-study,0,,2026-08-07,,Python,Panel event study of 33 US defence contractors across 20 federal budge
+event study python finance,37,2026-10-23T15:45:41Z,11,Terry132-gif/small-cap-equity-offering-event-study,0,,2026-07-08,,Python,Python-based event study analyzing market reactions around small-cap e
+event study python finance,37,2026-10-23T15:45:41Z,12,tripuramgeetanjali/earnings-surprise-drift,0,MIT,2025-08-14,,Python,FTSE earnings-surprise tracker and post-earnings drift event study.
+crypto sentiment backtest,48,2026-10-23T15:45:49Z,1,atilaahmettaner/tradingview-mcp,5109,MIT,2026-10-22,,Python,"MCP server for market analysis in AI assistants: screeners, multi-time"
+crypto sentiment backtest,48,2026-10-23T15:45:49Z,2,AFederici/lets-make-money,4,,2019-01-07,,Jupyter Notebook,"Python Trading Bot with data visualization, strategies for both standa"
+crypto sentiment backtest,48,2026-10-23T15:45:49Z,3,joel-hamilton/ftx-trader,1,,2021-08-18,,JavaScript,An app for automated crypto trading. Built with a microservice archite
+crypto sentiment backtest,48,2026-10-23T15:45:49Z,4,Harsh-Jain-10/StockVisionPro,8,MIT,2026-10-04,,TypeScript,📈 StockVision Pro — AI-powered stock analytics dashboard built with R
+crypto sentiment backtest,48,2026-10-23T15:45:49Z,5,CryptoPrism-io/CryptoPrism-DB-Backtest,0,,2026-10-16,,Python,Sentiment-based long/short cryptocurrency backtesting framework with v
+crypto sentiment backtest,48,2026-10-23T15:45:49Z,6,ommadav/CryptoSentimentFactorTrading,0,MIT,2026-09-25,,MATLAB,"MATLAB-based crypto sentiment trading system with ML models, AR(5) pre"
+crypto sentiment backtest,48,2026-10-23T15:45:49Z,7,Saurabhkr8038/Expert-Crypto-computing-machine,4,NOASSERTION,2025-04-18,,Jupyter Notebook,"""AI-powered crypto trading system that combines machine learning, deep"
+crypto sentiment backtest,48,2026-10-23T15:45:49Z,8,stars-labs/quant,2,NOASSERTION,2026-10-19,,HTML,Crypto quant trading system: trend-following + smart/event DCA + senti
+crypto sentiment backtest,48,2026-10-23T15:45:49Z,9,dougan21/SC6117-Project-LLM-Driven-Crypto-Sentiment-Quantification-Backtesting-Engine,0,,2026-01-08,,Python,NTU SC6117 project: LLM-Driven Crypto Sentiment Quantification & Backt
+crypto sentiment backtest,48,2026-10-23T15:45:49Z,10,jessicaherrr/crypto-sentiment-forecasting-v0,0,,2026-09-04,,Jupyter Notebook,"Forecasting BTC and ETH returns using market data, financial news sent"
+crypto sentiment backtest,48,2026-10-23T15:45:49Z,11,yawollopkcaj/sentiment-driven-trading-algorithm,0,,2025-08-10,,Python,"Event-driven crypto trading bot with Reddit sentiment analysis, ridge "
+crypto sentiment backtest,48,2026-10-23T15:45:49Z,12,aditarora002-cloud/CryptoSentimentForecaster2026,0,,2026-10-11,,Python,"I combined real-time crypto prices, news sentiment analysis, and LSTM "
+solana wallet tracker,611,2026-10-23T15:45:57Z,1,DracoR22/handi-cat_wallet-tracker,206,,2026-02-16,,TypeScript,"Solana wallet tracker Telegram Bot, follow any wallet and get detailed"
+solana wallet tracker,611,2026-10-23T15:45:57Z,2,digbenjamins/SolanaWalletTracker,28,,2025-01-27,,TypeScript,
+solana wallet tracker,611,2026-10-23T15:45:57Z,3,kiryl-sol/solana-wallet-tracker,78,,2023-05-19,,Python,
+solana wallet tracker,611,2026-10-23T15:45:57Z,4,Glooring/SolanaTrackerBot,37,MIT,2024-10-10,,Python,Telegram bot to track Solana wallet transactions and get real-time not
+solana wallet tracker,611,2026-10-23T15:45:57Z,5,imcrazysteven/Solana-Wallet-Tracking-Telegram-Bot-Portfolio,51,MIT,2025-11-10,,,"A professional Solana wallet tracking bot that monitors transactions, "
+solana wallet tracker,611,2026-10-23T15:45:57Z,6,v0idum/solana_tracker_bot,57,,2021-09-28,,Python,Solana Wallet Tracker Telegram Bot
+solana wallet tracker,611,2026-10-23T15:45:57Z,7,lorenzourera/solana-auto-sell-bot,132,,2025-09-18,,Python,This script continuously scans a Solana wallet for SPL tokens and trac
+solana wallet tracker,611,2026-10-23T15:45:57Z,8,Susaneth/wallet-tracker-solana,1,,2025-02-28,,,Solana Wallet Tracking Telegram Bot
+solana wallet tracker,611,2026-10-23T15:45:57Z,9,vvizardev/telegram-wallet-tracking-bot-v1.0,47,,2026-01-28,,TypeScript,Solana-Wallet-Tracker: This bot tracks wallet activity such as sol tra
+solana wallet tracker,611,2026-10-23T15:45:57Z,10,ondrejvosmera/solana-wallet-tracker,21,,2024-12-15,,TypeScript,"Solana wallet tracker using SHYFT API, Jupiter API and Magic Eden API "
+solana wallet tracker,611,2026-10-23T15:45:57Z,11,luckypenny1632333/Solana-Copy-Trading-Bot,32,,2025-02-04,,TypeScript,A Solana Copy Trading Bot that allows users to automatically track and
+solana wallet tracker,611,2026-10-23T15:45:57Z,12,LagLord/Solana-Wallet-Tracker-Crypto-NFT-sales-Discord-Bot,22,,2022-10-10,,Python,Python script for tracking Solscan wallet transactions of certain addr
+twitter sentiment trading backtest,10,2026-10-23T15:46:04Z,1,joel-hamilton/ftx-trader,1,,2021-08-18,,JavaScript,An app for automated crypto trading. Built with a microservice archite
+twitter sentiment trading backtest,10,2026-10-23T15:46:04Z,2,Neogus/X-Sentiment-Analysis,0,,2023-10-18,,Python,X/Twitter Sentiment Analysis and backtesting for trading
+twitter sentiment trading backtest,10,2026-10-23T15:46:04Z,3,Xtley001/Twitter-Sentiment-Investment-Strategy,2,,2024-11-16,,Jupyter Notebook,An investment strategy using Twitter sentiment analysis to guide tradi
+twitter sentiment trading backtest,10,2026-10-23T15:46:04Z,4,AerioJobin/Twitter-Sentiment-Investing-Strategy,0,,2026-03-20,,Jupyter Notebook,A quantitative trading strategy driven by Twitter/X social sentiment a
+twitter sentiment trading backtest,10,2026-10-23T15:46:04Z,5,RomainBRSHedging/Algorithmic-Trading,1,,2024-01-30,,Python,"Market Data, Backtesting Strategies using Technical indicators, Portfo"
+twitter sentiment trading backtest,10,2026-10-23T15:46:04Z,6,Ericchuchu/gan-sentiment-trading,1,MIT,2026-09-21,,Jupyter Notebook,"Course team project: GAN-style next-day forecasts for AMD from prices,"
+twitter sentiment trading backtest,10,2026-10-23T15:46:04Z,7,yashsinha1702/AlgorithmicTradingBot,0,,2026-10-18,,Jupyter Notebook,Backtests of 3 quant strategies (freeCodeCamp course): K-Means S&P 500
+twitter sentiment trading backtest,10,2026-10-23T15:46:04Z,8,QineticAnalyticsLLC/AlgorithmicTradingUsingMachineLearning,0,,2024-10-30,,,This repository features three algorithmic trading strategies: cluster
+twitter sentiment trading backtest,10,2026-10-23T15:46:04Z,9,ericci-del/Robust-Signal-Generation-from-Social-Media-in-Financial-Markets,0,,2026-05-14,,Jupyter Notebook,Algorithmic trading strategy using sentiment signals derived from Redd
+twitter sentiment trading backtest,10,2026-10-23T15:46:04Z,10,Halifane/pepe_coin_analysis,1,,2025-10-13,,,PepeCoinAnalysis is an open-source AI trading bot for the PEPE meme co
+walk forward optimization backtest,204,2026-10-23T15:46:19Z,1,TonyMa1/walk-forward-backtester,12,MIT,2025-03-23,,Python,A Python implementation of Walk Forward Optimization (WFO) for trading
+walk forward optimization backtest,204,2026-10-23T15:46:19Z,2,MitchMedeiros/walk-forward-optimization-app,10,,2026-10-10,,Python,A backtesting web app for walk-forward optimization with common indica
+walk forward optimization backtest,204,2026-10-23T15:46:19Z,3,nieledran/backtesting-engine,20,MIT,2026-07-22,,Python,Python backtesting engine built on NautilusTrader for end-to-end quant
+walk forward optimization backtest,204,2026-10-23T15:46:19Z,4,shaoshoutianheyu/tradesimpy,6,BSD-2-Clause,2016-08-10,,Python,A simple algorithmic trading strategy analysis library for backtesting
+walk forward optimization backtest,204,2026-10-23T15:46:19Z,5,yakub268/quant-backtest-framework,5,MIT,2026-02-17,,Python,"Quantitative backtesting framework with walk-forward optimization, Mon"
+walk forward optimization backtest,204,2026-10-23T15:46:19Z,6,ranjeet867/Metatrader,10,NOASSERTION,2026-05-08,,Python,Production-grade MetaTrader 5 quant trading platform for FTMO and prop
+walk forward optimization backtest,204,2026-10-23T15:46:19Z,7,shoemoney/shoemoneyx,26,MIT,2026-10-22,,PHP,"SMX · an open-source crypto paper-trading desk. Backtest farm, walk-fo"
+walk forward optimization backtest,204,2026-10-23T15:46:19Z,8,harveybc/heuristic-strategy,7,,2026-10-23,,Python,"Heuristic trading strategy lab: Backtrader backtesting, DEAP genetic o"
+walk forward optimization backtest,204,2026-10-23T15:46:19Z,9,clemmentin/BackTester,4,,2026-03-27,,Python,Python backtesting engine for quantitative finance. Features a modular
+walk forward optimization backtest,204,2026-10-23T15:46:19Z,10,gk47bball/Finance-AutoResearch,5,,2026-03-23,,Python,Karpathy's AutoResearch pattern applied to financial markets — autonom
+walk forward optimization backtest,204,2026-10-23T15:46:19Z,11,BobbyAxerol/walk-forward-optimization,2,,2026-06-30,,Python,This project implements a Walk-Forward Optimization (WFO) strategy usi
+walk forward optimization backtest,204,2026-10-23T15:46:19Z,12,Sami001-OG/Crypto-Backtester-and-Strategy-Optimizer,5,,2026-07-15,,Python,Crypto Backtester & Strategy Optimizer is a professional-grade cryptoc
+purged cross validation,63,2026-10-23T15:46:27Z,1,eslazarev/purged-cross-validation,58,MIT,2026-10-23,,Python,"scikit-learn-compatible time-series cross-validation: purging, embargo"
+purged cross validation,63,2026-10-23T15:46:27Z,2,jubro839/CPCV,1,,2022-04-11,,,Code for Combinatorial Purged Cross Validation
+purged cross validation,63,2026-10-23T15:46:27Z,3,sachahuberty/Portfolio-Optimization-Machine-Learning,16,,2026-04-28,,Jupyter Notebook,"Cross-sectional stock selection on the S&P 500 using fundamental, tech"
+purged cross validation,63,2026-10-23T15:46:27Z,4,martex-dev/purged-cv,2,MIT,2026-08-28,,Python,Minimal sklearn-compatible purged k-fold cross-validation with an emba
+purged cross validation,63,2026-10-23T15:46:27Z,5,landtml/purgedcv,2,MIT,2026-10-20,,Python,Combinatorial Purged Cross-Validation with embargo for financial time 
+purged cross validation,63,2026-10-23T15:46:27Z,6,ninja-otaku/cpcv-py,2,NOASSERTION,2026-03-26,,Python,"Combinatorial Purged Cross-Validation, DSR correction, and HRP portfol"
+purged cross validation,63,2026-10-23T15:46:27Z,7,danielfzhang-clearmind/purged-cross-validation,0,MIT,2026-09-24,,Python,
+purged cross validation,63,2026-10-23T15:46:27Z,8,Yosri-Ben-Halima/cpcv-train-test-data-split-module,2,MIT,2025-09-04,,Python,A Python module for time series cross-validation using Combinatorial P
+purged cross validation,63,2026-10-23T15:46:27Z,9,bAlemar/Combinatorial-Purged-Cross-Validation,1,,2023-11-14,,Jupyter Notebook,Um alternativa as diversas validações cruzadas usadas na literatura de
+purged cross validation,63,2026-10-23T15:46:27Z,10,Tejemouti/Purged-Cross-Validation-vs-KFold,0,MIT,2026-05-09,,Jupyter Notebook,Implementation of Purged K-Fold CV with Embargo to eliminate data leak
+purged cross validation,63,2026-10-23T15:46:27Z,11,AfnanAhmd004/purged-cv,0,MIT,2026-10-02,,Python,Leakage-safe cross-validation (purging and embargo) for financial ML
+purged cross validation,63,2026-10-23T15:46:27Z,12,Samik123Mit/ml-cross-sectional-signal,0,MIT,2026-08-09,,Python,Leakage-safe ML cross-sectional equity signal with purged walk-forward
+deflated sharpe ratio,101,2026-10-23T15:46:34Z,1,eslazarev/purged-cross-validation,58,MIT,2026-10-23,,Python,"scikit-learn-compatible time-series cross-validation: purging, embargo"
+deflated sharpe ratio,101,2026-10-23T15:46:34Z,2,mnemox-ai/deflated-sharpe,8,Apache-2.0,2026-03-21,,Python,Deflated Sharpe Ratio — stop deploying overfitted strategies. Bailey &
+deflated sharpe ratio,101,2026-10-23T15:46:34Z,3,quantskills/skill-backtest-overfit,41,GPL-3.0,2026-07-16,,Python,"Detect backtest overfitting & multiple testing: Deflated Sharpe Ratio,"
+deflated sharpe ratio,101,2026-10-23T15:46:34Z,4,Nikhil-Kumar-Patel/The-deflated-sharpe-ratio,6,,2023-01-15,,Jupyter Notebook,Deflated Sharpe Ratio
+deflated sharpe ratio,101,2026-10-23T15:46:34Z,5,Aliipou/backtest-audit,7,,2026-05-17,,Python,Statistical overfitting audit for algorithmic trading backtests. Defla
+deflated sharpe ratio,101,2026-10-23T15:46:34Z,6,QFlucas/deflated_sharpe,1,,2024-12-25,,,Codigo em Python Deflated Sharpe Ratio
+deflated sharpe ratio,101,2026-10-23T15:46:34Z,7,DaruFinance/deflated-sharpe,0,MIT,2026-09-25,,Python,"Deflated Sharpe Ratio, Probabilistic Sharpe Ratio, minimum track recor"
+deflated sharpe ratio,101,2026-10-23T15:46:34Z,8,ProHumphrey/deflated-sharpe-ratio,0,,2026-09-11,,Python,
+deflated sharpe ratio,101,2026-10-23T15:46:34Z,9,K-Divyasri/deflated-sharpe-ratio-auditor,0,,2026-09-20,,Python,Deflated Sharpe Ratio auditor correcting backtest Sharpe ratios for mu
+deflated sharpe ratio,101,2026-10-23T15:46:34Z,10,thaugness-debug/deflated-sharpe,0,MIT,2026-09-23,,TypeScript,Deflated Sharpe Ratio in TypeScript — tells you whether your backtest 
+deflated sharpe ratio,101,2026-10-23T15:46:34Z,11,Kuzi-DEV/Tokio-ai,4,MIT,2026-10-15,,Python,"Is your backtest real? Deflated Sharpe Ratio, backtest-overfitting (PB"
+deflated sharpe ratio,101,2026-10-23T15:46:34Z,12,ITheClixs/crypto-return-predictability,3,MIT,2026-09-26,,Python,"Out-of-sample test of the martingale null for BTC, ETH and SOL returns"
+backtest overfitting probability,33,2026-10-23T15:46:42Z,1,esvhd/pypbo,144,AGPL-3.0,2026-07-06,,Python,Probability of Backtest Overfitting in Python
+backtest overfitting probability,33,2026-10-23T15:46:42Z,2,mrbcuda/pbo,51,NOASSERTION,2022-05-26,,R,Probability of Backtest Overfitting
+backtest overfitting probability,33,2026-10-23T15:46:42Z,3,yenchiayi/ProbabilityOfBacktestOverfitting,3,,2015-08-15,,R,
+backtest overfitting probability,33,2026-10-23T15:46:42Z,4,Aliipou/backtest-audit,7,,2026-05-17,,Python,Statistical overfitting audit for algorithmic trading backtests. Defla
+backtest overfitting probability,33,2026-10-23T15:46:42Z,5,bettyguo/agent-backtest-lab,7,Apache-2.0,2026-06-11,,Python,Statistical-rigor audit harness for LLM trading-agent frameworks: leak
+backtest overfitting probability,33,2026-10-23T15:46:42Z,6,Aliipou/streaming-pbo,3,,2026-05-16,,Python,Online Probability of Backtest Overfitting: streaming CPCV with regime
+backtest overfitting probability,33,2026-10-23T15:46:42Z,7,erendvnc/TrustTheBacktest,0,,2026-02-19,,Jupyter Notebook,Probability of backtest overfitting 
+backtest overfitting probability,33,2026-10-23T15:46:42Z,8,ryousuf569/phacker,0,,2026-10-08,,Python,Probability of Backtest Overfitting Detection 
+backtest overfitting probability,33,2026-10-23T15:46:42Z,9,AidanAkdogan/probability-of-backtest-overfitting,0,MIT,2026-02-08,,Python,Research-grade implementation of Probability of Backtest Overfitting (
+backtest overfitting probability,33,2026-10-23T15:46:42Z,10,tulinette/backtest-overfitting-lab,0,MIT,2026-09-19,,Python,"Deflated Sharpe ratio and probability of backtest overfitting, from sc"
+backtest overfitting probability,33,2026-10-23T15:46:42Z,11,Rajkumar-SA-2605/Probability-of-Backtest-Overfitting,0,,2026-02-12,,Python,A quantitative framework to detect backtest overfitting using Lopez de
+backtest overfitting probability,33,2026-10-23T15:46:42Z,12,rchhabra17/probability-of-backtest-overfitting,1,,2026-05-30,,Python,Does the size of a strategy's parameter search space predict overfitti
+tick data replay backtest,8,2026-10-23T15:46:49Z,1,Aseptic-melaguetapepper552/backtesting,0,,2026-10-12,,,"Backtest trading strategies with smooth price replay, tick data, and p"
+tick data replay backtest,8,2026-10-23T15:46:49Z,2,greybeard-code/gbBacktester,0,MIT,2026-10-11,,Python,Tick-level L1 futures backtester over NinjaTrader Market Replay Parque
+tick data replay backtest,8,2026-10-23T15:46:49Z,3,AlgoDeveloper400/Backtest-Engine-Pipeline,0,NOASSERTION,2026-09-02,,Python,A downstream use case for the tick-data and economic-news pipelines. C
+tick data replay backtest,8,2026-10-23T15:46:49Z,4,vxvira/AZPytest,0,MIT,2026-10-08,,Python,"Tick-data backtesting toolkit: replay a CSV, simulate long/short trade"
+tick data replay backtest,8,2026-10-23T15:46:49Z,5,anibitri/tickstream,0,MIT,2026-10-01,,Go,"Real-time market data & risk platform in Go: Kafka event-time metrics,"
+tick data replay backtest,8,2026-10-23T15:46:49Z,6,Joshi004/tick_stream,0,,2025-05-23,,Python,tick_stream is a FastAPI service that records live market tick data vi
+tick data replay backtest,8,2026-10-23T15:46:49Z,7,Aarzoo-Singh/High-Frequency-Trading-Backtesting-Tool,1,,2025-04-04,,,This framework is designed for developing high frequency trading and m
+tick data replay backtest,8,2026-10-23T15:46:49Z,8,Kasamix/flashbook,0,MIT,2026-08-05,,Rust,From-scratch HFT-style real-time market-data platform in Rust: exchang
+portfolio performance analytics python,534,2026-10-23T15:46:57Z,1,ArturSepp/QuantInvestStrats,642,MIT,2026-10-23,,Python,"Performance analytics, portfolio backtesting, risk analysis, and facts"
+portfolio performance analytics python,534,2026-10-23T15:46:57Z,2,cloudQuant/fincore,7,MIT,2026-10-23,,Python,"Quantitative performance & risk analytics: 150+ financial metrics, por"
+portfolio performance analytics python,534,2026-10-23T15:46:57Z,3,ramyashreegv/Student-Performance-Analytics-Dashboard,3,,2026-08-02,,Python,End-to-End Business Analyst Portfolio Project featuring stakeholder an
+portfolio performance analytics python,534,2026-10-23T15:46:57Z,4,polydiaguiar/performance-vendas-data-analysis,0,MIT,2025-07-09,,Jupyter Notebook,Data analytics portfolio using python 
+portfolio performance analytics python,534,2026-10-23T15:46:57Z,5,ka0s01/portfolio-analytics-engine,3,,2026-02-19,,Python,A Python-based portfolio analytics engine that evaluates stock perform
+portfolio performance analytics python,534,2026-10-23T15:46:57Z,6,Dame-Sky/Portfolio-Analytics-Lab,2,,2026-02-23,,,📊 Portfolio Analytics Lab: A professional-grade performance and risk 
+portfolio performance analytics python,534,2026-10-23T15:46:57Z,7,Munachimso-Chinaza/Credit-Risk-Portfolio-Performance,0,,2026-10-12,,Jupyter Notebook,"End-to-end data analytics: Python, Tableau visualization & business in"
+portfolio performance analytics python,534,2026-10-23T15:46:57Z,8,Adityajha42/Financial-Portfolio-Analytics-Dashboard,2,,2025-08-10,,Python,"End-to-end analytics dashboard using Python, MySQL, and Power BI to mo"
+portfolio performance analytics python,534,2026-10-23T15:46:57Z,9,Rushi171995/portfolio-performance-analytics,0,,2026-08-02,,Jupyter Notebook,"Python project for portfolio performance analysis, risk metrics, and v"
+portfolio performance analytics python,534,2026-10-23T15:46:57Z,10,parshvashahh/Portfolio-analytics-dashboard,0,,2026-04-14,,Jupyter Notebook,portfolio performance analytics /  brinson attribution /  python
+portfolio performance analytics python,534,2026-10-23T15:46:57Z,11,venugunja39-art/sales-performance-dashboard,0,,2026-10-21,,Python,"Sales analytics portfolio project using Python, SQL and Power BI"
+portfolio performance analytics python,534,2026-10-23T15:46:57Z,12,Rishanthika/Multi-Dimensional-Sales-Analytics-Model-Excel-Python,0,,2026-04-30,,Python,Sales Performance & Analytics Dashboard — Excel Portfolio Project
+latency mev simulation,4,2026-10-23T15:47:05Z,1,akash8987/unichain-provable-block-builder,0,,2026-06-05,,JavaScript,An expert-level block-construction simulation utility designed for Uni
+latency mev simulation,4,2026-10-23T15:47:05Z,2,m7md570/solana-telegram-sniper-bot,0,MIT,2026-10-08,,Python,⚡ High-velocity Solana Telegram sniper bot (v3.65.0) with Jupiter V6 s
+latency mev simulation,4,2026-10-23T15:47:05Z,3,JohnBasrai/mempool-vortex,1,MIT,2026-02-14,,Rust,Real-time Ethereum MEV simulation engine in Rust. Modular pipeline for
+latency mev simulation,4,2026-10-23T15:47:05Z,4,veersc2007/Web3-AI-Smart-Router-Security-Infrastructure,1,,2026-07-27,,HTML,"A fault-tolerant, latency-optimized Web3 RPC control center powered by"
+rug pull detection liquidity,14,2026-10-23T15:47:13Z,1,surfacefencercanal/liquidity-sniper-bot-vp66,0,NOASSERTION,2026-05-15,,HTML,top liquidity sniper bot / rug-pull-detection + multi-chain-support — 
+rug pull detection liquidity,14,2026-10-23T15:47:13Z,2,Twilightfobeam/liquidity-sniper-bot-dd60,0,NOASSERTION,2026-05-12,,HTML,automatic Liquidity Bot for liquidity sniper bot / MEV-detection & rug
+rug pull detection liquidity,14,2026-10-23T15:47:13Z,3,Twilightfobeam/liquidity-sniper-bot-gv39,0,NOASSERTION,2026-05-12,,HTML,premium liquidity sniper bot / take-profit + rug-pull-detection — Best
+rug pull detection liquidity,14,2026-10-23T15:47:13Z,4,Hexagonclochateau/liquidity-sniper-bot-xc03,0,NOASSERTION,2026-05-12,,HTML,smart Token Sniper for liquidity sniper bot / rug-pull-detection & tak
+rug pull detection liquidity,14,2026-10-23T15:47:13Z,5,0xdariel/solana-token-scanner,1,MIT,2026-06-07,,Python,"🧪 Solana token security & analytics — rug pull detection, holder anal"
+rug pull detection liquidity,14,2026-10-23T15:47:13Z,6,ShaIashaska/RugGuard,0,,2026-06-15,,HTML,RugGuard is an all-in-one rug pull detection tool that analyzes smart 
+rug pull detection liquidity,14,2026-10-23T15:47:13Z,7,scalarsupporterplay/liquidity-sot-pcwinmac-bx73,0,NOASSERTION,2026-07-06,,HTML,Sécurisé liquidity sniper bot outils pour Mac OS / Instantané liquidit
+rug pull detection liquidity,14,2026-10-23T15:47:13Z,8,ikihin/defi-risk-monitor-skill,0,MIT,2026-06-18,,Shell,"DeFi Risk Monitor Skill for Solana AI Kit — Protocol risk scoring, rug"
+rug pull detection liquidity,14,2026-10-23T15:47:13Z,9,Hexagonclochateau/geckoterminal-sniper-ee15,0,NOASSERTION,2026-05-12,,HTML,top Arbitrage Bot for geckoterminal sniper bot / rug-pull-detection & 
+rug pull detection liquidity,14,2026-10-23T15:47:13Z,10,ExposingTheBadge/base-rugpull-detector,0,,2026-04-28,,TypeScript,"Real-time rug-pull detection on Base chain. Indexes Uniswap V2, BaseSw"
+rug pull detection liquidity,14,2026-10-23T15:47:13Z,11,Twilightfobeam/birdeye-sniper-bot-hd48,0,NOASSERTION,2026-05-13,,HTML,advanced Liquidity Bot for birdeye sniper bot / take-profit & rug-pull
+rug pull detection liquidity,14,2026-10-23T15:47:13Z,12,NextFrontierBuilds/prism-scanner-skill,0,,2026-01-28,,Shell,"Instant rug pull detection for any token. Holder concentration, liquid"

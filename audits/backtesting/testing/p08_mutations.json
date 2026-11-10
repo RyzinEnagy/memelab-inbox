@@ -1,0 +1,101 @@
+[
+ {
+  "id": "M08-1 breakout level includes the bar being tested",
+  "file": "memelab/backtest/strategies/features.py",
+  "old": "    return max(b.h for b in bars[-n - 1:-1])\n",
+  "new": "    return max(b.h for b in bars[-n:])\n",
+  "tests": [
+   "tests/test_backtest_strategies.py"
+  ]
+ },
+ {
+  "id": "M08-2 pivots known when they print (repainting)",
+  "file": "memelab/backtest/strategies/features.py",
+  "old": "\"known_at\": bars[i + right].avail})\n        if bars[i].l",
+  "new": "\"known_at\": bars[i].avail})\n        if bars[i].l",
+  "tests": [
+   "tests/test_backtest_strategies.py"
+  ]
+ },
+ {
+  "id": "M08-3 future bar accepted by a strategy",
+  "file": "memelab/backtest/strategies/base.py",
+  "old": "        if bars and bars[-1].avail > decision_time + 1e-9:\n            raise LeakageError(f\"{self.id}: bar available",
+  "new": "        if False:\n            raise LeakageError(f\"{self.id}: bar available",
+  "tests": [
+   "tests/test_backtest_strategies.py"
+  ]
+ },
+ {
+  "id": "M08-4 mixed timeframes accepted",
+  "file": "memelab/backtest/strategies/base.py",
+  "old": "                if b.end - b.start != tf or b.start < a.end or b.start <= a.start:\n",
+  "new": "                if False:\n",
+  "tests": [
+   "tests/test_backtest_strategies.py"
+  ]
+ },
+ {
+  "id": "M08-5 exhaustion guard removed",
+  "file": "memelab/backtest/strategies/ta.py",
+  "old": "            if rng > p[\"blowoff_atr\"] * a and last.c < last.l + rng / 2:\n",
+  "new": "            if False:\n",
+  "tests": [
+   "tests/test_backtest_strategies.py"
+  ]
+ },
+ {
+  "id": "M08-6 liquidity filter removed",
+  "file": "memelab/backtest/strategies/ta.py",
+  "old": "        if short < p[\"min_bar_volume_usd\"]:\n",
+  "new": "        if False:\n",
+  "tests": [
+   "tests/test_backtest_strategies.py"
+  ]
+ },
+ {
+  "id": "M08-7 signal identity by symbol-like key (mint dropped)",
+  "file": "memelab/backtest/strategies/base.py",
+  "old": "json.dumps([self.strategy_id, self.strategy_version, self.chain, self.mint, self.decision_time, self.params_hash])",
+  "new": "json.dumps([self.strategy_id, self.strategy_version, self.decision_time, self.params_hash])",
+  "tests": [
+   "tests/test_backtest_strategies.py"
+  ]
+ },
+ {
+  "id": "M08-8 lab fatal flag ignored",
+  "file": "memelab/backtest/strategies/labstatus.py",
+  "old": "        if ev.get(\"fatal_flags\"):\n",
+  "new": "        if False:\n",
+  "tests": [
+   "tests/test_backtest_strategies.py"
+  ]
+ },
+ {
+  "id": "M08-9 random baseline peeks at price",
+  "file": "memelab/backtest/strategies/baselines.py",
+  "old": "f\"{self.params['seed']}|{mint}|{decision_time}\"",
+  "new": "f\"{self.params['seed']}|{mint}|{decision_time}|{bars[-1].c}\"",
+  "tests": [
+   "tests/test_backtest_strategies.py"
+  ]
+ },
+ {
+  "id": "M08-10 stale last bar traded",
+  "file": "memelab/backtest/strategies/ta.py",
+  "old": "        if decision_time - bars[-1].end > p[\"max_staleness_bars\"] * tf + tf:\n",
+  "new": "        if False:\n",
+  "tests": [
+   "tests/test_backtest_strategies.py"
+  ]
+ },
+ {
+  "id": "M08-11 wick counted as breakout",
+  "file": "memelab/backtest/strategies/ta.py",
+  "old": "        if last.c <= level * (1 + p[\"buffer\"]):\n            return None\n        if mv is not None",
+  "new": "        if last.h <= level * (1 + p[\"buffer\"]):\n            return None\n        if mv is not None",
+  "tests": [
+   "tests/test_backtest_strategies.py"
+  ]
+ }
+]

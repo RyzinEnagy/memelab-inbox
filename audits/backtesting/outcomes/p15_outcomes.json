@@ -1,0 +1,2119 @@
+{
+ "protocol": "outcomes-v1",
+ "launch_catalyst_records": 65,
+ "asof": 1792776856.8159454,
+ "opportunities": {
+  "total": 1023,
+  "by_source": {
+   "LAB_REJECTION": 641,
+   "LAB_THESIS": 382
+  },
+  "mints": 686
+ },
+ "track_1": {
+  "status": "RAN",
+  "asof": 1792776856.8159454,
+  "opportunities": 1023,
+  "states": {
+   "COMPLETE": 1571,
+   "NOT_OBSERVABLE": 1888,
+   "CENSORED": 478,
+   "PENDING": 155
+  },
+  "new_rows": 4092,
+  "fetched": 0,
+  "deferred_fetches": 0,
+  "wall_s": 21.9
+ },
+ "track_rate_limited": "SKIPPED_MIN_INTERVAL",
+ "track_2_new_rows": 0,
+ "calibration": {
+  "1h": {
+   "protocol": "outcomes-v1",
+   "horizon_h": 1.0,
+   "asof": 1792776856.8159454,
+   "overall": {
+    "n": 1023,
+    "complete": 417,
+    "censored": 111,
+    "not_observable": 495,
+    "pending": 0,
+    "median_ret_close_complete": -0.003602348326848581,
+    "share_down_50_observed": 0.016786570743405275,
+    "share_down_50_ci95": [
+     0.0082,
+     0.0342
+    ],
+    "n_observed": 417,
+    "verdict": "REPORTABLE",
+    "not_tracked": 0
+   },
+   "segments": {
+    "cohort": {
+     "LAB_REJECTION:REJECTED_AT_SCREEN": {
+      "n": 641,
+      "complete": 172,
+      "censored": 54,
+      "not_observable": 415,
+      "pending": 0,
+      "median_ret_close_complete": -0.0037913631604591935,
+      "share_down_50_observed": 0.029069767441860465,
+      "share_down_50_ci95": [
+       0.0125,
+       0.0662
+      ],
+      "n_observed": 172,
+      "verdict": "REPORTABLE"
+     },
+     "LAB_THESIS:DISTRIBUTION RISK": {
+      "n": 49,
+      "complete": 27,
+      "censored": 1,
+      "not_observable": 21,
+      "pending": 0,
+      "median_ret_close_complete": -0.008987881852825175,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.1246
+      ],
+      "n_observed": 27,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:NEAR ENTRY": {
+      "n": 8,
+      "complete": 8,
+      "censored": 0,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": -0.01088909691171136,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.3244
+      ],
+      "n_observed": 8,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:OVEREXTENDED": {
+      "n": 16,
+      "complete": 16,
+      "censored": 0,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": -0.0008899857510673015,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.1936
+      ],
+      "n_observed": 16,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:REJECTED": {
+      "n": 192,
+      "complete": 115,
+      "censored": 43,
+      "not_observable": 34,
+      "pending": 0,
+      "median_ret_close_complete": -0.005894576866527501,
+      "share_down_50_observed": 0.017391304347826087,
+      "share_down_50_ci95": [
+       0.0048,
+       0.0612
+      ],
+      "n_observed": 115,
+      "verdict": "REPORTABLE"
+     },
+     "LAB_THESIS:RESEARCH REQUIRED": {
+      "n": 51,
+      "complete": 23,
+      "censored": 12,
+      "not_observable": 16,
+      "pending": 0,
+      "median_ret_close_complete": -0.00037659280665980344,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.1431
+      ],
+      "n_observed": 23,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:SETUP DEVELOPING": {
+      "n": 27,
+      "complete": 27,
+      "censored": 0,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": 0.005498398188348963,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.1246
+      ],
+      "n_observed": 27,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:THESIS DETERIORATING": {
+      "n": 9,
+      "complete": 5,
+      "censored": 0,
+      "not_observable": 4,
+      "pending": 0,
+      "median_ret_close_complete": -0.04411060891886487,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.4345
+      ],
+      "n_observed": 5,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:THESIS INVALIDATED": {
+      "n": 23,
+      "complete": 17,
+      "censored": 1,
+      "not_observable": 5,
+      "pending": 0,
+      "median_ret_close_complete": -0.0018840755795537234,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.1843
+      ],
+      "n_observed": 17,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:WATCH": {
+      "n": 7,
+      "complete": 7,
+      "censored": 0,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": -0.007829269303277098,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.3543
+      ],
+      "n_observed": 7,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     }
+    },
+    "token_age": {
+     "1-7d": {
+      "n": 105,
+      "complete": 96,
+      "censored": 7,
+      "not_observable": 2,
+      "pending": 0,
+      "median_ret_close_complete": 0.008151499312416988,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.0385
+      ],
+      "n_observed": 96,
+      "verdict": "REPORTABLE"
+     },
+     "6-24h": {
+      "n": 41,
+      "complete": 37,
+      "censored": 4,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": -0.018745871649282098,
+      "share_down_50_observed": 0.02702702702702703,
+      "share_down_50_ci95": [
+       0.0048,
+       0.1382
+      ],
+      "n_observed": 37,
+      "verdict": "REPORTABLE"
+     },
+     "<6h": {
+      "n": 40,
+      "complete": 25,
+      "censored": 15,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": 0.019182738545969302,
+      "share_down_50_observed": 0.16,
+      "share_down_50_ci95": [
+       0.064,
+       0.3465
+      ],
+      "n_observed": 25,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     ">=7d": {
+      "n": 342,
+      "complete": 257,
+      "censored": 85,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": -0.004283764028431003,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.0147
+      ],
+      "n_observed": 257,
+      "verdict": "REPORTABLE"
+     },
+     "UNKNOWN": {
+      "n": 495,
+      "complete": 2,
+      "censored": 0,
+      "not_observable": 493,
+      "pending": 0,
+      "median_ret_close_complete": -0.566774991134221,
+      "share_down_50_observed": 1.0,
+      "share_down_50_ci95": [
+       0.3424,
+       1.0
+      ],
+      "n_observed": 2,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     }
+    },
+    "liquidity_band": {
+     "250k-1M": {
+      "n": 100,
+      "complete": 79,
+      "censored": 0,
+      "not_observable": 21,
+      "pending": 0,
+      "median_ret_close_complete": 0.010784532881808362,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.0464
+      ],
+      "n_observed": 79,
+      "verdict": "REPORTABLE"
+     },
+     "50k-250k": {
+      "n": 101,
+      "complete": 72,
+      "censored": 5,
+      "not_observable": 24,
+      "pending": 0,
+      "median_ret_close_complete": -0.0172662708747352,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.0507
+      ],
+      "n_observed": 72,
+      "verdict": "REPORTABLE"
+     },
+     "<50k": {
+      "n": 92,
+      "complete": 46,
+      "censored": 44,
+      "not_observable": 2,
+      "pending": 0,
+      "median_ret_close_complete": -0.01070439087071512,
+      "share_down_50_observed": 0.043478260869565216,
+      "share_down_50_ci95": [
+       0.012,
+       0.1453
+      ],
+      "n_observed": 46,
+      "verdict": "REPORTABLE"
+     },
+     ">=1M": {
+      "n": 49,
+      "complete": 26,
+      "censored": 4,
+      "not_observable": 19,
+      "pending": 0,
+      "median_ret_close_complete": 0.0012854673732752842,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.1287
+      ],
+      "n_observed": 26,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "UNKNOWN": {
+      "n": 681,
+      "complete": 194,
+      "censored": 58,
+      "not_observable": 429,
+      "pending": 0,
+      "median_ret_close_complete": -0.0037913631604591935,
+      "share_down_50_observed": 0.02577319587628866,
+      "share_down_50_ci95": [
+       0.0111,
+       0.0589
+      ],
+      "n_observed": 194,
+      "verdict": "REPORTABLE"
+     }
+    },
+    "market_regime": {
+     "SOL_DOWN": {
+      "n": 247,
+      "complete": 142,
+      "censored": 27,
+      "not_observable": 78,
+      "pending": 0,
+      "median_ret_close_complete": 0.003966989437473312,
+      "share_down_50_observed": 0.014084507042253521,
+      "share_down_50_ci95": [
+       0.0039,
+       0.0499
+      ],
+      "n_observed": 142,
+      "verdict": "REPORTABLE"
+     },
+     "SOL_FLAT": {
+      "n": 723,
+      "complete": 267,
+      "censored": 68,
+      "not_observable": 388,
+      "pending": 0,
+      "median_ret_close_complete": -0.007829269303277098,
+      "share_down_50_observed": 0.018726591760299626,
+      "share_down_50_ci95": [
+       0.008,
+       0.0431
+      ],
+      "n_observed": 267,
+      "verdict": "REPORTABLE"
+     },
+     "SOL_UP": {
+      "n": 53,
+      "complete": 8,
+      "censored": 16,
+      "not_observable": 29,
+      "pending": 0,
+      "median_ret_close_complete": 0.020959303285966513,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.3244
+      ],
+      "n_observed": 8,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     }
+    },
+    "catalyst_type": {
+     "CURVE_LIVE": {
+      "n": 14,
+      "complete": 12,
+      "censored": 0,
+      "not_observable": 2,
+      "pending": 0,
+      "median_ret_close_complete": -0.03579290995140366,
+      "share_down_50_observed": 0.16666666666666666,
+      "share_down_50_ci95": [
+       0.047,
+       0.448
+      ],
+      "n_observed": 12,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "GRADUATION": {
+      "n": 37,
+      "complete": 33,
+      "censored": 4,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": 0.019182738545969302,
+      "share_down_50_observed": 0.06060606060606061,
+      "share_down_50_ci95": [
+       0.0168,
+       0.1961
+      ],
+      "n_observed": 33,
+      "verdict": "REPORTABLE"
+     },
+     "LAUNCHLAB_NEW": {
+      "n": 2,
+      "complete": 2,
+      "censored": 0,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": 0.06123303317048934,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.6576
+      ],
+      "n_observed": 2,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "NONE": {
+      "n": 970,
+      "complete": 370,
+      "censored": 107,
+      "not_observable": 493,
+      "pending": 0,
+      "median_ret_close_complete": -0.005496101818580956,
+      "share_down_50_observed": 0.008108108108108109,
+      "share_down_50_ci95": [
+       0.0028,
+       0.0236
+      ],
+      "n_observed": 370,
+      "verdict": "REPORTABLE"
+     }
+    },
+    "source_credibility": {
+     "NO_CATALYST": {
+      "n": 970,
+      "complete": 370,
+      "censored": 107,
+      "not_observable": 493,
+      "pending": 0,
+      "median_ret_close_complete": -0.005496101818580956,
+      "share_down_50_observed": 0.008108108108108109,
+      "share_down_50_ci95": [
+       0.0028,
+       0.0236
+      ],
+      "n_observed": 370,
+      "verdict": "REPORTABLE"
+     },
+     "VERIFIED_CONTEMPORANEOUS": {
+      "n": 53,
+      "complete": 47,
+      "censored": 4,
+      "not_observable": 2,
+      "pending": 0,
+      "median_ret_close_complete": 0.017378578681612744,
+      "share_down_50_observed": 0.0851063829787234,
+      "share_down_50_ci95": [
+       0.0336,
+       0.1993
+      ],
+      "n_observed": 47,
+      "verdict": "REPORTABLE"
+     }
+    }
+   },
+   "selection_bias_risk": true,
+   "not_observable_share": 0.4839,
+   "note": "segments are historical correlations among the lab's own records, not causes; a segment with fewer than 30 complete outcomes is INSUFFICIENT_SAMPLE; censored outcomes count in drawdown shares as observed lower bounds"
+  },
+  "6h": {
+   "protocol": "outcomes-v1",
+   "horizon_h": 6.0,
+   "asof": 1792776856.8159454,
+   "overall": {
+    "n": 1023,
+    "complete": 421,
+    "censored": 107,
+    "not_observable": 495,
+    "pending": 0,
+    "median_ret_close_complete": -0.02210495712743621,
+    "share_down_50_observed": 0.07349665924276169,
+    "share_down_50_ci95": [
+     0.0528,
+     0.1014
+    ],
+    "n_observed": 449,
+    "verdict": "REPORTABLE",
+    "not_tracked": 0
+   },
+   "segments": {
+    "cohort": {
+     "LAB_REJECTION:REJECTED_AT_SCREEN": {
+      "n": 641,
+      "complete": 174,
+      "censored": 52,
+      "not_observable": 415,
+      "pending": 0,
+      "median_ret_close_complete": -0.02935315247462872,
+      "share_down_50_observed": 0.10638297872340426,
+      "share_down_50_ci95": [
+       0.0699,
+       0.1586
+      ],
+      "n_observed": 188,
+      "verdict": "REPORTABLE"
+     },
+     "LAB_THESIS:DISTRIBUTION RISK": {
+      "n": 49,
+      "complete": 27,
+      "censored": 1,
+      "not_observable": 21,
+      "pending": 0,
+      "median_ret_close_complete": -0.01648073875811018,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.1246
+      ],
+      "n_observed": 27,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:NEAR ENTRY": {
+      "n": 8,
+      "complete": 8,
+      "censored": 0,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": 0.009230420588840493,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.3244
+      ],
+      "n_observed": 8,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:OVEREXTENDED": {
+      "n": 16,
+      "complete": 16,
+      "censored": 0,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": -0.011738047546496544,
+      "share_down_50_observed": 0.0625,
+      "share_down_50_ci95": [
+       0.0111,
+       0.2833
+      ],
+      "n_observed": 16,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:REJECTED": {
+      "n": 192,
+      "complete": 116,
+      "censored": 42,
+      "not_observable": 34,
+      "pending": 0,
+      "median_ret_close_complete": -0.029757212137689115,
+      "share_down_50_observed": 0.0625,
+      "share_down_50_ci95": [
+       0.032,
+       0.1185
+      ],
+      "n_observed": 128,
+      "verdict": "REPORTABLE"
+     },
+     "LAB_THESIS:RESEARCH REQUIRED": {
+      "n": 51,
+      "complete": 24,
+      "censored": 11,
+      "not_observable": 16,
+      "pending": 0,
+      "median_ret_close_complete": 0.0019100297162438773,
+      "share_down_50_observed": 0.07692307692307693,
+      "share_down_50_ci95": [
+       0.0214,
+       0.2414
+      ],
+      "n_observed": 26,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:SETUP DEVELOPING": {
+      "n": 27,
+      "complete": 27,
+      "censored": 0,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": -0.025952727054153968,
+      "share_down_50_observed": 0.037037037037037035,
+      "share_down_50_ci95": [
+       0.0066,
+       0.1828
+      ],
+      "n_observed": 27,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:THESIS DETERIORATING": {
+      "n": 9,
+      "complete": 5,
+      "censored": 0,
+      "not_observable": 4,
+      "pending": 0,
+      "median_ret_close_complete": -0.014571258771390538,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.4345
+      ],
+      "n_observed": 5,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:THESIS INVALIDATED": {
+      "n": 23,
+      "complete": 17,
+      "censored": 1,
+      "not_observable": 5,
+      "pending": 0,
+      "median_ret_close_complete": 0.020781922781538897,
+      "share_down_50_observed": 0.058823529411764705,
+      "share_down_50_ci95": [
+       0.0105,
+       0.2698
+      ],
+      "n_observed": 17,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:WATCH": {
+      "n": 7,
+      "complete": 7,
+      "censored": 0,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": -0.116018576977726,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.3543
+      ],
+      "n_observed": 7,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     }
+    },
+    "token_age": {
+     "1-7d": {
+      "n": 105,
+      "complete": 92,
+      "censored": 11,
+      "not_observable": 2,
+      "pending": 0,
+      "median_ret_close_complete": -0.04475096015664176,
+      "share_down_50_observed": 0.08333333333333333,
+      "share_down_50_ci95": [
+       0.0428,
+       0.1559
+      ],
+      "n_observed": 96,
+      "verdict": "REPORTABLE"
+     },
+     "6-24h": {
+      "n": 41,
+      "complete": 34,
+      "censored": 7,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": -0.029762698528400133,
+      "share_down_50_observed": 0.21621621621621623,
+      "share_down_50_ci95": [
+       0.1139,
+       0.372
+      ],
+      "n_observed": 37,
+      "verdict": "REPORTABLE"
+     },
+     "<6h": {
+      "n": 40,
+      "complete": 25,
+      "censored": 15,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": -0.23235850721332463,
+      "share_down_50_observed": 0.4827586206896552,
+      "share_down_50_ci95": [
+       0.3139,
+       0.6557
+      ],
+      "n_observed": 29,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     ">=7d": {
+      "n": 342,
+      "complete": 268,
+      "censored": 74,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": -0.014329916077732818,
+      "share_down_50_observed": 0.0035087719298245615,
+      "share_down_50_ci95": [
+       0.0006,
+       0.0196
+      ],
+      "n_observed": 285,
+      "verdict": "REPORTABLE"
+     },
+     "UNKNOWN": {
+      "n": 495,
+      "complete": 2,
+      "censored": 0,
+      "not_observable": 493,
+      "pending": 0,
+      "median_ret_close_complete": -0.8492298230894904,
+      "share_down_50_observed": 1.0,
+      "share_down_50_ci95": [
+       0.3424,
+       1.0
+      ],
+      "n_observed": 2,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     }
+    },
+    "liquidity_band": {
+     "250k-1M": {
+      "n": 100,
+      "complete": 77,
+      "censored": 2,
+      "not_observable": 21,
+      "pending": 0,
+      "median_ret_close_complete": -0.035052424408587024,
+      "share_down_50_observed": 0.02531645569620253,
+      "share_down_50_ci95": [
+       0.007,
+       0.0877
+      ],
+      "n_observed": 79,
+      "verdict": "REPORTABLE"
+     },
+     "50k-250k": {
+      "n": 101,
+      "complete": 71,
+      "censored": 6,
+      "not_observable": 24,
+      "pending": 0,
+      "median_ret_close_complete": -0.037088826654543605,
+      "share_down_50_observed": 0.0958904109589041,
+      "share_down_50_ci95": [
+       0.0472,
+       0.185
+      ],
+      "n_observed": 73,
+      "verdict": "REPORTABLE"
+     },
+     "<50k": {
+      "n": 92,
+      "complete": 50,
+      "censored": 40,
+      "not_observable": 2,
+      "pending": 0,
+      "median_ret_close_complete": -0.0024126146065759912,
+      "share_down_50_observed": 0.06779661016949153,
+      "share_down_50_ci95": [
+       0.0267,
+       0.1618
+      ],
+      "n_observed": 59,
+      "verdict": "REPORTABLE"
+     },
+     ">=1M": {
+      "n": 49,
+      "complete": 26,
+      "censored": 4,
+      "not_observable": 19,
+      "pending": 0,
+      "median_ret_close_complete": -0.0030887903963249252,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.1287
+      ],
+      "n_observed": 26,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "UNKNOWN": {
+      "n": 681,
+      "complete": 197,
+      "censored": 55,
+      "not_observable": 429,
+      "pending": 0,
+      "median_ret_close_complete": -0.023984642166948067,
+      "share_down_50_observed": 0.09433962264150944,
+      "share_down_50_ci95": [
+       0.0619,
+       0.1412
+      ],
+      "n_observed": 212,
+      "verdict": "REPORTABLE"
+     }
+    },
+    "market_regime": {
+     "SOL_DOWN": {
+      "n": 247,
+      "complete": 139,
+      "censored": 30,
+      "not_observable": 78,
+      "pending": 0,
+      "median_ret_close_complete": 0.0005105148270134752,
+      "share_down_50_observed": 0.07432432432432433,
+      "share_down_50_ci95": [
+       0.042,
+       0.1282
+      ],
+      "n_observed": 148,
+      "verdict": "REPORTABLE"
+     },
+     "SOL_FLAT": {
+      "n": 723,
+      "complete": 270,
+      "censored": 65,
+      "not_observable": 388,
+      "pending": 0,
+      "median_ret_close_complete": -0.036208717970047544,
+      "share_down_50_observed": 0.07612456747404844,
+      "share_down_50_ci95": [
+       0.0508,
+       0.1126
+      ],
+      "n_observed": 289,
+      "verdict": "REPORTABLE"
+     },
+     "SOL_UP": {
+      "n": 53,
+      "complete": 12,
+      "censored": 12,
+      "not_observable": 29,
+      "pending": 0,
+      "median_ret_close_complete": -0.03938128104053035,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.2425
+      ],
+      "n_observed": 12,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     }
+    },
+    "catalyst_type": {
+     "CURVE_LIVE": {
+      "n": 14,
+      "complete": 12,
+      "censored": 0,
+      "not_observable": 2,
+      "pending": 0,
+      "median_ret_close_complete": -0.29627244758670485,
+      "share_down_50_observed": 0.16666666666666666,
+      "share_down_50_ci95": [
+       0.047,
+       0.448
+      ],
+      "n_observed": 12,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "GRADUATION": {
+      "n": 37,
+      "complete": 26,
+      "censored": 11,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": 0.10248822154232529,
+      "share_down_50_observed": 0.2727272727272727,
+      "share_down_50_ci95": [
+       0.1507,
+       0.4422
+      ],
+      "n_observed": 33,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAUNCHLAB_NEW": {
+      "n": 2,
+      "complete": 2,
+      "censored": 0,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": 0.3853764948749354,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.6576
+      ],
+      "n_observed": 2,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "NONE": {
+      "n": 970,
+      "complete": 381,
+      "censored": 96,
+      "not_observable": 493,
+      "pending": 0,
+      "median_ret_close_complete": -0.02522237500714808,
+      "share_down_50_observed": 0.05472636815920398,
+      "share_down_50_ci95": [
+       0.0364,
+       0.0815
+      ],
+      "n_observed": 402,
+      "verdict": "REPORTABLE"
+     }
+    },
+    "source_credibility": {
+     "NO_CATALYST": {
+      "n": 970,
+      "complete": 381,
+      "censored": 96,
+      "not_observable": 493,
+      "pending": 0,
+      "median_ret_close_complete": -0.02522237500714808,
+      "share_down_50_observed": 0.05472636815920398,
+      "share_down_50_ci95": [
+       0.0364,
+       0.0815
+      ],
+      "n_observed": 402,
+      "verdict": "REPORTABLE"
+     },
+     "VERIFIED_CONTEMPORANEOUS": {
+      "n": 53,
+      "complete": 40,
+      "censored": 11,
+      "not_observable": 2,
+      "pending": 0,
+      "median_ret_close_complete": 0.07815144045085354,
+      "share_down_50_observed": 0.23404255319148937,
+      "share_down_50_ci95": [
+       0.136,
+       0.3722
+      ],
+      "n_observed": 47,
+      "verdict": "REPORTABLE"
+     }
+    }
+   },
+   "selection_bias_risk": true,
+   "not_observable_share": 0.4839,
+   "note": "segments are historical correlations among the lab's own records, not causes; a segment with fewer than 30 complete outcomes is INSUFFICIENT_SAMPLE; censored outcomes count in drawdown shares as observed lower bounds"
+  },
+  "24h": {
+   "protocol": "outcomes-v1",
+   "horizon_h": 24.0,
+   "asof": 1792776856.8159454,
+   "overall": {
+    "n": 1023,
+    "complete": 385,
+    "censored": 132,
+    "not_observable": 464,
+    "pending": 42,
+    "median_ret_close_complete": -0.052781331881071925,
+    "share_down_50_observed": 0.19782608695652174,
+    "share_down_50_ci95": [
+     0.164,
+     0.2367
+    ],
+    "n_observed": 460,
+    "verdict": "REPORTABLE",
+    "not_tracked": 0
+   },
+   "segments": {
+    "cohort": {
+     "LAB_REJECTION:REJECTED_AT_SCREEN": {
+      "n": 641,
+      "complete": 155,
+      "censored": 66,
+      "not_observable": 391,
+      "pending": 29,
+      "median_ret_close_complete": -0.060903706967304294,
+      "share_down_50_observed": 0.2422680412371134,
+      "share_down_50_ci95": [
+       0.1874,
+       0.3072
+      ],
+      "n_observed": 194,
+      "verdict": "REPORTABLE"
+     },
+     "LAB_THESIS:DISTRIBUTION RISK": {
+      "n": 49,
+      "complete": 25,
+      "censored": 1,
+      "not_observable": 18,
+      "pending": 5,
+      "median_ret_close_complete": -0.025020967496843016,
+      "share_down_50_observed": 0.08,
+      "share_down_50_ci95": [
+       0.0222,
+       0.2497
+      ],
+      "n_observed": 25,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:NEAR ENTRY": {
+      "n": 8,
+      "complete": 8,
+      "censored": 0,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": -0.05757907881588198,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.3244
+      ],
+      "n_observed": 8,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:OVEREXTENDED": {
+      "n": 16,
+      "complete": 14,
+      "censored": 1,
+      "not_observable": 0,
+      "pending": 1,
+      "median_ret_close_complete": 0.003598282608979264,
+      "share_down_50_observed": 0.13333333333333333,
+      "share_down_50_ci95": [
+       0.0374,
+       0.3788
+      ],
+      "n_observed": 15,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:REJECTED": {
+      "n": 192,
+      "complete": 105,
+      "censored": 51,
+      "not_observable": 30,
+      "pending": 6,
+      "median_ret_close_complete": -0.07613617446675292,
+      "share_down_50_observed": 0.22794117647058823,
+      "share_down_50_ci95": [
+       0.1655,
+       0.3053
+      ],
+      "n_observed": 136,
+      "verdict": "REPORTABLE"
+     },
+     "LAB_THESIS:RESEARCH REQUIRED": {
+      "n": 51,
+      "complete": 23,
+      "censored": 12,
+      "not_observable": 16,
+      "pending": 0,
+      "median_ret_close_complete": -0.0011517677394218273,
+      "share_down_50_observed": 0.2222222222222222,
+      "share_down_50_ci95": [
+       0.1061,
+       0.4076
+      ],
+      "n_observed": 27,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:SETUP DEVELOPING": {
+      "n": 27,
+      "complete": 26,
+      "censored": 0,
+      "not_observable": 0,
+      "pending": 1,
+      "median_ret_close_complete": -0.05654629561348157,
+      "share_down_50_observed": 0.07692307692307693,
+      "share_down_50_ci95": [
+       0.0214,
+       0.2414
+      ],
+      "n_observed": 26,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:THESIS DETERIORATING": {
+      "n": 9,
+      "complete": 5,
+      "censored": 0,
+      "not_observable": 4,
+      "pending": 0,
+      "median_ret_close_complete": -0.06577554705416533,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.4345
+      ],
+      "n_observed": 5,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:THESIS INVALIDATED": {
+      "n": 23,
+      "complete": 17,
+      "censored": 1,
+      "not_observable": 5,
+      "pending": 0,
+      "median_ret_close_complete": -0.030381866525868162,
+      "share_down_50_observed": 0.058823529411764705,
+      "share_down_50_ci95": [
+       0.0105,
+       0.2698
+      ],
+      "n_observed": 17,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:WATCH": {
+      "n": 7,
+      "complete": 7,
+      "censored": 0,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": -0.1542635606521291,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.3543
+      ],
+      "n_observed": 7,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     }
+    },
+    "token_age": {
+     "1-7d": {
+      "n": 105,
+      "complete": 82,
+      "censored": 18,
+      "not_observable": 2,
+      "pending": 3,
+      "median_ret_close_complete": -0.0277476565776964,
+      "share_down_50_observed": 0.3870967741935484,
+      "share_down_50_ci95": [
+       0.2945,
+       0.4887
+      ],
+      "n_observed": 93,
+      "verdict": "REPORTABLE"
+     },
+     "6-24h": {
+      "n": 41,
+      "complete": 26,
+      "censored": 14,
+      "not_observable": 0,
+      "pending": 1,
+      "median_ret_close_complete": -0.5535615758911042,
+      "share_down_50_observed": 0.6111111111111112,
+      "share_down_50_ci95": [
+       0.4486,
+       0.7522
+      ],
+      "n_observed": 36,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "<6h": {
+      "n": 40,
+      "complete": 13,
+      "censored": 25,
+      "not_observable": 1,
+      "pending": 1,
+      "median_ret_close_complete": -0.6759028916200486,
+      "share_down_50_observed": 0.5333333333333333,
+      "share_down_50_ci95": [
+       0.3614,
+       0.6977
+      ],
+      "n_observed": 30,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     ">=7d": {
+      "n": 342,
+      "complete": 262,
+      "censored": 75,
+      "not_observable": 0,
+      "pending": 5,
+      "median_ret_close_complete": -0.04771416199104711,
+      "share_down_50_observed": 0.05016722408026756,
+      "share_down_50_ci95": [
+       0.0306,
+       0.0811
+      ],
+      "n_observed": 299,
+      "verdict": "REPORTABLE"
+     },
+     "UNKNOWN": {
+      "n": 495,
+      "complete": 2,
+      "censored": 0,
+      "not_observable": 461,
+      "pending": 32,
+      "median_ret_close_complete": -0.8189749380825342,
+      "share_down_50_observed": 1.0,
+      "share_down_50_ci95": [
+       0.3424,
+       1.0
+      ],
+      "n_observed": 2,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     }
+    },
+    "liquidity_band": {
+     "250k-1M": {
+      "n": 100,
+      "complete": 73,
+      "censored": 5,
+      "not_observable": 20,
+      "pending": 2,
+      "median_ret_close_complete": -0.06577554705416533,
+      "share_down_50_observed": 0.14102564102564102,
+      "share_down_50_ci95": [
+       0.0806,
+       0.2351
+      ],
+      "n_observed": 78,
+      "verdict": "REPORTABLE"
+     },
+     "50k-250k": {
+      "n": 101,
+      "complete": 67,
+      "censored": 8,
+      "not_observable": 20,
+      "pending": 6,
+      "median_ret_close_complete": -0.09363053501483887,
+      "share_down_50_observed": 0.2676056338028169,
+      "share_down_50_ci95": [
+       0.1785,
+       0.3805
+      ],
+      "n_observed": 71,
+      "verdict": "REPORTABLE"
+     },
+     "<50k": {
+      "n": 92,
+      "complete": 43,
+      "censored": 45,
+      "not_observable": 2,
+      "pending": 2,
+      "median_ret_close_complete": 7.921623917805931e-05,
+      "share_down_50_observed": 0.19402985074626866,
+      "share_down_50_ci95": [
+       0.1171,
+       0.3042
+      ],
+      "n_observed": 67,
+      "verdict": "REPORTABLE"
+     },
+     ">=1M": {
+      "n": 49,
+      "complete": 25,
+      "censored": 4,
+      "not_observable": 18,
+      "pending": 2,
+      "median_ret_close_complete": -0.013441434038542921,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.1332
+      ],
+      "n_observed": 25,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "UNKNOWN": {
+      "n": 681,
+      "complete": 177,
+      "censored": 70,
+      "not_observable": 404,
+      "pending": 30,
+      "median_ret_close_complete": -0.05627369873009114,
+      "share_down_50_observed": 0.2191780821917808,
+      "share_down_50_ci95": [
+       0.1695,
+       0.2786
+      ],
+      "n_observed": 219,
+      "verdict": "REPORTABLE"
+     }
+    },
+    "market_regime": {
+     "SOL_DOWN": {
+      "n": 247,
+      "complete": 120,
+      "censored": 49,
+      "not_observable": 78,
+      "pending": 0,
+      "median_ret_close_complete": -0.060281317728422046,
+      "share_down_50_observed": 0.24342105263157895,
+      "share_down_50_ci95": [
+       0.1821,
+       0.3174
+      ],
+      "n_observed": 152,
+      "verdict": "REPORTABLE"
+     },
+     "SOL_FLAT": {
+      "n": 723,
+      "complete": 255,
+      "censored": 69,
+      "not_observable": 357,
+      "pending": 42,
+      "median_ret_close_complete": -0.052781331881071925,
+      "share_down_50_observed": 0.18493150684931506,
+      "share_down_50_ci95": [
+       0.1446,
+       0.2335
+      ],
+      "n_observed": 292,
+      "verdict": "REPORTABLE"
+     },
+     "SOL_UP": {
+      "n": 53,
+      "complete": 10,
+      "censored": 14,
+      "not_observable": 29,
+      "pending": 0,
+      "median_ret_close_complete": -0.06920307270087772,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.1936
+      ],
+      "n_observed": 16,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     }
+    },
+    "catalyst_type": {
+     "CURVE_LIVE": {
+      "n": 14,
+      "complete": 6,
+      "censored": 6,
+      "not_observable": 2,
+      "pending": 0,
+      "median_ret_close_complete": -0.3278104310512544,
+      "share_down_50_observed": 0.6666666666666666,
+      "share_down_50_ci95": [
+       0.3906,
+       0.8619
+      ],
+      "n_observed": 12,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "GRADUATION": {
+      "n": 37,
+      "complete": 17,
+      "censored": 20,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": 0.29541454014892476,
+      "share_down_50_observed": 0.6,
+      "share_down_50_ci95": [
+       0.4357,
+       0.7445
+      ],
+      "n_observed": 35,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAUNCHLAB_NEW": {
+      "n": 2,
+      "complete": 0,
+      "censored": 2,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": null,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.6576
+      ],
+      "n_observed": 2,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "NONE": {
+      "n": 970,
+      "complete": 362,
+      "censored": 104,
+      "not_observable": 462,
+      "pending": 42,
+      "median_ret_close_complete": -0.052835678459284385,
+      "share_down_50_observed": 0.15085158150851583,
+      "share_down_50_ci95": [
+       0.1195,
+       0.1887
+      ],
+      "n_observed": 411,
+      "verdict": "REPORTABLE"
+     }
+    },
+    "source_credibility": {
+     "NO_CATALYST": {
+      "n": 970,
+      "complete": 362,
+      "censored": 104,
+      "not_observable": 462,
+      "pending": 42,
+      "median_ret_close_complete": -0.052835678459284385,
+      "share_down_50_observed": 0.15085158150851583,
+      "share_down_50_ci95": [
+       0.1195,
+       0.1887
+      ],
+      "n_observed": 411,
+      "verdict": "REPORTABLE"
+     },
+     "VERIFIED_CONTEMPORANEOUS": {
+      "n": 53,
+      "complete": 23,
+      "censored": 28,
+      "not_observable": 2,
+      "pending": 0,
+      "median_ret_close_complete": 0.29541454014892476,
+      "share_down_50_observed": 0.5918367346938775,
+      "share_down_50_ci95": [
+       0.4525,
+       0.7178
+      ],
+      "n_observed": 49,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     }
+    }
+   },
+   "selection_bias_risk": true,
+   "not_observable_share": 0.4536,
+   "note": "segments are historical correlations among the lab's own records, not causes; a segment with fewer than 30 complete outcomes is INSUFFICIENT_SAMPLE; censored outcomes count in drawdown shares as observed lower bounds"
+  },
+  "72h": {
+   "protocol": "outcomes-v1",
+   "horizon_h": 72.0,
+   "asof": 1792776856.8159454,
+   "overall": {
+    "n": 1023,
+    "complete": 348,
+    "censored": 128,
+    "not_observable": 434,
+    "pending": 113,
+    "median_ret_close_complete": -0.1000487298396559,
+    "share_down_50_observed": 0.2748267898383372,
+    "share_down_50_ci95": [
+     0.2349,
+     0.3187
+    ],
+    "n_observed": 433,
+    "verdict": "REPORTABLE",
+    "not_tracked": 0
+   },
+   "segments": {
+    "cohort": {
+     "LAB_REJECTION:REJECTED_AT_SCREEN": {
+      "n": 641,
+      "complete": 139,
+      "censored": 62,
+      "not_observable": 363,
+      "pending": 77,
+      "median_ret_close_complete": -0.14233898092153552,
+      "share_down_50_observed": 0.30386740331491713,
+      "share_down_50_ci95": [
+       0.2415,
+       0.3744
+      ],
+      "n_observed": 181,
+      "verdict": "REPORTABLE"
+     },
+     "LAB_THESIS:DISTRIBUTION RISK": {
+      "n": 49,
+      "complete": 20,
+      "censored": 1,
+      "not_observable": 18,
+      "pending": 10,
+      "median_ret_close_complete": -0.0823632616374052,
+      "share_down_50_observed": 0.1,
+      "share_down_50_ci95": [
+       0.0279,
+       0.301
+      ],
+      "n_observed": 20,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:NEAR ENTRY": {
+      "n": 8,
+      "complete": 8,
+      "censored": 0,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": 0.08911278135733913,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.3244
+      ],
+      "n_observed": 8,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:OVEREXTENDED": {
+      "n": 16,
+      "complete": 13,
+      "censored": 1,
+      "not_observable": 0,
+      "pending": 2,
+      "median_ret_close_complete": -0.1481336712308543,
+      "share_down_50_observed": 0.2857142857142857,
+      "share_down_50_ci95": [
+       0.1172,
+       0.5465
+      ],
+      "n_observed": 14,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:REJECTED": {
+      "n": 192,
+      "complete": 97,
+      "censored": 48,
+      "not_observable": 28,
+      "pending": 19,
+      "median_ret_close_complete": -0.13494977784335382,
+      "share_down_50_observed": 0.3435114503816794,
+      "share_down_50_ci95": [
+       0.2677,
+       0.4282
+      ],
+      "n_observed": 131,
+      "verdict": "REPORTABLE"
+     },
+     "LAB_THESIS:RESEARCH REQUIRED": {
+      "n": 51,
+      "complete": 20,
+      "censored": 13,
+      "not_observable": 16,
+      "pending": 2,
+      "median_ret_close_complete": -0.0037087594828540404,
+      "share_down_50_observed": 0.2692307692307692,
+      "share_down_50_ci95": [
+       0.137,
+       0.4608
+      ],
+      "n_observed": 26,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:SETUP DEVELOPING": {
+      "n": 27,
+      "complete": 23,
+      "censored": 2,
+      "not_observable": 0,
+      "pending": 2,
+      "median_ret_close_complete": -0.11725269447985243,
+      "share_down_50_observed": 0.16,
+      "share_down_50_ci95": [
+       0.064,
+       0.3465
+      ],
+      "n_observed": 25,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:THESIS DETERIORATING": {
+      "n": 9,
+      "complete": 5,
+      "censored": 0,
+      "not_observable": 4,
+      "pending": 0,
+      "median_ret_close_complete": 0.009515752512541775,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.4345
+      ],
+      "n_observed": 5,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:THESIS INVALIDATED": {
+      "n": 23,
+      "complete": 16,
+      "censored": 1,
+      "not_observable": 5,
+      "pending": 1,
+      "median_ret_close_complete": -0.10026257293073088,
+      "share_down_50_observed": 0.125,
+      "share_down_50_ci95": [
+       0.035,
+       0.3602
+      ],
+      "n_observed": 16,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAB_THESIS:WATCH": {
+      "n": 7,
+      "complete": 7,
+      "censored": 0,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": -0.17790525137881974,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.3543
+      ],
+      "n_observed": 7,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     }
+    },
+    "token_age": {
+     "1-7d": {
+      "n": 105,
+      "complete": 77,
+      "censored": 19,
+      "not_observable": 2,
+      "pending": 7,
+      "median_ret_close_complete": -0.3179823285852579,
+      "share_down_50_observed": 0.5842696629213483,
+      "share_down_50_ci95": [
+       0.4805,
+       0.6811
+      ],
+      "n_observed": 89,
+      "verdict": "REPORTABLE"
+     },
+     "6-24h": {
+      "n": 41,
+      "complete": 23,
+      "censored": 16,
+      "not_observable": 0,
+      "pending": 2,
+      "median_ret_close_complete": -0.03158886367260161,
+      "share_down_50_observed": 0.6857142857142857,
+      "share_down_50_ci95": [
+       0.5202,
+       0.8145
+      ],
+      "n_observed": 35,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "<6h": {
+      "n": 40,
+      "complete": 12,
+      "censored": 19,
+      "not_observable": 1,
+      "pending": 8,
+      "median_ret_close_complete": -0.7864831034255975,
+      "share_down_50_observed": 0.4583333333333333,
+      "share_down_50_ci95": [
+       0.2789,
+       0.6493
+      ],
+      "n_observed": 24,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     ">=7d": {
+      "n": 342,
+      "complete": 234,
+      "censored": 74,
+      "not_observable": 0,
+      "pending": 34,
+      "median_ret_close_complete": -0.0779452664960435,
+      "share_down_50_observed": 0.10600706713780919,
+      "share_down_50_ci95": [
+       0.0753,
+       0.1473
+      ],
+      "n_observed": 283,
+      "verdict": "REPORTABLE"
+     },
+     "UNKNOWN": {
+      "n": 495,
+      "complete": 2,
+      "censored": 0,
+      "not_observable": 431,
+      "pending": 62,
+      "median_ret_close_complete": -0.2914472139437786,
+      "share_down_50_observed": 1.0,
+      "share_down_50_ci95": [
+       0.3424,
+       1.0
+      ],
+      "n_observed": 2,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     }
+    },
+    "liquidity_band": {
+     "250k-1M": {
+      "n": 100,
+      "complete": 66,
+      "censored": 8,
+      "not_observable": 20,
+      "pending": 6,
+      "median_ret_close_complete": -0.14441925627955826,
+      "share_down_50_observed": 0.25675675675675674,
+      "share_down_50_ci95": [
+       0.171,
+       0.3665
+      ],
+      "n_observed": 74,
+      "verdict": "REPORTABLE"
+     },
+     "50k-250k": {
+      "n": 101,
+      "complete": 59,
+      "censored": 6,
+      "not_observable": 19,
+      "pending": 17,
+      "median_ret_close_complete": -0.24721357442688907,
+      "share_down_50_observed": 0.45161290322580644,
+      "share_down_50_ci95": [
+       0.3342,
+       0.5747
+      ],
+      "n_observed": 62,
+      "verdict": "REPORTABLE"
+     },
+     "<50k": {
+      "n": 92,
+      "complete": 39,
+      "censored": 46,
+      "not_observable": 2,
+      "pending": 5,
+      "median_ret_close_complete": -0.0022386122756304916,
+      "share_down_50_observed": 0.2318840579710145,
+      "share_down_50_ci95": [
+       0.1481,
+       0.344
+      ],
+      "n_observed": 69,
+      "verdict": "REPORTABLE"
+     },
+     ">=1M": {
+      "n": 49,
+      "complete": 25,
+      "censored": 4,
+      "not_observable": 17,
+      "pending": 3,
+      "median_ret_close_complete": -0.01974817810374263,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.1332
+      ],
+      "n_observed": 25,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "UNKNOWN": {
+      "n": 681,
+      "complete": 159,
+      "censored": 64,
+      "not_observable": 376,
+      "pending": 82,
+      "median_ret_close_complete": -0.10406770831600076,
+      "share_down_50_observed": 0.27586206896551724,
+      "share_down_50_ci95": [
+       0.219,
+       0.3411
+      ],
+      "n_observed": 203,
+      "verdict": "REPORTABLE"
+     }
+    },
+    "market_regime": {
+     "SOL_DOWN": {
+      "n": 247,
+      "complete": 119,
+      "censored": 50,
+      "not_observable": 78,
+      "pending": 0,
+      "median_ret_close_complete": -0.041425183309676705,
+      "share_down_50_observed": 0.3375796178343949,
+      "share_down_50_ci95": [
+       0.2683,
+       0.4146
+      ],
+      "n_observed": 157,
+      "verdict": "REPORTABLE"
+     },
+     "SOL_FLAT": {
+      "n": 723,
+      "complete": 217,
+      "censored": 66,
+      "not_observable": 327,
+      "pending": 113,
+      "median_ret_close_complete": -0.13494977784335382,
+      "share_down_50_observed": 0.24806201550387597,
+      "share_down_50_ci95": [
+       0.1993,
+       0.3042
+      ],
+      "n_observed": 258,
+      "verdict": "REPORTABLE"
+     },
+     "SOL_UP": {
+      "n": 53,
+      "complete": 12,
+      "censored": 12,
+      "not_observable": 29,
+      "pending": 0,
+      "median_ret_close_complete": -0.09036511702538291,
+      "share_down_50_observed": 0.1111111111111111,
+      "share_down_50_ci95": [
+       0.031,
+       0.328
+      ],
+      "n_observed": 18,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     }
+    },
+    "catalyst_type": {
+     "CURVE_LIVE": {
+      "n": 14,
+      "complete": 6,
+      "censored": 6,
+      "not_observable": 2,
+      "pending": 0,
+      "median_ret_close_complete": -0.2914472139437786,
+      "share_down_50_observed": 0.6666666666666666,
+      "share_down_50_ci95": [
+       0.3906,
+       0.8619
+      ],
+      "n_observed": 12,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "GRADUATION": {
+      "n": 37,
+      "complete": 14,
+      "censored": 23,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": -0.9932714137397057,
+      "share_down_50_observed": 0.8285714285714286,
+      "share_down_50_ci95": [
+       0.6732,
+       0.919
+      ],
+      "n_observed": 35,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "LAUNCHLAB_NEW": {
+      "n": 2,
+      "complete": 2,
+      "censored": 0,
+      "not_observable": 0,
+      "pending": 0,
+      "median_ret_close_complete": 0.27801480667366474,
+      "share_down_50_observed": 0.0,
+      "share_down_50_ci95": [
+       0.0,
+       0.6576
+      ],
+      "n_observed": 2,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     },
+     "NONE": {
+      "n": 970,
+      "complete": 326,
+      "censored": 99,
+      "not_observable": 432,
+      "pending": 113,
+      "median_ret_close_complete": -0.08963639375810872,
+      "share_down_50_observed": 0.21354166666666666,
+      "share_down_50_ci95": [
+       0.1755,
+       0.2573
+      ],
+      "n_observed": 384,
+      "verdict": "REPORTABLE"
+     }
+    },
+    "source_credibility": {
+     "NO_CATALYST": {
+      "n": 970,
+      "complete": 326,
+      "censored": 99,
+      "not_observable": 432,
+      "pending": 113,
+      "median_ret_close_complete": -0.08963639375810872,
+      "share_down_50_observed": 0.21354166666666666,
+      "share_down_50_ci95": [
+       0.1755,
+       0.2573
+      ],
+      "n_observed": 384,
+      "verdict": "REPORTABLE"
+     },
+     "VERIFIED_CONTEMPORANEOUS": {
+      "n": 53,
+      "complete": 22,
+      "censored": 29,
+      "not_observable": 2,
+      "pending": 0,
+      "median_ret_close_complete": -0.691836748862977,
+      "share_down_50_observed": 0.7551020408163265,
+      "share_down_50_ci95": [
+       0.6191,
+       0.854
+      ],
+      "n_observed": 49,
+      "verdict": "INSUFFICIENT_SAMPLE"
+     }
+    }
+   },
+   "selection_bias_risk": true,
+   "not_observable_share": 0.4242,
+   "note": "segments are historical correlations among the lab's own records, not causes; a segment with fewer than 30 complete outcomes is INSUFFICIENT_SAMPLE; censored outcomes count in drawdown shares as observed lower bounds"
+  }
+ },
+ "exit_reconciliation_24h": {
+  "horizon_h": 24.0,
+  "pairs": 36,
+  "not_observable": 303,
+  "liq_error_median": 0.0003664779346517766,
+  "liq_error_p10_p90": [
+   -0.09901731298656702,
+   0.24169024311027187
+  ],
+  "by_liquidity_band": {
+   "250k-1M": {
+    "n": 23,
+    "median_error": -0.018235067203394628
+   },
+   "50k-250k": {
+    "n": 2,
+    "median_error": 2.479156542149615
+   },
+   ">=1M": {
+    "n": 11,
+    "median_error": 0.004173020652868953
+   }
+  },
+  "impact_error_median_by_size": {
+   "250": 1.8282777999289482e-07,
+   "1000": 7.305405746367825e-07,
+   "5000": 3.632246112487427e-06
+  },
+  "basis": "LAB_SNAPSHOT_NEAR_WINDOW_END (exact historical pool state SOURCE_BLOCKED)",
+  "verdict": "REPORTABLE"
+ },
+ "drift": {
+  "now": 1792776856.8159454,
+  "coverage_by_decision_day": {
+   "2026-10-06": {
+    "n": 19,
+    "observable_share": 0.6842105263157895
+   },
+   "2026-10-07": {
+    "n": 85,
+    "observable_share": 0.4117647058823529
+   },
+   "2026-10-08": {
+    "n": 204,
+    "observable_share": 0.6176470588235294
+   },
+   "2026-10-09": {
+    "n": 88,
+    "observable_share": 0.6363636363636364
+   },
+   "2026-10-10": {
+    "n": 68,
+    "observable_share": 0.45588235294117646
+   },
+   "2026-10-11": {
+    "n": 43,
+    "observable_share": 0.4883720930232558
+   },
+   "2026-10-12": {
+    "n": 36,
+    "observable_share": 0.6111111111111112
+   },
+   "2026-10-13": {
+    "n": 42,
+    "observable_share": 0.3333333333333333
+   },
+   "2026-10-14": {
+    "n": 48,
+    "observable_share": 0.14583333333333334
+   },
+   "2026-10-15": {
+    "n": 41,
+    "observable_share": 0.34146341463414637
+   },
+   "2026-10-16": {
+    "n": 53,
+    "observable_share": 0.3018867924528302
+   },
+   "2026-10-17": {
+    "n": 51,
+    "observable_share": 0.27450980392156865
+   },
+   "2026-10-18": {
+    "n": 32,
+    "observable_share": 0.34375
+   },
+   "2026-10-19": {
+    "n": 52,
+    "observable_share": 0.5384615384615384
+   },
+   "2026-10-20": {
+    "n": 48,
+    "observable_share": 0.2916666666666667
+   },
+   "2026-10-21": {
+    "n": 29,
+    "observable_share": 0.41379310344827586
+   },
+   "2026-10-22": {
+    "n": 42,
+    "observable_share": 0.6190476190476191
+   }
+  },
+  "calibration_halves": {
+   "LAB_REJECTION:REJECTED_AT_SCREEN": {
+    "n_first": 103,
+    "n_second": 91,
+    "share_first": 0.27184466019417475,
+    "share_second": 0.2087912087912088
+   },
+   "LAB_THESIS:DISTRIBUTION RISK": {
+    "n_first": 17,
+    "n_second": 8,
+    "share_first": 0.11764705882352941,
+    "share_second": 0.0
+   },
+   "LAB_THESIS:NEAR ENTRY": {
+    "n_first": 6,
+    "n_second": 2,
+    "share_first": 0.0,
+    "share_second": 0.0
+   },
+   "LAB_THESIS:OVEREXTENDED": {
+    "n_first": 11,
+    "n_second": 4,
+    "share_first": 0.18181818181818182,
+    "share_second": 0.0
+   },
+   "LAB_THESIS:REJECTED": {
+    "n_first": 78,
+    "n_second": 58,
+    "share_first": 0.32051282051282054,
+    "share_second": 0.10344827586206896
+   },
+   "LAB_THESIS:RESEARCH REQUIRED": {
+    "n_first": 22,
+    "n_second": 5,
+    "share_first": 0.2727272727272727,
+    "share_second": 0.0
+   },
+   "LAB_THESIS:SETUP DEVELOPING": {
+    "n_first": 19,
+    "n_second": 7,
+    "share_first": 0.10526315789473684,
+    "share_second": 0.0
+   },
+   "LAB_THESIS:THESIS DETERIORATING": {
+    "n_first": 5,
+    "n_second": 0,
+    "share_first": 0.0,
+    "share_second": null
+   },
+   "LAB_THESIS:THESIS INVALIDATED": {
+    "n_first": 15,
+    "n_second": 2,
+    "share_first": 0.06666666666666667,
+    "share_second": 0.0
+   },
+   "LAB_THESIS:WATCH": {
+    "n_first": 6,
+    "n_second": 1,
+    "share_first": 0.0,
+    "share_second": 0.0
+   }
+  },
+  "bar_revisions": {
+   "revised": 58,
+   "total": 139168
+  },
+  "collector_health": {
+   "maxun": "NOT_ADOPTED (Phase 06A): no Maxun robot runs, no Maxun metrics",
+   "collectors": {},
+   "note": "NO_DATA: no captures stored in this database; nothing to monitor yet"
+  },
+  "warnings": []
+ },
+ "deviations": [],
+ "daily_replay": {
+  "day": "2026-10-14",
+  "byte_identical": true,
+  "lines": 52,
+  "sha256": "9e8b48b3299ada14aa18dbb30d057b5b1676eb5623a93045794a08cd87a59681"
+ },
+ "shadow_after_sealed_test": {
+  "mode": "SHADOW (no orders, not saved as a run)",
+  "strategy": "BREAKOUT_CLOSE",
+  "since": 1792771200.0,
+  "until": null,
+  "n_trades": 0,
+  "mean_ret": null,
+  "mean_paper_ret_mid": null,
+  "ledger_hash": "57bb234876ca600b89a8d6005c15d02135e6368f44e69aaf5d394d0d35fabcc1"
+ },
+ "prior_runs_unchanged": true,
+ "wall_s": 57.5
+}

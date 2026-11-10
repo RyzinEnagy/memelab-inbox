@@ -1,0 +1,13 @@
+0e63563 Backtesting Phase 16: repair pass 2
+2026-10-23T22:06:00Z
+audits/backtesting/testing/test_p16r1_repair_attacks.py:121: KeyError
+=========================== short test summary info ============================
+FAILED audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_basis_not_steered_by_wash_volume_on_a_thin_pool
+1 failed, 241 passed in 45.64s
+EXIT=1
+release_audit EXIT=0
+Needs action: no.
+## Credential and key-material shapes in tracked files
+
+- none
+

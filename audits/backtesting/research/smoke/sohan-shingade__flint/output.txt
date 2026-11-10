@@ -1,0 +1,30 @@
+NOTE: static AST analysis only; repo not installed, no repo code imported or executed (niche repo; PyPI name 'flint' is an unrelated Fortran tool).
+$ python3 -I /home/claude/work/memelab-inbox/audits/backtesting/research/smoke/sohan-shingade__flint/script.py /home/claude/ext/reviews/sohan-shingade__flint
+
+[1] Solana/Jupiter/on-chain modules
+  flint/venues/jupiter/__init__.py: 0 non-docstring statements; docstring: 'venues.jupiter — DEX oracle-pool adapter + specs (on-chain); v1.x (D28).'
+  flint/data/ingest/onchain/__init__.py: 0 non-docstring statements; docstring: 'data.ingest.onchain — Solana/EVM decoders (Jupiter, Phoenix via Helius archival RPC; GMX subgraph).'
+  other files under flint/venues/jupiter: ['__init__.py']
+
+[2] OraclePoolFillModel.fill
+  flint/engine/fills/oracle_pool.py:25 fill() body statements: ['Raise']
+
+[3] AMM math search (constant product / sqrtPrice / tick / bin / reserves) in flint/**/*.py
+  0 hits
+
+[4] files referenced by .github/workflows/ci.yml that do not exist
+  referenced: ['scripts/update_readme_counts.py', 'tests/test_determinism.py', 'tests/test_fee_model_parity.py', 'tests/test_jupiter_integration.py', 'tests/test_rust_capabilities.py', 'tests/test_rust_engine.py', 'tests/test_rust_python_parity.py', 'tests/test_sandbox_escape.py', 'rust/', 'ui/']
+  missing: ['scripts/update_readme_counts.py', 'tests/test_determinism.py', 'tests/test_fee_model_parity.py', 'tests/test_jupiter_integration.py', 'tests/test_rust_capabilities.py', 'tests/test_rust_engine.py', 'tests/test_rust_python_parity.py', 'tests/test_sandbox_escape.py', 'rust/']
+  CI python versions: ['3.10', '3.11', '3.12']; pyproject requires-python: >=3.12,<3.15
+
+[5] declared engine dependency
+   "nautilus_trader==1.230.0"
+
+RESULT:
+ - flint/venues/jupiter/__init__.py is docstring-only
+ - flint/data/ingest/onchain/__init__.py is docstring-only
+ - OraclePoolFillModel.fill only raises NotImplementedError
+ - no AMM math anywhere in flint/
+ - CI references 9 missing paths
+exit_code=0
+wall_seconds=1

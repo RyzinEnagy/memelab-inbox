@@ -1,0 +1,392 @@
+[
+ {
+  "strategy": "LAB_STATUS",
+  "params": null,
+  "run_id": "19ff1209a8c577e65ca4657d3dbfa76335d5e785da6fe136e657409b0e01ec8e",
+  "ledger_hash": "b0819ce00d233d6e61172821e4387cba09c5270cf956516dc9a75a58f7d28cb6",
+  "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+  "trades": 26,
+  "pnl_usd": -509.38,
+  "mean_ret": -0.03918223658919944,
+  "mean_paper_ret_mid": -0.012083839079902715,
+  "win_rate": 0.34615384615384615,
+  "worst": -0.31282356105599773,
+  "counts": {
+   "signals": 216,
+   "abstain": {
+    "UNSUPPORTED_POOL": 62,
+    "RISK_FATAL_FLAW": 284
+   },
+   "submitted": 216,
+   "filled": 26,
+   "expired": 0,
+   "canceled": 62,
+   "rejected_limits": 128
+  },
+  "exit_reasons": {
+   "STOP_INTRABAR": 15,
+   "TAKE_PROFIT_INTRABAR": 8,
+   "STOP_INTRABAR_BOTH_IN_BAR": 1,
+   "TIME_EXIT_AT_OPEN": 1,
+   "END_OF_DATA_MARK_TO_REALIZABLE": 1
+  },
+  "cache": "MISS"
+ },
+ {
+  "strategy": "BREAKOUT_CLOSE",
+  "params": null,
+  "run_id": "b201e999d6e2a83736c77f1d3cb8416ee9949d02854d316f11d3ae8271c1c8e4",
+  "ledger_hash": "b88184fbaef66686f6fd7fad0307b145ee77b4902946c764e743d134d803e5c4",
+  "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+  "trades": 47,
+  "pnl_usd": -3164.03,
+  "mean_ret": -0.13460619214233976,
+  "mean_paper_ret_mid": -0.029569069582052205,
+  "win_rate": 0.2127659574468085,
+  "worst": -1.0,
+  "counts": {
+   "signals": 834,
+   "abstain": {
+    "UNSUPPORTED_POOL": 324,
+    "INSUFFICIENT_HISTORY": 613,
+    "INSUFFICIENT_EXECUTION_DATA": 293
+   },
+   "submitted": 834,
+   "filled": 47,
+   "expired": 15,
+   "canceled": 680,
+   "rejected_limits": 92
+  },
+  "exit_reasons": {
+   "TAKE_PROFIT_INTRABAR": 7,
+   "STOP_INTRABAR": 31,
+   "STOP_INTRABAR_BOTH_IN_BAR": 2,
+   "TIME_EXIT_AT_OPEN": 5,
+   "STOP_INTRABAR_CRASH_FILL_AT_CLOSE": 1,
+   "END_OF_DATA_MARK_TO_REALIZABLE": 1
+  },
+  "cache": "MISS"
+ },
+ {
+  "strategy": "BREAKOUT_RETEST",
+  "params": null,
+  "run_id": "e3b5638df4f43823f3dc4103238fb116dab8b221da9240aea2ea1f13587d7e3a",
+  "ledger_hash": "34524dcda01808cae0b49022471f9b37aaa5291f7f1022f1863c99990022ae22",
+  "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+  "trades": 34,
+  "pnl_usd": -1922.08,
+  "mean_ret": -0.1130157404978388,
+  "mean_paper_ret_mid": -0.03264752153884296,
+  "win_rate": 0.29411764705882354,
+  "worst": -1.0,
+  "counts": {
+   "signals": 997,
+   "abstain": {
+    "UNSUPPORTED_POOL": 476,
+    "INSUFFICIENT_HISTORY": 690,
+    "INSUFFICIENT_EXECUTION_DATA": 300
+   },
+   "submitted": 997,
+   "filled": 34,
+   "expired": 37,
+   "canceled": 844,
+   "rejected_limits": 82
+  },
+  "exit_reasons": {
+   "TAKE_PROFIT_INTRABAR": 8,
+   "STOP_INTRABAR": 23,
+   "STOP_INTRABAR_CRASH_FILL_AT_CLOSE": 1,
+   "END_OF_DATA_MARK_TO_REALIZABLE": 2
+  },
+  "cache": "MISS"
+ },
+ {
+  "strategy": "RECLAIM",
+  "params": null,
+  "run_id": "fd6c48dc7e07e152f0cd419f70c377ad80e44294c23f321fea605011b7da074e",
+  "ledger_hash": "d5b3f56215df7afe3023a4b3959b9559907fcf2a739a7a7d500f73c406dcdc91",
+  "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+  "trades": 42,
+  "pnl_usd": -4302.79,
+  "mean_ret": -0.20487529916488562,
+  "mean_paper_ret_mid": -0.06379271715699225,
+  "win_rate": 0.2619047619047619,
+  "worst": -1.0,
+  "counts": {
+   "signals": 463,
+   "abstain": {
+    "UNSUPPORTED_POOL": 193,
+    "INSUFFICIENT_HISTORY": 690,
+    "INSUFFICIENT_EXECUTION_DATA": 142
+   },
+   "submitted": 463,
+   "filled": 42,
+   "expired": 15,
+   "canceled": 363,
+   "rejected_limits": 43
+  },
+  "exit_reasons": {
+   "STOP_INTRABAR": 29,
+   "TAKE_PROFIT_INTRABAR": 11,
+   "STOP_INTRABAR_CRASH_FILL_AT_CLOSE": 1,
+   "TIME_EXIT_AT_OPEN": 1
+  },
+  "cache": "MISS"
+ },
+ {
+  "strategy": "TREND_HHHL",
+  "params": null,
+  "run_id": "c6501059648931f62b871a15a58ced5bdeac94bdcce75070e93f47b67980ca23",
+  "ledger_hash": "43befddc52b94ca3beb7b16e504de4bfd276ad7cb66fdb2a5b47cec89ae4c20f",
+  "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+  "trades": 21,
+  "pnl_usd": -3601.58,
+  "mean_ret": -0.342984230667663,
+  "mean_paper_ret_mid": -0.09367166346633861,
+  "win_rate": 0.14285714285714285,
+  "worst": -1.0,
+  "counts": {
+   "signals": 289,
+   "abstain": {
+    "INSUFFICIENT_HISTORY": 574,
+    "UNSUPPORTED_POOL": 103,
+    "INSUFFICIENT_EXECUTION_DATA": 97,
+    "OVEREXTENDED": 15
+   },
+   "submitted": 289,
+   "filled": 21,
+   "expired": 11,
+   "canceled": 215,
+   "rejected_limits": 42
+  },
+  "exit_reasons": {
+   "STOP_INTRABAR": 13,
+   "TAKE_PROFIT_INTRABAR": 2,
+   "TIME_EXIT_AT_OPEN": 2,
+   "END_OF_DATA_MARK_TO_REALIZABLE": 4
+  },
+  "cache": "MISS"
+ },
+ {
+  "strategy": "ABSORPTION_BREAK",
+  "params": null,
+  "run_id": "5ca512c12bc852909b355d2e78c6dc645a5db79cfc1f0e1f368e6b9d17121775",
+  "ledger_hash": "19658022a6e9218f37b2176309a630f43f96e15bc2abaf771e1f4bba03221a66",
+  "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+  "trades": 22,
+  "pnl_usd": -3292.8,
+  "mean_ret": -0.2993282116224009,
+  "mean_paper_ret_mid": -0.018519634205090507,
+  "win_rate": 0.18181818181818182,
+  "worst": -1.0,
+  "counts": {
+   "signals": 544,
+   "abstain": {
+    "INSUFFICIENT_HISTORY": 237,
+    "UNSUPPORTED_POOL": 269,
+    "INSUFFICIENT_EXECUTION_DATA": 163
+   },
+   "submitted": 544,
+   "filled": 22,
+   "expired": 23,
+   "canceled": 442,
+   "rejected_limits": 57
+  },
+  "exit_reasons": {
+   "TAKE_PROFIT_INTRABAR": 4,
+   "STOP_INTRABAR": 10,
+   "TIME_EXIT_AT_OPEN": 4,
+   "END_OF_DATA_MARK_TO_REALIZABLE": 4
+  },
+  "cache": "MISS"
+ },
+ {
+  "strategy": "MOMENTUM",
+  "params": null,
+  "run_id": "328b428953a1be7c5a6bef105bd39644db5c2882f2291e8c2fad3caf9ff299d3",
+  "ledger_hash": "fb0a81672fd9773f50c48ff0c7bf9fc1361052697f18c8415f1f682732395f43",
+  "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+  "trades": 47,
+  "pnl_usd": -3322.13,
+  "mean_ret": -0.14130668583751857,
+  "mean_paper_ret_mid": -0.024188465600672667,
+  "win_rate": 0.23404255319148937,
+  "worst": -1.0,
+  "counts": {
+   "signals": 1425,
+   "abstain": {
+    "UNSUPPORTED_POOL": 187,
+    "ILLIQUID": 18063,
+    "INSUFFICIENT_HISTORY": 811,
+    "EXHAUSTION": 62,
+    "INSUFFICIENT_EXECUTION_DATA": 416
+   },
+   "submitted": 1425,
+   "filled": 47,
+   "expired": 7,
+   "canceled": 724,
+   "rejected_limits": 647
+  },
+  "exit_reasons": {
+   "TAKE_PROFIT_INTRABAR": 10,
+   "STOP_INTRABAR": 26,
+   "TIME_EXIT_AT_OPEN": 9,
+   "STOP_INTRABAR_BOTH_IN_BAR": 1,
+   "END_OF_DATA_MARK_TO_REALIZABLE": 1
+  },
+  "cache": "MISS"
+ },
+ {
+  "strategy": "CATALYST_VERIFIED",
+  "params": {
+   "min_origins": 1
+  },
+  "run_id": "934212acbcb9cd191f214294e17694a240f7c8aa80db7d2316dc6193ab80dc36",
+  "ledger_hash": "e730db86316266b7c52fd3d8992f9b8dd18244ecc73e35089b155ae8f7ec5862",
+  "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+  "trades": 2,
+  "pnl_usd": 348.9,
+  "mean_ret": 0.3488908824724988,
+  "mean_paper_ret_mid": 0.4082604258226953,
+  "win_rate": 1.0,
+  "worst": 0.21942919272206818,
+  "counts": {
+   "abstain": {
+    "INSUFFICIENT_EXECUTION_DATA": 9,
+    "RISK_FATAL_FLAW": 1
+   },
+   "canceled": 9,
+   "expired": 0,
+   "filled": 2,
+   "rejected_limits": 0,
+   "signals": 11,
+   "submitted": 11
+  },
+  "exit_reasons": {
+   "TIME_EXIT_AT_OPEN": 2
+  },
+  "cache": "HIT"
+ },
+ {
+  "strategy": "NO_TRADE",
+  "params": null,
+  "run_id": "e9741bce515c6b138da447b055a7721e7d465d90fe640fc2ff3b484bd7ee9b83",
+  "ledger_hash": "178f852c10bc3a5be28adfdd0864929fa07d996afc0b2f531daadb796c1b87a8",
+  "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+  "trades": 0,
+  "pnl_usd": 0.0,
+  "mean_ret": null,
+  "mean_paper_ret_mid": null,
+  "win_rate": null,
+  "worst": null,
+  "counts": {
+   "signals": 0,
+   "abstain": {},
+   "submitted": 0,
+   "filled": 0,
+   "expired": 0,
+   "canceled": 0,
+   "rejected_limits": 0
+  },
+  "exit_reasons": {},
+  "cache": "MISS"
+ },
+ {
+  "strategy": "ENTER_AT_DISCOVERY",
+  "params": null,
+  "run_id": "6826f91100fa1140e7a08ff6c89daa6e2d01c356811632683b0d1311e680adc9",
+  "ledger_hash": "31820d430857b9e35b2730ec43396aa20413307a134979d6f906e75e7ac5e59b",
+  "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+  "trades": 36,
+  "pnl_usd": -2390.95,
+  "mean_ret": -0.1328125980168018,
+  "mean_paper_ret_mid": -0.10313861565984742,
+  "win_rate": 0.2777777777777778,
+  "worst": -0.9998588877443451,
+  "counts": {
+   "signals": 227,
+   "abstain": {
+    "UNSUPPORTED_POOL": 58,
+    "INSUFFICIENT_EXECUTION_DATA": 24
+   },
+   "submitted": 227,
+   "filled": 36,
+   "expired": 32,
+   "canceled": 106,
+   "rejected_limits": 53
+  },
+  "exit_reasons": {
+   "TIME_EXIT_AT_OPEN": 33,
+   "STOP_INTRABAR_CRASH_FILL_AT_CLOSE": 2,
+   "STOP_INTRABAR": 1
+  },
+  "cache": "MISS"
+ },
+ {
+  "strategy": "RANDOM_ENTRY",
+  "params": null,
+  "run_id": "852635cfcc7ff3e2745a0b9460a9e66ad67f9e4bd74ade877999850189865509",
+  "ledger_hash": "e0eef32c342ba584ee0b75e9c4b31c931435b73dd2d2476d0f21080ee60d55ae",
+  "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+  "trades": 80,
+  "pnl_usd": -7410.27,
+  "mean_ret": -0.1852375334666215,
+  "mean_paper_ret_mid": -0.04244121487058936,
+  "win_rate": 0.2125,
+  "worst": -1.0,
+  "counts": {
+   "signals": 2009,
+   "abstain": {
+    "UNSUPPORTED_POOL": 435,
+    "INSUFFICIENT_EXECUTION_DATA": 298
+   },
+   "submitted": 2009,
+   "filled": 80,
+   "expired": 73,
+   "canceled": 786,
+   "rejected_limits": 1070
+  },
+  "exit_reasons": {
+   "STOP_INTRABAR_BOTH_IN_BAR": 3,
+   "STOP_INTRABAR": 44,
+   "TAKE_PROFIT_INTRABAR": 17,
+   "STOP_INTRABAR_CRASH_FILL_AT_CLOSE": 1,
+   "TIME_EXIT_AT_OPEN": 12,
+   "END_OF_DATA_MARK_TO_REALIZABLE": 3
+  },
+  "cache": "MISS"
+ },
+ {
+  "strategy": "MA_CROSS",
+  "params": null,
+  "run_id": "824ef58f32618fe2c19565d079a5e3c28559f609e4d80f2cb9c0f0bc22e8d448",
+  "ledger_hash": "4c9485d3f331f1c8b01e94dc580ba4fc2d9b70536d1ae75b11ecb60e3936a59f",
+  "dataset_hash": "d838d9037aeb0f91943da4f86f299a76014123adbdc2870748e308915dc3c995",
+  "trades": 51,
+  "pnl_usd": -4042.61,
+  "mean_ret": -0.15851336480477415,
+  "mean_paper_ret_mid": -0.02555686085514368,
+  "win_rate": 0.19607843137254902,
+  "worst": -1.0,
+  "counts": {
+   "signals": 1028,
+   "abstain": {
+    "INSUFFICIENT_HISTORY": 652,
+    "UNSUPPORTED_POOL": 518,
+    "INSUFFICIENT_EXECUTION_DATA": 246
+   },
+   "submitted": 1028,
+   "filled": 51,
+   "expired": 37,
+   "canceled": 802,
+   "rejected_limits": 138
+  },
+  "exit_reasons": {
+   "STOP_INTRABAR": 30,
+   "TAKE_PROFIT_INTRABAR": 8,
+   "TIME_EXIT_AT_OPEN": 8,
+   "END_OF_DATA_MARK_TO_REALIZABLE": 5
+  },
+  "cache": "MISS"
+ }
+]

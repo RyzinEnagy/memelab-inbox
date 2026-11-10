@@ -1,0 +1,182 @@
+[
+ {
+  "id": "M14-1 missing assessment not labeled UNTESTED",
+  "file": "memelab/backtest/report.py",
+  "old": "        return {\"label\": \"UNTESTED\", \"why\": \"no backtest or stress assessment exists for this mint\"}",
+  "new": "        return {\"label\": \"INCONCLUSIVE\", \"why\": \"no backtest or stress assessment exists for this mint\"}",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-2 lab fatal flag does not win the label",
+  "file": "memelab/backtest/report.py",
+  "old": "    if fatal or (a or {}).get(\"state\") == \"RISK_FATAL_FLAW\":",
+  "new": "    if (a or {}).get(\"state\") == \"RISK_FATAL_FLAW\":",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-3 strategies ranked by paper return",
+  "file": "memelab/backtest/report.py",
+  "old": "-(r[\"net_mean_ret\"] or 0.0), r[\"strategy\"]))",
+  "new": "-(r[\"paper_mean_ret_mid\"] or 0.0), r[\"strategy\"]))",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-4 tiny samples ranked",
+  "file": "memelab/backtest/report.py",
+  "old": "        r[\"rankable\"] = r[\"n_trades\"] >= MIN_RANK_TRADES and r[\"net_mean_ret\"] is not None",
+  "new": "        r[\"rankable\"] = r[\"net_mean_ret\"] is not None",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-5 paper-only profit not flagged",
+  "file": "memelab/backtest/report.py",
+  "old": "(\"PAPER_ONLY_PROFIT\" if (paper or 0) > 0 and (net or 0) <= 0 else",
+  "new": "(\"NET_NEGATIVE\" if (paper or 0) > 0 and (net or 0) <= 0 else",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-6 high-status mismatch hidden",
+  "file": "memelab/backtest/report.py",
+  "old": "    if status in HIGH_STATUSES and label[\"label\"] in (\"BAD EXECUTION\", \"UNTESTED\", \"FATAL FLAW\"):",
+  "new": "    if False:",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-7 fatal override not detected",
+  "file": "memelab/backtest/report.py",
+  "old": "    override = bool(fatal) and (",
+  "new": "    override = False and (",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-8 blocked quote given made-up proceeds",
+  "file": "memelab/backtest/report.py",
+  "old": "\"quotes\": [{\"size_usd\": q[0], \"proceeds_usd\": _f(q[1]),",
+  "new": "\"quotes\": [{\"size_usd\": q[0], \"proceeds_usd\": _f(q[1]) if q[1] is not None else q[0],",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-9 abstained candidate loses the lab view",
+  "file": "memelab/backtest/report.py",
+  "old": "    lab = lab or a.get(\"lab\") or {}",
+  "new": "    lab = lab or {}",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-10 alert hides a missing assessment",
+  "file": "memelab/backtest/hook.py",
+  "old": "    out = report.alert_label(a) | {",
+  "new": "    if a is None:\n        return None\n    out = report.alert_label(a) | {",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-11 alerts change when the policy is off",
+  "file": "memelab/backtest/hook.py",
+  "old": "    if not enabled(policy):\n        return None\n    from . import report",
+  "new": "    if False:\n        return None\n    from . import report",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-12 scout section printed when off",
+  "file": "memelab/cli.py",
+  "old": "    if bt_on:\n        md += \"\\n\" + _backtest_reports(results, path)",
+  "new": "    if True:\n        md += \"\\n\" + _backtest_reports(results, path)",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M14-13 paper value shown as executable",
+  "file": "memelab/backtest/report.py",
+  "old": "\"executable_proceeds_usd\": _f(r.get(\"proceeds_usd\"))",
+  "new": "\"executable_proceeds_usd\": _f(r.get(\"marked_value_usd\"))",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-14 report implies Maxun is running",
+  "file": "memelab/backtest/report.py",
+  "old": "\"maxun_running\": False,",
+  "new": "\"maxun_running\": bool(recs),",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-15 late crawl not warned",
+  "file": "memelab/backtest/report.py",
+  "old": "        if r[\"_first\"] is not None and r[\"_pub\"] is not None and r[\"_first\"] - r[\"_pub\"] > LATE_CRAWL_S:",
+  "new": "        if False:",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-16 robot refresh burst not rate limited",
+  "file": "memelab/backtest/assess.py",
+  "old": "    if recent is not None and now - recent < min_interval_s:",
+  "new": "    if False:",
+  "tests": [
+   "tests/test_backtest_assess.py"
+  ]
+ },
+ {
+  "id": "M14-17 old assessment age not disclosed on alerts",
+  "file": "memelab/backtest/hook.py",
+  "old": "    if a and now is not None and a.get(\"as_of\") and now - a[\"as_of\"] > 24 * 3600:",
+  "new": "    if False:",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-18 --as-of ignored",
+  "file": "memelab/backtest/cli.py",
+  "old": "until=_ts(a.as_of or a.until)",
+  "new": "until=_ts(a.until)",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-19 new token reported with token-specific evidence",
+  "file": "memelab/backtest/report.py",
+  "old": "{\"state\": \"NOT_RUN\" if a.get(\"deep_stage\") == \"QUEUED\" else \"NONE\",",
+  "new": "{\"state\": \"TOKEN_SPECIFIC\" if a.get(\"deep_stage\") == \"QUEUED\" else \"NONE\",",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ },
+ {
+  "id": "M14-20 missing quote uncertainty dropped",
+  "file": "memelab/backtest/report.py",
+  "old": "        out.append(\"no usable sell quote at the assessment time; executable proceeds rest on the depth model alone\")",
+  "new": "        pass",
+  "tests": [
+   "tests/test_backtest_report.py"
+  ]
+ }
+]

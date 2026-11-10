@@ -1,0 +1,26 @@
+baseline (unmutated): exit 0 :: 27 passed in 1.21s
+[M13-1 assessment enabled by default] CAUGHT :: 1 failed in 0.22s
+[M13-2 hook ignores the policy switch] CAUGHT :: 1 failed in 0.22s
+[M13-3 all-zero authority key read as active] CAUGHT :: 1 failed, 1 passed in 0.26s
+[M13-4 cache key ignores the snapshot] CAUGHT :: 1 failed, 2 passed in 0.26s
+[M13-5 precheck skipped (invalid, stale, no price)] CAUGHT :: 1 failed, 4 passed in 0.29s
+[M13-6 lab fatal flag not an abstain state] CAUGHT :: 1 failed, 3 passed in 0.29s
+[M13-7 unverified catalyst triggers refresh] CAUGHT :: 1 failed, 11 passed in 0.49s
+[M13-8 stale catalyst triggers refresh] CAUGHT :: 1 failed, 11 passed in 0.50s
+[M13-9 duplicate catalyst triggers refresh again] CAUGHT :: 1 failed, 11 passed in 0.49s
+[M13-10 hook lets an exception through] CAUGHT :: 1 failed, 10 passed in 0.47s
+[M13-11 assessment changes the lab status] CAUGHT :: 1 failed, 1 passed in 0.24s
+[M13-12 unclosed bars used for token signals] CAUGHT :: 1 failed, 15 passed in 0.62s
+[M13-13 DEEP stage reads past the assessment time] CAUGHT :: 1 failed, 16 passed in 0.62s
+[M13-14 scout attaches a record when the policy is off] CAUGHT :: 1 failed, 14 passed in 0.61s
+[M13-15 abstain records dropped instead of stored] CAUGHT :: 1 failed, 4 passed in 0.33s
+[M13-16 cache key ignores new evidence rows] CAUGHT :: 1 failed, 22 passed in 0.86s
+[M13-17 robot outage triggers a refresh] CAUGHT :: 1 failed, 23 passed in 0.86s
+[M13-18 wallet transfer relabeled as a sale] CAUGHT :: 1 failed, 20 passed in 0.72s
+[M13-19 liquidity summed across pools] CAUGHT :: 1 failed, 18 passed in 0.69s
+[M13-20 published time used as availability] CAUGHT :: 1 failed, 19 passed in 0.80s
+[M13-21 cached answer served after it aged out] CAUGHT :: 1 failed, 24 passed in 0.87s
+[M13-22 severe stress silently dropped] CAUGHT :: 1 failed, 25 passed in 0.92s
+[M13-23 severe stress rewrites the lab score] CAUGHT :: 1 failed, 25 passed in 1.06s
+[M13-24 cache key ignores the token's bars] CAUGHT :: 1 failed, 26 passed in 1.03s
+RESULT: all mutations caught

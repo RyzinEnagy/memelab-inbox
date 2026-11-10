@@ -1,0 +1,12 @@
+[A market entry] hour10 open=110 close=110.5 ; hour11 open=111 ; hour15 gap=False
+  go_long at index=10 candle(ts=1767261600000, open=110.0, close=110.5) price=110.5
+  ENTRY filled price=110.5 at executed_at=1767265200000.0 (hour 11.0000)
+  EXIT filled price=120.5 type=MARKET at hour 21.0000
+  metrics: total_trades=1 net_profit=10.0
+[B gap-down stop] hour10 open=110 close=110.5 ; hour11 open=111 ; hour15 gap=True
+  go_long at index=10 candle(ts=1767261600000, open=110.0, close=110.5) price=110.5
+  ENTRY filled price=110.5 at executed_at=1767265200000.0 (hour 11.0000)
+  stop set at 104.975
+  EXIT filled price=100.0 type=STOP at hour 15.0167
+  metrics: total_trades=1 net_profit=-10.5
+exit_code=0

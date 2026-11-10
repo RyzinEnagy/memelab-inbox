@@ -1,0 +1,20 @@
+=== seeded wrong outputs (scratch clone, docs only):
+-5. The corpus covers 17 days of lab history (139,168 hourly bars over 258 mints). 429 of 686 universe mints have no stored bars, mostly screened-out and EVM to
++5. The corpus covers 17 days of lab history (139,186 hourly bars over 258 mints). 429 of 686 universe mints have no stored bars, mostly screened-out and EVM to
+-| sealed-test ledgers (reproduced under engine bt-0.2.0) | BREAKOUT_CLOSE 88ae40542f4b, LAB_STATUS e478181404b2 |
++| sealed-test ledgers (reproduced under engine bt-0.2.0) | BREAKOUT_CLOSE 88ae40542f4c, LAB_STATUS e478181404b2 |
+-| max_exit_impact | 0.05 | exit impact cap for the size search |
++| max_exit_impact | 0.5 | exit impact cap for the size search |
+=== existing checks on the seeded clone
+release_audit EXIT=0
+Needs action: no.
+239 passed in 38.85s
+=== reviewer check on the seeded docs
+FAIL runbook command `outcomes calibrate [--horizon 24] [--with-launches]`  (unknown flags ['--horizon'])
+FAIL policy default max_exit_impact = 0.5  (code has 0.05)
+FAIL report names audits/backtesting/PHASE_17.md
+FAIL hash: sealed-test ledger BREAKOUT_CLOSE
+FAIL clean-install log was made at the release commit  (log ddc0794, HEAD fcb676a)
+FAIL report: 139,168 hourly bars over 258 mints  (139,168 over 258)
+51 of 57 checks pass
+EXIT=1

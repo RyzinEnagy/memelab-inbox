@@ -1,0 +1,114 @@
+2026-10-23T20:40:45Z
+============================= test session starts ==============================
+platform linux -- Python 3.13.17, pytest-9.1.1, pluggy-1.7.0 -- /usr/bin/python3
+rootdir: /home/claude/work/memelab-inbox
+plugins: platformdirs-4.12.4, anyio-4.15.1
+collecting ... collected 19 items
+
+tests/test_backtest_e2e_audit.py::test_g03_g32_cohort_evidence_uses_only_tokens_known_at_the_assessment FAILED [  5%]
+tests/test_backtest_e2e_audit.py::test_g02_cohort_evidence_never_splices_two_pools_of_one_mint FAILED [ 10%]
+tests/test_backtest_e2e_audit.py::test_g17_position_that_cannot_fully_exit_by_end_of_data_is_still_reported FAILED [ 15%]
+tests/test_backtest_e2e_audit.py::test_g17_partial_exits_keep_the_original_cost_in_the_trade_return FAILED [ 21%]
+tests/test_backtest_e2e_audit.py::test_g24_entry_of_all_remaining_cash_is_rejected_or_paid_never_a_crash FAILED [ 26%]
+tests/test_backtest_e2e_audit.py::test_concurrent_first_connect_to_a_new_database_never_crashes FAILED [ 31%]
+tests/test_backtest_e2e_audit.py::test_concurrent_outcome_tracker_skips_or_waits_instead_of_crashing FAILED [ 36%]
+tests/test_backtest_e2e_audit.py::test_g34_locked_research_db_degrades_the_hook_to_an_explicit_error PASSED [ 42%]
+tests/test_backtest_e2e_audit.py::test_g33_unusable_research_db_path_never_raises_into_the_scout PASSED [ 47%]
+tests/test_backtest_e2e_audit.py::test_g31_brand_new_token_never_reads_as_token_specific_even_with_a_cohort PASSED [ 52%]
+tests/test_backtest_e2e_audit.py::test_g39_credential_bearing_urls_are_never_stored PASSED [ 57%]
+tests/test_backtest_e2e_audit.py::test_g39_batch_status_never_echoes_a_credential FAILED [ 63%]
+tests/test_backtest_e2e_audit.py::test_g36_archive_proof_older_than_the_page_itself_is_refused FAILED [ 68%]
+tests/test_backtest_e2e_audit.py::test_g36_injected_or_backdated_date_text_cannot_move_availability PASSED [ 73%]
+tests/test_backtest_e2e_audit.py::test_g37_body_only_retro_edit_is_the_same_record_and_a_title_edit_is_a_new_version PASSED [ 78%]
+tests/test_backtest_e2e_audit.py::test_crawlers_absent_runtime_still_imports_and_has_no_crawler_dependency PASSED [ 84%]
+tests/test_backtest_e2e_audit.py::test_g39_all_sources_down_yields_no_record_and_no_positive_catalyst PASSED [ 89%]
+tests/test_backtest_e2e_audit.py::test_g09_sell_matches_exact_rational_arithmetic PASSED [ 94%]
+tests/test_backtest_e2e_audit.py::test_g25_gap_loss_exceeds_the_intended_stop_with_modeled_exit_liquidity PASSED [100%]
+
+=================================== FAILURES ===================================
+____ test_g03_g32_cohort_evidence_uses_only_tokens_known_at_the_assessment _____
+tests/test_backtest_e2e_audit.py:108: in test_g03_g32_cohort_evidence_uses_only_tokens_known_at_the_assessment
+    assert he.get("n", 0) == 0 and he["tier"] != "HISTORICAL_COHORT", he
+E   AssertionError: {'tier': 'HISTORICAL_COHORT', 'status': 'SETUP DEVELOPING', 'n': 35, 'horizon_h': 24, ...}
+E   assert (35 == 0)
+E    +  where 35 = <built-in method get of dict object at 0x7f8bc694a840>('n', 0)
+E    +    where <built-in method get of dict object at 0x7f8bc694a840> = {'tier': 'HISTORICAL_COHORT', 'status': 'SETUP DEVELOPING', 'n': 35, 'horizon_h': 24, ...}.get
+_________ test_g02_cohort_evidence_never_splices_two_pools_of_one_mint _________
+tests/test_backtest_e2e_audit.py:127: in test_g02_cohort_evidence_never_splices_two_pools_of_one_mint
+    assert c["worst_drop_p10_p50"][1] > -0.05, c
+E   AssertionError: {'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'horizon_h': 24, ...}
+E   assert -0.991 > -0.05
+__ test_g17_position_that_cannot_fully_exit_by_end_of_data_is_still_reported ___
+tests/test_backtest_e2e_audit.py:145: in test_g17_position_that_cannot_fully_exit_by_end_of_data_is_still_reported
+    assert r["n_trades"] == 1, f"filled 1 entry, {r['n_trades']} trades; journal tail {r['journal'][-3:]}"
+E   AssertionError: filled 1 entry, 0 trades; journal tail [{'t': 1800032400.0, 'event': 'PARTIAL_EXIT', 'mint': 'P16PARTIAL', 'sold': 98.66907474298412, 'left': 690.6835232008892}, {'t': 1800036000.0, 'event': 'PARTIAL_EXIT', 'mint': 'P16PARTIAL', 'sold': 100.1491108641289, 'left': 590.5344123367603}, {'t': 1800039600.0, 'event': 'PARTIAL_EXIT', 'mint': 'P16PARTIAL', 'sold': 97.4381780355654, 'left': 493.0962343011949}]
+E   assert 0 == 1
+______ test_g17_partial_exits_keep_the_original_cost_in_the_trade_return _______
+tests/test_backtest_e2e_audit.py:156: in test_g17_partial_exits_keep_the_original_cost_in_the_trade_return
+    assert tr["cost_usd"] == pytest.approx(cost, rel=1e-9), tr["cost_usd"]
+E   AssertionError: -537.0779361687264
+E   assert -537.0779361687264 == 1000.01575 ± 1.0e-06
+E     
+E     comparison failed
+E     Obtained: -537.0779361687264
+E     Expected: 1000.01575 ± 1.0e-06
+____ test_g24_entry_of_all_remaining_cash_is_rejected_or_paid_never_a_crash ____
+tests/test_backtest_e2e_audit.py:176: in test_g24_entry_of_all_remaining_cash_is_rejected_or_paid_never_a_crash
+    assert e.min_cash >= 0, f"an entry was filled without the cash for its network fee: cash went to {e.min_cash}"
+E   AssertionError: an entry was filled without the cash for its network fee: cash went to -0.015750000000025466
+E   assert -0.015750000000025466 >= 0
+E    +  where -0.015750000000025466 = <test_backtest_e2e_audit.test_g24_entry_of_all_remaining_cash_is_rejected_or_paid_never_a_crash.<locals>.Watch object at 0x7f8bcbf67a10>.min_cash
+________ test_concurrent_first_connect_to_a_new_database_never_crashes _________
+tests/test_backtest_e2e_audit.py:203: in test_concurrent_first_connect_to_a_new_database_never_crashes
+    assert got == ["OK"] * 8, got
+E   AssertionError: ['OK', 'IntegrityError: UNIQUE constraint failed: bt_schema_migrations.version', 'OK', 'OK', 'IntegrityError: UNIQUE constraint failed: bt_schema_migrations.version', 'IntegrityError: UNIQUE constraint failed: bt_schema_migrations.version', ...]
+E   assert ['OK', 'Integ...version', ...] == ['OK', 'OK', ...K', 'OK', ...]
+E     
+E     At index 1 diff: 'IntegrityError: UNIQUE constraint failed: bt_schema_migrations.version' != 'OK'
+E     
+E     Full diff:
+E       [
+E           'OK',
+E     +     'IntegrityError: UNIQUE constraint failed: bt_schema_migrations.version',...
+E     
+E     ...Full output truncated (12 lines hidden), use '-vv' to show
+______ test_concurrent_outcome_tracker_skips_or_waits_instead_of_crashing ______
+tests/test_backtest_e2e_audit.py:217: in test_concurrent_outcome_tracker_skips_or_waits_instead_of_crashing
+    out = O.track(c1, now=T0 + 10 * 86400)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+memelab/backtest/outcomes.py:161: in track
+    _, ins = record(con, o, h, out, asof, now)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+memelab/backtest/outcomes.py:130: in record
+    return store._insert(con, "bt_outcomes", dict(opportunity_id=opp["opportunity_id"], chain=opp["chain"], mint=opp["mint"], decision_time=opp["decision_time"],
+memelab/backtest/store.py:67: in _insert
+    cur = con.execute(f"INSERT OR IGNORE INTO {table} ({','.join(cols)}) VALUES ({','.join('?' * len(cols))})", list(row.values()))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   sqlite3.OperationalError: database is locked
+_______________ test_g39_batch_status_never_echoes_a_credential ________________
+tests/test_backtest_e2e_audit.py:304: in test_g39_batch_status_never_echoes_a_credential
+    assert SECRET not in json.dumps(out)
+E   assert 'fc-abababab...abababababab' not in '{"recorded"... "DEGRADED"}'
+E     
+E     'fc-abababababababababababababababab' is contained here:
+E     ?                                                                                                                                                                        ^^^^^^^^^^^
+E       {"recorded": 1, "duplicates": 0, "refused_off_allowlist": 1, "failed": 0, "empty": 0, "partial": 0, "over_cap": 0, "rows": [{"url": "https://solana.com/news/x?api_key=fc-abababababababababababababababab", "state": "OFF_ALLOWLIST", "error": "https://solana.com/news/x?api_key=fc-abababababababababababababababab is outside the project_cata...
+E     
+E     ...Full output truncated (2 lines hidden), use '-vv' to show
+_________ test_g36_archive_proof_older_than_the_page_itself_is_refused _________
+tests/test_backtest_e2e_audit.py:309: in test_g36_archive_proof_older_than_the_page_itself_is_refused
+    with pytest.raises((ValueError, Exception)):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE any of (ValueError, Exception)
+=========================== short test summary info ============================
+FAILED tests/test_backtest_e2e_audit.py::test_g03_g32_cohort_evidence_uses_only_tokens_known_at_the_assessment
+FAILED tests/test_backtest_e2e_audit.py::test_g02_cohort_evidence_never_splices_two_pools_of_one_mint
+FAILED tests/test_backtest_e2e_audit.py::test_g17_position_that_cannot_fully_exit_by_end_of_data_is_still_reported
+FAILED tests/test_backtest_e2e_audit.py::test_g17_partial_exits_keep_the_original_cost_in_the_trade_return
+FAILED tests/test_backtest_e2e_audit.py::test_g24_entry_of_all_remaining_cash_is_rejected_or_paid_never_a_crash
+FAILED tests/test_backtest_e2e_audit.py::test_concurrent_first_connect_to_a_new_database_never_crashes
+FAILED tests/test_backtest_e2e_audit.py::test_concurrent_outcome_tracker_skips_or_waits_instead_of_crashing
+FAILED tests/test_backtest_e2e_audit.py::test_g39_batch_status_never_echoes_a_credential
+FAILED tests/test_backtest_e2e_audit.py::test_g36_archive_proof_older_than_the_page_itself_is_refused
+======================== 9 failed, 10 passed in 12.86s =========================
+EXIT=1

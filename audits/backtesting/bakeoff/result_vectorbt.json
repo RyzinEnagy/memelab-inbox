@@ -1,0 +1,26 @@
+{
+ "default_close_fill": [
+  {
+   "entry_bar": 20,
+   "entry_px": 1.1,
+   "exit_bar": 35,
+   "exit_px": 0.93,
+   "size": 906.823849467241,
+   "pnl": -158.76218544547717,
+   "ret": -0.15915909090909086
+  }
+ ],
+ "default_close_fill_secs": 6.398861578999913,
+ "adjusted_next_open": [
+  {
+   "entry_bar": 21,
+   "entry_px": 1.11,
+   "exit_bar": 35,
+   "exit_px": 0.95,
+   "size": 898.6542652378063,
+   "pnl": -148.4127519040239,
+   "ret": -0.14878378378378396
+  }
+ ],
+ "adjusted_next_open_secs": 3.7210273199998483
+}

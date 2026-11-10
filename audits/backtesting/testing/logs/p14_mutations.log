@@ -1,0 +1,22 @@
+baseline (unmutated): exit 0 :: 48 passed in 4.36s
+[M14-1 missing assessment not labeled UNTESTED] CAUGHT :: 1 failed, 12 passed in 0.62s
+[M14-2 lab fatal flag does not win the label] CAUGHT :: 1 failed, 14 passed in 0.59s
+[M14-3 strategies ranked by paper return] CAUGHT :: 1 failed, 4 passed in 0.41s
+[M14-4 tiny samples ranked] CAUGHT :: 1 failed, 4 passed in 0.35s
+[M14-5 paper-only profit not flagged] CAUGHT :: 1 failed, 4 passed in 0.39s
+[M14-6 high-status mismatch hidden] CAUGHT :: 1 failed, 10 passed in 0.50s
+[M14-7 fatal override not detected] CAUGHT :: 1 failed, 13 passed in 0.59s
+[M14-8 blocked quote given made-up proceeds] CAUGHT :: 1 failed, 3 passed in 0.30s
+[M14-9 abstained candidate loses the lab view] CAUGHT :: 1 failed in 0.21s
+[M14-10 alert hides a missing assessment] CAUGHT :: 1 failed, 16 passed in 0.71s
+[M14-11 alerts change when the policy is off] CAUGHT :: 1 failed, 16 passed in 0.60s
+[M14-12 scout section printed when off] CAUGHT :: 1 failed, 14 passed in 0.62s
+[M14-13 paper value shown as executable] CAUGHT :: 1 failed in 0.21s
+[M14-14 report implies Maxun is running] CAUGHT :: 1 failed, 15 passed in 0.64s
+[M14-15 late crawl not warned] CAUGHT :: 1 failed, 15 passed in 0.66s
+[M14-16 robot refresh burst not rate limited] CAUGHT :: 1 failed, 11 passed in 0.50s
+[M14-17 old assessment age not disclosed on alerts] CAUGHT :: 1 failed, 16 passed in 0.71s
+[M14-18 --as-of ignored] CAUGHT :: 1 failed, 21 passed in 3.50s
+[M14-19 new token reported with token-specific evidence] CAUGHT :: 1 failed, 2 passed in 0.38s
+[M14-20 missing quote uncertainty dropped] CAUGHT :: 1 failed, 3 passed in 0.29s
+RESULT: all mutations caught

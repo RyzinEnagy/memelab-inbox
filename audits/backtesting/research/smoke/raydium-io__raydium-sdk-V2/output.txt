@@ -1,0 +1,18 @@
+pool: 1e9 TOKEN (6 dp) / 30 SOL (9 dp); spot = 3e-08 SOL/TOKEN
+
+[1] buy TOKEN with SOL, AMM v4 (0.25% hardcoded) vs CPMM tradeFeeRate=2500 (0.25%)
+  in   0.1 SOL: v4 out 3,313,981 TOKEN fee 250000 lamports | cpmm out 3,313,981 | avg-price impact 0.5840%
+  in   1.0 SOL: v4 out 32,180,015 TOKEN fee 2500000 lamports | cpmm out 32,180,015 | avg-price impact 3.5840%
+  in   5.0 SOL: v4 out 142,550,911 TOKEN fee 12500000 lamports | cpmm out 142,550,911 | avg-price impact 16.9173%
+  in  10.0 SOL: v4 out 249,530,957 TOKEN fee 25000000 lamports | cpmm out 249,530,957 | avg-price impact 33.5840%
+
+[2] CPMM priceImpact as the SDK computes it (cpmm.ts:1602 executionPrice = out_raw/in_raw; cpmm.ts:1611 impact = (poolPrice - executionPrice)/poolPrice)
+  sell 1,000,000 TOKEN (A->B): SDK-formula priceImpact = -995.506 ; decimal- and direction-correct = 0.349403%
+    MISMATCH: CPMM priceImpact formula is not comparable across decimals/direction
+  buy with 1 SOL (B->A): SDK-formula priceImpact = -1.07267e+12 ; decimal- and direction-correct = 3.459956%
+    MISMATCH: CPMM priceImpact formula is not comparable across decimals/direction
+
+[3] AMM v4 priceImpact (liquidity.ts:1067-1072, 1124-1133) uses decimal-adjusted, direction-aware prices; no mismatch expected there.
+
+formula mismatches found: 2
+exit_code=1

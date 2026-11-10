@@ -1,0 +1,125 @@
+[
+ {
+  "pool": "5wNu5QhdpRGrL37ffcd6TMMqZugQgxwafgz477rShtHy",
+  "quote": "SOL",
+  "fee": 0.003,
+  "curve": [
+   {
+    "size_quote": 0.5,
+    "tokens": 1792.33975,
+    "proceeds_quote": 0.497,
+    "loss_frac": 0.00599,
+    "entry_impact": 0.00307,
+    "exit_impact": 0.00306
+   },
+   {
+    "size_quote": 5,
+    "tokens": 17913.83522,
+    "proceeds_quote": 4.97006,
+    "loss_frac": 0.00599,
+    "entry_impact": 0.0036,
+    "exit_impact": 0.00359
+   },
+   {
+    "size_quote": 25,
+    "tokens": 89357.29755,
+    "proceeds_quote": 24.85067,
+    "loss_frac": 0.00597,
+    "entry_impact": 0.00598,
+    "exit_impact": 0.00594
+   },
+   {
+    "size_quote": 100,
+    "tokens": 354286.40916,
+    "proceeds_quote": 99.4079,
+    "loss_frac": 0.00592,
+    "entry_impact": 0.01491,
+    "exit_impact": 0.01465
+   }
+  ],
+  "max_size_exit_impact_3pct": 235.349,
+  "max_size_exit_impact_10pct": 911.275
+ },
+ {
+  "pool": "3KFCgJ5R3zshW8hTDbzjSrrKSRYmKvsMfhc4Vo4iddxD",
+  "quote": "SOL",
+  "fee": 0.0055,
+  "curve": [
+   {
+    "size_quote": 0.5,
+    "tokens": 9496.50964,
+    "proceeds_quote": 0.49452,
+    "loss_frac": 0.01097,
+    "entry_impact": 0.00573,
+    "exit_impact": 0.00569
+   },
+   {
+    "size_quote": 5,
+    "tokens": 94798.72569,
+    "proceeds_quote": 4.94526,
+    "loss_frac": 0.01095,
+    "entry_impact": 0.00749,
+    "exit_impact": 0.00743
+   },
+   {
+    "size_quote": 25,
+    "tokens": 470331.49307,
+    "proceeds_quote": 24.72839,
+    "loss_frac": 0.01086,
+    "entry_impact": 0.01534,
+    "exit_impact": 0.01505
+   },
+   {
+    "size_quote": 100,
+    "tokens": 1828353.13424,
+    "proceeds_quote": 98.94399,
+    "loss_frac": 0.01056,
+    "entry_impact": 0.04475,
+    "exit_impact": 0.04264
+   }
+  ],
+  "max_size_exit_impact_3pct": 65.109,
+  "max_size_exit_impact_10pct": 270.669
+ },
+ {
+  "pool": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+  "quote": "PUMP",
+  "fee": 0.0125,
+  "curve": [
+   {
+    "size_quote": 5000,
+    "tokens": 3369.85363,
+    "proceeds_quote": 4875.7922,
+    "loss_frac": 0.02484,
+    "entry_impact": 0.01275,
+    "exit_impact": 0.01259
+   },
+   {
+    "size_quote": 50000,
+    "tokens": 33671.48579,
+    "proceeds_quote": 48758.90659,
+    "loss_frac": 0.02482,
+    "entry_impact": 0.01356,
+    "exit_impact": 0.01337
+   },
+   {
+    "size_quote": 250000,
+    "tokens": 167758.92356,
+    "proceeds_quote": 243816.31863,
+    "loss_frac": 0.02473,
+    "entry_impact": 0.01718,
+    "exit_impact": 0.01683
+   },
+   {
+    "size_quote": 1000000,
+    "tokens": 662207.71565,
+    "proceeds_quote": 975586.68133,
+    "loss_frac": 0.02441,
+    "entry_impact": 0.03074,
+    "exit_impact": 0.02961
+   }
+  ],
+  "max_size_exit_impact_3pct": 1023267.686,
+  "max_size_exit_impact_10pct": 5514275.862
+ }
+]

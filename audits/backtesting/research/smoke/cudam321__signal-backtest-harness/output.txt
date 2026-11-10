@@ -1,0 +1,38 @@
+NOTE: static AST analysis only; repo not installed, no repo code imported or executed (niche repo, 0 stars, not on PyPI). Timing consequences computed independently from extracted constants.
+$ python3 -I /home/claude/work/memelab-inbox/audits/backtesting/research/smoke/cudam321__signal-backtest-harness/script.py /home/claude/ext/reviews/cudam321__signal-backtest-harness
+
+_MINUTE_WINDOW = timedelta(hours=16)  (geckoterminal.py:77)
+_MINUTE_SPAN = timedelta(hours=16)  (jupiter.py:167; JupiterChartsClient is the CLI default --source)
+_ENTRY_BUFFER = timedelta(minutes=2), _EXIT_BUFFER = timedelta(minutes=5)  (horizon_backtest.py:30,31)
+default price_mode: run_backtest='close' (horizon_backtest.py:79), simulate_fill='close' (fill_simulator.py:77)
+config.toml horizons=['30s', '5m', '15m', '1h', '4h', '1d'] latency_seconds=3.0
+
+query window = 24.12 h -> bar resolution = hour (3600s)
+
+Per-call timing under defaults (posted at minute offset 0..59 inside an hour, 1 s steps):
+horizon | max seconds the entry price lies AFTER true entry | share of calls with entry+exit in same bar (gross forced to 1.0)
+    30s |     3600 s |  99.2%
+     5m |     3600 s |  91.7%
+    15m |     3600 s |  75.0%
+     1h |     3600 s |   0.0%
+     4h |     3600 s |   0.0%
+     1d |     3600 s |   0.0%
+
+[price_at reads the covering bar by OPEN time and returns its CLOSE]
+  fill_simulator.py:70: i = bisect_right(ts_list, t) - 1
+  fill_simulator.py:74: return {"open": bar.open, "high": bar.high, "low": bar.low}.get(mode, bar.close)
+  fill_simulator.py:98: return None  # cannot price entry -> exclude from the sample
+  horizon_backtest.py:106: except Exception:
+  horizon_backtest.py:108: if series.empty:
+  horizon_backtest.py:109: continue
+  horizon_backtest.py:118: continue
+  geckoterminal.py:226: pools.sort(key=lambda p: p.liquidity_usd if p.liquidity_usd is not None else -1.0, reverse=True)
+  geckoterminal.py:305: pool = pools[0]
+
+[can the repo tests see intrabar timing?]
+  tests/test_fill_simulator.py builds flat candles (open=high=low=close): True
+  test latency_seconds values: ['0.0']
+
+RESULT: default config uses hourly bars; entry priced at the covering bar close; short horizons collapse into one bar
+exit_code=0
+wall_seconds=1

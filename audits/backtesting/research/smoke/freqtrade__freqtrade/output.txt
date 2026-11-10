@@ -1,0 +1,4 @@
+signals: enter_long on bar 10 close, exit_long on bar 20 close
+[A next-bar] entry bar 11 rate=111.0 (bar11 open=111.0) | exit bar 21 rate=121.0 (bar21 open=121.0 low=120.0 high=123.0) reason=exit_signal
+[B stop gap] entry bar 11 rate=111.0 (bar11 open=111.0) | exit bar 15 rate=105.45 (bar15 open=100.0 low=99.0 high=108.0) reason=stop_loss
+exit_code=0

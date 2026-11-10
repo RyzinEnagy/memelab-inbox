@@ -1,0 +1,28 @@
+{
+ "A_noimpact_1000": [
+  {
+   "entry_bar": 21,
+   "entry_px": 1.11,
+   "exit_bar": 35,
+   "exit_px": 0.95,
+   "size": 898.0,
+   "pnl": -148.3047000000001,
+   "ret": -0.14878378378378387
+  }
+ ],
+ "A_noimpact_1000_equity_final": 851.6952999999999,
+ "A_noimpact_1000_secs": 0.019412052000006952,
+ "B_noimpact_1000": [
+  {
+   "entry_bar": 8,
+   "entry_px": 1.006,
+   "exit_bar": 14,
+   "exit_px": 1.018,
+   "size": 991.0,
+   "pnl": 6.87754000000001,
+   "ret": 0.0068986083499005275
+  }
+ ],
+ "B_noimpact_1000_equity_final": 1006.8775400000001,
+ "B_noimpact_1000_secs": 0.013008501000058459
+}

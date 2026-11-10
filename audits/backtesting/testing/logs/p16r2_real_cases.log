@@ -1,0 +1,5 @@
+EXIT=0
+RUG fields differing from the first pass besides cohort_evidence: [] | cohort now (no as-of, labeled): {'package_n': 138, 'package_tier': 'HISTORICAL_COHORT', 'cohort_tokens_known_at_decision': 71}
+FAILED_CATALYST fields differing from the first pass besides cohort_evidence: [] | cohort now (no as-of, labeled): {'package_n': 138, 'package_tier': 'HISTORICAL_COHORT', 'cohort_tokens_known_at_decision': 52}
+POSITIVE_CATALYST fields differing from the first pass besides cohort_evidence: [] | cohort now (no as-of, labeled): {'package_n': 138, 'package_tier': 'HISTORICAL_COHORT', 'cohort_tokens_known_at_decision': 52}
+FRESH fields differing from the first pass besides cohort_evidence: [] | cohort now (no as-of, labeled): {'package_n': 27, 'package_tier': 'INSUFFICIENT_HISTORY', 'cohort_tokens_known_at_decision': 48}

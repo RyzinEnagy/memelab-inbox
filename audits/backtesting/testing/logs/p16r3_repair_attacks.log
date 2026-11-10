@@ -1,0 +1,170 @@
+c42045b
+2026-10-23T23:17:37Z
+============================= test session starts ==============================
+platform linux -- Python 3.13.17, pytest-9.1.1, pluggy-1.7.0 -- /usr/bin/python3
+rootdir: /home/claude/work/memelab-inbox
+plugins: platformdirs-4.12.4, anyio-4.15.1
+collecting ... collected 20 items
+
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_steady_divergence_is_refused PASSED [  5%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_alternating_divergence FAILED [ 10%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_sparse_real_market FAILED [ 15%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_three_pools_real_market_split_across_two_pools FAILED [ 20%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_three_pools_one_off_market_side_pool_is_refused_and_disclosed PASSED [ 25%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_gap_across_a_missing_hour_still_refused PASSED [ 30%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_rug_with_a_two_hour_stale_side_pool_is_disclosed PASSED [ 35%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_report_markdown_discloses_cohort_bias_and_censored_windows FAILED [ 40%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_hex_and_secret_key_shaped_values FAILED [ 45%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_context_word_without_separator FAILED [ 50%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_false_positives_after_credential_words FAILED [ 55%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_keeps_public_identifiers_and_removes_prefixed_keys PASSED [ 60%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_cohort_cache_in_memory_id_reuse FAILED [ 65%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_fresh_database_burst_repeated[0] PASSED [ 70%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_fresh_database_burst_repeated[1] PASSED [ 75%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_fresh_database_burst_repeated[2] PASSED [ 80%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_fresh_database_burst_repeated[3] PASSED [ 85%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_fresh_database_burst_repeated[4] PASSED [ 90%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_connect_to_an_existing_database_is_not_blocked_by_a_writer PASSED [ 95%]
+audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_connect_gives_up_on_a_non_lock_error PASSED [100%]
+
+=================================== FAILURES ===================================
+_____________________ test_r3_guard_alternating_divergence _____________________
+
+con = <sqlite3.Connection object at 0x7fcb39a87790>
+
+    def test_r3_guard_alternating_divergence(con):
+        """The wash pool prints at the market (1.00) in even hours and drifts down in odd hours, so the last hour (23) is
+        off the market: never two consecutive hours apart, and the window's last close is the wash price."""
+        c = wash_world(con, set(range(24)), lambda i: 1.0 if i % 2 == 0 else max(0.05, 1.0 - 0.04 * (i + 1)))
+>       assert c["tier"] != "HISTORICAL_COHORT" or c["ret_p10_p50_p90"][1] > -0.5, c
+E       AssertionError: {'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'n_complete': 30, ...}
+E       assert ('HISTORICAL_COHORT' != 'HISTORICAL_COHORT' or -0.95 > -0.5)
+
+audits/backtesting/testing/test_p16r3_repair_attacks.py:97: AssertionError
+_______________________ test_r3_guard_sparse_real_market _______________________
+
+con = <sqlite3.Connection object at 0x7fcb39bb98a0>
+
+    def test_r3_guard_sparse_real_market(con):
+        """The real market trades every other hour (flat); the wash basis collapses every hour."""
+        c = wash_world(con, set(range(0, 24, 2)), lambda i: max(0.05, 1.0 - 0.04 * (i + 1)))
+>       assert c["tier"] != "HISTORICAL_COHORT" or c["ret_p10_p50_p90"][1] > -0.5, c
+E       AssertionError: {'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'n_complete': 30, ...}
+E       assert ('HISTORICAL_COHORT' != 'HISTORICAL_COHORT' or -0.95 > -0.5)
+
+audits/backtesting/testing/test_p16r3_repair_attacks.py:103: AssertionError
+_________ test_r3_guard_three_pools_real_market_split_across_two_pools _________
+
+con = <sqlite3.Connection object at 0x7fcb39bb9f30>
+
+    def test_r3_guard_three_pools_real_market_split_across_two_pools(con):
+        """Wash basis collapses every hour; the real market is flat at 1.00 but split: R1 trades in even hours, R2 in odd hours."""
+        c = _three_pool_world(con, lambda i: max(0.05, 1.0 - 0.04 * (i + 1)),
+                              {"R1": (set(range(0, 24, 2)), lambda i: 1.0), "R2": (set(range(1, 24, 2)), lambda i: 1.0)})
+>       assert c["tier"] != "HISTORICAL_COHORT" or c["ret_p10_p50_p90"][1] > -0.5, c
+E       AssertionError: {'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'n_complete': 30, ...}
+E       assert ('HISTORICAL_COHORT' != 'HISTORICAL_COHORT' or -0.95 > -0.5)
+
+audits/backtesting/testing/test_p16r3_repair_attacks.py:127: AssertionError
+______ test_r3_report_markdown_discloses_cohort_bias_and_censored_windows ______
+
+con = <sqlite3.Connection object at 0x7fcb39bbaa70>
+
+    def test_r3_report_markdown_discloses_cohort_bias_and_censored_windows(con):
+        """30 tokens trade flat for the whole window, 15 stop trading after 4 hours (CENSORED, counted at the last price)
+        and 15 never traded (not measurable). The cohort is flagged selection-biased (25% unmeasured) with 45 measured, 30
+        complete. The per-token Markdown report must not call 45 windows complete and must show the bias flag."""
+        for k in range(60):
+            m = f"C{k:02d}"
+            member(con, m, "WATCH", T0)
+            if k >= 45:
+                continue
+            pool(con, m, f"P{m}", T0 - 86400)
+            for i in (range(-2, 24) if k < 30 else range(-2, 4)):
+                bar(con, m, f"P{m}", T0 + i * H, 1.0, 1.0 if k < 30 else 0.2, 1000.0)
+        con.commit()
+        coh = S.empirical_cohort(con, "WATCH", min_n=30, asof=T0 + 10 * 86400)
+        assert coh["tier"] == "HISTORICAL_COHORT" and coh["n"] == 45 and coh["n_complete"] == 30 and coh["selection_bias_risk"], coh
+        a = {"chain": "solana", "mint": "C00", "as_of": T0 + 10 * 86400, "state": "PARTIAL_WITH_LIMITATIONS", "tier": "HISTORICAL_COHORT",
+             "stress": {"historical_evidence": coh, "decision": "INCONCLUSIVE"}}
+        doc = report.build(a, lab={"score": 60, "status": "WATCH", "fatal_flags": []}, shared={})
+        assert doc["historical_evidence"]["cohort"]["selection_bias_risk"] is True          # the JSON document carries the flag
+        md = report.render_md(doc)
+        line = next(x for x in md.splitlines() if x.startswith("Cohort of past tokens"))
+>       assert "45 complete cases" not in line and "bias" in md.lower(), line
+E       AssertionError: Cohort of past tokens with lab status WATCH: 45 complete cases of 60 tokens the lab had recorded by then, tier HISTORICAL_COHORT (minimum 30). Returns over 24 h, p10 / p50 / p90: -80.0% / +0.0% / +0.0%; worst drop p10 / p50: -80.0% / +0.0%. Mid prices before costs.
+E       assert ('45 complete cases' not in 'Cohort of p...efore costs.'
+E         
+E         '45 complete cases' is contained here:
+E           Cohort of past tokens with lab status WATCH: 45 complete cases of 60 tokens the lab had recorded by then, tier HISTORICAL_COHORT (minimum 30). Returns over 24 h, p10 / p50 / p90: -80.0% / +0.0% / +0.0%; worst drop p10 / p50: -80.0% / +0.0%. Mid prices before costs.
+E         ?                                              +++++++++++++++++)
+
+audits/backtesting/testing/test_p16r3_repair_attacks.py:186: AssertionError
+______________ test_r3_redaction_hex_and_secret_key_shaped_values ______________
+
+    def test_r3_redaction_hex_and_secret_key_shaped_values():
+        hex64 = "9f86d081" * 8                                   # 64-hex secret shape (HMAC secrets, many API keys)
+        hex40 = "e4c1a0b2" * 5                                   # 40-hex token shape (legacy personal access tokens)
+        fake_secret_key = b58encode(bytes([7]) * 64)                # FAKE: base58 of 64 bytes of 0x07, the shape of a Solana secret key
+        texts = [f"Authorization: Bearer {hex64}", f"HMAC secret {hex64} rejected", f"token {hex40} expired", f"private key {fake_secret_key} refused"]
+        leaked = [t[:40] for t, s in zip(texts, (hex64, hex64, hex40, fake_secret_key)) if s in (webcapture.redact_text(t) or "")]
+>       assert not leaked, leaked
+E       AssertionError: ['Authorization: Bearer 9f86d0819f86d0819f', 'HMAC secret 9f86d0819f86d0819f86d0819f86', 'token e4c1a0b2e4c1a0b2e4c1a0b2e4c1a0b2e4', 'private key 99eUso3aSbE9tqGSTXzo3TLfKb9R']
+E       assert not ['Authorization: Bearer 9f86d0819f86d0819f', 'HMAC secret 9f86d0819f86d0819f86d0819f86', 'token e4c1a0b2e4c1a0b2e4c1a0b2e4c1a0b2e4', 'private key 99eUso3aSbE9tqGSTXzo3TLfKb9R']
+
+audits/backtesting/testing/test_p16r3_repair_attacks.py:197: AssertionError
+_______________ test_r3_redaction_context_word_without_separator _______________
+
+    def test_r3_redaction_context_word_without_separator():
+        hex32 = "a0b1" * 8
+        t = f"provider rejected the X-API-KEY header value {hex32}"
+>       assert hex32 not in (webcapture.redact_text(t) or "")
+E       AssertionError: assert 'a0b1a0b1a0b...a0b1a0b1a0b1' not in 'provider re...a0b1a0b1a0b1'
+E         
+E         'a0b1a0b1a0b1a0b1a0b1a0b1a0b1a0b1' is contained here:
+E           provider rejected the X-API-KEY header value a0b1a0b1a0b1a0b1a0b1a0b1a0b1a0b1
+
+audits/backtesting/testing/test_p16r3_repair_attacks.py:203: AssertionError
+___________ test_r3_redaction_false_positives_after_credential_words ___________
+
+    def test_r3_redaction_false_positives_after_credential_words():
+        t = "missing key published_time_field_value; token expired_at_2026-10-23T12:00:00Z; auth required_for_this_endpoint"
+        r = webcapture.redact_text(t) or ""
+>       assert all(w in r for w in ("published_time_field_value", "expired_at_2026-10-23T12:00:00Z", "required_for_this_endpoint")), r
+E       AssertionError: missing key [removed]; token [removed]; auth [removed]
+E       assert False
+E        +  where False = all(<generator object test_r3_redaction_false_positives_after_credential_words.<locals>.<genexpr> at 0x7fcb39ace4d0>)
+
+audits/backtesting/testing/test_p16r3_repair_attacks.py:209: AssertionError
+___________________ test_r3_cohort_cache_in_memory_id_reuse ____________________
+
+    def test_r3_cohort_cache_in_memory_id_reuse():
+        S._COHORT_CACHE.clear()
+        seen = []
+        for attempt in range(20):
+            a = _mem_cohort(1.0)
+            ra = S.empirical_cohort(a, "WATCH", asof=T0 + 5 * 86400)
+            ida = id(a)
+            a.close(); del a; gc.collect()
+            b = _mem_cohort(0.5)                                     # a different database with the same row ids
+            rb = S.empirical_cohort(b, "WATCH", asof=T0 + 5 * 86400)
+            same_id = id(b) == ida
+            seen.append(same_id)
+            b.close(); del b; gc.collect()
+            if same_id:
+>               assert rb["ret_p10_p50_p90"][1] != ra["ret_p10_p50_p90"][1], f"attempt {attempt}: reused id served the other database's cohort"
+E               AssertionError: attempt 1: reused id served the other database's cohort
+E               assert -0.5 != -0.5
+
+audits/backtesting/testing/test_p16r3_repair_attacks.py:248: AssertionError
+=========================== short test summary info ============================
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_alternating_divergence
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_sparse_real_market
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_three_pools_real_market_split_across_two_pools
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_report_markdown_discloses_cohort_bias_and_censored_windows
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_hex_and_secret_key_shaped_values
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_context_word_without_separator
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_false_positives_after_credential_words
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_cohort_cache_in_memory_id_reuse
+========================= 8 failed, 12 passed in 8.99s =========================
+EXIT=1

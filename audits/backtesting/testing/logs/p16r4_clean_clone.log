@@ -1,0 +1,30 @@
+7c7b582 Backtesting Phase 16: repair pass 4
+2026-10-24T00:16:52Z
+--- tests/test_backtest_*.py + committed attack files (r1, r2, r3)
+audits/backtesting/testing/test_p16r1_repair_attacks.py:121: KeyError
+=========================== short test summary info ============================
+FAILED audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_basis_not_steered_by_wash_volume_on_a_thin_pool
+1 failed, 274 passed in 53.89s
+EXIT=1
+release_audit EXIT=0
+Needs action: no.
+## Credential and key-material shapes in tracked files
+
+- none
+
+--- uncommitted pass-4 files copied into the clone and tracked with git add (index only, no commit) for the audit
+audits/backtesting/testing/test_p16r4_repair_attacks.py:291: AssertionError
+=========================== short test summary info ============================
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_late_persistent_divergence
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_late_persistent_divergence_72h
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_pools_that_never_share_an_hour
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_decoy_pools_outvote_the_real_market
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_guard_exit_hour_print_on_the_basis
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_redaction_32_byte_base58_secret_after_strong_words
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_redaction_underscored_or_letters_only_secret_after_strong_words
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_redaction_url_encoded_bearer_and_short_basic
+FAILED audits/backtesting/testing/test_p16r4_repair_attacks.py::test_r4_cohort_cache_file_replaced_at_the_same_path
+9 failed, 9 passed in 1.66s
+EXIT=1
+release_audit with pass-4 files tracked EXIT=0
+Needs action: no.

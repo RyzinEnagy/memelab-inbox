@@ -1,0 +1,235 @@
+[
+ {
+  "mint": "3GVSN8DLVvrxEafP7JQj6CwBFRxCq8vuUVmsRbCEpump",
+  "pool": "7AvDaHLbHW6qaMGuHQGpebbbGaV7fRTdFq5T5Vd4vdoH",
+  "bars": 38,
+  "strategies": {
+   "BREAKOUT_CLOSE": {
+    "signals": 0,
+    "first": [],
+    "abstain": {
+     "INSUFFICIENT_HISTORY": 24
+    }
+   },
+   "BREAKOUT_RETEST": {
+    "signals": 0,
+    "first": [],
+    "abstain": {
+     "INSUFFICIENT_HISTORY": 26
+    }
+   },
+   "RECLAIM": {
+    "signals": 0,
+    "first": [],
+    "abstain": {
+     "INSUFFICIENT_HISTORY": 26
+    }
+   },
+   "TREND_HHHL": {
+    "signals": 0,
+    "first": [],
+    "abstain": {
+     "INSUFFICIENT_HISTORY": 23
+    }
+   },
+   "ABSORPTION_BREAK": {
+    "signals": 0,
+    "first": [],
+    "abstain": {
+     "INSUFFICIENT_HISTORY": 12
+    }
+   },
+   "MOMENTUM": {
+    "signals": 0,
+    "first": [],
+    "abstain": {
+     "INSUFFICIENT_HISTORY": 29,
+     "ILLIQUID": 1
+    }
+   }
+  }
+ },
+ {
+  "mint": "Ce2gx9KGXJ6C9Mp5b5x1sn9Mg87JwEbrQby4Zqo3pump",
+  "pool": "5wNu5QhdpRGrL37ffcd6TMMqZugQgxwafgz477rShtHy",
+  "bars": 999,
+  "strategies": {
+   "BREAKOUT_CLOSE": {
+    "signals": 32,
+    "first": [
+     {
+      "decision": "2026-09-16 16:05Z",
+      "close": 0.024670813925948273,
+      "stop": 0.02374379373616977,
+      "next_open": 0.024670813925948273,
+      "invalidation": "close below 0.0237438 (breakout level 0.0244781 - 3%)"
+     },
+     {
+      "decision": "2026-09-18 05:05Z",
+      "close": 0.025223563104752426,
+      "stop": 0.02386053655296479,
+      "next_open": 0.025223563104752426,
+      "invalidation": "close below 0.0238605 (breakout level 0.0245985 - 3%)"
+     },
+     {
+      "decision": "2026-09-18 06:05Z",
+      "close": 0.02581230639111581,
+      "stop": 0.02458519915055873,
+      "next_open": 0.02581230639111581,
+      "invalidation": "close below 0.0245852 (breakout level 0.0253456 - 3%)"
+     }
+    ],
+    "abstain": {
+     "INSUFFICIENT_HISTORY": 24
+    }
+   },
+   "BREAKOUT_RETEST": {
+    "signals": 39,
+    "first": [
+     {
+      "decision": "2026-09-18 06:05Z",
+      "close": 0.02581230639111581,
+      "stop": 0.023614551640047627,
+      "next_open": 0.02581230639111581,
+      "invalidation": "close below 0.0236146 (retest level failed)"
+     },
+     {
+      "decision": "2026-09-18 08:05Z",
+      "close": 0.025422660228949668,
+      "stop": 0.024331743489212763,
+      "next_open": 0.025422660228949668,
+      "invalidation": "close below 0.0243317 (retest level failed)"
+     },
+     {
+      "decision": "2026-09-18 09:05Z",
+      "close": 0.02593491862012806,
+      "stop": 0.024331743489212763,
+      "next_open": 0.02593491862012806,
+      "invalidation": "close below 0.0243317 (retest level failed)"
+     }
+    ],
+    "abstain": {
+     "INSUFFICIENT_HISTORY": 26
+    }
+   },
+   "RECLAIM": {
+    "signals": 14,
+    "first": [
+     {
+      "decision": "2026-09-18 20:05Z",
+      "close": 0.027072661562567126,
+      "stop": 0.025962739144172308,
+      "next_open": 0.027072661562567126,
+      "invalidation": "close below 0.0259627 (reclaim low)"
+     },
+     {
+      "decision": "2026-09-19 01:05Z",
+      "close": 0.026998027723369074,
+      "stop": 0.025962739144172308,
+      "next_open": 0.026998027723369074,
+      "invalidation": "close below 0.0259627 (reclaim low)"
+     },
+     {
+      "decision": "2026-09-20 16:05Z",
+      "close": 0.028076428683779697,
+      "stop": 0.02692192474852512,
+      "next_open": 0.028076428683779697,
+      "invalidation": "close below 0.0269219 (reclaim low)"
+     }
+    ],
+    "abstain": {
+     "INSUFFICIENT_HISTORY": 26
+    }
+   },
+   "TREND_HHHL": {
+    "signals": 12,
+    "first": [
+     {
+      "decision": "2026-09-18 05:05Z",
+      "close": 0.025223563104752426,
+      "stop": 0.022734557203304535,
+      "next_open": 0.025223563104752426,
+      "invalidation": "close below last higher low 0.0227346"
+     },
+     {
+      "decision": "2026-09-18 20:05Z",
+      "close": 0.027072661562567126,
+      "stop": 0.02592643718546686,
+      "next_open": 0.027072661562567126,
+      "invalidation": "close below last higher low 0.0259264"
+     },
+     {
+      "decision": "2026-09-20 23:05Z",
+      "close": 0.03105227031694872,
+      "stop": 0.02692192474852512,
+      "next_open": 0.03105227031694872,
+      "invalidation": "close below last higher low 0.0269219"
+     }
+    ],
+    "abstain": {
+     "INSUFFICIENT_HISTORY": 23
+    }
+   },
+   "ABSORPTION_BREAK": {
+    "signals": 28,
+    "first": [
+     {
+      "decision": "2026-09-14 19:05Z",
+      "close": 0.0287523948091268,
+      "stop": 0.0260841541717553,
+      "next_open": 0.0287523948091268,
+      "invalidation": "close below range low 0.0260842"
+     },
+     {
+      "decision": "2026-09-16 16:05Z",
+      "close": 0.024670813925948273,
+      "stop": 0.023115361825228775,
+      "next_open": 0.024670813925948273,
+      "invalidation": "close below range low 0.0231154"
+     },
+     {
+      "decision": "2026-09-18 06:05Z",
+      "close": 0.02581230639111581,
+      "stop": 0.02196380158942793,
+      "next_open": 0.02581230639111581,
+      "invalidation": "close below range low 0.0219638"
+     }
+    ],
+    "abstain": {
+     "INSUFFICIENT_HISTORY": 12
+    }
+   },
+   "MOMENTUM": {
+    "signals": 47,
+    "first": [
+     {
+      "decision": "2026-09-18 06:05Z",
+      "close": 0.02581230639111581,
+      "stop": 0.02196380158942793,
+      "next_open": 0.02581230639111581,
+      "invalidation": "close below 0.0219638 (lowest low of the last 6 bars)"
+     },
+     {
+      "decision": "2026-09-18 08:05Z",
+      "close": 0.025422660228949668,
+      "stop": 0.022255670846344004,
+      "next_open": 0.025422660228949668,
+      "invalidation": "close below 0.0222557 (lowest low of the last 6 bars)"
+     },
+     {
+      "decision": "2026-09-18 09:05Z",
+      "close": 0.02593491862012806,
+      "stop": 0.023043563177623683,
+      "next_open": 0.02593491862012806,
+      "invalidation": "close below 0.0230436 (lowest low of the last 6 bars)"
+     }
+    ],
+    "abstain": {
+     "INSUFFICIENT_HISTORY": 29,
+     "EXHAUSTION": 1,
+     "ILLIQUID": 10
+    }
+   }
+  }
+ }
+]

@@ -1,0 +1,73 @@
+NOTE: static AST analysis only; repo not installed, no repo code imported or executed (niche repo, GPL-3.0, not on PyPI, live swap code).
+$ python3 -I /home/claude/work/memelab-inbox/audits/backtesting/research/smoke/etcherfx__sol-trade/script.py /home/claude/ext/reviews/etcherfx__sol-trade
+
+
+[backtest] transitive sol_trade modules (12): ['backtest', 'config', 'costs', 'engine', 'fear_greed', 'indicators', 'jupiter', 'log', 'rpc', 'sentiment', 'spec', 'utils']
+  third-party imports: ['defusedxml', 'dotenv', 'httpx', 'numpy', 'pandas', 'solana', 'solders', 'vaderSentiment']
+  REACHES config: loads .env, holds SOLTRADE_PRIVATE_KEY, Keypair property
+  REACHES jupiter: HTTP client created at import; quote/price network calls
+  REACHES rpc: Solana RPC client
+
+[engine] transitive sol_trade modules (9): ['config', 'costs', 'engine', 'indicators', 'jupiter', 'log', 'rpc', 'spec', 'utils']
+  third-party imports: ['dotenv', 'httpx', 'numpy', 'pandas', 'solana', 'solders']
+  REACHES config: loads .env, holds SOLTRADE_PRIVATE_KEY, Keypair property
+  REACHES jupiter: HTTP client created at import; quote/price network calls
+  REACHES rpc: Solana RPC client
+
+[costs] transitive sol_trade modules (6): ['config', 'costs', 'jupiter', 'log', 'rpc', 'utils']
+  third-party imports: ['dotenv', 'httpx', 'solana', 'solders']
+  REACHES config: loads .env, holds SOLTRADE_PRIVATE_KEY, Keypair property
+  REACHES jupiter: HTTP client created at import; quote/price network calls
+  REACHES rpc: Solana RPC client
+
+[evaluation] transitive sol_trade modules (16): ['backtest', 'config', 'costs', 'data_source', 'engine', 'evaluation', 'fear_greed', 'history', 'indicators', 'jupiter', 'ledger', 'log', 'rpc', 'sentiment', 'spec', 'utils']
+  third-party imports: ['ccxt', 'defusedxml', 'dotenv', 'httpx', 'numpy', 'pandas', 'solana', 'solders', 'vaderSentiment']
+  REACHES config: loads .env, holds SOLTRADE_PRIVATE_KEY, Keypair property
+  REACHES jupiter: HTTP client created at import; quote/price network calls
+  REACHES rpc: Solana RPC client
+
+[spec] transitive sol_trade modules (6): ['config', 'indicators', 'log', 'rpc', 'spec', 'utils']
+  third-party imports: ['dotenv', 'numpy', 'pandas', 'solana', 'solders']
+  REACHES config: loads .env, holds SOLTRADE_PRIVATE_KEY, Keypair property
+  REACHES rpc: Solana RPC client
+
+[indicators] transitive sol_trade modules (1): ['indicators']
+  third-party imports: ['numpy', 'pandas']
+
+[key / signing / execute call sites] (file:line)
+  sol_trade/config.py:25: "private_key",
+  sol_trade/config.py:156: self.private_key: str = ""
+  sol_trade/config.py:191: load_dotenv(self.dotenv_path)
+  sol_trade/config.py:230: "private_key": "",
+  sol_trade/config.py:312: "private_key": "SOLTRADE_PRIVATE_KEY",
+  sol_trade/config.py:416: if not self.private_key or self.private_key == "":
+  sol_trade/config.py:417: log_general.warning("Private key is not set: set SOLTRADE_PRIVATE_KEY in .env. Bot cannot trade.")
+  sol_trade/config.py:474: return Keypair.from_base58_string(self.private_key)
+  sol_trade/transactions.py:44: from /execute, so the wallet's slot is located from the message's account
+  sol_trade/transactions.py:45: keys and the other slots are left as placeholders for /execute.
+  sol_trade/transactions.py:50: signature = config().keypair.sign_message(to_bytes_versioned(message))
+  sol_trade/transactions.py:175: f"{config().jup_api}/execute",
+  sol_trade/trading.py:419: if interval <= 0 or not cfg.private_key:
+
+[module-level side effects in jupiter.py]
+  sol_trade/jupiter.py:22: _http_session = httpx.Client(timeout=10.0)
+
+[fill timing as asserted by the repo's own test]
+  tests/test_engine.py:36: def test_entry_fills_at_the_next_open_with_levels():
+  tests/test_engine.py:37:     book = _book()
+  tests/test_engine.py:38:     action = book.on_close("TKN", 0, 101, 100, True, False, RISK)
+  tests/test_engine.py:39:     assert action is not None and action.side == BUY
+  tests/test_engine.py:40:     assert book.position("TKN") is None  # nothing fills at the signal close
+  tests/test_engine.py:41:     fill = book.on_open("TKN", 60, 102.0, RISK)
+  tests/test_engine.py:42:     position = book.position("TKN")
+  tests/test_engine.py:43:     assert fill is not None and fill.price == 102.0
+  tests/test_engine.py:44:     assert position is not None
+  tests/test_engine.py:45:     assert position.stop == pytest.approx(102 * 0.95)
+  tests/test_engine.py:46:     assert position.take_profit == pytest.approx(102 * 1.10)
+  tests/test_engine.py:47:     assert book.cash == pytest.approx(0.0)
+  tests/test_engine.py:48: 
+  tests/test_engine.py:49: 
+
+RESULT: backtest closure reaches config(private key)=True; reaches swap execution=False
+exit_code=0
+wall_seconds=1

@@ -1,0 +1,331 @@
+{
+ "p05_mutations.json": {
+  "ASSERTION": [
+   "M05-1 forming bar leaks into closed_bars",
+   "M05-2 zero treated as missing",
+   "M05-3 same-time execution instead of next open",
+   "M05-5 bar revision backdated to modeled availability",
+   "M05-6 visibility by event_time instead of available_at",
+   "M05-7 pools from today used for the past"
+  ],
+  "CRASH": [
+   "M05-4 append-only triggers removed (IntegrityError)"
+  ],
+  "SURVIVED": [],
+  "NOT_APPLICABLE": [],
+  "counts": {
+   "ASSERTION": 6,
+   "CRASH": 1,
+   "SURVIVED": 0,
+   "NOT_APPLICABLE": 0
+  }
+ },
+ "p06_mutations.json": {
+  "ASSERTION": [
+   "M06-1 forming bar stored",
+   "M06-2 pool availability = today (pool list from the present)",
+   "M06-3 unknown dex assumed constant product",
+   "M06-4 pool basis by all-time volume (future leaks)",
+   "M06-5 page date backdates first_seen",
+   "M06-6 second tool counted as new capture",
+   "M06-7 only latest export used for the universe",
+   "M06-8 no retry on 429",
+   "M06-9 backfilled bar knowable at its close (no provider lag)",
+   "M06-10 unchanged bar seen again later stored as a revision",
+   "M06-11 pools fetched counts as done (resume skips missing bars)",
+   "M06-12 corrupted mint copies merged by similarity"
+  ],
+  "CRASH": [],
+  "SURVIVED": [],
+  "NOT_APPLICABLE": [],
+  "counts": {
+   "ASSERTION": 12,
+   "CRASH": 0,
+   "SURVIVED": 0,
+   "NOT_APPLICABLE": 0
+  }
+ },
+ "p06a_mutations.json": {
+  "ASSERTION": [
+   "M06A-1 allowlist not enforced",
+   "M06A-2 any GitHub owner accepted for releases",
+   "M06A-3 redirect target not checked",
+   "M06A-4 rendered text date enters record identity",
+   "M06A-5 failed fetch still recorded",
+   "M06A-6 no page cap",
+   "M06A-7 Maxun accepted as runtime collector",
+   "M06A-8 schedules approved by default",
+   "M06A-10 capture date taken from the page claim"
+  ],
+  "CRASH": [],
+  "SURVIVED": [],
+  "NOT_APPLICABLE": [],
+  "counts": {
+   "ASSERTION": 9,
+   "CRASH": 0,
+   "SURVIVED": 0,
+   "NOT_APPLICABLE": 0
+  }
+ },
+ "p07_mutations.json": {
+  "ASSERTION": [
+   "M07-1 swap fee charged twice on a buy",
+   "M07-2 Token-2022 transfer fee ignored on a buy",
+   "M07-3 quote from the future accepted",
+   "M07-4 stale quote accepted",
+   "M07-5 CLMM priced as constant product",
+   "M07-6 failed legs still counted",
+   "M07-7 impact cap ignored on exit",
+   "M07-8 integer rounding in the user's favor",
+   "M07-9 state after execution time used",
+   "M07-10 exit converted at the entry rate",
+   "M07-13 pumpswap virtual reserves dropped",
+   "M07-14 pumpswap default fee optimistic"
+  ],
+  "CRASH": [
+   "M07-11 missing USD rate defaults to 1 (KeyError)",
+   "M07-12 quotes extrapolated above the largest quoted size (AttributeError)"
+  ],
+  "SURVIVED": [],
+  "NOT_APPLICABLE": [],
+  "counts": {
+   "ASSERTION": 12,
+   "CRASH": 2,
+   "SURVIVED": 0,
+   "NOT_APPLICABLE": 0
+  }
+ },
+ "p08_mutations.json": {
+  "ASSERTION": [
+   "M08-1 breakout level includes the bar being tested",
+   "M08-2 pivots known when they print (repainting)",
+   "M08-3 future bar accepted by a strategy",
+   "M08-4 mixed timeframes accepted",
+   "M08-5 exhaustion guard removed",
+   "M08-6 liquidity filter removed",
+   "M08-7 signal identity by symbol-like key (mint dropped)",
+   "M08-8 lab fatal flag ignored",
+   "M08-9 random baseline peeks at price",
+   "M08-10 stale last bar traded",
+   "M08-11 wick counted as breakout"
+  ],
+  "CRASH": [],
+  "SURVIVED": [],
+  "NOT_APPLICABLE": [],
+  "counts": {
+   "ASSERTION": 11,
+   "CRASH": 0,
+   "SURVIVED": 0,
+   "NOT_APPLICABLE": 0
+  }
+ },
+ "p09_mutations.json": {
+  "ASSERTION": [
+   "M09-1 record visible from its claimed publication time",
+   "M09-2 reposts counted as independent origins",
+   "M09-3 wallet transfers treated as sells",
+   "M09-4 attention after the rally treated as prescient",
+   "M09-5 denial ignored",
+   "M09-6 ticker-only record linked to the token",
+   "M09-7 placebo shift does nothing",
+   "M09-8 verified catalyst overrides a fatal flag",
+   "M09-9 bridge counts commentary and syndication as origins",
+   "M09-10 launch record overwritten by later exports",
+   "M09-11 catalyst usable before the lab linked the token"
+  ],
+  "CRASH": [],
+  "SURVIVED": [],
+  "NOT_APPLICABLE": [],
+  "counts": {
+   "ASSERTION": 11,
+   "CRASH": 0,
+   "SURVIVED": 0,
+   "NOT_APPLICABLE": 0
+  }
+ },
+ "p10_mutations.json": {
+  "ASSERTION": [
+   "M10-1 bar applied at its start (before it completed)",
+   "M10-2 gap-through stop filled at the stop price",
+   "M10-3 target checked before stop inside one bar",
+   "M10-4 entry without enough cash",
+   "M10-5 correlated group cap ignored",
+   "M10-6 drawdown halt ignored",
+   "M10-7 crash through stop filled at the stop",
+   "M10-8 fill on the bar that was open at decision time",
+   "M10-9 end-of-run marking reads past the cutoff",
+   "M10-10 network fee not charged on canceled entries",
+   "M10-11 runner applies later bar revisions",
+   "M10-12 run id blind to code changes",
+   "M10-13 discovery baseline retried until tradable",
+   "M10-14 thesis known at its creation even under the commit rule"
+  ],
+  "CRASH": [],
+  "SURVIVED": [],
+  "NOT_APPLICABLE": [],
+  "counts": {
+   "ASSERTION": 14,
+   "CRASH": 0,
+   "SURVIVED": 0,
+   "NOT_APPLICABLE": 0
+  }
+ },
+ "p11_mutations.json": {
+  "ASSERTION": [
+   "M11-1 two or three day blocks give an interval",
+   "M11-2 tiny samples enter the Holm comparison",
+   "M11-3 sealed test readable twice",
+   "M11-4 tuning on the validation window",
+   "M11-6 verdict ignores the minimum sample",
+   "M11-7 overfit flag never fires",
+   "M11-8 walk-forward tunes on its out-of-sample block",
+   "M11-9 regime labeled with the price after entry",
+   "M11-10 deflated Sharpe on small samples",
+   "M11-11 frozen config can be changed after the test"
+  ],
+  "CRASH": [],
+  "SURVIVED": [
+   "M11-5 no embargo before window end"
+  ],
+  "NOT_APPLICABLE": [],
+  "counts": {
+   "ASSERTION": 10,
+   "CRASH": 0,
+   "SURVIVED": 1,
+   "NOT_APPLICABLE": 0
+  }
+ },
+ "p12_mutations.json": {
+  "ASSERTION": [
+   "M12-1 liquidity unchanged when the price falls",
+   "M12-2 fatal flag can be overridden",
+   "M12-3 unknown insider share treated as zero silently",
+   "M12-4 honeypot still sells",
+   "M12-5 observed quotes extrapolated",
+   "M12-6 observed quotes scale the model up (both guards removed)",
+   "M12-7 pool fee ignored",
+   "M12-8 probabilities attached to shocks",
+   "M12-9 marked value reported as realizable",
+   "M12-10 quote depletion never fails",
+   "M12-11 authority shocks shown for every token",
+   "M12-12 cohort percentiles from too few cases"
+  ],
+  "CRASH": [],
+  "SURVIVED": [],
+  "NOT_APPLICABLE": [],
+  "counts": {
+   "ASSERTION": 12,
+   "CRASH": 0,
+   "SURVIVED": 0,
+   "NOT_APPLICABLE": 0
+  }
+ },
+ "p13_mutations.json": {
+  "ASSERTION": [
+   "M13-1 assessment enabled by default",
+   "M13-2 hook ignores the policy switch",
+   "M13-3 all-zero authority key read as active",
+   "M13-4 cache key ignores the snapshot",
+   "M13-5 precheck skipped (invalid, stale, no price)",
+   "M13-6 lab fatal flag not an abstain state",
+   "M13-7 unverified catalyst triggers refresh",
+   "M13-8 stale catalyst triggers refresh",
+   "M13-9 duplicate catalyst triggers refresh again",
+   "M13-10 hook lets an exception through",
+   "M13-11 assessment changes the lab status",
+   "M13-12 unclosed bars used for token signals",
+   "M13-13 DEEP stage reads past the assessment time",
+   "M13-14 scout attaches a record when the policy is off",
+   "M13-15 abstain records dropped instead of stored",
+   "M13-16 cache key ignores new evidence rows",
+   "M13-17 robot outage triggers a refresh",
+   "M13-18 wallet transfer relabeled as a sale",
+   "M13-19 liquidity summed across pools",
+   "M13-20 published time used as availability",
+   "M13-21 cached answer served after it aged out",
+   "M13-22 severe stress silently dropped",
+   "M13-23 severe stress rewrites the lab score",
+   "M13-24 cache key ignores the token's bars"
+  ],
+  "CRASH": [],
+  "SURVIVED": [],
+  "NOT_APPLICABLE": [],
+  "counts": {
+   "ASSERTION": 24,
+   "CRASH": 0,
+   "SURVIVED": 0,
+   "NOT_APPLICABLE": 0
+  }
+ },
+ "p14_mutations.json": {
+  "ASSERTION": [
+   "M14-1 missing assessment not labeled UNTESTED",
+   "M14-2 lab fatal flag does not win the label",
+   "M14-3 strategies ranked by paper return",
+   "M14-4 tiny samples ranked",
+   "M14-5 paper-only profit not flagged",
+   "M14-7 fatal override not detected",
+   "M14-8 blocked quote given made-up proceeds",
+   "M14-9 abstained candidate loses the lab view",
+   "M14-11 alerts change when the policy is off",
+   "M14-12 scout section printed when off",
+   "M14-13 paper value shown as executable",
+   "M14-14 report implies Maxun is running",
+   "M14-15 late crawl not warned",
+   "M14-16 robot refresh burst not rate limited",
+   "M14-17 old assessment age not disclosed on alerts",
+   "M14-18 --as-of ignored",
+   "M14-19 new token reported with token-specific evidence",
+   "M14-20 missing quote uncertainty dropped"
+  ],
+  "CRASH": [
+   "M14-6 high-status mismatch hidden (AttributeError)",
+   "M14-10 alert hides a missing assessment (TypeError)"
+  ],
+  "SURVIVED": [],
+  "NOT_APPLICABLE": [],
+  "counts": {
+   "ASSERTION": 18,
+   "CRASH": 2,
+   "SURVIVED": 0,
+   "NOT_APPLICABLE": 0
+  }
+ },
+ "p15_mutations.json": {
+  "ASSERTION": [
+   "M15-1 bars after the window used",
+   "M15-2 outcome reads bars not yet available",
+   "M15-3 unfinished window reported",
+   "M15-5 screened-out tokens left out of the study",
+   "M15-6 rerun appends duplicate rows",
+   "M15-7 revision loses its superseded row link",
+   "M15-8 catalyst list judged by claimed publication time",
+   "M15-9 capture judged by claimed publication time",
+   "M15-10 tracker not rate limited",
+   "M15-11 retry not exponential",
+   "M15-12 daily report reads outcomes after its asof",
+   "M15-13 daily report not ranked by the lab score",
+   "M15-14 censored windows left out of drawdown share",
+   "M15-15 small segments reported as reportable",
+   "M15-17 coverage drift not warned",
+   "M15-18 shadow saved as a run",
+   "M15-19 slippage model not scaled by price",
+   "M15-20 stale pending not warned",
+   "M15-21 stored assessments not tracked",
+   "M15-22 calibration drift not warned"
+  ],
+  "CRASH": [
+   "M15-4 not-observable outcomes dropped (KeyError)",
+   "M15-16 in-place retune allowed (PermissionError)"
+  ],
+  "SURVIVED": [],
+  "NOT_APPLICABLE": [],
+  "counts": {
+   "ASSERTION": 20,
+   "CRASH": 2,
+   "SURVIVED": 0,
+   "NOT_APPLICABLE": 0
+  }
+ }
+}
+EXIT=0

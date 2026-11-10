@@ -1,0 +1,100 @@
+2026-10-23T21:23:12Z
+47a7845 Backtesting Phase 16: independent audit evidence and repair pass 1
+=== analyze.txt: base_off vs head_off
+IDENTICAL
+=== analyze.txt: base_on vs base_off (policy has no effect at base)
+IDENTICAL
+=== analyze.txt: head_off vs head_on
+1a2
+> backtest: STALE_DATA | evidence UNAVAILABLE | stress n/a | research only
+=== scout.txt: base_off vs head_off
+IDENTICAL
+=== scout.txt: base_on vs base_off (policy has no effect at base)
+=== scout.txt: head_off vs head_on
+54a55,65
+> ## Backtest and stress (research only)
+> 
+> Research only. Backtests describe the past over the lab's discovery universe, stress scenarios are hypothetical with no probabilities, and nothing here is an instruction to buy, sell or size a position.
+> 
+> Labels: FATAL FLAW 1, UNTESTED 3, BAD EXECUTION 0, INCONCLUSIVE 0, TESTED 0. Project view is the lab's score and status; entry view is execution under stress.
+> 
+> - PAID `solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump`: UNTESTED (assessment STALE_DATA: analysis snapshot is 405.4 h old). Lab 67 / SETUP DEVELOPING; assessment STALE_DATA, evidence UNAVAILABLE, stress n/a, size under caps n/a, request 947e35ffd3f3. Report 20261006_2359_PAID_98kfF7rm.backtest.md.
+> - STONK `solana:6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx`: UNTESTED (assessment STALE_DATA: analysis snapshot is 405.4 h old). Lab 73 / SETUP DEVELOPING; assessment STALE_DATA, evidence UNAVAILABLE, stress n/a, size under caps n/a, request e35dcf714ee2. Report 20261006_2359_STONK_6GmAFSYs.backtest.md.
+> - HIGGS `solana:DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump`: FATAL FLAW (lab fatal flag(s) WASH_TRADING_HIGH; the lab's veto stands and no backtest can lift it). Lab 51 / REJECTED; assessment STALE_DATA, evidence UNAVAILABLE, stress n/a, size under caps n/a, request 96d046f900c4. Report 20261006_2359_HIGGS_DoVAVzVi.backtest.md.
+> - ZCAT `solana:HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR`: UNTESTED (assessment STALE_DATA: analysis snapshot is 405.4 h old). Lab 53 / DISTRIBUTION RISK; assessment STALE_DATA, evidence UNAVAILABLE, stress n/a, size under caps n/a, request d74c2ef18206. Report 20261006_2359_ZCAT_HcRLc9VD.backtest.md.
+> 
+=== alerts.txt: base_off vs head_off
+IDENTICAL
+=== alerts.txt: base_on vs base_off (policy has no effect at base)
+IDENTICAL
+=== alerts.txt: head_off vs head_on
+38a39
+> Backtest: UNTESTED (no backtest or stress assessment exists for this mint)
+59a61
+> Backtest: UNTESTED (no backtest or stress assessment exists for this mint)
+79a82
+> Backtest: UNTESTED (no backtest or stress assessment exists for this mint)
+100a104
+> Backtest: UNTESTED (no backtest or stress assessment exists for this mint)
+=== report_files.txt: base_off vs head_off
+IDENTICAL
+=== report_files.txt: base_on vs base_off (policy has no effect at base)
+IDENTICAL
+=== report_files.txt: head_off vs head_on
+1a2,3
+> 20261006_2359_HIGGS_DoVAVzVi.backtest.json
+> 20261006_2359_HIGGS_DoVAVzVi.backtest.md
+2a5,7
+> 20261006_2359_PAID_98kfF7rm.backtest.json
+> 20261006_2359_PAID_98kfF7rm.backtest.md
+> 20261006_2359_SCOUT.backtest.json
+4a10,11
+> 20261006_2359_STONK_6GmAFSYs.backtest.json
+> 20261006_2359_STONK_6GmAFSYs.backtest.md
+5a13,14
+> 20261006_2359_ZCAT_HcRLc9VD.backtest.json
+> 20261006_2359_ZCAT_HcRLc9VD.backtest.md
+=== exits.txt: base_off vs head_off
+IDENTICAL
+=== exits.txt: base_on vs base_off (policy has no effect at base)
+4c4
+< bt db absent
+---
+> bt db present
+=== exits.txt: head_off vs head_on
+4c4
+< bt db absent
+---
+> bt db present
+=== scout report bodies base_off
+adb69aa0aa5b1d70
+=== scout report bodies base_on
+17cb9077f6f1324f
+=== scout report bodies head_off
+cdd9146781a4d157
+=== scout report bodies head_on
+fb2eab6a667ecfaa
+=== scout report: head_off vs head_on (body diff)
+27c27
+< - Report: /tmp/claude-0/-home-claude/ffd12d05-0c7e-5977-aa81-38ffab4f7cfb/scratchpad/reg/out_head_off/reports/20261006_2359_STONK_6GmAFS.md
+---
+> - Report: /tmp/claude-0/-home-claude/ffd12d05-0c7e-5977-aa81-38ffab4f7cfb/scratchpad/reg/out_head_on/reports/20261006_2359_STONK_6GmAFS.md
+45c45
+< - Report: /tmp/claude-0/-home-claude/ffd12d05-0c7e-5977-aa81-38ffab4f7cfb/scratchpad/reg/out_head_off/reports/20261006_2359_PAID_98kfF7.md
+---
+> - Report: /tmp/claude-0/-home-claude/ffd12d05-0c7e-5977-aa81-38ffab4f7cfb/scratchpad/reg/out_head_on/reports/20261006_2359_PAID_98kfF7.md
+53a54,64
+> 
+> ## Backtest and stress (research only)
+> 
+> Research only. Backtests describe the past over the lab's discovery universe, stress scenarios are hypothetical with no probabilities, and nothing here is an instruction to buy, sell or size a position.
+> 
+> Labels: FATAL FLAW 1, UNTESTED 3, BAD EXECUTION 0, INCONCLUSIVE 0, TESTED 0. Project view is the lab's score and status; entry view is execution under stress.
+> 
+> - PAID `solana:98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump`: UNTESTED (assessment STALE_DATA: analysis snapshot is 405.4 h old). Lab 67 / SETUP DEVELOPING; assessment STALE_DATA, evidence UNAVAILABLE, stress n/a, size under caps n/a, request 947e35ffd3f3. Report 20261006_2359_PAID_98kfF7rm.backtest.md.
+> - STONK `solana:6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx`: UNTESTED (assessment STALE_DATA: analysis snapshot is 405.4 h old). Lab 73 / SETUP DEVELOPING; assessment STALE_DATA, evidence UNAVAILABLE, stress n/a, size under caps n/a, request e35dcf714ee2. Report 20261006_2359_STONK_6GmAFSYs.backtest.md.
+> - HIGGS `solana:DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump`: FATAL FLAW (lab fatal flag(s) WASH_TRADING_HIGH; the lab's veto stands and no backtest can lift it). Lab 51 / REJECTED; assessment STALE_DATA, evidence UNAVAILABLE, stress n/a, size under caps n/a, request 96d046f900c4. Report 20261006_2359_HIGGS_DoVAVzVi.backtest.md.
+> - ZCAT `solana:HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR`: UNTESTED (assessment STALE_DATA: analysis snapshot is 405.4 h old). Lab 53 / DISTRIBUTION RISK; assessment STALE_DATA, evidence UNAVAILABLE, stress n/a, size under caps n/a, request d74c2ef18206. Report 20261006_2359_ZCAT_HcRLc9VD.backtest.md.
+=== per-token report files written with the policy on
+9
+EXIT=0

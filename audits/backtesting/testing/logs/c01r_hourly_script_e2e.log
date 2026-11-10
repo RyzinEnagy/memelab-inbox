@@ -1,0 +1,98 @@
+Local runs of audits/backtesting/release/hourly_shadow.sh in scratch HOME folders on this Linux workspace (not Elving's computer).
+
+== Run A at c7c8dd4, 2026-10-25T14:12Z: store with schema 1 only (empty). setup with network; refresh, collect, track, save with HTTPS_PROXY/HTTP_PROXY=http://127.0.0.1:9.
+-- refresh
+{
+ "pools_wanted": 0,
+ "fetched": [],
+ "not_fetched": [],
+ "calls": 0
+}
+
+-- collect
+EXPORTS_NOT_FETCHED: git fetch exit 128; collecting for stored decisions only
+{
+ "run_id": "depth-20261025T14Z",
+ "status": "RAN",
+ "exports": {
+  "status": "NOT_READ"
+ },
+ "decisions_new": 0,
+ "deadline_hit": false,
+ "lookups": {},
+ "pool_snapshots": {},
+ "quotes": {},
+ "quote_source": "NOT_USED",
+ "calls": {
+  "geckoterminal": 0,
+  "jupiter": 0,
+  "retries": 0
+ },
+ "pools_active": 0,
+ "wall_s": 0.0
+}
+
+-- track
+{
+ "status": "RAN",
+ "asof": 1792939980.2970464,
+ "opportunities": 0,
+ "states": {},
+ "new_rows": 0,
+ "fetched": 0,
+ "deferred_fetches": 0
+}
+
+-- save
+{"t": "2026-10-25T14:53:00Z", "step": "save", "result": "OK", "refresh": {"pools_wanted": 0, "fetched": [], "not_fetched": [], "calls": 0}, "collect": {"status": "RAN", "decisions_new": 0, "pools_active": 0, "lookups": {}, "pool_snapshots": {}, "quotes": {}, "quote_source": "NOT_USED", "calls": {"geckoterminal": 0, "jupiter": 0, "retries": 0}, "deadline_hit": false, "wall_s": 0.0}, "track": {"status": "RAN", "opportunities": 0, "states": {}, "new_rows": 0, "fetched": 0}}
+
+Result: all exit 0; collect applied migration 2 to the work copy; stored file after save: schema version 2, integrity_check ok.
+
+== Mistake, 14:13Z: one more 'collect' was run on Run A's work copy WITHOUT the proxy variables. It made a live, full-size collect: 1 GitHub shallow fetch, 6 GeckoTerminal calls (2 retries), 40 Jupiter quote calls, 115 s of calls, exit 0. Free endpoints, inside the caps and pacing. Its rows and bodies are kept in audits/backtesting/collector/live_repair_run/; it showed that swapUsdValue values the output, which changed the price check (commit e3d2d0e).
+
+== Run B at e3d2d0e, 2026-10-25T15:06Z: store = the work copy of the live run (schema 2, 19 decisions). setup with network; refresh, collect, collect again, track, save with all proxy variables set to http://127.0.0.1:9 (a shell function, so no step could run without them).
+-- refresh
+{
+ "pools_wanted": 0,
+ "fetched": [],
+ "not_fetched": [],
+ "calls": 0
+}
+
+-- collect
+EXPORTS_NOT_FETCHED: git fetch exit 128; collecting for stored decisions only
+{
+ "run_id": "depth-20261025T15Z",
+ "status": "SKIPPED_SAME_HOUR",
+ "exports": {
+  "status": "NOT_READ"
+ },
+ "decisions_new": 0,
+ "deadline_hit": false,
+ "lookups": {},
+ "pool_snapshots": {},
+ "quotes": {},
+ "calls": {
+  "geckoterminal": 0,
+  "jupiter": 0,
+  "retries": 0
+ },
+ "quote_source": "NOT_USED",
+ "wall_s": 0.0
+}
+
+-- track
+{
+ "status": "SKIPPED_MIN_INTERVAL",
+ "last_run_min_ago": 14.7
+}
+
+-- save
+{"t": "2026-10-25T15:07:44Z", "step": "save", "result": "OK", "refresh": {"pools_wanted": 0, "fetched": [], "not_fetched": [], "calls": 0}, "collect": {"status": "SKIPPED_SAME_HOUR", "decisions_new": 0, "lookups": {}, "pool_snapshots": {}, "quotes": {}, "quote_source": "NOT_USED", "calls": {"geckoterminal": 0, "jupiter": 0, "retries": 0}, "deadline_hit": false, "wall_s": 0.0}, "track": {"status": "SKIPPED_MIN_INTERVAL"}}
+
+First collect: EXPORTS_NOT_FETCHED, 19 pool rows SOURCE_BLOCKED after one retry each, 48 SKIPPED_POOL_SOURCE_BLOCKED and 3 QUOTE_UNSUPPORTED_CHAIN rows, 50 s, exit 0. Second collect in the same hour: SKIPPED_SAME_HOUR, no call, exit 0 (the save line shows that second summary).
+
+== Forced failure at e3d2d0e: work copy replaced by a non-database file, then collect
+EXPORTS_NOT_FETCHED: git fetch exit 128; collecting for stored decisions only
+FAILED: depth collect exit 1
+stored bt.sqlite sha256 before and after: f514ffd514678cff... (unchanged)

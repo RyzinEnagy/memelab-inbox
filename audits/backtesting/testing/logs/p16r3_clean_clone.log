@@ -1,0 +1,29 @@
+c42045b Backtesting Phase 16: repair pass 3
+2026-10-23T23:17:47Z
+--- tests/test_backtest_*.py + committed attack files (r1, r2)
+audits/backtesting/testing/test_p16r1_repair_attacks.py:121: KeyError
+=========================== short test summary info ============================
+FAILED audits/backtesting/testing/test_p16r1_repair_attacks.py::test_r1_cohort_basis_not_steered_by_wash_volume_on_a_thin_pool
+1 failed, 251 passed in 45.50s
+EXIT=1
+release_audit EXIT=0
+Needs action: no.
+## Credential and key-material shapes in tracked files
+
+- none
+
+--- uncommitted pass-3 files copied into the clone and tracked with git add (index only, no commit) for the audit
+audits/backtesting/testing/test_p16r3_repair_attacks.py:248: AssertionError
+=========================== short test summary info ============================
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_alternating_divergence
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_sparse_real_market
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_guard_three_pools_real_market_split_across_two_pools
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_report_markdown_discloses_cohort_bias_and_censored_windows
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_hex_and_secret_key_shaped_values
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_context_word_without_separator
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_redaction_false_positives_after_credential_words
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_cohort_cache_in_memory_id_reuse
+8 failed, 12 passed in 9.08s
+EXIT=1
+release_audit with pass-3 files tracked EXIT=0
+Needs action: no.

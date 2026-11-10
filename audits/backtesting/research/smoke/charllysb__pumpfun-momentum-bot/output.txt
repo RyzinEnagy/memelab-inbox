@@ -1,0 +1,9 @@
+# smoke test: NOT RUN (unsafe / no offline path)
+# repo: charllysb/pumpfun-momentum-bot @ 0dccad2fa55937ba8d0bea2b31c650de8480db9d
+# reason: there is no historical backtest or replay in the repo. The simulator (token_stream.py) only runs
+#   against the live PumpPortal WebSocket (wss://pumpportal.fun/api/data, trades need a paid API key),
+#   and every module imports network or wallet libraries (websockets, requests, httpx, solders, solana).
+#   live_executor.py and slippage_test.py sign and send real transactions with a seed phrase; bot_gui.py can
+#   transfer SOL. Running any of it is outside the brief (no wallets, no network, no trading endpoints).
+# all five .py files (2,061 lines incl. docs) were read in full instead.
+EXIT_CODE=n/a (not run)

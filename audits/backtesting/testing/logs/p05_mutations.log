@@ -1,0 +1,9 @@
+baseline (unmutated): exit 0 :: 15 passed in 0.40s
+[M05-1 forming bar leaks into closed_bars] CAUGHT :: 1 failed, 5 passed in 0.09s
+[M05-2 zero treated as missing] CAUGHT :: 1 failed, 7 passed in 0.11s
+[M05-3 same-time execution instead of next open] CAUGHT :: 1 failed, 3 passed in 0.08s
+[M05-4 append-only triggers removed] CAUGHT :: 1 failed, 4 passed in 0.13s
+[M05-5 bar revision backdated to modeled availability] CAUGHT :: 1 failed, 9 passed in 0.14s
+[M05-6 visibility by event_time instead of available_at] CAUGHT :: 1 failed, 8 passed in 0.14s
+[M05-7 pools from today used for the past] CAUGHT :: 1 failed, 2 passed in 0.08s
+RESULT: all mutations caught

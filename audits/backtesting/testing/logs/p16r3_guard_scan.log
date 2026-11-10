@@ -1,0 +1,52 @@
+{
+ "opportunities": 1023,
+ "by_horizon": {
+  "1h": {
+   "COMPLETE": 417,
+   "NOT_OBSERVABLE": 495,
+   "CENSORED": 111
+  },
+  "6h": {
+   "COMPLETE": 421,
+   "NOT_OBSERVABLE": 495,
+   "CENSORED": 107
+  },
+  "24h": {
+   "COMPLETE": 385,
+   "NOT_OBSERVABLE": 464,
+   "CENSORED": 132,
+   "PENDING": 42
+  },
+  "72h": {
+   "COMPLETE": 348,
+   "NOT_OBSERVABLE": 434,
+   "CENSORED": 128,
+   "PENDING": 113
+  }
+ },
+ "removed": [
+  {
+   "horizon_h": 24,
+   "mint": "Bm67LrewgThV5H72LC4EkyPc9xk6iwMR1CkSkK8z72q9",
+   "source": "LAB_REJECTION",
+   "status": "REJECTED_AT_SCREEN",
+   "decision": "2026-10-18 09:51",
+   "basis_pool_ret": -0.30266144457120436,
+   "basis_pool_min_drop": -0.9952821480336782,
+   "gap_pct": 3.44,
+   "consecutive_hours_apart": 2
+  },
+  {
+   "horizon_h": 72,
+   "mint": "Bm67LrewgThV5H72LC4EkyPc9xk6iwMR1CkSkK8z72q9",
+   "source": "LAB_REJECTION",
+   "status": "REJECTED_AT_SCREEN",
+   "decision": "2026-10-18 09:51",
+   "basis_pool_ret": -0.30266144457120436,
+   "basis_pool_min_drop": -0.9952821480336782,
+   "gap_pct": 3.44,
+   "consecutive_hours_apart": 2
+  }
+ ]
+}
+EXIT=0

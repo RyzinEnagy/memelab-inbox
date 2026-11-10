@@ -1,0 +1,4 @@
+{"mints": 93, "skipped_resume": 7, "no_pools": 1, "blocked": 0, "pools_fetched": 131, "bars_new": 46625, "started": 1792774306.9813046, "calls": 296, "retries": 72, "errors": 1, "secs": 1399.5}
+{"mints": 77, "skipped_resume": 0, "no_pools": 1, "blocked": 0, "pools_fetched": 122, "bars_new": 46210, "started": 1792775716.455879, "stopped": "stop file", "calls": 247, "retries": 46, "errors": 0, "secs": 1159.8}
+{"mints_seen": 91, "skipped_already": 90, "ingested": 1, "pools_fetched": 0, "bars_new": 0, "manifest_lines": 424, "http_status": {"200": 212, "429": 211, "404": 1}}
+{"mints_seen": 91, "skipped_already": 89, "ingested": 2, "pools_fetched": 1, "bars_new": 341, "manifest_lines": 424, "http_status": {"200": 212, "429": 211, "404": 1}}

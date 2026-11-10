@@ -1,0 +1,61 @@
+2026-10-23T21:54:42Z
+0e63563
+============================= test session starts ==============================
+platform linux -- Python 3.13.17, pytest-9.1.1, pluggy-1.7.0 -- /usr/bin/python3
+rootdir: /home/claude/work/memelab-inbox
+plugins: platformdirs-4.12.4, anyio-4.15.1
+collecting ... collected 9 items
+
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_guard_is_evaded_when_wash_volume_exceeds_twenty_times_the_real_pool FAILED [ 11%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_guard_refuses_the_pass1_wash_world PASSED [ 22%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_guard_does_not_hide_a_rug_below_the_bias_flag FAILED [ 33%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_redaction_catches_bare_short_keys FAILED [ 44%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_redaction_keeps_useful_public_text FAILED [ 55%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_redaction_pass2_claims_hold PASSED [ 66%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_cached_cohort_cannot_be_poisoned_by_a_caller FAILED [ 77%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_cohort_cache_follows_new_bars_universe_rows_and_pool_records PASSED [ 88%]
+audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_assessment_cache_never_serves_a_stale_cohort_after_new_pool_records FAILED [100%]
+
+=================================== FAILURES ===================================
+_ test_r2_guard_is_evaded_when_wash_volume_exceeds_twenty_times_the_real_pool __
+audits/backtesting/testing/test_p16r2_repair_attacks.py:76: in test_r2_guard_is_evaded_when_wash_volume_exceeds_twenty_times_the_real_pool
+    assert c["tier"] != "HISTORICAL_COHORT" or c["ret_p10_p50_p90"][1] > -0.5, c
+E   AssertionError: {'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'n_complete': 30, ...}
+E   assert ('HISTORICAL_COHORT' != 'HISTORICAL_COHORT' or -0.95 > -0.5)
+____________ test_r2_guard_does_not_hide_a_rug_below_the_bias_flag _____________
+audits/backtesting/testing/test_p16r2_repair_attacks.py:119: in test_r2_guard_does_not_hide_a_rug_below_the_bias_flag
+    assert rugs_seen or c["selection_bias_risk"], c
+E   AssertionError: {'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'n_complete': 30, ...}
+E   assert (False or False)
+__________________ test_r2_redaction_catches_bare_short_keys ___________________
+audits/backtesting/testing/test_p16r2_repair_attacks.py:130: in test_r2_redaction_catches_bare_short_keys
+    assert not leaked, leaked
+E   AssertionError: ['401 Unauthorized for key a0b1a0b1a0b1a0b1a0b1a0b1a0b1a0b1', 'bot token 123456789:AAababababababababababababababababa rejected', 'provider refused credential Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7']
+E   assert not ['401 Unauthorized for key a0b1a0b1a0b1a0b1a0b1a0b1a0b1a0b1', 'bot token 123456789:AAababababababababababababababababa rejected', 'provider refused credential Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7']
+__________________ test_r2_redaction_keeps_useful_public_text __________________
+audits/backtesting/testing/test_p16r2_repair_attacks.py:140: in test_r2_redaction_keeps_useful_public_text
+    assert all(kept.values()), (kept, r)
+E   AssertionError: ({'hash': False, 'tx': False, 'mint': True, 'basic_word': False}, 'content hash [removed] did not match; tx [removed] for mint 98kfF7rmsg1QDUEoCqNE7g7M1FdrTt92TEp2CLzypump; HTTP 401 Basic [removed] required')
+E   assert False
+E    +  where False = all(dict_values([False, False, True, False]))
+E    +    where dict_values([False, False, True, False]) = <built-in method values of dict object at 0x7f77c6d8d300>()
+E    +      where <built-in method values of dict object at 0x7f77c6d8d300> = {'hash': False, 'tx': False, 'mint': True, 'basic_word': False}.values
+_____________ test_r2_cached_cohort_cannot_be_poisoned_by_a_caller _____________
+audits/backtesting/testing/test_p16r2_repair_attacks.py:180: in test_r2_cached_cohort_cannot_be_poisoned_by_a_caller
+    assert b["ret_p10_p50_p90"][1] == true_median and b["window_states"]["COMPLETE"] == 30, b
+E   AssertionError: {'tier': 'HISTORICAL_COHORT', 'status': 'WATCH', 'n': 30, 'n_complete': 30, ...}
+E   assert (9.99 == 0.0)
+_ test_r2_assessment_cache_never_serves_a_stale_cohort_after_new_pool_records __
+audits/backtesting/testing/test_p16r2_repair_attacks.py:229: in test_r2_assessment_cache_never_serves_a_stale_cohort_after_new_pool_records
+    assert a2["stress"]["historical_evidence"]["n"] == fresh["n"], (a2.get("cache"), a2["stress"]["historical_evidence"]["n"], fresh["n"])
+E   AssertionError: ('HIT', 30, 0)
+E   assert 30 == 0
+=========================== short test summary info ============================
+FAILED audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_guard_is_evaded_when_wash_volume_exceeds_twenty_times_the_real_pool
+FAILED audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_guard_does_not_hide_a_rug_below_the_bias_flag
+FAILED audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_redaction_catches_bare_short_keys
+FAILED audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_redaction_keeps_useful_public_text
+FAILED audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_cached_cohort_cannot_be_poisoned_by_a_caller
+FAILED audits/backtesting/testing/test_p16r2_repair_attacks.py::test_r2_assessment_cache_never_serves_a_stale_cohort_after_new_pool_records
+========================= 6 failed, 3 passed in 1.74s ==========================
+EXIT=1

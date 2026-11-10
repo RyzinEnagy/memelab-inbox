@@ -1,0 +1,17 @@
+[1] bin price from id: active_id -1047
+  bin -1047: 2.988971e-08 SOL/TOKEN (float check 2.988971e-08)
+  bin -1048: 2.959377e-08 SOL/TOKEN (float check 2.959377e-08)
+  bin -1057: 2.705876e-08 SOL/TOKEN (float check 2.705876e-08)
+  adjacent-bin ratio 1.010000 (expect 1 + bin_step/1e4 = 1.01)
+
+[2] sell TOKEN for SOL across bins (fee on input)
+  sell     1,000,000 TOKEN: out   0.0296 SOL  bins used  1  fee first->last bin 1.00%->1.00%  avg-vs-active impact  1.000%  unfilled 0
+  sell    50,000,000 TOKEN: out   1.4795 SOL  bins used  1  fee first->last bin 1.00%->1.00%  avg-vs-active impact  1.000%  unfilled 0
+  sell   300,000,000 TOKEN: out   8.7151 SOL  bins used  5  fee first->last bin 1.00%->1.48%  avg-vs-active impact  2.809%  unfilled 0
+  sell 1,000,000,000 TOKEN: out  27.2729 SOL  bins used 14  fee first->last bin 1.00%->6.07%  avg-vs-active impact  8.755%  unfilled 0
+
+[3] same 50M TOKEN sell 10 s (< filter_period) after a prior sell moved price 20 bins down
+  out 1.3450 SOL, first-bin fee 10.00% (history-dependent: needs v_parameters + last_update_timestamp + clock)
+
+checks failed: 0
+exit_code=0

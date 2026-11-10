@@ -1,0 +1,16 @@
+baseline (unmutated): exit 0 :: 22 passed in 0.32s
+[M10-1 bar applied at its start (before it completed)] CAUGHT :: 1 failed, 10 passed in 0.10s
+[M10-2 gap-through stop filled at the stop price] CAUGHT :: 1 failed in 0.07s
+[M10-3 target checked before stop inside one bar] CAUGHT :: 1 failed, 2 passed in 0.06s
+[M10-4 entry without enough cash] CAUGHT :: 1 failed, 3 passed in 0.09s
+[M10-5 correlated group cap ignored] CAUGHT :: 1 failed, 11 passed in 0.10s
+[M10-6 drawdown halt ignored] CAUGHT :: 1 failed, 12 passed in 0.11s
+[M10-7 crash through stop filled at the stop] CAUGHT :: 1 failed, 16 passed in 0.15s
+[M10-8 fill on the bar that was open at decision time] CAUGHT :: 1 failed in 0.06s
+[M10-9 end-of-run marking reads past the cutoff] CAUGHT :: 1 failed, 9 passed in 0.10s
+[M10-10 network fee not charged on canceled entries] CAUGHT :: 1 failed, 17 passed in 0.13s
+[M10-11 runner applies later bar revisions] CAUGHT :: 1 failed, 2 passed in 0.17s
+[M10-12 run id blind to code changes] CAUGHT :: 1 failed, 3 passed in 0.15s
+[M10-13 discovery baseline retried until tradable] CAUGHT :: 1 failed, 14 passed in 0.11s
+[M10-14 thesis known at its creation even under the commit rule] CAUGHT :: 1 failed in 0.12s
+RESULT: all mutations caught

@@ -1,0 +1,200 @@
+[
+ {
+  "id": "M15-1 bars after the window used",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "            if b[\"start\"] >= t and b[\"start\"] < end]",
+  "new": "            if b[\"start\"] >= t]",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-2 outcome reads bars not yet available",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "pool_address=basis[\"pool_address\"], tf=TF, cutoff=observed_asof)",
+  "new": "pool_address=basis[\"pool_address\"], tf=TF, cutoff=1e12)",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-3 unfinished window reported",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "    if observed_asof < end + LAG_S:",
+  "new": "    if False:",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-4 not-observable outcomes dropped",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "            _, ins = record(con, o, h, out, asof, now)",
+  "new": "            _, ins = record(con, o, h, out, asof, now) if out[\"state\"] != \"NOT_OBSERVABLE\" else (None, False)",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-5 screened-out tokens left out of the study",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "    for r in rows:\n        status = r[\"status_at_entry\"]",
+  "new": "    for r in [x for x in rows if x[\"basis\"] == \"THESIS\"]:\n        status = r[\"status_at_entry\"]",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-6 rerun appends duplicate rows",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "        return prev[\"id\"], False\n    h = store.sha256",
+  "new": "        pass\n    h = store.sha256",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-7 revision loses its superseded row link",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "supersedes_id=prev[\"id\"] if prev else None",
+  "new": "supersedes_id=None",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-8 catalyst list judged by claimed publication time",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "c.get(\"chain\", \"solana\") == opp[\"chain\"] and c[\"available_at\"] <= t]",
+  "new": "c.get(\"chain\", \"solana\") == opp[\"chain\"] and (c.get(\"published_at\") or c[\"available_at\"]) <= t]",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-9 capture judged by claimed publication time",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "\"WHERE chain=? AND mint=? AND available_at<=? ORDER BY available_at, id\"",
+  "new": "\"WHERE chain=? AND mint=? AND COALESCE(source_published_at, available_at)<=? ORDER BY available_at, id\"",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-10 tracker not rate limited",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "    if last is not None and now - last < min_interval_s:",
+  "new": "    if False:",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-11 retry not exponential",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "retry_base_s * 2 ** (n_fail - 1)",
+  "new": "retry_base_s",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-12 daily report reads outcomes after its asof",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "    lat = latest(con, asof)\n    L = [f\"# Outcomes",
+  "new": "    lat = latest(con)\n    L = [f\"# Outcomes",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-13 daily report not ranked by the lab score",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "    opps.sort(key=lambda o: (-(o[\"score\"] if o[\"score\"] is not None else -1),",
+  "new": "    opps.sort(key=lambda o: ((o[\"score\"] if o[\"score\"] is not None else -1),",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-14 censored windows left out of drawdown share",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "    obs = [r for r in rows if r[\"state\"] in (\"COMPLETE\", \"CENSORED\") and",
+  "new": "    obs = [r for r in rows if r[\"state\"] == \"COMPLETE\" and",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-15 small segments reported as reportable",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "    out[\"verdict\"] = \"INSUFFICIENT_SAMPLE\" if len(comp) < MIN_SEGMENT else \"REPORTABLE\"",
+  "new": "    out[\"verdict\"] = \"REPORTABLE\"",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-16 in-place retune allowed",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "    raise PermissionError(\"in-place retuning is not allowed",
+  "new": "    return None\n    raise PermissionError(\"in-place retuning is not allowed",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-17 coverage drift not warned",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "        if statistics.mean(early) - statistics.mean(recent) > coverage_drop:",
+  "new": "        if False:",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-18 shadow saved as a run",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "decide_from=since, until=until, save=False)",
+  "new": "decide_from=since, until=until, save=True)",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-19 slippage model not scaled by price",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "        pred = float(o[\"liquidity\"]) * math.sqrt(float(snap[\"price\"]) / float(o[\"price\"]))",
+  "new": "        pred = float(o[\"liquidity\"])",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-20 stale pending not warned",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "    if stale:\n        warnings.append",
+  "new": "    if False:\n        warnings.append",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-21 stored assessments not tracked",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "    if include_assessments:\n        for a in con.execute",
+  "new": "    if False:\n        for a in con.execute",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ },
+ {
+  "id": "M15-22 calibration drift not warned",
+  "file": "memelab/backtest/outcomes.py",
+  "old": "and abs(cal[k][\"share_first\"] - cal[k][\"share_second\"]) > shift:",
+  "new": "and False:",
+  "tests": [
+   "tests/test_backtest_outcomes.py"
+  ]
+ }
+]

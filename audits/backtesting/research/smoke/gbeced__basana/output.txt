@@ -1,0 +1,11 @@
+bar 10: open=110 close=110.5 | bar 11: open=111 close=111.5 | bar 20: open=120 begin= 2026-01-01T20:00:00+00:00
+[A default next-bar] order placed at (datetime.datetime(2026, 1, 1, 11, 0, tzinfo=datetime.timezone.utc), 'close handler of bar 10')
+[A default next-bar]   fill event at 2026-01-01T12:00:00+00:00 (bar 11 close event) price=111.0000 amount=1 state=closed
+[B immediate_order_processing] order placed at (datetime.datetime(2026, 1, 1, 11, 0, tzinfo=datetime.timezone.utc), 'close handler of bar 10')
+[B immediate_order_processing]   fill event at 2026-01-01T11:00:00+00:00 (bar 10 close event) price=110.5000 amount=1 state=closed
+[C async event mid-bar-20] order placed at (datetime.datetime(2026, 1, 1, 20, 30, tzinfo=datetime.timezone.utc), 'async catalyst event')
+[C async event mid-bar-20]   fill event at 2026-01-01T21:00:00+00:00 (bar 20 close event) price=120.0000 amount=1 state=closed
+[D VolumeShareImpact 50k of 1M bar-11 volume (20pct of 25pct cap)] order placed at (datetime.datetime(2026, 1, 1, 11, 0, tzinfo=datetime.timezone.utc), 'close handler of bar 10')
+[D VolumeShareImpact 50k of 1M bar-11 volume (20pct of 25pct cap)]   fill event at 2026-01-01T12:00:00+00:00 (bar 11 close event) price=111.4440 amount=50000 state=closed
+[E handler exception] stop_on_handler_exceptions=False; bars processed after exception: 25 (run completed normally)
+exit_code=0
