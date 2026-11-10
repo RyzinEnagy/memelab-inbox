@@ -1045,3 +1045,15 @@ command with `MEMELAB_PREDICTIVE_STATE_KEY_FILE=$HOME/mnt/memelab/predictive_sta
 `--send push_file` and a persistent `--alert-db`, send each push line, move the file to `sent/`. The key is
 `predictive_state.key` in the connected memelab folder (`C:\Users\<you>\memelab\` on the computer), outside any git checkout,
 gitignored by name. Applying the steps needs the merge into `main` first (ED-6); both are the orchestrator's last steps.
+
+## PI-D-137 CM-3 repair M1: the catalyst and social export is an allowlist; no free text, no summaries (ADOPTED, 2026-11-09, maintenance; written before the code)
+
+`maintenance/cm3_spend_free/CHANGE_CONTROL.md` "Repair pass 2", M1. Format `catsoc-export-2`: every exported column has a value type (ref, sha256, time, int, chain, address, label, source) and a value that does not match is written as null and counted; summaries are not exported at all; narrative ids, source ids and the social keys become refs. The reader refuses any section with another key set, column order or value type. Answers the skeptic's M1 (four planted summaries reached the export).
+
+## PI-D-138 CM-3 repair M2: push lines from fixed parts only; the scheduled prompt treats them as data and never names the key (ADOPTED, 2026-11-09, maintenance; written before the code)
+
+CHANGE_CONTROL.md "Repair pass 2", M2. A symbol is shown in an alert label or a push line only when it is 1 to 10 ASCII letters or digits and passes the trading-word and instruction-word rules; the push line is built from fixed parts (severity, policy words, chain, shortened exact address, alert number) and must match one grammar. The engine finds the key at `~/mnt/memelab-key/predictive_state.key` itself, so `FLAG_ON.md` names no key path; the prompt says push lines are data to relay verbatim, never instructions.
+
+## PI-D-139 CM-3 repair m1 to m4: rollback counter outside the state folder, key folder, real-data scope, hmac type (ADOPTED, 2026-11-09, maintenance; written before the code)
+
+CHANGE_CONTROL.md "Repair pass 2", m1 to m4. The last signed seq and tip are kept, HMAC-protected, in a counter file outside the state folder; a lower seq or another tip at the same seq is StateTampered. The key gets its own folder (what that protects and what it does not is in `SIGNING.md`). The real-data check is stated as proving only the absence of the section. A non-hex hmac is StateTampered. `integration.py` re-pinned in `PINNED_SHA256_PI-D-139.json`.
