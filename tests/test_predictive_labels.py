@@ -640,3 +640,43 @@ def test_p0_far_from_the_snapshot_price_is_flagged():
     near = build_one(rows, price=1100.0)[0]
     assert all("P0_FAR_FROM_SNAPSHOT_PRICE" in r["flags"] for r in far.values())
     assert not any("P0_FAR_FROM_SNAPSHOT_PRICE" in r["flags"] for r in near.values())
+
+
+# ---------------------------------------------------------------- CM-2 (PI-D-122): explicit training splits
+def _moved(base, key, t, split):
+    r = dict(base)
+    r.pop("id")
+    shift = t - DT
+    r.update(decision_key=key, decision_time=float(t), split=split, label_key=L.sha([key, split]),
+             label_matures_at=C.label_matures_at(L.T1, t), label_observed_at=C.label_matures_at(L.T1, t) + 60.0,
+             t_entry=r["t_entry"] + shift)
+    return r
+
+
+def test_cm2_training_splits_default_to_development_and_widening_is_explicit(con):
+    ds = [dec(t=DT, key="a")]
+    rd = mkread(ref_rows() + grid(TE, TE + 2 * 86400), T2B())
+    recs, _ = L.build(L.Universe(ds, as_of=LATE, read_of={"a": rd}))
+    L.store_labels(con, recs, export_ref="x", params={}, now=LATE)
+    base = [r for r in S.iter_rows(con, "SELECT * FROM predictive_labels WHERE target=?", (L.T1,)) if r["state"] == "LABELED"][0]
+    p_t, h_t = L.prospective_start() + 3600.0, L.holdout_start() + 3600.0
+    L._insert_strict(con, "predictive_labels", _moved(base, "p", p_t, "PROSPECTIVE"))
+    hold = [_moved(base, "h", h_t, "HOLDOUT")]
+    late = p_t + 30 * 86400
+    assert [r["decision_key"] for r in L.training_labels(con, late, L.T1)] == ["a"]           # the default is unchanged
+    wide = ("DEVELOPMENT", "HOLDOUT", "PROSPECTIVE")
+    got = L.training_labels(con, late, L.T1, splits=wide, spent_holdout_rows=hold)
+    assert sorted(r["decision_key"] for r in got) == ["a", "h", "p"]
+    assert [r["decision_key"] for r in L.training_labels(con, late, L.T1, splits=("DEVELOPMENT", "PROSPECTIVE"))] == ["a", "p"]
+    # maturity still governs: before the prospective label matured it is not training data
+    early = C.label_matures_at(L.T1, p_t) - 1
+    assert sorted(r["decision_key"] for r in L.training_labels(con, early, L.T1, splits=wide, spent_holdout_rows=hold)) == ["a", "h"]
+    with pytest.raises(L.LabelError, match="HOLDOUT is not a training split"):
+        L.training_labels(con, late, L.T1, spent_holdout_rows=hold)
+    for bad in (("PURGED",), (), ("DEVELOPMENT", "DEVELOPMENT"), ("SEALED",)):
+        with pytest.raises(L.LabelError, match="training splits"):
+            L.training_labels(con, late, L.T1, splits=bad)
+    with pytest.raises(L.LabelError, match="must carry split HOLDOUT"):
+        L.training_labels(con, late, L.T1, splits=wide, spent_holdout_rows=[dict(hold[0], split="PROSPECTIVE")])
+    with pytest.raises(L.LabelError, match="disagrees"):        # a holdout row whose decision is not in the holdout window
+        L.training_labels(con, late, L.T1, splits=wide, spent_holdout_rows=[_moved(base, "x", DT + 7, "HOLDOUT")])

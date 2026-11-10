@@ -500,3 +500,35 @@ def test_the_seam_allows_nothing_but_the_lazy_integration_import(src):
 def test_the_isolation_check_sees_every_import_form(src):
     assert _imports_predictive(src)
     assert not _imports_predictive("help = 'predictive value of public posts'")
+
+
+# ---------- CM-2 (PI-D-122): the promotion route from prospective evidence ----------
+# Pinned in the open. ACCEPTANCE is unchanged (FROZEN_REGISTRY_SHA above), the promotion rule that supersedes its "promotion"
+# table has its own fingerprint, and the governing fingerprint combines both. A change to either must update these lines and be
+# recorded as change control; a silent edit fails here.
+CM2_PROMOTION_RULE_SHA = "57f7fb7cb255f15db2cda2ecba57fa22eb46b69888d71150c3ac0df4fa3c030c"
+CM2_GOVERNING_SHA = "b88f0058a3c86301d5c44ef1115a62ee1477971f733d7d3abbe25a3d7141e032"
+
+
+def test_cm2_the_promotion_rule_and_the_governing_fingerprint_are_pinned_and_acceptance_is_unchanged():
+    assert C.registry_sha256() == FROZEN_REGISTRY_SHA
+    assert C.promotion_rule_sha256() == CM2_PROMOTION_RULE_SHA
+    assert C.governing_sha256() == CM2_GOVERNING_SHA
+    assert C.PROMOTION_CM2["supersedes"].startswith("ACCEPTANCE.promotion") and C.PROMOTION_CM2["evidence"] == "PROSPECTIVE_ONLY"
+    assert C.ACCEPTANCE["promotion"]["SHADOW"]["bss_point_min"] == 0.0          # the superseded table is kept as it was
+
+
+def test_cm2_every_frozen_minimum_and_correction_is_kept_with_its_frozen_value():
+    r = C.PROMOTION_CM2
+    assert (r["min_events"], r["min_per_class"], r["min_effective_days"]) == (50, 10, 5)
+    s = r["skill"]
+    assert s["score"] == "brier" and s["lower_bound_gt"] == 0.0 and s["alpha"] == 0.05 and s["min_replicates"] == 2000
+    assert s["resample_units"] == ["decision_day", "mint"] and "bonferroni" in s["selection_correction"]
+    assert "n_search" in s["selection_correction"].lower() and "windows" in s["selection_correction"]
+    c = r["calibration"]
+    assert (c["interval"], c["conf"], c["bins"], c["min_bin_events"], c["max_bins"]) == ("wilson", 0.95, "quantile", 20, 5)
+    assert c["checks"] == ["in_the_large", "every_bin"]
+    assert r["VALIDATED_EXPERIMENTAL"]["brier_point_not_worse_than"] == "B2"
+    assert all(r["discipline"].values()) and "strictly after the recipe freeze" in r["window"]["starts"]
+    for k in ("development", "retrospective", "in_sample"):
+        assert k in r["never_promotes"]

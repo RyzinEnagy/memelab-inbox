@@ -210,6 +210,55 @@ def registry_sha256() -> str:
     return fingerprint(TARGETS, ACCEPTANCE)
 
 
+# CM-2 (PI-D-122, approved by Elving on 2026-11-09; ED-1 of PI-D-091): the promotion route from prospective evidence. It
+# supersedes ACCEPTANCE["promotion"] for promotion decisions; ACCEPTANCE itself is unchanged, so registry_sha256() (the
+# compatibility key of every stored label row and card) stays 4b4aabce. Every minimum below is ACCEPTANCE's own value, read
+# from it (a test proves each equals the frozen number). The rule's own fingerprint and the governing fingerprint (target
+# registry plus rule) are pinned by tests/test_predictive_contract.py. memelab/predictive/promotion.py applies it.
+PROMOTION_CM2 = {
+    "id": "CM-2", "decision": "PI-D-122", "supersedes": "ACCEPTANCE.promotion (PI-D-091)",
+    "evidence": "PROSPECTIVE_ONLY",
+    "window": {"starts": "strictly after the recipe freeze (commit time of audits/predictive-intelligence/daily/RECIPE.json); "
+                         "a later window strictly after the previous window's last decision day",
+               "unit": "utc_decision_day",
+               "complete_day": "every predicted decision of the day has a final outcome (not PENDING or NOT_READ) for the target",
+               "closes": "the shortest run of complete days from the start whose scorable outcomes meet the count minimums",
+               "scorable": "LABELED, uncensored, and the prediction has a number",
+               "evaluated": "once, when it closes; the result is appended to the ledger and never recomputed for a promotion",
+               "pooling": "predictions of every version of one recipe and kind pool into the recipe's windows"},
+    "discipline": {"prediction_before_outcome_in_ledger": True, "prediction_committed_before_label_read": True,
+                   "version_registered_at_or_before_decision": True, "version_not_stale_at_decision": True},
+    "min_events": ACCEPTANCE["min_holdout_events"], "min_per_class": ACCEPTANCE["min_holdout_per_class"],
+    "min_effective_days": ACCEPTANCE["min_effective_days"],
+    "skill": {"score": ACCEPTANCE["primary_score"], "reference": "B0 of the same recipe version in force at the decision",
+              "statistic": "brier_skill", "lower_bound_gt": ACCEPTANCE["promotion"]["VALIDATED_EXPERIMENTAL"]["bss_lower_bound_gt"],
+              "resample_units": list(ACCEPTANCE["bootstrap"]["resample_units"]), "governing": "lower of the unit bounds",
+              "alpha": round(1 - ACCEPTANCE["bootstrap"]["conf"], 12), "min_replicates": ACCEPTANCE["bootstrap"]["min_replicates"],
+              "replicates_rule": "max(min_replicates, ceil(10 * n_search * windows / alpha))", "seed": 20261109,
+              "selection_correction": "bonferroni over the cumulative N_search times the windows tried for the target and kind",
+              "bound": "the alpha / (n_search * windows) lower quantile of the bootstrap Brier skill"},
+    "calibration": {"interval": ACCEPTANCE["calibration"]["interval"], "conf": ACCEPTANCE["calibration"]["conf"],
+                    "bins": ACCEPTANCE["calibration"]["bins"], "min_bin_events": ACCEPTANCE["calibration"]["min_bin_events"],
+                    "max_bins": ACCEPTANCE["calibration"]["max_bins"], "checks": list(ACCEPTANCE["calibration"]["checks"]),
+                    "rule": "the mean predicted probability inside the Wilson interval of the observed rate"},
+    "tests_required": ["leakage_tests", "provenance_tests", "contract_tests"],
+    "SHADOW": "one admissible prospective window passes every check",
+    "VALIDATED_EXPERIMENTAL": {"requires": ["SHADOW", "a second, later admissible window passes every check"],
+                               "brier_point_not_worse_than": ACCEPTANCE["promotion"]["VALIDATED_EXPERIMENTAL"]["brier_point_not_worse_than"]},
+    "never_promotes": ["development", "retrospective", "in_sample", "a given level"],
+}
+
+
+def promotion_rule_sha256() -> str:
+    """Fingerprint of PROMOTION_CM2 alone (pinned by the tests)."""
+    return sha({"promotion_rule": PROMOTION_CM2})
+
+
+def governing_sha256() -> str:
+    """Fingerprint of what governs a promotion after CM-2: the target registry fingerprint plus PROMOTION_CM2 (pinned)."""
+    return sha({"registry_sha": registry_sha256(), "promotion_rule_sha": promotion_rule_sha256()})
+
+
 def enabled(config_path: str | Path | None = None) -> bool:
     """Feature flag. OFF unless data/config.json (gitignored, per machine) says {"predictive": {"enabled": true}}.
     Nothing reads it yet: Phase 17 wires it. Today the package is unreachable because no existing module imports it."""

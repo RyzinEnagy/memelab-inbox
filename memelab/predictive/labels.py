@@ -31,7 +31,7 @@ import math
 import sqlite3
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Iterable, Sequence
 
 from . import contract as C
 from . import decisions as D
@@ -687,23 +687,45 @@ def _db_paths(con: sqlite3.Connection) -> list[str]:
     return [r[2] for r in con.execute("PRAGMA database_list") if r[2]]
 
 
+TRAINING_SPLITS = ("DEVELOPMENT", "HOLDOUT", "PROSPECTIVE")     # CM-2 (PI-D-122): the splits a training set may name
+
+
 def training_labels(con: sqlite3.Connection, as_of: float, target: str, *, mode: str = "provider",
-                    include_key_conflict: bool = True) -> list[dict]:
+                    include_key_conflict: bool = True, splits: Sequence[str] = ("DEVELOPMENT",),
+                    spent_holdout_rows: Iterable[dict] | None = None) -> list[dict]:
     """Labels a model trained as of `as_of` may use: DEVELOPMENT, LABELED (never PENDING, censored, thinned, purged or sealed),
     matured by `as_of`. Split and maturity are recomputed from the decision time and the frozen registry, never taken from the
     stored columns (a stored row that disagrees raises). Every version of a (decision, target) is considered: the newest one
     available by `as_of` decides, so a revision that leaves LABELED removes the label from training (a revised row is available
     from its own read, the original from its maturity). Mode 'capture' also requires label_observed_at <= as_of (what the lab
-    actually held then); 'provider' is the reconstruction. The store file must not be the sealed holdout or bake-off data."""
+    actually held then); 'provider' is the reconstruction. The store file must not be the sealed holdout or bake-off data.
+
+    CM-2 (PI-D-122): `splits` names the splits a training set may use; the default is DEVELOPMENT only, as before, so every
+    earlier phase reproduces. A recipe may widen it to the spent retrospective HOLDOUT and the PROSPECTIVE outcomes. HOLDOUT
+    rows never live in the label table: they come only as `spent_holdout_rows` (the sealed file's rows, read and verified by
+    the caller) and are refused unless HOLDOUT is named; every such row must carry split HOLDOUT and pass the same split and
+    maturity recomputation. PURGED is never a training split."""
     if target not in TARGETS:
         raise LabelError(f"{target} is not a primary target")
     if mode not in ("provider", "capture"):
         raise LabelError("mode is provider or capture")
+    splits = tuple(splits)
+    if not splits or any(s not in TRAINING_SPLITS for s in splits) or len(set(splits)) != len(splits):
+        raise LabelError(f"training splits {splits!r} must be distinct names from {TRAINING_SPLITS}")
+    if spent_holdout_rows is not None and "HOLDOUT" not in splits:
+        raise LabelError("spent holdout rows were given but HOLDOUT is not a training split")
     for p in _db_paths(con):
         refuse_sealed(p)
         R.refuse_bakeoff_labels(path=p)
     rows = S.iter_rows(con, "SELECT * FROM predictive_labels WHERE target=? ORDER BY decision_key, id", (target,))
     R.refuse_bakeoff_labels(rows)
+    if spent_holdout_rows is not None:
+        extra = [dict(r) for r in spent_holdout_rows if r.get("target") == target]
+        R.refuse_bakeoff_labels(extra)
+        if any(r.get("split") != "HOLDOUT" for r in extra):
+            raise LabelError("a spent holdout row must carry split HOLDOUT")
+        base = max([int(r["id"]) for r in rows] or [0])
+        rows = rows + [dict(r, id=base + 1 + i) for i, r in enumerate(sorted(extra, key=lambda r: (r["decision_key"], r["label_key"])))]
     best: dict[str, tuple[float, int, dict]] = {}
     for r in rows:
         if r["target_version"] != C.TARGETS[target]["version"]:
@@ -713,7 +735,7 @@ def training_labels(con: sqlite3.Connection, as_of: float, target: str, *, mode:
         if r["split"] != split or abs(float(r["label_matures_at"]) - mat) > 1e-6:
             raise LabelError(f"row {r['label_key'][:12]}: stored split or maturity disagrees with the registry "
                              f"({r['split']} vs {split})")
-        if split != "DEVELOPMENT":
+        if split not in splits:
             continue
         avail = mat if r["revision_of"] is None else max(float(r["label_observed_at"] or math.inf), mat)
         if mode == "capture":

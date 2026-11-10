@@ -1,0 +1,16 @@
+{
+ "decision": "PI-D-123",
+ "note": "re-pins for CM-2; 'was' is the 4ebccc3 pin (neither file was re-pinned by PI-D-120)",
+ "files": {
+  "memelab/predictive/contract.py": {
+   "was": "1caa72271fba5e4d96bfaaaab35ea0f75a496790bae5a4dbd6f27c825e78819a",
+   "sha256": "e40808e3b8e5f1dc7167dfc4f791b2d048a6f52d26cf4aaaedb1ba3bc09fb2c9",
+   "reason": "CM-2 (PI-D-122): PROMOTION_CM2 and its two fingerprints added after registry_sha256; ACCEPTANCE, TARGETS and the target registry fingerprint unchanged"
+  },
+  "memelab/predictive/labels.py": {
+   "was": "f50620c37129c6434a7fa9f58ff8e0733438b950ac86cc7f81eb596da41059ef",
+   "sha256": "0cd59ba27f52bf856d05ca0f3ebf74aebb19f2cf3f8548e38a98769ef9131dcb",
+   "reason": "CM-2 (PI-D-122): training_labels takes an explicit splits argument (default DEVELOPMENT only, unchanged) and spent holdout rows"
+  }
+ }
+}

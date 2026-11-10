@@ -243,6 +243,11 @@ def test_g2_files_phase18_must_not_change_are_byte_identical_to_4ebccc3():
                                    "memelab/predictive/bt_adapter.py", "memelab/predictive/integration.py"}
     assert set(amend["files"]) <= set(want) and all(v["reason"] and v["was"] == want[k] for k, v in amend["files"].items())
     want = {**want, **{k: v["sha256"] for k, v in amend["files"].items()}}
+    # PI-D-123 (CM-2, PI-D-122): contract.py (PROMOTION_CM2) and labels.py (explicit training splits) re-pinned the same way
+    cm2 = json.loads((GOLDEN.parent / "PINNED_SHA256_PI-D-123.json").read_text())
+    assert set(cm2["files"]) == {"memelab/predictive/contract.py", "memelab/predictive/labels.py"}
+    assert all(v["reason"] and v["was"] == want[k] for k, v in cm2["files"].items())
+    want = {**want, **{k: v["sha256"] for k, v in cm2["files"].items()}}
     assert set(want) >= {"memelab/cli.py", "memelab/predictive/integration.py", "memelab/report.py", "memelab/social/alerts_core.py",
                          "memelab/social/alerts_engine.py", "memelab/social/alerts_transport.py", "memelab/predictive/contract.py",
                          "memelab/predictive/abstention.py", "memelab/predictive/registry.py", "memelab/predictive/calibration.py"}
