@@ -15,7 +15,7 @@ Date: 2026-11-09. This is the plain-language version of the Phase 21 release dec
 3. Two simple reference models (a base rate and a simple logistic model) are kept for comparison only. They are never shown to you, and since 2026-10-31 they are out of date (MODEL_STALE), so they abstain too.
 4. No validated model, no shadow model, no ensemble.
 5. MiroFish (the multi-agent simulator): NO-GO. It stays off. There was no dated catalyst data to test it on and no approved budget.
-6. The backtesting engine is not merged into this branch, so every answer carries BACKTEST_NOT_AVAILABLE.
+6. The backtesting engine (PR #4) was merged into this branch on 2026-11-09 with your approval (PI-D-120). It is installed but not verified by a phase, so every answer carries backtest status UNVERIFIED and never uses an assessment as an input. When a backtest store is present (the real one is on your computer, `D:\memelab\backtesting_live`), each opportunity's assessment is read read-only and shown as context, and a fatal or untradeable one is an extra veto; without a store the report says BACKTEST_STORE_MISSING. Answers still all ABSTAIN.
 
 ## How it was checked today
 
@@ -35,7 +35,7 @@ All from a fresh copy of the branch downloaded from GitHub, in a new Python envi
 3. Any spend on LLMs, Zep or MiroFish, and any paid data source.
 4. Whether to collect catalyst and social data into a store this engine can read.
 5. Deploying the forward depth collector on your computer (already approved in PI-D-044, not yet running).
-6. Merging the backtesting work (PR #4) into this line.
+6. Merging the backtesting work (PR #4) into this line: done on 2026-11-09 (PI-D-120, local merge, not pushed). Still open: verifying the installed backtesting engine in a phase, and pushing.
 7. Any merge into `main`.
 8. Any real alert delivery (Telegram or email). Today alerts are previews in a local folder only.
 9. Turning the flag on anywhere other than a test copy.

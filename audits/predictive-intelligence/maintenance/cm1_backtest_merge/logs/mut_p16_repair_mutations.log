@@ -1,0 +1,12 @@
+baseline (unmutated): exit 0 :: 39 passed in 14.16s
+[R16-1 cohort ignores the assessment time] CAUGHT :: 1 failed in 0.17s
+[R16-2 cohort mixes every pool of a mint] CAUGHT :: 1 failed, 1 passed in 0.19s
+[R16-3 partial exit shrinks the cost basis] CAUGHT :: 1 failed, 3 passed in 0.19s
+[R16-4 unsold remainder dropped at the end] CAUGHT :: 1 failed, 2 passed in 0.20s
+[R16-5 entry ignores the network fee in the cash check] CAUGHT :: 1 failed, 4 passed in 0.19s
+[R16-6 concurrent first migration crashes] CAUGHT :: 1 failed, 5 passed in 1.75s
+[R16-7 busy tracker crashes instead of skipping] CAUGHT :: 1 failed, 6 passed in 3.77s
+[R16-8 batch status echoes credentials] CAUGHT :: 1 failed, 11 passed in 13.91s
+[R16-9 archive proof older than the page accepted] CAUGHT :: 1 failed, 12 passed in 13.87s
+[R16-10 assessment cohort read without its as-of] CAUGHT :: 1 failed in 0.18s
+RESULT: all mutations caught

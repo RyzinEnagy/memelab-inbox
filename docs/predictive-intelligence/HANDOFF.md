@@ -1,13 +1,20 @@
 # Predictive Intelligence: handoff
 
-Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-118). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_21/`. Spend: `audits/predictive-intelligence/COST_LEDGER.md`. Plain-language release summary: [RELEASE.md](RELEASE.md).
+Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [ORCHESTRATION.md](ORCHESTRATION.md). Plan and gates: [ROADMAP.md](ROADMAP.md). Choices: [DECISIONS.md](DECISIONS.md) (PI-D-001 to PI-D-121). Evidence: `audits/predictive-intelligence/phase_00/` to `phase_21/`, and `maintenance/` for changes after Phase 21. Spend: `audits/predictive-intelligence/COST_LEDGER.md`. Plain-language release summary: [RELEASE.md](RELEASE.md).
 
 ## Position on 2026-11-09
 
 - Phases 00 to 13 and 16 to 20: PASS. Phases 14 and 15: TEST_ONLY (behavioral path, optional, OFF, MIROFISH_NO_GO).
 - Phase 21 (reproducible research-only release or explicit NO-GO): **PASS** after the orchestrator's independent skeptic (no material finding; 8 minor findings and counterexample CX-S21) and repair pass CP21-1 (PI-D-117 G3 amendment, PI-D-118). This is the last phase of the package; there is no next phase. What remains are Elving's decisions.
-- Release decision (PI-D-115): GO for a research-only release of the abstention engine with the flag OFF (RESEARCH_BASELINE_ONLY, scoped); NOT_READY and NO-GO for any predictive release. BACKTEST_NOT_AVAILABLE. MIROFISH_NO_GO.
-- Spend: 0. No vendor, model or paid call in Phase 21.
+- Release decision (PI-D-115): GO for a research-only release of the abstention engine with the flag OFF (RESEARCH_BASELINE_ONLY, scoped); NOT_READY and NO-GO for any predictive release. MIROFISH_NO_GO.
+- Maintenance CM-1 (2026-11-09, Elving's approval; PI-D-120, PI-D-121): the backtesting module (PR #4, `69bc5c3`) is merged into this branch, local only. Backtest status is now UNVERIFIED (was BACKTEST_NOT_AVAILABLE); every forecast still abstains; request records and reports show the real adapter result, which here is BACKTEST_STORE_MISSING (the real store is on Elving's computer).
+- Spend: 0. No vendor, model or paid call in Phase 21 or CM-1.
+
+## What CM-1 did
+
+- Change control first (`445d2d7`), then `git merge --no-ff origin/feature/backtesting` (`69b7b57`). Two conflicts, both kept on both sides: `memelab/cli.py` (backtest hooks verbatim, then the predictive hooks, each behind its own flag) and `tools/release_audit.py` (both sets of reviewed entries).
+- `6ea454d`: bt-adapter-2 reads the installed package read-only (store path and schema DDL only; `mode=ro`, `query_only`; never connects, migrates or writes through the package); BACKTEST_STORE_MISSING; schema checked against the `69bc5c3` pin and the installed DDL; the pass records `backtest_store`; the scout section shows "Backtesting: UNVERIFIED; store BACKTEST_STORE_MISSING"; the report shows the real result and the new unblock text. Tests updated to the installed state, new store tests, Phase 18 pins amended (`PINNED_SHA256_PI-D-120.json`), goldens regenerated (only backtest lines changed), reproductions run with the package hidden.
+- Checks (`audits/predictive-intelligence/maintenance/cm1_backtest_merge/CM1_EVIDENCE.md`): suite 2 failed (the two known clock tests), 2,526 passed, 1 skipped; reproductions 6 passed; release_e2e 78 of 78; guard 0 violations; seal 0 problems; backtesting counterexamples 3 of 3, builder and collector mutations 269 of 269, reviewer sets p17 2 of 2 on rerun and p16r4 identical to a clean `69bc5c3`; single-branch release audit with history exit 0. The history blob `acbc9c9016` (D-BT-016) is now reachable from this branch and is listed as reviewed by the existing EXPLAINED entry.
 
 ## What Phase 21 did
 
@@ -25,18 +32,23 @@ Read this first. Contract: [EXECUTION.md](EXECUTION.md). Method used so far: [OR
 2. OI21-2: the private stores are portable only through a documented, untried rebuild; about 70 earlier probes still use `/home/claude/pi_research`.
 3. MINOR items F20-07, F20-10, F20-13, F20-14 with the recommendations in `phase_21/release/OPEN_DECISIONS.md`; F20-11 is closed by the runbook.
 4. Carried: catalyst and social tables are not exported; forward depth collector not deployed (PI-D-044); keep `tests/test_predictive_reproductions.py` green.
+5. After CM-1: a phase to verify the installed backtesting engine (needed before any document may carry an assessment reference); the backtesting branch's reviewer set p16r4 fails its own baseline here (5 concurrency tests, same on `69bc5c3`).
 
 ## Waiting on Elving (`phase_21/release/OPEN_DECISIONS.md`, ED-1 to ED-10)
 
-Maintenance owner: Elving (ED-11). Promotion change control (PI-D-091); any LLM, Zep or MiroFish spend and any paid data; catalyst and social collection into a store this engine reads; deploying the forward depth collector (PI-D-044); merging the backtesting PR #4; any merge into `main`; any external alert delivery; turning the flag on outside a sandbox; a signing key for the private state; retiring or replacing the stale reference cards.
+Maintenance owner: Elving (ED-11). Promotion change control (PI-D-091); any LLM, Zep or MiroFish spend and any paid data; catalyst and social collection into a store this engine reads; deploying the forward depth collector (PI-D-044); pushing the CM-1 merge (done locally on 2026-11-09 with his approval); any merge into `main`; any external alert delivery; turning the flag on outside a sandbox; a signing key for the private state; retiring or replacing the stale reference cards.
 
 ## Phase 21 commits
 
 HEAD before `90e4c6f`; `0bb361e` pre-registration; `2a29c68` frozen probes; `b048aac` probe fix; `24c02a6` doc probes; `67f1f7d` recorded runs and documents; `6fafc1d` records; `51db1f6` post-commit record (pushed); repair: `da0ae96` change control, `a767710` CP21-1 code and documents, `881643f` repair records, then the post-commit record (`phase_21/postcommit_repair/`: suite 2 failed, the two known, 2,245 passed, 1 skipped; guard 0 violations; seal 0 problems; single-branch release audit exit 0). Local only; the orchestrator pushes.
 
-## Note outside this branch
+## CM-1 commits
 
-The release audit on a full local clone flags a history blob reachable only from `origin/feature/backtesting` (a reviewed false positive on that branch, D-BT-016; PI-D-049 item 6). It is not reachable from `feature/predictive-intelligence`, whose own audit passes on a single-branch clone.
+HEAD before `79bcd7e` (pushed); `445d2d7` change control PI-D-120; `69b7b57` merge; `6ea454d` bt-adapter-2 and tests; then the records commit and its post-commit record (`maintenance/cm1_backtest_merge/`). Local only; not pushed.
+
+## The reviewed history blob
+
+Since CM-1 the blob `acbc9c9016` (`audits/backtesting/research/smoke/etcherfx__sol-trade/output.txt`, an environment variable name quoted by a static scan; D-BT-016, PI-D-049 item 6) is reachable from this branch. The release audit lists it as reviewed through the existing EXPLAINED entry; a single-branch audit with history gives "Needs action: no.".
 
 ## Lab rules that still bind
 

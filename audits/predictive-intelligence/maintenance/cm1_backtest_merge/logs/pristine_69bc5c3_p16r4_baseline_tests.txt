@@ -1,0 +1,6 @@
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_fresh_database_burst_repeated[0]
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_fresh_database_burst_repeated[1]
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_fresh_database_burst_repeated[2]
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_fresh_database_burst_repeated[3]
+FAILED audits/backtesting/testing/test_p16r3_repair_attacks.py::test_r3_fresh_database_burst_repeated[4]
+5 failed, 277 passed in 38.88s

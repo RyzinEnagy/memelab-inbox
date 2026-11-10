@@ -1,0 +1,4 @@
+baseline (unmutated): exit 0 :: 2 passed in 0.24s
+[P17-1 cache key drops the database birth time (builder's C4 test as killer)] CAUGHT :: 1 failed in 0.09s
+[P17-2 cache key drops the database birth time (reviewer's same-inode test as killer)] SURVIVED :: 1 skipped in 0.10s
+RESULT: FAILURE

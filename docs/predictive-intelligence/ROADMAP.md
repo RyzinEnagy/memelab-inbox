@@ -261,3 +261,19 @@ Every gate also includes the standing gate: package checksums verified, predeces
 - Open MINOR items with recommendations: F20-07, F20-10, F20-13, F20-14 (`OPEN_DECISIONS.md`); F20-11 closed by the runbook (loopback via `lo_up.py`).
 - Cumulative search ledger: `phase_20/experiments/SEARCH_LEDGER.csv` plus `phase_21/experiments/SEARCH_LEDGER_P21_ROWS.csv` (3,650 rows; N_search 130, sensitivity 169; Phase 21 added audit rows only).
 - Since CP21-1 (PI-D-118): `monitoring.check_payload` and `verify` refuse a window-dependent outcome state (VENDOR_OR_ROUTE_GAP, UNVERIFIABLE_NO_VENDOR_HISTORY, NOT_READ) recorded before `label_matures_at`; decision-time states may be early. The chronology audit judges git order by ancestry (phases 05 and 06 committed rules and results together). The Phase 19 runner and `tests/test_predictive_reproductions.py` read the stores from `PI_RESEARCH_DIR`; about 70 earlier probes still use `/home/claude/pi_research` (OI21-2). `phase_21/probes/guide_sandbox.sh` runs USER_GUIDE section 1 literally; `release_docs_check.py` checks every run command of the runbook and guide.
+
+## Maintenance after Phase 21
+
+Changes after the last phase of the package. Each has its own change control in DECISIONS.md and its evidence under `audits/predictive-intelligence/maintenance/`. None reopens the release decision (PI-D-115) unless it says so.
+
+| Id | Date | Change | Decisions | Status |
+|---|---|---|---|---|
+| CM-1 | 2026-11-09 | Merge of the backtesting module (PR #4, `69bc5c3`) into this line; bt-adapter-2 reads the installed package read-only | PI-D-120, PI-D-121 | DONE locally (merge `69b7b57`, code `6ea454d`), not pushed |
+
+Constraints after CM-1:
+
+- `memelab.backtest` is importable here, so `contract.backtest_status()` is UNVERIFIED. Only a phase that verifies the engine, under its own change control, may make it VERIFIED; until then the contract refuses an assessment reference and assessments stay context and an extra veto in the request record.
+- Only `memelab/predictive/bt_adapter.py` may touch the backtesting package, and only `memelab.backtest.store` (store path) and `memelab.backtest.schema` (DDL text), never a function that connects, migrates or writes. The default store is `MEMELAB_BT_DB` or `data/backtest/bt.sqlite`; the real store is on Elving's computer (`D:\memelab\backtesting_live`), so here every pass shows BACKTEST_STORE_MISSING.
+- Tests that run a pass set `MEMELAB_BT_DB` to a missing file unless they build a store; reproductions of earlier phases run with the package hidden.
+- `tests/fixtures/predictive/phase18/PINNED_SHA256_PI-D-120.json` re-pins the five files the merge changed; a later change to any of them updates that file under its own change control.
+- The backtesting branch's reviewer mutation set p16r4 does not pass its own baseline in this environment (5 concurrency tests), on its tip as well as here; its builder sets all pass.

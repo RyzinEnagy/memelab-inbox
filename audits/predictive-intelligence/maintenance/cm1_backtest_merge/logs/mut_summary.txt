@@ -1,0 +1,20 @@
+collector_mutations exit 0
+p05_mutations exit 0
+p06_mutations exit 0
+p06a_mutations exit 0
+p07_mutations exit 0
+p08_mutations exit 0
+p09_mutations exit 0
+p10_mutations exit 0
+p11_mutations exit 0
+p12_mutations exit 0
+p13_mutations exit 0
+p14_mutations exit 0
+p15_mutations exit 0
+p16_mutations exit 0
+p16_repair2_mutations exit 0
+p16_repair_mutations exit 0
+p16r4_mutations exit 1
+p17_builder_mutations exit 0
+p17_mutations exit 1
+DONE

@@ -1,0 +1,10 @@
+baseline (unmutated): exit 0 :: 49 passed in 3.31s
+[P17-1 a window after the last fetch reads as cut short] CAUGHT :: 1 failed, 21 passed in 0.55s
+[P17-2 fetch evidence read beyond the as-of] CAUGHT :: 1 failed, 21 passed in 0.48s
+[P17-3 OHLCV fetches leave no evidence] CAUGHT :: 1 failed, 24 passed in 0.78s
+[P17-4 refresh ignores waiting windows] CAUGHT :: 1 failed, 22 passed in 0.50s
+[P17-5 backup copies only the main file] CAUGHT :: 1 failed, 23 passed in 0.71s
+[P17-6 run files written into the repository] CAUGHT :: 1 failed, 22 passed in 2.15s
+[P17-7 cohort cache misses a same-inode replacement (C4)] CAUGHT :: 1 failed, 20 passed in 0.50s
+[P17-8 run files ignore MEMELAB_BT_DB (R3)] CAUGHT :: 1 failed, 23 passed in 2.28s
+RESULT: all mutations caught
