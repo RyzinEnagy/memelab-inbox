@@ -58,6 +58,11 @@ def sh(cmd, cwd):
     return subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, timeout=1800)
 
 
+def pytest(args, cwd):
+    """PI-D-129: tests of a mutant run without a network namespace, so a mutant that plans label reads cannot reach a vendor."""
+    return sh(["unshare", "-n", sys.executable, "-m", "pytest", "-q", "-x", "-p", "no:cacheprovider", *args], cwd)
+
+
 def main(scratch: str) -> None:
     s = Path(scratch)
     c = s / "mut"
@@ -70,7 +75,7 @@ def main(scratch: str) -> None:
     sh(["git", "fetch", "-q", str(REPO), "refs/remotes/origin/main:refs/remotes/origin/main"], c)
     base = {}
     for t in (TP, TD):
-        r = sh([sys.executable, "-m", "pytest", "-q", "-x", "-p", "no:cacheprovider", *t], c)
+        r = pytest(t, c)
         base[" ".join(t)] = {"exit": r.returncode, "tail": r.stdout.strip().splitlines()[-1:]}
     res = []
     for name, f, old, new, t in M:
@@ -85,7 +90,7 @@ def main(scratch: str) -> None:
         # never reach the script they run); reset afterwards
         sh(["git", "commit", "-q", "-am", f"mutation {name}"], c)
         try:
-            r = sh([sys.executable, "-m", "pytest", "-q", "-x", "-p", "no:cacheprovider", *t], c)
+            r = pytest(t, c)
         finally:
             sh(["git", "reset", "-q", "--hard", "HEAD~1"], c)
             assert p.read_text() == orig

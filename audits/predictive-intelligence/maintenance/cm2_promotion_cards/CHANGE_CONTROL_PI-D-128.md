@@ -1,6 +1,6 @@
 # CM-2 change control PI-D-128: a failed daily run never commits a ledger that does not verify
 
-Written 2026-11-10 during the second mutation probe run, before the change. This is the only change to the frozen cycle code of `e79d846`; `memelab/predictive/*` and `build_cm2.py` stay unchanged.
+Written 2026-11-10 during the second mutation probe run. Order: the new test was run against the frozen script and failed, then the code was changed and this record written; both are in one commit (`a8c96d7`). This is the only change to the frozen cycle code of `e79d846`; `memelab/predictive/*` and `build_cm2.py` stay unchanged.
 
 ## Defect
 

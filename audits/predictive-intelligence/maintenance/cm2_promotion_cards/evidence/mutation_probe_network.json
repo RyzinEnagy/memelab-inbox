@@ -1,0 +1,38 @@
+{
+ "note": "the third run's call log was not written (the run was stopped before its end); its count is the 3 archived reads",
+ "runs": [
+  {
+   "calls_counted": 60,
+   "calls_logged": 60,
+   "first_utc": "2026-11-10T01:52:45Z",
+   "http": {
+    "200": 56,
+    "429": 4
+   },
+   "kinds": {
+    "pool_list": 57
+   },
+   "last_utc": "2026-11-10T02:05:21Z",
+   "max_in_60s": 6,
+   "reads_recorded": 57,
+   "run": "second probe run (b7aabe3), stopped by hand during D08"
+  },
+  {
+   "calls_counted": 3,
+   "calls_logged": 0,
+   "first_utc": "2026-11-10T02:07:20Z",
+   "http": {
+    "200": 3
+   },
+   "kinds": {
+    "pool_list": 3
+   },
+   "last_utc": "2026-11-10T02:07:42Z",
+   "max_in_60s": 3,
+   "reads_recorded": 3,
+   "run": "third probe run (a8c96d7), stopped by hand during D08"
+  }
+ ],
+ "total_calls": 63,
+ "what": "free GeckoTerminal calls made by predictive_daily.py under mutation D08 inside pytest temp clones of the mutation probe (no committed file, no lab store)"
+}
