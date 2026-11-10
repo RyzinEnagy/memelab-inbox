@@ -8,5 +8,5 @@ if [ -z "$FILES" ]; then
   # api.github.com blocked from the sandbox: fall back to the manifest committed in the repo
   FILES=$(curl -sS "$BASE/MANIFEST.txt?x=$RANDOM")
 fi
-for f in $FILES; do case "$f" in inbox/*|bridge/*) continue;; esac; mkdir -p "$(dirname "$f")"; curl -sS -o "$f" "$BASE/$f?x=$RANDOM"; done
+for f in $FILES; do case "$f" in inbox/*|bridge/*|audits/*|workplans/*|tests/fixtures/*|data/backtest/*) continue;; esac; mkdir -p "$(dirname "$f")"; curl -sS -o "$f" "$BASE/$f?x=$RANDOM"; done
 echo "fetched $(echo "$FILES" | wc -l) files into $DEST"
