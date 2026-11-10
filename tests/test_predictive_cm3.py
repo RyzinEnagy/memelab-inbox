@@ -50,8 +50,8 @@ def lab(tmp_path, monkeypatch):
     monkeypatch.delenv(CE.ENV_FLAG, raising=False)
     monkeypatch.delenv(I.KEY_ENV, raising=False)
     monkeypatch.delenv(I.KEY_FILE_ENV, raising=False)
-    monkeypatch.delenv(I.SEQ_FILE_ENV, raising=False)
-    monkeypatch.setattr(I, "DEFAULT_KEY_FILE", str(tmp_path / "no-key-folder" / "predictive_state.key"))
+    monkeypatch.delenv("MEMELAB_PREDICTIVE_STATE_SEQ_FILE", raising=False)
+    monkeypatch.setattr(I, "DEFAULT_KEY_FILE", str(tmp_path / "no-key-folder" / "predictive_state.key"), raising=False)
     (tmp_path / "data").mkdir()
     db.init_db()
     return tmp_path
