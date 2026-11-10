@@ -59,6 +59,9 @@ def export(path: Path | str | None = None, keep_theses_per_mint: int = 12) -> Pa
                     by.setdefault(r["mint"], []).append(r)
                 rows = [r for lst in by.values() for r in lst[:keep_theses_per_mint]]
             data["_tables"][t] = rows
+        from . import catsoc_export       # CM-3 (PI-D-130): opt-in catalyst and social section, OFF by default
+        if catsoc_export.enabled():
+            data["_catsoc"] = catsoc_export.section(con)
     out.write_text(json.dumps(data, separators=(",", ":"), default=str))
     return out
 

@@ -243,6 +243,12 @@ def test_g2_files_phase18_must_not_change_are_byte_identical_to_4ebccc3():
                                    "memelab/predictive/bt_adapter.py", "memelab/predictive/integration.py"}
     assert set(amend["files"]) <= set(want) and all(v["reason"] and v["was"] == want[k] for k, v in amend["files"].items())
     want = {**want, **{k: v["sha256"] for k, v in amend["files"].items()}}
+    # PI-D-132 (CM-3): the state signing in integration.py and the opt-in export section in state.py, each with its reason and the
+    # pin in force before it
+    cm3 = json.loads((GOLDEN.parent / "PINNED_SHA256_PI-D-132.json").read_text())
+    assert set(cm3["files"]) == {"memelab/predictive/integration.py", "memelab/state.py"}
+    assert all(v["reason"] and v["was"] == want[k] for k, v in cm3["files"].items())
+    want = {**want, **{k: v["sha256"] for k, v in cm3["files"].items()}}
     assert set(want) >= {"memelab/cli.py", "memelab/predictive/integration.py", "memelab/report.py", "memelab/social/alerts_core.py",
                          "memelab/social/alerts_engine.py", "memelab/social/alerts_transport.py", "memelab/predictive/contract.py",
                          "memelab/predictive/abstention.py", "memelab/predictive/registry.py", "memelab/predictive/calibration.py"}

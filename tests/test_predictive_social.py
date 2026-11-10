@@ -966,10 +966,12 @@ def test_imports_numpy_standard_library_and_two_social_seams_only():
 
 
 def test_no_other_module_imports_the_phase_10_code():
+    # CM-3 (PI-D-130): the export reader catsoc_adapter.py feeds the unchanged Phase 10 functions; no module imports that reader
     for p in (ROOT / "memelab").rglob("*.py"):
-        if p.name == "socialcat.py":
+        if p.name in ("socialcat.py", "catsoc_adapter.py"):
             continue
         assert not any(i.endswith("socialcat") for i in _imports(p)) and "socialcat" not in p.read_text(), p
+        assert not any(i.endswith("catsoc_adapter") for i in _imports(p)) and "catsoc_adapter" not in p.read_text(), p
 
 
 # ---------------------------------------------------------------- committed outputs (added with them)

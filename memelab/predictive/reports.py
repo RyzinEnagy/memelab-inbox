@@ -1294,12 +1294,47 @@ def _feed_check(state_dir: Any, config_path: Any, prev: Any) -> str | None:
     return None
 
 
+PUSH_CHANNEL = "push_file"                 # CM-3 (PI-D-131, ED-7): the only delivery channel; a scheduled task sends the lines
+PUSH_LINE_MAX = 240
+_PUSH_BLOCKED = re.compile(r"%|probab|estimate|interval|base rate", re.I)
+POLICY_WORDS = {"risk_override": "risk override", "reevaluate": "re-evaluation prompt", "forecast_withdrawn": "research forecast withdrawn",
+                "pipeline_health": "pipeline health"}
+
+
+def push_line(a: dict) -> str:
+    """One short line for a push notification: severity, policy in words, token label, local alert number. No probability, no
+    percent, no trading word, no local path (CM-3, PI-D-131); raises when the line would carry any of them."""
+    line = (f"memelab research {a['severity']}: {POLICY_WORDS.get(a['policy'], a['policy'].replace('_', ' '))} for {a['label']}; "
+            f"see local alert {a['alert_id']}")
+    if a.get("fixture"):
+        line = "FIXTURE, not live: " + line
+    check_push_line(line, [a.get("mint") or ""])
+    return line
+
+
+def check_push_line(line: str, mints: Sequence[str] = ()) -> None:
+    check_text(line, mints)
+    t = line
+    for m in sorted({m for m in mints if m}, key=len, reverse=True):
+        t = t.replace(m, "")
+    if "\n" in line or "\r" in line or len(line) > PUSH_LINE_MAX:
+        raise ReportError("a push line is one line of at most 240 characters")
+    if _PUSH_BLOCKED.search(t):
+        raise ReportError("a push line carries no probability, percentage, estimate or interval")
+
+
+def _send_refused(send: Any) -> bool:
+    return send is not False and send is not None and send != PUSH_CHANNEL
+
+
 def alert_run(state_dir: str | Path | None = None, *, config_path: str | Path | None = None, alert_db: str | Path | None = None,
-              outbox: str | Path | None = None, now: float | None = None, policy: dict | None = None, send: bool = False,
+              outbox: str | Path | None = None, now: float | None = None, policy: dict | None = None, send: bool | str = False,
               fixture_run: bool = False, registry_dir: str | Path | None = None, root: str | Path | None = None,
               extra_cal_cards: dict | None = None, lab_db: str | Path | None = None) -> dict | None:
-    """One dry-run alert evaluation (rules 9 to 11). None when the flag is off (nothing read but the config, nothing written)."""
-    if send:
+    """One dry-run alert evaluation (rules 9 to 11). None when the flag is off (nothing read but the config, nothing written).
+    `send="push_file"` also writes one push line per new alert into `outbox/push/` for a scheduled task to send (CM-3, PI-D-131);
+    any other `send` is refused."""
+    if _send_refused(send):
         raise AlertRefused("--send refused: no external delivery is approved (PI-D-005); alerts are dry run only")
     if not I.config(config_path)["enabled"]:
         return None
@@ -1355,7 +1390,10 @@ def alert_run(state_dir: str | Path | None = None, *, config_path: str | Path | 
                                errors=errs, newer=newer, feed_changed=changed)
                 if notes:
                     out["reason"] = "; ".join(notes)
+        full = ev.pop("alerts_full", [])                # kept out of the run output: the dry run's output is unchanged
         out.update({"outcome": outcome, "evaluation": ev, "delivery": {"processed": list(ev["new"]), "released": [], "expired": []}})
+        if send == PUSH_CHANNEL:
+            out["push"] = _push_file(con, run_id=run_id, alerts=full, outbox=box, now=now)
         summary = {"candidates": ev["candidates"], "new": ev["new"], "deduped": ev["deduped"], "suppressed": len(ev["suppressed"]),
                    "reason": out.get("reason")}
         con.execute("UPDATE alert_runs SET finished_at=?, outcome=?, summary_json=? WHERE run_id=?", (now, outcome, json.dumps(summary, sort_keys=True), run_id))
@@ -1475,7 +1513,26 @@ def _evaluate(con: sqlite3.Connection, *, run_id: int, view: dict, requests: lis
                     (run_id, s["policy"], s.get("item_id"), s["reason_code"], s["reason"]))
     con.commit()
     return {"candidates": len(cands), "new": [a["alert_id"] for a in new], "deduped": deduped, "suppressed": supp, "quiet_hours": quiet,
-            "alerts": [{k: a[k] for k in ("alert_id", "policy", "severity", "label", "dedupe_key", "fixture")} for a in new]}
+            "alerts": [{k: a[k] for k in ("alert_id", "policy", "severity", "label", "dedupe_key", "fixture")} for a in new],
+            "alerts_full": new}
+
+
+def _push_file(con: sqlite3.Connection, *, run_id: int, alerts: list[dict], outbox: Path, now: float) -> dict:
+    """CM-3 (PI-D-131): the push lines of this run's new alerts in `outbox/push/push_run_NNNNNN.txt`, one line each, and one
+    `alert_deliveries` row per alert (transport push_file, status dry_run_preview). Nothing is sent from here."""
+    if not alerts:
+        return {"file": None, "lines": 0}
+    lines = [push_line(a) for a in alerts]
+    d = outbox / "push"
+    d.mkdir(parents=True, exist_ok=True)
+    f = d / f"push_run_{run_id:06d}.txt"
+    f.write_text("\n".join(lines) + "\n")
+    for a in alerts:
+        con.execute("INSERT INTO alert_deliveries(alert_id, mode, transport, dest_ref, attempt, status, started_at, finished_at, error) "
+                    "VALUES (?,?,?,?,?,?,?,?,?)", (a["alert_id"], "dry_run", PUSH_CHANNEL, AT.dest_ref("file", str(d)), 1, "dry_run_preview",
+                                                   now, now, "push line written for the scheduled task; nothing sent by memelab"))
+    con.commit()
+    return {"file": f.name, "lines": len(lines)}
 
 
 # ---------------------------------------------------------------- CLI (rule 12)
@@ -1499,7 +1556,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     for a in ("--state-dir", "--config", "--alert-db", "--outbox", "--registry-dir", "--lab-db"):
         p.add_argument(a)
     p.add_argument("--as-of", type=float)
-    p.add_argument("--send", action="store_true")
+    p.add_argument("--send", nargs="?", const=True, default=False)   # only "push_file" is accepted (CM-3, PI-D-131)
     p.add_argument("--fixture-run", action="store_true")
     p.add_argument("--json", action="store_true")
     p = sp.add_parser("alerts-state")
@@ -1531,6 +1588,9 @@ def main(argv: Sequence[str] | None = None) -> int:
             else:
                 txt = AE.render_run(out, DEFAULT_ALERT_POLICY["tz"])
                 print(txt + "Delivery: previews in the local outbox only (dry run); nothing was sent to any device.")
+                if out.get("push"):
+                    print(f"Push file: {out['push']['lines']} line(s) in {out['push']['file'] or 'no file'} for the scheduled task; "
+                          "nothing sent by memelab.")
             return 0
         if not I.config(a.config)["enabled"]:
             print("predictive: FLAG_OFF; nothing read")
