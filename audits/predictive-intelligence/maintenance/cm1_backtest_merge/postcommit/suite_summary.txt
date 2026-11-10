@@ -1,0 +1,3 @@
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial
+FAILED tests/test_catalyst_firecrawl.py::test_page_history_and_spend_survive_a_new_session_through_the_state_export
+2 failed, 2526 passed, 1 skipped, 1 warning in 271.24s (0:04:31)

@@ -64,3 +64,14 @@ Blob `acbc9c9016`, `audits/backtesting/research/smoke/etcherfx__sol-trade/output
 ## Files
 
 - `logs/`: every log named above, `head_checked.txt`.
+
+## Post-commit record
+
+At the records commit `97d094e` the post-commit audit found the tracked copy `logs/release_audit_history_single_branch.md` quoting rule names (exec scan of tracked `.md` files): release audit "Needs action: yes." and `tests/test_release_tools.py::test_no_trade_execution_or_signing_code_in_tracked_files` failed. The copy was renamed to `.txt` in `1fb1110` (the Phase 21 evidence keeps its audit copies as `.txt` too); no rule or EXPLAINED entry was changed. Checks at `1fb1110` (`postcommit/`):
+
+| Check | Exit | Result |
+|---|---|---|
+| `python -m pytest tests -q` | 1 | 2 failed (the two known clock-dependent catalyst tests), 2,526 passed, 1 skipped |
+| `python -m memelab social guard` | 0 | 3,884 files, 0 violations |
+| `check_seal.py` | 0 | `"problems": []` |
+| single-branch clone, `python tools/release_audit.py --history` | 0 | "Needs action: no.", 5,362 blobs, 0 history findings, 14 reviewed including `acbc9c9016` (D-BT-016) |

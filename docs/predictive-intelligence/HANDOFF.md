@@ -44,7 +44,7 @@ HEAD before `90e4c6f`; `0bb361e` pre-registration; `2a29c68` frozen probes; `b04
 
 ## CM-1 commits
 
-HEAD before `79bcd7e` (pushed); `445d2d7` change control PI-D-120; `69b7b57` merge; `6ea454d` bt-adapter-2 and tests; then the records commit and its post-commit record (`maintenance/cm1_backtest_merge/`). Local only; not pushed.
+HEAD before `79bcd7e` (pushed); `445d2d7` change control PI-D-120; `69b7b57` merge; `6ea454d` bt-adapter-2 and tests; `97d094e` records; `1fb1110` audit copy kept as `.txt` (the post-commit audit at `97d094e` flagged the `.md` copy); then the post-commit record (`maintenance/cm1_backtest_merge/postcommit/`: suite 2 failed, the two known, 2,526 passed, 1 skipped; guard 0 violations; seal 0 problems; single-branch release audit with history exit 0). Local only; not pushed.
 
 ## The reviewed history blob
 
