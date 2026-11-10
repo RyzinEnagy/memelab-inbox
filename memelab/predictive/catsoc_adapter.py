@@ -151,7 +151,7 @@ def _social_tables(prep: dict, T: float) -> dict[str, list[dict]]:
     v = lambda t: _visible(prep, t, T)
     acc = _newest(v("social_accounts"), "account_ref")
     items = _newest(v("social_items"), "item_ref")
-    obs = sorted(v("social_observations"), key=lambda o: (_clamp(o.get("ingested_at"), o["_avail"]), str(o.get("observation_key"))))
+    obs = sorted(v("social_observations"), key=lambda o: (_clamp(o.get("ingested_at"), o["_avail"]), str(o.get("observation_ref"))))
     return {
         "social_accounts": [{"account_id": a["account_ref"], "platform": a.get("platform"), "account_kind": a.get("account_kind"),
                              "identity_status": a.get("identity_status"),
@@ -169,7 +169,7 @@ def _social_tables(prep: dict, T: float) -> dict[str, list[dict]]:
                                       "resolved_at": _clamp(r.get("resolved_at"), r["_avail"])} for r in v("social_token_resolutions")],
         "social_claims": [{"item_key": c["item_ref"], "claim_type": c.get("claim_type"), "direction": c.get("direction"),
                            "extracted_at": _clamp(c.get("extracted_at"), c["_avail"])} for c in v("social_claims")],
-        "social_claim_extractions": [{"extraction_id": x["extraction_key"], "item_key": x["item_ref"], "extractor": x.get("extractor"),
+        "social_claim_extractions": [{"extraction_id": x["extraction_ref"], "item_key": x["item_ref"], "extractor": x.get("extractor"),
                                       "extracted_at": _clamp(x.get("extracted_at"), x["_avail"])} for x in v("social_claim_extractions")],
         "social_trader_accounts": [{"trader_id": t["trader_ref"], "account_id": t["account_ref"],
                                     "linked_at": _clamp(t.get("linked_at"), t["_avail"])} for t in v("social_trader_accounts")],

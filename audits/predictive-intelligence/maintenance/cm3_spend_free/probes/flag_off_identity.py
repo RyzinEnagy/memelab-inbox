@@ -1,4 +1,4 @@
-"""CM-3 (PI-D-130): the state export with the flag off is byte identical to the 60eb729 exporter, and with the flag on it is
+"""CM-3 (PI-D-130, PI-D-137): the state export with the flag off is byte identical to the 60eb729 exporter, and with the flag on it is
 the same bytes with one `"_catsoc"` member inserted before the closing brace.
 
     python -B audits/predictive-intelligence/maintenance/cm3_spend_free/probes/flag_off_identity.py WORKDIR OUT.json
@@ -99,7 +99,7 @@ def main(work: Path, out_json: Path) -> int:
              "section_keys": sorted(sec) if isinstance(sec, dict) else None,
              "section_withheld": sec.get("withheld") if isinstance(sec, dict) else None,
              "section_rows": {t: len(v) for t, v in (sec.get("tables") or {}).items()} if isinstance(sec, dict) else None,
-             "withheld_summaries": sec.get("withheld_summaries") if isinstance(sec, dict) else None,
+             "withheld_values": sec.get("withheld_values") if isinstance(sec, dict) else None,
              "tables_missing": len(sec.get("tables_missing") or []) if isinstance(sec, dict) else None}
         ok = ok and r["off_equals_old"] and r["on_is_old_plus_one_member"] and r["on_without_section_equals_old_parsed"]
         res["databases"][name] = r

@@ -1,64 +1,164 @@
-"""Catalyst and social tables in the state export (format catsoc-export-1; CM-3, PI-D-130, ED-3). Opt-in, OFF by default.
+"""Catalyst and social tables in the state export (format catsoc-export-2; CM-3, PI-D-130, PI-D-137, ED-3). Opt-in, OFF by default.
 
     flag: MEMELAB_STATE_EXPORT_CATSOC=1, or data/config.json {"state_export": {"catalyst_social": true}} (JSON true only)
     python -m memelab.catsoc_export import SRC DEST [--commit-time EPOCH]   copy an export's _catsoc section into a separate SQLite file
-    python -m memelab.catsoc_export check SRC           guard and column check of an export's section (exit 1 on a problem)
+    python -m memelab.catsoc_export check SRC           type and guard check of an export's section (exit 1 on a problem)
 
-The export is published (the inbox repository is public), so this section carries identifiers, hashes, exact chain plus mint
-links, enum states, times and short own-words summaries only. Every table has an explicit column list; third-party identifiers
-(account ids, item keys, trader ids, registry entity ids, trader source ids) are replaced by a salted sha256 prefix
-(pseudonymous: the salt is public, so a candidate value can be confirmed, never read back); no title, body, URL, handle,
-display name, bio, note, label or mention text leaves the database. Database row ids are dropped: a scheduled session starts
-from a fresh database, so rows are linked by stable keys (`event_ref`, `item_ref`, the social tables' own *_key hashes).
+The export is published (the inbox repository is public), so this section is an allowlist (PI-D-137): every column has a value
+type (`TYPES`) and only refs, sha256 digests, times, integers, chains, exact addresses, short controlled-vocabulary labels and
+prefixed source refs leave the database. A value that does not match its column type is written as null and counted in
+`withheld_values`. There is no free-text column: no summary, title, body, URL, handle, display name, bio, note, mention text or
+reason. Third-party and lab identifiers (account ids, item keys, trader ids, registry ids, source ids, narrative ids, the social
+tables' own keys) are replaced by a salted sha256 prefix (pseudonymous: the salt is public, so a candidate value can be
+confirmed, never read back). Database row ids are dropped: rows are linked by refs, and the same value always gives the same ref.
 
-The section is checked before it is written (column lists, then `content_guard.check_json`); a violation or an error replaces
-it by a small record naming the rule, and the export itself still succeeds.
+The section is checked before it is written (key set, column lists, value types, then `content_guard.check_json`); a violation
+or an error replaces it by a small record naming the rule, and the export itself still succeeds.
 """
 from __future__ import annotations
 
 import hashlib
 import json
+import math
 import os
+import re
 import sqlite3
 import sys
 import time
 from pathlib import Path
 from typing import Any
 
-VERSION = "catsoc-export-1"
+VERSION = "catsoc-export-2"
+REF_SALT = "catsoc-export-1"            # unchanged from format 1, so a ref keeps its value
 WINDOW_DAYS = 30
-SUMMARY_MAX = 200
 ENV_FLAG = "MEMELAB_STATE_EXPORT_CATSOC"
 ENUM_REVISION_FIELDS = ("evidence_status", "status")
 EXACT_MENTIONS = ("CONTRACT", "LINK")
 EXACT_REF_KINDS = ("CONTRACT_ADDRESS", "OFFICIAL_LINK")
 
-COLUMNS: dict[str, tuple[str, ...]] = {
-    "catalyst_events": ("event_ref", "narrative_id", "category", "original_source_id", "published_at", "discovered_at", "retrieved_at",
-                        "event_at", "evidence_status", "independent_sources", "repetitions", "resurfaced", "future_dated", "status",
-                        "expires_at", "created_at", "updated_at"),
-    "catalyst_event_revisions": ("event_ref", "revised_at", "kind", "field", "old_value", "new_value", "source_id"),
-    "catalyst_event_sources": ("event_ref", "item_ref", "role"),
-    "catalyst_items": ("item_ref", "source_id", "platform", "url_sha256", "body_norm_sha256", "mints_in_url", "mints_in_body",
-                       "published_at", "retrieved_at", "first_seen_at"),
-    "catalyst_token_links": ("event_ref", "chain", "mint", "link_type", "link_strength", "verified_mint", "linked_at"),
-    "catalyst_sources": ("source_id", "source_group", "kind", "tier", "identity_verified", "added_at"),
-    "catalyst_assessments": ("event_ref", "mint", "assessed_at", "verdict", "triage_score", "expires_at"),
-    "social_accounts": ("account_ref", "platform", "account_kind", "identity_status", "identity_checked_at", "first_seen_at"),
-    "social_items": ("item_ref", "platform", "account_ref", "published_at", "published_at_basis", "first_observed_at", "first_ingested_at"),
-    "social_observations": ("observation_key", "item_ref", "account_ref", "observed_at", "observed_at_basis", "ingested_at", "access_mode",
-                            "retrieval_status", "content_hash", "summary", "analysis_version"),
-    "social_item_versions": ("item_ref", "provider_version_at", "version_kind", "content_hash", "first_recorded_at"),
-    "social_token_resolutions": ("resolution_key", "item_ref", "mention_kind", "status", "resolved_chain", "resolved_contract",
-                                 "resolved_at"),
-    "social_claims": ("claim_key", "item_ref", "account_ref", "claim_type", "token_ref_key", "direction", "claimed_at", "extracted_at",
-                      "evidence_status", "claim_status", "summary"),
-    "social_claim_extractions": ("extraction_key", "item_ref", "extractor", "status", "extracted_at"),
-    "social_trader_accounts": ("trader_ref", "account_ref", "evidence_status", "linked_at"),
-    "social_token_refs": ("ref_key", "ref_kind", "chain", "contract", "first_seen_at"),
-    "social_registry_entities": ("entity_ref", "entity_kind", "account_ref", "first_seen_at"),
-    "social_registry_reviews": ("target_type", "target_ref", "to_state", "reviewed_at"),
+_EVENT_EVIDENCE = ("CONFIRMED", "REPORTED", "RUMOR", "INFERENCE")
+_EVENT_STATUS = ("NEW", "RESEARCH", "TRACKED", "EVENT_ONLY", "REJECTED", "EXPIRED", "DENIED", "CANCELLED")
+_SOCIAL_EVIDENCE = ("FACT", "INFERENCE", "HEURISTIC", "UNKNOWN")
+_IDENTITY = ("VERIFIED", "UNVERIFIED", "NOT_FOUND", "SUSPENDED", "UNKNOWN")
+# The controlled vocabularies (PI-D-137): the catalyst schema's documented values and the social schema's CHECK constraints. A
+# value outside its vocabulary (a new lab value, or anything else) is written as null and counted; it never leaves as text.
+VOCAB: dict[str, tuple[str, ...]] = {
+    "category": ("SCHEDULED", "UNEXPECTED", "CULTURAL", "ROTATION", "ACCESS", "NEGATIVE"),
+    "event_evidence": _EVENT_EVIDENCE,
+    "event_status": _EVENT_STATUS,
+    "revision_kind": ("CREATED", "CORROBORATED", "REVISED", "DENIED", "CANCELLED", "DELETED_SOURCE", "STATUS"),
+    "revision_field": ("evidence_status", "status", "category", "title", "description", "original_url", "event_at", "published_at",
+                       "narrative_id", "expires_at", "independent_sources", "repetitions"),
+    "revision_value": _EVENT_EVIDENCE + _EVENT_STATUS,
+    "role": ("ORIGINAL", "INDEPENDENT", "SYNDICATED", "CIRCULAR", "COMMENTARY", "REPETITION"),
+    "platform": ("x", "telegram", "discord", "youtube", "reddit", "farcaster", "web", "onchain", "other"),
+    "link_type": ("OFFICIAL", "NAMED_IN_SOURCE", "NAME_MATCH", "TICKER_MATCH", "THEMATIC"),
+    "link_strength": ("STRONG", "MODERATE", "WEAK", "AMBIGUOUS"),
+    "source_group": ("social", "news", "scheduled", "trader", "market"),
+    "source_kind": ("rss", "json", "html", "api", "manual"),
+    "tier": ("official", "reputable", "aggregator", "social", "proxy"),
+    "identity_verified": ("VERIFIED", "UNVERIFIED", "NOT_FOUND"),
+    "verdict": ("EVENT_ONLY", "RESEARCH", "TRACKED", "WATCH_FOR_ENTRY", "REJECTED"),
+    "account_kind": ("PERSON", "PROJECT", "MEDIA", "AGGREGATOR", "BOT", "UNKNOWN"),
+    "identity_status": _IDENTITY,
+    "published_basis": ("PROVIDER", "PARSED_RELATIVE", "UNKNOWN"),
+    "observed_basis": ("COLLECTOR", "UNKNOWN"),
+    "access_mode": ("fetch", "navigate", "signed_in_browser", "manual", "fixture"),
+    "retrieval_status": ("OK", "PARTIAL", "NOT_FOUND", "DELETED", "PROTECTED", "BLOCKED", "RATE_LIMITED", "LOGIN_REQUIRED", "CAPTCHA",
+                         "ERROR"),
+    "version_kind": ("ORIGINAL", "EDIT"),
+    "mention_kind": ("CONTRACT", "LINK", "TICKER"),
+    "resolution_status": ("resolved", "ambiguous", "unresolved", "conflicted"),
+    "claim_type": ("CALL", "WALLET_CLAIM", "LISTING", "PARTNERSHIP", "LAUNCH", "RUG_WARNING", "DENIAL", "OTHER"),
+    "direction": ("LONG", "SHORT", "EXIT", "NEUTRAL", "UNKNOWN"),
+    "social_evidence": _SOCIAL_EVIDENCE,
+    "claim_status": ("ASSERTED", "CORROBORATED", "CONTRADICTED", "RETRACTED", "UNKNOWN"),
+    "extractor": ("deterministic", "model"),
+    "extraction_status": ("ok", "partial", "analysis_unavailable", "invalid_model_output"),
+    "ref_kind": ("CONTRACT_ADDRESS", "OFFICIAL_LINK"),
+    "entity_kind": ("SOCIAL_ACCOUNT",),
+    "target_type": ("ACCOUNT_STATUS",),
 }
+TYPES: dict[str, dict[str, str]] = {
+    "catalyst_events": {"event_ref": "ref", "narrative_ref": "ref", "category": "enum:category", "original_source_id": "source",
+                        "published_at": "time", "discovered_at": "time", "retrieved_at": "time", "event_at": "time",
+                        "evidence_status": "enum:event_evidence", "independent_sources": "int", "repetitions": "int", "resurfaced": "int",
+                        "future_dated": "int", "status": "enum:event_status", "expires_at": "time", "created_at": "time", "updated_at": "time"},
+    "catalyst_event_revisions": {"event_ref": "ref", "revised_at": "time", "kind": "enum:revision_kind", "field": "enum:revision_field",
+                                 "old_value": "enum:revision_value", "new_value": "enum:revision_value", "source_id": "source"},
+    "catalyst_event_sources": {"event_ref": "ref", "item_ref": "ref", "role": "enum:role"},
+    "catalyst_items": {"item_ref": "ref", "source_id": "source", "platform": "enum:platform", "url_sha256": "sha256",
+                       "body_norm_sha256": "sha256", "mints_in_url": "addresses", "mints_in_body": "addresses", "published_at": "time",
+                       "retrieved_at": "time", "first_seen_at": "time"},
+    "catalyst_token_links": {"event_ref": "ref", "chain": "chain", "mint": "address", "link_type": "enum:link_type",
+                             "link_strength": "enum:link_strength", "verified_mint": "int", "linked_at": "time"},
+    "catalyst_sources": {"source_id": "source", "source_group": "enum:source_group", "kind": "enum:source_kind", "tier": "enum:tier",
+                         "identity_verified": "enum:identity_verified", "added_at": "time"},
+    "catalyst_assessments": {"event_ref": "ref", "mint": "address", "assessed_at": "time", "verdict": "enum:verdict", "triage_score": "int",
+                             "expires_at": "time"},
+    "social_accounts": {"account_ref": "ref", "platform": "enum:platform", "account_kind": "enum:account_kind",
+                        "identity_status": "enum:identity_status", "identity_checked_at": "time", "first_seen_at": "time"},
+    "social_items": {"item_ref": "ref", "platform": "enum:platform", "account_ref": "ref", "published_at": "time",
+                     "published_at_basis": "enum:published_basis", "first_observed_at": "time", "first_ingested_at": "time"},
+    "social_observations": {"observation_ref": "ref", "item_ref": "ref", "account_ref": "ref", "observed_at": "time",
+                            "observed_at_basis": "enum:observed_basis", "ingested_at": "time", "access_mode": "enum:access_mode",
+                            "retrieval_status": "enum:retrieval_status", "content_hash": "sha256", "analysis_ref": "ref"},
+    "social_item_versions": {"item_ref": "ref", "provider_version_at": "time", "version_kind": "enum:version_kind", "content_hash": "sha256",
+                             "first_recorded_at": "time"},
+    "social_token_resolutions": {"resolution_ref": "ref", "item_ref": "ref", "mention_kind": "enum:mention_kind",
+                                 "status": "enum:resolution_status", "resolved_chain": "chain", "resolved_contract": "address",
+                                 "resolved_at": "time"},
+    "social_claims": {"claim_ref": "ref", "item_ref": "ref", "account_ref": "ref", "claim_type": "enum:claim_type", "token_ref": "ref",
+                      "direction": "enum:direction", "claimed_at": "time", "extracted_at": "time", "evidence_status": "enum:social_evidence",
+                      "claim_status": "enum:claim_status"},
+    "social_claim_extractions": {"extraction_ref": "ref", "item_ref": "ref", "extractor": "enum:extractor", "status": "enum:extraction_status",
+                                 "extracted_at": "time"},
+    "social_trader_accounts": {"trader_ref": "ref", "account_ref": "ref", "evidence_status": "enum:social_evidence", "linked_at": "time"},
+    "social_token_refs": {"token_ref": "ref", "ref_kind": "enum:ref_kind", "chain": "chain", "contract": "address", "first_seen_at": "time"},
+    "social_registry_entities": {"entity_ref": "ref", "entity_kind": "enum:entity_kind", "account_ref": "ref", "first_seen_at": "time"},
+    "social_registry_reviews": {"target_type": "enum:target_type", "target_ref": "ref", "to_state": "enum:identity_status",
+                                "reviewed_at": "time"},
+}
+COLUMNS: dict[str, tuple[str, ...]] = {t: tuple(c) for t, c in TYPES.items()}
+SECTION_KEYS = ("version", "window_days", "window_start", "tables", "withheld_values", "tables_missing")
+_REF = re.compile(r"[0-9a-f]{32}")
+_SHA = re.compile(r"[0-9a-f]{64}")
+_CHAIN = re.compile(r"[a-z0-9_-]{1,20}")
+_ADDR = re.compile(r"[1-9A-HJ-NP-Za-km-z]{32,44}|0x[0-9a-fA-F]{40}")
+_SOURCE = re.compile(r"[a-z]{1,12}:[0-9a-f]{32}")
+
+
+def _num(v: Any) -> bool:
+    return isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v)
+
+
+def value_ok(kind: str, v: Any) -> bool:
+    """True when `v` is a value of column type `kind` (or null). ASCII only; nothing else leaves the database (PI-D-137)."""
+    if v is None:
+        return True
+    if kind == "time":
+        return _num(v)
+    if kind == "int":
+        return isinstance(v, int) and not isinstance(v, bool)
+    if kind == "addresses":
+        return isinstance(v, list) and all(isinstance(x, str) and _ADDR.fullmatch(x) for x in v)
+    if not isinstance(v, str):
+        return False
+    if kind.startswith("enum:"):
+        return v in VOCAB[kind[5:]]
+    pat = {"ref": _REF, "sha256": _SHA, "chain": _CHAIN, "address": _ADDR, "source": _SOURCE}.get(kind)
+    return bool(pat and pat.fullmatch(v))
+
+
+def _keep(kind: str, v: Any, withheld: list[int]) -> Any:
+    if kind == "int" and isinstance(v, float) and math.isfinite(v) and v.is_integer():
+        v = int(v)
+    if value_ok(kind, v):
+        return v
+    withheld[0] += 1
+    return None
+
+
 CATALYST_TABLES = tuple(t for t in COLUMNS if t.startswith("catalyst_"))
 SOCIAL_TABLES = tuple(t for t in COLUMNS if t.startswith("social_"))
 
@@ -68,18 +168,20 @@ class CatsocError(ValueError):
 
 
 def ref(value: Any) -> str | None:
-    """Salted sha256 prefix of a third-party identifier. Pseudonymous, not secret: the salt is public, so a reader who already
-    holds a candidate handle or post id can confirm it; the export never states the value itself."""
-    return None if value is None else hashlib.sha256(f"{VERSION}:{value}".encode()).hexdigest()[:32]
+    """Salted sha256 prefix of an identifier. Pseudonymous, not secret: the salt is public, so a reader who already holds a
+    candidate handle or post id can confirm it; the export never states the value itself."""
+    return None if value is None else hashlib.sha256(f"{REF_SALT}:{value}".encode()).hexdigest()[:32]
 
 
 def src(source_id: Any) -> Any:
-    """A catalyst source id as exported. Registry ids are the lab's own keys (news:..., exch:...), except the trader research rows,
-    whose id carries an X handle (`trader:x:<handle>`): those become `trader:` plus the salted sha256 prefix, the same value in
-    every table, so joins and the classifier's source groups still work and no handle leaves the database."""
-    if isinstance(source_id, str) and source_id.startswith("trader:"):
-        return "trader:" + ref(source_id)
-    return source_id
+    """A catalyst source id as exported (PI-D-135, PI-D-137): its lower-case prefix (`news`, `exch`, `trader`, ...; `src` when it
+    has none) plus the salted ref of the whole id, the same value in every table, so joins and the classifier's source groups
+    still work and no handle, domain or other text leaves the database."""
+    if source_id is None:
+        return None
+    s = str(source_id)
+    p = s.split(":", 1)[0] if ":" in s else ""
+    return (p if re.fullmatch(r"[a-z]{1,12}", p) else "src") + ":" + ref(s)
 
 
 def _sha(text: str | None) -> str | None:
@@ -107,13 +209,6 @@ def enabled(config_path: str | Path | None = None) -> bool:
     return isinstance(sect, dict) and sect.get("catalyst_social") is True
 
 
-def summary_ok(s: Any) -> bool:
-    if s is None:
-        return True
-    s = str(s)
-    return len(s) <= SUMMARY_MAX and "\n" not in s and "\r" not in s and "@" not in s and "http" not in s.lower()
-
-
 def _tables(con: sqlite3.Connection) -> set[str]:
     return {r[0] for r in con.execute("SELECT name FROM sqlite_master WHERE type='table'")}
 
@@ -137,8 +232,9 @@ def _catalyst(con: sqlite3.Connection, have: set[str], since: float) -> dict[str
     eref = {e["id"]: ref(e["event_key"]) for e in evs}
     ph, ids = _in(eref)
     for e in evs:
-        out["catalyst_events"].append({"event_ref": eref[e["id"]], **{k: (src(e.get(k)) if k == "original_source_id" else e.get(k))
-                                                                       for k in COLUMNS["catalyst_events"][1:]}})
+        row = {k: e.get(k) for k in COLUMNS["catalyst_events"][2:]}
+        out["catalyst_events"].append({"event_ref": eref[e["id"]], "narrative_ref": ref(e.get("narrative_id")),
+                                       **row, "original_source_id": src(e.get("original_source_id"))})
     links = _rows(con, f"SELECT * FROM catalyst_token_links WHERE event_id IN {ph} ORDER BY id", tuple(ids)) if "catalyst_token_links" in have else []
     mints_of: dict[int, set[str]] = {}
     for k in links:
@@ -194,16 +290,10 @@ def _catalyst(con: sqlite3.Connection, have: set[str], since: float) -> dict[str
     return out
 
 
-def _social(con: sqlite3.Connection, have: set[str], since: float, withheld: list[int]) -> dict[str, list[dict]]:
+def _social(con: sqlite3.Connection, have: set[str], since: float) -> dict[str, list[dict]]:
     out: dict[str, list[dict]] = {t: [] for t in SOCIAL_TABLES}
     if not {"social_items", "social_token_resolutions"} <= have:
         return out
-
-    def summ(s):
-        if summary_ok(s):
-            return s
-        withheld[0] += 1
-        return None
     res = _rows(con, "SELECT * FROM social_token_resolutions WHERE status='resolved' AND resolved_chain IS NOT NULL AND resolved_contract "
                      "IS NOT NULL AND mention_kind IN ('CONTRACT','LINK') AND item_key IS NOT NULL ORDER BY resolution_id")
     ph, keys = _in({r["item_key"] for r in res})
@@ -219,19 +309,18 @@ def _social(con: sqlite3.Connection, have: set[str], since: float, withheld: lis
     for r in res:
         if r["item_key"] in keep:
             refs_used.add(r.get("resolved_ref_id"))
-            out["social_token_resolutions"].append({"resolution_key": r.get("resolution_key"), "item_ref": ref(r["item_key"]),
+            out["social_token_resolutions"].append({"resolution_ref": ref(r.get("resolution_key")), "item_ref": ref(r["item_key"]),
                                                     "mention_kind": r.get("mention_kind"), "status": r.get("status"),
                                                     "resolved_chain": r.get("resolved_chain"), "resolved_contract": r.get("resolved_contract"),
                                                     "resolved_at": r.get("resolved_at")})
     if "social_observations" in have:
         for o in _rows(con, f"SELECT * FROM social_observations WHERE item_key IN {kph} ORDER BY id", tuple(kk)):
             accts.add(o.get("account_id"))
-            out["social_observations"].append({"observation_key": o.get("observation_key"), "item_ref": ref(o["item_key"]),
+            out["social_observations"].append({"observation_ref": ref(o.get("observation_key")), "item_ref": ref(o["item_key"]),
                                                "account_ref": ref(o.get("account_id")), "observed_at": o.get("observed_at"),
                                                "observed_at_basis": o.get("observed_at_basis"), "ingested_at": o.get("ingested_at"),
                                                "access_mode": o.get("access_mode"), "retrieval_status": o.get("retrieval_status"),
-                                               "content_hash": o.get("content_hash"), "summary": summ(o.get("summary")),
-                                               "analysis_version": o.get("analysis_version")})
+                                               "content_hash": o.get("content_hash"), "analysis_ref": ref(o.get("analysis_version"))})
     if "social_item_versions" in have:
         for v in _rows(con, f"SELECT * FROM social_item_versions WHERE item_key IN {kph} ORDER BY item_key, provider_version_at", tuple(kk)):
             out["social_item_versions"].append({"item_ref": ref(v["item_key"]), "provider_version_at": v.get("provider_version_at"),
@@ -244,21 +333,22 @@ def _social(con: sqlite3.Connection, have: set[str], since: float, withheld: lis
     if "social_claims" in have:
         for c in _rows(con, f"SELECT * FROM social_claims WHERE item_key IN {kph} ORDER BY id", tuple(kk)):
             refs_used.add(c.get("token_ref_id"))
-            out["social_claims"].append({"claim_key": c.get("claim_key"), "item_ref": ref(c["item_key"]), "account_ref": ref(c.get("account_id")),
-                                         "claim_type": c.get("claim_type"), "token_ref_key": rkey.get(c.get("token_ref_id")),
+            out["social_claims"].append({"claim_ref": ref(c.get("claim_key")), "item_ref": ref(c["item_key"]), "account_ref": ref(c.get("account_id")),
+                                         "claim_type": c.get("claim_type"), "token_ref": ref(rkey.get(c.get("token_ref_id"))),
                                          "direction": c.get("direction"), "claimed_at": c.get("claimed_at"),
                                          "extracted_at": c.get("extracted_at"), "evidence_status": c.get("evidence_status"),
-                                         "claim_status": c.get("claim_status"), "summary": summ(c.get("summary"))})
+                                         "claim_status": c.get("claim_status")})
     if "social_claim_extractions" in have:
         for x in _rows(con, f"SELECT * FROM social_claim_extractions WHERE item_key IN {kph} ORDER BY extraction_id", tuple(kk)):
-            out["social_claim_extractions"].append({"extraction_key": x.get("extraction_key"), "item_ref": ref(x["item_key"]),
+            out["social_claim_extractions"].append({"extraction_ref": ref(x.get("extraction_key")), "item_ref": ref(x["item_key"]),
                                                     "extractor": x.get("extractor"), "status": x.get("status"),
                                                     "extracted_at": x.get("extracted_at")})
     if "social_token_refs" in have:
         rph, rids = _in(refs_used)
         for t in _rows(con, f"SELECT * FROM social_token_refs WHERE ref_kind IN ('CONTRACT_ADDRESS','OFFICIAL_LINK') AND (ref_id IN {rph} "
                             "OR (ref_kind='OFFICIAL_LINK' AND first_seen_at > ?)) ORDER BY ref_id", (*rids, since)):
-            out["social_token_refs"].append({k: t.get(k) for k in COLUMNS["social_token_refs"]})
+            out["social_token_refs"].append({"token_ref": ref(t.get("ref_key")), "ref_kind": t.get("ref_kind"), "chain": t.get("chain"),
+                                             "contract": t.get("contract"), "first_seen_at": t.get("first_seen_at")})
     accts.discard(None)
     aph, aids = _in(accts)
     if "social_accounts" in have:
@@ -287,18 +377,25 @@ def _social(con: sqlite3.Connection, have: set[str], since: float, withheld: lis
 
 
 def problems(sec: dict) -> list[str]:
-    """Rule names (never values) of anything in a section that the export must not carry."""
-    out = []
+    """Rule names (never values) of anything in a section that the export must not carry: another key set, table set or column
+    order, or any value outside its column type (PI-D-137); then the content guard."""
+    if not isinstance(sec, dict) or tuple(sorted(sec)) != tuple(sorted(SECTION_KEYS)) or sec.get("version") != VERSION:
+        return ["SECTION_KEYS"]
     tabs = sec.get("tables")
-    if not isinstance(tabs, dict) or set(tabs) != set(COLUMNS):
+    if not isinstance(tabs, dict) or set(tabs) != set(COLUMNS) or any(not isinstance(v, list) for v in tabs.values()):
         return ["TABLE_SET"]
+    out = []
+    if not (_num(sec.get("window_start")) and isinstance(sec.get("window_days"), int) and isinstance(sec.get("withheld_values"), int)
+            and isinstance(sec.get("tables_missing"), list) and set(sec["tables_missing"]) <= set(COLUMNS)):
+        out.append("SECTION_VALUES")
     for t, rows in tabs.items():
         for r in rows:
             if not isinstance(r, dict) or tuple(r) != COLUMNS[t]:
                 out.append(f"COLUMNS:{t}")
                 break
-            if "summary" in r and not summary_ok(r["summary"]):
-                out.append(f"SUMMARY:{t}")
+            bad = sorted(c for c, k in TYPES[t].items() if not value_ok(k, r[c]))
+            if bad:
+                out.append(f"TYPE:{t}.{bad[0]}")
                 break
     from .social.content_guard import check_json
     out += sorted({f"GUARD:{v.rule}" for v in check_json("data/state/latest.json", {"_catsoc": sec})})
@@ -312,9 +409,10 @@ def section(con: sqlite3.Connection, now: float | None = None) -> dict:
         since = now - WINDOW_DAYS * 86400
         have = _tables(con)
         withheld = [0]
-        tabs = {**_catalyst(con, have, since), **_social(con, have, since, withheld)}
+        raw = {**_catalyst(con, have, since), **_social(con, have, since)}
+        tabs = {t: [{c: _keep(k, r.get(c), withheld) for c, k in TYPES[t].items()} for r in raw[t]] for t in COLUMNS}
         sec = {"version": VERSION, "window_days": WINDOW_DAYS, "window_start": since, "tables": tabs,
-               "withheld_summaries": withheld[0], "tables_missing": sorted(t for t in COLUMNS if t not in have)}
+               "withheld_values": withheld[0], "tables_missing": sorted(t for t in COLUMNS if t not in have)}
         bad = problems(sec)
         if bad:
             return {"version": VERSION, "withheld": "GUARD_VIOLATION", "rules": bad}

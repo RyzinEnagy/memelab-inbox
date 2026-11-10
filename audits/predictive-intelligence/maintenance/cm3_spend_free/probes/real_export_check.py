@@ -1,4 +1,4 @@
-"""CM-3 (PI-D-130): real-export checks of the catsoc-export-1 section and its reader.
+"""CM-3 (PI-D-130, PI-D-137): real-export checks of the catsoc section (format catsoc-export-2) and its reader.
 
     python -B audits/predictive-intelligence/maintenance/cm3_spend_free/probes/real_export_check.py WORKDIR OUT.json
 
@@ -12,6 +12,9 @@
 3. A scratch clone of this branch receives each output as data/state/latest.json in its own commit; the content guard and
    tools/release_audit.py run on that clone. The clone lives in WORKDIR, outside the repository; nothing is pushed.
 No network, no paid call. Values are never printed, only counts, states and exit codes.
+Idempotent on a reused WORKDIR (CM-3 skeptic note): every file this probe writes there is removed first.
+Scope (skeptic m3): the real part proves only that no committed export version carries the section and that the real databases
+available here hold no catalyst or social rows; it says nothing about real summaries or ids. The fixture part exercises the tables.
 """
 from __future__ import annotations
 
@@ -67,7 +70,7 @@ def export_with_flag(db_path: Path, out: Path) -> dict:
     store = out.with_suffix(".catsoc.sqlite")
     imp = run([sys.executable, "-B", "-m", "memelab.catsoc_export", "import", str(out), str(store)], env={"MEMELAB_DB": str(db_path)})
     return {"export_exit": rc, "section_version": sec.get("version"), "withheld": sec.get("withheld"),
-            "rows": {t: len(v) for t, v in (sec.get("tables") or {}).items()}, "withheld_summaries": sec.get("withheld_summaries"),
+            "rows": {t: len(v) for t, v in (sec.get("tables") or {}).items()}, "withheld_values": sec.get("withheld_values"),
             "tables_missing": sec.get("tables_missing"), "check_exit": chk[0], "check": chk[1].strip(), "import_exit": imp[0],
             "import": imp[1].strip(), "bytes": out.stat().st_size if out.exists() else None}
 
@@ -84,6 +87,11 @@ def fixture_db(path: Path) -> None:
 
 def main(work: Path, out_json: Path) -> int:
     work.mkdir(parents=True, exist_ok=True)
+    for f in list(work.iterdir()):                                       # idempotent on a reused folder
+        if f.is_dir():
+            shutil.rmtree(f)
+        elif f.suffix in (".sqlite", ".json") or f.name.endswith((".sqlite-journal", ".sqlite-wal")):
+            f.unlink()
     res = {"head": run(["git", "rev-parse", "HEAD"])[1].strip(), "history": history(), "exports": {}, "clone": {}}
     dbs = {}
     a = work / "a_tracked_copy.sqlite"

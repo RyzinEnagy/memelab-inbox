@@ -249,6 +249,11 @@ def test_g2_files_phase18_must_not_change_are_byte_identical_to_4ebccc3():
     assert set(cm3["files"]) == {"memelab/predictive/integration.py", "memelab/state.py"}
     assert all(v["reason"] and v["was"] == want[k] for k, v in cm3["files"].items())
     want = {**want, **{k: v["sha256"] for k, v in cm3["files"].items()}}
+    # PI-D-139 (CM-3 skeptic repair): the rollback counter and the default key file in integration.py
+    cm3r = json.loads((GOLDEN.parent / "PINNED_SHA256_PI-D-139.json").read_text())
+    assert set(cm3r["files"]) == {"memelab/predictive/integration.py"}
+    assert all(v["reason"] and v["was"] == want[k] for k, v in cm3r["files"].items())
+    want = {**want, **{k: v["sha256"] for k, v in cm3r["files"].items()}}
     assert set(want) >= {"memelab/cli.py", "memelab/predictive/integration.py", "memelab/report.py", "memelab/social/alerts_core.py",
                          "memelab/social/alerts_engine.py", "memelab/social/alerts_transport.py", "memelab/predictive/contract.py",
                          "memelab/predictive/abstention.py", "memelab/predictive/registry.py", "memelab/predictive/calibration.py"}
