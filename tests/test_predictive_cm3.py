@@ -522,7 +522,13 @@ def test_the_adapter_reads_no_network_no_clock_and_leaves_socialcat_untouched():
     assert names <= {"annotations", "json", "hashlib", "Any", "Sequence", "catsoc_export", "socialcat"}, names
     reg = I.load_registry(ROOT / I.REGISTRY_DIR)
     from memelab.predictive import registry as R
-    assert reg["state"] == "OK" and all(R.code_changes(e, ROOT) == [] for e in reg["entries"].values())
+    # after the CM-2 merge (PI-D-129) the retired Phase 16 entries see exactly the two CM-2 files as changed code (P46);
+    # CM-3 itself changes no registered transform or model file
+    allowed = {"memelab/predictive/contract.py", "memelab/predictive/labels.py"}
+    assert reg["state"] == "OK"
+    for e in reg["entries"].values():
+        for ch in R.code_changes(e, ROOT):
+            assert ch["state"] == "MODEL_INCOMPATIBLE_RETRAIN_REQUIRED" and ch["detail"].split(" ")[0] in allowed, ch
 
 
 def test_real_export_history_gives_tables_not_exported_for_every_real_decision_mint():
