@@ -4,7 +4,9 @@
     python -B audits/predictive-intelligence/daily/predictive_daily.py status   # print the last summary and the windows
     python -B audits/predictive-intelligence/daily/predictive_daily.py verify   # check the ledger, the registry and the archive
 
-Options of `run`: --state-dir (private, default data/private/predictive_daily, git-ignored), --no-fetch (use the local
+Options of `run` (PI-D-140: runs only on the branch feature/predictive-intelligence; pushes HEAD to --push-remote, default
+origin, after the prediction commit and before any label read, and again at the end; --max-calls at most 60; --now needs
+PREDICTIVE_DAILY_TEST_CLOCK=1): --state-dir (private, default data/private/predictive_daily, git-ignored), --no-fetch (use the local
 origin/main), --export-ref (default origin/main; tests only), --no-commit (tests only: refuses any label read, because predictions must be committed first), --max-calls
 (default 60), --max-minutes (default 40), --now (tests only).
 
@@ -87,7 +89,10 @@ CADENCE_S = 7 * DAY                      # RECIPE.json cadence: retrain when the
 
 EXIT = {"OK": 0, "LOCKED": 2, "PREFLIGHT_FAILED": 3, "EXPORT_FETCH_FAILED": 4, "PREDICTION_COMMIT_FAILED": 5,
         "LABEL_FETCH_FAILED": 6, "LEDGER_REFUSED": 7, "TIME_BUDGET_EXCEEDED": 8, "RETRAIN_FAILED": 9, "COMMIT_FAILED": 10,
-        "WRITE_OUTSIDE_ALLOWED_PATHS": 11}
+        "WRITE_OUTSIDE_ALLOWED_PATHS": 11, "PREDICTION_PUSH_FAILED": 12, "PUSH_FAILED": 13}
+BRANCH = "feature/predictive-intelligence"   # PI-D-140: the only branch a run may commit on and push to
+MAX_CALLS = 60                               # PI-D-140: the change control's per-run cap
+TEST_CLOCK_ENV = "PREDICTIVE_DAILY_TEST_CLOCK"   # PI-D-140: --now is for tests only
 
 
 class Fail(RuntimeError):
@@ -613,19 +618,39 @@ def label_rows_for(recs: list[dict], now: float) -> list[dict]:
 
 
 # ---------------------------------------------------------------- windows
-def commit_times() -> dict[int, float]:
-    """For each ledger line number, the commit time of the first commit of the ledger that holds it."""
-    out: dict[int, float] = {}
-    log = git("log", "--reverse", "--format=%H %ct", "--", f"{REL}/LEDGER.jsonl").split("\n")
-    seen = 0
+def ledger_history() -> tuple[dict[str, float], list[str]]:
+    """PI-D-140 (CX-CM2-1): every commit's ledger (first parent, oldest first) must be an append of the ledger of the commit
+    before it. Returns the commit time of the first commit holding each exact line text, and the problems found."""
+    first: dict[str, float] = {}
+    problems: list[str] = []
+    prev = ""
+    log = git("log", "--first-parent", "--reverse", "--format=%H %ct", "--", f"{REL}/LEDGER.jsonl").split("\n")
     for line in log:
         if not line.strip():
             continue
         h, ct = line.split()
-        n = len([x for x in git("show", f"{h}:{REL}/LEDGER.jsonl", check=False).splitlines() if x.strip()])
-        for s in range(seen, n):
-            out.setdefault(s, float(ct))
-        seen = max(seen, n)
+        txt = git("show", f"{h}:{REL}/LEDGER.jsonl", check=False)
+        if not M.is_append_only(prev, txt):
+            problems.append(f"LEDGER_HISTORY_NOT_APPEND_ONLY: the ledger of {h[:12]} is not an append of the one before it")
+        for x in txt.splitlines():
+            if x.strip():
+                first.setdefault(x, float(ct))
+        prev = txt
+    return first, problems
+
+
+def commit_times() -> dict[int, float]:
+    """For each line (by position) of the working ledger, the commit time of the first commit whose ledger holds that exact
+    line text (by content, PI-D-140). Empty when the committed history is not append-only: then no prediction has an
+    anchor and every window is WINDOW_NOT_ADMISSIBLE."""
+    first, problems = ledger_history()
+    led = REPO / REL / "LEDGER.jsonl"
+    if problems or not led.exists():
+        return {}
+    out: dict[int, float] = {}
+    for i, x in enumerate(y for y in led.read_text().splitlines() if y.strip()):
+        if x in first:
+            out[i] = first[x]
     return out
 
 
@@ -660,18 +685,20 @@ def window_rows(idx: M.Index, target: str, kind: str, rec: dict, commits: dict[i
     return out
 
 
-def window_results(idx: M.Index, target: str, kind: str) -> list[dict]:
+def window_results(idx: M.Index, target: str, kind: str, recipe_id: str) -> list[dict]:
+    """PI-D-140: the windows of one (recipe, kind, target); another recipe never inherits them."""
     return [e["payload"]["result"] for e in idx.entries if e["payload"]["kind"] == "MONITOR"
-            and e["payload"].get("monitor") == "WINDOW_RESULT" and e["payload"]["target"] == target and e["payload"]["kind_model"] == kind]
+            and e["payload"].get("monitor") == "WINDOW_RESULT" and e["payload"]["target"] == target and e["payload"]["kind_model"] == kind
+            and e["payload"].get("recipe_id") == recipe_id]
 
 
 def evaluate(rec: dict, reg: dict, freeze: float, now: float) -> dict:
-    idx = M.load(LEDGER)
+    idx = M.load(LEDGER) if LEDGER.exists() else M.Index()
     commits = commit_times()
-    summary, new = {}, []
+    summary, new, promo = {}, [], []
     for t in TARGETS:
         for kind in KINDS:
-            res = window_results(idx, t, kind)
+            res = window_results(idx, t, kind, rec["recipe_id"])
             rows = window_rows(idx, t, kind, rec, commits)
             while True:
                 after = freeze
@@ -693,11 +720,33 @@ def evaluate(rec: dict, reg: dict, freeze: float, now: float) -> dict:
                 new.append({"kind": "MONITOR", "monitor": "WINDOW_RESULT", "target": t, "kind_model": kind, "recipe_id": rec["recipe_id"],
                             "result": out, "recorded_at": now})
                 res.append(out)
-            lv = P.level(res, role="REFERENCE_BASELINE")
+            role = rec["kinds"][kind]["role"]
+            lv = P.level(res, role=role)
+            if role == "CANDIDATE" and lv["level"] in P.PUBLISHABLE:
+                promo += promotion_payloads(reg, rec, t, kind, res, lv, now)
             summary[(t, kind)] = {"level": lv["level"], "windows": len(res), "open": {k: win.get(k) for k in
                                   ("scored_n", "scored_k", "scored_days", "complete_days")}}
     led = append_ledger(new)
-    return {"summary": summary, "appended": led.get("appended", 0)}
+    if promo:
+        cur = fsha(REG_LOG) if REG_LOG.exists() else None
+        P.append_events(REG_LOG, promo, expect_sha=cur)
+    return {"summary": summary, "appended": led.get("appended", 0), "promoted": len([p for p in promo if p["kind"] == "PROMOTE"])}
+
+
+def promotion_payloads(reg: dict, rec: dict, target: str, kind: str, results: list[dict], lv: dict, now: float) -> list[dict]:
+    """PI-D-140: PROMOTE the newest unretired version of a CANDIDATE kind to the level its windows give, and pin it as
+    CHAMPION with the recipe's B0 and B2 references, unless it already holds that level."""
+    vs = versions(reg, kind, target)
+    if not vs:
+        return []
+    e = vs[-1]
+    if reg.get("levels", {}).get(e["entry_id"]) == lv["level"]:
+        return []
+    refs = {k: versions(reg, k, target)[-1]["entry_id"] for k in ("B0", "B2") if versions(reg, k, target)}
+    at = iso(now)
+    return [{"kind": "PROMOTE", "as_of_utc": at, "entry_id": e["entry_id"], "level": lv["level"], "window_results": results},
+            {"kind": "PIN", "as_of_utc": at, "target": target, "mode": "CHAMPION", "champion": e["entry_id"], "references": refs,
+             "reasons": [f"{lv['level']}_FROM_PROSPECTIVE_WINDOWS"]}]
 
 
 # ---------------------------------------------------------------- commits and the summary
@@ -732,6 +781,28 @@ def ledger_committable() -> bool:
     if not LEDGER.exists():
         return True
     return bool(M.verify(LEDGER)["ok"]) and M.is_append_only(git("show", f"HEAD:{REL}/LEDGER.jsonl", check=False), LEDGER.read_text())
+
+
+def current_branch() -> str:
+    r = subprocess.run(["git", "-C", str(REPO), "symbolic-ref", "--short", "-q", "HEAD"], capture_output=True, text=True)
+    return r.stdout.strip() if r.returncode == 0 else ""
+
+
+def push(remote: str, *, reason: str) -> dict:
+    """PI-D-140: push HEAD to `remote` on BRANCH, fast-forward only (never force, never another branch), then check that the
+    remote ref is HEAD. Before any label read this puts the committed predictions on GitHub, whose push record is the
+    independent time anchor."""
+    head = git("rev-parse", "HEAD").strip()
+    r = subprocess.run(["git", "-C", str(REPO), "push", "-q", remote, f"HEAD:refs/heads/{BRANCH}"], capture_output=True, text=True,
+                       timeout=300)
+    if r.returncode:
+        raise Fail(reason, (r.stderr or r.stdout).strip()[:200])
+    r = subprocess.run(["git", "-C", str(REPO), "ls-remote", remote, f"refs/heads/{BRANCH}"], capture_output=True, text=True,
+                       timeout=120)
+    got = r.stdout.split()[0] if r.returncode == 0 and r.stdout.strip() else None
+    if got != head:
+        raise Fail(reason, f"the remote {BRANCH} is {got} after the push, not HEAD {head[:12]}")
+    return {"remote": remote, "branch": BRANCH, "head": head, "pushed_utc": iso(time.time())}
 
 
 def cost_line(day: str, calls: int, http: dict) -> None:
@@ -792,6 +863,8 @@ def run(args) -> int:
     before = outside(porcelain())
     try:
         rec = recipe()
+        if current_branch() != BRANCH:
+            raise Fail("PREFLIGHT_FAILED", f"HEAD is not the branch {BRANCH} (found {current_branch() or 'a detached HEAD'})")
         freeze = freeze_time()
         # recovery: a run that stopped after appending but before its commit left only allowed, append-only changes
         dirty = porcelain() - outside(porcelain())
@@ -846,6 +919,8 @@ def run(args) -> int:
                 raise Fail("LABEL_FETCH_FAILED", f"--no-commit: {plan_n} reads planned but reads are disabled")
             lab = {"reads": 0, "calls": 0, "stopped": None, "http": {}}
         else:
+            # PI-D-140: predictions are committed (step 2) and now pushed before any label read
+            st.setdefault("pushes", []).append(push(args.push_remote, reason="PREDICTION_PUSH_FAILED"))
             lab = fetch_labels(prow, reader, now)
         st["labels"] = lab
         if lab["stopped"]:
@@ -861,6 +936,9 @@ def run(args) -> int:
             st["outcomes"] = append_ledger(oc).get("appended", 0)
             jl_append(LABEL_ROWS, label_rows_for(recs, now))
         # 5. windows
+        hp = ledger_history()[1]
+        if hp:
+            st["notes"].append(f"{hp[0]}; every window is WINDOW_NOT_ADMISSIBLE")
         ev = evaluate(rec, reg, freeze, now)
         st["windows"] = "; ".join(f"{SHORT[t]} {k} {v['level']} (windows {v['windows']}, open {v['open'].get('scored_n') or 0}/50 "
                                   f"events, {v['open'].get('scored_days') or 0}/5 days)" for (t, k), v in sorted(ev["summary"].items())
@@ -923,6 +1001,12 @@ def run(args) -> int:
         except Fail as e:
             print(f"FAILED {e.reason}: {e.detail}", file=sys.stderr)
             return EXIT["COMMIT_FAILED"]
+        if current_branch() == BRANCH:
+            try:
+                push(args.push_remote, reason="PUSH_FAILED")
+            except Fail as e:
+                print(f"FAILED {e.reason}: {e.detail}", file=sys.stderr)
+                return code or EXIT["PUSH_FAILED"]
     return code
 
 
@@ -931,6 +1015,7 @@ def cmd_verify(_args) -> int:
     if LEDGER.exists():
         v = M.verify(LEDGER)
         probs += v["problems"]
+    probs += ledger_history()[1]                   # PI-D-140: committed ledgers append-only across commits
     try:
         reg = registry()
         for i, e in reg["entries"].items():
@@ -966,12 +1051,17 @@ def main(argv=None) -> int:
     r.add_argument("--max-minutes", type=float, default=40.0)
     r.add_argument("--now", type=float)
     r.add_argument("--export-ref", default=EXPORT_REF)
+    r.add_argument("--push-remote", default="origin")
     sub.add_parser("verify")
     sub.add_parser("status")
     a = ap.parse_args(argv)
     if a.cmd == "run":
-        if a.max_calls < 0 or a.max_calls > 300 or a.max_minutes <= 0 or a.max_minutes > 120:
-            print("FAILED PREFLIGHT_FAILED: --max-calls must be 0 to 300 and --max-minutes above 0 and at most 120", file=sys.stderr)
+        if a.max_calls < 0 or a.max_calls > MAX_CALLS or a.max_minutes <= 0 or a.max_minutes > 120:
+            print(f"FAILED PREFLIGHT_FAILED: --max-calls must be 0 to {MAX_CALLS} and --max-minutes above 0 and at most 120",
+                  file=sys.stderr)
+            return EXIT["PREFLIGHT_FAILED"]
+        if a.now is not None and os.environ.get(TEST_CLOCK_ENV) != "1":
+            print(f"FAILED PREFLIGHT_FAILED: --now is for tests only ({TEST_CLOCK_ENV}=1)", file=sys.stderr)
             return EXIT["PREFLIGHT_FAILED"]
         return run(a)
     return {"verify": cmd_verify, "status": cmd_status}[a.cmd](a)

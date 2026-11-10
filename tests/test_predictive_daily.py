@@ -104,7 +104,7 @@ def test_only_the_audit_folder_and_the_cost_ledger_are_allowed_paths():
         "audits/predictive-intelligence/daily_x/a", "data/state/latest.json", "memelab/cli.py"}
 
 
-@pytest.mark.parametrize("argv", [["run", "--max-calls", "301"], ["run", "--max-calls", "-1"], ["run", "--max-minutes", "0"],
+@pytest.mark.parametrize("argv", [["run", "--max-calls", "301"], ["run", "--max-calls", "61"], ["run", "--max-calls", "-1"], ["run", "--max-minutes", "0"],
                                   ["run", "--max-minutes", "121"]])
 def test_out_of_bounds_limits_are_refused_with_a_named_reason(argv, capsys):
     assert D.main(argv) == D.EXIT["PREFLIGHT_FAILED"]
@@ -138,7 +138,7 @@ def clone(tmp_path_factory):
     base = tmp_path_factory.mktemp("daily")
     c = base / "c"
     subprocess.run(["git", "clone", "-q", "--no-checkout", str(ROOT), str(c)], check=True, capture_output=True)
-    _git(c, "checkout", "-q", head)
+    _git(c, "checkout", "-q", "-B", "feature/predictive-intelligence", head)   # PI-D-140: a run needs the branch by name
     _git(c, "config", "user.email", "test@localhost")
     _git(c, "config", "user.name", "test")
     freeze = float(_git(c, "log", "--diff-filter=A", "--format=%ct", "--", "audits/predictive-intelligence/daily/RECIPE.json").split()[-1])
@@ -161,10 +161,22 @@ def clone(tmp_path_factory):
     return {"c": c, "state": base / "state", "t_exp": t_exp, "mint": row["mint"], "freeze": freeze}
 
 
+def _anchor(c: Path) -> str:
+    """PI-D-140: a local bare repository as the push remote of a test clone (never the network, never the source checkout)."""
+    bare = c.parent / (c.name + "_anchor.git")
+    if not bare.exists():
+        subprocess.run(["git", "init", "-q", "--bare", str(bare)], check=True, capture_output=True)
+    if subprocess.run(["git", "-C", str(c), "remote", "get-url", "anchor"], capture_output=True).returncode:
+        _git(c, "remote", "add", "anchor", str(bare))
+    return str(bare)
+
+
 def _run(cl, *extra):
+    _anchor(cl["c"])
+    env = {**os.environ, "PREDICTIVE_DAILY_TEST_CLOCK": "1"}
     return subprocess.run([sys.executable, "-B", str(cl["c"] / "audits/predictive-intelligence/daily/predictive_daily.py"), "run",
-                           "--state-dir", str(cl["state"]), "--no-fetch", "--export-ref", "fake", *extra],
-                          capture_output=True, text=True, timeout=900)
+                           "--state-dir", str(cl["state"]), "--no-fetch", "--export-ref", "fake", "--push-remote", "anchor", *extra],
+                          capture_output=True, text=True, timeout=900, env=env)
 
 
 def test_e2e_predictions_are_committed_before_any_read_and_a_second_run_adds_nothing(clone):

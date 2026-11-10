@@ -34,7 +34,7 @@ LEVELS = ("ABSTAIN", "SHADOW", "VALIDATED_EXPERIMENTAL", "NO_GO")
 PUBLISHABLE = ("SHADOW", "VALIDATED_EXPERIMENTAL")
 ROLES = ("REFERENCE_BASELINE", "CANDIDATE")
 DAY = 86400.0
-EVENT_KINDS = ("REGISTER", "PIN", "RETIRE")
+EVENT_KINDS = ("REGISTER", "PIN", "RETIRE", "PROMOTE")       # PROMOTE: PI-D-140
 PIN_MODES = ("CHAMPION", "NO_VIABLE_CHAMPION")
 GENESIS = "0" * 64
 
@@ -224,6 +224,14 @@ def level(results: Sequence[dict], *, role: str) -> dict:
         raise PromotionError(f"role {role!r}")
     shadow_at = next((i for i, r in enumerate(results) if r.get("state") == PASSED), None)
     reasons: list[str] = []
+    if role == "REFERENCE_BASELINE":
+        # PI-D-140 (skeptic finding 3): a reference is never published, so it never reaches SHADOW or VALIDATED_EXPERIMENTAL;
+        # its passed windows are reported as a count only
+        passed = sum(1 for r in results if r.get("state") == PASSED)
+        reasons.append("NO_PROSPECTIVE_WINDOW_PASSED" if not passed else f"PASSED_WINDOWS_{passed}_REFERENCE_ONLY")
+        reasons.append("REFERENCE_BASELINE_NEVER_PUBLISHED")
+        return {"level": "ABSTAIN", "reasons": reasons, "windows": len(results), "passed_windows": passed,
+                "rule_sha": C.promotion_rule_sha256()}
     if shadow_at is None:
         lv = "ABSTAIN" if role == "REFERENCE_BASELINE" else "NO_GO"
         reasons.append("NO_PROSPECTIVE_WINDOW_PASSED" if results else "NO_PROSPECTIVE_WINDOW_CLOSED")
@@ -292,7 +300,8 @@ def read_log(text: str) -> list[dict]:
     return events
 
 
-def _check_event(ev: dict, known: dict[str, dict], retired: set[str]) -> None:
+def _check_event(ev: dict, known: dict[str, dict], retired: set[str], levels: dict[str, str] | None = None) -> None:
+    levels = {} if levels is None else levels
     k = ev["kind"]
     if k == "REGISTER":
         e = verify_entry(ev["entry"])
@@ -306,6 +315,19 @@ def _check_event(ev: dict, known: dict[str, dict], retired: set[str]) -> None:
             if i in retired:
                 raise LogError("an entry is retired once")
             retired.add(i)
+    elif k == "PROMOTE":
+        # PI-D-140: a CANDIDATE entry reaches a publishable level only through the window results that give it
+        e = known.get(ev.get("entry_id"))
+        if e is None or ev["entry_id"] in retired:
+            raise LogError("PROMOTE names a registered, unretired entry")
+        if e["role"] != "CANDIDATE":
+            raise LogError("a reference is never promoted")
+        if ev.get("level") not in PUBLISHABLE:
+            raise LogError("PROMOTE gives SHADOW or VALIDATED_EXPERIMENTAL")
+        res = ev.get("window_results")
+        if not isinstance(res, list) or level(res, role="CANDIDATE")["level"] != ev["level"]:
+            raise LogError("the level is not the one its window results give")
+        levels[ev["entry_id"]] = ev["level"]
     elif k == "PIN":
         if ev.get("mode") not in PIN_MODES or not ev.get("target"):
             raise LogError("PIN needs a mode and a target")
@@ -318,7 +340,7 @@ def _check_event(ev: dict, known: dict[str, dict], retired: set[str]) -> None:
                 raise LogError("a PIN reference must be a registered, unretired entry of that kind and target")
         if ev["mode"] == "CHAMPION":
             ch = known.get(ev.get("champion"))
-            if ch is None or ch["level"] not in PUBLISHABLE:
+            if ch is None or ev["champion"] in retired or ch["target"] != ev["target"] or levels.get(ev["champion"]) not in PUBLISHABLE:
                 raise LogError("a CHAMPION pin needs a registered entry at a publishable level")
         elif ev.get("champion") is not None:
             raise LogError("NO_VIABLE_CHAMPION names no champion")
@@ -328,11 +350,12 @@ def state(events: Sequence[dict]) -> dict:
     known: dict[str, dict] = {}
     retired: set[str] = set()
     pins: dict[str, dict] = {}
+    levels: dict[str, str] = {}
     for ev in events:
-        _check_event(ev, known, retired)
+        _check_event(ev, known, retired, levels)
         if ev["kind"] == "PIN":
             pins[ev["target"]] = ev
-    return {"entries": known, "retired": retired, "pins": pins}
+    return {"entries": known, "retired": retired, "pins": pins, "levels": levels}
 
 
 def append_events(path: str | Path, payloads: Sequence[dict], *, expect_sha: str | None) -> list[dict]:
@@ -352,7 +375,7 @@ def append_events(path: str | Path, payloads: Sequence[dict], *, expect_sha: str
             raise LogError("an appended event is earlier than the last event")
         ev = {**{k: v for k, v in pl.items() if k not in ("seq", "prev", "event_id")}, "seq": len(events) + i, "prev": prev}
         ev["event_id"] = _event_id(ev)
-        _check_event(ev, st["entries"], st["retired"])
+        _check_event(ev, st["entries"], st["retired"], st["levels"])
         out.append(ev)
         prev, last = _line_sha(canon(ev)), C.parse_utc(ev["as_of_utc"])
     with open(p, "a") as f:

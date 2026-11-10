@@ -93,7 +93,10 @@ def test_a_skilled_calibrated_window_passes_and_gives_shadow():
     out = P.evaluate_window(w, kind="B2", freeze=FREEZE, n_search=130, windows=1, tests=TESTS_OK)
     assert out["state"] == P.PASSED, out["reasons"]
     assert out["skill"]["replicates"] == 26000 and out["skill"]["lower"] > 0 and out["calibration"]["every_bin_ok"]
-    assert P.level([out], role="REFERENCE_BASELINE")["level"] == "SHADOW"
+    # PI-D-140: a passed window promotes a CANDIDATE; a reference stays ABSTAIN and only counts the passed window
+    assert P.level([out], role="CANDIDATE")["level"] == "SHADOW"
+    ref = P.level([out], role="REFERENCE_BASELINE")
+    assert ref["level"] == "ABSTAIN" and ref["passed_windows"] == 1 and "REFERENCE_BASELINE_NEVER_PUBLISHED" in ref["reasons"]
 
 
 def test_no_skill_fails_on_the_corrected_lower_bound():
@@ -165,8 +168,9 @@ def test_validated_experimental_needs_a_second_later_window_and_b2_parity():
     assert P.day_of(w2["scored"][0]["decision_time"]) > P.day_of(w1["scored"][-1]["decision_time"])
     r2 = P.evaluate_window(w2, kind="B2", freeze=FREEZE, n_search=130, windows=2, tests=TESTS_OK)
     assert r1["state"] == r2["state"] == P.PASSED
-    assert P.level([r1], role="REFERENCE_BASELINE")["level"] == "SHADOW"
-    assert P.level([r1, r2], role="REFERENCE_BASELINE")["level"] == "VALIDATED_EXPERIMENTAL"
+    assert P.level([r1], role="CANDIDATE")["level"] == "SHADOW"                      # PI-D-140: CANDIDATE, not the reference
+    assert P.level([r1, r2], role="CANDIDATE")["level"] == "VALIDATED_EXPERIMENTAL"
+    assert P.level([r1, r2], role="REFERENCE_BASELINE")["level"] == "ABSTAIN"
     # a candidate worse than B2 on the second window stays at SHADOW
     worse = [dict(r, b2_number=r["y"] * 0.98 + 0.01) for r in rs]
     r2c = P.evaluate_window(closed(worse, from_day=w1["next_from_day"]), kind="C1", freeze=FREEZE, n_search=130, windows=2, tests=TESTS_OK)
