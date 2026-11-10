@@ -27,7 +27,7 @@
  },
  "exports": {
   "a_tracked_db_copy": {
-   "bytes": 346444,
+   "bytes": 346441,
    "check": "{\"rows\": {\"catalyst_assessments\": 0, \"catalyst_event_revisions\": 0, \"catalyst_event_sources\": 0, \"catalyst_events\": 0, \"catalyst_items\": 0, \"catalyst_sources\": 0, \"catalyst_token_links\": 0, \"social_accounts\": 0, \"social_claim_extractions\": 0, \"social_claims\": 0, \"social_item_versions\": 0, \"social_items\": 0, \"social_observations\": 0, \"social_registry_entities\": 0, \"social_registry_reviews\": 0, \"social_token_refs\": 0, \"social_token_resolutions\": 0, \"social_trader_accounts\": 0}, \"rules\": [], \"state\": \"OK\"}",
    "check_exit": 0,
    "export_exit": 0,
@@ -53,7 +53,7 @@
     "social_token_resolutions": 0,
     "social_trader_accounts": 0
    },
-   "section_version": "catsoc-export-1",
+   "section_version": "catsoc-export-2",
    "tables_missing": [
     "catalyst_assessments",
     "catalyst_event_revisions",
@@ -75,10 +75,10 @@
     "social_trader_accounts"
    ],
    "withheld": null,
-   "withheld_summaries": 0
+   "withheld_values": 0
   },
   "b_real_export_imported": {
-   "bytes": 10616591,
+   "bytes": 10616589,
    "check": "{\"rows\": {\"catalyst_assessments\": 0, \"catalyst_event_revisions\": 0, \"catalyst_event_sources\": 0, \"catalyst_events\": 0, \"catalyst_items\": 0, \"catalyst_sources\": 0, \"catalyst_token_links\": 0, \"social_accounts\": 0, \"social_claim_extractions\": 0, \"social_claims\": 0, \"social_item_versions\": 0, \"social_items\": 0, \"social_observations\": 0, \"social_registry_entities\": 0, \"social_registry_reviews\": 0, \"social_token_refs\": 0, \"social_token_resolutions\": 0, \"social_trader_accounts\": 0}, \"rules\": [], \"state\": \"OK\"}",
    "check_exit": 0,
    "export_exit": 0,
@@ -104,13 +104,13 @@
     "social_token_resolutions": 0,
     "social_trader_accounts": 0
    },
-   "section_version": "catsoc-export-1",
+   "section_version": "catsoc-export-2",
    "tables_missing": [],
    "withheld": null,
-   "withheld_summaries": 0
+   "withheld_values": 0
   },
   "c_fixture_seeded": {
-   "bytes": 12209,
+   "bytes": 12371,
    "check": "{\"rows\": {\"catalyst_assessments\": 1, \"catalyst_event_revisions\": 2, \"catalyst_event_sources\": 2, \"catalyst_events\": 1, \"catalyst_items\": 2, \"catalyst_sources\": 2, \"catalyst_token_links\": 2, \"social_accounts\": 1, \"social_claim_extractions\": 0, \"social_claims\": 1, \"social_item_versions\": 0, \"social_items\": 1, \"social_observations\": 1, \"social_registry_entities\": 0, \"social_registry_reviews\": 0, \"social_token_refs\": 0, \"social_token_resolutions\": 1, \"social_trader_accounts\": 1}, \"rules\": [], \"state\": \"OK\"}",
    "check_exit": 0,
    "export_exit": 0,
@@ -136,13 +136,13 @@
     "social_token_resolutions": 1,
     "social_trader_accounts": 1
    },
-   "section_version": "catsoc-export-1",
+   "section_version": "catsoc-export-2",
    "tables_missing": [],
    "withheld": null,
-   "withheld_summaries": 1
+   "withheld_values": 0
   }
  },
- "head": "e8228873537783bf9289df0e13b95f51d32bd957",
+ "head": "2098808977ecdaeadf9d1235e31b181389ffdf76",
  "history": {
   "first_commit": "15c2087ededa8958ad7bc433be204ca7b830a2d9",
   "first_section_at": null,

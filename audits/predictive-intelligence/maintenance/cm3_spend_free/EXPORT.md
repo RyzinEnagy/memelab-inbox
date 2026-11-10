@@ -9,25 +9,43 @@ With the switch off the export file is byte for byte what the exporter at `60eb7
 `test_flag_off_export_is_byte_identical_to_the_60eb729_exporter`). Turning it on in the scheduled export is Elving's decision;
 no scheduled task was changed.
 
-## What the section holds
+## What the section holds (format catsoc-export-2, an allowlist since PI-D-137)
 
-Top-level key `_catsoc` (format `catsoc-export-1`): `version`, `window_days` (30), `window_start`, `tables`, `withheld_summaries`,
-`tables_missing`. The exact column list of every table is `memelab.catsoc_export.COLUMNS`. In short:
+Top-level key `_catsoc`: `version`, `window_days` (30), `window_start`, `tables`, `withheld_values`, `tables_missing`, and
+nothing else. Every column of every table has a value type in `memelab.catsoc_export.TYPES`, and a value leaves the database
+only when it matches that type; otherwise it is written as null and counted in `withheld_values`:
 
-- catalyst: event refs (salted sha256 of the event key), category, evidence status, status, times, source ids (the lab's own
-  registry keys such as `news:...` or `exch:...`; the trader research rows, keyed `trader:x:<handle>`, are exported as `trader:`
-  plus the salted sha256 prefix in every table); revisions with values for the enum fields only; item refs with the sha256 of the URL and of the normalized body and the linked mints found
-  verbatim in each; exact chain plus mint links with type and strength; source ids, groups and tiers; assessment verdicts.
-- social: only items with an exact chain plus contract resolution. Account ids, item keys, trader ids and registry ids are
-  salted sha256 prefixes. Times, enum states, content hashes, exact contracts, and the lab's own summaries when at most 200
-  characters, one line, without `@` or `http`.
-- Never: titles, bodies, URLs, handles, display names, bios, notes, labels, mention text, reasons, database row ids.
-- The salted refs are pseudonymous, not secret: the salt (`catsoc-export-1:`) is public, so anyone who already holds a candidate
-  handle, post id or URL can confirm that it appears; nobody can read a value back from the export. A secret salt would need a
-  key in every scheduled session and is not part of this change (open item OI-CM3-1).
+| Type | What passes |
+|---|---|
+| `ref` | 32 lower-case hex characters (salted sha256 prefix of an id) |
+| `sha256` | 64 lower-case hex characters |
+| `time`, `int` | a finite number, an integer |
+| `chain` | `[a-z0-9_-]{1,20}` |
+| `address`, `addresses` | a Solana base58 address of 32 to 44 characters or `0x` plus 40 hex, or a list of them |
+| `enum:<name>` | one value of a fixed vocabulary in `VOCAB` (the catalyst schema's documented values and the social schema's CHECK constraints) |
+| `source` | a lower-case prefix (`news`, `exch`, `trader`, ...; `src` when there is none), a colon and a ref |
 
-Before writing, the section is checked against the column lists and `content_guard.check_json`; a failure replaces it with
-`{"version", "withheld": "GUARD_VIOLATION", "rules"}` and the rest of the export is written as usual.
+- There is no free-text column. Summaries (format 1 exported short ones) are not exported at all; they stay in the lab
+  database. No title, body, URL, handle, display name, bio, note, label, mention text, reason or database row id leaves.
+- Ids become refs: event keys, item keys, account ids, trader ids, registry ids, narrative ids, every catalyst source id, the
+  analysis version, and the social tables' own keys (`observation_ref`, `resolution_ref`, `claim_ref`, `extraction_ref`,
+  `token_ref`). The same value always gives the same ref, so joins and the classifier's source groups still work.
+- The salt stays `catsoc-export-1:` (format 1 was never published: no real export version carries a section). The refs are
+  pseudonymous, not secret: anyone who already holds a candidate handle, post id or URL can confirm that it appears; nobody can
+  read a value back. A secret salt is open item OI-CM3-1, not part of CM-3.
+- A label value outside its vocabulary (a new lab value or anything else) is null in the export until the vocabulary is
+  extended by a change control; that is the price of an allowlist.
+
+Before writing, the section is checked (`problems`): the key set, the table set, each row's column order and every value's
+type, then `content_guard.check_json`. A failure replaces the section with `{"version", "withheld": "GUARD_VIOLATION",
+"rules"}` (rule names only) and the rest of the export is written as usual. The same check runs in the importer (refusal) and
+in the adapter (the version is ignored as withheld), so a hand-edited section with a summary, a URL or a handle is never read.
+
+Proof against the skeptic's M1 (`skeptic/CM3_SKEPTIC.md`): `test_m1_personal_data_and_contact_routes_never_reach_the_export`
+plants the four summaries of `cm3_probe.py` and fullwidth and spelled-out variants into every free-text column the seed can
+reach (and into the source ids and keys); the exported bytes, NFKC-normalized, lower-cased and reduced to letters and digits,
+contain none of `someonereal`, `johndoe`, `gmail`, `7185550100`, `xcom`, `tme`. The probe rerun (`skeptic/rerun_probe_adapted.txt`)
+shows the observation rows carry no `summary` column.
 
 ## Reading it back
 
@@ -45,14 +63,18 @@ Measured by `probes/flag_off_identity.py` (`evidence/flag_off_identity.json`, ti
 the file is byte identical to the `60eb729` exporter on all three. With the switch on the file is the flag-off bytes with one
 member inserted before the final `}`: `,"_catsoc":{...}` holding `tables` (18 tables, each a list of rows with exactly the
 columns of `COLUMNS`), `tables_missing`, `version`, `window_days`, `window_start` and `withheld_summaries`. Nothing else in the
-file changes. Sizes: tracked `data/memelab.sqlite` copy +988 bytes (all 18 tables absent from that older database, so empty);
-database rebuilt from the real export +591 bytes (tables present, no rows); fixture database +4,855 bytes (15 rows, one claim
-summary withheld).
+file changes. Sizes at the repair commit: tracked `data/memelab.sqlite` copy +985 bytes (all 18 tables absent from that older database, so
+empty); database rebuilt from the real export +588 bytes (tables present, no rows); fixture database +5,036 bytes (18 rows, no
+value withheld).
 
-## State today
+## State today, and what the real-data check proves
 
 The 78 committed versions of `data/state/latest.json` carry no section, so all 4,878 (mint, commit) pairs read
 CATALYST_TABLES_NOT_EXPORTED / SOCIAL_TABLES_NOT_EXPORTED. The real databases available here hold no catalyst or social rows
 (the tracked `data/memelab.sqlite` predates those tables; a database rebuilt from the real export has them empty), so the
-section exported from them is empty; the fixture database exercises every table. Catalyst evidence for real decisions starts
-only after the switch is on in the scheduled export and a later phase registers catalyst targets on exported rows.
+section exported from them is empty.
+
+Said plainly (skeptic m3): the real-data check proves only that the section is absent from every real export version and that
+these databases have no rows to export. It proves nothing about how real summaries, ids or labels would look in the export.
+That is covered by the fixture database and the tests, which plant the hostile values; real rows will first appear after the
+switch is on in the scheduled export, and a later phase registers catalyst targets on them.

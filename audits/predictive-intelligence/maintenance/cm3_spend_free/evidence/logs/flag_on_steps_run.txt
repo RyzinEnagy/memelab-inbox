@@ -1,0 +1,19 @@
+step 1
+exit 0
+{"predictive.enabled": true, "state_dir_under_home_mnt": true, "catalyst_social": true}
+status
+{"flag": true}
+step 2: sign-status
+{
+ "key_configured": true,
+ "signature": "EMPTY_STATE"
+}
+exit 0
+step 4: alerts
+exit 0
+Delivery: previews in the local outbox only (dry run); nothing was sent to any device.
+Push file: 0 line(s) in no file for the scheduled task; nothing sent by memelab.
+export
+exit 0
+{"version": "catsoc-export-2", "withheld": null, "keys": ["tables", "tables_missing", "version", "window_days", "window_start", "withheld_values"]}
+predictive_state.key

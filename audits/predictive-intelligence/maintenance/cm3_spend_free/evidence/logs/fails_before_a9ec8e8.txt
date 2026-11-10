@@ -1,0 +1,13 @@
+new tests of the repair run against the a9ec8e8 code (tests/test_predictive_cm3.py of 2098808 copied into a detached a9ec8e8 worktree, -k 'rollback or m1_ or m2_ or m4 or counter or default_key'):
+106 failed, 7 passed, 48 deselected in 8.35s
+passing there (expected: the FLAG_ON text test reads the new FLAG_ON.md copied in; two hand-edit cases the old column check already refused; four ASCII m4 cases the old code already refused):
+tests/test_predictive_cm3_new.py::test_m1_the_reader_refuses_a_hand_edited_section_with_text_or_a_wrong_type[observation_ref-someone_real]
+tests/test_predictive_cm3_new.py::test_m1_the_reader_refuses_a_hand_edited_section_with_text_or_a_wrong_type[analysis_ref-someone_real]
+tests/test_predictive_cm3_new.py::test_m2_flag_on_text_names_no_key_path_and_says_push_lines_are_data
+tests/test_predictive_cm3_new.py::test_m4_a_non_hex_signature_is_state_tampered_never_a_type_error[AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]
+tests/test_predictive_cm3_new.py::test_m4_a_non_hex_signature_is_state_tampered_never_a_type_error[123]
+tests/test_predictive_cm3_new.py::test_m4_a_non_hex_signature_is_state_tampered_never_a_type_error[None]
+tests/test_predictive_cm3_new.py::test_m4_a_non_hex_signature_is_state_tampered_never_a_type_error[000000000000000000000000000000000000000000000000000000000000000]
+test_rollback_to_an_older_signed_snapshot_is_refused on a9ec8e8:
+E       AssertionError: assert ('SIGNED_VERIFIED' == 'REFUSED'
+1 failed, 160 deselected in 1.21s

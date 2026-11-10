@@ -269,7 +269,7 @@ Changes after the last phase of the package. Each has its own change control in 
 | Id | Date | Change | Decisions | Status |
 |---|---|---|---|---|
 | CM-1 | 2026-11-09 | Merge of the backtesting module (PR #4, `69bc5c3`) into this line; bt-adapter-2 reads the installed package read-only | PI-D-120, PI-D-121 | DONE locally (merge `69b7b57`, code `6ea454d`), not pushed |
-| CM-3 | 2026-11-09 | Spend-free items: catalyst and social section in the state export and its reader (ED-3), push-file alert delivery (ED-7), HMAC signing of the private state (ED-9), flag-on steps for the scheduled runs (ED-8 preparation); branch `maint/catalyst-export` | PI-D-130 to PI-D-136 | NEEDS_REVIEW, local only, not merged |
+| CM-3 | 2026-11-09 | Spend-free items: catalyst and social section in the state export and its reader (ED-3), push-file alert delivery (ED-7), HMAC signing of the private state (ED-9), flag-on steps for the scheduled runs (ED-8 preparation); branch `maint/catalyst-export` | PI-D-130 to PI-D-139, PI-D-150 | PASS after the skeptic review and repair pass 2 (allowlist export, push lines from fixed parts, rollback counter); local only, not merged |
 
 Constraints after CM-1:
 

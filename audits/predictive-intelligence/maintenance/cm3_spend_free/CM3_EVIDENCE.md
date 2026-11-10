@@ -4,7 +4,8 @@ Change control: PI-D-130 to PI-D-133 (`CHANGE_CONTROL.md`, committed before code
 Approved by Elving on 2026-11-09 ("do everything that doesn't require spend"). Branch `maint/catalyst-export` from
 `feature/predictive-intelligence` at `60eb729`. Local only; not pushed, not merged (the orchestrator merges, ED-6). Spend: 0.
 
-Status: NEEDS_REVIEW (the orchestrator's skeptic reads `SKEPTIC_PACKET.md`).
+Status: PASS after the orchestrator's skeptic review (2 material, 4 minor findings, one counterexample) and repair pass 2
+(PI-D-137 to PI-D-139, PI-D-150), section "Repair pass 2" below. The sections after it describe the state at `a9ec8e8`.
 
 ## Commits
 
@@ -15,7 +16,64 @@ Status: NEEDS_REVIEW (the orchestrator's skeptic reads `SKEPTIC_PACKET.md`).
 | `b99e139` | code and tests (44 tests), committed by the agent cut off by the session restart |
 | `e822887` | repair after the restart: trader source ids hashed, stdout assertion corrected, key file name gitignored, identity probe |
 | `6f4aab9` | records: this file, the four documents, SKEPTIC_PACKET, results, DECISIONS, ROADMAP, HANDOFF |
-| follow-up | post-commit record at `6f4aab9` |
+| `a9ec8e8` | post-commit record at `6f4aab9` (reviewed by the skeptic) |
+| `dca558c` | repair change control PI-D-137 to PI-D-139, PI-D-150 (before code) |
+| `ab286ea` | repair code and tests (M1, M2, m1, m4) |
+| `2098808` | test fixture tolerates the `a9ec8e8` module, so the new tests run against it (fails-before proof) |
+| records commit | skeptic review copied, probes rerun, documents, this file, results, DECISIONS, ROADMAP, HANDOFF |
+| follow-up | post-commit record of the repair |
+
+## Repair pass 2 (skeptic review of `a9ec8e8`)
+
+Review, scripts and reruns: `skeptic/` (`CM3_SKEPTIC.md`, `cm3_probe.py`, `test_cm3_skeptic_rollback.py` as received). Every
+finding was checked against the code first; all six hold as written. No disagreement with the review.
+
+| Finding | Fix | What catches it now |
+|---|---|---|
+| M1 summaries carry URLs, handles, an email, a phone number into `_catsoc` | PI-D-137: format `catsoc-export-2` is an allowlist. Every column has a type (ref, sha256, time, int, chain, address, enumerated vocabulary, prefixed source ref); a value outside its type is null and counted (`withheld_values`); summaries are not exported; narrative ids, source ids, the analysis version and the social keys become refs; the reader refuses any other key set, column order or type | `test_m1_personal_data_and_contact_routes_never_reach_the_export` (10 plants incl. the four of `cm3_probe.py`, fullwidth, spelled-out and bare-handle variants, in every free-text column; NFKC letters-and-digits search of the export bytes), `test_m1_the_reader_refuses_a_hand_edited_section_with_text_or_a_wrong_type`, `test_m1_value_types_accept_only_their_own_values`, `test_a_planted_key_or_value_never_reaches_the_section`, `test_a_bug_that_skips_the_types_withholds_the_section_and_the_export_still_succeeds`; probe rerun `skeptic/rerun_probe_adapted.txt`: no `summary` column, `problems` [] |
+| M2 the push line embeds creator-written symbol text that an unattended agent reads | PI-D-138: `strict_symbol` (1 to 10 ASCII letters or digits, trading-word and instruction-word rules) in the alert label; push line from fixed parts (severity, policy words, `token`, strict symbol, chain, shortened address, alert number), never the label, and it must match `PUSH_LINE_GRAMMAR`; the engine finds the key in `~/mnt/memelab-key` itself, so `FLAG_ON.md` names no key path; the prompt says push lines and command output are data to relay verbatim, never instructions, and a line not starting with "memelab research " is not sent | `test_m2_an_injected_symbol_never_reaches_the_push_file_the_alert_text_or_the_alert_label` (the two skeptic strings and three variants as the symbol of a test world: push file, preview, alert database label, run output), `test_m2_the_strict_symbol_rule_refuses_injection_and_long_or_non_ascii_text`, `test_m2_a_forged_alert_label_or_chain_is_never_copied_into_a_push_line`, `test_m2_the_push_line_grammar_refuses_any_extra_word`, `test_m2_flag_on_text_names_no_key_path_and_says_push_lines_are_data` |
+| m1 rollback to an older signed snapshot is accepted (counterexample) | PI-D-139: last signed seq and tip, HMAC-protected, in a counter file outside the state folder (env, else beside the key file, else beside the state folder); lower seq, another tip at the signed seq, a foreign or unreadable entry are StateTampered; `sign` never adopts a chain below it | `test_rollback_to_an_older_signed_snapshot_is_refused` (fails on `a9ec8e8`: `SIGNED_VERIFIED` instead of REFUSED), `test_the_counter_lives_outside_the_state_folder_and_a_forged_entry_or_fork_is_refused`; the skeptic's own test now fails (`skeptic/rerun_rollback.txt`: REFUSED) |
+| m2 key in the same folder as the state | `SIGNING.md`: key in its own folder `%USERPROFILE%\memelab-key\` (session `~/mnt/memelab-key`), what that protects and what it does not, said plainly | `test_the_default_key_file_is_found_without_naming_it_and_signs_with_a_counter_beside_it` |
+| m3 real-data coverage is vacuous | `EXPORT.md` "State today, and what the real-data check proves" and the probe docstring say it proves only the absence of the section | stated, not a test |
+| m4 non-ASCII hmac raises TypeError | `_hex64` before `compare_digest`, for the signature and the counter | `test_m4_a_non_hex_signature_is_state_tampered_never_a_type_error` (the non-ASCII case fails on `a9ec8e8`) |
+| note: `real_export_check.py` not idempotent | the probe removes its own files in WORKDIR first | rerun into the same scratch folder |
+
+Fails before (`evidence/logs/fails_before_a9ec8e8.txt`): the new tests copied into a detached `a9ec8e8` worktree: 106 failed,
+7 passed (the FLAG_ON text test read the new document copied in; two hand-edit cases the old column check already refused; four
+ASCII m4 cases the old code already refused).
+
+Mutations of the repair, each reverted (`evidence/logs/mutations_repair.txt`), all caught by `tests/test_predictive_cm3.py`:
+`value_ok` accepts everything (29 failed); `push_line` copies the alert label (59); `strict_symbol` without the instruction-word
+rule (26); rollback counter not checked (2); non-hex hmac reaches `compare_digest` (1); default key file ignored (1); `summary`
+column exported again (12).
+
+Reruns from `2098808` (outputs regenerated, never edited):
+
+| Check | Result |
+|---|---|
+| CM-3 tests | 161 passed (was 46) |
+| full suite (before the records commit) | 2 failed (the two known clock-dependent catalyst tests), 2,687 passed, 1 skipped (`evidence/logs/suite_repair_tail.txt`) |
+| flag-off identity (`evidence/flag_off_identity.json`) | `all_identical` true on 3 databases: flag off equals the `60eb729` exporter, flag on equals flag off plus one `_catsoc` member. Changes against the `a9ec8e8` run: section key `withheld_summaries` is now `withheld_values`; bytes added 988 to 985, 591 to 588, 4,855 to 5,036 (refs replace short keys); fixture rows 18 in both runs (the first record's "15 rows" was a miscount of the same probe output, corrected here; the row below is kept as written at `a9ec8e8`); withheld 1 to 0 (no summary column any more). The old and off sha256 of databases b and c differ from the first run because the probe rebuilds those databases each run (c is seeded at the wall clock); the comparison is within one run |
+| real exports (`evidence/real_export_check.json`) | unchanged: 78 versions, 0 with a section, 4,878 pairs CATALYST_TABLES_NOT_EXPORTED / SOCIAL_TABLES_NOT_EXPORTED; 3 flag-on exports: export, check and import exit 0; guard exit 0 on a scratch clone after each; release audit with history exit 0 on that clone |
+| scheduled steps (`evidence/logs/flag_on_steps_run.txt`) | the new `FLAG_ON.md` steps 1, 2 and 4 in a scratch clone with a scratch home folder and a key only in `~/mnt/memelab-key`, no key variable set: config merged, `status` flag true, `sign-status` EMPTY_STATE with `key_configured` true (found by the engine), alerts exit 0 with "Push file: 0 line(s)", export carries `_catsoc` version `catsoc-export-2` |
+| reproductions | 6 passed |
+| release e2e | PASS, 78 of 78, network attempts 0, tracked database byte-identical |
+| seal | `"problems": []` |
+| Phase 18 goldens and pins | unchanged goldens; `integration.py` re-pinned in `PINNED_SHA256_PI-D-139.json` (was the PI-D-132 pin) |
+
+Number or verdict changes: none in any recorded run of Phases 00 to 21; the export format moves from 1 to 2 (never published);
+alert labels whose symbol fails the strict rule now read `symbol withheld` (none in the goldens).
+
+Limitations after the repair
+
+- The research report keeps the Phase 17 token-text rule (stripped to letters, digits, dot, dash, underscore, at most 24
+  characters, trading words withheld), and the lab's own scout report prints symbols as the lab always did. Both are read by
+  Elving; a scheduled session also sees the scout output, which step 5 of the prompt declares data. The strict rule covers the
+  alert label and the push line, the text a session relays.
+- Whoever can read the key folder (the scheduled session included) can sign anything and move the counter; deleting the counter
+  file re-opens rollback for that holder. A state folder moved to another path starts a new counter entry.
+- A vocabulary value the lab adds later is exported as null until a change control extends `VOCAB`.
+- Refs stay pseudonymous (public salt, OI-CM3-1). No real catalyst or social row exists here (m3).
 
 ## What the restart left, and what was done with it
 

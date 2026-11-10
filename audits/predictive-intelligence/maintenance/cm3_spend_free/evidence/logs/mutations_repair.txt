@@ -1,0 +1,7 @@
+value_ok accepts everything: exit 1: 29 failed, 132 passed in 9.27s
+push_line copies the alert label: exit 1: 59 failed, 102 passed in 13.33s
+strict_symbol drops the instruction-word rule: exit 1: 26 failed, 135 passed in 9.09s
+rollback counter not checked: exit 1: 2 failed, 159 passed in 9.07s
+non-hex hmac reaches compare_digest: exit 1: 1 failed, 160 passed in 8.94s
+default key file ignored: exit 1: 1 failed, 160 passed in 8.79s
+summary column exported again: exit 1: 12 failed, 149 passed in 8.82s

@@ -1,5 +1,7 @@
 # Skeptic packet: CM-3 (spend-free maintenance)
 
+Note (repair pass 2): this packet describes `a9ec8e8`, the commit the skeptic reviewed. The review is in `skeptic/CM3_SKEPTIC.md`; what changed after it (no summaries in the export, push lines from fixed parts, rollback counter) is in `CM3_EVIDENCE.md`, section "Repair pass 2".
+
 For the orchestrator's independent reviewer (PI-D-013). Task, paths and commands only.
 
 ## Task
