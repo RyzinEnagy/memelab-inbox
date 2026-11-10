@@ -1,0 +1,40 @@
+# CM-2 skeptic review (promotion change control and replacement cards)
+
+Reviewer: independent skeptic. Branch feature/predictive-intelligence at cdff266 (pushed). Clone: /home/claude/pi_orchestration/skeptic_cm2 (deleted after the review). No GeckoTerminal call made. Full suite and the 25 minute mutation probe were not rerun (post-commit records accepted as stated); the checks below were reproduced.
+
+## Verdict
+
+No material failure found. Six minor findings, one of which (the commit-time anchor) should be fixed before the first prospective window can close.
+
+## Checks
+
+| # | Check | Command or input | Result |
+|---|---|---|---|
+| 1 | Git order | `git log --format='%h %cI %s' ed85b2c^..HEAD`, evidence/label_calls.json | ed85b2c (change control, recipe) 01:13:46Z; e79d846 (code) 01:25:40Z; first T2 read sent 01:25:45Z (5 s after the code commit); fit and registration 01:30:46Z. Order holds, narrowly |
+| 2 | Frozen code unchanged | `git diff --stat e79d846 HEAD -- memelab .../predictive_daily.py .../build_cm2.py`; per-commit file lists | only predictive_daily.py (PI-D-128, +17/-4); later test changes only in 43a485b (PI-D-124), b7aabe3 and a8c96d7 (PI-D-126, PI-D-128), c66211c (PI-D-129); phase_16 and phase_19 folders unchanged since ed85b2c |
+| 3 | PROMOTION_CM2 vs ACCEPTANCE | printed both dicts | every minimum equal (50 events, 10 per class, 5 days, 20 per bin, 5 bins, Wilson 95%, 2,000 replicates, both resample units, lower governs). Stricter, not looser: SHADOW now needs a corrected lower bound above 0 (ACCEPTANCE: point skill at least 0); Bonferroni over 130 x windows replaces Holm over 3 targets. Only the approved item changed: the retrospective holdout requirement is replaced by prospective windows. Contact exclusions concern the spent 2026-10-17 to 24 holdout and cannot touch a post-freeze window |
+| 4 | Leakage and pooling | promotion.py, predictive_daily.in_force, window_rows | a scored row needs decision after the freeze, prediction before outcome in the ledger, commit time before label_observed_at, version registered at or before the decision with cutoff before it and not stale. Pooling across versions of one recipe uses the B0 of the same version per row; a retrained version can train on earlier window outcomes but never on a row it predicts (cutoff < decision). Windows are consecutive from the freeze, closed by a fixed rule, failed windows count; no cherry-pick or retrain-chasing lever found in code (retrain is cadence only) |
+| 5 | Refit of the 6 cards from as-of data | skeptic/cm2_refit.py (fit_version at the registration time on store 71fc50e, sealed holdout, BASE_LABELS) | 6 of 6 byte-identical to committed cards |
+| 6 | B0 recomputed by hand | same script, newest LABELED uncensored row per decision, matured by cutoff 2026-10-28T10:43:04Z | T1 225/55 = 0.2444, T1b 317/42 = 0.1325, T2 213/40 = 0.1878, all equal to the cards |
+| 7 | T2 reads | label_calls.json | 8 calls (one 429 retry), at most 6 in any 60 s, all with token=<mint>; boundary recomputed with labels.needed_boundary = 1793183400 (on the 300 s grid), equal to every read |
+| 8 | Registry | REGISTRY_LOG.jsonl | 1 RETIRE naming 69 ids (69 Phase 16 entry files kept), 6 REGISTER all ABSTAIN / REFERENCE_BASELINE, 3 PIN all NO_VIABLE_CHAMPION; `predictive_daily.py verify` ok |
+| 9 | CM-2 tests offline | `unshare -rn pytest` on the six named files | 262 passed, 4 errors (scratch commits need the signing service); rerun of daily and guards with commit.gpgsign=false: 17 passed |
+| 10 | Two quick mutations of promotion.py | (a) drop `n - k >= min_per_class` in evaluate_window; (b) `>` to `>=` at the freeze in admissibility | (a) survives (finding 5); (b) caught by test_a_decision_at_the_freeze_is_inadmissible |
+| 11 | Change controls | CHANGE_CONTROL_PI-D-124/126/128/129, c66211c diff | PI-D-124 test fixture only; PI-D-126 adds tests; PI-D-128 makes a stopped run commit only its run record when the ledger is not an append (fail closed); PI-D-129 runs the probe offline and changes three Phase 16 tests to expect exactly the two PI-D-123 files changed from their old pins (not a weakening: exact set, old and new hashes asserted) |
+
+## Daily cycle
+
+Predictions are appended and committed before any read, and the run stops (PREDICTION_COMMIT_FAILED) if HEAD does not hold the working ledger; `--no-commit` refuses a planned read before any call. Named exit codes, broad exceptions mapped to UNEXPECTED_ERROR, writes outside allowed paths stop it. The lock refuses a concurrent run; a second sequential run is allowed and is idempotent (no ledger line, no call) but adds a run-record commit. Calls: 5.7 a minute, default 60, reader deadline 25 minutes. No new exports: NO_NEW_EXPORTS note and exit 0 (fresh-clone evidence at a8c96d7). The script never pushes.
+
+## Findings (all MINOR)
+
+1. Commit-time anchor is keyed by line number, not content (counterexample below). `commit_times()` gives each ledger line the time of the first commit where the file had that many lines, and no code compares a committed ledger with the previous commit's ledger. Fix before the first window can close: in commit_times, require each commit's ledger to be `is_append_only` of the previous one, or fail the window as NOT_ADMISSIBLE.
+2. PROCEDURE.md calls GitHub's push record "the independent time anchor", but the push happens after the run, after the label reads, so it cannot show that predictions preceded reads; it only bounds the run. The script does not check that it runs on feature/predictive-intelligence; "push the branch it ran on" is a scheduled-task instruction, not code. A push (or a second commit-and-push) between the prediction commit and the reads would make the claim true.
+3. SHADOW is reachable only as a computed level in the summary: make_entry refuses publishable levels and there is no event that raises a registered level, so a CHAMPION pin can never be written. And the only kind that can pass is B2, a REFERENCE_BASELINE, which `level()` would report as SHADOW while the pins say references are never published. Fail closed, but the records say SHADOW is now reachable; a later change control is needed to make it reachable for a publishable card.
+4. `window_results()` filters by target and kind, not recipe_id: a future recipe would inherit the windows count and any passed window of R-CM2-1 (latent; a new recipe needs a pin change).
+5. evaluate_window's own negative-class minimum is untested (mutation (a) survives); harmless today because next_window enforces it, but PI-D-126 claims evaluate's own minimums are tested.
+6. CLI accepts `--max-calls` up to 300 (the change control says at most 60 per run; the 25 minute reader deadline caps it near 142, within ACCEPTANCE's 1,200), and `--now` is unrestricted outside tests (a future `--now` writes a future registry as_of that blocks later registrations: fail closed). The registered_at of a retrained version is the run start, not its commit (minutes). Entry tests leakage and provenance are literals True.
+
+## Counterexample (new)
+
+Script: /home/claude/pi_orchestration/skeptic/cm2_counterexample.py. A scratch repository commits a 2-line ledger at T1; the outcome is read at T1+600; a later commit at T1+1200 replaces the ledger with a fresh, valid chain whose two prediction lines carry different numbers, plus an outcome line. Result: `M.verify` ok, `is_append_only(old, new)` False, `commit_times()` still anchors both rewritten lines at T1, and `promotion.admissibility` returns no problem. Nothing in the suite or the daily preflight catches it (the preflight compares the working ledger only with HEAD). The daily script itself never writes such a commit (PI-D-128), so this needs a manual or merged commit; it shows the "checked from git" guarantee is weaker than stated.
