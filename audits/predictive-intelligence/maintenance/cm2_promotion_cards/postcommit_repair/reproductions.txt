@@ -1,0 +1,4 @@
+python -m pytest -q -p no:cacheprovider tests/test_predictive_reproductions.py at 3da83d5
+......                                                                   [100%]
+6 passed in 55.78s
+exit 0

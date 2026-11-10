@@ -166,3 +166,26 @@ Review and scripts: `skeptic/` (the review kept as `.txt`). Verdict: no material
 | fresh-clone daily runs from the repair code | `bash probes/fresh_clone_daily.sh REPO OUT` at `1818db3`, push remote a local bare repository | 0 | runs exit 0 and 0; alerts equal to the frozen record apart from the date; the push remote ends at the clone's HEAD (`evidence/daily_fresh_clone_pi_d_140.json`) |
 
 Outputs that changed: none of the cards, registry entries, labels, levels or numbers (no refit, no registry event). New: the daily run pushes, and its exit codes 12 and 13. The recorded fresh-clone run adds the push remote; its alerts are unchanged.
+
+### Post-commit checks of the repair
+
+At `3da83d5` (the repair records); files in `postcommit_repair/`. The commit that records them changes only records and evidence. A container restart stopped the first post-commit attempt before its record; every check below was rerun from the start.
+
+| Command | Exit | Result |
+|---|---|---|
+| `python -m pytest tests -q -p no:cacheprovider` | 1 | 2 failed (the two known clock-dependent catalyst tests: `test_catalyst.py::test_dedup_corroboration_resurface_denial`, `test_catalyst_firecrawl.py::test_page_history_and_spend_survive_a_new_session_through_the_state_export`), 2,577 passed, 1 skipped |
+| `python -m memelab social guard` | 0 | 3,963 files scanned, 0 violations |
+| `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | 0 | `"problems": []` |
+| `python -m pytest -q tests/test_predictive_reproductions.py` | 0 | 6 passed |
+| `python -B audits/predictive-intelligence/daily/predictive_daily.py verify` | 0 | ok, no problems |
+| `git clone --no-local --single-branch -b feature/predictive-intelligence REPO CLONE`, then `python tools/release_audit.py --history` | 0 | "Needs action: no.", 5,488 history blobs, 0 credential findings in history or tree |
+| `git status --short` after the suite | 0 | one stray `data/reports/*_BRETT_*.md` and `data/memelab.sqlite-shm`, `-wal` (known, from existing tests), removed by hand; then clean |
+
+| Path | sha256 |
+|---|---|
+| `audits/predictive-intelligence/maintenance/cm2_promotion_cards/postcommit_repair/check_seal.txt` | `6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d` |
+| `audits/predictive-intelligence/maintenance/cm2_promotion_cards/postcommit_repair/release_audit_history_single_branch.json` | `1a171a643ae6e5672acc6968ef88b37a6c864980a31abeb4cd3da6fac3e09231` |
+| `audits/predictive-intelligence/maintenance/cm2_promotion_cards/postcommit_repair/release_audit_history_single_branch.txt` | `3dc22dd00907d37d3b1f80a02f541a85a675960d92ad22e646b81a83043eb09a` |
+| `audits/predictive-intelligence/maintenance/cm2_promotion_cards/postcommit_repair/reproductions.txt` | `f599ee643a1d09f05c3a43e7e38dcd46dadd81cfa9d32993eae2d7cb48a4f0b8` |
+| `audits/predictive-intelligence/maintenance/cm2_promotion_cards/postcommit_repair/social_guard.txt` | `d4c075aaad401b851a6be3fc49fb0e56f8da8e853407e31b8d162d1d49cd5de6` |
+| `audits/predictive-intelligence/maintenance/cm2_promotion_cards/postcommit_repair/suite_summary.txt` | `b5d5fd81cf301d7b3b3dba21a6c3c142b65397820f67f95c839f5695352a8cf0` |

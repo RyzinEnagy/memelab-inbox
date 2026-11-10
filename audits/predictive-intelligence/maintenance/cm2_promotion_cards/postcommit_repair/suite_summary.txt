@@ -1,0 +1,5 @@
+full suite at 3da83d5, python -m pytest tests -q -p no:cacheprovider
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+FAILED tests/test_catalyst_firecrawl.py::test_page_history_and_spend_survive_a_new_session_through_the_state_export
+2 failed, 2577 passed, 1 skipped, 1 warning in 580.42s (0:09:40)
+exit 1
