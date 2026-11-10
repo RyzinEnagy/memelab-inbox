@@ -13,7 +13,8 @@ REPO = HERE.parents[4]
 OUT = HERE.parent / "evidence/mutation_probe.json"
 PROMO = "memelab/predictive/promotion.py"
 DAILY = "audits/predictive-intelligence/daily/predictive_daily.py"
-TP, TD = "tests/test_predictive_promotion.py", "tests/test_predictive_daily.py"
+G = "tests/test_predictive_cm2_guards.py"           # PI-D-126: tests added for the survivors of the first probe run
+TP, TD = ("tests/test_predictive_promotion.py", G), ("tests/test_predictive_daily.py", G)
 M = [
     ("P01 window start not strict", PROMO, 'float(r["decision_time"]) > lo and', 'float(r["decision_time"]) >= lo - 1e9 and', TP),
     ("P02 incomplete day does not stop", PROMO, "        if not all(r[\"final\"] for r in days[d]):\n            break", "        if False:\n            break", TP),
@@ -68,8 +69,8 @@ def main(scratch: str) -> None:
     sh(["git", "fetch", "-q", str(REPO), "refs/remotes/origin/main:refs/remotes/origin/main"], c)
     base = {}
     for t in (TP, TD):
-        r = sh([sys.executable, "-m", "pytest", "-q", "-x", "-p", "no:cacheprovider", t], c)
-        base[t] = {"exit": r.returncode, "tail": r.stdout.strip().splitlines()[-1:]}
+        r = sh([sys.executable, "-m", "pytest", "-q", "-x", "-p", "no:cacheprovider", *t], c)
+        base[" ".join(t)] = {"exit": r.returncode, "tail": r.stdout.strip().splitlines()[-1:]}
     res = []
     for name, f, old, new, t in M:
         p = c / f
@@ -79,11 +80,15 @@ def main(scratch: str) -> None:
             res.append({"mutation": name, "file": f, "applied": False, "occurrences": n})
             continue
         p.write_text(orig.replace(old, new))
+        # committed, because the end-to-end tests clone the committed tree of this checkout (an uncommitted mutation would
+        # never reach the script they run); reset afterwards
+        sh(["git", "commit", "-q", "-am", f"mutation {name}"], c)
         try:
-            r = sh([sys.executable, "-m", "pytest", "-q", "-x", "-p", "no:cacheprovider", t], c)
+            r = sh([sys.executable, "-m", "pytest", "-q", "-x", "-p", "no:cacheprovider", *t], c)
         finally:
-            p.write_text(orig)
-        res.append({"mutation": name, "file": f, "applied": True, "tests": t, "exit": r.returncode, "caught": r.returncode != 0,
+            sh(["git", "reset", "-q", "--hard", "HEAD~1"], c)
+            assert p.read_text() == orig
+        res.append({"mutation": name, "file": f, "applied": True, "tests": list(t), "exit": r.returncode, "caught": r.returncode != 0,
                     "tail": r.stdout.strip().splitlines()[-1:]})
         print(name, "caught" if r.returncode else "SURVIVED", flush=True)
     out = {"head": subprocess.run(["git", "-C", str(REPO), "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip(),
