@@ -1004,3 +1004,19 @@ Done under PI-D-120. Merge commit `69b7b57` (`git merge --no-ff origin/feature/b
 3. Checks (`audits/predictive-intelligence/maintenance/cm1_backtest_merge/CM1_EVIDENCE.md`): full suite 2 failed (the two known clock-dependent catalyst tests), 2,526 passed, 1 skipped; reproductions 6 passed; release_e2e 78 of 78; social guard 0 violations over 3,850 files; seal 0 problems; backtesting Phase 00 counterexamples 3 of 3; its builder and collector mutation sets 269 of 269 caught; its reviewer sets p17 (2 of 2 on rerun; the first run's survivor was a filesystem-dependent skip) and p16r4 (the same baseline failures and not-applicable mutation as a clean checkout of `69bc5c3`, so not caused by the merge); single-branch `release_audit.py --history` exit 0, "Needs action: no.".
 4. The history blob `acbc9c9016` (D-BT-016, PI-D-049 item 6) is now reachable from this branch and is listed as reviewed by the existing EXPLAINED entry, in both the tree and the history sections.
 5. Still open: a phase that verifies the installed backtesting engine before any document may carry an assessment reference (P34); deploying the forward depth collector (PI-D-044); the backtesting branch's own open items (its HANDOFF); pushing this branch (the orchestrator, PI-D-002); any merge into `main`.
+
+## PI-D-130 Change control CM-3 item 1 (ED-3): catalyst and social tables in the state export, read by the engine as of the export commit (ADOPTED, 2026-11-09, maintenance; approved by Elving on 2026-11-09, "do everything that doesn't require spend"; written before the code)
+
+Details and checks: `audits/predictive-intelligence/maintenance/cm3_spend_free/CHANGE_CONTROL.md` item 1. Opt-in export section `_catsoc` (format catsoc-export-1, `memelab/catsoc_export.py`; flag `MEMELAB_STATE_EXPORT_CATSOC=1` or `data/config.json` `state_export.catalyst_social` true; OFF by default and byte identical when off) with ids, hashes, exact chain plus mint links, classification states, times, source ids and short guard-checked summaries only; an importer into a separate SQLite file; a companion adapter `memelab/predictive/catsoc_adapter.py` that feeds the unchanged Phase 10 classifier and social function with `available_at` = first export commit time (`socialcat.py` stays untouched: 18 registry entries pin it). No collection change, no new source, no scheduled task change.
+
+## PI-D-131 Change control CM-3 item 2 (ED-7): alert delivery as a push file, no spend (ADOPTED, 2026-11-09, maintenance; written before the code)
+
+CHANGE_CONTROL.md item 2. `alerts --send push_file` writes one short line per new alert (no probability, no trading word) into the local outbox for a scheduled task to send as a push notification; every other `--send` stays refused; mode stays dry run; the alert policy is unchanged.
+
+## PI-D-132 Change control CM-3 item 3 (ED-9): HMAC-SHA256 signing of the private predictive state (ADOPTED, 2026-11-09, maintenance; written before the code)
+
+CHANGE_CONTROL.md item 3. Signature over the pass chain tip with a key from `MEMELAB_PREDICTIVE_STATE_KEY_FILE` or `MEMELAB_PREDICTIVE_STATE_KEY` (never from the repository, never printed); with a key, unsigned or mismatched state is StateTampered; without a key nothing changes and the state is reported UNSIGNED_NO_KEY. No key is created. `integration.py` and `state.py` re-pinned in a new Phase 18 amendment file.
+
+## PI-D-133 Change control CM-3 item 4 (ED-8 preparation): what turning the flag on means (ADOPTED, 2026-11-09, maintenance; written before the code)
+
+CHANGE_CONTROL.md item 4. A document of the flag-on effects and a test on rows of the real export that a flag-on scout keeps the 100-point score, fatal flags, statuses and lists unchanged. No scheduled task changes; turning the flag on stays Elving's decision.
