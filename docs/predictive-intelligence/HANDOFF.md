@@ -58,7 +58,7 @@ HEAD before `79bcd7e` (pushed); `445d2d7` change control PI-D-120; `69b7b57` mer
 
 ## CM-2 commits
 
-HEAD before `e79d846` (CM-1 pushed up to `60eb729`); `ed85b2c` change control PI-D-122 and recipe; `e79d846` frozen code; `a140986` reads, labels, cards, registry; `43a485b` PI-D-124; `b7aabe3` PI-D-126; `07a815e` PROCEDURE.md; `a8c96d7` PI-D-128; `2f72034` PI-D-129 (also carried the OPEN_DECISIONS update, the skeptic packet and the second fresh-clone record); then the records commit and its post-commit record (see `CM2_EVIDENCE.md`). Local only; not pushed.
+HEAD before `e79d846` (CM-1 pushed up to `60eb729`); `ed85b2c` change control PI-D-122 and recipe; `e79d846` frozen code; `a140986` reads, labels, cards, registry; `43a485b` PI-D-124; `b7aabe3` PI-D-126; `07a815e` PROCEDURE.md; `a8c96d7` PI-D-128; `2f72034` PI-D-129 item 1 (also carried the OPEN_DECISIONS update, the skeptic packet and the second fresh-clone record); `4e020cb` probe fix; `f403b1b` records; `c66211c` PI-D-129 item 2; then the post-commit record (`maintenance/cm2_promotion_cards/postcommit/`, checks at `c66211c`: suite 2 failed, the two known, 2,568 passed, 1 skipped; guard 0 violations over 3,948 files; seal 0 problems; reproductions 6 passed; single-branch release audit with history exit 0, "Needs action: no."). Local only; not pushed.
 
 ## The reviewed history blob
 

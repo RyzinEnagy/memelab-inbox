@@ -1,0 +1,14 @@
+full suite at c66211c, python -m pytest tests -q -p no:cacheprovider
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+FAILED tests/test_catalyst_firecrawl.py::test_page_history_and_spend_survive_a_new_session_through_the_state_export
+2 failed, 2568 passed, 1 skipped, 1 warning in 462.69s (0:07:42)
+exit 1
+
+earlier run at the records commit f403b1b (before PI-D-129 item 2)
+FAILED tests/test_catalyst.py::test_dedup_corroboration_resurface_denial - As...
+FAILED tests/test_catalyst_firecrawl.py::test_page_history_and_spend_survive_a_new_session_through_the_state_export
+FAILED tests/test_predictive_integration.py::test_g22_every_registry_entry_still_sees_its_code_files_unchanged
+FAILED tests/test_predictive_phase16_outputs.py::test_cp16_2_every_entry_s_facts_are_rebuilt_by_the_registry_and_its_code_files_are_unchanged
+FAILED tests/test_predictive_reproductions.py::test_phase_16_registry_reproduces_its_committed_files
+5 failed, 2565 passed, 1 skipped, 1 warning in 465.36s (0:07:45)
+exit 1

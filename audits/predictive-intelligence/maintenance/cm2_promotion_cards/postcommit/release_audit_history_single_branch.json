@@ -1,0 +1,1318 @@
+{
+ "commit": "c66211cd571f680b38b2fa871625671224732fba",
+ "credentials_history": [],
+ "credentials_history_reviewed": [
+  {
+   "line": 93,
+   "path": "audits/backtesting/testing/logs/p16_e2e_audit_tests.log (blob d399541575)",
+   "rule": "firecrawl_key",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 95,
+   "path": "audits/backtesting/testing/logs/p16_e2e_audit_tests.log (blob d399541575)",
+   "rule": "firecrawl_key",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 95,
+   "path": "audits/backtesting/testing/logs/p16_e2e_audit_tests.log (blob d399541575)",
+   "rule": "firecrawl_key",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 95,
+   "path": "audits/backtesting/testing/logs/p16_e2e_audit_tests.log (blob d399541575)",
+   "rule": "api_key_param",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 95,
+   "path": "audits/backtesting/testing/logs/p16_e2e_audit_tests.log (blob d399541575)",
+   "rule": "api_key_param",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 40,
+   "path": "audits/backtesting/testing/logs/p16r1_repair_attacks.log (blob 97718976b7)",
+   "rule": "firecrawl_key",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 41,
+   "path": "audits/backtesting/testing/logs/p16r1_repair_attacks.log (blob 97718976b7)",
+   "rule": "firecrawl_key",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 41,
+   "path": "audits/backtesting/testing/logs/p16r1_repair_attacks.log (blob 97718976b7)",
+   "rule": "firecrawl_key",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 41,
+   "path": "audits/backtesting/testing/logs/p16r1_repair_attacks.log (blob 97718976b7)",
+   "rule": "bearer_header",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 33,
+   "path": "audits/backtesting/testing/logs/p16r2_repair_attacks.log (blob bc00f806c0)",
+   "rule": "telegram_bot_token",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 34,
+   "path": "audits/backtesting/testing/logs/p16r2_repair_attacks.log (blob bc00f806c0)",
+   "rule": "telegram_bot_token",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 77,
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/old_code_check.json (blob aa0cce5bc6)",
+   "rule": "x_bearer",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 239,
+   "path": "tests/test_social_alerts.py (blob 2623a6d631)",
+   "rule": "telegram_bot_token",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 42,
+   "path": "audits/backtesting/research/smoke/etcherfx__sol-trade/output.txt (blob acbc9c9016)",
+   "rule": "key_material_field",
+   "why": "static-scan output quoting an environment variable name (SOLTRADE_PRIVATE_KEY), not a key value (D-BT-016)"
+  }
+ ],
+ "credentials_tracked": [],
+ "credentials_tracked_reviewed": [
+  {
+   "line": 42,
+   "path": "audits/backtesting/research/smoke/etcherfx__sol-trade/output.txt",
+   "rule": "key_material_field",
+   "why": "static-scan output quoting an environment variable name (SOLTRADE_PRIVATE_KEY), not a key value (D-BT-016)"
+  },
+  {
+   "line": 93,
+   "path": "audits/backtesting/testing/logs/p16_e2e_audit_tests.log",
+   "rule": "firecrawl_key",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 95,
+   "path": "audits/backtesting/testing/logs/p16_e2e_audit_tests.log",
+   "rule": "firecrawl_key",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 95,
+   "path": "audits/backtesting/testing/logs/p16_e2e_audit_tests.log",
+   "rule": "firecrawl_key",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 95,
+   "path": "audits/backtesting/testing/logs/p16_e2e_audit_tests.log",
+   "rule": "api_key_param",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 95,
+   "path": "audits/backtesting/testing/logs/p16_e2e_audit_tests.log",
+   "rule": "api_key_param",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 40,
+   "path": "audits/backtesting/testing/logs/p16r1_repair_attacks.log",
+   "rule": "firecrawl_key",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 41,
+   "path": "audits/backtesting/testing/logs/p16r1_repair_attacks.log",
+   "rule": "firecrawl_key",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 41,
+   "path": "audits/backtesting/testing/logs/p16r1_repair_attacks.log",
+   "rule": "firecrawl_key",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 41,
+   "path": "audits/backtesting/testing/logs/p16r1_repair_attacks.log",
+   "rule": "bearer_header",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 33,
+   "path": "audits/backtesting/testing/logs/p16r2_repair_attacks.log",
+   "rule": "telegram_bot_token",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 34,
+   "path": "audits/backtesting/testing/logs/p16r2_repair_attacks.log",
+   "rule": "telegram_bot_token",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 77,
+   "path": "audits/predictive-intelligence/phase_04/adoption/evidence/old_code_check.json",
+   "rule": "x_bearer",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  },
+  {
+   "line": 239,
+   "path": "tests/test_social_alerts.py",
+   "rule": "telegram_bot_token",
+   "why": "placeholder shape, not a credential (fewer than 8 distinct characters)"
+  }
+ ],
+ "example_config_defaults": {
+  "alerts.example.json": {
+   "allow_billable_true": false,
+   "holds_secret_key": false,
+   "send_enabled_true": false
+  },
+  "discord_bot.example.json": {
+   "allow_billable_true": false,
+   "holds_secret_key": false,
+   "send_enabled_true": false
+  },
+  "farcaster_hub.example.json": {
+   "allow_billable_true": false,
+   "holds_secret_key": false,
+   "send_enabled_true": false
+  },
+  "firecrawl.example.json": {
+   "allow_billable_true": false,
+   "holds_secret_key": false,
+   "send_enabled_true": false
+  },
+  "llm.example.json": {
+   "allow_billable_true": false,
+   "holds_secret_key": false,
+   "send_enabled_true": false
+  },
+  "reddit_api.example.json": {
+   "allow_billable_true": false,
+   "holds_secret_key": false,
+   "send_enabled_true": false
+  },
+  "telegram_bot.example.json": {
+   "allow_billable_true": false,
+   "holds_secret_key": false,
+   "send_enabled_true": false
+  },
+  "x_api.example.json": {
+   "allow_billable_true": false,
+   "holds_secret_key": false,
+   "send_enabled_true": false
+  },
+  "youtube_data.example.json": {
+   "allow_billable_true": false,
+   "holds_secret_key": false,
+   "send_enabled_true": false
+  }
+ },
+ "guard_head": {
+  "exit": 0,
+  "tail": [
+   " \"sqlite_files\": 1,",
+   " \"violations\": []",
+   "}"
+  ]
+ },
+ "history_blobs_scanned": 5458,
+ "local_paths_head": [
+  {
+   "count": 33,
+   "path": "data/memelab.sqlite"
+  },
+  {
+   "count": 3,
+   "path": "data/reports/20261007_0007_SCOUT.md"
+  },
+  {
+   "count": 2,
+   "path": "data/reports/20261007_0016_SCOUT.md"
+  },
+  {
+   "count": 473,
+   "path": "data/state/latest.json"
+  },
+  {
+   "count": 41,
+   "path": "state/latest.json"
+  }
+ ],
+ "migrate_tracked_db": {
+  "database_existed": true,
+  "exit": 0,
+  "latest": 12,
+  "legacy_rows_after": {
+   "entries": 43,
+   "rejections": 20,
+   "social_snapshots": 99,
+   "theses": 33,
+   "tokens": 13,
+   "watchlist": 5
+  },
+  "legacy_rows_before": {
+   "entries": 43,
+   "rejections": 20,
+   "social_snapshots": 99,
+   "theses": 33,
+   "tokens": 13,
+   "watchlist": 5
+  },
+  "legacy_unchanged": true,
+  "migration_rows": 12,
+  "social_version_after": 12,
+  "social_version_before": 0
+ },
+ "needs_action": false,
+ "network_paths": [
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/backtesting/bakeoff/p06a_crawl4ai_runner.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/backtesting/bakeoff/p06a_maxun_client.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/backtesting/bakeoff/p06a_sample_releases.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/backtesting/data/gt_fetch_win.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/backtesting/execution/p07_spotcheck.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/backtesting/research/smoke/freqtrade__freqtrade/script.py",
+   "uses": [
+    "import socket"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/backtesting/research/smoke/jesse-ai__jesse/script.py",
+   "uses": [
+    "import socket"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_00/probes/p41_untrusted_page_probe.py",
+   "uses": [
+    "fetch("
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_02/probes/discover.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_02/probes/gh_search.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_02/probes/pypi_lookup.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_02/probes/verify_repos.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_03/research/SMOKES/PriorLabs__TabPFN/smoke_tabpfn.py",
+   "uses": [
+    "import socket"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_03/research/SMOKES/PriorLabs__TabPFN/tabpfn_fetch_v2.py",
+   "uses": [
+    "import socket"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_03/research/SMOKES/feast-dev__feast/smoke_feast.py",
+   "uses": [
+    "import socket"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_03/research/SMOKES/interpretml__interpret/smoke_interpret.py",
+   "uses": [
+    "import socket"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_03/research/SMOKES/interpretml__interpret/smoke_interpret_pin_cox.py",
+   "uses": [
+    "import socket"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_03/research/SMOKES/lightgbm-org__LightGBM/smoke_lightgbm.py",
+   "uses": [
+    "import socket"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_03/research/SMOKES/scikit-learn__scikit-learn/smoke_sklearn.py",
+   "uses": [
+    "import socket"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_03/research/SMOKES/statsmodels__statsmodels/smoke_statsmodels.py",
+   "uses": [
+    "import socket"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_03/research/verify/pypi_wheels.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/build_dev_sample.py",
+   "uses": [
+    "fetch("
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_04/adoption/prototypes/measure.py",
+   "uses": [
+    "http.client"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_14/probes/run_behavioral.py",
+   "uses": [
+    "import socket",
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_14/skeptic/p14_meter.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_20/probes/scenarios.py",
+   "uses": [
+    "fetch("
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "audits/predictive-intelligence/phase_20/probes/threat_scan.py",
+   "uses": [
+    "http.client",
+    "smtplib",
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "bridge/catalyst.js",
+   "uses": [
+    "fetch("
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "bridge/collector.js",
+   "uses": [
+    "fetch("
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "commit_file.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "memelab/backtest/outcomes.py",
+   "uses": [
+    "fetch("
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "memelab/backtest/sources/gecko.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "memelab/bridge/catalyst.js",
+   "uses": [
+    "fetch("
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "memelab/bridge/collector.js",
+   "uses": [
+    "fetch("
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "memelab/catalyst/cli.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [
+    "api.firecrawl.dev"
+   ],
+   "path": "memelab/catalyst/firecrawl.py",
+   "uses": [
+    "fetch(",
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "memelab/catalyst/sources.py",
+   "uses": [
+    "fetch("
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "memelab/predictive/behavioral.py",
+   "uses": [
+    "http.client",
+    "import socket"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [
+    "api.telegram.org"
+   ],
+   "path": "memelab/social/alerts_transport.py",
+   "uses": [
+    "smtplib",
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [
+    "discord.com/api"
+   ],
+   "path": "memelab/social/discord_bot.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "memelab/social/farcaster_hub.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [
+    "api.anthropic.com"
+   ],
+   "path": "memelab/social/llm.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "memelab/social/perf_store.py",
+   "uses": [
+    "fetch("
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [
+    "oauth.reddit.com",
+    "www.reddit.com"
+   ],
+   "path": "memelab/social/reddit_api.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [
+    "api.telegram.org"
+   ],
+   "path": "memelab/social/telegram_bot.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [
+    "api.x.com"
+   ],
+   "path": "memelab/social/x_api.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [
+    "www.googleapis.com/youtube"
+   ],
+   "path": "memelab/social/youtube_data.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "memelab/state.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "tools/direct/direct_refresh.py",
+   "uses": [
+    "urllib.request"
+   ]
+  },
+  {
+   "paid_or_credentialed_hosts": [],
+   "path": "tools/release_audit.py",
+   "uses": [
+    "XMLHttpRequest",
+    "import requests",
+    "import socket",
+    "smtplib"
+   ]
+  }
+ ],
+ "schema": "memelab.release.audit/1",
+ "static": {
+  "js_files": 16,
+  "js_syntax_errors": [],
+  "pyflakes": "not installed (pip install pyflakes)",
+  "python_files": 777,
+  "python_syntax_errors": []
+ },
+ "trade_execution": [],
+ "trade_execution_reviewed": [
+  {
+   "line": 121,
+   "path": "audits/backtesting/00_BASELINE.md",
+   "rule": "exec:keypair",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 121,
+   "path": "audits/backtesting/00_BASELINE.md",
+   "rule": "exec:sendtransaction",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 121,
+   "path": "audits/backtesting/00_BASELINE.md",
+   "rule": "exec:signtransaction",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 121,
+   "path": "audits/backtesting/00_BASELINE.md",
+   "rule": "exec:mnemonic",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 121,
+   "path": "audits/backtesting/00_BASELINE.md",
+   "rule": "exec:/swap/v1/swap",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 51,
+   "path": "audits/backtesting/collector/COLLECTOR_SKEPTIC.md",
+   "rule": "exec:seed phrase",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 16,
+   "path": "audits/backtesting/collector/SKEPTIC_PACKET.md",
+   "rule": "exec:seed phrase",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 8,
+   "path": "audits/backtesting/research/REPO_REVIEWS/charllysb__pumpfun-momentum-bot.md",
+   "rule": "exec:mnemonic",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 11,
+   "path": "audits/backtesting/research/REPO_REVIEWS/charllysb__pumpfun-momentum-bot.md",
+   "rule": "exec:seed phrase",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 27,
+   "path": "audits/backtesting/research/REPO_REVIEWS/charllysb__pumpfun-momentum-bot.md",
+   "rule": "exec:keypair",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 31,
+   "path": "audits/backtesting/research/REPO_REVIEWS/etcherfx__sol-trade.md",
+   "rule": "exec:keypair",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 11,
+   "path": "audits/backtesting/research/REPO_REVIEWS/lblommesteyn__slotfish.md",
+   "rule": "exec:keypair",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 11,
+   "path": "audits/backtesting/research/REPO_REVIEWS/lblommesteyn__slotfish.md",
+   "rule": "exec:sendtransaction",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 20,
+   "path": "audits/backtesting/research/REPO_REVIEWS/nautechsystems__nautilus_trader.md",
+   "rule": "exec:execute_swap",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 11,
+   "path": "audits/backtesting/research/REPO_REVIEWS/polakowo__vectorbt.md",
+   "rule": "exec:create_order",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 11,
+   "path": "audits/backtesting/research/REPO_REVIEWS/polakowo__vectorbt.md",
+   "rule": "exec:submit_order",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 11,
+   "path": "audits/backtesting/research/REPO_REVIEWS/polakowo__vectorbt.md",
+   "rule": "exec:place_order",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 11,
+   "path": "audits/backtesting/research/REPO_REVIEWS/raydium-io__raydium-sdk-V2.md",
+   "rule": "exec:keypair",
+   "why": "backtesting audit notes: reviews of third-party code and the no-trading rule (D-BT-016)"
+  },
+  {
+   "line": 67,
+   "path": "audits/backtesting/research/smoke/etcherfx__sol-trade/script.py",
+   "rule": "exec:keypair",
+   "why": "isolated audit smoke scripts: simulated orders inside third-party backtest engines, never imported by the lab (D-BT-016)"
+  },
+  {
+   "line": 83,
+   "path": "audits/backtesting/research/smoke/etcherfx__sol-trade/script.py",
+   "rule": "exec:keypair",
+   "why": "isolated audit smoke scripts: simulated orders inside third-party backtest engines, never imported by the lab (D-BT-016)"
+  },
+  {
+   "line": 42,
+   "path": "audits/backtesting/research/smoke/nautechsystems__nautilus_trader/script.py",
+   "rule": "exec:submit_order",
+   "why": "isolated audit smoke scripts: simulated orders inside third-party backtest engines, never imported by the lab (D-BT-016)"
+  },
+  {
+   "line": 42,
+   "path": "audits/backtesting/research/smoke/nautechsystems__nautilus_trader/script_v2rc7.py",
+   "rule": "exec:submit_order",
+   "why": "isolated audit smoke scripts: simulated orders inside third-party backtest engines, never imported by the lab (D-BT-016)"
+  },
+  {
+   "line": 23,
+   "path": "audits/predictive-intelligence/phase_14/ACCEPTANCE_CHECKLIST.md",
+   "rule": "exec:seed phrase",
+   "why": "the Phase 14 refusal rule text (PI-D-074)"
+  },
+  {
+   "line": 23,
+   "path": "audits/predictive-intelligence/phase_14/ACCEPTANCE_CHECKLIST.md",
+   "rule": "exec:mnemonic",
+   "why": "the Phase 14 refusal rule text (PI-D-074)"
+  },
+  {
+   "line": 45,
+   "path": "audits/predictive-intelligence/phase_14/skeptic/PHASE_14_SKEPTIC.md",
+   "rule": "exec:mnemonic",
+   "why": "the Phase 14 refusal rule text (PI-D-074)"
+  },
+  {
+   "line": 45,
+   "path": "audits/predictive-intelligence/phase_14/skeptic/PHASE_14_SKEPTIC.md",
+   "rule": "exec:seed phrase",
+   "why": "the Phase 14 refusal rule text (PI-D-074)"
+  },
+  {
+   "line": 146,
+   "path": "docs/backtesting/RUNBOOK.md",
+   "rule": "exec:seed phrase",
+   "why": "the hard rules text (never handle a seed phrase, never place an order)"
+  },
+  {
+   "line": 554,
+   "path": "docs/predictive-intelligence/DECISIONS.md",
+   "rule": "exec:mnemonic",
+   "why": "the hard rules text (never handle a seed phrase, never place an order)"
+  },
+  {
+   "line": 554,
+   "path": "docs/predictive-intelligence/DECISIONS.md",
+   "rule": "exec:seed phrase",
+   "why": "the hard rules text (never handle a seed phrase, never place an order)"
+  },
+  {
+   "line": 38,
+   "path": "docs/predictive-intelligence/EXECUTION.md",
+   "rule": "exec:seed phrase",
+   "why": "the hard rules text (never handle a seed phrase, never place an order)"
+  },
+  {
+   "line": 185,
+   "path": "docs/predictive-intelligence/ROADMAP.md",
+   "rule": "exec:mnemonic",
+   "why": "the hard rules text (never handle a seed phrase, never place an order)"
+  },
+  {
+   "line": 185,
+   "path": "docs/predictive-intelligence/ROADMAP.md",
+   "rule": "exec:seed phrase",
+   "why": "the hard rules text (never handle a seed phrase, never place an order)"
+  },
+  {
+   "line": 32,
+   "path": "docs/predictive-intelligence/orchestration/PHASE_BRIEF.md",
+   "rule": "exec:seed phrase",
+   "why": "the hard rules text (never handle a seed phrase, never place an order)"
+  },
+  {
+   "line": 544,
+   "path": "docs/social-intelligence/DECISIONS.md",
+   "rule": "exec:keypair",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 30,
+   "path": "docs/social-intelligence/EXECUTION.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 11,
+   "path": "docs/social-intelligence/README.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 74,
+   "path": "docs/social-intelligence/RELEASE_18.md",
+   "rule": "exec:keypair",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 27,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:keypair",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 28,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 29,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 30,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 30,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 31,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 32,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:mnemonic",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 33,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:mnemonic",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 34,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:sendtransaction",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 35,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:sendrawtransaction",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 36,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:signtransaction",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 37,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:signalltransactions",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 38,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:eth_sendrawtransaction",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 39,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:signandsendtransaction",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 40,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:keypair",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 41,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:from_secret_key",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 42,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:fromsecretkey",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 43,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:/swap-instructions",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 44,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:/v6/swap",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 45,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:/swap/v1/swap",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 46,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:executeswap",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 47,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:execute_swap",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 48,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:mnemonic",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 49,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 50,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:mnemonic",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 51,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 52,
+   "path": "docs/social-intelligence/release/AUDIT.md",
+   "rule": "exec:seed phrase",
+   "why": "documentation of the no-trading rule"
+  },
+  {
+   "line": 138,
+   "path": "memelab/predictive/behavioral.py",
+   "rule": "exec:mnemonic",
+   "why": "refusal list: behavioral seeds and responses naming key material are refused (PI-D-074)"
+  },
+  {
+   "line": 8,
+   "path": "skills/memecoin-scout/SKILL.md",
+   "rule": "exec:seed phrase",
+   "why": "the hard rules text (never handle a seed phrase, never place an order)"
+  },
+  {
+   "line": 239,
+   "path": "tests/test_backtest_engine.py",
+   "rule": "exec:sendtransaction",
+   "why": "refusal lists: strings the backtest package must never contain (D-BT-016)"
+  },
+  {
+   "line": 239,
+   "path": "tests/test_backtest_engine.py",
+   "rule": "exec:sendrawtransaction",
+   "why": "refusal lists: strings the backtest package must never contain (D-BT-016)"
+  },
+  {
+   "line": 239,
+   "path": "tests/test_backtest_engine.py",
+   "rule": "exec:signtransaction",
+   "why": "refusal lists: strings the backtest package must never contain (D-BT-016)"
+  },
+  {
+   "line": 239,
+   "path": "tests/test_backtest_engine.py",
+   "rule": "exec:/swap/v1/swap",
+   "why": "refusal lists: strings the backtest package must never contain (D-BT-016)"
+  },
+  {
+   "line": 239,
+   "path": "tests/test_backtest_engine.py",
+   "rule": "exec:keypair",
+   "why": "refusal lists: strings the backtest package must never contain (D-BT-016)"
+  },
+  {
+   "line": 239,
+   "path": "tests/test_backtest_engine.py",
+   "rule": "exec:mnemonic",
+   "why": "refusal lists: strings the backtest package must never contain (D-BT-016)"
+  },
+  {
+   "line": 239,
+   "path": "tests/test_backtest_engine.py",
+   "rule": "exec:seed phrase",
+   "why": "refusal lists: strings the backtest package must never contain (D-BT-016)"
+  },
+  {
+   "line": 243,
+   "path": "tests/test_backtest_timeguard.py",
+   "rule": "exec:/swap/v1/swap",
+   "why": "refusal lists: strings the backtest package must never contain (D-BT-016)"
+  },
+  {
+   "line": 243,
+   "path": "tests/test_backtest_timeguard.py",
+   "rule": "exec:sendtransaction",
+   "why": "refusal lists: strings the backtest package must never contain (D-BT-016)"
+  },
+  {
+   "line": 243,
+   "path": "tests/test_backtest_timeguard.py",
+   "rule": "exec:signtransaction",
+   "why": "refusal lists: strings the backtest package must never contain (D-BT-016)"
+  },
+  {
+   "line": 243,
+   "path": "tests/test_backtest_timeguard.py",
+   "rule": "exec:keypair",
+   "why": "refusal lists: strings the backtest package must never contain (D-BT-016)"
+  },
+  {
+   "line": 243,
+   "path": "tests/test_backtest_timeguard.py",
+   "rule": "exec:mnemonic",
+   "why": "refusal lists: strings the backtest package must never contain (D-BT-016)"
+  },
+  {
+   "line": 473,
+   "path": "tests/test_predictive_behavioral.py",
+   "rule": "exec:seed phrase",
+   "why": "tests that such behavioral seeds are refused (PI-D-074)"
+  },
+  {
+   "line": 473,
+   "path": "tests/test_predictive_behavioral.py",
+   "rule": "exec:seed phrase",
+   "why": "tests that such behavioral seeds are refused (PI-D-074)"
+  },
+  {
+   "line": 725,
+   "path": "tests/test_social_wallets.py",
+   "rule": "exec:seed phrase",
+   "why": "tests that signing material is refused"
+  },
+  {
+   "line": 725,
+   "path": "tests/test_social_wallets.py",
+   "rule": "exec:mnemonic",
+   "why": "tests that signing material is refused"
+  },
+  {
+   "line": 42,
+   "path": "tools/release_audit.py",
+   "rule": "exec:mnemonic",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 46,
+   "path": "tools/release_audit.py",
+   "rule": "exec:sendtransaction",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 46,
+   "path": "tools/release_audit.py",
+   "rule": "exec:sendrawtransaction",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 46,
+   "path": "tools/release_audit.py",
+   "rule": "exec:signtransaction",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 46,
+   "path": "tools/release_audit.py",
+   "rule": "exec:signalltransactions",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 46,
+   "path": "tools/release_audit.py",
+   "rule": "exec:eth_sendrawtransaction",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 47,
+   "path": "tools/release_audit.py",
+   "rule": "exec:signandsendtransaction",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 47,
+   "path": "tools/release_audit.py",
+   "rule": "exec:keypair",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 47,
+   "path": "tools/release_audit.py",
+   "rule": "exec:from_secret_key",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 47,
+   "path": "tools/release_audit.py",
+   "rule": "exec:fromsecretkey",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 48,
+   "path": "tools/release_audit.py",
+   "rule": "exec:/swap-instructions",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 48,
+   "path": "tools/release_audit.py",
+   "rule": "exec:/v6/swap",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 48,
+   "path": "tools/release_audit.py",
+   "rule": "exec:/swap/v1/swap",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 49,
+   "path": "tools/release_audit.py",
+   "rule": "exec:executeswap",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 49,
+   "path": "tools/release_audit.py",
+   "rule": "exec:execute_swap",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 49,
+   "path": "tools/release_audit.py",
+   "rule": "exec:mnemonic",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 49,
+   "path": "tools/release_audit.py",
+   "rule": "exec:seed phrase",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 57,
+   "path": "tools/release_audit.py",
+   "rule": "exec:mnemonic",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 57,
+   "path": "tools/release_audit.py",
+   "rule": "exec:seed phrase",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 57,
+   "path": "tools/release_audit.py",
+   "rule": "exec:seed phrase",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 61,
+   "path": "tools/release_audit.py",
+   "rule": "exec:mnemonic",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 61,
+   "path": "tools/release_audit.py",
+   "rule": "exec:seed phrase",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 62,
+   "path": "tools/release_audit.py",
+   "rule": "exec:mnemonic",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 62,
+   "path": "tools/release_audit.py",
+   "rule": "exec:seed phrase",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 63,
+   "path": "tools/release_audit.py",
+   "rule": "exec:mnemonic",
+   "why": "this file holds the patterns"
+  },
+  {
+   "line": 63,
+   "path": "tools/release_audit.py",
+   "rule": "exec:seed phrase",
+   "why": "this file holds the patterns"
+  }
+ ]
+}

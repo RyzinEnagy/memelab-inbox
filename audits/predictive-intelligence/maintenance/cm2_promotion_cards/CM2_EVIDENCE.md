@@ -33,8 +33,8 @@ Branch `feature/predictive-intelligence`. Approved by Elving on 2026-11-09 (ED-1
 | G7 | met with one reading stated: the RETIRE is one event naming the 69 entry ids (Part B item 5), not 69 events; 6 REGISTER at ABSTAIN; 3 PIN NO_VIABLE_CHAMPION; `verify` ok | `daily/registry/` |
 | G8 | met: two runs in a fresh clone, exit 0 and 0, second run appends nothing to the ledger (none exists: 0 decisions after the freeze), 0 calls, changes only in allowed paths; repeated at `a8c96d7`; exit codes and reasons tested | `evidence/daily_fresh_clone.json`, `evidence/daily_fresh_clone_pi_d_128.json` |
 | G9 | met with one equivalent mutant (D07): 35 applied, 34 caught | `evidence/mutation_probe.json` |
-| G10 | see "Post-commit checks" | `postcommit/` |
-| G11 | records written; `SKEPTIC_PACKET.md`; status NEEDS_REVIEW | this folder, `docs/predictive-intelligence/` |
+| G10 | met at `c66211c`: suite only the two known failures; guard 0; seal 0; reproductions 6 passed; release audit exit 0 | `postcommit/` |
+| G11 | met: records written, `SKEPTIC_PACKET.md`, git status clean, not pushed; status NEEDS_REVIEW | this folder, `docs/predictive-intelligence/` |
 
 ## Interruption
 
@@ -75,9 +75,22 @@ PI-D-124 (test fixture), PI-D-126 (tests for untested guards), PI-D-128 (a faile
 
 ## Post-commit checks
 
-Run after the records commit and recorded in `postcommit/` and in a follow-up commit: full suite, social guard, Phase 06 seal, reproductions, single-branch release audit with history, `git status`.
+At `c66211c` (after PI-D-129 item 2); files in `postcommit/`. The follow-up commit that records them changes only records and evidence.
+
+| Command | Exit | Result |
+|---|---|---|
+| `python -m pytest tests -q -p no:cacheprovider` | 1 | 2 failed, 2,568 passed, 1 skipped: only the two known clock-dependent catalyst tests (`test_dedup_corroboration_resurface_denial`, `test_page_history_and_spend_survive_a_new_session_through_the_state_export`) |
+| same at the records commit `f403b1b` | 1 | 5 failed, 2,565 passed, 1 skipped: the two known plus the three Phase 16 tests of PI-D-129 item 2 |
+| `python -m memelab social guard` | 0 | 3,948 files scanned, 0 violations |
+| `python -B audits/predictive-intelligence/phase_06/probes/check_seal.py` | 0 | `"problems": []` |
+| `python -m pytest -q tests/test_predictive_reproductions.py` | 0 | 6 passed |
+| `python -B audits/predictive-intelligence/daily/predictive_daily.py verify` | 0 | ok, no problems |
+| `git clone --no-local --single-branch -b feature/predictive-intelligence REPO CLONE`, then `python tools/release_audit.py --history` | 0 | "Needs action: no.", 5,458 history blobs, 0 credential findings in history or tree, 14 reviewed (including `acbc9c9016`, D-BT-016) |
+| `git status --short` after the suite | 0 | one stray `data/reports/*_BRETT_*.md` and `data/memelab.sqlite-shm`, `-wal` (known, from existing tests), removed by hand; then clean |
 
 ## Artifacts (sha256)
+
+At the post-commit record (the SKEPTIC_PACKET and records hashes are of the files in that commit).
 
 | Path | sha256 |
 |---|---|
@@ -96,7 +109,8 @@ Run after the records commit and recorded in `postcommit/` and in a follow-up co
 | `audits/predictive-intelligence/maintenance/cm2_promotion_cards/CHANGE_CONTROL_PI-D-124.md` | `b0fdc85eec4498238b2b270bc9085eb36aaef6863d437d53ffc1705fdc6c8877` |
 | `audits/predictive-intelligence/maintenance/cm2_promotion_cards/CHANGE_CONTROL_PI-D-126.md` | `d608b9569307e49ebe37257b1c1b498833ecfea01614e726719ec8f79deed564` |
 | `audits/predictive-intelligence/maintenance/cm2_promotion_cards/CHANGE_CONTROL_PI-D-128.md` | `4da88bca0a654025fda912e75a4374b7a288ca56503530c22acd04b82240d9d1` |
-| `audits/predictive-intelligence/maintenance/cm2_promotion_cards/SKEPTIC_PACKET.md` | `9da0363ece94c6e6fb04921e24ec5f015d08e3ed38f228c0728556f12c68a88c` |
+| `audits/predictive-intelligence/maintenance/cm2_promotion_cards/CHANGE_CONTROL_PI-D-129.md` | `7261f13a548841bb22b9651588d0562a503a5d2c665e5680e26ff4eb694134b3` |
+| `audits/predictive-intelligence/maintenance/cm2_promotion_cards/SKEPTIC_PACKET.md` | `2a331f75cba3679663fab57ffc38f6e14e7ffd7aab28a7aa0f741fea5cf1a49e` |
 | `audits/predictive-intelligence/maintenance/cm2_promotion_cards/evidence/base_labels.json` | `aaac9365419fc331a68fb99317b4f9c33ca7d83c1a006d595b710ea04af51e18` |
 | `audits/predictive-intelligence/maintenance/cm2_promotion_cards/evidence/cards.json` | `c13568bc98f928fd0ff75f3f39fa036e602a3896b5dd12d12df8bdc41376772d` |
 | `audits/predictive-intelligence/maintenance/cm2_promotion_cards/evidence/daily_fresh_clone.json` | `4c09c4cadc90868b28716e4a991617134501d2eb4778047922a712d51f6059fc` |
@@ -117,6 +131,12 @@ Run after the records commit and recorded in `postcommit/` and in a follow-up co
 | `audits/predictive-intelligence/maintenance/cm2_promotion_cards/experiments/LEDGER_TOTALS.json` | `8b3210097145262674574b815a8a208f92230a075353536a1e6b966a5e1075fb` |
 | `audits/predictive-intelligence/maintenance/cm2_promotion_cards/experiments/SEARCH_LEDGER.csv` | `5db2ae7cc43d0d518e22a47eb30cae714b756dce024fc21df91e1ac472364234` |
 | `audits/predictive-intelligence/maintenance/cm2_promotion_cards/experiments/SEARCH_LEDGER_CM2_ROWS.csv` | `b82f25851734cd99c0ca5e5b8e0c9f73321efc2d5d46f9ac05c3d0ac58812b9a` |
+| `audits/predictive-intelligence/maintenance/cm2_promotion_cards/postcommit/check_seal.txt` | `6dde396517fd7335c3d056f69995d848a05b106776668a3c3e1ecef22f708c2d` |
+| `audits/predictive-intelligence/maintenance/cm2_promotion_cards/postcommit/release_audit_history_single_branch.json` | `bceaf849a62a9157cb3989a974b5b6a0391f0f95541eb788981d13911a7cbff3` |
+| `audits/predictive-intelligence/maintenance/cm2_promotion_cards/postcommit/release_audit_history_single_branch.txt` | `b7275c7d26a55e870219df9809d3c26235285f7e1cbe372bd338aa79405dc86a` |
+| `audits/predictive-intelligence/maintenance/cm2_promotion_cards/postcommit/reproductions.txt` | `63918926e0aae075ed8032a8d1d22a44ebc74b3c1210d19a6a7e95ea82655ec5` |
+| `audits/predictive-intelligence/maintenance/cm2_promotion_cards/postcommit/social_guard.txt` | `0c4abc2022db41e271bae53d1db7a30a23f477303f25e0f330c6ebfae31ddcfa` |
+| `audits/predictive-intelligence/maintenance/cm2_promotion_cards/postcommit/suite_summary.txt` | `f82029cea3b774db46d23bc604bdbadb0555ac5562739935e6915c96beb26bb7` |
 | `audits/predictive-intelligence/maintenance/cm2_promotion_cards/probes/build_cm2.py` | `6e3c499f013c30b200e5ce6c78d05eb9612d9db40b82d7f9e6949344ca0aadb1` |
 | `audits/predictive-intelligence/maintenance/cm2_promotion_cards/probes/check_partial_reads.py` | `3699850296b9c22e09153ff734aa8768c7f129170423be35f574d6d8e0a69828` |
 | `audits/predictive-intelligence/maintenance/cm2_promotion_cards/probes/fresh_clone_daily.sh` | `b74ef7e32779ab5b1703a0ff319bc98792471518936ed9f78cdede1080043f2f` |
@@ -127,5 +147,8 @@ Run after the records commit and recorded in `postcommit/` and in a follow-up co
 | `memelab/predictive/promotion.py` | `39172a64a144d19f605845d01b60e8853ef6d5ea6c6a11798b7c20c16091c3df` |
 | `tests/test_predictive_cm2_guards.py` | `810d7d2710979b4236087e8f12a2c2c93c6762d8652948b9066687a1ecf14df2` |
 | `tests/test_predictive_daily.py` | `e016ea04cd8e0cd188dfc33b6df5592521fdf3b7bce6e5e4d3a5fafc2993936f` |
+| `tests/test_predictive_integration.py` | `316955bae652cf5b63e383b0c09212b03f4e7eeea29894ebd10ec3e495ea1478` |
+| `tests/test_predictive_phase16_outputs.py` | `09d58eaeaf129b29b324244ff6c9c8b4546c4ccfd1878de8afe5717083664f50` |
 | `tests/test_predictive_promotion.py` | `c2800cad7df34b6e3283af78a1fff4006a2c220ec3712123514a77743969489e` |
+| `tests/test_predictive_reproductions.py` | `da24b7b355d18940632bf9c4d09b49dca300649d93c22d4f506b9745b327b785` |
 | `audits/predictive-intelligence/maintenance/cm2_promotion_cards/raw/` | 7 gzip bodies, each sha256 in `evidence/t2_reads.json` |
