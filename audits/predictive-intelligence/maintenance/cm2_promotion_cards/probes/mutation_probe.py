@@ -51,6 +51,18 @@ M = [
     ("D07 tampered ledger not refused", DAILY, '            if LEDGER.exists() and not M.verify(LEDGER)["ok"]:\n                raise Fail("PREFLIGHT_FAILED", "the working ledger does not verify")', '            pass', TD),
     ("D08 decisions at the freeze predicted", DAILY, 'AND decision_time > ? ', 'AND decision_time > ? - 1e10 ', TD),
     ("D10 failed run commits a broken ledger (PI-D-128)", DAILY, 'paths = ALLOWED if ledger_committable() else RUN_RECORD', 'paths = ALLOWED', TD),
+    # PI-D-140 (repair pass) guards
+    ("P26 a reference reaches SHADOW", PROMO, '    if role == "REFERENCE_BASELINE":\n        # PI-D-140', '    if False:\n        # PI-D-140', TP),
+    ("P27 a reference can be promoted", PROMO, '        if e["role"] != "CANDIDATE":\n            raise', '        if False:\n            raise', TP),
+    ("P28 PROMOTE level not recomputed", PROMO, 'or level(res, role="CANDIDATE")["level"] != ev["level"]:', ':', TP),
+    ("P29 CHAMPION without a promoted level", PROMO, 'or levels.get(ev["champion"]) not in PUBLISHABLE:', ':', TP),
+    ("D11 history not checked append-only", DAILY, '        if not M.is_append_only(prev, txt):\n            problems.append', '        if False:\n            problems.append', TD),
+    ("D12 anchors by position again", DAILY, '        if x in first:\n            out[i] = first[x]', '        if first:\n            out[i] = min(first.values())', TD),
+    ("D13 no push before reads", DAILY, '            st.setdefault("pushes", []).append(push(args.push_remote, reason="PREDICTION_PUSH_FAILED"))\n', '', TD),
+    ("D14 branch not checked", DAILY, '        if current_branch() != BRANCH:\n            raise Fail("PREFLIGHT_FAILED"', '        if False:\n            raise Fail("PREFLIGHT_FAILED"', TD),
+    ("D15 window results not per recipe", DAILY, '            and e["payload"].get("recipe_id") == recipe_id]', ']', TD),
+    ("D16 max calls 300", DAILY, 'MAX_CALLS = 60 ', 'MAX_CALLS = 300 ', TD),
+    ("D17 --now without the test clock", DAILY, 'if a.now is not None and os.environ.get(TEST_CLOCK_ENV) != "1":', 'if False:', TD),
     ("D09 label read without token", DAILY, '        url = SRC.gt_url(d["pool"], b, token=d["mint"])\n        if "token="', '        url = SRC.gt_url(d["pool"], b)\n        if "token="', TD),
 ]
 
