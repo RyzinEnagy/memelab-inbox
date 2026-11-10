@@ -14,7 +14,8 @@ Status: NEEDS_REVIEW (the orchestrator's skeptic reads `SKEPTIC_PACKET.md`).
 | `bac9960` | change control PI-D-130 to PI-D-133 |
 | `b99e139` | code and tests (44 tests), committed by the agent cut off by the session restart |
 | `e822887` | repair after the restart: trader source ids hashed, stdout assertion corrected, key file name gitignored, identity probe |
-| records commit | this file, the four documents, SKEPTIC_PACKET, results, DECISIONS, ROADMAP, HANDOFF |
+| `6f4aab9` | records: this file, the four documents, SKEPTIC_PACKET, results, DECISIONS, ROADMAP, HANDOFF |
+| follow-up | post-commit record at `6f4aab9` |
 
 ## What the restart left, and what was done with it
 
@@ -52,7 +53,7 @@ Status: NEEDS_REVIEW (the orchestrator's skeptic reads `SKEPTIC_PACKET.md`).
 | release e2e | `python -B tools/release_e2e.py` | exit 0, "Result: PASS. Stages with the expected exit code: 78 of 78. Network attempts: 0." |
 | reproductions | `python -m pytest tests/test_predictive_reproductions.py -q` | 6 passed |
 | scheduled steps, dry | `FLAG_ON.md` steps 1, 3 and 5 in a scratch clone with a scratch home folder and a scratch key | config merged (other keys kept), `status` `"flag": true`, `sign-status` EMPTY_STATE with `key_configured` true, alerts exit 0 with "Push file: 0 line(s)", export carries `_catsoc` |
-| post-commit | suite, guard, seal, single-branch release audit with history on the records commit | `postcommit/` (recorded in the follow-up commit) |
+| post-commit at `6f4aab9` | suite, guard, seal, single-branch release audit with history | suite exit 1: 2 failed (the two known), 2,572 passed, 1 skipped; guard 0 violations, 3,908 files; seal `[]`; release audit exit 0, "Needs action: no." (`postcommit/`) |
 
 Strays after each suite run: `data/reports/*_BRETT_*.md`, `data/memelab.sqlite-shm`, `data/memelab.sqlite-wal`, removed by hand;
 `git diff --quiet -- data` exit 0 afterwards.

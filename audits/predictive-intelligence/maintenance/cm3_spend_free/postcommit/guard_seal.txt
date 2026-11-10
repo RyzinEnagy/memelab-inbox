@@ -1,0 +1,5 @@
+guard exit 0
+ "files_scanned": 3908,
+ "violations": []
+seal exit 0
+"problems": []
